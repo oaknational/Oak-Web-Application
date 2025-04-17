@@ -1,15 +1,15 @@
 import { SignUpButton, useUser } from "@clerk/nextjs";
 import React, { Dispatch, SetStateAction, useState } from "react";
+import { useRouter } from "next/router";
+
+import useUnitDownloadExistenceCheck from "../hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
+
 import {
   OakFlex,
   OakLoadingSpinner,
   OakPrimaryButton,
   OakTagFunctional,
 } from "@oaknational/oak-components";
-import { useRouter } from "next/router";
-
-import useUnitDownloadExistenceCheck from "../hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
-
 import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 import { createUnitDownloadLink } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createDownloadLink";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -33,7 +33,13 @@ const UnitDownloadOnboardButton = ({
 );
 
 // Used when a user is not signed in
-const UnitDownloadSignInButton = ({ redirectUrl }: { redirectUrl: string }) => (
+const UnitDownloadSignInButton = ({
+  redirectUrl,
+  showNewTag,
+}: {
+  redirectUrl: string;
+  showNewTag: boolean;
+}) => (
   <SignUpButton forceRedirectUrl={redirectUrl}>
     <OakPrimaryButton
       iconName={"download"}
@@ -42,11 +48,13 @@ const UnitDownloadSignInButton = ({ redirectUrl }: { redirectUrl: string }) => (
       pv={["inner-padding-s", "inner-padding-ssx"]}
     >
       <OakFlex $alignItems="center" $gap="space-between-xs">
-        <OakTagFunctional
-          label="New"
-          $background="mint"
-          $color="text-primary"
-        />
+        {showNewTag && (
+          <OakTagFunctional
+            label="New"
+            $background="mint"
+            $color="text-primary"
+          />
+        )}
         Download unit
       </OakFlex>
     </OakPrimaryButton>
@@ -104,6 +112,7 @@ export type UnitDownloadButtonProps = {
   setShowDownloadMessage: Dispatch<SetStateAction<boolean>>;
   setShowIncompleteMessage: Dispatch<SetStateAction<boolean>>;
   downloadInProgress: boolean;
+  showNewTag: boolean;
 };
 
 /**
@@ -171,6 +180,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
   ) : showSignInButton ? (
     <UnitDownloadSignInButton
       redirectUrl={`/onboarding?returnTo=${router.asPath}`}
+      showNewTag={props.showNewTag}
     />
   ) : showDownloadButton ? (
     <DownloadButton

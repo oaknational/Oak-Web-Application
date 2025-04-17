@@ -1,4 +1,10 @@
 import { FC } from "react";
+import { useFeatureFlagEnabled } from "posthog-js/react";
+
+import UnitDownloadButton, {
+  useUnitDownloadButtonState,
+} from "../UnitDownloadButton/UnitDownloadButton";
+
 import {
   OakFlex,
   OakHeading,
@@ -7,12 +13,9 @@ import {
   OakBox,
   OakInlineBanner,
   OakP,
+  OakSecondaryButton,
+  OakTagFunctional,
 } from "@oaknational/oak-components";
-
-import UnitDownloadButton, {
-  useUnitDownloadButtonState,
-} from "../UnitDownloadButton/UnitDownloadButton";
-
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
@@ -24,6 +27,7 @@ import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import { OakColorName } from "@/styles/theme";
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 import TeacherSubjectDescription from "@/components/TeacherComponents/TeacherSubjectDescription/TeacherSubjectDescription";
+
 
 /**
  * This is a header for the listing pages (lesson, unit and programme).
@@ -54,6 +58,8 @@ export type HeaderListingProps = {
   showRiskAssessmentBanner?: boolean;
   isIncompleteUnit?: boolean;
   subjectDescriptionUnitListingData?: UnitListingData;
+  isUnitSaved?: boolean;
+  onSave?: () => void;
 };
 
 const HeaderListing: FC<HeaderListingProps> = (props) => {
@@ -77,6 +83,8 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     showRiskAssessmentBanner,
     isIncompleteUnit,
     subjectDescriptionUnitListingData,
+    isUnitSaved,
+    onSave,
   } = props;
 
   const isKeyStagesAvailable = keyStageSlug && keyStageTitle;
@@ -92,6 +100,8 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     showIncompleteMessage,
     setShowIncompleteMessage,
   } = useUnitDownloadButtonState();
+
+  const isSaveEnabled = useFeatureFlagEnabled("teacher-save-units");
 
   const bannersBlock = (
     <>
@@ -187,6 +197,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
               <OakFlex
                 $gap="space-between-s"
                 $flexDirection={["column", "row"]}
+                $height="max-content"
               >
                 {unitDownloadFileId && onUnitDownloadSuccess && (
                   <UnitDownloadButton
@@ -197,9 +208,30 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                     downloadInProgress={downloadInProgress}
                     unitFileId={unitDownloadFileId}
                     onDownloadSuccess={onUnitDownloadSuccess}
+                    showNewTag={!isSaveEnabled}
                   />
                 )}
                 {shareButton}
+                {isSaveEnabled && (
+                  <OakSecondaryButton
+                    iconName={
+                      isUnitSaved ? "bookmark-filled" : "bookmark-outlined"
+                    }
+                    isTrailingIcon
+                    onClick={onSave}
+                  >
+                    <OakFlex $alignItems="center" $gap="space-between-xs">
+                      <OakTagFunctional
+                        label="New"
+                        $background="mint"
+                        $color="text-primary"
+                        $font="heading-light-7"
+                        $pv={["inner-padding-s", "inner-padding-none"]}
+                      />
+                      Save
+                    </OakFlex>
+                  </OakSecondaryButton>
+                )}
               </OakFlex>
               <OakBox $display={["none", "block", "block"]}>
                 {bannersBlock}

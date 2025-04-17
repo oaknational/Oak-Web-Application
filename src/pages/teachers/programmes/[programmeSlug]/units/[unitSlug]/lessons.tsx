@@ -6,6 +6,7 @@ import {
   GetStaticPathsResult,
 } from "next";
 import { useUser } from "@clerk/nextjs";
+
 import {
   OakGrid,
   OakGridArea,
@@ -17,7 +18,6 @@ import {
   OakLink,
   OakSpan,
 } from "@oaknational/oak-components";
-
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import LessonList from "@/components/TeacherComponents/LessonList";
@@ -120,7 +120,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       variant="primary"
       shareUrl={shareUrl}
       shareActivated={shareActivated}
-      label="Share unit with colleague"
+      label="Share"
     />
   );
 
@@ -181,6 +181,9 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     : `Lessons (${lessons.length})`;
 
   const newsletterFormProps = useNewsletterForm();
+
+  // stub save implementation
+  const [unitSaved, setUnitSaved] = useState<boolean>(false);
 
   return (
     <AppLayout
@@ -267,6 +270,8 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           }
           showRiskAssessmentBanner={showRiskAssessmentBanner}
           isIncompleteUnit={unpublishedLessonCount > 0}
+          isUnitSaved={unitSaved}
+          onSave={() => setUnitSaved((prev) => !prev)}
         />
         <OakMaxWidth $ph={"inner-padding-m"}>
           <OakGrid>

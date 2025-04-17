@@ -1,11 +1,12 @@
+import { useState } from "react";
+
 import {
   OakFlex,
   OakHeading,
   OakIcon,
-  OakPrimaryButton,
+  OakSecondaryButton,
   OakSmallSecondaryButton,
 } from "@oaknational/oak-components";
-import { useState } from "react";
 
 export const TeacherShareButton = ({
   label,
@@ -34,7 +35,7 @@ export const TeacherShareButton = ({
   if (variant === "primary") {
     return (
       <OakFlex $flexDirection={"column"} $position={"relative"}>
-        <OakPrimaryButton
+        <OakSecondaryButton
           onClick={handleClick}
           disabled={!shareUrl}
           iconName="share"
@@ -42,7 +43,7 @@ export const TeacherShareButton = ({
           ph={["inner-padding-xs", "inner-padding-m"]}
         >
           {label}
-        </OakPrimaryButton>
+        </OakSecondaryButton>
         {linkCopied && (
           <OakFlex
             $alignItems={"center"}
