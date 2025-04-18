@@ -42,6 +42,7 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
   let isProductionBuild = false;
   const isNextjsProductionBuildPhase = phase === PHASE_PRODUCTION_BUILD;
   const isTestBuild = phase === PHASE_TEST || process.env.NODE_ENV === "test";
+  const disableSourceMaps = process.env.DISABLE_SOURCE_MAPS === "true";
 
   // If we are in a test phase (or have explicitly declared a this is a test)
   // then use the fake test config values.
@@ -113,12 +114,12 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
 
   const nextConfig: NextConfig = {
     // Attempt to reduce the size of the build by excluding some packages.
-    // serverExternalPackages: ["sharp", "@swc/core", "@swc/core-darwin-arm64"],
+    serverExternalPackages: ["sharp"],
     outputFileTracingExcludes: {
-      "**/*": [
-        "node_modules/@swc/!(helpers|core)",
-        "node_modules/@swc/!(helpers|core)/**",
-      ],
+      "**/*": ["node_modules/@swc/core-*/**/*"],
+    },
+    outputFileTracingIncludes: {
+      "**/*": ["node_modules/@swc/core/**/*", "node_modules/@swc/helpers/**/*"],
     },
 
     webpack: function getWebpackConfig(
@@ -212,13 +213,18 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
       );
 
       // Production and preview builds
-      if (!dev && !isTestBuild) {
+      if (!dev && !isTestBuild && !disableSourceMaps) {
         // Add source maps.
         config.devtool = "source-map";
         console.log("Building source-maps");
       }
       // Production builds only.
-      if (!dev && isProductionBuild && isNextjsProductionBuildPhase) {
+      if (
+        !dev &&
+        isProductionBuild &&
+        isNextjsProductionBuildPhase &&
+        !disableSourceMaps
+      ) {
         // Tell Bugsnag about the build.
         const bugsnagBuildInfo = {
           apiKey: oakConfig.bugsnag.apiKey,
@@ -259,7 +265,7 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
     // Need this so static URLs and dynamic URLs match.
     trailingSlash: false,
     // Make sure production source maps exist for e.g. Bugsnag
-    productionBrowserSourceMaps: true,
+    productionBrowserSourceMaps: !disableSourceMaps,
     images: {
       remotePatterns: imageRemotePatterns,
     },
