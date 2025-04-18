@@ -113,7 +113,7 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
 
   const nextConfig: NextConfig = {
     // Attempt to reduce the size of the build by excluding some packages.
-    serverExternalPackages: ["sharp", "@swc/core", "@swc/core-darwin-arm64"],
+    // serverExternalPackages: ["sharp", "@swc/core", "@swc/core-darwin-arm64"],
     outputFileTracingExcludes: {
       "**/*": [
         "node_modules/@swc/!(helpers|core)",
