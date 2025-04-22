@@ -230,7 +230,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                         $pv={"inner-padding-none"}
                         $display={["none", "inline"]}
                       />
-                      Save
+                      {isUnitSaved ? "Saved" : "Save"}
                     </OakFlex>
                   </OakSecondaryButton>
                 )}
