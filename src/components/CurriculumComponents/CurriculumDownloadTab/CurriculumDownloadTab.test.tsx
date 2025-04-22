@@ -10,6 +10,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { mockPrerelease } from "@/utils/mocks";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
+import { DISABLE_DOWNLOADS } from "@/utils/curriculum/constants";
 
 const render = renderWithProviders();
 const mvRefreshTime = 1721314874829;
@@ -72,15 +73,17 @@ describe("Component Curriculum Download Tab", () => {
     return render(<CurriculumDownloadTab {...defaultProps} />);
   };
 
-  test("user can see download form", async () => {
-    // NOTE: This is only active during testing.
-    mockPrerelease("curriculum.downloads");
-    const { findByText, findAllByTestId } = renderComponent();
-    const formHeading = await findByText("Your details");
-    const formInputs = await findAllByTestId("input");
-    expect(formHeading).toBeInTheDocument();
-    expect(formInputs).toHaveLength(1);
-  });
+  if (!DISABLE_DOWNLOADS) {
+    test("user can see download form", async () => {
+      // NOTE: This is only active during testing.
+      mockPrerelease("curriculum.downloads");
+      const { findByText, findAllByTestId } = renderComponent();
+      const formHeading = await findByText("Your details");
+      const formInputs = await findAllByTestId("input");
+      expect(formHeading).toBeInTheDocument();
+      expect(formInputs).toHaveLength(1);
+    });
+  }
 
   describe("Curriculum Downloads Tab: Secondary Maths", () => {
     test("user can see the tier selector for secondary maths", async () => {

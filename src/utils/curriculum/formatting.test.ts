@@ -24,7 +24,7 @@ describe("getYearGroupTitle", () => {
       expect(
         getYearGroupTitle(
           {
-            ["All years"]: {
+            ["all-years"]: {
               units: [],
               childSubjects: [],
               tiers: [],
@@ -33,7 +33,7 @@ describe("getYearGroupTitle", () => {
               groupAs: "Swimming",
             },
           },
-          "All years",
+          "all-years",
         ),
       ).toEqual("Swimming (all years)");
     });
@@ -62,7 +62,7 @@ describe("getYearGroupTitle", () => {
       expect(
         getYearGroupTitle(
           {
-            ["All years"]: {
+            ["all-years"]: {
               units: [],
               childSubjects: [],
               tiers: [],
@@ -71,7 +71,7 @@ describe("getYearGroupTitle", () => {
               groupAs: "Swimming",
             },
           },
-          "All years",
+          "all-years",
           "units",
         ),
       ).toEqual("Swimming units (all years)");

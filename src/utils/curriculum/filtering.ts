@@ -177,14 +177,16 @@ export function getFilterData(
   const subjectCategories = new Map<number, SubjectCategory>();
   const tiers = new Map<string, Tier>();
   years.forEach((year) => {
-    const obj = yearData[year]!;
-    obj.childSubjects.forEach((childSubject) =>
-      childSubjects.set(childSubject.subject_slug, childSubject),
-    );
-    obj.tiers.forEach((tier) => tiers.set(tier.tier_slug, tier));
-    obj.subjectCategories.forEach((subjectCategory) =>
-      subjectCategories.set(subjectCategory.id, subjectCategory),
-    );
+    const obj = yearData[year];
+    if (obj) {
+      obj.childSubjects.forEach((childSubject) =>
+        childSubjects.set(childSubject.subject_slug, childSubject),
+      );
+      obj.tiers.forEach((tier) => tiers.set(tier.tier_slug, tier));
+      obj.subjectCategories.forEach((subjectCategory) =>
+        subjectCategories.set(subjectCategory.id, subjectCategory),
+      );
+    }
   });
 
   const childSubjectsArray = [...childSubjects.values()].toSorted(
