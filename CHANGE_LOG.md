@@ -1,3 +1,10 @@
+# [1.735.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.734.1...v1.735.0) (2025-04-22)
+
+
+### Features
+
+* use slugified unit title when fetching unit downloads ([3dedd14](https://github.com/oaknational/Oak-Web-Application/commit/3dedd14d6bdc450bea953c9e8bde1108e8f222cf))
+
 ## [1.734.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.734.0...v1.734.1) (2025-04-22)
 
 # [1.734.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.733.1...v1.734.0) (2025-04-17)
