@@ -23,7 +23,8 @@ const UnitDownloadOnboardButton = ({
   <OakPrimaryButton
     width="fit-content"
     onClick={onClick}
-    pv={["inner-padding-s", "inner-padding-ssx"]}
+    ph={["inner-padding-xs", "inner-padding-l"]}
+    pv={["inner-padding-ssx", "inner-padding-s"]}
   >
     <OakFlex $alignItems="center" $gap="space-between-xs">
       <OakTagFunctional label="New" $background="mint" $color="text-primary" />
@@ -44,8 +45,8 @@ const UnitDownloadSignInButton = ({
     <OakPrimaryButton
       iconName={"download"}
       isTrailingIcon
-      width="fit-content"
-      pv={["inner-padding-s", "inner-padding-ssx"]}
+      ph={["inner-padding-xs", "inner-padding-l"]}
+      pv={["inner-padding-ssx", "inner-padding-s"]}
     >
       <OakFlex $alignItems="center" $gap="space-between-xs">
         {showNewTag && (
@@ -76,6 +77,8 @@ const DownloadButton = ({
     isTrailingIcon
     onClick={onUnitDownloadClick}
     disabled={downloadInProgress}
+    ph={["inner-padding-xs", "inner-padding-l"]}
+    pv={["inner-padding-ssx", "inner-padding-s"]}
   >
     <OakFlex $gap="space-between-xs">
       {downloadInProgress && (

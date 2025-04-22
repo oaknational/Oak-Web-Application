@@ -28,7 +28,6 @@ import { OakColorName } from "@/styles/theme";
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 import TeacherSubjectDescription from "@/components/TeacherComponents/TeacherSubjectDescription/TeacherSubjectDescription";
 
-
 /**
  * This is a header for the listing pages (lesson, unit and programme).
  *
@@ -196,8 +195,8 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
             <OakFlex $flexDirection="column" $gap="space-between-s">
               <OakFlex
                 $gap="space-between-s"
-                $flexDirection={["column", "row"]}
                 $height="max-content"
+                $flexWrap="wrap"
               >
                 {unitDownloadFileId && onUnitDownloadSuccess && (
                   <UnitDownloadButton
@@ -212,21 +211,24 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                   />
                 )}
                 {shareButton}
-                {isSaveEnabled && (
+                {isSaveEnabled && onSave && (
                   <OakSecondaryButton
                     iconName={
                       isUnitSaved ? "bookmark-filled" : "bookmark-outlined"
                     }
                     isTrailingIcon
                     onClick={onSave}
+                    ph={["inner-padding-xs", "inner-padding-m"]}
+                    pv={["inner-padding-ssx", "inner-padding-ssx"]}
                   >
-                    <OakFlex $alignItems="center" $gap="space-between-xs">
+                    <OakFlex $alignItems="center" $gap={"space-between-xs"}>
                       <OakTagFunctional
                         label="New"
                         $background="mint"
                         $color="text-primary"
                         $font="heading-light-7"
-                        $pv={["inner-padding-s", "inner-padding-none"]}
+                        $pv={"inner-padding-none"}
+                        $display={["none", "inline"]}
                       />
                       Save
                     </OakFlex>

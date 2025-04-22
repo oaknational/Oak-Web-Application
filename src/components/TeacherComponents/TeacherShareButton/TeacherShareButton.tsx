@@ -40,7 +40,8 @@ export const TeacherShareButton = ({
           disabled={!shareUrl}
           iconName="share"
           isTrailingIcon
-          ph={["inner-padding-xs", "inner-padding-m"]}
+          ph={["inner-padding-xs", "inner-padding-l"]}
+          pv={["inner-padding-ssx", "inner-padding-s"]}
         >
           {label}
         </OakSecondaryButton>
