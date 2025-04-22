@@ -49,12 +49,6 @@ describe("ExpiringBanner", () => {
     ).toBeInTheDocument();
   });
 
-  it("should call onClose when the dismiss button is clicked", () => {
-    const screen = render(<ExpiringBanner {...defaultProps} />);
-    screen.getByRole("button", { name: /dismiss/i }).click();
-    expect(defaultProps.onClose).toHaveBeenCalled();
-  });
-
   it("should call onViewNewLessons when the View new lessons button is clicked", () => {
     const screen = render(<ExpiringBanner {...defaultProps} />);
     screen.getByRole("link", { name: /view new lessons/i }).click();
