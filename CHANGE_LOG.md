@@ -1,3 +1,15 @@
+## [1.734.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.734.0...v1.734.1) (2025-04-22)
+
+# [1.734.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.733.1...v1.734.0) (2025-04-17)
+
+
+### Features
+
+* age restriction modal ([32aa84e](https://github.com/oaknational/Oak-Web-Application/commit/32aa84e26053c51c38ec4e3bfedefe45d45d7969))
+* amend feature values ([f656be2](https://github.com/oaknational/Oak-Web-Application/commit/f656be24f7a90d3a12d96eea25046157f4eb869b))
+* amend tracking event and pull age_restriction from features ([4e3c181](https://github.com/oaknational/Oak-Web-Application/commit/4e3c181ceb59ee7ed0655fe52611c828ef204af7))
+* set correct text in modal ([c21879a](https://github.com/oaknational/Oak-Web-Application/commit/c21879afd868323d2fd80b3e06a8edad3464a51f))
+
 ## [1.733.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.733.0...v1.733.1) (2025-04-16)
 
 
