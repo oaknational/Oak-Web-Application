@@ -1100,6 +1100,14 @@ export const secondaryScienceYearData: YearData = {
         year: "7",
         subjectcategories: [secondaryScienceSubjectCategories[1]!],
       }),
+      createUnit({
+        year: "7",
+        subjectcategories: [secondaryScienceSubjectCategories[3]!],
+      }),
+      createUnit({
+        year: "7",
+        subjectcategories: [secondaryScienceSubjectCategories[2]!],
+      }),
     ],
   },
   "8": {
@@ -1149,7 +1157,6 @@ export const secondaryScienceYearData: YearData = {
     childSubjects: secondaryScienceChildSubjects,
     tiers: [tiers[0]!, tiers[1]!],
     subjectCategories: secondaryScienceSubjectCategories,
-
     groupAs: null,
     isSwimming: false,
     units: [
@@ -1177,6 +1184,13 @@ export const secondaryScienceYearData: YearData = {
         tier: tiers[0]?.tier,
         tier_slug: tiers[0]?.tier_slug,
       }),
+      createUnit({
+        year: "10",
+        subjectcategories: [secondaryScienceSubjectCategories[1]!],
+        tier: tiers[0]?.tier,
+        tier_slug: tiers[0]?.tier_slug,
+        subject_slug: "combined-science",
+      }),
     ],
   },
   "11": {
@@ -1184,7 +1198,6 @@ export const secondaryScienceYearData: YearData = {
     childSubjects: secondaryScienceChildSubjects,
     tiers: [tiers[0]!, tiers[1]!],
     subjectCategories: secondaryScienceSubjectCategories,
-
     groupAs: null,
     isSwimming: false,
     units: [
@@ -1197,8 +1210,29 @@ export const secondaryScienceYearData: YearData = {
       createUnit({
         year: "11",
         subjectcategories: [secondaryScienceSubjectCategories[3]!],
+        tier: tiers[1]?.tier,
+        tier_slug: tiers[1]?.tier_slug,
+      }),
+      createUnit({
+        year: "11",
+        subjectcategories: [secondaryScienceSubjectCategories[1]!],
         tier: tiers[0]?.tier,
         tier_slug: tiers[0]?.tier_slug,
+        subject_slug: "combined-science",
+      }),
+      createUnit({
+        year: "11",
+        subjectcategories: [secondaryScienceSubjectCategories[1]!],
+        tier: tiers[1]?.tier,
+        tier_slug: tiers[1]?.tier_slug,
+        subject_slug: "combined-science",
+      }),
+      createUnit({
+        year: "11",
+        subjectcategories: [secondaryScienceSubjectCategories[2]!],
+        tier: tiers[1]?.tier,
+        tier_slug: tiers[1]?.tier_slug,
+        subject_slug: "combined-science",
       }),
     ],
   },
