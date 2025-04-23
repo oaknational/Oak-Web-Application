@@ -1,11 +1,11 @@
-const { getSanityClient } = require("./get_sanity_client");
+const { getSanityClient } = require("./get_sanity_client.cjs");
 const {
   fetchSvgAndAddToSprite,
   compileAndWriteSpriteToFile,
   writeJsonForTypes,
   getPublicSpritePath,
   getSpriterInstance,
-} = require("./helpers");
+} = require("./helpers.cjs");
 
 function getSlugs({ assets }) {
   return (
