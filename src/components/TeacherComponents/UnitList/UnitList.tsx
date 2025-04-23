@@ -1,12 +1,6 @@
 import React, { FC, MouseEvent, useState } from "react";
 import { NextRouter, useRouter } from "next/router";
 import { useFeatureFlagEnabled } from "posthog-js/react";
-
-import { UnitOption } from "../UnitListOptionalityCard/UnitListOptionalityCard";
-import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
-
-import { getPageItems, getProgrammeFactors } from "./helpers";
-
 import {
   OakFlex,
   OakUnitsContainer,
@@ -16,6 +10,12 @@ import {
   OakAnchorTarget,
   OakBox,
 } from "@oaknational/oak-components";
+
+import { UnitOption } from "../UnitListOptionalityCard/UnitListOptionalityCard";
+import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
+
+import { getPageItems, getProgrammeFactors } from "./helpers";
+
 import {
   UnitListItemProps,
   SpecialistListItemProps,

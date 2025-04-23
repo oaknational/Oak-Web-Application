@@ -1,7 +1,7 @@
 import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import unitListingFixture, {
   combinedUnitListingFixture,

@@ -1,10 +1,5 @@
 import { FC } from "react";
 import { useFeatureFlagEnabled } from "posthog-js/react";
-
-import UnitDownloadButton, {
-  useUnitDownloadButtonState,
-} from "../UnitDownloadButton/UnitDownloadButton";
-
 import {
   OakFlex,
   OakHeading,
@@ -16,6 +11,11 @@ import {
   OakSecondaryButton,
   OakTagFunctional,
 } from "@oaknational/oak-components";
+
+import UnitDownloadButton, {
+  useUnitDownloadButtonState,
+} from "../UnitDownloadButton/UnitDownloadButton";
+
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";

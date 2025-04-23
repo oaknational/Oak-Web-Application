@@ -2,10 +2,10 @@ import React from "react";
 import "@testing-library/jest-dom";
 import { fireEvent } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { PupilViewsIntro } from "./PupilIntro.view";
 
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { LessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";

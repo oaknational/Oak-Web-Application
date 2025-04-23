@@ -1,8 +1,4 @@
 import { useEffect } from "react";
-
-import { useWorksheetDownload } from "./useWorksheetDownload";
-import { useAdditionalFilesDownload } from "./useAdditionalFilesDownload";
-
 import {
   OakBackLink,
   OakBox,
@@ -24,6 +20,10 @@ import {
   OakStaticMessageCard,
   OakUL,
 } from "@oaknational/oak-components";
+
+import { useWorksheetDownload } from "./useWorksheetDownload";
+import { useAdditionalFilesDownload } from "./useAdditionalFilesDownload";
+
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { CopyrightNotice } from "@/components/PupilComponents/CopyrightNotice";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
