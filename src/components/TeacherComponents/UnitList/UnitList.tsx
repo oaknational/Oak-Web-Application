@@ -83,6 +83,12 @@ const getOptionalityUnits = (
         router.push(target.href);
       }
     };
+    const lessonCount = getUnitLessonCount({
+      lessonCount: unitOption.lessonCount,
+      expiredLessonCount: unitOption.expiredLessonCount,
+      unpublishedLessonCount: unitOption.unpublishedLessonCount,
+    });
+
     return {
       title: unitOption.title,
       slug: unitOption.slug,
@@ -91,7 +97,7 @@ const getOptionalityUnits = (
         unitSlug: unitOption.slug,
         programmeSlug: unitOption.programmeSlug,
       }),
-      lessonCount: unitOption.lessonCount || 0,
+      lessonCount,
       onClick: handleClick,
     };
   });
