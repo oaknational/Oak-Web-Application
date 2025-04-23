@@ -301,6 +301,7 @@ const UnitList: FC<UnitListProps> = (props) => {
               })}
               onSave={isSaveEnabled ? () => onSave(unitOption.slug) : undefined}
               isSaved={savedUnitsForUser.includes(unitOption.slug)}
+              $height="100%"
             />
           );
         })
