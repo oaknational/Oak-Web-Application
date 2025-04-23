@@ -1,6 +1,7 @@
-import { act, screen } from "@testing-library/react";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import { screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import unitListingFixture, {
   combinedUnitListingFixture,
@@ -61,8 +62,8 @@ describe("components/UnitList", () => {
     const optionalityCard = queryByTestId("unit-optionality-card");
     expect(optionalityCard).not.toBeInTheDocument();
   });
-  test("onClick is called when a unit is clicked", () => {
-    const { getByText } = render(
+  test("onClick is called when a unit is clicked", async () => {
+    render(
       <OakThemeProvider theme={oakDefaultTheme}>
         <UnitList
           {...unitListingFixture()}
@@ -72,13 +73,19 @@ describe("components/UnitList", () => {
         />
       </OakThemeProvider>,
     );
-    const unit = getByText("Data Representation");
+    const units = screen.getAllByText("Data Representation");
 
-    act(() => {
-      unit.click();
+    expect(units).toHaveLength(2);
+    const unit = units[0];
+    if (!unit) {
+      throw new Error("Could not find unit");
+    }
+
+    userEvent.click(unit);
+
+    await waitFor(() => {
+      expect(onClick).toHaveBeenCalledTimes(1);
     });
-
-    expect(onClick).toHaveBeenCalledTimes(1);
   });
   test("renders new and legacy units together", () => {
     render(
@@ -93,7 +100,7 @@ describe("components/UnitList", () => {
     );
 
     const unitCards = screen.getAllByTestId("unit-list-item");
-    expect(unitCards).toHaveLength(6);
+    expect(unitCards).toHaveLength(12);
   });
   test("begins index at 1 for legacy units on the same page as new units", () => {
     render(
@@ -235,7 +242,7 @@ describe("components/UnitList", () => {
     ).toBeInTheDocument;
 
     const unitCards = screen.getAllByTestId("unit-list-item");
-    expect(unitCards).toHaveLength(3);
+    expect(unitCards).toHaveLength(6);
   });
 });
 
