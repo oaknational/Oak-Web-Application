@@ -182,6 +182,14 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
 
   const newsletterFormProps = useNewsletterForm();
 
+  const getSlugifiedTitle = (title: string) => {
+    return title
+      .replaceAll(/\s+/g, "-")
+      .replaceAll(/[^\dA-Za-z-]/g, "")
+      .replaceAll(/-+/g, "-")
+      .toLowerCase();
+  };
+
   // stub save implementation
   const [unitSaved, setUnitSaved] = useState<boolean>(false);
 
@@ -247,11 +255,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           hasCurriculumDownload={isSlugLegacy(programmeSlug)}
           {...curriculumData}
           shareButton={teacherShareButton}
-          unitDownloadFileId={
-            unitSlug.endsWith(unitvariantId.toString())
-              ? unitSlug
-              : `${unitSlug}-${unitvariantId}`
-          }
+          unitDownloadFileId={`${getSlugifiedTitle(unitTitle)}-${unitvariantId}`}
           onUnitDownloadSuccess={() =>
             track.unitDownloadInitiated({
               platform: "owa",

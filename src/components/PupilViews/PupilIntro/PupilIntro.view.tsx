@@ -1,3 +1,8 @@
+import { useEffect } from "react";
+
+import { useWorksheetDownload } from "./useWorksheetDownload";
+import { useAdditionalFilesDownload } from "./useAdditionalFilesDownload";
+
 import {
   OakBackLink,
   OakBox,
@@ -19,11 +24,6 @@ import {
   OakStaticMessageCard,
   OakUL,
 } from "@oaknational/oak-components";
-import { useEffect } from "react";
-
-import { useWorksheetDownload } from "./useWorksheetDownload";
-import { useAdditionalFilesDownload } from "./useAdditionalFilesDownload";
-
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { CopyrightNotice } from "@/components/PupilComponents/CopyrightNotice";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
@@ -48,12 +48,14 @@ export type PupilViewsIntroProps = LessonContent & {
   worksheetInfo: WorksheetInfo | null;
   hasAdditionalFiles: boolean;
   additionalFiles: AdditionalFiles["downloadableFiles"] | null;
+  ageRestriction?: string | null;
 };
 
 export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
   const {
     contentGuidance,
     supervisionLevel,
+    ageRestriction,
     equipmentAndResources,
     isLegacy,
     lessonSlug,
@@ -292,6 +294,16 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
                     </OakP>
                   );
                 })}
+              </OakLessonInfoCard>
+            )}
+            {ageRestriction && removedGuidanceDuplicates.length === 0 && (
+              <OakLessonInfoCard>
+                <OakCardHeader iconName="content-guidance" tag="h1">
+                  Content guidance
+                </OakCardHeader>
+                <OakP $font={"body-1"} key={"age-restriction"}>
+                  Speak to an adult before starting this lesson.
+                </OakP>
               </OakLessonInfoCard>
             )}
             {supervisionLevel && (

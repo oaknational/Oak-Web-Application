@@ -2,10 +2,10 @@ import React from "react";
 import "@testing-library/jest-dom";
 import { fireEvent } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { PupilViewsIntro } from "./PupilIntro.view";
 
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { LessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
@@ -143,6 +143,30 @@ describe("PupilIntro", () => {
       </OakThemeProvider>,
     );
     expect(getByText("Content guidance")).toBeInTheDocument();
+  });
+  it("displays the content guidance card with default text if there is age restriction but no content guidance", () => {
+    const curriculumDataWithContentGuidance = {
+      ...curriculumData,
+      contentGuidance: [],
+    };
+    const { getByText } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
+          <PupilViewsIntro
+            hasWorksheet={false}
+            worksheetInfo={null}
+            hasAdditionalFiles={false}
+            additionalFiles={null}
+            ageRestriction={"7_and_above"}
+            {...curriculumDataWithContentGuidance}
+          />
+        </LessonEngineContext.Provider>
+      </OakThemeProvider>,
+    );
+    expect(getByText("Content guidance")).toBeInTheDocument();
+    expect(
+      getByText("Speak to an adult before starting this lesson."),
+    ).toBeInTheDocument();
   });
   it("displays the supervision card if there is supervision guidance", () => {
     const curriculumDataWithSupervision = {
