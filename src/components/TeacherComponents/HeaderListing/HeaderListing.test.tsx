@@ -23,6 +23,7 @@ jest.mock(
 );
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagVariantKey: jest.fn(() => "option-a"),
+  useFeatureFlagEnabled: jest.fn(() => false),
 }));
 
 describe("HeaderListing", () => {
