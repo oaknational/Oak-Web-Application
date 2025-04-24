@@ -117,14 +117,14 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   LinkedIn: https://www.linkedin.com/in/tash-blore-245079182/
   From: Manchester, UK
 
-  Richard Brownsett (Quality Assurance Analyst)
-  LinkedIn: https://www.linkedin.com/in/richard-brownsett-b3383168/
-  From: Stoke-on-Trent, UK
-
   Reece Charsville (Senior Software Engineer)
   Site: https://reececharsville.com/
   LinkedIn: https://www.linkedin.com/in/reece-charsville/
   From: Sheffield, UK
+  
+  Richard Brownsett (Quality Assurance Analyst)
+  LinkedIn: https://www.linkedin.com/in/richard-brownsett-b3383168/
+  From: Stoke-on-Trent, UK
 
   Sarah McKinless (Product Manager)
   From: Coventry, lives in Northern Ireland
