@@ -74,6 +74,22 @@ describe("HeaderListing", () => {
     );
     expect(banner[0]).toBeInTheDocument();
   });
+  it("renders an alert banner when show incomplete message is true", async () => {
+    setUseUserReturn(mockLoggedIn);
+    renderWithTheme(
+      <HeaderListing
+        {...props}
+        unitDownloadFileId="123"
+        onUnitDownloadSuccess={jest.fn}
+        isIncompleteUnit={true}
+      />,
+    );
+    const unitDownloadButton = screen.getByRole("button");
+
+    userEvent.click(unitDownloadButton);
+    const banner = await screen.findAllByText("This unit is incomplete");
+    expect(banner[0]).toBeInTheDocument();
+  });
   it("renders RiskAssessmentBanner if showRiskAssessmentBanner prop is set to true", async () => {
     renderWithTheme(
       <HeaderListing {...props} showRiskAssessmentBanner={true} />,
@@ -83,16 +99,16 @@ describe("HeaderListing", () => {
     });
     expect(banner[0]).toBeInTheDocument();
   });
-  it("does not render RiskAssessmentBanner if showRiskAssessmentBanner prop is set to false", async () => {
+  it("does not render RiskAssessmentBanner if showRiskAssessmentBanner prop is set to false", () => {
     renderWithTheme(
       <HeaderListing {...props} showRiskAssessmentBanner={false} />,
     );
-    const banner = await screen.queryByText("for all practical PE lessons", {
+    const banner = screen.queryByText("for all practical PE lessons", {
       exact: false,
     });
     expect(banner).not.toBeInTheDocument();
   });
-  it("renders subject description for financial education", async () => {
+  it("renders subject description for financial education", () => {
     renderWithTheme(
       <HeaderListing
         {...props}
@@ -103,12 +119,12 @@ describe("HeaderListing", () => {
         })}
       />,
     );
-    const financeSubjectDescription = await screen.getAllByTestId(
+    const financeSubjectDescription = screen.getAllByTestId(
       "teacher-financial-education-description",
     );
     expect(financeSubjectDescription.length).toBeGreaterThanOrEqual(1);
   });
-  it("doesn't render subject description when there is no component for the subjectSlug (testing-not-for-publication)", async () => {
+  it("doesn't render subject description when there is no component for the subjectSlug (testing-not-for-publication)", () => {
     renderWithTheme(
       <HeaderListing
         {...props}
@@ -117,7 +133,7 @@ describe("HeaderListing", () => {
         })}
       />,
     );
-    const financeSubjectDescription = await screen.queryByTestId(
+    const financeSubjectDescription = screen.queryByTestId(
       "teacher-financial-education-description",
     );
     expect(financeSubjectDescription).not.toBeInTheDocument();
