@@ -70,7 +70,7 @@
   "dependencies": {
     "@bugsnag/js": "^8.2.0",
     "@bugsnag/plugin-react": "^8.2.0",
-    "@clerk/nextjs": "^6.12.1",
+    "@clerk/nextjs": "^6.18.0",
     "@google-cloud/storage": "^7.16.0",
     "@hookform/resolvers": "^3.9.1",
     "@hubspot/api-client": "^11.2.0",
