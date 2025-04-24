@@ -21,15 +21,19 @@ jest.mock(
     }));
   },
 );
+
+const mockFeatureFlag = jest.fn();
+
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagVariantKey: jest.fn(() => "option-a"),
-  useFeatureFlagEnabled: jest.fn(() => false),
+  useFeatureFlagEnabled: () => mockFeatureFlag,
 }));
 
 describe("HeaderListing", () => {
   beforeEach(() => {
     jest.restoreAllMocks();
     global.fetch = jest.fn(() => Promise.resolve({})) as jest.Mock;
+    mockFeatureFlag.mockReturnValue(false);
   });
   it("renders the title with the correct level", () => {
     const { getAllByRole } = renderWithTheme(<HeaderListing {...props} />);
@@ -117,5 +121,30 @@ describe("HeaderListing", () => {
       "teacher-financial-education-description",
     );
     expect(financeSubjectDescription).not.toBeInTheDocument();
+  });
+  it("doesnt render a save button when the feature flag is disabled", () => {
+    renderWithTheme(<HeaderListing {...props} />);
+    const saveButton = screen.queryByRole("button");
+    expect(saveButton).not.toBeInTheDocument();
+  });
+  it("renders a save button when the feature flag is enabled", async () => {
+    mockFeatureFlag.mockReturnValue(true);
+    renderWithTheme(
+      <HeaderListing {...props} onSave={jest.fn} isUnitSaved={false} />,
+    );
+
+    const saveButton = await screen.findByRole("button");
+    expect(saveButton).toBeInTheDocument();
+    expect(saveButton).toHaveTextContent("Save");
+  });
+  it("renders the correct text when the unit is saved", async () => {
+    mockFeatureFlag.mockReturnValue(true);
+    renderWithTheme(
+      <HeaderListing {...props} onSave={jest.fn} isUnitSaved={true} />,
+    );
+
+    const saveButton = await screen.findByRole("button");
+    expect(saveButton).toBeInTheDocument();
+    expect(saveButton).toHaveTextContent("Saved");
   });
 });
