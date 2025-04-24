@@ -8,46 +8,14 @@ module.exports = {
       {
         preset: "angular",
         releaseRules: [
-          { type: "feat", release: "minor" },
-          { type: "fix", release: "patch" },
-          { type: "perf", release: "patch" },
-          { type: "revert", release: "patch" },
-          { type: "docs", release: "patch" },
-          { type: "style", release: "patch" },
-          { type: "refactor", release: "patch" },
           { type: "chore", release: "patch" },
-          // test, ci and wip are accepted by commitlint but don't trigger a release.
-          { type: "test", release: null },
-          { type: "ci", release: null },
-          { type: "wip", release: null },
+          { type: "refactor", release: "patch" },
+          { type: "revert", release: "patch" },
         ],
       },
     ],
     // Create release notes.
-    [
-      "@semantic-release/release-notes-generator",
-      {
-        preset: "angular",
-        parserOpts: {
-          noteKeywords: ["BREAKING CHANGE", "BREAKING CHANGES", "BREAKING"],
-        },
-        writerOpts: {
-          commitsSort: ["subject", "scope"],
-          types: [
-            { type: "feat", section: "Features" },
-            { type: "fix", section: "Bug fixes" },
-            { type: "perf", section: "Performance improvements" },
-            { type: "revert", section: "Reverts" },
-            { type: "docs", section: "Documentation" },
-            { type: "style", section: "Styles" },
-            { type: "refactor", section: "Changes" },
-            { type: "chore", section: "Changes" },
-            { type: "test", section: "Tests" },
-            { type: "ci", section: "Continuous integration" },
-          ],
-        },
-      },
-    ],
+    "@semantic-release/release-notes-generator",
 
     // Add the release notes to a change log.
     [
