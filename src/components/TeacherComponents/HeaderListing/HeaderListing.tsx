@@ -220,6 +220,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                     onClick={onSave}
                     ph={["inner-padding-xs", "inner-padding-m"]}
                     pv={["inner-padding-ssx", "inner-padding-ssx"]}
+                    data-testid="save-unit-button"
                   >
                     <OakFlex $alignItems="center" $gap={"space-between-xs"}>
                       <OakTagFunctional
