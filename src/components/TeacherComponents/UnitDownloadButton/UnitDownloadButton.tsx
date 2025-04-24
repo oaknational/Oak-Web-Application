@@ -17,8 +17,10 @@ import { resolveOakHref } from "@/common-lib/urls";
 // Used when a user is signed in but not onboarded
 const UnitDownloadOnboardButton = ({
   onClick,
+  showNewTag,
 }: {
   onClick: () => Promise<boolean>;
+  showNewTag: boolean;
 }) => (
   <OakPrimaryButton
     width="fit-content"
@@ -27,7 +29,13 @@ const UnitDownloadOnboardButton = ({
     pv={["inner-padding-ssx", "inner-padding-s"]}
   >
     <OakFlex $alignItems="center" $gap="space-between-xs">
-      <OakTagFunctional label="New" $background="mint" $color="text-primary" />
+      {showNewTag && (
+        <OakTagFunctional
+          label="New"
+          $background="mint"
+          $color="text-primary"
+        />
+      )}
       Complete sign up to download this unit
     </OakFlex>
   </OakPrimaryButton>
@@ -179,6 +187,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
           query: { returnTo: router.asPath },
         })
       }
+      showNewTag={props.showNewTag}
     />
   ) : showSignInButton ? (
     <UnitDownloadSignInButton
