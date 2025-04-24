@@ -10,6 +10,7 @@ import {
   OakP,
   OakSecondaryButton,
   OakTagFunctional,
+  OakIcon,
 } from "@oaknational/oak-components";
 
 import UnitDownloadButton, {
@@ -52,6 +53,7 @@ export type HeaderListingProps = {
   programmeFactor: string;
   hasCurriculumDownload?: boolean;
   shareButton?: React.ReactNode;
+  linkCopied: boolean;
   unitDownloadFileId?: string;
   onUnitDownloadSuccess?: () => void;
   showRiskAssessmentBanner?: boolean;
@@ -77,6 +79,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     tierTitle,
     yearTitle,
     shareButton,
+    linkCopied,
     unitDownloadFileId,
     onUnitDownloadSuccess,
     showRiskAssessmentBanner,
@@ -144,7 +147,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
       {showRiskAssessmentBanner && <RiskAssessmentBanner />}
     </>
   );
-
+  console.log("diego link copied", linkCopied);
   return (
     <LessonHeaderWrapper breadcrumbs={breadcrumbs} background={background}>
       <OakFlex
@@ -241,6 +244,19 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                   </OakSecondaryButton>
                 )}
               </OakFlex>
+              {linkCopied && (
+                <OakFlex $alignItems={"center"}>
+                  <OakIcon iconName={"tick"} $colorFilter={"text-success"} />
+                  <OakHeading
+                    tag="h2"
+                    $font={"heading-light-7"}
+                    $color={"text-success"}
+                    aria-live="polite"
+                  >
+                    Link copied to clipboard
+                  </OakHeading>
+                </OakFlex>
+              )}
               <OakBox $display={["none", "block", "block"]}>
                 {bannersBlock}
               </OakBox>
