@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   NextPage,
   GetStaticProps,
@@ -88,9 +88,6 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     subjectSlug,
     actions,
   } = curriculumData;
-
-  const [showExpiredLessonsBanner, setShowExpiredLessonsBanner] =
-    useState<boolean>(actions?.displayExpiringBanner ?? false);
 
   const unitListingHref = `/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/programmes`;
   const { shareUrl, browserUrl, shareActivated } = useShareExperiment({
@@ -182,6 +179,14 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
 
   const newsletterFormProps = useNewsletterForm();
 
+  const getSlugifiedTitle = (title: string) => {
+    return title
+      .replaceAll(/\s+/g, "-")
+      .replaceAll(/[^\dA-Za-z-]/g, "")
+      .replaceAll(/-+/g, "-")
+      .toLowerCase();
+  };
+
   return (
     <AppLayout
       seoProps={{
@@ -244,11 +249,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           hasCurriculumDownload={isSlugLegacy(programmeSlug)}
           {...curriculumData}
           shareButton={teacherShareButton}
-          unitDownloadFileId={
-            unitSlug.endsWith(unitvariantId.toString())
-              ? unitSlug
-              : `${unitSlug}-${unitvariantId}`
-          }
+          unitDownloadFileId={`${getSlugifiedTitle(unitTitle)}-${unitvariantId}`}
           onUnitDownloadSuccess={() =>
             track.unitDownloadInitiated({
               platform: "owa",
@@ -326,12 +327,9 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
                 onClick={trackLessonSelected}
                 expiringBanner={
                   <ExpiringBanner
-                    isOpen={showExpiredLessonsBanner}
+                    isOpen={actions?.displayExpiringBanner ?? false}
                     isResourcesMessage={true}
                     onwardHref={unitListingHref}
-                    onClose={() => {
-                      setShowExpiredLessonsBanner(false);
-                    }}
                   />
                 }
               />
