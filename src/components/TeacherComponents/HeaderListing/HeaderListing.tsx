@@ -15,7 +15,6 @@ import {
 import UnitDownloadButton, {
   useUnitDownloadButtonState,
 } from "../UnitDownloadButton/UnitDownloadButton";
-import { LinkCopied } from "../TeacherShareButton/useTeacherShareButton";
 
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
@@ -53,7 +52,7 @@ export type HeaderListingProps = {
   programmeFactor: string;
   hasCurriculumDownload?: boolean;
   shareButton?: React.ReactNode;
-  linkCopied: boolean;
+  copiedComponent?: React.ReactNode;
   unitDownloadFileId?: string;
   onUnitDownloadSuccess?: () => void;
   showRiskAssessmentBanner?: boolean;
@@ -79,7 +78,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     tierTitle,
     yearTitle,
     shareButton,
-    linkCopied,
+    copiedComponent,
     unitDownloadFileId,
     onUnitDownloadSuccess,
     showRiskAssessmentBanner,
@@ -244,7 +243,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                   </OakSecondaryButton>
                 )}
               </OakFlex>
-              <LinkCopied linkCopied={linkCopied} />
+              {copiedComponent}
               <OakBox $display={["none", "block", "block"]}>
                 {bannersBlock}
               </OakBox>

@@ -1,5 +1,7 @@
 import { OakSmallSecondaryButton } from "@oaknational/oak-components";
 
+import { useTeacherShareButton } from "../TeacherShareButton/useTeacherShareButton";
+
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
 
 export const TeacherShareNotesButton = ({
@@ -17,6 +19,10 @@ export const TeacherShareNotesButton = ({
   shareUrl: string | null;
   shareActivated?: () => void;
 }) => {
+  const { handleClick, copiedComponent } = useTeacherShareButton({
+    shareUrl,
+    shareActivated,
+  });
   return teacherNotesEnabled && isEditable ? (
     <OakSmallSecondaryButton
       iconName={noteSaved ? "edit" : "share"}
@@ -26,11 +32,14 @@ export const TeacherShareNotesButton = ({
       {noteSaved ? "Edit teacher note and share" : "Add teacher note and share"}
     </OakSmallSecondaryButton>
   ) : (
-    <TeacherShareButton
-      label="Share resources with colleague"
-      variant={"secondary"}
-      shareUrl={shareUrl}
-      shareActivated={shareActivated}
-    />
+    <>
+      <TeacherShareButton
+        label="Share resources with colleague"
+        variant={"secondary"}
+        shareUrl={shareUrl}
+        handleClick={handleClick}
+      />
+      {copiedComponent}
+    </>
   );
 };

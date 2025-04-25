@@ -47,6 +47,7 @@ import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { resolveOakHref } from "@/common-lib/urls";
+import { useTeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/useTeacherShareButton";
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
 };
@@ -114,12 +115,17 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     }
   }, [browserUrl]);
 
+  const { handleClick, copiedComponent } = useTeacherShareButton({
+    shareUrl,
+    shareActivated,
+  });
+
   const teacherShareButton = (
     <TeacherShareButton
       variant="primary"
       shareUrl={shareUrl}
-      shareActivated={shareActivated}
       label="Share unit with colleague"
+      handleClick={handleClick}
     />
   );
 
@@ -243,6 +249,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           hasCurriculumDownload={isSlugLegacy(programmeSlug)}
           {...curriculumData}
           shareButton={teacherShareButton}
+          copiedComponent={copiedComponent}
           unitDownloadFileId={
             unitSlug.endsWith(unitvariantId.toString())
               ? unitSlug

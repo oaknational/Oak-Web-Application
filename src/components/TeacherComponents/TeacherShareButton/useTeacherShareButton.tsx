@@ -30,18 +30,19 @@ export const useTeacherShareButton = ({
 
 export const LinkCopied = ({ linkCopied }: { linkCopied: boolean }) => {
   return (
-    linkCopied && (
-      <OakFlex $alignItems={"center"}>
-        <OakIcon iconName={"tick"} $colorFilter={"text-success"} />
-        <OakHeading
-          tag="h2"
-          $font={"heading-light-7"}
-          $color={"text-success"}
-          aria-live="polite"
-        >
-          Link copied to clipboard
-        </OakHeading>
-      </OakFlex>
-    )
+    <OakFlex
+      $alignItems={"center"}
+      $visibility={linkCopied ? "visible" : "hidden"}
+    >
+      <OakIcon iconName={"tick"} $colorFilter={"text-success"} />
+      <OakHeading
+        tag="h2"
+        $font={"heading-light-7"}
+        $color={"text-success"}
+        aria-live="polite"
+      >
+        Link copied to clipboard
+      </OakHeading>
+    </OakFlex>
   );
 };

@@ -10,6 +10,7 @@ describe("TeacherShareButton", () => {
         <TeacherShareButton
           shareUrl={"test"}
           variant="primary"
+          handleClick={() => {}}
           label="share me"
         />
       </OakThemeProvider>,
@@ -32,6 +33,7 @@ describe("TeacherShareButton", () => {
           shareUrl={"test"}
           variant="primary"
           label="share me"
+          handleClick={() => {}}
         />
       </OakThemeProvider>,
     );
@@ -51,9 +53,9 @@ describe("TeacherShareButton", () => {
       <OakThemeProvider theme={oakDefaultTheme}>
         <TeacherShareButton
           shareUrl={"test"}
-          shareActivated={shareActivatedMock}
           variant="primary"
           label="share me"
+          handleClick={() => shareActivatedMock()}
         />
       </OakThemeProvider>,
     );
