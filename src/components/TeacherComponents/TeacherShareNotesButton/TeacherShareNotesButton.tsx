@@ -23,6 +23,7 @@ export const TeacherShareNotesButton = ({
     shareUrl,
     shareActivated,
   });
+
   return teacherNotesEnabled && isEditable ? (
     <OakSmallSecondaryButton
       iconName={noteSaved ? "edit" : "share"}

@@ -20,7 +20,6 @@ export const useTeacherShareButton = ({
     // copy url to clipboard
     navigator.clipboard.writeText(shareUrl);
   };
-
   return {
     handleClick,
     linkCopied,

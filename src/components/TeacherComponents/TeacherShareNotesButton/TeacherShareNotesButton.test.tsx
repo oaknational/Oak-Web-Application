@@ -31,6 +31,16 @@ jest.mock(
   }),
 );
 
+jest.mock(
+  "@/components/TeacherComponents/TeacherShareButton/useTeacherShareButton",
+  () => ({
+    useTeacherShareButton: () => ({
+      handleClick: jest.fn(),
+      copiedComponent: <div>Link copied to clipboard</div>,
+    }),
+  }),
+);
+
 describe("TeacherShareNotesButton", () => {
   const defaultProps = {
     teacherNotesEnabled: false,
@@ -124,11 +134,12 @@ describe("TeacherShareNotesButton", () => {
 
   describe("shareActivated callback", () => {
     it("passes shareActivated to TeacherShareButton", () => {
-      const shareActivated = jest.fn();
+      const shareActivatedMock = jest.fn();
+
       render(
         <TeacherShareNotesButton
           {...defaultProps}
-          shareActivated={shareActivated}
+          shareActivated={shareActivatedMock}
         />,
       );
 
