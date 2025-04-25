@@ -1,7 +1,6 @@
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
-
 import { QuizResultMCQ } from "./QuizResultMCQ";
 
+import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 import {
   mcqTextAnswers,
   mcqImageAnswers,
@@ -52,7 +51,7 @@ describe("QuizResultMCQ", () => {
   });
 
   it("marks correct answers as correct", () => {
-    const { getAllByAltText } = renderWithTheme(
+    const { getAllByTestId } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizResultMCQ
           answers={mcqTextAnswers}
@@ -62,14 +61,12 @@ describe("QuizResultMCQ", () => {
         ,
       </OakThemeProvider>,
     );
-    expect(getAllByAltText("tick")).toHaveLength(1);
-    expect(() => getAllByAltText("cross")).toThrow(
-      "Unable to find an element with the alt text: cross",
-    );
+    expect(getAllByTestId("tick")).toHaveLength(1);
+    expect(() => getAllByTestId("cross")).toThrow();
   });
 
   it("marks incorrect answers as incorrect", () => {
-    const { getAllByAltText } = renderWithTheme(
+    const { getAllByTestId } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizResultMCQ
           answers={mcqTextAnswers}
@@ -79,9 +76,7 @@ describe("QuizResultMCQ", () => {
         ,
       </OakThemeProvider>,
     );
-    expect(getAllByAltText("cross")).toHaveLength(2);
-    expect(() => getAllByAltText("tick")).toThrow(
-      "Unable to find an element with the alt text: tick",
-    );
+    expect(getAllByTestId("cross")).toHaveLength(2);
+    expect(() => getAllByTestId("tick")).toThrow();
   });
 });

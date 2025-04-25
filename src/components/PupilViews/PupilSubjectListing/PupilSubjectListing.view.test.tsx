@@ -1,12 +1,12 @@
 import { render, screen, within } from "@testing-library/react";
+
+import { PupilViewsSubjectListing } from "./PupilSubjectListing.view";
+
 import {
   OakThemeProvider,
   isValidIconName,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
-
-import { PupilViewsSubjectListing } from "./PupilSubjectListing.view";
-
 import { subjectBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/subjectBrowseData.fixture";
 
 jest.mock("@oaknational/oak-components", () => {
@@ -112,7 +112,7 @@ describe("PupilSubjectListing", () => {
     expect(
       within(furtherListItems[0]).getByText("Biology"),
     ).toBeInTheDocument();
-    const img = within(furtherListItems[0]).queryByAltText("question-mark");
+    const img = within(furtherListItems[0]).queryByTestId("question-mark");
     expect(img).toBeInTheDocument();
   });
 
@@ -162,7 +162,7 @@ describe("PupilSubjectListing", () => {
 
     const lists = screen.getAllByRole("list");
     const furtherListItems = within(lists[1]!).getAllByRole("listitem");
-    const img = within(furtherListItems[0]!).getByAltText("question-mark");
+    const img = within(furtherListItems[0]!).getByTestId("question-mark");
     expect(img).toBeInTheDocument();
   });
 });

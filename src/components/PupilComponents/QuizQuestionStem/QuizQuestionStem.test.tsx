@@ -1,7 +1,7 @@
 import React from "react";
 import "@testing-library/jest-dom";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { QuizQuestionStem } from "@/components/PupilComponents/QuizQuestionStem";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { ImageOrTextItem } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
@@ -30,12 +30,12 @@ describe("QuestionListItem", () => {
   it("renders question stem images", () => {
     invariant(mcqStemImage?.questionStem, "mcqStemImage.questionStem is null");
 
-    const { getByRole } = renderWithTheme(
+    const { getByAltText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizQuestionStem questionStem={mcqStemImage.questionStem} index={0} />
       </OakThemeProvider>,
     );
-    const image = getByRole("presentation");
+    const image = getByAltText("An image in a quiz");
 
     expect(image).toBeInTheDocument();
   });

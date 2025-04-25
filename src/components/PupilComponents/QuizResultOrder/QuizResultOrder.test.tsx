@@ -1,7 +1,6 @@
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
-
 import { QuizResultOrder } from "./QuizResultOrder";
 
+import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 import { invariant } from "@/utils/invariant";
 import { orderAnswers } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
@@ -47,7 +46,7 @@ describe("QuizResultOrder", () => {
   });
 
   it("renders correct answers as correct", () => {
-    const { getAllByAltText } = renderWithTheme(
+    const { getAllByTestId } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizResultOrder
           answers={orderAnswers}
@@ -57,14 +56,12 @@ describe("QuizResultOrder", () => {
       </OakThemeProvider>,
     );
 
-    expect(getAllByAltText("tick")).toHaveLength(4);
-    expect(() => getAllByAltText("cross")).toThrow(
-      "Unable to find an element with the alt text: cross",
-    );
+    expect(getAllByTestId("tick")).toHaveLength(4);
+    expect(() => getAllByTestId("cross")).toThrow();
   });
 
   it("renders incorrect answers as incorrect", () => {
-    const { getAllByAltText } = renderWithTheme(
+    const { getAllByTestId } = renderWithTheme(
       <MathJaxProvider>
         <OakThemeProvider theme={oakDefaultTheme}>
           <QuizResultOrder
@@ -76,8 +73,8 @@ describe("QuizResultOrder", () => {
       </MathJaxProvider>,
     );
 
-    expect(getAllByAltText("tick")).toHaveLength(3);
-    expect(getAllByAltText("cross")).toHaveLength(1);
+    expect(getAllByTestId("tick")).toHaveLength(3);
+    expect(getAllByTestId("cross")).toHaveLength(1);
   });
 
   it("throws if the pupilAnswer is not in the answers", () => {

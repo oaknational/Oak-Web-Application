@@ -1,7 +1,6 @@
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
-
 import { QuizResultMatch } from "./QuizResultMatch";
 
+import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 import { matchAnswers } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
@@ -34,7 +33,7 @@ describe("QuizResultMatch", () => {
   });
 
   it("renders correct answers as correct", () => {
-    const { getAllByAltText } = renderWithTheme(
+    const { getAllByTestId } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizResultMatch
           answers={matchAnswers}
@@ -44,14 +43,12 @@ describe("QuizResultMatch", () => {
       </OakThemeProvider>,
     );
 
-    expect(getAllByAltText("tick")).toHaveLength(3);
-    expect(() => getAllByAltText("cross")).toThrow(
-      "Unable to find an element with the alt text: cross",
-    );
+    expect(getAllByTestId("tick")).toHaveLength(3);
+    expect(() => getAllByTestId("cross")).toThrow();
   });
 
   it("renders incorrect answers as incorrect", () => {
-    const { getAllByAltText } = renderWithTheme(
+    const { getAllByTestId } = renderWithTheme(
       <MathJaxProvider>
         <OakThemeProvider theme={oakDefaultTheme}>
           <QuizResultMatch
@@ -62,7 +59,7 @@ describe("QuizResultMatch", () => {
         </OakThemeProvider>
       </MathJaxProvider>,
     );
-    expect(getAllByAltText("cross")).toHaveLength(3);
+    expect(getAllByTestId("cross")).toHaveLength(3);
   });
 
   it("throws an error if the answer is not found", () => {
