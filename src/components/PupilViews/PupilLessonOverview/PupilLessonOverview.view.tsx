@@ -77,11 +77,6 @@ export const PupilViewsLessonOverview = ({
   useEffect(() => {
     setIsMounted(true);
   }, []);
-  const [showExpiredLessonsBanner, setShowExpiredLessonsBanner] =
-    useState<boolean>(
-      expirationDate !== null ||
-        browseData.actions?.displayExpiringBanner === true,
-    );
 
   const baseSlug = `${browseData.programmeFields.subjectSlug}-${browseData.programmeFields.phaseSlug}-${browseData.programmeFields.yearSlug}`;
   const unitListingHref = `/pupils/programmes/${baseSlug}/options`; // NB. options will forward to units if no options available
@@ -117,13 +112,13 @@ export const PupilViewsLessonOverview = ({
 
   const expiringBanner = (
     <ExpiringBanner
-      isOpen={showExpiredLessonsBanner}
+      isOpen={
+        expirationDate !== null ||
+        browseData.actions?.displayExpiringBanner === true
+      }
       isResourcesMessage={false}
       isSingular={true}
       onwardHref={unitListingHref}
-      onClose={() => {
-        setShowExpiredLessonsBanner(false);
-      }}
     />
   );
 
