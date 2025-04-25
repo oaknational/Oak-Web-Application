@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { OakFlex, OakIcon, OakHeading } from "@oaknational/oak-components";
 
 export const useTeacherShareButton = ({
   shareUrl,
@@ -23,5 +24,24 @@ export const useTeacherShareButton = ({
   return {
     handleClick,
     linkCopied,
+    copiedComponent: <LinkCopied linkCopied={linkCopied} />,
   };
+};
+
+export const LinkCopied = ({ linkCopied }: { linkCopied: boolean }) => {
+  return (
+    linkCopied && (
+      <OakFlex $alignItems={"center"}>
+        <OakIcon iconName={"tick"} $colorFilter={"text-success"} />
+        <OakHeading
+          tag="h2"
+          $font={"heading-light-7"}
+          $color={"text-success"}
+          aria-live="polite"
+        >
+          Link copied to clipboard
+        </OakHeading>
+      </OakFlex>
+    )
+  );
 };

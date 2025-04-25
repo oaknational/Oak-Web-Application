@@ -10,12 +10,12 @@ import {
   OakP,
   OakSecondaryButton,
   OakTagFunctional,
-  OakIcon,
 } from "@oaknational/oak-components";
 
 import UnitDownloadButton, {
   useUnitDownloadButtonState,
 } from "../UnitDownloadButton/UnitDownloadButton";
+import { LinkCopied } from "../TeacherShareButton/useTeacherShareButton";
 
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
@@ -147,7 +147,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
       {showRiskAssessmentBanner && <RiskAssessmentBanner />}
     </>
   );
-  console.log("diego link copied", linkCopied);
+
   return (
     <LessonHeaderWrapper breadcrumbs={breadcrumbs} background={background}>
       <OakFlex
@@ -244,19 +244,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                   </OakSecondaryButton>
                 )}
               </OakFlex>
-              {linkCopied && (
-                <OakFlex $alignItems={"center"}>
-                  <OakIcon iconName={"tick"} $colorFilter={"text-success"} />
-                  <OakHeading
-                    tag="h2"
-                    $font={"heading-light-7"}
-                    $color={"text-success"}
-                    aria-live="polite"
-                  >
-                    Link copied to clipboard
-                  </OakHeading>
-                </OakFlex>
-              )}
+              <LinkCopied linkCopied={linkCopied} />
               <OakBox $display={["none", "block", "block"]}>
                 {bannersBlock}
               </OakBox>
