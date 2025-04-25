@@ -1,15 +1,15 @@
 import { SignUpButton, useUser } from "@clerk/nextjs";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { useRouter } from "next/router";
+
+import useUnitDownloadExistenceCheck from "../hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
+
 import {
   OakFlex,
   OakLoadingSpinner,
   OakPrimaryButton,
   OakTagFunctional,
 } from "@oaknational/oak-components";
-
-import useUnitDownloadExistenceCheck from "../hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
-
 import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 import { createUnitDownloadLink } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createDownloadLink";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -34,6 +34,7 @@ const UnitDownloadOnboardButton = ({
           label="New"
           $background="mint"
           $color="text-primary"
+          $pv={"inner-padding-none"}
         />
       )}
       Complete sign up to download this unit
@@ -62,6 +63,7 @@ const UnitDownloadSignInButton = ({
             label="New"
             $background="mint"
             $color="text-primary"
+            $pv={"inner-padding-none"}
           />
         )}
         Download unit
