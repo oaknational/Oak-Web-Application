@@ -9,11 +9,11 @@ import {
   getBreadcrumbsForSpecialistLessonPathway,
   getBreadCrumbForSpecialistShare,
   getCommonPathway,
+  lessonIsSpecialist,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import {
   LessonPathway,
   SpecialistLessonPathway,
-  lessonIsSpecialist,
 } from "@/components/TeacherComponents/types/lesson.types";
 import ResourcePageLayout from "@/components/TeacherComponents/ResourcePageLayout";
 import LessonShareCardGroup from "@/components/TeacherComponents/LessonShareCardGroup";
@@ -171,6 +171,8 @@ export function LessonShare(props: LessonShareProps) {
         .map((r) => classroomActivityMap[r])
         .filter((r) => r !== undefined) as ResourceTypesValueType[],
       audience: "Pupil",
+      lessonReleaseCohort: isLegacy ? "2020-2023" : "2023-2026",
+      lessonReleaseDate: isLegacy ? "2020-2023" : "2023-2026",
     });
   };
 

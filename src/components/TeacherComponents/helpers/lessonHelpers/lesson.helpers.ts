@@ -4,6 +4,7 @@ import { checkIsResourceCopyrightRestricted } from "../downloadAndShareHelpers/d
 
 import {
   LessonBase,
+  LessonOverviewAll,
   LessonPathway,
   SpecialistLessonPathway,
 } from "@/components/TeacherComponents/types/lesson.types";
@@ -19,6 +20,7 @@ import type { MediaClip } from "@/node-lib/curriculum-api-2023/queries/lessonMed
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 import isSlugEYFS from "@/utils/slugModifiers/isSlugEYFS";
 import { LessonItemTitle } from "@/components/TeacherComponents/LessonItemContainer";
+import { SpecialistLessonOverviewData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonOverview/specialistLessonOverview.schema";
 
 /**
  * Returns the intersection different pathways.
@@ -43,8 +45,8 @@ export const getCommonPathway = (
     tierTitle: null,
     lessonCohort: null,
     subjectParent: null,
+    pathwayTitle: null,
   };
-
   return pathways.reduce(
     (acc, pathway) => {
       Object.keys(acc).forEach((_key) => {
@@ -59,6 +61,38 @@ export const getCommonPathway = (
     },
     { ...nullPathway },
   );
+};
+export const lessonIsSpecialist = (
+  u: unknown,
+): u is SpecialistLessonOverviewData => {
+  return (
+    typeof u === "object" &&
+    u !== null &&
+    Object.prototype.hasOwnProperty.call(u, "isSpecialist") &&
+    (u as { isSpecialist: boolean }).isSpecialist === true
+  );
+};
+export const getPathway = (
+  lesson: LessonOverviewAll,
+): SpecialistLessonPathway | ShallowNullable<LessonPathway> => {
+  if (lessonIsSpecialist(lesson)) {
+    return {
+      lessonSlug: lesson.lessonSlug,
+      lessonTitle: lesson.lessonTitle,
+      unitSlug: lesson.unitSlug,
+      programmeSlug: lesson.programmeSlug,
+      unitTitle: lesson.unitTitle,
+      subjectTitle: lesson.subjectTitle,
+      subjectSlug: lesson.subjectSlug,
+      developmentStageTitle: lesson.developmentStageTitle,
+      disabled: true,
+      keyStageSlug: null,
+      keyStageTitle: null,
+      pathwayTitle: null,
+    } as SpecialistLessonPathway;
+  } else {
+    return getCommonPathway(lesson.isCanonical ? lesson.pathways : [lesson]);
+  }
 };
 
 export const getLessonOverviewBreadCrumb = ({

@@ -87,6 +87,7 @@ describe("constructCanonicalLessonDownloads", () => {
           examBoardTitle: null,
           tierSlug: null,
           tierTitle: null,
+          pathwayTitle: null,
         },
       ],
     };
@@ -206,6 +207,7 @@ describe("constructCanonicalLessonDownloads", () => {
           examBoardTitle: null,
           tierSlug: null,
           tierTitle: null,
+          pathwayTitle: null,
         },
         {
           programmeSlug: "programme-slug",
@@ -220,6 +222,7 @@ describe("constructCanonicalLessonDownloads", () => {
           examBoardTitle: null,
           tierSlug: null,
           tierTitle: null,
+          pathwayTitle: null,
         },
       ],
     };

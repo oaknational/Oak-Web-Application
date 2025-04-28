@@ -208,6 +208,7 @@ export function getLessonObject(props: {
     subjectTitle: highlightedHit.subject_title?.toString(),
     buttonLinkProps: buttonLinkProps,
     cohort: hit._source.cohort,
+    legacy: hit.legacy,
     pathways: hit._source.pathways.map((pathway) =>
       pathwaysSnakeToCamel(pathway),
     ),
@@ -262,6 +263,7 @@ export function getUnitObject(props: {
 
     buttonLinkProps: buttonLinkProps,
     cohort: hit._source.cohort,
+    legacy: hit.legacy,
     pathways: hit._source.pathways.map((pathway) =>
       pathwaysSnakeToCamel(pathway),
     ),

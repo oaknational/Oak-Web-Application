@@ -87,6 +87,9 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     programmeSlug,
     subjectSlug,
     actions,
+    pathwayTitle,
+    examBoardTitle,
+    tierTitle,
   } = curriculumData;
 
   const unitListingHref = `/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/programmes`;
@@ -102,6 +105,12 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       subjectTitle,
       keyStageSlug,
       keyStageTitle: keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
+      lessonReleaseCohort: isSlugLegacy(programmeSlug)
+        ? "2020-2023"
+        : "2023-2026",
+      lessonReleaseDate: isSlugLegacy(programmeSlug)
+        ? "2020-2023"
+        : "2023-2026",
     },
     overrideExistingShareId: true,
   });
@@ -166,6 +175,13 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         keyStageTitle: keyStageTitle as KeyStageTitleValueType,
         yearGroupName: props.yearTitle,
         yearGroupSlug: props.yearSlug,
+        pathway: pathwayTitle,
+        examBoard: examBoardTitle,
+        tierName: tierTitle,
+        lessonReleaseCohort: isSlugLegacy(programmeSlug)
+          ? "2020-2023"
+          : "2023-2026",
+        lessonReleaseDate: "2023-2026",
       });
     }
   };

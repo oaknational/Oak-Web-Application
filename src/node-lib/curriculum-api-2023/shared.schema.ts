@@ -131,6 +131,7 @@ export const lessonPathwaySchema = z.object({
   tierTitle: z.string().nullish(),
   yearGroupSlug: z.string().nullish(),
   yearGroupTitle: z.string().nullish(),
+  pathwayTitle: z.string().nullish(),
 });
 
 export type LessonPathway = z.infer<typeof lessonPathwaySchema>;
@@ -175,6 +176,7 @@ export const baseLessonOverviewSchema = z.object({
   lessonTitle: z.string(),
   tierTitle: z.string().nullable().optional(),
   tierSlug: z.string().nullable().optional(),
+  pathwayTitle: z.string().nullable().optional(),
   contentGuidance: z
     .array(contentGuidanceSchemaCamelCase)
     .nullable()

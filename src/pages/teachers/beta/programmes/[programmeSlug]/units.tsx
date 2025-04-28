@@ -170,6 +170,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
         yearGroupSlug: (props as UnitListItemProps).year,
         tierName: tier ?? null,
         examBoard: examBoardTitle,
+        pathway: pathwayTitle,
       });
     }
   };

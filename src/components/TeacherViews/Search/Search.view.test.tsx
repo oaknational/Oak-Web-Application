@@ -370,6 +370,8 @@ describe("Search.page.tsx", () => {
       unitName: "topic title1 ",
       unitSlug: "topic-slug",
       context: "search",
+      lessonReleaseCohort: "2020-2023",
+      lessonReleaseDate: "2020-2023",
     });
   });
   test("searchResultClicked is called when a pathway hit is clicked", async () => {
@@ -399,6 +401,8 @@ describe("Search.page.tsx", () => {
       subjectTitle: "subject title",
       unitName: "topic title1 ",
       unitSlug: "topic-slug",
+      lessonReleaseCohort: "2020-2023",
+      lessonReleaseDate: "2020-2023",
     });
   });
   test("searchResultExpanded is called when a dropdown toggle is expanded", async () => {
@@ -429,6 +433,8 @@ describe("Search.page.tsx", () => {
       subjectTitle: "subject title",
       unitName: "topic title1 ",
       unitSlug: "topic-slug",
+      lessonReleaseCohort: "2020-2023",
+      lessonReleaseDate: "2020-2023",
     });
   });
   test("searchRefined function invoked when checked", () => {

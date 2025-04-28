@@ -39,6 +39,7 @@ export type SearchResultsItemProps = {
   pathways: PathwaySchemaCamel[] | [];
   onClick?: (searchHit: SearchResultsItemProps) => void;
   firstItemRef?: React.RefObject<HTMLAnchorElement> | null;
+  legacy: boolean | undefined;
 } & (
   | {
       type: "unit";

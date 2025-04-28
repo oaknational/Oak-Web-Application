@@ -1,10 +1,14 @@
 import DownloadConfirmationNextLessonContainer from "./DownloadConfirmationNextLessonContainer";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
+import { OnwardContentSelectedProperties } from "@/browser-lib/avo/Avo";
 
-const onwardContentSelected =
-  jest.fn() as unknown as TrackFns["onwardContentSelected"];
+const onwardContentSelected = jest.fn() as unknown as (
+  properties: Omit<
+    OnwardContentSelectedProperties,
+    "lessonReleaseDate" | "lessonReleaseCohort"
+  >,
+) => void;
 
 const nextLessons = [
   {

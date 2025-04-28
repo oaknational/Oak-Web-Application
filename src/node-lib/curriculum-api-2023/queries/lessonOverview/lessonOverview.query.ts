@@ -251,6 +251,8 @@ export const transformedLessonOverviewData = (
       hasAdditionalFiles && additionalFiles
         ? getAdditionalFiles(additionalFiles)
         : null,
+
+    pathwayTitle: browseData.programmeFields.pathwayDescription ?? null,
   };
 };
 

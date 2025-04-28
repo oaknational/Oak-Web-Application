@@ -18,12 +18,12 @@ import {
   createAttributionObject,
   getBreadcrumbsForSpecialistLessonPathway,
   getMediaClipLabel,
+  lessonIsSpecialist,
+  getPathway,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import {
   LessonOverviewAll,
   SpecialistLessonPathway,
-  getPathway,
-  lessonIsSpecialist,
 } from "@/components/TeacherComponents/types/lesson.types";
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
 import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
@@ -32,6 +32,10 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import type {
   KeyStageTitleValueType,
   DownloadResourceButtonNameValueType,
+  PathwayValueType,
+  MediaClipsButtonNameValueType,
+  ExamBoardValueType,
+  TierNameValueType,
 } from "@/browser-lib/avo/Avo";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import LessonDetails from "@/components/TeacherComponents/LessonOverviewDetails";
@@ -48,7 +52,9 @@ import {
   getIsResourceDownloadable,
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
 import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
-import LessonOverviewMediaClips from "@/components/TeacherComponents/LessonOverviewMediaClips";
+import LessonOverviewMediaClips, {
+  TrackingCallbackProps,
+} from "@/components/TeacherComponents/LessonOverviewMediaClips";
 import LessonOverviewDocPresentation from "@/components/TeacherComponents/LessonOverviewDocPresentation";
 import { TeacherNoteInline } from "@/components/TeacherComponents/TeacherNoteInline/TeacherNoteInline";
 
@@ -122,7 +128,10 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     programmeSlug,
     yearTitle,
     examBoardSlug,
+    examBoardTitle,
+    tierTitle,
     subjectParent,
+    pathwayTitle,
   } = commonPathway;
 
   const isLegacyLicense = !lessonCohort || lessonCohort === LEGACY_COHORT;
@@ -162,6 +171,47 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
       unitName: unitTitle,
       lessonSlug: lessonSlug,
       lessonName: lessonTitle,
+      pathway: pathwayTitle as PathwayValueType,
+      examBoard: examBoardTitle as ExamBoardValueType,
+      tierName: tierTitle as TierNameValueType,
+      lessonReleaseCohort: lesson.isLegacy ? "2020-2023" : "2023-2026",
+      lessonReleaseDate: "2023-2026",
+    });
+  };
+
+  const trackMediaClipsButtonClicked = ({
+    mediaClipsButtonName,
+    learningCycle,
+  }: {
+    mediaClipsButtonName: MediaClipsButtonNameValueType;
+    learningCycle?: string | null;
+  }) => {
+    track.lessonMediaClipsStarted({
+      platform: "owa",
+      product: "media clips",
+      engagementIntent: "use",
+      componentType: "go_to_media_clips_page_button",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
+      mediaClipsButtonName,
+      keyStageSlug: keyStageSlug,
+      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+      subjectSlug: subjectSlug,
+      subjectTitle: subjectTitle,
+      unitSlug: unitSlug,
+      unitName: unitTitle,
+      lessonSlug: lessonSlug,
+      lessonName: lessonTitle,
+      pathway: pathwayTitle as PathwayValueType,
+      tierName: null,
+      yearGroupName: null,
+      yearGroupSlug: null,
+      examBoard: null,
+      learningCycle: learningCycle,
+      releaseGroup: lesson.isLegacy ? "legacy" : "2023",
+      phase: null,
+      lessonReleaseCohort: lesson.isLegacy ? "2020-2023" : "2023-2026",
+      lessonReleaseDate: "2023-2026",
     });
   };
 
@@ -175,6 +225,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
       unitSlug: unitSlug || "",
       lessonName: lessonTitle,
       lessonSlug: lessonSlug,
+      lessonReleaseCohort: lesson.isLegacy ? "2020-2023" : "2023-2026",
+      lessonReleaseDate: "2023-2026",
     });
   };
 
@@ -388,6 +440,11 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       slugs={slugs}
                       pageLinks={pageLinks}
                       displayMediaClipButton={true}
+                      onPlayALLMediaClipButtonClick={() => {
+                        trackMediaClipsButtonClicked({
+                          mediaClipsButtonName: "play all",
+                        });
+                      }}
                       isCanonical={isCanonical}
                     >
                       <LessonOverviewMediaClips
@@ -399,6 +456,15 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         lessonOutline={lessonOutline}
                         isPELesson={actions?.displayPETitle}
                         isMFL={actions?.displayVocabButton}
+                        onTrackingCallback={({
+                          mediaClipsButtonName,
+                          learningCycle,
+                        }: TrackingCallbackProps) => {
+                          trackMediaClipsButtonClicked({
+                            mediaClipsButtonName,
+                            learningCycle,
+                          });
+                        }}
                       />
                     </LessonItemContainer>
                   )}

@@ -42,6 +42,8 @@ describe("useLesson", () => {
       subjectTitle: "Test Subject",
       keyStageSlug: "test-ks",
       keyStageTitle: "Key stage 4",
+      lessonReleaseCohort: "2020-2023",
+      lessonReleaseDate: "2020-2023",
     },
   };
 

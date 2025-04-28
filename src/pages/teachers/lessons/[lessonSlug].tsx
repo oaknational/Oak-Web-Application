@@ -64,6 +64,8 @@ export default function LessonOverviewCanonicalPage({
       subjectTitle: null,
       keyStageSlug: null,
       keyStageTitle: null,
+      lessonReleaseCohort: "2023-2026",
+      lessonReleaseDate: "2023-2026",
     },
   });
 

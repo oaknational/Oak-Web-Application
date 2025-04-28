@@ -56,6 +56,7 @@ export interface LessonItemContainerProps {
   displayMediaClipButton?: boolean;
   slugs?: Slugs;
   onDownloadButtonClick?: () => void;
+  onPlayALLMediaClipButtonClick?: () => void;
   isFinalElement?: boolean;
   isSpecialist: boolean;
   pageLinks: ReturnType<typeof getPageLinksForLesson>;
@@ -85,6 +86,7 @@ export const LessonItemContainer = forwardRef<
     shareable,
     pageLinks,
     isCanonical,
+    onPlayALLMediaClipButtonClick,
   } = props;
   const preselectedDownload = getPreselectedDownloadFromTitle(
     title as DownloadableLessonTitles,
@@ -134,7 +136,11 @@ export const LessonItemContainer = forwardRef<
             </OakHeading>
           )}
           {displayMediaClipButton && slugs && (
-            <LessonPlayAllButton {...slugs} isCanonical={isCanonical} />
+            <LessonPlayAllButton
+              {...slugs}
+              isCanonical={isCanonical}
+              onTrackingCallback={onPlayALLMediaClipButtonClick}
+            />
           )}
           {downloadable && slugs && (
             <LessonItemContainerLink

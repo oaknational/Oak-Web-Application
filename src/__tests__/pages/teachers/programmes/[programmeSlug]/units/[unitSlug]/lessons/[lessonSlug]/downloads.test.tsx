@@ -203,6 +203,9 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       tierName: "Foundation",
       unitName: "Measuring waves",
       unitSlug: "measuring-waves",
+      lessonReleaseCohort: "2023-2026",
+      lessonReleaseDate: "2023-2026",
+      pathway: null,
     });
   });
   it("tracks download event with correct args for lessons without pfs", async () => {
@@ -241,7 +244,6 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       emailSupplied: true,
       engagementIntent: "use",
       eventVersion: "2.0.0",
-      examBoard: null,
       keyStageSlug: "ks4",
       keyStageTitle: "Key stage 4",
       lessonName: "Transverse waves",
@@ -262,6 +264,10 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       tierName: null,
       unitName: "Measuring waves",
       unitSlug: "measuring-waves",
+      examBoard: null,
+      lessonReleaseCohort: "2023-2026",
+      lessonReleaseDate: "2023-2026",
+      pathway: null,
     });
   });
 
