@@ -18,10 +18,11 @@ export function applyFiltering(
     });
   }
 
-  const step1 = Object.values(unitsByYearSelector).filter((item) =>
-    filterIncludes("years", [item.year]),
-  );
-  const step2 = step1
+  const yearDataFilteredBySelectedYear = Object.values(
+    unitsByYearSelector,
+  ).filter((item) => filterIncludes("years", [item.year]));
+
+  return yearDataFilteredBySelectedYear
     .map((item) => {
       return {
         ...item,
@@ -34,7 +35,6 @@ export function applyFiltering(
     .filter((item) => {
       return item.units.length > 0;
     });
-  return step2;
 }
 
 export function getModes(shouldIncludeCore: boolean, ks4Options: Ks4Option[]) {
