@@ -1,6 +1,7 @@
+import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
+
 import { QuizResultMCQ } from "./QuizResultMCQ";
 
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 import {
   mcqTextAnswers,
   mcqImageAnswers,

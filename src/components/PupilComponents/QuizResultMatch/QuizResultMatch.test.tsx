@@ -1,6 +1,7 @@
+import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
+
 import { QuizResultMatch } from "./QuizResultMatch";
 
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 import { matchAnswers } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";

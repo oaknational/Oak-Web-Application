@@ -1,12 +1,12 @@
 import { render, screen, within } from "@testing-library/react";
-
-import { PupilViewsSubjectListing } from "./PupilSubjectListing.view";
-
 import {
   OakThemeProvider,
   isValidIconName,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
+
+import { PupilViewsSubjectListing } from "./PupilSubjectListing.view";
+
 import { subjectBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/subjectBrowseData.fixture";
 
 jest.mock("@oaknational/oak-components", () => {

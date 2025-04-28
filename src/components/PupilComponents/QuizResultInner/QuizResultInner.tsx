@@ -1,13 +1,13 @@
 import { isArray, isString } from "lodash";
-
-import { QuestionState } from "../QuizUtils/questionTypes";
-
 import {
   OakFlex,
   OakIcon,
   OakQuizResultItem,
   OakSpan,
 } from "@oaknational/oak-components";
+
+import { QuestionState } from "../QuizUtils/questionTypes";
+
 import { QuestionsArray } from "@/components/PupilComponents/QuizEngineProvider";
 import { QuizResultQuestionStem } from "@/components/PupilComponents/QuizResultQuestionStem";
 import { QuizResultMCQ } from "@/components/PupilComponents/QuizResultMCQ/QuizResultMCQ";
