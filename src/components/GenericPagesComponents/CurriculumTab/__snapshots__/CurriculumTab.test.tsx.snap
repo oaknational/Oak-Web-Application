@@ -19,7 +19,7 @@ exports[`CurriculumTab renders 1`] = `
               class="sc-fqkvVR gdtuvF"
             >
               <img
-                alt="looping-line-5"
+                alt=""
                 class="sc-dcJsrY koGnIf"
                 data-nimg="fill"
                 decoding="async"
@@ -98,7 +98,7 @@ exports[`CurriculumTab renders 1`] = `
                     class="sc-fqkvVR kbnxKi sc-fXSgeo"
                   >
                     <img
-                      alt="chevron-right"
+                      alt=""
                       class="sc-dcJsrY cDKKvZ"
                       data-nimg="fill"
                       decoding="async"
@@ -257,7 +257,7 @@ exports[`CurriculumTab renders 1`] = `
                                       class="sc-fqkvVR kbnxKi"
                                     >
                                       <img
-                                        alt="arrow-right"
+                                        alt=""
                                         class="sc-dcJsrY bDcxkE"
                                         data-nimg="fill"
                                         decoding="async"
@@ -447,7 +447,7 @@ exports[`CurriculumTab renders 1`] = `
                                   class="sc-fqkvVR kbnxKi"
                                 >
                                   <img
-                                    alt="arrow-right"
+                                    alt=""
                                     class="sc-dcJsrY bDcxkE"
                                     data-nimg="fill"
                                     decoding="async"

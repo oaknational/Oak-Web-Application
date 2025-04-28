@@ -1,5 +1,6 @@
-import React, { FC, MouseEvent } from "react";
+import React, { FC, MouseEvent, useState } from "react";
 import { NextRouter, useRouter } from "next/router";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 import {
   OakFlex,
   OakUnitsContainer,
@@ -82,14 +83,21 @@ const getOptionalityUnits = (
         router.push(target.href);
       }
     };
+    const lessonCount = getUnitLessonCount({
+      lessonCount: unitOption.lessonCount,
+      expiredLessonCount: unitOption.expiredLessonCount,
+      unpublishedLessonCount: unitOption.unpublishedLessonCount,
+    });
+
     return {
       title: unitOption.title,
+      slug: unitOption.slug,
       href: resolveOakHref({
         page: "lesson-index",
         unitSlug: unitOption.slug,
         programmeSlug: unitOption.programmeSlug,
       }),
-      lessonCount: unitOption.lessonCount || 0,
+      lessonCount,
       onClick: handleClick,
     };
   });
@@ -180,6 +188,17 @@ const UnitList: FC<UnitListProps> = (props) => {
     .map((u) => isSlugLegacy(u[0]!.programmeSlug))
     .indexOf(true);
 
+  // stub implementation of saving
+  const isSaveEnabled = useFeatureFlagEnabled("teacher-save-units");
+  const [savedUnitsForUser, setSavedUnitsForUser] = useState<string[]>([]);
+
+  const onSave = (unitSlug: string) => {
+    const newSavedUnits = savedUnitsForUser.includes(unitSlug)
+      ? savedUnitsForUser.filter((u) => u !== unitSlug)
+      : [...savedUnitsForUser, unitSlug];
+    setSavedUnitsForUser(newSavedUnits);
+  };
+
   const getUnitCards = (
     pageItems: CurrentPageItemsProps[] | SpecialistUnit[][],
   ) => {
@@ -238,6 +257,8 @@ const UnitList: FC<UnitListProps> = (props) => {
               : null
           }
           optionalityUnits={getOptionalityUnits(item, onClick, router)}
+          onSave={isSaveEnabled ? onSave : undefined}
+          getIsSaved={(unitSlug) => savedUnitsForUser.includes(unitSlug)}
         />
       ) : (
         item.map((unitOption) => {
@@ -256,6 +277,7 @@ const UnitList: FC<UnitListProps> = (props) => {
             expiredLessonCount: unitOption.expiredLessonCount,
             unpublishedLessonCount: unitOption.unpublishedLessonCount,
           });
+
           return (
             <OakUnitListItem
               {...props}
@@ -283,6 +305,8 @@ const UnitList: FC<UnitListProps> = (props) => {
                 unitSlug: unitOption.slug,
                 programmeSlug: unitOption.programmeSlug,
               })}
+              onSave={isSaveEnabled ? () => onSave(unitOption.slug) : undefined}
+              isSaved={savedUnitsForUser.includes(unitOption.slug)}
             />
           );
         })

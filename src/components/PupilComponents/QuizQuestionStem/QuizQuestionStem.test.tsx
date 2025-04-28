@@ -30,12 +30,12 @@ describe("QuestionListItem", () => {
   it("renders question stem images", () => {
     invariant(mcqStemImage?.questionStem, "mcqStemImage.questionStem is null");
 
-    const { getByRole } = renderWithTheme(
+    const { getByAltText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizQuestionStem questionStem={mcqStemImage.questionStem} index={0} />
       </OakThemeProvider>,
     );
-    const image = getByRole("presentation");
+    const image = getByAltText("An image in a quiz");
 
     expect(image).toBeInTheDocument();
   });
