@@ -59,28 +59,30 @@ const CurriculumUnitDetailsAccordion: FC<
         $justifyContent={"space-between"}
         $ph={0}
       >
-        <Button
-          {...focusWithinProps}
-          {...primaryTargetProps}
-          data-testid={"expand-accordian-button"}
-          variant="buttonStyledAsLink"
-          aria-expanded={isToggleOpen}
-          label={title}
-          isCurrent={isHovered}
-          currentStyles={["underline"]}
-          onClick={() => {
-            setIsToggleOpen(!isToggleOpen);
-            handleUnitOverviewExploredAnalytics(
-              snakeCase(title) as ComponentTypeValueType,
-            );
-          }}
-          $font={"heading-6"}
-        />
-        <OakIcon
-          iconName={isToggleOpen ? "chevron-up" : "chevron-down"}
-          $width={"all-spacing-6"}
-          $height={"all-spacing-6"}
-        />
+        <h3 style={{ display: "contents" }}>
+          <Button
+            {...focusWithinProps}
+            {...primaryTargetProps}
+            data-testid={"expand-accordian-button"}
+            variant="buttonStyledAsLink"
+            aria-expanded={isToggleOpen}
+            label={title}
+            isCurrent={isHovered}
+            currentStyles={["underline"]}
+            onClick={() => {
+              setIsToggleOpen(!isToggleOpen);
+              handleUnitOverviewExploredAnalytics(
+                snakeCase(title) as ComponentTypeValueType,
+              );
+            }}
+            $font={"heading-6"}
+          />
+          <OakIcon
+            iconName={isToggleOpen ? "chevron-up" : "chevron-down"}
+            $width={"all-spacing-6"}
+            $height={"all-spacing-6"}
+          />
+        </h3>
       </Card>
       {/* @todo replace with OakFlex - work out $maxHeight, why is it Flex if it has display set to either block or none? */}
       <Flex
