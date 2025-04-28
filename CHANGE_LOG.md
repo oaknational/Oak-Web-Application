@@ -1,3 +1,26 @@
+# [1.736.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.735.2...v1.736.0) (2025-04-28)
+
+
+### Bug Fixes
+
+* button height when save is not enabled ([a770936](https://github.com/oaknational/Oak-Web-Application/commit/a7709369a4dd23b89a4af1c41291b4d66bb5ad27))
+* merge mishap ([cad7aee](https://github.com/oaknational/Oak-Web-Application/commit/cad7aee93663e942178410a237c054c5d39a4352))
+* remove new tag from continue onboarding unit download button ([1c1b38d](https://github.com/oaknational/Oak-Web-Application/commit/1c1b38d1f850976bdaabb0631aadda3805e88b75))
+* save button size in header on tablet viewports ([4e81d91](https://github.com/oaknational/Oak-Web-Application/commit/4e81d915f5a4146fe5e9850c715a8d3223b9bbb5))
+* set height on list item containers ([ec508f4](https://github.com/oaknational/Oak-Web-Application/commit/ec508f416930b00eb3ff633a10bd5b59f8ce72ce))
+* update button text when saved ([1609ed6](https://github.com/oaknational/Oak-Web-Application/commit/1609ed6a971de4bc4acb62e196bbb33c0ac7c4d6))
+* update teacher share button in notes experiment button ([dfd701e](https://github.com/oaknational/Oak-Web-Application/commit/dfd701e07da6ebdfb12dc98e16616ed4e5f60a8b))
+
+
+### Features
+
+* add save button to lesson listing page ([281ebb2](https://github.com/oaknational/Oak-Web-Application/commit/281ebb2af7c5a0b013bf6069a2db8609ca07e491))
+* add stubbed out save functionality to unit listing page ([d5f5cf2](https://github.com/oaknational/Oak-Web-Application/commit/d5f5cf201fb9455c3542f13f59b7ee51a086e987))
+* extract link copied component and use in downloads page ([1c3d727](https://github.com/oaknational/Oak-Web-Application/commit/1c3d7274b419ddeb91351b5ceb1c236914c71f74))
+* put save behind feature flag on unit listing page ([66897c0](https://github.com/oaknational/Oak-Web-Application/commit/66897c0783e1089d0a7a1346dd8367179934a665))
+* save button mobile styling ([1a99682](https://github.com/oaknational/Oak-Web-Application/commit/1a99682da58a76544dc2715949e43fea0a5cb7a1))
+* use calculated lesson counts for optionality units ([b0cdeee](https://github.com/oaknational/Oak-Web-Application/commit/b0cdeee2ca1f84bf06dcf8b3687ffc508e201972))
+
 ## [1.735.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.735.1...v1.735.2) (2025-04-24)
 
 ## [1.735.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.735.0...v1.735.1) (2025-04-24)
