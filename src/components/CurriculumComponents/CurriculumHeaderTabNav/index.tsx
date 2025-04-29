@@ -46,32 +46,36 @@ const CurriculumHeaderTabNav = ({
       $overflowX={"auto"}
       {...flexProps}
     >
-      {links.map((link, i) => (
-        <ButtonAsLink
-          {...link}
-          size="large"
-          variant={variant}
-          aria-current={link.isCurrent ? "page" : undefined}
-          key={`CurriculumHeaderTabNav-${link.page}-${i}`}
-          $font={["heading-7", "heading-6"]}
-          $pt={[3, 0]}
-          $ph={20}
-          data-testid="header-nav-tab"
-          onClick={() => {
-            track.curriculumVisualiserTabAccessed({
-              subjectTitle: subjectTitle,
-              subjectSlug: subjectSlug,
-              platform: "owa",
-              product: "curriculum visualiser",
-              engagementIntent: "explore",
-              componentType: getComponentType(link.page),
-              eventVersion: "2.0.0",
-              analyticsUseCase: "Teacher",
-              phase: phaseSlug,
-            });
-          }}
-        />
-      ))}
+      <ul style={{ display: "contents" }}>
+        {links.map((link, i) => (
+          <li style={{ display: "contents" }}>
+            <ButtonAsLink
+              {...link}
+              size="large"
+              variant={variant}
+              aria-current={link.isCurrent ? "page" : undefined}
+              key={`CurriculumHeaderTabNav-${link.page}-${i}`}
+              $font={["heading-7", "heading-6"]}
+              $pt={[3, 0]}
+              $ph={20}
+              data-testid="header-nav-tab"
+              onClick={() => {
+                track.curriculumVisualiserTabAccessed({
+                  subjectTitle: subjectTitle,
+                  subjectSlug: subjectSlug,
+                  platform: "owa",
+                  product: "curriculum visualiser",
+                  engagementIntent: "explore",
+                  componentType: getComponentType(link.page),
+                  eventVersion: "2.0.0",
+                  analyticsUseCase: "Teacher",
+                  phase: phaseSlug,
+                });
+              }}
+            />
+          </li>
+        ))}
+      </ul>
     </Flex>
   );
 };
