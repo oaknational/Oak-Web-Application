@@ -1,3 +1,10 @@
+## [1.736.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.736.1...v1.736.2) (2025-04-29)
+
+
+### Bug Fixes
+
+* a11y fix adding UL/LI to curric heading nav ([6e6ffbe](https://github.com/oaknational/Oak-Web-Application/commit/6e6ffbe0fa71004dcbd72ccdc4300ae03eed47bb))
+
 ## [1.736.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.736.0...v1.736.1) (2025-04-29)
 
 
