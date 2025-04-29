@@ -70,7 +70,9 @@ const Search: FC<SearchProps> = (props) => {
       router.query.keyStages ||
       router.query.examBoards ||
       router.query.contentTypes ||
-      router.query.subjects;
+      router.query.subjects ||
+      router.query.yearGroups ||
+      router.query.curriculum;
 
     if (
       !router.query.page &&
