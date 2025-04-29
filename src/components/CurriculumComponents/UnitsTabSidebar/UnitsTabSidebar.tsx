@@ -14,7 +14,7 @@ import MenuBackdrop from "@/components/AppComponents/MenuBackdrop";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import { IconFocusUnderline } from "@/components/SharedComponents/Button/IconFocusUnderline";
-import { Unit, Lesson } from "@/utils/curriculum/types";
+import { Unit, UnitOption } from "@/utils/curriculum/types";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { transformOwaLinkProps } from "@/components/SharedComponents/OwaLink";
 import { areLessonsAvailable } from "@/utils/curriculum/lessons";
@@ -37,43 +37,41 @@ const IconButtonFocusVisible = styled(IconButton)`
 type ModalProps = HTMLProps<HTMLButtonElement> & {
   displayModal: boolean;
   onClose: () => void;
-  unitOptionsAvailable?: boolean;
   programmeSlug?: string;
-  lessons: Lesson[] | [];
-  unitSlug?: string;
-  unitVariantID?: number | null;
-  unitData?: Unit | null;
+  unitData?: Unit | undefined;
+  unitOptionData: UnitOption | undefined;
 };
 
 const UnitsTabSidebar: FC<ModalProps> = ({
   displayModal,
   onClose,
   children,
-  unitOptionsAvailable,
+  unitOptionData,
   programmeSlug,
-  lessons,
-  unitSlug,
-  unitVariantID,
   unitData,
 }) => {
   const { track } = useAnalytics();
 
-  const lessonsAvailable = areLessonsAvailable(lessons);
+  const lessonsAvailable = areLessonsAvailable(
+    unitOptionData?.lessons ?? unitData?.lessons ?? [],
+  );
+  const unitOptionsAvailable =
+    (unitData?.unit_options ?? []).length > 0 && !unitOptionData;
 
   let resolvedUnitSlug: string = "";
-  if (unitSlug && unitData) {
-    if (unitVariantID) {
+  if (unitData) {
+    if (unitOptionData) {
       const unitOption = unitData?.unit_options?.find(
-        ({ unitvariant_id }) => unitvariant_id === unitVariantID,
+        ({ slug }) => slug === unitOptionData.slug,
       );
-      resolvedUnitSlug = unitOption?.slug ?? unitSlug;
+      resolvedUnitSlug = unitOption?.slug ?? unitData.slug;
     } else {
-      resolvedUnitSlug = unitSlug;
+      resolvedUnitSlug = unitData.slug;
     }
   }
 
   const lessonPageProps =
-    lessons && programmeSlug && resolvedUnitSlug
+    lessonsAvailable && programmeSlug && resolvedUnitSlug
       ? transformOwaLinkProps({
           page: "lesson-index",
           unitSlug: resolvedUnitSlug,

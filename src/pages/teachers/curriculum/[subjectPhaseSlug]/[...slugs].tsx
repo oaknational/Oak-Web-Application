@@ -12,6 +12,7 @@ import {
   oakDefaultTheme,
 } from "@oaknational/oak-components";
 import { uniq } from "lodash";
+import { usePathname } from "next/navigation";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import CMSClient from "@/node-lib/cms";
@@ -62,7 +63,11 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   curriculumDownloadsTabData,
 }) => {
   const router = useRouter();
-  const tab = router.query.tab as CurriculumTab;
+  const pathname = usePathname();
+
+  const [tab, ...slugs] = router.query.slugs as CurriculumTab;
+  const basePath = !pathname ? "" : pathname.replace(slugs.join("/"), "");
+
   const { tiers, child_subjects } = curriculumDownloadsTabData;
   const { subjectSlug, ks4OptionSlug, phaseSlug } = curriculumSelectionSlugs;
 
@@ -123,6 +128,8 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
     case "units":
       tabContent = (
         <UnitsTab
+          basePath={basePath}
+          selectedUnitSlug={slugs[0]}
           formattedData={curriculumUnitsFormattedData}
           trackingData={curriculumUnitsTrackingData}
           filters={filters}
@@ -187,7 +194,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
 };
 
 export type URLParams = {
-  tab: "units" | "overview";
+  slugs: string[];
   subjectPhaseSlug: string;
 };
 
@@ -214,9 +221,9 @@ export const getStaticProps: GetStaticProps<
       if (!context.params) {
         throw new Error("Missing params");
       }
-      const tab = context.params.tab;
+      const [tab] = context.params.slugs;
       const isPreviewMode = context.preview === true;
-      if (!VALID_TABS.includes(tab)) {
+      if (!tab || !VALID_TABS.includes(tab as CurriculumTab)) {
         throw new OakError({
           code: "curriculum-api/not-found",
         });

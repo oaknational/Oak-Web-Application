@@ -1,6 +1,11 @@
-import React, { FC, useState, useRef, useEffect, useMemo } from "react";
+import { join } from "path";
+
+import React, { FC, useRef, useEffect, useMemo } from "react";
 import { OakHeading, OakFlex, OakBox, OakP } from "@oaknational/oak-components";
 import styled from "styled-components";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/router";
 
 import Alert from "../OakComponentsKitchen/Alert";
 import CurriculumUnitCard from "../CurriculumUnitCard/CurriculumUnitCard";
@@ -25,8 +30,8 @@ import {
   CurriculumFilters,
   Unit,
   YearData,
-  Lesson,
   Thread,
+  UnitOption,
 } from "@/utils/curriculum/types";
 import { CurriculumUnit } from "@/node-lib/curriculum-api-2023";
 
@@ -50,14 +55,15 @@ const UnitListItem = styled("li")`
 `;
 
 type CurriculumVisualiserProps = {
-  unitData: Unit | null;
+  unitData: Unit | undefined;
+  unitOptionData: UnitOption | undefined;
   ks4OptionSlug?: string | null;
   yearData: YearData;
   filters: CurriculumFilters;
   mobileHeaderScrollOffset?: number;
-  setUnitData: (unit: Unit) => void;
   setVisibleMobileYearRefID: (refID: string) => void;
   threadOptions: Thread[];
+  basePath: string;
 };
 
 export function dedupUnits(units: Unit[]) {
@@ -210,14 +216,17 @@ function getSubjectCategoryMessage(
 
 const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   unitData,
+  unitOptionData,
   ks4OptionSlug,
   yearData,
   mobileHeaderScrollOffset,
-  setUnitData,
   filters,
   setVisibleMobileYearRefID,
   threadOptions,
+  basePath,
 }) => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
 
@@ -232,12 +241,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
     return threadOptions.find((thread) => thread.slug === filters.threads[0]);
   }, [threadOptions, filters]);
 
-  // Selection state helpers
-  const [displayModal, setDisplayModal] = useState(false);
-  const [unitOptionsAvailable, setUnitOptionsAvailable] =
-    useState<boolean>(false);
-  const [currentUnitLessons, setCurrentUnitLessons] = useState<Lesson[]>([]);
-  const [unitVariantID, setUnitVariantID] = useState<number | null>(null);
+  const displayModal = !!unitData;
 
   const itemEls = useRef<(HTMLDivElement | null)[]>([]);
   /* Intersection observer to update year filter selection when
@@ -291,22 +295,13 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
     }
   };
 
-  const handleOpenModal = (
-    unitOptions: boolean,
-    unit: Unit,
-    isHighlighted: boolean,
-  ) => {
-    const newDisplayModal = !displayModal;
-    setDisplayModal(newDisplayModal);
-    trackModalOpenEvent(unit, isHighlighted, newDisplayModal);
-    setUnitOptionsAvailable(unitOptions);
-    setUnitData({ ...unit });
-    setCurrentUnitLessons(unit.lessons ?? []);
+  const handleOpenModal = (unit: Unit, isHighlighted: boolean) => {
+    trackModalOpenEvent(unit, isHighlighted, !displayModal);
   };
 
   const handleCloseModal = () => {
-    setDisplayModal(false);
-    setCurrentUnitLessons([]);
+    // TODO: close modal
+    router.push(basePath, undefined, { shallow: true });
   };
 
   return (
@@ -418,20 +413,32 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                         unit,
                         filters.threads,
                       );
-                      const unitOptions = unit.unit_options.length >= 1;
+
+                      const searchParamsStr = searchParams?.toString() ?? "";
+                      const unitUrl =
+                        join(basePath, unit.slug) +
+                        `${!searchParamsStr ? "" : `?${searchParamsStr}`}`;
 
                       return (
-                        <UnitListItem key={`${unit.slug}-${index}`}>
-                          <CurriculumUnitCard
-                            unit={unit}
-                            key={unit.slug + index}
-                            index={index}
-                            isHighlighted={isHighlighted}
-                            onClick={() => {
-                              handleOpenModal(unitOptions, unit, isHighlighted);
-                            }}
-                          />
-                        </UnitListItem>
+                        <Link
+                          href={unitUrl}
+                          shallow={true}
+                          scroll={false}
+                          replace={true}
+                          style={{ flex: 1, display: "inherit" }}
+                        >
+                          <UnitListItem key={`${unit.slug}-${index}`}>
+                            <CurriculumUnitCard
+                              unit={unit}
+                              key={unit.slug + index}
+                              index={index}
+                              isHighlighted={isHighlighted}
+                              onClick={() => {
+                                handleOpenModal(unit, isHighlighted);
+                              }}
+                            />
+                          </UnitListItem>
+                        </Link>
                       );
                     })}
                     {/* Empty tiles for correct flex wrapping */}
@@ -456,26 +463,20 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
         <UnitsTabSidebar
           displayModal={displayModal}
           onClose={handleCloseModal}
-          lessons={currentUnitLessons}
           programmeSlug={createTeacherProgrammeSlug(
             unitData,
             ks4OptionSlug,
             filters.tiers[0],
             unitData?.pathway_slug ?? undefined,
           )}
-          unitOptionsAvailable={unitOptionsAvailable}
-          unitSlug={unitData?.slug}
           unitData={unitData}
-          unitVariantID={unitVariantID}
+          unitOptionData={unitOptionData}
         >
           <UnitModal
-            setCurrentUnitLessons={setCurrentUnitLessons}
-            setUnitVariantID={setUnitVariantID}
+            basePath={basePath}
             unitData={unitData}
+            unitOptionData={unitOptionData}
             yearData={yearData}
-            displayModal={displayModal}
-            setUnitOptionsAvailable={setUnitOptionsAvailable}
-            unitOptionsAvailable={unitOptionsAvailable}
             selectedThread={selectedThread?.slug ?? null}
           />
         </UnitsTabSidebar>

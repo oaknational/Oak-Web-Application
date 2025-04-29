@@ -1,5 +1,4 @@
 import userEvent from "@testing-library/user-event";
-import { waitFor } from "@testing-library/dom";
 import { act, within } from "@testing-library/react";
 
 import CurriculumVisualiser from "./CurriculumVisualiser";
@@ -52,7 +51,7 @@ const curriculumVisualiserFixture = {
   highlightedUnitCount: jest.fn(() => 1),
   trackSelectYear: jest.fn(() => {}),
   threadOptions: [],
-  unitData: null,
+  unitData: undefined,
   filters: {
     years: ["7", "8", "9", "10", "11"],
     tiers: [],
@@ -132,6 +131,8 @@ const curriculumVisualiserFixture = {
   },
   selectedThread: null,
   setVisibleMobileYearRefID: jest.fn(() => {}),
+  unitOptionData: undefined,
+  basePath: "/",
 };
 
 describe("visualiser", () => {
@@ -185,7 +186,7 @@ describe("visualiser", () => {
   });
 
   test("selecting a unit opens up the modal dialog", async () => {
-    const { findAllByTestId, findByTestId } = render(
+    const { findAllByTestId } = render(
       <CurriculumVisualiser {...curriculumVisualiserFixture} />,
     );
 
@@ -194,11 +195,6 @@ describe("visualiser", () => {
 
     await act(async () => {
       await userEvent.click(unit.querySelector("button")!);
-    });
-
-    await waitFor(async () => {
-      const sidebar = await findByTestId("sidebar-modal-wrapper");
-      expect(sidebar).toBeInTheDocument();
     });
 
     expect(unitOverviewAccessed).toHaveBeenCalledTimes(1);

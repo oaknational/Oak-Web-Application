@@ -10,19 +10,20 @@ import {
 
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import CurriculumUnitDetailsAccordion from "@/components/CurriculumComponents/CurriculumUnitDetailsAccordion";
-import { Thread, Lesson } from "@/utils/curriculum/types";
+import { Unit } from "@/utils/curriculum/types";
 import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 
-export type CurriculumUnitDetailsProps = {
-  unitTitle?: string;
-  threads: Thread[];
-  lessons: Lesson[] | null | undefined;
-  priorUnitDescription: string | null;
-  futureUnitDescription: string | null;
-  priorUnitTitle: string | null;
-  futureUnitTitle: string | null;
-  whyThisWhyNow: string | null;
-  description: string | null;
+export type CurriculumUnitDetailsProps = Pick<
+  Unit,
+  | "threads"
+  | "lessons"
+  | "connection_prior_unit_description"
+  | "connection_future_unit_description"
+  | "connection_prior_unit_title"
+  | "connection_future_unit_title"
+  | "why_this_why_now"
+  | "description"
+> & {
   isUnitDescriptionEnabled: boolean;
   handleUnitOverviewExploredAnalytics: (
     componentType: ComponentTypeValueType,
@@ -32,11 +33,11 @@ export type CurriculumUnitDetailsProps = {
 export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
   threads,
   lessons,
-  priorUnitDescription,
-  futureUnitDescription,
-  priorUnitTitle,
-  futureUnitTitle,
-  whyThisWhyNow,
+  connection_prior_unit_description: priorUnitDescription,
+  connection_future_unit_description: futureUnitDescription,
+  connection_prior_unit_title: priorUnitTitle,
+  connection_future_unit_title: futureUnitTitle,
+  why_this_why_now: whyThisWhyNow,
   description,
   isUnitDescriptionEnabled,
   handleUnitOverviewExploredAnalytics,

@@ -47,6 +47,9 @@ export type KeyStageSlug = "ks1" | "ks2" | "ks3" | "ks4";
 
 export type Unit = CurriculumUnitsTabData["units"][number];
 
+export type UnitOption =
+  CurriculumUnitsTabData["units"][number]["unit_options"][number];
+
 export type CurriculumFilters = {
   childSubjects: Subject["subject_slug"][];
   subjectCategories: string[];
