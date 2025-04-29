@@ -1,3 +1,11 @@
+## [1.736.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.736.0...v1.736.1) (2025-04-29)
+
+
+### Bug Fixes
+
+* nest details accordion title in <h3/> for better a11y ([2a79eb2](https://github.com/oaknational/Oak-Web-Application/commit/2a79eb25775d2586dd9fcf6fec7bd5ddee9ddebe))
+* nest threads in ul/li for a11y ([b7822f3](https://github.com/oaknational/Oak-Web-Application/commit/b7822f3067d5f45fe1f32e36f1783147b0e0891b))
+
 # [1.736.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.735.2...v1.736.0) (2025-04-28)
 
 
