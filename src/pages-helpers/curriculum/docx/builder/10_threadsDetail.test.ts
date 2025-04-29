@@ -15,51 +15,61 @@ describe("10_threadsDetail", () => {
             year: "7",
             title: "Test A",
             threads: [{ title: "thread-one", order: 0, slug: "one" }],
+            order: 0,
           },
           {
             year: "7",
             title: "Test B",
             threads: [{ title: "thread-two", order: 0, slug: "two" }],
+            order: 1,
           },
           {
             year: "8",
             title: "Test A",
             threads: [{ title: "thread-one", order: 0, slug: "one" }],
+            order: 2,
           },
           {
             year: "8",
             title: "Test B",
             threads: [{ title: "thread-two", order: 0, slug: "two" }],
+            order: 3,
           },
           {
             year: "9",
             title: "Test A",
             threads: [{ title: "thread-one", order: 0, slug: "one" }],
+            order: 4,
           },
           {
             year: "9",
             title: "Test B",
             threads: [{ title: "thread-two", order: 0, slug: "two" }],
+            order: 5,
           },
           {
             year: "10",
             title: "Test A",
             threads: [{ title: "thread-one", order: 0, slug: "one" }],
+            order: 6,
           },
           {
             year: "10",
             title: "Test B",
             threads: [{ title: "thread-two", order: 0, slug: "two" }],
+            order: 7,
           },
           {
             year: "11",
             title: "Test A",
             threads: [{ title: "thread-one", order: 0, slug: "one" }],
+            order: 8,
           },
           {
             year: "11",
             title: "Test B",
             threads: [{ title: "thread-two", order: 0, slug: "two" }],
+            order: 9,
           },
         ],
       } as CombinedCurriculumData,
@@ -80,6 +90,7 @@ describe("10_threadsDetail", () => {
             year: "7",
             title: "Test A",
             threads: [{ title: "thread-one", order: 0, slug: "one" }],
+            order: 0,
           },
           {
             subject_slug: "english",
@@ -87,6 +98,7 @@ describe("10_threadsDetail", () => {
             year: "7",
             title: "Test B",
             threads: [{ title: "thread-two", order: 0, slug: "two" }],
+            order: 1,
           },
           {
             subject_slug: "english",
@@ -94,6 +106,7 @@ describe("10_threadsDetail", () => {
             year: "8",
             title: "Test A",
             threads: [{ title: "thread-one", order: 0, slug: "one" }],
+            order: 2,
           },
           {
             subject_slug: "english",
@@ -101,6 +114,7 @@ describe("10_threadsDetail", () => {
             year: "8",
             title: "Test B",
             threads: [{ title: "thread-two", order: 0, slug: "two" }],
+            order: 3,
           },
           {
             subject_slug: "english",
@@ -108,6 +122,7 @@ describe("10_threadsDetail", () => {
             year: "9",
             title: "Test A",
             threads: [{ title: "thread-one", order: 0, slug: "one" }],
+            order: 4,
           },
           {
             subject_slug: "english",
@@ -115,6 +130,7 @@ describe("10_threadsDetail", () => {
             year: "9",
             title: "Test B",
             threads: [{ title: "thread-two", order: 0, slug: "two" }],
+            order: 5,
           },
           {
             subject_slug: "english",
@@ -122,6 +138,7 @@ describe("10_threadsDetail", () => {
             year: "10",
             title: "Test A",
             threads: [{ title: "thread-one", order: 0, slug: "one" }],
+            order: 6,
           },
           {
             subject_slug: "english",
@@ -129,6 +146,7 @@ describe("10_threadsDetail", () => {
             year: "10",
             title: "Test B",
             threads: [{ title: "thread-two", order: 0, slug: "two" }],
+            order: 7,
           },
           {
             subject_slug: "english",
@@ -136,6 +154,7 @@ describe("10_threadsDetail", () => {
             year: "11",
             title: "Test A",
             threads: [{ title: "thread-one", order: 0, slug: "one" }],
+            order: 8,
           },
           {
             subject_slug: "english",
@@ -143,6 +162,7 @@ describe("10_threadsDetail", () => {
             year: "11",
             title: "Test B",
             threads: [{ title: "thread-two", order: 0, slug: "two" }],
+            order: 9,
           },
         ],
       } as CombinedCurriculumData,

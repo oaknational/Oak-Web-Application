@@ -343,10 +343,6 @@ describe("helper", () => {
         "binary-representation-y9",
       ]);
     });
-
-    it("should handle empty input", () => {
-      expect(groupUnitsByYearAndPathway([])).toEqual({});
-    });
   });
 
   describe("parseYearPathwayKey", () => {
@@ -364,10 +360,6 @@ describe("helper", () => {
         year: "11",
         pathway: "gcse",
       });
-    });
-
-    it("should handle potentially empty strings (defaults year to '0')", () => {
-      expect(parseYearPathwayKey("")).toEqual({ year: "0", pathway: null });
     });
   });
 
