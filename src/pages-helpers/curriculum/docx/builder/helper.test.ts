@@ -11,8 +11,13 @@ import {
   groupUnitsBySubjectCategory,
   subjectFromUnits,
   unitsByYear,
+  groupUnitsByYearAndPathway,
+  parseYearPathwayKey,
+  sortYearPathways,
+  getYearPathwayDisplayTitle,
 } from "./helper";
 
+import { createUnit } from "@/fixtures/curriculum/unit";
 import { Unit } from "@/utils/curriculum/types";
 
 describe("helper", () => {
@@ -209,6 +214,192 @@ describe("helper", () => {
           order: 1,
         },
       ],
+    });
+  });
+
+  // Tests for Pathway Helpers
+  const sampleUnits: Unit[] = [
+    // Year 9 (No pathway)
+    createUnit({
+      year: "9",
+      pathway_slug: null,
+      title: "Introduction to Logic",
+      slug: "introduction-to-logic-y9",
+      order: 0,
+    }),
+    createUnit({
+      year: "9",
+      pathway_slug: undefined,
+      title: "Binary Representation",
+      slug: "binary-representation-y9",
+      order: 1,
+    }),
+    // Year 10 No Pathway
+    createUnit({
+      year: "10",
+      pathway_slug: null,
+      title: "Fundamentals of Computing",
+      slug: "fundamentals-of-computing-y10",
+      order: 2,
+    }),
+    // Year 10 Core
+    createUnit({
+      year: "10",
+      pathway_slug: "core",
+      title: "Core Programming Concepts",
+      slug: "core-programming-concepts-y10",
+      order: 0,
+    }),
+    createUnit({
+      year: "10",
+      pathway_slug: "core",
+      title: "Core Data Structures",
+      slug: "core-data-structures-y10",
+      order: 1,
+    }),
+    // Year 10 GCSE
+    createUnit({
+      year: "10",
+      pathway_slug: "gcse",
+      title: "GCSE Algorithms",
+      slug: "gcse-algorithms-y10",
+      order: 0,
+    }),
+
+    // Year 11 Core
+    createUnit({
+      year: "11",
+      pathway_slug: "core",
+      title: "Core Networking",
+      slug: "core-networking-y11",
+      order: 0,
+    }),
+    // Year 11 GCSE
+    createUnit({
+      year: "11",
+      pathway_slug: "gcse",
+      title: "GCSE Cybersecurity",
+      slug: "gcse-cybersecurity-y11",
+      order: 0,
+    }),
+    createUnit({
+      year: "11",
+      pathway_slug: "gcse",
+      title: "GCSE Databases",
+      slug: "gcse-databases-y11",
+      order: 1,
+    }),
+  ];
+
+  describe("groupUnitsByYearAndPathway", () => {
+    const grouped = groupUnitsByYearAndPathway(sampleUnits);
+
+    it("should group units by year when no pathway", () => {
+      expect(grouped["9"]).toHaveLength(2);
+      expect(grouped["9"]?.map((u) => u.slug)).toEqual([
+        "introduction-to-logic-y9",
+        "binary-representation-y9",
+      ]);
+    });
+
+    it("should group units by year and pathway when pathway exists", () => {
+      expect(grouped["10-core"]).toHaveLength(2);
+      expect(grouped["10-core"]?.map((u) => u.slug)).toEqual([
+        "core-programming-concepts-y10",
+        "core-data-structures-y10",
+      ]);
+      expect(grouped["10-gcse"]).toHaveLength(1);
+      expect(grouped["10-gcse"]?.map((u) => u.slug)).toEqual([
+        "gcse-algorithms-y10",
+      ]);
+      expect(grouped["11-core"]).toHaveLength(1);
+      expect(grouped["11-core"]?.map((u) => u.slug)).toEqual([
+        "core-networking-y11",
+      ]);
+      expect(grouped["11-gcse"]).toHaveLength(2);
+      expect(grouped["11-gcse"]?.map((u) => u.slug)).toEqual([
+        "gcse-cybersecurity-y11",
+        "gcse-databases-y11",
+      ]);
+    });
+
+    it("should group units with null/undefined pathway under the year key only", () => {
+      expect(grouped["10"]).toHaveLength(1);
+      expect(grouped["10"]?.map((u) => u.slug)).toEqual([
+        "fundamentals-of-computing-y10",
+      ]);
+      expect(
+        grouped["10-core"]?.find(
+          (u) => u.slug === "fundamentals-of-computing-y10",
+        ),
+      ).toBeUndefined();
+      expect(
+        grouped["10-gcse"]?.find(
+          (u) => u.slug === "fundamentals-of-computing-y10",
+        ),
+      ).toBeUndefined();
+      expect(grouped["9"]?.map((u) => u.slug)).toEqual([
+        "introduction-to-logic-y9",
+        "binary-representation-y9",
+      ]);
+    });
+
+    it("should handle empty input", () => {
+      expect(groupUnitsByYearAndPathway([])).toEqual({});
+    });
+  });
+
+  describe("parseYearPathwayKey", () => {
+    it("should parse year-only keys", () => {
+      expect(parseYearPathwayKey("9")).toEqual({ year: "9", pathway: null });
+      expect(parseYearPathwayKey("12")).toEqual({ year: "12", pathway: null });
+    });
+
+    it("should parse year-pathway keys", () => {
+      expect(parseYearPathwayKey("10-core")).toEqual({
+        year: "10",
+        pathway: "core",
+      });
+      expect(parseYearPathwayKey("11-gcse")).toEqual({
+        year: "11",
+        pathway: "gcse",
+      });
+    });
+
+    it("should handle potentially empty strings (defaults year to '0')", () => {
+      expect(parseYearPathwayKey("")).toEqual({ year: "0", pathway: null });
+    });
+  });
+
+  describe("sortYearPathways", () => {
+    it("should sort keys chronologically by year, then pathway", () => {
+      const keys = ["11-gcse", "10-core", "9", "11-core", "10-gcse", "10"];
+      keys.sort(sortYearPathways);
+      expect(keys).toEqual([
+        "9",
+        "10-core",
+        "10-gcse",
+        "10",
+        "11-core",
+        "11-gcse",
+      ]);
+    });
+
+    it("should place default/null pathway last within a year group", () => {
+      const keys = ["10-gcse", "10", "10-core"];
+      keys.sort(sortYearPathways);
+      expect(keys).toEqual(["10-core", "10-gcse", "10"]);
+    });
+  });
+
+  describe("getYearPathwayDisplayTitle", () => {
+    it("should generate title for year only", () => {
+      expect(getYearPathwayDisplayTitle("9")).toBe("Year 9");
+    });
+
+    it("should generate title for year and pathway", () => {
+      expect(getYearPathwayDisplayTitle("10-core")).toBe("Year 10 (Core)");
+      expect(getYearPathwayDisplayTitle("11-gcse")).toBe("Year 11 (GCSE)");
     });
   });
 });

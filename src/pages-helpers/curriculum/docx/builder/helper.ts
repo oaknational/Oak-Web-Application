@@ -182,3 +182,100 @@ export function groupUnitsBySubjectCategory(units: Unit[]) {
     };
   });
 }
+
+/**
+ * Groups units by a composite key of year and pathway slug.
+ * Keys are strings like "9", "10-core", "11-gcse".
+ * Units with null or undefined `pathway_slug` are grouped under the year key only (e.g., "10").
+ *
+ * @param units - Array of curriculum units.
+ * @returns An object where keys are year-pathway strings and values are arrays of units belonging to that group.
+ */
+export function groupUnitsByYearAndPathway(units: Unit[]): {
+  [yearPathwayKey: string]: Unit[];
+} {
+  const grouped: { [yearPathwayKey: string]: Unit[] } = {};
+  for (const unit of units) {
+    const year = unit.year;
+
+    const pathway = unit.pathway_slug || "default";
+
+    const key = pathway === "default" ? `${year}` : `${year}-${pathway}`;
+    if (!grouped[key]) {
+      grouped[key] = [];
+    }
+    grouped[key].push(unit);
+  }
+  return grouped;
+}
+
+/**
+ * Parses a year-pathway key string into its constituent parts.
+ * Handles keys like "9", "10-core", "11-gcse".
+ * Guarantees returning a non-empty string for the year, defaulting to "0" if the key is malformed.
+ *
+ * @param key - The year-pathway key string (e.g., "11-gcse", "9").
+ * @returns An object containing the parsed `year` (string) and `pathway` (string or null).
+ */
+export function parseYearPathwayKey(key: string): {
+  year: string;
+  pathway: string | null;
+} {
+  const parts = key.split("-");
+  const yearStr = parts[0];
+  // Ensure year is always a non-empty string, defaulting to '0'
+  const year = yearStr && yearStr.length > 0 ? yearStr : "0";
+  const pathway = parts.length > 1 ? parts.slice(1).join("-") : null; // Rest is pathway or null
+  return { year, pathway };
+}
+
+/**
+ * Comparator function for sorting year-pathway keys chronologically.
+ * Sorts primarily by year number, then by pathway slug according to a defined order (core < gcse < default/null).
+ * Example sort order: "9" < "10-core" < "10-gcse" < "10" < "11-core" < "11-gcse".
+ *
+ * @param keyA - The first year-pathway key to compare.
+ * @param keyB - The second year-pathway key to compare.
+ * @returns A negative value if keyA comes before keyB, a positive value if keyA comes after keyB, or 0 if they are equivalent for sorting.
+ */
+export function sortYearPathways(keyA: string, keyB: string): number {
+  const { year: yearAStr, pathway: pathwayA } = parseYearPathwayKey(keyA);
+  const { year: yearBStr, pathway: pathwayB } = parseYearPathwayKey(keyB);
+
+  // Now yearAStr and yearBStr are guaranteed to be non-empty strings by parseYearPathwayKey
+  const yearNumA = parseInt(yearAStr);
+  const yearNumB = parseInt(yearBStr);
+
+  if (yearNumA !== yearNumB) {
+    return yearNumA - yearNumB;
+  }
+
+  // Same year, sort by pathway (e.g., core before gcse, default last)
+  const pathwayOrder = { core: 1, gcse: 2, default: 99 }; // Default/null pathway comes last
+  const orderA =
+    pathwayOrder[pathwayA as keyof typeof pathwayOrder] ?? pathwayOrder.default;
+  const orderB =
+    pathwayOrder[pathwayB as keyof typeof pathwayOrder] ?? pathwayOrder.default;
+
+  return orderA - orderB;
+}
+
+/**
+ * Generates a display title from a year-pathway key.
+ * Examples: "9" -> "Year 9", "10-core" -> "Year 10 (Core)".
+ *
+ * @param yearPathwayKey - The year-pathway key string (e.g., "10-gcse", "9").
+ * @returns The formatted display title string.
+ */
+export function getYearPathwayDisplayTitle(yearPathwayKey: string): string {
+  const { year: yearNumber, pathway } = parseYearPathwayKey(yearPathwayKey);
+  let title = `Year ${yearNumber}`;
+
+  if (pathway === "core") {
+    title += " (Core)";
+  } else if (pathway === "gcse") {
+    title += " (GCSE)";
+  }
+
+  return title;
+}
