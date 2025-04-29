@@ -13,6 +13,7 @@ import {
   getDefaultTiersForYearGroup,
   getFilterData,
   getNumberOfFiltersApplied,
+  getNumberOfSelectedUnits,
   highlightedUnitCount,
   isHighlightedUnit,
   mergeInFilterParams,
@@ -22,7 +23,7 @@ import {
   tierForFilter,
   useFilters,
 } from "./filtering";
-import { CurriculumFilters, Unit } from "./types";
+import { CurriculumFilters, YearData, Unit } from "./types";
 import { isCurricRoutingEnabled } from "./flags";
 
 import { createUnit } from "@/fixtures/curriculum/unit";
@@ -1190,5 +1191,92 @@ describe("buildTextDescribingFilter", () => {
       "Tier1 (KS3)",
       "Thread1",
     ]);
+  });
+});
+
+describe("getNumberOfSelectedUnits", () => {
+  const foundationTier = createTier({ tier_slug: "foundation" });
+  const higherTier = createTier({ tier_slug: "higher" });
+  const yearData: YearData = {
+    "7": {
+      units: [
+        createUnit({ slug: "unit1", tier_slug: foundationTier.tier_slug }),
+        createUnit({ slug: "unit2", tier_slug: foundationTier.tier_slug }),
+      ],
+      childSubjects: [],
+      tiers: [foundationTier],
+      subjectCategories: [],
+      isSwimming: false,
+      groupAs: null,
+      pathways: [],
+    },
+    "8": {
+      units: [
+        createUnit({ slug: "unit3", tier_slug: foundationTier.tier_slug }),
+        createUnit({ slug: "unit4", tier_slug: higherTier.tier_slug }),
+        createUnit({ slug: "unit5", tier_slug: higherTier.tier_slug }),
+      ],
+      childSubjects: [],
+      tiers: [foundationTier, higherTier],
+      subjectCategories: [],
+      isSwimming: false,
+      groupAs: null,
+      pathways: [],
+    },
+  };
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it("should return 0 when yearData is empty", () => {
+    const result = getNumberOfSelectedUnits(
+      {},
+      createFilter({
+        years: [],
+        threads: [],
+      }),
+    );
+    expect(result).toBe(0);
+  });
+
+  it("should count visible units for all years when selectedYear is All", () => {
+    const yearSelection = createFilter({
+      years: ["7", "8"],
+      threads: [],
+    });
+
+    const result = getNumberOfSelectedUnits(yearData, yearSelection);
+    expect(result).toBe(5);
+  });
+
+  it("should count visible units only for the selected year", () => {
+    const yearSelection = createFilter({
+      years: ["8"],
+      threads: [],
+    });
+
+    const result = getNumberOfSelectedUnits(yearData, yearSelection);
+    expect(result).toBe(3);
+  });
+
+  it("should only count units that are visible", () => {
+    const yearSelection = createFilter({
+      years: ["7", "8"],
+      tiers: ["foundation"],
+    });
+
+    const result = getNumberOfSelectedUnits(yearData, yearSelection);
+    expect(result).toBe(3);
+  });
+
+  it("should return 0 when no units are visible", () => {
+    const yearSelection = createFilter({
+      years: ["7", "8"],
+      tiers: ["foo"],
+    });
+
+    const result = getNumberOfSelectedUnits(yearData, yearSelection);
+    expect(result).toBe(0);
   });
 });
