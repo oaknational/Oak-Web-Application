@@ -446,7 +446,7 @@ describe("Search.page.tsx", () => {
     expect(onChange).toHaveBeenCalledTimes(1);
 
     expect(searchRefined).toHaveBeenCalledWith({
-      activeFilters: ["english"],
+      activeFilters: { subjects: "english" },
       analyticsUseCase: "Teacher",
       componentType: "filter_link",
       engagementIntent: "refine",

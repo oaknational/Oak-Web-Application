@@ -186,9 +186,6 @@ describe("search helpers", () => {
     expect(result).toEqual({
       keystages: "ks1,ks2,ks3",
       subjects: "english-grammar",
-      yearGroups: undefined,
-      contentTypes: undefined,
-      examBoards: undefined,
     });
   });
   test("getHighlightFromAllFields returns highlight when there is pupilLessonOutcome", () => {

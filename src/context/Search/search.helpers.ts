@@ -91,14 +91,16 @@ export const getActiveFilters = (query: ParsedUrlQuery) => {
   const yearGroupFilter = sortFilters(query.yearGroups);
   const lessonCohortFilter = sortFilters(query.curriculum);
 
-  return {
-    keystages: keystageFilter,
-    subjects: subjectFilter,
-    contentTypes: contentTypeFilter,
-    examBoards: examBoardFilter,
-    yearGroups: yearGroupFilter,
-    lessonCohort: lessonCohortFilter,
-  };
+  const activeFilters: Record<string, string> = {};
+
+  keystageFilter && (activeFilters.keystages = keystageFilter);
+  subjectFilter && (activeFilters.subjects = subjectFilter);
+  contentTypeFilter && (activeFilters.contentTypes = contentTypeFilter);
+  examBoardFilter && (activeFilters.examBoards = examBoardFilter);
+  yearGroupFilter && (activeFilters.yearGroups = yearGroupFilter);
+  lessonCohortFilter && (activeFilters.curriculum = lessonCohortFilter);
+
+  return activeFilters;
 };
 
 export const keyStageToSentenceCase = (

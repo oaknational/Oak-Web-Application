@@ -31,7 +31,10 @@ import SearchActiveFilters from "@/components/TeacherComponents/SearchActiveFilt
 import SearchForm from "@/components/SharedComponents/SearchForm";
 import SearchResults from "@/components/TeacherComponents/SearchResults";
 import NoSearchResults from "@/components/TeacherComponents/NoSearchResults";
-import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
+import {
+  getActiveFilters,
+  getSortedSearchFiltersSelected,
+} from "@/context/Search/search.helpers";
 import SignPostToAila from "@/components/TeacherComponents/NoSearchResults/SignPostToAila";
 
 const CustomWidthFlex = styled(OakFlex)`
@@ -102,7 +105,7 @@ const Search: FC<SearchProps> = (props) => {
           eventVersion: "2.0.0",
           analyticsUseCase: "Teacher",
           searchResultCount: hitCount,
-          activeFilters: getSortedSearchFiltersSelected(router.query), // TODO: turn into object
+          activeFilters: getActiveFilters(router.query),
           searchTerm: query.term,
         });
       }
