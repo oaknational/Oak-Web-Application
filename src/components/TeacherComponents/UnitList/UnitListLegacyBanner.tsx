@@ -145,6 +145,7 @@ export const UnitListLegacyBanner: FC<UnitListLegacyBannerProps> = ({
               iconName="arrow-right"
               isTrailingIcon
               onClick={onButtonClick}
+              tabIndex={0}
             >
               View new resources
             </OakPrimaryButton>
