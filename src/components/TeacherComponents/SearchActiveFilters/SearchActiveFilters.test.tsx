@@ -2,8 +2,12 @@ import SearchActiveFilters from "./SearchActiveFilters";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { searchFilters } from "@/components/TeacherComponents/SearchFilters/test-helpers";
+import { trackSearchModified } from "@/components/TeacherViews/Search/helpers";
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
+
+const mockSearchTerm = "macbeth";
+const searchFilterModifiedMock = jest.fn();
 
 describe("SearchActiveFilters", () => {
   beforeEach(() => {
@@ -15,7 +19,13 @@ describe("SearchActiveFilters", () => {
       .map((ks) => ks.title),
   )("should render the checked filters: %s", (ks) => {
     const { getByRole } = renderWithTheme(
-      <SearchActiveFilters searchFilters={searchFilters} />,
+      <SearchActiveFilters
+        searchFilters={searchFilters}
+        trackSearchModified={trackSearchModified(
+          mockSearchTerm,
+          searchFilterModifiedMock,
+        )}
+      />,
     );
     const button = getByRole("button", { name: `Remove ${ks} filter` });
     expect(button).toBeInTheDocument();
@@ -26,7 +36,13 @@ describe("SearchActiveFilters", () => {
       .map((ks) => ks.title),
   )("should not render the unchecked filters: %s", (ks) => {
     const { queryByRole } = renderWithTheme(
-      <SearchActiveFilters searchFilters={searchFilters} />,
+      <SearchActiveFilters
+        searchFilters={searchFilters}
+        trackSearchModified={trackSearchModified(
+          mockSearchTerm,
+          searchFilterModifiedMock,
+        )}
+      />,
     );
     const button = queryByRole("button", { name: `Remove ${ks} filter` });
     expect(button).not.toBeInTheDocument();
@@ -37,7 +53,13 @@ describe("SearchActiveFilters", () => {
       .map((subject) => subject.title),
   )("should render the checked filters: %s", (subject) => {
     const { getByRole } = renderWithTheme(
-      <SearchActiveFilters searchFilters={searchFilters} />,
+      <SearchActiveFilters
+        searchFilters={searchFilters}
+        trackSearchModified={trackSearchModified(
+          mockSearchTerm,
+          searchFilterModifiedMock,
+        )}
+      />,
     );
     const button = getByRole("button", { name: `Remove ${subject} filter` });
     expect(button).toBeInTheDocument();
@@ -49,7 +71,13 @@ describe("SearchActiveFilters", () => {
       .map((subject) => subject.title),
   )("should not render the unchecked filters: %s", (subject) => {
     const { queryByRole } = renderWithTheme(
-      <SearchActiveFilters searchFilters={searchFilters} />,
+      <SearchActiveFilters
+        searchFilters={searchFilters}
+        trackSearchModified={trackSearchModified(
+          mockSearchTerm,
+          searchFilterModifiedMock,
+        )}
+      />,
     );
     const button = queryByRole("button", { name: `Remove ${subject} filter` });
     expect(button).not.toBeInTheDocument();
@@ -61,7 +89,13 @@ describe("SearchActiveFilters", () => {
       .map((ContentType) => ContentType.title),
   )("should render the checked type filters: %s", (ContentType) => {
     const { getByRole } = renderWithTheme(
-      <SearchActiveFilters searchFilters={searchFilters} />,
+      <SearchActiveFilters
+        searchFilters={searchFilters}
+        trackSearchModified={trackSearchModified(
+          mockSearchTerm,
+          searchFilterModifiedMock,
+        )}
+      />,
     );
     const button = getByRole("button", {
       name: `Remove ${ContentType} filter`,
@@ -75,7 +109,13 @@ describe("SearchActiveFilters", () => {
       .map((ContentType) => ContentType.title),
   )("should not render the unchecked type filters: %s", (ContentType) => {
     const { queryByRole } = renderWithTheme(
-      <SearchActiveFilters searchFilters={searchFilters} />,
+      <SearchActiveFilters
+        searchFilters={searchFilters}
+        trackSearchModified={trackSearchModified(
+          mockSearchTerm,
+          searchFilterModifiedMock,
+        )}
+      />,
     );
     const button = queryByRole("button", {
       name: `Remove ${ContentType} filter`,

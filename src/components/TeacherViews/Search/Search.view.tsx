@@ -16,7 +16,11 @@ import {
 import styled from "styled-components";
 
 import { SearchProps } from "./search.view.types";
-import { isKeyStageTitleValueType, removeHTMLTags } from "./helpers";
+import {
+  isKeyStageTitleValueType,
+  removeHTMLTags,
+  trackSearchModified,
+} from "./helpers";
 
 import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -96,9 +100,8 @@ const Search: FC<SearchProps> = (props) => {
           eventVersion: "2.0.0",
           analyticsUseCase: "Teacher",
           searchResultCount: hitCount,
-          activeFilters: getSortedSearchFiltersSelected(router.query),
-          filterType: null,
-          filterValue: null,
+          activeFilters: getSortedSearchFiltersSelected(router.query), // TODO: turn into object
+          searchTerm: query.term,
         });
       }
     }
@@ -256,6 +259,14 @@ const Search: FC<SearchProps> = (props) => {
                           keepIconColor={true}
                           {...contentTypeFilter}
                           onChange={() => {
+                            trackSearchModified(
+                              query.term,
+                              track.searchFilterModified,
+                            )({
+                              checked: contentTypeFilter.checked,
+                              filterType: "Content type filter",
+                              filterValue: contentTypeFilter.slug,
+                            });
                             contentTypeFilter.onChange();
                           }}
                         />
@@ -274,14 +285,27 @@ const Search: FC<SearchProps> = (props) => {
                     $alignSelf={"flex-end"}
                   >
                     <OakBox $mt={["space-between-m", null, null]}>
-                      <SearchFilters {...searchFilters} isMobileFilter />
+                      <SearchFilters
+                        {...searchFilters}
+                        isMobileFilter
+                        trackSearchModified={trackSearchModified(
+                          query.term,
+                          track.searchFilterModified,
+                        )}
+                      />
                     </OakBox>
                   </MobileFilters>
                 </OakFlex>
               </OakBox>
             </OakFlex>
             <OakBox $pl={["inner-padding-none", "inner-padding-xl"]}>
-              <SearchActiveFilters searchFilters={searchFilters} />
+              <SearchActiveFilters
+                searchFilters={searchFilters}
+                trackSearchModified={trackSearchModified(
+                  query.term,
+                  track.searchFilterModified,
+                )}
+              />
             </OakBox>
           </OakGridArea>
           {!shouldShowNoResultsMessage && (
@@ -313,7 +337,13 @@ const Search: FC<SearchProps> = (props) => {
                     Skip to results
                   </OakSecondaryButton>
                 </OakFlex>
-                <SearchFilters {...searchFilters} />
+                <SearchFilters
+                  {...searchFilters}
+                  trackSearchModified={trackSearchModified(
+                    query.term,
+                    track.searchFilterModified,
+                  )}
+                />
               </CustomWidthFlex>
             </OakGridArea>
           )}

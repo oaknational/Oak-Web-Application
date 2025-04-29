@@ -178,6 +178,7 @@ const searchResultOpened = jest.fn();
 const searchJourneyInitiated = jest.fn();
 const searchResultExpanded = jest.fn();
 const searchAccessed = jest.fn();
+const searchFilterModified = jest.fn();
 
 jest.mock("@/context/Analytics/useAnalytics.ts", () => ({
   __esModule: true,
@@ -191,6 +192,8 @@ jest.mock("@/context/Analytics/useAnalytics.ts", () => ({
       searchResultOpened: (...args: unknown[]) => searchResultOpened(...args),
       searchRefined: (...args: []) => searchRefined(...args),
       searchAccessed: (...args: unknown[]) => searchAccessed(...args),
+      searchFilterModified: (...args: unknown[]) =>
+        searchFilterModified(...args),
     },
   }),
 }));
@@ -451,8 +454,7 @@ describe("Search.page.tsx", () => {
       platform: "owa",
       product: "teacher lesson resources",
       searchResultCount: 1,
-      filterType: null,
-      filterValue: null,
+      searchTerm: "test search term",
     });
   });
   test("skip button becomes visible when focussed", async () => {
