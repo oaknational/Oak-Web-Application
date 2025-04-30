@@ -1,13 +1,13 @@
 import userEvent from "@testing-library/user-event";
 
-import UnitsTabSidebar from "./UnitsTabSidebar";
+import CurricUnitsTabSidebar from "./CurricUnitsTabSidebar";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import {
   mockOptionalityUnit,
   mockUnit,
   mockUnitKS4,
-} from "@/components/CurriculumComponents/UnitModal/UnitModal.fixture";
+} from "@/components/CurriculumComponents/CurricUnitModal/CurricUnitModal.fixtures";
 
 const unitInformationViewed = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
@@ -23,7 +23,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 describe("Sidebar component", () => {
   test("should render the sidebar", () => {
     const { getByTestId } = renderWithTheme(
-      <UnitsTabSidebar
+      <CurricUnitsTabSidebar
         displayModal={true}
         onClose={jest.fn()}
         unitOptionData={undefined}
@@ -35,13 +35,13 @@ describe("Sidebar component", () => {
 
   test("should render the sidebar with children", () => {
     const { getByTestId } = renderWithTheme(
-      <UnitsTabSidebar
+      <CurricUnitsTabSidebar
         displayModal={true}
         onClose={jest.fn()}
         unitOptionData={undefined}
       >
         <div data-testid="sidebar-children" />
-      </UnitsTabSidebar>,
+      </CurricUnitsTabSidebar>,
     );
 
     expect(getByTestId("sidebar-children")).toBeInTheDocument();
@@ -50,7 +50,7 @@ describe("Sidebar component", () => {
   test("onClose state function called when close button selected", async () => {
     const mockClose = jest.fn();
     const { getByTestId } = renderWithTheme(
-      <UnitsTabSidebar
+      <CurricUnitsTabSidebar
         displayModal={true}
         onClose={mockClose}
         unitOptionData={undefined}
@@ -68,7 +68,7 @@ describe("Sidebar component", () => {
   describe("Unit lessons button", () => {
     test("should render the unit lessons button when passed unit data with no optionality", () => {
       const { getByTestId } = renderWithTheme(
-        <UnitsTabSidebar
+        <CurricUnitsTabSidebar
           displayModal={true}
           onClose={jest.fn()}
           programmeSlug="maths-secondary-ks4-aqa"
@@ -81,7 +81,7 @@ describe("Sidebar component", () => {
 
     test("should not render the unit info button when passed unit data with optionality", () => {
       const { queryByTestId } = renderWithTheme(
-        <UnitsTabSidebar
+        <CurricUnitsTabSidebar
           displayModal={true}
           onClose={jest.fn()}
           unitData={mockOptionalityUnit}
@@ -94,7 +94,7 @@ describe("Sidebar component", () => {
 
     test("should not render the unit info button when passed no programme slug", () => {
       const { queryByTestId } = renderWithTheme(
-        <UnitsTabSidebar
+        <CurricUnitsTabSidebar
           displayModal={true}
           onClose={jest.fn()}
           unitData={mockOptionalityUnit}
@@ -109,7 +109,7 @@ describe("Sidebar component", () => {
   describe("Navigate to lesson button", () => {
     test("should render coming soon for unavailable units", () => {
       const { queryByTestId } = renderWithTheme(
-        <UnitsTabSidebar
+        <CurricUnitsTabSidebar
           displayModal={true}
           onClose={jest.fn()}
           unitData={mockUnit}
@@ -126,7 +126,7 @@ describe("Sidebar component", () => {
 
     test("should have button and no flag for available units", () => {
       const { queryByTestId } = renderWithTheme(
-        <UnitsTabSidebar
+        <CurricUnitsTabSidebar
           displayModal={true}
           onClose={jest.fn()}
           unitData={mockUnitKS4}
@@ -141,7 +141,7 @@ describe("Sidebar component", () => {
 
     test("user is directed to correct link for available unit for ks3", async () => {
       const { findByRole } = renderWithTheme(
-        <UnitsTabSidebar
+        <CurricUnitsTabSidebar
           displayModal={true}
           onClose={jest.fn()}
           unitData={mockUnitKS4}
@@ -161,7 +161,7 @@ describe("Sidebar component", () => {
 
     test("user is directed to correct link for available unit for ks4 with exam board", async () => {
       const { findByRole } = renderWithTheme(
-        <UnitsTabSidebar
+        <CurricUnitsTabSidebar
           displayModal={true}
           onClose={jest.fn()}
           unitData={mockUnitKS4}
@@ -181,7 +181,7 @@ describe("Sidebar component", () => {
 
     test("user is directed to correct link for unit variant", async () => {
       const { findByRole, queryByTestId } = renderWithTheme(
-        <UnitsTabSidebar
+        <CurricUnitsTabSidebar
           displayModal={true}
           onClose={jest.fn()}
           unitData={mockOptionalityUnit}

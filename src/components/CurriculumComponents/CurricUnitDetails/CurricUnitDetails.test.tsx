@@ -1,30 +1,31 @@
 import userEvent from "@testing-library/user-event";
 import { within } from "@testing-library/react";
 
-import { CurriculumUnitDetails } from "./CurriculumUnitDetails";
+import { CurricUnitDetails } from "./CurricUnitDetails";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { createUnit } from "@/fixtures/curriculum/unit";
 
-const testCurriculumUnitDetails = {
-  unitTitle: "Test unit title",
-  threads: [{ title: "test thread", slug: "test-thread", order: 1 }],
-  numberOfLessons: 1,
-  lessons: [{ title: "test lesson", slug: "test-lesson" }],
-  connection_prior_unit_description: "test prior unit description",
-  connection_future_unit_description: "test future unit description",
-  connection_prior_unit_title: "test prior unit title",
-  connection_future_unit_title: "test future unit title",
-  cycle: "1",
-  why_this_why_now: "test why this why now",
-  description: "test description",
+const testCurricUnitDetails = {
+  unit: createUnit({
+    threads: [{ title: "test thread", slug: "test-thread", order: 1 }],
+    lessons: [{ title: "test lesson", slug: "test-lesson" }],
+    connection_prior_unit_description: "test prior unit description",
+    connection_future_unit_description: "test future unit description",
+    connection_prior_unit_title: "test prior unit title",
+    connection_future_unit_title: "test future unit title",
+    cycle: "1",
+    why_this_why_now: "test why this why now",
+    description: "test description",
+  }),
   handleUnitOverviewExploredAnalytics: () => jest.fn(),
   isUnitDescriptionEnabled: false,
 };
 
-describe("CurriculumUnitDetails component", () => {
+describe("CurricUnitDetails component", () => {
   test("it should render the threads", () => {
     const { getByText, getAllByTestId } = renderWithTheme(
-      <CurriculumUnitDetails {...testCurriculumUnitDetails} />,
+      <CurricUnitDetails {...testCurricUnitDetails} />,
     );
 
     const thread = getByText("test thread");
@@ -35,7 +36,7 @@ describe("CurriculumUnitDetails component", () => {
 
   test("it should render the correct number of lessons count", () => {
     const { getByText } = renderWithTheme(
-      <CurriculumUnitDetails {...testCurriculumUnitDetails} />,
+      <CurricUnitDetails {...testCurricUnitDetails} />,
     );
 
     const numberOfLessons = getByText("1 lesson");
@@ -45,7 +46,7 @@ describe("CurriculumUnitDetails component", () => {
   describe("accordion functionality on component", () => {
     test("it should render all accordion components (cycle 1)", () => {
       const { getAllByTestId, getByText } = renderWithTheme(
-        <CurriculumUnitDetails {...testCurriculumUnitDetails} />,
+        <CurricUnitDetails {...testCurricUnitDetails} />,
       );
 
       expect(getAllByTestId("accordion-component")).toHaveLength(3);
@@ -56,8 +57,8 @@ describe("CurriculumUnitDetails component", () => {
 
     test("it should render all accordion components (cycle 2)", () => {
       const { getAllByTestId, getByText } = renderWithTheme(
-        <CurriculumUnitDetails
-          {...testCurriculumUnitDetails}
+        <CurricUnitDetails
+          {...testCurricUnitDetails}
           isUnitDescriptionEnabled={true}
         />,
       );
@@ -70,7 +71,7 @@ describe("CurriculumUnitDetails component", () => {
 
     test("when expanding lesson accordion it should render correct lessons list", async () => {
       const { getAllByTestId, getByText, getByTestId } = renderWithTheme(
-        <CurriculumUnitDetails {...testCurriculumUnitDetails} />,
+        <CurricUnitDetails {...testCurricUnitDetails} />,
       );
 
       const lessonAccordion = getAllByTestId("accordion-component")[0];

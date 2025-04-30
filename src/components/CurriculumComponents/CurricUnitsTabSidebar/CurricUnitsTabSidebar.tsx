@@ -42,7 +42,7 @@ type ModalProps = HTMLProps<HTMLButtonElement> & {
   unitOptionData: UnitOption | undefined;
 };
 
-const UnitsTabSidebar: FC<ModalProps> = ({
+const CurricUnitsTabSidebar: FC<ModalProps> = ({
   displayModal,
   onClose,
   children,
@@ -196,4 +196,4 @@ const UnitsTabSidebar: FC<ModalProps> = ({
   );
 };
 
-export default UnitsTabSidebar;
+export default CurricUnitsTabSidebar;

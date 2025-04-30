@@ -9,39 +9,33 @@ import {
 } from "@oaknational/oak-components";
 
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
-import CurriculumUnitDetailsAccordion from "@/components/CurriculumComponents/CurriculumUnitDetailsAccordion";
+import CurricUnitDetailsAccordion from "@/components/CurriculumComponents/CurricUnitDetailsAccordion";
 import { Unit } from "@/utils/curriculum/types";
 import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 
-export type CurriculumUnitDetailsProps = Pick<
-  Unit,
-  | "threads"
-  | "lessons"
-  | "connection_prior_unit_description"
-  | "connection_future_unit_description"
-  | "connection_prior_unit_title"
-  | "connection_future_unit_title"
-  | "why_this_why_now"
-  | "description"
-> & {
+export type CurricUnitDetailsProps = {
+  unit: Unit;
   isUnitDescriptionEnabled: boolean;
   handleUnitOverviewExploredAnalytics: (
     componentType: ComponentTypeValueType,
   ) => void;
 };
 
-export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
-  threads,
-  lessons,
-  connection_prior_unit_description: priorUnitDescription,
-  connection_future_unit_description: futureUnitDescription,
-  connection_prior_unit_title: priorUnitTitle,
-  connection_future_unit_title: futureUnitTitle,
-  why_this_why_now: whyThisWhyNow,
-  description,
+export const CurricUnitDetails: FC<CurricUnitDetailsProps> = ({
+  unit,
   isUnitDescriptionEnabled,
   handleUnitOverviewExploredAnalytics,
 }) => {
+  const {
+    threads,
+    lessons,
+    connection_prior_unit_description: priorUnitDescription,
+    connection_future_unit_description: futureUnitDescription,
+    connection_prior_unit_title: priorUnitTitle,
+    connection_future_unit_title: futureUnitTitle,
+    why_this_why_now: whyThisWhyNow,
+    description,
+  } = unit;
   const threadTitleSet = new Set<string>(threads.map((thread) => thread.title));
 
   const lessonTitleSet = new Set<string>(
@@ -106,7 +100,7 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
             )}
 
             {whyThisWhyNow && (
-              <CurriculumUnitDetailsAccordion
+              <CurricUnitDetailsAccordion
                 title="Why this why now"
                 handleUnitOverviewExploredAnalytics={
                   handleUnitOverviewExploredAnalytics
@@ -115,13 +109,13 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
                 <OakP $mb="space-between-xs" $font={"body-2"}>
                   {whyThisWhyNow}
                 </OakP>
-              </CurriculumUnitDetailsAccordion>
+              </CurricUnitDetailsAccordion>
             )}
           </>
         )}
 
         {numberOfLessons >= 1 && (
-          <CurriculumUnitDetailsAccordion
+          <CurricUnitDetailsAccordion
             title="Lessons in unit"
             lastAccordion={isUnitDescriptionEnabled}
             handleUnitOverviewExploredAnalytics={
@@ -134,13 +128,13 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
                   return <OakLI key={lesson}>{lesson}</OakLI>;
                 })}
             </OakOL>
-          </CurriculumUnitDetailsAccordion>
+          </CurricUnitDetailsAccordion>
         )}
 
         {!isUnitDescriptionEnabled && (
           <>
             {priorUnitDescription && (
-              <CurriculumUnitDetailsAccordion
+              <CurricUnitDetailsAccordion
                 title="Previous unit description"
                 handleUnitOverviewExploredAnalytics={
                   handleUnitOverviewExploredAnalytics
@@ -152,11 +146,11 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
                 <OakP $mb="space-between-xs" $font={"body-2"}>
                   {priorUnitDescription}
                 </OakP>
-              </CurriculumUnitDetailsAccordion>
+              </CurricUnitDetailsAccordion>
             )}
 
             {futureUnitDescription && (
-              <CurriculumUnitDetailsAccordion
+              <CurricUnitDetailsAccordion
                 title="Following unit description"
                 handleUnitOverviewExploredAnalytics={
                   handleUnitOverviewExploredAnalytics
@@ -169,7 +163,7 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
                 <OakP $mb="space-between-xs" $font={"body-2"}>
                   {futureUnitDescription}
                 </OakP>
-              </CurriculumUnitDetailsAccordion>
+              </CurricUnitDetailsAccordion>
             )}
           </>
         )}

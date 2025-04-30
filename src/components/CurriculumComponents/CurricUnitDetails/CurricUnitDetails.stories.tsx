@@ -1,7 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
-import Component from "./CurriculumUnitDetailsAccordion";
+import { CurricUnitDetails as Component } from "./CurricUnitDetails";
+import { basicUnit } from "./CurricUnitDetails.fixtures";
 
 const meta: Meta<typeof Component> = {
   component: Component,
@@ -13,11 +14,8 @@ const meta: Meta<typeof Component> = {
     ),
   ],
   argTypes: {
-    title: {
-      defaultValue: "Lesson in unit",
-    },
-    lastAccordion: {
-      defaultValue: true,
+    unit: {
+      defaultValue: basicUnit,
     },
   },
 };
@@ -25,13 +23,9 @@ const meta: Meta<typeof Component> = {
 export default meta;
 type Story = StoryObj<typeof Component>;
 
-export const CurriculumUnitDetailsAccordion: Story = {
+export const CurricUnitDetails: Story = {
   args: {
-    title: "Lessons in unit",
+    unit: basicUnit,
   },
-  render: (args) => (
-    <Component {...args}>
-      <p>test child content</p>
-    </Component>
-  ),
+  render: (args) => <Component {...args} />,
 };

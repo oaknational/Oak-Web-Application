@@ -1,12 +1,12 @@
 import userEvent from "@testing-library/user-event";
 import { act } from "@testing-library/react";
 
-import UnitModal from "./UnitModal";
+import UnitModal from "./CurricUnitModal";
 import {
   mockUnit,
   mockOptionalityUnit,
   mockYearData,
-} from "./UnitModal.fixture";
+} from "./CurricUnitModal.fixtures";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 

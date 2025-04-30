@@ -5,12 +5,10 @@ import { OakHeading, OakFlex, OakBox } from "@oaknational/oak-components";
 import { useRouter } from "next/router";
 
 import BulletList from "../OakComponentsKitchen/BulletList";
-import CurriculumUnitCard from "../CurriculumUnitCard/CurriculumUnitCard";
+import CurricUnitCard from "../CurricUnitCard/CurricUnitCard";
 
-import Flex from "@/components/SharedComponents/Flex.deprecated";
-import Box from "@/components/SharedComponents/Box";
 import Button from "@/components/SharedComponents/Button";
-import { CurriculumUnitDetails } from "@/components/CurriculumComponents/CurriculumUnitDetails";
+import { CurricUnitDetails } from "@/components/CurriculumComponents/CurricUnitDetails";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import {
   notUndefined,
@@ -23,7 +21,7 @@ import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 import { getTitleFromSlug } from "@/fixtures/shared/helper";
 import { getIsUnitDescriptionEnabled } from "@/utils/curriculum/features";
 
-type UnitModalProps = {
+type CurricUnitModalProps = {
   unitData: Unit | null;
   yearData: YearData;
   selectedThread: string | null;
@@ -31,7 +29,7 @@ type UnitModalProps = {
   unitOptionData: UnitOption | undefined;
 };
 
-const UnitModal: FC<UnitModalProps> = ({
+const CurricUnitModal: FC<CurricUnitModalProps> = ({
   unitData,
   unitOptionData,
   yearData,
@@ -123,8 +121,8 @@ const UnitModal: FC<UnitModalProps> = ({
             </OakHeading>
             {!unitOptionsAvailable && (
               <OakBox $display={optionalityModalOpen ? "none" : "block"}>
-                <CurriculumUnitDetails
-                  {...unitData}
+                <CurricUnitDetails
+                  unit={unitData}
                   handleUnitOverviewExploredAnalytics={
                     handleUnitOverviewExploredAnalytics
                   }
@@ -133,20 +131,19 @@ const UnitModal: FC<UnitModalProps> = ({
               </OakBox>
             )}
 
-            {/* @todo replace with OakFlex once display is fixed in OakFlex - currently display: flex overwrites "none" */}
-            <Flex
+            <OakFlex
               $flexDirection={"column"}
               $display={optionalityModalOpen ? "none" : "flex"}
             >
               {unitOptionsAvailable && (
-                <Box
+                <OakBox
                   $position={"relative"}
                   $background={"pink30"}
-                  $pa={24}
-                  $mt={40}
-                  $pb={0}
+                  $pa={"inner-padding-xl"}
+                  $mt={"space-between-l"}
+                  $pb={"inner-padding-none"}
                   data-testid="unit-options-card"
-                  $borderRadius={4}
+                  $borderRadius={"border-radius-s"}
                 >
                   <OakHeading
                     tag="h4"
@@ -172,7 +169,7 @@ const UnitModal: FC<UnitModalProps> = ({
                           $position={"relative"}
                           role="listitem"
                         >
-                          <CurriculumUnitCard
+                          <CurricUnitCard
                             unit={optionalUnit}
                             index={index}
                             isHighlighted={false}
@@ -200,13 +197,13 @@ const UnitModal: FC<UnitModalProps> = ({
                         );
                       })}
                   </OakFlex>
-                </Box>
+                </OakBox>
               )}
-            </Flex>
+            </OakFlex>
           </OakBox>
         </OakFlex>
       )}
     </>
   );
 };
-export default UnitModal;
+export default CurricUnitModal;

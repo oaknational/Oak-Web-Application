@@ -1,7 +1,7 @@
 import userEvent from "@testing-library/user-event";
 import { OakP } from "@oaknational/oak-components";
 
-import CurriculumUnitDetailsAccordion from "./CurriculumUnitDetailsAccordion";
+import CurriculumUnitDetailsAccordion from "./CurricUnitDetailsAccordion";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import Card from "@/components/SharedComponents/Card";

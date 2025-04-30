@@ -8,14 +8,14 @@ import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
 
 import Alert from "../OakComponentsKitchen/Alert";
-import CurriculumUnitCard from "../CurriculumUnitCard/CurriculumUnitCard";
+import CurriculumUnitCard from "../CurricUnitCard/CurricUnitCard";
 
 import { areLessonsAvailable } from "@/utils/curriculum/lessons";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
-import UnitModal from "@/components/CurriculumComponents/UnitModal/UnitModal";
-import UnitsTabSidebar from "@/components/CurriculumComponents/UnitsTabSidebar";
+import UnitModal from "@/components/CurriculumComponents/CurricUnitModal/CurricUnitModal";
+import UnitsTabSidebar from "@/components/CurriculumComponents/CurricUnitsTabSidebar";
 import {
   getSuffixFromFeatures,
   getYearGroupTitle,
