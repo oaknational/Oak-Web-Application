@@ -8,8 +8,8 @@ jest.mock("graphql-request", () => ({
 
 const getToken = jest.fn().mockReturnValue("token");
 
-describe("Personalisation API", () => {
-  test("getAuthenticatedEducatorApi should return a personalisation api", async () => {
+describe("Educator API", () => {
+  test("getAuthenticatedEducatorApi should return an educator api", async () => {
     const api = await getAuthenticatedEducatorApi(getToken);
     expect(getToken).toHaveBeenCalled();
     expect(api).toBeDefined();
@@ -22,7 +22,7 @@ describe("Personalisation API", () => {
       "Failed to retrieve token",
     );
   });
-  test("getWebhookEducatorApi should return a personalisation api", async () => {
+  test("getWebhookEducatorApi should return an educator api", async () => {
     const api = await getWebhookEducatorApi("userId");
     expect(api).toBeDefined();
   });

@@ -40,7 +40,7 @@
     "requiredSecrets": [
       "CURRICULUM_API_AUTH_KEY",
       "CURRICULUM_API_2023_AUTH_KEY",
-      "PERSONALISATION_API_AUTH_KEY"
+      "EDUCATOR_API_AUTH_KEY"
     ],
     "educatorApiUrl": "url",
     "educatorApiAuthRole": "role",
