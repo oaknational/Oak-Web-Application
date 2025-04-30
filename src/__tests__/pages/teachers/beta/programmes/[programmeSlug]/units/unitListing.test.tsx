@@ -1,6 +1,6 @@
 import mockRouter from "next-router-mock";
 import userEvent from "@testing-library/user-event";
-import { act } from "@testing-library/react";
+import { act, screen } from "@testing-library/react";
 
 import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import UnitListingPage, {
@@ -226,11 +226,15 @@ describe("pages/beta/programmes/[programmeSlug]/units", () => {
 
 describe("tracking", () => {
   test("It calls tracking.unitAccessed with correct props when clicked", async () => {
-    const { getByText } = render(
-      <UnitListingPage curriculumData={unitListingFixture()} />,
-    );
+    render(<UnitListingPage curriculumData={unitListingFixture()} />);
 
-    const unit = getByText("Data Representation");
+    const units = screen.getAllByText("Data Representation");
+    expect(units).toHaveLength(2);
+    const unit = units[0];
+
+    if (!unit) {
+      throw new Error("Could not find unit");
+    }
 
     await userEvent.click(unit);
 

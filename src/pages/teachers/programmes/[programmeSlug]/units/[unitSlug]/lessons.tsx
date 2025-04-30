@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   NextPage,
   GetStaticProps,
@@ -47,6 +47,7 @@ import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { resolveOakHref } from "@/common-lib/urls";
+import { useTeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/useTeacherShareButton";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -112,12 +113,17 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     }
   }, [browserUrl]);
 
+  const { copiedComponent, handleClick } = useTeacherShareButton({
+    shareUrl,
+    shareActivated,
+  });
+
   const teacherShareButton = (
     <TeacherShareButton
       variant="primary"
+      handleClick={handleClick}
       shareUrl={shareUrl}
-      shareActivated={shareActivated}
-      label="Share unit with colleague"
+      label="Share"
     />
   );
 
@@ -187,6 +193,9 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       .toLowerCase();
   };
 
+  // stub save implementation
+  const [unitSaved, setUnitSaved] = useState<boolean>(false);
+
   return (
     <AppLayout
       seoProps={{
@@ -249,6 +258,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           hasCurriculumDownload={isSlugLegacy(programmeSlug)}
           {...curriculumData}
           shareButton={teacherShareButton}
+          copiedComponent={copiedComponent}
           unitDownloadFileId={`${getSlugifiedTitle(unitTitle)}-${unitvariantId}`}
           onUnitDownloadSuccess={() =>
             track.unitDownloadInitiated({
@@ -268,6 +278,8 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           }
           showRiskAssessmentBanner={showRiskAssessmentBanner}
           isIncompleteUnit={unpublishedLessonCount > 0}
+          isUnitSaved={unitSaved}
+          onSave={() => setUnitSaved((prev) => !prev)}
         />
         <OakMaxWidth $ph={"inner-padding-m"}>
           <OakGrid>

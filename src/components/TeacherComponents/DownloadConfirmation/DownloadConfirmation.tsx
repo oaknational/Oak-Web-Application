@@ -8,6 +8,8 @@ import {
 } from "@oaknational/oak-components";
 import { useOakConsent } from "@oaknational/oak-consent-client";
 
+import { useTeacherShareButton } from "../TeacherShareButton/useTeacherShareButton";
+
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import DownloadConfirmationNextLessonContainer from "@/components/TeacherComponents/DownloadConfirmationNextLessonContainer";
@@ -95,11 +97,16 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
     overrideExistingShareId: true,
   });
 
+  const { handleClick, copiedComponent } = useTeacherShareButton({
+    shareUrl,
+    shareActivated,
+  });
+
   const teacherShareButton = (
     <TeacherShareButton
       label="Share resources with colleague"
       shareUrl={shareUrl}
-      shareActivated={shareActivated}
+      handleClick={handleClick}
       variant="primary"
     />
   );
@@ -210,6 +217,7 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
             </OakSpan>
           </OakBox>
           {teacherShareButton}
+          {copiedComponent}
         </Flex>
       </Flex>
 

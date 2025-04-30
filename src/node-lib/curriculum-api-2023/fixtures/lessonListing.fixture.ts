@@ -106,4 +106,80 @@ const lessonListingFixture = (
   };
 };
 
+export const lessonsWithUnpublishedContent = [
+  {
+    expired: false,
+    lessonSlug: "add-two-surds-6wwk0c",
+    lessonTitle: "Add two surds",
+    isUnpublished: false,
+    description:
+      "In this lesson, we will  learn how to add two or more surds where no prior simplification is needed.In these cases, the surds will all have the same root.",
+    quizCount: 1,
+    videoCount: 1,
+    presentationCount: 1,
+    worksheetCount: 1,
+    hasCopyrightMaterial: false,
+    orderInUnit: 1,
+    actions: null,
+  },
+  {
+    expired: false,
+    lessonSlug: "subtract-two-surds-6njkac",
+    lessonTitle: "Subtract two surds",
+    description:
+      "In this lesson, we will learn how to subtract one surd from another where no prior simplification is needed.In these cases, the surds will all have the same root.",
+    quizCount: 2,
+    videoCount: 1,
+    presentationCount: 1,
+    worksheetCount: 1,
+    hasCopyrightMaterial: false,
+    orderInUnit: 2,
+    isUnpublished: true,
+    actions: null,
+  },
+  {
+    expired: false,
+    lessonSlug: "subtract-two-surds-where-you-need-to-simplify-6gukce",
+    lessonTitle: "Subtract two surds where you need to simplify",
+    description:
+      "In this lesson, we will learn how to subtract two surds where you may need to simplify at least one surd prior to subtracting.",
+    quizCount: 2,
+    videoCount: 1,
+    presentationCount: 1,
+    worksheetCount: 1,
+    hasCopyrightMaterial: false,
+    orderInUnit: 3,
+    actions: null,
+    isUnpublished: false,
+  },
+  {
+    expired: false,
+    lessonSlug: "subtract-three-surds",
+    lessonTitle: "Subtract three surds",
+    description: "In this lesson, we will learn how to subtract three surds ",
+    quizCount: 2,
+    videoCount: 1,
+    presentationCount: 1,
+    worksheetCount: 1,
+    hasCopyrightMaterial: false,
+    isUnpublished: false,
+    orderInUnit: 4,
+    actions: null,
+  },
+  {
+    expired: false,
+    lessonSlug: "subtract-four-surds",
+    lessonTitle: "Subtract four surds",
+    description: "In this lesson, we will learn how to subtract four surds ",
+    quizCount: 2,
+    videoCount: 1,
+    presentationCount: 1,
+    worksheetCount: 1,
+    hasCopyrightMaterial: false,
+    orderInUnit: 5,
+    isUnpublished: true,
+    actions: null,
+  },
+];
+
 export default lessonListingFixture;

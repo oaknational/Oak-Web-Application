@@ -20,7 +20,7 @@ describe("QuizResultShortAnswer", () => {
   });
 
   it("marks correct answers as correct", () => {
-    const { getAllByAltText } = renderWithTheme(
+    const { getAllByTestId } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizResultShortAnswer
           pupilAnswer={"This is the correct answer"}
@@ -29,14 +29,14 @@ describe("QuizResultShortAnswer", () => {
         ,
       </OakThemeProvider>,
     );
-    expect(getAllByAltText("tick")).toHaveLength(1);
-    expect(() => getAllByAltText("cross")).toThrow(
-      "Unable to find an element with the alt text: cross",
+    expect(getAllByTestId("tick")).toHaveLength(1);
+    expect(() => getAllByTestId("cross")).toThrow(
+      'Unable to find an element by: [data-testid="cross"]',
     );
   });
 
   it("marks incorrect answers as incorrect", () => {
-    const { getAllByAltText } = renderWithTheme(
+    const { getAllByTestId } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizResultShortAnswer
           pupilAnswer={"This is not the correct answer"}
@@ -45,9 +45,7 @@ describe("QuizResultShortAnswer", () => {
         ,
       </OakThemeProvider>,
     );
-    expect(getAllByAltText("cross")).toHaveLength(1);
-    expect(() => getAllByAltText("tick")).toThrow(
-      "Unable to find an element with the alt text: tick",
-    );
+    expect(getAllByTestId("cross")).toHaveLength(1);
+    expect(() => getAllByTestId("tick")).toThrow();
   });
 });
