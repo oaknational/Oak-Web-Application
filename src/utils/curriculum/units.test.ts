@@ -47,4 +47,18 @@ describe("findUnitOrOptionBySlug", () => {
       unitOption: yearData["7"].units[1]?.unit_options[1],
     });
   });
+
+  it("nothing with no slug", () => {
+    expect(findUnitOrOptionBySlug(yearData)).toEqual({
+      unit: undefined,
+      unitOption: undefined,
+    });
+  });
+
+  it("nothing with invalid slug", () => {
+    expect(findUnitOrOptionBySlug(yearData, "foobar")).toEqual({
+      unit: undefined,
+      unitOption: undefined,
+    });
+  });
 });
