@@ -17,7 +17,7 @@ import { getNumberOfSelectedUnits } from "@/utils/curriculum/getNumberOfSelected
 import { highlightedUnitCount } from "@/utils/curriculum/filtering";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
-import { findUnitOrOptionBySlug } from "@/fixtures/curriculum/unit";
+import { findUnitOrOptionBySlug } from "@/utils/curriculum/units";
 
 type UnitsTabProps = {
   trackingData: CurriculumUnitsTrackingData;

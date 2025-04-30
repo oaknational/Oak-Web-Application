@@ -1,6 +1,6 @@
 import { getTitleFromSlug } from "../../shared/helper";
 
-import { Unit, UnitOption, YearData } from "@/utils/curriculum/types";
+import { Unit } from "@/utils/curriculum/types";
 
 const BASE_UNIT: Unit = {
   connection_prior_unit_description: null,
@@ -82,26 +82,4 @@ export function createUnit(partial: Partial<Unit> = {}) {
     ...(title ? { title } : {}),
     ...partial,
   };
-}
-
-export function findUnitOrOptionBySlug(
-  yearData: YearData,
-  unitSlug?: string,
-): { unit: Unit | undefined; unitOption: UnitOption | undefined } {
-  if (!unitSlug) return { unit: undefined, unitOption: undefined };
-  const allUnits = Object.values(yearData).flatMap(
-    (yearItem) => yearItem.units,
-  );
-  let unit = allUnits.find((unit) => unit.slug === unitSlug);
-  let unitOption;
-  if (!unit) {
-    unit = allUnits.find((unit) =>
-      unit.unit_options.find((u) => u.slug === unitSlug),
-    );
-    if (unit) {
-      unitOption = unit.unit_options.find((u) => u.slug === unitSlug);
-    }
-  }
-
-  return { unit, unitOption };
 }
