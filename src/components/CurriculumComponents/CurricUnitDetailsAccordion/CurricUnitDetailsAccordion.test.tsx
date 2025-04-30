@@ -1,7 +1,7 @@
 import userEvent from "@testing-library/user-event";
 import { OakP } from "@oaknational/oak-components";
 
-import CurriculumUnitDetailsAccordion from "./CurricUnitDetailsAccordion";
+import CurricUnitDetailsAccordion from "./CurricUnitDetailsAccordion";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import Card from "@/components/SharedComponents/Card";
@@ -18,10 +18,10 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 }));
 
 const handleUnitOverviewExploredAnalytics = () => jest.fn();
-describe("CurriculumUnitDetailsAccordion", () => {
+describe("CurricUnitDetailsAccordion", () => {
   test("component renders with correct title", () => {
     const { getByText } = renderWithTheme(
-      <CurriculumUnitDetailsAccordion
+      <CurricUnitDetailsAccordion
         handleUnitOverviewExploredAnalytics={
           handleUnitOverviewExploredAnalytics
         }
@@ -30,7 +30,7 @@ describe("CurriculumUnitDetailsAccordion", () => {
         <Card>
           <OakP>Test child</OakP>
         </Card>
-      </CurriculumUnitDetailsAccordion>,
+      </CurricUnitDetailsAccordion>,
     );
 
     expect(getByText("Lessons in unit")).toBeInTheDocument();
@@ -38,7 +38,7 @@ describe("CurriculumUnitDetailsAccordion", () => {
 
   test("child component to not be visible on unexpanded container", () => {
     const { getByTestId } = renderWithTheme(
-      <CurriculumUnitDetailsAccordion
+      <CurricUnitDetailsAccordion
         handleUnitOverviewExploredAnalytics={
           handleUnitOverviewExploredAnalytics
         }
@@ -47,7 +47,7 @@ describe("CurriculumUnitDetailsAccordion", () => {
         <Card data-testid={"test-child"}>
           <OakP>Test child</OakP>
         </Card>
-      </CurriculumUnitDetailsAccordion>,
+      </CurricUnitDetailsAccordion>,
     );
 
     expect(getByTestId("test-child")).not.toBeVisible();
@@ -55,7 +55,7 @@ describe("CurriculumUnitDetailsAccordion", () => {
 
   test("container expands on click, child component to become visible", async () => {
     const { getByTestId } = renderWithTheme(
-      <CurriculumUnitDetailsAccordion
+      <CurricUnitDetailsAccordion
         handleUnitOverviewExploredAnalytics={
           handleUnitOverviewExploredAnalytics
         }
@@ -64,7 +64,7 @@ describe("CurriculumUnitDetailsAccordion", () => {
         <Card data-testid={"test-child"}>
           <OakP>Test child</OakP>
         </Card>
-      </CurriculumUnitDetailsAccordion>,
+      </CurricUnitDetailsAccordion>,
     );
 
     const button = getByTestId("expand-accordian-button");
@@ -76,7 +76,7 @@ describe("CurriculumUnitDetailsAccordion", () => {
 
   test("has aria-expanded changes from false to true when component is expanded", async () => {
     const { getByTestId } = renderWithTheme(
-      <CurriculumUnitDetailsAccordion
+      <CurricUnitDetailsAccordion
         handleUnitOverviewExploredAnalytics={
           handleUnitOverviewExploredAnalytics
         }
@@ -85,7 +85,7 @@ describe("CurriculumUnitDetailsAccordion", () => {
         <Card data-testid={"test-child"}>
           <OakP>Test child</OakP>
         </Card>
-      </CurriculumUnitDetailsAccordion>,
+      </CurricUnitDetailsAccordion>,
     );
 
     const button = getByTestId("expand-accordian-button");
@@ -99,7 +99,7 @@ describe("CurriculumUnitDetailsAccordion", () => {
 
   test("component renders child component", async () => {
     const { getByText, getByTestId } = renderWithTheme(
-      <CurriculumUnitDetailsAccordion
+      <CurricUnitDetailsAccordion
         handleUnitOverviewExploredAnalytics={
           handleUnitOverviewExploredAnalytics
         }
@@ -108,7 +108,7 @@ describe("CurriculumUnitDetailsAccordion", () => {
         <Card data-testid="test-child">
           <OakP>Test child</OakP>
         </Card>
-      </CurriculumUnitDetailsAccordion>,
+      </CurricUnitDetailsAccordion>,
     );
     expect(getByTestId("test-child")).not.toBeVisible();
 
