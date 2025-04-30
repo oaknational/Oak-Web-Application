@@ -42,8 +42,8 @@
       "CURRICULUM_API_2023_AUTH_KEY",
       "PERSONALISATION_API_AUTH_KEY"
     ],
-    "personalisationApiAuthUrl": "url",
-    "personalisationApiAuthRole": "role",
+    "educatorApiUrl": "url",
+    "educatorApiAuthRole": "role",
     "vercelApiUrl": "https://api.thenational.academy",
     "downloadApiUrl": "https://downloads-api.thenational.academy"
   },

@@ -1,7 +1,4 @@
-import {
-  getAuthenticatedPersonalisationApi,
-  getWebhookPersonalisationApi,
-} from ".";
+import { getAuthenticatedEducatorApi, getWebhookEducatorApi } from ".";
 
 jest.mock("graphql-request", () => ({
   GraphQLClient: jest.fn().mockImplementation(() => ({
@@ -12,21 +9,21 @@ jest.mock("graphql-request", () => ({
 const getToken = jest.fn().mockReturnValue("token");
 
 describe("Personalisation API", () => {
-  test("getAuthenticatedPersonalisationApi should return a personalisation api", async () => {
-    const api = await getAuthenticatedPersonalisationApi(getToken);
+  test("getAuthenticatedEducatorApi should return a personalisation api", async () => {
+    const api = await getAuthenticatedEducatorApi(getToken);
     expect(getToken).toHaveBeenCalled();
     expect(api).toBeDefined();
     expect(api.createUser).toBeDefined();
     expect(api.getUser).toBeDefined();
   });
-  test("getAuthenticatedPersonalisationApi should throw and error if get token failes", async () => {
+  test("getAuthenticatedEducatorApi should throw and error if get token failes", async () => {
     getToken.mockReturnValue(null);
-    await expect(getAuthenticatedPersonalisationApi(getToken)).rejects.toThrow(
+    await expect(getAuthenticatedEducatorApi(getToken)).rejects.toThrow(
       "Failed to retrieve token",
     );
   });
-  test("getWebhookPersonalisationApi should return a personalisation api", async () => {
-    const api = await getWebhookPersonalisationApi("userId");
+  test("getWebhookEducatorApi should return a personalisation api", async () => {
+    const api = await getWebhookEducatorApi("userId");
     expect(api).toBeDefined();
   });
 });

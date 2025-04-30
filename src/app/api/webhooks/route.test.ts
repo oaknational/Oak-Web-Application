@@ -32,7 +32,7 @@ jest.mock("svix", () => ({
 
 const mockCreateUser = jest.fn().mockResolvedValue({});
 jest.mock("@/node-lib/personalisation-api", () => ({
-  getWebhookPersonalisationApi: jest.fn().mockResolvedValue({
+  getWebhookEducatorApi: jest.fn().mockResolvedValue({
     createUser: () => mockCreateUser(),
   }),
 }));

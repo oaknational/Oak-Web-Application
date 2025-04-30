@@ -150,21 +150,21 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: null,
   },
-  personalisationApiUrl: {
+  educatorApiUrl: {
     value: process.env.PERSONALISATION_API_URL,
     envName: "PERSONALISATION_API_URL",
     required: true,
     availableInBrowser: false,
     default: null,
   },
-  personalisationApiAuthKey: {
+  educatorApiAuthKey: {
     value: process.env.PERSONALISATION_API_AUTH_KEY,
     envName: "PERSONALISATION_API_AUTH_KEY",
     required: true,
     availableInBrowser: false,
     default: null,
   },
-  personalisationApiAuthRole: {
+  educatorApiAuthRole: {
     value: process.env.PERSONALISATION_API_AUTH_ROLE,
     envName: "PERSONALISATION_API_AUTH_ROLE",
     required: true,

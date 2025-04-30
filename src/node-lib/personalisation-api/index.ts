@@ -4,16 +4,12 @@ import getServerConfig from "@/node-lib/getServerConfig";
 import { getSdk } from "@/node-lib/personalisation-api/generated/sdk";
 import { GetToken } from "clerk";
 
-const personalisationEndpoint = getServerConfig("personalisationApiUrl");
-const personalisationApiKey = getServerConfig("personalisationApiAuthKey");
-const personalisationApiAuthRole = getServerConfig(
-  "personalisationApiAuthRole",
-);
+const personalisationEndpoint = getServerConfig("educatorApiUrl");
+const educatorApiAuthKey = getServerConfig("educatorApiAuthKey");
+const educatorApiAuthRole = getServerConfig("educatorApiAuthRole");
 
 // Api for use with authenticated Clerk user
-export const getAuthenticatedPersonalisationApi = async (
-  getToken: GetToken,
-) => {
+export const getAuthenticatedEducatorApi = async (getToken: GetToken) => {
   const token = await getToken({ template: "hasura" });
   if (!token) {
     throw new Error("Failed to retrieve token");
@@ -25,11 +21,11 @@ export const getAuthenticatedPersonalisationApi = async (
 };
 
 // Api for use in authenticated Clerk webhook endpoint
-export const getWebhookPersonalisationApi = async (userId: string) => {
+export const getWebhookEducatorApi = async (userId: string) => {
   const graphqlClient = new GraphQLClient(personalisationEndpoint, {
     headers: {
-      "X-Hasura-Admin-Secret": personalisationApiKey,
-      "X-Hasura-Role": personalisationApiAuthRole,
+      "X-Hasura-Admin-Secret": educatorApiAuthKey,
+      "X-Hasura-Role": educatorApiAuthRole,
       "X-Hasura-User-Id": userId,
     },
   });
