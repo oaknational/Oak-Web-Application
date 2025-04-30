@@ -420,14 +420,14 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                         `${!searchParamsStr ? "" : `?${searchParamsStr}`}`;
 
                       return (
-                        <Link
-                          href={unitUrl}
-                          shallow={true}
-                          scroll={false}
-                          replace={true}
-                          style={{ flex: 1, display: "inherit" }}
-                        >
-                          <UnitListItem key={`${unit.slug}-${index}`}>
+                        <UnitListItem key={`${unit.slug}-${index}`}>
+                          <Link
+                            href={unitUrl}
+                            shallow={true}
+                            scroll={false}
+                            replace={true}
+                            style={{ flex: 1, display: "inherit" }}
+                          >
                             <CurriculumUnitCard
                               unit={unit}
                               key={unit.slug + index}
@@ -437,8 +437,8 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                                 handleOpenModal(unit, isHighlighted);
                               }}
                             />
-                          </UnitListItem>
-                        </Link>
+                          </Link>
+                        </UnitListItem>
                       );
                     })}
                     {/* Empty tiles for correct flex wrapping */}
