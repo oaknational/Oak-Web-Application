@@ -51,6 +51,7 @@ export type LessonShareProps =
         lessonSlug: string;
         shareableResources: LessonShareData["shareableResources"];
         pathways: LessonPathway[];
+        lessonReleaseDate: string | null;
       };
     }
   | {
@@ -63,6 +64,7 @@ export type LessonShareProps =
         lessonTitle: string;
         lessonSlug: string;
         shareableResources: LessonShareData["shareableResources"];
+        lessonReleaseDate: string | null;
       };
     }
   | {
@@ -88,6 +90,7 @@ export function LessonShare(props: LessonShareProps) {
     isLegacy,
     expired,
     isSpecialist,
+    lessonReleaseDate,
   } = lesson;
 
   const commonPathway =
@@ -172,7 +175,7 @@ export function LessonShare(props: LessonShareProps) {
         .filter((r) => r !== undefined) as ResourceTypesValueType[],
       audience: "Pupil",
       lessonReleaseCohort: isLegacy ? "2020-2023" : "2023-2026",
-      lessonReleaseDate: isLegacy ? "2020-2023" : "2023-2026",
+      lessonReleaseDate: lessonReleaseDate ?? "unpublished",
     });
   };
 

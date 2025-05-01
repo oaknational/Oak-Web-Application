@@ -1,8 +1,8 @@
 query lessonOverview(
-  $browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_keystage_16_0_0_bool_exp
+  $browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_keystage_17_0_0_bool_exp
   $lessonSlug: String!
 ) {
-  browseData: published_mv_synthetic_unitvariant_lessons_by_keystage_16_0_0(
+  browseData: published_mv_synthetic_unitvariant_lessons_by_keystage_17_0_0(
     where: $browseDataWhere
   ) {
     lesson_slug
@@ -17,7 +17,7 @@ query lessonOverview(
     features
     order_in_unit
   }
-  content: published_mv_lesson_content_published_8_0_0(
+  content: published_mv_lesson_content_published_9_0_0(
     where: { lesson_slug: { _eq: $lessonSlug } }
   ) {
     lesson_id
@@ -60,5 +60,6 @@ query lessonOverview(
     has_lesson_guide_object
     lesson_guide_asset_id
     downloadable_files
+    lesson_release_date
   }
 }

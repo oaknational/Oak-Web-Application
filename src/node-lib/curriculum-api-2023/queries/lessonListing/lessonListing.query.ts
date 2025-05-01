@@ -61,6 +61,7 @@ export const getTransformedLessons = (
           lessonCohort: lesson.lesson_data._cohort,
           actions: (keysToCamelCase(lesson.actions) || null) as Actions,
           isUnpublished: false,
+          lessonReleaseDate: lesson.lesson_data.lesson_release_date,
         };
         return transformedLesson;
       } else {

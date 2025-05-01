@@ -113,7 +113,7 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
       resourceTypes: ["starter-quiz", "video", "exit-quiz"],
       audience: "Pupil",
       lessonReleaseCohort: "2020-2023",
-      lessonReleaseDate: "2020-2023",
+      lessonReleaseDate: "2025-09-29T14:00:00.000Z",
     });
   });
 

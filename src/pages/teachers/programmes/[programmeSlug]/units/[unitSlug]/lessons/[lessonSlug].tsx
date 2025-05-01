@@ -43,6 +43,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     subjectSlug,
     keyStageTitle,
     isLegacy,
+    lessonReleaseDate,
   } = curriculumData;
 
   const {
@@ -71,7 +72,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
       keyStageSlug,
       keyStageTitle: keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
       lessonReleaseCohort: isLegacy ? "2020-2023" : "2023-2026",
-      lessonReleaseDate: isLegacy ? "2020-2023" : "2023-2026",
+      lessonReleaseDate,
     },
   });
 

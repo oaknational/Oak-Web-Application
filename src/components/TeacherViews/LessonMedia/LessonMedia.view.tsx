@@ -51,6 +51,7 @@ type BaseLessonMedia = {
   keyStageTitle: string;
   mediaClips: MediaClipListCamelCase;
   lessonOutline: { lessonOutline: string }[];
+  lessonReleaseDate: string;
   actions?: Actions;
 };
 
@@ -79,6 +80,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
     mediaClips,
     lessonOutline,
     actions,
+    lessonReleaseDate,
   } = lesson;
   const { track } = useAnalytics();
   const subjectSlug = isCanonical
@@ -238,7 +240,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
       mediaClipsCount, // int
       mediaClipIndex,
       lessonReleaseCohort: "2023-2026",
-      lessonReleaseDate: "2023-2026",
+      lessonReleaseDate,
     });
   };
 

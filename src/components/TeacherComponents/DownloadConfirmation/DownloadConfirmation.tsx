@@ -39,6 +39,7 @@ type DownloadConfirmationProps = {
   subjectSlug: CurriculumTrackingProps["subjectSlug"];
   subjectTitle: CurriculumTrackingProps["subjectTitle"];
   isLegacy: boolean;
+  lessonReleaseDate: string;
 };
 
 const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
@@ -55,6 +56,7 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
   keyStageTitle,
   subjectSlug,
   subjectTitle,
+  lessonReleaseDate,
   isLegacy,
 }) => {
   const displayNextLessonContainer =
@@ -100,7 +102,7 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
       keyStageTitle,
       subjectSlug,
       subjectTitle,
-      lessonReleaseDate: isLegacy ? "2020-2023" : "2023-2026",
+      lessonReleaseDate,
       lessonReleaseCohort: isLegacy ? "2020-2023" : "2023-2026",
     },
     overrideExistingShareId: true,

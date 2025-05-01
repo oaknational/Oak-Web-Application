@@ -23,6 +23,7 @@ jest.mock("../../sdk", () => ({
             subject_slug: "independent-living",
             subject: "Independent Living",
           },
+          lesson_release_date: "unpublished",
         },
       ],
     }),

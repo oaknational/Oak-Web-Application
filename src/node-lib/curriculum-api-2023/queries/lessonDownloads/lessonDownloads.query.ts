@@ -1,5 +1,5 @@
 import lessonDownloadsSchema, {
-  downloadsAssetData,
+  downloadsAssetDataSchema,
   LessonAdditionalFilesListSchema,
 } from "./lessonDownloads.schema";
 import { constructDownloadsArray } from "./downloadUtils";
@@ -66,7 +66,8 @@ const lessonDownloadsQuery =
       geo_restricted,
       login_required,
       downloadable_files,
-    } = downloadsAssetData.parse(download_assets[0]);
+      lesson_release_date,
+    } = downloadsAssetDataSchema.parse(download_assets[0]);
 
     // OWA referes to downloadable_files field in db as additional_files
     // these are additional files that can be downloads for some lessons
@@ -95,6 +96,7 @@ const lessonDownloadsQuery =
       hasSupplementaryAssetObject: has_supplementary_asset_object,
       hasLessonGuideObject: has_lesson_guide_object,
       isLegacy: is_legacy,
+      lessonReleaseDate: lesson_release_date,
     };
 
     const downloads = constructDownloadsArray(downloadsData);
@@ -118,6 +120,7 @@ const lessonDownloadsQuery =
         lessonSlug,
         browseData: parsedBrowseData,
         isLegacy: is_legacy,
+        lessonReleaseDate: lesson_release_date || "unpublished",
         lessonCopyRight: copyright,
         restrictions: {
           geoRestricted: geo_restricted,
@@ -143,6 +146,7 @@ const lessonDownloadsQuery =
         isSpecialist: false,
         geoRestricted: geo_restricted,
         loginRequired: login_required,
+        lessonReleaseDate: lesson_release_date || "unpublished",
       }) as T;
     }
   };

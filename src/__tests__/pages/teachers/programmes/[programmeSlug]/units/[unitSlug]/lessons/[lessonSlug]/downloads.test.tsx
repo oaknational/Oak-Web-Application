@@ -204,7 +204,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       unitName: "Measuring waves",
       unitSlug: "measuring-waves",
       lessonReleaseCohort: "2023-2026",
-      lessonReleaseDate: "2023-2026",
+      lessonReleaseDate: "2025-09-29T14:00:00.000Z",
       pathway: null,
     });
   });
@@ -261,13 +261,13 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       schoolUrn: "123456",
       subjectSlug: "combined-science",
       subjectTitle: "Combined Science",
-      tierName: null,
       unitName: "Measuring waves",
       unitSlug: "measuring-waves",
-      examBoard: null,
       lessonReleaseCohort: "2023-2026",
-      lessonReleaseDate: "2023-2026",
+      lessonReleaseDate: "2025-09-29T14:00:00.000Z",
       pathway: null,
+      tierName: null,
+      examBoard: null,
     });
   });
 

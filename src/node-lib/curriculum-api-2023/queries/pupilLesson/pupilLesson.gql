@@ -1,8 +1,8 @@
 query pupilLesson(
-  $browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_year_12_0_0_bool_exp
+  $browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_year_14_0_0_bool_exp
   $lessonSlug: String!
 ) {
-  browseData: published_mv_synthetic_unitvariant_lessons_by_year_12_0_0(
+  browseData: published_mv_synthetic_unitvariant_lessons_by_year_14_0_0(
     where: $browseDataWhere
   ) {
     lesson_slug

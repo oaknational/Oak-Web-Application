@@ -216,6 +216,7 @@ export const baseLessonOverviewSchema = z.object({
   additionalFiles: z.array(z.string()).nullable(),
   lessonMediaClips: mediaClipsRecordCamelSchema.nullish(),
   lessonOutline: z.array(z.object({ lessonOutline: z.string() })).nullable(),
+  lessonReleaseDate: z.string(),
 });
 export type LessonBase = z.infer<typeof baseLessonOverviewSchema>;
 
@@ -276,6 +277,7 @@ export const baseLessonDownloadsSchema = z.object({
   geoRestricted: z.boolean().nullable(),
   loginRequired: z.boolean().nullable(),
   actions: camelActionSchema.nullable().optional(),
+  lessonReleaseDate: z.string().nullable(),
 });
 
 export const lessonListItemSchema = z.object({
@@ -293,6 +295,7 @@ export const lessonListItemSchema = z.object({
   lessonCohort: z.string().nullish(),
   actions: camelActionSchema.nullish(),
   isUnpublished: z.literal(false),
+  lessonReleaseDate: z.string(),
 });
 
 export type LessonListItem = z.infer<typeof lessonListItemSchema>;
@@ -302,6 +305,7 @@ export const unpublishedLessonListItemSchema = z.object({
   lessonTitle: z.string(),
   orderInUnit: z.number().nullish(),
   isUnpublished: z.literal(true),
+  lessonReleaseDate: z.string().nullable(),
 });
 
 export type UnpublishedLessonListItem = z.infer<

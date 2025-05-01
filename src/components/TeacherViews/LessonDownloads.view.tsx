@@ -67,6 +67,7 @@ type BaseLessonDownload = {
   geoRestricted: boolean | null;
   loginRequired: boolean | null;
   actions?: Actions | null;
+  lessonReleaseDate: string | null;
 };
 
 type CanonicalLesson = BaseLessonDownload & {
@@ -108,6 +109,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     copyrightContent,
     updatedAt,
     actions,
+    lessonReleaseDate,
   } = lesson;
 
   const showRiskAssessmentBanner = !!actions?.isPePractical;
@@ -266,7 +268,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         componentType: "lesson_download_button",
         pathway: pathwayTitle as PathwayValueType,
         lessonReleaseCohort: isLegacyDownload ? "2020-2023" : "2023-2026",
-        lessonReleaseDate: isLegacyDownload ? "2020-2023" : "2023-2026",
+        lessonReleaseDate: lessonReleaseDate ?? "unreleased",
       });
     } catch (error) {
       setIsAttemptingDownload(false);
@@ -359,9 +361,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                     lessonReleaseCohort: isLegacyDownload
                       ? "2020-2023"
                       : "2023-2026",
-                    lessonReleaseDate: isLegacyDownload
-                      ? "2020-2023"
-                      : "2023-2026",
+                    lessonReleaseDate: lessonReleaseDate ?? "unreleased",
                   });
                 }}
                 isSpecialist={isSpecialist}
@@ -374,6 +374,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                     : (keyStageTitle as KeyStageTitleValueType)
                 }
                 isLegacy={isLegacyDownload}
+                lessonReleaseDate={lessonReleaseDate ?? "unreleased"}
               />
             );
           }

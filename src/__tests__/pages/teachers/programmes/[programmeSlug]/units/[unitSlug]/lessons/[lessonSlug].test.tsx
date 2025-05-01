@@ -387,7 +387,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         tierName: null,
         examBoard: null,
         lessonReleaseCohort: "2020-2023",
-        lessonReleaseDate: "2023-2026",
+        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
         pathway: null,
       });
     });
@@ -419,7 +419,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         tierName: null,
         examBoard: null,
         lessonReleaseCohort: "2020-2023",
-        lessonReleaseDate: "2023-2026",
+        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
         pathway: null,
       });
     });
@@ -451,7 +451,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         tierName: null,
         examBoard: null,
         lessonReleaseCohort: "2020-2023",
-        lessonReleaseDate: "2023-2026",
+        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
         pathway: null,
       });
     });
@@ -483,7 +483,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         tierName: null,
         examBoard: null,
         lessonReleaseCohort: "2020-2023",
-        lessonReleaseDate: "2023-2026",
+        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
         pathway: null,
       });
     });
@@ -515,7 +515,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         tierName: null,
         examBoard: null,
         lessonReleaseCohort: "2020-2023",
-        lessonReleaseDate: "2023-2026",
+        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
         pathway: null,
       });
     });
@@ -549,7 +549,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         unitName: "Simple, Compound and Adverbial Complex Sentences",
         unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
         lessonReleaseCohort: "2020-2023",
-        lessonReleaseDate: "2023-2026",
+        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
       });
     });
 

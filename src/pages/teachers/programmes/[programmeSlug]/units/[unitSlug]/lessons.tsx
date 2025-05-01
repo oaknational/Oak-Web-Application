@@ -109,9 +109,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       lessonReleaseCohort: isSlugLegacy(programmeSlug)
         ? "2020-2023"
         : "2023-2026",
-      lessonReleaseDate: isSlugLegacy(programmeSlug)
-        ? "2020-2023"
-        : "2023-2026",
+      lessonReleaseDate: "unreleased",
     },
     overrideExistingShareId: true,
   });
@@ -182,7 +180,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         lessonReleaseCohort: isSlugLegacy(programmeSlug)
           ? "2020-2023"
           : "2023-2026",
-        lessonReleaseDate: "2023-2026",
+        lessonReleaseDate: props.lessonReleaseDate,
       });
     }
   };

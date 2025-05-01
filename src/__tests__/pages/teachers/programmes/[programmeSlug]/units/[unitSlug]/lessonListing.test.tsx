@@ -193,7 +193,7 @@ describe("Lesson listing page", () => {
         tierName: null,
         examBoard: null,
         lessonReleaseCohort: "2023-2026",
-        lessonReleaseDate: "2023-2026",
+        lessonReleaseDate: "2025-09-29T14:00:00.000Z",
         pathway: null,
       });
     });

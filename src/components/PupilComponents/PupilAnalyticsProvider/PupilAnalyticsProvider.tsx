@@ -446,7 +446,7 @@ export const getPupilPathwayData = (
     examBoard: browseData.programmeFields.examboard,
     releaseGroup: browseData.isLegacy ? "legacy" : "2023",
     lessonReleaseCohort: browseData.isLegacy ? "2020-2023" : "2023-2026",
-    lessonReleaseDate: browseData.isLegacy ? "2020-2023" : "2023-2026",
+    lessonReleaseDate: browseData.lessonData.lessonReleaseDate ?? "unpublished",
     pathway: browseData.programmeFields.pathway,
   };
 };
