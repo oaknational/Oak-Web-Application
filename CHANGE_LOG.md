@@ -1,3 +1,15 @@
+# [1.737.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.736.3...v1.737.0) (2025-05-01)
+
+
+### Bug Fixes
+
+* made sure View new resources is focusable with tabIndex ([3e4e01a](https://github.com/oaknational/Oak-Web-Application/commit/3e4e01afdb2acb7957db10a7989dab4d043d3ad2))
+
+
+### Features
+
+* added unit takedown banners for teachers and pupils that change based on new content available ([fac26de](https://github.com/oaknational/Oak-Web-Application/commit/fac26de631a85404d275c4b4830b385e67b37563))
+
 ## [1.736.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.736.2...v1.736.3) (2025-04-30)
 
 ## [1.736.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.736.1...v1.736.2) (2025-04-29)
