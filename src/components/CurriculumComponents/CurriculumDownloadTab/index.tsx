@@ -357,7 +357,9 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
         $maxWidth={1280}
         $mh={"auto"}
         $ph={18}
+        $pt={[48, 0]}
         $pb={[48]}
+        $borderColor="red"
         $width={"100%"}
         role="region"
       >

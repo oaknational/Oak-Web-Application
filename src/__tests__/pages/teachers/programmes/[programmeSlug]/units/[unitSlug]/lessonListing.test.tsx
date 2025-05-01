@@ -1,5 +1,6 @@
 import { GetStaticPropsContext, PreviewData } from "next";
 import userEvent from "@testing-library/user-event";
+import { screen } from "@testing-library/dom";
 
 import LessonListPage, {
   getStaticProps,
@@ -8,7 +9,9 @@ import LessonListPage, {
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import lessonListingFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonListing.fixture";
+import lessonListingFixture, {
+  lessonsWithUnpublishedContent,
+} from "@/node-lib/curriculum-api-2023/fixtures/lessonListing.fixture";
 import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__/index";
 
 const render = renderWithProviders();
@@ -27,6 +30,10 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
       lessonAccessed: (...args: unknown[]) => lessonSelected(...args),
     },
   }),
+}));
+
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagEnabled: jest.fn().mockReturnValue(true),
 }));
 
 describe("Lesson listing page", () => {
@@ -48,6 +55,29 @@ describe("Lesson listing page", () => {
     const lessonCount = getByText(`Lessons (${lessonCountFixtures})`);
 
     expect(lessonCount).toBeInTheDocument();
+  });
+
+  test("it renders the correct number of lessons when there are unpublished lessons", () => {
+    render(
+      <LessonListPage
+        curriculumData={lessonListingFixture({
+          lessons: lessonsWithUnpublishedContent,
+        })}
+      />,
+    );
+
+    const lessonCount = screen.getByText(`3/5 lessons available`);
+    expect(lessonCount).toBeInTheDocument();
+  });
+
+  test("it renders the correct text for the save button", async () => {
+    render(<LessonListPage curriculumData={lessonListingFixture({})} />);
+    const saveButton = screen.getByTestId("save-unit-button");
+    expect(saveButton).toBeInTheDocument();
+    expect(saveButton).toHaveTextContent("Save");
+
+    await userEvent.click(saveButton);
+    expect(saveButton).toHaveTextContent("Saved");
   });
 
   describe("SEO", () => {

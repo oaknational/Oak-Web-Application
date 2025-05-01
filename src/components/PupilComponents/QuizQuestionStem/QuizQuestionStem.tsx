@@ -3,7 +3,7 @@ import {
   OakCloudinaryImage,
   OakFlex,
   OakScaleImageButton,
-  OakSpan,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import { CodeRenderWrapper } from "../CodeRendererWrapper/CodeRendererWrapper";
@@ -51,24 +51,26 @@ export const QuizQuestionStem = ({
           }
         >
           {questionStem[0]?.type === "text" && (
-            <OakSpan
+            <OakBox
               key={`q-${displayNumber}-stem-element-0`}
               $font={["heading-6", "heading-4", "heading-4"]}
+              $width={"100%"}
             >
               {shortAnswerTitleFormatter(removeMarkdown(questionStem[0].text))}
-            </OakSpan>
+            </OakBox>
           )}
         </OakFlex>
 
         {questionStem.map((stemItem, i) => {
           if (stemItem.type === "text" && i > 0) {
             return (
-              <OakSpan
+              <OakBox
                 key={`q-${displayNumber}-stem-element-${i}`}
                 $font={["body-2-bold", "body-1-bold"]}
+                $width={"100%"}
               >
                 {shortAnswerTitleFormatter(removeMarkdown(stemItem.text))}
-              </OakSpan>
+              </OakBox>
             );
           } else if (stemItem.type === "image") {
             return (

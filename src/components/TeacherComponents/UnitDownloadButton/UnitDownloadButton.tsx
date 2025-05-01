@@ -1,12 +1,12 @@
 import { SignUpButton, useUser } from "@clerk/nextjs";
 import React, { Dispatch, SetStateAction, useState } from "react";
+import { useRouter } from "next/router";
 import {
   OakFlex,
   OakLoadingSpinner,
   OakPrimaryButton,
   OakTagFunctional,
 } from "@oaknational/oak-components";
-import { useRouter } from "next/router";
 
 import useUnitDownloadExistenceCheck from "../hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
 
@@ -17,36 +17,55 @@ import { resolveOakHref } from "@/common-lib/urls";
 // Used when a user is signed in but not onboarded
 const UnitDownloadOnboardButton = ({
   onClick,
+  showNewTag,
 }: {
   onClick: () => Promise<boolean>;
+  showNewTag: boolean;
 }) => (
   <OakPrimaryButton
     width="fit-content"
     onClick={onClick}
-    pv={["inner-padding-s", "inner-padding-ssx"]}
+    ph={["inner-padding-xs", "inner-padding-l"]}
+    pv={["inner-padding-ssx", "inner-padding-s"]}
   >
     <OakFlex $alignItems="center" $gap="space-between-xs">
-      <OakTagFunctional label="New" $background="mint" $color="text-primary" />
+      {showNewTag && (
+        <OakTagFunctional
+          label="New"
+          $background="mint"
+          $color="text-primary"
+          $pv={"inner-padding-none"}
+        />
+      )}
       Complete sign up to download this unit
     </OakFlex>
   </OakPrimaryButton>
 );
 
 // Used when a user is not signed in
-const UnitDownloadSignInButton = ({ redirectUrl }: { redirectUrl: string }) => (
+const UnitDownloadSignInButton = ({
+  redirectUrl,
+  showNewTag,
+}: {
+  redirectUrl: string;
+  showNewTag: boolean;
+}) => (
   <SignUpButton forceRedirectUrl={redirectUrl}>
     <OakPrimaryButton
       iconName={"download"}
       isTrailingIcon
-      width="fit-content"
-      pv={["inner-padding-s", "inner-padding-ssx"]}
+      ph={["inner-padding-xs", "inner-padding-l"]}
+      pv={["inner-padding-ssx", "inner-padding-s"]}
     >
       <OakFlex $alignItems="center" $gap="space-between-xs">
-        <OakTagFunctional
-          label="New"
-          $background="mint"
-          $color="text-primary"
-        />
+        {showNewTag && (
+          <OakTagFunctional
+            label="New"
+            $background="mint"
+            $color="text-primary"
+            $pv={"inner-padding-none"}
+          />
+        )}
         Download unit
       </OakFlex>
     </OakPrimaryButton>
@@ -68,6 +87,8 @@ const DownloadButton = ({
     isTrailingIcon
     onClick={onUnitDownloadClick}
     disabled={downloadInProgress}
+    ph={["inner-padding-xs", "inner-padding-l"]}
+    pv={["inner-padding-ssx", "inner-padding-s"]}
   >
     <OakFlex $gap="space-between-xs">
       {downloadInProgress && (
@@ -81,6 +102,7 @@ const DownloadButton = ({
 export const useUnitDownloadButtonState = () => {
   const [downloadError, setDownloadError] = useState<boolean | undefined>();
   const [showDownloadMessage, setShowDownloadMessage] = useState(false);
+  const [showIncompleteMessage, setShowIncompleteMessage] = useState(false);
   const [downloadInProgress, setDownloadInProgress] = useState(false);
 
   return {
@@ -90,6 +112,8 @@ export const useUnitDownloadButtonState = () => {
     setShowDownloadMessage,
     downloadInProgress,
     setDownloadInProgress,
+    showIncompleteMessage,
+    setShowIncompleteMessage,
   };
 };
 
@@ -99,7 +123,9 @@ export type UnitDownloadButtonProps = {
   setDownloadError: Dispatch<SetStateAction<boolean | undefined>>;
   setDownloadInProgress: Dispatch<SetStateAction<boolean>>;
   setShowDownloadMessage: Dispatch<SetStateAction<boolean>>;
+  setShowIncompleteMessage: Dispatch<SetStateAction<boolean>>;
   downloadInProgress: boolean;
+  showNewTag: boolean;
 };
 
 /**
@@ -119,6 +145,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
     setDownloadError,
     setDownloadInProgress,
     setShowDownloadMessage,
+    setShowIncompleteMessage,
     downloadInProgress,
   } = props;
 
@@ -127,6 +154,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
 
   const onUnitDownloadClick = async () => {
     setShowDownloadMessage(true);
+    setShowIncompleteMessage(true);
     setDownloadInProgress(true);
     try {
       setDownloadError(false);
@@ -140,6 +168,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
       }
     } catch (error) {
       setShowDownloadMessage(false);
+      setShowIncompleteMessage(false);
       setDownloadError(true);
     }
     setDownloadInProgress(false);
@@ -160,10 +189,12 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
           query: { returnTo: router.asPath },
         })
       }
+      showNewTag={props.showNewTag}
     />
   ) : showSignInButton ? (
     <UnitDownloadSignInButton
       redirectUrl={`/onboarding?returnTo=${router.asPath}`}
+      showNewTag={props.showNewTag}
     />
   ) : showDownloadButton ? (
     <DownloadButton

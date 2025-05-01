@@ -144,6 +144,30 @@ describe("PupilIntro", () => {
     );
     expect(getByText("Content guidance")).toBeInTheDocument();
   });
+  it("displays the content guidance card with default text if there is age restriction but no content guidance", () => {
+    const curriculumDataWithContentGuidance = {
+      ...curriculumData,
+      contentGuidance: [],
+    };
+    const { getByText } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
+          <PupilViewsIntro
+            hasWorksheet={false}
+            worksheetInfo={null}
+            hasAdditionalFiles={false}
+            additionalFiles={null}
+            ageRestriction={"7_and_above"}
+            {...curriculumDataWithContentGuidance}
+          />
+        </LessonEngineContext.Provider>
+      </OakThemeProvider>,
+    );
+    expect(getByText("Content guidance")).toBeInTheDocument();
+    expect(
+      getByText("Speak to an adult before starting this lesson."),
+    ).toBeInTheDocument();
+  });
   it("displays the supervision card if there is supervision guidance", () => {
     const curriculumDataWithSupervision = {
       ...curriculumData,

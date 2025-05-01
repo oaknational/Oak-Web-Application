@@ -21,14 +21,19 @@ jest.mock(
     }));
   },
 );
+
+const mockFeatureFlag = jest.fn();
+
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagVariantKey: jest.fn(() => "option-a"),
+  useFeatureFlagEnabled: () => mockFeatureFlag,
 }));
 
 describe("HeaderListing", () => {
   beforeEach(() => {
     jest.restoreAllMocks();
     global.fetch = jest.fn(() => Promise.resolve({})) as jest.Mock;
+    mockFeatureFlag.mockReturnValue(false);
   });
   it("renders the title with the correct level", () => {
     const { getAllByRole } = renderWithTheme(<HeaderListing {...props} />);
@@ -69,6 +74,22 @@ describe("HeaderListing", () => {
     );
     expect(banner[0]).toBeInTheDocument();
   });
+  it("renders an alert banner when show incomplete message is true", async () => {
+    setUseUserReturn(mockLoggedIn);
+    renderWithTheme(
+      <HeaderListing
+        {...props}
+        unitDownloadFileId="123"
+        onUnitDownloadSuccess={jest.fn}
+        isIncompleteUnit={true}
+      />,
+    );
+    const unitDownloadButton = screen.getByRole("button");
+
+    userEvent.click(unitDownloadButton);
+    const banner = await screen.findAllByText("This unit is incomplete");
+    expect(banner[0]).toBeInTheDocument();
+  });
   it("renders RiskAssessmentBanner if showRiskAssessmentBanner prop is set to true", async () => {
     renderWithTheme(
       <HeaderListing {...props} showRiskAssessmentBanner={true} />,
@@ -78,16 +99,16 @@ describe("HeaderListing", () => {
     });
     expect(banner[0]).toBeInTheDocument();
   });
-  it("does not render RiskAssessmentBanner if showRiskAssessmentBanner prop is set to false", async () => {
+  it("does not render RiskAssessmentBanner if showRiskAssessmentBanner prop is set to false", () => {
     renderWithTheme(
       <HeaderListing {...props} showRiskAssessmentBanner={false} />,
     );
-    const banner = await screen.queryByText("for all practical PE lessons", {
+    const banner = screen.queryByText("for all practical PE lessons", {
       exact: false,
     });
     expect(banner).not.toBeInTheDocument();
   });
-  it("renders subject description for financial education", async () => {
+  it("renders subject description for financial education", () => {
     renderWithTheme(
       <HeaderListing
         {...props}
@@ -98,12 +119,12 @@ describe("HeaderListing", () => {
         })}
       />,
     );
-    const financeSubjectDescription = await screen.getAllByTestId(
+    const financeSubjectDescription = screen.getAllByTestId(
       "teacher-financial-education-description",
     );
     expect(financeSubjectDescription.length).toBeGreaterThanOrEqual(1);
   });
-  it("doesn't render subject description when there is no component for the subjectSlug (testing-not-for-publication)", async () => {
+  it("doesn't render subject description when there is no component for the subjectSlug (testing-not-for-publication)", () => {
     renderWithTheme(
       <HeaderListing
         {...props}
@@ -112,9 +133,34 @@ describe("HeaderListing", () => {
         })}
       />,
     );
-    const financeSubjectDescription = await screen.queryByTestId(
+    const financeSubjectDescription = screen.queryByTestId(
       "teacher-financial-education-description",
     );
     expect(financeSubjectDescription).not.toBeInTheDocument();
+  });
+  it("doesnt render a save button when the feature flag is disabled", () => {
+    renderWithTheme(<HeaderListing {...props} />);
+    const saveButton = screen.queryByRole("button");
+    expect(saveButton).not.toBeInTheDocument();
+  });
+  it("renders a save button when the feature flag is enabled", async () => {
+    mockFeatureFlag.mockReturnValue(true);
+    renderWithTheme(
+      <HeaderListing {...props} onSave={jest.fn} isUnitSaved={false} />,
+    );
+
+    const saveButton = await screen.findByRole("button");
+    expect(saveButton).toBeInTheDocument();
+    expect(saveButton).toHaveTextContent("Save");
+  });
+  it("renders the correct text when the unit is saved", async () => {
+    mockFeatureFlag.mockReturnValue(true);
+    renderWithTheme(
+      <HeaderListing {...props} onSave={jest.fn} isUnitSaved={true} />,
+    );
+
+    const saveButton = await screen.findByRole("button");
+    expect(saveButton).toBeInTheDocument();
+    expect(saveButton).toHaveTextContent("Saved");
   });
 });

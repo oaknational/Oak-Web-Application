@@ -26,7 +26,7 @@ exports[`Banners when cycle 2 enabled 1`] = `
               data-testid="tag-promotional-icon"
             >
               <img
-                alt="tag-promotional"
+                alt=""
                 class="sc-dcJsrY igvylU"
                 data-nimg="fill"
                 decoding="async"

@@ -77,14 +77,18 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
             $gap="all-spacing-2"
             $alignItems={"flex-start"}
           >
-            {uniqueThreadsArray.map((thread) => (
-              <TagFunctional
-                key={thread}
-                text={thread}
-                color={"lavender"}
-                data-testid="thread-tag"
-              />
-            ))}
+            <ul style={{ display: "contents" }}>
+              {uniqueThreadsArray.map((thread) => (
+                <li style={{ display: "contents" }}>
+                  <TagFunctional
+                    key={thread}
+                    text={thread}
+                    color={"lavender"}
+                    data-testid="thread-tag"
+                  />
+                </li>
+              ))}
+            </ul>
           </OakFlex>
         </OakBox>
       )}

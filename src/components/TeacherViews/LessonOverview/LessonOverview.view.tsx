@@ -1,4 +1,4 @@
-import React, { useRef, Fragment, useState } from "react";
+import React, { useRef, Fragment } from "react";
 import {
   OakGrid,
   OakGridArea,
@@ -138,9 +138,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     : "Video & audio clips";
 
   const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
-
-  const [showExpiredLessonsBanner, setShowExpiredLessonsBanner] =
-    useState<boolean>(actions?.displayExpiringBanner);
 
   const unitListingHref = `/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/programmes`;
 
@@ -310,12 +307,9 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
               <OakFlex $flexDirection={"column"} $position={"relative"}>
                 <OakBox $pb={"inner-padding-m"}>
                   <ExpiringBanner
-                    isOpen={showExpiredLessonsBanner}
+                    isOpen={actions?.displayExpiringBanner}
                     isResourcesMessage={true}
                     onwardHref={unitListingHref}
-                    onClose={() => {
-                      setShowExpiredLessonsBanner(false);
-                    }}
                   />
                 </OakBox>
 

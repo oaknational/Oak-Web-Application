@@ -1,7 +1,8 @@
 import {
   OakBox,
   OakInlineBanner,
-  OakSecondaryButton,
+  OakPrimaryButton,
+  OakP,
 } from "@oaknational/oak-components";
 
 export type ExpiringBannerProps = {
@@ -9,7 +10,6 @@ export type ExpiringBannerProps = {
   isResourcesMessage?: boolean;
   isSingular?: boolean;
   onwardHref: string;
-  onClose: () => void;
   onViewNewLessons?: () => void;
 };
 
@@ -18,7 +18,6 @@ export const ExpiringBanner = ({
   isResourcesMessage,
   isSingular,
   onwardHref,
-  onClose,
   onViewNewLessons,
 }: ExpiringBannerProps) => {
   const title = (() => {
@@ -32,16 +31,26 @@ export const ExpiringBanner = ({
     }
   })();
 
-  const message = isResourcesMessage
-    ? "Switch to our new teaching resources now - designed by teachers and leading subject experts, and tested in classrooms."
-    : `We've made brand-new and improved lessons for you.`;
+  const message = isResourcesMessage ? (
+    <>
+      <OakP>
+        Switch to our new teaching resources now - designed by teachers and
+        leading subject experts, and tested in classrooms.
+      </OakP>
+      <OakP $mt={"space-between-m"}>
+        These resources were created for remote use during the pandemic and are
+        not designed for classroom teaching.
+      </OakP>
+    </>
+  ) : (
+    `We've made brand-new and improved lessons for you.`
+  );
 
   return (
     <OakInlineBanner
-      canDismiss
       cta={
-        <OakBox $pt="inner-padding-s">
-          <OakSecondaryButton
+        <OakBox>
+          <OakPrimaryButton
             element="a"
             iconName="arrow-right"
             isTrailingIcon
@@ -49,14 +58,14 @@ export const ExpiringBanner = ({
             onClick={onViewNewLessons}
           >
             {`View new ${isResourcesMessage ? "resources" : "lessons"}`}
-          </OakSecondaryButton>
+          </OakPrimaryButton>
         </OakBox>
       }
       isOpen={isOpen}
       message={message}
-      onDismiss={onClose}
       title={title}
-      type="alert"
+      type="warning"
+      variant="large"
     />
   );
 };
