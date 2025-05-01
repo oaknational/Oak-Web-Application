@@ -384,7 +384,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       )}
                       onDownloadButtonClick={() => {
                         trackDownloadResourceButtonClicked({
-                          downloadResourceButtonName: "additional material",
+                          downloadResourceButtonName: "lesson guide",
                         });
                       }}
                       slugs={slugs}
