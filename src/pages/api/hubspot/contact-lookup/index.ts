@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { Client as HubspotClient } from "@hubspot/api-client";
 import { z } from "zod";
 
-import getServerConfig from "../../../../node-lib/getServerConfig";
+import getServerConfig from "@/node-lib/getServerConfig";
 
 // Request schema validation for email-based lookup
 const emailLookupSchema = z.object({
