@@ -86,7 +86,7 @@ export const LessonItemContainer = forwardRef<
     shareable,
     pageLinks,
     isCanonical,
-    onPlayALLMediaClipButtonClick,
+    onPlayALLMediaClipButtonClick: onPlayAllMediaClipButtonClick,
   } = props;
   const preselectedDownload = getPreselectedDownloadFromTitle(
     title as DownloadableLessonTitles,
@@ -139,7 +139,7 @@ export const LessonItemContainer = forwardRef<
             <LessonPlayAllButton
               {...slugs}
               isCanonical={isCanonical}
-              onTrackingCallback={onPlayALLMediaClipButtonClick}
+              onTrackingCallback={onPlayAllMediaClipButtonClick}
             />
           )}
           {downloadable && slugs && (

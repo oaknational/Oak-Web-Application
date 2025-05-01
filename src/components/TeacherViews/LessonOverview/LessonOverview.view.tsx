@@ -33,7 +33,6 @@ import type {
   KeyStageTitleValueType,
   DownloadResourceButtonNameValueType,
   PathwayValueType,
-  MediaClipsButtonNameValueType,
   ExamBoardValueType,
   TierNameValueType,
 } from "@/browser-lib/avo/Avo";
@@ -164,13 +163,13 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
       eventVersion: "2.0.0",
       analyticsUseCase: "Teacher",
       downloadResourceButtonName,
-      keyStageSlug: keyStageSlug,
+      keyStageSlug,
       keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-      subjectSlug: subjectSlug,
-      subjectTitle: subjectTitle,
-      unitSlug: unitSlug,
+      subjectSlug,
+      subjectTitle,
+      unitSlug,
       unitName: unitTitle,
-      lessonSlug: lessonSlug,
+      lessonSlug,
       lessonName: lessonTitle,
       pathway: pathwayTitle as PathwayValueType,
       examBoard: examBoardTitle as ExamBoardValueType,
@@ -183,10 +182,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   const trackMediaClipsButtonClicked = ({
     mediaClipsButtonName,
     learningCycle,
-  }: {
-    mediaClipsButtonName: MediaClipsButtonNameValueType;
-    learningCycle?: string | null;
-  }) => {
+  }: TrackingCallbackProps) => {
     track.lessonMediaClipsStarted({
       platform: "owa",
       product: "media clips",
@@ -195,20 +191,20 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
       eventVersion: "2.0.0",
       analyticsUseCase: "Teacher",
       mediaClipsButtonName,
-      keyStageSlug: keyStageSlug,
+      keyStageSlug,
       keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-      subjectSlug: subjectSlug,
-      subjectTitle: subjectTitle,
-      unitSlug: unitSlug,
+      subjectSlug,
+      subjectTitle,
+      unitSlug,
       unitName: unitTitle,
-      lessonSlug: lessonSlug,
+      lessonSlug,
       lessonName: lessonTitle,
       pathway: pathwayTitle as PathwayValueType,
       tierName: null,
       yearGroupName: null,
       yearGroupSlug: null,
       examBoard: null,
-      learningCycle: learningCycle,
+      learningCycle,
       releaseGroup: lesson.isLegacy ? "legacy" : "2023",
       phase: null,
       lessonReleaseCohort: lesson.isLegacy ? "2020-2023" : "2023-2026",
@@ -457,15 +453,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         lessonOutline={lessonOutline}
                         isPELesson={actions?.displayPETitle}
                         isMFL={actions?.displayVocabButton}
-                        onTrackingCallback={({
-                          mediaClipsButtonName,
-                          learningCycle,
-                        }: TrackingCallbackProps) => {
-                          trackMediaClipsButtonClicked({
-                            mediaClipsButtonName,
-                            learningCycle,
-                          });
-                        }}
+                        onTrackingCallback={trackMediaClipsButtonClicked}
                       />
                     </LessonItemContainer>
                   )}

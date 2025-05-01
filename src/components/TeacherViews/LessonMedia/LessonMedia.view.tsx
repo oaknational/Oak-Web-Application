@@ -214,28 +214,28 @@ export const LessonMedia = (props: LessonMediaProps) => {
       componentType: "media_clips_played",
       eventVersion: "2.0.0",
       analyticsUseCase: "Teacher",
-      keyStageSlug: keyStageSlug,
+      keyStageSlug,
       keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-      subjectSlug: subjectSlug,
-      subjectTitle: subjectTitle,
-      unitSlug: unitSlug,
+      subjectSlug,
+      subjectTitle,
+      unitSlug,
       unitName: unitTitle,
-      lessonSlug: lessonSlug,
+      lessonSlug,
       lessonName: lessonTitle,
       pathway: pathwayTitle as PathwayValueType,
       tierName: null,
       yearGroupName: null,
       yearGroupSlug: null,
       examBoard: null,
-      learningCycle: learningCycle,
+      learningCycle,
       releaseGroup: "2023",
       phase: null,
       durationSeconds, // int
-      isCaptioned: isCaptioned, // bool
-      videoPlaybackId: videoPlaybackId, // list of string
-      videoTitle: videoTitle, // string
-      timeElapsedSeconds: timeElapsedSeconds, // int
-      isMuted: isMuted, // bool
+      isCaptioned, // bool
+      videoPlaybackId, // list of string
+      videoTitle, // string
+      timeElapsedSeconds, // int
+      isMuted, // bool
       videoLocation: "media clips", // nulla
       mediaClipsCount, // int
       mediaClipIndex,

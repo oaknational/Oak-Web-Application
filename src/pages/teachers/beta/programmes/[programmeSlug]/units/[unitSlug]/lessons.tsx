@@ -168,8 +168,8 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         lessonName: props.lessonTitle,
         lessonSlug: props.lessonSlug,
         unitName: unitTitle,
-        unitSlug: unitSlug,
-        keyStageSlug: keyStageSlug,
+        unitSlug,
+        keyStageSlug,
         keyStageTitle: keyStageTitle as KeyStageTitleValueType,
         yearGroupName: props.yearTitle,
         yearGroupSlug: props.yearSlug,
@@ -275,11 +275,11 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               eventVersion: "2.0.0",
               analyticsUseCase: "Teacher",
               unitName: unitTitle,
-              unitSlug: unitSlug,
-              keyStageSlug: keyStageSlug,
+              unitSlug,
+              keyStageSlug,
               keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-              subjectSlug: subjectSlug,
-              subjectTitle: subjectTitle,
+              subjectSlug,
+              subjectTitle,
             })
           }
           showRiskAssessmentBanner={showRiskAssessmentBanner}

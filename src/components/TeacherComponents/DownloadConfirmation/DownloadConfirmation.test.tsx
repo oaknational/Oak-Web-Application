@@ -66,7 +66,7 @@ describe("DownloadConfirmation component", () => {
     keyStageTitle: "Key stage 1",
     subjectSlug: "test-subject",
     subjectTitle: "Test subject",
-    lessonReleaseDate: "2023-10-01",
+    lessonReleaseDate: "2025-09-29T14:00:00.000Z",
   };
 
   it("should render", () => {

@@ -67,9 +67,7 @@ export const lessonIsSpecialist = (
 ): u is SpecialistLessonOverviewData => {
   return (
     typeof u === "object" &&
-    u !== null &&
-    Object.prototype.hasOwnProperty.call(u, "isSpecialist") &&
-    (u as { isSpecialist: boolean }).isSpecialist === true
+    (u as { isSpecialist: boolean })?.isSpecialist === true
   );
 };
 export const getPathway = (
