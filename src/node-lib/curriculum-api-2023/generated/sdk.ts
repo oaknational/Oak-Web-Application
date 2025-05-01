@@ -22869,7 +22869,7 @@ export type Published_Mv_Lesson_Content_New_9_0_0 = {
   lesson_guide_asset_object_url?: Maybe<Scalars['String']['output']>;
   lesson_id?: Maybe<Scalars['Int']['output']>;
   lesson_keywords?: Maybe<Scalars['json']['output']>;
-  lesson_release_date?: Maybe<Scalars['timestamptz']['output']>;
+  lesson_release_date?: Maybe<Scalars['jsonb']['output']>;
   lesson_slug?: Maybe<Scalars['String']['output']>;
   lesson_title?: Maybe<Scalars['String']['output']>;
   login_required?: Maybe<Scalars['String']['output']>;
@@ -22942,6 +22942,12 @@ export type Published_Mv_Lesson_Content_New_9_0_0Key_Learning_PointsArgs = {
 
 /** columns and relationships of "published.mv_lesson_content_new_9_0_0" */
 export type Published_Mv_Lesson_Content_New_9_0_0Lesson_KeywordsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_new_9_0_0" */
+export type Published_Mv_Lesson_Content_New_9_0_0Lesson_Release_DateArgs = {
   path?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -23042,7 +23048,7 @@ export type Published_Mv_Lesson_Content_New_9_0_0_Bool_Exp = {
   lesson_guide_asset_object_url?: InputMaybe<String_Comparison_Exp>;
   lesson_id?: InputMaybe<Int_Comparison_Exp>;
   lesson_keywords?: InputMaybe<Json_Comparison_Exp>;
-  lesson_release_date?: InputMaybe<Timestamptz_Comparison_Exp>;
+  lesson_release_date?: InputMaybe<Jsonb_Comparison_Exp>;
   lesson_slug?: InputMaybe<String_Comparison_Exp>;
   lesson_title?: InputMaybe<String_Comparison_Exp>;
   login_required?: InputMaybe<String_Comparison_Exp>;
@@ -23079,7 +23085,6 @@ export type Published_Mv_Lesson_Content_New_9_0_0_Max_Fields = {
   lesson_guide_asset_id?: Maybe<Scalars['Int']['output']>;
   lesson_guide_asset_object_url?: Maybe<Scalars['String']['output']>;
   lesson_id?: Maybe<Scalars['Int']['output']>;
-  lesson_release_date?: Maybe<Scalars['timestamptz']['output']>;
   lesson_slug?: Maybe<Scalars['String']['output']>;
   lesson_title?: Maybe<Scalars['String']['output']>;
   login_required?: Maybe<Scalars['String']['output']>;
@@ -23112,7 +23117,6 @@ export type Published_Mv_Lesson_Content_New_9_0_0_Min_Fields = {
   lesson_guide_asset_id?: Maybe<Scalars['Int']['output']>;
   lesson_guide_asset_object_url?: Maybe<Scalars['String']['output']>;
   lesson_id?: Maybe<Scalars['Int']['output']>;
-  lesson_release_date?: Maybe<Scalars['timestamptz']['output']>;
   lesson_slug?: Maybe<Scalars['String']['output']>;
   lesson_title?: Maybe<Scalars['String']['output']>;
   login_required?: Maybe<Scalars['String']['output']>;
@@ -23370,7 +23374,7 @@ export type Published_Mv_Lesson_Content_New_9_0_0_Stream_Cursor_Value_Input = {
   lesson_guide_asset_object_url?: InputMaybe<Scalars['String']['input']>;
   lesson_id?: InputMaybe<Scalars['Int']['input']>;
   lesson_keywords?: InputMaybe<Scalars['json']['input']>;
-  lesson_release_date?: InputMaybe<Scalars['timestamptz']['input']>;
+  lesson_release_date?: InputMaybe<Scalars['jsonb']['input']>;
   lesson_slug?: InputMaybe<Scalars['String']['input']>;
   lesson_title?: InputMaybe<Scalars['String']['input']>;
   login_required?: InputMaybe<Scalars['String']['input']>;
@@ -24633,7 +24637,7 @@ export type Published_Mv_Lesson_Content_Published_9_0_0 = {
   lesson_guide_asset_object_url?: Maybe<Scalars['String']['output']>;
   lesson_id?: Maybe<Scalars['Int']['output']>;
   lesson_keywords?: Maybe<Scalars['json']['output']>;
-  lesson_release_date?: Maybe<Scalars['timestamptz']['output']>;
+  lesson_release_date?: Maybe<Scalars['jsonb']['output']>;
   lesson_slug?: Maybe<Scalars['String']['output']>;
   lesson_title?: Maybe<Scalars['String']['output']>;
   login_required?: Maybe<Scalars['Boolean']['output']>;
@@ -24706,6 +24710,12 @@ export type Published_Mv_Lesson_Content_Published_9_0_0Key_Learning_PointsArgs =
 
 /** columns and relationships of "published.mv_lesson_content_published_9_0_0" */
 export type Published_Mv_Lesson_Content_Published_9_0_0Lesson_KeywordsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_published_9_0_0" */
+export type Published_Mv_Lesson_Content_Published_9_0_0Lesson_Release_DateArgs = {
   path?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -24806,7 +24816,7 @@ export type Published_Mv_Lesson_Content_Published_9_0_0_Bool_Exp = {
   lesson_guide_asset_object_url?: InputMaybe<String_Comparison_Exp>;
   lesson_id?: InputMaybe<Int_Comparison_Exp>;
   lesson_keywords?: InputMaybe<Json_Comparison_Exp>;
-  lesson_release_date?: InputMaybe<Timestamptz_Comparison_Exp>;
+  lesson_release_date?: InputMaybe<Jsonb_Comparison_Exp>;
   lesson_slug?: InputMaybe<String_Comparison_Exp>;
   lesson_title?: InputMaybe<String_Comparison_Exp>;
   login_required?: InputMaybe<Boolean_Comparison_Exp>;
@@ -24842,7 +24852,6 @@ export type Published_Mv_Lesson_Content_Published_9_0_0_Max_Fields = {
   lesson_guide_asset_id?: Maybe<Scalars['Int']['output']>;
   lesson_guide_asset_object_url?: Maybe<Scalars['String']['output']>;
   lesson_id?: Maybe<Scalars['Int']['output']>;
-  lesson_release_date?: Maybe<Scalars['timestamptz']['output']>;
   lesson_slug?: Maybe<Scalars['String']['output']>;
   lesson_title?: Maybe<Scalars['String']['output']>;
   phonics_outcome?: Maybe<Scalars['String']['output']>;
@@ -24873,7 +24882,6 @@ export type Published_Mv_Lesson_Content_Published_9_0_0_Min_Fields = {
   lesson_guide_asset_id?: Maybe<Scalars['Int']['output']>;
   lesson_guide_asset_object_url?: Maybe<Scalars['String']['output']>;
   lesson_id?: Maybe<Scalars['Int']['output']>;
-  lesson_release_date?: Maybe<Scalars['timestamptz']['output']>;
   lesson_slug?: Maybe<Scalars['String']['output']>;
   lesson_title?: Maybe<Scalars['String']['output']>;
   phonics_outcome?: Maybe<Scalars['String']['output']>;
@@ -25130,7 +25138,7 @@ export type Published_Mv_Lesson_Content_Published_9_0_0_Stream_Cursor_Value_Inpu
   lesson_guide_asset_object_url?: InputMaybe<Scalars['String']['input']>;
   lesson_id?: InputMaybe<Scalars['Int']['input']>;
   lesson_keywords?: InputMaybe<Scalars['json']['input']>;
-  lesson_release_date?: InputMaybe<Scalars['timestamptz']['input']>;
+  lesson_release_date?: InputMaybe<Scalars['jsonb']['input']>;
   lesson_slug?: InputMaybe<Scalars['String']['input']>;
   lesson_title?: InputMaybe<Scalars['String']['input']>;
   login_required?: InputMaybe<Scalars['Boolean']['input']>;
@@ -37631,7 +37639,7 @@ export type Published_View_Lesson_Content_9 = {
   lesson_guide_asset_object_url?: Maybe<Scalars['String']['output']>;
   lesson_id?: Maybe<Scalars['Int']['output']>;
   lesson_keywords?: Maybe<Scalars['json']['output']>;
-  lesson_release_date?: Maybe<Scalars['timestamptz']['output']>;
+  lesson_release_date?: Maybe<Scalars['jsonb']['output']>;
   lesson_slug?: Maybe<Scalars['String']['output']>;
   lesson_title?: Maybe<Scalars['String']['output']>;
   media_clips?: Maybe<Scalars['jsonb']['output']>;
@@ -37696,6 +37704,12 @@ export type Published_View_Lesson_Content_9Key_Learning_PointsArgs = {
 
 /** columns and relationships of "published.view_lesson_content_9" */
 export type Published_View_Lesson_Content_9Lesson_KeywordsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.view_lesson_content_9" */
+export type Published_View_Lesson_Content_9Lesson_Release_DateArgs = {
   path?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -37788,7 +37802,7 @@ export type Published_View_Lesson_Content_9_Bool_Exp = {
   lesson_guide_asset_object_url?: InputMaybe<String_Comparison_Exp>;
   lesson_id?: InputMaybe<Int_Comparison_Exp>;
   lesson_keywords?: InputMaybe<Json_Comparison_Exp>;
-  lesson_release_date?: InputMaybe<Timestamptz_Comparison_Exp>;
+  lesson_release_date?: InputMaybe<Jsonb_Comparison_Exp>;
   lesson_slug?: InputMaybe<String_Comparison_Exp>;
   lesson_title?: InputMaybe<String_Comparison_Exp>;
   media_clips?: InputMaybe<Jsonb_Comparison_Exp>;
@@ -37822,7 +37836,6 @@ export type Published_View_Lesson_Content_9_Max_Fields = {
   lesson_guide_asset_id?: Maybe<Scalars['Int']['output']>;
   lesson_guide_asset_object_url?: Maybe<Scalars['String']['output']>;
   lesson_id?: Maybe<Scalars['Int']['output']>;
-  lesson_release_date?: Maybe<Scalars['timestamptz']['output']>;
   lesson_slug?: Maybe<Scalars['String']['output']>;
   lesson_title?: Maybe<Scalars['String']['output']>;
   phonics_outcome?: Maybe<Scalars['String']['output']>;
@@ -37853,7 +37866,6 @@ export type Published_View_Lesson_Content_9_Min_Fields = {
   lesson_guide_asset_id?: Maybe<Scalars['Int']['output']>;
   lesson_guide_asset_object_url?: Maybe<Scalars['String']['output']>;
   lesson_id?: Maybe<Scalars['Int']['output']>;
-  lesson_release_date?: Maybe<Scalars['timestamptz']['output']>;
   lesson_slug?: Maybe<Scalars['String']['output']>;
   lesson_title?: Maybe<Scalars['String']['output']>;
   phonics_outcome?: Maybe<Scalars['String']['output']>;
@@ -38096,7 +38108,7 @@ export type Published_View_Lesson_Content_9_Stream_Cursor_Value_Input = {
   lesson_guide_asset_object_url?: InputMaybe<Scalars['String']['input']>;
   lesson_id?: InputMaybe<Scalars['Int']['input']>;
   lesson_keywords?: InputMaybe<Scalars['json']['input']>;
-  lesson_release_date?: InputMaybe<Scalars['timestamptz']['input']>;
+  lesson_release_date?: InputMaybe<Scalars['jsonb']['input']>;
   lesson_slug?: InputMaybe<Scalars['String']['input']>;
   lesson_title?: InputMaybe<Scalars['String']['input']>;
   media_clips?: InputMaybe<Scalars['jsonb']['input']>;
@@ -60595,7 +60607,7 @@ export type PupilLessonQueryVariables = Exact<{
 }>;
 
 
-export type PupilLessonQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_year_14_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, supplementary_data?: any | null, actions?: any | null, features?: any | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_published_8_0_0', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, phonics_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_asset_object?: boolean | null, downloadable_files?: any | null }> };
+export type PupilLessonQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_year_14_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, supplementary_data?: any | null, actions?: any | null, features?: any | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_published_9_0_0', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, phonics_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_asset_object?: boolean | null, downloadable_files?: any | null, lesson_release_date?: any | null }> };
 
 export type PupilLessonListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
@@ -61095,7 +61107,7 @@ export const PupilLessonDocument = gql`
     actions
     features
   }
-  content: published_mv_lesson_content_published_8_0_0(
+  content: published_mv_lesson_content_published_9_0_0(
     where: {lesson_slug: {_eq: $lessonSlug}}
   ) {
     lesson_id
@@ -61123,6 +61135,7 @@ export const PupilLessonDocument = gql`
     video_title
     has_worksheet_asset_object
     downloadable_files
+    lesson_release_date
   }
 }
     `;

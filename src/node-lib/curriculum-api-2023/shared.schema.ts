@@ -295,7 +295,7 @@ export const lessonListItemSchema = z.object({
   lessonCohort: z.string().nullish(),
   actions: camelActionSchema.nullish(),
   isUnpublished: z.literal(false),
-  lessonReleaseDate: z.string(),
+  lessonReleaseDate: z.string().nullable(),
 });
 
 export type LessonListItem = z.infer<typeof lessonListItemSchema>;

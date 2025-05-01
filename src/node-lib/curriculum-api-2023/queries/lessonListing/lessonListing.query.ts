@@ -70,6 +70,7 @@ export const getTransformedLessons = (
           lessonTitle: staticLesson.title,
           orderInUnit: staticLesson.order,
           isUnpublished: true,
+          lessonReleaseDate: null,
         };
       }
     });

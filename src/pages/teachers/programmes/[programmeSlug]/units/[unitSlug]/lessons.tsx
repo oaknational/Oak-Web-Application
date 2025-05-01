@@ -180,7 +180,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         lessonReleaseCohort: isSlugLegacy(programmeSlug)
           ? "2020-2023"
           : "2023-2026",
-        lessonReleaseDate: props.lessonReleaseDate,
+        lessonReleaseDate: props.lessonReleaseDate ?? "unreleased",
       });
     }
   };
