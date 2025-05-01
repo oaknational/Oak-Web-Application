@@ -18,6 +18,7 @@ import {
   createCurriculumSlug,
   generateGridCols,
   groupUnitsBySubjectCategory,
+  sortYearPathways,
 } from "../helper";
 import {
   CurriculumUnitsFormattedData,
@@ -27,7 +28,6 @@ import {
 import { buildUnit } from "./unit_detail";
 
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
-import { sortYears } from "@/utils/curriculum/sorting";
 import { Unit } from "@/utils/curriculum/types";
 import {
   getModes,
@@ -106,7 +106,9 @@ function generateGroupedUnits(
     },
   );
 
-  return unitOptions.sort((a, b) => sortYears(a.year, b.year));
+  return unitOptions.sort((a, b) =>
+    sortYearPathways(`${a.year}-${a.type}`, `${b.year}-${b.type}`),
+  );
 }
 
 export default async function generate(
@@ -506,12 +508,11 @@ async function buildYear(
   // For the building this header we can assume all units will contain the same subject/tier/pathway
   const firstUnit = units[0];
   if (firstUnit) {
-    if (firstUnit.subject || firstUnit.tier || firstUnit.pathway) {
+    if (firstUnit.subject || firstUnit.tier) {
       subjectTierPathwayTitle = [
         // HERE: Only if child subject is present.
         yearSlugs.childSubject ? firstUnit.subject : undefined,
         firstUnit.tier,
-        firstUnit.pathway,
         firstUnit.actions?.programme_field_overrides?.subject,
       ]
         .filter(Boolean)
@@ -520,11 +521,17 @@ async function buildYear(
   }
 
   const yearTitleSuffix = "units";
-  const yearTitle = getYearGroupTitle(
+  let displayYearTitle = getYearGroupTitle(
     formattedData.yearData,
     firstUnit?.year ?? "",
     yearTitleSuffix,
   );
+
+  // Append pathway type for KS4 years
+  if (["10", "11"].includes(firstUnit?.year ?? "")) {
+    const pathwaySuffix = type === "core" ? "Core" : "GCSE";
+    displayYearTitle = `${displayYearTitle} (${pathwaySuffix})`;
+  }
 
   const isSwimming = formattedData.yearData[year]?.isSwimming;
 
@@ -566,7 +573,7 @@ async function buildYear(
                 <w:color w:val="222222" />
                 <w:sz w:val="56" />
               </w:rPr>
-              <w:t>${cdata(yearTitle)}</w:t>
+              <w:t>${cdata(displayYearTitle)}</w:t>
             </w:r>
           `,
         )}
