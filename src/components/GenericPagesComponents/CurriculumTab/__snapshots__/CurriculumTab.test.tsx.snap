@@ -138,7 +138,7 @@ exports[`CurriculumTab renders 1`] = `
                           style="width: 50%;"
                         >
                           <div
-                            class="sc-fqkvVR sc-9dfc1bad-0 sc-47b15246-2 jEHEPk fAkCpO evzFxe"
+                            class="sc-fqkvVR sc-1c55d370-0 sc-47b15246-2 jEHEPk knawKC evzFxe"
                           >
                             <button
                               class="sc-47b15246-1 fDOTWT"
@@ -205,7 +205,7 @@ exports[`CurriculumTab renders 1`] = `
                             class="sc-fqkvVR sc-gsFSXq fxkSvJ ehZBcc"
                           >
                             <div
-                              class="sc-fqkvVR sc-9dfc1bad-0 sc-47b15246-2 eMDDOo fAkCpO evzFxe"
+                              class="sc-fqkvVR sc-1c55d370-0 sc-47b15246-2 eMDDOo knawKC evzFxe"
                             >
                               <button
                                 class="sc-47b15246-1 fDOTWT"
@@ -328,7 +328,7 @@ exports[`CurriculumTab renders 1`] = `
                       style="width: 50%;"
                     >
                       <div
-                        class="sc-fqkvVR sc-9dfc1bad-0 sc-47b15246-2 jEHEPk fAkCpO evzFxe"
+                        class="sc-fqkvVR sc-1c55d370-0 sc-47b15246-2 jEHEPk knawKC evzFxe"
                       >
                         <button
                           class="sc-47b15246-1 fDOTWT"
@@ -395,7 +395,7 @@ exports[`CurriculumTab renders 1`] = `
                         class="sc-fqkvVR sc-gsFSXq fxkSvJ ehZBcc"
                       >
                         <div
-                          class="sc-fqkvVR sc-9dfc1bad-0 sc-47b15246-2 eMDDOo fAkCpO evzFxe"
+                          class="sc-fqkvVR sc-1c55d370-0 sc-47b15246-2 eMDDOo knawKC evzFxe"
                         >
                           <button
                             class="sc-47b15246-1 fDOTWT"

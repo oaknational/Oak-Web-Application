@@ -1,73 +1,46 @@
-import { FC, useState, useEffect } from "react";
-import { OakHeading, OakFlex, OakBox, OakP } from "@oaknational/oak-components";
+import { join } from "path";
+
+import { FC } from "react";
+import { OakHeading, OakFlex, OakBox } from "@oaknational/oak-components";
+import { useRouter } from "next/router";
 
 import BulletList from "../OakComponentsKitchen/BulletList";
-import CurriculumUnitCard from "../CurriculumUnitCard/CurriculumUnitCard";
+import CurricUnitCard from "../CurricUnitCard/CurricUnitCard";
 
-import Flex from "@/components/SharedComponents/Flex.deprecated";
-import Box from "@/components/SharedComponents/Box";
 import Button from "@/components/SharedComponents/Button";
-import {
-  CurriculumUnitDetailsProps,
-  CurriculumUnitDetails,
-} from "@/components/CurriculumComponents/CurriculumUnitDetails";
+import { CurricUnitDetails } from "@/components/CurriculumComponents/CurricUnitDetails";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
-import { notUndefined, Unit, YearData, Lesson } from "@/utils/curriculum/types";
+import {
+  notUndefined,
+  Unit,
+  YearData,
+  UnitOption,
+} from "@/utils/curriculum/types";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 import { getTitleFromSlug } from "@/fixtures/shared/helper";
 import { getIsUnitDescriptionEnabled } from "@/utils/curriculum/features";
 
-type UnitModalProps = {
+type CurricUnitModalProps = {
   unitData: Unit | null;
   yearData: YearData;
-  displayModal: boolean;
-  setUnitOptionsAvailable: (x: boolean) => void;
-  setCurrentUnitLessons: (x: Lesson[]) => void;
-  setUnitVariantID: (x: number | null) => void;
-  unitOptionsAvailable: boolean;
   selectedThread: string | null;
+  basePath: string;
+  unitOptionData: UnitOption | undefined;
 };
 
-const UnitModal: FC<UnitModalProps> = ({
+const CurricUnitModal: FC<CurricUnitModalProps> = ({
   unitData,
+  unitOptionData,
   yearData,
-  displayModal,
-  setUnitOptionsAvailable,
-  setCurrentUnitLessons,
-  setUnitVariantID,
-  unitOptionsAvailable,
   selectedThread,
+  basePath,
 }) => {
+  const unitOptionsAvailable =
+    !unitOptionData && (unitData?.unit_options ?? []).length > 0;
+  const router = useRouter();
   const { track } = useAnalytics();
-
-  const [optionalityModalOpen, setOptionalityModalOpen] =
-    useState<boolean>(false);
-
-  const [curriculumUnitDetails, setCurriculumUnitDetails] =
-    useState<CurriculumUnitDetailsProps | null>(null);
-
-  const handleOptionalityModal = () => {
-    setOptionalityModalOpen((prev) => !prev);
-  };
-
-  useEffect(() => {
-    if (displayModal === false) {
-      setCurriculumUnitDetails(null);
-      setOptionalityModalOpen(false);
-      setUnitOptionsAvailable(false);
-      setUnitVariantID(null);
-    }
-
-    if (optionalityModalOpen) {
-      setUnitOptionsAvailable(false);
-    }
-  }, [
-    displayModal,
-    setUnitOptionsAvailable,
-    optionalityModalOpen,
-    setUnitVariantID,
-  ]);
+  const optionalityModalOpen = false;
 
   const subjectTitle =
     unitData?.actions?.programme_field_overrides?.subject ?? unitData?.subject;
@@ -117,7 +90,7 @@ const UnitModal: FC<UnitModalProps> = ({
         >
           <OakBox $ph={["inner-padding-xl", "inner-padding-xl7"]}>
             <OakBox
-              $display={optionalityModalOpen ? "block" : "none"}
+              $display={unitOptionData ? "block" : "none"}
               $mb="space-between-s"
             >
               <Button
@@ -129,10 +102,8 @@ const UnitModal: FC<UnitModalProps> = ({
                 iconBackground={undefined}
                 background={undefined}
                 onClick={() => {
-                  handleOptionalityModal();
-                  setUnitOptionsAvailable(true);
-                  setCurriculumUnitDetails(null);
-                  setUnitVariantID(null);
+                  const url = join(basePath, unitData.slug);
+                  router.push(url, undefined, { shallow: true });
                 }}
               />
             </OakBox>
@@ -145,58 +116,34 @@ const UnitModal: FC<UnitModalProps> = ({
               />
             </OakFlex>
 
-            {curriculumUnitDetails && (
-              <OakP
-                $mt={"space-between-ssx"}
-                $mb={"space-between-xs"}
-                data-testid="unit-optionality-title"
-              >
-                {unitData.title}
-              </OakP>
-            )}
-
             <OakHeading tag="h2" $font={"heading-5"}>
-              {!curriculumUnitDetails
-                ? unitData.title
-                : curriculumUnitDetails.unitTitle}
+              {unitData.title}
             </OakHeading>
             {!unitOptionsAvailable && (
               <OakBox $display={optionalityModalOpen ? "none" : "block"}>
-                <CurriculumUnitDetails
+                <CurricUnitDetails
+                  unit={unitData}
                   handleUnitOverviewExploredAnalytics={
                     handleUnitOverviewExploredAnalytics
                   }
-                  threads={unitData.threads}
                   isUnitDescriptionEnabled={isUnitDescriptionEnabled}
-                  whyThisWhyNow={unitData.why_this_why_now}
-                  description={unitData.description}
-                  lessons={unitData.lessons}
-                  priorUnitDescription={
-                    unitData.connection_prior_unit_description
-                  }
-                  futureUnitDescription={
-                    unitData.connection_future_unit_description
-                  }
-                  priorUnitTitle={unitData.connection_prior_unit_title}
-                  futureUnitTitle={unitData.connection_future_unit_title}
                 />
               </OakBox>
             )}
 
-            {/* @todo replace with OakFlex once display is fixed in OakFlex - currently display: flex overwrites "none" */}
-            <Flex
+            <OakFlex
               $flexDirection={"column"}
               $display={optionalityModalOpen ? "none" : "flex"}
             >
               {unitOptionsAvailable && (
-                <Box
+                <OakBox
                   $position={"relative"}
                   $background={"pink30"}
-                  $pa={24}
-                  $mt={40}
-                  $pb={0}
+                  $pa={"inner-padding-xl"}
+                  $mt={"space-between-l"}
+                  $pb={"inner-padding-none"}
                   data-testid="unit-options-card"
-                  $borderRadius={4}
+                  $borderRadius={"border-radius-s"}
                 >
                   <OakHeading
                     tag="h4"
@@ -214,6 +161,7 @@ const UnitModal: FC<UnitModalProps> = ({
                     role="list"
                   >
                     {unitData.unit_options.map((optionalUnit, index) => {
+                      const href = join(basePath, optionalUnit.slug ?? "");
                       return (
                         <OakFlex
                           key={`unit-option-${optionalUnit.unitvariant_id}-${index}`}
@@ -222,35 +170,11 @@ const UnitModal: FC<UnitModalProps> = ({
                           $position={"relative"}
                           role="listitem"
                         >
-                          <CurriculumUnitCard
+                          <CurricUnitCard
                             unit={optionalUnit}
                             index={index}
                             isHighlighted={false}
-                            onClick={() => {
-                              handleOptionalityModal();
-                              setUnitOptionsAvailable(false);
-                              setUnitVariantID(optionalUnit.unitvariant_id);
-                              setCurrentUnitLessons(optionalUnit.lessons);
-                              setCurriculumUnitDetails({
-                                unitTitle: optionalUnit.title,
-                                threads: unitData.threads,
-                                lessons: optionalUnit.lessons,
-                                priorUnitDescription:
-                                  optionalUnit.connection_prior_unit_description,
-                                futureUnitDescription:
-                                  optionalUnit.connection_future_unit_description,
-                                priorUnitTitle:
-                                  optionalUnit.connection_prior_unit_title,
-                                futureUnitTitle:
-                                  optionalUnit.connection_future_unit_title,
-                                description: optionalUnit.description,
-                                whyThisWhyNow: optionalUnit.why_this_why_now,
-                                isUnitDescriptionEnabled:
-                                  isUnitDescriptionEnabled,
-                                handleUnitOverviewExploredAnalytics:
-                                  handleUnitOverviewExploredAnalytics,
-                              });
-                            }}
+                            href={href}
                           />
                         </OakFlex>
                       );
@@ -269,19 +193,13 @@ const UnitModal: FC<UnitModalProps> = ({
                         );
                       })}
                   </OakFlex>
-                </Box>
+                </OakBox>
               )}
-            </Flex>
-
-            {curriculumUnitDetails && (
-              <OakBox $display={optionalityModalOpen ? "block" : "none"}>
-                <CurriculumUnitDetails {...curriculumUnitDetails} />
-              </OakBox>
-            )}
+            </OakFlex>
           </OakBox>
         </OakFlex>
       )}
     </>
   );
 };
-export default UnitModal;
+export default CurricUnitModal;

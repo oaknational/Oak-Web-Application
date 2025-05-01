@@ -1,39 +1,13 @@
 import userEvent from "@testing-library/user-event";
 
-import UnitsTabSidebar from "./UnitsTabSidebar";
+import CurricUnitsTabSidebar from "./CurricUnitsTabSidebar";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import {
   mockOptionalityUnit,
+  mockUnit,
   mockUnitKS4,
-} from "@/components/CurriculumComponents/UnitModal/UnitModal.fixture";
-import { Unit, Lesson } from "@/utils/curriculum/types";
-
-const lessonsPublished: Lesson[] = [
-  {
-    slug: "lesson-1",
-    title: "Lesson 1",
-    _state: "new",
-  },
-  {
-    slug: "lesson-2",
-    title: "Lesson 2",
-    _state: "published",
-  },
-  {
-    slug: "lesson-3",
-    title: "Lesson 3",
-    _state: "published",
-  },
-];
-
-const lessonsUnpublished = [
-  {
-    slug: "lesson-1",
-    title: "Lesson 1",
-    _state: "new",
-  },
-];
+} from "@/components/CurriculumComponents/CurricUnitModal/CurricUnitModal.fixtures";
 
 const unitInformationViewed = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
@@ -49,7 +23,11 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 describe("Sidebar component", () => {
   test("should render the sidebar", () => {
     const { getByTestId } = renderWithTheme(
-      <UnitsTabSidebar displayModal={true} onClose={jest.fn()} lessons={[]} />,
+      <CurricUnitsTabSidebar
+        displayModal={true}
+        onClose={jest.fn()}
+        unitOptionData={undefined}
+      />,
     );
 
     expect(getByTestId("sidebar-modal")).toBeInTheDocument();
@@ -57,9 +35,13 @@ describe("Sidebar component", () => {
 
   test("should render the sidebar with children", () => {
     const { getByTestId } = renderWithTheme(
-      <UnitsTabSidebar displayModal={true} onClose={jest.fn()} lessons={[]}>
+      <CurricUnitsTabSidebar
+        displayModal={true}
+        onClose={jest.fn()}
+        unitOptionData={undefined}
+      >
         <div data-testid="sidebar-children" />
-      </UnitsTabSidebar>,
+      </CurricUnitsTabSidebar>,
     );
 
     expect(getByTestId("sidebar-children")).toBeInTheDocument();
@@ -68,7 +50,11 @@ describe("Sidebar component", () => {
   test("onClose state function called when close button selected", async () => {
     const mockClose = jest.fn();
     const { getByTestId } = renderWithTheme(
-      <UnitsTabSidebar displayModal={true} onClose={mockClose} lessons={[]} />,
+      <CurricUnitsTabSidebar
+        displayModal={true}
+        onClose={mockClose}
+        unitOptionData={undefined}
+      />,
     );
 
     const user = userEvent.setup();
@@ -82,12 +68,11 @@ describe("Sidebar component", () => {
   describe("Unit lessons button", () => {
     test("should render the unit lessons button when passed unit data with no optionality", () => {
       const { getByTestId } = renderWithTheme(
-        <UnitsTabSidebar
+        <CurricUnitsTabSidebar
           displayModal={true}
           onClose={jest.fn()}
-          unitSlug={mockUnitKS4.slug}
           programmeSlug="maths-secondary-ks4-aqa"
-          lessons={lessonsPublished}
+          unitOptionData={undefined}
         />,
       );
 
@@ -96,12 +81,11 @@ describe("Sidebar component", () => {
 
     test("should not render the unit info button when passed unit data with optionality", () => {
       const { queryByTestId } = renderWithTheme(
-        <UnitsTabSidebar
+        <CurricUnitsTabSidebar
           displayModal={true}
           onClose={jest.fn()}
-          unitOptionsAvailable={true}
-          unitSlug={mockOptionalityUnit.slug}
-          lessons={[]}
+          unitData={mockOptionalityUnit}
+          unitOptionData={undefined}
         />,
       );
 
@@ -110,12 +94,11 @@ describe("Sidebar component", () => {
 
     test("should not render the unit info button when passed no programme slug", () => {
       const { queryByTestId } = renderWithTheme(
-        <UnitsTabSidebar
+        <CurricUnitsTabSidebar
           displayModal={true}
           onClose={jest.fn()}
-          unitOptionsAvailable={true}
-          unitSlug={mockOptionalityUnit.slug}
-          lessons={[]}
+          unitData={mockOptionalityUnit}
+          unitOptionData={undefined}
         />,
       );
 
@@ -126,13 +109,12 @@ describe("Sidebar component", () => {
   describe("Navigate to lesson button", () => {
     test("should render coming soon for unavailable units", () => {
       const { queryByTestId } = renderWithTheme(
-        <UnitsTabSidebar
+        <CurricUnitsTabSidebar
           displayModal={true}
           onClose={jest.fn()}
-          unitOptionsAvailable={false}
-          unitSlug={mockOptionalityUnit.slug}
-          lessons={lessonsUnpublished}
+          unitData={mockUnit}
           programmeSlug="maths-primary-ks1"
+          unitOptionData={undefined}
         />,
       );
 
@@ -144,13 +126,12 @@ describe("Sidebar component", () => {
 
     test("should have button and no flag for available units", () => {
       const { queryByTestId } = renderWithTheme(
-        <UnitsTabSidebar
+        <CurricUnitsTabSidebar
           displayModal={true}
           onClose={jest.fn()}
-          unitOptionsAvailable={false}
-          unitSlug={mockUnitKS4.slug}
-          lessons={lessonsPublished}
+          unitData={mockUnitKS4}
           programmeSlug="maths-primary-ks1"
+          unitOptionData={undefined}
         />,
       );
 
@@ -160,20 +141,12 @@ describe("Sidebar component", () => {
 
     test("user is directed to correct link for available unit for ks3", async () => {
       const { findByRole } = renderWithTheme(
-        <UnitsTabSidebar
+        <CurricUnitsTabSidebar
           displayModal={true}
           onClose={jest.fn()}
-          unitOptionsAvailable={false}
-          unitSlug={mockUnitKS4.slug}
-          unitData={
-            {
-              unit_options: [
-                { unitvariant_id: 2, slug: `${mockUnitKS4.slug}-2` },
-              ],
-            } as Unit
-          }
+          unitData={mockUnitKS4}
           programmeSlug={"maths-primary-ks1"}
-          lessons={lessonsPublished}
+          unitOptionData={mockUnitKS4.unit_options[1]}
         />,
       );
 
@@ -188,20 +161,12 @@ describe("Sidebar component", () => {
 
     test("user is directed to correct link for available unit for ks4 with exam board", async () => {
       const { findByRole } = renderWithTheme(
-        <UnitsTabSidebar
+        <CurricUnitsTabSidebar
           displayModal={true}
           onClose={jest.fn()}
-          unitOptionsAvailable={false}
-          unitData={
-            {
-              unit_options: [
-                { unitvariant_id: 2, slug: `${mockUnitKS4.slug}-2` },
-              ],
-            } as Unit
-          }
+          unitData={mockUnitKS4}
           programmeSlug={"maths-secondary-ks4-aqa"}
-          unitSlug={mockUnitKS4.slug}
-          lessons={lessonsPublished}
+          unitOptionData={mockUnitKS4.unit_options[1]}
         />,
       );
 
@@ -216,21 +181,12 @@ describe("Sidebar component", () => {
 
     test("user is directed to correct link for unit variant", async () => {
       const { findByRole, queryByTestId } = renderWithTheme(
-        <UnitsTabSidebar
+        <CurricUnitsTabSidebar
           displayModal={true}
           onClose={jest.fn()}
-          unitOptionsAvailable={false}
-          unitData={
-            {
-              unit_options: [
-                { unitvariant_id: 2, slug: `${mockUnitKS4.slug}-2` },
-              ],
-            } as Unit
-          }
+          unitData={mockOptionalityUnit}
           programmeSlug={"maths-primary-ks1"}
-          unitSlug={mockOptionalityUnit.slug}
-          lessons={lessonsPublished}
-          unitVariantID={2}
+          unitOptionData={mockOptionalityUnit.unit_options[1]}
         />,
       );
 

@@ -6,7 +6,7 @@ import curriculumApi from "@/node-lib/curriculum-api-2023";
 import CurriculumInfoPage, {
   getStaticProps,
   getStaticPaths,
-} from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+} from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[...slugs]";
 import {
   curriculumOverviewCMSFixture,
   curriculumOverviewMVFixture,
@@ -604,7 +604,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
   describe("components rendering on page", () => {
     it("renders the Curriculum Header", () => {
       (useRouter as jest.Mock).mockReturnValue({
-        query: { tab: "overview" },
+        query: { slugs: ["overview"] },
         isPreview: false,
         pathname: "/teachers-2023/curriculum/english-secondary-aqa/overview",
         asPath: "",
@@ -643,7 +643,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
 
         // Mock for useRouter to provide the correct router query and other properties
         (useRouter as jest.Mock).mockReturnValue({
-          query: { tab: "downloads", subjectPhaseSlug: "maths-secondary" },
+          query: { slugs: ["downloads"], subjectPhaseSlug: "maths-secondary" },
           isPreview: false,
           pathname: "/teachers-2023/curriculum/maths-secondary/downloads",
           asPath: "",
@@ -708,7 +708,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       it("renders the Curriculum Downloads Tab (with prerelease)", () => {
         mockPrerelease("curriculum.downloads");
         (useRouter as jest.Mock).mockReturnValue({
-          query: { tab: "downloads" },
+          query: { slugs: ["downloads"] },
           isPreview: false,
           pathname: "/teachers-2023/curriculum/english-secondary-aqa/downloads",
         });
@@ -760,7 +760,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
       const props = await getStaticProps({
         params: {
-          tab: "overview",
+          slugs: ["overview"],
           subjectPhaseSlug: "english-secondary-aqa",
         },
       });

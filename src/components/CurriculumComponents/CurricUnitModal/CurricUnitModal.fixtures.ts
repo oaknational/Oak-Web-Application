@@ -133,6 +133,7 @@ const optionalUnits = [
     description: null,
     lessons,
     state: "published",
+    slug: "composition-of-numbers-6-to-10-1",
   },
   {
     title: "Test optional unit 2",
@@ -146,6 +147,7 @@ const optionalUnits = [
     description: null,
     lessons,
     state: "published",
+    slug: "composition-of-numbers-6-to-10-2",
   },
   {
     title: "Test optional unit 3",
@@ -159,6 +161,7 @@ const optionalUnits = [
     description: null,
     lessons,
     state: "published",
+    slug: "composition-of-numbers-6-to-10-3",
   },
 ];
 
