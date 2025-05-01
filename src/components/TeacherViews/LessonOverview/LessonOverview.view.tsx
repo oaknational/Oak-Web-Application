@@ -215,13 +215,13 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   const trackShareAll = () => {
     track.lessonShareStarted({
       keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-      keyStageSlug: keyStageSlug || "",
-      subjectTitle: subjectTitle || "",
-      subjectSlug: subjectSlug || "",
-      unitName: unitTitle || "",
-      unitSlug: unitSlug || "",
+      keyStageSlug,
+      subjectTitle,
+      subjectSlug,
+      unitName: unitTitle,
+      unitSlug,
       lessonName: lessonTitle,
-      lessonSlug: lessonSlug,
+      lessonSlug,
       lessonReleaseCohort: lesson.isLegacy ? "2020-2023" : "2023-2026",
       lessonReleaseDate: lessonReleaseDate ?? "unreleased",
     });
