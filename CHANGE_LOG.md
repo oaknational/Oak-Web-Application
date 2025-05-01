@@ -1,3 +1,10 @@
+## [1.737.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.737.0...v1.737.1) (2025-05-01)
+
+
+### Bug Fixes
+
+* added aria-expanded to <SubjectPhasePicker/> ([26342b3](https://github.com/oaknational/Oak-Web-Application/commit/26342b3fff99f2d4e81e7d91edea7047f1082779))
+
 # [1.737.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.736.3...v1.737.0) (2025-05-01)
 
 
