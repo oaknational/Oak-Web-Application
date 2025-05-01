@@ -37,9 +37,7 @@ function renderUnits(units: Unit[], numbering: { unitNumbering: string }) {
                 <w:color w:val="222222" />
                 <w:sz w:val="24" />
               </w:rPr>
-              <w:t xml:space="preserve">${cdata(
-                  `Unit ${unit.order + 1}, `,
-                )}</w:t>
+              <w:t xml:space="preserve">${cdata(`Unit ${unit.order}, `)}</w:t>
             </w:r>
             <w:r>
               <w:rPr>

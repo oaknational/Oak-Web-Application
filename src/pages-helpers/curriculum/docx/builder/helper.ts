@@ -222,10 +222,22 @@ export function parseYearPathwayKey(key: string): {
   pathway: string | null;
 } {
   const parts = key.split("-");
-  const yearStr = parts[0];
-  // Ensure year is always a non-empty string, defaulting to '0'
-  const year = yearStr && yearStr.length > 0 ? yearStr : "0";
-  const pathway = parts.length > 1 ? parts.slice(1).join("-") : null; // Rest is pathway or null
+  const firstPart = parts[0] ?? "";
+  let year: string;
+  let pathway: string | null;
+
+  // Check if the first part looks like a year (is numeric)
+  if (firstPart.match(/^\d+$/)) {
+    year = firstPart;
+    pathway = parts.length > 1 ? parts.slice(1).join("-") : null;
+  } else {
+    // If first part is not numeric, assume it's a pathway and default year
+    year = "0";
+    pathway = firstPart.length > 0 ? firstPart : null; // Use the firstPart as pathway if it exists
+  }
+
+  year = year.length > 0 ? year : "0";
+
   return { year, pathway };
 }
 
