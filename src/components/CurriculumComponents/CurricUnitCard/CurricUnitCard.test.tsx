@@ -14,7 +14,7 @@ describe("CurricUnitCard", () => {
         unit={unitWithOptions}
         index={0}
         isHighlighted={false}
-        onClick={() => {}}
+        href="/"
       />,
     );
 
@@ -27,7 +27,7 @@ describe("CurricUnitCard", () => {
         unit={unitWithOptions}
         index={0}
         isHighlighted={true}
-        onClick={() => {}}
+        href="/"
       />,
     );
 
@@ -40,7 +40,7 @@ describe("CurricUnitCard", () => {
         unit={unitWithOptions}
         index={0}
         isHighlighted={false}
-        onClick={() => {}}
+        href="/"
       />,
     );
 
@@ -53,7 +53,7 @@ describe("CurricUnitCard", () => {
         unit={unitWithOptions}
         index={0}
         isHighlighted={false}
-        onClick={() => {}}
+        href="/"
       />,
     );
 

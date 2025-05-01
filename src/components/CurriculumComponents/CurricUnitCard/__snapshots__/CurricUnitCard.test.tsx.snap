@@ -4,11 +4,12 @@ exports[`CurricUnitCard changes color when highlighed 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR sc-9dfc1bad-0 jdSkEU sGPjc"
+      class="sc-fqkvVR sc-1c55d370-0 jdSkEU iHxKuU"
     >
-      <button
-        class="sc-48b07806-0 bGhhOr"
-        data-testid="unit-info-button"
+      <a
+        class="sc-6b8c7e2c-0 bAyquQ"
+        data-testid="unit-info-link"
+        href="/"
       >
         <div
           class="sc-fqkvVR sc-gsFSXq hjukdb bOTBNE"
@@ -70,7 +71,7 @@ exports[`CurricUnitCard changes color when highlighed 1`] = `
             </div>
           </div>
         </div>
-      </button>
+      </a>
     </div>
   </div>
 </body>
@@ -80,11 +81,12 @@ exports[`CurricUnitCard highlighted state 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR sc-9dfc1bad-0 jdSkEU iElWxE"
+      class="sc-fqkvVR sc-1c55d370-0 jdSkEU dNUCNM"
     >
-      <button
-        class="sc-48b07806-0 ghOrGh"
-        data-testid="unit-info-button"
+      <a
+        class="sc-6b8c7e2c-0 enuYim"
+        data-testid="unit-info-link"
+        href="/"
       >
         <div
           class="sc-fqkvVR sc-gsFSXq jFkkJb bOTBNE"
@@ -151,7 +153,7 @@ exports[`CurricUnitCard highlighted state 1`] = `
              (highlighted)
           </div>
         </div>
-      </button>
+      </a>
     </div>
   </div>
 </body>
@@ -161,11 +163,12 @@ exports[`CurricUnitCard index is correct 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR sc-9dfc1bad-0 jdSkEU sGPjc"
+      class="sc-fqkvVR sc-1c55d370-0 jdSkEU iHxKuU"
     >
-      <button
-        class="sc-48b07806-0 bGhhOr"
-        data-testid="unit-info-button"
+      <a
+        class="sc-6b8c7e2c-0 bAyquQ"
+        data-testid="unit-info-link"
+        href="/"
       >
         <div
           class="sc-fqkvVR sc-gsFSXq hjukdb bOTBNE"
@@ -227,7 +230,7 @@ exports[`CurricUnitCard index is correct 1`] = `
             </div>
           </div>
         </div>
-      </button>
+      </a>
     </div>
   </div>
 </body>
@@ -237,11 +240,12 @@ exports[`CurricUnitCard render 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR sc-9dfc1bad-0 jdSkEU sGPjc"
+      class="sc-fqkvVR sc-1c55d370-0 jdSkEU iHxKuU"
     >
-      <button
-        class="sc-48b07806-0 bGhhOr"
-        data-testid="unit-info-button"
+      <a
+        class="sc-6b8c7e2c-0 bAyquQ"
+        data-testid="unit-info-link"
+        href="/"
       >
         <div
           class="sc-fqkvVR sc-gsFSXq hjukdb bOTBNE"
@@ -303,7 +307,7 @@ exports[`CurricUnitCard render 1`] = `
             </div>
           </div>
         </div>
-      </button>
+      </a>
     </div>
   </div>
 </body>

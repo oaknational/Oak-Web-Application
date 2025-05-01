@@ -161,6 +161,7 @@ const CurricUnitModal: FC<CurricUnitModalProps> = ({
                     role="list"
                   >
                     {unitData.unit_options.map((optionalUnit, index) => {
+                      const href = join(basePath, optionalUnit.slug ?? "");
                       return (
                         <OakFlex
                           key={`unit-option-${optionalUnit.unitvariant_id}-${index}`}
@@ -173,12 +174,7 @@ const CurricUnitModal: FC<CurricUnitModalProps> = ({
                             unit={optionalUnit}
                             index={index}
                             isHighlighted={false}
-                            onClick={() => {
-                              if (optionalUnit.slug) {
-                                const url = join(basePath, optionalUnit.slug);
-                                router.push(url, undefined, { shallow: true });
-                              }
-                            }}
+                            href={href}
                           />
                         </OakFlex>
                       );

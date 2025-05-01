@@ -3,16 +3,12 @@ import { join } from "path";
 import React, { FC, useRef, useEffect, useMemo } from "react";
 import { OakHeading, OakFlex, OakBox, OakP } from "@oaknational/oak-components";
 import styled from "styled-components";
-import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
 
 import Alert from "../OakComponentsKitchen/Alert";
 import CurriculumUnitCard from "../CurricUnitCard/CurricUnitCard";
 
-import { areLessonsAvailable } from "@/utils/curriculum/lessons";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import useAnalytics from "@/context/Analytics/useAnalytics";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import UnitModal from "@/components/CurriculumComponents/CurricUnitModal/CurricUnitModal";
 import UnitsTabSidebar from "@/components/CurriculumComponents/CurricUnitsTabSidebar";
@@ -33,7 +29,6 @@ import {
   Thread,
   UnitOption,
 } from "@/utils/curriculum/types";
-import { CurriculumUnit } from "@/node-lib/curriculum-api-2023";
 
 const UnitList = styled("ol")`
   margin: 0;
@@ -227,8 +222,6 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
 }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { track } = useAnalytics();
-  const { analyticsUseCase } = useAnalyticsPageProps();
 
   function filterIncludes(key: keyof CurriculumFilters, ids: string[]) {
     const filterValues = filters[key];
@@ -268,39 +261,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
     }
   }, [setVisibleMobileYearRefID, yearData]);
 
-  const trackModalOpenEvent = (
-    unit: CurriculumUnit,
-    isHighlighted: boolean,
-    isOpen: boolean,
-  ) => {
-    if (isOpen && unit) {
-      track.unitOverviewAccessed({
-        unitName: unit.title,
-        unitSlug: unit.slug,
-        subjectTitle: unit.subject,
-        subjectSlug: unit.subject_slug,
-        yearGroupName: `Year ${unit.year}`,
-        yearGroupSlug: unit.year,
-        threadTitle: selectedThread?.title ?? null,
-        threadSlug: selectedThread?.slug ?? null,
-        platform: "owa",
-        product: "curriculum visualiser",
-        engagementIntent: "use",
-        componentType: "unit_info_button",
-        eventVersion: "2.0.0",
-        analyticsUseCase,
-        unitHighlighted: isHighlighted, // bool
-        isUnitPublished: areLessonsAvailable(unit.lessons), // bool
-      });
-    }
-  };
-
-  const handleOpenModal = (unit: Unit, isHighlighted: boolean) => {
-    trackModalOpenEvent(unit, isHighlighted, !displayModal);
-  };
-
   const handleCloseModal = () => {
-    // TODO: close modal
     router.push(basePath, undefined, { shallow: true });
   };
 
@@ -421,23 +382,13 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
 
                       return (
                         <UnitListItem key={`${unit.slug}-${index}`}>
-                          <Link
+                          <CurriculumUnitCard
+                            unit={unit}
+                            key={unit.slug + index}
+                            index={index}
+                            isHighlighted={isHighlighted}
                             href={unitUrl}
-                            shallow={true}
-                            scroll={false}
-                            replace={true}
-                            style={{ flex: 1, display: "inherit" }}
-                          >
-                            <CurriculumUnitCard
-                              unit={unit}
-                              key={unit.slug + index}
-                              index={index}
-                              isHighlighted={isHighlighted}
-                              onClick={() => {
-                                handleOpenModal(unit, isHighlighted);
-                              }}
-                            />
-                          </Link>
+                          />
                         </UnitListItem>
                       );
                     })}

@@ -1,5 +1,4 @@
-import userEvent from "@testing-library/user-event";
-import { act, within } from "@testing-library/react";
+import { within } from "@testing-library/react";
 
 import CurriculumVisualiser from "./CurriculumVisualiser";
 import {
@@ -183,39 +182,6 @@ describe("visualiser", () => {
     const unitCards = await findAllByTestId("unit-cards");
 
     expect(unitCards).toHaveLength(1);
-  });
-
-  test("selecting a unit opens up the modal dialog", async () => {
-    const { findAllByTestId } = render(
-      <CurriculumVisualiser {...curriculumVisualiserFixture} />,
-    );
-
-    const units = await findAllByTestId("unit-cards");
-    const unit = units[0]!;
-
-    await act(async () => {
-      await userEvent.click(unit.querySelector("button")!);
-    });
-
-    expect(unitOverviewAccessed).toHaveBeenCalledTimes(1);
-    expect(unitOverviewAccessed).toHaveBeenCalledWith({
-      unitName: "Step into the unknown: fiction reading and creative writing",
-      unitSlug: "step-into-the-unknown-fiction-reading-and-creative-writing",
-      yearGroupName: "Year 7",
-      yearGroupSlug: "7",
-      subjectSlug: "english",
-      subjectTitle: "English",
-      unitHighlighted: false,
-      analyticsUseCase: null,
-      componentType: "unit_info_button",
-      engagementIntent: "use",
-      eventVersion: "2.0.0",
-      isUnitPublished: false,
-      platform: "owa",
-      product: "curriculum visualiser",
-      threadSlug: null,
-      threadTitle: null,
-    });
   });
 });
 

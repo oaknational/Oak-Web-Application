@@ -17,7 +17,7 @@ export const CurricUnitCard: Story = {
     unit: unitWithOptions,
     index: 10,
     isHighlighted: false,
-    onClick: () => {},
+    href: "#",
   },
   render: function Render(args) {
     return (
@@ -33,7 +33,7 @@ export const CurricUnitCardHighlighted: Story = {
     unit: unitWithOptions,
     index: 10,
     isHighlighted: true,
-    onClick: () => {},
+    href: "#",
   },
   render: function Render(args) {
     return (

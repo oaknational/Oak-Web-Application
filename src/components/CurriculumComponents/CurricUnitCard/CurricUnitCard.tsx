@@ -7,6 +7,7 @@ import {
 } from "@oaknational/oak-components";
 import { VisuallyHidden } from "react-aria";
 import styled from "styled-components";
+import Link from "next/link";
 
 import FocusIndicator from "../OakComponentsKitchen/FocusIndicator";
 
@@ -15,9 +16,7 @@ import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import { HTMLButtonProps } from "@/components/SharedComponents/Button/common";
 import { Unit } from "@/utils/curriculum/types";
 
-const UnstyledButton = styled("button")<
-  HTMLButtonProps & { isHighlighted: boolean }
->`
+const StyledLink = styled(Link)<HTMLButtonProps & { isHighlighted: boolean }>`
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -40,10 +39,10 @@ type CurriculumUnitCardProps = {
   unit: Unit | Unit["unit_options"][number];
   index: number;
   isHighlighted: boolean;
-  onClick: () => void;
+  href: string;
 };
 export default function CurriculumUnitCard(props: CurriculumUnitCardProps) {
-  const { isHighlighted, onClick, unit, index } = props;
+  const { href, isHighlighted, unit, index } = props;
   const isUnitOption = "unit_options" in unit;
   return (
     <FocusIndicator
@@ -53,10 +52,10 @@ export default function CurriculumUnitCard(props: CurriculumUnitCardProps) {
       $overflow={"hidden"}
       disableMouseHover={isHighlighted}
     >
-      <UnstyledButton
-        data-testid="unit-info-button"
+      <StyledLink
+        href={href}
         isHighlighted={isHighlighted}
-        onClick={onClick}
+        data-testid="unit-info-link"
       >
         <OakFlex
           $pv={"inner-padding-s"}
@@ -116,7 +115,7 @@ export default function CurriculumUnitCard(props: CurriculumUnitCardProps) {
             <VisuallyHidden>&nbsp;(highlighted)</VisuallyHidden>
           )}
         </OakFlex>
-      </UnstyledButton>
+      </StyledLink>
     </FocusIndicator>
   );
 }

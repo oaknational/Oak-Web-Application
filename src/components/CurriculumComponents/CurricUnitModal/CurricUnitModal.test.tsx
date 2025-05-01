@@ -143,7 +143,7 @@ describe("Unit modal", () => {
         />,
       );
 
-      expect(getAllByTestId("unit-info-button")).toHaveLength(3);
+      expect(getAllByTestId("unit-info-link")).toHaveLength(3);
     });
 
     test("optionality cards render correct unit titles", () => {
@@ -173,7 +173,7 @@ describe("Unit modal", () => {
         />,
       );
 
-      const optionalityButton = getAllByTestId("unit-info-button")[0];
+      const optionalityButton = getAllByTestId("unit-info-link")[0];
 
       expect(queryByTestId("curriculum-unit-details")).not.toBeInTheDocument();
 
