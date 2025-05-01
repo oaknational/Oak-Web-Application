@@ -176,7 +176,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
       examBoard: examBoardTitle as ExamBoardValueType,
       tierName: tierTitle as TierNameValueType,
       lessonReleaseCohort: lesson.isLegacy ? "2020-2023" : "2023-2026",
-      lessonReleaseDate,
+      lessonReleaseDate: lessonReleaseDate ?? "unreleased",
     });
   };
 
@@ -212,7 +212,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
       releaseGroup: lesson.isLegacy ? "legacy" : "2023",
       phase: null,
       lessonReleaseCohort: lesson.isLegacy ? "2020-2023" : "2023-2026",
-      lessonReleaseDate,
+      lessonReleaseDate: lessonReleaseDate ?? "unreleased",
     });
   };
 
@@ -227,7 +227,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
       lessonName: lessonTitle,
       lessonSlug: lessonSlug,
       lessonReleaseCohort: lesson.isLegacy ? "2020-2023" : "2023-2026",
-      lessonReleaseDate,
+      lessonReleaseDate: lessonReleaseDate ?? "unreleased",
     });
   };
 
