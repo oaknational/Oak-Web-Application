@@ -9,12 +9,14 @@ import {
   OakPagination,
   OakAnchorTarget,
   OakBox,
+  OakInlineBanner,
 } from "@oaknational/oak-components";
 
 import { UnitOption } from "../UnitListOptionalityCard/UnitListOptionalityCard";
 import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
 
 import { getPageItems, getProgrammeFactors } from "./helpers";
+import { UnitListLegacyBanner } from "./UnitListLegacyBanner";
 
 import {
   UnitListItemProps,
@@ -159,7 +161,7 @@ const UnitList: FC<UnitListProps> = (props) => {
   const linkSubject = subjectParent
     ? convertSubjectToSlug(subjectParent)
     : subjectSlug;
-  const { currentPage, pageSize, firstItemRef, paginationRoute } =
+  const { currentPage, pageSize, firstItemRef, paginationRoute, onPageChange } =
     paginationProps;
   const router = useRouter();
   const category = router.query["category"]?.toString();
@@ -198,6 +200,9 @@ const UnitList: FC<UnitListProps> = (props) => {
       : [...savedUnitsForUser, unitSlug];
     setSavedUnitsForUser(newSavedUnits);
   };
+
+  const hasNewAndLegacyUnits: boolean =
+    !!phaseSlug && !!newPageItems.length && !!legacyPageItems.length;
 
   const getUnitCards = (
     pageItems: CurrentPageItemsProps[] | SpecialistUnit[][],
@@ -345,6 +350,14 @@ const UnitList: FC<UnitListProps> = (props) => {
     legacyPageItems.length && keyStageSlug && phaseSlug ? (
       <OakUnitsContainer
         isLegacy={true}
+        banner={
+          <UnitListLegacyBanner
+            userType={"teacher"}
+            hasNewUnits={hasNewAndLegacyUnits}
+            allLegacyUnits={legacyPageItems}
+            onButtonClick={() => onPageChange(1)}
+          />
+        }
         subject={subjectSlug}
         phase={phaseSlug}
         curriculumHref={resolveOakHref({
@@ -386,7 +399,16 @@ const UnitList: FC<UnitListProps> = (props) => {
           unitCards={getUnitCards(swimmingPageItems)}
           isCustomUnit={true}
           customHeadingText={title}
-          bannerText="Swimming and water safety lessons should be selected based on the ability and experience of your pupils."
+          banner={
+            <OakInlineBanner
+              isOpen={true}
+              message={
+                "Swimming and water safety lessons should be selected based on the ability and experience of your pupils."
+              }
+              type="neutral"
+              $width={"100%"}
+            />
+          }
         />
       );
     } else return null;
@@ -405,6 +427,14 @@ const UnitList: FC<UnitListProps> = (props) => {
         ) : (
           <OakUnitsContainer
             isLegacy={true}
+            banner={
+              <UnitListLegacyBanner
+                userType={"teacher"}
+                hasNewUnits={hasNewAndLegacyUnits}
+                allLegacyUnits={legacyPageItems}
+                onButtonClick={() => onPageChange(1)}
+              />
+            }
             subject={subjectSlug}
             phase={"Specialist and therapies"}
             curriculumHref={`${resolveOakHref({

@@ -1,4 +1,7 @@
 import { z } from "zod";
+import { actionsSchema } from "@oaknational/oak-curriculum-schema";
+
+import { zodToCamelCase } from "@/node-lib/curriculum-api-2023/helpers/zodToCamelCase";
 
 const themeSchema = z.object({
   themeSlug: z.string().nullish(),
@@ -119,6 +122,7 @@ const individualSpecialistUnitSchema = z.object({
   developmentStageSlug: z.string().nullish(),
   developmentStageTitle: z.string().nullish(),
   unpublishedLessonCount: z.number(),
+  actions: zodToCamelCase(actionsSchema).nullish(),
 });
 const specialistUnitArray = z.array(individualSpecialistUnitSchema);
 
