@@ -5,28 +5,24 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { Client as HubspotClient } from "@hubspot/api-client";
 import { createMocks } from "node-mocks-http";
 
+// Import the handler without any mocking
 import { createHandler } from ".";
 
 describe("/api/hubspot/contact-lookup", () => {
   const hubspot = new HubspotClient();
   const handler = createHandler(hubspot);
 
-  // Mock the implementation of the exported functions to avoid complex type issues
-  jest.mock(".", () => {
-    const originalModule = jest.requireActual(".");
-    return {
-      ...originalModule,
-      getHubspotContactByEmail: jest.fn(),
-      getHubspotContactByCookie: jest.fn(),
-    };
-  });
-
-  // Import the mocked functions
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { getHubspotContactByEmail, getHubspotContactByCookie } = require(".");
-
+  // Mock the HubSpot API methods we'll use
   beforeEach(() => {
     jest.clearAllMocks();
+    jest
+      .spyOn(hubspot.crm.contacts.basicApi, "getById")
+      .mockImplementation(() => {
+        throw new Error("This should be mocked in individual tests");
+      });
+    jest.spyOn(hubspot, "apiRequest").mockImplementation(() => {
+      throw new Error("This should be mocked in individual tests");
+    });
   });
 
   describe("API handler", () => {
@@ -40,8 +36,10 @@ describe("/api/hubspot/contact-lookup", () => {
         },
       };
 
-      // Instead of mocking HubSpot methods directly, we mock our wrapper functions
-      getHubspotContactByEmail.mockResolvedValueOnce(mockContact);
+      // Mock the HubSpot API call directly
+      (hubspot.crm.contacts.basicApi.getById as jest.Mock).mockResolvedValue(
+        mockContact,
+      );
 
       const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
         method: "POST",
@@ -52,9 +50,13 @@ describe("/api/hubspot/contact-lookup", () => {
 
       expect(res._getStatusCode()).toBe(200);
       expect(res._getJSONData()).toEqual({ contact: mockContact });
-      expect(getHubspotContactByEmail).toHaveBeenCalledWith(
-        hubspot,
+      expect(hubspot.crm.contacts.basicApi.getById).toHaveBeenCalledWith(
         "test@example.com",
+        undefined,
+        undefined,
+        undefined,
+        false,
+        "email",
       );
     });
 
@@ -68,8 +70,22 @@ describe("/api/hubspot/contact-lookup", () => {
         },
       };
 
-      // Instead of mocking HubSpot methods directly, we mock our wrapper functions
-      getHubspotContactByCookie.mockResolvedValueOnce(mockContact);
+      // Mock the HubSpot API calls directly
+      const mockJsonMethod = jest.fn().mockResolvedValue({
+        properties: {
+          email: {
+            value: "test@example.com",
+          },
+        },
+      });
+
+      (hubspot.apiRequest as jest.Mock).mockResolvedValue({
+        json: mockJsonMethod,
+      });
+
+      (hubspot.crm.contacts.basicApi.getById as jest.Mock).mockResolvedValue(
+        mockContact,
+      );
 
       const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
         method: "POST",
@@ -80,10 +96,10 @@ describe("/api/hubspot/contact-lookup", () => {
 
       expect(res._getStatusCode()).toBe(200);
       expect(res._getJSONData()).toEqual({ contact: mockContact });
-      expect(getHubspotContactByCookie).toHaveBeenCalledWith(
-        hubspot,
-        "test-cookie-value",
-      );
+      expect(hubspot.apiRequest).toHaveBeenCalledWith({
+        method: "get",
+        path: "/contacts/v1/contact/utk/test-cookie-value/profile",
+      });
     });
 
     test("should return 400 with invalid request", async () => {
@@ -125,7 +141,9 @@ describe("/api/hubspot/contact-lookup", () => {
     });
 
     test("should return 500 on unexpected errors", async () => {
-      getHubspotContactByEmail.mockRejectedValueOnce(new Error("Some error"));
+      (hubspot.crm.contacts.basicApi.getById as jest.Mock).mockRejectedValue(
+        new Error("Some error"),
+      );
 
       const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
         method: "POST",
@@ -136,6 +154,22 @@ describe("/api/hubspot/contact-lookup", () => {
 
       expect(res._getStatusCode()).toBe(500);
       expect(res._getJSONData().error).toBe("Failed to lookup contact");
+    });
+
+    test("should return null for 404 errors from HubSpot API", async () => {
+      (hubspot.crm.contacts.basicApi.getById as jest.Mock).mockRejectedValue({
+        code: 404,
+      });
+
+      const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
+        method: "POST",
+        body: { email: "nonexistent@example.com" },
+      });
+
+      await handler(req, res);
+
+      expect(res._getStatusCode()).toBe(200);
+      expect(res._getJSONData()).toEqual({ contact: null });
     });
   });
 });
