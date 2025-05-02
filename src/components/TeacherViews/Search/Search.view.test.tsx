@@ -12,13 +12,13 @@ import { LEGACY_COHORT } from "@/config/cohort";
 
 const searchRefined = jest.fn();
 
-const createSearchResult = (): SearchHit => {
+const createSearchResult = (legacy?: boolean): SearchHit => {
   return {
     _id: "",
     _index: "",
     _score: 54,
     highlight: {},
-    legacy: true,
+    legacy: legacy ?? true,
     _source: {
       type: "lesson",
       lesson_description: "lesson description",
@@ -41,6 +41,40 @@ const resultsProps: Partial<SearchProps> = {
   results: [createSearchResult()],
   status: "success",
 };
+
+const pathways = [
+  {
+    programme_slug: "maths-program-1",
+    unit_slug: "algebra-unit-1",
+    unit_title: "Algebra",
+    key_stage_slug: "ks3",
+    key_stage_title: "Key stage 3",
+    subject_slug: "maths",
+    subject_title: "Mathematics",
+    tier_slug: "higher",
+    tier_title: "Higher",
+    exam_board_slug: "exam-board-1",
+    exam_board_title: "Exam Board 1",
+    year_slug: "2023",
+    year_title: "2023-2024",
+  },
+  {
+    programme_slug: "maths-program-1",
+    unit_slug: "algebra-unit-2",
+    unit_title: "Algebra",
+    key_stage_slug: "ks3",
+    key_stage_title: "Key stage 3",
+    subject_slug: "maths",
+    subject_title: "Mathematics",
+    tier_slug: "higher",
+    tier_title: "Higher",
+    exam_board_slug: "exam-board-2",
+    exam_board_title: "Exam Board 2",
+    year_slug: "2023",
+    year_title: "2023-2024",
+  },
+];
+
 const resultsPropsPathWays: Partial<SearchProps> = {
   results: [
     {
@@ -48,38 +82,7 @@ const resultsPropsPathWays: Partial<SearchProps> = {
       ...{
         _source: {
           ...createSearchResult()._source,
-          pathways: [
-            {
-              programme_slug: "maths-program-1",
-              unit_slug: "algebra-unit-1",
-              unit_title: "Algebra",
-              key_stage_slug: "ks3",
-              key_stage_title: "Key stage 3",
-              subject_slug: "maths",
-              subject_title: "Mathematics",
-              tier_slug: "higher",
-              tier_title: "Higher",
-              exam_board_slug: "exam-board-1",
-              exam_board_title: "Exam Board 1",
-              year_slug: "2023",
-              year_title: "2023-2024",
-            },
-            {
-              programme_slug: "maths-program-1",
-              unit_slug: "algebra-unit-2",
-              unit_title: "Algebra",
-              key_stage_slug: "ks3",
-              key_stage_title: "Key stage 3",
-              subject_slug: "maths",
-              subject_title: "Mathematics",
-              tier_slug: "higher",
-              tier_title: "Higher",
-              exam_board_slug: "exam-board-2",
-              exam_board_title: "Exam Board 2",
-              year_slug: "2023",
-              year_title: "2023-2024",
-            },
-          ],
+          pathways,
         },
       },
     },
@@ -406,6 +409,52 @@ describe("Search.page.tsx", () => {
     });
   });
   test("searchResultExpanded is called when a dropdown toggle is expanded", async () => {
+    const noneLegacyResultsPropsPathWays: Partial<SearchProps> = {
+      results: [
+        {
+          ...createSearchResult(false),
+          ...{
+            _source: {
+              ...createSearchResult(false)._source,
+              pathways,
+            },
+          },
+        },
+      ],
+      status: "success",
+    };
+    const { getByText } = render(
+      <SearchComponent {...props} {...noneLegacyResultsPropsPathWays} />,
+    );
+    const dropdown = getByText("Select exam board");
+    fireEvent.click(dropdown);
+
+    expect(searchResultExpanded).toHaveBeenCalledTimes(1);
+    expect(searchResultExpanded).toHaveBeenCalledWith({
+      context: "search",
+      analyticsUseCase: "Teacher",
+      componentType: "search_result_item",
+      engagementIntent: "refine",
+      eventVersion: "2.0.0",
+      platform: "owa",
+      product: "teacher lesson resources",
+      keyStageSlug: "ks1",
+      keyStageTitle: "Key stage 1",
+      lessonName: "lesson title",
+      lessonSlug: "lesson-slug",
+      searchFilterOptionSelected: [],
+      searchRank: 1,
+      searchResultCount: 1,
+      searchResultType: "lesson",
+      subjectSlug: "subject-slug",
+      subjectTitle: "subject title",
+      unitName: "topic title1 ",
+      unitSlug: "topic-slug",
+      lessonReleaseCohort: "2023-2026",
+      lessonReleaseDate: "2023-2026",
+    });
+  });
+  test("searchResultExpanded and handles tracking for none legacy lessons", async () => {
     const { getByText } = render(
       <SearchComponent {...props} {...resultsPropsPathWays} />,
     );
