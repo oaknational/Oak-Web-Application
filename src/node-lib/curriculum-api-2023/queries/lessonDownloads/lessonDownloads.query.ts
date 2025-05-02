@@ -120,7 +120,7 @@ const lessonDownloadsQuery =
         lessonSlug,
         browseData: parsedBrowseData,
         isLegacy: is_legacy,
-        lessonReleaseDate: lesson_release_date || "unpublished",
+        lessonReleaseDate: lesson_release_date ?? "unpublished",
         lessonCopyRight: copyright,
         restrictions: {
           geoRestricted: geo_restricted,
@@ -146,7 +146,7 @@ const lessonDownloadsQuery =
         isSpecialist: false,
         geoRestricted: geo_restricted,
         loginRequired: login_required,
-        lessonReleaseDate: lesson_release_date || "unpublished",
+        lessonReleaseDate: lesson_release_date ?? "unpublished",
       }) as T;
     }
   };
