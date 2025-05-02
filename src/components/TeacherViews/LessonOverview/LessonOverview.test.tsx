@@ -90,5 +90,50 @@ describe("lessonOverview.view", () => {
         yearGroupSlug: null,
       });
     });
+    it("handles no release date", () => {
+      const { getByText } = renderWithTheme(
+        <LessonOverview
+          lesson={{
+            ...lessonOverviewFixture({
+              lessonReleaseDate: null,
+            }),
+            isSpecialist: false,
+            isCanonical: false,
+            hasMediaClips: true,
+          }}
+          isBeta={false}
+        />,
+      );
+      const playAllButton = getByText("Play all");
+      playAllButton.click();
+      expect(lessonMediaClipsStarted).toHaveBeenCalledWith({
+        analyticsUseCase: "Teacher",
+        componentType: "go_to_media_clips_page_button",
+        engagementIntent: "use",
+        eventVersion: "2.0.0",
+        examBoard: null,
+        keyStageSlug: "ks2",
+        keyStageTitle: "Key Stage 2",
+        learningCycle: undefined,
+        lessonName: "Adverbial complex sentences",
+        lessonReleaseCohort: "2020-2023",
+        lessonReleaseDate: "unreleased",
+        lessonSlug:
+          "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
+        mediaClipsButtonName: "play all",
+        pathway: null,
+        phase: null,
+        platform: "owa",
+        product: "media clips",
+        releaseGroup: "legacy",
+        subjectSlug: "english",
+        subjectTitle: "English",
+        tierName: null,
+        unitName: "Simple, Compound and Adverbial Complex Sentences",
+        unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
+        yearGroupName: null,
+        yearGroupSlug: null,
+      });
+    });
   });
 });
