@@ -82,6 +82,18 @@ describe("Lesson Overview Canonical Page", () => {
         lesson.lessonTitle,
       );
     });
+    it("Renders the lesson overview when no lessonReleaseDate", async () => {
+      const result = render(
+        <LessonOverviewCanonicalPage
+          lesson={{ ...lesson, lessonReleaseDate: null, pathways: [] }}
+          isSpecialist={false}
+        />,
+      );
+
+      expect(result.getByRole("heading", { level: 1 })).toHaveTextContent(
+        lesson.lessonTitle,
+      );
+    });
 
     it("Renders the share button", async () => {
       window.history.replaceState = jest.fn();
