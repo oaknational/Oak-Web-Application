@@ -176,9 +176,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         pathway: pathwayTitle,
         examBoard: examBoardTitle,
         tierName: tierTitle,
-        lessonReleaseCohort: isSlugLegacy(programmeSlug)
-          ? "2020-2023"
-          : "2023-2026",
+        lessonReleaseCohort: "2023-2026",
         lessonReleaseDate: "unpublished",
       });
     }
