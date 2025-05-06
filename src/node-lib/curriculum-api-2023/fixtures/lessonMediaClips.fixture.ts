@@ -32,6 +32,7 @@ const lessonMediaClipsFixtures = (
     lessonOutline: [
       { lessonOutline: "This lesson is about running as a team" },
     ],
+    lessonReleaseDate: "2025-09-29T14:00:00.000Z",
     ...partial,
   };
 };

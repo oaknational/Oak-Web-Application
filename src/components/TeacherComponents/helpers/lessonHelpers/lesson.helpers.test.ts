@@ -54,6 +54,7 @@ describe("getCommonPathway()", () => {
       yearSlug: null,
       yearTitle: null,
       lessonCohort: "2023-2024",
+      pathwayTitle: null,
     };
 
     expect(result).toEqual(expected);
@@ -109,6 +110,7 @@ describe("getCommonPathway()", () => {
       yearSlug: null,
       yearTitle: null,
       lessonCohort: "2023-2024",
+      pathwayTitle: null,
     };
 
     expect(result).toEqual(expected);

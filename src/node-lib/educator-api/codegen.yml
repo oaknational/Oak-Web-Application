@@ -1,0 +1,13 @@
+overwrite: true
+schema:
+  - ${EDUCATOR_API_URL}:
+      headers:
+        x-hasura-admin-secret: ${EDUCATOR_API_AUTH_KEY}
+
+documents: "src/node-lib/educator-api/**/*.{graphql,gql}"
+generates:
+  src/node-lib/educator-api/generated/sdk.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-graphql-request"

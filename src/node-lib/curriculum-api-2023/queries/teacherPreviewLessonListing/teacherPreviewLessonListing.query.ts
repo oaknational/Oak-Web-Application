@@ -47,6 +47,7 @@ export const getTransformedLessons = (
         orderInUnit: lesson.order_in_unit,
         lessonCohort: lesson.lesson_data._cohort,
         actions: (keysToCamelCase(lesson.actions) || null) as Actions,
+        lessonReleaseDate: "unreleased",
       };
       return transformedLesson;
     })

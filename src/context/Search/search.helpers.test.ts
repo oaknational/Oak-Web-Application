@@ -3,6 +3,7 @@ import { ParsedUrlQuery } from "querystring";
 import searchPageFixture from "../../node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
 
 import {
+  getActiveFilters,
   getFilterForQuery,
   getFiltersFromQuery,
   getHighlightFromAllFields,
@@ -174,6 +175,18 @@ describe("search helpers", () => {
 
     const result = getSortedSearchFiltersSelected(query);
     expect(result).toEqual(["english-grammar", "ks2", "lesson", "wjec"]);
+  });
+  test("getActiveFilters", () => {
+    const query = {
+      term: "macbeth",
+      keyStages: "ks2,ks3,ks1",
+      subjects: "english-grammar",
+    };
+    const result = getActiveFilters(query);
+    expect(result).toEqual({
+      keystages: "ks1,ks2,ks3",
+      subjects: "english-grammar",
+    });
   });
   test("getHighlightFromAllFields returns highlight when there is pupilLessonOutcome", () => {
     const rawHighlight = { pupilLessonOutcome: ["<b>Outcome</b>"] };

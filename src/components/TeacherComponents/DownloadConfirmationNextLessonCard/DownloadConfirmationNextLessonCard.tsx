@@ -7,7 +7,7 @@ import {
 } from "@oaknational/oak-components";
 
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
+import { OnwardContentSelectedProperties } from "@/browser-lib/avo/Avo";
 
 type DownloadConfirmationNextLessonCardProps = {
   programmeSlug: string;
@@ -15,7 +15,12 @@ type DownloadConfirmationNextLessonCardProps = {
   lessonSlug: string;
   lessonTitle: string;
   unitTitle: string;
-  onwardContentSelected: TrackFns["onwardContentSelected"];
+  onwardContentSelected: (
+    properties: Omit<
+      OnwardContentSelectedProperties,
+      "lessonReleaseDate" | "lessonReleaseCohort"
+    >,
+  ) => void;
 };
 
 const DownloadConfirmationNextLessonCard: FC<

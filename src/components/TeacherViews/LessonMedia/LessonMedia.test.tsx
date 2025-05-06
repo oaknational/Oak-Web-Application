@@ -8,6 +8,8 @@ import { resolveOakHref } from "@/common-lib/urls";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 import { VideoPlayerProps } from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
+import keysToCamelCase from "@/utils/snakeCaseConverter";
+import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 
 const render = renderWithProviders();
 
@@ -142,6 +144,57 @@ describe("LessonMedia view", () => {
 
     const user = userEvent.setup();
     audioItem && (await user.click(audioItem));
+
+    expect(window.history.replaceState).toHaveBeenCalled();
+    expect(window.history.replaceState).toHaveBeenCalledWith(
+      null,
+      "",
+      "/teachers/programmes/physical-education-ks4/units/running-and-jumping/lessons/running-as-a-team/media?video=191189",
+    );
+  });
+  it("handles edge case media clip video object", async () => {
+    const lessonWithUndefinedDuration = {
+      ...lessonMediaClipsFixtures({
+        mediaClips: keysToCamelCase({
+          intro: [
+            {
+              order: "",
+              media_id: "191189",
+              video_id: 29845,
+              media_type: "video",
+              media_object: {
+                url: "http://example.com/video2.mp3",
+                type: "upload",
+                bytes: 122087,
+                format: "mp3",
+                display_name: "8_task_C1_2",
+                resource_type: "video",
+              },
+              video_object: {
+                mux_asset_id: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
+                playback_ids: [],
+                mux_playback_id:
+                  "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
+              },
+            },
+          ],
+        }) as MediaClipListCamelCase,
+      }),
+      lessonOutline: [{ lessonOutline: "Sample outline" }],
+      actions: [{ action: "Sample action" }],
+    };
+    const { getByTestId } = render(
+      <LessonMedia lesson={lessonWithUndefinedDuration} isCanonical={false} />,
+    );
+    const mediaClipWrapper = getByTestId("media-clip-wrapper");
+    const mediaClipList = within(mediaClipWrapper).getByRole("list");
+    const mediaClipListItems = within(mediaClipList).getAllByRole("listitem");
+    const videoItem =
+      mediaClipListItems[0] &&
+      within(mediaClipListItems[0]).getByRole("button");
+
+    const user = userEvent.setup();
+    videoItem && (await user.click(videoItem));
 
     expect(window.history.replaceState).toHaveBeenCalled();
     expect(window.history.replaceState).toHaveBeenCalledWith(

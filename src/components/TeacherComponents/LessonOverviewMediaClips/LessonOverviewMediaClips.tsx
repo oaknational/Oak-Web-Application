@@ -6,6 +6,12 @@ import LessonOverviewClipWithThumbnail from "./LessonOverviewClipWithThumbnail";
 import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 import { createLearningCycleVideosTitleMap } from "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers";
+import { MediaClipsButtonNameValueType } from "@/browser-lib/avo/Avo";
+
+export type TrackingCallbackProps = {
+  mediaClipsButtonName: MediaClipsButtonNameValueType;
+  learningCycle?: string;
+};
 
 type LessonOverviewMediaClipsProps = {
   learningCycleVideos: MediaClipListCamelCase | null;
@@ -16,8 +22,8 @@ type LessonOverviewMediaClipsProps = {
   lessonOutline: { lessonOutline: string }[] | null;
   isPELesson: boolean;
   isMFL: boolean;
+  onTrackingCallback?: (props: TrackingCallbackProps) => void;
 };
-
 const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
   learningCycleVideos,
   unitSlug,
@@ -27,6 +33,7 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
   lessonOutline,
   isPELesson,
   isMFL,
+  onTrackingCallback,
 }) => {
   const learningCycleVideosTitleMap = createLearningCycleVideosTitleMap({
     isMFL,
@@ -96,6 +103,14 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
                         query: { video: String(firstCycleVideo.mediaId) },
                       })
                 }
+                onClick={() => {
+                  if (onTrackingCallback) {
+                    onTrackingCallback({
+                      mediaClipsButtonName: "select clip",
+                      learningCycle: learningCycleTitle,
+                    });
+                  }
+                }}
               />
             </OakGridArea>
           );

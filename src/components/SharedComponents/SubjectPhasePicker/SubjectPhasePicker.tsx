@@ -669,6 +669,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   onClick={toggleShowSubjects}
                   title="Subject"
                   data-testid="subject-picker-button"
+                  aria-expanded={isMobileLotPickerModalOpen || showSubjects}
                 >
                   <OakBox
                     $pl="inner-padding-m"
@@ -917,6 +918,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     data-testid="phase-picker-button"
                     onClick={toggleShowPhases}
                     title="Phase"
+                    aria-expanded={showPhases}
                   >
                     <OakBox
                       $pl="inner-padding-m"
