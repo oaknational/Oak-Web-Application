@@ -1,3 +1,11 @@
+## [1.740.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.740.1...v1.740.2) (2025-05-06)
+
+
+### Bug Fixes
+
+* canonical share release date fix ([55011af](https://github.com/oaknational/Oak-Web-Application/commit/55011af1a1dbf6eccff751b76708096412e9afc3))
+* canonical share release date fix ([02c4300](https://github.com/oaknational/Oak-Web-Application/commit/02c430098da2b0aca56ed959ab89c77181deba4e))
+
 ## [1.740.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.740.0...v1.740.1) (2025-05-06)
 
 
