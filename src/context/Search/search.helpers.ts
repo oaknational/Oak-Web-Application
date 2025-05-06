@@ -70,6 +70,39 @@ export const getSortedSearchFiltersSelected = (
   return combinedFilters.split(",").sort((a, b) => (a < b ? -1 : 1));
 };
 
+const sortFilters = (filters: string | string[] | undefined) => {
+  if (!filters) {
+    return undefined;
+  }
+  let filterArray;
+  if (typeof filters === "string") {
+    filterArray = filters.split(",");
+  } else {
+    filterArray = filters;
+  }
+  return filterArray.sort((a, b) => (a < b ? -1 : 1)).join(",");
+};
+
+export const getActiveFilters = (query: ParsedUrlQuery) => {
+  const keystageFilter = sortFilters(query.keyStages);
+  const subjectFilter = sortFilters(query.subjects);
+  const contentTypeFilter = sortFilters(query.contentTypes);
+  const examBoardFilter = sortFilters(query.examBoards);
+  const yearGroupFilter = sortFilters(query.yearGroups);
+  const lessonCohortFilter = sortFilters(query.curriculum);
+
+  const activeFilters: Record<string, string> = {};
+
+  keystageFilter && (activeFilters.keystages = keystageFilter);
+  subjectFilter && (activeFilters.subjects = subjectFilter);
+  contentTypeFilter && (activeFilters.contentTypes = contentTypeFilter);
+  examBoardFilter && (activeFilters.examBoards = examBoardFilter);
+  yearGroupFilter && (activeFilters.yearGroups = yearGroupFilter);
+  lessonCohortFilter && (activeFilters.curriculum = lessonCohortFilter);
+
+  return activeFilters;
+};
+
 export const keyStageToSentenceCase = (
   keyStage?: string,
 ): string | undefined => {

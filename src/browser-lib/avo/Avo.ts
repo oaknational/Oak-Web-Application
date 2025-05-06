@@ -1231,6 +1231,8 @@ export const ComponentType = {
   'YEAR_GROUP_BUTTON': 'year_group_button',
   'ADD_ADDITIONAL_MATERIALS_BUTTON': 'add_additional_materials_button',
   'MODIFY_BUTTON': 'modify_button',
+  'ADD_ADDITIONAL_MATERIALS_BUTTON': 'add_additional_materials_button',
+  'MODIFY_BUTTON': 'modify_button',
   'EXAM_SUBJECT_BUTTON': 'exam_subject_button',
   'GO_TO_MEDIA_CLIPS_PAGE_BUTTON': 'go_to_media_clips_page_button',
   'MEDIA_CLIPS_PLAYED': 'media_clips_played',
@@ -3667,7 +3669,7 @@ This property should be populated with a single value for each event/product com
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
 
 NB - This will be removed, but keeping to ease transition from AUC to 'product'
- * @param properties.searchTerm: What the user has types in the search box
+ * @param properties.searchTerm: The term entered by the user for the search.
  * @param properties.searchResultCount: total number of search results returned
  * @param properties.searchResultsLoadTime: Amount of time taken to fetch and load the search results
  * 
@@ -4425,13 +4427,16 @@ export interface SearchRefinedProperties {
   componentType: ComponentTypeValueType;
   eventVersion: EventVersionValueType;
   analyticsUseCase: AnalyticsUseCaseValueType;
-  filterType: FilterTypeValueType | null | undefined;
-  filterValue: string | null | undefined;
   searchResultCount: number;
   activeFilters: ActiveFilters;
+  searchTerm: string;
 }
 /**
- * Search Refined: The user updates a filter on the search results page
+ * Search Refined: Results are returned following a change to search filters
+ * 
+ * When to trigger this event:
+ * 1. Results are returned by the search and a count of results is known
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/hfyowJe3584uAl5EyuTuX/events/XpQ27vPNH4/trigger/PcgndFCLH2PP2U6ErGXCe
  * 
  * @param properties the properties associatied with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA and Aila. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -4444,8 +4449,6 @@ This property should be populated with a single value for each event/product com
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
 
 NB - This will be removed, but keeping to ease transition from AUC to 'product'
- * @param properties.filterType: Describes the dimension the filter is designed to control such as subject, key stage, or resource type
- * @param properties.filterValue: The value added to the filter (e.g. 'English' or 'AQA'). In the case where multiple filters are chosen simultaneously (e.g. Exam board and Tier) then both values should be sent separated by ', ' (e.g. 'AQA, Higher')
  * @param properties.searchResultCount: total number of search results returned
  * @param properties.activeFilters: The filters that are active at the time of the refinement event. Small json object in the form
 
@@ -4459,6 +4462,7 @@ NB - This will be removed, but keeping to ease transition from AUC to 'product'
 ```
 
 Only include keys/values for active filters.
+ * @param properties.searchTerm: The term entered by the user for the search.
  * 
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/4MiS4rkehbuVZbFeC26sf/events/XpQ27vPNH4}
  */
@@ -4471,14 +4475,9 @@ export function searchRefined(properties: SearchRefinedProperties) {
   eventPropertiesArray.push({id: "9b_lf1oq8", name: "Component Type", value: properties.componentType});
   eventPropertiesArray.push({id: "3ZqdV-PbJL", name: "Event Version", value: properties.eventVersion});
   eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
-  properties.filterType !== undefined && properties.filterType !== null ?
-    eventPropertiesArray.push({id: "XPABjlx_F", name: "Filter Type", value: properties.filterType}) :
-    eventPropertiesArray.push({id: "XPABjlx_F", name: "Filter Type", value: null});
-  properties.filterValue !== undefined && properties.filterValue !== null ?
-    eventPropertiesArray.push({id: "v3Ne3qUXs", name: "Filter Value", value: properties.filterValue}) :
-    eventPropertiesArray.push({id: "v3Ne3qUXs", name: "Filter Value", value: null});
   eventPropertiesArray.push({id: "ssKpAufWU", name: "Search Result Count", value: properties.searchResultCount});
   eventPropertiesArray.push({id: "TsVyKpbQ6", name: "Active Filters", value: properties.activeFilters});
+  eventPropertiesArray.push({id: "hHufJiP_N", name: "Search Term", value: properties.searchTerm});
   let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
   // @ts-ignore
   let userPropertiesArray: array = [];
@@ -7731,6 +7730,7 @@ export interface ContentGuidanceAcceptedProperties {
  * @param properties.supervisionLevel: The degree of adult oversight needed during a lesson
  * @param properties.contentGuidanceWarning: The category of the specific content guidance
  * @param properties.ageRestriction: no description
+ * @param properties.ageRestriction: no description
  * 
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/4MiS4rkehbuVZbFeC26sf/events/1u1gDPFXp3}
  */
@@ -7846,6 +7846,7 @@ export interface ContentGuidanceDeclinedProperties {
  * @param properties.supervisionLevel: The degree of adult oversight needed during a lesson
  * @param properties.phase: School phase related to key stage and age of audience
  * @param properties.contentGuidanceWarning: The category of the specific content guidance
+ * @param properties.ageRestriction: no description
  * @param properties.ageRestriction: no description
  * 
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/4MiS4rkehbuVZbFeC26sf/events/2spbwH8iKS}
