@@ -395,7 +395,7 @@ exports[`7_ourPartner renders multiple curriculum partners from curriculum partn
             ></wp:effectExtent>
             <wp:wrapNone></wp:wrapNone>
             <wp:docPr
-              id="30004"
+              id="30006"
               name=""
               descr=""
             >
@@ -429,7 +429,7 @@ exports[`7_ourPartner renders multiple curriculum partners from curriculum partn
                 >
                   <pic:nvPicPr>
                     <pic:cNvPr
-                      id="30004"
+                      id="30006"
                       name=""
                       descr=""
                     >
@@ -571,6 +571,14 @@ exports[`7_ourPartner renders multiple curriculum partners from curriculum partn
             </w:r>
           </w:p>
           <w:p>
+            <w:pPr>
+              <w:spacing
+                w:lineRule="auto"
+                w:line="240"
+                w:before="0"
+                w:after="0"
+              ></w:spacing>
+            </w:pPr>
             <w:r>
               <w:rPr>
                 <w:rFonts
@@ -578,14 +586,10 @@ exports[`7_ourPartner renders multiple curriculum partners from curriculum partn
                   w:hAnsi="Arial"
                   w:cs="Arial"
                 ></w:rFonts>
-                <w:color
-                  w:val="222222"
-                ></w:color>
-                <w:sz
-                  w:val="24"
-                ></w:sz>
               </w:rPr>
-              <w:t></w:t>
+              <w:t
+                xml:space="preserve"
+              ><![CDATA[Example partnet bio text 1]]></w:t>
             </w:r>
           </w:p>
         </w:tc>
@@ -610,7 +614,7 @@ exports[`7_ourPartner renders multiple curriculum partners from curriculum partn
                     b="0"
                   ></wp:effectExtent>
                   <wp:docPr
-                    id="30005"
+                    id="30004"
                     name=""
                     descr=""
                   >
@@ -644,7 +648,7 @@ exports[`7_ourPartner renders multiple curriculum partners from curriculum partn
                       >
                         <pic:nvPicPr>
                           <pic:cNvPr
-                            id="30005"
+                            id="30004"
                             name=""
                             descr=""
                           >
@@ -789,6 +793,14 @@ exports[`7_ourPartner renders multiple curriculum partners from curriculum partn
             </w:r>
           </w:p>
           <w:p>
+            <w:pPr>
+              <w:spacing
+                w:lineRule="auto"
+                w:line="240"
+                w:before="0"
+                w:after="0"
+              ></w:spacing>
+            </w:pPr>
             <w:r>
               <w:rPr>
                 <w:rFonts
@@ -796,14 +808,10 @@ exports[`7_ourPartner renders multiple curriculum partners from curriculum partn
                   w:hAnsi="Arial"
                   w:cs="Arial"
                 ></w:rFonts>
-                <w:color
-                  w:val="222222"
-                ></w:color>
-                <w:sz
-                  w:val="24"
-                ></w:sz>
               </w:rPr>
-              <w:t></w:t>
+              <w:t
+                xml:space="preserve"
+              ><![CDATA[Example partnet bio text 2]]></w:t>
             </w:r>
           </w:p>
         </w:tc>
@@ -828,7 +836,7 @@ exports[`7_ourPartner renders multiple curriculum partners from curriculum partn
                     b="0"
                   ></wp:effectExtent>
                   <wp:docPr
-                    id="30006"
+                    id="30005"
                     name=""
                     descr=""
                   >
@@ -862,7 +870,7 @@ exports[`7_ourPartner renders multiple curriculum partners from curriculum partn
                       >
                         <pic:nvPicPr>
                           <pic:cNvPr
-                            id="30006"
+                            id="30005"
                             name=""
                             descr=""
                           >
@@ -4947,7 +4955,7 @@ exports[`7_ourPartner renders with one partner from curriculum partner overview 
             ></wp:effectExtent>
             <wp:wrapNone></wp:wrapNone>
             <wp:docPr
-              id="30002"
+              id="30003"
               name=""
               descr=""
             >
@@ -4981,7 +4989,7 @@ exports[`7_ourPartner renders with one partner from curriculum partner overview 
                 >
                   <pic:nvPicPr>
                     <pic:cNvPr
-                      id="30002"
+                      id="30003"
                       name=""
                       descr=""
                     >
@@ -5123,6 +5131,14 @@ exports[`7_ourPartner renders with one partner from curriculum partner overview 
             </w:r>
           </w:p>
           <w:p>
+            <w:pPr>
+              <w:spacing
+                w:lineRule="auto"
+                w:line="240"
+                w:before="0"
+                w:after="0"
+              ></w:spacing>
+            </w:pPr>
             <w:r>
               <w:rPr>
                 <w:rFonts
@@ -5130,14 +5146,10 @@ exports[`7_ourPartner renders with one partner from curriculum partner overview 
                   w:hAnsi="Arial"
                   w:cs="Arial"
                 ></w:rFonts>
-                <w:color
-                  w:val="222222"
-                ></w:color>
-                <w:sz
-                  w:val="24"
-                ></w:sz>
               </w:rPr>
-              <w:t></w:t>
+              <w:t
+                xml:space="preserve"
+              ><![CDATA[Example partnet bio text]]></w:t>
             </w:r>
           </w:p>
         </w:tc>
@@ -5162,7 +5174,7 @@ exports[`7_ourPartner renders with one partner from curriculum partner overview 
                     b="0"
                   ></wp:effectExtent>
                   <wp:docPr
-                    id="30003"
+                    id="30002"
                     name=""
                     descr=""
                   >
@@ -5196,7 +5208,7 @@ exports[`7_ourPartner renders with one partner from curriculum partner overview 
                       >
                         <pic:nvPicPr>
                           <pic:cNvPr
-                            id="30003"
+                            id="30002"
                             name=""
                             descr=""
                           >
@@ -9281,7 +9293,7 @@ exports[`7_ourPartner without partner image 1`] = `
             ></wp:effectExtent>
             <wp:wrapNone></wp:wrapNone>
             <wp:docPr
-              id="30000"
+              id="30001"
               name=""
               descr=""
             >
@@ -9315,7 +9327,7 @@ exports[`7_ourPartner without partner image 1`] = `
                 >
                   <pic:nvPicPr>
                     <pic:cNvPr
-                      id="30000"
+                      id="30001"
                       name=""
                       descr=""
                     >
@@ -9456,24 +9468,7 @@ exports[`7_ourPartner without partner image 1`] = `
               <w:t></w:t>
             </w:r>
           </w:p>
-          <w:p>
-            <w:r>
-              <w:rPr>
-                <w:rFonts
-                  w:ascii="Arial"
-                  w:hAnsi="Arial"
-                  w:cs="Arial"
-                ></w:rFonts>
-                <w:color
-                  w:val="222222"
-                ></w:color>
-                <w:sz
-                  w:val="24"
-                ></w:sz>
-              </w:rPr>
-              <w:t></w:t>
-            </w:r>
-          </w:p>
+          <w:p></w:p>
         </w:tc>
         <w:tc>
           <w:p>
@@ -9496,7 +9491,7 @@ exports[`7_ourPartner without partner image 1`] = `
                     b="0"
                   ></wp:effectExtent>
                   <wp:docPr
-                    id="30001"
+                    id="30000"
                     name=""
                     descr=""
                   >
@@ -9530,7 +9525,7 @@ exports[`7_ourPartner without partner image 1`] = `
                       >
                         <pic:nvPicPr>
                           <pic:cNvPr
-                            id="30001"
+                            id="30000"
                             name=""
                             descr=""
                           >

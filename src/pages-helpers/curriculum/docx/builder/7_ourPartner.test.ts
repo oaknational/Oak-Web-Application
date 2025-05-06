@@ -52,7 +52,19 @@ describe("7_ourPartner", () => {
                 },
               },
             },
-            partnerBio: "",
+            partnerBioPortableTextRaw: [
+              {
+                style: "normal",
+                _type: "block",
+                children: [
+                  {
+                    _type: "span",
+                    marks: [],
+                    text: "Example partnet bio text",
+                  },
+                ],
+              },
+            ],
           },
         ],
       } as CombinedCurriculumData,
@@ -75,7 +87,19 @@ describe("7_ourPartner", () => {
                 },
               },
             },
-            partnerBio: "",
+            partnerBioPortableTextRaw: [
+              {
+                style: "normal",
+                _type: "block",
+                children: [
+                  {
+                    _type: "span",
+                    marks: [],
+                    text: "Example partnet bio text 1",
+                  },
+                ],
+              },
+            ],
           },
           {
             curriculumPartner: {
@@ -85,7 +109,19 @@ describe("7_ourPartner", () => {
                 },
               },
             },
-            partnerBio: "",
+            partnerBioPortableTextRaw: [
+              {
+                style: "normal",
+                _type: "block",
+                children: [
+                  {
+                    _type: "span",
+                    marks: [],
+                    text: "Example partnet bio text 2",
+                  },
+                ],
+              },
+            ],
           },
         ],
       } as CombinedCurriculumData,

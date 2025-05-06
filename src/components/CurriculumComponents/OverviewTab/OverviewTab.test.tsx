@@ -47,10 +47,36 @@ describe("Component - Overview Tab", () => {
     fixture.curriculumCMSInfo.curriculumPartnerOverviews = [
       {
         partnerBio: "PARTNER_1",
+        partnerBioPortableTextRaw: [
+          {
+            style: "normal",
+            _type: "block",
+            children: [
+              {
+                _type: "span",
+                marks: [],
+                text: "PARTNER_PORTABLETEXT_1",
+              },
+            ],
+          },
+        ],
         curriculumPartner: fixture.curriculumCMSInfo.curriculumPartner,
       },
       {
         partnerBio: "PARTNER_2",
+        partnerBioPortableTextRaw: [
+          {
+            style: "normal",
+            _type: "block",
+            children: [
+              {
+                _type: "span",
+                marks: [],
+                text: "PARTNER_PORTABLETEXT_2",
+              },
+            ],
+          },
+        ],
         curriculumPartner: fixture.curriculumCMSInfo.curriculumPartner,
       },
     ];
@@ -58,8 +84,8 @@ describe("Component - Overview Tab", () => {
     const { queryAllByTestId } = render(<OverviewTab data={fixture} />);
     const partnerElements = queryAllByTestId("curriculum-partner");
     expect(partnerElements.length).toBe(2);
-    expect(partnerElements[0]).toHaveTextContent("PARTNER_1");
-    expect(partnerElements[1]).toHaveTextContent("PARTNER_2");
+    expect(partnerElements[0]).toHaveTextContent("PARTNER_PORTABLETEXT_1");
+    expect(partnerElements[1]).toHaveTextContent("PARTNER_PORTABLETEXT_2");
   });
 
   test("explainer displayed when cycle 2 features enabled with video", async () => {
