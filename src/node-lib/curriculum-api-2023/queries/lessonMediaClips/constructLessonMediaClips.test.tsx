@@ -41,6 +41,7 @@ describe("constructMediaClips", () => {
         lessonSlug: "running-as-a-team",
         lessonTitle: "lesson-title",
         keyStageTitle: "Key Stage 1",
+        lessonReleaseDate: null,
         pathways: [pathway],
         mediaClips: null,
         lessonOutline: null,
@@ -72,6 +73,7 @@ describe("constructMediaClips", () => {
         mediaClips: null,
         lessonOutline: null,
         actions: null,
+        lessonReleaseDate: null,
       });
     });
   });

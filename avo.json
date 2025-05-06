@@ -7,17 +7,17 @@
     "name": "Oak's Tracking Plan"
   },
   "branch": {
-    "id": "master",
-    "name": "main"
+    "id": "4MiS4rkehbuVZbFeC26sf",
+    "name": "c1-and-c2-releases-tracking"
   },
   "sources": [
     {
       "id": "OXY1Uf7nb",
       "name": "Oak Web Application",
       "path": "src/browser-lib/avo/Avo.ts",
-      "actionId": "j7T9arsApnyvmQhNZhqJ",
-      "branchId": "master",
-      "updatedAt": "2025-05-06T13:41:13.500Z"
+      "actionId": "r6lpK6ex7dNhv2Df1kTo",
+      "branchId": "4MiS4rkehbuVZbFeC26sf",
+      "updatedAt": "2025-05-06T08:14:46.993Z"
     }
   ],
   "force": false
