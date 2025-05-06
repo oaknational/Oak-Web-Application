@@ -80,7 +80,10 @@ const lessonShareQuery =
         acc.push(pathwayLesson);
         return acc;
       }, [] as LessonPathway[]);
-
+      console.log(
+        "pathways",
+        parsedModifiedBrowseData.lesson_data.lesson_release_date,
+      );
       const lesson = canonicalLessonShareSchema.parse({
         shareableResources,
         isLegacy: parsedModifiedBrowseData.is_legacy,
@@ -89,6 +92,8 @@ const lessonShareQuery =
         isSpecialist: false,
         lessonSlug,
         lessonTitle: parsedRawLesson.lesson_title,
+        lessonReleaseDate:
+          parsedModifiedBrowseData.lesson_data.lesson_release_date,
       });
       return lesson as T;
     } else {
