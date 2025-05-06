@@ -135,6 +135,7 @@ export const PupilViewsUnitListing = ({
                   keyStageSlug: programmeFields.keystageSlug,
                   tierName: unit.programmeFields.tierDescription,
                   examBoard: unit.programmeFields.examboard,
+                  pathway: unit.programmeFields.pathwayDescription,
                 });
               }}
             />

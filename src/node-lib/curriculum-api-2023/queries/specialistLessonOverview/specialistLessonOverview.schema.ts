@@ -105,6 +105,7 @@ export const specialistLessonOverviewRawSchema = z.array(
     starter_quiz_asset_object: legacyAssetObjectSchema,
     exit_quiz_asset_object: legacyAssetObjectSchema,
     worksheet_asset_object: legacyAssetObjectSchema,
+    lesson_release_date: z.string().nullable(),
   }),
 );
 

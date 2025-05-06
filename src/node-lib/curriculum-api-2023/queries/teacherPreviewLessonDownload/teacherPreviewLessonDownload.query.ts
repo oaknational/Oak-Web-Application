@@ -1,5 +1,5 @@
 import lessonDownloadsSchema, {
-  downloadsAssetData,
+  downloadsAssetDataSchema,
   LessonAdditionalFilesListSchema,
 } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { constructDownloadsArray } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/downloadUtils";
@@ -68,7 +68,7 @@ const teachersPreviewLessonDownloadQuery =
       geo_restricted,
       login_required,
       downloadable_files,
-    } = downloadsAssetData.parse(download_assets[0]);
+    } = downloadsAssetDataSchema.parse(download_assets[0]);
 
     const additionalFiles: LessonAdditionalFilesListSchema = downloadable_files
       ? downloadable_files.map((file) => {
@@ -118,6 +118,7 @@ const teachersPreviewLessonDownloadQuery =
         lessonSlug,
         browseData: parsedBrowseData,
         isLegacy: is_legacy,
+        lessonReleaseDate: "unreleased",
         lessonCopyRight: copyright,
         restrictions: {
           geoRestricted: geo_restricted,
@@ -143,6 +144,7 @@ const teachersPreviewLessonDownloadQuery =
         isSpecialist: false,
         geoRestricted: geo_restricted,
         loginRequired: login_required,
+        lessonReleaseDate: "unreleased",
       }) as T;
     }
   };

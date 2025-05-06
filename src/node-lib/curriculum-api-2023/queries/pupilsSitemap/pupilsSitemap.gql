@@ -7,7 +7,7 @@ query pupilsSitemap {
     unit_slug
     actions
   }
-  lessons: published_mv_synthetic_unitvariant_lessons_by_year_12_0_0 {
+  lessons: published_mv_synthetic_unitvariant_lessons_by_year_14_0_0 {
     programme_slug
     unit_slug
     lesson_slug

@@ -6,9 +6,24 @@ import TeacherPreviewLessonListingPage, {
   getStaticProps,
 } from "@/pages/teachers/beta/programmes/[programmeSlug]/units/[unitSlug]/lessons";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import lessonListingFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonListing.fixture";
+import lessonListingFixture, {
+  lessonsWithUnpublishedContent,
+} from "@/node-lib/curriculum-api-2023/fixtures/lessonListing.fixture";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
+
+const lessonAccessed = jest.fn();
+const teacherShareInitiated = jest.fn();
+
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      lessonAccessed: (...args: []) => lessonAccessed(...args),
+      teacherShareInitiated: (...args: []) => teacherShareInitiated(...args),
+    },
+  }),
+}));
 
 const render = renderWithProviders();
 
@@ -60,5 +75,40 @@ describe("getStaticProps", () => {
     await expect(
       getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>),
     ).rejects.toThrowError();
+  });
+  describe("tracking", () => {
+    it("should call lesson accessed when trackLessonSelected is called", async () => {
+      const { getByText } = render(
+        <TeacherPreviewLessonListingPage
+          curriculumData={lessonListingFixture({
+            lessons: lessonsWithUnpublishedContent,
+          })}
+        />,
+      );
+
+      const lessonButton = getByText("Add two surds");
+      lessonButton.click();
+      expect(lessonAccessed).toHaveBeenCalledWith({
+        analyticsUseCase: "Teacher",
+        componentType: "lesson_card",
+        engagementIntent: "use",
+        eventVersion: "2.0.0",
+        examBoard: null,
+        keyStageSlug: "ks4",
+        keyStageTitle: "Key Stage 4",
+        lessonName: "Add two surds",
+        lessonReleaseCohort: "2023-2026",
+        lessonReleaseDate: "unpublished",
+        lessonSlug: "add-two-surds-6wwk0c",
+        pathway: null,
+        platform: "owa",
+        product: "teacher lesson resources",
+        tierName: null,
+        unitName: "Adding surds",
+        unitSlug: "adding-surds-a57d",
+        yearGroupName: "Year 10",
+        yearGroupSlug: "year-10",
+      });
+    });
   });
 });

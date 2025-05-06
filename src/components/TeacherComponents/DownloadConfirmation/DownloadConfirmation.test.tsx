@@ -2,12 +2,16 @@ import userEvent from "@testing-library/user-event";
 
 import DownloadConfirmation from "./DownloadConfirmation";
 
-import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
+import { OnwardContentSelectedProperties } from "@/browser-lib/avo/Avo";
 
-const onwardContentSelected =
-  jest.fn() as unknown as TrackFns["onwardContentSelected"];
+const onwardContentSelected = jest.fn() as unknown as (
+  properties: Omit<
+    OnwardContentSelectedProperties,
+    "lessonReleaseDate" | "lessonReleaseCohort"
+  >,
+) => void;
 
 jest.mock(
   "@/pages-helpers/teacher/share-experiments/useShareExperiment",
@@ -51,7 +55,9 @@ describe("DownloadConfirmation component", () => {
     });
   };
 
-  const curriculumTrackingProps: CurriculumTrackingProps = {
+  const curriculumTrackingProps: CurriculumTrackingProps & {
+    lessonReleaseDate: string;
+  } = {
     lessonName: "Test lesson",
     lessonSlug: "test-lesson",
     unitName: "Test unit",
@@ -60,6 +66,7 @@ describe("DownloadConfirmation component", () => {
     keyStageTitle: "Key stage 1",
     subjectSlug: "test-subject",
     subjectTitle: "Test subject",
+    lessonReleaseDate: "2025-09-29T14:00:00.000Z",
   };
 
   it("should render", () => {
@@ -69,6 +76,7 @@ describe("DownloadConfirmation component", () => {
         programmeSlug="test-programme"
         unitTitle="Test unit"
         isCanonical={false}
+        isLegacy={false}
         onwardContentSelected={onwardContentSelected}
         {...curriculumTrackingProps}
       />,
@@ -85,6 +93,7 @@ describe("DownloadConfirmation component", () => {
         programmeSlug="test-programme"
         unitTitle="Test unit"
         isCanonical={false}
+        isLegacy={false}
         onwardContentSelected={onwardContentSelected}
         {...curriculumTrackingProps}
       />,
@@ -105,6 +114,7 @@ describe("DownloadConfirmation component", () => {
         programmeSlug="test-programme"
         unitTitle="Test unit"
         isCanonical={false}
+        isLegacy={false}
         onwardContentSelected={onwardContentSelected}
         isSpecialist={true}
         {...curriculumTrackingProps}
@@ -126,6 +136,7 @@ describe("DownloadConfirmation component", () => {
         lessonTitle="Test lesson"
         programmeSlug={null}
         isCanonical={false}
+        isLegacy={false}
         onwardContentSelected={onwardContentSelected}
         {...curriculumTrackingProps}
       />,
@@ -145,6 +156,7 @@ describe("DownloadConfirmation component", () => {
         programmeSlug="test-programme"
         unitTitle="Test unit"
         isCanonical={false}
+        isLegacy={false}
         onwardContentSelected={onwardContentSelected}
         {...curriculumTrackingProps}
       />,
@@ -172,6 +184,7 @@ describe("DownloadConfirmation component", () => {
         lessonTitle="Test lesson"
         programmeSlug={null}
         isCanonical={true}
+        isLegacy={false}
         onwardContentSelected={onwardContentSelected}
         {...curriculumTrackingProps}
       />,

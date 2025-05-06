@@ -14,10 +14,10 @@ import Flex from "@/components/SharedComponents/Flex.deprecated";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import DownloadConfirmationNextLessonContainer from "@/components/TeacherComponents/DownloadConfirmationNextLessonContainer";
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
-import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
 import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
+import { OnwardContentSelectedProperties } from "@/browser-lib/avo/Avo";
 
 type DownloadConfirmationProps = {
   lessonSlug: string | null;
@@ -27,12 +27,19 @@ type DownloadConfirmationProps = {
   isCanonical: boolean;
   unitTitle?: string | null;
   nextLessons?: NextLesson[];
-  onwardContentSelected: TrackFns["onwardContentSelected"];
+  onwardContentSelected: (
+    properties: Omit<
+      OnwardContentSelectedProperties,
+      "lessonReleaseDate" | "lessonReleaseCohort"
+    >,
+  ) => void;
   isSpecialist?: boolean;
   keyStageSlug: CurriculumTrackingProps["keyStageSlug"];
   keyStageTitle: CurriculumTrackingProps["keyStageTitle"];
   subjectSlug: CurriculumTrackingProps["subjectSlug"];
   subjectTitle: CurriculumTrackingProps["subjectTitle"];
+  isLegacy: boolean;
+  lessonReleaseDate: string;
 };
 
 const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
@@ -49,6 +56,8 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
   keyStageTitle,
   subjectSlug,
   subjectTitle,
+  lessonReleaseDate,
+  isLegacy,
 }) => {
   const displayNextLessonContainer =
     !isCanonical && unitSlug && programmeSlug && unitTitle;
@@ -93,6 +102,8 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
       keyStageTitle,
       subjectSlug,
       subjectTitle,
+      lessonReleaseDate,
+      lessonReleaseCohort: isLegacy ? "2020-2023" : "2023-2026",
     },
     overrideExistingShareId: true,
   });
@@ -155,15 +166,15 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
               iconBackground="grey20"
               data-testid="back-to-lesson-link"
               size="small"
-              onClick={() => {
+              onClick={() =>
                 onwardContentSelected({
                   lessonName: lessonTitle,
                   unitName: unitTitle,
                   unitSlug: unitSlug,
                   lessonSlug: lessonSlug,
                   onwardIntent: "view-lesson",
-                });
-              }}
+                })
+              }
             />
           ) : (
             <ButtonAsLink

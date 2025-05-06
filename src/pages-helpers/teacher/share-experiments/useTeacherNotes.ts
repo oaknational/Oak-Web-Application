@@ -11,13 +11,17 @@ import {
 } from "./shareExperimentTypes";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import { LessonReleaseCohortValueType } from "@/browser-lib/avo/Avo";
 
 export type UseTeacherNotesProps = {
   lessonPath?: string | null;
   sidKey: string | null;
   shareId: string | null;
   enabled: boolean;
-  curriculumTrackingProps: CurriculumTrackingProps;
+  curriculumTrackingProps: CurriculumTrackingProps & {
+    lessonReleaseDate: string;
+    lessonReleaseCohort: LessonReleaseCohortValueType;
+  };
 };
 
 export const useTeacherNotes = ({

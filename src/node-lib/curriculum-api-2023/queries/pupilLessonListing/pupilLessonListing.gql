@@ -3,7 +3,7 @@ query pupilLessonListing(
   $unitSlug: String!
   $baseSlug: String!
 ) {
-  browseData: published_mv_synthetic_unitvariant_lessons_by_year_12_0_0(
+  browseData: published_mv_synthetic_unitvariant_lessons_by_year_14_0_0(
     where: {
       programme_slug: { _eq: $programmeSlug }
       unit_slug: { _eq: $unitSlug }
