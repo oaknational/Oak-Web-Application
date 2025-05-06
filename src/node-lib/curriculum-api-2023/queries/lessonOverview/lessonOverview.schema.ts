@@ -7,10 +7,9 @@ import {
 import {
   baseLessonOverviewSchema,
   lessonPathwaySchema,
-} from "../../shared.schema";
-import { QuizQuestion } from "../pupilLesson/pupilLesson.schema";
-import { mediaClipsRecordCamelSchema } from "../lessonMediaClips/lessonMediaClips.schema";
-
+} from "@/node-lib/curriculum-api-2023/shared.schema";
+import { QuizQuestion } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { mediaClipsRecordCamelSchema } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
 export const lessonContentSchema = lessonContentSchemaFull.omit({
@@ -69,6 +68,7 @@ export const lessonOverviewSchema = baseLessonOverviewSchema.extend({
   pathways: z.array(lessonPathwaySchema),
   additionalFiles: z.array(z.string()).nullable(),
   lessonMediaClips: mediaClipsRecordCamelSchema.nullable(),
+  lessonReleaseDate: z.string().nullable(),
 });
 
 export type LessonOverviewPageData = z.infer<typeof lessonOverviewSchema>;

@@ -112,7 +112,7 @@ describe("PupilSubjectListing", () => {
     expect(
       within(furtherListItems[0]).getByText("Biology"),
     ).toBeInTheDocument();
-    const img = within(furtherListItems[0]).queryByAltText("question-mark");
+    const img = within(furtherListItems[0]).queryByTestId("question-mark");
     expect(img).toBeInTheDocument();
   });
 
@@ -162,7 +162,7 @@ describe("PupilSubjectListing", () => {
 
     const lists = screen.getAllByRole("list");
     const furtherListItems = within(lists[1]!).getAllByRole("listitem");
-    const img = within(furtherListItems[0]!).getByAltText("question-mark");
+    const img = within(furtherListItems[0]!).getByTestId("question-mark");
     expect(img).toBeInTheDocument();
   });
 });

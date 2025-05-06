@@ -15,7 +15,7 @@ exports[`Fieldset all options 1`] = `
           data-testid="inline-banner-icon"
         >
           <img
-            alt="info"
+            alt=""
             class="sc-dcJsrY beWtwI"
             data-nimg="fill"
             decoding="async"
@@ -44,7 +44,7 @@ exports[`Fieldset all options 1`] = `
           data-testid="inline-banner-icon"
         >
           <img
-            alt="info"
+            alt=""
             class="sc-dcJsrY beWtwI"
             data-nimg="fill"
             decoding="async"
@@ -73,7 +73,7 @@ exports[`Fieldset all options 1`] = `
           data-testid="inline-banner-icon"
         >
           <img
-            alt="success"
+            alt=""
             class="sc-dcJsrY beWtwI"
             data-nimg="fill"
             decoding="async"
@@ -102,7 +102,7 @@ exports[`Fieldset all options 1`] = `
           data-testid="inline-banner-icon"
         >
           <img
-            alt="warning"
+            alt=""
             class="sc-dcJsrY beWtwI"
             data-nimg="fill"
             decoding="async"
@@ -131,7 +131,7 @@ exports[`Fieldset all options 1`] = `
           data-testid="inline-banner-icon"
         >
           <img
-            alt="error"
+            alt=""
             class="sc-dcJsrY cGPxx"
             data-nimg="fill"
             decoding="async"
@@ -167,7 +167,7 @@ exports[`Fieldset default options 1`] = `
           data-testid="inline-banner-icon"
         >
           <img
-            alt="info"
+            alt=""
             class="sc-dcJsrY beWtwI"
             data-nimg="fill"
             decoding="async"

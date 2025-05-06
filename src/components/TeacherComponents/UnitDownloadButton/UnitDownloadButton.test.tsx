@@ -44,9 +44,11 @@ describe("UnitDownloadButton", () => {
         setDownloadError={jest.fn()}
         setDownloadInProgress={jest.fn()}
         setShowDownloadMessage={jest.fn()}
+        setShowIncompleteMessage={jest.fn()}
         downloadInProgress={false}
         onDownloadSuccess={jest.fn()}
         unitFileId="mockSlug"
+        showNewTag
       />,
     );
     const button = screen.getByText("Complete sign up to download this unit");
@@ -58,9 +60,11 @@ describe("UnitDownloadButton", () => {
         setDownloadError={jest.fn()}
         setDownloadInProgress={jest.fn()}
         setShowDownloadMessage={jest.fn()}
+        setShowIncompleteMessage={jest.fn()}
         downloadInProgress={false}
         onDownloadSuccess={jest.fn()}
         unitFileId="mockSlug"
+        showNewTag
       />,
     );
     const button = screen.getByText("Download (.zip 1.2MB)");
@@ -72,9 +76,11 @@ describe("UnitDownloadButton", () => {
         setDownloadError={jest.fn()}
         setDownloadInProgress={jest.fn()}
         setShowDownloadMessage={jest.fn()}
+        setShowIncompleteMessage={jest.fn()}
         downloadInProgress={true}
         onDownloadSuccess={jest.fn()}
         unitFileId="mockSlug"
+        showNewTag
       />,
     );
     const button = screen.getByText("Downloading...");
@@ -89,9 +95,11 @@ describe("UnitDownloadButton", () => {
         setDownloadError={jest.fn()}
         setDownloadInProgress={jest.fn()}
         setShowDownloadMessage={jest.fn()}
+        setShowIncompleteMessage={jest.fn()}
         downloadInProgress={false}
         onDownloadSuccess={jest.fn()}
         unitFileId="mockSlug"
+        showNewTag
       />,
     );
     const button = screen.getByText("Download unit");
@@ -104,9 +112,11 @@ describe("UnitDownloadButton", () => {
         setDownloadError={setDownloadError}
         setDownloadInProgress={jest.fn()}
         setShowDownloadMessage={jest.fn()}
+        setShowIncompleteMessage={jest.fn()}
         downloadInProgress={false}
         onDownloadSuccess={jest.fn()}
         unitFileId="mockSlug"
+        showNewTag
       />,
     );
     setDownloadError(true);
@@ -119,9 +129,11 @@ describe("UnitDownloadButton", () => {
         setDownloadError={jest.fn()}
         setDownloadInProgress={jest.fn()}
         setShowDownloadMessage={jest.fn()}
+        setShowIncompleteMessage={jest.fn()}
         downloadInProgress={false}
         onDownloadSuccess={onDownloadSuccess}
         unitFileId="mockSlug"
+        showNewTag
       />,
     );
     onDownloadSuccess();

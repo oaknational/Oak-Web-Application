@@ -2,10 +2,11 @@ import { z } from "zod";
 import {
   actionsSchema,
   syntheticUnitvariantLessonsSchema,
+  mediaClipCycleSchema,
+  mediaClipsRecordSchema,
 } from "@oaknational/oak-curriculum-schema";
 
-import { zodToCamelCase } from "../../helpers/zodToCamelCase";
-
+import { zodToCamelCase } from "@/node-lib/curriculum-api-2023/helpers/zodToCamelCase";
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
 export const lessonBrowseDataSchema = syntheticUnitvariantLessonsSchema.omit({
@@ -16,39 +17,44 @@ export type LessonBrowseData = ConvertKeysToCamelCase<
   z.infer<typeof lessonBrowseDataSchema>
 >;
 
-export const clipMediaObjectSchema = z.object({
+export const mediaClipObjectCamelCaseSchema = z.object({
   url: z.string(),
   type: z.string(),
   bytes: z.number(),
   format: z.string(),
-  duration: z.number().nullable().optional(),
   displayName: z.string(),
   resourceType: z.string(),
 });
 
-export const clipVideoObjectSchema = z.object({
-  duration: z.number().nullable(),
-  muxAssetId: z.string(),
-  playbackIds: z.array(
-    z.object({
-      id: z.string(),
-      policy: z.string(),
-    }),
-  ),
-  muxPlaybackId: z.string(),
-});
+export const videoClipObjectCamelCaseSchema = z
+  .object({
+    duration: z.number().nullable().optional(),
+    muxAssetId: z.string(),
+    playbackIds: z.array(
+      z.object({
+        id: z.string(),
+        policy: z.string(),
+      }),
+    ),
+    muxPlaybackId: z.string(),
+  })
+  .nullable();
 
-export const mediaClipCycleCamel = z.object({
-  // Test data had mixture of numbers and strings
+export const mediaClipCycleCamelSchema = z.object({
   order: z.number().or(z.string()),
   mediaId: z.number().or(z.string()),
   videoId: z.number().nullable(),
   mediaType: z.string().nullish(),
   customTitle: z.string().nullish(),
-  mediaObject: clipMediaObjectSchema,
-  videoObject: clipVideoObjectSchema,
+  mediaObject: mediaClipObjectCamelCaseSchema,
+  videoObject: videoClipObjectCamelCaseSchema,
   transcriptSentences: z.array(z.string()).nullish(),
 });
+
+export const mediaClipsRecordCamelSchema = z.record(
+  z.string(),
+  z.array(mediaClipCycleCamelSchema),
+);
 
 const lessonPathwaySchema = z.object({
   programmeSlug: z.string(),
@@ -65,10 +71,6 @@ const lessonPathwaySchema = z.object({
   tierTitle: z.string().nullish(),
 });
 
-export const mediaClipsRecordCamelSchema = z.record(
-  z.string(),
-  z.array(mediaClipCycleCamel),
-);
 const baseLessonMediaClipsPageSchema = z.object({
   lessonSlug: z.string(),
   lessonTitle: z.string(),
@@ -76,6 +78,7 @@ const baseLessonMediaClipsPageSchema = z.object({
   mediaClips: mediaClipsRecordCamelSchema,
   lessonOutline: z.array(z.object({ lessonOutline: z.string() })),
   actions: zodToCamelCase(actionsSchema).nullish(),
+  lessonReleaseDate: z.string(),
 });
 
 export const lessonMediaClipsSchema = baseLessonMediaClipsPageSchema.extend({
@@ -88,11 +91,10 @@ export const canonicalLessonMediaClipsSchema =
   });
 
 export type MediaClipListCamelCase = ConvertKeysToCamelCase<
-  z.infer<typeof mediaClipsRecordCamelSchema>
+  z.infer<typeof mediaClipsRecordSchema>
 >;
-
 export type MediaClip = ConvertKeysToCamelCase<
-  z.infer<typeof mediaClipCycleCamel>
+  z.infer<typeof mediaClipCycleSchema>
 >;
 
 // Page Schemas

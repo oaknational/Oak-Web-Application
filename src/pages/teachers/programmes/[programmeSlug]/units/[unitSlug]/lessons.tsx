@@ -5,14 +5,18 @@ import {
   GetStaticPropsResult,
   GetStaticPathsResult,
 } from "next";
+import { useUser } from "@clerk/nextjs";
 import {
   OakGrid,
   OakGridArea,
   OakThemeProvider,
   oakDefaultTheme,
   OakMaxWidth,
+  OakInlineRegistrationBanner,
+  OakHeading,
+  OakLink,
+  OakSpan,
 } from "@oaknational/oak-components";
-import { useUser } from "@clerk/nextjs";
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -41,6 +45,9 @@ import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/us
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
 import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
+import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
+import { resolveOakHref } from "@/common-lib/urls";
+import { useTeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/useTeacherShareButton";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -56,10 +63,16 @@ export type LessonListingPageProps = {
  */
 function getHydratedLessonsFromUnit(unit: LessonListingPageData) {
   const { lessons, ...rest } = unit;
-  return lessons.map((lesson) => ({
-    ...lesson,
-    ...rest,
-  }));
+  return lessons.map((lesson) => {
+    if (lesson.isUnpublished) {
+      return lesson;
+    } else {
+      return {
+        ...lesson,
+        ...rest,
+      };
+    }
+  });
 }
 
 const LessonListPage: NextPage<LessonListingPageProps> = ({
@@ -75,10 +88,10 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     programmeSlug,
     subjectSlug,
     actions,
+    pathwayTitle,
+    tierTitle,
+    examBoardTitle,
   } = curriculumData;
-
-  const [showExpiredLessonsBanner, setShowExpiredLessonsBanner] =
-    useState<boolean>(actions?.displayExpiringBanner ?? false);
 
   const unitListingHref = `/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/programmes`;
   const { shareUrl, browserUrl, shareActivated } = useShareExperiment({
@@ -93,6 +106,10 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       subjectTitle,
       keyStageSlug,
       keyStageTitle: keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
+      lessonReleaseCohort: isSlugLegacy(programmeSlug)
+        ? "2020-2023"
+        : "2023-2026",
+      lessonReleaseDate: "unreleased",
     },
     overrideExistingShareId: true,
   });
@@ -103,17 +120,24 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     }
   }, [browserUrl]);
 
+  const { copiedComponent, handleClick } = useTeacherShareButton({
+    shareUrl,
+    shareActivated,
+  });
+
   const teacherShareButton = (
     <TeacherShareButton
       variant="primary"
+      handleClick={handleClick}
       shareUrl={shareUrl}
-      shareActivated={shareActivated}
-      label="Share unit with colleague"
+      label="Share"
     />
   );
 
   const lessons = getHydratedLessonsFromUnit(curriculumData);
-  const hasNewContent = lessons[0]?.lessonCohort === NEW_COHORT;
+  const hasNewContent = lessons.some(
+    (lesson) => !lesson.isUnpublished && lesson.lessonCohort === NEW_COHORT,
+  );
   const paginationProps = usePagination({
     totalResults: lessons.length,
     pageSize: RESULTS_PER_PAGE,
@@ -145,11 +169,18 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         lessonName: props.lessonTitle,
         lessonSlug: props.lessonSlug,
         unitName: unitTitle,
-        unitSlug: unitSlug,
-        keyStageSlug: keyStageSlug,
+        unitSlug,
+        keyStageSlug,
         keyStageTitle: keyStageTitle as KeyStageTitleValueType,
         yearGroupName: props.yearTitle,
         yearGroupSlug: props.yearSlug,
+        pathway: pathwayTitle,
+        examBoard: examBoardTitle,
+        tierName: tierTitle,
+        lessonReleaseCohort: isSlugLegacy(programmeSlug)
+          ? "2020-2023"
+          : "2023-2026",
+        lessonReleaseDate: props.lessonReleaseDate ?? "unreleased",
       });
     }
   };
@@ -157,6 +188,27 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
   const isNew = hasNewContent ?? false;
   const { isSignedIn } = useUser();
   const showRiskAssessmentBanner = !!actions?.isPePractical && isSignedIn;
+
+  const unpublishedLessonCount = lessons.filter(
+    (lesson) => lesson.isUnpublished,
+  ).length;
+
+  const lessonCountHeader = unpublishedLessonCount
+    ? `${lessons.length - unpublishedLessonCount}/${lessons.length} lessons available`
+    : `Lessons (${lessons.length})`;
+
+  const newsletterFormProps = useNewsletterForm();
+
+  const getSlugifiedTitle = (title: string) => {
+    return title
+      .replaceAll(/\s+/g, "-")
+      .replaceAll(/[^\dA-Za-z-]/g, "")
+      .replaceAll(/-+/g, "-")
+      .toLowerCase();
+  };
+
+  // stub save implementation
+  const [unitSaved, setUnitSaved] = useState<boolean>(false);
 
   return (
     <AppLayout
@@ -220,11 +272,8 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           hasCurriculumDownload={isSlugLegacy(programmeSlug)}
           {...curriculumData}
           shareButton={teacherShareButton}
-          unitDownloadFileId={
-            unitSlug.endsWith(unitvariantId.toString())
-              ? unitSlug
-              : `${unitSlug}-${unitvariantId}`
-          }
+          copiedComponent={copiedComponent}
+          unitDownloadFileId={`${getSlugifiedTitle(unitTitle)}-${unitvariantId}`}
           onUnitDownloadSuccess={() =>
             track.unitDownloadInitiated({
               platform: "owa",
@@ -234,14 +283,17 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               eventVersion: "2.0.0",
               analyticsUseCase: "Teacher",
               unitName: unitTitle,
-              unitSlug: unitSlug,
-              keyStageSlug: keyStageSlug,
+              unitSlug,
+              keyStageSlug,
               keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-              subjectSlug: subjectSlug,
-              subjectTitle: subjectTitle,
+              subjectSlug,
+              subjectTitle,
             })
           }
           showRiskAssessmentBanner={showRiskAssessmentBanner}
+          isIncompleteUnit={unpublishedLessonCount > 0}
+          isUnitSaved={unitSaved}
+          onSave={() => setUnitSaved((prev) => !prev)}
         />
         <OakMaxWidth $ph={"inner-padding-m"}>
           <OakGrid>
@@ -249,9 +301,51 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               $colSpan={[12, 9]}
               $mt={["space-between-s", "space-between-m2"]}
             >
+              {unpublishedLessonCount > 0 && (
+                <OakInlineRegistrationBanner
+                  onSubmit={(email) => {
+                    const emailPattern =
+                      /^[A-Z0-9._%+-]{1,64}@[A-Z0-9-]+(?:\.[A-Z0-9-]+){0,2}\.[A-Z]{2,64}$/i;
+                    const isValidEmail = emailPattern.test(email);
+                    if (!isValidEmail) {
+                      throw new Error("Please enter a valid email address");
+                    }
+                    return newsletterFormProps.onSubmit({
+                      email,
+                      userRole: "Teacher",
+                    });
+                  }}
+                  bodyText={
+                    <OakSpan $font="body-1">
+                      We’re busy creating the final lessons. We’ll let you know
+                      when the rest of this unit is ready - and send you other
+                      helpful content and resources. Unsubscribe at any time.
+                      Read our{" "}
+                      <OakLink
+                        href={resolveOakHref({
+                          page: "legal",
+                          legalSlug: "privacy-policy",
+                        })}
+                      >
+                        privacy policy
+                      </OakLink>
+                      .
+                    </OakSpan>
+                  }
+                  headerText={
+                    <OakHeading
+                      tag="h2"
+                      $font={["heading-5", "heading-4", "heading-4"]}
+                    >
+                      Full unit on the way!
+                    </OakHeading>
+                  }
+                />
+              )}
               <LessonList
                 {...curriculumData}
                 lessonCount={lessons.length}
+                lessonCountHeader={lessonCountHeader}
                 currentPageItems={currentPageItems}
                 paginationProps={paginationProps}
                 headingTag={"h2"}
@@ -259,12 +353,9 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
                 onClick={trackLessonSelected}
                 expiringBanner={
                   <ExpiringBanner
-                    isOpen={showExpiredLessonsBanner}
+                    isOpen={actions?.displayExpiringBanner ?? false}
                     isResourcesMessage={true}
                     onwardHref={unitListingHref}
-                    onClose={() => {
-                      setShowExpiredLessonsBanner(false);
-                    }}
                   />
                 }
               />

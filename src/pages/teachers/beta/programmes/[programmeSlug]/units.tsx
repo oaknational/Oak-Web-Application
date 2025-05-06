@@ -106,10 +106,17 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     yearGroup: yearGroupSlug,
     units,
   });
+
+  const filteredAndSortedUnits = filteredUnits.sort((a, b) => {
+    const aGroupUnitsAs = a[0]?.groupUnitsAs ?? "";
+    const bGroupUnitsAs = b[0]?.groupUnitsAs ?? "";
+    return bGroupUnitsAs.localeCompare(aGroupUnitsAs);
+  });
+
   const paginationProps = usePagination({
-    totalResults: filteredUnits.length,
+    totalResults: filteredAndSortedUnits.length,
     pageSize: RESULTS_PER_PAGE,
-    items: filteredUnits,
+    items: filteredAndSortedUnits,
   });
 
   const {
@@ -155,14 +162,15 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
         analyticsUseCase: "Teacher",
         unitName: props.title,
         unitSlug: props.slug,
-        keyStageSlug: keyStageSlug,
+        keyStageSlug,
         keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-        subjectTitle: subjectTitle,
-        subjectSlug: subjectSlug,
+        subjectTitle,
+        subjectSlug,
         yearGroupName: props.yearTitle,
         yearGroupSlug: (props as UnitListItemProps).year,
         tierName: tier ?? null,
         examBoard: examBoardTitle,
+        pathway: pathwayTitle,
       });
     }
   };
@@ -172,7 +180,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
       <OakBox $display={["auto", "auto", "none"]}>
         <MobileUnitFilters
           {...curriculumData}
-          numberOfUnits={filteredUnits.length}
+          numberOfUnits={filteredAndSortedUnits.length}
           browseRefined={track.browseRefined}
           setSelectedThemeSlug={setSelectedThemeSlug}
           learningThemesFilterId={learningThemesFilterId}
@@ -205,7 +213,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
         $position={"relative"}
       >
         <OakHeading $font={"heading-5"} tag={"h2"}>
-          {`Units (${filteredUnits.length})`}
+          {`Units (${filteredAndSortedUnits.length})`}
         </OakHeading>
       </OakFlex>
     );
@@ -334,7 +342,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                   {...curriculumData}
                   currentPageItems={currentPageItems}
                   paginationProps={paginationProps}
-                  filteredUnits={filteredUnits}
+                  filteredUnits={filteredAndSortedUnits}
                   onClick={(props) =>
                     trackUnitSelected(
                       props,

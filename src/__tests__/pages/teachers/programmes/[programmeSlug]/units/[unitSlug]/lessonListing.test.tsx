@@ -1,5 +1,6 @@
 import { GetStaticPropsContext, PreviewData } from "next";
 import userEvent from "@testing-library/user-event";
+import { screen } from "@testing-library/dom";
 
 import LessonListPage, {
   getStaticProps,
@@ -8,7 +9,9 @@ import LessonListPage, {
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import lessonListingFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonListing.fixture";
+import lessonListingFixture, {
+  lessonsWithUnpublishedContent,
+} from "@/node-lib/curriculum-api-2023/fixtures/lessonListing.fixture";
 import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__/index";
 
 const render = renderWithProviders();
@@ -32,6 +35,10 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 }));
 
 global.fetch = jest.fn();
+
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagEnabled: jest.fn().mockReturnValue(true),
+}));
 
 describe("Lesson listing page", () => {
   test("it renders the unit title as page title", () => {
@@ -58,6 +65,29 @@ describe("Lesson listing page", () => {
       "https://mockdownloads.com/api/unit/adding-surds-a57d-1/check-files",
     );
     expect(lessonCount).toBeInTheDocument();
+  });
+
+  test("it renders the correct number of lessons when there are unpublished lessons", () => {
+    render(
+      <LessonListPage
+        curriculumData={lessonListingFixture({
+          lessons: lessonsWithUnpublishedContent,
+        })}
+      />,
+    );
+
+    const lessonCount = screen.getByText(`3/5 lessons available`);
+    expect(lessonCount).toBeInTheDocument();
+  });
+
+  test("it renders the correct text for the save button", async () => {
+    render(<LessonListPage curriculumData={lessonListingFixture({})} />);
+    const saveButton = screen.getByTestId("save-unit-button");
+    expect(saveButton).toBeInTheDocument();
+    expect(saveButton).toHaveTextContent("Save");
+
+    await userEvent.click(saveButton);
+    expect(saveButton).toHaveTextContent("Saved");
   });
 
   describe("SEO", () => {
@@ -179,6 +209,11 @@ describe("Lesson listing page", () => {
         keyStageTitle: "Key Stage 4",
         yearGroupName: "Year 10",
         yearGroupSlug: "year-10",
+        tierName: null,
+        examBoard: null,
+        lessonReleaseCohort: "2023-2026",
+        lessonReleaseDate: "2025-09-29T14:00:00.000Z",
+        pathway: null,
       });
     });
   });

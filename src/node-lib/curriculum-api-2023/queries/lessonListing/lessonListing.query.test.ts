@@ -1,4 +1,7 @@
-import { syntheticUnitvariantLessonsByKsFixture } from "@oaknational/oak-curriculum-schema";
+import {
+  lessonDataFixture,
+  syntheticUnitvariantLessonsByKsFixture,
+} from "@oaknational/oak-curriculum-schema";
 
 import sdk from "../../sdk";
 
@@ -27,7 +30,16 @@ describe("lessonListing()", () => {
         ...sdk,
         lessonListing: jest.fn(() =>
           Promise.resolve({
-            lessons: [syntheticUnitvariantLessonsByKsFixture()],
+            lessons: [
+              syntheticUnitvariantLessonsByKsFixture({
+                overrides: {
+                  lesson_data: {
+                    ...lessonDataFixture(),
+                    lesson_release_date: "2023-01-01T00:00:00.000Z",
+                  },
+                },
+              }),
+            ],
           }),
         ),
       })({
@@ -69,6 +81,8 @@ describe("lessonListing()", () => {
             orderInUnit: 1,
             lessonCohort: "2023-2024",
             actions: null,
+            isUnpublished: false,
+            lessonReleaseDate: "2023-01-01T00:00:00.000Z",
           },
         ],
       });
@@ -77,12 +91,17 @@ describe("lessonListing()", () => {
       const lessonListingFixture2 = syntheticUnitvariantLessonsByKsFixture({
         overrides: {
           order_in_unit: 2,
+          static_lesson_list: [
+            { slug: "lesson-slug-2", title: "lesson-title-2", order: 2 },
+            { slug: "lesson-slug", title: "lesson-title", order: 1 },
+          ],
+          lesson_slug: "lesson-slug-2",
           lesson_data: {
             lesson_id: 1,
             lesson_uid: "lesson-uid",
             title: "lesson-title-2",
             description: "lesson-description-2",
-            slug: "lesson-slug",
+            slug: "lesson-slug-2",
             pupil_lesson_outcome: "pupil-lesson-outcome",
             key_learning_points: [{}],
             equipment_and_resources: null,
@@ -105,18 +124,31 @@ describe("lessonListing()", () => {
             updated_at: "2023-01-01T00:00:00.000Z",
             deprecated_fields: null,
             expiration_date: null,
+            lesson_release_date: "2023-01-01T00:00:00.000Z",
           },
         },
       });
-
+      const lessonListingFixture = syntheticUnitvariantLessonsByKsFixture({
+        overrides: {
+          static_lesson_list: [
+            {
+              slug: "lesson-slug-2",
+              title: "lesson-title-2",
+              order: 2,
+            },
+            { slug: "lesson-slug", title: "lesson-title", order: 1 },
+          ],
+          lesson_data: {
+            ...lessonDataFixture(),
+            lesson_release_date: "2023-01-01T00:00:00.000Z",
+          },
+        },
+      });
       const res = await lessonListing({
         ...sdk,
         lessonListing: jest.fn(() =>
           Promise.resolve({
-            lessons: [
-              lessonListingFixture2,
-              syntheticUnitvariantLessonsByKsFixture(),
-            ],
+            lessons: [lessonListingFixture2, lessonListingFixture],
           }),
         ),
       })({
@@ -185,6 +217,7 @@ describe("lessonListing()", () => {
             expired: false,
             hasCopyrightMaterial: false,
             lessonCohort: "2023-2024",
+            lessonReleaseDate: null,
             lessonSlug: "lesson-slug",
             lessonTitle: "lesson-title",
             orderInUnit: 1,
@@ -194,6 +227,7 @@ describe("lessonListing()", () => {
             videoCount: 0,
             worksheetCount: 0,
             actions: null,
+            isUnpublished: false,
           },
         ],
         programmeSlug: "programme-slug",
@@ -238,6 +272,7 @@ describe("lessonListing()", () => {
             expired: false,
             hasCopyrightMaterial: false,
             lessonCohort: "2023-2024",
+            lessonReleaseDate: null,
             lessonSlug: "lesson-slug",
             lessonTitle: "lesson-title",
             orderInUnit: 1,
@@ -247,6 +282,7 @@ describe("lessonListing()", () => {
             videoCount: 0,
             worksheetCount: 0,
             actions: null,
+            isUnpublished: false,
           },
         ],
         programmeSlug: "programme-slug",
@@ -284,6 +320,8 @@ describe("lessonListing()", () => {
           videoCount: 0,
           worksheetCount: 0,
           actions: null,
+          isUnpublished: false,
+          lessonReleaseDate: null,
         },
       ]);
     });

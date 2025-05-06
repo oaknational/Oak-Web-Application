@@ -1,7 +1,7 @@
-import { LessonOverviewPageData } from "../queries/lessonOverview/lessonOverview.schema";
-
 import lessonMediaClipsFixtures from "./lessonMediaClips.fixture";
 import { quizQuestions } from "./quizElements.fixture";
+
+import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 
 const lessonOverviewFixture = (
   partial?: Partial<LessonOverviewPageData>,
@@ -106,6 +106,7 @@ const lessonOverviewFixture = (
     lessonMediaClips: lessonMediaClipsFixtures().mediaClips,
     additionalFiles: ["file1", "file2"],
     lessonOutline: [{ lessonOutline: "This is the lesson outline" }],
+    lessonReleaseDate: "2024-09-29T14:00:00.000Z",
     ...partial,
   };
 };

@@ -3,7 +3,7 @@ query programmeListing(
   $subjectSlug: String
   $isLegacy: Boolean
 ) {
-  programmes: published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0(
+  programmes: published_mv_synthetic_unitvariant_lessons_by_keystage_17_0_0(
     where: {
       _and: [
         { programme_fields: { _contains: { keystage_slug: $keyStageSlug } } }

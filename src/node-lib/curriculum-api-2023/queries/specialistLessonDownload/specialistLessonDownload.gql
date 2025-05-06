@@ -3,7 +3,7 @@ query specialistLessonDownloads(
   $unitSlug: String
   $lessonSlug: String
 ) {
-  specialistLessonDownloads: published_mv_specialist_1_0_3(
+  specialistLessonDownloads: published_mv_specialist_1_0_4(
     where: {
       unit_slug: { _eq: $unitSlug }
       synthetic_programme_slug: { _eq: $programmeSlug }
@@ -26,6 +26,7 @@ query specialistLessonDownloads(
     presentation_url
     slidedeck_asset_object
     starter_quiz_asset_object
+    lesson_release_date
   }
   restrictions: published_mv_lesson_content_published_5_0_0(
     where: { lesson_slug: { _eq: $lessonSlug } }

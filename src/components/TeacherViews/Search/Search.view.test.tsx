@@ -19,13 +19,13 @@ jest.mock("@mux/mux-player-react/lazy", () => {
 });
 const searchRefined = jest.fn();
 
-const createSearchResult = (): SearchHit => {
+const createSearchResult = (legacy?: boolean): SearchHit => {
   return {
     _id: "",
     _index: "",
     _score: 54,
     highlight: {},
-    legacy: true,
+    legacy: legacy ?? true,
     _source: {
       type: "lesson",
       lesson_description: "lesson description",
@@ -48,6 +48,40 @@ const resultsProps: Partial<SearchProps> = {
   results: [createSearchResult()],
   status: "success",
 };
+
+const pathways = [
+  {
+    programme_slug: "maths-program-1",
+    unit_slug: "algebra-unit-1",
+    unit_title: "Algebra",
+    key_stage_slug: "ks3",
+    key_stage_title: "Key stage 3",
+    subject_slug: "maths",
+    subject_title: "Mathematics",
+    tier_slug: "higher",
+    tier_title: "Higher",
+    exam_board_slug: "exam-board-1",
+    exam_board_title: "Exam Board 1",
+    year_slug: "2023",
+    year_title: "2023-2024",
+  },
+  {
+    programme_slug: "maths-program-1",
+    unit_slug: "algebra-unit-2",
+    unit_title: "Algebra",
+    key_stage_slug: "ks3",
+    key_stage_title: "Key stage 3",
+    subject_slug: "maths",
+    subject_title: "Mathematics",
+    tier_slug: "higher",
+    tier_title: "Higher",
+    exam_board_slug: "exam-board-2",
+    exam_board_title: "Exam Board 2",
+    year_slug: "2023",
+    year_title: "2023-2024",
+  },
+];
+
 const resultsPropsPathWays: Partial<SearchProps> = {
   results: [
     {
@@ -55,38 +89,7 @@ const resultsPropsPathWays: Partial<SearchProps> = {
       ...{
         _source: {
           ...createSearchResult()._source,
-          pathways: [
-            {
-              programme_slug: "maths-program-1",
-              unit_slug: "algebra-unit-1",
-              unit_title: "Algebra",
-              key_stage_slug: "ks3",
-              key_stage_title: "Key stage 3",
-              subject_slug: "maths",
-              subject_title: "Mathematics",
-              tier_slug: "higher",
-              tier_title: "Higher",
-              exam_board_slug: "exam-board-1",
-              exam_board_title: "Exam Board 1",
-              year_slug: "2023",
-              year_title: "2023-2024",
-            },
-            {
-              programme_slug: "maths-program-1",
-              unit_slug: "algebra-unit-2",
-              unit_title: "Algebra",
-              key_stage_slug: "ks3",
-              key_stage_title: "Key stage 3",
-              subject_slug: "maths",
-              subject_title: "Mathematics",
-              tier_slug: "higher",
-              tier_title: "Higher",
-              exam_board_slug: "exam-board-2",
-              exam_board_title: "Exam Board 2",
-              year_slug: "2023",
-              year_title: "2023-2024",
-            },
-          ],
+          pathways,
         },
       },
     },
@@ -185,6 +188,7 @@ const searchResultOpened = jest.fn();
 const searchJourneyInitiated = jest.fn();
 const searchResultExpanded = jest.fn();
 const searchAccessed = jest.fn();
+const searchFilterModified = jest.fn();
 
 jest.mock("@/context/Analytics/useAnalytics.ts", () => ({
   __esModule: true,
@@ -198,6 +202,8 @@ jest.mock("@/context/Analytics/useAnalytics.ts", () => ({
       searchResultOpened: (...args: unknown[]) => searchResultOpened(...args),
       searchRefined: (...args: []) => searchRefined(...args),
       searchAccessed: (...args: unknown[]) => searchAccessed(...args),
+      searchFilterModified: (...args: unknown[]) =>
+        searchFilterModified(...args),
     },
   }),
 }));
@@ -377,6 +383,8 @@ describe("Search.page.tsx", () => {
       unitName: "topic title1 ",
       unitSlug: "topic-slug",
       context: "search",
+      lessonReleaseCohort: "2020-2023",
+      lessonReleaseDate: "2020-2023",
     });
   });
   test("searchResultClicked is called when a pathway hit is clicked", async () => {
@@ -406,9 +414,57 @@ describe("Search.page.tsx", () => {
       subjectTitle: "subject title",
       unitName: "topic title1 ",
       unitSlug: "topic-slug",
+      lessonReleaseCohort: "2020-2023",
+      lessonReleaseDate: "2020-2023",
     });
   });
   test("searchResultExpanded is called when a dropdown toggle is expanded", async () => {
+    const noneLegacyResultsPropsPathWays: Partial<SearchProps> = {
+      results: [
+        {
+          ...createSearchResult(false),
+          ...{
+            _source: {
+              ...createSearchResult(false)._source,
+              pathways,
+            },
+          },
+        },
+      ],
+      status: "success",
+    };
+    const { getByText } = render(
+      <SearchComponent {...props} {...noneLegacyResultsPropsPathWays} />,
+    );
+    const dropdown = getByText("Select exam board");
+    fireEvent.click(dropdown);
+
+    expect(searchResultExpanded).toHaveBeenCalledTimes(1);
+    expect(searchResultExpanded).toHaveBeenCalledWith({
+      context: "search",
+      analyticsUseCase: "Teacher",
+      componentType: "search_result_item",
+      engagementIntent: "refine",
+      eventVersion: "2.0.0",
+      platform: "owa",
+      product: "teacher lesson resources",
+      keyStageSlug: "ks1",
+      keyStageTitle: "Key stage 1",
+      lessonName: "lesson title",
+      lessonSlug: "lesson-slug",
+      searchFilterOptionSelected: [],
+      searchRank: 1,
+      searchResultCount: 1,
+      searchResultType: "lesson",
+      subjectSlug: "subject-slug",
+      subjectTitle: "subject title",
+      unitName: "topic title1 ",
+      unitSlug: "topic-slug",
+      lessonReleaseCohort: "2023-2026",
+      lessonReleaseDate: "2023-2026",
+    });
+  });
+  test("searchResultExpanded and handles tracking for none legacy lessons", async () => {
     const { getByText } = render(
       <SearchComponent {...props} {...resultsPropsPathWays} />,
     );
@@ -436,6 +492,8 @@ describe("Search.page.tsx", () => {
       subjectTitle: "subject title",
       unitName: "topic title1 ",
       unitSlug: "topic-slug",
+      lessonReleaseCohort: "2020-2023",
+      lessonReleaseDate: "2020-2023",
     });
   });
   test("searchRefined function invoked when checked", () => {
@@ -450,7 +508,7 @@ describe("Search.page.tsx", () => {
     expect(onChange).toHaveBeenCalledTimes(1);
 
     expect(searchRefined).toHaveBeenCalledWith({
-      activeFilters: ["english"],
+      activeFilters: { subjects: "english" },
       analyticsUseCase: "Teacher",
       componentType: "filter_link",
       engagementIntent: "refine",
@@ -458,8 +516,7 @@ describe("Search.page.tsx", () => {
       platform: "owa",
       product: "teacher lesson resources",
       searchResultCount: 1,
-      filterType: null,
-      filterValue: null,
+      searchTerm: "test search term",
     });
   });
   test("skip button becomes visible when focussed", async () => {

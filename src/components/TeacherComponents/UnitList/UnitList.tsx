@@ -1,5 +1,6 @@
-import React, { FC, MouseEvent } from "react";
+import React, { FC, MouseEvent, useState } from "react";
 import { NextRouter, useRouter } from "next/router";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 import {
   OakFlex,
   OakUnitsContainer,
@@ -8,12 +9,14 @@ import {
   OakPagination,
   OakAnchorTarget,
   OakBox,
+  OakInlineBanner,
 } from "@oaknational/oak-components";
 
 import { UnitOption } from "../UnitListOptionalityCard/UnitListOptionalityCard";
 import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
 
 import { getPageItems, getProgrammeFactors } from "./helpers";
+import { UnitListLegacyBanner } from "./UnitListLegacyBanner";
 
 import {
   UnitListItemProps,
@@ -82,14 +85,21 @@ const getOptionalityUnits = (
         router.push(target.href);
       }
     };
+    const lessonCount = getUnitLessonCount({
+      lessonCount: unitOption.lessonCount,
+      expiredLessonCount: unitOption.expiredLessonCount,
+      unpublishedLessonCount: unitOption.unpublishedLessonCount,
+    });
+
     return {
       title: unitOption.title,
+      slug: unitOption.slug,
       href: resolveOakHref({
         page: "lesson-index",
         unitSlug: unitOption.slug,
         programmeSlug: unitOption.programmeSlug,
       }),
-      lessonCount: unitOption.lessonCount || 0,
+      lessonCount,
       onClick: handleClick,
     };
   });
@@ -112,6 +122,30 @@ const isUnitFirstItemRef = (
   }
 };
 
+export const getUnitLessonCount = (unit: {
+  lessonCount: number | null;
+  expiredLessonCount: number | null;
+  unpublishedLessonCount: number;
+}) => {
+  const { lessonCount, expiredLessonCount, unpublishedLessonCount } = unit;
+  let countHeader = "";
+  if (lessonCount) {
+    if (unpublishedLessonCount || expiredLessonCount) {
+      if (expiredLessonCount && expiredLessonCount > lessonCount) {
+        countHeader = `0 lessons`;
+      } else {
+        // unpublished lessons arent included in the lessonCount, but expired lessons are
+        const totalLessonCount = lessonCount + unpublishedLessonCount;
+        countHeader = `${lessonCount - (expiredLessonCount ?? 0)}/${totalLessonCount} lesson${totalLessonCount > 1 ? "s" : ""}`;
+      }
+    } else {
+      countHeader = `${lessonCount} lesson${lessonCount > 1 ? "s" : ""}`;
+    }
+  }
+
+  return countHeader;
+};
+
 const UnitList: FC<UnitListProps> = (props) => {
   const {
     units,
@@ -127,7 +161,7 @@ const UnitList: FC<UnitListProps> = (props) => {
   const linkSubject = subjectParent
     ? convertSubjectToSlug(subjectParent)
     : subjectSlug;
-  const { currentPage, pageSize, firstItemRef, paginationRoute } =
+  const { currentPage, pageSize, firstItemRef, paginationRoute, onPageChange } =
     paginationProps;
   const router = useRouter();
   const category = router.query["category"]?.toString();
@@ -135,13 +169,40 @@ const UnitList: FC<UnitListProps> = (props) => {
     category === "reading-writing-oracy"
       ? "Reading, writing & oracy"
       : category;
-  const newPageItems = getPageItems(currentPageItems, false);
-  const legacyPageItems = getPageItems(currentPageItems, true);
+  const newPageItems = getPageItems({
+    pageItems: currentPageItems,
+    pickLegacyItems: false,
+    isSwimming: false,
+  });
+  const legacyPageItems = getPageItems({
+    pageItems: currentPageItems,
+    pickLegacyItems: true,
+    isSwimming: false,
+  });
+  const swimmingPageItems = getPageItems({
+    pageItems: currentPageItems,
+    pickLegacyItems: false,
+    isSwimming: true,
+  });
 
   const { phaseSlug, keyStageSlug, examBoardSlug } = getProgrammeFactors(props);
   const indexOfFirstLegacyUnit = units
     .map((u) => isSlugLegacy(u[0]!.programmeSlug))
     .indexOf(true);
+
+  // stub implementation of saving
+  const isSaveEnabled = useFeatureFlagEnabled("teacher-save-units");
+  const [savedUnitsForUser, setSavedUnitsForUser] = useState<string[]>([]);
+
+  const onSave = (unitSlug: string) => {
+    const newSavedUnits = savedUnitsForUser.includes(unitSlug)
+      ? savedUnitsForUser.filter((u) => u !== unitSlug)
+      : [...savedUnitsForUser, unitSlug];
+    setSavedUnitsForUser(newSavedUnits);
+  };
+
+  const hasNewAndLegacyUnits: boolean =
+    !!phaseSlug && !!newPageItems.length && !!legacyPageItems.length;
 
   const getUnitCards = (
     pageItems: CurrentPageItemsProps[] | SpecialistUnit[][],
@@ -201,6 +262,8 @@ const UnitList: FC<UnitListProps> = (props) => {
               : null
           }
           optionalityUnits={getOptionalityUnits(item, onClick, router)}
+          onSave={isSaveEnabled ? onSave : undefined}
+          getIsSaved={(unitSlug) => savedUnitsForUser.includes(unitSlug)}
         />
       ) : (
         item.map((unitOption) => {
@@ -214,11 +277,17 @@ const UnitList: FC<UnitListProps> = (props) => {
             });
             router.push(e.currentTarget.href);
           };
+          const unitLessonCount = getUnitLessonCount({
+            lessonCount: unitOption.lessonCount,
+            expiredLessonCount: unitOption.expiredLessonCount,
+            unpublishedLessonCount: unitOption.unpublishedLessonCount,
+          });
+
           return (
             <OakUnitListItem
               {...props}
               {...unitOption}
-              lessonCount={String(unitOption.lessonCount)}
+              lessonCount={unitLessonCount}
               firstItemRef={
                 isUnitFirstItemRef(
                   unitOption.programmeSlug,
@@ -241,6 +310,8 @@ const UnitList: FC<UnitListProps> = (props) => {
                 unitSlug: unitOption.slug,
                 programmeSlug: unitOption.programmeSlug,
               })}
+              onSave={isSaveEnabled ? () => onSave(unitOption.slug) : undefined}
+              isSaved={savedUnitsForUser.includes(unitOption.slug)}
             />
           );
         })
@@ -279,6 +350,14 @@ const UnitList: FC<UnitListProps> = (props) => {
     legacyPageItems.length && keyStageSlug && phaseSlug ? (
       <OakUnitsContainer
         isLegacy={true}
+        banner={
+          <UnitListLegacyBanner
+            userType={"teacher"}
+            hasNewUnits={hasNewAndLegacyUnits}
+            allLegacyUnits={legacyPageItems}
+            onButtonClick={() => onPageChange(1)}
+          />
+        }
         subject={subjectSlug}
         phase={phaseSlug}
         curriculumHref={resolveOakHref({
@@ -297,18 +376,65 @@ const UnitList: FC<UnitListProps> = (props) => {
       />
     ) : null;
 
+  const SwimmingUnits = () => {
+    if (swimmingPageItems.length && keyStageSlug && phaseSlug) {
+      const title = `${swimmingPageItems[0]?.[0]?.groupUnitsAs} units (all years)`;
+      return (
+        <OakUnitsContainer
+          isLegacy={false}
+          subject={""}
+          phase={phaseSlug}
+          curriculumHref={resolveOakHref({
+            page: "curriculum-previous-downloads",
+            query: {
+              subject: linkSubject,
+              keystage: keyStageSlug,
+            },
+          })}
+          showHeader={
+            swimmingPageItems.length || indexOfFirstLegacyUnit % pageSize === 0
+              ? true
+              : false
+          }
+          unitCards={getUnitCards(swimmingPageItems)}
+          isCustomUnit={true}
+          customHeadingText={title}
+          banner={
+            <OakInlineBanner
+              isOpen={true}
+              message={
+                "Swimming and water safety lessons should be selected based on the ability and experience of your pupils."
+              }
+              type="neutral"
+              $width={"100%"}
+            />
+          }
+        />
+      );
+    } else return null;
+  };
+
   return (
     <OakFlex $flexDirection="column">
       <OakAnchorTarget id="unit-list" />
       {currentPageItems.length ? (
         isUnitListData(props) ? (
           <OakFlex $flexDirection="column" $gap="space-between-xxl">
+            <SwimmingUnits />
             <NewUnits category={modifiedCategory} />
             <LegacyUnits />
           </OakFlex>
         ) : (
           <OakUnitsContainer
             isLegacy={true}
+            banner={
+              <UnitListLegacyBanner
+                userType={"teacher"}
+                hasNewUnits={hasNewAndLegacyUnits}
+                allLegacyUnits={legacyPageItems}
+                onButtonClick={() => onPageChange(1)}
+              />
+            }
             subject={subjectSlug}
             phase={"Specialist and therapies"}
             curriculumHref={`${resolveOakHref({

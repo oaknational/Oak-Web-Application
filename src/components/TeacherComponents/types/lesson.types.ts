@@ -1,5 +1,3 @@
-import { getCommonPathway } from "../helpers/lessonHelpers/lesson.helpers";
-
 import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { SpecialistLessonOverviewData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonOverview/specialistLessonOverview.schema";
 import { LessonBase } from "@/node-lib/curriculum-api-2023/shared.schema";
@@ -21,6 +19,7 @@ export type LessonPathway = {
   examBoardTitle?: string | null;
   examBoardSlug?: string | null;
   lessonCohort?: string | null;
+  pathwayTitle?: string | null;
 };
 
 export type SpecialistLessonPathway = {
@@ -38,27 +37,10 @@ export type SpecialistLessonPathway = {
   keyStageTitle: null;
   yearTitle: null;
   examBoardSlug: null;
+  examBoardTitle: null;
+  tierTitle: null;
   subjectParent: null;
-};
-
-export const getPathway = (lesson: LessonOverviewAll) => {
-  if (lessonIsSpecialist(lesson)) {
-    return {
-      lessonSlug: lesson.lessonSlug,
-      lessonTitle: lesson.lessonTitle,
-      unitSlug: lesson.unitSlug,
-      programmeSlug: lesson.programmeSlug,
-      unitTitle: lesson.unitTitle,
-      subjectTitle: lesson.subjectTitle,
-      subjectSlug: lesson.subjectSlug,
-      developmentStageTitle: lesson.developmentStageTitle,
-      disabled: true,
-      keyStageSlug: null,
-      keyStageTitle: null,
-    } as SpecialistLessonPathway;
-  } else {
-    return getCommonPathway(lesson.isCanonical ? lesson.pathways : [lesson]);
-  }
+  pathwayTitle: null;
 };
 
 export type LessonOverviewCanonical = LessonBase & {
@@ -79,6 +61,8 @@ export type LessonOverviewInPathway = LessonBase & {
   programmeSlug: string;
   updatedAt: string;
   lessonMediaClips?: MediaClipListCamelCase | null;
+  pathwayTitle?: string | null;
+  examBoardTitle?: string | null;
 };
 
 export type LessonOverviewAll = { isSpecialist: boolean } & (
@@ -86,14 +70,3 @@ export type LessonOverviewAll = { isSpecialist: boolean } & (
   | LessonOverviewInPathway
   | SpecialistLessonOverviewData
 );
-
-export const lessonIsSpecialist = (
-  u: unknown,
-): u is SpecialistLessonOverviewData => {
-  return (
-    typeof u === "object" &&
-    u !== null &&
-    Object.prototype.hasOwnProperty.call(u, "isSpecialist") &&
-    (u as { isSpecialist: boolean }).isSpecialist === true
-  );
-};
