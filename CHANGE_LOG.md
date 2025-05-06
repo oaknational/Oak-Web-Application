@@ -1,3 +1,11 @@
+# [1.740.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.739.0...v1.740.0) (2025-05-06)
+
+
+### Features
+
+* rename folder and remaining vars ([50137ba](https://github.com/oaknational/Oak-Web-Application/commit/50137bac567572f1673c7bc49ba81a0cc75155a1))
+* rename personalisationapi to educatorapi in variables ([3da7365](https://github.com/oaknational/Oak-Web-Application/commit/3da7365567a70a547c9be6cdf889400ea807accf))
+
 # [1.739.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.738.0...v1.739.0) (2025-05-06)
 
 
