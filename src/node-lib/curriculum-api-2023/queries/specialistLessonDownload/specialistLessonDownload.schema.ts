@@ -30,6 +30,7 @@ const specialistLessonDownloadRawSchema = z.object({
   presentation_url: z.string().nullish(),
   starter_quiz_asset_object: legacyAssetObjectSchema,
   slidedeck_asset_object: legacyAssetObjectSchema,
+  lesson_release_date: z.string().nullish(),
 });
 
 export type SpecialistLessonDownloadRaw = z.infer<
@@ -66,6 +67,7 @@ export const SpecialistLessonDownloadSchema = z.object({
     geoRestricted: z.boolean().nullable(),
     loginRequired: z.boolean().nullable(),
     actions: actionsSchema.nullish(),
+    lessonReleaseDate: z.string().nullable(),
   }),
 });
 

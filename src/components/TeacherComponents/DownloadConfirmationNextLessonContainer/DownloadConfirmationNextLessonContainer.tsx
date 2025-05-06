@@ -3,14 +3,19 @@ import { OakSpan, OakHeading, OakFlex } from "@oaknational/oak-components";
 
 import DownloadConfirmationNextLessonCard from "@/components/TeacherComponents/DownloadConfirmationNextLessonCard";
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
-import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
+import { OnwardContentSelectedProperties } from "@/browser-lib/avo/Avo";
 
 type DownloadConfirmationNextLessonContainerProps = {
   programmeSlug: string;
   unitSlug: string;
   nextLessons: NextLesson[];
   unitTitle: string;
-  onwardContentSelected: TrackFns["onwardContentSelected"];
+  onwardContentSelected: (
+    properties: Omit<
+      OnwardContentSelectedProperties,
+      "lessonReleaseDate" | "lessonReleaseCohort"
+    >,
+  ) => void;
 };
 
 const DownloadConfirmationNextLessonContainer: FC<
