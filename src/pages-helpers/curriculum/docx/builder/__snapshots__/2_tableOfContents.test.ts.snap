@@ -4848,7 +4848,7 @@ exports[`2_tableOfContents without pathways 1`] = `
               w:val="28"
             ></w:sz>
           </w:rPr>
-          <w:t><![CDATA[Year 10 units (GCSE)]]></w:t>
+          <w:t><![CDATA[Year 10 units ]]></w:t>
         </w:r>
       </w:hyperlink>
     </w:p>
@@ -4880,7 +4880,7 @@ exports[`2_tableOfContents without pathways 1`] = `
               w:val="28"
             ></w:sz>
           </w:rPr>
-          <w:t><![CDATA[Year 11 units (GCSE)]]></w:t>
+          <w:t><![CDATA[Year 11 units ]]></w:t>
         </w:r>
       </w:hyperlink>
     </w:p>
