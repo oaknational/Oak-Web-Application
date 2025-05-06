@@ -88,6 +88,9 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     programmeSlug,
     subjectSlug,
     actions,
+    pathwayTitle,
+    tierTitle,
+    examBoardTitle,
   } = curriculumData;
 
   const unitListingHref = `/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/programmes`;
@@ -103,6 +106,10 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       subjectTitle,
       keyStageSlug,
       keyStageTitle: keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
+      lessonReleaseCohort: isSlugLegacy(programmeSlug)
+        ? "2020-2023"
+        : "2023-2026",
+      lessonReleaseDate: "unreleased",
     },
     overrideExistingShareId: true,
   });
@@ -162,11 +169,18 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         lessonName: props.lessonTitle,
         lessonSlug: props.lessonSlug,
         unitName: unitTitle,
-        unitSlug: unitSlug,
-        keyStageSlug: keyStageSlug,
+        unitSlug,
+        keyStageSlug,
         keyStageTitle: keyStageTitle as KeyStageTitleValueType,
         yearGroupName: props.yearTitle,
         yearGroupSlug: props.yearSlug,
+        pathway: pathwayTitle,
+        examBoard: examBoardTitle,
+        tierName: tierTitle,
+        lessonReleaseCohort: isSlugLegacy(programmeSlug)
+          ? "2020-2023"
+          : "2023-2026",
+        lessonReleaseDate: props.lessonReleaseDate ?? "unreleased",
       });
     }
   };
@@ -269,11 +283,11 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               eventVersion: "2.0.0",
               analyticsUseCase: "Teacher",
               unitName: unitTitle,
-              unitSlug: unitSlug,
-              keyStageSlug: keyStageSlug,
+              unitSlug,
+              keyStageSlug,
               keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-              subjectSlug: subjectSlug,
-              subjectTitle: subjectTitle,
+              subjectSlug,
+              subjectTitle,
             })
           }
           showRiskAssessmentBanner={showRiskAssessmentBanner}

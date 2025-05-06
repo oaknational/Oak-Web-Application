@@ -9,6 +9,7 @@ import {
   EventVersionValueType,
   ExamBoardValueType,
   KeyStageTitleValueType,
+  LessonReleaseCohortValueType,
   PathwayValueType,
   PhaseValueType,
   PlatformValueType,
@@ -47,7 +48,9 @@ type NavigationEventProps =
   | "pathway"
   | "examBoard"
   | "releaseGroup"
-  | "analyticsUseCase";
+  | "analyticsUseCase"
+  | "lessonReleaseCohort"
+  | "lessonReleaseDate";
 
 type CorePropertyEventProps =
   | "platform"
@@ -135,6 +138,8 @@ export type PupilPathwayData = {
   pathway: PathwayValueType | null | undefined;
   examBoard: ExamBoardValueType | null | undefined;
   releaseGroup: string;
+  lessonReleaseCohort: LessonReleaseCohortValueType;
+  lessonReleaseDate: string;
 };
 
 // TODO: The assumptions behind these types seem wrong. We currently have one video per lesson, but if we have multiple videos they are likely to have multiple titles, slugs, etc.
@@ -368,8 +373,8 @@ export const PupilAnalyticsProvider = ({
       }),
     lessonStarted: (args) =>
       track.lessonStarted({
-        ...additionalArgs,
         ...args,
+        ...additionalArgs,
       }),
     lessonAbandoned: (args) =>
       track.lessonAbandoned({
@@ -440,7 +445,9 @@ export const getPupilPathwayData = (
     ),
     examBoard: browseData.programmeFields.examboard,
     releaseGroup: browseData.isLegacy ? "legacy" : "2023",
-    pathway: null, // TODO: not yet implemented
+    lessonReleaseCohort: browseData.isLegacy ? "2020-2023" : "2023-2026",
+    lessonReleaseDate: browseData.lessonData.lessonReleaseDate ?? "unpublished",
+    pathway: browseData.programmeFields.pathway,
   };
 };
 

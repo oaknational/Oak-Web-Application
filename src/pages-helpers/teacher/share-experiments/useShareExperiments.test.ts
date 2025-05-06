@@ -5,6 +5,7 @@ import { getShareIdKey, createAndStoreShareId } from "./createShareId";
 import { CurriculumTrackingProps } from "./shareExperimentTypes";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import { LessonReleaseCohortValueType } from "@/browser-lib/avo/Avo";
 
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagVariantKey: jest.fn(),
@@ -33,7 +34,10 @@ interface MockLocation {
 }
 
 describe("useShareExperiments", () => {
-  const curriculumTrackingProps: CurriculumTrackingProps = {
+  const curriculumTrackingProps: CurriculumTrackingProps & {
+    lessonReleaseDate: string;
+    lessonReleaseCohort: LessonReleaseCohortValueType;
+  } = {
     lessonName: "lessonName",
     lessonSlug: "lesson-slug",
     unitName: "unitName",
@@ -42,6 +46,8 @@ describe("useShareExperiments", () => {
     subjectTitle: "subjectTitle",
     keyStageSlug: "keyStageSlug",
     keyStageTitle: "Key stage 1",
+    lessonReleaseDate: "2023-10-01",
+    lessonReleaseCohort: "2020-2023",
   };
 
   beforeEach(() => {

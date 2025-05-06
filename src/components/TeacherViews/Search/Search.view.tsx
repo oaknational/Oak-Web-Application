@@ -163,6 +163,8 @@ const Search: FC<SearchProps> = (props) => {
         searchResultType: searchHit.type,
         lessonName,
         lessonSlug,
+        lessonReleaseDate: searchHit.legacy ? "2020-2023" : "2023-2026",
+        lessonReleaseCohort: searchHit.legacy ? "2020-2023" : "2023-2026",
       });
     }
   };
@@ -198,6 +200,8 @@ const Search: FC<SearchProps> = (props) => {
             ? searchHit.buttonLinkProps.lessonSlug
             : null,
         context: "search",
+        lessonReleaseDate: searchHit.legacy ? "2020-2023" : "2023-2026",
+        lessonReleaseCohort: searchHit.legacy ? "2020-2023" : "2023-2026",
       });
     }
   };
