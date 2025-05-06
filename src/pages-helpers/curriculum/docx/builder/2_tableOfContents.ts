@@ -45,7 +45,11 @@ export default async function generate(
     ...Object.values(yearData).map((item) => {
       let typeSuffix = "";
       if (["10", "11"].includes(item.year)) {
-        typeSuffix = `(${item.type === "core" ? "Core" : "GCSE"})`;
+        if (item.type === "core") {
+          typeSuffix = "(Core)";
+        } else if (item.type === "non_core") {
+          typeSuffix = "(GCSE)";
+        }
       }
 
       const anchorId = `section_year_${item.type}-${item.year}`;
