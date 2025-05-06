@@ -510,3 +510,26 @@ export function keystageSuffixForFilter(
 
   return undefined;
 }
+
+export function getNumberOfSelectedUnits(
+  yearData: YearData,
+  filters: CurriculumFilters,
+): number {
+  let count = 0;
+
+  Object.entries(yearData).forEach(([year, yearDataItem]) => {
+    const units = yearDataItem.units;
+    const yearBasedFilters = filteringFromYears(yearDataItem!, filters);
+    console.log({ yearBasedFilters, filters });
+
+    if (units && filters.years.includes(year)) {
+      const filteredUnits = units.filter((unit: Unit) => {
+        return isVisibleUnit(yearBasedFilters, year, unit);
+      });
+
+      count += filteredUnits.length;
+    }
+  });
+
+  return count;
+}
