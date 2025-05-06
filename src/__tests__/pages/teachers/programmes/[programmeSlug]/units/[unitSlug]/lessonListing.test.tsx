@@ -49,7 +49,7 @@ describe("Lesson listing page", () => {
     const pageHeading = getByRole("heading", { level: 1 });
 
     expect(global.fetch).toHaveBeenCalledWith(
-      "https://mockdownloads.com/api/unit/adding-surds-a57d-1/check-files",
+      "https://mockdownloads.com/api/unit/adding-surds-1/check-files",
     );
     expect(pageHeading).toBeInTheDocument();
   });
@@ -62,7 +62,7 @@ describe("Lesson listing page", () => {
     const lessonCount = getByText(`Lessons (${lessonCountFixtures})`);
 
     expect(global.fetch).toHaveBeenCalledWith(
-      "https://mockdownloads.com/api/unit/adding-surds-a57d-1/check-files",
+      "https://mockdownloads.com/api/unit/adding-surds-1/check-files",
     );
     expect(lessonCount).toBeInTheDocument();
   });
@@ -96,7 +96,7 @@ describe("Lesson listing page", () => {
         <LessonListPage curriculumData={lessonListingFixture()} />,
       );
       expect(global.fetch).toHaveBeenCalledWith(
-        "https://mockdownloads.com/api/unit/adding-surds-a57d-1/check-files",
+        "https://mockdownloads.com/api/unit/adding-surds-1/check-files",
       );
       expect(seo).toEqual({
         ...mockSeoResult,
@@ -116,7 +116,7 @@ describe("Lesson listing page", () => {
         <LessonListPage curriculumData={lessonListingFixture()} />,
       );
       expect(global.fetch).toHaveBeenCalledWith(
-        "https://mockdownloads.com/api/unit/adding-surds-a57d-1/check-files",
+        "https://mockdownloads.com/api/unit/adding-surds-1/check-files",
       );
       expect(seo).toEqual({
         ...mockSeoResult,
@@ -191,7 +191,7 @@ describe("Lesson listing page", () => {
       await userEvent.click(lesson);
 
       expect(global.fetch).toHaveBeenCalledWith(
-        "https://mockdownloads.com/api/unit/adding-surds-a57d-1/check-files",
+        "https://mockdownloads.com/api/unit/adding-surds-1/check-files",
       );
       expect(lessonSelected).toHaveBeenCalledTimes(1);
       expect(lessonSelected).toHaveBeenCalledWith({
