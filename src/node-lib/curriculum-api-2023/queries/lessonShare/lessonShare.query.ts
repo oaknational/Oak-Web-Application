@@ -100,6 +100,8 @@ const lessonShareQuery =
         shareableResources,
         isLegacy: parsedModifiedBrowseData.is_legacy,
         expired: parsedRawLesson.expired,
+        lessonReleaseDate:
+          parsedModifiedBrowseData.lesson_data.lesson_release_date,
       });
 
       return lesson as T;

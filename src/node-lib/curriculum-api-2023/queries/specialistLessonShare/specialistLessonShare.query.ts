@@ -74,5 +74,6 @@ export const specialistLessonShareQuery =
       isLegacy: true,
       isSpecialist: true,
       shareableResources,
+      lessonReleaseDate: lesson.lesson_release_date ?? "unpublished",
     };
   };
