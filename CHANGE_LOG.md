@@ -1,3 +1,17 @@
+# [1.738.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.737.1...v1.738.0) (2025-05-06)
+
+
+### Bug Fixes
+
+* add missing event properties on branch ([6256d0e](https://github.com/oaknational/Oak-Web-Application/commit/6256d0ebee15e3f7a2b38923a276cfdc46d4ec50))
+
+
+### Features
+
+* add get active filters method ([785b1f1](https://github.com/oaknational/Oak-Web-Application/commit/785b1f165c348ad891d134ddc0fb6da1ed81a059))
+* update avo events and add filter tracking on filter toggle ([d2b66d6](https://github.com/oaknational/Oak-Web-Application/commit/d2b66d66293304c5371d71ecd142154098b051d7))
+* use getactivefilters in search refined tracking ([d28a7d3](https://github.com/oaknational/Oak-Web-Application/commit/d28a7d35ae573851a0f1dda629a6d07cd372ac68))
+
 ## [1.737.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.737.0...v1.737.1) (2025-05-01)
 
 
