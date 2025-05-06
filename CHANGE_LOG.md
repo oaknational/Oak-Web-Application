@@ -1,3 +1,10 @@
+## [1.740.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.740.0...v1.740.1) (2025-05-06)
+
+
+### Bug Fixes
+
+* added multiple curric partners to the docx back page ([39b58d8](https://github.com/oaknational/Oak-Web-Application/commit/39b58d8ba7af2ae0738978b0b47644613af7fb33))
+
 # [1.740.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.739.0...v1.740.0) (2025-05-06)
 
 
