@@ -19,9 +19,12 @@ import {
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
 import TagPromotional from "@/components/SharedComponents/TagPromotional";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
+import { TrackSearchModifiedProps } from "@/components/TeacherViews/Search/helpers";
+import { FilterTypeValueType } from "@/browser-lib/avo/Avo";
 
 type SearchFiltersProps = UseSearchFiltersReturnType & {
   isMobileFilter?: boolean;
+  trackSearchModified: (props: TrackSearchModifiedProps) => void;
 };
 
 const renderFilterSection = (
@@ -29,6 +32,8 @@ const renderFilterSection = (
   filters: ((ExamBoard | YearGroup | Subject) & SearchCheckBoxProps)[],
   hasIcon: boolean,
   isLast: boolean,
+  trackSeachModified: (props: TrackSearchModifiedProps) => void,
+  filterType: FilterTypeValueType,
   isMobileFilter?: boolean,
 ) => (
   <OakBox
@@ -59,6 +64,11 @@ const renderFilterSection = (
             {...filter}
             icon={hasIcon ? getValidSubjectIconName(filter.slug) : undefined}
             onChange={() => {
+              trackSeachModified({
+                checked: filter.checked,
+                filterType,
+                filterValue: filter.title,
+              });
               filter.onChange();
             }}
           />
@@ -76,6 +86,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
     examBoardFilters,
     isMobileFilter,
     legacyFilter,
+    trackSearchModified,
   } = props;
 
   return (
@@ -104,6 +115,11 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
               id={`search-filters-showNewContent:mobile:${isMobileFilter}`}
               value="new"
               onChange={() => {
+                trackSearchModified({
+                  checked: legacyFilter.checked,
+                  filterType: "Lesson Cohort filter",
+                  filterValue: "2023-2026",
+                });
                 legacyFilter.onChange();
               }}
             />
@@ -151,6 +167,11 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
                 value="Key stage filter"
                 {...keyStageFilter}
                 onChange={() => {
+                  trackSearchModified({
+                    checked: keyStageFilter.checked,
+                    filterType: "Key stage filter",
+                    filterValue: keyStageFilter.title,
+                  });
                   keyStageFilter.onChange();
                 }}
               />
@@ -164,6 +185,8 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
           yearGroupFilters,
           false,
           false,
+          trackSearchModified,
+          "Year filter",
           isMobileFilter,
         )}
         {renderFilterSection(
@@ -171,6 +194,8 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
           examBoardFilters,
           false,
           false,
+          trackSearchModified,
+          "Exam board filter",
           isMobileFilter,
         )}
         {renderFilterSection(
@@ -178,6 +203,8 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
           subjectFilters,
           false,
           true,
+          trackSearchModified,
+          "Subject filter",
           isMobileFilter,
         )}
       </>
