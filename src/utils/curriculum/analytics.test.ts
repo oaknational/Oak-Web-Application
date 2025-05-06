@@ -46,6 +46,7 @@ describe("buildUnitSequenceRefinedAnalytics", () => {
       threadTitle: null,
       threadSlug: null,
       platform: Platform.OWA,
+      pathway: null,
       product: Product.CURRICULUM_VISUALISER,
       engagementIntent: EngagementIntent.REFINE,
       componentType: ComponentType.FILTER_LINK,
@@ -160,5 +161,35 @@ describe("buildUnitSequenceRefinedAnalytics", () => {
     );
 
     expect(result.learningTier).toBe(LearningTier.HIGHER);
+  });
+
+  it("should set pathway to Core when core", () => {
+    const filtersWithCorePathway: CurriculumFilters = {
+      ...baseFilters,
+      pathways: ["core"],
+    };
+
+    const result = buildUnitSequenceRefinedAnalytics(
+      AnalyticsUseCase.TEACHER,
+      mockTrackingData,
+      filtersWithCorePathway,
+    );
+
+    expect(result.pathway).toBe("Core");
+  });
+
+  it("should set pathway to GCSE when !core", () => {
+    const filtersWithCorePathway: CurriculumFilters = {
+      ...baseFilters,
+      pathways: ["!core"],
+    };
+
+    const result = buildUnitSequenceRefinedAnalytics(
+      AnalyticsUseCase.TEACHER,
+      mockTrackingData,
+      filtersWithCorePathway,
+    );
+
+    expect(result.pathway).toBe("GCSE");
   });
 });
