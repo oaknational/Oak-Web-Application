@@ -15,7 +15,7 @@ jobs:
     # Filter out storybook deployments and temporarily Netlify deployments
     if: ${{ (github.event.deployment.ref != 'main') && (github.event.deployment_status.state == 'success') && !startsWith(github.event.deployment_status.environment, 'storybook')}}
     name: Add deploy URL to PR description
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       # Note we can't use caching here, because caching needs GITHUB_REF to be defined,
@@ -48,7 +48,7 @@ jobs:
   #   # Filter out storybook deployments and temporarily Netlify deployments
   #   if: ${{ (github.event.deployment_status.state == 'success') && !startsWith(github.event.deployment_status.environment, 'storybook')}}
   #   name: Warm Caches
-  #   runs-on: ubuntu-latest
+  #   runs-on: ubuntu-24.04
   #   steps:
   #     - uses: actions/checkout@v4
   #     - name: Use Node.js
@@ -71,7 +71,7 @@ jobs:
     # Filter out storybook deployments and temporarily Netlify deployments
     if: ${{ (github.event.deployment_status.state == 'success') && !startsWith(github.event.deployment_status.environment, 'storybook')}}
     name: Pa11y
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - uses: actions/checkout@v4
@@ -114,7 +114,7 @@ jobs:
     # Filter out storybook deployments and temporarily Netlify deployments
     if: ${{ (github.event.deployment_status.state == 'success') && !startsWith(github.event.deployment_status.environment, 'storybook')}}
     name: Percy
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - uses: actions/checkout@v4
