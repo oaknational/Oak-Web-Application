@@ -4,7 +4,7 @@ import { WebhookEvent } from "@clerk/nextjs/server";
 import { NextRequest } from "next/server";
 
 import getServerConfig from "@/node-lib/getServerConfig";
-import { getWebhookPersonalisationApi } from "@/node-lib/personalisation-api";
+import { getWebhookEducatorApi } from "@/node-lib/educator-api";
 import errorReporter from "@/common-lib/error-reporter";
 
 export async function POST(req: NextRequest) {
@@ -59,11 +59,11 @@ export async function POST(req: NextRequest) {
 
   // Insert or update user in db
   if (id && evt.type === "user.updated") {
-    const personalisationApi = await getWebhookPersonalisationApi(id);
+    const educatorApi = await getWebhookEducatorApi(id);
     const sourceApp = evt.data.public_metadata?.sourceApp;
 
     try {
-      await personalisationApi.createUser({ userId: id, sourceApp });
+      await educatorApi.createUser({ userId: id, sourceApp });
     } catch (error) {
       reportError(error, {
         message: "Failed to create user in database",
