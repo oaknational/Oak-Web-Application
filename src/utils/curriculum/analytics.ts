@@ -35,6 +35,7 @@ export function buildUnitSequenceRefinedAnalytics(
     subjectSlug: curriculumUnitsTrackingData.subjectSlug,
     threadTitle: filters.threads.length > 0 ? filters.threads[0] : null,
     threadSlug: filters.threads.length > 0 ? filters.threads[0] : null,
+    pathway: filters.pathways.length > 0 ? filters.pathways[0] : null,
     platform: Platform.OWA,
     product: Product.CURRICULUM_VISUALISER,
     engagementIntent: EngagementIntent.REFINE,
