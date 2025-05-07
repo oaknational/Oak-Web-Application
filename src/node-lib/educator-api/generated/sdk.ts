@@ -63383,7 +63383,7 @@ export type GetUserQuery = {
 
 export type GetUserContentQueryVariables = Exact<{
   userId?: InputMaybe<Scalars["String"]["input"]>;
-  programmeSlug?: InputMaybe<Scalars["String"]["input"]>;
+  contentDataWhere?: InputMaybe<Content_Bool_Exp>;
 }>;
 
 export type GetUserContentQuery = {
@@ -63430,7 +63430,7 @@ export const CreateUserListContentDocument = gql`
               data: { programme_slug: $programmeSlug, unit_slug: $unitSlug }
               on_conflict: {
                 constraint: content_programme_slug_unit_slug_key
-                update_columns: programme_slug
+                update_columns: [programme_slug, unit_slug]
               }
             }
           }
@@ -63453,12 +63453,9 @@ export const GetUserDocument = gql`
   }
 `;
 export const GetUserContentDocument = gql`
-  query getUserContent($userId: String, $programmeSlug: String) {
+  query getUserContent($userId: String, $contentDataWhere: content_bool_exp) {
     users_content(
-      where: {
-        content: { programme_slug: { _eq: $programmeSlug } }
-        user_id: { _eq: $userId }
-      }
+      where: { content: $contentDataWhere, user_id: { _eq: $userId } }
     ) {
       content {
         unit_slug

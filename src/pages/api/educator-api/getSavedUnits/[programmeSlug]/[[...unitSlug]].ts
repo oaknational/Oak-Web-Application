@@ -3,6 +3,8 @@ import { getAuth } from "@clerk/nextjs/server";
 
 import { getAuthenticatedEducatorApi } from "@/node-lib/educator-api";
 import { getUserContentResponse } from "@/node-lib/educator-api/queries/getUserContent/getUserContent.types";
+import { InputMaybe } from "@/node-lib/curriculum-api-2023/generated/sdk";
+import { Content_Bool_Exp } from "@/node-lib/educator-api/generated/sdk";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   return handleRequest(req, res);
@@ -10,21 +12,33 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
 async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
   const { userId, getToken } = getAuth(req);
-  const { programmeSlug } = req.query;
+  const { programmeSlug, unitSlug } = req.query;
 
   if (!userId) {
     return res.status(200).json([]);
   }
-  if (!programmeSlug || Array.isArray(programmeSlug)) {
+  if (
+    !programmeSlug ||
+    Array.isArray(programmeSlug) ||
+    Array.isArray(unitSlug)
+  ) {
     return res.status(400).send("Bad request");
   }
 
   const educatorApi = await getAuthenticatedEducatorApi(getToken);
 
   try {
+    const contentDataWhere: InputMaybe<Content_Bool_Exp> = {
+      programme_slug: { _eq: programmeSlug },
+    };
+
+    if (unitSlug) {
+      contentDataWhere["unit_slug"] = { _eq: unitSlug };
+    }
+
     const result = await educatorApi.getUserContent({
       userId,
-      programmeSlug,
+      contentDataWhere,
     });
 
     const parsedUnits = getUserContentResponse.parse(result);

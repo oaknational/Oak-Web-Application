@@ -1,9 +1,6 @@
-query getUserContent($userId: String, $programmeSlug: String) {
+query getUserContent($userId: String, $contentDataWhere: content_bool_exp) {
   users_content(
-    where: {
-      content: { programme_slug: { _eq: $programmeSlug } }
-      user_id: { _eq: $userId }
-    }
+    where: { content: $contentDataWhere, user_id: { _eq: $userId } }
   ) {
     content {
       unit_slug
