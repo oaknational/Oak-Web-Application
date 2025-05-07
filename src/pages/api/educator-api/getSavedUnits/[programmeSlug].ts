@@ -28,8 +28,9 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
     });
 
     const parsedUnits = getUserContentResponse.parse(result);
+
     if (parsedUnits.users_content.length === 0) {
-      return res.status(404).send("No units found");
+      return res.status(200).send([]);
     }
     const units = parsedUnits.users_content.map(
       (unit) => unit.content.unit_slug,
