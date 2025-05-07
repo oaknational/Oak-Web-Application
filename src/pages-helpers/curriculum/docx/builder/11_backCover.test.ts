@@ -10,9 +10,11 @@ describe("11_backCover", () => {
     await generate(zip, {
       data: {
         partnerBio: "testing",
-        curriculumPartner: {
-          name: "Acme Corp",
-        },
+        curriculumPartnerOverviews: [
+          { partnerBio: "", curriculumPartner: { name: "Partner1" } },
+          { partnerBio: "", curriculumPartner: { name: "Partner2" } },
+          { partnerBio: "", curriculumPartner: { name: "Partner3" } },
+        ],
       } as CombinedCurriculumData,
     });
 

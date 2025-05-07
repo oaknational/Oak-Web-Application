@@ -27,6 +27,7 @@ const baseLessonShareSchema = z.object({
   shareableResources: z.array(lessonShareResourceSchema),
   isLegacy: z.boolean(),
   expired: z.boolean().nullable(),
+  lessonReleaseDate: z.string().nullable(),
 });
 
 export const baseLessonBrowseSchema = z.object({

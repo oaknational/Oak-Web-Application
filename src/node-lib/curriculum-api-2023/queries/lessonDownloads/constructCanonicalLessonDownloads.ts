@@ -15,6 +15,7 @@ const constructCanonicalLessonDownloads = ({
   lessonSlug,
   browseData,
   isLegacy,
+  lessonReleaseDate,
   lessonCopyRight,
   restrictions,
 }: {
@@ -23,6 +24,7 @@ const constructCanonicalLessonDownloads = ({
   lessonSlug: string;
   browseData: RawSyntheticUVLesson[];
   isLegacy: boolean;
+  lessonReleaseDate: string;
   lessonCopyRight?: { copyrightInfo: string }[] | null;
   restrictions: {
     geoRestricted: boolean | null;
@@ -38,6 +40,7 @@ const constructCanonicalLessonDownloads = ({
     expired: null,
     isSpecialist: false,
     updatedAt: browseData[0]?.lesson_data.updated_at,
+    geoRestricted: restrictions.geoRestricted,
     copyrightContent: lessonCopyRight,
     actions: keysToCamelCase(browseData[0]?.actions),
   };
@@ -57,6 +60,7 @@ const constructCanonicalLessonDownloads = ({
       ...restrictions,
       pathways: [],
       isLegacy: false,
+      lessonReleaseDate,
       isSpecialist: false,
     } as LessonDownloadsCanonical,
   );

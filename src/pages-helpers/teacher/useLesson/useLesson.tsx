@@ -14,13 +14,17 @@ import {
 } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { ShareSource } from "@/pages-helpers/teacher/share-experiments/createShareId";
+import { LessonReleaseCohortValueType } from "@/browser-lib/avo/Avo";
 
 export type UseLessonProps = {
   lessonSlug: string;
   unitSlug?: string;
   programmeSlug?: string;
   source: "lesson-browse" | "lesson-canonical";
-  curriculumTrackingProps: CurriculumTrackingProps;
+  curriculumTrackingProps: CurriculumTrackingProps & {
+    lessonReleaseDate: string;
+    lessonReleaseCohort: LessonReleaseCohortValueType;
+  };
 };
 
 type UseLessonReturn = {
