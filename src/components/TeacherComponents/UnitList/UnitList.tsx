@@ -1,4 +1,4 @@
-import React, { FC, MouseEvent } from "react";
+import React, { FC, MouseEvent, useCallback, useState } from "react";
 import { NextRouter, useRouter } from "next/router";
 import { useFeatureFlagEnabled } from "posthog-js/react";
 import {
@@ -31,7 +31,8 @@ import { resolveOakHref } from "@/common-lib/urls";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { PaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
 import { convertSubjectToSlug } from "@/components/TeacherComponents/helpers/convertSubjectToSlug";
-import { useGetEducatorData } from "@/node-lib/educator-api/useGetEducatorData";
+import { useGetEducatorData } from "@/node-lib/educator-api/helpers/useGetEducatorData";
+import { postEducatorData } from "@/node-lib/educator-api/helpers/postEducatorData";
 
 export type Tier = {
   title: string;
@@ -191,17 +192,27 @@ const UnitList: FC<UnitListProps> = (props) => {
     .map((u) => isSlugLegacy(u[0]!.programmeSlug))
     .indexOf(true);
 
-  // stub implementation of saving
+  // Saving
   const isSaveEnabled = useFeatureFlagEnabled("teacher-save-units");
+  const [locallySavedUnits, setLocallySavedUnits] = useState<string[]>([]);
 
   // TODO: error handling
   const { data: savedUnits } = useGetEducatorData(
     `/api/educator-api/getSavedUnits/${props.programmeSlug}`,
   );
 
-  const onSave = (unitSlug: string) => {
-    // TODO: implement saving
-    console.log("Saving unit", unitSlug);
+  const isUnitSaved = useCallback(
+    (unitSlug: string) =>
+      savedUnits?.includes(unitSlug) || locallySavedUnits.includes(unitSlug),
+    [savedUnits, locallySavedUnits],
+  );
+
+  const onSave = async (unitSlug: string) => {
+    setLocallySavedUnits((prev) => [...prev, unitSlug]);
+    await postEducatorData(
+      `/api/educator-api/saveUnit/${props.programmeSlug}/${unitSlug}`,
+      () => setLocallySavedUnits((prev) => prev.filter((u) => u !== unitSlug)),
+    );
   };
 
   const hasNewAndLegacyUnits: boolean =
@@ -266,7 +277,7 @@ const UnitList: FC<UnitListProps> = (props) => {
           }
           optionalityUnits={getOptionalityUnits(item, onClick, router)}
           onSave={isSaveEnabled ? onSave : undefined}
-          getIsSaved={(unitSlug) => savedUnits?.includes(unitSlug)}
+          getIsSaved={isUnitSaved}
         />
       ) : (
         item.map((unitOption) => {
@@ -314,7 +325,7 @@ const UnitList: FC<UnitListProps> = (props) => {
                 programmeSlug: unitOption.programmeSlug,
               })}
               onSave={isSaveEnabled ? () => onSave(unitOption.slug) : undefined}
-              isSaved={savedUnits?.includes(unitOption.slug)}
+              isSaved={isUnitSaved(unitOption.slug)}
             />
           );
         })

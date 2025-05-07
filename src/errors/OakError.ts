@@ -33,6 +33,7 @@ const ERROR_CODES = [
   "downloads/check-files-failed",
   "onboarding/request-error",
   "oak-components/invalid-icon-name",
+  "educator-api/failed-to-fetch",
 ] as const;
 export type ErrorCode = (typeof ERROR_CODES)[number];
 
@@ -176,6 +177,10 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "oak-components/invalid-icon-name": {
     message: "Invalid icon name provided to OakIcon",
+    shouldNotify: true,
+  },
+  "educator-api/failed-to-fetch": {
+    message: "Failed to fetch data from the educator API",
     shouldNotify: true,
   },
 };
