@@ -10,6 +10,7 @@ import {
   OakAnchorTarget,
   OakBox,
   OakInlineBanner,
+  OakP,
 } from "@oaknational/oak-components";
 
 import { UnitOption } from "../UnitListOptionalityCard/UnitListOptionalityCard";
@@ -33,6 +34,7 @@ import { PaginationProps } from "@/components/SharedComponents/Pagination/usePag
 import { convertSubjectToSlug } from "@/components/TeacherComponents/helpers/convertSubjectToSlug";
 import { useGetEducatorData } from "@/node-lib/educator-api/helpers/useGetEducatorData";
 import { postEducatorData } from "@/node-lib/educator-api/helpers/postEducatorData";
+import { useOakToastContext } from "@/context/OakToast/useOakToastContext";
 
 export type Tier = {
   title: string;
@@ -207,12 +209,40 @@ const UnitList: FC<UnitListProps> = (props) => {
     [savedUnits, locallySavedUnits],
   );
 
+  const { setCurrentToastProps } = useOakToastContext();
+
   const onSave = async (unitSlug: string) => {
     setLocallySavedUnits((prev) => [...prev, unitSlug]);
+    setCurrentToastProps({
+      message: (
+        <OakP>
+          <b>Unit saved</b> to My Library
+        </OakP>
+      ),
+      variant: "green",
+      showIcon: true,
+      autoDismiss: true,
+    });
     await postEducatorData(
       `/api/educator-api/saveUnit/${props.programmeSlug}/${unitSlug}`,
-      () => setLocallySavedUnits((prev) => prev.filter((u) => u !== unitSlug)),
+      () => {
+        setLocallySavedUnits((prev) => prev.filter((u) => u !== unitSlug));
+        setCurrentToastProps({
+          message: <OakP>Something went wrong</OakP>,
+          variant: "error",
+          showIcon: false,
+          autoDismiss: true,
+        });
+      },
     );
+  };
+
+  const onSaveToggle = (unitSlug: string) => {
+    if (isUnitSaved(unitSlug)) {
+      // TODO: unsaving
+    } else {
+      onSave(unitSlug);
+    }
   };
 
   const hasNewAndLegacyUnits: boolean =
@@ -276,7 +306,7 @@ const UnitList: FC<UnitListProps> = (props) => {
               : null
           }
           optionalityUnits={getOptionalityUnits(item, onClick, router)}
-          onSave={isSaveEnabled ? onSave : undefined}
+          onSave={isSaveEnabled ? onSaveToggle : undefined}
           getIsSaved={isUnitSaved}
         />
       ) : (
@@ -324,7 +354,9 @@ const UnitList: FC<UnitListProps> = (props) => {
                 unitSlug: unitOption.slug,
                 programmeSlug: unitOption.programmeSlug,
               })}
-              onSave={isSaveEnabled ? () => onSave(unitOption.slug) : undefined}
+              onSave={
+                isSaveEnabled ? () => onSaveToggle(unitOption.slug) : undefined
+              }
               isSaved={isUnitSaved(unitOption.slug)}
             />
           );
