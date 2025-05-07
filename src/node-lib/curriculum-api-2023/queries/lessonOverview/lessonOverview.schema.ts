@@ -68,6 +68,7 @@ export const lessonOverviewSchema = baseLessonOverviewSchema.extend({
   pathways: z.array(lessonPathwaySchema),
   additionalFiles: z.array(z.string()).nullable(),
   lessonMediaClips: mediaClipsRecordCamelSchema.nullable(),
+  lessonReleaseDate: z.string().nullable(),
 });
 
 export type LessonOverviewPageData = z.infer<typeof lessonOverviewSchema>;

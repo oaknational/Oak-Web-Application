@@ -155,14 +155,15 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
         analyticsUseCase: "Teacher",
         unitName: props.title,
         unitSlug: props.slug,
-        keyStageSlug: keyStageSlug,
+        keyStageSlug,
         keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-        subjectTitle: subjectTitle,
-        subjectSlug: subjectSlug,
+        subjectTitle,
+        subjectSlug,
         yearGroupName: props.yearTitle,
         yearGroupSlug: (props as UnitListItemProps).year,
         tierName: tier ?? null,
         examBoard: examBoardTitle,
+        pathway: pathwayTitle,
       });
     }
   };

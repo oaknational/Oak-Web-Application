@@ -5,7 +5,7 @@ on:
 jobs:
   run:
     name: dump GitHub event
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - run: |
           echo GITHUB_ACTION: $GITHUB_ACTION

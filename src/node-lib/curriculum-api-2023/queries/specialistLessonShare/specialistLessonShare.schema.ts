@@ -18,6 +18,7 @@ export const specialistLessonShareQueryResponseSchema = z.object({
     subject: z.string(),
     developmentstage: z.string().nullish(),
   }),
+  lesson_release_date: z.string().nullable(),
 });
 
 export const specialistLessonShareSchema = z.object({
@@ -33,6 +34,7 @@ export const specialistLessonShareSchema = z.object({
   shareableResources: z.array(lessonShareResourceSchema),
   isLegacy: z.boolean(),
   expired: z.boolean().nullable(),
+  lessonReleaseDate: z.string().nullable(),
 });
 
 export const preselectedSpecialistShareType = z.union([
