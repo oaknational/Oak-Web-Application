@@ -1,4 +1,4 @@
-import React, { FC, MouseEvent, useCallback, useState } from "react";
+import React, { FC, MouseEvent } from "react";
 import { NextRouter, useRouter } from "next/router";
 import { useFeatureFlagEnabled } from "posthog-js/react";
 import {
@@ -10,7 +10,6 @@ import {
   OakAnchorTarget,
   OakBox,
   OakInlineBanner,
-  OakP,
 } from "@oaknational/oak-components";
 
 import { UnitOption } from "../UnitListOptionalityCard/UnitListOptionalityCard";
@@ -33,8 +32,7 @@ import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { PaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
 import { convertSubjectToSlug } from "@/components/TeacherComponents/helpers/convertSubjectToSlug";
 import { useGetEducatorData } from "@/node-lib/educator-api/helpers/useGetEducatorData";
-import { postEducatorData } from "@/node-lib/educator-api/helpers/postEducatorData";
-import { useOakToastContext } from "@/context/OakToast/useOakToastContext";
+import { useSaveUnits } from "@/hooks/useSaveUnits";
 
 export type Tier = {
   title: string;
@@ -196,54 +194,15 @@ const UnitList: FC<UnitListProps> = (props) => {
 
   // Saving
   const isSaveEnabled = useFeatureFlagEnabled("teacher-save-units");
-  const [locallySavedUnits, setLocallySavedUnits] = useState<string[]>([]);
 
   // TODO: error handling
   const { data: savedUnits } = useGetEducatorData(
     `/api/educator-api/getSavedUnits/${props.programmeSlug}`,
   );
-
-  const isUnitSaved = useCallback(
-    (unitSlug: string) =>
-      savedUnits?.includes(unitSlug) || locallySavedUnits.includes(unitSlug),
-    [savedUnits, locallySavedUnits],
+  const { onSaveToggle, isUnitSaved } = useSaveUnits(
+    savedUnits,
+    props.programmeSlug,
   );
-
-  const { setCurrentToastProps } = useOakToastContext();
-
-  const onSave = async (unitSlug: string) => {
-    setLocallySavedUnits((prev) => [...prev, unitSlug]);
-    setCurrentToastProps({
-      message: (
-        <OakP>
-          <b>Unit saved</b> to My Library
-        </OakP>
-      ),
-      variant: "green",
-      showIcon: true,
-      autoDismiss: true,
-    });
-    await postEducatorData(
-      `/api/educator-api/saveUnit/${props.programmeSlug}/${unitSlug}`,
-      () => {
-        setLocallySavedUnits((prev) => prev.filter((u) => u !== unitSlug));
-        setCurrentToastProps({
-          message: <OakP>Something went wrong</OakP>,
-          variant: "error",
-          showIcon: false,
-          autoDismiss: true,
-        });
-      },
-    );
-  };
-
-  const onSaveToggle = (unitSlug: string) => {
-    if (isUnitSaved(unitSlug)) {
-      // TODO: unsaving
-    } else {
-      onSave(unitSlug);
-    }
-  };
 
   const hasNewAndLegacyUnits: boolean =
     !!phaseSlug && !!newPageItems.length && !!legacyPageItems.length;
