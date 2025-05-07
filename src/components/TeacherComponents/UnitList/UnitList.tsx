@@ -1,4 +1,4 @@
-import React, { FC, MouseEvent, useState } from "react";
+import React, { FC, MouseEvent } from "react";
 import { NextRouter, useRouter } from "next/router";
 import { useFeatureFlagEnabled } from "posthog-js/react";
 import {
@@ -31,6 +31,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { PaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
 import { convertSubjectToSlug } from "@/components/TeacherComponents/helpers/convertSubjectToSlug";
+import { useGetEducatorData } from "@/node-lib/educator-api/useGetEducatorData";
 
 export type Tier = {
   title: string;
@@ -192,13 +193,15 @@ const UnitList: FC<UnitListProps> = (props) => {
 
   // stub implementation of saving
   const isSaveEnabled = useFeatureFlagEnabled("teacher-save-units");
-  const [savedUnitsForUser, setSavedUnitsForUser] = useState<string[]>([]);
+
+  // TODO: error handling
+  const { data: savedUnits } = useGetEducatorData(
+    `/api/educator-api/getSavedUnits/${props.programmeSlug}`,
+  );
 
   const onSave = (unitSlug: string) => {
-    const newSavedUnits = savedUnitsForUser.includes(unitSlug)
-      ? savedUnitsForUser.filter((u) => u !== unitSlug)
-      : [...savedUnitsForUser, unitSlug];
-    setSavedUnitsForUser(newSavedUnits);
+    // TODO: implement saving
+    console.log("Saving unit", unitSlug);
   };
 
   const hasNewAndLegacyUnits: boolean =
@@ -263,7 +266,7 @@ const UnitList: FC<UnitListProps> = (props) => {
           }
           optionalityUnits={getOptionalityUnits(item, onClick, router)}
           onSave={isSaveEnabled ? onSave : undefined}
-          getIsSaved={(unitSlug) => savedUnitsForUser.includes(unitSlug)}
+          getIsSaved={(unitSlug) => savedUnits?.includes(unitSlug)}
         />
       ) : (
         item.map((unitOption) => {
@@ -311,7 +314,7 @@ const UnitList: FC<UnitListProps> = (props) => {
                 programmeSlug: unitOption.programmeSlug,
               })}
               onSave={isSaveEnabled ? () => onSave(unitOption.slug) : undefined}
-              isSaved={savedUnitsForUser.includes(unitOption.slug)}
+              isSaved={savedUnits?.includes(unitOption.slug)}
             />
           );
         })
