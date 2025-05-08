@@ -177,4 +177,19 @@ describe("buildUnitSequenceRefinedAnalytics", () => {
 
     expect(result.pathway).toBe("Core");
   });
+
+  it("should set pathway to GCSE when selected", () => {
+    const filtersWithHigherTier: CurriculumFilters = {
+      ...baseFilters,
+      pathways: ["!core"],
+    };
+
+    const result = buildUnitSequenceRefinedAnalytics(
+      AnalyticsUseCase.TEACHER,
+      mockTrackingData,
+      filtersWithHigherTier,
+    );
+
+    expect(result.pathway).toBe("GCSE");
+  });
 });
