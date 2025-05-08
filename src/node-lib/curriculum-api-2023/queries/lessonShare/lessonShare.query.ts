@@ -80,7 +80,6 @@ const lessonShareQuery =
         acc.push(pathwayLesson);
         return acc;
       }, [] as LessonPathway[]);
-
       const lesson = canonicalLessonShareSchema.parse({
         shareableResources,
         isLegacy: parsedModifiedBrowseData.is_legacy,
@@ -89,6 +88,8 @@ const lessonShareQuery =
         isSpecialist: false,
         lessonSlug,
         lessonTitle: parsedRawLesson.lesson_title,
+        lessonReleaseDate:
+          parsedModifiedBrowseData.lesson_data.lesson_release_date,
       });
       return lesson as T;
     } else {
@@ -100,6 +101,8 @@ const lessonShareQuery =
         shareableResources,
         isLegacy: parsedModifiedBrowseData.is_legacy,
         expired: parsedRawLesson.expired,
+        lessonReleaseDate:
+          parsedModifiedBrowseData.lesson_data.lesson_release_date,
       });
 
       return lesson as T;
