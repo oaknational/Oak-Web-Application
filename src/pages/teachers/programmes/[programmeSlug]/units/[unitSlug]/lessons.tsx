@@ -49,7 +49,7 @@ import { useNewsletterForm } from "@/components/GenericPagesComponents/Newslette
 import { resolveOakHref } from "@/common-lib/urls";
 import { useTeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/useTeacherShareButton";
 import { useGetEducatorData } from "@/node-lib/educator-api/helpers/useGetEducatorData";
-import { useSaveUnits } from "@/hooks/useSaveUnits";
+import { useSaveUnits } from "@/node-lib/educator-api/helpers/saveUnits/useSaveUnits";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;

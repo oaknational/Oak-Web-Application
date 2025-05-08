@@ -32,7 +32,7 @@ import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { PaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
 import { convertSubjectToSlug } from "@/components/TeacherComponents/helpers/convertSubjectToSlug";
 import { useGetEducatorData } from "@/node-lib/educator-api/helpers/useGetEducatorData";
-import { useSaveUnits } from "@/hooks/useSaveUnits";
+import { useSaveUnits } from "@/node-lib/educator-api/helpers/saveUnits/useSaveUnits";
 
 export type Tier = {
   title: string;
