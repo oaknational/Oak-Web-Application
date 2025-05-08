@@ -142,7 +142,6 @@ export default async function generate(
     pathway,
     type,
   } of groupedUnits) {
-    // TODO: Add selector here...
     yearXml.push(
       await buildYear(
         zip,
