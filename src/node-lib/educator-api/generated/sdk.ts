@@ -48197,7 +48197,7 @@ export type Questions = {
   quiz_questions_all_states_aggregate: Quiz_Questions_Aggregate;
   /** A computed field, executes function "function__questions__tpc_media" */
   tpc_media?: Maybe<Array<Tpc_Media>>;
-  tpc_media_list?: Maybe<Scalars["jsonb"]["output"]>;
+  tpc_media_ids?: Maybe<Scalars["jsonb"]["output"]>;
   updated_at?: Maybe<Scalars["timestamptz"]["output"]>;
 };
 
@@ -48272,7 +48272,7 @@ export type QuestionsTpc_MediaArgs = {
 };
 
 /** columns and relationships of "questions" */
-export type QuestionsTpc_Media_ListArgs = {
+export type QuestionsTpc_Media_IdsArgs = {
   path?: InputMaybe<Scalars["String"]["input"]>;
 };
 
@@ -48350,7 +48350,7 @@ export type Questions_Aggregate_Order_By = {
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type Questions_Append_Input = {
   deprecated_fields?: InputMaybe<Scalars["jsonb"]["input"]>;
-  tpc_media_list?: InputMaybe<Scalars["jsonb"]["input"]>;
+  tpc_media_ids?: InputMaybe<Scalars["jsonb"]["input"]>;
 };
 
 /** input type for inserting array relation for remote table "questions" */
@@ -48399,7 +48399,7 @@ export type Questions_Bool_Exp = {
   quiz_questions_all_states?: InputMaybe<Quiz_Questions_Bool_Exp>;
   quiz_questions_all_states_aggregate?: InputMaybe<Quiz_Questions_Aggregate_Bool_Exp>;
   tpc_media?: InputMaybe<Tpc_Media_Bool_Exp>;
-  tpc_media_list?: InputMaybe<Jsonb_Comparison_Exp>;
+  tpc_media_ids?: InputMaybe<Jsonb_Comparison_Exp>;
   updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
 };
 
@@ -48412,19 +48412,19 @@ export enum Questions_Constraint {
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type Questions_Delete_At_Path_Input = {
   deprecated_fields?: InputMaybe<Array<Scalars["String"]["input"]>>;
-  tpc_media_list?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  tpc_media_ids?: InputMaybe<Array<Scalars["String"]["input"]>>;
 };
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
 export type Questions_Delete_Elem_Input = {
   deprecated_fields?: InputMaybe<Scalars["Int"]["input"]>;
-  tpc_media_list?: InputMaybe<Scalars["Int"]["input"]>;
+  tpc_media_ids?: InputMaybe<Scalars["Int"]["input"]>;
 };
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
 export type Questions_Delete_Key_Input = {
   deprecated_fields?: InputMaybe<Scalars["String"]["input"]>;
-  tpc_media_list?: InputMaybe<Scalars["String"]["input"]>;
+  tpc_media_ids?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 /** input type for incrementing numeric columns in table "questions" */
@@ -48451,7 +48451,7 @@ export type Questions_Insert_Input = {
   question_uid?: InputMaybe<Scalars["bpchar"]["input"]>;
   quiz_questions?: InputMaybe<Quiz_Questions_Arr_Rel_Insert_Input>;
   quiz_questions_all_states?: InputMaybe<Quiz_Questions_Arr_Rel_Insert_Input>;
-  tpc_media_list?: InputMaybe<Scalars["jsonb"]["input"]>;
+  tpc_media_ids?: InputMaybe<Scalars["jsonb"]["input"]>;
   updated_at?: InputMaybe<Scalars["timestamptz"]["input"]>;
 };
 
@@ -48557,7 +48557,7 @@ export type Questions_Order_By = {
   quiz_questions_aggregate?: InputMaybe<Quiz_Questions_Aggregate_Order_By>;
   quiz_questions_all_states_aggregate?: InputMaybe<Quiz_Questions_Aggregate_Order_By>;
   tpc_media_aggregate?: InputMaybe<Tpc_Media_Aggregate_Order_By>;
-  tpc_media_list?: InputMaybe<Order_By>;
+  tpc_media_ids?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
 };
 
@@ -48570,7 +48570,7 @@ export type Questions_Pk_Columns_Input = {
 /** prepend existing jsonb value of filtered columns with new jsonb value */
 export type Questions_Prepend_Input = {
   deprecated_fields?: InputMaybe<Scalars["jsonb"]["input"]>;
-  tpc_media_list?: InputMaybe<Scalars["jsonb"]["input"]>;
+  tpc_media_ids?: InputMaybe<Scalars["jsonb"]["input"]>;
 };
 
 /** select columns of table "questions" */
@@ -48604,7 +48604,7 @@ export enum Questions_Select_Column {
   /** column name */
   QuestionUid = "question_uid",
   /** column name */
-  TpcMediaList = "tpc_media_list",
+  TpcMediaIds = "tpc_media_ids",
   /** column name */
   UpdatedAt = "updated_at",
 }
@@ -48641,7 +48641,7 @@ export type Questions_Set_Input = {
   question_stem?: InputMaybe<Scalars["json"]["input"]>;
   question_type?: InputMaybe<Scalars["String"]["input"]>;
   question_uid?: InputMaybe<Scalars["bpchar"]["input"]>;
-  tpc_media_list?: InputMaybe<Scalars["jsonb"]["input"]>;
+  tpc_media_ids?: InputMaybe<Scalars["jsonb"]["input"]>;
   updated_at?: InputMaybe<Scalars["timestamptz"]["input"]>;
 };
 
@@ -48708,7 +48708,7 @@ export type Questions_Stream_Cursor_Value_Input = {
   question_stem?: InputMaybe<Scalars["json"]["input"]>;
   question_type?: InputMaybe<Scalars["String"]["input"]>;
   question_uid?: InputMaybe<Scalars["bpchar"]["input"]>;
-  tpc_media_list?: InputMaybe<Scalars["jsonb"]["input"]>;
+  tpc_media_ids?: InputMaybe<Scalars["jsonb"]["input"]>;
   updated_at?: InputMaybe<Scalars["timestamptz"]["input"]>;
 };
 
@@ -48756,7 +48756,7 @@ export enum Questions_Update_Column {
   /** column name */
   QuestionUid = "question_uid",
   /** column name */
-  TpcMediaList = "tpc_media_list",
+  TpcMediaIds = "tpc_media_ids",
   /** column name */
   UpdatedAt = "updated_at",
 }
@@ -63383,7 +63383,7 @@ export type GetUserQuery = {
 
 export type GetUserContentQueryVariables = Exact<{
   userId?: InputMaybe<Scalars["String"]["input"]>;
-  contentDataWhere?: InputMaybe<Content_Bool_Exp>;
+  programmeSlug?: InputMaybe<Scalars["String"]["input"]>;
 }>;
 
 export type GetUserContentQuery = {
@@ -63453,9 +63453,12 @@ export const GetUserDocument = gql`
   }
 `;
 export const GetUserContentDocument = gql`
-  query getUserContent($userId: String, $contentDataWhere: content_bool_exp) {
+  query getUserContent($userId: String, $programmeSlug: String) {
     users_content(
-      where: { content: $contentDataWhere, user_id: { _eq: $userId } }
+      where: {
+        content: { programme_slug: { _eq: $programmeSlug } }
+        user_id: { _eq: $userId }
+      }
     ) {
       content {
         unit_slug

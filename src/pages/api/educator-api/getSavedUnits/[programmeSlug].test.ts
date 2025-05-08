@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { createMocks } from "node-mocks-http";
 
-import handler from "./[[...unitSlug]]";
+import handler from "./[programmeSlug]";
 
 import {
   installMockClerkClient,
