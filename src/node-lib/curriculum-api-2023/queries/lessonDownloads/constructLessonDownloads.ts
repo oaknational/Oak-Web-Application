@@ -41,6 +41,7 @@ const constructLessonDownloads = ({
     keyStageTitle: toSentenceCase(
       parsedCurrentLesson.programme_fields.keystage_description,
     ),
+    pathwayTitle: parsedCurrentLesson.programme_fields.pathway_description,
     lessonSlug: parsedCurrentLesson.lesson_slug,
     lessonTitle: parsedCurrentLesson.lesson_data.title,
     subjectSlug: parsedCurrentLesson.programme_fields.subject_slug,

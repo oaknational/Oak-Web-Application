@@ -256,6 +256,7 @@ describe("tracking", () => {
       yearGroupSlug: "year-10",
       tierName: null,
       examBoard: null,
+      pathway: null,
     });
   });
 });

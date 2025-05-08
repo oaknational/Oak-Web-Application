@@ -24,6 +24,7 @@ const fixtureData = {
   lessonTitle: "Running as a team",
   subjectTitle: "Physical Education",
   keyStageTitle: "Key stage 4",
+  lessonReleaseDate: "2022-02-01T00:00:00Z",
   mediaClips,
   pathways: [
     {

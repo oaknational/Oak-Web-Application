@@ -1,4 +1,7 @@
-import { syntheticUnitvariantLessonsByKsFixture } from "@oaknational/oak-curriculum-schema";
+import {
+  lessonDataFixture,
+  syntheticUnitvariantLessonsByKsFixture,
+} from "@oaknational/oak-curriculum-schema";
 
 import sdk from "../../sdk";
 
@@ -27,7 +30,16 @@ describe("lessonListing()", () => {
         ...sdk,
         lessonListing: jest.fn(() =>
           Promise.resolve({
-            lessons: [syntheticUnitvariantLessonsByKsFixture()],
+            lessons: [
+              syntheticUnitvariantLessonsByKsFixture({
+                overrides: {
+                  lesson_data: {
+                    ...lessonDataFixture(),
+                    lesson_release_date: "2023-01-01T00:00:00.000Z",
+                  },
+                },
+              }),
+            ],
           }),
         ),
       })({
@@ -70,6 +82,7 @@ describe("lessonListing()", () => {
             lessonCohort: "2023-2024",
             actions: null,
             isUnpublished: false,
+            lessonReleaseDate: "2023-01-01T00:00:00.000Z",
           },
         ],
       });
@@ -111,6 +124,7 @@ describe("lessonListing()", () => {
             updated_at: "2023-01-01T00:00:00.000Z",
             deprecated_fields: null,
             expiration_date: null,
+            lesson_release_date: "2023-01-01T00:00:00.000Z",
           },
         },
       });
@@ -124,9 +138,12 @@ describe("lessonListing()", () => {
             },
             { slug: "lesson-slug", title: "lesson-title", order: 1 },
           ],
+          lesson_data: {
+            ...lessonDataFixture(),
+            lesson_release_date: "2023-01-01T00:00:00.000Z",
+          },
         },
       });
-
       const res = await lessonListing({
         ...sdk,
         lessonListing: jest.fn(() =>
@@ -200,6 +217,7 @@ describe("lessonListing()", () => {
             expired: false,
             hasCopyrightMaterial: false,
             lessonCohort: "2023-2024",
+            lessonReleaseDate: null,
             lessonSlug: "lesson-slug",
             lessonTitle: "lesson-title",
             orderInUnit: 1,
@@ -254,6 +272,7 @@ describe("lessonListing()", () => {
             expired: false,
             hasCopyrightMaterial: false,
             lessonCohort: "2023-2024",
+            lessonReleaseDate: null,
             lessonSlug: "lesson-slug",
             lessonTitle: "lesson-title",
             orderInUnit: 1,
@@ -302,6 +321,7 @@ describe("lessonListing()", () => {
           worksheetCount: 0,
           actions: null,
           isUnpublished: false,
+          lessonReleaseDate: null,
         },
       ]);
     });

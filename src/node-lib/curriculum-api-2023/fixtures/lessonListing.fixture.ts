@@ -23,6 +23,7 @@ const lessonListingFixture = (
     pathwayDisplayOrder: null,
     lessons: [
       {
+        lessonReleaseDate: "2025-09-29T14:00:00.000Z",
         expired: false,
         lessonSlug: "add-two-surds-6wwk0c",
         lessonTitle: "Add two surds",
@@ -39,6 +40,7 @@ const lessonListingFixture = (
         actions: null,
       },
       {
+        lessonReleaseDate: "2025-09-29T14:00:00.000Z",
         expired: false,
         lessonSlug: "subtract-two-surds-6njkac",
         lessonTitle: "Subtract two surds",
@@ -55,6 +57,7 @@ const lessonListingFixture = (
         actions: null,
       },
       {
+        lessonReleaseDate: "2025-09-29T14:00:00.000Z",
         expired: false,
         lessonSlug: "subtract-two-surds-where-you-need-to-simplify-6gukce",
         lessonTitle: "Subtract two surds where you need to simplify",
@@ -70,6 +73,7 @@ const lessonListingFixture = (
         isUnpublished: false,
       },
       {
+        lessonReleaseDate: "2025-09-29T14:00:00.000Z",
         expired: false,
         lessonSlug: "subtract-three-surds",
         lessonTitle: "Subtract three surds",
@@ -86,6 +90,7 @@ const lessonListingFixture = (
         actions: null,
       },
       {
+        lessonReleaseDate: "2025-09-29T14:00:00.000Z",
         expired: false,
         lessonSlug: "subtract-four-surds",
         lessonTitle: "Subtract four surds",
@@ -108,6 +113,7 @@ const lessonListingFixture = (
 
 export const lessonsWithUnpublishedContent = [
   {
+    lessonReleaseDate: "2025-09-29T14:00:00.000Z",
     expired: false,
     lessonSlug: "add-two-surds-6wwk0c",
     lessonTitle: "Add two surds",
@@ -123,6 +129,7 @@ export const lessonsWithUnpublishedContent = [
     actions: null,
   },
   {
+    lessonReleaseDate: "2025-09-29T14:00:00.000Z",
     expired: false,
     lessonSlug: "subtract-two-surds-6njkac",
     lessonTitle: "Subtract two surds",
@@ -138,6 +145,7 @@ export const lessonsWithUnpublishedContent = [
     actions: null,
   },
   {
+    lessonReleaseDate: "2025-09-29T14:00:00.000Zd",
     expired: false,
     lessonSlug: "subtract-two-surds-where-you-need-to-simplify-6gukce",
     lessonTitle: "Subtract two surds where you need to simplify",
@@ -153,6 +161,7 @@ export const lessonsWithUnpublishedContent = [
     isUnpublished: false,
   },
   {
+    lessonReleaseDate: "2025-09-29T14:00:00.000Z",
     expired: false,
     lessonSlug: "subtract-three-surds",
     lessonTitle: "Subtract three surds",
@@ -167,6 +176,7 @@ export const lessonsWithUnpublishedContent = [
     actions: null,
   },
   {
+    lessonReleaseDate: "2025-09-29T14:00:00.000Z",
     expired: false,
     lessonSlug: "subtract-four-surds",
     lessonTitle: "Subtract four surds",

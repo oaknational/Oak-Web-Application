@@ -8,6 +8,7 @@ type LessonPlayAllButtonProps = {
   programmeSlug: string | null;
   unitSlug: string | null;
   isCanonical?: boolean;
+  onTrackingCallback?: () => void;
 };
 
 const LessonPlayAllButton: FC<LessonPlayAllButtonProps> = ({
@@ -15,6 +16,7 @@ const LessonPlayAllButton: FC<LessonPlayAllButtonProps> = ({
   lessonSlug,
   programmeSlug,
   isCanonical,
+  onTrackingCallback,
 }) => {
   return (
     <OakTertiaryButton
@@ -34,6 +36,11 @@ const LessonPlayAllButton: FC<LessonPlayAllButtonProps> = ({
       }
       isTrailingIcon
       iconName="arrow-right"
+      onClick={() => {
+        if (onTrackingCallback) {
+          onTrackingCallback();
+        }
+      }}
     >
       Play all
     </OakTertiaryButton>
