@@ -43,6 +43,10 @@ export const useHubspotCookieContactLookup = () => {
       const data = await response.json();
 
       setContactData(data.contact);
+      if (data.contact) {
+        console.log("HubSpot contact data:", data.contact);
+        console.log("HubSpot contact ID:", data.contact.id);
+      }
       return data.contact;
     } catch (err) {
       const error = err instanceof Error ? err : new Error(String(err));
