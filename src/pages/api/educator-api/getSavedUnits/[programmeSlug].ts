@@ -3,10 +3,13 @@ import { getAuth } from "@clerk/nextjs/server";
 
 import { getAuthenticatedEducatorApi } from "@/node-lib/educator-api";
 import { getUserContentResponse } from "@/node-lib/educator-api/queries/getUserContent/getUserContent.types";
+import errorReporter from "@/common-lib/error-reporter";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   return handleRequest(req, res);
 }
+
+const reportError = errorReporter("educatorApi");
 
 async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
   const { userId, getToken } = getAuth(req);
@@ -37,7 +40,13 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
     );
     return res.status(200).json(units);
   } catch (err) {
-    console.error("Error fetching units:", err);
+    reportError(err, {
+      code: "educator-api/failed-to-get-saved-units",
+      meta: {
+        userId,
+        programmeSlug,
+      },
+    });
     return res.status(500).json({ error: JSON.stringify(err) });
   }
 }

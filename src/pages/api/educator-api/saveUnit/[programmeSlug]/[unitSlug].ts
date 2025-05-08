@@ -2,6 +2,10 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { getAuth } from "@clerk/nextjs/server";
 
 import { getAuthenticatedEducatorApi } from "@/node-lib/educator-api";
+import errorReporter from "@/common-lib/error-reporter";
+import OakError from "@/errors/OakError";
+
+const reportError = errorReporter("educatorApi");
 
 export default async function handler(
   req: NextApiRequest,
@@ -40,7 +44,16 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
 
     return res.status(200).end();
   } catch (err) {
-    console.error("Error saving unit:", err);
+    const error = new OakError({
+      code: "educator-api/failed-to-save-unit",
+      originalError: err,
+      meta: {
+        userId,
+        unitSlug,
+        programmeSlug,
+      },
+    });
+    reportError(error);
     return res.status(500).json({ error: err });
   }
 }
