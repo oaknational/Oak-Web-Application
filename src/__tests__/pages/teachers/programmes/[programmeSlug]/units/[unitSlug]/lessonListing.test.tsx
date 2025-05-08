@@ -13,6 +13,8 @@ import lessonListingFixture, {
   lessonsWithUnpublishedContent,
 } from "@/node-lib/curriculum-api-2023/fixtures/lessonListing.fixture";
 import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__/index";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
+import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 
 const render = renderWithProviders();
 
@@ -38,6 +40,9 @@ jest.mock("posthog-js/react", () => ({
 }));
 
 describe("Lesson listing page", () => {
+  beforeEach(() => {
+    setUseUserReturn(mockLoggedIn);
+  });
   test("it renders the unit title as page title", () => {
     const { getByRole } = render(
       <LessonListPage curriculumData={lessonListingFixture()} />,
