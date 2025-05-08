@@ -73,7 +73,7 @@ describe("7_ourPartner", () => {
     expect(await zipToSnapshotObject(zip.getJsZip())).toMatchSnapshot();
   });
 
-  it("renders multiple curriculum partners from curriculum partner overview", async () => {
+  it("renders multiple curriculum partners (portabletext) from curriculum partner overview", async () => {
     const zip = await generateEmptyDocx();
     await generate(zip, {
       data: {
@@ -87,6 +87,7 @@ describe("7_ourPartner", () => {
                 },
               },
             },
+            partnerBio: "PARTNER_1",
             partnerBioPortableTextRaw: [
               {
                 style: "normal",
@@ -109,6 +110,7 @@ describe("7_ourPartner", () => {
                 },
               },
             },
+            partnerBio: "PARTNER_2",
             partnerBioPortableTextRaw: [
               {
                 style: "normal",
@@ -122,6 +124,41 @@ describe("7_ourPartner", () => {
                 ],
               },
             ],
+          },
+        ],
+      } as CombinedCurriculumData,
+    });
+
+    expect(await zipToSnapshotObject(zip.getJsZip())).toMatchSnapshot();
+  });
+
+  it("renders multiple curriculum partners (non-portabletext) from curriculum partner overview", async () => {
+    const zip = await generateEmptyDocx();
+    await generate(zip, {
+      data: {
+        partnerBio: "testing",
+        curriculumPartnerOverviews: [
+          {
+            curriculumPartner: {
+              image: {
+                asset: {
+                  url: EMPTY_PNG,
+                },
+              },
+            },
+            partnerBio: "PARTNER_1",
+            partnerBioPortableTextRaw: null,
+          },
+          {
+            curriculumPartner: {
+              image: {
+                asset: {
+                  url: EMPTY_PNG,
+                },
+              },
+            },
+            partnerBio: "PARTNER_2",
+            partnerBioPortableTextRaw: null,
           },
         ],
       } as CombinedCurriculumData,
