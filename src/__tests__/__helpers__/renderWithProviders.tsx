@@ -81,7 +81,6 @@ type ProviderName = keyof ProviderPropsByName;
 export const getMockedProviders =
   (providers: Partial<ProviderPartialProps>) =>
   ({ children }: { children?: ReactNode }) => {
-    console.log("diego providers", providers, providersByName);
     return (
       <>
         {Object.entries(providersByName)

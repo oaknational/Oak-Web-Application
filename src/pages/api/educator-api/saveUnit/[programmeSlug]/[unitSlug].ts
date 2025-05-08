@@ -13,11 +13,12 @@ export default async function handler(
 async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
   const { userId, getToken } = getAuth(req);
   const { programmeSlug, unitSlug } = req.query;
-  const listTitle = "Saved content";
-  console.log("diego listTitle", userId);
+  const listTitle = "Saved content"; // default title TODO: customisable list titles
+
   if (!userId) {
     return res.status(200).end();
   }
+
   if (
     !programmeSlug ||
     Array.isArray(programmeSlug) ||
@@ -30,14 +31,12 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
   const educatorApi = await getAuthenticatedEducatorApi(getToken);
 
   try {
-    const result = await educatorApi.createUserListContent({
+    await educatorApi.createUserListContent({
       userId,
       unitSlug,
       programmeSlug,
       listTitle,
     });
-
-    console.log("diego result", result);
 
     return res.status(200).end();
   } catch (err) {
