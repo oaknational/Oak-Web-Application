@@ -88,6 +88,28 @@ describe("Component - Overview Tab", () => {
     expect(partnerElements[1]).toHaveTextContent("PARTNER_PORTABLETEXT_2");
   });
 
+  test("multiple curriculum partners", async () => {
+    const fixture = curriculumOverviewTabFixture();
+    fixture.curriculumCMSInfo.curriculumPartnerOverviews = [
+      {
+        partnerBio: "PARTNER_1",
+        partnerBioPortableTextRaw: null,
+        curriculumPartner: fixture.curriculumCMSInfo.curriculumPartner,
+      },
+      {
+        partnerBio: "PARTNER_2",
+        partnerBioPortableTextRaw: null,
+        curriculumPartner: fixture.curriculumCMSInfo.curriculumPartner,
+      },
+    ];
+    const render = renderWithProviders();
+    const { queryAllByTestId } = render(<OverviewTab data={fixture} />);
+    const partnerElements = queryAllByTestId("curriculum-partner");
+    expect(partnerElements.length).toBe(2);
+    expect(partnerElements[0]).toHaveTextContent("PARTNER_1");
+    expect(partnerElements[1]).toHaveTextContent("PARTNER_2");
+  });
+
   test("explainer displayed when cycle 2 features enabled with video", async () => {
     const fixture = curriculumOverviewTabFixture();
     fixture.curriculumCMSInfo.subjectPrinciples = [
