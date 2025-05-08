@@ -209,7 +209,6 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       .toLowerCase();
   };
 
-  // TODO: error handling
   const { data: savedUnit } = useGetEducatorData(
     `/api/educator-api/getSavedUnits/${programmeSlug}`,
   );

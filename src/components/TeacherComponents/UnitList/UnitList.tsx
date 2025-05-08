@@ -195,7 +195,6 @@ const UnitList: FC<UnitListProps> = (props) => {
   // Saving
   const isSaveEnabled = useFeatureFlagEnabled("teacher-save-units");
 
-  // TODO: error handling
   const { data: savedUnits } = useGetEducatorData(
     `/api/educator-api/getSavedUnits/${props.programmeSlug}`,
   );
