@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 import {
   OakFlex,
   OakHeading,
@@ -7,6 +8,8 @@ import {
   OakBox,
   OakInlineBanner,
   OakP,
+  OakSecondaryButton,
+  OakTagFunctional,
 } from "@oaknational/oak-components";
 
 import UnitDownloadButton, {
@@ -49,11 +52,14 @@ export type HeaderListingProps = {
   programmeFactor: string;
   hasCurriculumDownload?: boolean;
   shareButton?: React.ReactNode;
+  copiedComponent?: React.ReactNode;
   unitDownloadFileId?: string;
   onUnitDownloadSuccess?: () => void;
   showRiskAssessmentBanner?: boolean;
   isIncompleteUnit?: boolean;
   subjectDescriptionUnitListingData?: UnitListingData;
+  isUnitSaved?: boolean;
+  onSave?: () => void;
 };
 
 const HeaderListing: FC<HeaderListingProps> = (props) => {
@@ -72,11 +78,14 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     tierTitle,
     yearTitle,
     shareButton,
+    copiedComponent,
     unitDownloadFileId,
     onUnitDownloadSuccess,
     showRiskAssessmentBanner,
     isIncompleteUnit,
     subjectDescriptionUnitListingData,
+    isUnitSaved,
+    onSave,
   } = props;
 
   const isKeyStagesAvailable = keyStageSlug && keyStageTitle;
@@ -92,6 +101,8 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     showIncompleteMessage,
     setShowIncompleteMessage,
   } = useUnitDownloadButtonState();
+
+  const isSaveEnabled = useFeatureFlagEnabled("teacher-save-units");
 
   const bannersBlock = (
     <>
@@ -186,7 +197,8 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
             <OakFlex $flexDirection="column" $gap="space-between-s">
               <OakFlex
                 $gap="space-between-s"
-                $flexDirection={["column", "row"]}
+                $height="max-content"
+                $flexWrap="wrap"
               >
                 {unitDownloadFileId && onUnitDownloadSuccess && (
                   <UnitDownloadButton
@@ -197,10 +209,41 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                     downloadInProgress={downloadInProgress}
                     unitFileId={unitDownloadFileId}
                     onDownloadSuccess={onUnitDownloadSuccess}
+                    showNewTag={!isSaveEnabled}
                   />
                 )}
                 {shareButton}
+                {isSaveEnabled && onSave && (
+                  <OakSecondaryButton
+                    iconName={
+                      isUnitSaved ? "bookmark-filled" : "bookmark-outlined"
+                    }
+                    isTrailingIcon
+                    onClick={onSave}
+                    ph={["inner-padding-xs", "inner-padding-m"]}
+                    pv={["inner-padding-ssx", "inner-padding-ssx"]}
+                    $mb={[
+                      "space-between-none",
+                      "space-between-s",
+                      "space-between-none",
+                    ]}
+                    data-testid="save-unit-button"
+                  >
+                    <OakFlex $alignItems="center" $gap={"space-between-xs"}>
+                      <OakTagFunctional
+                        label="New"
+                        $background="mint"
+                        $color="text-primary"
+                        $font="heading-light-7"
+                        $pv={"inner-padding-none"}
+                        $display={["none", "inline"]}
+                      />
+                      {isUnitSaved ? "Saved" : "Save"}
+                    </OakFlex>
+                  </OakSecondaryButton>
+                )}
               </OakFlex>
+              {copiedComponent}
               <OakBox $display={["none", "block", "block"]}>
                 {bannersBlock}
               </OakBox>

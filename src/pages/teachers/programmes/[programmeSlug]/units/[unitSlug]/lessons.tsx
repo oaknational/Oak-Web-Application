@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   NextPage,
   GetStaticProps,
@@ -47,6 +47,7 @@ import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { resolveOakHref } from "@/common-lib/urls";
+import { useTeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/useTeacherShareButton";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -87,6 +88,9 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     programmeSlug,
     subjectSlug,
     actions,
+    pathwayTitle,
+    tierTitle,
+    examBoardTitle,
   } = curriculumData;
 
   const unitListingHref = `/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/programmes`;
@@ -102,6 +106,10 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       subjectTitle,
       keyStageSlug,
       keyStageTitle: keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
+      lessonReleaseCohort: isSlugLegacy(programmeSlug)
+        ? "2020-2023"
+        : "2023-2026",
+      lessonReleaseDate: "unreleased",
     },
     overrideExistingShareId: true,
   });
@@ -112,12 +120,17 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     }
   }, [browserUrl]);
 
+  const { copiedComponent, handleClick } = useTeacherShareButton({
+    shareUrl,
+    shareActivated,
+  });
+
   const teacherShareButton = (
     <TeacherShareButton
       variant="primary"
+      handleClick={handleClick}
       shareUrl={shareUrl}
-      shareActivated={shareActivated}
-      label="Share unit with colleague"
+      label="Share"
     />
   );
 
@@ -156,11 +169,18 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         lessonName: props.lessonTitle,
         lessonSlug: props.lessonSlug,
         unitName: unitTitle,
-        unitSlug: unitSlug,
-        keyStageSlug: keyStageSlug,
+        unitSlug,
+        keyStageSlug,
         keyStageTitle: keyStageTitle as KeyStageTitleValueType,
         yearGroupName: props.yearTitle,
         yearGroupSlug: props.yearSlug,
+        pathway: pathwayTitle,
+        examBoard: examBoardTitle,
+        tierName: tierTitle,
+        lessonReleaseCohort: isSlugLegacy(programmeSlug)
+          ? "2020-2023"
+          : "2023-2026",
+        lessonReleaseDate: props.lessonReleaseDate ?? "unreleased",
       });
     }
   };
@@ -186,6 +206,9 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       .replaceAll(/-+/g, "-")
       .toLowerCase();
   };
+
+  // stub save implementation
+  const [unitSaved, setUnitSaved] = useState<boolean>(false);
 
   return (
     <AppLayout
@@ -249,6 +272,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           hasCurriculumDownload={isSlugLegacy(programmeSlug)}
           {...curriculumData}
           shareButton={teacherShareButton}
+          copiedComponent={copiedComponent}
           unitDownloadFileId={`${getSlugifiedTitle(unitTitle)}-${unitvariantId}`}
           onUnitDownloadSuccess={() =>
             track.unitDownloadInitiated({
@@ -259,15 +283,17 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               eventVersion: "2.0.0",
               analyticsUseCase: "Teacher",
               unitName: unitTitle,
-              unitSlug: unitSlug,
-              keyStageSlug: keyStageSlug,
+              unitSlug,
+              keyStageSlug,
               keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-              subjectSlug: subjectSlug,
-              subjectTitle: subjectTitle,
+              subjectSlug,
+              subjectTitle,
             })
           }
           showRiskAssessmentBanner={showRiskAssessmentBanner}
           isIncompleteUnit={unpublishedLessonCount > 0}
+          isUnitSaved={unitSaved}
+          onSave={() => setUnitSaved((prev) => !prev)}
         />
         <OakMaxWidth $ph={"inner-padding-m"}>
           <OakGrid>

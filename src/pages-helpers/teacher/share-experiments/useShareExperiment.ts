@@ -16,6 +16,7 @@ import {
 } from "./shareExperimentTypes";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import { LessonReleaseCohortValueType } from "@/browser-lib/avo/Avo";
 
 export const useShareExperiment = ({
   programmeSlug,
@@ -27,7 +28,10 @@ export const useShareExperiment = ({
   programmeSlug?: string;
   shareBaseUrl?: string;
   source: ShareSource;
-  curriculumTrackingProps: CurriculumTrackingProps;
+  curriculumTrackingProps: CurriculumTrackingProps & {
+    lessonReleaseDate: string;
+    lessonReleaseCohort: LessonReleaseCohortValueType;
+  };
   overrideExistingShareId: boolean | null;
 }) => {
   const shareIdRef = useRef<string | null>(null);

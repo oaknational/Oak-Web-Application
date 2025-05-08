@@ -156,4 +156,28 @@ describe("LessonOverviewMediaClips", () => {
     );
     expect(container.firstChild).toBeNull();
   });
+  describe("tracking", () => {
+    test("If onTrackingCallback, onclick fire ontracking callback", async () => {
+      const callback = jest.fn();
+      const { getByText } = renderWithTheme(
+        <LessonOverviewMediaClips
+          learningCycleVideos={keysToCamelCase(mockLearningCycleVideos)}
+          lessonSlug="lesson-slug"
+          unitSlug="unit-slug"
+          programmeSlug="programme-slug"
+          lessonOutline={lessonOutline}
+          isPELesson={false}
+          isMFL={false}
+          onTrackingCallback={callback}
+        />,
+      );
+
+      const lessonClip = getByText("Lesson outline for cycle 2");
+      lessonClip.click();
+      expect(callback).toHaveBeenCalledWith({
+        mediaClipsButtonName: "select clip",
+        learningCycle: "cycle2",
+      });
+    });
+  });
 });

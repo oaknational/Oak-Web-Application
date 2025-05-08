@@ -47,10 +47,58 @@ describe("Component - Overview Tab", () => {
     fixture.curriculumCMSInfo.curriculumPartnerOverviews = [
       {
         partnerBio: "PARTNER_1",
+        partnerBioPortableTextRaw: [
+          {
+            style: "normal",
+            _type: "block",
+            children: [
+              {
+                _type: "span",
+                marks: [],
+                text: "PARTNER_PORTABLETEXT_1",
+              },
+            ],
+          },
+        ],
         curriculumPartner: fixture.curriculumCMSInfo.curriculumPartner,
       },
       {
         partnerBio: "PARTNER_2",
+        partnerBioPortableTextRaw: [
+          {
+            style: "normal",
+            _type: "block",
+            children: [
+              {
+                _type: "span",
+                marks: [],
+                text: "PARTNER_PORTABLETEXT_2",
+              },
+            ],
+          },
+        ],
+        curriculumPartner: fixture.curriculumCMSInfo.curriculumPartner,
+      },
+    ];
+    const render = renderWithProviders();
+    const { queryAllByTestId } = render(<OverviewTab data={fixture} />);
+    const partnerElements = queryAllByTestId("curriculum-partner");
+    expect(partnerElements.length).toBe(2);
+    expect(partnerElements[0]).toHaveTextContent("PARTNER_PORTABLETEXT_1");
+    expect(partnerElements[1]).toHaveTextContent("PARTNER_PORTABLETEXT_2");
+  });
+
+  test("multiple curriculum partners", async () => {
+    const fixture = curriculumOverviewTabFixture();
+    fixture.curriculumCMSInfo.curriculumPartnerOverviews = [
+      {
+        partnerBio: "PARTNER_1",
+        partnerBioPortableTextRaw: null,
+        curriculumPartner: fixture.curriculumCMSInfo.curriculumPartner,
+      },
+      {
+        partnerBio: "PARTNER_2",
+        partnerBioPortableTextRaw: null,
         curriculumPartner: fixture.curriculumCMSInfo.curriculumPartner,
       },
     ];

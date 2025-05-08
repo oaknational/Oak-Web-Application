@@ -1106,6 +1106,7 @@ export type CurriculumPartnerOverview = {
   _type?: Maybe<Scalars['String']['output']>;
   curriculumPartner?: Maybe<CurriculumPartner>;
   partnerBio?: Maybe<Scalars['String']['output']>;
+  partnerBioPortableTextRaw?: Maybe<Scalars['JSON']['output']>;
 };
 
 export type CurriculumPartnerOverviewFilter = {
@@ -3966,7 +3967,7 @@ export type CurriculumOverviewQueryVariables = Exact<{
 }>;
 
 
-export type CurriculumOverviewQuery = { __typename?: 'RootQuery', allCurriculumInfoPageOverview: Array<{ __typename?: 'CurriculumInfoPageOverview', subjectPrinciples?: Array<string | null> | null, partnerBio?: string | null, videoAuthor?: string | null, videoExplainer?: string | null, id?: string | null, curriculumExplainer?: { __typename?: 'CurriculumExplainer', explainerRaw?: any | null } | null, curriculumPartner?: { __typename?: 'CurriculumPartner', name?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, curriculumPartnerOverviews?: Array<{ __typename?: 'CurriculumPartnerOverview', partnerBio?: string | null, curriculumPartner?: { __typename?: 'CurriculumPartner', name?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null } | null> | null, video?: { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null }> };
+export type CurriculumOverviewQuery = { __typename?: 'RootQuery', allCurriculumInfoPageOverview: Array<{ __typename?: 'CurriculumInfoPageOverview', subjectPrinciples?: Array<string | null> | null, partnerBio?: string | null, videoAuthor?: string | null, videoExplainer?: string | null, id?: string | null, curriculumExplainer?: { __typename?: 'CurriculumExplainer', explainerRaw?: any | null } | null, curriculumPartner?: { __typename?: 'CurriculumPartner', name?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, curriculumPartnerOverviews?: Array<{ __typename?: 'CurriculumPartnerOverview', partnerBio?: string | null, partnerBioPortableTextRaw?: any | null, curriculumPartner?: { __typename?: 'CurriculumPartner', name?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null } | null> | null, video?: { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null }> };
 
 export type HomepageQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
@@ -4848,6 +4849,7 @@ export const CurriculumOverviewDocument = gql`
         }
       }
       partnerBio
+      partnerBioPortableTextRaw
     }
     video {
       ...Video

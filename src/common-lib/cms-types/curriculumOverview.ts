@@ -20,6 +20,7 @@ export const curriculumOverviewCMSSchema = z
     curriculumPartnerOverviews: z.array(
       z.object({
         partnerBio: z.string(),
+        partnerBioPortableTextRaw: portableTextSchema.nullable(),
         curriculumPartner: curriculumPartnerSchema,
       }),
     ),
