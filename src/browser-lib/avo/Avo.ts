@@ -974,7 +974,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "j7T9arsApnyvmQhNZhqJ",
+          "ac": "wDBxXzfTtVhc19S5XHpX",
           "br": "master",
           "en": env,
           "ev": eventId,
@@ -1001,7 +1001,7 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "j7T9arsApnyvmQhNZhqJ",
+          "ac": "wDBxXzfTtVhc19S5XHpX",
           "br": "master",
           "en": env,
           "ty": type,
@@ -7716,6 +7716,7 @@ export interface ContentGuidanceAcceptedProperties {
   phase: PhaseValueType;
   supervisionLevel: string;
   contentGuidanceWarning: ContentGuidanceWarningValueType;
+  ageRestriction: string;
 }
 /**
  * Content Guidance Accepted: Event sent when a pupil clicks to accept content guidance, indicating a choice to follow guidance and continues the lesson activity as a result 
@@ -7739,6 +7740,7 @@ export interface ContentGuidanceAcceptedProperties {
  * @param properties.phase: School phase related to key stage and age of audience
  * @param properties.supervisionLevel: The degree of adult oversight needed during a lesson
  * @param properties.contentGuidanceWarning: The category of the specific content guidance
+ * @param properties.ageRestriction: no description
  * 
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/1u1gDPFXp3}
  */
@@ -7781,6 +7783,7 @@ export function contentGuidanceAccepted(properties: ContentGuidanceAcceptedPrope
   eventPropertiesArray.push({id: "SsbNnb9vD", name: "Phase", value: properties.phase});
   eventPropertiesArray.push({id: "AbSwsn_Lc", name: "Supervision Level", value: properties.supervisionLevel});
   eventPropertiesArray.push({id: "S-dilt6HW", name: "Content Guidance Warning", value: properties.contentGuidanceWarning});
+  eventPropertiesArray.push({id: "CF6Y0mOU-_HgShZbz32dP", name: "Age Restriction", value: properties.ageRestriction});
   let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
   // @ts-ignore
   let userPropertiesArray: array = [];
@@ -7790,7 +7793,7 @@ export function contentGuidanceAccepted(properties: ContentGuidanceAcceptedPrope
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "1u1gDPFXp3", "abcb128878fa4d71aee3907b01f62d04a05e8d4344da4fec3a2e520b790c3cbe", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "1u1gDPFXp3", "9c4c4a6e8c6205caa00eccf50008cc3dc634561d3802289a4f271c48e1aa5755", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Content Guidance Accepted", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -7801,7 +7804,7 @@ export function contentGuidanceAccepted(properties: ContentGuidanceAcceptedPrope
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Content Guidance Accepted", eventProperties, "1u1gDPFXp3", "abcb128878fa4d71aee3907b01f62d04a05e8d4344da4fec3a2e520b790c3cbe");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Content Guidance Accepted", eventProperties, "1u1gDPFXp3", "9c4c4a6e8c6205caa00eccf50008cc3dc634561d3802289a4f271c48e1aa5755");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Content Guidance Accepted", (Object as any).assign({}, eventProperties));
@@ -7829,6 +7832,7 @@ export interface ContentGuidanceDeclinedProperties {
   supervisionLevel: string;
   phase: PhaseValueType;
   contentGuidanceWarning: ContentGuidanceWarningValueType;
+  ageRestriction: string;
 }
 /**
  * Content Guidance Declined: Event sent when a pupil clicks to decline content guidance, indicating a choice to not follow guidance and discontinues the lesson activity as a result 
@@ -7852,6 +7856,7 @@ export interface ContentGuidanceDeclinedProperties {
  * @param properties.supervisionLevel: The degree of adult oversight needed during a lesson
  * @param properties.phase: School phase related to key stage and age of audience
  * @param properties.contentGuidanceWarning: The category of the specific content guidance
+ * @param properties.ageRestriction: no description
  * 
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/2spbwH8iKS}
  */
@@ -7882,6 +7887,7 @@ export function contentGuidanceDeclined(properties: ContentGuidanceDeclinedPrope
   eventPropertiesArray.push({id: "AbSwsn_Lc", name: "Supervision Level", value: properties.supervisionLevel});
   eventPropertiesArray.push({id: "SsbNnb9vD", name: "Phase", value: properties.phase});
   eventPropertiesArray.push({id: "S-dilt6HW", name: "Content Guidance Warning", value: properties.contentGuidanceWarning});
+  eventPropertiesArray.push({id: "CF6Y0mOU-_HgShZbz32dP", name: "Age Restriction", value: properties.ageRestriction});
   let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
   // @ts-ignore
   let userPropertiesArray: array = [];
@@ -7891,7 +7897,7 @@ export function contentGuidanceDeclined(properties: ContentGuidanceDeclinedPrope
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "2spbwH8iKS", "3a2a15798fca8e1154cffb5951c426c95532133b5a533e88b4816b27c2e2096c", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "2spbwH8iKS", "7a66e6d82d90f9d2e9832ebb5c844d47321538a3531c329280c24c972f5fdd8c", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Content Guidance Declined", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -7902,7 +7908,7 @@ export function contentGuidanceDeclined(properties: ContentGuidanceDeclinedPrope
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Content Guidance Declined", eventProperties, "2spbwH8iKS", "3a2a15798fca8e1154cffb5951c426c95532133b5a533e88b4816b27c2e2096c");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Content Guidance Declined", eventProperties, "2spbwH8iKS", "7a66e6d82d90f9d2e9832ebb5c844d47321538a3531c329280c24c972f5fdd8c");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Content Guidance Declined", (Object as any).assign({}, eventProperties));
