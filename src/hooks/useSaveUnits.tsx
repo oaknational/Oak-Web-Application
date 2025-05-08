@@ -1,5 +1,6 @@
 import { OakP } from "@oaknational/oak-components";
 import { useState, useCallback } from "react";
+import { useUser } from "@clerk/nextjs";
 
 import { useOakToastContext } from "@/context/OakToast/useOakToastContext";
 import { postEducatorData } from "@/node-lib/educator-api/helpers/postEducatorData";
@@ -9,6 +10,7 @@ export const useSaveUnits = (
   programmeSlug: string,
 ) => {
   const [locallySavedUnits, setLocallySavedUnits] = useState<string[]>([]);
+  const { isSignedIn } = useUser();
 
   const isUnitSaved = useCallback(
     (unitSlug: string) =>
@@ -45,10 +47,14 @@ export const useSaveUnits = (
   };
 
   const onSaveToggle = (unitSlug: string) => {
-    if (isUnitSaved(unitSlug)) {
-      // TODO: unsaving
+    if (isSignedIn) {
+      if (isUnitSaved(unitSlug)) {
+        // TODO: unsaving
+      } else {
+        onSave(unitSlug);
+      }
     } else {
-      onSave(unitSlug);
+      // TODO: show sign in modal
     }
   };
 
