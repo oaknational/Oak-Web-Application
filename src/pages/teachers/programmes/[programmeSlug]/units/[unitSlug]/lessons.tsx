@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   NextPage,
   GetStaticProps,
@@ -48,6 +48,8 @@ import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experimen
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { resolveOakHref } from "@/common-lib/urls";
 import { useTeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/useTeacherShareButton";
+import { useGetEducatorData } from "@/node-lib/educator-api/helpers/useGetEducatorData";
+import { useSaveUnits } from "@/hooks/useSaveUnits";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -207,8 +209,11 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       .toLowerCase();
   };
 
-  // stub save implementation
-  const [unitSaved, setUnitSaved] = useState<boolean>(false);
+  // TODO: error handling
+  const { data: savedUnit } = useGetEducatorData(
+    `/api/educator-api/getSavedUnits/${programmeSlug}`,
+  );
+  const { onSaveToggle, isUnitSaved } = useSaveUnits(savedUnit, programmeSlug);
 
   return (
     <AppLayout
@@ -292,8 +297,8 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           }
           showRiskAssessmentBanner={showRiskAssessmentBanner}
           isIncompleteUnit={unpublishedLessonCount > 0}
-          isUnitSaved={unitSaved}
-          onSave={() => setUnitSaved((prev) => !prev)}
+          isUnitSaved={isUnitSaved(unitSlug)}
+          onSave={() => onSaveToggle(unitSlug)}
         />
         <OakMaxWidth $ph={"inner-padding-m"}>
           <OakGrid>
