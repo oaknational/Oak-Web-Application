@@ -42,12 +42,6 @@ export const useHubspotCookieContactLookup = () => {
 
       const data = await response.json();
 
-      // Log the contact data and ID to console
-      console.log("HubSpot contact data:", data.contact);
-      if (data.contact?.id) {
-        console.log("HubSpot contact ID:", data.contact.id);
-      }
-
       setContactData(data.contact);
       return data.contact;
     } catch (err) {
