@@ -1,3 +1,10 @@
+# [1.741.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.740.4...v1.741.0) (2025-05-08)
+
+
+### Features
+
+* added partnerBioPortableTextRaw (portabletext) into explainers ([d57a5e8](https://github.com/oaknational/Oak-Web-Application/commit/d57a5e815983f58d3f6b235e4fb60adf78afe23e))
+
 ## [1.740.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.740.3...v1.740.4) (2025-05-07)
 
 
