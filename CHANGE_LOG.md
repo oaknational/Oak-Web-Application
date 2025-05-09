@@ -1,3 +1,10 @@
+# [1.742.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.741.1...v1.742.0) (2025-05-09)
+
+
+### Features
+
+* add hubspot contact record id to posthog ([044f598](https://github.com/oaknational/Oak-Web-Application/commit/044f59811631a1841032d381c8bc897cd0d2ef26))
+
 ## [1.741.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.741.0...v1.741.1) (2025-05-08)
 
 
