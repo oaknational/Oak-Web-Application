@@ -35,6 +35,9 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   }),
 }));
 
+// mock save functionality
+window.global.fetch = jest.fn().mockResolvedValue({ ok: true });
+
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: jest.fn().mockReturnValue(true),
 }));
@@ -170,7 +173,7 @@ describe("Lesson listing page", () => {
       ).rejects.toThrowError("no context.params");
     });
   });
-  describe.skip("tracking", () => {
+  describe("tracking", () => {
     test("It calls tracking.lessonSelected with correct props when clicked", async () => {
       const { getByText } = render(
         <LessonListPage curriculumData={lessonListingFixture()} />,

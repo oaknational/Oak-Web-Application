@@ -37,6 +37,9 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   }),
 }));
 
+// mock save functionality
+window.global.fetch = jest.fn().mockResolvedValue({ ok: true });
+
 const render = renderWithProviders();
 
 describe("pages/beta/programmes/[programmeSlug]/units", () => {
