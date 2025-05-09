@@ -225,7 +225,7 @@ describe("pages/beta/programmes/[programmeSlug]/units", () => {
 });
 
 describe("tracking", () => {
-  test.only("It calls tracking.unitAccessed with correct props when clicked", async () => {
+  test("It calls tracking.unitAccessed with correct props when clicked", async () => {
     render(<UnitListingPage curriculumData={unitListingFixture()} />);
 
     const units = screen.getAllByText("Data Representation");
