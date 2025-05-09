@@ -48,7 +48,6 @@ import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experimen
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { resolveOakHref } from "@/common-lib/urls";
 import { useTeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/useTeacherShareButton";
-import { useGetEducatorData } from "@/node-lib/educator-api/helpers/useGetEducatorData";
 import { useSaveUnits } from "@/node-lib/educator-api/helpers/saveUnits/useSaveUnits";
 
 export type LessonListingPageProps = {
@@ -209,10 +208,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       .toLowerCase();
   };
 
-  const { data: savedUnits } = useGetEducatorData(
-    `/api/educator-api/getSavedUnits/${programmeSlug}`,
-  );
-  const { onSaveToggle, isUnitSaved } = useSaveUnits(savedUnits, programmeSlug);
+  const { onSaveToggle, isUnitSaved } = useSaveUnits(programmeSlug);
 
   return (
     <AppLayout

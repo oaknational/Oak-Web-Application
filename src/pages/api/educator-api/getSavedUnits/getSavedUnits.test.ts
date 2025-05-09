@@ -20,8 +20,8 @@ jest.mock("@/node-lib/educator-api", () => ({
   getAuthenticatedEducatorApi: jest.fn().mockResolvedValue({
     getUserContent: jest.fn().mockResolvedValue({
       users_content: [
-        { content: { unit_slug: "unit1" } },
-        { content: { unit_slug: "unit2" } },
+        { users_content_lists: { content: { unit_slug: "unit1" } } },
+        { users_content_lists: { content: { unit_slug: "unit2" } } },
       ],
     }),
   }),

@@ -5,8 +5,6 @@ import { useSaveUnits } from "./useSaveUnits";
 import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 
-const fetch = jest.spyOn(global, "fetch") as jest.Mock;
-
 const mockSetOakToastProps = jest.fn();
 
 jest.mock("@/context/OakToast/useOakToastContext", () => ({
@@ -15,47 +13,66 @@ jest.mock("@/context/OakToast/useOakToastContext", () => ({
   })),
 }));
 
+const mockUseGetEducatorData = jest.fn();
+
+jest.mock("@/node-lib/educator-api/helpers/useGetEducatorData", () => ({
+  useGetEducatorData: () => mockUseGetEducatorData(),
+}));
+
+const fetch = jest.spyOn(global, "fetch") as jest.Mock;
+
 describe("useSaveUnits", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    fetch.mockResolvedValue({ ok: true });
     setUseUserReturn(mockLoggedIn);
-    fetch.mockResolvedValue(true);
   });
-  it("should return correct response for isUnitSaved", () => {
-    const savedUnits = ["unit1", "unit2"];
-    const programmeSlug = "test-programme";
+  it("should return correct response for isUnitSaved", async () => {
+    mockUseGetEducatorData.mockImplementation(() => ({
+      data: ["unit1", "unit2"],
+      error: null,
+      isLoading: false,
+    }));
+    const { result } = renderHook(() => useSaveUnits("test-programme"));
 
-    const { result } = renderHook(() =>
-      useSaveUnits(savedUnits, programmeSlug),
-    );
-    act(() => {
-      expect(result.current.isUnitSaved("unit1")).toBe(true);
-      expect(result.current.isUnitSaved("unit2")).toBe(true);
-      expect(result.current.isUnitSaved("unit3")).toBe(false);
-    });
+    expect(result.current.isUnitSaved("unit1")).toBe(true);
+    expect(result.current.isUnitSaved("unit2")).toBe(true);
+    expect(result.current.isUnitSaved("unit3")).toBe(false);
   });
   it("should save a unit", async () => {
-    const { result } = renderHook(() => useSaveUnits([], "test-programme"));
+    mockUseGetEducatorData.mockImplementation(() => ({
+      data: [],
+      error: null,
+      isLoading: false,
+    }));
+    const { result } = renderHook(() => useSaveUnits("test-programme"));
 
     expect(result.current.isUnitSaved("unit1")).toBe(false);
 
     act(() => result.current.onSaveToggle("unit1"));
 
-    await act(async () =>
-      expect(result.current.isUnitSaved("unit1")).toBe(true),
-    );
-  });
-  it("should do nothing when toggliong a unit that is already saved", () => {
-    const { result } = renderHook(() =>
-      useSaveUnits(["unit1"], "test-programme"),
-    );
-
-    act(() => result.current.onSaveToggle("unit1"));
-
     expect(result.current.isUnitSaved("unit1")).toBe(true);
   });
+  it("should unsave when toggling a unit that is already saved", async () => {
+    mockUseGetEducatorData.mockImplementation(() => ({
+      data: [],
+      error: null,
+      isLoading: false,
+    }));
+    const { result } = renderHook(() => useSaveUnits("test-programme"));
+
+    act(() => result.current.onSaveToggle("unit1"));
+    act(() => result.current.onSaveToggle("unit1"));
+
+    expect(result.current.isUnitSaved("unit1")).toBe(false);
+  });
   it("should set the toast success variant when saving a unit", async () => {
-    const { result } = renderHook(() => useSaveUnits([], "test-programme"));
+    mockUseGetEducatorData.mockImplementation(() => ({
+      data: [],
+      error: null,
+      isLoading: false,
+    }));
+    const { result } = renderHook(() => useSaveUnits("test-programme"));
 
     await act(async () => result.current.onSaveToggle("unit1"));
 
@@ -67,11 +84,14 @@ describe("useSaveUnits", () => {
     });
   });
   it("should set the toast error variant when saving a unit fails", async () => {
-    fetch.mockResolvedValueOnce({
-      ok: false,
-      status: 500,
-    });
-    const { result } = renderHook(() => useSaveUnits([], "test-programme"));
+    mockUseGetEducatorData.mockImplementation(() => ({
+      data: [],
+      error: null,
+      isLoading: false,
+    }));
+
+    fetch.mockResolvedValue({ ok: false });
+    const { result } = renderHook(() => useSaveUnits("test-programme"));
 
     await act(async () => result.current.onSaveToggle("unit1"));
 

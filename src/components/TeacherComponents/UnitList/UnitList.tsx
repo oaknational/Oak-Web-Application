@@ -31,7 +31,6 @@ import { resolveOakHref } from "@/common-lib/urls";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { PaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
 import { convertSubjectToSlug } from "@/components/TeacherComponents/helpers/convertSubjectToSlug";
-import { useGetEducatorData } from "@/node-lib/educator-api/helpers/useGetEducatorData";
 import { useSaveUnits } from "@/node-lib/educator-api/helpers/saveUnits/useSaveUnits";
 
 export type Tier = {
@@ -194,14 +193,7 @@ const UnitList: FC<UnitListProps> = (props) => {
 
   // Saving
   const isSaveEnabled = useFeatureFlagEnabled("teacher-save-units");
-
-  const { data: savedUnits } = useGetEducatorData(
-    `/api/educator-api/getSavedUnits/${props.programmeSlug}`,
-  );
-  const { onSaveToggle, isUnitSaved } = useSaveUnits(
-    savedUnits,
-    props.programmeSlug,
-  );
+  const { onSaveToggle, isUnitSaved } = useSaveUnits(props.programmeSlug);
 
   const hasNewAndLegacyUnits: boolean =
     !!phaseSlug && !!newPageItems.length && !!legacyPageItems.length;
