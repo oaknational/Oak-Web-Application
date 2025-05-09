@@ -1,3 +1,10 @@
+## [1.741.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.741.0...v1.741.1) (2025-05-08)
+
+
+### Bug Fixes
+
+* make avo inline with the main branch ([e3ebc7b](https://github.com/oaknational/Oak-Web-Application/commit/e3ebc7b407b4c2276d931c726a96bb10e4593c3f))
+
 # [1.741.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.740.4...v1.741.0) (2025-05-08)
 
 
