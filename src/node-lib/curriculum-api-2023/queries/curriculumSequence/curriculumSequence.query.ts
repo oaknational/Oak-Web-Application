@@ -39,15 +39,7 @@ const curriculumSequenceQuery =
           _or: [
             { examboard_slug: { _eq: examboardSlug } },
             {
-              _and: [
-                { examboard_slug: { _is_null: true } },
-                {
-                  _or: [
-                    { pathway_slug: { _neq: "core" } },
-                    { pathway_slug: { _is_null: true } },
-                  ],
-                },
-              ],
+              _and: [{ examboard_slug: { _is_null: true } }],
             },
           ],
         }
@@ -57,6 +49,7 @@ const curriculumSequenceQuery =
       ? {
           _or: [
             { pathway_slug: { _eq: pathwaySlug } },
+            { pathway_slug: { _eq: "core" } },
             { pathway_slug: { _is_null: true } },
           ],
         }

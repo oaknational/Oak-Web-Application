@@ -1,6 +1,6 @@
 import { join } from "path";
 
-import { sortBy, uniqBy } from "lodash";
+import { uniqBy } from "lodash";
 
 import { cdata, safeXml, xmlElementToJson } from "../../xml";
 import { CombinedCurriculumData, Slugs } from "../..";
@@ -18,6 +18,7 @@ import {
   createCurriculumSlug,
   generateGridCols,
   groupUnitsBySubjectCategory,
+  sortYearPathways,
 } from "../helper";
 import {
   CurriculumUnitsFormattedData,
@@ -26,39 +27,33 @@ import {
 
 import { buildUnit } from "./unit_detail";
 
-import {
-  getSuffixFromFeatures,
-  getYearGroupTitle,
-} from "@/utils/curriculum/formatting";
-import { sortYears } from "@/utils/curriculum/sorting";
+import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import { Unit } from "@/utils/curriculum/types";
+import {
+  getModes,
+  groupUnitsByPathway,
+  MODES,
+  UnitsByPathway,
+} from "@/utils/curriculum/by-pathway";
+import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 
 function generateGroupedUnits(
   data: CurriculumUnitsFormattedData<CombinedCurriculumData["units"][number]>,
 ) {
-  const unitOptions = Object.entries(data.yearData).flatMap(
-    ([year, { childSubjects, tiers, units, pathways }]) => {
+  const unitOptions = Object.entries(data.yearData as UnitsByPathway).flatMap(
+    ([year, { childSubjects, tiers, units, type }]) => {
       let options: {
         year: string;
         tier?: string;
         childSubject?: string;
         pathway?: string;
+        type: MODES;
       }[] = [];
 
       options.push({
         year,
+        type,
       });
-      if (pathways.length > 0) {
-        options = options.flatMap((option) => {
-          // TODO: This should be sorted by pathway_display_order, however we need to change the way this is handled.
-          return sortBy(pathways, ["pathway_slug"]).map((pathway) => {
-            return {
-              ...option,
-              pathway: pathway.pathway_slug,
-            };
-          });
-        });
-      }
       if (childSubjects.length > 0) {
         options = options.flatMap((option) => {
           return childSubjects.map((childSubject) => {
@@ -111,21 +106,42 @@ function generateGroupedUnits(
     },
   );
 
-  return unitOptions.sort((a, b) => sortYears(a.year, b.year));
+  return unitOptions.sort((a, b) =>
+    sortYearPathways(`${a.year}-${a.type}`, `${b.year}-${b.type}`),
+  );
 }
 
 export default async function generate(
   zip: JSZipCached,
-  { data, slugs }: { data: CombinedCurriculumData; slugs: Slugs },
+  {
+    data,
+    slugs,
+    ks4Options,
+  }: { data: CombinedCurriculumData; slugs: Slugs; ks4Options: Ks4Option[] },
 ) {
   const formattedData = formatCurriculumUnitsData(
     data,
   ) as CurriculumUnitsFormattedData<CombinedCurriculumData["units"][number]>;
+  const yearDataOrig = formatCurriculumUnitsData(data);
+  const yearData = groupUnitsByPathway({
+    modes: getModes(true, ks4Options),
+    yearData: yearDataOrig.yearData,
+  });
 
   const yearXml: string[] = [];
-  const groupedUnits = generateGroupedUnits(formattedData);
+  const groupedUnits = generateGroupedUnits({
+    ...formattedData,
+    yearData,
+  });
 
-  for (const { units, year, childSubject, tier, pathway } of groupedUnits) {
+  for (const {
+    units,
+    year,
+    childSubject,
+    tier,
+    pathway,
+    type,
+  } of groupedUnits) {
     yearXml.push(
       await buildYear(
         zip,
@@ -134,6 +150,7 @@ export default async function generate(
         units,
         { childSubject, tier, pathway },
         slugs,
+        type,
       ),
     );
   }
@@ -333,6 +350,7 @@ async function buildYear(
   unitsInput: CombinedCurriculumData["units"],
   yearSlugs: Slug,
   slugs: Slugs,
+  type: MODES,
 ) {
   const images = await insertImages(zip, {
     jumpOutArrow: join(
@@ -489,26 +507,30 @@ async function buildYear(
   // For the building this header we can assume all units will contain the same subject/tier/pathway
   const firstUnit = units[0];
   if (firstUnit) {
-    if (firstUnit.subject || firstUnit.tier || firstUnit.pathway) {
+    if (firstUnit.subject || firstUnit.tier) {
       subjectTierPathwayTitle = [
         // HERE: Only if child subject is present.
         yearSlugs.childSubject ? firstUnit.subject : undefined,
         firstUnit.tier,
-        firstUnit.pathway,
+        firstUnit.actions?.programme_field_overrides?.subject,
       ]
         .filter(Boolean)
         .join(", ");
     }
   }
 
-  const yearTitleSuffix = [getSuffixFromFeatures(firstUnit?.actions), "units"]
-    .filter(Boolean)
-    .join(" ");
-  const yearTitle = getYearGroupTitle(
+  const yearTitleSuffix = "units";
+  let displayYearTitle = getYearGroupTitle(
     formattedData.yearData,
-    year,
+    firstUnit?.year ?? "",
     yearTitleSuffix,
   );
+
+  // Append pathway type for KS4 years
+  if (["10", "11"].includes(firstUnit?.year ?? "")) {
+    const pathwaySuffix = type === "core" ? "Core" : "GCSE";
+    displayYearTitle = `${displayYearTitle} (${pathwaySuffix})`;
+  }
 
   const isSwimming = formattedData.yearData[year]?.isSwimming;
 
@@ -541,7 +563,7 @@ async function buildYear(
           <w:pStyle w:val="Heading2" />
         </w:pPr>
         ${wrapInBookmarkPoint(
-          `section_year_${year}`,
+          `section_year_${type}-${firstUnit?.year}`,
           safeXml`
             <w:r>
               <w:rPr>
@@ -550,7 +572,7 @@ async function buildYear(
                 <w:color w:val="222222" />
                 <w:sz w:val="56" />
               </w:rPr>
-              <w:t>${cdata(yearTitle)}</w:t>
+              <w:t>${cdata(displayYearTitle)}</w:t>
             </w:r>
           `,
         )}

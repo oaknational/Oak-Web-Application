@@ -18,6 +18,7 @@ describe("CurricFiltersSubjectCategories", () => {
           tiers: [],
           years: ["10", "11"],
           threads: [],
+          pathways: [],
         }}
         slugs={{
           subjectSlug: "english",
@@ -46,6 +47,7 @@ describe("CurricFiltersSubjectCategories", () => {
           tiers: [],
           years: ["7", "8", "9", "10", "11"],
           threads: [],
+          pathways: [],
         }}
         slugs={{
           subjectSlug: "english",
@@ -75,6 +77,7 @@ describe("CurricFiltersSubjectCategories", () => {
           tiers: [],
           years: ["10", "11"],
           threads: [],
+          pathways: [],
         }}
         slugs={{
           subjectSlug: "english",
@@ -96,6 +99,7 @@ describe("CurricFiltersSubjectCategories", () => {
       threads: [],
       tiers: [],
       years: ["10", "11"],
+      pathways: [],
     });
     act(() => elements[1]!.click());
     expect(onChangeFilters).toHaveBeenCalledWith({
@@ -104,6 +108,7 @@ describe("CurricFiltersSubjectCategories", () => {
       threads: [],
       tiers: [],
       years: ["10", "11"],
+      pathways: [],
     });
     act(() => elements[2]!.click());
     expect(onChangeFilters).toHaveBeenCalledWith({
@@ -112,6 +117,7 @@ describe("CurricFiltersSubjectCategories", () => {
       threads: [],
       tiers: [],
       years: ["10", "11"],
+      pathways: [],
     });
   });
 });
