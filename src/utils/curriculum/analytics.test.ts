@@ -55,6 +55,7 @@ describe("buildUnitSequenceRefinedAnalytics", () => {
       phase: Phase.SECONDARY,
       learningTier: null,
       subjectCategory: null,
+      pathway: null,
     });
   });
 
