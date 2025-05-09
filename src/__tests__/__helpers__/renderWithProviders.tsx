@@ -32,6 +32,7 @@ import MockedAnalyticsProvider from "./MockedAnalyticsProvider";
 
 import theme, { OakTheme } from "@/styles/theme";
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
+import { OakToastProvider } from "@/context/OakToast/OakToastProvider";
 
 export type ProviderProps = {
   children?: React.ReactNode;
@@ -47,6 +48,7 @@ type ProviderPropsByName = {
   overlay: Record<string, never>;
   toast: Record<string, never>;
   menu: Record<string, never>;
+  oakToast: Record<string, never>;
 };
 
 export type ProviderPartialProps = {
@@ -71,6 +73,7 @@ const providersByName: {
   overlay: [OverlayProvider],
   toast: [ToastProvider],
   menu: [MenuProvider],
+  oakToast: [OakToastProvider],
 } as const;
 
 type ProviderName = keyof ProviderPropsByName;
