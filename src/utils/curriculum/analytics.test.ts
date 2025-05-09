@@ -56,6 +56,7 @@ describe("buildUnitSequenceRefinedAnalytics", () => {
       phase: Phase.SECONDARY,
       learningTier: null,
       subjectCategory: null,
+      pathway: null,
     });
   });
 
@@ -160,5 +161,35 @@ describe("buildUnitSequenceRefinedAnalytics", () => {
     );
 
     expect(result.learningTier).toBe(LearningTier.HIGHER);
+  });
+
+  it("should set pathway to Core when selected", () => {
+    const filtersWithHigherTier: CurriculumFilters = {
+      ...baseFilters,
+      pathways: ["core"],
+    };
+
+    const result = buildUnitSequenceRefinedAnalytics(
+      AnalyticsUseCase.TEACHER,
+      mockTrackingData,
+      filtersWithHigherTier,
+    );
+
+    expect(result.pathway).toBe("Core");
+  });
+
+  it("should set pathway to GCSE when selected", () => {
+    const filtersWithHigherTier: CurriculumFilters = {
+      ...baseFilters,
+      pathways: ["!core"],
+    };
+
+    const result = buildUnitSequenceRefinedAnalytics(
+      AnalyticsUseCase.TEACHER,
+      mockTrackingData,
+      filtersWithHigherTier,
+    );
+
+    expect(result.pathway).toBe("GCSE");
   });
 });
