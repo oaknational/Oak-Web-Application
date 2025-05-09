@@ -25,7 +25,8 @@ export const useSaveUnits = (programmeSlug: string) => {
         setLocallySavedUnits(savedUnitsSet);
       }
     }
-  }, [savedUnitsData, locallySavedUnits]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [savedUnitsData]);
 
   const isUnitSaved = useCallback(
     (unitSlug: string) => locallySavedUnits.has(unitSlug),
