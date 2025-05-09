@@ -5,16 +5,19 @@ import { useUser } from "@clerk/nextjs";
 import { useOakToastContext } from "@/context/OakToast/useOakToastContext";
 import { postEducatorData } from "@/node-lib/educator-api/helpers/postEducatorData";
 
-export const useSaveUnits = (
-  savedUnits: Array<string>,
-  programmeSlug: string,
-) => {
+export type SavedUnits = Array<{
+  slug: string;
+  id: number;
+}>;
+
+export const useSaveUnits = (savedUnits: SavedUnits, programmeSlug: string) => {
   const [locallySavedUnits, setLocallySavedUnits] = useState<string[]>([]);
   const { isSignedIn } = useUser();
 
   const isUnitSaved = useCallback(
     (unitSlug: string) =>
-      savedUnits?.includes(unitSlug) || locallySavedUnits.includes(unitSlug),
+      savedUnits?.map((unit) => unit.slug)?.includes(unitSlug) ||
+      locallySavedUnits.includes(unitSlug),
     [savedUnits, locallySavedUnits],
   );
 

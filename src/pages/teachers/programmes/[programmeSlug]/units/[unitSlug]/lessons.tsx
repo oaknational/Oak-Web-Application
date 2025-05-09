@@ -209,10 +209,10 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       .toLowerCase();
   };
 
-  const { data: savedUnit } = useGetEducatorData(
+  const { data: savedUnits } = useGetEducatorData(
     `/api/educator-api/getSavedUnits/${programmeSlug}`,
   );
-  const { onSaveToggle, isUnitSaved } = useSaveUnits(savedUnit, programmeSlug);
+  const { onSaveToggle, isUnitSaved } = useSaveUnits(savedUnits, programmeSlug);
 
   return (
     <AppLayout

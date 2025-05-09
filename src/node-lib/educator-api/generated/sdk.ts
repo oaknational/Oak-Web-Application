@@ -63392,7 +63392,11 @@ export type GetUserContentQuery = {
     __typename?: "users_content";
     users_content_lists?: {
       __typename?: "content_lists";
-      content: { __typename?: "content"; unit_slug?: string | null };
+      content: {
+        __typename?: "content";
+        unit_slug?: string | null;
+        id: number;
+      };
     } | null;
   }>;
 };
@@ -63467,6 +63471,7 @@ export const GetUserContentDocument = gql`
       users_content_lists {
         content {
           unit_slug
+          id
         }
       }
     }

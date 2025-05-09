@@ -9,6 +9,7 @@ query getUserContent($userId: String, $programmeSlug: String) {
     users_content_lists {
       content {
         unit_slug
+        id
       }
     }
   }

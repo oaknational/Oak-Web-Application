@@ -20,9 +20,9 @@ jest.mock("@/node-lib/educator-api", () => ({
   getAuthenticatedEducatorApi: jest.fn().mockResolvedValue({
     getUserContent: jest.fn().mockResolvedValue({
       users_content: [
-        { users_content_lists: { content: { unit_slug: "unit1" } } },
+        { users_content_lists: { content: { unit_slug: "unit1", id: 1 } } },
         {
-          users_content_lists: { content: { unit_slug: "unit2" } },
+          users_content_lists: { content: { unit_slug: "unit2", id: 2 } },
         },
       ],
     }),
@@ -48,7 +48,10 @@ describe("/api/educator-api/getSavedUnits/[programmeSlug]", () => {
 
     await handler(req, res);
     expect(res._getStatusCode()).toBe(200);
-    expect(res._getJSONData()).toEqual(["unit1", "unit2"]);
+    expect(res._getJSONData()).toEqual([
+      { slug: "unit1", id: 1 },
+      { slug: "unit2", id: 2 },
+    ]);
   });
   it("should return 200 with empty array for a signed out user", async () => {
     setGetAuth(mockGetAuthSignedOut);
