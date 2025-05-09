@@ -13,6 +13,8 @@ import lessonListingFixture, {
   lessonsWithUnpublishedContent,
 } from "@/node-lib/curriculum-api-2023/fixtures/lessonListing.fixture";
 import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__/index";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
+import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 
 const render = renderWithProviders();
 
@@ -70,7 +72,9 @@ describe("Lesson listing page", () => {
     expect(lessonCount).toBeInTheDocument();
   });
 
-  test("it renders the correct text for the save button", async () => {
+  test("it renders the correct text for the save button when signed in", async () => {
+    setUseUserReturn(mockLoggedIn);
+
     render(<LessonListPage curriculumData={lessonListingFixture({})} />);
     const saveButton = screen.getByTestId("save-unit-button");
     expect(saveButton).toBeInTheDocument();

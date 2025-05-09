@@ -48,6 +48,7 @@ import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experimen
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { resolveOakHref } from "@/common-lib/urls";
 import { useTeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/useTeacherShareButton";
+import SavingSignedOutModal from "@/components/TeacherComponents/SavingSignedOutModal";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -186,7 +187,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
   };
 
   const isNew = hasNewContent ?? false;
-  const { isSignedIn } = useUser();
+  const { isSignedIn, isLoaded, user } = useUser();
   const showRiskAssessmentBanner = !!actions?.isPePractical && isSignedIn;
 
   const unpublishedLessonCount = lessons.filter(
@@ -209,6 +210,11 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
 
   // stub save implementation
   const [unitSaved, setUnitSaved] = useState<boolean>(false);
+  const [openSavingSignedOutModal, setOpenSavingSignedOutModal] =
+    useState<boolean>(false);
+
+  const isSignedOut = isLoaded && !isSignedIn;
+  const isOnboarded = user && user.publicMetadata?.owa?.isOnboarded;
 
   return (
     <AppLayout
@@ -293,7 +299,11 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           showRiskAssessmentBanner={showRiskAssessmentBanner}
           isIncompleteUnit={unpublishedLessonCount > 0}
           isUnitSaved={unitSaved}
-          onSave={() => setUnitSaved((prev) => !prev)}
+          onSave={() =>
+            isSignedOut || !isOnboarded
+              ? setOpenSavingSignedOutModal(true)
+              : setUnitSaved((prev) => !prev)
+          }
         />
         <OakMaxWidth $ph={"inner-padding-m"}>
           <OakGrid>
@@ -362,6 +372,14 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
             </OakGridArea>
           </OakGrid>
         </OakMaxWidth>
+        {openSavingSignedOutModal && (
+          <SavingSignedOutModal
+            isOpen={openSavingSignedOutModal}
+            onClose={() => {
+              setOpenSavingSignedOutModal(false);
+            }}
+          />
+        )}
       </OakThemeProvider>
     </AppLayout>
   );

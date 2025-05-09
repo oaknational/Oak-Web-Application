@@ -1,6 +1,7 @@
 import React, { FC, MouseEvent, useState } from "react";
 import { NextRouter, useRouter } from "next/router";
 import { useFeatureFlagEnabled } from "posthog-js/react";
+import { useUser } from "@clerk/nextjs";
 import {
   OakFlex,
   OakUnitsContainer,
@@ -22,6 +23,7 @@ import {
   UnitListItemProps,
   SpecialistListItemProps,
 } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
+import SavingSignedOutModal from "@/components/TeacherComponents/SavingSignedOutModal/SavingSignedOutModal";
 import {
   SpecialistUnit,
   SpecialistUnitListingData,
@@ -192,13 +194,23 @@ const UnitList: FC<UnitListProps> = (props) => {
 
   // stub implementation of saving
   const isSaveEnabled = useFeatureFlagEnabled("teacher-save-units");
+  const { isSignedIn, isLoaded, user } = useUser();
   const [savedUnitsForUser, setSavedUnitsForUser] = useState<string[]>([]);
+  const [openSavingSignedOutModal, setOpenSavingSignedOutModal] =
+    useState<boolean>(false);
+
+  const isSignedOut = isLoaded && !isSignedIn;
+  const isOnboarded = user && user.publicMetadata?.owa?.isOnboarded;
 
   const onSave = (unitSlug: string) => {
-    const newSavedUnits = savedUnitsForUser.includes(unitSlug)
-      ? savedUnitsForUser.filter((u) => u !== unitSlug)
-      : [...savedUnitsForUser, unitSlug];
-    setSavedUnitsForUser(newSavedUnits);
+    if (isSignedOut || !isOnboarded) {
+      setOpenSavingSignedOutModal(true);
+    } else {
+      const newSavedUnits = savedUnitsForUser.includes(unitSlug)
+        ? savedUnitsForUser.filter((u) => u !== unitSlug)
+        : [...savedUnitsForUser, unitSlug];
+      setSavedUnitsForUser(newSavedUnits);
+    }
   };
 
   const hasNewAndLegacyUnits: boolean =
@@ -463,6 +475,14 @@ const UnitList: FC<UnitListProps> = (props) => {
         </OakBox>
       ) : (
         <OakBox $pb="inner-padding-xl2" />
+      )}
+      {openSavingSignedOutModal && (
+        <SavingSignedOutModal
+          isOpen={openSavingSignedOutModal}
+          onClose={() => {
+            setOpenSavingSignedOutModal(false);
+          }}
+        />
       )}
     </OakFlex>
   );
