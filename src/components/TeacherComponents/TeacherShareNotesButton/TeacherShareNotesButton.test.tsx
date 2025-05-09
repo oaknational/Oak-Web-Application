@@ -8,143 +8,136 @@ jest.mock("@oaknational/oak-components", () => ({
   OakSmallSecondaryButton: ({
     children,
     onClick,
+    disabled,
   }: {
     children: ReactNode;
     onClick: () => void;
-  }) => <button onClick={onClick}>{children}</button>,
+    disabled?: boolean;
+  }) => (
+    <button onClick={onClick} disabled={disabled}>
+      {children}
+    </button>
+  ),
 }));
 
-jest.mock(
-  "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton",
-  () => ({
-    TeacherShareButton: ({
-      label,
-      shareUrl,
-    }: {
-      label: string;
-      shareUrl: string;
-    }) => (
-      <button data-testid="share-button" data-share-url={shareUrl}>
-        {label}
-      </button>
-    ),
-  }),
-);
-
-jest.mock(
-  "@/components/TeacherComponents/TeacherShareButton/useTeacherShareButton",
-  () => ({
-    useTeacherShareButton: () => ({
-      handleClick: jest.fn(),
-      copiedComponent: <div>Link copied to clipboard</div>,
-    }),
-  }),
-);
+const mockUseOakConsent = jest.fn();
+jest.mock("@oaknational/oak-consent-client", () => ({
+  useOakConsent: () => mockUseOakConsent(),
+}));
 
 describe("TeacherShareNotesButton", () => {
   const defaultProps = {
-    teacherNotesEnabled: false,
     isEditable: false,
     noteSaved: false,
     setTeacherNotesOpen: jest.fn(),
-    shareUrl: "https://example.com/share",
-    shareActivated: jest.fn(),
     onTeacherNotesOpen: jest.fn(),
   };
 
   beforeEach(() => {
     jest.clearAllMocks();
-  });
-
-  describe("when teacher notes are disabled", () => {
-    it("renders TeacherShareButton with correct props", () => {
-      render(<TeacherShareNotesButton {...defaultProps} />);
-
-      const shareButton = screen.getByTestId("share-button");
-      expect(shareButton).toBeInTheDocument();
-      expect(shareButton).toHaveTextContent("Share resources with colleague");
-      expect(shareButton).toHaveAttribute(
-        "data-share-url",
-        "https://example.com/share",
-      );
+    mockUseOakConsent.mockReturnValue({
+      state: {
+        policyConsents: [
+          { policyType: "essential", consentState: "granted" },
+          { policyType: "non-essential", consentState: "granted" },
+        ],
+        requiresInteraction: false,
+      },
     });
   });
 
-  describe("when teacher notes are enabled but not editable", () => {
-    it("renders TeacherShareButton", () => {
-      render(
-        <TeacherShareNotesButton
-          {...defaultProps}
-          teacherNotesEnabled={true}
-          isEditable={false}
-        />,
-      );
-
-      const shareButton = screen.getByTestId("share-button");
-      expect(shareButton).toBeInTheDocument();
+  it("is rendered and enabled when cookies are accepted", () => {
+    mockUseOakConsent.mockReturnValue({
+      state: {
+        policyConsents: [
+          { policyType: "essential", consentState: "granted" },
+          { policyType: "non-essential", consentState: "granted" },
+        ],
+        requiresInteraction: false,
+      },
     });
+
+    render(
+      <TeacherShareNotesButton
+        {...defaultProps}
+        isEditable={true}
+        noteSaved={false}
+      />,
+    );
+
+    const button = screen.getByText("Add teacher note and share");
+    expect(button).toBeInTheDocument();
+    expect(button).not.toBeDisabled();
   });
 
-  describe("when teacher notes are enabled and editable", () => {
-    it("renders 'Add teacher note and share' button when note is not saved", () => {
-      render(
-        <TeacherShareNotesButton
-          {...defaultProps}
-          teacherNotesEnabled={true}
-          isEditable={true}
-          noteSaved={false}
-        />,
-      );
-
-      expect(
-        screen.getByText("Add teacher note and share"),
-      ).toBeInTheDocument();
+  it("is rendered and disabled when cookies are rejected", () => {
+    mockUseOakConsent.mockReturnValue({
+      state: {
+        policyConsents: [
+          { policyType: "essential", consentState: "granted" },
+          { policyType: "non-essential", consentState: "denied" },
+        ],
+        requiresInteraction: false,
+      },
     });
 
-    it("renders 'Edit teacher note and share' button when note is saved", () => {
-      render(
-        <TeacherShareNotesButton
-          {...defaultProps}
-          teacherNotesEnabled={true}
-          isEditable={true}
-          noteSaved={true}
-        />,
-      );
+    render(
+      <TeacherShareNotesButton
+        {...defaultProps}
+        isEditable={true}
+        noteSaved={false}
+      />,
+    );
 
-      expect(
-        screen.getByText("Edit teacher note and share"),
-      ).toBeInTheDocument();
-    });
-
-    it("calls setTeacherNotesOpen when clicked", () => {
-      const onTeacherNotesOpen = jest.fn();
-      render(
-        <TeacherShareNotesButton
-          {...defaultProps}
-          teacherNotesEnabled={true}
-          isEditable={true}
-          onTeacherNotesOpen={onTeacherNotesOpen}
-        />,
-      );
-
-      fireEvent.click(screen.getByText("Add teacher note and share"));
-      expect(onTeacherNotesOpen).toHaveBeenCalled();
-    });
+    const button = screen.getByText("Add teacher note and share");
+    expect(button).toBeInTheDocument();
+    expect(button).toBeDisabled();
   });
 
-  describe("shareActivated callback", () => {
-    it("passes shareActivated to TeacherShareButton", () => {
-      const shareActivatedMock = jest.fn();
-
-      render(
-        <TeacherShareNotesButton
-          {...defaultProps}
-          shareActivated={shareActivatedMock}
-        />,
-      );
-
-      const shareButton = screen.getByTestId("share-button");
-      expect(shareButton).toBeInTheDocument();
+  it("is hidden when cookies have not been accepted/rejected", () => {
+    mockUseOakConsent.mockReturnValue({
+      state: {
+        policyConsents: [
+          { policyType: "essential", consentState: "pending" },
+          { policyType: "non-essential", consentState: "pending" },
+        ],
+        requiresInteraction: true,
+      },
     });
+
+    render(<TeacherShareNotesButton {...defaultProps} isEditable={true} />);
+
+    expect(
+      screen.queryByText("Add teacher note and share"),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByText("Edit teacher note and share"),
+    ).not.toBeInTheDocument();
+  });
+
+  it("renders 'Edit teacher note and share' button when note is saved", () => {
+    render(
+      <TeacherShareNotesButton
+        {...defaultProps}
+        isEditable={true}
+        noteSaved={true}
+      />,
+    );
+
+    expect(screen.getByText("Edit teacher note and share")).toBeInTheDocument();
+  });
+
+  it("calls setTeacherNotesOpen when clicked", () => {
+    const onTeacherNotesOpen = jest.fn();
+    render(
+      <TeacherShareNotesButton
+        {...defaultProps}
+        isEditable={true}
+        onTeacherNotesOpen={onTeacherNotesOpen}
+      />,
+    );
+
+    fireEvent.click(screen.getByText("Add teacher note and share"));
+    expect(onTeacherNotesOpen).toHaveBeenCalled();
   });
 });
