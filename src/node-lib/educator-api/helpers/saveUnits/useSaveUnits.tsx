@@ -5,19 +5,16 @@ import { useUser } from "@clerk/nextjs";
 import { useOakToastContext } from "@/context/OakToast/useOakToastContext";
 import { postEducatorData } from "@/node-lib/educator-api/helpers/postEducatorData";
 
-export type SavedUnits = Array<{
-  slug: string;
-  id: number;
-}>;
-
-export const useSaveUnits = (savedUnits: SavedUnits, programmeSlug: string) => {
+export const useSaveUnits = (
+  savedUnits: Array<string>,
+  programmeSlug: string,
+) => {
   const [locallySavedUnits, setLocallySavedUnits] = useState<string[]>([]);
   const { isSignedIn } = useUser();
 
   const isUnitSaved = useCallback(
     (unitSlug: string) =>
-      savedUnits?.map((unit) => unit.slug)?.includes(unitSlug) ||
-      locallySavedUnits.includes(unitSlug),
+      savedUnits?.includes(unitSlug) || locallySavedUnits.includes(unitSlug),
     [savedUnits, locallySavedUnits],
   );
 
@@ -50,10 +47,36 @@ export const useSaveUnits = (savedUnits: SavedUnits, programmeSlug: string) => {
     );
   };
 
+  const onUnsave = async (unitSlug: string) => {
+    setCurrentToastProps({
+      message: (
+        <OakP>
+          <b>Unit removed</b> from My library
+        </OakP>
+      ),
+      variant: "dark",
+      showIcon: false,
+      autoDismiss: true,
+    });
+    await postEducatorData(
+      `/api/educator-api/unsaveUnit/${programmeSlug}/${unitSlug}`,
+      () => {
+        // Revert the optimistic update if the request fails and show an error toast
+        setCurrentToastProps({
+          message: <OakP>Something went wrong</OakP>,
+          variant: "error",
+          showIcon: false,
+          autoDismiss: true,
+        });
+      },
+    );
+  };
+
   const onSaveToggle = (unitSlug: string) => {
     if (isSignedIn) {
       if (isUnitSaved(unitSlug)) {
         // TODO: unsaving
+        onUnsave(unitSlug);
       } else {
         onSave(unitSlug);
       }

@@ -63367,6 +63367,20 @@ export type CreateUserListContentMutation = {
   } | null;
 };
 
+export type DeleteUserListContentMutationVariables = Exact<{
+  userId: Scalars["String"]["input"];
+  unitSlug: Scalars["String"]["input"];
+  programmeSlug: Scalars["String"]["input"];
+}>;
+
+export type DeleteUserListContentMutation = {
+  __typename?: "mutation_root";
+  delete_content_lists?: {
+    __typename?: "content_lists_mutation_response";
+    affected_rows: number;
+  } | null;
+};
+
 export type GetUserQueryVariables = Exact<{
   userId?: InputMaybe<Scalars["String"]["input"]>;
 }>;
@@ -63392,11 +63406,7 @@ export type GetUserContentQuery = {
     __typename?: "users_content";
     users_content_lists?: {
       __typename?: "content_lists";
-      content: {
-        __typename?: "content";
-        unit_slug?: string | null;
-        id: number;
-      };
+      content: { __typename?: "content"; unit_slug?: string | null };
     } | null;
   }>;
 };
@@ -63450,6 +63460,25 @@ export const CreateUserListContentDocument = gql`
     }
   }
 `;
+export const DeleteUserListContentDocument = gql`
+  mutation deleteUserListContent(
+    $userId: String!
+    $unitSlug: String!
+    $programmeSlug: String!
+  ) {
+    delete_content_lists(
+      where: {
+        list: { user_id: { _eq: $userId } }
+        content: {
+          unit_slug: { _eq: $unitSlug }
+          programme_slug: { _eq: $programmeSlug }
+        }
+      }
+    ) {
+      affected_rows
+    }
+  }
+`;
 export const GetUserDocument = gql`
   query getUser($userId: String) {
     user: users(where: { id: { _eq: $userId } }) {
@@ -63471,7 +63500,6 @@ export const GetUserContentDocument = gql`
       users_content_lists {
         content {
           unit_slug
-          id
         }
       }
     }
@@ -63524,6 +63552,22 @@ export function getSdk(
             { ...requestHeaders, ...wrappedRequestHeaders },
           ),
         "createUserListContent",
+        "mutation",
+        variables,
+      );
+    },
+    deleteUserListContent(
+      variables: DeleteUserListContentMutationVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<DeleteUserListContentMutation> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<DeleteUserListContentMutation>(
+            DeleteUserListContentDocument,
+            variables,
+            { ...requestHeaders, ...wrappedRequestHeaders },
+          ),
+        "deleteUserListContent",
         "mutation",
         variables,
       );

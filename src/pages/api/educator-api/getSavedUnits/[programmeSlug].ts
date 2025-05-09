@@ -29,16 +29,14 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
       userId,
       programmeSlug,
     });
-
     const parsedUnits = getUserContentResponse.parse(result);
 
     if (parsedUnits.users_content.length === 0) {
       return res.status(200).send([]);
     }
-    const units = parsedUnits.users_content.map((unit) => ({
-      slug: unit.users_content_lists.content.unit_slug,
-      id: unit.users_content_lists.content.id,
-    }));
+    const units = parsedUnits.users_content
+      .map((unit) => unit.users_content_lists?.content.unit_slug)
+      .filter((unit) => unit !== null);
     return res.status(200).json(units);
   } catch (err) {
     reportError(err, {
