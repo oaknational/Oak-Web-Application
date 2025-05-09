@@ -63390,7 +63390,10 @@ export type GetUserContentQuery = {
   __typename?: "query_root";
   users_content: Array<{
     __typename?: "users_content";
-    content?: { __typename?: "content"; unit_slug?: string | null } | null;
+    users_content_lists?: {
+      __typename?: "content_lists";
+      content: { __typename?: "content"; unit_slug?: string | null };
+    } | null;
   }>;
 };
 
@@ -63455,13 +63458,16 @@ export const GetUserDocument = gql`
 export const GetUserContentDocument = gql`
   query getUserContent($userId: String, $programmeSlug: String) {
     users_content(
+      distinct_on: content_id
       where: {
-        content: { programme_slug: { _eq: $programmeSlug } }
         user_id: { _eq: $userId }
+        content: { programme_slug: { _eq: $programmeSlug } }
       }
     ) {
-      content {
-        unit_slug
+      users_content_lists {
+        content {
+          unit_slug
+        }
       }
     }
   }

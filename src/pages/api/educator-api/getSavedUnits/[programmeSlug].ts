@@ -36,7 +36,7 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
       return res.status(200).send([]);
     }
     const units = parsedUnits.users_content.map(
-      (unit) => unit.content.unit_slug,
+      (unit) => unit.users_content_lists.content.unit_slug,
     );
     return res.status(200).json(units);
   } catch (err) {
