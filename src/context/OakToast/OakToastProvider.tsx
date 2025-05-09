@@ -21,6 +21,7 @@ export const OakToastProvider: FC<{
   const [offsetTop, setOffsetTop] = useState<number>(82);
 
   useEffect(() => {
+    // Adjust the distance from the top of the screen when the header is visible
     const observer = new IntersectionObserver((entries) => {
       if (entries && entries[0] && entries[0].isIntersecting) {
         setOffsetTop(82);
@@ -50,9 +51,7 @@ export const OakToastProvider: FC<{
         {currentToastProps && (
           <OakToast
             {...currentToastProps}
-            onClose={() => {
-              setCurrentToastProps(null);
-            }}
+            onClose={() => setCurrentToastProps(null)}
           />
         )}
       </StyledOakToastContainer>

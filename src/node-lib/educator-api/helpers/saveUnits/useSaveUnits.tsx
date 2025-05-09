@@ -35,6 +35,7 @@ export const useSaveUnits = (
     await postEducatorData(
       `/api/educator-api/saveUnit/${programmeSlug}/${unitSlug}`,
       () => {
+        // Revert the optimistic update if the request fails and show an error toast
         setLocallySavedUnits((prev) => prev.filter((u) => u !== unitSlug));
         setCurrentToastProps({
           message: <OakP>Something went wrong</OakP>,
