@@ -102,6 +102,8 @@ describe("Lesson Overview Canonical Page", () => {
         shareUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
         browserUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
         shareActivated: () => {},
+        shareIdRef: { current: "" },
+        shareIdKeyRef: { current: "" },
       });
 
       const result = render(
