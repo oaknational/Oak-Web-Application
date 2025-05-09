@@ -1,0 +1,73 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Agentic Coding Copilot Principles - Next.js & TypeScript (Optimised for Cursor)
+
+## PRIME DIRECTIVE
+- Follow strict **TDD**: write a failing test → make it pass → refactor.
+- Treat untested code as broken.
+- After every change run type-check → lint → test → build and keep the build red until green.
+
+## 1  Code Style & Organisation
+- Conform to existing style (or Prettier defaults if none).
+- Keep units small and focused; extract when multiple concepts emerge.
+- Use clear naming: **PascalCase** for types/components, **camelCase** for variables/functions, **UPPER_SNAKE** for constants.
+- Default to immutability (`readonly`, pure functions).
+- Route logging through the project logger; no stray `console.*`.
+
+## 2  Type Safety & Runtime Validation
+- Zero-`any`; prefer `unknown` + narrowing.
+- Prefer type guards over casts.
+- Use opaque/branded types for identifiers.
+- Model variants as discriminated unions.
+- External input pipeline: **Guard → Parse → Model**.
+
+## 3  Architecture & Separation of Concerns
+- Layers: Presentation (UI) → Server/API → Domain Logic → Infrastructure.
+- Keep coupling low, cohesion high.
+- Inject dependencies (constructor/context/hooks) instead of direct imports.
+
+## 4  Module Boundaries & Imports
+- Export only what callers need; use barrel `index.ts` when helpful.
+- Honour existing path aliases, avoid deep relative paths.
+- Tag non-public helpers with `/** @internal */`.
+
+## 5  Data Fetching & Error Handling
+- Centralise I/O in dedicated clients; UI components should only consume hooks.
+- Convert failures into typed error classes (`ApiError`, `NetworkError`, …) preserving `.cause`.
+- Prefer Web APIs (`fetch`, `URL`) over Node-specific modules.
+
+## 6  Documentation & Quality Gates
+- Document every exported symbol with JSDoc (`@param`, `@returns`, `@throws`).
+- Enforce type, lint, test, build gates via Husky / CI.
+
+## 7  Testing Strategy
+- Unit: Vitest/Jest (in-memory).
+- Integration: Vitest/Jest (mock at boundaries).
+- E2E: Playwright/Cypress.
+- Mock external networks & side-effects; aim for meaningful coverage.
+
+## 8  Workflow & Automation
+- Provide/maintain `npm run`: `dev`, `type-check`, `lint`, `test`, `build`.
+- CI runs them in that order.
+
+## 9  Next.js-Specific Advice
+- Use App Router and default to **Server Components**; add `'use client'` only when required.
+- Co-locate route files (`page.tsx`, `layout.tsx`).
+- Wrap heavy client libs in `dynamic()` + `<Suspense>`.
+- Expose only `NEXT_PUBLIC_*` env vars.
+- Place static assets in `/public`; use `next/image`.
+
+## 10  LLM Copilot Self-Checklist
+1. TDD first.
+2. Quality gates green.
+3. Respect surrounding context.
+4. Make atomic commits.
+5. Update docs & examples.
+6. Avoid bundle bloat & dead code.
+7. Validate dependencies; never leak secrets.
+
+---
+_Endeavour to leave the codebase healthier than you found it. Refactor mercilessly, guided by tests._
