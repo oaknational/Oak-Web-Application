@@ -20,6 +20,33 @@ jest.mock("@oaknational/oak-components", () => ({
   ),
 }));
 
+jest.mock(
+  "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton",
+  () => ({
+    TeacherShareButton: ({
+      label,
+      shareUrl,
+    }: {
+      label: string;
+      shareUrl: string;
+    }) => (
+      <button data-testid="share-button" data-share-url={shareUrl}>
+        {label}
+      </button>
+    ),
+  }),
+);
+
+jest.mock(
+  "@/components/TeacherComponents/TeacherShareButton/useTeacherShareButton",
+  () => ({
+    useTeacherShareButton: () => ({
+      handleClick: jest.fn(),
+      copiedComponent: <div>Link copied to clipboard</div>,
+    }),
+  }),
+);
+
 const mockUseOakConsent = jest.fn();
 jest.mock("@oaknational/oak-consent-client", () => ({
   useOakConsent: () => mockUseOakConsent(),
