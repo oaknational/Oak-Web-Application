@@ -26,6 +26,8 @@ jest.mock("@tiptap/react", () => {
         commands: {
           getHTML: jest.fn().mockReturnValue("<p>test</p>"),
           setContent: jest.fn(),
+          clearDynamicHighlights: jest.fn(),
+          applyDynamicHighlights: jest.fn(),
         },
         storage: {
           characterCount: {
