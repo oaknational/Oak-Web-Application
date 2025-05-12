@@ -22,6 +22,7 @@ import {
   UnitListItemProps,
   SpecialistListItemProps,
 } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
+import SavingSignedOutModal from "@/components/TeacherComponents/SavingSignedOutModal/SavingSignedOutModal";
 import {
   SpecialistUnit,
   SpecialistUnitListingData,
@@ -198,10 +199,12 @@ const UnitList: FC<UnitListProps> = (props) => {
   const { data: savedUnits } = useGetEducatorData(
     `/api/educator-api/getSavedUnits/${props.programmeSlug}`,
   );
-  const { onSaveToggle, isUnitSaved } = useSaveUnits(
-    savedUnits,
-    props.programmeSlug,
-  );
+  const {
+    onSaveToggle,
+    isUnitSaved,
+    openSavingSignedOutModal,
+    setOpenSavingSignedOutModal,
+  } = useSaveUnits(savedUnits, props.programmeSlug);
 
   const hasNewAndLegacyUnits: boolean =
     !!phaseSlug && !!newPageItems.length && !!legacyPageItems.length;
@@ -467,6 +470,14 @@ const UnitList: FC<UnitListProps> = (props) => {
         </OakBox>
       ) : (
         <OakBox $pb="inner-padding-xl2" />
+      )}
+      {openSavingSignedOutModal && (
+        <SavingSignedOutModal
+          isOpen={openSavingSignedOutModal}
+          onClose={() => {
+            setOpenSavingSignedOutModal(false);
+          }}
+        />
       )}
     </OakFlex>
   );

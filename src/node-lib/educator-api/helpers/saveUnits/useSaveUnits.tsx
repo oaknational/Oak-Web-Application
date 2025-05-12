@@ -10,7 +10,12 @@ export const useSaveUnits = (
   programmeSlug: string,
 ) => {
   const [locallySavedUnits, setLocallySavedUnits] = useState<string[]>([]);
-  const { isSignedIn } = useUser();
+  const [openSavingSignedOutModal, setOpenSavingSignedOutModal] =
+    useState<boolean>(false);
+
+  const { isSignedIn, user } = useUser();
+
+  const isOnboarded = user && user.publicMetadata?.owa?.isOnboarded;
 
   const isUnitSaved = useCallback(
     (unitSlug: string) =>
@@ -48,19 +53,21 @@ export const useSaveUnits = (
   };
 
   const onSaveToggle = (unitSlug: string) => {
-    if (isSignedIn) {
+    if (isSignedIn && isOnboarded) {
       if (isUnitSaved(unitSlug)) {
         // TODO: unsaving
       } else {
         onSave(unitSlug);
       }
     } else {
-      // TODO: show sign in modal
+      setOpenSavingSignedOutModal(true);
     }
   };
 
   return {
     isUnitSaved,
     onSaveToggle,
+    openSavingSignedOutModal,
+    setOpenSavingSignedOutModal,
   };
 };

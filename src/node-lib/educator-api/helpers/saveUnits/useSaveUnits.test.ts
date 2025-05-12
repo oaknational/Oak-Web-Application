@@ -2,7 +2,7 @@ import { act, renderHook, waitFor } from "@testing-library/react";
 
 import { useSaveUnits } from "./useSaveUnits";
 
-import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
+import { mockLoggedIn, mockLoggedOut } from "@/__tests__/__helpers__/mockUser";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 
 const fetch = jest.spyOn(global, "fetch") as jest.Mock;
@@ -45,7 +45,7 @@ describe("useSaveUnits", () => {
       expect(result.current.isUnitSaved("unit1")).toBe(true),
     );
   });
-  it("should do nothing when toggliong a unit that is already saved", () => {
+  it("should do nothing when toggling a unit that is already saved", () => {
     const { result } = renderHook(() =>
       useSaveUnits(["unit1"], "test-programme"),
     );
@@ -82,5 +82,31 @@ describe("useSaveUnits", () => {
       showIcon: false,
       autoDismiss: true,
     });
+  });
+  it("should set the openSavingSignedOutModal to true when user is signed out", () => {
+    setUseUserReturn(mockLoggedOut);
+    const { result } = renderHook(() => useSaveUnits([], "test-programme"));
+
+    act(() => result.current.onSaveToggle("unit1"));
+
+    expect(result.current.openSavingSignedOutModal).toBe(true);
+  });
+  it("should set the openSavingSignedOutModal to true when user is signed in but not onboarded", () => {
+    setUseUserReturn({
+      ...mockLoggedIn,
+      user: {
+        ...mockLoggedIn.user,
+        publicMetadata: {
+          owa: {
+            isOnboarded: false,
+          },
+        },
+      },
+    });
+    const { result } = renderHook(() => useSaveUnits([], "test-programme"));
+
+    act(() => result.current.onSaveToggle("unit1"));
+
+    expect(result.current.openSavingSignedOutModal).toBe(true);
   });
 });

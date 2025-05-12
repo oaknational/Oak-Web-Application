@@ -16,11 +16,8 @@ describe("SavingSignedOutModal", () => {
   const mockOnClose = jest.fn();
 
   beforeEach(() => {
-    setUseUserReturn(mockLoggedOut);
-  });
-
-  afterEach(() => {
     jest.clearAllMocks();
+    setUseUserReturn(mockLoggedOut);
   });
 
   it("should render the modal when isOpen is true", () => {

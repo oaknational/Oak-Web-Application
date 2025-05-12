@@ -50,6 +50,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { useTeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/useTeacherShareButton";
 import { useGetEducatorData } from "@/node-lib/educator-api/helpers/useGetEducatorData";
 import { useSaveUnits } from "@/node-lib/educator-api/helpers/saveUnits/useSaveUnits";
+import SavingSignedOutModal from "@/components/TeacherComponents/SavingSignedOutModal";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -212,7 +213,12 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
   const { data: savedUnit } = useGetEducatorData(
     `/api/educator-api/getSavedUnits/${programmeSlug}`,
   );
-  const { onSaveToggle, isUnitSaved } = useSaveUnits(savedUnit, programmeSlug);
+  const {
+    onSaveToggle,
+    isUnitSaved,
+    openSavingSignedOutModal,
+    setOpenSavingSignedOutModal,
+  } = useSaveUnits(savedUnit, programmeSlug);
 
   return (
     <AppLayout
@@ -366,6 +372,14 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
             </OakGridArea>
           </OakGrid>
         </OakMaxWidth>
+        {openSavingSignedOutModal && (
+          <SavingSignedOutModal
+            isOpen={openSavingSignedOutModal}
+            onClose={() => {
+              setOpenSavingSignedOutModal(false);
+            }}
+          />
+        )}
       </OakThemeProvider>
     </AppLayout>
   );
