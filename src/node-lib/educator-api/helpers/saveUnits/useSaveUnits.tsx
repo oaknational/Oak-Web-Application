@@ -15,7 +15,7 @@ export const useSaveUnits = (
 
   const { isSignedIn, user } = useUser();
 
-  const isOnboarded = user && user.publicMetadata?.owa?.isOnboarded;
+  const isOnboarded = user?.publicMetadata?.owa?.isOnboarded;
 
   const isUnitSaved = useCallback(
     (unitSlug: string) =>
