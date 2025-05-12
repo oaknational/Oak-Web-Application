@@ -10,8 +10,7 @@ export const useSaveUnits = (
   programmeSlug: string,
 ) => {
   const [locallySavedUnits, setLocallySavedUnits] = useState<string[]>([]);
-  const [openSavingSignedOutModal, setOpenSavingSignedOutModal] =
-    useState<boolean>(false);
+  const [showSignIn, setShowSignIn] = useState<boolean>(false);
 
   const { isSignedIn, user } = useUser();
 
@@ -60,14 +59,14 @@ export const useSaveUnits = (
         onSave(unitSlug);
       }
     } else {
-      setOpenSavingSignedOutModal(true);
+      setShowSignIn(true);
     }
   };
 
   return {
     isUnitSaved,
     onSaveToggle,
-    openSavingSignedOutModal,
-    setOpenSavingSignedOutModal,
+    showSignIn,
+    setShowSignIn,
   };
 };

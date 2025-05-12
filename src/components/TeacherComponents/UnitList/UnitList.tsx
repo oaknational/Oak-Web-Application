@@ -199,12 +199,10 @@ const UnitList: FC<UnitListProps> = (props) => {
   const { data: savedUnits } = useGetEducatorData(
     `/api/educator-api/getSavedUnits/${props.programmeSlug}`,
   );
-  const {
-    onSaveToggle,
-    isUnitSaved,
-    openSavingSignedOutModal,
-    setOpenSavingSignedOutModal,
-  } = useSaveUnits(savedUnits, props.programmeSlug);
+  const { onSaveToggle, isUnitSaved, showSignIn, setShowSignIn } = useSaveUnits(
+    savedUnits,
+    props.programmeSlug,
+  );
 
   const hasNewAndLegacyUnits: boolean =
     !!phaseSlug && !!newPageItems.length && !!legacyPageItems.length;
@@ -471,11 +469,11 @@ const UnitList: FC<UnitListProps> = (props) => {
       ) : (
         <OakBox $pb="inner-padding-xl2" />
       )}
-      {openSavingSignedOutModal && (
+      {showSignIn && (
         <SavingSignedOutModal
-          isOpen={openSavingSignedOutModal}
+          isOpen={showSignIn}
           onClose={() => {
-            setOpenSavingSignedOutModal(false);
+            setShowSignIn(false);
           }}
         />
       )}

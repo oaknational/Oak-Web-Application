@@ -83,15 +83,15 @@ describe("useSaveUnits", () => {
       autoDismiss: true,
     });
   });
-  it("should set the openSavingSignedOutModal to true when user is signed out", () => {
+  it("should set showSignIn to true when user is signed out", () => {
     setUseUserReturn(mockLoggedOut);
     const { result } = renderHook(() => useSaveUnits([], "test-programme"));
 
     act(() => result.current.onSaveToggle("unit1"));
 
-    expect(result.current.openSavingSignedOutModal).toBe(true);
+    expect(result.current.showSignIn).toBe(true);
   });
-  it("should set the openSavingSignedOutModal to true when user is signed in but not onboarded", () => {
+  it("should set showSignIn to true when user is signed in but not onboarded", () => {
     setUseUserReturn({
       ...mockLoggedIn,
       user: {
@@ -107,6 +107,6 @@ describe("useSaveUnits", () => {
 
     act(() => result.current.onSaveToggle("unit1"));
 
-    expect(result.current.openSavingSignedOutModal).toBe(true);
+    expect(result.current.showSignIn).toBe(true);
   });
 });

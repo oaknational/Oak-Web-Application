@@ -213,12 +213,10 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
   const { data: savedUnit } = useGetEducatorData(
     `/api/educator-api/getSavedUnits/${programmeSlug}`,
   );
-  const {
-    onSaveToggle,
-    isUnitSaved,
-    openSavingSignedOutModal,
-    setOpenSavingSignedOutModal,
-  } = useSaveUnits(savedUnit, programmeSlug);
+  const { onSaveToggle, isUnitSaved, showSignIn, setShowSignIn } = useSaveUnits(
+    savedUnit,
+    programmeSlug,
+  );
 
   return (
     <AppLayout
@@ -372,11 +370,11 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
             </OakGridArea>
           </OakGrid>
         </OakMaxWidth>
-        {openSavingSignedOutModal && (
+        {showSignIn && (
           <SavingSignedOutModal
-            isOpen={openSavingSignedOutModal}
+            isOpen={showSignIn}
             onClose={() => {
-              setOpenSavingSignedOutModal(false);
+              setShowSignIn(false);
             }}
           />
         )}
