@@ -362,7 +362,9 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
             w:val="36"
           ></w:sz>
         </w:rPr>
-        <w:t><![CDATA[Heading 1]]></w:t>
+        <w:t
+          xml:space="preserve"
+        ><![CDATA[Heading 1]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -382,7 +384,9 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
             w:cs="Arial"
           ></w:rFonts>
         </w:rPr>
-        <w:t><![CDATA[test]]></w:t>
+        <w:t
+          xml:space="preserve"
+        ><![CDATA[test]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -416,7 +420,9 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
             w:val="28"
           ></w:sz>
         </w:rPr>
-        <w:t><![CDATA[Heading 2]]></w:t>
+        <w:t
+          xml:space="preserve"
+        ><![CDATA[Heading 2]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -436,7 +442,9 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
             w:cs="Arial"
           ></w:rFonts>
         </w:rPr>
-        <w:t><![CDATA[test]]></w:t>
+        <w:t
+          xml:space="preserve"
+        ><![CDATA[test]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -470,7 +478,9 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
             w:val="24"
           ></w:sz>
         </w:rPr>
-        <w:t><![CDATA[Heading 3]]></w:t>
+        <w:t
+          xml:space="preserve"
+        ><![CDATA[Heading 3]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -490,7 +500,9 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
             w:cs="Arial"
           ></w:rFonts>
         </w:rPr>
-        <w:t><![CDATA[test]]></w:t>
+        <w:t
+          xml:space="preserve"
+        ><![CDATA[test]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -524,7 +536,9 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
             w:val="24"
           ></w:sz>
         </w:rPr>
-        <w:t><![CDATA[Heading 4]]></w:t>
+        <w:t
+          xml:space="preserve"
+        ><![CDATA[Heading 4]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -544,7 +558,9 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
             w:cs="Arial"
           ></w:rFonts>
         </w:rPr>
-        <w:t><![CDATA[test]]></w:t>
+        <w:t
+          xml:space="preserve"
+        ><![CDATA[test]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -564,7 +580,9 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
       </w:pPr>
       <w:r>
         <w:rPr></w:rPr>
-        <w:t><![CDATA[one]]></w:t>
+        <w:t
+          xml:space="preserve"
+        ><![CDATA[one]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -584,7 +602,9 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
       </w:pPr>
       <w:r>
         <w:rPr></w:rPr>
-        <w:t><![CDATA[one]]></w:t>
+        <w:t
+          xml:space="preserve"
+        ><![CDATA[one]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -604,7 +624,9 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
       </w:pPr>
       <w:r>
         <w:rPr></w:rPr>
-        <w:t><![CDATA[two]]></w:t>
+        <w:t
+          xml:space="preserve"
+        ><![CDATA[two]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -624,7 +646,9 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
       </w:pPr>
       <w:r>
         <w:rPr></w:rPr>
-        <w:t><![CDATA[three]]></w:t>
+        <w:t
+          xml:space="preserve"
+        ><![CDATA[three]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -644,7 +668,9 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
       </w:pPr>
       <w:r>
         <w:rPr></w:rPr>
-        <w:t><![CDATA[two]]></w:t>
+        <w:t
+          xml:space="preserve"
+        ><![CDATA[two]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -664,7 +690,9 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
       </w:pPr>
       <w:r>
         <w:rPr></w:rPr>
-        <w:t><![CDATA[one]]></w:t>
+        <w:t
+          xml:space="preserve"
+        ><![CDATA[one]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -684,7 +712,9 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
       </w:pPr>
       <w:r>
         <w:rPr></w:rPr>
-        <w:t><![CDATA[two]]></w:t>
+        <w:t
+          xml:space="preserve"
+        ><![CDATA[two]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -704,7 +734,9 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
       </w:pPr>
       <w:r>
         <w:rPr></w:rPr>
-        <w:t><![CDATA[three]]></w:t>
+        <w:t
+          xml:space="preserve"
+        ><![CDATA[three]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -724,7 +756,9 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
       </w:pPr>
       <w:r>
         <w:rPr></w:rPr>
-        <w:t><![CDATA[three]]></w:t>
+        <w:t
+          xml:space="preserve"
+        ><![CDATA[three]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -744,7 +778,9 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
       </w:pPr>
       <w:r>
         <w:rPr></w:rPr>
-        <w:t><![CDATA[one]]></w:t>
+        <w:t
+          xml:space="preserve"
+        ><![CDATA[one]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -764,7 +800,9 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
       </w:pPr>
       <w:r>
         <w:rPr></w:rPr>
-        <w:t><![CDATA[two]]></w:t>
+        <w:t
+          xml:space="preserve"
+        ><![CDATA[two]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -784,7 +822,9 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
       </w:pPr>
       <w:r>
         <w:rPr></w:rPr>
-        <w:t><![CDATA[three]]></w:t>
+        <w:t
+          xml:space="preserve"
+        ><![CDATA[three]]></w:t>
       </w:r>
     </w:p>
     <w:p></w:p>
@@ -4933,7 +4973,9 @@ exports[`5_subjectExplainer simple 1`] = `
             w:val="28"
           ></w:sz>
         </w:rPr>
-        <w:t><![CDATA[Aims and purpose]]></w:t>
+        <w:t
+          xml:space="preserve"
+        ><![CDATA[Aims and purpose]]></w:t>
       </w:r>
     </w:p>
     <w:p></w:p>

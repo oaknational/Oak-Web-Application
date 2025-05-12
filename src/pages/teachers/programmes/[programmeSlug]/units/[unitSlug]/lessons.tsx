@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   NextPage,
   GetStaticProps,
@@ -48,6 +48,8 @@ import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experimen
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { resolveOakHref } from "@/common-lib/urls";
 import { useTeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/useTeacherShareButton";
+import { useGetEducatorData } from "@/node-lib/educator-api/helpers/useGetEducatorData";
+import { useSaveUnits } from "@/node-lib/educator-api/helpers/saveUnits/useSaveUnits";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -88,6 +90,9 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     programmeSlug,
     subjectSlug,
     actions,
+    pathwayTitle,
+    tierTitle,
+    examBoardTitle,
   } = curriculumData;
 
   const unitListingHref = `/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/programmes`;
@@ -103,6 +108,10 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       subjectTitle,
       keyStageSlug,
       keyStageTitle: keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
+      lessonReleaseCohort: isSlugLegacy(programmeSlug)
+        ? "2020-2023"
+        : "2023-2026",
+      lessonReleaseDate: "unreleased",
     },
     overrideExistingShareId: true,
   });
@@ -162,11 +171,18 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         lessonName: props.lessonTitle,
         lessonSlug: props.lessonSlug,
         unitName: unitTitle,
-        unitSlug: unitSlug,
-        keyStageSlug: keyStageSlug,
+        unitSlug,
+        keyStageSlug,
         keyStageTitle: keyStageTitle as KeyStageTitleValueType,
         yearGroupName: props.yearTitle,
         yearGroupSlug: props.yearSlug,
+        pathway: pathwayTitle,
+        examBoard: examBoardTitle,
+        tierName: tierTitle,
+        lessonReleaseCohort: isSlugLegacy(programmeSlug)
+          ? "2020-2023"
+          : "2023-2026",
+        lessonReleaseDate: props.lessonReleaseDate ?? "unreleased",
       });
     }
   };
@@ -193,8 +209,10 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       .toLowerCase();
   };
 
-  // stub save implementation
-  const [unitSaved, setUnitSaved] = useState<boolean>(false);
+  const { data: savedUnit } = useGetEducatorData(
+    `/api/educator-api/getSavedUnits/${programmeSlug}`,
+  );
+  const { onSaveToggle, isUnitSaved } = useSaveUnits(savedUnit, programmeSlug);
 
   return (
     <AppLayout
@@ -269,17 +287,17 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               eventVersion: "2.0.0",
               analyticsUseCase: "Teacher",
               unitName: unitTitle,
-              unitSlug: unitSlug,
-              keyStageSlug: keyStageSlug,
+              unitSlug,
+              keyStageSlug,
               keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-              subjectSlug: subjectSlug,
-              subjectTitle: subjectTitle,
+              subjectSlug,
+              subjectTitle,
             })
           }
           showRiskAssessmentBanner={showRiskAssessmentBanner}
           isIncompleteUnit={unpublishedLessonCount > 0}
-          isUnitSaved={unitSaved}
-          onSave={() => setUnitSaved((prev) => !prev)}
+          isUnitSaved={isUnitSaved(unitSlug)}
+          onSave={() => onSaveToggle(unitSlug)}
         />
         <OakMaxWidth $ph={"inner-padding-m"}>
           <OakGrid>

@@ -11,6 +11,7 @@ export const SpecialistLessonShareFixture = (
   unitTitle: "Staying Safe",
   subjectSlug: "independent-living",
   subjectTitle: "Independent Living",
+  lessonReleaseDate: "2025-09-29T14:00:00.000Z",
   shareableResources: [
     {
       exists: true,

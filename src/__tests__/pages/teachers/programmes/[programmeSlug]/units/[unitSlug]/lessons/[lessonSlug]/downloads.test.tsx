@@ -65,12 +65,15 @@ jest.mock(
 );
 
 const lessonDownloaded = jest.fn();
+const teacherShareInitiated = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
       lessonResourcesDownloaded: (...args: unknown[]) =>
         lessonDownloaded(...args),
+      teacherShareInitiated: (...args: unknown[]) =>
+        teacherShareInitiated(...args),
     },
   }),
 }));
@@ -203,7 +206,12 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       tierName: "Foundation",
       unitName: "Measuring waves",
       unitSlug: "measuring-waves",
+      lessonReleaseCohort: "2023-2026",
+      lessonReleaseDate: "2025-09-29T14:00:00.000Z",
+      pathway: null,
     });
+
+    expect(teacherShareInitiated).toHaveBeenCalledTimes(1);
   });
   it("tracks download event with correct args for lessons without pfs", async () => {
     window.scrollTo = jest.fn();
@@ -241,7 +249,6 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       emailSupplied: true,
       engagementIntent: "use",
       eventVersion: "2.0.0",
-      examBoard: null,
       keyStageSlug: "ks4",
       keyStageTitle: "Key stage 4",
       lessonName: "Transverse waves",
@@ -259,9 +266,13 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       schoolUrn: "123456",
       subjectSlug: "combined-science",
       subjectTitle: "Combined Science",
-      tierName: null,
       unitName: "Measuring waves",
       unitSlug: "measuring-waves",
+      lessonReleaseCohort: "2023-2026",
+      lessonReleaseDate: "2025-09-29T14:00:00.000Z",
+      pathway: null,
+      tierName: null,
+      examBoard: null,
     });
   });
 

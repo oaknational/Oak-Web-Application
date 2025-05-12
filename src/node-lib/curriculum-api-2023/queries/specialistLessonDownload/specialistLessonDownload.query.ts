@@ -130,6 +130,7 @@ export const specialistLessonDownloadQuery =
         updatedAt: "2022",
         geoRestricted: restrictions.at(0)?.geo_restricted ?? null,
         loginRequired: restrictions.at(0)?.login_required ?? null,
+        lessonReleaseDate: lesson.lesson_release_date ?? null,
       },
     };
   };

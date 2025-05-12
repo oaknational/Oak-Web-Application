@@ -28,6 +28,7 @@ import { ToastProvider } from "@/context/Toast";
 import InlineSpriteSheet from "@/components/GenericPagesComponents/InlineSpriteSheet";
 import AppHooks from "@/components/AppComponents/App/AppHooks";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { OakToastProvider } from "@/context/OakToast/OakToastProvider";
 
 const lexend = Lexend({ subsets: ["latin"] });
 
@@ -75,15 +76,17 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
                     <OverlayProvider>
                       <MenuProvider>
                         <ToastProvider>
-                          <>
-                            <style jsx global>{`
-                              html {
-                                font-family: ${lexend.style.fontFamily};
-                              }
-                            `}</style>
-                          </>
-                          <Component {...pageProps} />
-                          <AppHooks />
+                          <OakToastProvider>
+                            <>
+                              <style jsx global>{`
+                                html {
+                                  font-family: ${lexend.style.fontFamily};
+                                }
+                              `}</style>
+                            </>
+                            <Component {...pageProps} />
+                            <AppHooks />
+                          </OakToastProvider>
                         </ToastProvider>
                       </MenuProvider>
                     </OverlayProvider>

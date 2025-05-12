@@ -4,7 +4,7 @@ import { specialistLessonShareQuery } from "./specialistLessonShare.query";
 import { specialistLessonShareSchema } from "./specialistLessonShare.schema";
 
 jest.mock("../../sdk", () => ({
-  specialistLessonShare: jest.fn(() =>
+  specialistLessonShare: jest.fn(({ lessonSlug }) =>
     Promise.resolve({
       specialistLessonShare: [
         {
@@ -23,6 +23,10 @@ jest.mock("../../sdk", () => ({
             subject_slug: "independent-living",
             subject: "Independent Living",
           },
+          lesson_release_date:
+            lessonSlug === "online-safety-c5gk8r"
+              ? "2023-01-01T00:00:00.000Z"
+              : null,
         },
       ],
     }),
@@ -38,6 +42,15 @@ describe("specialistLessonShare.query", () => {
     });
 
     expect(res).toBeDefined();
+  });
+  it("runs when there is a release date is null", () => {
+    expect(
+      specialistLessonShareQuery(sdk)({
+        lessonSlug: "online-safety-c5gk8r-no-release-date",
+        unitSlug: "staying-safe-al-5556",
+        programmeSlug: "independent-living-applying-learning",
+      }),
+    ).resolves.not.toThrow();
   });
   it("throws an error if no lesson is found", async () => {
     await expect(

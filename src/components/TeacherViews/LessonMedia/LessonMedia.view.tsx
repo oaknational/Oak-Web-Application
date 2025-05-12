@@ -39,6 +39,11 @@ import {
   createLearningCycleVideosTitleMap,
 } from "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers";
 import { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import {
+  KeyStageTitleValueType,
+  PathwayValueType,
+} from "@/browser-lib/avo/Avo";
 
 type BaseLessonMedia = {
   lessonTitle: string;
@@ -46,6 +51,7 @@ type BaseLessonMedia = {
   keyStageTitle: string;
   mediaClips: MediaClipListCamelCase;
   lessonOutline: { lessonOutline: string }[];
+  lessonReleaseDate: string;
   actions?: Actions;
 };
 
@@ -74,7 +80,9 @@ export const LessonMedia = (props: LessonMediaProps) => {
     mediaClips,
     lessonOutline,
     actions,
+    lessonReleaseDate,
   } = lesson;
+  const { track } = useAnalytics();
   const subjectSlug = isCanonical
     ? (lesson?.pathways[0]?.subjectSlug ?? "")
     : (lesson.subjectSlug ?? "");
@@ -83,7 +91,15 @@ export const LessonMedia = (props: LessonMediaProps) => {
     props.isCanonical ? props.lesson.pathways : [props.lesson],
   );
 
-  const { programmeSlug, unitSlug, subjectTitle, yearTitle } = commonPathway;
+  const {
+    programmeSlug,
+    unitSlug,
+    subjectTitle,
+    yearTitle,
+    keyStageSlug,
+    unitTitle,
+    pathwayTitle,
+  } = commonPathway;
 
   const router = useRouter();
   const { query } = router;
@@ -157,14 +173,6 @@ export const LessonMedia = (props: LessonMediaProps) => {
     setCurrentIndex(listOfAllClips.indexOf(clip));
   };
 
-  const onMediaClipClick = (clipSlug: string) => {
-    const clickedMediaClip = listOfAllClips.find(
-      (clip) => clip.mediaId === clipSlug,
-    );
-    clickedMediaClip && handleVideoChange(clickedMediaClip);
-    videoPlayerWrapper.current?.focus();
-  };
-
   const handleVideoEvents = (e: VideoEventCallbackArgs) => {
     if (e.event === "play") {
       currentClip &&
@@ -178,13 +186,94 @@ export const LessonMedia = (props: LessonMediaProps) => {
     }
   };
 
+  const trackMediaClipsPlaylistPlayed = ({
+    learningCycle,
+    durationSeconds,
+    isCaptioned,
+    videoPlaybackId,
+    videoTitle,
+    timeElapsedSeconds,
+    isMuted,
+    mediaClipsCount,
+    mediaClipIndex,
+  }: {
+    learningCycle?: string | null;
+    durationSeconds: number;
+    isCaptioned: boolean;
+    videoPlaybackId: string[];
+    videoTitle: string;
+    timeElapsedSeconds: number;
+    isMuted: boolean;
+    mediaClipsCount: number;
+    mediaClipIndex: number;
+  }) => {
+    track.mediaClipsPlaylistPlayed({
+      platform: "owa",
+      product: "media clips",
+      engagementIntent: "use",
+      componentType: "media_clips_played",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
+      keyStageSlug,
+      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+      subjectSlug,
+      subjectTitle,
+      unitSlug,
+      unitName: unitTitle,
+      lessonSlug,
+      lessonName: lessonTitle,
+      pathway: pathwayTitle as PathwayValueType,
+      tierName: null,
+      yearGroupName: null,
+      yearGroupSlug: null,
+      examBoard: null,
+      learningCycle,
+      releaseGroup: "2023",
+      phase: null,
+      durationSeconds, // int
+      isCaptioned, // bool
+      videoPlaybackId, // list of string
+      videoTitle, // string
+      timeElapsedSeconds, // int
+      isMuted, // bool
+      videoLocation: "media clips", // nulla
+      mediaClipsCount, // int
+      mediaClipIndex,
+      lessonReleaseCohort: "2023-2026",
+      lessonReleaseDate,
+    });
+  };
+
+  const onMediaClipClick = (clipSlug: string) => {
+    const clickedMediaClip = listOfAllClips.find(
+      (clip) => clip.mediaId === clipSlug,
+    );
+    clickedMediaClip && handleVideoChange(clickedMediaClip);
+    videoPlayerWrapper.current?.focus();
+    trackMediaClipsPlaylistPlayed({
+      learningCycle: clickedMediaClip?.learningCycle,
+      durationSeconds: clickedMediaClip?.videoObject?.duration ?? 0,
+      isCaptioned: false,
+      videoPlaybackId: [
+        clickedMediaClip?.videoObject?.playbackIds[0]?.id ?? "",
+      ],
+      videoTitle:
+        clickedMediaClip?.customTitle ??
+        clickedMediaClip?.mediaObject?.displayName ??
+        "",
+      timeElapsedSeconds: 0,
+      isMuted: false,
+      mediaClipsCount: listOfAllClips.length,
+      mediaClipIndex: parseInt(clickedMediaClip?.order.toString() ?? "0") ?? 0,
+    });
+  };
   const videoPlayer = currentClip && (
     <VideoPlayer
       playbackId={getPlaybackId(currentClip) || ""}
       playbackPolicy={"signed"}
       title={currentClip.customTitle ?? currentClip?.mediaObject?.displayName}
       // avo events need updating
-      location={"lesson"}
+      location={"media clips"}
       isLegacy={false}
       isAudioClip={currentClip.mediaObject?.format === "mp3"}
       userEventCallback={handleVideoEvents}

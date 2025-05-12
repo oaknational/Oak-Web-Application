@@ -58,5 +58,6 @@ export function buildUnitSequenceRefinedAnalytics(
       filters.subjectCategories.length > 0
         ? filters.subjectCategories[0]
         : null,
+    pathway: null,
   };
 }

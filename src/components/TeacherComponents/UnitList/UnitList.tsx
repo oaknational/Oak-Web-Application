@@ -1,4 +1,4 @@
-import React, { FC, MouseEvent, useState } from "react";
+import React, { FC, MouseEvent } from "react";
 import { NextRouter, useRouter } from "next/router";
 import { useFeatureFlagEnabled } from "posthog-js/react";
 import {
@@ -9,12 +9,14 @@ import {
   OakPagination,
   OakAnchorTarget,
   OakBox,
+  OakInlineBanner,
 } from "@oaknational/oak-components";
 
 import { UnitOption } from "../UnitListOptionalityCard/UnitListOptionalityCard";
 import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
 
 import { getPageItems, getProgrammeFactors } from "./helpers";
+import { UnitListLegacyBanner } from "./UnitListLegacyBanner";
 
 import {
   UnitListItemProps,
@@ -29,6 +31,8 @@ import { resolveOakHref } from "@/common-lib/urls";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { PaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
 import { convertSubjectToSlug } from "@/components/TeacherComponents/helpers/convertSubjectToSlug";
+import { useGetEducatorData } from "@/node-lib/educator-api/helpers/useGetEducatorData";
+import { useSaveUnits } from "@/node-lib/educator-api/helpers/saveUnits/useSaveUnits";
 
 export type Tier = {
   title: string;
@@ -159,7 +163,7 @@ const UnitList: FC<UnitListProps> = (props) => {
   const linkSubject = subjectParent
     ? convertSubjectToSlug(subjectParent)
     : subjectSlug;
-  const { currentPage, pageSize, firstItemRef, paginationRoute } =
+  const { currentPage, pageSize, firstItemRef, paginationRoute, onPageChange } =
     paginationProps;
   const router = useRouter();
   const category = router.query["category"]?.toString();
@@ -188,16 +192,19 @@ const UnitList: FC<UnitListProps> = (props) => {
     .map((u) => isSlugLegacy(u[0]!.programmeSlug))
     .indexOf(true);
 
-  // stub implementation of saving
+  // Saving
   const isSaveEnabled = useFeatureFlagEnabled("teacher-save-units");
-  const [savedUnitsForUser, setSavedUnitsForUser] = useState<string[]>([]);
 
-  const onSave = (unitSlug: string) => {
-    const newSavedUnits = savedUnitsForUser.includes(unitSlug)
-      ? savedUnitsForUser.filter((u) => u !== unitSlug)
-      : [...savedUnitsForUser, unitSlug];
-    setSavedUnitsForUser(newSavedUnits);
-  };
+  const { data: savedUnits } = useGetEducatorData(
+    `/api/educator-api/getSavedUnits/${props.programmeSlug}`,
+  );
+  const { onSaveToggle, isUnitSaved } = useSaveUnits(
+    savedUnits,
+    props.programmeSlug,
+  );
+
+  const hasNewAndLegacyUnits: boolean =
+    !!phaseSlug && !!newPageItems.length && !!legacyPageItems.length;
 
   const getUnitCards = (
     pageItems: CurrentPageItemsProps[] | SpecialistUnit[][],
@@ -257,8 +264,8 @@ const UnitList: FC<UnitListProps> = (props) => {
               : null
           }
           optionalityUnits={getOptionalityUnits(item, onClick, router)}
-          onSave={isSaveEnabled ? onSave : undefined}
-          getIsSaved={(unitSlug) => savedUnitsForUser.includes(unitSlug)}
+          onSave={isSaveEnabled ? onSaveToggle : undefined}
+          getIsSaved={isUnitSaved}
         />
       ) : (
         item.map((unitOption) => {
@@ -305,8 +312,10 @@ const UnitList: FC<UnitListProps> = (props) => {
                 unitSlug: unitOption.slug,
                 programmeSlug: unitOption.programmeSlug,
               })}
-              onSave={isSaveEnabled ? () => onSave(unitOption.slug) : undefined}
-              isSaved={savedUnitsForUser.includes(unitOption.slug)}
+              onSave={
+                isSaveEnabled ? () => onSaveToggle(unitOption.slug) : undefined
+              }
+              isSaved={isUnitSaved(unitOption.slug)}
             />
           );
         })
@@ -345,6 +354,14 @@ const UnitList: FC<UnitListProps> = (props) => {
     legacyPageItems.length && keyStageSlug && phaseSlug ? (
       <OakUnitsContainer
         isLegacy={true}
+        banner={
+          <UnitListLegacyBanner
+            userType={"teacher"}
+            hasNewUnits={hasNewAndLegacyUnits}
+            allLegacyUnits={legacyPageItems}
+            onButtonClick={() => onPageChange(1)}
+          />
+        }
         subject={subjectSlug}
         phase={phaseSlug}
         curriculumHref={resolveOakHref({
@@ -386,7 +403,16 @@ const UnitList: FC<UnitListProps> = (props) => {
           unitCards={getUnitCards(swimmingPageItems)}
           isCustomUnit={true}
           customHeadingText={title}
-          bannerText="Swimming and water safety lessons should be selected based on the ability and experience of your pupils."
+          banner={
+            <OakInlineBanner
+              isOpen={true}
+              message={
+                "Swimming and water safety lessons should be selected based on the ability and experience of your pupils."
+              }
+              type="neutral"
+              $width={"100%"}
+            />
+          }
         />
       );
     } else return null;
@@ -405,6 +431,14 @@ const UnitList: FC<UnitListProps> = (props) => {
         ) : (
           <OakUnitsContainer
             isLegacy={true}
+            banner={
+              <UnitListLegacyBanner
+                userType={"teacher"}
+                hasNewUnits={hasNewAndLegacyUnits}
+                allLegacyUnits={legacyPageItems}
+                onButtonClick={() => onPageChange(1)}
+              />
+            }
             subject={subjectSlug}
             phase={"Specialist and therapies"}
             curriculumHref={`${resolveOakHref({

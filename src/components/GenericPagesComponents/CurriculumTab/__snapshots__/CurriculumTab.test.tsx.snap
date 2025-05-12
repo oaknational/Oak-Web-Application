@@ -7,6 +7,10 @@ exports[`CurriculumTab renders 1`] = `
       data-overlay-container="true"
     >
       <div
+        aria-live="polite"
+        class="sc-fqkvVR sc-gsFSXq sc-20406e69-0 gseEDN cQyxGE iNrmgQ"
+      />
+      <div
         class="sc-fqkvVR gZEYWU"
       >
         <div
@@ -138,10 +142,11 @@ exports[`CurriculumTab renders 1`] = `
                           style="width: 50%;"
                         >
                           <div
-                            class="sc-fqkvVR sc-1c55d370-0 sc-47b15246-2 jEHEPk knawKC evzFxe"
+                            class="sc-fqkvVR sc-1c55d370-0 sc-bd3b6d19-2 jEHEPk knawKC bqIPtS"
                           >
                             <button
-                              class="sc-47b15246-1 fDOTWT"
+                              aria-expanded="false"
+                              class="sc-bd3b6d19-1 hDLPYn"
                               data-testid="subject-picker-button"
                               title="Subject"
                             >
@@ -205,10 +210,11 @@ exports[`CurriculumTab renders 1`] = `
                             class="sc-fqkvVR sc-gsFSXq fxkSvJ ehZBcc"
                           >
                             <div
-                              class="sc-fqkvVR sc-1c55d370-0 sc-47b15246-2 eMDDOo knawKC evzFxe"
+                              class="sc-fqkvVR sc-1c55d370-0 sc-bd3b6d19-2 eMDDOo knawKC bqIPtS"
                             >
                               <button
-                                class="sc-47b15246-1 fDOTWT"
+                                aria-expanded="false"
+                                class="sc-bd3b6d19-1 hDLPYn"
                                 data-testid="phase-picker-button"
                                 title="Phase"
                               >
@@ -328,10 +334,11 @@ exports[`CurriculumTab renders 1`] = `
                       style="width: 50%;"
                     >
                       <div
-                        class="sc-fqkvVR sc-1c55d370-0 sc-47b15246-2 jEHEPk knawKC evzFxe"
+                        class="sc-fqkvVR sc-1c55d370-0 sc-bd3b6d19-2 jEHEPk knawKC bqIPtS"
                       >
                         <button
-                          class="sc-47b15246-1 fDOTWT"
+                          aria-expanded="false"
+                          class="sc-bd3b6d19-1 hDLPYn"
                           data-testid="subject-picker-button"
                           title="Subject"
                         >
@@ -395,10 +402,11 @@ exports[`CurriculumTab renders 1`] = `
                         class="sc-fqkvVR sc-gsFSXq fxkSvJ ehZBcc"
                       >
                         <div
-                          class="sc-fqkvVR sc-1c55d370-0 sc-47b15246-2 eMDDOo knawKC evzFxe"
+                          class="sc-fqkvVR sc-1c55d370-0 sc-bd3b6d19-2 eMDDOo knawKC bqIPtS"
                         >
                           <button
-                            class="sc-47b15246-1 fDOTWT"
+                            aria-expanded="false"
+                            class="sc-bd3b6d19-1 hDLPYn"
                             data-testid="phase-picker-button"
                             title="Phase"
                           >

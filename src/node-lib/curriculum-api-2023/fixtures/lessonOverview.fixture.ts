@@ -106,6 +106,7 @@ const lessonOverviewFixture = (
     lessonMediaClips: lessonMediaClipsFixtures().mediaClips,
     additionalFiles: ["file1", "file2"],
     lessonOutline: [{ lessonOutline: "This is the lesson outline" }],
+    lessonReleaseDate: "2024-09-29T14:00:00.000Z",
     ...partial,
   };
 };

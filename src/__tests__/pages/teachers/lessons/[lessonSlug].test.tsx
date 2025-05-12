@@ -82,6 +82,18 @@ describe("Lesson Overview Canonical Page", () => {
         lesson.lessonTitle,
       );
     });
+    it("Renders the lesson overview when no lessonReleaseDate", async () => {
+      const result = render(
+        <LessonOverviewCanonicalPage
+          lesson={{ ...lesson, lessonReleaseDate: null, pathways: [] }}
+          isSpecialist={false}
+        />,
+      );
+
+      expect(result.getByRole("heading", { level: 1 })).toHaveTextContent(
+        lesson.lessonTitle,
+      );
+    });
 
     it("Renders the share button", async () => {
       window.history.replaceState = jest.fn();
@@ -90,6 +102,8 @@ describe("Lesson Overview Canonical Page", () => {
         shareUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
         browserUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
         shareActivated: () => {},
+        shareIdRef: { current: "" },
+        shareIdKeyRef: { current: "" },
       });
 
       const result = render(
