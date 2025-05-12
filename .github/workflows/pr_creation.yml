@@ -13,7 +13,7 @@ jobs:
       pull-requests: write
 
     name: add music year
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: choose year
         id: choose_year

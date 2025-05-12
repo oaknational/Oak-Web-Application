@@ -4,6 +4,7 @@ import { jest } from "@jest/globals";
 import "@testing-library/jest-dom";
 import "whatwg-fetch";
 import bugsnag from "@bugsnag/js";
+import { installMockIntersectionObserver } from "@oaknational/oak-components";
 
 // TextEncoder and TextDecoder are Web APIs but not available in JSDOM
 global.TextEncoder = TextEncoder;
@@ -76,3 +77,5 @@ jest.mock("nanoid", () => {
     nanoid: (len) => Array(len).fill("x").join(""),
   };
 });
+
+installMockIntersectionObserver();
