@@ -1,3 +1,32 @@
+## [1.743.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.743.0...v1.743.1) (2025-05-12)
+
+
+### Bug Fixes
+
+* don't dump invalid props into <OakSearchFilterCheckBox/> ([2f9f673](https://github.com/oaknational/Oak-Web-Application/commit/2f9f67389927efe7afc05d8bc1246d27809bcfd5))
+* lessonCount changed type from number to string in <OakUnitListItem/> ([f1c4dad](https://github.com/oaknational/Oak-Web-Application/commit/f1c4dad254791632fd89298ff94ea7bfd9066688))
+* no length check in isCurrentPageItems ([96ed65a](https://github.com/oaknational/Oak-Web-Application/commit/96ed65a1a0baf2c721c08adf4a3dfee2f28a1f30))
+
+# [1.743.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.742.0...v1.743.0) (2025-05-12)
+
+
+### Bug Fixes
+
+* only enable saving when signed in ([a18c5bf](https://github.com/oaknational/Oak-Web-Application/commit/a18c5bf393f6db340296497fedc9038c1082f5f0))
+* rename test files so they don't interfere with routes ([460e9a3](https://github.com/oaknational/Oak-Web-Application/commit/460e9a37ca31533b90d6d9f01e124d108385bff7))
+
+
+### Features
+
+* add api endpoint for getSavedUnits ([f7fd288](https://github.com/oaknational/Oak-Web-Application/commit/f7fd288770acfe3f25074f5eeacaf9f223173165))
+* add getUserContent query ([df4a519](https://github.com/oaknational/Oak-Web-Application/commit/df4a519e4f1ec0e2f562d6502d1fd289409d9b37))
+* add helper to post educator data and use in unit list to save units ([138c4b7](https://github.com/oaknational/Oak-Web-Application/commit/138c4b7653e8892edd3342aece9f12196501b737))
+* add hook to fetch saved units and use in unitList ([a8da523](https://github.com/oaknational/Oak-Web-Application/commit/a8da5239f2506dc39bf1c6afc8f3055e733b05a7))
+* add query createUserListContent and api method ([e7399d1](https://github.com/oaknational/Oak-Web-Application/commit/e7399d1b1ada724a123283339b451955d3ac7a0e))
+* add save functionality to lesson listing page ([4b883d9](https://github.com/oaknational/Oak-Web-Application/commit/4b883d949eca76b846b371a7b05f30360eecc0f9))
+* add toast alert on save and error ([f76ec26](https://github.com/oaknational/Oak-Web-Application/commit/f76ec26f925a200f40060286dfa8d3e4dcdee807))
+* allow optional unit slug in getusercontent query ([f956418](https://github.com/oaknational/Oak-Web-Application/commit/f956418f5b8651ec118286ee54fb9353fc0ca145))
+
 # [1.742.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.741.1...v1.742.0) (2025-05-09)
 
 
