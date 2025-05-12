@@ -42,9 +42,8 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
 
     return res.status(200).end();
   } catch (err) {
-    // TODO: new error type
     const error = new OakError({
-      code: "educator-api/failed-to-save-unit",
+      code: "educator-api/failed-to-unsave-unit",
       originalError: err,
       meta: {
         userId,

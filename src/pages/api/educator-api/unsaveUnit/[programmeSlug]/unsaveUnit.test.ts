@@ -16,11 +16,11 @@ jest.mock("@clerk/nextjs/server");
 const updateUserMetadata = jest.fn();
 const getUser = jest.fn();
 
-const mockCreateUserListContent = jest.fn();
+const mockDeleteUserListContent = jest.fn();
 
 jest.mock("@/node-lib/educator-api", () => ({
   getAuthenticatedEducatorApi: jest.fn().mockResolvedValue({
-    createUserListContent: () => mockCreateUserListContent(),
+    deleteUserListContent: () => mockDeleteUserListContent(),
   }),
 }));
 
@@ -33,7 +33,7 @@ jest.mock("@/common-lib/error-reporter", () => ({
       mockErrorReporter(...args),
 }));
 
-describe("/api/educator-api/saveUnit/[programmeSlug]/[unitSlug]", () => {
+describe("/api/educator-api/unsaveUnit/[programmeSlug]/[unitSlug]", () => {
   installMockClerkClient({
     updateUserMetadata,
     getUser,
@@ -42,7 +42,7 @@ describe("/api/educator-api/saveUnit/[programmeSlug]/[unitSlug]", () => {
 
   beforeEach(() => {
     setGetAuth(mockGetAuthSignedIn);
-    mockCreateUserListContent.mockResolvedValue({});
+    mockDeleteUserListContent.mockResolvedValue({});
   });
 
   it("should return 200 for a signed in user", async () => {
@@ -81,7 +81,7 @@ describe("/api/educator-api/saveUnit/[programmeSlug]/[unitSlug]", () => {
     });
 
     const error = new Error("Test error");
-    mockCreateUserListContent.mockRejectedValue(error);
+    mockDeleteUserListContent.mockRejectedValue(error);
 
     await handler(req, res);
     expect(res._getStatusCode()).toBe(500);
