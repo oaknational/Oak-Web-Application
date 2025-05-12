@@ -30,15 +30,22 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   default: () => ({
     track: {
       lessonAccessed: (...args: unknown[]) => lessonSelected(...args),
+      teacherShareInitiated: () => jest.fn(),
     },
   }),
 }));
+
+// mock save functionality
+window.global.fetch = jest.fn().mockResolvedValue({ ok: true });
 
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: jest.fn().mockReturnValue(true),
 }));
 
 describe("Lesson listing page", () => {
+  beforeEach(() => {
+    setUseUserReturn(mockLoggedIn);
+  });
   test("it renders the unit title as page title", () => {
     const { getByRole } = render(
       <LessonListPage curriculumData={lessonListingFixture()} />,
@@ -175,7 +182,6 @@ describe("Lesson listing page", () => {
       );
 
       const lesson = getByText("Add two surds");
-
       await userEvent.click(lesson);
 
       expect(lessonSelected).toHaveBeenCalledTimes(1);

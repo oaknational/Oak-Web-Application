@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   NextPage,
   GetStaticProps,
@@ -48,7 +48,8 @@ import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experimen
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { resolveOakHref } from "@/common-lib/urls";
 import { useTeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/useTeacherShareButton";
-import SavingSignedOutModal from "@/components/TeacherComponents/SavingSignedOutModal";
+import { useGetEducatorData } from "@/node-lib/educator-api/helpers/useGetEducatorData";
+import { useSaveUnits } from "@/node-lib/educator-api/helpers/saveUnits/useSaveUnits";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -187,7 +188,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
   };
 
   const isNew = hasNewContent ?? false;
-  const { isSignedIn, isLoaded, user } = useUser();
+  const { isSignedIn } = useUser();
   const showRiskAssessmentBanner = !!actions?.isPePractical && isSignedIn;
 
   const unpublishedLessonCount = lessons.filter(
@@ -208,13 +209,10 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       .toLowerCase();
   };
 
-  // stub save implementation
-  const [unitSaved, setUnitSaved] = useState<boolean>(false);
-  const [openSavingSignedOutModal, setOpenSavingSignedOutModal] =
-    useState<boolean>(false);
-
-  const isSignedOut = isLoaded && !isSignedIn;
-  const isOnboarded = user && user.publicMetadata?.owa?.isOnboarded;
+  const { data: savedUnit } = useGetEducatorData(
+    `/api/educator-api/getSavedUnits/${programmeSlug}`,
+  );
+  const { onSaveToggle, isUnitSaved } = useSaveUnits(savedUnit, programmeSlug);
 
   return (
     <AppLayout
@@ -298,12 +296,8 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           }
           showRiskAssessmentBanner={showRiskAssessmentBanner}
           isIncompleteUnit={unpublishedLessonCount > 0}
-          isUnitSaved={unitSaved}
-          onSave={() =>
-            isSignedOut || !isOnboarded
-              ? setOpenSavingSignedOutModal(true)
-              : setUnitSaved((prev) => !prev)
-          }
+          isUnitSaved={isUnitSaved(unitSlug)}
+          onSave={() => onSaveToggle(unitSlug)}
         />
         <OakMaxWidth $ph={"inner-padding-m"}>
           <OakGrid>
@@ -372,14 +366,6 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
             </OakGridArea>
           </OakGrid>
         </OakMaxWidth>
-        {openSavingSignedOutModal && (
-          <SavingSignedOutModal
-            isOpen={openSavingSignedOutModal}
-            onClose={() => {
-              setOpenSavingSignedOutModal(false);
-            }}
-          />
-        )}
       </OakThemeProvider>
     </AppLayout>
   );

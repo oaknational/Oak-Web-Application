@@ -1,0 +1,34 @@
+mutation createUserListContent(
+  $userId: String
+  $programmeSlug: String
+  $unitSlug: String
+  $listTitle: String
+) {
+  insert_users_content(
+    objects: {
+      user_id: $userId
+      users_content_lists: {
+        data: {
+          list: {
+            data: { user_id: $userId, title: $listTitle }
+            on_conflict: {
+              constraint: lists_title_user_id_key
+              update_columns: title
+            }
+          }
+          content: {
+            data: { programme_slug: $programmeSlug, unit_slug: $unitSlug }
+            on_conflict: {
+              constraint: content_programme_slug_unit_slug_key
+              update_columns: [programme_slug, unit_slug]
+            }
+          }
+        }
+        on_conflict: { constraint: content_lists_pkey }
+      }
+    }
+    on_conflict: { constraint: users_content_pkey }
+  ) {
+    affected_rows
+  }
+}

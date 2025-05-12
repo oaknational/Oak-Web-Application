@@ -1,7 +1,6 @@
-import React, { FC, MouseEvent, useState } from "react";
+import React, { FC, MouseEvent } from "react";
 import { NextRouter, useRouter } from "next/router";
 import { useFeatureFlagEnabled } from "posthog-js/react";
-import { useUser } from "@clerk/nextjs";
 import {
   OakFlex,
   OakUnitsContainer,
@@ -23,7 +22,6 @@ import {
   UnitListItemProps,
   SpecialistListItemProps,
 } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
-import SavingSignedOutModal from "@/components/TeacherComponents/SavingSignedOutModal/SavingSignedOutModal";
 import {
   SpecialistUnit,
   SpecialistUnitListingData,
@@ -33,6 +31,8 @@ import { resolveOakHref } from "@/common-lib/urls";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { PaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
 import { convertSubjectToSlug } from "@/components/TeacherComponents/helpers/convertSubjectToSlug";
+import { useGetEducatorData } from "@/node-lib/educator-api/helpers/useGetEducatorData";
+import { useSaveUnits } from "@/node-lib/educator-api/helpers/saveUnits/useSaveUnits";
 
 export type Tier = {
   title: string;
@@ -192,26 +192,16 @@ const UnitList: FC<UnitListProps> = (props) => {
     .map((u) => isSlugLegacy(u[0]!.programmeSlug))
     .indexOf(true);
 
-  // stub implementation of saving
+  // Saving
   const isSaveEnabled = useFeatureFlagEnabled("teacher-save-units");
-  const { isSignedIn, isLoaded, user } = useUser();
-  const [savedUnitsForUser, setSavedUnitsForUser] = useState<string[]>([]);
-  const [openSavingSignedOutModal, setOpenSavingSignedOutModal] =
-    useState<boolean>(false);
 
-  const isSignedOut = isLoaded && !isSignedIn;
-  const isOnboarded = user && user.publicMetadata?.owa?.isOnboarded;
-
-  const onSave = (unitSlug: string) => {
-    if (isSignedOut || !isOnboarded) {
-      setOpenSavingSignedOutModal(true);
-    } else {
-      const newSavedUnits = savedUnitsForUser.includes(unitSlug)
-        ? savedUnitsForUser.filter((u) => u !== unitSlug)
-        : [...savedUnitsForUser, unitSlug];
-      setSavedUnitsForUser(newSavedUnits);
-    }
-  };
+  const { data: savedUnits } = useGetEducatorData(
+    `/api/educator-api/getSavedUnits/${props.programmeSlug}`,
+  );
+  const { onSaveToggle, isUnitSaved } = useSaveUnits(
+    savedUnits,
+    props.programmeSlug,
+  );
 
   const hasNewAndLegacyUnits: boolean =
     !!phaseSlug && !!newPageItems.length && !!legacyPageItems.length;
@@ -274,8 +264,8 @@ const UnitList: FC<UnitListProps> = (props) => {
               : null
           }
           optionalityUnits={getOptionalityUnits(item, onClick, router)}
-          onSave={isSaveEnabled ? onSave : undefined}
-          getIsSaved={(unitSlug) => savedUnitsForUser.includes(unitSlug)}
+          onSave={isSaveEnabled ? onSaveToggle : undefined}
+          getIsSaved={isUnitSaved}
         />
       ) : (
         item.map((unitOption) => {
@@ -322,8 +312,10 @@ const UnitList: FC<UnitListProps> = (props) => {
                 unitSlug: unitOption.slug,
                 programmeSlug: unitOption.programmeSlug,
               })}
-              onSave={isSaveEnabled ? () => onSave(unitOption.slug) : undefined}
-              isSaved={savedUnitsForUser.includes(unitOption.slug)}
+              onSave={
+                isSaveEnabled ? () => onSaveToggle(unitOption.slug) : undefined
+              }
+              isSaved={isUnitSaved(unitOption.slug)}
             />
           );
         })
@@ -475,14 +467,6 @@ const UnitList: FC<UnitListProps> = (props) => {
         </OakBox>
       ) : (
         <OakBox $pb="inner-padding-xl2" />
-      )}
-      {openSavingSignedOutModal && (
-        <SavingSignedOutModal
-          isOpen={openSavingSignedOutModal}
-          onClose={() => {
-            setOpenSavingSignedOutModal(false);
-          }}
-        />
       )}
     </OakFlex>
   );
