@@ -165,7 +165,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
                 aria-label={`${keyStageFilter.title} filter`}
                 id={`search-filters-keyStage-${keyStageFilter.slug}:mobile:${isMobileFilter}`}
                 value="Key stage filter"
-                {...keyStageFilter}
+                checked={keyStageFilter.checked}
                 onChange={() => {
                   trackSearchModified({
                     checked: keyStageFilter.checked,

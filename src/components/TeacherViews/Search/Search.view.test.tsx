@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import { act, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
@@ -10,6 +11,12 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { SearchHit, SearchQuery } from "@/context/Search/search.types";
 import { LEGACY_COHORT } from "@/config/cohort";
 
+jest.mock("@mux/mux-player-react/lazy", () => {
+  return forwardRef((props, ref) => {
+    ref; // This prevents warning about ref not being used
+    return <div data-testid="mux-player-mock" />;
+  });
+});
 const searchRefined = jest.fn();
 
 const createSearchResult = (legacy?: boolean): SearchHit => {

@@ -206,7 +206,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
   });
 
   it("updates the url", async () => {
-    const fn = jest.spyOn(window.history, "replaceState");
+    window.history.replaceState = jest.fn();
 
     (useShareExperiment as jest.Mock).mockReturnValueOnce({
       shareUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
@@ -217,7 +217,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
     });
     render(<LessonOverviewPage {...props} />);
 
-    expect(fn).toHaveBeenCalledWith(
+    expect(window.history.replaceState).toHaveBeenCalledWith(
       {},
       "",
       "http://localhost:3000/teachers/lessons/lesson-1?test=1",
@@ -554,7 +554,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
     });
 
     it("updates the url if shareExperimentFlag is true", async () => {
-      const fn = jest.spyOn(window.history, "replaceState");
+      window.history.replaceState = jest.fn();
 
       (useShareExperiment as jest.Mock).mockReturnValueOnce({
         shareExperimentFlag: true,
@@ -566,7 +566,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
       });
       render(<LessonOverviewPage {...props} />);
 
-      expect(fn).toHaveBeenCalledWith(
+      expect(window.history.replaceState).toHaveBeenCalledWith(
         {},
         "",
         "http://localhost:3000/teachers/lessons/lesson-1?test=1",
