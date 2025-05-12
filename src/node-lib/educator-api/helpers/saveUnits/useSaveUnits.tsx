@@ -122,6 +122,20 @@ export const useSaveUnits = (
         setCurrentToastProps(ErrorToastProps);
       },
     );
+    track.contentUnsaved({
+      platform: "owa",
+      product: "teacher lesson resources",
+      engagementIntent: "use",
+      componentType: trackingData.savedFrom,
+      analyticsUseCase: "Teacher",
+      keyStageSlug: trackingData.keyStageSlug ?? "specialist",
+      keyStageTitle: trackingData.keyStageTitle ?? "Specialist",
+      subjectSlug: trackingData.subjectSlug,
+      subjectTitle: trackingData.subjectTitle,
+      contentType: "unit",
+      contentItemSlug: unitSlug,
+      eventVersion: "2.0.0",
+    });
   };
 
   const onSaveToggle = (unitSlug: string) => {

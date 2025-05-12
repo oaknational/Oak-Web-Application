@@ -974,7 +974,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "GnctA2Tb08hNQ9Hegwh4",
+          "ac": "N2NIZX6B7ax5qkhkKmWW",
           "br": "6hRezAaaFUP34CoCnhmW4",
           "en": env,
           "ev": eventId,
@@ -1001,7 +1001,7 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "GnctA2Tb08hNQ9Hegwh4",
+          "ac": "N2NIZX6B7ax5qkhkKmWW",
           "br": "6hRezAaaFUP34CoCnhmW4",
           "en": env,
           "ty": type,
@@ -10632,6 +10632,87 @@ PostHogEU.logEvent("Content Saved", (Object as any).assign({}, eventProperties))
 }
 }
 
+export interface ContentUnsavedProperties {
+  subjectTitle: string;
+  subjectSlug: string;
+  keyStageTitle: KeyStageTitleValueType;
+  keyStageSlug: string;
+  platform: PlatformValueType;
+  product: ProductValueType;
+  engagementIntent: EngagementIntentValueType;
+  componentType: ComponentTypeValueType;
+  eventVersion: EventVersionValueType;
+  analyticsUseCase: AnalyticsUseCaseValueType;
+  contentType: string;
+  contentItemSlug: string;
+}
+/**
+ * Content Unsaved: A user initiated an action to unsave content (eg. a unit) from their library
+ * 
+ * @param properties the properties associatied with this event
+ * @param properties.subjectTitle: Title of the current subject.
+ * @param properties.subjectSlug: Human-readable unique ID of the current subject.
+ * @param properties.keyStageTitle: Title of the current key stage.
+ * @param properties.keyStageSlug: Human-readable unique ID of the current key stage.
+ * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA and Aila. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
+ * @param properties.product: Product that the event was sent from to clear distinguish between Oak products
+ * @param properties.engagementIntent: The level or intent of engagement behind the event. This is a high-level categorisation that helps determine whether this event is one that represents 'use' or 'advocacy for one of Oak's products, or whether this action would be considered to be related to 'exploring' Oak's products, or some kind of 'refinement' which limits the amount of content displayed (such as in a filter or a browse journey.
+
+This property should be populated with a single value for each event/product combination (i.e. the instance of each event within a product should determine the level of engagement).
+ * @param properties.componentType: The web component used to carry out the action on the Oak object
+ * @param properties.eventVersion: The version (semver) of the event, which acts as a tag for when the event was introduced/updated. Helps with handling events that could cause downstream logic to change or create 'breaking ' changes in the downstream pipelines.
+ * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
+
+NB - This will be removed, but keeping to ease transition from AUC to 'product'
+ * @param properties.contentType: no description
+ * @param properties.contentItemSlug: no description
+ * 
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/6hRezAaaFUP34CoCnhmW4/events/ma0dTvBAlMIMPsHIHNKW4}
+ */
+export function contentUnsaved(properties: ContentUnsavedProperties) {
+// @ts-ignore
+let eventPropertiesArray: array = [];
+eventPropertiesArray.push({id: "-MoOjO43sV", name: "Subject Title", value: properties.subjectTitle});
+eventPropertiesArray.push({id: "8GyPDAapC-", name: "Subject Slug", value: properties.subjectSlug});
+eventPropertiesArray.push({id: "qeEZpYqVhK", name: "Key Stage Title", value: properties.keyStageTitle});
+eventPropertiesArray.push({id: "XMx9WMqh0H", name: "Key Stage Slug", value: properties.keyStageSlug});
+eventPropertiesArray.push({id: "M1ukA4HClh", name: "Platform", value: properties.platform});
+eventPropertiesArray.push({id: "JmUs_uxup", name: "Product", value: properties.product});
+eventPropertiesArray.push({id: "xJlB159-KB", name: "Engagement Intent", value: properties.engagementIntent});
+eventPropertiesArray.push({id: "9b_lf1oq8", name: "Component Type", value: properties.componentType});
+eventPropertiesArray.push({id: "3ZqdV-PbJL", name: "Event Version", value: properties.eventVersion});
+eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
+eventPropertiesArray.push({id: "uHgsqow6CcsK85HcAIT2e", name: "Content Type", value: properties.contentType});
+eventPropertiesArray.push({id: "UPAbTsstCdNHv2HJZ20fj", name: "Content Item Slug", value: properties.contentItemSlug});
+let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
+// @ts-ignore
+let userPropertiesArray: array = [];
+let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
+// assert properties
+if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
+  let messages: AvoAssertMessage[] = [];
+  // debug console in Avo
+  if (!__AVO_NOOP__) {
+    _avo_invoke(__AVO_ENV__, "ma0dTvBAlMIMPsHIHNKW4", "767d2f8bb3a68976879c868ed2b263084d84e6bd6494278287b69b46acf006cc", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+}
+InternalAvoLogger.logEventSent("Content Unsaved", eventProperties, userProperties);
+if (__WEB_DEBUGGER__) {
+  // Avo web debugger
+  _avo_debugger_log("ma0dTvBAlMIMPsHIHNKW4", "Content Unsaved", messages, eventPropertiesArray, userPropertiesArray, []);
+}
+}
+if (!__AVO_NOOP__) {
+  if (__INSPECTOR__ != null) {
+    // @ts-ignore
+    __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Content Unsaved", eventProperties, "ma0dTvBAlMIMPsHIHNKW4", "767d2f8bb3a68976879c868ed2b263084d84e6bd6494278287b69b46acf006cc");
+}
+// destination PostHogEU
+PostHogEU.logEvent("Content Unsaved", (Object as any).assign({}, eventProperties));
+} else {
+  // do nothing
+}
+}
+
 export default {
   AvoEnv,
   initAvo,
@@ -10763,7 +10844,8 @@ export default {
   lessonMediaClipsStarted,
   mediaClipsPlaylistPlayed,
   contentSaved,
+  contentUnsaved,
 }
 
 // AVOMODULEMAP:"Avo"
-// AVOEVENTMAP:["planALessonSelected","newsletterSignUpCompleted","classroomSelected","teacherHubSelected","developYourCurriculumSelected","supportYourTeamSelected","notificationSelected","aboutSelected","videoStarted","videoPaused","videoPlayed","videoFinished","lessonResourcesDownloaded","keyStageSelected","subjectSelected","unitAccessed","lessonSelected","unitSequenceRefined","webinarPageViewed","helpCentreSelected","tierSelected","pageview","resourceContainerExpanded","curriculumMapDownloaded","lessonResourceDownloadStarted","searchAccessed","searchResultOpened","searchJourneyInitiated","curriculumVisualiserAccessed","programmeThreadHighlighted","unitOverviewAccessed","onwardContentSelected","lessonShared","lessonShareStarted","searchRefined","searchResultExpanded","lessonCompleted","lessonActivityCompleted","lessonActivityCompletedIntroduction","lessonActivityCompletedStarterQuiz","lessonActivityCompletedLessonVideo","lessonActivityCompletedExitQuiz","lessonActivityCompletedLessonAudio","lessonStarted","lessonActivityStarted","lessonActivityStartedIntroduction","lessonActivityStartedStarterQuiz","lessonActivityStartedLessonVideo","lessonActivityStartedExitQuiz","lessonActivityStartedLessonAudio","curriculumResourcesDownloaded","lessonActivityAbandoned","lessonActivityAbandonedStarterQuiz","lessonActivityAbandonedIntroduction","lessonActivityAbandonedLessonVideo","lessonActivityAbandonedExitQuiz","lessonActivityAbandonedLessonAudio","lessonAssistantAccessed","lessonAccessed","browseRefined","browseRefinedAccessed","lessonActivityDownloaded","lessonActivityDownloadedWorksheet","contentGuidanceAccepted","contentGuidanceDeclined","activityResultsShared","lessonSummaryReviewed","userSignUpCompleted","userOnboardingCompleted","userSignIn","userSignOut","userOnboardingProgressed","lessonAbandoned","browseAccessed","questionAttemptSubmitted","teacherShareInitiated","teacherShareActivated","teacherShareConverted","unitDownloadInitiated","teacherNoteDialogueOpened","teacherNoteSaved","curriculumVisualiserExited","curriculumVisualiserTabAccessed","unitOverviewExplored","productHomepageAccessed","curriculumLandingPageAccessed","curriculumExplainerExplored","curriculumResourcesDownloadRefined","searchFilterModified","lessonMediaClipsStarted","mediaClipsPlaylistPlayed","contentSaved"]
+// AVOEVENTMAP:["planALessonSelected","newsletterSignUpCompleted","classroomSelected","teacherHubSelected","developYourCurriculumSelected","supportYourTeamSelected","notificationSelected","aboutSelected","videoStarted","videoPaused","videoPlayed","videoFinished","lessonResourcesDownloaded","keyStageSelected","subjectSelected","unitAccessed","lessonSelected","unitSequenceRefined","webinarPageViewed","helpCentreSelected","tierSelected","pageview","resourceContainerExpanded","curriculumMapDownloaded","lessonResourceDownloadStarted","searchAccessed","searchResultOpened","searchJourneyInitiated","curriculumVisualiserAccessed","programmeThreadHighlighted","unitOverviewAccessed","onwardContentSelected","lessonShared","lessonShareStarted","searchRefined","searchResultExpanded","lessonCompleted","lessonActivityCompleted","lessonActivityCompletedIntroduction","lessonActivityCompletedStarterQuiz","lessonActivityCompletedLessonVideo","lessonActivityCompletedExitQuiz","lessonActivityCompletedLessonAudio","lessonStarted","lessonActivityStarted","lessonActivityStartedIntroduction","lessonActivityStartedStarterQuiz","lessonActivityStartedLessonVideo","lessonActivityStartedExitQuiz","lessonActivityStartedLessonAudio","curriculumResourcesDownloaded","lessonActivityAbandoned","lessonActivityAbandonedStarterQuiz","lessonActivityAbandonedIntroduction","lessonActivityAbandonedLessonVideo","lessonActivityAbandonedExitQuiz","lessonActivityAbandonedLessonAudio","lessonAssistantAccessed","lessonAccessed","browseRefined","browseRefinedAccessed","lessonActivityDownloaded","lessonActivityDownloadedWorksheet","contentGuidanceAccepted","contentGuidanceDeclined","activityResultsShared","lessonSummaryReviewed","userSignUpCompleted","userOnboardingCompleted","userSignIn","userSignOut","userOnboardingProgressed","lessonAbandoned","browseAccessed","questionAttemptSubmitted","teacherShareInitiated","teacherShareActivated","teacherShareConverted","unitDownloadInitiated","teacherNoteDialogueOpened","teacherNoteSaved","curriculumVisualiserExited","curriculumVisualiserTabAccessed","unitOverviewExplored","productHomepageAccessed","curriculumLandingPageAccessed","curriculumExplainerExplored","curriculumResourcesDownloadRefined","searchFilterModified","lessonMediaClipsStarted","mediaClipsPlaylistPlayed","contentSaved","contentUnsaved"]
