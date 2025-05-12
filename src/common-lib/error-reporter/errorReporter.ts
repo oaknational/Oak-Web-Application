@@ -4,10 +4,7 @@ import BugsnagPluginReact from "@bugsnag/plugin-react";
 import getBrowserConfig from "../../browser-lib/getBrowserConfig";
 import isBrowser from "../../utils/isBrowser";
 import OakError from "../../errors/OakError";
-import {
-  MaybeDistinctId,
-  PosthogDistinctId,
-} from "../../browser-lib/posthog/posthog";
+import { MaybeDistinctId } from "../../browser-lib/posthog/posthog";
 
 import bugsnagNotify, { BugsnagConfig } from "./bugsnagNotify";
 
@@ -78,11 +75,22 @@ export function getBugsnagOnError(
   };
 }
 
+export function initialiseBugsnag() {
+  return Bugsnag.start(
+    getBugsnagConfig({
+      apiKey: getBrowserConfig("bugsnagApiKey"),
+      appVersion: getBrowserConfig("appVersion"),
+      releaseStage: getBrowserConfig("releaseStage"),
+      userId: null,
+    }),
+  );
+}
+
 /**
  * Generate bugsnag config.
  *
  */
-const getBugsnagConfig = ({
+export function getBugsnagConfig({
   apiKey,
   appVersion,
   releaseStage,
@@ -92,7 +100,7 @@ const getBugsnagConfig = ({
   appVersion: string;
   releaseStage: string;
   userId: MaybeDistinctId;
-}): BugsnagConfig => {
+}): BugsnagConfig {
   return {
     apiKey,
     appVersion,
@@ -122,24 +130,15 @@ const getBugsnagConfig = ({
      */
     onError: getBugsnagOnError(),
   };
-};
+}
 
-export const initialiseBugsnag = (userId: PosthogDistinctId | null) => {
-  const bugsnagConfig = getBugsnagConfig({
-    apiKey: getBrowserConfig("bugsnagApiKey"),
-    appVersion: getBrowserConfig("appVersion"),
-    releaseStage: getBrowserConfig("releaseStage"),
-    userId,
-  });
-
-  // Start Bugsnag
-  Bugsnag.start(bugsnagConfig);
-
-  // Manually start a Bugsnag session.
-  Bugsnag.startSession();
-
-  return Bugsnag;
-};
+const bugsnagConfig = getBugsnagConfig({
+  apiKey: getBrowserConfig("bugsnagApiKey"),
+  appVersion: getBrowserConfig("appVersion"),
+  releaseStage: getBrowserConfig("releaseStage"),
+  userId: null,
+});
+export const client = Bugsnag.start(bugsnagConfig);
 
 export type ErrorData = Record<string, unknown> & {
   severity?: Event["severity"];

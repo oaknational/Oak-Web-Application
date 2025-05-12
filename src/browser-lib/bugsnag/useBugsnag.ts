@@ -1,13 +1,14 @@
 import { useEffect } from "react";
-import Bugsnag from "@bugsnag/js";
+import { Client } from "@bugsnag/js";
 
-import { initialiseBugsnag } from "../../common-lib/error-reporter";
 import { MaybeDistinctId } from "../posthog/posthog";
 
-export const bugsnagInitialised = () => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  return Boolean(Bugsnag._client);
+import { initialiseBugsnag } from "@/common-lib/error-reporter";
+
+let bugsnagClient: Client | null = null;
+
+export const isBugsnagInitialised = () => {
+  return Boolean(bugsnagClient);
 };
 
 type UseBugsnagProps = {
@@ -16,27 +17,31 @@ type UseBugsnagProps = {
 };
 const useBugsnag = ({ enabled, userId }: UseBugsnagProps) => {
   useEffect(() => {
-    if (enabled && !bugsnagInitialised()) {
+    if (enabled) {
+      if (!bugsnagClient) {
+        bugsnagClient = initialiseBugsnag();
+      }
+
       /**
        * This should happen once per app load.
        */
-      initialiseBugsnag(userId);
+      bugsnagClient.setUser(userId);
+
+      // Manually start a Bugsnag session.
+      bugsnagClient.startSession();
     }
-    if (enabled && bugsnagInitialised() && userId) {
-      /**
-       * Sometimes userId might come through (after Posthog loads) after Bugsnag
-       * has already initialised. In this case we update the Busnag session with
-       * the id
-       */
-      Bugsnag.setUser(userId);
-    }
-    if (!enabled && bugsnagInitialised()) {
+
+    if (!enabled && bugsnagClient) {
       /**
        * errorReporter.ts is configured not to send errors if Bugsnag has not
        * been consented to
        */
-      Bugsnag.pauseSession();
+      bugsnagClient.pauseSession();
     }
+
+    return () => {
+      bugsnagClient?.pauseSession();
+    };
   }, [enabled, userId]);
 };
 

@@ -1,7 +1,7 @@
 import React, { Component, ErrorInfo, FC, ReactNode } from "react";
 import Bugsnag from "@bugsnag/js";
 
-import { bugsnagInitialised } from "@/browser-lib/bugsnag/useBugsnag";
+import { isBugsnagInitialised } from "@/browser-lib/bugsnag/useBugsnag";
 import ErrorView from "@/components/AppComponents/ErrorView";
 
 const ClientErrorView: FC = () => {
@@ -61,7 +61,7 @@ export type ErrorBoundaryProps = {
  */
 const ErrorBoundary: FC<ErrorBoundaryProps> = (props) => {
   const BugsnagErrorBoundary =
-    bugsnagInitialised() &&
+    isBugsnagInitialised() &&
     Bugsnag.getPlugin("react")?.createErrorBoundary(React);
 
   if (!BugsnagErrorBoundary) {
