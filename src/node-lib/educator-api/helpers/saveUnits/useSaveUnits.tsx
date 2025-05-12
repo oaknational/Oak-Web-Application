@@ -7,6 +7,34 @@ import { useGetEducatorData } from "../useGetEducatorData";
 import { useOakToastContext } from "@/context/OakToast/useOakToastContext";
 import { postEducatorData } from "@/node-lib/educator-api/helpers/postEducatorData";
 
+const SavedToastProps = {
+  message: (
+    <OakP>
+      <b>Unit saved</b> to My Library
+    </OakP>
+  ),
+  variant: "green" as const,
+  showIcon: true,
+  autoDismiss: true,
+};
+
+const UnsavedToastProps = {
+  message: (
+    <OakP>
+      <b>Unit removed</b> from My library
+    </OakP>
+  ),
+  variant: "dark" as const,
+  showIcon: false,
+  autoDismiss: true,
+};
+const ErrorToastProps = {
+  message: <OakP>Something went wrong</OakP>,
+  variant: "error" as const,
+  showIcon: false,
+  autoDismiss: true,
+};
+
 export const useSaveUnits = (programmeSlug: string) => {
   const { isSignedIn } = useUser();
 
@@ -37,16 +65,7 @@ export const useSaveUnits = (programmeSlug: string) => {
 
   const onSave = async (unitSlug: string) => {
     setLocallySavedUnits((prev) => new Set(prev).add(unitSlug));
-    setCurrentToastProps({
-      message: (
-        <OakP>
-          <b>Unit saved</b> to My Library
-        </OakP>
-      ),
-      variant: "green",
-      showIcon: true,
-      autoDismiss: true,
-    });
+    setCurrentToastProps(SavedToastProps);
     await postEducatorData(
       `/api/educator-api/saveUnit/${programmeSlug}/${unitSlug}`,
       () => {
@@ -56,12 +75,7 @@ export const useSaveUnits = (programmeSlug: string) => {
           updatedUnits.delete(unitSlug);
           return updatedUnits;
         });
-        setCurrentToastProps({
-          message: <OakP>Something went wrong</OakP>,
-          variant: "error",
-          showIcon: false,
-          autoDismiss: true,
-        });
+        setCurrentToastProps(ErrorToastProps);
       },
     );
   };
@@ -72,27 +86,13 @@ export const useSaveUnits = (programmeSlug: string) => {
       updatedUnits.delete(unitSlug);
       return updatedUnits;
     });
-    setCurrentToastProps({
-      message: (
-        <OakP>
-          <b>Unit removed</b> from My library
-        </OakP>
-      ),
-      variant: "dark",
-      showIcon: false,
-      autoDismiss: true,
-    });
+    setCurrentToastProps(UnsavedToastProps);
     await postEducatorData(
       `/api/educator-api/unsaveUnit/${programmeSlug}/${unitSlug}`,
       () => {
         // Revert the optimistic update if the request fails and show an error toast
         setLocallySavedUnits((prev) => new Set(prev).add(unitSlug));
-        setCurrentToastProps({
-          message: <OakP>Something went wrong</OakP>,
-          variant: "error",
-          showIcon: false,
-          autoDismiss: true,
-        });
+        setCurrentToastProps(ErrorToastProps);
       },
     );
   };
