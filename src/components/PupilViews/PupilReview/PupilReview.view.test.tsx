@@ -61,6 +61,7 @@ jest.mock(
 
 describe("PupilReview", () => {
   it("error messages when the phase is foundation", () => {
+    console.error = jest.fn();
     const mockBrowseDataWithFoundation = lessonBrowseDataFixture({
       ...mockBroweData,
       programmeFields: {
@@ -85,6 +86,14 @@ describe("PupilReview", () => {
         </OakThemeProvider>,
       ),
     ).toThrow("Foundation phase is not supported");
+    const consoleErrorCalls = (console.error as ReturnType<typeof jest.fn>).mock
+      .calls;
+    expect(consoleErrorCalls[0]?.[0].message).toEqual(
+      "Uncaught [Error: Foundation phase is not supported]",
+    );
+    expect(consoleErrorCalls[1]?.[0].message).toEqual(
+      "Uncaught [Error: Foundation phase is not supported]",
+    );
   });
   it("displays the lesson title", () => {
     const { getByText } = renderWithTheme(
@@ -292,17 +301,15 @@ describe("PupilReview", () => {
       const button = getByText("Copy link");
 
       // Mock the console.error function just prior to the button click
-      const consoleErrorSpy = jest
-        .spyOn(console, "error")
-        .mockImplementation(() => {});
+      console.error = jest.fn();
 
       await userEvent.click(button);
 
-      expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
-      expect(consoleErrorSpy).toHaveBeenCalledWith(new Error("Test error"));
+      expect(console.error).toHaveBeenCalledTimes(1);
+      expect(console.error).toHaveBeenCalledWith(new Error("Test error"));
 
       // Restore the console.error function
-      consoleErrorSpy.mockRestore();
+      (console.error as ReturnType<typeof jest.fn>).mockRestore();
     });
     it("copies the correct url to the clipboard when logAttempt returns a promise", async () => {
       const logAttemptSpy = jest.fn(() => ({

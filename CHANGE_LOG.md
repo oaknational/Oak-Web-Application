@@ -1,3 +1,12 @@
+## [1.743.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.743.0...v1.743.1) (2025-05-12)
+
+
+### Bug Fixes
+
+* don't dump invalid props into <OakSearchFilterCheckBox/> ([2f9f673](https://github.com/oaknational/Oak-Web-Application/commit/2f9f67389927efe7afc05d8bc1246d27809bcfd5))
+* lessonCount changed type from number to string in <OakUnitListItem/> ([f1c4dad](https://github.com/oaknational/Oak-Web-Application/commit/f1c4dad254791632fd89298ff94ea7bfd9066688))
+* no length check in isCurrentPageItems ([96ed65a](https://github.com/oaknational/Oak-Web-Application/commit/96ed65a1a0baf2c721c08adf4a3dfee2f28a1f30))
+
 # [1.743.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.742.0...v1.743.0) (2025-05-12)
 
 

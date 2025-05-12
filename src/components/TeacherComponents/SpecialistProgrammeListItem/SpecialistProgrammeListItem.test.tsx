@@ -7,6 +7,11 @@ import SpecialistProgrammeListItem, {
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { specialistProgrammeListingPageDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/specialistProgrammes.fixture";
+import {
+  mockLinkClick,
+  setupMockLinkClick,
+  teardownMockLinkClick,
+} from "@/utils/mockLinkClick";
 
 const onClick = jest.fn();
 
@@ -16,6 +21,11 @@ const programme = specialistProgrammeListingPageDataFixture()
 describe("ProgrammeListItem", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    setupMockLinkClick();
+  });
+
+  afterEach(() => {
+    teardownMockLinkClick();
   });
 
   it("renders SpecialistProgrammeListItem", () => {
@@ -38,5 +48,8 @@ describe("ProgrammeListItem", () => {
 
     expect(onClick).toHaveBeenCalledTimes(1);
     expect(onClick).toHaveBeenCalledWith(programme);
+    expect(mockLinkClick).toHaveBeenCalledWith(
+      "http://localhost/teachers/specialist/programmes/early-development/units",
+    );
   });
 });
