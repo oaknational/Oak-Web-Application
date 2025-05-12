@@ -50,7 +50,7 @@ export const downloadsAssetDataSchema = z.object({
   geo_restricted: z.boolean().nullable(),
   login_required: z.boolean().nullable(),
   downloadable_files: z.array(additionalFile).nullish(),
-  lesson_release_date: z.string().nullish().optional(),
+  lesson_release_date: z.string().nullish(),
 });
 
 export const lessonDownloadsQueryRaw = z.object({
