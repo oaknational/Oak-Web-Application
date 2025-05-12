@@ -53,10 +53,12 @@ export default async function generate(
       }
 
       const anchorId = `section_year_${item.type}-${item.year}`;
+      const suffix = typeSuffix ? `units ${typeSuffix}` : "units";
+      const text = getYearGroupTitle(yearDataOrig.yearData, item.year, suffix);
 
       return {
         anchorId,
-        text: getYearGroupTitle(yearData, item.year, `units ${typeSuffix}`),
+        text,
       };
     }),
     {
