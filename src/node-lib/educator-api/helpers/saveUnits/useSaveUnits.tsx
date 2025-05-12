@@ -6,6 +6,8 @@ import { useGetEducatorData } from "../useGetEducatorData";
 
 import { useOakToastContext } from "@/context/OakToast/useOakToastContext";
 import { postEducatorData } from "@/node-lib/educator-api/helpers/postEducatorData";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 
 const SavedToastProps = {
   message: (
@@ -35,9 +37,20 @@ const ErrorToastProps = {
   autoDismiss: true,
 };
 
-export const useSaveUnits = (programmeSlug: string) => {
-  const { isSignedIn } = useUser();
+type TrackingProgrammeData = {
+  savedFrom: "lesson_listing_save_button" | "unit_listing_save_button";
+  keyStageTitle: KeyStageTitleValueType | undefined;
+  keyStageSlug: string | undefined;
+  subjectTitle: string;
+  subjectSlug: string;
+};
 
+export const useSaveUnits = (
+  programmeSlug: string,
+  trackingData: TrackingProgrammeData,
+) => {
+  const { isSignedIn } = useUser();
+  const { track } = useAnalytics();
   const { data: savedUnitsData } = useGetEducatorData(
     `/api/educator-api/getSavedUnits/${programmeSlug}`,
   );
@@ -78,6 +91,20 @@ export const useSaveUnits = (programmeSlug: string) => {
         setCurrentToastProps(ErrorToastProps);
       },
     );
+    track.contentSaved({
+      platform: "owa",
+      product: "teacher lesson resources",
+      engagementIntent: "use",
+      componentType: trackingData.savedFrom,
+      analyticsUseCase: "Teacher",
+      keyStageSlug: trackingData.keyStageSlug ?? "specialist",
+      keyStageTitle: trackingData.keyStageTitle ?? "Specialist",
+      subjectSlug: trackingData.subjectSlug,
+      subjectTitle: trackingData.subjectTitle,
+      contentType: "unit",
+      contentItemSlug: unitSlug,
+      eventVersion: "2.0.0",
+    });
   };
 
   const onUnsave = async (unitSlug: string) => {

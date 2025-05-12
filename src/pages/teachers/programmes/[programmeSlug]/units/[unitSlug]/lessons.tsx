@@ -208,7 +208,13 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       .toLowerCase();
   };
 
-  const { onSaveToggle, isUnitSaved } = useSaveUnits(programmeSlug);
+  const { onSaveToggle, isUnitSaved } = useSaveUnits(programmeSlug, {
+    savedFrom: "lesson_listing_save_button",
+    keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+    keyStageSlug,
+    subjectTitle,
+    subjectSlug,
+  });
 
   return (
     <AppLayout
