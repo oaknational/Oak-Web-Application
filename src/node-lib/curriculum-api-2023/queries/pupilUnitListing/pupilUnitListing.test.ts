@@ -12,7 +12,12 @@ describe("pupilUnitListing()", () => {
       pupilUnitListing: jest.fn(
         () =>
           Promise.resolve({
-            browseData: [syntheticUnitvariantsWithLessonIdsFixture()],
+            browseData: [
+              {
+                ...syntheticUnitvariantsWithLessonIdsFixture(),
+                age_restricted_lesson_count: 0,
+              },
+            ],
           }) as Promise<PupilUnitListingQuery>, // Add the correct return type
       ),
     })({
