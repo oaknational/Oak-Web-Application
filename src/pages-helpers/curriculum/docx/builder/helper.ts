@@ -242,34 +242,50 @@ export function parseYearPathwayKey(key: string): {
 }
 
 /**
- * Comparator function for sorting year-pathway keys chronologically.
- * Sorts primarily by year number, then by pathway slug according to a defined order (core < gcse < default/null).
- * Example sort order: "9" < "10-core" < "10-gcse" < "10" < "11-core" < "11-gcse".
- *
- * @param keyA - The first year-pathway key to compare.
- * @param keyB - The second year-pathway key to compare.
- * @returns A negative value if keyA comes before keyB, a positive value if keyA comes after keyB, or 0 if they are equivalent for sorting.
+ * Comparator function for sorting year-pathway keys.
+ * Sorts KS3 chronologically, then KS4 pathways grouped (Core then GCSE), with years sorted within each pathway group.
+ * Example sort order: "7" < "8" < "9" < "10-core" < "11-core" < "10-gcse" < "11-gcse".
  */
 export function sortYearPathways(keyA: string, keyB: string): number {
   const { year: yearAStr, pathway: pathwayA } = parseYearPathwayKey(keyA);
   const { year: yearBStr, pathway: pathwayB } = parseYearPathwayKey(keyB);
 
-  // Now yearAStr and yearBStr are guaranteed to be non-empty strings by parseYearPathwayKey
   const yearNumA = parseInt(yearAStr);
   const yearNumB = parseInt(yearBStr);
 
-  if (yearNumA !== yearNumB) {
-    return yearNumA - yearNumB;
-  }
+  const isKs4A = yearNumA >= 10;
+  const isKs4B = yearNumB >= 10;
 
-  // Same year, sort by pathway (e.g., core before gcse, default last)
-  const pathwayOrder = { core: 1, gcse: 2, default: 99 }; // Default/null pathway comes last
+  const pathwayOrder = { core: 1, gcse: 2, default: 99 }; // Use 'default' for null/undefined/other pathways
   const orderA =
     pathwayOrder[pathwayA as keyof typeof pathwayOrder] ?? pathwayOrder.default;
   const orderB =
     pathwayOrder[pathwayB as keyof typeof pathwayOrder] ?? pathwayOrder.default;
 
-  return orderA - orderB;
+  // Logic:
+  // 1. If comparing KS3 with KS4, KS3 comes first.
+  // 2. If comparing two KS3 years, sort numerically.
+  // 3. If comparing two KS4 years, sort by pathway first, then by year.
+
+  if (!isKs4A && isKs4B) {
+    return -1; // KS3 comes before KS4
+  }
+  if (isKs4A && !isKs4B) {
+    return 1; // KS4 comes after KS3
+  }
+
+  // If both are KS3 or both are KS4
+  if (!isKs4A && !isKs4B) {
+    // Both KS3: Sort by year
+    return yearNumA - yearNumB;
+  } else {
+    // Both KS4: Sort by pathway first, then by year
+    if (orderA !== orderB) {
+      return orderA - orderB; // Core before GCSE
+    }
+    // Same pathway (or both default): Sort by year
+    return yearNumA - yearNumB;
+  }
 }
 
 /**
