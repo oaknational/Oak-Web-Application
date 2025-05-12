@@ -64,7 +64,7 @@ function VideoContainer({ children }: { children: React.ReactNode }) {
       data-percy-hide="contents"
       $alignItems={"center"}
       $justifyContent={"center"}
-      $ba={"border-solid-m"}
+      $ba={"border-solid-l"}
       $minWidth={"100%"}
       $borderColor={"black"}
       style={{
