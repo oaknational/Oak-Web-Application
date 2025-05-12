@@ -1,4 +1,4 @@
-import React, { Component, ErrorInfo, FC, ReactNode } from "react";
+import React, { Component, ErrorInfo, FC, ReactNode, useMemo } from "react";
 import Bugsnag from "@bugsnag/js";
 
 import { bugsnagInitialised } from "@/browser-lib/bugsnag/useBugsnag";
@@ -60,9 +60,12 @@ export type ErrorBoundaryProps = {
  * and sending a report of the uncaught error to bugsnag.
  */
 const ErrorBoundary: FC<ErrorBoundaryProps> = (props) => {
-  const BugsnagErrorBoundary =
-    bugsnagInitialised() &&
-    Bugsnag.getPlugin("react")?.createErrorBoundary(React);
+  const isBugsnagInited = bugsnagInitialised();
+  const BugsnagErrorBoundary = useMemo(() => {
+    if (isBugsnagInited) {
+      return Bugsnag.getPlugin("react")?.createErrorBoundary(React);
+    }
+  }, [isBugsnagInited]);
 
   if (!BugsnagErrorBoundary) {
     return <NonBugsnagErrorBoundary {...props} />;
