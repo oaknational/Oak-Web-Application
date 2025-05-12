@@ -31,6 +31,8 @@ describe("TeacherShareNotesButton", () => {
     noteSaved: false,
     setTeacherNotesOpen: jest.fn(),
     onTeacherNotesOpen: jest.fn(),
+    shareUrl: "https://example.com/share",
+    shareActivated: jest.fn(),
   };
 
   beforeEach(() => {
@@ -139,5 +141,13 @@ describe("TeacherShareNotesButton", () => {
 
     fireEvent.click(screen.getByText("Add teacher note and share"));
     expect(onTeacherNotesOpen).toHaveBeenCalled();
+  });
+
+  it("renders the share button when isEditable is false", () => {
+    render(<TeacherShareNotesButton {...defaultProps} isEditable={false} />);
+
+    expect(
+      screen.queryByText("Share resources with colleague"),
+    ).toBeInTheDocument();
   });
 });

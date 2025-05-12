@@ -104,6 +104,8 @@ export const useLesson = ({
       isEditable={isEditable}
       noteSaved={noteSaved}
       onTeacherNotesOpen={handleTeacherNotesOpen}
+      shareUrl={shareUrl}
+      shareActivated={shareActivated}
     />
   );
 
