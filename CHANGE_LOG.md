@@ -1,3 +1,10 @@
+## [1.744.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.744.1...v1.744.2) (2025-05-13)
+
+
+### Bug Fixes
+
+* added data-percy-hide attribute to prevent race condition in video content ([ebd7238](https://github.com/oaknational/Oak-Web-Application/commit/ebd7238fcd7cd75e550ec257a6fae8e8be710b0c))
+
 ## [1.744.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.744.0...v1.744.1) (2025-05-13)
 
 
