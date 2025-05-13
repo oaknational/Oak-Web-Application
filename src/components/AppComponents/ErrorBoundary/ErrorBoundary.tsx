@@ -60,12 +60,12 @@ export type ErrorBoundaryProps = {
  * and sending a report of the uncaught error to bugsnag.
  */
 const ErrorBoundary: FC<ErrorBoundaryProps> = (props) => {
-  const isBugsnagInited = bugsnagInitialised();
+  const isBugsnagInitialised = bugsnagInitialised();
   const BugsnagErrorBoundary = useMemo(() => {
-    if (isBugsnagInited) {
+    if (isBugsnagInitialised) {
       return Bugsnag.getPlugin("react")?.createErrorBoundary(React);
     }
-  }, [isBugsnagInited]);
+  }, [isBugsnagInitialised]);
 
   if (!BugsnagErrorBoundary) {
     return <NonBugsnagErrorBoundary {...props} />;
