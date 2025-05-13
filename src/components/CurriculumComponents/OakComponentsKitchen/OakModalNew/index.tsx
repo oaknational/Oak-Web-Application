@@ -1,164 +1,66 @@
-import { OakBox, OakFlex, OakHeading } from "@oaknational/oak-components";
-import React, { useEffect, useRef } from "react";
-import styled from "styled-components";
+import { OakFlex } from "@oaknational/oak-components";
+import { ComponentProps } from "react";
+import { Transition } from "react-transition-group";
 
-import { CurriculumModalCloseButton } from "../../CurriculumModalCloseButton";
+import { AnimateSlideIn, AnimateSlideInProps } from "./AnimateSlideIn";
+import { TRANSITION_DURATION } from "./constants";
+import { Backdrop } from "./Backdrop";
+import { Dialog } from "./Dialog";
+import { ModalContent } from "./Content";
 
-import { usePrevious } from "@/hooks/usePrevious";
-
-const Dialog = styled("dialog")`
-  border: none;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  max-width: 100%;
-  max-height: 100%;
-  background: none;
-  display: block;
-
-  :not([open]) {
-    pointer-events: none;
-  }
-
-  ::backdrop {
-    padding: 0;
-    margin: 0;
-    background: none;
-  }
-`;
-
-/**
- * Singleton overriding of `overflow` and `paddingRight`
- */
-let refEl: Element | null = null;
-const singletonSet = (el: Element | null, open: boolean) => {
-  if (open) {
-    const scrollBarWidth = window.innerWidth - document.body.offsetWidth;
-    document.body.style.paddingRight = `${scrollBarWidth}px`;
-    document.body.style.overflow = "hidden";
-  } else if (!open && el === refEl) {
-    document.body.style.paddingRight = "0px";
-    document.body.style.overflow = "";
-  }
-  refEl = el;
-};
-
-type ModalProps = {
-  children: React.ReactNode;
+type OakModalNewProps = {
+  animateFrom?: AnimateSlideInProps["direction"];
   open: boolean;
-  onClose: () => void;
-};
-export function OakModalNew({ open, children, onClose }: ModalProps) {
-  const ref = useRef<HTMLDialogElement>(null);
-  const prevOpen = usePrevious(open);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (open) {
-      singletonSet(el, true);
-      if (el) el.showModal();
-    } else if (!open && prevOpen) {
-      singletonSet(ref.current, false);
-      if (el) el.close();
-    }
-    return () => {
-      singletonSet(el, false);
-    };
-  }, [ref, open, prevOpen]);
-
-  useEffect(() => {
-    if (ref.current) {
-      const el = ref.current;
-
-      const onBackdropClose = (e: Event) => {
-        if (e.target instanceof Element && e.target.nodeName === "DIALOG") {
-          onClose();
-        }
-      };
-
-      el.addEventListener("close", onClose);
-      el.addEventListener("click", onBackdropClose);
-
-      return () => {
-        el.removeEventListener("close", onClose);
-        el.removeEventListener("click", onBackdropClose);
-      };
-    }
-  }, [ref, onClose]);
-
-  return (
-    <Dialog
-      ref={ref}
-      data-testid="modal"
-      style={{
-        // TODO: This is 'modal-dialog' from oak-components
-        zIndex: 320,
-      }}
-    >
-      {children}
-    </Dialog>
-  );
-}
-
-type ModalContentProps = {
   title: React.ReactNode;
   content: React.ReactNode;
   footer: React.ReactNode;
   onClose: () => void;
+  modalWidth?: ComponentProps<typeof OakFlex>["width"];
 };
-export function ModalContent({
+export function OakModalNew({
+  open,
+  onClose,
   title,
   content,
   footer,
-  onClose,
-}: ModalContentProps) {
+  animateFrom = "right",
+  modalWidth = "100%",
+}: OakModalNewProps) {
   return (
-    <>
-      <OakFlex
-        $pa={"inner-padding-m"}
-        $position={"relative"}
-        $justifyContent={"center"}
-        $alignItems={"center"}
-        $borderColor={"grey30"}
-      >
-        {title && (
-          <OakHeading tag="h3" $font={"heading-1"} data-testid="modal-title">
-            {title}
-          </OakHeading>
-        )}
-        <OakBox $position={"absolute"} $right={"all-spacing-4"}>
-          <CurriculumModalCloseButton
-            ariaLabel="Close"
-            onClose={() => onClose()}
-          />
-        </OakBox>
-      </OakFlex>
-      <OakFlex
-        data-testid="modal-content"
-        $flexShrink={1}
-        $overflowY={"auto"}
-        $flexGrow={1}
-        $flexDirection={"column"}
-        $position={"relative"}
-        style={{
-          scrollbarGutter: "stable",
-        }}
-      >
-        {content}
-      </OakFlex>
-      <OakFlex
-        data-testid="modal-footer"
-        $width={"100%"}
-        $background={"white"}
-        $ph={"inner-padding-m"}
-        $pv={"inner-padding-s"}
-        $justifyContent={"left"}
-        $bt={"border-solid-s"}
-        $borderColor={"grey30"}
-      >
-        {footer}
-      </OakFlex>
-    </>
+    <Transition in={open} timeout={TRANSITION_DURATION} unmountOnExit={false}>
+      {(animationState) => {
+        return (
+          <Dialog open={open} onClose={onClose}>
+            <Backdrop state={animationState} $zIndex="modal-dialog" />
+            <AnimateSlideIn
+              direction={animateFrom}
+              data-testid={"sidebar-modal"}
+              $position="fixed"
+              $top="all-spacing-0"
+              $right="all-spacing-0"
+              $height="100%"
+              $width={modalWidth}
+              $maxWidth="100%"
+              $background={"white"}
+              state={animationState}
+              $zIndex="modal-dialog"
+            >
+              <OakFlex
+                $flexDirection={"column"}
+                $minWidth={"100%"}
+                $flexGrow={1}
+              >
+                <ModalContent
+                  title={title}
+                  content={content}
+                  footer={footer}
+                  onClose={onClose}
+                />
+              </OakFlex>
+            </AnimateSlideIn>
+          </Dialog>
+        );
+      }}
+    </Transition>
   );
 }

@@ -1,7 +1,5 @@
-import React, { FC, HTMLProps } from "react";
-import { OakFlex, OakBox, OakPrimaryButton } from "@oaknational/oak-components";
-
-import { ModalContent } from "../OakComponentsKitchen/OakModalNew";
+import { FC } from "react";
+import { OakFlex, OakPrimaryButton } from "@oaknational/oak-components";
 
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import { Unit, UnitOption } from "@/utils/curriculum/types";
@@ -9,7 +7,7 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import { transformOwaLinkProps } from "@/components/SharedComponents/OwaLink";
 import { areLessonsAvailable } from "@/utils/curriculum/lessons";
 
-type ModalProps = HTMLProps<HTMLButtonElement> & {
+type CurricUnitModalFooterProps = {
   displayModal: boolean;
   onClose: () => void;
   programmeSlug?: string;
@@ -17,9 +15,7 @@ type ModalProps = HTMLProps<HTMLButtonElement> & {
   unitOptionData: UnitOption | undefined;
 };
 
-const CurricUnitsTabSidebar: FC<ModalProps> = ({
-  onClose,
-  children,
+export const CurricUnitModalFooter: FC<CurricUnitModalFooterProps> = ({
   unitOptionData,
   programmeSlug,
   unitData,
@@ -55,7 +51,7 @@ const CurricUnitsTabSidebar: FC<ModalProps> = ({
 
   const lessonPageHref = lessonPageProps?.nextLinkProps?.href;
 
-  const footer = (
+  return (
     <>
       {!unitOptionsAvailable && (
         <OakFlex
@@ -114,23 +110,4 @@ const CurricUnitsTabSidebar: FC<ModalProps> = ({
       )}
     </>
   );
-
-  const content = (
-    <OakBox $position={"absolute"} data-testid="sidebar-modal-wrapper">
-      <OakFlex $flexDirection={"column"} $minWidth={"100%"} $flexGrow={1}>
-        {children}
-      </OakFlex>
-    </OakBox>
-  );
-
-  return (
-    <ModalContent
-      title={undefined}
-      content={content}
-      footer={footer}
-      onClose={onClose}
-    />
-  );
 };
-
-export default CurricUnitsTabSidebar;

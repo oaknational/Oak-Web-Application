@@ -22,7 +22,7 @@ import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 import { getTitleFromSlug } from "@/fixtures/shared/helper";
 import { getIsUnitDescriptionEnabled } from "@/utils/curriculum/features";
 
-type CurricUnitModalProps = {
+type CurricUnitModalContentProps = {
   unitData: Unit | null;
   yearData: YearData;
   selectedThread: string | null;
@@ -30,7 +30,7 @@ type CurricUnitModalProps = {
   unitOptionData: UnitOption | undefined;
 };
 
-const CurricUnitModal: FC<CurricUnitModalProps> = ({
+const CurricUnitModalContent: FC<CurricUnitModalContentProps> = ({
   unitData,
   unitOptionData,
   yearData,
@@ -207,4 +207,4 @@ const CurricUnitModal: FC<CurricUnitModalProps> = ({
     </>
   );
 };
-export default CurricUnitModal;
+export default CurricUnitModalContent;
