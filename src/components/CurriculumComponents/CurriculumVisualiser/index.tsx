@@ -64,6 +64,15 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
 
+  const shouldIncludeCore = ks4OptionSlug !== "core";
+  const unitsByYearSelector = applyFiltering(
+    filters,
+    groupUnitsByPathway({
+      modes: getModes(shouldIncludeCore, ks4Options),
+      yearData,
+    }),
+  );
+
   const selectedThread = useMemo(() => {
     return threadOptions.find((thread) => thread.slug === filters.threads[0]);
   }, [threadOptions, filters]);
@@ -82,7 +91,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
     const options = { rootMargin: "-50% 0px 0px 0px" };
     const yearsLoaded = Object.keys(yearData).length;
     // All refs have been created for year groups & data is loaded
-    if (yearsLoaded > 0 && itemEls.current.length === yearsLoaded) {
+    if (yearsLoaded > 0) {
       // const io = new IntersectionObserver(, options);
       const io = new IntersectionObserver(
         anchorIntersectionObserver(setVisibleMobileYearRefID),
@@ -145,15 +154,6 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
     setCurrentUnitLessons([]);
   };
 
-  const shouldIncludeCore = ks4OptionSlug !== "core";
-  const unitsByYearSelector = applyFiltering(
-    filters,
-    groupUnitsByPathway({
-      modes: getModes(shouldIncludeCore, ks4Options),
-      yearData,
-    }),
-  );
-
   const shouldDisplayCorePathway = getShouldDisplayCorePathway(ks4Options);
 
   return (
@@ -181,6 +181,8 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
             data-testid={`year-${type}-${year}`}
             ref={ref}
             key={`${year}-${type}`}
+            $position={"relative"}
+            id={`year-${type}-${year}`}
           >
             <AnchorTarget
               $paddingTop={mobileHeaderScrollOffset}

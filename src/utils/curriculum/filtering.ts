@@ -520,7 +520,6 @@ export function getNumberOfSelectedUnits(
   Object.entries(yearData).forEach(([year, yearDataItem]) => {
     const units = yearDataItem.units;
     const yearBasedFilters = filteringFromYears(yearDataItem!, filters);
-    console.log({ yearBasedFilters, filters });
 
     if (units && filters.years.includes(year)) {
       const filteredUnits = units.filter((unit: Unit) => {

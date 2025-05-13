@@ -8,11 +8,11 @@ import {
   groupUnitsByYearAndPathway,
   sortYearPathways,
   parseYearPathwayKey,
-  getSuffixFromPathway,
 } from "./helper";
 
-import { Unit } from "@/utils/curriculum/types";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
+import { Unit } from "@/utils/curriculum/types";
+import { getSuffixFromPathway } from "@/utils/curriculum/pathways";
 
 function sortByOrder(units: Unit[]) {
   return [...units].toSorted((a, b) => a.order - b.order);
