@@ -1,3 +1,10 @@
+## [1.743.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.743.1...v1.743.2) (2025-05-12)
+
+
+### Bug Fixes
+
+* only create error boundry once not everytime ([fa9c67c](https://github.com/oaknational/Oak-Web-Application/commit/fa9c67c4acb45c61c6c02db5e904eef787a007ce))
+
 ## [1.743.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.743.0...v1.743.1) (2025-05-12)
 
 
