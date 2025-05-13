@@ -445,17 +445,20 @@ export async function buildUnit(
     const combinedTitles = subjectcategories
       ? subjectcategories.map(({ title }) => title).join(", ")
       : "";
+
     return combinedTitles !== "" ? `: ${combinedTitles}` : "";
   }
 
   function getYearSuffix(unit: Unit) {
     const subCat = getSubjectCategoriesAsString(unit.subjectcategories);
     const pathway = unit.pathway;
-    return [subCat, pathway].filter((item) => item !== "").join(", ");
+    return [subCat, pathway]
+      .filter((item) => item !== "")
+      .filter(Boolean)
+      .join(", ");
   }
 
   const yearSuffix = getYearSuffix(unit);
-
   const yearData = createUnitsListingByYear([unit]);
   const yearTitle = getYearGroupTitle(
     yearData,
@@ -497,8 +500,7 @@ export async function buildUnit(
             <w:b />
             <w:color w:val="222222" />
           </w:rPr>
-          <w:t>${cdata(yearTitle)}</w:t>
-          <w:t>${yearSuffix ? cdata(`: ${yearSuffix}`) : ""}</w:t>
+          <w:t>${cdata(`${yearTitle}${yearSuffix ? yearSuffix : ""}`)}</w:t>
         </w:r>
       </w:p>
 

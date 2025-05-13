@@ -396,7 +396,6 @@ describe("helper", () => {
         "10-none",
       ];
       keys.sort(sortYearPathways);
-      console.log(keys);
       expect(keys).toEqual([
         "9-none",
         "10-none",
