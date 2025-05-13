@@ -31,7 +31,6 @@ import { resolveOakHref } from "@/common-lib/urls";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { PaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
 import { convertSubjectToSlug } from "@/components/TeacherComponents/helpers/convertSubjectToSlug";
-import { useGetEducatorData } from "@/node-lib/educator-api/helpers/useGetEducatorData";
 import { useSaveUnits } from "@/node-lib/educator-api/helpers/saveUnits/useSaveUnits";
 
 export type Tier = {
@@ -187,21 +186,21 @@ const UnitList: FC<UnitListProps> = (props) => {
     isSwimming: true,
   });
 
-  const { phaseSlug, keyStageSlug, examBoardSlug } = getProgrammeFactors(props);
+  const { phaseSlug, keyStageSlug, examBoardSlug, keyStageTitle } =
+    getProgrammeFactors(props);
   const indexOfFirstLegacyUnit = units
     .map((u) => isSlugLegacy(u[0]!.programmeSlug))
     .indexOf(true);
 
   // Saving
   const isSaveEnabled = useFeatureFlagEnabled("teacher-save-units");
-
-  const { data: savedUnits } = useGetEducatorData(
-    `/api/educator-api/getSavedUnits/${props.programmeSlug}`,
-  );
-  const { onSaveToggle, isUnitSaved } = useSaveUnits(
-    savedUnits,
-    props.programmeSlug,
-  );
+  const { onSaveToggle, isUnitSaved } = useSaveUnits(props.programmeSlug, {
+    keyStageTitle,
+    keyStageSlug,
+    subjectTitle: props.subjectTitle,
+    subjectSlug: props.subjectSlug,
+    savedFrom: "unit_listing_save_button",
+  });
 
   const hasNewAndLegacyUnits: boolean =
     !!phaseSlug && !!newPageItems.length && !!legacyPageItems.length;
