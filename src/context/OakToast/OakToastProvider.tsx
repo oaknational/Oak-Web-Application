@@ -19,6 +19,7 @@ export const OakToastProvider: FC<{
   const [currentToastProps, setCurrentToastProps] =
     useState<OakToastProps | null>(null);
   const [offsetTop, setOffsetTop] = useState<number>(82);
+  const [id, setId] = useState(0);
 
   useEffect(() => {
     // Adjust the distance from the top of the screen when the header is visible
@@ -35,9 +36,14 @@ export const OakToastProvider: FC<{
     }
   }, []);
 
+  const setToastPropsAndId = (props: OakToastProps | null) => {
+    setId((prevId) => prevId + 1);
+    setCurrentToastProps(props);
+  };
+
   return (
     <oakToastContext.Provider
-      value={{ currentToastProps, setCurrentToastProps }}
+      value={{ currentToastProps, setCurrentToastProps: setToastPropsAndId }}
     >
       <StyledOakToastContainer
         $position="fixed"
@@ -52,6 +58,7 @@ export const OakToastProvider: FC<{
           <OakToast
             {...currentToastProps}
             onClose={() => setCurrentToastProps(null)}
+            id={id}
           />
         )}
       </StyledOakToastContainer>
