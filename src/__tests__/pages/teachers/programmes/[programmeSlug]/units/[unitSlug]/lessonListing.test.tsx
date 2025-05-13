@@ -31,6 +31,8 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
     track: {
       lessonAccessed: (...args: unknown[]) => lessonSelected(...args),
       teacherShareInitiated: () => jest.fn(),
+      contentSaved: () => jest.fn(),
+      contentUnsaved: () => jest.fn(),
     },
   }),
 }));

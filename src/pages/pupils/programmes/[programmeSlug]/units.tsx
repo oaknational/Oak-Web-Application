@@ -17,7 +17,10 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { PupilViewsUnitListing } from "@/components/PupilViews/PupilUnitListing/PupilUnitListing.view";
 import { extractBaseSlug } from "@/pages-helpers/pupil";
 import { UseBackHrefProps } from "@/components/PupilViews/PupilUnitListing/useBackHref";
-import { getSecondUnitSection } from "@/pages-helpers/pupil/units-page/units-page-helper";
+import {
+  checkAndExcludeUnitsWithAgeRestrictedLessons,
+  getSecondUnitSection,
+} from "@/pages-helpers/pupil/units-page/units-page-helper";
 import OakError from "@/errors/OakError";
 import { SubjectSlugs } from "@/node-lib/curriculum-api-2023/queries/pupilSubjectListing/pupilSubjectListing.schema";
 
@@ -180,7 +183,9 @@ export const getStaticProps: GetStaticProps<
       const subjectCategories = uniq(allSubjectCategories) as string[];
 
       const mainUnits: UnitListingBrowseData[number][] =
-        unitsByProgramme[programmeSlug] || [];
+        checkAndExcludeUnitsWithAgeRestrictedLessons(
+          unitsByProgramme[programmeSlug] || [],
+        );
 
       const optionalityUnits: UnitListingBrowseData[number][][] = Object.values(
         groupBy(mainUnits, (unit) =>

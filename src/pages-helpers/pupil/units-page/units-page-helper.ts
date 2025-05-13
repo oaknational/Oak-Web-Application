@@ -39,7 +39,9 @@ export function getSecondUnitSection({
     // Check for "new" programmes that could be displayed
     result.units = Object.values(
       groupBy(
-        unitsByProgramme[`${programmeSlug.replace("-l", "")}`] || [],
+        checkAndExcludeUnitsWithAgeRestrictedLessons(
+          unitsByProgramme[`${programmeSlug.replace("-l", "")}`] || [],
+        ),
         (unit) => unit.unitData.title,
       ),
     );
@@ -80,4 +82,10 @@ export function getSecondUnitSection({
     title: null,
     breadcrumbs,
   };
+}
+
+export function checkAndExcludeUnitsWithAgeRestrictedLessons(
+  units: UnitListingBrowseData[number][],
+): UnitListingBrowseData[number][] {
+  return units.filter((u) => u.lessonCount !== u.ageRestrictedLessonCount);
 }

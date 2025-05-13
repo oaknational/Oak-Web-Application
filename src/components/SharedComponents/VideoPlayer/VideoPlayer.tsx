@@ -55,6 +55,28 @@ export type VideoEventCallbackArgs = {
   muted: boolean;
 };
 
+function VideoContainer({ children }: { children: React.ReactNode }) {
+  return (
+    <OakFlex
+      // NOTE: Hiding video contents because otherwise we get some percy
+      // snapshots loaded and some pending load depending on the timing
+      // (race condition)
+      data-percy-hide="contents"
+      $alignItems={"center"}
+      $justifyContent={"center"}
+      $ba={"border-solid-l"}
+      $minWidth={"100%"}
+      $borderColor={"black"}
+      style={{
+        aspectRatio: "16/9",
+        boxSizing: "content-box",
+      }}
+    >
+      {children}
+    </OakFlex>
+  );
+}
+
 const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   const {
     thumbnailTime: thumbTime,
@@ -241,21 +263,11 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
 
   if (videoToken.loading || thumbnailToken.loading || storyboardToken.loading) {
     return (
-      <OakFlex
-        $alignItems={"center"}
-        $justifyContent={"center"}
-        $ba={"border-solid-m"}
-        $minWidth={"100%"}
-        $borderColor={"black"}
-        style={{
-          aspectRatio: "16/9",
-          boxSizing: "content-box",
-        }}
-      >
+      <VideoContainer>
         <OakP $color={loadingTextColor} $textAlign="center">
           Loading...
         </OakP>
-      </OakFlex>
+      </VideoContainer>
     );
   }
 
@@ -279,15 +291,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   }
 
   return (
-    <OakFlex
-      $flexDirection={"column"}
-      $ba={"border-solid-l"}
-      $minWidth={"100%"}
-      $borderColor={"black"}
-      style={{
-        boxSizing: "content-box",
-      }}
-    >
+    <VideoContainer>
       <MuxPlayer
         key={reloadOnErrors.length}
         preload="metadata"
@@ -320,7 +324,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
           overflow: "hidden",
         }}
       />
-    </OakFlex>
+    </VideoContainer>
   );
 };
 

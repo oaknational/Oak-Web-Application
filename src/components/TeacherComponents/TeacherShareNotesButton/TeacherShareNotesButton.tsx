@@ -1,19 +1,18 @@
 import { OakSmallSecondaryButton } from "@oaknational/oak-components";
+import { useOakConsent } from "@oaknational/oak-consent-client";
 
 import { useTeacherShareButton } from "../TeacherShareButton/useTeacherShareButton";
 
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
 
 export const TeacherShareNotesButton = ({
-  teacherNotesEnabled,
   isEditable,
   noteSaved,
   onTeacherNotesOpen,
   shareUrl,
   shareActivated,
 }: {
-  teacherNotesEnabled: boolean;
-  isEditable: boolean;
+  isEditable: boolean | null;
   noteSaved: boolean;
   onTeacherNotesOpen: () => void;
   shareUrl: string | null;
@@ -23,24 +22,36 @@ export const TeacherShareNotesButton = ({
     shareUrl,
     shareActivated,
   });
+  const { state } = useOakConsent();
+  const cookiesNotAccepted = !!state.policyConsents.find(
+    (policy) =>
+      policy.consentState === "denied" || policy.consentState === "pending",
+  );
 
-  return teacherNotesEnabled && isEditable ? (
+  if (isEditable === false) {
+    return (
+      <>
+        <TeacherShareButton
+          label="Share resources with colleague"
+          variant={"secondary"}
+          shareUrl={shareUrl}
+          handleClick={handleClick}
+        />
+        {copiedComponent}
+      </>
+    );
+  }
+
+  if (isEditable === null || state.requiresInteraction) return undefined;
+
+  return (
     <OakSmallSecondaryButton
+      disabled={cookiesNotAccepted}
       iconName={noteSaved ? "edit" : "share"}
       isTrailingIcon
       onClick={onTeacherNotesOpen}
     >
       {noteSaved ? "Edit teacher note and share" : "Add teacher note and share"}
     </OakSmallSecondaryButton>
-  ) : (
-    <>
-      <TeacherShareButton
-        label="Share resources with colleague"
-        variant={"secondary"}
-        shareUrl={shareUrl}
-        handleClick={handleClick}
-      />
-      {copiedComponent}
-    </>
   );
 };
