@@ -108,6 +108,7 @@ describe("unit list helpers", () => {
     expect(result).toEqual({
       phaseSlug: "secondary",
       keyStageSlug: "ks4",
+      keyStageTitle: "Key Stage 4",
       examBoardSlug: "aqa",
     });
   });

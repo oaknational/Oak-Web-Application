@@ -1,12 +1,15 @@
 query getUserContent($userId: String, $programmeSlug: String) {
   users_content(
+    distinct_on: content_id
     where: {
-      content: { programme_slug: { _eq: $programmeSlug } }
       user_id: { _eq: $userId }
+      content: { programme_slug: { _eq: $programmeSlug } }
     }
   ) {
-    content {
-      unit_slug
+    users_content_lists {
+      content {
+        unit_slug
+      }
     }
   }
 }
