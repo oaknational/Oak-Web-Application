@@ -1,3 +1,28 @@
+## [1.744.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.744.0...v1.744.1) (2025-05-13)
+
+
+### Bug Fixes
+
+* only create error boundry once not everytime (attempt 2) ([8541c4d](https://github.com/oaknational/Oak-Web-Application/commit/8541c4d91d8f52230b31cfc9c609b7d35a3c661f))
+
+# [1.744.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.743.2...v1.744.0) (2025-05-13)
+
+
+### Bug Fixes
+
+* remove dependency from array causing looping updates ([bf736bd](https://github.com/oaknational/Oak-Web-Application/commit/bf736bd052ccb1b1bb00c1730a9ab421903c7814))
+* throw an error from useSwr callback ([cca2884](https://github.com/oaknational/Oak-Web-Application/commit/cca28843fb461c71c3c5438bd8e6f1d1ef518a6d))
+
+
+### Features
+
+* add query and api route to unsave unit ([3e3762e](https://github.com/oaknational/Oak-Web-Application/commit/3e3762e714c42908fdbe8d4dda254044217aab2f))
+* add unsave functionality to useSaveUnits hook and tests ([baf464f](https://github.com/oaknational/Oak-Web-Application/commit/baf464f5e64bf846ad6cbfa5a438717eb5f71cdf))
+* bump oak components and fix toast duration behaviour ([c978279](https://github.com/oaknational/Oak-Web-Application/commit/c978279140f5b1c06836b8e3e7f22486fc91e1b7))
+* include content id in saved units response ([3d72e63](https://github.com/oaknational/Oak-Web-Application/commit/3d72e637457fd910b89017e43d776ee7c7c57b8e))
+* track save events from unit and lesson listing pages ([742fec0](https://github.com/oaknational/Oak-Web-Application/commit/742fec0915fd55b54b60865ce196d577dfa7d7ea))
+* track unsave events ([65f87c9](https://github.com/oaknational/Oak-Web-Application/commit/65f87c9b8667bf699906e5d92386538da56a1725))
+
 ## [1.743.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.743.1...v1.743.2) (2025-05-12)
 
 
