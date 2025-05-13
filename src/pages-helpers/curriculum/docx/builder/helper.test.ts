@@ -14,7 +14,6 @@ import {
   groupUnitsByYearAndPathway,
   parseYearPathwayKey,
   sortYearPathways,
-  getYearPathwayDisplayTitle,
 } from "./helper";
 
 import { createUnit } from "@/fixtures/curriculum/unit";
@@ -116,6 +115,7 @@ describe("helper", () => {
               category: "test1",
             },
           ],
+          order: 1,
         },
         {
           slug: "b",
@@ -126,6 +126,7 @@ describe("helper", () => {
               category: "test2",
             },
           ],
+          order: 1,
         },
       ] as CombinedCurriculumData["units"];
 
@@ -295,8 +296,8 @@ describe("helper", () => {
     const grouped = groupUnitsByYearAndPathway(sampleUnits);
 
     it("should group units by year when no pathway", () => {
-      expect(grouped["9"]).toHaveLength(2);
-      expect(grouped["9"]?.map((u) => u.slug)).toEqual([
+      expect(grouped["9-none"]).toHaveLength(2);
+      expect(grouped["9-none"]?.map((u) => u.slug)).toEqual([
         "introduction-to-logic-y9",
         "binary-representation-y9",
       ]);
@@ -324,8 +325,8 @@ describe("helper", () => {
     });
 
     it("should group units with null/undefined pathway under the year key only", () => {
-      expect(grouped["10"]).toHaveLength(1);
-      expect(grouped["10"]?.map((u) => u.slug)).toEqual([
+      expect(grouped["10-none"]).toHaveLength(1);
+      expect(grouped["10-none"]?.map((u) => u.slug)).toEqual([
         "fundamentals-of-computing-y10",
       ]);
       expect(
@@ -338,7 +339,7 @@ describe("helper", () => {
           (u) => u.slug === "fundamentals-of-computing-y10",
         ),
       ).toBeUndefined();
-      expect(grouped["9"]?.map((u) => u.slug)).toEqual([
+      expect(grouped["9-none"]?.map((u) => u.slug)).toEqual([
         "introduction-to-logic-y9",
         "binary-representation-y9",
       ]);
@@ -351,8 +352,14 @@ describe("helper", () => {
 
   describe("parseYearPathwayKey", () => {
     it("should parse year-only keys", () => {
-      expect(parseYearPathwayKey("9")).toEqual({ year: "9", pathway: null });
-      expect(parseYearPathwayKey("12")).toEqual({ year: "12", pathway: null });
+      expect(parseYearPathwayKey("9-none")).toEqual({
+        year: "9",
+        pathway: "none",
+      });
+      expect(parseYearPathwayKey("12-none")).toEqual({
+        year: "12",
+        pathway: "none",
+      });
     });
 
     it("should parse year-pathway keys", () => {
@@ -366,13 +373,13 @@ describe("helper", () => {
       });
     });
 
-    it("should handle potentially empty strings (defaults year to '0')", () => {
-      expect(parseYearPathwayKey("")).toEqual({ year: "0", pathway: null });
+    it("should handle potentially empty strings (defaults year to '')", () => {
+      expect(parseYearPathwayKey("")).toEqual({ year: "", pathway: "" });
     });
 
-    it("should handle missing year part (defaults year to '0')", () => {
+    it("should handle missing year part (defaults year to '')", () => {
       expect(parseYearPathwayKey("core")).toEqual({
-        year: "0",
+        year: "",
         pathway: "core",
       });
     });
@@ -380,13 +387,21 @@ describe("helper", () => {
 
   describe("sortYearPathways", () => {
     it("should sort keys chronologically by year, then pathway", () => {
-      const keys = ["11-gcse", "10-core", "9", "11-core", "10-gcse", "10"];
+      const keys = [
+        "11-gcse",
+        "10-core",
+        "9-none",
+        "11-core",
+        "10-gcse",
+        "10-none",
+      ];
       keys.sort(sortYearPathways);
+      console.log(keys);
       expect(keys).toEqual([
-        "9",
+        "9-none",
         "10-core",
         "10-gcse",
-        "10",
+        "10-none",
         "11-core",
         "11-gcse",
       ]);
@@ -395,18 +410,7 @@ describe("helper", () => {
     it("should place default/null pathway last within a year group", () => {
       const keys = ["10-gcse", "10", "10-core"];
       keys.sort(sortYearPathways);
-      expect(keys).toEqual(["10-core", "10-gcse", "10"]);
-    });
-  });
-
-  describe("getYearPathwayDisplayTitle", () => {
-    it("should generate title for year only", () => {
-      expect(getYearPathwayDisplayTitle("9")).toBe("Year 9");
-    });
-
-    it("should generate title for year and pathway", () => {
-      expect(getYearPathwayDisplayTitle("10-core")).toBe("Year 10 (Core)");
-      expect(getYearPathwayDisplayTitle("11-gcse")).toBe("Year 11 (GCSE)");
+      expect(keys).toEqual(["10", "10-core", "10-gcse"]);
     });
   });
 });

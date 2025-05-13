@@ -250,11 +250,11 @@ export function sortYearPathways(keyA: string, keyB: string): number {
   const isKs4A = yearNumA >= 10;
   const isKs4B = yearNumB >= 10;
 
-  const pathwayOrder = { core: 1, gcse: 2, default: 99 }; // Use 'default' for null/undefined/other pathways
+  const pathwayOrder = { core: 1, gcse: 2, none: 99 }; // Use 'none' for null/undefined/other pathways
   const orderA =
-    pathwayOrder[pathwayA as keyof typeof pathwayOrder] ?? pathwayOrder.default;
+    pathwayOrder[pathwayA as keyof typeof pathwayOrder] ?? pathwayOrder.none;
   const orderB =
-    pathwayOrder[pathwayB as keyof typeof pathwayOrder] ?? pathwayOrder.default;
+    pathwayOrder[pathwayB as keyof typeof pathwayOrder] ?? pathwayOrder.none;
 
   // Logic:
   // 1. If comparing KS3 with KS4, KS3 comes first.
@@ -282,22 +282,10 @@ export function sortYearPathways(keyA: string, keyB: string): number {
   }
 }
 
-/**
- * Generates a display title from a year-pathway key.
- * Examples: "9" -> "Year 9", "10-core" -> "Year 10 (Core)".
- *
- * @param yearPathwayKey - The year-pathway key string (e.g., "10-gcse", "9").
- * @returns The formatted display title string.
- */
-export function getYearPathwayDisplayTitle(yearPathwayKey: string): string {
-  const { year: yearNumber, pathway } = parseYearPathwayKey(yearPathwayKey);
-  let title = `Year ${yearNumber}`;
-
+export function getSuffixFromPathway(pathway: string | null) {
   if (pathway === "core") {
-    title += " (Core)";
+    return "(Core)";
   } else if (pathway === "gcse") {
-    title += " (GCSE)";
+    return "(GCSE)";
   }
-
-  return title;
 }
