@@ -8,7 +8,6 @@ import Component from "./";
 
 import { createYearData } from "@/fixtures/curriculum/yearData";
 
-
 const meta: Meta<typeof Component> = {
   component: Component,
   argTypes: {},
