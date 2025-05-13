@@ -1,12 +1,12 @@
 import userEvent from "@testing-library/user-event";
 import { act } from "@testing-library/react";
 
-import UnitModal from "./CurricUnitModal";
+import CurricUnitModalContent from "./CurricUnitModalContent";
 import {
   mockUnit,
   mockOptionalityUnit,
   mockYearData,
-} from "./CurricUnitModal.fixtures";
+} from "./CurricUnitModalContent.fixtures";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
@@ -28,7 +28,7 @@ describe("Unit modal", () => {
 
   test("renders with correct heading", () => {
     const { getByText } = renderWithTheme(
-      <UnitModal
+      <CurricUnitModalContent
         selectedThread={null}
         unitData={mockUnit}
         yearData={mockYearData}
@@ -41,7 +41,7 @@ describe("Unit modal", () => {
 
   test("renders the correct number of threads", () => {
     const { getAllByTestId, getByText } = renderWithTheme(
-      <UnitModal
+      <CurricUnitModalContent
         selectedThread={null}
         unitData={mockUnit}
         yearData={mockYearData}
@@ -59,7 +59,7 @@ describe("Unit modal", () => {
 
   test("lesson metadata renders correct data", () => {
     const { getByText } = renderWithTheme(
-      <UnitModal
+      <CurricUnitModalContent
         selectedThread={null}
         unitData={mockUnit}
         yearData={mockYearData}
@@ -75,7 +75,7 @@ describe("Unit modal", () => {
   describe("non-optional units", () => {
     test("does not render optionality card", () => {
       const { queryByTestId } = renderWithTheme(
-        <UnitModal
+        <CurricUnitModalContent
           selectedThread={null}
           unitData={mockUnit}
           yearData={mockYearData}
@@ -89,7 +89,7 @@ describe("Unit modal", () => {
 
     test("renders CurriculumUnitDetails component", () => {
       const { getByTestId } = renderWithTheme(
-        <UnitModal
+        <CurricUnitModalContent
           selectedThread={null}
           unitData={mockUnit}
           yearData={mockYearData}
@@ -105,7 +105,7 @@ describe("Unit modal", () => {
   describe("optional units", () => {
     test("optionality cards render", () => {
       const { getByTestId } = renderWithTheme(
-        <UnitModal
+        <CurricUnitModalContent
           selectedThread={null}
           unitData={mockOptionalityUnit}
           yearData={mockYearData}
@@ -120,7 +120,7 @@ describe("Unit modal", () => {
 
     test("does not render CurriculumUnitDetails component", () => {
       const { queryByTestId } = renderWithTheme(
-        <UnitModal
+        <CurricUnitModalContent
           selectedThread={null}
           unitData={mockOptionalityUnit}
           yearData={mockYearData}
@@ -134,7 +134,7 @@ describe("Unit modal", () => {
 
     test("optionality cards render correct number of units", () => {
       const { getAllByTestId } = renderWithTheme(
-        <UnitModal
+        <CurricUnitModalContent
           selectedThread={null}
           unitData={mockOptionalityUnit}
           yearData={mockYearData}
@@ -148,7 +148,7 @@ describe("Unit modal", () => {
 
     test("optionality cards render correct unit titles", () => {
       const { getByText } = renderWithTheme(
-        <UnitModal
+        <CurricUnitModalContent
           selectedThread={null}
           unitData={mockOptionalityUnit}
           yearData={mockYearData}
@@ -164,7 +164,7 @@ describe("Unit modal", () => {
 
     test("selecting optional unit card button, renders CurriculumUnitDetails component", async () => {
       const { getAllByTestId, queryByTestId } = renderWithTheme(
-        <UnitModal
+        <CurricUnitModalContent
           selectedThread={null}
           unitData={mockOptionalityUnit}
           yearData={mockYearData}
@@ -199,7 +199,7 @@ describe("Unit modal", () => {
       ];
 
       const { getAllByTestId } = renderWithTheme(
-        <UnitModal
+        <CurricUnitModalContent
           selectedThread={null}
           unitData={{ ...mockUnit, lessons: mockLessons }}
           yearData={mockYearData}

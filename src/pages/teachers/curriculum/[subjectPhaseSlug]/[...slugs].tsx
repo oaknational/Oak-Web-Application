@@ -52,6 +52,8 @@ import { getDefaultFilter, useFilters } from "@/utils/curriculum/filtering";
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import { getUnitSeoFromYearData } from "@/utils/curriculum/seo";
+import { SeoProps } from "@/browser-lib/seo/Seo";
 
 const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   curriculumSelectionSlugs,
@@ -111,6 +113,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   };
 
   let tabContent: JSX.Element;
+  const selectedUnitSlug = slugs[0];
 
   switch (tab) {
     case "overview":
@@ -129,7 +132,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
       tabContent = (
         <UnitsTab
           basePath={basePath}
-          selectedUnitSlug={slugs[0]}
+          selectedUnitSlug={selectedUnitSlug}
           formattedData={curriculumUnitsFormattedData}
           trackingData={curriculumUnitsTrackingData}
           filters={filters}
@@ -152,6 +155,24 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
     default:
       throw new Error("Not a valid tab");
   }
+
+  const additionalSeo: Partial<SeoProps> | undefined = useMemo(() => {
+    if (tab === "units") {
+      return getUnitSeoFromYearData({
+        yearData: curriculumUnitsFormattedData.yearData,
+        tier: filters.tiers[0],
+        slug: selectedUnitSlug,
+        ks4OptionSlug: ks4OptionSlug ?? undefined,
+      });
+    }
+  }, [
+    tab,
+    curriculumUnitsFormattedData,
+    selectedUnitSlug,
+    ks4OptionSlug,
+    filters,
+  ]);
+
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <AppLayout
@@ -176,6 +197,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
               tab: tab,
             }),
           }),
+          ...additionalSeo,
         }}
         $background={"white"}
       >

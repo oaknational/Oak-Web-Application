@@ -1,97 +1,66 @@
-import { OakBox, OakFlex, OakHeading } from "@oaknational/oak-components";
-import React, { useEffect, useRef } from "react";
-import styled from "styled-components";
+import { OakFlex } from "@oaknational/oak-components";
+import { ComponentProps } from "react";
+import { Transition } from "react-transition-group";
 
-import { CurriculumModalCloseButton } from "../../CurriculumModalCloseButton";
+import { AnimateSlideIn, AnimateSlideInProps } from "./AnimateSlideIn";
+import { TRANSITION_DURATION } from "./constants";
+import { Backdrop } from "./Backdrop";
+import { Dialog } from "./Dialog";
+import { ModalContent } from "./Content";
 
-import { usePrevious } from "@/hooks/usePrevious";
-
-const Dialog = styled("dialog")`
-  border: none;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  max-width: 100%;
-  max-height: 100%;
-
-  ::backdrop {
-    padding: 0;
-    margin: 0;
-  }
-`;
-
-type ModalProps = {
+type OakModalNewProps = {
+  animateFrom?: AnimateSlideInProps["direction"];
+  open: boolean;
   title: React.ReactNode;
   content: React.ReactNode;
   footer: React.ReactNode;
-  open: boolean;
   onClose: () => void;
+  modalWidth?: ComponentProps<typeof OakFlex>["width"];
 };
 export function OakModalNew({
+  open,
+  onClose,
   title,
   content,
   footer,
-  open,
-  onClose,
-}: ModalProps) {
-  const ref = useRef<HTMLDialogElement>(null);
-  const prevOpen = usePrevious(open);
-
-  useEffect(() => {
-    if (ref.current) {
-      if (open) {
-        document.body.style.overflow = "hidden";
-        if (!prevOpen) ref.current.showModal();
-      } else {
-        document.body.style.overflow = "";
-        if (prevOpen) ref.current.close();
-      }
-    }
-  }, [ref, open, prevOpen]);
-
+  animateFrom = "right",
+  modalWidth = "100%",
+}: OakModalNewProps) {
   return (
-    <Dialog ref={ref} data-testid="modal">
-      <OakFlex $flexDirection={"column"} $background={"white"} $height={"100%"}>
-        <OakFlex
-          $pa={"inner-padding-m"}
-          $position={"relative"}
-          $justifyContent={"center"}
-          $alignItems={"center"}
-          $borderColor={"grey30"}
-        >
-          <OakHeading tag="h3" $font={"heading-1"} data-testid="modal-title">
-            {title}
-          </OakHeading>
-          <OakBox $position={"absolute"} $right={"all-spacing-4"}>
-            <CurriculumModalCloseButton
-              ariaLabel="Close"
-              onClose={() => onClose()}
-            />
-          </OakBox>
-        </OakFlex>
-        <OakFlex
-          data-testid="modal-content"
-          $flexShrink={1}
-          $overflowY={"auto"}
-          $flexGrow={1}
-          $flexDirection={"column"}
-        >
-          {content}
-        </OakFlex>
-        <OakFlex
-          data-testid="modal-footer"
-          $width={"100%"}
-          $background={"white"}
-          $ph={"inner-padding-m"}
-          $pv={"inner-padding-s"}
-          $justifyContent={"left"}
-          $bt={"border-solid-s"}
-          $borderColor={"grey30"}
-        >
-          {footer}
-        </OakFlex>
-      </OakFlex>
-    </Dialog>
+    <Transition in={open} timeout={TRANSITION_DURATION} unmountOnExit={false}>
+      {(animationState) => {
+        return (
+          <Dialog open={open} onClose={onClose}>
+            <Backdrop state={animationState} $zIndex="modal-dialog" />
+            <AnimateSlideIn
+              direction={animateFrom}
+              data-testid={"sidebar-modal"}
+              $position="fixed"
+              $top="all-spacing-0"
+              $right="all-spacing-0"
+              $height="100%"
+              $width={modalWidth}
+              $maxWidth="100%"
+              $background={"white"}
+              state={animationState}
+              $zIndex="modal-dialog"
+            >
+              <OakFlex
+                $flexDirection={"column"}
+                $minWidth={"100%"}
+                $flexGrow={1}
+              >
+                <ModalContent
+                  title={title}
+                  content={content}
+                  footer={footer}
+                  onClose={onClose}
+                />
+              </OakFlex>
+            </AnimateSlideIn>
+          </Dialog>
+        );
+      }}
+    </Transition>
   );
 }

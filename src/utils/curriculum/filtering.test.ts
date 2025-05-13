@@ -37,8 +37,11 @@ import { createThread } from "@/fixtures/curriculum/thread";
 import { createFilter } from "@/fixtures/curriculum/filters";
 import { createYearData } from "@/fixtures/curriculum/yearData";
 
+const replaceMock = jest.fn();
 jest.mock("next/router", () => ({
-  useRouter: jest.fn(),
+  useRouter: () => ({
+    replace: (...args: []) => replaceMock(...args),
+  }),
 }));
 
 jest.mock("next/navigation", () => ({
@@ -827,9 +830,6 @@ describe("useFilters", () => {
 
     it("updating state", () => {
       (isCurricRoutingEnabled as jest.Mock).mockReturnValue(true);
-      const replaceStateMock = jest.fn();
-      const originalReplaceState = window.history.replaceState;
-      window.history.replaceState = replaceStateMock;
 
       const defaultFilter = createFilter();
       const updateFilterValue = createFilter({
@@ -842,13 +842,14 @@ describe("useFilters", () => {
       const [, setFilters] = result.current;
       setFilters(updateFilterValue);
 
-      expect(replaceStateMock).toHaveBeenCalledWith(
-        {},
-        "",
+      expect(replaceMock).toHaveBeenCalledWith(
         "/?tiers=foundation",
+        undefined,
+        {
+          scroll: false,
+          shallow: true,
+        },
       );
-
-      window.history.replaceState = originalReplaceState;
 
       rerender();
       const [filters] = result.current;

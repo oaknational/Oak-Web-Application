@@ -1,10 +1,13 @@
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { Meta, StoryObj } from "@storybook/react";
+import { ComponentProps } from "react";
 
-import Component from "./CurricUnitModal";
-import { mockOptionalityUnit } from "./CurricUnitModal.fixtures";
+import { mockOptionalityUnit } from "./CurricUnitModalContent.fixtures";
+
+import Component from "./";
 
 import { createYearData } from "@/fixtures/curriculum/yearData";
+
 
 const meta: Meta<typeof Component> = {
   component: Component,
@@ -28,7 +31,7 @@ export const CurricUnitModal: Story = {
     selectedThread: "",
     basePath: "",
   },
-  render: function Render(args) {
+  render: function Render(args: ComponentProps<typeof Component>) {
     return (
       <OakThemeProvider theme={oakDefaultTheme}>
         <Component {...args} />

@@ -8,10 +8,9 @@ import { useRouter } from "next/router";
 
 import Alert from "../OakComponentsKitchen/Alert";
 import CurriculumUnitCard from "../CurricUnitCard/CurricUnitCard";
+import CurricUnitModal from "../CurricUnitModal";
 
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
-import UnitModal from "@/components/CurriculumComponents/CurricUnitModal/CurricUnitModal";
-import UnitsTabSidebar from "@/components/CurriculumComponents/CurricUnitsTabSidebar";
 import {
   getSuffixFromFeatures,
   getYearGroupTitle,
@@ -20,7 +19,6 @@ import {
 import { anchorIntersectionObserver } from "@/utils/curriculum/dom";
 import { isVisibleUnit } from "@/utils/curriculum/isVisibleUnit";
 import { sortYears } from "@/utils/curriculum/sorting";
-import { createTeacherProgrammeSlug } from "@/utils/curriculum/slugs";
 import { filteringFromYears } from "@/utils/curriculum/filtering";
 import {
   CurriculumFilters,
@@ -212,7 +210,6 @@ function getSubjectCategoryMessage(
 const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   unitData,
   unitOptionData,
-  ks4OptionSlug,
   yearData,
   mobileHeaderScrollOffset,
   filters,
@@ -262,7 +259,9 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   }, [setVisibleMobileYearRefID, yearData]);
 
   const handleCloseModal = () => {
-    router.push(basePath, undefined, { shallow: true });
+    const searchParamsStr = searchParams?.toString() ?? "";
+    const href = `${basePath}${!searchParamsStr ? "" : `?${searchParamsStr}`}`;
+    router.replace(href, undefined, { shallow: true, scroll: false });
   };
 
   return (
@@ -410,28 +409,17 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
               </OakBox>
             );
           })}
-      {displayModal && (
-        <UnitsTabSidebar
-          displayModal={displayModal}
-          onClose={handleCloseModal}
-          programmeSlug={createTeacherProgrammeSlug(
-            unitData,
-            ks4OptionSlug,
-            filters.tiers[0],
-            unitData?.pathway_slug ?? undefined,
-          )}
-          unitData={unitData}
-          unitOptionData={unitOptionData}
-        >
-          <UnitModal
-            basePath={basePath}
-            unitData={unitData}
-            unitOptionData={unitOptionData}
-            yearData={yearData}
-            selectedThread={selectedThread?.slug ?? null}
-          />
-        </UnitsTabSidebar>
-      )}
+
+      <CurricUnitModal
+        open={displayModal}
+        onClose={handleCloseModal}
+        unitData={unitData}
+        unitOptionData={unitOptionData}
+        yearData={yearData}
+        basePath={basePath}
+        selectedThread={selectedThread}
+        filters={filters}
+      />
     </OakBox>
   );
 };

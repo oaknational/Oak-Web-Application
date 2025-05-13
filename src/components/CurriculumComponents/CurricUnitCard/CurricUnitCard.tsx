@@ -56,6 +56,9 @@ export default function CurriculumUnitCard(props: CurriculumUnitCardProps) {
         href={href}
         isHighlighted={isHighlighted}
         data-testid="unit-info-link"
+        shallow={true}
+        scroll={false}
+        replace={true}
       >
         <OakFlex
           $pv={"inner-padding-s"}

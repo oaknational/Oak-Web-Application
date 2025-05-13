@@ -1,6 +1,7 @@
 import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 import { useLayoutEffect, useState, useCallback } from "react";
 import { isEqual } from "lodash";
+import { useRouter } from "next/router";
 
 import { findFirstMatchingFeatures } from "./features";
 import {
@@ -141,6 +142,7 @@ export function useFilters(
   defaultFilter: CurriculumFilters,
 ): [CurriculumFilters, (newFilters: CurriculumFilters) => void] {
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   const [filters, setLocalFilters] = useState<CurriculumFilters>(defaultFilter);
   useLayoutEffect(() => {
@@ -160,11 +162,14 @@ export function useFilters(
           new URLSearchParams(
             Object.entries(filtersToQuery(newFilters, defaultFilter)),
           ).toString();
-        window.history.replaceState({}, "", url);
+        router.replace(url, undefined, {
+          shallow: true,
+          scroll: false,
+        });
       }
       setLocalFilters(newFilters);
     },
-    [defaultFilter],
+    [router, defaultFilter],
   );
   return [filters, setFilters];
 }

@@ -3,85 +3,95 @@
 exports[`OakModalNew should match snapshot 1`] = `
 <div>
   <dialog
-    class="sc-93859e58-0 dHlumw"
+    class="sc-48aa58fa-0 iVRMoe"
     data-testid="modal"
+    style="z-index: 320;"
   >
     <div
-      class="sc-fqkvVR sc-gsFSXq bXpmro bOTBNE"
+      class="sc-fqkvVR sc-f88aefea-0 hJRGVt hJveEH"
+    />
+    <div
+      class="sc-fqkvVR sc-gsFSXq sc-2c6f78eb-0 hBVYLH hDihdg kDzojl"
+      data-testid="sidebar-modal"
+      direction="right"
     >
       <div
-        class="sc-fqkvVR sc-gsFSXq kUmAOC dNHjLk"
+        class="sc-fqkvVR sc-gsFSXq kwqmrC ibSZJr"
       >
-        <h3
-          class="sc-dhKdcB kxDsEU"
-          data-testid="modal-title"
-        >
-          test_title
-        </h3>
         <div
-          class="sc-fqkvVR RMQib"
+          class="sc-fqkvVR sc-gsFSXq kUmAOC dNHjLk"
         >
-          <div
-            class="sc-ad0ad6f5-0 sc-952e1041-0 bZaRlP hlZDaV"
+          <h3
+            class="sc-dhKdcB kxDsEU"
+            data-testid="modal-title"
           >
-            <button
-              aria-label="Close"
-              class="sc-ce4d7bd4-0 sc-4362740-0 kYyTPx kgfbIy"
-              data-testid="close-modal-button"
-              title="Close"
+            test_title
+          </h3>
+          <div
+            class="sc-fqkvVR RMQib"
+          >
+            <div
+              class="sc-ad0ad6f5-0 sc-952e1041-0 bZaRlP hlZDaV"
             >
-              <div
-                class="sc-b071a727-0 eQqUiM"
+              <button
+                aria-label="Close"
+                class="sc-ce4d7bd4-0 sc-4362740-0 kYyTPx kgfbIy"
+                data-testid="close-modal-button"
+                title="Close"
               >
-                <span
-                  aria-hidden="true"
-                  class="sc-cba1a45e-0 bgbQLJ"
+                <div
+                  class="sc-b071a727-0 eQqUiM"
                 >
                   <span
-                    class="sc-cba1a45e-1 idsnjc"
+                    aria-hidden="true"
+                    class="sc-cba1a45e-0 bgbQLJ"
                   >
-                    <svg
-                      aria-hidden="true"
-                      class="sc-86d1d46f-0 eJtvEZ"
-                      height="100%"
-                      name="cross"
-                      width="100%"
-                      xmlns="http://www.w3.org/2000/svg"
+                    <span
+                      class="sc-cba1a45e-1 idsnjc"
                     >
-                      <use
-                        xlink:href="/images/sprite/sprite.svg#cross"
-                      />
-                    </svg>
+                      <svg
+                        aria-hidden="true"
+                        class="sc-86d1d46f-0 eJtvEZ"
+                        height="100%"
+                        name="cross"
+                        width="100%"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <use
+                          xlink:href="/images/sprite/sprite.svg#cross"
+                        />
+                      </svg>
+                    </span>
                   </span>
-                </span>
-                <svg
-                  aria-hidden="true"
-                  class="sc-86d1d46f-0 jOBmUC sc-62671a58-0 duckYG"
-                  height="100%"
-                  name="underline-1"
-                  width="100%"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <use
-                    xlink:href="/images/sprite/sprite.svg#underline-1"
-                  />
-                </svg>
-              </div>
-            </button>
+                  <svg
+                    aria-hidden="true"
+                    class="sc-86d1d46f-0 jOBmUC sc-62671a58-0 duckYG"
+                    height="100%"
+                    name="underline-1"
+                    width="100%"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <use
+                      xlink:href="/images/sprite/sprite.svg#underline-1"
+                    />
+                  </svg>
+                </div>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      <div
-        class="sc-fqkvVR sc-gsFSXq cqwgvE JfWBw"
-        data-testid="modal-content"
-      >
-        test_content
-      </div>
-      <div
-        class="sc-fqkvVR sc-gsFSXq eGXHla XmDSc"
-        data-testid="modal-footer"
-      >
-        test_footer
+        <div
+          class="sc-fqkvVR sc-gsFSXq dWuEkM JfWBw"
+          data-testid="modal-content"
+        >
+          test_content
+        </div>
+        <div
+          class="sc-fqkvVR sc-gsFSXq eGXHla XmDSc"
+          data-testid="modal-footer"
+        >
+          test_footer
+        </div>
       </div>
     </div>
   </dialog>
