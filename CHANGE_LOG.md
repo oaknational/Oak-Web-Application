@@ -1,3 +1,18 @@
+# [1.745.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.744.2...v1.745.0) (2025-05-13)
+
+
+### Bug Fixes
+
+* add lesson count to fixture ([df92d70](https://github.com/oaknational/Oak-Web-Application/commit/df92d706fb22beba6bc573a3badb3b64ec5b7de3))
+* format fix ([2911892](https://github.com/oaknational/Oak-Web-Application/commit/2911892aef45437bb67025f7987544d17ab197d0))
+
+
+### Features
+
+* hide age restricted lessons on pupil lesson listing ([714897d](https://github.com/oaknational/Oak-Web-Application/commit/714897d01f7f3b1f08c1b1879acab1f4bfc20c8e))
+* remove units with zero unrestricted lessons ([bcc3627](https://github.com/oaknational/Oak-Web-Application/commit/bcc36271387d2f87ce2529e0e8b493c1afcd97bb))
+* remove units with zero unrestricted lessons ([d86b791](https://github.com/oaknational/Oak-Web-Application/commit/d86b7919954d9d57fe15c1b4649ce5ba4fd4e030))
+
 ## [1.744.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.744.1...v1.744.2) (2025-05-13)
 
 
