@@ -31,6 +31,8 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
     track: {
       lessonAccessed: (...args: unknown[]) => lessonSelected(...args),
       teacherShareInitiated: () => jest.fn(),
+      contentSaved: () => jest.fn(),
+      contentUnsaved: () => jest.fn(),
     },
   }),
 }));
@@ -53,6 +55,9 @@ describe("Lesson listing page", () => {
 
     const pageHeading = getByRole("heading", { level: 1 });
 
+    expect(global.fetch).toHaveBeenCalledWith(
+      "https://mockdownloads.com/api/unit/adding-surds-1/check-files",
+    );
     expect(pageHeading).toBeInTheDocument();
   });
 
@@ -63,6 +68,9 @@ describe("Lesson listing page", () => {
     const lessonCountFixtures = lessonListingFixture().lessons.length;
     const lessonCount = getByText(`Lessons (${lessonCountFixtures})`);
 
+    expect(global.fetch).toHaveBeenCalledWith(
+      "https://mockdownloads.com/api/unit/adding-surds-1/check-files",
+    );
     expect(lessonCount).toBeInTheDocument();
   });
 
@@ -94,6 +102,9 @@ describe("Lesson listing page", () => {
       const { seo } = renderWithSeo()(
         <LessonListPage curriculumData={lessonListingFixture()} />,
       );
+      expect(global.fetch).toHaveBeenCalledWith(
+        "https://mockdownloads.com/api/unit/adding-surds-1/check-files",
+      );
       expect(seo).toEqual({
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
@@ -110,6 +121,9 @@ describe("Lesson listing page", () => {
       utilsMock.RESULTS_PER_PAGE = 2;
       const { seo } = renderWithSeo()(
         <LessonListPage curriculumData={lessonListingFixture()} />,
+      );
+      expect(global.fetch).toHaveBeenCalledWith(
+        "https://mockdownloads.com/api/unit/adding-surds-1/check-files",
       );
       expect(seo).toEqual({
         ...mockSeoResult,
@@ -182,6 +196,9 @@ describe("Lesson listing page", () => {
       const lesson = getByText("Add two surds");
       await userEvent.click(lesson);
 
+      expect(global.fetch).toHaveBeenCalledWith(
+        "https://mockdownloads.com/api/unit/adding-surds-1/check-files",
+      );
       expect(lessonSelected).toHaveBeenCalledTimes(1);
       expect(lessonSelected).toHaveBeenCalledWith({
         platform: "owa",

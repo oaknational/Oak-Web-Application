@@ -1,0 +1,17 @@
+mutation deleteUserListContent(
+  $userId: String!
+  $unitSlug: String!
+  $programmeSlug: String!
+) {
+  delete_content_lists(
+    where: {
+      list: { user_id: { _eq: $userId } }
+      content: {
+        unit_slug: { _eq: $unitSlug }
+        programme_slug: { _eq: $programmeSlug }
+      }
+    }
+  ) {
+    affected_rows
+  }
+}

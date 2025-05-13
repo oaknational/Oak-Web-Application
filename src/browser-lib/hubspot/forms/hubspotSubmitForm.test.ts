@@ -314,7 +314,6 @@ describe("hubspotSubmitForm", () => {
         // eslint-disable-next-line
         // @ts-ignore
         errorMessage = error.message;
-        console.log(error);
       }
 
       expect(errorMessage).toBe(

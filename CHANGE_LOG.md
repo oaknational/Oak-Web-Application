@@ -1,3 +1,37 @@
+# [1.744.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.743.2...v1.744.0) (2025-05-13)
+
+
+### Bug Fixes
+
+* remove dependency from array causing looping updates ([bf736bd](https://github.com/oaknational/Oak-Web-Application/commit/bf736bd052ccb1b1bb00c1730a9ab421903c7814))
+* throw an error from useSwr callback ([cca2884](https://github.com/oaknational/Oak-Web-Application/commit/cca28843fb461c71c3c5438bd8e6f1d1ef518a6d))
+
+
+### Features
+
+* add query and api route to unsave unit ([3e3762e](https://github.com/oaknational/Oak-Web-Application/commit/3e3762e714c42908fdbe8d4dda254044217aab2f))
+* add unsave functionality to useSaveUnits hook and tests ([baf464f](https://github.com/oaknational/Oak-Web-Application/commit/baf464f5e64bf846ad6cbfa5a438717eb5f71cdf))
+* bump oak components and fix toast duration behaviour ([c978279](https://github.com/oaknational/Oak-Web-Application/commit/c978279140f5b1c06836b8e3e7f22486fc91e1b7))
+* include content id in saved units response ([3d72e63](https://github.com/oaknational/Oak-Web-Application/commit/3d72e637457fd910b89017e43d776ee7c7c57b8e))
+* track save events from unit and lesson listing pages ([742fec0](https://github.com/oaknational/Oak-Web-Application/commit/742fec0915fd55b54b60865ce196d577dfa7d7ea))
+* track unsave events ([65f87c9](https://github.com/oaknational/Oak-Web-Application/commit/65f87c9b8667bf699906e5d92386538da56a1725))
+
+## [1.743.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.743.1...v1.743.2) (2025-05-12)
+
+
+### Bug Fixes
+
+* only create error boundry once not everytime ([fa9c67c](https://github.com/oaknational/Oak-Web-Application/commit/fa9c67c4acb45c61c6c02db5e904eef787a007ce))
+
+## [1.743.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.743.0...v1.743.1) (2025-05-12)
+
+
+### Bug Fixes
+
+* don't dump invalid props into <OakSearchFilterCheckBox/> ([2f9f673](https://github.com/oaknational/Oak-Web-Application/commit/2f9f67389927efe7afc05d8bc1246d27809bcfd5))
+* lessonCount changed type from number to string in <OakUnitListItem/> ([f1c4dad](https://github.com/oaknational/Oak-Web-Application/commit/f1c4dad254791632fd89298ff94ea7bfd9066688))
+* no length check in isCurrentPageItems ([96ed65a](https://github.com/oaknational/Oak-Web-Application/commit/96ed65a1a0baf2c721c08adf4a3dfee2f28a1f30))
+
 # [1.743.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.742.0...v1.743.0) (2025-05-12)
 
 

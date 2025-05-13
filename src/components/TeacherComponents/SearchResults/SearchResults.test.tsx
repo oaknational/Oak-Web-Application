@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import React from "react";
+import React, { forwardRef } from "react";
 import { screen } from "@testing-library/dom";
 
 import SearchResults from "./SearchResults";
@@ -11,6 +11,12 @@ import searchPageFixture from "@/node-lib/curriculum-api-2023/fixtures/searchPag
 import truthy from "@/utils/truthy";
 import { hitsFixture } from "@/context/Search/search-api/2023/searchResults.fixture";
 
+jest.mock("@mux/mux-player-react/lazy", () => {
+  return forwardRef((props, ref) => {
+    ref; // This prevents warning about ref not being used
+    return <div data-testid="mux-player-mock" />;
+  });
+});
 jest.mock("@/hooks/useMediaQuery.tsx", () => ({
   __esModule: true,
   default: () => ({

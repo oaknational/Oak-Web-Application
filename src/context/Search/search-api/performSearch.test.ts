@@ -44,6 +44,8 @@ describe("performSearch", () => {
     expect(callbacks.onSuccess).toHaveBeenCalledWith([...mockResults2023]);
   });
   test("should call onFail on fail", async () => {
+    console.log = jest.fn();
+    console.error = jest.fn();
     fetchResults2023Spy.mockRejectedValue(new Error("test"));
     await performSearch({
       query: {
@@ -51,6 +53,11 @@ describe("performSearch", () => {
       },
       ...callbacks,
     });
+    // TODO: Unsure this should be logging... but this is the current behaviour
+    expect(console.log).toHaveBeenCalledWith("search", undefined, undefined);
+    expect(console.error).toHaveBeenCalledWith(
+      new Error("Search doesn't seem to be working, we're looking into it."),
+    );
     expect(callbacks.onFail).toHaveBeenCalled();
   });
 });
