@@ -1,38 +1,13 @@
 import React, { FC, HTMLProps } from "react";
-import { Transition } from "react-transition-group";
-import { FocusOn } from "react-focus-on";
-import {
-  OakFlex,
-  OakHandDrawnHR,
-  OakBox,
-  OakPrimaryButton,
-} from "@oaknational/oak-components";
-import styled from "styled-components";
+import { OakFlex, OakBox, OakPrimaryButton } from "@oaknational/oak-components";
 
-import { SideMenu } from "@/components/AppComponents/AppHeaderMenu";
-import MenuBackdrop from "@/components/AppComponents/MenuBackdrop";
-import IconButton from "@/components/SharedComponents/Button/IconButton";
+import { ModalContent } from "../OakComponentsKitchen/OakModalNew";
+
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
-import { IconFocusUnderline } from "@/components/SharedComponents/Button/IconFocusUnderline";
 import { Unit, UnitOption } from "@/utils/curriculum/types";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { transformOwaLinkProps } from "@/components/SharedComponents/OwaLink";
 import { areLessonsAvailable } from "@/utils/curriculum/lessons";
-
-const IconButtonFocusVisible = styled(IconButton)`
-  :focus ${IconFocusUnderline} {
-    display: none;
-  }
-  :focus-visible ${IconFocusUnderline} {
-    display: block;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 8px;
-    transform: rotate(-2deg);
-    filter: drop-shadow(1px 2px 0 rgb(0 0 0));
-  }
-`;
 
 type ModalProps = HTMLProps<HTMLButtonElement> & {
   displayModal: boolean;
@@ -43,7 +18,6 @@ type ModalProps = HTMLProps<HTMLButtonElement> & {
 };
 
 const CurricUnitsTabSidebar: FC<ModalProps> = ({
-  displayModal,
   onClose,
   children,
   unitOptionData,
@@ -81,118 +55,81 @@ const CurricUnitsTabSidebar: FC<ModalProps> = ({
 
   const lessonPageHref = lessonPageProps?.nextLinkProps?.href;
 
-  return (
-    <Transition in={displayModal} timeout={300} unmountOnExit>
-      {(state) => (
-        <OakBox $position={"absolute"} data-testid="sidebar-modal-wrapper">
-          <MenuBackdrop state={state} zIndex={"modalDialog"} />
-          <FocusOn
-            enabled={displayModal}
-            onClickOutside={onClose}
-            onEscapeKey={onClose}
+  const footer = (
+    <>
+      {!unitOptionsAvailable && (
+        <OakFlex
+          $justifyContent={"space-between"}
+          $alignItems={["flex-end"]}
+          $pa="inner-padding-ssx"
+        >
+          <OakPrimaryButton
+            data-testid="unit-lessons-button"
+            iconName="chevron-right"
+            isTrailingIcon={true}
+            disabled={!lessonsAvailable}
+            element={lessonsAvailable ? "a" : "button"}
+            aria-label={
+              !lessonsAvailable
+                ? "Coming soon See lessons in unit"
+                : "See lessons in unit"
+            }
+            aria-disabled={!lessonsAvailable ? "true" : "false"}
+            {...(lessonsAvailable && { href: lessonPageHref })}
+            onClick={() => {
+              if (unitData && lessonsAvailable) {
+                track.curriculumVisualiserExited({
+                  unitName: unitData.title,
+                  unitSlug: resolvedUnitSlug,
+                  subjectTitle: unitData.subject,
+                  subjectSlug: unitData.subject_slug,
+                  platform: "owa",
+                  product: "curriculum visualiser",
+                  engagementIntent: "use",
+                  componentType: "curriculum_visualiser_button",
+                  eventVersion: "2.0.0",
+                  analyticsUseCase: "Teacher",
+                  yearGroupName: `Year ${unitData?.year}`,
+                  yearGroupSlug: unitData.year,
+                });
+              }
+            }}
           >
-            <SideMenu
-              data-testid={"sidebar-modal"}
-              $position="fixed"
-              $top={0}
-              $right={0}
-              $height="100%"
-              $maxWidth="100%"
-              $width={["100%", "80%", "50%"]}
-              $background={"white"}
-              state={state}
-              $zIndex={"modalDialog"}
-              $overflowY={"scroll"}
+            <OakFlex
+              $flexDirection={"row"}
+              $alignItems={"center"}
+              $gap="all-spacing-2"
             >
-              <OakFlex $flexDirection={"column"} $minWidth={"100%"}>
-                <OakBox
-                  $position={"fixed"}
-                  $top="all-spacing-5"
-                  $right="all-spacing-4"
-                >
-                  <IconButtonFocusVisible
-                    aria-label="Close Menu"
-                    icon={"cross"}
-                    variant={"minimal"}
-                    size={"large"}
-                    onClick={onClose}
-                    data-testid="close-button"
-                    aria-expanded={displayModal}
-                  />
-                </OakBox>
-                <OakFlex $overflowY={"auto"} $flexGrow={1}>
-                  {children}
-                </OakFlex>
-
-                {!unitOptionsAvailable && (
-                  <OakFlex $flexDirection={"column"}>
-                    <OakHandDrawnHR
-                      hrColor={"grey30"}
-                      $mb={"space-between-m"}
-                      $height={"all-spacing-1"}
-                    />
-                    <OakFlex
-                      $justifyContent={"space-between"}
-                      $alignItems={["flex-end"]}
-                      $ph="inner-padding-m"
-                      $pb="inner-padding-m"
-                    >
-                      <OakPrimaryButton
-                        data-testid="unit-lessons-button"
-                        iconName="chevron-right"
-                        isTrailingIcon={true}
-                        disabled={!lessonsAvailable}
-                        element={lessonsAvailable ? "a" : "button"}
-                        aria-label={
-                          !lessonsAvailable
-                            ? "Coming soon See lessons in unit"
-                            : "See lessons in unit"
-                        }
-                        aria-disabled={!lessonsAvailable ? "true" : "false"}
-                        {...(lessonsAvailable && { href: lessonPageHref })}
-                        onClick={() => {
-                          if (unitData && lessonsAvailable) {
-                            track.curriculumVisualiserExited({
-                              unitName: unitData.title,
-                              unitSlug: resolvedUnitSlug,
-                              subjectTitle: unitData.subject,
-                              subjectSlug: unitData.subject_slug,
-                              platform: "owa",
-                              product: "curriculum visualiser",
-                              engagementIntent: "use",
-                              componentType: "curriculum_visualiser_button",
-                              eventVersion: "2.0.0",
-                              analyticsUseCase: "Teacher",
-                              yearGroupName: `Year ${unitData?.year}`,
-                              yearGroupSlug: unitData.year,
-                            });
-                          }
-                        }}
-                      >
-                        <OakFlex
-                          $flexDirection={"row"}
-                          $alignItems={"center"}
-                          $gap="all-spacing-2"
-                        >
-                          {lessonsAvailable === false && (
-                            <TagFunctional
-                              data-testid="coming-soon-flag"
-                              text={"Coming soon"}
-                              color="grey"
-                            />
-                          )}
-                          See lessons in unit
-                        </OakFlex>
-                      </OakPrimaryButton>
-                    </OakFlex>
-                  </OakFlex>
-                )}
-              </OakFlex>
-            </SideMenu>
-          </FocusOn>
-        </OakBox>
+              {lessonsAvailable === false && (
+                <TagFunctional
+                  data-testid="coming-soon-flag"
+                  text={"Coming soon"}
+                  color="grey"
+                />
+              )}
+              See lessons in unit
+            </OakFlex>
+          </OakPrimaryButton>
+        </OakFlex>
       )}
-    </Transition>
+    </>
+  );
+
+  const content = (
+    <OakBox $position={"absolute"} data-testid="sidebar-modal-wrapper">
+      <OakFlex $flexDirection={"column"} $minWidth={"100%"} $flexGrow={1}>
+        {children}
+      </OakFlex>
+    </OakBox>
+  );
+
+  return (
+    <ModalContent
+      title={undefined}
+      content={content}
+      footer={footer}
+      onClose={onClose}
+    />
   );
 };
 

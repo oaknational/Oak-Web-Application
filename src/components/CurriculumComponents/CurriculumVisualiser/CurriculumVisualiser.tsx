@@ -5,13 +5,19 @@ import { OakHeading, OakFlex, OakBox, OakP } from "@oaknational/oak-components";
 import styled from "styled-components";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
+import { Transition } from "react-transition-group";
 
 import Alert from "../OakComponentsKitchen/Alert";
 import CurriculumUnitCard from "../CurricUnitCard/CurricUnitCard";
+import CurricSlideInRight, {
+  Backdrop,
+  transitionDuration,
+} from "../CurricSlideInRight";
+import { OakModalNew } from "../OakComponentsKitchen/OakModalNew";
 
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
-import UnitModal from "@/components/CurriculumComponents/CurricUnitModal/CurricUnitModal";
-import UnitsTabSidebar from "@/components/CurriculumComponents/CurricUnitsTabSidebar";
+import CurricUnitModal from "@/components/CurriculumComponents/CurricUnitModal/CurricUnitModal";
+import CurricUnitsTabSidebar from "@/components/CurriculumComponents/CurricUnitsTabSidebar";
 import {
   getSuffixFromFeatures,
   getYearGroupTitle,
@@ -29,6 +35,7 @@ import {
   Thread,
   UnitOption,
 } from "@/utils/curriculum/types";
+import useMediaQuery from "@/hooks/useMediaQuery";
 
 const UnitList = styled("ol")`
   margin: 0;
@@ -222,6 +229,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
 }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const isMobile = useMediaQuery("mobile");
 
   function filterIncludes(key: keyof CurriculumFilters, ids: string[]) {
     const filterValues = filters[key];
@@ -262,8 +270,12 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   }, [setVisibleMobileYearRefID, yearData]);
 
   const handleCloseModal = () => {
-    router.push(basePath, undefined, { shallow: true });
+    const searchParamsStr = searchParams?.toString() ?? "";
+    const href = `${basePath}${!searchParamsStr ? "" : `?${searchParamsStr}`}`;
+    router.replace(href, undefined, { shallow: true, scroll: false });
   };
+
+  const animationDirection = isMobile ? "bottom" : "right";
 
   return (
     <OakBox id="content" data-testid="curriculum-visualiser">
@@ -410,28 +422,75 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
               </OakBox>
             );
           })}
-      {displayModal && (
-        <UnitsTabSidebar
-          displayModal={displayModal}
-          onClose={handleCloseModal}
-          programmeSlug={createTeacherProgrammeSlug(
-            unitData,
-            ks4OptionSlug,
-            filters.tiers[0],
-            unitData?.pathway_slug ?? undefined,
-          )}
-          unitData={unitData}
-          unitOptionData={unitOptionData}
-        >
-          <UnitModal
-            basePath={basePath}
-            unitData={unitData}
-            unitOptionData={unitOptionData}
-            yearData={yearData}
-            selectedThread={selectedThread?.slug ?? null}
-          />
-        </UnitsTabSidebar>
-      )}
+
+      <Transition
+        in={displayModal}
+        timeout={transitionDuration}
+        unmountOnExit={false}
+      >
+        {(animationState) => {
+          return (
+            <OakModalNew open={displayModal} onClose={handleCloseModal}>
+              <Backdrop
+                state={animationState}
+                direction={animationDirection}
+                $zIndex="modal-dialog"
+              />
+              <CurricSlideInRight
+                direction={animationDirection}
+                data-testid={"sidebar-modal"}
+                $position="fixed"
+                $top="all-spacing-0"
+                $right="all-spacing-0"
+                $height="100%"
+                $width={["100%", "all-spacing-22"]}
+                $maxWidth="100%"
+                $background={"white"}
+                state={animationState}
+                $zIndex="modal-dialog"
+              >
+                <OakFlex
+                  $flexDirection={"column"}
+                  $background={"white"}
+                  $width="100%"
+                  $height={"100%"}
+                >
+                  <CurricUnitsTabSidebar
+                    displayModal={displayModal}
+                    onClose={handleCloseModal}
+                    programmeSlug={createTeacherProgrammeSlug(
+                      unitData,
+                      ks4OptionSlug,
+                      filters.tiers[0],
+                      unitData?.pathway_slug ?? undefined,
+                    )}
+                    unitData={unitData}
+                    unitOptionData={unitOptionData}
+                  >
+                    <OakFlex
+                      $height={"100%"}
+                      $justifyContent={"flex-end"}
+                      $width="100%"
+                      $position={"relative"}
+                      $overflow={"hidden"}
+                    >
+                      {unitData && (
+                        <CurricUnitModal
+                          basePath={basePath}
+                          unitData={unitData}
+                          unitOptionData={unitOptionData}
+                          yearData={yearData}
+                          selectedThread={selectedThread?.slug ?? null}
+                        />
+                      )}
+                    </OakFlex>
+                  </CurricUnitsTabSidebar>
+                </OakFlex>
+              </CurricSlideInRight>
+            </OakModalNew>
+          );
+        }}
+      </Transition>
     </OakBox>
   );
 };

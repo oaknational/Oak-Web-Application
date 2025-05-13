@@ -3,6 +3,7 @@ import { join } from "path";
 import { FC } from "react";
 import { OakHeading, OakFlex, OakBox } from "@oaknational/oak-components";
 import { useRouter } from "next/router";
+import { useSearchParams } from "next/navigation";
 
 import BulletList from "../OakComponentsKitchen/BulletList";
 import CurricUnitCard from "../CurricUnitCard/CurricUnitCard";
@@ -36,6 +37,7 @@ const CurricUnitModal: FC<CurricUnitModalProps> = ({
   selectedThread,
   basePath,
 }) => {
+  const searchParams = useSearchParams();
   const unitOptionsAvailable =
     !unitOptionData && (unitData?.unit_options ?? []).length > 0;
   const router = useRouter();
@@ -85,7 +87,6 @@ const CurricUnitModal: FC<CurricUnitModalProps> = ({
           $maxWidth={"100%"}
           $justifyContent={"space-between"}
           $width={"100%"}
-          $overflowY={"scroll"}
           $mt="space-between-xxl"
         >
           <OakBox $ph={["inner-padding-xl", "inner-padding-xl7"]}>
@@ -161,7 +162,11 @@ const CurricUnitModal: FC<CurricUnitModalProps> = ({
                     role="list"
                   >
                     {unitData.unit_options.map((optionalUnit, index) => {
-                      const href = join(basePath, optionalUnit.slug ?? "");
+                      const searchParamsStr = searchParams?.toString() ?? "";
+                      const unitOptionUrl =
+                        join(basePath, optionalUnit.slug ?? "") +
+                        `${!searchParamsStr ? "" : `?${searchParamsStr}`}`;
+
                       return (
                         <OakFlex
                           key={`unit-option-${optionalUnit.unitvariant_id}-${index}`}
@@ -174,7 +179,7 @@ const CurricUnitModal: FC<CurricUnitModalProps> = ({
                             unit={optionalUnit}
                             index={index}
                             isHighlighted={false}
-                            href={href}
+                            href={unitOptionUrl}
                           />
                         </OakFlex>
                       );
