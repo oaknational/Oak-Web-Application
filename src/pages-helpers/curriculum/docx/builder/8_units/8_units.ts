@@ -56,6 +56,7 @@ function generateGroupedUnits(
       options.push({
         year,
         type,
+        pathway: type === "core" ? "core" : "gcse",
       });
       if (childSubjects.length > 0) {
         options = options.flatMap((option) => {
@@ -109,8 +110,8 @@ function generateGroupedUnits(
     },
   );
 
-  return unitOptions.sort((a, b) =>
-    sortYearPathways(`${a.year}-${a.type}`, `${b.year}-${b.type}`),
+  return unitOptions.toSorted((a, b) =>
+    sortYearPathways(`${a.year}-${a.pathway}`, `${b.year}-${b.pathway}`),
   );
 }
 

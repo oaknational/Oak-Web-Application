@@ -186,6 +186,14 @@ export function groupUnitsBySubjectCategory(units: Unit[]) {
   });
 }
 
+export function getPathKeyFromUnit(unit: Unit) {
+  const year = unit.actions?.programme_field_overrides?.year_slug ?? unit.year;
+
+  return "pathway_slug" in unit && unit.pathway_slug
+    ? `${year}-${unit.pathway_slug}`
+    : `${year}-none`;
+}
+
 /**
  * Groups units by a composite key of year and pathway slug.
  * Keys are strings like "9", "10-core", "11-gcse".
@@ -199,12 +207,7 @@ export function groupUnitsByYearAndPathway(units: Unit[]): {
 } {
   const grouped: { [yearPathwayKey: string]: Unit[] } = {};
   for (const unit of units) {
-    const year =
-      unit.actions?.programme_field_overrides?.year_slug ?? unit.year;
-
-    const pathway = unit.pathway_slug || "default";
-
-    const key = pathway === "default" ? `${year}-none` : `${year}-${pathway}`;
+    const key = getPathKeyFromUnit(unit);
     if (!grouped[key]) {
       grouped[key] = [];
     }
@@ -247,13 +250,15 @@ export function sortYearPathways(keyA: string, keyB: string): number {
   const yearNumA = parseInt(yearAStr);
   const yearNumB = parseInt(yearBStr);
 
-  const pathwayOrder = { core: -2, gcse: -1, none: -3 }; // Use 'none' for null/undefined/other pathways
+  const pathwayOrder = { core: 0, gcse: 1, none: -1 };
   const orderA =
     pathwayOrder[pathwayA as keyof typeof pathwayOrder] ?? pathwayOrder.none;
   const orderB =
     pathwayOrder[pathwayB as keyof typeof pathwayOrder] ?? pathwayOrder.none;
 
-  return orderA + yearNumA - (orderB + yearNumB);
+  const pathwayCompare = orderA - orderB;
+  const yearCompare = yearNumA - yearNumB;
+  return pathwayCompare + yearCompare;
 }
 
 export function getSuffixFromPathway(pathway: string | null) {

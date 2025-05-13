@@ -388,15 +388,39 @@ describe("helper", () => {
   describe("sortYearPathways", () => {
     it("should sort keys chronologically by year, then pathway", () => {
       const keys = [
+        "7-none",
         "11-gcse",
         "10-core",
-        "9-none",
         "11-core",
         "10-gcse",
         "10-none",
-      ];
-      keys.sort(sortYearPathways);
+        "9-none",
+        "8-none",
+      ].toSorted(sortYearPathways);
       expect(keys).toEqual([
+        "7-none",
+        "8-none",
+        "9-none",
+        "10-none",
+        "10-core",
+        "11-core",
+        "10-gcse",
+        "11-gcse",
+      ]);
+
+      const keys2 = [
+        "7-none",
+        "8-none",
+        "9-none",
+        "10-core",
+        "11-core",
+        "10-none",
+        "11-gcse",
+        "10-gcse",
+      ].toSorted(sortYearPathways);
+      expect(keys2).toEqual([
+        "7-none",
+        "8-none",
         "9-none",
         "10-none",
         "10-core",
