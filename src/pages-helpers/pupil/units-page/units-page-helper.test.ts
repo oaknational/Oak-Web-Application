@@ -1,6 +1,6 @@
 import { groupBy } from "lodash";
 
-import { getSecondUnitSection } from "./units-page-helper";
+import { getSecondUnitSection , checkAndExcludeUnitsWithAgeRestrictedLessons } from "./units-page-helper";
 
 import { unitBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/unitBrowseData.fixture";
 
@@ -95,5 +95,47 @@ describe("units-page-helper", () => {
     expect(result.units[0][0].programmeSlug).toBe(
       "combined-science-secondary-year-10-higher-l",
     );
+  });
+});
+
+describe("checkAndExcludeUnitsWithAgeRestrictedLessons", () => {
+  it("should filter out units where lessonCount equals ageRestrictedLessonCount", () => {
+    const units = [
+      unitBrowseDataFixture({ lessonCount: 5, ageRestrictedLessonCount: 5 }),
+      unitBrowseDataFixture({ lessonCount: 10, ageRestrictedLessonCount: 3 }),
+      unitBrowseDataFixture({ lessonCount: 8, ageRestrictedLessonCount: 8 }),
+      unitBrowseDataFixture({ lessonCount: 6, ageRestrictedLessonCount: 0 }),
+    ];
+
+    const result = checkAndExcludeUnitsWithAgeRestrictedLessons(units);
+
+    expect(result).toHaveLength(2);
+    expect(result.map((u) => u.lessonCount)).toEqual([10, 6]);
+    expect(
+      result.every((u) => u.lessonCount !== u.ageRestrictedLessonCount),
+    ).toBe(true);
+  });
+
+  it("should return an empty array when all units have all lessons age restricted", () => {
+    const units = [
+      unitBrowseDataFixture({ lessonCount: 3, ageRestrictedLessonCount: 3 }),
+      unitBrowseDataFixture({ lessonCount: 7, ageRestrictedLessonCount: 7 }),
+    ];
+
+    const result = checkAndExcludeUnitsWithAgeRestrictedLessons(units);
+
+    expect(result).toHaveLength(0);
+  });
+
+  it("should return all units when none have all lessons age restricted", () => {
+    const units = [
+      unitBrowseDataFixture({ lessonCount: 5, ageRestrictedLessonCount: 2 }),
+      unitBrowseDataFixture({ lessonCount: 10, ageRestrictedLessonCount: 0 }),
+    ];
+
+    const result = checkAndExcludeUnitsWithAgeRestrictedLessons(units);
+
+    expect(result).toHaveLength(2);
+    expect(result).toEqual(units);
   });
 });
