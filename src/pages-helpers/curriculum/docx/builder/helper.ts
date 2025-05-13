@@ -247,39 +247,13 @@ export function sortYearPathways(keyA: string, keyB: string): number {
   const yearNumA = parseInt(yearAStr);
   const yearNumB = parseInt(yearBStr);
 
-  const isKs4A = yearNumA >= 10;
-  const isKs4B = yearNumB >= 10;
-
-  const pathwayOrder = { core: 1, gcse: 2, none: 99 }; // Use 'none' for null/undefined/other pathways
+  const pathwayOrder = { core: -2, gcse: -1, none: -3 }; // Use 'none' for null/undefined/other pathways
   const orderA =
     pathwayOrder[pathwayA as keyof typeof pathwayOrder] ?? pathwayOrder.none;
   const orderB =
     pathwayOrder[pathwayB as keyof typeof pathwayOrder] ?? pathwayOrder.none;
 
-  // Logic:
-  // 1. If comparing KS3 with KS4, KS3 comes first.
-  // 2. If comparing two KS3 years, sort numerically.
-  // 3. If comparing two KS4 years, sort by pathway first, then by year.
-
-  if (!isKs4A && isKs4B) {
-    return -1; // KS3 comes before KS4
-  }
-  if (isKs4A && !isKs4B) {
-    return 1; // KS4 comes after KS3
-  }
-
-  // If both are KS3 or both are KS4
-  if (!isKs4A && !isKs4B) {
-    // Both KS3: Sort by year
-    return yearNumA - yearNumB;
-  } else {
-    // Both KS4: Sort by pathway first, then by year
-    if (orderA !== orderB) {
-      return orderA - orderB; // Core before GCSE
-    }
-    // Same pathway (or both default): Sort by year
-    return yearNumA - yearNumB;
-  }
+  return orderA + yearNumA - (orderB + yearNumB);
 }
 
 export function getSuffixFromPathway(pathway: string | null) {

@@ -399,18 +399,18 @@ describe("helper", () => {
       console.log(keys);
       expect(keys).toEqual([
         "9-none",
-        "10-core",
-        "10-gcse",
         "10-none",
+        "10-core",
         "11-core",
+        "10-gcse",
         "11-gcse",
       ]);
     });
 
     it("should place default/null pathway last within a year group", () => {
-      const keys = ["10-gcse", "10", "10-core"];
+      const keys = ["10-gcse", "10-none", "10-core"];
       keys.sort(sortYearPathways);
-      expect(keys).toEqual(["10", "10-core", "10-gcse"]);
+      expect(keys).toEqual(["10-none", "10-core", "10-gcse"]);
     });
   });
 });
