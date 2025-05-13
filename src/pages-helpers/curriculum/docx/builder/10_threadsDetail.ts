@@ -1,16 +1,18 @@
 import { cdata, safeXml, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData } from "..";
 import { appendBodyElements, insertNumbering, JSZipCached } from "../docx";
-import { createThreadOptions } from "../tab-helpers";
+import { createThreadOptions, createUnitsListingByYear } from "../tab-helpers";
 
 import {
   groupUnitsBySubjectCategory,
   groupUnitsByYearAndPathway,
   sortYearPathways,
   getYearPathwayDisplayTitle,
+  parseYearPathwayKey,
 } from "./helper";
 
 import { Unit } from "@/utils/curriculum/types";
+import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 
 function sortByOrder(units: Unit[]) {
   return [...units].sort((a, b) => a.order - b.order);
@@ -81,17 +83,10 @@ export default async function generate(
     `,
   });
 
+  const yearData = createUnitsListingByYear(data.units);
   const allThreadOptions = createThreadOptions(data.units);
 
-  // Separate swimming units from the rest
-  const swimmingUnits = data.units.filter(
-    (u) => u.actions?.group_units_as === "Swimming and water safety",
-  );
-  const otherUnits = data.units.filter(
-    (u) => u.actions?.group_units_as !== "Swimming and water safety",
-  );
-
-  const enableGroupBySubjectCategory = otherUnits.some((unit) => {
+  const enableGroupBySubjectCategory = data.units.some((unit) => {
     return unit.actions?.subject_category_actions?.group_by_subjectcategory;
   });
 
@@ -142,16 +137,14 @@ export default async function generate(
       );
     };
 
-    // Non-Categorized & Non-Swimming Units
-    const nonCategorizedOtherUnits = enableGroupBySubjectCategory
-      ? otherUnits.filter((u) => (u.subjectcategories ?? []).length < 1)
-      : otherUnits;
+    const nonCategorizedUnits = enableGroupBySubjectCategory
+      ? data.units.filter((u) => (u.subjectcategories ?? []).length < 1)
+      : data.units;
 
-    const groupedByYearPathwayOther = groupUnitsByYearAndPathway(
-      nonCategorizedOtherUnits,
-    );
+    const groupedByYearPathway =
+      groupUnitsByYearAndPathway(nonCategorizedUnits);
 
-    const nonCategorizedContent = Object.entries(groupedByYearPathwayOther)
+    const nonCategorizedContent = Object.entries(groupedByYearPathway)
       .map(([yearPathwayKey, unitsInGroup]) => {
         const unitsForThread = filterUnitsByThread(unitsInGroup);
         return [yearPathwayKey, unitsForThread] as [string, Unit[]];
@@ -159,7 +152,9 @@ export default async function generate(
       .filter(([, units]) => units.length > 0)
       .sort(([keyA], [keyB]) => sortYearPathways(keyA, keyB)) // Sort by year then pathway
       .map(([yearPathwayKey, units]) => {
-        const title = getYearPathwayDisplayTitle(yearPathwayKey);
+        const { year } = parseYearPathwayKey(yearPathwayKey);
+        const title = getYearGroupTitle(yearData, year);
+
         return safeXml`
           <XML_FRAGMENT>
             <w:p>
@@ -195,9 +190,9 @@ export default async function generate(
 
     // Subject category organised content (modified for pathways)
     if (enableGroupBySubjectCategory) {
-      const groupedOtherUnitsByCat = groupUnitsBySubjectCategory(otherUnits);
+      const groupedUnitsByCat = groupUnitsBySubjectCategory(data.units);
 
-      const categorizedContent = Object.values(groupedOtherUnitsByCat)
+      const categorizedContent = Object.values(groupedUnitsByCat)
         .map(
           ({
             subjectCategory,
@@ -220,10 +215,12 @@ export default async function generate(
               return "";
             }
 
+            // Sort the year-pathways within this category
             yearPathwayEntriesForThread.sort(([keyA], [keyB]) =>
               sortYearPathways(keyA, keyB),
             );
 
+            // Render the category title and then the units grouped by year-pathway
             return safeXml`
               <XML_FRAGMENT>
                 <w:p>
@@ -300,35 +297,6 @@ export default async function generate(
         .join("");
 
       contentElements.push(categorizedContent);
-    }
-
-    // Swimming units
-    const swimmingUnitsForThread = filterUnitsByThread(swimmingUnits);
-    if (swimmingUnitsForThread.length > 0) {
-      const swimmingGroupName =
-        swimmingUnitsForThread[0]?.actions?.group_units_as;
-      const displayTitle = `${swimmingGroupName} (all years)`;
-
-      const swimmingContent = safeXml`
-        <XML_FRAGMENT>
-          <w:p>
-            <w:pPr>
-              <w:pStyle w:val="Heading4" />
-            </w:pPr>
-            <w:r>
-              <w:rPr>
-                <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-                <w:b />
-                <w:color w:val="222222" />
-                <w:sz w:val="28" />
-              </w:rPr>
-              <w:t>${cdata(displayTitle)}</w:t>
-            </w:r>
-          </w:p>
-          ${renderUnits(sortByOrder(swimmingUnitsForThread), numbering)}
-        </XML_FRAGMENT>
-      `;
-      contentElements.push(swimmingContent);
     }
 
     // Combine and finalise output

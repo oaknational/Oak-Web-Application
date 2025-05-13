@@ -171,7 +171,10 @@ export function groupUnitsBySubjectCategory(units: Unit[]) {
         subjectCategories[subjectcategory.id] = subjectcategory;
         out[subjectcategory.id] = [];
       }
-      out[subjectcategory.id]!.push(unit);
+      out[subjectcategory.id]!.push({
+        ...unit,
+        order: out[subjectcategory.id]!.length + 1,
+      });
     }
   }
 
@@ -196,15 +199,19 @@ export function groupUnitsByYearAndPathway(units: Unit[]): {
 } {
   const grouped: { [yearPathwayKey: string]: Unit[] } = {};
   for (const unit of units) {
-    const year = unit.year;
+    const year =
+      unit.actions?.programme_field_overrides?.year_slug ?? unit.year;
 
     const pathway = unit.pathway_slug || "default";
 
-    const key = pathway === "default" ? `${year}` : `${year}-${pathway}`;
+    const key = pathway === "default" ? `${year}-none` : `${year}-${pathway}`;
     if (!grouped[key]) {
       grouped[key] = [];
     }
-    grouped[key].push(unit);
+    grouped[key].push({
+      ...unit,
+      order: grouped[key].length + 1,
+    });
   }
   return grouped;
 }
@@ -222,23 +229,10 @@ export function parseYearPathwayKey(key: string): {
   pathway: string | null;
 } {
   const parts = key.split("-");
-  const firstPart = parts[0] ?? "";
-  let year: string;
-  let pathway: string | null;
-
-  // Check if the first part looks like a year (is numeric)
-  if (firstPart.match(/^\d+$/)) {
-    year = firstPart;
-    pathway = parts.length > 1 ? parts.slice(1).join("-") : null;
-  } else {
-    // If first part is not numeric, assume it's a pathway and default year
-    year = "0";
-    pathway = firstPart.length > 0 ? firstPart : null; // Use the firstPart as pathway if it exists
-  }
-
-  year = year.length > 0 ? year : "0";
-
-  return { year, pathway };
+  return {
+    year: parts.slice(0, -1).join("-"),
+    pathway: parts.slice(-1).join("-"),
+  };
 }
 
 /**
