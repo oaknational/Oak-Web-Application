@@ -6,7 +6,10 @@ import FocusIndicator from "../OakComponentsKitchen/FocusIndicator";
 import { CurricVisualiserFiltersProps } from "../CurricVisualiserFiltersDesktop";
 
 import ButtonGroup from "@/components/SharedComponents/ButtonGroup";
-import { getYearGroupTitle } from "@/utils/curriculum/formatting";
+import {
+  getYearGroupTitle,
+  getPathwaySuffix,
+} from "@/utils/curriculum/formatting";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import {
@@ -20,7 +23,6 @@ import {
   getModes,
   groupUnitsByPathway,
 } from "@/utils/curriculum/by-pathway";
-import { getSuffixFromPathway } from "@/utils/curriculum/pathways";
 
 export type CurriculumVisualiserFiltersMobileProps =
   CurricVisualiserFiltersProps & {
@@ -291,9 +293,10 @@ export function CurricMobileStickyHeader({
                           {getYearGroupTitle(
                             yearData,
                             year,
-                            getSuffixFromPathway(
-                              type === "core" ? "core" : "gcse",
-                            ),
+                            (() => {
+                              const suffix = getPathwaySuffix(year, type);
+                              return suffix ? `(${suffix})` : undefined;
+                            })(),
                           )}
                         </StyledButton>
                       </FocusIndicator>
