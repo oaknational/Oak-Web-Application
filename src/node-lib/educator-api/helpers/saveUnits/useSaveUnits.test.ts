@@ -191,7 +191,9 @@ describe("useSaveUnits", () => {
   });
   it("should set showSignIn to true when user is signed out", () => {
     setUseUserReturn(mockLoggedOut);
-    const { result } = renderHook(() => useSaveUnits([], "test-programme"));
+    const { result } = renderHook(() =>
+      useSaveUnits("test-programme", mockTrackingData),
+    );
 
     act(() => result.current.onSaveToggle("unit1"));
 
@@ -209,7 +211,9 @@ describe("useSaveUnits", () => {
         },
       },
     });
-    const { result } = renderHook(() => useSaveUnits([], "test-programme"));
+    const { result } = renderHook(() =>
+      useSaveUnits("test-programme", mockTrackingData),
+    );
 
     act(() => result.current.onSaveToggle("unit1"));
 
