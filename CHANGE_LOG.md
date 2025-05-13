@@ -1,3 +1,15 @@
+# [1.746.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.745.0...v1.746.0) (2025-05-13)
+
+
+### Bug Fixes
+
+* removed feature flag check for teacher notes and use cookie consent for hide/enabled/disabled ([72ccc3d](https://github.com/oaknational/Oak-Web-Application/commit/72ccc3dd435cd191f651af2f649b1089358076fb))
+
+
+### Features
+
+* show generic share link button when viewing shared lesson link ([123758c](https://github.com/oaknational/Oak-Web-Application/commit/123758cff1bdf2886c9034f206feefdfd31469f6))
+
 # [1.745.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.744.2...v1.745.0) (2025-05-13)
 
 
