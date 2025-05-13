@@ -1,6 +1,9 @@
 import { groupBy } from "lodash";
 
-import { getSecondUnitSection , checkAndExcludeUnitsWithAgeRestrictedLessons } from "./units-page-helper";
+import {
+  getSecondUnitSection,
+  checkAndExcludeUnitsWithAgeRestrictedLessons,
+} from "./units-page-helper";
 
 import { unitBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/unitBrowseData.fixture";
 
