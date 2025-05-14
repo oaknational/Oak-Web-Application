@@ -1,3 +1,16 @@
+# [1.747.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.746.2...v1.747.0) (2025-05-14)
+
+
+### Bug Fixes
+
+* new code issue ([d7312c7](https://github.com/oaknational/Oak-Web-Application/commit/d7312c7b1ffa1fdee6ee18cec5aac0456d24f486))
+
+
+### Features
+
+* add saving signed out modal to unit listing and lesson listing pages ([ddf5a67](https://github.com/oaknational/Oak-Web-Application/commit/ddf5a6731f7f87321108fef12a4e555657468152))
+* add unit saving sign up prompt modal ([d372f53](https://github.com/oaknational/Oak-Web-Application/commit/d372f537a6e9c18ea60d467e8589d4054df846c8))
+
 ## [1.746.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.746.1...v1.746.2) (2025-05-14)
 
 
