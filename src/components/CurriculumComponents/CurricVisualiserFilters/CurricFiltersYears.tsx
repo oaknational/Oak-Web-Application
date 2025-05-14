@@ -26,7 +26,7 @@ export type CurricFiltersYearsProps = {
   slugs: CurriculumSelectionSlugs;
 };
 
-type YearOption = { year: string; pathway?: string };
+type YearOption = { year: string; pathway?: string; queryString?: string };
 
 const filterToIndex = (
   filters: CurriculumFilters,
@@ -46,7 +46,7 @@ const filterToIndex = (
         if (shouldDisplayCorePathway) {
           return (
             yearOption.year === currentYear &&
-            yearOption.pathway === currentPathway
+            yearOption.queryString === currentPathway
           );
         } else {
           return yearOption.year === currentYear;
@@ -73,29 +73,38 @@ export function CurricFiltersYears({
       return {
         year,
         pathway: keystageFromYear(year) === "ks4" ? "core" : undefined,
+        queryString: "core",
       };
     } else {
       return { year };
     }
   });
-  function addAllToFilter(target: { year: string; pathway?: string }) {
+  function addAllToFilter(target: YearOption) {
     if (target.year === "all") {
       onChangeFilters({ ...filters, years: data.yearOptions, pathways: [] });
     } else {
       onChangeFilters({
         ...filters,
         years: [target.year],
-        pathways: target.pathway ? [target.pathway] : [],
+        pathways: target.queryString ? [target.queryString] : [],
       });
     }
   }
 
   if (shouldDisplayCorePathway) {
     if (data.yearOptions.includes("10")) {
-      yearOptions.push({ year: "10", pathway: "non_core" });
+      yearOptions.push({
+        year: "10",
+        queryString: "!core",
+        pathway: "non_core",
+      });
     }
     if (data.yearOptions.includes("11")) {
-      yearOptions.push({ year: "11", pathway: "non_core" });
+      yearOptions.push({
+        year: "11",
+        queryString: "!core",
+        pathway: "non_core",
+      });
     }
   }
 
