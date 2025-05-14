@@ -92,10 +92,10 @@ export function CurricFiltersYears({
 
   if (shouldDisplayCorePathway) {
     if (data.yearOptions.includes("10")) {
-      yearOptions.push({ year: "10", pathway: "!core" });
+      yearOptions.push({ year: "10", pathway: "non_core" });
     }
     if (data.yearOptions.includes("11")) {
-      yearOptions.push({ year: "11", pathway: "!core" });
+      yearOptions.push({ year: "11", pathway: "non_core" });
     }
   }
 

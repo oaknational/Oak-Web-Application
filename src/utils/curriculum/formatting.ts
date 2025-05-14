@@ -223,7 +223,7 @@ export function getPathwaySuffix(year: string, pathway?: string) {
   if (["10", "11"].includes(year) && pathway) {
     if (pathway === "core") {
       return "Core";
-    } else {
+    } else if (pathway === "non_core") {
       return "GCSE";
     }
   }
