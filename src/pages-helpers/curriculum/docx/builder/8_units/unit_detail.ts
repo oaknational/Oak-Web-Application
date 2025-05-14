@@ -446,7 +446,7 @@ export async function buildUnit(
       ? subjectcategories.map(({ title }) => title).join(", ")
       : "";
 
-    return combinedTitles !== "" ? `: ${combinedTitles}` : "";
+    return combinedTitles;
   }
 
   function getYearSuffix(unit: Unit) {
@@ -500,7 +500,9 @@ export async function buildUnit(
             <w:b />
             <w:color w:val="222222" />
           </w:rPr>
-          <w:t>${cdata(`${yearTitle}${yearSuffix ? yearSuffix : ""}`)}</w:t>
+          <w:t>
+            ${cdata(`${yearTitle}${yearSuffix ? `: ${yearSuffix}` : ""}`)}
+          </w:t>
         </w:r>
       </w:p>
 
