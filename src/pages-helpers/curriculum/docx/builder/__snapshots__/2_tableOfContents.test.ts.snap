@@ -4829,6 +4829,70 @@ exports[`2_tableOfContents with pathways 1`] = `
         ></w:spacing>
       </w:pPr>
       <w:hyperlink
+        w:anchor="section_year_core-10"
+      >
+        <w:r>
+          <w:rPr>
+            <w:rFonts
+              w:ascii="Arial"
+              w:hAnsi="Arial"
+              w:cs="Arial"
+            ></w:rFonts>
+            <w:b
+              w:val="true"
+            ></w:b>
+            <w:color
+              w:val="222222"
+            ></w:color>
+            <w:sz
+              w:val="28"
+            ></w:sz>
+          </w:rPr>
+          <w:t><![CDATA[Year 10 units (Core)]]></w:t>
+        </w:r>
+      </w:hyperlink>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:spacing
+          w:line="360"
+          w:lineRule="auto"
+          w:before="60"
+        ></w:spacing>
+      </w:pPr>
+      <w:hyperlink
+        w:anchor="section_year_core-11"
+      >
+        <w:r>
+          <w:rPr>
+            <w:rFonts
+              w:ascii="Arial"
+              w:hAnsi="Arial"
+              w:cs="Arial"
+            ></w:rFonts>
+            <w:b
+              w:val="true"
+            ></w:b>
+            <w:color
+              w:val="222222"
+            ></w:color>
+            <w:sz
+              w:val="28"
+            ></w:sz>
+          </w:rPr>
+          <w:t><![CDATA[Year 11 units (Core)]]></w:t>
+        </w:r>
+      </w:hyperlink>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:spacing
+          w:line="360"
+          w:lineRule="auto"
+          w:before="60"
+        ></w:spacing>
+      </w:pPr>
+      <w:hyperlink
         w:anchor="section_year_non_core-10"
       >
         <w:r>
