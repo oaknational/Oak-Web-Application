@@ -14,6 +14,7 @@ import {
   groupUnitsByYearAndPathway,
   parseYearPathwayKey,
   sortYearPathways,
+  getSuffixFromPathway,
 } from "./helper";
 
 import { createUnit } from "@/fixtures/curriculum/unit";
@@ -435,5 +436,19 @@ describe("helper", () => {
       keys.sort(sortYearPathways);
       expect(keys).toEqual(["10-none", "10-core", "10-gcse"]);
     });
+  });
+});
+
+describe("getSuffixFromPathway", () => {
+  it("core", () => {
+    expect(getSuffixFromPathway("core")).toEqual("(Core)");
+  });
+
+  it("gcse", () => {
+    expect(getSuffixFromPathway("gcse")).toEqual("(GCSE)");
+  });
+
+  it("none", () => {
+    expect(getSuffixFromPathway("foobar")).toEqual(undefined);
   });
 });
