@@ -67,8 +67,10 @@ export const useSaveUnits = (
       const parsedData = unitsResponseSchema.safeParse(savedUnitsData);
       if (parsedData.success) {
         if (parsedData.data.length > 0) {
-          const savedUnitsString = parsedData.data.sort().toString();
-          const locallySavedUnitsString = locallySavedUnits.sort().toString();
+          const savedUnitsString = parsedData.data.toSorted().toString();
+          const locallySavedUnitsString = locallySavedUnits
+            .toSorted()
+            .toString();
           if (savedUnitsString !== locallySavedUnitsString) {
             setLocallySavedUnits(parsedData.data);
           }
