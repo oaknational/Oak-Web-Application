@@ -12,7 +12,7 @@ export default function MyLibraryHeader() {
     <OakFlex
       $borderRadius={["border-radius-square", "border-radius-xl"]}
       $background="bg-decorative1-main"
-      $pv="inner-padding-xl"
+      $pv={["inner-padding-xl", "inner-padding-none"]}
     >
       <OakFlex
         $flexDirection="column"
@@ -21,7 +21,7 @@ export default function MyLibraryHeader() {
         $pa={["inner-padding-m", "inner-padding-xl4"]}
         $pv={["inner-padding-xl", "inner-padding-xl4"]}
       >
-        <OakFlex>
+        <OakFlex $justifyContent={"space-between"} $alignItems={"baseline"}>
           <OakHeading tag="h1" $font={["heading-4", "heading-1"]}>
             My library
           </OakHeading>
