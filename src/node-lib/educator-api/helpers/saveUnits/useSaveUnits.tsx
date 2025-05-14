@@ -1,6 +1,7 @@
 import { OakP } from "@oaknational/oak-components";
 import { useState, useCallback, useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
+import { z } from "zod";
 
 import { useGetEducatorData } from "../useGetEducatorData";
 
@@ -8,6 +9,7 @@ import { useOakToastContext } from "@/context/OakToast/useOakToastContext";
 import { postEducatorData } from "@/node-lib/educator-api/helpers/postEducatorData";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import errorReporter from "@/common-lib/error-reporter";
 
 const SavedToastProps = {
   message: (
@@ -45,6 +47,9 @@ type TrackingProgrammeData = {
   subjectSlug: string;
 };
 
+const unitsResponseSchema = z.array(z.string());
+const reportError = errorReporter("educatorApi");
+
 export const useSaveUnits = (
   programmeSlug: string,
   trackingData: TrackingProgrammeData,
@@ -61,9 +66,14 @@ export const useSaveUnits = (
 
   useEffect(() => {
     if (savedUnitsData) {
-      const savedUnitsSet = new Set<string>(savedUnitsData);
-      if (savedUnitsSet.difference(locallySavedUnits).size > 0) {
-        setLocallySavedUnits(savedUnitsSet);
+      const parsedData = unitsResponseSchema.safeParse(savedUnitsData);
+      if (parsedData.success) {
+        const savedUnitsSet = new Set<string>(parsedData.data);
+        if (savedUnitsSet.difference(locallySavedUnits).size > 0) {
+          setLocallySavedUnits(savedUnitsSet);
+        }
+      } else {
+        reportError(parsedData.error, { savedUnitsData });
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
