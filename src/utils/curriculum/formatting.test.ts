@@ -546,13 +546,13 @@ describe("getPathwaySuffix", () => {
   it("should display nothing for non-ks4 years", () => {
     for (let year = 1; year < 10; year++) {
       expect(getPathwaySuffix(`${year}`, "core")).toEqual(undefined);
-      expect(getPathwaySuffix(`${year}`, "gcse")).toEqual(undefined);
+      expect(getPathwaySuffix(`${year}`, "non_core")).toEqual(undefined);
     }
   });
   it("should display nothing for non-ks4 years", () => {
     for (const year of ["10", "11"]) {
       expect(getPathwaySuffix(`${year}`, "core")).toEqual("Core");
-      expect(getPathwaySuffix(`${year}`, "gcse")).toEqual("GCSE");
+      expect(getPathwaySuffix(`${year}`, "non_core")).toEqual("GCSE");
     }
   });
 });
