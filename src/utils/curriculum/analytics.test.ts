@@ -181,7 +181,7 @@ describe("buildUnitSequenceRefinedAnalytics", () => {
   it("should set pathway to GCSE when selected", () => {
     const filtersWithHigherTier: CurriculumFilters = {
       ...baseFilters,
-      pathways: ["!core"],
+      pathways: ["non_core"],
     };
 
     const result = buildUnitSequenceRefinedAnalytics(

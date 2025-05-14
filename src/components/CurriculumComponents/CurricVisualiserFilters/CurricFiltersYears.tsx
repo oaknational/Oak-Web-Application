@@ -95,14 +95,14 @@ export function CurricFiltersYears({
     if (data.yearOptions.includes("10")) {
       yearOptions.push({
         year: "10",
-        queryString: "!core",
+        queryString: "non_core",
         pathway: "non_core",
       });
     }
     if (data.yearOptions.includes("11")) {
       yearOptions.push({
         year: "11",
-        queryString: "!core",
+        queryString: "non_core",
         pathway: "non_core",
       });
     }
