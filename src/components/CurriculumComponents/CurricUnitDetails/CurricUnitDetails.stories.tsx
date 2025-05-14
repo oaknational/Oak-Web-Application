@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
-import { CurricUnitDetails as Component } from "./CurricUnitDetails";
+import Component from "./CurricUnitDetails";
 import { basicUnit } from "./CurricUnitDetails.fixtures";
 
 const meta: Meta<typeof Component> = {

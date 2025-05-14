@@ -2,8 +2,6 @@ import { filteringFromYears } from "./filtering";
 import { isVisibleUnit } from "./isVisibleUnit";
 import { CurriculumFilters, Unit, YearData } from "./types";
 
-import { dedupUnits } from "@/components/CurriculumComponents/CurriculumVisualiser";
-
 export function getNumberOfSelectedUnits(
   yearData: YearData,
   selectedYear: string | null,
@@ -20,9 +18,7 @@ export function getNumberOfSelectedUnits(
         return isVisibleUnit(yearBasedFilters, year, unit);
       });
 
-      const dedupedUnits = dedupUnits(filteredUnits);
-
-      dedupedUnits.forEach(() => {
+      filteredUnits.forEach(() => {
         count += 1;
       });
     }

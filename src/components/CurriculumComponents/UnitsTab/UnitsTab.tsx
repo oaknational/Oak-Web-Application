@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { OakHeading, OakBox } from "@oaknational/oak-components";
 
-import CurriculumVisualiser from "../CurriculumVisualiser/CurriculumVisualiser";
+import CurricVisualiser from "../CurricVisualiser";
 import { CurricVisualiserLayout } from "../CurricVisualiserLayout";
 import CurricVisualiserFiltersMobile from "../CurricVisualiserFiltersMobile";
-import { CurricVisualiserFiltersDesktop } from "../CurricVisualiserFiltersDesktop";
+import CurricVisualiserFiltersDesktop from "../CurricVisualiserFiltersDesktop";
 
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
@@ -108,7 +108,7 @@ export default function UnitsTab({
             )
           }
           units={
-            <CurriculumVisualiser
+            <CurricVisualiser
               unitData={unitData}
               unitOptionData={unitOptionData}
               basePath={basePath}

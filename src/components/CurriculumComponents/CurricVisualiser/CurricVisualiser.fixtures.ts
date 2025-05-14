@@ -2,6 +2,7 @@ import { createSubjectCategory } from "@/fixtures/curriculum/subjectCategories";
 import { createChildSubject } from "@/fixtures/curriculum/childSubject";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { createTier } from "@/fixtures/curriculum/tier";
+import { createYearData } from "@/fixtures/curriculum/yearData";
 
 const subjectCategoryOne = createSubjectCategory({ id: 1, title: "sub-cat-1" });
 const subjectCategoryTwo = createSubjectCategory({ id: 2, title: "sub-cat-2" });
@@ -22,662 +23,377 @@ const subjectCategoryTwo = createSubjectCategory({ id: 2, title: "sub-cat-2" });
 // Missing units in the middle of the phase = [U, M, M, U, U]
 
 export const noMissingUnitsFixture = {
-  "7": {
-    childSubjects: [],
-    tiers: [],
+  "7": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "7", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "7", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
-  "8": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "8": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "8", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "8", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
-  "9": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "9": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "9", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "9", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
-  "10": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "10": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "10", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "10", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
-  "11": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "11": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "11", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "11", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
+  }),
 };
 
 export const missingUnitsForEntirePhaseFixture = {
-  "7": {
-    childSubjects: [],
-    tiers: [],
+  "7": createYearData({
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [createUnit({ year: "7", subjectcategories: [subjectCategoryTwo] })],
-  },
-  "8": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "8": createYearData({
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [createUnit({ year: "8", subjectcategories: [subjectCategoryTwo] })],
-  },
-  "9": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "9": createYearData({
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [createUnit({ year: "9", subjectcategories: [subjectCategoryTwo] })],
-  },
-  "10": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "10": createYearData({
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "10", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
-  "11": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "11": createYearData({
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "11", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
+  }),
 };
 
 export const missingUnitsForFirstYearFixture = {
-  "7": {
-    childSubjects: [],
-    tiers: [],
+  "7": createYearData({
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [createUnit({ year: "7", subjectcategories: [subjectCategoryTwo] })],
-  },
-  "8": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "8": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "8", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "8", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
-  "9": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "9": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "9", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "9", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
-  "10": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "10": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "10", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "10", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
-  "11": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "11": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "11", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "11", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
+  }),
 };
 
 export const missingUnitsForFirstYearPrimaryFixture = {
-  "1": {
-    childSubjects: [],
-    tiers: [],
+  "1": createYearData({
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [createUnit({ year: "1", subjectcategories: [subjectCategoryTwo] })],
-  },
-  "2": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "2": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "2", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "2", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
-  "3": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "3": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "3", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "3", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
-  "4": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "4": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "4", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "4", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
-  "5": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "5": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "5", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "5", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
-  "6": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "6": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "6", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "6", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
+  }),
 };
 
 export const missingUnitsForSecondYearFixture = {
-  "7": {
-    childSubjects: [],
-    tiers: [],
+  "7": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "7", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "7", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
-  "8": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "8": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [createUnit({ year: "8", subjectcategories: [subjectCategoryTwo] })],
-  },
-  "9": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "9": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "9", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "9", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
-  "10": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "10": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "10", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "10", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
-  "11": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "11": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "11", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "11", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
+  }),
 };
 
 export const missingConsecutiveUnitsAtStartFixture = {
-  "7": {
-    childSubjects: [],
-    tiers: [],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
+  "7": createYearData({
     subjectCategories: [subjectCategoryTwo],
     units: [createUnit({ year: "7", subjectcategories: [subjectCategoryTwo] })],
-  },
-  "8": {
-    childSubjects: [],
-    tiers: [],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
+  }),
+  "8": createYearData({
     subjectCategories: [subjectCategoryTwo],
     units: [createUnit({ year: "8", subjectcategories: [subjectCategoryTwo] })],
-  },
-  "9": {
-    childSubjects: [],
-    tiers: [],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
+  }),
+  "9": createYearData({
     subjectCategories: [subjectCategoryTwo],
     units: [createUnit({ year: "9", subjectcategories: [subjectCategoryTwo] })],
-  },
-  "10": {
-    childSubjects: [],
-    tiers: [],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
+  }),
+  "10": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
     units: [
       createUnit({ year: "10", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "10", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
-  "11": {
-    childSubjects: [],
-    tiers: [],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
+  }),
+  "11": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
     units: [
       createUnit({ year: "11", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "11", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
+  }),
 };
 
 export const missingConsecutiveUnitsAtStartPrimaryFixture = {
-  "1": {
-    childSubjects: [],
-    tiers: [],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
+  "1": createYearData({
     subjectCategories: [subjectCategoryTwo],
     units: [createUnit({ year: "1", subjectcategories: [subjectCategoryTwo] })],
-  },
-  "2": {
-    childSubjects: [],
-    tiers: [],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
+  }),
+  "2": createYearData({
     subjectCategories: [subjectCategoryTwo],
     units: [createUnit({ year: "2", subjectcategories: [subjectCategoryTwo] })],
-  },
-  "3": {
-    childSubjects: [],
-    tiers: [],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
+  }),
+  "3": createYearData({
     subjectCategories: [subjectCategoryTwo],
     units: [createUnit({ year: "3", subjectcategories: [subjectCategoryTwo] })],
-  },
-  "4": {
-    childSubjects: [],
-    tiers: [],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
+  }),
+  "4": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
     units: [
       createUnit({ year: "4", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "4", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
-  "5": {
-    childSubjects: [],
-    tiers: [],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
+  }),
+  "5": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
     units: [
       createUnit({ year: "5", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "5", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
-  "6": {
-    childSubjects: [],
-    tiers: [],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
+  }),
+  "6": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
     units: [
       createUnit({ year: "6", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "6", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
+  }),
 };
 
 export const missingUnitsInMiddleFixture = {
-  "7": {
-    childSubjects: [],
-    tiers: [],
+  "7": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "7", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "7", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
-  "8": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "8": createYearData({
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [createUnit({ year: "8", subjectcategories: [subjectCategoryTwo] })],
-  },
-  "9": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "9": createYearData({
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [createUnit({ year: "9", subjectcategories: [subjectCategoryTwo] })],
-  },
-  "10": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "10": createYearData({
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "10", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
-  "11": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "11": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "11", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "11", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
+  }),
 };
 
 export const missingConsecutiveUnitsAtEndFixture = {
-  "7": {
-    childSubjects: [],
-    tiers: [],
+  "7": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "7", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "7", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
-  "8": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "8": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "8", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "8", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
-  "9": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "9": createYearData({
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [createUnit({ year: "9", subjectcategories: [subjectCategoryTwo] })],
-  },
-  "10": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "10": createYearData({
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "10", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
-  "11": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "11": createYearData({
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "11", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
+  }),
 };
 
 export const missingAlternateUnitsFixture = {
-  "7": {
-    childSubjects: [],
-    tiers: [],
+  "7": createYearData({
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [createUnit({ year: "7", subjectcategories: [subjectCategoryTwo] })],
-  },
-  "8": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "8": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "8", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "8", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
-  "9": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "9": createYearData({
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [createUnit({ year: "9", subjectcategories: [subjectCategoryTwo] })],
-  },
-  "10": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "10": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "10", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "10", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
-  "11": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "11": createYearData({
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "11", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
+  }),
 };
 
 export const missingUnitForLastYearFixture = {
-  "7": {
-    childSubjects: [],
-    tiers: [],
+  "7": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "7", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "7", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
-  "8": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "8": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "8", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "8", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
-  "9": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "9": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "9", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "9", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
-  "10": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "10": createYearData({
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "10", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "10", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
-  "11": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "11": createYearData({
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({ year: "11", subjectcategories: [subjectCategoryTwo] }),
     ],
-  },
+  }),
 };
 
 // Primary English Fixture
@@ -688,33 +404,23 @@ export const primaryEnglishSubjectCategories = [
   createSubjectCategory({ id: 6, title: "Handwriting" }),
   createSubjectCategory({ id: 7, title: "Spelling" }),
   createSubjectCategory({ id: 8, title: "Vocabulary" }),
-];
+] as const;
 
 export const primaryEnglishYearData = {
-  "1": {
-    childSubjects: [],
-    tiers: [],
+  "1": createYearData({
     subjectCategories: [primaryEnglishSubjectCategories[0]],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({
         year: "1",
         subjectcategories: [primaryEnglishSubjectCategories[0]!],
       }),
     ],
-  },
-  "2": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "2": createYearData({
     subjectCategories: [
       primaryEnglishSubjectCategories[0],
       primaryEnglishSubjectCategories[1],
     ],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({
         year: "2",
@@ -725,19 +431,13 @@ export const primaryEnglishYearData = {
         subjectcategories: [primaryEnglishSubjectCategories[1]!],
       }),
     ],
-  },
-  "3": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "3": createYearData({
     subjectCategories: [
       primaryEnglishSubjectCategories[0],
       primaryEnglishSubjectCategories[1],
       primaryEnglishSubjectCategories[2],
     ],
-
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({
         year: "3",
@@ -752,19 +452,14 @@ export const primaryEnglishYearData = {
         subjectcategories: [primaryEnglishSubjectCategories[2]!],
       }),
     ],
-  },
-  "4": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "4": createYearData({
     subjectCategories: [
       primaryEnglishSubjectCategories[0],
       primaryEnglishSubjectCategories[1],
       primaryEnglishSubjectCategories[2],
       primaryEnglishSubjectCategories[3],
     ],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({
         year: "4",
@@ -783,10 +478,8 @@ export const primaryEnglishYearData = {
         subjectcategories: [primaryEnglishSubjectCategories[3]!],
       }),
     ],
-  },
-  "5": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "5": createYearData({
     subjectCategories: [
       primaryEnglishSubjectCategories[0],
       primaryEnglishSubjectCategories[1],
@@ -794,9 +487,6 @@ export const primaryEnglishYearData = {
       primaryEnglishSubjectCategories[3],
       primaryEnglishSubjectCategories[4],
     ],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({
         year: "5",
@@ -819,18 +509,13 @@ export const primaryEnglishYearData = {
         subjectcategories: [primaryEnglishSubjectCategories[4]!],
       }),
     ],
-  },
-  "6": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "6": createYearData({
     subjectCategories: [
       primaryEnglishSubjectCategories[2],
       primaryEnglishSubjectCategories[3],
       primaryEnglishSubjectCategories[4],
     ],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({
         year: "6",
@@ -845,7 +530,7 @@ export const primaryEnglishYearData = {
         subjectcategories: [primaryEnglishSubjectCategories[4]!],
       }),
     ],
-  },
+  }),
 };
 
 // Primary Science Fixture
@@ -855,33 +540,23 @@ export const primaryScienceSubjectCategories = [
   createSubjectCategory({ id: 1, title: "Biology" }),
   createSubjectCategory({ id: 2, title: "Chemistry" }),
   createSubjectCategory({ id: 3, title: "Physics" }),
-];
+] as const;
 
 export const primaryScienceYearData = {
-  "1": {
-    childSubjects: [],
-    tiers: [],
+  "1": createYearData({
     subjectCategories: [primaryScienceSubjectCategories[1]],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({
         year: "1",
         subjectcategories: [primaryScienceSubjectCategories[1]!],
       }),
     ],
-  },
-  "2": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "2": createYearData({
     subjectCategories: [
       primaryScienceSubjectCategories[1],
       primaryScienceSubjectCategories[2],
     ],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({
         year: "2",
@@ -892,19 +567,13 @@ export const primaryScienceYearData = {
         subjectcategories: [primaryScienceSubjectCategories[2]!],
       }),
     ],
-  },
-  "3": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "3": createYearData({
     subjectCategories: [
       primaryScienceSubjectCategories[1],
       primaryScienceSubjectCategories[2],
       primaryScienceSubjectCategories[3],
     ],
-
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({
         year: "3",
@@ -919,19 +588,14 @@ export const primaryScienceYearData = {
         subjectcategories: [primaryScienceSubjectCategories[3]!],
       }),
     ],
-  },
-  "4": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "4": createYearData({
     subjectCategories: [
       primaryScienceSubjectCategories[0],
       primaryScienceSubjectCategories[1],
       primaryScienceSubjectCategories[2],
       primaryScienceSubjectCategories[3],
     ],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({
         year: "4",
@@ -950,17 +614,12 @@ export const primaryScienceYearData = {
         subjectcategories: [primaryScienceSubjectCategories[3]!],
       }),
     ],
-  },
-  "5": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "5": createYearData({
     subjectCategories: [
       primaryScienceSubjectCategories[2],
       primaryScienceSubjectCategories[3],
     ],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({
         year: "5",
@@ -971,21 +630,16 @@ export const primaryScienceYearData = {
         subjectcategories: [primaryScienceSubjectCategories[3]!],
       }),
     ],
-  },
-  "6": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "6": createYearData({
     subjectCategories: [primaryScienceSubjectCategories[3]],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({
         year: "6",
         subjectcategories: [primaryEnglishSubjectCategories[3]!],
       }),
     ],
-  },
+  }),
 };
 
 // Secondary Science Fixture
@@ -993,7 +647,7 @@ export const primaryScienceYearData = {
 export const tiers = [
   createTier({ tier: "Foundation", tier_slug: "foundation" }),
   createTier({ tier: "Higher", tier_slug: "higher" }),
-];
+] as const;
 
 export const secondaryScienceSubjectCategories = [
   createSubjectCategory({ id: -1, title: "All" }),
@@ -1013,27 +667,17 @@ const secondaryScienceChildSubjects = [
 ];
 
 export const secondaryScienceYearData = {
-  "7": {
-    childSubjects: [],
-    tiers: [],
+  "7": createYearData({
     subjectCategories: secondaryScienceSubjectCategories,
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({
         year: "7",
         subjectcategories: [secondaryScienceSubjectCategories[1]!],
       }),
     ],
-  },
-  "8": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "8": createYearData({
     subjectCategories: secondaryScienceSubjectCategories,
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({
         year: "8",
@@ -1044,14 +688,9 @@ export const secondaryScienceYearData = {
         subjectcategories: [secondaryScienceSubjectCategories[2]!],
       }),
     ],
-  },
-  "9": {
-    childSubjects: [],
-    tiers: [],
+  }),
+  "9": createYearData({
     subjectCategories: secondaryScienceSubjectCategories,
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({
         year: "9",
@@ -1066,14 +705,11 @@ export const secondaryScienceYearData = {
         subjectcategories: [secondaryScienceSubjectCategories[3]!],
       }),
     ],
-  },
-  "10": {
+  }),
+  "10": createYearData({
     childSubjects: secondaryScienceChildSubjects,
     tiers: [tiers[0], tiers[1]],
     subjectCategories: secondaryScienceSubjectCategories,
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({
         year: "10",
@@ -1100,14 +736,11 @@ export const secondaryScienceYearData = {
         tier_slug: tiers[0]?.tier_slug,
       }),
     ],
-  },
-  "11": {
+  }),
+  "11": createYearData({
     childSubjects: secondaryScienceChildSubjects,
     tiers: [tiers[0], tiers[1]],
     subjectCategories: secondaryScienceSubjectCategories,
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({
         year: "11",
@@ -1122,55 +755,19 @@ export const secondaryScienceYearData = {
         tier_slug: tiers[0]?.tier_slug,
       }),
     ],
-  },
+  }),
 };
 
 // Secondary Maths Fixture
 
 export const secondaryMathsYearData = {
-  "7": {
-    childSubjects: [],
-    tiers: [],
-    subjectCategories: [],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
-    units: [],
-  },
-  "8": {
-    childSubjects: [],
-    tiers: [],
-    subjectCategories: [],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
-    units: [],
-  },
-  "9": {
-    childSubjects: [],
-    tiers: [],
-    subjectCategories: [],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
-    units: [],
-  },
-  "10": {
-    childSubjects: [],
+  "7": createYearData({}),
+  "8": createYearData({}),
+  "9": createYearData({}),
+  "10": createYearData({
     tiers: [tiers[0], tiers[1]],
-    subjectCategories: [],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
-    units: [],
-  },
-  "11": {
-    childSubjects: [],
+  }),
+  "11": createYearData({
     tiers: [tiers[0], tiers[1]],
-    subjectCategories: [],
-    labels: [],
-    groupAs: null,
-    isSwimming: false,
-    units: [],
-  },
+  }),
 };

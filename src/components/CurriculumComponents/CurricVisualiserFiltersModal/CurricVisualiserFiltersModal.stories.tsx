@@ -1,7 +1,7 @@
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { Meta, StoryObj } from "@storybook/react";
 
-import { basicSetup } from "./index.fixtures";
+import { basicSetup } from "./CurricVisualiserFiltersModal.fixtures";
 
 import { CurricMobileFilterModal as Component } from ".";
 

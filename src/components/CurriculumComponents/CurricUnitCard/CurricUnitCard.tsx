@@ -35,13 +35,13 @@ const StyledLink = styled(Link)<HTMLButtonProps & { isHighlighted: boolean }>`
   }
 `;
 
-type CurriculumUnitCardProps = {
+type CurricUnitCardProps = {
   unit: Unit | Unit["unit_options"][number];
   index: number;
   isHighlighted: boolean;
   href: string;
 };
-export default function CurriculumUnitCard(props: CurriculumUnitCardProps) {
+export default function CurricUnitCard(props: CurricUnitCardProps) {
   const { href, isHighlighted, unit, index } = props;
   const isUnitOption = "unit_options" in unit;
   return (

@@ -1,6 +1,7 @@
 import { within } from "@testing-library/react";
+import { ComponentProps } from "react";
 
-import CurriculumVisualiser from "./CurriculumVisualiser";
+import CurricVisualiser from "./CurricVisualiser";
 import {
   noMissingUnitsFixture,
   missingUnitsForFirstYearPrimaryFixture,
@@ -16,7 +17,7 @@ import {
   primaryScienceYearData,
   secondaryMathsYearData,
   secondaryScienceYearData,
-} from "./fixtures";
+} from "./CurricVisualiser.fixtures";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { YearData } from "@/utils/curriculum/types";
@@ -39,16 +40,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   }),
 }));
 
-const curriculumVisualiserFixture = {
-  updateMobileHeaderScroll: jest.fn(() => {}),
-  handleSelectThread: jest.fn(() => {}),
-  handleSelectTier: jest.fn(() => {}),
-  handleSelectSubjectCategory: jest.fn(() => {}),
-  handleSelectSubject: jest.fn(() => {}),
-  isSelectedThread: jest.fn(() => true),
-  setUnitData: jest.fn(() => {}),
-  highlightedUnitCount: jest.fn(() => 1),
-  trackSelectYear: jest.fn(() => {}),
+const CurricVisualiserFixture: ComponentProps<typeof CurricVisualiser> = {
   threadOptions: [],
   unitData: undefined,
   filters: {
@@ -58,7 +50,6 @@ const curriculumVisualiserFixture = {
     subjectCategories: [],
     threads: [],
   },
-  selectedYear: null,
   ks4OptionSlug: "edexcel",
   yearData: {
     "7": {
@@ -128,7 +119,6 @@ const curriculumVisualiserFixture = {
       groupAs: null,
     },
   },
-  selectedThread: null,
   setVisibleMobileYearRefID: jest.fn(() => {}),
   unitOptionData: undefined,
   basePath: "/",
@@ -156,7 +146,7 @@ describe("visualiser", () => {
     resizeWindow(390, 844);
 
     const { findByTestId } = render(
-      <CurriculumVisualiser {...curriculumVisualiserFixture} />,
+      <CurricVisualiser {...CurricVisualiserFixture} />,
     );
     // Open thread modal
     const filterThreadsButton = await findByTestId("curriculum-visualiser");
@@ -165,7 +155,7 @@ describe("visualiser", () => {
   });
   test("visualiser is visible on desktop", async () => {
     const { findByTestId } = render(
-      <CurriculumVisualiser {...curriculumVisualiserFixture} />,
+      <CurricVisualiser {...CurricVisualiserFixture} />,
     );
     // Open thread modal
     const filterThreadsButton = await findByTestId("curriculum-visualiser");
@@ -176,7 +166,7 @@ describe("visualiser", () => {
   test("correct number of units displayed", async () => {
     resizeWindow(390, 844);
     const { findAllByTestId } = render(
-      <CurriculumVisualiser {...curriculumVisualiserFixture} />,
+      <CurricVisualiser {...CurricVisualiserFixture} />,
     );
 
     const unitCards = await findAllByTestId("unit-cards");
@@ -200,7 +190,7 @@ describe("Curriculum visualiser filter states", () => {
   describe("Secondary phase", () => {
     test("Units exist for subject category in each year of phase", async () => {
       const noMissingUnitsFixtureWithProps = {
-        ...curriculumVisualiserFixture,
+        ...CurricVisualiserFixture,
         yearData: noMissingUnitsFixture as YearData,
       };
 
@@ -213,7 +203,7 @@ describe("Curriculum visualiser filter states", () => {
       };
 
       const { findAllByTestId } = render(
-        <CurriculumVisualiser
+        <CurricVisualiser
           {...noMissingUnitsFixtureWithProps}
           filters={filterFixture}
         />,
@@ -225,7 +215,7 @@ describe("Curriculum visualiser filter states", () => {
 
     test("No units for subject category in first year of phase", async () => {
       const missingUnitsForFirstYearFixtureWithProps = {
-        ...curriculumVisualiserFixture,
+        ...CurricVisualiserFixture,
         yearData: missingUnitsForFirstYearFixture as YearData,
       };
 
@@ -238,7 +228,7 @@ describe("Curriculum visualiser filter states", () => {
       };
 
       const { findAllByText } = render(
-        <CurriculumVisualiser
+        <CurricVisualiser
           {...missingUnitsForFirstYearFixtureWithProps}
           filters={filterFixture}
         />,
@@ -250,7 +240,7 @@ describe("Curriculum visualiser filter states", () => {
 
     test("No units for subject category in second year of phase", async () => {
       const missingUnitsForSecondYearFixtureWithProps = {
-        ...curriculumVisualiserFixture,
+        ...CurricVisualiserFixture,
         yearData: missingUnitsForSecondYearFixture as YearData,
       };
 
@@ -263,7 +253,7 @@ describe("Curriculum visualiser filter states", () => {
       };
 
       const { findAllByText } = render(
-        <CurriculumVisualiser
+        <CurricVisualiser
           {...missingUnitsForSecondYearFixtureWithProps}
           filters={filterFixture}
         />,
@@ -275,7 +265,7 @@ describe("Curriculum visualiser filter states", () => {
 
     test("No units for consecutive years at the start of the phase", async () => {
       const missingConsecutiveUnitsAtStartFixtureWithProps = {
-        ...curriculumVisualiserFixture,
+        ...CurricVisualiserFixture,
         yearData: missingConsecutiveUnitsAtStartFixture as YearData,
       };
 
@@ -288,7 +278,7 @@ describe("Curriculum visualiser filter states", () => {
       };
 
       const { findAllByTestId, findAllByText } = render(
-        <CurriculumVisualiser
+        <CurricVisualiser
           {...missingConsecutiveUnitsAtStartFixtureWithProps}
           filters={filterFixture}
         />,
@@ -307,7 +297,7 @@ describe("Curriculum visualiser filter states", () => {
 
     test("No units in the middle of the phase", async () => {
       const missingUnitsInMiddleFixtureWithProps = {
-        ...curriculumVisualiserFixture,
+        ...CurricVisualiserFixture,
         yearData: missingUnitsInMiddleFixture as YearData,
       };
 
@@ -320,7 +310,7 @@ describe("Curriculum visualiser filter states", () => {
       };
 
       const { findAllByText, findAllByTestId } = render(
-        <CurriculumVisualiser
+        <CurricVisualiser
           {...missingUnitsInMiddleFixtureWithProps}
           filters={filterFixture}
         />,
@@ -335,7 +325,7 @@ describe("Curriculum visualiser filter states", () => {
 
     test("No consecutive subsequent units at the end of the phase", async () => {
       const missingConsecutiveUnitsAtEndFixtureWithProps = {
-        ...curriculumVisualiserFixture,
+        ...CurricVisualiserFixture,
         yearData: missingConsecutiveUnitsAtEndFixture as YearData,
       };
 
@@ -348,7 +338,7 @@ describe("Curriculum visualiser filter states", () => {
       };
 
       const { findAllByText, findAllByTestId } = render(
-        <CurriculumVisualiser
+        <CurricVisualiser
           {...missingConsecutiveUnitsAtEndFixtureWithProps}
           filters={filterFixture}
         />,
@@ -363,7 +353,7 @@ describe("Curriculum visualiser filter states", () => {
 
     test("No alternate units in the phase", async () => {
       const missingAlternateUnitsFixtureWithProps = {
-        ...curriculumVisualiserFixture,
+        ...CurricVisualiserFixture,
         yearData: missingAlternateUnitsFixture as YearData,
       };
 
@@ -376,7 +366,7 @@ describe("Curriculum visualiser filter states", () => {
       };
 
       const { findByText, findAllByTestId } = render(
-        <CurriculumVisualiser
+        <CurricVisualiser
           {...missingAlternateUnitsFixtureWithProps}
           filters={filterFixture}
         />,
@@ -397,7 +387,7 @@ describe("Curriculum visualiser filter states", () => {
 
     test("No unit at the end of the phase", async () => {
       const missingUnitForLastYearFixtureWithProps = {
-        ...curriculumVisualiserFixture,
+        ...CurricVisualiserFixture,
         yearData: missingUnitForLastYearFixture as YearData,
       };
 
@@ -410,7 +400,7 @@ describe("Curriculum visualiser filter states", () => {
       };
 
       const { findByText } = render(
-        <CurriculumVisualiser
+        <CurricVisualiser
           {...missingUnitForLastYearFixtureWithProps}
           filters={filterFixture}
         />,
@@ -424,7 +414,7 @@ describe("Curriculum visualiser filter states", () => {
   describe("Primary phase", () => {
     test("No units for subject category in first year of phase", async () => {
       const missingUnitsForFirstYearPrimaryFixtureWithProps = {
-        ...curriculumVisualiserFixture,
+        ...CurricVisualiserFixture,
         yearData: missingUnitsForFirstYearPrimaryFixture as YearData,
       };
 
@@ -437,7 +427,7 @@ describe("Curriculum visualiser filter states", () => {
       };
 
       const { findAllByText, findAllByTestId } = render(
-        <CurriculumVisualiser
+        <CurricVisualiser
           {...missingUnitsForFirstYearPrimaryFixtureWithProps}
           filters={filterFixture}
         />,
@@ -451,7 +441,7 @@ describe("Curriculum visualiser filter states", () => {
 
     test("No units for consecutive years at the start of the primary phase", async () => {
       const missingConsecutiveUnitsAtStartPrimaryFixtureWithProps = {
-        ...curriculumVisualiserFixture,
+        ...CurricVisualiserFixture,
         yearData: missingConsecutiveUnitsAtStartPrimaryFixture as YearData,
       };
 
@@ -464,7 +454,7 @@ describe("Curriculum visualiser filter states", () => {
       };
 
       const { findAllByText, findAllByTestId } = render(
-        <CurriculumVisualiser
+        <CurricVisualiser
           {...missingConsecutiveUnitsAtStartPrimaryFixtureWithProps}
           filters={filterFixture}
         />,
@@ -484,7 +474,7 @@ describe("Curriculum visualiser filter states", () => {
 
 describe("Year group filter headings display correctly", () => {
   const baseFixture = {
-    ...curriculumVisualiserFixture,
+    ...CurricVisualiserFixture,
     yearData: {},
   };
 
@@ -505,7 +495,7 @@ describe("Year group filter headings display correctly", () => {
         };
 
         const { container } = render(
-          <CurriculumVisualiser
+          <CurricVisualiser
             {...secondaryScienceFixture}
             filters={filterFixture}
           />,
@@ -544,7 +534,7 @@ describe("Year group filter headings display correctly", () => {
         };
 
         const { container } = render(
-          <CurriculumVisualiser
+          <CurricVisualiser
             {...secondaryScienceFixture}
             filters={filterFixture}
           />,
@@ -570,7 +560,7 @@ describe("Year group filter headings display correctly", () => {
         };
 
         const { container } = render(
-          <CurriculumVisualiser
+          <CurricVisualiser
             {...secondaryScienceFixture}
             filters={filterFixture}
           />,
@@ -596,7 +586,7 @@ describe("Year group filter headings display correctly", () => {
         };
 
         const { container } = render(
-          <CurriculumVisualiser
+          <CurricVisualiser
             {...secondaryScienceFixture}
             filters={filterFixture}
           />,
@@ -622,7 +612,7 @@ describe("Year group filter headings display correctly", () => {
         };
 
         const { container } = render(
-          <CurriculumVisualiser
+          <CurricVisualiser
             {...secondaryScienceFixture}
             filters={filterFixture}
           />,
@@ -648,7 +638,7 @@ describe("Year group filter headings display correctly", () => {
         };
 
         const { container } = render(
-          <CurriculumVisualiser
+          <CurricVisualiser
             {...secondaryScienceFixture}
             filters={filterFixture}
           />,
@@ -673,7 +663,7 @@ describe("Year group filter headings display correctly", () => {
         };
 
         const { container } = render(
-          <CurriculumVisualiser
+          <CurricVisualiser
             {...secondaryScienceFixture}
             filters={filterFixture}
           />,
@@ -698,7 +688,7 @@ describe("Year group filter headings display correctly", () => {
         };
 
         const { container } = render(
-          <CurriculumVisualiser
+          <CurricVisualiser
             {...secondaryScienceFixture}
             filters={filterFixture}
           />,
@@ -730,7 +720,7 @@ describe("Year group filter headings display correctly", () => {
         };
 
         const { container } = render(
-          <CurriculumVisualiser
+          <CurricVisualiser
             {...secondaryMathsFixture}
             filters={filterFixture}
           />,
@@ -755,7 +745,7 @@ describe("Year group filter headings display correctly", () => {
         };
 
         const { findByTestId } = render(
-          <CurriculumVisualiser
+          <CurricVisualiser
             {...secondaryMathsFixture}
             filters={filterFixture}
           />,
@@ -786,7 +776,7 @@ describe("Year group filter headings display correctly", () => {
         };
 
         const { container } = render(
-          <CurriculumVisualiser
+          <CurricVisualiser
             {...primaryEnglishFixture}
             filters={filterFixture}
           />,
@@ -818,7 +808,7 @@ describe("Year group filter headings display correctly", () => {
         };
 
         const { container } = render(
-          <CurriculumVisualiser
+          <CurricVisualiser
             {...primaryScienceFixture}
             filters={filterFixture}
           />,
@@ -843,7 +833,7 @@ describe("Year group filter headings display correctly", () => {
         };
 
         const { container } = render(
-          <CurriculumVisualiser
+          <CurricVisualiser
             {...primaryScienceFixture}
             filters={filterFixture}
           />,
@@ -868,7 +858,7 @@ describe("Year group filter headings display correctly", () => {
         };
 
         const { container } = render(
-          <CurriculumVisualiser
+          <CurricVisualiser
             {...primaryScienceFixture}
             filters={filterFixture}
           />,
@@ -893,7 +883,7 @@ describe("Year group filter headings display correctly", () => {
         };
 
         const { container } = render(
-          <CurriculumVisualiser
+          <CurricVisualiser
             {...primaryScienceFixture}
             filters={filterFixture}
           />,

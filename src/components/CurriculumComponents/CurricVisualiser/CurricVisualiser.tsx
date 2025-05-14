@@ -1,13 +1,13 @@
 import { join } from "path";
 
-import React, { FC, useRef, useEffect, useMemo } from "react";
+import { useRef, useEffect, useMemo } from "react";
 import { OakHeading, OakFlex, OakBox, OakP } from "@oaknational/oak-components";
 import styled from "styled-components";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
 
 import Alert from "../OakComponentsKitchen/Alert";
-import CurriculumUnitCard from "../CurricUnitCard/CurricUnitCard";
+import CurriculumUnitCard from "../CurricUnitCard";
 import CurricUnitModal from "../CurricUnitModal";
 
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
@@ -47,7 +47,7 @@ const UnitListItem = styled("li")`
   position: relative;
 `;
 
-type CurriculumVisualiserProps = {
+type CurricVisualiserProps = {
   unitData: Unit | undefined;
   unitOptionData: UnitOption | undefined;
   ks4OptionSlug?: string | null;
@@ -58,17 +58,6 @@ type CurriculumVisualiserProps = {
   threadOptions: Thread[];
   basePath: string;
 };
-
-export function dedupUnits(units: Unit[]) {
-  const unitLookup = new Set();
-  return units.filter((unit) => {
-    if (!unitLookup.has(unit.slug)) {
-      unitLookup.add(unit.slug);
-      return true;
-    }
-    return false;
-  });
-}
 
 function isHighlightedUnit(unit: Unit, selectedThreads: string[] | null) {
   if (!selectedThreads || selectedThreads?.length < 1) {
@@ -207,7 +196,7 @@ function getSubjectCategoryMessage(
 
 // Function component
 
-const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
+export default function CurricVisualiser({
   unitData,
   unitOptionData,
   yearData,
@@ -216,7 +205,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   setVisibleMobileYearRefID,
   threadOptions,
   basePath,
-}) => {
+}: CurricVisualiserProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -285,8 +274,6 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
             const filteredUnits = units.filter((unit: Unit) =>
               isVisibleUnit(yearBasedFilters, year, unit),
             );
-
-            const dedupedUnits = dedupUnits(filteredUnits);
 
             const actions = units[0]?.actions;
 
@@ -359,7 +346,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                   }}
                 >
                   <UnitList role="list">
-                    {dedupedUnits.length < 1 && (
+                    {filteredUnits.length < 1 && (
                       <OakP>
                         {getSubjectCategoryMessage(
                           yearData,
@@ -368,7 +355,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                         )}
                       </OakP>
                     )}
-                    {dedupedUnits.map((unit: Unit, index: number) => {
+                    {filteredUnits.map((unit: Unit, index: number) => {
                       const isHighlighted = isHighlightedUnit(
                         unit,
                         filters.threads,
@@ -422,5 +409,4 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
       />
     </OakBox>
   );
-};
-export default CurriculumVisualiser;
+}

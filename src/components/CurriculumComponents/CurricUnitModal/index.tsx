@@ -1,8 +1,7 @@
-import React, { FC } from "react";
 import { OakFlex, OakBox } from "@oaknational/oak-components";
 
 import { OakModalNew } from "../OakComponentsKitchen/OakModalNew";
-import { CurricUnitModalFooter } from "../CurricUnitModalFooter";
+import CurricUnitModalFooter from "../CurricUnitModalFooter";
 
 import CurricUnitModalContent from "@/components/CurriculumComponents/CurricUnitModalContent";
 import { createTeacherProgrammeSlug } from "@/utils/curriculum/slugs";
@@ -14,7 +13,7 @@ import {
   UnitOption,
 } from "@/utils/curriculum/types";
 
-type CurriculumVisualiserProps = {
+type CurricUnitModalProps = {
   open: boolean;
   onClose: () => void;
   unitData?: Unit | undefined;
@@ -25,7 +24,7 @@ type CurriculumVisualiserProps = {
   selectedThread: Thread | undefined;
   filters: CurriculumFilters;
 };
-const CurricUnitModal: FC<CurriculumVisualiserProps> = ({
+export default function CurricUnitModal({
   unitData,
   unitOptionData,
   ks4OptionSlug,
@@ -35,7 +34,7 @@ const CurricUnitModal: FC<CurriculumVisualiserProps> = ({
   open,
   onClose,
   filters,
-}) => {
+}: CurricUnitModalProps) {
   return (
     <OakModalNew
       title={""}
@@ -67,8 +66,6 @@ const CurricUnitModal: FC<CurriculumVisualiserProps> = ({
       }
       footer={
         <CurricUnitModalFooter
-          displayModal={open}
-          onClose={onClose}
           programmeSlug={createTeacherProgrammeSlug(
             unitData,
             ks4OptionSlug,
@@ -81,5 +78,4 @@ const CurricUnitModal: FC<CurriculumVisualiserProps> = ({
       }
     />
   );
-};
-export default CurricUnitModal;
+}
