@@ -36,7 +36,8 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
     }
     const units = parsedUnits.users_content
       .map((unit) => unit.users_content_lists?.content.unit_slug)
-      .filter((unit) => unit !== null);
+      .filter((unit) => !!unit);
+
     return res.status(200).json(units);
   } catch (err) {
     reportError(err, {

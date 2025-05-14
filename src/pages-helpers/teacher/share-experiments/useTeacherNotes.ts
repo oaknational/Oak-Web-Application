@@ -40,7 +40,7 @@ export const useTeacherNotes = ({
   );
   const [error, setError] = useState<string | null>(null);
 
-  const [isEditable, setIsEditable] = useState(false);
+  const [isEditable, setIsEditable] = useState<boolean | null>(null);
   const [noteSaved, setNoteSaved] = useState(false);
 
   const coreTrackingProps: CoreProperties = {
