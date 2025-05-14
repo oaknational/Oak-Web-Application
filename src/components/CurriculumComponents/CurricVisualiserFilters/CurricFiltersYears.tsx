@@ -16,6 +16,7 @@ import type { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/do
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import { getShouldDisplayCorePathway } from "@/utils/curriculum/pathways";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
+import { keystageFromYear } from "@/utils/curriculum/keystage";
 
 export type CurricFiltersYearsProps = {
   filters: CurriculumFilters;
@@ -69,7 +70,10 @@ export function CurricFiltersYears({
     slugs.ks4OptionSlug !== "core" && getShouldDisplayCorePathway(ks4Options);
   const yearOptions = data.yearOptions.map<YearOption>((year) => {
     if (shouldDisplayCorePathway) {
-      return { year, pathway: "core" };
+      return {
+        year,
+        pathway: keystageFromYear(year) === "ks4" ? "core" : undefined,
+      };
     } else {
       return { year };
     }
@@ -141,6 +145,7 @@ export function CurricFiltersYears({
           const pathwaySuffixStr = pathwaySuffix
             ? `(${pathwaySuffix})`
             : undefined;
+
           return (
             <OakRadioAsButton
               key={`${yearOption.year}-${yearOption.pathway}`}
