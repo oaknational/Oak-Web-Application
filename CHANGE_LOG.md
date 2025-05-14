@@ -1,3 +1,10 @@
+## [1.746.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.746.0...v1.746.1) (2025-05-14)
+
+
+### Bug Fixes
+
+* parse api response to make sure it's string array before updating locally saved units ([b119497](https://github.com/oaknational/Oak-Web-Application/commit/b119497c09f544c96678af23db78df52afd7cd0c))
+
 # [1.746.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.745.0...v1.746.0) (2025-05-13)
 
 
