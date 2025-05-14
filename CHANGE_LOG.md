@@ -1,3 +1,11 @@
+## [1.746.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.746.1...v1.746.2) (2025-05-14)
+
+
+### Bug Fixes
+
+* use arrays instead of sets to see if that resolves the bug ([d918b17](https://github.com/oaknational/Oak-Web-Application/commit/d918b1706137fd40a689f1957a4f1ce58f14f3c1))
+* wrap in conditional if statement for savedUnitsData ([4e28512](https://github.com/oaknational/Oak-Web-Application/commit/4e285122046aab6ec1a2d256232b7966c4751dc7))
+
 ## [1.746.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.746.0...v1.746.1) (2025-05-14)
 
 

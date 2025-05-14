@@ -60,47 +60,50 @@ export const useSaveUnits = (
     `/api/educator-api/getSavedUnits/${programmeSlug}`,
   );
 
-  const [locallySavedUnits, setLocallySavedUnits] = useState<Set<string>>(
-    new Set(),
-  );
+  const [locallySavedUnits, setLocallySavedUnits] = useState<Array<string>>([]);
   const [showSignIn, setShowSignIn] = useState<boolean>(false);
 
   useEffect(() => {
     if (savedUnitsData) {
       const parsedData = unitsResponseSchema.safeParse(savedUnitsData);
       if (parsedData.success) {
-        const savedUnitsSet = new Set<string>(parsedData.data);
-        if (savedUnitsSet.difference(locallySavedUnits).size > 0) {
-          setLocallySavedUnits(savedUnitsSet);
+        if (parsedData.data.length > 0) {
+          const savedUnitsString = parsedData.data.toSorted().toString();
+
+          const locallySavedUnitsString = locallySavedUnits
+            .toSorted()
+            .toString();
+          if (savedUnitsString !== locallySavedUnitsString) {
+            setLocallySavedUnits(parsedData.data);
+          }
         }
       } else {
         reportError(parsedData.error, { savedUnitsData });
       }
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [savedUnitsData]);
 
   const isOnboarded = user?.publicMetadata?.owa?.isOnboarded;
 
   const isUnitSaved = useCallback(
-    (unitSlug: string) => locallySavedUnits.has(unitSlug),
+    (unitSlug: string) => locallySavedUnits.includes(unitSlug),
     [locallySavedUnits],
   );
 
   const { setCurrentToastProps } = useOakToastContext();
 
   const onSave = async (unitSlug: string) => {
-    setLocallySavedUnits((prev) => new Set(prev).add(unitSlug));
+    setLocallySavedUnits((prev) => [...prev, unitSlug]);
     setCurrentToastProps(SavedToastProps);
     await postEducatorData(
       `/api/educator-api/saveUnit/${programmeSlug}/${unitSlug}`,
       () => {
         // Revert the optimistic update if the request fails and show an error toast
-        setLocallySavedUnits((prev) => {
-          const updatedUnits = new Set(prev);
-          updatedUnits.delete(unitSlug);
-          return updatedUnits;
-        });
+        setLocallySavedUnits((prev) =>
+          prev.filter((unit) => unit !== unitSlug),
+        );
         setCurrentToastProps(ErrorToastProps);
       },
     );
@@ -121,17 +124,13 @@ export const useSaveUnits = (
   };
 
   const onUnsave = async (unitSlug: string) => {
-    setLocallySavedUnits((prev) => {
-      const updatedUnits = new Set(prev);
-      updatedUnits.delete(unitSlug);
-      return updatedUnits;
-    });
+    setLocallySavedUnits((prev) => prev.filter((unit) => unit !== unitSlug));
     setCurrentToastProps(UnsavedToastProps);
     await postEducatorData(
       `/api/educator-api/unsaveUnit/${programmeSlug}/${unitSlug}`,
       () => {
         // Revert the optimistic update if the request fails and show an error toast
-        setLocallySavedUnits((prev) => new Set(prev).add(unitSlug));
+        setLocallySavedUnits((prev) => [...prev, unitSlug]);
         setCurrentToastProps(ErrorToastProps);
       },
     );
