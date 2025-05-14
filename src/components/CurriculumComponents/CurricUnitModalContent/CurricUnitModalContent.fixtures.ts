@@ -1,127 +1,121 @@
-import { Unit, Lesson } from "@/utils/curriculum/types";
+import { createUnit } from "@/fixtures/curriculum/unit";
+import { createThread } from "@/fixtures/curriculum/thread";
+import { createYearData } from "@/fixtures/curriculum/yearData";
+import { createUnitOption } from "@/fixtures/curriculum/unitOption";
+import { createLesson } from "@/fixtures/curriculum/lesson";
 
-const lessons: Lesson[] = [
-  {
+const lessons = [
+  createLesson({
     slug: "lesson-1",
     title: "Lesson 1",
     _state: "new",
-  },
-  {
+  }),
+  createLesson({
     slug: "lesson-2",
     title: "Lesson 2",
     _state: "published",
-  },
-  {
+  }),
+  createLesson({
     slug: "lesson-3",
     title: "Lesson 3",
     _state: "published",
-  },
+  }),
 ];
 
-export const mockUnit: Unit = {
+export const mockUnit = createUnit({
   connection_future_unit_description: "Test connection future unit description",
   connection_prior_unit_description: "Test connection prior unit description",
   connection_future_unit_title: "Test connection future unit title",
   connection_prior_unit_title: "Test connection prior unit title",
-  domain: null,
-  domain_id: null,
-  examboard: null,
-  examboard_slug: null,
   keystage_slug: "ks1",
   phase: "Primary",
   phase_slug: "primary",
-  planned_number_of_lessons: 15,
-  lessons: [],
-  order: 1,
   slug: "composition-of-numbers-6-to-10",
   subject: "Maths",
-  subject_parent: null,
-  subject_parent_slug: null,
   subject_slug: "maths",
-  tags: null,
-  subjectcategories: null,
   threads: [
-    {
+    createThread({
       slug: "number-addition-and-subtraction",
       title: "Number: Addition and Subtraction",
       order: 2,
-    },
-    {
+    }),
+    createThread({
       slug: "number",
       title: "Number",
       order: 1,
-    },
+    }),
   ],
-  tier: null,
-  tier_slug: null,
   title: "Composition of numbers 6 to 10",
-  unit_options: [],
   year: "1",
-  cycle: "1",
-  why_this_why_now: null,
-  description: null,
-  state: "published",
-};
+});
+
+export const mockUnitWhyThisWhyNow = createUnit({
+  description: "Test description",
+  why_this_why_now: "Test why this why now",
+  keystage_slug: "ks1",
+  phase: "Primary",
+  phase_slug: "primary",
+  slug: "composition-of-numbers-6-to-10",
+  subject: "Maths",
+  subject_slug: "maths",
+  parent_programme_features: {
+    unit_description: true,
+  },
+  threads: [
+    createThread({
+      slug: "number-addition-and-subtraction",
+      title: "Number: Addition and Subtraction",
+      order: 2,
+    }),
+    createThread({
+      slug: "number",
+      title: "Number",
+      order: 1,
+    }),
+  ],
+  title: "Composition of numbers 6 to 10",
+  year: "1",
+});
 
 export const mockYearData = {
-  "1": {
+  "1": createYearData({
     units: [mockUnit],
-    childSubjects: [],
-    subjectCategories: [],
-    tiers: [],
-    pathways: [],
-    isSwimming: false,
-    groupAs: null,
-  },
+  }),
 };
 
-export const mockUnitKS4: Unit = {
+export const mockUnitKS4 = createUnit({
   connection_future_unit_description: "Test connection future unit description",
   connection_prior_unit_description: "Test connection prior unit description",
   connection_future_unit_title: "Test connection future unit title",
   connection_prior_unit_title: "Test connection prior unit title",
-  domain: null,
-  domain_id: null,
   examboard: "AQA",
   examboard_slug: "aqa",
   keystage_slug: "ks4",
   phase: "Secondary",
   phase_slug: "secondary",
-  planned_number_of_lessons: 15,
   lessons,
   order: 1,
   slug: "composition-of-numbers-6-to-10",
   subject: "Maths",
-  subject_parent: null,
-  subject_parent_slug: null,
   subject_slug: "maths",
-  tags: null,
-  subjectcategories: null,
   threads: [
-    {
+    createThread({
       slug: "number-addition-and-subtraction",
       title: "Number: Addition and Subtraction",
       order: 2,
-    },
-    {
+    }),
+    createThread({
       slug: "number",
       title: "Number",
       order: 1,
-    },
+    }),
   ],
-  tier: null,
-  tier_slug: null,
   title: "Composition of numbers 6 to 10",
-  unit_options: [],
   year: "10",
-  cycle: "1",
-  why_this_why_now: null,
-  description: null,
-  state: "published",
-};
+});
 
 const optionalUnits = [
-  {
+  createUnitOption({
     title: "Test optional unit 1",
     unitvariant_id: 1,
     connection_future_unit_description:
@@ -129,13 +123,11 @@ const optionalUnits = [
     connection_prior_unit_description: "Test connection prior unit description",
     connection_future_unit_title: "Test connection future unit title",
     connection_prior_unit_title: "Test connection prior unit title",
-    why_this_why_now: null,
-    description: null,
     lessons,
     state: "published",
     slug: "composition-of-numbers-6-to-10-1",
-  },
-  {
+  }),
+  createUnitOption({
     title: "Test optional unit 2",
     unitvariant_id: 2,
     connection_future_unit_description:
@@ -148,8 +140,8 @@ const optionalUnits = [
     lessons,
     state: "published",
     slug: "composition-of-numbers-6-to-10-2",
-  },
-  {
+  }),
+  createUnitOption({
     title: "Test optional unit 3",
     unitvariant_id: 3,
     connection_future_unit_description:
@@ -157,15 +149,13 @@ const optionalUnits = [
     connection_prior_unit_description: "Test connection prior unit description",
     connection_future_unit_title: "Test connection future unit title",
     connection_prior_unit_title: "Test connection prior unit title",
-    why_this_why_now: null,
-    description: null,
     lessons,
     state: "published",
     slug: "composition-of-numbers-6-to-10-3",
-  },
+  }),
 ];
 
-export const mockOptionalityUnit: Unit = {
+export const mockOptionalityUnit = createUnit({
   ...mockUnit,
   unit_options: optionalUnits,
-};
+});

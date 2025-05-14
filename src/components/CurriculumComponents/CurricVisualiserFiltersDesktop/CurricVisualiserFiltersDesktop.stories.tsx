@@ -1,7 +1,7 @@
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { Meta, StoryObj } from "@storybook/react";
 
-import { CurricVisualiserFiltersDesktop as Component } from ".";
+import Component from "./CurricVisualiserFiltersDesktop";
 
 const meta: Meta<typeof Component> = {
   component: Component,

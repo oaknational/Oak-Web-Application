@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { useState } from "react";
 import { useFocusVisible, useFocusWithin } from "react-aria";
 import { OakIcon, OakBox } from "@oaknational/oak-components";
 import { snakeCase } from "lodash";
@@ -26,14 +26,12 @@ type CurriculumUnitDetailsAccordionProps = {
   ) => void;
 };
 
-const CurriculumUnitDetailsAccordion: FC<
-  CurriculumUnitDetailsAccordionProps
-> = ({
+export default function CurricUnitDetailsAccordion({
   title,
   children,
   lastAccordion,
   handleUnitOverviewExploredAnalytics,
-}) => {
+}: CurriculumUnitDetailsAccordionProps) {
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLButtonElement>();
   const [isFocused, setIsFocused] = useState<boolean>(false);
@@ -132,6 +130,4 @@ const CurriculumUnitDetailsAccordion: FC<
       )}
     </Card>
   );
-};
-
-export default CurriculumUnitDetailsAccordion;
+}

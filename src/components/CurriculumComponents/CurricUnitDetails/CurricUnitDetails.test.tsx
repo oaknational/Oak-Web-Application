@@ -1,7 +1,7 @@
 import userEvent from "@testing-library/user-event";
 import { within } from "@testing-library/react";
 
-import { CurricUnitDetails } from "./CurricUnitDetails";
+import CurricUnitDetails from "./CurricUnitDetails";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { createUnit } from "@/fixtures/curriculum/unit";

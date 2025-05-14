@@ -1,4 +1,3 @@
-import { FC } from "react";
 import {
   OakHeading,
   OakLI,
@@ -21,11 +20,11 @@ export type CurricUnitDetailsProps = {
   ) => void;
 };
 
-export const CurricUnitDetails: FC<CurricUnitDetailsProps> = ({
+export default function CurricUnitDetails({
   unit,
   isUnitDescriptionEnabled,
   handleUnitOverviewExploredAnalytics,
-}) => {
+}: CurricUnitDetailsProps) {
   const {
     threads,
     lessons,
@@ -174,4 +173,4 @@ export const CurricUnitDetails: FC<CurricUnitDetailsProps> = ({
       </OakFlex>
     </OakFlex>
   );
-};
+}

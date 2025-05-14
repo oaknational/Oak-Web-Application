@@ -1,15 +1,14 @@
 import { join } from "path";
 
-import { FC } from "react";
 import { OakHeading, OakFlex, OakBox } from "@oaknational/oak-components";
 import { useRouter } from "next/router";
 import { useSearchParams } from "next/navigation";
 
 import BulletList from "../OakComponentsKitchen/BulletList";
-import CurricUnitCard from "../CurricUnitCard/CurricUnitCard";
+import CurricUnitCard from "../CurricUnitCard";
 
 import Button from "@/components/SharedComponents/Button";
-import { CurricUnitDetails } from "@/components/CurriculumComponents/CurricUnitDetails";
+import CurricUnitDetails from "@/components/CurriculumComponents/CurricUnitDetails";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import {
   notUndefined,
@@ -30,13 +29,13 @@ type CurricUnitModalContentProps = {
   unitOptionData: UnitOption | undefined;
 };
 
-const CurricUnitModalContent: FC<CurricUnitModalContentProps> = ({
+export default function CurricUnitModalContent({
   unitData,
   unitOptionData,
   yearData,
   selectedThread,
   basePath,
-}) => {
+}: CurricUnitModalContentProps) {
   const searchParams = useSearchParams();
   const unitOptionsAvailable =
     !unitOptionData && (unitData?.unit_options ?? []).length > 0;
@@ -206,5 +205,4 @@ const CurricUnitModalContent: FC<CurricUnitModalContentProps> = ({
       )}
     </>
   );
-};
-export default CurricUnitModalContent;
+}

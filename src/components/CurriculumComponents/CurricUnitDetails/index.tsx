@@ -1,1 +1,1 @@
-export * from "./CurricUnitDetails";
+export { default } from "./CurricUnitDetails";
