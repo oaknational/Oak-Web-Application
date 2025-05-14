@@ -87,7 +87,9 @@ describe("Lesson listing page", () => {
     expect(lessonCount).toBeInTheDocument();
   });
 
-  test("it renders the correct text for the save button", async () => {
+  test("it renders the correct text for the save button when signed in", async () => {
+    setUseUserReturn(mockLoggedIn);
+
     render(<LessonListPage curriculumData={lessonListingFixture({})} />);
     const saveButton = screen.getByTestId("save-unit-button");
     expect(saveButton).toBeInTheDocument();
