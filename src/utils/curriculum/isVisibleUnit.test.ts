@@ -1,9 +1,10 @@
 import { evalPathwayCondition, isVisibleUnit } from "./isVisibleUnit";
 
 import { createFilter } from "@/fixtures/curriculum/filters";
-import { CombinedCurriculumData } from "@/pages-helpers/curriculum/docx";
+import { createSubjectCategory } from "@/fixtures/curriculum/subjectCategories";
+import { createUnit } from "@/fixtures/curriculum/unit";
 
-const baseUnit = {
+const baseUnit = createUnit({
   examboard: "Edexcel",
   examboard_slug: "edexcel",
   keystage_slug: "ks4",
@@ -21,7 +22,7 @@ const baseUnit = {
   pathway: null,
   pathway_slug: null,
   state: "published",
-} as CombinedCurriculumData["units"][number];
+});
 
 describe("isVisibleUnit", () => {
   it("empty", () => {
@@ -38,12 +39,12 @@ describe("isVisibleUnit", () => {
   });
 
   it("matches subject", () => {
-    const unit = {
+    const unit = createUnit({
       ...baseUnit,
       subjectcategories: null,
       tier: null,
       tier_slug: null,
-    } as CombinedCurriculumData["units"][number];
+    });
 
     const filters = createFilter({
       childSubjects: ["biology"],
@@ -54,15 +55,15 @@ describe("isVisibleUnit", () => {
   });
 
   it("matches subject category", () => {
-    const unit = {
+    const unit = createUnit({
       ...baseUnit,
       subjectcategories: [
-        {
+        createSubjectCategory({
           id: 1,
           title: "Biology",
-        },
+        }),
       ],
-    };
+    });
 
     const filters = createFilter({
       subjectCategories: ["1"],
@@ -71,18 +72,32 @@ describe("isVisibleUnit", () => {
     expect(isVisibleUnit(filters, "10", unit)).toEqual(true);
   });
 
+  it("matches pathway", () => {
+    const unit = createUnit({
+      ...baseUnit,
+      pathway_slug: "gcse",
+      pathway: "GCSE",
+    });
+
+    const filters = createFilter({
+      pathways: ["non_core"],
+      years: ["10"],
+    });
+    expect(isVisibleUnit(filters, "10", unit)).toEqual(true);
+  });
+
   it("matches subject category & tier", () => {
-    const unit = {
+    const unit = createUnit({
       ...baseUnit,
       subjectcategories: [
-        {
+        createSubjectCategory({
           id: 1,
           title: "Biology",
-        },
+        }),
       ],
       tier: "Foundation",
       tier_slug: "foundation",
-    };
+    });
 
     const filters = createFilter({
       subjectCategories: ["1"],
