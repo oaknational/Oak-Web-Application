@@ -63,17 +63,19 @@ export const useSaveUnits = (
   const [locallySavedUnits, setLocallySavedUnits] = useState<Array<string>>([]);
 
   useEffect(() => {
-    const parsedData = unitsResponseSchema.safeParse(savedUnitsData);
-    if (parsedData.success) {
-      if (parsedData.data.length > 0) {
-        const savedUnitsString = parsedData.data.sort().toString();
-        const locallySavedUnitsString = locallySavedUnits.sort().toString();
-        if (savedUnitsString !== locallySavedUnitsString) {
-          setLocallySavedUnits(parsedData.data);
+    if (savedUnitsData) {
+      const parsedData = unitsResponseSchema.safeParse(savedUnitsData);
+      if (parsedData.success) {
+        if (parsedData.data.length > 0) {
+          const savedUnitsString = parsedData.data.sort().toString();
+          const locallySavedUnitsString = locallySavedUnits.sort().toString();
+          if (savedUnitsString !== locallySavedUnitsString) {
+            setLocallySavedUnits(parsedData.data);
+          }
         }
+      } else {
+        reportError(parsedData.error, { savedUnitsData });
       }
-    } else {
-      reportError(parsedData.error, { savedUnitsData });
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
