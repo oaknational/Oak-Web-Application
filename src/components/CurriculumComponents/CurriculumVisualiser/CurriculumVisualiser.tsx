@@ -112,7 +112,7 @@ function getSubjectCategoryMessage(
       years
         .flatMap((yearKey) =>
           yearData[yearKey]?.subjectCategories?.filter((sc) =>
-            subjectCategories.includes(sc.id.toString()),
+            subjectCategories.includes(sc.slug),
           ),
         )
         .filter(Boolean)
@@ -159,7 +159,7 @@ function getSubjectCategoryMessage(
       (yearKey) =>
         yearData[yearKey]?.units?.some((unit) =>
           unit.subjectcategories?.some((sc) =>
-            subjectCategories.includes(sc.id.toString()),
+            subjectCategories.includes(sc.slug.toString()),
           ),
         ),
     );

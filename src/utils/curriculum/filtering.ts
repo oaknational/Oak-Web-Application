@@ -49,10 +49,10 @@ export function getDefaultChildSubjectForYearGroup(
 export function getDefaultSubjectCategoriesForYearGroup(
   data: CurriculumUnitsYearData,
 ) {
-  const set = new Set<Pick<SubjectCategory, "id">>();
+  const set = new Set<Pick<SubjectCategory, "slug" | "id">>();
   Object.values(data).forEach((yearData) => {
     yearData.subjectCategories.forEach((subjectCategory) =>
-      set.add({ id: subjectCategory.id }),
+      set.add({ id: subjectCategory.id, slug: subjectCategory.slug }),
     );
   });
   const subjectCategories = [...set]
@@ -63,7 +63,7 @@ export function getDefaultSubjectCategoriesForYearGroup(
         }),
       ),
     )
-    .map((s) => String(s.id));
+    .map((s) => String(s.slug));
   if (subjectCategories.length > 0) {
     return [subjectCategories[0]!];
   }
@@ -174,7 +174,7 @@ export function getFilterData(
   years: string[],
 ) {
   const childSubjects = new Map<string, Subject>();
-  const subjectCategories = new Map<number, SubjectCategory>();
+  const subjectCategories = new Map<string, SubjectCategory>();
   const tiers = new Map<string, Tier>();
   years.forEach((year) => {
     const obj = yearData[year];
@@ -184,7 +184,7 @@ export function getFilterData(
       );
       obj.tiers.forEach((tier) => tiers.set(tier.tier_slug, tier));
       obj.subjectCategories.forEach((subjectCategory) =>
-        subjectCategories.set(subjectCategory.id, subjectCategory),
+        subjectCategories.set(subjectCategory.slug, subjectCategory),
       );
     }
   });

@@ -244,7 +244,7 @@ describe("Curriculum visualiser filter states", () => {
 
       const filterFixture = {
         childSubjects: [],
-        subjectCategories: ["1"],
+        subjectCategories: ["sub-cat-1"],
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
         threads: [],
@@ -269,7 +269,7 @@ describe("Curriculum visualiser filter states", () => {
 
       const filterFixture = {
         childSubjects: [],
-        subjectCategories: ["1"],
+        subjectCategories: ["sub-cat-1"],
         tiers: [],
         years: ["7"],
         threads: [],
@@ -294,7 +294,7 @@ describe("Curriculum visualiser filter states", () => {
 
       const filterFixture = {
         childSubjects: [],
-        subjectCategories: ["1"],
+        subjectCategories: ["sub-cat-1"],
         tiers: [],
         years: ["8"],
         threads: [],
@@ -319,7 +319,7 @@ describe("Curriculum visualiser filter states", () => {
 
       const filterFixture = {
         childSubjects: [],
-        subjectCategories: ["1"],
+        subjectCategories: ["sub-cat-1"],
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
         threads: [],
@@ -351,7 +351,7 @@ describe("Curriculum visualiser filter states", () => {
 
       const filterFixture = {
         childSubjects: [],
-        subjectCategories: ["1"],
+        subjectCategories: ["sub-cat-1"],
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
         threads: [],
@@ -379,7 +379,7 @@ describe("Curriculum visualiser filter states", () => {
 
       const filterFixture = {
         childSubjects: [],
-        subjectCategories: ["1"],
+        subjectCategories: ["sub-cat-1"],
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
         threads: [],
@@ -407,7 +407,7 @@ describe("Curriculum visualiser filter states", () => {
 
       const filterFixture = {
         childSubjects: [],
-        subjectCategories: ["1"],
+        subjectCategories: ["sub-cat-1"],
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
         threads: [],
@@ -441,7 +441,7 @@ describe("Curriculum visualiser filter states", () => {
 
       const filterFixture = {
         childSubjects: [],
-        subjectCategories: ["1"],
+        subjectCategories: ["sub-cat-1"],
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
         threads: [],
@@ -468,7 +468,7 @@ describe("Curriculum visualiser filter states", () => {
 
       const filterFixture = {
         childSubjects: [],
-        subjectCategories: ["1"],
+        subjectCategories: ["sub-cat-1"],
         tiers: [],
         years: ["1", "2", "3", "4", "5", "6"],
         threads: [],
@@ -495,7 +495,7 @@ describe("Curriculum visualiser filter states", () => {
 
       const filterFixture = {
         childSubjects: [],
-        subjectCategories: ["1"],
+        subjectCategories: ["sub-cat-1"],
         tiers: [],
         years: ["1", "2", "3", "4", "5", "6"],
         threads: [],
@@ -536,7 +536,7 @@ describe("Year group filter headings display correctly", () => {
       test("displays all years - with no subject categories in subheadings for year 7-9, and child subjects and foundation tier in subheading for year 10-11", async () => {
         const filterFixture = {
           childSubjects: ["combined-science"],
-          subjectCategories: ["-1"],
+          subjectCategories: ["all"],
           tiers: ["higher"],
           years: ["7", "8", "9", "10", "11"],
           threads: [],
@@ -574,7 +574,7 @@ describe("Year group filter headings display correctly", () => {
 
       test("displays nothing for 'All' subject category in subheading", async () => {
         const filterFixture = {
-          subjectCategories: ["-1"],
+          subjectCategories: ["all"],
           childSubjects: [],
           tiers: [],
           years: ["7"],
@@ -600,7 +600,7 @@ describe("Year group filter headings display correctly", () => {
 
       test("displays 'Biology' subject category in subheading", async () => {
         const filterFixture = {
-          subjectCategories: ["1"],
+          subjectCategories: ["biology"],
           childSubjects: [],
           tiers: [],
           years: ["7"],
@@ -626,7 +626,7 @@ describe("Year group filter headings display correctly", () => {
 
       test("displays 'Chemistry' subject category in subheading", async () => {
         const filterFixture = {
-          subjectCategories: ["2"],
+          subjectCategories: ["chemistry"],
           childSubjects: [],
           tiers: [],
           years: ["7"],
@@ -652,7 +652,7 @@ describe("Year group filter headings display correctly", () => {
 
       test("displays 'Physics' subject categories in subheading for Year 7", async () => {
         const filterFixture = {
-          subjectCategories: ["3"],
+          subjectCategories: ["physics"],
           childSubjects: [],
           tiers: [],
           years: ["7"],
@@ -817,7 +817,7 @@ describe("Year group filter headings display correctly", () => {
       test("displays subject category in subheading for Year 1, Primary English", async () => {
         const filterFixture = {
           childSubjects: [],
-          subjectCategories: ["4"],
+          subjectCategories: ["reading-writing-and-oracy"],
           tiers: [],
           years: ["1"],
           threads: [],
@@ -849,7 +849,7 @@ describe("Year group filter headings display correctly", () => {
       test("displays Biology subject category in subheading", async () => {
         const filterFixture = {
           childSubjects: [],
-          subjectCategories: ["1"],
+          subjectCategories: ["biology"],
           tiers: [],
           years: ["1"],
           threads: [],
@@ -874,7 +874,7 @@ describe("Year group filter headings display correctly", () => {
       test("displays Chemistry subject category in subheading", async () => {
         const filterFixture = {
           childSubjects: [],
-          subjectCategories: ["2"],
+          subjectCategories: ["chemistry"],
           tiers: [],
           years: ["2"],
           threads: [],
@@ -899,7 +899,7 @@ describe("Year group filter headings display correctly", () => {
       test("displays Physics subject category in subheading", async () => {
         const filterFixture = {
           childSubjects: [],
-          subjectCategories: ["3"],
+          subjectCategories: ["physics"],
           tiers: [],
           years: ["3"],
           threads: [],
@@ -924,7 +924,7 @@ describe("Year group filter headings display correctly", () => {
       test("displays nothing for 'All' subject category in subheading", async () => {
         const filterFixture = {
           childSubjects: [],
-          subjectCategories: ["-1"],
+          subjectCategories: ["all"],
           tiers: [],
           years: ["4"],
           threads: [],
