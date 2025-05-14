@@ -11,15 +11,12 @@ export type PartialFilters = {
   pathways: CurriculumFilters["pathways"];
 };
 
-export function evalCondition(query: string, slug: string) {
-  const isNot = query.match(/^!/);
-  const target = query.replace(/^!/, "");
-
+export function evalPathwayCondition(query: string, slug: string) {
   let ret = false;
-  if (isNot) {
-    ret = slug !== target;
+  if (query === "non_core") {
+    ret = "core" !== slug;
   } else {
-    ret = slug === target;
+    ret = "core" === slug;
   }
 
   return ret;
@@ -55,7 +52,7 @@ export function isVisibleUnit(
   const filterByPathways =
     !filters.pathways?.[0] ||
     !unit.pathway_slug ||
-    evalCondition(filters.pathways[0], unit.pathway_slug);
+    evalPathwayCondition(filters.pathways[0], unit.pathway_slug);
 
   return (
     filterBySubject &&

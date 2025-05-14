@@ -1,4 +1,4 @@
-import { evalCondition, isVisibleUnit } from "./isVisibleUnit";
+import { evalPathwayCondition, isVisibleUnit } from "./isVisibleUnit";
 
 import { createFilter } from "@/fixtures/curriculum/filters";
 import { CombinedCurriculumData } from "@/pages-helpers/curriculum/docx";
@@ -94,9 +94,9 @@ describe("isVisibleUnit", () => {
   });
 });
 
-it("evalCondition", () => {
-  expect(evalCondition("!foo", "foo")).toEqual(false);
-  expect(evalCondition("!foo", "bar")).toEqual(true);
-  expect(evalCondition("foo", "foo")).toEqual(true);
-  expect(evalCondition("foo", "bar")).toEqual(false);
+it("evalPathwayCondition", () => {
+  expect(evalPathwayCondition("non_core", "core")).toEqual(false);
+  expect(evalPathwayCondition("non_core", "gcse")).toEqual(true);
+  expect(evalPathwayCondition("core", "core")).toEqual(true);
+  expect(evalPathwayCondition("core", "gcse")).toEqual(false);
 });

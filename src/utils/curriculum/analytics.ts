@@ -20,7 +20,7 @@ function assertValidPathway(
   if (pathway === "core") {
     return "Core";
   }
-  if (pathway === "!core") {
+  if (pathway === "non_core") {
     return "GCSE";
   }
   return null;
