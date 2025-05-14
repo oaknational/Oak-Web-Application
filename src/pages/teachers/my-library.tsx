@@ -11,7 +11,16 @@ import NoSavedContent from "@/components/TeacherComponents/NoSavedContent/NoSave
 
 function MyLibraryPage() {
   return (
-    <AppLayout seoProps={getSeoProps({ title: "My Library" })}>
+    <AppLayout
+      seoProps={{
+        ...getSeoProps({
+          title: "My library",
+          description: "Save units to your own personal library",
+        }),
+        noIndex: true,
+        noFollow: true,
+      }}
+    >
       <OakMaxWidth
         $gap={["space-between-m", "space-between-l"]}
         $pv="inner-padding-xl"
