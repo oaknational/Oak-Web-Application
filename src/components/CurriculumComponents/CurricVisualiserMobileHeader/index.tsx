@@ -6,7 +6,10 @@ import FocusIndicator from "../OakComponentsKitchen/FocusIndicator";
 import { CurricVisualiserFiltersProps } from "../CurricVisualiserFiltersDesktop";
 
 import ButtonGroup from "@/components/SharedComponents/ButtonGroup";
-import { getYearGroupTitle } from "@/utils/curriculum/formatting";
+import {
+  getYearGroupTitle,
+  getPathwaySuffix,
+} from "@/utils/curriculum/formatting";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import {
@@ -15,6 +18,11 @@ import {
 } from "@/utils/curriculum/filtering";
 import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics";
 import { CurriculumUnitsTrackingData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import {
+  applyFiltering,
+  getModes,
+  groupUnitsByPathway,
+} from "@/utils/curriculum/by-pathway";
 
 export type CurriculumVisualiserFiltersMobileProps =
   CurricVisualiserFiltersProps & {
@@ -98,6 +106,8 @@ export function CurricMobileStickyHeader({
   trackingData,
   selectedYear,
   onSelectYear,
+  slugs,
+  ks4Options,
 }: CurriculumVisualiserFiltersMobileProps & {
   trackingData: CurriculumUnitsTrackingData;
 }) {
@@ -105,7 +115,7 @@ export function CurricMobileStickyHeader({
   const { analyticsUseCase } = useAnalyticsPageProps();
   const [lockYear, setLockYear] = useState<string | null>(null);
 
-  const { yearData, yearOptions } = data;
+  const { yearData } = data;
 
   const highlightedUnits = highlightedUnitCount(
     yearData,
@@ -128,13 +138,13 @@ export function CurricMobileStickyHeader({
   }
 
   function isSelectedYear(yearOption: string) {
-    return selectedYear === yearOption;
+    return selectedYear === `year-${yearOption}`;
   }
 
   function scrollToYearSection(yearOption: string) {
     const targetElement = document.getElementById(`year-${yearOption}`);
     if (targetElement) {
-      const headerOffset = 70;
+      const headerOffset = 140;
       const elementPosition = targetElement.getBoundingClientRect().top;
       const { pageYOffset } = window;
       const offsetPosition = elementPosition + pageYOffset - headerOffset;
@@ -149,7 +159,7 @@ export function CurricMobileStickyHeader({
         "scrollend",
         () => {
           setLockYear(null);
-          const yearHeading = document.getElementById(`year-${yearOption}`);
+          const yearHeading = document.getElementById(`year-${yearOption} h3`);
           if (yearHeading instanceof HTMLElement) {
             yearHeading.setAttribute("tabindex", "-1");
             yearHeading.focus();
@@ -161,6 +171,15 @@ export function CurricMobileStickyHeader({
   }
 
   const textItemsDescribingFilter = buildTextDescribingFilter(data, filters);
+
+  const shouldIncludeCore = slugs.ks4OptionSlug !== "core";
+  const unitsByYearSelector = applyFiltering(
+    filters,
+    groupUnitsByPathway({
+      modes: getModes(shouldIncludeCore, ks4Options ?? []),
+      yearData,
+    }),
+  );
 
   return (
     <OakBox
@@ -240,7 +259,8 @@ export function CurricMobileStickyHeader({
           >
             <ScrollableWrapper>
               <StyledButtonGroup aria-label="Select a year group">
-                {yearOptions.map((yearOption) => {
+                {unitsByYearSelector.map(({ type, year }) => {
+                  const yearOption = `${type}-${year}`;
                   const isYearSelected = lockYear
                     ? lockYear === yearOption
                     : isSelectedYear(yearOption);
@@ -270,7 +290,14 @@ export function CurricMobileStickyHeader({
                             scrollToYearSection(yearOption);
                           }}
                         >
-                          {getYearGroupTitle(yearData, yearOption)}
+                          {getYearGroupTitle(
+                            yearData,
+                            year,
+                            (() => {
+                              const suffix = getPathwaySuffix(year, type);
+                              return suffix ? `(${suffix})` : undefined;
+                            })(),
+                          )}
                         </StyledButton>
                       </FocusIndicator>
                     </OakBox>

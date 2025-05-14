@@ -484,7 +484,7 @@ exports[`2_tableOfContents with pathways 1`] = `
               w:val="28"
             ></w:sz>
           </w:rPr>
-          <w:t><![CDATA[Year 7 units ]]></w:t>
+          <w:t><![CDATA[Year 7 units]]></w:t>
         </w:r>
       </w:hyperlink>
     </w:p>
@@ -516,7 +516,7 @@ exports[`2_tableOfContents with pathways 1`] = `
               w:val="28"
             ></w:sz>
           </w:rPr>
-          <w:t><![CDATA[Year 8 units ]]></w:t>
+          <w:t><![CDATA[Year 8 units]]></w:t>
         </w:r>
       </w:hyperlink>
     </w:p>
@@ -548,7 +548,7 @@ exports[`2_tableOfContents with pathways 1`] = `
               w:val="28"
             ></w:sz>
           </w:rPr>
-          <w:t><![CDATA[Year 9 units ]]></w:t>
+          <w:t><![CDATA[Year 9 units]]></w:t>
         </w:r>
       </w:hyperlink>
     </w:p>
@@ -4752,7 +4752,7 @@ exports[`2_tableOfContents without pathways 1`] = `
               w:val="28"
             ></w:sz>
           </w:rPr>
-          <w:t><![CDATA[Year 7 units ]]></w:t>
+          <w:t><![CDATA[Year 7 units]]></w:t>
         </w:r>
       </w:hyperlink>
     </w:p>
@@ -4784,7 +4784,7 @@ exports[`2_tableOfContents without pathways 1`] = `
               w:val="28"
             ></w:sz>
           </w:rPr>
-          <w:t><![CDATA[Year 8 units ]]></w:t>
+          <w:t><![CDATA[Year 8 units]]></w:t>
         </w:r>
       </w:hyperlink>
     </w:p>
@@ -4816,7 +4816,7 @@ exports[`2_tableOfContents without pathways 1`] = `
               w:val="28"
             ></w:sz>
           </w:rPr>
-          <w:t><![CDATA[Year 9 units ]]></w:t>
+          <w:t><![CDATA[Year 9 units]]></w:t>
         </w:r>
       </w:hyperlink>
     </w:p>
@@ -4848,7 +4848,7 @@ exports[`2_tableOfContents without pathways 1`] = `
               w:val="28"
             ></w:sz>
           </w:rPr>
-          <w:t><![CDATA[Year 10 units ]]></w:t>
+          <w:t><![CDATA[Year 10 units]]></w:t>
         </w:r>
       </w:hyperlink>
     </w:p>
@@ -4880,7 +4880,7 @@ exports[`2_tableOfContents without pathways 1`] = `
               w:val="28"
             ></w:sz>
           </w:rPr>
-          <w:t><![CDATA[Year 11 units ]]></w:t>
+          <w:t><![CDATA[Year 11 units]]></w:t>
         </w:r>
       </w:hyperlink>
     </w:p>

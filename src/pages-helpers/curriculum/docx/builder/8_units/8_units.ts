@@ -41,7 +41,10 @@ function generateGroupedUnits(
   data: CurriculumUnitsFormattedData<CombinedCurriculumData["units"][number]>,
 ) {
   const unitOptions = Object.entries(data.yearData as UnitsByPathway).flatMap(
-    ([year, { childSubjects, tiers, units, type }]) => {
+    ([year_type_key, { childSubjects, tiers, units, type }]) => {
+      const year = year_type_key.split("_")[0];
+      if (!year) return [];
+
       let options: {
         year: string;
         tier?: string;
@@ -53,6 +56,7 @@ function generateGroupedUnits(
       options.push({
         year,
         type,
+        pathway: type === "core" ? "core" : "gcse",
       });
       if (childSubjects.length > 0) {
         options = options.flatMap((option) => {
@@ -106,8 +110,8 @@ function generateGroupedUnits(
     },
   );
 
-  return unitOptions.sort((a, b) =>
-    sortYearPathways(`${a.year}-${a.type}`, `${b.year}-${b.type}`),
+  return unitOptions.toSorted((a, b) =>
+    sortYearPathways(`${a.year}-${a.pathway}`, `${b.year}-${b.pathway}`),
   );
 }
 
@@ -142,6 +146,20 @@ export default async function generate(
     pathway,
     type,
   } of groupedUnits) {
+    const isSwimming = yearDataOrig.yearData[year]?.isSwimming ?? false;
+    const ks4Suffix =
+      ["10", "11"].includes(year) && type !== "all"
+        ? type === "core"
+          ? " (Core)"
+          : " (GCSE)"
+        : "";
+    const suffix = ks4Suffix ? `units${ks4Suffix}` : "units";
+    const displayYearTitle = getYearGroupTitle(
+      yearDataOrig.yearData,
+      year,
+      suffix,
+    );
+
     yearXml.push(
       await buildYear(
         zip,
@@ -151,22 +169,16 @@ export default async function generate(
         { childSubject, tier, pathway },
         slugs,
         type,
+        displayYearTitle,
+        isSwimming,
       ),
     );
   }
 
-  const pageXml = safeXml`
-    <root>
-      ${yearXml.join("")}
-      <w:p>
-        <w:r>
-          <w:br w:type="page" />
-        </w:r>
-      </w:p>
-    </root>
-  `;
-
-  await appendBodyElements(zip, xmlElementToJson(pageXml)?.elements);
+  await appendBodyElements(
+    zip,
+    xmlElementToJson(safeXml`<root>${yearXml.join("")}</root>`)?.elements,
+  );
 }
 
 function buildOptions({
@@ -351,6 +363,8 @@ async function buildYear(
   yearSlugs: Slug,
   slugs: Slugs,
   type: MODES,
+  displayYearTitle: string,
+  isSwimming: boolean,
 ) {
   const images = await insertImages(zip, {
     jumpOutArrow: join(
@@ -519,21 +533,6 @@ async function buildYear(
     }
   }
 
-  const yearTitleSuffix = "units";
-  let displayYearTitle = getYearGroupTitle(
-    formattedData.yearData,
-    firstUnit?.year ?? "",
-    yearTitleSuffix,
-  );
-
-  // Append pathway type for KS4 years
-  if (["10", "11"].includes(firstUnit?.year ?? "")) {
-    const pathwaySuffix = type === "core" ? "Core" : "GCSE";
-    displayYearTitle = `${displayYearTitle} (${pathwaySuffix})`;
-  }
-
-  const isSwimming = formattedData.yearData[year]?.isSwimming;
-
   const xml = safeXml`
     <XML_FRAGMENT>
       ${!subjectTierPathwayTitle
@@ -563,7 +562,7 @@ async function buildYear(
           <w:pStyle w:val="Heading2" />
         </w:pPr>
         ${wrapInBookmarkPoint(
-          `section_year_${type}-${firstUnit?.year}`,
+          `section_year_${type}-${year}`,
           safeXml`
             <w:r>
               <w:rPr>

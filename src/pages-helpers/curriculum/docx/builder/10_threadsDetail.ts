@@ -1,19 +1,21 @@
 import { cdata, safeXml, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData } from "..";
 import { appendBodyElements, insertNumbering, JSZipCached } from "../docx";
-import { createThreadOptions } from "../tab-helpers";
+import { createThreadOptions, createUnitsListingByYear } from "../tab-helpers";
 
 import {
   groupUnitsBySubjectCategory,
   groupUnitsByYearAndPathway,
   sortYearPathways,
-  getYearPathwayDisplayTitle,
+  parseYearPathwayKey,
 } from "./helper";
 
+import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import { Unit } from "@/utils/curriculum/types";
+import { getSuffixFromPathway } from "@/utils/curriculum/pathways";
 
 function sortByOrder(units: Unit[]) {
-  return [...units].sort((a, b) => a.order - b.order);
+  return [...units].toSorted((a, b) => a.order - b.order);
 }
 
 function renderUnits(units: Unit[], numbering: { unitNumbering: string }) {
@@ -81,6 +83,7 @@ export default async function generate(
     `,
   });
 
+  const yearData = createUnitsListingByYear(data.units);
   const allThreadOptions = createThreadOptions(data.units);
 
   const enableGroupBySubjectCategory = data.units.some((unit) => {
@@ -141,15 +144,23 @@ export default async function generate(
     const groupedByYearPathway =
       groupUnitsByYearAndPathway(nonCategorizedUnits);
 
-    const nonCategorizedContent = Object.entries(groupedByYearPathway)
+    const sortedList = Object.entries(groupedByYearPathway)
       .map(([yearPathwayKey, unitsInGroup]) => {
         const unitsForThread = filterUnitsByThread(unitsInGroup);
         return [yearPathwayKey, unitsForThread] as [string, Unit[]];
       })
       .filter(([, units]) => units.length > 0)
-      .sort(([keyA], [keyB]) => sortYearPathways(keyA, keyB)) // Sort by year then pathway
+      .toSorted(([keyA], [keyB]) => sortYearPathways(keyA, keyB));
+
+    const nonCategorizedContent = sortedList
       .map(([yearPathwayKey, units]) => {
-        const title = getYearPathwayDisplayTitle(yearPathwayKey);
+        const { year, pathway } = parseYearPathwayKey(yearPathwayKey);
+        const title = getYearGroupTitle(
+          yearData,
+          year,
+          getSuffixFromPathway(pathway),
+        );
+
         return safeXml`
           <XML_FRAGMENT>
             <w:p>
@@ -211,7 +222,7 @@ export default async function generate(
             }
 
             // Sort the year-pathways within this category
-            yearPathwayEntriesForThread.sort(([keyA], [keyB]) =>
+            yearPathwayEntriesForThread.toSorted(([keyA], [keyB]) =>
               sortYearPathways(keyA, keyB),
             );
 
@@ -244,8 +255,14 @@ export default async function generate(
                 </w:p>
                 ${yearPathwayEntriesForThread
                   .map(([yearPathwayKey, units]) => {
-                    const yearPathwayTitle =
-                      getYearPathwayDisplayTitle(yearPathwayKey);
+                    const { year, pathway } =
+                      parseYearPathwayKey(yearPathwayKey);
+                    const yearPathwayTitle = getYearGroupTitle(
+                      yearData,
+                      year,
+                      getSuffixFromPathway(pathway),
+                    );
+
                     return safeXml`
                       <XML_FRAGMENT>
                         <w:p>
