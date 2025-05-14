@@ -7,6 +7,10 @@ exports[`CurriculumTab renders 1`] = `
       data-overlay-container="true"
     >
       <div
+        aria-live="polite"
+        class="sc-fqkvVR sc-gsFSXq sc-babe4001-0 gseEDN cQyxGE kkSscX"
+      />
+      <div
         class="sc-fqkvVR gZEYWU"
       >
         <div

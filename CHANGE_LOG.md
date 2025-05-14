@@ -1,3 +1,119 @@
+## [1.746.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.746.0...v1.746.1) (2025-05-14)
+
+
+### Bug Fixes
+
+* parse api response to make sure it's string array before updating locally saved units ([b119497](https://github.com/oaknational/Oak-Web-Application/commit/b119497c09f544c96678af23db78df52afd7cd0c))
+
+# [1.746.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.745.0...v1.746.0) (2025-05-13)
+
+
+### Bug Fixes
+
+* removed feature flag check for teacher notes and use cookie consent for hide/enabled/disabled ([72ccc3d](https://github.com/oaknational/Oak-Web-Application/commit/72ccc3dd435cd191f651af2f649b1089358076fb))
+
+
+### Features
+
+* show generic share link button when viewing shared lesson link ([123758c](https://github.com/oaknational/Oak-Web-Application/commit/123758cff1bdf2886c9034f206feefdfd31469f6))
+
+# [1.745.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.744.2...v1.745.0) (2025-05-13)
+
+
+### Bug Fixes
+
+* add lesson count to fixture ([df92d70](https://github.com/oaknational/Oak-Web-Application/commit/df92d706fb22beba6bc573a3badb3b64ec5b7de3))
+* format fix ([2911892](https://github.com/oaknational/Oak-Web-Application/commit/2911892aef45437bb67025f7987544d17ab197d0))
+
+
+### Features
+
+* hide age restricted lessons on pupil lesson listing ([714897d](https://github.com/oaknational/Oak-Web-Application/commit/714897d01f7f3b1f08c1b1879acab1f4bfc20c8e))
+* remove units with zero unrestricted lessons ([bcc3627](https://github.com/oaknational/Oak-Web-Application/commit/bcc36271387d2f87ce2529e0e8b493c1afcd97bb))
+* remove units with zero unrestricted lessons ([d86b791](https://github.com/oaknational/Oak-Web-Application/commit/d86b7919954d9d57fe15c1b4649ce5ba4fd4e030))
+
+## [1.744.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.744.1...v1.744.2) (2025-05-13)
+
+
+### Bug Fixes
+
+* added data-percy-hide attribute to prevent race condition in video content ([ebd7238](https://github.com/oaknational/Oak-Web-Application/commit/ebd7238fcd7cd75e550ec257a6fae8e8be710b0c))
+
+## [1.744.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.744.0...v1.744.1) (2025-05-13)
+
+
+### Bug Fixes
+
+* only create error boundry once not everytime (attempt 2) ([8541c4d](https://github.com/oaknational/Oak-Web-Application/commit/8541c4d91d8f52230b31cfc9c609b7d35a3c661f))
+
+# [1.744.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.743.2...v1.744.0) (2025-05-13)
+
+
+### Bug Fixes
+
+* remove dependency from array causing looping updates ([bf736bd](https://github.com/oaknational/Oak-Web-Application/commit/bf736bd052ccb1b1bb00c1730a9ab421903c7814))
+* throw an error from useSwr callback ([cca2884](https://github.com/oaknational/Oak-Web-Application/commit/cca28843fb461c71c3c5438bd8e6f1d1ef518a6d))
+
+
+### Features
+
+* add query and api route to unsave unit ([3e3762e](https://github.com/oaknational/Oak-Web-Application/commit/3e3762e714c42908fdbe8d4dda254044217aab2f))
+* add unsave functionality to useSaveUnits hook and tests ([baf464f](https://github.com/oaknational/Oak-Web-Application/commit/baf464f5e64bf846ad6cbfa5a438717eb5f71cdf))
+* bump oak components and fix toast duration behaviour ([c978279](https://github.com/oaknational/Oak-Web-Application/commit/c978279140f5b1c06836b8e3e7f22486fc91e1b7))
+* include content id in saved units response ([3d72e63](https://github.com/oaknational/Oak-Web-Application/commit/3d72e637457fd910b89017e43d776ee7c7c57b8e))
+* track save events from unit and lesson listing pages ([742fec0](https://github.com/oaknational/Oak-Web-Application/commit/742fec0915fd55b54b60865ce196d577dfa7d7ea))
+* track unsave events ([65f87c9](https://github.com/oaknational/Oak-Web-Application/commit/65f87c9b8667bf699906e5d92386538da56a1725))
+
+## [1.743.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.743.1...v1.743.2) (2025-05-12)
+
+
+### Bug Fixes
+
+* only create error boundry once not everytime ([fa9c67c](https://github.com/oaknational/Oak-Web-Application/commit/fa9c67c4acb45c61c6c02db5e904eef787a007ce))
+
+## [1.743.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.743.0...v1.743.1) (2025-05-12)
+
+
+### Bug Fixes
+
+* don't dump invalid props into <OakSearchFilterCheckBox/> ([2f9f673](https://github.com/oaknational/Oak-Web-Application/commit/2f9f67389927efe7afc05d8bc1246d27809bcfd5))
+* lessonCount changed type from number to string in <OakUnitListItem/> ([f1c4dad](https://github.com/oaknational/Oak-Web-Application/commit/f1c4dad254791632fd89298ff94ea7bfd9066688))
+* no length check in isCurrentPageItems ([96ed65a](https://github.com/oaknational/Oak-Web-Application/commit/96ed65a1a0baf2c721c08adf4a3dfee2f28a1f30))
+
+# [1.743.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.742.0...v1.743.0) (2025-05-12)
+
+
+### Bug Fixes
+
+* only enable saving when signed in ([a18c5bf](https://github.com/oaknational/Oak-Web-Application/commit/a18c5bf393f6db340296497fedc9038c1082f5f0))
+* rename test files so they don't interfere with routes ([460e9a3](https://github.com/oaknational/Oak-Web-Application/commit/460e9a37ca31533b90d6d9f01e124d108385bff7))
+
+
+### Features
+
+* add api endpoint for getSavedUnits ([f7fd288](https://github.com/oaknational/Oak-Web-Application/commit/f7fd288770acfe3f25074f5eeacaf9f223173165))
+* add getUserContent query ([df4a519](https://github.com/oaknational/Oak-Web-Application/commit/df4a519e4f1ec0e2f562d6502d1fd289409d9b37))
+* add helper to post educator data and use in unit list to save units ([138c4b7](https://github.com/oaknational/Oak-Web-Application/commit/138c4b7653e8892edd3342aece9f12196501b737))
+* add hook to fetch saved units and use in unitList ([a8da523](https://github.com/oaknational/Oak-Web-Application/commit/a8da5239f2506dc39bf1c6afc8f3055e733b05a7))
+* add query createUserListContent and api method ([e7399d1](https://github.com/oaknational/Oak-Web-Application/commit/e7399d1b1ada724a123283339b451955d3ac7a0e))
+* add save functionality to lesson listing page ([4b883d9](https://github.com/oaknational/Oak-Web-Application/commit/4b883d949eca76b846b371a7b05f30360eecc0f9))
+* add toast alert on save and error ([f76ec26](https://github.com/oaknational/Oak-Web-Application/commit/f76ec26f925a200f40060286dfa8d3e4dcdee807))
+* allow optional unit slug in getusercontent query ([f956418](https://github.com/oaknational/Oak-Web-Application/commit/f956418f5b8651ec118286ee54fb9353fc0ca145))
+
+# [1.742.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.741.1...v1.742.0) (2025-05-09)
+
+
+### Features
+
+* add hubspot contact record id to posthog ([044f598](https://github.com/oaknational/Oak-Web-Application/commit/044f59811631a1841032d381c8bc897cd0d2ef26))
+
+## [1.741.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.741.0...v1.741.1) (2025-05-08)
+
+
+### Bug Fixes
+
+* make avo inline with the main branch ([e3ebc7b](https://github.com/oaknational/Oak-Web-Application/commit/e3ebc7b407b4c2276d931c726a96bb10e4593c3f))
+
 # [1.741.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.740.4...v1.741.0) (2025-05-08)
 
 

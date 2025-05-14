@@ -33,6 +33,9 @@ const ERROR_CODES = [
   "downloads/check-files-failed",
   "onboarding/request-error",
   "oak-components/invalid-icon-name",
+  "educator-api/failed-to-save-unit",
+  "educator-api/failed-to-get-saved-units",
+  "educator-api/failed-to-unsave-unit",
 ] as const;
 export type ErrorCode = (typeof ERROR_CODES)[number];
 
@@ -176,6 +179,18 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "oak-components/invalid-icon-name": {
     message: "Invalid icon name provided to OakIcon",
+    shouldNotify: true,
+  },
+  "educator-api/failed-to-get-saved-units": {
+    message: "Failed to fetch user content data from the educator API",
+    shouldNotify: true,
+  },
+  "educator-api/failed-to-save-unit": {
+    message: "Failed to save unit to the educator API",
+    shouldNotify: true,
+  },
+  "educator-api/failed-to-unsave-unit": {
+    message: "Failed to unsave unit from the educator API",
     shouldNotify: true,
   },
 };
