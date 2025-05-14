@@ -18,9 +18,14 @@ export function applyFiltering(
     });
   }
 
+  // HACK: If we're filtering by more than one year assume "all"
+  const selectingAll = filters.years.length > 1;
+
   const yearDataFilteredBySelectedYear = Object.values(
     unitsByYearSelector,
-  ).filter((item) => filterIncludes("years", [item.year]));
+  ).filter((item) => {
+    return selectingAll || filterIncludes("years", [item.year]);
+  });
 
   return yearDataFilteredBySelectedYear
     .map((item) => {
@@ -33,7 +38,7 @@ export function applyFiltering(
       };
     })
     .filter((item) => {
-      return item.units.length > 0;
+      return selectingAll || item.units.length > 0;
     });
 }
 
