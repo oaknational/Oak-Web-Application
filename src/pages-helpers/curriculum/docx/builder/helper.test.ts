@@ -15,6 +15,7 @@ import {
   parseYearPathwayKey,
   sortYearPathways,
   getSuffixFromPathway,
+  makeTransparentIfSanity,
 } from "./helper";
 
 import { createUnit } from "@/fixtures/curriculum/unit";
@@ -450,5 +451,18 @@ describe("getSuffixFromPathway", () => {
 
   it("none", () => {
     expect(getSuffixFromPathway("foobar")).toEqual(undefined);
+  });
+});
+
+describe("makeTransparentIfSanity", () => {
+  it("data:// urls", () => {
+    const url =
+      "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+    expect(makeTransparentIfSanity(url)).toEqual(url);
+  });
+
+  it("http:// urls", () => {
+    const url = "http://localhost:3000/foo.png";
+    expect(makeTransparentIfSanity(url)).toEqual(`${url}?fm=png&bg=00FFFFFF`);
   });
 });
