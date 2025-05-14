@@ -35,6 +35,7 @@ const ERROR_CODES = [
   "oak-components/invalid-icon-name",
   "educator-api/failed-to-save-unit",
   "educator-api/failed-to-get-saved-units",
+  "educator-api/failed-to-unsave-unit",
 ] as const;
 export type ErrorCode = (typeof ERROR_CODES)[number];
 
@@ -186,6 +187,10 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "educator-api/failed-to-save-unit": {
     message: "Failed to save unit to the educator API",
+    shouldNotify: true,
+  },
+  "educator-api/failed-to-unsave-unit": {
+    message: "Failed to unsave unit from the educator API",
     shouldNotify: true,
   },
 };
