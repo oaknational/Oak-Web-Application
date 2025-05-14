@@ -2,7 +2,7 @@ import { act, renderHook, waitFor } from "@testing-library/react";
 
 import { useSaveUnits } from "./useSaveUnits";
 
-import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
+import { mockLoggedIn, mockLoggedOut } from "@/__tests__/__helpers__/mockUser";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 
@@ -188,5 +188,35 @@ describe("useSaveUnits", () => {
       subjectSlug: "maths",
       subjectTitle: "Maths",
     });
+  });
+  it("should set showSignIn to true when user is signed out", () => {
+    setUseUserReturn(mockLoggedOut);
+    const { result } = renderHook(() =>
+      useSaveUnits("test-programme", mockTrackingData),
+    );
+
+    act(() => result.current.onSaveToggle("unit1"));
+
+    expect(result.current.showSignIn).toBe(true);
+  });
+  it("should set showSignIn to true when user is signed in but not onboarded", () => {
+    setUseUserReturn({
+      ...mockLoggedIn,
+      user: {
+        ...mockLoggedIn.user,
+        publicMetadata: {
+          owa: {
+            isOnboarded: false,
+          },
+        },
+      },
+    });
+    const { result } = renderHook(() =>
+      useSaveUnits("test-programme", mockTrackingData),
+    );
+
+    act(() => result.current.onSaveToggle("unit1"));
+
+    expect(result.current.showSignIn).toBe(true);
   });
 });
