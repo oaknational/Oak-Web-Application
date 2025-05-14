@@ -23,6 +23,7 @@ import {
   getModes,
   groupUnitsByPathway,
 } from "@/utils/curriculum/by-pathway";
+import { getShouldDisplayCorePathway } from "@/utils/curriculum/pathways";
 
 export type CurriculumVisualiserFiltersMobileProps =
   CurricVisualiserFiltersProps & {
@@ -122,6 +123,9 @@ export function CurricMobileStickyHeader({
     filters,
     filters.threads,
   );
+
+  const shouldDisplayCorePathway =
+    slugs.ks4OptionSlug !== "core" && getShouldDisplayCorePathway(ks4Options);
 
   function trackSelectYear(year: string): void {
     if (trackingData) {
@@ -294,7 +298,9 @@ export function CurricMobileStickyHeader({
                             yearData,
                             year,
                             (() => {
-                              const suffix = getPathwaySuffix(year, type);
+                              const suffix = shouldDisplayCorePathway
+                                ? getPathwaySuffix(year, type)
+                                : undefined;
                               return suffix ? `(${suffix})` : undefined;
                             })(),
                           )}

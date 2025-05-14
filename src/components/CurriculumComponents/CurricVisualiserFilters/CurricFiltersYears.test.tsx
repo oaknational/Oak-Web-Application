@@ -210,7 +210,7 @@ describe("CurricFiltersYears", () => {
       threads: [],
       tiers: [],
       years: ["10"],
-      pathways: ["!core"],
+      pathways: ["non_core"],
     });
 
     // 11-gcse
@@ -221,7 +221,7 @@ describe("CurricFiltersYears", () => {
       threads: [],
       tiers: [],
       years: ["11"],
-      pathways: ["!core"],
+      pathways: ["non_core"],
     });
 
     // Re-render because "all" will be selected by default
