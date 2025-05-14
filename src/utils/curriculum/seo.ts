@@ -1,6 +1,7 @@
 import { createTeacherProgrammeSlug } from "./slugs";
 import { YearData } from "./types";
 import { findUnitOrOptionBySlug } from "./units";
+import { areLessonsAvailable } from "./lessons";
 
 import { transformOwaLinkProps } from "@/components/SharedComponents/OwaLink";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
@@ -28,8 +29,12 @@ export function getUnitSeoFromYearData({
       unitData?.pathway_slug ?? undefined,
     );
 
+    const lessonsAvailable = areLessonsAvailable(
+      unitData?.lessons ?? unitData?.lessons ?? [],
+    );
+
     const lessonPageProps =
-      programmeSlug && slug
+      lessonsAvailable && programmeSlug && slug
         ? transformOwaLinkProps({
             page: "lesson-index",
             unitSlug: slug,
