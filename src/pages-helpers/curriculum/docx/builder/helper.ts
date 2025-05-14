@@ -72,29 +72,6 @@ export function createCurriculumSlug(slugs: Slugs) {
   }`;
 }
 
-export function threadUnitByYear(units: Unit[], threadSlug: string) {
-  const output = {} as Record<string, Unit[]>;
-
-  units.forEach((unit: Unit) => {
-    const year =
-      unit.actions?.programme_field_overrides?.year_slug ?? unit.year;
-    unit.threads.forEach((thread) => {
-      if (thread.slug === threadSlug) {
-        output[year] = output[year] ?? [];
-        if (
-          output[year] &&
-          // Check if unit is not already within output
-          !output[year]!.find((yearUnit) => yearUnit.slug === unit.slug)
-        ) {
-          output[year]!.push(unit);
-        }
-      }
-    });
-  });
-
-  return output;
-}
-
 export function unitsByYear(units: Unit[]) {
   const output = {} as Record<string, Unit[]>;
 
