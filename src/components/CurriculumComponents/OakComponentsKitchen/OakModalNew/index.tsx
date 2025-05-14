@@ -1,5 +1,5 @@
 import { OakFlex } from "@oaknational/oak-components";
-import { ComponentProps } from "react";
+import { ComponentProps, useRef } from "react";
 import { Transition } from "react-transition-group";
 
 import { AnimateSlideIn, AnimateSlideInProps } from "./AnimateSlideIn";
@@ -26,11 +26,13 @@ export function OakModalNew({
   animateFrom = "right",
   modalWidth = "100%",
 }: OakModalNewProps) {
+  const ref = useRef(null);
+
   return (
     <Transition in={open} timeout={TRANSITION_DURATION} unmountOnExit={false}>
       {(animationState) => {
         return (
-          <Dialog open={open} onClose={onClose}>
+          <Dialog ref={ref} open={open} onClose={onClose}>
             <Backdrop state={animationState} $zIndex="modal-dialog" />
             <AnimateSlideIn
               direction={animateFrom}

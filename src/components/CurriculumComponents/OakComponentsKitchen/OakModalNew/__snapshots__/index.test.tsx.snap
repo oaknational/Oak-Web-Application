@@ -3,7 +3,7 @@
 exports[`OakModalNew should match snapshot 1`] = `
 <div>
   <dialog
-    class="sc-48aa58fa-0 iVRMoe"
+    class="sc-692ca-0 jfQDcn"
     data-testid="modal"
     style="z-index: 320;"
   >

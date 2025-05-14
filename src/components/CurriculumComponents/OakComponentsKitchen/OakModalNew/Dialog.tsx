@@ -1,4 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import React, {
+  ForwardedRef,
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+} from "react";
 import styled from "styled-components";
 
 import { usePrevious } from "@/hooks/usePrevious";
@@ -46,54 +52,66 @@ type DialogProps = {
   open: boolean;
   onClose: () => void;
 };
-export function Dialog({ open, children, onClose }: DialogProps) {
-  const ref = useRef<HTMLDialogElement>(null);
-  const prevOpen = usePrevious(open);
+export const Dialog = forwardRef(
+  (
+    { open, children, onClose }: DialogProps,
+    passedRef: ForwardedRef<HTMLDialogElement>,
+  ) => {
+    const ref = useRef<HTMLDialogElement>(null);
 
-  useEffect(() => {
-    const el = ref.current;
-    if (open) {
-      setBodyState(el, true);
-      if (el) el.showModal();
-    } else if (!open && prevOpen) {
-      setBodyState(ref.current, false);
-      if (el) el.close();
-    }
-    return () => {
-      setBodyState(el, false);
-    };
-  }, [ref, open, prevOpen]);
+    // See <https://www.carlrippon.com/using-a-forwarded-ref-internally/>
+    useImperativeHandle<HTMLDialogElement | null, HTMLDialogElement | null>(
+      passedRef,
+      () => ref.current,
+    );
 
-  useEffect(() => {
-    if (ref.current) {
+    const prevOpen = usePrevious(open);
+
+    useEffect(() => {
       const el = ref.current;
-
-      const onBackdropClose = (e: Event) => {
-        if (e.target instanceof Element && e.target.nodeName === "DIALOG") {
-          onClose();
-        }
-      };
-
-      el.addEventListener("close", onClose);
-      el.addEventListener("click", onBackdropClose);
-
+      if (open) {
+        setBodyState(el, true);
+        if (el) el.showModal();
+      } else if (!open && prevOpen) {
+        setBodyState(ref.current, false);
+        if (el) el.close();
+      }
       return () => {
-        el.removeEventListener("close", onClose);
-        el.removeEventListener("click", onBackdropClose);
+        setBodyState(el, false);
       };
-    }
-  }, [ref, onClose]);
+    }, [ref, open, prevOpen]);
 
-  return (
-    <DialogBase
-      ref={ref}
-      data-testid="modal"
-      style={{
-        // TODO: This is 'modal-dialog' from oak-components
-        zIndex: 320,
-      }}
-    >
-      {children}
-    </DialogBase>
-  );
-}
+    useEffect(() => {
+      if (ref.current) {
+        const el = ref.current;
+
+        const onBackdropClose = (e: Event) => {
+          if (e.target instanceof Element && e.target.nodeName === "DIALOG") {
+            onClose();
+          }
+        };
+
+        el.addEventListener("close", onClose);
+        el.addEventListener("click", onBackdropClose);
+
+        return () => {
+          el.removeEventListener("close", onClose);
+          el.removeEventListener("click", onBackdropClose);
+        };
+      }
+    }, [ref, onClose]);
+
+    return (
+      <DialogBase
+        ref={ref}
+        data-testid="modal"
+        style={{
+          // TODO: This is 'modal-dialog' from oak-components
+          zIndex: 320,
+        }}
+      >
+        {children}
+      </DialogBase>
+    );
+  },
+);
