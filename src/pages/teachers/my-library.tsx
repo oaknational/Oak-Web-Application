@@ -23,7 +23,8 @@ function MyLibraryPage() {
     >
       <OakMaxWidth
         $gap={["space-between-m", "space-between-l"]}
-        $pv="inner-padding-xl"
+        $pb="inner-padding-xl"
+        $pt={["inner-padding-none", "inner-padding-xl"]}
       >
         <MyLibraryHeader />
         <NoSavedContent />
