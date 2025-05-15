@@ -1,6 +1,11 @@
 import { FC, useRef } from "react";
-import { OakBox, oakColorTokens, OakFlex } from "@oaknational/oak-components";
-import { UserButton, useUser } from "@clerk/nextjs";
+import {
+  OakBox,
+  oakColorTokens,
+  OakFlex,
+  OakSecondaryButton,
+} from "@oaknational/oak-components";
+import { UserButton, useUser, SignUpButton } from "@clerk/nextjs";
 
 import Logo from "@/components/AppComponents/Logo";
 import { HeaderProps } from "@/components/AppComponents/Layout/Layout";
@@ -92,6 +97,17 @@ const AppHeader: FC<HeaderProps> = () => {
                 }}
                 data-testid="clerk-user-button"
               />
+            )}
+            {!isSignedIn && selectedArea == siteAreas.teachers && (
+              <SignUpButton>
+                <OakSecondaryButton
+                  font={"body-3-bold"}
+                  pv="inner-padding-xs"
+                  ph="inner-padding-xs"
+                >
+                  Sign up
+                </OakSecondaryButton>
+              </SignUpButton>
             )}
             <OwaLink
               page={"teachers-home-page"}
