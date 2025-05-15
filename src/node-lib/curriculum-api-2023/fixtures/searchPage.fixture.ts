@@ -81,6 +81,7 @@ export const searchResultsItem = (
     keyStageSlug: "ks4",
     subjectTitle: "Computing",
     unitTitle: "Computer systems",
+    legacy: false,
     onClick: () => {
       console.log("click");
     },
@@ -150,6 +151,7 @@ export const searchResultsItem = (
     keyStageShortCode: "KS3",
     keyStageTitle: "Key stage 3",
     keyStageSlug: "ks3",
+    legacy: false,
     onClick: () => {
       console.log("click");
     },
@@ -219,6 +221,7 @@ export const searchResultsItem = (
     keyStageShortCode: "KS3",
     keyStageTitle: "Key stage 3",
     keyStageSlug: "ks3",
+    legacy: false,
     onClick: () => {
       console.log("click");
     },
@@ -290,6 +293,7 @@ export const searchResultsItem = (
     keyStageShortCode: "KS4",
     keyStageTitle: "Key stage 4",
     keyStageSlug: "ks4",
+    legacy: false,
     subjectTitle: "Computing",
     unitTitle: "Computer systems",
     onClick: () => {

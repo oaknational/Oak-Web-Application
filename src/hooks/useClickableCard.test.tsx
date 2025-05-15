@@ -18,7 +18,7 @@ const Clickable = ({
   };
   return (
     <div data-testid="container" {...containerProps}>
-      <button onClick={onClick} {...primaryTargetProps}>
+      <button onClick={onClick} ref={primaryTargetProps.ref}>
         Primary button
       </button>
       <p>A bunch of other text that that is not a label for either button</p>

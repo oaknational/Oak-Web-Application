@@ -141,6 +141,7 @@ export const mockGetAuthSignedIn: AuthObject = {
     iat: 0,
   },
   sessionId: "session-id",
+  sessionStatus: null,
   actor: undefined,
   userId: "123",
   orgId: undefined,
@@ -159,6 +160,7 @@ export const mockGetAuthSignedIn: AuthObject = {
 export const mockGetAuthSignedOut: AuthObject = {
   sessionClaims: null,
   sessionId: null,
+  sessionStatus: null,
   actor: null,
   userId: null,
   orgId: null,

@@ -36,7 +36,7 @@ export const additionalFile = z.object({
 
 export const additionalFiles = z.array(additionalFile);
 
-export const downloadsAssetData = z.object({
+export const downloadsAssetDataSchema = z.object({
   has_slide_deck_asset_object: z.boolean(),
   starter_quiz: z.array(quizQuestionSchema).nullable(),
   exit_quiz: z.array(quizQuestionSchema).nullable(),
@@ -50,10 +50,11 @@ export const downloadsAssetData = z.object({
   geo_restricted: z.boolean().nullable(),
   login_required: z.boolean().nullable(),
   downloadable_files: z.array(additionalFile).nullish(),
+  lesson_release_date: z.string().nullish(),
 });
 
 export const lessonDownloadsQueryRaw = z.object({
-  download_assets: z.array(downloadsAssetData),
+  download_assets: z.array(downloadsAssetDataSchema),
   unit_lessons: z.array(syntheticUnitvariantLessonsSchema),
 });
 

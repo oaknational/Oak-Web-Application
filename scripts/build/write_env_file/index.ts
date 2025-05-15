@@ -149,16 +149,14 @@ async function main() {
       process.env.NEXT_PUBLIC_VERCEL_API_URL || oakConfig.oak.vercelApiUrl,
     NEXT_PUBLIC_DOWNLOAD_API_URL:
       process.env.NEXT_PUBLIC_DOWNLOAD_API_URL || oakConfig.oak.downloadApiUrl,
-    // Personalisation data
-    PERSONALISATION_API_URL:
-      process.env.PERSONALISATION_API_URL ||
-      oakConfig.oak.personalisationApiUrl,
-    PERSONALISATION_API_AUTH_KEY:
-      process.env.PERSONALISATION_API_AUTH_KEY ||
-      secretsFromNetwork.PERSONALISATION_API_AUTH_KEY,
-    PERSONALISATION_API_AUTH_ROLE:
-      process.env.PERSONALISATION_API_AUTH_ROLE ||
-      oakConfig.oak.personalisationApiAuthRole,
+    // Educator data
+    EDUCATOR_API_URL:
+      process.env.EDUCATOR_API_URL || oakConfig.oak.educatorApiUrl,
+    EDUCATOR_API_AUTH_KEY:
+      process.env.EDUCATOR_API_AUTH_KEY ||
+      secretsFromNetwork.EDUCATOR_API_AUTH_KEY,
+    EDUCATOR_API_AUTH_ROLE:
+      process.env.EDUCATOR_API_AUTH_ROLE || oakConfig.oak.educatorApiAuthRole,
     // Mux
     MUX_SIGNING_KEY:
       process.env.MUX_SIGNING_KEY || secretsFromNetwork.MUX_SIGNING_KEY,

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   NextPage,
   GetStaticProps,
@@ -47,6 +47,7 @@ import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { resolveOakHref } from "@/common-lib/urls";
+import { useTeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/useTeacherShareButton";
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
 };
@@ -86,10 +87,10 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     programmeSlug,
     subjectSlug,
     actions,
+    pathwayTitle,
+    examBoardTitle,
+    tierTitle,
   } = curriculumData;
-
-  const [showExpiredLessonsBanner, setShowExpiredLessonsBanner] =
-    useState<boolean>(actions?.displayExpiringBanner ?? false);
 
   const unitListingHref = `/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/programmes`;
   const { shareUrl, browserUrl, shareActivated } = useShareExperiment({
@@ -104,6 +105,10 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       subjectTitle,
       keyStageSlug,
       keyStageTitle: keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
+      lessonReleaseCohort: isSlugLegacy(programmeSlug)
+        ? "2020-2023"
+        : "2023-2026",
+      lessonReleaseDate: "unpublished",
     },
     overrideExistingShareId: true,
   });
@@ -114,12 +119,17 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     }
   }, [browserUrl]);
 
+  const { handleClick, copiedComponent } = useTeacherShareButton({
+    shareUrl,
+    shareActivated,
+  });
+
   const teacherShareButton = (
     <TeacherShareButton
       variant="primary"
       shareUrl={shareUrl}
-      shareActivated={shareActivated}
       label="Share unit with colleague"
+      handleClick={handleClick}
     />
   );
 
@@ -158,11 +168,16 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         lessonName: props.lessonTitle,
         lessonSlug: props.lessonSlug,
         unitName: unitTitle,
-        unitSlug: unitSlug,
-        keyStageSlug: keyStageSlug,
+        unitSlug,
+        keyStageSlug,
         keyStageTitle: keyStageTitle as KeyStageTitleValueType,
         yearGroupName: props.yearTitle,
         yearGroupSlug: props.yearSlug,
+        pathway: pathwayTitle,
+        examBoard: examBoardTitle,
+        tierName: tierTitle,
+        lessonReleaseCohort: "2023-2026",
+        lessonReleaseDate: "unpublished",
       });
     }
   };
@@ -243,6 +258,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           hasCurriculumDownload={isSlugLegacy(programmeSlug)}
           {...curriculumData}
           shareButton={teacherShareButton}
+          copiedComponent={copiedComponent}
           unitDownloadFileId={
             unitSlug.endsWith(unitvariantId.toString())
               ? unitSlug
@@ -257,11 +273,11 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               eventVersion: "2.0.0",
               analyticsUseCase: "Teacher",
               unitName: unitTitle,
-              unitSlug: unitSlug,
-              keyStageSlug: keyStageSlug,
+              unitSlug,
+              keyStageSlug,
               keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-              subjectSlug: subjectSlug,
-              subjectTitle: subjectTitle,
+              subjectSlug,
+              subjectTitle,
             })
           }
           showRiskAssessmentBanner={showRiskAssessmentBanner}
@@ -325,12 +341,9 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
                 onClick={trackLessonSelected}
                 expiringBanner={
                   <ExpiringBanner
-                    isOpen={showExpiredLessonsBanner}
+                    isOpen={actions?.displayExpiringBanner ?? false}
                     isResourcesMessage={true}
                     onwardHref={unitListingHref}
-                    onClose={() => {
-                      setShowExpiredLessonsBanner(false);
-                    }}
                   />
                 }
               />

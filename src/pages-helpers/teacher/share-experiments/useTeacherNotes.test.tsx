@@ -9,6 +9,8 @@ import {
 import { useTeacherNotes } from "./useTeacherNotes";
 import { CurriculumTrackingProps } from "./shareExperimentTypes";
 
+import { LessonReleaseCohortValueType } from "@/browser-lib/avo/Avo";
+
 // Create a single mock client that will be returned by useOakPupil
 const mockClient = {
   getTeacherNote: jest.fn(),
@@ -40,7 +42,10 @@ const mockTeacherNote: TeacherNoteCamelCase = {
 describe("useTeacherNotes", () => {
   const useOakPupilMock = useOakPupil as jest.Mock;
 
-  const curriculumTrackingProps: CurriculumTrackingProps = {
+  const curriculumTrackingProps: CurriculumTrackingProps & {
+    lessonReleaseDate: string;
+    lessonReleaseCohort: LessonReleaseCohortValueType;
+  } = {
     lessonName: "lessonName",
     lessonSlug: "lesson-slug",
     unitName: "unitName",
@@ -49,6 +54,8 @@ describe("useTeacherNotes", () => {
     subjectTitle: "subjectTitle",
     keyStageSlug: "keyStageSlug",
     keyStageTitle: "Key stage 1",
+    lessonReleaseDate: "2023-10-01",
+    lessonReleaseCohort: "2020-2023",
   };
 
   const createWrapper = () => {
@@ -149,7 +156,7 @@ describe("useTeacherNotes", () => {
 
   it("should not fetch a teacher note if sidKey or lessonPath is missing", async () => {
     const mockGetTeacherNote = useOakPupilMock().getTeacherNote;
-
+    console.error = jest.fn();
     const wrapper = createWrapper();
     // render hook
     renderHook(
@@ -167,6 +174,9 @@ describe("useTeacherNotes", () => {
     await waitFor(() => {
       expect(mockGetTeacherNote).not.toHaveBeenCalled();
     });
+    expect(console.error).toHaveBeenCalledWith(
+      "sidKey or lessonPath is missing",
+    );
   });
 
   it("should create new note if none is found", async () => {

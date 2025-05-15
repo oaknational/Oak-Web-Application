@@ -7,6 +7,10 @@ exports[`CurriculumTab renders 1`] = `
       data-overlay-container="true"
     >
       <div
+        aria-live="polite"
+        class="sc-fqkvVR sc-gsFSXq sc-8874d2c7-0 gseEDN cQyxGE bjAjf"
+      />
+      <div
         class="sc-fqkvVR gZEYWU"
       >
         <div
@@ -19,7 +23,7 @@ exports[`CurriculumTab renders 1`] = `
               class="sc-fqkvVR gdtuvF"
             >
               <img
-                alt="looping-line-5"
+                alt=""
                 class="sc-dcJsrY koGnIf"
                 data-nimg="fill"
                 decoding="async"
@@ -98,7 +102,7 @@ exports[`CurriculumTab renders 1`] = `
                     class="sc-fqkvVR kbnxKi sc-fXSgeo"
                   >
                     <img
-                      alt="chevron-right"
+                      alt=""
                       class="sc-dcJsrY cDKKvZ"
                       data-nimg="fill"
                       decoding="async"
@@ -138,10 +142,11 @@ exports[`CurriculumTab renders 1`] = `
                           style="width: 50%;"
                         >
                           <div
-                            class="sc-fqkvVR sc-9dfc1bad-0 sc-47b15246-2 jEHEPk fAkCpO evzFxe"
+                            class="sc-fqkvVR sc-9dfc1bad-0 sc-bd3b6d19-2 jEHEPk fAkCpO bqIPtS"
                           >
                             <button
-                              class="sc-47b15246-1 fDOTWT"
+                              aria-expanded="false"
+                              class="sc-bd3b6d19-1 hDLPYn"
                               data-testid="subject-picker-button"
                               title="Subject"
                             >
@@ -205,10 +210,11 @@ exports[`CurriculumTab renders 1`] = `
                             class="sc-fqkvVR sc-gsFSXq fxkSvJ ehZBcc"
                           >
                             <div
-                              class="sc-fqkvVR sc-9dfc1bad-0 sc-47b15246-2 eMDDOo fAkCpO evzFxe"
+                              class="sc-fqkvVR sc-9dfc1bad-0 sc-bd3b6d19-2 eMDDOo fAkCpO bqIPtS"
                             >
                               <button
-                                class="sc-47b15246-1 fDOTWT"
+                                aria-expanded="false"
+                                class="sc-bd3b6d19-1 hDLPYn"
                                 data-testid="phase-picker-button"
                                 title="Phase"
                               >
@@ -257,7 +263,7 @@ exports[`CurriculumTab renders 1`] = `
                                       class="sc-fqkvVR kbnxKi"
                                     >
                                       <img
-                                        alt="arrow-right"
+                                        alt=""
                                         class="sc-dcJsrY bDcxkE"
                                         data-nimg="fill"
                                         decoding="async"
@@ -327,10 +333,11 @@ exports[`CurriculumTab renders 1`] = `
                       style="width: 50%;"
                     >
                       <div
-                        class="sc-fqkvVR sc-9dfc1bad-0 sc-47b15246-2 jEHEPk fAkCpO evzFxe"
+                        class="sc-fqkvVR sc-9dfc1bad-0 sc-bd3b6d19-2 jEHEPk fAkCpO bqIPtS"
                       >
                         <button
-                          class="sc-47b15246-1 fDOTWT"
+                          aria-expanded="false"
+                          class="sc-bd3b6d19-1 hDLPYn"
                           data-testid="subject-picker-button"
                           title="Subject"
                         >
@@ -394,10 +401,11 @@ exports[`CurriculumTab renders 1`] = `
                         class="sc-fqkvVR sc-gsFSXq fxkSvJ ehZBcc"
                       >
                         <div
-                          class="sc-fqkvVR sc-9dfc1bad-0 sc-47b15246-2 eMDDOo fAkCpO evzFxe"
+                          class="sc-fqkvVR sc-9dfc1bad-0 sc-bd3b6d19-2 eMDDOo fAkCpO bqIPtS"
                         >
                           <button
-                            class="sc-47b15246-1 fDOTWT"
+                            aria-expanded="false"
+                            class="sc-bd3b6d19-1 hDLPYn"
                             data-testid="phase-picker-button"
                             title="Phase"
                           >
@@ -446,7 +454,7 @@ exports[`CurriculumTab renders 1`] = `
                                   class="sc-fqkvVR kbnxKi"
                                 >
                                   <img
-                                    alt="arrow-right"
+                                    alt=""
                                     class="sc-dcJsrY bDcxkE"
                                     data-nimg="fill"
                                     decoding="async"

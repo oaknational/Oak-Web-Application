@@ -9,11 +9,12 @@ import {
   SpecialistUnitListingData,
 } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
+import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 
 export const isCurrentPageItems = (
   u: CurrentPageItemsProps[] | SpecialistUnit[][],
 ): u is CurrentPageItemsProps[] => {
-  return (u[0] as CurrentPageItemsProps)[0]?.keyStageSlug !== undefined;
+  return (u[0] as CurrentPageItemsProps)?.[0]?.keyStageSlug !== undefined;
 };
 
 export const isUnitListData = (
@@ -57,13 +58,19 @@ export const getPageItems = ({
 
 export const getProgrammeFactors = (props: UnitListProps) => {
   if (isUnitListData(props)) {
-    const { phase, examBoardSlug, keyStageSlug } = props;
-    return { phaseSlug: phase, examBoardSlug, keyStageSlug };
+    const { phase, examBoardSlug, keyStageSlug, keyStageTitle } = props;
+    return {
+      phaseSlug: phase,
+      examBoardSlug,
+      keyStageSlug,
+      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+    };
   } else {
     return {
       phase: undefined,
       examBoardSlug: undefined,
       keyStageSlug: undefined,
+      keyStageTitle: undefined,
     };
   }
 };

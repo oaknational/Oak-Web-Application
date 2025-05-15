@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 import {
   TeacherNote,
   TeacherNoteCamelCase,
@@ -14,13 +13,17 @@ import {
 } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { ShareSource } from "@/pages-helpers/teacher/share-experiments/createShareId";
+import { LessonReleaseCohortValueType } from "@/browser-lib/avo/Avo";
 
 export type UseLessonProps = {
   lessonSlug: string;
   unitSlug?: string;
   programmeSlug?: string;
   source: "lesson-browse" | "lesson-canonical";
-  curriculumTrackingProps: CurriculumTrackingProps;
+  curriculumTrackingProps: CurriculumTrackingProps & {
+    lessonReleaseDate: string;
+    lessonReleaseCohort: LessonReleaseCohortValueType;
+  };
 };
 
 type UseLessonReturn = {
@@ -30,7 +33,7 @@ type UseLessonReturn = {
   setTeacherNotesOpen: (open: boolean) => void;
   shareActivated: (noteLengthChars?: number) => void;
   teacherNote: TeacherNoteCamelCase | null;
-  isEditable: boolean;
+  isEditable: boolean | null;
   saveTeacherNote: (
     note: Partial<TeacherNoteCamelCase>,
   ) => Promise<TeacherNote>;
@@ -46,23 +49,15 @@ export const useLesson = ({
 }: UseLessonProps): UseLessonReturn => {
   const [teacherNotesOpen, setTeacherNotesOpen] = useState(false);
   const [lessonPath, setLessonPath] = useState<string | null>(null);
-  const teacherNotesEnabled = useFeatureFlagEnabled("teacher-notes");
 
-  const overrideExistingShareId =
-    teacherNotesEnabled === undefined ? null : !teacherNotesEnabled;
-
-  const appendedSource: ShareSource = teacherNotesEnabled
-    ? `${source}-w-note`
-    : source;
+  const appendedSource: ShareSource = `${source}-w-note`;
 
   const { shareUrl, browserUrl, shareActivated, shareIdRef, shareIdKeyRef } =
     useShareExperiment({
       programmeSlug,
       source: appendedSource,
       curriculumTrackingProps,
-      overrideExistingShareId:
-        overrideExistingShareId ??
-        (teacherNotesEnabled === undefined ? null : !teacherNotesEnabled),
+      overrideExistingShareId: false,
     });
 
   const { teacherNote, isEditable, saveTeacherNote, noteSaved, error } =
@@ -70,7 +65,7 @@ export const useLesson = ({
       lessonPath,
       shareId: shareIdRef.current,
       sidKey: shareIdKeyRef.current,
-      enabled: Boolean(teacherNotesEnabled),
+      enabled: true,
       curriculumTrackingProps,
     });
 
@@ -86,14 +81,12 @@ export const useLesson = ({
   };
 
   useEffect(() => {
-    if (teacherNotesEnabled) {
-      setLessonPath(window.location.href.split("?")[0] || null);
-    }
+    setLessonPath(window.location.href.split("?")[0] || null);
 
     if (window.location.href !== browserUrl) {
       window.history.replaceState({}, "", browserUrl);
     }
-  }, [browserUrl, teacherNotesEnabled]);
+  }, [browserUrl]);
 
   const handleTeacherNotesOpen = () => {
     setTeacherNotesOpen(true);
@@ -108,7 +101,6 @@ export const useLesson = ({
 
   const teacherNotesButton = (
     <TeacherShareNotesButton
-      teacherNotesEnabled={teacherNotesEnabled ?? false}
       isEditable={isEditable}
       noteSaved={noteSaved}
       onTeacherNotesOpen={handleTeacherNotesOpen}
@@ -117,8 +109,7 @@ export const useLesson = ({
     />
   );
 
-  const teacherNoteHtml =
-    teacherNotesEnabled && !isEditable ? teacherNote?.noteHtml : undefined;
+  const teacherNoteHtml = !isEditable ? teacherNote?.noteHtml : undefined;
 
   return {
     teacherNotesButton,

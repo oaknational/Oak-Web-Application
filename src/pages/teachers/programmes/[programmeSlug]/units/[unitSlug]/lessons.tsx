@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   NextPage,
   GetStaticProps,
@@ -47,6 +47,9 @@ import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { resolveOakHref } from "@/common-lib/urls";
+import { useTeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/useTeacherShareButton";
+import { useSaveUnits } from "@/node-lib/educator-api/helpers/saveUnits/useSaveUnits";
+import SavingSignedOutModal from "@/components/TeacherComponents/SavingSignedOutModal";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -87,10 +90,10 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     programmeSlug,
     subjectSlug,
     actions,
+    pathwayTitle,
+    tierTitle,
+    examBoardTitle,
   } = curriculumData;
-
-  const [showExpiredLessonsBanner, setShowExpiredLessonsBanner] =
-    useState<boolean>(actions?.displayExpiringBanner ?? false);
 
   const unitListingHref = `/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/programmes`;
   const { shareUrl, browserUrl, shareActivated } = useShareExperiment({
@@ -105,6 +108,10 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       subjectTitle,
       keyStageSlug,
       keyStageTitle: keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
+      lessonReleaseCohort: isSlugLegacy(programmeSlug)
+        ? "2020-2023"
+        : "2023-2026",
+      lessonReleaseDate: "unreleased",
     },
     overrideExistingShareId: true,
   });
@@ -115,12 +122,17 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     }
   }, [browserUrl]);
 
+  const { copiedComponent, handleClick } = useTeacherShareButton({
+    shareUrl,
+    shareActivated,
+  });
+
   const teacherShareButton = (
     <TeacherShareButton
       variant="primary"
+      handleClick={handleClick}
       shareUrl={shareUrl}
-      shareActivated={shareActivated}
-      label="Share unit with colleague"
+      label="Share"
     />
   );
 
@@ -159,11 +171,18 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         lessonName: props.lessonTitle,
         lessonSlug: props.lessonSlug,
         unitName: unitTitle,
-        unitSlug: unitSlug,
-        keyStageSlug: keyStageSlug,
+        unitSlug,
+        keyStageSlug,
         keyStageTitle: keyStageTitle as KeyStageTitleValueType,
         yearGroupName: props.yearTitle,
         yearGroupSlug: props.yearSlug,
+        pathway: pathwayTitle,
+        examBoard: examBoardTitle,
+        tierName: tierTitle,
+        lessonReleaseCohort: isSlugLegacy(programmeSlug)
+          ? "2020-2023"
+          : "2023-2026",
+        lessonReleaseDate: props.lessonReleaseDate ?? "unreleased",
       });
     }
   };
@@ -181,6 +200,25 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     : `Lessons (${lessons.length})`;
 
   const newsletterFormProps = useNewsletterForm();
+
+  const getSlugifiedTitle = (title: string) => {
+    return title
+      .replaceAll(/\s+/g, "-")
+      .replaceAll(/[^\dA-Za-z-]/g, "")
+      .replaceAll(/-+/g, "-")
+      .toLowerCase();
+  };
+
+  const { onSaveToggle, isUnitSaved, showSignIn, setShowSignIn } = useSaveUnits(
+    programmeSlug,
+    {
+      savedFrom: "lesson_listing_save_button",
+      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+      keyStageSlug,
+      subjectTitle,
+      subjectSlug,
+    },
+  );
 
   return (
     <AppLayout
@@ -244,11 +282,8 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           hasCurriculumDownload={isSlugLegacy(programmeSlug)}
           {...curriculumData}
           shareButton={teacherShareButton}
-          unitDownloadFileId={
-            unitSlug.endsWith(unitvariantId.toString())
-              ? unitSlug
-              : `${unitSlug}-${unitvariantId}`
-          }
+          copiedComponent={copiedComponent}
+          unitDownloadFileId={`${getSlugifiedTitle(unitTitle)}-${unitvariantId}`}
           onUnitDownloadSuccess={() =>
             track.unitDownloadInitiated({
               platform: "owa",
@@ -258,15 +293,17 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               eventVersion: "2.0.0",
               analyticsUseCase: "Teacher",
               unitName: unitTitle,
-              unitSlug: unitSlug,
-              keyStageSlug: keyStageSlug,
+              unitSlug,
+              keyStageSlug,
               keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-              subjectSlug: subjectSlug,
-              subjectTitle: subjectTitle,
+              subjectSlug,
+              subjectTitle,
             })
           }
           showRiskAssessmentBanner={showRiskAssessmentBanner}
           isIncompleteUnit={unpublishedLessonCount > 0}
+          isUnitSaved={isUnitSaved(unitSlug)}
+          onSave={() => onSaveToggle(unitSlug)}
         />
         <OakMaxWidth $ph={"inner-padding-m"}>
           <OakGrid>
@@ -326,18 +363,23 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
                 onClick={trackLessonSelected}
                 expiringBanner={
                   <ExpiringBanner
-                    isOpen={showExpiredLessonsBanner}
+                    isOpen={actions?.displayExpiringBanner ?? false}
                     isResourcesMessage={true}
                     onwardHref={unitListingHref}
-                    onClose={() => {
-                      setShowExpiredLessonsBanner(false);
-                    }}
                   />
                 }
               />
             </OakGridArea>
           </OakGrid>
         </OakMaxWidth>
+        {showSignIn && (
+          <SavingSignedOutModal
+            isOpen={showSignIn}
+            onClose={() => {
+              setShowSignIn(false);
+            }}
+          />
+        )}
       </OakThemeProvider>
     </AppLayout>
   );

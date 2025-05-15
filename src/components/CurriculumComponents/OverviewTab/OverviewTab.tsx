@@ -370,7 +370,10 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
               $flexDirection={"column"}
             >
               {curriculumPartnerOverviews.map(
-                ({ curriculumPartner, partnerBio }, curriculumPartnerIndex) => {
+                (
+                  { curriculumPartner, partnerBio, partnerBioPortableTextRaw },
+                  curriculumPartnerIndex,
+                ) => {
                   return (
                     <OakFlex
                       key={`curriculum-partner-${curriculumPartnerIndex}`}
@@ -418,7 +421,23 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                           {curriculumPartner.name}
                         </OakHeading>
                         <OakTypography $font={"body-1"}>
-                          {partnerBio}
+                          {!partnerBioPortableTextRaw ? (
+                            partnerBio
+                          ) : (
+                            <PortableText
+                              value={partnerBioPortableTextRaw}
+                              components={{
+                                block: basePortableTextComponents.block,
+                                types: {},
+                                marks: {
+                                  strong:
+                                    basePortableTextComponents.marks!.strong,
+                                  em: basePortableTextComponents.marks!.em,
+                                  link: markComponents.link,
+                                },
+                              }}
+                            />
+                          )}
                         </OakTypography>
                       </OakFlex>
                     </OakFlex>
