@@ -32,6 +32,11 @@ export interface Tier {
   tier_slug: string;
 }
 
+export interface Pathway {
+  pathway: string;
+  pathway_slug: string;
+}
+
 export type YearData = {
   [key: string]: {
     units: Unit[];
@@ -40,6 +45,7 @@ export type YearData = {
     subjectCategories: SubjectCategory[];
     isSwimming: boolean;
     groupAs: string | null;
+    pathways: Pathway[];
   };
 };
 
@@ -47,12 +53,15 @@ export type KeyStageSlug = "ks1" | "ks2" | "ks3" | "ks4";
 
 export type Unit = CurriculumUnitsTabData["units"][number];
 
+export type UnitOption = Unit["unit_options"][number];
+
 export type CurriculumFilters = {
   childSubjects: Subject["subject_slug"][];
   subjectCategories: string[];
   tiers: Tier["tier_slug"][];
   years: string[];
   threads: Thread["slug"][];
+  pathways: Pathway["pathway_slug"][];
 };
 
 export type Lesson = {

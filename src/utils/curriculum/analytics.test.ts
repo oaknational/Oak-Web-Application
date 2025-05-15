@@ -28,6 +28,7 @@ describe("buildUnitSequenceRefinedAnalytics", () => {
     tiers: [],
     years: [],
     threads: [],
+    pathways: [],
   };
 
   it("should build analytics with default values when no filters are applied", () => {
@@ -160,5 +161,35 @@ describe("buildUnitSequenceRefinedAnalytics", () => {
     );
 
     expect(result.learningTier).toBe(LearningTier.HIGHER);
+  });
+
+  it("should set pathway to Core when selected", () => {
+    const filtersWithHigherTier: CurriculumFilters = {
+      ...baseFilters,
+      pathways: ["core"],
+    };
+
+    const result = buildUnitSequenceRefinedAnalytics(
+      AnalyticsUseCase.TEACHER,
+      mockTrackingData,
+      filtersWithHigherTier,
+    );
+
+    expect(result.pathway).toBe("Core");
+  });
+
+  it("should set pathway to GCSE when selected", () => {
+    const filtersWithHigherTier: CurriculumFilters = {
+      ...baseFilters,
+      pathways: ["non_core"],
+    };
+
+    const result = buildUnitSequenceRefinedAnalytics(
+      AnalyticsUseCase.TEACHER,
+      mockTrackingData,
+      filtersWithHigherTier,
+    );
+
+    expect(result.pathway).toBe("GCSE");
   });
 });

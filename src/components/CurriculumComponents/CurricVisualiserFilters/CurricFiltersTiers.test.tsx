@@ -15,6 +15,7 @@ describe("CurricFiltersTiers", () => {
           tiers: [],
           years: ["10", "11"],
           threads: [],
+          pathways: [],
         }}
         onChangeFilters={() => {}}
         data={ks4Setup}
@@ -37,6 +38,7 @@ describe("CurricFiltersTiers", () => {
           tiers: [],
           years: ["10", "11"],
           threads: [],
+          pathways: [],
         }}
         onChangeFilters={() => {}}
         data={ks3and4Setup}
@@ -59,6 +61,7 @@ describe("CurricFiltersTiers", () => {
           tiers: [],
           years: ["10", "11"],
           threads: [],
+          pathways: [],
         }}
         onChangeFilters={() => {}}
         data={ks4Setup}
@@ -81,6 +84,7 @@ describe("CurricFiltersTiers", () => {
           tiers: [],
           years: ["10", "11"],
           threads: [],
+          pathways: [],
         }}
         onChangeFilters={onChangeFilters}
         data={ks4Setup}
@@ -97,6 +101,7 @@ describe("CurricFiltersTiers", () => {
       threads: [],
       tiers: ["foundation"],
       years: ["10", "11"],
+      pathways: [],
     });
     act(() => elements[1]!.click());
     expect(onChangeFilters).toHaveBeenCalledWith({
@@ -105,6 +110,7 @@ describe("CurricFiltersTiers", () => {
       threads: [],
       tiers: ["higher"],
       years: ["10", "11"],
+      pathways: [],
     });
   });
 });

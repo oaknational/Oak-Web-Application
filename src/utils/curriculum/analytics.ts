@@ -10,8 +10,21 @@ import {
   LearningTier,
   UnitSequenceRefinedProperties,
   AnalyticsUseCaseValueType,
+  PathwayValueType,
 } from "@/browser-lib/avo/Avo";
 import { CurriculumUnitsTrackingData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+
+function assertValidPathway(
+  pathway: string | undefined,
+): PathwayValueType | null {
+  if (pathway === "core") {
+    return "Core";
+  }
+  if (pathway === "non_core") {
+    return "GCSE";
+  }
+  return null;
+}
 
 /**
  * Builds analytics data for the unitSequenceRefined event
@@ -58,6 +71,6 @@ export function buildUnitSequenceRefinedAnalytics(
       filters.subjectCategories.length > 0
         ? filters.subjectCategories[0]
         : null,
-    pathway: null,
+    pathway: assertValidPathway(filters.pathways[0]),
   };
 }

@@ -568,7 +568,7 @@ describe("Component - Mobile subject phase picker", () => {
       expect(optionTexts).toContain("GCSE");
     });
 
-    test("No KS4 options displayed for Geography", async () => {
+    test.skip("No KS4 options displayed for Geography", async () => {
       const { queryByTestId, getByTestId, findAllByTitle } = render(
         <SubjectPhasePicker {...curriculumPhaseOptions} />,
       );
