@@ -12,7 +12,6 @@ export default function MyLibraryHeader() {
     <OakFlex
       $borderRadius={["border-radius-square", "border-radius-xl"]}
       $background="bg-decorative1-main"
-      $pv={["inner-padding-xl", "inner-padding-none"]}
     >
       <OakFlex
         $flexDirection="column"
