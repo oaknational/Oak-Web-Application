@@ -43,7 +43,7 @@ Create an environment configuration file by running:
 cp .env.example .env
 ```
 
-Now populate the new file, asking a colleague for the values.
+Now populate the file with values from the 1Password developers vault, search for "OWA .env for local development".
 
 Now install dependencies
 
@@ -76,6 +76,7 @@ Unit tests live next to the code they are testing wherever possible. Next does n
 - `npm run test:ci` will run the tests once and create a coverage report.
 
 ### Reporting
+
 Once you've run a build with `npm run build` you can see a report in the `./reports/` directory.
 
 You can also run the following to open the report in your browser.
