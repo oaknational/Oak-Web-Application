@@ -1,3 +1,11 @@
+## [1.748.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.748.0...v1.748.1) (2025-05-15)
+
+
+### Bug Fixes
+
+* add router dependency to context useEffect so it updates on navigation ([72ea5f2](https://github.com/oaknational/Oak-Web-Application/commit/72ea5f21ec79b0471766f030cc6dd3498eb761e4))
+* incorrect casing on 'My library' in toast ([bbb7788](https://github.com/oaknational/Oak-Web-Application/commit/bbb7788e99cffbefe016d3bed6e000d11fc52541))
+
 # [1.748.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.747.1...v1.748.0) (2025-05-15)
 
 
