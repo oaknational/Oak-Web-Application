@@ -3,8 +3,8 @@ const { writeFile, unlink, mkdir } = require("fs/promises");
 
 const favicons = require("favicons").default;
 
-const { getSanityClient } = require("./get_sanity_client");
-const { writeJson } = require("./helpers");
+const { getSanityClient } = require("./get_sanity_client.cjs");
+const { writeJson } = require("./helpers.cjs");
 
 async function main() {
   try {

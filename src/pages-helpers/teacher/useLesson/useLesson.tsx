@@ -95,7 +95,7 @@ export const useLesson = ({
       ...curriculumTrackingProps,
       ...coreTrackingProps,
       shareId: shareIdRef.current,
-      linkUrl: window.location.href,
+      linkUrl: typeof window !== "undefined" ? window.location.href : "",
     });
   };
 

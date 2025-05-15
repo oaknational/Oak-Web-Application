@@ -7,28 +7,32 @@
  * appropriately prefixed before the build process starts
  */
 
-require("dotenv").config();
-const { writeFileSync } = require("node:fs");
+import { writeFileSync } from "node:fs";
 
-const {
+import dotenv from "dotenv";
+
+import {
   getAppVersion,
   getReleaseStage,
   RELEASE_STAGE_PRODUCTION,
   RELEASE_STAGE_TESTING,
-} = require("../build_config_helpers");
-const fetchConfig = require("../fetch_config");
-const fetchSecrets = require("../fetch_secrets");
+} from "../build_config_helpers.js";
+import fetchConfig from "../fetch_config/index.js";
+import fetchSecrets from "../fetch_secrets/index.js";
+import { OakConfig } from "../fetch_config/config_types.js";
 
+dotenv.config();
+
+// eslint-disable-next-line complexity
 async function main() {
   console.log("Writing config and secrets to temporary env file");
 
   const NODE_ENV = process.env.NODE_ENV || "development";
 
-  /** @type {import('../fetch_config/config_types').OakConfig} */
-  let oakConfig;
+  let oakConfig: OakConfig;
 
-  let releaseStage;
-  let appVersion;
+  let releaseStage: string;
+  let appVersion: string;
   let isProductionBuild = false;
 
   // If we are in a test phase (or have explicitly declared a this is a test)
@@ -40,6 +44,9 @@ async function main() {
     appVersion = RELEASE_STAGE_TESTING;
   } else {
     const configLocation = process.env.OAK_CONFIG_LOCATION;
+    if (!configLocation) {
+      throw new Error("OAK_CONFIG_LOCATION is not set");
+    }
     oakConfig = await fetchConfig(configLocation);
 
     // DEBUG

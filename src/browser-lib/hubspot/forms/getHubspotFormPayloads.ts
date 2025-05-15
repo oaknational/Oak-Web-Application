@@ -93,8 +93,8 @@ export const getPayload = (
     context: {
       // hutk param should only be sent if it exists
       ...(hutk ? { hutk } : {}),
-      pageUri: document.location.href,
-      pageName: document.title,
+      pageUri: typeof window !== "undefined" ? document.location.href : "",
+      pageName: typeof window !== "undefined" ? document.title : "",
     },
   };
 };

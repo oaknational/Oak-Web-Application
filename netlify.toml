@@ -1,9 +1,5 @@
 [[plugins]]
 package = "./netlify/plugins/github-deployments"
-# Temporarily specify the Netlify next.js version to enable testing.
-# Disabled while testing adding the runtime plugin from the package.json.
-# [[plugins]]
-# package = "@netlify/plugin-nextjs"
 
 # Force all access through the managed TLD (default). HTTP
 [[redirects]]

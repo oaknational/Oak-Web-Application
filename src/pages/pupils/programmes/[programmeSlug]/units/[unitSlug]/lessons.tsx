@@ -60,6 +60,9 @@ const PupilLessonListingPage = ({
   );
 
   useEffect(() => {
+    // Only run in browser
+    if (typeof window === "undefined") return;
+
     const referrer = document.referrer;
 
     if (referrer) {
