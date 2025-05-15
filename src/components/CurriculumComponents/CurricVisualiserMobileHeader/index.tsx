@@ -16,7 +16,7 @@ import {
 import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics";
 import { CurriculumUnitsTrackingData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
-export type CurriculumVisualiserFiltersMobileProps =
+export type CurricVisualiserFiltersMobileProps =
   CurricVisualiserFiltersProps & {
     selectedYear: string;
     onSelectYear: (newYear: string) => void;
@@ -91,14 +91,14 @@ const StyledButtonGroup = styled(ButtonGroup)`
   }
 `;
 
-export function CurricMobileStickyHeader({
+export default function CurricVisualiserMobileHeader({
   onOpenModal,
   filters,
   data,
   trackingData,
   selectedYear,
   onSelectYear,
-}: CurriculumVisualiserFiltersMobileProps & {
+}: CurricVisualiserFiltersMobileProps & {
   trackingData: CurriculumUnitsTrackingData;
 }) {
   const { track } = useAnalytics();
