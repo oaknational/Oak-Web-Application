@@ -1,4 +1,5 @@
 import { OakFlex, OakToast, OakToastProps } from "@oaknational/oak-components";
+import { useRouter } from "next/router";
 import { createContext, FC, useEffect, useState } from "react";
 import styled from "styled-components";
 
@@ -20,6 +21,7 @@ export const OakToastProvider: FC<{
     useState<OakToastProps | null>(null);
   const [offsetTop, setOffsetTop] = useState<number>(82);
   const [id, setId] = useState(0);
+  const { asPath } = useRouter();
 
   useEffect(() => {
     // Adjust the distance from the top of the screen when the header is visible
@@ -34,7 +36,7 @@ export const OakToastProvider: FC<{
     if (headerElement) {
       observer.observe(headerElement);
     }
-  }, []);
+  }, [asPath]);
 
   const setToastPropsAndId = (props: OakToastProps | null) => {
     setId((prevId) => prevId + 1);
