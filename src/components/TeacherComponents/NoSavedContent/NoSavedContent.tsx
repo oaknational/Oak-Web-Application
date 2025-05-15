@@ -23,7 +23,7 @@ const NoSavedContent = () => {
         $flexDirection="column"
         $gap={"space-between-s"}
       >
-        <OakHeading tag="h1" $font="heading-6">
+        <OakHeading tag="h2" $font="heading-6">
           No units yet
         </OakHeading>
         <OakP $font="heading-light-7">
