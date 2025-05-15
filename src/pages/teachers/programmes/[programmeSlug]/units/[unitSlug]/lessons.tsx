@@ -49,6 +49,7 @@ import { useNewsletterForm } from "@/components/GenericPagesComponents/Newslette
 import { resolveOakHref } from "@/common-lib/urls";
 import { useTeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/useTeacherShareButton";
 import { useSaveUnits } from "@/node-lib/educator-api/helpers/saveUnits/useSaveUnits";
+import SavingSignedOutModal from "@/components/TeacherComponents/SavingSignedOutModal";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -208,13 +209,16 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       .toLowerCase();
   };
 
-  const { onSaveToggle, isUnitSaved } = useSaveUnits(programmeSlug, {
-    savedFrom: "lesson_listing_save_button",
-    keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-    keyStageSlug,
-    subjectTitle,
-    subjectSlug,
-  });
+  const { onSaveToggle, isUnitSaved, showSignIn, setShowSignIn } = useSaveUnits(
+    programmeSlug,
+    {
+      savedFrom: "lesson_listing_save_button",
+      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+      keyStageSlug,
+      subjectTitle,
+      subjectSlug,
+    },
+  );
 
   return (
     <AppLayout
@@ -368,6 +372,14 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
             </OakGridArea>
           </OakGrid>
         </OakMaxWidth>
+        {showSignIn && (
+          <SavingSignedOutModal
+            isOpen={showSignIn}
+            onClose={() => {
+              setShowSignIn(false);
+            }}
+          />
+        )}
       </OakThemeProvider>
     </AppLayout>
   );
