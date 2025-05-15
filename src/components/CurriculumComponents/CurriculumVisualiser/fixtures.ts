@@ -1191,13 +1191,6 @@ export const secondaryScienceYearData: YearData = {
         tier_slug: tiers[0]?.tier_slug,
         subject_slug: "combined-science",
       }),
-      createUnit({
-        year: "10",
-        subjectcategories: [secondaryScienceSubjectCategories[1]!],
-        tier: tiers[1]?.tier,
-        tier_slug: tiers[1]?.tier_slug,
-        subject_slug: "combined-science",
-      }),
     ],
   },
   "11": {

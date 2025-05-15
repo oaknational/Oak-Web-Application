@@ -277,7 +277,7 @@ describe("Curriculum visualiser filter states", () => {
         pathways: [],
         subjectCategories: ["1"],
         tiers: [],
-        years: ["7", "8", "9", "10", "11"],
+        years: ["7"],
         threads: [],
       };
 
@@ -287,7 +287,6 @@ describe("Curriculum visualiser filter states", () => {
           filters={filterFixture}
         />,
       );
-
       expect(
         await findAllByText(/'sub-cat-1' units start in Year 8/i),
       ).toHaveLength(1);
@@ -304,7 +303,7 @@ describe("Curriculum visualiser filter states", () => {
         pathways: [],
         subjectCategories: ["1"],
         tiers: [],
-        years: ["7", "8", "9", "10", "11"],
+        years: ["8"],
         threads: [],
       };
 
@@ -772,7 +771,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: ["higher"],
           years: ["10"],
           threads: [],
-          pathways: ["non_core"],
+          pathways: [],
         };
 
         const { container } = render(
