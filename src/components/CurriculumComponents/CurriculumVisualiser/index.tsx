@@ -68,7 +68,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   const unitsByYearSelector = applyFiltering(
     filters,
     groupUnitsByPathway({
-      modes: getModes(shouldIncludeCore, ks4Options),
+      modes: getModes(shouldIncludeCore, ks4Options, filters.pathways[0]),
       yearData,
     }),
   );
