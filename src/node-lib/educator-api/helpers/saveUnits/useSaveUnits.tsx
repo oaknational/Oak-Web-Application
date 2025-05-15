@@ -14,7 +14,7 @@ import errorReporter from "@/common-lib/error-reporter";
 const SavedToastProps = {
   message: (
     <OakP>
-      <b>Unit saved</b> to My Library
+      <b>Unit saved</b> to My library
     </OakP>
   ),
   variant: "green" as const,
