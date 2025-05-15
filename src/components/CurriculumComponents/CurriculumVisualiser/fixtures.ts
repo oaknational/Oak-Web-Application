@@ -3,8 +3,16 @@ import { createChildSubject } from "@/fixtures/curriculum/childSubject";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { createTier } from "@/fixtures/curriculum/tier";
 
-const subjectCategoryOne = createSubjectCategory({ id: 1, title: "sub-cat-1" });
-const subjectCategoryTwo = createSubjectCategory({ id: 2, title: "sub-cat-2" });
+const subjectCategoryOne = createSubjectCategory({
+  id: 1,
+  slug: "sub-cat-1",
+  title: "sub-cat-1",
+});
+const subjectCategoryTwo = createSubjectCategory({
+  id: 2,
+  slug: "sub-cat-2",
+  title: "sub-cat-2",
+});
 
 // Where M is missing unit and U is a present unit
 // for that subject category in that year
@@ -683,11 +691,15 @@ export const missingUnitForLastYearFixture = {
 // Primary English Fixture
 
 export const primaryEnglishSubjectCategories = [
-  createSubjectCategory({ id: 4, title: "Reading, writing & oracy" }),
-  createSubjectCategory({ id: 5, title: "Grammar" }),
-  createSubjectCategory({ id: 6, title: "Handwriting" }),
-  createSubjectCategory({ id: 7, title: "Spelling" }),
-  createSubjectCategory({ id: 8, title: "Vocabulary" }),
+  createSubjectCategory({
+    slug: "reading-writing-and-oracy",
+    id: 4,
+    title: "Reading, writing & oracy",
+  }),
+  createSubjectCategory({ slug: "grammar", id: 5, title: "Grammar" }),
+  createSubjectCategory({ slug: "handwriting", id: 6, title: "Handwriting" }),
+  createSubjectCategory({ slug: "spelling", id: 7, title: "Spelling" }),
+  createSubjectCategory({ slug: "vocabulary", id: 8, title: "Vocabulary" }),
 ];
 
 export const primaryEnglishYearData = {
@@ -851,10 +863,10 @@ export const primaryEnglishYearData = {
 // Primary Science Fixture
 
 export const primaryScienceSubjectCategories = [
-  createSubjectCategory({ id: -1, title: "All" }),
-  createSubjectCategory({ id: 1, title: "Biology" }),
-  createSubjectCategory({ id: 2, title: "Chemistry" }),
-  createSubjectCategory({ id: 3, title: "Physics" }),
+  createSubjectCategory({ slug: "all", id: -1, title: "All" }),
+  createSubjectCategory({ slug: "biology", id: 1, title: "Biology" }),
+  createSubjectCategory({ slug: "chemistry", id: 2, title: "Chemistry" }),
+  createSubjectCategory({ slug: "physics", id: 3, title: "Physics" }),
 ];
 
 export const primaryScienceYearData = {
@@ -996,10 +1008,10 @@ export const tiers = [
 ];
 
 export const secondaryScienceSubjectCategories = [
-  createSubjectCategory({ id: -1, title: "All" }),
-  createSubjectCategory({ id: 1, title: "Biology" }),
-  createSubjectCategory({ id: 2, title: "Chemistry" }),
-  createSubjectCategory({ id: 3, title: "Physics" }),
+  createSubjectCategory({ slug: "all", id: -1, title: "All" }),
+  createSubjectCategory({ slug: "biology", id: 1, title: "Biology" }),
+  createSubjectCategory({ slug: "chemistry", id: 2, title: "Chemistry" }),
+  createSubjectCategory({ slug: "physics", id: 3, title: "Physics" }),
 ];
 
 const secondaryScienceChildSubjects = [

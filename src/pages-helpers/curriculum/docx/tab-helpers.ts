@@ -251,6 +251,7 @@ export function createUnitsListingByYear(
         currentYearData.subjectCategories.push({
           id: subjectCategory.id,
           title: subjectCategory.title,
+          slug: subjectCategory.slug,
         });
       }
     });
@@ -260,7 +261,11 @@ export function createUnitsListingByYear(
     const data = yearData[year]!;
 
     data.isSwimming = data.units[0]?.features?.pe_swimming === true;
-    const allSubjectCategoryTag: SubjectCategory = { id: -1, title: "All" };
+    const allSubjectCategoryTag: SubjectCategory = {
+      id: -1,
+      title: "All",
+      slug: "all",
+    };
     const actions = data.units[0]?.actions;
     // Add an "All" option if there are 2 or more subject categories. Set to -1 id as this shouldn't ever appear in the DB
     if (!actions?.subject_category_actions?.all_disabled) {

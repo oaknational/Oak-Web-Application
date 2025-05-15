@@ -90,6 +90,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 11,
+            slug: "physics",
             title: "Physics",
           },
         ],
@@ -183,6 +184,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 11,
+            slug: "biology",
             title: "Biology",
           },
         ],
@@ -258,6 +260,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 5,
+            slug: "biology",
             title: "Biology",
           },
         ],
@@ -1589,6 +1592,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 8,
+            slug: "chemistry",
             title: "Chemistry",
           },
         ],
@@ -1692,6 +1696,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 8,
+            slug: "chemistry",
             title: "Chemistry",
           },
         ],
@@ -1795,6 +1800,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 8,
+            slug: "chemistry",
             title: "Chemistry",
           },
         ],
@@ -3235,6 +3241,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 5,
+            slug: "biology",
             title: "Biology",
           },
         ],
@@ -3339,6 +3346,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 11,
+            slug: "physics",
             title: "Physics",
           },
         ],
@@ -3443,6 +3451,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 11,
+            slug: "physics",
             title: "Physics",
           },
         ],
@@ -4656,6 +4665,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 11,
+            slug: "physics",
             title: "Physics",
           },
         ],
@@ -4729,6 +4739,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 5,
+            slug: "biology",
             title: "Biology",
           },
         ],
@@ -4824,6 +4835,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 5,
+            slug: "biology",
             title: "Biology",
           },
         ],
@@ -6209,6 +6221,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 8,
+            slug: "chemistry",
             title: "Chemistry",
           },
         ],
@@ -6289,6 +6302,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 5,
+            slug: "biology",
             title: "Biology",
           },
         ],
@@ -6393,6 +6407,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 8,
+            slug: "chemistry",
             title: "Chemistry",
           },
         ],
@@ -7698,6 +7713,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 5,
+            slug: "biology",
             title: "Biology",
           },
         ],
@@ -7802,6 +7818,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 8,
+            slug: "chemistry",
             title: "Chemistry",
           },
         ],
@@ -7906,6 +7923,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 11,
+            slug: "physics",
             title: "Physics",
           },
         ],
@@ -9461,6 +9479,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 11,
+            slug: "physics",
             title: "Physics",
           },
         ],
@@ -9564,6 +9583,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 11,
+            slug: "physics",
             title: "Physics",
           },
         ],
@@ -9662,6 +9682,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 5,
+            slug: "biology",
             title: "Biology",
           },
         ],
@@ -10765,6 +10786,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 5,
+            slug: "biology",
             title: "Biology",
           },
         ],
@@ -10858,6 +10880,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 5,
+            slug: "biology",
             title: "Biology",
           },
         ],
@@ -10946,6 +10969,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 8,
+            slug: "chemistry",
             title: "Chemistry",
           },
         ],
@@ -11805,6 +11829,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 8,
+            slug: "chemistry",
             title: "Chemistry",
           },
         ],
@@ -11908,6 +11933,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 8,
+            slug: "chemistry",
             title: "Chemistry",
           },
         ],
@@ -12012,6 +12038,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 11,
+            slug: "physics",
             title: "Physics",
           },
         ],
@@ -12898,6 +12925,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 5,
+            slug: "biology",
             title: "Biology",
           },
         ],
@@ -13002,6 +13030,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 11,
+            slug: "physics",
             title: "Physics",
           },
         ],
@@ -13095,6 +13124,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 5,
+            slug: "biology",
             title: "Biology",
           },
         ],
@@ -13731,6 +13761,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 11,
+            slug: "physics",
             title: "Physics",
           },
         ],
@@ -13829,6 +13860,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 5,
+            slug: "biology",
             title: "Biology",
           },
         ],
@@ -14351,6 +14383,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 5,
+            slug: "biology",
             title: "Biology",
           },
         ],
@@ -14455,6 +14488,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 8,
+            slug: "chemistry",
             title: "Chemistry",
           },
         ],
@@ -15066,6 +15100,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 5,
+            slug: "biology",
             title: "Biology",
           },
         ],
@@ -15170,6 +15205,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 11,
+            slug: "physics",
             title: "Physics",
           },
         ],
@@ -15783,6 +15819,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 8,
+            slug: "chemistry",
             title: "Chemistry",
           },
         ],
@@ -15877,6 +15914,7 @@ const curriculumUnitsTabFixture = (
         subjectcategories: [
           {
             id: 5,
+            slug: "biology",
             title: "Biology",
           },
         ],
