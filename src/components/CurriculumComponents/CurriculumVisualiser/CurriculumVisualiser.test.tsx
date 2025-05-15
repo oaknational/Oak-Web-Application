@@ -277,26 +277,19 @@ describe("Curriculum visualiser filter states", () => {
         pathways: [],
         subjectCategories: ["1"],
         tiers: [],
-        years: ["7", "8", "9", "10", "11"],
+        years: ["7"],
         threads: [],
       };
 
-      const { findAllByTestId, queryByTestId, getByTestId } = render(
+      const { findAllByText } = render(
         <CurriculumVisualiser
           {...missingUnitsForFirstYearFixtureWithProps}
           filters={filterFixture}
         />,
       );
-
-      expect(queryByTestId("year-all-7")).not.toBeInTheDocument();
-
-      const yearsPresent = [8, 9, 10, 11];
-      yearsPresent.forEach((year) => {
-        expect(getByTestId(`year-all-${year}`)).toBeInTheDocument();
-      });
-
-      const unitCards = await findAllByTestId("unit-card");
-      expect(unitCards).toHaveLength(4);
+      expect(
+        await findAllByText(/'sub-cat-1' units start in Year 8/i),
+      ).toHaveLength(1);
     });
 
     test("No units for subject category in second year of phase", async () => {
@@ -310,26 +303,19 @@ describe("Curriculum visualiser filter states", () => {
         pathways: [],
         subjectCategories: ["1"],
         tiers: [],
-        years: ["7", "8", "9", "10", "11"],
+        years: ["8"],
         threads: [],
       };
 
-      const { queryByTestId, findAllByTestId, getByTestId } = render(
+      const { findAllByText } = render(
         <CurriculumVisualiser
           {...missingUnitsForSecondYearFixtureWithProps}
           filters={filterFixture}
         />,
       );
-
-      expect(queryByTestId("year-all-8")).not.toBeInTheDocument();
-
-      const yearsPresent = [7, 9, 10, 11];
-      yearsPresent.forEach((year) => {
-        expect(getByTestId(`year-all-${year}`)).toBeInTheDocument();
-      });
-
-      const unitCards = await findAllByTestId("unit-card");
-      expect(unitCards).toHaveLength(4);
+      expect(
+        await findAllByText(/'sub-cat-1' units continue in Year 9/i),
+      ).toHaveLength(1);
     });
 
     test("No units for consecutive years at the start of the phase", async () => {
@@ -347,18 +333,19 @@ describe("Curriculum visualiser filter states", () => {
         threads: [],
       };
 
-      const { queryByTestId, findAllByTestId } = render(
+      const { findAllByTestId, findAllByText } = render(
         <CurriculumVisualiser
           {...missingConsecutiveUnitsAtStartFixtureWithProps}
           filters={filterFixture}
         />,
       );
 
-      expect(queryByTestId("year-all-7")).not.toBeInTheDocument();
-      expect(queryByTestId("year-all-8")).not.toBeInTheDocument();
-      expect(queryByTestId("year-all-9")).not.toBeInTheDocument();
-      expect(queryByTestId("year-all-10")).toBeInTheDocument();
-      expect(queryByTestId("year-all-11")).toBeInTheDocument();
+      expect(
+        await findAllByText(/'sub-cat-1' units start in Year 10/i),
+      ).toHaveLength(1);
+      expect(
+        await findAllByText(/'sub-cat-1' units continue in Year 10/i),
+      ).toHaveLength(2);
 
       const unitCards = await findAllByTestId("unit-card");
       expect(unitCards).toHaveLength(2);
@@ -379,19 +366,16 @@ describe("Curriculum visualiser filter states", () => {
         threads: [],
       };
 
-      const { queryByTestId, findAllByTestId } = render(
+      const { findAllByText, findAllByTestId } = render(
         <CurriculumVisualiser
           {...missingUnitsInMiddleFixtureWithProps}
           filters={filterFixture}
         />,
       );
 
-      expect(queryByTestId("year-all-7")).toBeInTheDocument();
-      expect(queryByTestId("year-all-8")).not.toBeInTheDocument();
-      expect(queryByTestId("year-all-9")).not.toBeInTheDocument();
-      expect(queryByTestId("year-all-10")).not.toBeInTheDocument();
-      expect(queryByTestId("year-all-11")).toBeInTheDocument();
-
+      expect(
+        await findAllByText(/'sub-cat-1' units continue in Year 11/i),
+      ).toHaveLength(3);
       const unitCards = await findAllByTestId("unit-card");
       expect(unitCards).toHaveLength(2);
     });
@@ -411,21 +395,18 @@ describe("Curriculum visualiser filter states", () => {
         threads: [],
       };
 
-      const { queryByTestId, findAllByTestId } = render(
+      const { findAllByText, findAllByTestId } = render(
         <CurriculumVisualiser
           {...missingConsecutiveUnitsAtEndFixtureWithProps}
           filters={filterFixture}
         />,
       );
-
-      expect(queryByTestId("year-all-7")).toBeInTheDocument();
-      expect(queryByTestId("year-all-8")).toBeInTheDocument();
-      expect(queryByTestId("year-all-9")).not.toBeInTheDocument();
-      expect(queryByTestId("year-all-10")).not.toBeInTheDocument();
-      expect(queryByTestId("year-all-11")).not.toBeInTheDocument();
-
       const unitCards = await findAllByTestId("unit-card");
       expect(unitCards).toHaveLength(2);
+      const messages = await findAllByText(
+        /No 'sub-cat-1' units in this year group/i,
+      );
+      expect(messages).toHaveLength(3);
     });
 
     test("No alternate units in the phase", async () => {
@@ -443,21 +424,24 @@ describe("Curriculum visualiser filter states", () => {
         threads: [],
       };
 
-      const { queryByTestId, findAllByTestId } = render(
+      const { findByText, findAllByTestId } = render(
         <CurriculumVisualiser
           {...missingAlternateUnitsFixtureWithProps}
           filters={filterFixture}
         />,
       );
 
-      expect(queryByTestId("year-all-7")).not.toBeInTheDocument();
-      expect(queryByTestId("year-all-8")).toBeInTheDocument();
-      expect(queryByTestId("year-all-9")).not.toBeInTheDocument();
-      expect(queryByTestId("year-all-10")).toBeInTheDocument();
-      expect(queryByTestId("year-all-11")).not.toBeInTheDocument();
-
       const unitCards = await findAllByTestId("unit-card");
       expect(unitCards).toHaveLength(2);
+      expect(
+        await findByText(/'sub-cat-1' units start in Year 8/i),
+      ).toBeInTheDocument();
+      expect(
+        await findByText(/'sub-cat-1' units continue in Year 10/i),
+      ).toBeInTheDocument();
+      expect(
+        await findByText(/No 'sub-cat-1' units in this year group/i),
+      ).toBeInTheDocument();
     });
 
     test("No unit at the end of the phase", async () => {
@@ -475,21 +459,15 @@ describe("Curriculum visualiser filter states", () => {
         threads: [],
       };
 
-      const { queryByTestId, findAllByTestId } = render(
+      const { findByText } = render(
         <CurriculumVisualiser
           {...missingUnitForLastYearFixtureWithProps}
           filters={filterFixture}
         />,
       );
-
-      expect(queryByTestId("year-all-7")).toBeInTheDocument();
-      expect(queryByTestId("year-all-8")).toBeInTheDocument();
-      expect(queryByTestId("year-all-9")).toBeInTheDocument();
-      expect(queryByTestId("year-all-10")).toBeInTheDocument();
-      expect(queryByTestId("year-all-11")).not.toBeInTheDocument();
-
-      const unitCards = await findAllByTestId("unit-card");
-      expect(unitCards).toHaveLength(4);
+      expect(
+        await findByText(/No 'sub-cat-1' units in this year group/i),
+      ).toBeInTheDocument();
     });
   });
 
@@ -509,19 +487,15 @@ describe("Curriculum visualiser filter states", () => {
         threads: [],
       };
 
-      const { queryByTestId, findAllByTestId } = render(
+      const { findAllByText, findAllByTestId } = render(
         <CurriculumVisualiser
           {...missingUnitsForFirstYearPrimaryFixtureWithProps}
           filters={filterFixture}
         />,
       );
-      expect(queryByTestId("year-all-1")).not.toBeInTheDocument();
-      expect(queryByTestId("year-all-2")).toBeInTheDocument();
-      expect(queryByTestId("year-all-3")).toBeInTheDocument();
-      expect(queryByTestId("year-all-4")).toBeInTheDocument();
-      expect(queryByTestId("year-all-5")).toBeInTheDocument();
-      expect(queryByTestId("year-all-6")).toBeInTheDocument();
-
+      expect(
+        await findAllByText(/'sub-cat-1' units start in Year 2/i),
+      ).toHaveLength(1);
       const unitCards = await findAllByTestId("unit-card");
       expect(unitCards).toHaveLength(5);
     });
@@ -541,20 +515,19 @@ describe("Curriculum visualiser filter states", () => {
         threads: [],
       };
 
-      const { queryByTestId, findAllByTestId } = render(
+      const { findAllByText, findAllByTestId } = render(
         <CurriculumVisualiser
           {...missingConsecutiveUnitsAtStartPrimaryFixtureWithProps}
           filters={filterFixture}
         />,
       );
 
-      expect(queryByTestId("year-all-1")).not.toBeInTheDocument();
-      expect(queryByTestId("year-all-2")).not.toBeInTheDocument();
-      expect(queryByTestId("year-all-3")).not.toBeInTheDocument();
-      expect(queryByTestId("year-all-4")).toBeInTheDocument();
-      expect(queryByTestId("year-all-5")).toBeInTheDocument();
-      expect(queryByTestId("year-all-6")).toBeInTheDocument();
-
+      expect(
+        await findAllByText(/'sub-cat-1' units start in Year 4/i),
+      ).toHaveLength(1);
+      expect(
+        await findAllByText(/'sub-cat-1' units continue in Year 4/i),
+      ).toHaveLength(2);
       const unitCards = await findAllByTestId("unit-card");
       expect(unitCards).toHaveLength(3);
     });
@@ -582,7 +555,7 @@ describe("Year group filter headings display correctly", () => {
         const filterFixture = {
           childSubjects: ["combined-science"],
           subjectCategories: ["-1"],
-          tiers: ["foundation"],
+          tiers: ["higher"],
           years: ["7", "8", "9", "10", "11"],
           threads: [],
           pathways: [],
@@ -595,39 +568,27 @@ describe("Year group filter headings display correctly", () => {
           />,
         );
 
-        for (const year of ["7", "8", "9"]) {
-          const coreBlock = container.querySelector(
-            `[data-testid="year-core-${year}"]`,
-          );
-          expect(coreBlock).not.toBeNull();
-          // Ensure no non_core block exists for KS3
-          expect(
-            container.querySelector(`[data-testid="year-non_core-${year}"]`),
-          ).toBeNull();
-          const yearHeading = within(coreBlock as HTMLElement).getByTestId(
-            "year-heading",
-          );
-          expect(yearHeading).toHaveTextContent(`Year ${year}`);
-          const subheading = within(coreBlock as HTMLElement).queryByTestId(
-            "year-subheading",
-          );
-          expect(subheading).toBeNull();
-        }
+        // Check each year block individually
+        for (const year of ["7", "8", "9", "10", "11"]) {
+          const type = ["10", "11"].includes(year) ? "non_core" : "core";
+          const yearBlock = container.querySelector(
+            `[data-testid="year-${type}-${year}"]`,
+          ) as HTMLElement;
+          expect(yearBlock).not.toBeNull();
 
-        for (const year of ["10", "11"]) {
-          const ks4BlockElement = container.querySelector(
-            `[data-testid="year-non_core-${year}"]`,
-          );
-          expect(ks4BlockElement).toBeInTheDocument();
-          const yearHeading = within(
-            ks4BlockElement as HTMLElement,
-          ).getByTestId("year-heading");
+          const yearHeading = within(yearBlock).getByTestId("year-heading");
           expect(yearHeading).toHaveTextContent(`Year ${year}`);
-          const subheading = within(
-            ks4BlockElement as HTMLElement,
-          ).queryByTestId("year-subheading");
-          expect(subheading).toBeInTheDocument();
-          expect(subheading).toHaveTextContent("Combined science, Foundation");
+
+          if (["7", "8", "9"].includes(year)) {
+            // Years 7-9 should not have subheadings
+            const subheading =
+              within(yearBlock).queryByTestId("year-subheading");
+            expect(subheading).toBeNull();
+          } else {
+            // Years 10-11 should have subheadings with combined science and higher tier
+            const subheading = within(yearBlock).getByTestId("year-subheading");
+            expect(subheading).toHaveTextContent("Combined science, Higher");
+          }
         }
       });
 
@@ -805,10 +766,10 @@ describe("Year group filter headings display correctly", () => {
 
       test("Setting KS3 subject category does not affect the KS4 subheading being displayed", async () => {
         const filterFixture = {
-          subjectCategories: ["2"], // KS3 Chemistry
+          subjectCategories: ["2"],
           childSubjects: ["combined-science"],
           tiers: ["higher"],
-          years: ["11"],
+          years: ["10"],
           threads: [],
           pathways: [],
         };
@@ -821,13 +782,12 @@ describe("Year group filter headings display correctly", () => {
         );
 
         const yearBlock = container.querySelector(
-          '[data-testid="year-non_core-11"]',
+          '[data-testid="year-non_core-10"]',
         ) as HTMLElement;
-
         expect(yearBlock).not.toBeNull();
 
         const yearHeading = within(yearBlock).getByTestId("year-heading");
-        expect(yearHeading).toHaveTextContent("Year 11");
+        expect(yearHeading).toHaveTextContent("Year 10");
         const subheading = within(yearBlock).getByTestId("year-subheading");
         expect(subheading).toHaveTextContent("Combined science, Higher");
       });

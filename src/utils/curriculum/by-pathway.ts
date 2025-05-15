@@ -1,4 +1,4 @@
-import { CurriculumFilters, Unit, YearData } from "./types";
+import { CurriculumFilters, Pathway, Unit, YearData } from "./types";
 import { sortYears } from "./sorting";
 import { isVisibleUnit } from "./isVisibleUnit";
 import { filteringFromYears } from "./filtering";
@@ -18,34 +18,43 @@ export function applyFiltering(
     });
   }
 
+  // HACK: If we're filtering by more than one year assume "all"
+  const selectingAll = filters.years.length > 1;
+
   const yearDataFilteredBySelectedYear = Object.values(
     unitsByYearSelector,
-  ).filter((item) => filterIncludes("years", [item.year]));
+  ).filter((item) => {
+    return selectingAll || filterIncludes("years", [item.year]);
+  });
 
-  return yearDataFilteredBySelectedYear
-    .map((item) => {
-      return {
-        ...item,
-        units: item.units.filter((unit) => {
-          const yearBasedFilters = filteringFromYears(item, filters);
-          return isVisibleUnit(yearBasedFilters, item.year, unit);
-        }),
-      };
-    })
-    .filter((item) => {
-      return item.units.length > 0;
-    });
+  return yearDataFilteredBySelectedYear.map((item) => {
+    return {
+      ...item,
+      units: item.units.filter((unit) => {
+        const yearBasedFilters = filteringFromYears(item, filters);
+        return isVisibleUnit(yearBasedFilters, item.year, unit);
+      }),
+    };
+  });
 }
 
-export function getModes(shouldIncludeCore: boolean, ks4Options: Ks4Option[]) {
+export function getModes(
+  shouldIncludeCore: boolean,
+  ks4Options: Ks4Option[],
+  onlyPathway?: Pathway["pathway_slug"],
+) {
   const yearTypes: MODES[] = [];
   if (!ks4Options?.find((opt) => opt.slug === "core")) {
     yearTypes.push("all");
   } else {
-    if (!shouldIncludeCore || ks4Options?.find((opt) => opt.slug === "core")) {
+    if (
+      !shouldIncludeCore ||
+      (ks4Options?.find((opt) => opt.slug === "core") &&
+        onlyPathway !== "non_core")
+    ) {
       yearTypes.push("core");
     }
-    if (shouldIncludeCore) {
+    if (shouldIncludeCore && onlyPathway !== "core") {
       yearTypes.push("non_core");
     }
   }
