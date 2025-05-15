@@ -65,6 +65,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   const { analyticsUseCase } = useAnalyticsPageProps();
 
   const shouldIncludeCore = ks4OptionSlug !== "core";
+
   const unitsByYearSelector = applyFiltering(
     filters,
     groupUnitsByPathway({
