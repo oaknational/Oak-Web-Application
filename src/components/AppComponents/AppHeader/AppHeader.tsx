@@ -6,6 +6,9 @@ import {
   OakSecondaryButton,
 } from "@oaknational/oak-components";
 import { UserButton, useUser, SignUpButton } from "@clerk/nextjs";
+import { useRouter } from "next/router";
+
+import { resolveOakHref } from "../../../common-lib/urls";
 
 import Logo from "@/components/AppComponents/Logo";
 import { HeaderProps } from "@/components/AppComponents/Layout/Layout";
@@ -40,6 +43,12 @@ const AppHeader: FC<HeaderProps> = () => {
   const { track } = useAnalytics();
   const selectedArea = useSelectedArea();
   const { isSignedIn } = useUser();
+  const router = useRouter();
+
+  const returnToParams = new URLSearchParams({
+    returnTo: router.asPath,
+  }).toString();
+  const onboardingRedirectUrl = `${resolveOakHref({ page: "onboarding" })}?${returnToParams}`;
 
   return (
     <header>
@@ -99,7 +108,7 @@ const AppHeader: FC<HeaderProps> = () => {
               />
             )}
             {!isSignedIn && selectedArea == siteAreas.teachers && (
-              <SignUpButton>
+              <SignUpButton forceRedirectUrl={onboardingRedirectUrl}>
                 <OakSecondaryButton
                   font={"body-3-bold"}
                   pv="inner-padding-xs"
