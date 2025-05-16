@@ -34,6 +34,7 @@ const DynamicHighlightExtension = Extension.create<DynamicHighlightOptions>({
   },
 
   addProseMirrorPlugins() {
+    const options = this.options;
     return [
       new Plugin({
         key: dynamicHighlightPluginKey,
@@ -42,8 +43,8 @@ const DynamicHighlightExtension = Extension.create<DynamicHighlightOptions>({
             // Apply initial styling to the document based on default options
             return createDynamicDecorations(
               doc,
-              this.options.segments,
-              this.options.className,
+              options.segments,
+              options.className,
             );
           },
           apply: (tr, oldSet, oldState, newState) => {
@@ -54,8 +55,8 @@ const DynamicHighlightExtension = Extension.create<DynamicHighlightOptions>({
               // If doc or segments changed, apply styling
               return createDynamicDecorations(
                 newState.doc,
-                this.options.segments,
-                this.options.className,
+                options.segments,
+                options.className,
               );
             }
             return oldSet;
