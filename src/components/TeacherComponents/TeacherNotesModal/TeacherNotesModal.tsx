@@ -5,22 +5,30 @@ import StarterKit from "@tiptap/starter-kit";
 import Link, { LinkProtocolOptions } from "@tiptap/extension-link";
 import CharacterCount from "@tiptap/extension-character-count";
 import {
+  OakFlex,
+  OakIcon,
+  OakSpan,
   OakTeacherNotesModal,
   OakTeacherNotesModalProps,
 } from "@oaknational/oak-components";
 import {
   TeacherNoteCamelCase,
   TeacherNote,
+  TeacherNoteError,
 } from "@oaknational/oak-pupil-client";
 
+import theme from "@/styles/theme";
+import DynamicHighlightExtension, {
+  HighlightSegment,
+} from "@/utils/tipTap/dynamicHighlightExtension";
 import { resolveOakHref } from "@/common-lib/urls";
 
 const StyledEditorContent = styled(EditorContent)`
   .tiptap:focus {
     outline: none;
   }
-  .tiptap a {
-    color: #0078d4;
+  .pii-error-highlight {
+    color: ${theme.colors.red};
     text-decoration: underline;
   }
 `;
@@ -92,7 +100,7 @@ export type TeacherNotesModalProps = Pick<
   teacherNote?: TeacherNoteCamelCase | null;
   saveTeacherNote: (
     note: Partial<TeacherNoteCamelCase>,
-  ) => Promise<TeacherNote>;
+  ) => Promise<TeacherNote | TeacherNoteError>;
   shareActivated?: (noteLengthChars?: number) => void;
   sharingUrl: string | null;
   error: string | null;
@@ -111,6 +119,8 @@ export const TeacherNotesModal = ({
   const [noteShared, setNoteShared] = useState(false);
   const lastSavedAtRemaining = useRef(limit);
   const [remainingCharacters, setRemainingCharacters] = useState(limit);
+  const [piiErrors, setPiiErrors] = useState<string[]>([]);
+  const [isValidating, setIsValidating] = useState(false);
 
   const editor = useEditor({
     editable: !error,
@@ -127,6 +137,10 @@ export const TeacherNotesModal = ({
         isAllowedUri,
         shouldAutoLink,
       }),
+      DynamicHighlightExtension.configure({
+        className: "pii-error-highlight",
+        segments: [],
+      }),
     ],
     immediatelyRender: false,
     onCreate: ({ editor }) => {
@@ -139,6 +153,7 @@ export const TeacherNotesModal = ({
       lastSavedAtRemaining.current = r;
     },
     onUpdate: ({ editor }) => {
+      editor?.commands?.clearDynamicHighlights();
       const numChars = editor?.storage.characterCount.characters() ?? 0;
       const r = limit - numChars;
       setRemainingCharacters(r);
@@ -170,7 +185,9 @@ export const TeacherNotesModal = ({
   };
 
   const handleSave = async (displayFeedback: boolean) => {
+    setIsValidating(true);
     if (error || !editor) {
+      setIsValidating(false);
       return;
     }
 
@@ -179,8 +196,12 @@ export const TeacherNotesModal = ({
 
     // don't save if there's no change or no note text
     if (teacherNote?.noteHtml === noteHtml || noteText.length === 0) {
+      setIsValidating(false);
       return;
     }
+
+    setPiiErrors([]);
+    editor?.commands?.clearDynamicHighlights();
 
     const note: Partial<TeacherNoteCamelCase> = {
       ...teacherNote,
@@ -188,14 +209,40 @@ export const TeacherNotesModal = ({
       noteText,
     };
 
-    const res = await saveTeacherNote(note);
+    const onSaveSuccess = (res: TeacherNote) => {
+      if (res && displayFeedback) {
+        editor?.commands?.clearDynamicHighlights();
+        setNoteSaved(true);
+        setTimeout(() => {
+          setNoteSaved(false);
+        }, 3000);
+      }
+    };
 
-    if (res && displayFeedback) {
-      setNoteSaved(true);
-      setTimeout(() => {
-        setNoteSaved(false);
-      }, 3000);
-    }
+    const onSaveError = (err: TeacherNoteError) => {
+      if (err.type === "PII_ERROR" && !!err.pii) {
+        const uniqInfoTypes = err.pii.piiMatches
+          .map((m) => m.infoType)
+          .reduce(
+            (acc: string[], curr: string) =>
+              acc.includes(curr) ? acc : [...acc, curr],
+            [],
+          );
+        setPiiErrors(uniqInfoTypes);
+        const segmentsToHighlight: HighlightSegment[] = err.pii.piiMatches.map(
+          ({ startIndex, endIndex }) => ({
+            startIndex,
+            endIndex,
+          }),
+        );
+        editor?.commands?.applyDynamicHighlights(segmentsToHighlight);
+      }
+    };
+
+    const res = await saveTeacherNote(note);
+    if ((res as TeacherNoteError)?.type) onSaveError(res as TeacherNoteError);
+    else onSaveSuccess(res as TeacherNote);
+    setIsValidating(false);
   };
 
   const handleShare = () => {
@@ -212,6 +259,39 @@ export const TeacherNotesModal = ({
     setTimeout(() => {
       setNoteShared(false);
     }, 3000);
+  };
+
+  const getPiiErrorMessage = () => {
+    if (!piiErrors.length) return undefined;
+    const msg = (err: string) => {
+      switch (true) {
+        case err === "PERSON_NAME":
+          return "Please do not include names of individuals. This information will be redacted.";
+        case err === "EMAIL_ADDRESS":
+          return "Please do not include email addresses. This information will be redacted.";
+        case err === "PHONE_NUMBER":
+          return "Please do not include phone numbers. This information will be redacted.";
+        case err === "STREET_ADDRESS":
+          return "Please do not include addresses. This information will be redacted.";
+      }
+    };
+    return (
+      <OakFlex $flexDirection="column">
+        {piiErrors.map((error) => (
+          <OakFlex
+            $alignItems="center"
+            $gap="space-between-ssx"
+            role="alert"
+            key={error}
+          >
+            <OakIcon iconName="error" $colorFilter="icon-error" />
+            <OakSpan $color="icon-error" $font="body-3-bold">
+              {msg(error)}
+            </OakSpan>
+          </OakFlex>
+        ))}
+      </OakFlex>
+    );
   };
 
   return (
@@ -235,6 +315,8 @@ export const TeacherNotesModal = ({
         page: "legal",
         legalSlug: "terms-and-conditions",
       })}
+      shareLinkDisabled={piiErrors.length > 0 || isValidating}
+      footer={getPiiErrorMessage()}
     />
   );
 };
