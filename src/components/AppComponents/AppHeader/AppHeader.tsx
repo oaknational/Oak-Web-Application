@@ -1,6 +1,14 @@
 import { FC, useRef } from "react";
-import { OakBox, oakColorTokens, OakFlex } from "@oaknational/oak-components";
-import { UserButton, useUser } from "@clerk/nextjs";
+import {
+  OakBox,
+  oakColorTokens,
+  OakFlex,
+  OakSecondaryButton,
+} from "@oaknational/oak-components";
+import { UserButton, useUser, SignUpButton } from "@clerk/nextjs";
+import { useRouter } from "next/router";
+
+import { resolveOakHref } from "../../../common-lib/urls";
 
 import Logo from "@/components/AppComponents/Logo";
 import { HeaderProps } from "@/components/AppComponents/Layout/Layout";
@@ -35,6 +43,12 @@ const AppHeader: FC<HeaderProps> = () => {
   const { track } = useAnalytics();
   const selectedArea = useSelectedArea();
   const { isSignedIn } = useUser();
+  const router = useRouter();
+
+  const returnToParams = new URLSearchParams({
+    returnTo: router.asPath,
+  }).toString();
+  const onboardingRedirectUrl = `${resolveOakHref({ page: "onboarding" })}?${returnToParams}`;
 
   return (
     <header>
@@ -92,6 +106,17 @@ const AppHeader: FC<HeaderProps> = () => {
                 }}
                 data-testid="clerk-user-button"
               />
+            )}
+            {!isSignedIn && selectedArea == siteAreas.teachers && (
+              <SignUpButton forceRedirectUrl={onboardingRedirectUrl}>
+                <OakSecondaryButton
+                  font={"body-3-bold"}
+                  pv="inner-padding-xs"
+                  ph="inner-padding-xs"
+                >
+                  Sign up
+                </OakSecondaryButton>
+              </SignUpButton>
             )}
             <OwaLink
               page={"teachers-home-page"}

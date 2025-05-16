@@ -51,6 +51,7 @@ describe("components/AppHeader", () => {
     await user.keyboard("{tab}");
     await user.keyboard("{tab}");
     await user.keyboard("{tab}");
+    await user.keyboard("{tab}");
     await user.keyboard("{Enter}");
 
     expect(screen.getByTestId("menu")).toBeVisible();
