@@ -27,10 +27,6 @@ const StyledEditorContent = styled(EditorContent)`
   .tiptap:focus {
     outline: none;
   }
-  .tiptap a {
-    color: #0078d4;
-    text-decoration: underline;
-  }
   .pii-error-highlight {
     color: ${theme.colors.red};
     text-decoration: underline;
@@ -124,7 +120,7 @@ export const TeacherNotesModal = ({
   const lastSavedAtRemaining = useRef(limit);
   const [remainingCharacters, setRemainingCharacters] = useState(limit);
   const [piiErrors, setPiiErrors] = useState<string[]>([]);
-  const [isValidating, setIsValidating] = useState(true);
+  const [isValidating, setIsValidating] = useState(false);
 
   const editor = useEditor({
     editable: !error,
@@ -157,6 +153,7 @@ export const TeacherNotesModal = ({
       lastSavedAtRemaining.current = r;
     },
     onUpdate: ({ editor }) => {
+      editor?.commands?.clearDynamicHighlights();
       const numChars = editor?.storage.characterCount.characters() ?? 0;
       const r = limit - numChars;
       setRemainingCharacters(r);
@@ -188,9 +185,7 @@ export const TeacherNotesModal = ({
   };
 
   const handleSave = async (displayFeedback: boolean) => {
-    setPiiErrors([]);
     setIsValidating(true);
-    editor?.commands?.clearDynamicHighlights();
     if (error || !editor) {
       setIsValidating(false);
       return;
@@ -204,6 +199,9 @@ export const TeacherNotesModal = ({
       setIsValidating(false);
       return;
     }
+
+    setPiiErrors([]);
+    editor?.commands?.clearDynamicHighlights();
 
     const note: Partial<TeacherNoteCamelCase> = {
       ...teacherNote,
@@ -223,7 +221,6 @@ export const TeacherNotesModal = ({
 
     const onSaveError = (err: TeacherNoteError) => {
       if (err.type === "PII_ERROR" && !!err.pii) {
-        console.log("handle pii error", err);
         const uniqInfoTypes = err.pii.piiMatches
           .map((m) => m.infoType)
           .reduce(
@@ -232,7 +229,6 @@ export const TeacherNotesModal = ({
             [],
           );
         setPiiErrors(uniqInfoTypes);
-        console.log("pii errors", uniqInfoTypes, piiErrors);
         const segmentsToHighlight: HighlightSegment[] = err.pii.piiMatches.map(
           ({ startIndex, endIndex }) => ({
             startIndex,
