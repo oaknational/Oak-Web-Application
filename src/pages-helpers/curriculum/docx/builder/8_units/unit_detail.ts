@@ -14,7 +14,7 @@ import {
 import { createUnitsListingByYear } from "../../tab-helpers";
 
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
-import { createProgrammeSlug } from "@/utils/curriculum/slugs";
+import { createTeacherProgrammeSlug } from "@/utils/curriculum/slugs";
 import { SubjectCategory } from "@/utils/curriculum/types";
 import { getIsUnitDescriptionEnabled } from "@/utils/curriculum/features";
 
@@ -221,10 +221,11 @@ export async function buildUnit(
   const resolvedUnitSlug = unitOption?.slug ?? unit.slug;
 
   const links = await insertLinks(zip, {
-    onlineResources: `https://www.thenational.academy/teachers/programmes/${createProgrammeSlug(
+    onlineResources: `https://www.thenational.academy/teachers/programmes/${createTeacherProgrammeSlug(
       unit,
       slugs.ks4OptionSlug,
       slugs.tierSlug,
+      unit?.pathway_slug ?? undefined,
     )}/units/${resolvedUnitSlug}/lessons`,
   });
 
@@ -445,9 +446,20 @@ export async function buildUnit(
     const combinedTitles = subjectcategories
       ? subjectcategories.map(({ title }) => title).join(", ")
       : "";
-    return combinedTitles !== "" ? `: ${combinedTitles}` : "";
+
+    return combinedTitles;
   }
 
+  function getYearSuffix(unit: Unit) {
+    const subCat = getSubjectCategoriesAsString(unit.subjectcategories);
+    const pathway = unit.pathway;
+    return [subCat, pathway]
+      .filter((item) => item !== "")
+      .filter(Boolean)
+      .join(", ");
+  }
+
+  const yearSuffix = getYearSuffix(unit);
   const yearData = createUnitsListingByYear([unit]);
   const yearTitle = getYearGroupTitle(
     yearData,
@@ -456,24 +468,6 @@ export async function buildUnit(
 
   const xml = safeXml`
     <XML_FRAGMENT>
-      ${
-        "" /*<w:p>
-        <w:r>
-          <w:rPr>
-            <w:noProof />
-          </w:rPr>
-          ${createImage(images.greenCircle, {
-            width: cmToEmu(1.77),
-            height: cmToEmu(1.6),
-            xPos: cmToEmu(1.55),
-            yPos: cmToEmu(1.13),
-            xPosAnchor: "page",
-            yPosAnchor: "page",
-            isDecorative: true,
-          })}
-        </w:r>
-      </w:p>*/
-      }
       <w:p>
         <w:pPr>
           <w:pStyle w:val="Heading3" />
@@ -507,9 +501,8 @@ export async function buildUnit(
             <w:b />
             <w:color w:val="222222" />
           </w:rPr>
-          <w:t>${cdata(yearTitle)}</w:t>
           <w:t>
-            ${cdata(getSubjectCategoriesAsString(unit.subjectcategories))}
+            ${cdata(`${yearTitle}${yearSuffix ? `: ${yearSuffix}` : ""}`)}
           </w:t>
         </w:r>
       </w:p>

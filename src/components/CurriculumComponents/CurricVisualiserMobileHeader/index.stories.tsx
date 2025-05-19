@@ -24,6 +24,7 @@ export const CurricMobileStickyHeader: Story = {
       tiers: [],
       years: [],
       threads: [],
+      pathways: [],
     },
     onChangeFilters: () => {},
     slugs: {
