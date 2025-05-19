@@ -33,7 +33,7 @@
     "lint:styles:precommit": "stylelint",
     "madge:circulars": "npx madge --circular --extensions ts,tsx,js,jsx .",
     "madge:circulars-image": "npx madge --circular --image madge/circulars.svg --extensions ts,tsx,js,jsx .",
-    "pa11y": "pa11y-ci -c pa11yci.config.cjs",
+    "pa11y": "pa11y-ci -c pa11yci.config.js",
     "prepare": "husky",
     "report:open": "open ./reports/*.html",
     "semantic-release": "semantic-release",
