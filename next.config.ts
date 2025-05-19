@@ -355,7 +355,7 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
     writeFileSync(envFileName, newEnv);
     console.log(`Wrote "${baseUrlEnv}" to .env file for sitemap generation.`);
   } catch (err) {
-    console.error("Could not write SITEMAP_BASE_URL to env file");
+    console.error("Could not write SITEMAP_BASE_URL to env file", err);
     throw err;
   }
 
