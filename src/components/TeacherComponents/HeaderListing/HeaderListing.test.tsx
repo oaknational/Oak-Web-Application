@@ -22,6 +22,14 @@ jest.mock(
   },
 );
 
+jest.mock(
+  "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink",
+  () => ({
+    __esModule: true,
+    default: jest.fn(),
+  }),
+);
+
 const mockFeatureFlag = jest.fn();
 
 jest.mock("posthog-js/react", () => ({
