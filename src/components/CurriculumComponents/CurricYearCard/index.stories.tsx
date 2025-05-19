@@ -89,7 +89,7 @@ export const WithAdditionalContent: Story = {
           }
           index={0}
           isHighlighted={false}
-          onClick={() => {}}
+          href={""}
         />
         <CurriculumUnitCard
           unit={
@@ -104,7 +104,7 @@ export const WithAdditionalContent: Story = {
           }
           index={1}
           isHighlighted={false}
-          onClick={() => {}}
+          href={""}
         />
         <CurriculumUnitCard
           unit={
@@ -119,7 +119,7 @@ export const WithAdditionalContent: Story = {
           }
           index={2}
           isHighlighted={false}
-          onClick={() => {}}
+          href={""}
         />
       </div>
     ),

@@ -24,7 +24,9 @@ const curriculumVisualiserFixture: ComponentProps<typeof Component> = {
     childSubjects: [],
     subjectCategories: [],
     threads: [],
+    pathways: [],
   },
+  ks4Options: [{ slug: "edexcel", title: "edexcel" }],
   ks4OptionSlug: "edexcel",
   yearData: {
     "7": {
@@ -92,6 +94,7 @@ const curriculumVisualiserFixture: ComponentProps<typeof Component> = {
       subjectCategories: [],
       isSwimming: false,
       groupAs: null,
+      pathways: [],
     },
   },
   setVisibleMobileYearRefID: () => {},

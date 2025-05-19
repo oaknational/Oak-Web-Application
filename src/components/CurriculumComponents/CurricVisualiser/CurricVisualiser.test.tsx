@@ -53,7 +53,6 @@ const CurricVisualiserFixture: ComponentProps<typeof CurricVisualiser> = {
     threads: [],
   },
   ks4Options: [],
-  selectedYear: null,
   ks4OptionSlug: "edexcel",
   yearData: {
     "7": {
