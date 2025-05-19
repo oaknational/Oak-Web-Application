@@ -261,7 +261,12 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
     compiler: {
       styledComponents: true,
     },
-
+    // https://nextjs.org/docs/app/api-reference/config/next-config-js/serverActions#allowedorigins
+    experimental: {
+      serverActions: {
+        allowedOrigins: ["*.thenational.academy"],
+      },
+    },
     // Need this so static URLs and dynamic URLs match.
     trailingSlash: false,
     // Make sure production source maps exist for e.g. Bugsnag
