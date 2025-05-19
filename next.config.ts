@@ -361,7 +361,9 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
     console.log(`Wrote "${baseUrlEnv}" to .env file for sitemap generation.`);
   } catch (err) {
     console.error("Could not write SITEMAP_BASE_URL to env file", err);
-    throw err;
+    if (process.env.IS_STORYBOOK !== "true") {
+      throw err;
+    }
   }
 
   return withBundleAnalyzer(nextConfig);
