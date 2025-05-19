@@ -18,15 +18,17 @@ import {
   TextItem,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
+export interface QuizQuestionStemProps {
+  questionStem: (ImageItem | TextItem)[];
+  index: number;
+  takeFullHeight?: boolean;
+}
+
 export const QuizQuestionStem = ({
   questionStem,
   index,
   takeFullHeight,
-}: {
-  questionStem: (ImageItem | TextItem)[];
-  index: number;
-  takeFullHeight?: boolean;
-}) => {
+}: QuizQuestionStemProps) => {
   const [scaled, setScaled] = useState(false);
   const displayNumber = `Q${index + 1}.`;
   useEffect(() => {
