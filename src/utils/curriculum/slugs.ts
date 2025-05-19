@@ -95,23 +95,6 @@ export function getKs4RedirectSlug(
   };
 }
 
-export function createProgrammeSlug(
-  unitData?: CurriculumUnitsTabData["units"][number] | null,
-  examboardSlug?: string | null,
-  tierSlug?: string,
-) {
-  if (unitData?.keystage_slug === "ks4") {
-    return `${unitData.subject_slug}-${unitData.phase_slug}-${
-      unitData.keystage_slug
-    }${tierSlug ? "-" + tierSlug : ""}${
-      examboardSlug ? "-" + examboardSlug : ""
-    }`;
-  }
-  return unitData
-    ? `${unitData.subject_slug}-${unitData.phase_slug}-${unitData.keystage_slug}`
-    : "";
-}
-
 export function createTeacherProgrammeSlug(
   unitData?: CurriculumUnitsTabData["units"][number] | null,
   examboardSlug?: string | null,

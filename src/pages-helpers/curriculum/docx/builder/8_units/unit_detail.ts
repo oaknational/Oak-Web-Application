@@ -14,7 +14,7 @@ import {
 import { createUnitsListingByYear } from "../../tab-helpers";
 
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
-import { createProgrammeSlug } from "@/utils/curriculum/slugs";
+import { createTeacherProgrammeSlug } from "@/utils/curriculum/slugs";
 import { SubjectCategory } from "@/utils/curriculum/types";
 import { getIsUnitDescriptionEnabled } from "@/utils/curriculum/features";
 
@@ -221,10 +221,11 @@ export async function buildUnit(
   const resolvedUnitSlug = unitOption?.slug ?? unit.slug;
 
   const links = await insertLinks(zip, {
-    onlineResources: `https://www.thenational.academy/teachers/programmes/${createProgrammeSlug(
+    onlineResources: `https://www.thenational.academy/teachers/programmes/${createTeacherProgrammeSlug(
       unit,
       slugs.ks4OptionSlug,
       slugs.tierSlug,
+      unit?.pathway_slug ?? undefined,
     )}/units/${resolvedUnitSlug}/lessons`,
   });
 
