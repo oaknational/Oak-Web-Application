@@ -181,6 +181,7 @@ export default function CurricVisualiser({
         basePath={basePath}
         selectedThread={selectedThread}
         filters={filters}
+        ks4OptionSlug={ks4OptionSlug}
       />
     </OakBox>
   );
