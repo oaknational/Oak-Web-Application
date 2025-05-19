@@ -265,9 +265,9 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
     experimental: {
       serverActions: {
         allowedOrigins: [
-          "*.netlify.app",
-          "*.thenational.academy",
-          "thenational.academy",
+          // TODO: this is temporary for testing
+          "deploy-preview-3351--oak-web-application.netlify.app",
+          "deploy-preview-3351--oak-web-application.netlify.thenational.academy",
         ],
       },
     },
