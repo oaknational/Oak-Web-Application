@@ -22,6 +22,7 @@ import {
   UnitListItemProps,
   SpecialistListItemProps,
 } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
+import SavingSignedOutModal from "@/components/TeacherComponents/SavingSignedOutModal/SavingSignedOutModal";
 import {
   SpecialistUnit,
   SpecialistUnitListingData,
@@ -194,13 +195,16 @@ const UnitList: FC<UnitListProps> = (props) => {
 
   // Saving
   const isSaveEnabled = useFeatureFlagEnabled("teacher-save-units");
-  const { onSaveToggle, isUnitSaved } = useSaveUnits(props.programmeSlug, {
-    keyStageTitle,
-    keyStageSlug,
-    subjectTitle: props.subjectTitle,
-    subjectSlug: props.subjectSlug,
-    savedFrom: "unit_listing_save_button",
-  });
+  const { onSaveToggle, isUnitSaved, showSignIn, setShowSignIn } = useSaveUnits(
+    props.programmeSlug,
+    {
+      keyStageTitle,
+      keyStageSlug,
+      subjectTitle: props.subjectTitle,
+      subjectSlug: props.subjectSlug,
+      savedFrom: "unit_listing_save_button",
+    },
+  );
 
   const hasNewAndLegacyUnits: boolean =
     !!phaseSlug && !!newPageItems.length && !!legacyPageItems.length;
@@ -466,6 +470,14 @@ const UnitList: FC<UnitListProps> = (props) => {
         </OakBox>
       ) : (
         <OakBox $pb="inner-padding-xl2" />
+      )}
+      {showSignIn && (
+        <SavingSignedOutModal
+          isOpen={showSignIn}
+          onClose={() => {
+            setShowSignIn(false);
+          }}
+        />
       )}
     </OakFlex>
   );

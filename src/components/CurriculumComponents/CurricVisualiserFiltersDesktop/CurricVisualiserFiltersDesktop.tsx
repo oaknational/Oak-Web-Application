@@ -18,12 +18,14 @@ import { CurriculumFilters } from "@/utils/curriculum/types";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { shouldDisplayFilter } from "@/utils/curriculum/filtering";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
+import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 
 export type CurricVisualiserFiltersProps = {
   filters: CurriculumFilters;
   onChangeFilters: (newFilters: CurriculumFilters) => void;
   data: CurriculumUnitsFormattedData;
   slugs: CurriculumSelectionSlugs;
+  ks4Options: SubjectPhasePickerData["subjects"][number]["ks4_options"];
 };
 
 export default function CurricVisualiserFiltersDesktop({
@@ -31,6 +33,7 @@ export default function CurricVisualiserFiltersDesktop({
   onChangeFilters,
   data,
   slugs,
+  ks4Options,
 }: CurricVisualiserFiltersProps) {
   return (
     <OakBox $mr={"space-between-s"}>
@@ -46,6 +49,8 @@ export default function CurricVisualiserFiltersDesktop({
             filters={filters}
             onChangeFilters={onChangeFilters}
             data={data}
+            ks4Options={ks4Options}
+            slugs={slugs}
           />
           <OakHandDrawnHR hrColor={"grey40"} $mv={"space-between-m2"} />
         </>

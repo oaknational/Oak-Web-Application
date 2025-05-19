@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { OakBox, OakPrimaryButton } from "@oaknational/oak-components";
 
 import { CurricVisualiserFiltersProps } from "../CurricVisualiserFiltersDesktop";
-import CurricVisualiserMobileHeader from "../CurricVisualiserMobileHeader";
+import CurricMobileStickyHeader from "../CurricVisualiserMobileHeader";
 import { CurricMobileFilterModal } from "../CurricVisualiserFiltersModal";
 import { OakModalNew } from "../OakComponentsKitchen/OakModalNew";
 
@@ -24,6 +24,7 @@ export default function CurricVisualiserFiltersMobile({
   onSelectYear,
   slugs,
   trackingData,
+  ks4Options,
 }: CurricVisualiserFiltersMobileProps) {
   const [mobileThreadModalOpen, setMobileThreadModalOpen] =
     useState<boolean>(false);
@@ -53,7 +54,6 @@ export default function CurricVisualiserFiltersMobile({
     <>
       <OakModalNew
         open={mobileThreadModalOpen}
-        animateFrom="right"
         onClose={onClose}
         title={<OakBox $font={"heading-6"}>Filter and highlight</OakBox>}
         content={
@@ -64,6 +64,7 @@ export default function CurricVisualiserFiltersMobile({
             onChangeFilters={onChangeFilters}
             data={data}
             slugs={slugs}
+            ks4Options={ks4Options}
           />
         }
         footer={
@@ -76,7 +77,7 @@ export default function CurricVisualiserFiltersMobile({
           </OakPrimaryButton>
         }
       />
-      <CurricVisualiserMobileHeader
+      <CurricMobileStickyHeader
         onOpenModal={handleMobileThreadModal}
         filters={filters}
         selectedYear={selectedYear}
@@ -85,6 +86,7 @@ export default function CurricVisualiserFiltersMobile({
         data={data}
         slugs={slugs}
         trackingData={trackingData}
+        ks4Options={ks4Options}
       />
     </>
   );

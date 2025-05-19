@@ -24,6 +24,7 @@ export const CurricVisualiserFiltersMobile: Story = {
       tiers: [],
       years: [],
       threads: [],
+      pathways: [],
     },
     onChangeFilters: () => {},
     slugs: {

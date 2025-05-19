@@ -6,7 +6,10 @@ import FocusIndicator from "../OakComponentsKitchen/FocusIndicator";
 import { CurricVisualiserFiltersProps } from "../CurricVisualiserFiltersDesktop";
 
 import ButtonGroup from "@/components/SharedComponents/ButtonGroup";
-import { getYearGroupTitle } from "@/utils/curriculum/formatting";
+import {
+  getYearGroupTitle,
+  getPathwaySuffix,
+} from "@/utils/curriculum/formatting";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import {
@@ -15,6 +18,12 @@ import {
 } from "@/utils/curriculum/filtering";
 import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics";
 import { CurriculumUnitsTrackingData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import {
+  applyFiltering,
+  getModes,
+  groupUnitsByPathway,
+} from "@/utils/curriculum/by-pathway";
+import { getShouldDisplayCorePathway } from "@/utils/curriculum/pathways";
 
 export type CurricVisualiserFiltersMobileProps =
   CurricVisualiserFiltersProps & {
@@ -98,6 +107,8 @@ export default function CurricVisualiserMobileHeader({
   trackingData,
   selectedYear,
   onSelectYear,
+  slugs,
+  ks4Options,
 }: CurricVisualiserFiltersMobileProps & {
   trackingData: CurriculumUnitsTrackingData;
 }) {
@@ -105,13 +116,16 @@ export default function CurricVisualiserMobileHeader({
   const { analyticsUseCase } = useAnalyticsPageProps();
   const [lockYear, setLockYear] = useState<string | null>(null);
 
-  const { yearData, yearOptions } = data;
+  const { yearData } = data;
 
   const highlightedUnits = highlightedUnitCount(
     yearData,
     filters,
     filters.threads,
   );
+
+  const shouldDisplayCorePathway =
+    slugs.ks4OptionSlug !== "core" && getShouldDisplayCorePathway(ks4Options);
 
   function trackSelectYear(year: string): void {
     if (trackingData) {
@@ -128,13 +142,13 @@ export default function CurricVisualiserMobileHeader({
   }
 
   function isSelectedYear(yearOption: string) {
-    return selectedYear === yearOption;
+    return selectedYear === `year-${yearOption}`;
   }
 
   function scrollToYearSection(yearOption: string) {
     const targetElement = document.getElementById(`year-${yearOption}`);
     if (targetElement) {
-      const headerOffset = 70;
+      const headerOffset = 140;
       const elementPosition = targetElement.getBoundingClientRect().top;
       const { pageYOffset } = window;
       const offsetPosition = elementPosition + pageYOffset - headerOffset;
@@ -149,7 +163,7 @@ export default function CurricVisualiserMobileHeader({
         "scrollend",
         () => {
           setLockYear(null);
-          const yearHeading = document.getElementById(`year-${yearOption}`);
+          const yearHeading = document.getElementById(`year-${yearOption} h3`);
           if (yearHeading instanceof HTMLElement) {
             yearHeading.setAttribute("tabindex", "-1");
             yearHeading.focus();
@@ -161,6 +175,15 @@ export default function CurricVisualiserMobileHeader({
   }
 
   const textItemsDescribingFilter = buildTextDescribingFilter(data, filters);
+
+  const shouldIncludeCore = slugs.ks4OptionSlug !== "core";
+  const unitsByYearSelector = applyFiltering(
+    filters,
+    groupUnitsByPathway({
+      modes: getModes(shouldIncludeCore, ks4Options ?? []),
+      yearData,
+    }),
+  );
 
   return (
     <OakBox
@@ -240,7 +263,8 @@ export default function CurricVisualiserMobileHeader({
           >
             <ScrollableWrapper>
               <StyledButtonGroup aria-label="Select a year group">
-                {yearOptions.map((yearOption) => {
+                {unitsByYearSelector.map(({ type, year }) => {
+                  const yearOption = `${type}-${year}`;
                   const isYearSelected = lockYear
                     ? lockYear === yearOption
                     : isSelectedYear(yearOption);
@@ -270,7 +294,16 @@ export default function CurricVisualiserMobileHeader({
                             scrollToYearSection(yearOption);
                           }}
                         >
-                          {getYearGroupTitle(yearData, yearOption)}
+                          {getYearGroupTitle(
+                            yearData,
+                            year,
+                            (() => {
+                              const suffix = shouldDisplayCorePathway
+                                ? getPathwaySuffix(year, type)
+                                : undefined;
+                              return suffix ? `(${suffix})` : undefined;
+                            })(),
+                          )}
                         </StyledButton>
                       </FocusIndicator>
                     </OakBox>

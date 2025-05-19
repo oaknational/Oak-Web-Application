@@ -13,11 +13,14 @@ import {
   CurriculumUnitsFormattedData,
   CurriculumUnitsTrackingData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { getNumberOfSelectedUnits } from "@/utils/curriculum/getNumberOfSelectedUnits";
-import { highlightedUnitCount } from "@/utils/curriculum/filtering";
+import {
+  getNumberOfSelectedUnits,
+  highlightedUnitCount,
+} from "@/utils/curriculum/filtering";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { findUnitOrOptionBySlug } from "@/utils/curriculum/units";
+import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 
 type UnitsTabProps = {
   trackingData: CurriculumUnitsTrackingData;
@@ -27,6 +30,7 @@ type UnitsTabProps = {
   slugs: CurriculumSelectionSlugs;
   basePath: string;
   selectedUnitSlug?: string;
+  ks4Options: Ks4Option[];
 };
 
 export default function UnitsTab({
@@ -37,6 +41,7 @@ export default function UnitsTab({
   slugs,
   basePath,
   selectedUnitSlug,
+  ks4Options,
 }: UnitsTabProps) {
   // Initialize constants
   const isMobile = useMediaQuery("mobile");
@@ -48,9 +53,8 @@ export default function UnitsTab({
   );
 
   const [mobileSelectedYear, setMobileSelectedYear] = useState<string>("");
-  const selectedYear = filters.years.length === 1 ? filters.years[0]! : "all";
 
-  const unitCount = getNumberOfSelectedUnits(yearData, selectedYear, filters);
+  const unitCount = getNumberOfSelectedUnits(yearData, filters);
 
   const highlightedUnits = highlightedUnitCount(
     yearData,
@@ -94,6 +98,7 @@ export default function UnitsTab({
             slugs={slugs}
             onOpenModal={() => {}}
             trackingData={trackingData}
+            ks4Options={ks4Options}
           />
         )}
         <CurricVisualiserLayout
@@ -104,6 +109,7 @@ export default function UnitsTab({
                 onChangeFilters={onChangeFilters}
                 data={formattedData}
                 slugs={slugs}
+                ks4Options={ks4Options}
               />
             )
           }
@@ -114,6 +120,7 @@ export default function UnitsTab({
               basePath={basePath}
               filters={filters}
               ks4OptionSlug={ks4OptionSlug}
+              ks4Options={ks4Options}
               yearData={yearData}
               setVisibleMobileYearRefID={setVisibleMobileYearRefID}
               threadOptions={threadOptions}

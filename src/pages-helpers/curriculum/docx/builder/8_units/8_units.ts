@@ -1,6 +1,6 @@
 import { join } from "path";
 
-import { sortBy, uniqBy } from "lodash";
+import { uniqBy } from "lodash";
 
 import { cdata, safeXml, xmlElementToJson } from "../../xml";
 import { CombinedCurriculumData, Slugs } from "../..";
@@ -18,6 +18,7 @@ import {
   createCurriculumSlug,
   generateGridCols,
   groupUnitsBySubjectCategory,
+  sortYearPathways,
 } from "../helper";
 import {
   CurriculumUnitsFormattedData,
@@ -26,39 +27,37 @@ import {
 
 import { buildUnit } from "./unit_detail";
 
-import {
-  getSuffixFromFeatures,
-  getYearGroupTitle,
-} from "@/utils/curriculum/formatting";
-import { sortYears } from "@/utils/curriculum/sorting";
+import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import { Unit } from "@/utils/curriculum/types";
+import {
+  getModes,
+  groupUnitsByPathway,
+  MODES,
+  UnitsByPathway,
+} from "@/utils/curriculum/by-pathway";
+import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 
 function generateGroupedUnits(
   data: CurriculumUnitsFormattedData<CombinedCurriculumData["units"][number]>,
 ) {
-  const unitOptions = Object.entries(data.yearData).flatMap(
-    ([year, { childSubjects, tiers, units, pathways }]) => {
+  const unitOptions = Object.entries(data.yearData as UnitsByPathway).flatMap(
+    ([year_type_key, { childSubjects, tiers, units, type }]) => {
+      const year = year_type_key.split("_")[0];
+      if (!year) return [];
+
       let options: {
         year: string;
         tier?: string;
         childSubject?: string;
         pathway?: string;
+        type: MODES;
       }[] = [];
 
       options.push({
         year,
+        type,
+        pathway: type === "core" ? "core" : "gcse",
       });
-      if (pathways.length > 0) {
-        options = options.flatMap((option) => {
-          // TODO: This should be sorted by pathway_display_order, however we need to change the way this is handled.
-          return sortBy(pathways, ["pathway_slug"]).map((pathway) => {
-            return {
-              ...option,
-              pathway: pathway.pathway_slug,
-            };
-          });
-        });
-      }
       if (childSubjects.length > 0) {
         options = options.flatMap((option) => {
           return childSubjects.map((childSubject) => {
@@ -111,21 +110,56 @@ function generateGroupedUnits(
     },
   );
 
-  return unitOptions.sort((a, b) => sortYears(a.year, b.year));
+  return unitOptions.toSorted((a, b) =>
+    sortYearPathways(`${a.year}-${a.pathway}`, `${b.year}-${b.pathway}`),
+  );
 }
 
 export default async function generate(
   zip: JSZipCached,
-  { data, slugs }: { data: CombinedCurriculumData; slugs: Slugs },
+  {
+    data,
+    slugs,
+    ks4Options,
+  }: { data: CombinedCurriculumData; slugs: Slugs; ks4Options: Ks4Option[] },
 ) {
   const formattedData = formatCurriculumUnitsData(
     data,
   ) as CurriculumUnitsFormattedData<CombinedCurriculumData["units"][number]>;
+  const yearDataOrig = formatCurriculumUnitsData(data);
+  const yearData = groupUnitsByPathway({
+    modes: getModes(true, ks4Options),
+    yearData: yearDataOrig.yearData,
+  });
 
   const yearXml: string[] = [];
-  const groupedUnits = generateGroupedUnits(formattedData);
+  const groupedUnits = generateGroupedUnits({
+    ...formattedData,
+    yearData,
+  });
 
-  for (const { units, year, childSubject, tier, pathway } of groupedUnits) {
+  for (const {
+    units,
+    year,
+    childSubject,
+    tier,
+    pathway,
+    type,
+  } of groupedUnits) {
+    const isSwimming = yearDataOrig.yearData[year]?.isSwimming ?? false;
+    const ks4Suffix =
+      ["10", "11"].includes(year) && type !== "all"
+        ? type === "core"
+          ? " (Core)"
+          : " (GCSE)"
+        : "";
+    const suffix = ks4Suffix ? `units${ks4Suffix}` : "units";
+    const displayYearTitle = getYearGroupTitle(
+      yearDataOrig.yearData,
+      year,
+      suffix,
+    );
+
     yearXml.push(
       await buildYear(
         zip,
@@ -134,22 +168,17 @@ export default async function generate(
         units,
         { childSubject, tier, pathway },
         slugs,
+        type,
+        displayYearTitle,
+        isSwimming,
       ),
     );
   }
 
-  const pageXml = safeXml`
-    <root>
-      ${yearXml.join("")}
-      <w:p>
-        <w:r>
-          <w:br w:type="page" />
-        </w:r>
-      </w:p>
-    </root>
-  `;
-
-  await appendBodyElements(zip, xmlElementToJson(pageXml)?.elements);
+  await appendBodyElements(
+    zip,
+    xmlElementToJson(safeXml`<root>${yearXml.join("")}</root>`)?.elements,
+  );
 }
 
 function buildOptions({
@@ -333,6 +362,9 @@ async function buildYear(
   unitsInput: CombinedCurriculumData["units"],
   yearSlugs: Slug,
   slugs: Slugs,
+  type: MODES,
+  displayYearTitle: string,
+  isSwimming: boolean,
 ) {
   const images = await insertImages(zip, {
     jumpOutArrow: join(
@@ -489,28 +521,17 @@ async function buildYear(
   // For the building this header we can assume all units will contain the same subject/tier/pathway
   const firstUnit = units[0];
   if (firstUnit) {
-    if (firstUnit.subject || firstUnit.tier || firstUnit.pathway) {
+    if (firstUnit.subject || firstUnit.tier) {
       subjectTierPathwayTitle = [
         // HERE: Only if child subject is present.
         yearSlugs.childSubject ? firstUnit.subject : undefined,
         firstUnit.tier,
-        firstUnit.pathway,
+        firstUnit.actions?.programme_field_overrides?.subject,
       ]
         .filter(Boolean)
         .join(", ");
     }
   }
-
-  const yearTitleSuffix = [getSuffixFromFeatures(firstUnit?.actions), "units"]
-    .filter(Boolean)
-    .join(" ");
-  const yearTitle = getYearGroupTitle(
-    formattedData.yearData,
-    year,
-    yearTitleSuffix,
-  );
-
-  const isSwimming = formattedData.yearData[year]?.isSwimming;
 
   const xml = safeXml`
     <XML_FRAGMENT>
@@ -541,7 +562,7 @@ async function buildYear(
           <w:pStyle w:val="Heading2" />
         </w:pPr>
         ${wrapInBookmarkPoint(
-          `section_year_${year}`,
+          `section_year_${type}-${year}`,
           safeXml`
             <w:r>
               <w:rPr>
@@ -550,7 +571,7 @@ async function buildYear(
                 <w:color w:val="222222" />
                 <w:sz w:val="56" />
               </w:rPr>
-              <w:t>${cdata(yearTitle)}</w:t>
+              <w:t>${cdata(displayYearTitle)}</w:t>
             </w:r>
           `,
         )}

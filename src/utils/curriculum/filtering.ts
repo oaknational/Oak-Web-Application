@@ -1,5 +1,5 @@
 import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
-import { useLayoutEffect, useState, useCallback } from "react";
+import { useCallback, useLayoutEffect, useState } from "react";
 import { isEqual } from "lodash";
 import { useRouter } from "next/router";
 
@@ -94,6 +94,7 @@ export function getDefaultFilter(data: CurriculumUnitsFormattedData) {
     tiers: getDefaultTiersForYearGroup(data.yearData),
     years: data.yearOptions,
     threads: [],
+    pathways: [],
   };
 }
 
@@ -103,6 +104,7 @@ const FILTER_TO_QS: Record<keyof CurriculumFilters, string> = {
   tiers: "tiers",
   years: "years",
   threads: "threads",
+  pathways: "pathways",
 };
 
 export function filtersToQuery(
@@ -171,6 +173,7 @@ export function useFilters(
     },
     [router, defaultFilter],
   );
+
   return [filters, setFilters];
 }
 
@@ -238,6 +241,7 @@ export function filteringFromYears(
     tiers: tiers.length > 0 ? filters.tiers : undefined,
     years: filters.years,
     threads: filters.threads,
+    pathways: filters.pathways,
   };
   return output;
 }
@@ -312,6 +316,7 @@ export function diffFilters(
     tiers: [],
     years: [],
     threads: [],
+    pathways: [],
   };
   for (const keyRaw of Object.keys(defaultFilterFilter)) {
     const key = keyRaw as keyof CurriculumFilters;
@@ -509,4 +514,26 @@ export function keystageSuffixForFilter(
   }
 
   return undefined;
+}
+
+export function getNumberOfSelectedUnits(
+  yearData: YearData,
+  filters: CurriculumFilters,
+): number {
+  let count = 0;
+
+  Object.entries(yearData).forEach(([year, yearDataItem]) => {
+    const units = yearDataItem.units;
+    const yearBasedFilters = filteringFromYears(yearDataItem!, filters);
+
+    if (units && filters.years.includes(year)) {
+      const filteredUnits = units.filter((unit: Unit) => {
+        return isVisibleUnit(yearBasedFilters, year, unit);
+      });
+
+      count += filteredUnits.length;
+    }
+  });
+
+  return count;
 }
