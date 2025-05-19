@@ -9,6 +9,7 @@ import Alert from "../OakComponentsKitchen/Alert";
 import CurricUnitModal from "../CurricUnitModal";
 import { CurricVisualiserUnitList } from "../CurricVisualiserUnitList";
 import { CurricYearCard } from "../CurricYearCard";
+import CurricUnitModalContent from "../CurricUnitModalContent";
 
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import {
@@ -177,12 +178,19 @@ export default function CurricVisualiser({
         onClose={handleCloseModal}
         unitData={unitData}
         unitOptionData={unitOptionData}
-        yearData={yearData}
-        basePath={basePath}
-        selectedThread={selectedThread}
         filters={filters}
         ks4OptionSlug={ks4OptionSlug}
-      />
+      >
+        {unitData && (
+          <CurricUnitModalContent
+            basePath={basePath}
+            unitData={unitData}
+            unitOptionData={unitOptionData}
+            yearData={yearData}
+            selectedThread={selectedThread?.slug ?? null}
+          />
+        )}
+      </CurricUnitModal>
     </OakBox>
   );
 }
