@@ -261,7 +261,12 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
     compiler: {
       styledComponents: true,
     },
-
+    // https://nextjs.org/docs/app/api-reference/config/next-config-js/serverActions#allowedorigins
+    experimental: {
+      serverActions: {
+        allowedOrigins: ["*.netlify.app", "*.netlify.thenational.academy"],
+      },
+    },
     // Need this so static URLs and dynamic URLs match.
     trailingSlash: false,
     // Make sure production source maps exist for e.g. Bugsnag
@@ -355,7 +360,8 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
     writeFileSync(envFileName, newEnv);
     console.log(`Wrote "${baseUrlEnv}" to .env file for sitemap generation.`);
   } catch (err) {
-    console.error("Could not write SITEMAP_BASE_URL to env file");
+    console.error("Could not write SITEMAP_BASE_URL to env file", err);
+
     throw err;
   }
 
