@@ -21,6 +21,7 @@ export const CurricFiltersTiers: Story = {
       tiers: [],
       years: ["10", "11"],
       threads: [],
+      pathways: [],
     },
     onChangeFilters: () => {},
   },
