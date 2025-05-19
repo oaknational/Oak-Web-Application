@@ -264,7 +264,11 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
     // https://nextjs.org/docs/app/api-reference/config/next-config-js/serverActions#allowedorigins
     experimental: {
       serverActions: {
-        allowedOrigins: ["*oak-web-application.netlify.app"],
+        allowedOrigins: [
+          "*.netlify.app",
+          "*.thenational.academy",
+          "thenational.academy",
+        ],
       },
     },
     // Need this so static URLs and dynamic URLs match.
