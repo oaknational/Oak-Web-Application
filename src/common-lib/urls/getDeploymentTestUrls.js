@@ -80,6 +80,7 @@ function getDeploymentTestUrls() {
     "/teachers/curriculum/previous-downloads",
     "/teachers/curriculum",
     "/teachers/curriculum/english-primary/units/speaking-and-listening",
+    "/teachers/curriculum/english-primary/units/king-tut-or-healthy-lifestyle-non-chronological-report",
     "/teachers/curriculum/english-primary/units/king-tut-or-healthy-lifestyle-non-chronological-report-629",
   ];
 }
