@@ -1,5 +1,8 @@
+import { join } from "path";
+
 import { OakFlex, OakP } from "@oaknational/oak-components";
 import styled from "styled-components";
+import { useSearchParams } from "next/navigation";
 
 import CurriculumUnitCard from "../CurricUnitCard";
 
@@ -157,17 +160,23 @@ type CurricVisualiserUnitListProps = {
   filters: CurriculumFilters;
   year: string;
   yearData: YearData;
-  href: string;
+  basePath: string;
 };
 export function CurricVisualiserUnitList({
   units,
   yearData,
   year,
   filters,
-  href,
+  basePath,
 }: CurricVisualiserUnitListProps) {
+  const searchParams = useSearchParams();
+
   function getItems(unit: Unit, index: number) {
     const isHighlighted = isHighlightedUnit(unit, filters.threads);
+    const searchParamsStr = searchParams?.toString() ?? "";
+    const unitUrl =
+      join(basePath, unit.slug) +
+      `${!searchParamsStr ? "" : `?${searchParamsStr}`}`;
 
     return (
       <UnitListItem key={`${unit.slug}-${index}`}>
@@ -176,7 +185,7 @@ export function CurricVisualiserUnitList({
           key={unit.slug + index}
           index={index}
           isHighlighted={isHighlighted}
-          href={href}
+          href={unitUrl}
         />
       </UnitListItem>
     );

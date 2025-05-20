@@ -1,5 +1,3 @@
-import { join } from "path";
-
 import { useRef, useEffect, useMemo } from "react";
 import { OakBox } from "@oaknational/oak-components";
 import { useSearchParams } from "next/navigation";
@@ -130,11 +128,6 @@ export default function CurricVisualiser({
           actions,
         );
 
-        const searchParamsStr = searchParams?.toString() ?? "";
-        const unitUrl =
-          join(basePath, units[0] ? units[0].slug : "") +
-          `${!searchParamsStr ? "" : `?${searchParamsStr}`}`;
-
         return (
           <OakBox
             data-testid={`year-${type}-${year}`}
@@ -166,7 +159,7 @@ export default function CurricVisualiser({
                 filters={filters}
                 year={year}
                 yearData={yearData}
-                href={unitUrl}
+                basePath={basePath}
               />
             </CurricYearCard>
           </OakBox>
