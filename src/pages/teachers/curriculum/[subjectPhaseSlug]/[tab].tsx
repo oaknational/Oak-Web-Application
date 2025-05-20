@@ -4,7 +4,7 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
-import React from "react";
+import React, { useMemo } from "react";
 import { useRouter } from "next/router";
 import {
   OakBox,
@@ -13,6 +13,7 @@ import {
 } from "@oaknational/oak-components";
 import { uniq } from "lodash";
 
+import useAnalytics from "@/context/Analytics/useAnalytics";
 import CMSClient from "@/node-lib/cms";
 import CurriculumHeader from "@/components/CurriculumComponents/CurriculumHeader";
 import OverviewTab from "@/components/CurriculumComponents/OverviewTab";
@@ -46,6 +47,10 @@ import {
   VALID_TABS,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import openApiRequest from "@/utils/curriculum/openapi";
+import { getDefaultFilter, useFilters } from "@/utils/curriculum/filtering";
+import { CurriculumFilters } from "@/utils/curriculum/types";
+import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 
 const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   curriculumSelectionSlugs,
@@ -60,11 +65,18 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   const tab = router.query.tab as CurriculumTab;
   const { tiers, child_subjects } = curriculumDownloadsTabData;
   const { subjectSlug, ks4OptionSlug, phaseSlug } = curriculumSelectionSlugs;
+
+  const ks4Options =
+    curriculumPhaseOptions.subjects.find((s) => s.slug === subjectSlug)!
+      .ks4_options ?? [];
+  const ks4Option = ks4Options.find((ks4opt) => ks4opt.slug === ks4OptionSlug);
+
   const curriculumUnitsTrackingData: CurriculumUnitsTrackingData = {
     subjectSlug,
     phaseSlug,
     subjectTitle: curriculumOverviewTabData.subjectTitle,
-    ks4OptionSlug: ks4OptionSlug,
+    ks4OptionSlug: ks4Option?.slug,
+    ks4OptionTitle: ks4Option?.title,
   };
 
   const keyStages = uniq(
@@ -72,6 +84,27 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
       units.map((unit) => unit.keystage_slug),
     ),
   );
+
+  const defaultFilter = useMemo(() => {
+    return getDefaultFilter(curriculumUnitsFormattedData);
+  }, [curriculumUnitsFormattedData]);
+
+  const [filters, setFilters] = useFilters(defaultFilter);
+
+  const { track } = useAnalytics();
+  const { analyticsUseCase } = useAnalyticsPageProps();
+
+  const onChangeFilters = (newFilters: CurriculumFilters) => {
+    setFilters(newFilters);
+
+    const analyticsData = buildUnitSequenceRefinedAnalytics(
+      analyticsUseCase,
+      curriculumUnitsTrackingData,
+      newFilters,
+    );
+
+    track.unitSequenceRefined(analyticsData);
+  };
 
   let tabContent: JSX.Element;
 
@@ -93,6 +126,10 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
         <UnitsTab
           formattedData={curriculumUnitsFormattedData}
           trackingData={curriculumUnitsTrackingData}
+          filters={filters}
+          onChangeFilters={onChangeFilters}
+          slugs={curriculumSelectionSlugs}
+          ks4Options={ks4Options}
         />
       );
       break;
@@ -118,14 +155,18 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
             title: buildCurriculumMetadata({
               metadataType: "title",
               subjectSlug: subjectSlug,
-              ks4OptionSlug: ks4OptionSlug,
+              subjectTitle: curriculumUnitsTrackingData.subjectTitle,
+              ks4OptionSlug: curriculumUnitsTrackingData.ks4OptionSlug,
+              ks4OptionTitle: curriculumUnitsTrackingData.ks4OptionTitle,
               keyStages: keyStages,
               tab: tab,
             }),
             description: buildCurriculumMetadata({
               metadataType: "description",
               subjectSlug: subjectSlug,
-              ks4OptionSlug: ks4OptionSlug,
+              subjectTitle: curriculumUnitsTrackingData.subjectTitle,
+              ks4OptionSlug: curriculumUnitsTrackingData.ks4OptionSlug,
+              ks4OptionTitle: curriculumUnitsTrackingData.ks4OptionTitle,
               keyStages: keyStages,
               tab: tab,
             }),

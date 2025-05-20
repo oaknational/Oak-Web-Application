@@ -76,6 +76,7 @@ describe("lessonShare()", () => {
               video_duration: "15 mins",
               worksheet_asset_object_url: "url",
               expired: false,
+              lessonReleaseDate: "2025-09-29T14:00:00.000Z",
             },
           ],
           browse: [
@@ -89,6 +90,7 @@ describe("lessonShare()", () => {
               unit_slug: "unit-slug",
               unit_data: unitDataFixture(),
               supplementary_data: { unit_order: 1, order_in_unit: 1 },
+              lessonReleaseDate: null,
             },
           ],
         }),

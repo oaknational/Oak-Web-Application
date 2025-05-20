@@ -9,16 +9,17 @@ import {
 import { SubjectPathwayArray } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
 import SubjectListingCardDoubleCountCard from "@/components/TeacherComponents/SubjectListingCardCountCard";
 import SubjectListingCardCountCardWithPathways from "@/components/TeacherComponents/SubjectListingCardCountCardWithPathways";
-import Card, { CardProps } from "@/components/SharedComponents/Card";
+import Card from "@/components/SharedComponents/Card";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
+import { OakColorName } from "@/styles/theme";
 
-export type SubjectListingCardProps = Omit<CardProps, "children"> & {
+export type SubjectListingCardProps = {
   titleTag?: OakHeadingTag;
-} & {
   subject: SubjectPathwayArray;
   subjectSlug: string;
   keyStageSlug: string;
   keyStageTitle: string;
+  $background?: OakColorName;
 };
 
 const SubjectListingCard: FC<SubjectListingCardProps> = ({
@@ -27,6 +28,7 @@ const SubjectListingCard: FC<SubjectListingCardProps> = ({
   keyStageSlug,
   keyStageTitle,
   subjectSlug,
+  $background = "lavender50",
 }) => {
   const hasPathways = (subject: SubjectPathwayArray) =>
     !!subject?.[0]?.data.pathwaySlug;
@@ -35,7 +37,7 @@ const SubjectListingCard: FC<SubjectListingCardProps> = ({
     <Card
       $flexDirection={"column"}
       $alignItems="stretch"
-      $background={"lavender50"}
+      $background={$background}
       $pa={[0, 0]}
       $borderRadius={4}
     >

@@ -46,9 +46,11 @@ const lessonDownloadsFixtures = (
         ext: "PDF",
       },
     ],
-    updatedAt: "2024-09-29T14:00:00.000Z",
+    additionalFiles: [],
+    updatedAt: "2025-09-29T14:00:00.000Z",
     geoRestricted: false,
     loginRequired: false,
+    lessonReleaseDate: "2025-09-29T14:00:00.000Z",
     ...partial,
   };
 };

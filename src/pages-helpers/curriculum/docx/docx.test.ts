@@ -1,6 +1,6 @@
 import { Element } from "xml-js";
 import { sortBy } from "lodash";
-import { diff } from "json-diff";
+import diff from "microdiff";
 
 import {
   appendBodyElements,
@@ -190,6 +190,7 @@ describe("docx", () => {
       const EMPTY_INVALID = `data:image/foo;base64,${EMPTY_PNG_BASE64}`;
       const initialState = await zipToSimpleObject(zip.getJsZip(), {
         convertXmlToJson: true,
+        hashBuffers: true,
       });
       const dict = await insertImages(zip, {
         foo: EMPTY_PNG,
@@ -203,61 +204,11 @@ describe("docx", () => {
       });
       const newState = await zipToSimpleObject(zip.getJsZip(), {
         convertXmlToJson: true,
+        hashBuffers: true,
       });
 
-      const diffResults = diff(initialState, newState);
-      expect(Object.keys(diffResults)).toEqual([
-        "word/media/__added",
-        "word/media/hash_f1c6d68f4906606ef3ae58fac887d210ae8b33ce7275c21ee8e177090278e249png__added",
-        "word/media/hash_b29edb1ad79e3ac505ac9e6722aed45100902e97fd45f474aacb455a7b8d809ffoo__added",
-        "word/_rels/document.xml.rels",
-      ]);
-
-      expect(diffResults["word/media/__added"]).toEqual("");
-      expect(diffResults["word/_rels/document.xml.rels"]).toEqual({
-        elements: [
-          [
-            "~",
-            {
-              elements: [
-                [" "],
-                [" "],
-                [" "],
-                [" "],
-                [" "],
-                [" "],
-                [" "],
-                [
-                  "+",
-                  {
-                    type: "element",
-                    name: "Relationship",
-                    attributes: {
-                      Id: "rIdf1c6d68f4906606ef3ae58fac887d210ae8b33ce7275c21ee8e177090278e249",
-                      Type: "http://schemas.openxmlformats.org/officeDocument/2006/relationships/image",
-                      Target:
-                        "media/hash_f1c6d68f4906606ef3ae58fac887d210ae8b33ce7275c21ee8e177090278e249png",
-                    },
-                  },
-                ],
-                [
-                  "+",
-                  {
-                    type: "element",
-                    name: "Relationship",
-                    attributes: {
-                      Id: "rIdb29edb1ad79e3ac505ac9e6722aed45100902e97fd45f474aacb455a7b8d809f",
-                      Target:
-                        "media/hash_b29edb1ad79e3ac505ac9e6722aed45100902e97fd45f474aacb455a7b8d809ffoo",
-                      Type: "http://schemas.openxmlformats.org/officeDocument/2006/relationships/image",
-                    },
-                  },
-                ],
-              ],
-            },
-          ],
-        ],
-      });
+      const diffResults = diff(initialState, newState, {});
+      expect(diffResults).toMatchSnapshot();
     });
   });
 
@@ -277,41 +228,23 @@ describe("docx", () => {
       });
 
       const diffResults = diff(initialState, newState);
-      expect(Object.keys(diffResults)).toEqual([
-        "word/_rels/document.xml.rels",
-      ]);
 
-      expect(diffResults["word/_rels/document.xml.rels"]).toEqual({
-        elements: [
-          [
-            "~",
-            {
-              elements: [
-                [" "],
-                [" "],
-                [" "],
-                [" "],
-                [" "],
-                [" "],
-                [" "],
-                [
-                  "+",
-                  {
-                    type: "element",
-                    name: "Relationship",
-                    attributes: {
-                      Id: "rIdf0e6a6a97042a4f1f1c87f5f7d44315b2d852c2df5c7991cc66241bf7072d1c4",
-                      Target: "http://example.com",
-                      TargetMode: "External",
-                      Type: "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
-                    },
-                  },
-                ],
-              ],
+      expect(diffResults).toEqual([
+        {
+          path: ["word/_rels/document.xml.rels", "elements", 0, "elements", 7],
+          type: "CREATE",
+          value: {
+            attributes: {
+              Id: "rIdf0e6a6a97042a4f1f1c87f5f7d44315b2d852c2df5c7991cc66241bf7072d1c4",
+              Target: "http://example.com",
+              TargetMode: "External",
+              Type: "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
             },
-          ],
-        ],
-      });
+            name: "Relationship",
+            type: "element",
+          },
+        },
+      ]);
     });
   });
 
@@ -373,7 +306,6 @@ describe("docx", () => {
         convertXmlToJson: true,
       });
       const diffResults = diff(initialState, newState);
-      expect(Object.keys(diffResults)).toEqual(["word/numbering.xml"]);
       expect(diffResults).toMatchSnapshot();
     });
   });
@@ -447,34 +379,21 @@ describe("docx", () => {
       });
       const diffResults = diff(initialState, newState);
 
-      expect(diffResults).toEqual({
-        "word/document.xml": {
-          elements: [
-            [
-              "~",
-              {
-                elements: [
-                  [
-                    "~",
-                    {
-                      elements: [
-                        [" "],
-                        [
-                          "+",
-                          {
-                            type: "text",
-                            text: "test",
-                          },
-                        ],
-                      ],
-                    },
-                  ],
-                ],
-              },
-            ],
+      expect(diffResults).toEqual([
+        {
+          path: [
+            "word/document.xml",
+            "elements",
+            0,
+            "elements",
+            0,
+            "elements",
+            1,
           ],
+          type: "CREATE",
+          value: { text: "test", type: "text" },
         },
-      });
+      ]);
     });
   });
 

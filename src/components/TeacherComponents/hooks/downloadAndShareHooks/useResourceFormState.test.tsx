@@ -8,7 +8,10 @@ import {
   useResourceFormState,
 } from "./useResourceFormState";
 
-import { allResources as allDownloadResources } from "@/node-lib/curriculum-api-2023/fixtures/downloads.fixture";
+import {
+  allResources as allDownloadResources,
+  additionalFilesResources,
+} from "@/node-lib/curriculum-api-2023/fixtures/downloads.fixture";
 import { allResources as allShareResources } from "@/node-lib/curriculum-api-2023/fixtures/shareableResources.fixture";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import {
@@ -18,6 +21,13 @@ import {
 
 const downloadProps: UseResourceFormStateProps = {
   downloadResources: allDownloadResources,
+  additionalFilesResources: [],
+  type: "download",
+};
+
+const downloadPropsWithAdditionalResources: UseResourceFormStateProps = {
+  downloadResources: allDownloadResources,
+  additionalFilesResources,
   type: "download",
 };
 
@@ -78,6 +88,29 @@ describe("useResourceFormState", () => {
       ]);
     });
 
+    test("useResourceFormState should return all downloads selected array including additional files if router.preselected is undefined ", async () => {
+      useRouter.mockReturnValue({
+        pathname: "/",
+        query: { preselected: [] },
+      });
+
+      const result = renderHook(() =>
+        useResourceFormState(downloadPropsWithAdditionalResources),
+      );
+
+      expect(result.result.current.selectedResources).toEqual([
+        "presentation",
+        "intro-quiz-questions",
+        "intro-quiz-answers",
+        "exit-quiz-questions",
+        "exit-quiz-answers",
+        "worksheet-pdf",
+        "worksheet-pptx",
+        "additional-files-123",
+        "additional-files-456",
+      ]);
+    });
+
     test("useResourceFormState should return presentation selected router.preselected 'slide deck", () => {
       useRouter.mockReturnValue({
         pathname: "/",
@@ -128,6 +161,19 @@ describe("useResourceFormState", () => {
       expect(result.current.selectedResources).toEqual([
         "exit-quiz-questions",
         "exit-quiz-answers",
+      ]);
+    });
+    test("useResourceFormState should return all additional files array selected router.preselected 'additional-files", () => {
+      useRouter.mockReturnValue({
+        pathname: "/",
+        query: { preselected: "additional files" },
+      });
+      const { result } = renderHook(() =>
+        useResourceFormState(downloadPropsWithAdditionalResources),
+      );
+      expect(result.current.selectedResources).toEqual([
+        "additional-files-123",
+        "additional-files-456",
       ]);
     });
     describe("share", () => {
@@ -261,6 +307,58 @@ describe("useResourceFormState", () => {
 
       await waitFor(() =>
         expect(mockSetTermsInLocalStorageFn).toHaveBeenCalledWith(true),
+      );
+    });
+    test('should set school as "notListed" when hubspot returns empty string for values', async () => {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const useFormSpy = jest.spyOn(require("react-hook-form"), "useForm");
+      setUseUserReturn({
+        ...mockLoggedIn,
+        user: mockTeacherUserWithDownloadAccess,
+      });
+
+      (fetchHubspotContactDetails as jest.Mock).mockResolvedValue({
+        schoolName: "",
+        schoolId: "",
+      });
+      (onboardingActions.getSubscriptionStatus as jest.Mock).mockResolvedValue(
+        true,
+      );
+
+      useFormSpy.mockImplementation(() => {
+        const result = actualUseForm();
+        return {
+          ...result,
+          setValue: mockSetValue,
+        };
+      });
+      renderHook(() => useResourceFormState({ ...downloadProps }));
+
+      await waitFor(() =>
+        expect(mockSetSchoolInLocalStorageFn).toHaveBeenCalledWith({
+          schoolId: "notListed",
+          schoolName: "notListed",
+        }),
+      );
+    });
+    test("should throw an error for invalid resource type", () => {
+      console.error = jest.fn();
+      const invalidProps = {
+        type: "invalid" as UseResourceFormStateProps["type"],
+      };
+
+      expect(() =>
+        renderHook(() =>
+          useResourceFormState(invalidProps as UseResourceFormStateProps),
+        ),
+      ).toThrow("Invalid resource type");
+      const consoleErrorCalls = (console.error as ReturnType<typeof jest.fn>)
+        .mock.calls;
+      expect(consoleErrorCalls[0]?.[0].message).toEqual(
+        "Uncaught [Error: Invalid resource type]",
+      );
+      expect(consoleErrorCalls[1]?.[0].message).toEqual(
+        "Uncaught [Error: Invalid resource type]",
       );
     });
   });

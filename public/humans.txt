@@ -26,7 +26,7 @@ Oak National Academy’s tech platform has been created by a team of humans supp
 
   Ben Protheroe (Software Engineer)
   From: London, lives in Cornwall
-  
+
   Dan Dupont (Product Manager)
   LinkedIn: https://www.linkedin.com/in/dandupontlopez/
   From: Bristol, UK
@@ -45,26 +45,17 @@ Oak National Academy’s tech platform has been created by a team of humans supp
 
   Ewan Wakeman (Senior Data Analyst)
   LinkedIn: https://www.linkedin.com/in/ewanwakeman/
-  Twitter: https://twitter.com/ewan_wakeman
+  X: https://x.com/ewan_wakeman
   From: London, UK
 
-  Holly Donohue (Fractional CPO)
-  Site: https://www.productrebel.co.uk
-  LinkedIn: https://www.linkedin.com/in/hollydonohue/
-  From: Manchester, UK
-  
   Helen Harlow (Product Designer)
   LinkedIn: https://www.linkedin.com/in/helen-harlow/
   From: Norwich, UK
 
-  Kyle Huggins (Software Engineer)
-  LinkedIn: https://www.linkedin.com/in/kyle-huggins-892450127/
-  From: Birmingham, UK
-
   Ian Kynnersley (Head of Engineering)
   Site: https://www.iankynnersley.co.uk/
   LinkedIn: https://www.linkedin.com/in/iankynnersley/
-  Twitter: https://twitter.com/kpopper
+  X: https://x.com/kpopper
   From: London, UK
 
   Jack Skerrett (Senior Quality Assurance Analyst)
@@ -73,8 +64,8 @@ Oak National Academy’s tech platform has been created by a team of humans supp
 
   James Sheasby Thomas (Quality Assurance Analyst)
   Site: https://rightsaidjames.com/
-  Twitter: https://twitter.com/rightsaidjames
   LinkedIn: https://www.linkedin.com/in/rightsaidjames/
+  X: https://x.com/rightsaidjames
   From: Vale of Glamorgan, lives in Leeds, UK
 
   Jamie Blair (Senior Software Engineer)
@@ -94,11 +85,14 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   LinkedIn: https://www.linkedin.com/in/joe-baker-96a109219/
   From: London, UK
 
-  John Roberts (Director of Product and Engineering)
+  John Roberts (Interim CEO)
   Site: https://johnroberts.me
   LinkedIn: https://linkedin.com/in/johnrobertsuk
-  Twitter: @johnrobeds
+  X: https://x.com/johnrobeds
   From: Manchester, UK
+
+  Kofoworola Ogunleye (Platform Engineer)
+  From: Northampton, UK
 
   Matt Gregory (Senior Software Engineer)
   Site: https://mantagen.org
@@ -123,6 +117,11 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   LinkedIn: https://www.linkedin.com/in/tash-blore-245079182/
   From: Manchester, UK
 
+  Reece Charsville (Senior Software Engineer)
+  Site: https://reececharsville.com/
+  LinkedIn: https://www.linkedin.com/in/reece-charsville/
+  From: Sheffield, UK
+
   Richard Brownsett (Quality Assurance Analyst)
   LinkedIn: https://www.linkedin.com/in/richard-brownsett-b3383168/
   From: Stoke-on-Trent, UK
@@ -138,20 +137,35 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   LinkedIn: https://www.linkedin.com/in/simonkatan/
   From: London, UK
 
+  Simon Rose (Principal Software Engineer)
+  Site: https://www.simon-rose.co.uk/
+  LinkedIn: https://www.linkedin.com/in/simonprose/
+  From: Sheffield, lives in Nottingham, UK
+
   Sonali Singh (Software Engineer)
   LinkedIn: https://www.linkedin.com/in/sonalisin
   From: Manchester, lives in London, UK
 
-  Thomas Birch (Senior Software Engineer)
-  Site: https://capeflair.com
-  From: Guildford, UK
+  Taha Hassan (Software Engineer)
+  LinkedIn: https://www.linkedin.com/in/taha--hassan/
+  From: London, UK
 
+  Thomas Chan (Software Engineer)
+  Site: http://enigmaticexplorer.com/ 
+  LinkedIn: https://www.linkedin.com/in/thomas-chan-103214107/
+  From: Brighton, UK
+  
   Will Gayne (Director of Product Strategy & Impact)
   LinkedIn: https://www.linkedin.com/in/william-gayne-a8a363134/
   From: Macclesfield, UK
 
 
 /* THANKS */
+
+  Ben Titterington (Senior Software Engineer)
+  Site: https://www.bentitterington.co.uk/
+  LinkedIn: https://www.linkedin.com/in/ben-titterington/
+  From: Preston, UK
 
   Carl Whittaker (Software Engineer)
   LinkedIn: https://www.linkedin.com/in/carlmw 
@@ -160,15 +174,24 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   Craig McCahill (Software Engineer)
   From: London, UK
 
+  Holly Donohue (Fractional CPO)
+  Site: https://www.productrebel.co.uk
+  LinkedIn: https://www.linkedin.com/in/hollydonohue/
+  From: Manchester, UK
+  
+  Kyle Huggins (Software Engineer)
+  LinkedIn: https://www.linkedin.com/in/kyle-huggins-892450127/
+  From: Birmingham, UK
+
   Lee Fuller (Software Engineer)
   Site: https://lee-fuller.co.uk/
   LinkedIn: https://www.linkedin.com/in/lee--fuller/
-  Twitter: @lee_fuller_
+  X: @lee_fuller_
   From: Standish, UK
 
   Leo Allen (Data and Analytics)
   Site: https://linkedin.com/in/leoallen
-  Twitter: @leoallen85
+  X: @leoallen85
   From: London, UK
 
   Lionel Jingles (Software Engineer)
@@ -176,7 +199,7 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   From: San Francisco, US
 
   Mitch Lloyd (Software Engineer)
-  Twitter: @MitchellLloyd15
+  X: @MitchellLloyd15
   Linkedin: https://linkedin.com/in/mitchell-lloyd-a2264b151
   Email: mitchelllloyd154@gmail.com
   From: Manchester, UK
@@ -192,29 +215,33 @@ Oak National Academy’s tech platform has been created by a team of humans supp
 
   Remy Sharp (Software Engineer)
   Site: https://remysharp.com
-  Twitter: @rem
+  X: @rem
   From: Brighton, UK
 
   Ross Mackay (Software Engineer)
   Site: https://rossmackay.co
-  Twitter: @r_mcky
+  X: @r_mcky
   From: London, UK
 
   Shaun Orpen (Software Engineer)
   Site: https://shaunorpen.com/
   LinkedIn: https://linkedin.com/in/shaunorpen
-  Twitter: https://twitter.com/shaunorpen
+  X: https://x.com/shaunorpen
   From: UK
 
   Stef Lewandowski (Lead Software Engineer)
   Site: https://stef.io
-  Twitter: @stef
+  X: @stef
   From: London, UK
 
   Stuart G Wilson (Product Designer)
   Site: qegadesign.myportfolio.com
   Linkedin: https://www.linkedin.com/in/stuartgeorgewilson/
   From: Glasgow, UK
+
+  Thomas Birch (Senior Software Engineer)
+  Site: https://capeflair.com
+  From: Guildford, UK
 
   Tom Wise (UX/UI and Design)
   Site: https://putty.studio

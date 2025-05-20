@@ -1,5 +1,6 @@
-import { UnitFeatures } from "./features";
-import { Subject, SubjectCategory, Unit } from "./types";
+import { Subject, SubjectCategory, Tier, Unit } from "./types";
+
+import { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export function sortYears(a: string, b: string) {
   if (a === "all-years") {
@@ -13,10 +14,10 @@ type sortSubjectCategoriesOnFeaturesReturn = (
   b: Pick<SubjectCategory, "id">,
 ) => number;
 export function sortSubjectCategoriesOnFeatures(
-  features: UnitFeatures | null,
+  actions: Actions | null,
 ): sortSubjectCategoriesOnFeaturesReturn {
   const default_category_id =
-    features?.subjectcategories?.default_category_id ?? -1;
+    actions?.subject_category_actions?.default_category_id ?? -1;
   if (default_category_id > -1) {
     return (a, b) => {
       if (a.id === default_category_id) {
@@ -27,6 +28,16 @@ export function sortSubjectCategoriesOnFeatures(
     };
   }
   return (a, b) => a.id - b.id;
+}
+
+export function sortTiers(a: Tier, b: Tier) {
+  if (a.tier_slug < b.tier_slug) {
+    return -1;
+  } else if (a.tier_slug > b.tier_slug) {
+    return 1;
+  } else {
+    return 0;
+  }
 }
 
 export function sortChildSubjects(a: Subject, b: Subject) {

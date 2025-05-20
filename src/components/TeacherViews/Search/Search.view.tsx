@@ -16,7 +16,11 @@ import {
 import styled from "styled-components";
 
 import { SearchProps } from "./search.view.types";
-import { isKeyStageTitleValueType, removeHTMLTags } from "./helpers";
+import {
+  isKeyStageTitleValueType,
+  removeHTMLTags,
+  trackSearchModified,
+} from "./helpers";
 
 import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -27,7 +31,11 @@ import SearchActiveFilters from "@/components/TeacherComponents/SearchActiveFilt
 import SearchForm from "@/components/SharedComponents/SearchForm";
 import SearchResults from "@/components/TeacherComponents/SearchResults";
 import NoSearchResults from "@/components/TeacherComponents/NoSearchResults";
-import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
+import {
+  getActiveFilters,
+  getSortedSearchFiltersSelected,
+} from "@/context/Search/search.helpers";
+import SignPostToAila from "@/components/TeacherComponents/NoSearchResults/SignPostToAila";
 
 const CustomWidthFlex = styled(OakFlex)`
   max-width: 300px;
@@ -65,7 +73,9 @@ const Search: FC<SearchProps> = (props) => {
       router.query.keyStages ||
       router.query.examBoards ||
       router.query.contentTypes ||
-      router.query.subjects;
+      router.query.subjects ||
+      router.query.yearGroups ||
+      router.query.curriculum;
 
     if (
       !router.query.page &&
@@ -95,9 +105,8 @@ const Search: FC<SearchProps> = (props) => {
           eventVersion: "2.0.0",
           analyticsUseCase: "Teacher",
           searchResultCount: hitCount,
-          activeFilters: getSortedSearchFiltersSelected(router.query),
-          filterType: null,
-          filterValue: null,
+          activeFilters: getActiveFilters(router.query),
+          searchTerm: query.term,
         });
       }
     }
@@ -154,6 +163,8 @@ const Search: FC<SearchProps> = (props) => {
         searchResultType: searchHit.type,
         lessonName,
         lessonSlug,
+        lessonReleaseDate: searchHit.legacy ? "2020-2023" : "2023-2026",
+        lessonReleaseCohort: searchHit.legacy ? "2020-2023" : "2023-2026",
       });
     }
   };
@@ -189,6 +200,8 @@ const Search: FC<SearchProps> = (props) => {
             ? searchHit.buttonLinkProps.lessonSlug
             : null,
         context: "search",
+        lessonReleaseDate: searchHit.legacy ? "2020-2023" : "2023-2026",
+        lessonReleaseCohort: searchHit.legacy ? "2020-2023" : "2023-2026",
       });
     }
   };
@@ -255,6 +268,14 @@ const Search: FC<SearchProps> = (props) => {
                           keepIconColor={true}
                           {...contentTypeFilter}
                           onChange={() => {
+                            trackSearchModified(
+                              query.term,
+                              track.searchFilterModified,
+                            )({
+                              checked: contentTypeFilter.checked,
+                              filterType: "Content type filter",
+                              filterValue: contentTypeFilter.slug,
+                            });
                             contentTypeFilter.onChange();
                           }}
                         />
@@ -273,45 +294,68 @@ const Search: FC<SearchProps> = (props) => {
                     $alignSelf={"flex-end"}
                   >
                     <OakBox $mt={["space-between-m", null, null]}>
-                      <SearchFilters {...searchFilters} isMobileFilter />
+                      <SearchFilters
+                        {...searchFilters}
+                        isMobileFilter
+                        trackSearchModified={trackSearchModified(
+                          query.term,
+                          track.searchFilterModified,
+                        )}
+                      />
                     </OakBox>
                   </MobileFilters>
                 </OakFlex>
               </OakBox>
             </OakFlex>
-            <SearchActiveFilters searchFilters={searchFilters} />
+            <OakBox $pl={["inner-padding-none", "inner-padding-xl"]}>
+              <SearchActiveFilters
+                searchFilters={searchFilters}
+                trackSearchModified={trackSearchModified(
+                  query.term,
+                  track.searchFilterModified,
+                )}
+              />
+            </OakBox>
           </OakGridArea>
-          <OakGridArea $colSpan={[12, 3]} $colStart={[1, 10]} $rowStart={2}>
-            <CustomWidthFlex
-              $flexDirection="column"
-              $mb="space-between-m2"
-              $display={["none", "flex"]}
-            >
-              <OakFlex
-                $mb="space-between-s"
+          {!shouldShowNoResultsMessage && (
+            <OakGridArea $colSpan={[12, 3]} $colStart={[1, 10]} $rowStart={2}>
+              <CustomWidthFlex
                 $flexDirection="column"
-                $gap="space-between-ssx"
+                $mb="space-between-m2"
+                $display={["none", "flex"]}
               >
-                <OakHeading tag="h2" $font="heading-6">
-                  Filters
-                </OakHeading>
-                <OakSecondaryButton
-                  element="a"
-                  href="#search-results"
-                  onFocus={() => setFilterButtonFocussed(true)}
-                  onBlur={() => setFilterButtonFocussed(false)}
-                  style={
-                    filterButtonFocussed
-                      ? {}
-                      : { position: "absolute", top: "-600px" }
-                  }
+                <OakFlex
+                  $mb="space-between-s"
+                  $flexDirection="column"
+                  $gap="space-between-ssx"
                 >
-                  Skip to results
-                </OakSecondaryButton>
-              </OakFlex>
-              <SearchFilters {...searchFilters} />
-            </CustomWidthFlex>
-          </OakGridArea>
+                  <OakHeading tag="h2" $font="heading-6">
+                    Filters
+                  </OakHeading>
+                  <OakSecondaryButton
+                    element="a"
+                    href="#search-results"
+                    onFocus={() => setFilterButtonFocussed(true)}
+                    onBlur={() => setFilterButtonFocussed(false)}
+                    style={
+                      filterButtonFocussed
+                        ? {}
+                        : { position: "absolute", top: "-600px" }
+                    }
+                  >
+                    Skip to results
+                  </OakSecondaryButton>
+                </OakFlex>
+                <SearchFilters
+                  {...searchFilters}
+                  trackSearchModified={trackSearchModified(
+                    query.term,
+                    track.searchFilterModified,
+                  )}
+                />
+              </CustomWidthFlex>
+            </OakGridArea>
+          )}
           <OakGridArea
             $colSpan={[12, 9]}
             $colStart={1}
@@ -324,7 +368,22 @@ const Search: FC<SearchProps> = (props) => {
               )}
               {shouldShowLoading && <p>Loading...</p>}
               {shouldShowNoResultsMessage && (
-                <NoSearchResults searchTerm={query.term} />
+                <OakBox id="search-results" $mb={"space-between-xxl"}>
+                  <NoSearchResults searchTerm={query.term} />
+                  <OakBox $mt="space-between-m">
+                    <SignPostToAila
+                      title="Can't find what you need?"
+                      text="Create a tailor-made lesson plan and resources on any topic with Aila, our free AI-powered lesson assistant. Entirely adaptable to your class and context."
+                      searchExpression={query.term}
+                      keyStage={
+                        query.keyStages?.length === 1 ? query.keyStages[0] : ""
+                      }
+                      subject={
+                        query.subjects?.length === 1 ? query.subjects[0] : ""
+                      }
+                    />
+                  </OakBox>
+                </OakBox>
               )}
               {shouldShowResults && (
                 <OakBox $display={["none", "block"]}>
@@ -340,6 +399,7 @@ const Search: FC<SearchProps> = (props) => {
               <SearchResults
                 hits={results}
                 allKeyStages={allKeyStages}
+                query={query}
                 searchResultExpanded={(searchHit, searchRank) =>
                   searchResultExpanded({
                     searchHit,

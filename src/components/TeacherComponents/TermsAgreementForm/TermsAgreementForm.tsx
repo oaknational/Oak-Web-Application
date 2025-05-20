@@ -10,18 +10,18 @@ import {
   OakFlex,
   OakHeading,
   OakP,
-  OakIcon,
   OakBox,
+  OakLink,
 } from "@oaknational/oak-components";
 
 import FieldError from "@/components/SharedComponents/FieldError";
 import Input from "@/components/SharedComponents/Input";
-import OakLink from "@/components/SharedComponents/OwaLink";
 import ResourcePageDetailsCompleted from "@/components/TeacherComponents/ResourcePageDetailsCompleted";
 import ResourcePageSchoolDetails from "@/components/TeacherComponents/ResourcePageSchoolDetails";
 import ResourcePageTermsAndConditionsCheckbox from "@/components/TeacherComponents/ResourcePageTermsAndConditionsCheckbox";
 import CopyrightNotice from "@/components/TeacherComponents/CopyrightNotice";
 import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import { resolveOakHref } from "@/common-lib/urls";
 
 export type TermsAgreementFormProps = {
   form: {
@@ -105,7 +105,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                 error={form.errors?.email?.message}
                 $mb={12}
               />
-              <OakP
+              <OakBox
                 $font="body-3"
                 $mb={"space-between-l"}
                 data-testid="newsletter-policy"
@@ -113,29 +113,21 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                 Join over 100k teachers and get free resources and other helpful
                 content by email. Unsubscribe at any time. Read our{" "}
                 <OakLink
-                  page="legal"
-                  legalSlug="privacy-policy"
-                  htmlAnchorProps={{
-                    target: "_blank",
-                    "aria-label": "Privacy policy (opens in a new tab)",
-                  }}
-                  $display={"inline-flex"}
-                  $alignItems={"center"}
-                  $color={"navy"}
+                  href={resolveOakHref({
+                    page: "legal",
+                    legalSlug: "privacy-policy",
+                  })}
+                  aria-label="Privacy policy (opens in a new tab)"
+                  target="_blank"
+                  iconName="external"
+                  isTrailingIcon
+                  iconHeight="all-spacing-5"
+                  iconWidth="all-spacing-5"
                 >
-                  <OakFlex>
-                    privacy policy
-                    <OakIcon
-                      iconName="external"
-                      $width={"all-spacing-5"}
-                      $height={"all-spacing-5"}
-                      data-testid="external-link-icon"
-                      $colorFilter={"navy"}
-                    />
-                  </OakFlex>
+                  privacy policy
                 </OakLink>
                 .
-              </OakP>
+              </OakBox>
               <Controller
                 control={form.control}
                 name="terms"

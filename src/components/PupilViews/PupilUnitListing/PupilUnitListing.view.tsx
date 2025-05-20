@@ -4,8 +4,6 @@ import {
   OakTertiaryButton,
   OakPupilJourneyHeader,
   OakBox,
-  OakInlineBanner,
-  OakSecondaryLink,
 } from "@oaknational/oak-components";
 
 import { UseBackHrefProps, useBackHref } from "./useBackHref";
@@ -16,6 +14,11 @@ import { PupilUnitsSection } from "@/components/PupilComponents/PupilUnitsSectio
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
 import { generateKeyStageTitle } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+import { SubjectSlugs } from "@/node-lib/curriculum-api-2023/queries/pupilSubjectListing/pupilSubjectListing.schema";
+import RelatedSubjectsBanner from "@/components/PupilComponents/RelatedSubjectsBanner/RelatedSubjectsBanner";
+import PupilSubjectDescription from "@/components/PupilComponents/PupilSubjectDescription/PupilSubjectDescription";
+import { UnitListLegacyBanner } from "@/components/TeacherComponents/UnitList/UnitListLegacyBanner";
+import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 
 export type PupilViewsUnitListingProps = {
   unitSections: UnitsSectionData[];
@@ -23,6 +26,7 @@ export type PupilViewsUnitListingProps = {
   backHrefSlugs: UseBackHrefProps;
   subjectCategories: string[];
   programmeFields: UnitListingBrowseData[number]["programmeFields"];
+  relatedSubjects?: SubjectSlugs[];
 };
 
 export const PupilViewsUnitListing = ({
@@ -31,6 +35,7 @@ export const PupilViewsUnitListing = ({
   backHrefSlugs,
   subjectCategories,
   programmeFields,
+  relatedSubjects = [],
 }: PupilViewsUnitListingProps) => {
   const { track } = useAnalytics();
   const [backHref, backLabel] = useBackHref(backHrefSlugs);
@@ -41,35 +46,13 @@ export const PupilViewsUnitListing = ({
     setFilterItems([subjectCategory]);
   };
 
-  const [displayExpiringBanner, setDisplayExpiringBanner] = useState<boolean[]>(
-    unitSections.map((unitSection) =>
-      unitSection.units.some((section) =>
-        section.some((unit) => unit.actions?.displayExpiringBanner),
-      ),
-    ),
+  const combinedAllUnits = unitSections.flatMap((section) =>
+    section.units.flat(),
   );
 
-  const expiringBanner = displayExpiringBanner.map((b) => (
-    <OakInlineBanner
-      canDismiss
-      cta={
-        <OakSecondaryLink
-          href="https://support.thenational.academy/lesson-unavailable"
-          iconName="chevron-right"
-          isTrailingIcon
-        >
-          Read the help article
-        </OakSecondaryLink>
-      }
-      isOpen={b}
-      message="We've made brand new and improved units for you."
-      onDismiss={() => {
-        setDisplayExpiringBanner(displayExpiringBanner.map(() => false)); // closing one closes all
-      }}
-      title="Some of these units will soon be taken down."
-      type="alert"
-    />
-  ));
+  const hasNewAndLegacyUnitsInAllSections =
+    combinedAllUnits.some((u) => isSlugLegacy(u.programmeSlug)) &&
+    combinedAllUnits.some((u) => !isSlugLegacy(u.programmeSlug));
 
   return (
     <OakPupilJourneyLayout
@@ -121,7 +104,16 @@ export const PupilViewsUnitListing = ({
               counterLength={unitSection.counterLength}
               labels={labelsArray.length ? labelsArray : undefined}
               showTooltip={i === 0}
-              expiredSlot={expiringBanner[i]}
+              additionalInfoSlot={
+                <>
+                  <PupilSubjectDescription programmeFields={programmeFields} />
+                  <UnitListLegacyBanner
+                    userType={"pupil"}
+                    hasNewUnits={hasNewAndLegacyUnitsInAllSections}
+                    allLegacyUnits={unitSection.units}
+                  />
+                </>
+              }
               id={`section-${i}`}
               onUnitSelected={(unit) => {
                 track.unitAccessed({
@@ -143,11 +135,19 @@ export const PupilViewsUnitListing = ({
                   keyStageSlug: programmeFields.keystageSlug,
                   tierName: unit.programmeFields.tierDescription,
                   examBoard: unit.programmeFields.examboard,
+                  pathway: unit.programmeFields.pathwayDescription,
                 });
               }}
             />
           );
         })}
+        {relatedSubjects.map((subjectSlug) => (
+          <RelatedSubjectsBanner
+            key={subjectSlug}
+            subjectSlug={subjectSlug}
+            programmeFields={programmeFields}
+          />
+        ))}
         <OakBox $mt={"space-between-m2"}>
           <SignpostTeachersInlineBanner />
         </OakBox>

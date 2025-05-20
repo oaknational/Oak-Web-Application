@@ -50,6 +50,10 @@ const config = {
       "CF-Access-Client-Id": CfAccessClientId,
       "CF-Access-Client-Secret": CfAccessClientSecret,
     },
+    concurrency: 10,
+    chromeLaunchConfig: {
+      executablePath: "/usr/bin/google-chrome",
+    },
   },
   urls: [],
   // log: {

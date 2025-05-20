@@ -1,8 +1,10 @@
 import { z } from "zod";
+import { actionsSchema } from "@oaknational/oak-curriculum-schema";
 
 import {
   copyrightContentSchema,
   legacyAssetObjectSchema,
+  lessonAdditionalFilesListSchema,
   lessonDownloadsListSchema,
 } from "../../shared.schema";
 
@@ -28,6 +30,7 @@ const specialistLessonDownloadRawSchema = z.object({
   presentation_url: z.string().nullish(),
   starter_quiz_asset_object: legacyAssetObjectSchema,
   slidedeck_asset_object: legacyAssetObjectSchema,
+  lesson_release_date: z.string().nullish(),
 });
 
 export type SpecialistLessonDownloadRaw = z.infer<
@@ -52,6 +55,7 @@ export const SpecialistLessonDownloadSchema = z.object({
     lessonTitle: z.string(),
     lessonSlug: z.string(),
     downloads: lessonDownloadsListSchema,
+    additionalFiles: lessonAdditionalFilesListSchema,
     nextLessons: z.array(
       z.object({
         lessonSlug: z.string(),
@@ -62,6 +66,8 @@ export const SpecialistLessonDownloadSchema = z.object({
     copyrightContent: copyrightContentSchema,
     geoRestricted: z.boolean().nullable(),
     loginRequired: z.boolean().nullable(),
+    actions: actionsSchema.nullish(),
+    lessonReleaseDate: z.string().nullable(),
   }),
 });
 

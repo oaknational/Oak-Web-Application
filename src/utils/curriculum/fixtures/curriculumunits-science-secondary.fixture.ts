@@ -7,12 +7,10 @@ export default {
   units: [
     {
       connection_prior_unit_description:
-        "Pupils learned about biological molecules that are essential to life, including sugars and other carbohydrates, proteins and lipids, and the role of enzymes in catalysing the chemical reactions in which these substances are used and made.",
-      connection_future_unit_description:
-        "Pupils will learn how the components of the human nervous system enable us to respond to changes outside and inside our bodies.",
-      connection_future_unit_title:
-        "Coordination and control: the human nervous system",
-      connection_prior_unit_title: "Biological molecules and enzymes",
+        "Pupils learned about biotic and abiotic components of an ecosystem, measuring population size, interdependence and competition in ecosystems, how changes in biotic and abiotic factors affect communities, the cycling of carbon and water, and the role of microorganisms in cycling materials through ecosystems.",
+      connection_future_unit_description: "",
+      connection_future_unit_title: null,
+      connection_prior_unit_title: "Living organisms and their environments",
       domain: null,
       domain_id: null,
       examboard: "Edexcel",
@@ -20,62 +18,34 @@ export default {
       keystage_slug: "ks4",
       lessons: [
         {
-          slug: "the-human-circulatory-system",
+          slug: "negative-human-interactions-with-ecosystems-and-impacts-on-biodiversity",
           order: 1,
-          title: "The human circulatory system",
+          title:
+            "Negative human interactions with ecosystems and impacts on biodiversity",
           _state: "published",
-          lesson_uid: "LESS-TWBGN-N5560",
+          lesson_uid: "LESS-SUWSX-E6384",
         },
         {
-          slug: "the-human-heart-and-double-circulatory-system",
+          slug: "examples-of-human-interactions-with-ecosystems-including-fish-farming",
           order: 2,
-          title: "The human heart and double circulatory system",
+          title:
+            "Examples of human interactions with ecosystems, including fish farming",
           _state: "published",
-          lesson_uid: "LESS-XWGKS-Z5561",
+          lesson_uid: "LESS-RMUKJ-27586",
         },
         {
-          slug: "human-blood-cells-and-blood-vessels",
+          slug: "benefits-and-challenges-of-maintaining-biodiversity",
           order: 3,
-          title: "Human blood cells and blood vessels",
+          title: "Benefits and challenges of maintaining biodiversity",
           _state: "published",
-          lesson_uid: "LESS-OGARS-Z5562",
-        },
-        {
-          slug: "microscopy-of-human-blood-cells-and-blood-vessels",
-          order: 4,
-          title: "Microscopy of human blood cells and blood vessels ",
-          _state: "published",
-          lesson_uid: "LESS-CPYBG-I5563",
-        },
-        {
-          slug: "moving-into-and-out-of-the-blood-diffusion-osmosis-and-active-transport",
-          order: 5,
-          title:
-            "Moving into and out of the blood: diffusion, osmosis and active transport",
-          _state: "published",
-          lesson_uid: "LESS-ZOSOC-R5564",
-        },
-        {
-          slug: "diffusion-and-surface-area-to-volume-ratio",
-          order: 6,
-          title: "Diffusion and surface area to volume ratio ",
-          _state: "published",
-          lesson_uid: "LESS-WEXMQ-C5565",
-        },
-        {
-          slug: "the-importance-of-exchange-surfaces-and-transport-systems-in-humans",
-          order: 7,
-          title:
-            "The importance of exchange surfaces and transport systems in humans",
-          _state: "published",
-          lesson_uid: "LESS-CWUMJ-S5567",
+          lesson_uid: "LESS-SLMRB-U6387",
         },
       ],
-      order: 10,
+      order: 5,
       planned_number_of_lessons: 7,
       phase: "Secondary",
       phase_slug: "secondary",
-      slug: "transport-and-exchange-surfaces-in-humans",
+      slug: "biomass-transfer-food-security-and-biodiversity",
       subject: "Combined science",
       subject_slug: "combined-science",
       subject_parent: "Science",
@@ -89,11 +59,110 @@ export default {
       ],
       tier: null,
       tier_slug: null,
-      title: "Transport and exchange surfaces in humans",
+      title: "Maintaining biodiversity and human impacts",
       why_this_why_now: null,
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
+      unit_options: [],
+      threads: [
+        {
+          slug: "bq03-biology-how-do-living-things-live-together-in-their-environments",
+          order: 3,
+          title:
+            "BQ03 Biology: How do living things live together in their environments?",
+        },
+      ],
+      year: "11",
+      pathway: null,
+      pathway_slug: null,
+      state: "published",
+    },
+    {
+      connection_prior_unit_description:
+        "Pupils learned about photosynthesis in producers, including a two-stage model of the process and the requirements and products of each stage.",
+      connection_future_unit_description:
+        "Pupils will learn how substances essential for chemical reactions, and the products of the reactions, are transported into, around and out of plants, and about factors affecting the rate of water uptake by a plant.",
+      connection_future_unit_title: "Transport and exchange surfaces in plants",
+      connection_prior_unit_title: "Photosynthesis: requirements and products",
+      domain: null,
+      domain_id: null,
+      examboard: "Edexcel",
+      examboard_slug: "edexcel",
+      keystage_slug: "ks4",
+      lessons: [
+        {
+          slug: "aerobic-cellular-respiration-in-humans-and-other-organisms",
+          order: 1,
+          title: "Aerobic cellular respiration in humans and other organisms",
+          _state: "published",
+          lesson_uid: "LESS-EIQMC-P5598",
+        },
+        {
+          slug: "anaerobic-cellular-respiration-in-humans-and-other-organisms",
+          order: 2,
+          title: "Anaerobic cellular respiration in humans and other organisms",
+          _state: "published",
+          lesson_uid: "LESS-DKQRH-H5599",
+        },
+        {
+          slug: "the-effect-of-temperature-on-cellular-respiration-in-small-organisms-practical",
+          order: 3,
+          title:
+            "The effect of temperature on cellular respiration in small organisms: practical",
+          _state: "published",
+          lesson_uid: "LESS-DIEYK-Y5600",
+        },
+        {
+          slug: "explaining-the-effect-of-temperature-on-the-rate-of-cellular-respiration",
+          order: 4,
+          title:
+            "Explaining the effect of temperature on the rate of cellular respiration",
+          _state: "published",
+          lesson_uid: "LESS-UOQSZ-G9204",
+        },
+        {
+          slug: "the-effect-of-different-substrates-on-cellular-respiration-in-yeast-practical",
+          order: 5,
+          title:
+            "The effect of different substrates on cellular respiration in yeast: practical",
+          _state: "published",
+          lesson_uid: "LESS-RMQUU-G5601",
+        },
+        {
+          slug: "explaining-the-effect-of-different-substrates-on-the-rate-of-cellular-respiration",
+          order: 6,
+          title:
+            "Explaining the effect of different substrates on the rate of cellular respiration",
+          _state: "published",
+          lesson_uid: "LESS-LNSDF-27630",
+        },
+      ],
+      order: 3,
+      planned_number_of_lessons: 8,
+      phase: "Secondary",
+      phase_slug: "secondary",
+      slug: "aerobic-and-anaerobic-cellular-respiration",
+      subject: "Combined science",
+      subject_slug: "combined-science",
+      subject_parent: "Science",
+      subject_parent_slug: "science",
+      tags: [],
+      subjectcategories: [
+        {
+          id: 1,
+          title: "Biology",
+        },
+      ],
+      tier: null,
+      tier_slug: null,
+      title: "Aerobic and anaerobic cellular respiration",
+      why_this_why_now: null,
+      description: "",
+      cycle: "1",
+      features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -103,18 +172,19 @@ export default {
             "BQ01 Biology: What are living things and what are they made of?",
         },
       ],
-      year: "10",
+      year: "11",
       pathway: null,
       pathway_slug: null,
       state: "published",
     },
     {
       connection_prior_unit_description:
-        "Pupils learned about what the genome is, what it’s made of and where it’s stored, more detail about the chemical structure of DNA, and the relationship between an organism’s genome and its phenotype.",
+        "In the Particle explanations of density and pressure unit, pupils learnt how the arrangement and movement of particles in solids, liquids and gases explain density, pressure, floating and convection.",
       connection_future_unit_description:
-        "Pupils will learn about growth through cell division, mitosis as part of the cell cycle, cancer as the result of changes in cells that lead to uncontrolled growth and division, and the formation of gametes by meiosis.",
-      connection_future_unit_title: "Cell division: mitosis and meiosis",
-      connection_prior_unit_title: "DNA and the genome",
+        "In the Nuclear physics unit, pupils will build on this knowledge to learn about subatomic particles, unstable nuclei, radioactive decay, ionising radiation and radioactive half-life.",
+      connection_future_unit_title: "Nuclear physics",
+      connection_prior_unit_title:
+        "Particle explanations of density and pressure",
       domain: null,
       domain_id: null,
       examboard: "Edexcel",
@@ -122,63 +192,85 @@ export default {
       keystage_slug: "ks4",
       lessons: [
         {
-          slug: "alleles-genotype-and-phenotype-d7978",
+          slug: "thermal-conduction-and-insulation",
           order: 1,
-          title: "Alleles, genotype, and phenotype",
+          title: "Thermal conduction and insulation",
           _state: "published",
-          lesson_uid: "LESS-BOCNC-D7978",
+          lesson_uid: "LESS-BSHGN-R4922",
         },
         {
-          slug: "models-of-single-gene-inheritance-punnett-squares",
+          slug: "effective-insulation",
           order: 2,
-          title: "Models of single-gene inheritance: Punnett squares",
+          title: "Effective insulation",
           _state: "published",
-          lesson_uid: "LESS-NTEFF-G7981",
+          lesson_uid: "LESS-XBSLH-T9123",
         },
         {
-          slug: "models-of-single-gene-inheritance-family-tree-diagrams",
+          slug: "heating-different-substances",
           order: 3,
-          title: "Models of single-gene inheritance: family tree diagrams",
+          title: "Heating different substances",
           _state: "published",
-          lesson_uid: "LESS-HRRHN-Y7980",
+          lesson_uid: "LESS-EESSN-Q4923",
         },
         {
-          slug: "the-inheritance-of-biological-sex-in-humans",
+          slug: "calculating-specific-heat-capacity-q-equals-m-c",
           order: 4,
-          title: "The inheritance of biological sex in humans",
+          title: "Calculating specific heat capacity (∆ Q = m c  ∆ θ)",
           _state: "published",
-          lesson_uid: "LESS-GQCVD-H8100",
+          lesson_uid: "LESS-UTPXG-G4924",
+        },
+        {
+          slug: "measuring-specific-heat-capacity",
+          order: 5,
+          title: "Measuring specific heat capacity",
+          _state: "published",
+          lesson_uid: "LESS-NCGGN-V4925",
+        },
+        {
+          slug: "a-heating-curve-for-water",
+          order: 6,
+          title: "A heating curve for water",
+          _state: "published",
+          lesson_uid: "LESS-AQCHA-G6603",
+        },
+        {
+          slug: "specific-latent-heat-q-equals-m-l",
+          order: 7,
+          title: "Specific latent heat (Q = m L)",
+          _state: "published",
+          lesson_uid: "LESS-STIDI-U9124",
         },
       ],
-      order: 18,
-      planned_number_of_lessons: 6,
+      order: 6,
+      planned_number_of_lessons: 9,
       phase: "Secondary",
       phase_slug: "secondary",
-      slug: "inheritance-genotype-and-phenotype",
-      subject: "Combined science",
-      subject_slug: "combined-science",
+      slug: "energy-of-moving-particles",
+      subject: "Physics",
+      subject_slug: "physics",
       subject_parent: "Science",
       subject_parent_slug: "science",
       tags: [],
       subjectcategories: [
         {
-          id: 1,
-          title: "Biology",
+          id: 3,
+          title: "Physics",
         },
       ],
       tier: null,
       tier_slug: null,
-      title: "Inheritance, genotype and phenotype",
+      title: "Energy of moving particles",
       why_this_why_now: null,
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
-          slug: "bq02-biology-how-do-living-things-grow-and-reproduce",
-          order: 2,
-          title: "BQ02 Biology: How do living things grow and reproduce?",
+          slug: "physics-why-do-materials-have-different-properties",
+          order: 1,
+          title: "BQ10 Physics: Why do materials have different properties?",
         },
       ],
       year: "10",
@@ -273,6 +365,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -288,12 +381,11 @@ export default {
     },
     {
       connection_prior_unit_description:
-        "In the Particle explanations of density and pressure unit, pupils learnt how the arrangement and movement of particles in solids, liquids and gases explain density, pressure, floating and convection.",
+        "Pupils learned about what the genome is, what it’s made of and where it’s stored, more detail about the chemical structure of DNA, and the relationship between an organism’s genome and its phenotype.",
       connection_future_unit_description:
-        "In the Nuclear physics unit, pupils will build on this knowledge to learn about subatomic particles, unstable nuclei, radioactive decay, ionising radiation and radioactive half-life.",
-      connection_future_unit_title: "Nuclear physics",
-      connection_prior_unit_title:
-        "Particle explanations of density and pressure",
+        "Pupils will learn about growth through cell division, mitosis as part of the cell cycle, cancer as the result of changes in cells that lead to uncontrolled growth and division, and the formation of gametes by meiosis.",
+      connection_future_unit_title: "Cell division: mitosis and meiosis",
+      connection_prior_unit_title: "DNA and the genome",
       domain: null,
       domain_id: null,
       examboard: "Edexcel",
@@ -301,84 +393,272 @@ export default {
       keystage_slug: "ks4",
       lessons: [
         {
-          slug: "thermal-conduction-and-insulation",
+          slug: "alleles-genotype-and-phenotype-d7978",
           order: 1,
-          title: "Thermal conduction and insulation",
+          title: "Alleles, genotype, and phenotype",
           _state: "published",
-          lesson_uid: "LESS-BSHGN-R4922",
+          lesson_uid: "LESS-BOCNC-D7978",
         },
         {
-          slug: "effective-insulation",
+          slug: "models-of-single-gene-inheritance-punnett-squares",
           order: 2,
-          title: "Effective insulation",
+          title: "Models of single-gene inheritance: Punnett squares",
           _state: "published",
-          lesson_uid: "LESS-XBSLH-T9123",
+          lesson_uid: "LESS-NTEFF-G7981",
         },
         {
-          slug: "heating-different-substances",
+          slug: "models-of-single-gene-inheritance-family-tree-diagrams",
           order: 3,
-          title: "Heating different substances",
+          title: "Models of single-gene inheritance: family tree diagrams",
           _state: "published",
-          lesson_uid: "LESS-EESSN-Q4923",
+          lesson_uid: "LESS-HRRHN-Y7980",
         },
         {
-          slug: "calculating-specific-heat-capacity-q-equals-m-c",
+          slug: "the-inheritance-of-biological-sex-in-humans",
           order: 4,
-          title: "Calculating specific heat capacity (∆ Q = m c  ∆ θ)",
+          title: "The inheritance of biological sex in humans",
           _state: "published",
-          lesson_uid: "LESS-UTPXG-G4924",
-        },
-        {
-          slug: "measuring-specific-heat-capacity",
-          order: 5,
-          title: "Measuring specific heat capacity",
-          _state: "published",
-          lesson_uid: "LESS-NCGGN-V4925",
-        },
-        {
-          slug: "a-heating-curve-for-water",
-          order: 6,
-          title: "A heating curve for water",
-          _state: "published",
-          lesson_uid: "LESS-AQCHA-G6603",
-        },
-        {
-          slug: "specific-latent-heat-q-equals-m-l",
-          order: 7,
-          title: "Specific latent heat (Q = m L)",
-          _state: "published",
-          lesson_uid: "LESS-STIDI-U9124",
+          lesson_uid: "LESS-GQCVD-H8100",
         },
       ],
-      order: 6,
-      planned_number_of_lessons: 9,
+      order: 18,
+      planned_number_of_lessons: 6,
       phase: "Secondary",
       phase_slug: "secondary",
-      slug: "energy-of-moving-particles",
-      subject: "Physics",
-      subject_slug: "physics",
+      slug: "inheritance-genotype-and-phenotype",
+      subject: "Combined science",
+      subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
       tags: [],
       subjectcategories: [
         {
-          id: 3,
-          title: "Physics",
+          id: 1,
+          title: "Biology",
         },
       ],
       tier: null,
       tier_slug: null,
-      title: "Energy of moving particles",
+      title: "Inheritance, genotype and phenotype",
       why_this_why_now: null,
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
-          slug: "physics-why-do-materials-have-different-properties",
+          slug: "bq02-biology-how-do-living-things-grow-and-reproduce",
+          order: 2,
+          title: "BQ02 Biology: How do living things grow and reproduce?",
+        },
+      ],
+      year: "10",
+      pathway: null,
+      pathway_slug: null,
+      state: "published",
+    },
+    {
+      connection_prior_unit_description:
+        "Pupils learned about biological molecules that are essential to life, including sugars and other carbohydrates, proteins and lipids, and the role of enzymes in catalysing the chemical reactions in which these substances are used and made.",
+      connection_future_unit_description:
+        "Pupils will learn how the components of the human nervous system enable us to respond to changes outside and inside our bodies.",
+      connection_future_unit_title:
+        "Coordination and control: the human nervous system",
+      connection_prior_unit_title: "Biological molecules and enzymes",
+      domain: null,
+      domain_id: null,
+      examboard: "Edexcel",
+      examboard_slug: "edexcel",
+      keystage_slug: "ks4",
+      lessons: [
+        {
+          slug: "the-human-circulatory-system",
           order: 1,
-          title: "BQ10 Physics: Why do materials have different properties?",
+          title: "The human circulatory system",
+          _state: "published",
+          lesson_uid: "LESS-TWBGN-N5560",
+        },
+        {
+          slug: "the-human-heart-and-double-circulatory-system",
+          order: 2,
+          title: "The human heart and double circulatory system",
+          _state: "published",
+          lesson_uid: "LESS-XWGKS-Z5561",
+        },
+        {
+          slug: "human-blood-cells-and-blood-vessels",
+          order: 3,
+          title: "Human blood cells and blood vessels",
+          _state: "published",
+          lesson_uid: "LESS-OGARS-Z5562",
+        },
+        {
+          slug: "microscopy-of-human-blood-cells-and-blood-vessels",
+          order: 4,
+          title: "Microscopy of human blood cells and blood vessels ",
+          _state: "published",
+          lesson_uid: "LESS-CPYBG-I5563",
+        },
+        {
+          slug: "moving-into-and-out-of-the-blood-diffusion-osmosis-and-active-transport",
+          order: 5,
+          title:
+            "Moving into and out of the blood: diffusion, osmosis and active transport",
+          _state: "published",
+          lesson_uid: "LESS-ZOSOC-R5564",
+        },
+        {
+          slug: "diffusion-and-surface-area-to-volume-ratio",
+          order: 6,
+          title: "Diffusion and surface area to volume ratio ",
+          _state: "published",
+          lesson_uid: "LESS-WEXMQ-C5565",
+        },
+        {
+          slug: "the-importance-of-exchange-surfaces-and-transport-systems-in-humans",
+          order: 7,
+          title:
+            "The importance of exchange surfaces and transport systems in humans",
+          _state: "published",
+          lesson_uid: "LESS-CWUMJ-S5567",
+        },
+      ],
+      order: 10,
+      planned_number_of_lessons: 7,
+      phase: "Secondary",
+      phase_slug: "secondary",
+      slug: "transport-and-exchange-surfaces-in-humans",
+      subject: "Combined science",
+      subject_slug: "combined-science",
+      subject_parent: "Science",
+      subject_parent_slug: "science",
+      tags: [],
+      subjectcategories: [
+        {
+          id: 1,
+          title: "Biology",
+        },
+      ],
+      tier: null,
+      tier_slug: null,
+      title: "Transport and exchange surfaces in humans",
+      why_this_why_now: null,
+      description: "",
+      cycle: "1",
+      features: null,
+      parent_programme_features: {},
+      unit_options: [],
+      threads: [
+        {
+          slug: "bq01-biology-what-are-living-things-and-what-are-they-made-of",
+          order: 1,
+          title:
+            "BQ01 Biology: What are living things and what are they made of?",
+        },
+      ],
+      year: "10",
+      pathway: null,
+      pathway_slug: null,
+      state: "published",
+    },
+    {
+      connection_prior_unit_description:
+        "Pupils learned about biological molecules that are essential to life, including sugars and other carbohydrates, proteins and lipids, and the role of enzymes in catalysing the chemical reactions in which these substances are used and made.",
+      connection_future_unit_description:
+        "Pupils will learn how the components of the human nervous system enable us to respond to changes outside and inside our bodies.",
+      connection_future_unit_title:
+        "Coordination and control: the human nervous system",
+      connection_prior_unit_title: "Biological molecules and enzymes",
+      domain: null,
+      domain_id: null,
+      examboard: "Edexcel",
+      examboard_slug: "edexcel",
+      keystage_slug: "ks4",
+      lessons: [
+        {
+          slug: "the-human-circulatory-system",
+          order: 1,
+          title: "The human circulatory system",
+          _state: "published",
+          lesson_uid: "LESS-TWBGN-N5560",
+        },
+        {
+          slug: "the-human-heart-and-double-circulatory-system",
+          order: 2,
+          title: "The human heart and double circulatory system",
+          _state: "published",
+          lesson_uid: "LESS-XWGKS-Z5561",
+        },
+        {
+          slug: "human-blood-cells-and-blood-vessels",
+          order: 3,
+          title: "Human blood cells and blood vessels",
+          _state: "published",
+          lesson_uid: "LESS-OGARS-Z5562",
+        },
+        {
+          slug: "microscopy-of-human-blood-cells-and-blood-vessels",
+          order: 4,
+          title: "Microscopy of human blood cells and blood vessels ",
+          _state: "published",
+          lesson_uid: "LESS-CPYBG-I5563",
+        },
+        {
+          slug: "moving-into-and-out-of-the-blood-diffusion-osmosis-and-active-transport",
+          order: 5,
+          title:
+            "Moving into and out of the blood: diffusion, osmosis and active transport",
+          _state: "published",
+          lesson_uid: "LESS-ZOSOC-R5564",
+        },
+        {
+          slug: "diffusion-and-surface-area-to-volume-ratio",
+          order: 6,
+          title: "Diffusion and surface area to volume ratio ",
+          _state: "published",
+          lesson_uid: "LESS-WEXMQ-C5565",
+        },
+        {
+          slug: "the-importance-of-exchange-surfaces-and-transport-systems-in-humans",
+          order: 7,
+          title:
+            "The importance of exchange surfaces and transport systems in humans",
+          _state: "published",
+          lesson_uid: "LESS-CWUMJ-S5567",
+        },
+      ],
+      order: 5,
+      planned_number_of_lessons: 7,
+      phase: "Secondary",
+      phase_slug: "secondary",
+      slug: "transport-and-exchange-surfaces-in-humans",
+      subject: "Biology",
+      subject_slug: "biology",
+      subject_parent: "Science",
+      subject_parent_slug: "science",
+      tags: [],
+      subjectcategories: [
+        {
+          id: 1,
+          title: "Biology",
+        },
+      ],
+      tier: null,
+      tier_slug: null,
+      title: "Transport and exchange surfaces in humans",
+      why_this_why_now: null,
+      description: "",
+      cycle: "1",
+      features: null,
+      parent_programme_features: {},
+      unit_options: [],
+      threads: [
+        {
+          slug: "bq01-biology-what-are-living-things-and-what-are-they-made-of",
+          order: 1,
+          title:
+            "BQ01 Biology: What are living things and what are they made of?",
         },
       ],
       year: "10",
@@ -446,13 +726,13 @@ export default {
           lesson_uid: "LESS-LNSDF-27630",
         },
       ],
-      order: 3,
+      order: 2,
       planned_number_of_lessons: 8,
       phase: "Secondary",
       phase_slug: "secondary",
       slug: "aerobic-and-anaerobic-cellular-respiration",
-      subject: "Combined science",
-      subject_slug: "combined-science",
+      subject: "Biology",
+      subject_slug: "biology",
       subject_parent: "Science",
       subject_parent_slug: "science",
       tags: [],
@@ -469,6 +749,85 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
+      unit_options: [],
+      threads: [
+        {
+          slug: "bq01-biology-what-are-living-things-and-what-are-they-made-of",
+          order: 1,
+          title:
+            "BQ01 Biology: What are living things and what are they made of?",
+        },
+      ],
+      year: "11",
+      pathway: null,
+      pathway_slug: null,
+      state: "published",
+    },
+    {
+      connection_prior_unit_description:
+        "Pupils learned how substances essential for chemical reactions, and the products of the reactions, are transported into, around and out of plants, and about factors affecting the rate of water uptake by a plant.",
+      connection_future_unit_description:
+        "Pupils will learn about factors that affect the rate of photosynthesis in plants, including temperature, light intensity and carbon dioxide concentration.",
+      connection_future_unit_title:
+        "Photosynthesis: factors affecting the rate",
+      connection_prior_unit_title: "Transport and exchange surfaces in plants",
+      domain: null,
+      domain_id: null,
+      examboard: "Edexcel",
+      examboard_slug: "edexcel",
+      keystage_slug: "ks4",
+      lessons: [
+        {
+          slug: "the-effect-of-sugar-concentration-on-the-mass-of-plant-tissue-practical",
+          order: 1,
+          title:
+            "The effect of sugar concentration on the mass of plant tissue: practical",
+          _state: "published",
+          lesson_uid: "LESS-FLMSN-C5605",
+        },
+        {
+          slug: "the-effect-of-sugar-concentration-on-the-mass-of-plant-tissue-data-analysis",
+          order: 2,
+          title:
+            "The effect of sugar concentration on the mass of plant tissue: data analysis",
+          _state: "published",
+          lesson_uid: "LESS-YOGIW-G5606",
+        },
+        {
+          slug: "the-importance-of-maintaining-constant-conditions-in-the-body",
+          order: 3,
+          title:
+            "The importance of maintaining constant conditions in the body",
+          _state: "published",
+          lesson_uid: "LESS-MNWOQ-P8189",
+        },
+      ],
+      order: 11,
+      planned_number_of_lessons: 11,
+      phase: "Secondary",
+      phase_slug: "secondary",
+      slug: "coordination-and-control-maintaining-a-constant-internal-environment",
+      subject: "Combined science",
+      subject_slug: "combined-science",
+      subject_parent: "Science",
+      subject_parent_slug: "science",
+      tags: [],
+      subjectcategories: [
+        {
+          id: 1,
+          title: "Biology",
+        },
+      ],
+      tier: null,
+      tier_slug: null,
+      title:
+        "Coordination and control: maintaining a constant internal environment",
+      why_this_why_now: null,
+      description: "",
+      cycle: "1",
+      features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -579,6 +938,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -689,6 +1049,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -791,6 +1152,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -885,6 +1247,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -973,6 +1336,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -1060,6 +1424,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -1145,6 +1510,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -1238,6 +1604,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -1331,6 +1698,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -1437,6 +1805,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -1548,6 +1917,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -1687,6 +2057,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -1826,6 +2197,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -1987,6 +2359,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -2086,6 +2459,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -2221,6 +2595,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -2389,6 +2764,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -2500,6 +2876,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -2611,6 +2988,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -2743,6 +3121,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -2868,6 +3247,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -3014,6 +3394,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -3160,6 +3541,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -3262,6 +3644,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -3365,6 +3748,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -3453,6 +3837,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -3546,6 +3931,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -3688,6 +4074,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -3802,6 +4189,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -3918,6 +4306,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -4011,6 +4400,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -4104,6 +4494,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -4232,6 +4623,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -4379,6 +4771,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -4525,6 +4918,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -4671,6 +5065,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -4787,6 +5182,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -4901,6 +5297,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -4980,6 +5377,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -5059,6 +5457,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -5154,6 +5553,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -5242,6 +5642,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -5310,6 +5711,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -5369,6 +5771,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -5483,6 +5886,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -5583,6 +5987,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -5698,6 +6103,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -5789,6 +6195,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -5872,6 +6279,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -5886,6 +6294,115 @@ export default {
         },
       ],
       year: "11",
+      pathway: null,
+      pathway_slug: null,
+      state: "published",
+    },
+    {
+      connection_prior_unit_description:
+        "Pupils learned about some common non-infectious diseases, factors that increase the risk of developing lifestyle diseases and steps we can take to help prevent them, including the impacts of smoking on the human body, and asthma and its risk factors.",
+      connection_future_unit_description:
+        "Pupils will learn about human and plant defences against pathogens, the role of white blood cells in the human immune system, and the use of vaccination to protect against communicable diseases.",
+      connection_future_unit_title:
+        "Defences against pathogens, the human immune system and vaccination",
+      connection_prior_unit_title: "Disease and drugs",
+      domain: null,
+      domain_id: null,
+      examboard: "Edexcel",
+      examboard_slug: "edexcel",
+      keystage_slug: "ks4",
+      lessons: [
+        {
+          slug: "diseases",
+          order: 1,
+          title: "Diseases",
+          _state: "published",
+          lesson_uid: "LESS-JGRYS-C7157",
+        },
+        {
+          slug: "cardiovascular-disease",
+          order: 2,
+          title: "Cardiovascular disease",
+          _state: "published",
+          lesson_uid: "LESS-EXFIX-K7158",
+        },
+        {
+          slug: "risk-factors-for-non-communicable-diseases",
+          order: 3,
+          title: "Risk factors for non-communicable diseases",
+          _state: "published",
+          lesson_uid: "LESS-WFOQI-W7159",
+        },
+        {
+          slug: "cancer",
+          order: 4,
+          title: "Cancer",
+          _state: "published",
+          lesson_uid: "LESS-EMOBT-R7160",
+        },
+        {
+          slug: "bacterial-and-viral-diseases-in-humans-tb-cholera-helicobacter-and-ebola",
+          order: 5,
+          title:
+            "Bacterial and viral diseases in humans: TB, cholera, Helicobacter and Ebola",
+          _state: "published",
+          lesson_uid: "LESS-AMWAF-L9183",
+        },
+        {
+          slug: "fungal-and-protist-diseases-in-humans",
+          order: 6,
+          title: "Fungal and protist diseases in humans",
+          _state: "published",
+          lesson_uid: "LESS-PKFLN-B9185",
+        },
+        {
+          slug: "sexually-transmitted-infections",
+          order: 7,
+          title: "Sexually transmitted infections",
+          _state: "published",
+          lesson_uid: "LESS-CILYR-U9186",
+        },
+        {
+          slug: "plant-diseases-chalara-ash-dieback",
+          order: 8,
+          title: "Plant diseases: Chalara ash dieback",
+          _state: "published",
+          lesson_uid: "LESS-NTPFZ-S9188",
+        },
+      ],
+      order: 3,
+      planned_number_of_lessons: 14,
+      phase: "Secondary",
+      phase_slug: "secondary",
+      slug: "health-and-disease",
+      subject: "Biology",
+      subject_slug: "biology",
+      subject_parent: "Science",
+      subject_parent_slug: "science",
+      tags: [],
+      subjectcategories: [
+        {
+          id: 1,
+          title: "Biology",
+        },
+      ],
+      tier: null,
+      tier_slug: null,
+      title: "Health and disease",
+      why_this_why_now: null,
+      description: "",
+      cycle: "1",
+      features: null,
+      parent_programme_features: {},
+      unit_options: [],
+      threads: [
+        {
+          slug: "bq05-biology-how-do-living-things-stay-healthy",
+          order: 5,
+          title: "BQ05 Biology: How do living things stay healthy?",
+        },
+      ],
+      year: "10",
       pathway: null,
       pathway_slug: null,
       state: "published",
@@ -5989,6 +6506,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -6121,6 +6639,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -6198,6 +6717,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -6268,6 +6788,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -6380,6 +6901,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -6499,6 +7021,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -6617,6 +7140,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -6702,6 +7226,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -6816,6 +7341,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -6921,6 +7447,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -7020,6 +7547,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -7105,6 +7633,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -7188,6 +7717,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -7293,6 +7823,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -7392,6 +7923,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -7462,6 +7994,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -7544,6 +8077,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -7648,6 +8182,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -7775,6 +8310,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -7895,6 +8431,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -8015,6 +8552,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -8150,6 +8688,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -8284,6 +8823,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -8371,6 +8911,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -8458,6 +8999,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -8467,464 +9009,6 @@ export default {
         },
       ],
       year: "11",
-      pathway: null,
-      pathway_slug: null,
-      state: "published",
-    },
-    {
-      connection_prior_unit_description:
-        "Pupils learned about biotic and abiotic components of an ecosystem, measuring population size, interdependence and competition in ecosystems, how changes in biotic and abiotic factors affect communities, the cycling of carbon and water, and the role of microorganisms in cycling materials through ecosystems.",
-      connection_future_unit_description: "",
-      connection_future_unit_title: null,
-      connection_prior_unit_title: "Living organisms and their environments",
-      domain: null,
-      domain_id: null,
-      examboard: "Edexcel",
-      examboard_slug: "edexcel",
-      keystage_slug: "ks4",
-      lessons: [
-        {
-          slug: "negative-human-interactions-with-ecosystems-and-impacts-on-biodiversity",
-          order: 1,
-          title:
-            "Negative human interactions with ecosystems and impacts on biodiversity",
-          _state: "published",
-          lesson_uid: "LESS-SUWSX-E6384",
-        },
-        {
-          slug: "examples-of-human-interactions-with-ecosystems-including-fish-farming",
-          order: 2,
-          title:
-            "Examples of human interactions with ecosystems, including fish farming",
-          _state: "published",
-          lesson_uid: "LESS-RMUKJ-27586",
-        },
-        {
-          slug: "benefits-and-challenges-of-maintaining-biodiversity",
-          order: 3,
-          title: "Benefits and challenges of maintaining biodiversity",
-          _state: "published",
-          lesson_uid: "LESS-SLMRB-U6387",
-        },
-      ],
-      order: 5,
-      planned_number_of_lessons: 7,
-      phase: "Secondary",
-      phase_slug: "secondary",
-      slug: "biomass-transfer-food-security-and-biodiversity",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
-      tags: [],
-      subjectcategories: [
-        {
-          id: 1,
-          title: "Biology",
-        },
-      ],
-      tier: null,
-      tier_slug: null,
-      title: "Maintaining biodiversity and human impacts",
-      why_this_why_now: null,
-      description: "",
-      cycle: "1",
-      features: null,
-      unit_options: [],
-      threads: [
-        {
-          slug: "bq03-biology-how-do-living-things-live-together-in-their-environments",
-          order: 3,
-          title:
-            "BQ03 Biology: How do living things live together in their environments?",
-        },
-      ],
-      year: "11",
-      pathway: null,
-      pathway_slug: null,
-      state: "published",
-    },
-    {
-      connection_prior_unit_description:
-        "Pupils learned about biological molecules that are essential to life, including sugars and other carbohydrates, proteins and lipids, and the role of enzymes in catalysing the chemical reactions in which these substances are used and made.",
-      connection_future_unit_description:
-        "Pupils will learn how the components of the human nervous system enable us to respond to changes outside and inside our bodies.",
-      connection_future_unit_title:
-        "Coordination and control: the human nervous system",
-      connection_prior_unit_title: "Biological molecules and enzymes",
-      domain: null,
-      domain_id: null,
-      examboard: "Edexcel",
-      examboard_slug: "edexcel",
-      keystage_slug: "ks4",
-      lessons: [
-        {
-          slug: "the-human-circulatory-system",
-          order: 1,
-          title: "The human circulatory system",
-          _state: "published",
-          lesson_uid: "LESS-TWBGN-N5560",
-        },
-        {
-          slug: "the-human-heart-and-double-circulatory-system",
-          order: 2,
-          title: "The human heart and double circulatory system",
-          _state: "published",
-          lesson_uid: "LESS-XWGKS-Z5561",
-        },
-        {
-          slug: "human-blood-cells-and-blood-vessels",
-          order: 3,
-          title: "Human blood cells and blood vessels",
-          _state: "published",
-          lesson_uid: "LESS-OGARS-Z5562",
-        },
-        {
-          slug: "microscopy-of-human-blood-cells-and-blood-vessels",
-          order: 4,
-          title: "Microscopy of human blood cells and blood vessels ",
-          _state: "published",
-          lesson_uid: "LESS-CPYBG-I5563",
-        },
-        {
-          slug: "moving-into-and-out-of-the-blood-diffusion-osmosis-and-active-transport",
-          order: 5,
-          title:
-            "Moving into and out of the blood: diffusion, osmosis and active transport",
-          _state: "published",
-          lesson_uid: "LESS-ZOSOC-R5564",
-        },
-        {
-          slug: "diffusion-and-surface-area-to-volume-ratio",
-          order: 6,
-          title: "Diffusion and surface area to volume ratio ",
-          _state: "published",
-          lesson_uid: "LESS-WEXMQ-C5565",
-        },
-        {
-          slug: "the-importance-of-exchange-surfaces-and-transport-systems-in-humans",
-          order: 7,
-          title:
-            "The importance of exchange surfaces and transport systems in humans",
-          _state: "published",
-          lesson_uid: "LESS-CWUMJ-S5567",
-        },
-      ],
-      order: 5,
-      planned_number_of_lessons: 7,
-      phase: "Secondary",
-      phase_slug: "secondary",
-      slug: "transport-and-exchange-surfaces-in-humans",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
-      tags: [],
-      subjectcategories: [
-        {
-          id: 1,
-          title: "Biology",
-        },
-      ],
-      tier: null,
-      tier_slug: null,
-      title: "Transport and exchange surfaces in humans",
-      why_this_why_now: null,
-      description: "",
-      cycle: "1",
-      features: null,
-      unit_options: [],
-      threads: [
-        {
-          slug: "bq01-biology-what-are-living-things-and-what-are-they-made-of",
-          order: 1,
-          title:
-            "BQ01 Biology: What are living things and what are they made of?",
-        },
-      ],
-      year: "10",
-      pathway: null,
-      pathway_slug: null,
-      state: "published",
-    },
-    {
-      connection_prior_unit_description:
-        "Pupils learned about photosynthesis in producers, including a two-stage model of the process and the requirements and products of each stage.",
-      connection_future_unit_description:
-        "Pupils will learn how substances essential for chemical reactions, and the products of the reactions, are transported into, around and out of plants, and about factors affecting the rate of water uptake by a plant.",
-      connection_future_unit_title: "Transport and exchange surfaces in plants",
-      connection_prior_unit_title: "Photosynthesis: requirements and products",
-      domain: null,
-      domain_id: null,
-      examboard: "Edexcel",
-      examboard_slug: "edexcel",
-      keystage_slug: "ks4",
-      lessons: [
-        {
-          slug: "aerobic-cellular-respiration-in-humans-and-other-organisms",
-          order: 1,
-          title: "Aerobic cellular respiration in humans and other organisms",
-          _state: "published",
-          lesson_uid: "LESS-EIQMC-P5598",
-        },
-        {
-          slug: "anaerobic-cellular-respiration-in-humans-and-other-organisms",
-          order: 2,
-          title: "Anaerobic cellular respiration in humans and other organisms",
-          _state: "published",
-          lesson_uid: "LESS-DKQRH-H5599",
-        },
-        {
-          slug: "the-effect-of-temperature-on-cellular-respiration-in-small-organisms-practical",
-          order: 3,
-          title:
-            "The effect of temperature on cellular respiration in small organisms: practical",
-          _state: "published",
-          lesson_uid: "LESS-DIEYK-Y5600",
-        },
-        {
-          slug: "explaining-the-effect-of-temperature-on-the-rate-of-cellular-respiration",
-          order: 4,
-          title:
-            "Explaining the effect of temperature on the rate of cellular respiration",
-          _state: "published",
-          lesson_uid: "LESS-UOQSZ-G9204",
-        },
-        {
-          slug: "the-effect-of-different-substrates-on-cellular-respiration-in-yeast-practical",
-          order: 5,
-          title:
-            "The effect of different substrates on cellular respiration in yeast: practical",
-          _state: "published",
-          lesson_uid: "LESS-RMQUU-G5601",
-        },
-        {
-          slug: "explaining-the-effect-of-different-substrates-on-the-rate-of-cellular-respiration",
-          order: 6,
-          title:
-            "Explaining the effect of different substrates on the rate of cellular respiration",
-          _state: "published",
-          lesson_uid: "LESS-LNSDF-27630",
-        },
-      ],
-      order: 2,
-      planned_number_of_lessons: 8,
-      phase: "Secondary",
-      phase_slug: "secondary",
-      slug: "aerobic-and-anaerobic-cellular-respiration",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
-      tags: [],
-      subjectcategories: [
-        {
-          id: 1,
-          title: "Biology",
-        },
-      ],
-      tier: null,
-      tier_slug: null,
-      title: "Aerobic and anaerobic cellular respiration",
-      why_this_why_now: null,
-      description: "",
-      cycle: "1",
-      features: null,
-      unit_options: [],
-      threads: [
-        {
-          slug: "bq01-biology-what-are-living-things-and-what-are-they-made-of",
-          order: 1,
-          title:
-            "BQ01 Biology: What are living things and what are they made of?",
-        },
-      ],
-      year: "11",
-      pathway: null,
-      pathway_slug: null,
-      state: "published",
-    },
-    {
-      connection_prior_unit_description:
-        "Pupils learned how substances essential for chemical reactions, and the products of the reactions, are transported into, around and out of plants, and about factors affecting the rate of water uptake by a plant.",
-      connection_future_unit_description:
-        "Pupils will learn about factors that affect the rate of photosynthesis in plants, including temperature, light intensity and carbon dioxide concentration.",
-      connection_future_unit_title:
-        "Photosynthesis: factors affecting the rate",
-      connection_prior_unit_title: "Transport and exchange surfaces in plants",
-      domain: null,
-      domain_id: null,
-      examboard: "Edexcel",
-      examboard_slug: "edexcel",
-      keystage_slug: "ks4",
-      lessons: [
-        {
-          slug: "the-effect-of-sugar-concentration-on-the-mass-of-plant-tissue-practical",
-          order: 1,
-          title:
-            "The effect of sugar concentration on the mass of plant tissue: practical",
-          _state: "published",
-          lesson_uid: "LESS-FLMSN-C5605",
-        },
-        {
-          slug: "the-effect-of-sugar-concentration-on-the-mass-of-plant-tissue-data-analysis",
-          order: 2,
-          title:
-            "The effect of sugar concentration on the mass of plant tissue: data analysis",
-          _state: "published",
-          lesson_uid: "LESS-YOGIW-G5606",
-        },
-        {
-          slug: "the-importance-of-maintaining-constant-conditions-in-the-body",
-          order: 3,
-          title:
-            "The importance of maintaining constant conditions in the body",
-          _state: "published",
-          lesson_uid: "LESS-MNWOQ-P8189",
-        },
-      ],
-      order: 11,
-      planned_number_of_lessons: 11,
-      phase: "Secondary",
-      phase_slug: "secondary",
-      slug: "coordination-and-control-maintaining-a-constant-internal-environment",
-      subject: "Combined science",
-      subject_slug: "combined-science",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
-      tags: [],
-      subjectcategories: [
-        {
-          id: 1,
-          title: "Biology",
-        },
-      ],
-      tier: null,
-      tier_slug: null,
-      title:
-        "Coordination and control: maintaining a constant internal environment",
-      why_this_why_now: null,
-      description: "",
-      cycle: "1",
-      features: null,
-      unit_options: [],
-      threads: [
-        {
-          slug: "bq01-biology-what-are-living-things-and-what-are-they-made-of",
-          order: 1,
-          title:
-            "BQ01 Biology: What are living things and what are they made of?",
-        },
-      ],
-      year: "11",
-      pathway: null,
-      pathway_slug: null,
-      state: "published",
-    },
-    {
-      connection_prior_unit_description:
-        "Pupils learned about some common non-infectious diseases, factors that increase the risk of developing lifestyle diseases and steps we can take to help prevent them, including the impacts of smoking on the human body, and asthma and its risk factors.",
-      connection_future_unit_description:
-        "Pupils will learn about human and plant defences against pathogens, the role of white blood cells in the human immune system, and the use of vaccination to protect against communicable diseases.",
-      connection_future_unit_title:
-        "Defences against pathogens, the human immune system and vaccination",
-      connection_prior_unit_title: "Disease and drugs",
-      domain: null,
-      domain_id: null,
-      examboard: "Edexcel",
-      examboard_slug: "edexcel",
-      keystage_slug: "ks4",
-      lessons: [
-        {
-          slug: "diseases",
-          order: 1,
-          title: "Diseases",
-          _state: "published",
-          lesson_uid: "LESS-JGRYS-C7157",
-        },
-        {
-          slug: "cardiovascular-disease",
-          order: 2,
-          title: "Cardiovascular disease",
-          _state: "published",
-          lesson_uid: "LESS-EXFIX-K7158",
-        },
-        {
-          slug: "risk-factors-for-non-communicable-diseases",
-          order: 3,
-          title: "Risk factors for non-communicable diseases",
-          _state: "published",
-          lesson_uid: "LESS-WFOQI-W7159",
-        },
-        {
-          slug: "cancer",
-          order: 4,
-          title: "Cancer",
-          _state: "published",
-          lesson_uid: "LESS-EMOBT-R7160",
-        },
-        {
-          slug: "bacterial-and-viral-diseases-in-humans-tb-cholera-helicobacter-and-ebola",
-          order: 5,
-          title:
-            "Bacterial and viral diseases in humans: TB, cholera, Helicobacter and Ebola",
-          _state: "published",
-          lesson_uid: "LESS-AMWAF-L9183",
-        },
-        {
-          slug: "fungal-and-protist-diseases-in-humans",
-          order: 6,
-          title: "Fungal and protist diseases in humans",
-          _state: "published",
-          lesson_uid: "LESS-PKFLN-B9185",
-        },
-        {
-          slug: "sexually-transmitted-infections",
-          order: 7,
-          title: "Sexually transmitted infections",
-          _state: "published",
-          lesson_uid: "LESS-CILYR-U9186",
-        },
-        {
-          slug: "plant-diseases-chalara-ash-dieback",
-          order: 8,
-          title: "Plant diseases: Chalara ash dieback",
-          _state: "published",
-          lesson_uid: "LESS-NTPFZ-S9188",
-        },
-      ],
-      order: 3,
-      planned_number_of_lessons: 14,
-      phase: "Secondary",
-      phase_slug: "secondary",
-      slug: "health-and-disease",
-      subject: "Biology",
-      subject_slug: "biology",
-      subject_parent: "Science",
-      subject_parent_slug: "science",
-      tags: [],
-      subjectcategories: [
-        {
-          id: 1,
-          title: "Biology",
-        },
-      ],
-      tier: null,
-      tier_slug: null,
-      title: "Health and disease",
-      why_this_why_now: null,
-      description: "",
-      cycle: "1",
-      features: null,
-      unit_options: [],
-      threads: [
-        {
-          slug: "bq05-biology-how-do-living-things-stay-healthy",
-          order: 5,
-          title: "BQ05 Biology: How do living things stay healthy?",
-        },
-      ],
-      year: "10",
       pathway: null,
       pathway_slug: null,
       state: "published",
@@ -9020,6 +9104,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -9148,6 +9233,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -9261,6 +9347,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -9333,6 +9420,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -9461,6 +9549,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -9586,6 +9675,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -9691,6 +9781,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {
@@ -9812,6 +9903,7 @@ export default {
       description: "",
       cycle: "1",
       features: null,
+      parent_programme_features: {},
       unit_options: [],
       threads: [
         {

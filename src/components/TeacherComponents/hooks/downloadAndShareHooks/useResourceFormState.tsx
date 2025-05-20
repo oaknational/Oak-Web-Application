@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 import { useUser } from "@clerk/nextjs";
 
 import { fetchHubspotContactDetails } from "../../helpers/downloadAndShareHelpers/fetchHubspotContactDetails";
-import { getSubscriptionStatus } from "../../OnboardingForm/onboardingActions";
 
 import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
 
@@ -36,6 +35,7 @@ export type UseResourceFormStateProps =
   | { shareResources: LessonShareData["shareableResources"]; type: "share" }
   | {
       downloadResources: LessonDownloadsPageData["downloads"];
+      additionalFilesResources: LessonDownloadsPageData["additionalFiles"];
       type: "download";
     }
   | { curriculumResources: CurriculumDownload[]; type: "curriculum" };
@@ -86,28 +86,25 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
 
     const updateUserDetailsFromHubspot = async (email: string) => {
       const hubspotContact = await fetchHubspotContactDetails();
-      const subscriptionStatus = await getSubscriptionStatus();
       setTermsInLocalStorage(true);
       setValue("terms", true);
 
-      if (subscriptionStatus) {
-        setEmailInLocalStorage(email);
-        setValue("email", email);
-      } else {
-        setEmailInLocalStorage("");
-      }
+      setEmailInLocalStorage(email);
+      setValue("email", email);
 
       if (hubspotContact) {
         const schoolId = hubspotContact.schoolId;
         const schoolName = hubspotContact.schoolName;
 
+        // @sonar-ignore
+        // current sonar rule typescript:S6606 incorrectly flags this, see open issue here https://sonarsource.atlassian.net/browse/JS-373
         const school = {
-          schoolId: schoolId ?? "notListed",
-          schoolName: schoolName ?? "notListed",
+          schoolId: schoolId || "notListed",
+          schoolName: schoolName || "notListed",
         };
+        // @sonar-end
 
         setSchoolInLocalStorage(school);
-
         setSchoolFromHubspot(school);
 
         if (schoolName) {
@@ -189,6 +186,9 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     }
   })();
 
+  const additionalResources =
+    props.type === "download" && props.additionalFilesResources;
+
   const getInitialResourcesState = useCallback(() => {
     if (props.type === "share") {
       return (resources as LessonShareData["shareableResources"])
@@ -206,6 +206,17 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
       throw new Error("Invalid resource type");
     }
   }, [resources, props.type]);
+
+  const getInitialAdditionalFilesState = useCallback(() => {
+    if (props.type === "download") {
+      return (additionalResources as LessonDownloadsPageData["additionalFiles"])
+        .filter(
+          (additionalResource) =>
+            additionalResource.exists && !additionalResource.forbidden,
+        )
+        .map((resource) => `${resource.type}-${resource.assetId.toString()}`);
+    }
+  }, [additionalResources, props.type]);
 
   useEffect(() => {
     setIsLocalStorageLoading(false);
@@ -253,13 +264,22 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     getInitialResourcesState(),
   );
 
+  const [activeAdditonalFiles, setActiveAdditonalFiles] = useState<
+    string[] | undefined
+  >(getInitialAdditionalFilesState());
+
   useEffect(() => {
     setActiveResources(getInitialResourcesState());
   }, [getInitialResourcesState, resources]);
 
+  useEffect(() => {
+    setActiveAdditonalFiles(getInitialAdditionalFilesState());
+  }, [getInitialAdditionalFilesState, additionalResources]);
+
   const hasResources = getInitialResourcesState().length > 0;
 
-  const onSelectAllClick = () => setValue("resources", activeResources);
+  const onSelectAllClick = () =>
+    setValue("resources", activeResources.concat(activeAdditonalFiles || []));
   const onDeselectAllClick = () => setValue("resources", []);
 
   const handleEditDetailsCompletedClick = () => {
@@ -287,27 +307,54 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     };
     const queryResults = preselectedQuery();
     let preselected: "all" | ResourceType[] | undefined;
+    const allAvailableResources = getInitialResourcesState().concat(
+      getInitialAdditionalFilesState() || [],
+    );
 
     if (isPreselectedShareType(queryResults)) {
       preselected = getPreselectedShareResourceTypes(queryResults);
     }
     if (isPreselectedDownloadType(queryResults)) {
+      const preselectedResources = additionalResources
+        ? resources.concat(additionalResources)
+        : resources;
       preselected = getPreselectedDownloadResourceTypes(
         queryResults,
-        resources as LessonDownloadsPageData["downloads"],
+        preselectedResources as LessonDownloadsPageData["downloads"],
       );
     }
+
     if (preselected && props.type !== "curriculum") {
       setPreselectAll(preselected === "all");
-      preselected === "all"
-        ? setValue("resources", getInitialResourcesState())
-        : setValue("resources", preselected);
+
+      switch (true) {
+        case preselected === "all":
+          setValue("resources", allAvailableResources);
+          break;
+        case preselected.includes("additional-files"):
+          if (additionalResources) {
+            const preselectedAdditionalResourcesList = additionalResources.map(
+              (resource) =>
+                `additional-files-${resource.assetId}` as ResourceType,
+            );
+            const precelectedResourcesList = preselected
+              .concat(preselectedAdditionalResourcesList)
+              .filter((p) => p !== "additional-files");
+            setValue("resources", precelectedResourcesList);
+          }
+          break;
+        default:
+          setValue("resources", preselected);
+          break;
+      }
     }
   }, [
     getInitialResourcesState,
+    getInitialAdditionalFilesState,
     props.type,
     router.query.preselected,
     resources,
+    additionalResources,
     setValue,
   ]);
 
@@ -349,6 +396,8 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     setEditDetailsClicked,
     activeResources,
     setActiveResources,
+    activeAdditonalFiles,
+    setActiveAdditonalFiles,
     handleToggleSelectAll,
     selectAllChecked,
     hubspotLoaded,

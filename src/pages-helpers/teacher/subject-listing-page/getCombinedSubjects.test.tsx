@@ -4,11 +4,7 @@ import { subjectListingFixture2023 } from "@/node-lib/curriculum-api-2023/fixtur
 
 describe("getCombinedSubjects", () => {
   test("it returns subjects in the correct format", () => {
-    const result = getCombinedSubjects(
-      subjectListingFixture2023(),
-      "biology",
-      false,
-    );
+    const result = getCombinedSubjects(subjectListingFixture2023(), "biology");
     expect(result).toEqual([
       {
         isNew: true,
@@ -20,15 +16,12 @@ describe("getCombinedSubjects", () => {
         unitCount: 4,
         pathwaySlug: null,
         pathwayTitle: null,
+        actions: {},
       },
     ]);
   });
   test("it returns old subjects in the correct format", () => {
-    const result = getCombinedSubjects(
-      subjectListingFixture2023(),
-      "music",
-      false,
-    );
+    const result = getCombinedSubjects(subjectListingFixture2023(), "music");
     expect(result).toEqual([
       {
         isNew: false,
@@ -40,6 +33,7 @@ describe("getCombinedSubjects", () => {
         subjectTitle: "Music",
         pathwaySlug: null,
         pathwayTitle: null,
+        actions: {},
       },
     ]);
   });
@@ -47,7 +41,6 @@ describe("getCombinedSubjects", () => {
     const result = getCombinedSubjects(
       subjectListingFixture2023(),
       "chemistry",
-      false,
     );
     expect(result).toEqual([
       {
@@ -60,6 +53,7 @@ describe("getCombinedSubjects", () => {
         unitCount: 6,
         pathwaySlug: null,
         pathwayTitle: null,
+        actions: {},
       },
     ]);
   });
@@ -68,7 +62,6 @@ describe("getCombinedSubjects", () => {
     const result = getCombinedSubjects(
       subjectListingFixture2023(),
       "citizenship",
-      false,
     );
     expect(result).toEqual([
       {
@@ -81,6 +74,7 @@ describe("getCombinedSubjects", () => {
         unitCount: 4,
         pathwaySlug: "core",
         pathwayTitle: "Core",
+        actions: {},
       },
       {
         isNew: true,
@@ -92,7 +86,16 @@ describe("getCombinedSubjects", () => {
         unitCount: 8,
         pathwaySlug: "gcse",
         pathwayTitle: "GCSE",
+        actions: {},
       },
     ]);
+  });
+  test("it returns feature property and value", () => {
+    const result = getCombinedSubjects(
+      subjectListingFixture2023(),
+      "financial-education",
+    );
+
+    expect(result?.[0]?.features).toEqual({ non_curriculum: true });
   });
 });

@@ -1,5 +1,4 @@
 import { MutableRefObject } from "react";
-import { isEqual } from "lodash";
 
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import curriculumApi2023, {
@@ -14,9 +13,7 @@ import {
   Tier,
   Unit,
   SubjectCategory,
-  YearSelection,
 } from "@/utils/curriculum/types";
-import { getUnitFeatures, UnitFeatures } from "@/utils/curriculum/features";
 import {
   sortSubjectCategoriesOnFeatures,
   sortUnits,
@@ -45,7 +42,7 @@ export type CurriculumUnitsYearData<T = Unit> = {
     subjectCategories: SubjectCategory[];
     tiers: Tier[];
     pathways: Pathway[];
-    labels: string[];
+    isSwimming: boolean;
     groupAs: string | null;
     ref?: MutableRefObject<HTMLDivElement>;
   };
@@ -55,14 +52,15 @@ export type CurriculumUnitsTrackingData = {
   subjectSlug: string;
   subjectTitle: string;
   phaseSlug: string;
-  ks4OptionSlug: string | null;
+  ks4OptionSlug?: string | null;
+  ks4OptionTitle?: string | null;
 };
 
 export type CurriculumUnitsFormattedData<T = Unit> = {
   yearData: CurriculumUnitsYearData<T>;
   threadOptions: Thread[];
   yearOptions: string[];
-  initialYearSelection: YearSelection;
+  // initialYearSelection: YearSelection;
 };
 
 export type CurriculumInfoPageProps = {
@@ -119,7 +117,7 @@ export function createYearOptions(units: Unit[]): string[] {
   units.forEach((unit: Unit) => {
     // Populate years object
     const year =
-      getUnitFeatures(unit)?.programmes_fields_overrides?.year ?? unit.year;
+      unit.actions?.programme_field_overrides?.year_slug ?? unit.year;
     if (yearOptions.every((yo) => yo !== year)) {
       yearOptions.push(year);
     }
@@ -130,48 +128,48 @@ export function createYearOptions(units: Unit[]): string[] {
   return yearOptions;
 }
 
-export function createInitialYearFilterSelection(
-  yearData: CurriculumUnitsYearData,
-  features: UnitFeatures | null,
-): YearSelection {
-  const initialYearSelection = {} as YearSelection;
-  Object.keys(yearData).forEach((year) => {
-    const filters = yearData[year];
-    if (!filters) {
-      throw new Error("year filters missing");
-    }
-    filters.tiers.sort((a, b) => a.tier_slug.localeCompare(b.tier_slug));
-    // Sort subject categories
-    filters.subjectCategories
-      .sort((a, b) => a.title.localeCompare(b.title))
-      .sort(sortSubjectCategoriesOnFeatures(features));
+// export function createInitialYearFilterSelection(
+//   yearData: CurriculumUnitsYearData,
+//   actions: Actions | null,
+// ): YearSelection {
+//   const initialYearSelection = {} as YearSelection;
+//   Object.keys(yearData).forEach((year) => {
+//     const filters = yearData[year];
+//     if (!filters) {
+//       throw new Error("year filters missing");
+//     }
+//     filters.tiers.sort((a, b) => a.tier_slug.localeCompare(b.tier_slug));
+//     // Sort subject categories
+//     filters.subjectCategories
+//       .sort((a, b) => a.title.localeCompare(b.title))
+//       .sort(sortSubjectCategoriesOnFeatures(actions));
 
-    const allSubjectCategoryTag: SubjectCategory = { id: -1, title: "All" };
-    // Add an "All" option if there are 2 or more subject categories. Set to -1 id as this shouldn't ever appear in the DB
-    if (!features?.subjectcategories?.all_disabled) {
-      if (filters.subjectCategories.length >= 2) {
-        filters.subjectCategories.unshift(allSubjectCategoryTag);
-      }
-    }
+//     const allSubjectCategoryTag: SubjectCategory = { id: -1, title: "All" };
+//     // Add an "All" option if there are 2 or more subject categories. Set to -1 id as this shouldn't ever appear in the DB
+//     if (!actions?.subject_category_actions?.all_disabled) {
+//       if (filters.subjectCategories.length >= 2) {
+//         filters.subjectCategories.unshift(allSubjectCategoryTag);
+//       }
+//     }
 
-    const subject =
-      filters.childSubjects.find(
-        (s) => s.subject_slug === "combined-science",
-      ) ?? null;
-    const subjectCategory =
-      features?.subjectcategories?.all_disabled &&
-      filters.subjectCategories.length > 0
-        ? filters.subjectCategories[0]
-        : allSubjectCategoryTag;
-    initialYearSelection[year] = {
-      subject,
-      subjectCategory,
-      tier: filters.tiers.length ? filters.tiers[0] : null,
-    };
-  });
+//     const subject =
+//       filters.childSubjects.find(
+//         (s) => s.subject_slug === "combined-science",
+//       ) ?? null;
+//     const subjectCategory =
+//       actions?.subject_category_actions?.all_disabled &&
+//       filters.subjectCategories.length > 0
+//         ? filters.subjectCategories[0]
+//         : allSubjectCategoryTag;
+//     initialYearSelection[year] = {
+//       subject,
+//       subjectCategory,
+//       tier: filters.tiers.length ? filters.tiers[0] : null,
+//     };
+//   });
 
-  return initialYearSelection;
-}
+//   return initialYearSelection;
+// }
 
 export function createUnitsListingByYear(
   units: Unit[],
@@ -183,7 +181,7 @@ export function createUnitsListingByYear(
     // If not, initialize it with default values
 
     const year =
-      getUnitFeatures(unit)?.programmes_fields_overrides?.year ?? unit.year;
+      unit.actions?.programme_field_overrides?.year_slug ?? unit.year;
 
     let currentYearData = yearData[year];
     if (!currentYearData) {
@@ -193,7 +191,7 @@ export function createUnitsListingByYear(
         subjectCategories: [],
         tiers: [],
         pathways: [],
-        labels: [],
+        isSwimming: false,
         groupAs: null,
       };
       yearData[year] = currentYearData;
@@ -260,24 +258,25 @@ export function createUnitsListingByYear(
 
   for (const year of Object.keys(yearData)) {
     const data = yearData[year]!;
-    if (data.units.length > 0) {
-      const labels = getUnitFeatures(data.units[0]!)?.labels ?? [];
-      if (
-        data.units.every((unit) =>
-          isEqual(getUnitFeatures(unit)?.labels, labels),
-        )
-      ) {
-        data.labels = data.labels.concat(labels);
+
+    data.isSwimming = data.units[0]?.features?.pe_swimming === true;
+    const allSubjectCategoryTag: SubjectCategory = { id: -1, title: "All" };
+    const actions = data.units[0]?.actions;
+    // Add an "All" option if there are 2 or more subject categories. Set to -1 id as this shouldn't ever appear in the DB
+    if (!actions?.subject_category_actions?.all_disabled) {
+      if (data.subjectCategories.length >= 2) {
+        data.subjectCategories.unshift(allSubjectCategoryTag);
       }
     }
+    data.subjectCategories = data.subjectCategories.sort(
+      sortSubjectCategoriesOnFeatures(actions),
+    );
 
     if (data.units.length > 0) {
-      const groupAs = getUnitFeatures(data.units[0]!)?.group_as;
+      const groupAs = data.units[0]?.actions?.group_units_as;
       if (groupAs) {
         if (
-          data.units.every(
-            (unit) => getUnitFeatures(unit)?.group_as === groupAs,
-          )
+          data.units.every((unit) => unit.actions?.group_units_as === groupAs)
         ) {
           data.groupAs = groupAs;
         }
@@ -355,21 +354,22 @@ export function formatCurriculumUnitsData(
   data: CurriculumUnitsTabData,
 ): CurriculumUnitsFormattedData {
   const { units } = data;
-  const features = getUnitFeatures(units[0]);
+  // const actions = units[0]?.actions;
+
   // Filtering for tiers, ideally this would be fixed in the MV, but for now we need to filter out here.
   const filteredUnits = units;
   const yearData = createUnitsListingByYear(filteredUnits);
   const threadOptions = createThreadOptions(filteredUnits);
   const yearOptions = createYearOptions(filteredUnits);
-  const initialYearSelection = createInitialYearFilterSelection(
-    yearData,
-    features,
-  );
+  // const initialYearSelection = createInitialYearFilterSelection(
+  //   yearData,
+  //   actions,
+  // );
   const formattedDataCurriculumUnits = {
     yearData,
     threadOptions,
     yearOptions,
-    initialYearSelection,
+    // initialYearSelection,
   };
   return formattedDataCurriculumUnits;
 }

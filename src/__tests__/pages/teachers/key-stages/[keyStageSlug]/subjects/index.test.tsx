@@ -57,6 +57,7 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
                 programmeCount: 2,
                 pathwaySlug: null,
                 pathwayTitle: null,
+                actions: {},
               },
               hasNewContent: true,
             },
@@ -75,6 +76,42 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
         name: "Biology: 6 units, 35 lessons - new content",
       }),
     ).toBeInTheDocument();
+  });
+
+  it("Renders further lessons", async () => {
+    const propsWithFurtherLessons = subjectPagePropsFixture();
+    propsWithFurtherLessons.subjects.push([
+      {
+        slug: "financial-education",
+        data: {
+          subjectSlug: "financial-education",
+          subjectTitle: "Financial Education",
+          unitCount: 1,
+          lessonCount: 6,
+          programmeSlug: "financial-education-secondary-ks4",
+          programmeCount: 2,
+          pathwaySlug: null,
+          pathwayTitle: null,
+          actions: {},
+          features: {
+            non_curriculum: true,
+          },
+        },
+        hasNewContent: true,
+      },
+    ]);
+    renderWithProviders()(
+      <SubjectListingPage
+        {...propsWithFurtherLessons}
+        keyStageSlug="ks4"
+        keyStageTitle="Key stage 4"
+      />,
+    );
+    await waitFor(() => {
+      const headings = screen.getAllByRole("heading", { level: 1 });
+      expect(headings[0]).toHaveTextContent("Key stage 4 subjects");
+      expect(headings[1]).toHaveTextContent("Further lessons");
+    });
   });
 
   describe("SEO", () => {

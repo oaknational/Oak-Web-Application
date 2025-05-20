@@ -1,11 +1,14 @@
 import SearchFilters from "./SearchFilters";
 import { searchFilters, mockOnChange } from "./test-helpers";
 
+import { trackSearchModified } from "@/components/TeacherViews/Search/helpers";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 const props = searchFilters;
+const mockSearchTerm = "macbeth";
+const searchFilterModifiedMock = jest.fn();
 
 describe("SearchFilters", () => {
   beforeEach(() => {
@@ -21,6 +24,10 @@ describe("SearchFilters", () => {
         keyStageFilters={props.keyStageFilters}
         examBoardFilters={props.examBoardFilters}
         yearGroupFilters={props.yearGroupFilters}
+        trackSearchModified={trackSearchModified(
+          mockSearchTerm,
+          searchFilterModifiedMock,
+        )}
       />,
     );
     const searchFilters = getAllByRole("checkbox");
@@ -42,6 +49,10 @@ describe("SearchFilters", () => {
         keyStageFilters={props.keyStageFilters}
         examBoardFilters={props.examBoardFilters}
         yearGroupFilters={props.yearGroupFilters}
+        trackSearchModified={trackSearchModified(
+          mockSearchTerm,
+          searchFilterModifiedMock,
+        )}
       />,
     );
     const showNewContentFilter = getByRole("checkbox", {
@@ -89,6 +100,10 @@ describe("SearchFilters", () => {
           ...filter,
           checked: true,
         }))}
+        trackSearchModified={trackSearchModified(
+          mockSearchTerm,
+          searchFilterModifiedMock,
+        )}
       />,
     );
     const newContentFilter = getByRole("checkbox", {
@@ -136,6 +151,10 @@ describe("SearchFilters", () => {
           ...filter,
           checked: false,
         }))}
+        trackSearchModified={trackSearchModified(
+          mockSearchTerm,
+          searchFilterModifiedMock,
+        )}
       />,
     );
     const newContentFilter = getByRole("checkbox", {
@@ -184,6 +203,10 @@ describe("SearchFilters", () => {
           ...filter,
           checked: true,
         }))}
+        trackSearchModified={trackSearchModified(
+          mockSearchTerm,
+          searchFilterModifiedMock,
+        )}
       />,
     );
     const newContentFilter = getByRole("checkbox", {

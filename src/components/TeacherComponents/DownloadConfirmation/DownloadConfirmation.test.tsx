@@ -2,12 +2,16 @@ import userEvent from "@testing-library/user-event";
 
 import DownloadConfirmation from "./DownloadConfirmation";
 
-import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
+import { OnwardContentSelectedProperties } from "@/browser-lib/avo/Avo";
 
-const onwardContentSelected =
-  jest.fn() as unknown as TrackFns["onwardContentSelected"];
+const onwardContentSelected = jest.fn() as unknown as (
+  properties: Omit<
+    OnwardContentSelectedProperties,
+    "lessonReleaseDate" | "lessonReleaseCohort"
+  >,
+) => void;
 
 jest.mock(
   "@/pages-helpers/teacher/share-experiments/useShareExperiment",
@@ -20,12 +24,40 @@ jest.mock(
   }),
 );
 
+jest.mock("@oaknational/oak-consent-client", () => ({
+  __esModule: true,
+  useOakConsent: jest.fn(() => ({
+    state: {
+      policyConsents: [
+        {
+          consentState: "denied",
+        },
+        {
+          consentState: "granted",
+        },
+      ],
+    },
+  })),
+}));
+
+window.scrollTo = jest.fn();
+
 describe("DownloadConfirmation component", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  const curriculumTrackingProps: CurriculumTrackingProps = {
+  const expectScrollTopOnRender = () => {
+    expect(window.scrollTo).toHaveBeenCalledTimes(1);
+    expect(window.scrollTo).toHaveBeenCalledWith({
+      behavior: "smooth",
+      top: 0,
+    });
+  };
+
+  const curriculumTrackingProps: CurriculumTrackingProps & {
+    lessonReleaseDate: string;
+  } = {
     lessonName: "Test lesson",
     lessonSlug: "test-lesson",
     unitName: "Test unit",
@@ -34,6 +66,7 @@ describe("DownloadConfirmation component", () => {
     keyStageTitle: "Key stage 1",
     subjectSlug: "test-subject",
     subjectTitle: "Test subject",
+    lessonReleaseDate: "2025-09-29T14:00:00.000Z",
   };
 
   it("should render", () => {
@@ -43,11 +76,13 @@ describe("DownloadConfirmation component", () => {
         programmeSlug="test-programme"
         unitTitle="Test unit"
         isCanonical={false}
+        isLegacy={false}
         onwardContentSelected={onwardContentSelected}
         {...curriculumTrackingProps}
       />,
     );
 
+    expectScrollTopOnRender();
     expect(getByText("Thanks for downloading")).toBeInTheDocument();
   });
 
@@ -58,11 +93,13 @@ describe("DownloadConfirmation component", () => {
         programmeSlug="test-programme"
         unitTitle="Test unit"
         isCanonical={false}
+        isLegacy={false}
         onwardContentSelected={onwardContentSelected}
         {...curriculumTrackingProps}
       />,
     );
 
+    expectScrollTopOnRender();
     const link = getByTestId("back-to-lesson-link");
 
     expect(link).toHaveAttribute(
@@ -77,12 +114,14 @@ describe("DownloadConfirmation component", () => {
         programmeSlug="test-programme"
         unitTitle="Test unit"
         isCanonical={false}
+        isLegacy={false}
         onwardContentSelected={onwardContentSelected}
         isSpecialist={true}
         {...curriculumTrackingProps}
       />,
     );
 
+    expectScrollTopOnRender();
     const link = getByTestId("back-to-lesson-link");
 
     expect(link).toHaveAttribute(
@@ -97,11 +136,13 @@ describe("DownloadConfirmation component", () => {
         lessonTitle="Test lesson"
         programmeSlug={null}
         isCanonical={false}
+        isLegacy={false}
         onwardContentSelected={onwardContentSelected}
         {...curriculumTrackingProps}
       />,
     );
 
+    expectScrollTopOnRender();
     const link = getByTestId("back-to-lesson-link");
 
     expect(link).toHaveAttribute("href", "/teachers/lessons/test-lesson");
@@ -115,11 +156,13 @@ describe("DownloadConfirmation component", () => {
         programmeSlug="test-programme"
         unitTitle="Test unit"
         isCanonical={false}
+        isLegacy={false}
         onwardContentSelected={onwardContentSelected}
         {...curriculumTrackingProps}
       />,
     );
 
+    expectScrollTopOnRender();
     const lessonLink = getByRole("link", { name: "Back to lesson" });
 
     await user.click(lessonLink);
@@ -141,11 +184,13 @@ describe("DownloadConfirmation component", () => {
         lessonTitle="Test lesson"
         programmeSlug={null}
         isCanonical={true}
+        isLegacy={false}
         onwardContentSelected={onwardContentSelected}
         {...curriculumTrackingProps}
       />,
     );
 
+    expectScrollTopOnRender();
     const lessonLink = getByRole("link", { name: "Back to lesson" });
 
     await user.click(lessonLink);

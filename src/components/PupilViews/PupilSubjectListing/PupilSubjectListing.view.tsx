@@ -29,9 +29,105 @@ export const PupilViewsSubjectListing = ({
     (subject) => subject.programmeFields.subjectSlug,
   );
 
+  const nonCurriculum = subjects.filter(
+    (subject) => subject.features?.nonCurriculum,
+  );
+
   const orderedKeys = Object.keys(groupedBySubject).sort((a, b) =>
     a.localeCompare(b),
   );
+
+  const buildSubjectGridArea = ({
+    subjectSlug,
+    showNonCurriculum = false,
+  }: {
+    subjectSlug: string;
+    showNonCurriculum: boolean;
+  }) => {
+    const subjectData = groupedBySubject[subjectSlug];
+    const features = subjectData?.[0]?.features;
+
+    if (features?.nonCurriculum !== true && showNonCurriculum) {
+      return null;
+    }
+    if (features?.nonCurriculum === true && !showNonCurriculum) {
+      return null;
+    }
+
+    if (subjectData?.[0]?.programmeFields.phaseSlug === "foundation") {
+      throw new Error("Foundation phase is not supported");
+    }
+    if (!subjectData?.[0]) {
+      throw new Error(`Error no subject data available for ${subjectSlug}`);
+    }
+
+    const examOptions = groupBy(
+      subjectData,
+      (subject) => subject.programmeFields.examboardSlug,
+    );
+    const tierOptions = groupBy(
+      subjectData,
+      (subject) => subject.programmeFields.tierSlug,
+    );
+    const pathwayOptions = groupBy(
+      subjectData,
+      (subject) => subject.programmeFields.pathwaySlug,
+    );
+
+    const hasOptions =
+      Object.keys(examOptions).length > 1 ||
+      Object.keys(tierOptions).length > 1 ||
+      Object.keys(pathwayOptions).length > 1;
+
+    // If there are multiple matches on subjectSlug, show the non-legacy one.
+    const cycle1Subject = subjectData.find((subject) => !subject.isLegacy);
+    const subject = cycle1Subject || subjectData[0];
+
+    const urlOptions: Partial<ResolveOakHrefProps> = {
+      page: "pupil-unit-index",
+      programmeSlug: hasOptions ? subject.baseSlug : subject.programmeSlug,
+      ...(hasOptions && {
+        page: "pupil-programme-index",
+        optionSlug: "options",
+      }),
+    };
+
+    const iconSlug = `subject-${subject.programmeFields.subjectSlug}`;
+    return (
+      <OakGridArea $colSpan={1} key={subjectSlug} role="listitem">
+        <OakFlex $height={"100%"}>
+          <OakPupilJourneySubjectButton
+            key={subjectSlug}
+            element="a"
+            subjectIconName={
+              isValidIconName(iconSlug) ? iconSlug : "question-mark"
+            }
+            href={resolveOakHref(urlOptions as ResolveOakHrefProps)}
+            phase={
+              showNonCurriculum
+                ? "non-curriculum"
+                : (subject.programmeFields.phaseSlug as "primary" | "secondary")
+            }
+            onClick={() => {
+              track.browseRefined({
+                platform: "owa",
+                product: "pupil lesson activities",
+                engagementIntent: "use",
+                eventVersion: "2.0.0",
+                componentType: "subject_card",
+                analyticsUseCase: "Pupil",
+                filterType: "Subject filter",
+                filterValue: subject.programmeFields.subject,
+                activeFilters: { yearDescriptions },
+              });
+            }}
+          >
+            {subject.programmeFields.subject}
+          </OakPupilJourneySubjectButton>
+        </OakFlex>
+      </OakGridArea>
+    );
+  };
 
   return (
     <OakPupilJourneyLayout
@@ -60,12 +156,17 @@ export const PupilViewsSubjectListing = ({
           $flexDirection={"column"}
           $alignItems={"center"}
         >
-          <OakHeading $font={["heading-6", "heading-5"]} tag="h1">
+          <OakHeading
+            $font={["heading-6", "heading-5"]}
+            tag="h1"
+            $textAlign={"left"}
+            $mr={"auto"}
+          >
             Now choose a subject
           </OakHeading>
           <OakGrid
             $mt={"space-between-l"}
-            $pb={"inner-padding-xl"}
+            $pb={"inner-padding-xl4"}
             $gridTemplateColumns={[
               "repeat(2, 1fr)",
               "repeat(4, 1fr)",
@@ -75,91 +176,40 @@ export const PupilViewsSubjectListing = ({
             $cg={"space-between-s"}
             role="list"
           >
-            {orderedKeys.map((subjectSlug) => {
-              const subjectData = groupedBySubject[subjectSlug];
-              if (
-                subjectData?.[0]?.programmeFields.phaseSlug === "foundation"
-              ) {
-                throw new Error("Foundation phase is not supported");
-              }
-              if (!subjectData?.[0]) {
-                throw new Error(
-                  `Error no subject data available for ${subjectSlug}`,
-                );
-              }
-
-              const examOptions = groupBy(
-                subjectData,
-                (subject) => subject.programmeFields.examboardSlug,
-              );
-              const tierOptions = groupBy(
-                subjectData,
-                (subject) => subject.programmeFields.tierSlug,
-              );
-              const pathwayOptions = groupBy(
-                subjectData,
-                (subject) => subject.programmeFields.pathwaySlug,
-              );
-
-              const hasOptions =
-                Object.keys(examOptions).length > 1 ||
-                Object.keys(tierOptions).length > 1 ||
-                Object.keys(pathwayOptions).length > 1;
-
-              // If there are multiple matches on subjectSlug, show the non-legacy one.
-              const cycle1Subject = subjectData.find(
-                (subject) => !subject.isLegacy,
-              );
-              const subject = cycle1Subject || subjectData[0];
-
-              const urlOptions: Partial<ResolveOakHrefProps> = {
-                page: "pupil-unit-index",
-                programmeSlug: hasOptions
-                  ? subject.baseSlug
-                  : subject.programmeSlug,
-                ...(hasOptions && {
-                  page: "pupil-programme-index",
-                  optionSlug: "options",
-                }),
-              };
-
-              const iconSlug = `subject-${subject.programmeFields.subjectSlug}`;
-              return (
-                <OakGridArea $colSpan={1} key={subjectSlug} role="listitem">
-                  <OakFlex $height={"100%"}>
-                    <OakPupilJourneySubjectButton
-                      key={subjectSlug}
-                      element="a"
-                      subjectIconName={
-                        isValidIconName(iconSlug) ? iconSlug : "question-mark"
-                      }
-                      href={resolveOakHref(urlOptions as ResolveOakHrefProps)}
-                      phase={
-                        subject.programmeFields.phaseSlug as
-                          | "primary"
-                          | "secondary"
-                      }
-                      onClick={() => {
-                        track.browseRefined({
-                          platform: "owa",
-                          product: "pupil lesson activities",
-                          engagementIntent: "use",
-                          eventVersion: "2.0.0",
-                          componentType: "subject_card",
-                          analyticsUseCase: "Pupil",
-                          filterType: "Subject filter",
-                          filterValue: subject.programmeFields.subject,
-                          activeFilters: { yearDescriptions },
-                        });
-                      }}
-                    >
-                      {subject.programmeFields.subject}
-                    </OakPupilJourneySubjectButton>
-                  </OakFlex>
-                </OakGridArea>
-              );
-            })}
+            {orderedKeys.map((subjectSlug) =>
+              buildSubjectGridArea({ subjectSlug, showNonCurriculum: false }),
+            )}
           </OakGrid>
+          {nonCurriculum.length > 0 && (
+            <>
+              <OakHeading
+                $font={["heading-6", "heading-5"]}
+                tag="h2"
+                $mr={"auto"}
+              >
+                Further lessons
+              </OakHeading>
+              <OakGrid
+                $mt={"space-between-l"}
+                $pb={"inner-padding-xl"}
+                $gridTemplateColumns={[
+                  "repeat(2, 1fr)",
+                  "repeat(4, 1fr)",
+                  "repeat(5, 1fr)",
+                ]}
+                $rg={"space-between-s"}
+                $cg={"space-between-s"}
+                role="list"
+              >
+                {orderedKeys.map((subjectSlug) =>
+                  buildSubjectGridArea({
+                    subjectSlug,
+                    showNonCurriculum: true,
+                  }),
+                )}
+              </OakGrid>
+            </>
+          )}
         </OakFlex>
         <SignpostTeachersInlineBanner />
       </OakFlex>

@@ -1,16 +1,23 @@
 import {
   lessonContentFixture,
   syntheticUnitvariantLessonsByKsFixture,
+  additionalFilesFixture,
 } from "@oaknational/oak-curriculum-schema";
-
-import sdk from "../../sdk";
-import { lessonPathwaySchema } from "../../shared.schema";
 
 import lessonOverview, {
   getContentGuidance,
   getCopyrightContent,
   getDownloadsArray,
+  getAdditionalFiles,
 } from "./lessonOverview.query";
+
+import sdk from "@/node-lib/curriculum-api-2023/sdk";
+import { lessonPathwaySchema } from "@/node-lib/curriculum-api-2023/shared.schema";
+import keysToCamelCase from "@/utils/snakeCaseConverter";
+
+export const _additionalFilesFixture = keysToCamelCase(
+  additionalFilesFixture().downloadable_files,
+);
 
 describe("lessonOverview()", () => {
   test("throws a not found error if no lesson is found", async () => {
@@ -18,7 +25,7 @@ describe("lessonOverview()", () => {
       await lessonOverview({
         ...sdk,
         lessonOverview: jest.fn(() =>
-          Promise.resolve({ content: [], browseData: [] }),
+          Promise.resolve({ content: [], browseData: [], additionalFiles: [] }),
         ),
       })({
         lessonSlug: "lesson-slug",
@@ -53,6 +60,7 @@ describe("lessonOverview()", () => {
         Promise.resolve({
           browseData: [_syntheticUnitvariantLessonsByKsFixture],
           content: [_lessonContentFixture],
+          additionalFiles: [_additionalFilesFixture],
         }),
       ),
     })({
@@ -115,6 +123,7 @@ describe("lessonOverview()", () => {
             _syntheticUnitvariantLessonsByKsFixture3,
           ],
           content: [_lessonContentFixture],
+          additionalFiles: [],
         }),
       ),
     })({
@@ -139,6 +148,7 @@ describe("lessonOverview()", () => {
           Promise.resolve({
             browseData: [],
             content: [],
+            additionalFiles: [],
           }),
         ),
       })({
@@ -167,6 +177,16 @@ describe("lessonOverview()", () => {
 
     it("should handle empty string copyrightInfo fields", () => {
       const content = [{ copyrightInfo: "" }];
+      expect(getCopyrightContent(content)).toEqual([{ copyrightInfo: "" }]);
+    });
+
+    it("should default to empty string in copyrightInfo fields are undefined", () => {
+      const content = [{ copyrightInfo: undefined }];
+      expect(getCopyrightContent(content)).toEqual([{ copyrightInfo: "" }]);
+    });
+
+    it("should default to empty string if item doesnt have copyrightInfo", () => {
+      const content = [{ somethingElse: "" }];
       expect(getCopyrightContent(content)).toEqual([{ copyrightInfo: "" }]);
     });
   });
@@ -202,6 +222,34 @@ describe("lessonOverview()", () => {
         },
       ]);
     });
+
+    it("should return an array with content guidance details defaulted to empty strings in not provided", () => {
+      expect(
+        getContentGuidance([
+          {
+            contentguidanceLabel: null,
+            contentguidanceDescription: null,
+            contentguidanceArea: null,
+          },
+          {
+            contentguidanceLabel: "Label 2",
+            contentguidanceDescription: "Description 2",
+            contentguidanceArea: null,
+          },
+        ]),
+      ).toEqual([
+        {
+          contentGuidanceLabel: "",
+          contentGuidanceDescription: "",
+          contentGuidanceArea: "",
+        },
+        {
+          contentGuidanceLabel: "Label 2",
+          contentGuidanceDescription: "Description 2",
+          contentGuidanceArea: "",
+        },
+      ]);
+    });
   });
   describe("getDownloadsArray", () => {
     it("should return correct downloads array when all content flags are true and isLegacy is false", () => {
@@ -213,6 +261,7 @@ describe("lessonOverview()", () => {
         hasWorksheetAnswersAssetObject: true,
         hasWorksheetGoogleDriveDownloadableVersion: true,
         hasSupplementaryAssetObject: true,
+        hasLessonGuideObject: true,
         isLegacy: false,
       };
 
@@ -226,6 +275,7 @@ describe("lessonOverview()", () => {
         { exists: true, type: "worksheet-pptx" },
         { exists: true, type: "supplementary-pdf" },
         { exists: true, type: "supplementary-docx" },
+        { exists: true, type: "lesson-guide-pdf" },
       ];
 
       expect(getDownloadsArray(content)).toEqual(expectedDownloads);
@@ -241,6 +291,7 @@ describe("lessonOverview()", () => {
         hasWorksheetGoogleDriveDownloadableVersion: true,
         hasSupplementaryAssetObject: true,
         isLegacy: true,
+        hasLessonGuideObject: true,
       };
 
       const expectedDownloads = [
@@ -253,6 +304,7 @@ describe("lessonOverview()", () => {
         { exists: true, type: "worksheet-pptx" },
         { exists: true, type: "supplementary-pdf" },
         { exists: true, type: "supplementary-docx" },
+        { exists: true, type: "lesson-guide-pdf" },
       ];
 
       expect(getDownloadsArray(content)).toEqual(expectedDownloads);
@@ -268,6 +320,7 @@ describe("lessonOverview()", () => {
         hasWorksheetGoogleDriveDownloadableVersion: false,
         hasSupplementaryAssetObject: false,
         isLegacy: false,
+        hasLessonGuideObject: false,
       };
 
       const expectedDownloads = [
@@ -280,6 +333,7 @@ describe("lessonOverview()", () => {
         { exists: false, type: "worksheet-pptx" },
         { exists: false, type: "supplementary-pdf" },
         { exists: false, type: "supplementary-docx" },
+        { exists: false, type: "lesson-guide-pdf" },
       ];
 
       expect(getDownloadsArray(content)).toEqual(expectedDownloads);
@@ -294,6 +348,7 @@ describe("lessonOverview()", () => {
         hasWorksheetAnswersAssetObject: false,
         hasWorksheetGoogleDriveDownloadableVersion: true,
         hasSupplementaryAssetObject: false,
+        hasLessonGuideObject: false,
         isLegacy: true,
       };
 
@@ -307,6 +362,7 @@ describe("lessonOverview()", () => {
         { exists: true, type: "worksheet-pptx" },
         { exists: false, type: "supplementary-pdf" },
         { exists: false, type: "supplementary-docx" },
+        { exists: false, type: "lesson-guide-pdf" },
       ];
 
       expect(getDownloadsArray(content)).toEqual(expectedDownloads);
@@ -321,6 +377,7 @@ describe("lessonOverview()", () => {
         hasWorksheetAnswersAssetObject: false,
         hasWorksheetGoogleDriveDownloadableVersion: false,
         hasSupplementaryAssetObject: false,
+        hasLessonGuideObject: false,
         isLegacy: false,
       };
 
@@ -334,9 +391,23 @@ describe("lessonOverview()", () => {
         { exists: true, type: "worksheet-pptx" },
         { exists: false, type: "supplementary-pdf" },
         { exists: false, type: "supplementary-docx" },
+        { exists: false, type: "lesson-guide-pdf" },
       ];
 
       expect(getDownloadsArray(content)).toEqual(expectedDownloads);
+    });
+  });
+
+  describe("getAdditionalFiles", () => {
+    it("should return an empty array if additionalFiles is null", () => {
+      expect(getAdditionalFiles(null)).toEqual([]);
+    });
+
+    it("should return an array of additional files if provided", () => {
+      expect(getAdditionalFiles(_additionalFilesFixture)).toEqual([
+        "File 1 1000 B (PDF)",
+        "File 2 1.95 KB (PDF)",
+      ]);
     });
   });
 });

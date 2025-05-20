@@ -21,6 +21,8 @@ import { ButtonAsLinkProps } from "@/components/SharedComponents/Button/ButtonAs
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { CurriculumTab } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { buildPageTitle } from "@/utils/curriculum/formatting";
+import { PhaseValueType } from "@/browser-lib/avo/Avo";
 
 export type CurriculumHeaderPageProps = {
   curriculumPhaseOptions: SubjectPhasePickerData;
@@ -64,16 +66,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
     ks4Option ? `-${ks4Option.slug}` : ""
   }`;
 
-  let pageTitle: string = "";
-  const keyStageStrings: string[] = [];
-  if (keyStages.includes("ks1")) keyStageStrings.push("KS1");
-  if (keyStages.includes("ks2")) keyStageStrings.push("KS2");
-  if (keyStages.includes("ks3")) keyStageStrings.push("KS3");
-  if (keyStages.includes("ks4")) keyStageStrings.push("KS4");
-  const keyStageString = keyStageStrings.join(" & ");
-  if (["primary", "secondary"].includes(phase.slug)) {
-    pageTitle = `${keyStageString} ${subject.title}`;
-  }
+  const pageTitle = buildPageTitle(keyStages, subject, phase);
 
   const links: ButtonAsLinkProps[] = [
     {
@@ -100,7 +93,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   ];
 
   return (
-    <OakBox $mb="space-between-l">
+    <OakBox $mb={["space-between-none", "space-between-l", "space-between-l"]}>
       {/* @todo replace with OakFlex - colours type needs updating to oak-components colour token */}
       <OakFlex $background={color1} $pv="inner-padding-l">
         <OakBox
@@ -196,7 +189,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
             </OakFlex>
           </OakBox>
         </Flex>
-        <Flex $borderColor="mint30" $bt={2}>
+        <Flex $borderColor="mint30" $background={"mint"} $bt={2}>
           <OakBox
             $maxWidth="all-spacing-24"
             $ph={["inner-padding-none", "inner-padding-l"]}
@@ -210,6 +203,12 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               variant="flat"
               $alignItems={"center"}
               $height={[60, 64]}
+              trackingData={{
+                subjectSlug: currentSelection.subject.slug,
+                subjectTitle: currentSelection.subject.title,
+                phaseSlug: currentSelection.phase.slug as PhaseValueType,
+              }}
+              $background={"mint"}
             />
           </OakBox>
         </Flex>

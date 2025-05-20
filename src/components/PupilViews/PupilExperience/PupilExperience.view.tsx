@@ -14,7 +14,10 @@ import {
   allLessonReviewSections,
   useLessonEngineContext,
 } from "@/components/PupilComponents/LessonEngineProvider";
-import { PupilViewsIntro } from "@/components/PupilViews/PupilIntro";
+import {
+  PupilViewsIntro,
+  WorksheetInfo,
+} from "@/components/PupilViews/PupilIntro";
 import { PupilViewsLessonOverview } from "@/components/PupilViews/PupilLessonOverview";
 import { PupilViewsReview } from "@/components/PupilViews/PupilReview";
 import { PupilViewsQuiz } from "@/components/PupilViews/PupilQuiz";
@@ -30,6 +33,7 @@ import {
 import {
   LessonBrowseData,
   LessonContent,
+  AdditionalFile,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
 import { ContentGuidanceWarningValueType } from "@/browser-lib/avo/Avo";
@@ -56,6 +60,8 @@ export type PupilExperienceViewProps = {
   initialSection: LessonSection;
   pageType: "preview" | "canonical" | "browse";
   hasAdditionalFiles: boolean;
+  additionalFiles: AdditionalFile[] | null;
+  worksheetInfo: WorksheetInfo | null;
 };
 
 export const PupilPageContent = ({
@@ -65,6 +71,8 @@ export const PupilPageContent = ({
   hasWorksheet,
   backUrl,
   pageType,
+  worksheetInfo,
+  additionalFiles,
 }: Omit<PupilExperienceViewProps, "initialSection">) => {
   const { currentSection } = useLessonEngineContext();
   const {
@@ -80,6 +88,7 @@ export const PupilPageContent = ({
     supervisionLevel,
   } = lessonContent;
 
+  const ageRestriction = browseData.features?.ageRestriction;
   const starterQuizNumQuestions = getInteractiveQuestions(starterQuiz).length;
   const exitQuizNumQuestions = getInteractiveQuestions(exitQuiz).length;
 
@@ -111,6 +120,9 @@ export const PupilPageContent = ({
           {...lessonContent}
           hasWorksheet={hasWorksheet}
           hasAdditionalFiles={hasAdditionalFiles}
+          additionalFiles={additionalFiles}
+          worksheetInfo={worksheetInfo}
+          ageRestriction={ageRestriction}
         />
       );
     case "starter-quiz":
@@ -129,7 +141,7 @@ export const PupilPageContent = ({
           isLegacy={isLegacy ?? false}
           browseData={browseData}
           hasAdditionalFiles={hasAdditionalFiles}
-          additionalFiles={lessonContent.additionalFiles}
+          additionalFiles={additionalFiles}
         />
       );
     case "exit-quiz":
@@ -172,14 +184,32 @@ const PupilExperienceLayout = ({
   lessonContent,
   hasWorksheet,
   hasAdditionalFiles,
+  additionalFiles,
   backUrl,
   initialSection,
   pageType,
+  worksheetInfo,
 }: PupilExperienceViewProps) => {
+  const ageRestriction = browseData.features?.ageRestriction;
+  const hasAgeRestriction = !!ageRestriction;
+
+  const getAgeRestrictionString = (
+    ageRestriction: string | undefined | null,
+  ) => {
+    switch (ageRestriction) {
+      case "7_and_above":
+        return `To view this lesson, you must be in year 7 and above`;
+      case "10_and_above":
+        return `To view this lesson, you must be in year 10 and above`;
+      default:
+        return `This lesson is age restricted.`;
+    }
+  };
+
   const [trackingSent, setTrackingSent] = useState<boolean>(false);
   const { track } = usePupilAnalytics();
   const [isOpen, setIsOpen] = useState<boolean>(
-    !!lessonContent.contentGuidance,
+    !!lessonContent.contentGuidance || hasAgeRestriction,
   );
   const router = useRouter();
   const availableSections = pickAvailableSectionsForLesson(lessonContent);
@@ -193,6 +223,7 @@ const PupilExperienceLayout = ({
       contentGuidanceWarning: lessonContent.contentGuidance?.find((cg) => {
         return cg.contentguidanceArea;
       })?.contentguidanceArea as ContentGuidanceWarningValueType,
+      ageRestriction: hasAgeRestriction ? ageRestriction : "all",
     });
   };
 
@@ -203,6 +234,7 @@ const PupilExperienceLayout = ({
       contentGuidanceWarning: lessonContent.contentGuidance?.find((cg) => {
         return cg.contentguidanceArea;
       })?.contentguidanceArea as ContentGuidanceWarningValueType,
+      ageRestriction: hasAgeRestriction ? ageRestriction : "all",
     });
   };
 
@@ -230,13 +262,39 @@ const PupilExperienceLayout = ({
           initialLessonReviewSections={availableSections}
           initialSection={initialSection}
         >
-          <OakPupilJourneyContentGuidance
-            isOpen={isOpen}
-            onAccept={handleContentGuidanceAccept}
-            onDecline={handleContentGuidanceDecline}
-            contentGuidance={lessonContent.contentGuidance}
-            supervisionLevel={lessonContent.supervisionLevel}
-          />
+          {hasAgeRestriction ? (
+            <OakPupilJourneyContentGuidance
+              isOpen={isOpen}
+              onAccept={handleContentGuidanceAccept}
+              onDecline={handleContentGuidanceDecline}
+              title={getAgeRestrictionString(ageRestriction)}
+              contentGuidance={
+                lessonContent.contentGuidance
+                  ? lessonContent.contentGuidance
+                  : [
+                      {
+                        contentguidanceLabel:
+                          "Speak to an adult before starting this lesson.",
+                        contentguidanceDescription: null,
+                        contentguidanceArea: null,
+                      },
+                    ]
+              }
+              supervisionLevel={
+                lessonContent.contentGuidance
+                  ? lessonContent.supervisionLevel
+                  : null
+              }
+            />
+          ) : (
+            <OakPupilJourneyContentGuidance
+              isOpen={isOpen}
+              onAccept={handleContentGuidanceAccept}
+              onDecline={handleContentGuidanceDecline}
+              contentGuidance={lessonContent.contentGuidance}
+              supervisionLevel={lessonContent.supervisionLevel}
+            />
+          )}
 
           <OakBox style={{ pointerEvents: !isOpen ? "all" : "none" }}>
             <OakBox $height={"100vh"}>
@@ -247,9 +305,11 @@ const PupilExperienceLayout = ({
                   browseData={browseData}
                   lessonContent={lessonContent}
                   hasWorksheet={hasWorksheet}
+                  worksheetInfo={worksheetInfo}
                   backUrl={backUrl}
                   pageType={pageType}
                   hasAdditionalFiles={hasAdditionalFiles}
+                  additionalFiles={additionalFiles}
                 />
               )}
             </OakBox>

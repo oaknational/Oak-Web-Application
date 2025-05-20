@@ -13,6 +13,12 @@ jest.mock(
   }),
 );
 
+jest.mock("@/components/PupilComponents/pupilUtils/getWorksheetInfo", () => ({
+  getWorksheetInfo: jest
+    .fn()
+    .mockResolvedValue({ transcriptSentences: [], hasWorksheet: false }),
+}));
+
 describe("pages/pupils/beta/previews/lessons/[lessonSlug]/index", () => {
   describe("getStaticProps", () => {
     it("Should call API:pupilPreviewLessonQuery", async () => {

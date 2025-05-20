@@ -206,7 +206,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
   });
 
   it("updates the url", async () => {
-    const fn = jest.spyOn(window.history, "replaceState");
+    window.history.replaceState = jest.fn();
 
     (useShareExperiment as jest.Mock).mockReturnValueOnce({
       shareUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
@@ -217,7 +217,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
     });
     render(<LessonOverviewPage {...props} />);
 
-    expect(fn).toHaveBeenCalledWith(
+    expect(window.history.replaceState).toHaveBeenCalledWith(
       {},
       "",
       "http://localhost:3000/teachers/lessons/lesson-1?test=1",
@@ -384,6 +384,11 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         engagementIntent: "use",
         eventVersion: "2.0.0",
         componentType: "lesson_download_button",
+        tierName: null,
+        examBoard: null,
+        lessonReleaseCohort: "2020-2023",
+        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
+        pathway: null,
       });
     });
     it("calls track.downloadResourceButtonClicked will 'slide deck' when download slide deck button is pressed", async () => {
@@ -411,6 +416,11 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         engagementIntent: "use",
         eventVersion: "2.0.0",
         componentType: "lesson_download_button",
+        tierName: null,
+        examBoard: null,
+        lessonReleaseCohort: "2020-2023",
+        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
+        pathway: null,
       });
     });
     it("calls track.downloadResourceButtonClicked will 'worksheet' when download worksheet button is pressed", async () => {
@@ -438,6 +448,11 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         engagementIntent: "use",
         eventVersion: "2.0.0",
         componentType: "lesson_download_button",
+        tierName: null,
+        examBoard: null,
+        lessonReleaseCohort: "2020-2023",
+        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
+        pathway: null,
       });
     });
     it("calls track.downloadResourceButtonClicked will 'exit quiz' when download exit quiz button is pressed", async () => {
@@ -465,6 +480,11 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         engagementIntent: "use",
         eventVersion: "2.0.0",
         componentType: "lesson_download_button",
+        tierName: null,
+        examBoard: null,
+        lessonReleaseCohort: "2020-2023",
+        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
+        pathway: null,
       });
     });
     it("calls track.downloadResourceButtonClicked will 'starter quiz' when download starter quiz button is pressed", async () => {
@@ -492,6 +512,11 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         engagementIntent: "use",
         eventVersion: "2.0.0",
         componentType: "lesson_download_button",
+        tierName: null,
+        examBoard: null,
+        lessonReleaseCohort: "2020-2023",
+        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
+        pathway: null,
       });
     });
     it("calls track.lessonShareStarted when share all button is pressed with legacy", async () => {
@@ -523,11 +548,13 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         subjectTitle: "English",
         unitName: "Simple, Compound and Adverbial Complex Sentences",
         unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
+        lessonReleaseCohort: "2020-2023",
+        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
       });
     });
 
     it("updates the url if shareExperimentFlag is true", async () => {
-      const fn = jest.spyOn(window.history, "replaceState");
+      window.history.replaceState = jest.fn();
 
       (useShareExperiment as jest.Mock).mockReturnValueOnce({
         shareExperimentFlag: true,
@@ -539,7 +566,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
       });
       render(<LessonOverviewPage {...props} />);
 
-      expect(fn).toHaveBeenCalledWith(
+      expect(window.history.replaceState).toHaveBeenCalledWith(
         {},
         "",
         "http://localhost:3000/teachers/lessons/lesson-1?test=1",

@@ -25,6 +25,7 @@ import isBrowser from "../../utils/isBrowser";
 import HubspotScript from "../../browser-lib/hubspot/HubspotScript";
 import { getPageViewProps } from "../../browser-lib/analytics/getPageViewProps";
 import getBrowserConfig from "../../browser-lib/getBrowserConfig";
+import { useHubspotCookieContactLookup } from "../../browser-lib/hubspot/hooks/useHubspotCookieContactLookup";
 
 import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
 
@@ -49,6 +50,12 @@ export type IdentifyFn = (
    */
   services?: ServiceName[],
 ) => void;
+/**
+ * Alias a user id to another user id.
+ * This is useful when a user signs up and we want to associate their
+ * previously anonymous activity with their new account.
+ */
+export type AliasFn = (aliasId: UserId, userId: UserId) => void;
 
 export type TrackEventName = Extract<
   keyof typeof Avo,
@@ -67,6 +74,7 @@ export type TrackFns = Omit<
 export type AnalyticsContext = {
   track: TrackFns;
   identify: IdentifyFn;
+  alias?: AliasFn;
   posthogDistinctId: PosthogDistinctId | null;
 };
 
@@ -77,6 +85,7 @@ export type AnalyticsService<ServiceConfig> = {
   track: EventFn;
   page: PageFn;
   identify: IdentifyFn;
+  alias?: AliasFn;
   optOut: () => void;
   optIn: () => void;
 };
@@ -102,6 +111,9 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
   const [posthogDistinctId, setPosthogDistinctId] =
     useState<PosthogDistinctId | null>(null);
   const [hubspotScriptLoaded, setHubspotScriptLoaded] = useState(false);
+
+  const { contactData } = useHubspotCookieContactLookup();
+  const hubspot_contact_id = contactData?.id;
 
   /**
    * Posthog
@@ -175,6 +187,7 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
       linkUrl: router.asPath,
       pageName,
       analyticsUseCase,
+      ...(hubspot_contact_id ? { hubspot_contact_id } : {}),
     });
   });
 
@@ -205,10 +218,21 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
         hubspot.identify(id, props);
       }
       if (allServices || services?.includes("posthog")) {
-        posthog.identify(id, props);
+        // Add hubspot_contact_id to posthog properties when available
+        const posthogProps = {
+          ...props,
+          ...(hubspot_contact_id ? { hubspot_contact_id } : {}),
+        };
+        posthog.identify(id, posthogProps);
       }
     },
-    [hubspot, posthog],
+    [hubspot, posthog, hubspot_contact_id],
+  );
+  const alias: AliasFn = useCallback(
+    (aliasId, userId) => {
+      posthog.alias?.(aliasId, userId);
+    },
+    [posthog],
   );
   /**
    * Event tracking
@@ -229,9 +253,10 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
     return {
       track,
       identify,
+      alias,
       posthogDistinctId,
     };
-  }, [track, identify, posthogDistinctId]);
+  }, [track, identify, posthogDistinctId, alias]);
 
   return (
     <analyticsContext.Provider value={analytics}>

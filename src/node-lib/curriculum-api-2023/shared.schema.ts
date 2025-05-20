@@ -4,7 +4,7 @@ import { actionsSchema } from "@oaknational/oak-curriculum-schema";
 import { zodToCamelCase } from "./helpers/zodToCamelCase";
 import { mediaClipsRecordCamelSchema } from "./queries/lessonMediaClips/lessonMediaClips.schema";
 
-export const contentGuidanceSchema = z.object({
+export const contentGuidanceSchemaCamelCase = z.object({
   contentGuidanceLabel: z.string(),
   contentGuidanceDescription: z.string(),
   contentGuidanceArea: z.string(),
@@ -131,6 +131,7 @@ export const lessonPathwaySchema = z.object({
   tierTitle: z.string().nullish(),
   yearGroupSlug: z.string().nullish(),
   yearGroupTitle: z.string().nullish(),
+  pathwayTitle: z.string().nullish(),
 });
 
 export type LessonPathway = z.infer<typeof lessonPathwaySchema>;
@@ -165,7 +166,7 @@ export const lessonOverviewQuizData = z
 
 export type LessonOverviewQuizData = z.infer<typeof lessonOverviewQuizData>;
 
-const camelActionSchema = zodToCamelCase(actionsSchema);
+export const camelActionSchema = zodToCamelCase(actionsSchema);
 
 export type Actions = z.infer<typeof camelActionSchema>;
 
@@ -175,7 +176,11 @@ export const baseLessonOverviewSchema = z.object({
   lessonTitle: z.string(),
   tierTitle: z.string().nullable().optional(),
   tierSlug: z.string().nullable().optional(),
-  contentGuidance: z.array(contentGuidanceSchema).nullable().optional(),
+  pathwayTitle: z.string().nullable().optional(),
+  contentGuidance: z
+    .array(contentGuidanceSchemaCamelCase)
+    .nullable()
+    .optional(),
   misconceptionsAndCommonMistakes: z
     .array(misconceptionsAndCommonMistakesSchema)
     .nullable()
@@ -211,30 +216,51 @@ export const baseLessonOverviewSchema = z.object({
   additionalFiles: z.array(z.string()).nullable(),
   lessonMediaClips: mediaClipsRecordCamelSchema.nullish(),
   lessonOutline: z.array(z.object({ lessonOutline: z.string() })).nullable(),
+  lessonReleaseDate: z.string().nullable(),
 });
 export type LessonBase = z.infer<typeof baseLessonOverviewSchema>;
 
 export const lessonDownloadsListSchema = z.array(
   z.object({
     exists: z.boolean().nullable(),
-    type: z.enum([
-      "presentation",
-      "intro-quiz-questions",
-      "intro-quiz-answers",
-      "exit-quiz-questions",
-      "exit-quiz-answers",
-      "worksheet-pdf",
-      "worksheet-pptx",
-      "supplementary-pdf",
-      "supplementary-docx",
-      "curriculum-pdf",
-    ]),
+    type:
+      z.enum([
+        "presentation",
+        "intro-quiz-questions",
+        "intro-quiz-answers",
+        "exit-quiz-questions",
+        "exit-quiz-answers",
+        "worksheet-pdf",
+        "worksheet-pptx",
+        "supplementary-pdf",
+        "supplementary-docx",
+        "curriculum-pdf",
+        "lesson-guide-pdf",
+        "additional-files",
+      ]) || z.string().regex(/^additional-file-\d+$/),
     label: z.string(),
     ext: z.string(),
     forbidden: z.union([
       z.array(z.object({ copyright_info: z.string() })),
       z.boolean().optional().nullish(),
     ]),
+    assetId: z.number().optional(),
+    size: z.number().optional(),
+  }),
+);
+
+export const lessonAdditionalFilesListSchema = z.array(
+  z.object({
+    exists: z.boolean().nullable(),
+    type: z.enum(["additional-files"]),
+    label: z.string(),
+    ext: z.string(),
+    forbidden: z.union([
+      z.array(z.object({ copyright_info: z.string() })),
+      z.boolean().optional().nullish(),
+    ]),
+    assetId: z.number(),
+    size: z.number(),
   }),
 );
 
@@ -243,12 +269,15 @@ export const baseLessonDownloadsSchema = z.object({
   lessonSlug: z.string(),
   lessonTitle: z.string(),
   downloads: lessonDownloadsListSchema,
+  additionalFiles: lessonAdditionalFilesListSchema,
   expired: z.boolean().nullable(),
   isSpecialist: z.literal(false),
   copyrightContent: copyrightContentSchema,
   updatedAt: z.string(),
   geoRestricted: z.boolean().nullable(),
   loginRequired: z.boolean().nullable(),
+  actions: camelActionSchema.nullable().optional(),
+  lessonReleaseDate: z.string().nullable(),
 });
 
 export const lessonListItemSchema = z.object({
@@ -265,9 +294,26 @@ export const lessonListItemSchema = z.object({
   orderInUnit: z.number().nullish(),
   lessonCohort: z.string().nullish(),
   actions: camelActionSchema.nullish(),
+  isUnpublished: z.literal(false),
+  lessonReleaseDate: z.string().nullable(),
 });
 
-export const lessonListSchema = z.array(lessonListItemSchema);
+export type LessonListItem = z.infer<typeof lessonListItemSchema>;
+
+export const unpublishedLessonListItemSchema = z.object({
+  lessonSlug: z.string(),
+  lessonTitle: z.string(),
+  orderInUnit: z.number().nullish(),
+  isUnpublished: z.literal(true),
+  lessonReleaseDate: z.string().nullable(),
+});
+
+export type UnpublishedLessonListItem = z.infer<
+  typeof unpublishedLessonListItemSchema
+>;
+export const lessonListSchema = z.array(
+  z.union([lessonListItemSchema, unpublishedLessonListItemSchema]),
+);
 
 export type LessonListSchema = z.infer<typeof lessonListSchema>;
 

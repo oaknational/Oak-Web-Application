@@ -54,7 +54,7 @@ export type PupilUnitsSectionProps = {
   counterText: string | null;
   counterLength: number | null;
   titleSlot: JSX.Element | null;
-  expiredSlot?: React.ReactNode | null;
+  additionalInfoSlot?: React.ReactNode | null;
   subjectCategories: string[];
   labels?: string[] | undefined;
   filterItems: string[];
@@ -74,7 +74,7 @@ export const PupilUnitsSection = ({
   filterItems,
   applyFilter,
   showTooltip = true,
-  expiredSlot,
+  additionalInfoSlot,
   id = "0",
   onUnitSelected,
 }: PupilUnitsSectionProps) => {
@@ -163,7 +163,7 @@ export const PupilUnitsSection = ({
               )}
             </OakFlex>
           </OakFlex>
-          {expiredSlot}
+          {additionalInfoSlot}
         </OakFlex>
       }
     >
@@ -171,7 +171,11 @@ export const PupilUnitsSection = ({
         ? filteredUnits.map((optionalityUnit) => {
             if (optionalityUnit.length === 1) {
               // No optionalities
-              if (optionalityUnit[0])
+              if (
+                optionalityUnit[0] &&
+                optionalityUnit[0].lessonCount !==
+                  optionalityUnit[0].ageRestrictedLessonCount
+              )
                 return renderListItem(
                   optionalityUnit[0],
                   optionalityUnit[0].supplementaryData.unitOrder,
@@ -188,12 +192,15 @@ export const PupilUnitsSection = ({
                   >
                     {optionalityUnit.map(
                       (unit) =>
-                        unit.programmeFields.optionality && (
+                        unit.programmeFields.optionality &&
+                        unit.lessonCount !== unit.ageRestrictedLessonCount && (
                           <OakPupilJourneyOptionalityButton
                             className="pupil-journey-item"
                             key={unit.unitSlug}
                             title={unit.programmeFields.optionality}
-                            numberOfLessons={unit.lessonCount}
+                            numberOfLessons={
+                              unit.lessonCount - unit.ageRestrictedLessonCount
+                            }
                             href={resolveOakHref({
                               page: "pupil-lesson-index",
                               programmeSlug: unit.programmeSlug,
@@ -228,7 +235,7 @@ const renderListItem = (
         : ""
     }`}
     index={index + 1}
-    numberOfLessons={unit.lessonCount}
+    numberOfLessons={unit.lessonCount - unit.ageRestrictedLessonCount}
     as="a"
     href={resolveOakHref({
       page: "pupil-lesson-index",

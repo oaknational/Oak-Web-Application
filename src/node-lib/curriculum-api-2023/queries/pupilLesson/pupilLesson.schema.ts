@@ -15,6 +15,8 @@ import {
   matchSchema,
   imageItemSchema,
   textItemSchema,
+  additionalFileObjectSchema,
+  additionalFilesSchema,
 } from "@oaknational/oak-curriculum-schema";
 
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
@@ -66,6 +68,14 @@ export type LessonContent = Omit<
   exitQuiz: QuizQuestion[];
   transcriptSentences: string | string[];
 };
+
+export type AdditionalFile = ConvertKeysToCamelCase<
+  z.infer<typeof additionalFileObjectSchema>
+>;
+
+export type AdditionalFiles = ConvertKeysToCamelCase<
+  z.infer<typeof additionalFilesSchema>
+>;
 
 export const lessonBrowseDataSchema = syntheticUnitvariantLessonsSchema.omit({
   null_unitvariant_id: true,

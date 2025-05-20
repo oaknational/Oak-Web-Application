@@ -29,6 +29,7 @@ import NoResourcesToShare from "@/components/TeacherComponents/NoResourcesToShar
 import FieldError from "@/components/SharedComponents/FieldError";
 import Checkbox from "@/components/SharedComponents/Checkbox";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
+import RiskAssessmentBanner from "@/components/TeacherComponents/RiskAssessmentBanner";
 
 /** Generic layout component for Downloads and Share page */
 
@@ -55,8 +56,7 @@ export type ResourcePageLayoutProps = ResourcePageDetailsCompletedProps &
     updatedAt: string;
     showTermsAgreement: boolean;
     isLoading: boolean;
-    showDownloadSignUpButtons?: boolean;
-    signUpButtons?: React.ReactNode | null;
+    showRiskAssessmentBanner?: boolean;
   };
 
 const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
@@ -97,7 +97,7 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
       <OakBox
         $pa={"inner-padding-none"}
         $ba={"border-solid-none"}
-        as={props.page === "download" ? "fieldset" : "box"}
+        as={props.page === "download" ? "fieldset" : "div"}
       >
         {props.page === "download" && (
           <OakBox
@@ -134,10 +134,19 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
             </OakBox>
           )}
           {props.cardGroup}
-          {!props.showTermsAgreement && !props.showDownloadSignUpButtons && (
+          {props.showRiskAssessmentBanner && props.showTermsAgreement && (
+            <OakBox $display={["none", "none", "block"]}>
+              <RiskAssessmentBanner />
+            </OakBox>
+          )}
+          {!props.showTermsAgreement && (
             <>
               <OakBox
-                $pb={"inner-padding-xl3"}
+                $pb={
+                  props.showRiskAssessmentBanner
+                    ? "inner-padding-none"
+                    : "inner-padding-xl3"
+                }
                 $mt={"space-between-m"}
                 $maxWidth={"all-spacing-22"}
               >
@@ -149,11 +158,16 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
                 />
               </OakBox>
 
+              {props.showRiskAssessmentBanner && (
+                <OakBox $mv="space-between-s">
+                  <RiskAssessmentBanner />
+                </OakBox>
+              )}
+
               {props.cta}
             </>
           )}
         </Flex>
-        {props.page === "download" && props.signUpButtons}
       </OakBox>
 
       <OakFlex
@@ -171,23 +185,33 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
         {!props.showNoResources && (
           <>
             {props.showTermsAgreement && (
-              <TermsAgreementForm
-                form={{
-                  control: props.control,
-                  register: props.register,
-                  errors: props.errors,
-                  trigger: props.triggerForm,
-                }}
-                isLoading={props.showLoading}
-                email={props.email}
-                schoolId={props.schoolId}
-                schoolName={props.school}
-                setSchool={props.setSchool}
-                showSavedDetails={props.showSavedDetails}
-                handleEditDetailsCompletedClick={props.onEditClick}
-                showPostAlbCopyright={props.showPostAlbCopyright}
-                copyrightYear={props.updatedAt}
-              />
+              <>
+                <TermsAgreementForm
+                  form={{
+                    control: props.control,
+                    register: props.register,
+                    errors: props.errors,
+                    trigger: props.triggerForm,
+                  }}
+                  isLoading={props.showLoading}
+                  email={props.email}
+                  schoolId={props.schoolId}
+                  schoolName={props.school}
+                  setSchool={props.setSchool}
+                  showSavedDetails={props.showSavedDetails}
+                  handleEditDetailsCompletedClick={props.onEditClick}
+                  showPostAlbCopyright={props.showPostAlbCopyright}
+                  copyrightYear={props.updatedAt}
+                />
+                {props.showRiskAssessmentBanner && (
+                  <OakBox
+                    $display={["block", "block", "none"]}
+                    $mv="space-between-s"
+                  >
+                    <RiskAssessmentBanner />
+                  </OakBox>
+                )}
+              </>
             )}
             {hasFormErrors && (
               <OakFlex $flexDirection={"row"}>
@@ -213,6 +237,7 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
                 </OakFlex>
               </OakFlex>
             )}
+
             {props.showTermsAgreement && props.cta}
 
             {props.apiError && !hasFormErrors && (

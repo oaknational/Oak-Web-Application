@@ -49,7 +49,7 @@ const VisualCheckboxWrapper = styled.span<VisualCheckboxWrapper>`
     props?.variant === "withoutLabel" && !props.slim
       ? "12px"
       : props?.variant === "withoutLabel" && props.slim
-        ? "50%"
+        ? "calc(50% - 10px)"
         : "initial"};
 
   display: flex;

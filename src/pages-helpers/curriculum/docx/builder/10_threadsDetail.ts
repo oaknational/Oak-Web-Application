@@ -3,15 +3,19 @@ import { CombinedCurriculumData } from "..";
 import { appendBodyElements, insertNumbering, JSZipCached } from "../docx";
 import { createThreadOptions, createUnitsListingByYear } from "../tab-helpers";
 
-import { groupUnitsBySubjectCategory, unitsByYear } from "./helper";
+import {
+  groupUnitsBySubjectCategory,
+  groupUnitsByYearAndPathway,
+  sortYearPathways,
+  parseYearPathwayKey,
+} from "./helper";
 
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
-import { sortYears } from "@/utils/curriculum/sorting";
 import { Unit } from "@/utils/curriculum/types";
-import { getUnitFeatures } from "@/utils/curriculum/features";
+import { getSuffixFromPathway } from "@/utils/curriculum/pathways";
 
 function sortByOrder(units: Unit[]) {
-  return [...units].sort((a, b) => a.order - b.order);
+  return [...units].toSorted((a, b) => a.order - b.order);
 }
 
 function renderUnits(units: Unit[], numbering: { unitNumbering: string }) {
@@ -35,9 +39,7 @@ function renderUnits(units: Unit[], numbering: { unitNumbering: string }) {
                 <w:color w:val="222222" />
                 <w:sz w:val="24" />
               </w:rPr>
-              <w:t xml:space="preserve">${cdata(
-                  `Unit ${unit.order + 1}, `,
-                )}</w:t>
+              <w:t xml:space="preserve">${cdata(`Unit ${unit.order}, `)}</w:t>
             </w:r>
             <w:r>
               <w:rPr>
@@ -85,8 +87,7 @@ export default async function generate(
   const allThreadOptions = createThreadOptions(data.units);
 
   const enableGroupBySubjectCategory = data.units.some((unit) => {
-    const features = getUnitFeatures(unit);
-    return features?.subjectcategories?.group_by_subjectcategory;
+    return unit.actions?.subject_category_actions?.group_by_subjectcategory;
   });
 
   const elements = allThreadOptions.map((thread, threadIndex) => {
@@ -128,99 +129,104 @@ export default async function generate(
       </XML_FRAGMENT>
     `;
 
-    let contentElements: string[];
+    const contentElements: string[] = [];
 
-    const filterByThreads = ([year, units]: [string, Unit[]]): [
-      string,
-      Unit[],
-    ] => {
-      if (enableGroupBySubjectCategory) {
-        const filteredUnits = units.filter(
-          (u) =>
-            (u.subjectcategories ?? []).length < 1 &&
-            u.threads.findIndex((t) => t.slug === thread.slug) > -1,
-        );
-        return [year, filteredUnits];
-      } else {
-        const filteredUnits = units.filter(
-          (u) => u.threads.findIndex((t) => t.slug === thread.slug) > -1,
-        );
-        return [year, filteredUnits];
-      }
+    const filterUnitsByThread = (units: Unit[]): Unit[] => {
+      return units.filter(
+        (u) => u.threads.findIndex((t) => t.slug === thread.slug) > -1,
+      );
     };
 
-    // Original non-categorized format
-    contentElements = Object.values(unitsByYear(data.units)).map((units) => {
-      const yearGroupedUnits = unitsByYear(units);
-      return Object.entries(yearGroupedUnits)
-        .sort(([yearA], [yearB]) => sortYears(yearA, yearB))
-        .map<[string, Unit[]]>(([year, units]) => {
-          return filterByThreads([year, units]);
-        })
-        .filter(([, units]) => units.length > 0)
-        .map(([year, units]) => {
-          const yearTitle = getYearGroupTitle(yearData, year);
-          return safeXml`
-            <XML_FRAGMENT>
-              <w:p>
-                <w:pPr>
-                  <w:pStyle w:val="Heading4" />
-                </w:pPr>
-                <w:r>
-                  <w:rPr>
-                    <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-                    <w:b />
-                    <w:color w:val="222222" />
-                    <w:sz w:val="28" />
-                  </w:rPr>
-                  <w:t>${cdata(yearTitle)}</w:t>
-                </w:r>
-              </w:p>
-              ${renderUnits(sortByOrder(units), numbering)}
-              <w:p>
-                <w:r>
-                  <w:rPr>
-                    <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-                    <w:sz w:val="24" />
-                  </w:rPr>
-                  <w:t />
-                </w:r>
-              </w:p>
-            </XML_FRAGMENT>
-          `;
-        })
-        .join("");
-    });
+    const nonCategorizedUnits = enableGroupBySubjectCategory
+      ? data.units.filter((u) => (u.subjectcategories ?? []).length < 1)
+      : data.units;
 
-    // Subject category organised content
+    const groupedByYearPathway =
+      groupUnitsByYearAndPathway(nonCategorizedUnits);
+
+    const sortedList = Object.entries(groupedByYearPathway)
+      .map(([yearPathwayKey, unitsInGroup]) => {
+        const unitsForThread = filterUnitsByThread(unitsInGroup);
+        return [yearPathwayKey, unitsForThread] as [string, Unit[]];
+      })
+      .filter(([, units]) => units.length > 0)
+      .toSorted(([keyA], [keyB]) => sortYearPathways(keyA, keyB));
+
+    const nonCategorizedContent = sortedList
+      .map(([yearPathwayKey, units]) => {
+        const { year, pathway } = parseYearPathwayKey(yearPathwayKey);
+        const title = getYearGroupTitle(
+          yearData,
+          year,
+          getSuffixFromPathway(pathway),
+        );
+
+        return safeXml`
+          <XML_FRAGMENT>
+            <w:p>
+              <w:pPr>
+                <w:pStyle w:val="Heading4" />
+              </w:pPr>
+              <w:r>
+                <w:rPr>
+                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                  <w:b />
+                  <w:color w:val="222222" />
+                  <w:sz w:val="28" />
+                </w:rPr>
+                <w:t>${cdata(title)}</w:t>
+              </w:r>
+            </w:p>
+            ${renderUnits(sortByOrder(units), numbering)}
+            <w:p>
+              <w:r>
+                <w:rPr>
+                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                  <w:sz w:val="24" />
+                </w:rPr>
+                <w:t />
+              </w:r>
+            </w:p>
+          </XML_FRAGMENT>
+        `;
+      })
+      .join("");
+
+    contentElements.push(nonCategorizedContent);
+
+    // Subject category organised content (modified for pathways)
     if (enableGroupBySubjectCategory) {
-      const groupedUnits = groupUnitsBySubjectCategory(data.units);
+      const groupedUnitsByCat = groupUnitsBySubjectCategory(data.units);
 
-      contentElements = [
-        ...contentElements,
-        ...Object.values(groupedUnits).map(
+      const categorizedContent = Object.values(groupedUnitsByCat)
+        .map(
           ({
             subjectCategory,
-            units,
+            units: categoryUnits,
           }: ReturnType<typeof groupUnitsBySubjectCategory>[number]) => {
-            const yearGroupedUnits = unitsByYear(units);
-            const threadYears = Object.entries(yearGroupedUnits)
-              .sort(([yearA], [yearB]) => sortYears(yearA, yearB))
-              .map(([year, units]) => {
-                return [
-                  year,
-                  units.filter(
-                    (u) =>
-                      u.threads.findIndex((t) => t.slug === thread.slug) > -1,
-                  ),
-                ] as [string, Unit[]];
+            // Group units within this category by year and pathway
+            const categoryGroupedByYearPathway =
+              groupUnitsByYearAndPathway(categoryUnits);
+
+            const yearPathwayEntriesForThread = Object.entries(
+              categoryGroupedByYearPathway,
+            )
+              .map(([yearPathwayKey, unitsInGroup]) => {
+                const unitsForThread = filterUnitsByThread(unitsInGroup);
+                return [yearPathwayKey, unitsForThread] as [string, Unit[]];
               })
               .filter(([, units]) => units.length > 0);
 
-            if (threadYears.length < 1) {
+            if (yearPathwayEntriesForThread.length < 1) {
               return "";
             }
 
+            // Sort the year-pathways within this category
+            yearPathwayEntriesForThread.toSorted(([keyA], [keyB]) =>
+              sortYearPathways(keyA, keyB),
+            );
+
+            // Render the category title and then the units grouped by year-pathway
             return safeXml`
               <XML_FRAGMENT>
                 <w:p>
@@ -247,9 +253,16 @@ export default async function generate(
                     <w:t xml:space="preserve"> </w:t>
                   </w:r>
                 </w:p>
-                ${threadYears
-                  .map(([year, units]) => {
-                    const yearTitle = getYearGroupTitle(yearData, year);
+                ${yearPathwayEntriesForThread
+                  .map(([yearPathwayKey, units]) => {
+                    const { year, pathway } =
+                      parseYearPathwayKey(yearPathwayKey);
+                    const yearPathwayTitle = getYearGroupTitle(
+                      yearData,
+                      year,
+                      getSuffixFromPathway(pathway),
+                    );
+
                     return safeXml`
                       <XML_FRAGMENT>
                         <w:p>
@@ -268,7 +281,7 @@ export default async function generate(
                               <w:color w:val="222222" />
                               <w:sz w:val="24" />
                             </w:rPr>
-                            <w:t>${cdata(yearTitle)}</w:t>
+                            <w:t>${cdata(yearPathwayTitle)}</w:t>
                           </w:r>
                         </w:p>
                         ${renderUnits(sortByOrder(units), numbering)}
@@ -292,10 +305,13 @@ export default async function generate(
               </XML_FRAGMENT>
             `;
           },
-        ),
-      ];
+        )
+        .join("");
+
+      contentElements.push(categorizedContent);
     }
 
+    // Combine and finalise output
     return safeXml`
       <XML_FRAGMENT>
         ${threadTitle}

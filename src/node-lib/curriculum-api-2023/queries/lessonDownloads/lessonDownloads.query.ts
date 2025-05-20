@@ -1,5 +1,6 @@
 import lessonDownloadsSchema, {
-  downloadsAssetData,
+  downloadsAssetDataSchema,
+  LessonAdditionalFilesListSchema,
 } from "./lessonDownloads.schema";
 import { constructDownloadsArray } from "./downloadUtils";
 import constructCanonicalLessonDownloads from "./constructCanonicalLessonDownloads";
@@ -57,13 +58,32 @@ const lessonDownloadsQuery =
       has_supplementary_asset_object,
       has_worksheet_answers_asset_object,
       has_worksheet_google_drive_downloadable_version,
+      has_lesson_guide_object,
       starter_quiz,
       exit_quiz,
       is_legacy,
       expired,
       geo_restricted,
       login_required,
-    } = downloadsAssetData.parse(download_assets[0]);
+      downloadable_files,
+      lesson_release_date,
+    } = downloadsAssetDataSchema.parse(download_assets[0]);
+
+    // OWA referes to downloadable_files field in db as additional_files
+    // these are additional files that can be downloads for some lessons
+    const additionalFiles: LessonAdditionalFilesListSchema = downloadable_files
+      ? downloadable_files.map((file) => {
+          return {
+            exists: !!file.asset_id,
+            type: "additional-files",
+            label: file.media_object.display_name,
+            ext: file.media_object.url.split(".").pop() ?? "",
+            size: file.media_object.bytes,
+            forbidden: false,
+            assetId: file.asset_id,
+          };
+        })
+      : [];
 
     const downloadsData = {
       hasSlideDeckAssetObject: has_slide_deck_asset_object,
@@ -74,7 +94,9 @@ const lessonDownloadsQuery =
       hasWorksheetGoogleDriveDownloadableVersion:
         has_worksheet_google_drive_downloadable_version,
       hasSupplementaryAssetObject: has_supplementary_asset_object,
+      hasLessonGuideObject: has_lesson_guide_object,
       isLegacy: is_legacy,
+      lessonReleaseDate: lesson_release_date,
     };
 
     const downloads = constructDownloadsArray(downloadsData);
@@ -92,25 +114,31 @@ const lessonDownloadsQuery =
     );
 
     if (isCanonicalLesson) {
-      const canonicalLessonDownloads = constructCanonicalLessonDownloads(
+      const canonicalLessonDownloads = constructCanonicalLessonDownloads({
         downloads,
+        additionalFiles,
         lessonSlug,
-        parsedBrowseData,
-        is_legacy,
-        copyright,
-        { geoRestricted: geo_restricted, loginRequired: login_required },
-      );
+        browseData: parsedBrowseData,
+        isLegacy: is_legacy,
+        lessonReleaseDate: lesson_release_date ?? "unpublished",
+        lessonCopyRight: copyright,
+        restrictions: {
+          geoRestricted: geo_restricted,
+          loginRequired: login_required,
+        },
+      });
       return lessonDownloadsCanonicalSchema.parse(
         canonicalLessonDownloads,
       ) as T;
     } else {
-      const lessonDownloads = constructLessonDownloads(
+      const lessonDownloads = constructLessonDownloads({
         downloads,
+        additionalFiles,
         lessonSlug,
         parsedBrowseData,
-        copyright,
+        lessonCopyRight: copyright,
         expired,
-      );
+      });
 
       return lessonDownloadsSchema.parse({
         ...lessonDownloads,
@@ -118,6 +146,7 @@ const lessonDownloadsQuery =
         isSpecialist: false,
         geoRestricted: geo_restricted,
         loginRequired: login_required,
+        lessonReleaseDate: lesson_release_date ?? "unpublished",
       }) as T;
     }
   };

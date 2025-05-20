@@ -1,7 +1,7 @@
 import * as z from "zod";
 
 import { documentSchema, imageSchema, seoSchema } from "./base";
-import { cardSchema } from "./blocks";
+import { cardSchema, textAndMediaSchema } from "./blocks";
 import { linkSchema } from "./cta";
 import { portableTextSchema } from "./portableText";
 
@@ -17,6 +17,16 @@ const notificationSchema = z.discriminatedUnion("enabled", [
 ]);
 
 export type HomePageNotification = z.infer<typeof notificationSchema>;
+
+export const testimonialSchema = z.object({
+  quote: z.object({
+    text: z.string(),
+    attribution: z.string(),
+    role: z.string(),
+    organisation: z.string().nullable(),
+  }),
+  image: imageSchema.nullish(),
+});
 
 export const homePageSchema = z
   .object({
@@ -34,6 +44,8 @@ export const homePageSchema = z
       })
       .nullish(),
     seo: seoSchema.nullish(),
+    testimonials: z.array(testimonialSchema).nullable(),
+    intro: textAndMediaSchema.optional().nullable(),
   })
   .merge(documentSchema);
 

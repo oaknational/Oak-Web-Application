@@ -13,7 +13,6 @@ import {
   OakCheckBox,
   OakFlex,
   OakInlineBanner,
-  OakLink,
   OakP,
   OakPrimaryButton,
   OakSpan,
@@ -155,6 +154,7 @@ const OnboardingForm = ({
         // No point in proceeding to hubspot sign-up if onboarding failed
         return;
       }
+
       const userSubscribed =
         userSubscribedInHubspot ||
         ("newsletterSignUp" in data && data.newsletterSignUp);
@@ -165,7 +165,6 @@ const OnboardingForm = ({
         localStorageForDownloads,
         data,
         userEmail,
-        userSubscribed,
       });
 
       await submitOnboardingHubspotData({
@@ -290,7 +289,7 @@ const OnboardingForm = ({
                 };
                 return (
                   <OakCheckBox
-                    checked={value}
+                    checked={value ?? false}
                     name={name}
                     onBlur={onBlur}
                     onChange={onChangeHandler}
@@ -303,25 +302,6 @@ const OnboardingForm = ({
           )}
         </OakFlex>
       </OakFlex>
-
-      <OakBox
-        as="p"
-        $font="body-2"
-        color="text-primary"
-        $textAlign="center"
-        $pb="inner-padding-s"
-      >
-        Need help?{" "}
-        <OakLink
-          href={resolveOakHref({
-            page: "contact",
-          })}
-        >
-          {" "}
-          Contact us
-        </OakLink>
-        .
-      </OakBox>
     </OakFlex>
   );
 };

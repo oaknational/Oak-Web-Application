@@ -21,8 +21,10 @@ describe("shortAnswerTitleFormatter", () => {
   });
 
   it("when passed a string with no underscores returns the string", () => {
-    const result = shortAnswerTitleFormatter("test title");
-    expect(result).toBe("test title");
+    const { getByText } = renderWithTheme(
+      <>{shortAnswerTitleFormatter("test title")}</>,
+    );
+    expect(getByText("test title")).toBeInTheDocument();
   });
 
   it("when passed a string with {{}} pattern returns the string with underscores component replacing the pattern", () => {

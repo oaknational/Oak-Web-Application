@@ -1,5 +1,5 @@
 query subjectListing($keyStageSlug: String, $isLegacy: Boolean) {
-  subjectUnits: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_14_0_1(
+  subjectUnits: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_16_0_0(
     where: {
       _and: [
         { programme_fields: { _contains: { keystage_slug: $keyStageSlug } } }
@@ -29,5 +29,11 @@ query subjectListing($keyStageSlug: String, $isLegacy: Boolean) {
     slug
     description: title
     display_order
+  }
+  subjectFeatures: pf_subjects(
+    where: { features: { _neq: {} }, _state: { _eq: "published" } }
+  ) {
+    slug
+    features
   }
 }

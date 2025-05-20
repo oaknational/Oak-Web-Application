@@ -14,9 +14,11 @@ import {
   ProgrammeFields,
   tierDescriptions,
   pathways,
+  actionsSchema,
 } from "@oaknational/oak-curriculum-schema";
 
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
+import { zodToCamelCase } from "@/node-lib/curriculum-api-2023/helpers/zodToCamelCase";
 
 export const learningThemesSchema = z.object({
   themeTitle: z.string(),
@@ -50,12 +52,15 @@ const reshapedUnitData = z.object({
   unitStudyOrder: z.number(),
   expired: z.boolean().nullable(),
   expiredLessonCount: z.number().nullable(),
+  unpublishedLessonCount: z.number(),
   yearTitle: yearDescriptions,
   year: yearSlugs,
   yearOrder: z.number(),
   cohort: z.string().nullish(),
   learningThemes: z.array(learningThemesSchema).nullable(),
   subjectCategories: z.array(subjectCategorySchema).nullish(),
+  groupUnitsAs: z.string().nullish(),
+  actions: zodToCamelCase(actionsSchema).nullish(),
 });
 
 export type ReshapedUnitData = z.infer<typeof reshapedUnitData>;
@@ -109,6 +114,8 @@ const unitListingData = z.object({
   yearGroups: yearGroupsSchema,
   subjectCategories: z.array(subjectCategorySchema),
   pathwayTitle: pathways.nullable(),
+  relatedSubjects: z.array(subjectSlugs).optional(),
+  groupUnitsAs: z.string().optional(),
 });
 
 export type UnitListingData = z.infer<typeof unitListingData>;

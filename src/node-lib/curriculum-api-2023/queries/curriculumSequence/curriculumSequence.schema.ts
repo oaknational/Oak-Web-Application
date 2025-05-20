@@ -64,6 +64,8 @@ const curriculumSequenceSchema = z.object({
       why_this_why_now: z.string().nullable(),
       cycle: z.string(),
       features: z.any(),
+      parent_programme_features: z.any().nullable(),
+      actions: z.any(),
       unit_options: z.array(
         z.object({
           connection_prior_unit_description: z.string().nullable(),

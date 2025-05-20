@@ -30,6 +30,8 @@ const props: LessonListItemProps = {
   yearSlug: "higher",
   yearTitle: "Higher",
   onClick: onClick,
+  isUnpublished: false,
+  lessonReleaseDate: "2025-09-29T14:00:00.000Z",
 };
 
 let render: ReturnType<typeof renderWithProviders>;

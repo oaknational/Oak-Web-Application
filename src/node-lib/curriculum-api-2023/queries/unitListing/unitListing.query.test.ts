@@ -52,6 +52,9 @@ jest.mock("../../sdk", () => {
               }),
               unit_slug: "unit-slug-1",
               supplementary_data: { unit_order: 1 },
+              actions: {
+                related_subject_slugs: ["physics"],
+              },
             },
           }),
           rawFixture({
@@ -155,6 +158,8 @@ describe("unitListing()", () => {
             unitStudyOrder: 1,
             expired: false,
             expiredLessonCount: 0,
+            groupUnitsAs: null,
+            unpublishedLessonCount: 0,
             isOptionalityUnit: false,
             yearTitle: "Year 1",
             year: "year-1",
@@ -162,6 +167,9 @@ describe("unitListing()", () => {
             cohort: "2023-2024",
             subjectCategories: null,
             learningThemes: null,
+            actions: {
+              relatedSubjectSlugs: ["physics"],
+            },
           },
         ],
         [
@@ -178,10 +186,13 @@ describe("unitListing()", () => {
             unitStudyOrder: 2,
             expired: false,
             expiredLessonCount: 0,
+            groupUnitsAs: null,
+            unpublishedLessonCount: 0,
             isOptionalityUnit: false,
             yearTitle: "Year 1",
             year: "year-1",
             yearOrder: 1,
+            actions: undefined,
             cohort: "2023-2024",
             subjectCategories: [{ label: "Physics", slug: "physics" }],
             learningThemes: [{ themeTitle: "Theme 1", themeSlug: "theme1" }],
@@ -190,6 +201,7 @@ describe("unitListing()", () => {
       ],
       learningThemes: [{ themeTitle: "Theme 1", themeSlug: "theme1" }],
       hasNewContent: true,
+      relatedSubjects: ["physics"],
     });
   });
 });

@@ -7,10 +7,9 @@ import {
 import {
   baseLessonOverviewSchema,
   lessonPathwaySchema,
-} from "../../shared.schema";
-import { QuizQuestion } from "../pupilLesson/pupilLesson.schema";
-import { mediaClipsRecordCamelSchema } from "../lessonMediaClips/lessonMediaClips.schema";
-
+} from "@/node-lib/curriculum-api-2023/shared.schema";
+import { QuizQuestion } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { mediaClipsRecordCamelSchema } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
 export const lessonContentSchema = lessonContentSchemaFull.omit({
@@ -45,6 +44,7 @@ export const lessonOverviewDownloads = z.array(
       "supplementary-pdf",
       "supplementary-docx",
       "curriculum-pdf",
+      "lesson-guide-pdf",
     ]),
   }),
 );
@@ -59,13 +59,16 @@ export const lessonOverviewSchema = baseLessonOverviewSchema.extend({
   keyStageTitle: z.string(),
   subjectSlug: z.string(),
   subjectTitle: z.string(),
+  subjectParent: z.string().nullish(),
   yearTitle: z.string().nullable().optional(),
   examBoardTitle: z.string().nullable().optional(),
+  examBoardSlug: z.string().nullish(),
   downloads: lessonOverviewDownloads,
   updatedAt: z.string(),
   pathways: z.array(lessonPathwaySchema),
   additionalFiles: z.array(z.string()).nullable(),
   lessonMediaClips: mediaClipsRecordCamelSchema.nullable(),
+  lessonReleaseDate: z.string().nullable(),
 });
 
 export type LessonOverviewPageData = z.infer<typeof lessonOverviewSchema>;

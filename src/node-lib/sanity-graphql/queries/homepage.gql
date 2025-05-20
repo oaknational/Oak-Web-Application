@@ -33,5 +33,24 @@ query homepage($isDraftFilter: Sanity_DocumentFilter) {
     seo {
       ...Seo
     }
+    testimonials {
+      quote {
+        text
+        attribution
+        organisation
+        role
+      }
+      image {
+        asset {
+          url
+          _id
+        }
+
+        altText
+      }
+    }
+    intro {
+      ...TextAndMedia
+    }
   }
 }

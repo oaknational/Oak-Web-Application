@@ -22,6 +22,7 @@ import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import { InputMaybe } from "@/node-lib/sanity-graphql/generated/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { mediaClipsRecordCamelSchema } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
+import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 
 export const getDownloadsArray = (content: {
   hasSlideDeckAssetObject: boolean;
@@ -31,6 +32,7 @@ export const getDownloadsArray = (content: {
   hasWorksheetAnswersAssetObject: boolean;
   hasWorksheetGoogleDriveDownloadableVersion: boolean;
   hasSupplementaryAssetObject: boolean;
+  hasLessonGuideObject: boolean;
   isLegacy: boolean;
 }): LessonOverviewPageData["downloads"] => {
   const downloads: LessonOverviewDownloads = [
@@ -80,6 +82,10 @@ export const getDownloadsArray = (content: {
       exists: content.hasSupplementaryAssetObject,
       type: "supplementary-docx",
     },
+    {
+      exists: content.hasLessonGuideObject,
+      type: "lesson-guide-pdf",
+    },
   ];
 
   return downloads;
@@ -128,23 +134,19 @@ const getPathways = (res: LessonOverviewQuery): LessonPathway[] => {
   return pathways;
 };
 
-const bytesToMegabytes = (bytes: number): string => {
-  const bytesInOneMegabyte = 1024 * 1024;
-  const megabytes = bytes / bytesInOneMegabyte;
-  return megabytes.toFixed(1);
-};
-
-const getAdditionalFiles = (
-  content: LessonOverviewContent["additionalFiles"],
+export const getAdditionalFiles = (
+  additionalFiles: LessonOverviewContent["downloadableFiles"],
 ): string[] | null => {
-  if (!content || !content[0]) {
-    return null;
+  if (!additionalFiles) {
+    return [];
   }
-  return content[0]?.files.map((af) => {
-    const name = af.title;
-    const type = af.fileObject.format;
-    const size = af.fileObject.bytes;
-    return `${name} ${bytesToMegabytes(size)} MB (${type.toUpperCase()})`;
+
+  return additionalFiles.map((af) => {
+    const name = af.mediaObject.displayName;
+    const type = af.mediaObject.url.split(".").pop() ?? "";
+    const size = af.mediaObject.bytes;
+    const sizeString = convertBytesToMegabytes(size);
+    return `${name} ${sizeString} (${type.toUpperCase()})`;
   });
 };
 
@@ -153,14 +155,29 @@ export const transformedLessonOverviewData = (
   content: LessonOverviewContent,
   pathways: LessonPathway[] | [],
 ): LessonOverviewPageData => {
+  const reportError = errorReporter("transformedLessonOverviewData");
   const starterQuiz = lessonOverviewQuizData.parse(content.starterQuiz);
   const exitQuiz = lessonOverviewQuizData.parse(content.exitQuiz);
   const unitTitle =
     browseData.programmeFields.optionality ?? browseData.unitData.title;
-  const hasAddFile = content.additionalFiles;
-  const mediaClips = browseData.lessonData.mediaClips
-    ? mediaClipsRecordCamelSchema.parse(browseData.lessonData.mediaClips)
-    : null;
+
+  // OWA referes to downloadable_files field in db as additional_files
+  // these are additional files that can be downloads for some lessons
+  const additionalFiles = content?.downloadableFiles;
+  const hasAdditionalFiles = additionalFiles
+    ? additionalFiles.length > 0
+    : false;
+
+  let mediaClips = null;
+  try {
+    mediaClips = browseData.lessonData.mediaClips
+      ? mediaClipsRecordCamelSchema.parse(browseData.lessonData.mediaClips)
+      : null;
+  } catch (error) {
+    browseData.lessonData.mediaClips = null;
+    reportError(error);
+  }
+
   return {
     programmeSlug: browseData.programmeSlug,
     unitSlug: browseData.unitSlug,
@@ -171,8 +188,10 @@ export const transformedLessonOverviewData = (
     ),
     subjectSlug: browseData.programmeFields.subjectSlug,
     subjectTitle: browseData.programmeFields.subject,
+    subjectParent: browseData.programmeFields.subjectParent || null,
     yearTitle: browseData.programmeFields.yearDescription,
     examBoardTitle: browseData.programmeFields.examboard,
+    examBoardSlug: browseData.programmeFields.examboardSlug,
     downloads: getDownloadsArray({
       hasExitQuiz: content.exitQuiz && Boolean(content.exitQuiz.length > 1),
       hasStarterQuiz:
@@ -186,6 +205,7 @@ export const transformedLessonOverviewData = (
         content.hasWorksheetGoogleDriveDownloadableVersion,
       ),
       hasSlideDeckAssetObject: Boolean(content.hasSlideDeckAssetObject),
+      hasLessonGuideObject: Boolean(content.hasLessonGuideObject),
       isLegacy: browseData.isLegacy,
     }),
     updatedAt: browseData.lessonData.updatedAt,
@@ -199,7 +219,7 @@ export const transformedLessonOverviewData = (
     teacherTips: content.teacherTips,
     lessonEquipmentAndResources: browseData.lessonData.equipmentAndResources,
     additionalMaterialUrl: content.supplementaryAssetObjectUrl,
-    keyLearningPoints: content.keyLearningPoints,
+    keyLearningPoints: content.keyLearningPoints ?? null,
     pupilLessonOutcome: content.pupilLessonOutcome,
     lessonKeywords: content.lessonKeywords,
     copyrightContent: getCopyrightContent(
@@ -227,9 +247,13 @@ export const transformedLessonOverviewData = (
     hasMediaClips: Boolean(browseData.lessonData.mediaClips),
     lessonOutline: browseData.lessonData.lessonOutline ?? null,
     lessonMediaClips: mediaClips,
-    additionalFiles: hasAddFile
-      ? getAdditionalFiles(content.additionalFiles)
-      : null,
+    additionalFiles:
+      hasAdditionalFiles && additionalFiles
+        ? getAdditionalFiles(additionalFiles)
+        : null,
+
+    pathwayTitle: browseData.programmeFields.pathwayDescription ?? null,
+    lessonReleaseDate: content.lessonReleaseDate ?? null,
   };
 };
 
@@ -311,6 +335,7 @@ const lessonOverviewQuery =
     const content = keysToCamelCase({
       ...contentSnake,
     }) as LessonOverviewContent;
+
     return lessonOverviewSchema.parse(
       transformedLessonOverviewData(browseData, content, pathways),
     );

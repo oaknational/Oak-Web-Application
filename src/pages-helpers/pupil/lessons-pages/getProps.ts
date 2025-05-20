@@ -12,6 +12,8 @@ import {
 } from "@/components/PupilViews/PupilExperience";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { invariant } from "@/utils/invariant";
+import { WorksheetInfo } from "@/components/PupilViews/PupilIntro";
+import { getWorksheetInfo } from "@/components/PupilComponents/pupilUtils/getWorksheetInfo";
 
 export type PupilLessonPageURLParams = {
   lessonSlug: string;
@@ -76,6 +78,12 @@ export const getProps = ({
 
     const { browseData, content } = res;
 
+    let worksheetInfo: WorksheetInfo | null = null;
+
+    if (content.hasWorksheetAssetObject) {
+      worksheetInfo = (await getWorksheetInfo(lessonSlug)) || [];
+    }
+
     // 404 if the lesson does not contain the given section
     if (
       isLessonReviewSection(section) &&
@@ -112,8 +120,10 @@ export const getProps = ({
           transcriptSentences: transcriptSentences ?? [],
         },
         browseData,
-        hasWorksheet: content.hasWorksheetAssetObject ? true : false,
-        hasAdditionalFiles: content.hasAdditionalFiles ? true : false,
+        hasWorksheet: !!content.hasWorksheetAssetObject,
+        worksheetInfo,
+        hasAdditionalFiles: !!content.downloadableFiles?.length,
+        additionalFiles: content.downloadableFiles || null,
         initialSection: section,
         backUrl,
         pageType: page,

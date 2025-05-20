@@ -90,7 +90,7 @@ export default {
           title: "Key Stage 4",
         },
       ],
-      ks4_options: null,
+      ks4_options: [],
     },
     {
       title: "Computing",
@@ -207,7 +207,7 @@ export default {
           title: "Key Stage 2",
         },
       ],
-      ks4_options: null,
+      ks4_options: [],
     },
     {
       title: "English",
@@ -374,7 +374,7 @@ export default {
           title: "Key Stage 4",
         },
       ],
-      ks4_options: null,
+      ks4_options: [],
     },
     {
       title: "Spanish",
@@ -555,7 +555,7 @@ export default {
           title: "Key Stage 4",
         },
       ],
-      ks4_options: null,
+      ks4_options: [],
     },
     {
       title: "Citizenship",
@@ -614,7 +614,7 @@ export default {
           title: "Key Stage 3",
         },
       ],
-      ks4_options: null,
+      ks4_options: [],
     },
     {
       title: "Music",
@@ -693,7 +693,7 @@ export default {
           title: "Key Stage 4",
         },
       ],
-      ks4_options: null,
+      ks4_options: [],
     },
     {
       title: "French",
@@ -886,7 +886,41 @@ export default {
           title: "Key Stage 4",
         },
       ],
-      ks4_options: null,
+      ks4_options: [],
+    },
+    {
+      title: "RSHE (PSHE)",
+      slug: "rshe-pshe",
+      phases: [
+        {
+          slug: "primary",
+          title: "Primary",
+        },
+        {
+          slug: "secondary",
+          title: "Secondary",
+        },
+      ],
+      keystages: [
+        {
+          slug: "ks1",
+          title: "Key Stage 1",
+        },
+        {
+          slug: "ks2",
+          title: "Key Stage 2",
+        },
+        {
+          slug: "ks3",
+          title: "Key Stage 3",
+        },
+        {
+          slug: "ks4",
+          title: "Key Stage 4",
+        },
+      ],
+      ks4_options: [],
+      cycle: "2",
     },
   ],
 };

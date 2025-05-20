@@ -1,13 +1,17 @@
+import { pathwaySlugs } from "@oaknational/oak-curriculum-schema";
+
 import {
   KeyStageSubjectData,
   SubjectListingPageData,
 } from "@/node-lib/curriculum-api-2023/queries/subjectListing/subjectListing.schema";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 
+type CombinedSubject = KeyStageSubjectData & { isNew: boolean };
+const pathwaySlugsArray = Object.keys(pathwaySlugs.Values);
+
 export const getCombinedSubjects = (
   curriculumData: SubjectListingPageData,
   subjectSlug: string,
-  isEyfs: boolean,
 ) => {
   const subject = curriculumData.subjects.filter(
     (s) => s.subjectSlug === subjectSlug,
@@ -22,105 +26,127 @@ export const getCombinedSubjects = (
     isSlugLegacy(s.programmeSlug),
   );
 
-  // programme count is the maximum of the subject programme count
-  const newSubjectProgrammeCountArray = newSubjectArray.map(
-    (s) => s.programmeCount,
-  );
-  const newSubjectMaxProgrammeCount = Math.max(
-    ...newSubjectProgrammeCountArray,
-  );
-
-  const programmeCount = Math.max(
-    newSubjectMaxProgrammeCount,
-    legacySubjectArray[0]?.programmeCount ?? 0,
-  );
-
-  const getLegacySubjectUnitCount = (
-    pathwaySlug: string | null,
-    legacySubjectArray: KeyStageSubjectData[],
-  ) => {
-    return (
-      legacySubjectArray.find(
-        (legacySubject) => legacySubject.pathwaySlug === pathwaySlug,
-      )?.unitCount ?? 0
+  const getCombinedSubjectArray = () => {
+    const combinedSubjectArray: CombinedSubject[] = [];
+    const subjectHasPathways = !!(
+      newSubjectArray[0]?.pathwaySlug ?? legacySubjectArray[0]?.pathwaySlug
     );
-  };
 
-  const getLegacySubjectLessonCount = (
-    pathwaySlug: string | null,
-    legacySubjectArray: KeyStageSubjectData[],
-  ) => {
-    return (
-      legacySubjectArray.find(
-        (legacySubject) => legacySubject.pathwaySlug === pathwaySlug,
-      )?.lessonCount ?? 0
-    );
-  };
+    switch (true) {
+      case subjectHasPathways:
+        pathwaySlugsArray.forEach((pathwaySlug) => {
+          const newSubjectPathway = newSubjectArray.find(
+            (s) => s.pathwaySlug === pathwaySlug,
+          );
+          const newSubjectHasPathway = !!newSubjectPathway;
 
-  type CombinedSubject = KeyStageSubjectData & { isNew: boolean };
+          const legacySubjectPathway = legacySubjectArray.find(
+            (s) => s.pathwaySlug === pathwaySlug,
+          );
+          const legacySubjectHasPathway = !!legacySubjectPathway;
 
-  const compareByPathway = (a: CombinedSubject, b: CombinedSubject) => {
-    const pathwaySlugA = a.pathwaySlug;
-    const pathwaySlugB = b.pathwaySlug;
+          const newSubjectProgrammeCount =
+            newSubjectPathway?.programmeCount ?? 0;
+          const legacyProgrammeCount =
+            legacySubjectPathway?.programmeCount ?? 0;
 
-    if (pathwaySlugA && pathwaySlugB) {
-      if (pathwaySlugA < pathwaySlugB) {
-        return -1;
-      }
-      if (pathwaySlugA > pathwaySlugB) {
-        return 1;
-      }
-    }
-    return 0;
-  };
+          const newSubjectUnitCount = newSubjectPathway?.unitCount ?? 0;
+          const legacyUnitCount = legacySubjectPathway?.unitCount ?? 0;
+          const totalUnitCount = newSubjectUnitCount + legacyUnitCount;
 
-  const combinedSubjectArray: CombinedSubject[] =
-    newSubjectArray.length > 0
-      ? newSubjectArray
-          .map((newSubject) => {
-            const eyfsUnitCount = legacySubjectArray[0]?.unitCount ?? 0;
-            const eyfsLessonCount = legacySubjectArray[0]?.lessonCount ?? 0;
+          const newSubjectLessonCount = newSubjectPathway?.lessonCount ?? 0;
+          const legacyLessonCount = legacySubjectPathway?.lessonCount ?? 0;
+          const totalLessonCount = newSubjectLessonCount + legacyLessonCount;
 
-            const legacyPathwayUnitCount = getLegacySubjectUnitCount(
-              newSubject.pathwaySlug,
-              legacySubjectArray,
-            );
-            const totalPathwayUnitCount =
-              newSubject.unitCount + legacyPathwayUnitCount;
-
-            const legacyPathwayLessonCount = getLegacySubjectLessonCount(
-              newSubject.pathwaySlug,
-              legacySubjectArray,
-            );
-            const totalPathwayLessonCount =
-              newSubject.lessonCount + legacyPathwayLessonCount;
-
-            return {
-              programmeSlug: newSubject.programmeSlug,
-              programmeCount: programmeCount,
-              subjectSlug: newSubject.subjectSlug,
-              subjectTitle: newSubject.subjectTitle,
-              unitCount: isEyfs ? eyfsUnitCount : totalPathwayUnitCount,
-              lessonCount: isEyfs ? eyfsLessonCount : totalPathwayLessonCount,
-              pathwaySlug: newSubject.pathwaySlug,
-              pathwayTitle: newSubject.pathwayTitle,
+          if (newSubjectHasPathway) {
+            combinedSubjectArray.push({
+              programmeSlug: newSubjectPathway.programmeSlug,
+              programmeCount: Math.max(
+                newSubjectProgrammeCount,
+                legacyProgrammeCount,
+              ),
+              subjectSlug: newSubjectPathway.subjectSlug,
+              subjectTitle: newSubjectPathway.subjectTitle,
+              unitCount: totalUnitCount,
+              lessonCount: totalLessonCount,
+              pathwaySlug: newSubjectPathway.pathwaySlug,
+              pathwayTitle: newSubjectPathway.pathwayTitle,
               isNew: true,
-            };
-          })
-          .sort(compareByPathway)
-      : legacySubjectArray
-          .map((legacySubject) => ({
-            programmeSlug: legacySubject.programmeSlug,
-            programmeCount,
-            subjectSlug: legacySubject.subjectSlug,
-            subjectTitle: legacySubject.subjectTitle,
-            unitCount: legacySubject.unitCount,
-            lessonCount: legacySubject.lessonCount,
-            pathwaySlug: legacySubject.pathwaySlug,
-            pathwayTitle: legacySubject.pathwayTitle,
+              actions: newSubjectPathway.actions,
+              features: newSubjectPathway.features,
+            });
+          } else if (legacySubjectHasPathway) {
+            combinedSubjectArray.push({
+              programmeSlug: legacySubjectPathway.programmeSlug,
+              programmeCount: legacyProgrammeCount,
+              subjectSlug: legacySubjectPathway.subjectSlug,
+              subjectTitle: legacySubjectPathway.subjectTitle,
+              unitCount: legacyUnitCount,
+              lessonCount: legacyLessonCount,
+              pathwaySlug: legacySubjectPathway.pathwaySlug,
+              pathwayTitle: legacySubjectPathway.pathwayTitle,
+              isNew: false,
+              actions: legacySubjectPathway.actions,
+              features: legacySubjectPathway.features,
+            });
+          }
+        });
+        break;
+      case newSubjectArray.length > 0:
+        if (newSubjectArray.length) {
+          const newSubjectProgrammeCount =
+            newSubjectArray[0]?.programmeCount ?? 0;
+          const legacyProgrammeCount =
+            legacySubjectArray[0]?.programmeCount ?? 0;
+
+          const newSubjectUnitCount = newSubjectArray[0]?.unitCount ?? 0;
+          const legacyUnitCount = legacySubjectArray[0]?.unitCount ?? 0;
+          const totalUnitCount = newSubjectUnitCount + legacyUnitCount;
+
+          const newSubjectLessonCount = newSubjectArray[0]?.lessonCount ?? 0;
+          const legacyLessonCount = legacySubjectArray[0]?.lessonCount ?? 0;
+          const totalLessonCount = newSubjectLessonCount + legacyLessonCount;
+
+          newSubjectArray[0] &&
+            combinedSubjectArray.push({
+              programmeSlug: newSubjectArray[0].programmeSlug,
+              programmeCount: Math.max(
+                newSubjectProgrammeCount,
+                legacyProgrammeCount,
+              ),
+              subjectSlug: newSubjectArray[0].subjectSlug,
+              subjectTitle: newSubjectArray[0].subjectTitle,
+              unitCount: totalUnitCount,
+              lessonCount: totalLessonCount,
+              pathwaySlug: newSubjectArray[0].pathwaySlug,
+              pathwayTitle: newSubjectArray[0].pathwayTitle,
+              isNew: true,
+              actions: newSubjectArray[0].actions,
+              features: newSubjectArray[0].features,
+            });
+        }
+        break;
+      default:
+        legacySubjectArray[0] &&
+          combinedSubjectArray.push({
+            programmeSlug: legacySubjectArray[0].programmeSlug,
+            programmeCount: legacySubjectArray[0].programmeCount,
+            subjectSlug: legacySubjectArray[0].subjectSlug,
+            subjectTitle: legacySubjectArray[0].subjectTitle,
+            unitCount: legacySubjectArray[0].unitCount,
+            lessonCount: legacySubjectArray[0].lessonCount,
+            pathwaySlug: legacySubjectArray[0].pathwaySlug,
+            pathwayTitle: legacySubjectArray[0].pathwayTitle,
             isNew: false,
-          }))
-          .sort(compareByPathway);
+            actions: legacySubjectArray[0].actions,
+            features: legacySubjectArray[0].features,
+          });
+    }
+
+    return combinedSubjectArray;
+  };
+
+  const combinedSubjectArray = getCombinedSubjectArray();
 
   return combinedSubjectArray;
 };

@@ -1,14 +1,23 @@
 import { FC, useRef, useEffect } from "react";
-import { OakHeading, OakP, OakIcon } from "@oaknational/oak-components";
+import {
+  OakHeading,
+  OakSpan,
+  OakBox,
+  OakIcon,
+  OakLink,
+} from "@oaknational/oak-components";
+import { useOakConsent } from "@oaknational/oak-consent-client";
+
+import { useTeacherShareButton } from "../TeacherShareButton/useTeacherShareButton";
 
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import DownloadConfirmationNextLessonContainer from "@/components/TeacherComponents/DownloadConfirmationNextLessonContainer";
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
-import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
 import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
+import { OnwardContentSelectedProperties } from "@/browser-lib/avo/Avo";
 
 type DownloadConfirmationProps = {
   lessonSlug: string | null;
@@ -18,12 +27,19 @@ type DownloadConfirmationProps = {
   isCanonical: boolean;
   unitTitle?: string | null;
   nextLessons?: NextLesson[];
-  onwardContentSelected: TrackFns["onwardContentSelected"];
+  onwardContentSelected: (
+    properties: Omit<
+      OnwardContentSelectedProperties,
+      "lessonReleaseDate" | "lessonReleaseCohort"
+    >,
+  ) => void;
   isSpecialist?: boolean;
   keyStageSlug: CurriculumTrackingProps["keyStageSlug"];
   keyStageTitle: CurriculumTrackingProps["keyStageTitle"];
   subjectSlug: CurriculumTrackingProps["subjectSlug"];
   subjectTitle: CurriculumTrackingProps["subjectTitle"];
+  isLegacy: boolean;
+  lessonReleaseDate: string;
 };
 
 const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
@@ -40,15 +56,27 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
   keyStageTitle,
   subjectSlug,
   subjectTitle,
+  lessonReleaseDate,
+  isLegacy,
 }) => {
   const displayNextLessonContainer =
     !isCanonical && unitSlug && programmeSlug && unitTitle;
   const isNextLessonsAvailable = nextLessons && nextLessons.length > 0;
 
+  const { state } = useOakConsent();
+  const cookiesNotAccepted = !!state.policyConsents.find(
+    (policy) =>
+      policy.consentState === "denied" || policy.consentState === "pending",
+  );
+
   const focusRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
     focusRef.current?.focus();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   }, []);
 
   if (lessonSlug === null) {
@@ -74,15 +102,22 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
       keyStageTitle,
       subjectSlug,
       subjectTitle,
+      lessonReleaseDate,
+      lessonReleaseCohort: isLegacy ? "2020-2023" : "2023-2026",
     },
     overrideExistingShareId: true,
+  });
+
+  const { handleClick, copiedComponent } = useTeacherShareButton({
+    shareUrl,
+    shareActivated,
   });
 
   const teacherShareButton = (
     <TeacherShareButton
       label="Share resources with colleague"
       shareUrl={shareUrl}
-      shareActivated={shareActivated}
+      handleClick={handleClick}
       variant="primary"
     />
   );
@@ -131,15 +166,15 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
               iconBackground="grey20"
               data-testid="back-to-lesson-link"
               size="small"
-              onClick={() => {
+              onClick={() =>
                 onwardContentSelected({
                   lessonName: lessonTitle,
                   unitName: unitTitle,
                   unitSlug: unitSlug,
                   lessonSlug: lessonSlug,
                   onwardIntent: "view-lesson",
-                });
-              }}
+                })
+              }
             />
           ) : (
             <ButtonAsLink
@@ -168,11 +203,32 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
             Thanks for downloading
           </OakHeading>
 
-          <OakP $font={"body-1"}>
-            We hope you find the resources useful. Click the question mark in
-            the bottom-right corner to share your feedback.
-          </OakP>
+          <OakBox $font={["heading-light-6", "heading-light-5"]}>
+            <OakSpan>Our resources work best if you </OakSpan>
+            <OakLink
+              href={
+                "https://support.thenational.academy/how-to-install-the-google-fonts-lexend-and-kalan"
+              }
+              target={"_blank"}
+              aria-label={
+                "install the Google Fonts 'Lexend' and 'Kalam' (opens in a new tab)"
+              }
+              iconName={"external"}
+              isTrailingIcon={true}
+              iconHeight={"all-spacing-6"}
+              iconWidth={"all-spacing-6"}
+            >
+              install the Google Fonts ‘Lexend’ and ‘Kalam’
+            </OakLink>
+            <OakSpan>
+              .{" "}
+              {cookiesNotAccepted
+                ? ""
+                : "Click the question mark in the bottom-right of the page if you need extra help with this."}
+            </OakSpan>
+          </OakBox>
           {teacherShareButton}
+          {copiedComponent}
         </Flex>
       </Flex>
 

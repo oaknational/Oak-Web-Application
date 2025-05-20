@@ -45,6 +45,7 @@ export type VideoPlayerProps = {
   pathwayData?: PupilPathwayData;
   isAudioClip?: boolean;
   loadingTextColor?: OakColorToken;
+  defaultHiddenCaptions?: boolean;
 };
 
 export type VideoEventCallbackArgs = {
@@ -53,6 +54,28 @@ export type VideoEventCallbackArgs = {
   duration: number | null;
   muted: boolean;
 };
+
+function VideoContainer({ children }: { children: React.ReactNode }) {
+  return (
+    <OakFlex
+      // NOTE: Hiding video contents because otherwise we get some percy
+      // snapshots loaded and some pending load depending on the timing
+      // (race condition)
+      data-percy-hide="contents"
+      $alignItems={"center"}
+      $justifyContent={"center"}
+      $ba={"border-solid-l"}
+      $minWidth={"100%"}
+      $borderColor={"black"}
+      style={{
+        aspectRatio: "16/9",
+        boxSizing: "content-box",
+      }}
+    >
+      {children}
+    </OakFlex>
+  );
+}
 
 const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   const {
@@ -66,6 +89,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     pathwayData,
     isAudioClip,
     loadingTextColor = "black",
+    defaultHiddenCaptions = false,
   } = props;
 
   const mediaElRef = useRef<MuxPlayerElement>(null);
@@ -169,11 +193,37 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
       });
     }
   };
-  const onError = (evt: Event) => {
+
+  /**
+   * Check if the provided error event is a network error. If it is, check the
+   * response code to determine if it should be ignored. This is because some
+   * network errors are expected and can be handled gracefully.
+   *
+   * @param evt - the error event
+   */
+  const checkNetworkError = (
+    evt: Event,
+  ): { isNetworkError: boolean; ignore?: boolean } => {
     const networkError =
       (evt as CustomEvent).detail?.data?.type === "networkError";
-    // Don't report network errors.
+
     if (networkError) {
+      const networkErrorCode = (evt as CustomEvent).detail?.data?.response
+        ?.code;
+
+      if (networkErrorCode === 403) {
+        return { isNetworkError: true, ignore: false };
+      } else {
+        return { isNetworkError: true, ignore: true };
+      }
+    }
+
+    return { isNetworkError: false };
+  };
+
+  const onError = (evt: Event) => {
+    const networkError = checkNetworkError(evt);
+    if (networkError.ignore) {
       return;
     }
 
@@ -188,13 +238,16 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     const hasMaxAttempts = newReloadOnErrors.length === RELOAD_ATTEMPTS;
     const isFirstAttempt = newReloadOnErrors.length === 1;
     const willReload = prevReloadOnErrorsLength !== newReloadOnErrors.length;
-    // Only report the first and last error
+
+    // Only report the first and last error (ignoring all network errors)
     const shouldReport =
-      hasMaxAttempts || (willReload && (isFirstAttempt || hasMaxAttempts));
+      !networkError.isNetworkError &&
+      (hasMaxAttempts || (willReload && (isFirstAttempt || hasMaxAttempts)));
 
     if (!shouldReport) {
       return;
     }
+
     const originalError = evt instanceof CustomEvent ? evt.detail : evt;
     const error = new OakError({
       code:
@@ -204,26 +257,17 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
       originalError,
       meta: metadata,
     });
+
     reportError(error, { ...getState() });
   };
 
   if (videoToken.loading || thumbnailToken.loading || storyboardToken.loading) {
     return (
-      <OakFlex
-        $alignItems={"center"}
-        $justifyContent={"center"}
-        $ba={"border-solid-m"}
-        $minWidth={"100%"}
-        $borderColor={"black"}
-        style={{
-          aspectRatio: "16/9",
-          boxSizing: "content-box",
-        }}
-      >
+      <VideoContainer>
         <OakP $color={loadingTextColor} $textAlign="center">
           Loading...
         </OakP>
-      </OakFlex>
+      </VideoContainer>
     );
   }
 
@@ -247,15 +291,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   }
 
   return (
-    <OakFlex
-      $flexDirection={"column"}
-      $ba={"border-solid-l"}
-      $minWidth={"100%"}
-      $borderColor={"black"}
-      style={{
-        boxSizing: "content-box",
-      }}
-    >
+    <VideoContainer>
       <MuxPlayer
         key={reloadOnErrors.length}
         preload="metadata"
@@ -282,12 +318,13 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
             mediaElRef.current?.play();
           }
         }}
+        defaultHiddenCaptions={defaultHiddenCaptions}
         style={{
           aspectRatio: "16/9",
           overflow: "hidden",
         }}
       />
-    </OakFlex>
+    </VideoContainer>
   );
 };
 

@@ -133,6 +133,8 @@ describe("PupilExperienceView", () => {
           browseData={lessonBrowseData}
           hasWorksheet={false}
           hasAdditionalFiles={false}
+          additionalFiles={null}
+          worksheetInfo={null}
           initialSection="overview"
           pageType="browse"
         />,
@@ -165,6 +167,8 @@ describe("PupilExperienceView", () => {
             browseData={lessonBrowseData}
             hasWorksheet={false}
             hasAdditionalFiles={false}
+            additionalFiles={null}
+            worksheetInfo={null}
             initialSection="overview"
             pageType="browse"
           />,
@@ -193,6 +197,8 @@ describe("PupilExperienceView", () => {
         browseData={lessonBrowseData}
         hasWorksheet={false}
         hasAdditionalFiles={false}
+        additionalFiles={null}
+        worksheetInfo={null}
         initialSection="overview"
         pageType="browse"
       />,
@@ -228,6 +234,8 @@ describe("PupilExperienceView", () => {
         browseData={lessonBrowseData}
         hasWorksheet={false}
         hasAdditionalFiles={false}
+        additionalFiles={null}
+        worksheetInfo={null}
         initialSection="overview"
         pageType="browse"
       />,
@@ -272,6 +280,8 @@ describe("PupilExperienceView", () => {
         browseData={lessonBrowseData}
         hasWorksheet={false}
         hasAdditionalFiles={false}
+        additionalFiles={null}
+        worksheetInfo={null}
         initialSection="overview"
         pageType="browse"
       />,
@@ -280,6 +290,99 @@ describe("PupilExperienceView", () => {
     waitFor(() => {
       expect(getByRole("alertdialog")).not.toBeInTheDocument();
     });
+  });
+
+  it("should render the default message on lessons that age restriction and no content guidance", () => {
+    const lessonContent = lessonContentFixture({
+      lessonTitle: "Lesson Title",
+      contentGuidance: null,
+      supervisionLevel: null,
+    });
+    const lessonBrowseData = lessonBrowseDataFixture({
+      features: {
+        ageRestriction: "7_and_above",
+      },
+    });
+
+    jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
+      createLessonEngineContext({
+        currentSection: "overview",
+      }),
+    );
+    const { getByRole } = render(
+      <PupilExperienceView
+        lessonContent={lessonContent}
+        browseData={lessonBrowseData}
+        hasWorksheet={false}
+        hasAdditionalFiles={false}
+        additionalFiles={null}
+        worksheetInfo={null}
+        initialSection="overview"
+        pageType="browse"
+      />,
+    );
+    const dialog = getByRole("alertdialog");
+
+    expect(dialog).toBeInTheDocument();
+    expect(dialog).toHaveTextContent(
+      "To view this lesson, you must be in year 7 and above",
+    );
+    expect(dialog).toHaveTextContent(
+      "Speak to an adult before starting this lesson.",
+    );
+  });
+
+  it("should render the correct message on lessons that age restriction and content guidance", () => {
+    const supervisionLevel = "Supervision Level";
+    const contentguidanceLabel = "Guidance Title";
+    const lessonContent = lessonContentFixture({
+      lessonTitle: "Lesson Title",
+      contentGuidance: [
+        {
+          contentguidanceLabel,
+          contentguidanceArea: "Guidance Area",
+          contentguidanceDescription: "Guidance Description",
+        },
+      ],
+      supervisionLevel,
+    });
+    const lessonBrowseData = lessonBrowseDataFixture({
+      features: {
+        ageRestriction: "10_and_above",
+      },
+    });
+
+    jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
+      createLessonEngineContext({
+        currentSection: "overview",
+      }),
+    );
+    const { getByTestId, getByRole } = render(
+      <PupilExperienceView
+        lessonContent={lessonContent}
+        browseData={lessonBrowseData}
+        hasWorksheet={false}
+        hasAdditionalFiles={false}
+        additionalFiles={null}
+        worksheetInfo={null}
+        initialSection="overview"
+        pageType="browse"
+      />,
+    );
+    const dialog = getByRole("alertdialog");
+
+    expect(dialog).toBeInTheDocument();
+    expect(dialog).toHaveTextContent(
+      "To view this lesson, you must be in year 10 and above",
+    );
+    expect(dialog).toHaveTextContent(contentguidanceLabel);
+    expect(dialog).toHaveTextContent(supervisionLevel);
+    expect(getByTestId("content-guidance-info")).toHaveTextContent(
+      contentguidanceLabel,
+    );
+    expect(getByTestId("suervision-level-info")).toHaveTextContent(
+      supervisionLevel,
+    );
   });
 
   it.skip("should navigate away from page when 'take me back' is clicked", async () => {
@@ -312,6 +415,8 @@ describe("PupilExperienceView", () => {
         browseData={lessonBrowseData}
         hasWorksheet={false}
         hasAdditionalFiles={false}
+        additionalFiles={null}
+        worksheetInfo={null}
         initialSection="overview"
         pageType="browse"
       />,
@@ -352,6 +457,8 @@ describe("PupilExperienceView", () => {
         browseData={lessonBrowseData}
         hasWorksheet={false}
         hasAdditionalFiles={false}
+        additionalFiles={null}
+        worksheetInfo={null}
         initialSection="overview"
         pageType="browse"
       />,
@@ -394,6 +501,8 @@ describe("PupilExperienceView", () => {
         browseData={lessonBrowseData}
         hasWorksheet={false}
         hasAdditionalFiles={false}
+        additionalFiles={null}
+        worksheetInfo={null}
         initialSection="overview"
         pageType="browse"
       />,
@@ -429,6 +538,8 @@ describe("PupilExperienceView", () => {
         browseData={lessonBrowseData}
         hasWorksheet={false}
         hasAdditionalFiles={false}
+        additionalFiles={null}
+        worksheetInfo={null}
         initialSection="review"
         pageType="browse"
       />,
@@ -456,6 +567,8 @@ describe("PupilExperienceView", () => {
         browseData={lessonBrowseData}
         hasWorksheet={false}
         hasAdditionalFiles={false}
+        additionalFiles={null}
+        worksheetInfo={null}
         initialSection="overview"
         pageType="browse"
       />,

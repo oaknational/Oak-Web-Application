@@ -1,10 +1,10 @@
+import { isArray, isString } from "lodash";
 import {
   OakFlex,
   OakIcon,
   OakQuizResultItem,
   OakSpan,
 } from "@oaknational/oak-components";
-import { isArray, isString } from "lodash";
 
 import { QuestionState } from "../QuizUtils/questionTypes";
 
@@ -45,7 +45,7 @@ const CorrectAnswerSection = (props: CorectAnswerSectionProps) => {
               : undefined;
 
             return (
-              <MathJaxWrap>
+              <MathJaxWrap key={`result-${index}`}>
                 <OakQuizResultItem
                   key={index}
                   standardText={correctAnswerText}
@@ -93,6 +93,7 @@ export const QuizResultInner = (props: ResultsInnerProps) => {
       {!isHint && (
         <OakIcon
           iconName={grade === 1 ? "tick" : "cross"}
+          alt={grade === 1 ? "tick" : "cross"}
           $background={grade === 1 ? "icon-success" : "icon-error"}
           $colorFilter={"white"}
           $borderRadius={"border-radius-circle"}

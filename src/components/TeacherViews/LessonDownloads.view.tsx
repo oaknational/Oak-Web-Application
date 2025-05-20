@@ -10,11 +10,13 @@ import { useOnboardingStatus } from "../TeacherComponents/hooks/useOnboardingSta
 
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import {
+  KeyStageTitleValueType,
+  PathwayValueType,
+} from "@/browser-lib/avo/Avo";
 import getFormattedDetailsForTracking from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import useLessonDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLessonDownloadExistenceCheck";
 import useResourceFormSubmit from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit";
-import useOptionalDownloadSignUp from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useOptionalDownloadSignUp";
 import {
   ResourceFormProps,
   DownloadResourceType,
@@ -29,16 +31,15 @@ import {
   getCommonPathway,
   getBreadcrumbsForSpecialistLessonPathway,
   getBreadCrumbForSpecialistDownload,
+  lessonIsSpecialist,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import {
   LessonPathway,
   SpecialistLessonPathway,
-  lessonIsSpecialist,
 } from "@/components/TeacherComponents/types/lesson.types";
 import ResourcePageLayout from "@/components/TeacherComponents/ResourcePageLayout";
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import DownloadConfirmation from "@/components/TeacherComponents/DownloadConfirmation";
-import LessonDownloadSignUpButtons from "@/components/TeacherComponents/LessonDownloadSignUpButtons/LessonDownloadSignUpButtons";
 import {
   LessonDownloadsPageData,
   NextLesson,
@@ -47,7 +48,10 @@ import { useResourceFormState } from "@/components/TeacherComponents/hooks/downl
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import { LEGACY_COHORT } from "@/config/cohort";
 import { SpecialistLessonDownloads } from "@/node-lib/curriculum-api-2023/queries/specialistLessonDownload/specialistLessonDownload.schema";
-import { CopyrightContent } from "@/node-lib/curriculum-api-2023/shared.schema";
+import {
+  CopyrightContent,
+  Actions,
+} from "@/node-lib/curriculum-api-2023/shared.schema";
 
 type BaseLessonDownload = {
   expired: boolean | null;
@@ -56,11 +60,14 @@ type BaseLessonDownload = {
   lessonSlug: string;
   lessonCohort?: string | null;
   downloads: LessonDownloadsPageData["downloads"];
+  additionalFiles: LessonDownloadsPageData["additionalFiles"];
   copyrightContent?: CopyrightContent;
   isSpecialist: false;
   developmentStageTitle?: string | null;
   geoRestricted: boolean | null;
   loginRequired: boolean | null;
+  actions?: Actions | null;
+  lessonReleaseDate: string | null;
 };
 
 type CanonicalLesson = BaseLessonDownload & {
@@ -96,11 +103,16 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     lessonTitle,
     lessonSlug,
     downloads,
+    additionalFiles,
     expired,
     isSpecialist,
     copyrightContent,
     updatedAt,
+    actions,
+    lessonReleaseDate,
   } = lesson;
+
+  const showRiskAssessmentBanner = !!actions?.isPePractical;
 
   const commonPathway =
     lessonIsSpecialist(lesson) && !props.isCanonical
@@ -117,6 +129,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           lessonCohort: LEGACY_COHORT,
           keyStageSlug: null,
           keyStageTitle: null,
+          pathwayTitle: null,
         }
       : getCommonPathway(
           props.isCanonical ? props.lesson.pathways : [props.lesson],
@@ -131,6 +144,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     unitSlug,
     unitTitle,
     lessonCohort,
+    pathwayTitle,
   } = commonPathway;
   const { track } = useAnalytics();
   const isLegacyDownload = !lessonCohort || lessonCohort === LEGACY_COHORT;
@@ -171,21 +185,11 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     hubspotLoaded,
   } = useResourceFormState({
     downloadResources: downloadsFilteredByCopyright,
+    additionalFilesResources: additionalFiles,
     type: "download",
   });
 
   const onboardingStatus = useOnboardingStatus();
-  const {
-    showDownloadSignUpButtons,
-    showTermsAgreement,
-    setShowTermsAgreement,
-  } = useOptionalDownloadSignUp();
-
-  const onDownloadWithoutSignUpClick = () => {
-    setShowTermsAgreement(
-      onboardingStatus === "not-onboarded" || onboardingStatus === "unknown",
-    );
-  };
 
   const noResourcesSelected =
     form.watch().resources === undefined || form.watch().resources.length === 0;
@@ -262,6 +266,9 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         examBoard: examboard.success ? examboard.data : null,
         tierName: tier.success ? tier.data : null,
         componentType: "lesson_download_button",
+        pathway: pathwayTitle as PathwayValueType,
+        lessonReleaseCohort: isLegacyDownload ? "2020-2023" : "2023-2026",
+        lessonReleaseDate: lessonReleaseDate ?? "unreleased",
       });
     } catch (error) {
       setIsAttemptingDownload(false);
@@ -275,6 +282,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   useLessonDownloadExistenceCheck({
     lessonSlug,
     resourcesToCheck: activeResources as DownloadResourceType[],
+    additionalFilesIdsToCheck: null, // replace later with data
     onComplete: setActiveResources,
     isLegacyDownload: isLegacyDownload,
   });
@@ -347,7 +355,15 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                 data-testid="downloads-confirmation"
                 isCanonical={props.isCanonical}
                 nextLessons={lesson.nextLessons}
-                onwardContentSelected={onwardContentSelected}
+                onwardContentSelected={(props) => {
+                  onwardContentSelected({
+                    ...props,
+                    lessonReleaseCohort: isLegacyDownload
+                      ? "2020-2023"
+                      : "2023-2026",
+                    lessonReleaseDate: lessonReleaseDate ?? "unreleased",
+                  });
+                }}
                 isSpecialist={isSpecialist}
                 subjectSlug={subjectSlug}
                 subjectTitle={subjectTitle}
@@ -357,6 +373,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                     ? null
                     : (keyStageTitle as KeyStageTitleValueType)
                 }
+                isLegacy={isLegacyDownload}
+                lessonReleaseDate={lessonReleaseDate ?? "unreleased"}
               />
             );
           }
@@ -385,13 +403,17 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               hideSelectAll={Boolean(expired)}
               updatedAt={updatedAt}
               withHomeschool={true}
-              showTermsAgreement={showTermsAgreement}
+              showTermsAgreement={
+                onboardingStatus === "not-onboarded" ||
+                onboardingStatus === "unknown"
+              }
               isLoading={onboardingStatus === "loading"}
               cardGroup={
                 !showNoResources && (
                   <DownloadCardGroup
                     control={form.control}
                     downloads={downloadsFilteredByCopyright}
+                    additionalFiles={additionalFiles}
                     hasError={form.errors?.resources ? true : false}
                     triggerForm={form.trigger}
                   />
@@ -420,15 +442,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                   }
                 />
               }
-              showDownloadSignUpButtons={showDownloadSignUpButtons}
-              signUpButtons={
-                showDownloadSignUpButtons &&
-                !showTermsAgreement && (
-                  <LessonDownloadSignUpButtons
-                    onDownloadWithoutSignUpClick={onDownloadWithoutSignUpClick}
-                  />
-                )
-              }
+              showRiskAssessmentBanner={showRiskAssessmentBanner}
             />
           );
         })()}

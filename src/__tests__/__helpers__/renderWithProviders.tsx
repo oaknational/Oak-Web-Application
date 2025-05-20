@@ -21,6 +21,7 @@ import { OverlayProvider } from "react-aria";
 import { MemoryRouterProviderProps } from "next-router-mock/dist/MemoryRouterProvider/MemoryRouterProvider";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { MockOakConsentClient } from "@oaknational/oak-consent-client";
+import { pick } from "lodash";
 
 import "../../browser-lib/oak-globals/oakGlobals";
 import ErrorBoundary from "../../components/AppComponents/ErrorBoundary";
@@ -31,6 +32,7 @@ import MockedAnalyticsProvider from "./MockedAnalyticsProvider";
 
 import theme, { OakTheme } from "@/styles/theme";
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
+import { OakToastProvider } from "@/context/OakToast/OakToastProvider";
 
 export type ProviderProps = {
   children?: React.ReactNode;
@@ -46,6 +48,7 @@ type ProviderPropsByName = {
   overlay: Record<string, never>;
   toast: Record<string, never>;
   menu: Record<string, never>;
+  oakToast: Record<string, never>;
 };
 
 export type ProviderPartialProps = {
@@ -70,7 +73,8 @@ const providersByName: {
   overlay: [OverlayProvider],
   toast: [ToastProvider],
   menu: [MenuProvider],
-};
+  oakToast: [OakToastProvider],
+} as const;
 
 type ProviderName = keyof ProviderPropsByName;
 
@@ -138,5 +142,11 @@ export const renderHookWithProviders = (
     });
   };
 };
+
+export function renderWithProvidersByName(
+  names: (keyof ProviderPropsByName)[],
+) {
+  return renderWithProviders(pick(allProviders, ...names));
+}
 
 export default renderWithProviders;

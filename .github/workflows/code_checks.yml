@@ -12,9 +12,9 @@ on:
   merge_group:
 
 jobs:
-  lint_test_sonar:
-    name: lint, check types, test, Sonar
-    runs-on: ubuntu-latest
+  check:
+    name: lint, check types
+    runs-on: ubuntu-24.04
     steps:
       # Check out full history so Sonar can identify PR changes.
       - uses: actions/checkout@v4
@@ -37,6 +37,24 @@ jobs:
 
       # Check types.
       - run: npm run check-types
+
+  test:
+    name: test, Sonar
+    runs-on: 
+      group: large-runners
+    steps:
+      # Check out full history so Sonar can identify PR changes.
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          cache: "npm"
+
+      # Install.
+      - run: npm ci
 
       # Unit tests, no integration tests.
       - run: npm run test:ci
