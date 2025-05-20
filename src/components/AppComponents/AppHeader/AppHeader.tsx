@@ -112,7 +112,7 @@ const AppHeader: FC<HeaderProps> = () => {
                   <OakSecondaryButton
                     name="sign up"
                     font={"body-3-bold"}
-                    pv="inner-padding-xs"
+                    pv="inner-padding-ssx"
                     ph="inner-padding-xs"
                   >
                     Sign up
