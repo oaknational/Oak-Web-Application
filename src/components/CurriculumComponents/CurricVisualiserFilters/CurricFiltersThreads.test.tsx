@@ -15,6 +15,7 @@ describe("CurricFiltersThreads", () => {
           tiers: [],
           years: ["10", "11"],
           threads: [],
+          pathways: [],
         }}
         onChangeFilters={() => {}}
         data={basicSetup}
@@ -38,6 +39,7 @@ describe("CurricFiltersThreads", () => {
           tiers: [],
           years: ["10", "11"],
           threads: ["thread2"],
+          pathways: [],
         }}
         onChangeFilters={() => {}}
         data={basicSetup}
@@ -63,6 +65,7 @@ describe("CurricFiltersThreads", () => {
           tiers: [],
           years: ["10", "11"],
           threads: [],
+          pathways: [],
         }}
         onChangeFilters={onChangeFilters}
         data={basicSetup}
@@ -79,6 +82,7 @@ describe("CurricFiltersThreads", () => {
       threads: ["thread1"],
       tiers: [],
       years: ["10", "11"],
+      pathways: [],
     });
     act(() => elements[2]!.click());
     expect(onChangeFilters).toHaveBeenCalledWith({
@@ -87,6 +91,7 @@ describe("CurricFiltersThreads", () => {
       threads: ["thread2"],
       tiers: [],
       years: ["10", "11"],
+      pathways: [],
     });
     act(() => elements[3]!.click());
     expect(onChangeFilters).toHaveBeenCalledWith({
@@ -95,6 +100,7 @@ describe("CurricFiltersThreads", () => {
       threads: ["thread3"],
       tiers: [],
       years: ["10", "11"],
+      pathways: [],
     });
   });
 });

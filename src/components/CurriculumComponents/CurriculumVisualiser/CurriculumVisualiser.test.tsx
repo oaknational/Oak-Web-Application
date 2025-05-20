@@ -2,7 +2,6 @@ import userEvent from "@testing-library/user-event";
 import { waitFor } from "@testing-library/dom";
 import { act, within } from "@testing-library/react";
 
-import CurriculumVisualiser from "./CurriculumVisualiser";
 import {
   noMissingUnitsFixture,
   missingUnitsForFirstYearPrimaryFixture,
@@ -19,6 +18,8 @@ import {
   secondaryMathsYearData,
   secondaryScienceYearData,
 } from "./fixtures";
+
+import CurriculumVisualiser from ".";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { YearData } from "@/utils/curriculum/types";
@@ -57,9 +58,11 @@ const curriculumVisualiserFixture = {
     years: ["7", "8", "9", "10", "11"],
     tiers: [],
     childSubjects: [],
+    pathways: [],
     subjectCategories: [],
     threads: [],
   },
+  ks4Options: [],
   selectedYear: null,
   ks4OptionSlug: "edexcel",
   yearData: {
@@ -124,6 +127,7 @@ const curriculumVisualiserFixture = {
         },
       ],
       childSubjects: [],
+      pathways: [],
       tiers: [],
       subjectCategories: [],
       isSwimming: false,
@@ -244,6 +248,7 @@ describe("Curriculum visualiser filter states", () => {
 
       const filterFixture = {
         childSubjects: [],
+        pathways: [],
         subjectCategories: ["sub-cat-1"],
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
@@ -269,6 +274,7 @@ describe("Curriculum visualiser filter states", () => {
 
       const filterFixture = {
         childSubjects: [],
+        pathways: [],
         subjectCategories: ["sub-cat-1"],
         tiers: [],
         years: ["7"],
@@ -294,6 +300,7 @@ describe("Curriculum visualiser filter states", () => {
 
       const filterFixture = {
         childSubjects: [],
+        pathways: [],
         subjectCategories: ["sub-cat-1"],
         tiers: [],
         years: ["8"],
@@ -319,6 +326,7 @@ describe("Curriculum visualiser filter states", () => {
 
       const filterFixture = {
         childSubjects: [],
+        pathways: [],
         subjectCategories: ["sub-cat-1"],
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
@@ -351,6 +359,7 @@ describe("Curriculum visualiser filter states", () => {
 
       const filterFixture = {
         childSubjects: [],
+        pathways: [],
         subjectCategories: ["sub-cat-1"],
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
@@ -379,6 +388,7 @@ describe("Curriculum visualiser filter states", () => {
 
       const filterFixture = {
         childSubjects: [],
+        pathways: [],
         subjectCategories: ["sub-cat-1"],
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
@@ -407,6 +417,7 @@ describe("Curriculum visualiser filter states", () => {
 
       const filterFixture = {
         childSubjects: [],
+        pathways: [],
         subjectCategories: ["sub-cat-1"],
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
@@ -441,6 +452,7 @@ describe("Curriculum visualiser filter states", () => {
 
       const filterFixture = {
         childSubjects: [],
+        pathways: [],
         subjectCategories: ["sub-cat-1"],
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
@@ -468,6 +480,7 @@ describe("Curriculum visualiser filter states", () => {
 
       const filterFixture = {
         childSubjects: [],
+        pathways: [],
         subjectCategories: ["sub-cat-1"],
         tiers: [],
         years: ["1", "2", "3", "4", "5", "6"],
@@ -495,6 +508,7 @@ describe("Curriculum visualiser filter states", () => {
 
       const filterFixture = {
         childSubjects: [],
+        pathways: [],
         subjectCategories: ["sub-cat-1"],
         tiers: [],
         years: ["1", "2", "3", "4", "5", "6"],
@@ -524,6 +538,10 @@ describe("Year group filter headings display correctly", () => {
   const baseFixture = {
     ...curriculumVisualiserFixture,
     yearData: {},
+    ks4Options: [
+      { slug: "core", title: "Core" },
+      { slug: "gcse", title: "GCSE" },
+    ],
   };
 
   describe("Secondary Phase", () => {
@@ -540,6 +558,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: ["higher"],
           years: ["7", "8", "9", "10", "11"],
           threads: [],
+          pathways: [],
         };
 
         const { container } = render(
@@ -551,8 +570,9 @@ describe("Year group filter headings display correctly", () => {
 
         // Check each year block individually
         for (const year of ["7", "8", "9", "10", "11"]) {
+          const type = ["10", "11"].includes(year) ? "non_core" : "core";
           const yearBlock = container.querySelector(
-            `[id="${year}"]`,
+            `[data-testid="year-${type}-${year}"]`,
           ) as HTMLElement;
           expect(yearBlock).not.toBeNull();
 
@@ -576,6 +596,7 @@ describe("Year group filter headings display correctly", () => {
         const filterFixture = {
           subjectCategories: ["all"],
           childSubjects: [],
+          pathways: [],
           tiers: [],
           years: ["7"],
           threads: [],
@@ -588,7 +609,9 @@ describe("Year group filter headings display correctly", () => {
           />,
         );
 
-        const yearBlock = container.querySelector('[id="7"]') as HTMLElement;
+        const yearBlock = container.querySelector(
+          '[data-testid="year-core-7"]',
+        ) as HTMLElement;
         expect(yearBlock).not.toBeNull();
 
         const yearHeading = within(yearBlock).getByTestId("year-heading");
@@ -602,6 +625,7 @@ describe("Year group filter headings display correctly", () => {
         const filterFixture = {
           subjectCategories: ["biology"],
           childSubjects: [],
+          pathways: [],
           tiers: [],
           years: ["7"],
           threads: [],
@@ -614,7 +638,9 @@ describe("Year group filter headings display correctly", () => {
           />,
         );
 
-        const yearBlock = container.querySelector('[id="7"]') as HTMLElement;
+        const yearBlock = container.querySelector(
+          '[data-testid="year-core-7"]',
+        ) as HTMLElement;
         expect(yearBlock).not.toBeNull();
 
         const yearHeading = within(yearBlock).getByTestId("year-heading");
@@ -628,6 +654,7 @@ describe("Year group filter headings display correctly", () => {
         const filterFixture = {
           subjectCategories: ["chemistry"],
           childSubjects: [],
+          pathways: [],
           tiers: [],
           years: ["7"],
           threads: [],
@@ -640,7 +667,9 @@ describe("Year group filter headings display correctly", () => {
           />,
         );
 
-        const yearBlock = container.querySelector('[id="7"]') as HTMLElement;
+        const yearBlock = container.querySelector(
+          '[data-testid="year-core-7"]',
+        ) as HTMLElement;
         expect(yearBlock).not.toBeNull();
 
         const yearHeading = within(yearBlock).getByTestId("year-heading");
@@ -654,6 +683,7 @@ describe("Year group filter headings display correctly", () => {
         const filterFixture = {
           subjectCategories: ["physics"],
           childSubjects: [],
+          pathways: [],
           tiers: [],
           years: ["7"],
           threads: [],
@@ -666,7 +696,9 @@ describe("Year group filter headings display correctly", () => {
           />,
         );
 
-        const yearBlock = container.querySelector('[id="7"]') as HTMLElement;
+        const yearBlock = container.querySelector(
+          '[data-testid="year-core-7"]',
+        ) as HTMLElement;
         expect(yearBlock).not.toBeNull();
 
         const yearHeading = within(yearBlock).getByTestId("year-heading");
@@ -683,6 +715,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: ["foundation"],
           years: ["10"],
           threads: [],
+          pathways: [],
         };
 
         const { container } = render(
@@ -692,7 +725,9 @@ describe("Year group filter headings display correctly", () => {
           />,
         );
 
-        const yearBlock = container.querySelector('[id="10"]') as HTMLElement;
+        const yearBlock = container.querySelector(
+          '[data-testid="year-non_core-10"]',
+        ) as HTMLElement;
         expect(yearBlock).not.toBeNull();
 
         const yearHeading = within(yearBlock).getByTestId("year-heading");
@@ -708,6 +743,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: ["higher"],
           years: ["11"],
           threads: [],
+          pathways: [],
         };
 
         const { container } = render(
@@ -717,7 +753,9 @@ describe("Year group filter headings display correctly", () => {
           />,
         );
 
-        const yearBlock = container.querySelector('[id="11"]') as HTMLElement;
+        const yearBlock = container.querySelector(
+          '[data-testid="year-non_core-11"]',
+        ) as HTMLElement;
         expect(yearBlock).not.toBeNull();
 
         const yearHeading = within(yearBlock).getByTestId("year-heading");
@@ -733,6 +771,7 @@ describe("Year group filter headings display correctly", () => {
           tiers: ["higher"],
           years: ["10"],
           threads: [],
+          pathways: [],
         };
 
         const { container } = render(
@@ -742,7 +781,9 @@ describe("Year group filter headings display correctly", () => {
           />,
         );
 
-        const yearBlock = container.querySelector('[id="10"]') as HTMLElement;
+        const yearBlock = container.querySelector(
+          '[data-testid="year-non_core-10"]',
+        ) as HTMLElement;
         expect(yearBlock).not.toBeNull();
 
         const yearHeading = within(yearBlock).getByTestId("year-heading");
@@ -761,6 +802,7 @@ describe("Year group filter headings display correctly", () => {
       test("displays Higher tier in year 10 subheading when selected", async () => {
         const filterFixture = {
           childSubjects: [],
+          pathways: [],
           subjectCategories: [],
           tiers: ["higher"],
           years: ["10"],
@@ -774,7 +816,9 @@ describe("Year group filter headings display correctly", () => {
           />,
         );
 
-        const yearBlock = container.querySelector('[id="10"]') as HTMLElement;
+        const yearBlock = container.querySelector(
+          '[data-testid="year-non_core-10"]',
+        ) as HTMLElement;
         expect(yearBlock).not.toBeNull();
 
         const yearHeading = within(yearBlock).getByTestId("year-heading");
@@ -786,6 +830,7 @@ describe("Year group filter headings display correctly", () => {
       test("displays Foundation tier in year 11 subheading when selected", async () => {
         const filterFixture = {
           childSubjects: [],
+          pathways: [],
           subjectCategories: [],
           tiers: ["foundation"],
           years: ["10"],
@@ -817,6 +862,7 @@ describe("Year group filter headings display correctly", () => {
       test("displays subject category in subheading for Year 1, Primary English", async () => {
         const filterFixture = {
           childSubjects: [],
+          pathways: [],
           subjectCategories: ["reading-writing-and-oracy"],
           tiers: [],
           years: ["1"],
@@ -830,7 +876,9 @@ describe("Year group filter headings display correctly", () => {
           />,
         );
 
-        const yearBlock = container.querySelector('[id="1"]') as HTMLElement;
+        const yearBlock = container.querySelector(
+          '[data-testid="year-core-1"]',
+        ) as HTMLElement;
         expect(yearBlock).not.toBeNull();
 
         const yearHeading = within(yearBlock).getByTestId("year-heading");
@@ -849,6 +897,7 @@ describe("Year group filter headings display correctly", () => {
       test("displays Biology subject category in subheading", async () => {
         const filterFixture = {
           childSubjects: [],
+          pathways: [],
           subjectCategories: ["biology"],
           tiers: [],
           years: ["1"],
@@ -862,7 +911,9 @@ describe("Year group filter headings display correctly", () => {
           />,
         );
 
-        const yearBlock = container.querySelector('[id="1"]') as HTMLElement;
+        const yearBlock = container.querySelector(
+          '[data-testid="year-core-1"]',
+        ) as HTMLElement;
         expect(yearBlock).not.toBeNull();
 
         const yearHeading = within(yearBlock).getByTestId("year-heading");
@@ -874,6 +925,7 @@ describe("Year group filter headings display correctly", () => {
       test("displays Chemistry subject category in subheading", async () => {
         const filterFixture = {
           childSubjects: [],
+          pathways: [],
           subjectCategories: ["chemistry"],
           tiers: [],
           years: ["2"],
@@ -887,7 +939,9 @@ describe("Year group filter headings display correctly", () => {
           />,
         );
 
-        const yearBlock = container.querySelector('[id="2"]') as HTMLElement;
+        const yearBlock = container.querySelector(
+          '[data-testid="year-core-2"]',
+        ) as HTMLElement;
         expect(yearBlock).not.toBeNull();
 
         const yearHeading = within(yearBlock).getByTestId("year-heading");
@@ -899,6 +953,7 @@ describe("Year group filter headings display correctly", () => {
       test("displays Physics subject category in subheading", async () => {
         const filterFixture = {
           childSubjects: [],
+          pathways: [],
           subjectCategories: ["physics"],
           tiers: [],
           years: ["3"],
@@ -912,7 +967,9 @@ describe("Year group filter headings display correctly", () => {
           />,
         );
 
-        const yearBlock = container.querySelector('[id="3"]') as HTMLElement;
+        const yearBlock = container.querySelector(
+          '[data-testid="year-core-3"]',
+        ) as HTMLElement;
         expect(yearBlock).not.toBeNull();
 
         const yearHeading = within(yearBlock).getByTestId("year-heading");
@@ -924,6 +981,7 @@ describe("Year group filter headings display correctly", () => {
       test("displays nothing for 'All' subject category in subheading", async () => {
         const filterFixture = {
           childSubjects: [],
+          pathways: [],
           subjectCategories: ["all"],
           tiers: [],
           years: ["4"],
@@ -937,7 +995,9 @@ describe("Year group filter headings display correctly", () => {
           />,
         );
 
-        const yearBlock = container.querySelector('[id="4"]') as HTMLElement;
+        const yearBlock = container.querySelector(
+          '[data-testid="year-core-4"]',
+        ) as HTMLElement;
         expect(yearBlock).not.toBeNull();
 
         const yearHeading = within(yearBlock).getByTestId("year-heading");

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { OakHeading, OakBox } from "@oaknational/oak-components";
 
-import CurriculumVisualiser from "../CurriculumVisualiser/CurriculumVisualiser";
+import CurriculumVisualiser from "../CurriculumVisualiser";
 import { CurricVisualiserLayout } from "../CurricVisualiserLayout";
 import CurricVisualiserFiltersMobile from "../CurricVisualiserFiltersMobile";
 import { CurricVisualiserFiltersDesktop } from "../CurricVisualiserFiltersDesktop";
@@ -13,10 +13,13 @@ import {
   CurriculumUnitsFormattedData,
   CurriculumUnitsTrackingData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { getNumberOfSelectedUnits } from "@/utils/curriculum/getNumberOfSelectedUnits";
-import { highlightedUnitCount } from "@/utils/curriculum/filtering";
+import {
+  getNumberOfSelectedUnits,
+  highlightedUnitCount,
+} from "@/utils/curriculum/filtering";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
+import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 
 type UnitsTabProps = {
   trackingData: CurriculumUnitsTrackingData;
@@ -24,6 +27,7 @@ type UnitsTabProps = {
   filters: CurriculumFilters;
   onChangeFilters: (newFilter: CurriculumFilters) => void;
   slugs: CurriculumSelectionSlugs;
+  ks4Options: Ks4Option[];
 };
 
 export default function UnitsTab({
@@ -32,6 +36,7 @@ export default function UnitsTab({
   filters,
   onChangeFilters,
   slugs,
+  ks4Options,
 }: UnitsTabProps) {
   // Initialize constants
   const isMobile = useMediaQuery("mobile");
@@ -40,9 +45,8 @@ export default function UnitsTab({
   const [unitData, setUnitData] = useState<Unit | null>(null);
 
   const [mobileSelectedYear, setMobileSelectedYear] = useState<string>("");
-  const selectedYear = filters.years.length === 1 ? filters.years[0]! : "all";
 
-  const unitCount = getNumberOfSelectedUnits(yearData, selectedYear, filters);
+  const unitCount = getNumberOfSelectedUnits(yearData, filters);
 
   const highlightedUnits = highlightedUnitCount(
     yearData,
@@ -86,6 +90,7 @@ export default function UnitsTab({
             slugs={slugs}
             onOpenModal={() => {}}
             trackingData={trackingData}
+            ks4Options={ks4Options}
           />
         )}
         <CurricVisualiserLayout
@@ -96,6 +101,7 @@ export default function UnitsTab({
                 onChangeFilters={onChangeFilters}
                 data={formattedData}
                 slugs={slugs}
+                ks4Options={ks4Options}
               />
             )
           }
@@ -104,6 +110,7 @@ export default function UnitsTab({
               unitData={unitData}
               filters={filters}
               ks4OptionSlug={ks4OptionSlug}
+              ks4Options={ks4Options}
               yearData={yearData}
               setUnitData={setUnitData}
               setVisibleMobileYearRefID={setVisibleMobileYearRefID}

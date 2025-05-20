@@ -1,3 +1,165 @@
+# [1.749.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.748.1...v1.749.0) (2025-05-19)
+
+
+### Bug Fixes
+
+* !core => non_core in querystring for curric filtering ([26e0be3](https://github.com/oaknational/Oak-Web-Application/commit/26e0be3f8960b2c5f7385615d8ac3d588e2da70e))
+* <CurricVisualiserMobileHeader/> with new pathways ([a3c32e2](https://github.com/oaknational/Oak-Web-Application/commit/a3c32e29e4cc10dff5e1d8307cd43537020b25a0))
+* add logic to ensure GCSE is correctly appended to a year in TOC ([513a0b3](https://github.com/oaknational/Oak-Web-Application/commit/513a0b3c03a5e927713db94593273e82bb462e93))
+* add swimming unit grouping logic ([2590b50](https://github.com/oaknational/Oak-Web-Application/commit/2590b50bada385fd5c94bb153ba420cf722d0399))
+* added all clause for icons in getValidSubjectCategoryIconById ([27298d8](https://github.com/oaknational/Oak-Web-Application/commit/27298d82020d69a99d6980be78215862df58fd6a))
+* added back in changes from bad conflict resolve ([e10368c](https://github.com/oaknational/Oak-Web-Application/commit/e10368ccdd75cc143b7766ab88cbebac5d6c9d62))
+* added back in mobile modal filtering in curric filtering branch ([5ca968e](https://github.com/oaknational/Oak-Web-Application/commit/5ca968e5c675a26695cf45d80d5e2456c3152155))
+* added defaults to new curriculum visualiser filtering ([091c23d](https://github.com/oaknational/Oak-Web-Application/commit/091c23d1d71094c634dce319b31ca78b6b57b1ed))
+* added in mobile year highlighting into UI ([151e853](https://github.com/oaknational/Oak-Web-Application/commit/151e853528a43727258e6cefd89422c84a069d78))
+* added missing tests for getYearSubheadingText(...) with core/gcse ([36f7a7c](https://github.com/oaknational/Oak-Web-Application/commit/36f7a7c82ea7326e9ce78ff6bccc779d9c4cddc8))
+* added programme_field_overrides?.subject to units page ([838c7ae](https://github.com/oaknational/Oak-Web-Application/commit/838c7aeca780af6cad5f990969926fe639d623bd))
+* added queryString !core to <CurricFiltersYears/> options ([cec1cda](https://github.com/oaknational/Oak-Web-Application/commit/cec1cda351a095b1e71eaa213c53c7b71a0d7f7b))
+* added some debug logging ([d8a1854](https://github.com/oaknational/Oak-Web-Application/commit/d8a185479d932abe5a3be4f08d137e6b84d598db))
+* added story for <OakModalNew/> ([c338aa1](https://github.com/oaknational/Oak-Web-Application/commit/c338aa1ca67af0c9cee3a0f010a559794d7619d5))
+* added text for "All categories" to filtering ([a55206f](https://github.com/oaknational/Oak-Web-Application/commit/a55206fecd989303b23f79b010960494d30859ca))
+* change english "all" icon from "books" to "subject-english" ([54c79fe](https://github.com/oaknational/Oak-Web-Application/commit/54c79fe96ff3e516875edb6512eeff3da8ebf878))
+* change to use 3 different types of layout for curric vis all/core/non-core ([293c32b](https://github.com/oaknational/Oak-Web-Application/commit/293c32b63e0e3c040fe6f8a943d3359b19c1a2e5))
+* changed font for default heading in <OakModalNew/> ([b209dd2](https://github.com/oaknational/Oak-Web-Application/commit/b209dd2af62c32a88792b22dc02e93ca7d53085b))
+* curric filtering sticky header ([c782d53](https://github.com/oaknational/Oak-Web-Application/commit/c782d53987123226137f66bf5551c6dd12dfbde2))
+* docx TOC links ([d1957c1](https://github.com/oaknational/Oak-Web-Application/commit/d1957c1a8dcd5b7a225544deaeef9ca923c838b1))
+* don't include pathway modes if pathway explicitly set ([befb909](https://github.com/oaknational/Oak-Web-Application/commit/befb9096b2f8860f6a4ccb48a2d3bf3ec4107848))
+* ensure pathways only appear in KS4 years in CurricVis ([ec19b01](https://github.com/oaknational/Oak-Web-Application/commit/ec19b01ffc076eb7002fb920610f27dc016db0fa))
+* filtering only if data exists for filters ([e036811](https://github.com/oaknational/Oak-Web-Application/commit/e03681164f239c00e3199bcbb77de99fee72baa9))
+* fix build error ([38150a6](https://github.com/oaknational/Oak-Web-Application/commit/38150a6dc26bd842860f19814731451f28094d18))
+* fix default for subjectCategories ([0dcc326](https://github.com/oaknational/Oak-Web-Application/commit/0dcc326a550df7766a21c1b7eccfad856a2124d1))
+* fix docx outline pathway ordering ([91a6c86](https://github.com/oaknational/Oak-Web-Application/commit/91a6c865c931bf31b7189189ba4391d10242b0eb))
+* fix DOCX TOC links and unit page titles ([5c6b5da](https://github.com/oaknational/Oak-Web-Application/commit/5c6b5da73af86918a5a4b829de6004082435278c))
+* fix GCSE label being added to non-pathway filters ([4a05c41](https://github.com/oaknational/Oak-Web-Application/commit/4a05c41bc9322e2cd208ce46cd9ee586ccacebbc))
+* fix GCSE label being added to non-pathway filters ([fb9932e](https://github.com/oaknational/Oak-Web-Application/commit/fb9932e292cec8e43bbf456399e0bfbef68642f0))
+* fix KS4 pathway ordering and headings in curriculum DOCX downloads ([fb6ebeb](https://github.com/oaknational/Oak-Web-Application/commit/fb6ebeb5f093bc3dd4474abc221c04c49195b9d4))
+* fixes year count with "all" rather than empty string ([5d02410](https://github.com/oaknational/Oak-Web-Application/commit/5d024100f3666d48b38562c7fd31fa6cbe0cdaf3))
+* for non-ks4 visualiser ([b67856f](https://github.com/oaknational/Oak-Web-Application/commit/b67856fb8078b24c789b7a28c7449595bbf59e3c))
+* formatting in unit details pages (docx) subheading not showing ":" ([d3ef6b7](https://github.com/oaknational/Oak-Web-Application/commit/d3ef6b7f1688a1bdaf245c2d6a4c87e80b1ea559))
+* improve some function naming ([d430fa4](https://github.com/oaknational/Oak-Web-Application/commit/d430fa4cff7536f403d51872e778144f1f63e231))
+* incorrect count in hidden aria DOM node ([6f5fc8d](https://github.com/oaknational/Oak-Web-Application/commit/6f5fc8d32d95231e8e2bd67c6a743deaf904d08f))
+* issue introduced in commit 3abe674 ([cdb732d](https://github.com/oaknational/Oak-Web-Application/commit/cdb732d0bcadf27678cbf647f91733942abe68cc))
+* ks4OptionSlug being used as core/gcse (temp fix) ([aecbd73](https://github.com/oaknational/Oak-Web-Application/commit/aecbd738bb0b13890f27e9467581879601ea6fe7))
+* lint errors ([87a77dd](https://github.com/oaknational/Oak-Web-Application/commit/87a77dd6478dd4a2be9d8b07bdc828651868ed5f))
+* loading state from querystring for curric filtering (CUR-1356) ([a47d9b2](https://github.com/oaknational/Oak-Web-Application/commit/a47d9b2c7c8a984a4693e64b9ad8f12284d2a078))
+* make 'All' subject category amendment ([bc90f8e](https://github.com/oaknational/Oak-Web-Application/commit/bc90f8e4c7b831b4e09c4a15558e8f7cf75e6669))
+* make radiogroup names unique to prevent default selection issues ([f022409](https://github.com/oaknational/Oak-Web-Application/commit/f0224096702cdea8b53fabddfd0a7741e9dd6fb7))
+* more bad conflict resolution issues ([be92ee5](https://github.com/oaknational/Oak-Web-Application/commit/be92ee5e2c5d7fb738c9e44892bc9454a4182830))
+* more build errors ([1737e78](https://github.com/oaknational/Oak-Web-Application/commit/1737e78e0f9719b7ed67857e4fd13045bb5c1265))
+* only change initial filter state when opening the modal ([b173e65](https://github.com/oaknational/Oak-Web-Application/commit/b173e65574b4e7e4c53b6d70a7739d91a81052f2))
+* ordering of core/gcse in <CurricFiltersYears/> ([e8869ae](https://github.com/oaknational/Oak-Web-Application/commit/e8869ae7156840171c8534f4358b25f478b3d57d))
+* remove empty year in the visualiser when selecting core/gcse ([3abe674](https://github.com/oaknational/Oak-Web-Application/commit/3abe6747e87fed940a82f6fb89c2605719f70591))
+* remove empty years when filtered ([326a953](https://github.com/oaknational/Oak-Web-Application/commit/326a9536e2b565fb911612fa57c52696da105cc9))
+* remove filter number from mobile header ([6578339](https://github.com/oaknational/Oak-Web-Application/commit/657833960347e6ddce65d8b504ba3aa4208e5127))
+* remove getSuffixFromFeatures import from docx builder ([4620559](https://github.com/oaknational/Oak-Web-Application/commit/46205590e2f5b64a036f2ec0fdf4641b7c0c2ecc))
+* removed <Hr> as no longer supported ([4f1524b](https://github.com/oaknational/Oak-Web-Application/commit/4f1524b853ea1851a860542a422b4516d1143f63))
+* removing filters from qs when value if default and camel to snake case ([d81779d](https://github.com/oaknational/Oak-Web-Application/commit/d81779d4ddae3b9dd2053ba62bb0b68c7cde0e8a))
+* replace createProgrammeSlug with createTeacherProgrammeSlug ([6bb2388](https://github.com/oaknational/Oak-Web-Application/commit/6bb2388e3aa73ce4b3c1cb61110e31c63971b61a))
+* reset pathway filter when selecting non-pathway year ([ed7526a](https://github.com/oaknational/Oak-Web-Application/commit/ed7526a268b10da88882dce79bebedf0a40e751f))
+* resolve type error ([37ab2a9](https://github.com/oaknational/Oak-Web-Application/commit/37ab2a958884fb79df2fe41998f4a7fe80ae7797))
+* science hacks for keystage subjectcategories/childsubjects ([05e6dab](https://github.com/oaknational/Oak-Web-Application/commit/05e6dabbae1ad663d1edb8d411b1f260c3770c15))
+* scroll animation position in mobile view ([be6544c](https://github.com/oaknational/Oak-Web-Application/commit/be6544c821827c3fb76db9f3f4f597b47d6e38c5))
+* should only display core subheading when we have a pathway ([10bd04c](https://github.com/oaknational/Oak-Web-Application/commit/10bd04cc36d0f9be3dad7cd99420225b115242e0))
+* sorting of sortYearPathways(...) ([d8874f7](https://github.com/oaknational/Oak-Web-Application/commit/d8874f7055e590b0f35ddce80152495c58b83534))
+* subcat subheadings removed for years without subcat ([5e7de97](https://github.com/oaknational/Oak-Web-Application/commit/5e7de97d825593304f77e61bd4ca890be9bf4462))
+* thread highlighting in curric visualiser for new filters ([dd434a8](https://github.com/oaknational/Oak-Web-Application/commit/dd434a897965b75cd3f8e1318421baef200c230d))
+* thread refactor for pathway grouping ([56228ca](https://github.com/oaknational/Oak-Web-Application/commit/56228ca5b9bc9c0f05db3c78751aaff91a9e02f2))
+* tidy and fix for pathway suffix ([a133e51](https://github.com/oaknational/Oak-Web-Application/commit/a133e5106934066d6d2070c78d786c05fc344851))
+* unit count in curric-visualiser and refactored getNumberOfSelectedUnits(...) ([6cbdce1](https://github.com/oaknational/Oak-Web-Application/commit/6cbdce1d15919f3db31878ee500130f16c45ef1b))
+* unit highlight count fix for subject-categories/child-subjects ([1976c3c](https://github.com/oaknational/Oak-Web-Application/commit/1976c3cdf136ee4c31e1dce34ac2a561048c0dd0))
+* update snapshot tests ([1b75315](https://github.com/oaknational/Oak-Web-Application/commit/1b75315c14bc74497ac06ce385fd751d912fc889))
+* use correct icon for "All" in science ([a3bda12](https://github.com/oaknational/Oak-Web-Application/commit/a3bda121fd03ed58db427e0ca38423d868b1130f))
+* year options for non pathway ([9d14745](https://github.com/oaknational/Oak-Web-Application/commit/9d1474578387f6b840f32f89ef2884f3f9c49d9b))
+* year sorting logic ([2254796](https://github.com/oaknational/Oak-Web-Application/commit/2254796aaa7d90dcf5c70e398e287937a9ea9ead))
+* year suffix in unit detail page ([de1342c](https://github.com/oaknational/Oak-Web-Application/commit/de1342c544c1743569f09cb54c4fc502e0e1e256))
+
+
+### Features
+
+* add analytics for unit sequence refined event ([796c53a](https://github.com/oaknational/Oak-Web-Application/commit/796c53af83f305cb3f9de3ee9ee81b463138e330))
+* add analytics for unitSequenceRefined event ([bff1423](https://github.com/oaknational/Oak-Web-Application/commit/bff14239f5979024eae76a9a77df47b789586215))
+* add DocX logic which groups units by year and pathway ([0a9b201](https://github.com/oaknational/Oak-Web-Application/commit/0a9b201b6d05d3eee9085abd1943d4ce28c6c971))
+* add filtering option subheadings ([9f1ccbb](https://github.com/oaknational/Oak-Web-Application/commit/9f1ccbb0d3279b1913119072727756870e711b62))
+* add filtering suffix for child subjects and tiers ([1a6845b](https://github.com/oaknational/Oak-Web-Application/commit/1a6845bae3aa0ef19aa84c99b4d6b901833472e4))
+* add icons to subject category buttons ([3050bf8](https://github.com/oaknational/Oak-Web-Application/commit/3050bf81166aab7aa4502123e67f308ee396bbc0))
+* add KSX suffix to mobile filtering for curriculum visualiser ([f129d0b](https://github.com/oaknational/Oak-Web-Application/commit/f129d0bbe3dfb6a4a3d023c15fdd0840181c9b79))
+* add new radio buttons to CurriculumVisualiserFilterDesktop ([0abe975](https://github.com/oaknational/Oak-Web-Application/commit/0abe97509cc4f0bbad5aca4a7d1985b1688bdcd2))
+* add new subject category icons ([0fcf7a9](https://github.com/oaknational/Oak-Web-Application/commit/0fcf7a9d46e3fc7a70cea1938a61c253bee29dae))
+* add separator between filters ([170a61b](https://github.com/oaknational/Oak-Web-Application/commit/170a61bc5b41e77cca480da8cc5d92b2b551fdeb))
+* add storybook cases ([584c5f7](https://github.com/oaknational/Oak-Web-Application/commit/584c5f7361687d831860e4c9af5d1a775b9355c1))
+* add subject override to year group subheading ([de42728](https://github.com/oaknational/Oak-Web-Application/commit/de4272819c6740025bc8a376b1924d11bd3844c2))
+* added "not" conditions to filtering logic ([d4be7ce](https://github.com/oaknational/Oak-Web-Application/commit/d4be7ce4a7821b590d23a568b0a700686dd2310c))
+* added back in fixed header into new curric filter UI ([26a44e4](https://github.com/oaknational/Oak-Web-Application/commit/26a44e4920f4e7d60ceee94f19db28a39e48e0ec))
+* added back in preselected ‘All’ option for subject categories filter group ([8991d55](https://github.com/oaknational/Oak-Web-Application/commit/8991d55f11a8067bf0ab8585180a2ab3a68c065d))
+* added core/gcse into getYearSubheadingText ([6a4869e](https://github.com/oaknational/Oak-Web-Application/commit/6a4869ef0a5f5d3470aee05658dd27d9014f3a81))
+* added currently applied filters to mobile sticky header ([bc7251a](https://github.com/oaknational/Oak-Web-Application/commit/bc7251a1b2b879d2b258436b5a6fc8d0b325747f))
+* added diffing of filters for number of filters selected ([93cfcaa](https://github.com/oaknational/Oak-Web-Application/commit/93cfcaa4486390ab3dd04168ce40c33fd1c72a8e))
+* added docx changes for multi-pathway ([1d4b9c0](https://github.com/oaknational/Oak-Web-Application/commit/1d4b9c0172bb1c1c4e1ae9b871c3dd6b0cb69a36))
+* added isExamboard into <CurricYearCard/> ([4b52030](https://github.com/oaknational/Oak-Web-Application/commit/4b520308ce5f40b766ed4a406fbd9fe007d33b93))
+* added pathways to curric-filtering analytics ([79a6b4c](https://github.com/oaknational/Oak-Web-Application/commit/79a6b4cb29d176450ecfc5eab22ce9e21e27d683))
+* added subject specific labels to new curric filter ([d66a76b](https://github.com/oaknational/Oak-Web-Application/commit/d66a76bc41a4911ef0a643db79dd9760ca83b8e9))
+* added url based routing to filters in curric visualiser ([2b15e13](https://github.com/oaknational/Oak-Web-Application/commit/2b15e138c13b9422d3859c86f8b4f6c9611ce187))
+* added url based routing to filters in curric visualiser ([b70ff48](https://github.com/oaknational/Oak-Web-Application/commit/b70ff48710825e070a9e6f2557ed3356a0fed993))
+* change to include core/gcse in year filter ([973f935](https://github.com/oaknational/Oak-Web-Application/commit/973f9357c68c6fbc643abaa7062505ccca84044a))
+* curric visualiser showing core/non-core together ([e612077](https://github.com/oaknational/Oak-Web-Application/commit/e6120776bb03eb5d08450ae8f72b8b1e9c4b8e49))
+* fix subject specific ordering in new curric filtering UI ([26b834d](https://github.com/oaknational/Oak-Web-Application/commit/26b834ddc4b7ceccdd099c0195143dfe263fdbe0))
+* implement curriculum visualiser logic for missing units for subject categories ([be20ecf](https://github.com/oaknational/Oak-Web-Application/commit/be20ecfcf35da30582bbf5b1ecd7403808936dd3))
+* initial spike on visualiser filtering ([fec2ce4](https://github.com/oaknational/Oak-Web-Application/commit/fec2ce4a345d6ef8e70b2e973c65917aafc9a886))
+* initial work for new curric display of core in GCSE ([eed6e81](https://github.com/oaknational/Oak-Web-Application/commit/eed6e8113e2efdd0023b6e5cfdd108891647d30b))
+* more support for new dialog based modal + renaming to Curric ([7954608](https://github.com/oaknational/Oak-Web-Application/commit/79546086ed0c01f8a9cf1b4e96dbb259b8b006bf))
+* only apply filter state when clicking apply ([bec41a5](https://github.com/oaknational/Oak-Web-Application/commit/bec41a555cd3ea0e11912fba4073a21336113aa3))
+* refactor logic to ensure first year has 'starts' in message ([f1f1d14](https://github.com/oaknational/Oak-Web-Application/commit/f1f1d147f39e8783f39f75d8a50d0e97773b9eb6))
+* switch back to radio buttons in new curric filter UI ([4db1f70](https://github.com/oaknational/Oak-Web-Application/commit/4db1f70348ea7c777ba693dd652b34819a3f6733))
+
+## [1.748.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.748.0...v1.748.1) (2025-05-15)
+
+
+### Bug Fixes
+
+* add router dependency to context useEffect so it updates on navigation ([72ea5f2](https://github.com/oaknational/Oak-Web-Application/commit/72ea5f21ec79b0471766f030cc6dd3498eb761e4))
+* incorrect casing on 'My library' in toast ([bbb7788](https://github.com/oaknational/Oak-Web-Application/commit/bbb7788e99cffbefe016d3bed6e000d11fc52541))
+
+# [1.748.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.747.1...v1.748.0) (2025-05-15)
+
+
+### Bug Fixes
+
+* mobile top padding below nav ([238c91e](https://github.com/oaknational/Oak-Web-Application/commit/238c91ecb967378563d5c12ebc656d754776427b))
+* my library header padding on mobile ([6844261](https://github.com/oaknational/Oak-Web-Application/commit/68442610be454ad48ede2250a01c8e79fb65c8bd))
+* use h2 for no units header ([5794fd5](https://github.com/oaknational/Oak-Web-Application/commit/5794fd5d7cb5fa76d7047ab0cc6a9637e3e9a311))
+
+
+### Features
+
+* add header to my library page ([c4f49f7](https://github.com/oaknational/Oak-Web-Application/commit/c4f49f7364d757a9168dcc2eb9a3f4ef15147b5b))
+* add my library page behind feature flag with auth and onboarding required ([30c890c](https://github.com/oaknational/Oak-Web-Application/commit/30c890c08787c94906faff80e35ade954160720d))
+* add no saved content component ([b150a09](https://github.com/oaknational/Oak-Web-Application/commit/b150a091460b02a054eff44f3a9eaed5aa2cfa9e))
+* adjust header layout for mobile ([ec28681](https://github.com/oaknational/Oak-Web-Application/commit/ec28681b7ad9bc21553c975d31382476cb4d916e))
+* extract my library header into component and add tests and story ([f50ae38](https://github.com/oaknational/Oak-Web-Application/commit/f50ae3843b13a368d6644210f89589625b567e88))
+
+## [1.747.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.747.0...v1.747.1) (2025-05-15)
+
+# [1.747.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.746.2...v1.747.0) (2025-05-14)
+
+
+### Bug Fixes
+
+* new code issue ([d7312c7](https://github.com/oaknational/Oak-Web-Application/commit/d7312c7b1ffa1fdee6ee18cec5aac0456d24f486))
+
+
+### Features
+
+* add saving signed out modal to unit listing and lesson listing pages ([ddf5a67](https://github.com/oaknational/Oak-Web-Application/commit/ddf5a6731f7f87321108fef12a4e555657468152))
+* add unit saving sign up prompt modal ([d372f53](https://github.com/oaknational/Oak-Web-Application/commit/d372f537a6e9c18ea60d467e8589d4054df846c8))
+
+## [1.746.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.746.1...v1.746.2) (2025-05-14)
+
+
+### Bug Fixes
+
+* use arrays instead of sets to see if that resolves the bug ([d918b17](https://github.com/oaknational/Oak-Web-Application/commit/d918b1706137fd40a689f1957a4f1ce58f14f3c1))
+* wrap in conditional if statement for savedUnitsData ([4e28512](https://github.com/oaknational/Oak-Web-Application/commit/4e285122046aab6ec1a2d256232b7966c4751dc7))
+
 ## [1.746.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.746.0...v1.746.1) (2025-05-14)
 
 
