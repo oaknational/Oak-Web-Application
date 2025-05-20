@@ -17,6 +17,8 @@ const testCurriculumUnitDetails = {
   cycle: "1",
   whyThisWhyNow: "test why this why now",
   description: "test description",
+  handleUnitOverviewExploredAnalytics: () => jest.fn(),
+  isUnitDescriptionEnabled: false,
 };
 
 describe("CurriculumUnitDetails component", () => {
@@ -54,7 +56,10 @@ describe("CurriculumUnitDetails component", () => {
 
     test("it should render all accordion components (cycle 2)", () => {
       const { getAllByTestId, getByText } = renderWithTheme(
-        <CurriculumUnitDetails {...testCurriculumUnitDetails} cycle="2" />,
+        <CurriculumUnitDetails
+          {...testCurriculumUnitDetails}
+          isUnitDescriptionEnabled={true}
+        />,
       );
 
       expect(getAllByTestId("accordion-component")).toHaveLength(2);

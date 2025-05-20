@@ -35,15 +35,15 @@ import { useFetch } from "@/hooks/useFetch";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import {
   AnalyticsUseCaseValueType,
+  LearningTierValueType,
   PhaseValueType,
-  ResourceFileTypeValueType,
-  TierNameValueType,
+  ResourceTypeValueType,
 } from "@/browser-lib/avo/Avo";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
-import { unionOrNull } from "@/utils/narrowToUnion";
 import { extractUrnAndSchool } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
+import { convertUnitSlugToTitle } from "@/components/TeacherViews/Search/helpers";
 
 function ScrollIntoViewWhenVisisble({
   children,
@@ -85,14 +85,11 @@ export function createCurriculumDownloadsQuery(
 
 export const trackCurriculumDownload = async (
   data: CurriculumDownloadViewData,
-  resourceFileType: ResourceFileTypeValueType,
-  slugs: CurriculumSelectionSlugs,
   subjectTitle: string,
   onHubspotSubmit: (data: ResourceFormProps) => Promise<string | undefined>,
   track: ReturnType<typeof useAnalytics>["track"],
   analyticsUseCase: AnalyticsUseCaseValueType,
-  tierSelected: string | null,
-  child_subjects?: { subject: string; subject_slug: string }[],
+  slugs: CurriculumSelectionSlugs,
 ) => {
   const { schoolId, schoolName: dataSchoolName, email, schoolNotListed } = data;
 
@@ -111,28 +108,25 @@ export const trackCurriculumDownload = async (
     onSubmit: async () => {},
   });
 
-  track.curriculumResourcesDownloadedCurriculumDocument({
-    subjectTitle: subjectTitle,
-    subjectSlug: slugs.subjectSlug,
-    phase: slugs.phaseSlug as PhaseValueType,
+  track.curriculumResourcesDownloaded({
+    platform: "owa",
+    product: "curriculum resources",
+    engagementIntent: "explore",
+    componentType: "download_button",
+    eventVersion: "2.0.0",
     analyticsUseCase: analyticsUseCase,
     emailSupplied: email != null,
+    resourceType: ["curriculum document"] as ResourceTypeValueType[],
     schoolOption: schoolOption,
+    schoolName: dataSchoolName || "",
+    subjectTitle: subjectTitle,
+    phase: slugs.phaseSlug as PhaseValueType,
     schoolUrn:
       !schoolId || schoolId === "homeschool"
         ? ""
         : (extractUrnAndSchool(schoolId).urn ?? ""),
-    schoolName: dataSchoolName || "",
-    resourceFileType: resourceFileType,
-    tierName: unionOrNull<TierNameValueType>(
-      capitalize(tierSelected ?? undefined),
-      ["Foundation", "Higher"],
-    ),
-    childSubjectSlug: slugs.subjectSlug,
-    childSubjectName: child_subjects?.find(
-      (s) => s.subject_slug === slugs.subjectSlug,
-    )?.subject,
-    examBoardSlug: slugs.ks4OptionSlug,
+    keyStageSlug: null,
+    keyStageTitle: null,
   });
 };
 
@@ -259,6 +253,25 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     downloadBlob(blob, filename);
   };
 
+  const handleSubjectTierSelectionAnalytics = (
+    tierSelected: string | null | undefined,
+    childSubjectSlug: string | null | undefined,
+  ) => {
+    track.curriculumResourcesDownloadRefined({
+      subjectTitle: curriculumInfo.subjectTitle,
+      subjectSlug: slugs.subjectSlug,
+      platform: "owa",
+      product: "curriculum resources",
+      engagementIntent: "refine",
+      componentType: "download_tab",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
+      learningTier: capitalize(tierSelected || "") as LearningTierValueType,
+      childSubjectName: convertUnitSlugToTitle(childSubjectSlug || ""),
+      childSubjectSlug: childSubjectSlug || "",
+    });
+  };
+
   const handleTierSubjectSelection = (
     tierSlug: string,
     childSubjectSlug?: string | null,
@@ -270,6 +283,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     if (childSubjectSlug && childSubjectSlug.length > 0) {
       setChildSubjectSelected(childSubjectSlug);
     }
+    handleSubjectTierSelectionAnalytics(tierSlug, childSubjectSlug);
   };
 
   const onSubmit = async (data: CurriculumDownloadViewData) => {
@@ -300,14 +314,11 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     } finally {
       await trackCurriculumDownload(
         data,
-        "docx",
-        slugs,
         curriculumInfo.subjectTitle,
         onHubspotSubmit,
         track,
         analyticsUseCase,
-        tierSelected,
-        child_subjects,
+        slugs,
       );
       setIsSubmitting(false);
       setIsDone(true);
@@ -346,7 +357,9 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
         $maxWidth={1280}
         $mh={"auto"}
         $ph={18}
+        $pt={[48, 0]}
         $pb={[48]}
+        $borderColor="red"
         $width={"100%"}
         role="region"
       >

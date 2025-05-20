@@ -124,11 +124,13 @@ export const specialistLessonDownloadQuery =
         lessonTitle: lesson.lesson_title,
         lessonSlug: lessonSlug,
         downloads: downloads,
+        additionalFiles: [],
         nextLessons: [], // TODO: specialist MV needs to be update to support this functionality
         expired: lesson.expired ?? false,
         updatedAt: "2022",
         geoRestricted: restrictions.at(0)?.geo_restricted ?? null,
         loginRequired: restrictions.at(0)?.login_required ?? null,
+        lessonReleaseDate: lesson.lesson_release_date ?? null,
       },
     };
   };

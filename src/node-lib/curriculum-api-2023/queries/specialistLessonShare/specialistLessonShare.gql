@@ -3,7 +3,7 @@ query specialistLessonShare(
   $unitSlug: String
   $lessonSlug: String
 ) {
-  specialistLessonShare: published_mv_specialist_1_0_3(
+  specialistLessonShare: published_mv_specialist_1_0_4(
     where: {
       unit_slug: { _eq: $unitSlug }
       synthetic_programme_slug: { _eq: $programmeSlug }
@@ -22,5 +22,6 @@ query specialistLessonShare(
     video_mux_playback_id
     presentation_url
     synthetic_programme_slug
+    lesson_release_date
   }
 }

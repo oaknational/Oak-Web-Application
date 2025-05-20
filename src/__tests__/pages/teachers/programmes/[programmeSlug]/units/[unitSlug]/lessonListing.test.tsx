@@ -1,5 +1,6 @@
 import { GetStaticPropsContext, PreviewData } from "next";
 import userEvent from "@testing-library/user-event";
+import { screen } from "@testing-library/dom";
 
 import LessonListPage, {
   getStaticProps,
@@ -8,8 +9,12 @@ import LessonListPage, {
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import lessonListingFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonListing.fixture";
+import lessonListingFixture, {
+  lessonsWithUnpublishedContent,
+} from "@/node-lib/curriculum-api-2023/fixtures/lessonListing.fixture";
 import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__/index";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
+import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 
 const render = renderWithProviders();
 
@@ -25,18 +30,34 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   default: () => ({
     track: {
       lessonAccessed: (...args: unknown[]) => lessonSelected(...args),
+      teacherShareInitiated: () => jest.fn(),
+      contentSaved: () => jest.fn(),
+      contentUnsaved: () => jest.fn(),
     },
   }),
 }));
 
+// mock save functionality
+window.global.fetch = jest.fn().mockResolvedValue({ ok: true });
+
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagEnabled: jest.fn().mockReturnValue(true),
+}));
+
 describe("Lesson listing page", () => {
-  test.skip("it renders the unit title as page title", () => {
+  beforeEach(() => {
+    setUseUserReturn(mockLoggedIn);
+  });
+  test("it renders the unit title as page title", () => {
     const { getByRole } = render(
       <LessonListPage curriculumData={lessonListingFixture()} />,
     );
 
     const pageHeading = getByRole("heading", { level: 1 });
 
+    expect(global.fetch).toHaveBeenCalledWith(
+      "https://mockdownloads.com/api/unit/adding-surds-1/check-files",
+    );
     expect(pageHeading).toBeInTheDocument();
   });
 
@@ -47,13 +68,44 @@ describe("Lesson listing page", () => {
     const lessonCountFixtures = lessonListingFixture().lessons.length;
     const lessonCount = getByText(`Lessons (${lessonCountFixtures})`);
 
+    expect(global.fetch).toHaveBeenCalledWith(
+      "https://mockdownloads.com/api/unit/adding-surds-1/check-files",
+    );
     expect(lessonCount).toBeInTheDocument();
+  });
+
+  test("it renders the correct number of lessons when there are unpublished lessons", () => {
+    render(
+      <LessonListPage
+        curriculumData={lessonListingFixture({
+          lessons: lessonsWithUnpublishedContent,
+        })}
+      />,
+    );
+
+    const lessonCount = screen.getByText(`3/5 lessons available`);
+    expect(lessonCount).toBeInTheDocument();
+  });
+
+  test("it renders the correct text for the save button when signed in", async () => {
+    setUseUserReturn(mockLoggedIn);
+
+    render(<LessonListPage curriculumData={lessonListingFixture({})} />);
+    const saveButton = screen.getByTestId("save-unit-button");
+    expect(saveButton).toBeInTheDocument();
+    expect(saveButton).toHaveTextContent("Save");
+
+    await userEvent.click(saveButton);
+    expect(saveButton).toHaveTextContent("Saved");
   });
 
   describe("SEO", () => {
     it.skip("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(
         <LessonListPage curriculumData={lessonListingFixture()} />,
+      );
+      expect(global.fetch).toHaveBeenCalledWith(
+        "https://mockdownloads.com/api/unit/adding-surds-1/check-files",
       );
       expect(seo).toEqual({
         ...mockSeoResult,
@@ -71,6 +123,9 @@ describe("Lesson listing page", () => {
       utilsMock.RESULTS_PER_PAGE = 2;
       const { seo } = renderWithSeo()(
         <LessonListPage curriculumData={lessonListingFixture()} />,
+      );
+      expect(global.fetch).toHaveBeenCalledWith(
+        "https://mockdownloads.com/api/unit/adding-surds-1/check-files",
       );
       expect(seo).toEqual({
         ...mockSeoResult,
@@ -141,9 +196,11 @@ describe("Lesson listing page", () => {
       );
 
       const lesson = getByText("Add two surds");
-
       await userEvent.click(lesson);
 
+      expect(global.fetch).toHaveBeenCalledWith(
+        "https://mockdownloads.com/api/unit/adding-surds-1/check-files",
+      );
       expect(lessonSelected).toHaveBeenCalledTimes(1);
       expect(lessonSelected).toHaveBeenCalledWith({
         platform: "owa",
@@ -160,6 +217,11 @@ describe("Lesson listing page", () => {
         keyStageTitle: "Key Stage 4",
         yearGroupName: "Year 10",
         yearGroupSlug: "year-10",
+        tierName: null,
+        examBoard: null,
+        lessonReleaseCohort: "2023-2026",
+        lessonReleaseDate: "2025-09-29T14:00:00.000Z",
+        pathway: null,
       });
     });
   });

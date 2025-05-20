@@ -14,6 +14,7 @@ export const constructLessonMediaData = (
     mediaClips: browseData.lessonData.mediaClips,
     lessonOutline: browseData.lessonData.lessonOutline ?? null,
     actions: browseData.actions ?? null,
+    lessonReleaseDate: browseData.lessonData.lessonReleaseDate,
   };
 
   if (pathways) {

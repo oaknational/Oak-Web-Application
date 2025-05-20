@@ -27,7 +27,10 @@ export const pupilLessonQuery =
     unitSlug?: string;
     programmeSlug?: string;
     isLegacy?: boolean;
-  }): Promise<{ content: LessonContent; browseData: LessonBrowseData }> => {
+  }): Promise<{
+    content: LessonContent;
+    browseData: LessonBrowseData;
+  }> => {
     const { lessonSlug, unitSlug, programmeSlug, isLegacy } = args;
 
     const browseDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Year_12_0_0_Bool_Exp> =
@@ -117,7 +120,9 @@ export const pupilLessonQuery =
     }
 
     lessonBrowseDataSchema.parse(browseDataSnake);
-    lessonContentSchema.parse({ ...contentSnake, additional_files: null });
+    lessonContentSchema.parse({
+      ...contentSnake,
+    });
 
     // We've already parsed this data with Zod so we can safely cast it to the correct type
     const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseData;

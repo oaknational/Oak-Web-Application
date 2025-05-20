@@ -26,6 +26,10 @@ module.exports = {
     minHeight: 1024,
     percyCSS: `
     #mtm-root-container { display: none!important; }
+    
+    *[data-percy-hide="contents"] > * {
+      visibility: hidden;
+    }
     `,
   },
   discovery: {

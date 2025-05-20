@@ -62,6 +62,7 @@ describe("specialistLessonOverview()", () => {
               threads: null,
               video_title: null,
               additional_files: null,
+              lesson_release_date: "2025-09-29T14:00:00.000Z",
             },
             {
               synthetic_programme_slug: "specialist-programme-slug-0",
@@ -100,6 +101,7 @@ describe("specialistLessonOverview()", () => {
               content_guidance: null,
               threads: null,
               video_title: null,
+              lesson_release_date: "2025-09-29T14:00:00.000Z",
             },
           ],
         }),

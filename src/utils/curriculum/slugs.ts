@@ -95,23 +95,6 @@ export function getKs4RedirectSlug(
   };
 }
 
-export function createProgrammeSlug(
-  unitData?: CurriculumUnitsTabData["units"][number] | null,
-  examboardSlug?: string | null,
-  tierSlug?: string,
-) {
-  if (unitData?.keystage_slug === "ks4") {
-    return `${unitData.subject_slug}-${unitData.phase_slug}-${
-      unitData.keystage_slug
-    }${tierSlug ? "-" + tierSlug : ""}${
-      examboardSlug ? "-" + examboardSlug : ""
-    }`;
-  }
-  return unitData
-    ? `${unitData.subject_slug}-${unitData.phase_slug}-${unitData.keystage_slug}`
-    : "";
-}
-
 export function createTeacherProgrammeSlug(
   unitData?: CurriculumUnitsTabData["units"][number] | null,
   examboardSlug?: string | null,
@@ -126,13 +109,7 @@ export function createTeacherProgrammeSlug(
     if (tierSlug) parts.push(tierSlug);
     if (pathwaySlug) parts.push(pathwaySlug);
 
-    if (
-      examboardSlug &&
-      // TODO: This is a massive hack, curric decided to make examboardSlug
-      // the pathway is there isn't an examboard. This was a mistake which
-      // we'll resolve in upcoming work.
-      examboardSlug !== pathwaySlug
-    )
+    if (examboardSlug && !["core", "gcse"].includes(examboardSlug))
       parts.push(examboardSlug);
     return parts.join("-");
   } else if (unitData) {

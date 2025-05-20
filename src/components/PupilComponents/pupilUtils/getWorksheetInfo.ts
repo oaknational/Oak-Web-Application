@@ -1,14 +1,15 @@
 import { getLessonDownloadResourcesExistence } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
+import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 
 export const getWorksheetInfo = async (lessonSlug: string) => {
   try {
     const { resources: resourceExistence } =
-      await getLessonDownloadResourcesExistence(
+      await getLessonDownloadResourcesExistence({
         lessonSlug,
-        "worksheet-pdf-questions",
-        false,
-      );
+        resourceTypesString: "worksheet-pdf-questions",
+        isLegacyDownload: false,
+      });
 
     const resourcesExistenceAsArray: {
       item: string;
@@ -32,6 +33,7 @@ export const getWorksheetInfo = async (lessonSlug: string) => {
       .filter((resource) => resource !== undefined);
     return filteredResourcesExistenceAsArray;
   } catch (error) {
+    const reportError = errorReporter("getWorksheetInfo");
     const oakError = new OakError({
       code: "downloads/failed-to-fetch",
       originalError: error,

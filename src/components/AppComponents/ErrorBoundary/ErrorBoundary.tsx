@@ -1,8 +1,9 @@
+import React, { ErrorInfo, FC, useMemo } from "react";
 import Bugsnag from "@bugsnag/js";
 import * as Sentry from "@sentry/nextjs";
-import React, { ErrorInfo, FC, PropsWithChildren } from "react";
 
 import ErrorView from "@/components/AppComponents/ErrorView";
+import { bugsnagInitialised } from "@/browser-lib/bugsnag/useBugsnag";
 
 const ClientErrorView: FC = () => {
   return (
@@ -20,6 +21,10 @@ const FallbackComponent: FC<FallbackComponentProps> = () => {
   return <ClientErrorView />;
 };
 
+export type ErrorBoundaryProps = {
+  children?: React.ReactNode;
+};
+
 /**
  * Wrapper around the respective error boundaries for both Bugsnag and Sentry.
  * This will catch any uncaught errors and show the user {@link ClientErrorView},
@@ -32,9 +37,13 @@ const FallbackComponent: FC<FallbackComponentProps> = () => {
  * send error reports if the service has been initialised, which only happens
  * if the user has consented.
  */
-const ErrorBoundary: FC<PropsWithChildren> = (props) => {
-  const BugsnagErrorBoundary =
-    Bugsnag.getPlugin("react")?.createErrorBoundary(React);
+const ErrorBoundary: FC<ErrorBoundaryProps> = (props) => {
+  const isBugsnagInitialised = bugsnagInitialised();
+  const BugsnagErrorBoundary = useMemo(() => {
+    if (isBugsnagInitialised) {
+      return Bugsnag.getPlugin("react")?.createErrorBoundary(React);
+    }
+  }, [isBugsnagInitialised]);
 
   return (
     <Sentry.ErrorBoundary fallback={<ClientErrorView />}>

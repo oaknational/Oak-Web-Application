@@ -188,7 +188,7 @@ export const getStaticProps: GetStaticProps<
 
       const isLegacy = isSlugLegacy(subjectSlug);
       const curriculumData = await curriculumApi2023.programmeListingPage({
-        keyStageSlug: keyStageSlug,
+        keyStageSlug,
         subjectSlug: isLegacy
           ? removeLegacySlugSuffix(subjectSlug)
           : subjectSlug,

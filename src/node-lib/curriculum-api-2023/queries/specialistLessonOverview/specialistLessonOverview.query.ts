@@ -138,6 +138,7 @@ export const generateLessonOverviewFromRaw = (
     lessonMediaClips: null,
     additionalFiles: null,
     lessonOutline: null,
+    lessonReleaseDate: lesson.lesson_release_date,
   };
 
   return specialistLessonOverviewSchema.parse({

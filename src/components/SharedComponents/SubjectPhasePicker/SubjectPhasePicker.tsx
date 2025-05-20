@@ -33,7 +33,6 @@ import type {
   CurriculumPhaseOption,
 } from "@/node-lib/curriculum-api-2023";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import FocusIndicator from "@/components/CurriculumComponents/OakComponentsKitchen/FocusIndicator";
 import { getPhaseText } from "@/utils/curriculum/formatting";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
@@ -42,6 +41,7 @@ import Button from "@/components/SharedComponents/Button";
 import { CurriculumModalCloseButton } from "@/components/CurriculumComponents/CurriculumModalCloseButton/CurriculumModalCloseButton";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import type { CurriculumTab } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { PhaseValueType } from "@/browser-lib/avo/Avo";
 
 // FIXME: This is from <@/pages-helpers/pupil/options-pages/options-pages-helpers> being duplicated here to fix bundle issues.
 const isExamboardSlug = (
@@ -342,7 +342,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   const phaseErrorId = useId();
 
   const { track } = useAnalytics();
-  const { analyticsUseCase } = useAnalyticsPageProps();
 
   const phases = [
     { title: "Primary", slug: "primary" },
@@ -491,8 +490,13 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       track.curriculumVisualiserAccessed({
         subjectTitle: selectedSubject.title,
         subjectSlug: selectedSubject.slug,
-        phase: selectedPhase.slug === "primary" ? "primary" : "secondary",
-        analyticsUseCase: analyticsUseCase,
+        platform: "owa",
+        product: "curriculum visualiser",
+        engagementIntent: "use",
+        componentType: "curriculum_visualiser_button",
+        eventVersion: "2.0.0",
+        analyticsUseCase: "Teacher",
+        phase: selectedPhase.slug as PhaseValueType,
       });
     }
   };
@@ -597,6 +601,8 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     return false;
   };
 
+  const ks4Options = selectedSubject?.ks4_options ?? [];
+
   return (
     <OakBox aria-labelledby="choose-curriculum-label" role="group">
       <OakJauntyAngleLabel
@@ -663,6 +669,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   onClick={toggleShowSubjects}
                   title="Subject"
                   data-testid="subject-picker-button"
+                  aria-expanded={isMobileLotPickerModalOpen || showSubjects}
                 >
                   <OakBox
                     $pl="inner-padding-m"
@@ -678,20 +685,22 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     >
                       Subject
                     </OakSpan>
+                    {showSubjectError && (
+                      <OakFlex>
+                        <OakIcon
+                          iconName="content-guidance"
+                          $colorFilter={"red"}
+                          $height={"all-spacing-6"}
+                        />
+                        <OakSpan $color={!showSubjectError ? "black" : "red"}>
+                          Select a subject
+                        </OakSpan>
+                      </OakFlex>
+                    )}
                     <OakP
                       $font={"body-2"}
                       $color={!showSubjectError ? "black" : "red"}
                     >
-                      {showSubjectError && (
-                        <OakFlex>
-                          <OakIcon
-                            iconName="content-guidance"
-                            $colorFilter={"red"}
-                            $height={"all-spacing-6"}
-                          />
-                          <OakSpan>Select a subject</OakSpan>
-                        </OakFlex>
-                      )}
                       {selectedSubject && selectedSubject.title}
                       {!showSubjectError && !selectedSubject && "Select"}
                     </OakP>
@@ -728,9 +737,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       showSubjectError={showSubjectError}
                       onClick={() => setShowSubjects(false)}
                     >
-                      {sortBy(subjects, "title").map((subject) => (
+                      {sortBy(subjects, "title").map((subject, index) => (
                         <ButtonContainer
-                          key={subject.slug}
+                          key={`${subject.slug}-selection-${index}`}
                           className={`lot-picker subject-selection ${
                             isSelected(subject) ? "selected" : ""
                           }`}
@@ -801,12 +810,12 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       showSubjectError={showSubjectError}
                       onClick={handleMobileLotPickerModal}
                     >
-                      {sortBy(subjects, "title").map((subject) => (
+                      {sortBy(subjects, "title").map((subject, index) => (
                         <ButtonContainer
                           className={`lot-picker subject-selection ${
                             isSelected(subject) ? "selected" : ""
                           }`}
-                          key={subject.slug}
+                          key={`${subject.slug}-mobile-selection-${index}`}
                         >
                           <OakSecondaryButton
                             role="radio"
@@ -909,6 +918,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     data-testid="phase-picker-button"
                     onClick={toggleShowPhases}
                     title="Phase"
+                    aria-expanded={showPhases}
                   >
                     <OakBox
                       $pl="inner-padding-m"
@@ -1092,7 +1102,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           ))}
                         </OakFlex>
                         {selectedPhase?.slug === "secondary" &&
-                          selectedSubject?.ks4_options && (
+                          ks4Options.length > 0 && (
                             <>
                               <OakHeading
                                 data-testid="phase-picker-ks4-option-heading"
@@ -1117,38 +1127,41 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                                 $flexDirection={"row"}
                                 $gap={"all-spacing-2"}
                               >
-                                {[...selectedSubject.ks4_options]
-                                  // sort Core/GSCE first
-                                  .sort((a: KS4Option) =>
-                                    isExamboardSlug(a.slug) ? 1 : -1,
-                                  )
-                                  .map((ks4Option: KS4Option) => (
-                                    <ButtonContainer
-                                      key={ks4Option.slug}
-                                      className={`lot-picker ${
-                                        isSelected(ks4Option) ? "selected" : ""
-                                      }`}
-                                      data-testid="phase-picker-ks4-option"
-                                    >
-                                      <OakSecondaryButton
-                                        role="radio"
-                                        onClick={() =>
-                                          handleSelectKS4Option(ks4Option)
-                                        }
-                                        title={createKS4OptionTitle(
-                                          selectedSubject.title,
-                                          ks4Option,
-                                        )}
-                                        aria-checked={isSelected(ks4Option)}
-                                        hoverShadow={null}
+                                {selectedSubject &&
+                                  [...ks4Options]
+                                    // sort Core/GSCE first
+                                    .sort((a: KS4Option) =>
+                                      isExamboardSlug(a.slug) ? 1 : -1,
+                                    )
+                                    .map((ks4Option: KS4Option) => (
+                                      <ButtonContainer
+                                        key={ks4Option.slug}
+                                        className={`lot-picker ${
+                                          isSelected(ks4Option)
+                                            ? "selected"
+                                            : ""
+                                        }`}
+                                        data-testid="phase-picker-ks4-option"
                                       >
-                                        {createKS4OptionTitle(
-                                          selectedSubject.title,
-                                          ks4Option,
-                                        )}
-                                      </OakSecondaryButton>
-                                    </ButtonContainer>
-                                  ))}
+                                        <OakSecondaryButton
+                                          role="radio"
+                                          onClick={() =>
+                                            handleSelectKS4Option(ks4Option)
+                                          }
+                                          title={createKS4OptionTitle(
+                                            selectedSubject.title,
+                                            ks4Option,
+                                          )}
+                                          aria-checked={isSelected(ks4Option)}
+                                          hoverShadow={null}
+                                        >
+                                          {createKS4OptionTitle(
+                                            selectedSubject.title,
+                                            ks4Option,
+                                          )}
+                                        </OakSecondaryButton>
+                                      </ButtonContainer>
+                                    ))}
                               </OakFlex>
                             </>
                           )}
@@ -1302,7 +1315,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           </OakFlex>
 
                           {selectedPhase?.slug === "secondary" &&
-                            selectedSubject?.ks4_options && (
+                            ks4Options.length > 0 && (
                               <OakFlex
                                 $flexDirection="column"
                                 $gap="space-between-xs"
@@ -1330,37 +1343,38 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                                   $flexDirection="row"
                                   $gap="all-spacing-2"
                                 >
-                                  {selectedSubject.ks4_options
-                                    .sort((a: KS4Option) =>
-                                      isExamboardSlug(a.slug) ? 1 : -1,
-                                    )
-                                    .map((ks4Option: KS4Option) => (
-                                      <ButtonContainer
-                                        key={ks4Option.slug}
-                                        className={`lot-picker ${isSelected(ks4Option) ? "selected" : ""}`}
-                                        data-testid="mobile-phase-picker-ks4-option"
-                                      >
-                                        <OakSecondaryButton
-                                          role="radio"
-                                          onClick={() =>
-                                            handleSelectKS4Option(ks4Option)
-                                          }
-                                          title={createKS4OptionTitle(
-                                            selectedSubject.title,
-                                            ks4Option,
-                                          )}
-                                          aria-checked={isSelected(ks4Option)}
-                                          pv="inner-padding-xs"
-                                          ph="inner-padding-s"
-                                          hoverShadow={null}
+                                  {selectedSubject &&
+                                    [...ks4Options]
+                                      .sort((a: KS4Option) =>
+                                        isExamboardSlug(a.slug) ? 1 : -1,
+                                      )
+                                      .map((ks4Option: KS4Option) => (
+                                        <ButtonContainer
+                                          key={ks4Option.slug}
+                                          className={`lot-picker ${isSelected(ks4Option) ? "selected" : ""}`}
+                                          data-testid="mobile-phase-picker-ks4-option"
                                         >
-                                          {createKS4OptionTitle(
-                                            selectedSubject.title,
-                                            ks4Option,
-                                          )}
-                                        </OakSecondaryButton>
-                                      </ButtonContainer>
-                                    ))}
+                                          <OakSecondaryButton
+                                            role="radio"
+                                            onClick={() =>
+                                              handleSelectKS4Option(ks4Option)
+                                            }
+                                            title={createKS4OptionTitle(
+                                              selectedSubject.title,
+                                              ks4Option,
+                                            )}
+                                            aria-checked={isSelected(ks4Option)}
+                                            pv="inner-padding-xs"
+                                            ph="inner-padding-s"
+                                            hoverShadow={null}
+                                          >
+                                            {createKS4OptionTitle(
+                                              selectedSubject.title,
+                                              ks4Option,
+                                            )}
+                                          </OakSecondaryButton>
+                                        </ButtonContainer>
+                                      ))}
                                 </OakFlex>
                               </OakFlex>
                             )}

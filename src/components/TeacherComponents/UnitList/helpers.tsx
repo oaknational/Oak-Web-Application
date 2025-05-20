@@ -9,11 +9,12 @@ import {
   SpecialistUnitListingData,
 } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
+import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 
 export const isCurrentPageItems = (
   u: CurrentPageItemsProps[] | SpecialistUnit[][],
 ): u is CurrentPageItemsProps[] => {
-  return (u[0] as CurrentPageItemsProps)[0]?.keyStageSlug !== undefined;
+  return (u[0] as CurrentPageItemsProps)?.[0]?.keyStageSlug !== undefined;
 };
 
 export const isUnitListData = (
@@ -22,28 +23,54 @@ export const isUnitListData = (
   return (u as UnitListingData).keyStageSlug !== undefined;
 };
 
-export const getPageItems = (
-  pageItems: CurrentPageItemsProps[] | SpecialistUnit[][],
-  pickLegacyItems: boolean,
-) => {
-  if (!isCurrentPageItems(pageItems)) {
-    return [];
+export const getPageItems = ({
+  pageItems,
+  pickLegacyItems,
+  isSwimming,
+}: {
+  pageItems: CurrentPageItemsProps[] | SpecialistUnit[][];
+  pickLegacyItems: boolean;
+  isSwimming: boolean;
+}) => {
+  switch (true) {
+    case !isCurrentPageItems(pageItems):
+      return [];
+    case isSwimming:
+      return pageItems.filter((item) => {
+        const isSwimmingItem =
+          item[0]!.groupUnitsAs === "Swimming and water safety";
+        return isSwimmingItem;
+      });
+    case pickLegacyItems:
+      return pageItems.filter((item) => {
+        const legacyItem = isSlugLegacy(item[0]!.programmeSlug);
+        return legacyItem;
+      });
+    default:
+      return pageItems.filter((item) => {
+        const legacyItem = isSlugLegacy(item[0]!.programmeSlug);
+        const groupUnitsAsItem = item[0]!.groupUnitsAs;
+        const filteredItem = !legacyItem && !groupUnitsAsItem;
+        return filteredItem;
+      });
   }
-  return pageItems.filter((item) => {
-    const isLegacy = isSlugLegacy(item[0]!.programmeSlug);
-    return pickLegacyItems ? isLegacy : !isLegacy;
-  });
 };
 
 export const getProgrammeFactors = (props: UnitListProps) => {
   if (isUnitListData(props)) {
-    const { phase, examBoardSlug, keyStageSlug } = props;
-    return { phaseSlug: phase, examBoardSlug, keyStageSlug };
+    const { phase, examBoardSlug, keyStageSlug, keyStageTitle } = props;
+    return {
+      phaseSlug: phase,
+      examBoardSlug,
+      keyStageSlug,
+      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+    };
   } else {
     return {
       phase: undefined,
       examBoardSlug: undefined,
       keyStageSlug: undefined,
+      keyStageTitle: undefined,
     };
   }
 };

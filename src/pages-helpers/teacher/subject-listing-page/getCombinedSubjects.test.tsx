@@ -90,4 +90,12 @@ describe("getCombinedSubjects", () => {
       },
     ]);
   });
+  test("it returns feature property and value", () => {
+    const result = getCombinedSubjects(
+      subjectListingFixture2023(),
+      "financial-education",
+    );
+
+    expect(result?.[0]?.features).toEqual({ non_curriculum: true });
+  });
 });

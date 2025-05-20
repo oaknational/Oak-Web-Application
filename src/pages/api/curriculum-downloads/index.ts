@@ -13,6 +13,7 @@ import curriculumApi2023, {
 import docx, { CombinedCurriculumData } from "@/pages-helpers/curriculum/docx";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
 import { logErrorMessage } from "@/utils/curriculum/testing";
+import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 
 export const curriculumDownloadQuerySchema = z.object({
   mvRefreshTime: z.string(),
@@ -40,6 +41,7 @@ type getDataReturn =
       tierSlug?: string;
       childSubjectSlug?: string;
       dataWarnings: string[];
+      ks4Options: Ks4Option[];
     };
 async function getData(opts: {
   subjectSlug: string;
@@ -183,10 +185,14 @@ async function getData(opts: {
   const subject = curriculumPhaseOptions.subjects.find((subject) => {
     return subject.slug === subjectSlug;
   }) as SubjectPhasePickerData["subjects"][number] | undefined;
+
+  if (!subject) {
+    return { notFound: true };
+  }
+
+  const ks4Options = subject.ks4_options ?? [];
   const ks4Option =
-    subject?.ks4_options?.find(
-      (ks4_option) => ks4_option.slug === ks4OptionSlug,
-    ) ?? null;
+    ks4Options.find((ks4_option) => ks4_option.slug === ks4OptionSlug) ?? null;
 
   const combinedCurriculumData: CombinedCurriculumData = {
     ...curriculumData,
@@ -206,6 +212,7 @@ async function getData(opts: {
     tierSlug,
     childSubjectSlug,
     dataWarnings,
+    ks4Options,
   };
 }
 
@@ -252,7 +259,9 @@ export default async function handler(
     const newSlugs = new URLSearchParams(slugOb);
 
     const redirectUrl = `/api/curriculum-downloads/?${newSlugs}`;
-    res.redirect(307, redirectUrl);
+
+    // Netlify-Vary is a hack to hopefully resolve
+    res.setHeader("Netlify-Vary", "query").redirect(307, redirectUrl);
     return;
   }
 
@@ -267,14 +276,18 @@ export default async function handler(
 
   // FIXME: Poor use of types here
   if (!data.notFound) {
-    const buffer = await docx(data.combinedCurriculumData, {
-      subjectSlug: data.subjectSlug,
-      phaseSlug: data.phaseSlug,
-      keyStageSlug: data.phaseSlug,
-      ks4OptionSlug: data.ks4OptionSlug,
-      tierSlug,
-      childSubjectSlug,
-    });
+    const buffer = await docx(
+      data.combinedCurriculumData,
+      {
+        subjectSlug: data.subjectSlug,
+        phaseSlug: data.phaseSlug,
+        keyStageSlug: data.phaseSlug,
+        ks4OptionSlug: data.ks4OptionSlug,
+        tierSlug,
+        childSubjectSlug,
+      },
+      data.ks4Options,
+    );
 
     const pageTitle: string = [
       data.combinedCurriculumData?.subjectTitle,

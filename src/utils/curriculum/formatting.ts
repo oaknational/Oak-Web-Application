@@ -1,7 +1,9 @@
-import { YearData } from "./types";
+import { CurriculumFilters, YearData } from "./types";
+import { keystageFromYear } from "./keystage";
 
 import { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { Phase } from "@/node-lib/curriculum-api-2023";
+import { DownloadCategory } from "@/node-lib/curriculum-api-2023/fixtures/curriculumPreviousDownloads.fixture";
 
 export function getYearGroupTitle(
   yearData: YearData,
@@ -11,7 +13,7 @@ export function getYearGroupTitle(
   const suffixStr = suffix ? ` ${suffix}` : "";
   if (year in yearData) {
     const { groupAs } = yearData[year]!;
-    if (groupAs && year === "All years") {
+    if (groupAs && year === "all-years") {
       return `${groupAs}${suffixStr} (all years)`;
     }
   }
@@ -65,11 +67,31 @@ function buildPhaseText(
   return "";
 }
 
-export function getSuffixFromFeatures(features: Actions) {
-  if (features?.programme_field_overrides?.subject) {
-    return `(${features.programme_field_overrides?.subject})`;
+const KEYSTAGES_PRIMARY = ["ks1", "ks2"];
+const KEYSTAGES_SECONDARY = ["ks3", "ks4"];
+
+export function formatKeystagesShort(keyStages: string[]) {
+  const keyStagesItems: string[] = [];
+  const isOnlyPrimary = keyStages.every((ks) => KEYSTAGES_PRIMARY.includes(ks));
+  const isOnlySecondary = keyStages.every((ks) =>
+    KEYSTAGES_SECONDARY.includes(ks),
+  );
+  if (isOnlyPrimary && keyStages.includes("ks1")) keyStagesItems.push("1");
+  if (isOnlyPrimary && keyStages.includes("ks2")) keyStagesItems.push("2");
+  if (isOnlySecondary && keyStages.includes("ks3")) keyStagesItems.push("3");
+  if (isOnlySecondary && keyStages.includes("ks4")) keyStagesItems.push("4");
+  return keyStagesItems.length > 0 ? `KS${keyStagesItems.join("-")}` : ``;
+}
+
+export function subjectTitleWithCase(title: string) {
+  if (
+    ["english", "french", "spanish", "german"].includes(title.toLowerCase())
+  ) {
+    return [title.slice(0, 1).toUpperCase(), title.slice(1).toLowerCase()].join(
+      "",
+    );
   }
-  return;
+  return title.toLowerCase();
 }
 
 export function buildPageTitle(
@@ -85,20 +107,124 @@ export function buildPageTitle(
   if (keyStages.includes("ks4")) keyStageStrings.push("KS4");
   const keyStageString = keyStageStrings.join(" & ");
 
-  const caseSubjectTitle = (title: string) => {
-    if (
-      ["english", "french", "spanish", "german"].includes(title.toLowerCase())
-    ) {
-      return [
-        title.slice(0, 1).toUpperCase(),
-        title.slice(1).toLowerCase(),
-      ].join("");
-    }
-    return title.toLowerCase();
-  };
-
   if (["primary", "secondary"].includes(phase.slug)) {
-    pageTitle = `${keyStageString} ${caseSubjectTitle(subject.title)} curriculum`;
+    pageTitle = `${keyStageString} ${subjectTitleWithCase(subject.title)} curriculum`;
   }
   return pageTitle;
+}
+
+export function joinWords(str: (number | string)[]) {
+  return str.filter((str) => str !== "").join(" ");
+}
+
+export function getYearSubheadingText(
+  yearData: YearData,
+  year: string,
+  filters: Pick<
+    CurriculumFilters,
+    "childSubjects" | "subjectCategories" | "tiers"
+  >,
+  type: "core" | "non_core" | "all" | null,
+  actions?: Actions,
+): string | null {
+  // Don't show subheading for "All" years view
+  if (year === "all") {
+    return null;
+  }
+
+  const parts: string[] = [];
+
+  // Add subject from programme_field_overrides if it exists
+  if (actions?.programme_field_overrides?.subject) {
+    parts.push(actions.programme_field_overrides.subject);
+  }
+
+  const isKs4Year = keystageFromYear(year) === "ks4";
+
+  if (keystageFromYear(year) === "ks4") {
+    if (type === "core") {
+      parts.push("Core");
+    } else if (type === "non_core") {
+      parts.push("GCSE");
+    }
+  }
+
+  // Handle subject categories (KS1-KS3)
+  if (
+    filters.subjectCategories.length > 0 &&
+    !filters.subjectCategories.includes("-1") && // Skip if "All" is selected
+    (!isKs4Year || filters.childSubjects.length === 0)
+  ) {
+    const subjectCategoryTitles = filters.subjectCategories
+      .map((id) => {
+        // Try to find subject category in current year
+        const subjectCategory = yearData[year]?.subjectCategories.find(
+          (sc) => sc.id.toString() === id,
+        );
+        return subjectCategory?.title;
+      })
+      .filter(Boolean);
+
+    if (subjectCategoryTitles.length > 0) {
+      parts.push(subjectCategoryTitles.join(", "));
+    }
+  }
+
+  // Handle child subjects (KS4)
+  if (filters.childSubjects.length > 0) {
+    const childSubjectTitles = filters.childSubjects
+      .map((slug) => {
+        const childSubject = yearData[year]?.childSubjects.find(
+          (cs) => cs.subject_slug === slug,
+        );
+        return childSubject?.subject;
+      })
+      .filter(Boolean);
+
+    if (childSubjectTitles.length > 0) {
+      parts.push(childSubjectTitles.join(", "));
+    }
+  }
+
+  // Handle tiers (KS4)
+  if (filters.tiers.length > 0) {
+    const tierTitles = filters.tiers
+      .map((slug) => {
+        const tier = yearData[year]?.tiers.find((t) => t.tier_slug === slug);
+        return tier?.tier;
+      })
+      .filter(Boolean);
+
+    if (tierTitles.length > 0) {
+      parts.push(tierTitles.join(", "));
+    }
+  }
+
+  return parts.length > 0 ? parts.join(", ") : null;
+}
+
+export function pluralizeUnits(count: number) {
+  if (count > 1) {
+    return "units";
+  } else if (count === 1) {
+    return "unit";
+  }
+  return "";
+}
+
+export function getPhaseFromCategory(input: DownloadCategory) {
+  if (input === "KS3" || input === "KS4") {
+    return "secondary";
+  }
+  return "primary";
+}
+
+export function getPathwaySuffix(year: string, pathway?: string) {
+  if (["10", "11"].includes(year) && pathway) {
+    if (pathway === "core") {
+      return "Core";
+    } else if (pathway === "non_core") {
+      return "GCSE";
+    }
+  }
 }

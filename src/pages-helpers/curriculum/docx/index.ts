@@ -18,6 +18,8 @@ import {
   insertImages,
 } from "./docx";
 
+import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
+
 export type CombinedCurriculumData = CurriculumUnitsTabData &
   CurriculumOverviewMVData &
   CurriculumOverviewSanityData;
@@ -52,7 +54,11 @@ const measure = (key: string, fn: () => void | Promise<void>) => {
   return v;
 };
 
-export default async function docx(data: CombinedCurriculumData, slugs: Slugs) {
+export default async function docx(
+  data: CombinedCurriculumData,
+  slugs: Slugs,
+  ks4Options: Ks4Option[],
+) {
   const zip = await generateEmptyDocx();
 
   const images = await insertImages(
@@ -136,7 +142,8 @@ export default async function docx(data: CombinedCurriculumData, slugs: Slugs) {
           footer: cmToTwip(1.5),
         },
       }),
-    tableOfContents: async () => await builder.tableOfContents(zip, { data }),
+    tableOfContents: async () =>
+      await builder.tableOfContents(zip, { data, ks4Options }),
     tableOfContentsPageLayout: async () =>
       await builder.pageLayout(zip, {
         footers,
@@ -155,7 +162,7 @@ export default async function docx(data: CombinedCurriculumData, slugs: Slugs) {
     subjectExplainer: async () => await builder.subjectExplainer(zip, { data }),
     subjectPrincipals: async () => await builder.subjectPrincipals(),
     ourPartner: async () => await builder.ourPartner(zip, { data }),
-    units: async () => await builder.units(zip, { data, slugs }),
+    units: async () => await builder.units(zip, { data, slugs, ks4Options }),
     threadsOverview: async () => await builder.threadsOverview(zip, { data }),
     threadsOverviewPageLayout: async () =>
       await builder.pageLayout(zip, {

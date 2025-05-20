@@ -10,7 +10,10 @@ import { useOnboardingStatus } from "../TeacherComponents/hooks/useOnboardingSta
 
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import {
+  KeyStageTitleValueType,
+  PathwayValueType,
+} from "@/browser-lib/avo/Avo";
 import getFormattedDetailsForTracking from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import useLessonDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLessonDownloadExistenceCheck";
 import useResourceFormSubmit from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit";
@@ -28,11 +31,11 @@ import {
   getCommonPathway,
   getBreadcrumbsForSpecialistLessonPathway,
   getBreadCrumbForSpecialistDownload,
+  lessonIsSpecialist,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import {
   LessonPathway,
   SpecialistLessonPathway,
-  lessonIsSpecialist,
 } from "@/components/TeacherComponents/types/lesson.types";
 import ResourcePageLayout from "@/components/TeacherComponents/ResourcePageLayout";
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
@@ -57,12 +60,14 @@ type BaseLessonDownload = {
   lessonSlug: string;
   lessonCohort?: string | null;
   downloads: LessonDownloadsPageData["downloads"];
+  additionalFiles: LessonDownloadsPageData["additionalFiles"];
   copyrightContent?: CopyrightContent;
   isSpecialist: false;
   developmentStageTitle?: string | null;
   geoRestricted: boolean | null;
   loginRequired: boolean | null;
   actions?: Actions | null;
+  lessonReleaseDate: string | null;
 };
 
 type CanonicalLesson = BaseLessonDownload & {
@@ -98,11 +103,13 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     lessonTitle,
     lessonSlug,
     downloads,
+    additionalFiles,
     expired,
     isSpecialist,
     copyrightContent,
     updatedAt,
     actions,
+    lessonReleaseDate,
   } = lesson;
 
   const showRiskAssessmentBanner = !!actions?.isPePractical;
@@ -122,6 +129,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           lessonCohort: LEGACY_COHORT,
           keyStageSlug: null,
           keyStageTitle: null,
+          pathwayTitle: null,
         }
       : getCommonPathway(
           props.isCanonical ? props.lesson.pathways : [props.lesson],
@@ -136,6 +144,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     unitSlug,
     unitTitle,
     lessonCohort,
+    pathwayTitle,
   } = commonPathway;
   const { track } = useAnalytics();
   const isLegacyDownload = !lessonCohort || lessonCohort === LEGACY_COHORT;
@@ -176,6 +185,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     hubspotLoaded,
   } = useResourceFormState({
     downloadResources: downloadsFilteredByCopyright,
+    additionalFilesResources: additionalFiles,
     type: "download",
   });
 
@@ -256,6 +266,9 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         examBoard: examboard.success ? examboard.data : null,
         tierName: tier.success ? tier.data : null,
         componentType: "lesson_download_button",
+        pathway: pathwayTitle as PathwayValueType,
+        lessonReleaseCohort: isLegacyDownload ? "2020-2023" : "2023-2026",
+        lessonReleaseDate: lessonReleaseDate ?? "unreleased",
       });
     } catch (error) {
       setIsAttemptingDownload(false);
@@ -269,6 +282,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   useLessonDownloadExistenceCheck({
     lessonSlug,
     resourcesToCheck: activeResources as DownloadResourceType[],
+    additionalFilesIdsToCheck: null, // replace later with data
     onComplete: setActiveResources,
     isLegacyDownload: isLegacyDownload,
   });
@@ -341,7 +355,15 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                 data-testid="downloads-confirmation"
                 isCanonical={props.isCanonical}
                 nextLessons={lesson.nextLessons}
-                onwardContentSelected={onwardContentSelected}
+                onwardContentSelected={(props) => {
+                  onwardContentSelected({
+                    ...props,
+                    lessonReleaseCohort: isLegacyDownload
+                      ? "2020-2023"
+                      : "2023-2026",
+                    lessonReleaseDate: lessonReleaseDate ?? "unreleased",
+                  });
+                }}
                 isSpecialist={isSpecialist}
                 subjectSlug={subjectSlug}
                 subjectTitle={subjectTitle}
@@ -351,6 +373,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                     ? null
                     : (keyStageTitle as KeyStageTitleValueType)
                 }
+                isLegacy={isLegacyDownload}
+                lessonReleaseDate={lessonReleaseDate ?? "unreleased"}
               />
             );
           }
@@ -389,6 +413,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                   <DownloadCardGroup
                     control={form.control}
                     downloads={downloadsFilteredByCopyright}
+                    additionalFiles={additionalFiles}
                     hasError={form.errors?.resources ? true : false}
                     triggerForm={form.trigger}
                   />

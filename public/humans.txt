@@ -26,7 +26,7 @@ Oak National Academy’s tech platform has been created by a team of humans supp
 
   Ben Protheroe (Software Engineer)
   From: London, lives in Cornwall
-  
+
   Dan Dupont (Product Manager)
   LinkedIn: https://www.linkedin.com/in/dandupontlopez/
   From: Bristol, UK
@@ -85,7 +85,7 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   LinkedIn: https://www.linkedin.com/in/joe-baker-96a109219/
   From: London, UK
 
-  John Roberts (Director of Product and Engineering)
+  John Roberts (Interim CEO)
   Site: https://johnroberts.me
   LinkedIn: https://linkedin.com/in/johnrobertsuk
   X: https://x.com/johnrobeds
@@ -117,6 +117,11 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   LinkedIn: https://www.linkedin.com/in/tash-blore-245079182/
   From: Manchester, UK
 
+  Reece Charsville (Senior Software Engineer)
+  Site: https://reececharsville.com/
+  LinkedIn: https://www.linkedin.com/in/reece-charsville/
+  From: Sheffield, UK
+
   Richard Brownsett (Quality Assurance Analyst)
   LinkedIn: https://www.linkedin.com/in/richard-brownsett-b3383168/
   From: Stoke-on-Trent, UK
@@ -141,7 +146,12 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   LinkedIn: https://www.linkedin.com/in/sonalisin
   From: Manchester, lives in London, UK
 
+  Taha Hassan (Software Engineer)
+  LinkedIn: https://www.linkedin.com/in/taha--hassan/
+  From: London, UK
+
   Thomas Chan (Software Engineer)
+  Site: http://enigmaticexplorer.com/ 
   LinkedIn: https://www.linkedin.com/in/thomas-chan-103214107/
   From: Brighton, UK
   
@@ -151,6 +161,11 @@ Oak National Academy’s tech platform has been created by a team of humans supp
 
 
 /* THANKS */
+
+  Ben Titterington (Senior Software Engineer)
+  Site: https://www.bentitterington.co.uk/
+  LinkedIn: https://www.linkedin.com/in/ben-titterington/
+  From: Preston, UK
 
   Carl Whittaker (Software Engineer)
   LinkedIn: https://www.linkedin.com/in/carlmw 

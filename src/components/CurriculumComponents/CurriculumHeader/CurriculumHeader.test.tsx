@@ -91,8 +91,10 @@ describe("Component - Curriculum Header", () => {
     const { findByTestId } = renderComponent();
     const tabularNav = await findByTestId("tabularNav");
     expect(tabularNav).toBeInTheDocument();
+
     const links = await findAllByRole(tabularNav, "link");
     expect(links).toHaveLength(3);
+
     expect(links[0]).toHaveTextContent("Unit sequence");
     expect(links[1]).toHaveTextContent("Explainer");
     expect(links[2]).toHaveTextContent("Download");

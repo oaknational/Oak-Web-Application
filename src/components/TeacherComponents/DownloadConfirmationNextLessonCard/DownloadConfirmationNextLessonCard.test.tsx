@@ -2,11 +2,15 @@ import userEvent from "@testing-library/user-event";
 
 import DownloadConfirmationNextLessonCard from "./DownloadConfirmationNextLessonCard";
 
-import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { OnwardContentSelectedProperties } from "@/browser-lib/avo/Avo";
 
-const onwardContentSelected =
-  jest.fn() as unknown as TrackFns["onwardContentSelected"];
+const onwardContentSelected = jest.fn() as unknown as (
+  properties: Omit<
+    OnwardContentSelectedProperties,
+    "lessonReleaseDate" | "lessonReleaseCohort"
+  >,
+) => void;
 
 describe("DownloadConfirmationNextLessonCard", () => {
   beforeEach(() => {

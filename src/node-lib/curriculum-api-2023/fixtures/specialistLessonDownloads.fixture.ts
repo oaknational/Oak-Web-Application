@@ -17,6 +17,7 @@ export const SpecialistLessonDownloadFixture = (
       unitSlug: "staying-safe-al",
       programmeSlug: "independent-living",
       isLegacy: false,
+      lessonReleaseDate: "2025-09-29T14:00:00.000Z",
       lessonSlug: "staying-safe-al",
       downloads: [
         {
@@ -27,6 +28,7 @@ export const SpecialistLessonDownloadFixture = (
           label: "Slide deck",
         },
       ],
+      additionalFiles: [],
       nextLessons: [
         {
           lessonSlug: "test",

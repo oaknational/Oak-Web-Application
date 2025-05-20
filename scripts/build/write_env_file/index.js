@@ -142,7 +142,14 @@ async function main() {
       process.env.NEXT_PUBLIC_VERCEL_API_URL || oakConfig.oak.vercelApiUrl,
     NEXT_PUBLIC_DOWNLOAD_API_URL:
       process.env.NEXT_PUBLIC_DOWNLOAD_API_URL || oakConfig.oak.downloadApiUrl,
-
+    // Educator data
+    EDUCATOR_API_URL:
+      process.env.EDUCATOR_API_URL || oakConfig.oak.educatorApiUrl,
+    EDUCATOR_API_AUTH_KEY:
+      process.env.EDUCATOR_API_AUTH_KEY ||
+      secretsFromNetwork.EDUCATOR_API_AUTH_KEY,
+    EDUCATOR_API_AUTH_ROLE:
+      process.env.EDUCATOR_API_AUTH_ROLE || oakConfig.oak.educatorApiAuthRole,
     // Mux
     MUX_SIGNING_KEY:
       process.env.MUX_SIGNING_KEY || secretsFromNetwork.MUX_SIGNING_KEY,
@@ -253,6 +260,9 @@ async function main() {
       oakConfig.clerk.publishableKey,
     CLERK_SECRET_KEY:
       process.env.CLERK_SECRET_KEY || secretsFromNetwork.CLERK_SECRET_KEY,
+    CLERK_SIGNING_SECRET:
+      process.env.CLERK_SIGNING_SECRET ||
+      secretsFromNetwork.CLERK_SIGNING_SECRET,
 
     // Geolocation
     DEVELOPMENT_USER_REGION:

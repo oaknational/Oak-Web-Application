@@ -1,3 +1,5 @@
+import { mediaClipCycleFixture } from "@oaknational/oak-curriculum-schema";
+
 import {
   createAttributionObject,
   getCommonPathway,
@@ -5,11 +7,15 @@ import {
   groupLessonPathways,
   getLessonMediaBreadCrumb,
   getMediaClipLabel,
+  convertBytesToMegabytes,
+  sortMediaClipsByOrder,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import {
   quizQuestions,
   quizQuestionsNoImages,
 } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
+import type { MediaClip } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
+import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 describe("getCommonPathway()", () => {
   it("returns the intersection of a single LessonPathway", () => {
@@ -36,6 +42,7 @@ describe("getCommonPathway()", () => {
       keyStageSlug: "ks1",
       keyStageTitle: "KS1",
       subjectTitle: "Math",
+      subjectParent: null,
       subjectSlug: "math",
       unitTitle: "Unit 1",
       unitSlug: "unit-1",
@@ -47,6 +54,7 @@ describe("getCommonPathway()", () => {
       yearSlug: null,
       yearTitle: null,
       lessonCohort: "2023-2024",
+      pathwayTitle: null,
     };
 
     expect(result).toEqual(expected);
@@ -98,9 +106,11 @@ describe("getCommonPathway()", () => {
       tierSlug: null,
       examBoardTitle: null,
       examBoardSlug: null,
+      subjectParent: null,
       yearSlug: null,
       yearTitle: null,
       lessonCohort: "2023-2024",
+      pathwayTitle: null,
     };
 
     expect(result).toEqual(expected);
@@ -728,5 +738,156 @@ describe("getMediaClipLabel", () => {
   it("returns 'Video & audio clips' for any other subject", () => {
     const result = getMediaClipLabel("math");
     expect(result).toBe("Video & audio clips");
+  });
+});
+
+describe("convertBytesToMegabytes", () => {
+  it("converts bytes to megabytes and returns string fixed to two coma spaces", () => {
+    const result = convertBytesToMegabytes(13456325);
+    expect(result).toBe("12.83 MB");
+  });
+
+  it("converts bytes to kilobytes and returns string fixed to two coma spaces", () => {
+    const result = convertBytesToMegabytes(3456);
+    expect(result).toBe("3.38 KB");
+  });
+
+  it("doesn't convert bytes if the size is too small to be converted", () => {
+    const result = convertBytesToMegabytes(876);
+    expect(result).toBe("876 B");
+  });
+});
+
+describe("sortMediaClipsByOrder", () => {
+  it("sorts media clips in ascending order based on the 'order' property", () => {
+    const mediaClips: MediaClip[] = keysToCamelCase([
+      mediaClipCycleFixture({
+        overrides: {
+          order: "2",
+        },
+      }),
+      mediaClipCycleFixture({
+        overrides: {
+          order: "5",
+        },
+      }),
+      mediaClipCycleFixture({
+        overrides: {
+          order: "1",
+        },
+      }),
+    ]);
+    const result = mediaClips.toSorted(sortMediaClipsByOrder);
+
+    expect(result).toEqual(
+      keysToCamelCase([
+        mediaClipCycleFixture({
+          overrides: {
+            order: "1",
+          },
+        }),
+        mediaClipCycleFixture({
+          overrides: {
+            order: "2",
+          },
+        }),
+        mediaClipCycleFixture({
+          overrides: {
+            order: "5",
+          },
+        }),
+      ]),
+    );
+  });
+
+  it("returns 0 when two media clips have the same 'order' property", () => {
+    const mediaClips: MediaClip[] = keysToCamelCase([
+      mediaClipCycleFixture({
+        overrides: {
+          order: "1",
+          media_id: "456",
+        },
+      }),
+      mediaClipCycleFixture({
+        overrides: {
+          order: "1",
+          media_id: "123",
+        },
+      }),
+    ]);
+
+    const result = mediaClips.toSorted(sortMediaClipsByOrder);
+
+    expect(result).toEqual(
+      keysToCamelCase([
+        mediaClipCycleFixture({
+          overrides: {
+            order: "1",
+            media_id: "456",
+          },
+        }),
+        mediaClipCycleFixture({
+          overrides: {
+            order: "1",
+            media_id: "123",
+          },
+        }),
+      ]),
+    );
+  });
+
+  it("handles empty arrays without errors", () => {
+    const mediaClips: MediaClip[] = [];
+    const result = mediaClips.toSorted(sortMediaClipsByOrder);
+
+    expect(result).toEqual([]);
+  });
+
+  it("handles media clips with non-numeric 'order' values gracefully", () => {
+    const mediaClips: MediaClip[] = keysToCamelCase([
+      mediaClipCycleFixture({
+        overrides: {
+          order: "abc",
+          media_id: "123",
+        },
+      }),
+      mediaClipCycleFixture({
+        overrides: {
+          order: "2",
+          media_id: "456",
+        },
+      }),
+      mediaClipCycleFixture({
+        overrides: {
+          order: "1",
+          media_id: "456",
+        },
+      }),
+    ]);
+
+    const result = mediaClips.toSorted(sortMediaClipsByOrder);
+
+    expect(result).toEqual(
+      keysToCamelCase([
+        mediaClipCycleFixture({
+          overrides: {
+            order: "abc",
+            media_id: "123",
+          },
+        }),
+        mediaClipCycleFixture({
+          overrides: {
+            order: "1",
+            media_id: "456",
+          },
+        }),
+        mediaClipCycleFixture({
+          overrides: {
+            order: "2",
+            media_id: "456",
+          },
+        }),
+      ]),
+    );
   });
 });

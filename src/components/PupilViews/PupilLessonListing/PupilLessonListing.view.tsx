@@ -12,7 +12,6 @@ import {
   OakBox,
   isValidIconName,
 } from "@oaknational/oak-components";
-import { useState } from "react";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.schema";
@@ -40,12 +39,6 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
     examboard,
     phaseSlug,
   } = programmeFields;
-
-  const [showExpiredLessonsBanner, setShowExpiredLessonsBanner] =
-    useState<boolean>(
-      unitData.expirationDate !== null ||
-        orderedCurriculumData.some((c) => c.actions?.displayExpiringBanner),
-    );
 
   const baseSlug = `${subjectSlug}-${phaseSlug}-${yearSlug}`;
   const unitListingHref = `/pupils/programmes/${baseSlug}/options`; // NB. options will forward to units if no options available
@@ -109,12 +102,12 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
       </OakFlex>
 
       <ExpiringBanner
-        isOpen={showExpiredLessonsBanner}
+        isOpen={
+          unitData.expirationDate !== null ||
+          orderedCurriculumData.some((c) => c.actions?.displayExpiringBanner)
+        }
         isResourcesMessage={false}
         onwardHref={unitListingHref}
-        onClose={() => {
-          setShowExpiredLessonsBanner(false);
-        }}
       />
     </OakFlex>
   );

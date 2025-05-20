@@ -5,6 +5,7 @@ import {
   OakGrid,
   OakGridArea,
   OakP,
+  OakHandDrawnHR,
 } from "@oaknational/oak-components";
 
 import OwaLink from "../SharedComponents/OwaLink";
@@ -25,6 +26,10 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
   const title = isEyfs
     ? `EYFS areas of learning`
     : `${sentenceCaseKeyStageTitle} subjects`;
+
+  const furtherLessons = subjects.filter(
+    (subject) => subject[0]?.data?.features?.non_curriculum,
+  );
 
   return (
     <OakFlex $flexDirection={"column"}>
@@ -68,7 +73,8 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
         >
           {subjects.map(
             (subjectArray, i) =>
-              subjectArray[0] && (
+              subjectArray[0] &&
+              !subjectArray[0].data?.features?.non_curriculum && (
                 <OakGridArea
                   key={`subject-list-item-${subjectArray[0]?.slug}-${i}`}
                   $colSpan={[12, 6, 3]}
@@ -83,6 +89,42 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
               ),
           )}
         </OakGrid>
+        {furtherLessons.length > 0 && (
+          <>
+            <OakHandDrawnHR
+              hrColor={"bg-neutral-stronger"}
+              $height={"all-spacing-1"}
+            />
+            <OakHeading
+              $font={"heading-3"}
+              tag={"h1"}
+              $mv={["space-between-m2", "space-between-m"]}
+            >
+              Further lessons
+            </OakHeading>
+            <OakGrid
+              $rg={"all-spacing-4"}
+              $cg={"all-spacing-4"}
+              $gridAutoRows={"1fr"}
+              $mb={"space-between-xxl"}
+            >
+              {furtherLessons.map((subject) => (
+                <OakGridArea
+                  key={`subject-list-item-${subject[0]?.slug}`}
+                  $colSpan={[12, 6, 3]}
+                >
+                  <SubjectListingCardDouble
+                    subject={subject}
+                    subjectSlug={subject[0].slug}
+                    keyStageSlug={keyStageSlug}
+                    keyStageTitle={sentenceCaseKeyStageTitle}
+                    $background="mint50"
+                  />
+                </OakGridArea>
+              ))}
+            </OakGrid>
+          </>
+        )}
       </MaxWidth>
     </OakFlex>
   );

@@ -20,14 +20,40 @@ export function setGetAuth(auth: AuthObject) {
  * Installs a partial mock of `clerkClient()` for use on the server
  * to make requests to Clerk's API
  */
-export function installMockClerkClient() {
+export async function installMockClerkClient({
+  updateUserMetadata,
+  getUser,
+  mockUser,
+}: {
+  updateUserMetadata: () => void;
+  getUser: () => void;
+  mockUser: clerk.User;
+}) {
+  const mockClerkClient = getMockClerkClient({ updateUserMetadata, getUser });
+  jest.spyOn(clerk, "clerkClient").mockReturnValue(mockClerkClient);
+  const client = await mockClerkClient;
+  jest
+    .spyOn(client.users, "updateUserMetadata")
+    .mockReturnValue(Promise.resolve(mockUser));
+  jest
+    .spyOn(client.users, "getUser")
+    .mockReturnValue(Promise.resolve(mockUser));
+}
+
+export function getMockClerkClient({
+  updateUserMetadata,
+  getUser,
+}: {
+  updateUserMetadata: () => void;
+  getUser: () => void;
+}) {
   const mockClerkClient = {
     users: {
-      updateUserMetadata: () => Promise.resolve(mockServerUser),
-      getUser: () => Promise.resolve(mockServerUser),
+      updateUserMetadata,
+      getUser,
     },
   } as unknown as ReturnType<typeof clerk.clerkClient>;
-  jest.spyOn(clerk, "clerkClient").mockReturnValue(mockClerkClient);
+
   return mockClerkClient;
 }
 
@@ -82,7 +108,11 @@ export const mockServerUser: User = {
   primaryWeb3Wallet: null,
   fullName: null,
   deleteSelfEnabled: false,
-} as const;
+  legalAcceptedAt: null,
+  raw: {} as clerk.UserJSON,
+  _raw: null,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+} as any as User;
 
 /**
  * Provides a mock server user with no email addresses
@@ -94,7 +124,8 @@ export const mockServerUserWithNoEmailAddresses: User = {
   primaryPhoneNumber: null,
   primaryWeb3Wallet: null,
   fullName: null,
-};
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+} as any as User;
 
 /**
  * Signed in state for `getAuth()`
@@ -110,6 +141,7 @@ export const mockGetAuthSignedIn: AuthObject = {
     iat: 0,
   },
   sessionId: "session-id",
+  sessionStatus: null,
   actor: undefined,
   userId: "123",
   orgId: undefined,
@@ -118,7 +150,7 @@ export const mockGetAuthSignedIn: AuthObject = {
   orgPermissions: undefined,
   getToken: async () => "token",
   has: () => false,
-  __experimental_factorVerificationAge: null,
+  factorVerificationAge: null,
   debug: () => ({}),
 };
 
@@ -128,6 +160,7 @@ export const mockGetAuthSignedIn: AuthObject = {
 export const mockGetAuthSignedOut: AuthObject = {
   sessionClaims: null,
   sessionId: null,
+  sessionStatus: null,
   actor: null,
   userId: null,
   orgId: null,
@@ -136,6 +169,6 @@ export const mockGetAuthSignedOut: AuthObject = {
   orgPermissions: null,
   getToken: async () => null,
   has: () => false,
-  __experimental_factorVerificationAge: null,
+  factorVerificationAge: null,
   debug: () => ({}),
 };

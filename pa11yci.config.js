@@ -48,6 +48,9 @@ const config = {
       "x-vercel-protection-bypass": vercelAutomationBypass,
     },
     concurrency: 10,
+    chromeLaunchConfig: {
+      executablePath: "/usr/bin/google-chrome",
+    },
   },
   urls: [],
   // log: {

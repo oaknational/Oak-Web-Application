@@ -22,6 +22,7 @@ import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { CurriculumTab } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { buildPageTitle } from "@/utils/curriculum/formatting";
+import { PhaseValueType } from "@/browser-lib/avo/Avo";
 
 export type CurriculumHeaderPageProps = {
   curriculumPhaseOptions: SubjectPhasePickerData;
@@ -92,7 +93,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   ];
 
   return (
-    <OakBox $mb="space-between-l">
+    <OakBox $mb={["space-between-none", "space-between-l", "space-between-l"]}>
       {/* @todo replace with OakFlex - colours type needs updating to oak-components colour token */}
       <OakFlex $background={color1} $pv="inner-padding-l">
         <OakBox
@@ -188,7 +189,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
             </OakFlex>
           </OakBox>
         </Flex>
-        <Flex $borderColor="mint30" $bt={2}>
+        <Flex $borderColor="mint30" $background={"mint"} $bt={2}>
           <OakBox
             $maxWidth="all-spacing-24"
             $ph={["inner-padding-none", "inner-padding-l"]}
@@ -202,6 +203,12 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               variant="flat"
               $alignItems={"center"}
               $height={[60, 64]}
+              trackingData={{
+                subjectSlug: currentSelection.subject.slug,
+                subjectTitle: currentSelection.subject.title,
+                phaseSlug: currentSelection.phase.slug as PhaseValueType,
+              }}
+              $background={"mint"}
             />
           </OakBox>
         </Flex>
