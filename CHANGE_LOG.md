@@ -1,3 +1,10 @@
+## [1.749.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.749.0...v1.749.1) (2025-05-20)
+
+
+### Bug Fixes
+
+* re-enable column breaks now issues have been fixed in office365 ([46d51c2](https://github.com/oaknational/Oak-Web-Application/commit/46d51c2749d249c4b0f876eaee9bc8725f5ba6e8))
+
 # [1.749.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.748.1...v1.749.0) (2025-05-19)
 
 
