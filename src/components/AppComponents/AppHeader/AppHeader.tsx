@@ -110,7 +110,7 @@ const AppHeader: FC<HeaderProps> = () => {
               selectedArea == siteAreas.teachers && (
                 <SignUpButton forceRedirectUrl={onboardingRedirectUrl}>
                   <OakSecondaryButton
-                    name="sign up button"
+                    name="sign up"
                     font={"body-3-bold"}
                     pv="inner-padding-xs"
                     ph="inner-padding-xs"

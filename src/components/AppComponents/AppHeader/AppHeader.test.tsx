@@ -103,4 +103,20 @@ describe("components/AppHeader", () => {
     const signOutButton = screen.getByTestId("clerk-user-button");
     expect(signOutButton).toBeInTheDocument();
   });
+
+  it("renders a sign up button when a user is not logged in", async () => {
+    setUseUserReturn(mockLoggedOut);
+    renderWithProviders()(<AppHeader />);
+
+    const signUpButton = screen.getByRole("button", { name: /sign up/i });
+    expect(signUpButton).toBeInTheDocument();
+  });
+
+  it("does not render a sign up button when a user is logged in", async () => {
+    setUseUserReturn(mockLoggedIn);
+    renderWithProviders()(<AppHeader />);
+
+    const signUpButton = screen.queryByRole("button", { name: /sign up/i });
+    expect(signUpButton).not.toBeInTheDocument();
+  });
 });
