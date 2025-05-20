@@ -80,7 +80,7 @@ const AppHeader: FC<HeaderProps> = () => {
             $gap="all-spacing-6"
             $font="heading-7"
           >
-            {isSignedIn && (
+            {isSignedIn ? (
               <UserButton
                 appearance={{
                   elements: {
@@ -106,17 +106,19 @@ const AppHeader: FC<HeaderProps> = () => {
                 }}
                 data-testid="clerk-user-button"
               />
-            )}
-            {!isSignedIn && selectedArea == siteAreas.teachers && (
-              <SignUpButton forceRedirectUrl={onboardingRedirectUrl}>
-                <OakSecondaryButton
-                  font={"body-3-bold"}
-                  pv="inner-padding-xs"
-                  ph="inner-padding-xs"
-                >
-                  Sign up
-                </OakSecondaryButton>
-              </SignUpButton>
+            ) : (
+              selectedArea == siteAreas.teachers && (
+                <SignUpButton forceRedirectUrl={onboardingRedirectUrl}>
+                  <OakSecondaryButton
+                    name="sign up button"
+                    font={"body-3-bold"}
+                    pv="inner-padding-xs"
+                    ph="inner-padding-xs"
+                  >
+                    Sign up
+                  </OakSecondaryButton>
+                </SignUpButton>
+              )
             )}
             <OwaLink
               page={"teachers-home-page"}
