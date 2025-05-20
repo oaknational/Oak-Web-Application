@@ -38,6 +38,7 @@ describe("CurricVisualiserFiltersModal", () => {
           slugs={slugs}
           selectedYear={"7"}
           onSelectYear={onSelectYear}
+          ks4Options={[]}
         />,
       );
 
@@ -74,6 +75,7 @@ describe("CurricVisualiserFiltersModal", () => {
           slugs={slugs}
           selectedYear={"7"}
           onSelectYear={onSelectYear}
+          ks4Options={[]}
         />,
       );
 
@@ -107,6 +109,7 @@ describe("CurricVisualiserFiltersModal", () => {
           slugs={slugs}
           selectedYear={"7"}
           onSelectYear={onSelectYear}
+          ks4Options={[]}
         />,
       );
 
@@ -149,6 +152,7 @@ describe("CurricVisualiserFiltersModal", () => {
           slugs={slugs}
           selectedYear={"7"}
           onSelectYear={onSelectYear}
+          ks4Options={[]}
         />,
       );
 
@@ -193,6 +197,7 @@ describe("CurricVisualiserFiltersModal", () => {
           slugs={slugs}
           selectedYear={"7"}
           onSelectYear={onSelectYear}
+          ks4Options={[]}
         />,
       );
 
