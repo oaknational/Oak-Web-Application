@@ -1,7 +1,6 @@
-/** @todo replace with native fetch once we are using Node 18 */
-const fetch = require("node-fetch");
+import type { OakConfig } from "./config_types.js";
 
-const readConfigFromNetwork = async (fileUrl) => {
+const readConfigFromNetwork = async (fileUrl: string): Promise<OakConfig> => {
   let parsedUrl;
   try {
     parsedUrl = new URL(fileUrl).href;
@@ -32,4 +31,4 @@ const readConfigFromNetwork = async (fileUrl) => {
   return configJson;
 };
 
-module.exports = readConfigFromNetwork;
+export default readConfigFromNetwork;

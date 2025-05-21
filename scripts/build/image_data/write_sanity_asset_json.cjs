@@ -1,6 +1,6 @@
 const { writeFile } = require("fs/promises");
 
-const { getSanityClient } = require("./get_sanity_client");
+const { getSanityClient } = require("./get_sanity_client.cjs");
 
 async function writeAsset({ fileName, assetData }) {
   /**

@@ -1,24 +1,25 @@
-const { execSync } = require("child_process");
-const { existsSync, readFileSync } = require("fs");
+import { execSync } from "child_process";
+import { existsSync, readFileSync } from "node:fs";
 
 /**
  * Attempt to read the SHA of the current Git HEAD from the local file system.
  *
  * @returns {(string|null)} The SHA if found, or "no_git_state" if mid-merge, or `null` if it cannot be determined.
  */
-function getLocalGitRef() {
+export function getLocalGitRef(): string | null {
   if (existsSync(".git")) {
     const rev = readFileSync(".git/HEAD")
       .toString()
       .trim()
       .split(/.*[: ]/)
       .slice(-1)[0];
-    if (rev.indexOf("/") === -1) {
+    if (rev && rev.indexOf("/") === -1) {
       return rev;
     } else {
       try {
         return readFileSync(`.git/${rev}`).toString().trim();
       } catch (error) {
+        console.error(error);
         // Likely mid-merge
         return "no_git_state";
       }
@@ -35,7 +36,7 @@ function getLocalGitRef() {
  *
  * @returns {(string|null)} A git ref, usually a commit SHA, potentially a tag name.
  */
-function getGitRef() {
+export function getGitRef(): string | null {
   const gitRef =
     // Vercel
     process.env.VERCEL_GIT_COMMIT_SHA ||
@@ -61,11 +62,11 @@ function getGitRef() {
  * For production builds parse the version from the Git ref triggering the build.
  * For all other builds use the current Git HEAD SHA.
  *
- * @param {Boolean} isProductionBuild Is this a production build?
- * @returns {string} An app version identifier.
- * @throws {Error} Throws if a Git ref cannot be determined for a non-production build.
+ * @param  isProductionBuild Is this a production build?
+ * @returns  An app version identifier.
+ * @throws  Throws if a Git ref cannot be determined for a non-production build.
  */
-function getAppVersion(isProductionBuild) {
+export function getAppVersion(isProductionBuild: boolean): string {
   if (isProductionBuild) {
     const appVersionOverride = process.env.OVERRIDE_APP_VERSION;
     if (appVersionOverride) {
@@ -134,14 +135,15 @@ function getAppVersion(isProductionBuild) {
   }
 }
 
-const RELEASE_STAGE_TESTING = "test";
-const RELEASE_STAGE_DEVELOPMENT = "development";
-const RELEASE_STAGE_DEVELOPMENT_NETLIFY = "dev";
-const RELEASE_STAGE_BRANCH_DEPLOY_NETLIFY = "branch-deploy";
-const RELEASE_STAGE_PREVIEW = "preview";
-const RELEASE_STAGE_PREVIEW_NETLIFY = "deploy-preview";
-const RELEASE_STAGE_PRODUCTION = "production";
-const RELEASE_STAGE_NOT_DEFINED = "NOT_DEFINED";
+export const RELEASE_STAGE_TESTING = "test";
+export const RELEASE_STAGE_DEVELOPMENT = "development";
+export const RELEASE_STAGE_DEVELOPMENT_NETLIFY = "dev";
+export const RELEASE_STAGE_BRANCH_DEPLOY_NETLIFY = "branch-deploy";
+export const RELEASE_STAGE_PREVIEW = "preview";
+export const RELEASE_STAGE_PREVIEW_NETLIFY = "deploy-preview";
+export const RELEASE_STAGE_PRODUCTION = "production";
+export const RELEASE_STAGE_NOT_DEFINED = "NOT_DEFINED";
+
 /**
  * Given a proposed release stage name, return one of the standard release stage names.
  *
@@ -151,7 +153,9 @@ const RELEASE_STAGE_NOT_DEFINED = "NOT_DEFINED";
  * @param {string} candidateReleaseStage the proposed release stage name.
  * @returns {string} The canonical release stage name.
  */
-function getReleaseStage(candidateReleaseStage = RELEASE_STAGE_NOT_DEFINED) {
+export function getReleaseStage(
+  candidateReleaseStage: string = RELEASE_STAGE_NOT_DEFINED,
+): string {
   switch (candidateReleaseStage) {
     case RELEASE_STAGE_DEVELOPMENT:
     case RELEASE_STAGE_DEVELOPMENT_NETLIFY:
@@ -172,12 +176,3 @@ function getReleaseStage(candidateReleaseStage = RELEASE_STAGE_NOT_DEFINED) {
       `);
   }
 }
-
-module.exports = {
-  getAppVersion,
-  getReleaseStage,
-  RELEASE_STAGE_TESTING,
-  RELEASE_STAGE_DEVELOPMENT,
-  RELEASE_STAGE_PREVIEW,
-  RELEASE_STAGE_PRODUCTION,
-};

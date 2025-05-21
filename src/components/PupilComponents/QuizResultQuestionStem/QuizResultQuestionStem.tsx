@@ -17,10 +17,10 @@ import {
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 
-type QuizQuestionStemProps = {
+export interface QuizQuestionStemProps {
   questionStem: (ImageItem | TextItem)[];
   displayIndex: number;
-};
+}
 
 export const QuizResultQuestionStem = (props: QuizQuestionStemProps) => {
   const { questionStem, displayIndex } = props;

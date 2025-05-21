@@ -1,3 +1,21 @@
+## [1.750.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.750.1...v1.750.2) (2025-05-21)
+
+
+### Bug Fixes
+
+* add allowed origin for server actions ([8aa0c39](https://github.com/oaknational/Oak-Web-Application/commit/8aa0c39cb43f186d2d4555dab41a7a79d02adcbe))
+* add netlify domain to allowed origins as sugested fix for clerk issue ([75c232f](https://github.com/oaknational/Oak-Web-Application/commit/75c232fa0be5148946e66d924d8e77e2a9ec3ccc))
+* build issues with missing location ([ee6e016](https://github.com/oaknational/Oak-Web-Application/commit/ee6e016ac487eaf51e81ffa913874f8e00d3d33a))
+* missing comma ([bf6a286](https://github.com/oaknational/Oak-Web-Application/commit/bf6a286bd3df3c9434fd9caa2c649ea577c76562))
+* resolve TS type errors ([fe542f7](https://github.com/oaknational/Oak-Web-Application/commit/fe542f7eed319b45ee3e40303a3ddc48d21b4bf0))
+* signup page layout ([b692ee3](https://github.com/oaknational/Oak-Web-Application/commit/b692ee38aa666a8b32144a2561a620b081370354))
+* test using full url values in allowed origins ([e63f457](https://github.com/oaknational/Oak-Web-Application/commit/e63f4574fea88f7c680f34735997312455c2cd69))
+* try loosening allowed origins in config ([4ed87da](https://github.com/oaknational/Oak-Web-Application/commit/4ed87dacf9b00bac75f95f2a16ad5708ba8a2134))
+* try using wildcards in allowed origins ([b24fb0f](https://github.com/oaknational/Oak-Web-Application/commit/b24fb0fcb6a08d97d8b4e71920e455ee201149e5))
+* typo in pa11y run pa11yci.config.cjs -> pa11yci.config.js ([02aa029](https://github.com/oaknational/Oak-Web-Application/commit/02aa0291a1544de5219572055e7c6efeee772602))
+
+## [1.750.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.750.0...v1.750.1) (2025-05-21)
+
 # [1.750.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.749.3...v1.750.0) (2025-05-21)
 
 
