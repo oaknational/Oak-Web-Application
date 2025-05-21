@@ -8,10 +8,10 @@ exports[`OakModalNew should match snapshot 1`] = `
     style="z-index: 320;"
   >
     <div
-      class="sc-fqkvVR sc-f88aefea-0 hJRGVt hJveEH"
+      class="sc-fqkvVR sc-fd1b6bd3-0 hJRGVt jsTHOJ"
     />
     <div
-      class="sc-fqkvVR sc-gsFSXq sc-2c6f78eb-0 hBVYLH hDihdg kDzojl"
+      class="sc-fqkvVR sc-gsFSXq sc-702fbad0-0 hBVYLH hDihdg igbdss"
       data-testid="sidebar-modal"
       direction="right"
     >

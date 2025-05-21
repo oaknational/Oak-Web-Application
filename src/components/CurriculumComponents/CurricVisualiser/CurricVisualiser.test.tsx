@@ -28,6 +28,10 @@ const curriculumThreadHighlighted = jest.fn();
 const yearGroupSelected = jest.fn();
 const unitOverviewAccessed = jest.fn();
 
+window.matchMedia = jest.fn().mockReturnValue({
+  matches: true,
+});
+
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
