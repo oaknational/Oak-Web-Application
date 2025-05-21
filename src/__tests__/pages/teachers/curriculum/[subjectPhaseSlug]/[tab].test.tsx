@@ -14,7 +14,6 @@ import {
 import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumUnits.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
-import { mockPrerelease } from "@/utils/mocks";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import "@/__tests__/__helpers__/ResizeObserverMock";
 import {
@@ -638,9 +637,6 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       });
 
       test("user can see the tier selector for secondary maths", async () => {
-        // Mock for prerelease behavior
-        mockPrerelease("curriculum.downloads");
-
         // Mock for useRouter to provide the correct router query and other properties
         (useRouter as jest.Mock).mockReturnValue({
           query: { slugs: ["downloads"], subjectPhaseSlug: "maths-secondary" },
@@ -706,7 +702,6 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
 
     if (!DISABLE_DOWNLOADS) {
       it("renders the Curriculum Downloads Tab (with prerelease)", () => {
-        mockPrerelease("curriculum.downloads");
         (useRouter as jest.Mock).mockReturnValue({
           query: { slugs: ["downloads"] },
           isPreview: false,

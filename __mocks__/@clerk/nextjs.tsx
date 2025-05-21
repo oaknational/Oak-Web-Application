@@ -30,6 +30,7 @@ module.exports = {
     };
   },
   ClerkProvider: RenderChildren,
+  SignUpButton: RenderChildren,
   SignedIn: RenderChildren,
   SignedOut: RenderChildren,
   SignOutButton: RenderChildren,

@@ -107,18 +107,21 @@ const HowCanOakSupport = () => {
               control={control}
               name={key as OakSupportKey}
               key={key}
-              render={({ field }) => (
-                <OakCheckBox
-                  id={key}
-                  key={key}
-                  {...field}
-                  value={value}
-                  onChange={(event) => {
-                    clearErrors();
-                    field.onChange(event);
-                  }}
-                />
-              )}
+              render={({ field }) => {
+                const { ref, ...fieldProps } = field;
+                return (
+                  <OakCheckBox
+                    id={key}
+                    key={key}
+                    {...fieldProps}
+                    value={value}
+                    onChange={(event) => {
+                      clearErrors();
+                      field.onChange(event);
+                    }}
+                  />
+                );
+              }}
             />
           ))}
           {hasMissingFormData && (

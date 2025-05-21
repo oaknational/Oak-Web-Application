@@ -18,8 +18,6 @@ import { createTeacherProgrammeSlug } from "@/utils/curriculum/slugs";
 import { SubjectCategory } from "@/utils/curriculum/types";
 import { getIsUnitDescriptionEnabled } from "@/utils/curriculum/features";
 
-const DISABLE_COLUMN_BREAKS = true;
-
 type Unit = CombinedCurriculumData["units"][number];
 
 async function buildUnitLessons(
@@ -633,16 +631,13 @@ export async function buildUnit(
         </w:pPr>
       </w:p>
       ${unitDescriptions}
-      ${DISABLE_COLUMN_BREAKS ? safeXml` <w:p /> ` : ""}
       <w:p>
         <w:pPr>
           <w:pStyle w:val="Heading4" />
         </w:pPr>
-        ${DISABLE_COLUMN_BREAKS
-          ? ""
-          : `<w:r>
+        <w:r>
           <w:br w:type="column" />
-        </w:r>`}
+        </w:r>
         <w:r>
           <w:rPr>
             <w:rFonts
