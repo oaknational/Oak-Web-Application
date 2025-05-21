@@ -1,3 +1,18 @@
+# [1.750.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.749.3...v1.750.0) (2025-05-21)
+
+
+### Bug Fixes
+
+* fix account button not rendering in pupil area ([783c331](https://github.com/oaknational/Oak-Web-Application/commit/783c331b5c41af2ce9d8c837681aba1a381b793a))
+* fix vertical padding ([22c2693](https://github.com/oaknational/Oak-Web-Application/commit/22c26931d5d2c905b984b2d06cda18fe999d78c9))
+* mock sign up button and fix test ([66b95ec](https://github.com/oaknational/Oak-Web-Application/commit/66b95ec1470922a6446cf409f5c87e7d25f2a072))
+
+
+### Features
+
+* add sign up button to navbar ([168cd8c](https://github.com/oaknational/Oak-Web-Application/commit/168cd8ca16d42a57d642950fe89a1cab30992577))
+* redirect from sign up to onboarding and then back to original page ([586606b](https://github.com/oaknational/Oak-Web-Application/commit/586606ba5419c194e3f1c0460c68d6082a001b94))
+
 ## [1.749.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.749.2...v1.749.3) (2025-05-21)
 
 ## [1.749.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.749.1...v1.749.2) (2025-05-21)
