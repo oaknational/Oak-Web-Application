@@ -79,7 +79,7 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
           >
             <ul style={{ display: "contents" }}>
               {uniqueThreadsArray.map((thread) => (
-                <li style={{ display: "contents" }}>
+                <li key={thread} style={{ display: "contents" }}>
                   <TagFunctional
                     key={thread}
                     text={thread}
