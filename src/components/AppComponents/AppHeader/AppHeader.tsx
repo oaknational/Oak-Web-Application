@@ -19,6 +19,7 @@ import { AppHeaderUnderline } from "@/components/AppComponents/AppHeaderUnderlin
 import { burgerMenuSections } from "@/browser-lib/fixtures/burgerMenuSections";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useSelectedArea from "@/hooks/useSelectedArea";
+import { useGetEducatorData } from "@/node-lib/educator-api/helpers/useGetEducatorData";
 
 export const siteAreas = {
   teachers: "TEACHERS",
@@ -46,6 +47,10 @@ const AppHeader: FC<HeaderProps> = () => {
   const onboardingRedirectUrl = `${resolveOakHref({ page: "onboarding" })}?${returnToParams}`;
 
   const isSaveEnabled = useFeatureFlagEnabled("teacher-save-units");
+
+  const { data: unitsCount, isLoading } = useGetEducatorData<number>(
+    "/api/educator-api/getSavedUnitCount",
+  );
 
   return (
     <header>
@@ -79,9 +84,9 @@ const AppHeader: FC<HeaderProps> = () => {
           >
             {isSaveEnabled && (
               <OakSaveCount
-                count={0}
+                count={unitsCount ?? 0}
                 href={resolveOakHref({ page: "my-library" })}
-                loading={false}
+                loading={isLoading}
               />
             )}
             <TeacherAccountButton

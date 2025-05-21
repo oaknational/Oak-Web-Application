@@ -56,7 +56,7 @@ export const useSaveUnits = (
 ) => {
   const { isSignedIn, user } = useUser();
   const { track } = useAnalytics();
-  const { data: savedUnitsData } = useGetEducatorData(
+  const { data: savedUnitsData } = useGetEducatorData<string[]>(
     `/api/educator-api/getSavedUnits/${programmeSlug}`,
   );
 
