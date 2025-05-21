@@ -11,9 +11,9 @@ function handler(e: MouseEvent) {
 }
 
 export function setupMockLinkClick() {
-  document.addEventListener("click", handler);
+  document.addEventListener("click", handler, true);
 }
 
 export function teardownMockLinkClick() {
-  document.removeEventListener("click", handler);
+  document.removeEventListener("click", handler, true);
 }
