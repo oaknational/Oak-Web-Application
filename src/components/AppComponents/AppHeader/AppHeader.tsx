@@ -1,7 +1,8 @@
 import { FC, useRef } from "react";
-import { OakBox, OakFlex } from "@oaknational/oak-components";
+import { OakBox, OakFlex, OakSaveCount } from "@oaknational/oak-components";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/router";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import TeacherAccountButton from "@/components/TeacherComponents/TeacherAccountButton/TeacherAccountButton";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -44,6 +45,8 @@ const AppHeader: FC<HeaderProps> = () => {
   }).toString();
   const onboardingRedirectUrl = `${resolveOakHref({ page: "onboarding" })}?${returnToParams}`;
 
+  const isSaveEnabled = useFeatureFlagEnabled("teacher-save-units");
+
   return (
     <header>
       <StyledHeader
@@ -74,6 +77,13 @@ const AppHeader: FC<HeaderProps> = () => {
             $gap="all-spacing-6"
             $font="heading-7"
           >
+            {isSaveEnabled && (
+              <OakSaveCount
+                count={0}
+                href={resolveOakHref({ page: "my-library" })}
+                loading={false}
+              />
+            )}
             <TeacherAccountButton
               selectedArea={selectedArea}
               isSignedIn={isSignedIn ? true : false}
