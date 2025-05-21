@@ -9,6 +9,11 @@ import CurriculumHeaderTabNav from "./index";
 import { ButtonAsLinkProps } from "@/components/SharedComponents/Button/ButtonAsLink";
 import oakTheme from "@/styles/theme";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
+import {
+  mockLinkClick,
+  setupMockLinkClick,
+  teardownMockLinkClick,
+} from "@/utils/mockLinkClick";
 
 const curriculumVisualiserTabAccessed = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
@@ -22,6 +27,13 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 }));
 
 describe("CurriculumHeaderTabNav Component", () => {
+  beforeEach(() => {
+    setupMockLinkClick();
+  });
+  afterEach(() => {
+    teardownMockLinkClick();
+  });
+
   const mockLinks: ButtonAsLinkProps[] = [
     {
       label: "Unit sequence",
@@ -112,6 +124,10 @@ describe("CurriculumHeaderTabNav Component", () => {
       await act(async () => {
         await userEvent.click(tab.querySelector("button")!);
       });
+
+      expect(mockLinkClick).toHaveBeenCalledWith(
+        "http://localhost/teachers/curriculum/maths-secondary/units",
+      );
 
       expect(curriculumVisualiserTabAccessed).toHaveBeenCalledTimes(1);
       expect(curriculumVisualiserTabAccessed).toHaveBeenCalledWith({
