@@ -1,8 +1,7 @@
-import { FC, useEffect, useRef } from "react";
-import { OakBox, OakFlex, OakSaveCount } from "@oaknational/oak-components";
+import { FC, useRef } from "react";
+import { OakBox, OakFlex } from "@oaknational/oak-components";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/router";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import TeacherAccountButton from "@/components/TeacherComponents/TeacherAccountButton/TeacherAccountButton";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -19,8 +18,7 @@ import { AppHeaderUnderline } from "@/components/AppComponents/AppHeaderUnderlin
 import { burgerMenuSections } from "@/browser-lib/fixtures/burgerMenuSections";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useSelectedArea from "@/hooks/useSelectedArea";
-import { useGetEducatorData } from "@/node-lib/educator-api/helpers/useGetEducatorData";
-import useSaveCountContext from "@/context/SaveCount/useSaveCountContext";
+import { SaveCount } from "@/components/TeacherComponents/SaveCount/SaveCount";
 
 export const siteAreas = {
   teachers: "TEACHERS",
@@ -46,21 +44,6 @@ const AppHeader: FC<HeaderProps> = () => {
     returnTo: router.asPath,
   }).toString();
   const onboardingRedirectUrl = `${resolveOakHref({ page: "onboarding" })}?${returnToParams}`;
-
-  const isSaveEnabled = useFeatureFlagEnabled("teacher-save-units");
-
-  const { data: unitsCount, isLoading } = useGetEducatorData<number>(
-    "/api/educator-api/getSavedUnitCount",
-  );
-
-  const { savedUnitsCount, setSavedUnitsCount, loading } =
-    useSaveCountContext();
-
-  useEffect(() => {
-    if (unitsCount !== undefined) {
-      setSavedUnitsCount(unitsCount);
-    }
-  }, [unitsCount, setSavedUnitsCount]);
 
   return (
     <header>
@@ -92,13 +75,7 @@ const AppHeader: FC<HeaderProps> = () => {
             $gap="all-spacing-6"
             $font="heading-7"
           >
-            {isSaveEnabled && (
-              <OakSaveCount
-                count={savedUnitsCount ?? 0}
-                href={resolveOakHref({ page: "my-library" })}
-                loading={isLoading || loading}
-              />
-            )}
+            <SaveCount />
             <TeacherAccountButton
               selectedArea={selectedArea}
               isSignedIn={isSignedIn ? true : false}
