@@ -1,5 +1,5 @@
-const { getSanityClient } = require("./get_sanity_client");
-const { downloadFile, writeJson } = require("./helpers");
+const { getSanityClient } = require("./get_sanity_client.cjs");
+const { downloadFile, writeJson } = require("./helpers.cjs");
 
 async function main() {
   try {
