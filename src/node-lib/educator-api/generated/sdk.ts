@@ -4090,7 +4090,7 @@ export type Content_Bool_Exp = {
 export enum Content_Constraint {
   /** unique or primary key constraint on columns "id" */
   ContentPkey = "content_pkey",
-  /** unique or primary key constraint on columns "unit_slug", "programme_slug" */
+  /** unique or primary key constraint on columns "programme_slug", "unit_slug" */
   ContentProgrammeSlugUnitSlugKey = "content_programme_slug_unit_slug_key",
 }
 
@@ -44674,9 +44674,9 @@ export type Query_Root = {
   lessons_aggregate: Lessons_Aggregate;
   /** fetch data from the table: "lessons" using primary key columns */
   lessons_by_pk?: Maybe<Lessons>;
-  /** fetch data from the table: "lists" */
+  /** An array relationship */
   lists: Array<Lists>;
-  /** fetch aggregated fields from the table: "lists" */
+  /** An aggregate relationship */
   lists_aggregate: Lists_Aggregate;
   /** fetch data from the table: "lists" using primary key columns */
   lists_by_pk?: Maybe<Lists>;
@@ -50140,9 +50140,9 @@ export type Subscription_Root = {
   lessons_by_pk?: Maybe<Lessons>;
   /** fetch data from the table in a streaming manner: "lessons" */
   lessons_stream: Array<Lessons>;
-  /** fetch data from the table: "lists" */
+  /** An array relationship */
   lists: Array<Lists>;
-  /** fetch aggregated fields from the table: "lists" */
+  /** An aggregate relationship */
   lists_aggregate: Lists_Aggregate;
   /** fetch data from the table: "lists" using primary key columns */
   lists_by_pk?: Maybe<Lists>;
@@ -61546,9 +61546,9 @@ export type Users = {
   created_at?: Maybe<Scalars["timestamptz"]["output"]>;
   id: Scalars["String"]["output"];
   last_signed_in?: Maybe<Scalars["timestamptz"]["output"]>;
-  /** fetch data from the table: "lists" */
+  /** An array relationship */
   lists: Array<Lists>;
-  /** fetch aggregated fields from the table: "lists" */
+  /** An aggregate relationship */
   lists_aggregate: Lists_Aggregate;
   source_app?: Maybe<Scalars["String"]["output"]>;
   updated_at?: Maybe<Scalars["timestamptz"]["output"]>;
@@ -63411,6 +63411,21 @@ export type GetUserContentQuery = {
   }>;
 };
 
+export type GetUserListContentCountQueryVariables = Exact<{
+  userId: Scalars["String"]["input"];
+}>;
+
+export type GetUserListContentCountQuery = {
+  __typename?: "query_root";
+  content_lists_aggregate: {
+    __typename?: "content_lists_aggregate";
+    aggregate?: {
+      __typename?: "content_lists_aggregate_fields";
+      count: number;
+    } | null;
+  };
+};
+
 export const CreateUserDocument = gql`
   mutation createUser($userId: String!, $sourceApp: String) {
     insert_users(
@@ -63501,6 +63516,18 @@ export const GetUserContentDocument = gql`
         content {
           unit_slug
         }
+      }
+    }
+  }
+`;
+export const GetUserListContentCountDocument = gql`
+  query GetUserListContentCount($userId: String!) {
+    content_lists_aggregate(
+      distinct_on: content_id
+      where: { list: { user_id: { _eq: $userId } } }
+    ) {
+      aggregate {
+        count
       }
     }
   }
@@ -63599,6 +63626,22 @@ export function getSdk(
             { ...requestHeaders, ...wrappedRequestHeaders },
           ),
         "getUserContent",
+        "query",
+        variables,
+      );
+    },
+    GetUserListContentCount(
+      variables: GetUserListContentCountQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<GetUserListContentCountQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<GetUserListContentCountQuery>(
+            GetUserListContentCountDocument,
+            variables,
+            { ...requestHeaders, ...wrappedRequestHeaders },
+          ),
+        "GetUserListContentCount",
         "query",
         variables,
       );
