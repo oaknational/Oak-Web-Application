@@ -118,7 +118,7 @@ describe("Lesson Overview Canonical Page", () => {
     });
 
     it("updates the url", async () => {
-      const fn = jest.spyOn(window.history, "replaceState");
+      window.history.replaceState = jest.fn();
 
       (useShareExperiment as jest.Mock).mockReturnValueOnce({
         shareUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
@@ -134,7 +134,7 @@ describe("Lesson Overview Canonical Page", () => {
         />,
       );
 
-      expect(fn).toHaveBeenCalledWith(
+      expect(window.history.replaceState).toHaveBeenCalledWith(
         {},
         "",
         "http://localhost:3000/teachers/lessons/lesson-1?test=1",
