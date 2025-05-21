@@ -1,5 +1,5 @@
 import { useSearchParams } from "next/navigation";
-import { renderHook } from "@testing-library/react";
+import { act, renderHook } from "@testing-library/react";
 
 import {
   buildTextDescribingFilter,
@@ -816,7 +816,9 @@ describe("useFilters", () => {
       });
 
       const [, setFilters] = result.current;
-      setFilters(updateFilterValue);
+      act(() => {
+        setFilters(updateFilterValue);
+      });
       rerender();
       const [filters] = result.current;
       expect(filters).toEqual(updateFilterValue);
@@ -856,8 +858,9 @@ describe("useFilters", () => {
       });
 
       const [, setFilters] = result.current;
-      setFilters(updateFilterValue);
-
+      act(() => {
+        setFilters(updateFilterValue);
+      });
       expect(replaceStateMock).toHaveBeenCalledWith(
         {},
         "",

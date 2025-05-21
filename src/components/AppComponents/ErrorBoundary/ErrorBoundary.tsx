@@ -25,8 +25,11 @@ class NonBugsnagErrorBoundary extends Component<
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error: unknown) {
+  static getDerivedStateFromError(error: Error) {
     console.log(error);
+    if (error && error.stack) {
+      console.log(error.stack);
+    }
 
     // Update state so the next render will show the fallback UI.
     return { hasError: true };
