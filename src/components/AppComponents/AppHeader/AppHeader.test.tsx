@@ -108,7 +108,7 @@ describe("components/AppHeader", () => {
     setUseUserReturn(mockLoggedOut);
     renderWithProviders()(<AppHeader />);
 
-    const signUpButton = screen.getByRole("button", { name: /sign up/i });
+    const signUpButton = screen.getByTestId("sign-up-button");
     expect(signUpButton).toBeInTheDocument();
   });
 
@@ -116,7 +116,7 @@ describe("components/AppHeader", () => {
     setUseUserReturn(mockLoggedIn);
     renderWithProviders()(<AppHeader />);
 
-    const signUpButton = screen.queryByRole("button", { name: /sign up/i });
+    const signUpButton = screen.queryByTestId("sign-up-button");
     expect(signUpButton).not.toBeInTheDocument();
   });
 });

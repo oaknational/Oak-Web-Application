@@ -3,7 +3,7 @@ import {
   OakBox,
   oakColorTokens,
   OakFlex,
-  OakSecondaryButton,
+  OakSmallSecondaryButton,
 } from "@oaknational/oak-components";
 import { UserButton, useUser, SignUpButton } from "@clerk/nextjs";
 import { useRouter } from "next/router";
@@ -109,14 +109,9 @@ const AppHeader: FC<HeaderProps> = () => {
             ) : (
               selectedArea == siteAreas.teachers && (
                 <SignUpButton forceRedirectUrl={onboardingRedirectUrl}>
-                  <OakSecondaryButton
-                    name="sign up"
-                    font={"body-3-bold"}
-                    pv="inner-padding-ssx"
-                    ph="inner-padding-xs"
-                  >
+                  <OakSmallSecondaryButton data-testid="sign-up-button">
                     Sign up
-                  </OakSecondaryButton>
+                  </OakSmallSecondaryButton>
                 </SignUpButton>
               )
             )}
