@@ -74,12 +74,11 @@ const AppHeader: FC<HeaderProps> = () => {
             $gap="all-spacing-6"
             $font="heading-7"
           >
-            {selectedArea === "TEACHERS" && (
-              <TeacherAccountButton
-                isSignedIn={isSignedIn ? true : false}
-                onboardingRedirectUrl={onboardingRedirectUrl}
-              />
-            )}
+            <TeacherAccountButton
+              selectedArea={selectedArea}
+              isSignedIn={isSignedIn ? true : false}
+              onboardingRedirectUrl={onboardingRedirectUrl}
+            />
             <OwaLink
               page={"teachers-home-page"}
               $focusStyles={["underline"]}
