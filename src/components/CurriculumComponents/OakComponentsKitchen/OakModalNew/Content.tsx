@@ -2,11 +2,13 @@ import { OakBox, OakFlex, OakHeading } from "@oaknational/oak-components";
 
 import { CurriculumModalCloseButton } from "../../CurriculumModalCloseButton";
 
+export type CloseAction = "close_button" | undefined;
+
 type ModalContentProps = {
   title: React.ReactNode;
   content: React.ReactNode;
   footer: React.ReactNode;
-  onClose: () => void;
+  onClose: (action?: CloseAction) => void;
 };
 export function ModalContent({
   title,
@@ -31,7 +33,7 @@ export function ModalContent({
         <OakBox $position={"absolute"} $right={"all-spacing-4"}>
           <CurriculumModalCloseButton
             ariaLabel="Close"
-            onClose={() => onClose()}
+            onClose={() => onClose("close_button")}
           />
         </OakBox>
       </OakFlex>
