@@ -76,8 +76,7 @@ const curriculumPhaseOptions = {
         { title: "Primary", slug: "primary" },
         { title: "Secondary", slug: "secondary" },
       ],
-      ks4_options: null,
-
+      ks4_options: [],
       keystages: [
         { title: "KS1", slug: "ks1" },
         { title: "KS3", slug: "ks3" },
@@ -107,7 +106,7 @@ const curriculumPhaseOptions = {
         { title: "Primary", slug: "primary" },
         { title: "Secondary", slug: "secondary" },
       ],
-      ks4_options: null,
+      ks4_options: [],
 
       keystages: [
         { title: "KS1", slug: "ks1" },
@@ -118,7 +117,7 @@ const curriculumPhaseOptions = {
       title: "Music",
       slug: "music",
       phases: [{ title: "Secondary", slug: "secondary" }],
-      ks4_options: null,
+      ks4_options: [],
 
       keystages: [
         { title: "KS1", slug: "ks1" },
@@ -132,7 +131,7 @@ const curriculumPhaseOptions = {
         { title: "Primary", slug: "primary" },
         { title: "Secondary", slug: "secondary" },
       ],
-      ks4_options: null,
+      ks4_options: [],
 
       keystages: [
         { title: "KS1", slug: "ks1" },

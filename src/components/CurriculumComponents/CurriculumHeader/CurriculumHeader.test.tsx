@@ -5,7 +5,6 @@ import CurriculumHeader from "./CurriculumHeader";
 import curriculumHeaderFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumHeader.fixture";
 import curriculumPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumPhaseOptions.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import { mockPrerelease } from "@/utils/mocks";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 
 jest.mock("@/hooks/useMediaQuery.tsx", () => ({
@@ -86,8 +85,6 @@ describe("Component - Curriculum Header", () => {
   });
 
   test("user can see the tabular navigation", async () => {
-    // NOTE: This is only active during testing.
-    mockPrerelease("curriculum.downloads");
     const { findByTestId } = renderComponent();
     const tabularNav = await findByTestId("tabularNav");
     expect(tabularNav).toBeInTheDocument();

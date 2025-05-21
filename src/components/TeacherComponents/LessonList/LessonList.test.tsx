@@ -15,7 +15,7 @@ const lessonsWithUnitData = lessons.map((lesson) => ({
 }));
 
 jest.mock("next/router", () => ({
-  useRouter: jest.fn(),
+  useRouter: jest.fn().mockResolvedValue({ asPath: "" }),
 }));
 
 const onClick = jest.fn();
