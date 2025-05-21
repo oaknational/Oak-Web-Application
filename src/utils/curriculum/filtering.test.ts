@@ -858,8 +858,9 @@ describe("useFilters", () => {
       });
 
       const [, setFilters] = result.current;
-      setFilters(updateFilterValue);
-
+      act(() => {
+        setFilters(updateFilterValue);
+      });
       expect(replaceStateMock).toHaveBeenCalledWith(
         {},
         "",
