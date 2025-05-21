@@ -4,6 +4,11 @@ import DownloadConfirmationNextLessonCard from "./DownloadConfirmationNextLesson
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { OnwardContentSelectedProperties } from "@/browser-lib/avo/Avo";
+import {
+  mockLinkClick,
+  setupMockLinkClick,
+  teardownMockLinkClick,
+} from "@/utils/mockLinkClick";
 
 const onwardContentSelected = jest.fn() as unknown as (
   properties: Omit<
@@ -15,7 +20,13 @@ const onwardContentSelected = jest.fn() as unknown as (
 describe("DownloadConfirmationNextLessonCard", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    setupMockLinkClick();
   });
+
+  afterEach(() => {
+    teardownMockLinkClick();
+  });
+
   it("should render component", () => {
     const { getByText } = renderWithTheme(
       <DownloadConfirmationNextLessonCard
@@ -91,6 +102,9 @@ describe("DownloadConfirmationNextLessonCard", () => {
     const seeLessonLink = getByRole("link", { name: "See lesson" });
 
     await user.click(seeLessonLink);
+    expect(mockLinkClick).toHaveBeenCalledWith(
+      "http://localhost/teachers/programmes/test-programme/units/test-unit/lessons/test-slug",
+    );
 
     expect(onwardContentSelected).toHaveBeenCalledTimes(1);
     expect(onwardContentSelected).toHaveBeenCalledWith({
@@ -120,6 +134,9 @@ describe("DownloadConfirmationNextLessonCard", () => {
     });
 
     await user.click(downloadResourcesLink);
+    expect(mockLinkClick).toHaveBeenCalledWith(
+      "http://localhost/teachers/programmes/test-programme/units/test-unit/lessons/test-slug/downloads",
+    );
 
     expect(onwardContentSelected).toHaveBeenCalledTimes(1);
     expect(onwardContentSelected).toHaveBeenCalledWith({
