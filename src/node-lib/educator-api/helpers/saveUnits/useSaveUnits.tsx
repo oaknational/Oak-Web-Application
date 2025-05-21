@@ -10,6 +10,7 @@ import { postEducatorData } from "@/node-lib/educator-api/helpers/postEducatorDa
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import errorReporter from "@/common-lib/error-reporter";
+import useSaveCountContext from "@/context/SaveCount/useSaveCountContext";
 
 const SavedToastProps = {
   message: (
@@ -60,6 +61,9 @@ export const useSaveUnits = (
     `/api/educator-api/getSavedUnits/${programmeSlug}`,
   );
 
+  const { incrementSavedUnitsCount, decrementSavedUnitsCount } =
+    useSaveCountContext();
+
   const [locallySavedUnits, setLocallySavedUnits] = useState<Array<string>>([]);
   const [showSignIn, setShowSignIn] = useState<boolean>(false);
 
@@ -97,6 +101,7 @@ export const useSaveUnits = (
   const onSave = async (unitSlug: string) => {
     setLocallySavedUnits((prev) => [...prev, unitSlug]);
     setCurrentToastProps(SavedToastProps);
+    incrementSavedUnitsCount();
     await postEducatorData(
       `/api/educator-api/saveUnit/${programmeSlug}/${unitSlug}`,
       () => {
@@ -105,6 +110,7 @@ export const useSaveUnits = (
           prev.filter((unit) => unit !== unitSlug),
         );
         setCurrentToastProps(ErrorToastProps);
+        decrementSavedUnitsCount();
       },
     );
     track.contentSaved({
@@ -126,12 +132,14 @@ export const useSaveUnits = (
   const onUnsave = async (unitSlug: string) => {
     setLocallySavedUnits((prev) => prev.filter((unit) => unit !== unitSlug));
     setCurrentToastProps(UnsavedToastProps);
+    decrementSavedUnitsCount();
     await postEducatorData(
       `/api/educator-api/unsaveUnit/${programmeSlug}/${unitSlug}`,
       () => {
         // Revert the optimistic update if the request fails and show an error toast
         setLocallySavedUnits((prev) => [...prev, unitSlug]);
         setCurrentToastProps(ErrorToastProps);
+        incrementSavedUnitsCount();
       },
     );
     track.contentUnsaved({
