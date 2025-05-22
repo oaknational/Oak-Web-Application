@@ -5,6 +5,7 @@ import { CurricVisualiserFiltersProps } from "../CurricVisualiserFiltersDesktop"
 import CurricMobileStickyHeader from "../CurricVisualiserMobileHeader";
 import { CurricMobileFilterModal } from "../CurricVisualiserFiltersModal";
 import { OakModalNew } from "../OakComponentsKitchen/OakModalNew";
+import { CloseAction } from "../OakComponentsKitchen/OakModalNew/Content";
 
 import { usePrevious } from "@/hooks/usePrevious";
 import { CurriculumUnitsTrackingData } from "@/pages-helpers/curriculum/docx/tab-helpers";
@@ -45,8 +46,10 @@ export default function CurricVisualiserFiltersMobile({
     setMobileThreadModalOpen(!mobileThreadModalOpen);
   }
 
-  function onClose() {
-    onChangeFilters(initialFilterState);
+  function onClose(action: CloseAction) {
+    if (action === "close_button") {
+      onChangeFilters(initialFilterState);
+    }
     setMobileThreadModalOpen(false);
   }
 

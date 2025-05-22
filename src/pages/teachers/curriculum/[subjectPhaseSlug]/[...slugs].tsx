@@ -204,6 +204,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
         $background={"white"}
       >
         <CurriculumHeader
+          tab={tab}
           curriculumPhaseOptions={curriculumPhaseOptions}
           curriculumSelectionSlugs={curriculumSelectionSlugs}
           keyStages={keyStages}
