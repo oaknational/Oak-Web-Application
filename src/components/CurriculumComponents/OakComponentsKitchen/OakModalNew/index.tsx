@@ -1,5 +1,5 @@
 import { OakFlex } from "@oaknational/oak-components";
-import { ComponentProps, useRef } from "react";
+import { ComponentProps, useEffect, useRef, useState } from "react";
 import { Transition } from "react-transition-group";
 
 import { AnimateSlideIn, AnimateSlideInProps } from "./AnimateSlideIn";
@@ -7,6 +7,19 @@ import { TRANSITION_DURATION } from "./constants";
 import { Backdrop } from "./Backdrop";
 import { Dialog } from "./Dialog";
 import { ModalContent } from "./Content";
+
+// Duplicated from <https://github.com/oaknational/oak-components/blob/af659cdf62b9feeff27a5f92272f695fb0c476d5/src/animation/usePrefersReducedMotion.ts#L10>
+export function usePrefersReducedMotion() {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    setPrefersReducedMotion(mediaQuery.matches);
+  }, []);
+
+  return prefersReducedMotion;
+}
 
 type OakModalNewProps = {
   animateFrom?: AnimateSlideInProps["direction"];
@@ -27,9 +40,14 @@ export function OakModalNew({
   modalWidth = "100%",
 }: OakModalNewProps) {
   const ref = useRef(null);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   return (
-    <Transition in={open} timeout={TRANSITION_DURATION} unmountOnExit={false}>
+    <Transition
+      in={open}
+      timeout={prefersReducedMotion ? 0 : TRANSITION_DURATION}
+      unmountOnExit={false}
+    >
       {(animationState) => {
         return (
           <Dialog ref={ref} open={open} onClose={onClose}>

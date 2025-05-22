@@ -17,6 +17,9 @@ export const Backdrop = styled(OakBox)<BackdropProps>`
   pointer-events: none;
   background: rgba(34, 34, 34, 0.4);
   transition: opacity ${TRANSITION_DURATION}ms ease-in-out;
+  @media (prefers-reduced-motion) {
+    transition: none;
+  }
   will-change: opacity;
   opacity: ${(props) => {
     switch (props.state) {

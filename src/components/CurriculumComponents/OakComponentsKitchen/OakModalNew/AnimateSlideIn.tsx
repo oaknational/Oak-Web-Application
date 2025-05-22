@@ -11,6 +11,9 @@ export type AnimateSlideInProps = {
 
 export const AnimateSlideIn = styled(OakFlex)<AnimateSlideInProps>`
   transition: transform ${TRANSITION_DURATION}ms ease-in-out;
+  @media (prefers-reduced-motion) {
+    transition: none;
+  }
   will-change: transform;
   transform: ${(props) => {
     switch (props.state) {
