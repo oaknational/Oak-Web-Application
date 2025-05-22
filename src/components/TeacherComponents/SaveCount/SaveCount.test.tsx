@@ -23,4 +23,20 @@ describe("SaveCount", () => {
     const saveCount = screen.queryByTestId("save-count");
     expect(saveCount).not.toBeInTheDocument();
   });
+  it("renders the save count when the feature flag is enabled", () => {
+    mockUseFeatureFlagEnabled.mockReturnValue(true);
+    renderWithProviders()(<SaveCount />);
+    const saveCount = screen.getByTestId("save-count");
+    expect(saveCount).toBeInTheDocument();
+    expect(saveCount).toHaveTextContent("10");
+  });
+  it('links to the "my-library" page', () => {
+    mockUseFeatureFlagEnabled.mockReturnValue(true);
+    renderWithProviders()(<SaveCount />);
+    const saveCount = screen.getByTestId("save-count");
+    expect(saveCount.firstChild).toHaveAttribute(
+      "href",
+      "/teachers/my-library",
+    );
+  });
 });
