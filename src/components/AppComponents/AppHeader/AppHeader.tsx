@@ -75,7 +75,7 @@ const AppHeader: FC<HeaderProps> = () => {
             $gap="all-spacing-6"
             $font="heading-7"
           >
-            <SaveCount />
+            {selectedArea == siteAreas.teachers && <SaveCount />}
             <TeacherAccountButton
               selectedArea={selectedArea}
               isSignedIn={isSignedIn ? true : false}
