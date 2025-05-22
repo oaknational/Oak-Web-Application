@@ -23,7 +23,7 @@ export const SaveCount = () => {
   }, [unitsCount, setSavedUnitsCount]);
 
   return isSaveEnabled ? (
-    <OakBox $display={["none", "block"]}>
+    <OakBox $display={["none", "block"]} data-testid="save-count">
       <OakSaveCount
         count={savedUnitsCount ?? 0}
         href={resolveOakHref({ page: "my-library" })}
