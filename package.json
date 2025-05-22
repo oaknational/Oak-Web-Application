@@ -137,7 +137,7 @@
     "uuid": "^11.1.0",
     "webvtt-parser": "^2.2.0",
     "xml-js": "^1.6.11",
-    "zod": "^3.24.3"
+    "zod": "^3.25.20"
   },
   "devDependencies": {
     "@actions/core": "^1.11.1",
