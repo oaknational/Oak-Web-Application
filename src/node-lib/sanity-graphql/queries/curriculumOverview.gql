@@ -39,5 +39,6 @@ query curriculumOverview(
     }
     videoAuthor
     videoExplainer
+    curriculumSeoTextRaw
   }
 }

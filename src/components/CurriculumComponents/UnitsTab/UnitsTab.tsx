@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { OakHeading, OakBox } from "@oaknational/oak-components";
+import { PortableText } from "@portabletext/react";
+import { PortableTextBlock } from "@portabletext/types";
 
 import CurriculumVisualiser from "../CurriculumVisualiser";
 import { CurricVisualiserLayout } from "../CurricVisualiserLayout";
@@ -28,6 +30,7 @@ type UnitsTabProps = {
   onChangeFilters: (newFilter: CurriculumFilters) => void;
   slugs: CurriculumSelectionSlugs;
   ks4Options: Ks4Option[];
+  curriculumSeoTextRaw?: PortableTextBlock[];
 };
 
 export default function UnitsTab({
@@ -37,6 +40,7 @@ export default function UnitsTab({
   onChangeFilters,
   slugs,
   ks4Options,
+  curriculumSeoTextRaw,
 }: UnitsTabProps) {
   // Initialize constants
   const isMobile = useMediaQuery("mobile");
@@ -45,6 +49,8 @@ export default function UnitsTab({
   const [unitData, setUnitData] = useState<Unit | null>(null);
 
   const [mobileSelectedYear, setMobileSelectedYear] = useState<string>("");
+
+  console.log("curriculumSeoTextRaw:", curriculumSeoTextRaw);
 
   const unitCount = getNumberOfSelectedUnits(yearData, filters);
 
@@ -131,6 +137,11 @@ export default function UnitsTab({
           )}
         </ScreenReaderOnly>
       </OakBox>
+      {curriculumSeoTextRaw && (
+        <OakBox $mt="space-between-xl" $ph={"inner-padding-xl"}>
+          <PortableText value={curriculumSeoTextRaw} />
+        </OakBox>
+      )}
       <UnitTabBanner />
     </OakBox>
   );
