@@ -21,7 +21,7 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
   const educatorApi = await getAuthenticatedEducatorApi(getToken);
 
   try {
-    const result = await educatorApi.GetUserListContentCount({
+    const result = await educatorApi.getUserListContentCount({
       userId,
     });
 

@@ -1,4 +1,4 @@
-query GetUserListContentCount($userId: String!) {
+query getUserListContentCount($userId: String!) {
   content_lists_aggregate(
     distinct_on: content_id
     where: { list: { user_id: { _eq: $userId } } }
