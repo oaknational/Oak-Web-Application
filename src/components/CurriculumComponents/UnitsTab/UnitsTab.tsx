@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { OakHeading, OakBox } from "@oaknational/oak-components";
 
-import CurriculumVisualiser from "../CurriculumVisualiser";
+import CurricVisualiser from "../CurricVisualiser";
 import { CurricVisualiserLayout } from "../CurricVisualiserLayout";
 import CurricVisualiserFiltersMobile from "../CurricVisualiserFiltersMobile";
-import { CurricVisualiserFiltersDesktop } from "../CurricVisualiserFiltersDesktop";
+import CurricVisualiserFiltersDesktop from "../CurricVisualiserFiltersDesktop";
 
-import { CurriculumFilters, Unit } from "@/utils/curriculum/types";
+import { CurriculumFilters } from "@/utils/curriculum/types";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import UnitTabBanner from "@/components/CurriculumComponents/UnitTabBanner";
 import {
@@ -19,6 +19,7 @@ import {
 } from "@/utils/curriculum/filtering";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
+import { findUnitOrOptionBySlug } from "@/utils/curriculum/units";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 
 type UnitsTabProps = {
@@ -27,6 +28,8 @@ type UnitsTabProps = {
   filters: CurriculumFilters;
   onChangeFilters: (newFilter: CurriculumFilters) => void;
   slugs: CurriculumSelectionSlugs;
+  basePath: string;
+  selectedUnitSlug?: string;
   ks4Options: Ks4Option[];
 };
 
@@ -36,13 +39,18 @@ export default function UnitsTab({
   filters,
   onChangeFilters,
   slugs,
+  basePath,
+  selectedUnitSlug,
   ks4Options,
 }: UnitsTabProps) {
   // Initialize constants
   const isMobile = useMediaQuery("mobile");
   const { yearData, threadOptions } = formattedData;
   const { ks4OptionSlug } = trackingData;
-  const [unitData, setUnitData] = useState<Unit | null>(null);
+  const { unit: unitData, unitOption: unitOptionData } = findUnitOrOptionBySlug(
+    yearData,
+    selectedUnitSlug,
+  );
 
   const [mobileSelectedYear, setMobileSelectedYear] = useState<string>("");
 
@@ -106,13 +114,14 @@ export default function UnitsTab({
             )
           }
           units={
-            <CurriculumVisualiser
+            <CurricVisualiser
               unitData={unitData}
+              unitOptionData={unitOptionData}
+              basePath={basePath}
               filters={filters}
               ks4OptionSlug={ks4OptionSlug}
               ks4Options={ks4Options}
               yearData={yearData}
-              setUnitData={setUnitData}
               setVisibleMobileYearRefID={setVisibleMobileYearRefID}
               threadOptions={threadOptions}
             />

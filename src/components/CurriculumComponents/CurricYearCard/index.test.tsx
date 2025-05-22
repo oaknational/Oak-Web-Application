@@ -1,7 +1,7 @@
 import React from "react";
 import "@testing-library/jest-dom";
 
-import CurriculumUnitCard from "../CurriculumUnitCard/CurriculumUnitCard";
+import CurriculumUnitCard from "../CurricUnitCard";
 
 import { CurricYearCard } from "./index";
 
@@ -101,19 +101,19 @@ describe("CurricYearCard component", () => {
           unit={unit1}
           index={0}
           isHighlighted={false}
-          onClick={() => {}}
+          href={""}
         />
         <CurriculumUnitCard
           unit={unit2}
           index={1}
           isHighlighted={false}
-          onClick={() => {}}
+          href={""}
         />
         <CurriculumUnitCard
           unit={unit3}
           index={2}
           isHighlighted={false}
-          onClick={() => {}}
+          href={""}
         />
       </>
     );

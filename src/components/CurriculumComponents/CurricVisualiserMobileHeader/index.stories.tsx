@@ -1,7 +1,7 @@
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { Meta, StoryObj } from "@storybook/react";
 
-import { CurricMobileStickyHeader as Component } from ".";
+import Component from ".";
 
 const meta: Meta<typeof Component> = {
   component: Component,
@@ -11,7 +11,7 @@ const meta: Meta<typeof Component> = {
 export default meta;
 type Story = StoryObj<typeof Component>;
 
-export const CurricMobileStickyHeader: Story = {
+export const CurricVisualiserMobileHeader: Story = {
   args: {
     data: {
       yearData: {},
