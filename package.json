@@ -244,7 +244,7 @@
     "rimraf": "^6.0.1",
     "semantic-release": "^24.2.0",
     "sharp": "^0.34.1",
-    "storybook": "^8.6.12",
+    "storybook": "^8.6.14",
     "storybook-css-modules-preset": "^1.1.1",
     "stylelint": "^16.9.1",
     "stylelint-config-standard-scss": "^13.1.0",
