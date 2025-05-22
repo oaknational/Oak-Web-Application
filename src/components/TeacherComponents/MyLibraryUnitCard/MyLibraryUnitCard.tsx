@@ -77,10 +77,12 @@ const UnitCardHeader = ({
         $flexDirection={"column"}
         $gap={"space-between-ssx"}
       >
-        <OakHeading tag="h3" $font={["heading-7", "heading-5"]}>
-          {unitTitle}
-        </OakHeading>
-        <OakP $font={"body-2"}>
+        <UnitLink href={props.href}>
+          <OakHeading tag="h3" $font={["heading-7", "heading-5"]}>
+            {unitTitle}
+          </OakHeading>
+        </UnitLink>
+        <OakP $color={"text-subdued"} $font={"body-2"}>
           {yearTitle}
           <OakSpan $ph={"inner-padding-xs"}>•</OakSpan>
           Saved at{" "}
@@ -112,11 +114,14 @@ const StyledOakLI = styled(OakLI)`
 
 const LessonLink = styled(OakSecondaryLink)`
   text-decoration: none;
-  color: black !important;
 
   &:hover {
     text-decoration: underline;
   }
+`;
+
+const UnitLink = styled(OakSecondaryLink)`
+  text-decoration: none;
 `;
 
 const UnitCardContent = ({
@@ -212,6 +217,7 @@ export default function MyLibraryUnitCard(props: MyLibraryUnitCardProps) {
 
   return (
     <OakFlex
+      $color={"text-primary"}
       $flexDirection={"column"}
       $background={"bg-primary"}
       $borderRadius={"border-radius-m2"}
