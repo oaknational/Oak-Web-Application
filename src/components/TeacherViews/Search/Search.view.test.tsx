@@ -133,7 +133,6 @@ const props: SearchProps = {
       {
         slug: "year-10",
         title: "Year 10",
-        displayOrder: 1,
         onChange: jest.fn(),
         checked: false,
       },
@@ -365,7 +364,17 @@ describe("Search.page.tsx", () => {
       <SearchComponent {...props} {...resultsProps} />,
     );
     const description = getByText("lesson title");
+    const onLinkClick = jest.fn();
+    description.addEventListener(
+      "click",
+      (event) => {
+        event.preventDefault();
+        onLinkClick();
+      },
+      false,
+    );
     fireEvent.click(description);
+    expect(onLinkClick).toHaveBeenCalled();
 
     expect(searchResultOpened).toHaveBeenCalledTimes(1);
     expect(searchResultOpened).toHaveBeenCalledWith({

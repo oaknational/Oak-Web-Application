@@ -1,4 +1,5 @@
 import { GetStaticPropsContext, PreviewData } from "next";
+import { act } from "@testing-library/react";
 
 import TeacherPreviewLessonListingPage, {
   LessonListingPageProps,
@@ -87,7 +88,9 @@ describe("getStaticProps", () => {
       );
 
       const lessonButton = getByText("Add two surds");
-      lessonButton.click();
+      act(() => {
+        lessonButton.click();
+      });
       expect(lessonAccessed).toHaveBeenCalledWith({
         analyticsUseCase: "Teacher",
         componentType: "lesson_card",
