@@ -107,4 +107,21 @@ describe("ResourceCard", () => {
       screen.getByText("Designing an animated program - additional…"),
     ).toBeInTheDocument();
   });
+
+  it("renders isEditable tag correctly", () => {
+    renderWithTheme(
+      <ResourceCard
+        id="unique-123"
+        name="downloadResources"
+        label="Worksheet"
+        subtitle="PDF"
+        checked
+        onChange={jest.fn()}
+        resourceType="worksheet-pdf"
+        isEditable={true}
+      />,
+    );
+
+    expect(screen.getByText("Editable")).toBeInTheDocument();
+  });
 });
