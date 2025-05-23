@@ -1,4 +1,4 @@
-import { OakBox, OakSaveCount } from "@oaknational/oak-components";
+import { OakSaveCount } from "@oaknational/oak-components";
 import { useFeatureFlagEnabled } from "posthog-js/react";
 import { useEffect } from "react";
 
@@ -23,12 +23,10 @@ export const SaveCount = () => {
   }, [unitsCount, setSavedUnitsCount]);
 
   return isSaveEnabled ? (
-    <OakBox $display={["none", "block"]} data-testid="save-count">
-      <OakSaveCount
-        count={savedUnitsCount ?? 0}
-        href={resolveOakHref({ page: "my-library" })}
-        loading={isLoading || loading}
-      />
-    </OakBox>
+    <OakSaveCount
+      count={savedUnitsCount ?? 0}
+      href={resolveOakHref({ page: "my-library" })}
+      loading={isLoading || loading}
+    />
   ) : null;
 };

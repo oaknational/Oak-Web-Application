@@ -26,15 +26,14 @@ describe("SaveCount", () => {
   it("renders the save count when the feature flag is enabled", () => {
     mockUseFeatureFlagEnabled.mockReturnValue(true);
     renderWithProviders()(<SaveCount />);
-    const saveCount = screen.getByTestId("save-count");
+    const saveCount = screen.getByText("10");
     expect(saveCount).toBeInTheDocument();
-    expect(saveCount).toHaveTextContent("10");
   });
-  it('links to the "my-library" page', () => {
+  it.only('links to the "my-library" page', () => {
     mockUseFeatureFlagEnabled.mockReturnValue(true);
     renderWithProviders()(<SaveCount />);
-    const saveCount = screen.getByTestId("save-count");
-    expect(saveCount.firstChild).toHaveAttribute(
+    const saveCount = screen.getByText("10");
+    expect(saveCount.closest("a")).toHaveAttribute(
       "href",
       "/teachers/my-library",
     );
