@@ -32,6 +32,10 @@ const LessonLink = styled(OakSecondaryLink)`
 
 const UnitLink = styled(OakSecondaryLink)`
   text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const getLastSavedText = (date: string) => {
