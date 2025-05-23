@@ -13,7 +13,6 @@ import { useFeatureFlagVariantKey } from "posthog-js/react";
 import { hasLessonMathJax } from "./hasLessonMathJax";
 
 import {
-  getPageLinksForLesson,
   getBreadcrumbsForLessonPathway,
   getLessonOverviewBreadCrumb,
   createAttributionObject,
@@ -60,6 +59,7 @@ import LessonOverviewDocPresentation from "@/components/TeacherComponents/Lesson
 import { TeacherNoteInline } from "@/components/TeacherComponents/TeacherNoteInline/TeacherNoteInline";
 import LessonOverviewSideNavAnchorLinks from "@/components/TeacherComponents/LessonOverviewSideNavAnchorLinks";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
+import { getPageLinksForLesson } from "@/components/TeacherComponents/helpers/lessonHelpers/getPageLinksForLessons";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads } & {
@@ -119,8 +119,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     lessonReleaseDate,
   } = lesson;
 
-  // const isSubHeader =
-  //   useFeatureFlagVariantKey("lesson-overview-experiement") === "sub-header";
   const isQuizHeader =
     useFeatureFlagVariantKey("lesson-overview-experiement") === "quiz-header";
 
