@@ -8,6 +8,7 @@ import {
   OakBox,
   OakMaxWidth,
 } from "@oaknational/oak-components";
+import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import { hasLessonMathJax } from "./hasLessonMathJax";
 
@@ -20,6 +21,7 @@ import {
   getMediaClipLabel,
   lessonIsSpecialist,
   getPathway,
+  getPageLinksWithSubheadingsForLesson,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import {
   LessonOverviewAll,
@@ -56,6 +58,8 @@ import LessonOverviewMediaClips, {
 } from "@/components/TeacherComponents/LessonOverviewMediaClips";
 import LessonOverviewDocPresentation from "@/components/TeacherComponents/LessonOverviewDocPresentation";
 import { TeacherNoteInline } from "@/components/TeacherComponents/TeacherNoteInline/TeacherNoteInline";
+import LessonOverviewSideNavAnchorLinks from "@/components/TeacherComponents/LessonOverviewSideNavAnchorLinks";
+import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads } & {
@@ -114,6 +118,11 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     lessonOutline,
     lessonReleaseDate,
   } = lesson;
+
+  // const isSubHeader =
+  //   useFeatureFlagVariantKey("lesson-overview-experiement") === "sub-header";
+  const isQuizHeader =
+    useFeatureFlagVariantKey("lesson-overview-experiement") === "quiz-header";
 
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
@@ -228,11 +237,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   };
 
   const slugs = { unitSlug, lessonSlug, programmeSlug };
-  const pageLinks = getPageLinksForLesson(
-    lesson,
-    copyrightContent,
-    mediaClipLabel,
-  );
 
   const slideDeckSectionRef = useRef<HTMLDivElement>(null);
   const lessonDetailsSectionRef = useRef<HTMLDivElement>(null);
@@ -243,6 +247,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   const additionalMaterialSectionRef = useRef<HTMLDivElement>(null);
   const lessonGuideSectionRef = useRef<HTMLDivElement>(null);
   const lessonMediaClipsSectionRef = useRef<HTMLDivElement>(null);
+  const quizSectionRef = useRef<HTMLDivElement>(null);
 
   const sectionRefs = {
     "lesson-guide": lessonGuideSectionRef,
@@ -254,6 +259,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     "exit-quiz": exitQuizSectionRef,
     "additional-material": additionalMaterialSectionRef,
     "media-clips": lessonMediaClipsSectionRef,
+    quiz: quizSectionRef,
   };
 
   const { currentSectionId } = useCurrentSection({ sectionRefs });
@@ -273,6 +279,38 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     !isSpecialist &&
     keyStageSlug !== "early-years-foundation-stage" &&
     !actions?.disablePupilShare;
+
+  // Below is the logic that determines whether to use isQuizHeader experiement,
+  // this is where all the logic is kept, once the experiement is
+  // complete we can remove one half of the boolean.
+
+  const pageLinks = isQuizHeader
+    ? getPageLinksWithSubheadingsForLesson(
+        lesson,
+        copyrightContent,
+        mediaClipLabel,
+      )
+    : getPageLinksForLesson(lesson, copyrightContent, mediaClipLabel);
+  const ExitQuizLabel = isQuizHeader ? "Quizzes" : "Exit quiz";
+  const LessonOverviewSideNav = isQuizHeader ? (
+    <LessonOverviewSideNavAnchorLinks
+      links={pageLinks}
+      currentSectionId={currentSectionId}
+    />
+  ) : (
+    <LessonOverviewAnchorLinks
+      links={pageLinks}
+      currentSectionId={currentSectionId}
+    />
+  );
+  const presentationTitle = isQuizHeader ? "Lesson slides" : "Slide deck";
+  const quizDownloadTitle = isQuizHeader ? "quiz pdf" : undefined;
+  const starterQuizTitle = isQuizHeader
+    ? "Prior knowledge starter quiz"
+    : "Starter quiz";
+  const exitQuizTitle = isQuizHeader ? "Assessment exit quiz" : "Exit quiz";
+
+  // experimental logic above for isQuizHeader
 
   return (
     <MathJaxLessonProvider>
@@ -345,10 +383,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 $gap={["all-spacing-2"]}
                 $pr={["inner-padding-m"]}
               >
-                <LessonOverviewAnchorLinks
-                  links={pageLinks}
-                  currentSectionId={currentSectionId}
-                />
+                {LessonOverviewSideNav}
               </OakFlex>
             </OakGridArea>
 
@@ -404,7 +439,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     <LessonItemContainer
                       isSpecialist={isSpecialist}
                       ref={slideDeckSectionRef}
-                      title={"Slide deck"}
+                      title={presentationTitle}
                       downloadable={getIsResourceDownloadable(
                         "presentation",
                         downloads,
@@ -557,86 +592,117 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     />
                   </LessonItemContainer>
                 )}
-                {pageLinks.find((p) => p.label === "Starter quiz") && (
-                  <LessonItemContainer
-                    isSpecialist={isSpecialist}
-                    ref={starterQuizSectionRef}
-                    title={"Starter quiz"}
-                    shareable={isLegacyLicense && showShare}
-                    anchorId="starter-quiz"
-                    pageLinks={pageLinks}
-                    downloadable={
-                      getIsResourceDownloadable(
-                        "intro-quiz-answers",
-                        downloads,
-                        copyrightContent,
-                      ) ||
-                      getIsResourceDownloadable(
-                        "intro-quiz-questions",
-                        downloads,
-                        copyrightContent,
-                      )
-                    }
-                    onDownloadButtonClick={() => {
-                      trackDownloadResourceButtonClicked({
-                        downloadResourceButtonName: "starter quiz",
-                      });
-                    }}
-                    slugs={slugs}
-                    isFinalElement={
-                      pageLinks.findIndex((p) => p.label === "Starter quiz") ===
-                      pageLinks.length - 1
-                    }
-                  >
-                    {starterQuiz && (
-                      <QuizContainerNew
-                        questions={starterQuiz}
-                        imageAttribution={starterQuizImageAttribution}
-                        isMathJaxLesson={isMathJaxLesson}
-                      />
-                    )}
-                  </LessonItemContainer>
-                )}
-                {pageLinks.find((p) => p.label === "Exit quiz") && (
-                  <LessonItemContainer
-                    isSpecialist={isSpecialist}
-                    ref={exitQuizSectionRef}
-                    pageLinks={pageLinks}
-                    title={"Exit quiz"}
-                    anchorId="exit-quiz"
-                    downloadable={
-                      getIsResourceDownloadable(
-                        "exit-quiz-answers",
-                        downloads,
-                        copyrightContent,
-                      ) ||
-                      getIsResourceDownloadable(
-                        "exit-quiz-questions",
-                        downloads,
-                        copyrightContent,
-                      )
-                    }
-                    shareable={isLegacyLicense && showShare}
-                    onDownloadButtonClick={() => {
-                      trackDownloadResourceButtonClicked({
-                        downloadResourceButtonName: "exit quiz",
-                      });
-                    }}
-                    slugs={slugs}
-                    isFinalElement={
-                      pageLinks.findIndex((p) => p.label === "Exit quiz") ===
-                      pageLinks.length - 1
-                    }
-                  >
-                    {exitQuiz && (
-                      <QuizContainerNew
-                        questions={exitQuiz}
-                        imageAttribution={exitQuizImageAttribution}
-                        isMathJaxLesson={isMathJaxLesson}
-                      />
-                    )}
-                  </LessonItemContainer>
-                )}
+                <OakFlex
+                  $flexDirection="column"
+                  $position={"relative"}
+                  tabIndex={-1}
+                >
+                  <AnchorTarget
+                    id={"quiz"}
+                    $paddingTop={24}
+                    ref={quizSectionRef}
+                  />
+                  {pageLinks.find(
+                    (p) =>
+                      p.anchorId === "quiz" || p.anchorId === "starter-quiz",
+                  ) && (
+                    <LessonItemContainer
+                      isSpecialist={isSpecialist}
+                      ref={
+                        pageLinks.find((p) => p.anchorId === "starter-quiz")
+                          ? starterQuizSectionRef
+                          : undefined
+                      }
+                      title={starterQuizTitle}
+                      downloadTitle={quizDownloadTitle}
+                      shareable={isLegacyLicense && showShare}
+                      anchorId={"starter-quiz"}
+                      pageLinks={pageLinks}
+                      downloadable={
+                        getIsResourceDownloadable(
+                          "intro-quiz-answers",
+                          downloads,
+                          copyrightContent,
+                        ) ||
+                        getIsResourceDownloadable(
+                          "intro-quiz-questions",
+                          downloads,
+                          copyrightContent,
+                        )
+                      }
+                      onDownloadButtonClick={() => {
+                        trackDownloadResourceButtonClicked({
+                          downloadResourceButtonName: "starter quiz",
+                        });
+                      }}
+                      slugs={slugs}
+                      isFinalElement={
+                        pageLinks.findIndex(
+                          (p) => p.anchorId === "starter-quiz",
+                        ) ===
+                        pageLinks.length - 1
+                      }
+                    >
+                      {starterQuiz && (
+                        <QuizContainerNew
+                          questions={starterQuiz}
+                          imageAttribution={starterQuizImageAttribution}
+                          isMathJaxLesson={isMathJaxLesson}
+                        />
+                      )}
+                    </LessonItemContainer>
+                  )}
+                  {pageLinks.find(
+                    (p) => p.anchorId === "exit-quiz" || p.anchorId === "quiz",
+                  ) && (
+                    <LessonItemContainer
+                      isSpecialist={isSpecialist}
+                      ref={
+                        pageLinks.find((p) => p.anchorId === "exit-quiz")
+                          ? exitQuizSectionRef
+                          : undefined
+                      }
+                      pageLinks={pageLinks}
+                      title={exitQuizTitle}
+                      downloadTitle={quizDownloadTitle}
+                      anchorId={"exit-quiz"}
+                      downloadable={
+                        getIsResourceDownloadable(
+                          "exit-quiz-answers",
+                          downloads,
+                          copyrightContent,
+                        ) ||
+                        getIsResourceDownloadable(
+                          "exit-quiz-questions",
+                          downloads,
+                          copyrightContent,
+                        )
+                      }
+                      shareable={isLegacyLicense && showShare}
+                      onDownloadButtonClick={() => {
+                        trackDownloadResourceButtonClicked({
+                          downloadResourceButtonName: "exit quiz",
+                        });
+                      }}
+                      slugs={slugs}
+                      isFinalElement={
+                        pageLinks.findIndex(
+                          (p) => p.label === ExitQuizLabel,
+                        ) ===
+                        pageLinks.length - 1
+                      }
+                    >
+                      {exitQuiz && (
+                        <QuizContainerNew
+                          questions={exitQuiz}
+                          imageAttribution={exitQuizImageAttribution}
+                          isMathJaxLesson={isMathJaxLesson}
+                        />
+                      )}
+                    </LessonItemContainer>
+                  )}
+                </OakFlex>
+
                 {pageLinks.find((p) => p.label === "Additional material") &&
                   additionalMaterialUrl && (
                     <LessonItemContainer

@@ -32,6 +32,9 @@ export type LessonItemTitle =
   | "Slide deck"
   | "Exit quiz"
   | "Starter quiz"
+  | "Prior knowledge starter quiz"
+  | "Assessment exit quiz"
+  | "Lesson slides"
   | "Worksheet"
   | "Lesson video"
   | "Transcript"
@@ -50,6 +53,7 @@ export type Slugs = {
 export interface LessonItemContainerProps {
   children?: React.ReactNode;
   title: LessonItemTitle | DownloadableLessonTitles;
+  downloadTitle?: string;
   anchorId: LessonPageLinkAnchorId;
   downloadable?: boolean;
   shareable?: boolean;
@@ -78,6 +82,7 @@ export const LessonItemContainer = forwardRef<
   const {
     children,
     title,
+    downloadTitle,
     downloadable,
     displayMediaClipButton,
     onDownloadButtonClick,
@@ -102,12 +107,15 @@ export const LessonItemContainer = forwardRef<
     anchorId === "lesson-guide" ||
     anchorId === "worksheet" ||
     anchorId === "slide-deck" ||
+    anchorId === "quiz" ||
     anchorId === "media-clips"
       ? pageLinks[pageLinks.findIndex((link) => link.anchorId === anchorId) + 1]
           ?.anchorId || undefined
       : undefined;
 
-  const lowerCaseTitle = title.toLowerCase();
+  const lowerCaseTitle = downloadTitle
+    ? downloadTitle.toLowerCase()
+    : title.toLowerCase();
 
   return (
     <OakThemeProvider theme={oakDefaultTheme}>

@@ -440,6 +440,7 @@ export type LessonPageLinkAnchorId =
   | "worksheet"
   | "starter-quiz"
   | "exit-quiz"
+  | "quiz"
   | "additional-material"
   | "media-clips";
 
@@ -514,6 +515,104 @@ export const getPageLinksForLesson = (
 
   return PAGE_LINKS.filter((pageLink) => pageLink.condition(lesson)).map(
     (lesson) => pick(lesson, ["label", "anchorId"]),
+  );
+};
+
+export const getPageLinksWithSubheadingsForLesson = (
+  lesson: GetPageLinksForLessonProps,
+  copyrightContent: CopyrightContent,
+  mediaClipsLabel?: string,
+): {
+  label: string;
+  anchorId: LessonPageLinkAnchorId;
+  subheading?: string;
+}[] => {
+  const PAGE_LINKS: {
+    label: string;
+    subheading?: string;
+    anchorId: LessonPageLinkAnchorId;
+    condition: (lesson: GetPageLinksForLessonProps) => boolean;
+  }[] = [
+    {
+      label: "Lesson guide",
+      anchorId: "lesson-guide",
+      condition: (lesson) => Boolean(lesson.lessonGuideUrl),
+    },
+    {
+      label: "Slide deck",
+      anchorId: "slide-deck",
+      condition: (lesson) =>
+        Boolean(
+          lesson.presentationUrl &&
+            !checkIsResourceCopyrightRestricted(
+              "presentation",
+              copyrightContent,
+            ),
+        ),
+    },
+    {
+      label: mediaClipsLabel || "Video & audio",
+      anchorId: "media-clips",
+      condition: (lesson) => lesson.hasMediaClips,
+    },
+    {
+      label: "Lesson details",
+      anchorId: "lesson-details",
+      condition: () => true,
+    },
+    {
+      label: "Lesson video",
+      anchorId: "video",
+      condition: (lesson) => Boolean(lesson.videoMuxPlaybackId),
+    },
+    {
+      label: "Worksheet",
+      anchorId: "worksheet",
+      condition: (lesson) => Boolean(lesson.worksheetUrl),
+    },
+    {
+      label: "Quizzes",
+      anchorId: "quiz",
+      subheading: `Prior knowledge starter quiz \nAssessment exit quiz`,
+      condition: (lesson) =>
+        Boolean(
+          lesson.exitQuiz &&
+            lesson.exitQuiz.length > 0 &&
+            lesson.starterQuiz &&
+            lesson.starterQuiz.length > 0,
+        ),
+    },
+    {
+      label: "Quizzes",
+      anchorId: "exit-quiz",
+      subheading: `Assessment exit quiz`,
+      condition: (lesson) =>
+        Boolean(
+          lesson.exitQuiz &&
+            lesson.exitQuiz.length > 0 &&
+            (!lesson.starterQuiz || lesson.starterQuiz.length === 0),
+        ),
+    },
+    {
+      label: "Quizzes",
+      anchorId: "starter-quiz",
+      subheading: `Prior knowledge starter quiz`,
+      condition: (lesson) =>
+        Boolean(
+          (!lesson.exitQuiz || lesson.exitQuiz.length === 0) &&
+            lesson.starterQuiz &&
+            lesson.starterQuiz.length > 0,
+        ),
+    },
+    {
+      label: "Additional material",
+      anchorId: "additional-material",
+      condition: (lesson) => Boolean(lesson.additionalMaterialUrl),
+    },
+  ];
+
+  return PAGE_LINKS.filter((pageLink) => pageLink.condition(lesson)).map(
+    (lesson) => pick(lesson, ["label", "anchorId", "subheading"]),
   );
 };
 
