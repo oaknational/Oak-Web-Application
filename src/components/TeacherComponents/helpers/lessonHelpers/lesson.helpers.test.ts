@@ -209,6 +209,95 @@ describe("getPageLinksForLesson()", () => {
 
     expect(result).toEqual(expected);
   });
+  it("returns only the correct page links for a lesson only a starter quiz and no exit quiz", () => {
+    const lesson = {
+      presentationUrl: "presentation-url",
+      videoMuxPlaybackId: "video-mux-playback-id",
+      worksheetUrl: "worksheet-url",
+      additionalMaterialUrl: "additional-material-url",
+      starterQuiz: ["foo"],
+      hasCopyrightMaterial: false,
+      hasDownloadableResources: true,
+    };
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    const result = getPageLinksWithSubheadingsForLesson(lesson);
+    const expected = [
+      {
+        anchorId: "slide-deck",
+        label: "Lesson slides",
+      },
+      {
+        anchorId: "lesson-details",
+        label: "Lesson details",
+      },
+      {
+        anchorId: "video",
+        label: "Lesson video",
+      },
+      {
+        anchorId: "worksheet",
+        label: "Worksheet",
+      },
+      {
+        label: "Quizzes",
+        anchorId: "starter-quiz",
+        subheading: `Prior knowledge starter quiz`,
+      },
+      {
+        anchorId: "additional-material",
+        label: "Additional material",
+      },
+    ];
+
+    expect(result).toEqual(expected);
+  });
+  it("returns only the correct page links for a lesson only an exit quiz and no starter quiz", () => {
+    const lesson = {
+      presentationUrl: "presentation-url",
+      videoMuxPlaybackId: "video-mux-playback-id",
+      worksheetUrl: "worksheet-url",
+      additionalMaterialUrl: "additional-material-url",
+      starterQuiz: [],
+      exitQuiz: ["bar"],
+      hasCopyrightMaterial: false,
+      hasDownloadableResources: true,
+    };
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    const result = getPageLinksWithSubheadingsForLesson(lesson);
+    const expected = [
+      {
+        anchorId: "slide-deck",
+        label: "Lesson slides",
+      },
+      {
+        anchorId: "lesson-details",
+        label: "Lesson details",
+      },
+      {
+        anchorId: "video",
+        label: "Lesson video",
+      },
+      {
+        anchorId: "worksheet",
+        label: "Worksheet",
+      },
+      {
+        label: "Quizzes",
+        anchorId: "exit-quiz",
+        subheading: `Assessment exit quiz`,
+      },
+      {
+        anchorId: "additional-material",
+        label: "Additional material",
+      },
+    ];
+
+    expect(result).toEqual(expected);
+  });
 
   it("doesn't include slidedeck if hasCopyrightMaterial", () => {
     const lesson = {
