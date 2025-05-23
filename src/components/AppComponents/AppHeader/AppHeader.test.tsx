@@ -11,6 +11,7 @@ const render = renderWithProviders();
 
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagVariantKey: jest.fn(() => "with-login"),
+  useFeatureFlagEnabled: () => false,
 }));
 
 describe("components/AppHeader", () => {

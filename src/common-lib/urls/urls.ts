@@ -354,6 +354,10 @@ type PupilLessonCanonical = {
   lessonSlug: string;
 };
 
+type MyLibraryProps = {
+  page: "my-library";
+};
+
 export type OakLinkProps =
   | LabsLinkProps
   | SubjectListingLinkProps
@@ -417,7 +421,8 @@ export type OakLinkProps =
   | OnboardingSchoolSelectionLinkProps
   | OnboardingRoleSelectionLinkProps
   | OnboardingUseOfOak
-  | PupilLessonCanonical;
+  | PupilLessonCanonical
+  | MyLibraryProps;
 
 const EXTERNAL_PAGE_NAMES = [
   "[external] Careers",
@@ -942,6 +947,12 @@ export const OAK_PAGES: {
     analyticsPageName: "Homepage",
     configType: "internal",
     pageType: "teachers-home-page",
+  }),
+  "my-library": createOakPageConfig({
+    pathPattern: "/teachers/my-library",
+    analyticsPageName: "My library",
+    configType: "internal",
+    pageType: "my-library",
   }),
 };
 

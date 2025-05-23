@@ -18,6 +18,7 @@ import { AppHeaderUnderline } from "@/components/AppComponents/AppHeaderUnderlin
 import { burgerMenuSections } from "@/browser-lib/fixtures/burgerMenuSections";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useSelectedArea from "@/hooks/useSelectedArea";
+import { SaveCount } from "@/components/TeacherComponents/SaveCount/SaveCount";
 
 export const siteAreas = {
   teachers: "TEACHERS",
@@ -71,9 +72,10 @@ const AppHeader: FC<HeaderProps> = () => {
           </OakFlex>
           <OakFlex
             $alignItems={"center"}
-            $gap="all-spacing-6"
+            $gap={["all-spacing-4", "all-spacing-6"]}
             $font="heading-7"
           >
+            {selectedArea == siteAreas.teachers && <SaveCount />}
             <TeacherAccountButton
               selectedArea={selectedArea}
               isSignedIn={isSignedIn ? true : false}

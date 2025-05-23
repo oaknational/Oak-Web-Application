@@ -1,6 +1,7 @@
+import { OakConfig } from "../fetch_config/config_types.js";
+
 import { getSecretNamesFromPublicConfig } from "./helpers.js";
 import { fetchSecrets as gFetchSecrets } from "./google_secret_manager/index.js";
-import { OakConfig } from "../fetch_config/config_types.js";
 
 type Secrets = Record<string, string>;
 

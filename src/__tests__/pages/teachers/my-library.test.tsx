@@ -8,6 +8,7 @@ import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagVariantKey: () => true,
+  useFeatureFlagEnabled: () => true,
 }));
 jest.mock("next/navigation", () => require("next-router-mock"));
 const render = renderWithProviders();
