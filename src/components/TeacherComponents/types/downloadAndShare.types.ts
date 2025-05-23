@@ -44,7 +44,12 @@ export type CombinedPreselectedTypeMap = Record<
 >;
 export type DownloadableLessonTitles = Exclude<
   LessonItemTitle,
-  "Demonstration videos" | "Audio clips" | "Video & audio clips"
+  | "Demonstration videos"
+  | "Audio clips"
+  | "Video & audio clips"
+  | "Prior knowledge starter quiz"
+  | "Assessment exit quiz"
+  | "Lesson slides"
 >;
 
 export type ExpandingContainerTitle =
