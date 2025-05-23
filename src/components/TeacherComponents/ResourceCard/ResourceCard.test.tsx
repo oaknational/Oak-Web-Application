@@ -89,25 +89,6 @@ describe("ResourceCard", () => {
     expect(screen.getByText("PDF")).toBeInTheDocument();
   });
 
-  it("slices label and adds three dots if label is longer than 42 characters", () => {
-    renderWithTheme(
-      <ResourceCard
-        id="unique-123"
-        name="downloadResources"
-        label="Designing an animated program - additional resources a very long name"
-        subtitle="PDF"
-        checked
-        onChange={jest.fn()}
-        resourceType="worksheet-pdf"
-        hideCheckbox={false}
-      />,
-    );
-
-    expect(
-      screen.getByText("Designing an animated program - additional…"),
-    ).toBeInTheDocument();
-  });
-
   it("renders isEditable tag correctly", () => {
     renderWithTheme(
       <ResourceCard

@@ -136,8 +136,11 @@ const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
             $font="heading-7"
             $mb="space-between-sssx"
             $textDecoration={isHovered ? "underline" : "none"}
+            $whiteSpace={"nowrap"}
+            $overflow={"hidden"}
+            $textOverflow={"ellipsis"}
           >
-            {label.length > 42 ? label.slice(0, 42) + "\u2026" : label}
+            {label}
           </OakP>
           <OakP $color="grey60">
             {subtitle}
