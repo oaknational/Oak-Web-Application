@@ -11,7 +11,6 @@ import {
 import styled from "styled-components";
 
 import { resolveOakHref } from "@/common-lib/urls";
-import { getMediaQuery } from "@/styles/utils/responsive";
 
 const StyledOL = styled.ol`
   list-style-type: none;
@@ -33,22 +32,6 @@ const LessonLink = styled(OakSecondaryLink)`
 
 const UnitLink = styled(OakSecondaryLink)`
   text-decoration: none;
-`;
-
-const DesktopTabletOnlyWrapper = styled.div`
-  display: block;
-
-  @media ${() => getMediaQuery("mobile")} {
-    display: none;
-  }
-`;
-
-const MobileOnlyWrapper = styled.div`
-  display: none;
-
-  @media ${() => getMediaQuery("mobile")} {
-    display: block;
-  }
 `;
 
 const getLastSavedText = (date: string) => {
@@ -125,9 +108,9 @@ const UnitCardHeader = ({ ...props }: MyLibraryUnitCardProps) => {
           {lastSavedText}
         </OakP>
       </OakFlex>
-      <DesktopTabletOnlyWrapper>
+      <OakBox $display={["none", "block"]}>
         <SaveButton unitTitle={unitTitle} onSave={onSave} isSaved={isSaved} />
-      </DesktopTabletOnlyWrapper>
+      </OakBox>
     </OakFlex>
   );
 };
@@ -153,13 +136,13 @@ const UnitCardContent = ({
       <OakFlex $flexDirection={"column"} $gap={"all-spacing-6"}>
         <OakFlex $justifyContent={"space-between"}>
           <OakP $font={"heading-light-7"}>{lessonCountHeader}</OakP>
-          <MobileOnlyWrapper>
+          <OakBox $display={["block", "none"]}>
             <SaveButton
               unitTitle={unitTitle}
               onSave={onSave}
               isSaved={isSaved}
             />
-          </MobileOnlyWrapper>
+          </OakBox>
         </OakFlex>
         <OakBox
           $borderColor={"border-decorative1-stronger"}
