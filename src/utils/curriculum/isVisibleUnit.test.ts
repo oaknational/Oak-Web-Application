@@ -60,13 +60,14 @@ describe("isVisibleUnit", () => {
       subjectcategories: [
         createSubjectCategory({
           id: 1,
+          slug: "biology",
           title: "Biology",
         }),
       ],
     });
 
     const filters = createFilter({
-      subjectCategories: ["1"],
+      subjectCategories: ["biology"],
       years: ["10"],
     });
     expect(isVisibleUnit(filters, "10", unit)).toEqual(true);
@@ -92,6 +93,7 @@ describe("isVisibleUnit", () => {
       subjectcategories: [
         createSubjectCategory({
           id: 1,
+          slug: "biology",
           title: "Biology",
         }),
       ],
@@ -100,7 +102,7 @@ describe("isVisibleUnit", () => {
     });
 
     const filters = createFilter({
-      subjectCategories: ["1"],
+      subjectCategories: ["biology"],
       tiers: ["foundation"],
       years: ["10"],
       threads: [],

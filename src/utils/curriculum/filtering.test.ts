@@ -122,8 +122,8 @@ describe("filtering", () => {
 
   describe("getDefaultSubjectCategoriesForYearGroup", () => {
     it("with data", () => {
-      const subCat1 = createSubjectCategory({ id: 1 });
-      const subCat2 = createSubjectCategory({ id: 2 });
+      const subCat1 = createSubjectCategory({ id: 1, slug: "one" });
+      const subCat2 = createSubjectCategory({ id: 2, slug: "two" });
       const input: CurriculumUnitsYearData = {
         "7": {
           units: [createUnit({ slug: "test1", subjectcategories: [subCat1] })],
@@ -145,7 +145,7 @@ describe("filtering", () => {
         },
       };
       const out = getDefaultSubjectCategoriesForYearGroup(input);
-      expect(out).toEqual(["1"]);
+      expect(out).toEqual(["one"]);
     });
 
     it("without data", () => {
@@ -255,13 +255,17 @@ describe("filtering", () => {
             units: [] as Unit[],
             tiers: [{ tier_slug: "foundation", tier: "Foundation" }],
             childSubjects: [{ subject: "Physics", subject_slug: "physics" }],
-            subjectCategories: [{ id: 2 }],
+            subjectCategories: [
+              createSubjectCategory({ id: 2, slug: "sub-cat-2" }),
+            ],
           } as CurriculumUnitsYearData[number],
           "8": {
             units: [] as Unit[],
             tiers: [{ tier_slug: "higher", tier: "Higher" }],
             childSubjects: [{ subject: "Biology", subject_slug: "biology" }],
-            subjectCategories: [{ id: 1 }],
+            subjectCategories: [
+              createSubjectCategory({ id: 1, slug: "sub-cat-1" }),
+            ],
           } as CurriculumUnitsYearData[number],
         },
         threadOptions: [],
@@ -269,7 +273,7 @@ describe("filtering", () => {
       });
       expect(out).toEqual({
         childSubjects: ["biology"],
-        subjectCategories: ["1"],
+        subjectCategories: ["sub-cat-1"],
         threads: [],
         tiers: ["foundation"],
         years: ["7", "8"],
@@ -287,13 +291,13 @@ test("getFilterData", () => {
       units: [] as Unit[],
       tiers: [{ tier_slug: "foundation", tier: "Foundation" }],
       childSubjects: [{ subject: "Physics", subject_slug: "physics" }],
-      subjectCategories: [{ id: 2 }],
+      subjectCategories: [createSubjectCategory({ id: 2, slug: "sub-cat-2" })],
     } as CurriculumUnitsYearData[number],
     "8": {
       units: [] as Unit[],
       tiers: [{ tier_slug: "higher", tier: "Higher" }],
       childSubjects: [{ subject: "Biology", subject_slug: "biology" }],
-      subjectCategories: [{ id: 1 }],
+      subjectCategories: [createSubjectCategory({ id: 1, slug: "sub-cat-1" })],
     } as CurriculumUnitsYearData[number],
   };
   const allYearOutput = getFilterData(definition, ["7", "8"]);
@@ -311,9 +315,13 @@ test("getFilterData", () => {
     subjectCategories: [
       {
         id: 1,
+        slug: "sub-cat-1",
+        title: "Foo",
       },
       {
         id: 2,
+        slug: "sub-cat-2",
+        title: "Foo",
       },
     ],
     tiers: [
@@ -339,6 +347,8 @@ test("getFilterData", () => {
     subjectCategories: [
       {
         id: 2,
+        slug: "sub-cat-2",
+        title: "Foo",
       },
     ],
     tiers: [
@@ -360,6 +370,8 @@ test("getFilterData", () => {
     subjectCategories: [
       {
         id: 1,
+        slug: "sub-cat-1",
+        title: "Foo",
       },
     ],
     tiers: [

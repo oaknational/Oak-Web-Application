@@ -157,7 +157,7 @@ const unitData = [
     tier: null,
     tier_slug: null,
     tags: [{ id: 5, title: "Biology", category: "Discipline" }],
-    subjectcategories: [{ id: 5, title: "Biology" }],
+    subjectcategories: [{ id: 5, slug: "biology", title: "Biology" }],
     threads: [
       {
         title:
@@ -1290,6 +1290,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           subjectCategories: [
             {
               id: 5,
+              slug: "biology",
               title: "Biology",
             },
           ],
@@ -1371,7 +1372,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
                   title: "Biology",
                 },
               ],
-              subjectcategories: [{ id: 5, title: "Biology" }],
+              subjectcategories: [{ id: 5, slug: "biology", title: "Biology" }],
               threads: [
                 {
                   order: 3,

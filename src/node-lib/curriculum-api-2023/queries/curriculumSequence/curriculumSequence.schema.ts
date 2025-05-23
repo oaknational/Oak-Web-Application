@@ -49,6 +49,7 @@ const curriculumSequenceSchema = z.object({
             id: z.number(),
             title: z.string(),
             category: z.string().optional(),
+            slug: z.string(),
           }),
         )
         .nullable(),

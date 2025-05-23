@@ -58,7 +58,7 @@ function getSubjectCategoryMessage(
       years
         .flatMap((yearKey) =>
           yearData[yearKey]?.subjectCategories?.filter((sc) =>
-            subjectCategories.includes(sc.id.toString()),
+            subjectCategories.includes(sc.slug),
           ),
         )
         .filter(Boolean)
@@ -80,16 +80,14 @@ function getSubjectCategoryMessage(
     .some((yearKey) =>
       yearData[yearKey]?.units?.some((unit) =>
         unit.subjectcategories?.some((sc) =>
-          subjectCategories.includes(sc.id.toString()),
+          subjectCategories.includes(sc.slug),
         ),
       ),
     );
 
   // Check if this current year has any units in the selected subject categories
   const hasCurrentYearUnits = yearData[currentYear]?.units?.some((unit) =>
-    unit.subjectcategories?.some((sc) =>
-      subjectCategories.includes(sc.id.toString()),
-    ),
+    unit.subjectcategories?.some((sc) => subjectCategories.includes(sc.slug)),
   );
 
   if (!hasCurrentYearUnits) {
@@ -105,7 +103,7 @@ function getSubjectCategoryMessage(
       (yearKey) =>
         yearData[yearKey]?.units?.some((unit) =>
           unit.subjectcategories?.some((sc) =>
-            subjectCategories.includes(sc.id.toString()),
+            subjectCategories.includes(sc.slug),
           ),
         ),
     );

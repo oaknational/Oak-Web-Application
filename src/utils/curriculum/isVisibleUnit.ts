@@ -38,10 +38,10 @@ export function isVisibleUnit(
   const filterBySubjectCategory =
     !filters.subjectCategories?.[0] ||
     (filters.subjectCategories.length > 0 &&
-      filters.subjectCategories?.[0] === "-1") ||
+      filters.subjectCategories?.[0] === "all") ||
     unit.subjectcategories?.findIndex(
       (subjectcategory) =>
-        String(subjectcategory.id) === filters.subjectCategories?.[0],
+        String(subjectcategory.slug) === filters.subjectCategories?.[0],
     ) !== -1;
 
   const filterByTier =
