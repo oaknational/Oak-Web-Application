@@ -178,7 +178,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
 
   return (
     <Flex
-      $height={useRadio ? 72 : 72}
+      $height={72}
       $width={320}
       $position={"relative"}
       {...hoverProps}
