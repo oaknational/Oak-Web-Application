@@ -539,7 +539,7 @@ export const getPageLinksWithSubheadingsForLesson = (
       condition: (lesson) => Boolean(lesson.lessonGuideUrl),
     },
     {
-      label: "Slide deck",
+      label: "Lesson slides",
       anchorId: "slide-deck",
       condition: (lesson) =>
         Boolean(

@@ -431,7 +431,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     </LessonItemContainer>
                   )}
 
-                {pageLinks.find((p) => p.label === "Slide deck") &&
+                {pageLinks.find((p) => p.label === presentationTitle) &&
                   !checkIsResourceCopyrightRestricted(
                     "presentation",
                     copyrightContent,
