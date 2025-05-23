@@ -1,0 +1,18 @@
+query getProgrammeUnits($userId: String!) {
+  users_content(distinct_on: content_id, where: { user_id: { _eq: $userId } }) {
+    users_content_lists {
+      content {
+        unit_slug
+        programme_slug
+        browse_mv {
+          supplementary_data(path: "static_lesson_list")
+          year: programme_fields(path: "year_description")
+          keystage: programme_fields(path: "keystage_description")
+          subject: programme_fields(path: "subject")
+          unit_title: unit_data(path: "title")
+        }
+      }
+      created_at
+    }
+  }
+}

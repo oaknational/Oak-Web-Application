@@ -66586,6 +66586,34 @@ export type DeleteUserListContentMutation = {
   } | null;
 };
 
+export type GetProgrammeUnitsQueryVariables = Exact<{
+  userId: Scalars["String"]["input"];
+}>;
+
+export type GetProgrammeUnitsQuery = {
+  __typename?: "query_root";
+  users_content: Array<{
+    __typename?: "users_content";
+    users_content_lists?: {
+      __typename?: "content_lists";
+      created_at?: any | null;
+      content: {
+        __typename?: "content";
+        unit_slug?: string | null;
+        programme_slug: string;
+        browse_mv: Array<{
+          __typename?: "published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_16_0_0";
+          supplementary_data?: any | null;
+          year?: any | null;
+          keystage?: any | null;
+          subject?: any | null;
+          unit_title?: any | null;
+        }>;
+      };
+    } | null;
+  }>;
+};
+
 export type GetUserQueryVariables = Exact<{
   userId?: InputMaybe<Scalars["String"]["input"]>;
 }>;
@@ -66699,6 +66727,29 @@ export const DeleteUserListContentDocument = gql`
     }
   }
 `;
+export const GetProgrammeUnitsDocument = gql`
+  query getProgrammeUnits($userId: String!) {
+    users_content(
+      distinct_on: content_id
+      where: { user_id: { _eq: $userId } }
+    ) {
+      users_content_lists {
+        content {
+          unit_slug
+          programme_slug
+          browse_mv {
+            supplementary_data(path: "static_lesson_list")
+            year: programme_fields(path: "year_description")
+            keystage: programme_fields(path: "keystage_description")
+            subject: programme_fields(path: "subject")
+            unit_title: unit_data(path: "title")
+          }
+        }
+        created_at
+      }
+    }
+  }
+`;
 export const GetUserDocument = gql`
   query getUser($userId: String) {
     user: users(where: { id: { _eq: $userId } }) {
@@ -66801,6 +66852,22 @@ export function getSdk(
           ),
         "deleteUserListContent",
         "mutation",
+        variables,
+      );
+    },
+    getProgrammeUnits(
+      variables: GetProgrammeUnitsQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders,
+    ): Promise<GetProgrammeUnitsQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<GetProgrammeUnitsQuery>(
+            GetProgrammeUnitsDocument,
+            variables,
+            { ...requestHeaders, ...wrappedRequestHeaders },
+          ),
+        "getProgrammeUnits",
+        "query",
         variables,
       );
     },
