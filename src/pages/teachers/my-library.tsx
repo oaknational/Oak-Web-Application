@@ -8,8 +8,13 @@ import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 import { withPageAuthRequired } from "@/hocs/withPageAuthRequired";
 import MyLibraryHeader from "@/components/TeacherComponents/MyLibraryHeader/MyLibraryHeader";
 import NoSavedContent from "@/components/TeacherComponents/NoSavedContent/NoSavedContent";
+import { useProgrammeUnits } from "@/node-lib/educator-api/helpers/saveUnits/useSaveProgrammeUnits";
 
 function MyLibraryPage() {
+  const { isLoading } = useProgrammeUnits();
+
+  const noUnitsSaved = !isLoading;
+
   return (
     <AppLayout
       seoProps={{
@@ -27,7 +32,7 @@ function MyLibraryPage() {
         $pt={["inner-padding-none", "inner-padding-xl"]}
       >
         <MyLibraryHeader />
-        <NoSavedContent />
+        {noUnitsSaved && <NoSavedContent />}
       </OakMaxWidth>
     </AppLayout>
   );
