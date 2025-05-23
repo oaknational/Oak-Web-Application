@@ -72,7 +72,7 @@ const AppHeader: FC<HeaderProps> = () => {
           </OakFlex>
           <OakFlex
             $alignItems={"center"}
-            $gap={["all-spacing-3", "all-spacing-6"]}
+            $gap={["all-spacing-4", "all-spacing-6"]}
             $font="heading-7"
           >
             {selectedArea == siteAreas.teachers && <SaveCount />}
