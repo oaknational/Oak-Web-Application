@@ -44,7 +44,8 @@ describe("MyLibraryUnitCard", () => {
     expect(screen.getByText(/Year 10/)).toBeInTheDocument();
     expect(screen.getByText(/5 lessons/)).toBeInTheDocument();
     expect(screen.getByText(/Lesson 0/)).toBeInTheDocument();
-    expect(screen.getByText(/01\/10\/23, 13:00/)).toBeInTheDocument();
+    // The save time is formatted as "Saved on _Date_ at _time_"
+    expect(screen.getByText(/Saved on/)).toBeInTheDocument();
   });
   it("renders a save button", () => {
     render(<MyLibraryUnitCard {...mockUnit} lessons={completeUnitLessons} />);
@@ -72,6 +73,20 @@ describe("MyLibraryUnitCard", () => {
     expect(saveButton).toHaveTextContent("Saved");
   });
 
+  it("formats the save time correctly when saved on the same day", () => {
+    render(
+      <MyLibraryUnitCard
+        {...mockUnit}
+        lessons={completeUnitLessons}
+        // replace the save time with the current date
+        saveTime={new Date().toISOString()}
+      />,
+    );
+    // The save time is formatted as "Saved at _time_"
+    const saveTime = screen.getByText(/Saved at/);
+    expect(saveTime).toBeInTheDocument();
+  });
+
   it("displays correct partial lesson count when some are unpublished", () => {
     const mixedLessons = [
       ...generateLessons(2, "published"),
@@ -92,7 +107,6 @@ describe("MyLibraryUnitCard", () => {
 
     const lesson0 = screen.getByText(/Lesson 0/);
     const styles = getComputedStyle(lesson0);
-    console.log(styles);
     expect(styles.color).toBe("rgb(128, 128, 128)");
   });
 });
