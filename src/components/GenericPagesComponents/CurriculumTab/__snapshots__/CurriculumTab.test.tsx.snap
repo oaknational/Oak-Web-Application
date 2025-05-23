@@ -142,11 +142,11 @@ exports[`CurriculumTab renders 1`] = `
                           style="width: 50%;"
                         >
                           <div
-                            class="sc-fqkvVR sc-9dfc1bad-0 sc-bd3b6d19-2 jEHEPk fAkCpO bqIPtS"
+                            class="sc-fqkvVR sc-9dfc1bad-0 sc-148ab746-2 jEHEPk fAkCpO hryUrQ"
                           >
                             <button
                               aria-expanded="false"
-                              class="sc-bd3b6d19-1 hDLPYn"
+                              class="sc-148ab746-1 dccTbF"
                               data-testid="subject-picker-button"
                               title="Subject"
                             >
@@ -210,11 +210,11 @@ exports[`CurriculumTab renders 1`] = `
                             class="sc-fqkvVR sc-gsFSXq fxkSvJ ehZBcc"
                           >
                             <div
-                              class="sc-fqkvVR sc-9dfc1bad-0 sc-bd3b6d19-2 eMDDOo fAkCpO bqIPtS"
+                              class="sc-fqkvVR sc-9dfc1bad-0 sc-148ab746-2 eMDDOo fAkCpO hryUrQ"
                             >
                               <button
                                 aria-expanded="false"
-                                class="sc-bd3b6d19-1 hDLPYn"
+                                class="sc-148ab746-1 dccTbF"
                                 data-testid="phase-picker-button"
                                 title="Phase"
                               >
@@ -295,7 +295,6 @@ exports[`CurriculumTab renders 1`] = `
                   class="sc-6170517-0 geyTVX"
                   data-nimg="1"
                   decoding="async"
-                  fetchpriority="high"
                   height="628"
                   src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b63430479cc683ffce99280e132c671325d1a0fd-1048x628.jpg?w=1080&h=647&fm=webp&q=80&fit=clip&auto=format"
                   srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b63430479cc683ffce99280e132c671325d1a0fd-1048x628.jpg?w=640&h=383&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b63430479cc683ffce99280e132c671325d1a0fd-1048x628.jpg?w=1080&h=647&fm=webp&q=80&fit=clip&auto=format 2x"
@@ -334,11 +333,11 @@ exports[`CurriculumTab renders 1`] = `
                       style="width: 50%;"
                     >
                       <div
-                        class="sc-fqkvVR sc-9dfc1bad-0 sc-bd3b6d19-2 jEHEPk fAkCpO bqIPtS"
+                        class="sc-fqkvVR sc-9dfc1bad-0 sc-148ab746-2 jEHEPk fAkCpO hryUrQ"
                       >
                         <button
                           aria-expanded="false"
-                          class="sc-bd3b6d19-1 hDLPYn"
+                          class="sc-148ab746-1 dccTbF"
                           data-testid="subject-picker-button"
                           title="Subject"
                         >
@@ -402,11 +401,11 @@ exports[`CurriculumTab renders 1`] = `
                         class="sc-fqkvVR sc-gsFSXq fxkSvJ ehZBcc"
                       >
                         <div
-                          class="sc-fqkvVR sc-9dfc1bad-0 sc-bd3b6d19-2 eMDDOo fAkCpO bqIPtS"
+                          class="sc-fqkvVR sc-9dfc1bad-0 sc-148ab746-2 eMDDOo fAkCpO hryUrQ"
                         >
                           <button
                             aria-expanded="false"
-                            class="sc-bd3b6d19-1 hDLPYn"
+                            class="sc-148ab746-1 dccTbF"
                             data-testid="phase-picker-button"
                             title="Phase"
                           >

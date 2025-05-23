@@ -5,6 +5,11 @@ import DownloadConfirmation from "./DownloadConfirmation";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
 import { OnwardContentSelectedProperties } from "@/browser-lib/avo/Avo";
+import {
+  setupMockLinkClick,
+  teardownMockLinkClick,
+  mockLinkClick,
+} from "@/utils/mockLinkClick";
 
 const onwardContentSelected = jest.fn() as unknown as (
   properties: Omit<
@@ -44,7 +49,12 @@ window.scrollTo = jest.fn();
 
 describe("DownloadConfirmation component", () => {
   beforeEach(() => {
+    setupMockLinkClick();
     jest.clearAllMocks();
+  });
+
+  afterEach(() => {
+    teardownMockLinkClick();
   });
 
   const expectScrollTopOnRender = () => {
@@ -166,6 +176,9 @@ describe("DownloadConfirmation component", () => {
     const lessonLink = getByRole("link", { name: "Back to lesson" });
 
     await user.click(lessonLink);
+    expect(mockLinkClick).toHaveBeenCalledWith(
+      "http://localhost/teachers/programmes/test-programme/units/test-unit/lessons/test-lesson",
+    );
 
     expect(onwardContentSelected).toHaveBeenCalledTimes(1);
     expect(onwardContentSelected).toHaveBeenCalledWith({
@@ -194,6 +207,9 @@ describe("DownloadConfirmation component", () => {
     const lessonLink = getByRole("link", { name: "Back to lesson" });
 
     await user.click(lessonLink);
+    expect(mockLinkClick).toHaveBeenCalledWith(
+      "http://localhost/teachers/lessons/test-lesson",
+    );
 
     expect(onwardContentSelected).toHaveBeenCalledTimes(1);
     expect(onwardContentSelected).toHaveBeenCalledWith({

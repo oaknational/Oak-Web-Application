@@ -1,5 +1,5 @@
 import { useSearchParams } from "next/navigation";
-import { renderHook } from "@testing-library/react";
+import { act, renderHook } from "@testing-library/react";
 
 import {
   buildTextDescribingFilter,
@@ -13,6 +13,7 @@ import {
   getDefaultTiersForYearGroup,
   getFilterData,
   getNumberOfFiltersApplied,
+  getNumberOfSelectedUnits,
   highlightedUnitCount,
   isHighlightedUnit,
   mergeInFilterParams,
@@ -22,7 +23,7 @@ import {
   tierForFilter,
   useFilters,
 } from "./filtering";
-import { CurriculumFilters, Unit } from "./types";
+import { CurriculumFilters, YearData, Unit } from "./types";
 import { isCurricRoutingEnabled } from "./flags";
 
 import { createUnit } from "@/fixtures/curriculum/unit";
@@ -272,6 +273,7 @@ describe("filtering", () => {
         threads: [],
         tiers: ["foundation"],
         years: ["7", "8"],
+        pathways: [],
       });
     });
 
@@ -377,6 +379,7 @@ describe("diffFilters", () => {
       tiers: [],
       years: [],
       threads: [],
+      pathways: [],
     };
     expect(diffFilters(dfltFilter, dfltFilter)).toEqual({
       childSubjects: [],
@@ -384,6 +387,7 @@ describe("diffFilters", () => {
       tiers: [],
       years: [],
       threads: [],
+      pathways: [],
     });
   });
 
@@ -397,6 +401,7 @@ describe("diffFilters", () => {
       tiers: [],
       years: [],
       threads: [],
+      pathways: [],
     };
     const filter: CurriculumFilters = {
       childSubjects: [],
@@ -404,6 +409,7 @@ describe("diffFilters", () => {
       tiers: [tierHigher.tier_slug],
       years: [],
       threads: [thread.slug],
+      pathways: [],
     };
     expect(diffFilters(dfltFilter, filter)).toEqual({
       childSubjects: [],
@@ -411,6 +417,7 @@ describe("diffFilters", () => {
       tiers: [tierHigher.tier_slug],
       years: [],
       threads: [thread.slug],
+      pathways: [],
     });
   });
 });
@@ -652,6 +659,7 @@ describe("getNumberOfFiltersApplied", () => {
       tiers: [],
       years: [],
       threads: [],
+      pathways: [],
     };
     expect(getNumberOfFiltersApplied(dfltFilter, dfltFilter)).toEqual(0);
   });
@@ -666,6 +674,7 @@ describe("getNumberOfFiltersApplied", () => {
       tiers: [],
       years: [],
       threads: [],
+      pathways: [],
     };
     const filter: CurriculumFilters = {
       childSubjects: [],
@@ -673,6 +682,7 @@ describe("getNumberOfFiltersApplied", () => {
       tiers: [tierHigher.tier_slug],
       years: [],
       threads: [thread.slug],
+      pathways: [],
     };
     expect(getNumberOfFiltersApplied(dfltFilter, filter)).toEqual(3);
   });
@@ -686,6 +696,7 @@ describe("filtersToQuery", () => {
       tiers: [],
       years: [],
       threads: [],
+      pathways: [],
     });
     expect(result).toEqual({});
   });
@@ -718,6 +729,7 @@ describe("filtersToQuery", () => {
         tiers: [],
         years: [],
         threads: [],
+        pathways: [],
       },
     );
 
@@ -739,6 +751,7 @@ describe("mergeInFilterParams", () => {
       tiers: [],
       years: [],
       threads: [],
+      pathways: [],
     };
 
     const result = mergeInFilterParams(
@@ -753,6 +766,7 @@ describe("mergeInFilterParams", () => {
       tiers: ["tier_1"],
       years: ["1"],
       threads: ["thread1"],
+      pathways: [],
     });
   });
 
@@ -763,6 +777,7 @@ describe("mergeInFilterParams", () => {
       tiers: [],
       years: [],
       threads: [],
+      pathways: [],
     };
 
     const result = mergeInFilterParams(
@@ -777,6 +792,7 @@ describe("mergeInFilterParams", () => {
       tiers: ["tier_1", "tier_2"],
       years: ["1", "2"],
       threads: ["thread1", "thread2"],
+      pathways: [],
     });
   });
 });
@@ -800,7 +816,9 @@ describe("useFilters", () => {
       });
 
       const [, setFilters] = result.current;
-      setFilters(updateFilterValue);
+      act(() => {
+        setFilters(updateFilterValue);
+      });
       rerender();
       const [filters] = result.current;
       expect(filters).toEqual(updateFilterValue);
@@ -840,8 +858,9 @@ describe("useFilters", () => {
       });
 
       const [, setFilters] = result.current;
-      setFilters(updateFilterValue);
-
+      act(() => {
+        setFilters(updateFilterValue);
+      });
       expect(replaceStateMock).toHaveBeenCalledWith(
         {},
         "",
@@ -908,6 +927,7 @@ describe("filteringFromYears", () => {
       threads: [],
       tiers: [],
       years: [],
+      pathways: [],
     });
   });
 
@@ -1174,5 +1194,92 @@ describe("buildTextDescribingFilter", () => {
       "Tier1 (KS3)",
       "Thread1",
     ]);
+  });
+});
+
+describe("getNumberOfSelectedUnits", () => {
+  const foundationTier = createTier({ tier_slug: "foundation" });
+  const higherTier = createTier({ tier_slug: "higher" });
+  const yearData: YearData = {
+    "7": {
+      units: [
+        createUnit({ slug: "unit1", tier_slug: foundationTier.tier_slug }),
+        createUnit({ slug: "unit2", tier_slug: foundationTier.tier_slug }),
+      ],
+      childSubjects: [],
+      tiers: [foundationTier],
+      subjectCategories: [],
+      isSwimming: false,
+      groupAs: null,
+      pathways: [],
+    },
+    "8": {
+      units: [
+        createUnit({ slug: "unit3", tier_slug: foundationTier.tier_slug }),
+        createUnit({ slug: "unit4", tier_slug: higherTier.tier_slug }),
+        createUnit({ slug: "unit5", tier_slug: higherTier.tier_slug }),
+      ],
+      childSubjects: [],
+      tiers: [foundationTier, higherTier],
+      subjectCategories: [],
+      isSwimming: false,
+      groupAs: null,
+      pathways: [],
+    },
+  };
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it("should return 0 when yearData is empty", () => {
+    const result = getNumberOfSelectedUnits(
+      {},
+      createFilter({
+        years: [],
+        threads: [],
+      }),
+    );
+    expect(result).toBe(0);
+  });
+
+  it("should count visible units for all years when selectedYear is All", () => {
+    const yearSelection = createFilter({
+      years: ["7", "8"],
+      threads: [],
+    });
+
+    const result = getNumberOfSelectedUnits(yearData, yearSelection);
+    expect(result).toBe(5);
+  });
+
+  it("should count visible units only for the selected year", () => {
+    const yearSelection = createFilter({
+      years: ["8"],
+      threads: [],
+    });
+
+    const result = getNumberOfSelectedUnits(yearData, yearSelection);
+    expect(result).toBe(3);
+  });
+
+  it("should only count units that are visible", () => {
+    const yearSelection = createFilter({
+      years: ["7", "8"],
+      tiers: ["foundation"],
+    });
+
+    const result = getNumberOfSelectedUnits(yearData, yearSelection);
+    expect(result).toBe(3);
+  });
+
+  it("should return 0 when no units are visible", () => {
+    const yearSelection = createFilter({
+      years: ["7", "8"],
+      tiers: ["foo"],
+    });
+
+    const result = getNumberOfSelectedUnits(yearData, yearSelection);
+    expect(result).toBe(0);
   });
 });

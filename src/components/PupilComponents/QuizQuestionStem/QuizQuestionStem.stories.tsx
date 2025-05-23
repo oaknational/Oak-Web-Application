@@ -1,26 +1,28 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
-import { QuizQuestionStem } from "./QuizQuestionStem";
+import {
+  QuizQuestionStem,
+  type QuizQuestionStemProps,
+} from "./QuizQuestionStem";
 
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 
-const meta: Meta<typeof QuizQuestionStem> = {
+const meta = {
   component: QuizQuestionStem,
   decorators: [
-    (Story) => (
+    (StoryComponent) => (
       <OakThemeProvider theme={oakDefaultTheme}>
-        <Story />
+        <StoryComponent />
       </OakThemeProvider>
     ),
   ],
-
   argTypes: {},
-} as Meta;
+} satisfies Meta<typeof QuizQuestionStem>;
 
 export default meta;
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<QuizQuestionStemProps>;
 
 const starterQuiz = quizQuestions;
 const mcqText = starterQuiz ? starterQuiz[0] : null;

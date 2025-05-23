@@ -1,5 +1,4 @@
 import {
-  createProgrammeSlug,
   createTeacherProgrammeSlug,
   getKs4RedirectSlug,
   isValidSubjectPhaseSlug,
@@ -120,7 +119,7 @@ describe("getKs4RedirectSlug", () => {
   });
 });
 
-describe("createProgrammeSlug/createTeacherProgrammeSlug", () => {
+describe("createTeacherProgrammeSlug", () => {
   test("unit data ks2 returns correct programme slug", () => {
     const unitData = {
       planned_number_of_lessons: 5,
@@ -155,7 +154,6 @@ describe("createProgrammeSlug/createTeacherProgrammeSlug", () => {
       description: null,
       state: "published",
     };
-    expect(createProgrammeSlug(unitData)).toEqual("science-primary-ks2");
     expect(createTeacherProgrammeSlug(unitData)).toEqual("science-primary-ks2");
   });
   test("unit data ks4 returns correct programme slug", () => {
@@ -192,7 +190,6 @@ describe("createProgrammeSlug/createTeacherProgrammeSlug", () => {
       description: null,
       state: "published",
     };
-    expect(createProgrammeSlug(unitData)).toEqual("science-primary-ks4");
     expect(createTeacherProgrammeSlug(unitData)).toEqual("science-primary-ks4");
   });
   test("unit data with exam board and tier returns the correct programme slug", () => {
@@ -229,9 +226,6 @@ describe("createProgrammeSlug/createTeacherProgrammeSlug", () => {
       description: null,
       state: "published",
     };
-    expect(createProgrammeSlug(unitData, "aqa", "foundation")).toEqual(
-      "combined-science-secondary-ks4-foundation-aqa",
-    );
     expect(createTeacherProgrammeSlug(unitData, "aqa", "foundation")).toEqual(
       "combined-science-secondary-ks4-foundation-aqa",
     );
@@ -270,9 +264,6 @@ describe("createProgrammeSlug/createTeacherProgrammeSlug", () => {
       description: null,
       state: "published",
     };
-    expect(createProgrammeSlug(unitData, "aqa")).toEqual(
-      "combined-science-secondary-ks3",
-    );
     expect(createTeacherProgrammeSlug(unitData, "aqa")).toEqual(
       "combined-science-secondary-ks3",
     );
@@ -312,9 +303,6 @@ describe("createProgrammeSlug/createTeacherProgrammeSlug", () => {
       description: null,
       state: "published",
     };
-    expect(createProgrammeSlug(unitData, "aqa")).toEqual(
-      "combined-science-secondary-ks3",
-    );
     expect(createTeacherProgrammeSlug(unitData, "aqa")).toEqual(
       "combined-science-secondary-ks3",
     );
@@ -354,9 +342,6 @@ describe("createProgrammeSlug/createTeacherProgrammeSlug", () => {
       description: null,
       state: "published",
     };
-    expect(createProgrammeSlug(unitData, "aqa", "foundation")).toEqual(
-      "combined-science-secondary-ks4-foundation-aqa",
-    );
     expect(
       createTeacherProgrammeSlug(unitData, "aqa", "foundation", "gcse"),
     ).toEqual("combined-science-secondary-ks4-foundation-gcse-aqa");

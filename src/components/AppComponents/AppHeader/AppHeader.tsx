@@ -1,7 +1,10 @@
 import { FC, useRef } from "react";
-import { OakBox, oakColorTokens, OakFlex } from "@oaknational/oak-components";
-import { UserButton, useUser } from "@clerk/nextjs";
+import { OakBox, OakFlex } from "@oaknational/oak-components";
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/router";
 
+import TeacherAccountButton from "@/components/TeacherComponents/TeacherAccountButton/TeacherAccountButton";
+import { resolveOakHref } from "@/common-lib/urls";
 import Logo from "@/components/AppComponents/Logo";
 import { HeaderProps } from "@/components/AppComponents/Layout/Layout";
 import OwaLink from "@/components/SharedComponents/OwaLink";
@@ -15,7 +18,6 @@ import { AppHeaderUnderline } from "@/components/AppComponents/AppHeaderUnderlin
 import { burgerMenuSections } from "@/browser-lib/fixtures/burgerMenuSections";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useSelectedArea from "@/hooks/useSelectedArea";
-import { getBreakpoint } from "@/styles/utils/responsive";
 
 export const siteAreas = {
   teachers: "TEACHERS",
@@ -35,6 +37,12 @@ const AppHeader: FC<HeaderProps> = () => {
   const { track } = useAnalytics();
   const selectedArea = useSelectedArea();
   const { isSignedIn } = useUser();
+  const router = useRouter();
+
+  const returnToParams = new URLSearchParams({
+    returnTo: router.asPath,
+  }).toString();
+  const onboardingRedirectUrl = `${resolveOakHref({ page: "onboarding" })}?${returnToParams}`;
 
   return (
     <header>
@@ -66,33 +74,11 @@ const AppHeader: FC<HeaderProps> = () => {
             $gap="all-spacing-6"
             $font="heading-7"
           >
-            {isSignedIn && (
-              <UserButton
-                appearance={{
-                  elements: {
-                    userButtonAvatarBox: {
-                      [`@media (max-width: ${getBreakpoint("small")}px)`]: {
-                        width: "100%",
-                        maxWidth: "100%",
-                      },
-                    },
-                    userButtonTrigger: {
-                      "&:focus": {
-                        boxShadow: `0px 0px 0px 2px ${oakColorTokens.lemon}, 0px 0px 0px 5px ${oakColorTokens.grey60} !important`,
-                      },
-                    },
-                    userButtonPopoverCard: {
-                      [`@media (max-width: ${getBreakpoint("small")}px)`]: {
-                        width: "100%",
-                        maxWidth: "100%",
-                        marginLeft: "0",
-                      },
-                    },
-                  },
-                }}
-                data-testid="clerk-user-button"
-              />
-            )}
+            <TeacherAccountButton
+              selectedArea={selectedArea}
+              isSignedIn={isSignedIn ? true : false}
+              onboardingRedirectUrl={onboardingRedirectUrl}
+            />
             <OwaLink
               page={"teachers-home-page"}
               $focusStyles={["underline"]}

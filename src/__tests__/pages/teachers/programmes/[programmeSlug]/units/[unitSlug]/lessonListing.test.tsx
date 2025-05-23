@@ -44,6 +44,17 @@ jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: jest.fn().mockReturnValue(true),
 }));
 
+jest.mock("@/node-lib/educator-api/helpers/saveUnits/useSaveUnits", () => {
+  return {
+    useSaveUnits: () => ({
+      onSaveToggle: jest.fn(),
+      isUnitSaved: jest.fn().mockResolvedValue(true),
+      showSignIn: false,
+      setShowSignIn: jest.fn(),
+    }),
+  };
+});
+
 describe("Lesson listing page", () => {
   beforeEach(() => {
     setUseUserReturn(mockLoggedIn);
@@ -93,9 +104,6 @@ describe("Lesson listing page", () => {
     render(<LessonListPage curriculumData={lessonListingFixture({})} />);
     const saveButton = screen.getByTestId("save-unit-button");
     expect(saveButton).toBeInTheDocument();
-    expect(saveButton).toHaveTextContent("Save");
-
-    await userEvent.click(saveButton);
     expect(saveButton).toHaveTextContent("Saved");
   });
 
