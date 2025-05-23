@@ -3,7 +3,6 @@ import { OakSideMenuNavLink, OakUL } from "@oaknational/oak-components";
 
 import { getContainerId } from "../LessonItemContainer/LessonItemContainer";
 
-
 type LessonOverviewSideNavAnchorLinksProps = {
   currentSectionId: string | null;
   links: {
