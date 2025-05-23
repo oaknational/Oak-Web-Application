@@ -11,7 +11,7 @@ import {
 import styled from "styled-components";
 
 import { resolveOakHref } from "@/common-lib/urls";
-import { getBreakpoint, getMediaQuery } from "@/styles/utils/responsive";
+import { getMediaQuery } from "@/styles/utils/responsive";
 
 const StyledOL = styled.ol`
   list-style-type: none;
@@ -187,12 +187,6 @@ const UnitCardContent = ({
                       <OakP
                         $textAlign={"right"}
                         $mr={"space-between-sssx"}
-                        style={{
-                          minWidth:
-                            window.innerWidth < getBreakpoint("small")
-                              ? "auto"
-                              : "1.5rem",
-                        }}
                         $color={
                           lesson._state === "published"
                             ? "text-primary"
