@@ -29,7 +29,7 @@ describe("SaveCount", () => {
     const saveCount = screen.getByText("10");
     expect(saveCount).toBeInTheDocument();
   });
-  it.only('links to the "my-library" page', () => {
+  it('links to the "my-library" page', () => {
     mockUseFeatureFlagEnabled.mockReturnValue(true);
     renderWithProviders()(<SaveCount />);
     const saveCount = screen.getByText("10");
