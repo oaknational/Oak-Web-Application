@@ -9,10 +9,9 @@ import {
   OakBox,
 } from "@oaknational/oak-components";
 
-import {
-  getPageLinksForLesson,
-  LessonPageLinkAnchorId,
-} from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
+import { getPageLinksForLesson } from "../helpers/lessonHelpers/getPageLinksForLessons";
+
+import { LessonPageLinkAnchorId } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { containerTitleToPreselectMap } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/containerTitleToPreselectMap";
 import { LessonItemContainerLink } from "@/components/TeacherComponents/LessonItemContainerLink";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";

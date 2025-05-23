@@ -3,12 +3,12 @@ import { mediaClipCycleFixture } from "@oaknational/oak-curriculum-schema";
 import {
   createAttributionObject,
   getCommonPathway,
-  getPageLinksForLesson,
   groupLessonPathways,
   getLessonMediaBreadCrumb,
   getMediaClipLabel,
   convertBytesToMegabytes,
   sortMediaClipsByOrder,
+  getPageLinksWithSubheadingsForLesson,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import {
   quizQuestions,
@@ -132,7 +132,7 @@ describe("getPageLinksForLesson()", () => {
       hasMediaClips: false,
     };
 
-    const result = getPageLinksForLesson(lesson, []);
+    const result = getPageLinksWithSubheadingsForLesson(lesson, []);
 
     const expected = [
       {
@@ -141,7 +141,7 @@ describe("getPageLinksForLesson()", () => {
       },
       {
         anchorId: "slide-deck",
-        label: "Slide deck",
+        label: "Lesson slides",
       },
       {
         anchorId: "lesson-details",
@@ -178,11 +178,11 @@ describe("getPageLinksForLesson()", () => {
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
-    const result = getPageLinksForLesson(lesson);
+    const result = getPageLinksWithSubheadingsForLesson(lesson);
     const expected = [
       {
         anchorId: "slide-deck",
-        label: "Slide deck",
+        label: "Lesson slides",
       },
       {
         anchorId: "lesson-details",
@@ -197,12 +197,9 @@ describe("getPageLinksForLesson()", () => {
         label: "Worksheet",
       },
       {
-        anchorId: "starter-quiz",
-        label: "Starter quiz",
-      },
-      {
-        anchorId: "exit-quiz",
-        label: "Exit quiz",
+        label: "Quizzes",
+        anchorId: "quiz",
+        subheading: `Prior knowledge starter quiz \nAssessment exit quiz`,
       },
       {
         anchorId: "additional-material",
@@ -227,7 +224,7 @@ describe("getPageLinksForLesson()", () => {
       hasMediaClips: false,
     };
 
-    const result = getPageLinksForLesson(lesson, [
+    const result = getPageLinksWithSubheadingsForLesson(lesson, [
       { copyrightInfo: "This lesson contains copyright material." },
     ]);
 
