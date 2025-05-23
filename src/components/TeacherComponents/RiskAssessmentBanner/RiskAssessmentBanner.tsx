@@ -14,7 +14,7 @@ const RiskAssessmentBanner: FC = () => (
 );
 
 const riskAssessmentMessage = (
-  <OakBox>
+  <OakBox data-testid="risk-assessment-message">
     Carry out a{" "}
     <OakLink
       href={resolveOakHref({

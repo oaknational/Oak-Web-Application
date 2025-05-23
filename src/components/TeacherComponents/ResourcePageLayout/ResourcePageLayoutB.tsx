@@ -151,6 +151,7 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
                 }
                 $mt={"space-between-m"}
                 $maxWidth={"all-spacing-22"}
+                data-testid="copyright-container"
               >
                 <CopyrightNotice
                   fullWidth
