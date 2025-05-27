@@ -25,6 +25,19 @@ jest.mock("next/router", () => ({
   useRouter: jest.fn(),
 }));
 
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      mediaClipsPlaylistPlayed: jest.fn(),
+    },
+  }),
+}));
+
+jest.mock(
+  "@/components/SharedComponents/VideoPlayer/useMediaClipThumbnailsUrl",
+);
+
 window.history.replaceState = jest.fn();
 
 const mockRouter = {
