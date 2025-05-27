@@ -1,5 +1,4 @@
 import { screen } from "@testing-library/dom";
-import userEvent from "@testing-library/user-event";
 
 import HeaderListing, { HeaderListingProps } from "./HeaderListing";
 import { headerListingProps } from "./HeaderListing.stories";
@@ -11,6 +10,28 @@ import unitListingFixture from "@/node-lib/curriculum-api-2023/fixtures/unitList
 
 const props = headerListingProps as unknown as HeaderListingProps;
 
+const mockUseUnitDownloadButtonState = jest.fn().mockResolvedValue({
+  showDownloadMessage: false,
+  setShowDownloadMessage: jest.fn(),
+  downloadError: false,
+  setDownloadError: jest.fn(),
+  setDownloadInProgress: jest.fn(),
+  downloadInProgress: false,
+  showIncompleteMessage: false,
+  setShowIncompleteMessage: jest.fn(),
+});
+
+jest.mock(
+  "src/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton",
+  () => {
+    return {
+      __esModule: true,
+      default: () => <button>Download</button>,
+      useUnitDownloadButtonState: () => mockUseUnitDownloadButtonState(),
+    };
+  },
+);
+
 jest.mock(
   "@/components/TeacherComponents/hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck",
   () => {
@@ -20,6 +41,14 @@ jest.mock(
       hasCheckedFiles: true,
     }));
   },
+);
+
+jest.mock(
+  "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink",
+  () => ({
+    __esModule: true,
+    default: jest.fn(),
+  }),
 );
 
 const mockFeatureFlag = jest.fn();
@@ -58,7 +87,17 @@ describe("HeaderListing", () => {
     const unitDownloadButton = screen.getByRole("button");
     expect(unitDownloadButton).toBeInTheDocument();
   });
-  it("renders an alert banner when show download message is true", async () => {
+  it("renders an alert banner when show download message is true", () => {
+    mockUseUnitDownloadButtonState.mockReturnValueOnce({
+      showDownloadMessage: true,
+      setShowDownloadMessage: jest.fn(),
+      downloadError: false,
+      setDownloadError: jest.fn(),
+      setDownloadInProgress: jest.fn(),
+      downloadInProgress: false,
+      showIncompleteMessage: false,
+      setShowIncompleteMessage: jest.fn(),
+    });
     setUseUserReturn(mockLoggedIn);
     renderWithTheme(
       <HeaderListing
@@ -67,14 +106,22 @@ describe("HeaderListing", () => {
         onUnitDownloadSuccess={jest.fn}
       />,
     );
-    const unitDownloadButton = screen.getByRole("button");
-    userEvent.click(unitDownloadButton);
-    const banner = await screen.findAllByText(
+    const banner = screen.getAllByText(
       "Downloads may take a few minutes on slower Wi-Fi connections.",
     );
     expect(banner[0]).toBeInTheDocument();
   });
   it("renders an alert banner when show incomplete message is true", async () => {
+    mockUseUnitDownloadButtonState.mockReturnValueOnce({
+      showDownloadMessage: false,
+      setShowDownloadMessage: jest.fn(),
+      downloadError: false,
+      setDownloadError: jest.fn(),
+      setDownloadInProgress: jest.fn(),
+      downloadInProgress: false,
+      showIncompleteMessage: true,
+      setShowIncompleteMessage: jest.fn(),
+    });
     setUseUserReturn(mockLoggedIn);
     renderWithTheme(
       <HeaderListing
@@ -84,9 +131,7 @@ describe("HeaderListing", () => {
         isIncompleteUnit={true}
       />,
     );
-    const unitDownloadButton = screen.getByRole("button");
 
-    userEvent.click(unitDownloadButton);
     const banner = await screen.findAllByText("This unit is incomplete");
     expect(banner[0]).toBeInTheDocument();
   });

@@ -37,12 +37,14 @@ const onPlay = jest.fn();
 
 const VideoPlayerMock = ({ userEventCallback }: Partial<VideoPlayerProps>) => {
   if (userEventCallback) {
-    userEventCallback({
-      event: "end",
-      timeElapsed: 100,
-      duration: 100,
-      muted: false,
-    });
+    setTimeout(() => {
+      userEventCallback({
+        event: "end",
+        timeElapsed: 100,
+        duration: 100,
+        muted: false,
+      });
+    }, 0);
   }
   return (
     <div data-testid="mux-player">

@@ -186,15 +186,6 @@ const theme: OakTheme = {
     background: "pink50",
     width: 720,
   },
-  badge: {
-    size: "78px",
-    circleSize: "48px",
-    fontSize: "16px",
-    iconSize: 48,
-    starColor: "black",
-    circleColor: "black",
-    textColor: "white",
-  },
   header: {
     height: "all-spacing-12",
     background: "mint50",

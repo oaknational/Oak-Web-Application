@@ -3,6 +3,8 @@ import mockRouter from "next-router-mock";
 
 import MyApp from "../../pages/_app";
 
+console.info = jest.fn();
+
 const noopAvoLogger = {
   logDebug: () => true,
   logWarn: () => true,
@@ -39,6 +41,9 @@ describe("<MyApp>", () => {
       />,
     );
 
+    expect(console.info).toHaveBeenCalledWith(
+      "No HubSpot cookie found, user likely has not interacted with HubSpot",
+    );
     expect(screen.getByText(/^Test:/).textContent).toBe("Test: value");
   });
 });

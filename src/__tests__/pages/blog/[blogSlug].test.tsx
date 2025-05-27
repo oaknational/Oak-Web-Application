@@ -17,11 +17,27 @@ jest.mock("next/router", () => ({
     pathname: "/blog/[blogSlug]",
   }),
 }));
-jest.mock("next-sanity-image", () => ({
+
+jest.mock("@/components/HooksAndUtils/sanityImageBuilder", () => ({
   __esModule: true,
-  useNextSanityImage: () => ({
-    src: "www.example.com/img.png",
-  }),
+  imageBuilder: {
+    image: function () {
+      return this;
+    },
+    width: function () {
+      return this;
+    },
+    height: function () {
+      return this;
+    },
+    fit: function () {
+      return this;
+    },
+    crop: function () {
+      return this;
+    },
+    url: () => "www.example.com/img.png",
+  },
 }));
 
 const testBlog: BlogPost = {

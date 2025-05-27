@@ -8,6 +8,11 @@ import Card from "@/components/SharedComponents/Card";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+import {
+  mockLinkClick,
+  setupMockLinkClick,
+  teardownMockLinkClick,
+} from "@/utils/mockLinkClick";
 
 const resourceContainerExpanded = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
@@ -25,6 +30,14 @@ describe("LessonItemContainer", () => {
 
   beforeAll(() => {
     lessonOverview = lessonOverviewFixture();
+  });
+
+  beforeEach(() => {
+    setupMockLinkClick();
+  });
+
+  afterEach(() => {
+    teardownMockLinkClick();
   });
 
   it("renders the title with the correct level", () => {
@@ -153,6 +166,9 @@ describe("LessonItemContainer", () => {
     const downloadLinkButton = screen.getByTestId("download-button");
 
     await user.click(downloadLinkButton);
+    expect(mockLinkClick).toHaveBeenCalledWith(
+      "http://localhost/teachers/programmes/english-primary-ks2/units/grammar-1-simple-compound-and-adverbial-complex-sentences/lessons/lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences/downloads?",
+    );
     expect(onDownloadButtonClick).toHaveBeenCalledTimes(1);
   });
 

@@ -5,6 +5,11 @@ import SearchDropdown from "./SearchDropdown";
 import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { searchResultsItem } from "@/node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
+import {
+  mockLinkClick,
+  setupMockLinkClick,
+  teardownMockLinkClick,
+} from "@/utils/mockLinkClick";
 
 export const onClickSearchHit = jest.fn();
 
@@ -24,6 +29,14 @@ const searchResultTierPathways = searchResultsData[2] as SearchResultsItemProps;
 const searchResultPathways = searchResultsData[3] as SearchResultsItemProps;
 
 describe("SearchDropdown component", () => {
+  beforeEach(() => {
+    setupMockLinkClick();
+  });
+
+  afterEach(() => {
+    teardownMockLinkClick();
+  });
+
   test("component renders with correct title for pathways with exam boards", () => {
     const { getByText } = renderWithTheme(
       <SearchDropdown {...searchResultLesson} isHovered isToggleOpen />,
@@ -137,6 +150,9 @@ describe("SearchDropdown component", () => {
     await userEvent.click(link);
 
     expect(onClickSearchHit).toHaveBeenCalled();
+    expect(mockLinkClick).toHaveBeenCalledWith(
+      "http://localhost/teachers/programmes/maths-program-1/units/algebra-unit/lessons",
+    );
   });
   test("dropdown buttons show correct title", () => {});
 });

@@ -18,6 +18,10 @@ jest.mock("swr", () => ({
   default: (...args: []) => mockUseSWR(...args),
 }));
 
+jest.mock("@/node-lib/educator-api/helpers/useGetEducatorData", () =>
+  jest.requireActual("@/node-lib/educator-api/helpers/useGetEducatorData"),
+);
+
 describe("useGetEducatorData", () => {
   it("should return data", () => {
     mockUseSWR.mockImplementationOnce(() => ({

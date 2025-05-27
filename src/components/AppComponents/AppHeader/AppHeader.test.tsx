@@ -11,6 +11,7 @@ const render = renderWithProviders();
 
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagVariantKey: jest.fn(() => "with-login"),
+  useFeatureFlagEnabled: () => false,
 }));
 
 describe("components/AppHeader", () => {
@@ -47,6 +48,7 @@ describe("components/AppHeader", () => {
 
     const user = userEvent.setup();
     expect(screen.getByTestId("menu")).not.toBeVisible();
+    await user.keyboard("{tab}");
     await user.keyboard("{tab}");
     await user.keyboard("{tab}");
     await user.keyboard("{tab}");
@@ -101,5 +103,21 @@ describe("components/AppHeader", () => {
 
     const signOutButton = screen.getByTestId("clerk-user-button");
     expect(signOutButton).toBeInTheDocument();
+  });
+
+  it("renders a sign up button when a user is not logged in", async () => {
+    setUseUserReturn(mockLoggedOut);
+    renderWithProviders()(<AppHeader />);
+
+    const signUpButton = screen.getByRole("button", { name: /Sign up/i });
+    expect(signUpButton).toBeInTheDocument();
+  });
+
+  it("does not render a sign up button when a user is logged in", async () => {
+    setUseUserReturn(mockLoggedIn);
+    renderWithProviders()(<AppHeader />);
+
+    const signUpButton = screen.queryByRole("button", { name: /Sign up/i });
+    expect(signUpButton).not.toBeInTheDocument();
   });
 });
