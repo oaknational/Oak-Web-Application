@@ -1,11 +1,16 @@
-const { getSecretNamesFromPublicConfig } = require("./helpers");
-const googleSecretManager = require("./google_secret_manager");
+import { OakConfig } from "../fetch_config/config_types.js";
+
+import { getSecretNamesFromPublicConfig } from "./helpers.js";
+import { fetchSecrets as gFetchSecrets } from "./google_secret_manager/index.js";
+
+type Secrets = Record<string, string>;
 
 /**
- * @description Takes the Oak public config and fetches secrets from the specified secret manager
- * @param {import("../fetch_config").OakConfig} oakConfig
+ * Takes the Oak public config and fetches secrets from the specified secret manager
+ *
+ * @param oakConfig
  */
-function fetchSecrets(oakConfig) {
+async function fetchSecrets(oakConfig: OakConfig): Promise<Secrets> {
   const secretNames = getSecretNamesFromPublicConfig(oakConfig);
 
   if (secretNames.length === 0) {
@@ -23,10 +28,10 @@ function fetchSecrets(oakConfig) {
     );
     /**
      * @todo currently this will throw if a secret is not found in the secret manager.
-     * We proobably just want to return the found ones and hanfle missing ones later
+     * We probably just want to return the found ones and handle missing ones later
      * as desired
      */
-    return googleSecretManager.fetchSecrets({
+    return gFetchSecrets({
       projectId,
       secretNames,
     });
@@ -39,4 +44,4 @@ function fetchSecrets(oakConfig) {
   return {};
 }
 
-module.exports = fetchSecrets;
+export default fetchSecrets;

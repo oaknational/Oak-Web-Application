@@ -4,8 +4,12 @@ export const generateUrl = (
   yearGroupSlug?: string,
   categorySlug?: string | null,
 ): string => {
-  const url = new URL(window.history.state.url, window.location.origin);
-  const params = new URLSearchParams(url.search);
+  const params =
+    typeof window !== "undefined" && window.location.search
+      ? new URLSearchParams(
+          new URL(window.history.state.url, window.location.origin).search,
+        )
+      : new URLSearchParams();
 
   const newBaseUrl = `${window.location.origin}/teachers/programmes/${programmeSlug}/units`;
   let newUrl = window.history.state.url;
