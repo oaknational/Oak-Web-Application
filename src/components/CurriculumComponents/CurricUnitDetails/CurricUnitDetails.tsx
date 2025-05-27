@@ -5,6 +5,7 @@ import {
   OakOL,
   OakFlex,
   OakBox,
+  OakUL,
 } from "@oaknational/oak-components";
 
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
@@ -33,6 +34,7 @@ export default function CurricUnitDetails({
     connection_prior_unit_title: priorUnitTitle,
     connection_future_unit_title: futureUnitTitle,
     why_this_why_now: whyThisWhyNow,
+    prior_knowledge_requirements: priorKnowledgeRequirements,
     description,
   } = unit;
   const threadTitleSet = new Set<string>(threads.map((thread) => thread.title));
@@ -48,6 +50,9 @@ export default function CurricUnitDetails({
   const lessonsInUnit = `${uniqueLessonTitlesArray.length} ${
     numberOfLessons === 1 ? "lesson" : "lessons"
   }`;
+
+  const shouldDisplayPriorKnowledge =
+    priorKnowledgeRequirements && priorKnowledgeRequirements.length > 0;
 
   return (
     <OakFlex
@@ -120,7 +125,9 @@ export default function CurricUnitDetails({
         {numberOfLessons >= 1 && (
           <CurricUnitDetailsAccordion
             title="Lessons in unit"
-            lastAccordion={isUnitDescriptionEnabled}
+            lastAccordion={
+              isUnitDescriptionEnabled && !shouldDisplayPriorKnowledge
+            }
             handleUnitOverviewExploredAnalytics={
               handleUnitOverviewExploredAnalytics
             }
@@ -131,6 +138,22 @@ export default function CurricUnitDetails({
                   return <OakLI key={lesson}>{lesson}</OakLI>;
                 })}
             </OakOL>
+          </CurricUnitDetailsAccordion>
+        )}
+
+        {shouldDisplayPriorKnowledge && (
+          <CurricUnitDetailsAccordion
+            title="Prior knowledge requirements"
+            lastAccordion={isUnitDescriptionEnabled}
+            handleUnitOverviewExploredAnalytics={
+              handleUnitOverviewExploredAnalytics
+            }
+          >
+            <OakUL $mb="space-between-xs" $font={"body-2"}>
+              {priorKnowledgeRequirements.map((text, index) => {
+                return <OakLI key={index}>{text}</OakLI>;
+              })}
+            </OakUL>
           </CurricUnitDetailsAccordion>
         )}
 
