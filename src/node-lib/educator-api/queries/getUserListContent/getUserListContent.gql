@@ -7,9 +7,11 @@ query getUserListContent($userId: String!) {
         browse_mv {
           supplementary_data(path: "static_lesson_list")
           year: programme_fields(path: "year_description")
-          keystage: programme_fields(path: "keystage_description")
+          keystage: programme_fields(path: "keystage")
           subject: programme_fields(path: "subject")
           unit_title: unit_data(path: "title")
+          tier: programme_fields(path: "tier")
+          examboard: programme_fields(path: "examboard")
         }
       }
       created_at

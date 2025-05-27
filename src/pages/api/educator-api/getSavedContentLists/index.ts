@@ -20,6 +20,8 @@ type UserlistContentResponse = Record<
     year: string;
     keystage: string;
     subject: string;
+    tier?: string | null;
+    examboard?: string | null;
     lessons: Array<{
       slug: string;
       title: string;
@@ -55,6 +57,8 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
         const year = browseData.year;
         const keystage = browseData.keystage;
         const subject = browseData.subject;
+        const tier = browseData.tier;
+        const examboard = browseData.examboard;
         const lessons = browseData.supplementary_data.map((lesson) => ({
           slug: lesson.slug,
           title: lesson.title,
@@ -71,6 +75,8 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
           savedAt,
           year,
           keystage,
+          tier,
+          examboard,
           subject,
           lessons,
         });

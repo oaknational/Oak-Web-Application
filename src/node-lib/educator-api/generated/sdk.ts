@@ -67055,6 +67055,8 @@ export type GetUserListContentQuery = {
           keystage?: any | null;
           subject?: any | null;
           unit_title?: any | null;
+          tier?: any | null;
+          examboard?: any | null;
         }>;
       };
     } | null;
@@ -67183,9 +67185,11 @@ export const GetUserListContentDocument = gql`
           browse_mv {
             supplementary_data(path: "static_lesson_list")
             year: programme_fields(path: "year_description")
-            keystage: programme_fields(path: "keystage_description")
+            keystage: programme_fields(path: "keystage")
             subject: programme_fields(path: "subject")
             unit_title: unit_data(path: "title")
+            tier: programme_fields(path: "tier")
+            examboard: programme_fields(path: "examboard")
           }
         }
         created_at

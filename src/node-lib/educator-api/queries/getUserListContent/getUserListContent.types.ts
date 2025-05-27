@@ -19,6 +19,8 @@ const users_content_lists = z.object({
         year: z.string(),
         keystage: z.string(),
         subject: z.string(),
+        tier: z.string().nullable(),
+        examboard: z.string().nullable(),
       }),
     ),
   }),

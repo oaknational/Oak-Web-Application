@@ -23,6 +23,8 @@ const userListContentResponse = z.record(
       keystage: z.string(),
       savedAt: z.string(),
       subject: z.string(),
+      tier: z.string().nullable(),
+      examboard: z.string().nullable(),
       unitSlug: z.string(),
       unitTitle: z.string(),
       year: z.string(),
@@ -154,5 +156,6 @@ export const useContentLists = () => {
     isUnitSaved,
     onSaveToggle,
     isLoading,
+    savedProgrammeUnits: locallySavedProgrammeUnits,
   };
 };
