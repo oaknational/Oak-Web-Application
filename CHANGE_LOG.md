@@ -1,3 +1,10 @@
+# [1.751.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.750.3...v1.751.0) (2025-05-27)
+
+
+### Features
+
+* added extra metadata to getWorksheetInfo error coming up in bugsnag ([935cdbf](https://github.com/oaknational/Oak-Web-Application/commit/935cdbf26121154415bbc9a5fd6da7f02e2b7b31))
+
 ## [1.750.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.750.2...v1.750.3) (2025-05-22)
 
 ## [1.750.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.750.1...v1.750.2) (2025-05-21)
