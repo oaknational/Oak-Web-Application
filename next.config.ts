@@ -1,35 +1,48 @@
-const { readFileSync, writeFileSync, appendFileSync } = require("node:fs");
-const path = require("path");
+import { readFileSync, writeFileSync, appendFileSync } from "node:fs";
+import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const StatoscopeWebpackPlugin = require("@statoscope/webpack-plugin").default;
-const CopyPlugin = require("copy-webpack-plugin");
-const {
+import buildWithBundleAnalyzer from "@next/bundle-analyzer";
+import StatoscopeWebpackPlugin from "@statoscope/webpack-plugin";
+import CopyPlugin from "copy-webpack-plugin";
+import type { NextConfig } from "next";
+import { PHASE_TEST, PHASE_PRODUCTION_BUILD } from "next/constants.js";
+import type { WebpackConfigContext } from "next/dist/server/config-shared";
+import {
   BugsnagBuildReporterPlugin,
   BugsnagSourceMapUploaderPlugin,
-} = require("webpack-bugsnag-plugins");
-const { PHASE_TEST, PHASE_PRODUCTION_BUILD } = require("next/constants");
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: process.env.ANALYSE_BUNDLE === "on",
-});
+} from "webpack-bugsnag-plugins";
+import type {
+  RuleSetRule,
+  Configuration as WebpackConfig,
+  WebpackPluginInstance,
+} from "webpack";
 
-const {
+import {
   getAppVersion,
   getReleaseStage,
   RELEASE_STAGE_PRODUCTION,
   RELEASE_STAGE_TESTING,
-} = require("./scripts/build/build_config_helpers");
-const fetchConfig = require("./scripts/build/fetch_config");
+} from "./scripts/build/build_config_helpers";
+import type { OakConfig } from "./scripts/build/fetch_config/config_types";
+import fetchConfig from "./scripts/build/fetch_config";
+
+const withBundleAnalyzer = buildWithBundleAnalyzer({
+  enabled: process.env.ANALYSE_BUNDLE === "on",
+});
+
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
 // https://nextjs.org/docs/api-reference/next.config.js/introduction
-module.exports = async (phase) => {
-  /** @type {import('./scripts/build/fetch_config/config_types').OakConfig} */
-  let oakConfig;
+export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
+  let oakConfig: OakConfig;
 
   let releaseStage;
   let appVersion;
   let isProductionBuild = false;
   const isNextjsProductionBuildPhase = phase === PHASE_PRODUCTION_BUILD;
   const isTestBuild = phase === PHASE_TEST || process.env.NODE_ENV === "test";
+  const disableSourceMaps = process.env.DISABLE_SOURCE_MAPS === "true";
 
   // If we are in a test phase (or have explicitly declared a this is a test)
   // then use the fake test config values.
@@ -40,6 +53,9 @@ module.exports = async (phase) => {
     appVersion = RELEASE_STAGE_TESTING;
   } else {
     const configLocation = process.env.OAK_CONFIG_LOCATION;
+    if (!configLocation) {
+      throw new TypeError("OAK_CONFIG_LOCATION is not set");
+    }
     oakConfig = await fetchConfig(configLocation);
 
     // Figure out the release stage and app version.
@@ -59,38 +75,80 @@ module.exports = async (phase) => {
     console.log(`Found app version: "${appVersion}"`);
   }
 
-  // Flags to change behaviour for static builds.
-  // Remove when we start using dynamic hosting for production.
-  // Assumption that all static builds happen in Cloudbuild triggers (override available, see below).
-  const cloudbuildTriggerName = process.env.CLOUDBUILD_TRIGGER_NAME;
-  // Is a static build
-  const isStaticBuild =
-    (!!cloudbuildTriggerName && cloudbuildTriggerName !== "undefined") ||
-    process.env.STATIC_BUILD_ALLOWED === "on";
-  // Is a static build with beta pages deleted.
-  const isStaticWWWBuild =
-    isStaticBuild && cloudbuildTriggerName?.startsWith("OWA-WWW");
-
   const SANITY_ASSET_CDN_HOST =
     process.env.SANITY_ASSET_CDN_HOST || oakConfig.sanity.assetCDNHost;
 
-  const imageDomains = ["image.mux.com", SANITY_ASSET_CDN_HOST].filter(Boolean);
+  const imageRemotePatterns = [
+    {
+      protocol: "https" as const,
+      hostname: "**.googleusercontent.com",
+    },
+    {
+      protocol: "https" as const,
+      hostname: "storage.googleapis.com",
+    },
+    {
+      protocol: "https" as const,
+      hostname: "oaknationalacademy-res.cloudinary.com",
+      pathname: "/**",
+    },
+    {
+      protocol: "https" as const,
+      hostname: "res.cloudinary.com",
+      pathname: "/**",
+    },
+    {
+      protocol: "https" as const,
+      hostname: "image.mux.com",
+      pathname: "/**",
+    },
+  ];
+  // If the SANITY_ASSET_CDN_HOST is set, add it to the imageRemotePatterns
+  if (SANITY_ASSET_CDN_HOST) {
+    imageRemotePatterns.push({
+      protocol: "https" as const,
+      hostname: SANITY_ASSET_CDN_HOST,
+      pathname: "/**",
+    });
+  }
 
-  /** @type {import('next').NextConfig} */
-  const nextConfig = {
-    webpack: (config, { dev, defaultLoaders, isServer }) => {
+  const nextConfig: NextConfig = {
+    // Attempt to reduce the size of the build by excluding some packages.
+    serverExternalPackages: ["sharp"],
+    outputFileTracingExcludes: {
+      "**/*": ["node_modules/@swc/core-*/**/*"],
+    },
+    outputFileTracingIncludes: {
+      "**/*": ["node_modules/@swc/core/**/*", "node_modules/@swc/helpers/**/*"],
+    },
+
+    webpack: function getWebpackConfig(
+      config: WebpackConfig,
+      { dev, defaultLoaders, isServer }: WebpackConfigContext,
+    ) {
       /**
        * Enable inlining of SVGs as components
        * @see https://react-svgr.com/docs/next/
        */
       // Grab the existing rule that handles SVG imports
-      const fileLoaderRule = config.module.rules.find((rule) =>
-        rule.test?.test?.(".svg"),
-      );
-      config.module.rules.push(
+      const fileLoaderRule = config.module?.rules?.find((rule) => {
+        if (!rule) {
+          return false;
+        }
+        const test = (rule as RuleSetRule)?.test;
+        if (test instanceof RegExp) {
+          return test.test(".svg");
+        }
+        return false;
+      });
+      if (!fileLoaderRule) {
+        console.error("rules", config.module?.rules);
+        throw new Error("Could not find file loader rule");
+      }
+      config.module?.rules?.push(
         // Reapply the existing rule, but only for svg imports ending in ?url
         {
-          ...fileLoaderRule,
+          ...(fileLoaderRule as RuleSetRule),
           test: /\.svg$/i,
           resourceQuery: /url/, // *.svg?url
         },
@@ -127,10 +185,10 @@ module.exports = async (phase) => {
         },
       );
       // Modify the file loader rule to ignore *.svg, since we have it handled now.
-      fileLoaderRule.exclude = /\.svg$/i;
+      (fileLoaderRule as RuleSetRule).exclude = /\.svg$/i;
 
       if (!dev && !isServer) {
-        config.plugins.push(
+        config.plugins?.push(
           new StatoscopeWebpackPlugin({
             saveReportTo: "./reports/report-[name]-[hash].html",
             saveStatsTo: "./reports/stats-[name]-[hash].json",
@@ -143,36 +201,44 @@ module.exports = async (phase) => {
         );
       }
 
-      config.plugins.push(
+      config.plugins?.push(
         new CopyPlugin({
           patterns: [
             {
-              from: path.join(__dirname, "node_modules/mathjax/es5"),
-              to: path.join(__dirname, "public/mathjax"),
+              from: join(__dirname, "node_modules/mathjax/es5"),
+              to: join(__dirname, "public/mathjax"),
             },
           ],
         }),
       );
 
       // Production and preview builds
-      if (!dev && !isTestBuild) {
+      if (!dev && !isTestBuild && !disableSourceMaps) {
         // Add source maps.
         config.devtool = "source-map";
         console.log("Building source-maps");
       }
       // Production builds only.
-      if (!dev && isProductionBuild && isNextjsProductionBuildPhase) {
+      if (
+        !dev &&
+        isProductionBuild &&
+        isNextjsProductionBuildPhase &&
+        !disableSourceMaps
+      ) {
         // Tell Bugsnag about the build.
         const bugsnagBuildInfo = {
           apiKey: oakConfig.bugsnag.apiKey,
           appVersion,
           releaseStage,
         };
-        config.plugins.push(
-          new BugsnagBuildReporterPlugin(bugsnagBuildInfo, {
+        const bugsnagBuildReporterPlugin = new BugsnagBuildReporterPlugin(
+          bugsnagBuildInfo,
+          {
             logLevel: "error",
-          }),
-        );
+          },
+          // Blarg, Bugsnag.
+        ) as unknown as WebpackPluginInstance;
+        config.plugins?.push(bugsnagBuildReporterPlugin);
 
         // Upload production sourcemaps
         const bugsnagSourcemapInfo = {
@@ -181,9 +247,11 @@ module.exports = async (phase) => {
           publicPath: "https://*/_next/",
           overwrite: true,
         };
-        config.plugins.push(
-          new BugsnagSourceMapUploaderPlugin(bugsnagSourcemapInfo),
-        );
+        const bugsnagSourcemapUploaderPlugin =
+          new BugsnagSourceMapUploaderPlugin(
+            bugsnagSourcemapInfo,
+          ) as unknown as WebpackPluginInstance;
+        config.plugins?.push(bugsnagSourcemapUploaderPlugin);
       }
 
       return config;
@@ -193,46 +261,18 @@ module.exports = async (phase) => {
     compiler: {
       styledComponents: true,
     },
-    swcMinify: true,
-
-    // Allow static builds with deleted beta pages to build.
-    eslint: {
-      ignoreDuringBuilds: isStaticWWWBuild,
-    },
-    // Allow static builds with deleted beta pages to build.
-    typescript: {
-      ignoreBuildErrors: isStaticWWWBuild,
+    // https://nextjs.org/docs/app/api-reference/config/next-config-js/serverActions#allowedorigins
+    experimental: {
+      serverActions: {
+        allowedOrigins: ["*.netlify.app", "*.netlify.thenational.academy"],
+      },
     },
     // Need this so static URLs and dynamic URLs match.
     trailingSlash: false,
     // Make sure production source maps exist for e.g. Bugsnag
-    productionBrowserSourceMaps: true,
+    productionBrowserSourceMaps: !disableSourceMaps,
     images: {
-      remotePatterns: [
-        {
-          protocol: "https",
-          hostname: "**.googleusercontent.com",
-        },
-        {
-          protocol: "https",
-          hostname: "storage.googleapis.com",
-        },
-        {
-          protocol: "https",
-          hostname: "oaknationalacademy-res.cloudinary.com",
-          pathname: "/**",
-        },
-        {
-          protocol: "https",
-          hostname: "res.cloudinary.com",
-          pathname: "/**",
-        },
-      ],
-      // Allow static builds with the default image loader.
-      // TODO: REMOVE WHEN WE START USING DYNAMIC HOSTING FOR PRODUCTION
-      // https://nextjs.org/docs/messages/export-image-api#possible-ways-to-fix-it
-      unoptimized: isStaticBuild,
-      domains: imageDomains,
+      remotePatterns: imageRemotePatterns,
     },
     async redirects() {
       return [
@@ -320,7 +360,8 @@ module.exports = async (phase) => {
     writeFileSync(envFileName, newEnv);
     console.log(`Wrote "${baseUrlEnv}" to .env file for sitemap generation.`);
   } catch (err) {
-    console.error("Could not write SITEMAP_BASE_URL to env file");
+    console.error("Could not write SITEMAP_BASE_URL to env file", err);
+
     throw err;
   }
 

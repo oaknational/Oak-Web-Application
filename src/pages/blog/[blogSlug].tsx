@@ -5,7 +5,6 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
-import { useNextSanityImage } from "next-sanity-image";
 import { uniqBy } from "lodash/fp";
 import { OakBox } from "@oaknational/oak-components";
 
@@ -19,7 +18,7 @@ import {
 import { BlogJsonLd } from "@/browser-lib/seo/getJsonLd";
 import BlogPortableText from "@/components/GenericPagesComponents/PostPortableText/PostPortableText";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import { sanityClientLike } from "@/components/HooksAndUtils/sanityImageBuilder";
+import { imageBuilder } from "@/components/HooksAndUtils/sanityImageBuilder";
 import { getBlogWebinarPostBreadcrumbs } from "@/components/SharedComponents/Breadcrumbs/getBreadcrumbs";
 import PostSingleLayout from "@/components/SharedComponents/PostSingleLayout";
 import getPageProps from "@/node-lib/getPageProps";
@@ -36,20 +35,6 @@ export type BlogSinglePageProps = {
 const BlogSinglePage: NextPage<BlogSinglePageProps> = (props) => {
   const { blog, categories } = props;
 
-  /**
-   * @todo add various sizes for sharing on different platforms
-   * Possibly add options on CMS too, at the moment it crops images
-   * 2:1 (optimised for twitter)
-   */
-  const sharingImage = useNextSanityImage(
-    sanityClientLike,
-    props.blog.mainImage,
-    {
-      imageBuilder: (imageUrlBuilder) =>
-        imageUrlBuilder.width(1400).height(700).fit("crop").crop("center"),
-    },
-  );
-
   return (
     <Layout
       seoProps={getSeoProps({
@@ -57,7 +42,13 @@ const BlogSinglePage: NextPage<BlogSinglePageProps> = (props) => {
         title: props.blog.seo?.title || props.blog.title,
         description:
           props.blog.seo?.description || props.blog.summaryPortableText,
-        imageUrl: sharingImage.src,
+        imageUrl: imageBuilder
+          .image(props.blog.mainImage)
+          .width(1400)
+          .height(700)
+          .fit("crop")
+          .crop("center")
+          .url(),
       })}
       $background="white"
     >

@@ -37,6 +37,9 @@ export const getWorksheetInfo = async (lessonSlug: string) => {
     const oakError = new OakError({
       code: "downloads/failed-to-fetch",
       originalError: error,
+      meta: {
+        lessonSlug,
+      },
     });
     reportError(oakError);
   }

@@ -68,6 +68,7 @@ async function writeJson({ data, fileName }) {
 }
 
 function getSpriterInstance() {
+  /** @type {import("svg-sprite").Config} */
   const config = {
     mode: {
       defs: true,

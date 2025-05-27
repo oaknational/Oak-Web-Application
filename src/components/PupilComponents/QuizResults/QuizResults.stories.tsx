@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
-import { QuizResults } from "./QuizResults";
+import { QuizResults, type QuizResultsProps } from "./QuizResults";
 
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { exitQuizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
@@ -10,10 +10,10 @@ import { sectionResultsFixture } from "@/node-lib/curriculum-api-2023/fixtures/l
 const meta: Meta<typeof QuizResults> = {
   component: QuizResults,
   decorators: [
-    (Story) => (
+    (StoryComponent) => (
       <MathJaxProvider>
         <OakThemeProvider theme={oakDefaultTheme}>
-          <Story />
+          <StoryComponent />
         </OakThemeProvider>
       </MathJaxProvider>
     ),
@@ -22,7 +22,7 @@ const meta: Meta<typeof QuizResults> = {
 
 export default meta;
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<QuizResultsProps>;
 
 /*
  * This is the view for the quiz results
@@ -38,4 +38,4 @@ export const Default: Story = {
     sectionResults: sectionResultsFixture,
     lessonSection: "exit-quiz",
   },
-} as Story; // Add the type definition here
+};

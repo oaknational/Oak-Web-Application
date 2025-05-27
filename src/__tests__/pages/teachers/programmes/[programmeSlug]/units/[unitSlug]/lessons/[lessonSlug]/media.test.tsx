@@ -25,6 +25,7 @@ jest.mock("next/router", () => ({
 
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagVariantKey: jest.fn(() => true),
+  useFeatureFlagEnabled: () => false,
 }));
 
 jest.mock("@/utils/handleTranscript.ts", () => ({

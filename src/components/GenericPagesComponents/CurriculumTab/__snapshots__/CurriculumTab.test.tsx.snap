@@ -295,7 +295,6 @@ exports[`CurriculumTab renders 1`] = `
                   class="sc-6170517-0 geyTVX"
                   data-nimg="1"
                   decoding="async"
-                  fetchpriority="high"
                   height="628"
                   src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b63430479cc683ffce99280e132c671325d1a0fd-1048x628.jpg?w=1080&h=647&fm=webp&q=80&fit=clip&auto=format"
                   srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b63430479cc683ffce99280e132c671325d1a0fd-1048x628.jpg?w=640&h=383&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b63430479cc683ffce99280e132c671325d1a0fd-1048x628.jpg?w=1080&h=647&fm=webp&q=80&fit=clip&auto=format 2x"

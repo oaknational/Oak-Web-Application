@@ -1,7 +1,7 @@
 import useSWR from "swr";
 
-export const useGetEducatorData = (url: string) => {
-  const { data, error, isLoading } = useSWR(url, async (url) => {
+export const useGetEducatorData = <T>(url: string) => {
+  const { data, error, isLoading } = useSWR<T>(url, async (url: string) => {
     const response = await fetch(url);
     if (!response.ok) {
       const err = await response.json();
