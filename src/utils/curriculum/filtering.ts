@@ -339,14 +339,14 @@ export function subjectCategoryForFilter(
   data: CurriculumUnitsFormattedData,
   filter: CurriculumFilters,
 ) {
-  const id = filter.subjectCategories[0];
-  if (!id) return;
+  const slug = filter.subjectCategories[0];
+  if (!slug) return;
 
   return Object.entries(data.yearData)
     .flatMap(([, yearDataItem]) => {
       return yearDataItem.subjectCategories;
     })
-    .find((subjectCategory) => String(subjectCategory.id) === id);
+    .find((subjectCategory) => String(subjectCategory.slug) === slug);
 }
 
 export function childSubjectForFilter(
@@ -390,7 +390,7 @@ export function buildTextDescribingFilter(
 ) {
   const subjectCategoryField =
     filters.subjectCategories.length > 0
-      ? filters.subjectCategories[0] === "-1"
+      ? filters.subjectCategories[0] === "all"
         ? "All categories"
         : `${subjectCategoryForFilter(data, filters)?.title}${keystageSuffixForFilter(data, filters, "subjectCategories") ? ` ${keystageSuffixForFilter(data, filters, "subjectCategories")}` : ""}`
       : undefined;
@@ -445,9 +445,7 @@ export function keystageSuffixForFilter(
     let hasFilter = false;
 
     if (filterType === "subjectCategories") {
-      hasFilter = yearData.subjectCategories.some(
-        (sc) => String(sc.id) === filterId,
-      );
+      hasFilter = yearData.subjectCategories.some((sc) => sc.slug === filterId);
     } else if (filterType === "childSubjects") {
       hasFilter = yearData.childSubjects.some(
         (cs) => cs.subject_slug === filterId,

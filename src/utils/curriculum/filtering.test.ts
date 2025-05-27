@@ -999,9 +999,9 @@ describe("filteringFromYears", () => {
 });
 
 describe("subjectCategoryFor*", () => {
-  const subCat1 = createSubjectCategory({ id: 1 });
-  const subCat2 = createSubjectCategory({ id: 2 });
-  const subCat3 = createSubjectCategory({ id: 3 });
+  const subCat1 = createSubjectCategory({ slug: "sub-cat-1", id: 1 });
+  const subCat2 = createSubjectCategory({ slug: "sub-cat-2", id: 2 });
+  const subCat3 = createSubjectCategory({ slug: "sub-cat-3", id: 3 });
   const childSubject1 = createChildSubject({ subject_slug: "cs1" });
   const childSubject2 = createChildSubject({ subject_slug: "cs2" });
   const childSubject3 = createChildSubject({ subject_slug: "cs3" });
@@ -1030,7 +1030,7 @@ describe("subjectCategoryFor*", () => {
     const result = subjectCategoryForFilter(
       data,
       createFilter({
-        subjectCategories: [String(subCat2.id)],
+        subjectCategories: [subCat2.slug],
       }),
     );
     expect(result).toEqual(subCat2);
@@ -1145,7 +1145,7 @@ describe("buildTextDescribingFilter", () => {
   it("subjectCategory (KS3)", () => {
     const result = buildTextDescribingFilter(
       year7Data,
-      createFilter({ subjectCategories: [String(subCat1.id)] }),
+      createFilter({ subjectCategories: [String(subCat1.slug)] }),
     );
     expect(result).toEqual(["SubjectCategory1 (KS3)"]);
   });
@@ -1153,7 +1153,7 @@ describe("buildTextDescribingFilter", () => {
   it("subjectCategory (KS4)", () => {
     const result = buildTextDescribingFilter(
       year11Data,
-      createFilter({ subjectCategories: [String(subCat1.id)] }),
+      createFilter({ subjectCategories: [String(subCat1.slug)] }),
     );
     expect(result).toEqual(["SubjectCategory1 (KS4)"]);
   });
@@ -1161,7 +1161,7 @@ describe("buildTextDescribingFilter", () => {
   it("subjectCategory (KS1 & KS2)", () => {
     const result = buildTextDescribingFilter(
       primaryData,
-      createFilter({ subjectCategories: [String(subCat1.id)] }),
+      createFilter({ subjectCategories: [String(subCat1.slug)] }),
     );
     expect(result).toEqual(["SubjectCategory1"]);
   });
@@ -1194,7 +1194,7 @@ describe("buildTextDescribingFilter", () => {
     const result = buildTextDescribingFilter(
       year7Data,
       createFilter({
-        subjectCategories: [String(subCat1.id)],
+        subjectCategories: [String(subCat1.slug)],
         childSubjects: [childSubject1.subject_slug],
         tiers: [tier1.tier_slug],
         threads: [thread1.slug],
