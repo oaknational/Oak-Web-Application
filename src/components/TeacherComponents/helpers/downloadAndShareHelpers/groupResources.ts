@@ -8,8 +8,9 @@ export const getGroupName = (
 ): string => {
   switch (type) {
     case "presentation":
-    case "lesson-guide-pdf":
       return "Slide deck";
+    case "lesson-guide-pdf":
+      return "Lesson guide";
     case "intro-quiz-questions":
     case "intro-quiz-answers":
     case "exit-quiz-questions":

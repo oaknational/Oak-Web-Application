@@ -113,9 +113,13 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
             {`Select resources to ${props.page}`}
           </OakBox>
         )}
-        <Flex $flexDirection="column" $gap={24} $width={["100%", 720]}>
+        <Flex $flexDirection="column" $gap={16} $width={["100%", 720]}>
           {props.resourcesHeader && (
-            <OakHeading tag="h2" $font={["heading-6", "heading-5"]}>
+            <OakHeading
+              tag="h2"
+              $font={["heading-6", "heading-5"]}
+              $mb={"space-between-ssx"}
+            >
               {props.resourcesHeader}
             </OakHeading>
           )}

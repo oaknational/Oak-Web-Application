@@ -8,9 +8,12 @@ type AdditionalFile = LessonDownloadsPageData["additionalFiles"][number];
 
 describe("groupHelpers", () => {
   describe("getGroupName", () => {
-    it("should return 'Slide deck' for presentation and lesson-guide", () => {
+    it("should return 'Slide deck' for presentation", () => {
       expect(getGroupName("presentation")).toBe("Slide deck");
-      expect(getGroupName("lesson-guide-pdf")).toBe("Slide deck");
+    });
+
+    it("should return 'Lesson guide' for presentation", () => {
+      expect(getGroupName("lesson-guide-pdf")).toBe("Lesson guide");
     });
 
     it("should return 'Quizzes' for quiz types", () => {
@@ -141,10 +144,8 @@ describe("groupHelpers", () => {
 
       const grouped = groupDownloadResources(downloads, additionalFiles);
 
-      expect(grouped["Slide deck"]).toEqual([
-        mockPresentation,
-        mockLessonGuide,
-      ]);
+      expect(grouped["Slide deck"]).toEqual([mockPresentation]);
+      expect(grouped["Lesson guide"]).toEqual([mockLessonGuide]);
       expect(grouped["Quizzes"]).toEqual([
         mockIntroQuiz,
         mockIntroQuizAnswers,
@@ -161,7 +162,7 @@ describe("groupHelpers", () => {
         mockAdditionalFiles,
         mockAdditionalFile,
       ]);
-      expect(Object.keys(grouped).length).toBe(5);
+      expect(Object.keys(grouped).length).toBe(6);
     });
 
     it("should only include groups for present file types", () => {

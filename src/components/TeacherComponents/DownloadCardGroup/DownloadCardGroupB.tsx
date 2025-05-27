@@ -2,6 +2,7 @@ import React, { ChangeEvent, FC } from "react";
 import { Control, Controller } from "react-hook-form";
 import {
   OakBox,
+  OakFieldset,
   OakGrid,
   OakHandDrawnHR,
   OakHeading,
@@ -103,41 +104,44 @@ const DownloadCardGroupB: FC<DownloadCardGroupProps> = ({
     );
     return (
       <OakBox>
-        <OakHeading
-          tag={"h3"}
-          $font={"body-3"}
-          $mb={"space-between-s"}
-          $mt={"space-between-xs"}
-        >
-          {groupTitle}
-        </OakHeading>
-        <OakBox>
-          <OakGrid
-            $position="relative"
-            $width="max-content"
-            $gridTemplateColumns={["1fr", "max-content max-content"]}
-            $cg={"space-between-s"}
-            $rg={"space-between-s"}
+        <OakFieldset>
+          <OakHeading
+            as={"legend"}
+            tag={"h3"}
+            $font={"body-3"}
+            $mb={"space-between-s"}
+            $mt={"space-between-xs"}
           >
-            {filteredItems.map((download) => {
-              const downloadType =
-                download.type === "additional-files"
-                  ? `${download.type}-${download.assetId}`
-                  : download.type;
-              return (
-                <DownloadCard
-                  key={downloadType}
-                  control={control}
-                  download={download}
-                  downloadType={downloadType}
-                  triggerForm={triggerForm}
-                  hasError={hasError}
-                />
-              );
-            })}
-          </OakGrid>
-        </OakBox>
-        <OakHandDrawnHR hrColor="grey40" $mv={"space-between-s"} />
+            {groupTitle}
+          </OakHeading>
+          <OakBox>
+            <OakGrid
+              $position="relative"
+              $width="max-content"
+              $gridTemplateColumns={["1fr", "max-content max-content"]}
+              $cg={"space-between-s"}
+              $rg={"space-between-s"}
+            >
+              {filteredItems.map((download) => {
+                const downloadType =
+                  download.type === "additional-files"
+                    ? `${download.type}-${download.assetId}`
+                    : download.type;
+                return (
+                  <DownloadCard
+                    key={downloadType}
+                    control={control}
+                    download={download}
+                    downloadType={downloadType}
+                    triggerForm={triggerForm}
+                    hasError={hasError}
+                  />
+                );
+              })}
+            </OakGrid>
+          </OakBox>
+          <OakHandDrawnHR hrColor="grey40" $mt={"space-between-s"} />
+        </OakFieldset>
       </OakBox>
     );
   });

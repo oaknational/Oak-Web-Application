@@ -97,6 +97,7 @@ const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
   subjectIcon,
   isEditable,
   useDownloadsExperiment,
+  id,
 }) => {
   const isCurriculumIcon = resourceType === "curriculum-pdf";
   const iconName =
@@ -140,7 +141,7 @@ const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
             $overflow={"hidden"}
             $textOverflow={"ellipsis"}
           >
-            {label}
+            <label htmlFor={id}>{label}</label>
           </OakP>
           <OakP $color="grey60">
             {subtitle}
