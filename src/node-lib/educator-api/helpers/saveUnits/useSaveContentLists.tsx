@@ -45,7 +45,7 @@ const ErrorToastProps = {
 //   subjectSlug: string;
 // };
 
-const programmeUnitsResponse = z.record(
+const userListContentResponse = z.record(
   z.string(),
   z.array(
     z.object({
@@ -66,25 +66,25 @@ const programmeUnitsResponse = z.record(
     }),
   ),
 );
-type ProgrammeUnitsResponse = z.infer<typeof programmeUnitsResponse>;
+type UserListContentResponse = z.infer<typeof userListContentResponse>;
 
 const reportError = errorReporter("educatorApi");
 
-export const useProgrammeUnits = () => {
+export const useContentLists = () => {
   //const { track } = useAnalytics();
   const { data: savedProgrammeUnits, isLoading } = useGetEducatorData<string[]>(
-    `/api/educator-api/getSavedProgrammeUnits`,
+    `/api/educator-api/getSavedContentLists`,
   );
 
   const { incrementSavedUnitsCount, decrementSavedUnitsCount } =
     useSaveCountContext();
 
   const [locallySavedProgrammeUnits, setLocallySavedProgrammeUnits] =
-    useState<ProgrammeUnitsResponse>({});
+    useState<UserListContentResponse>({});
 
   useEffect(() => {
     if (savedProgrammeUnits) {
-      const parsedData = programmeUnitsResponse.safeParse(savedProgrammeUnits);
+      const parsedData = userListContentResponse.safeParse(savedProgrammeUnits);
       if (parsedData.success) {
         setLocallySavedProgrammeUnits(parsedData.data);
       } else {

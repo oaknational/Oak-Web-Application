@@ -3,7 +3,7 @@ import { getAuth } from "@clerk/nextjs/server";
 
 import { getAuthenticatedEducatorApi } from "@/node-lib/educator-api";
 import errorReporter from "@/common-lib/error-reporter";
-import { getProgrammeUnitsResponse } from "@/node-lib/educator-api/queries/getProgrammeUnits/getProgrammeUnits.types";
+import { getUserListContentResponse } from "@/node-lib/educator-api/queries/getUserListContent/getUserListContent";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   return handleRequest(req, res);
@@ -11,7 +11,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
 const reportError = errorReporter("educatorApi");
 
-type ProgrammeUnitsResponse = Record<
+type UserlistContentResponse = Record<
   string,
   Array<{
     unitSlug: string;
@@ -39,12 +39,12 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
   const educatorApi = await getAuthenticatedEducatorApi(getToken);
 
   try {
-    const result = await educatorApi.getProgrammeUnits({
+    const result = await educatorApi.getUserListContent({
       userId,
     });
-    const parsedUnits = getProgrammeUnitsResponse.parse(result);
+    const parsedUnits = getUserListContentResponse.parse(result);
 
-    const programmeUnits = parsedUnits.users_content.reduce((acc, unit) => {
+    const myLibraryData = parsedUnits.users_content.reduce((acc, unit) => {
       const contentList = unit.users_content_lists;
       const browseData = contentList?.content.browse_mv[0];
       if (contentList && browseData) {
@@ -76,9 +76,9 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
         });
       }
       return acc;
-    }, {} as ProgrammeUnitsResponse);
+    }, {} as UserlistContentResponse);
 
-    return res.status(200).json(programmeUnits);
+    return res.status(200).json(myLibraryData);
   } catch (err) {
     reportError(err, {
       code: "educator-api/failed-to-get-saved-units",

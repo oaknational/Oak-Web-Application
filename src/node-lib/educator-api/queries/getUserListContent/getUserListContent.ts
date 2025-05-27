@@ -7,7 +7,7 @@ const lesson_data = z.object({
   _state: z.string(),
 });
 
-export const getProgrammeUnitsResponse = z.object({
+export const getUserListContentResponse = z.object({
   users_content: z.array(
     z.object({
       users_content_lists: z.object({

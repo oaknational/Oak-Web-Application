@@ -1,4 +1,4 @@
-query getProgrammeUnits($userId: String!) {
+query getUserListContent($userId: String!) {
   users_content(distinct_on: content_id, where: { user_id: { _eq: $userId } }) {
     users_content_lists {
       content {

@@ -8,10 +8,10 @@ import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 import { withPageAuthRequired } from "@/hocs/withPageAuthRequired";
 import MyLibraryHeader from "@/components/TeacherComponents/MyLibraryHeader/MyLibraryHeader";
 import NoSavedContent from "@/components/TeacherComponents/NoSavedContent/NoSavedContent";
-import { useProgrammeUnits } from "@/node-lib/educator-api/helpers/saveUnits/useSaveProgrammeUnits";
+import { useContentLists } from "@/node-lib/educator-api/helpers/saveUnits/useSaveContentLists";
 
 function MyLibraryPage() {
-  const { isLoading } = useProgrammeUnits();
+  const { isLoading } = useContentLists();
 
   const noUnitsSaved = !isLoading;
 
