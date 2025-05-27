@@ -7,6 +7,18 @@ describe("getValidSubjectCategoryIconById", () => {
     );
   });
 
+  it("override 'reading-writing-and-oracy'", () => {
+    expect(
+      getValidSubjectCategoryIconById("english", "reading-writing-and-oracy"),
+    ).toEqual("subject-english-reading-writing-oracy");
+  });
+
+  it("override 'literature'", () => {
+    expect(getValidSubjectCategoryIconById("english", "literature")).toEqual(
+      "subject-english-reading-for-pleasure",
+    );
+  });
+
   it("invalid id", () => {
     expect(getValidSubjectCategoryIconById("english", "FOOBAR")).toEqual(
       "books",
