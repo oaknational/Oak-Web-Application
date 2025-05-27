@@ -35,7 +35,7 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
       if (contentList && browseData) {
         const programmeSlug = contentList.content.programme_slug;
         const unitSlug = contentList.content.unit_slug;
-        const unitTitle = browseData.unit_title;
+        const unitTitle = browseData.optionality_title ?? browseData.unit_title;
         const savedAt = contentList.created_at;
         const year = browseData.year;
         const keystage = browseData.keystage;

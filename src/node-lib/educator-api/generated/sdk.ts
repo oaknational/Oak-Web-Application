@@ -67055,6 +67055,7 @@ export type GetUserListContentQuery = {
           keystage?: any | null;
           subject?: any | null;
           unit_title?: any | null;
+          optionality_title?: any | null;
           tier?: any | null;
           examboard?: any | null;
         }>;
@@ -67188,6 +67189,7 @@ export const GetUserListContentDocument = gql`
             keystage: programme_fields(path: "keystage")
             subject: programme_fields(path: "subject")
             unit_title: unit_data(path: "title")
+            optionality_title: programme_fields(path: "optionality")
             tier: programme_fields(path: "tier")
             examboard: programme_fields(path: "examboard")
           }

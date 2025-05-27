@@ -16,6 +16,7 @@ const users_content_lists = z.object({
       z.object({
         supplementary_data: z.array(lesson_data),
         unit_title: z.string(),
+        optionality_title: z.string().nullish(),
         year: z.string(),
         keystage: z.string(),
         subject: z.string(),

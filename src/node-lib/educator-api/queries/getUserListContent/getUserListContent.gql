@@ -10,6 +10,7 @@ query getUserListContent($userId: String!) {
           keystage: programme_fields(path: "keystage")
           subject: programme_fields(path: "subject")
           unit_title: unit_data(path: "title")
+          optionality_title: programme_fields(path: "optionality")
           tier: programme_fields(path: "tier")
           examboard: programme_fields(path: "examboard")
         }
