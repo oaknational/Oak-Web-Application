@@ -1,3 +1,21 @@
+# [1.753.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.752.0...v1.753.0) (2025-05-27)
+
+
+### Bug Fixes
+
+* only show save count in teachers areas ([ba5c6e5](https://github.com/oaknational/Oak-Web-Application/commit/ba5c6e55e5759c2427d8210781b8623591b97b37))
+
+
+### Features
+
+* add context to keep save count in sync ([97beaa0](https://github.com/oaknational/Oak-Web-Application/commit/97beaa02a3c2f2f8ef9541d195aa3c2e5e236461))
+* add my library page to config ([1337094](https://github.com/oaknational/Oak-Web-Application/commit/1337094df6bce2746e1cc5fe4c65873311cd1bd0))
+* add query to get user list content count ([b179725](https://github.com/oaknational/Oak-Web-Application/commit/b179725858f5ea711d4220dd48dc0e14dba20e07))
+* add save count component to header ([0572fa0](https://github.com/oaknational/Oak-Web-Application/commit/0572fa05ac6431f94639a9f817b188cf83116a34))
+* adjust appheader layout for mobile ([f7003f6](https://github.com/oaknational/Oak-Web-Application/commit/f7003f6ea1416bce254ca88d12e757cd2357e3ff))
+* extract into a component ([ac00cf7](https://github.com/oaknational/Oak-Web-Application/commit/ac00cf7a44ad96c227ab59b074df6251bc7f1777))
+* get saved units count ([b330554](https://github.com/oaknational/Oak-Web-Application/commit/b330554392a8be90ec195aaea9f20886991df725))
+
 # [1.752.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.751.0...v1.752.0) (2025-05-27)
 
 
