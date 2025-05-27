@@ -1,3 +1,10 @@
+## [1.753.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.753.1...v1.753.2) (2025-05-27)
+
+
+### Bug Fixes
+
+* fix failing type check ([d800751](https://github.com/oaknational/Oak-Web-Application/commit/d80075122f7ce6b9940d586238d9b4e03073a967))
+
 ## [1.753.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.753.0...v1.753.1) (2025-05-27)
 
 # [1.753.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.752.0...v1.753.0) (2025-05-27)
