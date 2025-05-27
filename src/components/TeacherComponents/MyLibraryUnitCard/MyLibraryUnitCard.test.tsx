@@ -11,14 +11,21 @@ jest.mock("@/hooks/useMediaQuery", () => ({
   default: jest.fn().mockReturnValue(false),
 }));
 
-const generateLessons = (count: number, state: string) => {
-  return Array.from({ length: count }, (_, index) => ({
-    slug: `lesson-${index}`,
-    order: index,
-    title: `Lesson ${index}`,
-    _state: state,
-    lesson_uid: `LESS-${index}`,
-  }));
+const generateLessons = (
+  count: number,
+  state: string,
+  indexOffset: number = 0,
+) => {
+  return Array.from({ length: count }, (_, localIndex) => {
+    const index = localIndex + indexOffset;
+    return {
+      slug: `lesson-${index}`,
+      order: index,
+      title: `Lesson ${index}`,
+      _state: state,
+      lesson_uid: `LESS-${index}`,
+    };
+  });
 };
 
 const completeUnitLessons = generateLessons(5, "published");
@@ -90,7 +97,7 @@ describe("MyLibraryUnitCard", () => {
   it("displays correct partial lesson count when some are unpublished", () => {
     const mixedLessons = [
       ...generateLessons(2, "published"),
-      ...generateLessons(3, "new"),
+      ...generateLessons(3, "new", 3),
     ];
     render(<MyLibraryUnitCard {...mockUnit} lessons={mixedLessons} />);
     expect(screen.getByText("2/5 lessons")).toBeInTheDocument();
