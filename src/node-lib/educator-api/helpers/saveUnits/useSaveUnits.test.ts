@@ -1,10 +1,11 @@
-import { act, renderHook, waitFor } from "@testing-library/react";
+import { act, waitFor } from "@testing-library/react";
 
 import { useSaveUnits } from "./useSaveUnits";
 
 import { mockLoggedIn, mockLoggedOut } from "@/__tests__/__helpers__/mockUser";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import { renderHookWithProviders } from "@/__tests__/__helpers__/renderWithProviders";
 
 const mockSetOakToastProps = jest.fn();
 
@@ -41,6 +42,8 @@ const mockTrackingData = {
   subjectTitle: "Maths",
   subjectSlug: "maths",
 };
+
+const renderHook = renderHookWithProviders();
 
 describe("useSaveUnits", () => {
   beforeEach(() => {
