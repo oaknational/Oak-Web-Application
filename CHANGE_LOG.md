@@ -1,3 +1,16 @@
+# [1.754.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.753.2...v1.754.0) (2025-05-27)
+
+
+### Bug Fixes
+
+* buildTextDescribingFilter fixes in curric filtering ([711715f](https://github.com/oaknational/Oak-Web-Application/commit/711715f1a0abc6ad3c1faa99e15fc0d0f51c7f66))
+* overrides for subject category icons in the curric filtering ([fc8ac10](https://github.com/oaknational/Oak-Web-Application/commit/fc8ac10431916e231fa5633f9ff68c93d1552b94))
+
+
+### Features
+
+* added subjectcategories slug into filter ([b89547d](https://github.com/oaknational/Oak-Web-Application/commit/b89547d4ef19bdde8956dfb32f0f59bc007e8da2))
+
 ## [1.753.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.753.1...v1.753.2) (2025-05-27)
 
 
