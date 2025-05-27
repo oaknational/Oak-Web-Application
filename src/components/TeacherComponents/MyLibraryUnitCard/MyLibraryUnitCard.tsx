@@ -153,7 +153,7 @@ const UnitCardContent = ({
           $bl={["border-solid-none", "border-solid-s"]}
           $pl={["inner-padding-none", "inner-padding-xl"]}
         >
-          <StyledOL role="list">
+          <StyledOL>
             {lessons
               .sort((a, b) => a.order - b.order)
               .map((lesson, i) => {
