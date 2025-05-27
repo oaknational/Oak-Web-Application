@@ -1,49 +1,20 @@
-import { OakP } from "@oaknational/oak-components";
 import { useState, useCallback, useEffect } from "react";
 import { z } from "zod";
 
 import { useGetEducatorData } from "../useGetEducatorData";
 
+import {
+  SavedToastProps,
+  ErrorToastProps,
+  UnsavedToastProps,
+  TrackingProgrammeData,
+} from "./utils";
+
 import { useOakToastContext } from "@/context/OakToast/useOakToastContext";
 import { postEducatorData } from "@/node-lib/educator-api/helpers/postEducatorData";
 import errorReporter from "@/common-lib/error-reporter";
 import useSaveCountContext from "@/context/SaveCount/useSaveCountContext";
-
-const SavedToastProps = {
-  message: (
-    <OakP>
-      <b>Unit saved</b> to My library
-    </OakP>
-  ),
-  variant: "green" as const,
-  showIcon: true,
-  autoDismiss: true,
-};
-
-const UnsavedToastProps = {
-  message: (
-    <OakP>
-      <b>Unit removed</b> from My library
-    </OakP>
-  ),
-  variant: "dark" as const,
-  showIcon: false,
-  autoDismiss: true,
-};
-const ErrorToastProps = {
-  message: <OakP>Something went wrong</OakP>,
-  variant: "error" as const,
-  showIcon: false,
-  autoDismiss: true,
-};
-
-// type TrackingProgrammeData = {
-//   savedFrom: "lesson_listing_save_button" | "unit_listing_save_button";
-//   keyStageTitle: KeyStageTitleValueType | undefined;
-//   keyStageSlug: string | undefined;
-//   subjectTitle: string;
-//   subjectSlug: string;
-// };
+import useAnalytics from "@/context/Analytics/useAnalytics";
 
 const userListContentResponse = z.record(
   z.string(),
@@ -71,7 +42,7 @@ type UserListContentResponse = z.infer<typeof userListContentResponse>;
 const reportError = errorReporter("educatorApi");
 
 export const useContentLists = () => {
-  //const { track } = useAnalytics();
+  const { track } = useAnalytics();
   const { data: savedProgrammeUnits, isLoading } = useGetEducatorData<string[]>(
     `/api/educator-api/getSavedContentLists`,
   );
@@ -105,7 +76,11 @@ export const useContentLists = () => {
 
   const { setCurrentToastProps } = useOakToastContext();
 
-  const onSave = async (unitSlug: string, programmeSlug: string) => {
+  const onSave = async (
+    unitSlug: string,
+    programmeSlug: string,
+    trackingData: TrackingProgrammeData,
+  ) => {
     setCurrentToastProps(SavedToastProps);
     incrementSavedUnitsCount();
     await postEducatorData(
@@ -116,23 +91,27 @@ export const useContentLists = () => {
         decrementSavedUnitsCount();
       },
     );
-    // track.contentSaved({
-    //   platform: "owa",
-    //   product: "teacher lesson resources",
-    //   engagementIntent: "use",
-    //   componentType: trackingData.savedFrom,
-    //   analyticsUseCase: "Teacher",
-    //   keyStageSlug: trackingData.keyStageSlug ?? "specialist",
-    //   keyStageTitle: trackingData.keyStageTitle ?? "Specialist",
-    //   subjectSlug: trackingData.subjectSlug,
-    //   subjectTitle: trackingData.subjectTitle,
-    //   contentType: "unit",
-    //   contentItemSlug: unitSlug,
-    //   eventVersion: "2.0.0",
-    // });
+    track.contentSaved({
+      platform: "owa",
+      product: "teacher lesson resources",
+      engagementIntent: "use",
+      componentType: "unit_listing_save_button",
+      analyticsUseCase: "Teacher",
+      keyStageSlug: trackingData.keyStageSlug ?? "specialist",
+      keyStageTitle: trackingData.keyStageTitle ?? "Specialist",
+      subjectSlug: trackingData.subjectSlug,
+      subjectTitle: trackingData.subjectTitle,
+      contentType: "unit",
+      contentItemSlug: unitSlug,
+      eventVersion: "2.0.0",
+    });
   };
 
-  const onUnsave = async (unitSlug: string, programmeSlug: string) => {
+  const onUnsave = async (
+    unitSlug: string,
+    programmeSlug: string,
+    trackingData: TrackingProgrammeData,
+  ) => {
     setCurrentToastProps(UnsavedToastProps);
     decrementSavedUnitsCount();
     await postEducatorData(
@@ -143,27 +122,31 @@ export const useContentLists = () => {
         incrementSavedUnitsCount();
       },
     );
-    // track.contentUnsaved({
-    //   platform: "owa",
-    //   product: "teacher lesson resources",
-    //   engagementIntent: "use",
-    //   componentType: trackingData.savedFrom,
-    //   analyticsUseCase: "Teacher",
-    //   keyStageSlug: trackingData.keyStageSlug ?? "specialist",
-    //   keyStageTitle: trackingData.keyStageTitle ?? "Specialist",
-    //   subjectSlug: trackingData.subjectSlug,
-    //   subjectTitle: trackingData.subjectTitle,
-    //   contentType: "unit",
-    //   contentItemSlug: unitSlug,
-    //   eventVersion: "2.0.0",
-    // });
+    track.contentUnsaved({
+      platform: "owa",
+      product: "teacher lesson resources",
+      engagementIntent: "use",
+      componentType: trackingData.savedFrom,
+      analyticsUseCase: "Teacher",
+      keyStageSlug: trackingData.keyStageSlug ?? "specialist",
+      keyStageTitle: trackingData.keyStageTitle ?? "Specialist",
+      subjectSlug: trackingData.subjectSlug,
+      subjectTitle: trackingData.subjectTitle,
+      contentType: "unit",
+      contentItemSlug: unitSlug,
+      eventVersion: "2.0.0",
+    });
   };
 
-  const onSaveToggle = (unitSlug: string, programmeSlug: string) => {
+  const onSaveToggle = (
+    unitSlug: string,
+    programmeSlug: string,
+    trackingData: TrackingProgrammeData,
+  ) => {
     if (isUnitSaved(unitSlug, programmeSlug)) {
-      onUnsave(unitSlug, programmeSlug);
+      onUnsave(unitSlug, programmeSlug, trackingData);
     } else {
-      onSave(unitSlug, programmeSlug);
+      onSave(unitSlug, programmeSlug, trackingData);
     }
   };
 
