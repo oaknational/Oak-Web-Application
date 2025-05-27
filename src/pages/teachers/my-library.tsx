@@ -20,7 +20,7 @@ import NoSavedContent from "@/components/TeacherComponents/NoSavedContent/NoSave
 import { useContentLists } from "@/node-lib/educator-api/helpers/saveUnits/useSaveContentLists";
 
 function MyLibraryPage() {
-  const { savedProgrammeUnits } = useContentLists();
+  const { savedProgrammeUnits, isLoading } = useContentLists();
 
   const collectionData = Object.entries(savedProgrammeUnits)
     .map(([programmeSlug, programmeData]) => {
@@ -62,7 +62,7 @@ function MyLibraryPage() {
         $pt={["inner-padding-none", "inner-padding-xl"]}
       >
         <MyLibraryHeader />
-        {collectionData.length === 0 ? (
+        {isLoading ? null : collectionData.length === 0 ? (
           <NoSavedContent />
         ) : (
           <OakGrid
