@@ -3,7 +3,7 @@ import { getAuth } from "@clerk/nextjs/server";
 
 import { getAuthenticatedEducatorApi } from "@/node-lib/educator-api";
 import errorReporter from "@/common-lib/error-reporter";
-import { getUserListContentResponse } from "@/node-lib/educator-api/queries/getUserListContent/getUserListContent";
+import { getUserListContentResponse } from "@/node-lib/educator-api/queries/getUserListContent/getUserListContent.types";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   return handleRequest(req, res);
@@ -33,7 +33,7 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
   const { userId, getToken } = getAuth(req);
 
   if (!userId) {
-    return res.status(200).json([]);
+    return res.status(200).json({});
   }
 
   const educatorApi = await getAuthenticatedEducatorApi(getToken);
