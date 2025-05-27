@@ -1,37 +1,30 @@
-import { OakIconName } from "@oaknational/oak-components";
+import { isValidIconName, OakIconName } from "@oaknational/oak-components";
 
-import { getValidSubjectIconName } from "./getValidSubjectIconName";
-const subjectCategoryIconMap: Record<number, string> = {
-  1: "biology",
-  2: "chemistry",
-  3: "physics",
-  4: "english-reading-writing-oracy",
-  5: "english-grammar",
-  6: "english-handwriting",
-  7: "english-spelling",
-  8: "english-vocabulary",
-  18: "english-language",
-  19: "english-reading-for-pleasure",
-  15: "philosophy",
-  16: "social-science",
-  17: "theology",
-};
-
-const allIconMap: Record<string, OakIconName> = {
-  "religious-education": "subject-religious-education",
-  english: "subject-english",
-  science: "subject-science",
+const subjectAndCatKeyMap: Record<string, string> = {
+  "reading-writing-and-oracy": "reading-writing-oracy",
+  literature: "english-reading-for-pleasure",
 };
 
 export function getValidSubjectCategoryIconById(
   subjectSlug: string,
-  id: number,
+  subjectCategorySlugRaw: string,
 ): OakIconName {
-  const iconName = subjectCategoryIconMap[id];
+  const subjectCategorySlug: string =
+    subjectCategorySlugRaw in subjectAndCatKeyMap
+      ? subjectAndCatKeyMap[subjectCategorySlugRaw]!
+      : subjectCategorySlugRaw;
+  const subjectCatKey = `subject-${subjectCategorySlug}`;
+  const subjectAndCatKey = `subject-${subjectSlug}-${subjectCategorySlug}`;
+  const subjectKey = `subject-${subjectSlug}`;
 
-  if (id === -1) {
-    return allIconMap[subjectSlug] ?? "books";
+  if (isValidIconName(subjectCatKey)) {
+    return subjectCatKey;
   }
-
-  return getValidSubjectIconName(iconName ?? null);
+  if (isValidIconName(subjectAndCatKey)) {
+    return subjectAndCatKey;
+  }
+  if (subjectCategorySlug === "all" && isValidIconName(subjectKey)) {
+    return subjectKey;
+  }
+  return "books";
 }
