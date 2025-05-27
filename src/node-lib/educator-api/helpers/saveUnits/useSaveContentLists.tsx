@@ -1,7 +1,10 @@
 import { useState, useCallback, useEffect } from "react";
-import { z } from "zod";
 
 import { useGetEducatorData } from "../useGetEducatorData";
+import {
+  userListContentApiResponse,
+  UserlistContentApiResponse,
+} from "../../queries/getUserListContent/getUserListContent.types";
 
 import {
   SavedToastProps,
@@ -16,48 +19,25 @@ import errorReporter from "@/common-lib/error-reporter";
 import useSaveCountContext from "@/context/SaveCount/useSaveCountContext";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 
-const userListContentResponse = z.record(
-  z.string(),
-  z.array(
-    z.object({
-      keystage: z.string(),
-      savedAt: z.string(),
-      subject: z.string(),
-      tier: z.string().nullable(),
-      examboard: z.string().nullable(),
-      unitSlug: z.string(),
-      unitTitle: z.string(),
-      year: z.string(),
-      lessons: z.array(
-        z.object({
-          slug: z.string(),
-          title: z.string(),
-          state: z.string(),
-          order: z.number(),
-        }),
-      ),
-    }),
-  ),
-);
-type UserListContentResponse = z.infer<typeof userListContentResponse>;
-
 const reportError = errorReporter("educatorApi");
 
 export const useContentLists = () => {
   const { track } = useAnalytics();
-  const { data: savedProgrammeUnits, isLoading } = useGetEducatorData<string[]>(
-    `/api/educator-api/getSavedContentLists`,
-  );
+  const { data: savedProgrammeUnits, isLoading } =
+    useGetEducatorData<UserlistContentApiResponse>(
+      `/api/educator-api/getSavedContentLists`,
+    );
 
   const { incrementSavedUnitsCount, decrementSavedUnitsCount } =
     useSaveCountContext();
 
   const [locallySavedProgrammeUnits, setLocallySavedProgrammeUnits] =
-    useState<UserListContentResponse>({});
+    useState<UserlistContentApiResponse>({});
 
   useEffect(() => {
     if (savedProgrammeUnits) {
-      const parsedData = userListContentResponse.safeParse(savedProgrammeUnits);
+      const parsedData =
+        userListContentApiResponse.safeParse(savedProgrammeUnits);
       if (parsedData.success) {
         setLocallySavedProgrammeUnits(parsedData.data);
       } else {
@@ -70,7 +50,7 @@ export const useContentLists = () => {
 
   const isUnitSaved = useCallback(
     (unitSlug: string, programmeSlug: string) =>
-      locallySavedProgrammeUnits[programmeSlug]?.some(
+      locallySavedProgrammeUnits[programmeSlug]?.units.some(
         (unit) => unit.unitSlug === unitSlug,
       ),
     [locallySavedProgrammeUnits],

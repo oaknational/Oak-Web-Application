@@ -1,7 +1,11 @@
 import {
+  OakAnchorTarget,
+  OakBox,
   OakGrid,
   OakGridArea,
+  OakHeading,
   OakMaxWidth,
+  OakP,
   OakSideMenuNav,
 } from "@oaknational/oak-components";
 
@@ -18,26 +22,28 @@ import { useContentLists } from "@/node-lib/educator-api/helpers/saveUnits/useSa
 function MyLibraryPage() {
   const { savedProgrammeUnits } = useContentLists();
 
-  const sideMenuItems = savedProgrammeUnits
-    ? Object.entries(savedProgrammeUnits)
-        .map(([programmeSlug, programmeUnits]) => {
-          const firstUnit = programmeUnits[0];
-          if (!firstUnit) return null;
-          const { keystage, subject, examboard, tier } = firstUnit;
-          return {
-            heading: subject,
-            subheading: `${examboard ? examboard + " " : ""}${tier ? tier + " " : ""}${keystage}`,
-            href: `#${programmeSlug}`,
-          };
-        })
-        .sort((a, b) => {
-          if (!a || !b) return 0;
-          return (
-            a.heading.localeCompare(b.heading) ||
-            a.subheading.localeCompare(b.subheading)
-          );
-        })
-    : undefined;
+  const collectionData = Object.entries(savedProgrammeUnits)
+    .map(([programmeSlug, programmeData]) => {
+      const { keystage, subject, examboard, tier, units } = programmeData;
+      const subheading = `${examboard ? examboard + " " : ""}${tier ? tier + " " : ""}${keystage}`;
+      const href = `#${programmeSlug}`;
+      return {
+        subject,
+        subheading,
+        href,
+        examboard,
+        tier,
+        keystage,
+        units,
+      };
+    })
+    .sort((a, b) => {
+      if (!a || !b) return 0;
+      return (
+        a.subject.localeCompare(b.subject) ||
+        a.subheading.localeCompare(b.subheading)
+      );
+    });
 
   return (
     <AppLayout
@@ -56,15 +62,33 @@ function MyLibraryPage() {
         $pt={["inner-padding-none", "inner-padding-xl"]}
       >
         <MyLibraryHeader />
-        {!sideMenuItems ? (
+        {collectionData.length === 0 ? (
           <NoSavedContent />
         ) : (
           <OakGrid $ph={["inner-padding-none", "inner-padding-xl4"]}>
             <OakGridArea $colSpan={[12, 2]}>
               <OakSideMenuNav
-                menuItems={sideMenuItems.filter((item) => !!item)}
+                menuItems={collectionData.map((item) => ({
+                  heading: item.subject,
+                  subheading: item.subheading,
+                  href: item.href,
+                }))}
                 heading="Collections"
               />
+            </OakGridArea>
+            {/* TODO: placeholder logic for unit containers */}
+            <OakGridArea $colSpan={[12, 10]}>
+              {collectionData.map((collection) => (
+                <OakBox>
+                  <OakAnchorTarget id={collection.href} />
+                  <OakHeading tag="h2">
+                    {collection.subject} {collection.subheading}
+                  </OakHeading>
+                  {collection.units.map((unit) => (
+                    <OakP>{unit.unitTitle}</OakP>
+                  ))}
+                </OakBox>
+              ))}
             </OakGridArea>
           </OakGrid>
         )}

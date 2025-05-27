@@ -13,6 +13,16 @@ jest.mock("posthog-js/react", () => ({
 jest.mock("next/navigation", () => require("next-router-mock"));
 const render = renderWithProviders();
 
+jest.mock(
+  "@/node-lib/educator-api/helpers/saveUnits/useSaveContentLists",
+  () => ({
+    useContentLists: jest.fn(() => ({
+      savedProgrammeUnits: {},
+      isLoading: false,
+    })),
+  }),
+);
+
 describe("pages/teachers/my-library.tsx", () => {
   beforeEach(() => {
     setUseUserReturn(mockLoggedIn);
