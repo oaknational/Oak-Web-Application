@@ -19,7 +19,6 @@ import {
 } from "@/utils/curriculum/filtering";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
-import { findUnitOrOptionBySlug } from "@/utils/curriculum/units";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 
 type UnitsTabProps = {
@@ -47,10 +46,6 @@ export default function UnitsTab({
   const isMobile = useMediaQuery("mobile");
   const { yearData, threadOptions } = formattedData;
   const { ks4OptionSlug } = trackingData;
-  const { unit: unitData, unitOption: unitOptionData } = findUnitOrOptionBySlug(
-    yearData,
-    selectedUnitSlug,
-  );
 
   const [mobileSelectedYear, setMobileSelectedYear] = useState<string>("");
 
@@ -115,8 +110,7 @@ export default function UnitsTab({
           }
           units={
             <CurricVisualiser
-              unitData={unitData}
-              unitOptionData={unitOptionData}
+              selectedUnitSlug={selectedUnitSlug}
               basePath={basePath}
               filters={filters}
               ks4OptionSlug={ks4OptionSlug}

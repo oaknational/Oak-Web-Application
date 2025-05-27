@@ -15,13 +15,7 @@ import {
   getYearSubheadingText,
 } from "@/utils/curriculum/formatting";
 import { anchorIntersectionObserver } from "@/utils/curriculum/dom";
-import {
-  CurriculumFilters,
-  Unit,
-  YearData,
-  Thread,
-  UnitOption,
-} from "@/utils/curriculum/types";
+import { CurriculumFilters, YearData, Thread } from "@/utils/curriculum/types";
 import { getShouldDisplayCorePathway } from "@/utils/curriculum/pathways";
 import {
   groupUnitsByPathway,
@@ -29,10 +23,10 @@ import {
   getModes,
 } from "@/utils/curriculum/by-pathway";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
+import { findUnitOrOptionBySlug } from "@/utils/curriculum/units";
 
 type CurricVisualiserProps = {
-  unitData: Unit | undefined;
-  unitOptionData: UnitOption | undefined;
+  selectedUnitSlug?: string | null;
   ks4OptionSlug?: string | null;
   yearData: YearData;
   filters: CurriculumFilters;
@@ -46,8 +40,7 @@ type CurricVisualiserProps = {
 // Function component
 
 export default function CurricVisualiser({
-  unitData,
-  unitOptionData,
+  selectedUnitSlug,
   yearData,
   mobileHeaderScrollOffset,
   filters,
@@ -59,6 +52,11 @@ export default function CurricVisualiser({
 }: CurricVisualiserProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
+
+  const { unit: unitData, unitOption: unitOptionData } = findUnitOrOptionBySlug(
+    yearData,
+    selectedUnitSlug,
+  );
 
   const shouldIncludeCore = ks4OptionSlug !== "core";
   const unitsByYearSelector = applyFiltering(
@@ -73,7 +71,7 @@ export default function CurricVisualiser({
     return threadOptions.find((thread) => thread.slug === filters.threads[0]);
   }, [threadOptions, filters]);
 
-  const displayModal = !!unitData;
+  const displayModal = !!selectedUnitSlug;
 
   const itemEls = useRef<(HTMLDivElement | null)[]>([]);
   /* Intersection observer to update year filter selection when
@@ -183,6 +181,7 @@ export default function CurricVisualiser({
             selectedThread={selectedThread?.slug ?? null}
           />
         )}
+        {selectedUnitSlug && !unitData && <>Missing data</>}
       </CurricUnitModal>
     </OakBox>
   );
