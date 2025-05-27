@@ -1930,6 +1930,7 @@ export default {
       subjectcategories: [
         {
           id: 18,
+          slug: "language",
           title: "Language",
         },
       ],
@@ -2056,6 +2057,7 @@ export default {
       subjectcategories: [
         {
           id: 18,
+          slug: "language",
           title: "Language",
         },
       ],
@@ -2204,6 +2206,7 @@ export default {
       subjectcategories: [
         {
           id: 18,
+          slug: "language",
           title: "Language",
         },
       ],
@@ -2392,6 +2395,7 @@ export default {
       subjectcategories: [
         {
           id: 18,
+          slug: "language",
           title: "Language",
         },
       ],
@@ -2482,6 +2486,7 @@ export default {
       subjectcategories: [
         {
           id: 18,
+          slug: "language",
           title: "Language",
         },
       ],
@@ -2524,6 +2529,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -2721,6 +2727,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -3138,6 +3145,7 @@ export default {
       subjectcategories: [
         {
           id: 18,
+          slug: "language",
           title: "Language",
         },
       ],
@@ -3271,6 +3279,7 @@ export default {
       subjectcategories: [
         {
           id: 18,
+          slug: "language",
           title: "Language",
         },
       ],
@@ -3470,6 +3479,7 @@ export default {
       subjectcategories: [
         {
           id: 18,
+          slug: "language",
           title: "Language",
         },
       ],
@@ -3755,6 +3765,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -4242,6 +4253,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -5078,6 +5090,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -5324,6 +5337,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -5378,6 +5392,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -5542,6 +5557,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -5776,6 +5792,7 @@ export default {
       subjectcategories: [
         {
           id: 18,
+          slug: "language",
           title: "Language",
         },
       ],
@@ -6702,6 +6719,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -6980,6 +6998,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -7028,6 +7047,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -7270,6 +7290,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -7312,6 +7333,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -8559,6 +8581,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -8828,6 +8851,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -9503,6 +9527,7 @@ export default {
       subjectcategories: [
         {
           id: 18,
+          slug: "language",
           title: "Language",
         },
       ],
@@ -9603,6 +9628,7 @@ export default {
       subjectcategories: [
         {
           id: 18,
+          slug: "language",
           title: "Language",
         },
       ],
@@ -9645,6 +9671,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -10322,6 +10349,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -10370,6 +10398,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -10844,6 +10873,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -11299,6 +11329,7 @@ export default {
       subjectcategories: [
         {
           id: 18,
+          slug: "language",
           title: "Language",
         },
       ],
@@ -11408,6 +11439,7 @@ export default {
       subjectcategories: [
         {
           id: 18,
+          slug: "language",
           title: "Language",
         },
       ],
@@ -11450,6 +11482,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -11643,6 +11676,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -11843,6 +11877,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -12279,6 +12314,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -12327,6 +12363,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
