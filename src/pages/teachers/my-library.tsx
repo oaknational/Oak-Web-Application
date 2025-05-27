@@ -4,6 +4,7 @@ import {
   OakGrid,
   OakGridArea,
   OakHeading,
+  OakLink,
   OakMaxWidth,
   OakP,
   OakSideMenuNav,
@@ -71,8 +72,11 @@ function MyLibraryPage() {
             <OakGridArea
               $colSpan={[12, 2]}
               $position={["static", "sticky"]}
-              $top={"all-spacing-10"}
+              $top={"all-spacing-0"}
               $alignSelf={"start"}
+              $maxHeight={["unset", "100vh"]}
+              $pv={["inner-padding-none", "inner-padding-l"]}
+              $overflow={["unset", "auto"]}
             >
               <OakSideMenuNav
                 menuItems={collectionData.map((item) => ({
@@ -81,10 +85,15 @@ function MyLibraryPage() {
                   href: `#${item.programmeSlug}`,
                 }))}
                 heading="Collections"
+                anchorTargetId="collections-menu"
               />
             </OakGridArea>
             {/* TODO: placeholder logic for unit containers */}
-            <OakGridArea $colSpan={[12, 9]} $colStart={[1, 4]}>
+            <OakGridArea
+              $colSpan={[12, 9]}
+              $colStart={[1, 4]}
+              $gap="space-between-l"
+            >
               {collectionData.map((collection) => (
                 <OakBox $position="relative" key={collection.programmeSlug}>
                   <OakAnchorTarget id={collection.programmeSlug} />
@@ -94,6 +103,10 @@ function MyLibraryPage() {
                   {collection.units.map((unit) => (
                     <OakP>{unit.unitTitle}</OakP>
                   ))}
+                  <OakLink href="#collections-menu">
+                    {" "}
+                    Back to collections
+                  </OakLink>
                 </OakBox>
               ))}
             </OakGridArea>
