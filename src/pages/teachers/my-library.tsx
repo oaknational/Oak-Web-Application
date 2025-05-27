@@ -26,15 +26,14 @@ function MyLibraryPage() {
     .map(([programmeSlug, programmeData]) => {
       const { keystage, subject, examboard, tier, units } = programmeData;
       const subheading = `${examboard ? examboard + " " : ""}${tier ? tier + " " : ""}${keystage}`;
-      const href = `#${programmeSlug}`;
       return {
         subject,
         subheading,
-        href,
         examboard,
         tier,
         keystage,
         units,
+        programmeSlug,
       };
     })
     .sort((a, b) => {
@@ -79,16 +78,16 @@ function MyLibraryPage() {
                 menuItems={collectionData.map((item) => ({
                   heading: item.subject,
                   subheading: item.subheading,
-                  href: item.href,
+                  href: `#${item.programmeSlug}`,
                 }))}
                 heading="Collections"
               />
             </OakGridArea>
             {/* TODO: placeholder logic for unit containers */}
-            <OakGridArea $colSpan={[12, 10]}>
+            <OakGridArea $colSpan={[12, 9]} $colStart={[1, 4]}>
               {collectionData.map((collection) => (
-                <OakBox>
-                  <OakAnchorTarget id={collection.href} />
+                <OakBox $position="relative" key={collection.programmeSlug}>
+                  <OakAnchorTarget id={collection.programmeSlug} />
                   <OakHeading tag="h2">
                     {collection.subject} {collection.subheading}
                   </OakHeading>
