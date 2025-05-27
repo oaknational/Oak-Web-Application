@@ -65,8 +65,16 @@ function MyLibraryPage() {
         {collectionData.length === 0 ? (
           <NoSavedContent />
         ) : (
-          <OakGrid $ph={["inner-padding-none", "inner-padding-xl4"]}>
-            <OakGridArea $colSpan={[12, 2]}>
+          <OakGrid
+            $ph={["inner-padding-none", "inner-padding-xl4"]}
+            $position="relative"
+          >
+            <OakGridArea
+              $colSpan={[12, 2]}
+              $position={["static", "sticky"]}
+              $top={"all-spacing-10"}
+              $alignSelf={"start"}
+            >
               <OakSideMenuNav
                 menuItems={collectionData.map((item) => ({
                   heading: item.subject,
