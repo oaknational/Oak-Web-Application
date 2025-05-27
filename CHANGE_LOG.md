@@ -1,3 +1,29 @@
+# [1.752.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.751.0...v1.752.0) (2025-05-27)
+
+
+### Bug Fixes
+
+* fix according to PR review ([402e411](https://github.com/oaknational/Oak-Web-Application/commit/402e411f69ab21aea48af897f85588d594e2f445))
+* fix font colors and fix unit link ([eae5d34](https://github.com/oaknational/Oak-Web-Application/commit/eae5d34676c8004286dc427ffa8e40186fe3f05a))
+* rm minwidth from lesson number OakP component ([6c5e592](https://github.com/oaknational/Oak-Web-Application/commit/6c5e592564055171177bb14b22793bb154089c95))
+* rm role=list" ([37bd72a](https://github.com/oaknational/Oak-Web-Application/commit/37bd72ade318c0cef503c342268eddd5a5a514bc))
+
+
+### Features
+
+* my library unit card ([a9287d3](https://github.com/oaknational/Oak-Web-Application/commit/a9287d387202e90e1d93dafd77890d07e22cca41))
+* my library unit card responsive ([ced0ded](https://github.com/oaknational/Oak-Web-Application/commit/ced0ded52aca463f717d3afc7a0dd9b5b25ecde6))
+* underline unit link on hover ([e830954](https://github.com/oaknational/Oak-Web-Application/commit/e830954a7b10d28d579a058844bf7bdc86b423cc))
+
+# [1.751.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.750.3...v1.751.0) (2025-05-27)
+
+
+### Features
+
+* added extra metadata to getWorksheetInfo error coming up in bugsnag ([935cdbf](https://github.com/oaknational/Oak-Web-Application/commit/935cdbf26121154415bbc9a5fd6da7f02e2b7b31))
+
+## [1.750.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.750.2...v1.750.3) (2025-05-22)
+
 ## [1.750.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.750.1...v1.750.2) (2025-05-21)
 
 
