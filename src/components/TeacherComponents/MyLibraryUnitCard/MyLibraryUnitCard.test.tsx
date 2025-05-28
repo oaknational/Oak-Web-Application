@@ -23,7 +23,6 @@ const generateLessons = (
       order: index,
       title: `Lesson ${index}`,
       state: state,
-      lesson_uid: `LESS-${index}`,
     };
   });
 };

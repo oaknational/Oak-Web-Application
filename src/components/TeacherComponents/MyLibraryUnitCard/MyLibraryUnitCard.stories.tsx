@@ -11,7 +11,6 @@ export const completeUnitLessons = [
     title:
       "Considering how Verne uses sentences in ‘Journey to the Centre of the Earth’",
     state: "published",
-    lesson_uid: "LESS-SXDKH-H1472",
   },
   {
     slug: "crafting-sentence-structures-to-create-specific-effects",
@@ -19,7 +18,6 @@ export const completeUnitLessons = [
     title:
       "Emulating how Verne uses sentences in ‘Journey to the Centre of the Earth’",
     state: "published",
-    lesson_uid: "LESS-HROSF-P1473",
   },
   {
     slug: "using-punctuation-and-sentence-structures-to-create-impact",
@@ -27,7 +25,6 @@ export const completeUnitLessons = [
     title:
       "'The War of the Worlds': How punctuation and sentence structures create impact",
     state: "published",
-    lesson_uid: "LESS-LJDDZ-N1474",
   },
   {
     slug: "using-punctuation-to-create-specific-effects",
@@ -35,14 +32,12 @@ export const completeUnitLessons = [
     title:
       "Using punctuation to create specific effects in descriptive writing",
     state: "published",
-    lesson_uid: "LESS-PDDEL-L1475",
   },
   {
     slug: "semantic-fields",
     order: 5,
     title: "Using semantic fields in a piece of creative writing",
     state: "published",
-    lesson_uid: "LESS-BFVFW-W1477",
   },
 ];
 export const incompleteUnitLessons = [
@@ -52,7 +47,6 @@ export const incompleteUnitLessons = [
     title:
       "Considering how Verne uses sentences in ‘Journey to the Centre of the Earth’",
     state: "published",
-    lesson_uid: "LESS-SXDKH-H1472",
   },
   {
     slug: "crafting-sentence-structures-to-create-specific-effects",
@@ -60,7 +54,6 @@ export const incompleteUnitLessons = [
     title:
       "Emulating how Verne uses sentences in ‘Journey to the Centre of the Earth’",
     state: "new",
-    lesson_uid: "LESS-HROSF-P1473",
   },
   {
     slug: "using-punctuation-and-sentence-structures-to-create-impact",
@@ -68,7 +61,6 @@ export const incompleteUnitLessons = [
     title:
       "'The War of the Worlds': How punctuation and sentence structures create impact",
     state: "new",
-    lesson_uid: "LESS-LJDDZ-N1474",
   },
   {
     slug: "using-punctuation-to-create-specific-effects",
@@ -76,14 +68,12 @@ export const incompleteUnitLessons = [
     title:
       "Using punctuation to create specific effects in descriptive writing",
     state: "new",
-    lesson_uid: "LESS-PDDEL-L1475",
   },
   {
     slug: "semantic-fields",
     order: 5,
     title: "Using semantic fields in a piece of creative writing",
     state: "published",
-    lesson_uid: "LESS-BFVFW-W1477",
   },
 ];
 const unit = {
