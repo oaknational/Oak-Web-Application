@@ -7,6 +7,8 @@ import {
   OakFlex,
   OakBox,
   OakMaxWidth,
+  OakLink,
+  OakSpan,
 } from "@oaknational/oak-components";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
 
@@ -118,7 +120,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     lessonOutline,
     lessonReleaseDate,
   } = lesson;
-
   const isQuizHeader =
     useFeatureFlagVariantKey("lesson-overview-experiement") === "quiz-header";
   const isSubHeader =
@@ -549,9 +550,27 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     }
                     pageLinks={pageLinks}
                     subheader={
-                      isSubHeader
-                        ? "Our video supports your planning with teaching tips, modelled explanations, and inspiration from other teachers. You can also share the online pupil version of this lesson for homework or revision to keep learning on track."
-                        : undefined
+                      isSubHeader ? (
+                        <OakSpan>
+                          Our video supports your planning with teaching tips,
+                          modelled explanations, and inspiration from other
+                          teachers.{" "}
+                          {!actions.disablePupilShare ? (
+                            <OakSpan>
+                              You can also share the{" "}
+                              <OakLink
+                                href={`/pupils/lessons/${lessonSlug}/video`}
+                              >
+                                online pupil version
+                              </OakLink>{" "}
+                              of this lesson for homework or revision to keep
+                              learning on track.{" "}
+                            </OakSpan>
+                          ) : (
+                            ""
+                          )}
+                        </OakSpan>
+                      ) : undefined
                     }
                   >
                     <LessonOverviewVideo

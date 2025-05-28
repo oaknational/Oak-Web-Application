@@ -1,4 +1,4 @@
-import { forwardRef, useState } from "react";
+import React, { forwardRef, useState } from "react";
 import {
   OakHeading,
   OakFlex,
@@ -64,7 +64,7 @@ export interface LessonItemContainerProps {
   isSpecialist: boolean;
   pageLinks: ReturnType<typeof getPageLinksForLesson>;
   isCanonical?: boolean;
-  subheader?: string;
+  subheader?: React.ReactNode;
 }
 
 const getPreselectedDownloadFromTitle = (title: DownloadableLessonTitles) => {
