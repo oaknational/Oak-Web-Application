@@ -63,7 +63,7 @@ export const useMyLibrary = () => {
               subjectCategories[0] !== subject
                 ? subjectCategories[0]
                 : null;
-            const programmeTitle = `${subject}${validSubjectCategory ? `: ${validSubjectCategory}` : ""} ${keystage}`;
+            const programmeTitle = `${subject}${validSubjectCategory ? `: ${validSubjectCategory}` : ""} ${subheading}`;
             const searchQuery = validSubjectCategory
               ? `${kebabCase(validSubjectCategory)}`
               : null;
