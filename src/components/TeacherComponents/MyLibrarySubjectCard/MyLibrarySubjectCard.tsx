@@ -58,7 +58,11 @@ const SubjectHeader = ({
             iconName={subjectIconName}
           />
         </OakFlex>
-        <OakHeading tag="h4" $font={["heading-6", "heading-4"]}>
+        <OakHeading
+          tag="h4"
+          $font={["heading-6", "heading-4"]}
+          $color="text-primary"
+        >
           {programmeTitle}
         </OakHeading>
         <OakFlex
