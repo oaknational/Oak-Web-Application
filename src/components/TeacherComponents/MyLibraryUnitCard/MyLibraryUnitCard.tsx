@@ -74,10 +74,11 @@ const SaveButton = ({
 };
 
 const UnitCardHeader = ({ ...props }: MyLibraryUnitCardProps) => {
-  const { unitTitle, year, savedAt, onSave, isSaved } = props;
+  const { unitTitle, year, savedAt, onSave, isSaved, optionalityTitle } = props;
 
   const lastSavedText = getLastSavedText(savedAt);
-
+  const mainTitle = optionalityTitle ?? unitTitle;
+  const superTitle = optionalityTitle ? unitTitle : undefined;
   return (
     <OakFlex $flexGrow={1} $alignItems={"start"} $gap={"space-between-xs"}>
       <OakFlex
@@ -85,6 +86,11 @@ const UnitCardHeader = ({ ...props }: MyLibraryUnitCardProps) => {
         $flexDirection={"column"}
         $gap={"space-between-ssx"}
       >
+        {superTitle && (
+          <OakP $font={"heading-light-7"} $color={"text-primary"}>
+            {superTitle}
+          </OakP>
+        )}
         <UnitLink
           href={resolveOakHref({
             page: "lesson-index",
@@ -92,8 +98,12 @@ const UnitCardHeader = ({ ...props }: MyLibraryUnitCardProps) => {
             unitSlug: props.unitSlug,
           })}
         >
-          <OakHeading tag="h3" $font={["heading-7", "heading-5"]}>
-            {unitTitle}
+          <OakHeading
+            tag="h3"
+            $font={["heading-7", "heading-5"]}
+            $color={"text-primary"}
+          >
+            {mainTitle}
           </OakHeading>
         </UnitLink>
         <OakP $color={"text-subdued"} $font={"body-2"}>
@@ -186,6 +196,7 @@ const UnitCardContent = ({
 export type MyLibraryUnitCardProps = {
   unitTitle: string;
   unitSlug: string;
+  optionalityTitle?: string | null;
   programmeSlug: string;
   savedAt: string;
   year: string;
