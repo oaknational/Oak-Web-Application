@@ -3,6 +3,11 @@ import { CurricVisualiserLayout } from ".";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 const render = renderWithProviders();
 
+jest.mock("@/hooks/useMediaQuery", () => ({
+  __esModule: true,
+  default: jest.fn().mockReturnValue(true),
+}));
+
 const mockProps = {
   slugs: {
     subjectSlug: "maths",
