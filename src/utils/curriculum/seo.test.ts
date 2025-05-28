@@ -53,6 +53,29 @@ describe("getUnitSeoFromYearData", () => {
     });
   });
 
+  it("invalid slug", () => {
+    expect(
+      getUnitSeoFromYearData({
+        yearData: {
+          "10": createYearData({
+            units: [
+              createUnit({
+                slug: "foo",
+                keystage_slug: "ks4",
+                lessons: [],
+              }),
+            ],
+          }),
+        },
+        slug: "baz",
+        ks4OptionSlug: "",
+        tier: "",
+      }),
+    ).toEqual({
+      noIndex: true,
+    });
+  });
+
   it("with tier", () => {
     expect(
       getUnitSeoFromYearData({
