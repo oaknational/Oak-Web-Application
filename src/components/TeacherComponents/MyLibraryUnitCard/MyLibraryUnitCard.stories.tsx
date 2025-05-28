@@ -4,7 +4,7 @@ import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import MyLibraryUnitCard from "./MyLibraryUnitCard";
 
-const completeUnitLessons = [
+export const completeUnitLessons = [
   {
     slug: "journey-to-the-centre-of-the-earth-explaining-how-a-writer-uses-sentence-structures-for-effect",
     order: 1,
@@ -45,7 +45,7 @@ const completeUnitLessons = [
     lesson_uid: "LESS-BFVFW-W1477",
   },
 ];
-const incompleteUnitLessons = [
+export const incompleteUnitLessons = [
   {
     slug: "journey-to-the-centre-of-the-earth-explaining-how-a-writer-uses-sentence-structures-for-effect",
     order: 1,
