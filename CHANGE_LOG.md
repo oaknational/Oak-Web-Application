@@ -1,3 +1,10 @@
+## [1.754.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.754.0...v1.754.1) (2025-05-28)
+
+
+### Bug Fixes
+
+* margins across curric tabs to fix white gap at top of explainer in tablet ([4bfd45c](https://github.com/oaknational/Oak-Web-Application/commit/4bfd45ce25a064fa99fe3d50a20c5d143b98cb41))
+
 # [1.754.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.753.2...v1.754.0) (2025-05-27)
 
 
