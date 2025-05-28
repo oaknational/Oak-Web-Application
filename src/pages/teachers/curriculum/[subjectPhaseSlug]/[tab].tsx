@@ -134,7 +134,6 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
             curriculumOverviewSanityData.curriculumSeoTextRaw || undefined
           }
           curriculumPhaseOptions={curriculumPhaseOptions}
-          keyStages={keyStages}
         />
       );
       break;

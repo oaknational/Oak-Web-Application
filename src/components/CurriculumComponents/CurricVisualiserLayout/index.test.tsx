@@ -8,28 +8,23 @@ jest.mock("@/hooks/useMediaQuery", () => ({
   default: jest.fn().mockReturnValue(true),
 }));
 
+const mockMathsSubject = {
+  slug: "maths",
+  title: "Maths",
+  phases: [
+    {
+      slug: "primary",
+      title: "Primary",
+    },
+  ],
+  ks4_options: null,
+};
+
 const mockProps = {
-  slugs: {
-    subjectSlug: "maths",
-    phaseSlug: "primary",
-    ks4OptionSlug: null,
-  },
   curriculumPhaseOptions: {
-    subjects: [
-      {
-        slug: "maths",
-        title: "Maths",
-        phases: [
-          {
-            slug: "primary",
-            title: "Primary",
-          },
-        ],
-        ks4_options: null,
-      },
-    ],
+    subjects: [mockMathsSubject],
   },
-  keyStages: ["ks1", "ks2"],
+  subject: mockMathsSubject,
 };
 
 describe("CurricVisualiserLayout", () => {

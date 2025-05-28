@@ -32,7 +32,6 @@ type UnitsTabProps = {
   ks4Options: Ks4Option[];
   curriculumSeoText?: PortableTextBlock[];
   curriculumPhaseOptions: SubjectPhasePickerData;
-  keyStages: string[];
 };
 
 export default function UnitsTab({
@@ -44,7 +43,6 @@ export default function UnitsTab({
   ks4Options,
   curriculumSeoText,
   curriculumPhaseOptions,
-  keyStages,
 }: UnitsTabProps) {
   // Initialize constants
   const isMobile = useMediaQuery("mobile");
@@ -55,6 +53,16 @@ export default function UnitsTab({
   const [mobileSelectedYear, setMobileSelectedYear] = useState<string>("");
 
   const unitCount = getNumberOfSelectedUnits(yearData, filters);
+
+  const subjectForLayout = curriculumPhaseOptions.subjects.find(
+    (s) => s.slug === slugs.subjectSlug,
+  );
+
+  if (!subjectForLayout) {
+    throw new Error(
+      "Selected subject not found in curriculumPhaseOptions for UnitsTab",
+    );
+  }
 
   const highlightedUnits = highlightedUnitCount(
     yearData,
@@ -126,9 +134,7 @@ export default function UnitsTab({
             />
           }
           curriculumSeoText={curriculumSeoText}
-          slugs={slugs}
-          curriculumPhaseOptions={curriculumPhaseOptions}
-          keyStages={keyStages}
+          subject={subjectForLayout}
         />
         <ScreenReaderOnly aria-live="polite" aria-atomic="true">
           <p>

@@ -5,8 +5,10 @@ import { PortableTextBlock } from "@portabletext/types";
 
 import { OakBasicAccordion, OakHeading, OakP } from "@/styles/oakThemeApp";
 import { basePortableTextComponents } from "@/components/SharedComponents/PortableText";
-import { buildPageTitle , truncatePortableTextBlock } from "@/utils/curriculum/formatting";
-import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
+import {
+  subjectTitleWithCase,
+  truncatePortableTextBlock,
+} from "@/utils/curriculum/formatting";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import useMediaQuery from "@/hooks/useMediaQuery";
 
@@ -19,35 +21,22 @@ type CurriculumVisualiserLayoutProps = {
   filters: React.ReactNode;
   units: React.ReactNode;
   curriculumSeoText?: PortableTextBlock[];
-  slugs: CurriculumSelectionSlugs;
-  curriculumPhaseOptions: SubjectPhasePickerData;
-  keyStages: string[];
+  subject: SubjectPhasePickerData["subjects"][number];
 };
 
 export function CurricVisualiserLayout({
   filters,
   units,
   curriculumSeoText,
-  slugs,
-  curriculumPhaseOptions,
-  keyStages,
+  subject,
 }: CurriculumVisualiserLayoutProps) {
   const isMobile = useMediaQuery("mobile");
 
-  const subject = curriculumPhaseOptions.subjects.find(
-    (subject) => subject.slug === slugs.subjectSlug,
-  );
-  const phase = subject?.phases.find((phase) => phase.slug === slugs.phaseSlug);
-
-  if (!subject || !phase) {
-    throw new Error("Subject or phase not found");
+  if (!subject) {
+    throw new Error("Subject prop is required for CurricVisualiserLayout");
   }
 
-  const pageTitle = buildPageTitle(keyStages, subject, phase);
-
-  const subjectTitle = pageTitle
-    .replace(/^KS\d+(?:\s*&\s*KS\d+)*\s+/, "")
-    .replace(/\s+curriculum$/, "");
+  const displaySubjectTitle = subjectTitleWithCase(subject.title);
 
   const truncationLength = isMobile ? 40 : 100;
 
@@ -72,7 +61,7 @@ export function CurricVisualiserLayout({
             <OakBasicAccordion
               header={
                 <OakHeading $font="heading-5" tag="h3" $textAlign="left">
-                  How to plan your {subjectTitle} curriculum with Oak
+                  How to plan your {displaySubjectTitle} curriculum with Oak
                 </OakHeading>
               }
               subheading={
