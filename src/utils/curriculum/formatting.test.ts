@@ -394,7 +394,7 @@ describe("getYearSubheadingText", () => {
       "7",
       createFilter({
         years: ["7"],
-        subjectCategories: [String(subCat1.id)],
+        subjectCategories: [subCat1.slug],
         childSubjects: [childSubject1.subject_slug],
         tiers: [tier1.tier_slug],
       }),
@@ -413,7 +413,7 @@ describe("getYearSubheadingText", () => {
       "7",
       createFilter({
         years: ["7"],
-        subjectCategories: [String(subCat1.id)],
+        subjectCategories: [subCat1.slug],
       }),
       null,
     );
@@ -452,7 +452,7 @@ describe("getYearSubheadingText", () => {
       "7",
       createFilter({
         years: ["7"],
-        subjectCategories: [String(subCat1.id)],
+        subjectCategories: [subCat1.slug],
         childSubjects: [childSubject1.subject_slug],
         tiers: [tier1.tier_slug],
       }),
@@ -467,7 +467,7 @@ describe("getYearSubheadingText", () => {
       "7",
       createFilter({
         years: ["7"],
-        subjectCategories: [String(subCat1.id)],
+        subjectCategories: [subCat1.slug],
         childSubjects: [childSubject1.subject_slug],
         tiers: [tier1.tier_slug],
       }),
