@@ -5,19 +5,10 @@ import { PortableTextBlock } from "@portabletext/types";
 
 import { OakBasicAccordion, OakHeading, OakP } from "@/styles/oakThemeApp";
 import { basePortableTextComponents } from "@/components/SharedComponents/PortableText";
-import { buildPageTitle } from "@/utils/curriculum/formatting";
+import { buildPageTitle , truncatePortableTextBlock } from "@/utils/curriculum/formatting";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import useMediaQuery from "@/hooks/useMediaQuery";
-
-function truncateText(text: string, maxLength: number = 100): string {
-  text = text.trim();
-  if (text.length > maxLength) {
-    return text.slice(0, maxLength) + "...";
-  }
-
-  return text;
-}
 
 const CurriculumVisualiserLayoutLeft = styled(OakFlex)`
   min-width: 296px;
@@ -58,8 +49,6 @@ export function CurricVisualiserLayout({
     .replace(/^KS\d+(?:\s*&\s*KS\d+)*\s+/, "")
     .replace(/\s+curriculum$/, "");
 
-  const accordionString = `Use this ${pageTitle.replace("&", "and")} plan to explore our sequences developed by leading subject experts`;
-
   const truncationLength = isMobile ? 40 : 100;
 
   return (
@@ -90,7 +79,10 @@ export function CurricVisualiserLayout({
                 <>
                   <br />
                   <OakP $font={["body-2", "body-1"]} $textAlign="left">
-                    {truncateText(accordionString, truncationLength)}
+                    {truncatePortableTextBlock(
+                      curriculumSeoText,
+                      truncationLength,
+                    )}
                   </OakP>
                 </>
               }

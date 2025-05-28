@@ -1,3 +1,5 @@
+import { PortableTextBlock } from "@portabletext/types";
+
 import { CurriculumFilters, YearData } from "./types";
 import { keystageFromYear } from "./keystage";
 
@@ -227,4 +229,40 @@ export function getPathwaySuffix(year: string, pathway?: string) {
       return "GCSE";
     }
   }
+}
+
+/**
+ * Extracts plain text from an array of PortableTextBlock objects,
+ * concatenates the text, and truncates it to a specified maximum length,
+ * appending an ellipsis (...) if truncation occurs.
+ *
+ * @param blocks - An array of PortableTextBlock objects to extract text from.
+ * @param maxLength - The maximum length of the truncated text. Defaults to 100.
+ * @returns The truncated plain text string, or an empty string if no text could be extracted.
+ */
+export function truncatePortableTextBlock(
+  blocks: PortableTextBlock[],
+  maxLength: number = 100,
+): string {
+  if (!blocks || blocks.length === 0) return "";
+
+  let text = "";
+
+  // Extract text from all blocks
+  for (const block of blocks) {
+    if (block._type === "block" && block.children) {
+      for (const child of block.children) {
+        if (child._type === "span" && child.text) {
+          text += child.text + " ";
+        }
+      }
+    }
+  }
+
+  text = text.trim();
+  if (text.length > maxLength) {
+    return text.slice(0, maxLength) + "...";
+  }
+
+  return text;
 }
