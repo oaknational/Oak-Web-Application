@@ -200,7 +200,7 @@ const UnitCardContent = ({
   );
 };
 
-type MyLibraryUnitCardProps = {
+export type MyLibraryUnitCardProps = {
   index: number;
   unitTitle: string;
   unitSlug: string;
