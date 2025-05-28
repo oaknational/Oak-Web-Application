@@ -298,7 +298,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       tierSelected,
       childSubjectSelected,
     );
-    const downloadPath = `/api/curriculum-downloads/?${query}`;
+    const downloadPath = `/api/curriculum-national-curriculum/?${query}`;
 
     const schoolData = {
       schoolId: data.schoolId!,

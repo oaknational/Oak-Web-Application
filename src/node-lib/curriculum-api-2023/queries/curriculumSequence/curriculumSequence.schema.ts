@@ -90,6 +90,12 @@ const curriculumSequenceSchema = z.object({
       ),
       year: z.string(),
       state: z.string(),
+      national_curriculum_content: z.array(
+        z.object({
+          id: z.number(),
+          title: z.string(),
+        })
+      ).nullable()
     })
     .strict()
     .array(),
