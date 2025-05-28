@@ -11,14 +11,21 @@ jest.mock("@/hooks/useMediaQuery", () => ({
   default: jest.fn().mockReturnValue(false),
 }));
 
-const generateLessons = (count: number, state: string) => {
-  return Array.from({ length: count }, (_, index) => ({
-    slug: `lesson-${index}-${state}`,
-    order: index,
-    title: `Lesson ${index}`,
-    state: state,
-    lesson_uid: `LESS-${index}`,
-  }));
+const generateLessons = (
+  count: number,
+  state: string,
+  indexOffset: number = 0,
+) => {
+  return Array.from({ length: count }, (_, localIndex) => {
+    const index = localIndex + indexOffset;
+    return {
+      slug: `lesson-${index}-${state}`,
+      order: index,
+      title: `Lesson ${index}`,
+      state: state,
+      lesson_uid: `LESS-${index}`,
+    };
+  });
 };
 
 const completeUnitLessons = generateLessons(5, "published");
