@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { PortableText } from "@portabletext/react";
 import { PortableTextBlock } from "@portabletext/types";
 
-import { OakBasicAccordion, OakHeading , OakP } from "@/styles/oakThemeApp";
+import { OakBasicAccordion, OakHeading, OakP } from "@/styles/oakThemeApp";
 import { basePortableTextComponents } from "@/components/SharedComponents/PortableText";
 import { buildPageTitle } from "@/utils/curriculum/formatting";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";

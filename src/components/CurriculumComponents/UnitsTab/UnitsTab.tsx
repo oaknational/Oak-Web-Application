@@ -54,8 +54,6 @@ export default function UnitsTab({
 
   const [mobileSelectedYear, setMobileSelectedYear] = useState<string>("");
 
-  console.log("curriculumSeoText:", curriculumSeoText);
-
   const unitCount = getNumberOfSelectedUnits(yearData, filters);
 
   const highlightedUnits = highlightedUnitCount(

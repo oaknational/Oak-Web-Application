@@ -213,8 +213,6 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
     </OakFlex>
   );
 
-  console.log({ curriculumPartnerOverviews });
-
   return (
     <>
       <OakBox
