@@ -13,7 +13,7 @@ import MyLibraryUnitCard, {
 import { getValidSubjectIconName } from "../../../utils/getValidSubjectIconName";
 
 interface MyLibrarySubjectCardProps {
-  subject: string;
+  subjectSlug: string;
   programmeTitle: string;
   programmeHref: string;
   programmeSlug: string;
@@ -30,15 +30,15 @@ const StyledLink = styled(OakSecondaryLink)`
 `;
 
 const SubjectHeader = ({
-  subject,
+  subjectSlug,
   programmeTitle,
   programmeHref,
 }: {
-  subject: string;
+  subjectSlug: string;
   programmeTitle: string;
   programmeHref: string;
 }) => {
-  const subjectIconName = getValidSubjectIconName(subject);
+  const subjectIconName = getValidSubjectIconName(subjectSlug);
 
   return (
     <StyledLink href={programmeHref}>
@@ -79,8 +79,13 @@ const SubjectHeader = ({
 };
 
 export default function MyLibrarySubjectCard(props: MyLibrarySubjectCardProps) {
-  const { savedUnits, subject, programmeTitle, programmeHref, programmeSlug } =
-    props;
+  const {
+    savedUnits,
+    subjectSlug,
+    programmeTitle,
+    programmeHref,
+    programmeSlug,
+  } = props;
 
   return (
     <OakFlex
@@ -94,7 +99,7 @@ export default function MyLibrarySubjectCard(props: MyLibrarySubjectCardProps) {
     >
       <OakAnchorTarget id={programmeSlug} />
       <SubjectHeader
-        subject={subject}
+        subjectSlug={subjectSlug}
         programmeTitle={programmeTitle}
         programmeHref={programmeHref}
       />

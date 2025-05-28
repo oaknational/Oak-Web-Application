@@ -51,7 +51,7 @@ export default function MyLibrary(props: MyLibraryProps) {
         <NoSavedContent />
       ) : (
         <OakGrid
-          $ph={["inner-padding-m", "inner-padding-xl4"]}
+          $ph={["inner-padding-none", "inner-padding-xl4"]}
           $position="relative"
           $rg={"space-between-m"}
         >
@@ -79,6 +79,7 @@ export default function MyLibrary(props: MyLibraryProps) {
             $colSpan={[12, 9]}
             $colStart={[1, 4]}
             $gap={["space-between-m", "space-between-l"]}
+            $ph={["inner-padding-m", "inner-padding-none"]}
           >
             {collectionData.map((collection) => (
               <MyLibrarySubjectCard
@@ -91,7 +92,7 @@ export default function MyLibrary(props: MyLibraryProps) {
                     category: collection.searchQuery,
                   },
                 })}
-                subject={collection.subject}
+                subjectSlug={collection.subjectSlug}
                 savedUnits={collection.units.map((unit) => ({
                   ...unit,
                   programmeSlug: collection.programmeSlug,
