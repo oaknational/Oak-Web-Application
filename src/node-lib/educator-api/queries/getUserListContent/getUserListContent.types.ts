@@ -43,6 +43,7 @@ const units = z.array(
   z.object({
     unitSlug: z.string(),
     unitTitle: z.string(),
+    optionalityTitle: z.string().nullish(),
     savedAt: z.string(),
     lessons: z.array(
       z.object({
