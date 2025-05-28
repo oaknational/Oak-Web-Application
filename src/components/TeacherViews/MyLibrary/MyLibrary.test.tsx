@@ -9,10 +9,12 @@ const render = renderWithProviders();
 export const generateMockCollectionData = (count: number): CollectionData => {
   return Array.from({ length: count }, (_, index) => ({
     subject: `Subject ${index + 1}`,
+    subjectSlug: `subject-${index + 1}`,
     subheading: index % 2 === 0 ? `AQA foundation` : `Edexcel higher`,
     examboard: index % 2 === 0 ? "AQA" : "Edexcel",
     tier: index % 2 === 0 ? "foundation" : "higher",
     keystage: "KS4",
+    keystageSlug: "ks4",
     units: [
       {
         unitSlug: `unit-${index + 1}`,
@@ -43,12 +45,24 @@ export const generateMockCollectionData = (count: number): CollectionData => {
 
 describe("MyLibrary", () => {
   it("renders a header and no content when loading", () => {
-    render(<MyLibrary collectionData={null} isLoading={true} />);
+    render(
+      <MyLibrary
+        collectionData={null}
+        isLoading={true}
+        onSaveToggle={() => {}}
+      />,
+    );
     expect(screen.getByText("My library")).toBeInTheDocument();
     expect(screen.queryByText("No saved content")).not.toBeInTheDocument();
   });
   it("renders a header and no content when there is no collection data", () => {
-    render(<MyLibrary collectionData={[]} isLoading={false} />);
+    render(
+      <MyLibrary
+        collectionData={[]}
+        isLoading={false}
+        onSaveToggle={() => {}}
+      />,
+    );
     expect(screen.getByText("My library")).toBeInTheDocument();
     expect(screen.queryByText("No units yet")).toBeInTheDocument();
   });
@@ -57,6 +71,7 @@ describe("MyLibrary", () => {
       <MyLibrary
         collectionData={generateMockCollectionData(5)}
         isLoading={false}
+        onSaveToggle={() => {}}
       />,
     );
 

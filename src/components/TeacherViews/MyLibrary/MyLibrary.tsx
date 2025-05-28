@@ -8,18 +8,24 @@ import {
   OakHeading,
   OakP,
   OakLink,
+  OakPrimaryButton,
+  OakFlex,
 } from "@oaknational/oak-components";
 
 import MyLibraryHeader from "@/components/TeacherComponents/MyLibraryHeader/MyLibraryHeader";
 import NoSavedContent from "@/components/TeacherComponents/NoSavedContent/NoSavedContent";
 import { UnitData } from "@/node-lib/educator-api/queries/getUserListContent/getUserListContent.types";
+import { TrackingProgrammeData } from "@/node-lib/educator-api/helpers/saveUnits/utils";
+import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 
 export type CollectionData = Array<{
   subject: string;
+  subjectSlug: string;
   subheading: string;
   examboard: string | null;
   tier: string | null;
   keystage: string;
+  keystageSlug: string;
   units: UnitData;
   programmeSlug: string;
 }>;
@@ -27,10 +33,15 @@ export type CollectionData = Array<{
 type MyLibraryProps = {
   collectionData: CollectionData | null;
   isLoading: boolean;
+  onSaveToggle: (
+    unitSlug: string,
+    programmeSlug: string,
+    trackingData: TrackingProgrammeData,
+  ) => void;
 };
 
 export default function MyLibrary(props: MyLibraryProps) {
-  const { collectionData, isLoading } = props;
+  const { collectionData, isLoading, onSaveToggle } = props;
 
   return (
     <OakMaxWidth
@@ -85,7 +96,27 @@ export default function MyLibrary(props: MyLibraryProps) {
                       a.yearOrder - b.yearOrder || a.unitOrder - b.unitOrder,
                   )
                   .map((unit) => (
-                    <OakP key={unit.unitSlug}>{unit.unitTitle}</OakP>
+                    <OakFlex $alignItems="center">
+                      <OakP key={unit.unitSlug}>{unit.unitTitle}</OakP>
+                      <OakPrimaryButton
+                        onClick={() =>
+                          onSaveToggle(
+                            unit.unitSlug,
+                            collection.programmeSlug,
+                            {
+                              keyStageTitle:
+                                collection.keystage as KeyStageTitleValueType,
+                              subjectTitle: collection.subject,
+                              savedFrom: "my-library-save-button",
+                              keyStageSlug: collection.keystageSlug,
+                              subjectSlug: collection.subjectSlug,
+                            },
+                          )
+                        }
+                      >
+                        Save / Unsave
+                      </OakPrimaryButton>
+                    </OakFlex>
                   ))}
                 <OakLink href="#collections-menu"> Back to collections</OakLink>
               </OakBox>

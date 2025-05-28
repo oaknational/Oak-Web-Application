@@ -34,17 +34,6 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
       const browseData = contentList?.content.browse_mv[0];
       if (contentList && browseData) {
         const programmeSlug = contentList.content.programme_slug;
-        const unitSlug = contentList.content.unit_slug;
-        const unitTitle = browseData.unit_title;
-        const optionalityTitle = browseData.optionality_title;
-        const savedAt = contentList.created_at;
-        const year = browseData.year;
-        const keystage = browseData.keystage;
-        const subject = browseData.subject;
-        const tier = browseData.tier;
-        const examboard = browseData.examboard;
-        const unitOrder = browseData.unit_order;
-        const yearOrder = browseData.year_order;
         const lessons = browseData.lessons.map((lesson) => ({
           slug: lesson.slug,
           title: lesson.title,
@@ -54,22 +43,24 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
 
         if (!acc[programmeSlug]) {
           acc[programmeSlug] = {
-            subject,
-            keystage,
-            tier,
-            examboard,
-            year,
+            subject: browseData.subject,
+            subjectSlug: browseData.subject_slug,
+            keystage: browseData.keystage,
+            keystageSlug: browseData.keystage_slug,
+            tier: browseData.tier,
+            examboard: browseData.examboard,
+            year: browseData.year,
             units: [],
           };
         }
         acc[programmeSlug].units.push({
-          unitSlug,
-          unitTitle,
-          optionalityTitle,
-          savedAt,
+          unitSlug: contentList.content.unit_slug,
+          unitTitle: browseData.unit_title,
+          optionalityTitle: browseData.optionality_title || null,
+          savedAt: contentList.created_at,
           lessons,
-          unitOrder,
-          yearOrder,
+          unitOrder: browseData.unit_order,
+          yearOrder: browseData.year_order,
         });
       }
       return acc;

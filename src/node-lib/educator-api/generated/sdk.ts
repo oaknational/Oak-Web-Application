@@ -67053,7 +67053,9 @@ export type GetUserListContentQuery = {
           lessons?: any | null;
           year?: any | null;
           keystage?: any | null;
+          keystage_slug?: any | null;
           subject?: any | null;
+          subject_slug?: any | null;
           unit_title?: any | null;
           optionality_title?: any | null;
           tier?: any | null;
@@ -67189,7 +67191,9 @@ export const GetUserListContentDocument = gql`
             lessons: supplementary_data(path: "static_lesson_list")
             year: programme_fields(path: "year_description")
             keystage: programme_fields(path: "keystage")
+            keystage_slug: programme_fields(path: "keystage_slug")
             subject: programme_fields(path: "subject")
+            subject_slug: programme_fields(path: "subject_slug")
             unit_title: unit_data(path: "title")
             optionality_title: programme_fields(path: "optionality")
             tier: programme_fields(path: "tier")

@@ -45,10 +45,20 @@ export const useMyLibrary = () => {
       if (parsedData.success) {
         const collectionData = Object.entries(parsedData.data)
           .map(([programmeSlug, programmeData]) => {
-            const { keystage, subject, examboard, tier, units } = programmeData;
+            const {
+              keystage,
+              subject,
+              examboard,
+              tier,
+              units,
+              subjectSlug,
+              keystageSlug,
+            } = programmeData;
             const subheading = `${examboard ? examboard + " " : ""}${tier ? tier + " " : ""}${keystage}`;
             return {
               subject,
+              subjectSlug,
+              keystageSlug,
               subheading,
               examboard,
               tier,
