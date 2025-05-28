@@ -103,7 +103,7 @@ const DownloadCardGroupB: FC<DownloadCardGroupProps> = ({
       (item) => item.exists && !item.forbidden,
     );
     return (
-      <OakBox>
+      <OakBox key={groupTitle}>
         <OakFieldset>
           <OakHeading
             as={"legend"}

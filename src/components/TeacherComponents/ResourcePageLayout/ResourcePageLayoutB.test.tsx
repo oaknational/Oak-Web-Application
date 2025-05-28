@@ -55,6 +55,7 @@ describe("Downloads/Share Layout", () => {
         {...props}
         selectAllChecked={checked}
         handleToggleSelectAll={() => (checked = false)}
+        showTermsAgreement={false}
       />,
     );
 
@@ -72,6 +73,7 @@ describe("Downloads/Share Layout", () => {
         {...props}
         selectAllChecked={checked}
         handleToggleSelectAll={() => (checked = false)}
+        showTermsAgreement={false}
       />,
     );
     expect(selectAllCheckbox).not.toBeChecked();
@@ -101,7 +103,13 @@ describe("Downloads/Share Layout", () => {
   });
 
   it("hides select all when prop is set to false", () => {
-    renderWithTheme(<ComponentWrapper {...props} hideSelectAll={true} />);
+    renderWithTheme(
+      <ComponentWrapper
+        {...props}
+        hideSelectAll={true}
+        showTermsAgreement={false}
+      />,
+    );
 
     const selectAllCheckbox = screen.queryByRole("checkbox", {
       name: "Select all",

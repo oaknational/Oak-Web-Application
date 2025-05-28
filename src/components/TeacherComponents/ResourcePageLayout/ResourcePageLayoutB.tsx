@@ -170,8 +170,6 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
                   <RiskAssessmentBanner />
                 </OakBox>
               )}
-
-              {props.cta}
             </>
           )}
         </Flex>
@@ -246,7 +244,7 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
               </OakFlex>
             )}
 
-            {props.showTermsAgreement && props.cta}
+            {props.cta}
 
             {props.apiError && !hasFormErrors && (
               <FieldError

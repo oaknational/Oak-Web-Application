@@ -143,8 +143,8 @@ const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
           >
             <label htmlFor={id}>{label}</label>
           </OakP>
-          <OakP $color="grey60">
-            {subtitle}
+          <OakFlex $alignItems="center">
+            <OakP $color="grey60">{subtitle}</OakP>
             {isEditable && (
               <OakTagFunctional
                 $ml={"space-between-ssx"}
@@ -157,7 +157,7 @@ const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
                 $background={"bg-decorative2-main"}
               />
             )}
-          </OakP>
+          </OakFlex>
         </Flex>
       </Flex>
     </BoxWithFocusState>
