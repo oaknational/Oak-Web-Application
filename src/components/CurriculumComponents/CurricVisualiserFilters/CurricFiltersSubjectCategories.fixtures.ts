@@ -3,14 +3,17 @@ import { createUnit } from "@/fixtures/curriculum/unit";
 
 const subjectCategoryBiology = createSubjectCategory({
   id: 1,
+  slug: "biology",
   title: "biology",
 });
 const subjectCategoryChemistry = createSubjectCategory({
   id: 2,
+  slug: "chemistry",
   title: "chemistry",
 });
 const subjectCategoryPhysics = createSubjectCategory({
   id: 3,
+  slug: "physics",
   title: "physics",
 });
 

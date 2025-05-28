@@ -90,7 +90,7 @@ describe("MyLibraryUnitCard", () => {
   it("displays correct partial lesson count when some are unpublished", () => {
     const mixedLessons = [
       ...generateLessons(2, "published"),
-      ...generateLessons(3, "new"),
+      ...generateLessons(3, "new", 3),
     ];
     render(<MyLibraryUnitCard {...mockUnit} lessons={mixedLessons} />);
     expect(screen.getByText("2/5 lessons")).toBeInTheDocument();

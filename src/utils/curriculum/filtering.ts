@@ -49,10 +49,10 @@ export function getDefaultChildSubjectForYearGroup(
 export function getDefaultSubjectCategoriesForYearGroup(
   data: CurriculumUnitsYearData,
 ) {
-  const set = new Set<Pick<SubjectCategory, "id">>();
+  const set = new Set<Pick<SubjectCategory, "slug" | "id">>();
   Object.values(data).forEach((yearData) => {
     yearData.subjectCategories.forEach((subjectCategory) =>
-      set.add({ id: subjectCategory.id }),
+      set.add({ id: subjectCategory.id, slug: subjectCategory.slug }),
     );
   });
   const subjectCategories = [...set]
@@ -63,7 +63,7 @@ export function getDefaultSubjectCategoriesForYearGroup(
         }),
       ),
     )
-    .map((s) => String(s.id));
+    .map((s) => String(s.slug));
   if (subjectCategories.length > 0) {
     return [subjectCategories[0]!];
   }
@@ -177,7 +177,7 @@ export function getFilterData(
   years: string[],
 ) {
   const childSubjects = new Map<string, Subject>();
-  const subjectCategories = new Map<number, SubjectCategory>();
+  const subjectCategories = new Map<string, SubjectCategory>();
   const tiers = new Map<string, Tier>();
   years.forEach((year) => {
     const obj = yearData[year];
@@ -187,7 +187,7 @@ export function getFilterData(
       );
       obj.tiers.forEach((tier) => tiers.set(tier.tier_slug, tier));
       obj.subjectCategories.forEach((subjectCategory) =>
-        subjectCategories.set(subjectCategory.id, subjectCategory),
+        subjectCategories.set(subjectCategory.slug, subjectCategory),
       );
     }
   });
@@ -339,14 +339,14 @@ export function subjectCategoryForFilter(
   data: CurriculumUnitsFormattedData,
   filter: CurriculumFilters,
 ) {
-  const id = filter.subjectCategories[0];
-  if (!id) return;
+  const slug = filter.subjectCategories[0];
+  if (!slug) return;
 
   return Object.entries(data.yearData)
     .flatMap(([, yearDataItem]) => {
       return yearDataItem.subjectCategories;
     })
-    .find((subjectCategory) => String(subjectCategory.id) === id);
+    .find((subjectCategory) => String(subjectCategory.slug) === slug);
 }
 
 export function childSubjectForFilter(
@@ -390,7 +390,7 @@ export function buildTextDescribingFilter(
 ) {
   const subjectCategoryField =
     filters.subjectCategories.length > 0
-      ? filters.subjectCategories[0] === "-1"
+      ? filters.subjectCategories[0] === "all"
         ? "All categories"
         : `${subjectCategoryForFilter(data, filters)?.title}${keystageSuffixForFilter(data, filters, "subjectCategories") ? ` ${keystageSuffixForFilter(data, filters, "subjectCategories")}` : ""}`
       : undefined;
@@ -445,9 +445,7 @@ export function keystageSuffixForFilter(
     let hasFilter = false;
 
     if (filterType === "subjectCategories") {
-      hasFilter = yearData.subjectCategories.some(
-        (sc) => String(sc.id) === filterId,
-      );
+      hasFilter = yearData.subjectCategories.some((sc) => sc.slug === filterId);
     } else if (filterType === "childSubjects") {
       hasFilter = yearData.childSubjects.some(
         (cs) => cs.subject_slug === filterId,
