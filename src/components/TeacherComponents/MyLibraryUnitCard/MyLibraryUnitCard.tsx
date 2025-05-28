@@ -131,7 +131,7 @@ const UnitCardContent = ({
   return (
     <OakFlex>
       <OakFlex $flexDirection={"column"} $gap={"all-spacing-6"}>
-        <OakFlex $justifyContent={"space-between"}>
+        <OakFlex $justifyContent={"space-between"} $alignItems="center">
           <OakP $font={"heading-light-7"}>{lessonCountHeader}</OakP>
           <OakBox $display={["block", "none"]}>
             <SaveButton
