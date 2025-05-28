@@ -17,7 +17,10 @@ export const generateMockCollectionData = (count: number): CollectionData => {
       {
         unitSlug: `unit-${index + 1}`,
         unitTitle: `Unit ${index + 1}: Topic`,
+        optionalityTitle: null,
         savedAt: new Date().toISOString(),
+        unitOrder: 1,
+        yearOrder: 1,
         lessons: [
           {
             slug: `lesson-${index + 1}-1`,

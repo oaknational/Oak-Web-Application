@@ -5,7 +5,7 @@ query getUserListContent($userId: String!) {
         unit_slug
         programme_slug
         browse_mv {
-          supplementary_data(path: "static_lesson_list")
+          lessons: supplementary_data(path: "static_lesson_list")
           year: programme_fields(path: "year_description")
           keystage: programme_fields(path: "keystage")
           subject: programme_fields(path: "subject")
@@ -13,6 +13,8 @@ query getUserListContent($userId: String!) {
           optionality_title: programme_fields(path: "optionality")
           tier: programme_fields(path: "tier")
           examboard: programme_fields(path: "examboard")
+          unit_order: supplementary_data(path: "unit_order")
+          year_order: programme_fields(path: "year_display_order")
         }
       }
       created_at

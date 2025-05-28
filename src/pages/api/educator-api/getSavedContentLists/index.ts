@@ -43,7 +43,9 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
         const subject = browseData.subject;
         const tier = browseData.tier;
         const examboard = browseData.examboard;
-        const lessons = browseData.supplementary_data.map((lesson) => ({
+        const unitOrder = browseData.unit_order;
+        const yearOrder = browseData.year_order;
+        const lessons = browseData.lessons.map((lesson) => ({
           slug: lesson.slug,
           title: lesson.title,
           state: lesson._state,
@@ -66,6 +68,8 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
           optionalityTitle,
           savedAt,
           lessons,
+          unitOrder,
+          yearOrder,
         });
       }
       return acc;

@@ -75,12 +75,18 @@ export default function MyLibrary(props: MyLibraryProps) {
             {collectionData.map((collection) => (
               <OakBox $position="relative" key={collection.programmeSlug}>
                 <OakAnchorTarget id={collection.programmeSlug} />
+
                 <OakHeading tag="h2">
                   {collection.subject} {collection.subheading}
                 </OakHeading>
-                {collection.units.map((unit) => (
-                  <OakP key={unit.unitSlug}>{unit.unitTitle}</OakP>
-                ))}
+                {collection.units
+                  .sort(
+                    (a, b) =>
+                      a.yearOrder - b.yearOrder || a.unitOrder - b.unitOrder,
+                  )
+                  .map((unit) => (
+                    <OakP key={unit.unitSlug}>{unit.unitTitle}</OakP>
+                  ))}
                 <OakLink href="#collections-menu"> Back to collections</OakLink>
               </OakBox>
             ))}

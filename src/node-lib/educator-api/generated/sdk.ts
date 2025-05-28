@@ -67050,7 +67050,7 @@ export type GetUserListContentQuery = {
         programme_slug: string;
         browse_mv: Array<{
           __typename?: "published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_16_0_0";
-          supplementary_data?: any | null;
+          lessons?: any | null;
           year?: any | null;
           keystage?: any | null;
           subject?: any | null;
@@ -67058,6 +67058,8 @@ export type GetUserListContentQuery = {
           optionality_title?: any | null;
           tier?: any | null;
           examboard?: any | null;
+          unit_order?: any | null;
+          year_order?: any | null;
         }>;
       };
     } | null;
@@ -67184,7 +67186,7 @@ export const GetUserListContentDocument = gql`
           unit_slug
           programme_slug
           browse_mv {
-            supplementary_data(path: "static_lesson_list")
+            lessons: supplementary_data(path: "static_lesson_list")
             year: programme_fields(path: "year_description")
             keystage: programme_fields(path: "keystage")
             subject: programme_fields(path: "subject")
@@ -67192,6 +67194,8 @@ export const GetUserListContentDocument = gql`
             optionality_title: programme_fields(path: "optionality")
             tier: programme_fields(path: "tier")
             examboard: programme_fields(path: "examboard")
+            unit_order: supplementary_data(path: "unit_order")
+            year_order: programme_fields(path: "year_display_order")
           }
         }
         created_at

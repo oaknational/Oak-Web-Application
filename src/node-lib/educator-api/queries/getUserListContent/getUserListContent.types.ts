@@ -14,7 +14,7 @@ const users_content_lists = z.object({
     programme_slug: z.string(),
     browse_mv: z.array(
       z.object({
-        supplementary_data: z.array(lesson_data),
+        lessons: z.array(lesson_data),
         unit_title: z.string(),
         optionality_title: z.string().nullish(),
         year: z.string(),
@@ -22,6 +22,8 @@ const users_content_lists = z.object({
         subject: z.string(),
         tier: z.string().nullable(),
         examboard: z.string().nullable(),
+        unit_order: z.number(),
+        year_order: z.number(),
       }),
     ),
   }),
@@ -45,6 +47,8 @@ const units = z.array(
     unitTitle: z.string(),
     optionalityTitle: z.string().nullish(),
     savedAt: z.string(),
+    unitOrder: z.number(),
+    yearOrder: z.number(),
     lessons: z.array(
       z.object({
         slug: z.string(),
