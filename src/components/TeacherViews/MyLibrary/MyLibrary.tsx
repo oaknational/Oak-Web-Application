@@ -79,7 +79,7 @@ export default function MyLibrary(props: MyLibraryProps) {
                   {collection.subject} {collection.subheading}
                 </OakHeading>
                 {collection.units.map((unit) => (
-                  <OakP>{unit.unitTitle}</OakP>
+                  <OakP key={unit.unitSlug}>{unit.unitTitle}</OakP>
                 ))}
                 <OakLink href="#collections-menu"> Back to collections</OakLink>
               </OakBox>
