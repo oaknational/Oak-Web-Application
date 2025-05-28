@@ -25,6 +25,7 @@ export interface Domain {
 export interface SubjectCategory {
   id: number;
   title: string;
+  slug: string;
 }
 
 export interface Tier {
