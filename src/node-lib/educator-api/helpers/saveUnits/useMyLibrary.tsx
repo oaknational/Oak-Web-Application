@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
+import { kebabCase } from "lodash";
 
 import { useGetEducatorData } from "../useGetEducatorData";
 import {
@@ -53,18 +54,29 @@ export const useMyLibrary = () => {
               units,
               subjectSlug,
               keystageSlug,
+              subjectCategories,
             } = programmeData;
             const subheading = `${examboard ? examboard + " " : ""}${tier ? tier + " " : ""}${keystage}`;
+            const validSubjectCategory =
+              subjectCategories &&
+              subjectCategories[0] &&
+              subjectCategories[0] !== subject
+                ? subjectCategories[0]
+                : null;
+            const programmeTitle = `${subject}${validSubjectCategory ? `: ${validSubjectCategory}` : ""} ${keystage}`;
+            const searchQuery = validSubjectCategory
+              ? `${kebabCase(validSubjectCategory)}`
+              : null;
             return {
               subject,
               subjectSlug,
               keystageSlug,
               subheading,
-              examboard,
-              tier,
               keystage,
               units,
               programmeSlug,
+              programmeTitle,
+              searchQuery,
             };
           })
           .sort((a, b) => {

@@ -26,10 +26,14 @@ jest.mock("@/node-lib/educator-api", () => ({
                   unit_title: "Mock Unit",
                   year: "2023",
                   keystage: "KS2",
+                  keystage_slug: "ks2",
                   tier: null,
                   examboard: null,
                   subject: "Maths",
-                  supplementary_data: [
+                  subject_slug: "maths",
+                  unit_order: 1,
+                  year_order: 1,
+                  lessons: [
                     {
                       slug: "lesson-1",
                       title: "Lesson 1",
@@ -79,13 +83,18 @@ describe("api/educator-api/getSavedContentLists", () => {
       "mock-programme": {
         year: "2023",
         keystage: "KS2",
+        keystageSlug: "ks2",
         subject: "Maths",
+        subjectSlug: "maths",
         tier: null,
         examboard: null,
         units: [
           {
             unitSlug: "mock-unit",
             unitTitle: "Mock Unit",
+            optionalityTitle: null,
+            unitOrder: 1,
+            yearOrder: 1,
             savedAt: expect.any(String), // Date string
             lessons: [
               {

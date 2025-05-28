@@ -17,17 +17,18 @@ import NoSavedContent from "@/components/TeacherComponents/NoSavedContent/NoSave
 import { UnitData } from "@/node-lib/educator-api/queries/getUserListContent/getUserListContent.types";
 import { TrackingProgrammeData } from "@/node-lib/educator-api/helpers/saveUnits/utils";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import { resolveOakHref } from "@/common-lib/urls";
 
 export type CollectionData = Array<{
   subject: string;
   subjectSlug: string;
   subheading: string;
-  examboard: string | null;
-  tier: string | null;
   keystage: string;
   keystageSlug: string;
   units: UnitData;
   programmeSlug: string;
+  programmeTitle: string;
+  searchQuery: string | null;
 }>;
 
 type MyLibraryProps = {
@@ -87,9 +88,16 @@ export default function MyLibrary(props: MyLibraryProps) {
               <OakBox $position="relative" key={collection.programmeSlug}>
                 <OakAnchorTarget id={collection.programmeSlug} />
 
-                <OakHeading tag="h2">
-                  {collection.subject} {collection.subheading}
-                </OakHeading>
+                <OakHeading tag="h2">{collection.programmeTitle}</OakHeading>
+                <OakLink
+                  href={resolveOakHref({
+                    page: "unit-index",
+                    programmeSlug: collection.programmeSlug,
+                    search: { category: collection.searchQuery },
+                  })}
+                >
+                  go to programme
+                </OakLink>
                 {collection.units
                   .sort(
                     (a, b) =>

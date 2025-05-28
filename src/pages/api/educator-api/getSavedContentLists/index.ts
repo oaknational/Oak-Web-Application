@@ -45,6 +45,7 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
           acc[programmeSlug] = {
             subject: browseData.subject,
             subjectSlug: browseData.subject_slug,
+            subjectCategories: browseData.subject_categories,
             keystage: browseData.keystage,
             keystageSlug: browseData.keystage_slug,
             tier: browseData.tier,
@@ -74,6 +75,7 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
         userId,
       },
     });
+    console.log("diego error", err);
 
     return res.status(500).json({ error: JSON.stringify(err) });
   }

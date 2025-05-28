@@ -67062,6 +67062,7 @@ export type GetUserListContentQuery = {
           examboard?: any | null;
           unit_order?: any | null;
           year_order?: any | null;
+          subject_categories?: any | null;
         }>;
       };
     } | null;
@@ -67200,6 +67201,7 @@ export const GetUserListContentDocument = gql`
             examboard: programme_fields(path: "examboard")
             unit_order: supplementary_data(path: "unit_order")
             year_order: programme_fields(path: "year_display_order")
+            subject_categories: unit_data(path: "subjectcategories")
           }
         }
         created_at
