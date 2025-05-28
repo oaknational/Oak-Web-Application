@@ -135,6 +135,7 @@ export const LessonItemContainer = forwardRef<
           }
           $position={"relative"}
           $flexDirection={"column"}
+          $gap={"space-between-xs"}
         >
           <OakFlex
             $flexDirection={["column", "row"]}

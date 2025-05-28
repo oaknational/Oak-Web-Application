@@ -555,7 +555,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                           Our video supports your planning with teaching tips,
                           modelled explanations, and inspiration from other
                           teachers.{" "}
-                          {!actions?.disablePupilShare ? (
+                          {!actions?.disablePupilShare && !isSpecialist ? (
                             <OakSpan>
                               You can also share the{" "}
                               <OakLink
