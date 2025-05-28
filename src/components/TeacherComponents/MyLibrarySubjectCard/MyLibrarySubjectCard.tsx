@@ -1,8 +1,10 @@
 import {
   OakAnchorTarget,
+  OakBox,
   OakFlex,
   OakHeading,
   OakIcon,
+  OakLink,
   OakSecondaryLink,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
@@ -110,6 +112,11 @@ export default function MyLibrarySubjectCard(props: MyLibrarySubjectCardProps) {
       {savedUnits.map((unit) => (
         <MyLibraryUnitCard {...unit} />
       ))}
+      <OakBox $display={["block", "none"]} $pv="inner-padding-xs">
+        <OakLink isTrailingIcon iconName="arrow-up" href="#collections-menu">
+          Back to collections
+        </OakLink>
+      </OakBox>
     </OakFlex>
   );
 }
