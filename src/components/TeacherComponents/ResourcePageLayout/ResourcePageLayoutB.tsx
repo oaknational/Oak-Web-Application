@@ -140,32 +140,13 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
             </OakBox>
           )}
           {props.cardGroup}
-          {props.showRiskAssessmentBanner && props.showTermsAgreement && (
-            <OakBox $display={["none", "none", "block"]}>
-              <RiskAssessmentBanner />
-            </OakBox>
-          )}
-          {!props.showTermsAgreement && (
+          {props.showRiskAssessmentBanner && (
             <>
-              <OakBox
-                $pb={
-                  props.showRiskAssessmentBanner
-                    ? "inner-padding-none"
-                    : "inner-padding-xl3"
-                }
-                $mt={"space-between-m"}
-                $maxWidth={"all-spacing-22"}
-                data-testid="copyright-container"
-              >
-                <CopyrightNotice
-                  fullWidth
-                  showPostAlbCopyright={props.showPostAlbCopyright}
-                  openLinksExternally={true}
-                  copyrightYear={props.updatedAt}
-                />
-              </OakBox>
-
-              {props.showRiskAssessmentBanner && (
+              {props.showTermsAgreement ? (
+                <OakBox $display={["none", "none", "block"]}>
+                  <RiskAssessmentBanner />
+                </OakBox>
+              ) : (
                 <OakBox $mv="space-between-s">
                   <RiskAssessmentBanner />
                 </OakBox>
@@ -242,6 +223,22 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
                   </OakUL>
                 </OakFlex>
               </OakFlex>
+            )}
+
+            {!props.showTermsAgreement && (
+              <OakBox
+                $pb={"inner-padding-m"}
+                $mt={"space-between-m"}
+                $maxWidth={"all-spacing-22"}
+                data-testid="copyright-container"
+              >
+                <CopyrightNotice
+                  fullWidth
+                  showPostAlbCopyright={props.showPostAlbCopyright}
+                  openLinksExternally={true}
+                  copyrightYear={props.updatedAt}
+                />
+              </OakBox>
             )}
 
             {props.cta}
