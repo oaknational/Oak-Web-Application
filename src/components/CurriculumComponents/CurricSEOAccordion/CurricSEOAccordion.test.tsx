@@ -17,7 +17,6 @@ jest.mock("@/components/SharedComponents/PortableText", () => ({
   basePortableTextComponents: {},
 }));
 
-// Type definitions for mocked components
 interface MockOakBasicAccordionProps {
   children: ReactNode;
   header: ReactNode;
