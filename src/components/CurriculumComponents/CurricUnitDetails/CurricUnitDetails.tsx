@@ -12,6 +12,7 @@ import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import CurricUnitDetailsAccordion from "@/components/CurriculumComponents/CurricUnitDetailsAccordion";
 import { Unit } from "@/utils/curriculum/types";
 import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
+import { ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS } from "@/utils/curriculum/constants";
 
 export type CurricUnitDetailsProps = {
   unit: Unit;
@@ -52,7 +53,9 @@ export default function CurricUnitDetails({
   }`;
 
   const shouldDisplayPriorKnowledge =
-    priorKnowledgeRequirements && priorKnowledgeRequirements.length > 0;
+    ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS &&
+    priorKnowledgeRequirements &&
+    priorKnowledgeRequirements.length > 0;
 
   return (
     <OakFlex

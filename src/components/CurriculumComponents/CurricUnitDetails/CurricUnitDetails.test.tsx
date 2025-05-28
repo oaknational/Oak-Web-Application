@@ -5,6 +5,7 @@ import CurricUnitDetails from "./CurricUnitDetails";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { createUnit } from "@/fixtures/curriculum/unit";
+import { ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS } from "@/utils/curriculum/constants";
 
 const testCurricUnitDetails = {
   unit: createUnit({
@@ -53,9 +54,13 @@ describe("CurricUnitDetails component", () => {
         <CurricUnitDetails {...testCurricUnitDetails} />,
       );
 
-      expect(getAllByTestId("accordion-component")).toHaveLength(4);
+      expect(getAllByTestId("accordion-component")).toHaveLength(
+        ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS ? 4 : 3,
+      );
       expect(getByText("Lessons in unit")).toBeInTheDocument();
-      expect(getByText("Prior knowledge requirements")).toBeInTheDocument();
+      if (ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS) {
+        expect(getByText("Prior knowledge requirements")).toBeInTheDocument();
+      }
       expect(getByText("Previous unit description")).toBeInTheDocument();
       expect(getByText("Following unit description")).toBeInTheDocument();
     });
@@ -68,11 +73,15 @@ describe("CurricUnitDetails component", () => {
         />,
       );
 
-      expect(getAllByTestId("accordion-component")).toHaveLength(3);
+      expect(getAllByTestId("accordion-component")).toHaveLength(
+        ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS ? 3 : 2,
+      );
       expect(getByText("Lessons in unit")).toBeInTheDocument();
       expect(getByText("Description")).toBeInTheDocument();
       expect(getByText("Why this why now")).toBeInTheDocument();
-      expect(getByText("Prior knowledge requirements")).toBeInTheDocument();
+      if (ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS) {
+        expect(getByText("Prior knowledge requirements")).toBeInTheDocument();
+      }
     });
 
     test("when expanding lesson accordion it should render correct lessons list", async () => {
