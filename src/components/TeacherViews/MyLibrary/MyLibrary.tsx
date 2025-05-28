@@ -83,6 +83,7 @@ export default function MyLibrary(props: MyLibraryProps) {
           >
             {collectionData.map((collection) => (
               <MyLibrarySubjectCard
+                key={collection.programmeSlug}
                 programmeTitle={collection.programmeTitle}
                 programmeSlug={collection.programmeSlug}
                 programmeHref={resolveOakHref({

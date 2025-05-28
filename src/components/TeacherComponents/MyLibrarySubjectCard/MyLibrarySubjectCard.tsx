@@ -110,7 +110,7 @@ export default function MyLibrarySubjectCard(props: MyLibrarySubjectCardProps) {
         programmeHref={programmeHref}
       />
       {savedUnits.map((unit) => (
-        <MyLibraryUnitCard {...unit} />
+        <MyLibraryUnitCard {...unit} key={unit.unitSlug} />
       ))}
       <OakBox $display={["block", "none"]} $pv="inner-padding-xs">
         <OakLink isTrailingIcon iconName="arrow-up" href="#collections-menu">
