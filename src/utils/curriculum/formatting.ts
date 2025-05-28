@@ -152,15 +152,15 @@ export function getYearSubheadingText(
   // Handle subject categories (KS1-KS3)
   if (
     filters.subjectCategories.length > 0 &&
-    !filters.subjectCategories.includes("-1") && // Skip if "All" is selected
+    !filters.subjectCategories.includes("all") && // Skip if "All" is selected
     (!isKs4Year || filters.childSubjects.length === 0)
   ) {
     const subjectCategoryTitles = filters.subjectCategories
-      .map((id) => {
+      .map((slug) => {
         // Try to find subject category in current year
-        const subjectCategory = yearData[year]?.subjectCategories.find(
-          (sc) => sc.id.toString() === id,
-        );
+        const subjectCategory = yearData[year]?.subjectCategories.find((sc) => {
+          return sc.slug === slug;
+        });
         return subjectCategory?.title;
       })
       .filter(Boolean);

@@ -14,7 +14,6 @@ import {
 import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumUnits.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
-import { mockPrerelease } from "@/utils/mocks";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import "@/__tests__/__helpers__/ResizeObserverMock";
 import {
@@ -158,7 +157,7 @@ const unitData = [
     tier: null,
     tier_slug: null,
     tags: [{ id: 5, title: "Biology", category: "Discipline" }],
-    subjectcategories: [{ id: 5, title: "Biology" }],
+    subjectcategories: [{ id: 5, slug: "biology", title: "Biology" }],
     threads: [
       {
         title:
@@ -562,14 +561,6 @@ jest.mock("@/hooks/useAnalyticsPageProps.ts", () => ({
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
-jest.mock("next-sanity-image", () => ({
-  ...jest.requireActual("next-sanity-image"),
-  useNextSanityImage: () => ({
-    src: "/test/img/src.png",
-    width: 400,
-    height: 400,
-  }),
-}));
 const mockedCurriculumSequence = curriculumApi.curriculumSequence as jest.Mock;
 const mockedFetchSubjectPhasePickerData =
   fetchSubjectPhasePickerData as jest.Mock;
@@ -638,9 +629,6 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       });
 
       test("user can see the tier selector for secondary maths", async () => {
-        // Mock for prerelease behavior
-        mockPrerelease("curriculum.downloads");
-
         // Mock for useRouter to provide the correct router query and other properties
         (useRouter as jest.Mock).mockReturnValue({
           query: { tab: "downloads", subjectPhaseSlug: "maths-secondary" },
@@ -706,7 +694,6 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
 
     if (!DISABLE_DOWNLOADS) {
       it("renders the Curriculum Downloads Tab (with prerelease)", () => {
-        mockPrerelease("curriculum.downloads");
         (useRouter as jest.Mock).mockReturnValue({
           query: { tab: "downloads" },
           isPreview: false,
@@ -1303,6 +1290,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           subjectCategories: [
             {
               id: 5,
+              slug: "biology",
               title: "Biology",
             },
           ],
@@ -1384,7 +1372,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
                   title: "Biology",
                 },
               ],
-              subjectcategories: [{ id: 5, title: "Biology" }],
+              subjectcategories: [{ id: 5, slug: "biology", title: "Biology" }],
               threads: [
                 {
                   order: 3,

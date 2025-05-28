@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -20,7 +22,7 @@ const axeContext = {
 };
 
 const startAxe = async () => {
-  if (isBrowser) {
+  if (isBrowser && process.env.NODE_ENV !== "production") {
     const axe = (await import("@axe-core/react")).default;
     axe(React, ReactDOM, 1000, axeConfig, axeContext);
   }

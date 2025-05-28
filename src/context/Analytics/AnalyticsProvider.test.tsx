@@ -67,6 +67,7 @@ jest.mock("@/browser-lib/getBrowserConfig", () => {
 });
 
 console.log = jest.fn();
+console.info = jest.fn();
 
 describe("useAnalytics", () => {
   beforeEach(() => {
@@ -87,6 +88,9 @@ describe("useAnalytics", () => {
       "User Props:",
       {},
     );
+    expect(console.info).toHaveBeenCalledWith(
+      "No HubSpot cookie found, user likely has not interacted with HubSpot",
+    );
     expect(posthogIdentify).toHaveBeenCalledWith("someone", {});
   });
   test("service.identify() should not be called if service not included in array", () => {
@@ -104,6 +108,9 @@ describe("useAnalytics", () => {
       "User Props:",
       {},
     );
+    expect(console.info).toHaveBeenCalledWith(
+      "No HubSpot cookie found, user likely has not interacted with HubSpot",
+    );
     expect(posthogIdentify).not.toHaveBeenCalled();
   });
   test("service.identify() should be called if no services array passed", () => {
@@ -118,6 +125,9 @@ describe("useAnalytics", () => {
       { "Analytics Use Case": null, "Link URL": "/", "Page Name": "Homepage" },
       "User Props:",
       {},
+    );
+    expect(console.info).toHaveBeenCalledWith(
+      "No HubSpot cookie found, user likely has not interacted with HubSpot",
     );
     expect(posthogIdentify).toHaveBeenCalledWith("someone", {});
   });
