@@ -117,7 +117,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     lessonReleaseDate,
   } = lesson;
 
-  const useDownloadsExperiment =
+  const isDownloadsExperiment =
     useFeatureFlagVariantKey("downloads-grouping-experiement") === "grouping";
 
   const showRiskAssessmentBanner = !!actions?.isPePractical;
@@ -390,10 +390,10 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             );
           }
 
-          const ResourcePageLayoutVariant = useDownloadsExperiment
+          const ResourcePageLayoutVariant = isDownloadsExperiment
             ? ResourcePageLayoutB
             : ResourcePageLayout;
-          const DownloadCardGroupVariant = useDownloadsExperiment
+          const DownloadCardGroupVariant = isDownloadsExperiment
             ? DownloadCardGroupB
             : DownloadCardGroup;
 
