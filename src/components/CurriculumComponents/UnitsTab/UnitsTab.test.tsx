@@ -1,3 +1,11 @@
+import { render } from "@testing-library/react";
+
+import UnitsTab from "./UnitsTab";
+
+import { formatCurriculumUnitsData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { CurriculumFilters } from "@/utils/curriculum/types";
+import "@/__tests__/__helpers__/ResizeObserverMock";
+
 // import userEvent from "@testing-library/user-event";
 // import { waitFor } from "@testing-library/react";
 
@@ -5,14 +13,68 @@
 
 // import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumUnits.fixture";
 // import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import "@/__tests__/__helpers__/ResizeObserverMock";
-// import { formatCurriculumUnitsData } from "@/pages-helpers/curriculum/docx/tab-helpers";
-// import { CurriculumFilters } from "../CurriculumVisualiserFilters/CurriculumVisualiserFilters";
 
 // const render = renderWithProviders();
 
 const yearGroupSelected = jest.fn();
 const unitInformationViewed = jest.fn();
+
+// Mock useMediaQuery
+jest.mock("@/hooks/useMediaQuery", () => ({
+  __esModule: true,
+  default: () => false, // Default to desktop view
+}));
+
+// Mock Oak components
+jest.mock("@oaknational/oak-components", () => ({
+  OakHeading: ({ children }: { children: React.ReactNode }) => (
+    <h1>{children}</h1>
+  ),
+  OakBox: ({ children }: { children: React.ReactNode }) => (
+    <div>{children}</div>
+  ),
+}));
+
+// Mock other components
+jest.mock("../CurriculumVisualiser", () => {
+  return function MockCurriculumVisualiser() {
+    return <div data-testid="curriculum-visualiser">Curriculum Visualiser</div>;
+  };
+});
+
+jest.mock("../CurricVisualiserLayout", () => ({
+  CurricVisualiserLayout: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="curric-visualiser-layout">{children}</div>
+  ),
+}));
+
+jest.mock("../CurricVisualiserFiltersMobile", () => {
+  return function MockCurricVisualiserFiltersMobile() {
+    return <div data-testid="mobile-filters">Mobile Filters</div>;
+  };
+});
+
+jest.mock("../CurricVisualiserFiltersDesktop", () => ({
+  CurricVisualiserFiltersDesktop: () => (
+    <div data-testid="desktop-filters">Desktop Filters</div>
+  ),
+}));
+
+jest.mock("@/components/SharedComponents/ScreenReaderOnly", () => {
+  return function MockScreenReaderOnly({
+    children,
+  }: {
+    children: React.ReactNode;
+  }) {
+    return <div data-testid="screen-reader-only">{children}</div>;
+  };
+});
+
+jest.mock("@/components/CurriculumComponents/UnitTabBanner", () => {
+  return function MockUnitTabBanner() {
+    return <div data-testid="unit-tab-banner">Unit Tab Banner</div>;
+  };
+});
 
 // const trackingDataSecondaryScience = {
 //   subjectTitle: "Science",
@@ -230,7 +292,98 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     window.IntersectionObserver = mockIntersectionObserver;
   });
 
-  it("placeholder", () => {});
+  test("throws error when subject is not found in curriculumPhaseOptions", () => {
+    const mockTrackingData = {
+      subjectTitle: "English",
+      subjectSlug: "english",
+      ks4OptionSlug: null,
+      phaseSlug: "primary",
+    };
+
+    const mockFormattedData = formatCurriculumUnitsData({
+      units: [
+        {
+          planned_number_of_lessons: 8,
+          domain: "Grammar",
+          domain_id: 17,
+          connection_future_unit_description: null,
+          connection_prior_unit_description: null,
+          connection_future_unit_title: null,
+          connection_prior_unit_title: null,
+          examboard: null,
+          examboard_slug: null,
+          keystage_slug: "ks2",
+          lessons: [],
+          order: 1,
+          phase: "Primary",
+          phase_slug: "primary",
+          slug: "test-unit",
+          subject: "English",
+          subject_parent: null,
+          subject_parent_slug: null,
+          subject_slug: "english",
+          tags: null,
+          subjectcategories: null,
+          threads: [],
+          tier: null,
+          tier_slug: null,
+          title: "Test Unit",
+          unit_options: [],
+          year: "6",
+          cycle: "1",
+          why_this_why_now: null,
+          description: null,
+          state: "published",
+        },
+      ],
+    });
+
+    const mockFilters: CurriculumFilters = {
+      childSubjects: [],
+      subjectCategories: [],
+      tiers: [],
+      years: [],
+      threads: [],
+      pathways: [],
+    };
+
+    const mockSlugs = {
+      subjectSlug: "nonexistent-subject", // This subject doesn't exist in curriculumPhaseOptions
+      phaseSlug: "primary",
+      ks4OptionSlug: null,
+    };
+
+    const mockCurriculumPhaseOptions = {
+      subjects: [
+        {
+          title: "Mathematics",
+          slug: "mathematics",
+          keystages: [{ slug: "ks2", title: "KS2" }],
+          phases: [],
+          ks4_options: [],
+        },
+      ],
+    };
+
+    // Expect the component to throw an error when subject is not found
+    expect(() => {
+      render(
+        <UnitsTab
+          trackingData={mockTrackingData}
+          formattedData={mockFormattedData}
+          filters={mockFilters}
+          onChangeFilters={() => {}}
+          slugs={mockSlugs}
+          ks4Options={[]}
+          curriculumPhaseOptions={mockCurriculumPhaseOptions}
+        />,
+      );
+    }).toThrow(
+      "Selected subject not found in curriculumPhaseOptions for UnitsTab",
+    );
+  });
+
+  // it("placeholder", () => {});
   // test("user can see the content", async () => {
   //   const { queryAllByTestId } = render(
   //     <UnitsTab
@@ -373,7 +526,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   //             order: 2,
   //           },
   //         ],
-  //         title: "’A Superhero Like You!’: Reading and Writing",
+  //         title: "'A Superhero Like You!' Reading and Writing",
   //         unit_options: [],
   //         year: "1",
   //         cycle: "1",
