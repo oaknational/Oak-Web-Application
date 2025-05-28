@@ -22,7 +22,7 @@ import { CollectionData } from "@/components/TeacherViews/MyLibrary/MyLibrary";
 
 const reportError = errorReporter("educatorApi");
 
-export const useContentLists = () => {
+export const useMyLibrary = () => {
   const { track } = useAnalytics();
   const { data: savedProgrammeUnits, isLoading } =
     useGetEducatorData<UserlistContentApiResponse>(
@@ -35,11 +35,13 @@ export const useContentLists = () => {
   const [collectionData, setCollectionData] = useState<CollectionData | null>(
     null,
   );
+  const [locallySavedUnits, setLocallySavedUnits] = useState<Array<string>>([]);
 
   useEffect(() => {
     if (savedProgrammeUnits) {
       const parsedData =
         userListContentApiResponse.safeParse(savedProgrammeUnits);
+
       if (parsedData.success) {
         const collectionData = Object.entries(parsedData.data)
           .map(([programmeSlug, programmeData]) => {
@@ -62,8 +64,13 @@ export const useContentLists = () => {
               a.subheading.localeCompare(b.subheading)
             );
           });
-
         setCollectionData(collectionData);
+
+        // Create a flat list of saved unit slugs to be updated locally
+        const savedUnitSlugs = Object.values(parsedData.data).flatMap(
+          (programmeData) => programmeData.units.map((unit) => unit.unitSlug),
+        );
+        setLocallySavedUnits(savedUnitSlugs);
       } else {
         reportError(parsedData.error, { savedProgrammeUnits });
       }
@@ -73,16 +80,8 @@ export const useContentLists = () => {
   }, [savedProgrammeUnits]);
 
   const isUnitSaved = useCallback(
-    (unitSlug: string, programmeSlug: string) =>
-      collectionData?.some((collection) =>
-        collection.units.some(
-          (unit) =>
-            unit.unitSlug === unitSlug &&
-            collection.programmeSlug === programmeSlug,
-        ),
-      ),
-
-    [collectionData],
+    (unitSlug: string) => locallySavedUnits.includes(unitSlug),
+    [locallySavedUnits],
   );
 
   const { setCurrentToastProps } = useOakToastContext();
@@ -94,11 +93,15 @@ export const useContentLists = () => {
   ) => {
     setCurrentToastProps(SavedToastProps);
     incrementSavedUnitsCount();
+    setLocallySavedUnits((prev) => [...prev, unitSlug]);
     await postEducatorData(
       `/api/educator-api/saveUnit/${programmeSlug}/${unitSlug}`,
       () => {
         // Revert the optimistic update if the request fails and show an error toast
         setCurrentToastProps(ErrorToastProps);
+        setLocallySavedUnits((prev) =>
+          prev.filter((slug) => slug !== unitSlug),
+        );
         decrementSavedUnitsCount();
       },
     );
@@ -125,11 +128,13 @@ export const useContentLists = () => {
   ) => {
     setCurrentToastProps(UnsavedToastProps);
     decrementSavedUnitsCount();
+    setLocallySavedUnits((prev) => prev.filter((slug) => slug !== unitSlug));
     await postEducatorData(
       `/api/educator-api/unsaveUnit/${programmeSlug}/${unitSlug}`,
       () => {
         // Revert the optimistic update if the request fails and show an error toast
         setCurrentToastProps(ErrorToastProps);
+        setLocallySavedUnits((prev) => [...prev, unitSlug]);
         incrementSavedUnitsCount();
       },
     );
@@ -154,7 +159,7 @@ export const useContentLists = () => {
     programmeSlug: string,
     trackingData: TrackingProgrammeData,
   ) => {
-    if (isUnitSaved(unitSlug, programmeSlug)) {
+    if (isUnitSaved(unitSlug)) {
       onUnsave(unitSlug, programmeSlug, trackingData);
     } else {
       onSave(unitSlug, programmeSlug, trackingData);

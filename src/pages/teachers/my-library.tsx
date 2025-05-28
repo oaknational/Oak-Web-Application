@@ -5,10 +5,10 @@ import withFeatureFlag from "@/hocs/withFeatureFlag";
 import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 import { withPageAuthRequired } from "@/hocs/withPageAuthRequired";
 import MyLibrary from "@/components/TeacherViews/MyLibrary/MyLibrary";
-import { useContentLists } from "@/node-lib/educator-api/helpers/saveUnits/useSaveContentLists";
+import { useMyLibrary } from "@/node-lib/educator-api/helpers/saveUnits/useMyLibrary";
 
 function MyLibraryPage() {
-  const { collectionData, isLoading } = useContentLists();
+  const { collectionData, isLoading } = useMyLibrary();
 
   return (
     <AppLayout
