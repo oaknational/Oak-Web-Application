@@ -14,6 +14,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 
 const StyledOL = styled.ol`
   list-style-type: none;
+  padding: 0;
 `;
 
 const StyledOakLI = styled(OakLI)`
@@ -54,23 +55,6 @@ const getLastSavedText = (date: string) => {
     ? `Saved at ${formattedTime}`
     : `Saved on ${formattedDate} at ${formattedTime}`;
 };
-
-const UnitCardIndex = ({ index }: Pick<MyLibraryUnitCardProps, "index">) => (
-  <OakFlex
-    $pa={"inner-padding-l"}
-    $background={"bg-decorative1-main"}
-    $flexDirection={"column"}
-    $justifyContent={"center"}
-    $alignItems={"center"}
-    $width={["all-spacing-8", "all-spacing-11"]}
-    $height={["all-spacing-8", "all-spacing-11"]}
-    $borderRadius={"border-radius-m"}
-  >
-    <OakHeading tag="div" $font={["heading-6", "heading-5"]}>
-      {index}
-    </OakHeading>
-  </OakFlex>
-);
 
 const SaveButton = ({
   unitTitle,
@@ -127,7 +111,6 @@ const UnitCardHeader = ({ ...props }: MyLibraryUnitCardProps) => {
 
 const UnitCardContent = ({
   lessonCountHeader,
-
   ...props
 }: {
   lessonCountHeader: string;
@@ -137,12 +120,6 @@ const UnitCardContent = ({
 
   return (
     <OakFlex>
-      <OakBox
-        $display={["none", "flex"]}
-        $width={"all-spacing-11"}
-        $mr={"space-between-m"}
-      />
-
       <OakFlex $flexDirection={"column"} $gap={"all-spacing-6"}>
         <OakFlex $justifyContent={"space-between"}>
           <OakP $font={"heading-light-7"}>{lessonCountHeader}</OakP>
@@ -155,9 +132,9 @@ const UnitCardContent = ({
           </OakBox>
         </OakFlex>
         <OakBox
-          $borderColor={"border-decorative1-stronger"}
           $bl={["border-solid-none", "border-solid-s"]}
           $pl={["inner-padding-none", "inner-padding-xl"]}
+          $borderColor={"border-decorative1-stronger"}
         >
           <StyledOL>
             {lessons
@@ -207,7 +184,6 @@ const UnitCardContent = ({
 };
 
 export type MyLibraryUnitCardProps = {
-  index: number;
   unitTitle: string;
   unitSlug: string;
   programmeSlug: string;
@@ -224,7 +200,7 @@ export type MyLibraryUnitCardProps = {
 };
 
 export default function MyLibraryUnitCard(props: MyLibraryUnitCardProps) {
-  const { index, lessons } = props;
+  const { lessons } = props;
 
   const unpublishedLessonCount = lessons.filter(
     (lesson) => lesson.state !== "published",
@@ -245,7 +221,6 @@ export default function MyLibraryUnitCard(props: MyLibraryUnitCardProps) {
       $gap={"all-spacing-5"}
     >
       <OakFlex $gap={["space-between-s", "space-between-m"]}>
-        <UnitCardIndex index={index} />
         <UnitCardHeader {...props} />
       </OakFlex>
       <UnitCardContent lessonCountHeader={lessonCountHeader} {...props} />

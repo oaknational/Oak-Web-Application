@@ -96,7 +96,6 @@ export default function MyLibrary(props: MyLibraryProps) {
                 savedUnits={collection.units.map((unit) => ({
                   ...unit,
                   programmeSlug: collection.programmeSlug,
-                  index: 1, // TODO: remove index
                   onSave: () =>
                     onSaveToggle(unit.unitSlug, collection.programmeSlug, {
                       keyStageTitle:
