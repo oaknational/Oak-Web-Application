@@ -2,12 +2,12 @@ import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
+import MyLibrarySubjectCard from "./MyLibrarySubjectCard";
+
 import {
   completeUnitLessons,
   incompleteUnitLessons,
-} from "../MyLibraryUnitCard/MyLibraryUnitCard.stories";
-
-import MyLibrarySubjectCard from "./MyLibrarySubjectCard";
+} from "@/fixtures/teachers/myLibrary/unitCard";
 
 const sampleUnits = [
   {

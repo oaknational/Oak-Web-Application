@@ -11,6 +11,7 @@ import {
 import styled from "styled-components";
 
 import { resolveOakHref } from "@/common-lib/urls";
+import { MyLibraryUnit } from "@/node-lib/educator-api/queries/getUserListContent/getUserListContent.types";
 
 const StyledOL = styled.ol`
   list-style-type: none;
@@ -193,19 +194,11 @@ const UnitCardContent = ({
   );
 };
 
-export type MyLibraryUnitCardProps = {
-  unitTitle: string;
-  unitSlug: string;
-  optionalityTitle?: string | null;
+export type MyLibraryUnitCardProps = Omit<
+  MyLibraryUnit,
+  "yearOrder" | "unitOrder"
+> & {
   programmeSlug: string;
-  savedAt: string;
-  year: string;
-  lessons: {
-    slug: string;
-    order: number;
-    title: string;
-    state: string;
-  }[];
   onSave?: () => void;
   isSaved?: boolean;
 };

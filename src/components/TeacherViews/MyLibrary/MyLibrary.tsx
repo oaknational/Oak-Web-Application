@@ -7,7 +7,7 @@ import {
 
 import MyLibraryHeader from "@/components/TeacherComponents/MyLibraryHeader/MyLibraryHeader";
 import NoSavedContent from "@/components/TeacherComponents/NoSavedContent/NoSavedContent";
-import { UnitData } from "@/node-lib/educator-api/queries/getUserListContent/getUserListContent.types";
+import { MyLibraryUnit } from "@/node-lib/educator-api/queries/getUserListContent/getUserListContent.types";
 import { TrackingProgrammeData } from "@/node-lib/educator-api/helpers/saveUnits/utils";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -19,7 +19,7 @@ export type CollectionData = Array<{
   subheading: string;
   keystage: string;
   keystageSlug: string;
-  units: UnitData;
+  units: Array<MyLibraryUnit>;
   programmeSlug: string;
   programmeTitle: string;
   searchQuery: string | null;

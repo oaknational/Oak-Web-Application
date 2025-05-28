@@ -44,27 +44,25 @@ export const getUserListContentResponse = z.object({
   users_content: users_content,
 });
 
-const units = z.array(
-  z.object({
-    unitSlug: z.string(),
-    unitTitle: z.string(),
-    optionalityTitle: z.string().nullish(),
-    savedAt: z.string(),
-    unitOrder: z.number(),
-    yearOrder: z.number(),
-    year: z.string(),
-    lessons: z.array(
-      z.object({
-        slug: z.string(),
-        title: z.string(),
-        state: z.string(),
-        order: z.number(),
-      }),
-    ),
-  }),
-);
+const unit = z.object({
+  unitSlug: z.string(),
+  unitTitle: z.string(),
+  optionalityTitle: z.string().nullish(),
+  savedAt: z.string(),
+  unitOrder: z.number(),
+  yearOrder: z.number(),
+  year: z.string(),
+  lessons: z.array(
+    z.object({
+      slug: z.string(),
+      title: z.string(),
+      state: z.string(),
+      order: z.number(),
+    }),
+  ),
+});
 
-export type UnitData = z.infer<typeof units>;
+export type MyLibraryUnit = z.infer<typeof unit>;
 
 export const userListContentApiResponse = z.record(
   z.string(),
@@ -76,7 +74,7 @@ export const userListContentApiResponse = z.record(
     subjectCategories: z.array(z.string()).nullish(),
     tier: z.string().nullable(),
     examboard: z.string().nullable(),
-    units: units,
+    units: z.array(unit),
   }),
 );
 
