@@ -121,6 +121,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   const isQuizHeader =
     useFeatureFlagVariantKey("lesson-overview-experiement") === "quiz-header";
+  const isSubHeader =
+    useFeatureFlagVariantKey("lesson-overview-experiement") === "sub-header";
 
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
@@ -451,6 +453,11 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       slugs={slugs}
                       anchorId="slide-deck"
                       pageLinks={pageLinks}
+                      subheader={
+                        isSubHeader
+                          ? "We break learning into key concepts using learning cycles, each with clear explanations, checks for understanding, and practice tasks with feedback — all in downloadable slides ready to adapt."
+                          : undefined
+                      }
                     >
                       <LessonOverviewPresentation
                         asset={presentationUrl}
@@ -541,6 +548,11 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       pageLinks.length - 1
                     }
                     pageLinks={pageLinks}
+                    subheader={
+                      isSubHeader
+                        ? "Our video supports your planning with teaching tips, modelled explanations, and inspiration from other teachers. You can also share the online pupil version of this lesson for homework or revision to keep learning on track."
+                        : undefined
+                    }
                   >
                     <LessonOverviewVideo
                       video={videoMuxPlaybackId}
@@ -580,6 +592,11 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     isFinalElement={
                       pageLinks.findIndex((p) => p.label === "Worksheet") ===
                       pageLinks.length - 1
+                    }
+                    subheader={
+                      isSubHeader
+                        ? "The practice tasks in the lesson slides are also available as an editable worksheet ready to download in PowerPoint format."
+                        : undefined
                     }
                   >
                     <LessonOverviewPresentation
@@ -640,6 +657,11 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         ) ===
                         pageLinks.length - 1
                       }
+                      subheader={
+                        isSubHeader
+                          ? "This starter quiz will check that your pupils have the necessary prior knowledge and can access it for this lesson."
+                          : undefined
+                      }
                     >
                       {starterQuiz && (
                         <QuizContainerNew
@@ -689,6 +711,11 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         ) ===
                         pageLinks.length - 1
                       }
+                      subheader={
+                        isSubHeader
+                          ? "This quiz will test your pupils’ understanding of the key learning points at the end of the lesson and can also be used later for retrieval practice."
+                          : undefined
+                      }
                     >
                       {exitQuiz && (
                         <QuizContainerNew
@@ -733,6 +760,11 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                           (p) => p.label === "Additional material",
                         ) ===
                         pageLinks.length - 1
+                      }
+                      subheader={
+                        isSubHeader
+                          ? "This lesson includes an editable additional material you can use during teaching."
+                          : undefined
                       }
                     >
                       <LessonOverviewDocPresentation

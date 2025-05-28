@@ -64,6 +64,7 @@ export interface LessonItemContainerProps {
   isSpecialist: boolean;
   pageLinks: ReturnType<typeof getPageLinksForLesson>;
   isCanonical?: boolean;
+  subheader?: string;
 }
 
 const getPreselectedDownloadFromTitle = (title: DownloadableLessonTitles) => {
@@ -91,6 +92,7 @@ export const LessonItemContainer = forwardRef<
     pageLinks,
     isCanonical,
     onPlayALLMediaClipButtonClick: onPlayAllMediaClipButtonClick,
+    subheader,
   } = props;
   const preselectedDownload = getPreselectedDownloadFromTitle(
     title as DownloadableLessonTitles,
@@ -126,68 +128,79 @@ export const LessonItemContainer = forwardRef<
       >
         <AnchorTarget id={anchorId} $paddingTop={24} ref={ref} />
         <OakFlex
-          $flexDirection={["column", "row"]}
-          $alignItems={["start", "end"]}
-          $gap={["all-spacing-3", "all-spacing-8"]}
-          $height={["auto", "inner-padding-xl3"]}
           $mb={
             skipContentAnchor
               ? ["space-between-xs", "space-between-m", "space-between-m"]
               : ["space-between-m"]
           }
           $position={"relative"}
+          $flexDirection={"column"}
         >
-          {title && (
-            <OakHeading $font={["heading-5", "heading-4"]} tag={"h2"}>
-              {title}
-            </OakHeading>
-          )}
-          {displayMediaClipButton && slugs && (
-            <LessonPlayAllButton
-              {...slugs}
-              isCanonical={isCanonical}
-              onTrackingCallback={onPlayAllMediaClipButtonClick}
-            />
-          )}
-          {downloadable && slugs && (
-            <LessonItemContainerLink
-              page={"download"}
-              resourceTitle={lowerCaseTitle}
-              onClick={onDownloadButtonClick}
-              preselected={preselectedDownload}
-              isSpecialist={props.isSpecialist}
-              {...slugs}
-            />
-          )}
-          {shareable && slugs && (
-            <LessonItemContainerLink
-              page={"share"}
-              resourceTitle={lowerCaseTitle}
-              onClick={onDownloadButtonClick}
-              preselected={preselectedShare}
-              isSpecialist={props.isSpecialist}
-              {...slugs}
-            />
-          )}
+          <OakFlex
+            $flexDirection={["column", "row"]}
+            $alignItems={["start", "end"]}
+            $gap={["all-spacing-3", "all-spacing-8"]}
+            $height={["auto", "inner-padding-xl3"]}
+          >
+            {title && (
+              <OakHeading $font={["heading-5", "heading-4"]} tag={"h2"}>
+                {title}
+              </OakHeading>
+            )}
+            {displayMediaClipButton && slugs && (
+              <LessonPlayAllButton
+                {...slugs}
+                isCanonical={isCanonical}
+                onTrackingCallback={onPlayAllMediaClipButtonClick}
+              />
+            )}
+            {downloadable && slugs && (
+              <LessonItemContainerLink
+                page={"download"}
+                resourceTitle={lowerCaseTitle}
+                onClick={onDownloadButtonClick}
+                preselected={preselectedDownload}
+                isSpecialist={props.isSpecialist}
+                {...slugs}
+              />
+            )}
+            {shareable && slugs && (
+              <LessonItemContainerLink
+                page={"share"}
+                resourceTitle={lowerCaseTitle}
+                onClick={onDownloadButtonClick}
+                preselected={preselectedShare}
+                isSpecialist={props.isSpecialist}
+                {...slugs}
+              />
+            )}
 
-          {skipContentAnchor && (
-            <OakSecondaryButton
-              element="a"
-              href={`${slugs?.lessonSlug}#${skipContentAnchor}`}
-              onFocus={() => setSkipVideoButtonFocused(true)}
-              onBlur={() => setSkipVideoButtonFocused(false)}
-              style={
-                skipVideoButtonFocused
-                  ? {}
-                  : {
-                      position: "absolute",
-                      left: "-1000px",
-                      opacity: 0,
-                    }
-              }
-            >
-              {`Skip ${lowerCaseTitle}`}
-            </OakSecondaryButton>
+            {skipContentAnchor && (
+              <OakSecondaryButton
+                element="a"
+                href={`${slugs?.lessonSlug}#${skipContentAnchor}`}
+                onFocus={() => setSkipVideoButtonFocused(true)}
+                onBlur={() => setSkipVideoButtonFocused(false)}
+                style={
+                  skipVideoButtonFocused
+                    ? {}
+                    : {
+                        position: "absolute",
+                        left: "-1000px",
+                        opacity: 0,
+                      }
+                }
+              >
+                {`Skip ${lowerCaseTitle}`}
+              </OakSecondaryButton>
+            )}
+          </OakFlex>
+          {subheader && (
+            <OakFlex $flexDirection="column" $maxWidth={"all-spacing-22"}>
+              <OakHeading tag="h3" $font={"body-2"}>
+                {subheader}
+              </OakHeading>
+            </OakFlex>
           )}
         </OakFlex>
 

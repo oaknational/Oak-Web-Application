@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { OakSideMenuNavLink, OakUL } from "@oaknational/oak-components";
+import { OakLI, OakSideMenuNavLink, OakUL } from "@oaknational/oak-components";
 
 import { getContainerId } from "../LessonItemContainer/LessonItemContainer";
 
@@ -21,7 +21,6 @@ const LessonOverviewSideNavAnchorLinks: FC<
       $gap="space-between-s"
       $flexDirection="column"
     >
-      {" "}
       {links.map((link, index) => {
         const { label, anchorId, subheading } = link;
 
@@ -33,15 +32,18 @@ const LessonOverviewSideNavAnchorLinks: FC<
         };
 
         return (
-          <OakSideMenuNavLink
-            onClick={() => {
-              document.getElementById(anchorId)?.scrollIntoView();
-              document.getElementById(getContainerId(anchorId))?.focus();
-            }}
-            item={item}
-            isSelected={isCurrent}
-            key={`${label}-${index}`}
-          />
+          <OakLI key={`${label}-${index}`}>
+            <OakSideMenuNavLink
+              onClick={() => {
+                document.getElementById(anchorId)?.scrollIntoView();
+                document.getElementById(getContainerId(anchorId))?.focus();
+              }}
+              item={item}
+              isSelected={isCurrent}
+              $pt={"inner-padding-xs"}
+              $pb={"inner-padding-xs"}
+            />
+          </OakLI>
         );
       })}
     </OakUL>
