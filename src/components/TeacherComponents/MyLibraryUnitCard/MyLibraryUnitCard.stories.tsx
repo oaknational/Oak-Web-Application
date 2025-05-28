@@ -10,7 +10,7 @@ export const completeUnitLessons = [
     order: 1,
     title:
       "Considering how Verne uses sentences in ‘Journey to the Centre of the Earth’",
-    _state: "published",
+    state: "published",
     lesson_uid: "LESS-SXDKH-H1472",
   },
   {
@@ -18,7 +18,7 @@ export const completeUnitLessons = [
     order: 2,
     title:
       "Emulating how Verne uses sentences in ‘Journey to the Centre of the Earth’",
-    _state: "published",
+    state: "published",
     lesson_uid: "LESS-HROSF-P1473",
   },
   {
@@ -26,7 +26,7 @@ export const completeUnitLessons = [
     order: 3,
     title:
       "'The War of the Worlds': How punctuation and sentence structures create impact",
-    _state: "published",
+    state: "published",
     lesson_uid: "LESS-LJDDZ-N1474",
   },
   {
@@ -34,14 +34,14 @@ export const completeUnitLessons = [
     order: 4,
     title:
       "Using punctuation to create specific effects in descriptive writing",
-    _state: "published",
+    state: "published",
     lesson_uid: "LESS-PDDEL-L1475",
   },
   {
     slug: "semantic-fields",
     order: 5,
     title: "Using semantic fields in a piece of creative writing",
-    _state: "published",
+    state: "published",
     lesson_uid: "LESS-BFVFW-W1477",
   },
 ];
@@ -51,7 +51,7 @@ export const incompleteUnitLessons = [
     order: 1,
     title:
       "Considering how Verne uses sentences in ‘Journey to the Centre of the Earth’",
-    _state: "published",
+    state: "published",
     lesson_uid: "LESS-SXDKH-H1472",
   },
   {
@@ -59,7 +59,7 @@ export const incompleteUnitLessons = [
     order: 2,
     title:
       "Emulating how Verne uses sentences in ‘Journey to the Centre of the Earth’",
-    _state: "new",
+    state: "new",
     lesson_uid: "LESS-HROSF-P1473",
   },
   {
@@ -67,7 +67,7 @@ export const incompleteUnitLessons = [
     order: 3,
     title:
       "'The War of the Worlds': How punctuation and sentence structures create impact",
-    _state: "new",
+    state: "new",
     lesson_uid: "LESS-LJDDZ-N1474",
   },
   {
@@ -75,24 +75,23 @@ export const incompleteUnitLessons = [
     order: 4,
     title:
       "Using punctuation to create specific effects in descriptive writing",
-    _state: "new",
+    state: "new",
     lesson_uid: "LESS-PDDEL-L1475",
   },
   {
     slug: "semantic-fields",
     order: 5,
     title: "Using semantic fields in a piece of creative writing",
-    _state: "published",
+    state: "published",
     lesson_uid: "LESS-BFVFW-W1477",
   },
 ];
 const unit = {
-  index: 1,
   unitTitle: "Fiction: Science Fiction Writing",
   unitSlug: "fiction-science-fiction-writing",
   programmeSlug: "english-secondary-ks4-aqa",
-  yearTitle: "Year 10",
-  saveTime: "2025-05-01T09:00:00.199406+00:00",
+  year: "Year 10",
+  savedAt: "2025-05-01T09:00:00.199406+00:00",
   href: "/teachers/programmes/english-secondary-ks4-aqa/units/fiction-science-fiction-writing/lessons",
   onSave: () => console.log("onSave!"),
   isSaved: false,
@@ -106,11 +105,6 @@ const meta: Meta<typeof MyLibraryUnitCard> = {
     lessons: completeUnitLessons,
   },
   argTypes: {
-    index: {
-      control: {
-        type: "number",
-      },
-    },
     unitTitle: {
       control: {
         type: "text",
@@ -126,7 +120,7 @@ const meta: Meta<typeof MyLibraryUnitCard> = {
         type: "text",
       },
     },
-    yearTitle: {
+    year: {
       control: {
         type: "text",
       },
@@ -136,12 +130,7 @@ const meta: Meta<typeof MyLibraryUnitCard> = {
         type: "object",
       },
     },
-    saveTime: {
-      control: {
-        type: "text",
-      },
-    },
-    href: {
+    savedAt: {
       control: {
         type: "text",
       },
