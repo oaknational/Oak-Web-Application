@@ -277,7 +277,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         pathway: pathwayTitle as PathwayValueType,
         lessonReleaseCohort: isLegacyDownload ? "2020-2023" : "2023-2026",
         lessonReleaseDate: lessonReleaseDate ?? "unreleased",
-        totalDownloadableResources: downloadsFilteredByCopyright?.length ?? 0,
+        totalDownloadableResources: downloads?.length ?? 0,
       });
     } catch (error) {
       setIsAttemptingDownload(false);
