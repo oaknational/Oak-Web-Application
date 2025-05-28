@@ -5,8 +5,11 @@ import withFeatureFlag from "@/hocs/withFeatureFlag";
 import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 import { withPageAuthRequired } from "@/hocs/withPageAuthRequired";
 import MyLibrary from "@/components/TeacherViews/MyLibrary/MyLibrary";
+import { useContentLists } from "@/node-lib/educator-api/helpers/saveUnits/useSaveContentLists";
 
 function MyLibraryPage() {
+  const { collectionData, isLoading } = useContentLists();
+
   return (
     <AppLayout
       seoProps={{
@@ -18,7 +21,7 @@ function MyLibraryPage() {
         noFollow: true,
       }}
     >
-      <MyLibrary />
+      <MyLibrary collectionData={collectionData} isLoading={isLoading} />
     </AppLayout>
   );
 }

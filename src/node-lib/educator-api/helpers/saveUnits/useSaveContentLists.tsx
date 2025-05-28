@@ -18,6 +18,7 @@ import { postEducatorData } from "@/node-lib/educator-api/helpers/postEducatorDa
 import errorReporter from "@/common-lib/error-reporter";
 import useSaveCountContext from "@/context/SaveCount/useSaveCountContext";
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import { CollectionData } from "@/components/TeacherViews/MyLibrary/MyLibrary";
 
 const reportError = errorReporter("educatorApi");
 
@@ -31,15 +32,38 @@ export const useContentLists = () => {
   const { incrementSavedUnitsCount, decrementSavedUnitsCount } =
     useSaveCountContext();
 
-  const [locallySavedProgrammeUnits, setLocallySavedProgrammeUnits] =
-    useState<UserlistContentApiResponse>({});
+  const [collectionData, setCollectionData] = useState<CollectionData | null>(
+    null,
+  );
 
   useEffect(() => {
     if (savedProgrammeUnits) {
       const parsedData =
         userListContentApiResponse.safeParse(savedProgrammeUnits);
       if (parsedData.success) {
-        setLocallySavedProgrammeUnits(parsedData.data);
+        const collectionData = Object.entries(parsedData.data)
+          .map(([programmeSlug, programmeData]) => {
+            const { keystage, subject, examboard, tier, units } = programmeData;
+            const subheading = `${examboard ? examboard + " " : ""}${tier ? tier + " " : ""}${keystage}`;
+            return {
+              subject,
+              subheading,
+              examboard,
+              tier,
+              keystage,
+              units,
+              programmeSlug,
+            };
+          })
+          .sort((a, b) => {
+            if (!a || !b) return 0;
+            return (
+              a.subject.localeCompare(b.subject) ||
+              a.subheading.localeCompare(b.subheading)
+            );
+          });
+
+        setCollectionData(collectionData);
       } else {
         reportError(parsedData.error, { savedProgrammeUnits });
       }
@@ -50,10 +74,15 @@ export const useContentLists = () => {
 
   const isUnitSaved = useCallback(
     (unitSlug: string, programmeSlug: string) =>
-      locallySavedProgrammeUnits[programmeSlug]?.units.some(
-        (unit) => unit.unitSlug === unitSlug,
+      collectionData?.some((collection) =>
+        collection.units.some(
+          (unit) =>
+            unit.unitSlug === unitSlug &&
+            collection.programmeSlug === programmeSlug,
+        ),
       ),
-    [locallySavedProgrammeUnits],
+
+    [collectionData],
   );
 
   const { setCurrentToastProps } = useOakToastContext();
@@ -136,6 +165,6 @@ export const useContentLists = () => {
     isUnitSaved,
     onSaveToggle,
     isLoading,
-    savedProgrammeUnits: locallySavedProgrammeUnits,
+    collectionData,
   };
 };

@@ -12,41 +12,35 @@ import {
 
 import MyLibraryHeader from "@/components/TeacherComponents/MyLibraryHeader/MyLibraryHeader";
 import NoSavedContent from "@/components/TeacherComponents/NoSavedContent/NoSavedContent";
-import { useContentLists } from "@/node-lib/educator-api/helpers/saveUnits/useSaveContentLists";
+import { UnitData } from "@/node-lib/educator-api/queries/getUserListContent/getUserListContent.types";
 
-export default function MyLibrary() {
-  const { savedProgrammeUnits, isLoading } = useContentLists();
+export type CollectionData = Array<{
+  subject: string;
+  subheading: string;
+  examboard: string | null;
+  tier: string | null;
+  keystage: string;
+  units: UnitData;
+  programmeSlug: string;
+}>;
 
-  const collectionData = Object.entries(savedProgrammeUnits)
-    .map(([programmeSlug, programmeData]) => {
-      const { keystage, subject, examboard, tier, units } = programmeData;
-      const subheading = `${examboard ? examboard + " " : ""}${tier ? tier + " " : ""}${keystage}`;
-      return {
-        subject,
-        subheading,
-        examboard,
-        tier,
-        keystage,
-        units,
-        programmeSlug,
-      };
-    })
-    .sort((a, b) => {
-      if (!a || !b) return 0;
-      return (
-        a.subject.localeCompare(b.subject) ||
-        a.subheading.localeCompare(b.subheading)
-      );
-    });
+type MyLibraryProps = {
+  collectionData: CollectionData | null;
+  isLoading: boolean;
+};
+
+export default function MyLibrary(props: MyLibraryProps) {
+  const { collectionData, isLoading } = props;
 
   return (
     <OakMaxWidth
       $gap={["space-between-none", "space-between-l"]}
       $pb="inner-padding-xl"
       $pt={["inner-padding-none", "inner-padding-xl"]}
+      $flexDirection="column"
     >
       <MyLibraryHeader />
-      {isLoading ? null : collectionData.length === 0 ? (
+      {isLoading || !collectionData ? null : collectionData.length === 0 ? (
         <NoSavedContent />
       ) : (
         <OakGrid

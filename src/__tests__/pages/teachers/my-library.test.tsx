@@ -17,7 +17,7 @@ jest.mock(
   "@/node-lib/educator-api/helpers/saveUnits/useSaveContentLists",
   () => ({
     useContentLists: jest.fn(() => ({
-      savedProgrammeUnits: {},
+      collectionData: [],
       isLoading: false,
     })),
   }),
