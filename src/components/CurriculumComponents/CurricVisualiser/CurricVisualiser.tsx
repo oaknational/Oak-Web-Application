@@ -8,6 +8,7 @@ import CurricUnitModal from "../CurricUnitModal";
 import { CurricVisualiserUnitList } from "../CurricVisualiserUnitList";
 import { CurricYearCard } from "../CurricYearCard";
 import CurricUnitModalContent from "../CurricUnitModalContent";
+import CurricModalErrorContent from "../CurricModalErrorContent/CurricModalErrorContent";
 
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import {
@@ -171,6 +172,7 @@ export default function CurricVisualiser({
         unitOptionData={unitOptionData}
         filters={filters}
         ks4OptionSlug={ks4OptionSlug}
+        disableFooter={Boolean(selectedUnitSlug && !unitData)}
       >
         {unitData && (
           <CurricUnitModalContent
@@ -181,7 +183,18 @@ export default function CurricVisualiser({
             selectedThread={selectedThread?.slug ?? null}
           />
         )}
-        {selectedUnitSlug && !unitData && <>Missing data</>}
+        {selectedUnitSlug && !unitData && (
+          <OakBox
+            $pv={["inner-padding-xl", "inner-padding-xl5", "inner-padding-xl5"]}
+            $ph={["inner-padding-xl", "inner-padding-xl6", "inner-padding-xl6"]}
+          >
+            <CurricModalErrorContent
+              statusCode="404"
+              message="This unit does not exist."
+              additional="Close the modal to browse available units."
+            />
+          </OakBox>
+        )}
       </CurricUnitModal>
     </OakBox>
   );

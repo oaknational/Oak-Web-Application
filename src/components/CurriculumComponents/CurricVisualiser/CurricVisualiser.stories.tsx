@@ -17,7 +17,6 @@ type Story = StoryObj<typeof Component>;
 
 const curriculumVisualiserFixture: ComponentProps<typeof Component> = {
   threadOptions: [],
-  unitData: undefined,
   filters: {
     years: ["7", "8", "9", "10", "11"],
     tiers: [],
@@ -98,7 +97,6 @@ const curriculumVisualiserFixture: ComponentProps<typeof Component> = {
     },
   },
   setVisibleMobileYearRefID: () => {},
-  unitOptionData: undefined,
   basePath: "/",
 };
 

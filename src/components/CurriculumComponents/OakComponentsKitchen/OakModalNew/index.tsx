@@ -1,6 +1,6 @@
 import { OakFlex } from "@oaknational/oak-components";
 import { ComponentProps, useEffect, useRef, useState } from "react";
-import { Transition } from "react-transition-group";
+import { CSSTransition } from "react-transition-group";
 
 import { AnimateSlideIn, AnimateSlideInProps } from "./AnimateSlideIn";
 import { TRANSITION_DURATION } from "./constants";
@@ -43,7 +43,8 @@ export function OakModalNew({
   const prefersReducedMotion = usePrefersReducedMotion();
 
   return (
-    <Transition
+    <CSSTransition
+      nodeRef={ref}
       in={open}
       timeout={prefersReducedMotion ? 0 : TRANSITION_DURATION}
       unmountOnExit={false}
@@ -81,6 +82,6 @@ export function OakModalNew({
           </Dialog>
         );
       }}
-    </Transition>
+    </CSSTransition>
   );
 }

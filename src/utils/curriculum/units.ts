@@ -2,7 +2,7 @@ import { Unit, UnitOption, YearData } from "./types";
 
 export function findUnitOrOptionBySlug(
   yearData: YearData,
-  unitSlug?: string,
+  unitSlug?: string | null,
 ): { unit: Unit | undefined; unitOption: UnitOption | undefined } {
   if (!unitSlug) return { unit: undefined, unitOption: undefined };
   const allUnits = Object.values(yearData).flatMap(

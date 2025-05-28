@@ -30,7 +30,11 @@ export function ModalContent({
             {title}
           </OakHeading>
         )}
-        <OakBox $position={"absolute"} $right={"all-spacing-4"}>
+        <OakBox
+          $position={"absolute"}
+          $right={"all-spacing-4"}
+          $top={"all-spacing-4"}
+        >
           <CurriculumModalCloseButton
             ariaLabel="Close"
             onClose={() => onClose("close_button")}
@@ -50,18 +54,20 @@ export function ModalContent({
       >
         {content}
       </OakFlex>
-      <OakFlex
-        data-testid="modal-footer"
-        $width={"100%"}
-        $background={"white"}
-        $ph={"inner-padding-m"}
-        $pv={"inner-padding-s"}
-        $justifyContent={"left"}
-        $bt={"border-solid-s"}
-        $borderColor={"grey30"}
-      >
-        {footer}
-      </OakFlex>
+      {footer && (
+        <OakFlex
+          data-testid="modal-footer"
+          $width={"100%"}
+          $background={"white"}
+          $ph={"inner-padding-m"}
+          $pv={"inner-padding-s"}
+          $justifyContent={"left"}
+          $bt={"border-solid-s"}
+          $borderColor={"grey30"}
+        >
+          {footer}
+        </OakFlex>
+      )}
     </>
   );
 }
