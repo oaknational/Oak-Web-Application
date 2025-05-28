@@ -130,9 +130,11 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
           onChangeFilters={onChangeFilters}
           slugs={curriculumSelectionSlugs}
           ks4Options={ks4Options}
-          curriculumSeoTextRaw={
-            curriculumOverviewSanityData.curriculumSeoTextRaw
+          curriculumSeoText={
+            curriculumOverviewSanityData.curriculumSeoTextRaw || undefined
           }
+          curriculumPhaseOptions={curriculumPhaseOptions}
+          keyStages={keyStages}
         />
       );
       break;

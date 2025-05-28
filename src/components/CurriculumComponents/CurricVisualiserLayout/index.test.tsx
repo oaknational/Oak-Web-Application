@@ -3,6 +3,30 @@ import { CurricVisualiserLayout } from ".";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 const render = renderWithProviders();
 
+const mockProps = {
+  slugs: {
+    subjectSlug: "maths",
+    phaseSlug: "primary",
+    ks4OptionSlug: null,
+  },
+  curriculumPhaseOptions: {
+    subjects: [
+      {
+        slug: "maths",
+        title: "Maths",
+        phases: [
+          {
+            slug: "primary",
+            title: "Primary",
+          },
+        ],
+        ks4_options: null,
+      },
+    ],
+  },
+  keyStages: ["ks1", "ks2"],
+};
+
 describe("CurricVisualiserLayout", () => {
   // it("large screen", () => {
   //     const {getByTestId} = render(
@@ -21,6 +45,7 @@ describe("CurricVisualiserLayout", () => {
       <CurricVisualiserLayout
         filters={<div data-testid="filters">filters</div>}
         units={<div data-testid="units">units</div>}
+        {...mockProps}
       />,
     );
 

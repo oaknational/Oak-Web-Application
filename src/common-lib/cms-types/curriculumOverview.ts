@@ -27,7 +27,7 @@ export const curriculumOverviewCMSSchema = z
     video: videoSchema.nullish(),
     videoAuthor: z.string().nullish(),
     videoExplainer: z.string().nullish(),
-    curriculumSeoTextRaw: portableTextSchema.optional(),
+    curriculumSeoTextRaw: portableTextSchema.nullable(),
   })
   .merge(documentSchema);
 

@@ -167,6 +167,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
         const actions = units[0]?.actions;
 
         const yearTitle = getYearGroupTitle(yearData, year, undefined);
+        console.log({ yearTitle });
 
         const yearSubheadingText = getYearSubheadingText(
           yearData,
