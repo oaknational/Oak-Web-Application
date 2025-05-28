@@ -67,6 +67,11 @@ export const useMyLibrary = () => {
             const searchQuery = validSubjectCategory
               ? `${kebabCase(validSubjectCategory)}`
               : null;
+
+            units.sort(
+              (a, b) => a.yearOrder - b.yearOrder || a.unitOrder - b.unitOrder,
+            );
+
             return {
               subject,
               subjectSlug,

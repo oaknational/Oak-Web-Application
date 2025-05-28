@@ -52,6 +52,7 @@ const units = z.array(
     savedAt: z.string(),
     unitOrder: z.number(),
     yearOrder: z.number(),
+    year: z.string(),
     lessons: z.array(
       z.object({
         slug: z.string(),
@@ -68,7 +69,6 @@ export type UnitData = z.infer<typeof units>;
 export const userListContentApiResponse = z.record(
   z.string(),
   z.object({
-    year: z.string(),
     keystage: z.string(),
     keystageSlug: z.string(),
     subject: z.string(),

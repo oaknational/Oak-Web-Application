@@ -24,7 +24,7 @@ jest.mock("@/node-lib/educator-api", () => ({
               browse_mv: [
                 {
                   unit_title: "Mock Unit",
-                  year: "2023",
+                  year: "1",
                   keystage: "KS2",
                   keystage_slug: "ks2",
                   tier: null,
@@ -81,7 +81,6 @@ describe("api/educator-api/getSavedContentLists", () => {
     expect(res._getStatusCode()).toBe(200);
     expect(res._getJSONData()).toEqual({
       "mock-programme": {
-        year: "2023",
         keystage: "KS2",
         keystageSlug: "ks2",
         subject: "Maths",
@@ -95,6 +94,7 @@ describe("api/educator-api/getSavedContentLists", () => {
             optionalityTitle: null,
             unitOrder: 1,
             yearOrder: 1,
+            year: "1",
             savedAt: expect.any(String), // Date string
             lessons: [
               {

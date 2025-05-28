@@ -24,6 +24,7 @@ export const generateMockCollectionData = (count: number): CollectionData => {
         savedAt: new Date().toISOString(),
         unitOrder: 1,
         yearOrder: 1,
+        year: "1",
         lessons: [
           {
             slug: `lesson-${index + 1}-1`,
@@ -51,6 +52,7 @@ describe("MyLibrary", () => {
         collectionData={null}
         isLoading={true}
         onSaveToggle={() => {}}
+        isUnitSaved={() => false}
       />,
     );
     expect(screen.getByText("My library")).toBeInTheDocument();
@@ -62,6 +64,7 @@ describe("MyLibrary", () => {
         collectionData={[]}
         isLoading={false}
         onSaveToggle={() => {}}
+        isUnitSaved={() => false}
       />,
     );
     expect(screen.getByText("My library")).toBeInTheDocument();
@@ -73,6 +76,7 @@ describe("MyLibrary", () => {
         collectionData={generateMockCollectionData(5)}
         isLoading={false}
         onSaveToggle={() => {}}
+        isUnitSaved={() => false}
       />,
     );
 

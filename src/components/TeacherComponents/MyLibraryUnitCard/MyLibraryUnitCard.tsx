@@ -90,9 +90,9 @@ const SaveButton = ({
 };
 
 const UnitCardHeader = ({ ...props }: MyLibraryUnitCardProps) => {
-  const { unitTitle, yearTitle, saveTime, onSave, isSaved } = props;
+  const { unitTitle, year, savedAt, onSave, isSaved } = props;
 
-  const lastSavedText = getLastSavedText(saveTime);
+  const lastSavedText = getLastSavedText(savedAt);
 
   return (
     <OakFlex $flexGrow={1} $alignItems={"start"} $gap={"space-between-xs"}>
@@ -101,13 +101,19 @@ const UnitCardHeader = ({ ...props }: MyLibraryUnitCardProps) => {
         $flexDirection={"column"}
         $gap={"space-between-ssx"}
       >
-        <UnitLink href={props.href}>
+        <UnitLink
+          href={resolveOakHref({
+            page: "lesson-index",
+            programmeSlug: props.programmeSlug,
+            unitSlug: props.unitSlug,
+          })}
+        >
           <OakHeading tag="h3" $font={["heading-7", "heading-5"]}>
             {unitTitle}
           </OakHeading>
         </UnitLink>
         <OakP $color={"text-subdued"} $font={"body-2"}>
-          {yearTitle}
+          {year}
           <OakSpan $ph={"inner-padding-xs"}>•</OakSpan>
           {lastSavedText}
         </OakP>
@@ -175,14 +181,14 @@ const UnitCardContent = ({
                         $textAlign={"right"}
                         $mr={"space-between-sssx"}
                         $color={
-                          lesson._state === "published"
+                          lesson.state === "published"
                             ? "text-primary"
                             : "text-disabled"
                         }
                       >
                         {i + 1}.{" "}
                       </OakP>
-                      {lesson._state === "published" ? (
+                      {lesson.state === "published" ? (
                         <LessonLink $font={"heading-light-7"} href={href}>
                           {lesson.title}
                         </LessonLink>
@@ -205,14 +211,13 @@ export type MyLibraryUnitCardProps = {
   unitTitle: string;
   unitSlug: string;
   programmeSlug: string;
-  yearTitle: string;
-  saveTime: string;
-  href: string;
+  savedAt: string;
+  year: string;
   lessons: {
     slug: string;
     order: number;
     title: string;
-    _state: string;
+    state: string;
   }[];
   onSave?: () => void;
   isSaved?: boolean;
@@ -222,7 +227,7 @@ export default function MyLibraryUnitCard(props: MyLibraryUnitCardProps) {
   const { index, lessons } = props;
 
   const unpublishedLessonCount = lessons.filter(
-    (lesson) => lesson._state !== "published",
+    (lesson) => lesson.state !== "published",
   ).length;
 
   const lessonCountHeader = unpublishedLessonCount

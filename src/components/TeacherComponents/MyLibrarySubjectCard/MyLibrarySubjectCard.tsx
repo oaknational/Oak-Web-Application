@@ -1,4 +1,5 @@
 import {
+  OakAnchorTarget,
   OakFlex,
   OakHeading,
   OakIcon,
@@ -10,11 +11,12 @@ import MyLibraryUnitCard, {
   MyLibraryUnitCardProps,
 } from "../MyLibraryUnitCard/MyLibraryUnitCard";
 import { getValidSubjectIconName } from "../../../utils/getValidSubjectIconName";
-import { toSentenceCase } from "../../../node-lib/curriculum-api-2023/helpers";
 
 interface MyLibrarySubjectCardProps {
-  keyStage: string;
   subject: string;
+  programmeTitle: string;
+  programmeHref: string;
+  programmeSlug: string;
   savedUnits: Array<MyLibraryUnitCardProps>;
 }
 
@@ -29,16 +31,17 @@ const StyledLink = styled(OakSecondaryLink)`
 
 const SubjectHeader = ({
   subject,
-  keyStage,
+  programmeTitle,
+  programmeHref,
 }: {
   subject: string;
-  keyStage: string;
+  programmeTitle: string;
+  programmeHref: string;
 }) => {
   const subjectIconName = getValidSubjectIconName(subject);
-  const formattedTitle = `${toSentenceCase(subject)} ${keyStage}`;
 
   return (
-    <StyledLink>
+    <StyledLink href={programmeHref}>
       <OakFlex
         $gap={["space-between-ssx", "space-between-ssx"]}
         $alignItems={"center"}
@@ -56,7 +59,7 @@ const SubjectHeader = ({
           />
         </OakFlex>
         <OakHeading tag="h4" $font={["heading-6", "heading-4"]}>
-          {formattedTitle}
+          {programmeTitle}
         </OakHeading>
         <OakFlex
           $width={["all-spacing-6", "all-spacing-9"]}
@@ -76,7 +79,8 @@ const SubjectHeader = ({
 };
 
 export default function MyLibrarySubjectCard(props: MyLibrarySubjectCardProps) {
-  const { savedUnits, subject, keyStage } = props;
+  const { savedUnits, subject, programmeTitle, programmeHref, programmeSlug } =
+    props;
 
   return (
     <OakFlex
@@ -86,22 +90,16 @@ export default function MyLibrarySubjectCard(props: MyLibrarySubjectCardProps) {
       $pa={["inner-padding-xs", "inner-padding-l", "inner-padding-xl"]}
       $maxWidth={"all-spacing-23"}
       $gap={["space-between-ssx", "space-between-m"]}
+      $position="relative"
     >
-      <SubjectHeader subject={subject} keyStage={keyStage} />
+      <OakAnchorTarget id={programmeSlug} />
+      <SubjectHeader
+        subject={subject}
+        programmeTitle={programmeTitle}
+        programmeHref={programmeHref}
+      />
       {savedUnits.map((unit) => (
-        <MyLibraryUnitCard
-          key={unit.unitSlug}
-          index={unit.index}
-          unitTitle={unit.unitTitle}
-          unitSlug={unit.unitSlug}
-          programmeSlug={unit.programmeSlug}
-          yearTitle={unit.yearTitle}
-          saveTime={unit.saveTime}
-          href={unit.href}
-          lessons={unit.lessons}
-          onSave={unit.onSave}
-          isSaved={unit.isSaved}
-        />
+        <MyLibraryUnitCard {...unit} />
       ))}
     </OakFlex>
   );

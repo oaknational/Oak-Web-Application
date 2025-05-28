@@ -8,7 +8,8 @@ import MyLibrary from "@/components/TeacherViews/MyLibrary/MyLibrary";
 import { useMyLibrary } from "@/node-lib/educator-api/helpers/saveUnits/useMyLibrary";
 
 function MyLibraryPage() {
-  const { collectionData, isLoading, onSaveToggle } = useMyLibrary();
+  const { collectionData, isLoading, onSaveToggle, isUnitSaved } =
+    useMyLibrary();
 
   return (
     <AppLayout
@@ -25,6 +26,7 @@ function MyLibraryPage() {
         collectionData={collectionData}
         isLoading={isLoading}
         onSaveToggle={onSaveToggle}
+        isUnitSaved={isUnitSaved}
       />
     </AppLayout>
   );

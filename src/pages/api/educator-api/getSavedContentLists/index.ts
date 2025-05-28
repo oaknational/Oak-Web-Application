@@ -50,7 +50,6 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
             keystageSlug: browseData.keystage_slug,
             tier: browseData.tier,
             examboard: browseData.examboard,
-            year: browseData.year,
             units: [],
           };
         }
@@ -62,6 +61,7 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
           lessons,
           unitOrder: browseData.unit_order,
           yearOrder: browseData.year_order,
+          year: browseData.year,
         });
       }
       return acc;
@@ -75,7 +75,6 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
         userId,
       },
     });
-    console.log("diego error", err);
 
     return res.status(500).json({ error: JSON.stringify(err) });
   }

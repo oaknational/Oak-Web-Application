@@ -3,13 +3,6 @@ import {
   OakGrid,
   OakGridArea,
   OakSideMenuNav,
-  OakBox,
-  OakAnchorTarget,
-  OakHeading,
-  OakP,
-  OakLink,
-  OakPrimaryButton,
-  OakFlex,
 } from "@oaknational/oak-components";
 
 import MyLibraryHeader from "@/components/TeacherComponents/MyLibraryHeader/MyLibraryHeader";
@@ -18,6 +11,7 @@ import { UnitData } from "@/node-lib/educator-api/queries/getUserListContent/get
 import { TrackingProgrammeData } from "@/node-lib/educator-api/helpers/saveUnits/utils";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import { resolveOakHref } from "@/common-lib/urls";
+import MyLibrarySubjectCard from "@/components/TeacherComponents/MyLibrarySubjectCard/MyLibrarySubjectCard";
 
 export type CollectionData = Array<{
   subject: string;
@@ -39,10 +33,11 @@ type MyLibraryProps = {
     programmeSlug: string,
     trackingData: TrackingProgrammeData,
   ) => void;
+  isUnitSaved: (unitSlug: string) => boolean;
 };
 
 export default function MyLibrary(props: MyLibraryProps) {
-  const { collectionData, isLoading, onSaveToggle } = props;
+  const { collectionData, isLoading, onSaveToggle, isUnitSaved } = props;
 
   return (
     <OakMaxWidth
@@ -56,8 +51,9 @@ export default function MyLibrary(props: MyLibraryProps) {
         <NoSavedContent />
       ) : (
         <OakGrid
-          $ph={["inner-padding-none", "inner-padding-xl4"]}
+          $ph={["inner-padding-m", "inner-padding-xl4"]}
           $position="relative"
+          $rg={"space-between-m"}
         >
           <OakGridArea
             $colSpan={[12, 2]}
@@ -78,56 +74,40 @@ export default function MyLibrary(props: MyLibraryProps) {
               anchorTargetId="collections-menu"
             />
           </OakGridArea>
-          {/* TODO: placeholder logic for unit containers */}
+
           <OakGridArea
             $colSpan={[12, 9]}
             $colStart={[1, 4]}
-            $gap="space-between-l"
+            $gap={["space-between-m", "space-between-l"]}
           >
             {collectionData.map((collection) => (
-              <OakBox $position="relative" key={collection.programmeSlug}>
-                <OakAnchorTarget id={collection.programmeSlug} />
-
-                <OakHeading tag="h2">{collection.programmeTitle}</OakHeading>
-                <OakLink
-                  href={resolveOakHref({
-                    page: "unit-index",
-                    programmeSlug: collection.programmeSlug,
-                    search: { category: collection.searchQuery },
-                  })}
-                >
-                  go to programme
-                </OakLink>
-                {collection.units
-                  .sort(
-                    (a, b) =>
-                      a.yearOrder - b.yearOrder || a.unitOrder - b.unitOrder,
-                  )
-                  .map((unit) => (
-                    <OakFlex $alignItems="center">
-                      <OakP key={unit.unitSlug}>{unit.unitTitle}</OakP>
-                      <OakPrimaryButton
-                        onClick={() =>
-                          onSaveToggle(
-                            unit.unitSlug,
-                            collection.programmeSlug,
-                            {
-                              keyStageTitle:
-                                collection.keystage as KeyStageTitleValueType,
-                              subjectTitle: collection.subject,
-                              savedFrom: "my-library-save-button",
-                              keyStageSlug: collection.keystageSlug,
-                              subjectSlug: collection.subjectSlug,
-                            },
-                          )
-                        }
-                      >
-                        Save / Unsave
-                      </OakPrimaryButton>
-                    </OakFlex>
-                  ))}
-                <OakLink href="#collections-menu"> Back to collections</OakLink>
-              </OakBox>
+              <MyLibrarySubjectCard
+                programmeTitle={collection.programmeTitle}
+                programmeSlug={collection.programmeSlug}
+                programmeHref={resolveOakHref({
+                  page: "unit-index",
+                  programmeSlug: collection.programmeSlug,
+                  search: {
+                    category: collection.searchQuery,
+                  },
+                })}
+                subject={collection.subject}
+                savedUnits={collection.units.map((unit) => ({
+                  ...unit,
+                  programmeSlug: collection.programmeSlug,
+                  index: 1, // TODO: remove index
+                  onSave: () =>
+                    onSaveToggle(unit.unitSlug, collection.programmeSlug, {
+                      keyStageTitle:
+                        collection.keystage as KeyStageTitleValueType,
+                      subjectTitle: collection.subject,
+                      savedFrom: "my-library-save-button",
+                      keyStageSlug: collection.keystageSlug,
+                      subjectSlug: collection.subjectSlug,
+                    }),
+                  isSaved: isUnitSaved(unit.unitSlug),
+                }))}
+              />
             ))}
           </OakGridArea>
         </OakGrid>
