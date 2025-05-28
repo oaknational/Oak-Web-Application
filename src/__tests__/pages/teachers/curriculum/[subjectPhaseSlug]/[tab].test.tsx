@@ -92,6 +92,7 @@ const unitData = [
     cycle: "1",
     why_this_why_now: null,
     description: null,
+    prior_knowledge_requirements: [],
   },
   {
     connection_prior_unit_description:
@@ -172,6 +173,7 @@ const unitData = [
     cycle: "1",
     why_this_why_now: null,
     description: null,
+    prior_knowledge_requirements: [],
   },
   {
     connection_prior_unit_description:
@@ -247,6 +249,7 @@ const unitData = [
     cycle: "1",
     why_this_why_now: null,
     description: null,
+    prior_knowledge_requirements: [],
   },
   {
     connection_prior_unit_description:
@@ -337,6 +340,7 @@ const unitData = [
     cycle: "1",
     why_this_why_now: null,
     description: null,
+    prior_knowledge_requirements: [],
   },
   {
     connection_prior_unit_description:
@@ -421,6 +425,7 @@ const unitData = [
     cycle: "1",
     why_this_why_now: null,
     description: null,
+    prior_knowledge_requirements: [],
   },
   {
     connection_prior_unit_description:
@@ -508,6 +513,7 @@ const unitData = [
     cycle: "1",
     why_this_why_now: null,
     description: null,
+    prior_knowledge_requirements: [],
   },
 ];
 

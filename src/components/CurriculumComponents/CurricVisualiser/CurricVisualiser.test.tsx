@@ -47,7 +47,6 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 
 const CurricVisualiserFixture: ComponentProps<typeof CurricVisualiser> = {
   threadOptions: [],
-  unitData: undefined,
   filters: {
     years: ["7", "8", "9", "10", "11"],
     tiers: [],
@@ -117,6 +116,7 @@ const CurricVisualiserFixture: ComponentProps<typeof CurricVisualiser> = {
           why_this_why_now: null,
           description: null,
           state: "published",
+          prior_knowledge_requirements: [],
         },
       ],
       childSubjects: [],
@@ -128,7 +128,6 @@ const CurricVisualiserFixture: ComponentProps<typeof CurricVisualiser> = {
     },
   },
   setVisibleMobileYearRefID: jest.fn(() => {}),
-  unitOptionData: undefined,
   basePath: "/",
 };
 

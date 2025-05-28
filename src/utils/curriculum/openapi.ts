@@ -7,6 +7,7 @@ const unitSchema = z.object({
   unitTitle: z.string(),
   unitSlug: z.string(),
   order: z.number(),
+  prior_knowledge_requirements: z.array(z.string()),
 });
 const nonSubjectSchema = z.object({
   year: z.number(),
@@ -46,6 +47,7 @@ type ApiUnit = {
   subjectSlug?: string;
   subjectTitle?: string;
   tier?: string;
+  prior_knowledge_requirements: string[] | null;
 };
 
 export default async function openApiRequest(
@@ -75,6 +77,7 @@ export default async function openApiRequest(
             unitSlug: unitObj.unitSlug,
             order: unitObj.order,
             tier: tierObj.tier,
+            prior_knowledge_requirements: unitObj.prior_knowledge_requirements,
           };
         });
       });
@@ -91,6 +94,8 @@ export default async function openApiRequest(
                 subjectSlug: subjectObj.subjectSlug,
                 subjectTitle: subjectObj.subjectTitle,
                 tier: tierObj.tier,
+                prior_knowledge_requirements:
+                  unitObj.prior_knowledge_requirements,
               };
             });
           });
@@ -103,6 +108,8 @@ export default async function openApiRequest(
               order: unitObj.order,
               subjectSlug: subjectObj.subjectSlug,
               subjectTitle: subjectObj.subjectTitle,
+              prior_knowledge_requirements:
+                unitObj.prior_knowledge_requirements,
             };
           });
         }
@@ -114,6 +121,7 @@ export default async function openApiRequest(
           unitTitle: unitObj.unitTitle,
           unitSlug: unitObj.unitSlug,
           order: unitObj.order,
+          prior_knowledge_requirements: unitObj.prior_knowledge_requirements,
         };
       });
     } else {
@@ -165,6 +173,7 @@ export default async function openApiRequest(
       unit_options: [],
       year: apiUnit.year,
       state: "published",
+      prior_knowledge_requirements: apiUnit.prior_knowledge_requirements,
     };
   });
 
