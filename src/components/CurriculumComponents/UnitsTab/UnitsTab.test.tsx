@@ -1,9 +1,11 @@
 import { render } from "@testing-library/react";
+import React from "react";
+
+import { formatCurriculumUnitsData } from "../../../pages-helpers/curriculum/docx/tab-helpers";
+import { CurriculumFilters } from "../../../utils/curriculum/types";
 
 import UnitsTab from "./UnitsTab";
 
-import { formatCurriculumUnitsData } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { CurriculumFilters } from "@/utils/curriculum/types";
 import "@/__tests__/__helpers__/ResizeObserverMock";
 
 // import userEvent from "@testing-library/user-event";
@@ -15,66 +17,6 @@ import "@/__tests__/__helpers__/ResizeObserverMock";
 // import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 // const render = renderWithProviders();
-
-const yearGroupSelected = jest.fn();
-const unitInformationViewed = jest.fn();
-
-// Mock useMediaQuery
-jest.mock("@/hooks/useMediaQuery", () => ({
-  __esModule: true,
-  default: () => false, // Default to desktop view
-}));
-
-// Mock Oak components
-jest.mock("@oaknational/oak-components", () => ({
-  OakHeading: ({ children }: { children: React.ReactNode }) => (
-    <h1>{children}</h1>
-  ),
-  OakBox: ({ children }: { children: React.ReactNode }) => (
-    <div>{children}</div>
-  ),
-}));
-
-// Mock other components
-jest.mock("../CurriculumVisualiser", () => {
-  return function MockCurriculumVisualiser() {
-    return <div data-testid="curriculum-visualiser">Curriculum Visualiser</div>;
-  };
-});
-
-jest.mock("../CurricVisualiserLayout", () => ({
-  CurricVisualiserLayout: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="curric-visualiser-layout">{children}</div>
-  ),
-}));
-
-jest.mock("../CurricVisualiserFiltersMobile", () => {
-  return function MockCurricVisualiserFiltersMobile() {
-    return <div data-testid="mobile-filters">Mobile Filters</div>;
-  };
-});
-
-jest.mock("../CurricVisualiserFiltersDesktop", () => ({
-  CurricVisualiserFiltersDesktop: () => (
-    <div data-testid="desktop-filters">Desktop Filters</div>
-  ),
-}));
-
-jest.mock("@/components/SharedComponents/ScreenReaderOnly", () => {
-  return function MockScreenReaderOnly({
-    children,
-  }: {
-    children: React.ReactNode;
-  }) {
-    return <div data-testid="screen-reader-only">{children}</div>;
-  };
-});
-
-jest.mock("@/components/CurriculumComponents/UnitTabBanner", () => {
-  return function MockUnitTabBanner() {
-    return <div data-testid="unit-tab-banner">Unit Tab Banner</div>;
-  };
-});
 
 // const trackingDataSecondaryScience = {
 //   subjectTitle: "Science",
@@ -269,18 +211,7 @@ jest.mock("@/components/CurriculumComponents/UnitTabBanner", () => {
 //   ],
 // };
 
-jest.mock("@/context/Analytics/useAnalytics", () => ({
-  __esModule: true,
-  default: () => ({
-    track: {
-      yearGroupSelected,
-      unitInformationViewed: (...args: unknown[]) =>
-        unitInformationViewed(...args),
-    },
-  }),
-}));
-
-describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
+describe("unitsTab !subject error", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     const mockIntersectionObserver = jest.fn();
@@ -348,7 +279,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     };
 
     const mockSlugs = {
-      subjectSlug: "nonexistent-subject", // This subject doesn't exist in curriculumPhaseOptions
+      subjectSlug: "nonexistent-subject",
       phaseSlug: "primary",
       ks4OptionSlug: null,
     };
@@ -365,7 +296,6 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
       ],
     };
 
-    // Expect the component to throw an error when subject is not found
     expect(() => {
       render(
         <UnitsTab

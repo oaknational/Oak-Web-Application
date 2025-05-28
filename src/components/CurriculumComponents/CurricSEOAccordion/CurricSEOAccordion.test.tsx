@@ -1,6 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { PortableTextBlock } from "@portabletext/react";
-import { ReactNode } from "react";
 
 import { CurricSEOAccordion } from "./CurricSEOAccordion";
 
@@ -15,40 +14,6 @@ jest.mock("@/hooks/useMediaQuery", () => ({
 
 jest.mock("@/components/SharedComponents/PortableText", () => ({
   basePortableTextComponents: {},
-}));
-
-interface MockOakBasicAccordionProps {
-  children: ReactNode;
-  header: ReactNode;
-  subheading: ReactNode;
-}
-
-interface MockOakComponentProps {
-  children: ReactNode;
-}
-
-jest.mock("@oaknational/oak-components", () => ({
-  OakBasicAccordion: ({
-    children,
-    header,
-    subheading,
-  }: MockOakBasicAccordionProps) => (
-    <div data-testid="oak-accordion">
-      <div data-testid="accordion-header">{header}</div>
-      <div data-testid="accordion-subheading">{subheading}</div>
-      <div data-testid="accordion-content">{children}</div>
-    </div>
-  ),
-  OakBox: ({ children }: MockOakComponentProps) => (
-    <div data-testid="oak-box">{children}</div>
-  ),
-  OakHandDrawnHR: () => <hr data-testid="oak-hr" />,
-  OakHeading: ({ children }: MockOakComponentProps) => (
-    <h3 data-testid="oak-heading">{children}</h3>
-  ),
-  OakP: ({ children }: MockOakComponentProps) => (
-    <p data-testid="oak-p">{children}</p>
-  ),
 }));
 
 const curriculumSeoText: PortableTextBlock[] =
