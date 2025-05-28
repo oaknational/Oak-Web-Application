@@ -146,7 +146,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
       {showRiskAssessmentBanner && <RiskAssessmentBanner />}
     </>
   );
-  console.log("subjectSlug", subjectSlug);
+
   return (
     <LessonHeaderWrapper breadcrumbs={breadcrumbs} background={background}>
       <OakFlex
@@ -164,7 +164,6 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
               color={subjectIconBackgroundColor}
             />
           </OakFlex>
-
           <OakFlex $flexDirection={"column"}>
             <OakSpan
               $mb="space-between-ssx"
