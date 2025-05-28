@@ -1,3 +1,5 @@
+import { mockPortableTextBlocks } from "../CurriculumVisualiser/fixtures";
+
 import { CurricVisualiserLayout } from ".";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -21,10 +23,8 @@ const mockMathsSubject = {
 };
 
 const mockProps = {
-  curriculumPhaseOptions: {
-    subjects: [mockMathsSubject],
-  },
   subject: mockMathsSubject,
+  curriculumSeoText: mockPortableTextBlocks,
 };
 
 describe("CurricVisualiserLayout", () => {
