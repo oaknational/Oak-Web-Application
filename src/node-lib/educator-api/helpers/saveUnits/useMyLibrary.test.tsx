@@ -268,8 +268,8 @@ describe("useMyLibrary", () => {
       isLoading: false,
     }));
     const { result } = renderHook(() => useMyLibrary());
-    expect(result.current.isUnitSaved("unit1")).toBe(true);
-    expect(result.current.isUnitSaved("unit2")).toBe(false);
+    expect(result.current.isUnitSaved("unit1-programme1")).toBe(true);
+    expect(result.current.isUnitSaved("unit2-programme1")).toBe(false);
   });
   it("should unsave and save a unit", async () => {
     mockUseGetEducatorData.mockImplementation(() => ({
@@ -279,17 +279,17 @@ describe("useMyLibrary", () => {
     }));
     const { result } = renderHook(() => useMyLibrary());
 
-    expect(result.current.isUnitSaved("unit1")).toBe(true);
+    expect(result.current.isUnitSaved("unit1-programme1")).toBe(true);
 
     act(() =>
       result.current.onSaveToggle("unit1", "programme1", mockTrackingData),
     );
-    expect(result.current.isUnitSaved("unit1")).toBe(false);
+    expect(result.current.isUnitSaved("unit1-programme1")).toBe(false);
 
     act(() =>
       result.current.onSaveToggle("unit1", "programme1", mockTrackingData),
     );
-    expect(result.current.isUnitSaved("unit1")).toBe(true);
+    expect(result.current.isUnitSaved("unit1-programme1")).toBe(true);
   });
   it("should decrement and increment units count when toggling save on a unit", async () => {
     mockUseGetEducatorData.mockImplementation(() => ({

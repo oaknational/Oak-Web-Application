@@ -8,7 +8,10 @@ import {
 import MyLibraryHeader from "@/components/TeacherComponents/MyLibraryHeader/MyLibraryHeader";
 import NoSavedContent from "@/components/TeacherComponents/NoSavedContent/NoSavedContent";
 import { MyLibraryUnit } from "@/node-lib/educator-api/queries/getUserListContent/getUserListContent.types";
-import { TrackingProgrammeData } from "@/node-lib/educator-api/helpers/saveUnits/utils";
+import {
+  getUnitProgrammeSlug,
+  TrackingProgrammeData,
+} from "@/node-lib/educator-api/helpers/saveUnits/utils";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import { resolveOakHref } from "@/common-lib/urls";
 import MyLibraryProgrammeCard from "@/components/TeacherComponents/MyLibraryProgrammeCard/MyLibraryProgrammeCard";
@@ -34,7 +37,7 @@ type MyLibraryProps = {
     programmeSlug: string,
     trackingData: TrackingProgrammeData,
   ) => void;
-  isUnitSaved: (unitSlug: string) => boolean;
+  isUnitSaved: (unitProgrammeSlug: string) => boolean;
 };
 
 export default function MyLibrary(props: MyLibraryProps) {
@@ -107,7 +110,12 @@ export default function MyLibrary(props: MyLibraryProps) {
                       keyStageSlug: collection.keystageSlug,
                       subjectSlug: collection.subjectSlug,
                     }),
-                  isSaved: isUnitSaved(unit.unitSlug),
+                  isSaved: isUnitSaved(
+                    getUnitProgrammeSlug(
+                      unit.unitSlug,
+                      collection.programmeSlug,
+                    ),
+                  ),
                 }))}
               />
             ))}

@@ -12,6 +12,7 @@ import {
   ErrorToastProps,
   UnsavedToastProps,
   TrackingProgrammeData,
+  getUnitProgrammeSlug,
 } from "./utils";
 
 import { useOakToastContext } from "@/context/OakToast/useOakToastContext";
@@ -93,11 +94,14 @@ export const useMyLibrary = () => {
           });
         setCollectionData(collectionData);
 
-        // Create a flat list of saved unit slugs to be updated locally
-        const savedUnitSlugs = Object.values(parsedData.data).flatMap(
-          (programmeData) => programmeData.units.map((unit) => unit.unitSlug),
+        // Create a flat list of unique saved unit slugs to be updated locally
+        const savedUnitProgrammeSlugs = Object.entries(parsedData.data).flatMap(
+          ([programmeSlug, programmeData]) =>
+            programmeData.units.map((unit) =>
+              getUnitProgrammeSlug(unit.unitSlug, programmeSlug),
+            ),
         );
-        setLocallySavedUnits(savedUnitSlugs);
+        setLocallySavedUnits(savedUnitProgrammeSlugs);
       } else {
         reportError(parsedData.error, { savedProgrammeUnits });
       }
@@ -107,7 +111,8 @@ export const useMyLibrary = () => {
   }, [savedProgrammeUnits]);
 
   const isUnitSaved = useCallback(
-    (unitSlug: string) => locallySavedUnits.includes(unitSlug),
+    (unitProgrammeSlug: string) =>
+      locallySavedUnits.includes(unitProgrammeSlug),
     [locallySavedUnits],
   );
 
@@ -116,18 +121,19 @@ export const useMyLibrary = () => {
   const onSave = async (
     unitSlug: string,
     programmeSlug: string,
+    unitProgrammeSlug: string,
     trackingData: TrackingProgrammeData,
   ) => {
     setCurrentToastProps(SavedToastProps);
     incrementSavedUnitsCount();
-    setLocallySavedUnits((prev) => [...prev, unitSlug]);
+    setLocallySavedUnits((prev) => [...prev, unitProgrammeSlug]);
     await postEducatorData(
       `/api/educator-api/saveUnit/${programmeSlug}/${unitSlug}`,
       () => {
         // Revert the optimistic update if the request fails and show an error toast
         setCurrentToastProps(ErrorToastProps);
         setLocallySavedUnits((prev) =>
-          prev.filter((slug) => slug !== unitSlug),
+          prev.filter((slug) => slug !== unitProgrammeSlug),
         );
         decrementSavedUnitsCount();
       },
@@ -151,17 +157,20 @@ export const useMyLibrary = () => {
   const onUnsave = async (
     unitSlug: string,
     programmeSlug: string,
+    unitProgrammeSlug: string,
     trackingData: TrackingProgrammeData,
   ) => {
     setCurrentToastProps(UnsavedToastProps);
     decrementSavedUnitsCount();
-    setLocallySavedUnits((prev) => prev.filter((slug) => slug !== unitSlug));
+    setLocallySavedUnits((prev) =>
+      prev.filter((slug) => slug !== unitProgrammeSlug),
+    );
     await postEducatorData(
       `/api/educator-api/unsaveUnit/${programmeSlug}/${unitSlug}`,
       () => {
         // Revert the optimistic update if the request fails and show an error toast
         setCurrentToastProps(ErrorToastProps);
-        setLocallySavedUnits((prev) => [...prev, unitSlug]);
+        setLocallySavedUnits((prev) => [...prev, unitProgrammeSlug]);
         incrementSavedUnitsCount();
       },
     );
@@ -186,10 +195,11 @@ export const useMyLibrary = () => {
     programmeSlug: string,
     trackingData: TrackingProgrammeData,
   ) => {
-    if (isUnitSaved(unitSlug)) {
-      onUnsave(unitSlug, programmeSlug, trackingData);
+    const unitProgrammeSlug = getUnitProgrammeSlug(unitSlug, programmeSlug);
+    if (isUnitSaved(unitProgrammeSlug)) {
+      onUnsave(unitSlug, programmeSlug, unitProgrammeSlug, trackingData);
     } else {
-      onSave(unitSlug, programmeSlug, trackingData);
+      onSave(unitSlug, programmeSlug, unitProgrammeSlug, trackingData);
     }
   };
 

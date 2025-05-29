@@ -40,3 +40,6 @@ export type TrackingProgrammeData = {
   subjectTitle: string;
   subjectSlug: string;
 };
+
+export const getUnitProgrammeSlug = (unitSlug: string, programmeSlug: string) =>
+  `${unitSlug}-${programmeSlug}`;
