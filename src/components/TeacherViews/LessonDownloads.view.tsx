@@ -122,12 +122,10 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const isQuizHeader =
     useFeatureFlagVariantKey("lesson-overview-experiement") === "quiz-header";
 
-  downloads.map((download) => {
+  downloads.forEach((download) => {
     if (isQuizHeader && download.type === "presentation") {
       download.label = "Lesson slides";
       return download;
-    } else {
-      download;
     }
   });
 
