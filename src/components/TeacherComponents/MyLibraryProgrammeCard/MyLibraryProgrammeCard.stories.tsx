@@ -53,7 +53,8 @@ const meta: Meta<typeof MyLibraryProgrammeCard> = {
   tags: ["autodocs"],
   args: {
     programmeTitle: "English Secondary KS4 (AQA)",
-    programmeSlug: "english-secondary-ks4-aqa",
+    programmeHref:
+      "/teachers/programmes/english-secondary-ks4-aqa/units/english-secondary-ks4-aqa/units",
     subject: "english",
     savedUnits: sampleUnits,
   },

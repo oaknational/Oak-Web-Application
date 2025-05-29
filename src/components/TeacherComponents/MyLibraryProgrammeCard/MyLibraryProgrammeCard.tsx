@@ -11,7 +11,6 @@ import MyLibraryUnitCard, {
 } from "../MyLibraryUnitCard/MyLibraryUnitCard";
 
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
-import { resolveOakHref } from "@/common-lib/urls";
 
 const StyledLink = styled(OakSecondaryLink)`
   text-decoration: none;
@@ -60,7 +59,7 @@ const ProgrammeHeader = ({
 
 interface MyLibraryProgrammeCardProps {
   programmeTitle: string;
-  programmeSlug: string;
+  programmeHref: string;
   subject: string;
   savedUnits: Array<MyLibraryUnitCardProps>;
 }
@@ -68,8 +67,8 @@ interface MyLibraryProgrammeCardProps {
 export default function MyLibraryProgrammeCard(
   props: MyLibraryProgrammeCardProps,
 ) {
-  const { savedUnits, programmeSlug, programmeTitle, subject } = props;
-  const href = resolveOakHref({ page: "unit-index", programmeSlug });
+  const { savedUnits, programmeTitle, programmeHref, subject } = props;
+
   return (
     <OakFlex
       $flexDirection={"column"}
@@ -79,7 +78,7 @@ export default function MyLibraryProgrammeCard(
       $maxWidth={"all-spacing-23"}
       $gap={["space-between-ssx", "space-between-m"]}
     >
-      <StyledLink href={href}>
+      <StyledLink href={programmeHref}>
         <ProgrammeHeader subject={subject} programmeTitle={programmeTitle} />
       </StyledLink>
       {savedUnits.map((unit) => (
