@@ -20,7 +20,7 @@ type CurricSEOAccordionProps = {
   subject: SubjectPhasePickerData["subjects"][number];
 };
 
-export function CurricSEOAccordion({
+export default function CurricSEOAccordion({
   curriculumSeoText,
   subject,
 }: CurricSEOAccordionProps) {

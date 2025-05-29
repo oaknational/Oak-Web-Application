@@ -1,8 +1,8 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, act } from "@testing-library/react";
 import { PortableTextBlock } from "@portabletext/react";
 import { ReactNode } from "react";
 
-import { CurricSEOAccordion } from "./CurricSEOAccordion";
+import CurricSEOAccordion from ".";
 
 import { mockPortableTextBlocks } from "@/components/CurriculumComponents/CurriculumVisualiser/fixtures";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
@@ -125,7 +125,10 @@ describe("CurricSEOAccordion", () => {
     const accordionHeader = screen.getByRole("heading", {
       name: /How to plan your English curriculum with Oak/i,
     });
-    fireEvent.click(accordionHeader);
+
+    act(() => {
+      accordionHeader.click();
+    });
 
     expect(
       screen.getByText(
