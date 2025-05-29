@@ -1,5 +1,9 @@
 import { OakFlex } from "@oaknational/oak-components";
 import styled from "styled-components";
+import { PortableTextBlock } from "@portabletext/types";
+
+import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
+import CurricSEOAccordion from "@/components/CurriculumComponents/CurricSEOAccordion";
 
 const CurriculumVisualiserLayoutLeft = styled(OakFlex)`
   min-width: 296px;
@@ -9,11 +13,20 @@ const CurriculumVisualiserLayoutLeft = styled(OakFlex)`
 type CurriculumVisualiserLayoutProps = {
   filters: React.ReactNode;
   units: React.ReactNode;
+  curriculumSeoText?: PortableTextBlock[];
+  subject: SubjectPhasePickerData["subjects"][number];
 };
+
 export function CurricVisualiserLayout({
   filters,
   units,
+  curriculumSeoText,
+  subject,
 }: CurriculumVisualiserLayoutProps) {
+  if (!subject) {
+    throw new Error("Subject prop is required for CurricVisualiserLayout");
+  }
+
   return (
     <OakFlex>
       <CurriculumVisualiserLayoutLeft
@@ -23,7 +36,15 @@ export function CurricVisualiserLayout({
       >
         {filters}
       </CurriculumVisualiserLayoutLeft>
-      <OakFlex $flexGrow={1}>{units}</OakFlex>
+      <OakFlex $flexGrow={1} $flexDirection="column">
+        {units}
+        {curriculumSeoText && (
+          <CurricSEOAccordion
+            curriculumSeoText={curriculumSeoText}
+            subject={subject}
+          />
+        )}
+      </OakFlex>
     </OakFlex>
   );
 }
