@@ -23,10 +23,6 @@ export function CurricVisualiserLayout({
   curriculumSeoText,
   subject,
 }: CurriculumVisualiserLayoutProps) {
-  if (!subject) {
-    throw new Error("Subject prop is required for CurricVisualiserLayout");
-  }
-
   return (
     <OakFlex>
       <CurriculumVisualiserLayoutLeft

@@ -1,0 +1,280 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CurricVisualiserUnitList should display a list of units 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-fqkvVR sc-gsFSXq gOQIrG kMhoXH"
+      data-testid="unit-cards"
+      style="margin-bottom: -1rem;"
+    >
+      <ol
+        class="sc-a964d3a7-0 csZIsZ"
+        role="list"
+      >
+        <li
+          class="sc-a964d3a7-1 hFJsag"
+        >
+          <div
+            class="sc-fqkvVR sc-1c55d370-0 jdSkEU iHxKuU"
+          >
+            <a
+              class="sc-79c3f222-0 bginFa"
+              data-testid="unit-info-link"
+              href="/one"
+            >
+              <div
+                class="sc-fqkvVR sc-gsFSXq hjukdb bOTBNE"
+                data-testid="unit-card"
+              >
+                <div
+                  class="sc-fqkvVR fgBWrW"
+                >
+                  <div
+                    class="sc-9d6b6245-0 cPzdPh pa11y-ignore"
+                  >
+                    <span
+                      aria-hidden="true"
+                    >
+                      1
+                    </span>
+                  </div>
+                  <span
+                    class="sc-kpDqfm fsPjOh"
+                  >
+                    One
+                  </span>
+                </div>
+                <div
+                  class="sc-fqkvVR sc-gsFSXq julalA liZwDP"
+                >
+                  <div
+                    class="sc-fqkvVR sc-gsFSXq fgBWrW gJyPoc"
+                  >
+                    <div
+                      class="sc-fqkvVR sc-eldPxv kxMTGH dHEUFw"
+                    >
+                      Unit info
+                    </div>
+                    <div
+                      class="sc-fqkvVR kbnxKi"
+                    >
+                      <img
+                        alt=""
+                        class="sc-dcJsrY beWtwI"
+                        data-nimg="fill"
+                        decoding="async"
+                        loading="lazy"
+                        src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </li>
+        <li
+          class="sc-a964d3a7-1 hFJsag"
+        >
+          <div
+            class="sc-fqkvVR sc-1c55d370-0 jdSkEU iHxKuU"
+          >
+            <a
+              class="sc-79c3f222-0 bginFa"
+              data-testid="unit-info-link"
+              href="/two"
+            >
+              <div
+                class="sc-fqkvVR sc-gsFSXq hjukdb bOTBNE"
+                data-testid="unit-card"
+              >
+                <div
+                  class="sc-fqkvVR fgBWrW"
+                >
+                  <div
+                    class="sc-9d6b6245-0 cPzdPh pa11y-ignore"
+                  >
+                    <span
+                      aria-hidden="true"
+                    >
+                      2
+                    </span>
+                  </div>
+                  <span
+                    class="sc-kpDqfm fsPjOh"
+                  >
+                    Two
+                  </span>
+                </div>
+                <div
+                  class="sc-fqkvVR sc-gsFSXq julalA liZwDP"
+                >
+                  <div
+                    class="sc-fqkvVR sc-gsFSXq fgBWrW gJyPoc"
+                  >
+                    <div
+                      class="sc-fqkvVR sc-eldPxv kxMTGH dHEUFw"
+                    >
+                      Unit info
+                    </div>
+                    <div
+                      class="sc-fqkvVR kbnxKi"
+                    >
+                      <img
+                        alt=""
+                        class="sc-dcJsrY beWtwI"
+                        data-nimg="fill"
+                        decoding="async"
+                        loading="lazy"
+                        src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </li>
+        <li
+          class="sc-a964d3a7-1 hFJsag"
+        >
+          <div
+            class="sc-fqkvVR sc-1c55d370-0 jdSkEU iHxKuU"
+          >
+            <a
+              class="sc-79c3f222-0 bginFa"
+              data-testid="unit-info-link"
+              href="/three"
+            >
+              <div
+                class="sc-fqkvVR sc-gsFSXq hjukdb bOTBNE"
+                data-testid="unit-card"
+              >
+                <div
+                  class="sc-fqkvVR fgBWrW"
+                >
+                  <div
+                    class="sc-9d6b6245-0 cPzdPh pa11y-ignore"
+                  >
+                    <span
+                      aria-hidden="true"
+                    >
+                      3
+                    </span>
+                  </div>
+                  <span
+                    class="sc-kpDqfm fsPjOh"
+                  >
+                    Three
+                  </span>
+                </div>
+                <div
+                  class="sc-fqkvVR sc-gsFSXq julalA liZwDP"
+                >
+                  <div
+                    class="sc-fqkvVR sc-gsFSXq fgBWrW gJyPoc"
+                  >
+                    <div
+                      class="sc-fqkvVR sc-eldPxv kxMTGH dHEUFw"
+                    >
+                      Unit info
+                    </div>
+                    <div
+                      class="sc-fqkvVR kbnxKi"
+                    >
+                      <img
+                        alt=""
+                        class="sc-dcJsrY beWtwI"
+                        data-nimg="fill"
+                        decoding="async"
+                        loading="lazy"
+                        src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </li>
+        <li
+          class="sc-a964d3a7-1 hFJsag"
+        >
+          <div
+            class="sc-fqkvVR sc-1c55d370-0 jdSkEU iHxKuU"
+          >
+            <a
+              class="sc-79c3f222-0 bginFa"
+              data-testid="unit-info-link"
+              href="/four"
+            >
+              <div
+                class="sc-fqkvVR sc-gsFSXq hjukdb bOTBNE"
+                data-testid="unit-card"
+              >
+                <div
+                  class="sc-fqkvVR fgBWrW"
+                >
+                  <div
+                    class="sc-9d6b6245-0 cPzdPh pa11y-ignore"
+                  >
+                    <span
+                      aria-hidden="true"
+                    >
+                      4
+                    </span>
+                  </div>
+                  <span
+                    class="sc-kpDqfm fsPjOh"
+                  >
+                    Four
+                  </span>
+                </div>
+                <div
+                  class="sc-fqkvVR sc-gsFSXq julalA liZwDP"
+                >
+                  <div
+                    class="sc-fqkvVR sc-gsFSXq fgBWrW gJyPoc"
+                  >
+                    <div
+                      class="sc-fqkvVR sc-eldPxv kxMTGH dHEUFw"
+                    >
+                      Unit info
+                    </div>
+                    <div
+                      class="sc-fqkvVR kbnxKi"
+                    >
+                      <img
+                        alt=""
+                        class="sc-dcJsrY beWtwI"
+                        data-nimg="fill"
+                        decoding="async"
+                        loading="lazy"
+                        src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </li>
+        <div
+          class="sc-fqkvVR sc-gsFSXq iASqjD hKscQn"
+        />
+        <div
+          class="sc-fqkvVR sc-gsFSXq iASqjD hKscQn"
+        />
+        <div
+          class="sc-fqkvVR sc-gsFSXq iASqjD hKscQn"
+        />
+      </ol>
+    </div>
+  </div>
+</body>
+`;

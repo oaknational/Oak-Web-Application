@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import { ThemeProvider } from "styled-components";
 
-import HomePageBanner, { HomePageBannerProps } from "./HomePageBanner";
+import HomePageBanner, { HomePageBannerProps } from "./CurricHomePageBanner";
 
 import oakDefaultTheme from "@/styles/theme";
 
