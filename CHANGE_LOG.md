@@ -1,3 +1,19 @@
+# [1.757.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.756.0...v1.757.0) (2025-05-29)
+
+
+### Bug Fixes
+
+* add key to list item elements, add aria label to ul element ([ecb4d61](https://github.com/oaknational/Oak-Web-Application/commit/ecb4d61627f8e414126cee00599fd76a66e712af))
+* fix file name so stories build ([a672152](https://github.com/oaknational/Oak-Web-Application/commit/a6721527048c6e420aa7bdc73a8e4d8c914b78c5))
+* pass in href as props ([19ca242](https://github.com/oaknational/Oak-Web-Application/commit/19ca242c17621a87dfec842777dec09deda6dd54))
+* rm console.log" ([516fae7](https://github.com/oaknational/Oak-Web-Application/commit/516fae789bb0d321df6b0562be00edf83dffecc4))
+* use appropriate tags for aceessibility ([ae89090](https://github.com/oaknational/Oak-Web-Application/commit/ae89090a9a311ff8959431fa36a8202e17eb4907))
+
+
+### Features
+
+* add subject card component for my library page ([e45ac54](https://github.com/oaknational/Oak-Web-Application/commit/e45ac5455411888f412f165273179d404786b6be))
+
 # [1.756.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.755.0...v1.756.0) (2025-05-29)
 
 
