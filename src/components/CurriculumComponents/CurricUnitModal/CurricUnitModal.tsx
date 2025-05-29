@@ -14,6 +14,7 @@ type CurricUnitModalProps = {
   ks4OptionSlug?: string | null;
   filters: CurriculumFilters;
   children: React.ReactNode;
+  disableFooter?: boolean;
 };
 export default function CurricUnitModal({
   unitData,
@@ -23,6 +24,7 @@ export default function CurricUnitModal({
   onClose,
   filters,
   children,
+  disableFooter,
 }: CurricUnitModalProps) {
   return (
     <OakModalNew
@@ -46,16 +48,18 @@ export default function CurricUnitModal({
         </OakBox>
       }
       footer={
-        <CurricUnitModalFooter
-          programmeSlug={createTeacherProgrammeSlug(
-            unitData,
-            ks4OptionSlug,
-            filters.tiers[0],
-            unitData?.pathway_slug ?? undefined,
-          )}
-          unitData={unitData}
-          unitOptionData={unitOptionData}
-        />
+        disableFooter ? undefined : (
+          <CurricUnitModalFooter
+            programmeSlug={createTeacherProgrammeSlug(
+              unitData,
+              ks4OptionSlug,
+              filters.tiers[0],
+              unitData?.pathway_slug ?? undefined,
+            )}
+            unitData={unitData}
+            unitOptionData={unitOptionData}
+          />
+        )
       }
     />
   );

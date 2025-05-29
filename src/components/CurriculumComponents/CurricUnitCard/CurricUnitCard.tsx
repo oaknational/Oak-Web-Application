@@ -16,7 +16,7 @@ import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import { HTMLButtonProps } from "@/components/SharedComponents/Button/common";
 import { Unit } from "@/utils/curriculum/types";
 
-const StyledLink = styled(Link)<HTMLButtonProps & { isHighlighted: boolean }>`
+const StyledLink = styled(Link)<HTMLButtonProps & { $isHighlighted: boolean }>`
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -28,10 +28,10 @@ const StyledLink = styled(Link)<HTMLButtonProps & { isHighlighted: boolean }>`
   text-align: left;
   outline: none;
   cursor: pointer;
-  background: ${({ isHighlighted }) => (isHighlighted ? "black" : "white")};
+  background: ${({ $isHighlighted }) => ($isHighlighted ? "black" : "white")};
   &:hover {
-    background: ${({ isHighlighted }) =>
-      isHighlighted ? "#575757" : "#F2F2F2"};
+    background: ${({ $isHighlighted }) =>
+      $isHighlighted ? "#575757" : "#F2F2F2"};
   }
 `;
 
@@ -54,7 +54,7 @@ export default function CurricUnitCard(props: CurricUnitCardProps) {
     >
       <StyledLink
         href={href}
-        isHighlighted={isHighlighted}
+        $isHighlighted={isHighlighted}
         data-testid="unit-info-link"
         shallow={true}
         scroll={false}

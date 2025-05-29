@@ -47,10 +47,10 @@ export function getUnitSeoFromYearData({
         canonicalURL: `${getBrowserConfig("seoAppUrl")}${lessonPageProps?.nextLinkProps?.href}`,
         noIndex: true,
       };
-    } else {
-      return {
-        noIndex: true,
-      };
     }
   }
+
+  return {
+    noIndex: true,
+  };
 }

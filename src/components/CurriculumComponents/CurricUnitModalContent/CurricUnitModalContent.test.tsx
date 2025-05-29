@@ -9,6 +9,11 @@ import {
 } from "./CurricUnitModalContent.fixtures";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import {
+  mockLinkClick,
+  setupMockLinkClick,
+  teardownMockLinkClick,
+} from "@/utils/mockLinkClick";
 
 const unitOverviewExplored = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
@@ -24,6 +29,14 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 describe("Unit modal", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+  });
+
+  beforeEach(() => {
+    setupMockLinkClick();
+  });
+
+  afterEach(() => {
+    teardownMockLinkClick();
   });
 
   test("renders with correct heading", () => {
@@ -179,6 +192,10 @@ describe("Unit modal", () => {
 
       if (optionalityButton) {
         await userEvent.click(optionalityButton);
+
+        expect(mockLinkClick).toHaveBeenCalledWith(
+          "http://localhost/teachers/curriculum/english-primary/units/composition-of-numbers-6-to-10-1",
+        );
 
         // TODO: Detect navigation to optionality modal with URL
       } else {
