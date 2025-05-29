@@ -90,6 +90,7 @@ const curriculumSequenceSchema = z.object({
       ),
       year: z.string(),
       state: z.string(),
+      prior_knowledge_requirements: z.array(z.string()).nullable(),
     })
     .strict()
     .array(),

@@ -160,6 +160,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -443,6 +444,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -565,6 +567,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -708,6 +711,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -934,6 +938,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -1160,6 +1165,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -1229,6 +1235,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -1452,6 +1459,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -1522,6 +1530,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -1824,6 +1833,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -1964,6 +1974,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -2086,6 +2097,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -2235,6 +2247,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -2424,6 +2437,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -2504,6 +2518,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -2696,6 +2711,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -2977,6 +2993,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -3174,6 +3191,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -3308,6 +3326,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -3510,6 +3529,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -3740,6 +3760,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -4222,6 +4243,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -5065,6 +5087,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -5259,6 +5282,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -5361,6 +5385,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -5532,6 +5557,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -5654,6 +5680,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -5821,6 +5848,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -6097,6 +6125,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -6264,6 +6293,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -6332,6 +6362,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -6482,6 +6513,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -6600,6 +6632,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -6694,6 +6727,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -6817,6 +6851,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -7022,6 +7057,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -7214,6 +7250,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -7308,6 +7345,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -7484,6 +7522,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -7688,6 +7727,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -7950,6 +7990,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -8218,6 +8259,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -8321,6 +8363,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -8556,6 +8599,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -8820,6 +8864,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -9410,6 +9455,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -9556,6 +9602,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -9646,6 +9693,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -10128,6 +10176,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -10373,6 +10422,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -10842,6 +10892,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -11199,6 +11250,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -11353,6 +11405,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -11457,6 +11510,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -11651,6 +11705,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -11846,6 +11901,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -12235,6 +12291,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -12338,6 +12395,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -12524,6 +12582,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -12791,6 +12850,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -12989,6 +13049,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      prior_knowledge_requirements: [],
     },
   ],
 };
