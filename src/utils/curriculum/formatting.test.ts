@@ -1,5 +1,4 @@
 import { PortableTextBlock } from "@portabletext/types";
-// import { mockPortableTextBlock } from "@components/CurriculumComponents/CurriculumVisualiser/fixtures.ts"
 
 import {
   getYearGroupTitle,
@@ -565,12 +564,8 @@ describe("getPathwaySuffix", () => {
 describe("truncatePortableTextBlock", () => {
   it("should return empty string for empty or null input", () => {
     expect(truncatePortableTextBlock([])).toBe("");
-    expect(
-      truncatePortableTextBlock(null as unknown as PortableTextBlock[]),
-    ).toBe("");
-    expect(
-      truncatePortableTextBlock(undefined as unknown as PortableTextBlock[]),
-    ).toBe("");
+    expect(truncatePortableTextBlock(null)).toBe("");
+    expect(truncatePortableTextBlock(undefined)).toBe("");
   });
 
   it("should extract and concatenate text from multiple blocks", () => {
@@ -602,7 +597,7 @@ describe("truncatePortableTextBlock", () => {
   });
 
   it("should not truncate if text is shorter than maxLength", () => {
-    const shortBlocks = [
+    const shortBlocks: PortableTextBlock[] = [
       {
         _key: "short",
         markDefs: [],
@@ -625,38 +620,36 @@ describe("truncatePortableTextBlock", () => {
   });
 
   it("should handle blocks without children", () => {
-    const blocksWithoutChildren = [
+    const blocksWithoutChildren: PortableTextBlock[] = [
       {
         _key: "no-children",
         markDefs: [],
         _type: "block",
         style: "normal",
+        children: [],
       },
     ];
 
-    const result = truncatePortableTextBlock(
-      blocksWithoutChildren as unknown as PortableTextBlock[],
-    );
+    const result = truncatePortableTextBlock(blocksWithoutChildren);
     expect(result).toBe("");
   });
 
   it("should handle non-block types", () => {
-    const nonBlockTypes = [
+    const nonBlockTypes: PortableTextBlock[] = [
       {
         _key: "non-block",
         _type: "image",
-        url: "example.jpg",
+        // url: "example.jpg",
+        children: [],
       },
     ];
 
-    const result = truncatePortableTextBlock(
-      nonBlockTypes as unknown as PortableTextBlock[],
-    );
+    const result = truncatePortableTextBlock(nonBlockTypes);
     expect(result).toBe("");
   });
 
   it("should handle children with non-span types", () => {
-    const nonSpanChildren = [
+    const nonSpanChildren: PortableTextBlock[] = [
       {
         _key: "non-span",
         markDefs: [],
@@ -673,14 +666,12 @@ describe("truncatePortableTextBlock", () => {
       },
     ];
 
-    const result = truncatePortableTextBlock(
-      nonSpanChildren as unknown as PortableTextBlock[],
-    );
+    const result = truncatePortableTextBlock(nonSpanChildren);
     expect(result).toBe("");
   });
 
   it("should trim whitespace properly", () => {
-    const blocksWithWhitespace = [
+    const blocksWithWhitespace: PortableTextBlock[] = [
       {
         _key: "whitespace",
         markDefs: [],
@@ -703,7 +694,7 @@ describe("truncatePortableTextBlock", () => {
   });
 
   it("should handle mixed content types correctly", () => {
-    const mixedBlocks = [
+    const mixedBlocks: PortableTextBlock[] = [
       {
         _key: "text-block",
         markDefs: [],
@@ -721,7 +712,8 @@ describe("truncatePortableTextBlock", () => {
       {
         _key: "image-block",
         _type: "image",
-        url: "example.jpg",
+        // url: "example.jpg",
+        children: [],
       },
       {
         _key: "another-text-block",
@@ -739,10 +731,7 @@ describe("truncatePortableTextBlock", () => {
       },
     ];
 
-    const result = truncatePortableTextBlock(
-      mixedBlocks as unknown as PortableTextBlock[],
-      100,
-    );
+    const result = truncatePortableTextBlock(mixedBlocks, 100);
     expect(result).toBe("Valid text and more text");
   });
 });

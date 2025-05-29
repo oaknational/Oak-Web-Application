@@ -241,7 +241,7 @@ export function getPathwaySuffix(year: string, pathway?: string) {
  * @returns The truncated plain text string, or an empty string if no text could be extracted.
  */
 export function truncatePortableTextBlock(
-  blocks: PortableTextBlock[],
+  blocks: PortableTextBlock[] | null | undefined,
   maxLength: number = 100,
 ): string {
   if (!blocks || blocks.length === 0) return "";
