@@ -223,6 +223,7 @@ export default function MyLibraryUnitCard(props: MyLibraryUnitCardProps) {
       $pa={["inner-padding-m", "inner-padding-xl2"]}
       $maxWidth={"all-spacing-23"}
       $gap={"all-spacing-5"}
+      $width="100%"
     >
       <OakFlex $gap={["space-between-s", "space-between-m"]}>
         <UnitCardHeader {...props} />
