@@ -1,3 +1,39 @@
+# [1.755.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.754.1...v1.755.0) (2025-05-29)
+
+
+### Bug Fixes
+
+* exclude feature flag dups ([0cc216f](https://github.com/oaknational/Oak-Web-Application/commit/0cc216f65bf8feb2a44ec163f636d175a571feb7))
+* format fix ([824cc57](https://github.com/oaknational/Oak-Web-Application/commit/824cc576ac7a0278854a7176c6fb1f05ecf92724))
+* format fix ([c6f6d6d](https://github.com/oaknational/Oak-Web-Application/commit/c6f6d6de88cd4c9e6f35cba9707db1ff917546d2))
+* update posthog version ([4ce032a](https://github.com/oaknational/Oak-Web-Application/commit/4ce032a3da978e7bbc2c2d8183aa293cef7ceea6))
+
+
+### Features
+
+* add pupil link to video subheader ([7137ba2](https://github.com/oaknational/Oak-Web-Application/commit/7137ba2d6df9a2f4c628667d0bf91bf209e1d993))
+* add variant b and style fixes ([94679e1](https://github.com/oaknational/Oak-Web-Application/commit/94679e104195ac93532e5babe2dffb294b478fdd))
+* handle no action ([e9acdec](https://github.com/oaknational/Oak-Web-Application/commit/e9acdecbb36a43692bc2aa3f5833140b44381ee1))
+* handle no action ([3df0fb9](https://github.com/oaknational/Oak-Web-Application/commit/3df0fb9cdff5cc89e6424ac203b2a1d30429965c))
+* handle specialist and subheader gap ([e72633b](https://github.com/oaknational/Oak-Web-Application/commit/e72633b200503a6c2797513cdf8d6ab9a4f8e967))
+* implement the quiz header experiment in owa ([04dfabe](https://github.com/oaknational/Oak-Web-Application/commit/04dfabe80f5493a77a4ab033fd0c2c22a753b08b))
+* merge main fix conflicts ([3d573a9](https://github.com/oaknational/Oak-Web-Application/commit/3d573a9866a46045cb009b8f96f9f2b97837ae65))
+* nav label should be lesson slides ([eb5b9cd](https://github.com/oaknational/Oak-Web-Application/commit/eb5b9cd97dd979cc24175f2b7bece34bce201afc))
+* respond to comments renove comment exclude sonar ([0dc80af](https://github.com/oaknational/Oak-Web-Application/commit/0dc80afa6a5de763c90f286e0784eacd876841e2))
+* test flags ([29aaa68](https://github.com/oaknational/Oak-Web-Application/commit/29aaa688c8a977f10aa4357753f33cab18d785c9))
+* test flags ([07871fd](https://github.com/oaknational/Oak-Web-Application/commit/07871fdfe87d0b4a82d4dbd493ef959201a813ad))
+* tests for nav links ([f825135](https://github.com/oaknational/Oak-Web-Application/commit/f8251359673ae5c6b0fcc8bad532462cec1c965a))
+* update test for lesson helper ([93d67e9](https://github.com/oaknational/Oak-Web-Application/commit/93d67e9113c72cc8bfe04e09d3b115e28dc2458f))
+* update test for lesson helper ([9371f9b](https://github.com/oaknational/Oak-Web-Application/commit/9371f9b650b8b0ba793209486bc01b3c4c8ea6cf))
+* use show share ([8744dc4](https://github.com/oaknational/Oak-Web-Application/commit/8744dc4cc0a1fb6a0f38b19c4cb92692bf94bc3f))
+
+## [1.754.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.754.0...v1.754.1) (2025-05-28)
+
+
+### Bug Fixes
+
+* margins across curric tabs to fix white gap at top of explainer in tablet ([4bfd45c](https://github.com/oaknational/Oak-Web-Application/commit/4bfd45ce25a064fa99fe3d50a20c5d143b98cb41))
+
 # [1.754.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.753.2...v1.754.0) (2025-05-27)
 
 
