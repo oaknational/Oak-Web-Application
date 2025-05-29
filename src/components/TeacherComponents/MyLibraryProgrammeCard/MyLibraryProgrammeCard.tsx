@@ -106,6 +106,7 @@ export default function MyLibraryProgrammeCard(
           <OakLI $listStyle="none" key={unit.unitSlug}>
             <MyLibraryUnitCard
               unitTitle={unit.unitTitle}
+              optionalityTitle={unit.optionalityTitle}
               unitSlug={unit.unitSlug}
               programmeSlug={unit.programmeSlug}
               year={unit.year}
