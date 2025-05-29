@@ -34,6 +34,7 @@ export function ModalContent({
           $position={"absolute"}
           $right={"all-spacing-4"}
           $top={"all-spacing-4"}
+          $zIndex={"in-front"}
         >
           <CurriculumModalCloseButton
             ariaLabel="Close"
