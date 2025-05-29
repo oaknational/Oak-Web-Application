@@ -90,6 +90,7 @@ export default function MyLibraryProgrammeCard(
       $pa={["inner-padding-xs", "inner-padding-l", "inner-padding-xl"]}
       $maxWidth={"all-spacing-23"}
       $gap={["space-between-ssx", "space-between-m"]}
+      $position="relative"
     >
       <OakAnchorTarget id={anchorId} />
       <StyledLink href={programmeHref}>
