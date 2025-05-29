@@ -1,11 +1,13 @@
 import { render, screen, act } from "@testing-library/react";
-import { PortableTextBlock } from "@portabletext/react";
 import { ReactNode } from "react";
+
+import {
+  mockPortableTextBlocks,
+  mockSubject,
+} from "./CurricSEOAccordion.fixtures";
 
 import CurricSEOAccordion from ".";
 
-import { mockPortableTextBlocks } from "@/components/CurriculumComponents/CurriculumVisualiser/fixtures";
-import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 
 const mockUseMediaQuery = jest.fn();
 jest.mock("@/hooks/useMediaQuery", () => ({
@@ -51,17 +53,6 @@ jest.mock("@oaknational/oak-components", () => ({
   ),
 }));
 
-const curriculumSeoText: PortableTextBlock[] =
-  mockPortableTextBlocks as PortableTextBlock[];
-
-const mockSubject: SubjectPhasePickerData["subjects"][number] = {
-  title: "English",
-  slug: "english",
-  keystages: [{ slug: "ks4", title: "KS4" }],
-  phases: [],
-  ks4_options: [],
-};
-
 describe("CurricSEOAccordion", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -71,7 +62,7 @@ describe("CurricSEOAccordion", () => {
     mockUseMediaQuery.mockReturnValue(false);
     render(
       <CurricSEOAccordion
-        curriculumSeoText={curriculumSeoText}
+        curriculumSeoText={mockPortableTextBlocks}
         subject={mockSubject}
       />,
     );
@@ -87,7 +78,7 @@ describe("CurricSEOAccordion", () => {
     mockUseMediaQuery.mockReturnValue(false);
     render(
       <CurricSEOAccordion
-        curriculumSeoText={curriculumSeoText}
+        curriculumSeoText={mockPortableTextBlocks}
         subject={mockSubject}
       />,
     );
@@ -103,7 +94,7 @@ describe("CurricSEOAccordion", () => {
     mockUseMediaQuery.mockReturnValue(true);
     render(
       <CurricSEOAccordion
-        curriculumSeoText={curriculumSeoText}
+        curriculumSeoText={mockPortableTextBlocks}
         subject={mockSubject}
       />,
     );
@@ -117,7 +108,7 @@ describe("CurricSEOAccordion", () => {
     mockUseMediaQuery.mockReturnValue(false);
     render(
       <CurricSEOAccordion
-        curriculumSeoText={curriculumSeoText}
+        curriculumSeoText={mockPortableTextBlocks}
         subject={mockSubject}
       />,
     );
