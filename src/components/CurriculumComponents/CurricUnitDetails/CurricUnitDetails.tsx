@@ -117,7 +117,7 @@ export default function CurricUnitDetails({
                   handleUnitOverviewExploredAnalytics
                 }
               >
-                <OakP $mb="space-between-xs" $font={"body-2"}>
+                <OakP $mb="space-between-s" $font={"body-2"}>
                   {whyThisWhyNow}
                 </OakP>
               </CurricUnitDetailsAccordion>
@@ -152,7 +152,7 @@ export default function CurricUnitDetails({
               handleUnitOverviewExploredAnalytics
             }
           >
-            <OakUL $mb="space-between-xs" $font={"body-2"}>
+            <OakUL $mb="space-between-s" $font={"body-2"}>
               {priorKnowledgeRequirements.map((text, index) => {
                 return <OakLI key={index}>{text}</OakLI>;
               })}
