@@ -7,7 +7,7 @@ import MyLibraryUnitCard from "./MyLibraryUnitCard";
 import {
   completeUnitLessons,
   incompleteUnitLessons,
-} from "@/fixtures/teachers/myLibrary/unitCard";
+} from "@/fixtures/teachers/myLibrary";
 
 const unit = {
   unitTitle: "Fiction: Science Fiction Writing",

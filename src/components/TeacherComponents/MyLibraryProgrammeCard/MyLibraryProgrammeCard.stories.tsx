@@ -2,12 +2,12 @@ import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
-import MyLibrarySubjectCard from "./MyLibrarySubjectCard";
+import MyLibraryProgrammeCard from "./MyLibraryProgrammeCard";
 
 import {
   completeUnitLessons,
   incompleteUnitLessons,
-} from "@/fixtures/teachers/myLibrary/unitCard";
+} from "@/fixtures/teachers/myLibrary";
 
 const sampleUnits = [
   {
@@ -39,17 +39,20 @@ const sampleUnits = [
     year: "Year 11",
     savedAt: new Date().toISOString(),
     href: "/teachers/programmes/english-secondary-ks4-aqa/units/poetry-analysis-romanticism/lessons",
-    lessons: completeUnitLessons.slice(0, 3), // Fewer lessons for variety
+    lessons: completeUnitLessons.slice(0, 3),
     onSave: () => console.log("Unsave unit 3"),
     isSaved: true,
   },
 ];
 
-const meta: Meta<typeof MyLibrarySubjectCard> = {
-  component: MyLibrarySubjectCard,
+const meta: Meta<typeof MyLibraryProgrammeCard> = {
+  component: MyLibraryProgrammeCard,
   tags: ["autodocs"],
   args: {
-    subjectSlug: "english",
+    programmeTitle: "English Secondary KS4 (AQA)",
+    programmeHref:
+      "/teachers/programmes/english-secondary-ks4-aqa/units/english-secondary-ks4-aqa/units",
+    iconName: "subject-english",
     savedUnits: sampleUnits,
   },
   parameters: {
@@ -59,12 +62,12 @@ const meta: Meta<typeof MyLibrarySubjectCard> = {
 
 export default meta;
 
-type Story = StoryObj<typeof MyLibrarySubjectCard>;
+type Story = StoryObj<typeof MyLibraryProgrammeCard>;
 
 export const Default: Story = {
   render: (args) => (
     <OakThemeProvider theme={oakDefaultTheme}>
-      <MyLibrarySubjectCard {...args} />
+      <MyLibraryProgrammeCard {...args} />
     </OakThemeProvider>
   ),
 };

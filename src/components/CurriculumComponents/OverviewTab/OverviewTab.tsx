@@ -214,12 +214,10 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   );
 
   return (
-    <>
-      <OakBox
-        $minWidth={"100%"}
-        $display={["block", "block", "none"]}
-        $mt={["space-between-none"]}
-      >
+    <OakBox
+      $mt={["space-between-none", "space-between-none", "space-between-l"]}
+    >
+      <OakBox $minWidth={"100%"} $display={["block", "block", "none"]}>
         <OakBox
           $background={"bg-decorative1-very-subdued"}
           $ph="inner-padding-m"
@@ -448,7 +446,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
           </OakFlex>
         </OakBox>
       </OakBox>
-    </>
+    </OakBox>
   );
 };
 export default OverviewTab;

@@ -11,7 +11,8 @@ import { MyLibraryUnit } from "@/node-lib/educator-api/queries/getUserListConten
 import { TrackingProgrammeData } from "@/node-lib/educator-api/helpers/saveUnits/utils";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import { resolveOakHref } from "@/common-lib/urls";
-import MyLibrarySubjectCard from "@/components/TeacherComponents/MyLibrarySubjectCard/MyLibrarySubjectCard";
+import MyLibraryProgrammeCard from "@/components/TeacherComponents/MyLibraryProgrammeCard/MyLibraryProgrammeCard";
+import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 export type CollectionData = Array<{
   subject: string;
@@ -82,10 +83,10 @@ export default function MyLibrary(props: MyLibraryProps) {
             $ph={["inner-padding-m", "inner-padding-none"]}
           >
             {collectionData.map((collection) => (
-              <MyLibrarySubjectCard
+              <MyLibraryProgrammeCard
                 key={collection.programmeSlug}
                 programmeTitle={collection.programmeTitle}
-                programmeSlug={collection.programmeSlug}
+                anchorId={collection.programmeSlug}
                 programmeHref={resolveOakHref({
                   page: "unit-index",
                   programmeSlug: collection.programmeSlug,
@@ -93,7 +94,7 @@ export default function MyLibrary(props: MyLibraryProps) {
                     category: collection.searchQuery,
                   },
                 })}
-                subjectSlug={collection.subjectSlug}
+                iconName={getValidSubjectIconName(collection.subjectSlug)}
                 savedUnits={collection.units.map((unit) => ({
                   ...unit,
                   programmeSlug: collection.programmeSlug,
