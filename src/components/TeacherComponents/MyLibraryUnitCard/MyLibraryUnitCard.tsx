@@ -145,7 +145,7 @@ const UnitCardContent = ({
         <OakBox
           $bl={["border-solid-none", "border-solid-s"]}
           $pl={["inner-padding-none", "inner-padding-xl"]}
-          $borderColor={"border-decorative1-stronger"}
+          $color="border-decorative1-stronger"
         >
           <StyledOL>
             {lessons
