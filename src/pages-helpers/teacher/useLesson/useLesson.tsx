@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import {
   TeacherNote,
   TeacherNoteCamelCase,
+  TeacherNoteError,
 } from "@oaknational/oak-pupil-client";
 
 import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
@@ -36,7 +37,7 @@ type UseLessonReturn = {
   isEditable: boolean | null;
   saveTeacherNote: (
     note: Partial<TeacherNoteCamelCase>,
-  ) => Promise<TeacherNote>;
+  ) => Promise<TeacherNote | TeacherNoteError>;
   error: string | null;
   browserUrl: string | null;
   shareUrl: string | null;

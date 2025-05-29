@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { OakHeading, OakBox } from "@oaknational/oak-components";
+import { PortableTextBlock } from "@portabletext/types";
 
 import CurricVisualiser from "../CurricVisualiser";
 import { CurricVisualiserLayout } from "../CurricVisualiserLayout";
@@ -20,6 +21,7 @@ import {
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
+import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 
 type UnitsTabProps = {
   trackingData: CurriculumUnitsTrackingData;
@@ -30,6 +32,8 @@ type UnitsTabProps = {
   basePath: string;
   selectedUnitSlug?: string;
   ks4Options: Ks4Option[];
+  curriculumSeoText?: PortableTextBlock[];
+  curriculumPhaseOptions: SubjectPhasePickerData;
 };
 
 export default function UnitsTab({
@@ -41,6 +45,8 @@ export default function UnitsTab({
   basePath,
   selectedUnitSlug,
   ks4Options,
+  curriculumSeoText,
+  curriculumPhaseOptions,
 }: UnitsTabProps) {
   // Initialize constants
   const isMobile = useMediaQuery("mobile");
@@ -50,6 +56,16 @@ export default function UnitsTab({
   const [mobileSelectedYear, setMobileSelectedYear] = useState<string>("");
 
   const unitCount = getNumberOfSelectedUnits(yearData, filters);
+
+  const subjectForLayout = curriculumPhaseOptions.subjects.find(
+    (s) => s.slug === slugs.subjectSlug,
+  );
+
+  if (!subjectForLayout) {
+    throw new Error(
+      "Selected subject not found in curriculumPhaseOptions for UnitsTab",
+    );
+  }
 
   const highlightedUnits = highlightedUnitCount(
     yearData,
@@ -69,6 +85,7 @@ export default function UnitsTab({
         $maxWidth={"all-spacing-24"}
         $mh={"auto"}
         $ph={["inner-padding-none", "inner-padding-l"]}
+        $mt={["space-between-none", "space-between-l", "space-between-l"]}
         $width={"100%"}
         role="region"
       >
@@ -120,6 +137,8 @@ export default function UnitsTab({
               threadOptions={threadOptions}
             />
           }
+          curriculumSeoText={curriculumSeoText}
+          subject={subjectForLayout}
         />
         <ScreenReaderOnly aria-live="polite" aria-atomic="true">
           <p>
