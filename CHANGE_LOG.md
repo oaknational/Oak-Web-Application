@@ -1,3 +1,10 @@
+## [1.759.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.759.0...v1.759.1) (2025-05-29)
+
+
+### Bug Fixes
+
+* set width of toast container on desktop to not cover breadcrumbs ([156cf00](https://github.com/oaknational/Oak-Web-Application/commit/156cf008413a5816aebbc99649165c70687ee864))
+
 # [1.759.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.758.0...v1.759.0) (2025-05-29)
 
 
