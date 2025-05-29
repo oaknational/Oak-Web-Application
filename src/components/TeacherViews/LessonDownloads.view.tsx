@@ -119,6 +119,15 @@ export function LessonDownloads(props: LessonDownloadsProps) {
 
   const isDownloadsExperiment =
     useFeatureFlagVariantKey("downloads-grouping-experiement") === "grouping";
+  const isQuizHeader =
+    useFeatureFlagVariantKey("lesson-overview-experiement") === "quiz-header";
+
+  downloads.forEach((download) => {
+    if (isQuizHeader && download.type === "presentation") {
+      download.label = "Lesson slides";
+      return download;
+    }
+  });
 
   const showRiskAssessmentBanner = !!actions?.isPePractical;
 
