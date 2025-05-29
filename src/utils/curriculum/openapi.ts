@@ -7,7 +7,7 @@ const unitSchema = z.object({
   unitTitle: z.string(),
   unitSlug: z.string(),
   order: z.number(),
-  prior_knowledge_requirements: z.array(z.string()),
+  prior_knowledge_requirements: z.array(z.string()).default([]),
 });
 const nonSubjectSchema = z.object({
   year: z.number(),
@@ -173,7 +173,7 @@ export default async function openApiRequest(
       unit_options: [],
       year: apiUnit.year,
       state: "published",
-      prior_knowledge_requirements: apiUnit.prior_knowledge_requirements,
+      prior_knowledge_requirements: apiUnit.prior_knowledge_requirements ?? [],
     };
   });
 
