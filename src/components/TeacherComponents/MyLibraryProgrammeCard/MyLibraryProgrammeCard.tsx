@@ -4,6 +4,8 @@ import {
   OakIcon,
   OakIconName,
   OakSecondaryLink,
+  OakUL,
+  OakLI,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
@@ -45,7 +47,7 @@ const ProgrammeHeader = ({
           data-testid="subjectIcon"
         />
       </OakFlex>
-      <OakHeading tag="h4" $font={["heading-6", "heading-4"]}>
+      <OakHeading tag="h2" $font={["heading-6", "heading-4"]}>
         {programmeTitle}
       </OakHeading>
       <OakFlex
@@ -84,21 +86,25 @@ export default function MyLibraryProgrammeCard(
       <StyledLink href={programmeHref}>
         <ProgrammeHeader iconName={iconName} programmeTitle={programmeTitle} />
       </StyledLink>
-      {savedUnits.map((unit) => (
-        <MyLibraryUnitCard
-          key={unit.unitSlug}
-          index={unit.index}
-          unitTitle={unit.unitTitle}
-          unitSlug={unit.unitSlug}
-          programmeSlug={unit.programmeSlug}
-          yearTitle={unit.yearTitle}
-          saveTime={unit.saveTime}
-          href={unit.href}
-          lessons={unit.lessons}
-          onSave={unit.onSave}
-          isSaved={unit.isSaved}
-        />
-      ))}
+      <OakUL>
+        {savedUnits.map((unit) => (
+          <OakLI>
+            <MyLibraryUnitCard
+              key={unit.unitSlug}
+              index={unit.index}
+              unitTitle={unit.unitTitle}
+              unitSlug={unit.unitSlug}
+              programmeSlug={unit.programmeSlug}
+              yearTitle={unit.yearTitle}
+              saveTime={unit.saveTime}
+              href={unit.href}
+              lessons={unit.lessons}
+              onSave={unit.onSave}
+              isSaved={unit.isSaved}
+            />
+          </OakLI>
+        ))}
+      </OakUL>
     </OakFlex>
   );
 }
