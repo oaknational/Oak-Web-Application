@@ -1,14 +1,13 @@
 import {
-  OakFlex,
   OakHeading,
   OakIcon,
   OakIconName,
   OakSecondaryLink,
-  OakUL,
   OakLI,
   OakAnchorTarget,
   OakBox,
   OakLink,
+  OakFlex,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
@@ -96,7 +95,12 @@ export default function MyLibraryProgrammeCard(
       <StyledLink href={programmeHref}>
         <ProgrammeHeader iconName={iconName} programmeTitle={programmeTitle} />
       </StyledLink>
-      <OakUL $gap="space-between-m2" $display="flex" $flexDirection="column">
+      <OakFlex
+        as="ul"
+        $gap="space-between-m2"
+        $flexDirection="column"
+        $pl="inner-padding-none"
+      >
         {savedUnits.map((unit) => (
           <OakLI $listStyle="none" key={unit.unitSlug}>
             <MyLibraryUnitCard
@@ -111,7 +115,7 @@ export default function MyLibraryProgrammeCard(
             />
           </OakLI>
         ))}
-      </OakUL>
+      </OakFlex>
       <OakBox $display={["block", "none"]} $pv="inner-padding-xs">
         <OakLink isTrailingIcon iconName="arrow-up" href="#collections-menu">
           Back to collections
