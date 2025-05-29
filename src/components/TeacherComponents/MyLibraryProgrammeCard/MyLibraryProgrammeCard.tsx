@@ -2,6 +2,7 @@ import {
   OakFlex,
   OakHeading,
   OakIcon,
+  OakIconName,
   OakSecondaryLink,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
@@ -9,8 +10,6 @@ import styled from "styled-components";
 import MyLibraryUnitCard, {
   MyLibraryUnitCardProps,
 } from "../MyLibraryUnitCard/MyLibraryUnitCard";
-
-import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 const StyledLink = styled(OakSecondaryLink)`
   text-decoration: none;
@@ -23,12 +22,11 @@ const StyledLink = styled(OakSecondaryLink)`
 
 const ProgrammeHeader = ({
   programmeTitle,
-  subject,
+  iconName,
 }: {
   programmeTitle: string;
-  subject: string;
+  iconName: OakIconName;
 }) => {
-  const subjectIconName = getValidSubjectIconName(subject);
   return (
     <OakFlex
       $gap={["space-between-ssx", "space-between-ssx"]}
@@ -40,7 +38,12 @@ const ProgrammeHeader = ({
         $alignItems={"center"}
         $justifyContent={"center"}
       >
-        <OakIcon $height={"100%"} $width={"100%"} iconName={subjectIconName} />
+        <OakIcon
+          $height={"100%"}
+          $width={"100%"}
+          iconName={iconName}
+          data-testid="subjectIcon"
+        />
       </OakFlex>
       <OakHeading tag="h4" $font={["heading-6", "heading-4"]}>
         {programmeTitle}
@@ -60,14 +63,14 @@ const ProgrammeHeader = ({
 interface MyLibraryProgrammeCardProps {
   programmeTitle: string;
   programmeHref: string;
-  subject: string;
+  iconName: OakIconName;
   savedUnits: Array<MyLibraryUnitCardProps>;
 }
 
 export default function MyLibraryProgrammeCard(
   props: MyLibraryProgrammeCardProps,
 ) {
-  const { savedUnits, programmeTitle, programmeHref, subject } = props;
+  const { savedUnits, programmeTitle, programmeHref, iconName } = props;
 
   return (
     <OakFlex
@@ -79,7 +82,7 @@ export default function MyLibraryProgrammeCard(
       $gap={["space-between-ssx", "space-between-m"]}
     >
       <StyledLink href={programmeHref}>
-        <ProgrammeHeader subject={subject} programmeTitle={programmeTitle} />
+        <ProgrammeHeader iconName={iconName} programmeTitle={programmeTitle} />
       </StyledLink>
       {savedUnits.map((unit) => (
         <MyLibraryUnitCard

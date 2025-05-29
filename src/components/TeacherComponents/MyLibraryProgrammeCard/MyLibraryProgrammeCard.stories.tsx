@@ -55,7 +55,7 @@ const meta: Meta<typeof MyLibraryProgrammeCard> = {
     programmeTitle: "English Secondary KS4 (AQA)",
     programmeHref:
       "/teachers/programmes/english-secondary-ks4-aqa/units/english-secondary-ks4-aqa/units",
-    subject: "english",
+    iconName: "subject-english",
     savedUnits: sampleUnits,
   },
   parameters: {
