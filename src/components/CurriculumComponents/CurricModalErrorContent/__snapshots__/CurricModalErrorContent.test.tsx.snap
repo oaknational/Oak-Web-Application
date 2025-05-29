@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CurricModalErrorContent should render additional when supplied 1`] = `
+<div>
+  <div
+    class="sc-fqkvVR sc-gsFSXq kRjBvS fnlaRQ"
+  >
+    <h1
+      class="sc-dhKdcB sc-c9371ddb-0 ldTkNA hmfNXu"
+    >
+      404
+    </h1>
+    <h2
+      class="sc-dhKdcB RLKsz"
+    >
+      Missing!
+    </h2>
+    <p
+      class="sc-dLMFU eFqtPi"
+    >
+      Close this modal
+    </p>
+  </div>
+</div>
+`;
+
+exports[`CurricModalErrorContent should render correctly 1`] = `
+<div>
+  <div
+    class="sc-fqkvVR sc-gsFSXq kRjBvS fnlaRQ"
+  >
+    <h1
+      class="sc-dhKdcB sc-c9371ddb-0 ldTkNA hmfNXu"
+    >
+      404
+    </h1>
+    <h2
+      class="sc-dhKdcB RLKsz"
+    >
+      Missing!
+    </h2>
+  </div>
+</div>
+`;

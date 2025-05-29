@@ -1,7 +1,7 @@
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { Meta, StoryObj } from "@storybook/react";
 
-import CurriculumUnitCard from "../CurriculumUnitCard/CurriculumUnitCard";
+import CurriculumUnitCard from "../CurricUnitCard";
 
 import { CurricYearCard as Component } from ".";
 
@@ -89,7 +89,7 @@ export const WithAdditionalContent: Story = {
           }
           index={0}
           isHighlighted={false}
-          onClick={() => {}}
+          href={""}
         />
         <CurriculumUnitCard
           unit={
@@ -104,7 +104,7 @@ export const WithAdditionalContent: Story = {
           }
           index={1}
           isHighlighted={false}
-          onClick={() => {}}
+          href={""}
         />
         <CurriculumUnitCard
           unit={
@@ -119,7 +119,7 @@ export const WithAdditionalContent: Story = {
           }
           index={2}
           isHighlighted={false}
-          onClick={() => {}}
+          href={""}
         />
       </div>
     ),

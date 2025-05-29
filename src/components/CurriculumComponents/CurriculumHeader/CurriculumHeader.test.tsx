@@ -1,4 +1,5 @@
 import { findAllByRole } from "@testing-library/dom";
+import { ComponentProps } from "react";
 
 import CurriculumHeader from "./CurriculumHeader";
 
@@ -21,11 +22,10 @@ describe("Component - Curriculum Header", () => {
     jest.clearAllMocks();
   });
   const renderComponent = (overrides = {}) => {
-    const defaultProps = {
+    const defaultProps: ComponentProps<typeof CurriculumHeader> = {
       curriculumSelectionSlugs: parseSubjectPhaseSlug("english-secondary-aqa")!,
       keyStages: ["ks3", "ks4"],
       curriculumPhaseOptions: { subjects: curriculumPhaseOptionsFixture() },
-      pageSlug: "test-slug",
       tab: "overview",
       ...overrides,
     };

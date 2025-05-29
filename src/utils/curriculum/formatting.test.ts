@@ -20,7 +20,7 @@ import { createFilter } from "@/fixtures/curriculum/filters";
 import { createSubjectCategory } from "@/fixtures/curriculum/subjectCategories";
 import { createChildSubject } from "@/fixtures/curriculum/childSubject";
 import { createTier } from "@/fixtures/curriculum/tier";
-import { mockPortableTextBlocks } from "@/components/CurriculumComponents/CurriculumVisualiser/fixtures";
+import { mockPortableTextBlocks } from "@/components/CurriculumComponents/CurricVisualiser/CurricVisualiser.fixtures";
 
 describe("getYearGroupTitle", () => {
   describe("no suffix", () => {

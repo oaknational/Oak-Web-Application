@@ -25,7 +25,7 @@ import {
 } from "@/utils/curriculum/by-pathway";
 import { getShouldDisplayCorePathway } from "@/utils/curriculum/pathways";
 
-export type CurriculumVisualiserFiltersMobileProps =
+export type CurricVisualiserFiltersMobileProps =
   CurricVisualiserFiltersProps & {
     selectedYear: string;
     onSelectYear: (newYear: string) => void;
@@ -100,7 +100,7 @@ const StyledButtonGroup = styled(ButtonGroup)`
   }
 `;
 
-export function CurricMobileStickyHeader({
+export default function CurricVisualiserMobileHeader({
   onOpenModal,
   filters,
   data,
@@ -109,7 +109,7 @@ export function CurricMobileStickyHeader({
   onSelectYear,
   slugs,
   ks4Options,
-}: CurriculumVisualiserFiltersMobileProps & {
+}: CurricVisualiserFiltersMobileProps & {
   trackingData: CurriculumUnitsTrackingData;
 }) {
   const { track } = useAnalytics();

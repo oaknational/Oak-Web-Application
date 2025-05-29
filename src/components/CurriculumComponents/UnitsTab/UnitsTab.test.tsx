@@ -297,6 +297,7 @@ describe("unitsTab !subject error", () => {
     expect(() => {
       render(
         <UnitsTab
+          basePath="/"
           trackingData={mockTrackingData}
           formattedData={mockFormattedData}
           filters={mockFilters}
