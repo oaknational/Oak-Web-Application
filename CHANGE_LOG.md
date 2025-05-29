@@ -1,3 +1,18 @@
+# [1.759.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.758.0...v1.759.0) (2025-05-29)
+
+
+### Bug Fixes
+
+* add curriculumSeoTextRaw to fixtures ([e02abc0](https://github.com/oaknational/Oak-Web-Application/commit/e02abc005f04d90833f1f93e534fc44b8d94b8b3))
+* add useMediaQuery mock ([0e9010a](https://github.com/oaknational/Oak-Web-Application/commit/0e9010ae38b127c608136092e7046e275a7cf8d8))
+
+
+### Features
+
+* add curriculumSEOText field to graphQL query ([2a460de](https://github.com/oaknational/Oak-Web-Application/commit/2a460dea6c403d965cecb1af2e71672e5ae8bdfa))
+* add SEO text accordion ([ee5f1d0](https://github.com/oaknational/Oak-Web-Application/commit/ee5f1d0ddf58026318fc36f31df8994a0990d6bc))
+* add truncatePortableTextBlock util func ([2682530](https://github.com/oaknational/Oak-Web-Application/commit/268253023cdd1a3d35158244b44c4483d5b5ecf4))
+
 # [1.758.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.757.0...v1.758.0) (2025-05-29)
 
 

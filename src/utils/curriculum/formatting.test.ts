@@ -1,3 +1,5 @@
+import { PortableTextBlock } from "@portabletext/types";
+
 import {
   getYearGroupTitle,
   getPhaseText,
@@ -10,6 +12,7 @@ import {
   subjectTitleWithCase,
   getPhaseFromCategory,
   getPathwaySuffix,
+  truncatePortableTextBlock,
 } from "./formatting";
 
 import { createYearData } from "@/fixtures/curriculum/yearData";
@@ -17,6 +20,7 @@ import { createFilter } from "@/fixtures/curriculum/filters";
 import { createSubjectCategory } from "@/fixtures/curriculum/subjectCategories";
 import { createChildSubject } from "@/fixtures/curriculum/childSubject";
 import { createTier } from "@/fixtures/curriculum/tier";
+import { mockPortableTextBlocks } from "@/components/CurriculumComponents/CurricVisualiser/CurricVisualiser.fixtures";
 
 describe("getYearGroupTitle", () => {
   describe("no suffix", () => {
@@ -554,5 +558,180 @@ describe("getPathwaySuffix", () => {
       expect(getPathwaySuffix(`${year}`, "core")).toEqual("Core");
       expect(getPathwaySuffix(`${year}`, "non_core")).toEqual("GCSE");
     }
+  });
+});
+
+describe("truncatePortableTextBlock", () => {
+  it("should return empty string for empty or null input", () => {
+    expect(truncatePortableTextBlock([])).toBe("");
+    expect(truncatePortableTextBlock(null)).toBe("");
+    expect(truncatePortableTextBlock(undefined)).toBe("");
+  });
+
+  it("should extract and concatenate text from multiple blocks", () => {
+    const result = truncatePortableTextBlock(mockPortableTextBlocks, 500);
+    expect(result).toContain(
+      "Use this KS3 and KS4 Eduqas English curriculum plan",
+    );
+    expect(result).toContain("Threads like 'non-fiction reading and writing'");
+    expect(result).toContain("Year 7 English curriculum");
+    expect(result).toContain("Year 8 English curriculum");
+  });
+
+  it("should truncate text to default maxLength of 100 characters", () => {
+    const result = truncatePortableTextBlock(mockPortableTextBlocks);
+    expect(result.length).toBeLessThanOrEqual(103); // 100 + "..." = 103
+    expect(result).toMatch(/\.\.\.$/);
+    expect(result).toBe(
+      "Use this KS3 and KS4 Eduqas English curriculum plan to support sequenced teaching in reading, writin...",
+    );
+  });
+
+  it("should truncate text to custom maxLength", () => {
+    const result = truncatePortableTextBlock(mockPortableTextBlocks, 50);
+    expect(result.length).toBeLessThanOrEqual(53); // 50 + "..." = 53
+    expect(result).toMatch(/\.\.\.$/);
+    expect(result).toBe(
+      "Use this KS3 and KS4 Eduqas English curriculum pla...",
+    );
+  });
+
+  it("should not truncate if text is shorter than maxLength", () => {
+    const shortBlocks: PortableTextBlock[] = [
+      {
+        _key: "short",
+        markDefs: [],
+        children: [
+          {
+            marks: [],
+            text: "Short text",
+            _key: "short-key",
+            _type: "span",
+          },
+        ],
+        _type: "block",
+        style: "normal",
+      },
+    ];
+
+    const result = truncatePortableTextBlock(shortBlocks, 100);
+    expect(result).toBe("Short text");
+    expect(result).not.toMatch(/\.\.\.$/);
+  });
+
+  it("should handle blocks without children", () => {
+    const blocksWithoutChildren: PortableTextBlock[] = [
+      {
+        _key: "no-children",
+        markDefs: [],
+        _type: "block",
+        style: "normal",
+        children: [],
+      },
+    ];
+
+    const result = truncatePortableTextBlock(blocksWithoutChildren);
+    expect(result).toBe("");
+  });
+
+  it("should handle non-block types", () => {
+    const nonBlockTypes: PortableTextBlock[] = [
+      {
+        _key: "non-block",
+        _type: "image",
+        // url: "example.jpg",
+        children: [],
+      },
+    ];
+
+    const result = truncatePortableTextBlock(nonBlockTypes);
+    expect(result).toBe("");
+  });
+
+  it("should handle children with non-span types", () => {
+    const nonSpanChildren: PortableTextBlock[] = [
+      {
+        _key: "non-span",
+        markDefs: [],
+        children: [
+          {
+            marks: [],
+            _key: "non-span-key",
+            _type: "link",
+            href: "example.com",
+          },
+        ],
+        _type: "block",
+        style: "normal",
+      },
+    ];
+
+    const result = truncatePortableTextBlock(nonSpanChildren);
+    expect(result).toBe("");
+  });
+
+  it("should trim whitespace properly", () => {
+    const blocksWithWhitespace: PortableTextBlock[] = [
+      {
+        _key: "whitespace",
+        markDefs: [],
+        children: [
+          {
+            marks: [],
+            text: "  Text with spaces  ",
+            _key: "whitespace-key",
+            _type: "span",
+          },
+        ],
+        _type: "block",
+        style: "normal",
+      },
+    ];
+
+    const result = truncatePortableTextBlock(blocksWithWhitespace, 100);
+    expect(result).toBe("Text with spaces");
+    expect(result).not.toMatch(/^\s|\s$/);
+  });
+
+  it("should handle mixed content types correctly", () => {
+    const mixedBlocks: PortableTextBlock[] = [
+      {
+        _key: "text-block",
+        markDefs: [],
+        children: [
+          {
+            marks: [],
+            text: "Valid text",
+            _key: "text-key",
+            _type: "span",
+          },
+        ],
+        _type: "block",
+        style: "normal",
+      },
+      {
+        _key: "image-block",
+        _type: "image",
+        // url: "example.jpg",
+        children: [],
+      },
+      {
+        _key: "another-text-block",
+        markDefs: [],
+        children: [
+          {
+            marks: [],
+            text: "and more text",
+            _key: "more-text-key",
+            _type: "span",
+          },
+        ],
+        _type: "block",
+        style: "normal",
+      },
+    ];
+
+    const result = truncatePortableTextBlock(mixedBlocks, 100);
+    expect(result).toBe("Valid text and more text");
   });
 });
