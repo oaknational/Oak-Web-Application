@@ -33,9 +33,9 @@ describe("CurricFiltersSubjectCategories", () => {
     const elements = getAllByRole("radio") as HTMLInputElement[];
     expect(elements.length).toEqual(3);
     expect(getByRole("heading").textContent).toEqual("Category (KS4)");
-    expect(elements[0]!.value).toEqual("1");
-    expect(elements[1]!.value).toEqual("2");
-    expect(elements[2]!.value).toEqual("3");
+    expect(elements[0]!.value).toEqual("biology");
+    expect(elements[1]!.value).toEqual("chemistry");
+    expect(elements[2]!.value).toEqual("physics");
   });
 
   it("renders correctly ks3 & ks4", () => {
@@ -62,9 +62,9 @@ describe("CurricFiltersSubjectCategories", () => {
     const elements = getAllByRole("radio") as HTMLInputElement[];
     expect(elements.length).toEqual(3);
     expect(getByRole("heading").textContent).toEqual("Category");
-    expect(elements[0]!.value).toEqual("1");
-    expect(elements[1]!.value).toEqual("2");
-    expect(elements[2]!.value).toEqual("3");
+    expect(elements[0]!.value).toEqual("biology");
+    expect(elements[1]!.value).toEqual("chemistry");
+    expect(elements[2]!.value).toEqual("physics");
   });
 
   it("interacts correctly", () => {
@@ -94,7 +94,7 @@ describe("CurricFiltersSubjectCategories", () => {
 
     act(() => elements[0]!.click());
     expect(onChangeFilters).toHaveBeenCalledWith({
-      subjectCategories: ["1"],
+      subjectCategories: ["biology"],
       childSubjects: [],
       threads: [],
       tiers: [],
@@ -103,7 +103,7 @@ describe("CurricFiltersSubjectCategories", () => {
     });
     act(() => elements[1]!.click());
     expect(onChangeFilters).toHaveBeenCalledWith({
-      subjectCategories: ["2"],
+      subjectCategories: ["chemistry"],
       childSubjects: [],
       threads: [],
       tiers: [],
@@ -112,7 +112,7 @@ describe("CurricFiltersSubjectCategories", () => {
     });
     act(() => elements[2]!.click());
     expect(onChangeFilters).toHaveBeenCalledWith({
-      subjectCategories: ["3"],
+      subjectCategories: ["physics"],
       childSubjects: [],
       threads: [],
       tiers: [],

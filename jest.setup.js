@@ -6,6 +6,17 @@ import "whatwg-fetch";
 import bugsnag from "@bugsnag/js";
 import { installMockIntersectionObserver } from "@oaknational/oak-components";
 
+// Override this with `TEST_ALLOW_LOGGING=1` if you want logs locally
+if (process.env.TEST_ALLOW_LOGGING !== "1") {
+  ["log", "info", "error", "warn", "debug"].forEach((type) => {
+    console[type] = (message) => {
+      throw new Error(
+        `Failed: We don't allow console.${type} while running tests!\n\n${message}`,
+      );
+    };
+  });
+}
+
 // TextEncoder and TextDecoder are Web APIs but not available in JSDOM
 global.TextEncoder = TextEncoder;
 global.TextDecoder = TextDecoder;
@@ -79,3 +90,10 @@ jest.mock("nanoid", () => {
 });
 
 installMockIntersectionObserver();
+
+jest.mock("@/node-lib/educator-api/helpers/useGetEducatorData", () => ({
+  useGetEducatorData: jest.fn(() => ({
+    data: 0,
+    isLoading: false,
+  })),
+}));

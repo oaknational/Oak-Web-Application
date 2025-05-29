@@ -1,3 +1,50 @@
+## [1.754.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.754.0...v1.754.1) (2025-05-28)
+
+
+### Bug Fixes
+
+* margins across curric tabs to fix white gap at top of explainer in tablet ([4bfd45c](https://github.com/oaknational/Oak-Web-Application/commit/4bfd45ce25a064fa99fe3d50a20c5d143b98cb41))
+
+# [1.754.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.753.2...v1.754.0) (2025-05-27)
+
+
+### Bug Fixes
+
+* buildTextDescribingFilter fixes in curric filtering ([711715f](https://github.com/oaknational/Oak-Web-Application/commit/711715f1a0abc6ad3c1faa99e15fc0d0f51c7f66))
+* overrides for subject category icons in the curric filtering ([fc8ac10](https://github.com/oaknational/Oak-Web-Application/commit/fc8ac10431916e231fa5633f9ff68c93d1552b94))
+
+
+### Features
+
+* added subjectcategories slug into filter ([b89547d](https://github.com/oaknational/Oak-Web-Application/commit/b89547d4ef19bdde8956dfb32f0f59bc007e8da2))
+
+## [1.753.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.753.1...v1.753.2) (2025-05-27)
+
+
+### Bug Fixes
+
+* fix failing type check ([d800751](https://github.com/oaknational/Oak-Web-Application/commit/d80075122f7ce6b9940d586238d9b4e03073a967))
+
+## [1.753.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.753.0...v1.753.1) (2025-05-27)
+
+# [1.753.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.752.0...v1.753.0) (2025-05-27)
+
+
+### Bug Fixes
+
+* only show save count in teachers areas ([ba5c6e5](https://github.com/oaknational/Oak-Web-Application/commit/ba5c6e55e5759c2427d8210781b8623591b97b37))
+
+
+### Features
+
+* add context to keep save count in sync ([97beaa0](https://github.com/oaknational/Oak-Web-Application/commit/97beaa02a3c2f2f8ef9541d195aa3c2e5e236461))
+* add my library page to config ([1337094](https://github.com/oaknational/Oak-Web-Application/commit/1337094df6bce2746e1cc5fe4c65873311cd1bd0))
+* add query to get user list content count ([b179725](https://github.com/oaknational/Oak-Web-Application/commit/b179725858f5ea711d4220dd48dc0e14dba20e07))
+* add save count component to header ([0572fa0](https://github.com/oaknational/Oak-Web-Application/commit/0572fa05ac6431f94639a9f817b188cf83116a34))
+* adjust appheader layout for mobile ([f7003f6](https://github.com/oaknational/Oak-Web-Application/commit/f7003f6ea1416bce254ca88d12e757cd2357e3ff))
+* extract into a component ([ac00cf7](https://github.com/oaknational/Oak-Web-Application/commit/ac00cf7a44ad96c227ab59b074df6251bc7f1777))
+* get saved units count ([b330554](https://github.com/oaknational/Oak-Web-Application/commit/b330554392a8be90ec195aaea9f20886991df725))
+
 # [1.752.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.751.0...v1.752.0) (2025-05-27)
 
 

@@ -1,5 +1,6 @@
-import { getSecretNamesFromPublicConfig } from "./helpers";
 import { OakConfig } from "../fetch_config/config_types";
+
+import { getSecretNamesFromPublicConfig } from "./helpers";
 
 describe("get_secret_names_from_public_config.js", () => {
   test("it correctly gets the secret names", () => {
