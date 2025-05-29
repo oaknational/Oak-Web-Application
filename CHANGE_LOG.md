@@ -1,3 +1,17 @@
+## [1.759.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.759.1...v1.759.2) (2025-05-29)
+
+
+### Bug Fixes
+
+* unit modal width should be static ([cb0bd67](https://github.com/oaknational/Oak-Web-Application/commit/cb0bd6738be5c35b772ce738187c800da2e5dea3))
+
+## [1.759.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.759.0...v1.759.1) (2025-05-29)
+
+
+### Bug Fixes
+
+* set width of toast container on desktop to not cover breadcrumbs ([156cf00](https://github.com/oaknational/Oak-Web-Application/commit/156cf008413a5816aebbc99649165c70687ee864))
+
 # [1.759.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.758.0...v1.759.0) (2025-05-29)
 
 
