@@ -103,6 +103,7 @@ export const curriculumOverviewCMSFixture = (
       },
     },
     curriculumPartnerOverviews: [],
+    curriculumSeoTextRaw: null,
     ...partial,
   };
 };
