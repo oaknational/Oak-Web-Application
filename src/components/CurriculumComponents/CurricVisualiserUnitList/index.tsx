@@ -1,7 +1,10 @@
+import { join } from "path";
+
 import { OakFlex, OakP } from "@oaknational/oak-components";
 import styled from "styled-components";
+import { useSearchParams } from "next/navigation";
 
-import CurriculumUnitCard from "../CurriculumUnitCard/CurriculumUnitCard";
+import CurriculumUnitCard from "../CurricUnitCard";
 
 import { isHighlightedUnit } from "@/utils/curriculum/filtering";
 import { CurriculumFilters, Unit, YearData } from "@/utils/curriculum/types";
@@ -155,22 +158,23 @@ type CurricVisualiserUnitListProps = {
   filters: CurriculumFilters;
   year: string;
   yearData: YearData;
-  onOpenModal: (
-    unitOptions: boolean,
-    unit: Unit,
-    isHighlighted: boolean,
-  ) => void;
+  basePath: string;
 };
 export function CurricVisualiserUnitList({
   units,
   yearData,
   year,
   filters,
-  onOpenModal,
+  basePath,
 }: CurricVisualiserUnitListProps) {
+  const searchParams = useSearchParams();
+
   function getItems(unit: Unit, index: number) {
     const isHighlighted = isHighlightedUnit(unit, filters.threads);
-    const unitOptions = unit.unit_options.length >= 1;
+    const searchParamsStr = searchParams?.toString() ?? "";
+    const unitUrl =
+      join(basePath, unit.slug) +
+      `${!searchParamsStr ? "" : `?${searchParamsStr}`}`;
 
     return (
       <UnitListItem key={`${unit.slug}-${index}`}>
@@ -179,9 +183,7 @@ export function CurricVisualiserUnitList({
           key={unit.slug + index}
           index={index}
           isHighlighted={isHighlighted}
-          onClick={() => {
-            onOpenModal(unitOptions, unit, isHighlighted);
-          }}
+          href={unitUrl}
         />
       </UnitListItem>
     );
