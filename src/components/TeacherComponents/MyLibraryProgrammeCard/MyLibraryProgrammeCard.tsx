@@ -23,9 +23,11 @@ const StyledLink = styled(OakSecondaryLink)`
 `;
 
 const ProgrammeHeader = ({
+  headingIdString,
   programmeTitle,
   iconName,
 }: {
+  headingIdString: string;
   programmeTitle: string;
   iconName: OakIconName;
 }) => {
@@ -49,7 +51,7 @@ const ProgrammeHeader = ({
       </OakFlex>
       <OakHeading
         tag="h2"
-        id={`programme-heading-${programmeTitle}`}
+        id={headingIdString}
         $font={["heading-6", "heading-4"]}
       >
         {programmeTitle}
@@ -78,6 +80,8 @@ export default function MyLibraryProgrammeCard(
 ) {
   const { savedUnits, programmeTitle, programmeHref, iconName } = props;
 
+  const headingIdString = `programme-heading-${programmeTitle.split(" ").join("-").toLowerCase()}`;
+
   return (
     <OakFlex
       $flexDirection={"column"}
@@ -88,9 +92,13 @@ export default function MyLibraryProgrammeCard(
       $gap={["space-between-ssx", "space-between-m"]}
     >
       <StyledLink href={programmeHref}>
-        <ProgrammeHeader iconName={iconName} programmeTitle={programmeTitle} />
+        <ProgrammeHeader
+          headingIdString={headingIdString}
+          iconName={iconName}
+          programmeTitle={programmeTitle}
+        />
       </StyledLink>
-      <OakUL aria-labelledby={`programme-heading-${programmeTitle}`}>
+      <OakUL aria-labelledby={headingIdString}>
         {savedUnits.map((unit) => (
           <OakLI key={unit.unitSlug}>
             <MyLibraryUnitCard
