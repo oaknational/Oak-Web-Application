@@ -359,6 +359,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
         $ph={18}
         $pt={[48, 0]}
         $pb={[48]}
+        $mt={[0, 48, 48]}
         $borderColor="red"
         $width={"100%"}
         role="region"

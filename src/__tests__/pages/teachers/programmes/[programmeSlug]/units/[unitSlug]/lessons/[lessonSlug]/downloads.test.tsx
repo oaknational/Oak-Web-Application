@@ -209,6 +209,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       lessonReleaseCohort: "2023-2026",
       lessonReleaseDate: "2025-09-29T14:00:00.000Z",
       pathway: null,
+      totalDownloadableResources: 2,
     });
 
     expect(teacherShareInitiated).toHaveBeenCalledTimes(1);
@@ -273,6 +274,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       pathway: null,
       tierName: null,
       examBoard: null,
+      totalDownloadableResources: 2,
     });
   });
 

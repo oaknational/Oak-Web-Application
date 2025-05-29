@@ -1,3 +1,5 @@
+import { useFeatureFlagVariantKey } from "posthog-js/react";
+
 import {
   getDedupedPupilLessonOutcome,
   LessonOverview,
@@ -5,6 +7,10 @@ import {
 
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagVariantKey: jest.fn(),
+}));
 
 const lessonMediaClipsStarted = jest.fn();
 const lessonResourceDownloadStarted = jest.fn();
@@ -49,6 +55,57 @@ describe("isPupilLessonOutcomeInKeyLearningPoints", () => {
   });
 });
 describe("lessonOverview.view", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+  describe("when sub-header feature flag is enabled", () => {
+    beforeEach(() => {
+      (useFeatureFlagVariantKey as jest.Mock).mockReturnValue("sub-header");
+    });
+
+    it("renders with sub-header content", () => {
+      const { getByText } = renderWithTheme(
+        <LessonOverview
+          lesson={{
+            ...lessonOverviewFixture(),
+            isSpecialist: false,
+            isCanonical: false,
+            hasMediaClips: true,
+          }}
+          isBeta={false}
+        />,
+      );
+      expect(
+        getByText(
+          "The practice tasks in the lesson slides are also available as an editable worksheet ready to download in PowerPoint format.",
+        ),
+      ).toBeInTheDocument();
+    });
+  });
+  describe("when sub-header feature flag is not enabled", () => {
+    beforeEach(() => {
+      (useFeatureFlagVariantKey as jest.Mock).mockReturnValue("default");
+    });
+    it("renders without sub-header content", () => {
+      const { queryByText } = renderWithTheme(
+        <LessonOverview
+          lesson={{
+            ...lessonOverviewFixture(),
+            isSpecialist: false,
+            isCanonical: false,
+            hasMediaClips: true,
+          }}
+          isBeta={false}
+        />,
+      );
+
+      expect(
+        queryByText(
+          "The practice tasks in the lesson slides are also available as an editable worksheet ready to download in PowerPoint format.",
+        ),
+      ).not.toBeInTheDocument();
+    });
+  });
   describe("tracking", () => {
     it("should call track.lessonMediaClipsStarted when play all is clicked for media clips", () => {
       const { getByText } = renderWithTheme(
@@ -160,8 +217,8 @@ describe("lessonOverview.view", () => {
         keyStageSlug: "ks2",
         keyStageTitle: "Key Stage 2",
         lessonName: "Adverbial complex sentences",
-        lessonReleaseCohort: "2020-2023",
-        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
+        lessonReleaseCohort: "2023-2026",
+        lessonReleaseDate: "unreleased",
         lessonSlug:
           "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
         pathway: null,
