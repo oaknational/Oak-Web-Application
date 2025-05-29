@@ -1,3 +1,15 @@
+# [1.758.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.757.0...v1.758.0) (2025-05-29)
+
+
+### Bug Fixes
+
+* share link enabled by default, removed link styles, clear pii highlight on delete, added tests ([e2dc932](https://github.com/oaknational/Oak-Web-Application/commit/e2dc9325120133feb97c1e29e22996d3425cc480))
+
+
+### Features
+
+* added PII check as part of sharing teacher notes ([466c829](https://github.com/oaknational/Oak-Web-Application/commit/466c82981d9f50f1c279ef5ed395639a145d48dc))
+
 # [1.757.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.756.0...v1.757.0) (2025-05-29)
 
 
