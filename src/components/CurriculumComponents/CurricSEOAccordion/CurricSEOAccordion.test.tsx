@@ -1,13 +1,10 @@
-import { render, screen, act } from "@testing-library/react";
-import { ReactNode } from "react";
+import { render, screen, fireEvent } from "@testing-library/react";
+import { PortableTextBlock } from "@portabletext/react";
 
-import {
-  mockPortableTextBlocks,
-  mockSubject,
-} from "./CurricSEOAccordion.fixtures";
+import CurricSEOAccordion from "./CurricSEOAccordion";
 
-import CurricSEOAccordion from ".";
-
+import { mockPortableTextBlocks } from "@/components/CurriculumComponents/CurriculumVisualiser/fixtures";
+import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 
 const mockUseMediaQuery = jest.fn();
 jest.mock("@/hooks/useMediaQuery", () => ({
@@ -19,39 +16,16 @@ jest.mock("@/components/SharedComponents/PortableText", () => ({
   basePortableTextComponents: {},
 }));
 
-interface MockOakBasicAccordionProps {
-  children: ReactNode;
-  header: ReactNode;
-  subheading: ReactNode;
-}
+const curriculumSeoText: PortableTextBlock[] =
+  mockPortableTextBlocks as PortableTextBlock[];
 
-interface MockOakComponentProps {
-  children: ReactNode;
-}
-
-jest.mock("@oaknational/oak-components", () => ({
-  OakBasicAccordion: ({
-    children,
-    header,
-    subheading,
-  }: MockOakBasicAccordionProps) => (
-    <div data-testid="oak-accordion">
-      <div data-testid="accordion-header">{header}</div>
-      <div data-testid="accordion-subheading">{subheading}</div>
-      <div data-testid="accordion-content">{children}</div>
-    </div>
-  ),
-  OakBox: ({ children }: MockOakComponentProps) => (
-    <div data-testid="oak-box">{children}</div>
-  ),
-  OakHandDrawnHR: () => <hr data-testid="oak-hr" />,
-  OakHeading: ({ children }: MockOakComponentProps) => (
-    <h3 data-testid="oak-heading">{children}</h3>
-  ),
-  OakP: ({ children }: MockOakComponentProps) => (
-    <p data-testid="oak-p">{children}</p>
-  ),
-}));
+const mockSubject: SubjectPhasePickerData["subjects"][number] = {
+  title: "English",
+  slug: "english",
+  keystages: [{ slug: "ks4", title: "KS4" }],
+  phases: [],
+  ks4_options: [],
+};
 
 describe("CurricSEOAccordion", () => {
   beforeEach(() => {
@@ -62,7 +36,7 @@ describe("CurricSEOAccordion", () => {
     mockUseMediaQuery.mockReturnValue(false);
     render(
       <CurricSEOAccordion
-        curriculumSeoText={mockPortableTextBlocks}
+        curriculumSeoText={curriculumSeoText}
         subject={mockSubject}
       />,
     );
@@ -78,7 +52,7 @@ describe("CurricSEOAccordion", () => {
     mockUseMediaQuery.mockReturnValue(false);
     render(
       <CurricSEOAccordion
-        curriculumSeoText={mockPortableTextBlocks}
+        curriculumSeoText={curriculumSeoText}
         subject={mockSubject}
       />,
     );
@@ -94,7 +68,7 @@ describe("CurricSEOAccordion", () => {
     mockUseMediaQuery.mockReturnValue(true);
     render(
       <CurricSEOAccordion
-        curriculumSeoText={mockPortableTextBlocks}
+        curriculumSeoText={curriculumSeoText}
         subject={mockSubject}
       />,
     );
@@ -108,7 +82,7 @@ describe("CurricSEOAccordion", () => {
     mockUseMediaQuery.mockReturnValue(false);
     render(
       <CurricSEOAccordion
-        curriculumSeoText={mockPortableTextBlocks}
+        curriculumSeoText={curriculumSeoText}
         subject={mockSubject}
       />,
     );
@@ -116,10 +90,7 @@ describe("CurricSEOAccordion", () => {
     const accordionHeader = screen.getByRole("heading", {
       name: /How to plan your English curriculum with Oak/i,
     });
-
-    act(() => {
-      accordionHeader.click();
-    });
+    fireEvent.click(accordionHeader);
 
     expect(
       screen.getByText(
