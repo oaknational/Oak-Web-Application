@@ -1,3 +1,21 @@
+# [1.756.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.755.0...v1.756.0) (2025-05-29)
+
+
+### Bug Fixes
+
+* added ellipsis for resource card labels longer than 1 line of text ([c4f129b](https://github.com/oaknational/Oak-Web-Application/commit/c4f129b2555b55682c33c298bdfe2318c3666b24))
+* fixed test console logs and moved download button position to right ([54f4cff](https://github.com/oaknational/Oak-Web-Application/commit/54f4cff073a98b5a4ac92e0374988fe102f31a84))
+* include additional files in totalDownloadableResources ([3256e06](https://github.com/oaknational/Oak-Web-Application/commit/3256e066115fd2e23ee9c360fb97408c8fe6f2ff))
+* moved copyright notice when logged in to correct place ([3665cdf](https://github.com/oaknational/Oak-Web-Application/commit/3665cdf82b4247837037a8a66526e4cdbb624ff4))
+* updated totalDownlodabaleResources tracking to use downloads without copyright filter ([15d13d5](https://github.com/oaknational/Oak-Web-Application/commit/15d13d59b8149c7af1fd49d42f769ac81556d913))
+
+
+### Features
+
+* added A/B variants of downloads page that render based on posthog experiment ([25dc07f](https://github.com/oaknational/Oak-Web-Application/commit/25dc07f8cb11be8b44c2af1f395e2be171ed2f03))
+* added fieldsets to download groups, added Lesson guide group, fixed group spacing ([143e194](https://github.com/oaknational/Oak-Web-Application/commit/143e1943a11fcdf8dc2587324df1a1494f691725))
+* added totalDownloadableResources to Avo tracking ([05c0048](https://github.com/oaknational/Oak-Web-Application/commit/05c004883d889eee6b5e6560a4305456c16f4474))
+
 # [1.755.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.754.1...v1.755.0) (2025-05-29)
 
 
