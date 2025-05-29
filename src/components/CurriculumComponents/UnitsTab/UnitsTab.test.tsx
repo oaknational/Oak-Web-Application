@@ -6,8 +6,6 @@ import { CurriculumFilters } from "../../../utils/curriculum/types";
 
 import UnitsTab from "./UnitsTab";
 
-import "@/__tests__/__helpers__/ResizeObserverMock";
-
 // import userEvent from "@testing-library/user-event";
 // import { waitFor } from "@testing-library/react";
 

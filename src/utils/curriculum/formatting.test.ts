@@ -1,5 +1,4 @@
 import { PortableTextBlock } from "@portabletext/types";
-// import { mockPortableTextBlock } from "@components/CurriculumComponents/CurriculumVisualiser/fixtures.ts"
 
 import {
   getYearGroupTitle,
