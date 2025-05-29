@@ -1,4 +1,4 @@
-import { act, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import CurriculumDownloadTab, {
@@ -160,15 +160,12 @@ describe("Component Curriculum Download Tab", () => {
       const childSubjectSelector = await findByTestId("child-subject-selector");
       const tierSelector = await findByTestId("tier-selector");
 
-      await act(async () => {
-        await userEvent.click(childSubjectSelector);
-        await userEvent.click(tierSelector);
-      });
+      await userEvent.click(childSubjectSelector);
+      await userEvent.click(tierSelector);
 
       const nextButton = await findByText("Next");
-      await act(async () => {
-        await userEvent.click(nextButton);
-      });
+
+      await userEvent.click(nextButton);
 
       expect(curriculumResourcesDownloadRefined).toHaveBeenCalledTimes(1);
       expect(curriculumResourcesDownloadRefined).toHaveBeenCalledWith({
