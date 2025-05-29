@@ -47,7 +47,11 @@ const ProgrammeHeader = ({
           data-testid="subjectIcon"
         />
       </OakFlex>
-      <OakHeading tag="h2" $font={["heading-6", "heading-4"]}>
+      <OakHeading
+        tag="h2"
+        id={`programme-heading-${programmeTitle}`}
+        $font={["heading-6", "heading-4"]}
+      >
         {programmeTitle}
       </OakHeading>
       <OakFlex
@@ -86,11 +90,10 @@ export default function MyLibraryProgrammeCard(
       <StyledLink href={programmeHref}>
         <ProgrammeHeader iconName={iconName} programmeTitle={programmeTitle} />
       </StyledLink>
-      <OakUL>
+      <OakUL aria-labelledby={`programme-heading-${programmeTitle}`}>
         {savedUnits.map((unit) => (
-          <OakLI>
+          <OakLI key={unit.unitSlug}>
             <MyLibraryUnitCard
-              key={unit.unitSlug}
               index={unit.index}
               unitTitle={unit.unitTitle}
               unitSlug={unit.unitSlug}
