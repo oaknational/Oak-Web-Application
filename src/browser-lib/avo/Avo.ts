@@ -1654,6 +1654,14 @@ function assertOrder(order: number,
   return messages;
 }
 
+function assertTotalDownloadableResources(totalDownloadableResources: number,
+    _label?: string) {
+  let messages: AvoAssertMessage[] = [];
+  messages = messages.concat(AvoAssert.assertInt("v5S8At-_4BZ3vGl149_SP", _label ? "Total Downloadable Resources" + ': ' + _label : "Total Downloadable Resources", totalDownloadableResources));
+  messages = messages.concat(AvoAssert.assertMin("v5S8At-_4BZ3vGl149_SP", _label ? "Total Downloadable Resources" + ": " + _label : "Total Downloadable Resources", 0, totalDownloadableResources));
+  return messages;
+}
+
 export function setAvoLogger(avoLogger: AvoLogger | null) {
   __AVO_LOGGER__ = avoLogger;
 }
@@ -2624,6 +2632,7 @@ export interface LessonResourcesDownloadedProperties {
   resourceType: ResourceTypeValueType[];
   emailSupplied: boolean;
   onwardContent: string[];
+  totalDownloadableResources: number;
 }
 /**
  * Lesson Resources Downloaded: A user downloaded one or more resources for a lesson
@@ -2662,6 +2671,7 @@ NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.resourceType: The lesson resources a teacher selected for download.
  * @param properties.emailSupplied: A user has signed up for updates on the downloads page
  * @param properties.onwardContent: A list of slugs representing content (e.g. lessons) that are placed to allow a user journey to 'continue' onward.
+ * @param properties.totalDownloadableResources: The total number of resources that are available to be downloaded
  * 
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/32GRdkAMWNT950Es-9oXb/events/k9ZQJai7ws}
  */

@@ -187,7 +187,7 @@ describe("Component - Curriculum Header", () => {
     const { getByText } = renderComponent();
     await act(() => {
       const input = getByText(frenchResource.label)
-        .closest("label")
+        .closest("[data-testid='resourceCard']")
         ?.querySelector("input") as HTMLInputElement;
       expect(input?.checked).toBeTruthy();
     });
