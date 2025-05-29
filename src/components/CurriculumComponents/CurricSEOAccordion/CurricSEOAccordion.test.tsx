@@ -2,9 +2,10 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { PortableTextBlock } from "@portabletext/react";
 
 import CurricSEOAccordion from "./CurricSEOAccordion";
-
-import { mockPortableTextBlocks } from "@/components/CurriculumComponents/CurriculumVisualiser/fixtures";
-import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
+import {
+  mockPortableTextBlocks,
+  mockSubject,
+} from "./CurricSEOAccordion.fixtures";
 
 const mockUseMediaQuery = jest.fn();
 jest.mock("@/hooks/useMediaQuery", () => ({
@@ -18,14 +19,6 @@ jest.mock("@/components/SharedComponents/PortableText", () => ({
 
 const curriculumSeoText: PortableTextBlock[] =
   mockPortableTextBlocks as PortableTextBlock[];
-
-const mockSubject: SubjectPhasePickerData["subjects"][number] = {
-  title: "English",
-  slug: "english",
-  keystages: [{ slug: "ks4", title: "KS4" }],
-  phases: [],
-  ks4_options: [],
-};
 
 describe("CurricSEOAccordion", () => {
   beforeEach(() => {
