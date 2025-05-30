@@ -71,7 +71,7 @@ type SavingSignedOutModalProps = Pick<
   OakModalCenterProps,
   "isOpen" | "onClose"
 > & {
-  returnFocusRef: React.RefObject<HTMLElement>;
+  returnFocusRef?: React.RefObject<HTMLElement>;
 };
 
 const SavingSignedOutModal = ({
