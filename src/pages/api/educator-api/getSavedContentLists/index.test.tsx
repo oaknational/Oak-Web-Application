@@ -115,14 +115,14 @@ describe("api/educator-api/getSavedContentLists", () => {
       },
     });
   });
-  it("should return 200 with an empty record for a signed out user", async () => {
+  it("should return 401 with an empty record for a signed out user", async () => {
     setGetAuth(mockGetAuthSignedOut);
     const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
       method: "GET",
     });
 
     await handler(req, res);
-    expect(res._getStatusCode()).toBe(200);
+    expect(res._getStatusCode()).toBe(401);
     expect(res._getJSONData()).toEqual({});
   });
 });

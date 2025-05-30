@@ -18,7 +18,7 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
   const { userId, getToken } = getAuth(req);
 
   if (!userId) {
-    return res.status(200).json({});
+    return res.status(401).json({});
   }
 
   const educatorApi = await getAuthenticatedEducatorApi(getToken);
