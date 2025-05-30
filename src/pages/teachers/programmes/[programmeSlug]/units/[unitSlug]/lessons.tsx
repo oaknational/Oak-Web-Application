@@ -306,7 +306,8 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           showRiskAssessmentBanner={showRiskAssessmentBanner}
           isIncompleteUnit={unpublishedLessonCount > 0}
           isUnitSaved={isUnitSaved(unitSlug)}
-          onSave={() => onSaveToggle(unitSlug)}
+          // @ts-expect-error just for a draft pr
+          onSave={(event) => onSaveToggle(unitSlug, event)}
         />
         <OakMaxWidth $ph={"inner-padding-m"}>
           <OakGrid>
