@@ -70,29 +70,57 @@ const SavingSignedOutModalContent = () => {
 type SavingSignedOutModalProps = Pick<
   OakModalCenterProps,
   "isOpen" | "onClose"
->;
+> & {
+  returnFocusRef: React.RefObject<HTMLElement>;
+};
 
 const SavingSignedOutModal = ({
   isOpen,
   onClose,
-}: SavingSignedOutModalProps) => (
-  <OakModalCenter
-    isOpen={isOpen}
-    onClose={onClose}
-    children={<SavingSignedOutModalContent />}
-    modalFlexProps={{
-      $pa: ["inner-padding-xl2", "inner-padding-xl5"],
-      $mh: "auto",
-      "aria-modal": true,
-      "aria-labelledby": "saving-modal-heading",
-      "aria-describedby": "saving-modal-description",
-    }}
-    modalInnerFlexProps={{ $ph: "inner-padding-none" }}
-    modalOuterFlexProps={{
-      $maxWidth: "all-spacing-22",
-      $pa: "inner-padding-m",
-    }}
-  />
-);
+  returnFocusRef,
+}: SavingSignedOutModalProps) => {
+  const handleClose = () => {
+    if (!onClose) return;
+    onClose();
+
+    // Manual focus return with the same pattern as BioCardListModalDialog
+    if (returnFocusRef?.current) {
+      console.log(
+        "%cManually returning focus to:",
+        "background: green; color: white; padding: 2px 4px;",
+        returnFocusRef.current,
+      );
+
+      // Use the same setTimeout pattern
+      window.setTimeout(() => {
+        returnFocusRef?.current?.focus();
+        console.log(
+          "%cFocus returned to:",
+          "background: blue; color: white; padding: 2px 4px;",
+          document.activeElement,
+        );
+      }, 0);
+    }
+  };
+  return (
+    <OakModalCenter
+      isOpen={isOpen}
+      onClose={handleClose}
+      children={<SavingSignedOutModalContent />}
+      modalFlexProps={{
+        $pa: ["inner-padding-xl2", "inner-padding-xl5"],
+        $mh: "auto",
+        "aria-modal": true,
+        "aria-labelledby": "saving-modal-heading",
+        "aria-describedby": "saving-modal-description",
+      }}
+      modalInnerFlexProps={{ $ph: "inner-padding-none" }}
+      modalOuterFlexProps={{
+        $maxWidth: "all-spacing-22",
+        $pa: "inner-padding-m",
+      }}
+    />
+  );
+};
 
 export default SavingSignedOutModal;

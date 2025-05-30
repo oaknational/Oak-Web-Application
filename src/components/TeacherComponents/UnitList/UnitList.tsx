@@ -195,16 +195,19 @@ const UnitList: FC<UnitListProps> = (props) => {
 
   // Saving
   const isSaveEnabled = useFeatureFlagEnabled("teacher-save-units");
-  const { onSaveToggle, isUnitSaved, showSignIn, setShowSignIn } = useSaveUnits(
-    props.programmeSlug,
-    {
-      keyStageTitle,
-      keyStageSlug,
-      subjectTitle: props.subjectTitle,
-      subjectSlug: props.subjectSlug,
-      savedFrom: "unit_listing_save_button",
-    },
-  );
+  const {
+    onSaveToggle,
+    isUnitSaved,
+    showSignIn,
+    setShowSignIn,
+    triggeringElementRef,
+  } = useSaveUnits(props.programmeSlug, {
+    keyStageTitle,
+    keyStageSlug,
+    subjectTitle: props.subjectTitle,
+    subjectSlug: props.subjectSlug,
+    savedFrom: "unit_listing_save_button",
+  });
 
   const hasNewAndLegacyUnits: boolean =
     !!phaseSlug && !!newPageItems.length && !!legacyPageItems.length;
@@ -267,7 +270,7 @@ const UnitList: FC<UnitListProps> = (props) => {
               : null
           }
           optionalityUnits={getOptionalityUnits(item, onClick, router)}
-          onSave={isSaveEnabled ? onSaveToggle : undefined}
+          // onSave={isSaveEnabled ? onSaveToggle : undefined}
           getIsSaved={isUnitSaved}
         />
       ) : (
@@ -315,8 +318,13 @@ const UnitList: FC<UnitListProps> = (props) => {
                 unitSlug: unitOption.slug,
                 programmeSlug: unitOption.programmeSlug,
               })}
+              // get typescript to ignore the error here
+              // @ts-expect-error this is just for a draft PR
               onSave={
-                isSaveEnabled ? () => onSaveToggle(unitOption.slug) : undefined
+                isSaveEnabled
+                  ? // @ts-expect-error this is just for a draft PR
+                    (event) => onSaveToggle(unitOption.slug, event)
+                  : undefined
               }
               isSaved={isUnitSaved(unitOption.slug)}
             />
@@ -473,6 +481,7 @@ const UnitList: FC<UnitListProps> = (props) => {
       )}
       {showSignIn && (
         <SavingSignedOutModal
+          returnFocusRef={triggeringElementRef}
           isOpen={showSignIn}
           onClose={() => {
             setShowSignIn(false);

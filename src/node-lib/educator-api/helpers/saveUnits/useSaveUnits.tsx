@@ -1,5 +1,5 @@
 import { OakP } from "@oaknational/oak-components";
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { useUser } from "@clerk/nextjs";
 import { z } from "zod";
 
@@ -66,6 +66,8 @@ export const useSaveUnits = (
 
   const [locallySavedUnits, setLocallySavedUnits] = useState<Array<string>>([]);
   const [showSignIn, setShowSignIn] = useState<boolean>(false);
+
+  const triggeringElementRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (savedUnitsData) {
@@ -158,7 +160,15 @@ export const useSaveUnits = (
     });
   };
 
-  const onSaveToggle = (unitSlug: string) => {
+  // could be a mouse or keyboard event
+  const onSaveToggle = (
+    unitSlug: string,
+    event: React.MouseEvent | React.KeyboardEvent,
+  ) => {
+    if (event?.currentTarget) {
+      triggeringElementRef.current = event.currentTarget as HTMLElement;
+    }
+
     if (isSignedIn && isOnboarded) {
       if (isUnitSaved(unitSlug)) {
         onUnsave(unitSlug);
@@ -175,5 +185,6 @@ export const useSaveUnits = (
     onSaveToggle,
     showSignIn,
     setShowSignIn,
+    triggeringElementRef,
   };
 };
