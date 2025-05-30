@@ -163,7 +163,7 @@ export const useSaveUnits = (
   // could be a mouse or keyboard event
   const onSaveToggle = (
     unitSlug: string,
-    event: React.MouseEvent | React.KeyboardEvent,
+    event?: React.MouseEvent | React.KeyboardEvent,
   ) => {
     if (event?.currentTarget) {
       triggeringElementRef.current = event.currentTarget as HTMLElement;
