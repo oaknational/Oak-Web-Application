@@ -16,7 +16,7 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
   const { programmeSlug } = req.query;
 
   if (!userId) {
-    return res.status(200).json([]);
+    return res.status(401).json([]);
   }
   if (!programmeSlug || Array.isArray(programmeSlug)) {
     return res.status(400).send("Bad request");

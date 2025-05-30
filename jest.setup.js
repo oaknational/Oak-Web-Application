@@ -95,5 +95,6 @@ jest.mock("@/node-lib/educator-api/helpers/useGetEducatorData", () => ({
   useGetEducatorData: jest.fn(() => ({
     data: 0,
     isLoading: false,
+    mutate: jest.fn(),
   })),
 }));

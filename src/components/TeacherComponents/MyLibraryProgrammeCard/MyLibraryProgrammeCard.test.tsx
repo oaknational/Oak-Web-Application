@@ -19,20 +19,19 @@ const mockUnits = [
     unitTitle: "Fiction: Short Stories",
     unitSlug: "fiction-short-stories",
     programmeSlug: "english-secondary-ks4",
-    yearTitle: "Year 10",
-    saveTime: "2023-05-01T09:00:00Z",
+    year: "Year 10",
+    savedAt: "2023-05-01T09:00:00Z",
     href: "/teachers/programmes/english-secondary-ks4/units/fiction-short-stories",
     lessons: completeUnitLessons,
     onSave: jest.fn(),
     isSaved: true,
   },
   {
-    index: 2,
     unitTitle: "Poetry Analysis",
     unitSlug: "poetry-analysis",
     programmeSlug: "english-secondary-ks4",
-    yearTitle: "Year 9",
-    saveTime: "2023-04-15T14:30:00Z",
+    year: "Year 9",
+    savedAt: "2023-04-15T14:30:00Z",
     href: "/teachers/programmes/english-secondary-ks4/units/poetry-analysis",
     lessons: incompleteUnitLessons,
     onSave: jest.fn(),
@@ -46,6 +45,7 @@ const defaultProps = {
   programmeHref: "/teachers/programmes/english-secondary-ks4",
   iconName: "subject-english" as OakIconName,
   savedUnits: mockUnits,
+  anchorId: "english-secondary-ks4",
 };
 
 describe("MyLibraryProgrammeCard", () => {

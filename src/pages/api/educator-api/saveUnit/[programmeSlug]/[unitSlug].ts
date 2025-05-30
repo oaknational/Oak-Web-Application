@@ -20,7 +20,7 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
   const listTitle = "Saved content"; // default title TODO: customisable list titles
 
   if (!userId) {
-    return res.status(200).end();
+    return res.status(401).end();
   }
 
   if (

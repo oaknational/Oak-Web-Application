@@ -51,7 +51,7 @@ describe("/api/educator-api/getSavedUnitCount", () => {
     });
 
     await handler(req, res);
-    expect(res._getStatusCode()).toBe(200);
+    expect(res._getStatusCode()).toBe(401);
     expect(res._getJSONData()).toEqual(0);
   });
 });

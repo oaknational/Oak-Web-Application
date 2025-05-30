@@ -54,7 +54,7 @@ describe("/api/educator-api/unsaveUnit/[programmeSlug]/[unitSlug]", () => {
     await handler(req, res);
     expect(res._getStatusCode()).toBe(200);
   });
-  it("should return 200 for a signed out user", async () => {
+  it("should return 401 for a signed out user", async () => {
     setGetAuth(mockGetAuthSignedOut);
     const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
       method: "GET",
@@ -62,7 +62,7 @@ describe("/api/educator-api/unsaveUnit/[programmeSlug]/[unitSlug]", () => {
     });
 
     await handler(req, res);
-    expect(res._getStatusCode()).toBe(200);
+    expect(res._getStatusCode()).toBe(401);
   });
   it("should return 400 if programmeSlug is missing or invalid", async () => {
     const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
