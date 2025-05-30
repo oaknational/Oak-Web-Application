@@ -48,7 +48,9 @@ export const useSaveUnits = (
       if (parsedData.success) {
         const savedUnitsString = parsedData.data.toSorted().toString();
 
-        const locallySavedUnitsString = locallySavedUnits.toSorted().toString();
+        const locallySavedUnitsString = locallySavedUnits
+          .toSorted((a, b) => a.localeCompare(b))
+          .toString();
         if (savedUnitsString !== locallySavedUnitsString) {
           setLocallySavedUnits(parsedData.data);
         }
