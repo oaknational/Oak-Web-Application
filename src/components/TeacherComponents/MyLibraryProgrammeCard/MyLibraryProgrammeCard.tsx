@@ -38,19 +38,12 @@ const ProgrammeHeader = ({
       $gap={["space-between-ssx", "space-between-ssx"]}
       $alignItems={"center"}
     >
-      <OakFlex
+      <OakIcon
         $width={["all-spacing-11", "all-spacing-15"]}
         $height={["all-spacing-11", "all-spacing-15"]}
-        $alignItems={"center"}
-        $justifyContent={"center"}
-      >
-        <OakIcon
-          $height={"100%"}
-          $width={"100%"}
-          iconName={iconName}
-          data-testid="subjectIcon"
-        />
-      </OakFlex>
+        iconName={iconName}
+        data-testid="subjectIcon"
+      />
       <OakHeading
         tag="h2"
         $font={["heading-6", "heading-4"]}
@@ -59,14 +52,11 @@ const ProgrammeHeader = ({
       >
         {programmeTitle}
       </OakHeading>
-      <OakFlex
+      <OakIcon
+        iconName={"chevron-right"}
         $width={["all-spacing-6", "all-spacing-9"]}
         $height={["all-spacing-6", "all-spacing-9"]}
-        $alignItems={"center"}
-        $justifyContent={"center"}
-      >
-        <OakIcon iconName={"chevron-right"} $height={"100%"} $width={"100%"} />
-      </OakFlex>
+      />
     </OakFlex>
   );
 };
