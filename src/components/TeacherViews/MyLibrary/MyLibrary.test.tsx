@@ -18,7 +18,7 @@ describe("MyLibrary", () => {
       />,
     );
     expect(screen.getByText("My library")).toBeInTheDocument();
-    expect(screen.queryByText("No saved content")).not.toBeInTheDocument();
+    expect(screen.queryByText("No units yet")).not.toBeInTheDocument();
   });
   it("renders a header and no content when there is no collection data", () => {
     render(
