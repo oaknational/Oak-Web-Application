@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { OakHeading, OakBox } from "@oaknational/oak-components";
 import { PortableTextBlock } from "@portabletext/types";
 
-import CurriculumVisualiser from "../CurriculumVisualiser";
+import CurricVisualiser from "../CurricVisualiser";
 import { CurricVisualiserLayout } from "../CurricVisualiserLayout";
 import CurricVisualiserFiltersMobile from "../CurricVisualiserFiltersMobile";
-import { CurricVisualiserFiltersDesktop } from "../CurricVisualiserFiltersDesktop";
+import CurricVisualiserFiltersDesktop from "../CurricVisualiserFiltersDesktop";
 
-import { CurriculumFilters, Unit } from "@/utils/curriculum/types";
+import { CurriculumFilters } from "@/utils/curriculum/types";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import UnitTabBanner from "@/components/CurriculumComponents/UnitTabBanner";
 import {
@@ -29,6 +29,8 @@ type UnitsTabProps = {
   filters: CurriculumFilters;
   onChangeFilters: (newFilter: CurriculumFilters) => void;
   slugs: CurriculumSelectionSlugs;
+  basePath: string;
+  selectedUnitSlug?: string;
   ks4Options: Ks4Option[];
   curriculumSeoText?: PortableTextBlock[];
   curriculumPhaseOptions: SubjectPhasePickerData;
@@ -40,6 +42,8 @@ export default function UnitsTab({
   filters,
   onChangeFilters,
   slugs,
+  basePath,
+  selectedUnitSlug,
   ks4Options,
   curriculumSeoText,
   curriculumPhaseOptions,
@@ -48,7 +52,6 @@ export default function UnitsTab({
   const isMobile = useMediaQuery("mobile");
   const { yearData, threadOptions } = formattedData;
   const { ks4OptionSlug } = trackingData;
-  const [unitData, setUnitData] = useState<Unit | null>(null);
 
   const [mobileSelectedYear, setMobileSelectedYear] = useState<string>("");
 
@@ -123,13 +126,13 @@ export default function UnitsTab({
             )
           }
           units={
-            <CurriculumVisualiser
-              unitData={unitData}
+            <CurricVisualiser
+              selectedUnitSlug={selectedUnitSlug}
+              basePath={basePath}
               filters={filters}
               ks4OptionSlug={ks4OptionSlug}
               ks4Options={ks4Options}
               yearData={yearData}
-              setUnitData={setUnitData}
               setVisibleMobileYearRefID={setVisibleMobileYearRefID}
               threadOptions={threadOptions}
             />

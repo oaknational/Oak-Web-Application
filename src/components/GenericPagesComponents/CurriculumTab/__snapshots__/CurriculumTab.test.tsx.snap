@@ -8,7 +8,7 @@ exports[`CurriculumTab renders 1`] = `
     >
       <div
         aria-live="polite"
-        class="sc-fqkvVR sc-gsFSXq sc-8874d2c7-0 gseEDN cQyxGE bjAjf"
+        class="sc-fqkvVR sc-gsFSXq sc-da07f570-0 hkKUlc cQyxGE kbCuxI"
       />
       <div
         class="sc-fqkvVR gZEYWU"
@@ -142,7 +142,7 @@ exports[`CurriculumTab renders 1`] = `
                           style="width: 50%;"
                         >
                           <div
-                            class="sc-fqkvVR sc-9dfc1bad-0 sc-148ab746-2 jEHEPk fAkCpO hryUrQ"
+                            class="sc-fqkvVR sc-1c55d370-0 sc-148ab746-2 jEHEPk knawKC hryUrQ"
                           >
                             <button
                               aria-expanded="false"
@@ -210,7 +210,7 @@ exports[`CurriculumTab renders 1`] = `
                             class="sc-fqkvVR sc-gsFSXq fxkSvJ ehZBcc"
                           >
                             <div
-                              class="sc-fqkvVR sc-9dfc1bad-0 sc-148ab746-2 eMDDOo fAkCpO hryUrQ"
+                              class="sc-fqkvVR sc-1c55d370-0 sc-148ab746-2 eMDDOo knawKC hryUrQ"
                             >
                               <button
                                 aria-expanded="false"
@@ -333,7 +333,7 @@ exports[`CurriculumTab renders 1`] = `
                       style="width: 50%;"
                     >
                       <div
-                        class="sc-fqkvVR sc-9dfc1bad-0 sc-148ab746-2 jEHEPk fAkCpO hryUrQ"
+                        class="sc-fqkvVR sc-1c55d370-0 sc-148ab746-2 jEHEPk knawKC hryUrQ"
                       >
                         <button
                           aria-expanded="false"
@@ -401,7 +401,7 @@ exports[`CurriculumTab renders 1`] = `
                         class="sc-fqkvVR sc-gsFSXq fxkSvJ ehZBcc"
                       >
                         <div
-                          class="sc-fqkvVR sc-9dfc1bad-0 sc-148ab746-2 eMDDOo fAkCpO hryUrQ"
+                          class="sc-fqkvVR sc-1c55d370-0 sc-148ab746-2 eMDDOo knawKC hryUrQ"
                         >
                           <button
                             aria-expanded="false"

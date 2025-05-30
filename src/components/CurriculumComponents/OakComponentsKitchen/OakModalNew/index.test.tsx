@@ -4,6 +4,10 @@ import { OakModalNew } from ".";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
+window.matchMedia = jest.fn().mockReturnValue({
+  matches: true,
+});
+
 describe("OakModalNew", () => {
   it("should match snapshot", () => {
     HTMLDialogElement.prototype.close = () => {};
