@@ -49,6 +49,7 @@ export default function MyLibrary(props: MyLibraryProps) {
       $pb="inner-padding-xl"
       $pt={["inner-padding-none", "inner-padding-xl"]}
       $flexDirection="column"
+      $maxWidth={["unset", "all-spacing-24"]}
     >
       <MyLibraryHeader />
       {isLoading || !collectionData ? null : collectionData.length === 0 ? (
