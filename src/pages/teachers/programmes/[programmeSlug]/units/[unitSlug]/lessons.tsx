@@ -209,16 +209,19 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       .toLowerCase();
   };
 
-  const { onSaveToggle, isUnitSaved, showSignIn, setShowSignIn } = useSaveUnits(
-    programmeSlug,
-    {
-      savedFrom: "lesson_listing_save_button",
-      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-      keyStageSlug,
-      subjectTitle,
-      subjectSlug,
-    },
-  );
+  const {
+    onSaveToggle,
+    isUnitSaved,
+    showSignIn,
+    setShowSignIn,
+    triggeringElementRef,
+  } = useSaveUnits(programmeSlug, {
+    savedFrom: "lesson_listing_save_button",
+    keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+    keyStageSlug,
+    subjectTitle,
+    subjectSlug,
+  });
 
   return (
     <AppLayout
@@ -303,7 +306,8 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           showRiskAssessmentBanner={showRiskAssessmentBanner}
           isIncompleteUnit={unpublishedLessonCount > 0}
           isUnitSaved={isUnitSaved(unitSlug)}
-          onSave={() => onSaveToggle(unitSlug)}
+          // @ts-expect-error just for a draft pr
+          onSave={(event) => onSaveToggle(unitSlug, event)}
         />
         <OakMaxWidth $ph={"inner-padding-m"}>
           <OakGrid>
@@ -374,6 +378,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         </OakMaxWidth>
         {showSignIn && (
           <SavingSignedOutModal
+            returnFocusRef={triggeringElementRef}
             isOpen={showSignIn}
             onClose={() => {
               setShowSignIn(false);
