@@ -26,9 +26,15 @@ export const useSaveUnits = (
 ) => {
   const { isSignedIn, user } = useUser();
   const { track } = useAnalytics();
-  const { data: savedUnitsData } = useGetEducatorData<string[]>(
+
+  const { data: savedUnitsData, mutate } = useGetEducatorData<string[]>(
     `/api/educator-api/getSavedUnits/${programmeSlug}`,
   );
+
+  useEffect(() => {
+    // Refresh the saved units data when the programme slug changes
+    mutate();
+  }, [programmeSlug, mutate]);
 
   const { incrementSavedUnitsCount, decrementSavedUnitsCount } =
     useSaveCountContext();
@@ -40,15 +46,11 @@ export const useSaveUnits = (
     if (savedUnitsData) {
       const parsedData = unitsResponseSchema.safeParse(savedUnitsData);
       if (parsedData.success) {
-        if (parsedData.data.length > 0) {
-          const savedUnitsString = parsedData.data.toSorted().toString();
+        const savedUnitsString = parsedData.data.toSorted().toString();
 
-          const locallySavedUnitsString = locallySavedUnits
-            .toSorted()
-            .toString();
-          if (savedUnitsString !== locallySavedUnitsString) {
-            setLocallySavedUnits(parsedData.data);
-          }
+        const locallySavedUnitsString = locallySavedUnits.toSorted().toString();
+        if (savedUnitsString !== locallySavedUnitsString) {
+          setLocallySavedUnits(parsedData.data);
         }
       } else {
         reportError(parsedData.error, { savedUnitsData });
@@ -69,6 +71,7 @@ export const useSaveUnits = (
 
   const onSave = async (unitSlug: string) => {
     setLocallySavedUnits((prev) => [...prev, unitSlug]);
+
     setCurrentToastProps(SavedToastProps);
     incrementSavedUnitsCount();
     await postEducatorData(
