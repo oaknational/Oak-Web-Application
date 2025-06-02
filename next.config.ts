@@ -250,26 +250,28 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
           overwrite: true,
         };
 
-        const bugsnagSourcemapUploaderPlugin =
-          new BugsnagSourceMapUploaderPlugin(
-            bugsnagSourcemapInfo,
-          ) as unknown as WebpackPluginInstance;
-        config.plugins?.push(bugsnagSourcemapUploaderPlugin);
-
-        // // Upload production sourcemaps to Sentry
-        config.plugins?.push(
-          sentryWebpackPlugin({
-            authToken: process.env.SENTRY_AUTH_TOKEN,
-            org: oakConfig.sentry.organisationIdentifier,
-            project: oakConfig.sentry.projectIdentifier,
-            release: {
-              name: appVersion,
-            },
-            reactComponentAnnotation: {
-              enabled: true,
-            },
-          }) as unknown as WebpackPluginInstance,
-        );
+        if (process.env.SENTRY_ENABLED === "true") {
+          // Upload production sourcemaps to Sentry
+          config.plugins?.push(
+            sentryWebpackPlugin({
+              authToken: process.env.SENTRY_AUTH_TOKEN,
+              org: oakConfig.sentry.organisationIdentifier,
+              project: oakConfig.sentry.projectIdentifier,
+              release: {
+                name: appVersion,
+              },
+              reactComponentAnnotation: {
+                enabled: true,
+              },
+            }) as unknown as WebpackPluginInstance,
+          );
+        } else {
+          const bugsnagSourcemapUploaderPlugin =
+            new BugsnagSourceMapUploaderPlugin(
+              bugsnagSourcemapInfo,
+            ) as unknown as WebpackPluginInstance;
+          config.plugins?.push(bugsnagSourcemapUploaderPlugin);
+        }
       }
 
       return config;

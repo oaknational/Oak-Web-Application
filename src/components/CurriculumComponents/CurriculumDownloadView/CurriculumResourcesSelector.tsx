@@ -1,4 +1,8 @@
-import { OakFlex, OakHeading } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakHeading,
+  OakPrimaryButton,
+} from "@oaknational/oak-components";
 
 import {
   DOWNLOAD_TYPES,
@@ -66,6 +70,13 @@ export function CurriculumResourcesSelector({
               />
             );
           })}
+          <OakPrimaryButton
+            onClick={() => {
+              throw new Error("HERE");
+            }}
+          >
+            Test error
+          </OakPrimaryButton>
         </OakFlex>
       </RadioGroup>
     </OakFlex>
