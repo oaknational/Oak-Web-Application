@@ -1,3 +1,10 @@
+# [1.761.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.760.1...v1.761.0) (2025-06-02)
+
+
+### Features
+
+* disable saving for specialist ([53a8cf6](https://github.com/oaknational/Oak-Web-Application/commit/53a8cf628b25d6e791bfd22dc7a5e56f238fabb8))
+
 ## [1.760.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.760.0...v1.760.1) (2025-06-02)
 
 
