@@ -1,4 +1,4 @@
-import React, { ErrorInfo, FC, useMemo } from "react";
+import React, { Component, ErrorInfo, FC, ReactNode, useMemo } from "react";
 import Bugsnag from "@bugsnag/js";
 import * as Sentry from "@sentry/nextjs";
 
@@ -10,6 +10,32 @@ const ClientErrorView: FC = () => {
     <ErrorView headerVariant="client-error" footerVariant="client-error" />
   );
 };
+
+class NonBugsnagErrorBoundary extends Component<
+  { children?: ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: { children?: ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error: Error) {
+    console.error(error);
+
+    // Update state so the next render will show the fallback UI.
+    return { hasError: true };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      // You can render any custom fallback UI
+      return <ClientErrorView />;
+    }
+
+    return this.props.children;
+  }
+}
 
 type FallbackComponentProps = {
   error: Error;
@@ -45,6 +71,10 @@ function BugsnagErrorBoundary(props: ErrorBoundaryProps) {
     }
   }, [isBugsnagInitialised]);
 
+  if (!BugsnagErrorBoundary) {
+    return <NonBugsnagErrorBoundary {...props} />;
+  }
+
   return (
     <>
       {BugsnagErrorBoundary ? (
@@ -59,7 +89,7 @@ function BugsnagErrorBoundary(props: ErrorBoundaryProps) {
   );
 }
 
-function SentryErrorBoundry({ children }: ErrorBoundaryProps) {
+function SentryErrorBoundary({ children }: ErrorBoundaryProps) {
   return (
     <Sentry.ErrorBoundary fallback={<ClientErrorView />}>
       {children}
@@ -69,7 +99,7 @@ function SentryErrorBoundry({ children }: ErrorBoundaryProps) {
 
 export default function ErrorBoundary({ children }: ErrorBoundaryProps) {
   if (process.env.SENTRY_ENABLED === "true") {
-    return <SentryErrorBoundry>{children}</SentryErrorBoundry>;
+    return <SentryErrorBoundary>{children}</SentryErrorBoundary>;
   } else {
     return <BugsnagErrorBoundary>{children}</BugsnagErrorBoundary>;
   }
