@@ -1,0 +1,1 @@
+If you are getting VSCode complaints about not being able to read the edge function export map, follow the [instructions to install the Netlify CLI](https://docs.netlify.com/cli/get-started/), then in the project root folder run `netlify dev`, this will compile the edge functions and create the missing config in the `.netlify/` directory.
