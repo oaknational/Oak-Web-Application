@@ -35,6 +35,13 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
   const educatorApi = await getAuthenticatedEducatorApi(getToken);
 
   try {
+    const { user } = await educatorApi.getUser({ userId });
+    if (user.length === 0) {
+      await educatorApi.createUser({
+        userId,
+        sourceApp: "https://thenational.academy",
+      });
+    }
     await educatorApi.createUserListContent({
       userId,
       unitSlug,
