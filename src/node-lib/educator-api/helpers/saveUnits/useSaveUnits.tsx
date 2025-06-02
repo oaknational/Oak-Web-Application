@@ -1,52 +1,21 @@
-import { OakP } from "@oaknational/oak-components";
 import { useState, useCallback, useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
 import { z } from "zod";
 
 import { useGetEducatorData } from "../useGetEducatorData";
 
+import {
+  TrackingProgrammeData,
+  SavedToastProps,
+  ErrorToastProps,
+  UnsavedToastProps,
+} from "./utils";
+
 import { useOakToastContext } from "@/context/OakToast/useOakToastContext";
 import { postEducatorData } from "@/node-lib/educator-api/helpers/postEducatorData";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import errorReporter from "@/common-lib/error-reporter";
 import useSaveCountContext from "@/context/SaveCount/useSaveCountContext";
-
-const SavedToastProps = {
-  message: (
-    <OakP>
-      <b>Unit saved</b> to My library
-    </OakP>
-  ),
-  variant: "green" as const,
-  showIcon: true,
-  autoDismiss: true,
-};
-
-const UnsavedToastProps = {
-  message: (
-    <OakP>
-      <b>Unit removed</b> from My library
-    </OakP>
-  ),
-  variant: "dark" as const,
-  showIcon: false,
-  autoDismiss: true,
-};
-const ErrorToastProps = {
-  message: <OakP>Something went wrong</OakP>,
-  variant: "error" as const,
-  showIcon: false,
-  autoDismiss: true,
-};
-
-type TrackingProgrammeData = {
-  savedFrom: "lesson_listing_save_button" | "unit_listing_save_button";
-  keyStageTitle: KeyStageTitleValueType | undefined;
-  keyStageSlug: string | undefined;
-  subjectTitle: string;
-  subjectSlug: string;
-};
 
 const unitsResponseSchema = z.array(z.string());
 const reportError = errorReporter("educatorApi");
@@ -57,9 +26,15 @@ export const useSaveUnits = (
 ) => {
   const { isSignedIn, user } = useUser();
   const { track } = useAnalytics();
-  const { data: savedUnitsData } = useGetEducatorData<string[]>(
+
+  const { data: savedUnitsData, mutate } = useGetEducatorData<string[]>(
     `/api/educator-api/getSavedUnits/${programmeSlug}`,
   );
+
+  useEffect(() => {
+    // Refresh the saved units data when the programme slug changes
+    mutate();
+  }, [programmeSlug, mutate]);
 
   const { incrementSavedUnitsCount, decrementSavedUnitsCount } =
     useSaveCountContext();
@@ -71,15 +46,13 @@ export const useSaveUnits = (
     if (savedUnitsData) {
       const parsedData = unitsResponseSchema.safeParse(savedUnitsData);
       if (parsedData.success) {
-        if (parsedData.data.length > 0) {
-          const savedUnitsString = parsedData.data.toSorted().toString();
+        const savedUnitsString = parsedData.data.toSorted().toString();
 
-          const locallySavedUnitsString = locallySavedUnits
-            .toSorted()
-            .toString();
-          if (savedUnitsString !== locallySavedUnitsString) {
-            setLocallySavedUnits(parsedData.data);
-          }
+        const locallySavedUnitsString = locallySavedUnits
+          .toSorted((a, b) => a.localeCompare(b))
+          .toString();
+        if (savedUnitsString !== locallySavedUnitsString) {
+          setLocallySavedUnits(parsedData.data);
         }
       } else {
         reportError(parsedData.error, { savedUnitsData });
@@ -100,6 +73,7 @@ export const useSaveUnits = (
 
   const onSave = async (unitSlug: string) => {
     setLocallySavedUnits((prev) => [...prev, unitSlug]);
+
     setCurrentToastProps(SavedToastProps);
     incrementSavedUnitsCount();
     await postEducatorData(

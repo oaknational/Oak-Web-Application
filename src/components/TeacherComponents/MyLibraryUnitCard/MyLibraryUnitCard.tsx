@@ -11,9 +11,11 @@ import {
 import styled from "styled-components";
 
 import { resolveOakHref } from "@/common-lib/urls";
+import { MyLibraryUnit } from "@/node-lib/educator-api/queries/getUserListContent/getUserListContent.types";
 
 const StyledOL = styled.ol`
   list-style-type: none;
+  padding: 0;
 `;
 
 const StyledOakLI = styled(OakLI)`
@@ -55,23 +57,6 @@ const getLastSavedText = (date: string) => {
     : `Saved on ${formattedDate} at ${formattedTime}`;
 };
 
-const UnitCardIndex = ({ index }: Pick<MyLibraryUnitCardProps, "index">) => (
-  <OakFlex
-    $pa={"inner-padding-l"}
-    $background={"bg-decorative1-main"}
-    $flexDirection={"column"}
-    $justifyContent={"center"}
-    $alignItems={"center"}
-    $width={["all-spacing-8", "all-spacing-11"]}
-    $height={["all-spacing-8", "all-spacing-11"]}
-    $borderRadius={"border-radius-m"}
-  >
-    <OakHeading tag="div" $font={["heading-6", "heading-5"]}>
-      {index}
-    </OakHeading>
-  </OakFlex>
-);
-
 const SaveButton = ({
   unitTitle,
   onSave,
@@ -90,10 +75,11 @@ const SaveButton = ({
 };
 
 const UnitCardHeader = ({ ...props }: MyLibraryUnitCardProps) => {
-  const { unitTitle, yearTitle, saveTime, onSave, isSaved } = props;
+  const { unitTitle, year, savedAt, onSave, isSaved, optionalityTitle } = props;
 
-  const lastSavedText = getLastSavedText(saveTime);
-
+  const lastSavedText = getLastSavedText(savedAt);
+  const mainTitle = optionalityTitle ?? unitTitle;
+  const superTitle = optionalityTitle ? unitTitle : undefined;
   return (
     <OakFlex $flexGrow={1} $alignItems={"start"} $gap={"space-between-xs"}>
       <OakFlex
@@ -101,13 +87,28 @@ const UnitCardHeader = ({ ...props }: MyLibraryUnitCardProps) => {
         $flexDirection={"column"}
         $gap={"space-between-ssx"}
       >
-        <UnitLink href={props.href}>
-          <OakHeading tag="h3" $font={["heading-7", "heading-5"]}>
-            {unitTitle}
+        {superTitle && (
+          <OakP $font={"heading-light-7"} $color={"text-primary"}>
+            {superTitle}
+          </OakP>
+        )}
+        <UnitLink
+          href={resolveOakHref({
+            page: "lesson-index",
+            programmeSlug: props.programmeSlug,
+            unitSlug: props.unitSlug,
+          })}
+        >
+          <OakHeading
+            tag="h3"
+            $font={["heading-7", "heading-5"]}
+            $color={"text-primary"}
+          >
+            {mainTitle}
           </OakHeading>
         </UnitLink>
         <OakP $color={"text-subdued"} $font={"body-2"}>
-          {yearTitle}
+          {year}
           <OakSpan $ph={"inner-padding-xs"}>•</OakSpan>
           {lastSavedText}
         </OakP>
@@ -121,7 +122,6 @@ const UnitCardHeader = ({ ...props }: MyLibraryUnitCardProps) => {
 
 const UnitCardContent = ({
   lessonCountHeader,
-
   ...props
 }: {
   lessonCountHeader: string;
@@ -131,14 +131,8 @@ const UnitCardContent = ({
 
   return (
     <OakFlex>
-      <OakBox
-        $display={["none", "flex"]}
-        $width={"all-spacing-11"}
-        $mr={"space-between-m"}
-      />
-
       <OakFlex $flexDirection={"column"} $gap={"all-spacing-6"}>
-        <OakFlex $justifyContent={"space-between"}>
+        <OakFlex $justifyContent={"space-between"} $alignItems="center">
           <OakP $font={"heading-light-7"}>{lessonCountHeader}</OakP>
           <OakBox $display={["block", "none"]}>
             <SaveButton
@@ -149,9 +143,9 @@ const UnitCardContent = ({
           </OakBox>
         </OakFlex>
         <OakBox
-          $borderColor={"border-decorative1-stronger"}
           $bl={["border-solid-none", "border-solid-s"]}
           $pl={["inner-padding-none", "inner-padding-xl"]}
+          $color="border-decorative1-stronger"
         >
           <StyledOL>
             {lessons
@@ -175,14 +169,14 @@ const UnitCardContent = ({
                         $textAlign={"right"}
                         $mr={"space-between-sssx"}
                         $color={
-                          lesson._state === "published"
+                          lesson.state === "published"
                             ? "text-primary"
                             : "text-disabled"
                         }
                       >
                         {i + 1}.{" "}
                       </OakP>
-                      {lesson._state === "published" ? (
+                      {lesson.state === "published" ? (
                         <LessonLink $font={"heading-light-7"} href={href}>
                           {lesson.title}
                         </LessonLink>
@@ -200,29 +194,20 @@ const UnitCardContent = ({
   );
 };
 
-export type MyLibraryUnitCardProps = {
-  index: number;
-  unitTitle: string;
-  unitSlug: string;
+export type MyLibraryUnitCardProps = Omit<
+  MyLibraryUnit,
+  "yearOrder" | "unitOrder"
+> & {
   programmeSlug: string;
-  yearTitle: string;
-  saveTime: string;
-  href: string;
-  lessons: {
-    slug: string;
-    order: number;
-    title: string;
-    _state: string;
-  }[];
   onSave?: () => void;
   isSaved?: boolean;
 };
 
 export default function MyLibraryUnitCard(props: MyLibraryUnitCardProps) {
-  const { index, lessons } = props;
+  const { lessons } = props;
 
   const unpublishedLessonCount = lessons.filter(
-    (lesson) => lesson._state !== "published",
+    (lesson) => lesson.state !== "published",
   ).length;
 
   const lessonCountHeader = unpublishedLessonCount
@@ -238,9 +223,9 @@ export default function MyLibraryUnitCard(props: MyLibraryUnitCardProps) {
       $pa={["inner-padding-m", "inner-padding-xl2"]}
       $maxWidth={"all-spacing-23"}
       $gap={"all-spacing-5"}
+      $width="100%"
     >
       <OakFlex $gap={["space-between-s", "space-between-m"]}>
-        <UnitCardIndex index={index} />
         <UnitCardHeader {...props} />
       </OakFlex>
       <UnitCardContent lessonCountHeader={lessonCountHeader} {...props} />
