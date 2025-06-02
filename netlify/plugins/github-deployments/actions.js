@@ -82,7 +82,7 @@ const updateDeployment = async (token, options) => {
     repo,
     deploymentId,
     state,
-    // deploymentUrl = "",
+    deploymentUrl = "",
     logUrl = "",
   } = options;
   const octokit = github.getOctokit(token);
@@ -106,7 +106,7 @@ const updateDeployment = async (token, options) => {
     deployment_id: deploymentId,
     state,
     description: `Netlify deployment: ${state}`,
-    // environment_url: deploymentUrl,
+    environment_url: deploymentUrl,
     log_url: logUrl,
   });
 };
