@@ -3,7 +3,7 @@ import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { withSentryConfig } from "@sentry/nextjs";
-// import { sentryWebpackPlugin } from "@sentry/webpack-plugin";
+import { sentryWebpackPlugin } from "@sentry/webpack-plugin";
 import buildWithBundleAnalyzer from "@next/bundle-analyzer";
 import StatoscopeWebpackPlugin from "@statoscope/webpack-plugin";
 import CopyPlugin from "copy-webpack-plugin";
@@ -250,25 +250,28 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
           overwrite: true,
         };
 
-        const bugsnagSourcemapUploaderPlugin =
-          new BugsnagSourceMapUploaderPlugin(
-            bugsnagSourcemapInfo,
-          ) as unknown as WebpackPluginInstance;
-        config.plugins?.push(bugsnagSourcemapUploaderPlugin);
-
-        // // Upload production sourcemaps to Sentry
-        // config.plugins?.push(
-        //   sentryWebpackPlugin({
-        //     authToken: oakConfig.sentry.authToken,
-        //     org: oakConfig.sentry.organisationIdentifier,
-        //     project: oakConfig.sentry.projectIdentifier,
-        //     release: appVersion,
-        //     widenClientFileUpload: true,
-        //     reactComponentAnnotation: {
-        //       enabled: true,
-        //     },
-        //   }) as unknown as WebpackPluginInstance,
-        // );
+        if (process.env.SENTRY_ENABLED === "true") {
+          // Upload production sourcemaps to Sentry
+          config.plugins?.push(
+            sentryWebpackPlugin({
+              authToken: process.env.SENTRY_AUTH_TOKEN,
+              org: oakConfig.sentry.organisationIdentifier,
+              project: oakConfig.sentry.projectIdentifier,
+              release: {
+                name: appVersion,
+              },
+              reactComponentAnnotation: {
+                enabled: true,
+              },
+            }) as unknown as WebpackPluginInstance,
+          );
+        } else {
+          const bugsnagSourcemapUploaderPlugin =
+            new BugsnagSourceMapUploaderPlugin(
+              bugsnagSourcemapInfo,
+            ) as unknown as WebpackPluginInstance;
+          config.plugins?.push(bugsnagSourcemapUploaderPlugin);
+        }
       }
 
       return config;
