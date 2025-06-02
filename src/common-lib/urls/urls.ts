@@ -95,6 +95,7 @@ export type UnitListingLinkProps = {
   programmeSlug: string;
   search?: {
     ["learning-theme"]?: string | null;
+    ["category"]?: string | null;
   };
 };
 
