@@ -72,7 +72,7 @@ describe("Lesson listing page", () => {
     expect(pageHeading).toBeInTheDocument();
   });
 
-  test.skip("it renders the correct number of lessons", () => {
+  test("it renders the correct number of lessons", () => {
     const { getByText } = render(
       <LessonListPage curriculumData={lessonListingFixture()} />,
     );
@@ -108,7 +108,7 @@ describe("Lesson listing page", () => {
   });
 
   describe("SEO", () => {
-    it.skip("renders the correct SEO details", async () => {
+    it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(
         <LessonListPage curriculumData={lessonListingFixture()} />,
       );
@@ -127,7 +127,7 @@ describe("Lesson listing page", () => {
         robots: "index,follow",
       });
     });
-    it.skip("renders the correct SEO details with pagination", async () => {
+    it("renders the correct SEO details with pagination", async () => {
       utilsMock.RESULTS_PER_PAGE = 2;
       const { seo } = renderWithSeo()(
         <LessonListPage curriculumData={lessonListingFixture()} />,
@@ -198,7 +198,7 @@ describe("Lesson listing page", () => {
     });
   });
   describe("tracking", () => {
-    test.skip("It calls tracking.lessonSelected with correct props when clicked", async () => {
+    test("It calls tracking.lessonSelected with correct props when clicked", async () => {
       const { getByText } = render(
         <LessonListPage curriculumData={lessonListingFixture()} />,
       );
