@@ -17,43 +17,41 @@ const getUser = jest.fn();
 jest.mock("@/node-lib/educator-api", () => ({
   getAuthenticatedEducatorApi: jest.fn().mockResolvedValue({
     getUserListContent: jest.fn().mockResolvedValue({
-      users_content: [
+      content_lists: [
         {
-          users_content_lists: {
-            content: {
-              browse_mv: [
-                {
-                  unit_title: "Mock Unit",
-                  year: "1",
-                  keystage: "KS2",
-                  keystage_slug: "ks2",
-                  tier: null,
-                  examboard: null,
-                  subject: "Maths",
-                  subject_slug: "maths",
-                  unit_order: 1,
-                  year_order: 1,
-                  lessons: [
-                    {
-                      slug: "lesson-1",
-                      title: "Lesson 1",
-                      _state: "published",
-                      order: 1,
-                    },
-                    {
-                      slug: "lesson-2",
-                      title: "Lesson 2",
-                      _state: "published",
-                      order: 2,
-                    },
-                  ],
-                },
-              ],
-              programme_slug: "mock-programme",
-              unit_slug: "mock-unit",
-            },
-            created_at: new Date().toISOString(),
+          content: {
+            browse_mv: [
+              {
+                unit_title: "Mock Unit",
+                year: "1",
+                keystage: "KS2",
+                keystage_slug: "ks2",
+                tier: null,
+                examboard: null,
+                subject: "Maths",
+                subject_slug: "maths",
+                unit_order: 1,
+                year_order: 1,
+                lessons: [
+                  {
+                    slug: "lesson-1",
+                    title: "Lesson 1",
+                    _state: "published",
+                    order: 1,
+                  },
+                  {
+                    slug: "lesson-2",
+                    title: "Lesson 2",
+                    _state: "published",
+                    order: 2,
+                  },
+                ],
+              },
+            ],
+            programme_slug: "mock-programme",
+            unit_slug: "mock-unit",
           },
+          created_at: new Date().toISOString(),
         },
       ],
     }),

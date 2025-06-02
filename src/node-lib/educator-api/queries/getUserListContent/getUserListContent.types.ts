@@ -7,41 +7,35 @@ const lesson_data = z.object({
   _state: z.string(),
 });
 
-const users_content_lists = z.object({
-  created_at: z.string(),
-  content: z.object({
-    unit_slug: z.string(),
-    programme_slug: z.string(),
-    browse_mv: z.array(
-      z.object({
-        lessons: z.array(lesson_data),
-        unit_title: z.string(),
-        optionality_title: z.string().nullish(),
-        year: z.string(),
-        keystage: z.string(),
-        keystage_slug: z.string(),
-        subject: z.string(),
-        subject_slug: z.string(),
-        tier: z.string().nullable(),
-        examboard: z.string().nullable(),
-        unit_order: z.number(),
-        year_order: z.number(),
-        subject_categories: z.array(z.string()).nullish(),
-      }),
-    ),
-  }),
+const content = z.object({
+  unit_slug: z.string(),
+  programme_slug: z.string(),
+  browse_mv: z.array(
+    z.object({
+      lessons: z.array(lesson_data),
+      unit_title: z.string(),
+      optionality_title: z.string().nullish(),
+      year: z.string(),
+      keystage: z.string(),
+      keystage_slug: z.string(),
+      subject: z.string(),
+      subject_slug: z.string(),
+      tier: z.string().nullable(),
+      examboard: z.string().nullable(),
+      unit_order: z.number(),
+      year_order: z.number(),
+      subject_categories: z.array(z.string()).nullish(),
+    }),
+  ),
 });
 
-const users_content = z.array(
-  z.object({
-    users_content_lists: users_content_lists.nullable(),
-  }),
-);
-
-export type UsersContent = z.infer<typeof users_content>;
-
 export const getUserListContentResponse = z.object({
-  users_content: users_content,
+  content_lists: z.array(
+    z.object({
+      content: content,
+      created_at: z.string(),
+    }),
+  ),
 });
 
 const unit = z.object({
