@@ -39,7 +39,6 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
     if (user.length === 0) {
       await educatorApi.createUser({
         userId,
-        sourceApp: "https://thenational.academy",
       });
     }
     await educatorApi.createUserListContent({
