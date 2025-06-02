@@ -1,3 +1,81 @@
+## [1.760.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.760.0...v1.760.1) (2025-06-02)
+
+
+### Bug Fixes
+
+* preselects and download name ([c912bd8](https://github.com/oaknational/Oak-Web-Application/commit/c912bd8b8e244fdbe44f7b65d9fb8719a103bdf6))
+* preselects and download name ([60fd8ea](https://github.com/oaknational/Oak-Web-Application/commit/60fd8ea7b38fdbb6c2bc0263fe1f65e3329f7524))
+
+# [1.760.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.759.3...v1.760.0) (2025-06-02)
+
+
+### Bug Fixes
+
+* add position relative for anchor to work ([1f0cb5e](https://github.com/oaknational/Oak-Web-Application/commit/1f0cb5e02253131053e8822cfbb94ecd1463deac))
+* align items centrally on unit card ([4318324](https://github.com/oaknational/Oak-Web-Application/commit/4318324087995620977ba93eda472765afd3f59b))
+* icon sizes shrinking at small screen sizes ([a7b64fc](https://github.com/oaknational/Oak-Web-Application/commit/a7b64fc1386251a969b2194bffb0b1eb1f6e7158))
+* incorrect text search ([c93d4ce](https://github.com/oaknational/Oak-Web-Application/commit/c93d4cee5f42314e7cc43763454ed98aa65a7e17))
+* max width on large mobile layout ([f618510](https://github.com/oaknational/Oak-Web-Application/commit/f6185103c58f495cbb039856363406b70de18baf))
+* merge mishap ([8c0028c](https://github.com/oaknational/Oak-Web-Application/commit/8c0028cc5937f543bb6a78aca889ebeffee4d7ec))
+* missing unique keys ([51073f0](https://github.com/oaknational/Oak-Web-Application/commit/51073f0d244803a54cc2e2e9fc4610bbec65318d))
+* pass compare fn to toSorted ([97121a4](https://github.com/oaknational/Oak-Web-Application/commit/97121a4c8c2c229d5606f7abc96b2e6acee90b9d))
+* pass optionality title ([d1f5546](https://github.com/oaknational/Oak-Web-Application/commit/d1f5546295e99613468ae2eaac4cbcfc4c095723))
+* programme heading text colour ([b4b309c](https://github.com/oaknational/Oak-Web-Application/commit/b4b309ce01dcf3cb375d478904cfc31e7e595c2d))
+* storybook build issue importing from test ([98eb953](https://github.com/oaknational/Oak-Web-Application/commit/98eb953388016596b715ef13cdbb43fa4235defc))
+* ul padding ([98b3f02](https://github.com/oaknational/Oak-Web-Application/commit/98b3f02feb14a181b9e76c82963f81997111f9b3))
+* unit card border color ([07fc6d2](https://github.com/oaknational/Oak-Web-Application/commit/07fc6d2bb5035376586e144226ad9aa89ad13a00))
+* update mock data in stories ([2417088](https://github.com/oaknational/Oak-Web-Application/commit/2417088d633719e9e1b151a0c548cce512ce930e))
+* use mutate on useSwr so request is revalidated on programme update ([3174be4](https://github.com/oaknational/Oak-Web-Application/commit/3174be46ffd5411f44d07c6b1372937abf3f9b64))
+* use unitProgrammeSlug for locally saved units ([8df5cfc](https://github.com/oaknational/Oak-Web-Application/commit/8df5cfc781c7cfb26d58bc32eb70936f67877da1))
+
+
+### Features
+
+* add back to collections link on mobile ([00fd7fd](https://github.com/oaknational/Oak-Web-Application/commit/00fd7fdcf9c866f79412e6e94e98d771c2081132))
+* add hook to fetch programme units ([8f88cbd](https://github.com/oaknational/Oak-Web-Application/commit/8f88cbd5d88bcb83c243d40fbffff64844cfc749))
+* add locally saved units for updating local button state ([f7034bf](https://github.com/oaknational/Oak-Web-Application/commit/f7034bfc1f195dfc8641c5b67cf9cd065ea0b849))
+* add optionality title as separate field in units response ([5a9047d](https://github.com/oaknational/Oak-Web-Application/commit/5a9047df330b5a0146929b7d910c0dd80a3c4f42))
+* add optionality title to unit cards ([3ab3253](https://github.com/oaknational/Oak-Web-Application/commit/3ab32532f01bd5992d69bb59f0586d9fd9475ce2))
+* add query and endpoint for getProgrammeUnits ([b6b1ca4](https://github.com/oaknational/Oak-Web-Application/commit/b6b1ca4ea88d8bbabdcc5426af6591c45c533171))
+* add side menu to my library page ([9e96712](https://github.com/oaknational/Oak-Web-Application/commit/9e96712c8d87554433e6e6675a6641c202b8b0b8))
+* add stories for my library ([3e99cc4](https://github.com/oaknational/Oak-Web-Application/commit/3e99cc492be4a7144cd500ee6f6ace17be61c51f))
+* add subject categories ([786e2f6](https://github.com/oaknational/Oak-Web-Application/commit/786e2f69d0b1d7ac9b42dff7aeeedd4f6be063d9))
+* add tracking in my library save ([0cd1996](https://github.com/oaknational/Oak-Web-Application/commit/0cd1996f38e21e0d665f504bbdc4e06cd508f820))
+* fetch required slug fields for tracking ([1189602](https://github.com/oaknational/Oak-Web-Application/commit/11896020127c9425122752f3974696c399ded547))
+* fix padding and icon ([ee410bf](https://github.com/oaknational/Oak-Web-Application/commit/ee410bfd3007d067fee5285f0ddf0dce2253ecf0))
+* integrate my library cards into page ([d27b32f](https://github.com/oaknational/Oak-Web-Application/commit/d27b32f67d25f68b882ae5659efd1dcd5ab905a1))
+* link back to collections menu ([dd11c26](https://github.com/oaknational/Oak-Web-Application/commit/dd11c267227ac6d597667200f7faf6044fca13ec))
+* make side menu sticky ([88f6aab](https://github.com/oaknational/Oak-Web-Application/commit/88f6aab67b61c252723abb5235a83d1ac3e0064f))
+* remove index from unit cards ([e30433c](https://github.com/oaknational/Oak-Web-Application/commit/e30433c61b619bc0722a5425b343b1f1400da1f5))
+* restructure data response and add stub layout to my library ([df2a2be](https://github.com/oaknational/Oak-Web-Application/commit/df2a2be69b01d067c2d1cacb834661e644a8ceb2))
+* return null when loading ([90928b6](https://github.com/oaknational/Oak-Web-Application/commit/90928b6b5a03e0765a91df8a0b84ed542aa278ad))
+* scroll to section on click ([114adba](https://github.com/oaknational/Oak-Web-Application/commit/114adbaa4877636049a395d9328f9b957c336e8f))
+* sort units by year and unit order ([649896f](https://github.com/oaknational/Oak-Web-Application/commit/649896f9809a0314527b12d8b34b31ba97ec2798))
+* use more descriptive response for requests by signed out users ([ccc39d5](https://github.com/oaknational/Oak-Web-Application/commit/ccc39d56906b0f4b3884d68796f865a4e3f53be8))
+* use optionality title for units ([759259b](https://github.com/oaknational/Oak-Web-Application/commit/759259bbbaa93b0d8a1fdc14acfe2271d6578a46))
+* use programme factors in programme title ([61b498f](https://github.com/oaknational/Oak-Web-Application/commit/61b498f8780dacfa6c36ed01c3ced393fe4efbad))
+
+## [1.759.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.759.2...v1.759.3) (2025-05-29)
+
+
+### Bug Fixes
+
+* overflow causes bottom of close button to not be clickable ([ee9e1c7](https://github.com/oaknational/Oak-Web-Application/commit/ee9e1c7777faf827bd3c3a972aa59fe58602e4c2))
+
+## [1.759.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.759.1...v1.759.2) (2025-05-29)
+
+
+### Bug Fixes
+
+* unit modal width should be static ([cb0bd67](https://github.com/oaknational/Oak-Web-Application/commit/cb0bd6738be5c35b772ce738187c800da2e5dea3))
+
+## [1.759.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.759.0...v1.759.1) (2025-05-29)
+
+
+### Bug Fixes
+
+* set width of toast container on desktop to not cover breadcrumbs ([156cf00](https://github.com/oaknational/Oak-Web-Application/commit/156cf008413a5816aebbc99649165c70687ee864))
+
 # [1.759.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.758.0...v1.759.0) (2025-05-29)
 
 

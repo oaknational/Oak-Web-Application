@@ -19,11 +19,10 @@ const generateLessons = (
   return Array.from({ length: count }, (_, localIndex) => {
     const index = localIndex + indexOffset;
     return {
-      slug: `lesson-${index}`,
+      slug: `lesson-${index}-${state}`,
       order: index,
       title: `Lesson ${index}`,
-      _state: state,
-      lesson_uid: `LESS-${index}`,
+      state: state,
     };
   });
 };
@@ -34,8 +33,8 @@ const mockUnit = {
   unitTitle: "Saved Unit",
   unitSlug: "saved-unit",
   programmeSlug: "english-secondary-ks4-aqa",
-  yearTitle: "Year 10",
-  saveTime: "2023-10-01T12:00:00Z",
+  year: "Year 10",
+  savedAt: "2023-10-01T12:00:00Z",
   href: "/saved-unit",
   lessonCount: 5,
   onSave: jest.fn(),
@@ -86,7 +85,7 @@ describe("MyLibraryUnitCard", () => {
         {...mockUnit}
         lessons={completeUnitLessons}
         // replace the save time with the current date
-        saveTime={new Date().toISOString()}
+        savedAt={new Date().toISOString()}
       />,
     );
     // The save time is formatted as "Saved at _time_"

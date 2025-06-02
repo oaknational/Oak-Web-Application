@@ -1,15 +1,16 @@
-import { OakMaxWidth } from "@oaknational/oak-components";
-
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { Wall } from "@/components/AppComponents/Wall";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import withFeatureFlag from "@/hocs/withFeatureFlag";
 import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 import { withPageAuthRequired } from "@/hocs/withPageAuthRequired";
-import MyLibraryHeader from "@/components/TeacherComponents/MyLibraryHeader/MyLibraryHeader";
-import NoSavedContent from "@/components/TeacherComponents/NoSavedContent/NoSavedContent";
+import MyLibrary from "@/components/TeacherViews/MyLibrary/MyLibrary";
+import { useMyLibrary } from "@/node-lib/educator-api/helpers/saveUnits/useMyLibrary";
 
 function MyLibraryPage() {
+  const { collectionData, isLoading, onSaveToggle, isUnitSaved } =
+    useMyLibrary();
+
   return (
     <AppLayout
       seoProps={{
@@ -21,14 +22,12 @@ function MyLibraryPage() {
         noFollow: true,
       }}
     >
-      <OakMaxWidth
-        $gap={["space-between-m", "space-between-l"]}
-        $pb="inner-padding-xl"
-        $pt={["inner-padding-none", "inner-padding-xl"]}
-      >
-        <MyLibraryHeader />
-        <NoSavedContent />
-      </OakMaxWidth>
+      <MyLibrary
+        collectionData={collectionData}
+        isLoading={isLoading}
+        onSaveToggle={onSaveToggle}
+        isUnitSaved={isUnitSaved}
+      />
     </AppLayout>
   );
 }
