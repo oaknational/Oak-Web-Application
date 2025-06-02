@@ -55,7 +55,7 @@ describe("CurricFiltersThreads", () => {
     expect(elements[3]!.value).toEqual("thread3");
   });
 
-  it("interacts correctly", () => {
+  it("interacts correctly when selecting thread", () => {
     const onChangeFilters = jest.fn();
     const { getAllByRole } = renderWithTheme(
       <CurricFiltersThreads
@@ -84,20 +84,33 @@ describe("CurricFiltersThreads", () => {
       years: ["10", "11"],
       pathways: [],
     });
-    act(() => elements[2]!.click());
+  });
+
+  it("interacts correctly when selecting none", () => {
+    const onChangeFilters = jest.fn();
+    const { getAllByRole } = renderWithTheme(
+      <CurricFiltersThreads
+        filters={{
+          childSubjects: [],
+          subjectCategories: [],
+          tiers: [],
+          years: ["10", "11"],
+          threads: ["thread1"],
+          pathways: [],
+        }}
+        onChangeFilters={onChangeFilters}
+        data={basicSetup}
+      />,
+    );
+
+    const elements = getAllByRole("radio") as HTMLInputElement[];
+    expect(elements.length).toEqual(4);
+
+    act(() => elements[0]!.click());
     expect(onChangeFilters).toHaveBeenCalledWith({
       subjectCategories: [],
       childSubjects: [],
-      threads: ["thread2"],
-      tiers: [],
-      years: ["10", "11"],
-      pathways: [],
-    });
-    act(() => elements[3]!.click());
-    expect(onChangeFilters).toHaveBeenCalledWith({
-      subjectCategories: [],
-      childSubjects: [],
-      threads: ["thread3"],
+      threads: [],
       tiers: [],
       years: ["10", "11"],
       pathways: [],
