@@ -10,12 +10,11 @@ import {
 } from "@/fixtures/teachers/myLibrary";
 
 const unit = {
-  index: 1,
   unitTitle: "Fiction: Science Fiction Writing",
   unitSlug: "fiction-science-fiction-writing",
   programmeSlug: "english-secondary-ks4-aqa",
-  yearTitle: "Year 10",
-  saveTime: "2025-05-01T09:00:00.199406+00:00",
+  year: "Year 10",
+  savedAt: "2025-05-01T09:00:00.199406+00:00",
   href: "/teachers/programmes/english-secondary-ks4-aqa/units/fiction-science-fiction-writing/lessons",
   onSave: () => console.log("onSave!"),
   isSaved: false,
@@ -29,11 +28,6 @@ const meta: Meta<typeof MyLibraryUnitCard> = {
     lessons: completeUnitLessons,
   },
   argTypes: {
-    index: {
-      control: {
-        type: "number",
-      },
-    },
     unitTitle: {
       control: {
         type: "text",
@@ -49,7 +43,7 @@ const meta: Meta<typeof MyLibraryUnitCard> = {
         type: "text",
       },
     },
-    yearTitle: {
+    year: {
       control: {
         type: "text",
       },
@@ -59,12 +53,7 @@ const meta: Meta<typeof MyLibraryUnitCard> = {
         type: "object",
       },
     },
-    saveTime: {
-      control: {
-        type: "text",
-      },
-    },
-    href: {
+    savedAt: {
       control: {
         type: "text",
       },
