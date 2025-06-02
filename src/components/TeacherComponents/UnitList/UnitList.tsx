@@ -316,7 +316,9 @@ const UnitList: FC<UnitListProps> = (props) => {
                 programmeSlug: unitOption.programmeSlug,
               })}
               onSave={
-                isSaveEnabled ? () => onSaveToggle(unitOption.slug) : undefined
+                isSaveEnabled && !isSpecialistUnit
+                  ? () => onSaveToggle(unitOption.slug)
+                  : undefined
               }
               isSaved={isUnitSaved(unitOption.slug)}
             />
