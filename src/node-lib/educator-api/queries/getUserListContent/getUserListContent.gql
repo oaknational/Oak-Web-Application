@@ -1,5 +1,8 @@
 query getUserListContent($userId: String!) {
-  content_lists(where: { list: { user_id: { _eq: $userId } } }) {
+  content_lists(
+    distinct_on: content_id
+    where: { list: { user_id: { _eq: $userId } } }
+  ) {
     content {
       unit_slug
       programme_slug
