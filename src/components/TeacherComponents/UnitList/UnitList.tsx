@@ -224,7 +224,10 @@ const UnitList: FC<UnitListProps> = (props) => {
       const isItemLegacy = isSlugLegacy(item[0]!.programmeSlug);
 
       const isSpecialistUnit = !isUnitListData(props);
-      const showSave = isSaveEnabled && !isSpecialistUnit;
+      const onNonOptionalitySave = (unitSlug: string) =>
+        isSaveEnabled && !isSpecialistUnit
+          ? () => onSaveToggle(unitSlug)
+          : undefined;
 
       if (isItemLegacy) {
         if (newAndLegacyUnitsOnPage) {
@@ -268,7 +271,7 @@ const UnitList: FC<UnitListProps> = (props) => {
               : null
           }
           optionalityUnits={getOptionalityUnits(item, onClick, router)}
-          onSave={showSave ? onSaveToggle : undefined}
+          onSave={isSaveEnabled && !isSpecialistUnit ? onSaveToggle : undefined}
           getIsSaved={isUnitSaved}
         />
       ) : (
@@ -316,9 +319,7 @@ const UnitList: FC<UnitListProps> = (props) => {
                 unitSlug: unitOption.slug,
                 programmeSlug: unitOption.programmeSlug,
               })}
-              onSave={
-                showSave ? () => onSaveToggle(unitOption.slug) : undefined
-              }
+              onSave={onNonOptionalitySave(unitOption.slug)}
               isSaved={isUnitSaved(unitOption.slug)}
             />
           );
