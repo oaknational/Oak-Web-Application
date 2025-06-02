@@ -7,6 +7,7 @@ import {
   getUserListContentResponse,
   UserlistContentApiResponse,
 } from "@/node-lib/educator-api/queries/getUserListContent/getUserListContent.types";
+import OakError from "@/errors/OakError";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   return handleRequest(req, res);
@@ -69,12 +70,14 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
 
     return res.status(200).json(myLibraryData);
   } catch (err) {
-    reportError(err, {
+    const error = new OakError({
       code: "educator-api/failed-to-get-saved-units",
       meta: {
         userId,
+        error: err,
       },
     });
+    reportError(error);
 
     return res.status(500).json({ error: JSON.stringify(err) });
   }
