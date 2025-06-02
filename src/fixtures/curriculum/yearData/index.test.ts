@@ -23,7 +23,7 @@ describe("createSubjectCategory", () => {
     const result = createYearData({
       units: [createUnit({ slug: "test" })],
       childSubjects: [createChildSubject({ subject_slug: "test" })],
-      subjectCategories: [createSubjectCategory({ id: 2 })],
+      subjectCategories: [createSubjectCategory({ id: 2, slug: "test" })],
       tiers: [createTier({ tier_slug: "test" })],
       pathways: [],
       isSwimming: true,
@@ -74,6 +74,7 @@ describe("createSubjectCategory", () => {
       subjectCategories: [
         {
           id: 2,
+          slug: "test",
           title: "Foo",
         },
       ],

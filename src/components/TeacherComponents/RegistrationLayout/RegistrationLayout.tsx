@@ -4,7 +4,6 @@ import {
   OakFlex,
   OakGrid,
   OakGridArea,
-  OakMaxWidth,
 } from "@oaknational/oak-components";
 
 type RegistrationLayoutProps = PropsWithChildren<{
@@ -71,12 +70,17 @@ const RegistrationLayout = ({
       $overflow="auto"
       $color="black"
     >
-      <OakMaxWidth
+      <OakFlex
         $justifyContent={"center"}
         $minHeight={"100vh"}
         $alignItems={["flex-start", "center"]}
         $flexDirection="row"
         $pv={["inner-padding-none", "inner-padding-xl3"]}
+        $maxWidth={["all-spacing-21", "all-spacing-24"]}
+        $ph={["inner-padding-none", "inner-padding-s"]}
+        $flexGrow={1}
+        $width={"100%"}
+        $mh={"auto"}
       >
         <OakFlex
           $display={["none", "none", "flex"]}
@@ -104,7 +108,7 @@ const RegistrationLayout = ({
             {termsSlot}
           </OakFlex>
         </OakFlex>
-      </OakMaxWidth>
+      </OakFlex>
     </OakFlex>
   );
 };

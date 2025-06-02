@@ -141,6 +141,7 @@ describe("/api/hubspot/contact-lookup", () => {
     });
 
     test("should return 500 on unexpected errors", async () => {
+      console.error = jest.fn();
       (hubspot.crm.contacts.basicApi.getById as jest.Mock).mockRejectedValue(
         new Error("Some error"),
       );
@@ -152,6 +153,10 @@ describe("/api/hubspot/contact-lookup", () => {
 
       await handler(req, res);
 
+      expect(console.error).toHaveBeenCalledWith(
+        "Error looking up HubSpot contact:",
+        expect.anything(),
+      );
       expect(res._getStatusCode()).toBe(500);
       expect(res._getJSONData().error).toBe("Failed to lookup contact");
     });

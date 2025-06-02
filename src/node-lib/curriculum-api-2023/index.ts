@@ -8,7 +8,6 @@ import lessonDownloadsQuery from "./queries/lessonDownloads/lessonDownloads.quer
 import programmeListingQuery from "./queries/programmeListing/programmeListing.query";
 import unitListingQuery from "./queries/unitListing/unitListing.query";
 import curriculumOverviewQuery from "./queries/curriculumOverview/curriculumOverview.query";
-import curriculumHeaderQuery from "./queries/curriculumHeader/curriculumHeader.query";
 import curriculumDownloadsQuery from "./queries/curriculumDownloads/curriculumDownloads.query";
 import curriculumOverviewSchema from "./queries/curriculumOverview/curriculumOverview.schema";
 import searchPageQuery from "./queries/searchPage/searchPage.query";
@@ -128,7 +127,6 @@ const curriculumApi2023 = {
   curriculumOverview: curriculumOverviewQuery(sdk),
   curriculumSequence: curriculumSequenceQuery(sdk),
   curriculumDownloads: curriculumDownloadsQuery(),
-  curriculumHeader: curriculumHeaderQuery(sdk),
   lessonListing: lessonListingQuery(sdk),
   lessonDownloads: lessonDownloadsQuery(sdk),
   lessonMediaClips: lessonMediaClipsQuery(sdk),

@@ -16,7 +16,8 @@
     "downloadsFormId": "uuid-oijfeoe-ijfere-g-ererg",
     "onboardingFormId": "uuid-ergerg-ergerg-ergerg",
     "fallbackFormId": "uuid-r0439f4fd-f43j04g-d-3r9",
-    "requiredSecrets": ["HUBSPOT_FORMS_ACCESS_TOKEN"]
+    "requiredSecrets": ["HUBSPOT_FORMS_ACCESS_TOKEN"],
+    "scriptDomain": "https://example.com"
   },
   "mux": {
     "requiredSecrets": [
@@ -53,7 +54,13 @@
   },
   "sanity": {
     "graphqlUrl": "https://cuvjke51.apicdn.sanity.io/v1/graphql/spike_2/default",
-    "requiredSecrets": ["SANITY_AUTH_SECRET"]
+    "requiredSecrets": ["SANITY_AUTH_SECRET"],
+    "assetCDNHost": "https://cdn.sanity.io",
+    "revalidateSeconds": 10,
+    "projectId": "spike_2",
+    "dataset": "default",
+    "datasetTag": "production",
+    "useCDN": true
   },
   "oakConsent": {
     "policiesUrl": "https://example.com/policies/",
@@ -76,5 +83,26 @@
     "organisationIdentifier": "oak-national-academy",
     "projectIdentifier": "oak-web-application",
     "requiredSecrets": ["SENTRY_AUTH_TOKEN"]
+  },
+  "seo": {
+    "appName": "Oak Web Application",
+    "appDescription": "Oak Web Application",
+    "appLocale": "en-GB",
+    "appUrl": "https://example.com",
+    "appLogo": "https://example.com/logo.png",
+    "appFacebook": "https://example.com/facebook",
+    "appTwitter": "https://example.com/twitter",
+    "appTwitterHandle": "@example"
+  },
+  "cloudinary": {
+    "cloudName": "cloudinary-cloud-name",
+    "secureDistribution": "https://example.com"
+  },
+  "oakComponents": {
+    "assetsHost": "https://example.com",
+    "assetsPath": "/assets"
+  },
+  "googleSecretManager": {
+    "projectId": "123451"
   }
 }

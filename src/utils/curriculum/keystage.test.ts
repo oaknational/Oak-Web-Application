@@ -4,6 +4,8 @@ import {
   presentAtKeyStageSlugs,
 } from "./keystage";
 
+import { createSubjectCategory } from "@/fixtures/curriculum/subjectCategories";
+
 test("byKeyStageSlug", () => {
   const output = byKeyStageSlug({
     "7": {
@@ -18,14 +20,14 @@ test("byKeyStageSlug", () => {
       tiers: [],
       childSubjects: [],
       subjectCategories: [
-        {
+        createSubjectCategory({
           id: 3,
-          title: "test1",
-        },
-        {
+          slug: "test1",
+        }),
+        createSubjectCategory({
           id: 4,
-          title: "test2",
-        },
+          slug: "test2",
+        }),
       ],
     },
     "9": {
@@ -75,14 +77,14 @@ test("byKeyStageSlug", () => {
       ],
       childSubjects: [],
       subjectCategories: [
-        {
+        createSubjectCategory({
           id: 3,
-          title: "test1",
-        },
-        {
+          slug: "test1",
+        }),
+        createSubjectCategory({
           id: 4,
-          title: "test2",
-        },
+          slug: "test2",
+        }),
       ],
     },
     ks4: {
@@ -116,14 +118,14 @@ test("presentAtKeyStageSlugs", () => {
       tiers: [],
       childSubjects: [],
       subjectCategories: [
-        {
+        createSubjectCategory({
           id: 3,
-          title: "test1",
-        },
-        {
+          slug: "test1",
+        }),
+        createSubjectCategory({
           id: 4,
-          title: "test2",
-        },
+          slug: "test2",
+        }),
       ],
     },
     ks3: {

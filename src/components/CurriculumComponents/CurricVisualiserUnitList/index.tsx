@@ -1,7 +1,10 @@
+import { join } from "path";
+
 import { OakFlex, OakP } from "@oaknational/oak-components";
 import styled from "styled-components";
+import { useSearchParams } from "next/navigation";
 
-import CurriculumUnitCard from "../CurriculumUnitCard/CurriculumUnitCard";
+import CurriculumUnitCard from "../CurricUnitCard";
 
 import { isHighlightedUnit } from "@/utils/curriculum/filtering";
 import { CurriculumFilters, Unit, YearData } from "@/utils/curriculum/types";
@@ -58,7 +61,7 @@ function getSubjectCategoryMessage(
       years
         .flatMap((yearKey) =>
           yearData[yearKey]?.subjectCategories?.filter((sc) =>
-            subjectCategories.includes(sc.id.toString()),
+            subjectCategories.includes(sc.slug),
           ),
         )
         .filter(Boolean)
@@ -80,16 +83,14 @@ function getSubjectCategoryMessage(
     .some((yearKey) =>
       yearData[yearKey]?.units?.some((unit) =>
         unit.subjectcategories?.some((sc) =>
-          subjectCategories.includes(sc.id.toString()),
+          subjectCategories.includes(sc.slug),
         ),
       ),
     );
 
   // Check if this current year has any units in the selected subject categories
   const hasCurrentYearUnits = yearData[currentYear]?.units?.some((unit) =>
-    unit.subjectcategories?.some((sc) =>
-      subjectCategories.includes(sc.id.toString()),
-    ),
+    unit.subjectcategories?.some((sc) => subjectCategories.includes(sc.slug)),
   );
 
   if (!hasCurrentYearUnits) {
@@ -105,7 +106,7 @@ function getSubjectCategoryMessage(
       (yearKey) =>
         yearData[yearKey]?.units?.some((unit) =>
           unit.subjectcategories?.some((sc) =>
-            subjectCategories.includes(sc.id.toString()),
+            subjectCategories.includes(sc.slug),
           ),
         ),
     );
@@ -157,22 +158,23 @@ type CurricVisualiserUnitListProps = {
   filters: CurriculumFilters;
   year: string;
   yearData: YearData;
-  onOpenModal: (
-    unitOptions: boolean,
-    unit: Unit,
-    isHighlighted: boolean,
-  ) => void;
+  basePath: string;
 };
 export function CurricVisualiserUnitList({
   units,
   yearData,
   year,
   filters,
-  onOpenModal,
+  basePath,
 }: CurricVisualiserUnitListProps) {
+  const searchParams = useSearchParams();
+
   function getItems(unit: Unit, index: number) {
     const isHighlighted = isHighlightedUnit(unit, filters.threads);
-    const unitOptions = unit.unit_options.length >= 1;
+    const searchParamsStr = searchParams?.toString() ?? "";
+    const unitUrl =
+      join(basePath, unit.slug) +
+      `${!searchParamsStr ? "" : `?${searchParamsStr}`}`;
 
     return (
       <UnitListItem key={`${unit.slug}-${index}`}>
@@ -181,9 +183,7 @@ export function CurricVisualiserUnitList({
           key={unit.slug + index}
           index={index}
           isHighlighted={isHighlighted}
-          onClick={() => {
-            onOpenModal(unitOptions, unit, isHighlighted);
-          }}
+          href={unitUrl}
         />
       </UnitListItem>
     );

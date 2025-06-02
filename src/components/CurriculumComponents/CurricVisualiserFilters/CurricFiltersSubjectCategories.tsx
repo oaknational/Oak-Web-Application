@@ -85,13 +85,13 @@ export function CurricFiltersSubjectCategories({
             {subjectCategories.map((subjectCategory) => {
               return (
                 <OakRadioAsButton
-                  key={String(subjectCategory.id)}
-                  value={String(subjectCategory.id)}
-                  data-testid={`subject-category-radio-${subjectCategory.id}`}
+                  key={String(subjectCategory.slug)}
+                  value={String(subjectCategory.slug)}
+                  data-testid={`subject-category-radio-${subjectCategory.slug}`}
                   displayValue={subjectCategory.title}
                   icon={getValidSubjectCategoryIconById(
                     slugs.subjectSlug,
-                    subjectCategory.id,
+                    subjectCategory.slug,
                   )}
                 />
               );

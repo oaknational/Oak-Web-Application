@@ -27,6 +27,11 @@ jest.mock("@google-cloud/storage", () => {
   };
 });
 
+jest.mock("@/utils/handleTranscript.ts", () => ({
+  populateLessonWithTranscript: jest.fn(),
+  populateMediaClipsWithTranscripts: jest.fn(),
+}));
+
 describe("BetaLessonMediaClipsPage", () => {
   beforeEach(() => {
     (useRouter as jest.Mock).mockReturnValue({

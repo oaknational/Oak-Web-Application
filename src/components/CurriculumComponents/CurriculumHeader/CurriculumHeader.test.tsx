@@ -1,11 +1,11 @@
 import { findAllByRole } from "@testing-library/dom";
+import { ComponentProps } from "react";
 
 import CurriculumHeader from "./CurriculumHeader";
 
 import curriculumHeaderFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumHeader.fixture";
 import curriculumPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumPhaseOptions.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import { mockPrerelease } from "@/utils/mocks";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 
 jest.mock("@/hooks/useMediaQuery.tsx", () => ({
@@ -22,11 +22,10 @@ describe("Component - Curriculum Header", () => {
     jest.clearAllMocks();
   });
   const renderComponent = (overrides = {}) => {
-    const defaultProps = {
+    const defaultProps: ComponentProps<typeof CurriculumHeader> = {
       curriculumSelectionSlugs: parseSubjectPhaseSlug("english-secondary-aqa")!,
       keyStages: ["ks3", "ks4"],
       curriculumPhaseOptions: { subjects: curriculumPhaseOptionsFixture() },
-      pageSlug: "test-slug",
       tab: "overview",
       ...overrides,
     };
@@ -86,8 +85,6 @@ describe("Component - Curriculum Header", () => {
   });
 
   test("user can see the tabular navigation", async () => {
-    // NOTE: This is only active during testing.
-    mockPrerelease("curriculum.downloads");
     const { findByTestId } = renderComponent();
     const tabularNav = await findByTestId("tabularNav");
     expect(tabularNav).toBeInTheDocument();

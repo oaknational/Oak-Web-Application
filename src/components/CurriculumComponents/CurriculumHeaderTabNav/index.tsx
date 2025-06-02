@@ -48,7 +48,7 @@ const CurriculumHeaderTabNav = ({
     >
       <ul style={{ display: "contents" }}>
         {links.map((link, i) => (
-          <li style={{ display: "contents" }}>
+          <li key={link.page} style={{ display: "contents" }}>
             <ButtonAsLink
               {...link}
               size="large"

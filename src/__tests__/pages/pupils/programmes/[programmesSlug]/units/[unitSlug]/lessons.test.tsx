@@ -65,7 +65,10 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       configurable: true,
     });
     // Restore the original window.location object after each test
-    window.location = originalLocation;
+    Object.defineProperty(window, "location", {
+      value: originalLocation,
+      writable: true,
+    });
 
     jest.clearAllMocks();
   });

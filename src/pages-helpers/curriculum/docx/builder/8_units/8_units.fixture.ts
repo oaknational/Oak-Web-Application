@@ -7612,6 +7612,7 @@ export const data: CombinedCurriculumData = {
       hotspot: null,
     },
   },
+  curriculumSeoTextRaw: null,
   video: {
     title: "Secondary English Curriculum",
     captions: null,

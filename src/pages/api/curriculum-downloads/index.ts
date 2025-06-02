@@ -137,6 +137,7 @@ async function getData(opts: {
             asset: { assetId: "", playbackId: "undefined", thumbTime: null },
           },
         },
+        curriculumSeoTextRaw: null,
         curriculumExplainer: {
           explainerRaw: [
             {

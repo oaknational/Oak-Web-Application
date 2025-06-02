@@ -1,5 +1,4 @@
 import { act, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 
 import CurriculumDownloadTab, {
   createCurriculumDownloadsQuery,
@@ -7,7 +6,6 @@ import CurriculumDownloadTab, {
 } from ".";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import { mockPrerelease } from "@/utils/mocks";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { DISABLE_DOWNLOADS } from "@/utils/curriculum/constants";
@@ -75,8 +73,6 @@ describe("Component Curriculum Download Tab", () => {
 
   if (!DISABLE_DOWNLOADS) {
     test("user can see download form", async () => {
-      // NOTE: This is only active during testing.
-      mockPrerelease("curriculum.downloads");
       const { findByText, findAllByTestId } = renderComponent();
       const formHeading = await findByText("Your details");
       const formInputs = await findAllByTestId("input");
@@ -87,8 +83,6 @@ describe("Component Curriculum Download Tab", () => {
 
   describe("Curriculum Downloads Tab: Secondary Maths", () => {
     test("user can see the tier selector for secondary maths", async () => {
-      // NOTE: This is only active during testing.
-      mockPrerelease("curriculum.downloads");
       const { findByTestId } = renderComponent({
         tiers: tiersMock,
       });
@@ -102,8 +96,6 @@ describe("Component Curriculum Download Tab", () => {
     });
 
     test("user can see correct tiers in the selector for secondary maths", async () => {
-      // NOTE: This is only active during testing.
-      mockPrerelease("curriculum.downloads");
       const { findAllByTestId } = renderComponent({ tiers: tiersMock });
       const tierRadios = await findAllByTestId("tier-radio-button");
       expect(tierRadios).toHaveLength(2);
@@ -114,8 +106,6 @@ describe("Component Curriculum Download Tab", () => {
 
   describe("Curriculum Downloads Tab: Secondary Science", () => {
     test("user can see the child subject selector for secondary science", async () => {
-      // NOTE: This is only active during testing.
-      mockPrerelease("curriculum.downloads");
       const { findByTestId } = renderComponent({
         tiers: tiersMock,
         child_subjects: childSubjectsMock,
@@ -126,8 +116,6 @@ describe("Component Curriculum Download Tab", () => {
     });
 
     test("user can see the tiers and child subject selector for secondary science", async () => {
-      // NOTE: This is only active during testing.
-      mockPrerelease("curriculum.downloads");
       const { findByTestId } = renderComponent({
         tiers: tiersMock,
         child_subjects: childSubjectsMock,
@@ -140,8 +128,6 @@ describe("Component Curriculum Download Tab", () => {
     });
 
     test("user can see the correct child subjects in the correct order", async () => {
-      // NOTE: This is only active during testing.
-      mockPrerelease("curriculum.downloads");
       const { findAllByTestId } = renderComponent({
         tiers: tiersMock,
         child_subjects: childSubjectsMock,
@@ -164,7 +150,6 @@ describe("Component Curriculum Download Tab", () => {
     });
 
     it("sends a tracking event when curriculum downloads are refined", async () => {
-      mockPrerelease("curriculum.downloads");
       const { findByTestId, findByText } = renderComponent({
         tiers: tiersMock,
         child_subjects: childSubjectsMock,
@@ -174,14 +159,14 @@ describe("Component Curriculum Download Tab", () => {
       const childSubjectSelector = await findByTestId("child-subject-selector");
       const tierSelector = await findByTestId("tier-selector");
 
-      await act(async () => {
-        await userEvent.click(childSubjectSelector);
-        await userEvent.click(tierSelector);
+      act(() => {
+        childSubjectSelector.click();
+        tierSelector.click();
       });
 
       const nextButton = await findByText("Next");
-      await act(async () => {
-        await userEvent.click(nextButton);
+      act(() => {
+        nextButton.click();
       });
 
       expect(curriculumResourcesDownloadRefined).toHaveBeenCalledTimes(1);

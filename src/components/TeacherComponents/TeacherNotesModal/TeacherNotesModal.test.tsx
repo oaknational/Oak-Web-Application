@@ -1,10 +1,12 @@
-import { useEditor } from "@tiptap/react";
+import { Editor, useEditor, UseEditorOptions } from "@tiptap/react";
 import { act, waitFor } from "@testing-library/react";
 import {
   TeacherNote,
   TeacherNoteCamelCase,
+  TeacherNoteError,
 } from "@oaknational/oak-pupil-client";
 import { OakTeacherNotesModal } from "@oaknational/oak-components";
+import { Transaction } from "@tiptap/pm/state";
 
 import {
   isAllowedUri,
@@ -26,6 +28,8 @@ jest.mock("@tiptap/react", () => {
         commands: {
           getHTML: jest.fn().mockReturnValue("<p>test</p>"),
           setContent: jest.fn(),
+          clearDynamicHighlights: jest.fn(),
+          applyDynamicHighlights: jest.fn(),
         },
         storage: {
           characterCount: {
@@ -167,7 +171,9 @@ describe("TeacherNotesModal", () => {
     const mockEditorArgs = useEditorMock.mock.calls?.[0];
     const mockEditorInstance = useEditorMock.mock.results?.[0]?.value;
 
-    mockEditorArgs?.[0]?.onCreate({ editor: mockEditorInstance });
+    await act(async () => {
+      mockEditorArgs?.[0]?.onCreate({ editor: mockEditorInstance });
+    });
 
     expect(mockEditorInstance.commands.setContent).toHaveBeenCalledWith(
       mockTeacherNoteSnake.note_html,
@@ -242,7 +248,7 @@ describe("TeacherNotesModal", () => {
     expect(saveTeacherNote).toHaveBeenCalled();
   });
 
-  it("should save the teacher note when the modal is closed", () => {
+  it("should save the teacher note when the modal is closed", async () => {
     const saveTeacherNote = jest.fn(() =>
       Promise.resolve(mockTeacherNoteSnake),
     );
@@ -276,13 +282,15 @@ describe("TeacherNotesModal", () => {
     );
     mockEditorInstance.getText.mockReturnValueOnce("this content has changed");
 
-    modalProps.onClose();
+    await act(async () => {
+      modalProps.onClose();
+    });
 
     expect(saveTeacherNote).toHaveBeenCalledTimes(1);
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
-  it("should not save the teacher note when the note has not changed", () => {
+  it("should not save the teacher note when the note has not changed", async () => {
     const mockSaveTeacherNote = jest.fn(() =>
       Promise.resolve(mockTeacherNoteSnake),
     );
@@ -318,12 +326,14 @@ describe("TeacherNotesModal", () => {
     mockEditorInstance.getHTML.mockReturnValueOnce("<p>no change</p>");
     mockEditorInstance.getText.mockReturnValueOnce("no change");
 
-    mockEditorArgs?.[0]?.onBlur({ editor: mockEditorInstance });
+    await act(async () => {
+      mockEditorArgs?.[0]?.onBlur({ editor: mockEditorInstance });
+    });
 
     expect(mockSaveTeacherNote).not.toHaveBeenCalled();
   });
 
-  it("should not save the teacher note when note length is zero", () => {
+  it("should not save the teacher note when note length is zero", async () => {
     const mockSaveTeacherNote = jest.fn(() =>
       Promise.resolve(mockTeacherNoteSnake),
     );
@@ -355,7 +365,9 @@ describe("TeacherNotesModal", () => {
     mockEditorInstance.getHTML.mockReturnValueOnce("");
     mockEditorInstance.getText.mockReturnValueOnce("");
 
-    mockEditorArgs?.[0]?.onBlur({ editor: mockEditorInstance });
+    await act(async () => {
+      mockEditorArgs?.[0]?.onBlur({ editor: mockEditorInstance });
+    });
 
     expect(mockSaveTeacherNote).not.toHaveBeenCalled();
   });
@@ -394,7 +406,9 @@ describe("TeacherNotesModal", () => {
     );
     mockEditorInstance.getText.mockReturnValueOnce("this content has changed");
 
-    mockEditorArgs?.[0]?.onBlur({ editor: mockEditorInstance });
+    await act(async () => {
+      mockEditorArgs?.[0]?.onBlur({ editor: mockEditorInstance });
+    });
 
     await waitFor(() => {
       const latestProps = mockModal.mock.lastCall?.[0];
@@ -432,7 +446,9 @@ describe("TeacherNotesModal", () => {
     );
     mockEditorInstance.getText.mockReturnValueOnce("this content has changed");
 
-    mockEditorArgs?.[0]?.onBlur({ editor: mockEditorInstance });
+    await act(async () => {
+      mockEditorArgs?.[0]?.onBlur({ editor: mockEditorInstance });
+    });
 
     const mockModal = OakTeacherNotesModal as jest.MockedFunction<
       typeof OakTeacherNotesModal
@@ -526,6 +542,260 @@ describe("TeacherNotesModal", () => {
       expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
         "https://example.com",
       );
+    });
+  });
+
+  describe("PII Error Handling", () => {
+    const testPiiMatch: NonNullable<
+      TeacherNoteError["pii"]
+    >["piiMatches"][number] = {
+      infoType: "PERSON_NAME",
+      startIndex: 0,
+      endIndex: 4,
+      string: "John",
+    };
+    const mockPiiErrorResponse: TeacherNoteError = {
+      type: "PII_ERROR" as const,
+      pii: {
+        fullRedactedString: "John how are you?",
+        piiMatches: [testPiiMatch],
+      },
+    };
+
+    const getLatestEditorMocks = () => {
+      if (useEditorMock.mock.calls.length === 0) {
+        throw new Error(
+          "useEditor mock was not called before getLatestEditorMocks was invoked.",
+        );
+      }
+      const editorOptions = useEditorMock.mock.lastCall[0] as UseEditorOptions;
+      const lastCallResult =
+        useEditorMock.mock.results[useEditorMock.mock.results.length - 1];
+      if (lastCallResult?.type !== "return") {
+        throw new Error(
+          `useEditor mock's last call did not return a value. Result type: ${lastCallResult?.type}`,
+        );
+      }
+      const editorInstance = lastCallResult.value as ReturnType<
+        typeof useEditorMock
+      >;
+      return { editorOptions, editorInstance };
+    };
+
+    const triggerSaveAttempt = async (
+      editorInstance: ReturnType<typeof useEditorMock>,
+      editorOptions: UseEditorOptions | undefined,
+      newTextContent = "Content with PII",
+    ) => {
+      editorInstance.getHTML.mockReturnValue(`<p>${newTextContent}</p>`);
+      editorInstance.getText.mockReturnValue(newTextContent);
+      await act(async () => {
+        if (editorOptions?.onBlur) {
+          editorOptions.onBlur({
+            editor: editorInstance as unknown as Editor,
+            event: new FocusEvent("blur") as FocusEvent,
+            transaction: {} as Transaction,
+          });
+        }
+      });
+    };
+
+    it("should display PII error message and disable share link when PII error occurs", async () => {
+      const saveTeacherNoteFn = jest.fn(() =>
+        Promise.resolve(mockPiiErrorResponse),
+      );
+      render(
+        <TeacherNotesModal
+          isOpen={true}
+          onClose={jest.fn()}
+          saveTeacherNote={saveTeacherNoteFn}
+          teacherNote={mockTeacherNote}
+          sharingUrl="url"
+          error={null}
+        />,
+      );
+
+      const { editorInstance, editorOptions } = getLatestEditorMocks();
+      await triggerSaveAttempt(editorInstance, editorOptions);
+
+      await waitFor(() => {
+        const modalProps = (OakTeacherNotesModal as jest.Mock).mock.lastCall[0];
+        expect(modalProps.shareLinkDisabled).toBe(true);
+        // Render footer if it's a React element to check content
+        if (modalProps.footer && typeof modalProps.footer !== "string") {
+          const { getByText } = render(modalProps.footer as React.ReactElement);
+          expect(getByText(/names of individuals/i)).toBeInTheDocument();
+        } else {
+          throw new Error("PII error footer not found or not a React element.");
+        }
+      });
+    });
+
+    it("should apply dynamic highlights to PII in the editor", async () => {
+      const saveTeacherNoteFn = jest.fn(() =>
+        Promise.resolve(mockPiiErrorResponse),
+      );
+      render(
+        <TeacherNotesModal
+          isOpen={true}
+          onClose={jest.fn()}
+          saveTeacherNote={saveTeacherNoteFn}
+          teacherNote={mockTeacherNote}
+          sharingUrl="url"
+          error={null}
+        />,
+      );
+
+      const { editorInstance, editorOptions } = getLatestEditorMocks();
+      await triggerSaveAttempt(editorInstance, editorOptions);
+
+      await waitFor(() => {
+        expect(
+          editorInstance.commands.applyDynamicHighlights,
+        ).toHaveBeenCalledWith([
+          {
+            startIndex: testPiiMatch.startIndex,
+            endIndex: testPiiMatch.endIndex,
+          },
+        ]);
+      });
+    });
+
+    it("should disable share link while content is validating", async () => {
+      let resolveSave: (v: TeacherNote | TeacherNoteError) => void = () => {};
+      const savePromise = new Promise<TeacherNote | TeacherNoteError>(
+        (resolve) => {
+          resolveSave = resolve;
+        },
+      );
+      const saveTeacherNoteFn = jest.fn(() => savePromise);
+      render(
+        <TeacherNotesModal
+          isOpen={true}
+          onClose={jest.fn()}
+          saveTeacherNote={saveTeacherNoteFn}
+          teacherNote={mockTeacherNote}
+          sharingUrl="url"
+          error={null}
+        />,
+      );
+
+      const { editorInstance, editorOptions } = getLatestEditorMocks();
+
+      await triggerSaveAttempt(
+        editorInstance,
+        editorOptions,
+        "Validating content",
+      );
+
+      await waitFor(() => {
+        const currentModalProps = (OakTeacherNotesModal as jest.Mock).mock
+          .lastCall[0];
+        expect(currentModalProps.shareLinkDisabled).toBe(true);
+      });
+
+      await act(async () => {
+        resolveSave(mockTeacherNoteSnake as TeacherNote);
+        await savePromise;
+      });
+
+      await waitFor(() => {
+        const finalModalProps = (OakTeacherNotesModal as jest.Mock).mock
+          .lastCall[0];
+        expect(finalModalProps.shareLinkDisabled).toBe(false);
+      });
+    });
+
+    it("should clear PII errors and highlights on a subsequent successful save", async () => {
+      const saveTeacherNoteFn = jest
+        .fn()
+        .mockResolvedValueOnce(mockPiiErrorResponse) // First call: PII error
+        .mockResolvedValueOnce(mockTeacherNoteSnake); // Second call: Success
+      render(
+        <TeacherNotesModal
+          isOpen={true}
+          onClose={jest.fn()}
+          saveTeacherNote={saveTeacherNoteFn}
+          teacherNote={mockTeacherNote}
+          sharingUrl="url"
+          error={null}
+        />,
+      );
+      const { editorInstance, editorOptions } = getLatestEditorMocks();
+
+      // First save (PII error)
+      await triggerSaveAttempt(
+        editorInstance,
+        editorOptions,
+        "Initial PII content",
+      );
+      await waitFor(() => {
+        expect(
+          editorInstance.commands.applyDynamicHighlights,
+        ).toHaveBeenCalledTimes(1);
+        expect(
+          (OakTeacherNotesModal as jest.Mock).mock.lastCall[0].footer,
+        ).toBeDefined();
+      });
+
+      // Second save (successful)
+      await triggerSaveAttempt(
+        editorInstance,
+        editorOptions,
+        "Corrected content",
+      );
+      await waitFor(() => expect(saveTeacherNoteFn).toHaveBeenCalledTimes(2)); // Ensure second save processed
+
+      await waitFor(() => {
+        const modalProps = (OakTeacherNotesModal as jest.Mock).mock.lastCall[0];
+        expect(modalProps.footer).toBeUndefined(); // PII errors (footer) should be gone
+        expect(modalProps.shareLinkDisabled).toBe(false);
+        expect(
+          editorInstance.commands.clearDynamicHighlights,
+        ).toHaveBeenCalled();
+      });
+    });
+
+    it("should display correct message for EMAIL_ADDRESS PII error", async () => {
+      const emailPiiMatch: NonNullable<
+        TeacherNoteError["pii"]
+      >["piiMatches"][number] = {
+        infoType: "EMAIL_ADDRESS",
+        startIndex: 0,
+        endIndex: 10,
+        string: "test@test.com",
+      };
+      const emailPiiError: TeacherNoteError = {
+        type: "PII_ERROR",
+        pii: {
+          fullRedactedString: "[REDACTED] is the email",
+          piiMatches: [emailPiiMatch],
+        },
+      };
+      const saveTeacherNoteFn = jest.fn(() => Promise.resolve(emailPiiError));
+      render(
+        <TeacherNotesModal
+          isOpen={true}
+          onClose={jest.fn()}
+          saveTeacherNote={saveTeacherNoteFn}
+          teacherNote={mockTeacherNote}
+          sharingUrl="url"
+          error={null}
+        />,
+      );
+
+      const { editorInstance, editorOptions } = getLatestEditorMocks();
+      await triggerSaveAttempt(editorInstance, editorOptions);
+
+      await waitFor(() => {
+        const modalProps = (OakTeacherNotesModal as jest.Mock).mock.lastCall[0];
+        if (modalProps.footer && typeof modalProps.footer !== "string") {
+          const { getByText } = render(modalProps.footer as React.ReactElement);
+          expect(getByText(/email addresses/i)).toBeInTheDocument();
+        } else {
+          throw new Error("PII error footer not found or not a React element.");
+        }
+      });
     });
   });
 });

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { OakHeading, OakBox } from "@oaknational/oak-components";
+import { PortableTextBlock } from "@portabletext/types";
 
-import CurriculumVisualiser from "../CurriculumVisualiser";
+import CurricVisualiser from "../CurricVisualiser";
 import { CurricVisualiserLayout } from "../CurricVisualiserLayout";
 import CurricVisualiserFiltersMobile from "../CurricVisualiserFiltersMobile";
-import { CurricVisualiserFiltersDesktop } from "../CurricVisualiserFiltersDesktop";
+import CurricVisualiserFiltersDesktop from "../CurricVisualiserFiltersDesktop";
 
-import { CurriculumFilters, Unit } from "@/utils/curriculum/types";
+import { CurriculumFilters } from "@/utils/curriculum/types";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import UnitTabBanner from "@/components/CurriculumComponents/UnitTabBanner";
 import {
@@ -20,6 +21,7 @@ import {
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
+import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 
 type UnitsTabProps = {
   trackingData: CurriculumUnitsTrackingData;
@@ -27,7 +29,11 @@ type UnitsTabProps = {
   filters: CurriculumFilters;
   onChangeFilters: (newFilter: CurriculumFilters) => void;
   slugs: CurriculumSelectionSlugs;
+  basePath: string;
+  selectedUnitSlug?: string;
   ks4Options: Ks4Option[];
+  curriculumSeoText?: PortableTextBlock[];
+  curriculumPhaseOptions: SubjectPhasePickerData;
 };
 
 export default function UnitsTab({
@@ -36,17 +42,30 @@ export default function UnitsTab({
   filters,
   onChangeFilters,
   slugs,
+  basePath,
+  selectedUnitSlug,
   ks4Options,
+  curriculumSeoText,
+  curriculumPhaseOptions,
 }: UnitsTabProps) {
   // Initialize constants
   const isMobile = useMediaQuery("mobile");
   const { yearData, threadOptions } = formattedData;
   const { ks4OptionSlug } = trackingData;
-  const [unitData, setUnitData] = useState<Unit | null>(null);
 
   const [mobileSelectedYear, setMobileSelectedYear] = useState<string>("");
 
   const unitCount = getNumberOfSelectedUnits(yearData, filters);
+
+  const subjectForLayout = curriculumPhaseOptions.subjects.find(
+    (s) => s.slug === slugs.subjectSlug,
+  );
+
+  if (!subjectForLayout) {
+    throw new Error(
+      "Selected subject not found in curriculumPhaseOptions for UnitsTab",
+    );
+  }
 
   const highlightedUnits = highlightedUnitCount(
     yearData,
@@ -66,6 +85,7 @@ export default function UnitsTab({
         $maxWidth={"all-spacing-24"}
         $mh={"auto"}
         $ph={["inner-padding-none", "inner-padding-l"]}
+        $mt={["space-between-none", "space-between-l", "space-between-l"]}
         $width={"100%"}
         role="region"
       >
@@ -106,17 +126,19 @@ export default function UnitsTab({
             )
           }
           units={
-            <CurriculumVisualiser
-              unitData={unitData}
+            <CurricVisualiser
+              selectedUnitSlug={selectedUnitSlug}
+              basePath={basePath}
               filters={filters}
               ks4OptionSlug={ks4OptionSlug}
               ks4Options={ks4Options}
               yearData={yearData}
-              setUnitData={setUnitData}
               setVisibleMobileYearRefID={setVisibleMobileYearRefID}
               threadOptions={threadOptions}
             />
           }
+          curriculumSeoText={curriculumSeoText}
+          subject={subjectForLayout}
         />
         <ScreenReaderOnly aria-live="polite" aria-atomic="true">
           <p>
