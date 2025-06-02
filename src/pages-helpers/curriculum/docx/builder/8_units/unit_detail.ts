@@ -75,13 +75,15 @@ async function buildUnitLessons(
   return lessonsXmls.join("");
 }
 
-async function buildUnitPriorKnowledgeReqs(
+export async function buildUnitPriorKnowledgeReqs(
   zip: JSZipCached,
   unit: Unit | Unit["unit_options"][number],
 ) {
   if (
     ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS &&
-    "prior_knowledge_requirements" in unit
+    "prior_knowledge_requirements" in unit &&
+    unit.prior_knowledge_requirements &&
+    unit.prior_knowledge_requirements.length > 0
   ) {
     const numbering = await insertNumbering(zip, {
       priorKnowledgeReqsNumbering: safeXml`
