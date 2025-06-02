@@ -1,6 +1,6 @@
 import React, { ErrorInfo, FC, useMemo } from "react";
 import Bugsnag from "@bugsnag/js";
-// import * as Sentry from "@sentry/nextjs";
+import * as Sentry from "@sentry/nextjs";
 
 import ErrorView from "@/components/AppComponents/ErrorView";
 import { bugsnagInitialised } from "@/browser-lib/bugsnag/useBugsnag";
@@ -37,7 +37,7 @@ export type ErrorBoundaryProps = {
  * send error reports if the service has been initialised, which only happens
  * if the user has consented.
  */
-const ErrorBoundary: FC<ErrorBoundaryProps> = (props) => {
+function BugsnagErrorBoundary(props: ErrorBoundaryProps) {
   const isBugsnagInitialised = bugsnagInitialised();
   const BugsnagErrorBoundary = useMemo(() => {
     if (isBugsnagInitialised) {
@@ -47,7 +47,6 @@ const ErrorBoundary: FC<ErrorBoundaryProps> = (props) => {
 
   return (
     <>
-      {/* <Sentry.ErrorBoundary fallback={<ClientErrorView />}> */}
       {BugsnagErrorBoundary ? (
         <BugsnagErrorBoundary
           FallbackComponent={FallbackComponent}
@@ -56,9 +55,22 @@ const ErrorBoundary: FC<ErrorBoundaryProps> = (props) => {
       ) : (
         props.children
       )}
-      {/* </Sentry.ErrorBoundary> */}
     </>
   );
-};
+}
 
-export default ErrorBoundary;
+function SentryErrorBoundry({ children }: ErrorBoundaryProps) {
+  return (
+    <Sentry.ErrorBoundary fallback={<ClientErrorView />}>
+      {children}
+    </Sentry.ErrorBoundary>
+  );
+}
+
+export default function ErrorBoundary({ children }: ErrorBoundaryProps) {
+  if (process.env.SENTRY_ENABLED === "true") {
+    return <SentryErrorBoundry>{children}</SentryErrorBoundry>;
+  } else {
+    return <BugsnagErrorBoundary>{children}</BugsnagErrorBoundary>;
+  }
+}
