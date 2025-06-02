@@ -1,6 +1,6 @@
 import React, { ErrorInfo, FC, useMemo } from "react";
 import Bugsnag from "@bugsnag/js";
-// import * as Sentry from "@sentry/nextjs";
+import * as Sentry from "@sentry/nextjs";
 
 import ErrorView from "@/components/AppComponents/ErrorView";
 import { bugsnagInitialised } from "@/browser-lib/bugsnag/useBugsnag";
@@ -46,8 +46,7 @@ const ErrorBoundary: FC<ErrorBoundaryProps> = (props) => {
   }, [isBugsnagInitialised]);
 
   return (
-    <>
-      {/* <Sentry.ErrorBoundary fallback={<ClientErrorView />}> */}
+    <Sentry.ErrorBoundary fallback={<ClientErrorView />}>
       {BugsnagErrorBoundary ? (
         <BugsnagErrorBoundary
           FallbackComponent={FallbackComponent}
@@ -56,8 +55,7 @@ const ErrorBoundary: FC<ErrorBoundaryProps> = (props) => {
       ) : (
         props.children
       )}
-      {/* </Sentry.ErrorBoundary> */}
-    </>
+    </Sentry.ErrorBoundary>
   );
 };
 
