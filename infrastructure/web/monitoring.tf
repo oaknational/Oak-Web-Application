@@ -19,7 +19,17 @@ locals {
       critical_threshold = 10
     },
     {
-      name    = "OWA log errors"
+      name    = "OWA page timeouts (Vercel)"
+      type    = "log alert"
+      message = "Timeouts detected on Vercel @slack-Oak_National_Academy-dev-general-alerts"
+      query   = "logs(\"source:vercel service:oak-web-application @branch:main @duration:>3s\").index(\"*\").rollup(\"count\")"
+
+      evaluate_period    = "5m"
+      warning_threshold  = 3
+      critical_threshold = 10
+    },
+    {
+      name    = "OWA log errors (Netlify)"
       type    = "log alert"
       message = "Errors detected in the OWA logs @slack-Oak_National_Academy-dev-general-alerts"
       query   = "logs(\"source:netlify @http.url:(${local.url_string}) status:error\").index(\"*\").rollup(\"count\")"
@@ -29,7 +39,7 @@ locals {
       critical_threshold = 10
     },
     {
-      name    = "OWA page timeouts"
+      name    = "OWA page timeouts (Netlify)"
       type    = "log alert"
       message = "Netlify has several process that are timing out @slack-Oak_National_Academy-dev-general-alerts"
       query   = "logs(\"source:netlify service:oak-web-application @branch:main @duration:>3s\").index(\"*\").rollup(\"count\")"
