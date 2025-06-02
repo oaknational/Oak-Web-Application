@@ -9,6 +9,16 @@ locals {
 locals {
   monitors = var.env == "prod" ? [
     {
+      name    = "OWA log errors (Vercel)"
+      type    = "log alert"
+      message = "Errors detected in the OWA logs @slack-Oak_National_Academy-dev-general-alerts"
+      query   = "logs(\"source:vercel @http.url:(${local.url_string}) status:error\").index(\"*\").rollup(\"count\")"
+
+      evaluate_period    = "5m"
+      warning_threshold  = 3
+      critical_threshold = 10
+    },
+    {
       name    = "OWA log errors"
       type    = "log alert"
       message = "Errors detected in the OWA logs @slack-Oak_National_Academy-dev-general-alerts"
