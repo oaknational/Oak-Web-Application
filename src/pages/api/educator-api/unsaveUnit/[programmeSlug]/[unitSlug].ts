@@ -19,7 +19,7 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
   const { programmeSlug, unitSlug } = req.query;
 
   if (!userId) {
-    return res.status(200).end();
+    return res.status(401).end();
   }
 
   if (

@@ -56,6 +56,7 @@ describe("useSaveUnits", () => {
       data: ["unit1", "unit2"],
       error: null,
       isLoading: false,
+      mutate: jest.fn(),
     }));
     const { result } = renderHook(() =>
       useSaveUnits("test-programme", mockTrackingData),
@@ -66,11 +67,19 @@ describe("useSaveUnits", () => {
     expect(result.current.isUnitSaved("unit3")).toBe(false);
   });
   it("should save a unit", async () => {
-    mockUseGetEducatorData.mockImplementation(() => ({
-      data: [],
-      error: null,
-      isLoading: false,
-    }));
+    mockUseGetEducatorData
+      .mockImplementationOnce(() => ({
+        data: [],
+        error: null,
+        isLoading: false,
+        mutate: jest.fn(),
+      }))
+      .mockImplementationOnce(() => ({
+        data: ["unit1"],
+        error: null,
+        isLoading: false,
+        mutate: jest.fn(),
+      }));
     const { result } = renderHook(() =>
       useSaveUnits("test-programme", mockTrackingData),
     );
@@ -86,6 +95,7 @@ describe("useSaveUnits", () => {
       data: [],
       error: null,
       isLoading: false,
+      mutate: jest.fn(),
     }));
     const { result } = renderHook(() =>
       useSaveUnits("test-programme", mockTrackingData),
@@ -101,6 +111,7 @@ describe("useSaveUnits", () => {
       data: [],
       error: null,
       isLoading: false,
+      mutate: jest.fn(),
     }));
     const { result } = renderHook(() =>
       useSaveUnits("test-programme", mockTrackingData),
@@ -120,6 +131,7 @@ describe("useSaveUnits", () => {
       data: [],
       error: null,
       isLoading: false,
+      mutate: jest.fn(),
     }));
 
     fetch.mockResolvedValue({ ok: false });
@@ -142,6 +154,7 @@ describe("useSaveUnits", () => {
       data: [],
       error: null,
       isLoading: false,
+      mutate: jest.fn(),
     }));
     const { result } = renderHook(() =>
       useSaveUnits("test-programme", mockTrackingData),
@@ -166,15 +179,15 @@ describe("useSaveUnits", () => {
   });
   it("should call the correct tracking function when unsaving a unit", async () => {
     mockUseGetEducatorData.mockImplementation(() => ({
-      data: [],
+      data: ["unit1"],
       error: null,
       isLoading: false,
+      mutate: jest.fn(),
     }));
     const { result } = renderHook(() =>
       useSaveUnits("test-programme", mockTrackingData),
     );
 
-    await act(async () => result.current.onSaveToggle("unit1"));
     await act(async () => result.current.onSaveToggle("unit1"));
 
     expect(mockUnsaveContent).toHaveBeenCalledWith({
