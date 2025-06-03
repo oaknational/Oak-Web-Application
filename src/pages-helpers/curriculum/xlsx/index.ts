@@ -152,7 +152,7 @@ function buildStyle() {
         </ext>
       </extLst>
     </styleSheet>
-  `;
+  `.trim();
 }
 
 function buildNatCurric(data: BuildNationalCurriculumData) {
@@ -255,7 +255,7 @@ function buildNatCurric(data: BuildNationalCurriculumData) {
         footer="0.3"
       />
     </worksheet>
-  `;
+  `.trim();
 }
 
 type BuildNationalCurriculumData = {
@@ -301,7 +301,7 @@ async function buildNationalCurriculum(
           `;
         })}
       </Relationships>
-    `,
+    `.trim(),
   );
 
   zip.writeString("xl/styles.xml", buildStyle());
@@ -389,7 +389,7 @@ async function buildNationalCurriculum(
           </ext>
         </extLst>
       </workbook>
-    `,
+    `.trim(),
   );
 }
 
