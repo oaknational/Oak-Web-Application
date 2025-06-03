@@ -1,13 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { format } from "date-fns";
 import { z } from "zod";
-import { capitalize, isUndefined, omitBy } from "lodash";
+import { capitalize } from "lodash";
 
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import curriculumApi2023, {
   CurriculumUnitsTabData,
 } from "@/node-lib/curriculum-api-2023";
-import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
+// import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
 import { logErrorMessage } from "@/utils/curriculum/testing";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import xlsxNationalCurriculum from "@/pages-helpers/curriculum/xlsx";
@@ -28,7 +28,7 @@ export type curriculumDownloadQueryProps = z.infer<
 
 export type Output = CurriculumUnitsTabData & {
   examboardTitle: string | null;
-} 
+};
 
 type getDataReturn =
   | { notFound: true }
@@ -119,15 +119,15 @@ async function getData(opts: {
   };
 }
 
-const stale_while_revalidate_seconds = 60 * 3;
-const s_maxage_seconds = 60 * 60 * 24;
+// const stale_while_revalidate_seconds = 60 * 3;
+// const s_maxage_seconds = 60 * 60 * 24;
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Buffer>,
 ) {
   const {
-    mvRefreshTime,
+    // mvRefreshTime,
     subjectSlug,
     phaseSlug,
     state,
@@ -136,8 +136,8 @@ export default async function handler(
     childSubjectSlug,
   } = curriculumDownloadQuerySchema.parse(req.query);
 
-  const mvRefreshTimeParsed = parseInt(mvRefreshTime);
-  const actualMvRefreshTime = await getMvRefreshTime();
+  // const mvRefreshTimeParsed = parseInt(mvRefreshTime);
+  // const actualMvRefreshTime = await getMvRefreshTime();
 
   // Note: Disable this check to allow 'new' documents
   if (state === "new") {
@@ -181,15 +181,15 @@ export default async function handler(
   if (!data.notFound) {
     const buffer = await xlsxNationalCurriculum(
       data.combinedCurriculumData,
-      {
-        subjectSlug: data.subjectSlug,
-        phaseSlug: data.phaseSlug,
-        keyStageSlug: data.phaseSlug,
-        ks4OptionSlug: data.ks4OptionSlug,
-        tierSlug,
-        childSubjectSlug,
-      },
-      data.ks4Options,
+      // {
+      //   subjectSlug: data.subjectSlug,
+      //   phaseSlug: data.phaseSlug,
+      //   keyStageSlug: data.phaseSlug,
+      //   ks4OptionSlug: data.ks4OptionSlug,
+      //   tierSlug,
+      //   childSubjectSlug,
+      // },
+      // data.ks4Options,
     );
 
     const pageTitle: string = [
@@ -207,7 +207,10 @@ export default async function handler(
     )}.xlsx`;
 
     res
-      .setHeader("content-type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+      .setHeader(
+        "content-type",
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      )
       .setHeader("Netlify-Vary", "query")
       // .setHeader(
       //   "Cache-Control",

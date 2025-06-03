@@ -263,6 +263,7 @@ describe("unitsTab !subject error", () => {
           why_this_why_now: null,
           description: null,
           state: "published",
+          national_curriculum_content: [],
         },
       ],
     });
