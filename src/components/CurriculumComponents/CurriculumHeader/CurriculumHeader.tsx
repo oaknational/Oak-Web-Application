@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import { useRouter } from "next/router";
 import {
   OakHeading,
   OakP,
@@ -20,7 +19,6 @@ import SubjectPhasePicker, {
 import { ButtonAsLinkProps } from "@/components/SharedComponents/Button/ButtonAsLink";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
-import { CurriculumTab } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { buildPageTitle } from "@/utils/curriculum/formatting";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
 
@@ -30,6 +28,7 @@ export type CurriculumHeaderPageProps = {
   keyStages: string[];
   color1?: OakColorToken;
   color2?: OakColorToken;
+  tab: "overview" | "units" | "downloads";
 };
 
 const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
@@ -38,9 +37,8 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   curriculumSelectionSlugs,
   curriculumPhaseOptions,
   keyStages,
+  tab,
 }) => {
-  const router = useRouter();
-  const tab = router.query.tab as CurriculumTab;
   const subject = curriculumPhaseOptions.subjects.find(
     (subject) => subject.slug === curriculumSelectionSlugs.subjectSlug,
   ) as SubjectPhasePickerData["subjects"][number] | undefined;
@@ -93,7 +91,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   ];
 
   return (
-    <OakBox $mb={["space-between-none", "space-between-l", "space-between-l"]}>
+    <OakBox>
       {/* @todo replace with OakFlex - colours type needs updating to oak-components colour token */}
       <OakFlex $background={color1} $pv="inner-padding-l">
         <OakBox

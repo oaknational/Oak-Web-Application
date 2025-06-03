@@ -20,7 +20,7 @@ import CurriculumDownloadView, {
   CurriculumDownloadViewData,
 } from "../CurriculumDownloadView";
 import { School } from "../CurriculumDownloadView/helper";
-import SuccessMessage from "../SuccessMessage";
+import CurricSuccessMessage from "../CurricSuccessMessage";
 
 import {
   saveDownloadsDataToLocalStorage,
@@ -328,7 +328,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   if (isDone) {
     return (
       <ScrollIntoViewWhenVisisble>
-        <SuccessMessage
+        <CurricSuccessMessage
           title="Thanks for downloading"
           message="We hope you find the resources useful. Click the question mark in the bottom-right corner to share your feedback."
           buttonProps={{
@@ -359,6 +359,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
         $ph={18}
         $pt={[48, 0]}
         $pb={[48]}
+        $mt={[0, 48, 48]}
         $borderColor="red"
         $width={"100%"}
         role="region"

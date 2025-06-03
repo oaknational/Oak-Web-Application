@@ -4,6 +4,7 @@ import {
   tierDescriptions,
 } from "@oaknational/oak-curriculum-schema";
 import { OakBox, OakHandDrawnHR } from "@oaknational/oak-components";
+import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import { filterDownloadsByCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
 import { useOnboardingStatus } from "../TeacherComponents/hooks/useOnboardingStatus";
@@ -22,7 +23,9 @@ import {
   DownloadResourceType,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
-import DownloadCardGroup from "@/components/TeacherComponents/DownloadCardGroup";
+import DownloadCardGroup, {
+  DownloadCardGroupB,
+} from "@/components/TeacherComponents/DownloadCardGroup";
 import debouncedSubmit from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadDebounceSubmit";
 import {
   getLessonOverviewBreadCrumb,
@@ -37,7 +40,9 @@ import {
   LessonPathway,
   SpecialistLessonPathway,
 } from "@/components/TeacherComponents/types/lesson.types";
-import ResourcePageLayout from "@/components/TeacherComponents/ResourcePageLayout";
+import ResourcePageLayout, {
+  ResourcePageLayoutB,
+} from "@/components/TeacherComponents/ResourcePageLayout";
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import DownloadConfirmation from "@/components/TeacherComponents/DownloadConfirmation";
 import {
@@ -111,6 +116,18 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     actions,
     lessonReleaseDate,
   } = lesson;
+
+  const isDownloadsExperiment =
+    useFeatureFlagVariantKey("downloads-grouping-experiement") === "grouping";
+  const isQuizHeader =
+    useFeatureFlagVariantKey("lesson-overview-experiement") === "quiz-header";
+
+  downloads.forEach((download) => {
+    if (isQuizHeader && download.type === "presentation") {
+      download.label = "Lesson slides";
+      return download;
+    }
+  });
 
   const showRiskAssessmentBanner = !!actions?.isPePractical;
 
@@ -269,6 +286,9 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         pathway: pathwayTitle as PathwayValueType,
         lessonReleaseCohort: isLegacyDownload ? "2020-2023" : "2023-2026",
         lessonReleaseDate: lessonReleaseDate ?? "unreleased",
+        totalDownloadableResources:
+          (downloadsFilteredByCopyright?.length ?? 0) +
+          (additionalFiles?.length ?? 0),
       });
     } catch (error) {
       setIsAttemptingDownload(false);
@@ -379,8 +399,15 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             );
           }
 
+          const ResourcePageLayoutVariant = isDownloadsExperiment
+            ? ResourcePageLayoutB
+            : ResourcePageLayout;
+          const DownloadCardGroupVariant = isDownloadsExperiment
+            ? DownloadCardGroupB
+            : DownloadCardGroup;
+
           return (
-            <ResourcePageLayout
+            <ResourcePageLayoutVariant
               page={"download"}
               errors={form.errors}
               handleToggleSelectAll={handleToggleSelectAll}
@@ -410,7 +437,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               isLoading={onboardingStatus === "loading"}
               cardGroup={
                 !showNoResources && (
-                  <DownloadCardGroup
+                  <DownloadCardGroupVariant
                     control={form.control}
                     downloads={downloadsFilteredByCopyright}
                     additionalFiles={additionalFiles}

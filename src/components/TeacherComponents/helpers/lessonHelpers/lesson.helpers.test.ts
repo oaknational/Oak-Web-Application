@@ -3,12 +3,12 @@ import { mediaClipCycleFixture } from "@oaknational/oak-curriculum-schema";
 import {
   createAttributionObject,
   getCommonPathway,
-  getPageLinksForLesson,
   groupLessonPathways,
   getLessonMediaBreadCrumb,
   getMediaClipLabel,
   convertBytesToMegabytes,
   sortMediaClipsByOrder,
+  getPageLinksWithSubheadingsForLesson,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import {
   quizQuestions,
@@ -132,7 +132,7 @@ describe("getPageLinksForLesson()", () => {
       hasMediaClips: false,
     };
 
-    const result = getPageLinksForLesson(lesson, []);
+    const result = getPageLinksWithSubheadingsForLesson(lesson, []);
 
     const expected = [
       {
@@ -141,7 +141,7 @@ describe("getPageLinksForLesson()", () => {
       },
       {
         anchorId: "slide-deck",
-        label: "Slide deck",
+        label: "Lesson slides",
       },
       {
         anchorId: "lesson-details",
@@ -178,11 +178,11 @@ describe("getPageLinksForLesson()", () => {
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
-    const result = getPageLinksForLesson(lesson);
+    const result = getPageLinksWithSubheadingsForLesson(lesson);
     const expected = [
       {
         anchorId: "slide-deck",
-        label: "Slide deck",
+        label: "Lesson slides",
       },
       {
         anchorId: "lesson-details",
@@ -197,12 +197,98 @@ describe("getPageLinksForLesson()", () => {
         label: "Worksheet",
       },
       {
-        anchorId: "starter-quiz",
-        label: "Starter quiz",
+        label: "Quizzes",
+        anchorId: "quiz",
+        subheading: `Prior knowledge starter quiz \nAssessment exit quiz`,
       },
       {
+        anchorId: "additional-material",
+        label: "Additional material",
+      },
+    ];
+
+    expect(result).toEqual(expected);
+  });
+  it("returns only the correct page links for a lesson only a starter quiz and no exit quiz", () => {
+    const lesson = {
+      presentationUrl: "presentation-url",
+      videoMuxPlaybackId: "video-mux-playback-id",
+      worksheetUrl: "worksheet-url",
+      additionalMaterialUrl: "additional-material-url",
+      starterQuiz: ["foo"],
+      hasCopyrightMaterial: false,
+      hasDownloadableResources: true,
+    };
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    const result = getPageLinksWithSubheadingsForLesson(lesson);
+    const expected = [
+      {
+        anchorId: "slide-deck",
+        label: "Lesson slides",
+      },
+      {
+        anchorId: "lesson-details",
+        label: "Lesson details",
+      },
+      {
+        anchorId: "video",
+        label: "Lesson video",
+      },
+      {
+        anchorId: "worksheet",
+        label: "Worksheet",
+      },
+      {
+        label: "Quizzes",
+        anchorId: "starter-quiz",
+        subheading: `Prior knowledge starter quiz`,
+      },
+      {
+        anchorId: "additional-material",
+        label: "Additional material",
+      },
+    ];
+
+    expect(result).toEqual(expected);
+  });
+  it("returns only the correct page links for a lesson only an exit quiz and no starter quiz", () => {
+    const lesson = {
+      presentationUrl: "presentation-url",
+      videoMuxPlaybackId: "video-mux-playback-id",
+      worksheetUrl: "worksheet-url",
+      additionalMaterialUrl: "additional-material-url",
+      starterQuiz: [],
+      exitQuiz: ["bar"],
+      hasCopyrightMaterial: false,
+      hasDownloadableResources: true,
+    };
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    const result = getPageLinksWithSubheadingsForLesson(lesson);
+    const expected = [
+      {
+        anchorId: "slide-deck",
+        label: "Lesson slides",
+      },
+      {
+        anchorId: "lesson-details",
+        label: "Lesson details",
+      },
+      {
+        anchorId: "video",
+        label: "Lesson video",
+      },
+      {
+        anchorId: "worksheet",
+        label: "Worksheet",
+      },
+      {
+        label: "Quizzes",
         anchorId: "exit-quiz",
-        label: "Exit quiz",
+        subheading: `Assessment exit quiz`,
       },
       {
         anchorId: "additional-material",
@@ -227,7 +313,7 @@ describe("getPageLinksForLesson()", () => {
       hasMediaClips: false,
     };
 
-    const result = getPageLinksForLesson(lesson, [
+    const result = getPageLinksWithSubheadingsForLesson(lesson, [
       { copyrightInfo: "This lesson contains copyright material." },
     ]);
 

@@ -16,12 +16,21 @@ jest.mock("@clerk/nextjs/server");
 const updateUserMetadata = jest.fn();
 const getUser = jest.fn();
 
+const mockGetUserListContentCount = jest.fn();
+
 jest.mock("@/node-lib/educator-api", () => ({
   getAuthenticatedEducatorApi: jest.fn().mockResolvedValue({
-    getUserListContentCount: jest.fn().mockResolvedValue({
-      content_lists_aggregate: { aggregate: { count: 10 } },
-    }),
+    getUserListContentCount: () => mockGetUserListContentCount(),
   }),
+}));
+
+const mockErrorReporter = jest.fn();
+jest.mock("@/common-lib/error-reporter", () => ({
+  __esModule: true,
+  default:
+    () =>
+    (...args: []) =>
+      mockErrorReporter(...args),
 }));
 
 describe("/api/educator-api/getSavedUnitCount", () => {
@@ -33,6 +42,9 @@ describe("/api/educator-api/getSavedUnitCount", () => {
 
   beforeEach(() => {
     setGetAuth(mockGetAuthSignedIn);
+    mockGetUserListContentCount.mockResolvedValue({
+      content_lists_aggregate: { aggregate: { count: 10 } },
+    });
   });
 
   it("should return 200 with valid unit count for a signed in user", async () => {
@@ -51,7 +63,17 @@ describe("/api/educator-api/getSavedUnitCount", () => {
     });
 
     await handler(req, res);
-    expect(res._getStatusCode()).toBe(200);
+    expect(res._getStatusCode()).toBe(401);
     expect(res._getJSONData()).toEqual(0);
+  });
+  it("should report an error", async () => {
+    mockGetUserListContentCount.mockRejectedValue(new Error("Test error"));
+    const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
+      method: "GET",
+    });
+
+    await handler(req, res);
+    expect(res._getStatusCode()).toBe(500);
+    expect(mockErrorReporter).toHaveBeenCalled();
   });
 });

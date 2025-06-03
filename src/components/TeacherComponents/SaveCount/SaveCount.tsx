@@ -1,6 +1,7 @@
 import { OakSaveCount } from "@oaknational/oak-components";
 import { useFeatureFlagEnabled } from "posthog-js/react";
 import { useEffect } from "react";
+import { useUser } from "@clerk/nextjs";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import useSaveCountContext from "@/context/SaveCount/useSaveCountContext";
@@ -8,10 +9,13 @@ import { useGetEducatorData } from "@/node-lib/educator-api/helpers/useGetEducat
 
 export const SaveCount = () => {
   const isSaveEnabled = useFeatureFlagEnabled("teacher-save-units");
+  const { isSignedIn } = useUser();
 
-  const { data: unitsCount, isLoading } = useGetEducatorData<number>(
-    "/api/educator-api/getSavedUnitCount",
-  );
+  const {
+    data: unitsCount,
+    isLoading,
+    mutate,
+  } = useGetEducatorData<number>("/api/educator-api/getSavedUnitCount");
 
   const { savedUnitsCount, setSavedUnitsCount, loading } =
     useSaveCountContext();
@@ -21,6 +25,14 @@ export const SaveCount = () => {
       setSavedUnitsCount(unitsCount);
     }
   }, [unitsCount, setSavedUnitsCount]);
+
+  useEffect(() => {
+    if (!isSignedIn) {
+      setSavedUnitsCount(0);
+    } else {
+      mutate();
+    }
+  }, [isSignedIn, mutate, setSavedUnitsCount]);
 
   return isSaveEnabled ? (
     <OakSaveCount

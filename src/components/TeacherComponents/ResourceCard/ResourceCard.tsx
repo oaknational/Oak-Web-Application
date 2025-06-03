@@ -1,11 +1,12 @@
 import { FC } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { useHover } from "react-aria";
 import {
   OakFlex,
   OakIcon,
   OakIconName,
   OakP,
+  OakTagFunctional,
 } from "@oaknational/oak-components";
 
 import type { DownloadResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
@@ -26,6 +27,8 @@ export type ResourceCardProps = CheckboxProps & {
   useRadio?: boolean;
   subjectIcon?: string;
   hideCheckbox?: boolean;
+  isEditable?: boolean;
+  useDownloadsExperiment?: boolean;
 };
 
 type ResourceCardLabelProps = ResourceCardProps & {
@@ -51,12 +54,18 @@ const RESOURCE_TYPE_ICON_MAP: Record<
   "additional-files": "additional-material",
 };
 
-const BoxWithFocusState = styled.div`
+const BoxWithFocusState = styled("div")<{ useDownloadsExperiment?: boolean }>`
   position: relative;
   display: flex;
   flex-direction: "row";
   width: 100%;
   height: 100%;
+  ${({ useDownloadsExperiment }) =>
+    useDownloadsExperiment &&
+    css`
+      border-radius: var(--Border-Radius-border-radius-s, 4px);
+      border: 2px solid var(--Tokens-Border-border-primary, #222);
+    `}
 `;
 
 const RadioContainer = styled.div`
@@ -86,6 +95,9 @@ const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
   label,
   subtitle,
   subjectIcon,
+  isEditable,
+  useDownloadsExperiment,
+  id,
 }) => {
   const isCurriculumIcon = resourceType === "curriculum-pdf";
   const iconName =
@@ -93,18 +105,18 @@ const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
       ? getValidSubjectIconName(subjectIcon)
       : RESOURCE_TYPE_ICON_MAP[resourceType];
   return (
-    <BoxWithFocusState>
+    <BoxWithFocusState useDownloadsExperiment={useDownloadsExperiment}>
       <OakFlex
         $alignItems={"center"}
         $justifyContent={"center"}
-        $pa={isCurriculumIcon ? "inner-padding-ssx" : "inner-padding-m"}
+        $pa={isCurriculumIcon ? "inner-padding-ssx" : "inner-padding-s"}
         $background={"lemon"}
         $width={"all-spacing-12"}
       >
         <OakIcon iconName={iconName} $width={"100%"} $height={"100%"} alt="" />
       </OakFlex>
 
-      <BoxBorders gapPosition="rightTop" />
+      {!useDownloadsExperiment && <BoxBorders gapPosition="rightTop" />}
       <Flex
         $flexDirection="column"
         $alignItems="center"
@@ -117,7 +129,7 @@ const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
           $flexDirection="column"
           $justifyContent="center"
           $ph={16}
-          $pv={16}
+          $pv={useDownloadsExperiment ? 10 : 16}
           $pr={48}
           $width="100%"
         >
@@ -125,10 +137,27 @@ const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
             $font="heading-7"
             $mb="space-between-sssx"
             $textDecoration={isHovered ? "underline" : "none"}
+            $whiteSpace={"nowrap"}
+            $overflow={"hidden"}
+            $textOverflow={"ellipsis"}
           >
-            {label.length > 42 ? label.slice(0, 42) + "\u2026" : label}
+            <label htmlFor={id}>{label}</label>
           </OakP>
-          <OakP $color="grey60">{subtitle}</OakP>
+          <OakFlex $alignItems="center">
+            <OakP $color="grey60">{subtitle}</OakP>
+            {isEditable && (
+              <OakTagFunctional
+                $ml={"space-between-ssx"}
+                $display="inline"
+                $color={"text-primary"}
+                $font={"heading-light-7"}
+                $ph={"inner-padding-ssx"}
+                $pv={"inner-padding-ssx"}
+                label="Editable"
+                $background={"bg-decorative2-main"}
+              />
+            )}
+          </OakFlex>
         </Flex>
       </Flex>
     </BoxWithFocusState>
@@ -153,7 +182,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
 
   return (
     <Flex
-      $height={useRadio ? 72 : 96}
+      $height={72}
       $width={320}
       $position={"relative"}
       {...hoverProps}

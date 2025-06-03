@@ -4,6 +4,7 @@ import { getAuth } from "@clerk/nextjs/server";
 import { getAuthenticatedEducatorApi } from "@/node-lib/educator-api";
 import errorReporter from "@/common-lib/error-reporter";
 import { getUserListContentCountResponse } from "@/node-lib/educator-api/queries/getUserListContentCount/getUserListContentCount.types";
+import OakError from "@/errors/OakError";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   return handleRequest(req, res);
@@ -15,7 +16,7 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
   const { userId, getToken } = getAuth(req);
 
   if (!userId) {
-    return res.status(200).json(0);
+    return res.status(401).json(0);
   }
 
   const educatorApi = await getAuthenticatedEducatorApi(getToken);
@@ -31,12 +32,11 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
       .status(200)
       .json(parsedResponse.content_lists_aggregate.aggregate.count);
   } catch (err) {
-    reportError(err, {
+    const error = new OakError({
       code: "educator-api/failed-to-get-saved-units",
-      meta: {
-        userId,
-      },
+      meta: { userId, error: err },
     });
+    reportError(error);
     return res.status(500).json({ error: JSON.stringify(err) });
   }
 }

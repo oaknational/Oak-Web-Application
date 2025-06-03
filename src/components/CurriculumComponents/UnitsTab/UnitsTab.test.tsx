@@ -1,3 +1,11 @@
+import { render } from "@testing-library/react";
+import React from "react";
+
+import { formatCurriculumUnitsData } from "../../../pages-helpers/curriculum/docx/tab-helpers";
+import { CurriculumFilters } from "../../../utils/curriculum/types";
+
+import UnitsTab from "./UnitsTab";
+
 // import userEvent from "@testing-library/user-event";
 // import { waitFor } from "@testing-library/react";
 
@@ -5,14 +13,8 @@
 
 // import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumUnits.fixture";
 // import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import "@/__tests__/__helpers__/ResizeObserverMock";
-// import { formatCurriculumUnitsData } from "@/pages-helpers/curriculum/docx/tab-helpers";
-// import { CurriculumFilters } from "../CurriculumVisualiserFilters/CurriculumVisualiserFilters";
 
 // const render = renderWithProviders();
-
-const yearGroupSelected = jest.fn();
-const unitInformationViewed = jest.fn();
 
 // const trackingDataSecondaryScience = {
 //   subjectTitle: "Science",
@@ -207,18 +209,7 @@ const unitInformationViewed = jest.fn();
 //   ],
 // };
 
-jest.mock("@/context/Analytics/useAnalytics", () => ({
-  __esModule: true,
-  default: () => ({
-    track: {
-      yearGroupSelected,
-      unitInformationViewed: (...args: unknown[]) =>
-        unitInformationViewed(...args),
-    },
-  }),
-}));
-
-describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
+describe("unitsTab !subject error", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     const mockIntersectionObserver = jest.fn();
@@ -230,7 +221,98 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     window.IntersectionObserver = mockIntersectionObserver;
   });
 
-  it("placeholder", () => {});
+  test("throws error when subject is not found in curriculumPhaseOptions", () => {
+    const mockTrackingData = {
+      subjectTitle: "English",
+      subjectSlug: "english",
+      ks4OptionSlug: null,
+      phaseSlug: "primary",
+    };
+
+    const mockFormattedData = formatCurriculumUnitsData({
+      units: [
+        {
+          planned_number_of_lessons: 8,
+          domain: "Grammar",
+          domain_id: 17,
+          connection_future_unit_description: null,
+          connection_prior_unit_description: null,
+          connection_future_unit_title: null,
+          connection_prior_unit_title: null,
+          examboard: null,
+          examboard_slug: null,
+          keystage_slug: "ks2",
+          lessons: [],
+          order: 1,
+          phase: "Primary",
+          phase_slug: "primary",
+          slug: "test-unit",
+          subject: "English",
+          subject_parent: null,
+          subject_parent_slug: null,
+          subject_slug: "english",
+          tags: null,
+          subjectcategories: null,
+          threads: [],
+          tier: null,
+          tier_slug: null,
+          title: "Test Unit",
+          unit_options: [],
+          year: "6",
+          cycle: "1",
+          why_this_why_now: null,
+          description: null,
+          state: "published",
+        },
+      ],
+    });
+
+    const mockFilters: CurriculumFilters = {
+      childSubjects: [],
+      subjectCategories: [],
+      tiers: [],
+      years: [],
+      threads: [],
+      pathways: [],
+    };
+
+    const mockSlugs = {
+      subjectSlug: "nonexistent-subject",
+      phaseSlug: "primary",
+      ks4OptionSlug: null,
+    };
+
+    const mockCurriculumPhaseOptions = {
+      subjects: [
+        {
+          title: "Mathematics",
+          slug: "mathematics",
+          keystages: [{ slug: "ks2", title: "KS2" }],
+          phases: [],
+          ks4_options: [],
+        },
+      ],
+    };
+
+    expect(() => {
+      render(
+        <UnitsTab
+          basePath="/"
+          trackingData={mockTrackingData}
+          formattedData={mockFormattedData}
+          filters={mockFilters}
+          onChangeFilters={() => {}}
+          slugs={mockSlugs}
+          ks4Options={[]}
+          curriculumPhaseOptions={mockCurriculumPhaseOptions}
+        />,
+      );
+    }).toThrow(
+      "Selected subject not found in curriculumPhaseOptions for UnitsTab",
+    );
+  });
+
+  // it("placeholder", () => {});
   // test("user can see the content", async () => {
   //   const { queryAllByTestId } = render(
   //     <UnitsTab
@@ -373,7 +455,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   //             order: 2,
   //           },
   //         ],
-  //         title: "’A Superhero Like You!’: Reading and Writing",
+  //         title: "'A Superhero Like You!' Reading and Writing",
   //         unit_options: [],
   //         year: "1",
   //         cycle: "1",
