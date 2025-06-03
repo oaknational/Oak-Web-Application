@@ -1,3 +1,10 @@
+## [1.761.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.761.1...v1.761.2) (2025-06-03)
+
+
+### Bug Fixes
+
+* set save count to 0 on sign out ([0eea2e2](https://github.com/oaknational/Oak-Web-Application/commit/0eea2e248908d07922d42e02b736a944ebf7e04a))
+
 ## [1.761.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.761.0...v1.761.1) (2025-06-02)
 
 # [1.761.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.760.1...v1.761.0) (2025-06-02)
