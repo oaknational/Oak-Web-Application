@@ -105,7 +105,7 @@ describe("pages/lesson-planning.tsx", () => {
       screen.getByAltText(testPlanALessonPageData.hero.image?.altText ?? ""),
     ).toBeInTheDocument();
   });
-  it.skip("Renders the header hero without author", () => {
+  it("Renders the header hero without author", () => {
     render(
       <PlanALesson
         pageData={{
@@ -120,12 +120,12 @@ describe("pages/lesson-planning.tsx", () => {
     );
 
     expect(
+      screen.queryByText(testPlanALessonPageData.hero.author.name),
+    ).not.toBeInTheDocument();
+    expect(
       screen.queryByAltText(
         `${testPlanALessonPageData.hero.author.name} profile picture`,
       ),
-    ).not.toBeInTheDocument();
-    expect(
-      screen.queryByAltText(testPlanALessonPageData.hero.image?.altText ?? ""),
     ).not.toBeInTheDocument();
   });
 
@@ -172,12 +172,24 @@ describe("pages/lesson-planning.tsx", () => {
   });
 
   describe("SEO", () => {
-    it.skip("renders the correct SEO details", () => {
+    it("renders the correct SEO details", () => {
       const { seo } = renderWithSeo()(
         <PlanALesson pageData={testPlanningPageData} posts={mockPosts} />,
       );
 
-      expect(seo).toEqual({});
+      expect(seo).toEqual({
+        title: "test | NEXT_PUBLIC_SEO_APP_NAME",
+        description: "test",
+        ogTitle: "test | NEXT_PUBLIC_SEO_APP_NAME",
+        ogDescription: "test",
+        ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
+        ogImage:
+          "NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?" +
+          new Date().getFullYear(),
+        ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
+        canonical: "NEXT_PUBLIC_SEO_APP_URL",
+        robots: "index,follow",
+      });
     });
   });
 
