@@ -83,6 +83,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
   const {
     unitSlug,
     unitvariantId,
+    yearTitle,
     keyStageTitle,
     keyStageSlug,
     unitTitle,
@@ -219,12 +220,11 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       subjectSlug,
     },
   );
-
   return (
     <AppLayout
       seoProps={{
         ...getSeoProps({
-          title: `Unit: ${unitTitle} | ${keyStageSlug.toUpperCase()} ${subjectTitle}${paginationTitle}`,
+          title: `Unit: ${unitTitle} ${keyStageSlug.toUpperCase()} | Y${yearTitle.slice(5)} ${subjectTitle} Lesson Resources ${paginationTitle}`,
           description: `Free lessons and teaching resources about ${unitTitle.toLowerCase()}`,
         }),
       }}
