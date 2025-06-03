@@ -17,10 +17,14 @@ const updateUserMetadata = jest.fn();
 const getUser = jest.fn();
 
 const mockCreateUserListContent = jest.fn();
+const mockGetUser = jest.fn();
+const mockCreateUser = jest.fn();
 
 jest.mock("@/node-lib/educator-api", () => ({
   getAuthenticatedEducatorApi: jest.fn().mockResolvedValue({
     createUserListContent: () => mockCreateUserListContent(),
+    getUser: () => mockGetUser(),
+    createUser: () => mockCreateUser(),
   }),
 }));
 
@@ -43,6 +47,9 @@ describe("/api/educator-api/saveUnit/[programmeSlug]/[unitSlug]", () => {
   beforeEach(() => {
     setGetAuth(mockGetAuthSignedIn);
     mockCreateUserListContent.mockResolvedValue({});
+    mockGetUser.mockResolvedValue({
+      user: [{ id: "test-user-id" }],
+    });
   });
 
   it("should return 200 for a signed in user", async () => {
@@ -53,6 +60,18 @@ describe("/api/educator-api/saveUnit/[programmeSlug]/[unitSlug]", () => {
 
     await handler(req, res);
     expect(res._getStatusCode()).toBe(200);
+    expect(mockCreateUser).not.toHaveBeenCalled();
+  });
+  it("should create a user if it does not exist", async () => {
+    mockGetUser.mockResolvedValue({ user: [] });
+
+    const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
+      method: "POST",
+      query: { programmeSlug: "test-programme", unitSlug: "test-unit" },
+    });
+
+    await handler(req, res);
+    expect(mockCreateUser).toHaveBeenCalled();
   });
   it("should return 401 for a signed out user", async () => {
     setGetAuth(mockGetAuthSignedOut);
