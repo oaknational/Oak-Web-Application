@@ -53,6 +53,10 @@ declare global {
       lastTrackedSignInAt?: number | null;
     };
   }
+
+  interface CustomJwtSessionClaims {
+    sourceApp?: string;
+  }
 }
 
 export type UserResource = NonNullable<ReturnType<typeof useUser>["user"]>;
