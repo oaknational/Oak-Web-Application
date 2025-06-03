@@ -61,6 +61,7 @@ export const mockUnit: Unit = {
   why_this_why_now: null,
   description: null,
   state: "published",
+  national_curriculum_content: [],
 };
 
 export const mockYearData = {
@@ -118,6 +119,7 @@ export const mockUnitKS4: Unit = {
   why_this_why_now: null,
   description: null,
   state: "published",
+  national_curriculum_content: [],
 };
 
 const optionalUnits = [
