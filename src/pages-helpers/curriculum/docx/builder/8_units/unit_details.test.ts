@@ -67,5 +67,7 @@ describe("buildUnitPriorKnowledgeReqs", () => {
       expect(insertNumberingMock).not.toHaveBeenCalled();
       expect(out).toEqual(undefined);
     });
+  } else {
+    test.skip("buildUnitPriorKnowledgeReqs disabled for now", () => {});
   }
 });
