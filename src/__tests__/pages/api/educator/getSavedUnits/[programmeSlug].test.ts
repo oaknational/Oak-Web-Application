@@ -31,7 +31,7 @@ jest.mock("@/common-lib/error-reporter", () => ({
       mockErrorReporter(...args),
 }));
 
-describe("/api/educator-api/getSavedUnits/[programmeSlug]", () => {
+describe("/api/educator/getSavedUnits/[programmeSlug]", () => {
   installMockClerkClient({
     updateUserMetadata,
     getUser,
