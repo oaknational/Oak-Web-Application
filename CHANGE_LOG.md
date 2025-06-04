@@ -1,3 +1,10 @@
+# [1.763.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.762.0...v1.763.0) (2025-06-04)
+
+
+### Features
+
+* dont show save buttons on legacy units ([a337627](https://github.com/oaknational/Oak-Web-Application/commit/a33762795515468b469287aa17145c02a79bdda2))
+
 # [1.762.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.761.2...v1.762.0) (2025-06-03)
 
 
