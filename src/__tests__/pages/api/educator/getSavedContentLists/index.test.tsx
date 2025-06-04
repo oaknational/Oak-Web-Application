@@ -1,8 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { createMocks } from "node-mocks-http";
 
-import handler from ".";
-
+import handler from "@/pages/api/educator/getSavedContentLists";
 import {
   setGetAuth,
   mockGetAuthSignedOut,
