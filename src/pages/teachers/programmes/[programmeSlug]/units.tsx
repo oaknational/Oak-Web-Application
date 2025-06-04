@@ -48,6 +48,7 @@ import PaginationHead from "@/components/SharedComponents/Pagination/PaginationH
 import MobileUnitFilters from "@/components/TeacherComponents/MobileUnitFilters";
 import DesktopUnitFilters from "@/components/TeacherComponents/DesktopUnitFilters/DesktopUnitFilters";
 import RelatedSubjectsBanner from "@/components/TeacherComponents/RelatedSubjectsBanner/RelatedSubjectsBanner";
+import getYearGroupSEOString from "@/pages-helpers/teacher/year-group-seo-string/get-year-grp-seo-string";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -124,23 +125,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   const learningThemesId = useId();
   const learningThemesFilterId = useId();
 
-  // formats the year groups as e.g: Y 6, 7, 8 & 9
-  const yearGroupSEOString = (() => {
-    if (yearGroups.length === 0) return "";
-    if (yearGroups.length === 1) {
-      return `Y ${yearGroups[0]!.yearTitle.slice(5)}`;
-    }
-    const mainYears = yearGroups
-      .slice(0, -1)
-      .map((yearGroup) => yearGroup.yearTitle.slice(5))
-      .join(", ");
-    const lastYear =
-      yearGroups.length > 1
-        ? ` & ${yearGroups[yearGroups.length - 1]!.yearTitle.slice(5)}`
-        : "";
-    return `Y ${mainYears}${lastYear}`;
-  })();
-
+  const yearGroupSEOString = getYearGroupSEOString(yearGroups);
   const unitsSEO = {
     ...getSeoProps({
       title: `Free ${keyStageSlug.toUpperCase()} ${subjectTitle} teaching resources | ${yearGroupSEOString}${paginationTitle}`,

@@ -286,11 +286,11 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
             "NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2025",
           ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
           ogTitle:
-            "Adverbial complex sentences | Higher KS2 | Y3 English Lesson Resources | NEXT_PUBLIC_SEO_APP_NAME",
+            "Adverbial complex sentences Higher KS2 | Y3 English Lesson Resources | NEXT_PUBLIC_SEO_APP_NAME",
           ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
           robots: "index,follow",
           title:
-            "Adverbial complex sentences | Higher KS2 | Y3 English Lesson Resources | NEXT_PUBLIC_SEO_APP_NAME",
+            "Adverbial complex sentences Higher KS2 | Y3 English Lesson Resources | NEXT_PUBLIC_SEO_APP_NAME",
         }),
       );
     });
@@ -305,12 +305,12 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
       expect(seo).toEqual(
         expect.objectContaining({
           title:
-            "Adverbial complex sentences | AQA KS2 | Y3 English Lesson Resources | NEXT_PUBLIC_SEO_APP_NAME",
+            "Adverbial complex sentences AQA KS2 | Y3 English Lesson Resources | NEXT_PUBLIC_SEO_APP_NAME",
           description:
             "View lesson content and choose resources to download or share",
 
           ogTitle:
-            "Adverbial complex sentences | AQA KS2 | Y3 English Lesson Resources | NEXT_PUBLIC_SEO_APP_NAME",
+            "Adverbial complex sentences AQA KS2 | Y3 English Lesson Resources | NEXT_PUBLIC_SEO_APP_NAME",
           ogDescription:
             "View lesson content and choose resources to download or share",
           ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
@@ -330,11 +330,11 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
       expect(seo).toEqual(
         expect.objectContaining({
           title:
-            "Adverbial complex sentences | Higher | AQA KS2 | Y3 English Lesson Resources | NEXT_PUBLIC_SEO_APP_NAME",
+            "Adverbial complex sentences Higher | AQA KS2 | Y3 English Lesson Resources | NEXT_PUBLIC_SEO_APP_NAME",
           description:
             "View lesson content and choose resources to download or share",
           ogTitle:
-            "Adverbial complex sentences | Higher | AQA KS2 | Y3 English Lesson Resources | NEXT_PUBLIC_SEO_APP_NAME",
+            "Adverbial complex sentences Higher | AQA KS2 | Y3 English Lesson Resources | NEXT_PUBLIC_SEO_APP_NAME",
           ogDescription:
             "View lesson content and choose resources to download or share",
           ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",

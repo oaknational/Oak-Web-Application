@@ -224,7 +224,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     <AppLayout
       seoProps={{
         ...getSeoProps({
-          title: `Unit: ${unitTitle} ${keyStageSlug.toUpperCase()} | Y${yearTitle.slice(5)} ${subjectTitle} Lesson Resources ${paginationTitle}`,
+          title: `${unitTitle} ${keyStageSlug.toUpperCase()} | Y${yearTitle.slice(5)} ${subjectTitle} Lesson Resources${paginationTitle}`,
           description: `Free lessons and teaching resources about ${unitTitle.toLowerCase()}`,
         }),
       }}

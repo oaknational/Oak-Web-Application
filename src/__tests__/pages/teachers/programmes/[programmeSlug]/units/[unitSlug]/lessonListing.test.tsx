@@ -119,10 +119,10 @@ describe("Lesson listing page", () => {
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
         title:
-          "Unit: Adding surds KS4 | Y10 Maths Lesson Resources  | NEXT_PUBLIC_SEO_APP_NAME",
+          "Adding surds KS4 | Y10 Maths Lesson Resources | NEXT_PUBLIC_SEO_APP_NAME",
         description: "Free lessons and teaching resources about adding surds",
         ogTitle:
-          "Unit: Adding surds KS4 | Y10 Maths Lesson Resources  | NEXT_PUBLIC_SEO_APP_NAME",
+          "Adding surds KS4 | Y10 Maths Lesson Resources | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription: "Free lessons and teaching resources about adding surds",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
@@ -141,10 +141,10 @@ describe("Lesson listing page", () => {
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
         title:
-          "Unit: Adding surds KS4 | Y10 Maths Lesson Resources  | Page 1 of 3 | NEXT_PUBLIC_SEO_APP_NAME",
+          "Adding surds KS4 | Y10 Maths Lesson Resources | Page 1 of 3 | NEXT_PUBLIC_SEO_APP_NAME",
         description: "Free lessons and teaching resources about adding surds",
         ogTitle:
-          "Unit: Adding surds KS4 | Y10 Maths Lesson Resources  | Page 1 of 3 | NEXT_PUBLIC_SEO_APP_NAME",
+          "Adding surds KS4 | Y10 Maths Lesson Resources | Page 1 of 3 | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription: "Free lessons and teaching resources about adding surds",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
