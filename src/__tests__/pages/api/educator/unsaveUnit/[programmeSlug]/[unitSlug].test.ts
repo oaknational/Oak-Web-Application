@@ -1,8 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { createMocks } from "node-mocks-http";
 
-import handler from "./[unitSlug]";
-
 import {
   installMockClerkClient,
   mockServerUser,
@@ -10,21 +8,18 @@ import {
   mockGetAuthSignedIn,
   mockGetAuthSignedOut,
 } from "@/__tests__/__helpers__/mockClerkServer";
+import handler from "@/pages/api/educator/unsaveUnit/[programmeSlug]/[unitSlug]";
 
 jest.mock("@clerk/nextjs/server");
 
 const updateUserMetadata = jest.fn();
 const getUser = jest.fn();
 
-const mockCreateUserListContent = jest.fn();
-const mockGetUser = jest.fn();
-const mockCreateUser = jest.fn();
+const mockDeleteUserListContent = jest.fn();
 
 jest.mock("@/node-lib/educator-api", () => ({
   getAuthenticatedEducatorApi: jest.fn().mockResolvedValue({
-    createUserListContent: () => mockCreateUserListContent(),
-    getUser: () => mockGetUser(),
-    createUser: () => mockCreateUser(),
+    deleteUserListContent: () => mockDeleteUserListContent(),
   }),
 }));
 
@@ -37,7 +32,7 @@ jest.mock("@/common-lib/error-reporter", () => ({
       mockErrorReporter(...args),
 }));
 
-describe("/api/educator-api/saveUnit/[programmeSlug]/[unitSlug]", () => {
+describe("/api/educator-api/unsaveUnit/[programmeSlug]/[unitSlug]", () => {
   installMockClerkClient({
     updateUserMetadata,
     getUser,
@@ -46,10 +41,7 @@ describe("/api/educator-api/saveUnit/[programmeSlug]/[unitSlug]", () => {
 
   beforeEach(() => {
     setGetAuth(mockGetAuthSignedIn);
-    mockCreateUserListContent.mockResolvedValue({});
-    mockGetUser.mockResolvedValue({
-      user: [{ id: "test-user-id" }],
-    });
+    mockDeleteUserListContent.mockResolvedValue({});
   });
 
   it("should return 200 for a signed in user", async () => {
@@ -60,18 +52,6 @@ describe("/api/educator-api/saveUnit/[programmeSlug]/[unitSlug]", () => {
 
     await handler(req, res);
     expect(res._getStatusCode()).toBe(200);
-    expect(mockCreateUser).not.toHaveBeenCalled();
-  });
-  it("should create a user if it does not exist", async () => {
-    mockGetUser.mockResolvedValue({ user: [] });
-
-    const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
-      method: "POST",
-      query: { programmeSlug: "test-programme", unitSlug: "test-unit" },
-    });
-
-    await handler(req, res);
-    expect(mockCreateUser).toHaveBeenCalled();
   });
   it("should return 401 for a signed out user", async () => {
     setGetAuth(mockGetAuthSignedOut);
@@ -100,7 +80,7 @@ describe("/api/educator-api/saveUnit/[programmeSlug]/[unitSlug]", () => {
     });
 
     const error = new Error("Test error");
-    mockCreateUserListContent.mockRejectedValue(error);
+    mockDeleteUserListContent.mockRejectedValue(error);
 
     await handler(req, res);
     expect(res._getStatusCode()).toBe(500);

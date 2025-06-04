@@ -1,8 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { createMocks } from "node-mocks-http";
 
-import handler from "./[unitSlug]";
-
+import handler from "@/pages/api/educator/getSavedUnitCount";
 import {
   installMockClerkClient,
   mockServerUser,
@@ -16,11 +15,11 @@ jest.mock("@clerk/nextjs/server");
 const updateUserMetadata = jest.fn();
 const getUser = jest.fn();
 
-const mockDeleteUserListContent = jest.fn();
+const mockGetUserListContentCount = jest.fn();
 
 jest.mock("@/node-lib/educator-api", () => ({
   getAuthenticatedEducatorApi: jest.fn().mockResolvedValue({
-    deleteUserListContent: () => mockDeleteUserListContent(),
+    getUserListContentCount: () => mockGetUserListContentCount(),
   }),
 }));
 
@@ -33,7 +32,7 @@ jest.mock("@/common-lib/error-reporter", () => ({
       mockErrorReporter(...args),
 }));
 
-describe("/api/educator-api/unsaveUnit/[programmeSlug]/[unitSlug]", () => {
+describe("/api/educator-api/getSavedUnitCount", () => {
   installMockClerkClient({
     updateUserMetadata,
     getUser,
@@ -42,46 +41,35 @@ describe("/api/educator-api/unsaveUnit/[programmeSlug]/[unitSlug]", () => {
 
   beforeEach(() => {
     setGetAuth(mockGetAuthSignedIn);
-    mockDeleteUserListContent.mockResolvedValue({});
+    mockGetUserListContentCount.mockResolvedValue({
+      content_lists_aggregate: { aggregate: { count: 10 } },
+    });
   });
 
-  it("should return 200 for a signed in user", async () => {
+  it("should return 200 with valid unit count for a signed in user", async () => {
     const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
-      method: "POST",
-      query: { programmeSlug: "test-programme", unitSlug: "test-unit" },
+      method: "GET",
     });
 
     await handler(req, res);
     expect(res._getStatusCode()).toBe(200);
+    expect(res._getJSONData()).toEqual(10);
   });
-  it("should return 401 for a signed out user", async () => {
+  it("should return 200 with 0 for a signed out user", async () => {
     setGetAuth(mockGetAuthSignedOut);
     const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
       method: "GET",
-      query: { programmeSlug: "test-programme", unitSlug: "test-unit" },
     });
 
     await handler(req, res);
     expect(res._getStatusCode()).toBe(401);
+    expect(res._getJSONData()).toEqual(0);
   });
-  it("should return 400 if programmeSlug is missing or invalid", async () => {
+  it("should report an error", async () => {
+    mockGetUserListContentCount.mockRejectedValue(new Error("Test error"));
     const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
       method: "GET",
-      query: { programmeSlug: "" },
     });
-
-    await handler(req, res);
-    expect(res._getStatusCode()).toBe(400);
-    expect(res._getData()).toBe("Bad request");
-  });
-  it("should report an error if the request fails", async () => {
-    const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
-      method: "POST",
-      query: { programmeSlug: "test-programme", unitSlug: "test-unit" },
-    });
-
-    const error = new Error("Test error");
-    mockDeleteUserListContent.mockRejectedValue(error);
 
     await handler(req, res);
     expect(res._getStatusCode()).toBe(500);
