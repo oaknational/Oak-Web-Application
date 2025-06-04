@@ -15,22 +15,10 @@ export const RegistrationAside: Story = {
   args: {
     useNew: false,
   },
-  render: (args) => {
+  render: () => {
     return (
       <OakThemeProvider theme={oakDefaultTheme}>
-        <Component {...args} />
-      </OakThemeProvider>
-    );
-  },
-};
-export const NewRegistrationAside: Story = {
-  args: {
-    useNew: true,
-  },
-  render: (args) => {
-    return (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Component {...args} />
+        <Component />
       </OakThemeProvider>
     );
   },

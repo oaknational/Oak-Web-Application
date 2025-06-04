@@ -5,15 +5,8 @@ import RegistrationAside from "./ResgistrationAside";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 describe("RegistrationAside", () => {
-  it("renders the original component", () => {
-    renderWithProviders()(<RegistrationAside useNew={false} />);
-    const headerText = screen.getByRole("heading", {
-      name: "Our resources will always be free. Creating an account gives you:",
-    });
-    expect(headerText).toBeInTheDocument();
-  });
-  it("renders the new component", () => {
-    renderWithProviders()(<RegistrationAside useNew={true} />);
+  it("renders the component", () => {
+    renderWithProviders()(<RegistrationAside />);
     const headerText1 = screen.getByRole("heading", {
       name: "Our resources will",
     });
@@ -24,7 +17,7 @@ describe("RegistrationAside", () => {
     expect(headerText2).toBeInTheDocument();
   });
   it("renders a list of items", () => {
-    renderWithProviders()(<RegistrationAside useNew={true} />);
+    renderWithProviders()(<RegistrationAside />);
     const listItems = screen.getAllByRole("listitem");
     expect(listItems).toHaveLength(4);
   });
