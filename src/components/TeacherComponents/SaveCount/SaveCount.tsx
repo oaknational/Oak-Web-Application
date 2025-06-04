@@ -15,7 +15,7 @@ export const SaveCount = () => {
     data: unitsCount,
     isLoading,
     mutate,
-  } = useGetEducatorData<number>("/api/educator-api/getSavedUnitCount");
+  } = useGetEducatorData<number>("/api/educator/getSavedUnitCount");
 
   const { savedUnitsCount, setSavedUnitsCount, loading } =
     useSaveCountContext();
