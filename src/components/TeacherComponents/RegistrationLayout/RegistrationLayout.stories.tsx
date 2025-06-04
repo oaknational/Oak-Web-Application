@@ -6,7 +6,7 @@ import {
   OakThemeProvider,
 } from "@oaknational/oak-components";
 
-import RegistrationAside from "../RegistrationAside/ResgistrationAside";
+import RegistrationAside from "../RegistrationAside/RegistrationAside";
 
 import Component from "./RegistrationLayout";
 

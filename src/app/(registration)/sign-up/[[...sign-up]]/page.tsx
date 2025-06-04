@@ -13,7 +13,7 @@ import {
 
 import { formAppearanceStyles } from "../../formAppearanceStyles";
 
-import RegistrationAside from "@/components/TeacherComponents/RegistrationAside/ResgistrationAside";
+import RegistrationAside from "@/components/TeacherComponents/RegistrationAside/RegistrationAside";
 import RegistrationLayout from "@/components/TeacherComponents/RegistrationLayout/RegistrationLayout";
 import { resolveOakHref } from "@/common-lib/urls";
 

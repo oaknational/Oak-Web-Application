@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/dom";
 
-import RegistrationAside from "./ResgistrationAside";
+import RegistrationAside from "./RegistrationAside";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
