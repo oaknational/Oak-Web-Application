@@ -32,7 +32,7 @@ jest.mock("@/common-lib/error-reporter", () => ({
       mockErrorReporter(...args),
 }));
 
-describe("/api/educator-api/getSavedUnitCount", () => {
+describe("/api/educator/getSavedUnitCount", () => {
   installMockClerkClient({
     updateUserMetadata,
     getUser,
