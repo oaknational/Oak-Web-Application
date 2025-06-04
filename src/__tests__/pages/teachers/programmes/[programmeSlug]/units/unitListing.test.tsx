@@ -119,11 +119,50 @@ describe("pages/programmes/[programmeSlug]/units", () => {
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
         title:
-          "Free KS4 Computing teaching resources | Y 10  | NEXT_PUBLIC_SEO_APP_NAME",
+          "Free KS4 Computing teaching resources | Y 10 | NEXT_PUBLIC_SEO_APP_NAME",
         description:
           "Get fully sequenced teaching resources and lesson plans in KS4 Computing",
         ogTitle:
-          "Free KS4 Computing teaching resources | Y 10  | NEXT_PUBLIC_SEO_APP_NAME",
+          "Free KS4 Computing teaching resources | Y 10 | NEXT_PUBLIC_SEO_APP_NAME",
+        ogDescription:
+          "Get fully sequenced teaching resources and lesson plans in KS4 Computing",
+        ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
+        canonical: "NEXT_PUBLIC_SEO_APP_URL",
+        robots: "index,follow",
+      });
+    });
+
+    it("formats year groups correctly", async () => {
+      const { seo } = renderWithSeo()(
+        <UnitListingPage
+          curriculumData={{
+            ...unitListingFixture(),
+            yearGroups: [
+              {
+                year: "year-9",
+                yearTitle: "Year 9",
+              },
+              {
+                year: "year-10",
+                yearTitle: "Year 10",
+              },
+              {
+                year: "year-11",
+                yearTitle: "Year 11",
+              },
+            ],
+          }}
+        />,
+      );
+      expect(seo).toEqual({
+        ...mockSeoResult,
+        ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
+        title:
+          "Free KS4 Computing teaching resources | Y 9, 10 & 11 | NEXT_PUBLIC_SEO_APP_NAME",
+        description:
+          "Get fully sequenced teaching resources and lesson plans in KS4 Computing",
+        ogTitle:
+          "Free KS4 Computing teaching resources | Y 9, 10 & 11 | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription:
           "Get fully sequenced teaching resources and lesson plans in KS4 Computing",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
@@ -145,11 +184,11 @@ describe("pages/programmes/[programmeSlug]/units", () => {
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
         title:
-          "Free KS4 Computing teaching resources | Y 10  | Page 1 of 2 | NEXT_PUBLIC_SEO_APP_NAME",
+          "Free KS4 Computing teaching resources | Y 10 | Page 1 of 2 | NEXT_PUBLIC_SEO_APP_NAME",
         description:
           "Get fully sequenced teaching resources and lesson plans in KS4 Computing",
         ogTitle:
-          "Free KS4 Computing teaching resources | Y 10  | Page 1 of 2 | NEXT_PUBLIC_SEO_APP_NAME",
+          "Free KS4 Computing teaching resources | Y 10 | Page 1 of 2 | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription:
           "Get fully sequenced teaching resources and lesson plans in KS4 Computing",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",

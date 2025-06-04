@@ -143,7 +143,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
 
   const unitsSEO = {
     ...getSeoProps({
-      title: `Free ${keyStageSlug.toUpperCase()} ${subjectTitle} teaching resources | ${yearGroupSEOString} ${paginationTitle}`,
+      title: `Free ${keyStageSlug.toUpperCase()} ${subjectTitle} teaching resources | ${yearGroupSEOString}${paginationTitle}`,
       description: `Get fully sequenced teaching resources and lesson plans in ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
     }),
   };
