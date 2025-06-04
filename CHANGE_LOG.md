@@ -1,3 +1,11 @@
+# [1.764.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.763.2...v1.764.0) (2025-06-04)
+
+
+### Features
+
+* remove alternate layout from registration layout and ([ec34eac](https://github.com/oaknational/Oak-Web-Application/commit/ec34eacfa3fd7750eafd008cadac39292acdc16e))
+* update sign up page ([cd866ec](https://github.com/oaknational/Oak-Web-Application/commit/cd866ec6c8b78f942e13132c1b7caabc51ac8a23))
+
 ## [1.763.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.763.1...v1.763.2) (2025-06-04)
 
 
