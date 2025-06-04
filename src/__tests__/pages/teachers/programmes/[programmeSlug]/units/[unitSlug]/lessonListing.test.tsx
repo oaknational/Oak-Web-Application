@@ -118,7 +118,7 @@ describe("Lesson listing page", () => {
     const saveButton = screen.queryByTestId("save-unit-button");
     expect(saveButton).not.toBeInTheDocument();
   });
-  it("sets and error for an invalid email address on incomplete units signup", async () => {
+  it("sets an error for an invalid email address on incomplete units signup", async () => {
     render(
       <LessonListPage
         curriculumData={lessonListingFixture({
