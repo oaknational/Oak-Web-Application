@@ -119,11 +119,11 @@ describe("pages/programmes/[programmeSlug]/units", () => {
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
         title:
-          "Free KS4 Computing teaching resources | NEXT_PUBLIC_SEO_APP_NAME",
+          "Free KS4 Computing teaching resources | Y 10  | NEXT_PUBLIC_SEO_APP_NAME",
         description:
           "Get fully sequenced teaching resources and lesson plans in KS4 Computing",
         ogTitle:
-          "Free KS4 Computing teaching resources | NEXT_PUBLIC_SEO_APP_NAME",
+          "Free KS4 Computing teaching resources | Y 10  | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription:
           "Get fully sequenced teaching resources and lesson plans in KS4 Computing",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
@@ -145,11 +145,11 @@ describe("pages/programmes/[programmeSlug]/units", () => {
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
         title:
-          "Free KS4 Computing teaching resources | Page 1 of 2 | NEXT_PUBLIC_SEO_APP_NAME",
+          "Free KS4 Computing teaching resources | Y 10  | Page 1 of 2 | NEXT_PUBLIC_SEO_APP_NAME",
         description:
           "Get fully sequenced teaching resources and lesson plans in KS4 Computing",
         ogTitle:
-          "Free KS4 Computing teaching resources | Page 1 of 2 | NEXT_PUBLIC_SEO_APP_NAME",
+          "Free KS4 Computing teaching resources | Y 10  | Page 1 of 2 | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription:
           "Get fully sequenced teaching resources and lesson plans in KS4 Computing",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
