@@ -1,3 +1,10 @@
+## [1.763.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.763.1...v1.763.2) (2025-06-04)
+
+
+### Bug Fixes
+
+* use correct endpoint for api calls ([e9de440](https://github.com/oaknational/Oak-Web-Application/commit/e9de4402ac4a1ff30523739133538c92fae44e5c))
+
 ## [1.763.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.763.0...v1.763.1) (2025-06-04)
 
 # [1.763.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.762.0...v1.763.0) (2025-06-04)
