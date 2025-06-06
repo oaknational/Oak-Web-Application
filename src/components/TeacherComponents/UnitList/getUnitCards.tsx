@@ -73,9 +73,14 @@ const isUnitFirstItemRef = (
   }
 };
 
+export const areNewAndLegacyUnitsOnPage = (
+  currentPageItems: CurrentPageItemsProps[] | SpecialistUnit[][],
+) =>
+  currentPageItems.some((item) => isSlugLegacy(item[0]!.programmeSlug)) &&
+  currentPageItems.some((item) => !isSlugLegacy(item[0]!.programmeSlug));
+
 export const getUnitCards = ({
   pageItems,
-  currentPageItems,
   pageSize,
   currentPage,
   isSaveEnabled,
@@ -87,9 +92,9 @@ export const getUnitCards = ({
   isUnitSaved,
   onSaveToggle,
   setElementId,
+  newAndLegacyUnitsOnPage,
 }: {
   pageItems: CurrentPageItemsProps[] | SpecialistUnit[][];
-  currentPageItems: CurrentPageItemsProps[] | SpecialistUnit[][];
   pageSize: number;
   currentPage: number;
   isSaveEnabled?: boolean;
@@ -101,11 +106,8 @@ export const getUnitCards = ({
   isUnitSaved: (slug: string) => boolean;
   onSaveToggle: (slug: string) => void;
   setElementId?: (elementId: string) => void;
+  newAndLegacyUnitsOnPage: boolean;
 }) => {
-  const newAndLegacyUnitsOnPage =
-    currentPageItems.some((item) => isSlugLegacy(item[0]!.programmeSlug)) &&
-    currentPageItems.some((item) => !isSlugLegacy(item[0]!.programmeSlug));
-
   return pageItems.map((item, index) => {
     const baseIndex = index + pageSize * (currentPage - 1);
     let calculatedIndex = baseIndex;
@@ -219,5 +221,3 @@ export const getUnitCards = ({
     );
   });
 };
-
-export type GetUnitCards = ReturnType<typeof getUnitCards>;

@@ -14,7 +14,7 @@ import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
 
 import { getPageItems, getProgrammeFactors } from "./helpers";
 import { UnitListLegacyBanner } from "./UnitListLegacyBanner";
-import { getUnitCards, GetUnitCards } from "./getUnitCards";
+import { areNewAndLegacyUnitsOnPage, getUnitCards } from "./getUnitCards";
 
 import {
   UnitListItemProps,
@@ -79,156 +79,6 @@ export const getUnitLessonCount = (unit: {
   }
 
   return countHeader;
-};
-
-const NewUnits = ({
-  category,
-  pageItems,
-  phaseSlug,
-  subjectTitle,
-  hideNewCurriculumDownloadButton,
-  currentPage,
-  linkSubject,
-  examBoardSlug,
-  unitCards,
-}: {
-  category?: string;
-  pageItems: CurrentPageItemsProps[];
-  phaseSlug?: string;
-  subjectTitle: string;
-  hideNewCurriculumDownloadButton?: boolean;
-  currentPage?: number;
-  examBoardSlug?: string | null;
-  linkSubject: string;
-  unitCards: GetUnitCards;
-}) =>
-  pageItems.length && phaseSlug ? (
-    <OakUnitsContainer
-      isLegacy={false}
-      subject={category ?? subjectTitle}
-      phase={phaseSlug}
-      curriculumHref={
-        hideNewCurriculumDownloadButton
-          ? null
-          : resolveOakHref({
-              page: "curriculum-units",
-              subjectPhaseSlug: getSubjectPhaseSlug({
-                subject: linkSubject,
-                phaseSlug,
-                examBoardSlug,
-              }),
-            })
-      }
-      showHeader={currentPage === 1}
-      unitCards={unitCards}
-    />
-  ) : null;
-
-const LegacyUnits = ({
-  pageItems,
-  phaseSlug,
-  linkSubject,
-  keyStageSlug,
-  unitCards,
-  hasNewAndLegacyUnits,
-  onPageChange,
-  subjectSlug,
-  indexOfFirstLegacyUnit,
-  pageSize,
-  newItemsLength,
-}: {
-  pageItems: CurrentPageItemsProps[];
-  phaseSlug?: string;
-  linkSubject: string;
-  unitCards: GetUnitCards;
-  keyStageSlug?: string | null;
-  hasNewAndLegacyUnits: boolean;
-  onPageChange: (page: number) => void;
-  subjectSlug: string;
-  indexOfFirstLegacyUnit: number;
-  pageSize: number;
-  newItemsLength: number;
-}) => {
-  return pageItems.length && keyStageSlug && phaseSlug ? (
-    <OakUnitsContainer
-      isLegacy={true}
-      banner={
-        <UnitListLegacyBanner
-          userType={"teacher"}
-          hasNewUnits={hasNewAndLegacyUnits}
-          allLegacyUnits={pageItems}
-          onButtonClick={() => onPageChange(1)}
-        />
-      }
-      subject={subjectSlug}
-      phase={phaseSlug}
-      curriculumHref={resolveOakHref({
-        page: "curriculum-previous-downloads",
-        query: {
-          subject: linkSubject,
-          keystage: keyStageSlug,
-        },
-      })}
-      showHeader={
-        newItemsLength || indexOfFirstLegacyUnit % pageSize === 0 ? true : false
-      }
-      unitCards={unitCards}
-    />
-  ) : null;
-};
-
-const SwimmingUnits = ({
-  pageItems,
-  phaseSlug,
-  linkSubject,
-  unitCards,
-  keyStageSlug,
-  indexOfFirstLegacyUnit,
-  pageSize,
-}: {
-  pageItems: CurrentPageItemsProps[];
-  phaseSlug?: string;
-  linkSubject: string;
-  unitCards: GetUnitCards;
-  keyStageSlug?: string | null;
-  indexOfFirstLegacyUnit: number;
-  pageSize: number;
-}) => {
-  if (pageItems.length && keyStageSlug && phaseSlug) {
-    const title = `${pageItems[0]?.[0]?.groupUnitsAs} units (all years)`;
-    return (
-      <OakUnitsContainer
-        isLegacy={false}
-        subject={""}
-        phase={phaseSlug}
-        curriculumHref={resolveOakHref({
-          page: "curriculum-previous-downloads",
-          query: {
-            subject: linkSubject,
-            keystage: keyStageSlug,
-          },
-        })}
-        showHeader={
-          pageItems.length || indexOfFirstLegacyUnit % pageSize === 0
-            ? true
-            : false
-        }
-        unitCards={unitCards}
-        isCustomUnit={true}
-        customHeadingText={title}
-        banner={
-          <OakInlineBanner
-            isOpen={true}
-            message={
-              "Swimming and water safety lessons should be selected based on the ability and experience of your pupils."
-            }
-            type="neutral"
-            $width={"100%"}
-          />
-        }
-      />
-    );
-  } else return null;
 };
 
 const UnitList: FC<UnitListProps> = (props) => {
@@ -301,7 +151,8 @@ const UnitList: FC<UnitListProps> = (props) => {
   const [saveButtonElementId, setSaveButtonElementId] = useState<
     string | undefined
   >();
-  const unitCardProps = {
+
+  const sharedUnitCardProps = {
     currentPageItems,
     pageSize,
     currentPage,
@@ -314,6 +165,7 @@ const UnitList: FC<UnitListProps> = (props) => {
     isUnitSaved,
     onSaveToggle,
     setElementId: setSaveButtonElementId,
+    newAndLegacyUnitsOnPage: areNewAndLegacyUnitsOnPage(currentPageItems),
   };
 
   return (
@@ -329,50 +181,105 @@ const UnitList: FC<UnitListProps> = (props) => {
       {currentPageItems.length ? (
         isUnitListData(props) ? (
           <OakFlex $flexDirection="column" $gap="space-between-xxl">
-            <SwimmingUnits
-              pageItems={swimmingPageItems}
-              phaseSlug={phaseSlug}
-              unitCards={getUnitCards({
-                pageItems: swimmingPageItems,
-                ...unitCardProps,
-              })}
-              linkSubject={linkSubject}
-              keyStageSlug={keyStageSlug}
-              indexOfFirstLegacyUnit={indexOfFirstLegacyUnit}
-              pageSize={pageSize}
-            />
-            <NewUnits
-              category={modifiedCategory}
-              pageItems={newPageItems}
-              phaseSlug={phaseSlug}
-              subjectTitle={subjectTitle}
-              hideNewCurriculumDownloadButton={hideNewCurriculumDownloadButton}
-              currentPage={currentPage}
-              unitCards={getUnitCards({
-                pageItems: newPageItems,
-                ...unitCardProps,
-              })}
-              linkSubject={linkSubject}
-              examBoardSlug={examBoardSlug}
-            />
-            <LegacyUnits
-              pageItems={legacyPageItems}
-              phaseSlug={phaseSlug}
-              unitCards={getUnitCards({
-                pageItems: legacyPageItems,
-                ...unitCardProps,
-              })}
-              linkSubject={linkSubject}
-              keyStageSlug={keyStageSlug}
-              hasNewAndLegacyUnits={hasNewAndLegacyUnits}
-              onPageChange={onPageChange}
-              subjectSlug={subjectSlug}
-              indexOfFirstLegacyUnit={indexOfFirstLegacyUnit}
-              pageSize={pageSize}
-              newItemsLength={newPageItems.length}
-            />
+            {/* Swimming units */}
+            {swimmingPageItems.length > 0 && keyStageSlug && phaseSlug && (
+              <OakUnitsContainer
+                isLegacy={false}
+                subject={""}
+                phase={phaseSlug}
+                curriculumHref={resolveOakHref({
+                  page: "curriculum-previous-downloads",
+                  query: {
+                    subject: linkSubject,
+                    keystage: keyStageSlug,
+                  },
+                })}
+                showHeader={
+                  swimmingPageItems.length ||
+                  indexOfFirstLegacyUnit % pageSize === 0
+                    ? true
+                    : false
+                }
+                unitCards={getUnitCards({
+                  pageItems: swimmingPageItems,
+                  ...sharedUnitCardProps,
+                })}
+                isCustomUnit={true}
+                customHeadingText={`${swimmingPageItems[0]?.[0]?.groupUnitsAs} units (all years)`}
+                banner={
+                  <OakInlineBanner
+                    isOpen={true}
+                    message={
+                      "Swimming and water safety lessons should be selected based on the ability and experience of your pupils."
+                    }
+                    type="neutral"
+                    $width={"100%"}
+                  />
+                }
+              />
+            )}
+
+            {/* New units */}
+            {newPageItems.length > 0 && phaseSlug && (
+              <OakUnitsContainer
+                isLegacy={false}
+                subject={modifiedCategory ?? subjectTitle}
+                phase={phaseSlug}
+                curriculumHref={
+                  hideNewCurriculumDownloadButton
+                    ? null
+                    : resolveOakHref({
+                        page: "curriculum-units",
+                        subjectPhaseSlug: getSubjectPhaseSlug({
+                          subject: linkSubject,
+                          phaseSlug,
+                          examBoardSlug,
+                        }),
+                      })
+                }
+                showHeader={currentPage === 1}
+                unitCards={getUnitCards({
+                  pageItems: newPageItems,
+                  ...sharedUnitCardProps,
+                })}
+              />
+            )}
+
+            {/* Legacy units */}
+            {legacyPageItems.length > 0 && keyStageSlug && phaseSlug && (
+              <OakUnitsContainer
+                isLegacy={true}
+                banner={
+                  <UnitListLegacyBanner
+                    userType={"teacher"}
+                    hasNewUnits={hasNewAndLegacyUnits}
+                    allLegacyUnits={legacyPageItems}
+                    onButtonClick={() => onPageChange(1)}
+                  />
+                }
+                subject={subjectSlug}
+                phase={phaseSlug}
+                curriculumHref={resolveOakHref({
+                  page: "curriculum-previous-downloads",
+                  query: {
+                    subject: linkSubject,
+                    keystage: keyStageSlug,
+                  },
+                })}
+                showHeader={
+                  newPageItems.length || indexOfFirstLegacyUnit % pageSize === 0
+                    ? true
+                    : false
+                }
+                unitCards={getUnitCards({
+                  pageItems: legacyPageItems,
+                  ...sharedUnitCardProps,
+                })}
+              />
+            )}
           </OakFlex>
         ) : (
+          // Specialist units
           <OakUnitsContainer
             isLegacy={true}
             banner={
@@ -394,12 +301,13 @@ const UnitList: FC<UnitListProps> = (props) => {
             showHeader={true}
             unitCards={getUnitCards({
               pageItems: currentPageItems,
-              ...unitCardProps,
+              ...sharedUnitCardProps,
             })}
           />
         )
       ) : null}
 
+      {/* Pagination footer */}
       {units.length > 5 ? (
         <OakBox
           $width="100%"
