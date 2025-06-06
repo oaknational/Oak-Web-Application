@@ -70,11 +70,14 @@ const SavingSignedOutModalContent = () => {
 type SavingSignedOutModalProps = Pick<
   OakModalCenterProps,
   "isOpen" | "onClose"
->;
+> & {
+  returnToElementId?: string;
+};
 
 const SavingSignedOutModal = ({
   isOpen,
   onClose,
+  returnToElementId: elementId,
 }: SavingSignedOutModalProps) => (
   <OakModalCenter
     isOpen={isOpen}
@@ -91,6 +94,14 @@ const SavingSignedOutModal = ({
     modalOuterFlexProps={{
       $maxWidth: "all-spacing-22",
       $pa: "inner-padding-m",
+    }}
+    returnFocus={() => {
+      if (elementId) {
+        document.getElementById(elementId)?.focus();
+        // prevent default returnTo behaviour as we're managing focus manually
+        return false;
+      }
+      return true;
     }}
   />
 );
