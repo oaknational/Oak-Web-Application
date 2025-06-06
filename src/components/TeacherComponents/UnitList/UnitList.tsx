@@ -1,22 +1,20 @@
-import React, { FC, MouseEvent } from "react";
-import { NextRouter, useRouter } from "next/router";
+import React, { FC } from "react";
+import { useRouter } from "next/router";
 import { useFeatureFlagEnabled } from "posthog-js/react";
 import {
   OakFlex,
   OakUnitsContainer,
-  OakUnitListItem,
-  OakUnitListOptionalityItem,
   OakPagination,
   OakAnchorTarget,
   OakBox,
   OakInlineBanner,
 } from "@oaknational/oak-components";
 
-import { UnitOption } from "../UnitListOptionalityCard/UnitListOptionalityCard";
 import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
 
 import { getPageItems, getProgrammeFactors } from "./helpers";
 import { UnitListLegacyBanner } from "./UnitListLegacyBanner";
+import { getUnitCards, GetUnitCards } from "./getUnitCards";
 
 import {
   UnitListItemProps,
@@ -53,75 +51,10 @@ export type UnitListProps = (UnitListingData | SpecialistUnitListingData) & {
   filteredUnits?: UnitListingData["units"];
 };
 
-const isUnitOption = (
-  x: Omit<UnitListItemProps, "onClick" | "index">[] | SpecialistUnit[],
-): x is UnitOption[] => {
-  if (x[0]) {
-    return "keyStageTitle" in x[0];
-  } else {
-    return false;
-  }
-};
-
 const isUnitListData = (
   u: UnitListingData | SpecialistUnitListingData,
 ): u is UnitListingData => {
   return (u as UnitListingData).keyStageSlug !== undefined;
-};
-
-const getOptionalityUnits = (
-  unit: CurrentPageItemsProps | SpecialistUnit[],
-  onClick: (props: UnitListItemProps | SpecialistListItemProps) => void,
-  router: NextRouter,
-) => {
-  return unit.map((unitOption) => {
-    const handleClick = (e: MouseEvent<HTMLElement>) => {
-      // Tracking data was not being sent to avo before the page reload, so we prevent the default and use router to navigate to the page after the onClick
-      const target = e.currentTarget;
-      onClick({
-        ...unitOption,
-        index: 0,
-        onClick,
-      });
-      if (target instanceof HTMLAnchorElement) {
-        router.push(target.href);
-      }
-    };
-    const lessonCount = getUnitLessonCount({
-      lessonCount: unitOption.lessonCount,
-      expiredLessonCount: unitOption.expiredLessonCount,
-      unpublishedLessonCount: unitOption.unpublishedLessonCount,
-    });
-
-    return {
-      title: unitOption.title,
-      slug: unitOption.slug,
-      href: resolveOakHref({
-        page: "lesson-index",
-        unitSlug: unitOption.slug,
-        programmeSlug: unitOption.programmeSlug,
-      }),
-      lessonCount,
-      onClick: handleClick,
-    };
-  });
-};
-
-const isUnitFirstItemRef = (
-  // first item ref is used to focus on the first list item when the pagination is used
-  programmeSlug: string,
-  newAndLegacyUnitsOnPage: boolean,
-  index: number,
-) => {
-  if (index === 0 && !newAndLegacyUnitsOnPage) {
-    return true;
-  } else if (
-    index === 0 &&
-    newAndLegacyUnitsOnPage &&
-    !isSlugLegacy(programmeSlug)
-  ) {
-    return true;
-  }
 };
 
 export const getUnitLessonCount = (unit: {
@@ -146,6 +79,156 @@ export const getUnitLessonCount = (unit: {
   }
 
   return countHeader;
+};
+
+const NewUnits = ({
+  category,
+  pageItems,
+  phaseSlug,
+  subjectTitle,
+  hideNewCurriculumDownloadButton,
+  currentPage,
+  linkSubject,
+  examBoardSlug,
+  unitCards,
+}: {
+  category?: string;
+  pageItems: CurrentPageItemsProps[];
+  phaseSlug?: string;
+  subjectTitle: string;
+  hideNewCurriculumDownloadButton?: boolean;
+  currentPage?: number;
+  examBoardSlug?: string | null;
+  linkSubject: string;
+  unitCards: GetUnitCards;
+}) =>
+  pageItems.length && phaseSlug ? (
+    <OakUnitsContainer
+      isLegacy={false}
+      subject={category ?? subjectTitle}
+      phase={phaseSlug}
+      curriculumHref={
+        hideNewCurriculumDownloadButton
+          ? null
+          : resolveOakHref({
+              page: "curriculum-units",
+              subjectPhaseSlug: getSubjectPhaseSlug({
+                subject: linkSubject,
+                phaseSlug,
+                examBoardSlug,
+              }),
+            })
+      }
+      showHeader={currentPage === 1}
+      unitCards={unitCards}
+    />
+  ) : null;
+
+const LegacyUnits = ({
+  pageItems,
+  phaseSlug,
+  linkSubject,
+  keyStageSlug,
+  unitCards,
+  hasNewAndLegacyUnits,
+  onPageChange,
+  subjectSlug,
+  indexOfFirstLegacyUnit,
+  pageSize,
+  newItemsLength,
+}: {
+  pageItems: CurrentPageItemsProps[];
+  phaseSlug?: string;
+  linkSubject: string;
+  unitCards: GetUnitCards;
+  keyStageSlug?: string | null;
+  hasNewAndLegacyUnits: boolean;
+  onPageChange: (page: number) => void;
+  subjectSlug: string;
+  indexOfFirstLegacyUnit: number;
+  pageSize: number;
+  newItemsLength: number;
+}) => {
+  return pageItems.length && keyStageSlug && phaseSlug ? (
+    <OakUnitsContainer
+      isLegacy={true}
+      banner={
+        <UnitListLegacyBanner
+          userType={"teacher"}
+          hasNewUnits={hasNewAndLegacyUnits}
+          allLegacyUnits={pageItems}
+          onButtonClick={() => onPageChange(1)}
+        />
+      }
+      subject={subjectSlug}
+      phase={phaseSlug}
+      curriculumHref={resolveOakHref({
+        page: "curriculum-previous-downloads",
+        query: {
+          subject: linkSubject,
+          keystage: keyStageSlug,
+        },
+      })}
+      showHeader={
+        newItemsLength || indexOfFirstLegacyUnit % pageSize === 0 ? true : false
+      }
+      unitCards={unitCards}
+    />
+  ) : null;
+};
+
+const SwimmingUnits = ({
+  pageItems,
+  phaseSlug,
+  linkSubject,
+  unitCards,
+  keyStageSlug,
+  indexOfFirstLegacyUnit,
+  pageSize,
+}: {
+  pageItems: CurrentPageItemsProps[];
+  phaseSlug?: string;
+  linkSubject: string;
+  unitCards: GetUnitCards;
+  keyStageSlug?: string | null;
+  indexOfFirstLegacyUnit: number;
+  pageSize: number;
+}) => {
+  if (pageItems.length && keyStageSlug && phaseSlug) {
+    const title = `${pageItems[0]?.[0]?.groupUnitsAs} units (all years)`;
+    return (
+      <OakUnitsContainer
+        isLegacy={false}
+        subject={""}
+        phase={phaseSlug}
+        curriculumHref={resolveOakHref({
+          page: "curriculum-previous-downloads",
+          query: {
+            subject: linkSubject,
+            keystage: keyStageSlug,
+          },
+        })}
+        showHeader={
+          pageItems.length || indexOfFirstLegacyUnit % pageSize === 0
+            ? true
+            : false
+        }
+        unitCards={unitCards}
+        isCustomUnit={true}
+        customHeadingText={title}
+        banner={
+          <OakInlineBanner
+            isOpen={true}
+            message={
+              "Swimming and water safety lessons should be selected based on the ability and experience of your pupils."
+            }
+            type="neutral"
+            $width={"100%"}
+          />
+        }
+      />
+    );
+  } else return null;
 };
 
 const UnitList: FC<UnitListProps> = (props) => {
@@ -209,217 +292,23 @@ const UnitList: FC<UnitListProps> = (props) => {
   const hasNewAndLegacyUnits: boolean =
     !!phaseSlug && !!newPageItems.length && !!legacyPageItems.length;
 
-  const getUnitCards = (
-    pageItems: CurrentPageItemsProps[] | SpecialistUnit[][],
-  ) => {
-    const newAndLegacyUnitsOnPage =
-      currentPageItems.some((item) => isSlugLegacy(item[0]!.programmeSlug)) &&
-      currentPageItems.some((item) => !isSlugLegacy(item[0]!.programmeSlug));
-
-    // get the type of the page items
-
-    return pageItems.map((item, index) => {
-      const baseIndex = index + pageSize * (currentPage - 1);
-      let calculatedIndex = baseIndex;
-      const isItemLegacy = isSlugLegacy(item[0]!.programmeSlug);
-
-      const isSpecialistUnit = !isUnitListData(props);
-      const showSave = isSaveEnabled && !isSpecialistUnit;
-
-      if (isItemLegacy) {
-        if (newAndLegacyUnitsOnPage) {
-          calculatedIndex = index;
-        } else if (filteredUnits) {
-          const legacyUnits = filteredUnits?.filter((unit) =>
-            isSlugLegacy(unit[0]!.programmeSlug),
-          );
-
-          // this is a TS hack to get around typescript not following the logic of isSpecialistUnit
-          const castItem = item as Omit<
-            UnitListItemProps,
-            "index" | "onClick"
-          >[];
-
-          const findIndex = legacyUnits?.findIndex(
-            (unit) =>
-              unit[0]?.slug === item[0]?.slug &&
-              (isSpecialistUnit || unit[0]?.year === castItem[0]?.year),
-          );
-          calculatedIndex = findIndex;
-        } else {
-          calculatedIndex = baseIndex - indexOfFirstLegacyUnit;
-        }
-      }
-
-      return item.length > 1 && isUnitOption(item) ? (
-        <OakUnitListOptionalityItem
-          index={calculatedIndex + 1}
-          key={`UnitList-UnitListItem-UnitListOption-${item[0]!.slug}`}
-          data-testid="unit-optionality-card"
-          nullTitle={item[0]!.nullTitle}
-          yearTitle={item[0]?.yearTitle}
-          firstItemRef={
-            isUnitFirstItemRef(
-              item[0]!.programmeSlug,
-              newAndLegacyUnitsOnPage,
-              index,
-            )
-              ? firstItemRef
-              : null
-          }
-          optionalityUnits={getOptionalityUnits(item, onClick, router)}
-          onSave={showSave ? onSaveToggle : undefined}
-          getIsSaved={isUnitSaved}
-        />
-      ) : (
-        item.map((unitOption) => {
-          const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
-            // Tracking data was not being sent to avo, so we prevent the default and use router to navigate to the page after the onClick
-            e.preventDefault();
-            onClick({
-              ...unitOption,
-              index: 0,
-              onClick,
-            });
-            router.push(e.currentTarget.href);
-          };
-          const unitLessonCount = getUnitLessonCount({
-            lessonCount: unitOption.lessonCount,
-            expiredLessonCount: unitOption.expiredLessonCount,
-            unpublishedLessonCount: unitOption.unpublishedLessonCount,
-          });
-
-          return (
-            <OakUnitListItem
-              {...props}
-              {...unitOption}
-              lessonCount={unitLessonCount}
-              firstItemRef={
-                isUnitFirstItemRef(
-                  unitOption.programmeSlug,
-                  newAndLegacyUnitsOnPage,
-                  index,
-                )
-                  ? firstItemRef
-                  : null
-              }
-              data-testid="unit-list-item"
-              key={`UnitList-UnitListItem-UnitListOption-${unitOption.slug}`}
-              index={calculatedIndex + 1}
-              isLegacy={isSlugLegacy(unitOption.programmeSlug)}
-              onClick={handleClick}
-              unavailable={unitOption.expired || undefined}
-              href={resolveOakHref({
-                page: `${
-                  isSpecialistUnit ? "specialist-lesson-index" : "lesson-index"
-                }`,
-                unitSlug: unitOption.slug,
-                programmeSlug: unitOption.programmeSlug,
-              })}
-              onSave={
-                showSave ? () => onSaveToggle(unitOption.slug) : undefined
-              }
-              isSaved={isUnitSaved(unitOption.slug)}
-            />
-          );
-        })
-      );
-    });
-  };
-
   //TODO: Temporary measure until curriculum downloads are ready for RSHE
   const hideNewCurriculumDownloadButton =
     subjectSlug === "rshe-pshe" || subjectSlug === "financial-education";
 
-  const NewUnits = ({ category }: { category?: string }) =>
-    newPageItems.length && phaseSlug ? (
-      <OakUnitsContainer
-        isLegacy={false}
-        subject={category ?? subjectTitle}
-        phase={phaseSlug}
-        curriculumHref={
-          hideNewCurriculumDownloadButton
-            ? null
-            : resolveOakHref({
-                page: "curriculum-units",
-                subjectPhaseSlug: getSubjectPhaseSlug({
-                  subject: linkSubject,
-                  phaseSlug,
-                  examBoardSlug,
-                }),
-              })
-        }
-        showHeader={paginationProps.currentPage === 1}
-        unitCards={getUnitCards(newPageItems)}
-      />
-    ) : null;
-
-  const LegacyUnits = () =>
-    legacyPageItems.length && keyStageSlug && phaseSlug ? (
-      <OakUnitsContainer
-        isLegacy={true}
-        banner={
-          <UnitListLegacyBanner
-            userType={"teacher"}
-            hasNewUnits={hasNewAndLegacyUnits}
-            allLegacyUnits={legacyPageItems}
-            onButtonClick={() => onPageChange(1)}
-          />
-        }
-        subject={subjectSlug}
-        phase={phaseSlug}
-        curriculumHref={resolveOakHref({
-          page: "curriculum-previous-downloads",
-          query: {
-            subject: linkSubject,
-            keystage: keyStageSlug,
-          },
-        })}
-        showHeader={
-          newPageItems.length || indexOfFirstLegacyUnit % pageSize === 0
-            ? true
-            : false
-        }
-        unitCards={getUnitCards(legacyPageItems)}
-      />
-    ) : null;
-
-  const SwimmingUnits = () => {
-    if (swimmingPageItems.length && keyStageSlug && phaseSlug) {
-      const title = `${swimmingPageItems[0]?.[0]?.groupUnitsAs} units (all years)`;
-      return (
-        <OakUnitsContainer
-          isLegacy={false}
-          subject={""}
-          phase={phaseSlug}
-          curriculumHref={resolveOakHref({
-            page: "curriculum-previous-downloads",
-            query: {
-              subject: linkSubject,
-              keystage: keyStageSlug,
-            },
-          })}
-          showHeader={
-            swimmingPageItems.length || indexOfFirstLegacyUnit % pageSize === 0
-              ? true
-              : false
-          }
-          unitCards={getUnitCards(swimmingPageItems)}
-          isCustomUnit={true}
-          customHeadingText={title}
-          banner={
-            <OakInlineBanner
-              isOpen={true}
-              message={
-                "Swimming and water safety lessons should be selected based on the ability and experience of your pupils."
-              }
-              type="neutral"
-              $width={"100%"}
-            />
-          }
-        />
-      );
-    } else return null;
+  const unitCardProps = {
+    ...props,
+    currentPageItems,
+    pageSize,
+    currentPage,
+    isSaveEnabled,
+    isSpecialistUnit: !isUnitListData(props),
+    filteredUnits,
+    indexOfFirstLegacyUnit,
+    firstItemRef: firstItemRef ?? undefined,
+    onClick,
+    isUnitSaved,
+    onSaveToggle,
   };
 
   return (
@@ -428,9 +317,48 @@ const UnitList: FC<UnitListProps> = (props) => {
       {currentPageItems.length ? (
         isUnitListData(props) ? (
           <OakFlex $flexDirection="column" $gap="space-between-xxl">
-            <SwimmingUnits />
-            <NewUnits category={modifiedCategory} />
-            <LegacyUnits />
+            <SwimmingUnits
+              pageItems={swimmingPageItems}
+              phaseSlug={phaseSlug}
+              unitCards={getUnitCards({
+                pageItems: swimmingPageItems,
+                ...unitCardProps,
+              })}
+              linkSubject={linkSubject}
+              keyStageSlug={keyStageSlug}
+              indexOfFirstLegacyUnit={indexOfFirstLegacyUnit}
+              pageSize={pageSize}
+            />
+            <NewUnits
+              category={modifiedCategory}
+              pageItems={newPageItems}
+              phaseSlug={phaseSlug}
+              subjectTitle={subjectTitle}
+              hideNewCurriculumDownloadButton={hideNewCurriculumDownloadButton}
+              currentPage={currentPage}
+              unitCards={getUnitCards({
+                pageItems: newPageItems,
+                ...unitCardProps,
+              })}
+              linkSubject={linkSubject}
+              examBoardSlug={examBoardSlug}
+            />
+            <LegacyUnits
+              pageItems={legacyPageItems}
+              phaseSlug={phaseSlug}
+              unitCards={getUnitCards({
+                pageItems: legacyPageItems,
+                ...unitCardProps,
+              })}
+              linkSubject={linkSubject}
+              keyStageSlug={keyStageSlug}
+              hasNewAndLegacyUnits={hasNewAndLegacyUnits}
+              onPageChange={onPageChange}
+              subjectSlug={subjectSlug}
+              indexOfFirstLegacyUnit={indexOfFirstLegacyUnit}
+              pageSize={pageSize}
+              newItemsLength={newPageItems.length}
+            />
           </OakFlex>
         ) : (
           <OakUnitsContainer
@@ -452,10 +380,14 @@ const UnitList: FC<UnitListProps> = (props) => {
               },
             })}#Specialist`}
             showHeader={true}
-            unitCards={getUnitCards(currentPageItems)}
+            unitCards={getUnitCards({
+              pageItems: currentPageItems,
+              ...unitCardProps,
+            })}
           />
         )
       ) : null}
+
       {units.length > 5 ? (
         <OakBox
           $width="100%"
@@ -472,6 +404,7 @@ const UnitList: FC<UnitListProps> = (props) => {
       ) : (
         <OakBox $pb="inner-padding-xl2" />
       )}
+
       {showSignIn && (
         <SavingSignedOutModal
           isOpen={showSignIn}
