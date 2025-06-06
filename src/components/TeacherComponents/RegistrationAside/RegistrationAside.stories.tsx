@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
-import Component from "./ResgistrationAside";
+import Component from "./RegistrationAside";
 
 const meta: Meta<typeof Component> = {
   component: Component,
@@ -15,22 +15,10 @@ export const RegistrationAside: Story = {
   args: {
     useNew: false,
   },
-  render: (args) => {
+  render: () => {
     return (
       <OakThemeProvider theme={oakDefaultTheme}>
-        <Component {...args} />
-      </OakThemeProvider>
-    );
-  },
-};
-export const NewRegistrationAside: Story = {
-  args: {
-    useNew: true,
-  },
-  render: (args) => {
-    return (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Component {...args} />
+        <Component />
       </OakThemeProvider>
     );
   },
