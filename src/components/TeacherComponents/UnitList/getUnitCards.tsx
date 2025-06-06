@@ -86,6 +86,7 @@ export const getUnitCards = ({
   onClick,
   isUnitSaved,
   onSaveToggle,
+  setElementId,
 }: {
   pageItems: CurrentPageItemsProps[] | SpecialistUnit[][];
   currentPageItems: CurrentPageItemsProps[] | SpecialistUnit[][];
@@ -99,6 +100,7 @@ export const getUnitCards = ({
   onClick: (props: UnitListItemProps | SpecialistListItemProps) => void;
   isUnitSaved: (slug: string) => boolean;
   onSaveToggle: (slug: string) => void;
+  setElementId?: (elementId: string) => void;
 }) => {
   const newAndLegacyUnitsOnPage =
     currentPageItems.some((item) => isSlugLegacy(item[0]!.programmeSlug)) &&
@@ -171,6 +173,8 @@ export const getUnitCards = ({
           unpublishedLessonCount: unitOption.unpublishedLessonCount,
         });
 
+        const saveButtonId = `save-button-${unitOption.slug}`;
+
         return (
           <OakUnitListItem
             {...unitOption}
@@ -197,7 +201,17 @@ export const getUnitCards = ({
               unitSlug: unitOption.slug,
               programmeSlug: unitOption.programmeSlug,
             })}
-            onSave={showSave ? () => onSaveToggle(unitOption.slug) : undefined}
+            saveButtonId={saveButtonId}
+            onSave={
+              showSave
+                ? () => {
+                    if (setElementId) {
+                      setElementId(saveButtonId);
+                    }
+                    onSaveToggle(unitOption.slug);
+                  }
+                : undefined
+            }
             isSaved={isUnitSaved(unitOption.slug)}
           />
         );

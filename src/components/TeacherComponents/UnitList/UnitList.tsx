@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { useRouter } from "next/router";
 import { useFeatureFlagEnabled } from "posthog-js/react";
 import {
@@ -254,6 +254,7 @@ const UnitList: FC<UnitListProps> = (props) => {
     category === "reading-writing-oracy"
       ? "Reading, writing & oracy"
       : category;
+
   const newPageItems = getPageItems({
     pageItems: currentPageItems,
     pickLegacyItems: false,
@@ -272,6 +273,7 @@ const UnitList: FC<UnitListProps> = (props) => {
 
   const { phaseSlug, keyStageSlug, examBoardSlug, keyStageTitle } =
     getProgrammeFactors(props);
+
   const indexOfFirstLegacyUnit = units
     .map((u) => isSlugLegacy(u[0]!.programmeSlug))
     .indexOf(true);
@@ -296,8 +298,10 @@ const UnitList: FC<UnitListProps> = (props) => {
   const hideNewCurriculumDownloadButton =
     subjectSlug === "rshe-pshe" || subjectSlug === "financial-education";
 
+  const [saveButtonElementId, setSaveButtonElementId] = useState<
+    string | undefined
+  >();
   const unitCardProps = {
-    ...props,
     currentPageItems,
     pageSize,
     currentPage,
@@ -309,11 +313,19 @@ const UnitList: FC<UnitListProps> = (props) => {
     onClick,
     isUnitSaved,
     onSaveToggle,
+    setElementId: setSaveButtonElementId,
   };
 
   return (
     <OakFlex $flexDirection="column">
       <OakAnchorTarget id="unit-list" />
+      {showSignIn && (
+        <SavingSignedOutModal
+          isOpen={showSignIn}
+          onClose={() => setShowSignIn(false)}
+          returnToElementId={saveButtonElementId}
+        />
+      )}
       {currentPageItems.length ? (
         isUnitListData(props) ? (
           <OakFlex $flexDirection="column" $gap="space-between-xxl">
@@ -403,15 +415,6 @@ const UnitList: FC<UnitListProps> = (props) => {
         </OakBox>
       ) : (
         <OakBox $pb="inner-padding-xl2" />
-      )}
-
-      {showSignIn && (
-        <SavingSignedOutModal
-          isOpen={showSignIn}
-          onClose={() => {
-            setShowSignIn(false);
-          }}
-        />
       )}
     </OakFlex>
   );
