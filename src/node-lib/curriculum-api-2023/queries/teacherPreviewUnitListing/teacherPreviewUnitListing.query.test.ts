@@ -121,7 +121,7 @@ describe("teachersPreviewUnitListing()", () => {
       subjectParent: "Maths",
       tierSlug: "foundation",
       phase: "primary",
-      yearGroups: [{ yearTitle: "Year 1", year: "year-1" }],
+      yearGroups: [{ yearTitle: "Year 1", yearSlug: "year-1" }],
       subjectCategories: [
         {
           label: "Physics",

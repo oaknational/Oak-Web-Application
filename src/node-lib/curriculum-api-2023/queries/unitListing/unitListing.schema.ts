@@ -35,7 +35,7 @@ const subjectCategorySchema = z.object({
 export type SubjectCategory = z.infer<typeof subjectCategorySchema>;
 
 const yearGroupsSchema = z.array(
-  z.object({ year: yearSlugs, yearTitle: yearDescriptions }),
+  z.object({ yearSlug: yearSlugs, yearTitle: yearDescriptions }),
 );
 export type YearGroups = z.infer<typeof yearGroupsSchema>;
 

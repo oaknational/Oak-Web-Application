@@ -8,7 +8,7 @@ import { GroupedUnitsSchema } from "../unitListing.schema";
 
 export type YearGroup = {
   yearTitle: z.infer<typeof yearDescriptions>;
-  year: z.infer<typeof yearSlugs>;
+  yearSlug: z.infer<typeof yearSlugs>;
 };
 
 export const getAllYearGroups = (units: GroupedUnitsSchema): YearGroup[] => {
@@ -21,7 +21,7 @@ export const getAllYearGroups = (units: GroupedUnitsSchema): YearGroup[] => {
         if (yearTitle && yearSlug && !acc.has(yearTitle)) {
           acc.set(yearTitle, {
             yearTitle: yearTitle,
-            year: yearSlug,
+            yearSlug: yearSlug,
           });
         }
         return acc;
