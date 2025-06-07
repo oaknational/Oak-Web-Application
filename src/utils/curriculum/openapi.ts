@@ -165,6 +165,7 @@ export default async function openApiRequest(
       unit_options: [],
       year: apiUnit.year,
       state: "published",
+      national_curriculum_content: [],
     };
   });
 
