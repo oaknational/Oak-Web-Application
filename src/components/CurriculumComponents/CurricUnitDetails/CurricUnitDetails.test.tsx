@@ -5,6 +5,7 @@ import CurricUnitDetails from "./CurricUnitDetails";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { createUnit } from "@/fixtures/curriculum/unit";
+import { ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS } from "@/utils/curriculum/constants";
 
 const testCurricUnitDetails = {
   unit: createUnit({
@@ -14,6 +15,10 @@ const testCurricUnitDetails = {
     connection_future_unit_description: "test future unit description",
     connection_prior_unit_title: "test prior unit title",
     connection_future_unit_title: "test future unit title",
+    prior_knowledge_requirements: [
+      "prior knowledge requirements 1",
+      "prior knowledge requirements 2",
+    ],
     cycle: "1",
     why_this_why_now: "test why this why now",
     description: "test description",
@@ -49,8 +54,13 @@ describe("CurricUnitDetails component", () => {
         <CurricUnitDetails {...testCurricUnitDetails} />,
       );
 
-      expect(getAllByTestId("accordion-component")).toHaveLength(3);
+      expect(getAllByTestId("accordion-component")).toHaveLength(
+        ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS ? 4 : 3,
+      );
       expect(getByText("Lessons in unit")).toBeInTheDocument();
+      if (ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS) {
+        expect(getByText("Prior knowledge requirements")).toBeInTheDocument();
+      }
       expect(getByText("Previous unit description")).toBeInTheDocument();
       expect(getByText("Following unit description")).toBeInTheDocument();
     });
@@ -63,10 +73,15 @@ describe("CurricUnitDetails component", () => {
         />,
       );
 
-      expect(getAllByTestId("accordion-component")).toHaveLength(2);
+      expect(getAllByTestId("accordion-component")).toHaveLength(
+        ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS ? 3 : 2,
+      );
       expect(getByText("Lessons in unit")).toBeInTheDocument();
       expect(getByText("Description")).toBeInTheDocument();
       expect(getByText("Why this why now")).toBeInTheDocument();
+      if (ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS) {
+        expect(getByText("Prior knowledge requirements")).toBeInTheDocument();
+      }
     });
 
     test("when expanding lesson accordion it should render correct lessons list", async () => {
