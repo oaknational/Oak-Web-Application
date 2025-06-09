@@ -1,8 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { createMocks } from "node-mocks-http";
 
-import handler from "./[unitSlug]";
-
+import handler from "@/pages/api/educator/saveUnit/[programmeSlug]/[unitSlug]";
 import {
   installMockClerkClient,
   mockServerUser,
@@ -16,11 +15,15 @@ jest.mock("@clerk/nextjs/server");
 const updateUserMetadata = jest.fn();
 const getUser = jest.fn();
 
-const mockDeleteUserListContent = jest.fn();
+const mockCreateUserListContent = jest.fn();
+const mockGetUser = jest.fn();
+const mockCreateUser = jest.fn();
 
 jest.mock("@/node-lib/educator-api", () => ({
   getAuthenticatedEducatorApi: jest.fn().mockResolvedValue({
-    deleteUserListContent: () => mockDeleteUserListContent(),
+    createUserListContent: () => mockCreateUserListContent(),
+    getUser: () => mockGetUser(),
+    createUser: () => mockCreateUser(),
   }),
 }));
 
@@ -33,7 +36,7 @@ jest.mock("@/common-lib/error-reporter", () => ({
       mockErrorReporter(...args),
 }));
 
-describe("/api/educator-api/unsaveUnit/[programmeSlug]/[unitSlug]", () => {
+describe("/api/educator/saveUnit/[programmeSlug]/[unitSlug]", () => {
   installMockClerkClient({
     updateUserMetadata,
     getUser,
@@ -42,7 +45,10 @@ describe("/api/educator-api/unsaveUnit/[programmeSlug]/[unitSlug]", () => {
 
   beforeEach(() => {
     setGetAuth(mockGetAuthSignedIn);
-    mockDeleteUserListContent.mockResolvedValue({});
+    mockCreateUserListContent.mockResolvedValue({});
+    mockGetUser.mockResolvedValue({
+      user: [{ id: "test-user-id" }],
+    });
   });
 
   it("should return 200 for a signed in user", async () => {
@@ -53,6 +59,18 @@ describe("/api/educator-api/unsaveUnit/[programmeSlug]/[unitSlug]", () => {
 
     await handler(req, res);
     expect(res._getStatusCode()).toBe(200);
+    expect(mockCreateUser).not.toHaveBeenCalled();
+  });
+  it("should create a user if it does not exist", async () => {
+    mockGetUser.mockResolvedValue({ user: [] });
+
+    const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
+      method: "POST",
+      query: { programmeSlug: "test-programme", unitSlug: "test-unit" },
+    });
+
+    await handler(req, res);
+    expect(mockCreateUser).toHaveBeenCalled();
   });
   it("should return 401 for a signed out user", async () => {
     setGetAuth(mockGetAuthSignedOut);
@@ -81,7 +99,7 @@ describe("/api/educator-api/unsaveUnit/[programmeSlug]/[unitSlug]", () => {
     });
 
     const error = new Error("Test error");
-    mockDeleteUserListContent.mockRejectedValue(error);
+    mockCreateUserListContent.mockRejectedValue(error);
 
     await handler(req, res);
     expect(res._getStatusCode()).toBe(500);

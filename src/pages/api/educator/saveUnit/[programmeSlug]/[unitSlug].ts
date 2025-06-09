@@ -15,7 +15,8 @@ export default async function handler(
 }
 
 async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
-  const { userId, getToken } = getAuth(req);
+  const { userId, getToken, sessionClaims } = getAuth(req);
+
   const { programmeSlug, unitSlug } = req.query;
   const listTitle = "Saved content"; // default title TODO: customisable list titles
 
@@ -35,6 +36,14 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
   const educatorApi = await getAuthenticatedEducatorApi(getToken);
 
   try {
+    const { user } = await educatorApi.getUser({ userId });
+    if (user.length === 0) {
+      const sourceApp = sessionClaims?.sourceApp;
+      await educatorApi.createUser({
+        userId,
+        sourceApp,
+      });
+    }
     await educatorApi.createUserListContent({
       userId,
       unitSlug,

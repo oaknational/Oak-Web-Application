@@ -32,8 +32,8 @@ function ListItem({ children }: PropsWithChildren) {
   );
 }
 
-const RegistrationAside = ({ useNew }: { useNew: boolean }) => {
-  return useNew ? (
+const RegistrationAside = () => {
+  return (
     <OakFlex
       $flexDirection="column"
       $maxWidth="all-spacing-21"
@@ -82,32 +82,6 @@ const RegistrationAside = ({ useNew }: { useNew: boolean }) => {
         </OakFlex>
       </OakFlex>
     </OakFlex>
-  ) : (
-    <OakBox
-      $width="min-content"
-      $minWidth="all-spacing-21"
-      $mb="space-between-xl"
-    >
-      <OakFlex $mb="space-between-m2" $maxHeight="all-spacing-19">
-        <CMSImage
-          image={getIllustrationAsset("auth-acorn")}
-          $objectFit="contain"
-        />
-      </OakFlex>
-      <OakHeading
-        tag="h2"
-        $font="heading-5"
-        $mb="space-between-l"
-        $textAlign="center"
-      >
-        Our resources will always be free. Creating an account gives you:
-      </OakHeading>
-      <OakUL $font="heading-light-7" $reset $mh="space-between-xl">
-        <ListItem>Full unit downloads</ListItem>
-        <ListItem>Instant access to Aila, our AI lesson assistant</ListItem>
-        <ListItem>Priority access to new products and features</ListItem>
-      </OakUL>
-    </OakBox>
   );
 };
 
