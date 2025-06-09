@@ -39,7 +39,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     lessonSlug,
     unitSlug,
     programmeSlug,
-    yearTitle,
+    year,
     unitTitle,
     subjectSlug,
     keyStageTitle,
@@ -91,7 +91,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     <AppLayout
       seoProps={{
         ...getSeoProps({
-          title: `${lessonTitle}${getLessonData()} ${keyStageSlug.toUpperCase()} | Y${yearTitle?.slice(5)} ${subjectTitle} Lesson Resources`,
+          title: `${lessonTitle}${getLessonData()} ${keyStageSlug.toUpperCase()} | Y${year} ${subjectTitle} Lesson Resources`,
           description:
             "View lesson content and choose resources to download or share",
           canonicalURL: `${getBrowserConfig("seoAppUrl")}/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,

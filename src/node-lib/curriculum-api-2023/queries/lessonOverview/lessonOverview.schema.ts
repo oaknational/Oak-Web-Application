@@ -61,6 +61,7 @@ export const lessonOverviewSchema = baseLessonOverviewSchema.extend({
   subjectTitle: z.string(),
   subjectParent: z.string().nullish(),
   yearTitle: z.string().nullable().optional(),
+  year: z.string().nullable().optional(),
   examBoardTitle: z.string().nullable().optional(),
   examBoardSlug: z.string().nullish(),
   downloads: lessonOverviewDownloads,

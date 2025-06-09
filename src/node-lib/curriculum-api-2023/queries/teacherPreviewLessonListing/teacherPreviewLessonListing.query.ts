@@ -100,6 +100,7 @@ export const getPackagedUnit = (
     examBoardTitle: modifiedProgrammeFields.examboard,
     yearSlug: modifiedProgrammeFields.year_slug,
     yearTitle: modifiedProgrammeFields.year_description,
+    year: modifiedProgrammeFields.year,
     lessons: unitLessons.map((lesson) => ({
       ...lesson,
       isUnpublished: true,

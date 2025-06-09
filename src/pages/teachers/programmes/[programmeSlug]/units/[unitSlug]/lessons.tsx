@@ -83,7 +83,6 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
   const {
     unitSlug,
     unitvariantId,
-    yearTitle,
     keyStageTitle,
     keyStageSlug,
     unitTitle,
@@ -94,6 +93,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     pathwayTitle,
     tierTitle,
     examBoardTitle,
+    year,
   } = curriculumData;
 
   const unitListingHref = `/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/programmes`;
@@ -224,7 +224,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     <AppLayout
       seoProps={{
         ...getSeoProps({
-          title: `${unitTitle} ${keyStageSlug.toUpperCase()} | Y${yearTitle.slice(5)} ${subjectTitle} Lesson Resources${paginationTitle}`,
+          title: `${unitTitle} ${keyStageSlug.toUpperCase()} | Y${year} ${subjectTitle} Lesson Resources${paginationTitle}`,
           description: `Free lessons and teaching resources about ${unitTitle.toLowerCase()}`,
         }),
       }}
