@@ -1,3 +1,43 @@
+## [1.764.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.764.2...v1.764.3) (2025-06-09)
+
+
+### Bug Fixes
+
+* display unit-option details when showing modal for options ([45ada2b](https://github.com/oaknational/Oak-Web-Application/commit/45ada2be72655fd043eb1f53de832ec00b5570b7))
+
+## [1.764.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.764.1...v1.764.2) (2025-06-09)
+
+## [1.764.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.764.0...v1.764.1) (2025-06-09)
+
+
+### Bug Fixes
+
+* handle modal return focus manually ([367aa28](https://github.com/oaknational/Oak-Web-Application/commit/367aa281694d3e6c04f3b1dda8b891c3d1855fdb))
+
+# [1.764.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.763.2...v1.764.0) (2025-06-04)
+
+
+### Features
+
+* remove alternate layout from registration layout and ([ec34eac](https://github.com/oaknational/Oak-Web-Application/commit/ec34eacfa3fd7750eafd008cadac39292acdc16e))
+* update sign up page ([cd866ec](https://github.com/oaknational/Oak-Web-Application/commit/cd866ec6c8b78f942e13132c1b7caabc51ac8a23))
+
+## [1.763.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.763.1...v1.763.2) (2025-06-04)
+
+
+### Bug Fixes
+
+* use correct endpoint for api calls ([e9de440](https://github.com/oaknational/Oak-Web-Application/commit/e9de4402ac4a1ff30523739133538c92fae44e5c))
+
+## [1.763.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.763.0...v1.763.1) (2025-06-04)
+
+# [1.763.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.762.0...v1.763.0) (2025-06-04)
+
+
+### Features
+
+* dont show save buttons on legacy units ([a337627](https://github.com/oaknational/Oak-Web-Application/commit/a33762795515468b469287aa17145c02a79bdda2))
+
 # [1.762.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.761.2...v1.762.0) (2025-06-03)
 
 

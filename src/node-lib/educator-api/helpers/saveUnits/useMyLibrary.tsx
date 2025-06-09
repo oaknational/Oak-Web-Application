@@ -28,7 +28,7 @@ export const useMyLibrary = () => {
   const { track } = useAnalytics();
   const { data: savedProgrammeUnits, isLoading } =
     useGetEducatorData<UserlistContentApiResponse>(
-      `/api/educator-api/getSavedContentLists`,
+      `/api/educator/getSavedContentLists`,
     );
 
   const { incrementSavedUnitsCount, decrementSavedUnitsCount } =
@@ -128,7 +128,7 @@ export const useMyLibrary = () => {
     incrementSavedUnitsCount();
     setLocallySavedUnits((prev) => [...prev, unitProgrammeSlug]);
     await postEducatorData(
-      `/api/educator-api/saveUnit/${programmeSlug}/${unitSlug}`,
+      `/api/educator/saveUnit/${programmeSlug}/${unitSlug}`,
       () => {
         // Revert the optimistic update if the request fails and show an error toast
         setCurrentToastProps(ErrorToastProps);
@@ -166,7 +166,7 @@ export const useMyLibrary = () => {
       prev.filter((slug) => slug !== unitProgrammeSlug),
     );
     await postEducatorData(
-      `/api/educator-api/unsaveUnit/${programmeSlug}/${unitSlug}`,
+      `/api/educator/unsaveUnit/${programmeSlug}/${unitSlug}`,
       () => {
         // Revert the optimistic update if the request fails and show an error toast
         setCurrentToastProps(ErrorToastProps);

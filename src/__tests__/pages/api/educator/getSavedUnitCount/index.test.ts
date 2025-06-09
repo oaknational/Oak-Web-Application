@@ -1,8 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { createMocks } from "node-mocks-http";
 
-import handler from ".";
-
+import handler from "@/pages/api/educator/getSavedUnitCount";
 import {
   installMockClerkClient,
   mockServerUser,
@@ -33,7 +32,7 @@ jest.mock("@/common-lib/error-reporter", () => ({
       mockErrorReporter(...args),
 }));
 
-describe("/api/educator-api/getSavedUnitCount", () => {
+describe("/api/educator/getSavedUnitCount", () => {
   installMockClerkClient({
     updateUserMetadata,
     getUser,

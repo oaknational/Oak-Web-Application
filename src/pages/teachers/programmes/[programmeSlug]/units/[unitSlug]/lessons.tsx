@@ -303,7 +303,11 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           showRiskAssessmentBanner={showRiskAssessmentBanner}
           isIncompleteUnit={unpublishedLessonCount > 0}
           isUnitSaved={isUnitSaved(unitSlug)}
-          onSave={() => onSaveToggle(unitSlug)}
+          onSave={
+            isSlugLegacy(programmeSlug)
+              ? undefined
+              : () => onSaveToggle(unitSlug)
+          }
         />
         <OakMaxWidth $ph={"inner-padding-m"}>
           <OakGrid>

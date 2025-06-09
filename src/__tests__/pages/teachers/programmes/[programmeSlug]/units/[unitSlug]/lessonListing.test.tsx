@@ -106,133 +106,161 @@ describe("Lesson listing page", () => {
     expect(saveButton).toBeInTheDocument();
     expect(saveButton).toHaveTextContent("Saved");
   });
+  it("does not show the save button for legacy units", () => {
+    setUseUserReturn(mockLoggedIn);
+    render(
+      <LessonListPage
+        curriculumData={lessonListingFixture({
+          programmeSlug: "maths-secondary-ks4-l",
+        })}
+      />,
+    );
+    const saveButton = screen.queryByTestId("save-unit-button");
+    expect(saveButton).not.toBeInTheDocument();
+  });
+  it("sets an error for an invalid email address on incomplete units signup", async () => {
+    render(
+      <LessonListPage
+        curriculumData={lessonListingFixture({
+          lessons: lessonsWithUnpublishedContent,
+        })}
+      />,
+    );
 
-  describe("SEO", () => {
-    it("renders the correct SEO details", async () => {
-      const { seo } = renderWithSeo()(
-        <LessonListPage curriculumData={lessonListingFixture()} />,
-      );
-      expect(global.fetch).toHaveBeenCalledWith(
-        "https://mockdownloads.com/api/unit/adding-surds-1/check-files",
-      );
-      expect(seo).toEqual({
-        ...mockSeoResult,
-        ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
-        title:
-          "Adding surds KS4 | Y10 Maths Lesson Resources | NEXT_PUBLIC_SEO_APP_NAME",
-        description: "Free lessons and teaching resources about adding surds",
-        ogTitle:
-          "Adding surds KS4 | Y10 Maths Lesson Resources | NEXT_PUBLIC_SEO_APP_NAME",
-        ogDescription: "Free lessons and teaching resources about adding surds",
-        ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
-        canonical: "NEXT_PUBLIC_SEO_APP_URL",
-        robots: "index,follow",
-      });
-    });
-    it("renders the correct SEO details with pagination", async () => {
-      utilsMock.RESULTS_PER_PAGE = 2;
-      const { seo } = renderWithSeo()(
-        <LessonListPage curriculumData={lessonListingFixture()} />,
-      );
-      expect(global.fetch).toHaveBeenCalledWith(
-        "https://mockdownloads.com/api/unit/adding-surds-1/check-files",
-      );
-      expect(seo).toEqual({
-        ...mockSeoResult,
-        ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
-        title:
-          "Adding surds KS4 | Y10 Maths Lesson Resources | Page 1 of 3 | NEXT_PUBLIC_SEO_APP_NAME",
-        description: "Free lessons and teaching resources about adding surds",
-        ogTitle:
-          "Adding surds KS4 | Y10 Maths Lesson Resources | Page 1 of 3 | NEXT_PUBLIC_SEO_APP_NAME",
-        ogDescription: "Free lessons and teaching resources about adding surds",
-        ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
-        canonical: "NEXT_PUBLIC_SEO_APP_URL",
-        robots: "index,follow",
-      });
+    const emailInput = screen.getByPlaceholderText("Enter email address");
+    const user = userEvent.setup();
+    user.type(emailInput, "invalid-email");
+    const signupButton = screen.getByText("Sign up");
+    await userEvent.click(signupButton);
+    const errorMessage = await screen.findByText(
+      "Please enter a valid email address",
+    );
+    expect(errorMessage).toBeInTheDocument();
+  });
+});
+
+describe("SEO", () => {
+  it("renders the correct SEO details", async () => {
+    const { seo } = renderWithSeo()(
+      <LessonListPage curriculumData={lessonListingFixture()} />,
+    );
+    expect(global.fetch).toHaveBeenCalledWith(
+      "https://mockdownloads.com/api/unit/adding-surds-1/check-files",
+    );
+    expect(seo).toEqual({
+      ...mockSeoResult,
+      ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
+      title:
+        "Adding surds KS4 | Y10 Maths Lesson Resources | NEXT_PUBLIC_SEO_APP_NAME",
+      description: "Free lessons and teaching resources about adding surds",
+      ogTitle:
+        "Adding surds KS4 | Y10 Maths Lesson Resources | NEXT_PUBLIC_SEO_APP_NAME",
+      ogDescription: "Free lessons and teaching resources about adding surds",
+      ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
+      canonical: "NEXT_PUBLIC_SEO_APP_URL",
+      robots: "index,follow",
     });
   });
-  describe("getStaticProps", () => {
-    it("Should call curriculum api with correct props", async () => {
-      await getStaticProps({
-        params: {
-          programmeSlug: "maths-secondary-ks4-higher-l",
-          unitSlug: "adding-surds-a57d",
-        },
-      });
-      expect(curriculumApi.lessonListing).toHaveBeenCalledWith({
+  it("renders the correct SEO details with pagination", async () => {
+    utilsMock.RESULTS_PER_PAGE = 2;
+    const { seo } = renderWithSeo()(
+      <LessonListPage curriculumData={lessonListingFixture()} />,
+    );
+    expect(global.fetch).toHaveBeenCalledWith(
+      "https://mockdownloads.com/api/unit/adding-surds-1/check-files",
+    );
+    expect(seo).toEqual({
+      ...mockSeoResult,
+      ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
+      title:
+        "Adding surds KS4 | Y10 Maths Lesson Resources | Page 1 of 3 | NEXT_PUBLIC_SEO_APP_NAME",
+      description: "Free lessons and teaching resources about adding surds",
+      ogTitle:
+        "Adding surds KS4 | Y10 Maths Lesson Resources | Page 1 of 3 | NEXT_PUBLIC_SEO_APP_NAME",
+      ogDescription: "Free lessons and teaching resources about adding surds",
+      ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
+      canonical: "NEXT_PUBLIC_SEO_APP_URL",
+      robots: "index,follow",
+    });
+  });
+});
+
+describe("getStaticProps", () => {
+  it("Should call curriculum api with correct props", async () => {
+    await getStaticProps({
+      params: {
         programmeSlug: "maths-secondary-ks4-higher-l",
         unitSlug: "adding-surds-a57d",
-      });
+      },
     });
-    it("should return notFound when a landing page is missing", async () => {
-      (curriculumApi.lessonListing as jest.Mock).mockResolvedValueOnce(
-        undefined,
-      );
-
-      const context = {
-        params: {
-          programmeSlug: "maths-secondary-ks4-higher-l",
-          unitSlug: "adding-surds-a57d",
-        },
-      };
-      const response = await getStaticProps(context);
-      expect(response).toEqual({
-        notFound: true,
-      });
-    });
-    it("should throw error when params are missing", async () => {
-      const context = {
-        params: {
-          programmeSlug: "maths-secondary-ks4-higher-l",
-        },
-      };
-      await expect(
-        getStaticProps(
-          context as GetStaticPropsContext<URLParams, PreviewData>,
-        ),
-      ).rejects.toThrowError("unexpected context.params");
-    });
-    it("should throw error", async () => {
-      await expect(
-        getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>),
-      ).rejects.toThrowError("no context.params");
+    expect(curriculumApi.lessonListing).toHaveBeenCalledWith({
+      programmeSlug: "maths-secondary-ks4-higher-l",
+      unitSlug: "adding-surds-a57d",
     });
   });
-  describe("tracking", () => {
-    test("It calls tracking.lessonSelected with correct props when clicked", async () => {
-      const { getByText } = render(
-        <LessonListPage curriculumData={lessonListingFixture()} />,
-      );
+  it("should return notFound when a landing page is missing", async () => {
+    (curriculumApi.lessonListing as jest.Mock).mockResolvedValueOnce(undefined);
 
-      const lesson = getByText("Add two surds");
-      await userEvent.click(lesson);
-
-      expect(global.fetch).toHaveBeenCalledWith(
-        "https://mockdownloads.com/api/unit/adding-surds-1/check-files",
-      );
-      expect(lessonSelected).toHaveBeenCalledTimes(1);
-      expect(lessonSelected).toHaveBeenCalledWith({
-        platform: "owa",
-        product: "teacher lesson resources",
-        engagementIntent: "use",
-        componentType: "lesson_card",
-        eventVersion: "2.0.0",
-        analyticsUseCase: "Teacher",
-        lessonName: "Add two surds",
-        lessonSlug: "add-two-surds-6wwk0c",
-        unitName: "Adding surds",
+    const context = {
+      params: {
+        programmeSlug: "maths-secondary-ks4-higher-l",
         unitSlug: "adding-surds-a57d",
-        keyStageSlug: "ks4",
-        keyStageTitle: "Key Stage 4",
-        yearGroupName: "Year 10",
-        yearGroupSlug: "year-10",
-        tierName: null,
-        examBoard: null,
-        lessonReleaseCohort: "2023-2026",
-        lessonReleaseDate: "2025-09-29T14:00:00.000Z",
-        pathway: null,
-      });
+      },
+    };
+    const response = await getStaticProps(context);
+    expect(response).toEqual({
+      notFound: true,
+    });
+  });
+  it("should throw error when params are missing", async () => {
+    const context = {
+      params: {
+        programmeSlug: "maths-secondary-ks4-higher-l",
+      },
+    };
+    await expect(
+      getStaticProps(context as GetStaticPropsContext<URLParams, PreviewData>),
+    ).rejects.toThrowError("unexpected context.params");
+  });
+  it("should throw error", async () => {
+    await expect(
+      getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>),
+    ).rejects.toThrowError("no context.params");
+  });
+});
+describe("tracking", () => {
+  test("It calls tracking.lessonSelected with correct props when clicked", async () => {
+    const { getByText } = render(
+      <LessonListPage curriculumData={lessonListingFixture()} />,
+    );
+
+    const lesson = getByText("Add two surds");
+    await userEvent.click(lesson);
+
+    expect(global.fetch).toHaveBeenCalledWith(
+      "https://mockdownloads.com/api/unit/adding-surds-1/check-files",
+    );
+    expect(lessonSelected).toHaveBeenCalledTimes(1);
+    expect(lessonSelected).toHaveBeenCalledWith({
+      platform: "owa",
+      product: "teacher lesson resources",
+      engagementIntent: "use",
+      componentType: "lesson_card",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
+      lessonName: "Add two surds",
+      lessonSlug: "add-two-surds-6wwk0c",
+      unitName: "Adding surds",
+      unitSlug: "adding-surds-a57d",
+      keyStageSlug: "ks4",
+      keyStageTitle: "Key Stage 4",
+      yearGroupName: "Year 10",
+      yearGroupSlug: "year-10",
+      tierName: null,
+      examBoard: null,
+      lessonReleaseCohort: "2023-2026",
+      lessonReleaseDate: "2025-09-29T14:00:00.000Z",
+      pathway: null,
     });
   });
 });
