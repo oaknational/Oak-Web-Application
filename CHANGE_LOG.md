@@ -1,3 +1,10 @@
+## [1.764.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.764.0...v1.764.1) (2025-06-09)
+
+
+### Bug Fixes
+
+* handle modal return focus manually ([367aa28](https://github.com/oaknational/Oak-Web-Application/commit/367aa281694d3e6c04f3b1dda8b891c3d1855fdb))
+
 # [1.764.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.763.2...v1.764.0) (2025-06-04)
 
 
