@@ -19,7 +19,7 @@ export const getAllYearGroups = (units: GroupedUnitsSchema): YearGroup[] => {
       .reduce((acc, unit) => {
         const yearTitle = yearDescriptions.parse(unit[0]?.yearTitle);
         const yearSlug = yearSlugs.parse(unit[0]?.yearSlug);
-        const year = years.parse(unit[0]?.yearSlug);
+        const year = years.parse(unit[0]?.year);
 
         if (yearTitle && yearSlug && !acc.has(yearTitle)) {
           acc.set(yearTitle, {
