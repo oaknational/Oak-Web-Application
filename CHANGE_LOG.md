@@ -1,3 +1,10 @@
+## [1.764.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.764.2...v1.764.3) (2025-06-09)
+
+
+### Bug Fixes
+
+* display unit-option details when showing modal for options ([45ada2b](https://github.com/oaknational/Oak-Web-Application/commit/45ada2be72655fd043eb1f53de832ec00b5570b7))
+
 ## [1.764.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.764.1...v1.764.2) (2025-06-09)
 
 ## [1.764.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.764.0...v1.764.1) (2025-06-09)
