@@ -25,7 +25,6 @@ export type MobileUnitFiltersProps = {
   setSelectedThemeSlug: (theme: string | undefined) => void;
   learningThemesFilterId: string;
   isSpecialist?: boolean;
-  yearGroups: UnitListingData["yearGroups"];
 } & (UnitListingData | SpecialistUnitListingData);
 
 // Type guard as due to differences in specialist and non-specialist unit listing data
@@ -47,7 +46,6 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
     subjectSlug,
     units,
     isSpecialist,
-    yearGroups,
   } = props;
   const isUnitListing = isUnitListingData(props);
   const router = useRouter();
@@ -152,7 +150,7 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
             <YearGroupFilters
               idSuffix="mobile"
               programmeSlug={programmeSlug}
-              yearGroups={yearGroups}
+              yearGroups={props.yearGroups}
               browseRefined={browseRefined}
               activeMobileFilter={year}
               setYear={setYear}

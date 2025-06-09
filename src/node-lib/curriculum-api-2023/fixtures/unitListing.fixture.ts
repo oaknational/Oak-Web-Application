@@ -18,7 +18,7 @@ export const unitListingFixture = (
     phase: "secondary",
     yearGroups: [
       {
-        year: "year-10",
+        yearSlug: "year-10",
         yearTitle: "Year 10",
       },
     ],
