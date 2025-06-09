@@ -30,6 +30,7 @@ export default function CurricUnitDetails({
   handleUnitOverviewExploredAnalytics,
 }: CurricUnitDetailsProps) {
   const threads = unit.threads;
+  const priorKnowledgeRequirements = unit.prior_knowledge_requirements;
   const {
     lessons,
     connection_prior_unit_description: priorUnitDescription,
@@ -37,7 +38,6 @@ export default function CurricUnitDetails({
     connection_prior_unit_title: priorUnitTitle,
     connection_future_unit_title: futureUnitTitle,
     why_this_why_now: whyThisWhyNow,
-    prior_knowledge_requirements: priorKnowledgeRequirements,
     description,
   } = unitOption ?? unit;
 
