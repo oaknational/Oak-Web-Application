@@ -2,6 +2,7 @@ import unitListingFixture from "../fixtures/unitListing.fixture";
 import { unitBrowseDataFixture } from "../fixtures/unitBrowseData.fixture";
 import { subjectBrowseDataFixture } from "../fixtures/subjectBrowseData.fixture";
 import { LessonShareQuery } from "../queries/lessonShare/lessonShare.query";
+import { UnitListingQueryReturn } from "../queries/unitListing/unitListing.query";
 
 import { specialistSubjectListingFixture2023 } from "@/node-lib/curriculum-api-2023/fixtures/specialistSubjectListing.fixture";
 import programmeListingFixture from "@/node-lib/curriculum-api-2023/fixtures/programmeListing.fixture";
@@ -145,7 +146,7 @@ const curriculumApi: Pick<
   }) as jest.Mocked<LessonMediaClipsQueryReturn>,
   unitListing: jest.fn(async () => {
     return unitListingFixture();
-  }),
+  }) as jest.Mocked<UnitListingQueryReturn>,
   refreshedMVTime: jest.fn(async () => {
     return refreshedMVTimeFixture();
   }),

@@ -78,6 +78,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     pathwayTitle,
     relatedSubjects,
     phase,
+    hasCycle2Content,
   } = curriculumData;
 
   const { track } = useAnalytics();
@@ -322,7 +323,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
               $mt={"space-between-m2"}
             >
               <OakFlex $flexDirection="column" $gap="space-between-m2">
-                {!isSlugLegacy(programmeSlug) && (
+                {hasCycle2Content && (
                   <OakLinkCard
                     mainSection={
                       <OakFlex $flexDirection="column" $gap="space-between-s">
