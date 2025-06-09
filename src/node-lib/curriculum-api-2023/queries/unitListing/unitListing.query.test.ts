@@ -121,7 +121,7 @@ describe("unitListing()", () => {
       subjectParent: "Maths",
       tierSlug: "foundation",
       phase: "primary",
-      yearGroups: [{ yearTitle: "Year 1", yearSlug: "year-1" }],
+      yearGroups: [{ yearTitle: "Year 1", yearSlug: "year-1", year: "1" }],
       subjectCategories: [
         {
           label: "Physics",

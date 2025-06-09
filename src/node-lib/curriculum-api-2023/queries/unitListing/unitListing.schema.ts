@@ -15,6 +15,7 @@ import {
   tierDescriptions,
   pathways,
   actionsSchema,
+  years,
 } from "@oaknational/oak-curriculum-schema";
 
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
@@ -35,7 +36,7 @@ const subjectCategorySchema = z.object({
 export type SubjectCategory = z.infer<typeof subjectCategorySchema>;
 
 const yearGroupsSchema = z.array(
-  z.object({ yearSlug: yearSlugs, yearTitle: yearDescriptions }),
+  z.object({ yearSlug: yearSlugs, yearTitle: yearDescriptions, year: years }),
 );
 export type YearGroups = z.infer<typeof yearGroupsSchema>;
 

@@ -4,40 +4,18 @@ const getYearGroupSEOString = (yearGroups: YearGroups): string => {
   if (yearGroups.length === 0) {
     return "";
   }
-  // if there is only one year group, return it formatted
   if (yearGroups.length === 1) {
-    const yearTitle = yearGroups[0]!.yearTitle;
-    return getYearfromYearTitle(yearTitle, true);
+    const yearGroup = yearGroups[0]!;
+    return `Y ${yearGroup.year}`;
   }
-
-  //   split the elements into two parts: the last element and the rest
-  const lastElement = yearGroups[yearGroups.length - 1]!;
-  const restOfElements = yearGroups.slice(0, -1);
-
-  //   For the main elements, we want them with commas between
-  const mainString = restOfElements
-    .map((group) => getYearfromYearTitle(group.yearTitle))
-    .join(", ");
-  const lastYear = getYearfromYearTitle(lastElement.yearTitle);
-  //   put a comma before the last element
-  const string = `${mainString} & ${lastYear}`;
-
-  //   find the first number and put a Y before it
-  return string.replace(/(\d+)/, "Y$1");
-};
-
-const getYearfromYearTitle = (
-  yearTitle: YearGroups[number]["yearTitle"],
-  isOnlyElement: boolean = false,
-): string => {
-  const yearMatch = yearTitle.match(/Year (\d+)/);
-  if (yearMatch && yearMatch[1]) {
-    // put a Y before the number if it is a year
-    return isOnlyElement ? `Y${yearMatch[1]}` : yearMatch[1];
-  } else if (yearTitle === "Reception" || yearTitle === "All years") {
-    return yearTitle;
+  if (yearGroups.length === 2) {
+    const yearGroup1 = yearGroups[0]!;
+    const yearGroup2 = yearGroups[1]!;
+    return `Y ${yearGroup1.year} & ${yearGroup2.year}`;
   }
-  return "";
+  const yearGroupStrings = yearGroups.map((yearGroup) => yearGroup.year);
+  const lastYearGroup = yearGroupStrings.pop();
+  return `Y ${yearGroupStrings.join(", ")}, & ${lastYearGroup}`;
 };
 
 export default getYearGroupSEOString;

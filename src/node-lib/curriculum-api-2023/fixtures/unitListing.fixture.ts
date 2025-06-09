@@ -20,6 +20,7 @@ export const unitListingFixture = (
       {
         yearSlug: "year-10",
         yearTitle: "Year 10",
+        year: "10",
       },
     ],
     tiers: [],

@@ -48,7 +48,7 @@ describe("unit list helpers", () => {
       phase: "secondary",
       learningThemes: [],
       hasNewContent: false,
-      yearGroups: [{ yearSlug: "year-1", yearTitle: "Year 1" }],
+      yearGroups: [{ yearSlug: "year-1", yearTitle: "Year 1", year: "1" }],
       subjectCategories: [
         { label: "Biology", slug: "biology", iconName: "icon-biology" },
       ],
@@ -98,7 +98,7 @@ describe("unit list helpers", () => {
       learningThemes: [],
       hasNewContent: false,
       currentPageItems: [],
-      yearGroups: [{ yearSlug: "year-10", yearTitle: "Year 10" }],
+      yearGroups: [{ yearSlug: "year-10", yearTitle: "Year 10", year: "10" }],
       subjectCategories: [
         { label: "Biology", slug: "biology", iconName: "icon-biology" },
       ],
@@ -133,7 +133,7 @@ describe("unit list helpers", () => {
       hasNewContent: false,
       currentPageItems: [],
       paginationProps: mockPaginationProps,
-      yearGroups: [{ yearSlug: "year-10", yearTitle: "Year 10" }],
+      yearGroups: [{ yearSlug: "year-10", yearTitle: "Year 10", year: "10" }],
       onClick: () => {},
     });
     expect(result).toEqual({
