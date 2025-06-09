@@ -243,7 +243,7 @@ const UnitList: FC<UnitListProps> = (props) => {
           const findIndex = legacyUnits?.findIndex(
             (unit) =>
               unit[0]?.slug === item[0]?.slug &&
-              (isSpecialistUnit || unit[0]?.year === castItem[0]?.year),
+              (isSpecialistUnit || unit[0]?.yearSlug === castItem[0]?.yearSlug),
           );
           calculatedIndex = findIndex;
         } else {
