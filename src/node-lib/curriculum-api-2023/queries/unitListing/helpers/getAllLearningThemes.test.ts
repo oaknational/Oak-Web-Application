@@ -16,6 +16,7 @@ describe("unit listing threads", () => {
           yearTitle: "Year 4",
           yearOrder: 1,
           yearSlug: "year-4",
+          year: "4",
           unitStudyOrder: 1,
           cohort: "cohort",
           lessonCount: 1,

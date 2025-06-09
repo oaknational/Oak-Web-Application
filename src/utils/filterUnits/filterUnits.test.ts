@@ -42,6 +42,7 @@ describe("filterUnits", () => {
           unpublishedLessonCount: 0,
           yearTitle: "Year 10",
           yearSlug: "year-10",
+          year: "10",
           cohort: "2023-2024",
           subjectCategories: null,
           learningThemes: [
@@ -81,6 +82,7 @@ describe("filterUnits", () => {
           unpublishedLessonCount: 0,
           yearTitle: "Year 10",
           yearSlug: "year-10",
+          year: "10",
           cohort: "2023-2024",
           subjectCategories: [
             {
@@ -115,6 +117,7 @@ describe("filterUnits", () => {
           unpublishedLessonCount: 0,
           yearTitle: "Year 10",
           yearSlug: "year-10",
+          year: "10",
           cohort: "2023-2024",
           subjectCategories: [
             {
@@ -166,6 +169,7 @@ describe("filterUnits", () => {
           unpublishedLessonCount: 0,
           yearTitle: "Year 10",
           yearSlug: "year-10",
+          year: "10",
           cohort: "2023-2024",
           learningThemes: [
             {
@@ -225,6 +229,7 @@ describe("filterUnits", () => {
           expiredLessonCount: 0,
           yearTitle: "Year 10",
           yearSlug: "year-10",
+          year: "10",
           cohort: "2023-2024",
           learningThemes: [
             {

@@ -79,7 +79,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
 
   const getLessonData = () => {
     if (tierTitle && examBoardTitle) {
-      return ` ${tierTitle} | ${examBoardTitle}`;
+      return ` ${tierTitle} ${examBoardTitle}`;
     } else if (tierTitle) {
       return ` ${tierTitle}`;
     } else if (examBoardTitle) {

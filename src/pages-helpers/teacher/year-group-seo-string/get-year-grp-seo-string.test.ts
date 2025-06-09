@@ -13,7 +13,7 @@ describe("getYearGroupSEOString", () => {
         yearSlug: "year-1",
       },
     ]);
-    expect(result).toBe("Y 1");
+    expect(result).toBe("Y1");
   });
   test("return correct string for two year groups", () => {
     const result = getYearGroupSEOString([
@@ -28,7 +28,7 @@ describe("getYearGroupSEOString", () => {
         yearSlug: "year-2",
       },
     ]);
-    expect(result).toBe("Y 1 & 2");
+    expect(result).toBe("Y1 & 2");
   });
   test("return correct string for multiple year groups", () => {
     const result = getYearGroupSEOString([
@@ -48,7 +48,7 @@ describe("getYearGroupSEOString", () => {
         yearSlug: "year-3",
       },
     ]);
-    expect(result).toBe("Y 1, 2, & 3");
+    expect(result).toBe("Y1, 2, & 3");
   });
   test("handles reception year correctly", () => {
     const result = getYearGroupSEOString([
@@ -71,6 +71,6 @@ describe("getYearGroupSEOString", () => {
         yearSlug: "year-2",
       },
     ]);
-    expect(result).toBe("Y R, 1, & 2");
+    expect(result).toBe("YR, 1, & 2");
   });
 });

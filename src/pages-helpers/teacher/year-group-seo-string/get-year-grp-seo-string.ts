@@ -6,16 +6,16 @@ const getYearGroupSEOString = (yearGroups: YearGroups): string => {
   }
   if (yearGroups.length === 1) {
     const yearGroup = yearGroups[0]!;
-    return `Y ${yearGroup.year}`;
+    return `Y${yearGroup.year}`;
   }
   if (yearGroups.length === 2) {
     const yearGroup1 = yearGroups[0]!;
     const yearGroup2 = yearGroups[1]!;
-    return `Y ${yearGroup1.year} & ${yearGroup2.year}`;
+    return `Y${yearGroup1.year} & ${yearGroup2.year}`;
   }
   const yearGroupStrings = yearGroups.map((yearGroup) => yearGroup.year);
   const lastYearGroup = yearGroupStrings.pop();
-  return `Y ${yearGroupStrings.join(", ")}, & ${lastYearGroup}`;
+  return `Y${yearGroupStrings.join(", ")}, & ${lastYearGroup}`;
 };
 
 export default getYearGroupSEOString;
