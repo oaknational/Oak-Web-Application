@@ -117,12 +117,13 @@ export default function CurricUnitModalContent({
             </OakFlex>
 
             <OakHeading tag="h2" $font={"heading-5"}>
-              {unitData.title}
+              {unitOptionData?.title ?? unitData.title}
             </OakHeading>
             {!unitOptionsAvailable && (
               <OakBox $display={optionalityModalOpen ? "none" : "block"}>
                 <CurricUnitDetails
                   unit={unitData}
+                  unitOption={unitOptionData}
                   handleUnitOverviewExploredAnalytics={
                     handleUnitOverviewExploredAnalytics
                   }
