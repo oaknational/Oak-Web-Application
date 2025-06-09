@@ -263,7 +263,7 @@ describe("trackCurriculumDownload", () => {
           status: "Open",
         },
       ],
-      downloadType: "word" as const,
+      downloadType: "curriculum-plans" as const,
     };
 
     const subjectTitle = "Mathematics";

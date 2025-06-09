@@ -4,7 +4,7 @@ import { generateEmptyXlsx, JSZipCached } from "../docx/docx";
 import { cdata, safeXml } from "../docx/xml";
 import { formatCurriculumUnitsData } from "../docx/tab-helpers";
 
-import { Output } from "@/pages/api/curriculum-national-curriculum";
+import { Output } from "@/pages/api/national-curriculum";
 import { Unit } from "@/utils/curriculum/types";
 
 export type Slugs = {
@@ -15,8 +15,6 @@ export type Slugs = {
   tierSlug?: string;
   childSubjectSlug?: string;
 };
-
-//200,242,194
 
 function addOrUpdateSheet(zip: JSZipCached, sheetNumber: number, xml: string) {
   zip.writeString(
@@ -42,28 +40,24 @@ function buildStyle() {
           <color theme="1" />
           <name val="Arial" />
           <family val="2" />
-          <scheme val="minor" />
         </font>
         <font>
           <sz val="22" />
           <color rgb="FFFFFFFF" />
-          <name val="Arial" />
+          <name val="Arial Bold" />
           <family val="2" />
-          <scheme val="minor" />
         </font>
         <font>
           <sz val="24" />
           <color rgb="FF000000" />
-          <name val="Arial" />
+          <name val="Arial Bold" />
           <family val="2" />
-          <scheme val="minor" />
         </font>
         <font>
           <sz val="14" />
           <color rgb="FF000000" />
-          <name val="Arial" />
+          <name val="Arial Bold" />
           <family val="2" />
-          <scheme val="minor" />
         </font>
       </fonts>
       <fills count="3">
@@ -106,26 +100,83 @@ function buildStyle() {
           <bottom />
           <diagonal />
         </border>
+        <border>
+          <left style="thin">
+            <color rgb="FFD4D4D4" />
+          </left>
+          <right style="thin">
+            <color rgb="FFD4D4D4" />
+          </right>
+          <top style="thin">
+            <color rgb="FFD4D4D4" />
+          </top>
+          <bottom style="thin">
+            <color rgb="FFD4D4D4" />
+          </bottom>
+          <diagonal />
+        </border>
       </borders>
       <cellStyleXfs count="1">
-        <xf numFmtId="0" fontId="0" fillId="0" borderId="0" />
+        <xf numFmtId="0" fontId="0" fillId="0" borderId="1" />
       </cellStyleXfs>
       <cellXfs count="1">
-        <xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0" />
-        <xf numFmtId="0" fontId="2" fillId="2" borderId="0" xfId="0">
+        <xf
+          numFmtId="0"
+          fontId="0"
+          fillId="0"
+          borderId="1"
+          xfId="0"
+          applyBorder="0"
+        />
+        <xf
+          numFmtId="0"
+          fontId="2"
+          fillId="2"
+          borderId="1"
+          xfId="0"
+          applyBorder="0"
+        >
           <alignment wrapText="1" />
         </xf>
-        <xf numFmtId="0" fontId="3" fillId="3" borderId="0" xfId="0">
+        <xf
+          numFmtId="0"
+          fontId="3"
+          fillId="3"
+          borderId="1"
+          xfId="0"
+          applyBorder="0"
+        >
           <alignment wrapText="1" />
         </xf>
-        <xf numFmtId="0" fontId="3" fillId="3" borderId="0" xfId="0">
+        <xf
+          numFmtId="0"
+          fontId="3"
+          fillId="3"
+          borderId="1"
+          xfId="0"
+          applyBorder="0"
+        >
           <alignment wrapText="1" />
         </xf>
-        <xf numFmtId="0" fontId="0" fillId="4" borderId="0" xfId="0">
+        <xf
+          numFmtId="0"
+          fontId="0"
+          fillId="4"
+          borderId="1"
+          xfId="0"
+          applyBorder="0"
+        >
           <alignment wrapText="1" />
         </xf>
-        <xf numFmtId="0" fontId="1" fillId="5" borderId="0" xfId="0">
-          <alignment wrapText="1" />
+        <xf
+          numFmtId="0"
+          fontId="1"
+          fillId="5"
+          borderId="1"
+          xfId="0"
+          applyBorder="0"
+        >
+          <alignment wrapText="1" horizontal="center" vertical="center" />
         </xf>
       </cellXfs>
       <cellStyles count="1">
@@ -170,7 +221,16 @@ function buildNatCurric(data: BuildNationalCurriculumData) {
     >
       <dimension ref="A1" />
       <sheetViews>
-        <sheetView tabSelected="1" workbookViewId="0" />
+        <sheetView tabSelected="1" workbookViewId="0">
+          <pane
+            xSplit="1"
+            ySplit="2"
+            topLeftCell="B3"
+            activePane="bottomLeft"
+            state="frozen"
+          />
+          <selection pane="bottomLeft" activeCell="A1" sqref="A1" />
+        </sheetView>
       </sheetViews>
       <sheetFormatPr
         baseColWidth="10"
@@ -178,7 +238,7 @@ function buildNatCurric(data: BuildNationalCurriculumData) {
         x14ac:dyDescent="0.2"
       />
       <cols>
-        <col min="1" max="2" width="34" customWidth="1" />
+        <col min="1" max="2" width="60" customWidth="1" />
         <col
           min="2"
           max="${data.unitData.length + 1}"
@@ -229,7 +289,7 @@ function buildNatCurric(data: BuildNationalCurriculumData) {
                     <c
                       r="${cartesianToExcelCoords([unitIndex + 2, yPos])}"
                       t="inlineStr"
-                      s="5"
+                      s="${unit.nationalCurricIds.includes(id) ? "5" : "0"}"
                     >
                       <is>
                         <t>
