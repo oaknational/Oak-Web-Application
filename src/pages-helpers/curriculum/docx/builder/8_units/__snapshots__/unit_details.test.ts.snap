@@ -1,5 +1,102 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`buildUnitPriorKnowledgeReqs with data & !enabled 1`] = `undefined`;
+
+exports[`buildUnitPriorKnowledgeReqs with data & enabled 1`] = `
+"
+      <w:p>
+        <w:pPr>
+          <w:pStyle w:val="Heading4" />
+        </w:pPr>
+        <w:r>
+          <w:rPr>
+            <w:rFonts
+              w:ascii="Arial"
+              w:eastAsia="Arial"
+              w:hAnsi="Arial"
+              w:cs="Arial"
+            />
+            <w:b />
+            <w:i w:val="0" />
+            <w:color w:val="000000" />
+            <w:sz w:val="28" />
+          </w:rPr>
+          <w:t>Prior knowledge requirements</w:t>
+        </w:r>
+      </w:p>
+      
+          <w:p>
+            <w:pPr>
+              <w:numPr>
+                <w:ilvl w:val="0" />
+                <w:numId w:val="test" />
+              </w:numPr>
+              <w:spacing w:line="276" w:lineRule="auto" />
+              <w:ind w:left="425" w:right="-17" w:hanging="360" />
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts
+                  w:ascii="Arial"
+                  w:eastAsia="Arial"
+                  w:hAnsi="Arial"
+                  w:cs="Arial"
+                />
+                <w:color w:val="222222" />
+              </w:rPr>
+              <w:t><![CDATA[prior knowledge req 1]]></w:t>
+            </w:r>
+          </w:p>
+        
+          <w:p>
+            <w:pPr>
+              <w:numPr>
+                <w:ilvl w:val="0" />
+                <w:numId w:val="test" />
+              </w:numPr>
+              <w:spacing w:line="276" w:lineRule="auto" />
+              <w:ind w:left="425" w:right="-17" w:hanging="360" />
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts
+                  w:ascii="Arial"
+                  w:eastAsia="Arial"
+                  w:hAnsi="Arial"
+                  w:cs="Arial"
+                />
+                <w:color w:val="222222" />
+              </w:rPr>
+              <w:t><![CDATA[prior knowledge req 2]]></w:t>
+            </w:r>
+          </w:p>
+        
+          <w:p>
+            <w:pPr>
+              <w:numPr>
+                <w:ilvl w:val="0" />
+                <w:numId w:val="test" />
+              </w:numPr>
+              <w:spacing w:line="276" w:lineRule="auto" />
+              <w:ind w:left="425" w:right="-17" w:hanging="360" />
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts
+                  w:ascii="Arial"
+                  w:eastAsia="Arial"
+                  w:hAnsi="Arial"
+                  w:cs="Arial"
+                />
+                <w:color w:val="222222" />
+              </w:rPr>
+              <w:t><![CDATA[prior knowledge req 3]]></w:t>
+            </w:r>
+          </w:p>
+        
+    "
+`;
+
 exports[`buildUnitPriorKnowledgeReqs with data 1`] = `
 "
       <w:p>

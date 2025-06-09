@@ -25,7 +25,7 @@ describe("buildUnitPriorKnowledgeReqs", () => {
   });
 
   if (ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS) {
-    test("with data", async () => {
+    test("with data & enabled", async () => {
       const out = await buildUnitPriorKnowledgeReqs(
         FAKE_ZIP as unknown as JSZipCached,
         createUnit({
@@ -34,6 +34,9 @@ describe("buildUnitPriorKnowledgeReqs", () => {
             "prior knowledge req 2",
             "prior knowledge req 3",
           ],
+          parent_programme_features: {
+            prior_knowledge_requirements: true,
+          },
         }),
       );
       expect(insertNumberingMock).toHaveBeenCalled();
@@ -43,6 +46,24 @@ describe("buildUnitPriorKnowledgeReqs", () => {
           priorKnowledgeReqsNumbering: expect.anything(),
         }),
       );
+      expect(out).toMatchSnapshot();
+    });
+
+    test("with data & !enabled", async () => {
+      const out = await buildUnitPriorKnowledgeReqs(
+        FAKE_ZIP as unknown as JSZipCached,
+        createUnit({
+          prior_knowledge_requirements: [
+            "prior knowledge req 1",
+            "prior knowledge req 2",
+            "prior knowledge req 3",
+          ],
+          parent_programme_features: {
+            prior_knowledge_requirements: false,
+          },
+        }),
+      );
+      expect(insertNumberingMock).not.toHaveBeenCalled();
       expect(out).toMatchSnapshot();
     });
 
