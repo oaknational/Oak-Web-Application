@@ -10,12 +10,13 @@ import {
 
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import CurricUnitDetailsAccordion from "@/components/CurriculumComponents/CurricUnitDetailsAccordion";
-import { Unit } from "@/utils/curriculum/types";
+import { Unit, UnitOption } from "@/utils/curriculum/types";
 import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 import { ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS } from "@/utils/curriculum/constants";
 
 export type CurricUnitDetailsProps = {
   unit: Unit;
+  unitOption?: UnitOption;
   isUnitDescriptionEnabled: boolean;
   handleUnitOverviewExploredAnalytics: (
     componentType: ComponentTypeValueType,
@@ -24,11 +25,12 @@ export type CurricUnitDetailsProps = {
 
 export default function CurricUnitDetails({
   unit,
+  unitOption,
   isUnitDescriptionEnabled,
   handleUnitOverviewExploredAnalytics,
 }: CurricUnitDetailsProps) {
+  const threads = unit.threads;
   const {
-    threads,
     lessons,
     connection_prior_unit_description: priorUnitDescription,
     connection_future_unit_description: futureUnitDescription,
@@ -37,7 +39,8 @@ export default function CurricUnitDetails({
     why_this_why_now: whyThisWhyNow,
     prior_knowledge_requirements: priorKnowledgeRequirements,
     description,
-  } = unit;
+  } = unitOption ?? unit;
+
   const threadTitleSet = new Set<string>(threads.map((thread) => thread.title));
 
   const lessonTitleSet = new Set<string>(
