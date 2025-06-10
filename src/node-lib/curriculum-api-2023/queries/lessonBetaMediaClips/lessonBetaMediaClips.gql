@@ -13,5 +13,6 @@ query betaLessonMediaClips($lessonSlug: String!) {
     features
     order_in_unit
     media_clips
+    programme_slug_by_year
   }
 }

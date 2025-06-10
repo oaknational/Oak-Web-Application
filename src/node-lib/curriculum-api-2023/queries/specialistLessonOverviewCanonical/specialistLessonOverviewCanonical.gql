@@ -28,13 +28,4 @@ query specialistLessonOverviewCanonical($lessonSlug: String!) {
     transcript_sentences
     order_in_unit
   }
-  unitData: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_16_0_0(
-    where: {
-      supplementary_data: {
-        _contains: { static_lesson_list: [{ slug: $lessonSlug }] },
-      },
-    }
-  ) {
-    lesson_count
-  }
 }

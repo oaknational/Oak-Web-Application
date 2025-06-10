@@ -8,7 +8,7 @@ describe("specialistLessonOverview()", () => {
       await specialistLessonOverview({
         ...sdk,
         specialistLessonOverview: jest.fn(() =>
-          Promise.resolve({ lesson: [], unitData: [] }),
+          Promise.resolve({ lesson: [], allLessons: [] }),
         ),
       })({
         lessonSlug: "specialist-lesson-slug",
@@ -106,10 +106,19 @@ describe("specialistLessonOverview()", () => {
               order_in_unit: 2,
             },
           ],
-          unitData: [
-            { lesson_count: 1 },
-            { lesson_count: 2 },
-            { lesson_count: 3 },
+          allLessons: [
+            {
+              lesson_slug: "specialist-lesson-slug",
+              lesson_title: "specialist-lesson-title",
+            },
+            {
+              lesson_slug: "specialist-lesson-slug",
+              lesson_title: "specialist-lesson-title",
+            },
+            {
+              lesson_slug: "specialist-lesson-slug",
+              lesson_title: "specialist-lesson-title",
+            },
           ],
         }),
       ),
@@ -166,7 +175,7 @@ describe("specialistLessonOverview()", () => {
                 order_in_unit: null,
               },
             ],
-            unitData: [],
+            allLessons: [],
           }),
         ),
       })({

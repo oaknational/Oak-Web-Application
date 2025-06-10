@@ -42,15 +42,13 @@ query specialistLessonOverview(
     lesson_release_date
     order_in_unit
   }
-  unitData: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_16_0_0(
+  allLessons: published_mv_specialist_1_0_4(
     where: {
-      supplementary_data: {
-        _contains: { static_lesson_list: [{ slug: $lessonSlug }] },
-      },
-      unit_slug: { _eq: $unitSlug },
-      programme_slug: { _eq: $programmeSlug }
+      synthetic_programme_slug: { _eq: $programmeSlug }
+      unit_slug: { _eq: $unitSlug }
     }
   ) {
-    lesson_count
+    lesson_slug
+    lesson_title
   }
 }
