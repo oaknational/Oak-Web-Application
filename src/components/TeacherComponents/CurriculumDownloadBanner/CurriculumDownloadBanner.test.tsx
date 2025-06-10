@@ -24,9 +24,20 @@ jest.mock("../../CurriculumComponents/CurriculumDownloadTab/helper", () => ({
 
 const mockDownloadFileFromUrl = jest.fn();
 
-jest.mock("./helpers", () => ({
+jest.mock("@/components/SharedComponents/helpers/downloadFileFromUrl", () => ({
   downloadFileFromUrl: (downloadFilePath: string) =>
     mockDownloadFileFromUrl(downloadFilePath),
+}));
+
+const mockTrackCurriculumDownload = jest.fn();
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      curriculumResourcesDownloaded: (...args: unknown[]) =>
+        mockTrackCurriculumDownload(...args),
+    },
+  }),
 }));
 
 const defaultProps = {
@@ -159,5 +170,43 @@ describe("CurriculumDownloadBanner", () => {
         "/api/curriculum-downloads/?mvRefreshTime=0&subjectSlug=science&phaseSlug=primary&state=published&childSubjectSlug=biology",
       ),
     );
+  });
+  it("tracks curriculum resources downloaded when download button is clicked", async () => {
+    mockDownloadsLocalStorage.mockReturnValue({
+      data: {
+        isComplete: true,
+        schoolId: "123",
+        schoolName: "Test School",
+        schoolNotListed: false,
+        email: "email.com",
+        termsAndConditions: true,
+      },
+      isLoading: false,
+    });
+    render(<CurriculumDownloadBanner {...defaultProps} />);
+
+    const downloadButton = screen.getByRole("button", {
+      name: "Download curriculum plan",
+    });
+    const user = userEvent.setup();
+    await user.click(downloadButton);
+
+    expect(mockTrackCurriculumDownload).toHaveBeenCalledWith({
+      analyticsUseCase: "Teacher",
+      componentType: "unit_download_button",
+      emailSupplied: true,
+      engagementIntent: "explore",
+      eventVersion: "2.0.0",
+      keyStageSlug: null,
+      keyStageTitle: null,
+      phase: "primary",
+      platform: "owa",
+      product: "curriculum resources",
+      resourceType: ["curriculum document"],
+      schoolName: "Test School",
+      schoolOption: "Selected school",
+      schoolUrn: "",
+      subjectTitle: "Maths",
+    });
   });
 });

@@ -6,13 +6,17 @@ import {
   useDownloadsLocalStorage,
 } from "../../CurriculumComponents/CurriculumDownloadTab/helper";
 import { createCurriculumDownloadsQuery } from "../../CurriculumComponents/CurriculumDownloadTab";
+import { extractUrnAndSchool } from "../helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 
 import { downloadFileFromUrl } from "@/components/SharedComponents/helpers/downloadFileFromUrl";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import { ResourceTypeValueType, PhaseValueType } from "@/browser-lib/avo/Avo";
 
 export type useCurriculumDownloadsProps = {
   mvRefreshTime: number;
   phaseSlug: string;
   subjectSlug: string;
+  subjectTitle: string;
   pathwaySlug: string | null;
   tierSlug: string | null;
   childSubjectSlug: string | null;
@@ -23,11 +27,13 @@ const useCurriculumDownloads = (props: useCurriculumDownloadsProps) => {
     mvRefreshTime,
     phaseSlug,
     subjectSlug,
+    subjectTitle,
     pathwaySlug,
     tierSlug,
     childSubjectSlug,
   } = props;
 
+  const { track } = useAnalytics();
   const [data, setData] = useState<CurriculumDownloadViewData>(() => ({
     schoolId: undefined,
     schoolName: undefined,
@@ -83,15 +89,31 @@ const useCurriculumDownloads = (props: useCurriculumDownloadsProps) => {
     try {
       await downloadFileFromUrl(downloadPath);
     } finally {
-      // TODO: tracking
-      //   await trackCurriculumDownload(
-      //     data,
-      //     subjectTitle,
-      //     onHubspotSubmit,
-      //     track,
-      //     analyticsUseCase,
-      //     slugs,
-      //   );
+      const schoolName =
+        data.schoolName === "Homeschool" ? "Homeschool" : "Selected school";
+      const schoolOption =
+        data.schoolNotListed === true ? "Not listed" : schoolName;
+
+      track.curriculumResourcesDownloaded({
+        platform: "owa",
+        product: "curriculum resources",
+        engagementIntent: "explore",
+        componentType: "unit_download_button",
+        eventVersion: "2.0.0",
+        analyticsUseCase: "Teacher",
+        emailSupplied: data.email != null,
+        resourceType: ["curriculum document"] as ResourceTypeValueType[],
+        schoolOption: schoolOption,
+        schoolName: data.schoolName || "",
+        subjectTitle: subjectTitle,
+        phase: phaseSlug as PhaseValueType,
+        schoolUrn:
+          !data.schoolId || data.schoolId === "homeschool"
+            ? ""
+            : (extractUrnAndSchool(data.schoolId).urn ?? ""),
+        keyStageSlug: null,
+        keyStageTitle: null,
+      });
       setIsSubmitting(false);
     }
   };

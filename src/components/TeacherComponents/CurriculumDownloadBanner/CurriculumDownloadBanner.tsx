@@ -17,7 +17,6 @@ import { resolveOakHref } from "@/common-lib/urls";
 
 export type CurriculumDownloadBannerProps = {
   phaseSlug: string;
-  subjectTitle: string;
   examBoardSlug?: string | null;
 } & useCurriculumDownloadsProps;
 
@@ -36,6 +35,7 @@ const CurriculumDownloadBanner = (props: CurriculumDownloadBannerProps) => {
     mvRefreshTime: 0,
     phaseSlug,
     subjectSlug,
+    subjectTitle,
     pathwaySlug,
     tierSlug,
     childSubjectSlug,
