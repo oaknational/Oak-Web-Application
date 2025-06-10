@@ -53,6 +53,7 @@ describe("components/AppHeader", () => {
     await user.keyboard("{tab}");
     await user.keyboard("{tab}");
     await user.keyboard("{tab}");
+    await user.keyboard("{tab}");
     await user.keyboard("{Enter}");
 
     expect(screen.getByTestId("menu")).toBeVisible();
@@ -70,23 +71,15 @@ describe("components/AppHeader", () => {
 
   test("it should include a link for new teacher experience", () => {
     render(<AppHeader />);
-    const teacherLink = screen.getAllByRole("link")[1];
+    const teacherLink = screen.getByRole("link", { name: /Teachers/i });
 
-    if (!teacherLink) {
-      throw new Error("Failed to find link to teacher experience");
-    }
-
-    expect(teacherLink.closest("a")).toHaveAttribute("href", "/teachers");
+    expect(teacherLink).toHaveAttribute("href", "/teachers");
   });
-  test("it should include a link for classroom", () => {
+  test("it should include a link for pupils", () => {
     render(<AppHeader />);
-    const pupilsLink = screen.getAllByRole("link")[2];
+    const pupilsLink = screen.getByRole("link", { name: /Pupils/i });
 
-    if (!pupilsLink) {
-      throw new Error("Failed to find link to classroom");
-    }
-
-    expect(pupilsLink.closest("a")).toHaveAttribute("href", "/pupils/years");
+    expect(pupilsLink).toHaveAttribute("href", "/pupils/years");
   });
 
   it("does not render a sign out button when user is not logged in", () => {
@@ -109,7 +102,7 @@ describe("components/AppHeader", () => {
     setUseUserReturn(mockLoggedOut);
     renderWithProviders()(<AppHeader />);
 
-    const signUpButton = screen.getByRole("button", { name: /Sign up/i });
+    const signUpButton = screen.getByText("Sign up");
     expect(signUpButton).toBeInTheDocument();
   });
 

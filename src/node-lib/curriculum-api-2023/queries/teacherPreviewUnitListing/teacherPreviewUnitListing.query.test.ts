@@ -121,7 +121,7 @@ describe("teachersPreviewUnitListing()", () => {
       subjectParent: "Maths",
       tierSlug: "foundation",
       phase: "primary",
-      yearGroups: [{ yearTitle: "Year 1", year: "year-1" }],
+      yearGroups: [{ yearTitle: "Year 1", yearSlug: "year-1", year: "1" }],
       subjectCategories: [
         {
           label: "Physics",
@@ -162,7 +162,8 @@ describe("teachersPreviewUnitListing()", () => {
             unpublishedLessonCount: 0,
             isOptionalityUnit: false,
             yearTitle: "Year 1",
-            year: "year-1",
+            yearSlug: "year-1",
+            year: "1",
             yearOrder: 1,
             cohort: "2023-2024",
             subjectCategories: null,
@@ -190,7 +191,8 @@ describe("teachersPreviewUnitListing()", () => {
             unpublishedLessonCount: 0,
             isOptionalityUnit: false,
             yearTitle: "Year 1",
-            year: "year-1",
+            yearSlug: "year-1",
+            year: "1",
             yearOrder: 1,
             actions: undefined,
             cohort: "2023-2024",

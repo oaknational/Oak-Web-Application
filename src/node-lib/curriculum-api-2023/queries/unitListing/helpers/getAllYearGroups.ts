@@ -1,5 +1,6 @@
 import {
   yearDescriptions,
+  years,
   yearSlugs,
 } from "@oaknational/oak-curriculum-schema";
 import { z } from "zod";
@@ -8,7 +9,8 @@ import { GroupedUnitsSchema } from "../unitListing.schema";
 
 export type YearGroup = {
   yearTitle: z.infer<typeof yearDescriptions>;
-  year: z.infer<typeof yearSlugs>;
+  yearSlug: z.infer<typeof yearSlugs>;
+  year: z.infer<typeof years>;
 };
 
 export const getAllYearGroups = (units: GroupedUnitsSchema): YearGroup[] => {
@@ -16,12 +18,14 @@ export const getAllYearGroups = (units: GroupedUnitsSchema): YearGroup[] => {
     units
       .reduce((acc, unit) => {
         const yearTitle = yearDescriptions.parse(unit[0]?.yearTitle);
-        const yearSlug = yearSlugs.parse(unit[0]?.year);
+        const yearSlug = yearSlugs.parse(unit[0]?.yearSlug);
+        const year = years.parse(unit[0]?.year);
 
         if (yearTitle && yearSlug && !acc.has(yearTitle)) {
           acc.set(yearTitle, {
             yearTitle: yearTitle,
-            year: yearSlug,
+            yearSlug: yearSlug,
+            year: year,
           });
         }
         return acc;
