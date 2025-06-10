@@ -1,3 +1,18 @@
+# [1.766.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.765.0...v1.766.0) (2025-06-10)
+
+
+### Bug Fixes
+
+* fix issues raised in QA ([f8696f8](https://github.com/oaknational/Oak-Web-Application/commit/f8696f898ac7a32efc05b6853de04638455f40c0))
+* type errors ([5885e9a](https://github.com/oaknational/Oak-Web-Application/commit/5885e9a8bbd4c26de08263d6dcbe6b955f68c343))
+
+
+### Features
+
+* improve page titles for better seo ([d51b93b](https://github.com/oaknational/Oak-Web-Application/commit/d51b93b9aafc8699eccd91e984063584d672dcea))
+* pull through year data from programme fields ([8f429ef](https://github.com/oaknational/Oak-Web-Application/commit/8f429efad80cdb05456cf1b3f54608d7aacbf290))
+* pull year through programme fields for lesson overview and lesson listing pages ([3cc97ec](https://github.com/oaknational/Oak-Web-Application/commit/3cc97ec059c2b2c28e3401ad5bd34c066940af47))
+
 # [1.765.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.764.3...v1.765.0) (2025-06-10)
 
 
