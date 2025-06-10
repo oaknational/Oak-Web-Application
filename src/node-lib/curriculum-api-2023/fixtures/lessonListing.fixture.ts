@@ -16,6 +16,7 @@ const lessonListingFixture = (
     unitvariantId: 1,
     yearSlug: "year-10",
     yearTitle: "Year 10",
+    year: "10",
     examBoardSlug: null,
     examBoardTitle: null,
     pathwaySlug: null,
