@@ -25,7 +25,12 @@ describe("lessonOverview()", () => {
       await lessonOverview({
         ...sdk,
         lessonOverview: jest.fn(() =>
-          Promise.resolve({ content: [], browseData: [], additionalFiles: [] }),
+          Promise.resolve({
+            content: [],
+            browseData: [],
+            additionalFiles: [],
+            unitData: [],
+          }),
         ),
       })({
         lessonSlug: "lesson-slug",
@@ -54,6 +59,11 @@ describe("lessonOverview()", () => {
       },
     });
 
+    const _unitDataFixture = {
+      lesson_count:
+        _syntheticUnitvariantLessonsByKsFixture.static_lesson_list?.length ?? 1,
+    };
+
     const lesson = await lessonOverview({
       ...sdk,
       lessonOverview: jest.fn(() =>
@@ -61,6 +71,7 @@ describe("lessonOverview()", () => {
           browseData: [_syntheticUnitvariantLessonsByKsFixture],
           content: [_lessonContentFixture],
           additionalFiles: [_additionalFilesFixture],
+          unitData: [_unitDataFixture],
         }),
       ),
     })({
@@ -84,6 +95,8 @@ describe("lessonOverview()", () => {
     );
 
     expect(lesson.lessonTitle).toEqual(_lessonContentFixture.lesson_title);
+
+    expect(lesson.unitTotalLessonCount).toEqual(_unitDataFixture.lesson_count);
   });
 
   test("it should return pathways for canonical lesson if unit_slug and programme_slug are not passed as props", async () => {
@@ -113,6 +126,24 @@ describe("lessonOverview()", () => {
       },
     });
 
+    const _unitDataFixture = [
+      {
+        lesson_count:
+          _syntheticUnitvariantLessonsByKsFixture1.static_lesson_list?.length ??
+          1,
+      },
+      {
+        lesson_count:
+          _syntheticUnitvariantLessonsByKsFixture2.static_lesson_list?.length ??
+          1,
+      },
+      {
+        lesson_count:
+          _syntheticUnitvariantLessonsByKsFixture3.static_lesson_list?.length ??
+          1,
+      },
+    ];
+
     const lesson = await lessonOverview({
       ...sdk,
       lessonOverview: jest.fn(() =>
@@ -124,6 +155,7 @@ describe("lessonOverview()", () => {
           ],
           content: [_lessonContentFixture],
           additionalFiles: [],
+          unitData: _unitDataFixture,
         }),
       ),
     })({
@@ -149,6 +181,7 @@ describe("lessonOverview()", () => {
             browseData: [],
             content: [],
             additionalFiles: [],
+            unitData: [],
           }),
         ),
       })({

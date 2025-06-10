@@ -10,6 +10,10 @@ import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import { LessonOverviewAll } from "@/components/TeacherComponents/types/lesson.types";
+import {
+  LessonUnitDataByKs,
+  lessonUnitDataByKsSchema,
+} from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export const constructDownloadsArray = (
   lesson: SpecialistLessonDataRaw[number],
@@ -62,6 +66,7 @@ export const constructDownloadsArray = (
 
 export const generateLessonOverviewFromRaw = (
   rawLesson: unknown,
+  rawUnitData: unknown,
   errorCallback: (
     lessonOverview: SpecialistLessonDataRaw,
     error: OakError,
@@ -73,7 +78,8 @@ export const generateLessonOverviewFromRaw = (
   if (
     !parsedLessonOverview ||
     parsedLessonOverview.length === 0 ||
-    !parsedLessonOverview[0]
+    !parsedLessonOverview[0] ||
+    !Array.isArray(rawUnitData)
   ) {
     throw new OakError({ code: "curriculum-api/not-found" });
   }
@@ -84,6 +90,13 @@ export const generateLessonOverviewFromRaw = (
     });
     errorCallback(parsedLessonOverview, error);
   }
+
+  const [unitDataSnake] = rawUnitData;
+  if (!unitDataSnake) {
+    throw new OakError({ code: "curriculum-api/not-found" });
+  }
+  lessonUnitDataByKsSchema.parse(unitDataSnake);
+  const unitData = keysToCamelCase(unitDataSnake) as LessonUnitDataByKs;
 
   const lesson = parsedLessonOverview[0];
 
@@ -139,6 +152,8 @@ export const generateLessonOverviewFromRaw = (
     additionalFiles: null,
     lessonOutline: null,
     lessonReleaseDate: lesson.lesson_release_date,
+    orderInUnit: lesson.order_in_unit ?? 1,
+    unitTotalLessonCount: unitData.lessonCount ?? 1,
   };
 
   return specialistLessonOverviewSchema.parse({
@@ -162,6 +177,7 @@ const specialistLessonOverview =
 
     return generateLessonOverviewFromRaw(
       specialistLessonOverview.lesson,
+      specialistLessonOverview.unitData,
       (lessonOverview, error) => {
         errorReporter("curriculum-api-2023::specialistLessonOverview")(error, {
           severity: "warning",

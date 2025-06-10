@@ -1,8 +1,13 @@
 import { z } from "zod";
-import { actionsSchema } from "@oaknational/oak-curriculum-schema";
+import {
+  actionsSchema,
+  syntheticUnitvariantsWithLessonIdsByKsSchema,
+} from "@oaknational/oak-curriculum-schema";
 
 import { zodToCamelCase } from "./helpers/zodToCamelCase";
 import { mediaClipsRecordCamelSchema } from "./queries/lessonMediaClips/lessonMediaClips.schema";
+
+import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
 export const contentGuidanceSchemaCamelCase = z.object({
   contentGuidanceLabel: z.string(),
@@ -217,8 +222,19 @@ export const baseLessonOverviewSchema = z.object({
   lessonMediaClips: mediaClipsRecordCamelSchema.nullish(),
   lessonOutline: z.array(z.object({ lessonOutline: z.string() })).nullable(),
   lessonReleaseDate: z.string().nullable(),
+  orderInUnit: z.number().nullable(),
+  unitTotalLessonCount: z.number().nullable(),
 });
 export type LessonBase = z.infer<typeof baseLessonOverviewSchema>;
+
+export const lessonUnitDataByKsSchema =
+  syntheticUnitvariantsWithLessonIdsByKsSchema.pick({
+    lesson_count: true,
+  });
+
+export type LessonUnitDataByKs = ConvertKeysToCamelCase<
+  z.infer<typeof lessonUnitDataByKsSchema>
+>;
 
 export const lessonDownloadsListSchema = z.array(
   z.object({

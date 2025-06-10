@@ -40,5 +40,17 @@ query specialistLessonOverview(
     starter_quiz
     worksheet_asset_object
     lesson_release_date
+    order_in_unit
+  }
+  unitData: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_16_0_0(
+    where: {
+      supplementary_data: {
+        _contains: { static_lesson_list: [{ slug: $lessonSlug }] },
+      },
+      unit_slug: { _eq: $unitSlug },
+      programme_slug: { _eq: $programmeSlug }
+    }
+  ) {
+    lesson_count
   }
 }

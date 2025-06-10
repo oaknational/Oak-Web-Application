@@ -1,7 +1,5 @@
 import {
   canonicalLessonMediaClipsSchema,
-  LessonBrowseData,
-  lessonBrowseDataSchema,
   lessonMediaClipsSchema,
 } from "./lessonMediaClips.schema";
 import { constructLessonMediaData } from "./constructLessonMediaClips";
@@ -16,6 +14,10 @@ import {
   Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_1_0_Bool_Exp,
 } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
+import {
+  LessonBrowseDataByKs,
+  lessonBrowseDataByKsSchema,
+} from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 
 export const lessonMediaClipsQuery =
   (sdk: Sdk) =>
@@ -76,13 +78,13 @@ export const lessonMediaClipsQuery =
     /**
      * TODO: supplementary_data is not on current schema
      */
-    lessonBrowseDataSchema.parse({
+    lessonBrowseDataByKsSchema.parse({
       ...browseDataSnake,
       supplementary_data: { order_in_unit: 0, unit_order: 0 },
     });
 
     // We've already parsed this data with Zod so we can safely cast it to the correct type
-    const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseData;
+    const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseDataByKs;
     if (!canonicalLesson) {
       const data = constructLessonMediaData({
         ...browseData,

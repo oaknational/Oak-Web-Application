@@ -8,7 +8,7 @@ describe("specialistLessonOverview()", () => {
       await specialistLessonOverview({
         ...sdk,
         specialistLessonOverview: jest.fn(() =>
-          Promise.resolve({ lesson: [] }),
+          Promise.resolve({ lesson: [], unitData: [] }),
         ),
       })({
         lessonSlug: "specialist-lesson-slug",
@@ -63,6 +63,7 @@ describe("specialistLessonOverview()", () => {
               video_title: null,
               additional_files: null,
               lesson_release_date: "2025-09-29T14:00:00.000Z",
+              order_in_unit: 1,
             },
             {
               synthetic_programme_slug: "specialist-programme-slug-0",
@@ -102,7 +103,13 @@ describe("specialistLessonOverview()", () => {
               threads: null,
               video_title: null,
               lesson_release_date: "2025-09-29T14:00:00.000Z",
+              order_in_unit: 2,
             },
+          ],
+          unitData: [
+            { lesson_count: 1 },
+            { lesson_count: 2 },
+            { lesson_count: 3 },
           ],
         }),
       ),
@@ -156,8 +163,10 @@ describe("specialistLessonOverview()", () => {
                 content_guidance: null,
                 threads: null,
                 video_title: null,
+                order_in_unit: null,
               },
             ],
+            unitData: [],
           }),
         ),
       })({

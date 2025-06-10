@@ -17,7 +17,7 @@ describe("teacherPreviewLesson()", () => {
       await teacherPreviewLessonQuery({
         ...sdk,
         teachersPreviewLesson: jest.fn(() =>
-          Promise.resolve({ browseData: [], content: [] }),
+          Promise.resolve({ browseData: [], content: [], unitData: [] }),
         ),
       })({
         lessonSlug: "lesson-slug",
@@ -42,6 +42,7 @@ describe("teacherPreviewLesson()", () => {
               lesson_guide_asset_object_url: "lesson-guide-url",
             },
           ],
+          unitData: [{ lesson_count: 1 }],
         }),
       ),
     })({
