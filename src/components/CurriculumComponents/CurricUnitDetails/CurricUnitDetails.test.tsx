@@ -33,6 +33,9 @@ const testCurricUnitDetails = {
       "prior knowledge requirements 1",
       "prior knowledge requirements 2",
     ],
+    parent_programme_features: {
+      prior_knowledge_requirements: true,
+    },
   }),
   handleUnitOverviewExploredAnalytics: () => jest.fn(),
   isUnitDescriptionEnabled: false,
@@ -198,22 +201,21 @@ describe("CurricUnitDetails component", () => {
 
   for (const priorKnowledgeRequirementsEnabled of [true, false]) {
     describe(`ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS=${priorKnowledgeRequirementsEnabled}`, () => {
-      beforeEach(() => {
-        ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS_GETTER.mockReturnValue(
-          priorKnowledgeRequirementsEnabled,
-        );
-      });
       describe("accordion functionality on component", () => {
         test("it should render all accordion components (cycle 1)", () => {
+          ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS_GETTER.mockReturnValue(
+            priorKnowledgeRequirementsEnabled,
+          );
+
           const { getAllByTestId, getByText } = renderWithTheme(
             <CurricUnitDetails {...testCurricUnitDetails} />,
           );
 
           expect(getAllByTestId("accordion-component")).toHaveLength(
-            ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS ? 4 : 3,
+            priorKnowledgeRequirementsEnabled ? 4 : 3,
           );
           expect(getByText("Lessons in unit")).toBeInTheDocument();
-          if (ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS) {
+          if (priorKnowledgeRequirementsEnabled) {
             expect(
               getByText("Prior knowledge requirements"),
             ).toBeInTheDocument();
