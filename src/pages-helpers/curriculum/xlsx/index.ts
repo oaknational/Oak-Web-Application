@@ -166,7 +166,7 @@ function buildStyle() {
           xfId="0"
           applyBorder="0"
         >
-          <alignment wrapText="1" />
+          <alignment wrapText="1" vertical="center" />
         </xf>
         <xf
           numFmtId="0"
@@ -255,14 +255,17 @@ function buildNatCurric(data: BuildNationalCurriculumData) {
         <row r="1" spans="1:26">
           <c r="A1" t="inlineStr" s="1">
             <is>
-              <t>Year ${data.unitData[0]?.unit.year ?? ""}</t>
+              <t>
+                Year ${data.unitData[0]?.unit.year ?? ""}
+                ${data.unitData[0]!.unit.subject}
+              </t>
             </is>
           </c>
         </row>
         <row r="2" spans="1:26">
           <c r="A2" t="inlineStr" s="2">
             <is>
-              <t>National curriculum criteria</t>
+              <t>National curriculum statement</t>
             </is>
           </c>
           ${data.unitData.map((unit, unitIndex) => {
