@@ -83,7 +83,6 @@ export const getUnitCards = ({
   pageItems,
   pageSize,
   currentPage,
-  isSaveEnabled,
   isSpecialistUnit,
   filteredUnits,
   indexOfFirstLegacyUnit,
@@ -97,7 +96,6 @@ export const getUnitCards = ({
   pageItems: CurrentPageItemsProps[] | SpecialistUnit[][];
   pageSize: number;
   currentPage: number;
-  isSaveEnabled?: boolean;
   isSpecialistUnit: boolean;
   filteredUnits: UnitListingData["units"] | undefined;
   indexOfFirstLegacyUnit: number;
@@ -113,7 +111,7 @@ export const getUnitCards = ({
     let calculatedIndex = baseIndex;
     const isItemLegacy = isSlugLegacy(item[0]!.programmeSlug);
 
-    const showSave = isSaveEnabled && !isSpecialistUnit && !isItemLegacy;
+    const showSave = !isSpecialistUnit && !isItemLegacy;
 
     if (isItemLegacy) {
       if (newAndLegacyUnitsOnPage) {

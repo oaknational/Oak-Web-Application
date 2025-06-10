@@ -1,6 +1,5 @@
 import React, { FC, useState } from "react";
 import { useRouter } from "next/router";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 import {
   OakFlex,
   OakUnitsContainer,
@@ -129,7 +128,6 @@ const UnitList: FC<UnitListProps> = (props) => {
     .indexOf(true);
 
   // Saving
-  const isSaveEnabled = useFeatureFlagEnabled("teacher-save-units");
   const { onSaveToggle, isUnitSaved, showSignIn, setShowSignIn } = useSaveUnits(
     props.programmeSlug,
     {
@@ -156,7 +154,6 @@ const UnitList: FC<UnitListProps> = (props) => {
     currentPageItems,
     pageSize,
     currentPage,
-    isSaveEnabled,
     isSpecialistUnit: !isUnitListData(props),
     filteredUnits,
     indexOfFirstLegacyUnit,
