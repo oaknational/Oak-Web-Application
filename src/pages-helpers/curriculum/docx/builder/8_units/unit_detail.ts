@@ -75,12 +75,22 @@ async function buildUnitLessons(
   return lessonsXmls.join("");
 }
 
+function priorKnowledgeRequirementsEnabled(
+  unit: Unit | Unit["unit_options"][number],
+) {
+  return (
+    "parent_programme_features" in unit &&
+    unit.parent_programme_features?.prior_knowledge_requirements
+  );
+}
+
 export async function buildUnitPriorKnowledgeReqs(
   zip: JSZipCached,
   unit: Unit | Unit["unit_options"][number],
 ) {
   if (
     ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS &&
+    priorKnowledgeRequirementsEnabled(unit) &&
     "prior_knowledge_requirements" in unit &&
     unit.prior_knowledge_requirements &&
     unit.prior_knowledge_requirements.length > 0
