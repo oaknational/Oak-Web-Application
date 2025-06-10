@@ -51,6 +51,7 @@ import PaginationHead from "@/components/SharedComponents/Pagination/PaginationH
 import MobileUnitFilters from "@/components/TeacherComponents/MobileUnitFilters";
 import DesktopUnitFilters from "@/components/TeacherComponents/DesktopUnitFilters/DesktopUnitFilters";
 import RelatedSubjectsBanner from "@/components/TeacherComponents/RelatedSubjectsBanner/RelatedSubjectsBanner";
+import getYearGroupSEOString from "@/pages-helpers/teacher/year-group-seo-string/get-year-grp-seo-string";
 import { resolveOakHref } from "@/common-lib/urls";
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
 
@@ -131,9 +132,10 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   const learningThemesId = useId();
   const learningThemesFilterId = useId();
 
+  const yearGroupSEOString = getYearGroupSEOString(yearGroups);
   const unitsSEO = {
     ...getSeoProps({
-      title: `Free ${keyStageSlug.toUpperCase()} ${subjectTitle} teaching resources${paginationTitle}`,
+      title: `Free ${keyStageSlug.toUpperCase()} ${subjectTitle} teaching resources | ${yearGroupSEOString}${paginationTitle}`,
       description: `Get fully sequenced teaching resources and lesson plans in ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
     }),
   };
@@ -167,7 +169,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
         subjectTitle,
         subjectSlug,
         yearGroupName: props.yearTitle,
-        yearGroupSlug: (props as UnitListItemProps).year,
+        yearGroupSlug: (props as UnitListItemProps).yearSlug,
         tierName: tier ?? null,
         examBoard: examBoardTitle,
         pathway: pathwayTitle,
