@@ -14,7 +14,7 @@ function filterUnits<
   U extends {
     learningThemes?: { themeSlug?: string | null }[] | null;
     subjectCategories?: (SubjectCategory | null)[] | null;
-    year?: string | null;
+    yearSlug?: string | null;
   },
 >({
   themeSlug,
@@ -38,10 +38,10 @@ function filterUnits<
             return category.slug === categorySlug;
           })
         : true;
-      const yearGroupMatch = yearGroup ? unit.year === yearGroup : true;
+      const yearGroupMatch = yearGroup ? unit.yearSlug === yearGroup : true;
 
       // display units with "all-years" year group within all year groups
-      const allYearsMatch = yearGroup ? unit.year === "all-years" : true;
+      const allYearsMatch = yearGroup ? unit.yearSlug === "all-years" : true;
 
       return (
         (themeMatch && categoryMatch && yearGroupMatch) ||

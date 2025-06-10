@@ -190,6 +190,7 @@ export const transformedLessonOverviewData = (
     subjectTitle: browseData.programmeFields.subject,
     subjectParent: browseData.programmeFields.subjectParent || null,
     yearTitle: browseData.programmeFields.yearDescription,
+    year: browseData.programmeFields.year,
     examBoardTitle: browseData.programmeFields.examboard,
     examBoardSlug: browseData.programmeFields.examboardSlug,
     downloads: getDownloadsArray({
