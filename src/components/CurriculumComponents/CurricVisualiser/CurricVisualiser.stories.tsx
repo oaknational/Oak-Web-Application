@@ -86,6 +86,7 @@ const curriculumVisualiserFixture: ComponentProps<typeof Component> = {
           why_this_why_now: null,
           description: null,
           state: "published",
+          prior_knowledge_requirements: [],
         },
       ],
       childSubjects: [],

@@ -1,3 +1,35 @@
+# [1.768.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.767.0...v1.768.0) (2025-06-10)
+
+
+### Bug Fixes
+
+* add priorKnowledgeRequirementsEnabled(...) to curric modals (not just docx) ([a34cac6](https://github.com/oaknational/Oak-Web-Application/commit/a34cac6cf9ed0a83d67420704704dce6f085c937))
+* added action to modal onClose to prevent resetting filter state ([11b14b1](https://github.com/oaknational/Oak-Web-Application/commit/11b14b1b5061f570b54500029e056d319533e698))
+* added missing ks4OptionSlug to <CurricUnitModal/> ([c9ecba7](https://github.com/oaknational/Oak-Web-Application/commit/c9ecba79de82b47a79010646e9837c5390135bb1))
+* added noindex to all unit modal pages ([97636d1](https://github.com/oaknational/Oak-Web-Application/commit/97636d1f7cb11a289f659076f734c39fc2f4b20d))
+* added prefers-reduced-motion support for the new modal ([e02cf1c](https://github.com/oaknational/Oak-Web-Application/commit/e02cf1c2e70ffa05604cc1c72b4752d550fcdf0b))
+* always fetch prior_knowledge_requirements from unit ([b771e6a](https://github.com/oaknational/Oak-Web-Application/commit/b771e6a0f910b2d54f261980cbd52250eb598768))
+* deal with empty data in prior_knowledge_requirements + tests ([72d4cab](https://github.com/oaknational/Oak-Web-Application/commit/72d4cab92113c3751147f97351ebcfbda59afa10))
+* disable ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS again not ready for go live ([8d32c89](https://github.com/oaknational/Oak-Web-Application/commit/8d32c8935605ae9876b50ebcdb00e6d42afee517))
+* disable ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS while not ready for prod ([efddf6b](https://github.com/oaknational/Oak-Web-Application/commit/efddf6b3f4c52e229171b85cdd775046797742fc))
+* disable prior_knowledge_requirements while still waiting for per-subject feature flagging ([dca46fa](https://github.com/oaknational/Oak-Web-Application/commit/dca46fafbdfcb905e14c2a8c285495102d083fc6))
+* link focus state and remove nested button ([d176b55](https://github.com/oaknational/Oak-Web-Application/commit/d176b551750f3e739c79b56606c13c3bfd783b28))
+* nest <a/> inside <ul/> ([a1edb9f](https://github.com/oaknational/Oak-Web-Application/commit/a1edb9fb3ad7f8d31524c7e379adaa84847a8361))
+* only override canonicalURL if lessons are available ([b2381ff](https://github.com/oaknational/Oak-Web-Application/commit/b2381ff3459608810c2098e6cd9b260c05e03fd5))
+* pass "tab" into <CurriculumHeader/> rather than deriving from URL ([d357117](https://github.com/oaknational/Oak-Web-Application/commit/d357117c992a1f680b41d785c6f5a9caacf1ba70))
+* type issue when merging to main with prior_knowledge_requirements only available on unit ([2a18e46](https://github.com/oaknational/Oak-Web-Application/commit/2a18e4659fc4c13fafd244bd43a7768a4c533282))
+* updated to published_mv_curriculum_sequence_b_13_0_18 to fix unit_options ([8e9283f](https://github.com/oaknational/Oak-Web-Application/commit/8e9283ffb5714f39a71fdb68d9f1954ef0827f94))
+* use reference in <Transition/> to fix warnings ([8bf091e](https://github.com/oaknational/Oak-Web-Application/commit/8bf091e42f2553feb894bd4ee27ff15b3221813b))
+
+
+### Features
+
+* added initial 404 state for curric unit modals ([a118035](https://github.com/oaknational/Oak-Web-Application/commit/a1180350dd1e1dd477d49bb0ea7e42af3d9b0e64))
+* added support for prior_knowledge_requirements to curric modal ([4d2cfcb](https://github.com/oaknational/Oak-Web-Application/commit/4d2cfcb1de72c0c497dd4d88e3951dfc7d703255))
+* added URL routing to curric visualiser ([382f666](https://github.com/oaknational/Oak-Web-Application/commit/382f666845eb2f5e76c3f894af23f5e315a39af7))
+* enable prior_knowledge_requirements on parent programme features ([dc27f7a](https://github.com/oaknational/Oak-Web-Application/commit/dc27f7ab0f7ed2677eac3cfdb3c1464bb798cae7))
+* refactor of curric URL routing ([ed944e7](https://github.com/oaknational/Oak-Web-Application/commit/ed944e76871fc7e39d4f729df9e6817b80617d81))
+
 # [1.767.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.766.0...v1.767.0) (2025-06-10)
 
 

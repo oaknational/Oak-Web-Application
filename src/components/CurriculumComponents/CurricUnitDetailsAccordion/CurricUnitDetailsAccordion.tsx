@@ -15,7 +15,8 @@ export type AccordionContainerTitles =
   | "Previous unit description"
   | "Following unit description"
   | "Description"
-  | "Why this why now";
+  | "Why this why now"
+  | "Prior knowledge requirements";
 
 type CurriculumUnitDetailsAccordionProps = {
   title: AccordionContainerTitles;
