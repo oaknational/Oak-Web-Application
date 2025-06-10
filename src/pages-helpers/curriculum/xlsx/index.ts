@@ -1,4 +1,4 @@
-import { cartesianToExcelCoords } from "@ooxml-tools/units";
+import { cartesianToExcelCoords, pxToColumnWidth } from "@ooxml-tools/units";
 
 import { generateEmptyXlsx, JSZipCached } from "../docx/docx";
 import { cdata, safeXml } from "../docx/xml";
@@ -136,7 +136,7 @@ function buildStyle() {
           xfId="0"
           applyBorder="0"
         >
-          <alignment wrapText="1" />
+          <alignment wrapText="1" vertical="top" />
         </xf>
         <xf
           numFmtId="0"
@@ -146,7 +146,7 @@ function buildStyle() {
           xfId="0"
           applyBorder="0"
         >
-          <alignment wrapText="1" />
+          <alignment wrapText="1" vertical="top" />
         </xf>
         <xf
           numFmtId="0"
@@ -156,7 +156,7 @@ function buildStyle() {
           xfId="0"
           applyBorder="0"
         >
-          <alignment wrapText="1" />
+          <alignment wrapText="1" vertical="top" />
         </xf>
         <xf
           numFmtId="0"
@@ -224,8 +224,8 @@ function buildNatCurric(data: BuildNationalCurriculumData) {
         <sheetView tabSelected="1" workbookViewId="0">
           <pane
             xSplit="1"
-            ySplit="2"
-            topLeftCell="B3"
+            ySplit="3"
+            topLeftCell="B4"
             activePane="bottomLeft"
             state="frozen"
           />
@@ -238,11 +238,16 @@ function buildNatCurric(data: BuildNationalCurriculumData) {
         x14ac:dyDescent="0.2"
       />
       <cols>
-        <col min="1" max="2" width="60" customWidth="1" />
+        <col
+          min="1"
+          max="2"
+          width="${pxToColumnWidth(285, 7)}"
+          customWidth="1"
+        />
         <col
           min="2"
           max="${data.unitData.length + 1}"
-          width="26"
+          width="${pxToColumnWidth(185, 7)}"
           customWidth="1"
         />
       </cols>
@@ -268,7 +273,54 @@ function buildNatCurric(data: BuildNationalCurriculumData) {
                 s="3"
               >
                 <is>
-                  <t>Unit ${unitIndex + 1}: ${cdata(unit.unit.title)}</t>
+                  <r>
+                    <rPr>
+                      <sz val="12" />
+                      <color rgb="FF000000" />
+                      <rFont val="Arial" />
+                      <family val="2" />
+                    </rPr>
+                    <t xml:space="preserve">Unit ${unitIndex + 1}
+</t>
+                  </r>
+                  <r>
+                    <rPr>
+                      <sz val="14" />
+                      <color rgb="FF000000" />
+                      <rFont val="Arial Bold" />
+                      <family val="2" />
+                    </rPr>
+                    <t>${cdata(unit.unit.title)}</t>
+                  </r>
+                </is>
+              </c>
+            `;
+          })}
+        </row>
+        <row r="3" spans="1:26">
+          <c r="A3" t="inlineStr" s="2">
+            <is>
+              <t />
+            </is>
+          </c>
+          ${data.unitData.map((unit, unitIndex) => {
+            return safeXml`
+              <c
+                r="${cartesianToExcelCoords([unitIndex + 2, 3])}"
+                t="inlineStr"
+                s="3"
+              >
+                <is>
+                  <r>
+                    <rPr>
+                      <sz val="12" />
+                      <color rgb="FF000000" />
+                      <rFont val="Arial" />
+                      <family val="2" />
+                      <u val="single" />
+                    </rPr>
+                    <t>Go to unit resources</t>
+                  </r>
                 </is>
               </c>
             `;
@@ -276,7 +328,7 @@ function buildNatCurric(data: BuildNationalCurriculumData) {
         </row>
         ${[...data.nationalCurric.entries()].map(
           ([id, nationalCurricText], nationalCurricTextIndex) => {
-            const yPos = 3 + nationalCurricTextIndex;
+            const yPos = 4 + nationalCurricTextIndex;
             return safeXml`
               <row r="${yPos}" spans="1:${data.unitData.length + 1}">
                 <c r="${cartesianToExcelCoords([1, yPos])}" t="inlineStr" s="4">
@@ -306,6 +358,16 @@ function buildNatCurric(data: BuildNationalCurriculumData) {
           },
         )}
       </sheetData>
+      <hyperlinks>
+        ${data.unitData.map((unit, unitIndex) => {
+          return safeXml`
+            <hyperlink
+              ref="${cartesianToExcelCoords([unitIndex + 2, 3])}"
+              r:id="rId${1000 + unitIndex}"
+            />
+          `;
+        })}
+      </hyperlinks>
       <pageMargins
         left="0.7"
         right="0.7"
@@ -331,6 +393,28 @@ async function buildNationalCurriculum(
   data: BuildNationalCurriculumData[],
 ) {
   data.forEach((item, index) => {
+    zip.writeString(
+      `xl/worksheets/_rels/sheet${10 + index}.xml.rels`,
+      safeXml`
+        <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+        <Relationships
+          xmlns="http://schemas.openxmlformats.org/package/2006/relationships"
+        >
+          ${item.unitData.map((unit, unitIndex) => {
+            return safeXml`
+              <Relationship
+                Id="rId${1000 + unitIndex}"
+                Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink"
+                Target="https://www.thenational.academy/teachers/curriculum/${unit
+                  .unit.subject_slug}-${unit.unit.phase_slug}/units/${unit.unit
+                  .slug}"
+                TargetMode="External"
+              />
+            `;
+          })}
+        </Relationships>
+      `.trim(),
+    );
     addOrUpdateSheet(zip, 10 + index, buildNatCurric(item));
   });
 
