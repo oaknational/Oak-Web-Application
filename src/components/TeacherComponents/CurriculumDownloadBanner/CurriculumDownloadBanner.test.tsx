@@ -5,7 +5,6 @@ import CurriculumDownloadBanner from "./CurriculumDownloadBanner";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-
 const mockDownloadsLocalStorage = jest.fn().mockReturnValue({
   data: {
     isComplete: false,
@@ -26,17 +25,20 @@ jest.mock("../../CurriculumComponents/CurriculumDownloadTab/helper", () => ({
 const mockDownloadFileFromUrl = jest.fn();
 
 jest.mock("./helpers", () => ({
-  downloadFileFromUrl: () => mockDownloadFileFromUrl(),
+  downloadFileFromUrl: (downloadFilePath: string) =>
+    mockDownloadFileFromUrl(downloadFilePath),
 }));
 
 const defaultProps = {
   hasCycle2Content: true,
   subjectSlug: "maths",
   subjectTitle: "Maths",
-  phase: "primary",
+  phaseSlug: "primary",
   tierSlug: null,
   ks4OptionSlug: null,
   mvRefreshTime: 0,
+  pathwaySlug: null,
+  childSubjectSlug: null,
 };
 
 const render = renderWithProviders();
@@ -85,7 +87,7 @@ describe("CurriculumDownloadBanner", () => {
     });
   });
   it("calls onSubmit when download button is clicked and has saved details", async () => {
-    mockDownloadsLocalStorage.mockReturnValueOnce({
+    mockDownloadsLocalStorage.mockReturnValue({
       data: {
         isComplete: true,
         schoolId: "123",
@@ -104,6 +106,36 @@ describe("CurriculumDownloadBanner", () => {
     const user = userEvent.setup();
     await user.click(downloadButton);
 
-    await waitFor(() => expect(mockDownloadFileFromUrl).toHaveBeenCalled);
+    await waitFor(() =>
+      expect(mockDownloadFileFromUrl).toHaveBeenCalledWith(
+        "/api/curriculum-downloads/?mvRefreshTime=0&subjectSlug=maths&phaseSlug=primary&state=published",
+      ),
+    );
+  });
+  it("generates the correct query for programmes with pathways", async () => {
+    mockDownloadsLocalStorage.mockReturnValue({
+      data: {
+        isComplete: true,
+        schoolId: "123",
+        schoolName: "Test School",
+        schoolNotListed: false,
+        email: "email.com",
+        termsAndConditions: true,
+      },
+      isLoading: false,
+    });
+    render(<CurriculumDownloadBanner {...defaultProps} pathwaySlug="core" />);
+
+    const downloadButton = screen.getByRole("button", {
+      name: "Download curriculum plan",
+    });
+    const user = userEvent.setup();
+    await user.click(downloadButton);
+
+    await waitFor(() =>
+      expect(mockDownloadFileFromUrl).toHaveBeenCalledWith(
+        "/api/curriculum-downloads/?mvRefreshTime=0&subjectSlug=maths&phaseSlug=primary&state=published&ks4OptionSlug=core",
+      ),
+    );
   });
 });

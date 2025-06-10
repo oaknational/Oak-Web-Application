@@ -9,17 +9,23 @@ import { createCurriculumDownloadsQuery } from "../../CurriculumComponents/Curri
 
 import { downloadFileFromUrl } from "./helpers";
 
-type useCurriculumDownloadsProps = {
+export type useCurriculumDownloadsProps = {
   mvRefreshTime: number;
   phaseSlug: string;
   subjectSlug: string;
-  ks4OptionSlug: string | null;
+  pathwaySlug: string | null;
   tierSlug: string | null;
+  childSubjectSlug: string | null;
 };
 
 const useCurriculumDownloads = (props: useCurriculumDownloadsProps) => {
-  const { mvRefreshTime, phaseSlug, subjectSlug, ks4OptionSlug, tierSlug } =
-    props;
+  const {
+    mvRefreshTime,
+    phaseSlug,
+    subjectSlug,
+    pathwaySlug: ks4OptionSlug,
+    tierSlug,
+  } = props;
 
   const [data, setData] = useState<CurriculumDownloadViewData>(() => ({
     schoolId: undefined,
@@ -53,7 +59,6 @@ const useCurriculumDownloads = (props: useCurriculumDownloadsProps) => {
 
   const onSubmit = async () => {
     setIsSubmitting(true);
-
     const query = createCurriculumDownloadsQuery(
       "published",
       mvRefreshTime,

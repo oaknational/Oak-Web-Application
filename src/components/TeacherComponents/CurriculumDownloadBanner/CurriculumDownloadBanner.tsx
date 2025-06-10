@@ -9,38 +9,39 @@ import React from "react";
 
 import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
 
-import useCurriculumDownloads from "./useCurriculumDownloads";
+import useCurriculumDownloads, {
+  useCurriculumDownloadsProps,
+} from "./useCurriculumDownloads";
 
 import { resolveOakHref } from "@/common-lib/urls";
 
 export type CurriculumDownloadBannerProps = {
   hasCycle2Content?: boolean;
-  subjectSlug: string;
+  phaseSlug: string;
   subjectTitle: string;
-  phase: string;
   examBoardSlug?: string | null;
-  ks4OptionSlug: string | null;
-  tierSlug: string | null;
-};
+} & useCurriculumDownloadsProps;
 
 const CurriculumDownloadBanner = (props: CurriculumDownloadBannerProps) => {
   const {
     hasCycle2Content,
     subjectSlug,
-    subjectTitle,
-    phase,
+    phaseSlug,
     examBoardSlug,
     tierSlug,
-    ks4OptionSlug,
+    pathwaySlug,
+    childSubjectSlug = null,
+    subjectTitle,
   } = props;
 
   // TODO: props
   const { onSubmit, hasSavedDetails, isSubmitting } = useCurriculumDownloads({
     mvRefreshTime: 0,
-    phaseSlug: phase,
+    phaseSlug,
     subjectSlug,
-    ks4OptionSlug,
+    pathwaySlug,
     tierSlug,
+    childSubjectSlug,
   });
 
   return hasCycle2Content ? (
@@ -77,7 +78,7 @@ const CurriculumDownloadBanner = (props: CurriculumDownloadBannerProps) => {
         page: "curriculum-downloads",
         subjectPhaseSlug: getSubjectPhaseSlug({
           subject: subjectSlug,
-          phaseSlug: phase,
+          phaseSlug,
           examBoardSlug: examBoardSlug,
         }),
       })}

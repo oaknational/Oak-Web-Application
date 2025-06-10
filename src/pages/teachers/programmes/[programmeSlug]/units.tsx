@@ -73,6 +73,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     subjectCategories,
     yearGroups,
     pathwayTitle,
+    pathwaySlug,
     relatedSubjects,
     phase,
     hasCycle2Content,
@@ -325,10 +326,12 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                   hasCycle2Content={hasCycle2Content}
                   subjectSlug={subjectSlug}
                   subjectTitle={subjectTitle}
-                  phase={phase}
+                  phaseSlug={phase}
                   examBoardSlug={examBoardSlug}
                   tierSlug={tierSlug}
-                  ks4OptionSlug={null} // TODO: ks4optionslug
+                  mvRefreshTime={0} // TODO: mv refresh time
+                  pathwaySlug={pathwaySlug}
+                  childSubjectSlug={null} // TODO: child subject
                 />
                 <OakFlex
                   $flexDirection={[
