@@ -122,6 +122,7 @@ describe("unitListing()", () => {
       tierSlug: "foundation",
       phase: "primary",
       yearGroups: [{ yearTitle: "Year 1", yearSlug: "year-1", year: "1" }],
+      hasCycle2Content: false,
       subjectCategories: [
         {
           label: "Physics",
