@@ -16,7 +16,10 @@ import { createUnitsListingByYear } from "../../tab-helpers";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import { createTeacherProgrammeSlug } from "@/utils/curriculum/slugs";
 import { SubjectCategory } from "@/utils/curriculum/types";
-import { getIsUnitDescriptionEnabled } from "@/utils/curriculum/features";
+import {
+  getIsUnitDescriptionEnabled,
+  priorKnowledgeRequirementsEnabled,
+} from "@/utils/curriculum/features";
 import { ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS } from "@/utils/curriculum/constants";
 
 type Unit = CombinedCurriculumData["units"][number];
@@ -73,15 +76,6 @@ async function buildUnitLessons(
     }) ?? [];
 
   return lessonsXmls.join("");
-}
-
-function priorKnowledgeRequirementsEnabled(
-  unit: Unit | Unit["unit_options"][number],
-) {
-  return (
-    "parent_programme_features" in unit &&
-    unit.parent_programme_features?.prior_knowledge_requirements
-  );
 }
 
 export async function buildUnitPriorKnowledgeReqs(
