@@ -1,4 +1,4 @@
-import { YearGroups } from "../../../node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
+import { YearGroups } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 
 const getYearGroupSEOString = (yearGroups: YearGroups): string => {
   if (yearGroups.length === 0) {
