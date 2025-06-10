@@ -1,3 +1,10 @@
+# [1.767.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.766.0...v1.767.0) (2025-06-10)
+
+
+### Features
+
+* remove teacher save units feature flag ([361a4b8](https://github.com/oaknational/Oak-Web-Application/commit/361a4b8ed80ad8c131e1197141976b69d490b64d))
+
 # [1.766.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.765.0...v1.766.0) (2025-06-10)
 
 
