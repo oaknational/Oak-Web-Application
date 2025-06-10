@@ -51,13 +51,16 @@ import RelatedSubjectsBanner from "@/components/TeacherComponents/RelatedSubject
 import getYearGroupSEOString from "@/pages-helpers/teacher/year-group-seo-string/get-year-grp-seo-string";
 import CurriculumDownloadBanner from "@/components/TeacherComponents/CurriculumDownloadBanner/CurriculumDownloadBanner";
 import { convertSubjectToSlug } from "@/components/TeacherComponents/helpers/convertSubjectToSlug";
+import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
+  curriculumRefreshTime: number;
 };
 
 const UnitListingPage: NextPage<UnitListingPageProps> = ({
   curriculumData,
+  curriculumRefreshTime,
 }) => {
   const {
     programmeSlug,
@@ -335,7 +338,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                   phaseSlug={phase}
                   examBoardSlug={examBoardSlug}
                   tierSlug={tierSlug}
-                  mvRefreshTime={0} // TODO: mv refresh time
+                  mvRefreshTime={curriculumRefreshTime}
                   pathwaySlug={pathwaySlug}
                   childSubjectSlug={subjectParentSlug ? subjectSlug : null}
                 />
@@ -468,15 +471,17 @@ export const getStaticProps: GetStaticProps<
           ];
         }
 
+        const curriculumRefreshTime = await getMvRefreshTime();
+
         const results: GetStaticPropsResult<UnitListingPageProps> = {
           props: {
             curriculumData,
+            curriculumRefreshTime,
           },
         };
 
         return results;
       } catch (error) {
-        // console.error(error);
         return {
           notFound: true,
         };
