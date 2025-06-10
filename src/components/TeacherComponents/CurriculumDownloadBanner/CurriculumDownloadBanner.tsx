@@ -32,7 +32,6 @@ const CurriculumDownloadBanner = (props: CurriculumDownloadBannerProps) => {
     subjectTitle,
   } = props;
 
-  // TODO: props
   const { onSubmit, hasSavedDetails, isSubmitting } = useCurriculumDownloads({
     mvRefreshTime: 0,
     phaseSlug,
