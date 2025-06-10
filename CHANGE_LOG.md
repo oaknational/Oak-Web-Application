@@ -1,3 +1,18 @@
+# [1.765.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.764.3...v1.765.0) (2025-06-10)
+
+
+### Features
+
+* add curriculum download banner on unit listing page ([63b4dcf](https://github.com/oaknational/Oak-Web-Application/commit/63b4dcf7babdfb6699da7f80c7cafe13c80cdf4b))
+* use cohort to determine whether to show curriculum download banner ([0437205](https://github.com/oaknational/Oak-Web-Application/commit/0437205d9c541547cbd49382b928c3a959fb9ee9))
+
+## [1.764.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.764.2...v1.764.3) (2025-06-09)
+
+
+### Bug Fixes
+
+* display unit-option details when showing modal for options ([45ada2b](https://github.com/oaknational/Oak-Web-Application/commit/45ada2be72655fd043eb1f53de832ec00b5570b7))
+
 ## [1.764.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.764.1...v1.764.2) (2025-06-09)
 
 ## [1.764.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.764.0...v1.764.1) (2025-06-09)

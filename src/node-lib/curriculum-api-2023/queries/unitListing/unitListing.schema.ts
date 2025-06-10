@@ -116,6 +116,7 @@ const unitListingData = z.object({
   pathwayTitle: pathways.nullable(),
   relatedSubjects: z.array(subjectSlugs).optional(),
   groupUnitsAs: z.string().optional(),
+  hasCycle2Content: z.boolean().optional(),
 });
 
 export type UnitListingData = z.infer<typeof unitListingData>;
