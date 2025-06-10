@@ -16,7 +16,6 @@ import useCurriculumDownloads, {
 import { resolveOakHref } from "@/common-lib/urls";
 
 export type CurriculumDownloadBannerProps = {
-  hasCycle2Content?: boolean;
   phaseSlug: string;
   subjectTitle: string;
   examBoardSlug?: string | null;
@@ -24,7 +23,6 @@ export type CurriculumDownloadBannerProps = {
 
 const CurriculumDownloadBanner = (props: CurriculumDownloadBannerProps) => {
   const {
-    hasCycle2Content,
     subjectSlug,
     phaseSlug,
     examBoardSlug,
@@ -44,7 +42,7 @@ const CurriculumDownloadBanner = (props: CurriculumDownloadBannerProps) => {
     childSubjectSlug,
   });
 
-  return hasCycle2Content ? (
+  return (
     <OakLinkCard
       mainSection={
         <OakFlex $flexDirection="column" $gap="space-between-s">
@@ -87,7 +85,7 @@ const CurriculumDownloadBanner = (props: CurriculumDownloadBannerProps) => {
       iconAlt="Curriculum map icon"
       showNew={false}
     />
-  ) : null;
+  );
 };
 
 export default CurriculumDownloadBanner;

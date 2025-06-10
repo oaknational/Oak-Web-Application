@@ -226,6 +226,8 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   const subjectParentSlug = subjectParent
     ? convertSubjectToSlug(subjectParent)
     : null;
+  const showCurriculumDownloadBanner =
+    hasCycle2Content && subjectSlug !== "rshe-pshe";
 
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
@@ -331,17 +333,18 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
               $mt={"space-between-m2"}
             >
               <OakFlex $flexDirection="column" $gap="space-between-m2">
-                <CurriculumDownloadBanner
-                  hasCycle2Content={hasCycle2Content}
-                  subjectSlug={subjectParentSlug ?? subjectSlug}
-                  subjectTitle={subjectTitle}
-                  phaseSlug={phase}
-                  examBoardSlug={examBoardSlug}
-                  tierSlug={tierSlug}
-                  mvRefreshTime={curriculumRefreshTime}
-                  pathwaySlug={pathwaySlug}
-                  childSubjectSlug={subjectParentSlug ? subjectSlug : null}
-                />
+                {showCurriculumDownloadBanner && (
+                  <CurriculumDownloadBanner
+                    subjectSlug={subjectParentSlug ?? subjectSlug}
+                    subjectTitle={subjectTitle}
+                    phaseSlug={phase}
+                    examBoardSlug={examBoardSlug}
+                    tierSlug={tierSlug}
+                    mvRefreshTime={curriculumRefreshTime}
+                    pathwaySlug={pathwaySlug}
+                    childSubjectSlug={subjectParentSlug ? subjectSlug : null}
+                  />
+                )}
                 <OakFlex
                   $flexDirection={[
                     "column-reverse",

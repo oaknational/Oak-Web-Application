@@ -30,7 +30,6 @@ jest.mock("./helpers", () => ({
 }));
 
 const defaultProps = {
-  hasCycle2Content: true,
   subjectSlug: "maths",
   subjectTitle: "Maths",
   phaseSlug: "primary",
@@ -57,15 +56,6 @@ describe("CurriculumDownloadBanner", () => {
       name: "Download curriculum plan",
     });
     expect(downloadButton).toBeInTheDocument();
-  });
-  it("does not render when hasCycle2Content is false", () => {
-    render(
-      <CurriculumDownloadBanner {...defaultProps} hasCycle2Content={false} />,
-    );
-    const heading = screen.queryByRole("heading", {
-      name: "Fully resourced maths curriculum is coming this autumn.",
-    });
-    expect(heading).not.toBeInTheDocument();
   });
   it("links to the curriculum downloads page when no saved details", async () => {
     render(<CurriculumDownloadBanner {...defaultProps} />);
