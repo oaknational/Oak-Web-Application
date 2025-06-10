@@ -47,8 +47,8 @@ const useCurriculumDownloads = (props: useCurriculumDownloadsProps) => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const hasSavedDetails =
-    ((data.schoolId && data.schoolName) || data.schoolNotListed === true) &&
-    data.termsAndConditions === true;
+    (Boolean(data.schoolId?.length) || Boolean(data.email?.length)) &&
+    data.termsAndConditions;
 
   useLayoutEffect(() => {
     if (localStorageData) {
