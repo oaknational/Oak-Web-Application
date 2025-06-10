@@ -47,7 +47,10 @@ describe("pages/programmes/[programmeSlug]/units", () => {
 
   it("renders title from props ", () => {
     const { getByRole } = render(
-      <UnitListingPage curriculumData={unitListingFixture()} />,
+      <UnitListingPage
+        curriculumData={unitListingFixture()}
+        curriculumRefreshTime={0}
+      />,
     );
 
     expect(getByRole("heading", { level: 1 })).toHaveTextContent("Computing");
@@ -55,14 +58,20 @@ describe("pages/programmes/[programmeSlug]/units", () => {
 
   it("renders nav for tiers for programme that included tiers", () => {
     const { getByTestId } = render(
-      <UnitListingPage curriculumData={unitListingWithTiers()} />,
+      <UnitListingPage
+        curriculumData={unitListingWithTiers()}
+        curriculumRefreshTime={0}
+      />,
     );
 
     expect(getByTestId("tiers-nav")).toBeInTheDocument();
   });
   it("title card render correct title", () => {
     const { getByRole } = render(
-      <UnitListingPage curriculumData={unitListingFixture()} />,
+      <UnitListingPage
+        curriculumData={unitListingFixture()}
+        curriculumRefreshTime={0}
+      />,
     );
 
     expect(getByRole("heading", { level: 1 })).toHaveTextContent("Computing");
@@ -74,6 +83,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
           ...unitListingFixture(),
           examBoardTitle: "OCR",
         }}
+        curriculumRefreshTime={0}
       />,
     );
 
@@ -85,6 +95,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
   it("finance banners are displayed", () => {
     const { getAllByTestId } = render(
       <UnitListingPage
+        curriculumRefreshTime={0}
         curriculumData={{
           ...unitListingFixture(),
           examBoardTitle: "OCR",
@@ -101,6 +112,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
   it("finance banners are not displayed", () => {
     const { queryAllByTestId } = render(
       <UnitListingPage
+        curriculumRefreshTime={0}
         curriculumData={{
           ...unitListingFixture(),
           examBoardTitle: "OCR",
@@ -111,7 +123,12 @@ describe("pages/programmes/[programmeSlug]/units", () => {
   });
 
   it("does not render curriculum download button on non-cycle 2 programmes", () => {
-    render(<UnitListingPage curriculumData={unitListingFixture()} />);
+    render(
+      <UnitListingPage
+        curriculumData={unitListingFixture()}
+        curriculumRefreshTime={0}
+      />,
+    );
     const curriculumDownloadButton = screen.queryByRole("button", {
       name: "Download curriculum plan",
     });
@@ -124,6 +141,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
           ...unitListingFixture(),
           hasCycle2Content: true,
         }}
+        curriculumRefreshTime={0}
       />,
     );
     const curriculumDownloadButton = screen.getByRole("button", {
@@ -140,7 +158,10 @@ describe("pages/programmes/[programmeSlug]/units", () => {
 describe("SEO", () => {
   it("renders the correct SEO details for programme", async () => {
     const { seo } = renderWithSeo()(
-      <UnitListingPage curriculumData={unitListingWithTiers()} />,
+      <UnitListingPage
+        curriculumData={unitListingWithTiers()}
+        curriculumRefreshTime={0}
+      />,
     );
     expect(seo).toEqual({
       ...mockSeoResult,
@@ -163,6 +184,7 @@ describe("SEO", () => {
     utilsMock.RESULTS_PER_PAGE = 10;
     const { seo } = renderWithSeo()(
       <UnitListingPage
+        curriculumRefreshTime={0}
         curriculumData={{
           ...unitListingFixture(),
         }}
@@ -194,7 +216,10 @@ describe("unit search filters", () => {
       },
     });
     const { getByRole } = render(
-      <UnitListingPage curriculumData={unitListingFixture()} />,
+      <UnitListingPage
+        curriculumRefreshTime={0}
+        curriculumData={unitListingFixture()}
+      />,
     );
 
     expect(getByRole("heading", { level: 1 })).toHaveTextContent("Computing");
@@ -202,7 +227,10 @@ describe("unit search filters", () => {
 
   it("skip filters button becomes visible when focussed", async () => {
     const { getByText } = render(
-      <UnitListingPage curriculumData={unitListingFixture()} />,
+      <UnitListingPage
+        curriculumRefreshTime={0}
+        curriculumData={unitListingFixture()}
+      />,
     );
 
     const skipUnits = getByText("Skip to units").closest("a");
@@ -252,7 +280,12 @@ describe("getStaticProps", () => {
 
 describe("tracking", () => {
   test("It calls tracking.unitAccessed with correct props when clicked", async () => {
-    render(<UnitListingPage curriculumData={unitListingFixture()} />);
+    render(
+      <UnitListingPage
+        curriculumData={unitListingFixture()}
+        curriculumRefreshTime={0}
+      />,
+    );
 
     const units = screen.getAllByText("Data Representation");
     expect(units).toHaveLength(2);
