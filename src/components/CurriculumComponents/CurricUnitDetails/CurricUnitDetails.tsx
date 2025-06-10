@@ -89,7 +89,7 @@ export default function CurricUnitDetails({
                     key={thread}
                     text={thread}
                     color={"lavender"}
-                    data-testid="thread-tag"
+                    data-testid="ac_threads_tag"
                   />
                 </li>
               ))}
@@ -109,7 +109,7 @@ export default function CurricUnitDetails({
                 >
                   Description
                 </OakHeading>
-                <OakP>{description}</OakP>
+                <OakP data-testid="ac_description">{description}</OakP>
               </OakBox>
             )}
 
@@ -120,7 +120,11 @@ export default function CurricUnitDetails({
                   handleUnitOverviewExploredAnalytics
                 }
               >
-                <OakP $mb="space-between-s" $font={"body-2"}>
+                <OakP
+                  data-testid="ac_wtwn"
+                  $mb="space-between-s"
+                  $font={"body-2"}
+                >
                   {whyThisWhyNow}
                 </OakP>
               </CurricUnitDetailsAccordion>
@@ -141,7 +145,11 @@ export default function CurricUnitDetails({
             <OakOL $mt="space-between-none" data-testid="lesson-title-list">
               {lessons &&
                 uniqueLessonTitlesArray?.map((lesson) => {
-                  return <OakLI key={lesson}>{lesson}</OakLI>;
+                  return (
+                    <OakLI data-testid="ac_lessons_lesson" key={lesson}>
+                      {lesson}
+                    </OakLI>
+                  );
                 })}
             </OakOL>
           </CurricUnitDetailsAccordion>
@@ -172,7 +180,11 @@ export default function CurricUnitDetails({
                   handleUnitOverviewExploredAnalytics
                 }
               >
-                <OakP $mb="space-between-xs" $font={"body-2-bold"}>
+                <OakP
+                  data-testid="ac_prior_title"
+                  $mb="space-between-xs"
+                  $font={"body-2-bold"}
+                >
                   {priorUnitTitle}
                 </OakP>
                 <OakP $mb="space-between-xs" $font={"body-2"}>
@@ -189,7 +201,11 @@ export default function CurricUnitDetails({
                 }
                 lastAccordion={true}
               >
-                <OakP $mb="space-between-xs" $font={"body-2-bold"}>
+                <OakP
+                  data-testid="ac_future_title"
+                  $mb="space-between-xs"
+                  $font={"body-2-bold"}
+                >
                   {futureUnitTitle}
                 </OakP>
                 <OakP $mb="space-between-xs" $font={"body-2"}>
