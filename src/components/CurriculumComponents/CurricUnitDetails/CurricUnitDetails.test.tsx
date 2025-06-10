@@ -8,6 +8,15 @@ import { createUnit } from "@/fixtures/curriculum/unit";
 import { createUnitOption } from "@/fixtures/curriculum/unitOption";
 import { createLesson } from "@/fixtures/curriculum/lesson";
 import { createThread } from "@/fixtures/curriculum/thread";
+import { ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS } from "@/utils/curriculum/constants";
+
+const ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS_GETTER = jest.fn();
+jest.mock("@/utils/curriculum/constants", () => ({
+  __esModule: true,
+  get ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS() {
+    return ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS_GETTER();
+  },
+}));
 
 const testCurricUnitDetails = {
   unit: createUnit({
@@ -20,6 +29,13 @@ const testCurricUnitDetails = {
     cycle: "1",
     why_this_why_now: "WHY_THIS_WHY_NOW",
     description: "DESCRIPTION",
+    prior_knowledge_requirements: [
+      "prior knowledge requirements 1",
+      "prior knowledge requirements 2",
+    ],
+    parent_programme_features: {
+      prior_knowledge_requirements: true,
+    },
   }),
   handleUnitOverviewExploredAnalytics: () => jest.fn(),
   isUnitDescriptionEnabled: false,
@@ -182,4 +198,53 @@ describe("CurricUnitDetails component", () => {
       }
     });
   });
+
+  for (const priorKnowledgeRequirementsEnabled of [true, false]) {
+    describe(`ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS=${priorKnowledgeRequirementsEnabled}`, () => {
+      describe("accordion functionality on component", () => {
+        test("it should render all accordion components (cycle 1)", () => {
+          ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS_GETTER.mockReturnValue(
+            priorKnowledgeRequirementsEnabled,
+          );
+
+          const { getAllByTestId, getByText } = renderWithTheme(
+            <CurricUnitDetails {...testCurricUnitDetails} />,
+          );
+
+          expect(getAllByTestId("accordion-component")).toHaveLength(
+            priorKnowledgeRequirementsEnabled ? 4 : 3,
+          );
+          expect(getByText("Lessons in unit")).toBeInTheDocument();
+          if (priorKnowledgeRequirementsEnabled) {
+            expect(
+              getByText("Prior knowledge requirements"),
+            ).toBeInTheDocument();
+          }
+          expect(getByText("Previous unit description")).toBeInTheDocument();
+          expect(getByText("Following unit description")).toBeInTheDocument();
+        });
+
+        test("it should render all accordion components (cycle 2)", () => {
+          const { getAllByTestId, getByText } = renderWithTheme(
+            <CurricUnitDetails
+              {...testCurricUnitDetails}
+              isUnitDescriptionEnabled={true}
+            />,
+          );
+
+          expect(getAllByTestId("accordion-component")).toHaveLength(
+            ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS ? 3 : 2,
+          );
+          expect(getByText("Lessons in unit")).toBeInTheDocument();
+          expect(getByText("Description")).toBeInTheDocument();
+          expect(getByText("Why this why now")).toBeInTheDocument();
+          if (ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS) {
+            expect(
+              getByText("Prior knowledge requirements"),
+            ).toBeInTheDocument();
+          }
+        });
+      });
+    });
+  }
 });
