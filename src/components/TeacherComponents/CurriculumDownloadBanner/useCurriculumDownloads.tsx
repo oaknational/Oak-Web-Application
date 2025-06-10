@@ -7,7 +7,7 @@ import {
 } from "../../CurriculumComponents/CurriculumDownloadTab/helper";
 import { createCurriculumDownloadsQuery } from "../../CurriculumComponents/CurriculumDownloadTab";
 
-import { downloadFileFromUrl } from "./helpers";
+import { downloadFileFromUrl } from "@/components/SharedComponents/helpers/downloadFileFromUrl";
 
 export type useCurriculumDownloadsProps = {
   mvRefreshTime: number;

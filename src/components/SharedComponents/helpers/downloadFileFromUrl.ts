@@ -1,4 +1,6 @@
-//TODO: move to shared
+/**
+ * Used in curriculum download journeys on the unit listing page and curriculum download tab
+ */
 
 const downloadBlob = (blob: Blob, filename: string) => {
   const url = window.URL.createObjectURL(blob);
