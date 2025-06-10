@@ -327,6 +327,8 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                   subjectTitle={subjectTitle}
                   phase={phase}
                   examBoardSlug={examBoardSlug}
+                  tierSlug={tierSlug}
+                  ks4OptionSlug={null} // TODO: ks4optionslug
                 />
                 <OakFlex
                   $flexDirection={[

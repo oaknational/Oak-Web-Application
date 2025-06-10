@@ -9,6 +9,8 @@ import React from "react";
 
 import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
 
+import useCurriculumDownloads from "./useCurriculumDownloads";
+
 import { resolveOakHref } from "@/common-lib/urls";
 
 export type CurriculumDownloadBannerProps = {
@@ -17,11 +19,30 @@ export type CurriculumDownloadBannerProps = {
   subjectTitle: string;
   phase: string;
   examBoardSlug?: string | null;
+  ks4OptionSlug: string | null;
+  tierSlug: string | null;
 };
 
 const CurriculumDownloadBanner = (props: CurriculumDownloadBannerProps) => {
-  const { hasCycle2Content, subjectSlug, subjectTitle, phase, examBoardSlug } =
-    props;
+  const {
+    hasCycle2Content,
+    subjectSlug,
+    subjectTitle,
+    phase,
+    examBoardSlug,
+    tierSlug,
+    ks4OptionSlug,
+  } = props;
+
+  // TODO: props
+  const { onSubmit, hasSavedDetails, isSubmitting } = useCurriculumDownloads({
+    mvRefreshTime: 0,
+    phaseSlug: phase,
+    subjectSlug,
+    ks4OptionSlug,
+    tierSlug,
+  });
+
   return hasCycle2Content ? (
     <OakLinkCard
       mainSection={
@@ -35,7 +56,19 @@ const CurriculumDownloadBanner = (props: CurriculumDownloadBannerProps) => {
             curriculum plan now to explore what’s coming and the thinking behind
             our curriculum design.
           </OakP>
-          <OakSmallPrimaryButton isTrailingIcon iconName="download">
+          <OakSmallPrimaryButton
+            isTrailingIcon
+            iconName="download"
+            isLoading={isSubmitting}
+            onClick={
+              hasSavedDetails
+                ? (e) => {
+                    e.preventDefault();
+                    onSubmit();
+                  }
+                : undefined
+            }
+          >
             Download curriculum plan
           </OakSmallPrimaryButton>
         </OakFlex>
