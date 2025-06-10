@@ -50,6 +50,7 @@ import DesktopUnitFilters from "@/components/TeacherComponents/DesktopUnitFilter
 import RelatedSubjectsBanner from "@/components/TeacherComponents/RelatedSubjectsBanner/RelatedSubjectsBanner";
 import getYearGroupSEOString from "@/pages-helpers/teacher/year-group-seo-string/get-year-grp-seo-string";
 import CurriculumDownloadBanner from "@/components/TeacherComponents/CurriculumDownloadBanner/CurriculumDownloadBanner";
+import { convertSubjectToSlug } from "@/components/TeacherComponents/helpers/convertSubjectToSlug";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -64,6 +65,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     keyStageSlug,
     subjectTitle,
     subjectSlug,
+    subjectParent,
     tierSlug,
     tiers,
     units,
@@ -218,6 +220,10 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     );
   };
 
+  const subjectParentSlug = subjectParent
+    ? convertSubjectToSlug(subjectParent)
+    : null;
+
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <AppLayout seoProps={unitsSEO}>
@@ -324,14 +330,14 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
               <OakFlex $flexDirection="column" $gap="space-between-m2">
                 <CurriculumDownloadBanner
                   hasCycle2Content={hasCycle2Content}
-                  subjectSlug={subjectSlug}
+                  subjectSlug={subjectParentSlug ?? subjectSlug}
                   subjectTitle={subjectTitle}
                   phaseSlug={phase}
                   examBoardSlug={examBoardSlug}
                   tierSlug={tierSlug}
                   mvRefreshTime={0} // TODO: mv refresh time
                   pathwaySlug={pathwaySlug}
-                  childSubjectSlug={null} // TODO: child subject
+                  childSubjectSlug={subjectParentSlug ? subjectSlug : null}
                 />
                 <OakFlex
                   $flexDirection={[

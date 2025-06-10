@@ -23,8 +23,9 @@ const useCurriculumDownloads = (props: useCurriculumDownloadsProps) => {
     mvRefreshTime,
     phaseSlug,
     subjectSlug,
-    pathwaySlug: ks4OptionSlug,
+    pathwaySlug,
     tierSlug,
+    childSubjectSlug,
   } = props;
 
   const [data, setData] = useState<CurriculumDownloadViewData>(() => ({
@@ -64,9 +65,9 @@ const useCurriculumDownloads = (props: useCurriculumDownloadsProps) => {
       mvRefreshTime,
       subjectSlug,
       phaseSlug,
-      ks4OptionSlug,
+      pathwaySlug,
       tierSlug,
-      null,
+      childSubjectSlug,
     );
     const downloadPath = `/api/curriculum-downloads/?${query}`;
 

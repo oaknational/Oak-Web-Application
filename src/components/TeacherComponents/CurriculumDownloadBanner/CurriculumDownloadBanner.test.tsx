@@ -138,4 +138,36 @@ describe("CurriculumDownloadBanner", () => {
       ),
     );
   });
+  it("calls onSubmit with the correct parameters when childSubjectSlug is provided", async () => {
+    mockDownloadsLocalStorage.mockReturnValue({
+      data: {
+        isComplete: true,
+        schoolId: "123",
+        schoolName: "Test School",
+        schoolNotListed: false,
+        email: "email.com",
+        termsAndConditions: true,
+      },
+      isLoading: false,
+    });
+    render(
+      <CurriculumDownloadBanner
+        {...defaultProps}
+        subjectSlug="science"
+        childSubjectSlug="biology"
+      />,
+    );
+
+    const downloadButton = screen.getByRole("button", {
+      name: "Download curriculum plan",
+    });
+    const user = userEvent.setup();
+    await user.click(downloadButton);
+
+    await waitFor(() =>
+      expect(mockDownloadFileFromUrl).toHaveBeenCalledWith(
+        "/api/curriculum-downloads/?mvRefreshTime=0&subjectSlug=science&phaseSlug=primary&state=published&childSubjectSlug=biology",
+      ),
+    );
+  });
 });
