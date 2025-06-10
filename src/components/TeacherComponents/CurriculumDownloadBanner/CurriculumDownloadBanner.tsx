@@ -28,7 +28,7 @@ const CurriculumDownloadBanner = (props: CurriculumDownloadBannerProps) => {
     examBoardSlug,
     tierSlug,
     pathwaySlug,
-    childSubjectSlug = null,
+    childSubjectSlug,
     subjectTitle,
   } = props;
 
