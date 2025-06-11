@@ -52,5 +52,6 @@ describe("teacherPreviewLesson()", () => {
     expect(lesson.lessonTitle).toEqual(_lessonContentFixture.lesson_title);
     expect(lesson.lessonGuideUrl).toEqual("lesson-guide-url");
     expect(lesson.phonicsOutcome).toEqual("phonics-outcome");
+    expect(lesson.unitTotalLessonCount).toEqual(1);
   });
 });

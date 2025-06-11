@@ -65,11 +65,11 @@ export const LessonOverviewHeaderDesktopB: FC<LessonOverviewHeaderProps> = (
         <OakGridArea $justifyContent={"center"} $colSpan={[12, 3]}>
           <OakFlex
             $flexDirection={"column"}
-            $alignItems={"center"}
+            $alignItems={"flex-start"}
             $gap={"space-between-m2"}
           >
             {shouldShowBackButton && (
-              <CustomDimensionRow>
+              <CustomDimensionRow data-testid={"back-button-row"}>
                 <OakTertiaryButton
                   element="a"
                   href={
@@ -100,10 +100,12 @@ export const LessonOverviewHeaderDesktopB: FC<LessonOverviewHeaderProps> = (
           <OakFlex $flexDirection={"column"} $gap="all-spacing-2">
             {shouldShowBackButton && (
               <OakTagFunctional
+                data-testid={"lesson-count-tag"}
                 label={`Lesson ${orderInUnit} of ${unitTotalLessonCount}`}
                 $background={"bg-decorative4-main"}
                 $mb={"space-between-s"}
                 $width={"fit-content"}
+                useSpan={true}
               />
             )}
             {(examBoardTitle || yearTitle || tierTitle) && (

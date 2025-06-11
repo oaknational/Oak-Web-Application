@@ -67,6 +67,7 @@ export const LessonOverviewHeaderMobileB: FC<LessonOverviewHeaderProps> = (
               label={`Lesson ${orderInUnit} of ${unitTotalLessonCount}`}
               $background={"bg-decorative4-main"}
               $width={"fit-content"}
+              useSpan={true}
             />
           </>
         )}
