@@ -1,29 +1,43 @@
 import { SignUpButton, useUser } from "@clerk/nextjs";
-import { OakPrimaryButton } from "@oaknational/oak-components";
+import { OakIconName, OakPrimaryButton } from "@oaknational/oak-components";
 import { useRouter } from "next/router";
 import { useMemo } from "react";
 
 import { resolveOakHref } from "@/common-lib/urls";
 
-type ButtonState = "loading" | "action" | "onboarding" | "signup";
+type ButtonState = "loading" | "action" | "onboarding" | "signup" | "null";
 
-const OakSignUpButton = () => {
+type ActionProps = {
+  onClick: () => void;
+  name: string;
+  iconName?: OakIconName;
+  isTrailingIcon?: boolean;
+};
+
+type OakSignUpButtonProps = {
+  actionProps?: ActionProps;
+};
+
+const OakSignUpButton = (props: OakSignUpButtonProps) => {
+  const { actionProps } = props;
   const router = useRouter();
   const { isSignedIn, isLoaded, user } = useUser();
 
   const buttonState = useMemo((): ButtonState => {
     const userOnboarded = user?.publicMetadata?.owa?.isOnboarded;
-    if (isLoaded && !isSignedIn) {
+
+    if (!isLoaded) {
+      return "loading";
+    } else if (!isSignedIn) {
       return "signup";
-    }
-    if (isLoaded && isSignedIn && !userOnboarded) {
+    } else if (isSignedIn && !userOnboarded) {
       return "onboarding";
-    }
-    if (isLoaded && isSignedIn && userOnboarded) {
+    } else if (userOnboarded && actionProps) {
       return "action";
+    } else {
+      return "null";
     }
-    return "loading";
-  }, [isLoaded, isSignedIn, user]);
+  }, [isLoaded, isSignedIn, user, actionProps]);
 
   switch (buttonState) {
     case "onboarding":
@@ -47,8 +61,20 @@ const OakSignUpButton = () => {
           <OakPrimaryButton>Sign up</OakPrimaryButton>
         </SignUpButton>
       );
-    default:
+    case "action":
+      return (
+        <OakPrimaryButton
+          onClick={actionProps?.onClick}
+          iconName={actionProps?.iconName}
+          isTrailingIcon={actionProps?.isTrailingIcon}
+        >
+          {actionProps?.name}
+        </OakPrimaryButton>
+      );
+    case "loading":
       return <OakPrimaryButton isLoading>Loading...</OakPrimaryButton>;
+    default:
+      return null;
   }
 };
 

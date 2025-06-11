@@ -12,7 +12,29 @@ import OakSignUpButton from "./OakSignUpButton";
 
 const meta: Meta<typeof OakSignUpButton> = {
   component: OakSignUpButton,
-  args: {},
+  argTypes: {
+    actionProps: {
+      control: {
+        type: "select",
+      },
+      options: ["none", "download", "save"],
+      mapping: {
+        none: undefined,
+        download: {
+          onClick: () => console.log("Download clicked"),
+          name: "Download",
+          iconName: "download",
+          isTrailingIcon: true,
+        },
+        save: {
+          onClick: () => console.log("Save clicked"),
+          name: "Save",
+          iconName: "save",
+          isTrailingIcon: false,
+        },
+      },
+    },
+  },
 };
 
 export default meta;
@@ -20,17 +42,24 @@ export default meta;
 type Story = StoryObj<typeof OakSignUpButton>;
 
 export const Default: Story = {
-  render: () => (
+  render: (args) => (
     <ClerkProvider>
       <OakThemeProvider theme={oakDefaultTheme}>
         <OakFlex $flexDirection="column" $gap="space-between-m">
           <OakHeading tag="h1" $font="heading-light-7">
             Sign in / out via OWA to test the states on this button
           </OakHeading>
-          <OakSignUpButton />
+          <OakSignUpButton {...args} />
         </OakFlex>
       </OakThemeProvider>
     </ClerkProvider>
   ),
-  args: {},
+  args: {
+    actionProps: {
+      onClick: () => console.log("Download clicked"),
+      name: "Download",
+      iconName: "download",
+      isTrailingIcon: true,
+    },
+  },
 };
