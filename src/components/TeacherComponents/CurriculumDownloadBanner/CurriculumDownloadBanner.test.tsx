@@ -209,4 +209,32 @@ describe("CurriculumDownloadBanner", () => {
       subjectTitle: "Maths",
     });
   });
+  it("should show an error toast if the download fails", async () => {
+    mockDownloadsLocalStorage.mockReturnValue({
+      data: {
+        isComplete: true,
+        schoolId: "123",
+        schoolName: "Test School",
+        schoolNotListed: false,
+        email: "email.com",
+        termsAndConditions: true,
+      },
+      isLoading: false,
+    });
+    mockDownloadFileFromUrl.mockRejectedValue(new Error("Download failed"));
+
+    render(<CurriculumDownloadBanner {...defaultProps} />);
+
+    const downloadButton = screen.getByRole("button", {
+      name: "Download curriculum plan",
+    });
+    const user = userEvent.setup();
+    await user.click(downloadButton);
+
+    await waitFor(() => {
+      expect(
+        screen.getByText("Something went wrong with your download"),
+      ).toBeInTheDocument();
+    });
+  });
 });

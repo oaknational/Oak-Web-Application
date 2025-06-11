@@ -11,6 +11,7 @@ import { extractUrnAndSchool } from "../helpers/downloadAndShareHelpers/getForma
 import { downloadFileFromUrl } from "@/components/SharedComponents/helpers/downloadFileFromUrl";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { ResourceTypeValueType, PhaseValueType } from "@/browser-lib/avo/Avo";
+import { useOakToastContext } from "@/context/OakToast/useOakToastContext";
 
 export type useCurriculumDownloadsProps = {
   mvRefreshTime: number;
@@ -34,6 +35,8 @@ const useCurriculumDownloads = (props: useCurriculumDownloadsProps) => {
   } = props;
 
   const { track } = useAnalytics();
+  const { setCurrentToastProps } = useOakToastContext();
+
   const [data, setData] = useState<CurriculumDownloadViewData>(() => ({
     schoolId: undefined,
     schoolName: undefined,
@@ -88,6 +91,16 @@ const useCurriculumDownloads = (props: useCurriculumDownloadsProps) => {
 
     try {
       await downloadFileFromUrl(downloadPath);
+    } catch (error) {
+      setIsSubmitting(false);
+      setCurrentToastProps({
+        message: "Something went wrong with your download",
+        variant: "error",
+        autoDismiss: true,
+        showIcon: false,
+      });
+
+      return;
     } finally {
       const schoolName =
         data.schoolName === "Homeschool" ? "Homeschool" : "Selected school";
