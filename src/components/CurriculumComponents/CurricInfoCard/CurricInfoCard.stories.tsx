@@ -6,7 +6,7 @@ const meta: Meta<typeof CurricInfoCard> = {
   component: CurricInfoCard,
   tags: ["autodocs"],
   argTypes: {
-    text: {
+    children: {
       control: "text",
     },
     iconName: {
@@ -41,7 +41,7 @@ type Story = StoryObj<typeof CurricInfoCard>;
 
 export const Default: Story = {
   args: {
-    text: "This is some information.",
+    children: "This is some information.",
     iconName: "search",
     background: "mint30",
   },
