@@ -189,7 +189,6 @@
     "@types/byte-size": "^8.1.2",
     "@types/escape-html": "^1.0.4",
     "@types/jest": "^29.5.8",
-    "@types/jest-axe": "^3.5.9",
     "@types/js-cookie": "^3.0.6",
     "@types/json-diff": "^1.0.3",
     "@types/lodash": "^4.17.16",
