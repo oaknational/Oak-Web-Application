@@ -43,6 +43,7 @@ const CurriculumDownloadBanner = (props: CurriculumDownloadBannerProps) => {
 
   return (
     <OakLinkCard
+      hasAnimation
       mainSection={
         <OakFlex $flexDirection="column" $gap="space-between-s">
           <OakHeading tag="h2">
