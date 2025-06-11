@@ -81,7 +81,7 @@ const CurriculumDownloadBanner = (props: CurriculumDownloadBannerProps) => {
         }),
       })}
       iconName="homepage-teacher-map"
-      iconFill="white"
+      iconFill="transparent"
       iconAlt="Curriculum map icon"
       showNew={false}
     />
