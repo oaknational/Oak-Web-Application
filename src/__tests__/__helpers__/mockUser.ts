@@ -93,6 +93,12 @@ export const mockLoggedOut: UseUserReturn = {
   isSignedIn: false,
 };
 
+export const mockNotOnboardedUser: UseUserReturn & { user: UserResource } = {
+  user: mockUserWithDownloadAccessNotOnboarded,
+  isLoaded: true,
+  isSignedIn: true,
+};
+
 /**
  * Mock return value for the user loading state
  *

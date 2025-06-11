@@ -1,6 +1,11 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakHeading,
+  OakThemeProvider,
+  oakDefaultTheme,
+} from "@oaknational/oak-components";
 import { ClerkProvider } from "@clerk/nextjs";
 
 import OakSignUpButton from "./OakSignUpButton";
@@ -18,7 +23,12 @@ export const Default: Story = {
   render: () => (
     <ClerkProvider>
       <OakThemeProvider theme={oakDefaultTheme}>
-        <OakSignUpButton />
+        <OakFlex $flexDirection="column" $gap="space-between-m">
+          <OakHeading tag="h1" $font="heading-light-7">
+            Sign in / out via OWA to test the states on this button
+          </OakHeading>
+          <OakSignUpButton />
+        </OakFlex>
       </OakThemeProvider>
     </ClerkProvider>
   ),
