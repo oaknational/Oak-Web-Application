@@ -1,3 +1,23 @@
+# [1.769.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.768.0...v1.769.0) (2025-06-11)
+
+
+### Bug Fixes
+
+* adjust conditions for enabling download button ([f9ada33](https://github.com/oaknational/Oak-Web-Application/commit/f9ada33519731d9795bcc303d9a1c63906298d9a))
+* handle potentially missing localstorage values ([002f0cf](https://github.com/oaknational/Oak-Web-Application/commit/002f0cf34a5b1cd260746b4dbda48f12828065f5))
+* hide curriculum download banner on rshe pages ([a506b3f](https://github.com/oaknational/Oak-Web-Application/commit/a506b3fc9425d39cb1f46f22bf5fa4d8f1093576))
+* missing props ([4d2ce11](https://github.com/oaknational/Oak-Web-Application/commit/4d2ce1118b315349c490d053a624aea0bd1117d5))
+
+
+### Features
+
+* add tracking ([11b26a3](https://github.com/oaknational/Oak-Web-Application/commit/11b26a39c1fff3cf7f9fbe252d962562854797fb))
+* add use curriculum downloads hook ([27d8fee](https://github.com/oaknational/Oak-Web-Application/commit/27d8fee07212f2ffce3a245c98a01c83f70dc8e1))
+* show an error toast if the download fails ([56e5244](https://github.com/oaknational/Oak-Web-Application/commit/56e5244d36e3e5d0e18e314ca7c203d276ae602e))
+* use child subject when available ([b95a81f](https://github.com/oaknational/Oak-Web-Application/commit/b95a81fc9157fb8fe41a3c1b5260f3915f1e1264))
+* use mv refresh time in query ([08d37d1](https://github.com/oaknational/Oak-Web-Application/commit/08d37d11713c2758486487df6452b277bc3f22fe))
+* use pathway slug in curicculum download query ([05f25dd](https://github.com/oaknational/Oak-Web-Application/commit/05f25dd0db906f5d7d5451170d30b019e9d54e1c))
+
 # [1.768.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.767.0...v1.768.0) (2025-06-10)
 
 
