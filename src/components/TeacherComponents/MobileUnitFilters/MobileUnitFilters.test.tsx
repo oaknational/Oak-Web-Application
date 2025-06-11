@@ -30,6 +30,7 @@ const mockProps: MobileUnitFiltersProps = {
   keyStageSlug: "ks1",
   subjectTitle: "Maths",
   subjectSlug: "maths",
+  pathwaySlug: null,
   units: [],
   examBoardSlug: "aqa",
   examBoardTitle: "AQA",

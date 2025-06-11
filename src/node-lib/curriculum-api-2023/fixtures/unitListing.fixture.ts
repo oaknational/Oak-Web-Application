@@ -12,6 +12,7 @@ export const unitListingFixture = (
     subjectSlug: "computing",
     subjectTitle: "Computing",
     pathwayTitle: null,
+    pathwaySlug: null,
     subjectParent: null,
     hasNewContent: false,
     tierSlug: null,

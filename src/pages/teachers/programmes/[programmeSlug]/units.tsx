@@ -15,9 +15,6 @@ import {
   oakDefaultTheme,
   OakFlex,
   OakMaxWidth,
-  OakLinkCard,
-  OakP,
-  OakSmallPrimaryButton,
 } from "@oaknational/oak-components";
 import { examboards, tierSlugs } from "@oaknational/oak-curriculum-schema";
 import { z } from "zod";
@@ -52,15 +49,18 @@ import MobileUnitFilters from "@/components/TeacherComponents/MobileUnitFilters"
 import DesktopUnitFilters from "@/components/TeacherComponents/DesktopUnitFilters/DesktopUnitFilters";
 import RelatedSubjectsBanner from "@/components/TeacherComponents/RelatedSubjectsBanner/RelatedSubjectsBanner";
 import getYearGroupSEOString from "@/pages-helpers/teacher/year-group-seo-string/get-year-grp-seo-string";
-import { resolveOakHref } from "@/common-lib/urls";
-import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
+import CurriculumDownloadBanner from "@/components/TeacherComponents/CurriculumDownloadBanner/CurriculumDownloadBanner";
+import { convertSubjectToSlug } from "@/components/TeacherComponents/helpers/convertSubjectToSlug";
+import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
+  curriculumRefreshTime: number;
 };
 
 const UnitListingPage: NextPage<UnitListingPageProps> = ({
   curriculumData,
+  curriculumRefreshTime,
 }) => {
   const {
     programmeSlug,
@@ -68,6 +68,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     keyStageSlug,
     subjectTitle,
     subjectSlug,
+    subjectParent,
     tierSlug,
     tiers,
     units,
@@ -77,6 +78,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     subjectCategories,
     yearGroups,
     pathwayTitle,
+    pathwaySlug,
     relatedSubjects,
     phase,
     hasCycle2Content,
@@ -221,6 +223,12 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     );
   };
 
+  const subjectParentSlug = subjectParent
+    ? convertSubjectToSlug(subjectParent)
+    : null;
+  const showCurriculumDownloadBanner =
+    hasCycle2Content && subjectSlug !== "rshe-pshe";
+
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <AppLayout seoProps={unitsSEO}>
@@ -325,39 +333,16 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
               $mt={"space-between-m2"}
             >
               <OakFlex $flexDirection="column" $gap="space-between-m2">
-                {hasCycle2Content && (
-                  <OakLinkCard
-                    mainSection={
-                      <OakFlex $flexDirection="column" $gap="space-between-s">
-                        <OakHeading tag="h2">
-                          Fully resourced {subjectTitle.toLocaleLowerCase()}{" "}
-                          curriculum is coming this autumn.
-                        </OakHeading>
-                        <OakP $font="heading-light-7">
-                          We’re busy creating the final lessons and units.
-                          Download the curriculum plan now to explore what’s
-                          coming and the thinking behind our curriculum design.
-                        </OakP>
-                        <OakSmallPrimaryButton
-                          isTrailingIcon
-                          iconName="download"
-                        >
-                          Download curriculum plan
-                        </OakSmallPrimaryButton>
-                      </OakFlex>
-                    }
-                    href={resolveOakHref({
-                      page: "curriculum-downloads",
-                      subjectPhaseSlug: getSubjectPhaseSlug({
-                        subject: subjectSlug,
-                        phaseSlug: phase,
-                        examBoardSlug: examBoardSlug,
-                      }),
-                    })}
-                    iconName="homepage-teacher-map"
-                    iconFill="white"
-                    iconAlt="Curriculum map icon"
-                    showNew={false}
+                {showCurriculumDownloadBanner && (
+                  <CurriculumDownloadBanner
+                    subjectSlug={subjectParentSlug ?? subjectSlug}
+                    subjectTitle={subjectTitle}
+                    phaseSlug={phase}
+                    examBoardSlug={examBoardSlug}
+                    tierSlug={tierSlug}
+                    mvRefreshTime={curriculumRefreshTime}
+                    pathwaySlug={pathwaySlug}
+                    childSubjectSlug={subjectParentSlug ? subjectSlug : null}
                   />
                 )}
                 <OakFlex
@@ -489,15 +474,17 @@ export const getStaticProps: GetStaticProps<
           ];
         }
 
+        const curriculumRefreshTime = await getMvRefreshTime();
+
         const results: GetStaticPropsResult<UnitListingPageProps> = {
           props: {
             curriculumData,
+            curriculumRefreshTime,
           },
         };
 
         return results;
       } catch (error) {
-        // console.error(error);
         return {
           notFound: true,
         };
