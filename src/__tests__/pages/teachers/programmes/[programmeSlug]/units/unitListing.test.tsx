@@ -134,6 +134,24 @@ describe("pages/programmes/[programmeSlug]/units", () => {
     });
     expect(curriculumDownloadButton).not.toBeInTheDocument();
   });
+  it("does not render curriculum download button on rshe", () => {
+    render(
+      <UnitListingPage
+        curriculumData={{
+          ...unitListingFixture(),
+          programmeSlug: "rshe-secondary-ks4",
+          subjectSlug: "rshe-pshe",
+          hasCycle2Content: true,
+          subjectTitle: "RSHE (PSHE)",
+        }}
+        curriculumRefreshTime={0}
+      />,
+    );
+    const curriculumDownloadButton = screen.queryByRole("button", {
+      name: "Download curriculum plan",
+    });
+    expect(curriculumDownloadButton).not.toBeInTheDocument();
+  });
   it("renders curriculum download button on cycle 2 programmes", () => {
     render(
       <UnitListingPage
