@@ -142,6 +142,7 @@ export default function CurricUnitModalContent({
                   $background={"pink30"}
                   $pa={"inner-padding-xl"}
                   $mt={"space-between-l"}
+                  $mb={"space-between-l"}
                   $pb={"inner-padding-none"}
                   data-testid="unit-options-card"
                   $borderRadius={"border-radius-s"}
