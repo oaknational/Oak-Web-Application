@@ -13,6 +13,11 @@ import OakSignUpButton from "./OakSignUpButton";
 const meta: Meta<typeof OakSignUpButton> = {
   component: OakSignUpButton,
   argTypes: {
+    signInText: {
+      control: {
+        type: "text",
+      },
+    },
     actionProps: {
       control: {
         type: "select",
@@ -61,5 +66,6 @@ export const Default: Story = {
       iconName: "download",
       isTrailingIcon: true,
     },
+    signInText: "Sign up",
   },
 };

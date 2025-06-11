@@ -16,10 +16,11 @@ type ActionProps = {
 
 type OakSignUpButtonProps = {
   actionProps?: ActionProps;
+  signInText?: string;
 };
 
 const OakSignUpButton = (props: OakSignUpButtonProps) => {
-  const { actionProps } = props;
+  const { actionProps, signInText } = props;
   const router = useRouter();
   const { isSignedIn, isLoaded, user } = useUser();
 
@@ -58,7 +59,7 @@ const OakSignUpButton = (props: OakSignUpButtonProps) => {
         <SignUpButton
           forceRedirectUrl={`/onboarding?returnTo=${router.asPath}`}
         >
-          <OakPrimaryButton>Sign up</OakPrimaryButton>
+          <OakPrimaryButton>{signInText ?? "Sign up"}</OakPrimaryButton>
         </SignUpButton>
       );
     case "action":

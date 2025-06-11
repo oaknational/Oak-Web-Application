@@ -53,6 +53,17 @@ describe("Sign up button", () => {
     await user.click(actionButton);
     expect(mockOnClick).toHaveBeenCalled();
   });
+  it("renders alternate sign in text", () => {
+    render(<OakSignUpButton signInText="Register to continue" />);
+    const signUpButton = screen.getByRole("button", {
+      name: /register to continue/i,
+    });
+    expect(signUpButton).toBeInTheDocument();
+    const defaultTextSignUpButton = screen.queryByRole("button", {
+      name: /sign up/i,
+    });
+    expect(defaultTextSignUpButton).not.toBeInTheDocument();
+  });
   it.todo("renders a primary variant");
   it.todo("renders a secondary variant");
   it.todo("renders a tertiary variant");
