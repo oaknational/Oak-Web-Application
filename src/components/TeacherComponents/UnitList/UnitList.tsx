@@ -9,6 +9,7 @@ import {
   OakInlineBanner,
 } from "@oaknational/oak-components";
 
+import SignPostToAila from "../NoSearchResults/SignPostToAila";
 import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
 
 import { getPageItems, getProgrammeFactors } from "./helpers";
@@ -29,7 +30,6 @@ import { resolveOakHref } from "@/common-lib/urls";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { PaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
 import { convertSubjectToSlug } from "@/components/TeacherComponents/helpers/convertSubjectToSlug";
-import { useSaveUnits } from "@/node-lib/educator-api/helpers/saveUnits/useSaveUnits";
 
 export type Tier = {
   title: string;
@@ -321,6 +321,15 @@ const UnitList: FC<UnitListProps> = (props) => {
       ) : (
         <OakBox $pb="inner-padding-xl2" />
       )}
+
+      <SignPostToAila
+        key="aila-sign-post"
+        title="Can't find what you need?"
+        text="Create a tailor-made lesson plan and resources on any topic with Aila, our free AI-powered lesson assistant. Entirely adaptable to your class and context."
+        searchExpression={""}
+        keyStage={keyStageSlug}
+        subject={subjectSlug}
+      />
     </OakFlex>
   );
 };
