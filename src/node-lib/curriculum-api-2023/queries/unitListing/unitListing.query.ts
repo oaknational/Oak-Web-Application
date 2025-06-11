@@ -121,6 +121,7 @@ const unitListingQuery =
       ...(relatedSubjectsSet.size >= 1 && {
         relatedSubjects: Array.from(relatedSubjectsSet),
       }),
+      pathwaySlug: programmeFields.pathwaySlug,
       hasCycle2Content,
     };
   };
