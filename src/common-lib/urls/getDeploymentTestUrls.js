@@ -37,15 +37,17 @@ function getDeploymentTestUrls() {
     "/teachers/programmes/computing-secondary-ks4-gcse-l/units",
     "/teachers/programmes/maths-secondary-ks4-foundation/units/algebraic-manipulation/lessons", // unit with tiers
     "/teachers/programmes/english-primary-ks2-l/units/oliver-twist-narrative-writing-280c/lessons?page=2", // unit with pagination
-    "/teachers/programmes/combined-science-secondary-ks4-foundation-aqa/units?page=2", // unit with pagination
     "/teachers/programmes/design-technology-secondary-ks3-l/units/packaging-pop-outs-bc35/lessons/designing-for-others-6mtk2t", // all yellow boxes
     "/teachers/programmes/maths-secondary-ks4-foundation/units/algebraic-manipulation/lessons/further-algebraic-terminology/downloads?preselected=slide+deck",
+    "/teachers/specialist/subjects", // specialist
+    "/teachers/key-stages/early-years-foundation-stage/subjects", // EYFS
     // "/teachers/search?term=computing&keyStages=ks4&subjects=computing&contentTypes=unit",
     // New content pages
     "/teachers/programmes/english-secondary-ks3/units", // No programme factors
     "/teachers/programmes/english-secondary-ks3/units/victorian-childhood-non-fiction-reading-and-writing/lessons",
     "/teachers/programmes/english-secondary-ks3/units/victorian-childhood-non-fiction-reading-and-writing/lessons/victorian-childhood-preparing-an-argument",
     "/teachers/key-stages/ks4/subjects/combined-science/programmes",
+    "/teachers/programmes/combined-science-secondary-ks4-foundation-aqa/units?page=2", // unit with pagination
     "/teachers/programmes/combined-science-secondary-ks4-higher-aqa/units",
     "/teachers/programmes/combined-science-secondary-ks4-higher-aqa/units/measuring-waves/lessons",
     "/teachers/programmes/combined-science-secondary-ks4-higher-aqa/units/measuring-waves/lessons/oscilloscope",
@@ -54,8 +56,6 @@ function getDeploymentTestUrls() {
     "/teachers/programmes/biology-secondary-ks4-higher-aqa/units/health-and-disease/lessons",
     "/teachers/programmes/history-primary-ks1/units/traditional-stories-what-do-they-tell-us-about-the-distant-past-1757/lessons", // optionality variant using null lessons
     "/teachers/programmes/physical-education-primary-ks2/units/invasion-games-principles-of-attack-and-defence-through-ball-games/lessons/passing-and-receiving-skills", // practical PE lesson
-    "/teachers/specialist/subjects", // specialist
-    "/teachers/key-stages/early-years-foundation-stage/subjects", // EYFS
     "/teachers/programmes/computing-primary-ks1/units/building-sequences-in-programs/lessons/building-blocks-to-create-a-sequence", // lesson with media clips and additional materials
     "/teachers/programmes/music-primary-ks2/units/compose-and-create-improvising-within-hindustani-classical-music/lessons/playing-taals-and-speaking-bols/media", // media clips page
     "/teachers/programmes/computing-primary-ks1/units/digital-writing/lessons/comparing-digital-writing-to-using-a-pencil", // lesson with lesson files,
