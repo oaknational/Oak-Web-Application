@@ -262,7 +262,10 @@ export const transformedLessonOverviewData = (
     pathwayTitle: browseData.programmeFields.pathwayDescription ?? null,
     lessonReleaseDate: content.lessonReleaseDate ?? null,
     orderInUnit: browseData.orderInUnit ?? 1,
-    unitTotalLessonCount: unitData?.lessonCount ?? 1,
+    unitTotalLessonCount:
+      unitData?.supplementaryData?.staticLessonList?.length ??
+      unitData?.lessonCount ??
+      1,
   };
 };
 

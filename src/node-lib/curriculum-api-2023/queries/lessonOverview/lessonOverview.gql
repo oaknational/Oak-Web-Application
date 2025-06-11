@@ -67,5 +67,6 @@ query lessonOverview(
     where: $unitDataWhere
   ) {
     lesson_count
+    supplementary_data
   }
 }

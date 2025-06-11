@@ -230,6 +230,7 @@ export type LessonBase = z.infer<typeof baseLessonOverviewSchema>;
 export const lessonUnitDataByKsSchema =
   syntheticUnitvariantsWithLessonIdsByKsSchema.pick({
     lesson_count: true,
+    supplementary_data: true,
   });
 
 export type LessonUnitDataByKs = ConvertKeysToCamelCase<
