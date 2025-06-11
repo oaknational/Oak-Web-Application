@@ -5,12 +5,15 @@ import {
   OakOL,
   OakFlex,
   OakBox,
+  OakUL,
 } from "@oaknational/oak-components";
 
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import CurricUnitDetailsAccordion from "@/components/CurriculumComponents/CurricUnitDetailsAccordion";
 import { Unit, UnitOption } from "@/utils/curriculum/types";
 import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
+import { ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS } from "@/utils/curriculum/constants";
+import { priorKnowledgeRequirementsEnabled } from "@/utils/curriculum/features";
 
 export type CurricUnitDetailsProps = {
   unit: Unit;
@@ -28,6 +31,7 @@ export default function CurricUnitDetails({
   handleUnitOverviewExploredAnalytics,
 }: CurricUnitDetailsProps) {
   const threads = unit.threads;
+  const priorKnowledgeRequirements = unit.prior_knowledge_requirements;
   const {
     lessons,
     connection_prior_unit_description: priorUnitDescription,
@@ -51,6 +55,12 @@ export default function CurricUnitDetails({
   const lessonsInUnit = `${uniqueLessonTitlesArray.length} ${
     numberOfLessons === 1 ? "lesson" : "lessons"
   }`;
+
+  const shouldDisplayPriorKnowledge =
+    ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS &&
+    priorKnowledgeRequirementsEnabled(unit) &&
+    priorKnowledgeRequirements &&
+    priorKnowledgeRequirements.length > 0;
 
   return (
     <OakFlex
@@ -114,7 +124,7 @@ export default function CurricUnitDetails({
               >
                 <OakP
                   data-testid="ac_wtwn"
-                  $mb="space-between-xs"
+                  $mb="space-between-s"
                   $font={"body-2"}
                 >
                   {whyThisWhyNow}
@@ -127,7 +137,9 @@ export default function CurricUnitDetails({
         {numberOfLessons >= 1 && (
           <CurricUnitDetailsAccordion
             title="Lessons in unit"
-            lastAccordion={isUnitDescriptionEnabled}
+            lastAccordion={
+              isUnitDescriptionEnabled && !shouldDisplayPriorKnowledge
+            }
             handleUnitOverviewExploredAnalytics={
               handleUnitOverviewExploredAnalytics
             }
@@ -142,6 +154,22 @@ export default function CurricUnitDetails({
                   );
                 })}
             </OakOL>
+          </CurricUnitDetailsAccordion>
+        )}
+
+        {shouldDisplayPriorKnowledge && (
+          <CurricUnitDetailsAccordion
+            title="Prior knowledge requirements"
+            lastAccordion={isUnitDescriptionEnabled}
+            handleUnitOverviewExploredAnalytics={
+              handleUnitOverviewExploredAnalytics
+            }
+          >
+            <OakUL $mb="space-between-s" $font={"body-2"}>
+              {priorKnowledgeRequirements.map((text, index) => {
+                return <OakLI key={index}>{text}</OakLI>;
+              })}
+            </OakUL>
           </CurricUnitDetailsAccordion>
         )}
 
