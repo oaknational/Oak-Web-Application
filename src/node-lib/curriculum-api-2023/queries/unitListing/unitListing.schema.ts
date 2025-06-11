@@ -16,6 +16,7 @@ import {
   pathways,
   actionsSchema,
   years,
+  pathwaySlugs,
 } from "@oaknational/oak-curriculum-schema";
 
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
@@ -116,6 +117,7 @@ const unitListingData = z.object({
   yearGroups: yearGroupsSchema,
   subjectCategories: z.array(subjectCategorySchema),
   pathwayTitle: pathways.nullable(),
+  pathwaySlug: pathwaySlugs.nullable(),
   relatedSubjects: z.array(subjectSlugs).optional(),
   groupUnitsAs: z.string().optional(),
   hasCycle2Content: z.boolean().optional(),
