@@ -54,7 +54,9 @@ describe("Sign up button", () => {
     expect(mockOnClick).toHaveBeenCalled();
   });
   it("renders alternate sign in text", () => {
-    render(<OakSignUpButton signInText="Register to continue" />);
+    render(
+      <OakSignUpButton signUpProps={{ buttonName: "Register to continue" }} />,
+    );
     const signUpButton = screen.getByRole("button", {
       name: /register to continue/i,
     });
