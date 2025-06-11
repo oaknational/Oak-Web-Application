@@ -28,7 +28,7 @@ export const useSaveUnits = (
   const { track } = useAnalytics();
 
   const { data: savedUnitsData, mutate } = useGetEducatorData<string[]>(
-    `/api/educator-api/getSavedUnits/${programmeSlug}`,
+    `/api/educator/getSavedUnits/${programmeSlug}`,
   );
 
   useEffect(() => {
@@ -77,7 +77,7 @@ export const useSaveUnits = (
     setCurrentToastProps(SavedToastProps);
     incrementSavedUnitsCount();
     await postEducatorData(
-      `/api/educator-api/saveUnit/${programmeSlug}/${unitSlug}`,
+      `/api/educator/saveUnit/${programmeSlug}/${unitSlug}`,
       () => {
         // Revert the optimistic update if the request fails and show an error toast
         setLocallySavedUnits((prev) =>
@@ -108,7 +108,7 @@ export const useSaveUnits = (
     setCurrentToastProps(UnsavedToastProps);
     decrementSavedUnitsCount();
     await postEducatorData(
-      `/api/educator-api/unsaveUnit/${programmeSlug}/${unitSlug}`,
+      `/api/educator/unsaveUnit/${programmeSlug}/${unitSlug}`,
       () => {
         // Revert the optimistic update if the request fails and show an error toast
         setLocallySavedUnits((prev) => [...prev, unitSlug]);

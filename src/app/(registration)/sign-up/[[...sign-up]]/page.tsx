@@ -3,7 +3,6 @@
 
 import { SignUp } from "@clerk/nextjs";
 import { useState, useCallback, useEffect } from "react";
-import { useFeatureFlagVariantKey } from "posthog-js/react";
 import {
   OakBox,
   OakFlex,
@@ -14,22 +13,14 @@ import {
 
 import { formAppearanceStyles } from "../../formAppearanceStyles";
 
-import RegistrationAside from "@/components/TeacherComponents/RegistrationAside/ResgistrationAside";
+import RegistrationAside from "@/components/TeacherComponents/RegistrationAside/RegistrationAside";
 import RegistrationLayout from "@/components/TeacherComponents/RegistrationLayout/RegistrationLayout";
 import { resolveOakHref } from "@/common-lib/urls";
 
-const TermsAndConditions = ({
-  newLayoutEnabled,
-}: {
-  newLayoutEnabled: boolean;
-}) => {
+const TermsAndConditions = () => {
   return (
-    <OakBox $ph={newLayoutEnabled ? "inner-padding-xl3" : "inner-padding-none"}>
-      <OakP
-        $font="body-2"
-        color="text-primary"
-        $textAlign={newLayoutEnabled ? "left" : "center"}
-      >
+    <OakBox $ph={"inner-padding-xl3"}>
+      <OakP $font="body-2" color="text-primary" $textAlign={"left"}>
         By continuing you are agreeing to Oak's{" "}
         <OakLink
           href={resolveOakHref({
@@ -58,8 +49,8 @@ const TermsAndConditions = ({
   );
 };
 
-const Banner = ({ newLayoutEnabled }: { newLayoutEnabled: boolean }) => {
-  return newLayoutEnabled ? (
+const Banner = () => {
+  return (
     <OakInlineBanner
       isOpen
       $background="bg-decorative1-very-subdued"
@@ -79,25 +70,11 @@ const Banner = ({ newLayoutEnabled }: { newLayoutEnabled: boolean }) => {
         </OakFlex>
       }
     />
-  ) : (
-    <OakInlineBanner
-      isOpen
-      $width="100%"
-      message={
-        <>
-          No <strong>pupil accounts</strong>, sorry.
-        </>
-      }
-      $mt={["space-between-m", "space-between-none"]}
-      $mb={["space-between-none", "space-between-m"]}
-    />
   );
 };
 
 function SignUpPage() {
   const [clerkRendered, setClerkRendered] = useState(false);
-  const featureFlagVariant = useFeatureFlagVariantKey("teacher-sign-up-page");
-  const newLayoutEnabled = featureFlagVariant === "new-layout";
 
   const checkForClerkElement = useCallback(() => {
     // Clerk docs say these classnames are stable
@@ -120,16 +97,9 @@ function SignUpPage() {
 
   return (
     <RegistrationLayout
-      termsSlot={
-        clerkRendered ? (
-          <TermsAndConditions newLayoutEnabled={newLayoutEnabled} />
-        ) : null
-      }
-      asideSlot={<RegistrationAside useNew={newLayoutEnabled} />}
-      useAlternateLayout={newLayoutEnabled}
-      bannerSlot={
-        clerkRendered ? <Banner newLayoutEnabled={newLayoutEnabled} /> : null
-      }
+      termsSlot={clerkRendered ? <TermsAndConditions /> : null}
+      asideSlot={<RegistrationAside />}
+      bannerSlot={clerkRendered ? <Banner /> : null}
     >
       <SignUp
         appearance={formAppearanceStyles}
