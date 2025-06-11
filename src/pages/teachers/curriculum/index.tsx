@@ -200,7 +200,6 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                   $objectPosition={"center"}
                   fill
                   format={null}
-                  alt="Our guiding curriculum principles summarise the important features of great curricula. They are: flexible, accessible, diverse, evidence informed, knowledge and vocabulary rich, sequenced and coherent"
                 />
               </Cover>
             </OakFlex>
@@ -251,18 +250,20 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
           </StyledContainer>
         </OakMaxWidth>
       </Flex>
-      <Flex $justifyContent={"flex-start"} $background={"mint"}>
-        <OakMaxWidth
-          $ph={["inner-padding-l"]}
-          $maxWidth={["100%", "all-spacing-24"]}
-        >
-          <Flex $mv={[48, 52]}>
-            <HomepageCurriculumLandingHero
-              curriculumPhaseOptions={curriculumPhaseOptions}
-            />
-          </Flex>
-        </OakMaxWidth>
-      </Flex>
+      <nav>
+        <Flex $justifyContent={"flex-start"} $background={"mint"}>
+          <OakMaxWidth
+            $ph={["inner-padding-l"]}
+            $maxWidth={["100%", "all-spacing-24"]}
+          >
+            <Flex $mv={[48, 52]}>
+              <HomepageCurriculumLandingHero
+                curriculumPhaseOptions={curriculumPhaseOptions}
+              />
+            </Flex>
+          </OakMaxWidth>
+        </Flex>
+      </nav>
     </AppLayout>
   );
 };

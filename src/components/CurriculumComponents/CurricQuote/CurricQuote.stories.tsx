@@ -25,7 +25,7 @@ const meta: Meta<typeof CurricQuote> = {
         "oakGreen",
         "white",
         "grey20",
-      ] as OakColorToken[], // Example subset of OakColorToken
+      ] as OakColorToken[],
       description: "Background color of the quote box",
     },
     barColor: {
@@ -37,7 +37,7 @@ const meta: Meta<typeof CurricQuote> = {
         "lemon",
         "black",
         "white",
-      ] as OakColorToken[], // Example subset of OakColorToken
+      ] as OakColorToken[],
       description: "Color of the decorative vertical bar",
     },
     headingProps: {

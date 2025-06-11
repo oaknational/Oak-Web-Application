@@ -17,7 +17,7 @@ const HomepageCurriculumLandingHero: FC<HomepageCurriculumLandingHeroProps> = (
   return (
     <OakBox $position={"relative"} $width={"100%"}>
       <OakHeading
-        tag="h1"
+        tag="h2"
         $font={["heading-5", "heading-4"]}
         $mb={["space-between-s", "space-between-m"]}
         $background={"mint"}

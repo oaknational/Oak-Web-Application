@@ -24,7 +24,7 @@ describe("CurricInfoCard", () => {
     renderWithTheme(
       <CurricInfoCard {...props}>This is some information.</CurricInfoCard>,
     );
-    expect(screen.getByAltText("search")).toBeInTheDocument();
+    expect(screen.getByRole("img")).toBeInTheDocument();
   });
 
   it("renders with default icon when not provided", () => {
@@ -34,6 +34,6 @@ describe("CurricInfoCard", () => {
         This is some information.
       </CurricInfoCard>,
     );
-    expect(screen.getByAltText("books")).toBeInTheDocument();
+    expect(screen.getByRole("img")).toBeInTheDocument();
   });
 });

@@ -39,7 +39,6 @@ export default function CurricInfoCard({
     >
       <OakIcon
         iconName={iconName}
-        alt={iconName}
         $mb={"space-between-s"}
         iconHeight={iconHeight}
         iconWidth={iconWidth}
