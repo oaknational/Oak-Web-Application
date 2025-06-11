@@ -52,6 +52,19 @@ const meta: Meta<typeof OakSignUpButton> = {
         },
       },
     },
+    buttonVariant: {
+      control: {
+        type: "radio",
+      },
+      options: ["primary", "secondary", "tertiary"],
+      defaultValue: "primary",
+    },
+    smallButton: {
+      control: {
+        type: "boolean",
+      },
+      defaultValue: false,
+    },
   },
 };
 
@@ -75,7 +88,8 @@ export const Default: Story = {
           </OakFlex>
           <OakHeading tag="h1" $font="heading-light-7">
             Sign in / out via OWA to test the states on this button (or use the
-            clerk components below, you may need to refresh)
+            clerk components below, you may need to refresh and won't be able to
+            onboard a new user)
           </OakHeading>
           <SignOutButton>Quick sign out</SignOutButton>
           <SignIn routing="hash" />

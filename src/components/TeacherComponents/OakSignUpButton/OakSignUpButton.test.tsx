@@ -66,7 +66,19 @@ describe("Sign up button", () => {
     });
     expect(defaultTextSignUpButton).not.toBeInTheDocument();
   });
-  it.todo("renders a primary variant");
-  it.todo("renders a secondary variant");
-  it.todo("renders a tertiary variant");
+  it("renders a primary variant", () => {
+    render(<OakSignUpButton buttonVariant="primary" />);
+    const primaryButton = screen.getByRole("button", { name: /sign up/i });
+    expect(primaryButton).toHaveStyle("background-color: #222222");
+  });
+  it("renders a secondary variant", () => {
+    render(<OakSignUpButton buttonVariant="secondary" />);
+    const secondaryButton = screen.getByRole("button", { name: /sign up/i });
+    expect(secondaryButton).toHaveStyle("background-color: #ffffff");
+  });
+  it("renders a tertiary variant", () => {
+    render(<OakSignUpButton buttonVariant="tertiary" />);
+    const tertiaryButton = screen.getByRole("button", { name: /sign up/i });
+    expect(tertiaryButton).toHaveStyle("background: none");
+  });
 });
