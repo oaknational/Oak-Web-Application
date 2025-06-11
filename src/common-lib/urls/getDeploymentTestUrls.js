@@ -97,7 +97,7 @@ function getDeploymentTestUrls() {
     "/onboarding",
     // Search
     "/teachers/search?term=waves",
-    "/teachers/search?term=waves&contentTypes=unit"
+    "/teachers/search?term=waves&contentTypes=unit",
   ];
 }
 
