@@ -1,3 +1,125 @@
+# [1.769.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.768.0...v1.769.0) (2025-06-11)
+
+
+### Bug Fixes
+
+* adjust conditions for enabling download button ([f9ada33](https://github.com/oaknational/Oak-Web-Application/commit/f9ada33519731d9795bcc303d9a1c63906298d9a))
+* handle potentially missing localstorage values ([002f0cf](https://github.com/oaknational/Oak-Web-Application/commit/002f0cf34a5b1cd260746b4dbda48f12828065f5))
+* hide curriculum download banner on rshe pages ([a506b3f](https://github.com/oaknational/Oak-Web-Application/commit/a506b3fc9425d39cb1f46f22bf5fa4d8f1093576))
+* missing props ([4d2ce11](https://github.com/oaknational/Oak-Web-Application/commit/4d2ce1118b315349c490d053a624aea0bd1117d5))
+
+
+### Features
+
+* add tracking ([11b26a3](https://github.com/oaknational/Oak-Web-Application/commit/11b26a39c1fff3cf7f9fbe252d962562854797fb))
+* add use curriculum downloads hook ([27d8fee](https://github.com/oaknational/Oak-Web-Application/commit/27d8fee07212f2ffce3a245c98a01c83f70dc8e1))
+* show an error toast if the download fails ([56e5244](https://github.com/oaknational/Oak-Web-Application/commit/56e5244d36e3e5d0e18e314ca7c203d276ae602e))
+* use child subject when available ([b95a81f](https://github.com/oaknational/Oak-Web-Application/commit/b95a81fc9157fb8fe41a3c1b5260f3915f1e1264))
+* use mv refresh time in query ([08d37d1](https://github.com/oaknational/Oak-Web-Application/commit/08d37d11713c2758486487df6452b277bc3f22fe))
+* use pathway slug in curicculum download query ([05f25dd](https://github.com/oaknational/Oak-Web-Application/commit/05f25dd0db906f5d7d5451170d30b019e9d54e1c))
+
+# [1.768.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.767.0...v1.768.0) (2025-06-10)
+
+
+### Bug Fixes
+
+* add priorKnowledgeRequirementsEnabled(...) to curric modals (not just docx) ([a34cac6](https://github.com/oaknational/Oak-Web-Application/commit/a34cac6cf9ed0a83d67420704704dce6f085c937))
+* added action to modal onClose to prevent resetting filter state ([11b14b1](https://github.com/oaknational/Oak-Web-Application/commit/11b14b1b5061f570b54500029e056d319533e698))
+* added missing ks4OptionSlug to <CurricUnitModal/> ([c9ecba7](https://github.com/oaknational/Oak-Web-Application/commit/c9ecba79de82b47a79010646e9837c5390135bb1))
+* added noindex to all unit modal pages ([97636d1](https://github.com/oaknational/Oak-Web-Application/commit/97636d1f7cb11a289f659076f734c39fc2f4b20d))
+* added prefers-reduced-motion support for the new modal ([e02cf1c](https://github.com/oaknational/Oak-Web-Application/commit/e02cf1c2e70ffa05604cc1c72b4752d550fcdf0b))
+* always fetch prior_knowledge_requirements from unit ([b771e6a](https://github.com/oaknational/Oak-Web-Application/commit/b771e6a0f910b2d54f261980cbd52250eb598768))
+* deal with empty data in prior_knowledge_requirements + tests ([72d4cab](https://github.com/oaknational/Oak-Web-Application/commit/72d4cab92113c3751147f97351ebcfbda59afa10))
+* disable ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS again not ready for go live ([8d32c89](https://github.com/oaknational/Oak-Web-Application/commit/8d32c8935605ae9876b50ebcdb00e6d42afee517))
+* disable ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS while not ready for prod ([efddf6b](https://github.com/oaknational/Oak-Web-Application/commit/efddf6b3f4c52e229171b85cdd775046797742fc))
+* disable prior_knowledge_requirements while still waiting for per-subject feature flagging ([dca46fa](https://github.com/oaknational/Oak-Web-Application/commit/dca46fafbdfcb905e14c2a8c285495102d083fc6))
+* link focus state and remove nested button ([d176b55](https://github.com/oaknational/Oak-Web-Application/commit/d176b551750f3e739c79b56606c13c3bfd783b28))
+* nest <a/> inside <ul/> ([a1edb9f](https://github.com/oaknational/Oak-Web-Application/commit/a1edb9fb3ad7f8d31524c7e379adaa84847a8361))
+* only override canonicalURL if lessons are available ([b2381ff](https://github.com/oaknational/Oak-Web-Application/commit/b2381ff3459608810c2098e6cd9b260c05e03fd5))
+* pass "tab" into <CurriculumHeader/> rather than deriving from URL ([d357117](https://github.com/oaknational/Oak-Web-Application/commit/d357117c992a1f680b41d785c6f5a9caacf1ba70))
+* type issue when merging to main with prior_knowledge_requirements only available on unit ([2a18e46](https://github.com/oaknational/Oak-Web-Application/commit/2a18e4659fc4c13fafd244bd43a7768a4c533282))
+* updated to published_mv_curriculum_sequence_b_13_0_18 to fix unit_options ([8e9283f](https://github.com/oaknational/Oak-Web-Application/commit/8e9283ffb5714f39a71fdb68d9f1954ef0827f94))
+* use reference in <Transition/> to fix warnings ([8bf091e](https://github.com/oaknational/Oak-Web-Application/commit/8bf091e42f2553feb894bd4ee27ff15b3221813b))
+
+
+### Features
+
+* added initial 404 state for curric unit modals ([a118035](https://github.com/oaknational/Oak-Web-Application/commit/a1180350dd1e1dd477d49bb0ea7e42af3d9b0e64))
+* added support for prior_knowledge_requirements to curric modal ([4d2cfcb](https://github.com/oaknational/Oak-Web-Application/commit/4d2cfcb1de72c0c497dd4d88e3951dfc7d703255))
+* added URL routing to curric visualiser ([382f666](https://github.com/oaknational/Oak-Web-Application/commit/382f666845eb2f5e76c3f894af23f5e315a39af7))
+* enable prior_knowledge_requirements on parent programme features ([dc27f7a](https://github.com/oaknational/Oak-Web-Application/commit/dc27f7ab0f7ed2677eac3cfdb3c1464bb798cae7))
+* refactor of curric URL routing ([ed944e7](https://github.com/oaknational/Oak-Web-Application/commit/ed944e76871fc7e39d4f729df9e6817b80617d81))
+
+# [1.767.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.766.0...v1.767.0) (2025-06-10)
+
+
+### Features
+
+* remove teacher save units feature flag ([361a4b8](https://github.com/oaknational/Oak-Web-Application/commit/361a4b8ed80ad8c131e1197141976b69d490b64d))
+
+# [1.766.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.765.0...v1.766.0) (2025-06-10)
+
+
+### Bug Fixes
+
+* fix issues raised in QA ([f8696f8](https://github.com/oaknational/Oak-Web-Application/commit/f8696f898ac7a32efc05b6853de04638455f40c0))
+* type errors ([5885e9a](https://github.com/oaknational/Oak-Web-Application/commit/5885e9a8bbd4c26de08263d6dcbe6b955f68c343))
+
+
+### Features
+
+* improve page titles for better seo ([d51b93b](https://github.com/oaknational/Oak-Web-Application/commit/d51b93b9aafc8699eccd91e984063584d672dcea))
+* pull through year data from programme fields ([8f429ef](https://github.com/oaknational/Oak-Web-Application/commit/8f429efad80cdb05456cf1b3f54608d7aacbf290))
+* pull year through programme fields for lesson overview and lesson listing pages ([3cc97ec](https://github.com/oaknational/Oak-Web-Application/commit/3cc97ec059c2b2c28e3401ad5bd34c066940af47))
+
+# [1.765.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.764.3...v1.765.0) (2025-06-10)
+
+
+### Features
+
+* add curriculum download banner on unit listing page ([63b4dcf](https://github.com/oaknational/Oak-Web-Application/commit/63b4dcf7babdfb6699da7f80c7cafe13c80cdf4b))
+* use cohort to determine whether to show curriculum download banner ([0437205](https://github.com/oaknational/Oak-Web-Application/commit/0437205d9c541547cbd49382b928c3a959fb9ee9))
+
+## [1.764.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.764.2...v1.764.3) (2025-06-09)
+
+
+### Bug Fixes
+
+* display unit-option details when showing modal for options ([45ada2b](https://github.com/oaknational/Oak-Web-Application/commit/45ada2be72655fd043eb1f53de832ec00b5570b7))
+
+## [1.764.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.764.1...v1.764.2) (2025-06-09)
+
+## [1.764.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.764.0...v1.764.1) (2025-06-09)
+
+
+### Bug Fixes
+
+* handle modal return focus manually ([367aa28](https://github.com/oaknational/Oak-Web-Application/commit/367aa281694d3e6c04f3b1dda8b891c3d1855fdb))
+
+# [1.764.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.763.2...v1.764.0) (2025-06-04)
+
+
+### Features
+
+* remove alternate layout from registration layout and ([ec34eac](https://github.com/oaknational/Oak-Web-Application/commit/ec34eacfa3fd7750eafd008cadac39292acdc16e))
+* update sign up page ([cd866ec](https://github.com/oaknational/Oak-Web-Application/commit/cd866ec6c8b78f942e13132c1b7caabc51ac8a23))
+
+## [1.763.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.763.1...v1.763.2) (2025-06-04)
+
+
+### Bug Fixes
+
+* use correct endpoint for api calls ([e9de440](https://github.com/oaknational/Oak-Web-Application/commit/e9de4402ac4a1ff30523739133538c92fae44e5c))
+
+## [1.763.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.763.0...v1.763.1) (2025-06-04)
+
+# [1.763.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.762.0...v1.763.0) (2025-06-04)
+
+
+### Features
+
+* dont show save buttons on legacy units ([a337627](https://github.com/oaknational/Oak-Web-Application/commit/a33762795515468b469287aa17145c02a79bdda2))
+
 # [1.762.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.761.2...v1.762.0) (2025-06-03)
 
 

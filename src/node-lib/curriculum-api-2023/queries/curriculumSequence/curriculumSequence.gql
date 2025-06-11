@@ -1,7 +1,7 @@
 query curriculumSequence(
-  $where: published_mv_curriculum_sequence_b_13_0_18_bool_exp
+  $where: published_mv_curriculum_sequence_b_13_0_19_bool_exp
 ) {
-  units: published_mv_curriculum_sequence_b_13_0_18(where: $where) {
+  units: published_mv_curriculum_sequence_b_13_0_19(where: $where) {
     connection_prior_unit_description
     connection_future_unit_description
     connection_future_unit_title
@@ -32,6 +32,7 @@ query curriculumSequence(
     features
     parent_programme_features
     national_curriculum_content
+    prior_knowledge_requirements
     actions
     unit_options
     threads

@@ -32,11 +32,13 @@ export const Default: Story = {
     yearGroups: [
       {
         yearTitle: "Year 10",
-        year: "year-10",
+        yearSlug: "year-10",
+        year: "10",
       },
       {
         yearTitle: "Year 11",
-        year: "year-11",
+        yearSlug: "year-11",
+        year: "11",
       },
     ],
     learningThemes: [

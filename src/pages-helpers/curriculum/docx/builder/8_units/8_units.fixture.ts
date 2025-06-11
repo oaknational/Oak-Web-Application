@@ -150,6 +150,7 @@ export const data: CombinedCurriculumData = {
       ],
       year: "11",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -489,6 +490,7 @@ export const data: CombinedCurriculumData = {
       ],
       year: "10",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -588,6 +590,7 @@ export const data: CombinedCurriculumData = {
       ],
       year: "11",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -794,6 +797,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "8",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -987,6 +991,7 @@ export const data: CombinedCurriculumData = {
       ],
       year: "10",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -1208,6 +1213,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "7",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -1379,6 +1385,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "9",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -1575,6 +1582,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "7",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -1769,6 +1777,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "8",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -1955,6 +1964,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "10",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -2141,6 +2151,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "9",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -2228,6 +2239,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "11",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -2383,6 +2395,7 @@ export const data: CombinedCurriculumData = {
       ],
       year: "11",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -2478,6 +2491,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "9",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -2823,6 +2837,7 @@ export const data: CombinedCurriculumData = {
       ],
       year: "10",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -2960,6 +2975,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "7",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -3080,6 +3096,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "8",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -3684,6 +3701,7 @@ export const data: CombinedCurriculumData = {
       ],
       year: "10",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -3974,6 +3992,7 @@ export const data: CombinedCurriculumData = {
       ],
       year: "11",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -4139,6 +4158,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "7",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -4289,6 +4309,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "8",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -4465,6 +4486,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "9",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -4576,6 +4598,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "9",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -4783,6 +4806,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "7",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -4874,6 +4898,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "8",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -5034,6 +5059,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "11",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -5150,6 +5176,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "10",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -5276,6 +5303,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "7",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -5491,6 +5519,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "8",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -5662,6 +5691,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "9",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -5810,6 +5840,7 @@ export const data: CombinedCurriculumData = {
       ],
       year: "11",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -5886,6 +5917,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "8",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -6067,6 +6099,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "9",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -6222,6 +6255,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "10",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -6319,6 +6353,7 @@ export const data: CombinedCurriculumData = {
       ],
       year: "11",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -6409,6 +6444,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "11",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -6500,6 +6536,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "8",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -6626,6 +6663,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "10",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -6779,6 +6817,7 @@ export const data: CombinedCurriculumData = {
       ],
       year: "11",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -6876,6 +6915,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "10",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -7026,6 +7066,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "10",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -7151,6 +7192,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "11",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -7294,6 +7336,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "11",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -7403,6 +7446,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "11",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -7503,6 +7547,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "11",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -7612,6 +7657,7 @@ export const data: CombinedCurriculumData = {
       unit_options: [],
       year: "11",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
   ],
   curriculaDesc:

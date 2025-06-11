@@ -14,8 +14,8 @@ const mockProps: MobileUnitFiltersProps = {
   setSelectedThemeSlug: jest.fn(),
   learningThemesFilterId: "theme1",
   yearGroups: [
-    { yearTitle: "Year 1", year: "year-1" },
-    { yearTitle: "Year 2", year: "year-2" },
+    { yearTitle: "Year 1", yearSlug: "year-1", year: "1" },
+    { yearTitle: "Year 2", yearSlug: "year-2", year: "2" },
   ],
   subjectCategories: [
     { slug: "maths", label: "Maths", iconName: "maths-icon" },
@@ -30,6 +30,7 @@ const mockProps: MobileUnitFiltersProps = {
   keyStageSlug: "ks1",
   subjectTitle: "Maths",
   subjectSlug: "maths",
+  pathwaySlug: null,
   units: [],
   examBoardSlug: "aqa",
   examBoardTitle: "AQA",

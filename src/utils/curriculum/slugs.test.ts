@@ -154,6 +154,7 @@ describe("createTeacherProgrammeSlug", () => {
       description: null,
       state: "published",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     };
     expect(createTeacherProgrammeSlug(unitData)).toEqual("science-primary-ks2");
   });
@@ -191,6 +192,7 @@ describe("createTeacherProgrammeSlug", () => {
       description: null,
       state: "published",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     };
     expect(createTeacherProgrammeSlug(unitData)).toEqual("science-primary-ks4");
   });
@@ -228,6 +230,7 @@ describe("createTeacherProgrammeSlug", () => {
       description: null,
       state: "published",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     };
     expect(createTeacherProgrammeSlug(unitData, "aqa", "foundation")).toEqual(
       "combined-science-secondary-ks4-foundation-aqa",
@@ -267,6 +270,7 @@ describe("createTeacherProgrammeSlug", () => {
       description: null,
       state: "published",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     };
     expect(createTeacherProgrammeSlug(unitData, "aqa")).toEqual(
       "combined-science-secondary-ks3",
@@ -307,6 +311,7 @@ describe("createTeacherProgrammeSlug", () => {
       description: null,
       state: "published",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     };
     expect(createTeacherProgrammeSlug(unitData, "aqa")).toEqual(
       "combined-science-secondary-ks3",
@@ -347,6 +352,7 @@ describe("createTeacherProgrammeSlug", () => {
       description: null,
       state: "published",
       national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     };
     expect(
       createTeacherProgrammeSlug(unitData, "aqa", "foundation", "gcse"),

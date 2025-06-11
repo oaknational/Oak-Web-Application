@@ -48,13 +48,19 @@ import PaginationHead from "@/components/SharedComponents/Pagination/PaginationH
 import MobileUnitFilters from "@/components/TeacherComponents/MobileUnitFilters";
 import DesktopUnitFilters from "@/components/TeacherComponents/DesktopUnitFilters/DesktopUnitFilters";
 import RelatedSubjectsBanner from "@/components/TeacherComponents/RelatedSubjectsBanner/RelatedSubjectsBanner";
+import getYearGroupSEOString from "@/pages-helpers/teacher/year-group-seo-string/get-year-grp-seo-string";
+import CurriculumDownloadBanner from "@/components/TeacherComponents/CurriculumDownloadBanner/CurriculumDownloadBanner";
+import { convertSubjectToSlug } from "@/components/TeacherComponents/helpers/convertSubjectToSlug";
+import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
+  curriculumRefreshTime: number;
 };
 
 const UnitListingPage: NextPage<UnitListingPageProps> = ({
   curriculumData,
+  curriculumRefreshTime,
 }) => {
   const {
     programmeSlug,
@@ -62,16 +68,20 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     keyStageSlug,
     subjectTitle,
     subjectSlug,
+    subjectParent,
     tierSlug,
     tiers,
     units,
     examBoardTitle,
+    examBoardSlug,
     hasNewContent,
     subjectCategories,
     yearGroups,
     pathwayTitle,
+    pathwaySlug,
     relatedSubjects,
     phase,
+    hasCycle2Content,
   } = curriculumData;
 
   const { track } = useAnalytics();
@@ -124,9 +134,10 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   const learningThemesId = useId();
   const learningThemesFilterId = useId();
 
+  const yearGroupSEOString = getYearGroupSEOString(yearGroups);
   const unitsSEO = {
     ...getSeoProps({
-      title: `Free ${keyStageSlug.toUpperCase()} ${subjectTitle} teaching resources${paginationTitle}`,
+      title: `Free ${keyStageSlug.toUpperCase()} ${subjectTitle} teaching resources | ${yearGroupSEOString}${paginationTitle}`,
       description: `Get fully sequenced teaching resources and lesson plans in ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
     }),
   };
@@ -160,7 +171,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
         subjectTitle,
         subjectSlug,
         yearGroupName: props.yearTitle,
-        yearGroupSlug: (props as UnitListItemProps).year,
+        yearGroupSlug: (props as UnitListItemProps).yearSlug,
         tierName: tier ?? null,
         examBoard: examBoardTitle,
         pathway: pathwayTitle,
@@ -211,6 +222,12 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
       </OakFlex>
     );
   };
+
+  const subjectParentSlug = subjectParent
+    ? convertSubjectToSlug(subjectParent)
+    : null;
+  const showCurriculumDownloadBanner =
+    hasCycle2Content && subjectSlug !== "rshe-pshe";
 
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
@@ -315,17 +332,35 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
               $colSpan={[12, 12, 9]}
               $mt={"space-between-m2"}
             >
-              <OakFlex
-                $flexDirection={["column-reverse", "column-reverse", "column"]}
-              >
+              <OakFlex $flexDirection="column" $gap="space-between-m2">
+                {showCurriculumDownloadBanner && (
+                  <CurriculumDownloadBanner
+                    subjectSlug={subjectParentSlug ?? subjectSlug}
+                    subjectTitle={subjectTitle}
+                    phaseSlug={phase}
+                    examBoardSlug={examBoardSlug}
+                    tierSlug={tierSlug}
+                    mvRefreshTime={curriculumRefreshTime}
+                    pathwaySlug={pathwaySlug}
+                    childSubjectSlug={subjectParentSlug ? subjectSlug : null}
+                  />
+                )}
                 <OakFlex
-                  $justifyContent={"space-between"}
-                  $flexDirection={"row"}
-                  $minWidth={["100%", "auto"]}
-                  $position={"relative"}
+                  $flexDirection={[
+                    "column-reverse",
+                    "column-reverse",
+                    "column",
+                  ]}
                 >
-                  <TierTabsOrUnitCountHeader />
-                  <MobileUnitFilterButton />
+                  <OakFlex
+                    $justifyContent={"space-between"}
+                    $flexDirection={"row"}
+                    $minWidth={["100%", "auto"]}
+                    $position={"relative"}
+                  >
+                    <TierTabsOrUnitCountHeader />
+                    <MobileUnitFilterButton />
+                  </OakFlex>
                 </OakFlex>
               </OakFlex>
 
@@ -439,15 +474,17 @@ export const getStaticProps: GetStaticProps<
           ];
         }
 
+        const curriculumRefreshTime = await getMvRefreshTime();
+
         const results: GetStaticPropsResult<UnitListingPageProps> = {
           props: {
             curriculumData,
+            curriculumRefreshTime,
           },
         };
 
         return results;
       } catch (error) {
-        // console.error(error);
         return {
           notFound: true,
         };

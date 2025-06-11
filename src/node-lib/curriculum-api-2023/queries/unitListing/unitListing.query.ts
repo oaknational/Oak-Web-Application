@@ -64,6 +64,9 @@ const unitListingQuery =
     }
 
     const unitsCamel = keysToCamelCase(parsedUnits);
+    const hasCycle2Content = unitsCamel.some(
+      (u) => u.unitData.Cohort === "2024-2025",
+    );
 
     const programmeFields = unitsCamel.reduce(
       (acc, val) => ({ ...acc, ...val.programmeFields }),
@@ -118,7 +121,11 @@ const unitListingQuery =
       ...(relatedSubjectsSet.size >= 1 && {
         relatedSubjects: Array.from(relatedSubjectsSet),
       }),
+      pathwaySlug: programmeFields.pathwaySlug,
+      hasCycle2Content,
     };
   };
 
 export default unitListingQuery;
+
+export type UnitListingQueryReturn = ReturnType<typeof unitListingQuery>;

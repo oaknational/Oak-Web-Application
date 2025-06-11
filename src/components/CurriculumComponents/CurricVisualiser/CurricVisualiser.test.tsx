@@ -117,6 +117,7 @@ const CurricVisualiserFixture: ComponentProps<typeof CurricVisualiser> = {
           description: null,
           state: "published",
           national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
       ],
       childSubjects: [],

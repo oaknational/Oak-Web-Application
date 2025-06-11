@@ -35,6 +35,7 @@ const BASE_UNIT: Unit = {
   state: "published",
   year: "5",
   national_curriculum_content: [],
+  prior_knowledge_requirements: [],
 };
 
 export function getPhaseTitle(year: string) {

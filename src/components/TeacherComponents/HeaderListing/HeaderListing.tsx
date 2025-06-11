@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 import {
   OakFlex,
   OakHeading,
@@ -101,8 +100,6 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     showIncompleteMessage,
     setShowIncompleteMessage,
   } = useUnitDownloadButtonState();
-
-  const isSaveEnabled = useFeatureFlagEnabled("teacher-save-units");
 
   const bannersBlock = (
     <>
@@ -209,11 +206,11 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                     downloadInProgress={downloadInProgress}
                     unitFileId={unitDownloadFileId}
                     onDownloadSuccess={onUnitDownloadSuccess}
-                    showNewTag={!isSaveEnabled}
+                    showNewTag={false}
                   />
                 )}
                 {shareButton}
-                {isSaveEnabled && onSave && (
+                {onSave && (
                   <OakSecondaryButton
                     iconName={
                       isUnitSaved ? "bookmark-filled" : "bookmark-outlined"

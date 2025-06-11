@@ -264,6 +264,7 @@ describe("unitsTab !subject error", () => {
           description: null,
           state: "published",
           national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
       ],
     });

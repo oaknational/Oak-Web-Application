@@ -124,6 +124,7 @@ export const getPackagedUnit = (
     examBoardTitle: modifiedProgrammeFields.examboard,
     yearSlug: modifiedProgrammeFields.year_slug,
     yearTitle: modifiedProgrammeFields.year_description,
+    year: modifiedProgrammeFields.year,
     lessons: unitLessons,
     pathwaySlug: modifiedProgrammeFields.pathway_slug,
     pathwayTitle: modifiedProgrammeFields.pathway,
