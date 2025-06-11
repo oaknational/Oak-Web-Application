@@ -18,7 +18,7 @@ export const TeacherShareNotesButton = ({
   shareUrl: string | null;
   shareActivated?: () => void;
 }) => {
-  const { handleClick, copiedComponent } = useTeacherShareButton({
+  const { handleClick } = useTeacherShareButton({
     shareUrl,
     shareActivated,
   });
@@ -37,7 +37,6 @@ export const TeacherShareNotesButton = ({
           shareUrl={shareUrl}
           handleClick={handleClick}
         />
-        {copiedComponent}
       </>
     );
   }
