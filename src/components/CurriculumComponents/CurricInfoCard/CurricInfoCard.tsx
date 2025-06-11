@@ -43,7 +43,7 @@ export default function CurricInfoCard({
         iconHeight={iconHeight}
         iconWidth={iconWidth}
       />
-      <OakP $font="heading-light-6" $textAlign={"left"}>
+      <OakP $font="heading-light-6" $textAlign={"left"} $color={"black"}>
         {children}
       </OakP>
     </OakFlex>

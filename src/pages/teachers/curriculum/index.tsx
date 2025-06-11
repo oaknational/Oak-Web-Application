@@ -111,6 +111,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
             $mb={["space-between-l", "space-between-l", "space-between-l"]}
             $background={"mint"}
             $textAlign={["left", "center"]}
+            $color={"black"}
           >
             Oak's curricula
           </OakHeading>
