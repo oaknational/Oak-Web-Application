@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import {
   OakIcon,
   OakIconName,
@@ -5,11 +6,10 @@ import {
   OakFlex,
   OakP,
   OakAllSpacingToken,
-  OakBox,
 } from "@oaknational/oak-components";
 
 export interface CurricInfoCardProps {
-  text: string;
+  children: ReactNode;
   iconName?: OakIconName;
   background: OakColorToken;
   iconHeight: OakAllSpacingToken;
@@ -17,38 +17,36 @@ export interface CurricInfoCardProps {
 }
 
 export default function CurricInfoCard({
-  text,
+  children,
   iconName = "books",
   iconHeight,
   iconWidth,
   background,
 }: CurricInfoCardProps) {
   return (
-    <OakBox $maxWidth={"all-spacing-20"}>
-      <OakFlex
-        $flexGrow={1}
-        $flexBasis={0}
-        $minWidth="all-spacing-17"
-        $borderRadius={"border-radius-m"}
-        $background={background}
-        $minHeight={"all-spacing-19"}
-        $borderColor={"mint110"}
-        $ba={"border-solid-m"}
-        $flexDirection="column"
-        $alignItems={"flex-start"}
-        $pa={"inner-padding-xl"}
-      >
-        <OakIcon
-          iconName={iconName}
-          alt={iconName}
-          $mb={"space-between-s"}
-          iconHeight={iconHeight}
-          iconWidth={iconWidth}
-        />
-        <OakP $font="heading-light-6" $textAlign={"left"}>
-          {text}
-        </OakP>
-      </OakFlex>
-    </OakBox>
+    <OakFlex
+      $flexGrow={1}
+      $flexBasis={["auto", 0]}
+      $borderRadius={"border-radius-m"}
+      $background={background}
+      $minHeight={"all-spacing-19"}
+      $borderColor={"mint110"}
+      $ba={"border-solid-m"}
+      $flexDirection="column"
+      $alignItems={"flex-start"}
+      $pa={"inner-padding-xl"}
+      $height="100%"
+    >
+      <OakIcon
+        iconName={iconName}
+        alt={iconName}
+        $mb={"space-between-s"}
+        iconHeight={iconHeight}
+        iconWidth={iconWidth}
+      />
+      <OakP $font="heading-light-6" $textAlign={"left"}>
+        {children}
+      </OakP>
+    </OakFlex>
   );
 }

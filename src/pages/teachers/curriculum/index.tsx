@@ -122,33 +122,37 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
             $justifyContent="center"
           >
             <CurricInfoCard
-              text="National curriculum and exam board aligned"
               iconName="clipboard"
               background="mint30"
               iconHeight={"all-spacing-14"}
               iconWidth={"all-spacing-9"}
-            />
+            >
+              National curriculum and exam board aligned
+            </CurricInfoCard>
             <CurricInfoCard
-              text="Free and always will be"
               iconName="free-tag"
               background="mint30"
               iconHeight="all-spacing-14"
               iconWidth="all-spacing-13"
-            />
+            >
+              Free and always will be
+            </CurricInfoCard>
             <CurricInfoCard
-              text="Covers key stages 1-4 across 20 subjects"
               iconName="book-steps"
               background="mint30"
               iconHeight="all-spacing-14"
               iconWidth="all-spacing-12"
-            />
+            >
+              Covers key stages 1-4 across 20 subjects
+            </CurricInfoCard>
             <CurricInfoCard
-              text="Fully sequenced and ready to adapt"
               iconName="threads"
               background="mint30"
               iconHeight="all-spacing-14"
               iconWidth="all-spacing-11"
-            />
+            >
+              Fully sequenced and ready to adapt
+            </CurricInfoCard>
           </OakFlex>
         </OakFlex>
       </OakMaxWidth>
