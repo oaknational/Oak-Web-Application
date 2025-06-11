@@ -29,13 +29,11 @@ export default function CurricInfoCard({
       $flexBasis={["auto", 0]}
       $borderRadius={"border-radius-m"}
       $background={background}
-      $minHeight={"all-spacing-19"}
       $borderColor={"mint110"}
       $ba={"border-solid-m"}
       $flexDirection="column"
       $alignItems={"flex-start"}
       $pa={"inner-padding-xl"}
-      $height="100%"
     >
       <OakIcon
         iconName={iconName}

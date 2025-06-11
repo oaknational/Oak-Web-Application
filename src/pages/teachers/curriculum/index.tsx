@@ -120,7 +120,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
             $flexDirection={["column", "row"]}
             $flexWrap="wrap"
             $gap="all-spacing-4"
-            $justifyContent="center"
+            $alignItems="stretch"
           >
             <CurricInfoCard
               iconName="clipboard"
