@@ -41,6 +41,7 @@ export type LessonListProps = {
   yearTitle?: string;
   subjectTitle?: string;
   programmeSlug?: string;
+  examBoardSlug?: string | undefined | null;
 };
 
 const LESSONS_PER_PAGE = 5;
@@ -63,8 +64,10 @@ const LessonList: FC<LessonListProps> = (props) => {
     expiringBanner,
     yearTitle,
     subjectTitle,
+    subjectSlug,
     keyStageSlug,
     programmeSlug,
+    examBoardSlug,
   } = props;
   const { currentPage, pageSize, firstItemRef, paginationRoute } =
     paginationProps;
@@ -127,10 +130,13 @@ const LessonList: FC<LessonListProps> = (props) => {
       )}
       {showSEOAccordion && (
         <LessonListSeoHelper
-          year={yearTitle}
-          subject={subjectTitle}
-          keystage={keyStageSlug}
+          examBoardSlug={examBoardSlug}
+          keystageSlug={keyStageSlug}
+          programmeSlug={programmeSlug}
+          subjectTitle={subjectTitle}
+          subjectSlug={subjectSlug}
           unitTitle={unitTitle}
+          yearTitle={yearTitle}
         />
       )}
     </OakFlex>

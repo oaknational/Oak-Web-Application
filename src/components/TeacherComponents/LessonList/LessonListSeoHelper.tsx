@@ -1,39 +1,44 @@
-import { OakBasicAccordion, OakBox, OakP } from "@/styles/oakThemeApp";
+import {
+  formatSubjectName,
+  getPhase,
+} from "../helpers/seoTextHelpers/seoText.helpers";
+import { convertSubjectToSlug } from "../helpers/convertSubjectToSlug";
+import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
 
-const getPhase = (year: string) => {
-  return Number(year) < 7 ? "primary" : "secondary";
-};
-
-const formatSubjectName = (subject: string) => {
-  const excludedSubjects = [
-    "English",
-    "French",
-    "Spanish",
-    "German",
-    "RSHE (PSHE)",
-  ];
-
-  return excludedSubjects.includes(subject) ? subject : subject.toLowerCase();
-};
+import { OakBasicAccordion, OakBox, OakLink, OakP } from "@/styles/oakThemeApp";
+import { resolveOakHref } from "@/common-lib/urls";
 
 export const LessonListSeoHelper = ({
-  keystage,
-  subject,
+  examBoardSlug,
+  keystageSlug,
+  parentSubject,
+  programmeSlug,
+  subjectSlug,
+  subjectTitle,
   unitTitle,
-  year,
+  yearTitle,
 }: {
-  keystage: string;
-  subject: string;
+  examBoardSlug?: string | null | undefined;
+  keystageSlug: string;
+  parentSubject?: string | null | undefined;
+  programmeSlug: string;
+  subjectSlug: string;
+  subjectTitle: string;
   unitTitle: string;
-  year: string;
+  yearTitle: string;
 }) => {
+  const linkSubject = parentSubject
+    ? convertSubjectToSlug(parentSubject)
+    : subjectSlug;
+
   return (
     <OakBox $mb="space-between-xxl">
       <OakBasicAccordion
         header={
           <OakP $font="body-1" $textAlign="left">
-            Explore this {year.toLowerCase()} {formatSubjectName(subject)} unit
-            to find free lesson teaching resources, including...
+            Explore this {yearTitle.toLowerCase()}{" "}
+            {formatSubjectName(subjectTitle)} unit to find free lesson teaching
+            resources, including...
           </OakP>
         }
         initialOpen={false}
@@ -48,9 +53,28 @@ export const LessonListSeoHelper = ({
           slide decks, worksheet PDFs, quizzes and lesson overviews. You can
           select individual lessons from the {unitTitle} unit and download the
           resources you need, or download the entire unit now. See every unit
-          listed in our {getPhase(year)} {formatSubjectName(subject)} curriculum
+          listed in our{" "}
+          <OakLink
+            href={resolveOakHref({
+              page: "curriculum-units",
+              subjectPhaseSlug: getSubjectPhaseSlug({
+                subject: linkSubject,
+                phaseSlug: getPhase(yearTitle),
+                examBoardSlug,
+              }),
+            })}
+          >
+            {getPhase(yearTitle)} {formatSubjectName(subjectTitle)} curriculum
+          </OakLink>{" "}
           and discover more of our teaching resources for{" "}
-          {keystage.toUpperCase()}.
+          <OakLink
+            href={resolveOakHref({
+              page: "unit-index",
+              programmeSlug,
+            })}
+          >
+            {keystageSlug.toUpperCase()}.
+          </OakLink>{" "}
         </OakP>
       </OakBasicAccordion>
     </OakBox>

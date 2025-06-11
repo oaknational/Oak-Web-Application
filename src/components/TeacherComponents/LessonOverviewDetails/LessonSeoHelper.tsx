@@ -1,5 +1,6 @@
 import { convertSubjectToSlug } from "../helpers/convertSubjectToSlug";
 import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
+import { getPhase } from "../helpers/seoTextHelpers/seoText.helpers";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import {
@@ -8,10 +9,6 @@ import {
   OakP,
   OakLink,
 } from "@/styles/oakThemeApp";
-
-const getPhase = (year: string) => {
-  return Number(year) < 7 ? "primary" : "secondary";
-};
 
 export const LessonSeoHelper = ({
   year,
