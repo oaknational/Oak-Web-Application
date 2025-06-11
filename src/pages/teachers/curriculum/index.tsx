@@ -1,15 +1,12 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import {
   OakHeading,
-  OakTypography,
-  OakUL,
-  OakLI,
   OakP,
-  OakIcon,
   OakHandDrawnHR,
-  OakBox,
   OakMaxWidth,
+  OakFlex,
 } from "@oaknational/oak-components";
+import styled from "styled-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/SharedComponents/AppLayout";
@@ -24,24 +21,48 @@ import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import Illustration from "@/components/SharedComponents/Illustration/Illustration";
 import Cover from "@/components/SharedComponents/Cover/Cover";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
-import OwaLink from "@/components/SharedComponents/OwaLink/OwaLink";
-import CMSClient from "@/node-lib/cms";
-import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
-import { blogToPostListItem } from "@/components/GenericPagesViews/BlogIndex.view";
-import { serializeDate } from "@/utils/serializeDate";
-import PostListItem from "@/components/SharedComponents/PostListItem";
-import { SerializedBlogPostPreview } from "@/common-lib/cms-types";
 import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
 import HomepageCurriculumLandingHero from "@/components/GenericPagesComponents/HomepageCurriculumLandingHero";
+import CurricInfoCard from "@/components/CurriculumComponents/CurricInfoCard";
+import CurricQuote from "@/components/CurriculumComponents/CurricQuote";
 
 export type CurriculumHomePageProps = {
   curriculumPhaseOptions: SubjectPhasePickerData;
-  posts: SerializedBlogPostPreview[];
 };
 
+const StyledContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: ${({ theme }) => theme.colors.mint30};
+  margin: 80px 0;
+  border-radius: 20px;
+
+  /* Mobile */
+  flex-direction: column;
+  gap: 72px;
+  padding: 24px;
+
+  /* Tablet */
+  @media (min-width: 750px) {
+    gap: 80px;
+    padding: 64px;
+  }
+
+  /* Large Tablet / Small Desktop */
+  @media (min-width: 1000px) {
+    flex-direction: row;
+  }
+
+  /* Desktop */
+  @media (min-width: 1280px) {
+    gap: 120px;
+    padding: 80px;
+  }
+`;
+
 const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
-  const { curriculumPhaseOptions, posts } = props;
-  const curriculumBlogs = posts.map(blogToPostListItem);
+  const { curriculumPhaseOptions } = props;
 
   return (
     <AppLayout
@@ -53,55 +74,118 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
             "Discover our free curriculum plans across subjects from KS1 to KS4, all high-quality, fully-sequenced and aligned with the national curriculum.",
         }),
       }}
-      $background={"grey20"}
+      $background={"mint"}
     >
-      <Flex $justifyContent={"center"} $background={"mint"}>
-        <OakMaxWidth $ph={"inner-padding-m"}>
-          <Box $mt={20}>
-            <Breadcrumbs
-              breadcrumbs={[
-                {
-                  oakLinkProps: { page: "home" },
-                  label: "Home",
+      <OakMaxWidth $ph={"inner-padding-m"}>
+        <Box $mt={20}>
+          <Breadcrumbs
+            breadcrumbs={[
+              {
+                oakLinkProps: { page: "home" },
+                label: "Home",
+              },
+              {
+                oakLinkProps: {
+                  page: "curriculum-landing-page",
                 },
-                {
-                  oakLinkProps: {
-                    page: "curriculum-landing-page",
-                  },
-                  label: "Curriculum resources",
-                },
-              ]}
-            />
-            <OakHandDrawnHR
-              hrColor={"white"}
-              $mt={"space-between-m"}
-              $height={"all-spacing-1"}
-            />
-          </Box>
-          <Flex $mt={[24, 80]} $mb={[80]}>
-            <HomepageCurriculumLandingHero
-              curriculumPhaseOptions={curriculumPhaseOptions}
-            />
-          </Flex>
-        </OakMaxWidth>
-      </Flex>
-
-      <Flex $background={"white"} $justifyContent={"center"}>
-        <OakMaxWidth>
-          <Flex
-            $flexDirection={["column", "row"]}
-            $justifyContent={"space-between"}
-            $alignItems={"center"}
-            $gap={[24, 80, 120]}
-            $mb={80}
-            $pl={[16, 0]}
-            $pr={[16, 0]}
-            $mt={80}
+                label: "Oak's curricula",
+              },
+            ]}
+          />
+          <OakHandDrawnHR
+            hrColor={"white"}
+            $mt={"space-between-m"}
+            $height={"all-spacing-1"}
+          />
+        </Box>
+      </OakMaxWidth>
+      <OakMaxWidth $ph={"inner-padding-l"}>
+        <OakFlex
+          $flexDirection={"column"}
+          $pt={"inner-padding-xl2"}
+          $pb={"inner-padding-xl4"}
+        >
+          <OakHeading
+            tag="h1"
+            $font={["heading-3", "heading-2"]}
+            $mb={["space-between-l", "space-between-l", "space-between-l"]}
+            $background={"mint"}
+            $textAlign={["left", "center"]}
           >
-            <Box>
+            Oak's curricula
+          </OakHeading>
+
+          <OakFlex
+            $flexDirection={["column", "row"]}
+            $flexWrap="wrap"
+            $gap="all-spacing-4"
+            $justifyContent="center"
+          >
+            <CurricInfoCard
+              text="National curriculum and exam board aligned"
+              iconName="clipboard"
+              background="mint30"
+              iconHeight={"all-spacing-14"}
+              iconWidth={"all-spacing-9"}
+            />
+            <CurricInfoCard
+              text="Free and always will be"
+              iconName="free-tag"
+              background="mint30"
+              iconHeight="all-spacing-14"
+              iconWidth="all-spacing-13"
+            />
+            <CurricInfoCard
+              text="Covers key stages 1-4 across 20 subjects"
+              iconName="book-steps"
+              background="mint30"
+              iconHeight="all-spacing-14"
+              iconWidth="all-spacing-12"
+            />
+            <CurricInfoCard
+              text="Fully sequenced and ready to adapt"
+              iconName="threads"
+              background="mint30"
+              iconHeight="all-spacing-14"
+              iconWidth="all-spacing-11"
+            />
+          </OakFlex>
+        </OakFlex>
+      </OakMaxWidth>
+      <Flex $background={"white"} $justifyContent={"center"}>
+        <OakMaxWidth
+          $ph={"inner-padding-l"}
+          $maxWidth={["100%", "all-spacing-24"]}
+        >
+          <StyledContainer>
+            <OakFlex
+              $flexDirection="column"
+              $alignItems={["center", "center", "flex-start"]}
+              $gap={["all-spacing-11"]}
+              $flexGrow={[null, 1]}
+              $flexBasis={[null, 0]}
+            >
+              <OakFlex $flexDirection="column">
+                <OakHeading
+                  tag="h2"
+                  $font={["heading-4", "heading-3"]}
+                  $mt="space-between-xs"
+                >
+                  Our guiding principles
+                </OakHeading>
+
+                <OakP
+                  $mv={["space-between-s", "space-between-m"]}
+                  $font={"body-1"}
+                >
+                  We have crafted a set of overarching principles that describe
+                  the features important to our curricula in all subjects.
+                </OakP>
+              </OakFlex>
+
               <Cover
-                $width={[320, 340, 480]}
-                $height={[300, 320, 450]}
+                $width={[300, 320, 450]}
+                $height={[270, 300, 420]}
                 $position={"relative"}
               >
                 <Illustration
@@ -115,107 +199,63 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                   alt="Our guiding curriculum principles summarise the important features of great curricula. They are: flexible, accessible, diverse, evidence informed, knowledge and vocabulary rich, sequenced and coherent"
                 />
               </Cover>
-            </Box>
+            </OakFlex>
 
-            <OakBox $height={"100%"}>
-              <OakHeading
-                tag="h2"
-                $font={["heading-5", "heading-4"]}
-                $mt="space-between-xs"
-              >
-                Our approach to curriculum
-              </OakHeading>
-              <OakP
-                $mv={["space-between-s", "space-between-m"]}
-                $font={"body-1"}
-              >
-                Every school’s approach to curriculum design is different.
-                Whether you are starting from scratch or refreshing your
-                existing curricula, it can be helpful to see examples to inspire
-                your own. Explore our curriculum sequences and learn about the
-                six curriculum principles that guide our lesson and curriculum
-                design. See how we have:
-              </OakP>
-              <OakUL $mb="space-between-m" $font={"list-item-1"}>
-                <OakLI>
-                  Sequenced subject units across year groups, including
-                  alternative sequences
-                </OakLI>
-                <OakLI>
-                  Built coherence through the curricula, using threads
-                </OakLI>
-                <OakLI>
-                  Summarised the core content pupils will learn, in our
-                  curriculum statements
-                </OakLI>
-              </OakUL>
-              <OakTypography $font={"heading-7"} $mb="space-between-xs">
-                <OwaLink
-                  page={"blog-single"}
-                  blogSlug="our-approach-to-curriculum"
-                  $display={"flex"}
-                  $alignItems={"center"}
-                >
-                  Read more about our approach
-                  <OakIcon
-                    iconName={"chevron-right"}
-                    $width={"all-spacing-6"}
-                    $height={"all-spacing-6"}
-                  />
-                </OwaLink>
-              </OakTypography>
-            </OakBox>
-          </Flex>
-          <Flex
-            $background={"grey20"}
-            $minHeight={812}
-            $ml={[0, 12, 0]}
-            $mr={[0, 12, 0]}
-            $mb={[36, 48]}
-          >
-            <Box
-              $pl={[24, 48]}
-              $pr={[24, 48]}
-              $pt={48}
-              $mb={[48, 0]}
-              $position={"relative"}
+            <OakFlex
+              $flexDirection="column"
+              $gap={"space-between-l"}
+              $flexGrow={[null, 1]}
+              $flexBasis={[null, 0]}
+              $pb={["inner-padding-m", "inner-padding-none"]}
             >
-              <OakHeading tag="h2" $font={"heading-4"} $mb="space-between-m">
-                Our blogs on curriculum
-              </OakHeading>
-              {curriculumBlogs.length ? (
-                <>
-                  <OakUL $reset data-testid="blog-list">
-                    {curriculumBlogs.map((item, i) => (
-                      <OakLI
-                        key={`PostList-PostListItem-${i}`}
-                        data-testid="blog-list-item"
-                      >
-                        {i !== 0 && (
-                          <OakHandDrawnHR
-                            $height={"all-spacing-1"}
-                            $mv={"space-between-m2"}
-                          />
-                        )}
-                        <PostListItem
-                          {...item}
-                          showImageOnTablet={true}
-                          withImage={true}
-                          firstItemRef={null}
-                        />
-                      </OakLI>
-                    ))}
-                  </OakUL>
-                  {
-                    <OakHandDrawnHR
-                      $height={"all-spacing-1"}
-                      $mt={"space-between-m2"}
-                    />
-                  }
-                </>
-              ) : null}
-              <BrushBorders color="grey20" hideOnMobileH />
-            </Box>
+              <CurricQuote title="Evidence-informed" barColor="mint110">
+                Our approach enables the rigorous application of research
+                outcomes, science of learning and impactful best practice.
+              </CurricQuote>
+              <CurricQuote
+                title="Knowledge and vocabulary rich"
+                barColor="mint110"
+              >
+                Our curriculum is knowledge and vocabulary rich so that pupils
+                build on what they already know to develop deep knowledge and
+                apply this through skills.
+              </CurricQuote>
+              <CurricQuote title="Sequenced and coherent" barColor="mint110">
+                We carefully and purposefully sequence our curriculum to ensure
+                that pupils can build on and make links with existing knowledge.
+                We pay attention to vertical coherence via threads, which map
+                the developments of concepts over time.
+              </CurricQuote>
+              <CurricQuote title="Flexible" barColor="mint110">
+                Our curriculum is flexible by design so that schools can use
+                them in a way to fit their setting and meet the varying needs of
+                teachers and their pupils - all aligned to the national
+                curriculum.
+              </CurricQuote>
+              <CurricQuote title="Accessible" barColor="mint110">
+                Our curriculum is designed to support all pupils to learn and
+                follows accessibility guidelines. It uses insights from the
+                science of learning to inform how content is designed and
+                presented.
+              </CurricQuote>
+              <CurricQuote title="Diverse" barColor="mint110">
+                Our commitment to breadth and diversity in content, language,
+                texts and media can be seen throughout our curriculum, to help
+                pupils feel positively represented.
+              </CurricQuote>
+            </OakFlex>
+          </StyledContainer>
+        </OakMaxWidth>
+      </Flex>
+      <Flex $justifyContent={"flex-start"} $background={"mint"}>
+        <OakMaxWidth
+          $ph={["inner-padding-l"]}
+          $maxWidth={["100%", "all-spacing-24"]}
+        >
+          <Flex $mv={[48, 52]}>
+            <HomepageCurriculumLandingHero
+              curriculumPhaseOptions={curriculumPhaseOptions}
+            />
           </Flex>
         </OakMaxWidth>
       </Flex>
@@ -250,61 +290,14 @@ const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
     };
   };
 
-export type Client = typeof CMSClient;
-
-export async function fetchCurriculumPageBlogs(
-  CMSClient: Client,
-): Promise<SerializedBlogPostPreview[]> {
-  const newCurriculumBlog = await CMSClient.blogPostBySlug(
-    "our-new-curriculum-plans-are-here",
-  );
-
-  const subjectCurriculumBlog = await CMSClient.blogPostBySlug(
-    "how-to-design-a-subject-curriculum",
-  );
-
-  const refreshCurriculumBlog = await CMSClient.blogPostBySlug(
-    "how-to-refresh-your-curriculum-using-oak-units",
-  );
-
-  const designUnitBlog = await CMSClient.blogPostBySlug(
-    "how-to-design-a-unit-of-study",
-  );
-
-  const blogs = [];
-
-  if (
-    newCurriculumBlog !== null &&
-    subjectCurriculumBlog !== null &&
-    refreshCurriculumBlog !== null &&
-    designUnitBlog !== null
-  ) {
-    blogs.push(
-      [
-        newCurriculumBlog,
-        subjectCurriculumBlog,
-        refreshCurriculumBlog,
-        designUnitBlog,
-      ].map(serializeDate),
-    );
-  } else {
-    throw new Error("Missing blog post");
-  }
-
-  return blogs.flat();
-}
-
 export const getStaticProps: GetStaticProps<
   CurriculumHomePageProps
 > = async () => {
   const data = await fetchSubjectPhasePickerData();
 
-  const posts = await fetchCurriculumPageBlogs(CMSClient);
-
   const results: GetStaticPropsResult<CurriculumHomePageProps> = {
     props: {
       curriculumPhaseOptions: data,
-      posts,
     },
   };
   const resultsWithIsr = decorateWithIsr(results);
