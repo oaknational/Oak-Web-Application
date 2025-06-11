@@ -99,6 +99,18 @@ describe("lessonOverview()", () => {
     const _unitDataFixture = {
       lesson_count:
         _syntheticUnitvariantLessonsByKsFixture.static_lesson_list?.length ?? 1,
+      supplementary_data: {
+        unit_order: 16,
+        static_lesson_list: [
+          {
+            slug: "lesson-slug-test",
+            order: 1,
+            title: "Lesson Tile",
+            _state: "published",
+            lesson_uid: "test-uid",
+          },
+        ],
+      },
     };
 
     const lesson = await lessonOverview({
@@ -137,7 +149,9 @@ describe("lessonOverview()", () => {
       _syntheticUnitvariantLessonsByKsFixture.order_in_unit,
     );
 
-    expect(lesson.unitTotalLessonCount).toEqual(_unitDataFixture.lesson_count);
+    expect(lesson.unitTotalLessonCount).toEqual(
+      _unitDataFixture.supplementary_data.static_lesson_list.length,
+    );
   });
 
   test("it should return pathways for canonical lesson if unit_slug and programme_slug are not passed as props", async () => {
@@ -172,16 +186,52 @@ describe("lessonOverview()", () => {
         lesson_count:
           _syntheticUnitvariantLessonsByKsFixture1.static_lesson_list?.length ??
           1,
+        supplementary_data: {
+          unit_order: 16,
+          static_lesson_list: [
+            {
+              slug: "lesson-slug-test",
+              order: 1,
+              title: "Lesson Tile",
+              _state: "published",
+              lesson_uid: "test-uid",
+            },
+          ],
+        },
       },
       {
         lesson_count:
           _syntheticUnitvariantLessonsByKsFixture2.static_lesson_list?.length ??
           1,
+        supplementary_data: {
+          unit_order: 16,
+          static_lesson_list: [
+            {
+              slug: "lesson-slug-test",
+              order: 1,
+              title: "Lesson Tile",
+              _state: "published",
+              lesson_uid: "test-uid",
+            },
+          ],
+        },
       },
       {
         lesson_count:
           _syntheticUnitvariantLessonsByKsFixture3.static_lesson_list?.length ??
           1,
+        supplementary_data: {
+          unit_order: 16,
+          static_lesson_list: [
+            {
+              slug: "lesson-slug-test",
+              order: 1,
+              title: "Lesson Tile",
+              _state: "published",
+              lesson_uid: "test-uid",
+            },
+          ],
+        },
       },
     ];
 

@@ -42,7 +42,23 @@ describe("teacherPreviewLesson()", () => {
               lesson_guide_asset_object_url: "lesson-guide-url",
             },
           ],
-          unitData: [{ lesson_count: 1 }],
+          unitData: [
+            {
+              lesson_count: 1,
+              supplementary_data: {
+                unit_order: 16,
+                static_lesson_list: [
+                  {
+                    slug: "lesson-slug-test",
+                    order: 1,
+                    title: "Lesson Tile",
+                    _state: "published",
+                    lesson_uid: "test-uid",
+                  },
+                ],
+              },
+            },
+          ],
         }),
       ),
     })({
