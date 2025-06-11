@@ -149,6 +149,7 @@ export const data: CombinedCurriculumData = {
         },
       ],
       year: "11",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -487,6 +488,7 @@ export const data: CombinedCurriculumData = {
         },
       ],
       year: "10",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -585,6 +587,7 @@ export const data: CombinedCurriculumData = {
         },
       ],
       year: "11",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -790,6 +793,7 @@ export const data: CombinedCurriculumData = {
       title: "Myths, legends and stories that inspire",
       unit_options: [],
       year: "8",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -982,6 +986,7 @@ export const data: CombinedCurriculumData = {
         },
       ],
       year: "10",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -1202,6 +1207,7 @@ export const data: CombinedCurriculumData = {
       title: "Step into the unknown: fiction reading and creative writing",
       unit_options: [],
       year: "7",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -1372,6 +1378,7 @@ export const data: CombinedCurriculumData = {
       title: "'Lord of the Flies'",
       unit_options: [],
       year: "9",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -1567,6 +1574,7 @@ export const data: CombinedCurriculumData = {
       title: "'The Tempest'",
       unit_options: [],
       year: "7",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -1760,6 +1768,7 @@ export const data: CombinedCurriculumData = {
       title: "'A Midsummer Night's Dream'",
       unit_options: [],
       year: "8",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -1945,6 +1954,7 @@ export const data: CombinedCurriculumData = {
       title: "Macbeth: Lady Macbeth as a machiavellian villain",
       unit_options: [],
       year: "10",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -2130,6 +2140,7 @@ export const data: CombinedCurriculumData = {
       title: "Women's rights across the ages: non-fiction reading and writing",
       unit_options: [],
       year: "9",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -2216,6 +2227,7 @@ export const data: CombinedCurriculumData = {
       title: "Macbeth: a tragic hero",
       unit_options: [],
       year: "11",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -2370,6 +2382,7 @@ export const data: CombinedCurriculumData = {
         },
       ],
       year: "11",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -2464,6 +2477,7 @@ export const data: CombinedCurriculumData = {
       title: "Malevolent characters: descriptive and narrative writing",
       unit_options: [],
       year: "9",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -2808,6 +2822,7 @@ export const data: CombinedCurriculumData = {
         },
       ],
       year: "10",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -2944,6 +2959,7 @@ export const data: CombinedCurriculumData = {
       title: "Poetry about place and home",
       unit_options: [],
       year: "7",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -3063,6 +3079,7 @@ export const data: CombinedCurriculumData = {
       title: "Taking a stand",
       unit_options: [],
       year: "8",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -3666,6 +3683,7 @@ export const data: CombinedCurriculumData = {
         },
       ],
       year: "10",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -3955,6 +3973,7 @@ export const data: CombinedCurriculumData = {
         },
       ],
       year: "11",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -4119,6 +4138,7 @@ export const data: CombinedCurriculumData = {
       title: "Sherlock Holmes: short stories",
       unit_options: [],
       year: "7",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -4268,6 +4288,7 @@ export const data: CombinedCurriculumData = {
       title: "Single poet study: Maya Angelou",
       unit_options: [],
       year: "8",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -4443,6 +4464,7 @@ export const data: CombinedCurriculumData = {
       title: "Literary perspectives from the First World War",
       unit_options: [],
       year: "9",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -4553,6 +4575,7 @@ export const data: CombinedCurriculumData = {
       title: "Comparing poetry from the First World War",
       unit_options: [],
       year: "9",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -4759,6 +4782,7 @@ export const data: CombinedCurriculumData = {
       title: "'The Twisted Tree': fiction reading",
       unit_options: [],
       year: "7",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -4849,6 +4873,7 @@ export const data: CombinedCurriculumData = {
       title: "Victorian childhood: non-fiction reading and writing",
       unit_options: [],
       year: "8",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -5008,6 +5033,7 @@ export const data: CombinedCurriculumData = {
       title: "Unseen poetry",
       unit_options: [],
       year: "11",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -5123,6 +5149,7 @@ export const data: CombinedCurriculumData = {
       title: "Non-fiction: crime and punishment",
       unit_options: [],
       year: "10",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -5248,6 +5275,7 @@ export const data: CombinedCurriculumData = {
       title: "Dystopian settings: descriptive writing",
       unit_options: [],
       year: "7",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -5462,6 +5490,7 @@ export const data: CombinedCurriculumData = {
       title: "A monster within: reading and writing Gothic fiction",
       unit_options: [],
       year: "8",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -5632,6 +5661,7 @@ export const data: CombinedCurriculumData = {
       title: "'Small Island'",
       unit_options: [],
       year: "9",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -5779,6 +5809,7 @@ export const data: CombinedCurriculumData = {
         },
       ],
       year: "11",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -5854,6 +5885,7 @@ export const data: CombinedCurriculumData = {
       title: "Gothic poetry",
       unit_options: [],
       year: "8",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -6034,6 +6066,7 @@ export const data: CombinedCurriculumData = {
       title: "'Othello'",
       unit_options: [],
       year: "9",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -6188,6 +6221,7 @@ export const data: CombinedCurriculumData = {
       title: "Fiction: read around the world",
       unit_options: [],
       year: "10",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -6284,6 +6318,7 @@ export const data: CombinedCurriculumData = {
         },
       ],
       year: "11",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -6373,6 +6408,7 @@ export const data: CombinedCurriculumData = {
       title: "Macbeth and masculinity: the struggle for power",
       unit_options: [],
       year: "11",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -6463,6 +6499,7 @@ export const data: CombinedCurriculumData = {
       title: "A history of language",
       unit_options: [],
       year: "8",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -6588,6 +6625,7 @@ export const data: CombinedCurriculumData = {
       title: "Spoken language: the language of change",
       unit_options: [],
       year: "10",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -6740,6 +6778,7 @@ export const data: CombinedCurriculumData = {
         },
       ],
       year: "11",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -6836,6 +6875,7 @@ export const data: CombinedCurriculumData = {
       title: "Fiction: science fiction writing",
       unit_options: [],
       year: "10",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -6985,6 +7025,7 @@ export const data: CombinedCurriculumData = {
       title: "Non-fiction: changing views",
       unit_options: [],
       year: "10",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -7109,6 +7150,7 @@ export const data: CombinedCurriculumData = {
       title: "Fiction: books that changed my world",
       unit_options: [],
       year: "11",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -7251,6 +7293,7 @@ export const data: CombinedCurriculumData = {
       title: "Non-fiction: teenage kicks",
       unit_options: [],
       year: "11",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -7359,6 +7402,7 @@ export const data: CombinedCurriculumData = {
       title: "Fiction: inner musings",
       unit_options: [],
       year: "11",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -7458,6 +7502,7 @@ export const data: CombinedCurriculumData = {
       title: "Non-fiction: explorers",
       unit_options: [],
       year: "11",
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -7566,6 +7611,7 @@ export const data: CombinedCurriculumData = {
       title: "Writing masters",
       unit_options: [],
       year: "11",
+      prior_knowledge_requirements: [],
     },
   ],
   curriculaDesc:

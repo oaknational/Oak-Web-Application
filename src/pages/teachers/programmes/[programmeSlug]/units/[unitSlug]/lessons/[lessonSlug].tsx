@@ -39,6 +39,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     lessonSlug,
     unitSlug,
     programmeSlug,
+    year,
     unitTitle,
     subjectSlug,
     keyStageTitle,
@@ -78,11 +79,11 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
 
   const getLessonData = () => {
     if (tierTitle && examBoardTitle) {
-      return ` | ${tierTitle} | ${examBoardTitle}`;
+      return ` ${tierTitle} ${examBoardTitle}`;
     } else if (tierTitle) {
-      return ` | ${tierTitle}`;
+      return ` ${tierTitle}`;
     } else if (examBoardTitle) {
-      return ` | ${examBoardTitle}`;
+      return ` ${examBoardTitle}`;
     } else return "";
   };
 
@@ -90,7 +91,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     <AppLayout
       seoProps={{
         ...getSeoProps({
-          title: `Lesson: ${lessonTitle}${getLessonData()} | ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
+          title: `${lessonTitle}${getLessonData()} ${keyStageSlug.toUpperCase()} | Y${year} ${subjectTitle} Lesson Resources`,
           description:
             "View lesson content and choose resources to download or share",
           canonicalURL: `${getBrowserConfig("seoAppUrl")}/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,

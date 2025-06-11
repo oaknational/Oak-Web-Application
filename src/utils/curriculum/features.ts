@@ -21,3 +21,12 @@ export function getIsUnitDescriptionEnabled(unit?: Unit | null) {
     return unit?.cycle === "2";
   }
 }
+
+export function priorKnowledgeRequirementsEnabled(
+  unit: Unit | Unit["unit_options"][number],
+) {
+  return (
+    "parent_programme_features" in unit &&
+    unit.parent_programme_features?.prior_knowledge_requirements
+  );
+}
