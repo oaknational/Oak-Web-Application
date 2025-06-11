@@ -669,29 +669,6 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       });
     });
 
-    it.skip("renders the Curriculum Units Tab", () => {
-      (useRouter as jest.Mock).mockReturnValue({
-        query: { tab: "units" },
-        isPreview: false,
-        pathname: "/teachers-2023/curriculum/english-secondary-aqa/overview",
-        asPath: "",
-      });
-      const slugs = parseSubjectPhaseSlug("english-secondary-aqa")!;
-      const { queryByTestId, queryAllByTestId } = render(
-        <CurriculumInfoPage
-          mvRefreshTime={1721314874829}
-          curriculumUnitsFormattedData={curriculumUnitsFormattedData}
-          curriculumSelectionSlugs={slugs}
-          curriculumPhaseOptions={curriculumPhaseOptions}
-          curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
-          curriculumOverviewTabData={curriculumOverviewMVFixture()}
-          curriculumDownloadsTabData={{ tiers: [], child_subjects: [] }}
-        />,
-      );
-      expect(queryByTestId("units-heading")).toBeInTheDocument();
-      expect(queryAllByTestId("unit-cards")[0]).toBeInTheDocument();
-    });
-
     if (!DISABLE_DOWNLOADS) {
       it("renders the Curriculum Downloads Tab (with prerelease)", () => {
         (useRouter as jest.Mock).mockReturnValue({

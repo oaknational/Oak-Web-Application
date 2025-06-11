@@ -102,7 +102,4 @@ describe("LessonOverviewVideo", () => {
     const { getByText } = renderWithTheme(<LessonOverviewVideo {...props} />);
     expect(() => getByText("Show sign language")).toThrow();
   });
-
-  // TODO: Not sure how to test this yet
-  it.todo("loads the signed video when the signed video toggle is clicked");
 });

@@ -183,35 +183,6 @@ describe("<SearchForm />", () => {
       context: "homepage",
     });
   });
-  //Skipped test whilst waiting for data team to change event
-  it.skip("track.searchAttempted is called on submit ", async () => {
-    const initialText = "search me";
-
-    const { getByRole } = render(
-      <SearchForm
-        placeholderText=""
-        searchContext="homepage"
-        searchTerm={initialText}
-        handleSubmit={handleSubmit}
-        analyticsSearchSource={"homepage search box"}
-      />,
-    );
-    const user = userEvent.setup();
-
-    const searchField = getByRole("searchbox");
-    await user.click(searchField);
-    await user.keyboard("{Enter}");
-
-    expect(searchAttempted).toHaveBeenCalledTimes(1);
-    expect(searchAttempted).toHaveBeenCalledWith({
-      analyticsUseCase: "Teacher",
-      pageName: "Homepage",
-      searchFilterOptionSelected: [],
-      searchSource: "homepage search box",
-      searchTerm: "search me",
-      context: "homepage",
-    });
-  });
   it("search input is populated with placeholder text", () => {
     const placeholderText = "Search by keyword or topic";
     render(

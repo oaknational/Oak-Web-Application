@@ -79,18 +79,6 @@ describe("ErrorBoundary.tsx", () => {
       "An error occurred",
     );
   });
-  test.skip("[bugsnag:enabled] should call reportError", () => {
-    /**
-     * @TODO fix this test
-     */
-    render(
-      <ErrorBoundary>
-        <TantrumChild />
-      </ErrorBoundary>,
-      { wrapper: WithStatisticsConsent },
-    );
-    expect(mockNotify).toHaveBeenCalled();
-  });
   test("[bugsnag:disabled] should render children if no error", () => {
     const { getByTestId } = render(
       <ErrorBoundary>
