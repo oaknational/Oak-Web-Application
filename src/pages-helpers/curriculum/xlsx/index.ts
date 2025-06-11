@@ -1,7 +1,7 @@
 import { cartesianToExcelCoords, pxToColumnWidth } from "@ooxml-tools/units";
 
 import { generateEmptyXlsx, JSZipCached } from "../docx/docx";
-import { cdata, safeXml } from "../docx/xml";
+import { cdata, safeXml, xmlCompact } from "../docx/xml";
 import { formatCurriculumUnitsData } from "../docx/tab-helpers";
 
 import { Output } from "@/pages/api/national-curriculum";
@@ -418,7 +418,7 @@ async function buildNationalCurriculum(
         </Relationships>
       `.trim(),
     );
-    addOrUpdateSheet(zip, 10 + index, buildNatCurric(item));
+    addOrUpdateSheet(zip, 10 + index, xmlCompact(buildNatCurric(item)));
   });
 
   zip.writeString(

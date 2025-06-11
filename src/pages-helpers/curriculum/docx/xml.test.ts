@@ -5,6 +5,7 @@ import {
   createFragment,
   jsonXmlToXmlString,
   safeXml,
+  xmlCompact,
   xmlElementToJson,
   xmlRootToJson,
 } from "./xml";
@@ -332,5 +333,14 @@ describe("xml", () => {
         safeXml`<test>${"testing"}</testing>`;
       }).toThrow();
     });
+  });
+
+  describe("xmlCompact", () => {
+    const element = xmlCompact(`
+      <test>
+        ${"testing"}
+      </test>
+    `);
+    expect(element).toEqual("<test>testing</test>");
   });
 });

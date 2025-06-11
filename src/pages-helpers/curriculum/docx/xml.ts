@@ -40,6 +40,17 @@ export function safeXml(
   return outXml;
 }
 
+export function xmlCompact(xml: string) {
+  const parsed = xml2js(xml, {
+    compact: true,
+    trim: true,
+  });
+  const out = js2xml(parsed, {
+    compact: true,
+  });
+  return out;
+}
+
 export function xmlElementToJson(xmlData?: string) {
   if (!xmlData) return;
   const rootNode = xmlRootToJson(xmlData);
