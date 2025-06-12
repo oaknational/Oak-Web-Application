@@ -12,6 +12,11 @@ import LoginRequiredButton from "./LoginRequiredButton";
 
 const meta: Meta<typeof LoginRequiredButton> = {
   component: LoginRequiredButton,
+  parameters: {
+    controls: {
+      include: ["signUpProps", "actionProps", "buttonVariant", "sizeVariant"],
+    },
+  },
   argTypes: {
     signUpProps: {
       control: {
