@@ -58,6 +58,8 @@ export const SpecialistLessonPage: Story = {
       additionalFiles: null,
       lessonOutline: null,
       lessonReleaseDate: "2022-02-22T12:00:00Z",
+      orderInUnit: 1,
+      unitTotalLessonCount: 1,
     },
   },
 };

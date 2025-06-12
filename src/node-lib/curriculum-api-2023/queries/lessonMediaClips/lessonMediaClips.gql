@@ -14,5 +14,6 @@ query lessonMediaClips(
     actions
     features
     order_in_unit
+    programme_slug_by_year
   }
 }

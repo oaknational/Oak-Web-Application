@@ -20,12 +20,54 @@ export const _additionalFilesFixture = keysToCamelCase(
 );
 
 describe("lessonOverview()", () => {
+  test("throws a not found error if no unit data is found", async () => {
+    const _syntheticUnitvariantLessonsByKsFixture =
+      syntheticUnitvariantLessonsByKsFixture({
+        overrides: {
+          lesson_slug: "lesson-slug-test",
+          unit_slug: "unit-slug-test",
+          programme_slug: "programme-slug-test",
+          is_legacy: false,
+          programme_slug_by_year: ["programme-slug-test"],
+        },
+      });
+
+    const _lessonContentFixture = lessonContentFixture({
+      overrides: {
+        exit_quiz: [],
+        starter_quiz: [],
+      },
+    });
+
+    await expect(async () => {
+      await lessonOverview({
+        ...sdk,
+        lessonOverview: jest.fn(() =>
+          Promise.resolve({
+            browseData: [_syntheticUnitvariantLessonsByKsFixture],
+            content: [_lessonContentFixture],
+            additionalFiles: [_additionalFilesFixture],
+            unitData: [],
+          }),
+        ),
+      })({
+        lessonSlug: "lesson-slug",
+        unitSlug: "unit-slug",
+        programmeSlug: "programme-slug",
+      });
+    }).rejects.toThrow(`Resource not found`);
+  });
   test("throws a not found error if no lesson is found", async () => {
     await expect(async () => {
       await lessonOverview({
         ...sdk,
         lessonOverview: jest.fn(() =>
-          Promise.resolve({ content: [], browseData: [], additionalFiles: [] }),
+          Promise.resolve({
+            content: [],
+            browseData: [],
+            additionalFiles: [],
+            unitData: [],
+          }),
         ),
       })({
         lessonSlug: "lesson-slug",
@@ -54,6 +96,23 @@ describe("lessonOverview()", () => {
       },
     });
 
+    const _unitDataFixture = {
+      lesson_count:
+        _syntheticUnitvariantLessonsByKsFixture.static_lesson_list?.length ?? 1,
+      supplementary_data: {
+        unit_order: 16,
+        static_lesson_list: [
+          {
+            slug: "lesson-slug-test",
+            order: 1,
+            title: "Lesson Tile",
+            _state: "published",
+            lesson_uid: "test-uid",
+          },
+        ],
+      },
+    };
+
     const lesson = await lessonOverview({
       ...sdk,
       lessonOverview: jest.fn(() =>
@@ -61,6 +120,7 @@ describe("lessonOverview()", () => {
           browseData: [_syntheticUnitvariantLessonsByKsFixture],
           content: [_lessonContentFixture],
           additionalFiles: [_additionalFilesFixture],
+          unitData: [_unitDataFixture],
         }),
       ),
     })({
@@ -84,6 +144,14 @@ describe("lessonOverview()", () => {
     );
 
     expect(lesson.lessonTitle).toEqual(_lessonContentFixture.lesson_title);
+
+    expect(lesson.orderInUnit).toEqual(
+      _syntheticUnitvariantLessonsByKsFixture.order_in_unit,
+    );
+
+    expect(lesson.unitTotalLessonCount).toEqual(
+      _unitDataFixture.supplementary_data.static_lesson_list.length,
+    );
   });
 
   test("it should return pathways for canonical lesson if unit_slug and programme_slug are not passed as props", async () => {
@@ -113,6 +181,60 @@ describe("lessonOverview()", () => {
       },
     });
 
+    const _unitDataFixture = [
+      {
+        lesson_count:
+          _syntheticUnitvariantLessonsByKsFixture1.static_lesson_list?.length ??
+          1,
+        supplementary_data: {
+          unit_order: 16,
+          static_lesson_list: [
+            {
+              slug: "lesson-slug-test",
+              order: 1,
+              title: "Lesson Tile",
+              _state: "published",
+              lesson_uid: "test-uid",
+            },
+          ],
+        },
+      },
+      {
+        lesson_count:
+          _syntheticUnitvariantLessonsByKsFixture2.static_lesson_list?.length ??
+          1,
+        supplementary_data: {
+          unit_order: 16,
+          static_lesson_list: [
+            {
+              slug: "lesson-slug-test",
+              order: 1,
+              title: "Lesson Tile",
+              _state: "published",
+              lesson_uid: "test-uid",
+            },
+          ],
+        },
+      },
+      {
+        lesson_count:
+          _syntheticUnitvariantLessonsByKsFixture3.static_lesson_list?.length ??
+          1,
+        supplementary_data: {
+          unit_order: 16,
+          static_lesson_list: [
+            {
+              slug: "lesson-slug-test",
+              order: 1,
+              title: "Lesson Tile",
+              _state: "published",
+              lesson_uid: "test-uid",
+            },
+          ],
+        },
+      },
+    ];
+
     const lesson = await lessonOverview({
       ...sdk,
       lessonOverview: jest.fn(() =>
@@ -124,6 +246,7 @@ describe("lessonOverview()", () => {
           ],
           content: [_lessonContentFixture],
           additionalFiles: [],
+          unitData: _unitDataFixture,
         }),
       ),
     })({
@@ -149,6 +272,7 @@ describe("lessonOverview()", () => {
             browseData: [],
             content: [],
             additionalFiles: [],
+            unitData: [],
           }),
         ),
       })({
