@@ -1,11 +1,13 @@
 import { SignUpButton, useUser } from "@clerk/nextjs";
 import {
+  OakFlex,
   OakIconName,
   OakPrimaryButton,
   OakSecondaryButton,
   OakSmallPrimaryButton,
   OakSmallSecondaryButton,
   OakSmallTertiaryInvertedButton,
+  OakTagFunctional,
   OakTertiaryButton,
 } from "@oaknational/oak-components";
 import { useRouter } from "next/router";
@@ -42,6 +44,7 @@ type LoginRequiredButtonProps = {
   signUpProps?: SignUpProps;
   buttonVariant?: ButtonVariant;
   smallButton?: boolean;
+  showNewTag?: boolean;
 };
 
 const getButtonVariant = (variant: ButtonVariant, smallButton: boolean) => {
@@ -63,6 +66,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
     signUpProps,
     buttonVariant = "primary",
     smallButton = false,
+    showNewTag = false,
   } = props;
   const router = useRouter();
   const { isSignedIn, isLoaded, user } = useUser();
@@ -102,7 +106,17 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
             })
           }
         >
-          Complete sign up to continue
+          <OakFlex $alignItems="center" $gap="space-between-xs">
+            {showNewTag && (
+              <OakTagFunctional
+                label="New"
+                $background="mint"
+                $color="text-primary"
+                $pv={"inner-padding-none"}
+              />
+            )}
+            Complete sign up to continue
+          </OakFlex>
         </ButtonComponent>
       );
     case "signup":
@@ -127,7 +141,17 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
           isTrailingIcon={actionProps?.isTrailingIcon}
           disabled={buttonState === "georestricted"}
         >
-          {actionProps?.name}
+          <OakFlex $alignItems="center" $gap="space-between-xs">
+            {showNewTag && (
+              <OakTagFunctional
+                label="New"
+                $background="mint"
+                $color="text-primary"
+                $pv={"inner-padding-none"}
+              />
+            )}
+            {actionProps?.name}
+          </OakFlex>
         </ButtonComponent>
       );
     case "loading":

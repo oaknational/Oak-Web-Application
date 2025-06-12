@@ -13,6 +13,12 @@ import LoginRequiredButton from "./LoginRequiredButton";
 const meta: Meta<typeof LoginRequiredButton> = {
   component: LoginRequiredButton,
   argTypes: {
+    showNewTag: {
+      control: {
+        type: "boolean",
+      },
+      defaultValue: false,
+    },
     signUpProps: {
       control: {
         type: "select",
