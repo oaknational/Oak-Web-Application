@@ -46,6 +46,8 @@ describe("hasLessonMathJax", () => {
     additionalFiles: null,
     lessonOutline: null,
     lessonReleaseDate: "2022-02-01T00:00:00Z",
+    orderInUnit: 1,
+    unitTotalLessonCount: 1,
   };
 
   it("detects MathJax in keyLearningPoints", () => {

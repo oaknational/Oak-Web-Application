@@ -1,3 +1,67 @@
+# [1.774.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.773.0...v1.774.0) (2025-06-12)
+
+
+### Bug Fixes
+
+* accordion content scrollbar issue ([11ef03f](https://github.com/oaknational/Oak-Web-Application/commit/11ef03fd5a23042facf7c4892f8190fbe1b8accc))
+* hide financial education and rshe links and issues ([ba390c4](https://github.com/oaknational/Oak-Web-Application/commit/ba390c47617acd729ad6487a56268c2eaf15678c))
+
+
+### Features
+
+* add links to seo body text ([90c1076](https://github.com/oaknational/Oak-Web-Application/commit/90c107611786a676eb234627d7ed45438c0a1c13))
+* lesson listing page SEO body text ([f55d3b0](https://github.com/oaknational/Oak-Web-Application/commit/f55d3b0e08f721964ab3519be009c0dd80d11d08))
+
+# [1.773.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.772.0...v1.773.0) (2025-06-12)
+
+
+### Bug Fixes
+
+* fixed header padding, added tests, updated oak-components for useSpan on OakTag ([adb5a57](https://github.com/oaknational/Oak-Web-Application/commit/adb5a5785a1cea308e4350427312e669003a6784))
+* used specialist lessons mv for specialist lesson count, fixed zod error on media clips ([0f86654](https://github.com/oaknational/Oak-Web-Application/commit/0f86654b4004e2aece56249e74ceaa805ad5e925))
+* used supplementary data static lesson count as default method of counting lessons ([819f4fc](https://github.com/oaknational/Oak-Web-Application/commit/819f4fc33df08da5622f155eb5f7653d402d8306))
+
+
+### Features
+
+* implemented A/B test on lesson overview header for back btn and signposting ([d6ab1e6](https://github.com/oaknational/Oak-Web-Application/commit/d6ab1e69be7c87c283a407e605091a1ec60c3733))
+
+# [1.772.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.771.2...v1.772.0) (2025-06-12)
+
+
+### Features
+
+* enable ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS ([574c2e0](https://github.com/oaknational/Oak-Web-Application/commit/574c2e04ec8b0d7d94345b0b0edc24580ef1ee4a))
+
+## [1.771.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.771.1...v1.771.2) (2025-06-12)
+
+## [1.771.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.771.0...v1.771.1) (2025-06-12)
+
+
+### Bug Fixes
+
+* improve Aila signposting link accessibility for screen readers ([d4e02c1](https://github.com/oaknational/Oak-Web-Application/commit/d4e02c14580a845aa82771b9af30f82a83d10e6a))
+
+# [1.771.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.770.0...v1.771.0) (2025-06-12)
+
+
+### Features
+
+* update pupil share with oak toast ([274427d](https://github.com/oaknational/Oak-Web-Application/commit/274427d3dca216be709008f9f3f15ea78776fb51))
+* use oakToast in useTeacherShareButton ([7ccc37f](https://github.com/oaknational/Oak-Web-Application/commit/7ccc37f119ae4753a16025d20493fa60124c4ec4))
+
+# [1.770.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.769.0...v1.770.0) (2025-06-11)
+
+
+### Bug Fixes
+
+* set iconfill to transparent to match animation ([273e2a7](https://github.com/oaknational/Oak-Web-Application/commit/273e2a7fe2dd8fd236d9cdc45b83967c1cffab8a))
+
+
+### Features
+
+* add animation to CurriculumDownloadBanner ([97b832a](https://github.com/oaknational/Oak-Web-Application/commit/97b832a5d94eef082af6c110f031a97ed5e9ba58))
+
 # [1.769.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.768.0...v1.769.0) (2025-06-11)
 
 

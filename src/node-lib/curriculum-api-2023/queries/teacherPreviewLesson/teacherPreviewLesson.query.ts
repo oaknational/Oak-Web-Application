@@ -16,6 +16,10 @@ import lessonOverviewSchema, {
   LessonOverviewContent,
   LessonOverviewPageData,
 } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+import {
+  LessonUnitDataByKs,
+  lessonUnitDataByKsSchema,
+} from "@/node-lib/curriculum-api-2023/shared.schema";
 
 const teacherPreviewLessonQuery =
   (sdk: Sdk) =>
@@ -47,6 +51,13 @@ const teacherPreviewLessonQuery =
       login_required: true,
     });
 
+    const [unitDataSnake] = res.unitData;
+    if (!unitDataSnake) {
+      throw new OakError({ code: "curriculum-api/not-found" });
+    }
+    lessonUnitDataByKsSchema.parse(unitDataSnake);
+    const unitData = keysToCamelCase(unitDataSnake) as LessonUnitDataByKs;
+
     // Incomplete data will break the preview for new lessons
     const lessonContentData = keysToCamelCase({
       ...parsedLessonContent,
@@ -77,6 +88,7 @@ const teacherPreviewLessonQuery =
       modBrowseData as LessonBrowseDataByKs,
       lessonContentData as LessonOverviewContent,
       [],
+      unitData,
     );
 
     const parsedLessonPreviewData = lessonOverviewSchema.parse({

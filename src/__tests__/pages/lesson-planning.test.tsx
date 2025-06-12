@@ -2,7 +2,6 @@ import { screen } from "@testing-library/react";
 
 import PlanALesson, { getStaticProps } from "../../pages/lesson-planning";
 import renderWithProviders from "../__helpers__/renderWithProviders";
-import renderWithSeo from "../__helpers__/renderWithSeo";
 
 import { testPlanALessonPageData } from "./lesson-planning.fixture";
 
@@ -169,16 +168,6 @@ describe("pages/lesson-planning.tsx", () => {
 
     const heroImage = screen.getByAltText("alt text hero").closest("img");
     expect(heroImage).toBeInTheDocument();
-  });
-
-  describe("SEO", () => {
-    it.skip("renders the correct SEO details", () => {
-      const { seo } = renderWithSeo()(
-        <PlanALesson pageData={testPlanningPageData} posts={mockPosts} />,
-      );
-
-      expect(seo).toEqual({});
-    });
   });
 
   describe("getStaticProps", () => {
