@@ -4,6 +4,7 @@ import {
   OakIconName,
   OakLoadingSpinner,
   OakPrimaryButton,
+  OakPrimaryButtonProps,
   OakSecondaryButton,
   OakSmallPrimaryButton,
   OakSmallSecondaryButton,
@@ -54,7 +55,7 @@ type LoginRequiredButtonProps = {
   onboardingProps?: OnboardingProps;
   buttonVariant?: ButtonVariant;
   sizeVariant?: SizeVariant;
-};
+} & OakPrimaryButtonProps;
 
 const getButtonVariant = (variant: ButtonVariant, sizeVariant: SizeVariant) => {
   switch (variant) {
@@ -80,6 +81,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
     onboardingProps,
     buttonVariant = "primary",
     sizeVariant = "large",
+    ...buttonOverrideProps
   } = props;
   const router = useRouter();
   const { isSignedIn, isLoaded, user } = useUser();
@@ -118,6 +120,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
               query: { returnTo: router.asPath },
             })
           }
+          {...buttonOverrideProps}
         >
           {onboardingProps?.name ?? "Complete sign up to continue"}
         </ButtonComponent>
@@ -130,6 +133,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
           <ButtonComponent
             iconName={signUpProps?.iconName}
             isTrailingIcon={signUpProps?.isTrailingIcon}
+            {...buttonOverrideProps}
           >
             <OakFlex $alignItems="center" $gap="space-between-xs">
               {signUpProps?.showNewTag && (
@@ -153,6 +157,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
           iconName={actionProps?.iconName}
           isTrailingIcon={actionProps?.isTrailingIcon}
           disabled={buttonState === "georestricted"}
+          {...buttonOverrideProps}
         >
           <OakFlex $alignItems="center" $gap="space-between-xs">
             {actionProps?.showNewTag && !actionProps?.loading && (
@@ -171,7 +176,11 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
         </ButtonComponent>
       );
     case "loading":
-      return <ButtonComponent isLoading>Loading...</ButtonComponent>;
+      return (
+        <ButtonComponent isLoading {...buttonOverrideProps}>
+          Loading...
+        </ButtonComponent>
+      );
     default:
       return null;
   }
