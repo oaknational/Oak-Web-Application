@@ -15,6 +15,10 @@ import {
 
 const render = renderWithProviders();
 
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagEnabled: jest.fn(() => true),
+}));
+
 describe("LoginRequiredButton", () => {
   beforeEach(() => {
     setUseUserReturn(mockLoggedOut);

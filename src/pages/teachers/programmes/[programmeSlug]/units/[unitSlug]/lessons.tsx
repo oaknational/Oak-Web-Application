@@ -94,6 +94,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     tierTitle,
     examBoardTitle,
     year,
+    containsGeorestrictedLessons,
   } = curriculumData;
 
   const unitListingHref = `/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/programmes`;
@@ -220,6 +221,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       subjectSlug,
     },
   );
+
   return (
     <AppLayout
       seoProps={{
@@ -302,6 +304,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           }
           showRiskAssessmentBanner={showRiskAssessmentBanner}
           isIncompleteUnit={unpublishedLessonCount > 0}
+          isGeorestrictedUnit={containsGeorestrictedLessons}
           isUnitSaved={isUnitSaved(unitSlug)}
           onSave={
             isSlugLegacy(programmeSlug)

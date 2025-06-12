@@ -14,6 +14,7 @@ import {
 } from "@oaknational/oak-components";
 import { useRouter } from "next/router";
 import { useMemo } from "react";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { resolveOakHref } from "@/common-lib/urls";
 
@@ -85,6 +86,9 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
   } = props;
   const router = useRouter();
   const { isSignedIn, isLoaded, user } = useUser();
+  const restrictionEnabled = useFeatureFlagEnabled(
+    "teachers-copyright-restrictions",
+  );
 
   const buttonState = useMemo((): ButtonState => {
     const userOnboarded = user?.publicMetadata?.owa?.isOnboarded;
@@ -98,7 +102,8 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
     } else if (userOnboarded && actionProps) {
       if (
         actionProps.isActionGeorestricted &&
-        !user?.publicMetadata?.owa?.isRegionAuthorised
+        !user?.publicMetadata?.owa?.isRegionAuthorised &&
+        restrictionEnabled
       ) {
         return "georestricted";
       }
@@ -106,7 +111,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
     } else {
       return "null";
     }
-  }, [isLoaded, isSignedIn, user, actionProps]);
+  }, [isLoaded, isSignedIn, user, actionProps, restrictionEnabled]);
 
   const ButtonComponent = getButtonVariant(buttonVariant, sizeVariant);
 

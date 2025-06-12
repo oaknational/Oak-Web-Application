@@ -59,6 +59,7 @@ export type HeaderListingProps = {
   subjectDescriptionUnitListingData?: UnitListingData;
   isUnitSaved?: boolean;
   onSave?: () => void;
+  isGeorestrictedUnit?: boolean;
 };
 
 const HeaderListing: FC<HeaderListingProps> = (props) => {
@@ -85,6 +86,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     subjectDescriptionUnitListingData,
     isUnitSaved,
     onSave,
+    isGeorestrictedUnit,
   } = props;
 
   const isKeyStagesAvailable = keyStageSlug && keyStageTitle;
@@ -207,6 +209,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                     unitFileId={unitDownloadFileId}
                     onDownloadSuccess={onUnitDownloadSuccess}
                     showNewTag={false}
+                    georestricted={Boolean(isGeorestrictedUnit)}
                   />
                 )}
                 {shareButton}

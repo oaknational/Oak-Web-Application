@@ -56,6 +56,7 @@ describe("UnitDownloadButton", () => {
         onDownloadSuccess={jest.fn()}
         unitFileId="mockSlug"
         showNewTag
+        georestricted={false}
       />,
     );
     const button = screen.getByText("Complete sign up to download this unit");
@@ -72,6 +73,7 @@ describe("UnitDownloadButton", () => {
         onDownloadSuccess={jest.fn()}
         unitFileId="mockSlug"
         showNewTag
+        georestricted={false}
       />,
     );
     const button = screen.getByText("Download (.zip 1.2MB)");
@@ -88,6 +90,7 @@ describe("UnitDownloadButton", () => {
         onDownloadSuccess={jest.fn()}
         unitFileId="mockSlug"
         showNewTag
+        georestricted={false}
       />,
     );
     const button = screen.getByText("Downloading...");
@@ -107,6 +110,7 @@ describe("UnitDownloadButton", () => {
         onDownloadSuccess={jest.fn()}
         unitFileId="mockSlug"
         showNewTag
+        georestricted={false}
       />,
     );
     const button = screen.getByText("Download unit");
@@ -124,6 +128,7 @@ describe("UnitDownloadButton", () => {
         onDownloadSuccess={jest.fn()}
         unitFileId="mockSlug"
         showNewTag
+        georestricted={false}
       />,
     );
     setDownloadError(true);
@@ -141,6 +146,7 @@ describe("UnitDownloadButton", () => {
         onDownloadSuccess={onDownloadSuccess}
         unitFileId="mockSlug"
         showNewTag
+        georestricted={false}
       />,
     );
     onDownloadSuccess();

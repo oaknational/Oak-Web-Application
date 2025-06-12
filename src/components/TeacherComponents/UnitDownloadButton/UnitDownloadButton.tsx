@@ -34,10 +34,11 @@ export type UnitDownloadButtonProps = {
   setShowIncompleteMessage: Dispatch<SetStateAction<boolean>>;
   downloadInProgress: boolean;
   showNewTag: boolean;
+  georestricted: boolean;
 };
 
 export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
-  const { unitFileId, showNewTag } = props;
+  const { unitFileId, showNewTag, georestricted } = props;
 
   const {
     onDownloadSuccess,
@@ -87,7 +88,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
               name: downloadInProgress
                 ? "Downloading..."
                 : `Download (.zip ${fileSize})`,
-              isActionGeorestricted: false, // TODO: georestricted unit downloads
+              isActionGeorestricted: georestricted,
               iconName: "download",
               isTrailingIcon: true,
             }
