@@ -251,20 +251,18 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
           </StyledContainer>
         </OakMaxWidth>
       </Flex>
-      <nav>
-        <Flex $justifyContent={"flex-start"} $background={"mint"}>
-          <OakMaxWidth
-            $ph={["inner-padding-l"]}
-            $maxWidth={["100%", "all-spacing-24"]}
-          >
-            <Flex $mv={[48, 52]}>
-              <HomepageCurriculumLandingHero
-                curriculumPhaseOptions={curriculumPhaseOptions}
-              />
-            </Flex>
-          </OakMaxWidth>
-        </Flex>
-      </nav>
+      <Flex $justifyContent={"flex-start"} $background={"mint"}>
+        <OakMaxWidth
+          $ph={["inner-padding-l"]}
+          $maxWidth={["100%", "all-spacing-24"]}
+        >
+          <Flex $mv={[48, 52]}>
+            <HomepageCurriculumLandingHero
+              curriculumPhaseOptions={curriculumPhaseOptions}
+            />
+          </Flex>
+        </OakMaxWidth>
+      </Flex>
     </AppLayout>
   );
 };

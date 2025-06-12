@@ -27,13 +27,16 @@ export default function CurricQuote({
 }: CurricQuoteProps) {
   return (
     <OakBox $background={backgroundColor}>
-      <OakFlex $flexDirection="row" $pr={"inner-padding-xl"}>
+      <OakFlex
+        $flexDirection="row"
+        $pr={"inner-padding-xl"}
+        $columnGap="space-between-m"
+      >
         {barColor !== "transparent" && (
           <OakFlex
             data-testid="decorative-bar"
             $width="all-spacing-2"
             $background={barColor}
-            $mr="space-between-m"
             $flexShrink={0}
           />
         )}

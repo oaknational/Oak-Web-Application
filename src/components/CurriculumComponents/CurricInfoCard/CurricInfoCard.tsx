@@ -26,7 +26,7 @@ export default function CurricInfoCard({
   return (
     <OakFlex
       $flexGrow={1}
-      $flexBasis={["auto", 0]}
+      $flexBasis={0}
       $borderRadius={"border-radius-m"}
       $background={background}
       $borderColor={"mint110"}

@@ -15,15 +15,16 @@ const HomepageCurriculumLandingHero: FC<HomepageCurriculumLandingHeroProps> = (
 ) => {
   const { curriculumPhaseOptions } = props;
   return (
-    <OakBox $position={"relative"} $width={"100%"}>
+    <OakBox as="nav" $position={"relative"} $width={"100%"}>
       <OakHeading
         tag="h2"
+        id="curriculum-picker"
         $font={["heading-5", "heading-4"]}
         $mb={["space-between-s", "space-between-m"]}
         $background={"mint"}
         $textAlign={"left"}
       >
-        See Oak’s curriculum principles in practice
+        See Oak's curriculum principles in practice
       </OakHeading>
       <OakFlex $flexDirection={"column"} $width={"100%"}>
         <OakBox $maxWidth={["100%", "all-spacing-23"]}>

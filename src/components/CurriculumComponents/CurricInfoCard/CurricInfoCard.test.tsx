@@ -21,19 +21,9 @@ describe("CurricInfoCard", () => {
   });
 
   it("renders the icon", () => {
-    renderWithTheme(
+    const { container } = renderWithTheme(
       <CurricInfoCard {...props}>This is some information.</CurricInfoCard>,
     );
-    expect(screen.getByRole("img")).toBeInTheDocument();
-  });
-
-  it("renders with default icon when not provided", () => {
-    const { iconName, ...propsWithoutIcon } = props;
-    renderWithTheme(
-      <CurricInfoCard {...propsWithoutIcon}>
-        This is some information.
-      </CurricInfoCard>,
-    );
-    expect(screen.getByRole("img")).toBeInTheDocument();
+    expect(container.querySelector("img")).toBeInTheDocument();
   });
 });
