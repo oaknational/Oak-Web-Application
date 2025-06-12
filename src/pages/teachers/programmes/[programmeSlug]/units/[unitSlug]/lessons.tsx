@@ -123,7 +123,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     }
   }, [browserUrl]);
 
-  const { copiedComponent, handleClick } = useTeacherShareButton({
+  const { handleClick } = useTeacherShareButton({
     shareUrl,
     shareActivated,
   });
@@ -282,7 +282,6 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           hasCurriculumDownload={isSlugLegacy(programmeSlug)}
           {...curriculumData}
           shareButton={teacherShareButton}
-          copiedComponent={copiedComponent}
           unitDownloadFileId={`${getSlugifiedTitle(unitTitle)}-${unitvariantId}`}
           onUnitDownloadSuccess={() =>
             track.unitDownloadInitiated({
