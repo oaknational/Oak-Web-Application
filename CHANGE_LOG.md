@@ -1,3 +1,17 @@
+# [1.774.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.773.0...v1.774.0) (2025-06-12)
+
+
+### Bug Fixes
+
+* accordion content scrollbar issue ([11ef03f](https://github.com/oaknational/Oak-Web-Application/commit/11ef03fd5a23042facf7c4892f8190fbe1b8accc))
+* hide financial education and rshe links and issues ([ba390c4](https://github.com/oaknational/Oak-Web-Application/commit/ba390c47617acd729ad6487a56268c2eaf15678c))
+
+
+### Features
+
+* add links to seo body text ([90c1076](https://github.com/oaknational/Oak-Web-Application/commit/90c107611786a676eb234627d7ed45438c0a1c13))
+* lesson listing page SEO body text ([f55d3b0](https://github.com/oaknational/Oak-Web-Application/commit/f55d3b0e08f721964ab3519be009c0dd80d11d08))
+
 # [1.773.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.772.0...v1.773.0) (2025-06-12)
 
 
