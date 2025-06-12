@@ -1,11 +1,17 @@
 import {
+  OakBasicAccordion,
+  OakBox,
+  OakLink,
+  OakP,
+} from "@oaknational/oak-components";
+
+import {
   formatSubjectName,
   getPhase,
 } from "../helpers/seoTextHelpers/seoText.helpers";
 import { convertSubjectToSlug } from "../helpers/convertSubjectToSlug";
 import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
 
-import { OakBasicAccordion, OakBox, OakLink, OakP } from "@/styles/oakThemeApp";
 import { resolveOakHref } from "@/common-lib/urls";
 
 export const LessonListSeoHelper = ({
@@ -49,9 +55,9 @@ export const LessonListSeoHelper = ({
         $borderColor="border-neutral-lighter"
         $alignItems="flex-start"
       >
-        <OakP $font="body-1" $textAlign="left">
+        <OakP $font="body-1" $textAlign="left" $mb="space-between-ssx">
           slide decks, worksheet PDFs, quizzes and lesson overviews. You can
-          select individual lessons from the {unitTitle} unit and download the
+          select individual lessons from: {unitTitle} unit and download the
           resources you need, or download the entire unit now. See every unit
           listed in our{" "}
           <OakLink
