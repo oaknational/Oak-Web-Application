@@ -1,3 +1,15 @@
+# [1.770.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.769.0...v1.770.0) (2025-06-11)
+
+
+### Bug Fixes
+
+* set iconfill to transparent to match animation ([273e2a7](https://github.com/oaknational/Oak-Web-Application/commit/273e2a7fe2dd8fd236d9cdc45b83967c1cffab8a))
+
+
+### Features
+
+* add animation to CurriculumDownloadBanner ([97b832a](https://github.com/oaknational/Oak-Web-Application/commit/97b832a5d94eef082af6c110f031a97ed5e9ba58))
+
 # [1.769.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.768.0...v1.769.0) (2025-06-11)
 
 

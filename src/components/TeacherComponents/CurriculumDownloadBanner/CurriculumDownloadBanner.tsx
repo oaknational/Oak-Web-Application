@@ -43,6 +43,7 @@ const CurriculumDownloadBanner = (props: CurriculumDownloadBannerProps) => {
 
   return (
     <OakLinkCard
+      hasAnimation
       mainSection={
         <OakFlex $flexDirection="column" $gap="space-between-s">
           <OakHeading tag="h2">
@@ -80,7 +81,7 @@ const CurriculumDownloadBanner = (props: CurriculumDownloadBannerProps) => {
         }),
       })}
       iconName="homepage-teacher-map"
-      iconFill="white"
+      iconFill="transparent"
       iconAlt="Curriculum map icon"
       showNew={false}
     />
