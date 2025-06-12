@@ -22,6 +22,13 @@ jest.mock("@clerk/nextjs", () => ({
   SignUpButton: jest.fn(() => <button>Download unit</button>),
 }));
 
+jest.mock("@/hooks/useMediaQuery.tsx", () => ({
+  __esModule: true,
+  default: () => ({
+    isMobile: false,
+  }),
+}));
+
 describe("UnitDownloadButton", () => {
   beforeEach(() => {
     setUseUserReturn(mockLoggedIn);

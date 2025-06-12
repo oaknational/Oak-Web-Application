@@ -41,12 +41,17 @@ type SignUpProps = {
   showNewTag?: boolean;
 };
 
+type OnboardingProps = {
+  name: string;
+};
+
 type ButtonVariant = "primary" | "secondary" | "tertiary";
 type SizeVariant = "small" | "large";
 
 type LoginRequiredButtonProps = {
   actionProps?: ActionProps;
   signUpProps?: SignUpProps;
+  onboardingProps?: OnboardingProps;
   buttonVariant?: ButtonVariant;
   sizeVariant?: SizeVariant;
 };
@@ -72,6 +77,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
   const {
     actionProps,
     signUpProps,
+    onboardingProps,
     buttonVariant = "primary",
     sizeVariant = "large",
   } = props;
@@ -113,7 +119,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
             })
           }
         >
-          Complete sign up to continue
+          {onboardingProps?.name ?? "Complete sign up to continue"}
         </ButtonComponent>
       );
     case "signup":
@@ -157,7 +163,9 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
                 $pv={"inner-padding-none"}
               />
             )}
-            {actionProps?.loading && <OakLoadingSpinner />}
+            {actionProps?.loading && (
+              <OakLoadingSpinner data-testid="loading-spinner" />
+            )}
             {actionProps?.name}
           </OakFlex>
         </ButtonComponent>

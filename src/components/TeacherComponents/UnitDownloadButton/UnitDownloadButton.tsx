@@ -99,6 +99,9 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
         isTrailingIcon: true,
         showNewTag: showNewTag,
       }}
+      onboardingProps={{
+        name: "Complete sign up to download this unit",
+      }}
     />
   );
 }
