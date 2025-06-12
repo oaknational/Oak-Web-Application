@@ -29,7 +29,7 @@ describe("SpecialistLessonDownloads", () => {
     expect(resources).toHaveLength(4);
 
     expect(getByText("Worksheet")).toBeInTheDocument();
-    expect(getByText("Presentation")).toBeInTheDocument();
+    expect(getByText("Lesson slides")).toBeInTheDocument();
     expect(getByText("Exit quiz questions")).toBeInTheDocument();
     expect(getByText("Exit quiz answers")).toBeInTheDocument();
   });

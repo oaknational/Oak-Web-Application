@@ -44,7 +44,6 @@ import LessonDetails from "@/components/TeacherComponents/LessonOverviewDetails"
 import { LessonItemContainer } from "@/components/TeacherComponents/LessonItemContainer";
 import HeaderLesson from "@/components/TeacherComponents/LessonOverviewHeader";
 import { useCurrentSection } from "@/components/TeacherComponents/helpers/lessonHelpers/useCurrentSection";
-import LessonOverviewAnchorLinks from "@/components/TeacherComponents/LessonOverviewAnchorLinks";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { LEGACY_COHORT, NEW_COHORT } from "@/config/cohort";
 import { keyLearningPoint } from "@/node-lib/curriculum-api-2023/shared.schema";
@@ -61,7 +60,6 @@ import LessonOverviewDocPresentation from "@/components/TeacherComponents/Lesson
 import { TeacherNoteInline } from "@/components/TeacherComponents/TeacherNoteInline/TeacherNoteInline";
 import LessonOverviewSideNavAnchorLinks from "@/components/TeacherComponents/LessonOverviewSideNavAnchorLinks";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
-import { getPageLinksForLesson } from "@/components/TeacherComponents/helpers/lessonHelpers/getPageLinksForLessons";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads } & {
@@ -120,10 +118,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     lessonOutline,
     lessonReleaseDate,
   } = lesson;
-  const isQuizHeader =
-    useFeatureFlagVariantKey("lesson-overview-experiement") === "quiz-header";
   const isSubHeader =
-    useFeatureFlagVariantKey("lesson-overview-experiement") === "sub-header";
+    useFeatureFlagVariantKey("lesson-overview-subheader-experiment") === "test";
 
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
@@ -281,37 +277,13 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     keyStageSlug !== "early-years-foundation-stage" &&
     !actions?.disablePupilShare;
 
-  // Below is the logic that determines whether to use isQuizHeader experiement,
-  // this is where all the logic is kept, once the experiement is
-  // complete we can remove one half of the boolean.
-
-  const pageLinks = isQuizHeader
-    ? getPageLinksWithSubheadingsForLesson(
-        lesson,
-        copyrightContent,
-        mediaClipLabel,
-      )
-    : getPageLinksForLesson(lesson, copyrightContent, mediaClipLabel);
-  const ExitQuizLabel = isQuizHeader ? "Quizzes" : "Exit quiz";
-  const LessonOverviewSideNav = isQuizHeader ? (
-    <LessonOverviewSideNavAnchorLinks
-      links={pageLinks}
-      currentSectionId={currentSectionId}
-    />
-  ) : (
-    <LessonOverviewAnchorLinks
-      links={pageLinks}
-      currentSectionId={currentSectionId}
-    />
+  const pageLinks = getPageLinksWithSubheadingsForLesson(
+    lesson,
+    copyrightContent,
+    mediaClipLabel,
   );
-  const presentationTitle = isQuizHeader ? "Lesson slides" : "Slide deck";
-  const quizDownloadTitle = isQuizHeader ? "quiz pdf" : undefined;
-  const starterQuizTitle = isQuizHeader
-    ? "Prior knowledge starter quiz"
-    : "Starter quiz";
-  const exitQuizTitle = isQuizHeader ? "Assessment exit quiz" : "Exit quiz";
-
-  // experimental logic above for isQuizHeader
+  const presentationTitle = "Lesson slides";
+  const quizDownloadTitle = "quiz pdf";
 
   return (
     <MathJaxLessonProvider>
@@ -384,7 +356,10 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 $gap={["all-spacing-2"]}
                 $pr={["inner-padding-m"]}
               >
-                {LessonOverviewSideNav}
+                <LessonOverviewSideNavAnchorLinks
+                  links={pageLinks}
+                  currentSectionId={currentSectionId}
+                />
               </OakFlex>
             </OakGridArea>
 
@@ -647,7 +622,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                           ? starterQuizSectionRef
                           : undefined
                       }
-                      title={starterQuizTitle}
+                      title={"Prior knowledge starter quiz"}
                       downloadTitle={quizDownloadTitle}
                       shareable={isLegacyLicense && showShare}
                       anchorId={"starter-quiz"}
@@ -702,7 +677,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                           : undefined
                       }
                       pageLinks={pageLinks}
-                      title={exitQuizTitle}
+                      title={"Assessment exit quiz"}
                       downloadTitle={quizDownloadTitle}
                       anchorId={"exit-quiz"}
                       downloadable={
@@ -725,9 +700,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       }}
                       slugs={slugs}
                       isFinalElement={
-                        pageLinks.findIndex(
-                          (p) => p.label === ExitQuizLabel,
-                        ) ===
+                        pageLinks.findIndex((p) => p.label === "Quizzes") ===
                         pageLinks.length - 1
                       }
                       subheader={
