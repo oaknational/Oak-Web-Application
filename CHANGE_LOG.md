@@ -1,3 +1,10 @@
+## [1.771.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.771.0...v1.771.1) (2025-06-12)
+
+
+### Bug Fixes
+
+* improve Aila signposting link accessibility for screen readers ([d4e02c1](https://github.com/oaknational/Oak-Web-Application/commit/d4e02c14580a845aa82771b9af30f82a83d10e6a))
+
 # [1.771.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.770.0...v1.771.0) (2025-06-12)
 
 
