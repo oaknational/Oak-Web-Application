@@ -26,7 +26,7 @@ export default function CurricQuote({
   paragraphProps,
 }: CurricQuoteProps) {
   return (
-    <OakBox $background={backgroundColor}>
+    <OakBox $background={backgroundColor} data-testid="curric-quote">
       <OakFlex
         $flexDirection="row"
         $pr={"inner-padding-xl"}

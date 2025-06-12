@@ -5,13 +5,12 @@ import {
   OakHandDrawnHR,
   OakMaxWidth,
   OakFlex,
+  OakBox,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/SharedComponents/AppLayout";
-import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import { decorateWithIsr } from "@/node-lib/isr";
 import curriculumApi2023, {
@@ -77,7 +76,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
       $background={"mint"}
     >
       <OakMaxWidth $ph={"inner-padding-m"}>
-        <Box $mt={20}>
+        <OakBox $mt={"space-between-m"}>
           <Breadcrumbs
             breadcrumbs={[
               {
@@ -97,7 +96,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
             $mt={"space-between-m"}
             $height={"all-spacing-1"}
           />
-        </Box>
+        </OakBox>
       </OakMaxWidth>
       <OakMaxWidth $ph={"inner-padding-l"}>
         <OakFlex
@@ -157,7 +156,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
           </OakFlex>
         </OakFlex>
       </OakMaxWidth>
-      <Flex $background={"white"} $justifyContent={"center"}>
+      <OakFlex $background={"white"} $justifyContent={"center"}>
         <OakMaxWidth
           $ph={"inner-padding-l"}
           $maxWidth={["100%", "all-spacing-24"]}
@@ -250,19 +249,19 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
             </OakFlex>
           </StyledContainer>
         </OakMaxWidth>
-      </Flex>
-      <Flex $justifyContent={"flex-start"} $background={"mint"}>
+      </OakFlex>
+      <OakFlex $justifyContent={"flex-start"} $background={"mint"}>
         <OakMaxWidth
           $ph={["inner-padding-l"]}
           $maxWidth={["100%", "all-spacing-24"]}
         >
-          <Flex $mv={[48, 52]}>
+          <OakFlex $mv="space-between-xl">
             <HomepageCurriculumLandingHero
               curriculumPhaseOptions={curriculumPhaseOptions}
             />
-          </Flex>
+          </OakFlex>
         </OakMaxWidth>
-      </Flex>
+      </OakFlex>
     </AppLayout>
   );
 };
