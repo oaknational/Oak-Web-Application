@@ -27,7 +27,7 @@ type ButtonState =
   | "null";
 
 type ActionProps = {
-  onClick: () => void;
+  onClick: () => void | Promise<void>;
   name: string;
   iconName?: OakIconName;
   isTrailingIcon?: boolean;

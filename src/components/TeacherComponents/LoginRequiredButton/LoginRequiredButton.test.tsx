@@ -81,7 +81,7 @@ describe("LoginRequiredButton", () => {
       <LoginRequiredButton
         actionProps={{
           name: "Download",
-          onClick: jest.fn,
+          onClick: jest.fn(),
           isActionGeorestricted: true,
         }}
       />,
