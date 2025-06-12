@@ -10,7 +10,6 @@ import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import {
   mockLoggedIn,
   mockUserWithDownloadAccess,
-  mockUserWithoutDownloadAccess,
 } from "@/__tests__/__helpers__/mockUser";
 
 const render = renderWithProviders();
@@ -49,26 +48,6 @@ describe("when downloads are region restricted", () => {
           "Sorry, downloads for this lesson are not available in your country",
         ),
       ).not.toBeInTheDocument();
-    });
-  });
-
-  describe("and the user does not have access", () => {
-    beforeEach(() => {
-      setUseUserReturn({
-        ...mockLoggedIn,
-        user: mockUserWithoutDownloadAccess,
-      });
-    });
-
-    // TODO: reinstate when geoblocking live
-    it.skip("disallows downloads", () => {
-      render(<SpecialistLessonDownloadsPage curriculumData={curriculumData} />);
-
-      expect(
-        screen.queryByText(
-          "Sorry, downloads for this lesson are not available in your country",
-        ),
-      ).toBeInTheDocument();
     });
   });
 });
