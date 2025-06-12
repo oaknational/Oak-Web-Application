@@ -25,17 +25,30 @@ export const OakToastProvider: FC<{
 
   useEffect(() => {
     // Adjust the distance from the top of the screen when the header is visible
-    const observer = new IntersectionObserver((entries) => {
-      if (entries && entries[0] && entries[0].isIntersecting) {
-        setOffsetTop(82);
-      } else {
-        setOffsetTop(32);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const headerIsVisible = entries[0]?.isIntersecting;
+        if (headerIsVisible) {
+          setOffsetTop(82);
+        } else {
+          setOffsetTop(32);
+        }
+      },
+      // Only when the header is 50% visible, is it considered to be intersecting
+      { threshold: 0.5 },
+    );
+
+    // Wait for the header to be rendered before observing it
+    const timeOut = setTimeout(() => {
+      const headerElement = document.querySelector("header");
+      if (headerElement) {
+        observer.observe(headerElement);
       }
-    });
-    const headerElement = document.querySelector("header");
-    if (headerElement) {
-      observer.observe(headerElement);
-    }
+    }, 100);
+
+    return () => {
+      clearTimeout(timeOut);
+    };
   }, [asPath]);
 
   const setToastPropsAndId = (props: OakToastProps | null) => {
