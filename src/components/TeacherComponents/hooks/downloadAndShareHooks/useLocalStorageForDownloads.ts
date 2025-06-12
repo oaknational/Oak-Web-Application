@@ -25,7 +25,8 @@ const useLocalStorageForDownloads = () => {
   );
 
   const hasDetailsFromLocalStorage =
-    (schoolFromLocalStorage.schoolId.length || emailFromLocalStorage.length) &&
+    (schoolFromLocalStorage.schoolId?.length ||
+      emailFromLocalStorage?.length) &&
     termsFromLocalStorage;
 
   return {
