@@ -13,12 +13,6 @@ import LoginRequiredButton from "./LoginRequiredButton";
 const meta: Meta<typeof LoginRequiredButton> = {
   component: LoginRequiredButton,
   argTypes: {
-    showNewTag: {
-      control: {
-        type: "boolean",
-      },
-      defaultValue: false,
-    },
     signUpProps: {
       control: {
         type: "select",
@@ -41,7 +35,7 @@ const meta: Meta<typeof LoginRequiredButton> = {
         type: "select",
       },
       defaultValue: "georestrictedDownload",
-      options: ["none", "georestrictedDownload", "save"],
+      options: ["none", "georestrictedDownload", "save", "loadingDownload"],
       mapping: {
         none: undefined,
         georestrictedDownload: {
@@ -57,6 +51,15 @@ const meta: Meta<typeof LoginRequiredButton> = {
           iconName: "save",
           isTrailingIcon: false,
           isActionGeorestricted: false,
+          showNewTag: true,
+        },
+        loadingDownload: {
+          onClick: () => console.log("Loading download clicked"),
+          name: "Downloading...",
+          iconName: "download",
+          isTrailingIcon: true,
+          isActionGeorestricted: false,
+          loading: true,
         },
       },
     },

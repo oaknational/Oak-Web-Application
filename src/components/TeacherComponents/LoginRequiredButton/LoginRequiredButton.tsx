@@ -2,6 +2,7 @@ import { SignUpButton, useUser } from "@clerk/nextjs";
 import {
   OakFlex,
   OakIconName,
+  OakLoadingSpinner,
   OakPrimaryButton,
   OakSecondaryButton,
   OakSmallPrimaryButton,
@@ -29,12 +30,15 @@ type ActionProps = {
   iconName?: OakIconName;
   isTrailingIcon?: boolean;
   isActionGeorestricted: boolean;
+  loading?: boolean;
+  showNewTag?: boolean;
 };
 
 type SignUpProps = {
   buttonName?: string;
   iconName?: OakIconName;
   isTrailingIcon?: boolean;
+  showNewTag?: boolean;
 };
 
 type ButtonVariant = "primary" | "secondary" | "tertiary";
@@ -44,7 +48,6 @@ type LoginRequiredButtonProps = {
   signUpProps?: SignUpProps;
   buttonVariant?: ButtonVariant;
   smallButton?: boolean;
-  showNewTag?: boolean;
 };
 
 const getButtonVariant = (variant: ButtonVariant, smallButton: boolean) => {
@@ -66,7 +69,6 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
     signUpProps,
     buttonVariant = "primary",
     smallButton = false,
-    showNewTag = false,
   } = props;
   const router = useRouter();
   const { isSignedIn, isLoaded, user } = useUser();
@@ -106,17 +108,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
             })
           }
         >
-          <OakFlex $alignItems="center" $gap="space-between-xs">
-            {showNewTag && (
-              <OakTagFunctional
-                label="New"
-                $background="mint"
-                $color="text-primary"
-                $pv={"inner-padding-none"}
-              />
-            )}
-            Complete sign up to continue
-          </OakFlex>
+          Complete sign up to continue
         </ButtonComponent>
       );
     case "signup":
@@ -128,7 +120,17 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
             iconName={signUpProps?.iconName}
             isTrailingIcon={signUpProps?.isTrailingIcon}
           >
-            {signUpProps?.buttonName ?? "Sign up"}
+            <OakFlex $alignItems="center" $gap="space-between-xs">
+              {signUpProps?.showNewTag && (
+                <OakTagFunctional
+                  label="New"
+                  $background="mint"
+                  $color="text-primary"
+                  $pv={"inner-padding-none"}
+                />
+              )}
+              {signUpProps?.buttonName ?? "Sign up"}
+            </OakFlex>
           </ButtonComponent>
         </SignUpButton>
       );
@@ -142,7 +144,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
           disabled={buttonState === "georestricted"}
         >
           <OakFlex $alignItems="center" $gap="space-between-xs">
-            {showNewTag && (
+            {actionProps?.showNewTag && !actionProps?.loading && (
               <OakTagFunctional
                 label="New"
                 $background="mint"
@@ -150,6 +152,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
                 $pv={"inner-padding-none"}
               />
             )}
+            {actionProps?.loading && <OakLoadingSpinner />}
             {actionProps?.name}
           </OakFlex>
         </ButtonComponent>
