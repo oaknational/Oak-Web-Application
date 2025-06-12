@@ -1,4 +1,4 @@
-import { act, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { GetStaticPropsContext, PreviewData } from "next";
 
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
@@ -7,7 +7,6 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import specialistLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/specialistLessonOverview.fixture";
 import SpecialistLessonOverviewPage, {
   getStaticProps,
-  SpecialistLessonOverviewPageProps,
   URLParams,
 } from "@/pages/teachers/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
@@ -119,175 +118,7 @@ describe("pages/teachers/specialist/programmes/units/[unitSlug]/lessons/[lessonS
     });
   });
 
-  // TRACKING EVENTS NOT IMPLEMENTED FOR SPECIALIST LESSON OVERVIEW PAGE
-  describe.skip("tracking events", () => {
-    beforeEach(() => {
-      jest.clearAllMocks();
-      jest.resetModules();
-    });
-    it("calls track.downloadResourceButtonClicked will 'all' when download all button is pressed", async () => {
-      const { getAllByTestId } = render(
-        <SpecialistLessonOverviewPage {...props} />,
-      );
-      const downloadAllButton = getAllByTestId("download-all-button");
-
-      act(() => {
-        if (
-          downloadAllButton[0] !== undefined &&
-          downloadAllButton.length > 0
-        ) {
-          downloadAllButton[0].click();
-        } else {
-          throw new Error("downloads all button not found");
-        }
-      });
-
-      expect(downloadResourceButtonClicked).toHaveBeenCalledWith({
-        analyticsUseCase: null,
-        downloadResourceButtonName: "all",
-        keyStageSlug: "ks4",
-        keyStageTitle: "Key stage 4",
-        lessonName: "Islamic Geometry",
-        lessonSlug: "macbeth-lesson-1",
-        subjectSlug: "maths",
-        subjectTitle: "Maths",
-        unitName: "Maths unit",
-        unitSlug: "maths-unit",
-      });
-    });
-    it("calls track.downloadResourceButtonClicked will 'slide deck' when download slide deck button is pressed", async () => {
-      const { getByText } = render(<SpecialistLessonOverviewPage {...props} />);
-      const downloadButton = getByText("Download slide deck");
-
-      act(() => {
-        downloadButton.click();
-      });
-
-      expect(downloadResourceButtonClicked).toHaveBeenCalledWith({
-        analyticsUseCase: "Teacher",
-        downloadResourceButtonName: "slide deck",
-        keyStageSlug: "ks4",
-        keyStageTitle: "Key stage 4",
-        lessonName: "Islamic Geometry",
-        lessonSlug: "macbeth-lesson-1",
-        subjectSlug: "maths",
-        subjectTitle: "Maths",
-        unitName: "Maths unit",
-        unitSlug: "maths-unit",
-      });
-    });
-    it("calls track.downloadResourceButtonClicked will 'worksheet' when download worksheet button is pressed", async () => {
-      const { getByText } = render(<SpecialistLessonOverviewPage {...props} />);
-      const downloadButton = getByText("Download worksheet");
-
-      act(() => {
-        downloadButton.click();
-      });
-
-      expect(downloadResourceButtonClicked).toHaveBeenCalledWith({
-        analyticsUseCase: "Teacher",
-        downloadResourceButtonName: "worksheet",
-        keyStageSlug: "ks4",
-        keyStageTitle: "Key stage 4",
-        lessonName: "Islamic Geometry",
-        lessonSlug: "macbeth-lesson-1",
-        subjectSlug: "maths",
-        subjectTitle: "Maths",
-        unitName: "Maths unit",
-        unitSlug: "maths-unit",
-      });
-    });
-    it("calls track.downloadResourceButtonClicked will 'exit quiz' when download exit quiz button is pressed", async () => {
-      const { getByText } = render(<SpecialistLessonOverviewPage {...props} />);
-      const downloadButton = getByText("Download exit quiz");
-
-      act(() => {
-        downloadButton.click();
-      });
-
-      expect(downloadResourceButtonClicked).toHaveBeenCalledWith({
-        analyticsUseCase: "Teacher",
-        downloadResourceButtonName: "exit quiz",
-        keyStageSlug: "ks4",
-        keyStageTitle: "Key stage 4",
-        lessonName: "Islamic Geometry",
-        lessonSlug: "macbeth-lesson-1",
-        subjectSlug: "maths",
-        subjectTitle: "Maths",
-        unitName: "Maths unit",
-        unitSlug: "maths-unit",
-      });
-    });
-    it("calls track.downloadResourceButtonClicked will 'starter quiz' when download starter quiz button is pressed", async () => {
-      const { getByText } = render(<SpecialistLessonOverviewPage {...props} />);
-      const downloadButton = getByText("Download starter quiz");
-
-      act(() => {
-        downloadButton.click();
-      });
-
-      expect(downloadResourceButtonClicked).toHaveBeenCalledWith({
-        analyticsUseCase: "Teacher",
-        downloadResourceButtonName: "starter quiz",
-        keyStageSlug: "ks4",
-        keyStageTitle: "Key stage 4",
-        lessonName: "Islamic Geometry",
-        lessonSlug: "macbeth-lesson-1",
-        subjectSlug: "maths",
-        subjectTitle: "Maths",
-        unitName: "Maths unit",
-        unitSlug: "maths-unit",
-      });
-    });
-    it("calls track.lessonShareStarted when share all button is pressed with legacy", async () => {
-      const legacyProps = {
-        ...props,
-        curriculumData: {
-          ...props.curriculumData,
-          programmeSlug: "legacy-programme-l",
-        },
-      };
-      const { getAllByTestId } = render(
-        <SpecialistLessonOverviewPage {...legacyProps} />,
-      );
-      const shareAllButton = getAllByTestId("share-all-button");
-      act(() => {
-        if (shareAllButton[0] !== undefined && shareAllButton.length > 0) {
-          shareAllButton[0].click();
-        } else {
-          throw new Error("Share all button not found");
-        }
-      });
-      expect(lessonShareStarted).toHaveBeenCalledWith({
-        keyStageSlug: "ks4",
-        keyStageTitle: "Key stage 4",
-        lessonName: "Islamic Geometry",
-        lessonSlug: "macbeth-lesson-1",
-        subjectSlug: "maths",
-        subjectTitle: "Maths",
-        unitName: "Maths unit",
-        unitSlug: "maths-unit",
-      });
-    });
-  });
   describe("getStaticProps", () => {
-    // Figure out why this is broken
-    it.skip("Should fetch the correct data", async () => {
-      const propsResult = (await getStaticProps({
-        params: {
-          lessonSlug: "composition-following-a-recipe-ccrk2r",
-          programmeSlug: "communication-and-language-applying-learning",
-          unitSlug: "celebrations-and-festivals-primary-1f8f",
-        },
-        query: {},
-      } as GetStaticPropsContext<URLParams, PreviewData>)) as {
-        props: SpecialistLessonOverviewPageProps;
-      };
-
-      expect(propsResult.props.curriculumData.lessonSlug).toEqual(
-        "composition-following-a-recipe-ccrk2r",
-      );
-    });
     it("should throw error", async () => {
       await expect(
         getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>),

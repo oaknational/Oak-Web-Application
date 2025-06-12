@@ -1,3 +1,20 @@
+## [1.771.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.771.1...v1.771.2) (2025-06-12)
+
+## [1.771.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.771.0...v1.771.1) (2025-06-12)
+
+
+### Bug Fixes
+
+* improve Aila signposting link accessibility for screen readers ([d4e02c1](https://github.com/oaknational/Oak-Web-Application/commit/d4e02c14580a845aa82771b9af30f82a83d10e6a))
+
+# [1.771.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.770.0...v1.771.0) (2025-06-12)
+
+
+### Features
+
+* update pupil share with oak toast ([274427d](https://github.com/oaknational/Oak-Web-Application/commit/274427d3dca216be709008f9f3f15ea78776fb51))
+* use oakToast in useTeacherShareButton ([7ccc37f](https://github.com/oaknational/Oak-Web-Application/commit/7ccc37f119ae4753a16025d20493fa60124c4ec4))
+
 # [1.770.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.769.0...v1.770.0) (2025-06-11)
 
 

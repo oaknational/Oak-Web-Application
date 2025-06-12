@@ -10,6 +10,7 @@ import styled from "styled-components";
 import { StyledVideoFlex } from "../NewContentBanner/NewContentBanner";
 
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
+import { isExternalHref } from "@/common-lib/urls";
 
 type PromoBannerWithVideoProps = {
   title: string;
@@ -36,6 +37,7 @@ const PromoBannerWithVideo = ({
   buttonIconName,
   textUnderVideo,
 }: PromoBannerWithVideoProps) => {
+  const isExternal = href ? isExternalHref(href) : false;
   return (
     <StyledOakFlex
       $flexDirection={["column-reverse", "row"]}
@@ -59,6 +61,11 @@ const PromoBannerWithVideo = ({
           element={href ? "a" : "button"}
           onClick={onClick}
           href={href}
+          target={isExternal ? "_blank" : undefined}
+          rel={isExternal ? "noopener noreferrer" : undefined}
+          aria-label={
+            isExternal ? `${buttonText} (opens in a new tab)` : buttonText
+          }
         >
           {buttonText}
         </OakTertiaryButton>
