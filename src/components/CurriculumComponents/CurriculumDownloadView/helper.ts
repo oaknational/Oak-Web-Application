@@ -38,7 +38,10 @@ export function runSchema<T extends Record<string, unknown>>(
   };
 }
 
-export const validDownloadTypes = ["word", "pdf"] as const;
+export const validDownloadTypes = [
+  "curriculum-plans",
+  "national-curriculum",
+] as const;
 
 export function assertValidDownloadType(val: string) {
   if (!validDownloadTypes.includes(val as DownloadType)) {
@@ -57,15 +60,15 @@ export const DOWNLOAD_TYPES: {
   subTitle?: string;
 }[] = [
   {
-    id: "word",
+    id: "curriculum-plans",
     label: "Curriculum plan",
     subTitle: "Word (accessible)",
     icon: "maths",
   },
-  // {
-  //   id: "pdf",
-  //   label: "Curriculum plan",
-  //   subTitle: "PDF",
-  //   icon: "maths"
-  // },
+  {
+    id: "national-curriculum",
+    label: "National curriculum",
+    subTitle: "XLSX",
+    icon: "maths",
+  },
 ];

@@ -1,4 +1,4 @@
-import handler from "../../../../pages/api/curriculum-downloads/index";
+import handler from "../../../../pages/api/curriculum-plans/index";
 import { createNextApiMocks } from "../../../__helpers__/createNextApiMocks";
 
 import {
