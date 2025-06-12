@@ -26,15 +26,44 @@ describe("CurricQuote", () => {
     ).toBeInTheDocument();
   });
 
-  it("applies correct background and bar colours", () => {
+  it("applies a transparent background by default", () => {
     renderWithTheme(
-      <CurricQuote title="My title" barColor={"red"} backgroundColor="lemon">
+      <CurricQuote title="My title">
+        This is the test children content.
+      </CurricQuote>,
+    );
+    const quoteBox = screen.getByTestId("curric-quote");
+    expect(quoteBox).toHaveStyle("background-color: transparent");
+  });
+
+  it("applies the specified background color", () => {
+    renderWithTheme(
+      <CurricQuote title="My title" backgroundColor="lemon">
         This is the test children content.
       </CurricQuote>,
     );
     const quoteBox = screen.getByTestId("curric-quote");
     expect(quoteBox).toHaveStyle(`background-color: ${oakColorTokens.lemon}`);
+  });
 
+  it("applies the default bar color", () => {
+    renderWithTheme(
+      <CurricQuote title="My title">
+        This is the test children content.
+      </CurricQuote>,
+    );
+    const decorativeBar = screen.getByTestId("decorative-bar");
+    expect(decorativeBar).toHaveStyle(
+      `background-color: ${oakColorTokens.mint30}`,
+    );
+  });
+
+  it("applies the specified bar color", () => {
+    renderWithTheme(
+      <CurricQuote title="My title" barColor={"red"}>
+        This is the test children content.
+      </CurricQuote>,
+    );
     const decorativeBar = screen.getByTestId("decorative-bar");
     expect(decorativeBar).toHaveStyle(
       `background-color: ${oakColorTokens.red}`,
