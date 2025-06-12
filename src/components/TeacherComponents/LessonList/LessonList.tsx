@@ -41,7 +41,7 @@ export type LessonListProps = {
   yearTitle?: string;
   subjectTitle?: string;
   programmeSlug?: string;
-  examBoardSlug?: string | undefined | null;
+  examBoardSlug?: string | null;
 };
 
 const LESSONS_PER_PAGE = 5;

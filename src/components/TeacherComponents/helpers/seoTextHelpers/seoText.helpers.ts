@@ -1,5 +1,5 @@
 export const getPhase = (year: string) => {
-  const match = year.match(/\d+/);
+  const match = /\d+/.exec(year);
   const yearNumber = match ? Number(match[0]) : null;
 
   return yearNumber && yearNumber < 7 ? "primary" : "secondary";

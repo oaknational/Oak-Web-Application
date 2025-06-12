@@ -24,9 +24,9 @@ export const LessonListSeoHelper = ({
   unitTitle,
   yearTitle,
 }: {
-  examBoardSlug?: string | null | undefined;
+  examBoardSlug?: string | null;
   keystageSlug: string;
-  parentSubject?: string | null | undefined;
+  parentSubject?: string | null;
   programmeSlug: string;
   subjectSlug: string;
   subjectTitle: string;
@@ -36,6 +36,9 @@ export const LessonListSeoHelper = ({
   const linkSubject = parentSubject
     ? convertSubjectToSlug(parentSubject)
     : subjectSlug;
+
+  const hideCurriculumLink =
+    subjectSlug === "rshe-pshe" || subjectSlug === "financial-education";
 
   return (
     <OakBox $mb="space-between-xxl">
@@ -60,18 +63,22 @@ export const LessonListSeoHelper = ({
           select individual lessons from: {unitTitle} unit and download the
           resources you need, or download the entire unit now. See every unit
           listed in our{" "}
-          <OakLink
-            href={resolveOakHref({
-              page: "curriculum-units",
-              subjectPhaseSlug: getSubjectPhaseSlug({
-                subject: linkSubject,
-                phaseSlug: getPhase(yearTitle),
-                examBoardSlug,
-              }),
-            })}
-          >
-            {getPhase(yearTitle)} {formatSubjectName(subjectTitle)} curriculum
-          </OakLink>{" "}
+          {hideCurriculumLink ? (
+            `${getPhase(yearTitle)} ${formatSubjectName(subjectTitle)} curriculum`
+          ) : (
+            <OakLink
+              href={resolveOakHref({
+                page: "curriculum-units",
+                subjectPhaseSlug: getSubjectPhaseSlug({
+                  subject: linkSubject,
+                  phaseSlug: getPhase(yearTitle),
+                  examBoardSlug,
+                }),
+              })}
+            >
+              {getPhase(yearTitle)} {formatSubjectName(subjectTitle)} curriculum
+            </OakLink>
+          )}{" "}
           and discover more of our teaching resources for{" "}
           <OakLink
             href={resolveOakHref({
