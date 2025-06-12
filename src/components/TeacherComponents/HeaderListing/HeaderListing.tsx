@@ -51,7 +51,6 @@ export type HeaderListingProps = {
   programmeFactor: string;
   hasCurriculumDownload?: boolean;
   shareButton?: React.ReactNode;
-  copiedComponent?: React.ReactNode;
   unitDownloadFileId?: string;
   onUnitDownloadSuccess?: () => void;
   showRiskAssessmentBanner?: boolean;
@@ -77,7 +76,6 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     tierTitle,
     yearTitle,
     shareButton,
-    copiedComponent,
     unitDownloadFileId,
     onUnitDownloadSuccess,
     showRiskAssessmentBanner,
@@ -240,7 +238,6 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                   </OakSecondaryButton>
                 )}
               </OakFlex>
-              {copiedComponent}
               <OakBox $display={["none", "block", "block"]}>
                 {bannersBlock}
               </OakBox>
