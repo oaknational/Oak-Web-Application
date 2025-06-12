@@ -1,6 +1,5 @@
 import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import mockRouter from "next-router-mock";
 import { OakTooltipProps } from "@oaknational/oak-components";
 
 import {
@@ -383,50 +382,6 @@ describe("PupilExperienceView", () => {
     expect(getByTestId("suervision-level-info")).toHaveTextContent(
       supervisionLevel,
     );
-  });
-
-  it.skip("should navigate away from page when 'take me back' is clicked", async () => {
-    const supervisionLevel = "Supervision Level";
-    const contentguidanceLabel = "Guidance Title";
-    const lessonContent = lessonContentFixture({
-      lessonTitle: "Lesson Title",
-      contentGuidance: [
-        {
-          contentguidanceLabel,
-          contentguidanceArea: "Guidance Area",
-          contentguidanceDescription: "Guidance Description",
-        },
-      ],
-      supervisionLevel,
-    });
-    const lessonBrowseData = lessonBrowseDataFixture({});
-
-    jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
-      createLessonEngineContext({
-        currentSection: "overview",
-      }),
-    );
-    mockRouter.push("/initial-path");
-
-    const { getByTestId } = render(
-      <PupilExperienceView
-        backUrl="/somewhere-else"
-        lessonContent={lessonContent}
-        browseData={lessonBrowseData}
-        hasWorksheet={false}
-        hasAdditionalFiles={false}
-        additionalFiles={null}
-        worksheetInfo={null}
-        initialSection="overview"
-        pageType="browse"
-      />,
-    );
-
-    expect(mockRouter.asPath).toBe("/initial-path");
-    await userEvent.click(getByTestId("declineButton"));
-    waitFor(() => {
-      expect(mockRouter.asPath).toBe("/somewhere-else");
-    });
   });
   it("should have robots meta tag with index & follow", async () => {
     const supervisionLevel = "Supervision Level";

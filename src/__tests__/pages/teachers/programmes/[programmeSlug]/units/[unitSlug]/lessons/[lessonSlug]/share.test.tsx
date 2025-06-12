@@ -218,36 +218,6 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
     });
   });
 
-  describe("selected resources count", () => {
-    it.skip("should select all resources if user checks 'Select all'", async () => {
-      // Temporarily skipping this test as the functionality is disabled until work is complete on pupil side
-      const { getByRole } = render(<LessonSharePage {...props} />);
-
-      const selectAllCheckbox = getByRole("checkbox", { name: "Select all" });
-      expect(selectAllCheckbox).toBeChecked();
-
-      const exitQuizQuestions = screen.getByLabelText("Exit quiz");
-      const exitQuizAnswers = screen.getByLabelText("Video");
-
-      expect(exitQuizQuestions).toBeChecked();
-      expect(exitQuizAnswers).toBeChecked();
-    });
-
-    it.skip("should deselect all resources if user deselects 'Select all'", async () => {
-      // Temporarily skipping this test as the functionality is disabled until work is complete on pupil side
-      const { getByRole } = render(<LessonSharePage {...props} />);
-
-      const selectAllCheckbox = getByRole("checkbox", { name: "Select all" });
-      const user = userEvent.setup();
-      await user.click(selectAllCheckbox);
-
-      const exitQuizQuestions = screen.getByLabelText("Exit quiz");
-      const exitQuizAnswers = screen.getByLabelText("Video");
-      expect(exitQuizQuestions).not.toBeChecked();
-      expect(exitQuizAnswers).not.toBeChecked();
-    });
-  });
-
   describe("renders details saved in local storage", () => {
     it("renders DetailsCompleted component with email filled from local storage if available", async () => {
       const { result } = renderHook(() => useLocalStorageForDownloads());

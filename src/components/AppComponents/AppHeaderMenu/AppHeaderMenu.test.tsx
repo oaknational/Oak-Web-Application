@@ -115,32 +115,6 @@ describe("AppHeaderMenu", () => {
     expect(closeButton).toHaveAttribute("aria-expanded", "false");
   });
 
-  // This isn't working because the Escape event isn't triggering the
-  // react-aria useKeyboard Escape key code path.
-  // See https://github.com/testing-library/user-event/issues/969
-  // Not necessarily to same underlying cause, but potentially related.
-  test.skip("pressing the escape key invokes the closeMenu callback", async () => {
-    const menuValue = {
-      open: true,
-      openMenu: jest.fn(),
-      closeMenu: jest.fn(),
-    };
-
-    renderWithTheme(
-      <menuContext.Provider value={menuValue}>
-        <AppHeaderMenu menuButtonRef={null} />
-      </menuContext.Provider>,
-    );
-    const user = userEvent.setup();
-    await user.keyboard("{Escape}");
-
-    /**
-     * closeMenu() gets called once initially in a useEffect, so this test asserts
-     * that it gets called a second time
-     */
-    expect(menuValue.closeMenu).toHaveBeenCalledTimes(2);
-  });
-
   test("it returns focus to the button it was passed as a ref when closed", async () => {
     const menuButtonRef = createRef<HTMLButtonElement>();
 
