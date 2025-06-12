@@ -1,3 +1,12 @@
+# [1.772.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.771.2...v1.772.0) (2025-06-12)
+
+
+### Features
+
+* enable ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS ([574c2e0](https://github.com/oaknational/Oak-Web-Application/commit/574c2e04ec8b0d7d94345b0b0edc24580ef1ee4a))
+
+## [1.771.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.771.1...v1.771.2) (2025-06-12)
+
 ## [1.771.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.771.0...v1.771.1) (2025-06-12)
 
 

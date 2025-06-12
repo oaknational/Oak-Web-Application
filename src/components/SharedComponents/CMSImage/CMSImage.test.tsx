@@ -86,6 +86,4 @@ describe("CMSImage", () => {
       "https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/abcdef-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format",
     );
   });
-
-  it.todo("fails gracefully (returns null) when invalid asset provided");
 });
