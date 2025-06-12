@@ -98,4 +98,46 @@ describe("components/ Lesson List", () => {
 
     expect(onClick).toHaveBeenCalledTimes(1);
   });
+  test("it renders the SEO accordion for non-legacy units", async () => {
+    const { getByTestId } = render(
+      <LessonList
+        paginationProps={mockPaginationProps}
+        subjectSlug={"computing"}
+        keyStageSlug={"ks2"}
+        headingTag={"h2"}
+        currentPageItems={lessonsWithUnitData}
+        unitTitle={"Unit title"}
+        lessonCount={4}
+        onClick={onClick}
+        lessonCountHeader={`Lessons (${lessons.length})`}
+        programmeSlug="computing-primary-ks2"
+        yearTitle="Year 6"
+        subjectTitle="Computing"
+      />,
+    );
+    const seoAccordion = getByTestId("lesson-list-seo-accordion");
+
+    expect(seoAccordion).toBeInTheDocument();
+  });
+  test("it does not render the SEO accordion for legacy units", async () => {
+    const { queryByTestId } = render(
+      <LessonList
+        paginationProps={mockPaginationProps}
+        subjectSlug={"computing"}
+        keyStageSlug={"ks2"}
+        headingTag={"h2"}
+        currentPageItems={lessonsWithUnitData}
+        unitTitle={"Unit title"}
+        lessonCount={4}
+        onClick={onClick}
+        lessonCountHeader={`Lessons (${lessons.length})`}
+        programmeSlug="computing-primary-ks2-l"
+        yearTitle="Year 6"
+        subjectTitle="Computing"
+      />,
+    );
+    const seoAccordion = queryByTestId("lesson-list-seo-accordion");
+
+    expect(seoAccordion).not.toBeInTheDocument();
+  });
 });

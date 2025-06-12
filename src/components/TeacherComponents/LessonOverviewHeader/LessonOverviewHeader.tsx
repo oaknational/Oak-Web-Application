@@ -1,10 +1,17 @@
 import React, { FC } from "react";
 import { OakColorFilterToken } from "@oaknational/oak-components";
+import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
-import { LessonOverviewHeaderMobile } from "@/components/TeacherComponents/LessonOverviewHeaderMobile";
-import { LessonOverviewHeaderDesktop } from "@/components/TeacherComponents/LessonOverviewHeaderDesktop";
+import {
+  LessonOverviewHeaderMobile,
+  LessonOverviewHeaderMobileB,
+} from "@/components/TeacherComponents/LessonOverviewHeaderMobile";
+import {
+  LessonOverviewHeaderDesktop,
+  LessonOverviewHeaderDesktopB,
+} from "@/components/TeacherComponents/LessonOverviewHeaderDesktop";
 import { OakColorName } from "@/styles/theme";
 import { AnalyticsUseCaseValueType } from "@/browser-lib/avo/Avo";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
@@ -34,6 +41,8 @@ export type LessonOverviewHeaderProps = {
   phonicsOutcome?: string | null;
   isSpecialist: boolean;
   isCanonical: boolean;
+  orderInUnit?: number | null;
+  unitTotalLessonCount?: number | null;
   // other props
   breadcrumbs: Breadcrumb[];
   background: OakColorName;
@@ -53,10 +62,19 @@ export type LessonOverviewHeaderProps = {
 
 const LessonOverviewHeader: FC<LessonOverviewHeaderProps> = (props) => {
   const { breadcrumbs, background } = props;
+  const isSignpostExperiment =
+    useFeatureFlagVariantKey("lesson-overview-signposting-experiment") ===
+    "test";
+  const DesktopHeader = isSignpostExperiment
+    ? LessonOverviewHeaderDesktopB
+    : LessonOverviewHeaderDesktop;
+  const MobileHeader = isSignpostExperiment
+    ? LessonOverviewHeaderMobileB
+    : LessonOverviewHeaderMobile;
   return (
     <LessonHeaderWrapper breadcrumbs={breadcrumbs} background={background}>
-      <LessonOverviewHeaderDesktop {...props} />
-      <LessonOverviewHeaderMobile {...props} />
+      <DesktopHeader {...props} />
+      <MobileHeader {...props} />
     </LessonHeaderWrapper>
   );
 };

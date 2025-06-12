@@ -66,4 +66,14 @@ query teachersPreviewLesson($lessonSlug: String!) {
     has_downloadable_files
     lesson_release_date
   }
+  unitData: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_16_0_0(
+    where: {
+      supplementary_data: {
+        _contains: { static_lesson_list: [{ slug: $lessonSlug }] },
+      },
+    }
+  ) {
+    lesson_count
+    supplementary_data
+  }
 }
