@@ -34,21 +34,23 @@ const meta: Meta<typeof OakSignUpButton> = {
       control: {
         type: "select",
       },
-      defaultValue: "download",
-      options: ["none", "download", "save"],
+      defaultValue: "georestrictedDownload",
+      options: ["none", "georestrictedDownload", "save"],
       mapping: {
         none: undefined,
-        download: {
+        georestrictedDownload: {
           onClick: () => console.log("Download clicked"),
           name: "Download",
           iconName: "download",
           isTrailingIcon: true,
+          isActionGeorestricted: true,
         },
         save: {
           onClick: () => console.log("Save clicked"),
           name: "Save",
           iconName: "save",
           isTrailingIcon: false,
+          isActionGeorestricted: false,
         },
       },
     },

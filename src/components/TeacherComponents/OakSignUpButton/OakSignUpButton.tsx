@@ -13,13 +13,20 @@ import { useMemo } from "react";
 
 import { resolveOakHref } from "@/common-lib/urls";
 
-type ButtonState = "loading" | "action" | "onboarding" | "signup" | "null";
+type ButtonState =
+  | "loading"
+  | "action"
+  | "onboarding"
+  | "signup"
+  | "georestricted"
+  | "null";
 
 type ActionProps = {
   onClick: () => void;
   name: string;
   iconName?: OakIconName;
   isTrailingIcon?: boolean;
+  isActionGeorestricted: boolean;
 };
 
 type SignUpProps = {
@@ -70,6 +77,12 @@ const OakSignUpButton = (props: OakSignUpButtonProps) => {
     } else if (isSignedIn && !userOnboarded) {
       return "onboarding";
     } else if (userOnboarded && actionProps) {
+      if (
+        actionProps.isActionGeorestricted &&
+        !user?.publicMetadata?.owa?.isRegionAuthorised
+      ) {
+        return "georestricted";
+      }
       return "action";
     } else {
       return "null";
@@ -106,11 +119,13 @@ const OakSignUpButton = (props: OakSignUpButtonProps) => {
         </SignUpButton>
       );
     case "action":
+    case "georestricted":
       return (
         <ButtonComponent
           onClick={actionProps?.onClick}
           iconName={actionProps?.iconName}
           isTrailingIcon={actionProps?.isTrailingIcon}
+          disabled={buttonState === "georestricted"}
         >
           {actionProps?.name}
         </ButtonComponent>

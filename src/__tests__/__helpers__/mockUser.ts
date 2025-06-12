@@ -67,6 +67,7 @@ export const mockUserWithoutDownloadAccess: UserResource = {
   publicMetadata: {
     owa: {
       isRegionAuthorised: false,
+      isOnboarded: true,
     },
   },
 };
@@ -95,6 +96,12 @@ export const mockLoggedOut: UseUserReturn = {
 
 export const mockNotOnboardedUser: UseUserReturn & { user: UserResource } = {
   user: mockUserWithDownloadAccessNotOnboarded,
+  isLoaded: true,
+  isSignedIn: true,
+};
+
+export const mockGeorestrictedUser: UseUserReturn & { user: UserResource } = {
+  user: mockUserWithoutDownloadAccess,
   isLoaded: true,
   isSignedIn: true,
 };

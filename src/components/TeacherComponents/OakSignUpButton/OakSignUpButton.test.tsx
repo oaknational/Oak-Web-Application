@@ -6,6 +6,7 @@ import OakSignUpButton from "./OakSignUpButton";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import {
+  mockGeorestrictedUser,
   mockLoadingUser,
   mockLoggedIn,
   mockLoggedOut,
@@ -43,7 +44,11 @@ describe("Sign up button", () => {
     const mockOnClick = jest.fn();
     render(
       <OakSignUpButton
-        actionProps={{ name: "Action", onClick: mockOnClick }}
+        actionProps={{
+          name: "Action",
+          onClick: mockOnClick,
+          isActionGeorestricted: false,
+        }}
       />,
     );
     const actionButton = screen.getByRole("button", { name: /action/i });
@@ -65,6 +70,20 @@ describe("Sign up button", () => {
       name: /sign up/i,
     });
     expect(defaultTextSignUpButton).not.toBeInTheDocument();
+  });
+  it('renders a disabled button when "georestricted"', () => {
+    setUseUserReturn(mockGeorestrictedUser);
+    render(
+      <OakSignUpButton
+        actionProps={{
+          name: "Download",
+          onClick: jest.fn,
+          isActionGeorestricted: true,
+        }}
+      />,
+    );
+    const disabledButton = screen.getByRole("button", { name: /download/i });
+    expect(disabledButton).toBeDisabled();
   });
   it("renders a primary variant", () => {
     render(<OakSignUpButton buttonVariant="primary" />);
