@@ -60,7 +60,7 @@ describe("lessonOverview.view", () => {
   });
   describe("when sub-header feature flag is enabled", () => {
     beforeEach(() => {
-      (useFeatureFlagVariantKey as jest.Mock).mockReturnValue("sub-header");
+      (useFeatureFlagVariantKey as jest.Mock).mockReturnValue("test");
     });
 
     it("renders with sub-header content", () => {
@@ -84,7 +84,7 @@ describe("lessonOverview.view", () => {
   });
   describe("when sub-header feature flag is not enabled", () => {
     beforeEach(() => {
-      (useFeatureFlagVariantKey as jest.Mock).mockReturnValue("default");
+      (useFeatureFlagVariantKey as jest.Mock).mockReturnValue("control");
     });
     it("renders without sub-header content", () => {
       const { queryByText } = renderWithTheme(
@@ -162,7 +162,7 @@ describe("lessonOverview.view", () => {
           isBeta={false}
         />,
       );
-      const playAllButton = getByText("Download slide deck");
+      const playAllButton = getByText("Download lesson slides");
       playAllButton.click();
       expect(lessonResourceDownloadStarted).toHaveBeenCalledWith({
         analyticsUseCase: "Teacher",
@@ -205,7 +205,7 @@ describe("lessonOverview.view", () => {
           isBeta={false}
         />,
       );
-      const playAllButton = getByText("Download slide deck");
+      const playAllButton = getByText("Download lesson slides");
       playAllButton.click();
       expect(lessonResourceDownloadStarted).toHaveBeenCalledWith({
         analyticsUseCase: "Teacher",

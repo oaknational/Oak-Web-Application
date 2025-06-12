@@ -22,7 +22,7 @@ describe("pages/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons/[
       />,
     );
 
-    const slidedeck = screen.getByText("Slide deck");
+    const slidedeck = screen.getByText("Lesson slides");
     expect(slidedeck).toBeInTheDocument();
   });
 });
