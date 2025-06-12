@@ -77,23 +77,19 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
   const showDownloadButton = hasCheckedFiles && exists;
   const isMobile = useMediaQuery("mobile");
 
-  return (
+  return showDownloadButton ? (
     <LoginRequiredButton
       sizeVariant={isMobile ? "small" : "large"}
-      actionProps={
-        showDownloadButton
-          ? {
-              onClick: onUnitDownloadClick,
-              loading: downloadInProgress,
-              name: downloadInProgress
-                ? "Downloading..."
-                : `Download (.zip ${fileSize})`,
-              isActionGeorestricted: georestricted,
-              iconName: "download",
-              isTrailingIcon: true,
-            }
-          : undefined
-      }
+      actionProps={{
+        onClick: onUnitDownloadClick,
+        loading: downloadInProgress,
+        name: downloadInProgress
+          ? "Downloading..."
+          : `Download (.zip ${fileSize})`,
+        isActionGeorestricted: georestricted,
+        iconName: "download",
+        isTrailingIcon: true,
+      }}
       signUpProps={{
         name: "Download unit",
         iconName: "download",
@@ -104,5 +100,5 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
         name: "Complete sign up to download this unit",
       }}
     />
-  );
+  ) : null;
 }
