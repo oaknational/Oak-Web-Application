@@ -29,8 +29,10 @@ export const OakToastProvider: FC<{
       (entries) => {
         const headerIsVisible = entries[0]?.isIntersecting;
         if (headerIsVisible) {
+          console.log("Header is visible");
           setOffsetTop(82);
         } else {
+          console.log("Header is not visible");
           setOffsetTop(32);
         }
       },
@@ -44,7 +46,7 @@ export const OakToastProvider: FC<{
       if (headerElement) {
         observer.observe(headerElement);
       }
-    }, 100);
+    }, 500);
 
     return () => {
       clearTimeout(timeOut);
