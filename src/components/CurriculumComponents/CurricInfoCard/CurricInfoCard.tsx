@@ -40,6 +40,7 @@ export default function CurricInfoCard({
         $mb={"space-between-s"}
         iconHeight={iconHeight}
         iconWidth={iconWidth}
+        data-testid={`icon-${iconName}`}
       />
       <OakP $font="heading-light-6" $textAlign={"left"} $color={"black"}>
         {children}
