@@ -15,7 +15,7 @@ const HomepageCurriculumLandingHero: FC<HomepageCurriculumLandingHeroProps> = (
 ) => {
   const { curriculumPhaseOptions } = props;
   return (
-    <OakBox as="nav" $position={"relative"} $width={"100%"}>
+    <OakBox $position={"relative"} $width={"100%"}>
       <OakHeading
         tag="h2"
         id="curriculum-picker"
