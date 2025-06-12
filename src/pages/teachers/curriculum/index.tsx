@@ -29,34 +29,11 @@ export type CurriculumHomePageProps = {
   curriculumPhaseOptions: SubjectPhasePickerData;
 };
 
-const StyledContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  background: ${({ theme }) => theme.colors.mint30};
-  margin: 80px 0;
-  border-radius: 20px;
-
-  /* Mobile */
+const StyledResponsiveFlex = styled(OakFlex)`
   flex-direction: column;
-  gap: 72px;
-  padding: 24px;
 
-  /* Tablet */
-  @media (min-width: 750px) {
-    gap: 80px;
-    padding: 64px;
-  }
-
-  /* Large Tablet / Small Desktop */
   @media (min-width: 1000px) {
     flex-direction: row;
-  }
-
-  /* Desktop */
-  @media (min-width: 1280px) {
-    gap: 120px;
-    padding: 80px;
   }
 `;
 
@@ -161,25 +138,34 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
           $ph={"inner-padding-l"}
           $maxWidth={["100%", "all-spacing-24"]}
         >
-          <StyledContainer>
+          <StyledResponsiveFlex
+            $justifyContent="space-between"
+            $alignItems="flex-start"
+            $background="mint30"
+            $mv="space-between-xxxl"
+            $borderRadius="border-radius-l"
+            $pa={["inner-padding-xl", "inner-padding-xl6", "inner-padding-xl8"]}
+            $gap={[
+              "space-between-xl",
+              "space-between-xxxl",
+              "space-between-xxl",
+            ]}
+          >
             <OakFlex
-              $flexDirection="column"
               $alignItems={["center", "center", "flex-start"]}
+              $flexDirection="column"
+              $flexGrow={1}
+              $flexBasis={0}
               $gap={["all-spacing-11"]}
-              $flexGrow={[null, 1]}
-              $flexBasis={[null, 0]}
             >
               <OakFlex $flexDirection="column">
-                <OakHeading
-                  tag="h2"
-                  $font={["heading-4", "heading-3"]}
-                  $mt="space-between-xs"
-                >
+                <OakHeading tag="h2" $font={["heading-4", "heading-3"]}>
                   Our guiding principles
                 </OakHeading>
 
                 <OakP
-                  $mv={["space-between-s", "space-between-m"]}
+                  $mt={"space-between-s"}
+                  $mb={"space-between-xs"}
                   $font={"body-1"}
                 >
                   We have crafted a set of overarching principles that describe
@@ -188,8 +174,8 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
               </OakFlex>
 
               <Cover
-                $width={[300, 320, 450]}
-                $height={[270, 300, 420]}
+                $width={[300, 450, 450]}
+                $height={[270, 420, 420]}
                 $position={"relative"}
               >
                 <Illustration
@@ -247,7 +233,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                 pupils feel positively represented.
               </CurricQuote>
             </OakFlex>
-          </StyledContainer>
+          </StyledResponsiveFlex>
         </OakMaxWidth>
       </OakFlex>
       <OakFlex $justifyContent={"flex-start"} $background={"mint"}>
