@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 
-import OakSignUpButton from "./OakSignUpButton";
+import LoginRequiredButton from "./LoginRequiredButton";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
@@ -15,26 +15,26 @@ import {
 
 const render = renderWithProviders();
 
-describe("Sign up button", () => {
+describe("LoginRequiredButton", () => {
   beforeEach(() => {
     setUseUserReturn(mockLoggedOut);
   });
   it("should render a sign up button", () => {
-    render(<OakSignUpButton />);
+    render(<LoginRequiredButton />);
     expect(
       screen.getByRole("button", { name: /sign up/i }),
     ).toBeInTheDocument();
   });
   it("should render an onboarding button", () => {
     setUseUserReturn(mockNotOnboardedUser);
-    render(<OakSignUpButton />);
+    render(<LoginRequiredButton />);
     expect(
       screen.getByRole("button", { name: /complete sign up to continue/i }),
     ).toBeInTheDocument();
   });
   it("should render a loading button", () => {
     setUseUserReturn(mockLoadingUser);
-    render(<OakSignUpButton />);
+    render(<LoginRequiredButton />);
     expect(
       screen.getByRole("button", { name: /loading.../i }),
     ).toBeInTheDocument();
@@ -43,7 +43,7 @@ describe("Sign up button", () => {
     setUseUserReturn(mockLoggedIn);
     const mockOnClick = jest.fn();
     render(
-      <OakSignUpButton
+      <LoginRequiredButton
         actionProps={{
           name: "Action",
           onClick: mockOnClick,
@@ -60,7 +60,9 @@ describe("Sign up button", () => {
   });
   it("renders alternate sign in text", () => {
     render(
-      <OakSignUpButton signUpProps={{ buttonName: "Register to continue" }} />,
+      <LoginRequiredButton
+        signUpProps={{ buttonName: "Register to continue" }}
+      />,
     );
     const signUpButton = screen.getByRole("button", {
       name: /register to continue/i,
@@ -74,7 +76,7 @@ describe("Sign up button", () => {
   it('renders a disabled button when "georestricted"', () => {
     setUseUserReturn(mockGeorestrictedUser);
     render(
-      <OakSignUpButton
+      <LoginRequiredButton
         actionProps={{
           name: "Download",
           onClick: jest.fn,
@@ -86,17 +88,17 @@ describe("Sign up button", () => {
     expect(disabledButton).toBeDisabled();
   });
   it("renders a primary variant", () => {
-    render(<OakSignUpButton buttonVariant="primary" />);
+    render(<LoginRequiredButton buttonVariant="primary" />);
     const primaryButton = screen.getByRole("button", { name: /sign up/i });
     expect(primaryButton).toHaveStyle("background-color: #222222");
   });
   it("renders a secondary variant", () => {
-    render(<OakSignUpButton buttonVariant="secondary" />);
+    render(<LoginRequiredButton buttonVariant="secondary" />);
     const secondaryButton = screen.getByRole("button", { name: /sign up/i });
     expect(secondaryButton).toHaveStyle("background-color: #ffffff");
   });
   it("renders a tertiary variant", () => {
-    render(<OakSignUpButton buttonVariant="tertiary" />);
+    render(<LoginRequiredButton buttonVariant="tertiary" />);
     const tertiaryButton = screen.getByRole("button", { name: /sign up/i });
     expect(tertiaryButton).toHaveStyle("background: none");
   });

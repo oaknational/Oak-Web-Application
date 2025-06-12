@@ -37,7 +37,7 @@ type SignUpProps = {
 
 type ButtonVariant = "primary" | "secondary" | "tertiary";
 
-type OakSignUpButtonProps = {
+type LoginRequiredButtonProps = {
   actionProps?: ActionProps;
   signUpProps?: SignUpProps;
   buttonVariant?: ButtonVariant;
@@ -57,7 +57,7 @@ const getButtonVariant = (variant: ButtonVariant, smallButton: boolean) => {
   }
 };
 
-const OakSignUpButton = (props: OakSignUpButtonProps) => {
+const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
   const {
     actionProps,
     signUpProps,
@@ -137,4 +137,4 @@ const OakSignUpButton = (props: OakSignUpButtonProps) => {
   }
 };
 
-export default OakSignUpButton;
+export default LoginRequiredButton;

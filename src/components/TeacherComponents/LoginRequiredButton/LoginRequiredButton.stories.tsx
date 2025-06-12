@@ -8,10 +8,10 @@ import {
 } from "@oaknational/oak-components";
 import { ClerkProvider, SignIn, SignOutButton } from "@clerk/nextjs";
 
-import OakSignUpButton from "./OakSignUpButton";
+import LoginRequiredButton from "./LoginRequiredButton";
 
-const meta: Meta<typeof OakSignUpButton> = {
-  component: OakSignUpButton,
+const meta: Meta<typeof LoginRequiredButton> = {
+  component: LoginRequiredButton,
   argTypes: {
     signUpProps: {
       control: {
@@ -72,7 +72,7 @@ const meta: Meta<typeof OakSignUpButton> = {
 
 export default meta;
 
-type Story = StoryObj<typeof OakSignUpButton>;
+type Story = StoryObj<typeof LoginRequiredButton>;
 
 export const Default: Story = {
   render: (args) => (
@@ -86,7 +86,7 @@ export const Default: Story = {
             $borderRadius="border-radius-s"
             $pa="inner-padding-xl"
           >
-            <OakSignUpButton {...args} />
+            <LoginRequiredButton {...args} />
           </OakFlex>
           <OakHeading tag="h1" $font="heading-light-7">
             Sign in / out via OWA to test the states on this button (or use the
