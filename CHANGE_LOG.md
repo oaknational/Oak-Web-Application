@@ -1,3 +1,10 @@
+# [1.775.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.774.0...v1.775.0) (2025-06-12)
+
+
+### Features
+
+* updated lesson overview experiment to go live with quiz but AB test subheaders ([daca3a8](https://github.com/oaknational/Oak-Web-Application/commit/daca3a881269ba0d297ef23f47e397bfb20f9b96))
+
 # [1.774.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.773.0...v1.774.0) (2025-06-12)
 
 
