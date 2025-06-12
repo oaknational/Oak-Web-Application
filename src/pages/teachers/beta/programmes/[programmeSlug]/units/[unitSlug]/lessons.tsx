@@ -119,7 +119,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     }
   }, [browserUrl]);
 
-  const { handleClick, copiedComponent } = useTeacherShareButton({
+  const { handleClick } = useTeacherShareButton({
     shareUrl,
     shareActivated,
   });
@@ -258,7 +258,6 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           hasCurriculumDownload={isSlugLegacy(programmeSlug)}
           {...curriculumData}
           shareButton={teacherShareButton}
-          copiedComponent={copiedComponent}
           unitDownloadFileId={
             unitSlug.endsWith(unitvariantId.toString())
               ? unitSlug

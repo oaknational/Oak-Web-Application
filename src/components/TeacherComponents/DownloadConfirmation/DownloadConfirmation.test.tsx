@@ -2,7 +2,7 @@ import userEvent from "@testing-library/user-event";
 
 import DownloadConfirmation from "./DownloadConfirmation";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
 import { OnwardContentSelectedProperties } from "@/browser-lib/avo/Avo";
 import {
@@ -31,14 +31,19 @@ jest.mock(
 
 jest.mock("@oaknational/oak-consent-client", () => ({
   __esModule: true,
+  ...jest.requireActual("@oaknational/oak-consent-client"),
   useOakConsent: jest.fn(() => ({
     state: {
       policyConsents: [
         {
           consentState: "denied",
+          policyParties: [],
+          policyId: "1",
         },
         {
           consentState: "granted",
+          policyParties: [],
+          policyId: "2",
         },
       ],
     },
@@ -80,7 +85,7 @@ describe("DownloadConfirmation component", () => {
   };
 
   it("should render", () => {
-    const { getByText } = renderWithTheme(
+    const { getByText } = renderWithProviders()(
       <DownloadConfirmation
         lessonTitle="Test lesson"
         programmeSlug="test-programme"
@@ -97,7 +102,7 @@ describe("DownloadConfirmation component", () => {
   });
 
   it("Back to lesson link", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = renderWithProviders()(
       <DownloadConfirmation
         lessonTitle="Test lesson"
         programmeSlug="test-programme"
@@ -118,7 +123,7 @@ describe("DownloadConfirmation component", () => {
     );
   });
   it("Back to lesson link specialist", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = renderWithProviders()(
       <DownloadConfirmation
         lessonTitle="Test lesson"
         programmeSlug="test-programme"
@@ -141,7 +146,7 @@ describe("DownloadConfirmation component", () => {
   });
 
   it("when unitSlug or programmeSlug is null renders link to cannonical lesson", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = renderWithProviders()(
       <DownloadConfirmation
         lessonTitle="Test lesson"
         programmeSlug={null}
@@ -160,7 +165,7 @@ describe("DownloadConfirmation component", () => {
 
   it("should call onwardContentSelected when back to lesson link is clicked", async () => {
     const user = userEvent.setup();
-    const { getByRole } = renderWithTheme(
+    const { getByRole } = renderWithProviders()(
       <DownloadConfirmation
         lessonTitle="Test lesson"
         programmeSlug="test-programme"
@@ -192,7 +197,7 @@ describe("DownloadConfirmation component", () => {
 
   it("isCannonical onwardContentSelected fn called with correct arguments", async () => {
     const user = userEvent.setup();
-    const { getByRole } = renderWithTheme(
+    const { getByRole } = renderWithProviders()(
       <DownloadConfirmation
         lessonTitle="Test lesson"
         programmeSlug={null}

@@ -12,7 +12,6 @@ import lessonDownloadsFixture from "@/node-lib/curriculum-api-2023/fixtures/less
 import {
   mockLoggedIn,
   mockUserWithDownloadAccess,
-  mockUserWithoutDownloadAccess,
 } from "@/__tests__/__helpers__/mockUser";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 
@@ -57,28 +56,6 @@ describe("LessonDownloadsCanonicalPage", () => {
             "Sorry, downloads for this lesson are not available in your country",
           ),
         ).not.toBeInTheDocument();
-      });
-    });
-
-    describe("and the user does not have access", () => {
-      beforeEach(() => {
-        setUseUserReturn({
-          ...mockLoggedIn,
-          user: mockUserWithoutDownloadAccess,
-        });
-      });
-
-      // TODO: reinstate when geoblocking live
-      it.skip("disallows downloads", () => {
-        const result = render(
-          <LessonDownloadsCanonicalPage curriculumData={curriculumData} />,
-        );
-
-        expect(
-          result.queryByText(
-            "Sorry, downloads for this lesson are not available in your country",
-          ),
-        ).toBeInTheDocument();
       });
     });
   });

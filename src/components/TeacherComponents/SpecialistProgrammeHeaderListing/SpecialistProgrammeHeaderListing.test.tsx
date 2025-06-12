@@ -49,14 +49,4 @@ describe("SpecialistProgrammeHeaderListing", () => {
     expect(description).toBeInTheDocument();
     expect(description).toHaveTextContent(props.description);
   });
-
-  /*  - I want to be able to download specialist curriculum maps LESQ-586 */
-  it.skip("renders the curriculum download button", () => {
-    const { queryAllByText } = renderWithTheme(
-      <SpecialistProgrammeHeaderListing {...props} />,
-    );
-    const downloadLink = queryAllByText("Curriculum download (PDF)");
-
-    expect(downloadLink[0]).toBeInTheDocument();
-  });
 });
