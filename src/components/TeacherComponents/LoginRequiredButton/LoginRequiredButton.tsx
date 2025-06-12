@@ -35,29 +35,34 @@ type ActionProps = {
 };
 
 type SignUpProps = {
-  buttonName?: string;
+  name?: string;
   iconName?: OakIconName;
   isTrailingIcon?: boolean;
   showNewTag?: boolean;
 };
 
 type ButtonVariant = "primary" | "secondary" | "tertiary";
+type SizeVariant = "small" | "large";
 
 type LoginRequiredButtonProps = {
   actionProps?: ActionProps;
   signUpProps?: SignUpProps;
   buttonVariant?: ButtonVariant;
-  smallButton?: boolean;
+  sizeVariant?: SizeVariant;
 };
 
-const getButtonVariant = (variant: ButtonVariant, smallButton: boolean) => {
+const getButtonVariant = (variant: ButtonVariant, sizeVariant: SizeVariant) => {
   switch (variant) {
     case "primary":
-      return smallButton ? OakSmallPrimaryButton : OakPrimaryButton;
+      return sizeVariant === "small" ? OakSmallPrimaryButton : OakPrimaryButton;
     case "secondary":
-      return smallButton ? OakSmallSecondaryButton : OakSecondaryButton;
+      return sizeVariant === "small"
+        ? OakSmallSecondaryButton
+        : OakSecondaryButton;
     case "tertiary":
-      return smallButton ? OakSmallTertiaryInvertedButton : OakTertiaryButton;
+      return sizeVariant === "small"
+        ? OakSmallTertiaryInvertedButton
+        : OakTertiaryButton;
     default:
       return OakPrimaryButton;
   }
@@ -68,7 +73,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
     actionProps,
     signUpProps,
     buttonVariant = "primary",
-    smallButton = false,
+    sizeVariant = "large",
   } = props;
   const router = useRouter();
   const { isSignedIn, isLoaded, user } = useUser();
@@ -95,7 +100,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
     }
   }, [isLoaded, isSignedIn, user, actionProps]);
 
-  const ButtonComponent = getButtonVariant(buttonVariant, smallButton);
+  const ButtonComponent = getButtonVariant(buttonVariant, sizeVariant);
 
   switch (buttonState) {
     case "onboarding":
@@ -129,7 +134,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
                   $pv={"inner-padding-none"}
                 />
               )}
-              {signUpProps?.buttonName ?? "Sign up"}
+              {signUpProps?.name ?? "Sign up"}
             </OakFlex>
           </ButtonComponent>
         </SignUpButton>

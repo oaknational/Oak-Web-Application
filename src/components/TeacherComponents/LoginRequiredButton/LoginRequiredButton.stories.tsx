@@ -70,11 +70,12 @@ const meta: Meta<typeof LoginRequiredButton> = {
       options: ["primary", "secondary", "tertiary"],
       defaultValue: "primary",
     },
-    smallButton: {
+    sizeVariant: {
       control: {
-        type: "boolean",
+        type: "radio",
       },
-      defaultValue: false,
+      options: ["small", "large"],
+      defaultValue: "large",
     },
   },
 };

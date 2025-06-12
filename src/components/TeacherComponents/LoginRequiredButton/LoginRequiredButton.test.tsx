@@ -60,9 +60,7 @@ describe("LoginRequiredButton", () => {
   });
   it("renders alternate sign in text", () => {
     render(
-      <LoginRequiredButton
-        signUpProps={{ buttonName: "Register to continue" }}
-      />,
+      <LoginRequiredButton signUpProps={{ name: "Register to continue" }} />,
     );
     const signUpButton = screen.getByRole("button", {
       name: /register to continue/i,
