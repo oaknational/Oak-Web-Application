@@ -55,6 +55,13 @@ jest.mock("@/node-lib/educator-api/helpers/saveUnits/useSaveUnits", () => {
   };
 });
 
+jest.mock("@/hooks/useMediaQuery.tsx", () => ({
+  __esModule: true,
+  default: () => ({
+    isMobile: false,
+  }),
+}));
+
 describe("Lesson listing page", () => {
   beforeEach(() => {
     setUseUserReturn(mockLoggedIn);

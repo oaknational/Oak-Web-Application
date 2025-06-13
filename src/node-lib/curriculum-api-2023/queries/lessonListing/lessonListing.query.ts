@@ -88,6 +88,7 @@ type PackagedUnitData = {
 export const getPackagedUnit = (
   packagedUnitData: PackagedUnitData,
   unitLessons: LessonListSchema,
+  containsGeorestrictedLessons: boolean,
 ): LessonListingPageData => {
   const {
     programmeFields,
@@ -130,6 +131,7 @@ export const getPackagedUnit = (
     pathwayTitle: modifiedProgrammeFields.pathway,
     pathwayDisplayOrder: modifiedProgrammeFields.pathway_display_order,
     actions: combinedActions,
+    containsGeorestrictedLessons,
   };
 };
 
@@ -148,6 +150,10 @@ const lessonListingQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
+    const containsGeorestrictedLessons = modifiedLessons.some(
+      (lesson) => lesson.features?.agf__geo_restricted === true,
+    );
+
     const parsedModifiedLessons =
       partialSyntheticUnitvariantLessonsArraySchema.parse(modifiedLessons);
 
@@ -165,7 +171,11 @@ const lessonListingQuery =
       };
     }, {} as PackagedUnitData);
 
-    const packagedUnit = getPackagedUnit(packagedUnitData, unitLessons);
+    const packagedUnit = getPackagedUnit(
+      packagedUnitData,
+      unitLessons,
+      containsGeorestrictedLessons,
+    );
     return lessonListingPageDataSchema.parse(packagedUnit);
   };
 
