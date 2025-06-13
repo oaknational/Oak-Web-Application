@@ -24,32 +24,38 @@ export const OakToastProvider: FC<{
   const { asPath } = useRouter();
 
   useEffect(() => {
-    // Adjust the distance from the top of the screen when the header is visible
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const headerIsVisible = entries[0]?.isIntersecting;
-        if (headerIsVisible) {
-          console.log("Header is visible");
-          setOffsetTop(82);
-        } else {
-          console.log("Header is not visible");
-          setOffsetTop(32);
-        }
-      },
-      // Only when the header is 50% visible, is it considered to be intersecting
-      { threshold: 0.5 },
-    );
+    let observer: IntersectionObserver | null = null;
+    let timeOut: NodeJS.Timeout;
 
-    // Wait for the header to be rendered before observing it
-    const timeOut = setTimeout(() => {
-      const headerElement = document.querySelector("header");
-      if (headerElement) {
-        observer.observe(headerElement);
-      }
-    }, 500);
+    // Create an IntersectionObserver to detect when the header is visible
+    const createObserver = () => {
+      observer = new IntersectionObserver(
+        (entries) => {
+          const headerIsVisible = entries[0]?.isIntersecting;
+          setOffsetTop(headerIsVisible ? 82 : 32);
+        },
+        // Header will only be considered to be intersecting when at least 50% of it is visible
+        { threshold: 0.5 },
+      );
+
+      // Short timeout to ensure the header is rendered before observing
+      // 100ms is not enough for authenticated routes
+      // todo: look into using a mutation observer instead
+      timeOut = setTimeout(() => {
+        const headerElement = document.querySelector("header");
+        if (headerElement && observer) {
+          observer.observe(headerElement);
+        }
+      }, 500);
+    };
+
+    createObserver();
 
     return () => {
+      // Cleanup the observer and timeout
+      // This ensures that a stale state from a previous route does not persist
       clearTimeout(timeOut);
+      observer?.disconnect();
     };
   }, [asPath]);
 
