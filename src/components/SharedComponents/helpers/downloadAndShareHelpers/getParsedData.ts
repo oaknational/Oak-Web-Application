@@ -33,6 +33,7 @@ export const getParsedData = (
         ...MediaMetadata,
         type: "zod error",
         error: parsedJson.error.message,
+        errorSource: "getParsedData - parsedJson failed",
       },
     });
   }
@@ -45,6 +46,7 @@ export const getParsedData = (
       meta: {
         ...meta,
         error,
+        errorSource: "getParsedData - no data or error",
       },
     });
   }

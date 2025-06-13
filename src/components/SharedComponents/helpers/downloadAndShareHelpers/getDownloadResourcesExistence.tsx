@@ -78,7 +78,10 @@ const getDownloadExistence = async (
   if (!res.ok) {
     throw new OakError({
       code: "downloads/check-files-failed",
-      meta,
+      meta: {
+        ...meta,
+        errorSource: "getDownloadExistence",
+      },
     });
   }
 

@@ -97,6 +97,7 @@ describe("checkIfDownloadResourcesExist()", () => {
         isLegacyDownload: true,
         lessonSlug: "lesson-slug",
         resourceTypesString: "exit-quiz-answers,worksheet-pdf",
+        errorSource: "getDownloadExistence",
       });
     }
   });
@@ -126,6 +127,7 @@ describe("checkIfDownloadResourcesExist()", () => {
         isLegacyDownload: true,
         lessonSlug: "lesson-slug",
         resourceTypesString: "exit-quiz-answers,worksheet-pdf",
+        errorSource: "getDownloadExistence",
       });
     }
   });
