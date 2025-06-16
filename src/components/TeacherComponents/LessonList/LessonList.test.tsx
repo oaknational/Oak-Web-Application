@@ -40,7 +40,7 @@ describe("components/ Lesson List", () => {
 
     expect(listHeading).toBeInTheDocument();
   });
-  test("it renders pagination if lesson count is greater than 10 ", () => {
+  test("it renders pagination if lesson count is greater than 20 ", () => {
     const { getByTestId } = render(
       <LessonList
         paginationProps={mockPaginationProps}
@@ -49,7 +49,7 @@ describe("components/ Lesson List", () => {
         headingTag={"h2"}
         currentPageItems={lessonsWithUnitData}
         unitTitle={"Unit title"}
-        lessonCount={11}
+        lessonCount={21}
         onClick={onClick}
         lessonCountHeader={`Lessons (${lessons.length})`}
       />,
@@ -59,7 +59,7 @@ describe("components/ Lesson List", () => {
 
     expect(pagination).toBeInTheDocument();
   });
-  test("it does not renders pagination if lesson count is less than or equal to 10 ", () => {
+  test("it does not renders pagination if lesson count is less than or equal to 20 ", () => {
     const { queryByTestId } = render(
       <LessonList
         paginationProps={mockPaginationProps}
@@ -68,7 +68,7 @@ describe("components/ Lesson List", () => {
         headingTag={"h2"}
         currentPageItems={lessonsWithUnitData}
         unitTitle={"Unit title"}
-        lessonCount={10}
+        lessonCount={20}
         onClick={onClick}
         lessonCountHeader={`Lessons (${lessons.length})`}
       />,

@@ -46,7 +46,7 @@ export type LessonListProps = {
   examBoardSlug?: string | null;
 };
 
-const LESSONS_PER_PAGE = 10;
+const LESSONS_PER_PAGE = 20;
 
 /**
  * Contains a list of lessons
