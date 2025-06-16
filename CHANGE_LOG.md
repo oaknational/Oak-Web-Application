@@ -1,3 +1,10 @@
+## [1.776.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.776.0...v1.776.1) (2025-06-16)
+
+
+### Bug Fixes
+
+* added more logging to the getWorksheetInfo check-files errors ([26a2802](https://github.com/oaknational/Oak-Web-Application/commit/26a2802d17c2eadff8fb5547d3a4e43a2d194785))
+
 # [1.776.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.775.0...v1.776.0) (2025-06-12)
 
 
