@@ -1,4 +1,4 @@
-import { syntheticUnitvariantLessonsFixture } from "@oaknational/oak-curriculum-schema";
+import { syntheticUnitvariantLessonsByKsFixture } from "@oaknational/oak-curriculum-schema";
 
 import { betaLessonMediaClipsQuery } from "./lessonBetaMediaClips.query";
 
@@ -21,7 +21,7 @@ describe("lessonBetaMediaClips", () => {
 
   test("it returns the lesson if found", async () => {
     const _syntheticUnitvariantLessonsFixture =
-      syntheticUnitvariantLessonsFixture({
+      syntheticUnitvariantLessonsByKsFixture({
         overrides: {
           lesson_slug: "lesson-slug-test",
         },
@@ -45,7 +45,7 @@ describe("lessonBetaMediaClips", () => {
 
   test("it returns the first lesson if multiple are found", async () => {
     const fixtures = [
-      syntheticUnitvariantLessonsFixture({
+      syntheticUnitvariantLessonsByKsFixture({
         overrides: {
           lesson_slug: "lesson-slug-test",
           unit_slug: "unit-slug-test",
@@ -53,7 +53,7 @@ describe("lessonBetaMediaClips", () => {
           is_legacy: false,
         },
       }),
-      syntheticUnitvariantLessonsFixture(),
+      syntheticUnitvariantLessonsByKsFixture(),
     ];
 
     if (!fixtures || fixtures.length < 1) {

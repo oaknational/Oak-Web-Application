@@ -393,7 +393,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
     });
     it("calls track.downloadResourceButtonClicked will 'slide deck' when download slide deck button is pressed", async () => {
       const { getByText } = render(<LessonOverviewPage {...props} />);
-      const downloadButton = getByText("Download slide deck");
+      const downloadButton = getByText("Download lesson slides");
 
       act(() => {
         downloadButton.click();
@@ -456,11 +456,11 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
       });
     });
     it("calls track.downloadResourceButtonClicked will 'exit quiz' when download exit quiz button is pressed", async () => {
-      const { getByText } = render(<LessonOverviewPage {...props} />);
-      const downloadButton = getByText("Download exit quiz");
+      const { getAllByText } = render(<LessonOverviewPage {...props} />);
+      const downloadButton = getAllByText("Download quiz pdf")[1];
 
       act(() => {
-        downloadButton.click();
+        downloadButton && downloadButton.click();
       });
 
       expect(downloadResourceButtonClicked).toHaveBeenCalledWith({
@@ -488,11 +488,11 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
       });
     });
     it("calls track.downloadResourceButtonClicked will 'starter quiz' when download starter quiz button is pressed", async () => {
-      const { getByText } = render(<LessonOverviewPage {...props} />);
-      const downloadButton = getByText("Download starter quiz");
+      const { getAllByText } = render(<LessonOverviewPage {...props} />);
+      const downloadButton = getAllByText("Download quiz pdf")[0];
 
       act(() => {
-        downloadButton.click();
+        downloadButton && downloadButton.click();
       });
 
       expect(downloadResourceButtonClicked).toHaveBeenCalledWith({

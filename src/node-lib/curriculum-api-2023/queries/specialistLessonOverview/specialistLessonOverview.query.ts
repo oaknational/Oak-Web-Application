@@ -62,6 +62,7 @@ export const constructDownloadsArray = (
 
 export const generateLessonOverviewFromRaw = (
   rawLesson: unknown,
+  unitLessonCount: number,
   errorCallback: (
     lessonOverview: SpecialistLessonDataRaw,
     error: OakError,
@@ -139,6 +140,8 @@ export const generateLessonOverviewFromRaw = (
     additionalFiles: null,
     lessonOutline: null,
     lessonReleaseDate: lesson.lesson_release_date,
+    orderInUnit: lesson.order_in_unit ?? 1,
+    unitTotalLessonCount: unitLessonCount ?? 1,
   };
 
   return specialistLessonOverviewSchema.parse({
@@ -162,6 +165,7 @@ const specialistLessonOverview =
 
     return generateLessonOverviewFromRaw(
       specialistLessonOverview.lesson,
+      specialistLessonOverview.allLessons.length,
       (lessonOverview, error) => {
         errorReporter("curriculum-api-2023::specialistLessonOverview")(error, {
           severity: "warning",

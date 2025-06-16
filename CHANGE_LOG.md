@@ -1,3 +1,66 @@
+## [1.776.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.776.0...v1.776.1) (2025-06-16)
+
+
+### Bug Fixes
+
+* added more logging to the getWorksheetInfo check-files errors ([26a2802](https://github.com/oaknational/Oak-Web-Application/commit/26a2802d17c2eadff8fb5547d3a4e43a2d194785))
+
+# [1.776.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.775.0...v1.776.0) (2025-06-12)
+
+
+### Bug Fixes
+
+* adjust text colour ([cae6bfa](https://github.com/oaknational/Oak-Web-Application/commit/cae6bfa451d0648de6f7e6bf1ced34f9ed1d9033))
+* implement style and various fixes ([2bf45fd](https://github.com/oaknational/Oak-Web-Application/commit/2bf45fd106278bf5580ae87054aa5f6581e90c61))
+* remove extra height from curricinfo component ([6b5ad10](https://github.com/oaknational/Oak-Web-Application/commit/6b5ad106cb344f20b7e60e2dfef374a3260ff89a))
+
+
+### Features
+
+* implement new Curriculum landing page ([55bf4c8](https://github.com/oaknational/Oak-Web-Application/commit/55bf4c8f4b0e3f799d42a8ea600fdaefcfa826e3))
+
+# [1.775.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.774.0...v1.775.0) (2025-06-12)
+
+
+### Features
+
+* updated lesson overview experiment to go live with quiz but AB test subheaders ([daca3a8](https://github.com/oaknational/Oak-Web-Application/commit/daca3a881269ba0d297ef23f47e397bfb20f9b96))
+
+# [1.774.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.773.0...v1.774.0) (2025-06-12)
+
+
+### Bug Fixes
+
+* accordion content scrollbar issue ([11ef03f](https://github.com/oaknational/Oak-Web-Application/commit/11ef03fd5a23042facf7c4892f8190fbe1b8accc))
+* hide financial education and rshe links and issues ([ba390c4](https://github.com/oaknational/Oak-Web-Application/commit/ba390c47617acd729ad6487a56268c2eaf15678c))
+
+
+### Features
+
+* add links to seo body text ([90c1076](https://github.com/oaknational/Oak-Web-Application/commit/90c107611786a676eb234627d7ed45438c0a1c13))
+* lesson listing page SEO body text ([f55d3b0](https://github.com/oaknational/Oak-Web-Application/commit/f55d3b0e08f721964ab3519be009c0dd80d11d08))
+
+# [1.773.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.772.0...v1.773.0) (2025-06-12)
+
+
+### Bug Fixes
+
+* fixed header padding, added tests, updated oak-components for useSpan on OakTag ([adb5a57](https://github.com/oaknational/Oak-Web-Application/commit/adb5a5785a1cea308e4350427312e669003a6784))
+* used specialist lessons mv for specialist lesson count, fixed zod error on media clips ([0f86654](https://github.com/oaknational/Oak-Web-Application/commit/0f86654b4004e2aece56249e74ceaa805ad5e925))
+* used supplementary data static lesson count as default method of counting lessons ([819f4fc](https://github.com/oaknational/Oak-Web-Application/commit/819f4fc33df08da5622f155eb5f7653d402d8306))
+
+
+### Features
+
+* implemented A/B test on lesson overview header for back btn and signposting ([d6ab1e6](https://github.com/oaknational/Oak-Web-Application/commit/d6ab1e69be7c87c283a407e605091a1ec60c3733))
+
+# [1.772.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.771.2...v1.772.0) (2025-06-12)
+
+
+### Features
+
+* enable ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS ([574c2e0](https://github.com/oaknational/Oak-Web-Application/commit/574c2e04ec8b0d7d94345b0b0edc24580ef1ee4a))
+
 ## [1.771.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.771.1...v1.771.2) (2025-06-12)
 
 ## [1.771.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.771.0...v1.771.1) (2025-06-12)
