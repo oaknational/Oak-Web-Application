@@ -1,3 +1,15 @@
+## [1.776.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.776.1...v1.776.2) (2025-06-16)
+
+
+### Bug Fixes
+
+* cleanup intersection observer between routes ([e312a8f](https://github.com/oaknational/Oak-Web-Application/commit/e312a8fe210ff225977663860cbd11731c693a4a))
+* intersection observer marking header as not visible when in viewport ([148ceb0](https://github.com/oaknational/Oak-Web-Application/commit/148ceb0fd2c30cb49a519ae46a6250fd63fce1a6))
+* try increasing timeout ([c01a1e6](https://github.com/oaknational/Oak-Web-Application/commit/c01a1e68fa03c46ccaff98d59f431f46567dbe63))
+* update snapshot ([b219d33](https://github.com/oaknational/Oak-Web-Application/commit/b219d335926dc82059000a2f13290367ea41b473))
+* update snapshot ([5597f43](https://github.com/oaknational/Oak-Web-Application/commit/5597f4351197d5c1f960b2961ac5442676db7ac7))
+* update snapshot ([ceb827f](https://github.com/oaknational/Oak-Web-Application/commit/ceb827f9b6138b2843cd25c4b14c337cb60e1175))
+
 ## [1.776.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.776.0...v1.776.1) (2025-06-16)
 
 
