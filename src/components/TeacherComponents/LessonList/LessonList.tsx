@@ -46,7 +46,7 @@ export type LessonListProps = {
   examBoardSlug?: string | null;
 };
 
-const LESSONS_PER_PAGE = 5;
+const LESSONS_PER_PAGE = 10;
 
 /**
  * Contains a list of lessons
@@ -94,7 +94,6 @@ const LessonList: FC<LessonListProps> = (props) => {
         </OakHeading>
         {expiringBanner}
       </OakFlex>
-
       {currentPageItems?.length ? (
         <>
           <OakUL aria-label="A list of lessons" $reset>
@@ -118,7 +117,7 @@ const LessonList: FC<LessonListProps> = (props) => {
         <OakBox
           $width="100%"
           $mt={["space-between-none", "auto"]}
-          $pt={["inner-padding-xl4", "inner-padding-xl3"]}
+          $pt={["inner-padding-xs", "inner-padding-xl"]}
           data-testid="pagination-box"
         >
           <OakPagination
@@ -129,7 +128,10 @@ const LessonList: FC<LessonListProps> = (props) => {
         </OakBox>
       ) : null}
 
-      <OakBox $pb={["inner-padding-xl2", "inner-padding-xl4"]}>
+      <OakBox
+        $pb={["inner-padding-xl", "inner-padding-xl2"]}
+        $pt={[null, "inner-padding-m"]}
+      >
         <SignPostToAila
           title="Can't find what you need?"
           text="Create a tailor-made lesson plan and resources on any topic with Aila, our free AI-powered lesson assistant. Entirely adaptable to your class and context."
@@ -137,7 +139,6 @@ const LessonList: FC<LessonListProps> = (props) => {
           subject={subjectSlug}
         />
       </OakBox>
-
       {showSEOAccordion && (
         <LessonListSeoHelper
           examBoardSlug={examBoardSlug}
