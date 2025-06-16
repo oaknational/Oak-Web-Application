@@ -8,6 +8,8 @@ import {
   OakBox,
 } from "@oaknational/oak-components";
 
+import SignPostToAila from "../NoSearchResults/SignPostToAila";
+
 import { LessonListSeoHelper } from "./LessonListSeoHelper";
 
 import LessonListItem, {
@@ -111,11 +113,11 @@ const LessonList: FC<LessonListProps> = (props) => {
           </OakUL>
         </>
       ) : null}
+
       {lessonCount > LESSONS_PER_PAGE ? (
         <OakBox
           $width="100%"
           $mt={["space-between-none", "auto"]}
-          $pb={["inner-padding-xl2", "inner-padding-xl4"]}
           $pt={["inner-padding-xl4", "inner-padding-xl3"]}
           data-testid="pagination-box"
         >
@@ -125,9 +127,17 @@ const LessonList: FC<LessonListProps> = (props) => {
             paginationHref={paginationRoute}
           />
         </OakBox>
-      ) : (
-        <OakBox $pb="inner-padding-xl2" />
-      )}
+      ) : null}
+
+      <OakBox $pb={["inner-padding-xl2", "inner-padding-xl4"]}>
+        <SignPostToAila
+          title="Can't find what you need?"
+          text="Create a tailor-made lesson plan and resources on any topic with Aila, our free AI-powered lesson assistant. Entirely adaptable to your class and context."
+          keyStage={keyStageSlug}
+          subject={subjectSlug}
+        />
+      </OakBox>
+
       {showSEOAccordion && (
         <LessonListSeoHelper
           examBoardSlug={examBoardSlug}
