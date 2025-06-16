@@ -137,6 +137,7 @@ const LessonList: FC<LessonListProps> = (props) => {
           text="Create a tailor-made lesson plan and resources on any topic with Aila, our free AI-powered lesson assistant. Entirely adaptable to your class and context."
           keyStage={keyStageSlug}
           subject={subjectSlug}
+          unitTitle={unitTitle}
         />
       </OakBox>
       {showSEOAccordion && (
