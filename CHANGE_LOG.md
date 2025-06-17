@@ -1,3 +1,10 @@
+# [1.779.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.778.0...v1.779.0) (2025-06-17)
+
+
+### Features
+
+* make lesson release date nullable in beta media query page ([41b6dca](https://github.com/oaknational/Oak-Web-Application/commit/41b6dcae74ba929288b565c14cfcd1d4b2c7a62f))
+
 # [1.778.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.777.0...v1.778.0) (2025-06-17)
 
 
