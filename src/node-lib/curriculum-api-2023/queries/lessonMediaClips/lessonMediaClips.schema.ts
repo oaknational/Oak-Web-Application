@@ -78,7 +78,7 @@ const baseLessonMediaClipsPageSchema = z.object({
   mediaClips: mediaClipsRecordCamelSchema,
   lessonOutline: z.array(z.object({ lessonOutline: z.string() })),
   actions: zodToCamelCase(actionsSchema).nullish(),
-  lessonReleaseDate: z.string(),
+  lessonReleaseDate: z.string().nullable(),
 });
 
 export const lessonMediaClipsSchema = baseLessonMediaClipsPageSchema.extend({
