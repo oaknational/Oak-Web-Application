@@ -49,6 +49,7 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
             subjectCategories: browseData.subject_categories,
             keystage: browseData.keystage,
             keystageSlug: browseData.keystage_slug,
+            pathway: browseData.pathway,
             tier: browseData.tier,
             examboard: browseData.examboard,
             units: [],

@@ -140,6 +140,38 @@ const mockProgrammeDataWithSubjectCategories: UserlistContentApiResponse = {
   },
 };
 
+const mockProgrammeDataWithPathways: UserlistContentApiResponse = {
+  programme1: {
+    units: [
+      {
+        unitSlug: "unit1",
+        unitTitle: "Unit 1",
+        optionalityTitle: null,
+        savedAt: "2023-10-01T00:00:00Z",
+        unitOrder: 1,
+        yearOrder: 1,
+        year: "1",
+        lessons: [
+          {
+            slug: "lesson1",
+            title: "Lesson 1",
+            state: "published",
+            order: 1,
+          },
+        ],
+      },
+    ],
+    keystage: "KS4",
+    subject: "Maths",
+    examboard: null,
+    tier: null,
+    pathway: "Core",
+    subjectSlug: "maths",
+    keystageSlug: "ks4",
+    subjectCategories: null,
+  },
+};
+
 const mockTrackingData = {
   savedFrom: "my-library-save-button" as const,
   keyStageTitle: "Key stage 1" as KeyStageTitleValueType,
@@ -258,6 +290,45 @@ describe("useMyLibrary", () => {
           },
         ],
         searchQuery: "literacy",
+      },
+    ]);
+  });
+  it("should handle programmes with pathways", async () => {
+    mockUseGetEducatorData.mockImplementation(() => ({
+      data: mockProgrammeDataWithPathways,
+      error: null,
+      isLoading: false,
+    }));
+    const { result } = renderHook(() => useMyLibrary());
+    expect(result.current.collectionData).toEqual([
+      {
+        keystage: "KS4",
+        keystageSlug: "ks4",
+        programmeSlug: "programme1",
+        programmeTitle: "Maths KS4 Core",
+        subject: "Maths",
+        subjectSlug: "maths",
+        subheading: "KS4 Core",
+        units: [
+          {
+            unitSlug: "unit1",
+            unitTitle: "Unit 1",
+            optionalityTitle: null,
+            savedAt: "2023-10-01T00:00:00Z",
+            unitOrder: 1,
+            yearOrder: 1,
+            year: "1",
+            lessons: [
+              {
+                slug: "lesson1",
+                title: "Lesson 1",
+                state: "published",
+                order: 1,
+              },
+            ],
+          },
+        ],
+        searchQuery: null,
       },
     ]);
   });

@@ -18,6 +18,7 @@ const content = z.object({
       year: z.string(),
       keystage: z.string(),
       keystage_slug: z.string(),
+      pathway: z.string().nullish(),
       subject: z.string(),
       subject_slug: z.string(),
       tier: z.string().nullable(),
@@ -63,6 +64,7 @@ export const userListContentApiResponse = z.record(
   z.object({
     keystage: z.string(),
     keystageSlug: z.string(),
+    pathway: z.string().nullish(),
     subject: z.string(),
     subjectSlug: z.string(),
     subjectCategories: z.array(z.string()).nullish(),

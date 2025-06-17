@@ -49,6 +49,7 @@ export const useMyLibrary = () => {
           .map(([programmeSlug, programmeData]) => {
             const {
               keystage,
+              pathway,
               subject,
               examboard,
               tier,
@@ -57,7 +58,7 @@ export const useMyLibrary = () => {
               keystageSlug,
               subjectCategories,
             } = programmeData;
-            const subheading = `${examboard ? examboard + " " : ""}${tier ? tier + " " : ""}${keystage}`;
+            const subheading = `${examboard ? examboard + " " : ""}${tier ? tier + " " : ""}${keystage}${pathway ? " " + pathway : ""}`;
             const validSubjectCategory =
               subjectCategories &&
               subjectCategories[0] &&
