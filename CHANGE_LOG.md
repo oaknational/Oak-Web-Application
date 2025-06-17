@@ -1,3 +1,17 @@
+# [1.778.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.777.0...v1.778.0) (2025-06-17)
+
+
+### Bug Fixes
+
+* update pagination threshold from 10 to 20 lessons per page ([ebefd89](https://github.com/oaknational/Oak-Web-Application/commit/ebefd89cadf042e93468b0d19ceb800e08b35f27))
+
+
+### Features
+
+* add Aila signpost to lesson list with proper spacing and pagination fixes ([bcd6f6a](https://github.com/oaknational/Oak-Web-Application/commit/bcd6f6a8d72aec5bee21b8ee25bd34f6c7a85a51))
+* add Aila signposting to lesson list ([a1b73d7](https://github.com/oaknational/Oak-Web-Application/commit/a1b73d7c1d0579c4226e5e87e590c0546f3c76d2))
+* pass unitTitle to SignPostToAila component ([b4dd91e](https://github.com/oaknational/Oak-Web-Application/commit/b4dd91ebf5da223838035d27ce9d50fa76f1a06f))
+
 # [1.777.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.776.2...v1.777.0) (2025-06-17)
 
 
