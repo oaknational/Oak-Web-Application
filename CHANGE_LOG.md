@@ -1,3 +1,36 @@
+## [1.776.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.776.1...v1.776.2) (2025-06-16)
+
+
+### Bug Fixes
+
+* cleanup intersection observer between routes ([e312a8f](https://github.com/oaknational/Oak-Web-Application/commit/e312a8fe210ff225977663860cbd11731c693a4a))
+* intersection observer marking header as not visible when in viewport ([148ceb0](https://github.com/oaknational/Oak-Web-Application/commit/148ceb0fd2c30cb49a519ae46a6250fd63fce1a6))
+* try increasing timeout ([c01a1e6](https://github.com/oaknational/Oak-Web-Application/commit/c01a1e68fa03c46ccaff98d59f431f46567dbe63))
+* update snapshot ([b219d33](https://github.com/oaknational/Oak-Web-Application/commit/b219d335926dc82059000a2f13290367ea41b473))
+* update snapshot ([5597f43](https://github.com/oaknational/Oak-Web-Application/commit/5597f4351197d5c1f960b2961ac5442676db7ac7))
+* update snapshot ([ceb827f](https://github.com/oaknational/Oak-Web-Application/commit/ceb827f9b6138b2843cd25c4b14c337cb60e1175))
+
+## [1.776.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.776.0...v1.776.1) (2025-06-16)
+
+
+### Bug Fixes
+
+* added more logging to the getWorksheetInfo check-files errors ([26a2802](https://github.com/oaknational/Oak-Web-Application/commit/26a2802d17c2eadff8fb5547d3a4e43a2d194785))
+
+# [1.776.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.775.0...v1.776.0) (2025-06-12)
+
+
+### Bug Fixes
+
+* adjust text colour ([cae6bfa](https://github.com/oaknational/Oak-Web-Application/commit/cae6bfa451d0648de6f7e6bf1ced34f9ed1d9033))
+* implement style and various fixes ([2bf45fd](https://github.com/oaknational/Oak-Web-Application/commit/2bf45fd106278bf5580ae87054aa5f6581e90c61))
+* remove extra height from curricinfo component ([6b5ad10](https://github.com/oaknational/Oak-Web-Application/commit/6b5ad106cb344f20b7e60e2dfef374a3260ff89a))
+
+
+### Features
+
+* implement new Curriculum landing page ([55bf4c8](https://github.com/oaknational/Oak-Web-Application/commit/55bf4c8f4b0e3f799d42a8ea600fdaefcfa826e3))
+
 # [1.775.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.774.0...v1.775.0) (2025-06-12)
 
 

@@ -8,7 +8,7 @@ exports[`CurriculumTab renders 1`] = `
     >
       <div
         aria-live="polite"
-        class="sc-fqkvVR sc-gsFSXq sc-da07f570-0 hkKUlc cQyxGE kbCuxI"
+        class="sc-fqkvVR sc-gsFSXq sc-d65e4df9-0 hkKUlc cQyxGE jTGGef"
       />
       <div
         class="sc-fqkvVR gZEYWU"
@@ -116,10 +116,9 @@ exports[`CurriculumTab renders 1`] = `
               <div
                 class="sc-fqkvVR hEDAbB"
               >
-                <div
+                <nav
                   aria-labelledby="choose-curriculum-label"
                   class="sc-fqkvVR fgBWrW"
-                  role="group"
                 >
                   <div
                     class="sc-fqkvVR iKkOLq"
@@ -142,11 +141,11 @@ exports[`CurriculumTab renders 1`] = `
                           style="width: 50%;"
                         >
                           <div
-                            class="sc-fqkvVR sc-1c55d370-0 sc-148ab746-2 jEHEPk knawKC hryUrQ"
+                            class="sc-fqkvVR sc-1c55d370-0 sc-dda3cae5-2 jEHEPk knawKC fvaQiv"
                           >
                             <button
                               aria-expanded="false"
-                              class="sc-148ab746-1 dccTbF"
+                              class="sc-dda3cae5-1 fvbNMG"
                               data-testid="subject-picker-button"
                               title="Subject"
                             >
@@ -210,11 +209,11 @@ exports[`CurriculumTab renders 1`] = `
                             class="sc-fqkvVR sc-gsFSXq fxkSvJ ehZBcc"
                           >
                             <div
-                              class="sc-fqkvVR sc-1c55d370-0 sc-148ab746-2 eMDDOo knawKC hryUrQ"
+                              class="sc-fqkvVR sc-1c55d370-0 sc-dda3cae5-2 eMDDOo knawKC fvaQiv"
                             >
                               <button
                                 aria-expanded="false"
-                                class="sc-148ab746-1 dccTbF"
+                                class="sc-dda3cae5-1 fvbNMG"
                                 data-testid="phase-picker-button"
                                 title="Phase"
                               >
@@ -281,7 +280,7 @@ exports[`CurriculumTab renders 1`] = `
                       </div>
                     </div>
                   </div>
-                </div>
+                </nav>
               </div>
             </div>
             <div
@@ -307,10 +306,9 @@ exports[`CurriculumTab renders 1`] = `
           <div
             class="sc-fqkvVR gEooAa"
           >
-            <div
+            <nav
               aria-labelledby="choose-curriculum-label"
               class="sc-fqkvVR fgBWrW"
-              role="group"
             >
               <div
                 class="sc-fqkvVR iKkOLq"
@@ -333,11 +331,11 @@ exports[`CurriculumTab renders 1`] = `
                       style="width: 50%;"
                     >
                       <div
-                        class="sc-fqkvVR sc-1c55d370-0 sc-148ab746-2 jEHEPk knawKC hryUrQ"
+                        class="sc-fqkvVR sc-1c55d370-0 sc-dda3cae5-2 jEHEPk knawKC fvaQiv"
                       >
                         <button
                           aria-expanded="false"
-                          class="sc-148ab746-1 dccTbF"
+                          class="sc-dda3cae5-1 fvbNMG"
                           data-testid="subject-picker-button"
                           title="Subject"
                         >
@@ -401,11 +399,11 @@ exports[`CurriculumTab renders 1`] = `
                         class="sc-fqkvVR sc-gsFSXq fxkSvJ ehZBcc"
                       >
                         <div
-                          class="sc-fqkvVR sc-1c55d370-0 sc-148ab746-2 eMDDOo knawKC hryUrQ"
+                          class="sc-fqkvVR sc-1c55d370-0 sc-dda3cae5-2 eMDDOo knawKC fvaQiv"
                         >
                           <button
                             aria-expanded="false"
-                            class="sc-148ab746-1 dccTbF"
+                            class="sc-dda3cae5-1 fvbNMG"
                             data-testid="phase-picker-button"
                             title="Phase"
                           >
@@ -472,7 +470,7 @@ exports[`CurriculumTab renders 1`] = `
                   </div>
                 </div>
               </div>
-            </div>
+            </nav>
           </div>
         </div>
       </div>
