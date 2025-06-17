@@ -1,4 +1,3 @@
-import { SignUpButton, useUser } from "@clerk/nextjs";
 import {
   OakModalCenter,
   OakModalCenterProps,
@@ -6,18 +5,11 @@ import {
   OakFlex,
   OakHeading,
   OakP,
-  OakPrimaryButton,
 } from "@oaknational/oak-components";
-import { useRouter } from "next/router";
 
-import { resolveOakHref } from "@/common-lib/urls";
+import LoginRequiredButton from "../LoginRequiredButton/LoginRequiredButton";
 
 const SavingSignedOutModalContent = () => {
-  const router = useRouter();
-  const { user } = useUser();
-
-  const showOnboardingButton = user && !user.publicMetadata?.owa?.isOnboarded;
-
   return (
     <OakFlex $flexDirection="column">
       <OakFlex
@@ -44,25 +36,10 @@ const SavingSignedOutModalContent = () => {
         whenever you need it – anytime, anywhere. Getting started is simple;
         quickly sign up and start saving.
       </OakP>
-      {showOnboardingButton ? (
-        <OakPrimaryButton
-          width="100%"
-          onClick={() =>
-            router.push({
-              pathname: resolveOakHref({ page: "onboarding" }),
-              query: { returnTo: router.asPath },
-            })
-          }
-        >
-          Finish sign up
-        </OakPrimaryButton>
-      ) : (
-        <SignUpButton
-          forceRedirectUrl={`/onboarding?returnTo=${router.asPath}`}
-        >
-          <OakPrimaryButton width="100%">Sign up</OakPrimaryButton>
-        </SignUpButton>
-      )}
+      <LoginRequiredButton
+        onboardingProps={{ name: "Finish sign up" }}
+        width="100%"
+      />
     </OakFlex>
   );
 };

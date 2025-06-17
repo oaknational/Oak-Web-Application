@@ -1,103 +1,11 @@
-import { SignUpButton, useUser } from "@clerk/nextjs";
 import React, { Dispatch, SetStateAction, useState } from "react";
-import { useRouter } from "next/router";
-import {
-  OakFlex,
-  OakLoadingSpinner,
-  OakPrimaryButton,
-  OakTagFunctional,
-} from "@oaknational/oak-components";
 
 import useUnitDownloadExistenceCheck from "../hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
+import LoginRequiredButton from "../LoginRequiredButton/LoginRequiredButton";
 
 import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 import { createUnitDownloadLink } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createDownloadLink";
-import { resolveOakHref } from "@/common-lib/urls";
-
-// Used when a user is signed in but not onboarded
-const UnitDownloadOnboardButton = ({
-  onClick,
-  showNewTag,
-}: {
-  onClick: () => Promise<boolean>;
-  showNewTag: boolean;
-}) => (
-  <OakPrimaryButton
-    width="fit-content"
-    onClick={onClick}
-    ph={["inner-padding-xs", "inner-padding-l"]}
-    pv={["inner-padding-ssx", "inner-padding-s"]}
-  >
-    <OakFlex $alignItems="center" $gap="space-between-xs">
-      {showNewTag && (
-        <OakTagFunctional
-          label="New"
-          $background="mint"
-          $color="text-primary"
-          $pv={"inner-padding-none"}
-        />
-      )}
-      Complete sign up to download this unit
-    </OakFlex>
-  </OakPrimaryButton>
-);
-
-// Used when a user is not signed in
-const UnitDownloadSignInButton = ({
-  redirectUrl,
-  showNewTag,
-}: {
-  redirectUrl: string;
-  showNewTag: boolean;
-}) => (
-  <SignUpButton forceRedirectUrl={redirectUrl}>
-    <OakPrimaryButton
-      iconName={"download"}
-      isTrailingIcon
-      ph={["inner-padding-xs", "inner-padding-l"]}
-      pv={["inner-padding-ssx", "inner-padding-s"]}
-    >
-      <OakFlex $alignItems="center" $gap="space-between-xs">
-        {showNewTag && (
-          <OakTagFunctional
-            label="New"
-            $background="mint"
-            $color="text-primary"
-            $pv={"inner-padding-none"}
-          />
-        )}
-        Download unit
-      </OakFlex>
-    </OakPrimaryButton>
-  </SignUpButton>
-);
-
-// Used when the user is signed in and onboarded
-const DownloadButton = ({
-  onUnitDownloadClick,
-  downloadInProgress,
-  fileSize,
-}: {
-  onUnitDownloadClick: () => void;
-  downloadInProgress: boolean;
-  fileSize: string | undefined;
-}) => (
-  <OakPrimaryButton
-    iconName="download"
-    isTrailingIcon
-    onClick={onUnitDownloadClick}
-    disabled={downloadInProgress}
-    ph={["inner-padding-xs", "inner-padding-l"]}
-    pv={["inner-padding-ssx", "inner-padding-s"]}
-  >
-    <OakFlex $gap="space-between-xs">
-      {downloadInProgress && (
-        <OakLoadingSpinner data-testid="loading-spinner" />
-      )}
-      {downloadInProgress ? "Downloading..." : `Download (.zip ${fileSize})`}
-    </OakFlex>
-  </OakPrimaryButton>
-);
+import useMediaQuery from "@/hooks/useMediaQuery";
 
 export const useUnitDownloadButtonState = () => {
   const [downloadError, setDownloadError] = useState<boolean | undefined>();
@@ -126,19 +34,11 @@ export type UnitDownloadButtonProps = {
   setShowIncompleteMessage: Dispatch<SetStateAction<boolean>>;
   downloadInProgress: boolean;
   showNewTag: boolean;
+  georestricted: boolean;
 };
 
-/**
- * Three possible states for the unit download button:
- * - Sign in to download
- * - Continue onboarding to download
- * - Download
- * If there is no download for this unit, or unit download is disabled, the button will not be shown (ie. legacy units)
- */
 export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
-  const { unitFileId } = props;
-  const { isSignedIn, isLoaded, user } = useUser();
-  const router = useRouter();
+  const { unitFileId, showNewTag, georestricted } = props;
 
   const {
     onDownloadSuccess,
@@ -175,32 +75,30 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
   };
 
   const showDownloadButton = hasCheckedFiles && exists;
+  const isMobile = useMediaQuery("mobile");
 
-  const showSignInButton = showDownloadButton && isLoaded && !isSignedIn;
-
-  const showOnboardButton =
-    showDownloadButton && user && !user.publicMetadata?.owa?.isOnboarded;
-
-  return showOnboardButton ? (
-    <UnitDownloadOnboardButton
-      onClick={() =>
-        router.push({
-          pathname: resolveOakHref({ page: "onboarding" }),
-          query: { returnTo: router.asPath },
-        })
-      }
-      showNewTag={props.showNewTag}
-    />
-  ) : showSignInButton ? (
-    <UnitDownloadSignInButton
-      redirectUrl={`/onboarding?returnTo=${router.asPath}`}
-      showNewTag={props.showNewTag}
-    />
-  ) : showDownloadButton ? (
-    <DownloadButton
-      onUnitDownloadClick={onUnitDownloadClick}
-      downloadInProgress={downloadInProgress}
-      fileSize={fileSize}
+  return showDownloadButton ? (
+    <LoginRequiredButton
+      sizeVariant={isMobile ? "small" : "large"}
+      actionProps={{
+        onClick: onUnitDownloadClick,
+        loading: downloadInProgress,
+        name: downloadInProgress
+          ? "Downloading..."
+          : `Download (.zip ${fileSize})`,
+        isActionGeorestricted: georestricted,
+        iconName: "download",
+        isTrailingIcon: true,
+      }}
+      signUpProps={{
+        name: "Download unit",
+        iconName: "download",
+        isTrailingIcon: true,
+        showNewTag: showNewTag,
+      }}
+      onboardingProps={{
+        name: "Complete sign up to download this unit",
+      }}
     />
   ) : null;
 }
