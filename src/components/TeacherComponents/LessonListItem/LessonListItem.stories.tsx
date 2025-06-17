@@ -30,3 +30,11 @@ export const Standard: Story = {
   render: ({ ...args }) => <LessonListItem {...args} />,
   args: { ...props },
 };
+
+export const WithCopyrightMaterial: Story = {
+  render: ({ ...args }) => <LessonListItem {...args} />,
+  args: {
+    ...props,
+    hasCopyrightMaterial: true,
+  },
+};

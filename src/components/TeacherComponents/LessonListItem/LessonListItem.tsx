@@ -1,5 +1,10 @@
 import { FC, MutableRefObject } from "react";
-import { OakP, OakSpan, OakFlex, OakBox } from "@oaknational/oak-components";
+import {
+  OakP,
+  OakSpan,
+  OakFlex,
+  OakTagFunctional,
+} from "@oaknational/oak-components";
 
 import { DisabledListItemHeader } from "../ListItemHeader/ListItemHeader";
 
@@ -32,6 +37,7 @@ export type LessonListItemProps = LessonListingPageData["lessons"][number] & {
   firstItemRef?: MutableRefObject<HTMLAnchorElement | null> | null;
   onClick: (props: LessonListItemProps | SpecialistLessonListItemProps) => void;
   isUnpublished: false;
+  hasCopyrightMaterial: boolean;
 };
 
 type UnpublishedLessonListItemProps = UnpublishedLessonListItem & {
@@ -139,6 +145,9 @@ const LessonListItem: FC<
       ? "grey30"
       : "pink";
   const backgroundOnHover: OakColorName = "pink60";
+
+  const showCopyrightedTag = !isUnpublishedLesson && props.hasCopyrightMaterial;
+
   return (
     <ListItemCard
       title={lessonTitle}
@@ -228,9 +237,26 @@ const LessonListItem: FC<
             )}
           </OakFlex>
           {resources && resources.length > 0 && !disabled && (
-            <OakBox>
+            <OakFlex
+              $width="100%"
+              $justifyContent="space-between"
+              $alignItems={"center"}
+              $flexWrap={"wrap"}
+              $gap={"all-spacing-2"}
+            >
               <LessonResourceGraphics items={resources} />
-            </OakBox>
+              {showCopyrightedTag && (
+                <OakTagFunctional
+                  iconName="copyright"
+                  isTrailingIcon
+                  $maxHeight={"all-spacing-7"}
+                  $borderRadius={"border-radius-s"}
+                  $borderStyle={"solid"}
+                  $background={"grey20"}
+                  label="Copyrighted"
+                />
+              )}
+            </OakFlex>
           )}
         </OakFlex>
       </OakFlex>
