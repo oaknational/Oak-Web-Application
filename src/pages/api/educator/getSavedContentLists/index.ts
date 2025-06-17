@@ -42,11 +42,19 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
           order: lesson.order,
         }));
 
-        if (!acc[programmeSlug]) {
-          acc[programmeSlug] = {
+        // Subject categories are not included in the programme slug but we want to keep them distinct
+        const subjectCategory = browseData.subject_categories?.[0];
+        const useSubjectCategory =
+          subjectCategory && subjectCategory !== browseData.subject;
+
+        const uniqueProgrammeIdentifier = `${programmeSlug}${useSubjectCategory ? subjectCategory : ""}`;
+
+        if (!acc[uniqueProgrammeIdentifier]) {
+          acc[uniqueProgrammeIdentifier] = {
+            programmeSlug,
             subject: browseData.subject,
             subjectSlug: browseData.subject_slug,
-            subjectCategories: browseData.subject_categories,
+            subjectCategory: useSubjectCategory ? subjectCategory : null,
             keystage: browseData.keystage,
             keystageSlug: browseData.keystage_slug,
             pathway: browseData.pathway,
@@ -55,7 +63,7 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
             units: [],
           };
         }
-        acc[programmeSlug].units.push({
+        acc[uniqueProgrammeIdentifier].units.push({
           unitSlug: contentList.unit_slug,
           unitTitle: browseData.unit_title,
           optionalityTitle: browseData.optionality_title || null,

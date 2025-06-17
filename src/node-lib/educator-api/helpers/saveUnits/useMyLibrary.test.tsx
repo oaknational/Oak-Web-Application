@@ -52,6 +52,7 @@ const renderHook = renderHookWithProviders();
 
 const mockProgrammeData: UserlistContentApiResponse = {
   programme1: {
+    programmeSlug: "programme1",
     units: [
       {
         unitSlug: "unit1",
@@ -77,12 +78,13 @@ const mockProgrammeData: UserlistContentApiResponse = {
     tier: null,
     subjectSlug: "maths",
     keystageSlug: "ks1",
-    subjectCategories: null,
+    subjectCategory: null,
   },
 };
 
 const mockProgrammeDataWithSubjectCategories: UserlistContentApiResponse = {
   programme1: {
+    programmeSlug: "programme1",
     units: [
       {
         unitSlug: "unit1",
@@ -108,9 +110,10 @@ const mockProgrammeDataWithSubjectCategories: UserlistContentApiResponse = {
     tier: null,
     subjectSlug: "english",
     keystageSlug: "ks1",
-    subjectCategories: ["Literacy"],
+    subjectCategory: "Literacy",
   },
   programme2: {
+    programmeSlug: "programme2",
     units: [
       {
         unitSlug: "bio-unit1",
@@ -136,12 +139,13 @@ const mockProgrammeDataWithSubjectCategories: UserlistContentApiResponse = {
     tier: null,
     subjectSlug: "biology",
     keystageSlug: "ks1",
-    subjectCategories: ["Biology"],
+    subjectCategory: null,
   },
 };
 
 const mockProgrammeDataWithPathways: UserlistContentApiResponse = {
   programme1: {
+    programmeSlug: "programme1",
     units: [
       {
         unitSlug: "unit1",
@@ -168,7 +172,7 @@ const mockProgrammeDataWithPathways: UserlistContentApiResponse = {
     pathway: "Core",
     subjectSlug: "maths",
     keystageSlug: "ks4",
-    subjectCategories: null,
+    subjectCategory: null,
   },
 };
 
@@ -269,7 +273,7 @@ describe("useMyLibrary", () => {
         programmeTitle: "English: Literacy KS1",
         subject: "English",
         subjectSlug: "english",
-        subheading: "KS1",
+        subheading: "Literacy KS1",
         units: [
           {
             unitSlug: "unit1",

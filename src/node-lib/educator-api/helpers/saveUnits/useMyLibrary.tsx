@@ -45,9 +45,10 @@ export const useMyLibrary = () => {
         userListContentApiResponse.safeParse(savedProgrammeUnits);
 
       if (parsedData.success) {
-        const collectionData = Object.entries(parsedData.data)
-          .map(([programmeSlug, programmeData]) => {
+        const collectionData = Object.values(parsedData.data)
+          .map((programmeData) => {
             const {
+              programmeSlug,
               keystage,
               pathway,
               subject,
@@ -56,18 +57,16 @@ export const useMyLibrary = () => {
               units,
               subjectSlug,
               keystageSlug,
-              subjectCategories,
+              subjectCategory,
             } = programmeData;
-            const subheading = `${examboard ? examboard + " " : ""}${tier ? tier + " " : ""}${keystage}${pathway ? " " + pathway : ""}`;
-            const validSubjectCategory =
-              subjectCategories &&
-              subjectCategories[0] &&
-              subjectCategories[0] !== subject
-                ? subjectCategories[0]
-                : null;
-            const programmeTitle = `${subject}${validSubjectCategory ? `: ${validSubjectCategory}` : ""} ${subheading}`;
-            const searchQuery = validSubjectCategory
-              ? `${kebabCase(validSubjectCategory)}`
+
+            const subjectCategoryHeading = `${subjectCategory ? `${subjectCategory} ` : ""}`;
+
+            const subheading = `${subjectCategoryHeading}${examboard ? examboard + " " : ""}${tier ? tier + " " : ""}${keystage}${pathway ? " " + pathway : ""}`;
+
+            const programmeTitle = `${subject}${subjectCategoryHeading && ":"} ${subheading}`;
+            const searchQuery = subjectCategory
+              ? `${kebabCase(subjectCategory)}`
               : null;
 
             units.sort(

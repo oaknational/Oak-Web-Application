@@ -62,12 +62,13 @@ export type MyLibraryUnit = z.infer<typeof unit>;
 export const userListContentApiResponse = z.record(
   z.string(),
   z.object({
+    programmeSlug: z.string(),
     keystage: z.string(),
     keystageSlug: z.string(),
     pathway: z.string().nullish(),
     subject: z.string(),
     subjectSlug: z.string(),
-    subjectCategories: z.array(z.string()).nullish(),
+    subjectCategory: z.string().nullish(),
     tier: z.string().nullable(),
     examboard: z.string().nullable(),
     units: z.array(unit),
