@@ -45,8 +45,8 @@ export const useMyLibrary = () => {
         userListContentApiResponse.safeParse(savedProgrammeUnits);
 
       if (parsedData.success) {
-        const collectionData = Object.values(parsedData.data)
-          .map((programmeData) => {
+        const collectionData = Object.entries(parsedData.data)
+          .map(([uniqueProgrammeKey, programmeData]) => {
             const {
               programmeSlug,
               keystage,
@@ -83,6 +83,7 @@ export const useMyLibrary = () => {
               programmeSlug,
               programmeTitle,
               searchQuery,
+              uniqueProgrammeKey,
             };
           })
           .sort((a, b) => {

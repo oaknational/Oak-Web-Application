@@ -83,7 +83,7 @@ const mockProgrammeData: UserlistContentApiResponse = {
 };
 
 const mockProgrammeDataWithSubjectCategories: UserlistContentApiResponse = {
-  programme1: {
+  "programme1-Literacy": {
     programmeSlug: "programme1",
     units: [
       {
@@ -206,6 +206,7 @@ describe("useMyLibrary", () => {
         subject: "Maths",
         subjectSlug: "maths",
         subheading: "KS1",
+        uniqueProgrammeKey: "programme1",
         units: [
           {
             unitSlug: "unit1",
@@ -245,6 +246,7 @@ describe("useMyLibrary", () => {
         subject: "Biology",
         subjectSlug: "biology",
         subheading: "KS1",
+        uniqueProgrammeKey: "programme2",
         units: [
           {
             unitSlug: "bio-unit1",
@@ -274,6 +276,7 @@ describe("useMyLibrary", () => {
         subject: "English",
         subjectSlug: "english",
         subheading: "Literacy KS1",
+        uniqueProgrammeKey: "programme1-Literacy",
         units: [
           {
             unitSlug: "unit1",
@@ -313,6 +316,7 @@ describe("useMyLibrary", () => {
         subject: "Maths",
         subjectSlug: "maths",
         subheading: "KS4 Core",
+        uniqueProgrammeKey: "programme1",
         units: [
           {
             unitSlug: "unit1",

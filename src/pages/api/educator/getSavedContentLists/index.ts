@@ -47,7 +47,7 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
         const useSubjectCategory =
           subjectCategory && subjectCategory !== browseData.subject;
 
-        const uniqueProgrammeIdentifier = `${programmeSlug}${useSubjectCategory ? subjectCategory : ""}`;
+        const uniqueProgrammeIdentifier = `${programmeSlug}${useSubjectCategory ? "-" + subjectCategory : ""}`;
 
         if (!acc[uniqueProgrammeIdentifier]) {
           acc[uniqueProgrammeIdentifier] = {
