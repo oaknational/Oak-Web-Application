@@ -3,9 +3,12 @@ import { cartesianToExcelCoords, pxToColumnWidth } from "@ooxml-tools/units";
 import { generateEmptyXlsx, JSZipCached } from "../docx/docx";
 import { cdata, safeXml, xmlCompact } from "../docx/xml";
 import { formatCurriculumUnitsData } from "../docx/tab-helpers";
-import { CombinedCurriculumData } from "../docx";
 
 import { Unit } from "@/utils/curriculum/types";
+import {
+  CurriculumOverviewMVData,
+  CurriculumUnitsTabData,
+} from "@/node-lib/curriculum-api-2023";
 
 export type Slugs = {
   subjectSlug: string;
@@ -256,8 +259,9 @@ function buildNatCurric(data: BuildNationalCurriculumData) {
           <c r="A1" t="inlineStr" s="1">
             <is>
               <t>
-                Year ${data.unitData[0]?.unit.year ?? ""}
-                ${data.unitData[0]!.unit.subject}
+                ${cdata(
+                  `Year ${data.unitData[0]?.unit.year ?? ""} ${data.unitData[0]!.unit.subject}`,
+                )}
               </t>
             </is>
           </c>
@@ -265,7 +269,9 @@ function buildNatCurric(data: BuildNationalCurriculumData) {
         <row r="2" spans="1:26">
           <c r="A2" t="inlineStr" s="2">
             <is>
-              <t>National curriculum statement</t>
+              <t xml:space="preserve">${cdata(
+                  `\nNational curriculum statement\n`,
+                )}</t>
             </is>
           </c>
           ${data.unitData.map((unit, unitIndex) => {
@@ -278,22 +284,14 @@ function buildNatCurric(data: BuildNationalCurriculumData) {
                 <is>
                   <r>
                     <rPr>
-                      <sz val="12" />
-                      <color rgb="FF000000" />
-                      <rFont val="Arial" />
-                      <family val="2" />
-                    </rPr>
-                    <t xml:space="preserve">Unit ${unitIndex + 1}
-</t>
-                  </r>
-                  <r>
-                    <rPr>
                       <sz val="14" />
                       <color rgb="FF000000" />
                       <rFont val="Arial Bold" />
                       <family val="2" />
                     </rPr>
-                    <t>${cdata(unit.unit.title)}</t>
+                    <t xml:space="preserve">${cdata(
+                        `\nUnit ${unitIndex + 1}\n${unit.unit.title}\n`,
+                      )}</t>
                   </r>
                 </is>
               </c>
@@ -336,7 +334,9 @@ function buildNatCurric(data: BuildNationalCurriculumData) {
               <row r="${yPos}" spans="1:${data.unitData.length + 1}">
                 <c r="${cartesianToExcelCoords([1, yPos])}" t="inlineStr" s="4">
                   <is>
-                    <t>${cdata(nationalCurricText)}</t>
+                    <t xml:space="preserve">${cdata(
+                        `\n${nationalCurricText}\n`,
+                      )}</t>
                   </is>
                 </c>
                 ${data.unitData.map((unit, unitIndex) => {
@@ -541,7 +541,7 @@ async function buildNationalCurriculum(
 }
 
 export default async function xlsxNationalCurriculum(
-  data: CombinedCurriculumData,
+  data: CurriculumUnitsTabData & CurriculumOverviewMVData,
   // slugs: Slugs,
   // ks4Options: Ks4Option[],
 ) {

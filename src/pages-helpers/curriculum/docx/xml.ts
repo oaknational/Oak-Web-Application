@@ -43,7 +43,7 @@ export function safeXml(
 export function xmlCompact(xml: string) {
   const parsed = xml2js(xml, {
     compact: true,
-    trim: true,
+    captureSpacesBetweenElements: false,
   });
   const out = js2xml(parsed, {
     compact: true,
