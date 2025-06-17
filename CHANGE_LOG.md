@@ -1,3 +1,42 @@
+# [1.778.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.777.0...v1.778.0) (2025-06-17)
+
+
+### Bug Fixes
+
+* update pagination threshold from 10 to 20 lessons per page ([ebefd89](https://github.com/oaknational/Oak-Web-Application/commit/ebefd89cadf042e93468b0d19ceb800e08b35f27))
+
+
+### Features
+
+* add Aila signpost to lesson list with proper spacing and pagination fixes ([bcd6f6a](https://github.com/oaknational/Oak-Web-Application/commit/bcd6f6a8d72aec5bee21b8ee25bd34f6c7a85a51))
+* add Aila signposting to lesson list ([a1b73d7](https://github.com/oaknational/Oak-Web-Application/commit/a1b73d7c1d0579c4226e5e87e590c0546f3c76d2))
+* pass unitTitle to SignPostToAila component ([b4dd91e](https://github.com/oaknational/Oak-Web-Application/commit/b4dd91ebf5da223838035d27ce9d50fa76f1a06f))
+
+# [1.777.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.776.2...v1.777.0) (2025-06-17)
+
+
+### Bug Fixes
+
+* function return type ([99a43d4](https://github.com/oaknational/Oak-Web-Application/commit/99a43d4c7dc1b3f5b8657b456b00a1681c4991e0))
+* only show download button when files available ([b6b9050](https://github.com/oaknational/Oak-Web-Application/commit/b6b9050f8f1835d0d27b6a666ffbeeee582b1e95))
+
+
+### Features
+
+* add 'new' tag option to button ([a4d188b](https://github.com/oaknational/Oak-Web-Application/commit/a4d188b440d217fbbe0017c87333a278b6f7f1c7))
+* add action option to sign up button ([08cb7f2](https://github.com/oaknational/Oak-Web-Application/commit/08cb7f21b6ac4d935c4d6ef138ad8f33432f9b14))
+* add alternate button text for sign up ([0baee5a](https://github.com/oaknational/Oak-Web-Application/commit/0baee5abfbf4301f4583d659f5149be6f04a7823))
+* add button variants ([62b88be](https://github.com/oaknational/Oak-Web-Application/commit/62b88beba18df52f5285316d282ef5c7eff93c9b))
+* add georestricted button state ([57d6cea](https://github.com/oaknational/Oak-Web-Application/commit/57d6ceabc555f3620ba6b52b75df69cc0c21316e))
+* add loading prop ([f7033f2](https://github.com/oaknational/Oak-Web-Application/commit/f7033f27c82b96a0baf53c22c7c685ab84f7e378))
+* add oak sign up button ([775e366](https://github.com/oaknational/Oak-Web-Application/commit/775e3666fd9aa4ddce8e39a4fcae07af193bd98b))
+* add onboarding props ([c89c42c](https://github.com/oaknational/Oak-Web-Application/commit/c89c42ccb8a8f72dc0793d5a8f3e6e5f414bb4a6))
+* add onboarding state to sign up button ([a0801da](https://github.com/oaknational/Oak-Web-Application/commit/a0801daf564d09e5f56734552bb4c89393c4aace))
+* add sign up button props ([99892aa](https://github.com/oaknational/Oak-Web-Application/commit/99892aa9464ad78e6c808d3694f45b612a80b201))
+* implement logic for georestricted button behind a feature flag ([ef9629d](https://github.com/oaknational/Oak-Web-Application/commit/ef9629df7829e8a057f8fe18b82b2f91a3bc0885))
+* update saving signed out modal button ([c43868b](https://github.com/oaknational/Oak-Web-Application/commit/c43868bb0675a6b372cae766e0f1b0eb0199f61a))
+* update unit downloads button ([7d14f8c](https://github.com/oaknational/Oak-Web-Application/commit/7d14f8c95e1d67a8a498c4250f4b2b90c653de1b))
+
 ## [1.776.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.776.1...v1.776.2) (2025-06-16)
 
 
