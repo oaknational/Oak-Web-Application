@@ -37,7 +37,7 @@ export type LessonListItemProps = LessonListingPageData["lessons"][number] & {
   firstItemRef?: MutableRefObject<HTMLAnchorElement | null> | null;
   onClick: (props: LessonListItemProps | SpecialistLessonListItemProps) => void;
   isUnpublished: false;
-  hasCopyrightMaterial: boolean;
+  hasCopyrightMaterial?: boolean | null;
 };
 
 type UnpublishedLessonListItemProps = UnpublishedLessonListItem & {

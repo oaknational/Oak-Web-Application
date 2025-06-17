@@ -101,4 +101,11 @@ describe("Lesson List Item", () => {
     await user.hover(cardContainer);
     expect(cardContainer).toHaveStyle("background-color: #f2f2f2");
   });
+  test("it shows the copyrighted tag when hasCopyrightMaterial is true", () => {
+    const { getByText } = render(
+      <LessonListItem {...{ ...props, hasCopyrightMaterial: true }} />,
+    );
+
+    expect(getByText("Copyrighted")).toBeInTheDocument();
+  });
 });
