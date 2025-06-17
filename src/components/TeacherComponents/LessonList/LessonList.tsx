@@ -8,6 +8,8 @@ import {
   OakBox,
 } from "@oaknational/oak-components";
 
+import SignPostToAila from "../NoSearchResults/SignPostToAila";
+
 import { LessonListSeoHelper } from "./LessonListSeoHelper";
 
 import LessonListItem, {
@@ -44,7 +46,7 @@ export type LessonListProps = {
   examBoardSlug?: string | null;
 };
 
-const LESSONS_PER_PAGE = 5;
+const LESSONS_PER_PAGE = 20;
 
 /**
  * Contains a list of lessons
@@ -92,7 +94,6 @@ const LessonList: FC<LessonListProps> = (props) => {
         </OakHeading>
         {expiringBanner}
       </OakFlex>
-
       {currentPageItems?.length ? (
         <>
           <OakUL aria-label="A list of lessons" $reset>
@@ -111,12 +112,12 @@ const LessonList: FC<LessonListProps> = (props) => {
           </OakUL>
         </>
       ) : null}
+
       {lessonCount > LESSONS_PER_PAGE ? (
         <OakBox
           $width="100%"
           $mt={["space-between-none", "auto"]}
-          $pb={["inner-padding-xl2", "inner-padding-xl4"]}
-          $pt={["inner-padding-xl4", "inner-padding-xl3"]}
+          $pt={["inner-padding-xs", "inner-padding-xl"]}
           data-testid="pagination-box"
         >
           <OakPagination
@@ -125,9 +126,20 @@ const LessonList: FC<LessonListProps> = (props) => {
             paginationHref={paginationRoute}
           />
         </OakBox>
-      ) : (
-        <OakBox $pb="inner-padding-xl2" />
-      )}
+      ) : null}
+
+      <OakBox
+        $pb={["inner-padding-xl", "inner-padding-xl2"]}
+        $pt={[null, "inner-padding-m"]}
+      >
+        <SignPostToAila
+          title="Can't find what you need?"
+          text="Create a tailor-made lesson plan and resources on any topic with Aila, our free AI-powered lesson assistant. Entirely adaptable to your class and context."
+          keyStage={keyStageSlug}
+          subject={subjectSlug}
+          unitTitle={unitTitle}
+        />
+      </OakBox>
       {showSEOAccordion && (
         <LessonListSeoHelper
           examBoardSlug={examBoardSlug}
