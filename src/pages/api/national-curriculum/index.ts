@@ -1,16 +1,19 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { format } from "date-fns";
 import { z } from "zod";
-import { capitalize } from "lodash";
 
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import curriculumApi2023, {
+  CurriculumOverviewMVData,
   CurriculumUnitsTabData,
 } from "@/node-lib/curriculum-api-2023";
 // import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
 import { logErrorMessage } from "@/utils/curriculum/testing";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import xlsxNationalCurriculum from "@/pages-helpers/curriculum/xlsx";
+import { CombinedCurriculumData } from "@/pages-helpers/curriculum/docx";
+import CMSClient from "@/node-lib/cms";
+import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
+import { getFilename } from "@/utils/curriculum/formatting";
 
 export const curriculumDownloadQuerySchema = z.object({
   mvRefreshTime: z.string(),
@@ -27,23 +30,25 @@ export type curriculumDownloadQueryProps = z.infer<
 >;
 
 export type Output = CurriculumUnitsTabData & {
+  subjectTitle: string;
+  phaseTitle: string;
   examboardTitle: string | null;
 };
 
-type getDataReturn =
-  | { notFound: true }
-  | {
-      notFound: false;
-      combinedCurriculumData: Output;
-      ks4OptionSlug?: string;
-      subjectSlug: string;
-      phaseSlug: string;
-      state: string;
-      tierSlug?: string;
-      childSubjectSlug?: string;
-      dataWarnings: string[];
-      ks4Options: Ks4Option[];
-    };
+type Data = {
+  notFound: false;
+  combinedCurriculumData: CombinedCurriculumData;
+  ks4OptionSlug?: string;
+  subjectSlug: string;
+  phaseSlug: string;
+  state: string;
+  tierSlug?: string;
+  childSubjectSlug?: string;
+  dataWarnings: string[];
+  ks4Options: Ks4Option[];
+};
+
+type getDataReturn = { notFound: true } | Data;
 async function getData(opts: {
   subjectSlug: string;
   phaseSlug: string;
@@ -61,6 +66,8 @@ async function getData(opts: {
     tierSlug,
   } = opts;
 
+  let curriculumOverviewSanityData: CurriculumOverviewSanityData | null;
+  let curriculumOverviewTabData: CurriculumOverviewMVData | null;
   let curriculumData: CurriculumUnitsTabData | null;
   const dataWarnings: string[] = [];
 
@@ -70,9 +77,103 @@ async function getData(opts: {
       phaseSlug,
       ks4OptionSlug: ks4OptionSlug ?? null,
     };
-    curriculumData = await curriculumApi2023.curriculumSequence(queryOpts);
+    const curriculumDataUnsorted =
+      await curriculumApi2023.curriculumSequence(queryOpts);
 
-    if (!curriculumData) {
+    // HACK: This sorts by examboard to push NULLs to the bottom of the list, to fix picking up the correct `unit_options`
+    curriculumData = {
+      ...curriculumDataUnsorted,
+      units: [...curriculumDataUnsorted.units]
+        .filter((a) => {
+          if (a.keystage_slug === "ks4") {
+            const unitIsChildSubject =
+              !childSubjectSlug || a.subject_slug === childSubjectSlug;
+            const unitHasCorrectTier =
+              a.tier_slug === tierSlug || !tierSlug || !a.tier_slug;
+
+            return unitIsChildSubject && unitHasCorrectTier;
+          }
+          return true;
+        })
+        .sort((a) => {
+          if (a.examboard) {
+            return -1;
+          }
+          return 1;
+        })
+        .map((unit) => {
+          return {
+            ...unit,
+            order: unit.order === null ? -1000 : unit.order,
+          };
+        })
+        .sort((a, b) => {
+          return a.order - b.order;
+        }),
+    };
+
+    curriculumOverviewTabData = await curriculumApi2023.curriculumOverview({
+      subjectSlug,
+      phaseSlug,
+    });
+
+    curriculumOverviewSanityData = await CMSClient.curriculumOverviewPage({
+      previewMode: false,
+      ...{ subjectTitle: curriculumOverviewTabData.subjectTitle, phaseSlug },
+    });
+
+    if (!curriculumOverviewSanityData) {
+      dataWarnings.push("Sanity CMS data is missing, dummy data will be used.");
+      curriculumOverviewSanityData = {
+        id: "001ae718-80a4-42ef-8dea-809528ecc847",
+        subjectPrinciples: [
+          "Subject principles are undefined for this record. Please check the CMS.",
+        ],
+        partnerBio:
+          "Partner bio is undefined for this record. Please check the CMS.",
+        curriculumPartner: {
+          name: "Partner name is undefined for this record. Please check the CMS.",
+          image: null,
+        },
+        curriculumPartnerOverviews: [],
+        video: {
+          title:
+            "Video title is undefined for this record. Please check the CMS.",
+          video: {
+            asset: { assetId: "", playbackId: "undefined", thumbTime: null },
+          },
+        },
+        curriculumSeoTextRaw: null,
+        curriculumExplainer: {
+          explainerRaw: [
+            {
+              children: [
+                {
+                  _type: "span",
+                  marks: [],
+                  text: "Aims and purpose",
+                  _key: "470ecdd07b7d",
+                },
+              ],
+              _type: "block",
+              style: "heading2",
+              _key: "82cf6558d6f8",
+              markDefs: [],
+            },
+          ],
+        },
+        videoAuthor:
+          "Video author is undefined for this record. Please check the CMS.",
+        videoExplainer:
+          "Video explainer is undefined for this record. Please check the CMS.",
+      };
+    }
+
+    if (
+      !curriculumOverviewSanityData ||
+      !curriculumOverviewTabData ||
+      !curriculumData
+    ) {
       return {
         notFound: true,
       };
@@ -100,8 +201,11 @@ async function getData(opts: {
   const ks4Option =
     ks4Options.find((ks4_option) => ks4_option.slug === ks4OptionSlug) ?? null;
 
-  const combinedCurriculumData: Output = {
+  const combinedCurriculumData: CombinedCurriculumData = {
     ...curriculumData,
+    ...curriculumOverviewTabData,
+    ...curriculumOverviewSanityData,
+    ...{ state },
     examboardTitle: ks4Option?.title ?? null,
   };
 
@@ -178,7 +282,7 @@ export default async function handler(
   });
 
   // FIXME: Poor use of types here
-  if (!data.notFound) {
+  if (data.notFound === false) {
     const buffer = await xlsxNationalCurriculum(
       data.combinedCurriculumData,
       // {
@@ -192,19 +296,14 @@ export default async function handler(
       // data.ks4Options,
     );
 
-    const pageTitle: string = [
-      "testing",
-      capitalize(childSubjectSlug?.split("-").join(" ")),
-      capitalize(tierSlug),
-    ]
-      .filter(Boolean)
-      .join(" - ");
-
-    const filename = `${pageTitle} - ${format(
-      Date.now(),
-      // Note: dashes "-" rather than ":" because colon is invalid on windows
-      "dd-MM-yyyy",
-    )}.xlsx`;
+    const filename = getFilename("xlsx", {
+      subjectTitle: data.combinedCurriculumData.subjectTitle,
+      phaseTitle: data.combinedCurriculumData.phaseTitle,
+      examboardTitle: data.combinedCurriculumData.examboardTitle,
+      childSubjectSlug,
+      tierSlug,
+      suffix: "NC alignment",
+    });
 
     res
       .setHeader(

@@ -1,4 +1,6 @@
 import { PortableTextBlock } from "@portabletext/types";
+import { capitalize } from "lodash";
+import { format } from "date-fns";
 
 import { CurriculumFilters, YearData } from "./types";
 import { keystageFromYear } from "./keystage";
@@ -390,4 +392,41 @@ export function getSubjectCategoryMessage(
 
   // If the current year does have units do not show a message
   return null;
+}
+
+export function getFilename(
+  fileExt: string,
+  {
+    subjectTitle,
+    phaseTitle,
+    examboardTitle,
+    childSubjectSlug,
+    tierSlug,
+    suffix,
+  }: {
+    subjectTitle: string;
+    phaseTitle: string;
+    examboardTitle?: string | null;
+    childSubjectSlug?: string;
+    tierSlug?: string;
+    suffix?: string;
+  },
+) {
+  const pageTitle: string = [
+    subjectTitle,
+    phaseTitle,
+    examboardTitle,
+    capitalize(childSubjectSlug?.split("-").join(" ")),
+    capitalize(tierSlug),
+    suffix,
+    format(
+      Date.now(),
+      // Note: dashes "-" rather than ":" because colon is invalid on windows
+      "dd-MM-yyyy",
+    ),
+  ]
+    .filter(Boolean)
+    .join(" - ");
+
+  return `${pageTitle}.${fileExt}`;
 }

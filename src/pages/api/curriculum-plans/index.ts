@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { format } from "date-fns";
 import { z } from "zod";
-import { capitalize, isUndefined, omitBy } from "lodash";
+import { isUndefined, omitBy } from "lodash";
 
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
@@ -14,6 +13,7 @@ import docx, { CombinedCurriculumData } from "@/pages-helpers/curriculum/docx";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
 import { logErrorMessage } from "@/utils/curriculum/testing";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
+import { getFilename } from "@/utils/curriculum/formatting";
 
 export const curriculumDownloadQuerySchema = z.object({
   mvRefreshTime: z.string(),
@@ -290,21 +290,14 @@ export default async function handler(
       data.ks4Options,
     );
 
-    const pageTitle: string = [
-      data.combinedCurriculumData?.subjectTitle,
-      data.combinedCurriculumData?.phaseTitle,
-      data.combinedCurriculumData?.examboardTitle,
-      capitalize(childSubjectSlug?.split("-").join(" ")),
-      capitalize(tierSlug),
-    ]
-      .filter(Boolean)
-      .join(" - ");
-
-    const filename = `${pageTitle} - ${format(
-      Date.now(),
-      // Note: dashes "-" rather than ":" because colon is invalid on windows
-      "dd-MM-yyyy",
-    )}.docx`;
+    const filename = getFilename("docx", {
+      subjectTitle: data.combinedCurriculumData.subjectTitle,
+      phaseTitle: data.combinedCurriculumData.phaseTitle,
+      examboardTitle: data.combinedCurriculumData?.examboardTitle,
+      childSubjectSlug,
+      tierSlug,
+      suffix: "curriculum plan",
+    });
 
     res
       .setHeader("content-type", "application/msword")

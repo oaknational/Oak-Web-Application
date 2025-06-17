@@ -3,8 +3,8 @@ import { cartesianToExcelCoords, pxToColumnWidth } from "@ooxml-tools/units";
 import { generateEmptyXlsx, JSZipCached } from "../docx/docx";
 import { cdata, safeXml, xmlCompact } from "../docx/xml";
 import { formatCurriculumUnitsData } from "../docx/tab-helpers";
+import { CombinedCurriculumData } from "../docx";
 
-import { Output } from "@/pages/api/national-curriculum";
 import { Unit } from "@/utils/curriculum/types";
 
 export type Slugs = {
@@ -541,7 +541,7 @@ async function buildNationalCurriculum(
 }
 
 export default async function xlsxNationalCurriculum(
-  data: Output,
+  data: CombinedCurriculumData,
   // slugs: Slugs,
   // ks4Options: Ks4Option[],
 ) {
