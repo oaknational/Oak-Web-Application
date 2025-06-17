@@ -24,7 +24,7 @@ describe("SpecialistLessonDownloads", () => {
   test("renders with the correct resources", () => {
     render(<SpecialistLesson lesson={specialistLessonOverviewFixture()} />);
 
-    const slideDeck = screen.getAllByText("Slide deck");
+    const slideDeck = screen.getAllByText("Lesson slides");
     const lessonDetails = screen.getAllByText("Lesson details");
 
     expect(slideDeck).toHaveLength(2);

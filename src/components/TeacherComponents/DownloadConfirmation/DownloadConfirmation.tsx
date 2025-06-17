@@ -108,7 +108,7 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
     overrideExistingShareId: true,
   });
 
-  const { handleClick, copiedComponent } = useTeacherShareButton({
+  const { handleClick } = useTeacherShareButton({
     shareUrl,
     shareActivated,
   });
@@ -228,7 +228,6 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
             </OakSpan>
           </OakBox>
           {teacherShareButton}
-          {copiedComponent}
         </Flex>
       </Flex>
 

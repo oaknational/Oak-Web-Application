@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { OakFlex, OakIcon, OakHeading } from "@oaknational/oak-components";
+
+import { useOakToastContext } from "@/context/OakToast/useOakToastContext";
 
 export const useTeacherShareButton = ({
   shareUrl,
@@ -9,6 +10,7 @@ export const useTeacherShareButton = ({
   shareActivated?: () => void;
 }) => {
   const [linkCopied, setLinkCopied] = useState(false);
+  const { setCurrentToastProps } = useOakToastContext();
 
   const handleClick = () => {
     if (!shareUrl) return;
@@ -19,29 +21,15 @@ export const useTeacherShareButton = ({
     setLinkCopied(true);
     // copy url to clipboard
     navigator.clipboard.writeText(shareUrl);
+    setCurrentToastProps({
+      message: "Link copied to clipboard",
+      variant: "green",
+      autoDismiss: true,
+      showIcon: true,
+    });
   };
   return {
     handleClick,
     linkCopied,
-    copiedComponent: <LinkCopied linkCopied={linkCopied} />,
   };
-};
-
-export const LinkCopied = ({ linkCopied }: { linkCopied: boolean }) => {
-  return (
-    <OakFlex
-      $alignItems={"center"}
-      $visibility={linkCopied ? "visible" : "hidden"}
-    >
-      <OakIcon iconName={"tick"} $colorFilter={"text-success"} />
-      <OakHeading
-        tag="h2"
-        $font={"heading-light-7"}
-        $color={"text-success"}
-        aria-live="polite"
-      >
-        Link copied to clipboard
-      </OakHeading>
-    </OakFlex>
-  );
 };

@@ -94,6 +94,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     tierTitle,
     examBoardTitle,
     year,
+    containsGeorestrictedLessons,
   } = curriculumData;
 
   const unitListingHref = `/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/programmes`;
@@ -123,7 +124,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     }
   }, [browserUrl]);
 
-  const { copiedComponent, handleClick } = useTeacherShareButton({
+  const { handleClick } = useTeacherShareButton({
     shareUrl,
     shareActivated,
   });
@@ -220,6 +221,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       subjectSlug,
     },
   );
+
   return (
     <AppLayout
       seoProps={{
@@ -282,7 +284,6 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           hasCurriculumDownload={isSlugLegacy(programmeSlug)}
           {...curriculumData}
           shareButton={teacherShareButton}
-          copiedComponent={copiedComponent}
           unitDownloadFileId={`${getSlugifiedTitle(unitTitle)}-${unitvariantId}`}
           onUnitDownloadSuccess={() =>
             track.unitDownloadInitiated({
@@ -302,6 +303,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           }
           showRiskAssessmentBanner={showRiskAssessmentBanner}
           isIncompleteUnit={unpublishedLessonCount > 0}
+          isGeorestrictedUnit={containsGeorestrictedLessons}
           isUnitSaved={isUnitSaved(unitSlug)}
           onSave={
             isSlugLegacy(programmeSlug)

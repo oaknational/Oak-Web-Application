@@ -6,7 +6,6 @@ import LandingPageTemplate, {
 } from "../../../pages/lp/[landingPageSlug]";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import CMSClient from "../../../node-lib/cms";
-import renderWithSeo from "../../__helpers__/renderWithSeo";
 import { LandingPage } from "../../../common-lib/cms-types/landingPage";
 import { mockImageAsset, portableTextFromString } from "../../__helpers__/cms";
 import { getABTestedLandingPage } from "../../../node-lib/cms/ab-testing";
@@ -76,16 +75,6 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
       render(<LandingPageTemplate pageData={testLandingPage} />);
       await waitFor(() => {
         expect(screen.getByText("some-landing-page")).toBeInTheDocument();
-      });
-    });
-
-    describe.skip("SEO", () => {
-      it("renders the correct SEO details", async () => {
-        const { seo } = renderWithSeo()(
-          <LandingPageTemplate pageData={testLandingPage} />,
-        );
-
-        expect(seo).toEqual({});
       });
     });
   });

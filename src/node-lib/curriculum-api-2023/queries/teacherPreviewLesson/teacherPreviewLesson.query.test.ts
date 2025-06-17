@@ -17,7 +17,7 @@ describe("teacherPreviewLesson()", () => {
       await teacherPreviewLessonQuery({
         ...sdk,
         teachersPreviewLesson: jest.fn(() =>
-          Promise.resolve({ browseData: [], content: [] }),
+          Promise.resolve({ browseData: [], content: [], unitData: [] }),
         ),
       })({
         lessonSlug: "lesson-slug",
@@ -42,6 +42,23 @@ describe("teacherPreviewLesson()", () => {
               lesson_guide_asset_object_url: "lesson-guide-url",
             },
           ],
+          unitData: [
+            {
+              lesson_count: 1,
+              supplementary_data: {
+                unit_order: 16,
+                static_lesson_list: [
+                  {
+                    slug: "lesson-slug-test",
+                    order: 1,
+                    title: "Lesson Tile",
+                    _state: "published",
+                    lesson_uid: "test-uid",
+                  },
+                ],
+              },
+            },
+          ],
         }),
       ),
     })({
@@ -51,5 +68,6 @@ describe("teacherPreviewLesson()", () => {
     expect(lesson.lessonTitle).toEqual(_lessonContentFixture.lesson_title);
     expect(lesson.lessonGuideUrl).toEqual("lesson-guide-url");
     expect(lesson.phonicsOutcome).toEqual("phonics-outcome");
+    expect(lesson.unitTotalLessonCount).toEqual(1);
   });
 });
