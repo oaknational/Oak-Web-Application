@@ -62,7 +62,7 @@ export const useMyLibrary = () => {
 
             const subjectCategoryHeading = `${subjectCategory ? `${subjectCategory} ` : ""}`;
 
-            const subheading = `${subjectCategoryHeading}${examboard ? examboard + " " : ""}${tier ? tier + " " : ""}${keystage}${pathway ? " " + pathway : ""}`;
+            const subheading = `${subjectCategoryHeading}${examboard ? examboard + " " : ""}${tier ? tier + " " : ""}${pathway ? pathway + " " : ""}${keystage}`;
 
             const programmeTitle = `${subject}${subjectCategoryHeading && ":"} ${subheading}`;
             const searchQuery = subjectCategory

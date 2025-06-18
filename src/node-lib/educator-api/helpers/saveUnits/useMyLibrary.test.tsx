@@ -312,10 +312,10 @@ describe("useMyLibrary", () => {
         keystage: "KS4",
         keystageSlug: "ks4",
         programmeSlug: "programme1",
-        programmeTitle: "Maths KS4 Core",
+        programmeTitle: "Maths Core KS4",
         subject: "Maths",
         subjectSlug: "maths",
-        subheading: "KS4 Core",
+        subheading: "Core KS4",
         uniqueProgrammeKey: "programme1",
         units: [
           {
