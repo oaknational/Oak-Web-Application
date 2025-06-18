@@ -48,16 +48,21 @@ export const betaLessonMediaClipsQuery =
     const lessonData = {
       ...browseDataSnake?.lesson_data,
       key_learning_points: [],
+      lesson_release_date:
+        browseDataSnake?.lesson_data?.lesson_release_date ?? null,
     };
 
-    const manipulatedData = { ...browseDataSnake, lesson_data: lessonData };
+    const manipulatedData = {
+      ...browseDataSnake,
+      lesson_data: lessonData,
+    };
     lessonBrowseDataByKsSchema.parse({
       ...manipulatedData,
       supplementary_data: { order_in_unit: 0, unit_order: 0 },
     });
 
     const browseData = keysToCamelCase(
-      browseDataSnake,
+      manipulatedData,
     ) as LessonBrowseDataByKs & {
       mediaClips: MediaClipListCamelCase;
     };
