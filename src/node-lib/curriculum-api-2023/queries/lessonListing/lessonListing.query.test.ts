@@ -67,6 +67,7 @@ describe("lessonListing()", () => {
         pathwayTitle: null,
         pathwayDisplayOrder: null,
         actions: {},
+        containsGeorestrictedLessons: false,
         lessons: [
           {
             lessonSlug: "lesson-slug",
@@ -206,6 +207,7 @@ describe("lessonListing()", () => {
       const transformedLessons = getPackagedUnit(
         mockPackagedUnitData,
         getTransformedLessons([syntheticUnitvariantLessonsByKsFixture({})]),
+        false,
       );
       expect(transformedLessons).toEqual({
         examBoardSlug: null,
@@ -246,6 +248,7 @@ describe("lessonListing()", () => {
         pathwayTitle: null,
         pathwayDisplayOrder: null,
         actions: {},
+        containsGeorestrictedLessons: false,
       });
     });
     test("getTransformedUnit returns the correct data for optionality units", () => {
@@ -262,6 +265,7 @@ describe("lessonListing()", () => {
             },
           }),
         ]),
+        false,
       );
       expect(transformedLessons).toEqual({
         examBoardSlug: null,
@@ -302,6 +306,7 @@ describe("lessonListing()", () => {
         pathwayTitle: null,
         pathwayDisplayOrder: null,
         actions: {},
+        containsGeorestrictedLessons: false,
       });
     });
     test("getTransformedLessons returns the correct data", async () => {

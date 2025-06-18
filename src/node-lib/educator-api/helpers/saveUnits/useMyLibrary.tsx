@@ -46,27 +46,27 @@ export const useMyLibrary = () => {
 
       if (parsedData.success) {
         const collectionData = Object.entries(parsedData.data)
-          .map(([programmeSlug, programmeData]) => {
+          .map(([uniqueProgrammeKey, programmeData]) => {
             const {
+              programmeSlug,
               keystage,
+              pathway,
               subject,
               examboard,
               tier,
               units,
               subjectSlug,
               keystageSlug,
-              subjectCategories,
+              subjectCategory,
             } = programmeData;
-            const subheading = `${examboard ? examboard + " " : ""}${tier ? tier + " " : ""}${keystage}`;
-            const validSubjectCategory =
-              subjectCategories &&
-              subjectCategories[0] &&
-              subjectCategories[0] !== subject
-                ? subjectCategories[0]
-                : null;
-            const programmeTitle = `${subject}${validSubjectCategory ? `: ${validSubjectCategory}` : ""} ${subheading}`;
-            const searchQuery = validSubjectCategory
-              ? `${kebabCase(validSubjectCategory)}`
+
+            const subjectCategoryHeading = `${subjectCategory ? `${subjectCategory} ` : ""}`;
+
+            const subheading = `${subjectCategoryHeading}${examboard ? examboard + " " : ""}${tier ? tier + " " : ""}${pathway ? pathway + " " : ""}${keystage}`;
+
+            const programmeTitle = `${subject}${subjectCategoryHeading && ":"} ${subheading}`;
+            const searchQuery = subjectCategory
+              ? `${kebabCase(subjectCategory)}`
               : null;
 
             units.sort(
@@ -83,6 +83,7 @@ export const useMyLibrary = () => {
               programmeSlug,
               programmeTitle,
               searchQuery,
+              uniqueProgrammeKey,
             };
           })
           .sort((a, b) => {

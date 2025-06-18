@@ -16,6 +16,7 @@ query getUserListContent($userId: String!) {
         unit_title: unit_data(path: "title")
         optionality_title: programme_fields(path: "optionality")
         tier: programme_fields(path: "tier")
+        pathway: programme_fields(path: "pathway")
         examboard: programme_fields(path: "examboard")
         unit_order: supplementary_data(path: "unit_order")
         year_order: programme_fields(path: "year_display_order")

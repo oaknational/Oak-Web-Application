@@ -27,6 +27,7 @@ export type CollectionData = Array<{
   programmeSlug: string;
   programmeTitle: string;
   searchQuery: string | null;
+  uniqueProgrammeKey: string;
 }>;
 
 type MyLibraryProps = {
@@ -73,7 +74,7 @@ export default function MyLibrary(props: MyLibraryProps) {
               menuItems={collectionData.map((item) => ({
                 heading: item.subject,
                 subheading: item.subheading,
-                href: `#${item.programmeSlug}`,
+                href: `#${item.uniqueProgrammeKey}`,
               }))}
               heading="Collections"
               anchorTargetId="collections-menu"
@@ -88,9 +89,9 @@ export default function MyLibrary(props: MyLibraryProps) {
           >
             {collectionData.map((collection) => (
               <MyLibraryProgrammeCard
-                key={collection.programmeSlug}
+                key={collection.uniqueProgrammeKey}
                 programmeTitle={collection.programmeTitle}
-                anchorId={collection.programmeSlug}
+                anchorId={collection.uniqueProgrammeKey}
                 programmeHref={resolveOakHref({
                   page: "unit-index",
                   programmeSlug: collection.programmeSlug,
