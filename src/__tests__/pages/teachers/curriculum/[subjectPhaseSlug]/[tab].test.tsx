@@ -92,6 +92,7 @@ const unitData = [
     cycle: "1",
     why_this_why_now: null,
     description: null,
+    national_curriculum_content: [],
     prior_knowledge_requirements: [],
   },
   {
@@ -173,6 +174,7 @@ const unitData = [
     cycle: "1",
     why_this_why_now: null,
     description: null,
+    national_curriculum_content: [],
     prior_knowledge_requirements: [],
   },
   {
@@ -249,6 +251,7 @@ const unitData = [
     cycle: "1",
     why_this_why_now: null,
     description: null,
+    national_curriculum_content: [],
     prior_knowledge_requirements: [],
   },
   {
@@ -340,6 +343,7 @@ const unitData = [
     cycle: "1",
     why_this_why_now: null,
     description: null,
+    national_curriculum_content: [],
     prior_knowledge_requirements: [],
   },
   {
@@ -425,6 +429,7 @@ const unitData = [
     cycle: "1",
     why_this_why_now: null,
     description: null,
+    national_curriculum_content: [],
     prior_knowledge_requirements: [],
   },
   {
@@ -513,6 +518,7 @@ const unitData = [
     cycle: "1",
     why_this_why_now: null,
     description: null,
+    national_curriculum_content: [],
     prior_knowledge_requirements: [],
   },
 ];
