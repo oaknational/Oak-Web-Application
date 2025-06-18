@@ -1,3 +1,16 @@
+# [1.780.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.779.0...v1.780.0) (2025-06-18)
+
+
+### Bug Fixes
+
+* hash navigation for subject category programmes ([bbb4c2a](https://github.com/oaknational/Oak-Web-Application/commit/bbb4c2ac3e9e03f2b2a1226cf914549a4b737ddc))
+
+
+### Features
+
+* add pathways into subheading for my library ([41126cb](https://github.com/oaknational/Oak-Web-Application/commit/41126cb9e40e150ed8d2e2e94f815a4fbd36d0d4))
+* separate programmes in my library by subject category when available ([352d214](https://github.com/oaknational/Oak-Web-Application/commit/352d2145841517125b88fe2ce1e45bc2aca15983))
+
 # [1.779.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.778.0...v1.779.0) (2025-06-17)
 
 
