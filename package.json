@@ -90,7 +90,7 @@
     "@svgr/webpack": "^8.1.0",
     "@tiptap/extension-character-count": "^2.11.7",
     "@tiptap/extension-link": "^2.11.7",
-    "@tiptap/react": "^2.11.7",
+    "@tiptap/react": "^2.14.0",
     "@tiptap/starter-kit": "^2.11.7",
     "@types/storybook__addons": "^5.2.1",
     "@types/uuid": "^10.0.0",
