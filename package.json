@@ -129,7 +129,7 @@
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
     "styled-components": "^5.3.6",
-    "svix": "^1.65.0",
+    "svix": "^1.67.0",
     "swr": "^2.3.3",
     "tiny-hashes": "^1.0.1",
     "url": "^0.11.2",
