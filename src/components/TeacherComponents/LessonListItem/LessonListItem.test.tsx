@@ -8,6 +8,8 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 const onClick = jest.fn();
 
 const props: LessonListItemProps = {
+  geoRestricted: false,
+  loginRequired: false,
   unitTitle: "Adding surds",
   programmeSlug: "maths-secondary-ks4-higher",
   expired: false,
@@ -100,12 +102,5 @@ describe("Lesson List Item", () => {
 
     await user.hover(cardContainer);
     expect(cardContainer).toHaveStyle("background-color: #f2f2f2");
-  });
-  test("it shows the copyrighted tag when hasCopyrightMaterial is true", () => {
-    const { getByText } = render(
-      <LessonListItem {...{ ...props, hasCopyrightMaterial: true }} />,
-    );
-
-    expect(getByText("Copyrighted")).toBeInTheDocument();
   });
 });

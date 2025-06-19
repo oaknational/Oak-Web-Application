@@ -62,6 +62,8 @@ export const getTransformedLessons = (
           actions: (keysToCamelCase(lesson.actions) || null) as Actions,
           isUnpublished: false,
           lessonReleaseDate: lesson.lesson_data.lesson_release_date,
+          geoRestricted: lesson.features?.agf__geo_restricted ?? false,
+          loginRequired: lesson.features?.agf__login_required ?? false,
         };
         return transformedLesson;
       } else {

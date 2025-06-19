@@ -313,6 +313,8 @@ export const lessonListItemSchema = z.object({
   actions: camelActionSchema.nullish(),
   isUnpublished: z.literal(false),
   lessonReleaseDate: z.string().nullable(),
+  geoRestricted: z.boolean(),
+  loginRequired: z.boolean(),
 });
 
 export type LessonListItem = z.infer<typeof lessonListItemSchema>;
