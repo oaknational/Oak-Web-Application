@@ -15,8 +15,7 @@ export function LessonCopyrightTag({
     if ((lessonLoginRequired || lessonGeorestricted) && !isSignedIn) {
       return true;
     }
-    // if the user is signed in, and the lesson is georestricted,
-    // but the user is not geo authenticated, we show the tag
+
     if (lessonGeorestricted && isSignedIn && !userGeoAuthenticated) {
       return true;
     }
