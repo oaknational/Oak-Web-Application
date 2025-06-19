@@ -180,6 +180,8 @@ describe("teacherPreviewLessonListing()", () => {
           {
             description: "lesson-description",
             expired: false,
+            geoRestricted: false,
+            loginRequired: false,
             hasCopyrightMaterial: false,
             lessonCohort: "2023-2024",
             lessonReleaseDate: "unreleased",
@@ -236,6 +238,8 @@ describe("teacherPreviewLessonListing()", () => {
           {
             description: "lesson-description",
             expired: false,
+            geoRestricted: false,
+            loginRequired: false,
             hasCopyrightMaterial: false,
             isUnpublished: true,
             lessonCohort: "2023-2024",
@@ -276,6 +280,8 @@ describe("teacherPreviewLessonListing()", () => {
         {
           description: "lesson-description",
           expired: false,
+          geoRestricted: false,
+          loginRequired: false,
           hasCopyrightMaterial: false,
           lessonCohort: "2023-2024",
           lessonReleaseDate: "unreleased",

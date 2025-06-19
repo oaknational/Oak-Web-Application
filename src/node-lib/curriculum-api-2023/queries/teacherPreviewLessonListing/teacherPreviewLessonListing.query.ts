@@ -48,6 +48,8 @@ export const getTransformedLessons = (
         lessonCohort: lesson.lesson_data._cohort,
         actions: (keysToCamelCase(lesson.actions) || null) as Actions,
         lessonReleaseDate: "unreleased",
+        geoRestricted: lesson.features?.agf__geo_restricted ?? false,
+        loginRequired: lesson.features?.agf__login_required ?? false,
       };
       return transformedLesson;
     })
