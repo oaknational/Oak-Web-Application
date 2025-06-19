@@ -1,13 +1,13 @@
 import { render } from "@testing-library/react";
 
-import { setUseUserReturn } from "../../../__tests__/__helpers__/mockClerk";
+import { LessonCopyrightTag } from "./LessonCopyrightTag";
+
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import {
   mockLoggedOut,
   mockGeorestrictedUser,
   mockNotOnboardedUser,
-} from "../../../__tests__/__helpers__/mockUser";
-
-import { LessonCopyrightTag } from "./LessonCopyrightTag";
+} from "@/__tests__/__helpers__/mockUser";
 
 describe("LessonCopyrightTag", () => {
   test("it shows copyright tag if lesson has complex copyright and user is signed out", () => {
