@@ -1,14 +1,15 @@
 import {
+  ProgrammeFields,
+  StaticLesson,
+} from "@oaknational/oak-curriculum-schema";
+
+import {
   lessonListingPageDataSchema,
   LessonListingPageData,
   partialSyntheticUnitvariantLessonsArraySchema,
   partialSyntheticUnitvariantLessonsSchema,
 } from "./lessonListing.schema";
 
-import {
-  ProgrammeFields,
-  StaticLesson,
-} from "@oaknational/oak-curriculum-schema";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import OakError from "@/errors/OakError";
 import {
