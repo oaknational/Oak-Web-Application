@@ -1,3 +1,7 @@
+import {
+  lessonDataFixture,
+  syntheticUnitvariantLessonsByKsFixture,
+} from "@oaknational/oak-curriculum-schema";
 
 import sdk from "../../sdk";
 
@@ -7,10 +11,6 @@ import lessonListing, {
 } from "./lessonListing.query";
 import { lessonListingPageDataSchema } from "./lessonListing.schema";
 
-import {
-  lessonDataFixture,
-  syntheticUnitvariantLessonsByKsFixture,
-} from "@oaknational/oak-curriculum-schema";
 
 describe("lessonListing()", () => {
   describe("lessonListing query", () => {

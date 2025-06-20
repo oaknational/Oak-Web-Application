@@ -1,13 +1,12 @@
 import { z } from "zod";
-
-
-import { zodToCamelCase } from "./helpers/zodToCamelCase";
-import { mediaClipsRecordCamelSchema } from "./queries/lessonMediaClips/lessonMediaClips.schema";
-
 import {
   actionsSchema,
   syntheticUnitvariantsWithLessonIdsByKsSchema,
 } from "@oaknational/oak-curriculum-schema";
+
+import { zodToCamelCase } from "./helpers/zodToCamelCase";
+import { mediaClipsRecordCamelSchema } from "./queries/lessonMediaClips/lessonMediaClips.schema";
+
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
 export const contentGuidanceSchemaCamelCase = z.object({
