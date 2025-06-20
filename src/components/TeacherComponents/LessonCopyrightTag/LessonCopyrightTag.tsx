@@ -9,18 +9,15 @@ export function LessonCopyrightTag({
   lessonGeorestricted?: boolean;
 }) {
   const { user, isSignedIn } = useUser();
-  const showCopyrightedTag = (() => {
-    const userGeoAuthenticated = user?.publicMetadata?.owa?.isRegionAuthorised;
+  const userGeoAuthenticated = user?.publicMetadata?.owa?.isRegionAuthorised;
 
-    if ((lessonLoginRequired || lessonGeorestricted) && !isSignedIn) {
-      return true;
-    }
+  const showSignedOutTag =
+    (lessonLoginRequired || lessonGeorestricted) && !isSignedIn;
 
-    if (lessonGeorestricted && isSignedIn && !userGeoAuthenticated) {
-      return true;
-    }
-    return false;
-  })();
+  const showGeorestrictedTag =
+    lessonGeorestricted && isSignedIn && !userGeoAuthenticated;
+
+  const showCopyrightedTag = showSignedOutTag || showGeorestrictedTag;
 
   return (
     showCopyrightedTag && (
