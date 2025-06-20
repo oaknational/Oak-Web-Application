@@ -30,9 +30,9 @@ const LessonResourceGraphicsItem: FC<LessonResourceGraphicsItemProps> = (
   const { icon, resourceCount } = props;
   return (
     <OakFlex
-      $display={"flex"}
       $alignItems={"center"}
-      $flexDirection={["column", "row"]}
+      $justifyContent={"center"}
+      $gap="space-between-sssx"
       $mr={["space-between-none", "space-between-m"]}
     >
       <OakIcon

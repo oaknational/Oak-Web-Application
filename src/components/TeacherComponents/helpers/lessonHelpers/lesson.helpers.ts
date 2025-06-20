@@ -428,7 +428,7 @@ export type GetPageLinksForLessonProps = Pick<
   | "additionalMaterialUrl"
   | "starterQuiz"
   | "exitQuiz"
-  | "hasCopyrightMaterial"
+  | "hasLegacyCopyrightMaterial"
   | "hasMediaClips"
 >;
 

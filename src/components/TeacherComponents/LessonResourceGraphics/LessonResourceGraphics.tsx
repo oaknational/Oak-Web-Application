@@ -16,7 +16,11 @@ type LessonResourceGraphicsProps = {
 
 const LessonResourceGraphics: FC<LessonResourceGraphicsProps> = ({ items }) => {
   return (
-    <OakFlex $justifyContent={["space-evenly", "flex-start"]}>
+    <OakFlex
+      $gap={["space-between-xs", "space-between-s"]}
+      $flexWrap="wrap"
+      $justifyContent={"flex-start"}
+    >
       {items.map((item, index) => (
         <LessonResourceGraphicsItem
           key={`graphics-item-${item.titleSingular}-${index}`}
