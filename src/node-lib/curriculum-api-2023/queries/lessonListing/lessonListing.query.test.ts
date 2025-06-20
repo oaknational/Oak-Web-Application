@@ -11,7 +11,6 @@ import lessonListing, {
 } from "./lessonListing.query";
 import { lessonListingPageDataSchema } from "./lessonListing.schema";
 
-
 describe("lessonListing()", () => {
   describe("lessonListing query", () => {
     test("throws a not found error if no unit is found", async () => {
