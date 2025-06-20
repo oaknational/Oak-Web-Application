@@ -1,6 +1,7 @@
+import { ProgrammeFields } from "@oaknational/oak-curriculum-schema";
+
 import { BetaLessonListSchema } from "./teacherPreviewLessonListing.schema";
 
-import { ProgrammeFields } from "@oaknational/oak-curriculum-schema";
 import {
   lessonListingPageDataSchema,
   LessonListingPageData,
