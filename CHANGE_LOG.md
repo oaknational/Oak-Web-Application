@@ -1,3 +1,10 @@
+# [1.781.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.780.0...v1.781.0) (2025-06-20)
+
+
+### Features
+
+* add Vercel configuration using shared terraform module ([8879b03](https://github.com/oaknational/Oak-Web-Application/commit/8879b030d4d468d1e1838fecf9fc45b06f7d6211))
+
 # [1.780.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.779.0...v1.780.0) (2025-06-18)
 
 
