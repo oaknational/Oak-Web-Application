@@ -1,15 +1,14 @@
 import {
-  ProgrammeFields,
-  StaticLesson,
-} from "@oaknational/oak-curriculum-schema";
-
-import {
   lessonListingPageDataSchema,
   LessonListingPageData,
   partialSyntheticUnitvariantLessonsArraySchema,
   partialSyntheticUnitvariantLessonsSchema,
 } from "./lessonListing.schema";
 
+import {
+  ProgrammeFields,
+  StaticLesson,
+} from "@oaknational/oak-curriculum-schema";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import OakError from "@/errors/OakError";
 import {
@@ -36,7 +35,7 @@ export const getTransformedLessons = (
       if (publishedLesson) {
         const lesson =
           partialSyntheticUnitvariantLessonsSchema.parse(publishedLesson);
-        const hasCopyrightMaterial =
+        const hasLegacyCopyrightMaterial =
           publishedLesson.lesson_data.copyright_content?.find(
             (c: { copyright_info: string }) =>
               c.copyright_info === "This lesson contains copyright material.",
@@ -56,7 +55,7 @@ export const getTransformedLessons = (
           videoCount: lesson.lesson_data.video_id ? 1 : 0,
           presentationCount: lesson.lesson_data.asset_id_slidedeck ? 1 : 0,
           worksheetCount: lesson.lesson_data.asset_id_worksheet ? 1 : 0,
-          hasCopyrightMaterial,
+          hasLegacyCopyrightMaterial,
           orderInUnit: lesson.order_in_unit,
           lessonCohort: lesson.lesson_data._cohort,
           actions: (keysToCamelCase(lesson.actions) || null) as Actions,

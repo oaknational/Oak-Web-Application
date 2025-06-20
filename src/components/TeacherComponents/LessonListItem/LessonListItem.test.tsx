@@ -25,7 +25,7 @@ const props: LessonListItemProps = {
   videoCount: 1,
   presentationCount: 1,
   worksheetCount: 1,
-  hasCopyrightMaterial: false,
+  hasLegacyCopyrightMaterial: false,
   hitCount: 10,
   index: 3,
   currentPage: 1,

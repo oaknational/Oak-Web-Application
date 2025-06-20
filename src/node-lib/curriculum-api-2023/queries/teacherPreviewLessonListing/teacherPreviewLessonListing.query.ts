@@ -1,7 +1,6 @@
-import { ProgrammeFields } from "@oaknational/oak-curriculum-schema";
-
 import { BetaLessonListSchema } from "./teacherPreviewLessonListing.schema";
 
+import { ProgrammeFields } from "@oaknational/oak-curriculum-schema";
 import {
   lessonListingPageDataSchema,
   LessonListingPageData,
@@ -23,7 +22,7 @@ export const getTransformedLessons = (
   return lessons
     .map((l) => {
       const lesson = partialSyntheticUnitvariantLessonsSchema.parse(l);
-      const hasCopyrightMaterial =
+      const hasLegacyCopyrightMaterial =
         l.lesson_data.copyright_content?.find(
           (c: { copyright_info: string }) =>
             c.copyright_info === "This lesson contains copyright material.",
@@ -43,7 +42,7 @@ export const getTransformedLessons = (
         videoCount: lesson.lesson_data.video_id ? 1 : 0,
         presentationCount: lesson.lesson_data.asset_id_slidedeck ? 1 : 0,
         worksheetCount: lesson.lesson_data.asset_id_worksheet ? 1 : 0,
-        hasCopyrightMaterial,
+        hasLegacyCopyrightMaterial,
         orderInUnit: lesson.order_in_unit,
         lessonCohort: lesson.lesson_data._cohort,
         actions: (keysToCamelCase(lesson.actions) || null) as Actions,

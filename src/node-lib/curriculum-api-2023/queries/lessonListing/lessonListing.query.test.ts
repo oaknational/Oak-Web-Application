@@ -1,7 +1,3 @@
-import {
-  lessonDataFixture,
-  syntheticUnitvariantLessonsByKsFixture,
-} from "@oaknational/oak-curriculum-schema";
 
 import sdk from "../../sdk";
 
@@ -10,6 +6,11 @@ import lessonListing, {
   getPackagedUnit,
 } from "./lessonListing.query";
 import { lessonListingPageDataSchema } from "./lessonListing.schema";
+
+import {
+  lessonDataFixture,
+  syntheticUnitvariantLessonsByKsFixture,
+} from "@oaknational/oak-curriculum-schema";
 
 describe("lessonListing()", () => {
   describe("lessonListing query", () => {
@@ -79,7 +80,7 @@ describe("lessonListing()", () => {
             videoCount: 0,
             presentationCount: 0,
             worksheetCount: 0,
-            hasCopyrightMaterial: false,
+            hasLegacyCopyrightMaterial: false,
             orderInUnit: 1,
             lessonCohort: "2023-2024",
             actions: null,
@@ -220,7 +221,7 @@ describe("lessonListing()", () => {
           {
             description: "lesson-description",
             expired: false,
-            hasCopyrightMaterial: false,
+            hasLegacyCopyrightMaterial: false,
             lessonCohort: "2023-2024",
             lessonReleaseDate: null,
             lessonSlug: "lesson-slug",
@@ -280,7 +281,7 @@ describe("lessonListing()", () => {
           {
             description: "lesson-description",
             expired: false,
-            hasCopyrightMaterial: false,
+            hasLegacyCopyrightMaterial: false,
             lessonCohort: "2023-2024",
             lessonReleaseDate: null,
             lessonSlug: "lesson-slug",
@@ -323,7 +324,7 @@ describe("lessonListing()", () => {
         {
           description: "lesson-description",
           expired: false,
-          hasCopyrightMaterial: false,
+          hasLegacyCopyrightMaterial: false,
           lessonCohort: "2023-2024",
           lessonSlug: "lesson-slug",
           lessonTitle: "lesson-title",

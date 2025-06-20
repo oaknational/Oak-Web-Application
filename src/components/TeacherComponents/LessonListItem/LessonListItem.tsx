@@ -73,11 +73,11 @@ function getAvailableResourceList({
   videoCount,
   presentationCount,
   worksheetCount,
-  hasCopyrightMaterial,
+  hasLegacyCopyrightMaterial,
 }: LessonListItemProps | SpecialistLessonListItemProps) {
   const resources: LessonResourceGraphicsItemProps[] = [];
 
-  if (presentationCount && !hasCopyrightMaterial) {
+  if (presentationCount && !hasLegacyCopyrightMaterial) {
     resources.push({
       titleSingular: "Slide deck",
       titlePlural: "Slide decks",

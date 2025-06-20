@@ -1,5 +1,4 @@
 import { mediaClipCycleFixture } from "@oaknational/oak-curriculum-schema";
-
 import {
   createAttributionObject,
   getCommonPathway,
@@ -127,7 +126,7 @@ describe("getPageLinksForLesson()", () => {
       additionalMaterialUrl: "additional-material-url",
       starterQuiz: [],
       exitQuiz: [],
-      hasCopyrightMaterial: false,
+      hasLegacyCopyrightMaterial: false,
       hasDownloadableResources: true,
       hasMediaClips: false,
     };
@@ -172,7 +171,7 @@ describe("getPageLinksForLesson()", () => {
       additionalMaterialUrl: "additional-material-url",
       starterQuiz: ["foo"],
       exitQuiz: ["bar"],
-      hasCopyrightMaterial: false,
+      hasLegacyCopyrightMaterial: false,
       hasDownloadableResources: true,
     };
 
@@ -216,7 +215,7 @@ describe("getPageLinksForLesson()", () => {
       worksheetUrl: "worksheet-url",
       additionalMaterialUrl: "additional-material-url",
       starterQuiz: ["foo"],
-      hasCopyrightMaterial: false,
+      hasLegacyCopyrightMaterial: false,
       hasDownloadableResources: true,
     };
 
@@ -261,7 +260,7 @@ describe("getPageLinksForLesson()", () => {
       additionalMaterialUrl: "additional-material-url",
       starterQuiz: [],
       exitQuiz: ["bar"],
-      hasCopyrightMaterial: false,
+      hasLegacyCopyrightMaterial: false,
       hasDownloadableResources: true,
     };
 
@@ -299,11 +298,11 @@ describe("getPageLinksForLesson()", () => {
     expect(result).toEqual(expected);
   });
 
-  it("doesn't include slidedeck if hasCopyrightMaterial", () => {
+  it("doesn't include slidedeck if hasLegacyCopyrightMaterial", () => {
     const lesson = {
       lessonGuideUrl: null,
       presentationUrl: "presentation-url",
-      hasCopyrightMaterial: true,
+      hasLegacyCopyrightMaterial: true,
       videoMuxPlaybackId: null,
       worksheetUrl: "worksheet-url",
       additionalMaterialUrl: null,
