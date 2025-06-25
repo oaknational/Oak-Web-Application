@@ -1,3 +1,11 @@
+# [1.782.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.781.0...v1.782.0) (2025-06-25)
+
+
+### Features
+
+* move DNS management from cloud config repo to vercel module ([34c97b6](https://github.com/oaknational/Oak-Web-Application/commit/34c97b6d32ef112c4956f7ad7e4312775f0b725b))
+* updates filter in tests ([7b9e823](https://github.com/oaknational/Oak-Web-Application/commit/7b9e8234f592fd0db31e2398c560d8e452bb8152))
+
 # [1.781.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.780.0...v1.781.0) (2025-06-20)
 
 
