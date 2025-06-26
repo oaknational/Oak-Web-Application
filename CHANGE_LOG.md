@@ -1,3 +1,10 @@
+# [1.783.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.782.1...v1.783.0) (2025-06-26)
+
+
+### Features
+
+* add loader to desktop lotpicker ([ae137e2](https://github.com/oaknational/Oak-Web-Application/commit/ae137e2886572823da630a046fef9a37947014bf))
+
 ## [1.782.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.782.0...v1.782.1) (2025-06-25)
 
 # [1.782.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.781.0...v1.782.0) (2025-06-25)
