@@ -23,7 +23,7 @@ describe("hasLessonMathJax", () => {
     videoWithSignLanguageMuxPlaybackId: null,
     transcriptSentences: null,
     isWorksheetLandscape: null,
-    hasCopyrightMaterial: null,
+    hasLegacyCopyrightMaterial: null,
     expired: null,
     starterQuiz: [],
     exitQuiz: [],

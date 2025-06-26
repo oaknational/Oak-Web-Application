@@ -1,3 +1,21 @@
+# [1.784.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.783.0...v1.784.0) (2025-06-26)
+
+
+### Bug Fixes
+
+* fix fixtures and type errors ([80aa2f5](https://github.com/oaknational/Oak-Web-Application/commit/80aa2f51cd6612d559d5df3d6cdddae7ef0ea673))
+* fix import order issue manually ([919d1e4](https://github.com/oaknational/Oak-Web-Application/commit/919d1e42e4b8f07547611d8dc16f7b50a3bbb0d5))
+* fix import order issue manually ([24aea30](https://github.com/oaknational/Oak-Web-Application/commit/24aea30ceffd9c08599b5a525b5a0901e81d3217))
+* fix import order issue manually ([968450a](https://github.com/oaknational/Oak-Web-Application/commit/968450a115f69404ad4894107a371996d142c61b))
+* fix LessonCopyRightTag border styling ([4aec3de](https://github.com/oaknational/Oak-Web-Application/commit/4aec3de0d6c5e280c2a929e2ef8e9f97d536f2eb))
+* rm storybook example with copyright material ([394c516](https://github.com/oaknational/Oak-Web-Application/commit/394c51633af8a6f5814e1d096408d61910402707))
+
+
+### Features
+
+* add copyrighted tag to lesson cards, update storybook accordingly ([ff995d5](https://github.com/oaknational/Oak-Web-Application/commit/ff995d59d6e7e3e58d2d6f7125a4f52e39418d58))
+* update oak-curriculum-schema and implement LessonCopyrightTag component ([c93b68c](https://github.com/oaknational/Oak-Web-Application/commit/c93b68ce87d5b2eb61dbfdeac32d52abcf6c2cc8))
+
 # [1.783.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.782.1...v1.783.0) (2025-06-26)
 
 

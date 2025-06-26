@@ -70,7 +70,9 @@ const constructLessonDownloads = ({
       videoCount: lesson.lesson_data.video_id ? 1 : 0,
       presentationCount: lesson.lesson_data.asset_id_slidedeck ? 1 : 0,
       worksheetCount: lesson.lesson_data.asset_id_worksheet ? 1 : 0,
-      hasCopyrightMaterial: lesson.lesson_data.copyright_content ? true : false,
+      hasLegacyCopyrightMaterial: lesson.lesson_data.copyright_content
+        ? true
+        : false,
       orderInUnit: lesson.order_in_unit,
       lessonCohort: lesson.lesson_data._cohort,
     };
