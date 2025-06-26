@@ -17,8 +17,6 @@ export const lessonContentSchema = lessonContentSchemaFull.omit({
   exit_quiz: true,
   starter_quiz: true,
   video_duration: true,
-  geo_restricted: true,
-  login_required: true,
 });
 
 export type LessonOverviewContent = Omit<
@@ -70,6 +68,8 @@ export const lessonOverviewSchema = baseLessonOverviewSchema.extend({
   additionalFiles: z.array(z.string()).nullable(),
   lessonMediaClips: mediaClipsRecordCamelSchema.nullable(),
   lessonReleaseDate: z.string().nullable(),
+  geoRestricted: z.boolean().nullable(),
+  loginRequired: z.boolean().nullable(),
 });
 
 export type LessonOverviewPageData = z.infer<typeof lessonOverviewSchema>;
