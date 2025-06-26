@@ -1,7 +1,9 @@
 import { FC, MutableRefObject } from "react";
-import { OakP, OakSpan, OakFlex, OakBox } from "@oaknational/oak-components";
+import { useFeatureFlagEnabled } from "posthog-js/react";
+import { OakP, OakSpan, OakFlex } from "@oaknational/oak-components";
 
 import { DisabledListItemHeader } from "../ListItemHeader/ListItemHeader";
+import { LessonCopyrightTag } from "../LessonCopyrightTag/LessonCopyrightTag";
 
 import useClickableCard from "@/hooks/useClickableCard";
 import LessonResourceGraphics from "@/components/TeacherComponents/LessonResourceGraphics";
@@ -25,6 +27,8 @@ export type LessonListItemProps = LessonListingPageData["lessons"][number] & {
   unitTitle: string;
   yearSlug: string;
   yearTitle: string;
+  geoRestricted: boolean;
+  loginRequired: boolean;
   hideTopHeading?: boolean;
   hitCount?: number;
   index: number;
@@ -69,11 +73,11 @@ function getAvailableResourceList({
   videoCount,
   presentationCount,
   worksheetCount,
-  hasCopyrightMaterial,
+  hasLegacyCopyrightMaterial,
 }: LessonListItemProps | SpecialistLessonListItemProps) {
   const resources: LessonResourceGraphicsItemProps[] = [];
 
-  if (presentationCount && !hasCopyrightMaterial) {
+  if (presentationCount && !hasLegacyCopyrightMaterial) {
     resources.push({
       titleSingular: "Slide deck",
       titlePlural: "Slide decks",
@@ -123,6 +127,10 @@ const LessonListItem: FC<
 > = (props) => {
   const { lessonTitle, lessonSlug, index, firstItemRef, onClick } = props;
 
+  const restrictionEnabled = useFeatureFlagEnabled(
+    "teachers-copyright-restrictions",
+  );
+
   const isUnpublishedLesson = isUnpublishedLessonListItem(props);
 
   const { isHovered, primaryTargetProps, containerProps } =
@@ -139,6 +147,7 @@ const LessonListItem: FC<
       ? "grey30"
       : "pink";
   const backgroundOnHover: OakColorName = "pink60";
+
   return (
     <ListItemCard
       title={lessonTitle}
@@ -228,9 +237,21 @@ const LessonListItem: FC<
             )}
           </OakFlex>
           {resources && resources.length > 0 && !disabled && (
-            <OakBox>
+            <OakFlex
+              $width="100%"
+              $justifyContent="space-between"
+              $alignItems={"center"}
+              $flexWrap={"wrap"}
+              $gap={"all-spacing-2"}
+            >
               <LessonResourceGraphics items={resources} />
-            </OakBox>
+              {restrictionEnabled && isLessonListItem(props) && (
+                <LessonCopyrightTag
+                  lessonGeorestricted={props.geoRestricted}
+                  lessonLoginRequired={props.loginRequired}
+                />
+              )}
+            </OakFlex>
           )}
         </OakFlex>
       </OakFlex>

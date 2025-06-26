@@ -43,7 +43,7 @@ export const videoClipObjectCamelCaseSchema = z
 export const mediaClipCycleCamelSchema = z.object({
   order: z.number().or(z.string()),
   mediaId: z.number().or(z.string()),
-  videoId: z.number().nullable(),
+  videoId: z.number().nullish(),
   mediaType: z.string().nullish(),
   customTitle: z.string().nullish(),
   mediaObject: mediaClipObjectCamelCaseSchema,
