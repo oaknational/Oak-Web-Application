@@ -26,7 +26,10 @@ export function LessonCopyrightTag({
         isTrailingIcon
         $maxHeight={"all-spacing-7"}
         $borderRadius={"border-radius-s"}
+        $borderColor={"grey50"}
         $borderStyle={"solid"}
+        $bv={"border-solid-s"}
+        $bh={"border-solid-s"}
         $background={"grey20"}
         label="Copyrighted"
       />
