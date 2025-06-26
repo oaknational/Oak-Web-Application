@@ -19,7 +19,11 @@ export type CopyrightRestrictionBannerProps = {
 };
 
 const StyledFlex = styled(OakFlex)`
-  max-width: 75%;
+  max-width: 80%;
+
+  @media (max-width: 1280px) {
+    max-width: 70%;
+  }
 
   @media (max-width: 750px) {
     max-width: 100%;
