@@ -545,6 +545,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       if (isMobile) {
         setIsNavigating(true);
       } else {
+        setIsNavigating(true);
         setShowPhases(false);
       }
 
@@ -1436,6 +1437,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     isTrailingIcon={true}
                     onClick={handleViewCurriculum}
                     data-testid="lot-picker-view-curriculum-button"
+                    isLoading={isNavigating}
                   >
                     View
                   </OakPrimaryButton>

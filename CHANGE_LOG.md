@@ -1,3 +1,27 @@
+# [1.783.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.782.1...v1.783.0) (2025-06-26)
+
+
+### Features
+
+* add loader to desktop lotpicker ([ae137e2](https://github.com/oaknational/Oak-Web-Application/commit/ae137e2886572823da630a046fef9a37947014bf))
+
+## [1.782.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.782.0...v1.782.1) (2025-06-25)
+
+# [1.782.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.781.0...v1.782.0) (2025-06-25)
+
+
+### Features
+
+* move DNS management from cloud config repo to vercel module ([34c97b6](https://github.com/oaknational/Oak-Web-Application/commit/34c97b6d32ef112c4956f7ad7e4312775f0b725b))
+* updates filter in tests ([7b9e823](https://github.com/oaknational/Oak-Web-Application/commit/7b9e8234f592fd0db31e2398c560d8e452bb8152))
+
+# [1.781.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.780.0...v1.781.0) (2025-06-20)
+
+
+### Features
+
+* add Vercel configuration using shared terraform module ([8879b03](https://github.com/oaknational/Oak-Web-Application/commit/8879b030d4d468d1e1838fecf9fc45b06f7d6211))
+
 # [1.780.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.779.0...v1.780.0) (2025-06-18)
 
 
