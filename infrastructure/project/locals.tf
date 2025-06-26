@@ -56,5 +56,30 @@ locals {
     ]
   ])
 
+  custom_env_names = ["staging"]
+
+  custom_env_vars = flatten([
+    for env_name, env_vars in var.custom_env_vars : [
+      for key, value in env_vars : {
+        key                     = key
+        value                   = value
+        custom_environment_name = env_name
+      }
+    ]
+  ])
+
+  custom_env_vars_shared = flatten([
+    for env in local.custom_env_names :
+    [
+      for key, value in var.env_vars.shared : {
+        key                     = key
+        value                   = value
+        custom_environment_name = env
+      }
+    ]
+  ])
+
+  all_custom_env_vars = concat(local.custom_env_vars, local.custom_env_vars_shared)
+
   environment_variables = concat(local.non_sensitive_vars, local.sensitive_vars)
 }
