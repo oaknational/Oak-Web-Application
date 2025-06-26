@@ -13,6 +13,7 @@ import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/Lesson
 import { LessonOverviewHeaderDownloadAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderDownloadAllButton";
 import { LessonOverviewHeaderShareAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderShareAllButton";
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
+import CopyrightRestrictionBanner from "@/components/TeacherComponents/CopyrightRestrictionBanner/CopyrightRestrictionBanner";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import { resolveOakHref } from "@/common-lib/urls";
 
@@ -37,6 +38,8 @@ export const LessonOverviewHeaderMobileB: FC<LessonOverviewHeaderProps> = (
     breadcrumbs,
     programmeSlug,
     unitTitle,
+    geoRestricted,
+    loginRequired,
   } = props;
 
   const previousBreadcrumb = breadcrumbs[breadcrumbs.length - 2];
@@ -107,6 +110,12 @@ export const LessonOverviewHeaderMobileB: FC<LessonOverviewHeaderProps> = (
       <LessonOverviewHeaderDownloadAllButton {...props} />
       {showShare && <LessonOverviewHeaderShareAllButton {...props} />}
       {teacherShareButton}
+      {(geoRestricted || loginRequired) && (
+        <CopyrightRestrictionBanner
+          isGeorestricted={geoRestricted}
+          isLoginRequired={loginRequired}
+        />
+      )}
     </OakFlex>
   );
 };

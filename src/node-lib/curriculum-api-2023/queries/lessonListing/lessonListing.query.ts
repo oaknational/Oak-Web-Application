@@ -91,6 +91,7 @@ export const getPackagedUnit = (
   packagedUnitData: PackagedUnitData,
   unitLessons: LessonListSchema,
   containsGeorestrictedLessons: boolean,
+  containsLoginRequiredLessons: boolean,
 ): LessonListingPageData => {
   const {
     programmeFields,
@@ -134,6 +135,7 @@ export const getPackagedUnit = (
     pathwayDisplayOrder: modifiedProgrammeFields.pathway_display_order,
     actions: combinedActions,
     containsGeorestrictedLessons,
+    containsLoginRequiredLessons,
   };
 };
 
@@ -154,6 +156,9 @@ const lessonListingQuery =
 
     const containsGeorestrictedLessons = modifiedLessons.some(
       (lesson) => lesson.features?.agf__geo_restricted === true,
+    );
+    const containsLoginRequiredLessons = modifiedLessons.some(
+      (lesson) => lesson.features?.agf__login_required === true,
     );
 
     const parsedModifiedLessons =
@@ -177,6 +182,7 @@ const lessonListingQuery =
       packagedUnitData,
       unitLessons,
       containsGeorestrictedLessons,
+      containsLoginRequiredLessons,
     );
     return lessonListingPageDataSchema.parse(packagedUnit);
   };

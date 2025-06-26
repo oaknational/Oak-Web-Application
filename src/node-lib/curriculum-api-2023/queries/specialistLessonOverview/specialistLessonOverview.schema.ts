@@ -21,6 +21,8 @@ export type SpecialistLessonOverviewData = Omit<
   | "examBoardTitle"
   | "lessonMediaClips"
   | "subjectParent"
+  | "geoRestricted"
+  | "loginRequired"
 > & {
   isCanonical: false;
   developmentStageTitle: string;

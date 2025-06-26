@@ -20,6 +20,7 @@ import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeader
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
 import RiskAssessmentBanner from "@/components/TeacherComponents/RiskAssessmentBanner";
 import HeaderListingCurriculumDownloadButton from "@/components/TeacherComponents/HeaderListingCurriculumDownloadButton";
+import CopyrightRestrictionBanner from "@/components/TeacherComponents/CopyrightRestrictionBanner/CopyrightRestrictionBanner";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
@@ -59,6 +60,7 @@ export type HeaderListingProps = {
   isUnitSaved?: boolean;
   onSave?: () => void;
   isGeorestrictedUnit?: boolean;
+  isLoginRequiredUnit?: boolean;
 };
 
 const HeaderListing: FC<HeaderListingProps> = (props) => {
@@ -85,6 +87,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     isUnitSaved,
     onSave,
     isGeorestrictedUnit,
+    isLoginRequiredUnit,
   } = props;
 
   const isKeyStagesAvailable = keyStageSlug && keyStageTitle;
@@ -244,6 +247,13 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
               <OakBox $display={["none", "block", "block"]}>
                 {bannersBlock}
               </OakBox>
+              {(isGeorestrictedUnit || isLoginRequiredUnit) && (
+                <CopyrightRestrictionBanner
+                  isGeorestricted={isGeorestrictedUnit}
+                  isLoginRequired={isLoginRequiredUnit}
+                  isUnit
+                />
+              )}
             </OakFlex>
           </OakFlex>
         </OakFlex>

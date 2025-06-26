@@ -31,6 +31,7 @@ export const lessonListingPageDataSchema = z.object({
   lessons: lessonListSchema,
   actions: lessonListItemSchema.shape.actions.nullable(),
   containsGeorestrictedLessons: z.boolean().optional(),
+  containsLoginRequiredLessons: z.boolean().optional(),
 });
 
 export type LessonListingPageData = z.infer<typeof lessonListingPageDataSchema>;

@@ -14,6 +14,7 @@ import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/Lesson
 import { LessonOverviewHeaderDownloadAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderDownloadAllButton";
 import { LessonOverviewHeaderShareAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderShareAllButton";
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
+import CopyrightRestrictionBanner from "@/components/TeacherComponents/CopyrightRestrictionBanner/CopyrightRestrictionBanner";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 
 const CustomDimensionFlex = styled(OakFlex)`
@@ -41,6 +42,8 @@ export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
     isCanonical,
     phonicsOutcome,
     teacherShareButton,
+    geoRestricted,
+    loginRequired,
   } = props;
 
   return (
@@ -97,6 +100,12 @@ export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
                 {showShare && <LessonOverviewHeaderShareAllButton {...props} />}
                 {teacherShareButton}
               </OakFlex>
+              {(geoRestricted || loginRequired) && (
+                <CopyrightRestrictionBanner
+                  isGeorestricted={geoRestricted}
+                  isLoginRequired={loginRequired}
+                />
+              )}
             </OakFlex>
           </OakFlex>
         </OakGridArea>
