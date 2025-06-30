@@ -12,6 +12,7 @@ import {
   OakGridArea,
 } from "@oaknational/oak-components";
 import { useUser } from "@clerk/nextjs";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import VideoPlayer, {
   VideoEventCallbackArgs,
@@ -39,6 +40,7 @@ import {
   joinTranscript,
   createLearningCycleVideosTitleMap,
 } from "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers";
+import { RestrictedSignInPrompt } from "@/components/TeacherComponents/RestrictedSignInPrompt/RestrictedSignInPrompt";
 import { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import {
@@ -89,9 +91,11 @@ export const LessonMedia = (props: LessonMediaProps) => {
   } = lesson;
   const { isSignedIn } = useUser();
   const { track } = useAnalytics();
-
-  // const showRestricted = !isSignedIn && (loginRequired || geoRestricted);
-  const showRestricted = true;
+  const featureFlagEnabled = useFeatureFlagEnabled(
+    "teachers-copyright-restrictions",
+  );
+  const showRestricted =
+    featureFlagEnabled && !isSignedIn && (loginRequired || geoRestricted);
 
   const subjectSlug = isCanonical
     ? (lesson?.pathways[0]?.subjectSlug ?? "")
@@ -446,7 +450,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
         )}
       </OakBox>
       {showRestricted ? (
-        <div>Restricted</div>
+        <RestrictedSignInPrompt />
       ) : (
         <MediaClips
           listOfAllClips={listOfAllClips}
