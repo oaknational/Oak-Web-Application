@@ -9,6 +9,7 @@ import {
 } from "@oaknational/oak-components";
 import { useRouter } from "next/router";
 import styled from "styled-components";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
@@ -157,7 +158,11 @@ const CopyrightRestrictionBanner = (props: CopyrightRestrictionBannerProps) => {
 
   const { user, isSignedIn } = useUser();
   const { track } = useAnalytics();
+  const restrictionEnabled = useFeatureFlagEnabled(
+    "teachers-copyright-restrictions",
+  );
 
+  console.log({ isSignedIn, isGeorestricted, isLoginRequired });
   const showOnboardingLink = !!(user && !user.publicMetadata?.owa?.isOnboarded);
   const isUserRegionRestricted = !!(
     user && !user?.publicMetadata?.owa?.isRegionAuthorised
@@ -188,16 +193,17 @@ const CopyrightRestrictionBanner = (props: CopyrightRestrictionBannerProps) => {
 
   return (
     <>
-      {(!isSignedIn || (isSignedIn && showOnboardingLink)) &&
-      (isGeorestricted || isLoginRequired) ? (
-        <SignedOutCopyrightBanner
-          showOnboardingLink={showOnboardingLink}
-          isGeorestricted={!!isGeorestricted}
-          isUnit={!!isUnit}
-        />
-      ) : isSignedIn && isGeorestricted && isUserRegionRestricted ? (
-        <SignedInGeorestrictedBanner isUnit={!!isUnit} />
-      ) : null}
+      {restrictionEnabled &&
+        ((!isSignedIn || (isSignedIn && showOnboardingLink)) &&
+        (isGeorestricted || isLoginRequired) ? (
+          <SignedOutCopyrightBanner
+            showOnboardingLink={showOnboardingLink}
+            isGeorestricted={!!isGeorestricted}
+            isUnit={!!isUnit}
+          />
+        ) : isSignedIn && isGeorestricted && isUserRegionRestricted ? (
+          <SignedInGeorestrictedBanner isUnit={!!isUnit} />
+        ) : null)}
     </>
   );
 };
