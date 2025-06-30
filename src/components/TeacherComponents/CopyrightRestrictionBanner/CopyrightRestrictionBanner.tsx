@@ -101,7 +101,7 @@ const SignedOutCopyrightBanner = ({
         </OakP>
       </StyledFlex>
       <OakSecondaryLink
-        href="http://support.thenational.academy/what-is-copyright-and-signing-in"
+        href="https://support.thenational.academy/what-is-copyright-and-signing-in"
         isTrailingIcon
         iconName={"external"}
       >
@@ -133,7 +133,7 @@ const SignedInGeorestrictedBanner = ({ isUnit }: { isUnit: boolean }) => (
     </OakP>
     <OakP $font={["body-2", "body-1"]} $color={"text-primary"}>
       Some of our content is restricted to the UK due to copyright. You can{" "}
-      <OakLink href="http://support.thenational.academy/what-is-copyright-and-signing-in">
+      <OakLink href="https://support.thenational.academy/what-is-copyright-and-signing-in">
         read more about copyrights
       </OakLink>{" "}
       or if you believe this is an error and you’re based in the UK, please{" "}
