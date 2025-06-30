@@ -17,7 +17,8 @@ export const LessonMediaAttributions = ({
           $color="grey60"
           key={clip.name + clip.attribution}
         >
-          <b>{clip.name}</b> &copy; {clip.attribution}.{" "}
+          <OakSpan $font="body-3-bold">{clip.name}</OakSpan> &copy;{" "}
+          {clip.attribution}.{" "}
         </OakSpan>
       ))}
     </OakBox>
