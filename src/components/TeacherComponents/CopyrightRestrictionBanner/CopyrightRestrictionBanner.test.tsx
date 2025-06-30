@@ -9,11 +9,6 @@ import {
   mockUserWithDownloadAccess,
 } from "@/__tests__/__helpers__/mockUser";
 
-const mockFeatureFlag = jest.fn();
-jest.mock("posthog-js/react", () => ({
-  useFeatureFlagEnabled: () => mockFeatureFlag,
-}));
-
 const mockTrackContentBlock = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
@@ -25,13 +20,19 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   }),
 }));
 
+const unitProps = {
+  unitName: "Test unit title",
+  unitSlug: "test-unit-title",
+};
+const lessonProps = {
+  lessonName: "Test lesson title",
+  lessonSlug: "test-lesson-title",
+  lessonReleaseDate: "2025-01-01",
+};
+
 const render = renderWithProviders();
 
 describe("CopyrightRestrictionBanner", () => {
-  beforeEach(() => {
-    mockFeatureFlag.mockReturnValue(true);
-  });
-
   afterEach(() => {
     jest.clearAllMocks();
   });
@@ -42,7 +43,7 @@ describe("CopyrightRestrictionBanner", () => {
         <CopyrightRestrictionBanner
           isGeorestricted={true}
           isLoginRequired={true}
-          isUnit
+          componentType="lesson_listing"
         />,
       );
 
@@ -60,7 +61,7 @@ describe("CopyrightRestrictionBanner", () => {
         <CopyrightRestrictionBanner
           isGeorestricted={false}
           isLoginRequired={true}
-          isUnit
+          componentType="lesson_listing"
         />,
       );
 
@@ -76,6 +77,7 @@ describe("CopyrightRestrictionBanner", () => {
         <CopyrightRestrictionBanner
           isGeorestricted={true}
           isLoginRequired={true}
+          componentType="lesson_overview"
         />,
       );
 
@@ -97,7 +99,7 @@ describe("CopyrightRestrictionBanner", () => {
         <CopyrightRestrictionBanner
           isGeorestricted={true}
           isLoginRequired={true}
-          isUnit
+          componentType="lesson_listing"
         />,
       );
 
@@ -122,7 +124,7 @@ describe("CopyrightRestrictionBanner", () => {
         <CopyrightRestrictionBanner
           isGeorestricted={true}
           isLoginRequired={true}
-          isUnit
+          componentType="lesson_listing"
         />,
       );
 
@@ -138,7 +140,7 @@ describe("CopyrightRestrictionBanner", () => {
         <CopyrightRestrictionBanner
           isGeorestricted={true}
           isLoginRequired={true}
-          isUnit
+          componentType="lesson_listing"
         />,
       );
 
@@ -147,6 +149,69 @@ describe("CopyrightRestrictionBanner", () => {
       expect(bannerText).toEqual(
         "Sorry but this unit can only be downloaded if you are located in the UK.Some of our content is restricted to the UK due to copyright. You can read more about copyrights or if you believe this is an error and you’re based in the UK, please contact us.",
       );
+    });
+
+    it("tracks content block event on a georestricted unit page when user is geoblocked", async () => {
+      setUseUserReturn(mockGeorestrictedUser);
+
+      render(
+        <CopyrightRestrictionBanner
+          isGeorestricted={true}
+          isLoginRequired={true}
+          componentType="lesson_listing"
+          {...unitProps}
+        />,
+      );
+
+      expect(mockTrackContentBlock).toHaveBeenCalledWith({
+        platform: "owa",
+        product: "teacher lesson resources",
+        engagementIntent: "explore",
+        componentType: "lesson_listing",
+        eventVersion: "2.0.0",
+        analyticsUseCase: "Teacher",
+        lessonName: null,
+        lessonSlug: null,
+        lessonReleaseCohort: "2023-2026",
+        lessonReleaseDate: null,
+        unitName: "Test unit title",
+        unitSlug: "test-unit-title",
+        contentType: "unit",
+        accessBlockType: "Geo-restriction",
+        accessBlockDetails: {},
+      });
+    });
+
+    it("tracks content block event on a georestricted lesson page when user is geoblocked", async () => {
+      setUseUserReturn(mockGeorestrictedUser);
+
+      render(
+        <CopyrightRestrictionBanner
+          isGeorestricted={true}
+          isLoginRequired={true}
+          componentType="lesson_overview"
+          {...unitProps}
+          {...lessonProps}
+        />,
+      );
+
+      expect(mockTrackContentBlock).toHaveBeenCalledWith({
+        platform: "owa",
+        product: "teacher lesson resources",
+        engagementIntent: "explore",
+        componentType: "lesson_overview",
+        eventVersion: "2.0.0",
+        analyticsUseCase: "Teacher",
+        lessonName: "Test lesson title",
+        lessonSlug: "test-lesson-title",
+        lessonReleaseCohort: "2023-2026",
+        lessonReleaseDate: "2025-01-01",
+        unitName: "Test unit title",
+        unitSlug: "test-unit-title",
+        contentType: "lesson",
+        accessBlockType: "Geo-restriction",
+        accessBlockDetails: {},
+      });
     });
   });
 });

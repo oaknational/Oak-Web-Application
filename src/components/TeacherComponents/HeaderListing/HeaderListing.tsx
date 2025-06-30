@@ -61,6 +61,8 @@ export type HeaderListingProps = {
   onSave?: () => void;
   isGeorestrictedUnit?: boolean;
   isLoginRequiredUnit?: boolean;
+  unitTitle?: string;
+  unitSlug?: string;
 };
 
 const HeaderListing: FC<HeaderListingProps> = (props) => {
@@ -88,6 +90,8 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     onSave,
     isGeorestrictedUnit,
     isLoginRequiredUnit,
+    unitTitle,
+    unitSlug,
   } = props;
 
   const isKeyStagesAvailable = keyStageSlug && keyStageTitle;
@@ -251,7 +255,9 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                 <CopyrightRestrictionBanner
                   isGeorestricted={isGeorestrictedUnit}
                   isLoginRequired={isLoginRequiredUnit}
-                  isUnit
+                  componentType="lesson_listing"
+                  unitName={unitTitle}
+                  unitSlug={unitSlug}
                 />
               )}
             </OakFlex>

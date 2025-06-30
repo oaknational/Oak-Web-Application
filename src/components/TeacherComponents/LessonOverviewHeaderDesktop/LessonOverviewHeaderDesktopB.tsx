@@ -56,6 +56,10 @@ export const LessonOverviewHeaderDesktopB: FC<LessonOverviewHeaderProps> = (
     unitTitle,
     geoRestricted,
     loginRequired,
+    isLegacy,
+    lessonSlug,
+    lessonReleaseDate,
+    unitSlug,
   } = props;
 
   const previousBreadcrumb = breadcrumbs[breadcrumbs.length - 2];
@@ -151,6 +155,13 @@ export const LessonOverviewHeaderDesktopB: FC<LessonOverviewHeaderProps> = (
                 <CopyrightRestrictionBanner
                   isGeorestricted={geoRestricted}
                   isLoginRequired={loginRequired}
+                  componentType="lesson_overview"
+                  isLessonLegacy={isLegacy}
+                  lessonName={lessonTitle}
+                  lessonSlug={lessonSlug}
+                  lessonReleaseDate={lessonReleaseDate}
+                  unitName={unitTitle}
+                  unitSlug={unitSlug}
                 />
               )}
             </OakFlex>

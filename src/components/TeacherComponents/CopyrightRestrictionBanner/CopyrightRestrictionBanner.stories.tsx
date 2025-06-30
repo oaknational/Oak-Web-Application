@@ -7,6 +7,17 @@ import CopyrightRestrictionBanner from "./CopyrightRestrictionBanner";
 
 const meta: Meta<typeof CopyrightRestrictionBanner> = {
   component: CopyrightRestrictionBanner,
+  argTypes: {
+    componentType: {
+      control: "select",
+      options: [
+        "lesson_listing",
+        "lesson_overview",
+        "lesson_media_clips",
+        "lesson_downloads",
+      ],
+    },
+  },
 };
 export default meta;
 
@@ -16,7 +27,7 @@ export const Default: Story = {
   args: {
     isGeorestricted: true,
     isLoginRequired: true,
-    isUnit: true,
+    componentType: "lesson_listing",
   },
   render: (args) => (
     <ClerkProvider>

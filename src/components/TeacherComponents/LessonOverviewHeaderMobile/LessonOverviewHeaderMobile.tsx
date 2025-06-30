@@ -32,6 +32,11 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
     teacherShareButton,
     geoRestricted,
     loginRequired,
+    isLegacy,
+    lessonSlug,
+    lessonReleaseDate,
+    unitTitle,
+    unitSlug,
   } = props;
 
   return (
@@ -79,6 +84,13 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
         <CopyrightRestrictionBanner
           isGeorestricted={geoRestricted}
           isLoginRequired={loginRequired}
+          componentType="lesson_overview"
+          isLessonLegacy={isLegacy}
+          lessonName={lessonTitle}
+          lessonSlug={lessonSlug}
+          lessonReleaseDate={lessonReleaseDate}
+          unitName={unitTitle}
+          unitSlug={unitSlug}
         />
       )}
     </OakFlex>
