@@ -12,6 +12,8 @@ import {
   OakGridArea,
 } from "@oaknational/oak-components";
 
+import { Attributions } from "./Attributions";
+
 import VideoPlayer, {
   VideoEventCallbackArgs,
 } from "@/components/SharedComponents/VideoPlayer";
@@ -90,6 +92,8 @@ export const LessonMedia = (props: LessonMediaProps) => {
   const commonPathway = getCommonPathway(
     props.isCanonical ? props.lesson.pathways : [props.lesson],
   );
+
+  console.log("diego media clips", mediaClips);
 
   const {
     programmeSlug,
@@ -478,6 +482,20 @@ export const LessonMedia = (props: LessonMediaProps) => {
           <OakBox $display={["block", "block", "none"]}>
             {helpArticleLink}
           </OakBox>
+          <Attributions
+            mediaClipsWithAttributions={
+              listOfAllClips
+                .map((clip) => {
+                  const attributionRequired =
+                    clip.mediaObject?.metadata?.attributionRequired === "yes";
+                  const attribution = clip.mediaObject?.metadata?.attribution;
+                  return attributionRequired && attribution
+                    ? { name: clip.mediaObject.displayName, attribution }
+                    : null;
+                })
+                .filter(Boolean) as Array<{ name: string; attribution: string }>
+            }
+          />
         </OakBox>
       )}
     </OakMaxWidth>
