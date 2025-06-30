@@ -471,7 +471,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
               {mediaClipList}
             </OakBox>
           </OakFlex>
-          <OakBox $display={["none", "none", "block"]}>
+          <OakBox $display={["none", "none", "block"]} $pb="inner-padding-xl4">
             <OakGrid>
               <OakGridArea $colSpan={8}>{lessonMediaClipInfo}</OakGridArea>
               <OakGridArea $colSpan={4} $alignItems={"flex-end"}>

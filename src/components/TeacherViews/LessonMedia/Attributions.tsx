@@ -1,4 +1,4 @@
-import { OakFlex, OakP } from "@oaknational/oak-components";
+import { OakBox, OakSpan } from "@oaknational/oak-components";
 
 export const Attributions = ({
   mediaClipsWithAttributions,
@@ -6,12 +6,12 @@ export const Attributions = ({
   mediaClipsWithAttributions: Array<{ name: string; attribution: string }>;
 }) => {
   return mediaClipsWithAttributions.length ? (
-    <OakFlex $flexWrap="wrap">
+    <OakBox $pv="inner-padding-xl2">
       {mediaClipsWithAttributions.map((clip) => (
-        <OakP $font="body-3">
-          <b>{clip.name}</b> &copy; {clip.attribution}.
-        </OakP>
+        <OakSpan $font="body-3" $color="grey60">
+          <b>{clip.name}</b> &copy; {clip.attribution}.{" "}
+        </OakSpan>
       ))}
-    </OakFlex>
+    </OakBox>
   ) : null;
 };
