@@ -117,7 +117,10 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     additionalFiles,
     lessonOutline,
     lessonReleaseDate,
+    loginRequired,
+    geoRestricted,
   } = lesson;
+
   const isSubHeader =
     useFeatureFlagVariantKey("lesson-overview-subheader-experiment") === "test";
 

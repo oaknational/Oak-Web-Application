@@ -92,6 +92,9 @@ export const generateLessonOverviewFromRaw = (
     isLegacy: true,
     isSpecialist: true,
     isCanonical: false,
+    // todo: find out a way to get this info
+    loginRequired: false,
+    geoRestricted: false,
     lessonSlug: lesson.lesson_slug,
     lessonTitle: lesson.lesson_title,
     programmeSlug: lesson.synthetic_programme_slug,
