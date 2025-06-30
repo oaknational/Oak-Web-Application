@@ -11,6 +11,7 @@ import {
   OakGrid,
   OakGridArea,
 } from "@oaknational/oak-components";
+import { useUser } from "@clerk/nextjs";
 
 import VideoPlayer, {
   VideoEventCallbackArgs,
@@ -49,6 +50,8 @@ type BaseLessonMedia = {
   lessonTitle: string;
   lessonSlug: string;
   keyStageTitle: string;
+  loginRequired: boolean;
+  geoRestricted: boolean;
   mediaClips: MediaClipListCamelCase;
   lessonOutline: { lessonOutline: string }[];
   lessonReleaseDate: string | null;
@@ -81,8 +84,15 @@ export const LessonMedia = (props: LessonMediaProps) => {
     lessonOutline,
     actions,
     lessonReleaseDate,
+    loginRequired,
+    geoRestricted,
   } = lesson;
+  const { isSignedIn } = useUser();
   const { track } = useAnalytics();
+
+  // const showRestricted = !isSignedIn && (loginRequired || geoRestricted);
+  const showRestricted = true;
+
   const subjectSlug = isCanonical
     ? (lesson?.pathways[0]?.subjectSlug ?? "")
     : (lesson.subjectSlug ?? "");
@@ -435,7 +445,39 @@ export const LessonMedia = (props: LessonMediaProps) => {
           </OakTertiaryButton>
         )}
       </OakBox>
+      {showRestricted ? (
+        <div>Restricted</div>
+      ) : (
+        <MediaClips
+          listOfAllClips={listOfAllClips}
+          currentClip={currentClip}
+          videoPlayer={videoPlayer}
+          lessonMediaClipInfo={lessonMediaClipInfo}
+          mediaClipList={mediaClipList}
+          helpArticleLink={helpArticleLink}
+        />
+      )}
+    </OakMaxWidth>
+  );
+};
 
+function MediaClips({
+  listOfAllClips,
+  currentClip,
+  videoPlayer,
+  lessonMediaClipInfo,
+  mediaClipList,
+  helpArticleLink,
+}: {
+  listOfAllClips: (MediaClip & { learningCycle: string })[];
+  currentClip: (MediaClip & { learningCycle: string }) | undefined;
+  videoPlayer: React.ReactNode;
+  lessonMediaClipInfo: React.ReactNode;
+  mediaClipList: React.ReactNode;
+  helpArticleLink: React.ReactNode;
+}) {
+  return (
+    <>
       {listOfAllClips.length > 0 && currentClip && (
         <OakBox data-testid="media-clip-wrapper">
           <OakFlex
@@ -452,7 +494,6 @@ export const LessonMedia = (props: LessonMediaProps) => {
               $height={"100%"}
               $br={"border-solid-m"}
               data-testid="video-player-wrapper"
-              ref={videoPlayerWrapper}
               tabIndex={-1}
             >
               {videoPlayer}
@@ -480,6 +521,6 @@ export const LessonMedia = (props: LessonMediaProps) => {
           </OakBox>
         </OakBox>
       )}
-    </OakMaxWidth>
+    </>
   );
-};
+}
