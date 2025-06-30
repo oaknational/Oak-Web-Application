@@ -12,8 +12,6 @@ import {
   OakGridArea,
 } from "@oaknational/oak-components";
 
-import { Attributions } from "./Attributions";
-
 import VideoPlayer, {
   VideoEventCallbackArgs,
 } from "@/components/SharedComponents/VideoPlayer";
@@ -29,6 +27,7 @@ import {
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
 import { LessonMediaClipInfo } from "@/components/TeacherComponents/LessonMediaClipInfo";
+import { LessonMediaAttributions } from "@/components/TeacherComponents/LessonMediaAttributions/LessonMediaAttributions";
 import type {
   MediaClip,
   MediaClipListCamelCase,
@@ -480,7 +479,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
           <OakBox $display={["block", "block", "none"]}>
             {helpArticleLink}
           </OakBox>
-          <Attributions
+          <LessonMediaAttributions
             mediaClipsWithAttributions={
               listOfAllClips
                 .map((clip) => {
