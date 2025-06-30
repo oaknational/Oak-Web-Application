@@ -93,8 +93,6 @@ export const LessonMedia = (props: LessonMediaProps) => {
     props.isCanonical ? props.lesson.pathways : [props.lesson],
   );
 
-  console.log("diego media clips", mediaClips);
-
   const {
     programmeSlug,
     unitSlug,
