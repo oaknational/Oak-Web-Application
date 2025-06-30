@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { SignUpButton, useUser } from "@clerk/nextjs";
 import {
   OakFlex,
@@ -162,7 +163,6 @@ const CopyrightRestrictionBanner = (props: CopyrightRestrictionBannerProps) => {
     "teachers-copyright-restrictions",
   );
 
-  console.log({ isSignedIn, isGeorestricted, isLoginRequired });
   const showOnboardingLink = !!(user && !user.publicMetadata?.owa?.isOnboarded);
   const isUserRegionRestricted = !!(
     user && !user?.publicMetadata?.owa?.isRegionAuthorised
@@ -170,26 +170,41 @@ const CopyrightRestrictionBanner = (props: CopyrightRestrictionBannerProps) => {
   const isLegacy = unitSlug ? isSlugLegacy(unitSlug) : isLessonLegacy;
   const isUnit = (componentType && componentType === "lesson_listing") ?? false;
 
-  if (isSignedIn && isGeorestricted && isUserRegionRestricted) {
-    track.contentBlockNotificationDisplayed({
-      platform: "owa",
-      product: "teacher lesson resources",
-      engagementIntent: "explore",
-      componentType:
-        componentType ?? (isUnit ? "lesson_listing" : "lesson_overview"),
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      lessonName: lessonName ?? null,
-      lessonSlug: lessonSlug ?? null,
-      lessonReleaseCohort: isLegacy ? "2020-2023" : "2023-2026",
-      lessonReleaseDate: lessonReleaseDate ?? null,
-      unitName: unitName ?? null,
-      unitSlug: unitSlug ?? null,
-      contentType: isUnit ? "unit" : "lesson",
-      accessBlockType: "Geo-restriction",
-      accessBlockDetails: {},
-    });
-  }
+  useEffect(() => {
+    if (isSignedIn && isGeorestricted && isUserRegionRestricted) {
+      track.contentBlockNotificationDisplayed({
+        platform: "owa",
+        product: "teacher lesson resources",
+        engagementIntent: "explore",
+        componentType:
+          componentType ?? (isUnit ? "lesson_listing" : "lesson_overview"),
+        eventVersion: "2.0.0",
+        analyticsUseCase: "Teacher",
+        lessonName: lessonName ?? null,
+        lessonSlug: lessonSlug ?? null,
+        lessonReleaseCohort: isLegacy ? "2020-2023" : "2023-2026",
+        lessonReleaseDate: lessonReleaseDate ?? null,
+        unitName: unitName ?? null,
+        unitSlug: unitSlug ?? null,
+        contentType: isUnit ? "unit" : "lesson",
+        accessBlockType: "Geo-restriction",
+        accessBlockDetails: {},
+      });
+    }
+  }, [
+    isSignedIn,
+    isGeorestricted,
+    isUserRegionRestricted,
+    track,
+    componentType,
+    unitName,
+    unitSlug,
+    lessonName,
+    lessonSlug,
+    lessonReleaseDate,
+    isLegacy,
+    isUnit,
+  ]);
 
   return (
     <>

@@ -19,6 +19,10 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
     },
   }),
 }));
+const mockFeatureFlagEnabled = jest.fn();
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagEnabled: () => mockFeatureFlagEnabled(),
+}));
 
 const unitProps = {
   unitName: "Test unit title",
@@ -32,7 +36,11 @@ const lessonProps = {
 
 const render = renderWithProviders();
 
-describe.skip("CopyrightRestrictionBanner", () => {
+describe("CopyrightRestrictionBanner", () => {
+  beforeEach(() => {
+    mockFeatureFlagEnabled.mockReturnValueOnce(true);
+  });
+
   afterEach(() => {
     jest.clearAllMocks();
   });
