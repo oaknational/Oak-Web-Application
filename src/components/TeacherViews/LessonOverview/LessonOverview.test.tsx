@@ -7,9 +7,15 @@ import {
 
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
+import { mockLoggedIn, mockLoggedOut } from "@/__tests__/__helpers__/mockUser";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+
+const mockFeatureFlagEnabled = jest.fn().mockReturnValue(false);
 
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagVariantKey: jest.fn(),
+  useFeatureFlagEnabled: () => mockFeatureFlagEnabled(),
 }));
 
 const lessonMediaClipsStarted = jest.fn();
@@ -277,5 +283,98 @@ describe("lessonOverview.view", () => {
         yearGroupSlug: null,
       });
     });
+  });
+  it("Should show the sign in prompt when geoRestricted or loginRequired is true, the user is not signed in, and feature flag enabled", () => {
+    mockFeatureFlagEnabled.mockReturnValue(true);
+    setUseUserReturn(mockLoggedOut);
+
+    const { getByText } = renderWithProviders()(
+      <LessonOverview
+        lesson={{
+          ...lessonOverviewFixture(),
+          isSpecialist: false,
+          isCanonical: false,
+          hasMediaClips: true,
+          geoRestricted: true,
+          loginRequired: true,
+        }}
+        isBeta={false}
+      />,
+    );
+    const restrictedSignInPrompt = getByText("Sign in to continue");
+    expect(restrictedSignInPrompt).toBeInTheDocument();
+  });
+  it("Should hide restricted content when sign in prompt is shown", () => {
+    mockFeatureFlagEnabled.mockReturnValue(true);
+    setUseUserReturn(mockLoggedOut);
+
+    const { queryByText } = renderWithProviders()(
+      <LessonOverview
+        lesson={{
+          ...lessonOverviewFixture(),
+          isSpecialist: false,
+          isCanonical: false,
+          hasMediaClips: true,
+          geoRestricted: true,
+          loginRequired: true,
+        }}
+        isBeta={false}
+      />,
+    );
+    const quizContent = queryByText(
+      "Which of these statements about trees is true?",
+    );
+
+    expect(quizContent).not.toBeInTheDocument();
+  });
+  it("Should not show the sign in prompt when feature flag disabled", () => {
+    mockFeatureFlagEnabled.mockReturnValue(false);
+    setUseUserReturn(mockLoggedOut);
+    const { queryByText, getAllByText } = renderWithProviders()(
+      <LessonOverview
+        lesson={{
+          ...lessonOverviewFixture(),
+          isSpecialist: false,
+          isCanonical: false,
+          hasMediaClips: true,
+          geoRestricted: true,
+          loginRequired: true,
+        }}
+        isBeta={false}
+      />,
+    );
+
+    const restrictedSignInPrompt = queryByText("Sign in to continue");
+    expect(restrictedSignInPrompt).not.toBeInTheDocument();
+    const quizContent = getAllByText(
+      "Which of these statements about trees is true?",
+    );
+
+    expect(quizContent[0]).toBeInTheDocument();
+  });
+  it("Should not show the sign in prompt when the user is signed in", () => {
+    mockFeatureFlagEnabled.mockReturnValue(true);
+    setUseUserReturn(mockLoggedIn);
+
+    const { queryByText, getAllByText } = renderWithProviders()(
+      <LessonOverview
+        lesson={{
+          ...lessonOverviewFixture(),
+          isSpecialist: false,
+          isCanonical: false,
+          hasMediaClips: true,
+          geoRestricted: true,
+          loginRequired: true,
+        }}
+        isBeta={false}
+      />,
+    );
+    const restrictedSignInPrompt = queryByText("Sign in to continue");
+    expect(restrictedSignInPrompt).not.toBeInTheDocument();
+    const quizContent = getAllByText(
+      "Which of these statements about trees is true?",
+    );
+
+    expect(quizContent[0]).toBeInTheDocument();
   });
 });

@@ -14,6 +14,7 @@ import {
   useFeatureFlagEnabled,
   useFeatureFlagVariantKey,
 } from "posthog-js/react";
+import { useUser } from "@clerk/nextjs";
 
 import { getContainerId } from "../../TeacherComponents/LessonItemContainer/LessonItemContainer";
 
@@ -126,11 +127,13 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     loginRequired,
     geoRestricted,
   } = lesson;
-
+  const { isSignedIn } = useUser();
   const copyrightFeatureFlagEnabled =
     useFeatureFlagEnabled("teachers-copyright-restrictions") ?? false;
   const contentRestricted =
-    copyrightFeatureFlagEnabled && (loginRequired || geoRestricted);
+    copyrightFeatureFlagEnabled &&
+    !isSignedIn &&
+    (loginRequired || geoRestricted);
 
   const isSubHeader =
     useFeatureFlagVariantKey("lesson-overview-subheader-experiment") === "test";
