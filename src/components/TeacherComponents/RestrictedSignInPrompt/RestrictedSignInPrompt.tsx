@@ -6,8 +6,9 @@ import {
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
-import { getCloudinaryImageUrl } from "../../../utils/getCloudinaryImageUrl";
 import LoginRequiredButton from "../LoginRequiredButton/LoginRequiredButton";
+
+import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 
 const FlexWithMaxWidth = styled(OakFlex)`
   max-width: 600px;
