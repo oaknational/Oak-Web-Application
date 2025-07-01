@@ -10,6 +10,7 @@ describe("LessonOverviewSideNavAnchorLinks", () => {
     ];
     const { getByText } = renderWithTheme(
       <LessonOverviewSideNavAnchorLinks
+        contentRestricted={false}
         links={links}
         currentSectionId="link1"
       />,

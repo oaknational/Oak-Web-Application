@@ -4,6 +4,7 @@ import { OakLI, OakSideMenuNavLink, OakUL } from "@oaknational/oak-components";
 import { getContainerId } from "../LessonItemContainer/LessonItemContainer";
 
 type LessonOverviewSideNavAnchorLinksProps = {
+  contentRestricted: boolean;
   currentSectionId: string | null;
   links: {
     label: string;
@@ -13,7 +14,7 @@ type LessonOverviewSideNavAnchorLinksProps = {
 };
 const LessonOverviewSideNavAnchorLinks: FC<
   LessonOverviewSideNavAnchorLinksProps
-> = ({ links, currentSectionId }) => {
+> = ({ links, currentSectionId, contentRestricted }) => {
   return (
     <OakUL
       $reset
@@ -24,10 +25,16 @@ const LessonOverviewSideNavAnchorLinks: FC<
       {links.map((link, index) => {
         const { label, anchorId, subheading } = link;
 
+        const linkRestricted =
+          contentRestricted &&
+          anchorId !== "lesson-guide" &&
+          anchorId !== "lesson-details";
+        const targetId = linkRestricted ? "restricted-content" : anchorId;
+
         const isCurrent = anchorId === currentSectionId;
         const item = {
           heading: label,
-          href: `#${anchorId}`,
+          href: `#${targetId}`,
           subheading,
         };
 
