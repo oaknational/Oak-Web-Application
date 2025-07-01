@@ -798,20 +798,20 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
             </OakGridArea>
           </OakGrid>
         )}
-        {contentRestricted && (
-          <OakBox
-            $position={"relative"}
-            id={getContainerId("restricted-content")}
-          >
-            <AnchorTarget
-              tabIndex={-1}
-              id="restricted-content"
-              ref={restrictedContentRef}
-            />
-            <RestrictedSignInPrompt />
-          </OakBox>
-        )}
       </OakMaxWidth>
+      {contentRestricted && (
+        <OakBox
+          $position={"relative"}
+          id={getContainerId("restricted-content")}
+        >
+          <AnchorTarget
+            tabIndex={-1}
+            id="restricted-content"
+            ref={restrictedContentRef}
+          />
+          <RestrictedSignInPrompt />
+        </OakBox>
+      )}
     </MathJaxLessonProvider>
   );
 }
