@@ -26,9 +26,7 @@ const LessonOverviewSideNavAnchorLinks: FC<
         const { label, anchorId, subheading } = link;
 
         const linkRestricted =
-          contentRestricted &&
-          anchorId !== "lesson-guide" &&
-          anchorId !== "lesson-details";
+          contentRestricted && anchorId !== "lesson-details";
         const targetId = linkRestricted ? "restricted-content" : anchorId;
 
         const isCurrent = anchorId === currentSectionId;

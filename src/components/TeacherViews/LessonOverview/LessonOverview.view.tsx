@@ -399,7 +399,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 />
 
                 {pageLinks.find((p) => p.label === "Lesson guide") &&
-                  lessonGuideUrl && (
+                  lessonGuideUrl &&
+                  !contentRestricted && (
                     <LessonItemContainer
                       isSpecialist={isSpecialist}
                       ref={lessonGuideSectionRef}

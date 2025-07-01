@@ -20,11 +20,11 @@ describe("LessonOverviewSideNavAnchorLinks", () => {
     );
 
     expect(getByText("Worksheet")).toBeInTheDocument();
-    expect(getByText("Lesson Guide")).toBeInTheDocument();
+    expect(getByText("Lesson Details")).toBeInTheDocument();
   });
 
   it("should redirect restricted links to restricted-content anchor", () => {
-    const { container } = renderWithTheme(
+    const { getByText } = renderWithTheme(
       <LessonOverviewSideNavAnchorLinks
         contentRestricted={true}
         links={links}
@@ -32,21 +32,12 @@ describe("LessonOverviewSideNavAnchorLinks", () => {
       />,
     );
 
-    const lessonGuideLink = container.querySelector('a[href="#lesson-guide"]');
-    const lessonDetailsLink = container.querySelector(
-      'a[href="#lesson-details"]',
-    );
-    const worksheetLink = container.querySelector(
-      'a[href="#restricted-content"]',
-    );
-    const slidesLink = container.querySelector('a[href="#restricted-content"]');
+    const lessonDetailsLink = getByText("Lesson Details").closest("a");
 
-    // Lesson guide and lesson details should not be restricted
-    expect(lessonGuideLink).toBeInTheDocument();
-    expect(lessonDetailsLink).toBeInTheDocument();
+    const worksheetLink = getByText("Worksheet").closest("a");
 
-    // Other content should be redirected to restricted-content
-    expect(worksheetLink).toBeInTheDocument();
-    expect(slidesLink).toBeInTheDocument();
+    expect(lessonDetailsLink).toHaveAttribute("href", "#lesson-details");
+
+    expect(worksheetLink).toHaveAttribute("href", "#restricted-content");
   });
 });
