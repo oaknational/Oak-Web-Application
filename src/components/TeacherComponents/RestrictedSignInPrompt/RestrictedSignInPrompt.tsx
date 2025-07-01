@@ -19,10 +19,10 @@ export function RestrictedSignInPrompt() {
       $flexDirection={"column"}
       $alignItems={"center"}
       $justifyContent={"center"}
-      $pa={"inner-padding-xl2"}
-      $pv={"inner-padding-xl8"}
+      $pa={["inner-padding-none", "inner-padding-xl2"]}
+      $pv={["inner-padding-none", "inner-padding-xl8"]}
       $height={"100%"}
-      $background={"mint"}
+      $background={["bg-primary", "mint"]}
     >
       <FlexWithMaxWidth
         $flexDirection={"column"}
