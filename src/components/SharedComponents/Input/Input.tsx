@@ -149,6 +149,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
         <OakBox
           id={errorId}
           $mb={withoutMarginBottom ? "space-between-none" : "space-between-m"}
+          role="alert"
         >
           <OakFieldError>{error}</OakFieldError>
         </OakBox>
