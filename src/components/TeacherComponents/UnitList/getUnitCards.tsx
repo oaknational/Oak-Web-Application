@@ -156,6 +156,7 @@ export const getUnitCards = ({
         optionalityUnits={getOptionalityUnits(item, onClick, router)}
         onSave={showSave ? onSaveToggle : undefined}
         getIsSaved={isUnitSaved}
+        getIsSaving={isUnitSaving}
       />
     ) : (
       item.map((unitOption) => {
