@@ -211,16 +211,14 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       .toLowerCase();
   };
 
-  const { onSaveToggle, isUnitSaved, showSignIn, setShowSignIn } = useSaveUnits(
-    programmeSlug,
-    {
+  const { onSaveToggle, isUnitSaved, showSignIn, setShowSignIn, isUnitSaving } =
+    useSaveUnits(programmeSlug, {
       savedFrom: "lesson_listing_save_button",
       keyStageTitle: keyStageTitle as KeyStageTitleValueType,
       keyStageSlug,
       subjectTitle,
       subjectSlug,
-    },
-  );
+    });
 
   return (
     <AppLayout
@@ -305,6 +303,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           isIncompleteUnit={unpublishedLessonCount > 0}
           isGeorestrictedUnit={containsGeorestrictedLessons}
           isUnitSaved={isUnitSaved(unitSlug)}
+          isUnitSaving={isUnitSaving(unitSlug)}
           onSave={
             isSlugLegacy(programmeSlug)
               ? undefined

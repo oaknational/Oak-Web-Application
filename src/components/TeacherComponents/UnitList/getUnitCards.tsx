@@ -89,6 +89,7 @@ export const getUnitCards = ({
   firstItemRef,
   onClick,
   isUnitSaved,
+  isUnitSaving,
   onSaveToggle,
   setElementId,
   newAndLegacyUnitsOnPage,
@@ -102,6 +103,7 @@ export const getUnitCards = ({
   firstItemRef?: MutableRefObject<HTMLAnchorElement | null>;
   onClick: (props: UnitListItemProps | SpecialistListItemProps) => void;
   isUnitSaved: (slug: string) => boolean;
+  isUnitSaving?: (slug: string) => boolean;
   onSaveToggle: (slug: string) => void;
   setElementId?: (elementId: string) => void;
   newAndLegacyUnitsOnPage: boolean;
@@ -213,6 +215,7 @@ export const getUnitCards = ({
                 : undefined
             }
             isSaved={isUnitSaved(unitOption.slug)}
+            isSaving={isUnitSaving?.(unitOption.slug)}
           />
         );
       })

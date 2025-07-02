@@ -41,6 +41,7 @@ export const useSaveUnits = (
 
   const [locallySavedUnits, setLocallySavedUnits] = useState<Array<string>>([]);
   const [showSignIn, setShowSignIn] = useState<boolean>(false);
+  const [isSavingUnit, setIsSavingUnit] = useState<string | null>(null);
 
   useEffect(() => {
     if (savedUnitsData) {
@@ -69,11 +70,16 @@ export const useSaveUnits = (
     [locallySavedUnits],
   );
 
+  const isUnitSaving = useCallback(
+    (unitSlug: string) => isSavingUnit === unitSlug,
+    [isSavingUnit],
+  );
+
   const { setCurrentToastProps } = useOakToastContext();
 
   const onSave = async (unitSlug: string) => {
     setLocallySavedUnits((prev) => [...prev, unitSlug]);
-
+    setIsSavingUnit(unitSlug);
     setCurrentToastProps(SavedToastProps);
     incrementSavedUnitsCount();
     await postEducatorData(
@@ -87,6 +93,7 @@ export const useSaveUnits = (
         decrementSavedUnitsCount();
       },
     );
+    setIsSavingUnit(null);
     track.contentSaved({
       platform: "owa",
       product: "teacher lesson resources",
@@ -105,6 +112,7 @@ export const useSaveUnits = (
 
   const onUnsave = async (unitSlug: string) => {
     setLocallySavedUnits((prev) => prev.filter((unit) => unit !== unitSlug));
+    setIsSavingUnit(unitSlug);
     setCurrentToastProps(UnsavedToastProps);
     decrementSavedUnitsCount();
     await postEducatorData(
@@ -116,6 +124,7 @@ export const useSaveUnits = (
         incrementSavedUnitsCount();
       },
     );
+    setIsSavingUnit(null);
     track.contentUnsaved({
       platform: "owa",
       product: "teacher lesson resources",
@@ -149,5 +158,6 @@ export const useSaveUnits = (
     onSaveToggle,
     showSignIn,
     setShowSignIn,
+    isUnitSaving,
   };
 };
