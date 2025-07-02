@@ -1,3 +1,10 @@
+## [1.785.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.785.0...v1.785.1) (2025-07-02)
+
+
+### Bug Fixes
+
+* move pingdom-uptime-check up into the first 10kb for cloudflare blue-green load balancer ([948fa33](https://github.com/oaknational/Oak-Web-Application/commit/948fa33137d55d083942f7781b3b157ac00ee2f3))
+
 # [1.785.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.784.1...v1.785.0) (2025-07-01)
 
 
