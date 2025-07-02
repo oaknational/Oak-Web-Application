@@ -44,7 +44,7 @@ const SignPostToAila = ({
     <PromoBannerWithVideo
       title={title}
       text={text}
-      buttonText="Get started"
+      buttonText="Create a lesson with AI"
       buttonIconName="external"
       href={composeAilaLink({ keyStage, subject, unitTitle, searchExpression })}
       videoPlaybackID={videoPlaybackID}

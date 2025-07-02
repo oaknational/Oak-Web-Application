@@ -1,4 +1,3 @@
-import { SignUpButton, useUser } from "@clerk/nextjs";
 import {
   OakModalCenter,
   OakModalCenterProps,
@@ -6,18 +5,11 @@ import {
   OakFlex,
   OakHeading,
   OakP,
-  OakPrimaryButton,
 } from "@oaknational/oak-components";
-import { useRouter } from "next/router";
 
-import { resolveOakHref } from "@/common-lib/urls";
+import LoginRequiredButton from "../LoginRequiredButton/LoginRequiredButton";
 
 const SavingSignedOutModalContent = () => {
-  const router = useRouter();
-  const { user } = useUser();
-
-  const showOnboardingButton = user && !user.publicMetadata?.owa?.isOnboarded;
-
   return (
     <OakFlex $flexDirection="column">
       <OakFlex
@@ -44,25 +36,10 @@ const SavingSignedOutModalContent = () => {
         whenever you need it – anytime, anywhere. Getting started is simple;
         quickly sign up and start saving.
       </OakP>
-      {showOnboardingButton ? (
-        <OakPrimaryButton
-          width="100%"
-          onClick={() =>
-            router.push({
-              pathname: resolveOakHref({ page: "onboarding" }),
-              query: { returnTo: router.asPath },
-            })
-          }
-        >
-          Finish sign up
-        </OakPrimaryButton>
-      ) : (
-        <SignUpButton
-          forceRedirectUrl={`/onboarding?returnTo=${router.asPath}`}
-        >
-          <OakPrimaryButton width="100%">Sign up</OakPrimaryButton>
-        </SignUpButton>
-      )}
+      <LoginRequiredButton
+        onboardingProps={{ name: "Finish sign up" }}
+        width="100%"
+      />
     </OakFlex>
   );
 };
@@ -70,11 +47,14 @@ const SavingSignedOutModalContent = () => {
 type SavingSignedOutModalProps = Pick<
   OakModalCenterProps,
   "isOpen" | "onClose"
->;
+> & {
+  returnToElementId?: string;
+};
 
 const SavingSignedOutModal = ({
   isOpen,
   onClose,
+  returnToElementId: elementId,
 }: SavingSignedOutModalProps) => (
   <OakModalCenter
     isOpen={isOpen}
@@ -91,6 +71,14 @@ const SavingSignedOutModal = ({
     modalOuterFlexProps={{
       $maxWidth: "all-spacing-22",
       $pa: "inner-padding-m",
+    }}
+    returnFocus={() => {
+      if (elementId) {
+        document.getElementById(elementId)?.focus();
+        // prevent default returnTo behaviour as we're managing focus manually
+        return false;
+      }
+      return true;
     }}
   />
 );

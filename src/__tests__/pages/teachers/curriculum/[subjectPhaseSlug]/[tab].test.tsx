@@ -92,6 +92,7 @@ const unitData = [
     cycle: "1",
     why_this_why_now: null,
     description: null,
+    prior_knowledge_requirements: [],
   },
   {
     connection_prior_unit_description:
@@ -172,6 +173,7 @@ const unitData = [
     cycle: "1",
     why_this_why_now: null,
     description: null,
+    prior_knowledge_requirements: [],
   },
   {
     connection_prior_unit_description:
@@ -247,6 +249,7 @@ const unitData = [
     cycle: "1",
     why_this_why_now: null,
     description: null,
+    prior_knowledge_requirements: [],
   },
   {
     connection_prior_unit_description:
@@ -337,6 +340,7 @@ const unitData = [
     cycle: "1",
     why_this_why_now: null,
     description: null,
+    prior_knowledge_requirements: [],
   },
   {
     connection_prior_unit_description:
@@ -421,6 +425,7 @@ const unitData = [
     cycle: "1",
     why_this_why_now: null,
     description: null,
+    prior_knowledge_requirements: [],
   },
   {
     connection_prior_unit_description:
@@ -508,6 +513,7 @@ const unitData = [
     cycle: "1",
     why_this_why_now: null,
     description: null,
+    prior_knowledge_requirements: [],
   },
 ];
 
@@ -667,29 +673,6 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
         const tierSelector = await queryByTestId("tier-selector");
         expect(tierSelector).toBeInTheDocument();
       });
-    });
-
-    it.skip("renders the Curriculum Units Tab", () => {
-      (useRouter as jest.Mock).mockReturnValue({
-        query: { tab: "units" },
-        isPreview: false,
-        pathname: "/teachers-2023/curriculum/english-secondary-aqa/overview",
-        asPath: "",
-      });
-      const slugs = parseSubjectPhaseSlug("english-secondary-aqa")!;
-      const { queryByTestId, queryAllByTestId } = render(
-        <CurriculumInfoPage
-          mvRefreshTime={1721314874829}
-          curriculumUnitsFormattedData={curriculumUnitsFormattedData}
-          curriculumSelectionSlugs={slugs}
-          curriculumPhaseOptions={curriculumPhaseOptions}
-          curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
-          curriculumOverviewTabData={curriculumOverviewMVFixture()}
-          curriculumDownloadsTabData={{ tiers: [], child_subjects: [] }}
-        />,
-      );
-      expect(queryByTestId("units-heading")).toBeInTheDocument();
-      expect(queryAllByTestId("unit-cards")[0]).toBeInTheDocument();
     });
 
     if (!DISABLE_DOWNLOADS) {
@@ -912,6 +895,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               description: null,
               why_this_why_now: null,
               state: "published",
+              prior_knowledge_requirements: [],
             },
           ],
           groupAs: null,
@@ -1009,6 +993,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               description: null,
               why_this_why_now: null,
               state: "published",
+              prior_knowledge_requirements: [],
             },
             {
               connection_future_unit_description:
@@ -1103,6 +1088,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               description: null,
               why_this_why_now: null,
               state: "published",
+              prior_knowledge_requirements: [],
             },
             {
               connection_future_unit_description:
@@ -1191,6 +1177,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               description: null,
               why_this_why_now: null,
               state: "published",
+              prior_knowledge_requirements: [],
             },
             {
               connection_future_unit_description:
@@ -1280,6 +1267,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               description: null,
               why_this_why_now: null,
               state: "published",
+              prior_knowledge_requirements: [],
             },
           ],
           groupAs: null,
@@ -1390,6 +1378,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               description: null,
               why_this_why_now: null,
               state: "published",
+              prior_knowledge_requirements: [],
             },
           ],
           groupAs: null,

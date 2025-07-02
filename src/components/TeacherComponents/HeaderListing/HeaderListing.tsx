@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 import {
   OakFlex,
   OakHeading,
@@ -52,7 +51,6 @@ export type HeaderListingProps = {
   programmeFactor: string;
   hasCurriculumDownload?: boolean;
   shareButton?: React.ReactNode;
-  copiedComponent?: React.ReactNode;
   unitDownloadFileId?: string;
   onUnitDownloadSuccess?: () => void;
   showRiskAssessmentBanner?: boolean;
@@ -60,6 +58,7 @@ export type HeaderListingProps = {
   subjectDescriptionUnitListingData?: UnitListingData;
   isUnitSaved?: boolean;
   onSave?: () => void;
+  isGeorestrictedUnit?: boolean;
 };
 
 const HeaderListing: FC<HeaderListingProps> = (props) => {
@@ -78,7 +77,6 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     tierTitle,
     yearTitle,
     shareButton,
-    copiedComponent,
     unitDownloadFileId,
     onUnitDownloadSuccess,
     showRiskAssessmentBanner,
@@ -86,6 +84,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     subjectDescriptionUnitListingData,
     isUnitSaved,
     onSave,
+    isGeorestrictedUnit,
   } = props;
 
   const isKeyStagesAvailable = keyStageSlug && keyStageTitle;
@@ -101,8 +100,6 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     showIncompleteMessage,
     setShowIncompleteMessage,
   } = useUnitDownloadButtonState();
-
-  const isSaveEnabled = useFeatureFlagEnabled("teacher-save-units");
 
   const bannersBlock = (
     <>
@@ -209,11 +206,12 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                     downloadInProgress={downloadInProgress}
                     unitFileId={unitDownloadFileId}
                     onDownloadSuccess={onUnitDownloadSuccess}
-                    showNewTag={!isSaveEnabled}
+                    showNewTag={false}
+                    georestricted={Boolean(isGeorestrictedUnit)}
                   />
                 )}
                 {shareButton}
-                {isSaveEnabled && onSave && (
+                {onSave && (
                   <OakSecondaryButton
                     iconName={
                       isUnitSaved ? "bookmark-filled" : "bookmark-outlined"
@@ -243,7 +241,6 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                   </OakSecondaryButton>
                 )}
               </OakFlex>
-              {copiedComponent}
               <OakBox $display={["none", "block", "block"]}>
                 {bannersBlock}
               </OakBox>

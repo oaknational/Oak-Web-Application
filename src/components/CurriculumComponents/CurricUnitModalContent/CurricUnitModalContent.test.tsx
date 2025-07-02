@@ -65,7 +65,7 @@ describe("Unit modal", () => {
     const testThread = getByText("Number: Addition and Subtraction");
     const testThread2 = getByText("Number");
 
-    expect(getAllByTestId("thread-tag")).toHaveLength(2);
+    expect(getAllByTestId("ac_threads_tag")).toHaveLength(2);
     expect(testThread).toBeInTheDocument();
     expect(testThread2).toBeInTheDocument();
   });

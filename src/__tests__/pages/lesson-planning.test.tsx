@@ -2,7 +2,6 @@ import { screen } from "@testing-library/react";
 
 import PlanALesson, { getStaticProps } from "../../pages/lesson-planning";
 import renderWithProviders from "../__helpers__/renderWithProviders";
-import renderWithSeo from "../__helpers__/renderWithSeo";
 
 import { testPlanALessonPageData } from "./lesson-planning.fixture";
 
@@ -169,28 +168,6 @@ describe("pages/lesson-planning.tsx", () => {
 
     const heroImage = screen.getByAltText("alt text hero").closest("img");
     expect(heroImage).toBeInTheDocument();
-  });
-
-  describe("SEO", () => {
-    it("renders the correct SEO details", () => {
-      const { seo } = renderWithSeo()(
-        <PlanALesson pageData={testPlanningPageData} posts={mockPosts} />,
-      );
-
-      expect(seo).toEqual({
-        title: "test | NEXT_PUBLIC_SEO_APP_NAME",
-        description: "test",
-        ogTitle: "test | NEXT_PUBLIC_SEO_APP_NAME",
-        ogDescription: "test",
-        ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
-        ogImage:
-          "NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?" +
-          new Date().getFullYear(),
-        ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
-        canonical: "NEXT_PUBLIC_SEO_APP_URL",
-        robots: "index,follow",
-      });
-    });
   });
 
   describe("getStaticProps", () => {

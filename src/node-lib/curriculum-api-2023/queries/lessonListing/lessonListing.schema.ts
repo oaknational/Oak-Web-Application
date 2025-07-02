@@ -18,6 +18,7 @@ export const lessonListingPageDataSchema = z.object({
   subjectTitle: programmeFieldsSchema.shape.subject,
   yearTitle: programmeFieldsSchema.shape.year_description,
   yearSlug: programmeFieldsSchema.shape.year_slug,
+  year: programmeFieldsSchema.shape.year,
   keyStageSlug: programmeFieldsSchema.shape.keystage_slug,
   keyStageTitle: programmeFieldsSchema.shape.keystage_description,
   tierSlug: programmeFieldsSchema.shape.tier_slug,
@@ -29,6 +30,7 @@ export const lessonListingPageDataSchema = z.object({
   pathwayDisplayOrder: programmeFieldsSchema.shape.pathway_display_order,
   lessons: lessonListSchema,
   actions: lessonListItemSchema.shape.actions.nullable(),
+  containsGeorestrictedLessons: z.boolean().optional(),
 });
 
 export type LessonListingPageData = z.infer<typeof lessonListingPageDataSchema>;

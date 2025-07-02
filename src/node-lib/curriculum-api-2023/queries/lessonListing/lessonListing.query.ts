@@ -36,7 +36,7 @@ export const getTransformedLessons = (
       if (publishedLesson) {
         const lesson =
           partialSyntheticUnitvariantLessonsSchema.parse(publishedLesson);
-        const hasCopyrightMaterial =
+        const hasLegacyCopyrightMaterial =
           publishedLesson.lesson_data.copyright_content?.find(
             (c: { copyright_info: string }) =>
               c.copyright_info === "This lesson contains copyright material.",
@@ -56,12 +56,14 @@ export const getTransformedLessons = (
           videoCount: lesson.lesson_data.video_id ? 1 : 0,
           presentationCount: lesson.lesson_data.asset_id_slidedeck ? 1 : 0,
           worksheetCount: lesson.lesson_data.asset_id_worksheet ? 1 : 0,
-          hasCopyrightMaterial,
+          hasLegacyCopyrightMaterial,
           orderInUnit: lesson.order_in_unit,
           lessonCohort: lesson.lesson_data._cohort,
           actions: (keysToCamelCase(lesson.actions) || null) as Actions,
           isUnpublished: false,
           lessonReleaseDate: lesson.lesson_data.lesson_release_date,
+          geoRestricted: lesson.features?.agf__geo_restricted ?? false,
+          loginRequired: lesson.features?.agf__login_required ?? false,
         };
         return transformedLesson;
       } else {
@@ -88,6 +90,7 @@ type PackagedUnitData = {
 export const getPackagedUnit = (
   packagedUnitData: PackagedUnitData,
   unitLessons: LessonListSchema,
+  containsGeorestrictedLessons: boolean,
 ): LessonListingPageData => {
   const {
     programmeFields,
@@ -124,11 +127,13 @@ export const getPackagedUnit = (
     examBoardTitle: modifiedProgrammeFields.examboard,
     yearSlug: modifiedProgrammeFields.year_slug,
     yearTitle: modifiedProgrammeFields.year_description,
+    year: modifiedProgrammeFields.year,
     lessons: unitLessons,
     pathwaySlug: modifiedProgrammeFields.pathway_slug,
     pathwayTitle: modifiedProgrammeFields.pathway,
     pathwayDisplayOrder: modifiedProgrammeFields.pathway_display_order,
     actions: combinedActions,
+    containsGeorestrictedLessons,
   };
 };
 
@@ -147,6 +152,10 @@ const lessonListingQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
+    const containsGeorestrictedLessons = modifiedLessons.some(
+      (lesson) => lesson.features?.agf__geo_restricted === true,
+    );
+
     const parsedModifiedLessons =
       partialSyntheticUnitvariantLessonsArraySchema.parse(modifiedLessons);
 
@@ -164,7 +173,11 @@ const lessonListingQuery =
       };
     }, {} as PackagedUnitData);
 
-    const packagedUnit = getPackagedUnit(packagedUnitData, unitLessons);
+    const packagedUnit = getPackagedUnit(
+      packagedUnitData,
+      unitLessons,
+      containsGeorestrictedLessons,
+    );
     return lessonListingPageDataSchema.parse(packagedUnit);
   };
 

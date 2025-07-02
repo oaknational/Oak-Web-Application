@@ -1,8 +1,13 @@
 import { z } from "zod";
-import { actionsSchema } from "@oaknational/oak-curriculum-schema";
+import {
+  actionsSchema,
+  syntheticUnitvariantsWithLessonIdsByKsSchema,
+} from "@oaknational/oak-curriculum-schema";
 
 import { zodToCamelCase } from "./helpers/zodToCamelCase";
 import { mediaClipsRecordCamelSchema } from "./queries/lessonMediaClips/lessonMediaClips.schema";
+
+import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
 export const contentGuidanceSchemaCamelCase = z.object({
   contentGuidanceLabel: z.string(),
@@ -202,7 +207,7 @@ export const baseLessonOverviewSchema = z.object({
   videoWithSignLanguageMuxPlaybackId: z.string().nullable(),
   transcriptSentences: z.union([z.array(z.string()), z.string()]).nullable(),
   isWorksheetLandscape: z.boolean().optional().nullable(),
-  hasCopyrightMaterial: z.boolean().optional().nullable(),
+  hasLegacyCopyrightMaterial: z.boolean().optional().nullable(),
   expired: z.boolean().nullable(),
   starterQuiz: lessonOverviewQuizData,
   exitQuiz: lessonOverviewQuizData,
@@ -217,8 +222,20 @@ export const baseLessonOverviewSchema = z.object({
   lessonMediaClips: mediaClipsRecordCamelSchema.nullish(),
   lessonOutline: z.array(z.object({ lessonOutline: z.string() })).nullable(),
   lessonReleaseDate: z.string().nullable(),
+  orderInUnit: z.number().nullable(),
+  unitTotalLessonCount: z.number().nullable(),
 });
 export type LessonBase = z.infer<typeof baseLessonOverviewSchema>;
+
+export const lessonUnitDataByKsSchema =
+  syntheticUnitvariantsWithLessonIdsByKsSchema.pick({
+    lesson_count: true,
+    supplementary_data: true,
+  });
+
+export type LessonUnitDataByKs = ConvertKeysToCamelCase<
+  z.infer<typeof lessonUnitDataByKsSchema>
+>;
 
 export const lessonDownloadsListSchema = z.array(
   z.object({
@@ -290,12 +307,14 @@ export const lessonListItemSchema = z.object({
   videoCount: z.number().nullish(),
   presentationCount: z.number().nullish(),
   worksheetCount: z.number().nullish(),
-  hasCopyrightMaterial: z.boolean().nullish(),
+  hasLegacyCopyrightMaterial: z.boolean().nullish(),
   orderInUnit: z.number().nullish(),
   lessonCohort: z.string().nullish(),
   actions: camelActionSchema.nullish(),
   isUnpublished: z.literal(false),
   lessonReleaseDate: z.string().nullable(),
+  geoRestricted: z.boolean(),
+  loginRequired: z.boolean(),
 });
 
 export type LessonListItem = z.infer<typeof lessonListItemSchema>;

@@ -20,6 +20,11 @@ const render = (children: React.ReactNode) =>
     <OakThemeProvider theme={oakDefaultTheme}>{children}</OakThemeProvider>,
   );
 
+const mockFeatureFlagEnabled = jest.fn(() => false);
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagEnabled: () => mockFeatureFlagEnabled(),
+}));
+
 describe("components/UnitList", () => {
   test.skip("renders the list items", () => {
     render(
@@ -243,6 +248,22 @@ describe("components/UnitList", () => {
 
     const unitCards = screen.getAllByTestId("unit-list-item");
     expect(unitCards).toHaveLength(6);
+  });
+  test("renders save buttons for new units and not for legacy", () => {
+    mockFeatureFlagEnabled.mockReturnValue(true);
+    render(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <UnitList
+          {...combinedUnitListingFixture()}
+          paginationProps={mockPaginationProps}
+          currentPageItems={combinedUnitListingFixture().units}
+          onClick={onClick}
+        />
+      </OakThemeProvider>,
+    );
+
+    const saveButtons = screen.getAllByText("Save");
+    expect(saveButtons).toHaveLength(6); // 3 new units rendered twice
   });
 });
 

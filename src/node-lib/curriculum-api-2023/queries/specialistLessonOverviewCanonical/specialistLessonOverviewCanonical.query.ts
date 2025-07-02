@@ -13,6 +13,7 @@ const specialistLessonOverviewCanonical =
 
     return generateLessonOverviewFromRaw(
       specialistLessonOverview.lesson,
+      1,
       (lessonOverview, error) => {
         errorReporter("curriculum-api-2023::specialistLessonOverview")(error, {
           severity: "warning",

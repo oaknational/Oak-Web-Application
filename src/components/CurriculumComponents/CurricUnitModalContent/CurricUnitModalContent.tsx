@@ -117,12 +117,13 @@ export default function CurricUnitModalContent({
             </OakFlex>
 
             <OakHeading tag="h2" $font={"heading-5"}>
-              {unitData.title}
+              {unitOptionData?.title ?? unitData.title}
             </OakHeading>
             {!unitOptionsAvailable && (
               <OakBox $display={optionalityModalOpen ? "none" : "block"}>
                 <CurricUnitDetails
                   unit={unitData}
+                  unitOption={unitOptionData}
                   handleUnitOverviewExploredAnalytics={
                     handleUnitOverviewExploredAnalytics
                   }
@@ -141,6 +142,7 @@ export default function CurricUnitModalContent({
                   $background={"pink30"}
                   $pa={"inner-padding-xl"}
                   $mt={"space-between-l"}
+                  $mb={"space-between-l"}
                   $pb={"inner-padding-none"}
                   data-testid="unit-options-card"
                   $borderRadius={"border-radius-s"}

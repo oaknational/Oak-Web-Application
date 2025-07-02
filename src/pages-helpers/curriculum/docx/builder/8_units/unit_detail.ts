@@ -16,7 +16,11 @@ import { createUnitsListingByYear } from "../../tab-helpers";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import { createTeacherProgrammeSlug } from "@/utils/curriculum/slugs";
 import { SubjectCategory } from "@/utils/curriculum/types";
-import { getIsUnitDescriptionEnabled } from "@/utils/curriculum/features";
+import {
+  getIsUnitDescriptionEnabled,
+  priorKnowledgeRequirementsEnabled,
+} from "@/utils/curriculum/features";
+import { ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS } from "@/utils/curriculum/constants";
 
 type Unit = CombinedCurriculumData["units"][number];
 
@@ -72,6 +76,93 @@ async function buildUnitLessons(
     }) ?? [];
 
   return lessonsXmls.join("");
+}
+
+export async function buildUnitPriorKnowledgeReqs(
+  zip: JSZipCached,
+  unit: Unit | Unit["unit_options"][number],
+) {
+  if (
+    ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS &&
+    priorKnowledgeRequirementsEnabled(unit) &&
+    "prior_knowledge_requirements" in unit &&
+    unit.prior_knowledge_requirements &&
+    unit.prior_knowledge_requirements.length > 0
+  ) {
+    const numbering = await insertNumbering(zip, {
+      priorKnowledgeReqsNumbering: safeXml`
+        <XML_FRAGMENT>
+          <w:nsid w:val="1E776843" />
+          <w:multiLevelType w:val="multilevel" />
+          <w:tmpl w:val="20BC537A" />
+          <w:lvl w:ilvl="0">
+            <w:start w:val="1" />
+            <w:numFmt w:val="bullet" />
+            <w:lvlText w:val="" />
+            <w:lvlJc w:val="left" />
+            <w:pPr>
+              <w:ind w:left="360" w:hanging="360" />
+            </w:pPr>
+            <w:rPr>
+              <w:rFonts w:ascii="Symbol" w:hAnsi="Symbol" w:hint="default" />
+            </w:rPr>
+          </w:lvl>
+        </XML_FRAGMENT>
+      `,
+    });
+
+    const priorKnowledgeReqsXmls =
+      unit.prior_knowledge_requirements?.map((requirement) => {
+        return safeXml`
+          <w:p>
+            <w:pPr>
+              <w:numPr>
+                <w:ilvl w:val="0" />
+                <w:numId w:val="${numbering.priorKnowledgeReqsNumbering}" />
+              </w:numPr>
+              <w:spacing w:line="276" w:lineRule="auto" />
+              <w:ind w:left="425" w:right="-17" w:hanging="360" />
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts
+                  w:ascii="Arial"
+                  w:eastAsia="Arial"
+                  w:hAnsi="Arial"
+                  w:cs="Arial"
+                />
+                <w:color w:val="222222" />
+              </w:rPr>
+              <w:t>${cdata(requirement)}</w:t>
+            </w:r>
+          </w:p>
+        ` as Element;
+      }) ?? [];
+
+    return safeXml`
+      <w:p>
+        <w:pPr>
+          <w:pStyle w:val="Heading4" />
+        </w:pPr>
+        <w:r>
+          <w:rPr>
+            <w:rFonts
+              w:ascii="Arial"
+              w:eastAsia="Arial"
+              w:hAnsi="Arial"
+              w:cs="Arial"
+            />
+            <w:b />
+            <w:i w:val="0" />
+            <w:color w:val="000000" />
+            <w:sz w:val="28" />
+          </w:rPr>
+          <w:t>Prior knowledge requirements</w:t>
+        </w:r>
+      </w:p>
+      ${priorKnowledgeReqsXmls.join("")}
+    `;
+  }
 }
 
 async function buildUnitThreads(zip: JSZipCached, unit: Unit) {
@@ -211,6 +302,7 @@ export async function buildUnit(
   const unitNumber = unitIndex + 1;
   const lessons = await buildUnitLessons(zip, unitOptionIfAvailable);
   const threads = await buildUnitThreads(zip, unit);
+  const priorReqs = await buildUnitPriorKnowledgeReqs(zip, unit);
 
   const hasPublishedLessons = (unitOptionIfAvailable.lessons ?? []).some(
     (lesson) => lesson._state === "published",
@@ -655,6 +747,20 @@ export async function buildUnit(
         </w:r>
       </w:p>
       ${lessons}
+      
+      ${!priorReqs
+        ? ""
+        : safeXml`
+            <w:p>
+              <w:pPr>
+                <w:ind w:left="30" w:hanging="30" />
+                <w:rPr>
+                  <w:color w:val="222222" />
+                </w:rPr>
+              </w:pPr>
+            </w:p>
+          `}
+      ${priorReqs ?? ""}
       <w:p>
         <w:pPr>
           <w:ind w:right="-1032" />

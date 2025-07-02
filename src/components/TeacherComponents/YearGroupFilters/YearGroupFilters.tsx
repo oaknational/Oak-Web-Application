@@ -101,17 +101,17 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
             }}
           />
           {yearGroups
-            .filter((yearGroup) => yearGroup.year !== "all-years")
+            .filter((yearGroup) => yearGroup.yearSlug !== "all-years")
             .map((yearGroup) => (
               <OakSearchFilterCheckBox
                 id={`${yearGroup.yearTitle}-${idSuffix}`}
-                value={`${idSuffix}-${yearGroup.year}`}
+                value={`${idSuffix}-${yearGroup.yearSlug}`}
                 displayValue={yearGroup.yearTitle}
-                key={yearGroup.year}
+                key={yearGroup.yearSlug}
                 checked={
                   !isMobile
-                    ? yearGroup.year === router.query.year
-                    : yearGroup.year === activeMobileFilter
+                    ? yearGroup.yearSlug === router.query.year
+                    : yearGroup.yearSlug === activeMobileFilter
                 }
                 onChange={() => {
                   if (!isMobile) {
@@ -139,7 +139,7 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
                             "learning-theme": selectedThemeSlug,
                           }),
                           programmeSlug,
-                          year: yearGroup.year,
+                          year: yearGroup.yearSlug,
                           ...(router.query.category && {
                             category: router.query.category,
                           }),
@@ -149,7 +149,7 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
                       { shallow: true },
                     );
                   } else {
-                    setYear && setYear(yearGroup.year);
+                    setYear && setYear(yearGroup.yearSlug);
                   }
                 }}
               />

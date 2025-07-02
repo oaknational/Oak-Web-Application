@@ -23,7 +23,7 @@ export const getTransformedLessons = (
   return lessons
     .map((l) => {
       const lesson = partialSyntheticUnitvariantLessonsSchema.parse(l);
-      const hasCopyrightMaterial =
+      const hasLegacyCopyrightMaterial =
         l.lesson_data.copyright_content?.find(
           (c: { copyright_info: string }) =>
             c.copyright_info === "This lesson contains copyright material.",
@@ -43,11 +43,13 @@ export const getTransformedLessons = (
         videoCount: lesson.lesson_data.video_id ? 1 : 0,
         presentationCount: lesson.lesson_data.asset_id_slidedeck ? 1 : 0,
         worksheetCount: lesson.lesson_data.asset_id_worksheet ? 1 : 0,
-        hasCopyrightMaterial,
+        hasLegacyCopyrightMaterial,
         orderInUnit: lesson.order_in_unit,
         lessonCohort: lesson.lesson_data._cohort,
         actions: (keysToCamelCase(lesson.actions) || null) as Actions,
         lessonReleaseDate: "unreleased",
+        geoRestricted: lesson.features?.agf__geo_restricted ?? false,
+        loginRequired: lesson.features?.agf__login_required ?? false,
       };
       return transformedLesson;
     })
@@ -100,6 +102,7 @@ export const getPackagedUnit = (
     examBoardTitle: modifiedProgrammeFields.examboard,
     yearSlug: modifiedProgrammeFields.year_slug,
     yearTitle: modifiedProgrammeFields.year_description,
+    year: modifiedProgrammeFields.year,
     lessons: unitLessons.map((lesson) => ({
       ...lesson,
       isUnpublished: true,

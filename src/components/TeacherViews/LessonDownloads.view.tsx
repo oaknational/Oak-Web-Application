@@ -120,6 +120,13 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const isDownloadsExperiment =
     useFeatureFlagVariantKey("downloads-grouping-experiement") === "grouping";
 
+  downloads.forEach((download) => {
+    if (download.type === "presentation") {
+      download.label = "Lesson slides";
+      return download;
+    }
+  });
+
   const showRiskAssessmentBanner = !!actions?.isPePractical;
 
   const commonPathway =

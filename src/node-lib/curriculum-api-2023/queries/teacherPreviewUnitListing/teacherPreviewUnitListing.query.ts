@@ -113,6 +113,7 @@ const teachersPreviewUnitListingQuery =
       subjectCategories,
       yearGroups,
       pathwayTitle: programmeFields.pathway,
+      pathwaySlug: programmeFields.pathwaySlug,
       ...(relatedSubjectsSet.size >= 1 && {
         relatedSubjects: Array.from(relatedSubjectsSet),
       }),

@@ -38,6 +38,7 @@ describe("createUnit", () => {
       unit_options: [],
       state: "published",
       year: "5",
+      prior_knowledge_requirements: [],
     });
   });
 
@@ -79,6 +80,7 @@ describe("createUnit", () => {
       unit_options: [],
       state: "published",
       year: "5",
+      prior_knowledge_requirements: [],
     });
   });
 
@@ -119,6 +121,7 @@ describe("createUnit", () => {
       unit_options: [],
       state: "published",
       year: "5",
+      prior_knowledge_requirements: [],
     });
   });
 
@@ -162,6 +165,7 @@ describe("createUnit", () => {
       unit_options: [],
       state: "published",
       year: "5",
+      prior_knowledge_requirements: [],
     });
   });
 
@@ -208,6 +212,7 @@ describe("createUnit", () => {
       unit_options: [],
       state: "published",
       year: "5",
+      prior_knowledge_requirements: [],
     });
   });
 
@@ -248,6 +253,7 @@ describe("createUnit", () => {
       unit_options: [],
       state: "published",
       year: "5",
+      prior_knowledge_requirements: [],
     });
   });
 });

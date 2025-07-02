@@ -1,7 +1,7 @@
 import { z } from "zod";
 import {
   lessonContentSchema as lessonContentSchemaFull,
-  syntheticUnitvariantLessonsSchema,
+  syntheticUnitvariantLessonsByKsSchema,
 } from "@oaknational/oak-curriculum-schema";
 
 import {
@@ -60,8 +60,9 @@ export const lessonOverviewSchema = baseLessonOverviewSchema.extend({
   subjectSlug: z.string(),
   subjectTitle: z.string(),
   subjectParent: z.string().nullish(),
-  yearTitle: z.string().nullable().optional(),
-  examBoardTitle: z.string().nullable().optional(),
+  yearTitle: z.string().nullish(),
+  year: z.string().nullish(),
+  examBoardTitle: z.string().nullish(),
   examBoardSlug: z.string().nullish(),
   downloads: lessonOverviewDownloads,
   updatedAt: z.string(),
@@ -87,8 +88,7 @@ export type LessonOverviewCanonical = z.infer<
 >;
 
 export const lessonBrowseDataByKsSchema =
-  syntheticUnitvariantLessonsSchema.omit({
-    supplementary_data: true,
+  syntheticUnitvariantLessonsByKsSchema.omit({
     null_unitvariant_id: true,
   });
 

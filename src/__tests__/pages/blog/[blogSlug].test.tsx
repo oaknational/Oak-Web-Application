@@ -5,7 +5,6 @@ import BlogSinglePage, {
   BlogSinglePageProps,
 } from "../../../pages/blog/[blogSlug]";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
-import renderWithSeo from "../../__helpers__/renderWithSeo";
 
 jest.mock("next/router", () => ({
   __esModule: true,
@@ -111,16 +110,6 @@ describe("pages/blog/[blogSlug].tsx", () => {
         expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
           "A blog",
         );
-      });
-    });
-
-    describe.skip("SEO", () => {
-      it("renders the correct SEO details", async () => {
-        const { seo } = renderWithSeo()(
-          <BlogSinglePage blog={testSerializedBlog} categories={[]} />,
-        );
-
-        expect(seo).toEqual({});
       });
     });
   });

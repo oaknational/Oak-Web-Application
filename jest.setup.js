@@ -86,11 +86,14 @@ jest.mock("posthog-js", () => ({
   },
 }));
 
-jest.mock("@mux/mux-player-react/lazy", () => ({
-  __esModule: true,
-  // noop component
-  default: () => null,
-}));
+jest.mock("@mux/mux-player-react/lazy", () => {
+  const { forwardRef } = jest.requireActual("react");
+  return {
+    __esModule: true,
+    // noop component with forwardRef to handle ref passing
+    default: forwardRef(() => null),
+  };
+});
 
 jest.mock("./src/image-data/generated/inline-sprite.svg", () => "svg");
 
@@ -116,5 +119,6 @@ jest.mock("@/node-lib/educator-api/helpers/useGetEducatorData", () => ({
   useGetEducatorData: jest.fn(() => ({
     data: 0,
     isLoading: false,
+    mutate: jest.fn(),
   })),
 }));

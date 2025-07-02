@@ -100,6 +100,4 @@ describe("useLessonDownloadExistenceCheck", () => {
       expect(onComplete).toBeCalledWith(["worksheet-pdf"]);
     });
   });
-
-  test.todo("it calls Bugsnug if there is an error");
 });
