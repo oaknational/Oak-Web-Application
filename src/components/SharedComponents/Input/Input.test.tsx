@@ -42,6 +42,6 @@ describe("Input", () => {
       />,
     );
     const input = getByRole("textbox");
-    expect(input).toHaveAccessibleDescription("You done wrong");
+    expect(input).toHaveAccessibleDescription("Error You done wrong");
   });
 });
