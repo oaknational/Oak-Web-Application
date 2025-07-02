@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { OakSpan, OakBox, OakSecondaryLink } from "@oaknational/oak-components";
 import styled from "styled-components";
 
@@ -177,13 +177,31 @@ export default function CurricVisualiserMobileHeader({
   const textItemsDescribingFilter = buildTextDescribingFilter(data, filters);
 
   const shouldIncludeCore = slugs.ks4OptionSlug !== "core";
+  const mobileFilters = {
+    ...filters,
+    years: Object.keys(data.yearData),
+    pathways: [],
+  };
+
   const unitsByYearSelector = applyFiltering(
-    filters,
+    mobileFilters,
     groupUnitsByPathway({
-      modes: getModes(shouldIncludeCore, ks4Options ?? []),
-      yearData,
+      modes: getModes(
+        shouldIncludeCore,
+        ks4Options ?? [],
+        mobileFilters.pathways[0],
+      ),
+      yearData: data.yearData,
     }),
   );
+
+  useEffect(() => {
+    if (!selectedYear && unitsByYearSelector[0]) {
+      const firstYear = unitsByYearSelector[0];
+      const firstYearOption = `${firstYear.type}-${firstYear.year}`;
+      onSelectYear(firstYearOption);
+    }
+  }, [onSelectYear, selectedYear, unitsByYearSelector]);
 
   return (
     <OakBox

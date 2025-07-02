@@ -788,7 +788,7 @@ describe("Year group filter headings display correctly", () => {
           pathways: [],
           subjectCategories: [],
           tiers: ["foundation"],
-          years: ["10"],
+          years: ["11"],
           threads: [],
         };
 
@@ -799,10 +799,13 @@ describe("Year group filter headings display correctly", () => {
           />,
         );
 
-        const yearHeading10 = await findByTestId("year-heading");
-        expect(yearHeading10).toHaveTextContent("Year 10");
-        const subheading10 = await findByTestId("year-subheading");
-        expect(subheading10).toHaveTextContent("Foundation");
+        const year11Container = await findByTestId("year-non_core-11");
+        const yearHeading11 =
+          await within(year11Container).findByTestId("year-heading");
+        expect(yearHeading11).toHaveTextContent("Year 11");
+        const subheading11 =
+          await within(year11Container).findByTestId("year-subheading");
+        expect(subheading11).toHaveTextContent("Foundation");
       });
     });
   });
