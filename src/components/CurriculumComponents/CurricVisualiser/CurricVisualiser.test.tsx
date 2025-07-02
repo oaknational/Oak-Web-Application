@@ -160,6 +160,7 @@ describe("visualiser", () => {
 
     expect(filterThreadsButton).toBeInTheDocument();
   });
+
   test("visualiser is visible on desktop", async () => {
     const { findByTestId } = render(
       <CurricVisualiser {...CurricVisualiserFixture} />,
@@ -168,6 +169,18 @@ describe("visualiser", () => {
     const filterThreadsButton = await findByTestId("curriculum-visualiser");
 
     expect(filterThreadsButton).toBeInTheDocument();
+  });
+
+  test("first year in year-group is immediately visible on mobile", async () => {
+    resizeWindow(390, 844);
+
+    const { container } = render(
+      <CurricVisualiser {...CurricVisualiserFixture} />,
+    );
+
+    const firstYearGroup = container.querySelector("#year-all-7");
+
+    expect(firstYearGroup).toBeVisible();
   });
 
   test("correct number of units displayed", async () => {

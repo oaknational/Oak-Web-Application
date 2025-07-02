@@ -243,16 +243,15 @@ export default function CurricVisualiserMobileHeader({
                 {textItemsDescribingFilter.map(
                   (textItemDescribingFilter, index) => {
                     return (
-                      <>
+                      <React.Fragment key={index}>
                         {index > 0 && <OakBox $display={"inline"}> • </OakBox>}
                         <OakBox
-                          key={index}
                           $display={"inline"}
                           data-testid="highlighted-threads-mobile"
                         >
                           {textItemDescribingFilter}
                         </OakBox>
-                      </>
+                      </React.Fragment>
                     );
                   },
                 )}
