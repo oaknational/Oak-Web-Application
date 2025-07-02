@@ -17,12 +17,13 @@ resource "terraform_data" "workspace_validation" {
 }
 
 module "vercel" {
-  source                 = "github.com/oaknational/oak-terraform-modules//modules/vercel_project?ref=v1.2.2"
+  source                 = "github.com/oaknational/oak-terraform-modules//modules/vercel_project?ref=v1.2.3"
   build_command          = try(local.build_config.build_command, null)
   build_type             = local.build_config.build_type
   cloudflare_zone_domain = var.cloudflare_zone_domain
   domains                = local.build_config.domains
   framework              = local.build_config.framework
+  git_branch             = try(local.build_config.git_branch, null)
   ignore_command         = try(local.build_config.ignore_command, null)
   output_directory       = try(local.build_config.output_directory, null)
   deployment_type        = local.build_config.deployment_type
