@@ -1,3 +1,17 @@
+# [1.787.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.786.0...v1.787.0) (2025-07-02)
+
+
+### Bug Fixes
+
+* always show attributions when available on media ([5fe7afc](https://github.com/oaknational/Oak-Web-Application/commit/5fe7afc6aa44c89f2c88b6cb096ba384fee8c479))
+* font weight on clip names ([a929bd5](https://github.com/oaknational/Oak-Web-Application/commit/a929bd5a50ab00481a8b6ed14413800a67445b2e))
+
+
+### Features
+
+* add attributions component to media clips page ([ebd2a18](https://github.com/oaknational/Oak-Web-Application/commit/ebd2a18adf7c1a0754ecb5fed79ac6d4f9c50061))
+* correct layout of multiple attributions ([05aa54f](https://github.com/oaknational/Oak-Web-Application/commit/05aa54fd6181a28795f4d5cb109daeae0caaf4b6))
+
 # [1.786.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.785.1...v1.786.0) (2025-07-02)
 
 
