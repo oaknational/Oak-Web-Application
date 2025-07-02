@@ -7,6 +7,7 @@ import {
   oakDefaultTheme,
   OakHandDrawnHR,
   OakBox,
+  OakAnchorTarget,
 } from "@oaknational/oak-components";
 
 import { getPageLinksForLesson } from "../helpers/lessonHelpers/getPageLinksForLessons";
@@ -14,7 +15,6 @@ import { getPageLinksForLesson } from "../helpers/lessonHelpers/getPageLinksForL
 import { LessonPageLinkAnchorId } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { containerTitleToPreselectMap } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/containerTitleToPreselectMap";
 import { LessonItemContainerLink } from "@/components/TeacherComponents/LessonItemContainerLink";
-import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import { DownloadableLessonTitles } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import LessonPlayAllButton from "@/components/TeacherComponents/LessonPlayAllButton/LessonPlayAllButton";
 
@@ -126,7 +126,7 @@ export const LessonItemContainer = forwardRef<
         id={getContainerId(anchorId)}
         tabIndex={-1}
       >
-        <AnchorTarget id={anchorId} $paddingTop={24} ref={ref} />
+        <OakAnchorTarget id={anchorId} $pt={"inner-padding-xl"} ref={ref} />
         <OakFlex
           $mb={
             skipContentAnchor

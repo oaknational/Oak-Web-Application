@@ -9,6 +9,7 @@ import {
   OakMaxWidth,
   OakLink,
   OakSpan,
+  OakAnchorTarget,
 } from "@oaknational/oak-components";
 import {
   useFeatureFlagEnabled,
@@ -66,7 +67,6 @@ import LessonOverviewDocPresentation from "@/components/TeacherComponents/Lesson
 import { TeacherNoteInline } from "@/components/TeacherComponents/TeacherNoteInline/TeacherNoteInline";
 import LessonOverviewSideNavAnchorLinks from "@/components/TeacherComponents/LessonOverviewSideNavAnchorLinks";
 import { RestrictedSignInPrompt } from "@/components/TeacherComponents/RestrictedSignInPrompt/RestrictedSignInPrompt";
-import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads } & {
@@ -631,9 +631,9 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   $position={"relative"}
                   tabIndex={-1}
                 >
-                  <AnchorTarget
+                  <OakAnchorTarget
                     id={"quiz"}
-                    $paddingTop={24}
+                    $pt={"inner-padding-xl"}
                     ref={quizSectionRef}
                   />
                   {pageLinks.find(
@@ -805,7 +805,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
           $position={"relative"}
           id={getContainerId("restricted-content")}
         >
-          <AnchorTarget
+          <OakAnchorTarget
             tabIndex={-1}
             id="restricted-content"
             ref={restrictedContentRef}
