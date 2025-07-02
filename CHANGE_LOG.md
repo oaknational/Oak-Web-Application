@@ -1,3 +1,25 @@
+# [1.786.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.785.1...v1.786.0) (2025-07-02)
+
+
+### Features
+
+* add validation checks for env vars ([e628ad0](https://github.com/oaknational/Oak-Web-Application/commit/e628ad061ebff73a57c0258751d4ba13dcfbd300))
+* set up storybook in vercel ([4aa4478](https://github.com/oaknational/Oak-Web-Application/commit/4aa447899054432005007e668734b93b0c997f1a))
+
+## [1.785.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.785.0...v1.785.1) (2025-07-02)
+
+
+### Bug Fixes
+
+* move pingdom-uptime-check up into the first 10kb for cloudflare blue-green load balancer ([948fa33](https://github.com/oaknational/Oak-Web-Application/commit/948fa33137d55d083942f7781b3b157ac00ee2f3))
+
+# [1.785.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.784.1...v1.785.0) (2025-07-01)
+
+
+### Features
+
+* append ellipsis to lotpicker error text overflow ([eb8da2a](https://github.com/oaknational/Oak-Web-Application/commit/eb8da2a537d5295264a428d9dfc7b90a571eea1a))
+
 ## [1.784.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.784.0...v1.784.1) (2025-06-26)
 
 # [1.784.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.783.0...v1.784.0) (2025-06-26)
