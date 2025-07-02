@@ -1,3 +1,10 @@
+# [1.785.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.784.1...v1.785.0) (2025-07-01)
+
+
+### Features
+
+* append ellipsis to lotpicker error text overflow ([eb8da2a](https://github.com/oaknational/Oak-Web-Application/commit/eb8da2a537d5295264a428d9dfc7b90a571eea1a))
+
 ## [1.784.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.784.0...v1.784.1) (2025-06-26)
 
 # [1.784.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.783.0...v1.784.0) (2025-06-26)
