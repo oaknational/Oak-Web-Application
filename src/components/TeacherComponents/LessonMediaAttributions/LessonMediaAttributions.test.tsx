@@ -55,9 +55,20 @@ describe("lesson media attributions", () => {
         ]}
       />,
     );
-    const clipAttribution = screen.getByText("© provided by jest", {
-      exact: false,
-    });
+    const clipAttribution = screen.getByText(/provided by jest/i);
+
     expect(clipAttribution).toHaveTextContent("© provided by jest");
+  });
+  it("only renders one copyright symbol per attribution", () => {
+    render(
+      <LessonMediaAttributions
+        mediaClipsWithAttributions={[
+          { name: "clip 1", attribution: "© provided by jest" },
+        ]}
+      />,
+    );
+    const clipAttribution = screen.getByText(/© provided by jest/i);
+
+    expect(clipAttribution).not.toHaveTextContent("© ©");
   });
 });

@@ -17,7 +17,8 @@ export const LessonMediaAttributions = ({
           $color="grey60"
           key={clip.name + clip.attribution}
         >
-          <OakSpan $font="body-3-bold">{clip.name}</OakSpan> &copy;{" "}
+          <OakSpan $font="body-3-bold">{clip.name}</OakSpan>{" "}
+          {clip.attribution.startsWith("©") ? " " : "© "}
           {clip.attribution}.{" "}
         </OakSpan>
       ))}
