@@ -251,15 +251,13 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
               <OakBox $display={["none", "block", "block"]}>
                 {bannersBlock}
               </OakBox>
-              {(isGeorestrictedUnit || isLoginRequiredUnit) && (
-                <CopyrightRestrictionBanner
-                  isGeorestricted={isGeorestrictedUnit}
-                  isLoginRequired={isLoginRequiredUnit}
-                  componentType="lesson_listing"
-                  unitName={unitTitle}
-                  unitSlug={unitSlug}
-                />
-              )}
+              <CopyrightRestrictionBanner
+                isGeorestricted={isGeorestrictedUnit}
+                isLoginRequired={isLoginRequiredUnit}
+                componentType="lesson_listing"
+                unitName={unitTitle}
+                unitSlug={unitSlug}
+              />
             </OakFlex>
           </OakFlex>
         </OakFlex>

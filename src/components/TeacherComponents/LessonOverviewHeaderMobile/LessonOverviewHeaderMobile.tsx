@@ -80,19 +80,17 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
       <LessonOverviewHeaderDownloadAllButton {...props} />
       {showShare && <LessonOverviewHeaderShareAllButton {...props} />}
       {teacherShareButton}
-      {(geoRestricted || loginRequired) && (
-        <CopyrightRestrictionBanner
-          isGeorestricted={geoRestricted}
-          isLoginRequired={loginRequired}
-          componentType="lesson_overview"
-          isLessonLegacy={isLegacy}
-          lessonName={lessonTitle}
-          lessonSlug={lessonSlug}
-          lessonReleaseDate={lessonReleaseDate}
-          unitName={unitTitle}
-          unitSlug={unitSlug}
-        />
-      )}
+      <CopyrightRestrictionBanner
+        isGeorestricted={geoRestricted}
+        isLoginRequired={loginRequired}
+        componentType="lesson_overview"
+        isLessonLegacy={isLegacy}
+        lessonName={lessonTitle}
+        lessonSlug={lessonSlug}
+        lessonReleaseDate={lessonReleaseDate}
+        unitName={unitTitle}
+        unitSlug={unitSlug}
+      />
     </OakFlex>
   );
 };

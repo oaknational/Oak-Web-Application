@@ -151,19 +151,17 @@ export const LessonOverviewHeaderDesktopB: FC<LessonOverviewHeaderProps> = (
                 {showShare && <LessonOverviewHeaderShareAllButton {...props} />}
                 {teacherShareButton}
               </OakFlex>
-              {(geoRestricted || loginRequired) && (
-                <CopyrightRestrictionBanner
-                  isGeorestricted={geoRestricted}
-                  isLoginRequired={loginRequired}
-                  componentType="lesson_overview"
-                  isLessonLegacy={isLegacy}
-                  lessonName={lessonTitle}
-                  lessonSlug={lessonSlug}
-                  lessonReleaseDate={lessonReleaseDate}
-                  unitName={unitTitle}
-                  unitSlug={unitSlug}
-                />
-              )}
+              <CopyrightRestrictionBanner
+                isGeorestricted={geoRestricted}
+                isLoginRequired={loginRequired}
+                componentType="lesson_overview"
+                isLessonLegacy={isLegacy}
+                lessonName={lessonTitle}
+                lessonSlug={lessonSlug}
+                lessonReleaseDate={lessonReleaseDate}
+                unitName={unitTitle}
+                unitSlug={unitSlug}
+              />
             </OakFlex>
           </OakFlex>
         </OakGridArea>
