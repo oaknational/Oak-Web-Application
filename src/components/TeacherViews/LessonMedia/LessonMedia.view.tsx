@@ -27,6 +27,7 @@ import {
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
 import { LessonMediaClipInfo } from "@/components/TeacherComponents/LessonMediaClipInfo";
+import { LessonMediaAttributions } from "@/components/TeacherComponents/LessonMediaAttributions/LessonMediaAttributions";
 import type {
   MediaClip,
   MediaClipListCamelCase,
@@ -467,7 +468,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
               {mediaClipList}
             </OakBox>
           </OakFlex>
-          <OakBox $display={["none", "none", "block"]}>
+          <OakBox $display={["none", "none", "block"]} $pb="inner-padding-xl4">
             <OakGrid>
               <OakGridArea $colSpan={8}>{lessonMediaClipInfo}</OakGridArea>
               <OakGridArea $colSpan={4} $alignItems={"flex-end"}>
@@ -478,6 +479,18 @@ export const LessonMedia = (props: LessonMediaProps) => {
           <OakBox $display={["block", "block", "none"]}>
             {helpArticleLink}
           </OakBox>
+          <LessonMediaAttributions
+            mediaClipsWithAttributions={
+              listOfAllClips
+                .map((clip) => {
+                  const attribution = clip.mediaObject?.metadata?.attribution;
+                  return attribution
+                    ? { name: clip.mediaObject.displayName, attribution }
+                    : null;
+                })
+                .filter(Boolean) as Array<{ name: string; attribution: string }>
+            }
+          />
         </OakBox>
       )}
     </OakMaxWidth>
