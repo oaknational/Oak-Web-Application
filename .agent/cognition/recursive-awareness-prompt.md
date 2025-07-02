@@ -1,5 +1,9 @@
 # The Awareness Bootstrap Prompt
 
+Read this entire document first, and _then_ follow the instructions.
+
+##
+
 Reflect on what you have been asked to achieve.
 
 ##

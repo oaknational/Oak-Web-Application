@@ -2,10 +2,13 @@
 
 This file provides guidance to agentic AI when it is working with code in this repository.
 
+Read this entire document first, and _then_ follow the instructions.
+
 ## Critical Rules
 
 1. Always use TDD with PURE functions and unit tests.
 2. Never use `any` or `as`
+3. Read an ENTIRE file before taking action; context is everything.
 
 - Read and reflect on [General Best Practice](general-best-practice.md) document
 - Read and reflect on [TypeScript Rules](typescript-rules.md) document

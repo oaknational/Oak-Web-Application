@@ -38,14 +38,14 @@ Create a comprehensive, transformative testing strategy for the Oak Web Applicat
    - Find exemplary tests that demonstrate good practices
    - **Meta-analysis**: What do these patterns reveal about the collective consciousness of the development team?
 
-2. **Research Best Practices**
-   - React Testing Library patterns for modern React
-   - Next.js testing strategies (SSG, SSR, API routes)
-   - TypeScript testing patterns
-   - Jest configuration and patterns
-   - Storybook integration testing
-   - TDD methodologies specific to React/TypeScript
-   - **Meta-research**: How do these practices embody different ways of thinking about code quality and developer responsibility?
+2. **Research Best Practices** ✅
+   - **React Testing Library patterns**: Query hierarchy (getByRole > getByLabelText > getByText > getByTestId), accessibility-first testing approach, user-centric behavior testing vs implementation testing
+   - **Next.js testing strategies**: Type-safe getStaticProps/getServerSideProps testing, API route testing with node-mocks-http, Jest environment configuration patterns
+   - **TypeScript testing patterns**: MockedFunction for type-safe mocking, interface testing and type guards, generic function testing, strict TypeScript configuration benefits
+   - **Jest configuration and patterns**: Comprehensive mocking strategies, environment setup, coverage thresholds, module mapping patterns
+   - **Storybook integration testing**: Visual regression testing workflows, component isolation patterns
+   - **TDD methodologies**: Red-Green-Refactor in React/TypeScript context, component-driven TDD, accessibility-driven development
+   - **Meta-research insight**: Testing practices embody consciousness about code quality - accessibility-first testing creates dual benefits of better tests AND more inclusive software
 
 ### Phase 2: Vision Development
 
@@ -56,6 +56,7 @@ Create a comprehensive, transformative testing strategy for the Oak Web Applicat
 1. **Core Principles Document**
 
    - TDD as mandatory practice (requires cultural change)
+   - **Accessibility-first testing**: getByRole query hierarchy as default approach (creates dual benefit: better tests AND more inclusive software for Oak's educational mission)
    - Design for testability (affects architectural decisions)
    - Pure functions wherever possible (changes code organization)
    - Component composition for testability (influences React patterns)
@@ -65,18 +66,19 @@ Create a comprehensive, transformative testing strategy for the Oak Web Applicat
 2. **Testing Categories**
 
    - Unit tests for pure functions
-   - Component tests with React Testing Library
+   - **Accessibility-driven component tests**: React Testing Library with getByRole priority (validates both functionality and inclusive design)
    - Integration tests for data flow
-   - E2E tests for critical user journeys
+   - E2E tests for critical user journeys with accessibility validation
    - Visual regression with Storybook
    - **Meta-category**: Tests that test the testing culture - retrospectives, pattern analysis, team feedback on testing practices
 
 3. **Architectural Patterns**
-   - How to structure React components for testability
-   - Patterns for testable Next.js pages
-   - Data layer testing strategies
+   - How to structure React components for testability and accessibility
+   - Patterns for testable Next.js pages with semantic HTML and proper ARIA usage
+   - Data layer testing strategies with type-safe mocking
    - State management testing
-   - **Meta-pattern**: How testing patterns reveal and shape architectural thinking
+   - **Accessibility-driven architecture**: Components designed for getByRole testing naturally promote inclusive design
+   - **Meta-pattern**: How testing patterns reveal and shape architectural thinking while embedding accessibility consciousness
 
 ### Phase 3: Documentation Structure ✅
 
@@ -152,22 +154,25 @@ Create a comprehensive, transformative testing strategy for the Oak Web Applicat
 
 ## Change Management Considerations
 
+**Key Insight**: Oak already has strong RTL foundations and good domain integration. Transformation focuses on systematization and conscious evolution rather than learning new tools.
+
 ### Potential Resistance Points
 
-- "TDD is too slow" (address with velocity vs quality arguments)
-- "Our code isn't structured for this" (provide transformation examples)
-- "We don't have time to refactor" (show gradual adoption path)
-- "This is too theoretical" (emphasize Oak-specific examples)
-- **Meta-resistance**: Fear of examining current practices critically (address with compassionate, growth-oriented framing)
+- "TDD is too slow" (address with building on existing test-writing skills for faster development)
+- "Our testing is already good enough" (show specific improvements: accessibility benefits, consistency gains, reduced debugging time)
+- "We don't have time to standardize" (demonstrate quick wins from pattern standardization)
+- "This changes how we already work" (emphasize building on existing RTL expertise, not replacing it)
+- **Specific anti-patterns to address**: Over-mocking simple logic, testing implementation details instead of user behavior
+- **Meta-resistance**: Comfort with current inconsistent patterns vs. systematic approaches (address through celebrating existing strengths while showing evolution path)
 
 ### Success Dependencies
 
-- Leadership buy-in for TDD as mandatory
-- Code review process alignment
-- Time allocation for test improvement
-- Training and support for TDD practices
-- Enforcement mechanisms in CI/CD
-- **Meta-dependency**: Collective willingness to evolve development culture
+- Recognition of existing RTL expertise as foundation to build on
+- Code review process evolution to include accessibility-first testing patterns  
+- Time allocation for pattern standardization and pure function extraction
+- Gradual TDD introduction through existing React expertise
+- **TypeScript-specific**: Adoption of MockedFunction and type-safe testing patterns
+- **Meta-dependency**: Team pride in evolving from good to excellent testing practices
 
 ### Cultural Indicators of Success
 
@@ -183,9 +188,15 @@ Create a comprehensive, transformative testing strategy for the Oak Web Applicat
 ### Step 1: Complete Research ✅
 
 - [x] Analyze 5-10 examples from each test category
-- [x] Document current anti-patterns
-- [x] Identify exemplary tests
-- [x] Research external best practices
+- [x] Document current anti-patterns in research-findings.md
+- [x] Identify exemplary tests from Oak codebase
+- [x] Research React Testing Library patterns (Kent C. Dodds best practices)
+- [x] Research Next.js testing strategies (SSG, SSR, API routes with node-mocks-http)
+- [x] Research TypeScript testing patterns (type-safe testing approaches) 
+- [x] Research Jest configuration and patterns (mocking strategies, environment setup)
+- [x] Research Storybook integration testing (visual regression, component isolation)
+- [x] Research TDD methodologies for React/TypeScript (Red-Green-Refactor workflows)
+- [x] Create comprehensive research-best-practices.md document
 
 ### Step 2: Create Documentation Structure ✅
 
