@@ -1,5 +1,9 @@
 # General Best Practice
 
+## Planning
+
+When planning, do not add dates or durations to tasks.
+
 ## Use TDD
 
 Prefer pure functions tested with unit tests. See [testing-strategy](testing-strategy/index.md).

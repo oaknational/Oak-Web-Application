@@ -61,4 +61,4 @@ npm run report:open           # Open build report in browser
 
 ## Architecture Overview
 
-see [architectural-overview.md](architectural-overview.md)
+see [architectural-overview.md](../architectural-overview.md)

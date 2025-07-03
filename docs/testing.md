@@ -2,6 +2,15 @@
 
 Note, this document is about automated tests and checks. Manual testing is beyond the scope of this document, and somewhat exists outside of the lifecycle of this code base. We regard the human evaluation of the subjective experience of our apps as vital, as well as appreciating the irreplaceable value of human exploratory testing.
 
+## Testing Strategy
+
+Oak follows a comprehensive testing strategy centered on Test-Driven Development (TDD) and accessibility-first patterns. For detailed guidance:
+
+- **[Testing Strategy Overview](./testing-strategy/index.md)** - Complete testing approach and requirements
+- **[Core Principles](./testing-strategy/core-principles.md)** - TDD workflow and fundamental practices
+- **[Transformation Guide](./testing-strategy/transformation-guide.md)** - Evolving Oak's testing practices
+- **[Technical Guides](./testing-strategy/)** - Framework-specific patterns and examples
+
 All of our automation, including automated checks, are events driven. Diagram 1. shows the current key events.
 
 ![Key events driving automated checks in this repository](./images/sdlc_events.excalidraw.svg#gh-light-mode-only)
@@ -34,10 +43,6 @@ Unit tests only for now. Please write any tests dependent on a network connectio
 Tests live next to the code they are testing wherever possible. Next does not allow any files under the `src/pages/` directory other than routes, so those test file are under the `src/__tests_/pages/` directory, mirroring the `src/pages` file structure.
 
 Logic tests and snapshot tests should be in different files because their "failure" state has a different meaning. Snapshot tests should live next to the component they are testing, and have a name following the pattern `<component_name>.snapshot.test.tsx`.
-
-### Location
-
-The current tests live [here](../e2e_tests/browser/engineering/). The naming is intended to leave room for creating some product-facing tests using feature files, this is subject to change.
 
 ## Storybook
 

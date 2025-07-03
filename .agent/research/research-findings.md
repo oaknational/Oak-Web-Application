@@ -5,6 +5,7 @@
 ## Current Testing Infrastructure
 
 ### Jest Configuration
+
 - **Base Setup**: Uses Next.js Jest configuration with custom base config
 - **Test Environment**: JSDOM for DOM testing
 - **Coverage**: Comprehensive coverage collection with 15-second timeout for slow tests
@@ -12,6 +13,7 @@
 - **Mocking**: Extensive mocking setup for external dependencies (Bugsnag, PostHog, Clerk, etc.)
 
 ### Testing Dependencies
+
 - **@testing-library/react** (v16.0.0): Primary testing library
 - **@testing-library/jest-dom** (v6.4.6): DOM matchers
 - **@testing-library/user-event** (v14.5.2): User interaction testing
@@ -24,7 +26,9 @@
 ### Component Tests (10 Representative Examples)
 
 #### SharedComponents - Card.test.tsx
+
 **Pattern**: Simple styled component testing
+
 ```typescript
 describe("spacing", () => {
   test("has default padding 24", async () => {
@@ -33,11 +37,14 @@ describe("spacing", () => {
   });
 });
 ```
+
 **Quality**: Good - Focused, clear, tests actual CSS output
 **Domain Context**: Generic UI component testing
 
-#### TeacherComponents - LessonOverviewHeader.test.tsx  
+#### TeacherComponents - LessonOverviewHeader.test.tsx
+
 **Pattern**: Feature-rich component with Oak domain logic
+
 ```typescript
 it("renders the download button when !expired && show download all is true", () => {
   const { getAllByTestId } = renderWithTheme(
@@ -46,12 +53,15 @@ it("renders the download button when !expired && show download all is true", () 
   expect(getAllByTestId("download-all-button")).toHaveLength(2); // mobile and desktop
 });
 ```
+
 **Quality**: Good - Tests real teacher workflow features, uses fixtures
 **Domain Context**: Lesson management, teacher experience
 **Oak Domain**: Tests download functionality, lesson expiration logic
 
 #### PupilComponents - QuizRenderer.test.tsx
+
 **Pattern**: Complex interactive component with context dependencies
+
 ```typescript
 it("captures the MCQ selected answers when submit is clicked", () => {
   // Complex setup with multiple contexts and mock quiz data
@@ -62,6 +72,7 @@ it("captures the MCQ selected answers when submit is clicked", () => {
   expect(context.handleSubmitMCAnswer).toHaveBeenCalled();
 });
 ```
+
 **Quality**: Good - Tests actual quiz interactions with realistic data
 **Domain Context**: Pupil learning experience, quiz functionality
 **Oak Domain**: Tests curriculum quiz mechanics, question types
@@ -69,7 +80,9 @@ it("captures the MCQ selected answers when submit is clicked", () => {
 ### Hook Tests (5 Examples)
 
 #### useLocalStorage.test.ts
+
 **Pattern**: Custom hook with comprehensive edge cases
+
 ```typescript
 test("Update the state with a callback function", () => {
   const { result } = renderHook(() => useLocalStorage("count", 2));
@@ -79,10 +92,13 @@ test("Update the state with a callback function", () => {
   expect(result.current[0]).toBe(3);
 });
 ```
+
 **Quality**: Excellent - Thorough testing of hook behavior, edge cases, validation
 
 #### useFetch.test.ts
+
 **Pattern**: API interaction hook with error handling
+
 ```typescript
 test("invalid", async () => {
   fetch.mockResolvedValueOnce(new Response("{}", { status: 404 }));
@@ -90,38 +106,47 @@ test("invalid", async () => {
   expect(result.error?.message).toEqual("An unknown error has occurred");
 });
 ```
+
 **Quality**: Good - Tests success/error states, proper async handling
 
 ### Utility Function Tests (5 Examples)
 
 #### formatDate.test.ts
+
 **Pattern**: Simple pure function testing
+
 ```typescript
 test("should default to format like 14 April 1989", () => {
   expect(formatDate("1989-04-14")).toBe("14 April 1989");
 });
 ```
+
 **Quality**: Good - Clear, focused unit tests
 **Domain Context**: Date formatting for curriculum content
 
 #### curriculum/lessons.test.ts
+
 **Pattern**: Domain-specific utility testing
+
 ```typescript
 it("returns false if no lessons are published", () => {
   const noPublishedLessons = [
     { title: "Lesson 1", _state: "new" },
-    { title: "Lesson 2", _state: "new" }
+    { title: "Lesson 2", _state: "new" },
   ];
   expect(areLessonsAvailable(noPublishedLessons)).toEqual(false);
 });
 ```
+
 **Quality**: Good - Tests real curriculum publishing logic
 **Oak Domain**: Lesson availability, content state management
 
 ### Page Tests (5 Examples)
 
 #### index.test.tsx (Homepage)
+
 **Pattern**: Page component with routing logic
+
 ```typescript
 it.each(["curriculum", "pupils", "teachers", "ai"])(
   "redirects to / when the path includes #", (path) => {
@@ -133,24 +158,29 @@ it.each(["curriculum", "pupils", "teachers", "ai"])(
   }
 );
 ```
+
 **Quality**: Good - Tests navigation behavior, uses realistic scenarios
 **Oak Domain**: Main site navigation between user types
 
 #### teachers/index.test.tsx
+
 **Pattern**: Page with getStaticProps testing
+
 ```typescript
 it("Should filter out upcoming webinars", async () => {
   mockCMSClient.webinars.mockResolvedValueOnce([...futureWebinars]);
   const result = await getStaticProps({ params: {} });
-  expect(result.props.posts.map(p => p.id)).toEqual(["2", "3"]);
+  expect(result.props.posts.map((p) => p.id)).toEqual(["2", "3"]);
 });
 ```
+
 **Quality**: Excellent - Tests data fetching logic, business rules
 **Oak Domain**: Content management, teacher resources
 
 ## Real Oak Domain Examples Found
 
 ### Curriculum Domain
+
 - **Lesson availability testing**: `areLessonsAvailable` function tests curriculum publishing logic
 - **Programme and unit management**: Unit ordering, lesson sequences, tier management
 - **Quiz question types**: MCQ, short answer, matching, order-the-words questions
@@ -158,6 +188,7 @@ it("Should filter out upcoming webinars", async () => {
 - **Subject categorization**: Mathematics, English, Science domain-specific logic
 
 ### Teacher Experience
+
 - **Lesson downloads and sharing**: Download permissions, resource access controls
 - **Onboarding flows**: Teacher registration, school selection, role assignment
 - **School selection**: Find school functionality, school verification
@@ -165,6 +196,7 @@ it("Should filter out upcoming webinars", async () => {
 - **Resource management**: Lesson planning tools, curriculum browser
 
 ### Pupil Experience
+
 - **Quiz interactions**: Answer submission, grading, progress tracking
 - **Lesson progress tracking**: Section completion, video watching time
 - **Video watching**: Play/pause tracking, progress markers
@@ -172,6 +204,7 @@ it("Should filter out upcoming webinars", async () => {
 - **Answer submission**: Multiple choice, text input, drag-and-drop interactions
 
 ### Content Management
+
 - **Blog post filtering**: Date-based filtering, content categorization
 - **Webinar management**: Future/past webinar filtering, registration flows
 - **Content state management**: Published, draft, archived content states
@@ -181,6 +214,7 @@ it("Should filter out upcoming webinars", async () => {
 ## Current Testing Quality Assessment
 
 ### Strengths
+
 1. **Comprehensive RTL Usage**: Consistent use of React Testing Library patterns across codebase
 2. **Good Helper Utilities**: Well-structured `renderWithProviders` and `renderWithTheme` helpers
 3. **Oak Domain Integration**: Tests use realistic curriculum fixtures and domain data
@@ -204,24 +238,29 @@ it("Should filter out upcoming webinars", async () => {
 ### Specific Anti-Patterns Observed
 
 #### 1. Mixed Testing Philosophies
+
 ```typescript
 // Some tests focus on implementation
-expect(component.find('.lesson-card')).toHaveLength(1);
+expect(component.find(".lesson-card")).toHaveLength(1);
 
 // Others focus on user behavior (better)
-expect(screen.getByRole('button', { name: 'Start Lesson' })).toBeInTheDocument();
+expect(
+  screen.getByRole("button", { name: "Start Lesson" }),
+).toBeInTheDocument();
 ```
 
 #### 2. Inconsistent Fixture Usage
+
 ```typescript
 // Ad-hoc test data creation
-const lesson = { title: 'Test', duration: 45 };
+const lesson = { title: "Test", duration: 45 };
 
 // vs. proper fixture usage
-const lesson = createMockLesson({ title: 'Fractions Introduction' });
+const lesson = createMockLesson({ title: "Fractions Introduction" });
 ```
 
 #### 3. Over-Mocking Simple Logic
+
 Some tests mock simple utilities that could be tested directly, reducing confidence in the actual implementation.
 
 ## Gap Analysis: Current State vs. Best Practices
@@ -248,18 +287,21 @@ Some tests mock simple utilities that could be tested directly, reducing confide
 ## Recommendations for Testing Strategy Implementation
 
 ### High-Impact, Low-Resistance Changes
+
 1. **Standardize existing good patterns** rather than introducing completely new approaches
 2. **Create shared fixtures** for Oak domain objects (lessons, programmes, units)
 3. **Document current excellent examples** as templates for team adoption
 4. **Gradual pure function extraction** from components with immediate testing benefits
 
 ### Cultural Considerations for Oak Team
+
 1. **Build on existing RTL expertise** rather than introducing new testing libraries
 2. **Leverage Oak domain knowledge** already embedded in current tests
 3. **Address fixture inconsistency** with gentle standardization
 4. **Introduce TDD gradually** with compelling examples rather than mandates
 
 ### Technical Infrastructure Improvements
+
 1. **Enhance test organization** to match current codebase structure
 2. **Improve mock consistency** across similar component types
 3. **Add accessibility testing** as natural extension of current RTL usage
@@ -267,4 +309,4 @@ Some tests mock simple utilities that could be tested directly, reducing confide
 
 ---
 
-*This research reveals a solid foundation with good RTL usage and Oak domain integration. The transformation strategy should build on these strengths while addressing consistency and cultural aspects of testing practices.*
+_This research reveals a solid foundation with good RTL usage and Oak domain integration. The transformation strategy should build on these strengths while addressing consistency and cultural aspects of testing practices._

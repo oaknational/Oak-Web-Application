@@ -1,3 +1,3 @@
 # CLAUDE.md
 
-read [AGENT.md](AGENT.md)
+read [AGENT.md](.agent/entry-points/AGENT.md)
