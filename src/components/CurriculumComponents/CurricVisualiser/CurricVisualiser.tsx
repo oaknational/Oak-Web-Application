@@ -10,6 +10,7 @@ import { CurricYearCard } from "../CurricYearCard";
 import CurricUnitModalContent from "../CurricUnitModalContent";
 import CurricModalErrorContent from "../CurricModalErrorContent/CurricModalErrorContent";
 
+import useMediaQuery from "@/hooks/useMediaQuery";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import {
   getYearGroupTitle,
@@ -53,24 +54,42 @@ export default function CurricVisualiser({
 }: CurricVisualiserProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const isMobile = useMediaQuery("mobile");
+
+  const visualiserFilters = useMemo(() => {
+    if (isMobile) {
+      return {
+        ...filters,
+        years: Object.keys(yearData),
+        pathways: [],
+      };
+    }
+    return filters;
+  }, [isMobile, filters, yearData]);
 
   const { unit: unitData, unitOption: unitOptionData } = findUnitOrOptionBySlug(
     yearData,
     selectedUnitSlug,
   );
 
-  const shouldIncludeCore = ks4OptionSlug !== "core";
+  const shouldIncludeCore = isMobile || ks4OptionSlug !== "core";
   const unitsByYearSelector = applyFiltering(
-    filters,
+    visualiserFilters,
     groupUnitsByPathway({
-      modes: getModes(shouldIncludeCore, ks4Options, filters.pathways[0]),
+      modes: getModes(
+        shouldIncludeCore,
+        ks4Options,
+        visualiserFilters.pathways[0],
+      ),
       yearData,
     }),
   );
 
   const selectedThread = useMemo(() => {
-    return threadOptions.find((thread) => thread.slug === filters.threads[0]);
-  }, [threadOptions, filters]);
+    return threadOptions.find(
+      (thread) => thread.slug === visualiserFilters.threads[0],
+    );
+  }, [threadOptions, visualiserFilters]);
 
   const displayModal = !!selectedUnitSlug;
 
@@ -122,7 +141,7 @@ export default function CurricVisualiser({
         const yearSubheadingText = getYearSubheadingText(
           yearData,
           year,
-          filters,
+          visualiserFilters,
           shouldDisplayCorePathway ? type : null,
           actions,
         );
@@ -155,7 +174,7 @@ export default function CurricVisualiser({
             >
               <CurricVisualiserUnitList
                 units={units}
-                filters={filters}
+                filters={visualiserFilters}
                 year={year}
                 yearData={yearData}
                 basePath={basePath}
@@ -170,7 +189,7 @@ export default function CurricVisualiser({
         onClose={handleCloseModal}
         unitData={unitData}
         unitOptionData={unitOptionData}
-        filters={filters}
+        filters={visualiserFilters}
         ks4OptionSlug={ks4OptionSlug}
         disableFooter={Boolean(selectedUnitSlug && !unitData)}
       >
