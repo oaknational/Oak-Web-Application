@@ -68,8 +68,8 @@ export const lessonOverviewSchema = baseLessonOverviewSchema.extend({
   additionalFiles: z.array(z.string()).nullable(),
   lessonMediaClips: mediaClipsRecordCamelSchema.nullable(),
   lessonReleaseDate: z.string().nullable(),
-  geoRestricted: z.boolean().nullable(),
-  loginRequired: z.boolean().nullable(),
+  loginRequired: z.boolean(),
+  geoRestricted: z.boolean(),
 });
 
 export type LessonOverviewPageData = z.infer<typeof lessonOverviewSchema>;

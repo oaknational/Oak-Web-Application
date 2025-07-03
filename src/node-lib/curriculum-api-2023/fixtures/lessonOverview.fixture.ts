@@ -27,6 +27,8 @@ const lessonOverviewFixture = (
     lessonEquipmentAndResources: null,
     teacherTips: null,
     pathways: [],
+    loginRequired: false,
+    geoRestricted: false,
     keyLearningPoints: [
       {
         keyLearningPoint:
@@ -110,8 +112,6 @@ const lessonOverviewFixture = (
     lessonReleaseDate: "2024-09-29T14:00:00.000Z",
     orderInUnit: 4,
     unitTotalLessonCount: 6,
-    geoRestricted: false,
-    loginRequired: false,
     ...partial,
   };
 };

@@ -10,6 +10,8 @@ import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/le
 import { VideoPlayerProps } from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
+import { mockLoggedOut } from "@/__tests__/__helpers__/mockUser";
 
 const render = renderWithProviders();
 
@@ -23,6 +25,12 @@ const firstMediaClip = mediaClips ? mediaClips["intro"] : null;
 
 jest.mock("next/router", () => ({
   useRouter: jest.fn(),
+}));
+
+const mockFeatureFlagEnabled = jest.fn().mockReturnValue(false);
+
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagEnabled: () => mockFeatureFlagEnabled(),
 }));
 
 jest.mock("@/context/Analytics/useAnalytics", () => ({
@@ -252,5 +260,43 @@ describe("LessonMedia view", () => {
       "aria-label",
       "Read help article for this page (opens in a new tab)",
     );
+  });
+  it('Renders "RestrictedSignInPrompt" when geoRestricted or loginRequired is true and the user is not Signed in', () => {
+    mockFeatureFlagEnabled.mockReturnValue(true);
+    setUseUserReturn(mockLoggedOut);
+    const { queryByTestId, getByText } = render(
+      <LessonMedia
+        lesson={{ ...lesson, geoRestricted: true, loginRequired: true }}
+        isCanonical={false}
+      />,
+    );
+    const restrictedSignInPrompt = getByText("Sign in to continue");
+    const mediaClipWrapper = queryByTestId("media-clip-wrapper");
+    expect(mediaClipWrapper).not.toBeInTheDocument();
+    expect(restrictedSignInPrompt).toBeInTheDocument();
+  });
+  it("does not render 'RestrictedSignInPrompt' when geoRestricted or loginRequired is false", () => {
+    mockFeatureFlagEnabled.mockReturnValue(true);
+    setUseUserReturn(mockLoggedOut);
+    const { queryByText } = render(
+      <LessonMedia
+        lesson={{ ...lesson, geoRestricted: false, loginRequired: false }}
+        isCanonical={false}
+      />,
+    );
+    const restrictedSignInPrompt = queryByText("Sign in to continue");
+    expect(restrictedSignInPrompt).not.toBeInTheDocument();
+  });
+  it("does not render 'RestrictedSignInPrompt' when feature flag is disabled", () => {
+    mockFeatureFlagEnabled.mockReturnValue(false);
+    setUseUserReturn(mockLoggedOut);
+    const { queryByText } = render(
+      <LessonMedia
+        lesson={{ ...lesson, geoRestricted: true, loginRequired: true }}
+        isCanonical={false}
+      />,
+    );
+    const restrictedSignInPrompt = queryByText("Sign in to continue");
+    expect(restrictedSignInPrompt).not.toBeInTheDocument();
   });
 });
