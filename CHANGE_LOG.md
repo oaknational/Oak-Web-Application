@@ -1,3 +1,62 @@
+## [1.789.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.789.0...v1.789.1) (2025-07-03)
+
+
+### Bug Fixes
+
+* stop cookie consent from obscuring content ([5695862](https://github.com/oaknational/Oak-Web-Application/commit/56958625dfc8b3912194e5c1c51556cba5ff6028))
+
+# [1.789.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.788.0...v1.789.0) (2025-07-03)
+
+
+### Bug Fixes
+
+* avo test errors ([e07edb8](https://github.com/oaknational/Oak-Web-Application/commit/e07edb8175dc92569fdd07a5462f4334ba18a415))
+* remove archived tracking event from footer ([ac5772d](https://github.com/oaknational/Oak-Web-Application/commit/ac5772dc094b611ac508d39f271303c1c60d09a5))
+* support article url ([594e70e](https://github.com/oaknational/Oak-Web-Application/commit/594e70e791c89e96725db182823ce91394b63a2d))
+* tests and add tracking to useEffect ([db0bbcd](https://github.com/oaknational/Oak-Web-Application/commit/db0bbcdf806430be3caf71f1b6d4918f6583107e))
+
+
+### Features
+
+* add banner to lesson overview header variants ([adde634](https://github.com/oaknational/Oak-Web-Application/commit/adde6348026c76234ea3c307537af20a51c6f720))
+* add feature flag for copyright restriction ([cd7f974](https://github.com/oaknational/Oak-Web-Application/commit/cd7f974b6a78f449a968231e55e43798b2cec73b))
+* add georestricted and login required to lesson overview query ([75a364b](https://github.com/oaknational/Oak-Web-Application/commit/75a364ba29a212c570840a31839b93121eee97e2))
+* add login required to lesson listing query ([5087a95](https://github.com/oaknational/Oak-Web-Application/commit/5087a9508178bfb2ba4f9dbd59a6f911aff2b6ae))
+* add tracking for content block ([6dca1f3](https://github.com/oaknational/Oak-Web-Application/commit/6dca1f3733f8c7aa94083198cebdef13d84d6fe5))
+* copyright restriction banner on lesson listing and overview ([488b607](https://github.com/oaknational/Oak-Web-Application/commit/488b607e3e66ab20208edd5dc0df51dbe66c5ed4))
+
+# [1.788.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.787.0...v1.788.0) (2025-07-03)
+
+
+### Bug Fixes
+
+* fix text having the wrong color in RestrictedSignInPrompt component ([a609623](https://github.com/oaknational/Oak-Web-Application/commit/a609623d028a399c0dce1acaeadb1cc96259279b))
+* update behaviour to hide lesson guide also ([78ce677](https://github.com/oaknational/Oak-Web-Application/commit/78ce677bf6ac9530dac9d8d457d79b0c0e0bfd91))
+
+
+### Features
+
+* add loginRequired and geoRestricted fields to lesson media components and fixtures ([149a092](https://github.com/oaknational/Oak-Web-Application/commit/149a092381f44265c0dabeae8035bf8aa3c9a8a2))
+* add loginRequired and geoRestricted fields to lesson overview and specialist lesson schemas, fixtures, and components ([eb4f7a7](https://github.com/oaknational/Oak-Web-Application/commit/eb4f7a7b0444f80e5f573eaece52f8890a7b7ee4))
+* add responsive behaviour to RestrictedSignInPrompt ([49d48e2](https://github.com/oaknational/Oak-Web-Application/commit/49d48e231db2aa17407ee96c424ebc4c5ca50d4a))
+* implement RestrictedSignInPrompt component and integrate it into LessonMedia view ([19526a3](https://github.com/oaknational/Oak-Web-Application/commit/19526a36ea617428a493d49f6799465fe7462a53))
+* integrate content restriction logic into LessonOverview and update related components ([6f8a562](https://github.com/oaknational/Oak-Web-Application/commit/6f8a562e494c181f3cbb57471c0f4c43863fde6b))
+* make restrictedsigninprompt full width ([5cfad87](https://github.com/oaknational/Oak-Web-Application/commit/5cfad87db9081c2a031aab60717fa135ac6855a1))
+
+# [1.787.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.786.0...v1.787.0) (2025-07-02)
+
+
+### Bug Fixes
+
+* always show attributions when available on media ([5fe7afc](https://github.com/oaknational/Oak-Web-Application/commit/5fe7afc6aa44c89f2c88b6cb096ba384fee8c479))
+* font weight on clip names ([a929bd5](https://github.com/oaknational/Oak-Web-Application/commit/a929bd5a50ab00481a8b6ed14413800a67445b2e))
+
+
+### Features
+
+* add attributions component to media clips page ([ebd2a18](https://github.com/oaknational/Oak-Web-Application/commit/ebd2a18adf7c1a0754ecb5fed79ac6d4f9c50061))
+* correct layout of multiple attributions ([05aa54f](https://github.com/oaknational/Oak-Web-Application/commit/05aa54fd6181a28795f4d5cb109daeae0caaf4b6))
+
 # [1.786.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.785.1...v1.786.0) (2025-07-02)
 
 

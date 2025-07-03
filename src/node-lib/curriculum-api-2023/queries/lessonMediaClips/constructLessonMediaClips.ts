@@ -15,8 +15,9 @@ export const constructLessonMediaData = (
     lessonOutline: browseData.lessonData.lessonOutline ?? null,
     actions: browseData.actions ?? null,
     lessonReleaseDate: browseData.lessonData.lessonReleaseDate,
+    geoRestricted: browseData.features?.agf_geoRestricted ?? false,
+    loginRequired: browseData.features?.agf_loginRequired ?? false,
   };
-
   if (pathways) {
     return { ...result, pathways };
   }

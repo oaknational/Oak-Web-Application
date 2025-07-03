@@ -1,3 +1,4 @@
+import { act } from "@testing-library/react";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import {
@@ -6,10 +7,19 @@ import {
 } from "./LessonOverview.view";
 
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
+import {
+  mockLoggedIn,
+  mockLoggedOut,
+  mockUserWithDownloadAccess,
+} from "@/__tests__/__helpers__/mockUser";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+
+const mockFeatureFlagEnabled = jest.fn().mockReturnValue(false);
 
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagVariantKey: jest.fn(),
+  useFeatureFlagEnabled: () => mockFeatureFlagEnabled(),
 }));
 
 const lessonMediaClipsStarted = jest.fn();
@@ -26,6 +36,8 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
     },
   }),
 }));
+
+const render = renderWithProviders();
 
 describe("isPupilLessonOutcomeInKeyLearningPoints", () => {
   it("should return plo if the pupil lesson outcome is not in the key learning points", () => {
@@ -64,7 +76,7 @@ describe("lessonOverview.view", () => {
     });
 
     it("renders with sub-header content", () => {
-      const { getByText } = renderWithTheme(
+      const { getByText } = render(
         <LessonOverview
           lesson={{
             ...lessonOverviewFixture(),
@@ -87,7 +99,7 @@ describe("lessonOverview.view", () => {
       (useFeatureFlagVariantKey as jest.Mock).mockReturnValue("control");
     });
     it("renders without sub-header content", () => {
-      const { queryByText } = renderWithTheme(
+      const { queryByText } = render(
         <LessonOverview
           lesson={{
             ...lessonOverviewFixture(),
@@ -108,7 +120,7 @@ describe("lessonOverview.view", () => {
   });
   describe("tracking", () => {
     it("should call track.lessonMediaClipsStarted when play all is clicked for media clips", () => {
-      const { getByText } = renderWithTheme(
+      const { getByText } = render(
         <LessonOverview
           lesson={{
             ...lessonOverviewFixture(),
@@ -151,7 +163,7 @@ describe("lessonOverview.view", () => {
       });
     });
     it("should call track.trackDownloadResourceButtonClicked when play all is clicked for media clips", () => {
-      const { getByText } = renderWithTheme(
+      const { getByText } = render(
         <LessonOverview
           lesson={{
             ...lessonOverviewFixture(),
@@ -163,7 +175,9 @@ describe("lessonOverview.view", () => {
         />,
       );
       const playAllButton = getByText("Download lesson slides");
-      playAllButton.click();
+      act(() => {
+        playAllButton.click();
+      });
       expect(lessonResourceDownloadStarted).toHaveBeenCalledWith({
         analyticsUseCase: "Teacher",
         componentType: "lesson_download_button",
@@ -191,7 +205,7 @@ describe("lessonOverview.view", () => {
       });
     });
     it("should hanlde no release date when track.trackDownloadResourceButtonClicked is called", () => {
-      const { getByText } = renderWithTheme(
+      const { getByText } = render(
         <LessonOverview
           lesson={{
             ...lessonOverviewFixture({
@@ -206,7 +220,9 @@ describe("lessonOverview.view", () => {
         />,
       );
       const playAllButton = getByText("Download lesson slides");
-      playAllButton.click();
+      act(() => {
+        playAllButton.click();
+      });
       expect(lessonResourceDownloadStarted).toHaveBeenCalledWith({
         analyticsUseCase: "Teacher",
         componentType: "lesson_download_button",
@@ -232,7 +248,7 @@ describe("lessonOverview.view", () => {
       });
     });
     it("should hanlde no release date when track.lessonMediaClipsStarted is called", () => {
-      const { getByText } = renderWithTheme(
+      const { getByText } = render(
         <LessonOverview
           lesson={{
             ...lessonOverviewFixture({
@@ -277,5 +293,101 @@ describe("lessonOverview.view", () => {
         yearGroupSlug: null,
       });
     });
+  });
+  it("Should show the sign in prompt when geoRestricted or loginRequired is true, the user is not signed in, and feature flag enabled", () => {
+    mockFeatureFlagEnabled.mockReturnValue(true);
+    setUseUserReturn(mockLoggedOut);
+
+    const { getByText } = render(
+      <LessonOverview
+        lesson={{
+          ...lessonOverviewFixture(),
+          isSpecialist: false,
+          isCanonical: false,
+          hasMediaClips: true,
+          geoRestricted: true,
+          loginRequired: true,
+        }}
+        isBeta={false}
+      />,
+    );
+    const restrictedSignInPrompt = getByText("Sign in to continue");
+    expect(restrictedSignInPrompt).toBeInTheDocument();
+  });
+  it("Should hide restricted content when sign in prompt is shown", () => {
+    mockFeatureFlagEnabled.mockReturnValue(true);
+    setUseUserReturn(mockLoggedOut);
+
+    const { queryByText } = render(
+      <LessonOverview
+        lesson={{
+          ...lessonOverviewFixture(),
+          isSpecialist: false,
+          isCanonical: false,
+          hasMediaClips: true,
+          geoRestricted: true,
+          loginRequired: true,
+        }}
+        isBeta={false}
+      />,
+    );
+    const quizContent = queryByText(
+      "Which of these statements about trees is true?",
+    );
+
+    expect(quizContent).not.toBeInTheDocument();
+  });
+  it("Should not show the sign in prompt when feature flag disabled", () => {
+    mockFeatureFlagEnabled.mockReturnValue(false);
+    setUseUserReturn(mockLoggedOut);
+    const { queryByText, getAllByText } = render(
+      <LessonOverview
+        lesson={{
+          ...lessonOverviewFixture(),
+          isSpecialist: false,
+          isCanonical: false,
+          hasMediaClips: true,
+          geoRestricted: true,
+          loginRequired: true,
+        }}
+        isBeta={false}
+      />,
+    );
+
+    const restrictedSignInPrompt = queryByText("Sign in to continue");
+    expect(restrictedSignInPrompt).not.toBeInTheDocument();
+    const quizContent = getAllByText(
+      "Which of these statements about trees is true?",
+    );
+
+    expect(quizContent[0]).toBeInTheDocument();
+  });
+  it("Should not show the sign in prompt when the user is signed in", () => {
+    mockFeatureFlagEnabled.mockReturnValue(true);
+    setUseUserReturn({
+      ...mockLoggedIn,
+      user: mockUserWithDownloadAccess,
+    });
+
+    const { queryByText, getAllByText } = render(
+      <LessonOverview
+        lesson={{
+          ...lessonOverviewFixture(),
+          isSpecialist: false,
+          isCanonical: false,
+          hasMediaClips: true,
+          geoRestricted: true,
+          loginRequired: true,
+        }}
+        isBeta={false}
+      />,
+    );
+    const restrictedSignInPrompt = queryByText("Sign in to continue");
+    expect(restrictedSignInPrompt).not.toBeInTheDocument();
+    const quizContent = getAllByText(
+      "Which of these statements about trees is true?",
+    );
+
+    expect(quizContent[0]).toBeInTheDocument();
   });
 });

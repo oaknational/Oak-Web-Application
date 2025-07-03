@@ -476,90 +476,94 @@ exports[`CurriculumTab renders 1`] = `
       </div>
     </div>
     <div
-      class="sc-fqkvVR grAKRD"
-      data-testid="cookie-banner"
+      class="sc-fqkvVR eEXsKT"
     >
       <div
-        class="sc-fqkvVR jMNzyV"
+        class="sc-fqkvVR aMutw"
+        data-testid="cookie-banner"
       >
         <div
-          class="sc-fqkvVR sc-gsFSXq krbSaB iLFXKS"
+          class="sc-fqkvVR jMNzyV"
         >
           <div
-            class="sc-fqkvVR kJPpVN"
-          >
-            <strong
-              class="sc-kpDqfm bwvRQn"
-            >
-              This site uses cookies to store information on your computer.
-            </strong>
-             
-            Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
-          </div>
-          <div
-            class="sc-fqkvVR sc-gsFSXq fgBWrW ftCnYI"
+            class="sc-fqkvVR sc-gsFSXq krbSaB iLFXKS"
           >
             <div
-              class="sc-fqkvVR sc-gsFSXq fOyTgd gZFQMg"
+              class="sc-fqkvVR kJPpVN"
             >
-              <button
-                class="sc-JrDLc cEyXEU"
-                data-testid="cookie-banner-reject"
-                type="button"
+              <strong
+                class="sc-kpDqfm bwvRQn"
               >
-                <span
-                  class="sc-kpDqfm psnGs"
-                >
-                  Reject non-essential cookies
-                </span>
-              </button>
+                This site uses cookies to store information on your computer.
+              </strong>
+               
+              Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
             </div>
             <div
-              class="sc-fqkvVR sc-iHbSHJ eJBGXR fIxqXk"
+              class="sc-fqkvVR sc-gsFSXq fgBWrW ftCnYI"
             >
               <div
-                class="sc-fqkvVR iPpXCP grey-shadow"
-              />
-              <div
-                class="sc-fqkvVR iPpXCP yellow-shadow"
-              />
-              <button
-                class="sc-lcIPJg sc-hRJfrW kjNddQ dpmFSv internal-button"
+                class="sc-fqkvVR sc-gsFSXq fOyTgd gZFQMg"
               >
-                <div
-                  class="sc-fqkvVR sc-gsFSXq fgBWrW dzOlKm"
+                <button
+                  class="sc-JrDLc cEyXEU"
+                  data-testid="cookie-banner-reject"
+                  type="button"
                 >
                   <span
-                    class="sc-kpDqfm jpmbqG"
+                    class="sc-kpDqfm psnGs"
                   >
-                    Cookie settings
+                    Reject non-essential cookies
                   </span>
-                </div>
-              </button>
-            </div>
-            <div
-              class="sc-fqkvVR sc-iHbSHJ eJBGXR fIxqXk"
-            >
+                </button>
+              </div>
               <div
-                class="sc-fqkvVR iPpXCP grey-shadow"
-              />
-              <div
-                class="sc-fqkvVR iPpXCP yellow-shadow"
-              />
-              <button
-                class="sc-lcIPJg sc-hRJfrW lcdeJA eJSoyq internal-button"
-                data-testid="cookie-banner-accept"
+                class="sc-fqkvVR sc-iHbSHJ eJBGXR fIxqXk"
               >
                 <div
-                  class="sc-fqkvVR sc-gsFSXq fgBWrW dzOlKm"
+                  class="sc-fqkvVR iPpXCP grey-shadow"
+                />
+                <div
+                  class="sc-fqkvVR iPpXCP yellow-shadow"
+                />
+                <button
+                  class="sc-lcIPJg sc-hRJfrW kjNddQ dpmFSv internal-button"
                 >
-                  <span
-                    class="sc-kpDqfm jpmbqG"
+                  <div
+                    class="sc-fqkvVR sc-gsFSXq fgBWrW dzOlKm"
                   >
-                    Accept all cookies
-                  </span>
-                </div>
-              </button>
+                    <span
+                      class="sc-kpDqfm jpmbqG"
+                    >
+                      Cookie settings
+                    </span>
+                  </div>
+                </button>
+              </div>
+              <div
+                class="sc-fqkvVR sc-iHbSHJ eJBGXR fIxqXk"
+              >
+                <div
+                  class="sc-fqkvVR iPpXCP grey-shadow"
+                />
+                <div
+                  class="sc-fqkvVR iPpXCP yellow-shadow"
+                />
+                <button
+                  class="sc-lcIPJg sc-hRJfrW lcdeJA eJSoyq internal-button"
+                  data-testid="cookie-banner-accept"
+                >
+                  <div
+                    class="sc-fqkvVR sc-gsFSXq fgBWrW dzOlKm"
+                  >
+                    <span
+                      class="sc-kpDqfm jpmbqG"
+                    >
+                      Accept all cookies
+                    </span>
+                  </div>
+                </button>
+              </div>
             </div>
           </div>
         </div>
