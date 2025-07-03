@@ -38,6 +38,7 @@ export const useMyLibrary = () => {
     null,
   );
   const [locallySavedUnits, setLocallySavedUnits] = useState<Array<string>>([]);
+  const [isSavingUnit, setIsSavingUnit] = useState<string | null>(null);
 
   useEffect(() => {
     if (savedProgrammeUnits) {
@@ -117,6 +118,11 @@ export const useMyLibrary = () => {
     [locallySavedUnits],
   );
 
+  const isUnitSaving = useCallback(
+    (unitProgrammeSlug: string) => isSavingUnit === unitProgrammeSlug,
+    [isSavingUnit],
+  );
+
   const { setCurrentToastProps } = useOakToastContext();
 
   const onSave = async (
@@ -126,6 +132,7 @@ export const useMyLibrary = () => {
     trackingData: TrackingProgrammeData,
   ) => {
     setCurrentToastProps(SavedToastProps);
+    setIsSavingUnit(unitProgrammeSlug);
     incrementSavedUnitsCount();
     setLocallySavedUnits((prev) => [...prev, unitProgrammeSlug]);
     await postEducatorData(
@@ -139,6 +146,7 @@ export const useMyLibrary = () => {
         decrementSavedUnitsCount();
       },
     );
+    setIsSavingUnit(null);
     track.contentSaved({
       platform: "owa",
       product: "teacher lesson resources",
@@ -162,6 +170,7 @@ export const useMyLibrary = () => {
     trackingData: TrackingProgrammeData,
   ) => {
     setCurrentToastProps(UnsavedToastProps);
+    setIsSavingUnit(unitProgrammeSlug);
     decrementSavedUnitsCount();
     setLocallySavedUnits((prev) =>
       prev.filter((slug) => slug !== unitProgrammeSlug),
@@ -175,6 +184,7 @@ export const useMyLibrary = () => {
         incrementSavedUnitsCount();
       },
     );
+    setIsSavingUnit(null);
     track.contentUnsaved({
       platform: "owa",
       product: "teacher lesson resources",
@@ -206,6 +216,7 @@ export const useMyLibrary = () => {
 
   return {
     isUnitSaved,
+    isUnitSaving,
     onSaveToggle,
     isLoading,
     collectionData,
