@@ -23,6 +23,7 @@ module "vercel" {
   cloudflare_zone_domain = var.cloudflare_zone_domain
   domains                = local.build_config.domains
   framework              = local.build_config.framework
+  git_branch             = try(local.build_config.git_branch, null)
   ignore_command         = try(local.build_config.ignore_command, null)
   output_directory       = try(local.build_config.output_directory, null)
   deployment_type        = local.build_config.deployment_type
