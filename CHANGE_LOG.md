@@ -1,3 +1,10 @@
+## [1.789.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.789.0...v1.789.1) (2025-07-03)
+
+
+### Bug Fixes
+
+* stop cookie consent from obscuring content ([5695862](https://github.com/oaknational/Oak-Web-Application/commit/56958625dfc8b3912194e5c1c51556cba5ff6028))
+
 # [1.789.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.788.0...v1.789.0) (2025-07-03)
 
 
