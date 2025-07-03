@@ -14,6 +14,7 @@ import {
 } from "@oaknational/oak-consent-client";
 
 import {
+  OakBox,
   OakCookieConsent,
   OakCookieConsentProvider,
   oakDefaultTheme,
@@ -54,10 +55,14 @@ const CookieConsentUIProvider = ({ children }: PropsWithChildren) => {
       {children}
       <OakThemeProvider theme={oakDefaultTheme}>
         {isMounted && (
-          <>
-            <OakCookieConsent policyURL="/legal/cookie-policy" isFixed />
+          <OakBox
+            $position={"sticky"}
+            $bottom={"all-spacing-0"}
+            $zIndex={"banner"}
+          >
+            <OakCookieConsent policyURL="/legal/cookie-policy" />
             <RequiresInteraction />
-          </>
+          </OakBox>
         )}
       </OakThemeProvider>
     </OakCookieConsentProvider>
