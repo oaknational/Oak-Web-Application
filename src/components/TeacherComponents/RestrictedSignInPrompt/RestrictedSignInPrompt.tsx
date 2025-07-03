@@ -24,6 +24,7 @@ export function RestrictedSignInPrompt() {
       $pv={["inner-padding-none", "inner-padding-xl8"]}
       $height={"100%"}
       $background={["bg-primary", "mint"]}
+      $color={"text-primary"}
     >
       <FlexWithMaxWidth
         $flexDirection={"column"}
