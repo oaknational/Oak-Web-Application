@@ -224,6 +224,8 @@ export const baseLessonOverviewSchema = z.object({
   lessonReleaseDate: z.string().nullable(),
   orderInUnit: z.number().nullable(),
   unitTotalLessonCount: z.number().nullable(),
+  loginRequired: z.boolean(),
+  geoRestricted: z.boolean(),
 });
 export type LessonBase = z.infer<typeof baseLessonOverviewSchema>;
 

@@ -2,7 +2,7 @@ import LessonOverviewHeader, {
   LessonOverviewHeaderProps,
 } from "./LessonOverviewHeader";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 
 const props = {
@@ -14,27 +14,25 @@ const props = {
   showShare: true,
 } as unknown as LessonOverviewHeaderProps;
 
+const render = renderWithProviders();
+
 describe("LessonOverviewHeader", () => {
   it("renders the title with the correct level", () => {
-    const { getAllByRole } = renderWithTheme(
-      <LessonOverviewHeader {...props} />,
-    );
+    const { getAllByRole } = render(<LessonOverviewHeader {...props} />);
     const subjectHeading = getAllByRole("heading", { level: 1 });
     expect(subjectHeading).toHaveLength(1);
     expect(subjectHeading[0]).toHaveTextContent("Adverbial complex sentences");
   });
 
   it("renders the download button when !expired && show download all is true", () => {
-    const { getAllByTestId } = renderWithTheme(
+    const { getAllByTestId } = render(
       <LessonOverviewHeader {...props} showDownloadAll={true} />,
     );
     expect(getAllByTestId("download-all-button")).toHaveLength(2); // mobile and desktop
   });
 
   it("renders the share all button", () => {
-    const { getAllByTestId } = renderWithTheme(
-      <LessonOverviewHeader {...props} />,
-    );
+    const { getAllByTestId } = render(<LessonOverviewHeader {...props} />);
 
     const buttons = getAllByTestId("share-all-button");
 
@@ -42,7 +40,7 @@ describe("LessonOverviewHeader", () => {
   });
 
   it("does not render the download button when expired && show download all is true", () => {
-    const { queryByTestId } = renderWithTheme(
+    const { queryByTestId } = render(
       <LessonOverviewHeader {...props} expired={true} showDownloadAll={true} />,
     );
     const downloadLink = queryByTestId("download-all-button");
@@ -50,7 +48,7 @@ describe("LessonOverviewHeader", () => {
   });
 
   it("does not render the download button when show download all is false", () => {
-    const { queryByTestId } = renderWithTheme(
+    const { queryByTestId } = render(
       <LessonOverviewHeader {...props} showDownloadAll={false} />,
     );
     const downloadLink = queryByTestId("download-all-button");
@@ -63,18 +61,14 @@ describe("LessonOverviewHeader", () => {
       examBoardTitle: "foobar",
       yearTitle: undefined,
     };
-    const { getAllByText } = renderWithTheme(
-      <LessonOverviewHeader {...testProps} />,
-    );
+    const { getAllByText } = render(<LessonOverviewHeader {...testProps} />);
     const elems = getAllByText("foobar");
     expect(elems).toHaveLength(2); // mobile and desktop
   });
 
   it("renders tier title when passed in ", () => {
     const testProps = { ...props, tierTitle: "foobar", yearTitle: undefined };
-    const { getAllByText } = renderWithTheme(
-      <LessonOverviewHeader {...testProps} />,
-    );
+    const { getAllByText } = render(<LessonOverviewHeader {...testProps} />);
     const elems = getAllByText("foobar");
     expect(elems).toHaveLength(2); // mobile and desktop
   });
@@ -86,17 +80,13 @@ describe("LessonOverviewHeader", () => {
       yearTitle: undefined,
       tierTitle: undefined,
     };
-    const { queryByTestId } = renderWithTheme(
-      <LessonOverviewHeader {...testProps} />,
-    );
+    const { queryByTestId } = render(<LessonOverviewHeader {...testProps} />);
     expect(queryByTestId("other-factors")).toBeNull();
   });
 
   it("renders year title when passed in ", () => {
     const testProps = { ...props, yearTitle: "foobar" };
-    const { getAllByText } = renderWithTheme(
-      <LessonOverviewHeader {...testProps} />,
-    );
+    const { getAllByText } = render(<LessonOverviewHeader {...testProps} />);
     const elems = getAllByText("foobar");
     expect(elems).toHaveLength(2); // mobile and desktop
   });
@@ -106,9 +96,7 @@ describe("LessonOverviewHeader", () => {
       ...props,
       pupilLessonOutcome: "A pupil lesson outcome",
     };
-    const { getAllByText } = renderWithTheme(
-      <LessonOverviewHeader {...testProps} />,
-    );
+    const { getAllByText } = render(<LessonOverviewHeader {...testProps} />);
     const description = getAllByText("A pupil lesson outcome");
     expect(description).toHaveLength(2); // mobile and desktop
   });
@@ -118,9 +106,7 @@ describe("LessonOverviewHeader", () => {
       ...props,
       phonicsOutcome: "A phonic outcome",
     };
-    const { getAllByText } = renderWithTheme(
-      <LessonOverviewHeader {...testProps} />,
-    );
+    const { getAllByText } = render(<LessonOverviewHeader {...testProps} />);
     const description = getAllByText("A phonic outcome");
     expect(description).toHaveLength(2); // mobile and desktop
   });
