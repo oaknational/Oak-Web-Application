@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, Fragment } from "react";
 import { OakSpan, OakBox, OakSecondaryLink } from "@oaknational/oak-components";
 import styled from "styled-components";
 
@@ -195,14 +195,6 @@ export default function CurricVisualiserMobileHeader({
     }),
   );
 
-  useEffect(() => {
-    if (!selectedYear && unitsByYearSelector[0]) {
-      const firstYear = unitsByYearSelector[0];
-      const firstYearOption = `${firstYear.type}-${firstYear.year}`;
-      onSelectYear(firstYearOption);
-    }
-  }, [onSelectYear, selectedYear, unitsByYearSelector]);
-
   return (
     <OakBox
       $position={["sticky", "static"]}
@@ -243,7 +235,7 @@ export default function CurricVisualiserMobileHeader({
                 {textItemsDescribingFilter.map(
                   (textItemDescribingFilter, index) => {
                     return (
-                      <React.Fragment key={index}>
+                      <Fragment key={index}>
                         {index > 0 && <OakBox $display={"inline"}> • </OakBox>}
                         <OakBox
                           $display={"inline"}
@@ -251,7 +243,7 @@ export default function CurricVisualiserMobileHeader({
                         >
                           {textItemDescribingFilter}
                         </OakBox>
-                      </React.Fragment>
+                      </Fragment>
                     );
                   },
                 )}

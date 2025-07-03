@@ -163,20 +163,19 @@ describe("CurricVisualiserMobileHeader", () => {
     expect(yearButtons[1]).toHaveAttribute("aria-pressed", "false");
   });
 
-  test("sets initial year when none is selected", async () => {
-    const mockOnSelectYear = jest.fn();
-    render(
+  test("shows correct initial year as selected", async () => {
+    const { findAllByTestId } = render(
       <CurricVisualiserMobileHeader
         {...defaultProps}
-        selectedYear=""
-        onSelectYear={mockOnSelectYear}
+        selectedYear="year-all-7"
       />,
     );
 
-    // Wait for useEffect to run
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    expect(mockOnSelectYear).toHaveBeenCalledWith("all-7");
+    const yearButtons = await findAllByTestId("year-group-filter-button");
+    expect(yearButtons[0]).toHaveTextContent("Year 7");
+    expect(yearButtons[0]).toHaveAttribute("aria-pressed", "true");
+    expect(yearButtons[1]).toHaveTextContent("Year 8");
+    expect(yearButtons[1]).toHaveAttribute("aria-pressed", "false");
   });
 
   test("scrolls when year button is clicked", async () => {
