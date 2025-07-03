@@ -16,6 +16,7 @@ import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/Lesson
 import { LessonOverviewHeaderDownloadAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderDownloadAllButton";
 import { LessonOverviewHeaderShareAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderShareAllButton";
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
+import CopyrightRestrictionBanner from "@/components/TeacherComponents/CopyrightRestrictionBanner/CopyrightRestrictionBanner";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import { resolveOakHref } from "@/common-lib/urls";
 
@@ -53,6 +54,12 @@ export const LessonOverviewHeaderDesktopB: FC<LessonOverviewHeaderProps> = (
     breadcrumbs,
     programmeSlug,
     unitTitle,
+    geoRestricted,
+    loginRequired,
+    isLegacy,
+    lessonSlug,
+    lessonReleaseDate,
+    unitSlug,
   } = props;
 
   const previousBreadcrumb = breadcrumbs[breadcrumbs.length - 2];
@@ -144,6 +151,17 @@ export const LessonOverviewHeaderDesktopB: FC<LessonOverviewHeaderProps> = (
                 {showShare && <LessonOverviewHeaderShareAllButton {...props} />}
                 {teacherShareButton}
               </OakFlex>
+              <CopyrightRestrictionBanner
+                isGeorestricted={geoRestricted}
+                isLoginRequired={loginRequired}
+                componentType="lesson_overview"
+                isLessonLegacy={isLegacy}
+                lessonName={lessonTitle}
+                lessonSlug={lessonSlug}
+                lessonReleaseDate={lessonReleaseDate}
+                unitName={unitTitle}
+                unitSlug={unitSlug}
+              />
             </OakFlex>
           </OakFlex>
         </OakGridArea>

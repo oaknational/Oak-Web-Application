@@ -11,6 +11,7 @@ import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/Lesson
 import { LessonOverviewHeaderDownloadAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderDownloadAllButton";
 import { LessonOverviewHeaderShareAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderShareAllButton";
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
+import CopyrightRestrictionBanner from "@/components/TeacherComponents/CopyrightRestrictionBanner/CopyrightRestrictionBanner";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 
 export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
@@ -29,6 +30,13 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
     isCanonical,
     phonicsOutcome,
     teacherShareButton,
+    geoRestricted,
+    loginRequired,
+    isLegacy,
+    lessonSlug,
+    lessonReleaseDate,
+    unitTitle,
+    unitSlug,
   } = props;
 
   return (
@@ -72,6 +80,17 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
       <LessonOverviewHeaderDownloadAllButton {...props} />
       {showShare && <LessonOverviewHeaderShareAllButton {...props} />}
       {teacherShareButton}
+      <CopyrightRestrictionBanner
+        isGeorestricted={geoRestricted}
+        isLoginRequired={loginRequired}
+        componentType="lesson_overview"
+        isLessonLegacy={isLegacy}
+        lessonName={lessonTitle}
+        lessonSlug={lessonSlug}
+        lessonReleaseDate={lessonReleaseDate}
+        unitName={unitTitle}
+        unitSlug={unitSlug}
+      />
     </OakFlex>
   );
 };

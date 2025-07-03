@@ -266,6 +266,8 @@ export const transformedLessonOverviewData = (
       unitData?.supplementaryData?.staticLessonList?.length ??
       unitData?.lessonCount ??
       1,
+    geoRestricted: content.geoRestricted ?? false,
+    loginRequired: content.loginRequired ?? false,
   };
 };
 

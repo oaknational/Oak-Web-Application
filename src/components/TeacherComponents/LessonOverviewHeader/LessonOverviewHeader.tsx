@@ -43,6 +43,10 @@ export type LessonOverviewHeaderProps = {
   isCanonical: boolean;
   orderInUnit?: number | null;
   unitTotalLessonCount?: number | null;
+  geoRestricted?: boolean;
+  loginRequired?: boolean;
+  isLegacy?: boolean;
+  lessonReleaseDate?: string | null;
   // other props
   breadcrumbs: Breadcrumb[];
   background: OakColorName;

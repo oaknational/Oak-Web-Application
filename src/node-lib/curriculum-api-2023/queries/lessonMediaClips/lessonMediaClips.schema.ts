@@ -79,6 +79,8 @@ const baseLessonMediaClipsPageSchema = z.object({
   lessonOutline: z.array(z.object({ lessonOutline: z.string() })),
   actions: zodToCamelCase(actionsSchema).nullish(),
   lessonReleaseDate: z.string().nullable(),
+  geoRestricted: z.boolean(),
+  loginRequired: z.boolean(),
 });
 
 export const lessonMediaClipsSchema = baseLessonMediaClipsPageSchema.extend({
