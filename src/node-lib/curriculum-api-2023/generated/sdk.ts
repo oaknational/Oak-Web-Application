@@ -28522,6 +28522,94 @@ export type Published_Mv_Openapi_Unit_Curriculum_Content_1_0_2_Variance_Fields =
   unitId?: Maybe<Scalars['Float']['output']>;
 };
 
+/** columns and relationships of "published.mv_redirects_lessons_canonical_by_keystage_1_0_0" */
+export type Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0 = {
+  __typename?: 'published_mv_redirects_lessons_canonical_by_keystage_1_0_0';
+  incoming_path?: Maybe<Scalars['String']['output']>;
+  outgoing_path?: Maybe<Scalars['String']['output']>;
+  redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
+};
+
+/** aggregated selection of "published.mv_redirects_lessons_canonical_by_keystage_1_0_0" */
+export type Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Aggregate = {
+  __typename?: 'published_mv_redirects_lessons_canonical_by_keystage_1_0_0_aggregate';
+  aggregate?: Maybe<Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0>;
+};
+
+/** aggregate fields of "published.mv_redirects_lessons_canonical_by_keystage_1_0_0" */
+export type Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Aggregate_Fields = {
+  __typename?: 'published_mv_redirects_lessons_canonical_by_keystage_1_0_0_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Max_Fields>;
+  min?: Maybe<Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Min_Fields>;
+};
+
+
+/** aggregate fields of "published.mv_redirects_lessons_canonical_by_keystage_1_0_0" */
+export type Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "published.mv_redirects_lessons_canonical_by_keystage_1_0_0". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Bool_Exp>>;
+  incoming_path?: InputMaybe<String_Comparison_Exp>;
+  outgoing_path?: InputMaybe<String_Comparison_Exp>;
+  redirect_type?: InputMaybe<Redirect_Type_Enum_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Max_Fields = {
+  __typename?: 'published_mv_redirects_lessons_canonical_by_keystage_1_0_0_max_fields';
+  incoming_path?: Maybe<Scalars['String']['output']>;
+  outgoing_path?: Maybe<Scalars['String']['output']>;
+  redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Min_Fields = {
+  __typename?: 'published_mv_redirects_lessons_canonical_by_keystage_1_0_0_min_fields';
+  incoming_path?: Maybe<Scalars['String']['output']>;
+  outgoing_path?: Maybe<Scalars['String']['output']>;
+  redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
+};
+
+/** Ordering options when selecting data from "published.mv_redirects_lessons_canonical_by_keystage_1_0_0". */
+export type Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Order_By = {
+  incoming_path?: InputMaybe<Order_By>;
+  outgoing_path?: InputMaybe<Order_By>;
+  redirect_type?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.mv_redirects_lessons_canonical_by_keystage_1_0_0" */
+export enum Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Select_Column {
+  /** column name */
+  IncomingPath = 'incoming_path',
+  /** column name */
+  OutgoingPath = 'outgoing_path',
+  /** column name */
+  RedirectType = 'redirect_type'
+}
+
+/** Streaming cursor of the table "published_mv_redirects_lessons_canonical_by_keystage_1_0_0" */
+export type Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Stream_Cursor_Value_Input = {
+  incoming_path?: InputMaybe<Scalars['String']['input']>;
+  outgoing_path?: InputMaybe<Scalars['String']['input']>;
+  redirect_type?: InputMaybe<Scalars['redirect_type_enum']['input']>;
+};
+
 /** columns and relationships of "published.mv_search_page_3" */
 export type Published_Mv_Search_Page_3 = {
   __typename?: 'published_mv_search_page_3';
@@ -35820,6 +35908,7 @@ export type Published_Mv_Threads_By_Unit_1_0_0_Variance_Fields = {
 export type Published_Redirects = {
   __typename?: 'published_redirects';
   created_at?: Maybe<Scalars['timestamp']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
   entity_id: Scalars['Int']['output'];
   entity_source: Scalars['redirect_entity_source_enum']['output'];
   redirect_entity_id?: Maybe<Scalars['Int']['output']>;
@@ -35872,6 +35961,7 @@ export type Published_Redirects_Bool_Exp = {
   _not?: InputMaybe<Published_Redirects_Bool_Exp>;
   _or?: InputMaybe<Array<Published_Redirects_Bool_Exp>>;
   created_at?: InputMaybe<Timestamp_Comparison_Exp>;
+  description?: InputMaybe<String_Comparison_Exp>;
   entity_id?: InputMaybe<Int_Comparison_Exp>;
   entity_source?: InputMaybe<Redirect_Entity_Source_Enum_Comparison_Exp>;
   redirect_entity_id?: InputMaybe<Int_Comparison_Exp>;
@@ -35896,6 +35986,7 @@ export type Published_Redirects_Inc_Input = {
 /** input type for inserting data into table "published.redirects" */
 export type Published_Redirects_Insert_Input = {
   created_at?: InputMaybe<Scalars['timestamp']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
   entity_id?: InputMaybe<Scalars['Int']['input']>;
   entity_source?: InputMaybe<Scalars['redirect_entity_source_enum']['input']>;
   redirect_entity_id?: InputMaybe<Scalars['Int']['input']>;
@@ -35909,6 +36000,7 @@ export type Published_Redirects_Insert_Input = {
 export type Published_Redirects_Max_Fields = {
   __typename?: 'published_redirects_max_fields';
   created_at?: Maybe<Scalars['timestamp']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
   entity_id?: Maybe<Scalars['Int']['output']>;
   entity_source?: Maybe<Scalars['redirect_entity_source_enum']['output']>;
   redirect_entity_id?: Maybe<Scalars['Int']['output']>;
@@ -35922,6 +36014,7 @@ export type Published_Redirects_Max_Fields = {
 export type Published_Redirects_Min_Fields = {
   __typename?: 'published_redirects_min_fields';
   created_at?: Maybe<Scalars['timestamp']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
   entity_id?: Maybe<Scalars['Int']['output']>;
   entity_source?: Maybe<Scalars['redirect_entity_source_enum']['output']>;
   redirect_entity_id?: Maybe<Scalars['Int']['output']>;
@@ -35950,6 +36043,7 @@ export type Published_Redirects_On_Conflict = {
 /** Ordering options when selecting data from "published.redirects". */
 export type Published_Redirects_Order_By = {
   created_at?: InputMaybe<Order_By>;
+  description?: InputMaybe<Order_By>;
   entity_id?: InputMaybe<Order_By>;
   entity_source?: InputMaybe<Order_By>;
   redirect_entity_id?: InputMaybe<Order_By>;
@@ -35970,6 +36064,8 @@ export enum Published_Redirects_Select_Column {
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
+  Description = 'description',
+  /** column name */
   EntityId = 'entity_id',
   /** column name */
   EntitySource = 'entity_source',
@@ -35988,6 +36084,7 @@ export enum Published_Redirects_Select_Column {
 /** input type for updating data in table "published.redirects" */
 export type Published_Redirects_Set_Input = {
   created_at?: InputMaybe<Scalars['timestamp']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
   entity_id?: InputMaybe<Scalars['Int']['input']>;
   entity_source?: InputMaybe<Scalars['redirect_entity_source_enum']['input']>;
   redirect_entity_id?: InputMaybe<Scalars['Int']['input']>;
@@ -36029,6 +36126,7 @@ export type Published_Redirects_Stream_Cursor_Input = {
 /** Initial value of the column from where the streaming should start */
 export type Published_Redirects_Stream_Cursor_Value_Input = {
   created_at?: InputMaybe<Scalars['timestamp']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
   entity_id?: InputMaybe<Scalars['Int']['input']>;
   entity_source?: InputMaybe<Scalars['redirect_entity_source_enum']['input']>;
   redirect_entity_id?: InputMaybe<Scalars['Int']['input']>;
@@ -36049,6 +36147,8 @@ export type Published_Redirects_Sum_Fields = {
 export enum Published_Redirects_Update_Column {
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  Description = 'description',
   /** column name */
   EntityId = 'entity_id',
   /** column name */
@@ -42039,6 +42139,94 @@ export type Published_View_Quiz_Question_Details_Variance_Fields = {
   quiz_id?: Maybe<Scalars['Float']['output']>;
 };
 
+/** columns and relationships of "published.view_redirects_lessons_canonical_by_keystage_1" */
+export type Published_View_Redirects_Lessons_Canonical_By_Keystage_1 = {
+  __typename?: 'published_view_redirects_lessons_canonical_by_keystage_1';
+  incoming_path?: Maybe<Scalars['String']['output']>;
+  outgoing_path?: Maybe<Scalars['String']['output']>;
+  redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
+};
+
+/** aggregated selection of "published.view_redirects_lessons_canonical_by_keystage_1" */
+export type Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Aggregate = {
+  __typename?: 'published_view_redirects_lessons_canonical_by_keystage_1_aggregate';
+  aggregate?: Maybe<Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Aggregate_Fields>;
+  nodes: Array<Published_View_Redirects_Lessons_Canonical_By_Keystage_1>;
+};
+
+/** aggregate fields of "published.view_redirects_lessons_canonical_by_keystage_1" */
+export type Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Aggregate_Fields = {
+  __typename?: 'published_view_redirects_lessons_canonical_by_keystage_1_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Max_Fields>;
+  min?: Maybe<Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Min_Fields>;
+};
+
+
+/** aggregate fields of "published.view_redirects_lessons_canonical_by_keystage_1" */
+export type Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "published.view_redirects_lessons_canonical_by_keystage_1". All fields are combined with a logical 'AND'. */
+export type Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Bool_Exp>>;
+  _not?: InputMaybe<Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Bool_Exp>>;
+  incoming_path?: InputMaybe<String_Comparison_Exp>;
+  outgoing_path?: InputMaybe<String_Comparison_Exp>;
+  redirect_type?: InputMaybe<Redirect_Type_Enum_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Max_Fields = {
+  __typename?: 'published_view_redirects_lessons_canonical_by_keystage_1_max_fields';
+  incoming_path?: Maybe<Scalars['String']['output']>;
+  outgoing_path?: Maybe<Scalars['String']['output']>;
+  redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Min_Fields = {
+  __typename?: 'published_view_redirects_lessons_canonical_by_keystage_1_min_fields';
+  incoming_path?: Maybe<Scalars['String']['output']>;
+  outgoing_path?: Maybe<Scalars['String']['output']>;
+  redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
+};
+
+/** Ordering options when selecting data from "published.view_redirects_lessons_canonical_by_keystage_1". */
+export type Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Order_By = {
+  incoming_path?: InputMaybe<Order_By>;
+  outgoing_path?: InputMaybe<Order_By>;
+  redirect_type?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.view_redirects_lessons_canonical_by_keystage_1" */
+export enum Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Select_Column {
+  /** column name */
+  IncomingPath = 'incoming_path',
+  /** column name */
+  OutgoingPath = 'outgoing_path',
+  /** column name */
+  RedirectType = 'redirect_type'
+}
+
+/** Streaming cursor of the table "published_view_redirects_lessons_canonical_by_keystage_1" */
+export type Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Stream_Cursor_Value_Input = {
+  incoming_path?: InputMaybe<Scalars['String']['input']>;
+  outgoing_path?: InputMaybe<Scalars['String']['input']>;
+  redirect_type?: InputMaybe<Scalars['redirect_type_enum']['input']>;
+};
+
 /** columns and relationships of "published.view_synthetic_programmes_3" */
 export type Published_View_Synthetic_Programmes_3 = {
   __typename?: 'published_view_synthetic_programmes_3';
@@ -44611,6 +44799,276 @@ export type Published_View_Synthetic_Uv_Lessons_By_Year_14_Variance_Fields = {
   unit_id?: Maybe<Scalars['Float']['output']>;
   unitvariant_id?: Maybe<Scalars['Float']['output']>;
   uv_lessons_count?: Maybe<Scalars['Float']['output']>;
+};
+
+/** columns and relationships of "published.view_synthetic_uvs_by_keystage_16" */
+export type Published_View_Synthetic_Uvs_By_Keystage_16 = {
+  __typename?: 'published_view_synthetic_uvs_by_keystage_16';
+  _state?: Maybe<Scalars['String']['output']>;
+  base_slug?: Maybe<Scalars['String']['output']>;
+  is_legacy?: Maybe<Scalars['Boolean']['output']>;
+  null_unitvariant_id?: Maybe<Scalars['bigint']['output']>;
+  programme_features?: Maybe<Scalars['jsonb']['output']>;
+  programme_fields?: Maybe<Scalars['jsonb']['output']>;
+  programme_id?: Maybe<Scalars['Int']['output']>;
+  programme_slug?: Maybe<Scalars['String']['output']>;
+  programme_slug_by_year?: Maybe<Scalars['String']['output']>;
+  supplementary_data?: Maybe<Scalars['jsonb']['output']>;
+  unit_data?: Maybe<Scalars['jsonb']['output']>;
+  unit_id?: Maybe<Scalars['Int']['output']>;
+  unit_slug?: Maybe<Scalars['String']['output']>;
+  unitvariant_id?: Maybe<Scalars['Int']['output']>;
+};
+
+
+/** columns and relationships of "published.view_synthetic_uvs_by_keystage_16" */
+export type Published_View_Synthetic_Uvs_By_Keystage_16Programme_FeaturesArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.view_synthetic_uvs_by_keystage_16" */
+export type Published_View_Synthetic_Uvs_By_Keystage_16Programme_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.view_synthetic_uvs_by_keystage_16" */
+export type Published_View_Synthetic_Uvs_By_Keystage_16Supplementary_DataArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.view_synthetic_uvs_by_keystage_16" */
+export type Published_View_Synthetic_Uvs_By_Keystage_16Unit_DataArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "published.view_synthetic_uvs_by_keystage_16" */
+export type Published_View_Synthetic_Uvs_By_Keystage_16_Aggregate = {
+  __typename?: 'published_view_synthetic_uvs_by_keystage_16_aggregate';
+  aggregate?: Maybe<Published_View_Synthetic_Uvs_By_Keystage_16_Aggregate_Fields>;
+  nodes: Array<Published_View_Synthetic_Uvs_By_Keystage_16>;
+};
+
+/** aggregate fields of "published.view_synthetic_uvs_by_keystage_16" */
+export type Published_View_Synthetic_Uvs_By_Keystage_16_Aggregate_Fields = {
+  __typename?: 'published_view_synthetic_uvs_by_keystage_16_aggregate_fields';
+  avg?: Maybe<Published_View_Synthetic_Uvs_By_Keystage_16_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_View_Synthetic_Uvs_By_Keystage_16_Max_Fields>;
+  min?: Maybe<Published_View_Synthetic_Uvs_By_Keystage_16_Min_Fields>;
+  stddev?: Maybe<Published_View_Synthetic_Uvs_By_Keystage_16_Stddev_Fields>;
+  stddev_pop?: Maybe<Published_View_Synthetic_Uvs_By_Keystage_16_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Published_View_Synthetic_Uvs_By_Keystage_16_Stddev_Samp_Fields>;
+  sum?: Maybe<Published_View_Synthetic_Uvs_By_Keystage_16_Sum_Fields>;
+  var_pop?: Maybe<Published_View_Synthetic_Uvs_By_Keystage_16_Var_Pop_Fields>;
+  var_samp?: Maybe<Published_View_Synthetic_Uvs_By_Keystage_16_Var_Samp_Fields>;
+  variance?: Maybe<Published_View_Synthetic_Uvs_By_Keystage_16_Variance_Fields>;
+};
+
+
+/** aggregate fields of "published.view_synthetic_uvs_by_keystage_16" */
+export type Published_View_Synthetic_Uvs_By_Keystage_16_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_View_Synthetic_Uvs_By_Keystage_16_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** aggregate avg on columns */
+export type Published_View_Synthetic_Uvs_By_Keystage_16_Avg_Fields = {
+  __typename?: 'published_view_synthetic_uvs_by_keystage_16_avg_fields';
+  null_unitvariant_id?: Maybe<Scalars['Float']['output']>;
+  programme_id?: Maybe<Scalars['Float']['output']>;
+  unit_id?: Maybe<Scalars['Float']['output']>;
+  unitvariant_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "published.view_synthetic_uvs_by_keystage_16". All fields are combined with a logical 'AND'. */
+export type Published_View_Synthetic_Uvs_By_Keystage_16_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_View_Synthetic_Uvs_By_Keystage_16_Bool_Exp>>;
+  _not?: InputMaybe<Published_View_Synthetic_Uvs_By_Keystage_16_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_View_Synthetic_Uvs_By_Keystage_16_Bool_Exp>>;
+  _state?: InputMaybe<String_Comparison_Exp>;
+  base_slug?: InputMaybe<String_Comparison_Exp>;
+  is_legacy?: InputMaybe<Boolean_Comparison_Exp>;
+  null_unitvariant_id?: InputMaybe<Bigint_Comparison_Exp>;
+  programme_features?: InputMaybe<Jsonb_Comparison_Exp>;
+  programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
+  programme_id?: InputMaybe<Int_Comparison_Exp>;
+  programme_slug?: InputMaybe<String_Comparison_Exp>;
+  programme_slug_by_year?: InputMaybe<String_Comparison_Exp>;
+  supplementary_data?: InputMaybe<Jsonb_Comparison_Exp>;
+  unit_data?: InputMaybe<Jsonb_Comparison_Exp>;
+  unit_id?: InputMaybe<Int_Comparison_Exp>;
+  unit_slug?: InputMaybe<String_Comparison_Exp>;
+  unitvariant_id?: InputMaybe<Int_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_View_Synthetic_Uvs_By_Keystage_16_Max_Fields = {
+  __typename?: 'published_view_synthetic_uvs_by_keystage_16_max_fields';
+  _state?: Maybe<Scalars['String']['output']>;
+  base_slug?: Maybe<Scalars['String']['output']>;
+  null_unitvariant_id?: Maybe<Scalars['bigint']['output']>;
+  programme_id?: Maybe<Scalars['Int']['output']>;
+  programme_slug?: Maybe<Scalars['String']['output']>;
+  programme_slug_by_year?: Maybe<Scalars['String']['output']>;
+  unit_id?: Maybe<Scalars['Int']['output']>;
+  unit_slug?: Maybe<Scalars['String']['output']>;
+  unitvariant_id?: Maybe<Scalars['Int']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_View_Synthetic_Uvs_By_Keystage_16_Min_Fields = {
+  __typename?: 'published_view_synthetic_uvs_by_keystage_16_min_fields';
+  _state?: Maybe<Scalars['String']['output']>;
+  base_slug?: Maybe<Scalars['String']['output']>;
+  null_unitvariant_id?: Maybe<Scalars['bigint']['output']>;
+  programme_id?: Maybe<Scalars['Int']['output']>;
+  programme_slug?: Maybe<Scalars['String']['output']>;
+  programme_slug_by_year?: Maybe<Scalars['String']['output']>;
+  unit_id?: Maybe<Scalars['Int']['output']>;
+  unit_slug?: Maybe<Scalars['String']['output']>;
+  unitvariant_id?: Maybe<Scalars['Int']['output']>;
+};
+
+/** Ordering options when selecting data from "published.view_synthetic_uvs_by_keystage_16". */
+export type Published_View_Synthetic_Uvs_By_Keystage_16_Order_By = {
+  _state?: InputMaybe<Order_By>;
+  base_slug?: InputMaybe<Order_By>;
+  is_legacy?: InputMaybe<Order_By>;
+  null_unitvariant_id?: InputMaybe<Order_By>;
+  programme_features?: InputMaybe<Order_By>;
+  programme_fields?: InputMaybe<Order_By>;
+  programme_id?: InputMaybe<Order_By>;
+  programme_slug?: InputMaybe<Order_By>;
+  programme_slug_by_year?: InputMaybe<Order_By>;
+  supplementary_data?: InputMaybe<Order_By>;
+  unit_data?: InputMaybe<Order_By>;
+  unit_id?: InputMaybe<Order_By>;
+  unit_slug?: InputMaybe<Order_By>;
+  unitvariant_id?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.view_synthetic_uvs_by_keystage_16" */
+export enum Published_View_Synthetic_Uvs_By_Keystage_16_Select_Column {
+  /** column name */
+  State = '_state',
+  /** column name */
+  BaseSlug = 'base_slug',
+  /** column name */
+  IsLegacy = 'is_legacy',
+  /** column name */
+  NullUnitvariantId = 'null_unitvariant_id',
+  /** column name */
+  ProgrammeFeatures = 'programme_features',
+  /** column name */
+  ProgrammeFields = 'programme_fields',
+  /** column name */
+  ProgrammeId = 'programme_id',
+  /** column name */
+  ProgrammeSlug = 'programme_slug',
+  /** column name */
+  ProgrammeSlugByYear = 'programme_slug_by_year',
+  /** column name */
+  SupplementaryData = 'supplementary_data',
+  /** column name */
+  UnitData = 'unit_data',
+  /** column name */
+  UnitId = 'unit_id',
+  /** column name */
+  UnitSlug = 'unit_slug',
+  /** column name */
+  UnitvariantId = 'unitvariant_id'
+}
+
+/** aggregate stddev on columns */
+export type Published_View_Synthetic_Uvs_By_Keystage_16_Stddev_Fields = {
+  __typename?: 'published_view_synthetic_uvs_by_keystage_16_stddev_fields';
+  null_unitvariant_id?: Maybe<Scalars['Float']['output']>;
+  programme_id?: Maybe<Scalars['Float']['output']>;
+  unit_id?: Maybe<Scalars['Float']['output']>;
+  unitvariant_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Published_View_Synthetic_Uvs_By_Keystage_16_Stddev_Pop_Fields = {
+  __typename?: 'published_view_synthetic_uvs_by_keystage_16_stddev_pop_fields';
+  null_unitvariant_id?: Maybe<Scalars['Float']['output']>;
+  programme_id?: Maybe<Scalars['Float']['output']>;
+  unit_id?: Maybe<Scalars['Float']['output']>;
+  unitvariant_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Published_View_Synthetic_Uvs_By_Keystage_16_Stddev_Samp_Fields = {
+  __typename?: 'published_view_synthetic_uvs_by_keystage_16_stddev_samp_fields';
+  null_unitvariant_id?: Maybe<Scalars['Float']['output']>;
+  programme_id?: Maybe<Scalars['Float']['output']>;
+  unit_id?: Maybe<Scalars['Float']['output']>;
+  unitvariant_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "published_view_synthetic_uvs_by_keystage_16" */
+export type Published_View_Synthetic_Uvs_By_Keystage_16_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_View_Synthetic_Uvs_By_Keystage_16_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_View_Synthetic_Uvs_By_Keystage_16_Stream_Cursor_Value_Input = {
+  _state?: InputMaybe<Scalars['String']['input']>;
+  base_slug?: InputMaybe<Scalars['String']['input']>;
+  is_legacy?: InputMaybe<Scalars['Boolean']['input']>;
+  null_unitvariant_id?: InputMaybe<Scalars['bigint']['input']>;
+  programme_features?: InputMaybe<Scalars['jsonb']['input']>;
+  programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  programme_id?: InputMaybe<Scalars['Int']['input']>;
+  programme_slug?: InputMaybe<Scalars['String']['input']>;
+  programme_slug_by_year?: InputMaybe<Scalars['String']['input']>;
+  supplementary_data?: InputMaybe<Scalars['jsonb']['input']>;
+  unit_data?: InputMaybe<Scalars['jsonb']['input']>;
+  unit_id?: InputMaybe<Scalars['Int']['input']>;
+  unit_slug?: InputMaybe<Scalars['String']['input']>;
+  unitvariant_id?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Published_View_Synthetic_Uvs_By_Keystage_16_Sum_Fields = {
+  __typename?: 'published_view_synthetic_uvs_by_keystage_16_sum_fields';
+  null_unitvariant_id?: Maybe<Scalars['bigint']['output']>;
+  programme_id?: Maybe<Scalars['Int']['output']>;
+  unit_id?: Maybe<Scalars['Int']['output']>;
+  unitvariant_id?: Maybe<Scalars['Int']['output']>;
+};
+
+/** aggregate var_pop on columns */
+export type Published_View_Synthetic_Uvs_By_Keystage_16_Var_Pop_Fields = {
+  __typename?: 'published_view_synthetic_uvs_by_keystage_16_var_pop_fields';
+  null_unitvariant_id?: Maybe<Scalars['Float']['output']>;
+  programme_id?: Maybe<Scalars['Float']['output']>;
+  unit_id?: Maybe<Scalars['Float']['output']>;
+  unitvariant_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Published_View_Synthetic_Uvs_By_Keystage_16_Var_Samp_Fields = {
+  __typename?: 'published_view_synthetic_uvs_by_keystage_16_var_samp_fields';
+  null_unitvariant_id?: Maybe<Scalars['Float']['output']>;
+  programme_id?: Maybe<Scalars['Float']['output']>;
+  unit_id?: Maybe<Scalars['Float']['output']>;
+  unitvariant_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Published_View_Synthetic_Uvs_By_Keystage_16_Variance_Fields = {
+  __typename?: 'published_view_synthetic_uvs_by_keystage_16_variance_fields';
+  null_unitvariant_id?: Maybe<Scalars['Float']['output']>;
+  programme_id?: Maybe<Scalars['Float']['output']>;
+  unit_id?: Maybe<Scalars['Float']['output']>;
+  unitvariant_id?: Maybe<Scalars['Float']['output']>;
 };
 
 /** columns and relationships of "published.view_synthetic_uvs_by_year_14" */
@@ -47385,6 +47843,10 @@ export type Query_Root = {
   published_mv_openapi_unit_curriculum_content_1_0_2: Array<Published_Mv_Openapi_Unit_Curriculum_Content_1_0_2>;
   /** fetch aggregated fields from the table: "published.mv_openapi_unit_curriculum_content_1_0_2" */
   published_mv_openapi_unit_curriculum_content_1_0_2_aggregate: Published_Mv_Openapi_Unit_Curriculum_Content_1_0_2_Aggregate;
+  /** fetch data from the table: "published.mv_redirects_lessons_canonical_by_keystage_1_0_0" */
+  published_mv_redirects_lessons_canonical_by_keystage_1_0_0: Array<Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0>;
+  /** fetch aggregated fields from the table: "published.mv_redirects_lessons_canonical_by_keystage_1_0_0" */
+  published_mv_redirects_lessons_canonical_by_keystage_1_0_0_aggregate: Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Aggregate;
   /** fetch data from the table: "published.mv_search_page_3" */
   published_mv_search_page_3: Array<Published_Mv_Search_Page_3>;
   /** fetch data from the table: "published.mv_search_page_3_0_1" */
@@ -47571,6 +48033,10 @@ export type Query_Root = {
   published_view_quiz_question_details_1_aggregate: Published_View_Quiz_Question_Details_1_Aggregate;
   /** fetch aggregated fields from the table: "published.view_quiz_question_details" */
   published_view_quiz_question_details_aggregate: Published_View_Quiz_Question_Details_Aggregate;
+  /** fetch data from the table: "published.view_redirects_lessons_canonical_by_keystage_1" */
+  published_view_redirects_lessons_canonical_by_keystage_1: Array<Published_View_Redirects_Lessons_Canonical_By_Keystage_1>;
+  /** fetch aggregated fields from the table: "published.view_redirects_lessons_canonical_by_keystage_1" */
+  published_view_redirects_lessons_canonical_by_keystage_1_aggregate: Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Aggregate;
   /** fetch data from the table: "published.view_synthetic_programmes_3" */
   published_view_synthetic_programmes_3: Array<Published_View_Synthetic_Programmes_3>;
   /** fetch aggregated fields from the table: "published.view_synthetic_programmes_3" */
@@ -47611,6 +48077,10 @@ export type Query_Root = {
   published_view_synthetic_uv_lessons_by_year_14: Array<Published_View_Synthetic_Uv_Lessons_By_Year_14>;
   /** fetch aggregated fields from the table: "published.view_synthetic_uv_lessons_by_year_14" */
   published_view_synthetic_uv_lessons_by_year_14_aggregate: Published_View_Synthetic_Uv_Lessons_By_Year_14_Aggregate;
+  /** fetch data from the table: "published.view_synthetic_uvs_by_keystage_16" */
+  published_view_synthetic_uvs_by_keystage_16: Array<Published_View_Synthetic_Uvs_By_Keystage_16>;
+  /** fetch aggregated fields from the table: "published.view_synthetic_uvs_by_keystage_16" */
+  published_view_synthetic_uvs_by_keystage_16_aggregate: Published_View_Synthetic_Uvs_By_Keystage_16_Aggregate;
   /** fetch data from the table: "published.view_synthetic_uvs_by_year_14" */
   published_view_synthetic_uvs_by_year_14: Array<Published_View_Synthetic_Uvs_By_Year_14>;
   /** fetch aggregated fields from the table: "published.view_synthetic_uvs_by_year_14" */
@@ -48948,6 +49418,24 @@ export type Query_RootPublished_Mv_Openapi_Unit_Curriculum_Content_1_0_2_Aggrega
 };
 
 
+export type Query_RootPublished_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Bool_Exp>;
+};
+
+
 export type Query_RootPublished_Mv_Search_Page_3Args = {
   distinct_on?: InputMaybe<Array<Published_Mv_Search_Page_3_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -49782,6 +50270,24 @@ export type Query_RootPublished_View_Quiz_Question_Details_AggregateArgs = {
 };
 
 
+export type Query_RootPublished_View_Redirects_Lessons_Canonical_By_Keystage_1Args = {
+  distinct_on?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Order_By>>;
+  where?: InputMaybe<Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_View_Redirects_Lessons_Canonical_By_Keystage_1_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Order_By>>;
+  where?: InputMaybe<Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Bool_Exp>;
+};
+
+
 export type Query_RootPublished_View_Synthetic_Programmes_3Args = {
   distinct_on?: InputMaybe<Array<Published_View_Synthetic_Programmes_3_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -49959,6 +50465,24 @@ export type Query_RootPublished_View_Synthetic_Uv_Lessons_By_Year_14_AggregateAr
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Published_View_Synthetic_Uv_Lessons_By_Year_14_Order_By>>;
   where?: InputMaybe<Published_View_Synthetic_Uv_Lessons_By_Year_14_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_View_Synthetic_Uvs_By_Keystage_16Args = {
+  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Uvs_By_Keystage_16_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Synthetic_Uvs_By_Keystage_16_Order_By>>;
+  where?: InputMaybe<Published_View_Synthetic_Uvs_By_Keystage_16_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_View_Synthetic_Uvs_By_Keystage_16_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Uvs_By_Keystage_16_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Synthetic_Uvs_By_Keystage_16_Order_By>>;
+  where?: InputMaybe<Published_View_Synthetic_Uvs_By_Keystage_16_Bool_Exp>;
 };
 
 
@@ -52787,6 +53311,12 @@ export type Subscription_Root = {
   published_mv_openapi_unit_curriculum_content_1_0_2_aggregate: Published_Mv_Openapi_Unit_Curriculum_Content_1_0_2_Aggregate;
   /** fetch data from the table in a streaming manner: "published.mv_openapi_unit_curriculum_content_1_0_2" */
   published_mv_openapi_unit_curriculum_content_1_0_2_stream: Array<Published_Mv_Openapi_Unit_Curriculum_Content_1_0_2>;
+  /** fetch data from the table: "published.mv_redirects_lessons_canonical_by_keystage_1_0_0" */
+  published_mv_redirects_lessons_canonical_by_keystage_1_0_0: Array<Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0>;
+  /** fetch aggregated fields from the table: "published.mv_redirects_lessons_canonical_by_keystage_1_0_0" */
+  published_mv_redirects_lessons_canonical_by_keystage_1_0_0_aggregate: Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_redirects_lessons_canonical_by_keystage_1_0_0" */
+  published_mv_redirects_lessons_canonical_by_keystage_1_0_0_stream: Array<Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0>;
   /** fetch data from the table: "published.mv_search_page_3" */
   published_mv_search_page_3: Array<Published_Mv_Search_Page_3>;
   /** fetch data from the table: "published.mv_search_page_3_0_1" */
@@ -53065,6 +53595,12 @@ export type Subscription_Root = {
   published_view_quiz_question_details_aggregate: Published_View_Quiz_Question_Details_Aggregate;
   /** fetch data from the table in a streaming manner: "published.view_quiz_question_details" */
   published_view_quiz_question_details_stream: Array<Published_View_Quiz_Question_Details>;
+  /** fetch data from the table: "published.view_redirects_lessons_canonical_by_keystage_1" */
+  published_view_redirects_lessons_canonical_by_keystage_1: Array<Published_View_Redirects_Lessons_Canonical_By_Keystage_1>;
+  /** fetch aggregated fields from the table: "published.view_redirects_lessons_canonical_by_keystage_1" */
+  published_view_redirects_lessons_canonical_by_keystage_1_aggregate: Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.view_redirects_lessons_canonical_by_keystage_1" */
+  published_view_redirects_lessons_canonical_by_keystage_1_stream: Array<Published_View_Redirects_Lessons_Canonical_By_Keystage_1>;
   /** fetch data from the table: "published.view_synthetic_programmes_3" */
   published_view_synthetic_programmes_3: Array<Published_View_Synthetic_Programmes_3>;
   /** fetch aggregated fields from the table: "published.view_synthetic_programmes_3" */
@@ -53125,6 +53661,12 @@ export type Subscription_Root = {
   published_view_synthetic_uv_lessons_by_year_14_aggregate: Published_View_Synthetic_Uv_Lessons_By_Year_14_Aggregate;
   /** fetch data from the table in a streaming manner: "published.view_synthetic_uv_lessons_by_year_14" */
   published_view_synthetic_uv_lessons_by_year_14_stream: Array<Published_View_Synthetic_Uv_Lessons_By_Year_14>;
+  /** fetch data from the table: "published.view_synthetic_uvs_by_keystage_16" */
+  published_view_synthetic_uvs_by_keystage_16: Array<Published_View_Synthetic_Uvs_By_Keystage_16>;
+  /** fetch aggregated fields from the table: "published.view_synthetic_uvs_by_keystage_16" */
+  published_view_synthetic_uvs_by_keystage_16_aggregate: Published_View_Synthetic_Uvs_By_Keystage_16_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.view_synthetic_uvs_by_keystage_16" */
+  published_view_synthetic_uvs_by_keystage_16_stream: Array<Published_View_Synthetic_Uvs_By_Keystage_16>;
   /** fetch data from the table: "published.view_synthetic_uvs_by_year_14" */
   published_view_synthetic_uvs_by_year_14: Array<Published_View_Synthetic_Uvs_By_Year_14>;
   /** fetch aggregated fields from the table: "published.view_synthetic_uvs_by_year_14" */
@@ -54916,6 +55458,31 @@ export type Subscription_RootPublished_Mv_Openapi_Unit_Curriculum_Content_1_0_2_
 };
 
 
+export type Subscription_RootPublished_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Bool_Exp>;
+};
+
+
 export type Subscription_RootPublished_Mv_Search_Page_3Args = {
   distinct_on?: InputMaybe<Array<Published_Mv_Search_Page_3_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -56072,6 +56639,31 @@ export type Subscription_RootPublished_View_Quiz_Question_Details_StreamArgs = {
 };
 
 
+export type Subscription_RootPublished_View_Redirects_Lessons_Canonical_By_Keystage_1Args = {
+  distinct_on?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Order_By>>;
+  where?: InputMaybe<Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_View_Redirects_Lessons_Canonical_By_Keystage_1_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Order_By>>;
+  where?: InputMaybe<Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_View_Redirects_Lessons_Canonical_By_Keystage_1_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Bool_Exp>;
+};
+
+
 export type Subscription_RootPublished_View_Synthetic_Programmes_3Args = {
   distinct_on?: InputMaybe<Array<Published_View_Synthetic_Programmes_3_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -56319,6 +56911,31 @@ export type Subscription_RootPublished_View_Synthetic_Uv_Lessons_By_Year_14_Stre
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Published_View_Synthetic_Uv_Lessons_By_Year_14_Stream_Cursor_Input>>;
   where?: InputMaybe<Published_View_Synthetic_Uv_Lessons_By_Year_14_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_View_Synthetic_Uvs_By_Keystage_16Args = {
+  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Uvs_By_Keystage_16_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Synthetic_Uvs_By_Keystage_16_Order_By>>;
+  where?: InputMaybe<Published_View_Synthetic_Uvs_By_Keystage_16_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_View_Synthetic_Uvs_By_Keystage_16_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Uvs_By_Keystage_16_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Synthetic_Uvs_By_Keystage_16_Order_By>>;
+  where?: InputMaybe<Published_View_Synthetic_Uvs_By_Keystage_16_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_View_Synthetic_Uvs_By_Keystage_16_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_View_Synthetic_Uvs_By_Keystage_16_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_View_Synthetic_Uvs_By_Keystage_16_Bool_Exp>;
 };
 
 
@@ -65070,6 +65687,13 @@ export type Videos_Variance_Order_By = {
   video_id?: InputMaybe<Order_By>;
 };
 
+export type CanonicalLessonRedirectQueryVariables = Exact<{
+  incomingPath: Scalars['String']['input'];
+}>;
+
+
+export type CanonicalLessonRedirectQuery = { __typename?: 'query_root', redirectData: Array<{ __typename?: 'published_mv_redirects_lessons_canonical_by_keystage_1_0_0', incoming_path?: string | null, outgoing_path?: string | null, redirect_type?: any | null }> };
+
 export type CurriculumOverviewQueryVariables = Exact<{
   phaseSlug?: InputMaybe<Scalars['String']['input']>;
   subjectSlug?: InputMaybe<Scalars['String']['input']>;
@@ -65360,6 +65984,17 @@ export type UnitListingQueryVariables = Exact<{
 export type UnitListingQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_16_0_0', is_legacy?: boolean | null, programme_slug?: string | null, unit_slug?: string | null, programme_fields?: any | null, unit_data?: any | null, lesson_count?: number | null, lesson_expired_count?: number | null, lesson_sensitive_count?: number | null, expired?: boolean | null, supplementary_data?: any | null, threads?: any | null, actions?: any | null, features?: any | null }> };
 
 
+export const CanonicalLessonRedirectDocument = gql`
+    query canonicalLessonRedirect($incomingPath: String!) {
+  redirectData: published_mv_redirects_lessons_canonical_by_keystage_1_0_0(
+    where: {incoming_path: {_eq: $incomingPath}}
+  ) {
+    incoming_path
+    outgoing_path
+    redirect_type
+  }
+}
+    `;
 export const CurriculumOverviewDocument = gql`
     query curriculumOverview($phaseSlug: String, $subjectSlug: String) {
   curriculumOverview: published_mv_curriculum_overview_0_8(
@@ -66392,125 +67027,128 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    curriculumOverview(variables?: CurriculumOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<CurriculumOverviewQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<CurriculumOverviewQuery>(CurriculumOverviewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'curriculumOverview', 'query', variables);
+    canonicalLessonRedirect(variables: CanonicalLessonRedirectQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CanonicalLessonRedirectQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CanonicalLessonRedirectQuery>({ document: CanonicalLessonRedirectDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'canonicalLessonRedirect', 'query', variables);
     },
-    curriculumPhaseOptions(variables?: CurriculumPhaseOptionsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<CurriculumPhaseOptionsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<CurriculumPhaseOptionsQuery>(CurriculumPhaseOptionsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'curriculumPhaseOptions', 'query', variables);
+    curriculumOverview(variables?: CurriculumOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CurriculumOverviewQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CurriculumOverviewQuery>({ document: CurriculumOverviewDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'curriculumOverview', 'query', variables);
     },
-    curriculumSequence(variables?: CurriculumSequenceQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<CurriculumSequenceQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<CurriculumSequenceQuery>(CurriculumSequenceDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'curriculumSequence', 'query', variables);
+    curriculumPhaseOptions(variables?: CurriculumPhaseOptionsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CurriculumPhaseOptionsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CurriculumPhaseOptionsQuery>({ document: CurriculumPhaseOptionsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'curriculumPhaseOptions', 'query', variables);
     },
-    betaLessonMediaClips(variables: BetaLessonMediaClipsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<BetaLessonMediaClipsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<BetaLessonMediaClipsQuery>(BetaLessonMediaClipsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'betaLessonMediaClips', 'query', variables);
+    curriculumSequence(variables?: CurriculumSequenceQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CurriculumSequenceQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CurriculumSequenceQuery>({ document: CurriculumSequenceDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'curriculumSequence', 'query', variables);
     },
-    lessonDownloads(variables: LessonDownloadsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonDownloadsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<LessonDownloadsQuery>(LessonDownloadsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonDownloads', 'query', variables);
+    betaLessonMediaClips(variables: BetaLessonMediaClipsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<BetaLessonMediaClipsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<BetaLessonMediaClipsQuery>({ document: BetaLessonMediaClipsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'betaLessonMediaClips', 'query', variables);
     },
-    lessonListing(variables: LessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<LessonListingQuery>(LessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonListing', 'query', variables);
+    lessonDownloads(variables: LessonDownloadsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<LessonDownloadsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonDownloadsQuery>({ document: LessonDownloadsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'lessonDownloads', 'query', variables);
     },
-    lessonMediaClips(variables?: LessonMediaClipsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonMediaClipsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<LessonMediaClipsQuery>(LessonMediaClipsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonMediaClips', 'query', variables);
+    lessonListing(variables: LessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<LessonListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonListingQuery>({ document: LessonListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'lessonListing', 'query', variables);
     },
-    lessonOverview(variables: LessonOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonOverviewQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<LessonOverviewQuery>(LessonOverviewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonOverview', 'query', variables);
+    lessonMediaClips(variables?: LessonMediaClipsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<LessonMediaClipsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonMediaClipsQuery>({ document: LessonMediaClipsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'lessonMediaClips', 'query', variables);
     },
-    lessonShare(variables: LessonShareQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonShareQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<LessonShareQuery>(LessonShareDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonShare', 'query', variables);
+    lessonOverview(variables: LessonOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<LessonOverviewQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonOverviewQuery>({ document: LessonOverviewDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'lessonOverview', 'query', variables);
     },
-    programmeListing(variables?: ProgrammeListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<ProgrammeListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<ProgrammeListingQuery>(ProgrammeListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'programmeListing', 'query', variables);
+    lessonShare(variables: LessonShareQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<LessonShareQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonShareQuery>({ document: LessonShareDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'lessonShare', 'query', variables);
     },
-    pupilLesson(variables: PupilLessonQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilLessonQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PupilLessonQuery>(PupilLessonDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilLesson', 'query', variables);
+    programmeListing(variables?: ProgrammeListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<ProgrammeListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ProgrammeListingQuery>({ document: ProgrammeListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'programmeListing', 'query', variables);
     },
-    pupilLessonListing(variables: PupilLessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilLessonListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PupilLessonListingQuery>(PupilLessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilLessonListing', 'query', variables);
+    pupilLesson(variables: PupilLessonQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PupilLessonQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilLessonQuery>({ document: PupilLessonDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pupilLesson', 'query', variables);
     },
-    pupilPreviewLesson(variables: PupilPreviewLessonQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilPreviewLessonQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PupilPreviewLessonQuery>(PupilPreviewLessonDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilPreviewLesson', 'query', variables);
+    pupilLessonListing(variables: PupilLessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PupilLessonListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilLessonListingQuery>({ document: PupilLessonListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pupilLessonListing', 'query', variables);
     },
-    pupilProgrammeListing(variables: PupilProgrammeListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilProgrammeListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PupilProgrammeListingQuery>(PupilProgrammeListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilProgrammeListing', 'query', variables);
+    pupilPreviewLesson(variables: PupilPreviewLessonQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PupilPreviewLessonQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilPreviewLessonQuery>({ document: PupilPreviewLessonDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pupilPreviewLesson', 'query', variables);
     },
-    pupilSubjectListing(variables: PupilSubjectListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilSubjectListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PupilSubjectListingQuery>(PupilSubjectListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilSubjectListing', 'query', variables);
+    pupilProgrammeListing(variables: PupilProgrammeListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PupilProgrammeListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilProgrammeListingQuery>({ document: PupilProgrammeListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pupilProgrammeListing', 'query', variables);
     },
-    pupilUnitListing(variables: PupilUnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilUnitListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PupilUnitListingQuery>(PupilUnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilUnitListing', 'query', variables);
+    pupilSubjectListing(variables: PupilSubjectListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PupilSubjectListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilSubjectListingQuery>({ document: PupilSubjectListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pupilSubjectListing', 'query', variables);
     },
-    pupilsSitemap(variables?: PupilsSitemapQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilsSitemapQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PupilsSitemapQuery>(PupilsSitemapDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilsSitemap', 'query', variables);
+    pupilUnitListing(variables: PupilUnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PupilUnitListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilUnitListingQuery>({ document: PupilUnitListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pupilUnitListing', 'query', variables);
     },
-    refreshedMVTime(variables: RefreshedMvTimeQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<RefreshedMvTimeQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<RefreshedMvTimeQuery>(RefreshedMvTimeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'refreshedMVTime', 'query', variables);
+    pupilsSitemap(variables?: PupilsSitemapQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PupilsSitemapQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilsSitemapQuery>({ document: PupilsSitemapDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pupilsSitemap', 'query', variables);
     },
-    searchPage(variables?: SearchPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SearchPageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SearchPageQuery>(SearchPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'searchPage', 'query', variables);
+    refreshedMVTime(variables: RefreshedMvTimeQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<RefreshedMvTimeQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<RefreshedMvTimeQuery>({ document: RefreshedMvTimeDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'refreshedMVTime', 'query', variables);
     },
-    specialistLessonDownloads(variables?: SpecialistLessonDownloadsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistLessonDownloadsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonDownloadsQuery>(SpecialistLessonDownloadsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonDownloads', 'query', variables);
+    searchPage(variables?: SearchPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SearchPageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SearchPageQuery>({ document: SearchPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'searchPage', 'query', variables);
     },
-    specialistLessonListing(variables?: SpecialistLessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistLessonListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonListingQuery>(SpecialistLessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonListing', 'query', variables);
+    specialistLessonDownloads(variables?: SpecialistLessonDownloadsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistLessonDownloadsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonDownloadsQuery>({ document: SpecialistLessonDownloadsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistLessonDownloads', 'query', variables);
     },
-    specialistLessonOverview(variables: SpecialistLessonOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistLessonOverviewQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonOverviewQuery>(SpecialistLessonOverviewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonOverview', 'query', variables);
+    specialistLessonListing(variables?: SpecialistLessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistLessonListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonListingQuery>({ document: SpecialistLessonListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistLessonListing', 'query', variables);
     },
-    specialistLessonOverviewCanonical(variables: SpecialistLessonOverviewCanonicalQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistLessonOverviewCanonicalQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonOverviewCanonicalQuery>(SpecialistLessonOverviewCanonicalDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonOverviewCanonical', 'query', variables);
+    specialistLessonOverview(variables: SpecialistLessonOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistLessonOverviewQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonOverviewQuery>({ document: SpecialistLessonOverviewDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistLessonOverview', 'query', variables);
     },
-    specialistLessonShare(variables?: SpecialistLessonShareQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistLessonShareQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonShareQuery>(SpecialistLessonShareDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonShare', 'query', variables);
+    specialistLessonOverviewCanonical(variables: SpecialistLessonOverviewCanonicalQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistLessonOverviewCanonicalQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonOverviewCanonicalQuery>({ document: SpecialistLessonOverviewCanonicalDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistLessonOverviewCanonical', 'query', variables);
     },
-    specialistProgrammeListing(variables?: SpecialistProgrammeListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistProgrammeListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistProgrammeListingQuery>(SpecialistProgrammeListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistProgrammeListing', 'query', variables);
+    specialistLessonShare(variables?: SpecialistLessonShareQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistLessonShareQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonShareQuery>({ document: SpecialistLessonShareDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistLessonShare', 'query', variables);
     },
-    specialistProgrammeListingCounts(variables: SpecialistProgrammeListingCountsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistProgrammeListingCountsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistProgrammeListingCountsQuery>(SpecialistProgrammeListingCountsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistProgrammeListingCounts', 'query', variables);
+    specialistProgrammeListing(variables?: SpecialistProgrammeListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistProgrammeListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistProgrammeListingQuery>({ document: SpecialistProgrammeListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistProgrammeListing', 'query', variables);
     },
-    specialistSubjectListing(variables?: SpecialistSubjectListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistSubjectListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistSubjectListingQuery>(SpecialistSubjectListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistSubjectListing', 'query', variables);
+    specialistProgrammeListingCounts(variables: SpecialistProgrammeListingCountsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistProgrammeListingCountsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistProgrammeListingCountsQuery>({ document: SpecialistProgrammeListingCountsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistProgrammeListingCounts', 'query', variables);
     },
-    specialistUnitsAndLessonCount(variables?: SpecialistUnitsAndLessonCountQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistUnitsAndLessonCountQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistUnitsAndLessonCountQuery>(SpecialistUnitsAndLessonCountDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistUnitsAndLessonCount', 'query', variables);
+    specialistSubjectListing(variables?: SpecialistSubjectListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistSubjectListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistSubjectListingQuery>({ document: SpecialistSubjectListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistSubjectListing', 'query', variables);
     },
-    developmentStageUnitCount(variables: DevelopmentStageUnitCountQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<DevelopmentStageUnitCountQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<DevelopmentStageUnitCountQuery>(DevelopmentStageUnitCountDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'developmentStageUnitCount', 'query', variables);
+    specialistUnitsAndLessonCount(variables?: SpecialistUnitsAndLessonCountQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistUnitsAndLessonCountQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistUnitsAndLessonCountQuery>({ document: SpecialistUnitsAndLessonCountDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistUnitsAndLessonCount', 'query', variables);
     },
-    developmentStages(variables?: DevelopmentStagesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<DevelopmentStagesQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<DevelopmentStagesQuery>(DevelopmentStagesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'developmentStages', 'query', variables);
+    developmentStageUnitCount(variables: DevelopmentStageUnitCountQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<DevelopmentStageUnitCountQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<DevelopmentStageUnitCountQuery>({ document: DevelopmentStageUnitCountDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'developmentStageUnitCount', 'query', variables);
     },
-    specialistLessonCount(variables: SpecialistLessonCountQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistLessonCountQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonCountQuery>(SpecialistLessonCountDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonCount', 'query', variables);
+    developmentStages(variables?: DevelopmentStagesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<DevelopmentStagesQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<DevelopmentStagesQuery>({ document: DevelopmentStagesDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'developmentStages', 'query', variables);
     },
-    specialistUnitListing(variables: SpecialistUnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistUnitListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistUnitListingQuery>(SpecialistUnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistUnitListing', 'query', variables);
+    specialistLessonCount(variables: SpecialistLessonCountQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistLessonCountQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonCountQuery>({ document: SpecialistLessonCountDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistLessonCount', 'query', variables);
     },
-    subjectListing(variables?: SubjectListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SubjectListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SubjectListingQuery>(SubjectListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'subjectListing', 'query', variables);
+    specialistUnitListing(variables: SpecialistUnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistUnitListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistUnitListingQuery>({ document: SpecialistUnitListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistUnitListing', 'query', variables);
     },
-    teachersPreviewLesson(variables: TeachersPreviewLessonQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersPreviewLessonQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeachersPreviewLessonQuery>(TeachersPreviewLessonDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersPreviewLesson', 'query', variables);
+    subjectListing(variables?: SubjectListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SubjectListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SubjectListingQuery>({ document: SubjectListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'subjectListing', 'query', variables);
     },
-    teacherPreviewLessonDownload(variables: TeacherPreviewLessonDownloadQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeacherPreviewLessonDownloadQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeacherPreviewLessonDownloadQuery>(TeacherPreviewLessonDownloadDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teacherPreviewLessonDownload', 'query', variables);
+    teachersPreviewLesson(variables: TeachersPreviewLessonQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TeachersPreviewLessonQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TeachersPreviewLessonQuery>({ document: TeachersPreviewLessonDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'teachersPreviewLesson', 'query', variables);
     },
-    teacherPreviewLessonListing(variables: TeacherPreviewLessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeacherPreviewLessonListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeacherPreviewLessonListingQuery>(TeacherPreviewLessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teacherPreviewLessonListing', 'query', variables);
+    teacherPreviewLessonDownload(variables: TeacherPreviewLessonDownloadQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TeacherPreviewLessonDownloadQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TeacherPreviewLessonDownloadQuery>({ document: TeacherPreviewLessonDownloadDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'teacherPreviewLessonDownload', 'query', variables);
     },
-    teachersPreviewUnitListing(variables: TeachersPreviewUnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersPreviewUnitListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeachersPreviewUnitListingQuery>(TeachersPreviewUnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersPreviewUnitListing', 'query', variables);
+    teacherPreviewLessonListing(variables: TeacherPreviewLessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TeacherPreviewLessonListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TeacherPreviewLessonListingQuery>({ document: TeacherPreviewLessonListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'teacherPreviewLessonListing', 'query', variables);
     },
-    teachersHomePage(variables?: TeachersHomePageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersHomePageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeachersHomePageQuery>(TeachersHomePageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersHomePage', 'query', variables);
+    teachersPreviewUnitListing(variables: TeachersPreviewUnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TeachersPreviewUnitListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TeachersPreviewUnitListingQuery>({ document: TeachersPreviewUnitListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'teachersPreviewUnitListing', 'query', variables);
     },
-    teachersSitemap(variables?: TeachersSitemapQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersSitemapQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeachersSitemapQuery>(TeachersSitemapDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersSitemap', 'query', variables);
+    teachersHomePage(variables?: TeachersHomePageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TeachersHomePageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TeachersHomePageQuery>({ document: TeachersHomePageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'teachersHomePage', 'query', variables);
     },
-    unitListing(variables: UnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<UnitListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<UnitListingQuery>(UnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'unitListing', 'query', variables);
+    teachersSitemap(variables?: TeachersSitemapQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TeachersSitemapQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TeachersSitemapQuery>({ document: TeachersSitemapDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'teachersSitemap', 'query', variables);
+    },
+    unitListing(variables: UnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<UnitListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<UnitListingQuery>({ document: UnitListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'unitListing', 'query', variables);
     }
   };
 }
