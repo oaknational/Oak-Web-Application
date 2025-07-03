@@ -4,7 +4,11 @@ import {
   tierDescriptions,
 } from "@oaknational/oak-curriculum-schema";
 import { OakBox, OakHandDrawnHR } from "@oaknational/oak-components";
-import { useFeatureFlagVariantKey } from "posthog-js/react";
+import {
+  useFeatureFlagEnabled,
+  useFeatureFlagVariantKey,
+} from "posthog-js/react";
+import { useUser } from "@clerk/nextjs";
 
 import { filterDownloadsByCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
 import { useOnboardingStatus } from "../TeacherComponents/hooks/useOnboardingStatus";
@@ -115,8 +119,24 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     updatedAt,
     actions,
     lessonReleaseDate,
+    loginRequired,
+    geoRestricted,
   } = lesson;
+  const { isSignedIn } = useUser();
+  const copyrightFeatureFlagEnabled = useFeatureFlagEnabled(
+    "teachers-copyright-restrictions",
+  );
 
+  const downloadsRestricted =
+    !isSignedIn &&
+    copyrightFeatureFlagEnabled &&
+    (loginRequired || geoRestricted);
+  console.log("downloadsRestricted", downloadsRestricted, {
+    isSignedIn,
+    copyrightFeatureFlagEnabled,
+    loginRequired,
+    geoRestricted,
+  });
   const isDownloadsExperiment =
     useFeatureFlagVariantKey("downloads-grouping-experiement") === "grouping";
 
@@ -397,15 +417,17 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             );
           }
 
-          const ResourcePageLayoutVariant = isDownloadsExperiment
+          let ResourcePageLayoutVariant = isDownloadsExperiment
             ? ResourcePageLayoutB
             : ResourcePageLayout;
+          ResourcePageLayoutVariant = ResourcePageLayoutB;
           const DownloadCardGroupVariant = isDownloadsExperiment
             ? DownloadCardGroupB
             : DownloadCardGroup;
 
           return (
             <ResourcePageLayoutVariant
+              downloadsRestricted={downloadsRestricted ?? false}
               page={"download"}
               errors={form.errors}
               handleToggleSelectAll={handleToggleSelectAll}

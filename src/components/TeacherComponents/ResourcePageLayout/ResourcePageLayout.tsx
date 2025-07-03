@@ -30,11 +30,13 @@ import FieldError from "@/components/SharedComponents/FieldError";
 import Checkbox from "@/components/SharedComponents/Checkbox";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import RiskAssessmentBanner from "@/components/TeacherComponents/RiskAssessmentBanner";
+import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
 
 /** Generic layout component for Downloads and Share page */
 
 export type ResourcePageLayoutProps = ResourcePageDetailsCompletedProps &
   ResourcePageSchoolDetailsProps & {
+    downloadsRestricted: boolean;
     header: string;
     handleToggleSelectAll: () => void;
     selectAllChecked: boolean;
@@ -167,9 +169,29 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
               {props.cta}
             </>
           )}
+          {props.downloadsRestricted && (
+            <OakFlex $flexDirection={"column"} $gap={"all-spacing-6"}>
+              <OakBox
+                $pb={"inner-padding-xl3"}
+                $mt={"space-between-m"}
+                $maxWidth={"all-spacing-22"}
+              >
+                <CopyrightNotice
+                  fullWidth
+                  showPostAlbCopyright={props.showPostAlbCopyright}
+                  openLinksExternally={true}
+                  copyrightYear={props.updatedAt}
+                />
+              </OakBox>
+              <LoginRequiredButton
+                signUpProps={{ name: "Sign in to continue" }}
+                iconName="arrow-right"
+                isTrailingIcon
+              />
+            </OakFlex>
+          )}
         </Flex>
       </OakBox>
-
       <OakFlex
         $flexDirection="column"
         $alignSelf="center"
@@ -184,7 +206,7 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
           ))}
         {!props.showNoResources && (
           <>
-            {props.showTermsAgreement && (
+            {props.showTermsAgreement && !props.downloadsRestricted && (
               <>
                 <TermsAgreementForm
                   form={{
@@ -238,7 +260,9 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
               </OakFlex>
             )}
 
-            {props.showTermsAgreement && props.cta}
+            {props.showTermsAgreement &&
+              !props.downloadsRestricted &&
+              props.cta}
 
             {props.apiError && !hasFormErrors && (
               <FieldError

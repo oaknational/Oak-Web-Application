@@ -14,6 +14,7 @@ type PropsWithoutForm = Omit<
   "control" | "register" | "triggerForm"
 >;
 const props: PropsWithoutForm = {
+  downloadsRestricted: false,
   page: "download",
   header: "Downloads",
   selectAllChecked: true,
