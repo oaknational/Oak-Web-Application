@@ -167,7 +167,7 @@ done
 
 - [ ] Organization patterns by package documented
 - [ ] Colocation vs separation patterns identified
-- [ ] Naming convention variations cataloged
+- [ ] Naming convention variations catalogued
 - [ ] Package boundaries mapped
 
 ### Step 6: Create Testing Landscape Report

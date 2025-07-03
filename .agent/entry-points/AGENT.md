@@ -6,13 +6,15 @@ Read this entire document first, and _then_ follow the instructions.
 
 ## Critical Rules
 
-1. Always use TDD with PURE functions and unit tests.
-2. Never use `any` or `as`
-3. Read an ENTIRE file before taking action; context is everything.
+1. ALWAYS use TDD with PURE functions and unit tests.
+2. NEVER use `any` or `as`
+3. Read an ENTIRE file before taking action: context is everything.
 
-- Read and reflect on [General Best Practice](general-best-practice.md) document
-- Read and reflect on [TypeScript Rules](typescript-rules.md) document
-- Read and reflect on [Testing Strategy](rules/testing-strategy/index.md) document
+- Read the [General Best Practice](general-best-practice.md) document
+- Read the [TypeScript Rules](typescript-rules.md) document
+- Read the [Testing Strategy](rules/testing-strategy/index.md) document
+
+Understand why those documents matter.
 
 ## Development Commands
 
@@ -27,6 +29,10 @@ The quality gates are
 - `npm run build`
 
 The type checks must be run after any major change. Any issues must be resolved, regardless of location or cause.
+
+## Architecture Overview
+
+see [architectural-overview.md](../architectural-overview.md)
 
 ### Core Development Commands
 
@@ -58,7 +64,3 @@ npm run gql-codegen:educator        # Generate types for Educator API
 npm run build:analyse-bundle   # Build with bundle analyzer
 npm run report:open           # Open build report in browser
 ```
-
-## Architecture Overview
-
-see [architectural-overview.md](../architectural-overview.md)

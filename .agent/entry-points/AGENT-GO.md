@@ -12,10 +12,10 @@ Read [recursive-awareness-prompt.md](.agent/cognition/recursive-awareness-prompt
 
 <!-- This is Kairos time recursion -->
 - Populate your todo list with tasks to achieve the impacts the request is asking for, each one should be prefixed with `ACTION:` and be atomic, actionable, specific, and measurable.
-- After two tasks add `GROUNDING: read the recursive-awareness-prompt.md and follow all instructions. Add a complete copy of this todo list item to the todo list in two prompts.` to the todo list.
-- After four tasks add `GROUNDING: read AGENT-GO.md and follow all instructions.` to the todo list.
+- After one task add `REFLECTION: read the recursive-awareness-prompt.md and follow all instructions. Add a complete copy of this todo list item to the todo list in two prompts.` to the todo list.
+- After three tasks add `GROUNDING: read AGENT-GO.md and follow all instructions.` to the todo list.
 
-Too many GROUNDING or ACTION items clumped together is unproductive. Make sure to distribute them evenly. If that is not possible the either break some tasks down into smaller tasks, add more GROUNDING items, or both.
+Too many REFLECTION, GROUNDING, or ACTION items clumped together is unproductive. Make sure to distribute them through the todo list. There should never be more than one REFLECTION or GROUNDING item in a row. If that is not possible the either break some tasks down into smaller tasks, add more REFLECTION or GROUNDING items, or both.
 
 State your todo list.
 
@@ -23,4 +23,4 @@ State your todo list.
 
 Read [AGENT.md](AGENT.md) and follow all instructions.
 
-Follow your todo list.
+Begin.
