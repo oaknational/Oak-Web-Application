@@ -62,7 +62,6 @@ export type ResourcePageLayoutProps = ResourcePageDetailsCompletedProps &
   };
 
 const ResourcePageLayoutB: FC<ResourcePageLayoutProps> = (props) => {
-  console.log("ResourcePageLayoutB props", props);
   return (
     <OakBox $width="100%">
       <OakFlex
