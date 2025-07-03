@@ -27,6 +27,8 @@ const lessonOverviewFixture = (
     lessonEquipmentAndResources: null,
     teacherTips: null,
     pathways: [],
+    loginRequired: false,
+    geoRestricted: false,
     keyLearningPoints: [
       {
         keyLearningPoint:

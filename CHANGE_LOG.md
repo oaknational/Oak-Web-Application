@@ -1,3 +1,50 @@
+# [1.788.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.787.0...v1.788.0) (2025-07-03)
+
+
+### Bug Fixes
+
+* fix text having the wrong color in RestrictedSignInPrompt component ([a609623](https://github.com/oaknational/Oak-Web-Application/commit/a609623d028a399c0dce1acaeadb1cc96259279b))
+* update behaviour to hide lesson guide also ([78ce677](https://github.com/oaknational/Oak-Web-Application/commit/78ce677bf6ac9530dac9d8d457d79b0c0e0bfd91))
+
+
+### Features
+
+* add loginRequired and geoRestricted fields to lesson media components and fixtures ([149a092](https://github.com/oaknational/Oak-Web-Application/commit/149a092381f44265c0dabeae8035bf8aa3c9a8a2))
+* add loginRequired and geoRestricted fields to lesson overview and specialist lesson schemas, fixtures, and components ([eb4f7a7](https://github.com/oaknational/Oak-Web-Application/commit/eb4f7a7b0444f80e5f573eaece52f8890a7b7ee4))
+* add responsive behaviour to RestrictedSignInPrompt ([49d48e2](https://github.com/oaknational/Oak-Web-Application/commit/49d48e231db2aa17407ee96c424ebc4c5ca50d4a))
+* implement RestrictedSignInPrompt component and integrate it into LessonMedia view ([19526a3](https://github.com/oaknational/Oak-Web-Application/commit/19526a36ea617428a493d49f6799465fe7462a53))
+* integrate content restriction logic into LessonOverview and update related components ([6f8a562](https://github.com/oaknational/Oak-Web-Application/commit/6f8a562e494c181f3cbb57471c0f4c43863fde6b))
+* make restrictedsigninprompt full width ([5cfad87](https://github.com/oaknational/Oak-Web-Application/commit/5cfad87db9081c2a031aab60717fa135ac6855a1))
+
+# [1.787.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.786.0...v1.787.0) (2025-07-02)
+
+
+### Bug Fixes
+
+* always show attributions when available on media ([5fe7afc](https://github.com/oaknational/Oak-Web-Application/commit/5fe7afc6aa44c89f2c88b6cb096ba384fee8c479))
+* font weight on clip names ([a929bd5](https://github.com/oaknational/Oak-Web-Application/commit/a929bd5a50ab00481a8b6ed14413800a67445b2e))
+
+
+### Features
+
+* add attributions component to media clips page ([ebd2a18](https://github.com/oaknational/Oak-Web-Application/commit/ebd2a18adf7c1a0754ecb5fed79ac6d4f9c50061))
+* correct layout of multiple attributions ([05aa54f](https://github.com/oaknational/Oak-Web-Application/commit/05aa54fd6181a28795f4d5cb109daeae0caaf4b6))
+
+# [1.786.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.785.1...v1.786.0) (2025-07-02)
+
+
+### Features
+
+* add validation checks for env vars ([e628ad0](https://github.com/oaknational/Oak-Web-Application/commit/e628ad061ebff73a57c0258751d4ba13dcfbd300))
+* set up storybook in vercel ([4aa4478](https://github.com/oaknational/Oak-Web-Application/commit/4aa447899054432005007e668734b93b0c997f1a))
+
+## [1.785.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.785.0...v1.785.1) (2025-07-02)
+
+
+### Bug Fixes
+
+* move pingdom-uptime-check up into the first 10kb for cloudflare blue-green load balancer ([948fa33](https://github.com/oaknational/Oak-Web-Application/commit/948fa33137d55d083942f7781b3b157ac00ee2f3))
+
 # [1.785.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.784.1...v1.785.0) (2025-07-01)
 
 
