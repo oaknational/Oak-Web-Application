@@ -185,6 +185,7 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
               </OakBox>
               <LoginRequiredButton
                 signUpProps={{ name: "Sign in to continue" }}
+                onboardingProps={{ name: "Sign in to continue" }}
                 iconName="arrow-right"
                 isTrailingIcon
               />

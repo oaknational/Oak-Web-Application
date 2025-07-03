@@ -62,6 +62,7 @@ import {
   Actions,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { DownloadRegionRestrictedMessage } from "@/components/TeacherComponents/DownloadRegionRestrictedMessage/DownloadRegionRestrictedMessage";
+import CopyrightRestrictionBanner from "@/components/TeacherComponents/CopyrightRestrictionBanner/CopyrightRestrictionBanner";
 import { resolveOakHref } from "@/common-lib/urls";
 
 type BaseLessonDownload = {
@@ -117,6 +118,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     additionalFiles,
     expired,
     isSpecialist,
+    isLegacy,
     copyrightContent,
     updatedAt,
     actions,
@@ -509,6 +511,15 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             })}
           />
         )}
+        <OakBox $mt={"space-between-xl"}>
+          <CopyrightRestrictionBanner
+            isGeorestricted={geoRestricted ?? undefined}
+            isLoginRequired={loginRequired ?? undefined}
+            lessonName={lessonTitle}
+            lessonSlug={lessonSlug}
+            isLessonLegacy={isLegacy}
+          />
+        </OakBox>
       </MaxWidth>
     </OakBox>
   );
