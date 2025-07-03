@@ -26,6 +26,8 @@ const lessonMediaClipsFixtures = (
     examBoardTitle: null,
     tierSlug: null,
     tierTitle: null,
+    loginRequired: false,
+    geoRestricted: false,
     mediaClips: keysToCamelCase(
       mediaClipsFixture().media_clips,
     ) as MediaClipListCamelCase,
