@@ -48,6 +48,8 @@ describe("hasLessonMathJax", () => {
     lessonReleaseDate: "2022-02-01T00:00:00Z",
     orderInUnit: 1,
     unitTotalLessonCount: 1,
+    loginRequired: false,
+    geoRestricted: false,
   };
 
   it("detects MathJax in keyLearningPoints", () => {

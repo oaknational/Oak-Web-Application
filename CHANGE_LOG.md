@@ -1,3 +1,21 @@
+# [1.788.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.787.0...v1.788.0) (2025-07-03)
+
+
+### Bug Fixes
+
+* fix text having the wrong color in RestrictedSignInPrompt component ([a609623](https://github.com/oaknational/Oak-Web-Application/commit/a609623d028a399c0dce1acaeadb1cc96259279b))
+* update behaviour to hide lesson guide also ([78ce677](https://github.com/oaknational/Oak-Web-Application/commit/78ce677bf6ac9530dac9d8d457d79b0c0e0bfd91))
+
+
+### Features
+
+* add loginRequired and geoRestricted fields to lesson media components and fixtures ([149a092](https://github.com/oaknational/Oak-Web-Application/commit/149a092381f44265c0dabeae8035bf8aa3c9a8a2))
+* add loginRequired and geoRestricted fields to lesson overview and specialist lesson schemas, fixtures, and components ([eb4f7a7](https://github.com/oaknational/Oak-Web-Application/commit/eb4f7a7b0444f80e5f573eaece52f8890a7b7ee4))
+* add responsive behaviour to RestrictedSignInPrompt ([49d48e2](https://github.com/oaknational/Oak-Web-Application/commit/49d48e231db2aa17407ee96c424ebc4c5ca50d4a))
+* implement RestrictedSignInPrompt component and integrate it into LessonMedia view ([19526a3](https://github.com/oaknational/Oak-Web-Application/commit/19526a36ea617428a493d49f6799465fe7462a53))
+* integrate content restriction logic into LessonOverview and update related components ([6f8a562](https://github.com/oaknational/Oak-Web-Application/commit/6f8a562e494c181f3cbb57471c0f4c43863fde6b))
+* make restrictedsigninprompt full width ([5cfad87](https://github.com/oaknational/Oak-Web-Application/commit/5cfad87db9081c2a031aab60717fa135ac6855a1))
+
 # [1.787.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.786.0...v1.787.0) (2025-07-02)
 
 
