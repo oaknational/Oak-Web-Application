@@ -151,4 +151,18 @@ describe("Downloads/Share Layout", () => {
     const loadingSpinner = getByTestId("loading");
     expect(loadingSpinner).toBeInTheDocument();
   });
+
+  it("renders LoginRequired button instead of CTA component when downloadsRestricted is true", () => {
+    const restrictedProps = { ...props, downloadsRestricted: true };
+    const { queryByRole } = renderWithTheme(
+      <ComponentWrapper {...restrictedProps} />,
+    );
+
+    const ctaButton = queryByRole("button", { name: "CTA" });
+    const loginRequiredButton = queryByRole("button", {
+      name: "Sign in to continue",
+    });
+    expect(ctaButton).not.toBeInTheDocument();
+    expect(loginRequiredButton).toBeInTheDocument();
+  });
 });
