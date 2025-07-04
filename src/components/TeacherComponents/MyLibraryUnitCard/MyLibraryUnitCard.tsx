@@ -1,12 +1,12 @@
 import {
   OakFlex,
   OakHeading,
-  OakSmallTertiaryInvertedButton,
   OakP,
   OakSpan,
   OakBox,
   OakLI,
   OakSecondaryLink,
+  OakSaveButton,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
@@ -57,29 +57,6 @@ const getLastSavedText = (date: string) => {
     : `Saved on ${formattedDate} at ${formattedTime}`;
 };
 
-// TODO: replace with OakSaveButton
-const SaveButton = ({
-  unitTitle,
-  onSave,
-  isSaved,
-  isSaving,
-}: Pick<
-  MyLibraryUnitCardProps,
-  "unitTitle" | "onSave" | "isSaved" | "isSaving"
->) => {
-  return (
-    <OakSmallTertiaryInvertedButton
-      iconName={isSaved ? "bookmark-filled" : "bookmark-outlined"}
-      isTrailingIcon
-      onClick={onSave}
-      aria-label={`${isSaved ? "Unsave" : "Save"} this unit: ${unitTitle} `}
-      aria-disabled={isSaving ? "true" : undefined}
-    >
-      {isSaved ? "Saved" : "Save"}
-    </OakSmallTertiaryInvertedButton>
-  );
-};
-
 const UnitCardHeader = ({ ...props }: MyLibraryUnitCardProps) => {
   const {
     unitTitle,
@@ -128,11 +105,11 @@ const UnitCardHeader = ({ ...props }: MyLibraryUnitCardProps) => {
         </OakP>
       </OakFlex>
       <OakBox $display={["none", "block"]}>
-        <SaveButton
-          unitTitle={unitTitle}
+        <OakSaveButton
+          title={unitTitle}
           onSave={onSave}
           isSaved={isSaved}
-          isSaving={isSaving}
+          isLoading={isSaving}
         />
       </OakBox>
     </OakFlex>
@@ -161,11 +138,11 @@ const UnitCardContent = ({
         <OakFlex $justifyContent={"space-between"} $alignItems="center">
           <OakP $font={"heading-light-7"}>{lessonCountHeader}</OakP>
           <OakBox $display={["block", "none"]}>
-            <SaveButton
-              unitTitle={unitTitle}
+            <OakSaveButton
+              title={unitTitle}
               onSave={onSave}
               isSaved={isSaved}
-              isSaving={isSaving}
+              isLoading={isSaving}
             />
           </OakBox>
         </OakFlex>
