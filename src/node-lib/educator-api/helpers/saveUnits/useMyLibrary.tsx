@@ -207,10 +207,12 @@ export const useMyLibrary = () => {
     trackingData: TrackingProgrammeData,
   ) => {
     const unitProgrammeSlug = getUnitProgrammeSlug(unitSlug, programmeSlug);
-    if (isUnitSaved(unitProgrammeSlug)) {
-      onUnsave(unitSlug, programmeSlug, unitProgrammeSlug, trackingData);
-    } else {
-      onSave(unitSlug, programmeSlug, unitProgrammeSlug, trackingData);
+    if (!isUnitSaving(unitProgrammeSlug)) {
+      if (isUnitSaved(unitProgrammeSlug)) {
+        onUnsave(unitSlug, programmeSlug, unitProgrammeSlug, trackingData);
+      } else {
+        onSave(unitSlug, programmeSlug, unitProgrammeSlug, trackingData);
+      }
     }
   };
 
