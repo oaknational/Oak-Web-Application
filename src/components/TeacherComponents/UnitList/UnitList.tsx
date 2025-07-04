@@ -128,16 +128,14 @@ const UnitList: FC<UnitListProps> = (props) => {
     .indexOf(true);
 
   // Saving
-  const { onSaveToggle, isUnitSaved, showSignIn, setShowSignIn } = useSaveUnits(
-    props.programmeSlug,
-    {
+  const { onSaveToggle, isUnitSaved, showSignIn, setShowSignIn, isUnitSaving } =
+    useSaveUnits(props.programmeSlug, {
       keyStageTitle,
       keyStageSlug,
       subjectTitle: props.subjectTitle,
       subjectSlug: props.subjectSlug,
       savedFrom: "unit_listing_save_button",
-    },
-  );
+    });
 
   const hasNewAndLegacyUnits: boolean =
     !!phaseSlug && !!newPageItems.length && !!legacyPageItems.length;
@@ -160,6 +158,7 @@ const UnitList: FC<UnitListProps> = (props) => {
     firstItemRef: firstItemRef ?? undefined,
     onClick,
     isUnitSaved,
+    isUnitSaving,
     onSaveToggle,
     setElementId: setSaveButtonElementId,
     newAndLegacyUnitsOnPage: areNewAndLegacyUnitsOnPage(currentPageItems),

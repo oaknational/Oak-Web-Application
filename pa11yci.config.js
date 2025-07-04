@@ -51,6 +51,7 @@ const config = {
       "CF-Access-Client-Secret": CfAccessClientSecret,
     },
     concurrency: 10,
+    // If running pa11y locally fails, comment out the following section
     chromeLaunchConfig: {
       executablePath: "/usr/bin/google-chrome",
     },

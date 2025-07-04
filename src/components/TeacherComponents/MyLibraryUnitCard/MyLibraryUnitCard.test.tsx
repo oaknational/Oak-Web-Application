@@ -39,6 +39,7 @@ const mockUnit = {
   lessonCount: 5,
   onSave: jest.fn(),
   isSaved: false,
+  isSaving: false,
 };
 
 const incompleteUnitLessons = generateLessons(2, "new");

@@ -15,6 +15,7 @@ describe("MyLibrary", () => {
         isLoading={true}
         onSaveToggle={() => {}}
         isUnitSaved={() => false}
+        isUnitSaving={() => false}
       />,
     );
     expect(screen.getByText("My library")).toBeInTheDocument();
@@ -27,6 +28,7 @@ describe("MyLibrary", () => {
         isLoading={false}
         onSaveToggle={() => {}}
         isUnitSaved={() => false}
+        isUnitSaving={() => false}
       />,
     );
     expect(screen.getByText("My library")).toBeInTheDocument();
@@ -39,6 +41,7 @@ describe("MyLibrary", () => {
         isLoading={false}
         onSaveToggle={() => {}}
         isUnitSaved={() => false}
+        isUnitSaving={() => false}
       />,
     );
 

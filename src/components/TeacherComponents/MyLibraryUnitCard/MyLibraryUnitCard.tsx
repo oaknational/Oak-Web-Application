@@ -1,12 +1,12 @@
 import {
   OakFlex,
   OakHeading,
-  OakSmallTertiaryInvertedButton,
   OakP,
   OakSpan,
   OakBox,
   OakLI,
   OakSecondaryLink,
+  OakSaveButton,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
@@ -57,25 +57,16 @@ const getLastSavedText = (date: string) => {
     : `Saved on ${formattedDate} at ${formattedTime}`;
 };
 
-const SaveButton = ({
-  unitTitle,
-  onSave,
-  isSaved,
-}: Pick<MyLibraryUnitCardProps, "unitTitle" | "onSave" | "isSaved">) => {
-  return (
-    <OakSmallTertiaryInvertedButton
-      iconName={isSaved ? "bookmark-filled" : "bookmark-outlined"}
-      isTrailingIcon
-      onClick={onSave}
-      aria-label={`${isSaved ? "Unsave" : "Save"} this unit: ${unitTitle} `}
-    >
-      {isSaved ? "Saved" : "Save"}
-    </OakSmallTertiaryInvertedButton>
-  );
-};
-
 const UnitCardHeader = ({ ...props }: MyLibraryUnitCardProps) => {
-  const { unitTitle, year, savedAt, onSave, isSaved, optionalityTitle } = props;
+  const {
+    unitTitle,
+    year,
+    savedAt,
+    onSave,
+    isSaved,
+    optionalityTitle,
+    isSaving,
+  } = props;
 
   const lastSavedText = getLastSavedText(savedAt);
   const mainTitle = optionalityTitle ?? unitTitle;
@@ -114,7 +105,12 @@ const UnitCardHeader = ({ ...props }: MyLibraryUnitCardProps) => {
         </OakP>
       </OakFlex>
       <OakBox $display={["none", "block"]}>
-        <SaveButton unitTitle={unitTitle} onSave={onSave} isSaved={isSaved} />
+        <OakSaveButton
+          title={unitTitle}
+          onSave={onSave}
+          isSaved={isSaved}
+          isLoading={isSaving}
+        />
       </OakBox>
     </OakFlex>
   );
@@ -126,8 +122,15 @@ const UnitCardContent = ({
 }: {
   lessonCountHeader: string;
 } & MyLibraryUnitCardProps) => {
-  const { unitTitle, unitSlug, programmeSlug, lessons, onSave, isSaved } =
-    props;
+  const {
+    unitTitle,
+    unitSlug,
+    programmeSlug,
+    lessons,
+    onSave,
+    isSaved,
+    isSaving,
+  } = props;
 
   return (
     <OakFlex>
@@ -135,10 +138,11 @@ const UnitCardContent = ({
         <OakFlex $justifyContent={"space-between"} $alignItems="center">
           <OakP $font={"heading-light-7"}>{lessonCountHeader}</OakP>
           <OakBox $display={["block", "none"]}>
-            <SaveButton
-              unitTitle={unitTitle}
+            <OakSaveButton
+              title={unitTitle}
               onSave={onSave}
               isSaved={isSaved}
+              isLoading={isSaving}
             />
           </OakBox>
         </OakFlex>
@@ -199,8 +203,9 @@ export type MyLibraryUnitCardProps = Omit<
   "yearOrder" | "unitOrder"
 > & {
   programmeSlug: string;
-  onSave?: () => void;
-  isSaved?: boolean;
+  onSave: () => void;
+  isSaved: boolean;
+  isSaving: boolean;
 };
 
 export default function MyLibraryUnitCard(props: MyLibraryUnitCardProps) {

@@ -51,6 +51,7 @@ jest.mock("@/node-lib/educator-api/helpers/saveUnits/useSaveUnits", () => {
       isUnitSaved: jest.fn().mockResolvedValue(true),
       showSignIn: false,
       setShowSignIn: jest.fn(),
+      isUnitSaving: jest.fn().mockResolvedValue(false),
     }),
   };
 });

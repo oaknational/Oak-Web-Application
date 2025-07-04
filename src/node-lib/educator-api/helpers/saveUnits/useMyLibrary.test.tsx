@@ -1,4 +1,4 @@
-import { act } from "@testing-library/react";
+import { act, waitFor } from "@testing-library/react";
 
 import { UserlistContentApiResponse } from "../../queries/getUserListContent/getUserListContent.types";
 
@@ -363,12 +363,20 @@ describe("useMyLibrary", () => {
     act(() =>
       result.current.onSaveToggle("unit1", "programme1", mockTrackingData),
     );
-    expect(result.current.isUnitSaved("unit1-programme1")).toBe(false);
+    await waitFor(() =>
+      expect(result.current.isUnitSaved("unit1-programme1")).toBe(false),
+    );
+
+    await waitFor(() =>
+      expect(result.current.isUnitSaving("unit1-programme1")).toBe(false),
+    );
 
     act(() =>
       result.current.onSaveToggle("unit1", "programme1", mockTrackingData),
     );
-    expect(result.current.isUnitSaved("unit1-programme1")).toBe(true);
+    await waitFor(() =>
+      expect(result.current.isUnitSaved("unit1-programme1")).toBe(true),
+    );
   });
   it("should decrement and increment units count when toggling save on a unit", async () => {
     mockUseGetEducatorData.mockImplementation(() => ({
@@ -381,12 +389,16 @@ describe("useMyLibrary", () => {
     act(() =>
       result.current.onSaveToggle("unit1", "programme1", mockTrackingData),
     );
-    expect(mockDecrementSavedUnitsCount).toHaveBeenCalled();
+    await waitFor(() =>
+      expect(mockDecrementSavedUnitsCount).toHaveBeenCalled(),
+    );
 
     act(() =>
       result.current.onSaveToggle("unit1", "programme1", mockTrackingData),
     );
-    expect(mockIncrementSavedUnitsCount).toHaveBeenCalled();
+    await waitFor(() =>
+      expect(mockIncrementSavedUnitsCount).toHaveBeenCalled(),
+    );
   });
   it("should update toast props when saving a unit", async () => {
     mockUseGetEducatorData.mockImplementation(() => ({
@@ -400,6 +412,6 @@ describe("useMyLibrary", () => {
       result.current.onSaveToggle("unit1", "programme1", mockTrackingData),
     );
 
-    expect(mockSetOakToastProps).toHaveBeenCalled();
+    await waitFor(() => expect(mockSetOakToastProps).toHaveBeenCalled());
   });
 });

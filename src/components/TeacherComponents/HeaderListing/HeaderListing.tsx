@@ -58,6 +58,7 @@ export type HeaderListingProps = {
   isIncompleteUnit?: boolean;
   subjectDescriptionUnitListingData?: UnitListingData;
   isUnitSaved?: boolean;
+  isUnitSaving?: boolean;
   onSave?: () => void;
   isGeorestrictedUnit?: boolean;
   isLoginRequiredUnit?: boolean;
@@ -87,6 +88,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     isIncompleteUnit,
     subjectDescriptionUnitListingData,
     isUnitSaved,
+    isUnitSaving,
     onSave,
     isGeorestrictedUnit,
     isLoginRequiredUnit,
@@ -233,6 +235,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                       "space-between-none",
                     ]}
                     data-testid="save-unit-button"
+                    disabled={isUnitSaving}
                   >
                     <OakFlex $alignItems="center" $gap={"space-between-xs"}>
                       <OakTagFunctional
