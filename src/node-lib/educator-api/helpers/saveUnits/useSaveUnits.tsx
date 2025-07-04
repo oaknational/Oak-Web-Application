@@ -143,10 +143,12 @@ export const useSaveUnits = (
 
   const onSaveToggle = (unitSlug: string) => {
     if (isSignedIn && isOnboarded) {
-      if (isUnitSaved(unitSlug)) {
-        onUnsave(unitSlug);
-      } else {
-        onSave(unitSlug);
+      if (!isUnitSaving(unitSlug)) {
+        if (isUnitSaved(unitSlug)) {
+          onUnsave(unitSlug);
+        } else {
+          onSave(unitSlug);
+        }
       }
     } else {
       setShowSignIn(true);
