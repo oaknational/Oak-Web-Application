@@ -73,7 +73,7 @@ const SaveButton = ({
       isTrailingIcon
       onClick={onSave}
       aria-label={`${isSaved ? "Unsave" : "Save"} this unit: ${unitTitle} `}
-      disabled={isSaving}
+      aria-disabled={isSaving ? "true" : undefined}
     >
       {isSaved ? "Saved" : "Save"}
     </OakSmallTertiaryInvertedButton>
