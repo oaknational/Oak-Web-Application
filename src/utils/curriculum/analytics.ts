@@ -1,4 +1,5 @@
-import { CurriculumFilters } from "./types";
+import { CurriculumFilters, Thread, Unit } from "./types";
+import { areLessonsAvailable } from "./lessons";
 
 import {
   Platform,
@@ -11,6 +12,7 @@ import {
   UnitSequenceRefinedProperties,
   AnalyticsUseCaseValueType,
   PathwayValueType,
+  UnitOverviewAccessedProperties,
 } from "@/browser-lib/avo/Avo";
 import { CurriculumUnitsTrackingData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
@@ -72,5 +74,38 @@ export function buildUnitSequenceRefinedAnalytics(
         ? filters.subjectCategories[0]
         : null,
     pathway: assertValidPathway(filters.pathways[0]),
+  };
+}
+
+export function buildUnitOverviewAccessedAnalytics({
+  unit,
+  isHighlighted,
+  analyticsUseCase,
+  selectedThread,
+  componentType,
+}: {
+  unit: Unit;
+  isHighlighted: boolean;
+  analyticsUseCase: AnalyticsUseCaseValueType;
+  selectedThread?: Thread;
+  componentType: UnitOverviewAccessedProperties["componentType"];
+}): UnitOverviewAccessedProperties {
+  return {
+    unitName: unit.title,
+    unitSlug: unit.slug,
+    subjectTitle: unit.subject,
+    subjectSlug: unit.subject_slug,
+    yearGroupName: `Year ${unit.year}`,
+    yearGroupSlug: unit.year,
+    threadTitle: selectedThread?.title ?? null,
+    threadSlug: selectedThread?.slug ?? null,
+    platform: "owa",
+    product: "curriculum visualiser",
+    engagementIntent: "use",
+    componentType,
+    eventVersion: "2.0.0",
+    analyticsUseCase,
+    unitHighlighted: isHighlighted,
+    isUnitPublished: areLessonsAvailable(unit.lessons),
   };
 }

@@ -9,17 +9,17 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
       style="margin-bottom: -1rem;"
     >
       <ol
-        class="sc-a964d3a7-0 csZIsZ"
+        class="sc-de453114-0 gEnlCh"
         role="list"
       >
         <li
-          class="sc-a964d3a7-1 hFJsag"
+          class="sc-de453114-1 epQOIs"
         >
           <div
             class="sc-fqkvVR sc-1c55d370-0 jdSkEU iHxKuU"
           >
             <a
-              class="sc-79c3f222-0 bginFa"
+              class="sc-7353c220-0 eacPWx"
               data-testid="unit-info-link"
               href="/one"
             >
@@ -76,13 +76,13 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
           </div>
         </li>
         <li
-          class="sc-a964d3a7-1 hFJsag"
+          class="sc-de453114-1 epQOIs"
         >
           <div
             class="sc-fqkvVR sc-1c55d370-0 jdSkEU iHxKuU"
           >
             <a
-              class="sc-79c3f222-0 bginFa"
+              class="sc-7353c220-0 eacPWx"
               data-testid="unit-info-link"
               href="/two"
             >
@@ -139,13 +139,13 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
           </div>
         </li>
         <li
-          class="sc-a964d3a7-1 hFJsag"
+          class="sc-de453114-1 epQOIs"
         >
           <div
             class="sc-fqkvVR sc-1c55d370-0 jdSkEU iHxKuU"
           >
             <a
-              class="sc-79c3f222-0 bginFa"
+              class="sc-7353c220-0 eacPWx"
               data-testid="unit-info-link"
               href="/three"
             >
@@ -202,13 +202,13 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
           </div>
         </li>
         <li
-          class="sc-a964d3a7-1 hFJsag"
+          class="sc-de453114-1 epQOIs"
         >
           <div
             class="sc-fqkvVR sc-1c55d370-0 jdSkEU iHxKuU"
           >
             <a
-              class="sc-79c3f222-0 bginFa"
+              class="sc-7353c220-0 eacPWx"
               data-testid="unit-info-link"
               href="/four"
             >

@@ -178,6 +178,7 @@ export default function CurricVisualiser({
                 year={year}
                 yearData={yearData}
                 basePath={basePath}
+                selectedThread={selectedThread}
               />
             </CurricYearCard>
           </OakBox>
