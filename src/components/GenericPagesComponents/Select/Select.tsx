@@ -193,7 +193,11 @@ export function Select<
         </SelectButton>
         {state.isOpen && (
           <Popover isOpen={state.isOpen} onClose={state.close}>
-            <ListBox {...menuProps} state={state} />
+            <ListBox
+              {...menuProps}
+              state={state}
+              aria-labelledby={labelProps.id}
+            />
           </Popover>
         )}
       </>
