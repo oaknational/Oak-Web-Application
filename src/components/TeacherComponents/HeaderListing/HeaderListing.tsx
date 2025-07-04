@@ -20,6 +20,7 @@ import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeader
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
 import RiskAssessmentBanner from "@/components/TeacherComponents/RiskAssessmentBanner";
 import HeaderListingCurriculumDownloadButton from "@/components/TeacherComponents/HeaderListingCurriculumDownloadButton";
+import CopyrightRestrictionBanner from "@/components/TeacherComponents/CopyrightRestrictionBanner/CopyrightRestrictionBanner";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
@@ -60,6 +61,9 @@ export type HeaderListingProps = {
   isUnitSaving?: boolean;
   onSave?: () => void;
   isGeorestrictedUnit?: boolean;
+  isLoginRequiredUnit?: boolean;
+  unitTitle?: string;
+  unitSlug?: string;
 };
 
 const HeaderListing: FC<HeaderListingProps> = (props) => {
@@ -87,6 +91,9 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     isUnitSaving,
     onSave,
     isGeorestrictedUnit,
+    isLoginRequiredUnit,
+    unitTitle,
+    unitSlug,
   } = props;
 
   const isKeyStagesAvailable = keyStageSlug && keyStageTitle;
@@ -247,6 +254,13 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
               <OakBox $display={["none", "block", "block"]}>
                 {bannersBlock}
               </OakBox>
+              <CopyrightRestrictionBanner
+                isGeorestricted={isGeorestrictedUnit}
+                isLoginRequired={isLoginRequiredUnit}
+                componentType="lesson_listing"
+                unitName={unitTitle}
+                unitSlug={unitSlug}
+              />
             </OakFlex>
           </OakFlex>
         </OakFlex>

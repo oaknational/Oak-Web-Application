@@ -1,3 +1,4 @@
+import { act } from "@testing-library/react";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import {
@@ -6,9 +7,12 @@ import {
 } from "./LessonOverview.view";
 
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
-import { mockLoggedIn, mockLoggedOut } from "@/__tests__/__helpers__/mockUser";
+import {
+  mockLoggedIn,
+  mockLoggedOut,
+  mockUserWithDownloadAccess,
+} from "@/__tests__/__helpers__/mockUser";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const mockFeatureFlagEnabled = jest.fn().mockReturnValue(false);
@@ -32,6 +36,8 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
     },
   }),
 }));
+
+const render = renderWithProviders();
 
 describe("isPupilLessonOutcomeInKeyLearningPoints", () => {
   it("should return plo if the pupil lesson outcome is not in the key learning points", () => {
@@ -70,7 +76,7 @@ describe("lessonOverview.view", () => {
     });
 
     it("renders with sub-header content", () => {
-      const { getByText } = renderWithTheme(
+      const { getByText } = render(
         <LessonOverview
           lesson={{
             ...lessonOverviewFixture(),
@@ -93,7 +99,7 @@ describe("lessonOverview.view", () => {
       (useFeatureFlagVariantKey as jest.Mock).mockReturnValue("control");
     });
     it("renders without sub-header content", () => {
-      const { queryByText } = renderWithTheme(
+      const { queryByText } = render(
         <LessonOverview
           lesson={{
             ...lessonOverviewFixture(),
@@ -114,7 +120,7 @@ describe("lessonOverview.view", () => {
   });
   describe("tracking", () => {
     it("should call track.lessonMediaClipsStarted when play all is clicked for media clips", () => {
-      const { getByText } = renderWithTheme(
+      const { getByText } = render(
         <LessonOverview
           lesson={{
             ...lessonOverviewFixture(),
@@ -157,7 +163,7 @@ describe("lessonOverview.view", () => {
       });
     });
     it("should call track.trackDownloadResourceButtonClicked when play all is clicked for media clips", () => {
-      const { getByText } = renderWithTheme(
+      const { getByText } = render(
         <LessonOverview
           lesson={{
             ...lessonOverviewFixture(),
@@ -169,7 +175,9 @@ describe("lessonOverview.view", () => {
         />,
       );
       const playAllButton = getByText("Download lesson slides");
-      playAllButton.click();
+      act(() => {
+        playAllButton.click();
+      });
       expect(lessonResourceDownloadStarted).toHaveBeenCalledWith({
         analyticsUseCase: "Teacher",
         componentType: "lesson_download_button",
@@ -197,7 +205,7 @@ describe("lessonOverview.view", () => {
       });
     });
     it("should hanlde no release date when track.trackDownloadResourceButtonClicked is called", () => {
-      const { getByText } = renderWithTheme(
+      const { getByText } = render(
         <LessonOverview
           lesson={{
             ...lessonOverviewFixture({
@@ -212,7 +220,9 @@ describe("lessonOverview.view", () => {
         />,
       );
       const playAllButton = getByText("Download lesson slides");
-      playAllButton.click();
+      act(() => {
+        playAllButton.click();
+      });
       expect(lessonResourceDownloadStarted).toHaveBeenCalledWith({
         analyticsUseCase: "Teacher",
         componentType: "lesson_download_button",
@@ -238,7 +248,7 @@ describe("lessonOverview.view", () => {
       });
     });
     it("should hanlde no release date when track.lessonMediaClipsStarted is called", () => {
-      const { getByText } = renderWithTheme(
+      const { getByText } = render(
         <LessonOverview
           lesson={{
             ...lessonOverviewFixture({
@@ -288,7 +298,7 @@ describe("lessonOverview.view", () => {
     mockFeatureFlagEnabled.mockReturnValue(true);
     setUseUserReturn(mockLoggedOut);
 
-    const { getByText } = renderWithProviders()(
+    const { getByText } = render(
       <LessonOverview
         lesson={{
           ...lessonOverviewFixture(),
@@ -308,7 +318,7 @@ describe("lessonOverview.view", () => {
     mockFeatureFlagEnabled.mockReturnValue(true);
     setUseUserReturn(mockLoggedOut);
 
-    const { queryByText } = renderWithProviders()(
+    const { queryByText } = render(
       <LessonOverview
         lesson={{
           ...lessonOverviewFixture(),
@@ -330,7 +340,7 @@ describe("lessonOverview.view", () => {
   it("Should not show the sign in prompt when feature flag disabled", () => {
     mockFeatureFlagEnabled.mockReturnValue(false);
     setUseUserReturn(mockLoggedOut);
-    const { queryByText, getAllByText } = renderWithProviders()(
+    const { queryByText, getAllByText } = render(
       <LessonOverview
         lesson={{
           ...lessonOverviewFixture(),
@@ -354,9 +364,12 @@ describe("lessonOverview.view", () => {
   });
   it("Should not show the sign in prompt when the user is signed in", () => {
     mockFeatureFlagEnabled.mockReturnValue(true);
-    setUseUserReturn(mockLoggedIn);
+    setUseUserReturn({
+      ...mockLoggedIn,
+      user: mockUserWithDownloadAccess,
+    });
 
-    const { queryByText, getAllByText } = renderWithProviders()(
+    const { queryByText, getAllByText } = render(
       <LessonOverview
         lesson={{
           ...lessonOverviewFixture(),
