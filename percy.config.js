@@ -5,12 +5,11 @@
  * Note: Percy is triggered in Github workflows, the logic is here .github/actions/percy_snapshots/index.js
  */
 
-// Cloudflare Access token
-const CfAccessClientId = process.env.CF_ACCESS_CLIENT_ID;
-const CfAccessClientSecret = process.env.CF_ACCESS_CLIENT_SECRET;
-if (!CfAccessClientId || !CfAccessClientSecret) {
+// Vercel automation bypass secret
+const vercelAutomationBypass = process.env.VERCEL_AUTOMATION_BYPASS_SECRET;
+if (!vercelAutomationBypass) {
   throw new TypeError(
-    "Please specify Cloudflare Access token headers in envs\nfor background info see https://developers.cloudflare.com/cloudflare-one/identity/service-tokens/",
+    "Please specify Vercel automation bypass secret in envs\nfor background info see https://vercel.com/docs/deployment-protection/methods-to-bypass-deployment-protection#protection-bypass-for-automation",
   );
 }
 
@@ -45,8 +44,7 @@ module.exports = {
     ],
     userAgent: "oak testing Percy",
     requestHeaders: {
-      "CF-Access-Client-Id": CfAccessClientId,
-      "CF-Access-Client-Secret": CfAccessClientSecret,
+      "x-vercel-protection-bypass": vercelAutomationBypass,
     },
   },
 };

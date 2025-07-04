@@ -50,20 +50,22 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
       $background={"white"}
     >
       <OakHeaderHero
-        authorImageAlt={`${pageData.hero.author.name} profile picture`}
         heroImageAlt={pageData.hero.image?.altText ?? ""}
         data-testid="header-hero"
         headingTitle={pageData.hero.heading}
         authorName={pageData.hero.author.name}
         authorTitle={pageData.hero.author.role ?? ""}
+        authorImageSrc={
+          pageData.hero.author.image?.asset
+            ? imageBuilder.image(pageData.hero.author.image.asset).url()
+            : undefined
+        }
+        authorImageAlt={`${pageData.hero.author.name} profile picture`}
         subHeadingText={
           pageData.hero.summaryPortableText?.[0]?.children?.[0]?.text
         }
         heroImageSrc={imageBuilder
           .image(pageData.hero.image?.asset?.url ?? {})
-          .url()}
-        authorImageSrc={imageBuilder
-          .image(pageData.hero.author.image?.asset?.url ?? {})
           .url()}
         breadcrumbs={
           <Breadcrumbs

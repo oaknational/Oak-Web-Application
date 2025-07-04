@@ -78,6 +78,12 @@
     "addTeacherNoteUrl": "https://pupil-api-beta.thenational.academy/v1/add-teacher-note",
     "getTeacherNoteUrl": "https://pupil-api-beta.thenational.academy/v1/get-teacher-note"
   },
+  "sentry": {
+    "dsn": "https://sentry.io/00000000000000",
+    "organisationIdentifier": "oak-national-academy",
+    "projectIdentifier": "oak-web-application",
+    "requiredSecrets": ["SENTRY_AUTH_TOKEN"]
+  },
   "seo": {
     "appName": "Oak Web Application",
     "appDescription": "Oak Web Application",

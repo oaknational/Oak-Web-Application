@@ -394,6 +394,30 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     description:
       "The region to use in authentication when running in development mode",
   },
+  sentryOrganisationIdentifier: {
+    value: process.env.NEXT_PUBLIC_SENTRY_ORGANISATION_IDENTIFIER,
+    envName: "NEXT_PUBLIC_SENTRY_ORGANISATION_IDENTIFIER",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+    description: "The slug identifying the organisation within Sentry",
+  },
+  sentryProjectIdentifier: {
+    value: process.env.NEXT_PUBLIC_SENTRY_PROJECT_IDENTIFIER,
+    envName: "NEXT_PUBLIC_SENTRY_PROJECT_IDENTIFIER",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+    description: "The slug identifying the project within Sentry",
+  },
+  sentryDsn: {
+    value: process.env.NEXT_PUBLIC_SENTRY_DSN,
+    envName: "NEXT_PUBLIC_SENTRY_DSN",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+    description: "The DSN for the Sentry project",
+  },
 });
 
 for (const [, envVarConfig] of Object.entries(envVars)) {
