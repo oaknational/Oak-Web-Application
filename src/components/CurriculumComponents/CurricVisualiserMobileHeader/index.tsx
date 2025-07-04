@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { OakSpan, OakBox, OakSecondaryLink } from "@oaknational/oak-components";
 import styled from "styled-components";
 
@@ -177,11 +177,21 @@ export default function CurricVisualiserMobileHeader({
   const textItemsDescribingFilter = buildTextDescribingFilter(data, filters);
 
   const shouldIncludeCore = slugs.ks4OptionSlug !== "core";
+  const mobileFilters = {
+    ...filters,
+    years: Object.keys(data.yearData),
+    pathways: [],
+  };
+
   const unitsByYearSelector = applyFiltering(
-    filters,
+    mobileFilters,
     groupUnitsByPathway({
-      modes: getModes(shouldIncludeCore, ks4Options ?? []),
-      yearData,
+      modes: getModes(
+        shouldIncludeCore,
+        ks4Options ?? [],
+        mobileFilters.pathways[0],
+      ),
+      yearData: data.yearData,
     }),
   );
 
@@ -225,16 +235,15 @@ export default function CurricVisualiserMobileHeader({
                 {textItemsDescribingFilter.map(
                   (textItemDescribingFilter, index) => {
                     return (
-                      <>
+                      <Fragment key={index}>
                         {index > 0 && <OakBox $display={"inline"}> • </OakBox>}
                         <OakBox
-                          key={index}
                           $display={"inline"}
                           data-testid="highlighted-threads-mobile"
                         >
                           {textItemDescribingFilter}
                         </OakBox>
-                      </>
+                      </Fragment>
                     );
                   },
                 )}

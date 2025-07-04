@@ -160,6 +160,7 @@ describe("visualiser", () => {
 
     expect(filterThreadsButton).toBeInTheDocument();
   });
+
   test("visualiser is visible on desktop", async () => {
     const { findByTestId } = render(
       <CurricVisualiser {...CurricVisualiserFixture} />,
@@ -168,6 +169,18 @@ describe("visualiser", () => {
     const filterThreadsButton = await findByTestId("curriculum-visualiser");
 
     expect(filterThreadsButton).toBeInTheDocument();
+  });
+
+  test("first year in year-group is immediately visible on mobile", async () => {
+    resizeWindow(390, 844);
+
+    const { container } = render(
+      <CurricVisualiser {...CurricVisualiserFixture} />,
+    );
+
+    const firstYearGroup = container.querySelector("#year-all-7");
+
+    expect(firstYearGroup).toBeVisible();
   });
 
   test("correct number of units displayed", async () => {
@@ -788,7 +801,7 @@ describe("Year group filter headings display correctly", () => {
           pathways: [],
           subjectCategories: [],
           tiers: ["foundation"],
-          years: ["10"],
+          years: ["11"],
           threads: [],
         };
 
@@ -799,10 +812,13 @@ describe("Year group filter headings display correctly", () => {
           />,
         );
 
-        const yearHeading10 = await findByTestId("year-heading");
-        expect(yearHeading10).toHaveTextContent("Year 10");
-        const subheading10 = await findByTestId("year-subheading");
-        expect(subheading10).toHaveTextContent("Foundation");
+        const year11Container = await findByTestId("year-non_core-11");
+        const yearHeading11 =
+          await within(year11Container).findByTestId("year-heading");
+        expect(yearHeading11).toHaveTextContent("Year 11");
+        const subheading11 =
+          await within(year11Container).findByTestId("year-subheading");
+        expect(subheading11).toHaveTextContent("Foundation");
       });
     });
   });
