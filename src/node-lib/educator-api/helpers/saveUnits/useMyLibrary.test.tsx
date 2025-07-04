@@ -367,6 +367,10 @@ describe("useMyLibrary", () => {
       expect(result.current.isUnitSaved("unit1-programme1")).toBe(false),
     );
 
+    await waitFor(() =>
+      expect(result.current.isUnitSaving("unit1-programme1")).toBe(false),
+    );
+
     act(() =>
       result.current.onSaveToggle("unit1", "programme1", mockTrackingData),
     );
