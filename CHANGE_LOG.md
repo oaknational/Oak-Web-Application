@@ -1,3 +1,11 @@
+## [1.789.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.789.1...v1.789.2) (2025-07-03)
+
+
+### Bug Fixes
+
+* remove useEffect and amend associated test ([d2c00a6](https://github.com/oaknational/Oak-Web-Application/commit/d2c00a6f923fcc409475afbff074e0c1e66bc97c))
+* reset year and pathway filters on mobile ([80b0ff7](https://github.com/oaknational/Oak-Web-Application/commit/80b0ff70534789907993004df91729b5c5ff3d90))
+
 ## [1.789.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.789.0...v1.789.1) (2025-07-03)
 
 
