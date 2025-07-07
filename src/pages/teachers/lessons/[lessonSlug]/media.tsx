@@ -32,7 +32,7 @@ export const CanonicalLessonMediaClipsPage: NextPage<
     <AppLayout
       seoProps={{
         ...getSeoProps({
-          title: `Lesson Share: ${lessonTitle}`,
+          title: `Lesson Media: ${lessonTitle}`,
           description:
             "Share online lesson activities with your students, such as videos, worksheets and quizzes.",
         }),
