@@ -23,7 +23,14 @@ describe("useAnalytics", () => {
     const { result } = renderHookWithProviders()(useAnalytics);
 
     act(() => {
-      result.current.track.aboutSelected();
+      result.current.track.browseAccessed({
+        platform: "owa",
+        product: "pupil lesson activities",
+        engagementIntent: "use",
+        eventVersion: "2.0.0",
+        componentType: "page view",
+        analyticsUseCase: "Pupil",
+      });
     });
 
     expect(posthogCapture).not.toHaveBeenCalled();
@@ -31,7 +38,14 @@ describe("useAnalytics", () => {
   test("posthog should not be initialised if statistics consent not given", () => {
     const { result } = renderHookWithProviders()(useAnalytics);
     act(() => {
-      result.current.track.developYourCurriculumSelected();
+      result.current.track.browseAccessed({
+        platform: "owa",
+        product: "pupil lesson activities",
+        engagementIntent: "use",
+        eventVersion: "2.0.0",
+        componentType: "page view",
+        analyticsUseCase: "Pupil",
+      });
     });
 
     expect(posthogInit).not.toHaveBeenCalled();

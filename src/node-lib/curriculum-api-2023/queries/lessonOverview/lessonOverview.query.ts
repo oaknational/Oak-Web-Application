@@ -261,13 +261,13 @@ export const transformedLessonOverviewData = (
         : null,
     pathwayTitle: browseData.programmeFields.pathwayDescription ?? null,
     lessonReleaseDate: content.lessonReleaseDate ?? null,
-    geoRestricted: browseData.features?.agf_loginRequired ?? false,
-    loginRequired: browseData.features?.agf_geoRestricted ?? false,
     orderInUnit: browseData.orderInUnit ?? 1,
     unitTotalLessonCount:
       unitData?.supplementaryData?.staticLessonList?.length ??
       unitData?.lessonCount ??
       1,
+    geoRestricted: content.geoRestricted ?? false,
+    loginRequired: content.loginRequired ?? false,
   };
 };
 

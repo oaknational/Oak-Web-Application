@@ -1,3 +1,57 @@
+# [1.790.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.789.3...v1.790.0) (2025-07-07)
+
+
+### Bug Fixes
+
+* act errors ([6728afd](https://github.com/oaknational/Oak-Web-Application/commit/6728afdcd8eed87d3f486481e258f5846c1a196f))
+
+
+### Features
+
+* add isSaving state to useSave hook and pass to button components ([e12a5ec](https://github.com/oaknational/Oak-Web-Application/commit/e12a5ec9a485494b199031f6e899e33b8982c10c))
+* add saving state to my library save buttons ([5e2f480](https://github.com/oaknational/Oak-Web-Application/commit/5e2f480ad498fb34c1ce1e769c8a6989c3ac6f95))
+* add saving state to optionality cards ([7a8f7bf](https://github.com/oaknational/Oak-Web-Application/commit/7a8f7bf10a970cc023f8b5818b57d36aefe41d1f))
+* only call save/unsave when a unit is not already saving ([736bc04](https://github.com/oaknational/Oak-Web-Application/commit/736bc041545ff78afb31a391fe45d03654c0be72))
+* only toggle save on units when saving not in progress ([4739715](https://github.com/oaknational/Oak-Web-Application/commit/4739715d6fae097e8ccfc09d5315b7fbb6d4e4b8))
+* use aria-disabled instead of disabled on my library save button ([ce1f63a](https://github.com/oaknational/Oak-Web-Application/commit/ce1f63a416fa7a99af2c5e80b804371010fcd772))
+
+## [1.789.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.789.2...v1.789.3) (2025-07-04)
+
+## [1.789.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.789.1...v1.789.2) (2025-07-03)
+
+
+### Bug Fixes
+
+* remove useEffect and amend associated test ([d2c00a6](https://github.com/oaknational/Oak-Web-Application/commit/d2c00a6f923fcc409475afbff074e0c1e66bc97c))
+* reset year and pathway filters on mobile ([80b0ff7](https://github.com/oaknational/Oak-Web-Application/commit/80b0ff70534789907993004df91729b5c5ff3d90))
+
+## [1.789.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.789.0...v1.789.1) (2025-07-03)
+
+
+### Bug Fixes
+
+* stop cookie consent from obscuring content ([5695862](https://github.com/oaknational/Oak-Web-Application/commit/56958625dfc8b3912194e5c1c51556cba5ff6028))
+
+# [1.789.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.788.0...v1.789.0) (2025-07-03)
+
+
+### Bug Fixes
+
+* avo test errors ([e07edb8](https://github.com/oaknational/Oak-Web-Application/commit/e07edb8175dc92569fdd07a5462f4334ba18a415))
+* remove archived tracking event from footer ([ac5772d](https://github.com/oaknational/Oak-Web-Application/commit/ac5772dc094b611ac508d39f271303c1c60d09a5))
+* support article url ([594e70e](https://github.com/oaknational/Oak-Web-Application/commit/594e70e791c89e96725db182823ce91394b63a2d))
+* tests and add tracking to useEffect ([db0bbcd](https://github.com/oaknational/Oak-Web-Application/commit/db0bbcdf806430be3caf71f1b6d4918f6583107e))
+
+
+### Features
+
+* add banner to lesson overview header variants ([adde634](https://github.com/oaknational/Oak-Web-Application/commit/adde6348026c76234ea3c307537af20a51c6f720))
+* add feature flag for copyright restriction ([cd7f974](https://github.com/oaknational/Oak-Web-Application/commit/cd7f974b6a78f449a968231e55e43798b2cec73b))
+* add georestricted and login required to lesson overview query ([75a364b](https://github.com/oaknational/Oak-Web-Application/commit/75a364ba29a212c570840a31839b93121eee97e2))
+* add login required to lesson listing query ([5087a95](https://github.com/oaknational/Oak-Web-Application/commit/5087a9508178bfb2ba4f9dbd59a6f911aff2b6ae))
+* add tracking for content block ([6dca1f3](https://github.com/oaknational/Oak-Web-Application/commit/6dca1f3733f8c7aa94083198cebdef13d84d6fe5))
+* copyright restriction banner on lesson listing and overview ([488b607](https://github.com/oaknational/Oak-Web-Application/commit/488b607e3e66ab20208edd5dc0df51dbe66c5ed4))
+
 # [1.788.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.787.0...v1.788.0) (2025-07-03)
 
 

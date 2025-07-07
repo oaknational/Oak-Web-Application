@@ -18,6 +18,7 @@ const unit = {
   href: "/teachers/programmes/english-secondary-ks4-aqa/units/fiction-science-fiction-writing/lessons",
   onSave: () => console.log("onSave!"),
   isSaved: false,
+  isSaving: false,
 };
 
 const meta: Meta<typeof MyLibraryUnitCard> = {

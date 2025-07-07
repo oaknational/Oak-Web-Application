@@ -95,6 +95,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     examBoardTitle,
     year,
     containsGeorestrictedLessons,
+    containsLoginRequiredLessons,
   } = curriculumData;
 
   const unitListingHref = `/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/programmes`;
@@ -211,16 +212,14 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       .toLowerCase();
   };
 
-  const { onSaveToggle, isUnitSaved, showSignIn, setShowSignIn } = useSaveUnits(
-    programmeSlug,
-    {
+  const { onSaveToggle, isUnitSaved, showSignIn, setShowSignIn, isUnitSaving } =
+    useSaveUnits(programmeSlug, {
       savedFrom: "lesson_listing_save_button",
       keyStageTitle: keyStageTitle as KeyStageTitleValueType,
       keyStageSlug,
       subjectTitle,
       subjectSlug,
-    },
-  );
+    });
 
   return (
     <AppLayout
@@ -304,7 +303,9 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           showRiskAssessmentBanner={showRiskAssessmentBanner}
           isIncompleteUnit={unpublishedLessonCount > 0}
           isGeorestrictedUnit={containsGeorestrictedLessons}
+          isLoginRequiredUnit={containsLoginRequiredLessons}
           isUnitSaved={isUnitSaved(unitSlug)}
+          isUnitSaving={isUnitSaving(unitSlug)}
           onSave={
             isSlugLegacy(programmeSlug)
               ? undefined

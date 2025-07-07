@@ -48,6 +48,7 @@ const config = {
       "x-vercel-protection-bypass": vercelAutomationBypass,
     },
     concurrency: 10,
+    // If running pa11y locally fails, comment out the following section
     chromeLaunchConfig: {
       executablePath: "/usr/bin/google-chrome",
     },

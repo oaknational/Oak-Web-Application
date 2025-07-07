@@ -103,24 +103,6 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
     );
   }
 
-  if (props.type === "page" && props.page == "teacher-hub") {
-    return (
-      <FooterLinkIconWrapper containerProps={containerProps} {...props}>
-        <OwaLink
-          {...props}
-          {...primaryTargetProps}
-          $focusStyles={["underline"]}
-          htmlAnchorProps={{
-            onClick: () =>
-              track.teacherHubSelected({ navigatedFrom: "footer" }),
-            "aria-label": props.ariaLabel ?? undefined,
-          }}
-        >
-          {props.text}
-        </OwaLink>
-      </FooterLinkIconWrapper>
-    );
-  }
   if (props.type === "page") {
     return (
       <FooterLinkIconWrapper containerProps={containerProps} {...props}>

@@ -17,8 +17,6 @@ export const lessonContentSchema = lessonContentSchemaFull.omit({
   exit_quiz: true,
   starter_quiz: true,
   video_duration: true,
-  geo_restricted: true,
-  login_required: true,
 });
 
 export type LessonOverviewContent = Omit<
