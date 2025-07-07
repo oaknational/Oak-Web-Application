@@ -83,7 +83,7 @@ const AppHeader: FC<HeaderProps> = () => {
           >
             <OakBox $display={["block", "none"]}>
               <StyledOakLink href={resolveOakHref({ page: "home" })}>
-                <Logo height={48} width={24} variant="without text" />
+                <Logo height={24} width={24} variant="without text" />
               </StyledOakLink>
             </OakBox>
             {selectedArea == siteAreas.teachers && <SaveCount />}
