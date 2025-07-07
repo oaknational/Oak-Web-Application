@@ -1,15 +1,20 @@
 import { DownloadRegionRestrictedMessage } from "./DownloadRegionRestrictedMessage";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-const render = renderWithTheme;
+const render = renderWithProviders();
 
+const props = {
+  lessonName: "Test Lesson",
+  lessonSlug: "test-lesson",
+  lessonReleaseDate: "2023-10-01",
+  href: "/teachers/lessons/test-lesson",
+  isLegacy: false,
+};
 describe("DownloadRegionRestrictedMessage", () => {
-  const mockHref = "/teachers/lessons/test-lesson";
-
   it("renders the main heading", () => {
     const { getByRole } = render(
-      <DownloadRegionRestrictedMessage href={mockHref} />,
+      <DownloadRegionRestrictedMessage {...props} />,
     );
 
     expect(
@@ -21,7 +26,7 @@ describe("DownloadRegionRestrictedMessage", () => {
 
   it("renders the contact us link", () => {
     const { getByRole } = render(
-      <DownloadRegionRestrictedMessage href={mockHref} />,
+      <DownloadRegionRestrictedMessage {...props} />,
     );
 
     const contactLink = getByRole("link", { name: "contact us." });
@@ -31,11 +36,11 @@ describe("DownloadRegionRestrictedMessage", () => {
 
   it("renders the back to lesson button with correct href", () => {
     const { getByRole } = render(
-      <DownloadRegionRestrictedMessage href={mockHref} />,
+      <DownloadRegionRestrictedMessage {...props} />,
     );
 
     const backButton = getByRole("link", { name: /back to lesson/i });
     expect(backButton).toBeInTheDocument();
-    expect(backButton).toHaveAttribute("href", mockHref);
+    expect(backButton).toHaveAttribute("href", "/teachers/lessons/test-lesson");
   });
 });

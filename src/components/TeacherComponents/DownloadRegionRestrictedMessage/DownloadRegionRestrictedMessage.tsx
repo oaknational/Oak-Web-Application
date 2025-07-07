@@ -6,8 +6,45 @@ import {
   OakLink,
   OakPrimaryButton,
 } from "@oaknational/oak-components";
+import { useEffect } from "react";
 
-export function DownloadRegionRestrictedMessage({ href }: { href: string }) {
+import useAnalytics from "@/context/Analytics/useAnalytics";
+
+interface DownloadRegionRestrictedMessageProps {
+  lessonName: string;
+  lessonSlug: string;
+  lessonReleaseDate: string;
+  href: string;
+  isLegacy: boolean;
+}
+
+export function DownloadRegionRestrictedMessage({
+  lessonName,
+  lessonSlug,
+  lessonReleaseDate,
+  href,
+  isLegacy,
+}: DownloadRegionRestrictedMessageProps) {
+  const { track } = useAnalytics();
+  useEffect(() => {
+    track.contentBlockNotificationDisplayed({
+      platform: "owa",
+      product: "teacher lesson resources",
+      engagementIntent: "explore",
+      componentType: "lesson_downloads",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
+      lessonName: lessonName ?? null,
+      lessonSlug: lessonSlug ?? null,
+      lessonReleaseCohort: isLegacy ? "2020-2023" : "2023-2026",
+      lessonReleaseDate: lessonReleaseDate ?? null,
+      unitName: null,
+      unitSlug: null,
+      contentType: "lesson",
+      accessBlockType: "Geo-restriction",
+      accessBlockDetails: {},
+    });
+  }, [track, lessonName, lessonSlug, lessonReleaseDate, isLegacy]);
   return (
     <OakFlex
       $flexDirection={"column"}

@@ -485,6 +485,10 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           })()
         ) : (
           <DownloadRegionRestrictedMessage
+            lessonName={lessonTitle}
+            lessonSlug={lessonSlug}
+            lessonReleaseDate={lessonReleaseDate ?? "unreleased"}
+            isLegacy={isLegacy}
             href={resolveOakHref({
               page: "lesson-overview",
               lessonSlug,
@@ -497,8 +501,10 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           <CopyrightRestrictionBanner
             isGeorestricted={geoRestricted ?? undefined}
             isLoginRequired={loginRequired ?? undefined}
+            componentType="lesson_downloads"
             lessonName={lessonTitle}
             lessonSlug={lessonSlug}
+            lessonReleaseDate={lessonReleaseDate}
             isLessonLegacy={isLegacy}
           />
         </OakBox>

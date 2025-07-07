@@ -111,6 +111,28 @@ describe("Hiding 'Your details", () => {
     expect(loginRequiredButton).toBeInTheDocument();
   });
 
+  it("should show LoginRequired button and hide download button & form when not logged and geoRestricted and loginRequired is true", () => {
+    setUseUserReturn(mockLoggedOut);
+    mockFeatureFlagEnabled.mockReturnValue(true);
+    const { queryByText, getByRole, queryByRole } = render(
+      <LessonDownloads
+        lesson={{ ...lesson, geoRestricted: true, loginRequired: true }}
+        isCanonical={false}
+      />,
+    );
+    const yourDetailsHeading = queryByText("Your details");
+    const downloadButton = queryByRole("button", {
+      name: "Download .zip",
+    });
+    const loginRequiredButton = getByRole("button", {
+      name: "Sign in to continue",
+    });
+
+    expect(downloadButton).not.toBeInTheDocument();
+    expect(yourDetailsHeading).not.toBeInTheDocument();
+    expect(loginRequiredButton).toBeInTheDocument();
+  });
+
   it("should not show LoginRequired button when feature flag disabled", () => {
     setUseUserReturn(mockLoggedOut);
     mockFeatureFlagEnabled.mockReturnValue(false);
@@ -148,10 +170,10 @@ describe("Hiding 'Your details", () => {
     expect(loginRequiredButton).not.toBeInTheDocument();
   });
 
-  it("should not show any materials when logged in but not region authorised", () => {
+  it("should show DownloadRegionRestrictedMessage when logged in but not region authorised", () => {
     setUseUserReturn({ ...mockLoggedIn, user: mockUserWithoutDownloadAccess });
     mockFeatureFlagEnabled.mockReturnValue(true);
-    const { queryByText, queryByRole } = render(
+    const { queryByText, queryByRole, getByText } = render(
       <LessonDownloads lesson={restrictedLesson} isCanonical={false} />,
     );
 
@@ -159,7 +181,11 @@ describe("Hiding 'Your details", () => {
     const downloadButton = queryByRole("button", {
       name: "Download .zip",
     });
+    const regionRestrictedMessage = getByText(
+      /Sorry, downloads for this lesson are only available in the UK/,
+    );
 
+    expect(regionRestrictedMessage).toBeInTheDocument();
     expect(yourDetailsHeading).not.toBeInTheDocument();
     expect(downloadButton).not.toBeInTheDocument();
   });
