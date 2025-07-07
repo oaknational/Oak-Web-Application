@@ -4,10 +4,7 @@ import {
   tierDescriptions,
 } from "@oaknational/oak-curriculum-schema";
 import { OakBox, OakHandDrawnHR } from "@oaknational/oak-components";
-import {
-  useFeatureFlagEnabled,
-  useFeatureFlagVariantKey,
-} from "posthog-js/react";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 import { useUser } from "@clerk/nextjs";
 
 import { filterDownloadsByCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
@@ -27,9 +24,7 @@ import {
   DownloadResourceType,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
-import DownloadCardGroup, {
-  DownloadCardGroupB,
-} from "@/components/TeacherComponents/DownloadCardGroup";
+import DownloadCardGroup from "@/components/TeacherComponents/DownloadCardGroup";
 import debouncedSubmit from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadDebounceSubmit";
 import {
   getLessonOverviewBreadCrumb,
@@ -44,9 +39,7 @@ import {
   LessonPathway,
   SpecialistLessonPathway,
 } from "@/components/TeacherComponents/types/lesson.types";
-import ResourcePageLayout, {
-  ResourcePageLayoutB,
-} from "@/components/TeacherComponents/ResourcePageLayout";
+import ResourcePageLayout from "@/components/TeacherComponents/ResourcePageLayout";
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import DownloadConfirmation from "@/components/TeacherComponents/DownloadConfirmation";
 import {
@@ -141,9 +134,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     !isSignedIn &&
     copyrightFeatureFlagEnabled &&
     (loginRequired || geoRestricted);
-
-  const isDownloadsExperiment =
-    useFeatureFlagVariantKey("downloads-grouping-experiement") === "grouping";
 
   downloads.forEach((download) => {
     if (download.type === "presentation") {
@@ -425,16 +415,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               );
             }
 
-            let ResourcePageLayoutVariant = isDownloadsExperiment
-              ? ResourcePageLayoutB
-              : ResourcePageLayout;
-            ResourcePageLayoutVariant = ResourcePageLayoutB;
-            const DownloadCardGroupVariant = isDownloadsExperiment
-              ? DownloadCardGroupB
-              : DownloadCardGroup;
-
             return (
-              <ResourcePageLayoutVariant
+              <ResourcePageLayout
                 downloadsRestricted={downloadsRestricted ?? false}
                 page={"download"}
                 errors={form.errors}
@@ -465,7 +447,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                 isLoading={onboardingStatus === "loading"}
                 cardGroup={
                   !showNoResources && (
-                    <DownloadCardGroupVariant
+                    <DownloadCardGroup
                       control={form.control}
                       downloads={downloadsFilteredByCopyright}
                       additionalFiles={additionalFiles}

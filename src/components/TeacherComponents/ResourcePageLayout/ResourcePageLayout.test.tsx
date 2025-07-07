@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 
 import ResourcePageLayoutB, {
   ResourcePageLayoutProps,
-} from "./ResourcePageLayoutB";
+} from "./ResourcePageLayout";
 
 import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
