@@ -1,3 +1,10 @@
+## [1.790.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.790.1...v1.790.2) (2025-07-07)
+
+
+### Bug Fixes
+
+* update seo title on canonical media page ([35ca39e](https://github.com/oaknational/Oak-Web-Application/commit/35ca39e62bb74316a2a9f79e788006bb8356767c))
+
 ## [1.790.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.790.0...v1.790.1) (2025-07-07)
 
 
