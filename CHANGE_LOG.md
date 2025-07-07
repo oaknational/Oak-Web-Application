@@ -1,3 +1,24 @@
+# [1.791.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.790.2...v1.791.0) (2025-07-07)
+
+
+### Features
+
+* add tracking for accessing geoblocked media clips page ([1cf1ed0](https://github.com/oaknational/Oak-Web-Application/commit/1cf1ed092d71e39f30f6e80ef06df497966c224c))
+
+## [1.790.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.790.1...v1.790.2) (2025-07-07)
+
+
+### Bug Fixes
+
+* update seo title on canonical media page ([35ca39e](https://github.com/oaknational/Oak-Web-Application/commit/35ca39e62bb74316a2a9f79e788006bb8356767c))
+
+## [1.790.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.790.0...v1.790.1) (2025-07-07)
+
+
+### Bug Fixes
+
+* added back in unitOverviewAccessed analytics tracking ([1f03ee9](https://github.com/oaknational/Oak-Web-Application/commit/1f03ee9ae66495af4a091d1c8c7e091e29d3e70d))
+
 # [1.790.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.789.3...v1.790.0) (2025-07-07)
 
 
