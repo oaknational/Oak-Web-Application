@@ -1,3 +1,10 @@
+# [1.791.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.790.2...v1.791.0) (2025-07-07)
+
+
+### Features
+
+* add tracking for accessing geoblocked media clips page ([1cf1ed0](https://github.com/oaknational/Oak-Web-Application/commit/1cf1ed092d71e39f30f6e80ef06df497966c224c))
+
 ## [1.790.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.790.1...v1.790.2) (2025-07-07)
 
 
