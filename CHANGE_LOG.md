@@ -1,3 +1,20 @@
+# [1.790.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.789.3...v1.790.0) (2025-07-07)
+
+
+### Bug Fixes
+
+* act errors ([6728afd](https://github.com/oaknational/Oak-Web-Application/commit/6728afdcd8eed87d3f486481e258f5846c1a196f))
+
+
+### Features
+
+* add isSaving state to useSave hook and pass to button components ([e12a5ec](https://github.com/oaknational/Oak-Web-Application/commit/e12a5ec9a485494b199031f6e899e33b8982c10c))
+* add saving state to my library save buttons ([5e2f480](https://github.com/oaknational/Oak-Web-Application/commit/5e2f480ad498fb34c1ce1e769c8a6989c3ac6f95))
+* add saving state to optionality cards ([7a8f7bf](https://github.com/oaknational/Oak-Web-Application/commit/7a8f7bf10a970cc023f8b5818b57d36aefe41d1f))
+* only call save/unsave when a unit is not already saving ([736bc04](https://github.com/oaknational/Oak-Web-Application/commit/736bc041545ff78afb31a391fe45d03654c0be72))
+* only toggle save on units when saving not in progress ([4739715](https://github.com/oaknational/Oak-Web-Application/commit/4739715d6fae097e8ccfc09d5315b7fbb6d4e4b8))
+* use aria-disabled instead of disabled on my library save button ([ce1f63a](https://github.com/oaknational/Oak-Web-Application/commit/ce1f63a416fa7a99af2c5e80b804371010fcd772))
+
 ## [1.789.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.789.2...v1.789.3) (2025-07-04)
 
 ## [1.789.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.789.1...v1.789.2) (2025-07-03)
