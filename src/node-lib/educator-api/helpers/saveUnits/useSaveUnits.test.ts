@@ -88,7 +88,7 @@ describe("useSaveUnits", () => {
 
     act(() => result.current.onSaveToggle("unit1"));
 
-    expect(result.current.isUnitSaved("unit1")).toBe(true);
+    await waitFor(() => expect(result.current.isUnitSaved("unit1")).toBe(true));
   });
   it("should unsave when toggling a unit that is already saved", async () => {
     mockUseGetEducatorData.mockImplementation(() => ({
@@ -104,7 +104,9 @@ describe("useSaveUnits", () => {
     act(() => result.current.onSaveToggle("unit1"));
     act(() => result.current.onSaveToggle("unit1"));
 
-    expect(result.current.isUnitSaved("unit1")).toBe(false);
+    await waitFor(() =>
+      expect(result.current.isUnitSaved("unit1")).toBe(false),
+    );
   });
   it("should set the toast success variant when saving a unit", async () => {
     mockUseGetEducatorData.mockImplementation(() => ({

@@ -115,6 +115,7 @@ export default function MyLibraryProgrammeCard(
               lessons={unit.lessons}
               onSave={unit.onSave}
               isSaved={unit.isSaved}
+              isSaving={unit.isSaving}
             />
           </OakLI>
         ))}
