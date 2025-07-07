@@ -2,6 +2,16 @@
 
 Evolving Oak's testing practices toward accessibility-first TDD.
 
+## Quality Assessment
+
+All improvements are measured against the [Test Quality Rubric](./test-quality-rubrics.md) (1-10 scale) with context-aware scoring:
+
+- **Unit Tests**: Scored only on applicable criteria (testable patterns, descriptive names, coverage)
+- **Integration Tests**: Full scoring including domain modeling and accessibility
+- **API Tests**: Exclude accessibility scoring, focus on comprehensive coverage
+
+**Target**: 8+/10 for all new tests with normalized scoring.
+
 ## Oak's Current Testing Foundation
 
 ### Existing Strengths

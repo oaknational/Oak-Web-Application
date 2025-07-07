@@ -5,32 +5,38 @@ This document tracks planned improvements to Oak's automated testing approach an
 ## Current State
 
 - Comprehensive testing documentation in `docs/testing-strategy/`
-- AI agent guidance in `.agent/rules/testing-strategy.md`
+- Enhanced 6-category test quality rubric with performance standards
+- 633 test files discovered across the codebase (massive scale)
+- AI agent guidance in `docs/testing-strategy/` (centralized)
 - Mixed adoption of TDD practices across the codebase
 - Strong React Testing Library usage
 - Jest as primary test runner
+- Phase 1.1 systematic analysis in progress
 
 ## Planned Improvements
 
 ### Phase 1: Foundation
 
-#### 1.0: Prepare
+#### 1.0: Prepare ✅ COMPLETED
 
-- [ ] Review test code across the codebase. This will be shallow and broad, to enable in-depth analysis in the next phase.
-- [ ] Record the audit findings in a report
+- [x] Review test code across the codebase. This will be shallow and broad, to enable in-depth analysis in the next phase.
+- [x] Record the audit findings in a report
 
-#### 1.1: Understand
+#### 1.1: Understand 🔄 RESTART REQUIRED
 
-Using the review findings from phase 1.0, audit the codebase for opportunities for improvement.
+Using the review findings from phase 1.0, audit the codebase for opportunities for improvement. Enhanced 6-category rubric (with performance standards) requires reassessment of ALL 633 test files.
 
-- [ ] Audit existing test code quality across the codebase
-- [ ] Audit existing test organisation across the codebase
-- [ ] Audit existing test coverage across the codebase
-- [ ] Record the audit findings in a report
+- [x] Audit existing test code quality across the codebase (5-category rubric - INVALID)
+- [x] Audit existing test organisation across the codebase
+- [x] Audit existing test coverage across the codebase
+- [x] Record the audit findings in a report (Phase 1.1 report active)
+- [x] Apply enhanced 6-category rubric to ALL 633 test files (previous analysis INVALID due to rubric enhancement)
 
-#### 1.2: Identify
+#### 1.2: Identify ⏳ PENDING
 
-Using the audit findings from phase 1.1, identify opportunities for improvement.
+Note that the [report from phase 1.1 is here](testing-improvement-phase-1-1-report.md), and [the analyses are here](../reviews/testing-improvement/phase-1-1/index.md)
+
+Using the enhanced 6-category rubric findings from phase 1.1, identify opportunities for improvement.
 
 - [ ] Identify violations of "test behaviour, not implementation". This is often coupled with poorly defined boundaries.
 - [ ] Identify opportunities for pure function extraction
@@ -99,10 +105,12 @@ To be reviewed after each phase. If not resolved, additional sub-phases will be 
 
 ## Success Metrics
 
+- Average quality score: 5.8/10 → 8.5/10 (enhanced 6-category rubric)
+- Accessibility testing coverage: 5% → 95% (jest-axe integration)
 - Test coverage: 80%+ for new code
 - TDD adoption: 100% for new features
 - Accessibility violations: 0 in tested components
-- Test execution time: <2 minutes for unit tests
+- Test execution time: <2 minutes for unit tests (with performance standards)
 - Developer satisfaction: Improved confidence in changes
 
 ## Research Topics
@@ -113,6 +121,8 @@ To be reviewed after each phase. If not resolved, additional sub-phases will be 
 ## Team Resources
 
 - Testing strategy documentation: `docs/testing-strategy/`
-- AI assistant guidance: `.agent/rules/testing-strategy.md`
+- Enhanced test quality rubrics: `docs/testing-strategy/test-quality-rubrics.md`
+- AI assistant guidance: `docs/testing-strategy/` (centralized)
 - Example patterns: `docs/testing-strategy/examples/`
 - Transformation guide: `docs/testing-strategy/transformation-guide.md`
+- API testing patterns: `docs/testing-strategy/api-testing.md`

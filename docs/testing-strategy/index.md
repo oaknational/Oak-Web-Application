@@ -6,17 +6,23 @@ Comprehensive testing guidance for Oak's educational platform using Jest, React 
 
 All new code must:
 
-- Use Test-Driven Development (TDD)
-- Follow accessibility-first testing patterns
+- **Prefer unit tests of pure functions** - If it contains a mock, it is not a unit test
+- Use Test-Driven Development (TDD) workflow
+- Follow accessibility-first testing patterns (React components)
 - Extract pure functions where possible
 - Include comprehensive test coverage
+- Meet [Test Quality Rubric](./test-quality-rubrics.md) standards (target 8+/10)
+
+**Testing Hierarchy**: Unit tests prove engineering correctness, integration tests prove intended effects. We need both, although we need a LOT more unit tests than integration tests.
 
 ## Documentation
 
 ### Implementation Guides
 
 - [**Core Principles**](core-principles.md) - TDD workflow and testable design patterns
+- [**Test Quality Rubrics**](test-quality-rubrics.md) - Comprehensive quality evaluation with performance standards
 - [**React Testing**](react-testing.md) - Component testing with accessibility-first RTL patterns
+- [**API Testing**](api-testing.md) - Next.js API routes with comprehensive mocking
 - [**Next.js Testing**](nextjs-testing.md) - SSG/SSR, API routes, and performance testing
 - [**TypeScript Testing**](typescript-testing.md) - Type-safe testing with MockedFunction
 - [**Test Organization**](test-organization.md) - Jest configuration and file structure

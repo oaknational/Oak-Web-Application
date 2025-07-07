@@ -4,6 +4,26 @@
 
 React Testing Library tests from the user's perspective using accessibility-first patterns. Oak has strong RTL foundations - this guide builds on existing expertise.
 
+## Required Accessibility Testing Tools
+
+```bash
+# Install required accessibility testing tools
+npm install --save-dev jest-axe @testing-library/jest-dom
+
+# Optional but recommended for advanced testing
+npm install --save-dev @axe-core/playwright  # For E2E accessibility tests
+```
+
+### Setup in Jest Configuration
+
+```typescript
+// jest.setup.js
+import { toHaveNoViolations } from 'jest-axe';
+import '@testing-library/jest-dom';
+
+expect.extend(toHaveNoViolations);
+```
+
 ## The RTL Query Hierarchy (Accessibility-First)
 
 React Testing Library queries are ordered by priority for both testing quality and accessibility:
@@ -226,6 +246,261 @@ describe("LessonCard conditional rendering", () => {
       "aria-describedby",
       expect.stringContaining("prerequisite-warning")
     );
+  });
+});
+```
+
+## Comprehensive Accessibility Testing
+
+### Automated Accessibility Testing with jest-axe
+
+```typescript
+import { axe, toHaveNoViolations } from 'jest-axe';
+
+expect.extend(toHaveNoViolations);
+
+describe('LessonCard accessibility', () => {
+  it('should have no accessibility violations', async () => {
+    const { container } = render(<LessonCard {...defaultProps} />);
+    
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+
+  it('should maintain accessibility with dynamic content', async () => {
+    const { container, rerender } = render(
+      <LessonCard {...defaultProps} />
+    );
+
+    // Test with completed lesson
+    rerender(
+      <LessonCard 
+        {...defaultProps} 
+        lesson={{ ...defaultProps.lesson, completed: true }}
+      />
+    );
+
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+
+  it('should be accessible with error states', async () => {
+    const { container } = render(
+      <LessonCard 
+        {...defaultProps} 
+        error="Failed to load lesson resources"
+      />
+    );
+
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+});
+```
+
+### Keyboard Navigation Testing
+
+```typescript
+describe('LessonCard keyboard accessibility', () => {
+  it('should support full keyboard navigation', async () => {
+    const user = userEvent.setup();
+    const mockOnStart = jest.fn();
+
+    render(<LessonCard {...defaultProps} onStart={mockOnStart} />);
+
+    // Tab to lesson card
+    await user.tab();
+    expect(screen.getByRole('article')).toHaveFocus();
+
+    // Tab to start button
+    await user.tab();
+    const startButton = screen.getByRole('button', { name: /start.*lesson/i });
+    expect(startButton).toHaveFocus();
+
+    // Activate with Enter
+    await user.keyboard('{Enter}');
+    expect(mockOnStart).toHaveBeenCalled();
+
+    // Tab to bookmark button
+    await user.tab();
+    const bookmarkButton = screen.getByRole('button', { name: /bookmark/i });
+    expect(bookmarkButton).toHaveFocus();
+
+    // Activate with Space
+    await user.keyboard(' ');
+    expect(bookmarkButton).toHaveAttribute('aria-pressed', 'true');
+  });
+
+  it('should handle escape key for modal dismissal', async () => {
+    const user = userEvent.setup();
+    const mockOnClose = jest.fn();
+
+    render(
+      <LessonModal 
+        lesson={defaultProps.lesson}
+        isOpen={true}
+        onClose={mockOnClose}
+      />
+    );
+
+    await user.keyboard('{Escape}');
+    expect(mockOnClose).toHaveBeenCalled();
+  });
+
+  it('should trap focus within modal dialogs', async () => {
+    const user = userEvent.setup();
+
+    render(
+      <LessonModal 
+        lesson={defaultProps.lesson}
+        isOpen={true}
+        onClose={jest.fn()}
+      />
+    );
+
+    const firstButton = screen.getByRole('button', { name: /start lesson/i });
+    const lastButton = screen.getByRole('button', { name: /close/i });
+
+    // Focus should start on first interactive element
+    expect(firstButton).toHaveFocus();
+
+    // Tab to last element
+    await user.tab();
+    expect(lastButton).toHaveFocus();
+
+    // Tab again should wrap to first element
+    await user.tab();
+    expect(firstButton).toHaveFocus();
+
+    // Shift+Tab should go to last element
+    await user.keyboard('{Shift>}{Tab}{/Shift}');
+    expect(lastButton).toHaveFocus();
+  });
+});
+```
+
+### Screen Reader Testing
+
+```typescript
+describe('LessonCard screen reader accessibility', () => {
+  it('should provide rich accessible descriptions', () => {
+    render(<LessonCard {...defaultProps} />);
+
+    const lessonCard = screen.getByRole('article');
+    
+    // Should have accessible name
+    expect(lessonCard).toHaveAccessibleName(
+      'Introduction to Fractions Mathematics Key Stage 2 45 minutes'
+    );
+
+    // Should have accessible description
+    expect(lessonCard).toHaveAccessibleDescription(
+      'Learn the basics of fractions including numerators and denominators'
+    );
+  });
+
+  it('should announce dynamic status changes', async () => {
+    const user = userEvent.setup();
+    
+    render(<LessonCard {...defaultProps} />);
+
+    const bookmarkButton = screen.getByRole('button', { name: /bookmark/i });
+    
+    // Initial state
+    expect(bookmarkButton).toHaveAttribute('aria-pressed', 'false');
+    expect(bookmarkButton).toHaveAccessibleName('Bookmark Introduction to Fractions lesson');
+
+    // After activation
+    await user.click(bookmarkButton);
+    expect(bookmarkButton).toHaveAttribute('aria-pressed', 'true');
+    expect(bookmarkButton).toHaveAccessibleName('Remove bookmark from Introduction to Fractions lesson');
+  });
+
+  it('should provide progress information for screen readers', () => {
+    const partialLesson = {
+      ...defaultProps.lesson,
+      progress: 75,
+      timeRemaining: 10
+    };
+
+    render(<LessonCard {...defaultProps} lesson={partialLesson} />);
+
+    const progressBar = screen.getByRole('progressbar');
+    expect(progressBar).toHaveAttribute('aria-valuetext', '75% complete, 10 minutes remaining');
+    
+    // Should also have live region for dynamic updates
+    const statusRegion = screen.getByRole('status');
+    expect(statusRegion).toHaveTextContent('Progress updated: 75% complete');
+  });
+});
+```
+
+### Color and Contrast Testing
+
+```typescript
+describe('LessonCard visual accessibility', () => {
+  it('should not rely solely on color for information', () => {
+    const errorLesson = {
+      ...defaultProps.lesson,
+      hasError: true,
+      error: 'Resource unavailable'
+    };
+
+    render(<LessonCard {...defaultProps} lesson={errorLesson} />);
+
+    // Error should be indicated by more than just color
+    const errorAlert = screen.getByRole('alert');
+    expect(errorAlert).toHaveTextContent('Error: Resource unavailable');
+    
+    // Should have error icon
+    expect(screen.getByRole('img', { name: /error/i })).toBeInTheDocument();
+  });
+
+  it('should provide high contrast focus indicators', async () => {
+    const user = userEvent.setup();
+    
+    render(<LessonCard {...defaultProps} />);
+
+    const startButton = screen.getByRole('button', { name: /start/i });
+    
+    // Focus should be clearly visible (tested through CSS class)
+    await user.tab();
+    expect(startButton).toHaveFocus();
+    expect(startButton).toHaveClass('focus-visible');
+  });
+});
+```
+
+### Performance Standards for Component Tests
+
+```typescript
+describe('LessonCard performance', () => {
+  it('should render within performance thresholds', () => {
+    const startTime = Date.now();
+    
+    render(<LessonCard {...defaultProps} />);
+    
+    const renderTime = Date.now() - startTime;
+    expect(renderTime).toBeLessThan(100); // Component test threshold: <100ms
+  });
+
+  it('should handle large lesson lists efficiently', () => {
+    const largeLessonList = Array.from({ length: 100 }, (_, i) => ({
+      ...defaultProps.lesson,
+      id: `lesson-${i}`,
+      title: `Lesson ${i}`
+    }));
+
+    const startTime = Date.now();
+    
+    render(
+      <LessonList lessons={largeLessonList} />
+    );
+    
+    const renderTime = Date.now() - startTime;
+    expect(renderTime).toBeLessThan(250); // Large list threshold
+  });
+});
 
     // Provide actionable next steps
     expect(screen.getByRole("link", {

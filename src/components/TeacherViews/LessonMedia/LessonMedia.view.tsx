@@ -507,8 +507,11 @@ export const LessonMedia = (props: LessonMediaProps) => {
                 mediaClipsWithAttributions={
                   listOfAllClips
                     .map((clip) => {
-                      const attribution =
-                        clip.mediaObject?.metadata?.attribution;
+                      const attribution = (
+                        clip.mediaObject as {
+                          metadata?: { attribution?: string };
+                        }
+                      )?.metadata?.attribution;
                       return attribution
                         ? { name: clip.mediaObject.displayName, attribution }
                         : null;

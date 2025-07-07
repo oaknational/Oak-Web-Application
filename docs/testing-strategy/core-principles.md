@@ -2,6 +2,36 @@
 
 Foundation testing practices for Oak's educational platform.
 
+## Quality Standards
+
+All tests are evaluated using the [Test Quality Rubric](./test-quality-rubrics.md) (1-10 scale) with context-aware scoring:
+
+- **Unit Tests**: Focus on testable patterns, descriptive names, and comprehensive coverage
+- **Integration Tests**: Include domain modeling and accessibility (for React components)
+- **API Tests**: Emphasize comprehensive coverage, testable patterns, and descriptive names
+
+**Key Principle**: Prefer unit tests of pure functions. If it contains a mock, it is not a unit test - can it be refactored to be a unit test?
+
+## Test Type Definitions
+
+### Out-of-Process Tests (Current Oak Standard)
+All IO is refactored out or mocked:
+
+- **Unit Tests**: Pure functions with no IO to mock by definition
+- **Integration Tests**: Multiple units working together, all IO mocked  
+- **Component Tests**: React components with all IO mocked (APIs, file system)
+- **API Tests**: Route handlers with database/external service calls mocked
+- **Contract Tests**: API contract validation with external dependencies mocked
+
+### In-Process Tests (Not Currently Used)
+Real IO operations - for future consideration:
+
+- **End-to-End Tests**: Real browser, real database, real external services
+- **System Integration Tests**: Real database connections, real file system  
+- **Service Integration Tests**: Real external API calls
+- **Database Integration Tests**: Real database operations
+- **Performance Tests**: Real infrastructure under load
+
 ## Test-Driven Development (TDD)
 
 All new code must use TDD workflow.
