@@ -1,5 +1,5 @@
 query canonicalLessonRedirect($incomingPath: String!) {
-  redirectData: published_mv_redirects_lessons_canonical_by_keystage_1_0_0(
+  redirectData: published_mv_redirects_lessons_canonical_by_keystage_1_0_1(
     where: { incoming_path: { _eq: $incomingPath } }
   ) {
     incoming_path
