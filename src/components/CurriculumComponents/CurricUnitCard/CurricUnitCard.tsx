@@ -40,9 +40,10 @@ type CurricUnitCardProps = {
   index: number;
   isHighlighted: boolean;
   href: string;
+  onClick?: () => void;
 };
 export default function CurricUnitCard(props: CurricUnitCardProps) {
-  const { href, isHighlighted, unit, index } = props;
+  const { href, isHighlighted, unit, index, onClick } = props;
   const isUnitOption = "unit_options" in unit;
   return (
     <FocusIndicator
@@ -59,6 +60,7 @@ export default function CurricUnitCard(props: CurricUnitCardProps) {
         shallow={true}
         scroll={false}
         replace={true}
+        onClick={onClick}
       >
         <OakFlex
           $pv={"inner-padding-s"}

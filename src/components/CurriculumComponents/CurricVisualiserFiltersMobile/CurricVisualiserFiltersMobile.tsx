@@ -17,6 +17,7 @@ export type CurricVisualiserFiltersMobileProps =
     onOpenModal: () => void;
     trackingData: CurriculumUnitsTrackingData;
   };
+
 export default function CurricVisualiserFiltersMobile({
   filters,
   onChangeFilters,
