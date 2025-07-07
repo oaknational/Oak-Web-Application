@@ -1,3 +1,10 @@
+# [1.792.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.791.0...v1.792.0) (2025-07-07)
+
+
+### Features
+
+* temporarily adds git_branch and ignore command ([4fd6cba](https://github.com/oaknational/Oak-Web-Application/commit/4fd6cba9b0db2ec7102532446088ade61ab55112))
+
 # [1.791.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.790.2...v1.791.0) (2025-07-07)
 
 
