@@ -170,7 +170,7 @@ describe("Hiding 'Your details", () => {
     expect(loginRequiredButton).not.toBeInTheDocument();
   });
 
-  it("should show DownloadRegionRestrictedMessage when logged in but not region authorised", () => {
+  it("should show LessonDownloadRegionBlocked when logged in but not region authorised", () => {
     setUseUserReturn({ ...mockLoggedIn, user: mockUserWithoutDownloadAccess });
     mockFeatureFlagEnabled.mockReturnValue(true);
     const { queryByText, queryByRole, getByText } = render(

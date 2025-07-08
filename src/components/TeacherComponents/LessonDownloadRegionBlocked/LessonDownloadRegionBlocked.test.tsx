@@ -1,4 +1,4 @@
-import { DownloadRegionRestrictedMessage } from "./DownloadRegionRestrictedMessage";
+import { LessonDownloadRegionBlocked } from "./LessonDownloadRegionBlocked";
 
 import { COPYRIGHT_CONTACT_US_LINK } from "@/utils/copyrightContactUsLink";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -12,11 +12,9 @@ const props = {
   href: "/teachers/lessons/test-lesson",
   isLegacy: false,
 };
-describe("DownloadRegionRestrictedMessage", () => {
+describe("LessonDownloadRegionBlocked", () => {
   it("renders the main heading", () => {
-    const { getByRole } = render(
-      <DownloadRegionRestrictedMessage {...props} />,
-    );
+    const { getByRole } = render(<LessonDownloadRegionBlocked {...props} />);
 
     expect(
       getByRole("heading", {
@@ -26,9 +24,7 @@ describe("DownloadRegionRestrictedMessage", () => {
   });
 
   it("renders the contact us link", () => {
-    const { getByRole } = render(
-      <DownloadRegionRestrictedMessage {...props} />,
-    );
+    const { getByRole } = render(<LessonDownloadRegionBlocked {...props} />);
 
     const contactLink = getByRole("link", { name: "contact us." });
     expect(contactLink).toBeInTheDocument();
@@ -36,9 +32,7 @@ describe("DownloadRegionRestrictedMessage", () => {
   });
 
   it("renders the back to lesson button with correct href", () => {
-    const { getByRole } = render(
-      <DownloadRegionRestrictedMessage {...props} />,
-    );
+    const { getByRole } = render(<LessonDownloadRegionBlocked {...props} />);
 
     const backButton = getByRole("link", { name: /back to lesson/i });
     expect(backButton).toBeInTheDocument();

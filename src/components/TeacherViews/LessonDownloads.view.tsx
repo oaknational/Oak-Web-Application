@@ -54,7 +54,7 @@ import {
   CopyrightContent,
   Actions,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { DownloadRegionRestrictedMessage } from "@/components/TeacherComponents/DownloadRegionRestrictedMessage/DownloadRegionRestrictedMessage";
+import { LessonDownloadRegionBlocked } from "@/components/TeacherComponents/LessonDownloadRegionBlocked/LessonDownloadRegionBlocked";
 import CopyrightRestrictionBanner from "@/components/TeacherComponents/CopyrightRestrictionBanner/CopyrightRestrictionBanner";
 import { resolveOakHref } from "@/common-lib/urls";
 
@@ -484,7 +484,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             );
           })()
         ) : (
-          <DownloadRegionRestrictedMessage
+          <LessonDownloadRegionBlocked
             lessonName={lessonTitle}
             lessonSlug={lessonSlug}
             lessonReleaseDate={lessonReleaseDate ?? "unreleased"}
