@@ -51,7 +51,7 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
             displayValue="All"
             id={`all-categories-${idSuffix}`}
             checked={!categorySlug}
-            onChange={() => setCategory?.(null)}
+            onChange={() => setCategory(null)}
           />
           {subjectCategories.map((category) => (
             <OakSearchFilterCheckBox

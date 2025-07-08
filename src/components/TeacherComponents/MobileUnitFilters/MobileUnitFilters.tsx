@@ -94,7 +94,7 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
         clearAllInputs={() => updateActiveFilters(null)}
         footerSlot={
           <OakFlex $width={"100%"} $alignSelf={"center"}>
-            <OakPrimaryButton onClick={handleSubmitQuery}>
+            <OakPrimaryButton onClick={() => handleSubmitQuery()}>
               {`Show results (${currNumberOfUnits})`}
             </OakPrimaryButton>
           </OakFlex>
