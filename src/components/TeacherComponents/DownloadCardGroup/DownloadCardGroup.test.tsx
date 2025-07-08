@@ -2,10 +2,7 @@ import React from "react";
 import { screen } from "@testing-library/react";
 import { useForm } from "react-hook-form";
 
-import DownloadCardGroup, {
-  DownloadCardGroupProps,
-  getGridArea,
-} from "./DownloadCardGroup";
+import DownloadCardGroup, { DownloadCardGroupProps } from "./DownloadCardGroup";
 
 import type { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import lessonDownloadsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonDownloads.fixture";
@@ -38,30 +35,5 @@ describe("DownloadCardGroup", () => {
     expect(screen.queryByText("Exit quiz questions")).not.toBeInTheDocument();
     expect(screen.queryByText("Exit quiz answers")).not.toBeInTheDocument();
     expect(screen.queryByText("Presentation")).not.toBeInTheDocument();
-  });
-});
-
-describe("getGridArea", () => {
-  it('returns "lesson-guide-pdf" for lesson-guide-pdf type', () => {
-    const result = getGridArea("lesson-guide-pdf", true);
-    expect(result).toBe("lesson-guide-pdf");
-  });
-
-  it('returns "auto" for curriculum-pdf type', () => {
-    const result = getGridArea("curriculum-pdf", true);
-    expect(result).toBe("auto");
-  });
-
-  it("returns the type if there are 2 worksheets or no presentation", () => {
-    const result1 = getGridArea("worksheet-pdf", true, 2);
-    expect(result1).toBe("worksheet-pdf");
-
-    const result2 = getGridArea("worksheet-pptx", false);
-    expect(result2).toBe("worksheet-pptx");
-  });
-
-  it('returns "presentationOrWorksheet" by default', () => {
-    const result = getGridArea("worksheet-pdf", true, 1);
-    expect(result).toBe("presentationOrWorksheet");
   });
 });

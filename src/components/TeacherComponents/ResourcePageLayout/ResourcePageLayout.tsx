@@ -30,11 +30,13 @@ import FieldError from "@/components/SharedComponents/FieldError";
 import Checkbox from "@/components/SharedComponents/Checkbox";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import RiskAssessmentBanner from "@/components/TeacherComponents/RiskAssessmentBanner";
+import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
 
 /** Generic layout component for Downloads and Share page */
 
 export type ResourcePageLayoutProps = ResourcePageDetailsCompletedProps &
   ResourcePageSchoolDetailsProps & {
+    downloadsRestricted: boolean;
     header: string;
     handleToggleSelectAll: () => void;
     selectAllChecked: boolean;
@@ -86,13 +88,17 @@ export default ResourcePageLayout;
 
 function ResourcePageContent(props: ResourcePageLayoutProps) {
   const hasFormErrors = Object.keys(props.errors).length > 0;
-
+  const showFormErrors = hasFormErrors && !props.downloadsRestricted;
+  const showForm = props.showTermsAgreement && !props.downloadsRestricted;
+  const hideCallToAction = props.downloadsRestricted;
   return (
     <OakFlex
       $justifyContent="space-between"
       $width="100%"
       $flexDirection={["column", "column", "row"]}
       $gap="all-spacing-9"
+      $alignItems={"flex-start"}
+      $position={"relative"}
     >
       <OakBox
         $pa={"inner-padding-none"}
@@ -111,9 +117,13 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
             {`Select resources to ${props.page}`}
           </OakBox>
         )}
-        <Flex $flexDirection="column" $gap={24} $width={["100%", 720]}>
+        <Flex $flexDirection="column" $gap={16} $width={["100%", 720]}>
           {props.resourcesHeader && (
-            <OakHeading tag="h2" $font={["heading-6", "heading-5"]}>
+            <OakHeading
+              tag="h2"
+              $font={["heading-6", "heading-5"]}
+              $mb={"space-between-ssx"}
+            >
               {props.resourcesHeader}
             </OakHeading>
           )}
@@ -134,19 +144,23 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
             </OakBox>
           )}
           {props.cardGroup}
-          {props.showRiskAssessmentBanner && props.showTermsAgreement && (
-            <OakBox $display={["none", "none", "block"]}>
-              <RiskAssessmentBanner />
-            </OakBox>
-          )}
-          {!props.showTermsAgreement && (
+          {props.showRiskAssessmentBanner && (
             <>
+              {props.showTermsAgreement ? (
+                <OakBox $display={["none", "none", "block"]}>
+                  <RiskAssessmentBanner />
+                </OakBox>
+              ) : (
+                <OakBox $mv="space-between-s">
+                  <RiskAssessmentBanner />
+                </OakBox>
+              )}
+            </>
+          )}
+          {props.downloadsRestricted && (
+            <OakFlex $flexDirection={"column"} $gap={"all-spacing-6"}>
               <OakBox
-                $pb={
-                  props.showRiskAssessmentBanner
-                    ? "inner-padding-none"
-                    : "inner-padding-xl3"
-                }
+                $pb={"inner-padding-xl3"}
                 $mt={"space-between-m"}
                 $maxWidth={"all-spacing-22"}
               >
@@ -157,24 +171,22 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
                   copyrightYear={props.updatedAt}
                 />
               </OakBox>
-
-              {props.showRiskAssessmentBanner && (
-                <OakBox $mv="space-between-s">
-                  <RiskAssessmentBanner />
-                </OakBox>
-              )}
-
-              {props.cta}
-            </>
+              <LoginRequiredButton
+                signUpProps={{ name: "Sign in to continue" }}
+                iconName="arrow-right"
+                isTrailingIcon
+              />
+            </OakFlex>
           )}
         </Flex>
       </OakBox>
 
       <OakFlex
         $flexDirection="column"
-        $alignSelf="center"
         $gap="space-between-s"
         $maxWidth="all-spacing-21"
+        $position={"sticky"}
+        $top={"all-spacing-10"}
       >
         {props.showNoResources &&
           (props.page === "download" ? (
@@ -184,7 +196,7 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
           ))}
         {!props.showNoResources && (
           <>
-            {props.showTermsAgreement && (
+            {showForm && (
               <>
                 <TermsAgreementForm
                   form={{
@@ -213,7 +225,7 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
                 )}
               </>
             )}
-            {hasFormErrors && (
+            {showFormErrors && (
               <OakFlex $flexDirection={"row"}>
                 <OakIcon
                   iconName="content-guidance"
@@ -238,7 +250,23 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
               </OakFlex>
             )}
 
-            {props.showTermsAgreement && props.cta}
+            {!props.showTermsAgreement && (
+              <OakBox
+                $pb={"inner-padding-m"}
+                $mt={"space-between-m"}
+                $maxWidth={"all-spacing-22"}
+                data-testid="copyright-container"
+              >
+                <CopyrightNotice
+                  fullWidth
+                  showPostAlbCopyright={props.showPostAlbCopyright}
+                  openLinksExternally={true}
+                  copyrightYear={props.updatedAt}
+                />
+              </OakBox>
+            )}
+
+            {!hideCallToAction && props.cta}
 
             {props.apiError && !hasFormErrors && (
               <FieldError

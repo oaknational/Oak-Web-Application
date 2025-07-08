@@ -16,6 +16,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+import { COPYRIGHT_CONTACT_US_LINK } from "@/utils/copyrightContactUsLink";
 
 export type CopyrightRestrictionBannerProps = {
   isGeorestricted?: boolean;
@@ -137,9 +138,7 @@ const SignedInGeorestrictedBanner = ({ isUnit }: { isUnit: boolean }) => (
         read more about copyrights
       </OakLink>{" "}
       or if you believe this is an error and you’re based in the UK, please{" "}
-      <OakLink href="https://share.hsforms.com/1CK8Y0vv-TuOeBbDac-CMTgbvumd">
-        contact us.
-      </OakLink>
+      <OakLink href={COPYRIGHT_CONTACT_US_LINK}>contact us.</OakLink>
     </OakP>
   </OakFlex>
 );

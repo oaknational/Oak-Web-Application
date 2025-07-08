@@ -34,7 +34,11 @@ const getDownloadResourcesExistenceData = {
     "worksheet-pdf": true,
   },
 };
-
+const mockFeatureFlagEnabled = jest.fn().mockReturnValue(false);
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagVariantKey: () => "with login",
+  useFeatureFlagEnabled: () => mockFeatureFlagEnabled(),
+}));
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 jest.mock(
   "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence",
