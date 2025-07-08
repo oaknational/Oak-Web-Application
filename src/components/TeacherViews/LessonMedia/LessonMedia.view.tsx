@@ -11,8 +11,6 @@ import {
   OakGrid,
   OakGridArea,
 } from "@oaknational/oak-components";
-import { useUser } from "@clerk/nextjs";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import VideoPlayer, {
   VideoEventCallbackArgs,
@@ -29,7 +27,6 @@ import {
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
 import { LessonMediaClipInfo } from "@/components/TeacherComponents/LessonMediaClipInfo";
-import { LessonMediaAttributions } from "@/components/TeacherComponents/LessonMediaAttributions/LessonMediaAttributions";
 import type {
   MediaClip,
   MediaClipListCamelCase,
@@ -41,7 +38,6 @@ import {
   joinTranscript,
   createLearningCycleVideosTitleMap,
 } from "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers";
-import { RestrictedSignInPrompt } from "@/components/TeacherComponents/RestrictedSignInPrompt/RestrictedSignInPrompt";
 import { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import {
@@ -53,8 +49,6 @@ type BaseLessonMedia = {
   lessonTitle: string;
   lessonSlug: string;
   keyStageTitle: string;
-  loginRequired: boolean;
-  geoRestricted: boolean;
   mediaClips: MediaClipListCamelCase;
   lessonOutline: { lessonOutline: string }[];
   lessonReleaseDate: string | null;
@@ -87,17 +81,8 @@ export const LessonMedia = (props: LessonMediaProps) => {
     lessonOutline,
     actions,
     lessonReleaseDate,
-    loginRequired,
-    geoRestricted,
   } = lesson;
-  const { isSignedIn } = useUser();
   const { track } = useAnalytics();
-  const featureFlagEnabled = useFeatureFlagEnabled(
-    "teachers-copyright-restrictions",
-  );
-  const showRestricted =
-    featureFlagEnabled && !isSignedIn && (loginRequired || geoRestricted);
-
   const subjectSlug = isCanonical
     ? (lesson?.pathways[0]?.subjectSlug ?? "")
     : (lesson.subjectSlug ?? "");
@@ -450,81 +435,50 @@ export const LessonMedia = (props: LessonMediaProps) => {
           </OakTertiaryButton>
         )}
       </OakBox>
-      {showRestricted ? (
-        <RestrictedSignInPrompt />
-      ) : (
-        <>
-          {listOfAllClips.length > 0 && currentClip && (
-            <OakBox data-testid="media-clip-wrapper">
-              <OakFlex
-                $flexDirection={["column", "column", "row"]}
-                $gap={[
-                  "space-between-m",
-                  "space-between-m",
-                  "space-between-none",
-                ]}
-                $mb={"space-between-m"}
-                $height={["auto", "auto", "all-spacing-21"]}
-              >
-                <OakFlex
-                  $width={["100%", "100%", "all-spacing-23"]}
-                  $alignItems={"center"}
-                  $background={"black"}
-                  $overflow={["visible", "visible", "hidden"]}
-                  $height={"100%"}
-                  $br={"border-solid-m"}
-                  data-testid="video-player-wrapper"
-                  ref={videoPlayerWrapper}
-                  tabIndex={-1}
-                >
-                  {videoPlayer}
-                </OakFlex>
-                <OakBox $display={["block", "block", "none"]} $width={"100%"}>
-                  {lessonMediaClipInfo}
-                </OakBox>
-                <OakBox
-                  $width={["auto", "auto", "all-spacing-21"]}
-                  $minWidth={["auto", "auto", "all-spacing-21"]}
-                >
-                  {mediaClipList}
-                </OakBox>
-              </OakFlex>
-              <OakBox
-                $display={["none", "none", "block"]}
-                $pb="inner-padding-xl4"
-              >
-                <OakGrid>
-                  <OakGridArea $colSpan={8}>{lessonMediaClipInfo}</OakGridArea>
-                  <OakGridArea $colSpan={4} $alignItems={"flex-end"}>
-                    {helpArticleLink}
-                  </OakGridArea>
-                </OakGrid>
-              </OakBox>
-              <OakBox $display={["block", "block", "none"]}>
-                {helpArticleLink}
-              </OakBox>
-              <LessonMediaAttributions
-                mediaClipsWithAttributions={
-                  listOfAllClips
-                    .map((clip) => {
-                      const attribution = (
-                        clip.mediaObject as {
-                          metadata?: { attribution?: string };
-                        }
-                      )?.metadata?.attribution;
-                      return attribution
-                        ? { name: clip.mediaObject.displayName, attribution }
-                        : null;
-                    })
-                    .filter(Boolean) as Array<{
-                    name: string;
-                    attribution: string;
-                  }>
-                }
-              />
+
+      {listOfAllClips.length > 0 && currentClip && (
+        <OakBox data-testid="media-clip-wrapper">
+          <OakFlex
+            $flexDirection={["column", "column", "row"]}
+            $gap={["space-between-m", "space-between-m", "space-between-none"]}
+            $mb={"space-between-m"}
+            $height={["auto", "auto", "all-spacing-21"]}
+          >
+            <OakFlex
+              $width={["100%", "100%", "all-spacing-23"]}
+              $alignItems={"center"}
+              $background={"black"}
+              $overflow={["visible", "visible", "hidden"]}
+              $height={"100%"}
+              $br={"border-solid-m"}
+              data-testid="video-player-wrapper"
+              ref={videoPlayerWrapper}
+              tabIndex={-1}
+            >
+              {videoPlayer}
+            </OakFlex>
+            <OakBox $display={["block", "block", "none"]} $width={"100%"}>
+              {lessonMediaClipInfo}
             </OakBox>
-          )}
-        </>
+            <OakBox
+              $width={["auto", "auto", "all-spacing-21"]}
+              $minWidth={["auto", "auto", "all-spacing-21"]}
+            >
+              {mediaClipList}
+            </OakBox>
+          </OakFlex>
+          <OakBox $display={["none", "none", "block"]}>
+            <OakGrid>
+              <OakGridArea $colSpan={8}>{lessonMediaClipInfo}</OakGridArea>
+              <OakGridArea $colSpan={4} $alignItems={"flex-end"}>
+                {helpArticleLink}
+              </OakGridArea>
+            </OakGrid>
+          </OakBox>
+          <OakBox $display={["block", "block", "none"]}>
+            {helpArticleLink}
+          </OakBox>
+        </OakBox>
       )}
     </OakMaxWidth>
   );
