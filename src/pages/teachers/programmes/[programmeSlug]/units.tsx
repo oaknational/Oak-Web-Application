@@ -52,7 +52,6 @@ import getYearGroupSEOString from "@/pages-helpers/teacher/year-group-seo-string
 import CurriculumDownloadBanner from "@/components/TeacherComponents/CurriculumDownloadBanner/CurriculumDownloadBanner";
 import { convertSubjectToSlug } from "@/components/TeacherComponents/helpers/convertSubjectToSlug";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
-import MobileUnitFiltersCopy from "@/components/TeacherComponents/MobileUnitFilters/MobileUnitFiltersCopy";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -276,7 +275,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   const MobileUnitFilterButton = () => {
     return isFiltersAvailable ? (
       <OakBox $display={["auto", "auto", "none"]}>
-        <MobileUnitFiltersCopy
+        <MobileUnitFilters
           {...curriculumData}
           numberOfUnits={filteredUnits.length}
           browseRefined={track.browseRefined}
