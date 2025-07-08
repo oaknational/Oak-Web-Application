@@ -195,14 +195,13 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   // create query as options selected
   // navigate on selection
 
-  // TODO: get current query from URL
-  const [currentQuery, setCurrentQuery] = useState<FilterQuery | null>(null);
+  const [newQuery, setNewQuery] = useState<FilterQuery | null>(null);
 
   const handleUpdateQuery = (queryObj: FilterQuery | null) => {
     if (!queryObj) {
-      setCurrentQuery(null);
+      setNewQuery(null);
     } else {
-      const params: FilterQuery = Object.assign({}, currentQuery);
+      const params: FilterQuery = Object.assign({}, newQuery);
 
       if (queryObj.year) {
         params.year = queryObj.year;
@@ -214,29 +213,30 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
         params.theme = queryObj.theme;
       }
 
-      setCurrentQuery(params);
+      setNewQuery(params);
     }
   };
 
   const handleSubmitQuery = () => {
-    if (currentQuery) {
+    if (newQuery) {
       router.replace({
         pathname: router.pathname,
         query: {
           ...router.query,
-          ...(currentQuery?.year && { year: currentQuery.year }),
-          ...(currentQuery?.category && {
-            category: currentQuery.category,
+          ...(newQuery?.year && { year: newQuery.year }),
+          ...(newQuery?.category && {
+            category: newQuery.category,
           }),
-          ...(currentQuery?.theme && {
-            "learning-theme": currentQuery.theme,
+          ...(newQuery?.theme && {
+            "learning-theme": newQuery.theme,
           }),
         },
       });
     }
   };
 
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isMobileFilterDrawerOpen, setIsMobileFilterDrawerOpen] =
+    useState<boolean>(false);
 
   const MobileUnitFilterButton = () => {
     return isFiltersAvailable ? (
@@ -247,10 +247,10 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
           browseRefined={track.browseRefined}
           setSelectedThemeSlug={setSelectedThemeSlug}
           learningThemesFilterId={learningThemesFilterId}
-          setQuery={handleUpdateQuery}
-          currentQuery={currentQuery}
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
+          updateQuery={handleUpdateQuery}
+          newQuery={newQuery}
+          isOpen={isMobileFilterDrawerOpen}
+          setIsOpen={setIsMobileFilterDrawerOpen}
           handleSubmitQuery={handleSubmitQuery}
         />
       </OakBox>

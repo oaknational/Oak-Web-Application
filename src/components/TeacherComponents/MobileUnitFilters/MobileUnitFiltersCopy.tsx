@@ -28,8 +28,8 @@ export type MobileUnitFiltersProps = {
   setSelectedThemeSlug: (theme: string | undefined) => void;
   learningThemesFilterId: string;
   isSpecialist?: boolean;
-  setQuery: (queryObj: FilterQuery | null) => void;
-  currentQuery: FilterQuery | null;
+  updateQuery: (queryObj: FilterQuery | null) => void;
+  newQuery: FilterQuery | null;
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   handleSubmitQuery: () => void;
@@ -54,8 +54,8 @@ const MobileUnitFiltersCopy: FC<MobileUnitFiltersProps> = (props) => {
     subjectSlug,
     units,
     isSpecialist,
-    currentQuery,
-    setQuery,
+    newQuery: currentQuery,
+    updateQuery: setQuery,
     isOpen,
     setIsOpen,
     handleSubmitQuery,
