@@ -8,6 +8,7 @@ type LogoProps = {
   width: number;
   height: number;
   variant: "with text" | "without text";
+  color?: string;
 };
 
 const LogoWrapper = styled.div<LogoProps>`
@@ -20,6 +21,7 @@ const Logo: FC<LogoProps> = (props) => {
     <LogoWrapper {...props}>
       <ScreenReaderOnly>Oak National Academy</ScreenReaderOnly>
       <InlineSpriteSvg
+        color={props.color}
         name={props.variant === "with text" ? "logo-with-text" : "logo"}
       />
     </LogoWrapper>
