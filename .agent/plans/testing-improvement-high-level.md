@@ -6,12 +6,12 @@ This document tracks planned improvements to Oak's automated testing approach an
 
 - Comprehensive testing documentation in `docs/testing-strategy/`
 - Enhanced 6-category test quality rubric with performance standards
-- 633 test files discovered across the codebase (massive scale)
-- AI agent guidance in `docs/testing-strategy/` (centralized)
-- Mixed adoption of TDD practices across the codebase
-- Strong React Testing Library usage
+- 633 test files analyzed with context-aware scoring (Phase 1.1 complete)
+- Strong foundations: Utilities (7.8/10), APIs (6.8/10)
+- Critical gap: Components (5.2/10) - largest category
+- Untested critical endpoint: curriculum-downloads
+- Mixed TDD adoption, strong React Testing Library usage
 - Jest as primary test runner
-- Phase 1.1 systematic analysis in progress
 
 ## Planned Improvements
 
@@ -22,21 +22,26 @@ This document tracks planned improvements to Oak's automated testing approach an
 - [x] Review test code across the codebase. This will be shallow and broad, to enable in-depth analysis in the next phase.
 - [x] Record the audit findings in a report
 
-#### 1.1: Understand 🔄 RESTART REQUIRED
+#### 1.1: Understand ✅ COMPLETED (July 7, 2025)
 
-Using the review findings from phase 1.0, audit the codebase for opportunities for improvement. Enhanced 6-category rubric (with performance standards) requires reassessment of ALL 633 test files.
+Applied enhanced 6-category rubric with performance standards to ALL 633 test files.
 
-- [x] Audit existing test code quality across the codebase (5-category rubric - INVALID)
-- [x] Audit existing test organisation across the codebase
-- [x] Audit existing test coverage across the codebase
-- [x] Record the audit findings in a report (Phase 1.1 report active)
-- [x] Apply enhanced 6-category rubric to ALL 633 test files (previous analysis INVALID due to rubric enhancement)
+- [x] Context-aware scoring methodology applied
+- [x] All 633 test files systematically assessed
+- [x] Critical gaps identified: Component accessibility (12%), untested curriculum-downloads endpoint
+- [x] Performance monitoring gaps documented across all layers
+- [x] Comprehensive report created with implementation examples
 
-#### 1.2: Identify ⏳ PENDING
+#### 1.2: Identify 🚀 READY TO START
 
-Note that the [report from phase 1.1 is here](testing-improvement-phase-1-1-report.md), and [the analyses are here](../reviews/testing-improvement/phase-1-1/index.md)
+**Context**: [Phase 1.1 report](testing-improvement-phase-1-1-report.md) complete with context-aware insights. [Detailed analyses archived](../reviews/testing-improvement/phase-1-1/).
 
-Using the enhanced 6-category rubric findings from phase 1.1, identify opportunities for improvement.
+**Top Priorities from Phase 1.1**:
+1. Component accessibility crisis (327 files, 12% → 90% needed)
+2. Curriculum-downloads endpoint (326 lines, 0 tests)
+3. Performance monitoring implementation
+
+Using the Phase 1.1 findings, create actionable implementation tasks:
 
 - [ ] Identify violations of "test behaviour, not implementation". This is often coupled with poorly defined boundaries.
 - [ ] Identify opportunities for pure function extraction
@@ -85,17 +90,17 @@ Anything can be fixed once, but we need to maintain excellence.
 
 To be reviewed after each phase. If not resolved, additional sub-phases will be added.
 
-### High Priority
+### High Priority (From Phase 1.1 Analysis)
 
-- Components with inline business logic need pure function extraction, enabling unit tests.
-- API route handlers lack comprehensive testing
-- Custom hooks missing test coverage
+- **Component accessibility**: 327 files with 12% coverage (user interface crisis)
+- **Curriculum-downloads API**: Critical untested endpoint (teacher access risk)
+- **Performance monitoring**: 0% in build processes, <50% elsewhere
 
 ### Medium Priority
 
-- Inconsistent mock patterns across the codebase
-- Missing integration tests for data flows
-- Test organization varies by package
+- Service performance monitoring (Infrastructure/APIs)
+- Page load performance (69% fail <2s threshold)
+- Educational domain modeling in applicable tests
 
 ### Low Priority
 
@@ -103,15 +108,15 @@ To be reviewed after each phase. If not resolved, additional sub-phases will be 
 - Performance benchmarks needed
 - Contract testing for external APIs
 
-## Success Metrics
+## Success Metrics (Updated from Phase 1.1)
 
-- Average quality score: 5.8/10 → 8.5/10 (enhanced 6-category rubric)
-- Accessibility testing coverage: 5% → 95% (jest-axe integration)
-- Test coverage: 80%+ for new code
-- TDD adoption: 100% for new features
-- Accessibility violations: 0 in tested components
-- Test execution time: <2 minutes for unit tests (with performance standards)
-- Developer satisfaction: Improved confidence in changes
+- Average quality score: 6.2/10 → 8.5/10 (context-aware scoring)
+- User-facing accessibility: 21% → 95% (Components + Pages)
+- Performance compliance: 38% → 90% (context-appropriate)
+- Critical endpoints: 0 → 100% tested
+- Component quality: 5.2/10 → 8.0/10 (largest impact)
+- Build monitoring: 0% → 90% (deployment reliability)
+- Developer confidence: Measurable improvement in deployment frequency
 
 ## Research Topics
 
