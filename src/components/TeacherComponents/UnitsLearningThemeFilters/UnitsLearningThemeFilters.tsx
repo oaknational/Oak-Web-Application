@@ -5,9 +5,7 @@ import {
   isTileItem,
   OakRadioTile,
 } from "@oaknational/oak-components";
-import { useRouter } from "next/router";
-
-import { generateUrl } from "./generateUrl";
+import router from "next/router";
 
 import {
   SpecialistUnitListingLinkProps,
@@ -28,13 +26,9 @@ export type UnitsLearningThemeFiltersProps = {
   linkProps: UnitListingLinkProps | SpecialistUnitListingLinkProps;
   trackingProps?: LearningThemeSelectedTrackingProps;
   idSuffix: "desktop" | "mobile";
-  onChangeCallback?: (theme: string | undefined) => void;
-  categorySlug?: string;
-  yearGroupSlug?: string;
   programmeSlug: string;
-  setMobileFilter?: (theme: string | undefined) => void;
-  activeMobileFilter?: string;
   browseRefined: TrackFns["browseRefined"];
+  setTheme: (theme: string | undefined) => void;
 };
 
 const UnitsLearningThemeFilters = ({
@@ -42,11 +36,9 @@ const UnitsLearningThemeFilters = ({
   selectedThemeSlug,
   trackingProps,
   idSuffix,
-  onChangeCallback,
   programmeSlug,
-  setMobileFilter,
-  activeMobileFilter,
   browseRefined,
+  setTheme,
 }: UnitsLearningThemeFiltersProps) => {
   const themeTileItems: Array<TileItem> = learningThemes
     ? learningThemes
@@ -67,46 +59,40 @@ const UnitsLearningThemeFilters = ({
           }
         })
     : [];
-  const router = useRouter();
-  const isMobile = idSuffix === "mobile";
-
-  const categorySlug = router.query["category"]?.toString();
-  const yearGroupSlug = router.query["year"]?.toString();
-
-  const [activeThemeSlug, setActiveThemeSlug] = useState(selectedThemeSlug);
 
   const onChange = (theme: TileItem) => {
-    const callbackValue = theme.id;
-    setActiveThemeSlug(theme.id);
-    if (!isMobile) {
-      onChangeCallback?.(callbackValue);
-      if (trackingProps) {
-        const { keyStageSlug, subjectSlug } = trackingProps;
-        browseRefined({
-          platform: "owa",
-          product: "teacher lesson resources",
-          engagementIntent: "refine",
-          componentType: "filter_link",
-          eventVersion: "2.0.0",
-          analyticsUseCase: "Teacher",
-          filterType: "Learning theme filter",
-          filterValue: theme.label,
-          activeFilters: { keyStage: [keyStageSlug], subject: [subjectSlug] },
-        });
-      }
+    setTheme(theme.id);
+    //   const callbackValue = theme.id;
+    //   setActiveThemeSlug(theme.id);
+    // if (!isMobile) {
+    //  onChangeCallback?.(callbackValue);
+    // if (trackingProps) {
+    //   const { keyStageSlug, subjectSlug } = trackingProps;
+    //   browseRefined({
+    //     platform: "owa",
+    //     product: "teacher lesson resources",
+    //     engagementIntent: "refine",
+    //     componentType: "filter_link",
+    //     eventVersion: "2.0.0",
+    //     analyticsUseCase: "Teacher",
+    //     filterType: "Learning theme filter",
+    //     filterValue: theme.label,
+    //     activeFilters: { keyStage: [keyStageSlug], subject: [subjectSlug] },
+    //   });
+    // }
 
-      const newUrl = generateUrl(
-        { slug: theme.id },
-        programmeSlug,
-        yearGroupSlug,
-        categorySlug,
-      );
+    //   const newUrl = generateUrl(
+    //     { slug: theme.id },
+    //     programmeSlug,
+    //     yearGroupSlug,
+    //     categorySlug,
+    //   );
 
-      router.push(newUrl, undefined, { shallow: true });
-    } else {
-      setMobileFilter?.(callbackValue);
-      setActiveThemeSlug(theme.id);
-    }
+    //   router.push(newUrl, undefined, { shallow: true });
+    // } else {
+    //   setMobileFilter?.(callbackValue);
+    //   setActiveThemeSlug(theme.id);
+    // }
   };
 
   return (
@@ -119,13 +105,7 @@ const UnitsLearningThemeFilters = ({
       >
         {[{ id: "all", label: "All" }, ...themeTileItems].map(
           (theme, index) => {
-            const activeMobTheme =
-              activeMobileFilter === undefined || activeMobileFilter === ""
-                ? "all"
-                : activeMobileFilter;
-            const isChecked = !isMobile
-              ? activeThemeSlug === theme.id
-              : activeMobTheme === theme.id;
+            const isChecked = theme.id === selectedThemeSlug;
             return (
               <OakRadioTile
                 tileItem={theme}

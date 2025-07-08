@@ -194,8 +194,7 @@ const MobileUnitFiltersCopy: FC<MobileUnitFiltersProps> = (props) => {
                       }
                     : undefined
                 }
-                setMobileFilter={(theme) => setQuery({ theme })}
-                activeMobileFilter={theme}
+                setTheme={(theme) => setQuery({ theme })}
                 browseRefined={browseRefined}
               />
             </>

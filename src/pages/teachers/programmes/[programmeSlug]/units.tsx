@@ -193,9 +193,9 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   const handleUpdateQuery = (queryObj: FilterQuery | null) => {
     if (!queryObj) {
       setNewQuery(null);
+      return null;
     } else {
       const params: FilterQuery = Object.assign({}, newQuery);
-
       if (queryObj.year) {
         params.year = queryObj.year;
       } else if (queryObj.year === null) {
@@ -209,9 +209,40 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
       if (queryObj.theme) {
         params.theme = queryObj.theme;
       }
-
       setNewQuery(params);
+      return params;
     }
+  };
+
+  const handleUpdateAndSubmitQuery = (queryObj: FilterQuery | null) => {
+    const updatedQuery = handleUpdateQuery(queryObj);
+
+    // TODO: extract to shared
+    const params = Object.assign({}, router.query);
+
+    if (updatedQuery?.year) {
+      params.year = updatedQuery.year;
+    } else {
+      delete params.year;
+    }
+    if (updatedQuery?.category) {
+      params.category = updatedQuery.category;
+    } else {
+      delete params.category;
+    }
+    if (updatedQuery?.theme) {
+      params["learning-theme"] = updatedQuery.theme;
+    } else {
+      params["learning-theme"] = "all";
+    }
+    router.replace(
+      {
+        pathname: router.pathname,
+        query: params,
+      },
+      undefined,
+      { shallow: true },
+    );
   };
 
   const handleSubmitQuery = () => {
@@ -380,14 +411,13 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 keyStageTitle={keyStageTitle}
                 learningThemesId={learningThemesId}
                 browseRefined={track.browseRefined}
-                updateQuery={handleUpdateQuery}
+                updateQuery={handleUpdateAndSubmitQuery}
                 newQuery={newQuery}
                 currentQuery={{
                   year: yearGroupSlug,
                   category: categorySlug,
                   theme: themeSlug,
                 }}
-                handleSubmitQuery={handleSubmitQuery}
               />
               <OakFlex $display={["none", "none", "flex"]}>
                 {relatedSubjects?.map((subjectSlug) => (

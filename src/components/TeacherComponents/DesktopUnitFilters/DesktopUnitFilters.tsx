@@ -40,7 +40,6 @@ export type DesktopUnitFiltersProps = {
   updateQuery: (queryObj: FilterQuery | null) => void;
   newQuery: FilterQuery | null;
   currentQuery: FilterQuery | null;
-  handleSubmitQuery: () => void;
 };
 const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
   const {
@@ -62,12 +61,11 @@ const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
     currentQuery,
     newQuery,
     updateQuery,
-    handleSubmitQuery,
   } = props;
 
   const yearGroupSlug = newQuery?.year ?? currentQuery?.year ?? "";
   const categorySlug = newQuery?.category ?? currentQuery?.category ?? "";
-  const selectedThemeSlug = currentQuery?.theme ?? "all";
+  const selectedThemeSlug = newQuery?.theme ?? currentQuery?.theme ?? "all";
 
   return (
     <OakBox
@@ -113,7 +111,6 @@ const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
             programmeSlug={programmeSlug}
             setYear={(year) => {
               updateQuery({ year });
-              handleSubmitQuery();
             }}
             yearGroupSlug={yearGroupSlug}
           />
@@ -125,10 +122,7 @@ const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
             categorySlug={categorySlug}
             browseRefined={browseRefined}
             programmeSlug={programmeSlug}
-            setCategory={(category) => {
-              updateQuery({ category });
-              handleSubmitQuery();
-            }}
+            setCategory={(category) => updateQuery({ category })}
           />
         )}
         {learningThemes?.length > 1 && (
@@ -144,15 +138,9 @@ const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
             </OakHeading>
             <UnitsLearningThemeFilters
               idSuffix="desktop"
-              onChangeCallback={(themeSlug) => {
-                updateQuery({ theme: themeSlug });
-                handleSubmitQuery();
-              }}
               labelledBy={learningThemesId}
               learningThemes={learningThemes}
               selectedThemeSlug={selectedThemeSlug ?? "all"}
-              categorySlug={categorySlug}
-              yearGroupSlug={yearGroupSlug}
               programmeSlug={programmeSlug}
               linkProps={{
                 page: "unit-index",
@@ -165,6 +153,7 @@ const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
                 subjectSlug,
               }}
               browseRefined={browseRefined}
+              setTheme={(theme) => updateQuery({ theme })}
             />
           </OakFlex>
         )}
