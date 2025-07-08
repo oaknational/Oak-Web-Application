@@ -19,7 +19,7 @@ type SubjectCategoryFiltersProps = {
   selectedThemeSlug?: string;
   programmeSlug: string;
   activeMobileFilter?: string;
-  setCategory?: React.Dispatch<React.SetStateAction<string>>;
+  setCategory?: (category: string) => void;
 };
 
 const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({

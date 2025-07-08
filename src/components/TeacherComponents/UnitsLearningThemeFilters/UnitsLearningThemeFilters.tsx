@@ -32,7 +32,7 @@ export type UnitsLearningThemeFiltersProps = {
   categorySlug?: string;
   yearGroupSlug?: string;
   programmeSlug: string;
-  setMobileFilter?: React.Dispatch<React.SetStateAction<string | undefined>>;
+  setMobileFilter?: (theme: string | undefined) => void;
   activeMobileFilter?: string;
   browseRefined: TrackFns["browseRefined"];
 };

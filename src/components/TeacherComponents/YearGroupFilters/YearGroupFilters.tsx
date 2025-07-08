@@ -17,7 +17,7 @@ type YearGroupFiltersProps = {
   selectedThemeSlug?: string;
   programmeSlug: string;
   activeMobileFilter?: string;
-  setYear?: React.Dispatch<React.SetStateAction<string>>;
+  setYear?: (year: string) => void;
 };
 
 const YearGroupFilters: FC<YearGroupFiltersProps> = ({

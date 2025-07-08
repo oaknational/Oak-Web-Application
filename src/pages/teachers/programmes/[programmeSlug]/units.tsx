@@ -52,10 +52,17 @@ import getYearGroupSEOString from "@/pages-helpers/teacher/year-group-seo-string
 import CurriculumDownloadBanner from "@/components/TeacherComponents/CurriculumDownloadBanner/CurriculumDownloadBanner";
 import { convertSubjectToSlug } from "@/components/TeacherComponents/helpers/convertSubjectToSlug";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
+import MobileUnitFiltersCopy from "@/components/TeacherComponents/MobileUnitFilters/MobileUnitFiltersCopy";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
   curriculumRefreshTime: number;
+};
+
+export type FilterQuery = {
+  year?: string | null;
+  category?: string | null;
+  theme?: string | null;
 };
 
 const UnitListingPage: NextPage<UnitListingPageProps> = ({
@@ -98,6 +105,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     yearGroups.length > 1 ||
     subjectCategories.length > 1 ||
     learningThemes.length > 1;
+
   const [selectedThemeSlug, setSelectedThemeSlug] = useState<
     string | undefined
   >(themeSlug);
@@ -179,15 +187,71 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     }
   };
 
+  // on mobile
+  // create query as options selected
+  // navigate on button click with query
+
+  // on desktop
+  // create query as options selected
+  // navigate on selection
+
+  // TODO: get current query from URL
+  const [currentQuery, setCurrentQuery] = useState<FilterQuery | null>(null);
+
+  const handleUpdateQuery = (queryObj: FilterQuery | null) => {
+    if (!queryObj) {
+      setCurrentQuery(null);
+    } else {
+      const params: FilterQuery = Object.assign({}, currentQuery);
+
+      if (queryObj.year) {
+        params.year = queryObj.year;
+      }
+      if (queryObj.category) {
+        params.category = queryObj.category;
+      }
+      if (queryObj.theme) {
+        params.theme = queryObj.theme;
+      }
+
+      setCurrentQuery(params);
+    }
+  };
+
+  const handleSubmitQuery = () => {
+    if (currentQuery) {
+      router.replace({
+        pathname: router.pathname,
+        query: {
+          ...router.query,
+          ...(currentQuery?.year && { year: currentQuery.year }),
+          ...(currentQuery?.category && {
+            category: currentQuery.category,
+          }),
+          ...(currentQuery?.theme && {
+            "learning-theme": currentQuery.theme,
+          }),
+        },
+      });
+    }
+  };
+
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
   const MobileUnitFilterButton = () => {
     return isFiltersAvailable ? (
       <OakBox $display={["auto", "auto", "none"]}>
-        <MobileUnitFilters
+        <MobileUnitFiltersCopy
           {...curriculumData}
           numberOfUnits={filteredUnits.length}
           browseRefined={track.browseRefined}
           setSelectedThemeSlug={setSelectedThemeSlug}
           learningThemesFilterId={learningThemesFilterId}
+          setQuery={handleUpdateQuery}
+          currentQuery={currentQuery}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          handleSubmitQuery={handleSubmitQuery}
         />
       </OakBox>
     ) : null;
