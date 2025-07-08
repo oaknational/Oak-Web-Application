@@ -23,6 +23,7 @@ export const useUnitFilterState = ({
   const yearGroupSlug = router.query["year"]?.toString();
 
   // Used to construct a new filter query before using in routing params
+  // required for mobile where we don't want to update the URL on every filter change
   const [newFilterQuery, setNewFilterQuery] = useState<FilterQuery | null>(
     null,
   );
@@ -44,7 +45,7 @@ export const useUnitFilterState = ({
       if (filters.category) {
         params.category = filters.category;
       } else if (filters.category === null) {
-        delete params.category;
+        params.category = "";
       }
       if (filters.theme) {
         params.theme = filters.theme;
@@ -54,87 +55,48 @@ export const useUnitFilterState = ({
     }
   };
 
-  const trackFilterRefined = (
-    filterType: FilterTypeValueType,
-    filterValue: string,
-  ) => {
-    const activeFilters = {
-      content_types: "units",
-      learning_themes: filterType !== "Learning theme filter" && themeSlug,
-      year_group: filterType !== "Year filter" && yearGroupSlug,
-    };
-    track.browseRefined({
-      platform: "owa",
-      product: "teacher lesson resources",
-      engagementIntent: "refine",
-      componentType: "filter_link",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      filterValue,
-      filterType: "Subject filter",
-      activeFilters,
-    });
-  };
-
-  const handleUpdateAndSubmitFilterQuery = (
-    queryObj: FilterQuery | null,
-    filterType: FilterTypeValueType,
-    filterValue: string,
-  ) => {
-    const updatedQuery = handleUpdateActiveFilters(queryObj);
-
-    // TODO: extract to shared
-    const params = Object.assign({}, router.query);
-
-    if (updatedQuery?.year) {
-      params.year = updatedQuery.year;
-    } else {
-      delete params.year;
-    }
-    if (updatedQuery?.category) {
-      params.category = updatedQuery.category;
-    } else {
-      delete params.category;
-    }
-    if (updatedQuery?.theme) {
-      params["learning-theme"] = updatedQuery.theme;
-    } else {
-      params["learning-theme"] = "all";
-    }
-    trackFilterRefined(filterType, filterValue);
-    router.replace(
-      {
-        pathname: router.pathname,
-        query: params,
-      },
-      undefined,
-      { shallow: true },
-    );
-  };
-
-  const handleSubmitFilterQuery = () => {
-    if (newFilterQuery) {
+  const handleSubmitFilterQuery = (filterQuery?: FilterQuery | null) => {
+    const filterQueryToUse = filterQuery || newFilterQuery;
+    if (filterQueryToUse) {
       const params = Object.assign({}, router.query);
       let theme, category, year;
-      if (newFilterQuery.year) {
-        params.year = newFilterQuery.year;
-        year = newFilterQuery.year;
+      if (filterQueryToUse.year) {
+        params.year = filterQueryToUse.year;
+        year = filterQueryToUse.year;
       } else {
         delete params.year;
       }
-      if (newFilterQuery.category) {
-        params.category = newFilterQuery.category;
-        category = newFilterQuery.category;
+      if (filterQueryToUse.category) {
+        params.category = filterQueryToUse.category;
+        category = filterQueryToUse.category;
       } else {
         delete params.category;
       }
-      if (newFilterQuery.theme) {
-        params["learning-theme"] = newFilterQuery.theme;
-        theme = newFilterQuery.theme;
+      if (filterQueryToUse.theme) {
+        params["learning-theme"] = filterQueryToUse.theme;
+        theme = filterQueryToUse.theme;
       } else {
         params["learning-theme"] = "all";
       }
       if (isUnitListing) {
+        const activeFilters = {
+          content_types: "units",
+          learning_themes: theme,
+          year_group: year,
+          category,
+        };
+
+        const filterValue = filterQuery
+          ? theme || category || year || ""
+          : "show results button";
+        const filterType: FilterTypeValueType = filterQuery
+          ? theme
+            ? "Learning theme filter"
+            : category
+              ? "Subject filter"
+              : "Year filter"
+          : "Subject filter"; // default to Subject filter for mobile submit button
+
         track.browseRefined({
           platform: "owa",
           product: "teacher lesson resources",
@@ -142,22 +104,26 @@ export const useUnitFilterState = ({
           componentType: "filter_link",
           eventVersion: "2.0.0",
           analyticsUseCase: "Teacher",
-          filterValue: "show results button",
-          filterType: "Subject filter",
-          activeFilters: {
-            content_types: "units",
-            learning_themes: theme,
-            categories: category,
-            year: year,
-          },
+          filterValue,
+          filterType,
+          activeFilters,
         });
       }
       setIsMobileFilterDrawerOpen(false);
-      router.replace({
-        pathname: router.pathname,
-        query: params,
-      });
+      router.replace(
+        {
+          pathname: router.pathname,
+          query: params,
+        },
+        undefined,
+        { shallow: true },
+      );
     }
+  };
+
+  const handleUpdateAndSubmitFilterQuery = (queryObj: FilterQuery | null) => {
+    const updatedQuery = handleUpdateActiveFilters(queryObj);
+    handleSubmitFilterQuery(updatedQuery);
   };
 
   return {
