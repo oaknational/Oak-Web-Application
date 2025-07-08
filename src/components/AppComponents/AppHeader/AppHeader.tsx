@@ -71,7 +71,7 @@ const AppHeader: FC<HeaderProps> = () => {
             $display={["none", "block"]}
           >
             <StyledOakLink href={resolveOakHref({ page: "home" })}>
-              <Logo variant="with text" height={48} width={104} />
+              <Logo variant="with text" height={48} width={104} color="black" />
             </StyledOakLink>
           </OakFlex>
           <OakFlex
@@ -83,7 +83,12 @@ const AppHeader: FC<HeaderProps> = () => {
           >
             <OakBox $display={["block", "none"]}>
               <StyledOakLink href={resolveOakHref({ page: "home" })}>
-                <Logo height={24} width={24} variant="without text" />
+                <Logo
+                  height={24}
+                  width={24}
+                  variant="without text"
+                  color="black"
+                />
               </StyledOakLink>
             </OakBox>
             {selectedArea == siteAreas.teachers && <SaveCount />}

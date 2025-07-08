@@ -1,3 +1,10 @@
+## [1.792.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.792.1...v1.792.2) (2025-07-08)
+
+
+### Bug Fixes
+
+* update logo colour in app header ([0e36851](https://github.com/oaknational/Oak-Web-Application/commit/0e36851fea75a233b8b2d6238e08e49b790088fe))
+
 ## [1.792.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.792.0...v1.792.1) (2025-07-08)
 
 
