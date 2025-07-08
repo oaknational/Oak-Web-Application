@@ -4,7 +4,7 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
-import React, { useMemo } from "react";
+import React, { useId, useMemo } from "react";
 import { useRouter } from "next/router";
 import {
   OakBox,
@@ -64,6 +64,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   mvRefreshTime,
   curriculumDownloadsTabData,
 }) => {
+  const tabContentId = useId();
   const router = useRouter();
   const pathname = usePathname();
 
@@ -214,9 +215,12 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
           keyStages={keyStages}
           color1="mint"
           color2="mint"
+          skipToId={tabContentId}
         />
 
-        <OakBox $background={"white"}>{tabContent}</OakBox>
+        <OakBox id={tabContentId} $background={"white"}>
+          {tabContent}
+        </OakBox>
       </AppLayout>
     </OakThemeProvider>
   );

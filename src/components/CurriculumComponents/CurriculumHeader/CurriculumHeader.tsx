@@ -29,6 +29,7 @@ export type CurriculumHeaderPageProps = {
   color1?: OakColorToken;
   color2?: OakColorToken;
   tab: "overview" | "units" | "downloads";
+  skipToId?: string;
 };
 
 const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
@@ -38,6 +39,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   curriculumPhaseOptions,
   keyStages,
   tab,
+  skipToId,
 }) => {
   const subject = curriculumPhaseOptions.subjects.find(
     (subject) => subject.slug === curriculumSelectionSlugs.subjectSlug,
@@ -101,6 +103,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
           $width={"100%"}
         >
           <Breadcrumbs
+            skipToId={skipToId}
             breadcrumbs={[
               {
                 oakLinkProps: {

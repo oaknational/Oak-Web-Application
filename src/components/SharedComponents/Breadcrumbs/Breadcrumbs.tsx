@@ -6,6 +6,7 @@ import { BreadcrumbJsonLd } from "@/browser-lib/seo/getJsonLd";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import { MaybeOakHref, ResolveOakHrefProps } from "@/common-lib/urls";
 import ellipsis from "@/styles/ellipsis";
+import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
 
 const BreadcrumbsNav = styled.nav`
   display: flex;
@@ -51,13 +52,15 @@ export type Breadcrumb = {
 
 export type BreadcrumbsProps = {
   breadcrumbs: Breadcrumb[];
+  skipToId?: string;
 };
 
-const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
+const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs, skipToId }) => {
   return (
     <>
       {" "}
       <BreadcrumbJsonLd itemListElements={breadcrumbs} />
+      {skipToId && <SkipLink href={`#${skipToId}`}>Skip to content</SkipLink>}
       <BreadcrumbsNav aria-label="Breadcrumb">
         <BreadcrumbUL $reset $minWidth={0}>
           {breadcrumbs.map((breadcrumb, i) => {
