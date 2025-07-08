@@ -68,6 +68,7 @@ describe("lessonListing()", () => {
         pathwayDisplayOrder: null,
         actions: {},
         containsGeorestrictedLessons: false,
+        containsLoginRequiredLessons: false,
         lessons: [
           {
             lessonSlug: "lesson-slug",
@@ -210,65 +211,6 @@ describe("lessonListing()", () => {
         mockPackagedUnitData,
         getTransformedLessons([syntheticUnitvariantLessonsByKsFixture({})]),
         false,
-      );
-      expect(transformedLessons).toEqual({
-        examBoardSlug: null,
-        examBoardTitle: null,
-        keyStageSlug: "ks1",
-        keyStageTitle: "Key Stage 1",
-        lessons: [
-          {
-            description: "lesson-description",
-            expired: false,
-            hasLegacyCopyrightMaterial: false,
-            lessonCohort: "2023-2024",
-            lessonReleaseDate: null,
-            lessonSlug: "lesson-slug",
-            lessonTitle: "lesson-title",
-            orderInUnit: 1,
-            presentationCount: 0,
-            pupilLessonOutcome: "pupil-lesson-outcome",
-            quizCount: 0,
-            videoCount: 0,
-            worksheetCount: 0,
-            actions: null,
-            geoRestricted: false,
-            loginRequired: false,
-            isUnpublished: false,
-          },
-        ],
-        programmeSlug: "programme-slug",
-        subjectSlug: "maths",
-        subjectTitle: "Maths",
-        tierSlug: null,
-        tierTitle: null,
-        unitSlug: "unit-slug",
-        unitTitle: "unit-title",
-        unitvariantId: 1,
-        yearTitle: "Year 1",
-        yearSlug: "year-1",
-        year: "1",
-        pathwaySlug: null,
-        pathwayTitle: null,
-        pathwayDisplayOrder: null,
-        actions: {},
-        containsGeorestrictedLessons: false,
-      });
-    });
-    test("getTransformedUnit returns the correct data for optionality units", () => {
-      const pfs = syntheticUnitvariantLessonsByKsFixture().programme_fields;
-      const transformedLessons = getPackagedUnit(
-        mockPackagedUnitData,
-        getTransformedLessons([
-          syntheticUnitvariantLessonsByKsFixture({
-            overrides: {
-              programme_fields: {
-                ...pfs,
-                optionality: "optional",
-              },
-            },
-          }),
-        ]),
         false,
       );
       expect(transformedLessons).toEqual({
@@ -313,6 +255,69 @@ describe("lessonListing()", () => {
         pathwayDisplayOrder: null,
         actions: {},
         containsGeorestrictedLessons: false,
+        containsLoginRequiredLessons: false,
+      });
+    });
+    test("getTransformedUnit returns the correct data for optionality units", () => {
+      const pfs = syntheticUnitvariantLessonsByKsFixture().programme_fields;
+      const transformedLessons = getPackagedUnit(
+        mockPackagedUnitData,
+        getTransformedLessons([
+          syntheticUnitvariantLessonsByKsFixture({
+            overrides: {
+              programme_fields: {
+                ...pfs,
+                optionality: "optional",
+              },
+            },
+          }),
+        ]),
+        false,
+        false,
+      );
+      expect(transformedLessons).toEqual({
+        examBoardSlug: null,
+        examBoardTitle: null,
+        keyStageSlug: "ks1",
+        keyStageTitle: "Key Stage 1",
+        lessons: [
+          {
+            description: "lesson-description",
+            expired: false,
+            hasLegacyCopyrightMaterial: false,
+            lessonCohort: "2023-2024",
+            lessonReleaseDate: null,
+            lessonSlug: "lesson-slug",
+            lessonTitle: "lesson-title",
+            orderInUnit: 1,
+            presentationCount: 0,
+            pupilLessonOutcome: "pupil-lesson-outcome",
+            quizCount: 0,
+            videoCount: 0,
+            worksheetCount: 0,
+            actions: null,
+            geoRestricted: false,
+            loginRequired: false,
+            isUnpublished: false,
+          },
+        ],
+        programmeSlug: "programme-slug",
+        subjectSlug: "maths",
+        subjectTitle: "Maths",
+        tierSlug: null,
+        tierTitle: null,
+        unitSlug: "unit-slug",
+        unitTitle: "unit-title",
+        unitvariantId: 1,
+        yearTitle: "Year 1",
+        yearSlug: "year-1",
+        year: "1",
+        pathwaySlug: null,
+        pathwayTitle: null,
+        pathwayDisplayOrder: null,
+        actions: {},
+        containsGeorestrictedLessons: false,
+        containsLoginRequiredLessons: false,
       });
     });
     test("getTransformedLessons returns the correct data", async () => {

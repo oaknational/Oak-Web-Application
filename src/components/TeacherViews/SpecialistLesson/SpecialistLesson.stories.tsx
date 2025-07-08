@@ -60,6 +60,8 @@ export const SpecialistLessonPage: Story = {
       lessonReleaseDate: "2022-02-22T12:00:00Z",
       orderInUnit: 1,
       unitTotalLessonCount: 1,
+      loginRequired: false,
+      geoRestricted: false,
     },
   },
 };
