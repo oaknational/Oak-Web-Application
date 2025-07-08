@@ -1,5 +1,5 @@
 import React from "react";
-import { screen, within, waitFor, fireEvent } from "@testing-library/react";
+import { screen, within, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
@@ -155,17 +155,14 @@ describe("MobileUnitFilters", () => {
       </OakThemeProvider>,
     );
 
-    const filterToggle = screen.getByRole("button", { name: /filter/i });
-    await user.click(filterToggle);
-
     const yearCheckbox = screen.getByRole("checkbox", { name: /Year 1/i });
     const categoryCheckbox = screen.getByRole("checkbox", { name: /Maths/i });
     const themeRadio = screen.getByRole("radio", { name: /Theme 1/i });
     const submitButton = screen.getByRole("button", { name: /Show results/i });
 
-    await fireEvent.click(yearCheckbox);
-    await fireEvent.click(categoryCheckbox);
-    await fireEvent.click(themeRadio);
+    await user.click(yearCheckbox);
+    await user.click(categoryCheckbox);
+    await user.click(themeRadio);
 
     await user.click(submitButton);
     expect(mockProps.browseRefined).toHaveBeenCalledWith({

@@ -13,7 +13,6 @@ import UnitsLearningThemeFilters from "../UnitsLearningThemeFilters/UnitsLearnin
 import YearGroupFilters from "@/components/TeacherComponents/YearGroupFilters";
 import SubjectCategoryFilters from "@/components/TeacherComponents/SubjectCategoryFilters";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
-import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import filterUnits from "@/utils/filterUnits/filterUnits";
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 import { SpecialistUnitListingData } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
@@ -43,13 +42,9 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
   const {
     learningThemes,
     numberOfUnits,
-    programmeSlug,
     browseRefined,
     learningThemesFilterId,
-    subjectTitle,
-    subjectSlug,
     units,
-    isSpecialist,
     newQuery,
     currentQuery,
     updateQuery: setQuery,
@@ -84,7 +79,7 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
       });
       setCurrNumberOfUnits(filteredUnits.length);
     }
-  }, []);
+  }, [category, theme, year, units, isUnitListing]);
 
   const handleClearAllFilters = () => {
     setQuery(null);
@@ -143,9 +138,7 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
           {isUnitListing && props.yearGroups.length > 1 && (
             <YearGroupFilters
               idSuffix="mobile"
-              programmeSlug={programmeSlug}
               yearGroups={props.yearGroups}
-              browseRefined={browseRefined}
               yearGroupSlug={year}
               setYear={(year) => setQuery({ year })}
             />
@@ -153,10 +146,8 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
           {isUnitListing && props.subjectCategories.length > 1 && (
             <SubjectCategoryFilters
               idSuffix="mobile"
-              programmeSlug={programmeSlug}
               subjectCategories={props.subjectCategories}
               categorySlug={category}
-              browseRefined={browseRefined}
               setCategory={(category) => setQuery({ category })}
             />
           )}
@@ -168,34 +159,10 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
 
               <UnitsLearningThemeFilters
                 idSuffix="mobile"
-                programmeSlug={programmeSlug}
                 labelledBy={learningThemesFilterId}
                 learningThemes={learningThemes}
                 selectedThemeSlug={theme ?? "all"}
-                linkProps={
-                  !isSpecialist
-                    ? {
-                        page: "unit-index",
-                        programmeSlug,
-                      }
-                    : {
-                        page: "specialist-unit-index",
-                        programmeSlug: programmeSlug,
-                      }
-                }
-                trackingProps={
-                  isUnitListing && !isSpecialist
-                    ? {
-                        keyStageSlug: props.keyStageSlug,
-                        keyStageTitle:
-                          props.keyStageTitle as KeyStageTitleValueType,
-                        subjectTitle,
-                        subjectSlug,
-                      }
-                    : undefined
-                }
                 setTheme={(theme) => setQuery({ theme })}
-                browseRefined={browseRefined}
               />
             </>
           )}

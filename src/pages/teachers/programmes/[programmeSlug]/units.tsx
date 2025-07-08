@@ -19,6 +19,7 @@ import {
 import { examboards, tierSlugs } from "@oaknational/oak-curriculum-schema";
 import { z } from "zod";
 
+import { FilterTypeValueType } from "@/browser-lib/avo/Avo";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
@@ -209,7 +210,33 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     }
   };
 
-  const handleUpdateAndSubmitQuery = (queryObj: FilterQuery | null) => {
+  const trackFilterRefined = (
+    filterType: FilterTypeValueType,
+    filterValue: string,
+  ) => {
+    const activeFilters = {
+      content_types: "units",
+      learning_themes: filterType !== "Learning theme filter" && themeSlug,
+      year_group: filterType !== "Year filter" && yearGroupSlug,
+    };
+    track.browseRefined({
+      platform: "owa",
+      product: "teacher lesson resources",
+      engagementIntent: "refine",
+      componentType: "filter_link",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
+      filterValue,
+      filterType: "Subject filter",
+      activeFilters,
+    });
+  };
+
+  const handleUpdateAndSubmitQuery = (
+    queryObj: FilterQuery | null,
+    filterType: FilterTypeValueType,
+    filterValue: string,
+  ) => {
     const updatedQuery = handleUpdateQuery(queryObj);
 
     // TODO: extract to shared
@@ -230,6 +257,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     } else {
       params["learning-theme"] = "all";
     }
+    trackFilterRefined(filterType, filterValue);
     router.replace(
       {
         pathname: router.pathname,
@@ -399,13 +427,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 learningThemes={learningThemes}
                 filtersRef={filtersRef}
                 skipFiltersButton={skipFiltersButton}
-                programmeSlug={programmeSlug}
-                subjectSlug={subjectSlug}
-                subjectTitle={subjectTitle}
-                keyStageSlug={keyStageSlug}
-                keyStageTitle={keyStageTitle}
                 learningThemesId={learningThemesId}
-                browseRefined={track.browseRefined}
                 updateQuery={handleUpdateAndSubmitQuery}
                 newQuery={newQuery}
                 currentQuery={{

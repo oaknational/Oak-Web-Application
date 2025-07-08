@@ -10,10 +10,7 @@ import YearGroupFilters from "../YearGroupFilters";
 import SubjectCategoryFilters from "../SubjectCategoryFilters";
 import UnitsLearningThemeFilters from "../UnitsLearningThemeFilters";
 
-import {
-  BrowseRefinedProperties,
-  KeyStageTitleValueType,
-} from "@/browser-lib/avo/Avo";
+import { FilterTypeValueType } from "@/browser-lib/avo/Avo";
 import {
   LearningThemes,
   SubjectCategory,
@@ -30,14 +27,12 @@ export type DesktopUnitFiltersProps = {
   subjectCategories: Array<SubjectCategory>;
   learningThemes: LearningThemes;
   skipFiltersButton: boolean;
-  programmeSlug: string;
-  subjectSlug: string;
-  subjectTitle: string;
-  keyStageSlug: string;
-  keyStageTitle: string;
   learningThemesId: string;
-  browseRefined: (properties: BrowseRefinedProperties) => void;
-  updateQuery: (queryObj: FilterQuery | null) => void;
+  updateQuery: (
+    queryObj: FilterQuery | null,
+    filterType: FilterTypeValueType,
+    filterValue: string,
+  ) => void;
   newQuery: FilterQuery | null;
   currentQuery: FilterQuery | null;
 };
@@ -51,13 +46,7 @@ const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
     subjectCategories,
     learningThemes,
     skipFiltersButton,
-    programmeSlug,
-    subjectSlug,
-    subjectTitle,
-    keyStageSlug,
-    keyStageTitle,
     learningThemesId,
-    browseRefined,
     currentQuery,
     newQuery,
     updateQuery,
@@ -107,11 +96,7 @@ const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
           <YearGroupFilters
             yearGroups={yearGroups}
             idSuffix="desktop"
-            browseRefined={browseRefined}
-            programmeSlug={programmeSlug}
-            setYear={(year) => {
-              updateQuery({ year });
-            }}
+            setYear={(year) => updateQuery({ year }, "Year filter", year ?? "")}
             yearGroupSlug={yearGroupSlug}
           />
         )}
@@ -120,9 +105,9 @@ const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
             idSuffix="desktop"
             subjectCategories={subjectCategories}
             categorySlug={categorySlug}
-            browseRefined={browseRefined}
-            programmeSlug={programmeSlug}
-            setCategory={(category) => updateQuery({ category })}
+            setCategory={(category) =>
+              updateQuery({ category }, "Subject filter", category ?? "")
+            }
           />
         )}
         {learningThemes?.length > 1 && (
@@ -141,19 +126,9 @@ const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
               labelledBy={learningThemesId}
               learningThemes={learningThemes}
               selectedThemeSlug={selectedThemeSlug ?? "all"}
-              programmeSlug={programmeSlug}
-              linkProps={{
-                page: "unit-index",
-                programmeSlug,
-              }}
-              trackingProps={{
-                keyStageSlug,
-                keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-                subjectTitle,
-                subjectSlug,
-              }}
-              browseRefined={browseRefined}
-              setTheme={(theme) => updateQuery({ theme })}
+              setTheme={(theme) =>
+                updateQuery({ theme }, "Learning theme filter", theme ?? "all")
+              }
             />
           </OakFlex>
         )}

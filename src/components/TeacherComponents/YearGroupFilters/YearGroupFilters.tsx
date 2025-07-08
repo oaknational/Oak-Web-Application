@@ -6,23 +6,18 @@ import {
 } from "@oaknational/oak-components";
 import React, { FC } from "react";
 
-import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import { YearGroup } from "@/node-lib/curriculum-api-2023/queries/unitListing/helpers/getAllYearGroups";
 
 type YearGroupFiltersProps = {
   yearGroups: YearGroup[];
-  browseRefined: TrackFns["browseRefined"];
   idSuffix: "desktop" | "mobile";
-  programmeSlug: string;
   setYear: (year: string | null) => void;
   yearGroupSlug: string;
 };
 
 const YearGroupFilters: FC<YearGroupFiltersProps> = ({
   yearGroups,
-  browseRefined,
   idSuffix,
-  programmeSlug,
   setYear,
   yearGroupSlug,
 }) => {
@@ -55,25 +50,7 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
             displayValue="All"
             id={`all-year-groups-${idSuffix}`}
             checked={!yearGroupSlug}
-            onChange={() => {
-              // browseRefined({
-              //   platform: "owa",
-              //   product: "teacher lesson resources",
-              //   engagementIntent: "refine",
-              //   componentType: "filter_link",
-              //   eventVersion: "2.0.0",
-              //   analyticsUseCase: "Teacher",
-              //   filterValue: "all",
-              //   filterType: "Subject filter",
-              //   activeFilters: {
-              //     content_types: "units",
-              //     learning_themes: router.query.learningTheme,
-              //     categories: router.query.category,
-              //   },
-              // });
-
-              setYear?.(null);
-            }}
+            onChange={() => setYear?.(null)}
           />
           {yearGroups
             .filter((yearGroup) => yearGroup.yearSlug !== "all-years")
@@ -84,25 +61,7 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
                 displayValue={yearGroup.yearTitle}
                 key={yearGroup.yearSlug}
                 checked={yearGroup.yearSlug === yearGroupSlug}
-                onChange={() => {
-                  //TODO: tracking
-                  // browseRefined({
-                  //   platform: "owa",
-                  //   product: "teacher lesson resources",
-                  //   engagementIntent: "refine",
-                  //   componentType: "filter_link",
-                  //   eventVersion: "2.0.0",
-                  //   analyticsUseCase: "Teacher",
-                  //   filterValue: yearGroup.yearTitle,
-                  //   filterType: "Subject filter",
-                  //   activeFilters: {
-                  //     content_types: "units",
-                  //     learning_themes: router.query.learningTheme,
-                  //     categories: router.query.category,
-                  //   },
-                  // });
-                  setYear && setYear(yearGroup.yearSlug);
-                }}
+                onChange={() => setYear(yearGroup.yearSlug)}
               />
             ))}
         </OakFlex>
