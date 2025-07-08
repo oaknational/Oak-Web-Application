@@ -16,9 +16,7 @@ type SubjectCategoryFiltersProps = {
   categorySlug: string | undefined;
   browseRefined: TrackFns["browseRefined"];
   idSuffix: "desktop" | "mobile";
-  selectedThemeSlug?: string;
   programmeSlug: string;
-  activeMobileFilter?: string;
   setCategory?: (category: string | null) => void;
 };
 
@@ -27,21 +25,16 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
   categorySlug,
   browseRefined,
   idSuffix,
-  selectedThemeSlug,
   programmeSlug,
-  activeMobileFilter,
   setCategory,
 }) => {
-  const router = useRouter();
-  const isMobile = idSuffix === "mobile";
-
   return (
     <OakFlex
       $mv="space-between-m"
       $flexDirection={"column"}
-      $pb={isMobile ? undefined : "inner-padding-xl2"}
-      $bb={isMobile ? undefined : "border-solid-s"}
-      $borderColor={isMobile ? undefined : "border-neutral-lighter"}
+      $pb={[undefined, "inner-padding-xl2"]}
+      $bb={["border-solid-none", "border-solid-s"]}
+      $borderColor={["transparent", "border-neutral-lighter"]}
       $flexGrow={1}
     >
       <OakFieldset>
@@ -65,42 +58,23 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
             id={`all-categories-${idSuffix}`}
             checked={!categorySlug}
             onChange={() => {
-              if (!isMobile) {
-                router.replace(
-                  {
-                    pathname: router.pathname,
-                    query: {
-                      ...(selectedThemeSlug && {
-                        "learning-theme": selectedThemeSlug,
-                      }),
-                      programmeSlug,
-                      ...(router.query.year && {
-                        year: router.query.year,
-                      }),
-                    },
-                  },
-                  undefined,
-                  { shallow: true },
-                );
+              setCategory?.(null);
 
-                browseRefined({
-                  platform: "owa",
-                  product: "teacher lesson resources",
-                  engagementIntent: "refine",
-                  componentType: "filter_link",
-                  eventVersion: "2.0.0",
-                  analyticsUseCase: "Teacher",
-                  filterValue: "all",
-                  filterType: "Subject filter",
-                  activeFilters: {
-                    content_types: "units",
-                    learning_themes: router.query.learningTheme,
-                    year_group: router.query.year,
-                  },
-                });
-              } else {
-                setCategory?.(null);
-              }
+              // browseRefined({
+              //   platform: "owa",
+              //   product: "teacher lesson resources",
+              //   engagementIntent: "refine",
+              //   componentType: "filter_link",
+              //   eventVersion: "2.0.0",
+              //   analyticsUseCase: "Teacher",
+              //   filterValue: "all",
+              //   filterType: "Subject filter",
+              //   activeFilters: {
+              //     content_types: "units",
+              //     learning_themes: router.query.learningTheme,
+              //     year_group: router.query.year,
+              //   },
+              // });
             }}
           />
           {subjectCategories.map((category) => (
@@ -110,48 +84,24 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
               value={`${idSuffix}-${category.slug}`}
               displayValue={category.label}
               id={`${category.label}-${idSuffix}`}
-              checked={
-                !isMobile
-                  ? categorySlug === category.slug
-                  : activeMobileFilter === category.slug
-              }
+              checked={categorySlug === category.slug}
               onChange={() => {
-                if (!isMobile) {
-                  browseRefined({
-                    platform: "owa",
-                    product: "teacher lesson resources",
-                    engagementIntent: "refine",
-                    componentType: "filter_link",
-                    eventVersion: "2.0.0",
-                    analyticsUseCase: "Teacher",
-                    filterValue: category.label,
-                    filterType: "Subject filter",
-                    activeFilters: {
-                      content_types: "units",
-                      learning_themes: router.query.learningTheme,
-                      year_group: router.query.year,
-                    },
-                  });
-                  router.replace(
-                    {
-                      pathname: router.pathname,
-                      query: {
-                        ...(selectedThemeSlug && {
-                          "learning-theme": selectedThemeSlug,
-                        }),
-                        programmeSlug,
-                        category: category.slug,
-                        ...(router.query.year && {
-                          year: router.query.year,
-                        }),
-                      },
-                    },
-                    undefined,
-                    { shallow: true },
-                  );
-                } else {
-                  setCategory && category.slug && setCategory(category.slug);
-                }
+                // browseRefined({
+                //   platform: "owa",
+                //   product: "teacher lesson resources",
+                //   engagementIntent: "refine",
+                //   componentType: "filter_link",
+                //   eventVersion: "2.0.0",
+                //   analyticsUseCase: "Teacher",
+                //   filterValue: category.label,
+                //   filterType: "Subject filter",
+                //   activeFilters: {
+                //     content_types: "units",
+                //     learning_themes: router.query.learningTheme,
+                //     year_group: router.query.year,
+                //   },
+                // });
+                setCategory && category.slug && setCategory(category.slug);
               }}
             />
           ))}

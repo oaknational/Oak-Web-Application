@@ -146,7 +146,7 @@ const MobileUnitFiltersCopy: FC<MobileUnitFiltersProps> = (props) => {
               programmeSlug={programmeSlug}
               yearGroups={props.yearGroups}
               browseRefined={browseRefined}
-              activeMobileFilter={year}
+              yearGroupSlug={year}
               setYear={(year) => setQuery({ year })}
             />
           )}
@@ -158,7 +158,6 @@ const MobileUnitFiltersCopy: FC<MobileUnitFiltersProps> = (props) => {
               categorySlug={category}
               browseRefined={browseRefined}
               setCategory={(category) => setQuery({ category })}
-              activeMobileFilter={category}
             />
           )}
           {learningThemes.length > 1 && (

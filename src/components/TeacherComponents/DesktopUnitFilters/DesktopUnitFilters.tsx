@@ -66,7 +66,7 @@ const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
   } = props;
 
   const yearGroupSlug = newQuery?.year ?? currentQuery?.year ?? "";
-  const categorySlug = currentQuery?.category ?? "";
+  const categorySlug = newQuery?.category ?? currentQuery?.category ?? "";
   const selectedThemeSlug = currentQuery?.theme ?? "all";
 
   return (
@@ -127,6 +127,10 @@ const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
             browseRefined={browseRefined}
             programmeSlug={programmeSlug}
             selectedThemeSlug={selectedThemeSlug}
+            setCategory={(category) => {
+              updateQuery({ category });
+              handleSubmitQuery();
+            }}
           />
         )}
         {learningThemes?.length > 1 && (
@@ -142,7 +146,10 @@ const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
             </OakHeading>
             <UnitsLearningThemeFilters
               idSuffix="desktop"
-              onChangeCallback={setSelectedThemeSlug}
+              onChangeCallback={(themeSlug) => {
+                updateQuery({ theme: themeSlug });
+                handleSubmitQuery();
+              }}
               labelledBy={learningThemesId}
               learningThemes={learningThemes}
               selectedThemeSlug={selectedThemeSlug ?? "all"}
