@@ -156,7 +156,7 @@ export function Select<
       <>
         <SelectButton
           {...mergeProps(buttonProps, focusProps)}
-          aria-labelledby={labelProps.id}
+          aria-labelledby={[labelProps.id, buttonId].join(" ")}
           aria-describedby={props["aria-describedby"]}
           aria-invalid={props["aria-invalid"]}
           ref={ref}
@@ -193,7 +193,11 @@ export function Select<
         </SelectButton>
         {state.isOpen && (
           <Popover isOpen={state.isOpen} onClose={state.close}>
-            <ListBox {...menuProps} state={state} />
+            <ListBox
+              {...menuProps}
+              state={state}
+              aria-labelledby={labelProps.id}
+            />
           </Popover>
         )}
       </>
