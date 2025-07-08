@@ -81,10 +81,6 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
     }
   }, [category, theme, year, units, isUnitListing]);
 
-  const handleClearAllFilters = () => {
-    setQuery(null);
-  };
-
   const handleSubmitButton = () => {
     if (isUnitListing) {
       browseRefined({
@@ -109,10 +105,6 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
     setIsOpen(false);
   };
 
-  const handleClose = () => {
-    setIsOpen(false);
-  };
-
   return (
     <>
       <OakTertiaryButton
@@ -124,8 +116,8 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
       </OakTertiaryButton>
       <OakFilterDrawer
         isOpen={isOpen}
-        onClose={() => handleClose()}
-        clearAllInputs={() => handleClearAllFilters()}
+        onClose={() => setIsOpen(false)}
+        clearAllInputs={() => setQuery(null)}
         footerSlot={
           <OakFlex $width={"100%"} $alignSelf={"center"}>
             <OakPrimaryButton onClick={handleSubmitButton}>
