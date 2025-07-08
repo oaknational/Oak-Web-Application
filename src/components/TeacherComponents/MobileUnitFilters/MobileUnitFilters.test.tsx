@@ -5,12 +5,10 @@ import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import MobileUnitFilters, { MobileUnitFiltersProps } from "./MobileUnitFilters";
 
-import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 const mockProps: MobileUnitFiltersProps = {
   numberOfUnits: 10,
-  browseRefined: jest.fn() as TrackFns["browseRefined"],
   learningThemesFilterId: "theme1",
   yearGroups: [
     { yearTitle: "Year 1", yearSlug: "year-1", year: "1" },
@@ -145,41 +143,5 @@ describe("MobileUnitFilters", () => {
     expect(yearCheckbox).toBeChecked();
     expect(categoryCheckbox).toBeChecked();
     expect(themeRadio).toBeChecked();
-  });
-
-  it.skip("invokes browse refined analytics with the correct props", async () => {
-    const user = userEvent.setup();
-    renderWithTheme(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <MobileUnitFilters {...mockProps} />
-      </OakThemeProvider>,
-    );
-
-    const yearCheckbox = screen.getByRole("checkbox", { name: /Year 1/i });
-    const categoryCheckbox = screen.getByRole("checkbox", { name: /Maths/i });
-    const themeRadio = screen.getByRole("radio", { name: /Theme 1/i });
-    const submitButton = screen.getByRole("button", { name: /Show results/i });
-
-    await user.click(yearCheckbox);
-    await user.click(categoryCheckbox);
-    await user.click(themeRadio);
-
-    await user.click(submitButton);
-    expect(mockProps.browseRefined).toHaveBeenCalledWith({
-      platform: "owa",
-      product: "teacher lesson resources",
-      engagementIntent: "refine",
-      componentType: "filter_link",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      filterValue: "show results button",
-      filterType: "Subject filter",
-      activeFilters: {
-        content_types: "units",
-        learning_themes: "theme1",
-        categories: "maths",
-        year: "year-1",
-      },
-    });
   });
 });

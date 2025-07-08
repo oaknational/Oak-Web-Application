@@ -1,5 +1,6 @@
 import React, { FC, useState, useEffect } from "react";
 import {
+  OakBox,
   OakFieldset,
   OakFilterDrawer,
   OakFlex,
@@ -12,7 +13,6 @@ import UnitsLearningThemeFilters from "../UnitsLearningThemeFilters/UnitsLearnin
 
 import YearGroupFilters from "@/components/TeacherComponents/YearGroupFilters";
 import SubjectCategoryFilters from "@/components/TeacherComponents/SubjectCategoryFilters";
-import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import filterUnits from "@/utils/filterUnits/filterUnits";
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 import { SpecialistUnitListingData } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
@@ -20,9 +20,7 @@ import { FilterQuery } from "@/pages/teachers/programmes/[programmeSlug]/units";
 
 export type MobileUnitFiltersProps = {
   numberOfUnits: number;
-  browseRefined: TrackFns["browseRefined"];
   learningThemesFilterId: string;
-  isSpecialist?: boolean;
   updateQuery: (queryObj: FilterQuery | null) => void;
   newQuery: FilterQuery | null;
   currentQuery: FilterQuery | null;
@@ -42,7 +40,6 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
   const {
     learningThemes,
     numberOfUnits,
-    browseRefined,
     learningThemesFilterId,
     units,
     newQuery,
@@ -81,32 +78,8 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
     }
   }, [category, theme, year, units, isUnitListing]);
 
-  const handleSubmitButton = () => {
-    if (isUnitListing) {
-      browseRefined({
-        platform: "owa",
-        product: "teacher lesson resources",
-        engagementIntent: "refine",
-        componentType: "filter_link",
-        eventVersion: "2.0.0",
-        analyticsUseCase: "Teacher",
-        filterValue: "show results button",
-        filterType: "Subject filter",
-        activeFilters: {
-          content_types: "units",
-          learning_themes: theme,
-          categories: category,
-          year: year,
-        },
-      });
-    }
-
-    handleSubmitQuery();
-    setIsOpen(false);
-  };
-
   return (
-    <>
+    <OakBox $display={["auto", "auto", "none"]}>
       <OakTertiaryButton
         isTrailingIcon
         iconName="filter"
@@ -120,7 +93,7 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
         clearAllInputs={() => setQuery(null)}
         footerSlot={
           <OakFlex $width={"100%"} $alignSelf={"center"}>
-            <OakPrimaryButton onClick={handleSubmitButton}>
+            <OakPrimaryButton onClick={handleSubmitQuery}>
               {`Show results (${currNumberOfUnits})`}
             </OakPrimaryButton>
           </OakFlex>
@@ -160,7 +133,7 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
           )}
         </OakFieldset>
       </OakFilterDrawer>
-    </>
+    </OakBox>
   );
 };
 

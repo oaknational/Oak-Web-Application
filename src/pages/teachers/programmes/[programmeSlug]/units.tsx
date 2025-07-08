@@ -7,7 +7,6 @@ import {
   NextPage,
 } from "next";
 import {
-  OakBox,
   OakGrid,
   OakGridArea,
   OakHeading,
@@ -53,6 +52,7 @@ import getYearGroupSEOString from "@/pages-helpers/teacher/year-group-seo-string
 import CurriculumDownloadBanner from "@/components/TeacherComponents/CurriculumDownloadBanner/CurriculumDownloadBanner";
 import { convertSubjectToSlug } from "@/components/TeacherComponents/helpers/convertSubjectToSlug";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
+import { isUnitListData } from "@/components/TeacherComponents/UnitList/helpers";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -268,55 +268,55 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     );
   };
 
+  const [isMobileFilterDrawerOpen, setIsMobileFilterDrawerOpen] =
+    useState<boolean>(false);
+
   const handleSubmitQuery = () => {
     if (newQuery) {
       const params = Object.assign({}, router.query);
+      let theme, category, year;
       if (newQuery.year) {
         params.year = newQuery.year;
+        year = newQuery.year;
       } else {
         delete params.year;
       }
       if (newQuery.category) {
         params.category = newQuery.category;
+        category = newQuery.category;
       } else {
         delete params.category;
       }
       if (newQuery.theme) {
         params["learning-theme"] = newQuery.theme;
+        theme = newQuery.theme;
       } else {
         params["learning-theme"] = "all";
       }
+      if (isUnitListData(curriculumData)) {
+        track.browseRefined({
+          platform: "owa",
+          product: "teacher lesson resources",
+          engagementIntent: "refine",
+          componentType: "filter_link",
+          eventVersion: "2.0.0",
+          analyticsUseCase: "Teacher",
+          filterValue: "show results button",
+          filterType: "Subject filter",
+          activeFilters: {
+            content_types: "units",
+            learning_themes: theme,
+            categories: category,
+            year: year,
+          },
+        });
+      }
+      setIsMobileFilterDrawerOpen(false);
       router.replace({
         pathname: router.pathname,
         query: params,
       });
     }
-  };
-
-  const [isMobileFilterDrawerOpen, setIsMobileFilterDrawerOpen] =
-    useState<boolean>(false);
-
-  const MobileUnitFilterButton = () => {
-    return isFiltersAvailable ? (
-      <OakBox $display={["auto", "auto", "none"]}>
-        <MobileUnitFilters
-          {...curriculumData}
-          numberOfUnits={filteredUnits.length}
-          browseRefined={track.browseRefined}
-          learningThemesFilterId={learningThemesFilterId}
-          updateQuery={handleUpdateQuery}
-          newQuery={newQuery}
-          currentQuery={{
-            year: yearGroupSlug,
-            category: categorySlug,
-            theme: themeSlug,
-          }}
-          isOpen={isMobileFilterDrawerOpen}
-          setIsOpen={setIsMobileFilterDrawerOpen}
-          handleSubmitQuery={handleSubmitQuery}
-        />
-      </OakBox>
-    ) : null;
   };
 
   const TierTabsOrUnitCountHeader = () => {
@@ -482,7 +482,23 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     $position={"relative"}
                   >
                     <TierTabsOrUnitCountHeader />
-                    <MobileUnitFilterButton />
+                    {isFiltersAvailable && (
+                      <MobileUnitFilters
+                        {...curriculumData}
+                        numberOfUnits={filteredUnits.length}
+                        learningThemesFilterId={learningThemesFilterId}
+                        updateQuery={handleUpdateQuery}
+                        newQuery={newQuery}
+                        currentQuery={{
+                          year: yearGroupSlug,
+                          category: categorySlug,
+                          theme: themeSlug,
+                        }}
+                        isOpen={isMobileFilterDrawerOpen}
+                        setIsOpen={setIsMobileFilterDrawerOpen}
+                        handleSubmitQuery={handleSubmitQuery}
+                      />
+                    )}
                   </OakFlex>
                 </OakFlex>
               </OakFlex>
