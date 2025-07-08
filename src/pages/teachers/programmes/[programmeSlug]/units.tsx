@@ -105,10 +105,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     subjectCategories.length > 1 ||
     learningThemes.length > 1;
 
-  // const [selectedThemeSlug, setSelectedThemeSlug] = useState<
-  //   string | undefined
-  // >(themeSlug);
-
   useEffect(() => {
     if (categorySlug || yearGroupSlug) {
       if (filtersRef.current) {
