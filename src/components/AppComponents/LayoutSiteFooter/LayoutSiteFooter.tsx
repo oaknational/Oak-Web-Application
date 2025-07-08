@@ -15,6 +15,7 @@ import {
   OakBox,
   OakMaxWidth,
   OakSvg,
+  OakImage,
 } from "@oaknational/oak-components";
 
 import Logo from "@/components/AppComponents/Logo";
@@ -28,6 +29,7 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import { OakLinkProps } from "@/common-lib/urls";
 import useClickableCard from "@/hooks/useClickableCard";
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
+import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 
 type LayoutFooterLinkProps = {
   text: string;
@@ -258,9 +260,18 @@ const LayoutSiteFooter: FC = () => {
               </OakFlex>
             </OakGridArea>
           </OakGrid>
+          <OakImage
+            $position={"relative"}
+            $maxWidth={"all-spacing-12"}
+            alt="Cyber Essentials Logo"
+            src={getCloudinaryImageUrl(
+              "v1751992190/OWA/illustrations/Cyber-Essentials-Logo_ryiskg.png",
+            )}
+            $mt={"space-between-m2"}
+          />
           <OakFlex
             $mb="space-between-xl"
-            $mt={["space-between-m2", "space-between-xl"]}
+            $mt={"space-between-m2"}
             $width={"100%"}
             $justifyContent={["flex-start", "space-between"]}
             $flexDirection={["column", "row"]}
