@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, useMemo } from "react";
+import React, { FC, useState, useEffect } from "react";
 import {
   OakFieldset,
   OakFilterDrawer,
@@ -7,7 +7,6 @@ import {
   OakPrimaryButton,
   OakTertiaryButton,
 } from "@oaknational/oak-components";
-import { useRouter } from "next/router";
 
 import UnitsLearningThemeFilters from "../UnitsLearningThemeFilters/UnitsLearningThemeFilters";
 
@@ -18,8 +17,6 @@ import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import filterUnits from "@/utils/filterUnits/filterUnits";
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 import { SpecialistUnitListingData } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
-import { setYear } from "date-fns";
-import { year } from "drizzle-orm/mysql-core";
 import { FilterQuery } from "@/pages/teachers/programmes/[programmeSlug]/units";
 
 export type MobileUnitFiltersProps = {
@@ -69,7 +66,6 @@ const MobileUnitFiltersCopy: FC<MobileUnitFiltersProps> = (props) => {
   const [currNumberOfUnits, setCurrNumberOfUnits] = useState(numberOfUnits);
 
   useEffect(() => {
-    // TODO: get length of filtered units
     const inputTheme = theme === "all" ? undefined : theme;
     if (isUnitListing) {
       const filteredUnits = filterUnits({
@@ -95,24 +91,24 @@ const MobileUnitFiltersCopy: FC<MobileUnitFiltersProps> = (props) => {
   };
 
   const handleSubmitButton = () => {
-    // if (isUnitListing) {
-    //   browseRefined({
-    //     platform: "owa",
-    //     product: "teacher lesson resources",
-    //     engagementIntent: "refine",
-    //     componentType: "filter_link",
-    //     eventVersion: "2.0.0",
-    //     analyticsUseCase: "Teacher",
-    //     filterValue: "show results button",
-    //     filterType: "Subject filter",
-    //     activeFilters: {
-    //       content_types: "units",
-    //       learning_themes: theme,
-    //       categories: category,
-    //       year: year,
-    //     },
-    //   });
-    // }
+    if (isUnitListing) {
+      browseRefined({
+        platform: "owa",
+        product: "teacher lesson resources",
+        engagementIntent: "refine",
+        componentType: "filter_link",
+        eventVersion: "2.0.0",
+        analyticsUseCase: "Teacher",
+        filterValue: "show results button",
+        filterType: "Subject filter",
+        activeFilters: {
+          content_types: "units",
+          learning_themes: theme,
+          categories: category,
+          year: year,
+        },
+      });
+    }
 
     handleSubmitQuery();
     setIsOpen(false);
