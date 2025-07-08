@@ -29,6 +29,8 @@ module "vercel" {
   deployment_type        = local.build_config.deployment_type
   git_repo               = "oaknational/Oak-Web-Application"
   skew_protection        = local.build_config.skew_protection
+  custom_environments    = try(local.build_config.custom_environments, [])
+  custom_env_vars        = try(local.build_config.custom_env_vars, [])
 
   environment_variables = [
     for ev in local.environment_variables : ev
