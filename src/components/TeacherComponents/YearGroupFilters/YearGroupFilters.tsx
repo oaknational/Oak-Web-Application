@@ -16,8 +16,8 @@ type YearGroupFiltersProps = {
   idSuffix: "desktop" | "mobile";
   selectedThemeSlug?: string;
   programmeSlug: string;
-  activeMobileFilter?: string;
-  setYear?: (year: string | null) => void;
+  setYear: (year: string | null) => void;
+  yearGroupSlug: string;
 };
 
 const YearGroupFilters: FC<YearGroupFiltersProps> = ({
@@ -26,8 +26,8 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
   idSuffix,
   selectedThemeSlug,
   programmeSlug,
-  activeMobileFilter,
   setYear,
+  yearGroupSlug,
 }) => {
   const router = useRouter();
   const isMobile = idSuffix === "mobile";
@@ -60,44 +60,25 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
             value={`${idSuffix}-all-year-groups`}
             displayValue="All"
             id={`all-year-groups-${idSuffix}`}
-            checked={!isMobile ? !router.query.year : !activeMobileFilter}
+            checked={!yearGroupSlug}
             onChange={() => {
-              if (!isMobile) {
-                browseRefined({
-                  platform: "owa",
-                  product: "teacher lesson resources",
-                  engagementIntent: "refine",
-                  componentType: "filter_link",
-                  eventVersion: "2.0.0",
-                  analyticsUseCase: "Teacher",
-                  filterValue: "all",
-                  filterType: "Subject filter",
-                  activeFilters: {
-                    content_types: "units",
-                    learning_themes: router.query.learningTheme,
-                    categories: router.query.category,
-                  },
-                });
+              // browseRefined({
+              //   platform: "owa",
+              //   product: "teacher lesson resources",
+              //   engagementIntent: "refine",
+              //   componentType: "filter_link",
+              //   eventVersion: "2.0.0",
+              //   analyticsUseCase: "Teacher",
+              //   filterValue: "all",
+              //   filterType: "Subject filter",
+              //   activeFilters: {
+              //     content_types: "units",
+              //     learning_themes: router.query.learningTheme,
+              //     categories: router.query.category,
+              //   },
+              // });
 
-                router.replace(
-                  {
-                    pathname: router.pathname,
-                    query: {
-                      ...(selectedThemeSlug && {
-                        "learning-theme": selectedThemeSlug,
-                      }),
-                      programmeSlug,
-                      ...(router.query.category && {
-                        category: router.query.category,
-                      }),
-                    },
-                  },
-                  undefined,
-                  { shallow: true },
-                );
-              } else {
-                setYear?.(null);
-              }
+              setYear?.(null);
             }}
           />
           {yearGroups
@@ -108,49 +89,25 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
                 value={`${idSuffix}-${yearGroup.yearSlug}`}
                 displayValue={yearGroup.yearTitle}
                 key={yearGroup.yearSlug}
-                checked={
-                  !isMobile
-                    ? yearGroup.yearSlug === router.query.year
-                    : yearGroup.yearSlug === activeMobileFilter
-                }
+                checked={yearGroup.yearSlug === yearGroupSlug}
                 onChange={() => {
-                  if (!isMobile) {
-                    browseRefined({
-                      platform: "owa",
-                      product: "teacher lesson resources",
-                      engagementIntent: "refine",
-                      componentType: "filter_link",
-                      eventVersion: "2.0.0",
-                      analyticsUseCase: "Teacher",
-                      filterValue: yearGroup.yearTitle,
-                      filterType: "Subject filter",
-                      activeFilters: {
-                        content_types: "units",
-                        learning_themes: router.query.learningTheme,
-                        categories: router.query.category,
-                      },
-                    });
-
-                    router.replace(
-                      {
-                        pathname: router.pathname,
-                        query: {
-                          ...(selectedThemeSlug && {
-                            "learning-theme": selectedThemeSlug,
-                          }),
-                          programmeSlug,
-                          year: yearGroup.yearSlug,
-                          ...(router.query.category && {
-                            category: router.query.category,
-                          }),
-                        },
-                      },
-                      undefined,
-                      { shallow: true },
-                    );
-                  } else {
-                    setYear && setYear(yearGroup.yearSlug);
-                  }
+                  //TODO: tracking
+                  // browseRefined({
+                  //   platform: "owa",
+                  //   product: "teacher lesson resources",
+                  //   engagementIntent: "refine",
+                  //   componentType: "filter_link",
+                  //   eventVersion: "2.0.0",
+                  //   analyticsUseCase: "Teacher",
+                  //   filterValue: yearGroup.yearTitle,
+                  //   filterType: "Subject filter",
+                  //   activeFilters: {
+                  //     content_types: "units",
+                  //     learning_themes: router.query.learningTheme,
+                  //     categories: router.query.category,
+                  //   },
+                  // });
+                  setYear && setYear(yearGroup.yearSlug);
                 }}
               />
             ))}

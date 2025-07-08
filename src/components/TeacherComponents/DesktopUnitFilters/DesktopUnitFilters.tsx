@@ -19,6 +19,7 @@ import {
   SubjectCategory,
   YearGroups,
 } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
+import { FilterQuery } from "@/pages/teachers/programmes/[programmeSlug]/units";
 
 export type DesktopUnitFiltersProps = {
   showFilters: boolean;
@@ -30,16 +31,16 @@ export type DesktopUnitFiltersProps = {
   learningThemes: LearningThemes;
   skipFiltersButton: boolean;
   programmeSlug: string;
-  selectedThemeSlug: string | undefined;
-  categorySlug: string | undefined;
-  yearGroupSlug: string | undefined;
   subjectSlug: string;
   subjectTitle: string;
   keyStageSlug: string;
   keyStageTitle: string;
   learningThemesId: string;
   browseRefined: (properties: BrowseRefinedProperties) => void;
-  setSelectedThemeSlug: (themeSlug: string | undefined) => void;
+  updateQuery: (queryObj: FilterQuery | null) => void;
+  newQuery: FilterQuery | null;
+  currentQuery: FilterQuery | null;
+  handleSubmitQuery: () => void;
 };
 const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
   const {
@@ -51,18 +52,23 @@ const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
     subjectCategories,
     learningThemes,
     skipFiltersButton,
-    selectedThemeSlug,
     programmeSlug,
-    setSelectedThemeSlug,
-    categorySlug,
-    yearGroupSlug,
     subjectSlug,
     subjectTitle,
     keyStageSlug,
     keyStageTitle,
     learningThemesId,
     browseRefined,
+    currentQuery,
+    newQuery,
+    updateQuery,
+    handleSubmitQuery,
   } = props;
+
+  const yearGroupSlug = newQuery?.year ?? currentQuery?.year ?? "";
+  const categorySlug = currentQuery?.category ?? "";
+  const selectedThemeSlug = currentQuery?.theme ?? "all";
+
   return (
     <OakBox
       $display={["none", "none", "block"]}
@@ -106,6 +112,11 @@ const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
             browseRefined={browseRefined}
             selectedThemeSlug={selectedThemeSlug}
             programmeSlug={programmeSlug}
+            setYear={(year) => {
+              updateQuery({ year });
+              handleSubmitQuery();
+            }}
+            yearGroupSlug={yearGroupSlug}
           />
         )}
         {subjectCategories && subjectCategories.length > 1 && (

@@ -188,14 +188,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     }
   };
 
-  // on mobile
-  // create query as options selected
-  // navigate on button click with query
-
-  // on desktop
-  // create query as options selected
-  // navigate on selection
-
   const [newQuery, setNewQuery] = useState<FilterQuery | null>(null);
 
   const handleUpdateQuery = (queryObj: FilterQuery | null) => {
@@ -372,7 +364,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
               $colSpan={[12, 12, 3]}
               $pl={["inner-padding-xl"]}
             >
-              {/* <DesktopUnitFilters
+              <DesktopUnitFilters
                 showFilters={isFiltersAvailable}
                 onFocus={() => setSkipFiltersButton(true)}
                 onBlur={() => setSkipFiltersButton(false)}
@@ -382,17 +374,21 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 filtersRef={filtersRef}
                 skipFiltersButton={skipFiltersButton}
                 programmeSlug={programmeSlug}
-                selectedThemeSlug={selectedThemeSlug}
-                categorySlug={categorySlug}
-                yearGroupSlug={yearGroupSlug}
                 subjectSlug={subjectSlug}
                 subjectTitle={subjectTitle}
                 keyStageSlug={keyStageSlug}
                 keyStageTitle={keyStageTitle}
                 learningThemesId={learningThemesId}
                 browseRefined={track.browseRefined}
-                setSelectedThemeSlug={setSelectedThemeSlug}
-              /> */}
+                updateQuery={handleUpdateQuery}
+                newQuery={newQuery}
+                currentQuery={{
+                  year: yearGroupSlug,
+                  category: categorySlug,
+                  theme: themeSlug,
+                }}
+                handleSubmitQuery={handleSubmitQuery}
+              />
               <OakFlex $display={["none", "none", "flex"]}>
                 {relatedSubjects?.map((subjectSlug) => (
                   <RelatedSubjectsBanner
