@@ -47,6 +47,7 @@ export const mockUnit = createUnit({
   ],
   title: "Composition of numbers 6 to 10",
   year: "1",
+  national_curriculum_content: [],
 });
 
 export const mockUnitWhyThisWhyNow = createUnit({
@@ -75,6 +76,7 @@ export const mockUnitWhyThisWhyNow = createUnit({
   ],
   title: "Composition of numbers 6 to 10",
   year: "1",
+  national_curriculum_content: [],
 });
 
 export const mockYearData = {
@@ -112,6 +114,7 @@ export const mockUnitKS4 = createUnit({
   ],
   title: "Composition of numbers 6 to 10",
   year: "10",
+  national_curriculum_content: [],
 });
 
 const optionalUnits = [

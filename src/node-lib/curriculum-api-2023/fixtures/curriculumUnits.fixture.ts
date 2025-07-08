@@ -108,6 +108,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -204,6 +205,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -281,6 +283,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -365,6 +368,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -449,6 +453,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -537,6 +542,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -625,6 +631,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -728,6 +735,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -831,6 +839,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -896,7 +905,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -965,6 +973,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -1089,6 +1098,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -1203,6 +1213,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -1263,6 +1274,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -1327,6 +1339,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -1426,6 +1439,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -1536,6 +1550,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -1627,6 +1642,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -1732,6 +1748,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -1837,6 +1854,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -1900,6 +1918,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -1984,6 +2003,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -2123,6 +2143,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -2272,6 +2293,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -2356,6 +2378,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -2440,6 +2463,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -2548,6 +2572,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -2651,6 +2676,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -2714,6 +2740,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -2788,6 +2815,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -2857,6 +2885,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -2976,6 +3005,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -3089,6 +3119,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -3203,6 +3234,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -3294,6 +3326,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -3399,6 +3432,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -3505,6 +3539,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -3590,6 +3625,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -3673,6 +3709,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -3751,6 +3788,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -3849,6 +3887,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -3947,6 +3986,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -4040,6 +4080,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -4135,6 +4176,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -4218,6 +4260,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -4307,6 +4350,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -4401,6 +4445,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -4464,6 +4509,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -4541,6 +4587,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -4628,6 +4675,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -4733,6 +4781,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -4809,6 +4858,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -4906,6 +4956,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -4994,6 +5045,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -5132,6 +5184,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -5190,6 +5243,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -5248,6 +5302,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -5351,6 +5406,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -5444,6 +5500,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -5533,6 +5590,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -5656,6 +5714,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -5774,6 +5833,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -5858,6 +5918,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -5941,6 +6002,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -6065,6 +6127,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -6194,6 +6257,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -6305,6 +6369,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -6388,6 +6453,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -6494,6 +6560,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -6581,6 +6648,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -6699,6 +6767,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -6767,6 +6836,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -6850,6 +6920,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -6928,6 +6999,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -7018,6 +7090,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -7107,6 +7180,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -7176,6 +7250,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -7234,6 +7309,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -7316,6 +7392,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -7393,6 +7470,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -7451,6 +7529,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -7509,6 +7588,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -7618,6 +7698,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -7715,6 +7796,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -7816,6 +7898,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -7922,6 +8005,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -8027,6 +8111,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -8113,6 +8198,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -8199,6 +8285,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -8329,6 +8416,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -8489,6 +8577,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -8574,6 +8663,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -8679,6 +8769,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -8783,6 +8874,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -8858,6 +8950,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -8927,6 +9020,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -9009,6 +9103,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -9101,6 +9196,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -9225,6 +9321,7 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
+        national_curriculum_content: [],
         prior_knowledge_requirements: [],
       },
       {
@@ -9339,7 +9436,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -9417,7 +9513,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -9494,7 +9589,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -9599,7 +9693,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -9704,7 +9797,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -9804,7 +9896,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -9872,7 +9963,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -9940,7 +10030,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -10038,7 +10127,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -10136,7 +10224,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -10239,7 +10326,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -10342,7 +10428,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -10436,7 +10521,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -10523,7 +10607,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -10637,7 +10720,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -10741,7 +10823,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -10830,7 +10911,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -10920,7 +11000,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -11015,7 +11094,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -11110,7 +11188,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -11177,7 +11254,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -11243,7 +11319,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -11321,7 +11396,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -11394,7 +11468,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -11482,7 +11555,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -11577,7 +11649,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -11667,7 +11738,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -11776,7 +11846,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -11884,7 +11953,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -11975,7 +12043,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -12080,7 +12147,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -12186,7 +12252,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -12269,7 +12334,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -12352,7 +12416,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -12471,7 +12534,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -12610,7 +12672,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -12754,7 +12815,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -12818,7 +12878,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -12881,7 +12940,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -12950,7 +13008,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -13008,7 +13065,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -13084,7 +13140,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -13189,7 +13244,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -13284,7 +13338,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -13352,7 +13405,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -13420,7 +13472,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -13507,7 +13558,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -13593,7 +13643,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -13679,7 +13728,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -13753,7 +13801,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -13822,7 +13869,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -13929,7 +13975,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -14029,7 +14074,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -14103,7 +14147,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -14191,7 +14234,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -14281,7 +14323,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -14346,7 +14387,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -14412,7 +14452,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -14483,7 +14522,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -14560,7 +14598,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -14665,7 +14702,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -14752,7 +14788,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -14839,7 +14874,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -14915,7 +14949,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -14983,7 +15016,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -15051,7 +15083,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -15128,7 +15159,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -15205,7 +15235,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -15286,7 +15315,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -15391,7 +15419,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -15487,7 +15514,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -15583,7 +15609,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -15721,7 +15746,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -15816,7 +15840,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -15906,7 +15929,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -16011,7 +16033,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -16108,7 +16129,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -16176,7 +16196,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -16244,7 +16263,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -16338,7 +16356,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -16441,7 +16458,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -16534,7 +16550,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -16592,7 +16607,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -16650,7 +16664,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -16717,7 +16730,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -16783,7 +16795,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -16887,7 +16898,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -16996,7 +17006,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -17109,7 +17118,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -17177,7 +17185,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -17257,7 +17264,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -17337,7 +17343,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -17415,7 +17420,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -17493,7 +17497,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -17560,7 +17563,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -17632,7 +17634,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -17721,7 +17722,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -17811,7 +17811,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -17877,7 +17876,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -17942,7 +17940,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -18010,7 +18007,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -18078,7 +18074,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -18175,7 +18170,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -18274,7 +18268,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -18394,7 +18387,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -18534,7 +18526,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -18602,7 +18593,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -18670,7 +18660,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -18744,7 +18733,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -18848,7 +18836,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -18942,7 +18929,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -19046,7 +19032,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -19151,7 +19136,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -19232,7 +19216,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -19313,7 +19296,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -19401,7 +19383,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -19489,7 +19470,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -19575,7 +19555,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -19661,7 +19640,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -19764,7 +19742,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -19867,7 +19844,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -19940,7 +19916,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
       {
         connection_prior_unit_description:
@@ -20018,7 +19993,6 @@ const curriculumUnitsTabFixture = (
         why_this_why_now: null,
         description: null,
         state: "published",
-        prior_knowledge_requirements: [],
       },
     ],
     ...partial,
