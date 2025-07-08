@@ -106,9 +106,9 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     subjectCategories.length > 1 ||
     learningThemes.length > 1;
 
-  const [selectedThemeSlug, setSelectedThemeSlug] = useState<
-    string | undefined
-  >(themeSlug);
+  // const [selectedThemeSlug, setSelectedThemeSlug] = useState<
+  //   string | undefined
+  // >(themeSlug);
 
   useEffect(() => {
     if (categorySlug || yearGroupSlug) {
@@ -119,11 +119,12 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   }, [categorySlug, yearGroupSlug]);
 
   const filteredUnits = filterUnits({
-    themeSlug: selectedThemeSlug,
+    themeSlug,
     categorySlug,
     yearGroup: yearGroupSlug,
     units,
   });
+
   const paginationProps = usePagination({
     totalResults: filteredUnits.length,
     pageSize: RESULTS_PER_PAGE,
@@ -205,9 +206,13 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
 
       if (queryObj.year) {
         params.year = queryObj.year;
+      } else if (queryObj.year === null) {
+        params.year = "";
       }
       if (queryObj.category) {
         params.category = queryObj.category;
+      } else if (queryObj.category === null) {
+        delete params.category;
       }
       if (queryObj.theme) {
         params.theme = queryObj.theme;
@@ -219,18 +224,25 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
 
   const handleSubmitQuery = () => {
     if (newQuery) {
+      const params = Object.assign({}, router.query);
+      if (newQuery.year) {
+        params.year = newQuery.year;
+      } else {
+        delete params.year;
+      }
+      if (newQuery.category) {
+        params.category = newQuery.category;
+      } else {
+        delete params.category;
+      }
+      if (newQuery.theme) {
+        params["learning-theme"] = newQuery.theme;
+      } else {
+        params["learning-theme"] = "all";
+      }
       router.replace({
         pathname: router.pathname,
-        query: {
-          ...router.query,
-          ...(newQuery?.year && { year: newQuery.year }),
-          ...(newQuery?.category && {
-            category: newQuery.category,
-          }),
-          ...(newQuery?.theme && {
-            "learning-theme": newQuery.theme,
-          }),
-        },
+        query: params,
       });
     }
   };
@@ -245,10 +257,14 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
           {...curriculumData}
           numberOfUnits={filteredUnits.length}
           browseRefined={track.browseRefined}
-          setSelectedThemeSlug={setSelectedThemeSlug}
           learningThemesFilterId={learningThemesFilterId}
           updateQuery={handleUpdateQuery}
           newQuery={newQuery}
+          currentQuery={{
+            year: yearGroupSlug,
+            category: categorySlug,
+            theme: themeSlug,
+          }}
           isOpen={isMobileFilterDrawerOpen}
           setIsOpen={setIsMobileFilterDrawerOpen}
           handleSubmitQuery={handleSubmitQuery}
@@ -356,7 +372,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
               $colSpan={[12, 12, 3]}
               $pl={["inner-padding-xl"]}
             >
-              <DesktopUnitFilters
+              {/* <DesktopUnitFilters
                 showFilters={isFiltersAvailable}
                 onFocus={() => setSkipFiltersButton(true)}
                 onBlur={() => setSkipFiltersButton(false)}
@@ -376,7 +392,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 learningThemesId={learningThemesId}
                 browseRefined={track.browseRefined}
                 setSelectedThemeSlug={setSelectedThemeSlug}
-              />
+              /> */}
               <OakFlex $display={["none", "none", "flex"]}>
                 {relatedSubjects?.map((subjectSlug) => (
                   <RelatedSubjectsBanner

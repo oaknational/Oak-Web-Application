@@ -28,7 +28,7 @@ export type UnitsLearningThemeFiltersProps = {
   linkProps: UnitListingLinkProps | SpecialistUnitListingLinkProps;
   trackingProps?: LearningThemeSelectedTrackingProps;
   idSuffix: "desktop" | "mobile";
-  onChangeCallback: (theme: string | undefined) => void;
+  onChangeCallback?: (theme: string | undefined) => void;
   categorySlug?: string;
   yearGroupSlug?: string;
   programmeSlug: string;
@@ -76,10 +76,10 @@ const UnitsLearningThemeFilters = ({
   const [activeThemeSlug, setActiveThemeSlug] = useState(selectedThemeSlug);
 
   const onChange = (theme: TileItem) => {
-    const callbackValue = theme.id === "all" ? undefined : theme.id;
+    const callbackValue = theme.id;
     setActiveThemeSlug(theme.id);
     if (!isMobile) {
-      onChangeCallback(callbackValue);
+      onChangeCallback?.(callbackValue);
       if (trackingProps) {
         const { keyStageSlug, subjectSlug } = trackingProps;
         browseRefined({

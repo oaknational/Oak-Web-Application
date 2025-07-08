@@ -25,11 +25,11 @@ import { FilterQuery } from "@/pages/teachers/programmes/[programmeSlug]/units";
 export type MobileUnitFiltersProps = {
   numberOfUnits: number;
   browseRefined: TrackFns["browseRefined"];
-  setSelectedThemeSlug: (theme: string | undefined) => void;
   learningThemesFilterId: string;
   isSpecialist?: boolean;
   updateQuery: (queryObj: FilterQuery | null) => void;
   newQuery: FilterQuery | null;
+  currentQuery: FilterQuery | null;
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   handleSubmitQuery: () => void;
@@ -48,30 +48,29 @@ const MobileUnitFiltersCopy: FC<MobileUnitFiltersProps> = (props) => {
     numberOfUnits,
     programmeSlug,
     browseRefined,
-    setSelectedThemeSlug,
     learningThemesFilterId,
     subjectTitle,
     subjectSlug,
     units,
     isSpecialist,
-    newQuery: currentQuery,
+    newQuery,
+    currentQuery,
     updateQuery: setQuery,
     isOpen,
     setIsOpen,
     handleSubmitQuery,
   } = props;
   const isUnitListing = isUnitListingData(props);
-  const router = useRouter();
 
-  const year = currentQuery?.year ?? "";
-  const category = currentQuery?.category ?? "";
-  const theme = currentQuery?.theme ?? "";
+  const year = newQuery?.year ?? currentQuery?.year ?? "";
+  const category = newQuery?.category ?? currentQuery?.category ?? "";
+  const theme = newQuery?.theme ?? currentQuery?.theme ?? "all";
 
   // const [currNumberOfUnits, setCurrNumberOfUnits] = useState(numberOfUnits);
 
   useEffect(() => {
     // TODO: get length of filtered units
-    //  const inputTheme = theme === "all" ? undefined : theme;
+    // const inputTheme = theme === "all" ? undefined : theme;
     // if (isUnitListing) {
     //   const filteredUnits = filterUnits({
     //     themeSlug: inputTheme,
@@ -139,7 +138,7 @@ const MobileUnitFiltersCopy: FC<MobileUnitFiltersProps> = (props) => {
         footerSlot={
           <OakFlex $width={"100%"} $alignSelf={"center"}>
             <OakPrimaryButton onClick={handleSubmitButton}>
-              {`Show results (TODO number of units)`}
+              {`Show results (TODO: number of units)`}
             </OakPrimaryButton>
           </OakFlex>
         }
@@ -175,7 +174,6 @@ const MobileUnitFiltersCopy: FC<MobileUnitFiltersProps> = (props) => {
               <UnitsLearningThemeFilters
                 idSuffix="mobile"
                 programmeSlug={programmeSlug}
-                onChangeCallback={setSelectedThemeSlug}
                 labelledBy={learningThemesFilterId}
                 learningThemes={learningThemes}
                 selectedThemeSlug={theme ?? "all"}

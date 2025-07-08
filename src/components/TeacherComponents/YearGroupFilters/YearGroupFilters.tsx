@@ -17,7 +17,7 @@ type YearGroupFiltersProps = {
   selectedThemeSlug?: string;
   programmeSlug: string;
   activeMobileFilter?: string;
-  setYear?: (year: string) => void;
+  setYear?: (year: string | null) => void;
 };
 
 const YearGroupFilters: FC<YearGroupFiltersProps> = ({
@@ -96,7 +96,7 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
                   { shallow: true },
                 );
               } else {
-                setYear?.("");
+                setYear?.(null);
               }
             }}
           />

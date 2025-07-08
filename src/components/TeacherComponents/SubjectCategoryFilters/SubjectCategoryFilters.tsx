@@ -19,7 +19,7 @@ type SubjectCategoryFiltersProps = {
   selectedThemeSlug?: string;
   programmeSlug: string;
   activeMobileFilter?: string;
-  setCategory?: (category: string) => void;
+  setCategory?: (category: string | null) => void;
 };
 
 const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
@@ -99,7 +99,7 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
                   },
                 });
               } else {
-                setCategory?.("");
+                setCategory?.(null);
               }
             }}
           />
