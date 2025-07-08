@@ -64,7 +64,7 @@ describe("node-lib/sanity-graphql/index.ts", () => {
     expect(res).toBe(actionResult);
   });
 
-  it("requestWithLogging should report graphql errors to bugsnag", async () => {
+  it("requestWithLogging should report graphql errors to the error reporter", async () => {
     const originalError = new Error(`GraphQL Error (Code: 504)`);
     console.log = jest.fn();
     const action = jest.fn().mockRejectedValue(originalError);
