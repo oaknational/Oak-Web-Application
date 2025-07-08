@@ -156,7 +156,7 @@ export function Select<
       <>
         <SelectButton
           {...mergeProps(buttonProps, focusProps)}
-          aria-labelledby={labelProps.id}
+          aria-labelledby={[labelProps.id, buttonId].join(" ")}
           aria-describedby={props["aria-describedby"]}
           aria-invalid={props["aria-invalid"]}
           ref={ref}
