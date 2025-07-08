@@ -88,7 +88,9 @@ export default ResourcePageLayout;
 
 function ResourcePageContent(props: ResourcePageLayoutProps) {
   const hasFormErrors = Object.keys(props.errors).length > 0;
-
+  const showFormErrors = hasFormErrors && !props.downloadsRestricted;
+  const showForm = props.showTermsAgreement && !props.downloadsRestricted;
+  const hideCallToAction = props.downloadsRestricted;
   return (
     <OakFlex
       $justifyContent="space-between"
@@ -194,7 +196,7 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
           ))}
         {!props.showNoResources && (
           <>
-            {props.showTermsAgreement && !props.downloadsRestricted && (
+            {showForm && (
               <>
                 <TermsAgreementForm
                   form={{
@@ -223,7 +225,7 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
                 )}
               </>
             )}
-            {hasFormErrors && (
+            {showFormErrors && (
               <OakFlex $flexDirection={"row"}>
                 <OakIcon
                   iconName="content-guidance"
@@ -264,7 +266,7 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
               </OakBox>
             )}
 
-            {!props.downloadsRestricted && props.cta}
+            {!hideCallToAction && props.cta}
 
             {props.apiError && !hasFormErrors && (
               <FieldError
