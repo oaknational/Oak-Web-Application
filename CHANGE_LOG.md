@@ -1,3 +1,10 @@
+## [1.792.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.792.0...v1.792.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* reposition absolute elements to fit new header height on mobile ([b30aaff](https://github.com/oaknational/Oak-Web-Application/commit/b30aaff4d98bceddba14eabfff88b69038ec2c5c))
+
 # [1.792.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.791.0...v1.792.0) (2025-07-07)
 
 
