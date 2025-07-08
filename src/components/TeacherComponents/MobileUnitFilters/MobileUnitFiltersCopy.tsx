@@ -66,28 +66,28 @@ const MobileUnitFiltersCopy: FC<MobileUnitFiltersProps> = (props) => {
   const category = newQuery?.category ?? currentQuery?.category ?? "";
   const theme = newQuery?.theme ?? currentQuery?.theme ?? "all";
 
-  // const [currNumberOfUnits, setCurrNumberOfUnits] = useState(numberOfUnits);
+  const [currNumberOfUnits, setCurrNumberOfUnits] = useState(numberOfUnits);
 
   useEffect(() => {
     // TODO: get length of filtered units
-    // const inputTheme = theme === "all" ? undefined : theme;
-    // if (isUnitListing) {
-    //   const filteredUnits = filterUnits({
-    //     themeSlug: inputTheme,
-    //     categorySlug: category,
-    //     yearGroup: year,
-    //     units: units as UnitListingData["units"],
-    //   });
-    //   setCurrNumberOfUnits(filteredUnits.length);
-    // } else {
-    //   const filteredUnits = filterUnits({
-    //     themeSlug: inputTheme,
-    //     categorySlug: category,
-    //     yearGroup: year,
-    //     units: units as SpecialistUnitListingData["units"],
-    //   });
-    //   setCurrNumberOfUnits(filteredUnits.length);
-    // }
+    const inputTheme = theme === "all" ? undefined : theme;
+    if (isUnitListing) {
+      const filteredUnits = filterUnits({
+        themeSlug: inputTheme,
+        categorySlug: category,
+        yearGroup: year,
+        units: units as UnitListingData["units"],
+      });
+      setCurrNumberOfUnits(filteredUnits.length);
+    } else {
+      const filteredUnits = filterUnits({
+        themeSlug: inputTheme,
+        categorySlug: category,
+        yearGroup: year,
+        units: units as SpecialistUnitListingData["units"],
+      });
+      setCurrNumberOfUnits(filteredUnits.length);
+    }
   }, []);
 
   const handleClearAllFilters = () => {
@@ -138,7 +138,7 @@ const MobileUnitFiltersCopy: FC<MobileUnitFiltersProps> = (props) => {
         footerSlot={
           <OakFlex $width={"100%"} $alignSelf={"center"}>
             <OakPrimaryButton onClick={handleSubmitButton}>
-              {`Show results (TODO: number of units)`}
+              {`Show results (${currNumberOfUnits})`}
             </OakPrimaryButton>
           </OakFlex>
         }
