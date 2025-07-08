@@ -159,19 +159,48 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
           error instanceof OakError &&
           error.code === "curriculum-api/not-found"
         ) {
-          await new Promise((resolve) => setTimeout(resolve, 0)); // TODO: remove this
-          lesson = await curriculumApi2023.lessonOverview({
-            lessonSlug,
-          });
-          lesson = await populateLessonWithTranscript(lesson);
+          try {
+            await new Promise((resolve) => setTimeout(resolve, 0)); // TODO: remove this
+            lesson = await curriculumApi2023.lessonOverview({
+              lessonSlug,
+            });
+            lesson = await populateLessonWithTranscript(lesson);
+          } catch (innerError) {
+            if (
+              innerError instanceof OakError &&
+              innerError.code === "curriculum-api/not-found"
+            ) {
+              // Let the lesson remain undefined, so the redirect logic below can run
+            } else {
+              // For other types of errors, rethrow
+              throw innerError;
+            }
+          }
+        } else {
+          // For other types of errors, rethrow
+          throw error;
         }
       }
       if (!lesson) {
-        return {
-          notFound: true,
-        };
+        const { redirectData } =
+          await curriculumApi2023.canonicalLessonRedirectQuery({
+            incomingPath: `lessons/${lessonSlug}`,
+          });
+        if (redirectData) {
+          return {
+            redirect: {
+              destination: `/teachers/${redirectData.outgoingPath}`,
+              permanent: true, // true = 308, false = 307
+              basePath: false, // Do not prepend the basePath
+            },
+          };
+        } else {
+          // If no redirect is found, return a 404
+          return {
+            notFound: true,
+          };
+        }
       }
-
       const results: GetStaticPropsResult<PageProps> = {
         props: {
           lesson,

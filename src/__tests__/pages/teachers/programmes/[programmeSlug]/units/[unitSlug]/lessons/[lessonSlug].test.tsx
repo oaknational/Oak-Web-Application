@@ -17,6 +17,10 @@ import {
   mockUserWithDownloadAccess,
 } from "@/__tests__/__helpers__/mockUser";
 import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+import curriculumApi2023, {
+  CurriculumApi,
+} from "@/node-lib/curriculum-api-2023";
+import OakError from "@/errors/OakError";
 
 const props = {
   curriculumData: lessonOverviewFixture({
@@ -591,10 +595,81 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
       );
     });
-    it("should throw error", async () => {
-      await expect(
-        getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>),
-      ).rejects.toThrowError("No context.params");
+    it("should call browseLessonRedirectQuery if no lesson is found", async () => {
+      if (!curriculumApi2023.browseLessonRedirectQuery) {
+        (curriculumApi2023 as CurriculumApi).browseLessonRedirectQuery =
+          jest.fn();
+      }
+
+      (curriculumApi2023.lessonOverview as jest.Mock).mockRejectedValueOnce(
+        new OakError({ code: "curriculum-api/not-found" }),
+      );
+      (
+        curriculumApi2023.browseLessonRedirectQuery as jest.Mock
+      ).mockResolvedValueOnce({
+        redirectData: {
+          incomingPath: "lessons/old-lesson-slug",
+          outgoingPath: "lessons/new-lesson-slug",
+        },
+      });
+
+      const result = await getStaticProps({
+        params: {
+          lessonSlug: "old-lesson-slug",
+          programmeSlug: "english-primary-ks2",
+          unitSlug: "unit-slug",
+        },
+        query: {},
+      } as GetStaticPropsContext<URLParams, PreviewData>);
+
+      // Verify the redirect properties
+      expect(result).toHaveProperty("redirect");
+      expect(
+        (
+          result as {
+            redirect: {
+              destination: string;
+              permanent: boolean;
+              basePath: boolean;
+            };
+          }
+        ).redirect,
+      ).toEqual({
+        destination: "/teachers/lessons/new-lesson-slug",
+        permanent: true,
+        basePath: false,
+      });
+
+      // Verify the redirect API was called with the correct parameters
+      expect(curriculumApi2023.browseLessonRedirectQuery).toHaveBeenCalledWith({
+        incomingPath:
+          "programmes/english-primary-ks2/units/unit-slug/lessons/old-lesson-slug",
+      });
+    });
+    it("should return not found if lesson is not found and no redirect found", async () => {
+      if (!curriculumApi2023.browseLessonRedirectQuery) {
+        (curriculumApi2023 as CurriculumApi).browseLessonRedirectQuery =
+          jest.fn();
+      }
+      (curriculumApi2023.lessonOverview as jest.Mock).mockRejectedValueOnce(
+        new OakError({ code: "curriculum-api/not-found" }),
+      );
+      (
+        curriculumApi2023.browseLessonRedirectQuery as jest.Mock
+      ).mockRejectedValueOnce(
+        new OakError({ code: "curriculum-api/not-found" }),
+      );
+
+      const result = await getStaticProps({
+        params: {
+          lessonSlug: "macbeth-lesson-1",
+          programmeSlug: "english-secondary-ks3",
+          unitSlug: "unit-slug",
+        },
+        query: {},
+      } as GetStaticPropsContext<URLParams, PreviewData>);
+
+      expect((result as { notFound: boolean }).notFound).toBe(true);
     });
   });
 });

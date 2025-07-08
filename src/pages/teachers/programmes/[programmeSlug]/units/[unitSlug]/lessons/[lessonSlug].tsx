@@ -22,6 +22,7 @@ import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesModal/TeacherNotesModal";
 import { useLesson } from "@/pages-helpers/teacher/useLesson/useLesson";
 import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
+import OakError from "@/errors/OakError";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewPageData;
@@ -159,19 +160,55 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug, unitSlug, programmeSlug } = context.params;
 
-      const curriculumData = await curriculumApi2023.lessonOverview({
-        programmeSlug,
-        lessonSlug,
-        unitSlug,
-      });
+      // const curriculumData = await curriculumApi2023.lessonOverview({
+      //   programmeSlug,
+      //   lessonSlug,
+      //   unitSlug,
+      // });
 
-      if (!curriculumData) {
-        return {
-          notFound: true,
-        };
+      let curriculumData;
+      let lessonPageData;
+      try {
+        curriculumData = await curriculumApi2023.lessonOverview({
+          programmeSlug,
+          lessonSlug,
+          unitSlug,
+        });
+        lessonPageData = await populateLessonWithTranscript(curriculumData);
+      } catch (innerError) {
+        if (
+          innerError instanceof OakError &&
+          innerError.code === "curriculum-api/not-found"
+        ) {
+          // Let the lesson remain undefined, so the redirect logic below can run
+        } else {
+          // For other types of errors, rethrow
+          throw innerError;
+        }
       }
 
-      const lessonPageData = await populateLessonWithTranscript(curriculumData);
+      if (!lessonPageData) {
+        const { redirectData } =
+          await curriculumApi2023.browseLessonRedirectQuery({
+            incomingPath: `programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
+          });
+        if (redirectData) {
+          return {
+            redirect: {
+              destination: `/teachers/${redirectData.outgoingPath}`,
+              permanent: true, // true = 308, false = 307
+              basePath: false, // Do not prepend the basePath
+            },
+          };
+        } else {
+          // If no redirect is found, return a 404
+          return {
+            notFound: true,
+          };
+        }
+      }
+
+      // const lessonPageData = await populateLessonWithTranscript(curriculumData);
       const results: GetStaticPropsResult<LessonOverviewPageProps> = {
         props: {
           curriculumData: lessonPageData,
