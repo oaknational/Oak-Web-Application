@@ -5,7 +5,6 @@ import {
   OakFieldset,
 } from "@oaknational/oak-components";
 import React, { FC } from "react";
-import { useRouter } from "next/router";
 
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import { YearGroup } from "@/node-lib/curriculum-api-2023/queries/unitListing/helpers/getAllYearGroups";
@@ -14,7 +13,6 @@ type YearGroupFiltersProps = {
   yearGroups: YearGroup[];
   browseRefined: TrackFns["browseRefined"];
   idSuffix: "desktop" | "mobile";
-  selectedThemeSlug?: string;
   programmeSlug: string;
   setYear: (year: string | null) => void;
   yearGroupSlug: string;
@@ -24,21 +22,17 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
   yearGroups,
   browseRefined,
   idSuffix,
-  selectedThemeSlug,
   programmeSlug,
   setYear,
   yearGroupSlug,
 }) => {
-  const router = useRouter();
-  const isMobile = idSuffix === "mobile";
-
   return (
     <OakFlex
       $mv="space-between-m2"
       $flexDirection={"column"}
-      $pb={isMobile ? undefined : "inner-padding-xl2"}
-      $bb={isMobile ? undefined : "border-solid-s"}
-      $borderColor={isMobile ? undefined : "border-neutral-lighter"}
+      $pb={[undefined, "inner-padding-xl2"]}
+      $bb={["border-solid-none", "border-solid-s"]}
+      $borderColor={["transparent", "border-neutral-lighter"]}
       $flexGrow={1}
     >
       <OakFieldset>

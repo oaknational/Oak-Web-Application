@@ -110,7 +110,6 @@ const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
             yearGroups={yearGroups}
             idSuffix="desktop"
             browseRefined={browseRefined}
-            selectedThemeSlug={selectedThemeSlug}
             programmeSlug={programmeSlug}
             setYear={(year) => {
               updateQuery({ year });
@@ -126,7 +125,6 @@ const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
             categorySlug={categorySlug}
             browseRefined={browseRefined}
             programmeSlug={programmeSlug}
-            selectedThemeSlug={selectedThemeSlug}
             setCategory={(category) => {
               updateQuery({ category });
               handleSubmitQuery();
