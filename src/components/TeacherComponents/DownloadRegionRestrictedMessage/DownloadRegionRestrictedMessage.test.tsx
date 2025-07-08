@@ -1,5 +1,6 @@
 import { DownloadRegionRestrictedMessage } from "./DownloadRegionRestrictedMessage";
 
+import { COPYRIGHT_CONTACT_US_LINK } from "@/utils/copyrightContactUsLink";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
@@ -31,7 +32,7 @@ describe("DownloadRegionRestrictedMessage", () => {
 
     const contactLink = getByRole("link", { name: "contact us." });
     expect(contactLink).toBeInTheDocument();
-    expect(contactLink).toHaveAttribute("href", "/contact-us");
+    expect(contactLink).toHaveAttribute("href", COPYRIGHT_CONTACT_US_LINK);
   });
 
   it("renders the back to lesson button with correct href", () => {

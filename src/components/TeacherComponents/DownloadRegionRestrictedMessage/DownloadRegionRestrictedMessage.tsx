@@ -9,6 +9,7 @@ import {
 import { useEffect } from "react";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import { COPYRIGHT_CONTACT_US_LINK } from "@/utils/copyrightContactUsLink";
 
 interface DownloadRegionRestrictedMessageProps {
   lessonName: string;
@@ -61,7 +62,7 @@ export function DownloadRegionRestrictedMessage({
         </OakP>
         <OakP>
           If you believe this is an error and you're based in the UK, please{" "}
-          <OakLink href="/contact-us">contact us.</OakLink>
+          <OakLink href={COPYRIGHT_CONTACT_US_LINK}>contact us.</OakLink>
         </OakP>
       </OakBox>
       <OakBox $pv={"inner-padding-xl3"}>
