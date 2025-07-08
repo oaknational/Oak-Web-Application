@@ -16,7 +16,7 @@ import {
   SubjectCategory,
   YearGroups,
 } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
-import { FilterQuery } from "@/pages/teachers/programmes/[programmeSlug]/units";
+import { FilterQuery } from "@/hooks/useUnitFilterState";
 
 export type DesktopUnitFiltersProps = {
   showFilters: boolean;

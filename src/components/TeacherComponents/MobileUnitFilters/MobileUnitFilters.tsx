@@ -16,7 +16,7 @@ import SubjectCategoryFilters from "@/components/TeacherComponents/SubjectCatego
 import filterUnits from "@/utils/filterUnits/filterUnits";
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 import { SpecialistUnitListingData } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
-import { FilterQuery } from "@/pages/teachers/programmes/[programmeSlug]/units";
+import { FilterQuery } from "@/hooks/useUnitFilterState";
 
 export type MobileUnitFiltersProps = {
   numberOfUnits: number;
