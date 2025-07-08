@@ -21,9 +21,9 @@ import { FilterQuery } from "@/pages/teachers/programmes/[programmeSlug]/units";
 export type MobileUnitFiltersProps = {
   numberOfUnits: number;
   learningThemesFilterId: string;
-  updateQuery: (queryObj: FilterQuery | null) => void;
-  newQuery: FilterQuery | null;
-  currentQuery: FilterQuery | null;
+  updateActiveFilters: (queryObj: FilterQuery | null) => void;
+  newFilterQuery: FilterQuery | null;
+  currentFilterQuery: FilterQuery | null;
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   handleSubmitQuery: () => void;
@@ -42,18 +42,19 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
     numberOfUnits,
     learningThemesFilterId,
     units,
-    newQuery,
-    currentQuery,
-    updateQuery: setQuery,
+    newFilterQuery,
+    currentFilterQuery,
+    updateActiveFilters,
     isOpen,
     setIsOpen,
     handleSubmitQuery,
   } = props;
   const isUnitListing = isUnitListingData(props);
 
-  const year = newQuery?.year ?? currentQuery?.year ?? "";
-  const category = newQuery?.category ?? currentQuery?.category ?? "";
-  const theme = newQuery?.theme ?? currentQuery?.theme ?? "all";
+  const year = newFilterQuery?.year ?? currentFilterQuery?.year ?? "";
+  const category =
+    newFilterQuery?.category ?? currentFilterQuery?.category ?? "";
+  const theme = newFilterQuery?.theme ?? currentFilterQuery?.theme ?? "all";
 
   const [currNumberOfUnits, setCurrNumberOfUnits] = useState(numberOfUnits);
 
@@ -90,7 +91,7 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
       <OakFilterDrawer
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
-        clearAllInputs={() => setQuery(null)}
+        clearAllInputs={() => updateActiveFilters(null)}
         footerSlot={
           <OakFlex $width={"100%"} $alignSelf={"center"}>
             <OakPrimaryButton onClick={handleSubmitQuery}>
@@ -105,7 +106,7 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
               idSuffix="mobile"
               yearGroups={props.yearGroups}
               yearGroupSlug={year}
-              setYear={(year) => setQuery({ year })}
+              setYear={(year) => updateActiveFilters({ year })}
             />
           )}
           {isUnitListing && props.subjectCategories.length > 1 && (
@@ -113,7 +114,7 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
               idSuffix="mobile"
               subjectCategories={props.subjectCategories}
               categorySlug={category}
-              setCategory={(category) => setQuery({ category })}
+              setCategory={(category) => updateActiveFilters({ category })}
             />
           )}
           {learningThemes.length > 1 && (
@@ -127,7 +128,7 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
                 labelledBy={learningThemesFilterId}
                 learningThemes={learningThemes}
                 selectedThemeSlug={theme ?? "all"}
-                setTheme={(theme) => setQuery({ theme })}
+                setTheme={(theme) => updateActiveFilters({ theme })}
               />
             </>
           )}

@@ -38,9 +38,9 @@ const mockProps: MobileUnitFiltersProps = {
   hasNewContent: false,
   phase: "primary",
   pathwayTitle: null,
-  updateQuery: jest.fn(),
-  newQuery: null,
-  currentQuery: null,
+  updateActiveFilters: jest.fn(),
+  newFilterQuery: null,
+  currentFilterQuery: null,
   isOpen: true,
   setIsOpen: jest.fn(),
   handleSubmitQuery: jest.fn(),
@@ -131,7 +131,11 @@ describe("MobileUnitFilters", () => {
       <OakThemeProvider theme={oakDefaultTheme}>
         <MobileUnitFilters
           {...mockProps}
-          currentQuery={{ year: "year-1", category: "maths", theme: "theme1" }}
+          currentFilterQuery={{
+            year: "year-1",
+            category: "maths",
+            theme: "theme1",
+          }}
         />
       </OakThemeProvider>,
     );

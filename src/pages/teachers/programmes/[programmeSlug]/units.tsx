@@ -184,28 +184,30 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     }
   };
 
-  const [newQuery, setNewQuery] = useState<FilterQuery | null>(null);
+  const [newFilterQuery, setNewFilterQuery] = useState<FilterQuery | null>(
+    null,
+  );
 
-  const handleUpdateQuery = (queryObj: FilterQuery | null) => {
-    if (!queryObj) {
-      setNewQuery(null);
+  const handleUpdateActiveFilters = (filters: FilterQuery | null) => {
+    if (!filters) {
+      setNewFilterQuery(null);
       return null;
     } else {
-      const params: FilterQuery = Object.assign({}, newQuery);
-      if (queryObj.year) {
-        params.year = queryObj.year;
-      } else if (queryObj.year === null) {
+      const params: FilterQuery = Object.assign({}, newFilterQuery);
+      if (filters.year) {
+        params.year = filters.year;
+      } else if (filters.year === null) {
         params.year = "";
       }
-      if (queryObj.category) {
-        params.category = queryObj.category;
-      } else if (queryObj.category === null) {
+      if (filters.category) {
+        params.category = filters.category;
+      } else if (filters.category === null) {
         delete params.category;
       }
-      if (queryObj.theme) {
-        params.theme = queryObj.theme;
+      if (filters.theme) {
+        params.theme = filters.theme;
       }
-      setNewQuery(params);
+      setNewFilterQuery(params);
       return params;
     }
   };
@@ -232,12 +234,12 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     });
   };
 
-  const handleUpdateAndSubmitQuery = (
+  const handleUpdateAndSubmitFilterQuery = (
     queryObj: FilterQuery | null,
     filterType: FilterTypeValueType,
     filterValue: string,
   ) => {
-    const updatedQuery = handleUpdateQuery(queryObj);
+    const updatedQuery = handleUpdateActiveFilters(queryObj);
 
     // TODO: extract to shared
     const params = Object.assign({}, router.query);
@@ -271,25 +273,25 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   const [isMobileFilterDrawerOpen, setIsMobileFilterDrawerOpen] =
     useState<boolean>(false);
 
-  const handleSubmitQuery = () => {
-    if (newQuery) {
+  const handleSubmitFilterQuery = () => {
+    if (newFilterQuery) {
       const params = Object.assign({}, router.query);
       let theme, category, year;
-      if (newQuery.year) {
-        params.year = newQuery.year;
-        year = newQuery.year;
+      if (newFilterQuery.year) {
+        params.year = newFilterQuery.year;
+        year = newFilterQuery.year;
       } else {
         delete params.year;
       }
-      if (newQuery.category) {
-        params.category = newQuery.category;
-        category = newQuery.category;
+      if (newFilterQuery.category) {
+        params.category = newFilterQuery.category;
+        category = newFilterQuery.category;
       } else {
         delete params.category;
       }
-      if (newQuery.theme) {
-        params["learning-theme"] = newQuery.theme;
-        theme = newQuery.theme;
+      if (newFilterQuery.theme) {
+        params["learning-theme"] = newFilterQuery.theme;
+        theme = newFilterQuery.theme;
       } else {
         params["learning-theme"] = "all";
       }
@@ -428,8 +430,8 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 filtersRef={filtersRef}
                 skipFiltersButton={skipFiltersButton}
                 learningThemesId={learningThemesId}
-                updateQuery={handleUpdateAndSubmitQuery}
-                newQuery={newQuery}
+                updateQuery={handleUpdateAndSubmitFilterQuery}
+                newQuery={newFilterQuery}
                 currentQuery={{
                   year: yearGroupSlug,
                   category: categorySlug,
@@ -487,16 +489,16 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                         {...curriculumData}
                         numberOfUnits={filteredUnits.length}
                         learningThemesFilterId={learningThemesFilterId}
-                        updateQuery={handleUpdateQuery}
-                        newQuery={newQuery}
-                        currentQuery={{
+                        updateActiveFilters={handleUpdateActiveFilters}
+                        newFilterQuery={newFilterQuery}
+                        currentFilterQuery={{
                           year: yearGroupSlug,
                           category: categorySlug,
                           theme: themeSlug,
                         }}
                         isOpen={isMobileFilterDrawerOpen}
                         setIsOpen={setIsMobileFilterDrawerOpen}
-                        handleSubmitQuery={handleSubmitQuery}
+                        handleSubmitQuery={handleSubmitFilterQuery}
                       />
                     )}
                   </OakFlex>
