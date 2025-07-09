@@ -131,7 +131,9 @@ function outputHtml(/*refs: Record<string, string[]>*/) {
 
 function outputStdout(refs: Record<string, string[]>) {
   for (const [id, files] of Object.entries(refs)) {
-    console.log(chalk.green(`<${id}/>`));
+    console.log(
+      `${chalk.green(`<${id}/>`)} ${chalk.gray(`(${files.length} files)`)}`,
+    );
     for (const file of files) {
       console.log(` - ./${file}`);
     }
@@ -161,7 +163,7 @@ async function run(mode: string) {
   const refs = await findRefs(import.meta.dirname + "/../src/**/*.tsx");
 
   if (mode === "html") {
-    outputHtml(refs);
+    outputHtml(/*refs*/);
   }
   if (mode === "stdout") {
     outputStdout(refs);
