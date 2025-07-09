@@ -21,10 +21,14 @@ All new code must:
 
 - [**Core Principles**](core-principles.md) - TDD workflow and testable design patterns
 - [**Test Quality Rubrics**](test-quality-rubrics.md) - Comprehensive quality evaluation with performance standards
+- [**Test Types Guide**](test-types-guide.md) - Detailed examples of unit, integration, component, and API tests
 - [**React Testing**](react-testing.md) - Component testing with accessibility-first RTL patterns
+- [**React Testability**](react-testability.md) - Refactoring React components for better testing
 - [**API Testing**](api-testing.md) - Next.js API routes with comprehensive mocking
 - [**Next.js Testing**](nextjs-testing.md) - SSG/SSR, API routes, and performance testing
+- [**Next.js Architecture**](nextjs-architecture.md) - Architecting Next.js applications for testability
 - [**TypeScript Testing**](typescript-testing.md) - Type-safe testing with MockedFunction
+- [**Mock Factories**](mock-factories.md) - Comprehensive patterns for creating test data
 - [**Test Organization**](test-organization.md) - Jest configuration and file structure
 
 ### Improvement Resources
