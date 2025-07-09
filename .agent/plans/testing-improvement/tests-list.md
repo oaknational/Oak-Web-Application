@@ -1,6 +1,6 @@
-<!-- find . \( -name "*.test.ts" -o -name "*.test.tsx" -o \( -path "*/__test__/*.ts" -o -path "*/__test__/*.tsx" -o -path "*/test/*.ts" -o -path "*/test/*.tsx" \) \) -not -path "*/node_modules/*" -type f | sort > .agent/plans/tests-list.md -->
-
 # Tests List
+
+<!-- find . \( -name "*.test.ts" -o -name "*.test.tsx" -o \( -path "*/__test__/*.ts" -o -path "*/__test__/*.tsx" -o -path "*/test/*.ts" -o -path "*/test/*.tsx" \) \) -not -path "*/node_modules/*" -type f | sort > .agent/plans/tests-list.md -->
 
 ./scripts/build/fetch_secrets/helpers.test.ts
 ./scripts/dev/curriculum/_commands/helpers.test.ts
@@ -154,6 +154,7 @@
 ./src/components/CurriculumComponents/CurricVisualiserFilters/CurricFiltersYears.test.tsx
 ./src/components/CurriculumComponents/CurricVisualiserFiltersModal/CurricVisualiserFiltersModal.test.tsx
 ./src/components/CurriculumComponents/CurricVisualiserLayout/CurricVisualiserLayout.test.tsx
+./src/components/CurriculumComponents/CurricVisualiserMobileHeader/index.test.tsx
 ./src/components/CurriculumComponents/CurricVisualiserUnitList/CurricVisualiserUnitList.test.tsx
 ./src/components/CurriculumComponents/CurricYearCard/index.test.tsx
 ./src/components/CurriculumComponents/helpers/curriculumMetadata.test.ts
