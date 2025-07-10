@@ -10,15 +10,13 @@ import YearGroupFilters from "../YearGroupFilters";
 import SubjectCategoryFilters from "../SubjectCategoryFilters";
 import UnitsLearningThemeFilters from "../UnitsLearningThemeFilters";
 
-import {
-  BrowseRefinedProperties,
-  KeyStageTitleValueType,
-} from "@/browser-lib/avo/Avo";
+import { FilterTypeValueType } from "@/browser-lib/avo/Avo";
 import {
   LearningThemes,
   SubjectCategory,
   YearGroups,
 } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
+import { FilterQuery } from "@/hooks/useUnitFilterState";
 
 export type DesktopUnitFiltersProps = {
   showFilters: boolean;
@@ -29,17 +27,14 @@ export type DesktopUnitFiltersProps = {
   subjectCategories: Array<SubjectCategory>;
   learningThemes: LearningThemes;
   skipFiltersButton: boolean;
-  programmeSlug: string;
-  selectedThemeSlug: string | undefined;
-  categorySlug: string | undefined;
-  yearGroupSlug: string | undefined;
-  subjectSlug: string;
-  subjectTitle: string;
-  keyStageSlug: string;
-  keyStageTitle: string;
   learningThemesId: string;
-  browseRefined: (properties: BrowseRefinedProperties) => void;
-  setSelectedThemeSlug: (themeSlug: string | undefined) => void;
+  updateQuery: (
+    queryObj: FilterQuery | null,
+    filterType: FilterTypeValueType,
+    filterValue: string,
+  ) => void;
+  newQuery: FilterQuery | null;
+  currentQuery: FilterQuery | null;
 };
 const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
   const {
@@ -51,18 +46,16 @@ const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
     subjectCategories,
     learningThemes,
     skipFiltersButton,
-    selectedThemeSlug,
-    programmeSlug,
-    setSelectedThemeSlug,
-    categorySlug,
-    yearGroupSlug,
-    subjectSlug,
-    subjectTitle,
-    keyStageSlug,
-    keyStageTitle,
     learningThemesId,
-    browseRefined,
+    currentQuery,
+    newQuery,
+    updateQuery,
   } = props;
+
+  const yearGroupSlug = newQuery?.year ?? currentQuery?.year ?? "";
+  const categorySlug = newQuery?.category ?? currentQuery?.category ?? "";
+  const selectedThemeSlug = newQuery?.theme ?? currentQuery?.theme ?? "all";
+
   return (
     <OakBox
       $display={["none", "none", "block"]}
@@ -103,9 +96,8 @@ const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
           <YearGroupFilters
             yearGroups={yearGroups}
             idSuffix="desktop"
-            browseRefined={browseRefined}
-            selectedThemeSlug={selectedThemeSlug}
-            programmeSlug={programmeSlug}
+            setYear={(year) => updateQuery({ year }, "Year filter", year ?? "")}
+            yearGroupSlug={yearGroupSlug}
           />
         )}
         {subjectCategories && subjectCategories.length > 1 && (
@@ -113,9 +105,9 @@ const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
             idSuffix="desktop"
             subjectCategories={subjectCategories}
             categorySlug={categorySlug}
-            browseRefined={browseRefined}
-            programmeSlug={programmeSlug}
-            selectedThemeSlug={selectedThemeSlug}
+            setCategory={(category) =>
+              updateQuery({ category }, "Subject filter", category ?? "")
+            }
           />
         )}
         {learningThemes?.length > 1 && (
@@ -131,24 +123,12 @@ const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
             </OakHeading>
             <UnitsLearningThemeFilters
               idSuffix="desktop"
-              onChangeCallback={setSelectedThemeSlug}
               labelledBy={learningThemesId}
               learningThemes={learningThemes}
               selectedThemeSlug={selectedThemeSlug ?? "all"}
-              categorySlug={categorySlug}
-              yearGroupSlug={yearGroupSlug}
-              programmeSlug={programmeSlug}
-              linkProps={{
-                page: "unit-index",
-                programmeSlug,
-              }}
-              trackingProps={{
-                keyStageSlug,
-                keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-                subjectTitle,
-                subjectSlug,
-              }}
-              browseRefined={browseRefined}
+              setTheme={(theme) =>
+                updateQuery({ theme }, "Learning theme filter", theme ?? "all")
+              }
             />
           </OakFlex>
         )}

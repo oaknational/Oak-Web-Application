@@ -1,5 +1,4 @@
 import React, { useId, useState, useRef, useEffect } from "react";
-import { useRouter } from "next/router";
 import {
   GetStaticPathsResult,
   GetStaticProps,
@@ -48,6 +47,8 @@ import PaginationHead from "@/components/SharedComponents/Pagination/PaginationH
 import MobileUnitFilters from "@/components/TeacherComponents/MobileUnitFilters";
 import DesktopUnitFilters from "@/components/TeacherComponents/DesktopUnitFilters/DesktopUnitFilters";
 import RelatedSubjectsBanner from "@/components/TeacherComponents/RelatedSubjectsBanner/RelatedSubjectsBanner";
+import { isUnitListData } from "@/components/TeacherComponents/UnitList/helpers";
+import { useUnitFilterState } from "@/hooks/useUnitFilterState";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -78,19 +79,24 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
 
   const learningThemes = curriculumData.learningThemes ?? [];
 
-  const router = useRouter();
-  const themeSlug = router.query["learning-theme"]?.toString();
-  const categorySlug = router.query["category"]?.toString();
-  const yearGroupSlug = router.query["year"]?.toString();
   const [skipFiltersButton, setSkipFiltersButton] = useState(false);
   const filtersRef = useRef<HTMLDivElement>(null);
   const isFiltersAvailable =
     yearGroups.length > 1 ||
     subjectCategories.length > 1 ||
     learningThemes.length > 1;
-  const [selectedThemeSlug, setSelectedThemeSlug] = useState<
-    string | undefined
-  >(themeSlug);
+
+  const {
+    themeSlug,
+    categorySlug,
+    yearGroupSlug,
+    newFilterQuery,
+    isMobileFilterDrawerOpen,
+    setIsMobileFilterDrawerOpen,
+    handleUpdateActiveFilters,
+    handleUpdateAndSubmitFilterQuery,
+    handleSubmitFilterQuery,
+  } = useUnitFilterState({ isUnitListing: isUnitListData(curriculumData) });
 
   useEffect(() => {
     if (categorySlug || yearGroupSlug) {
@@ -101,7 +107,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   }, [categorySlug, yearGroupSlug]);
 
   const filteredUnits = filterUnits({
-    themeSlug: selectedThemeSlug,
+    themeSlug,
     categorySlug,
     yearGroup: yearGroupSlug,
     units,
@@ -181,9 +187,17 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
         <MobileUnitFilters
           {...curriculumData}
           numberOfUnits={filteredAndSortedUnits.length}
-          browseRefined={track.browseRefined}
-          setSelectedThemeSlug={setSelectedThemeSlug}
           learningThemesFilterId={learningThemesFilterId}
+          updateActiveFilters={handleUpdateActiveFilters}
+          newFilterQuery={newFilterQuery}
+          currentFilterQuery={{
+            year: yearGroupSlug,
+            category: categorySlug,
+            theme: themeSlug,
+          }}
+          isOpen={isMobileFilterDrawerOpen}
+          setIsOpen={setIsMobileFilterDrawerOpen}
+          handleSubmitQuery={handleSubmitFilterQuery}
         />
       </OakBox>
     ) : null;
@@ -291,17 +305,14 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 learningThemes={learningThemes}
                 filtersRef={filtersRef}
                 skipFiltersButton={skipFiltersButton}
-                programmeSlug={programmeSlug}
-                selectedThemeSlug={selectedThemeSlug}
-                categorySlug={categorySlug}
-                yearGroupSlug={yearGroupSlug}
-                subjectSlug={subjectSlug}
-                subjectTitle={subjectTitle}
-                keyStageSlug={keyStageSlug}
-                keyStageTitle={keyStageTitle}
                 learningThemesId={learningThemesId}
-                browseRefined={track.browseRefined}
-                setSelectedThemeSlug={setSelectedThemeSlug}
+                updateQuery={handleUpdateAndSubmitFilterQuery}
+                newQuery={newFilterQuery}
+                currentQuery={{
+                  year: yearGroupSlug,
+                  category: categorySlug,
+                  theme: themeSlug,
+                }}
               />
               <OakFlex $display={["none", "none", "flex"]}>
                 {relatedSubjects?.map((subjectSlug) => (

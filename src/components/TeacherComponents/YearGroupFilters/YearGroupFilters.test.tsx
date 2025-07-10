@@ -7,6 +7,14 @@ import YearGroupFilters from "./YearGroupFilters";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 const browseRefined = jest.fn();
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      browseRefined: (...args: unknown[]) => browseRefined(...args),
+    },
+  }),
+}));
 jest.mock("next/router", () => ({
   useRouter: jest.fn(),
 }));
@@ -27,7 +35,6 @@ describe("YearGroupFilters", () => {
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <YearGroupFilters
-          programmeSlug="test-programme"
           yearGroups={[
             {
               yearTitle: "Year 1",
@@ -35,19 +42,20 @@ describe("YearGroupFilters", () => {
               year: "1",
             },
           ]}
-          browseRefined={browseRefined}
+          yearGroupSlug=""
           idSuffix={"desktop"}
+          setYear={jest.fn()}
         />
       </OakThemeProvider>,
     );
     expect(getByText("Year")).toBeInTheDocument();
   });
 
-  it("updates the router query and selected year on click", () => {
+  it("calls set year year on click", async () => {
+    const mockSetYear = jest.fn();
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <YearGroupFilters
-          programmeSlug="test-programme"
           yearGroups={[
             {
               yearTitle: "Year 1",
@@ -55,66 +63,18 @@ describe("YearGroupFilters", () => {
               year: "1",
             },
           ]}
-          browseRefined={browseRefined}
+          yearGroupSlug=""
+          setYear={mockSetYear}
           idSuffix={"desktop"}
         />
       </OakThemeProvider>,
     );
+    const yearInput = screen.getByDisplayValue("desktop-year-1");
 
-    const yearButton = screen.getByText("Year 1");
-    fireEvent.click(yearButton);
-
-    expect(mockRouter.replace).toHaveBeenCalledWith(
-      {
-        pathname: "/test-path",
-        query: {
-          year: "year-1",
-          programmeSlug: "test-programme",
-        },
-      },
-      undefined,
-      { shallow: true },
-    );
+    fireEvent.click(yearInput);
+    expect(mockSetYear).toHaveBeenCalledWith("year-1");
 
     expect(getByText("Year")).toBeInTheDocument();
-  });
-
-  it("browse refined analytics provider invoked with correct props", () => {
-    renderWithTheme(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <YearGroupFilters
-          programmeSlug="test-programme"
-          yearGroups={[
-            {
-              yearTitle: "Year 1",
-              yearSlug: "year-1",
-              year: "1",
-            },
-          ]}
-          browseRefined={browseRefined}
-          idSuffix={"desktop"}
-        />
-      </OakThemeProvider>,
-    );
-
-    const yearButton = screen.getByText("Year 1");
-    fireEvent.click(yearButton);
-
-    expect(browseRefined).toHaveBeenCalledWith({
-      platform: "owa",
-      product: "teacher lesson resources",
-      engagementIntent: "refine",
-      componentType: "filter_link",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      filterValue: "Year 1",
-      filterType: "Subject filter",
-      activeFilters: {
-        content_types: "units",
-        learning_themes: undefined,
-        categories: undefined,
-      },
-    });
   });
 
   it("on mobile, passed in setYear function invoked with selected input", () => {
@@ -122,7 +82,6 @@ describe("YearGroupFilters", () => {
     renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <YearGroupFilters
-          programmeSlug="test-programme"
           yearGroups={[
             {
               yearTitle: "Year 1",
@@ -130,8 +89,8 @@ describe("YearGroupFilters", () => {
               year: "1",
             },
           ]}
-          browseRefined={browseRefined}
           idSuffix={"mobile"}
+          yearGroupSlug=""
           setYear={mockSetYear}
         />
       </OakThemeProvider>,
