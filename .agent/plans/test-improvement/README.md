@@ -2,11 +2,9 @@
 
 This folder contains **actionable plans** for improving Oak's test quality from 6.2/10 to 8.5/10.
 
-> **Note**: For research, analysis, and planning documentation, see `.agent/plans/testing-improvement-research/`
-
 ## Structure
 
-```
+```text
 test-improvement/
 ├── README.md                              # This file
 ├── 01-executive-summary.md               # Overview and key findings
@@ -41,11 +39,13 @@ test-improvement/
 Based on our two-person team:
 
 **AI Assistant (Me)**:
+
 - Pure function extractions (QW-001, QW-002, QW-003, QW-004)
 - Test utilities and benchmarks (QW-006, QW-007)
 - Test quality improvements (QW-009)
 
 **Human (You)**:
+
 - Mock factory patterns (SI-001)
 - Complex hook testing (SI-002, SI-003)
 - Architectural decisions and reviews
@@ -53,15 +53,18 @@ Based on our two-person team:
 ## Key Files
 
 ### For Planning
+
 - `01-executive-summary.md` - High-level overview
 - `02-improvement-prioritization-matrix.md` - What to work on and why
 
 ### For Execution
+
 - `phase-3/03-work-items-batch-1.md` - Detailed task descriptions
 - `guides/` - Step-by-step implementation instructions
 - `patterns/` - Reusable code templates
 
 ### For Tracking
+
 - `tracking/05-progress-tracking-template.md` - Update after each work item
 - `04-quality-gates-definition.md` - Quality standards to maintain
 
@@ -89,10 +92,40 @@ Based on our two-person team:
 ## Success Metrics
 
 Track these in the progress template:
+
 - Average test quality: 6.2 → 8.5
 - Pure function coverage: ~20% → 60%
 - Custom hook coverage: 0% → 100%
-- Behavior test ratio: <30% → 80%
+- Behaviour test ratio: <30% → 80%
+
+## Prerequisites
+
+Before starting Phase 3 implementation:
+
+1. **Development Environment**:
+   - Node.js 18+ installed
+   - Access to Oak Web Application repository
+   - Git configured for incremental commits
+
+2. **Testing Tools**:
+   - Jest and React Testing Library installed (already in project)
+   - Performance measurement tools: `performance.now()` API
+   - Coverage reporting enabled: `npm run test:coverage`
+
+3. **Quality Gates Setup**:
+   ```bash
+   # Verify these commands work:
+   npm run format          # Prettier formatting
+   npm run lint           # ESLint checks
+   npm run type-check     # TypeScript validation
+   npm run test:ci        # All tests passing
+   npm run build          # Production build works
+   ```
+
+4. **Baseline Metrics**:
+   - Run `npm run test:coverage` and note current coverage %
+   - Document current test execution time
+   - Count existing pure functions vs mixed logic
 
 ## Remember
 
@@ -104,4 +137,4 @@ Track these in the progress template:
 ---
 
 For questions about the research and analysis behind these plans, see:
-`.agent/plans/testing-improvement-research/`
+`.agent/plans/archive/testing-improvement-research/`

@@ -330,7 +330,7 @@
 
 - Component has 35 usage sites - high impact
 - Current tests likely check props/state directly
-- Refactor to: click behavior, keyboard navigation, screen reader text
+- Refactor to: click behaviour, keyboard navigation, screen reader text
 - Use patterns from `docs/testing-strategy/react-testing.md`
 - This is a good "example" refactoring for the team
 

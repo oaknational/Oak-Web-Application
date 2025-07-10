@@ -38,8 +38,10 @@
 ## Test Organization Patterns
 
 ### Pattern 1: Co-located Tests
+
 HubSpot APIs keep tests next to implementation:
-```
+
+```text
 hubspot/
 ├── contacts/
 │   ├── index.ts
@@ -47,8 +49,10 @@ hubspot/
 ```
 
 ### Pattern 2: Centralized Tests
+
 Most APIs have tests in `__tests__` directory:
-```
+
+```text
 __tests__/pages/api/
 ├── curriculum-downloads/
 │   └── index.test.ts
@@ -61,19 +65,24 @@ __tests__/pages/api/
 While all routes have test files, we should verify:
 
 ### 1. Test Completeness
+
 - Are all endpoints tested (GET, POST, PUT, DELETE)?
 - Are error cases covered?
 - Is authentication/authorization tested?
 
 ### 2. Complex API Testing
+
 **`curriculum-downloads/index.ts`** (325 lines) needs:
+
 - Unit tests for extracted business logic
 - Integration tests for the full flow
 - Performance tests for document generation
 - Error handling for each external service
 
 ### 3. External Service Mocking
+
 APIs calling external services should test:
+
 - Success responses
 - Error responses
 - Timeout scenarios
@@ -82,7 +91,9 @@ APIs calling external services should test:
 ## Recommendations
 
 ### 1. Review Test Quality
+
 While coverage exists, ensure tests follow best practices:
+
 ```typescript
 // Good API test pattern
 describe('/api/educator/saveUnit', () => {
@@ -115,13 +126,17 @@ describe('/api/educator/saveUnit', () => {
 ```
 
 ### 2. Extract Business Logic
+
 For complex APIs like `curriculum-downloads`:
+
 - Move logic to service classes
 - Test services independently
 - Keep API routes thin
 
 ### 3. Performance Testing
+
 Add performance tests for heavy operations:
+
 ```typescript
 it('generates curriculum document within 2 seconds', async () => {
   const start = performance.now();
@@ -138,6 +153,7 @@ it('generates curriculum document within 2 seconds', async () => {
 ## Next Steps
 
 Since API test coverage is complete, focus on:
+
 1. Reviewing test quality using the rubric
 2. Extracting business logic from complex APIs
 3. Adding performance benchmarks
