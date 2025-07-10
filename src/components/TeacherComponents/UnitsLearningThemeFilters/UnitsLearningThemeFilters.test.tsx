@@ -70,36 +70,6 @@ describe("UnitsLearningThemeFilters", () => {
     await userEvent.click(algebraFilter);
     expect(setTheme).toHaveBeenCalledWith("algebra");
   });
-  test.skip("should call tracking browse refined with correct args", async () => {
-    renderWithProviders()(
-      <UnitsLearningThemeFilters
-        labelledBy={"Learning Theme Filter"}
-        learningThemes={[
-          {
-            themeTitle: "Grammar",
-            themeSlug: "grammar",
-          },
-        ]}
-        idSuffix="desktop"
-        selectedThemeSlug={"all"}
-        setTheme={jest.fn()}
-      />,
-    );
-
-    const grammarThread = await screen.findByText("Grammar");
-    await userEvent.click(grammarThread);
-    expect(browseRefined).toHaveBeenCalledWith({
-      platform: "owa",
-      product: "teacher lesson resources",
-      engagementIntent: "refine",
-      componentType: "filter_link",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      filterType: "Learning theme filter",
-      filterValue: "Grammar",
-      activeFilters: { keyStage: ["ks3"], subject: ["english"] },
-    });
-  });
 
   test("on mobile, invokes setMobileFilter with correct value", async () => {
     const setTheme = jest.fn();
