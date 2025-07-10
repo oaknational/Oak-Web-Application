@@ -58,12 +58,6 @@ export type UnitListingPageProps = {
   curriculumRefreshTime: number;
 };
 
-// export type FilterQuery = {
-//   year?: string | null;
-//   category?: string | null;
-//   theme?: string | null;
-// };
-
 const UnitListingPage: NextPage<UnitListingPageProps> = ({
   curriculumData,
   curriculumRefreshTime,
