@@ -110,6 +110,7 @@ export const useUnitFilterState = ({
         });
       }
       setIsMobileFilterDrawerOpen(false);
+
       router.replace(
         {
           pathname: router.pathname,
