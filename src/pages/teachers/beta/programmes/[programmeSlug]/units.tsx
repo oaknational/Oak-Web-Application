@@ -87,29 +87,32 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     learningThemes.length > 1;
 
   const {
-    themeSlug,
-    categorySlug,
-    yearGroupSlug,
-    newFilterQuery,
+    appliedThemeSlug,
+    appliedCategorySlug,
+    appliedyearGroupSlug,
     isMobileFilterDrawerOpen,
     setIsMobileFilterDrawerOpen,
     handleUpdateActiveFilters,
     handleUpdateAndSubmitFilterQuery,
     handleSubmitFilterQuery,
+    incomingCategorySlug,
+    incomingThemeSlug,
+    incomingYearSlug,
   } = useUnitFilterState({ isUnitListing: isUnitListData(curriculumData) });
 
+  // TODO: extract to state
   useEffect(() => {
-    if (categorySlug || yearGroupSlug) {
+    if (appliedCategorySlug || appliedyearGroupSlug) {
       if (filtersRef.current) {
         filtersRef.current.scrollIntoView({ behavior: "smooth" });
       }
     }
-  }, [categorySlug, yearGroupSlug]);
+  }, [appliedCategorySlug, appliedyearGroupSlug]);
 
   const filteredUnits = filterUnits({
-    themeSlug,
-    categorySlug,
-    yearGroup: yearGroupSlug,
+    themeSlug: appliedThemeSlug,
+    categorySlug: appliedCategorySlug,
+    yearGroup: appliedyearGroupSlug,
     units,
   });
 
@@ -189,12 +192,9 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
           numberOfUnits={filteredAndSortedUnits.length}
           learningThemesFilterId={learningThemesFilterId}
           updateActiveFilters={handleUpdateActiveFilters}
-          newFilterQuery={newFilterQuery}
-          currentFilterQuery={{
-            year: yearGroupSlug,
-            category: categorySlug,
-            theme: themeSlug,
-          }}
+          incomingThemeSlug={incomingThemeSlug}
+          incomingCategorySlug={incomingCategorySlug}
+          incomingYearGroupSlug={incomingYearSlug}
           isOpen={isMobileFilterDrawerOpen}
           setIsOpen={setIsMobileFilterDrawerOpen}
           handleSubmitQuery={handleSubmitFilterQuery}
@@ -307,12 +307,9 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 skipFiltersButton={skipFiltersButton}
                 learningThemesId={learningThemesId}
                 updateQuery={handleUpdateAndSubmitFilterQuery}
-                newQuery={newFilterQuery}
-                currentQuery={{
-                  year: yearGroupSlug,
-                  category: categorySlug,
-                  theme: themeSlug,
-                }}
+                incomingCategorySlug={incomingCategorySlug}
+                incomingThemeSlug={incomingThemeSlug}
+                incomingYearSlug={incomingYearSlug}
               />
               <OakFlex $display={["none", "none", "flex"]}>
                 {relatedSubjects?.map((subjectSlug) => (

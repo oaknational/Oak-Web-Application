@@ -18,15 +18,22 @@ export const useUnitFilterState = ({
   const { track } = useAnalytics();
 
   const router = useRouter();
-  const themeSlug = router.query["learning-theme"]?.toString();
-  const categorySlug = router.query["category"]?.toString();
-  const yearGroupSlug = router.query["year"]?.toString();
-
   // Used to construct a new filter query before using in routing params
   // required for mobile where we don't want to update the URL on every filter change
   const [newFilterQuery, setNewFilterQuery] = useState<FilterQuery | null>(
     null,
   );
+
+  // Filters from the URL query parameters
+  const appliedThemeSlug = router.query["learning-theme"]?.toString();
+  const appliedCategorySlug = router.query["category"]?.toString();
+  const appliedyearGroupSlug = router.query["year"]?.toString();
+
+  // Latest active filters that may not have been applied to the url yet
+  const incomingYearSlug = newFilterQuery?.year ?? appliedyearGroupSlug ?? "";
+  const incomingCategorySlug =
+    newFilterQuery?.category ?? appliedCategorySlug ?? "";
+  const incomingThemeSlug = newFilterQuery?.theme ?? appliedThemeSlug ?? "all";
 
   const [isMobileFilterDrawerOpen, setIsMobileFilterDrawerOpen] =
     useState<boolean>(false);
@@ -134,8 +141,11 @@ export const useUnitFilterState = ({
     handleUpdateActiveFilters,
     handleUpdateAndSubmitFilterQuery,
     handleSubmitFilterQuery,
-    themeSlug,
-    categorySlug,
-    yearGroupSlug,
+    appliedThemeSlug,
+    appliedCategorySlug,
+    appliedyearGroupSlug,
+    incomingThemeSlug,
+    incomingCategorySlug,
+    incomingYearSlug,
   };
 };

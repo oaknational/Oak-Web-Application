@@ -33,8 +33,9 @@ export type DesktopUnitFiltersProps = {
     filterType: FilterTypeValueType,
     filterValue: string,
   ) => void;
-  newQuery: FilterQuery | null;
-  currentQuery: FilterQuery | null;
+  incomingThemeSlug: string;
+  incomingCategorySlug: string;
+  incomingYearSlug: string;
 };
 const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
   const {
@@ -47,14 +48,11 @@ const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
     learningThemes,
     skipFiltersButton,
     learningThemesId,
-    currentQuery,
-    newQuery,
     updateQuery,
+    incomingThemeSlug,
+    incomingCategorySlug,
+    incomingYearSlug,
   } = props;
-
-  const yearGroupSlug = newQuery?.year ?? currentQuery?.year ?? "";
-  const categorySlug = newQuery?.category ?? currentQuery?.category ?? "";
-  const selectedThemeSlug = newQuery?.theme ?? currentQuery?.theme ?? "all";
 
   return (
     <OakBox
@@ -97,14 +95,14 @@ const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
             yearGroups={yearGroups}
             idSuffix="desktop"
             setYear={(year) => updateQuery({ year }, "Year filter", year ?? "")}
-            yearGroupSlug={yearGroupSlug}
+            yearGroupSlug={incomingYearSlug}
           />
         )}
         {subjectCategories && subjectCategories.length > 1 && (
           <SubjectCategoryFilters
             idSuffix="desktop"
             subjectCategories={subjectCategories}
-            categorySlug={categorySlug}
+            categorySlug={incomingCategorySlug}
             setCategory={(category) =>
               updateQuery({ category }, "Subject filter", category ?? "")
             }
@@ -125,7 +123,7 @@ const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
               idSuffix="desktop"
               labelledBy={learningThemesId}
               learningThemes={learningThemes}
-              selectedThemeSlug={selectedThemeSlug ?? "all"}
+              selectedThemeSlug={incomingThemeSlug}
               setTheme={(theme) =>
                 updateQuery({ theme }, "Learning theme filter", theme ?? "all")
               }

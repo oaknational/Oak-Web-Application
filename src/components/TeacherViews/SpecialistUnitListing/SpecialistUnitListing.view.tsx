@@ -45,16 +45,18 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
     handleUpdateActiveFilters,
     handleSubmitFilterQuery,
     handleUpdateAndSubmitFilterQuery,
-    newFilterQuery,
-    themeSlug,
-    categorySlug,
-    yearGroupSlug,
+    appliedThemeSlug,
+    appliedCategorySlug,
+    appliedyearGroupSlug,
+    incomingCategorySlug,
+    incomingThemeSlug,
+    incomingYearSlug,
   } = useUnitFilterState({ isUnitListing: false });
 
   const unitsFilteredByLearningTheme = filterUnits({
-    themeSlug,
-    categorySlug,
-    yearGroup: yearGroupSlug,
+    themeSlug: appliedThemeSlug,
+    categorySlug: appliedCategorySlug,
+    yearGroup: appliedyearGroupSlug,
     units,
   });
 
@@ -135,7 +137,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                   </OakP>
                   <LearningThemeFilters
                     labelledBy={learningThemesId}
-                    selectedThemeSlug={themeSlug ? themeSlug : "all"}
+                    selectedThemeSlug={incomingThemeSlug}
                     idSuffix="desktop"
                     learningThemes={learningThemes}
                     setTheme={(theme) =>
@@ -152,12 +154,9 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                       numberOfUnits={unitsFilteredByLearningTheme.length}
                       learningThemesFilterId={learningThemesId}
                       updateActiveFilters={handleUpdateActiveFilters}
-                      newFilterQuery={newFilterQuery}
-                      currentFilterQuery={{
-                        year: yearGroupSlug,
-                        category: categorySlug,
-                        theme: themeSlug,
-                      }}
+                      incomingThemeSlug={incomingThemeSlug}
+                      incomingCategorySlug={incomingCategorySlug}
+                      incomingYearGroupSlug={incomingYearSlug}
                       isOpen={isMobileFilterDrawerOpen}
                       setIsOpen={setIsMobileFilterDrawerOpen}
                       handleSubmitQuery={handleSubmitFilterQuery}
@@ -189,12 +188,9 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                       numberOfUnits={unitsFilteredByLearningTheme.length}
                       learningThemesFilterId={learningThemesId}
                       updateActiveFilters={handleUpdateActiveFilters}
-                      newFilterQuery={newFilterQuery}
-                      currentFilterQuery={{
-                        year: yearGroupSlug,
-                        category: categorySlug,
-                        theme: themeSlug,
-                      }}
+                      incomingThemeSlug={incomingThemeSlug}
+                      incomingCategorySlug={incomingCategorySlug}
+                      incomingYearGroupSlug={incomingYearSlug}
                       isOpen={isMobileFilterDrawerOpen}
                       setIsOpen={setIsMobileFilterDrawerOpen}
                       handleSubmitQuery={handleSubmitFilterQuery}

@@ -29,9 +29,9 @@ describe("useUnitFilterState", () => {
       useUnitFilterState({ isUnitListing: true }),
     );
 
-    expect(result.current.themeSlug).toBe("computer-science-2");
-    expect(result.current.categorySlug).toBeUndefined();
-    expect(result.current.yearGroupSlug).toBeUndefined();
+    expect(result.current.appliedThemeSlug).toBe("computer-science-2");
+    expect(result.current.appliedCategorySlug).toBeUndefined();
+    expect(result.current.appliedyearGroupSlug).toBeUndefined();
     expect(result.current.isMobileFilterDrawerOpen).toBe(false);
     expect(result.current.newFilterQuery).toBeNull();
   });

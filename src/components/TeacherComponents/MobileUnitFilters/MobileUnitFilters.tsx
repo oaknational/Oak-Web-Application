@@ -22,11 +22,12 @@ export type MobileUnitFiltersProps = {
   numberOfUnits: number;
   learningThemesFilterId: string;
   updateActiveFilters: (queryObj: FilterQuery | null) => void;
-  newFilterQuery: FilterQuery | null;
-  currentFilterQuery: FilterQuery | null;
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   handleSubmitQuery: () => void;
+  incomingThemeSlug: string;
+  incomingCategorySlug: string;
+  incomingYearGroupSlug: string;
 } & (UnitListingData | SpecialistUnitListingData);
 
 // Type guard as due to differences in specialist and non-specialist unit listing data
@@ -42,42 +43,45 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
     numberOfUnits,
     learningThemesFilterId,
     units,
-    newFilterQuery,
-    currentFilterQuery,
     updateActiveFilters,
     isOpen,
     setIsOpen,
     handleSubmitQuery,
+    incomingThemeSlug,
+    incomingCategorySlug,
+    incomingYearGroupSlug,
   } = props;
   const isUnitListing = isUnitListingData(props);
-
-  const year = newFilterQuery?.year ?? currentFilterQuery?.year ?? "";
-  const category =
-    newFilterQuery?.category ?? currentFilterQuery?.category ?? "";
-  const theme = newFilterQuery?.theme ?? currentFilterQuery?.theme ?? "all";
 
   const [currNumberOfUnits, setCurrNumberOfUnits] = useState(numberOfUnits);
 
   useEffect(() => {
-    const inputTheme = theme === "all" ? undefined : theme;
+    const inputTheme =
+      incomingThemeSlug === "all" ? undefined : incomingThemeSlug;
     if (isUnitListing) {
       const filteredUnits = filterUnits({
         themeSlug: inputTheme,
-        categorySlug: category,
-        yearGroup: year,
+        categorySlug: incomingCategorySlug,
+        yearGroup: incomingYearGroupSlug,
         units: units as UnitListingData["units"],
       });
       setCurrNumberOfUnits(filteredUnits.length);
     } else {
       const filteredUnits = filterUnits({
         themeSlug: inputTheme,
-        categorySlug: category,
-        yearGroup: year,
+        categorySlug: incomingCategorySlug,
+        yearGroup: incomingYearGroupSlug,
         units: units as SpecialistUnitListingData["units"],
       });
       setCurrNumberOfUnits(filteredUnits.length);
     }
-  }, [category, theme, year, units, isUnitListing]);
+  }, [
+    incomingCategorySlug,
+    incomingThemeSlug,
+    incomingYearGroupSlug,
+    units,
+    isUnitListing,
+  ]);
 
   return (
     <OakBox $display={["auto", "auto", "none"]}>
@@ -105,7 +109,7 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
             <YearGroupFilters
               idSuffix="mobile"
               yearGroups={props.yearGroups}
-              yearGroupSlug={year}
+              yearGroupSlug={incomingYearGroupSlug}
               setYear={(year) => updateActiveFilters({ year })}
             />
           )}
@@ -113,7 +117,7 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
             <SubjectCategoryFilters
               idSuffix="mobile"
               subjectCategories={props.subjectCategories}
-              categorySlug={category}
+              categorySlug={incomingCategorySlug}
               setCategory={(category) => updateActiveFilters({ category })}
             />
           )}
@@ -127,7 +131,7 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
                 idSuffix="mobile"
                 labelledBy={learningThemesFilterId}
                 learningThemes={learningThemes}
-                selectedThemeSlug={theme ?? "all"}
+                selectedThemeSlug={incomingThemeSlug}
                 setTheme={(theme) => updateActiveFilters({ theme })}
               />
             </>

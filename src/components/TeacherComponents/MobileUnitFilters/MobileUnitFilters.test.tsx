@@ -39,11 +39,12 @@ const mockProps: MobileUnitFiltersProps = {
   phase: "primary",
   pathwayTitle: null,
   updateActiveFilters: jest.fn(),
-  newFilterQuery: null,
-  currentFilterQuery: null,
   isOpen: true,
   setIsOpen: jest.fn(),
   handleSubmitQuery: jest.fn(),
+  incomingThemeSlug: "",
+  incomingCategorySlug: "",
+  incomingYearGroupSlug: "",
 };
 
 describe("MobileUnitFilters", () => {
@@ -131,11 +132,9 @@ describe("MobileUnitFilters", () => {
       <OakThemeProvider theme={oakDefaultTheme}>
         <MobileUnitFilters
           {...mockProps}
-          currentFilterQuery={{
-            year: "year-1",
-            category: "maths",
-            theme: "theme1",
-          }}
+          incomingCategorySlug="maths"
+          incomingThemeSlug="theme1"
+          incomingYearGroupSlug="year-1"
         />
       </OakThemeProvider>,
     );
