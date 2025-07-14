@@ -15,6 +15,8 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   }),
 }));
 
+const setTheme = jest.fn();
+
 describe("UnitsLearningThemeFilters", () => {
   beforeAll(() => {
     // Mock window.history.state
@@ -51,7 +53,6 @@ describe("UnitsLearningThemeFilters", () => {
     expect(themes[2]).toBe(screen.getByLabelText("No theme 1"));
   });
   test("should call setTheme method with correct value", async () => {
-    const setTheme = jest.fn();
     renderWithProviders()(
       <UnitsLearningThemeFilters
         labelledBy={"Learning Theme Filter"}
@@ -72,7 +73,6 @@ describe("UnitsLearningThemeFilters", () => {
   });
 
   test("on mobile, invokes setMobileFilter with correct value", async () => {
-    const setTheme = jest.fn();
     renderWithProviders()(
       <UnitsLearningThemeFilters
         labelledBy={"Learning Theme Filter"}

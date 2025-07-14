@@ -18,6 +18,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 jest.mock("next/router", () => ({
   useRouter: jest.fn(),
 }));
+const mockSetYear = jest.fn();
 
 describe("YearGroupFilters", () => {
   const mockRouter = {
@@ -52,7 +53,6 @@ describe("YearGroupFilters", () => {
   });
 
   it("calls set year year on click", async () => {
-    const mockSetYear = jest.fn();
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <YearGroupFilters
@@ -78,7 +78,6 @@ describe("YearGroupFilters", () => {
   });
 
   it("on mobile, passed in setYear function invoked with selected input", () => {
-    const mockSetYear = jest.fn();
     renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <YearGroupFilters
