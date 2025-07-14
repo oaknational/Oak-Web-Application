@@ -25,6 +25,7 @@ const mockUnits = [
     lessons: completeUnitLessons,
     onSave: jest.fn(),
     isSaved: true,
+    isSaving: false,
   },
   {
     unitTitle: "Poetry Analysis",
@@ -36,6 +37,7 @@ const mockUnits = [
     lessons: incompleteUnitLessons,
     onSave: jest.fn(),
     isSaved: false,
+    isSaving: false,
   },
 ];
 
