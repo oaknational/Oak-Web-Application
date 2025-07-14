@@ -65,7 +65,7 @@ export const useUnitFilterState = ({
   const handleSubmitFilterQuery = (filterQuery?: FilterQuery | null) => {
     const filterQueryToUse = filterQuery || newFilterQuery;
     if (filterQueryToUse) {
-      const params = Object.assign({}, router.query);
+      const params = { ...router.query };
       let theme, category, year;
       if (filterQueryToUse.year) {
         params.year = filterQueryToUse.year;

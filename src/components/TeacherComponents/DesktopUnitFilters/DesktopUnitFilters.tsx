@@ -10,7 +10,6 @@ import YearGroupFilters from "../YearGroupFilters";
 import SubjectCategoryFilters from "../SubjectCategoryFilters";
 import UnitsLearningThemeFilters from "../UnitsLearningThemeFilters";
 
-import { FilterTypeValueType } from "@/browser-lib/avo/Avo";
 import {
   LearningThemes,
   SubjectCategory,
@@ -28,11 +27,7 @@ export type DesktopUnitFiltersProps = {
   learningThemes: LearningThemes;
   skipFiltersButton: boolean;
   learningThemesId: string;
-  updateQuery: (
-    queryObj: FilterQuery | null,
-    filterType: FilterTypeValueType,
-    filterValue: string,
-  ) => void;
+  updateQuery: (queryObj: FilterQuery | null) => void;
   incomingThemeSlug: string;
   incomingCategorySlug: string;
   incomingYearSlug: string;
@@ -94,7 +89,7 @@ const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
           <YearGroupFilters
             yearGroups={yearGroups}
             idSuffix="desktop"
-            setYear={(year) => updateQuery({ year }, "Year filter", year ?? "")}
+            setYear={(year) => updateQuery({ year })}
             yearGroupSlug={incomingYearSlug}
           />
         )}
@@ -103,9 +98,7 @@ const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
             idSuffix="desktop"
             subjectCategories={subjectCategories}
             categorySlug={incomingCategorySlug}
-            setCategory={(category) =>
-              updateQuery({ category }, "Subject filter", category ?? "")
-            }
+            setCategory={(category) => updateQuery({ category })}
           />
         )}
         {learningThemes?.length > 1 && (
@@ -124,9 +117,7 @@ const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
               labelledBy={learningThemesId}
               learningThemes={learningThemes}
               selectedThemeSlug={incomingThemeSlug}
-              setTheme={(theme) =>
-                updateQuery({ theme }, "Learning theme filter", theme ?? "all")
-              }
+              setTheme={(theme) => updateQuery({ theme })}
             />
           </OakFlex>
         )}

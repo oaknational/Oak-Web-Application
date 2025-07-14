@@ -17,6 +17,10 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 describe("useUnitFilterState", () => {
   beforeEach(() => {
     jest.resetAllMocks();
+    mockRouter.push({
+      pathname: "/teachers/programmes/art-primary-ks1/units",
+      query: {},
+    });
   });
   it("initializes with correct state", async () => {
     mockRouter.push({
@@ -41,7 +45,7 @@ describe("useUnitFilterState", () => {
 
     act(() => {
       result.current.handleUpdateActiveFilters({
-        year: "2023",
+        year: "year-5",
         category: "maths",
         theme: "algebra",
       });
@@ -49,7 +53,52 @@ describe("useUnitFilterState", () => {
 
     expect(result.current.incomingCategorySlug).toEqual("maths");
     expect(result.current.incomingThemeSlug).toEqual("algebra");
-    expect(result.current.incomingYearSlug).toEqual("2023");
+    expect(result.current.incomingYearSlug).toEqual("year-5");
+  });
+  it("clears newFilterQuery on handleUpdateActiveFilters with null", () => {
+    const { result } = renderHook(() =>
+      useUnitFilterState({ isUnitListing: true }),
+    );
+    act(() => {
+      result.current.handleUpdateActiveFilters(null);
+    });
+    expect(result.current.incomingCategorySlug).toBe("");
+    expect(result.current.incomingThemeSlug).toBe("all");
+    expect(result.current.incomingYearSlug).toBe("");
+  });
+  it("handles missing filter params ", () => {
+    const { result } = renderHook(() =>
+      useUnitFilterState({ isUnitListing: true }),
+    );
+
+    act(() => {
+      result.current.handleUpdateActiveFilters({
+        year: "year-5",
+      });
+    });
+
+    expect(result.current.incomingCategorySlug).toBe("");
+    expect(result.current.incomingThemeSlug).toBe("all");
+    expect(result.current.incomingYearSlug).toBe("year-5");
+  });
+  it("updates and submits", () => {
+    const { result } = renderHook(() =>
+      useUnitFilterState({ isUnitListing: true }),
+    );
+
+    act(() => {
+      result.current.handleUpdateAndSubmitFilterQuery({
+        year: "year-7",
+        category: "maths",
+        theme: "algebra",
+      });
+    });
+
+    expect(mockRouter.query).toEqual({
+      year: "year-7",
+      category: "maths",
+      "learning-theme": "algebra",
+    });
   });
   it("calls browse refined on update", () => {
     const { result } = renderHook(() =>
