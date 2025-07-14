@@ -17,6 +17,7 @@ import {
   OakSvg,
   OakImage,
 } from "@oaknational/oak-components";
+import styled from "styled-components";
 
 import Logo from "@/components/AppComponents/Logo";
 import OwaLink from "@/components/SharedComponents/OwaLink";
@@ -156,6 +157,12 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
   }
 };
 
+const StyledLogo = styled(OakImage)`
+  height: 87px;
+  width: 77px;
+  margin-top: 2rem;
+`;
+
 export type FooterSection = {
   title: string;
   links: LayoutFooterLinkProps[];
@@ -260,14 +267,11 @@ const LayoutSiteFooter: FC = () => {
               </OakFlex>
             </OakGridArea>
           </OakGrid>
-          <OakImage
-            $position={"relative"}
-            $maxWidth={"all-spacing-12"}
+          <StyledLogo
             alt="Cyber Essentials Logo"
             src={getCloudinaryImageUrl(
               "v1751992190/OWA/illustrations/Cyber-Essentials-Logo_ryiskg.png",
             )}
-            $mt={"space-between-m2"}
           />
           <OakFlex
             $mb="space-between-xl"
