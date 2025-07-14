@@ -1,3 +1,13 @@
+# [1.793.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.792.2...v1.793.0) (2025-07-14)
+
+
+### Features
+
+* add CopyrightRestrictionBanner to LessonDownloads ([75efdce](https://github.com/oaknational/Oak-Web-Application/commit/75efdce2d6f68baa999b6b4e7a46b4a97c960e95))
+* add downloads restriction logic and LoginRequiredButton to ResourcePageLayout components ([154208f](https://github.com/oaknational/Oak-Web-Application/commit/154208f6dc85a6bad27828bf138d65c8c11b60ed))
+* add tracking to DownloadRegionRestructedMessage componentn  and update tests ([763b3c6](https://github.com/oaknational/Oak-Web-Application/commit/763b3c6ac54ceab650b4259f3abd7bc98f0d2eb0))
+* implement a message for non geoAuthenticated users ([d4012e5](https://github.com/oaknational/Oak-Web-Application/commit/d4012e59f51913ce88349c4f6839525528b68c45))
+
 ## [1.792.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.792.1...v1.792.2) (2025-07-08)
 
 
