@@ -376,8 +376,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         </OakBox>
         {isRegionAuthorised ? (
           (() => {
-            // TODO: configure georestriction and login required rules for downloads
-
             if (isDownloadSuccessful) {
               return (
                 <DownloadConfirmation
