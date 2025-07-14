@@ -41,6 +41,8 @@ import curriculumPhaseOptionsSchema from "./queries/curriculumPhaseOptions/curri
 import curriculumSequenceSchema from "./queries/curriculumSequence/curriculumSequence.schema";
 import { canonicalLessonRedirectQuery } from "./queries/canonicalLessonRedirect/canonicalLessonRedirect.query";
 import { browseLessonRedirectQuery } from "./queries/browseLessonRedirect/browseLessonRedirect.query";
+import { browseUnitRedirectQuery } from "./queries/browseUnitRedirect/browseUnitRedirect.query";
+import { pupilUnitRedirectQuery } from "./queries/pupilUnitRedirect/pupilUnitRedirect.query";
 
 export const keyStageSchema = z.object({
   slug: z.string(),
@@ -137,6 +139,8 @@ const curriculumApi2023 = {
   pupilLessonQuery: pupilLessonQuery(sdk),
   canonicalLessonRedirectQuery: canonicalLessonRedirectQuery(sdk),
   browseLessonRedirectQuery: browseLessonRedirectQuery(sdk),
+  browseUnitRedirectQuery: browseUnitRedirectQuery(sdk),
+  pupilUnitRedirectQuery: pupilUnitRedirectQuery(sdk),
   pupilPreviewLessonQuery: pupilPreviewLessonQuery(sdk),
   pupilUnitListingQuery: pupilUnitListingQuery(sdk),
   pupilLessonListingQuery: pupilLessonListingQuery(sdk),

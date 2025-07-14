@@ -121,9 +121,23 @@ export const getStaticProps: GetStaticProps<
       );
 
       if (!filteredBrowseData || filteredBrowseData.length === 0) {
-        return {
-          notFound: true,
-        };
+        const { redirectData } =
+          await curriculumApi2023.browseUnitRedirectQuery({
+            incomingPath: `programmes/${programmeSlug}/units/${unitSlug}/lessons`,
+          });
+        if (redirectData) {
+          return {
+            redirect: {
+              destination: `/pupils/${redirectData.outgoingPath}/lessons`,
+              permanent: true, // true = 308, false = 307
+              basePath: false, // Do not prepend the basePath
+            },
+          };
+        } else {
+          return {
+            notFound: true,
+          };
+        }
       }
 
       /**

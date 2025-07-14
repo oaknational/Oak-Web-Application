@@ -160,12 +160,6 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug, unitSlug, programmeSlug } = context.params;
 
-      // const curriculumData = await curriculumApi2023.lessonOverview({
-      //   programmeSlug,
-      //   lessonSlug,
-      //   unitSlug,
-      // });
-
       let curriculumData;
       let lessonPageData;
       try {
@@ -208,7 +202,6 @@ export const getStaticProps: GetStaticProps<
         }
       }
 
-      // const lessonPageData = await populateLessonWithTranscript(curriculumData);
       const results: GetStaticPropsResult<LessonOverviewPageProps> = {
         props: {
           curriculumData: lessonPageData,
