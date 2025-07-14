@@ -43,7 +43,7 @@ export const useUnitFilterState = ({
       setNewFilterQuery(null);
       return null;
     } else {
-      const params: FilterQuery = Object.assign({}, newFilterQuery);
+      const params: FilterQuery = { ...newFilterQuery };
       if (filters.year) {
         params.year = filters.year;
       } else if (filters.year === null) {

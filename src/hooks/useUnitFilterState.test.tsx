@@ -81,6 +81,21 @@ describe("useUnitFilterState", () => {
     expect(result.current.incomingThemeSlug).toBe("all");
     expect(result.current.incomingYearSlug).toBe("year-5");
   });
+  it("handles null filter params", () => {
+    const { result } = renderHook(() =>
+      useUnitFilterState({ isUnitListing: true }),
+    );
+    act(() => {
+      result.current.handleUpdateActiveFilters({
+        year: null,
+        category: null,
+        theme: null,
+      });
+    });
+    expect(result.current.incomingCategorySlug).toBe("");
+    expect(result.current.incomingThemeSlug).toBe("all");
+    expect(result.current.incomingYearSlug).toBe("");
+  });
   it("updates and submits", () => {
     const { result } = renderHook(() =>
       useUnitFilterState({ isUnitListing: true }),
