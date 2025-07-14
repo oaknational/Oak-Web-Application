@@ -9,6 +9,7 @@ interface UseCopyrightRequirementsProps {
 interface UseCopyrightRequirementsReturn {
   showSignedOutLoginRequired: boolean;
   showSignedOutGeoRestricted: boolean;
+  showSignedInNotOnboarded: boolean;
   showGeoBlocked: boolean;
 }
 
@@ -21,22 +22,29 @@ export function useCopyrightRequirements({
     "teachers-copyright-restrictions",
   );
 
+  const isUserOnboarded =
+    (isSignedIn && user?.publicMetadata?.owa?.isOnboarded) ?? false;
+
   if (!featureFlagEnabled) {
     return {
       showGeoBlocked: false,
       showSignedOutLoginRequired: false,
       showSignedOutGeoRestricted: false,
+      showSignedInNotOnboarded: false,
     };
   }
 
-  const userRegionAuthorised =
+  const showSignedInNotOnboarded =
+    !isUserOnboarded && (loginRequired || geoRestricted);
+  const isUserRegionAuthorised =
     user?.publicMetadata?.owa?.isRegionAuthorised ?? false;
 
   return {
     showSignedOutLoginRequired: !isSignedIn && loginRequired,
     showSignedOutGeoRestricted: !isSignedIn && geoRestricted,
     showGeoBlocked: Boolean(
-      isSignedIn && geoRestricted && !userRegionAuthorised,
+      isSignedIn && geoRestricted && !isUserRegionAuthorised,
     ),
+    showSignedInNotOnboarded,
   };
 }

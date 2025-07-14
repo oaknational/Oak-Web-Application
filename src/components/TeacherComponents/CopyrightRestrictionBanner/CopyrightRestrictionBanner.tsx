@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { SignUpButton, useUser } from "@clerk/nextjs";
+import { SignUpButton } from "@clerk/nextjs";
 import {
   OakFlex,
   OakLink,
@@ -10,13 +10,13 @@ import {
 } from "@oaknational/oak-components";
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { COPYRIGHT_CONTACT_US_LINK } from "@/utils/copyrightContactUsLink";
+import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
 
 export type CopyrightRestrictionBannerProps = {
   isGeorestricted?: boolean;
@@ -156,21 +156,23 @@ const CopyrightRestrictionBanner = (props: CopyrightRestrictionBannerProps) => {
     isLessonLegacy,
   } = props;
 
-  const { user, isSignedIn } = useUser();
-  const { track } = useAnalytics();
-  const restrictionEnabled = useFeatureFlagEnabled(
-    "teachers-copyright-restrictions",
-  );
+  const {
+    showSignedOutGeoRestricted,
+    showSignedOutLoginRequired,
+    showSignedInNotOnboarded,
+    showGeoBlocked,
+  } = useCopyrightRequirements({
+    loginRequired: isLoginRequired ?? false,
+    geoRestricted: isGeorestricted ?? false,
+  });
 
-  const showOnboardingLink = !!(user && !user.publicMetadata?.owa?.isOnboarded);
-  const isUserRegionRestricted = !!(
-    user && !user?.publicMetadata?.owa?.isRegionAuthorised
-  );
+  const { track } = useAnalytics();
+
   const isLegacy = unitSlug ? isSlugLegacy(unitSlug) : isLessonLegacy;
   const isUnit = (componentType && componentType === "lesson_listing") ?? false;
 
   useEffect(() => {
-    if (isSignedIn && isGeorestricted && isUserRegionRestricted) {
+    if (showGeoBlocked) {
       track.contentBlockNotificationDisplayed({
         platform: "owa",
         product: "teacher lesson resources",
@@ -191,9 +193,6 @@ const CopyrightRestrictionBanner = (props: CopyrightRestrictionBannerProps) => {
       });
     }
   }, [
-    isSignedIn,
-    isGeorestricted,
-    isUserRegionRestricted,
     track,
     componentType,
     unitName,
@@ -203,25 +202,28 @@ const CopyrightRestrictionBanner = (props: CopyrightRestrictionBannerProps) => {
     lessonReleaseDate,
     isLegacy,
     isUnit,
+    showGeoBlocked,
   ]);
+  // Show banner when user is signed in but not onboarded AND content requires restrictions
 
+  const showSignedOutCopyrightBanner =
+    showSignedOutGeoRestricted ||
+    showSignedOutLoginRequired ||
+    showSignedInNotOnboarded;
+
+  const showOnboardingLink =
+    showSignedInNotOnboarded &&
+    !(showSignedOutGeoRestricted || showSignedOutLoginRequired);
   return (
     <>
-      {restrictionEnabled &&
-        (!isSignedIn || (isSignedIn && showOnboardingLink)) &&
-        (isGeorestricted || isLoginRequired) && (
-          <SignedOutCopyrightBanner
-            showOnboardingLink={showOnboardingLink}
-            isGeorestricted={!!isGeorestricted}
-            isUnit={!!isUnit}
-          />
-        )}
-      {restrictionEnabled &&
-        isSignedIn &&
-        isGeorestricted &&
-        isUserRegionRestricted && (
-          <SignedInGeorestrictedBanner isUnit={!!isUnit} />
-        )}
+      {showSignedOutCopyrightBanner && (
+        <SignedOutCopyrightBanner
+          showOnboardingLink={showOnboardingLink}
+          isGeorestricted={!!isGeorestricted}
+          isUnit={!!isUnit}
+        />
+      )}
+      {showGeoBlocked && <SignedInGeorestrictedBanner isUnit={!!isUnit} />}
     </>
   );
 };
