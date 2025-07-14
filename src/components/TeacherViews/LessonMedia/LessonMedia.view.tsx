@@ -89,13 +89,15 @@ export const LessonMedia = (props: LessonMediaProps) => {
     loginRequired,
     geoRestricted,
   } = lesson;
-
   const { track } = useAnalytics();
-  const { showSignedOutLoginRequired, showSignedOutGeoRestricted } =
-    useCopyrightRequirements({
-      loginRequired,
-      geoRestricted,
-    });
+  const {
+    showSignedOutLoginRequired,
+    showSignedOutGeoRestricted,
+    showGeoBlocked,
+  } = useCopyrightRequirements({
+    loginRequired,
+    geoRestricted,
+  });
 
   const showRestricted =
     showSignedOutLoginRequired || showSignedOutGeoRestricted;
@@ -179,6 +181,36 @@ export const LessonMedia = (props: LessonMediaProps) => {
       );
     }
   };
+
+  useEffect(() => {
+    if (showGeoBlocked) {
+      track.contentBlockNotificationDisplayed({
+        platform: "owa",
+        product: "teacher lesson resources",
+        engagementIntent: "explore",
+        componentType: "lesson_media_clips",
+        eventVersion: "2.0.0",
+        analyticsUseCase: "Teacher",
+        lessonName: lessonTitle ?? null,
+        lessonSlug: lessonSlug ?? null,
+        lessonReleaseCohort: "2023-2026",
+        lessonReleaseDate: lessonReleaseDate ?? null,
+        unitName: unitTitle ?? null,
+        unitSlug: unitSlug ?? null,
+        contentType: "lesson",
+        accessBlockType: "Geo-restriction",
+        accessBlockDetails: {},
+      });
+    }
+  }, [
+    track,
+    showGeoBlocked,
+    lessonTitle,
+    lessonSlug,
+    lessonReleaseDate,
+    unitTitle,
+    unitSlug,
+  ]);
 
   useEffect(() => {
     setCurrentClip(getInitialCurrentClip(listOfAllClips, query.video));

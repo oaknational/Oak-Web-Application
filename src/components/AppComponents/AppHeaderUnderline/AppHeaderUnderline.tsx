@@ -8,7 +8,7 @@ export const AppHeaderUnderline: FC = () => {
       $zIndex={"behind"}
       $height={"all-spacing-1"}
       $width={"100%"}
-      $top={"all-spacing-12"}
+      $top={["all-spacing-10", "all-spacing-12"]}
       $right={"all-spacing-0"}
       $left={"all-spacing-0"}
     >

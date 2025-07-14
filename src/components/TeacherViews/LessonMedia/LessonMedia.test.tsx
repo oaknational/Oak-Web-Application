@@ -11,7 +11,10 @@ import { VideoPlayerProps } from "@/components/SharedComponents/VideoPlayer/Vide
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
-import { mockLoggedOut } from "@/__tests__/__helpers__/mockUser";
+import {
+  mockLoggedOut,
+  mockGeorestrictedUser,
+} from "@/__tests__/__helpers__/mockUser";
 
 const render = renderWithProviders();
 
@@ -33,11 +36,14 @@ jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => mockFeatureFlagEnabled(),
 }));
 
+const mockTrackContentBlock = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
       mediaClipsPlaylistPlayed: jest.fn(),
+      contentBlockNotificationDisplayed: (...args: unknown[]) =>
+        mockTrackContentBlock(...args),
     },
   }),
 }));
@@ -175,6 +181,7 @@ describe("LessonMedia view", () => {
       "/teachers/programmes/physical-education-ks4/units/running-and-jumping/lessons/running-as-a-team/media?video=191189",
     );
   });
+
   it("handles edge case media clip video object", async () => {
     const lessonWithUndefinedDuration = {
       ...lessonMediaClipsFixtures({
@@ -261,6 +268,7 @@ describe("LessonMedia view", () => {
       "Read help article for this page (opens in a new tab)",
     );
   });
+
   it('Renders "RestrictedSignInPrompt" when geoRestricted or loginRequired is true and the user is not Signed in', () => {
     mockFeatureFlagEnabled.mockReturnValue(true);
     setUseUserReturn(mockLoggedOut);
@@ -275,6 +283,7 @@ describe("LessonMedia view", () => {
     expect(mediaClipWrapper).not.toBeInTheDocument();
     expect(restrictedSignInPrompt).toBeInTheDocument();
   });
+
   it("does not render 'RestrictedSignInPrompt' when geoRestricted or loginRequired is false", () => {
     mockFeatureFlagEnabled.mockReturnValue(true);
     setUseUserReturn(mockLoggedOut);
@@ -287,6 +296,7 @@ describe("LessonMedia view", () => {
     const restrictedSignInPrompt = queryByText("Sign in to continue");
     expect(restrictedSignInPrompt).not.toBeInTheDocument();
   });
+
   it("does not render 'RestrictedSignInPrompt' when feature flag is disabled", () => {
     mockFeatureFlagEnabled.mockReturnValue(false);
     setUseUserReturn(mockLoggedOut);
@@ -298,5 +308,34 @@ describe("LessonMedia view", () => {
     );
     const restrictedSignInPrompt = queryByText("Sign in to continue");
     expect(restrictedSignInPrompt).not.toBeInTheDocument();
+  });
+
+  it("tracks contentBlockNotificationDisplayed event when user is signed in and geoblocked", () => {
+    mockFeatureFlagEnabled.mockReturnValue(true);
+    setUseUserReturn(mockGeorestrictedUser);
+    render(
+      <LessonMedia
+        lesson={{ ...lesson, geoRestricted: true, loginRequired: true }}
+        isCanonical={false}
+      />,
+    );
+
+    expect(mockTrackContentBlock).toHaveBeenCalledWith({
+      platform: "owa",
+      product: "teacher lesson resources",
+      engagementIntent: "explore",
+      componentType: "lesson_media_clips",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
+      lessonName: "Running as a team",
+      lessonSlug: "running-as-a-team",
+      lessonReleaseCohort: "2023-2026",
+      lessonReleaseDate: "2025-09-29T14:00:00.000Z",
+      unitName: "Running and jumping",
+      unitSlug: "running-and-jumping",
+      contentType: "lesson",
+      accessBlockType: "Geo-restriction",
+      accessBlockDetails: {},
+    });
   });
 });
