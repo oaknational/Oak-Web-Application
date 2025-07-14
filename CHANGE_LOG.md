@@ -1,3 +1,41 @@
+# [1.793.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.792.2...v1.793.0) (2025-07-14)
+
+
+### Features
+
+* add CopyrightRestrictionBanner to LessonDownloads ([75efdce](https://github.com/oaknational/Oak-Web-Application/commit/75efdce2d6f68baa999b6b4e7a46b4a97c960e95))
+* add downloads restriction logic and LoginRequiredButton to ResourcePageLayout components ([154208f](https://github.com/oaknational/Oak-Web-Application/commit/154208f6dc85a6bad27828bf138d65c8c11b60ed))
+* add tracking to DownloadRegionRestructedMessage componentn  and update tests ([763b3c6](https://github.com/oaknational/Oak-Web-Application/commit/763b3c6ac54ceab650b4259f3abd7bc98f0d2eb0))
+* implement a message for non geoAuthenticated users ([d4012e5](https://github.com/oaknational/Oak-Web-Application/commit/d4012e59f51913ce88349c4f6839525528b68c45))
+
+## [1.792.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.792.1...v1.792.2) (2025-07-08)
+
+
+### Bug Fixes
+
+* update logo colour in app header ([0e36851](https://github.com/oaknational/Oak-Web-Application/commit/0e36851fea75a233b8b2d6238e08e49b790088fe))
+
+## [1.792.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.792.0...v1.792.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* reposition absolute elements to fit new header height on mobile ([b30aaff](https://github.com/oaknational/Oak-Web-Application/commit/b30aaff4d98bceddba14eabfff88b69038ec2c5c))
+
+# [1.792.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.791.0...v1.792.0) (2025-07-07)
+
+
+### Features
+
+* temporarily adds git_branch and ignore command ([4fd6cba](https://github.com/oaknational/Oak-Web-Application/commit/4fd6cba9b0db2ec7102532446088ade61ab55112))
+
+# [1.791.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.790.2...v1.791.0) (2025-07-07)
+
+
+### Features
+
+* add tracking for accessing geoblocked media clips page ([1cf1ed0](https://github.com/oaknational/Oak-Web-Application/commit/1cf1ed092d71e39f30f6e80ef06df497966c224c))
+
 ## [1.790.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.790.1...v1.790.2) (2025-07-07)
 
 

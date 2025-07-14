@@ -84,6 +84,9 @@ export const ActiveLinkUnderline = styled(OakSvg)`
   position: absolute;
   height: 8px;
   bottom: -29px;
+  @media (max-width: 768px) {
+    bottom: -20px;
+  }
   left: 0px;
   ${StyledNextLink}:focus & {
     display: none;

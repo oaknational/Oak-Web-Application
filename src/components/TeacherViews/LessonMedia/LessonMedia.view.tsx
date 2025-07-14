@@ -90,13 +90,17 @@ export const LessonMedia = (props: LessonMediaProps) => {
     loginRequired,
     geoRestricted,
   } = lesson;
-  const { isSignedIn } = useUser();
+  const { user, isSignedIn } = useUser();
   const { track } = useAnalytics();
   const featureFlagEnabled = useFeatureFlagEnabled(
     "teachers-copyright-restrictions",
   );
   const showRestricted =
     featureFlagEnabled && !isSignedIn && (loginRequired || geoRestricted);
+  const isUserRegionRestricted =
+    user && !user?.publicMetadata?.owa?.isRegionAuthorised;
+  const showGeoblocked =
+    featureFlagEnabled && isSignedIn && geoRestricted && isUserRegionRestricted;
 
   const subjectSlug = isCanonical
     ? (lesson?.pathways[0]?.subjectSlug ?? "")
@@ -177,6 +181,36 @@ export const LessonMedia = (props: LessonMediaProps) => {
       );
     }
   };
+
+  useEffect(() => {
+    if (showGeoblocked) {
+      track.contentBlockNotificationDisplayed({
+        platform: "owa",
+        product: "teacher lesson resources",
+        engagementIntent: "explore",
+        componentType: "lesson_media_clips",
+        eventVersion: "2.0.0",
+        analyticsUseCase: "Teacher",
+        lessonName: lessonTitle ?? null,
+        lessonSlug: lessonSlug ?? null,
+        lessonReleaseCohort: "2023-2026",
+        lessonReleaseDate: lessonReleaseDate ?? null,
+        unitName: unitTitle ?? null,
+        unitSlug: unitSlug ?? null,
+        contentType: "lesson",
+        accessBlockType: "Geo-restriction",
+        accessBlockDetails: {},
+      });
+    }
+  }, [
+    track,
+    showGeoblocked,
+    lessonTitle,
+    lessonSlug,
+    lessonReleaseDate,
+    unitTitle,
+    unitSlug,
+  ]);
 
   useEffect(() => {
     setCurrentClip(getInitialCurrentClip(listOfAllClips, query.video));
