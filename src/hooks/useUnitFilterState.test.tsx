@@ -33,7 +33,6 @@ describe("useUnitFilterState", () => {
     expect(result.current.appliedCategorySlug).toBeUndefined();
     expect(result.current.appliedyearGroupSlug).toBeUndefined();
     expect(result.current.isMobileFilterDrawerOpen).toBe(false);
-    expect(result.current.newFilterQuery).toBeNull();
   });
   it("updates newFilterQuery on handleUpdateActiveFilters", () => {
     const { result } = renderHook(() =>
@@ -48,11 +47,9 @@ describe("useUnitFilterState", () => {
       });
     });
 
-    expect(result.current.newFilterQuery).toEqual({
-      year: "2023",
-      category: "maths",
-      theme: "algebra",
-    });
+    expect(result.current.incomingCategorySlug).toEqual("maths");
+    expect(result.current.incomingThemeSlug).toEqual("algebra");
+    expect(result.current.incomingYearSlug).toEqual("2023");
   });
   it("calls browse refined on update", () => {
     const { result } = renderHook(() =>

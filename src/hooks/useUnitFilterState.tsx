@@ -29,7 +29,7 @@ export const useUnitFilterState = ({
   const appliedCategorySlug = router.query["category"]?.toString();
   const appliedyearGroupSlug = router.query["year"]?.toString();
 
-  // Latest active filters that may not have been applied to the url yet
+  // Latest filters that may not have been applied to the url yet
   const incomingYearSlug = newFilterQuery?.year ?? appliedyearGroupSlug ?? "";
   const incomingCategorySlug =
     newFilterQuery?.category ?? appliedCategorySlug ?? "";
@@ -129,13 +129,13 @@ export const useUnitFilterState = ({
     }
   };
 
+  // Used on desktop to update and submit in one go
   const handleUpdateAndSubmitFilterQuery = (queryObj: FilterQuery | null) => {
     const updatedQuery = handleUpdateActiveFilters(queryObj);
     handleSubmitFilterQuery(updatedQuery);
   };
 
   return {
-    newFilterQuery,
     isMobileFilterDrawerOpen,
     setIsMobileFilterDrawerOpen,
     handleUpdateActiveFilters,
