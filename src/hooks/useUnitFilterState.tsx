@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { FilterTypeValueType } from "@/browser-lib/avo/Avo";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -28,6 +28,17 @@ export const useUnitFilterState = ({
   const appliedThemeSlug = router.query["learning-theme"]?.toString();
   const appliedCategorySlug = router.query["category"]?.toString();
   const appliedyearGroupSlug = router.query["year"]?.toString();
+
+  // Initialise the new filter query based on the applied filters
+  useEffect(() => {
+    if (appliedThemeSlug || appliedCategorySlug || appliedyearGroupSlug) {
+      setNewFilterQuery({
+        theme: appliedThemeSlug || "all",
+        category: appliedCategorySlug || undefined,
+        year: appliedyearGroupSlug || undefined,
+      });
+    }
+  }, [appliedCategorySlug, appliedThemeSlug, appliedyearGroupSlug]);
 
   // Latest filters that may not have been applied to the url yet
   const incomingYearSlug = newFilterQuery?.year ?? appliedyearGroupSlug ?? "";
