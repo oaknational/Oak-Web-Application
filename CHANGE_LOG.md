@@ -1,3 +1,31 @@
+## [1.792.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.792.1...v1.792.2) (2025-07-08)
+
+
+### Bug Fixes
+
+* update logo colour in app header ([0e36851](https://github.com/oaknational/Oak-Web-Application/commit/0e36851fea75a233b8b2d6238e08e49b790088fe))
+
+## [1.792.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.792.0...v1.792.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* reposition absolute elements to fit new header height on mobile ([b30aaff](https://github.com/oaknational/Oak-Web-Application/commit/b30aaff4d98bceddba14eabfff88b69038ec2c5c))
+
+# [1.792.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.791.0...v1.792.0) (2025-07-07)
+
+
+### Features
+
+* temporarily adds git_branch and ignore command ([4fd6cba](https://github.com/oaknational/Oak-Web-Application/commit/4fd6cba9b0db2ec7102532446088ade61ab55112))
+
+# [1.791.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.790.2...v1.791.0) (2025-07-07)
+
+
+### Features
+
+* add tracking for accessing geoblocked media clips page ([1cf1ed0](https://github.com/oaknational/Oak-Web-Application/commit/1cf1ed092d71e39f30f6e80ef06df497966c224c))
+
 ## [1.790.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.790.1...v1.790.2) (2025-07-07)
 
 
