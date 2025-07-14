@@ -1,23 +1,25 @@
 import { OakTagFunctional } from "@oaknational/oak-components";
-import { useUser } from "@clerk/nextjs";
+
+import { useCopyrightRequirements } from "../../../hooks/useCopyrightRequirements";
 
 export function LessonCopyrightTag({
-  lessonLoginRequired,
-  lessonGeorestricted,
+  loginRequired,
+  georestricted,
 }: {
-  lessonLoginRequired?: boolean;
-  lessonGeorestricted?: boolean;
+  loginRequired: boolean;
+  georestricted: boolean;
 }) {
-  const { user, isSignedIn } = useUser();
-  const userGeoAuthenticated = user?.publicMetadata?.owa?.isRegionAuthorised;
+  const {
+    showSignedOutLoginRequired,
+    showSignedOutGeoRestricted,
+    showGeoBlocked,
+  } = useCopyrightRequirements({
+    loginRequired: loginRequired,
+    geoRestricted: georestricted,
+  });
 
-  const showSignedOutTag =
-    (lessonLoginRequired || lessonGeorestricted) && !isSignedIn;
-
-  const showGeorestrictedTag =
-    lessonGeorestricted && isSignedIn && !userGeoAuthenticated;
-
-  const showCopyrightedTag = showSignedOutTag || showGeorestrictedTag;
+  const showCopyrightedTag =
+    showSignedOutLoginRequired || showSignedOutGeoRestricted || showGeoBlocked;
 
   return (
     showCopyrightedTag && (
