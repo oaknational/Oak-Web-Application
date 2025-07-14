@@ -2,14 +2,14 @@ import { useUser } from "@clerk/nextjs";
 import { useFeatureFlagEnabled } from "posthog-js/react";
 
 interface UseCopyrightRequirementsProps {
-  loginRequired?: boolean;
-  geoRestricted?: boolean;
+  loginRequired: boolean;
+  geoRestricted: boolean;
 }
 
 interface UseCopyrightRequirementsReturn {
-  showSignedOutLoginRequired?: boolean;
-  showSignedOutGeoRestricted?: boolean;
-  showGeoBlocked?: boolean;
+  showSignedOutLoginRequired: boolean;
+  showSignedOutGeoRestricted: boolean;
+  showGeoBlocked: boolean;
 }
 
 export function useCopyrightRequirements({
@@ -35,6 +35,8 @@ export function useCopyrightRequirements({
   return {
     showSignedOutLoginRequired: !isSignedIn && loginRequired,
     showSignedOutGeoRestricted: !isSignedIn && geoRestricted,
-    showGeoBlocked: isSignedIn && geoRestricted && !userRegionAuthorised,
+    showGeoBlocked: Boolean(
+      isSignedIn && geoRestricted && !userRegionAuthorised,
+    ),
   };
 }

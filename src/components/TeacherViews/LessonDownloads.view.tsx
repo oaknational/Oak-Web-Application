@@ -4,8 +4,6 @@ import {
   tierDescriptions,
 } from "@oaknational/oak-curriculum-schema";
 import { OakBox, OakHandDrawnHR } from "@oaknational/oak-components";
-import { useFeatureFlagEnabled } from "posthog-js/react";
-import { useUser } from "@clerk/nextjs";
 
 import { filterDownloadsByCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
 import { useOnboardingStatus } from "../TeacherComponents/hooks/useOnboardingStatus";
@@ -57,6 +55,7 @@ import {
 import { LessonDownloadRegionBlocked } from "@/components/TeacherComponents/LessonDownloadRegionBlocked/LessonDownloadRegionBlocked";
 import CopyrightRestrictionBanner from "@/components/TeacherComponents/CopyrightRestrictionBanner/CopyrightRestrictionBanner";
 import { resolveOakHref } from "@/common-lib/urls";
+import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
 
 type BaseLessonDownload = {
   expired: boolean | null;
@@ -119,21 +118,18 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     loginRequired,
     geoRestricted,
   } = lesson;
-  const { isSignedIn, user } = useUser();
-  const copyrightFeatureFlagEnabled = useFeatureFlagEnabled(
-    "teachers-copyright-restrictions",
-  );
-  const userRegionAuthorised = user?.publicMetadata.owa?.isRegionAuthorised;
-  const isRegionAuthorised = geoRestricted
-    ? isSignedIn
-      ? userRegionAuthorised
-      : true
-    : true;
+
+  const {
+    showSignedOutLoginRequired,
+    showSignedOutGeoRestricted,
+    showGeoBlocked,
+  } = useCopyrightRequirements({
+    loginRequired: loginRequired ?? false,
+    geoRestricted: geoRestricted ?? false,
+  });
 
   const downloadsRestricted =
-    !isSignedIn &&
-    copyrightFeatureFlagEnabled &&
-    (loginRequired || geoRestricted);
+    showSignedOutLoginRequired || showSignedOutGeoRestricted;
 
   downloads.forEach((download) => {
     if (download.type === "presentation") {
@@ -374,7 +370,20 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             $mb={"space-between-m"}
           />
         </OakBox>
-        {isRegionAuthorised ? (
+        {showGeoBlocked ? (
+          <LessonDownloadRegionBlocked
+            lessonName={lessonTitle}
+            lessonSlug={lessonSlug}
+            lessonReleaseDate={lessonReleaseDate ?? "unreleased"}
+            isLegacy={isLegacy}
+            href={resolveOakHref({
+              page: "lesson-overview",
+              lessonSlug,
+              programmeSlug: programmeSlug!,
+              unitSlug: unitSlug!,
+            })}
+          />
+        ) : (
           (() => {
             if (isDownloadSuccessful) {
               return (
@@ -481,19 +490,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               />
             );
           })()
-        ) : (
-          <LessonDownloadRegionBlocked
-            lessonName={lessonTitle}
-            lessonSlug={lessonSlug}
-            lessonReleaseDate={lessonReleaseDate ?? "unreleased"}
-            isLegacy={isLegacy}
-            href={resolveOakHref({
-              page: "lesson-overview",
-              lessonSlug,
-              programmeSlug: programmeSlug!,
-              unitSlug: unitSlug!,
-            })}
-          />
         )}
         <OakBox $mt={"space-between-xl"}>
           <CopyrightRestrictionBanner
