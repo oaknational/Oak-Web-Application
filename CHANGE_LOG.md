@@ -1,3 +1,10 @@
+# [1.794.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.793.1...v1.794.0) (2025-07-15)
+
+
+### Features
+
+* add cyber essentials logo to footer ([1458f15](https://github.com/oaknational/Oak-Web-Application/commit/1458f150e818bd113cabed39e7efb21d2acb2c69))
+
 ## [1.793.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.793.0...v1.793.1) (2025-07-15)
 
 
