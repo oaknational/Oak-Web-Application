@@ -213,20 +213,16 @@ const CopyrightRestrictionBanner = (props: CopyrightRestrictionBannerProps) => {
   const showOnboardingLink =
     showSignedInNotOnboarded &&
     !(showSignedOutGeoRestricted || showSignedOutLoginRequired);
-  return (
-    <>
-      {showSignedOutCopyrightBanner && (
-        <SignedOutCopyrightBanner
-          showOnboardingLink={showOnboardingLink}
-          isGeorestricted={!!isGeorestricted}
-          isUnit={!!isUnit}
-        />
-      )}
-      {!showSignedOutCopyrightBanner && showGeoBlocked && (
-        <SignedInGeorestrictedBanner isUnit={!!isUnit} />
-      )}
-    </>
-  );
+
+  return showGeoBlocked ? (
+    <SignedInGeorestrictedBanner isUnit={isUnit} />
+  ) : showSignedOutCopyrightBanner ? (
+    <SignedOutCopyrightBanner
+      showOnboardingLink={showOnboardingLink}
+      isGeorestricted={isGeorestricted ?? false}
+      isUnit={isUnit}
+    />
+  ) : null;
 };
 
 export default CopyrightRestrictionBanner;

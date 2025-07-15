@@ -130,10 +130,10 @@ describe("CopyrightRestrictionBanner", () => {
           componentType="lesson_listing"
         />,
       );
-      const signedInBanner = queryByTestId("copyright-banner-signed-in");
-      const geoBlockedBanner = getByTestId("copyright-banner-signed-out");
+      const geoBlockedBanner = getByTestId("copyright-banner-signed-in");
+      const signedOutBanner = queryByTestId("copyright-banner-signed-out");
       expect(geoBlockedBanner).toBeInTheDocument();
-      expect(signedInBanner).not.toBeInTheDocument();
+      expect(signedOutBanner).not.toBeInTheDocument();
     });
   });
 
