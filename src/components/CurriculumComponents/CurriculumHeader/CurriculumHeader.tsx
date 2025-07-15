@@ -27,6 +27,10 @@ const StyledOakHeading = styled(OakHeading)`
   margin-left: -0.1rem;
 `;
 
+const StyledOakP = styled(OakP)`
+  line-height: 1;
+`;
+
 export type CurriculumHeaderPageProps = {
   curriculumPhaseOptions: SubjectPhasePickerData;
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
@@ -168,18 +172,14 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                 />
               </OakBox>
 
-              <OakFlex
-                $rowGap={["all-spacing-2", "all-spacing-2"]}
-                $justifyContent={"center"}
-                $flexDirection={"column"}
-              >
+              <OakFlex $justifyContent={"center"} $flexDirection={"column"}>
                 {keyStages.includes("ks4") && (
-                  <OakP
+                  <StyledOakP
                     $font={"heading-light-7"}
                     data-testid={"examboard-metadata"}
                   >
                     {`${ks4Option ? ks4Option.title : "All exam boards"} (KS4)`}
-                  </OakP>
+                  </StyledOakP>
                 )}
                 <StyledOakHeading
                   tag={"h1"}
