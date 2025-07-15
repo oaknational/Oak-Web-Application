@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 import styled from "styled-components";
-import { OakSpan } from "@oaknational/oak-components";
+import { OakBox, OakFieldError, OakSpan } from "@oaknational/oak-components";
 
 import InputIcon from "./InputIcon";
 
@@ -18,7 +18,6 @@ import { OakColorName } from "@/styles/theme/types";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 import { zIndexMap } from "@/styles/utils/zIndex";
 import Svg from "@/components/SharedComponents/Svg";
-import FieldError from "@/components/SharedComponents/FieldError";
 import Label from "@/components/SharedComponents/Typography/Label";
 
 export type StyledInputProps = MarginProps & {
@@ -147,9 +146,13 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   return (
     <>
       {error && (
-        <FieldError id={errorId} withoutMarginBottom={withoutMarginBottom}>
-          {error}
-        </FieldError>
+        <OakBox
+          id={errorId}
+          $mb={withoutMarginBottom ? "space-between-none" : "space-between-m"}
+          role="alert"
+        >
+          <OakFieldError>{error}</OakFieldError>
+        </OakBox>
       )}
       <InputFieldWrap
         $mb={$mb ?? 32}
