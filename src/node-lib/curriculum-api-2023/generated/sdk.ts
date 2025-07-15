@@ -66545,7 +66545,7 @@ export type BrowseUnitRedirectQueryVariables = Exact<{
 }>;
 
 
-export type BrowseUnitRedirectQuery = { __typename?: 'query_root', redirectData: Array<{ __typename?: 'published_mv_redirects_units_browse_by_keystage_18_0_0', incoming_path?: string | null, outgoing_path?: string | null, redirect_type?: any | null }> };
+export type BrowseUnitRedirectQuery = { __typename?: 'query_root', redirectData: Array<{ __typename?: 'published_mv_redirects_units_browse_by_year_18_0_0', incoming_path?: string | null, outgoing_path?: string | null, redirect_type?: any | null }> };
 
 export type CanonicalLessonRedirectQueryVariables = Exact<{
   incomingPath: Scalars['String']['input'];
@@ -66864,7 +66864,7 @@ export const BrowseLessonRedirectDocument = gql`
     `;
 export const BrowseUnitRedirectDocument = gql`
     query browseUnitRedirect($incomingPath: String!) {
-  redirectData: published_mv_redirects_units_browse_by_keystage_18_0_0(
+  redirectData: published_mv_redirects_units_browse_by_year_18_0_0(
     where: {incoming_path: {_eq: $incomingPath}}
   ) {
     incoming_path
