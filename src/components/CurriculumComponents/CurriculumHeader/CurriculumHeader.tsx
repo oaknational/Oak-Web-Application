@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import styled from "styled-components";
 import {
   OakHeading,
   OakP,
@@ -21,6 +22,10 @@ import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { buildPageTitle } from "@/utils/curriculum/formatting";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
+
+const StyledOakHeading = styled(OakHeading)`
+  margin-left: -0.1rem;
+`;
 
 export type CurriculumHeaderPageProps = {
   curriculumPhaseOptions: SubjectPhasePickerData;
@@ -176,13 +181,13 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                     {`${ks4Option ? ks4Option.title : "All exam boards"} (KS4)`}
                   </OakP>
                 )}
-                <OakHeading
+                <StyledOakHeading
                   tag={"h1"}
                   $font={["heading-5", "heading-3"]}
                   data-testid="curriculum-heading"
                 >
                   {pageTitle}
-                </OakHeading>
+                </StyledOakHeading>
               </OakFlex>
             </OakFlex>
           </OakBox>
