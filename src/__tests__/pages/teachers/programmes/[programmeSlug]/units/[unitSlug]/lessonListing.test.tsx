@@ -15,6 +15,9 @@ import lessonListingFixture, {
 import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
+import curriculumApi2023, {
+  CurriculumApi,
+} from "@/node-lib/curriculum-api-2023";
 
 const render = renderWithProviders();
 
@@ -207,7 +210,19 @@ describe("getStaticProps", () => {
     });
   });
   it("should return notFound when a landing page is missing", async () => {
+    if (!curriculumApi2023.browseUnitRedirectQuery) {
+      (curriculumApi2023 as CurriculumApi).browseUnitRedirectQuery = jest.fn();
+    }
+
     (curriculumApi.lessonListing as jest.Mock).mockResolvedValueOnce(undefined);
+    (
+      curriculumApi2023.browseUnitRedirectQuery as jest.Mock
+    ).mockResolvedValueOnce({
+      redirectData: {
+        incomingPath: "lessons/old-lesson-slug",
+        outgoingPath: "lessons/new-lesson-slug",
+      },
+    });
 
     const context = {
       params: {
@@ -217,7 +232,11 @@ describe("getStaticProps", () => {
     };
     const response = await getStaticProps(context);
     expect(response).toEqual({
-      notFound: true,
+      redirect: {
+        basePath: false,
+        destination: "/teachers/lessons/new-lesson-slug/lessons",
+        permanent: true,
+      },
     });
   });
   it("should throw error when params are missing", async () => {
