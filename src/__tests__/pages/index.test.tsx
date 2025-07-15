@@ -10,6 +10,11 @@ jest.mock("next/router", () => ({
   useRouter: jest.fn(),
 }));
 
+jest.mock("@oaknational/oak-components", () => ({
+  ...jest.requireActual("@oaknational/oak-components"),
+  OakImage: jest.fn(() => <div>Mock image</div>),
+}));
+
 const props: TeachersHomePageProps = {
   curriculumData: {
     keyStages: [
@@ -47,8 +52,7 @@ describe("Homepage", () => {
       render(<HomePage {...props} />);
     });
 
-    // skipping as failing due to unrelated footer changes, to be fixed later
-    it.skip.each(["curriculum", "pupils", "teachers", "ai"])(
+    it.each(["curriculum", "pupils", "teachers", "ai"])(
       "redirects to / when the path includes #",
       (path) => {
         const pushMock = jest.fn();
