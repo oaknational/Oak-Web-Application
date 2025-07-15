@@ -1,3 +1,21 @@
+# [1.794.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.793.1...v1.794.0) (2025-07-15)
+
+
+### Features
+
+* add cyber essentials logo to footer ([1458f15](https://github.com/oaknational/Oak-Web-Application/commit/1458f150e818bd113cabed39e7efb21d2acb2c69))
+
+## [1.793.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.793.0...v1.793.1) (2025-07-15)
+
+
+### Bug Fixes
+
+* add missing role="alert" around <OakFieldError/> ([dc65c18](https://github.com/oaknational/Oak-Web-Application/commit/dc65c1896132e2d30333f8b447ae04fedc41ff82))
+* added missing aria-labelledby to <Select/> ([e4f1933](https://github.com/oaknational/Oak-Web-Application/commit/e4f1933a4214f464708df2902a29c5727a1354a0))
+* bump oak-components to include alt text fix for <OakFieldError/> ([084bfab](https://github.com/oaknational/Oak-Web-Application/commit/084bfab7d278c9235f38d42ffa35b891854243ca))
+* include value label in select (a11y) ([52ea14c](https://github.com/oaknational/Oak-Web-Application/commit/52ea14c6bbf65e94e3918fffcb872180325723c1))
+* switch over to <OakFieldError/> ([6ad7223](https://github.com/oaknational/Oak-Web-Application/commit/6ad722307b2f245e783b78d5d1cd58bad353fa1b))
+
 # [1.793.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.792.2...v1.793.0) (2025-07-14)
 
 
