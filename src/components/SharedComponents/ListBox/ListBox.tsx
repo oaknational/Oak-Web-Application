@@ -78,7 +78,11 @@ export function ListBox(props: ListBoxProps) {
   const { listBoxProps } = useListBox(props, state, listBoxRef);
 
   return (
-    <List {...listBoxProps} ref={listBoxRef}>
+    <List
+      {...listBoxProps}
+      ref={listBoxRef}
+      aria-labelledby={props["aria-labelledby"]}
+    >
       {[...state.collection].map((item) => (
         <Option key={item.key} item={item} state={state} />
       ))}

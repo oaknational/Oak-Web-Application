@@ -1,3 +1,52 @@
+# [1.794.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.793.1...v1.794.0) (2025-07-15)
+
+
+### Features
+
+* add cyber essentials logo to footer ([1458f15](https://github.com/oaknational/Oak-Web-Application/commit/1458f150e818bd113cabed39e7efb21d2acb2c69))
+
+## [1.793.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.793.0...v1.793.1) (2025-07-15)
+
+
+### Bug Fixes
+
+* add missing role="alert" around <OakFieldError/> ([dc65c18](https://github.com/oaknational/Oak-Web-Application/commit/dc65c1896132e2d30333f8b447ae04fedc41ff82))
+* added missing aria-labelledby to <Select/> ([e4f1933](https://github.com/oaknational/Oak-Web-Application/commit/e4f1933a4214f464708df2902a29c5727a1354a0))
+* bump oak-components to include alt text fix for <OakFieldError/> ([084bfab](https://github.com/oaknational/Oak-Web-Application/commit/084bfab7d278c9235f38d42ffa35b891854243ca))
+* include value label in select (a11y) ([52ea14c](https://github.com/oaknational/Oak-Web-Application/commit/52ea14c6bbf65e94e3918fffcb872180325723c1))
+* switch over to <OakFieldError/> ([6ad7223](https://github.com/oaknational/Oak-Web-Application/commit/6ad722307b2f245e783b78d5d1cd58bad353fa1b))
+
+# [1.793.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.792.2...v1.793.0) (2025-07-14)
+
+
+### Features
+
+* add CopyrightRestrictionBanner to LessonDownloads ([75efdce](https://github.com/oaknational/Oak-Web-Application/commit/75efdce2d6f68baa999b6b4e7a46b4a97c960e95))
+* add downloads restriction logic and LoginRequiredButton to ResourcePageLayout components ([154208f](https://github.com/oaknational/Oak-Web-Application/commit/154208f6dc85a6bad27828bf138d65c8c11b60ed))
+* add tracking to DownloadRegionRestructedMessage componentn  and update tests ([763b3c6](https://github.com/oaknational/Oak-Web-Application/commit/763b3c6ac54ceab650b4259f3abd7bc98f0d2eb0))
+* implement a message for non geoAuthenticated users ([d4012e5](https://github.com/oaknational/Oak-Web-Application/commit/d4012e59f51913ce88349c4f6839525528b68c45))
+
+## [1.792.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.792.1...v1.792.2) (2025-07-08)
+
+
+### Bug Fixes
+
+* update logo colour in app header ([0e36851](https://github.com/oaknational/Oak-Web-Application/commit/0e36851fea75a233b8b2d6238e08e49b790088fe))
+
+## [1.792.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.792.0...v1.792.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* reposition absolute elements to fit new header height on mobile ([b30aaff](https://github.com/oaknational/Oak-Web-Application/commit/b30aaff4d98bceddba14eabfff88b69038ec2c5c))
+
+# [1.792.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.791.0...v1.792.0) (2025-07-07)
+
+
+### Features
+
+* temporarily adds git_branch and ignore command ([4fd6cba](https://github.com/oaknational/Oak-Web-Application/commit/4fd6cba9b0db2ec7102532446088ade61ab55112))
+
 # [1.791.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.790.2...v1.791.0) (2025-07-07)
 
 

@@ -1,7 +1,8 @@
 import { FC, useRef } from "react";
-import { OakBox, OakFlex } from "@oaknational/oak-components";
+import { OakBox, OakFlex, OakLink } from "@oaknational/oak-components";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/router";
+import styled from "styled-components";
 
 import TeacherAccountButton from "@/components/TeacherComponents/TeacherAccountButton/TeacherAccountButton";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -26,6 +27,10 @@ export const siteAreas = {
 } as const;
 
 export type SelectedArea = (typeof siteAreas)[keyof typeof siteAreas];
+
+const StyledOakLink = styled(OakLink)`
+  display: block;
+`;
 
 /**
  * Header for logging in and using search -
@@ -56,25 +61,36 @@ const AppHeader: FC<HeaderProps> = () => {
         data-testid="app-header"
       >
         <OakFlex
-          $justifyContent={"space-between"}
           $flexGrow={1}
           $alignItems={"center"}
+          $gap={["all-spacing-0", "space-between-s"]}
         >
-          <OakFlex $justifyContent={"center"} $alignItems={"center"}>
-            <OwaLink page={"home"}>
-              <OakBox $display={["block", "none"]}>
-                <Logo height={48} width={31} variant="without text" />
-              </OakBox>
-              <OakBox $display={["none", "block"]}>
-                <Logo variant="with text" height={48} width={104} />
-              </OakBox>
-            </OwaLink>
+          <OakFlex
+            $justifyContent={"center"}
+            $alignItems={"center"}
+            $display={["none", "block"]}
+          >
+            <StyledOakLink href={resolveOakHref({ page: "home" })}>
+              <Logo variant="with text" height={48} width={104} color="black" />
+            </StyledOakLink>
           </OakFlex>
           <OakFlex
             $alignItems={"center"}
-            $gap={["all-spacing-4", "all-spacing-6"]}
+            $gap={["all-spacing-0", "all-spacing-6"]}
             $font="heading-7"
+            $width="100%"
+            $justifyContent={["space-between", "end"]}
           >
+            <OakBox $display={["block", "none"]}>
+              <StyledOakLink href={resolveOakHref({ page: "home" })}>
+                <Logo
+                  height={24}
+                  width={24}
+                  variant="without text"
+                  color="black"
+                />
+              </StyledOakLink>
+            </OakBox>
             {selectedArea == siteAreas.teachers && <SaveCount />}
             <TeacherAccountButton
               selectedArea={selectedArea}
