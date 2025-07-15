@@ -204,7 +204,6 @@ const CopyrightRestrictionBanner = (props: CopyrightRestrictionBannerProps) => {
     isUnit,
     showGeoBlocked,
   ]);
-  // Show banner when user is signed in but not onboarded AND content requires restrictions
 
   const showSignedOutCopyrightBanner =
     showSignedOutGeoRestricted ||
@@ -223,7 +222,9 @@ const CopyrightRestrictionBanner = (props: CopyrightRestrictionBannerProps) => {
           isUnit={!!isUnit}
         />
       )}
-      {showGeoBlocked && <SignedInGeorestrictedBanner isUnit={!!isUnit} />}
+      {!showSignedOutCopyrightBanner && showGeoBlocked && (
+        <SignedInGeorestrictedBanner isUnit={!!isUnit} />
+      )}
     </>
   );
 };
