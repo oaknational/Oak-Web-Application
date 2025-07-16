@@ -22,11 +22,12 @@ function filterUnits<
   yearGroup,
   units,
 }: FilterUnitsParams<U>): GenericUnitListingData<U>["units"] {
+  const theme = themeSlug === "all" ? undefined : themeSlug;
   return units.filter((unitVariant) =>
     unitVariant.some((unit) => {
-      const themeMatch = themeSlug
+      const themeMatch = theme
         ? unit.learningThemes?.some(
-            (learningTheme) => learningTheme.themeSlug === themeSlug,
+            (learningTheme) => learningTheme.themeSlug === theme,
           )
         : true;
 
