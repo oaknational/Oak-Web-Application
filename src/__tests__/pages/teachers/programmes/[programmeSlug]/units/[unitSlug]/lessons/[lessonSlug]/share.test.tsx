@@ -199,7 +199,7 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
       await waitForNextTick();
 
       const description = computeAccessibleDescription(input);
-      expect(description).toBe("Please enter a valid email address");
+      expect(description).toBe("Error Please enter a valid email address");
     });
 
     it("should not display error hint on blur email if empty", async () => {
