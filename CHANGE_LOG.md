@@ -1,3 +1,31 @@
+# [1.796.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.795.0...v1.796.0) (2025-07-16)
+
+
+### Features
+
+* add useCopyrightRequirements hook ([6040035](https://github.com/oaknational/Oak-Web-Application/commit/6040035e262c1fa706a29528d495febdaa4fb3ff))
+* hide geoblocked banner on lesson downloads, do not render signedout banner when not onboarded ([29555f0](https://github.com/oaknational/Oak-Web-Application/commit/29555f0aabcf305b3586c752d0489fa930145842))
+* use hook for CopyrightRestrictionBanner ([666f0e8](https://github.com/oaknational/Oak-Web-Application/commit/666f0e8b0996a03669c994bfd2207485808a053e))
+* use hook for restricted page views ([ae7a103](https://github.com/oaknational/Oak-Web-Application/commit/ae7a103dbb455931ad7231df2f743a0d975efb36))
+* use shared copyright hook for LessonCopyrightTag ([155e6cb](https://github.com/oaknational/Oak-Web-Application/commit/155e6cb6a9cea524e2869f9820798677212ebd13))
+
+# [1.795.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.794.0...v1.795.0) (2025-07-16)
+
+
+### Bug Fixes
+
+* handle null filter values ([22bfa58](https://github.com/oaknational/Oak-Web-Application/commit/22bfa58b3537164e641b5508da45399022f66929))
+* initialise new query state from url params on load ([eecf986](https://github.com/oaknational/Oak-Web-Application/commit/eecf986791e37aaa855201fdc121a3680e108239))
+* set category to empty string when null value passed ([c9665c0](https://github.com/oaknational/Oak-Web-Application/commit/c9665c003544103853833ce3bf63e1c557ac01c2))
+* theme filters for desktop ([60409e6](https://github.com/oaknational/Oak-Web-Application/commit/60409e6eb000a1828f317364630b7977d354b82e))
+* update beta units page ([f84601b](https://github.com/oaknational/Oak-Web-Application/commit/f84601b05a99466e76d577bb86d26b0541c0e994))
+
+
+### Features
+
+* replace mobile filter component with refactored version ([1012dce](https://github.com/oaknational/Oak-Web-Application/commit/1012dceef15eb245b8230e3fa20fc3defceddeaf))
+* show count of filtered units in mobile menu ([8bbe40f](https://github.com/oaknational/Oak-Web-Application/commit/8bbe40fd864963fe54f389a40a69e9a010ed7133))
+
 # [1.794.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.793.1...v1.794.0) (2025-07-15)
 
 
