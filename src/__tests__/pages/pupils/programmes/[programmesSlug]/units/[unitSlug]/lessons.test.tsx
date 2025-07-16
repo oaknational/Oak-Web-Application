@@ -8,6 +8,7 @@ import { lessonBrowseDataByKsFixture } from "@/node-lib/curriculum-api-2023/fixt
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 import { PupilViewsLessonListing } from "@/components/PupilViews/PupilLessonListing/PupilLessonListing.view";
 import { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.schema";
+import OakError from "@/errors/OakError";
 
 interface MockLocation {
   href: string;
@@ -378,5 +379,29 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
         basePath: false,
       },
     });
+  });
+  it("should return notFound if no redirect is found", async () => {
+    const programmeSlug = "english-secondary-year-10";
+    const unitSlug = "unit-slug";
+
+    (
+      curriculumApi2023.default.pupilLessonListingQuery as jest.Mock
+    ).mockResolvedValue({
+      browseData: [],
+      backLinkData: [],
+    });
+
+    // mock the return value of the API call
+    (
+      curriculumApi2023.default.browseUnitRedirectQuery as jest.Mock
+    ).mockRejectedValueOnce(new OakError({ code: "curriculum-api/not-found" }));
+
+    const res = await getStaticProps({
+      params: {
+        programmeSlug,
+        unitSlug,
+      },
+    });
+    expect(res).toEqual({ notFound: true });
   });
 });

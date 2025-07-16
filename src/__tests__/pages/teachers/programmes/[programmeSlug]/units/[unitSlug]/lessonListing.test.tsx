@@ -18,6 +18,7 @@ import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 import curriculumApi2023, {
   CurriculumApi,
 } from "@/node-lib/curriculum-api-2023";
+import OakError from "@/errors/OakError";
 
 const render = renderWithProviders();
 
@@ -238,6 +239,25 @@ describe("getStaticProps", () => {
         permanent: true,
       },
     });
+  });
+  it("should return notFound when no lessons are found and no redirect", async () => {
+    if (!curriculumApi2023.browseUnitRedirectQuery) {
+      (curriculumApi2023 as CurriculumApi).browseUnitRedirectQuery = jest.fn();
+    }
+
+    (curriculumApi.lessonListing as jest.Mock).mockResolvedValueOnce(undefined);
+    (
+      curriculumApi2023.browseUnitRedirectQuery as jest.Mock
+    ).mockRejectedValueOnce(new OakError({ code: "curriculum-api/not-found" }));
+
+    const context = {
+      params: {
+        programmeSlug: "maths-secondary-ks4-higher-l",
+        unitSlug: "adding-surds-a57d",
+      },
+    };
+    const response = await getStaticProps(context);
+    expect(response).toEqual({ notFound: true });
   });
   it("should throw error when params are missing", async () => {
     const context = {
