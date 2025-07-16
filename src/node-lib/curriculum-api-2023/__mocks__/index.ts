@@ -188,8 +188,8 @@ const curriculumApi: Pick<
   pupilCanonicalLessonRedirectQuery: jest.fn(async () => {
     return {
       pupilCanonicalLessonRedirectData: {
-        incomingPath: `lessons/lessonSlug`,
-        outgoingPath: `lessons/lessonSlug-redirected`,
+        incomingPath: `/pupils/lessons/lessonSlug`,
+        outgoingPath: `/pupils/lessons/lessonSlug-redirected`,
         redirectType: "301",
       },
     };
@@ -197,8 +197,8 @@ const curriculumApi: Pick<
   pupilBrowseLessonRedirectQuery: jest.fn(async () => {
     return {
       pupilBrowseLessonRedirectData: {
-        incomingPath: `lessons/lessonSlug`,
-        outgoingPath: `lessons/lessonSlug-redirected`,
+        incomingPath: `/pupilslessons/lessonSlug`,
+        outgoingPath: `/pupils/lessons/lessonSlug-redirected`,
         redirectType: "301",
       },
     };

@@ -89,14 +89,14 @@ export const getProps = ({
           case "canonical": {
             const redirectQueryResult =
               await curriculumApi2023.pupilCanonicalLessonRedirectQuery({
-                incomingPath: `lessons/${lessonSlug}`,
+                incomingPath: `/pupils/lessons/${lessonSlug}`,
               });
             return redirectQueryResult.pupilCanonicalLessonRedirectData;
           }
           case "browse": {
             const redirectQueryResult =
               await curriculumApi2023.pupilBrowseLessonRedirectQuery({
-                incomingPath: `lessons/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
+                incomingPath: `/pupils/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
               });
             return redirectQueryResult.pupilBrowseLessonRedirectData;
           }
@@ -109,7 +109,7 @@ export const getProps = ({
       if (redirectData) {
         return {
           redirect: {
-            destination: `/pupils/${redirectData.outgoingPath}`,
+            destination: `${redirectData.outgoingPath}`,
             permanent: true, // true = 308, false = 307
             basePath: false, // Do not prepend the basePath
           },
