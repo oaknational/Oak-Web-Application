@@ -93,12 +93,13 @@ export const getProps = ({
               });
             return redirectQueryResult.pupilCanonicalLessonRedirectData;
           }
-          case "browse":
-            return {
-              incomingPath: `lessons/${lessonSlug}`,
-              outgoingPath: `programmes/${programmeSlug}/units/${unitSlug}/lessons`,
-              redirectType: "301",
-            };
+          case "browse": {
+            const redirectQueryResult =
+              await curriculumApi2023.pupilBrowseLessonRedirectQuery({
+                incomingPath: `lessons/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
+              });
+            return redirectQueryResult.pupilBrowseLessonRedirectData;
+          }
           default:
             throw new Error(`Invalid page type: ${page}`);
         }

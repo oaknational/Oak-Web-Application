@@ -67476,6 +67476,13 @@ export type ProgrammeListingQueryVariables = Exact<{
 
 export type ProgrammeListingQuery = { __typename?: 'query_root', programmes: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_17_0_0', lesson_slug?: string | null, unit_slug?: string | null, unit_data?: any | null, null_unitvariant_id?: number | null, lesson_data?: any | null, programme_fields?: any | null, is_legacy?: boolean | null, programme_slug?: string | null, actions?: any | null }> };
 
+export type PupilBrowseLessonRedirectQueryVariables = Exact<{
+  incomingPath: Scalars['String']['input'];
+}>;
+
+
+export type PupilBrowseLessonRedirectQuery = { __typename?: 'query_root', pupilBrowseLessonRedirectData: Array<{ __typename?: 'published_mv_redirects_lessons_browse_by_year_19_0_0', incoming_path?: string | null, outgoing_path?: string | null, redirect_type?: any | null }> };
+
 export type PupilCanonicalLessonRedirectQueryVariables = Exact<{
   incomingPath: Scalars['String']['input'];
 }>;
@@ -68021,6 +68028,17 @@ export const ProgrammeListingDocument = gql`
     is_legacy
     programme_slug
     actions
+  }
+}
+    `;
+export const PupilBrowseLessonRedirectDocument = gql`
+    query pupilBrowseLessonRedirect($incomingPath: String!) {
+  pupilBrowseLessonRedirectData: published_mv_redirects_lessons_browse_by_year_19_0_0(
+    where: {incoming_path: {_eq: $incomingPath}}
+  ) {
+    incoming_path
+    outgoing_path
+    redirect_type
   }
 }
     `;
@@ -68831,6 +68849,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     programmeListing(variables?: ProgrammeListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<ProgrammeListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<ProgrammeListingQuery>({ document: ProgrammeListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'programmeListing', 'query', variables);
+    },
+    pupilBrowseLessonRedirect(variables: PupilBrowseLessonRedirectQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PupilBrowseLessonRedirectQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilBrowseLessonRedirectQuery>({ document: PupilBrowseLessonRedirectDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pupilBrowseLessonRedirect', 'query', variables);
     },
     pupilCanonicalLessonRedirect(variables: PupilCanonicalLessonRedirectQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PupilCanonicalLessonRedirectQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PupilCanonicalLessonRedirectQuery>({ document: PupilCanonicalLessonRedirectDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pupilCanonicalLessonRedirect', 'query', variables);
