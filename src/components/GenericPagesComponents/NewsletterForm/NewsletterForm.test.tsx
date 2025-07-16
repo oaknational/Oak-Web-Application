@@ -66,7 +66,7 @@ describe("NewsletterForm", () => {
     await waitForNextTick();
 
     const description = computeAccessibleDescription(input);
-    expect(description).toBe("Enter a name");
+    expect(description).toBe("Error Enter a name");
   });
   test("should display error hint on blur if name more than 60 chars", async () => {
     const { getByPlaceholderText } = render(
@@ -85,7 +85,7 @@ describe("NewsletterForm", () => {
     await waitForNextTick();
 
     const description = computeAccessibleDescription(input);
-    expect(description).toBe("Name must contain fewer than 60 charaters");
+    expect(description).toBe("Error Name must contain fewer than 60 charaters");
   });
   test("should display error hint on blur if no email is entered", async () => {
     const { getByPlaceholderText } = render(
@@ -101,7 +101,7 @@ describe("NewsletterForm", () => {
     await waitForNextTick();
 
     const description = computeAccessibleDescription(input);
-    expect(description).toBe("Enter an email");
+    expect(description).toBe("Error Enter an email");
   });
   test("should display error hint on blur email not formatted correctly", async () => {
     const { getByPlaceholderText } = render(
@@ -118,7 +118,7 @@ describe("NewsletterForm", () => {
     await waitForNextTick();
 
     const description = computeAccessibleDescription(input);
-    expect(description).toBe("Enter a valid email");
+    expect(description).toBe("Error Enter a valid email");
   });
   test("form cannot be submitted if not complete", async () => {
     const onSubmit = jest.fn();

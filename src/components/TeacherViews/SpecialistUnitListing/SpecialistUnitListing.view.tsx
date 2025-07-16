@@ -1,6 +1,5 @@
-import { FC, useId, useState } from "react";
+import { FC, useId } from "react";
 import { useTheme } from "styled-components";
-import { useRouter } from "next/router";
 import {
   OakGrid,
   OakGridArea,
@@ -20,8 +19,8 @@ import HeaderListing from "@/components/TeacherComponents/HeaderListing/HeaderLi
 import LearningThemeFilters from "@/components/TeacherComponents/UnitsLearningThemeFilters";
 import filterUnits from "@/utils/filterUnits/filterUnits";
 import { SpecialistUnitListingData } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
-import useAnalytics from "@/context/Analytics/useAnalytics";
 import MobileUnitFilters from "@/components/TeacherComponents/MobileUnitFilters";
+import { useUnitFilterState } from "@/hooks/useUnitFilterState";
 
 type SpecialistPageData = {
   curriculumData: SpecialistUnitListingData;
@@ -40,18 +39,24 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
   const themeId = useId();
   const learningThemesId = useId();
 
-  const router = useRouter();
-  const themeSlug = router.query["learning-theme"]?.toString();
-  const categorySlug = router.query["category"]?.toString();
-  const year = router.query["year"]?.toString();
-  const [selectedThemeSlug, setSelectedThemeSlug] = useState<
-    string | undefined
-  >(themeSlug);
-  const { track } = useAnalytics();
+  const {
+    isMobileFilterDrawerOpen,
+    setIsMobileFilterDrawerOpen,
+    handleUpdateActiveFilters,
+    handleSubmitFilterQuery,
+    handleUpdateAndSubmitFilterQuery,
+    appliedThemeSlug,
+    appliedCategorySlug,
+    appliedyearGroupSlug,
+    incomingCategorySlug,
+    incomingThemeSlug,
+    incomingYearSlug,
+  } = useUnitFilterState({ isUnitListing: false });
+
   const unitsFilteredByLearningTheme = filterUnits({
-    themeSlug: selectedThemeSlug,
-    categorySlug,
-    yearGroup: year,
+    themeSlug: appliedThemeSlug,
+    categorySlug: appliedCategorySlug,
+    yearGroup: appliedyearGroupSlug,
     units,
   });
 
@@ -132,29 +137,29 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                   </OakP>
                   <LearningThemeFilters
                     labelledBy={learningThemesId}
-                    programmeSlug={programmeSlug}
-                    learningThemes={learningThemes}
-                    selectedThemeSlug={themeSlug ? themeSlug : "all"}
-                    linkProps={{
-                      page: "specialist-unit-index",
-                      programmeSlug: programmeSlug,
-                    }}
+                    selectedThemeSlug={incomingThemeSlug}
                     idSuffix="desktop"
-                    onChangeCallback={setSelectedThemeSlug}
-                    browseRefined={track.browseRefined}
+                    learningThemes={learningThemes}
+                    setTheme={(theme) =>
+                      handleUpdateAndSubmitFilterQuery({ theme })
+                    }
                   />
                 </OakFlex>
               )}
               <OakFlex $justifyContent={["flex-end", undefined]}>
                 {learningThemes.length > 1 && (
-                  <OakFlex $display={["auto", "auto", "none"]}>
+                  <OakFlex $display={["auto", "none", "none"]}>
                     <MobileUnitFilters
                       {...curriculumData}
                       numberOfUnits={unitsFilteredByLearningTheme.length}
-                      browseRefined={track.browseRefined}
                       learningThemesFilterId={learningThemesId}
-                      setSelectedThemeSlug={setSelectedThemeSlug}
-                      isSpecialist={true}
+                      updateActiveFilters={handleUpdateActiveFilters}
+                      incomingThemeSlug={incomingThemeSlug}
+                      incomingCategorySlug={incomingCategorySlug}
+                      incomingYearGroupSlug={incomingYearSlug}
+                      isOpen={isMobileFilterDrawerOpen}
+                      setIsOpen={setIsMobileFilterDrawerOpen}
+                      handleSubmitQuery={handleSubmitFilterQuery}
                     />
                   </OakFlex>
                 )}
@@ -181,10 +186,14 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                     <MobileUnitFilters
                       {...curriculumData}
                       numberOfUnits={unitsFilteredByLearningTheme.length}
-                      browseRefined={track.browseRefined}
                       learningThemesFilterId={learningThemesId}
-                      setSelectedThemeSlug={setSelectedThemeSlug}
-                      isSpecialist={true}
+                      updateActiveFilters={handleUpdateActiveFilters}
+                      incomingThemeSlug={incomingThemeSlug}
+                      incomingCategorySlug={incomingCategorySlug}
+                      incomingYearGroupSlug={incomingYearSlug}
+                      isOpen={isMobileFilterDrawerOpen}
+                      setIsOpen={setIsMobileFilterDrawerOpen}
+                      handleSubmitQuery={handleSubmitFilterQuery}
                     />
                   </OakFlex>
                 )}
