@@ -182,7 +182,7 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
         }
       }
       if (!lesson) {
-        const { redirectData } =
+        const { canonicalLessonRedirectData: redirectData } =
           await curriculumApi2023.canonicalLessonRedirectQuery({
             incomingPath: `lessons/${lessonSlug}`,
           });

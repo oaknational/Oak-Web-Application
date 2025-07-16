@@ -9,7 +9,7 @@ describe("pupilLesson()", () => {
         ...sdk,
         canonicalLessonRedirect: jest.fn(() =>
           Promise.resolve({
-            redirectData: [],
+            canonicalLessonRedirectData: [],
           }),
         ),
       })({
@@ -23,7 +23,7 @@ describe("pupilLesson()", () => {
       ...sdk,
       canonicalLessonRedirect: jest.fn(() =>
         Promise.resolve({
-          redirectData: [
+          canonicalLessonRedirectData: [
             {
               incoming_path: "lessons/lesson-slug",
               outgoing_path: "lessons/new-lesson-slug",
@@ -37,7 +37,7 @@ describe("pupilLesson()", () => {
     });
 
     expect(redirect).toEqual({
-      redirectData: {
+      canonicalLessonRedirectData: {
         incomingPath: "lessons/lesson-slug",
         outgoingPath: "lessons/new-lesson-slug",
         redirectType: "301",

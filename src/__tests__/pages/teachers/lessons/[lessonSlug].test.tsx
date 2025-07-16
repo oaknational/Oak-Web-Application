@@ -215,7 +215,7 @@ describe("Lesson Overview Canonical Page", () => {
       (
         curriculumApi2023.canonicalLessonRedirectQuery as jest.Mock
       ).mockResolvedValueOnce({
-        redirectData: {
+        canonicalLessonRedirectData: {
           incomingPath: "lessons/old-lesson-slug",
           outgoingPath: "lessons/new-lesson-slug",
         },

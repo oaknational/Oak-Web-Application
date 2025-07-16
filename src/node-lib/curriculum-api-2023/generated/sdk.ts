@@ -66552,7 +66552,7 @@ export type CanonicalLessonRedirectQueryVariables = Exact<{
 }>;
 
 
-export type CanonicalLessonRedirectQuery = { __typename?: 'query_root', redirectData: Array<{ __typename?: 'published_mv_redirects_lessons_canonical_by_keystage_19_0_0', incoming_path?: string | null, outgoing_path?: string | null, redirect_type?: any | null }> };
+export type CanonicalLessonRedirectQuery = { __typename?: 'query_root', canonicalLessonRedirectData: Array<{ __typename?: 'published_mv_redirects_lessons_canonical_by_keystage_19_0_0', incoming_path?: string | null, outgoing_path?: string | null, redirect_type?: any | null }> };
 
 export type CurriculumOverviewQueryVariables = Exact<{
   phaseSlug?: InputMaybe<Scalars['String']['input']>;
@@ -66875,7 +66875,7 @@ export const BrowseUnitRedirectDocument = gql`
     `;
 export const CanonicalLessonRedirectDocument = gql`
     query canonicalLessonRedirect($incomingPath: String!) {
-  redirectData: published_mv_redirects_lessons_canonical_by_keystage_19_0_0(
+  canonicalLessonRedirectData: published_mv_redirects_lessons_canonical_by_keystage_19_0_0(
     where: {incoming_path: {_eq: $incomingPath}}
   ) {
     incoming_path
