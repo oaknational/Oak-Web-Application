@@ -11,11 +11,7 @@ import {
   OakSpan,
   OakAnchorTarget,
 } from "@oaknational/oak-components";
-import {
-  useFeatureFlagEnabled,
-  useFeatureFlagVariantKey,
-} from "posthog-js/react";
-import { useUser } from "@clerk/nextjs";
+import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import { getContainerId } from "../../TeacherComponents/LessonItemContainer/LessonItemContainer";
 
@@ -67,6 +63,7 @@ import LessonOverviewDocPresentation from "@/components/TeacherComponents/Lesson
 import { TeacherNoteInline } from "@/components/TeacherComponents/TeacherNoteInline/TeacherNoteInline";
 import LessonOverviewSideNavAnchorLinks from "@/components/TeacherComponents/LessonOverviewSideNavAnchorLinks";
 import { RestrictedSignInPrompt } from "@/components/TeacherComponents/RestrictedSignInPrompt/RestrictedSignInPrompt";
+import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads } & {
@@ -127,13 +124,14 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     loginRequired,
     geoRestricted,
   } = lesson;
-  const { isSignedIn } = useUser();
-  const copyrightFeatureFlagEnabled =
-    useFeatureFlagEnabled("teachers-copyright-restrictions") ?? false;
+  const { showSignedOutGeoRestricted, showSignedOutLoginRequired } =
+    useCopyrightRequirements({
+      loginRequired,
+      geoRestricted,
+    });
+
   const contentRestricted =
-    copyrightFeatureFlagEnabled &&
-    !isSignedIn &&
-    (loginRequired || geoRestricted);
+    showSignedOutGeoRestricted || showSignedOutLoginRequired;
 
   const isSubHeader =
     useFeatureFlagVariantKey("lesson-overview-subheader-experiment") === "test";
