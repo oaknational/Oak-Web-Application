@@ -14,6 +14,7 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { invariant } from "@/utils/invariant";
 import { WorksheetInfo } from "@/components/PupilViews/PupilIntro";
 import { getWorksheetInfo } from "@/components/PupilComponents/pupilUtils/getWorksheetInfo";
+import OakError from "@/errors/OakError";
 
 export type PupilLessonPageURLParams = {
   lessonSlug: string;
@@ -48,32 +49,74 @@ export const getProps = ({
         notFound: true,
       };
     }
-
-    const res = await (() => {
-      switch (page) {
-        case "preview":
-          return curriculumApi2023.pupilPreviewLessonQuery({
-            lessonSlug,
-          });
-        case "canonical":
-          return curriculumApi2023.pupilLessonQuery({
-            lessonSlug,
-          });
-        case "browse":
-          return curriculumApi2023.pupilLessonQuery({
-            programmeSlug,
-            lessonSlug,
-            unitSlug,
-          });
-        default:
-          throw new Error(`Invalid page type: ${page}`);
+    let res;
+    try {
+      res = await (() => {
+        switch (page) {
+          case "preview":
+            return curriculumApi2023.pupilPreviewLessonQuery({
+              lessonSlug,
+            });
+          case "canonical":
+            return curriculumApi2023.pupilLessonQuery({
+              lessonSlug,
+            });
+          case "browse":
+            return curriculumApi2023.pupilLessonQuery({
+              programmeSlug,
+              lessonSlug,
+              unitSlug,
+            });
+          default:
+            throw new Error(`Invalid page type: ${page}`);
+        }
+      })();
+    } catch (innerError) {
+      if (
+        innerError instanceof OakError &&
+        innerError.code === "curriculum-api/not-found"
+      ) {
+        // Let the lesson remain undefined, so the redirect logic below can run
+      } else {
+        // For other types of errors, rethrow
+        throw innerError;
       }
-    })();
+    }
 
     if (!res) {
-      return {
-        notFound: true,
-      };
+      const redirectData = await (async () => {
+        switch (page) {
+          case "canonical": {
+            const redirectQueryResult =
+              await curriculumApi2023.pupilCanonicalLessonRedirectQuery({
+                incomingPath: `lessons/${lessonSlug}`,
+              });
+            return redirectQueryResult.pupilCanonicalLessonRedirectData;
+          }
+          case "browse":
+            return {
+              incomingPath: `lessons/${lessonSlug}`,
+              outgoingPath: `programmes/${programmeSlug}/units/${unitSlug}/lessons`,
+              redirectType: "301",
+            };
+          default:
+            throw new Error(`Invalid page type: ${page}`);
+        }
+      })();
+      if (redirectData) {
+        return {
+          redirect: {
+            destination: `/pupils/${redirectData.outgoingPath}`,
+            permanent: true, // true = 308, false = 307
+            basePath: false, // Do not prepend the basePath
+          },
+        };
+      } else {
+        // If no redirect is found, return a 404
+        return {
+          notFound: true,
+        };
+      }
     }
 
     const { browseData, content } = res;

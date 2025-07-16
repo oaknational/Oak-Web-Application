@@ -28610,6 +28610,182 @@ export type Published_Mv_Redirects_Lessons_Browse_By_Keystage_19_0_0_Stream_Curs
   redirect_type?: InputMaybe<Scalars['redirect_type_enum']['input']>;
 };
 
+/** columns and relationships of "published.mv_redirects_lessons_browse_by_year_18_0_0" */
+export type Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0 = {
+  __typename?: 'published_mv_redirects_lessons_browse_by_year_18_0_0';
+  incoming_path?: Maybe<Scalars['String']['output']>;
+  outgoing_path?: Maybe<Scalars['String']['output']>;
+  redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
+};
+
+/** aggregated selection of "published.mv_redirects_lessons_browse_by_year_18_0_0" */
+export type Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Aggregate = {
+  __typename?: 'published_mv_redirects_lessons_browse_by_year_18_0_0_aggregate';
+  aggregate?: Maybe<Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0>;
+};
+
+/** aggregate fields of "published.mv_redirects_lessons_browse_by_year_18_0_0" */
+export type Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Aggregate_Fields = {
+  __typename?: 'published_mv_redirects_lessons_browse_by_year_18_0_0_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Max_Fields>;
+  min?: Maybe<Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Min_Fields>;
+};
+
+
+/** aggregate fields of "published.mv_redirects_lessons_browse_by_year_18_0_0" */
+export type Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "published.mv_redirects_lessons_browse_by_year_18_0_0". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Bool_Exp>>;
+  incoming_path?: InputMaybe<String_Comparison_Exp>;
+  outgoing_path?: InputMaybe<String_Comparison_Exp>;
+  redirect_type?: InputMaybe<Redirect_Type_Enum_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Max_Fields = {
+  __typename?: 'published_mv_redirects_lessons_browse_by_year_18_0_0_max_fields';
+  incoming_path?: Maybe<Scalars['String']['output']>;
+  outgoing_path?: Maybe<Scalars['String']['output']>;
+  redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Min_Fields = {
+  __typename?: 'published_mv_redirects_lessons_browse_by_year_18_0_0_min_fields';
+  incoming_path?: Maybe<Scalars['String']['output']>;
+  outgoing_path?: Maybe<Scalars['String']['output']>;
+  redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
+};
+
+/** Ordering options when selecting data from "published.mv_redirects_lessons_browse_by_year_18_0_0". */
+export type Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Order_By = {
+  incoming_path?: InputMaybe<Order_By>;
+  outgoing_path?: InputMaybe<Order_By>;
+  redirect_type?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.mv_redirects_lessons_browse_by_year_18_0_0" */
+export enum Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Select_Column {
+  /** column name */
+  IncomingPath = 'incoming_path',
+  /** column name */
+  OutgoingPath = 'outgoing_path',
+  /** column name */
+  RedirectType = 'redirect_type'
+}
+
+/** Streaming cursor of the table "published_mv_redirects_lessons_browse_by_year_18_0_0" */
+export type Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Stream_Cursor_Value_Input = {
+  incoming_path?: InputMaybe<Scalars['String']['input']>;
+  outgoing_path?: InputMaybe<Scalars['String']['input']>;
+  redirect_type?: InputMaybe<Scalars['redirect_type_enum']['input']>;
+};
+
+/** columns and relationships of "published.mv_redirects_lessons_browse_by_year_19_0_0" */
+export type Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0 = {
+  __typename?: 'published_mv_redirects_lessons_browse_by_year_19_0_0';
+  incoming_path?: Maybe<Scalars['String']['output']>;
+  outgoing_path?: Maybe<Scalars['String']['output']>;
+  redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
+};
+
+/** aggregated selection of "published.mv_redirects_lessons_browse_by_year_19_0_0" */
+export type Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Aggregate = {
+  __typename?: 'published_mv_redirects_lessons_browse_by_year_19_0_0_aggregate';
+  aggregate?: Maybe<Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0>;
+};
+
+/** aggregate fields of "published.mv_redirects_lessons_browse_by_year_19_0_0" */
+export type Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Aggregate_Fields = {
+  __typename?: 'published_mv_redirects_lessons_browse_by_year_19_0_0_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Max_Fields>;
+  min?: Maybe<Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Min_Fields>;
+};
+
+
+/** aggregate fields of "published.mv_redirects_lessons_browse_by_year_19_0_0" */
+export type Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "published.mv_redirects_lessons_browse_by_year_19_0_0". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Bool_Exp>>;
+  incoming_path?: InputMaybe<String_Comparison_Exp>;
+  outgoing_path?: InputMaybe<String_Comparison_Exp>;
+  redirect_type?: InputMaybe<Redirect_Type_Enum_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Max_Fields = {
+  __typename?: 'published_mv_redirects_lessons_browse_by_year_19_0_0_max_fields';
+  incoming_path?: Maybe<Scalars['String']['output']>;
+  outgoing_path?: Maybe<Scalars['String']['output']>;
+  redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Min_Fields = {
+  __typename?: 'published_mv_redirects_lessons_browse_by_year_19_0_0_min_fields';
+  incoming_path?: Maybe<Scalars['String']['output']>;
+  outgoing_path?: Maybe<Scalars['String']['output']>;
+  redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
+};
+
+/** Ordering options when selecting data from "published.mv_redirects_lessons_browse_by_year_19_0_0". */
+export type Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Order_By = {
+  incoming_path?: InputMaybe<Order_By>;
+  outgoing_path?: InputMaybe<Order_By>;
+  redirect_type?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.mv_redirects_lessons_browse_by_year_19_0_0" */
+export enum Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Select_Column {
+  /** column name */
+  IncomingPath = 'incoming_path',
+  /** column name */
+  OutgoingPath = 'outgoing_path',
+  /** column name */
+  RedirectType = 'redirect_type'
+}
+
+/** Streaming cursor of the table "published_mv_redirects_lessons_browse_by_year_19_0_0" */
+export type Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Stream_Cursor_Value_Input = {
+  incoming_path?: InputMaybe<Scalars['String']['input']>;
+  outgoing_path?: InputMaybe<Scalars['String']['input']>;
+  redirect_type?: InputMaybe<Scalars['redirect_type_enum']['input']>;
+};
+
 /** columns and relationships of "published.mv_redirects_lessons_canonical_by_keystage_1_0_0" */
 export type Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0 = {
   __typename?: 'published_mv_redirects_lessons_canonical_by_keystage_1_0_0';
@@ -28786,71 +28962,71 @@ export type Published_Mv_Redirects_Lessons_Canonical_By_Keystage_19_0_0_Stream_C
   redirect_type?: InputMaybe<Scalars['redirect_type_enum']['input']>;
 };
 
-/** columns and relationships of "published.mv_redirects_lessons_canonical_by_year_1_0_0" */
-export type Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0 = {
-  __typename?: 'published_mv_redirects_lessons_canonical_by_year_1_0_0';
+/** columns and relationships of "published.mv_redirects_lessons_canonical_by_year_18_0_0" */
+export type Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0 = {
+  __typename?: 'published_mv_redirects_lessons_canonical_by_year_18_0_0';
   incoming_path?: Maybe<Scalars['String']['output']>;
   outgoing_path?: Maybe<Scalars['String']['output']>;
   redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
 };
 
-/** aggregated selection of "published.mv_redirects_lessons_canonical_by_year_1_0_0" */
-export type Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Aggregate = {
-  __typename?: 'published_mv_redirects_lessons_canonical_by_year_1_0_0_aggregate';
-  aggregate?: Maybe<Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Aggregate_Fields>;
-  nodes: Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0>;
+/** aggregated selection of "published.mv_redirects_lessons_canonical_by_year_18_0_0" */
+export type Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Aggregate = {
+  __typename?: 'published_mv_redirects_lessons_canonical_by_year_18_0_0_aggregate';
+  aggregate?: Maybe<Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0>;
 };
 
-/** aggregate fields of "published.mv_redirects_lessons_canonical_by_year_1_0_0" */
-export type Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Aggregate_Fields = {
-  __typename?: 'published_mv_redirects_lessons_canonical_by_year_1_0_0_aggregate_fields';
+/** aggregate fields of "published.mv_redirects_lessons_canonical_by_year_18_0_0" */
+export type Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Aggregate_Fields = {
+  __typename?: 'published_mv_redirects_lessons_canonical_by_year_18_0_0_aggregate_fields';
   count: Scalars['Int']['output'];
-  max?: Maybe<Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Max_Fields>;
-  min?: Maybe<Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Min_Fields>;
+  max?: Maybe<Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Max_Fields>;
+  min?: Maybe<Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Min_Fields>;
 };
 
 
-/** aggregate fields of "published.mv_redirects_lessons_canonical_by_year_1_0_0" */
-export type Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Select_Column>>;
+/** aggregate fields of "published.mv_redirects_lessons_canonical_by_year_18_0_0" */
+export type Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Select_Column>>;
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-/** Boolean expression to filter rows from the table "published.mv_redirects_lessons_canonical_by_year_1_0_0". All fields are combined with a logical 'AND'. */
-export type Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Bool_Exp = {
-  _and?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Bool_Exp>>;
-  _not?: InputMaybe<Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Bool_Exp>;
-  _or?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Bool_Exp>>;
+/** Boolean expression to filter rows from the table "published.mv_redirects_lessons_canonical_by_year_18_0_0". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Bool_Exp>>;
   incoming_path?: InputMaybe<String_Comparison_Exp>;
   outgoing_path?: InputMaybe<String_Comparison_Exp>;
   redirect_type?: InputMaybe<Redirect_Type_Enum_Comparison_Exp>;
 };
 
 /** aggregate max on columns */
-export type Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Max_Fields = {
-  __typename?: 'published_mv_redirects_lessons_canonical_by_year_1_0_0_max_fields';
+export type Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Max_Fields = {
+  __typename?: 'published_mv_redirects_lessons_canonical_by_year_18_0_0_max_fields';
   incoming_path?: Maybe<Scalars['String']['output']>;
   outgoing_path?: Maybe<Scalars['String']['output']>;
   redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
 };
 
 /** aggregate min on columns */
-export type Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Min_Fields = {
-  __typename?: 'published_mv_redirects_lessons_canonical_by_year_1_0_0_min_fields';
+export type Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Min_Fields = {
+  __typename?: 'published_mv_redirects_lessons_canonical_by_year_18_0_0_min_fields';
   incoming_path?: Maybe<Scalars['String']['output']>;
   outgoing_path?: Maybe<Scalars['String']['output']>;
   redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
 };
 
-/** Ordering options when selecting data from "published.mv_redirects_lessons_canonical_by_year_1_0_0". */
-export type Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Order_By = {
+/** Ordering options when selecting data from "published.mv_redirects_lessons_canonical_by_year_18_0_0". */
+export type Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Order_By = {
   incoming_path?: InputMaybe<Order_By>;
   outgoing_path?: InputMaybe<Order_By>;
   redirect_type?: InputMaybe<Order_By>;
 };
 
-/** select columns of table "published.mv_redirects_lessons_canonical_by_year_1_0_0" */
-export enum Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Select_Column {
+/** select columns of table "published.mv_redirects_lessons_canonical_by_year_18_0_0" */
+export enum Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Select_Column {
   /** column name */
   IncomingPath = 'incoming_path',
   /** column name */
@@ -28859,16 +29035,104 @@ export enum Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Select_Column
   RedirectType = 'redirect_type'
 }
 
-/** Streaming cursor of the table "published_mv_redirects_lessons_canonical_by_year_1_0_0" */
-export type Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Stream_Cursor_Input = {
+/** Streaming cursor of the table "published_mv_redirects_lessons_canonical_by_year_18_0_0" */
+export type Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Stream_Cursor_Input = {
   /** Stream column input with initial value */
-  initial_value: Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Stream_Cursor_Value_Input;
+  initial_value: Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Stream_Cursor_Value_Input;
   /** cursor ordering */
   ordering?: InputMaybe<Cursor_Ordering>;
 };
 
 /** Initial value of the column from where the streaming should start */
-export type Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Stream_Cursor_Value_Input = {
+export type Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Stream_Cursor_Value_Input = {
+  incoming_path?: InputMaybe<Scalars['String']['input']>;
+  outgoing_path?: InputMaybe<Scalars['String']['input']>;
+  redirect_type?: InputMaybe<Scalars['redirect_type_enum']['input']>;
+};
+
+/** columns and relationships of "published.mv_redirects_lessons_canonical_by_year_19_0_0" */
+export type Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0 = {
+  __typename?: 'published_mv_redirects_lessons_canonical_by_year_19_0_0';
+  incoming_path?: Maybe<Scalars['String']['output']>;
+  outgoing_path?: Maybe<Scalars['String']['output']>;
+  redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
+};
+
+/** aggregated selection of "published.mv_redirects_lessons_canonical_by_year_19_0_0" */
+export type Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Aggregate = {
+  __typename?: 'published_mv_redirects_lessons_canonical_by_year_19_0_0_aggregate';
+  aggregate?: Maybe<Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0>;
+};
+
+/** aggregate fields of "published.mv_redirects_lessons_canonical_by_year_19_0_0" */
+export type Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Aggregate_Fields = {
+  __typename?: 'published_mv_redirects_lessons_canonical_by_year_19_0_0_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Max_Fields>;
+  min?: Maybe<Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Min_Fields>;
+};
+
+
+/** aggregate fields of "published.mv_redirects_lessons_canonical_by_year_19_0_0" */
+export type Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "published.mv_redirects_lessons_canonical_by_year_19_0_0". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Bool_Exp>>;
+  incoming_path?: InputMaybe<String_Comparison_Exp>;
+  outgoing_path?: InputMaybe<String_Comparison_Exp>;
+  redirect_type?: InputMaybe<Redirect_Type_Enum_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Max_Fields = {
+  __typename?: 'published_mv_redirects_lessons_canonical_by_year_19_0_0_max_fields';
+  incoming_path?: Maybe<Scalars['String']['output']>;
+  outgoing_path?: Maybe<Scalars['String']['output']>;
+  redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Min_Fields = {
+  __typename?: 'published_mv_redirects_lessons_canonical_by_year_19_0_0_min_fields';
+  incoming_path?: Maybe<Scalars['String']['output']>;
+  outgoing_path?: Maybe<Scalars['String']['output']>;
+  redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
+};
+
+/** Ordering options when selecting data from "published.mv_redirects_lessons_canonical_by_year_19_0_0". */
+export type Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Order_By = {
+  incoming_path?: InputMaybe<Order_By>;
+  outgoing_path?: InputMaybe<Order_By>;
+  redirect_type?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.mv_redirects_lessons_canonical_by_year_19_0_0" */
+export enum Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Select_Column {
+  /** column name */
+  IncomingPath = 'incoming_path',
+  /** column name */
+  OutgoingPath = 'outgoing_path',
+  /** column name */
+  RedirectType = 'redirect_type'
+}
+
+/** Streaming cursor of the table "published_mv_redirects_lessons_canonical_by_year_19_0_0" */
+export type Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Stream_Cursor_Value_Input = {
   incoming_path?: InputMaybe<Scalars['String']['input']>;
   outgoing_path?: InputMaybe<Scalars['String']['input']>;
   redirect_type?: InputMaybe<Scalars['redirect_type_enum']['input']>;
@@ -42579,6 +42843,182 @@ export type Published_View_Quiz_Question_Details_Variance_Fields = {
   quiz_id?: Maybe<Scalars['Float']['output']>;
 };
 
+/** columns and relationships of "published.view_redirects_lessons_browse_by_year_18" */
+export type Published_View_Redirects_Lessons_Browse_By_Year_18 = {
+  __typename?: 'published_view_redirects_lessons_browse_by_year_18';
+  incoming_path?: Maybe<Scalars['String']['output']>;
+  outgoing_path?: Maybe<Scalars['String']['output']>;
+  redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
+};
+
+/** aggregated selection of "published.view_redirects_lessons_browse_by_year_18" */
+export type Published_View_Redirects_Lessons_Browse_By_Year_18_Aggregate = {
+  __typename?: 'published_view_redirects_lessons_browse_by_year_18_aggregate';
+  aggregate?: Maybe<Published_View_Redirects_Lessons_Browse_By_Year_18_Aggregate_Fields>;
+  nodes: Array<Published_View_Redirects_Lessons_Browse_By_Year_18>;
+};
+
+/** aggregate fields of "published.view_redirects_lessons_browse_by_year_18" */
+export type Published_View_Redirects_Lessons_Browse_By_Year_18_Aggregate_Fields = {
+  __typename?: 'published_view_redirects_lessons_browse_by_year_18_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_View_Redirects_Lessons_Browse_By_Year_18_Max_Fields>;
+  min?: Maybe<Published_View_Redirects_Lessons_Browse_By_Year_18_Min_Fields>;
+};
+
+
+/** aggregate fields of "published.view_redirects_lessons_browse_by_year_18" */
+export type Published_View_Redirects_Lessons_Browse_By_Year_18_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_View_Redirects_Lessons_Browse_By_Year_18_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "published.view_redirects_lessons_browse_by_year_18". All fields are combined with a logical 'AND'. */
+export type Published_View_Redirects_Lessons_Browse_By_Year_18_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_View_Redirects_Lessons_Browse_By_Year_18_Bool_Exp>>;
+  _not?: InputMaybe<Published_View_Redirects_Lessons_Browse_By_Year_18_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_View_Redirects_Lessons_Browse_By_Year_18_Bool_Exp>>;
+  incoming_path?: InputMaybe<String_Comparison_Exp>;
+  outgoing_path?: InputMaybe<String_Comparison_Exp>;
+  redirect_type?: InputMaybe<Redirect_Type_Enum_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_View_Redirects_Lessons_Browse_By_Year_18_Max_Fields = {
+  __typename?: 'published_view_redirects_lessons_browse_by_year_18_max_fields';
+  incoming_path?: Maybe<Scalars['String']['output']>;
+  outgoing_path?: Maybe<Scalars['String']['output']>;
+  redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_View_Redirects_Lessons_Browse_By_Year_18_Min_Fields = {
+  __typename?: 'published_view_redirects_lessons_browse_by_year_18_min_fields';
+  incoming_path?: Maybe<Scalars['String']['output']>;
+  outgoing_path?: Maybe<Scalars['String']['output']>;
+  redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
+};
+
+/** Ordering options when selecting data from "published.view_redirects_lessons_browse_by_year_18". */
+export type Published_View_Redirects_Lessons_Browse_By_Year_18_Order_By = {
+  incoming_path?: InputMaybe<Order_By>;
+  outgoing_path?: InputMaybe<Order_By>;
+  redirect_type?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.view_redirects_lessons_browse_by_year_18" */
+export enum Published_View_Redirects_Lessons_Browse_By_Year_18_Select_Column {
+  /** column name */
+  IncomingPath = 'incoming_path',
+  /** column name */
+  OutgoingPath = 'outgoing_path',
+  /** column name */
+  RedirectType = 'redirect_type'
+}
+
+/** Streaming cursor of the table "published_view_redirects_lessons_browse_by_year_18" */
+export type Published_View_Redirects_Lessons_Browse_By_Year_18_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_View_Redirects_Lessons_Browse_By_Year_18_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_View_Redirects_Lessons_Browse_By_Year_18_Stream_Cursor_Value_Input = {
+  incoming_path?: InputMaybe<Scalars['String']['input']>;
+  outgoing_path?: InputMaybe<Scalars['String']['input']>;
+  redirect_type?: InputMaybe<Scalars['redirect_type_enum']['input']>;
+};
+
+/** columns and relationships of "published.view_redirects_lessons_browse_by_year_19" */
+export type Published_View_Redirects_Lessons_Browse_By_Year_19 = {
+  __typename?: 'published_view_redirects_lessons_browse_by_year_19';
+  incoming_path?: Maybe<Scalars['String']['output']>;
+  outgoing_path?: Maybe<Scalars['String']['output']>;
+  redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
+};
+
+/** aggregated selection of "published.view_redirects_lessons_browse_by_year_19" */
+export type Published_View_Redirects_Lessons_Browse_By_Year_19_Aggregate = {
+  __typename?: 'published_view_redirects_lessons_browse_by_year_19_aggregate';
+  aggregate?: Maybe<Published_View_Redirects_Lessons_Browse_By_Year_19_Aggregate_Fields>;
+  nodes: Array<Published_View_Redirects_Lessons_Browse_By_Year_19>;
+};
+
+/** aggregate fields of "published.view_redirects_lessons_browse_by_year_19" */
+export type Published_View_Redirects_Lessons_Browse_By_Year_19_Aggregate_Fields = {
+  __typename?: 'published_view_redirects_lessons_browse_by_year_19_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_View_Redirects_Lessons_Browse_By_Year_19_Max_Fields>;
+  min?: Maybe<Published_View_Redirects_Lessons_Browse_By_Year_19_Min_Fields>;
+};
+
+
+/** aggregate fields of "published.view_redirects_lessons_browse_by_year_19" */
+export type Published_View_Redirects_Lessons_Browse_By_Year_19_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_View_Redirects_Lessons_Browse_By_Year_19_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "published.view_redirects_lessons_browse_by_year_19". All fields are combined with a logical 'AND'. */
+export type Published_View_Redirects_Lessons_Browse_By_Year_19_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_View_Redirects_Lessons_Browse_By_Year_19_Bool_Exp>>;
+  _not?: InputMaybe<Published_View_Redirects_Lessons_Browse_By_Year_19_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_View_Redirects_Lessons_Browse_By_Year_19_Bool_Exp>>;
+  incoming_path?: InputMaybe<String_Comparison_Exp>;
+  outgoing_path?: InputMaybe<String_Comparison_Exp>;
+  redirect_type?: InputMaybe<Redirect_Type_Enum_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_View_Redirects_Lessons_Browse_By_Year_19_Max_Fields = {
+  __typename?: 'published_view_redirects_lessons_browse_by_year_19_max_fields';
+  incoming_path?: Maybe<Scalars['String']['output']>;
+  outgoing_path?: Maybe<Scalars['String']['output']>;
+  redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_View_Redirects_Lessons_Browse_By_Year_19_Min_Fields = {
+  __typename?: 'published_view_redirects_lessons_browse_by_year_19_min_fields';
+  incoming_path?: Maybe<Scalars['String']['output']>;
+  outgoing_path?: Maybe<Scalars['String']['output']>;
+  redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
+};
+
+/** Ordering options when selecting data from "published.view_redirects_lessons_browse_by_year_19". */
+export type Published_View_Redirects_Lessons_Browse_By_Year_19_Order_By = {
+  incoming_path?: InputMaybe<Order_By>;
+  outgoing_path?: InputMaybe<Order_By>;
+  redirect_type?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.view_redirects_lessons_browse_by_year_19" */
+export enum Published_View_Redirects_Lessons_Browse_By_Year_19_Select_Column {
+  /** column name */
+  IncomingPath = 'incoming_path',
+  /** column name */
+  OutgoingPath = 'outgoing_path',
+  /** column name */
+  RedirectType = 'redirect_type'
+}
+
+/** Streaming cursor of the table "published_view_redirects_lessons_browse_by_year_19" */
+export type Published_View_Redirects_Lessons_Browse_By_Year_19_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_View_Redirects_Lessons_Browse_By_Year_19_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_View_Redirects_Lessons_Browse_By_Year_19_Stream_Cursor_Value_Input = {
+  incoming_path?: InputMaybe<Scalars['String']['input']>;
+  outgoing_path?: InputMaybe<Scalars['String']['input']>;
+  redirect_type?: InputMaybe<Scalars['redirect_type_enum']['input']>;
+};
+
 /** columns and relationships of "published.view_redirects_lessons_canonical_by_keystage_1" */
 export type Published_View_Redirects_Lessons_Canonical_By_Keystage_1 = {
   __typename?: 'published_view_redirects_lessons_canonical_by_keystage_1';
@@ -42667,71 +43107,71 @@ export type Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Stream_Curs
   redirect_type?: InputMaybe<Scalars['redirect_type_enum']['input']>;
 };
 
-/** columns and relationships of "published.view_redirects_lessons_canonical_by_year_1_0_0" */
-export type Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0 = {
-  __typename?: 'published_view_redirects_lessons_canonical_by_year_1_0_0';
+/** columns and relationships of "published.view_redirects_lessons_canonical_by_year_18" */
+export type Published_View_Redirects_Lessons_Canonical_By_Year_18 = {
+  __typename?: 'published_view_redirects_lessons_canonical_by_year_18';
   incoming_path?: Maybe<Scalars['String']['output']>;
   outgoing_path?: Maybe<Scalars['String']['output']>;
   redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
 };
 
-/** aggregated selection of "published.view_redirects_lessons_canonical_by_year_1_0_0" */
-export type Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Aggregate = {
-  __typename?: 'published_view_redirects_lessons_canonical_by_year_1_0_0_aggregate';
-  aggregate?: Maybe<Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Aggregate_Fields>;
-  nodes: Array<Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0>;
+/** aggregated selection of "published.view_redirects_lessons_canonical_by_year_18" */
+export type Published_View_Redirects_Lessons_Canonical_By_Year_18_Aggregate = {
+  __typename?: 'published_view_redirects_lessons_canonical_by_year_18_aggregate';
+  aggregate?: Maybe<Published_View_Redirects_Lessons_Canonical_By_Year_18_Aggregate_Fields>;
+  nodes: Array<Published_View_Redirects_Lessons_Canonical_By_Year_18>;
 };
 
-/** aggregate fields of "published.view_redirects_lessons_canonical_by_year_1_0_0" */
-export type Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Aggregate_Fields = {
-  __typename?: 'published_view_redirects_lessons_canonical_by_year_1_0_0_aggregate_fields';
+/** aggregate fields of "published.view_redirects_lessons_canonical_by_year_18" */
+export type Published_View_Redirects_Lessons_Canonical_By_Year_18_Aggregate_Fields = {
+  __typename?: 'published_view_redirects_lessons_canonical_by_year_18_aggregate_fields';
   count: Scalars['Int']['output'];
-  max?: Maybe<Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Max_Fields>;
-  min?: Maybe<Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Min_Fields>;
+  max?: Maybe<Published_View_Redirects_Lessons_Canonical_By_Year_18_Max_Fields>;
+  min?: Maybe<Published_View_Redirects_Lessons_Canonical_By_Year_18_Min_Fields>;
 };
 
 
-/** aggregate fields of "published.view_redirects_lessons_canonical_by_year_1_0_0" */
-export type Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Select_Column>>;
+/** aggregate fields of "published.view_redirects_lessons_canonical_by_year_18" */
+export type Published_View_Redirects_Lessons_Canonical_By_Year_18_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_18_Select_Column>>;
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-/** Boolean expression to filter rows from the table "published.view_redirects_lessons_canonical_by_year_1_0_0". All fields are combined with a logical 'AND'. */
-export type Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Bool_Exp = {
-  _and?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Bool_Exp>>;
-  _not?: InputMaybe<Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Bool_Exp>;
-  _or?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Bool_Exp>>;
+/** Boolean expression to filter rows from the table "published.view_redirects_lessons_canonical_by_year_18". All fields are combined with a logical 'AND'. */
+export type Published_View_Redirects_Lessons_Canonical_By_Year_18_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_18_Bool_Exp>>;
+  _not?: InputMaybe<Published_View_Redirects_Lessons_Canonical_By_Year_18_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_18_Bool_Exp>>;
   incoming_path?: InputMaybe<String_Comparison_Exp>;
   outgoing_path?: InputMaybe<String_Comparison_Exp>;
   redirect_type?: InputMaybe<Redirect_Type_Enum_Comparison_Exp>;
 };
 
 /** aggregate max on columns */
-export type Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Max_Fields = {
-  __typename?: 'published_view_redirects_lessons_canonical_by_year_1_0_0_max_fields';
+export type Published_View_Redirects_Lessons_Canonical_By_Year_18_Max_Fields = {
+  __typename?: 'published_view_redirects_lessons_canonical_by_year_18_max_fields';
   incoming_path?: Maybe<Scalars['String']['output']>;
   outgoing_path?: Maybe<Scalars['String']['output']>;
   redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
 };
 
 /** aggregate min on columns */
-export type Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Min_Fields = {
-  __typename?: 'published_view_redirects_lessons_canonical_by_year_1_0_0_min_fields';
+export type Published_View_Redirects_Lessons_Canonical_By_Year_18_Min_Fields = {
+  __typename?: 'published_view_redirects_lessons_canonical_by_year_18_min_fields';
   incoming_path?: Maybe<Scalars['String']['output']>;
   outgoing_path?: Maybe<Scalars['String']['output']>;
   redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
 };
 
-/** Ordering options when selecting data from "published.view_redirects_lessons_canonical_by_year_1_0_0". */
-export type Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Order_By = {
+/** Ordering options when selecting data from "published.view_redirects_lessons_canonical_by_year_18". */
+export type Published_View_Redirects_Lessons_Canonical_By_Year_18_Order_By = {
   incoming_path?: InputMaybe<Order_By>;
   outgoing_path?: InputMaybe<Order_By>;
   redirect_type?: InputMaybe<Order_By>;
 };
 
-/** select columns of table "published.view_redirects_lessons_canonical_by_year_1_0_0" */
-export enum Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Select_Column {
+/** select columns of table "published.view_redirects_lessons_canonical_by_year_18" */
+export enum Published_View_Redirects_Lessons_Canonical_By_Year_18_Select_Column {
   /** column name */
   IncomingPath = 'incoming_path',
   /** column name */
@@ -42740,16 +43180,104 @@ export enum Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Select_Colu
   RedirectType = 'redirect_type'
 }
 
-/** Streaming cursor of the table "published_view_redirects_lessons_canonical_by_year_1_0_0" */
-export type Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Stream_Cursor_Input = {
+/** Streaming cursor of the table "published_view_redirects_lessons_canonical_by_year_18" */
+export type Published_View_Redirects_Lessons_Canonical_By_Year_18_Stream_Cursor_Input = {
   /** Stream column input with initial value */
-  initial_value: Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Stream_Cursor_Value_Input;
+  initial_value: Published_View_Redirects_Lessons_Canonical_By_Year_18_Stream_Cursor_Value_Input;
   /** cursor ordering */
   ordering?: InputMaybe<Cursor_Ordering>;
 };
 
 /** Initial value of the column from where the streaming should start */
-export type Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Stream_Cursor_Value_Input = {
+export type Published_View_Redirects_Lessons_Canonical_By_Year_18_Stream_Cursor_Value_Input = {
+  incoming_path?: InputMaybe<Scalars['String']['input']>;
+  outgoing_path?: InputMaybe<Scalars['String']['input']>;
+  redirect_type?: InputMaybe<Scalars['redirect_type_enum']['input']>;
+};
+
+/** columns and relationships of "published.view_redirects_lessons_canonical_by_year_19" */
+export type Published_View_Redirects_Lessons_Canonical_By_Year_19 = {
+  __typename?: 'published_view_redirects_lessons_canonical_by_year_19';
+  incoming_path?: Maybe<Scalars['String']['output']>;
+  outgoing_path?: Maybe<Scalars['String']['output']>;
+  redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
+};
+
+/** aggregated selection of "published.view_redirects_lessons_canonical_by_year_19" */
+export type Published_View_Redirects_Lessons_Canonical_By_Year_19_Aggregate = {
+  __typename?: 'published_view_redirects_lessons_canonical_by_year_19_aggregate';
+  aggregate?: Maybe<Published_View_Redirects_Lessons_Canonical_By_Year_19_Aggregate_Fields>;
+  nodes: Array<Published_View_Redirects_Lessons_Canonical_By_Year_19>;
+};
+
+/** aggregate fields of "published.view_redirects_lessons_canonical_by_year_19" */
+export type Published_View_Redirects_Lessons_Canonical_By_Year_19_Aggregate_Fields = {
+  __typename?: 'published_view_redirects_lessons_canonical_by_year_19_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_View_Redirects_Lessons_Canonical_By_Year_19_Max_Fields>;
+  min?: Maybe<Published_View_Redirects_Lessons_Canonical_By_Year_19_Min_Fields>;
+};
+
+
+/** aggregate fields of "published.view_redirects_lessons_canonical_by_year_19" */
+export type Published_View_Redirects_Lessons_Canonical_By_Year_19_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_19_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "published.view_redirects_lessons_canonical_by_year_19". All fields are combined with a logical 'AND'. */
+export type Published_View_Redirects_Lessons_Canonical_By_Year_19_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_19_Bool_Exp>>;
+  _not?: InputMaybe<Published_View_Redirects_Lessons_Canonical_By_Year_19_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_19_Bool_Exp>>;
+  incoming_path?: InputMaybe<String_Comparison_Exp>;
+  outgoing_path?: InputMaybe<String_Comparison_Exp>;
+  redirect_type?: InputMaybe<Redirect_Type_Enum_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_View_Redirects_Lessons_Canonical_By_Year_19_Max_Fields = {
+  __typename?: 'published_view_redirects_lessons_canonical_by_year_19_max_fields';
+  incoming_path?: Maybe<Scalars['String']['output']>;
+  outgoing_path?: Maybe<Scalars['String']['output']>;
+  redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_View_Redirects_Lessons_Canonical_By_Year_19_Min_Fields = {
+  __typename?: 'published_view_redirects_lessons_canonical_by_year_19_min_fields';
+  incoming_path?: Maybe<Scalars['String']['output']>;
+  outgoing_path?: Maybe<Scalars['String']['output']>;
+  redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
+};
+
+/** Ordering options when selecting data from "published.view_redirects_lessons_canonical_by_year_19". */
+export type Published_View_Redirects_Lessons_Canonical_By_Year_19_Order_By = {
+  incoming_path?: InputMaybe<Order_By>;
+  outgoing_path?: InputMaybe<Order_By>;
+  redirect_type?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.view_redirects_lessons_canonical_by_year_19" */
+export enum Published_View_Redirects_Lessons_Canonical_By_Year_19_Select_Column {
+  /** column name */
+  IncomingPath = 'incoming_path',
+  /** column name */
+  OutgoingPath = 'outgoing_path',
+  /** column name */
+  RedirectType = 'redirect_type'
+}
+
+/** Streaming cursor of the table "published_view_redirects_lessons_canonical_by_year_19" */
+export type Published_View_Redirects_Lessons_Canonical_By_Year_19_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_View_Redirects_Lessons_Canonical_By_Year_19_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_View_Redirects_Lessons_Canonical_By_Year_19_Stream_Cursor_Value_Input = {
   incoming_path?: InputMaybe<Scalars['String']['input']>;
   outgoing_path?: InputMaybe<Scalars['String']['input']>;
   redirect_type?: InputMaybe<Scalars['redirect_type_enum']['input']>;
@@ -48375,6 +48903,14 @@ export type Query_Root = {
   published_mv_redirects_lessons_browse_by_keystage_19_0_0: Array<Published_Mv_Redirects_Lessons_Browse_By_Keystage_19_0_0>;
   /** fetch aggregated fields from the table: "published.mv_redirects_lessons_browse_by_keystage_19_0_0" */
   published_mv_redirects_lessons_browse_by_keystage_19_0_0_aggregate: Published_Mv_Redirects_Lessons_Browse_By_Keystage_19_0_0_Aggregate;
+  /** fetch data from the table: "published.mv_redirects_lessons_browse_by_year_18_0_0" */
+  published_mv_redirects_lessons_browse_by_year_18_0_0: Array<Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0>;
+  /** fetch aggregated fields from the table: "published.mv_redirects_lessons_browse_by_year_18_0_0" */
+  published_mv_redirects_lessons_browse_by_year_18_0_0_aggregate: Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Aggregate;
+  /** fetch data from the table: "published.mv_redirects_lessons_browse_by_year_19_0_0" */
+  published_mv_redirects_lessons_browse_by_year_19_0_0: Array<Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0>;
+  /** fetch aggregated fields from the table: "published.mv_redirects_lessons_browse_by_year_19_0_0" */
+  published_mv_redirects_lessons_browse_by_year_19_0_0_aggregate: Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Aggregate;
   /** fetch data from the table: "published.mv_redirects_lessons_canonical_by_keystage_1_0_0" */
   published_mv_redirects_lessons_canonical_by_keystage_1_0_0: Array<Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0>;
   /** fetch aggregated fields from the table: "published.mv_redirects_lessons_canonical_by_keystage_1_0_0" */
@@ -48383,10 +48919,14 @@ export type Query_Root = {
   published_mv_redirects_lessons_canonical_by_keystage_19_0_0: Array<Published_Mv_Redirects_Lessons_Canonical_By_Keystage_19_0_0>;
   /** fetch aggregated fields from the table: "published.mv_redirects_lessons_canonical_by_keystage_19_0_0" */
   published_mv_redirects_lessons_canonical_by_keystage_19_0_0_aggregate: Published_Mv_Redirects_Lessons_Canonical_By_Keystage_19_0_0_Aggregate;
-  /** fetch data from the table: "published.mv_redirects_lessons_canonical_by_year_1_0_0" */
-  published_mv_redirects_lessons_canonical_by_year_1_0_0: Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0>;
-  /** fetch aggregated fields from the table: "published.mv_redirects_lessons_canonical_by_year_1_0_0" */
-  published_mv_redirects_lessons_canonical_by_year_1_0_0_aggregate: Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Aggregate;
+  /** fetch data from the table: "published.mv_redirects_lessons_canonical_by_year_18_0_0" */
+  published_mv_redirects_lessons_canonical_by_year_18_0_0: Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0>;
+  /** fetch aggregated fields from the table: "published.mv_redirects_lessons_canonical_by_year_18_0_0" */
+  published_mv_redirects_lessons_canonical_by_year_18_0_0_aggregate: Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Aggregate;
+  /** fetch data from the table: "published.mv_redirects_lessons_canonical_by_year_19_0_0" */
+  published_mv_redirects_lessons_canonical_by_year_19_0_0: Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0>;
+  /** fetch aggregated fields from the table: "published.mv_redirects_lessons_canonical_by_year_19_0_0" */
+  published_mv_redirects_lessons_canonical_by_year_19_0_0_aggregate: Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Aggregate;
   /** fetch data from the table: "published.mv_redirects_units_browse_by_keystage_18_0_0" */
   published_mv_redirects_units_browse_by_keystage_18_0_0: Array<Published_Mv_Redirects_Units_Browse_By_Keystage_18_0_0>;
   /** fetch aggregated fields from the table: "published.mv_redirects_units_browse_by_keystage_18_0_0" */
@@ -48581,14 +49121,26 @@ export type Query_Root = {
   published_view_quiz_question_details_1_aggregate: Published_View_Quiz_Question_Details_1_Aggregate;
   /** fetch aggregated fields from the table: "published.view_quiz_question_details" */
   published_view_quiz_question_details_aggregate: Published_View_Quiz_Question_Details_Aggregate;
+  /** fetch data from the table: "published.view_redirects_lessons_browse_by_year_18" */
+  published_view_redirects_lessons_browse_by_year_18: Array<Published_View_Redirects_Lessons_Browse_By_Year_18>;
+  /** fetch aggregated fields from the table: "published.view_redirects_lessons_browse_by_year_18" */
+  published_view_redirects_lessons_browse_by_year_18_aggregate: Published_View_Redirects_Lessons_Browse_By_Year_18_Aggregate;
+  /** fetch data from the table: "published.view_redirects_lessons_browse_by_year_19" */
+  published_view_redirects_lessons_browse_by_year_19: Array<Published_View_Redirects_Lessons_Browse_By_Year_19>;
+  /** fetch aggregated fields from the table: "published.view_redirects_lessons_browse_by_year_19" */
+  published_view_redirects_lessons_browse_by_year_19_aggregate: Published_View_Redirects_Lessons_Browse_By_Year_19_Aggregate;
   /** fetch data from the table: "published.view_redirects_lessons_canonical_by_keystage_1" */
   published_view_redirects_lessons_canonical_by_keystage_1: Array<Published_View_Redirects_Lessons_Canonical_By_Keystage_1>;
   /** fetch aggregated fields from the table: "published.view_redirects_lessons_canonical_by_keystage_1" */
   published_view_redirects_lessons_canonical_by_keystage_1_aggregate: Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Aggregate;
-  /** fetch data from the table: "published.view_redirects_lessons_canonical_by_year_1_0_0" */
-  published_view_redirects_lessons_canonical_by_year_1_0_0: Array<Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0>;
-  /** fetch aggregated fields from the table: "published.view_redirects_lessons_canonical_by_year_1_0_0" */
-  published_view_redirects_lessons_canonical_by_year_1_0_0_aggregate: Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Aggregate;
+  /** fetch data from the table: "published.view_redirects_lessons_canonical_by_year_18" */
+  published_view_redirects_lessons_canonical_by_year_18: Array<Published_View_Redirects_Lessons_Canonical_By_Year_18>;
+  /** fetch aggregated fields from the table: "published.view_redirects_lessons_canonical_by_year_18" */
+  published_view_redirects_lessons_canonical_by_year_18_aggregate: Published_View_Redirects_Lessons_Canonical_By_Year_18_Aggregate;
+  /** fetch data from the table: "published.view_redirects_lessons_canonical_by_year_19" */
+  published_view_redirects_lessons_canonical_by_year_19: Array<Published_View_Redirects_Lessons_Canonical_By_Year_19>;
+  /** fetch aggregated fields from the table: "published.view_redirects_lessons_canonical_by_year_19" */
+  published_view_redirects_lessons_canonical_by_year_19_aggregate: Published_View_Redirects_Lessons_Canonical_By_Year_19_Aggregate;
   /** fetch data from the table: "published.view_synthetic_programmes_3" */
   published_view_synthetic_programmes_3: Array<Published_View_Synthetic_Programmes_3>;
   /** fetch aggregated fields from the table: "published.view_synthetic_programmes_3" */
@@ -49988,6 +50540,42 @@ export type Query_RootPublished_Mv_Redirects_Lessons_Browse_By_Keystage_19_0_0_A
 };
 
 
+export type Query_RootPublished_Mv_Redirects_Lessons_Browse_By_Year_18_0_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Redirects_Lessons_Browse_By_Year_19_0_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Bool_Exp>;
+};
+
+
 export type Query_RootPublished_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0Args = {
   distinct_on?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -50024,21 +50612,39 @@ export type Query_RootPublished_Mv_Redirects_Lessons_Canonical_By_Keystage_19_0_
 };
 
 
-export type Query_RootPublished_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0Args = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Select_Column>>;
+export type Query_RootPublished_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Bool_Exp>;
 };
 
 
-export type Query_RootPublished_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Select_Column>>;
+export type Query_RootPublished_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Bool_Exp>;
 };
 
 
@@ -50912,6 +51518,42 @@ export type Query_RootPublished_View_Quiz_Question_Details_AggregateArgs = {
 };
 
 
+export type Query_RootPublished_View_Redirects_Lessons_Browse_By_Year_18Args = {
+  distinct_on?: InputMaybe<Array<Published_View_Redirects_Lessons_Browse_By_Year_18_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Redirects_Lessons_Browse_By_Year_18_Order_By>>;
+  where?: InputMaybe<Published_View_Redirects_Lessons_Browse_By_Year_18_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_View_Redirects_Lessons_Browse_By_Year_18_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_View_Redirects_Lessons_Browse_By_Year_18_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Redirects_Lessons_Browse_By_Year_18_Order_By>>;
+  where?: InputMaybe<Published_View_Redirects_Lessons_Browse_By_Year_18_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_View_Redirects_Lessons_Browse_By_Year_19Args = {
+  distinct_on?: InputMaybe<Array<Published_View_Redirects_Lessons_Browse_By_Year_19_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Redirects_Lessons_Browse_By_Year_19_Order_By>>;
+  where?: InputMaybe<Published_View_Redirects_Lessons_Browse_By_Year_19_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_View_Redirects_Lessons_Browse_By_Year_19_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_View_Redirects_Lessons_Browse_By_Year_19_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Redirects_Lessons_Browse_By_Year_19_Order_By>>;
+  where?: InputMaybe<Published_View_Redirects_Lessons_Browse_By_Year_19_Bool_Exp>;
+};
+
+
 export type Query_RootPublished_View_Redirects_Lessons_Canonical_By_Keystage_1Args = {
   distinct_on?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -50930,21 +51572,39 @@ export type Query_RootPublished_View_Redirects_Lessons_Canonical_By_Keystage_1_A
 };
 
 
-export type Query_RootPublished_View_Redirects_Lessons_Canonical_By_Year_1_0_0Args = {
-  distinct_on?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Select_Column>>;
+export type Query_RootPublished_View_Redirects_Lessons_Canonical_By_Year_18Args = {
+  distinct_on?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_18_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Order_By>>;
-  where?: InputMaybe<Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_18_Order_By>>;
+  where?: InputMaybe<Published_View_Redirects_Lessons_Canonical_By_Year_18_Bool_Exp>;
 };
 
 
-export type Query_RootPublished_View_Redirects_Lessons_Canonical_By_Year_1_0_0_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Select_Column>>;
+export type Query_RootPublished_View_Redirects_Lessons_Canonical_By_Year_18_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_18_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Order_By>>;
-  where?: InputMaybe<Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_18_Order_By>>;
+  where?: InputMaybe<Published_View_Redirects_Lessons_Canonical_By_Year_18_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_View_Redirects_Lessons_Canonical_By_Year_19Args = {
+  distinct_on?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_19_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_19_Order_By>>;
+  where?: InputMaybe<Published_View_Redirects_Lessons_Canonical_By_Year_19_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_View_Redirects_Lessons_Canonical_By_Year_19_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_19_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_19_Order_By>>;
+  where?: InputMaybe<Published_View_Redirects_Lessons_Canonical_By_Year_19_Bool_Exp>;
 };
 
 
@@ -53977,6 +54637,18 @@ export type Subscription_Root = {
   published_mv_redirects_lessons_browse_by_keystage_19_0_0_aggregate: Published_Mv_Redirects_Lessons_Browse_By_Keystage_19_0_0_Aggregate;
   /** fetch data from the table in a streaming manner: "published.mv_redirects_lessons_browse_by_keystage_19_0_0" */
   published_mv_redirects_lessons_browse_by_keystage_19_0_0_stream: Array<Published_Mv_Redirects_Lessons_Browse_By_Keystage_19_0_0>;
+  /** fetch data from the table: "published.mv_redirects_lessons_browse_by_year_18_0_0" */
+  published_mv_redirects_lessons_browse_by_year_18_0_0: Array<Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0>;
+  /** fetch aggregated fields from the table: "published.mv_redirects_lessons_browse_by_year_18_0_0" */
+  published_mv_redirects_lessons_browse_by_year_18_0_0_aggregate: Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_redirects_lessons_browse_by_year_18_0_0" */
+  published_mv_redirects_lessons_browse_by_year_18_0_0_stream: Array<Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0>;
+  /** fetch data from the table: "published.mv_redirects_lessons_browse_by_year_19_0_0" */
+  published_mv_redirects_lessons_browse_by_year_19_0_0: Array<Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0>;
+  /** fetch aggregated fields from the table: "published.mv_redirects_lessons_browse_by_year_19_0_0" */
+  published_mv_redirects_lessons_browse_by_year_19_0_0_aggregate: Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_redirects_lessons_browse_by_year_19_0_0" */
+  published_mv_redirects_lessons_browse_by_year_19_0_0_stream: Array<Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0>;
   /** fetch data from the table: "published.mv_redirects_lessons_canonical_by_keystage_1_0_0" */
   published_mv_redirects_lessons_canonical_by_keystage_1_0_0: Array<Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0>;
   /** fetch aggregated fields from the table: "published.mv_redirects_lessons_canonical_by_keystage_1_0_0" */
@@ -53989,12 +54661,18 @@ export type Subscription_Root = {
   published_mv_redirects_lessons_canonical_by_keystage_19_0_0_aggregate: Published_Mv_Redirects_Lessons_Canonical_By_Keystage_19_0_0_Aggregate;
   /** fetch data from the table in a streaming manner: "published.mv_redirects_lessons_canonical_by_keystage_19_0_0" */
   published_mv_redirects_lessons_canonical_by_keystage_19_0_0_stream: Array<Published_Mv_Redirects_Lessons_Canonical_By_Keystage_19_0_0>;
-  /** fetch data from the table: "published.mv_redirects_lessons_canonical_by_year_1_0_0" */
-  published_mv_redirects_lessons_canonical_by_year_1_0_0: Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0>;
-  /** fetch aggregated fields from the table: "published.mv_redirects_lessons_canonical_by_year_1_0_0" */
-  published_mv_redirects_lessons_canonical_by_year_1_0_0_aggregate: Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Aggregate;
-  /** fetch data from the table in a streaming manner: "published.mv_redirects_lessons_canonical_by_year_1_0_0" */
-  published_mv_redirects_lessons_canonical_by_year_1_0_0_stream: Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0>;
+  /** fetch data from the table: "published.mv_redirects_lessons_canonical_by_year_18_0_0" */
+  published_mv_redirects_lessons_canonical_by_year_18_0_0: Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0>;
+  /** fetch aggregated fields from the table: "published.mv_redirects_lessons_canonical_by_year_18_0_0" */
+  published_mv_redirects_lessons_canonical_by_year_18_0_0_aggregate: Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_redirects_lessons_canonical_by_year_18_0_0" */
+  published_mv_redirects_lessons_canonical_by_year_18_0_0_stream: Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0>;
+  /** fetch data from the table: "published.mv_redirects_lessons_canonical_by_year_19_0_0" */
+  published_mv_redirects_lessons_canonical_by_year_19_0_0: Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0>;
+  /** fetch aggregated fields from the table: "published.mv_redirects_lessons_canonical_by_year_19_0_0" */
+  published_mv_redirects_lessons_canonical_by_year_19_0_0_aggregate: Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_redirects_lessons_canonical_by_year_19_0_0" */
+  published_mv_redirects_lessons_canonical_by_year_19_0_0_stream: Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0>;
   /** fetch data from the table: "published.mv_redirects_units_browse_by_keystage_18_0_0" */
   published_mv_redirects_units_browse_by_keystage_18_0_0: Array<Published_Mv_Redirects_Units_Browse_By_Keystage_18_0_0>;
   /** fetch aggregated fields from the table: "published.mv_redirects_units_browse_by_keystage_18_0_0" */
@@ -54285,18 +54963,36 @@ export type Subscription_Root = {
   published_view_quiz_question_details_aggregate: Published_View_Quiz_Question_Details_Aggregate;
   /** fetch data from the table in a streaming manner: "published.view_quiz_question_details" */
   published_view_quiz_question_details_stream: Array<Published_View_Quiz_Question_Details>;
+  /** fetch data from the table: "published.view_redirects_lessons_browse_by_year_18" */
+  published_view_redirects_lessons_browse_by_year_18: Array<Published_View_Redirects_Lessons_Browse_By_Year_18>;
+  /** fetch aggregated fields from the table: "published.view_redirects_lessons_browse_by_year_18" */
+  published_view_redirects_lessons_browse_by_year_18_aggregate: Published_View_Redirects_Lessons_Browse_By_Year_18_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.view_redirects_lessons_browse_by_year_18" */
+  published_view_redirects_lessons_browse_by_year_18_stream: Array<Published_View_Redirects_Lessons_Browse_By_Year_18>;
+  /** fetch data from the table: "published.view_redirects_lessons_browse_by_year_19" */
+  published_view_redirects_lessons_browse_by_year_19: Array<Published_View_Redirects_Lessons_Browse_By_Year_19>;
+  /** fetch aggregated fields from the table: "published.view_redirects_lessons_browse_by_year_19" */
+  published_view_redirects_lessons_browse_by_year_19_aggregate: Published_View_Redirects_Lessons_Browse_By_Year_19_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.view_redirects_lessons_browse_by_year_19" */
+  published_view_redirects_lessons_browse_by_year_19_stream: Array<Published_View_Redirects_Lessons_Browse_By_Year_19>;
   /** fetch data from the table: "published.view_redirects_lessons_canonical_by_keystage_1" */
   published_view_redirects_lessons_canonical_by_keystage_1: Array<Published_View_Redirects_Lessons_Canonical_By_Keystage_1>;
   /** fetch aggregated fields from the table: "published.view_redirects_lessons_canonical_by_keystage_1" */
   published_view_redirects_lessons_canonical_by_keystage_1_aggregate: Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Aggregate;
   /** fetch data from the table in a streaming manner: "published.view_redirects_lessons_canonical_by_keystage_1" */
   published_view_redirects_lessons_canonical_by_keystage_1_stream: Array<Published_View_Redirects_Lessons_Canonical_By_Keystage_1>;
-  /** fetch data from the table: "published.view_redirects_lessons_canonical_by_year_1_0_0" */
-  published_view_redirects_lessons_canonical_by_year_1_0_0: Array<Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0>;
-  /** fetch aggregated fields from the table: "published.view_redirects_lessons_canonical_by_year_1_0_0" */
-  published_view_redirects_lessons_canonical_by_year_1_0_0_aggregate: Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Aggregate;
-  /** fetch data from the table in a streaming manner: "published.view_redirects_lessons_canonical_by_year_1_0_0" */
-  published_view_redirects_lessons_canonical_by_year_1_0_0_stream: Array<Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0>;
+  /** fetch data from the table: "published.view_redirects_lessons_canonical_by_year_18" */
+  published_view_redirects_lessons_canonical_by_year_18: Array<Published_View_Redirects_Lessons_Canonical_By_Year_18>;
+  /** fetch aggregated fields from the table: "published.view_redirects_lessons_canonical_by_year_18" */
+  published_view_redirects_lessons_canonical_by_year_18_aggregate: Published_View_Redirects_Lessons_Canonical_By_Year_18_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.view_redirects_lessons_canonical_by_year_18" */
+  published_view_redirects_lessons_canonical_by_year_18_stream: Array<Published_View_Redirects_Lessons_Canonical_By_Year_18>;
+  /** fetch data from the table: "published.view_redirects_lessons_canonical_by_year_19" */
+  published_view_redirects_lessons_canonical_by_year_19: Array<Published_View_Redirects_Lessons_Canonical_By_Year_19>;
+  /** fetch aggregated fields from the table: "published.view_redirects_lessons_canonical_by_year_19" */
+  published_view_redirects_lessons_canonical_by_year_19_aggregate: Published_View_Redirects_Lessons_Canonical_By_Year_19_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.view_redirects_lessons_canonical_by_year_19" */
+  published_view_redirects_lessons_canonical_by_year_19_stream: Array<Published_View_Redirects_Lessons_Canonical_By_Year_19>;
   /** fetch data from the table: "published.view_synthetic_programmes_3" */
   published_view_synthetic_programmes_3: Array<Published_View_Synthetic_Programmes_3>;
   /** fetch aggregated fields from the table: "published.view_synthetic_programmes_3" */
@@ -56179,6 +56875,56 @@ export type Subscription_RootPublished_Mv_Redirects_Lessons_Browse_By_Keystage_1
 };
 
 
+export type Subscription_RootPublished_Mv_Redirects_Lessons_Browse_By_Year_18_0_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Redirects_Lessons_Browse_By_Year_18_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Redirects_Lessons_Browse_By_Year_19_0_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Redirects_Lessons_Browse_By_Year_19_0_0_Bool_Exp>;
+};
+
+
 export type Subscription_RootPublished_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0Args = {
   distinct_on?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Keystage_1_0_0_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -56229,28 +56975,53 @@ export type Subscription_RootPublished_Mv_Redirects_Lessons_Canonical_By_Keystag
 };
 
 
-export type Subscription_RootPublished_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0Args = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Select_Column>>;
+export type Subscription_RootPublished_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Bool_Exp>;
 };
 
 
-export type Subscription_RootPublished_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Select_Column>>;
+export type Subscription_RootPublished_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Order_By>>;
-  where?: InputMaybe<Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Bool_Exp>;
 };
 
 
-export type Subscription_RootPublished_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_StreamArgs = {
+export type Subscription_RootPublished_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_StreamArgs = {
   batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Stream_Cursor_Input>>;
-  where?: InputMaybe<Published_Mv_Redirects_Lessons_Canonical_By_Year_1_0_0_Bool_Exp>;
+  cursor: Array<InputMaybe<Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Redirects_Lessons_Canonical_By_Year_18_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Redirects_Lessons_Canonical_By_Year_19_0_0_Bool_Exp>;
 };
 
 
@@ -57460,6 +58231,56 @@ export type Subscription_RootPublished_View_Quiz_Question_Details_StreamArgs = {
 };
 
 
+export type Subscription_RootPublished_View_Redirects_Lessons_Browse_By_Year_18Args = {
+  distinct_on?: InputMaybe<Array<Published_View_Redirects_Lessons_Browse_By_Year_18_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Redirects_Lessons_Browse_By_Year_18_Order_By>>;
+  where?: InputMaybe<Published_View_Redirects_Lessons_Browse_By_Year_18_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_View_Redirects_Lessons_Browse_By_Year_18_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_View_Redirects_Lessons_Browse_By_Year_18_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Redirects_Lessons_Browse_By_Year_18_Order_By>>;
+  where?: InputMaybe<Published_View_Redirects_Lessons_Browse_By_Year_18_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_View_Redirects_Lessons_Browse_By_Year_18_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_View_Redirects_Lessons_Browse_By_Year_18_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_View_Redirects_Lessons_Browse_By_Year_18_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_View_Redirects_Lessons_Browse_By_Year_19Args = {
+  distinct_on?: InputMaybe<Array<Published_View_Redirects_Lessons_Browse_By_Year_19_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Redirects_Lessons_Browse_By_Year_19_Order_By>>;
+  where?: InputMaybe<Published_View_Redirects_Lessons_Browse_By_Year_19_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_View_Redirects_Lessons_Browse_By_Year_19_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_View_Redirects_Lessons_Browse_By_Year_19_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Redirects_Lessons_Browse_By_Year_19_Order_By>>;
+  where?: InputMaybe<Published_View_Redirects_Lessons_Browse_By_Year_19_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_View_Redirects_Lessons_Browse_By_Year_19_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_View_Redirects_Lessons_Browse_By_Year_19_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_View_Redirects_Lessons_Browse_By_Year_19_Bool_Exp>;
+};
+
+
 export type Subscription_RootPublished_View_Redirects_Lessons_Canonical_By_Keystage_1Args = {
   distinct_on?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Keystage_1_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -57485,28 +58306,53 @@ export type Subscription_RootPublished_View_Redirects_Lessons_Canonical_By_Keyst
 };
 
 
-export type Subscription_RootPublished_View_Redirects_Lessons_Canonical_By_Year_1_0_0Args = {
-  distinct_on?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Select_Column>>;
+export type Subscription_RootPublished_View_Redirects_Lessons_Canonical_By_Year_18Args = {
+  distinct_on?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_18_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Order_By>>;
-  where?: InputMaybe<Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_18_Order_By>>;
+  where?: InputMaybe<Published_View_Redirects_Lessons_Canonical_By_Year_18_Bool_Exp>;
 };
 
 
-export type Subscription_RootPublished_View_Redirects_Lessons_Canonical_By_Year_1_0_0_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Select_Column>>;
+export type Subscription_RootPublished_View_Redirects_Lessons_Canonical_By_Year_18_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_18_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Order_By>>;
-  where?: InputMaybe<Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Bool_Exp>;
+  order_by?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_18_Order_By>>;
+  where?: InputMaybe<Published_View_Redirects_Lessons_Canonical_By_Year_18_Bool_Exp>;
 };
 
 
-export type Subscription_RootPublished_View_Redirects_Lessons_Canonical_By_Year_1_0_0_StreamArgs = {
+export type Subscription_RootPublished_View_Redirects_Lessons_Canonical_By_Year_18_StreamArgs = {
   batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Stream_Cursor_Input>>;
-  where?: InputMaybe<Published_View_Redirects_Lessons_Canonical_By_Year_1_0_0_Bool_Exp>;
+  cursor: Array<InputMaybe<Published_View_Redirects_Lessons_Canonical_By_Year_18_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_View_Redirects_Lessons_Canonical_By_Year_18_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_View_Redirects_Lessons_Canonical_By_Year_19Args = {
+  distinct_on?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_19_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_19_Order_By>>;
+  where?: InputMaybe<Published_View_Redirects_Lessons_Canonical_By_Year_19_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_View_Redirects_Lessons_Canonical_By_Year_19_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_19_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Redirects_Lessons_Canonical_By_Year_19_Order_By>>;
+  where?: InputMaybe<Published_View_Redirects_Lessons_Canonical_By_Year_19_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_View_Redirects_Lessons_Canonical_By_Year_19_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_View_Redirects_Lessons_Canonical_By_Year_19_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_View_Redirects_Lessons_Canonical_By_Year_19_Bool_Exp>;
 };
 
 
@@ -66630,6 +67476,13 @@ export type ProgrammeListingQueryVariables = Exact<{
 
 export type ProgrammeListingQuery = { __typename?: 'query_root', programmes: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_17_0_0', lesson_slug?: string | null, unit_slug?: string | null, unit_data?: any | null, null_unitvariant_id?: number | null, lesson_data?: any | null, programme_fields?: any | null, is_legacy?: boolean | null, programme_slug?: string | null, actions?: any | null }> };
 
+export type PupilCanonicalLessonRedirectQueryVariables = Exact<{
+  incomingPath: Scalars['String']['input'];
+}>;
+
+
+export type PupilCanonicalLessonRedirectQuery = { __typename?: 'query_root', pupilCanonicalLessonRedirectData: Array<{ __typename?: 'published_mv_redirects_lessons_canonical_by_year_19_0_0', incoming_path?: string | null, outgoing_path?: string | null, redirect_type?: any | null }> };
+
 export type PupilLessonQueryVariables = Exact<{
   browseDataWhere?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Year_14_0_0_Bool_Exp>;
   lessonSlug: Scalars['String']['input'];
@@ -67168,6 +68021,17 @@ export const ProgrammeListingDocument = gql`
     is_legacy
     programme_slug
     actions
+  }
+}
+    `;
+export const PupilCanonicalLessonRedirectDocument = gql`
+    query pupilCanonicalLessonRedirect($incomingPath: String!) {
+  pupilCanonicalLessonRedirectData: published_mv_redirects_lessons_canonical_by_year_19_0_0(
+    where: {incoming_path: {_eq: $incomingPath}}
+  ) {
+    incoming_path
+    outgoing_path
+    redirect_type
   }
 }
     `;
@@ -67967,6 +68831,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     programmeListing(variables?: ProgrammeListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<ProgrammeListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<ProgrammeListingQuery>({ document: ProgrammeListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'programmeListing', 'query', variables);
+    },
+    pupilCanonicalLessonRedirect(variables: PupilCanonicalLessonRedirectQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PupilCanonicalLessonRedirectQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilCanonicalLessonRedirectQuery>({ document: PupilCanonicalLessonRedirectDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pupilCanonicalLessonRedirect', 'query', variables);
     },
     pupilLesson(variables: PupilLessonQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PupilLessonQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PupilLessonQuery>({ document: PupilLessonDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pupilLesson', 'query', variables);

@@ -59,6 +59,7 @@ const curriculumApi: Pick<
   | "teachersPreviewUnitListing"
   | "teacherPreviewLessonListing"
   | "browseUnitRedirectQuery"
+  | "pupilCanonicalLessonRedirectQuery"
 > = {
   curriculumPhaseOptions: jest.fn(async () => {
     return curriculumPhaseOptionsFixture();
@@ -179,6 +180,15 @@ const curriculumApi: Pick<
       browseUnitRedirectData: {
         incomingPath: `programmes/programmeSlug/units/unitSlug`,
         outgoingPath: `programmes/programmeSlug/units/unitSlug-redirected`,
+        redirectType: "301",
+      },
+    };
+  }),
+  pupilCanonicalLessonRedirectQuery: jest.fn(async () => {
+    return {
+      pupilCanonicalLessonRedirectData: {
+        incomingPath: `lessons/lessonSlug`,
+        outgoingPath: `lessons/lessonSlug-redirected`,
         redirectType: "301",
       },
     };
