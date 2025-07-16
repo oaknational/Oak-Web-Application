@@ -352,4 +352,31 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       throw new Error("getStaticProps did not return  props.");
     }
   });
+  it("should redirect to the correct unit if a redirect is found", async () => {
+    const programmeSlug = "english-secondary-year-10";
+    const unitSlug = "unit-slug";
+
+    (
+      curriculumApi2023.default.pupilLessonListingQuery as jest.Mock
+    ).mockResolvedValue({
+      browseData: [],
+      backLinkData: [],
+    });
+
+    // mock the return value of the API call
+
+    const res = await getStaticProps({
+      params: {
+        programmeSlug,
+        unitSlug,
+      },
+    });
+    expect(res).toEqual({
+      redirect: {
+        destination: `/pupils/programmes/programmeSlug/units/unitSlug-redirected`,
+        permanent: true,
+        basePath: false,
+      },
+    });
+  });
 });

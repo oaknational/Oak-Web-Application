@@ -58,6 +58,7 @@ const curriculumApi: Pick<
   | "teachersPreviewLessonDownload"
   | "teachersPreviewUnitListing"
   | "teacherPreviewLessonListing"
+  | "browseUnitRedirectQuery"
 > = {
   curriculumPhaseOptions: jest.fn(async () => {
     return curriculumPhaseOptionsFixture();
@@ -172,6 +173,15 @@ const curriculumApi: Pick<
 
   pupilsSitemap: jest.fn(async () => {
     return mockedSiteMapResponse;
+  }),
+  browseUnitRedirectQuery: jest.fn(async () => {
+    return {
+      browseUnitRedirectData: {
+        incomingPath: `programmes/programmeSlug/units/unitSlug`,
+        outgoingPath: `programmes/programmeSlug/units/unitSlug-redirected`,
+        redirectType: "301",
+      },
+    };
   }),
 };
 
