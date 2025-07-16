@@ -9,7 +9,7 @@ describe("pupilLesson()", () => {
         ...sdk,
         browseUnitRedirect: jest.fn(() =>
           Promise.resolve({
-            redirectData: [],
+            browseUnitRedirectData: [],
           }),
         ),
       })({
@@ -23,7 +23,7 @@ describe("pupilLesson()", () => {
       ...sdk,
       browseUnitRedirect: jest.fn(() =>
         Promise.resolve({
-          redirectData: [
+          browseUnitRedirectData: [
             {
               incoming_path: "programmes/programmeSlug/units/unitSlug/lessons",
               outgoing_path: "programmes/programmeSlug/units/unitSlug1/lessons",

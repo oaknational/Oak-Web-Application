@@ -137,7 +137,7 @@ export const getStaticProps: GetStaticProps<
       }
 
       if (!filteredBrowseData || filteredBrowseData.length === 0) {
-        const { redirectData } =
+        const { browseUnitRedirectData: redirectData } =
           await curriculumApi2023.browseUnitRedirectQuery({
             incomingPath: `programmes/${programmeSlug}/units/${unitSlug}`,
           });
