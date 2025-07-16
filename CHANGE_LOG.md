@@ -1,3 +1,14 @@
+# [1.796.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.795.0...v1.796.0) (2025-07-16)
+
+
+### Features
+
+* add useCopyrightRequirements hook ([6040035](https://github.com/oaknational/Oak-Web-Application/commit/6040035e262c1fa706a29528d495febdaa4fb3ff))
+* hide geoblocked banner on lesson downloads, do not render signedout banner when not onboarded ([29555f0](https://github.com/oaknational/Oak-Web-Application/commit/29555f0aabcf305b3586c752d0489fa930145842))
+* use hook for CopyrightRestrictionBanner ([666f0e8](https://github.com/oaknational/Oak-Web-Application/commit/666f0e8b0996a03669c994bfd2207485808a053e))
+* use hook for restricted page views ([ae7a103](https://github.com/oaknational/Oak-Web-Application/commit/ae7a103dbb455931ad7231df2f743a0d975efb36))
+* use shared copyright hook for LessonCopyrightTag ([155e6cb](https://github.com/oaknational/Oak-Web-Application/commit/155e6cb6a9cea524e2869f9820798677212ebd13))
+
 # [1.795.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.794.0...v1.795.0) (2025-07-16)
 
 
