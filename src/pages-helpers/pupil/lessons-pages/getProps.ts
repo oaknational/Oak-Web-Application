@@ -100,6 +100,8 @@ export const getProps = ({
               });
             return redirectQueryResult.pupilBrowseLessonRedirectData;
           }
+          case "preview":
+            return null; // No redirects for preview page
           default:
             throw new Error(`Invalid page type: ${page}`);
         }
