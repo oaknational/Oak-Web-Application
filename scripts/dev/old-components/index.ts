@@ -99,6 +99,10 @@ const IMPORT_MAP = [
     files: ["src/components/SharedComponents/OwaImage"],
   },
   {
+    id: "Heading.deprecated",
+    files: ["src/components/SharedComponents/Typography/Heading.deprecated"],
+  },
+  {
     id: "Typography",
     files: ["src/components/SharedComponents/Typography"],
   },
@@ -129,10 +133,15 @@ function outputHtml(/*refs: Record<string, string[]>*/) {
   throw new Error("TODO");
 }
 
+function formatId(id: string) {
+  return id.replace(/\.deprecated/, "");
+}
+
 function outputStdout(refs: Record<string, string[]>) {
   for (const [id, files] of Object.entries(refs)) {
+    const importFiles = IMPORT_MAP.find((ref) => ref.id === id)!.files;
     console.log(
-      `${chalk.green(`<${id}/>`)} ${chalk.gray(`(${files.length} files)`)}`,
+      `${chalk.green(`<${formatId(id)}/>`)} — ${chalk.blue(`./${importFiles[0]}`)} ${chalk.gray(`(${files.length} files)`)}`,
     );
     for (const file of files) {
       console.log(` - ./${file}`);
