@@ -81,7 +81,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
         },
       });
     });
-    it("should return canonical redirect if lesson not found", async () => {
+    it("should return redirect if lesson not found", async () => {
       (curriculumApi2023.pupilLessonQuery as jest.Mock).mockResolvedValueOnce(
         null,
       );
