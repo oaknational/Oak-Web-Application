@@ -605,24 +605,68 @@ export type ApiContentPageSorting = {
   title?: InputMaybe<SortOrder>;
 };
 
+export type ApiLandingBlockWithoutBody = {
+  __typename?: 'ApiLandingBlockWithoutBody';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  cta?: Maybe<CtaLink>;
+  image?: Maybe<ImageWithAltText>;
+  titleRaw?: Maybe<Scalars['JSON']['output']>;
+};
+
+export type ApiLandingBlockWithoutBodyFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  cta?: InputMaybe<CtaLinkFilter>;
+  image?: InputMaybe<ImageWithAltTextFilter>;
+};
+
+export type ApiLandingBlockWithoutBodySorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  cta?: InputMaybe<CtaLinkSorting>;
+  image?: InputMaybe<ImageWithAltTextSorting>;
+};
+
+export type ApiLandingPageBlockWithoutImage = {
+  __typename?: 'ApiLandingPageBlockWithoutImage';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  bodyRaw?: Maybe<Scalars['JSON']['output']>;
+  cta?: Maybe<CtaLink>;
+  titleRaw?: Maybe<Scalars['JSON']['output']>;
+};
+
+export type ApiLandingPageBlockWithoutImageFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  cta?: InputMaybe<CtaLinkFilter>;
+};
+
+export type ApiLandingPageBlockWithoutImageSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  cta?: InputMaybe<CtaLinkSorting>;
+};
+
 export type ApiLandingPageBottomBlock = {
   __typename?: 'ApiLandingPageBottomBlock';
   _key?: Maybe<Scalars['String']['output']>;
   _type?: Maybe<Scalars['String']['output']>;
-  mainBlock?: Maybe<TitleBlockWithButtonAndImage>;
-  siblingBlocks?: Maybe<Array<Maybe<TextBlockWithLink>>>;
+  mainBlock?: Maybe<ApiLandingBlockWithoutBody>;
+  siblingBlocks?: Maybe<Array<Maybe<ApiLandingPageBlockWithoutImage>>>;
 };
 
 export type ApiLandingPageBottomBlockFilter = {
   _key?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
-  mainBlock?: InputMaybe<TitleBlockWithButtonAndImageFilter>;
+  mainBlock?: InputMaybe<ApiLandingBlockWithoutBodyFilter>;
 };
 
 export type ApiLandingPageBottomBlockSorting = {
   _key?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
-  mainBlock?: InputMaybe<TitleBlockWithButtonAndImageSorting>;
+  mainBlock?: InputMaybe<ApiLandingBlockWithoutBodySorting>;
 };
 
 export type ApiLandingPageTextAndMediaBlock = {
@@ -632,7 +676,7 @@ export type ApiLandingPageTextAndMediaBlock = {
   bodyRaw?: Maybe<Scalars['JSON']['output']>;
   cta?: Maybe<CtaLink>;
   image?: Maybe<ImageWithAltText>;
-  titlePortableTextRaw?: Maybe<Scalars['JSON']['output']>;
+  titleRaw?: Maybe<Scalars['JSON']['output']>;
 };
 
 export type ApiLandingPageTextAndMediaBlockFilter = {
@@ -4201,56 +4245,6 @@ export type TextBlockWithHighlightSorting = {
   level?: InputMaybe<SortOrder>;
   listItem?: InputMaybe<SortOrder>;
   style?: InputMaybe<SortOrder>;
-};
-
-export type TextBlockWithLink = {
-  __typename?: 'TextBlockWithLink';
-  _key?: Maybe<Scalars['String']['output']>;
-  _type?: Maybe<Scalars['String']['output']>;
-  body?: Maybe<Scalars['String']['output']>;
-  buttonLink?: Maybe<Link>;
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-export type TextBlockWithLinkFilter = {
-  _key?: InputMaybe<StringFilter>;
-  _type?: InputMaybe<StringFilter>;
-  body?: InputMaybe<StringFilter>;
-  buttonLink?: InputMaybe<LinkFilter>;
-  title?: InputMaybe<StringFilter>;
-};
-
-export type TextBlockWithLinkSorting = {
-  _key?: InputMaybe<SortOrder>;
-  _type?: InputMaybe<SortOrder>;
-  body?: InputMaybe<SortOrder>;
-  buttonLink?: InputMaybe<LinkSorting>;
-  title?: InputMaybe<SortOrder>;
-};
-
-export type TitleBlockWithButtonAndImage = {
-  __typename?: 'TitleBlockWithButtonAndImage';
-  _key?: Maybe<Scalars['String']['output']>;
-  _type?: Maybe<Scalars['String']['output']>;
-  buttonLink?: Maybe<CtaLink>;
-  image?: Maybe<ImageWithAltText>;
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-export type TitleBlockWithButtonAndImageFilter = {
-  _key?: InputMaybe<StringFilter>;
-  _type?: InputMaybe<StringFilter>;
-  buttonLink?: InputMaybe<CtaLinkFilter>;
-  image?: InputMaybe<ImageWithAltTextFilter>;
-  title?: InputMaybe<StringFilter>;
-};
-
-export type TitleBlockWithButtonAndImageSorting = {
-  _key?: InputMaybe<SortOrder>;
-  _type?: InputMaybe<SortOrder>;
-  buttonLink?: InputMaybe<CtaLinkSorting>;
-  image?: InputMaybe<ImageWithAltTextSorting>;
-  title?: InputMaybe<SortOrder>;
 };
 
 export type UiGraphic = Document & {
