@@ -386,10 +386,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
 
     (
       curriculumApi2023.default.pupilLessonListingQuery as jest.Mock
-    ).mockResolvedValue({
-      browseData: [],
-      backLinkData: [],
-    });
+    ).mockRejectedValueOnce(new OakError({ code: "curriculum-api/not-found" }));
 
     // mock the return value of the API call
     (

@@ -215,7 +215,9 @@ describe("getStaticProps", () => {
       (curriculumApi2023 as CurriculumApi).browseUnitRedirectQuery = jest.fn();
     }
 
-    (curriculumApi.lessonListing as jest.Mock).mockResolvedValueOnce(undefined);
+    (curriculumApi.lessonListing as jest.Mock).mockRejectedValueOnce(
+      new OakError({ code: "curriculum-api/not-found" }),
+    );
     (
       curriculumApi2023.browseUnitRedirectQuery as jest.Mock
     ).mockResolvedValueOnce({
