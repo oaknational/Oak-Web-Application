@@ -7,6 +7,14 @@ import SubjectCategoryFilters from "./SubjectCategoryFilters";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 const browseRefined = jest.fn();
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      browseRefined: (...args: unknown[]) => browseRefined(...args),
+    },
+  }),
+}));
 jest.mock("next/router", () => ({
   useRouter: jest.fn(),
 }));
@@ -26,7 +34,6 @@ describe("SubjectCategoryFilters", () => {
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <SubjectCategoryFilters
-          programmeSlug={"test-programme"}
           subjectCategories={[
             {
               label: "Grammar",
@@ -35,15 +42,16 @@ describe("SubjectCategoryFilters", () => {
             },
           ]}
           categorySlug={"all"}
-          browseRefined={browseRefined}
           idSuffix={"desktop"}
+          setCategory={jest.fn()}
         />
       </OakThemeProvider>,
     );
     expect(getByText("Category")).toBeInTheDocument();
   });
 
-  it("updates the router query and selected category on click", () => {
+  it("calls setCategory on click", () => {
+    const mockSetCategory = jest.fn();
     const category = {
       slug: "test-category",
       label: "Test Category",
@@ -52,69 +60,20 @@ describe("SubjectCategoryFilters", () => {
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <SubjectCategoryFilters
-          programmeSlug={"test-programme"}
           categorySlug={"all"}
-          browseRefined={browseRefined}
           idSuffix={"desktop"}
           subjectCategories={[category]}
+          setCategory={mockSetCategory}
         />
       </OakThemeProvider>,
     );
 
     const categoryButton = screen.getByText("Test Category");
+
     fireEvent.click(categoryButton);
 
-    expect(mockRouter.replace).toHaveBeenCalledWith(
-      {
-        pathname: "/test-path",
-        query: {
-          category: "test-category",
-          programmeSlug: "test-programme",
-        },
-      },
-      undefined,
-      { shallow: true },
-    );
-
+    expect(mockSetCategory).toHaveBeenCalledWith("test-category");
     expect(getByText("Test Category")).toBeInTheDocument();
-  });
-
-  it("browse refined analytics provider invoked with correct props", () => {
-    const category = {
-      slug: "test-category",
-      label: "Test Category",
-      iconName: "grammar",
-    };
-    renderWithTheme(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <SubjectCategoryFilters
-          programmeSlug={"test-programme"}
-          categorySlug={"all"}
-          browseRefined={browseRefined}
-          idSuffix={"desktop"}
-          subjectCategories={[category]}
-        />
-      </OakThemeProvider>,
-    );
-
-    const categoryButton = screen.getByText("Test Category");
-    fireEvent.click(categoryButton);
-
-    expect(browseRefined).toHaveBeenCalledWith({
-      platform: "owa",
-      product: "teacher lesson resources",
-      engagementIntent: "refine",
-      componentType: "filter_link",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      filterValue: "Test Category",
-      filterType: "Subject filter",
-      activeFilters: {
-        content_types: "units",
-        learning_themes: undefined,
-        year_group: undefined,
-      },
-    });
   });
 
   it("on mobile, setCategory function invoked with selected category", () => {
@@ -128,9 +87,7 @@ describe("SubjectCategoryFilters", () => {
     renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <SubjectCategoryFilters
-          programmeSlug={"test-programme"}
           categorySlug={"all"}
-          browseRefined={browseRefined}
           idSuffix={"mobile"}
           setCategory={mockSetCategory}
           subjectCategories={[category]}
