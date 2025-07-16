@@ -1,5 +1,4 @@
 import React, { useId, useState, useRef, useEffect } from "react";
-import { useRouter } from "next/router";
 import {
   GetStaticPathsResult,
   GetStaticProps,
@@ -7,7 +6,6 @@ import {
   NextPage,
 } from "next";
 import {
-  OakBox,
   OakGrid,
   OakGridArea,
   OakHeading,
@@ -52,6 +50,8 @@ import getYearGroupSEOString from "@/pages-helpers/teacher/year-group-seo-string
 import CurriculumDownloadBanner from "@/components/TeacherComponents/CurriculumDownloadBanner/CurriculumDownloadBanner";
 import { convertSubjectToSlug } from "@/components/TeacherComponents/helpers/convertSubjectToSlug";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
+import { isUnitListData } from "@/components/TeacherComponents/UnitList/helpers";
+import { useUnitFilterState } from "@/hooks/useUnitFilterState";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -88,34 +88,42 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
 
   const learningThemes = curriculumData.learningThemes ?? [];
 
-  const router = useRouter();
-  const themeSlug = router.query["learning-theme"]?.toString();
-  const categorySlug = router.query["category"]?.toString();
-  const yearGroupSlug = router.query["year"]?.toString();
+  const {
+    appliedThemeSlug,
+    appliedCategorySlug,
+    appliedyearGroupSlug,
+    isMobileFilterDrawerOpen,
+    setIsMobileFilterDrawerOpen,
+    handleUpdateActiveFilters,
+    handleUpdateAndSubmitFilterQuery,
+    handleSubmitFilterQuery,
+    incomingCategorySlug,
+    incomingThemeSlug,
+    incomingYearSlug,
+  } = useUnitFilterState({ isUnitListing: isUnitListData(curriculumData) });
+
   const [skipFiltersButton, setSkipFiltersButton] = useState(false);
   const filtersRef = useRef<HTMLDivElement>(null);
   const isFiltersAvailable =
     yearGroups.length > 1 ||
     subjectCategories.length > 1 ||
     learningThemes.length > 1;
-  const [selectedThemeSlug, setSelectedThemeSlug] = useState<
-    string | undefined
-  >(themeSlug);
 
   useEffect(() => {
-    if (categorySlug || yearGroupSlug) {
+    if (appliedCategorySlug || appliedyearGroupSlug) {
       if (filtersRef.current) {
         filtersRef.current.scrollIntoView({ behavior: "smooth" });
       }
     }
-  }, [categorySlug, yearGroupSlug]);
+  }, [appliedCategorySlug, appliedyearGroupSlug]);
 
   const filteredUnits = filterUnits({
-    themeSlug: selectedThemeSlug,
-    categorySlug,
-    yearGroup: yearGroupSlug,
+    themeSlug: appliedThemeSlug,
+    categorySlug: appliedCategorySlug,
+    yearGroup: appliedyearGroupSlug,
     units,
   });
+
   const paginationProps = usePagination({
     totalResults: filteredUnits.length,
     pageSize: RESULTS_PER_PAGE,
@@ -177,20 +185,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
         pathway: pathwayTitle,
       });
     }
-  };
-
-  const MobileUnitFilterButton = () => {
-    return isFiltersAvailable ? (
-      <OakBox $display={["auto", "auto", "none"]}>
-        <MobileUnitFilters
-          {...curriculumData}
-          numberOfUnits={filteredUnits.length}
-          browseRefined={track.browseRefined}
-          setSelectedThemeSlug={setSelectedThemeSlug}
-          learningThemesFilterId={learningThemesFilterId}
-        />
-      </OakBox>
-    ) : null;
   };
 
   const TierTabsOrUnitCountHeader = () => {
@@ -301,17 +295,11 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 learningThemes={learningThemes}
                 filtersRef={filtersRef}
                 skipFiltersButton={skipFiltersButton}
-                programmeSlug={programmeSlug}
-                selectedThemeSlug={selectedThemeSlug}
-                categorySlug={categorySlug}
-                yearGroupSlug={yearGroupSlug}
-                subjectSlug={subjectSlug}
-                subjectTitle={subjectTitle}
-                keyStageSlug={keyStageSlug}
-                keyStageTitle={keyStageTitle}
                 learningThemesId={learningThemesId}
-                browseRefined={track.browseRefined}
-                setSelectedThemeSlug={setSelectedThemeSlug}
+                updateQuery={handleUpdateAndSubmitFilterQuery}
+                incomingCategorySlug={incomingCategorySlug}
+                incomingYearSlug={incomingYearSlug}
+                incomingThemeSlug={incomingThemeSlug}
               />
               <OakFlex $display={["none", "none", "flex"]}>
                 {relatedSubjects?.map((subjectSlug) => (
@@ -359,7 +347,20 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     $position={"relative"}
                   >
                     <TierTabsOrUnitCountHeader />
-                    <MobileUnitFilterButton />
+                    {isFiltersAvailable && (
+                      <MobileUnitFilters
+                        {...curriculumData}
+                        numberOfUnits={filteredUnits.length}
+                        learningThemesFilterId={learningThemesFilterId}
+                        updateActiveFilters={handleUpdateActiveFilters}
+                        isOpen={isMobileFilterDrawerOpen}
+                        setIsOpen={setIsMobileFilterDrawerOpen}
+                        handleSubmitQuery={handleSubmitFilterQuery}
+                        incomingThemeSlug={incomingThemeSlug}
+                        incomingCategorySlug={incomingCategorySlug}
+                        incomingYearGroupSlug={incomingYearSlug}
+                      />
+                    )}
                   </OakFlex>
                 </OakFlex>
               </OakFlex>

@@ -5,13 +5,10 @@ import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import MobileUnitFilters, { MobileUnitFiltersProps } from "./MobileUnitFilters";
 
-import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 const mockProps: MobileUnitFiltersProps = {
   numberOfUnits: 10,
-  browseRefined: jest.fn() as TrackFns["browseRefined"],
-  setSelectedThemeSlug: jest.fn(),
   learningThemesFilterId: "theme1",
   yearGroups: [
     { yearTitle: "Year 1", yearSlug: "year-1", year: "1" },
@@ -41,6 +38,13 @@ const mockProps: MobileUnitFiltersProps = {
   hasNewContent: false,
   phase: "primary",
   pathwayTitle: null,
+  updateActiveFilters: jest.fn(),
+  isOpen: true,
+  setIsOpen: jest.fn(),
+  handleSubmitQuery: jest.fn(),
+  incomingThemeSlug: "",
+  incomingCategorySlug: "",
+  incomingYearGroupSlug: "",
 };
 
 describe("MobileUnitFilters", () => {
@@ -56,46 +60,42 @@ describe("MobileUnitFilters", () => {
     }));
   });
 
-  it("renders filter button", () => {
+  it("calls setIsOpen when the filter button is clicked", async () => {
+    const mockSetIsOpen = jest.fn();
     renderWithTheme(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <MobileUnitFilters {...mockProps} />
-      </OakThemeProvider>,
+      <MobileUnitFilters
+        {...mockProps}
+        isOpen={false}
+        setIsOpen={mockSetIsOpen}
+      />,
     );
-    const filterToggle = screen.getByRole("button", { name: /filter/i });
 
-    expect(filterToggle).toBeInTheDocument();
+    const filterDrawerButton = screen.getByRole("button", { name: /Filter/i });
+    expect(filterDrawerButton).toBeInTheDocument();
+
+    const user = userEvent.setup();
+    await user.click(filterDrawerButton);
+
+    expect(mockSetIsOpen).toHaveBeenCalledWith(true);
   });
 
-  it("opens filter drawer component when filter button clicked", async () => {
+  it("calls setIsOpen with false when the close button is clicked", async () => {
+    const mockSetIsOpen = jest.fn();
     renderWithTheme(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <MobileUnitFilters {...mockProps} />
-      </OakThemeProvider>,
+      <MobileUnitFilters {...mockProps} setIsOpen={mockSetIsOpen} />,
     );
-    const filterToggle = screen.getByRole("button", { name: /filter/i });
+
+    const closeButton = screen.getByRole("button", { name: /Close/i });
+    expect(closeButton).toBeInTheDocument();
+
     const user = userEvent.setup();
+    await user.click(closeButton);
 
-    expect(screen.queryByText(/Filters/i)).not.toBeInTheDocument();
-
-    await user.click(filterToggle);
-
-    const filterDrawer = screen.getByText(/Filters/i);
-
-    expect(filterDrawer).toBeInTheDocument();
+    expect(mockSetIsOpen).toHaveBeenCalledWith(false);
   });
 
   it("renders correct sized year group filters", async () => {
-    renderWithTheme(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <MobileUnitFilters {...mockProps} />
-      </OakThemeProvider>,
-    );
-
-    const filterToggle = screen.getByRole("button", { name: /filter/i });
-    const user = userEvent.setup();
-
-    await user.click(filterToggle);
+    renderWithTheme(<MobileUnitFilters {...mockProps} />);
 
     const yearLegend = screen.getByRole("group", { name: /Year/i });
     const fieldset = yearLegend.closest("fieldset");
@@ -108,16 +108,7 @@ describe("MobileUnitFilters", () => {
   });
 
   it("renders correct sized category filters", async () => {
-    renderWithTheme(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <MobileUnitFilters {...mockProps} />
-      </OakThemeProvider>,
-    );
-
-    const filterToggle = screen.getByRole("button", { name: /filter/i });
-    const user = userEvent.setup();
-
-    await user.click(filterToggle);
+    renderWithTheme(<MobileUnitFilters {...mockProps} />);
 
     const categoryLegend = screen.getByRole("group", { name: /Category/i });
     const fieldset = categoryLegend.closest("fieldset");
@@ -136,30 +127,19 @@ describe("MobileUnitFilters", () => {
       </OakThemeProvider>,
     );
 
-    const filterToggle = screen.getByRole("button", { name: /filter/i });
-    const user = userEvent.setup();
-
-    await user.click(filterToggle);
-
     const themeRadioButtons = screen.getAllByRole("radio");
 
     expect(themeRadioButtons.length).toBe(3);
   });
 
   it("renders submit button in the footer of component which closes filter drawer onClick", async () => {
-    renderWithTheme(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <MobileUnitFilters {...mockProps} />
-      </OakThemeProvider>,
-    );
-    const filterToggle = screen.getByRole("button", { name: /filter/i });
-    const user = userEvent.setup();
-
-    await user.click(filterToggle);
+    renderWithTheme(<MobileUnitFilters {...mockProps} />);
 
     const submitButton = screen.getByRole("button", { name: /Show results/i });
 
     expect(submitButton).toBeInTheDocument();
+
+    const user = userEvent.setup();
 
     await user.click(submitButton);
 
@@ -169,66 +149,47 @@ describe("MobileUnitFilters", () => {
     });
   });
 
-  it("filters are applied when selected", async () => {
-    const user = userEvent.setup();
+  it("calls updateActiveFilters when a filter is selected", async () => {
+    const mockUpdateFilters = jest.fn();
     renderWithTheme(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <MobileUnitFilters {...mockProps} />
-      </OakThemeProvider>,
+      <MobileUnitFilters
+        {...mockProps}
+        updateActiveFilters={mockUpdateFilters}
+      />,
     );
 
-    const filterToggle = screen.getByRole("button", { name: /filter/i });
-    await user.click(filterToggle);
+    const yearCheckbox = screen.getByRole("checkbox", { name: /Year 1/i });
+    expect(yearCheckbox).toBeInTheDocument();
+    fireEvent.click(yearCheckbox);
+    expect(mockUpdateFilters).toHaveBeenCalledWith({ year: "year-1" });
+
+    const categoryCheckbox = screen.getByRole("checkbox", { name: /Maths/i });
+    expect(categoryCheckbox).toBeInTheDocument();
+    fireEvent.click(categoryCheckbox);
+    expect(mockUpdateFilters).toHaveBeenCalledWith({ category: "maths" });
+
+    const themeRadio = screen.getByRole("radio", { name: /Theme 1/i });
+    expect(themeRadio).toBeInTheDocument();
+    fireEvent.click(themeRadio);
+    expect(mockUpdateFilters).toHaveBeenCalledWith({ theme: "theme1" });
+  });
+
+  it("filters are applied when selected", async () => {
+    renderWithTheme(
+      <MobileUnitFilters
+        {...mockProps}
+        incomingCategorySlug="maths"
+        incomingThemeSlug="theme1"
+        incomingYearGroupSlug="year-1"
+      />,
+    );
 
     const yearCheckbox = screen.getByRole("checkbox", { name: /Year 1/i });
     const categoryCheckbox = screen.getByRole("checkbox", { name: /Maths/i });
     const themeRadio = screen.getByRole("radio", { name: /Theme 1/i });
-
-    await fireEvent.click(yearCheckbox);
-    await fireEvent.click(categoryCheckbox);
-    await fireEvent.click(themeRadio);
 
     expect(yearCheckbox).toBeChecked();
     expect(categoryCheckbox).toBeChecked();
     expect(themeRadio).toBeChecked();
-  });
-
-  it("invokes browse refined analytics with the correct props", async () => {
-    const user = userEvent.setup();
-    renderWithTheme(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <MobileUnitFilters {...mockProps} />
-      </OakThemeProvider>,
-    );
-
-    const filterToggle = screen.getByRole("button", { name: /filter/i });
-    await user.click(filterToggle);
-
-    const yearCheckbox = screen.getByRole("checkbox", { name: /Year 1/i });
-    const categoryCheckbox = screen.getByRole("checkbox", { name: /Maths/i });
-    const themeRadio = screen.getByRole("radio", { name: /Theme 1/i });
-    const submitButton = screen.getByRole("button", { name: /Show results/i });
-
-    await fireEvent.click(yearCheckbox);
-    await fireEvent.click(categoryCheckbox);
-    await fireEvent.click(themeRadio);
-
-    await user.click(submitButton);
-    expect(mockProps.browseRefined).toHaveBeenCalledWith({
-      platform: "owa",
-      product: "teacher lesson resources",
-      engagementIntent: "refine",
-      componentType: "filter_link",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      filterValue: "show results button",
-      filterType: "Subject filter",
-      activeFilters: {
-        content_types: "units",
-        learning_themes: "theme1",
-        categories: "maths",
-        year: "year-1",
-      },
-    });
   });
 });

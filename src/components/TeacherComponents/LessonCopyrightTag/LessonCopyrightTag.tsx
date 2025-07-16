@@ -1,6 +1,6 @@
 import { OakTagFunctional } from "@oaknational/oak-components";
 
-import { useCopyrightRequirements } from "../../../hooks/useCopyrightRequirements";
+import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
 
 export function LessonCopyrightTag({
   loginRequired,

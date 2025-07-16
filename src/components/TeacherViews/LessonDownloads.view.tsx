@@ -492,15 +492,18 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           })()
         )}
         <OakBox $mt={"space-between-xl"}>
-          <CopyrightRestrictionBanner
-            isGeorestricted={geoRestricted ?? undefined}
-            isLoginRequired={loginRequired ?? undefined}
-            componentType="lesson_downloads"
-            lessonName={lessonTitle}
-            lessonSlug={lessonSlug}
-            lessonReleaseDate={lessonReleaseDate}
-            isLessonLegacy={isLegacy}
-          />
+          {/* This page has its own geoblocked message, so we're hiding the banner in that case */}
+          {!showGeoBlocked && (
+            <CopyrightRestrictionBanner
+              isGeorestricted={geoRestricted ?? undefined}
+              isLoginRequired={loginRequired ?? undefined}
+              componentType="lesson_downloads"
+              lessonName={lessonTitle}
+              lessonSlug={lessonSlug}
+              lessonReleaseDate={lessonReleaseDate}
+              isLessonLegacy={isLegacy}
+            />
+          )}
         </OakBox>
       </MaxWidth>
     </OakBox>

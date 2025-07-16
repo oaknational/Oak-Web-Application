@@ -204,7 +204,6 @@ const CopyrightRestrictionBanner = (props: CopyrightRestrictionBannerProps) => {
     isUnit,
     showGeoBlocked,
   ]);
-  // Show banner when user is signed in but not onboarded AND content requires restrictions
 
   const showSignedOutCopyrightBanner =
     showSignedOutGeoRestricted ||
@@ -214,18 +213,16 @@ const CopyrightRestrictionBanner = (props: CopyrightRestrictionBannerProps) => {
   const showOnboardingLink =
     showSignedInNotOnboarded &&
     !(showSignedOutGeoRestricted || showSignedOutLoginRequired);
-  return (
-    <>
-      {showSignedOutCopyrightBanner && (
-        <SignedOutCopyrightBanner
-          showOnboardingLink={showOnboardingLink}
-          isGeorestricted={!!isGeorestricted}
-          isUnit={!!isUnit}
-        />
-      )}
-      {showGeoBlocked && <SignedInGeorestrictedBanner isUnit={!!isUnit} />}
-    </>
-  );
+
+  return showGeoBlocked ? (
+    <SignedInGeorestrictedBanner isUnit={isUnit} />
+  ) : showSignedOutCopyrightBanner ? (
+    <SignedOutCopyrightBanner
+      showOnboardingLink={showOnboardingLink}
+      isGeorestricted={isGeorestricted ?? false}
+      isUnit={isUnit}
+    />
+  ) : null;
 };
 
 export default CopyrightRestrictionBanner;
