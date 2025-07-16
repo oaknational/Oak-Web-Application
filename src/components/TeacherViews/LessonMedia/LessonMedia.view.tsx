@@ -11,8 +11,6 @@ import {
   OakGrid,
   OakGridArea,
 } from "@oaknational/oak-components";
-import { useUser } from "@clerk/nextjs";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import VideoPlayer, {
   VideoEventCallbackArgs,
@@ -43,11 +41,12 @@ import {
 } from "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers";
 import { RestrictedSignInPrompt } from "@/components/TeacherComponents/RestrictedSignInPrompt/RestrictedSignInPrompt";
 import { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
-import useAnalytics from "@/context/Analytics/useAnalytics";
 import {
   KeyStageTitleValueType,
   PathwayValueType,
 } from "@/browser-lib/avo/Avo";
+import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 
 type BaseLessonMedia = {
   lessonTitle: string;
@@ -90,17 +89,18 @@ export const LessonMedia = (props: LessonMediaProps) => {
     loginRequired,
     geoRestricted,
   } = lesson;
-  const { user, isSignedIn } = useUser();
   const { track } = useAnalytics();
-  const featureFlagEnabled = useFeatureFlagEnabled(
-    "teachers-copyright-restrictions",
-  );
+  const {
+    showSignedOutLoginRequired,
+    showSignedOutGeoRestricted,
+    showGeoBlocked,
+  } = useCopyrightRequirements({
+    loginRequired,
+    geoRestricted,
+  });
+
   const showRestricted =
-    featureFlagEnabled && !isSignedIn && (loginRequired || geoRestricted);
-  const isUserRegionRestricted =
-    user && !user?.publicMetadata?.owa?.isRegionAuthorised;
-  const showGeoblocked =
-    featureFlagEnabled && isSignedIn && geoRestricted && isUserRegionRestricted;
+    showSignedOutLoginRequired || showSignedOutGeoRestricted;
 
   const subjectSlug = isCanonical
     ? (lesson?.pathways[0]?.subjectSlug ?? "")
@@ -183,7 +183,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
   };
 
   useEffect(() => {
-    if (showGeoblocked) {
+    if (showGeoBlocked) {
       track.contentBlockNotificationDisplayed({
         platform: "owa",
         product: "teacher lesson resources",
@@ -204,7 +204,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
     }
   }, [
     track,
-    showGeoblocked,
+    showGeoBlocked,
     lessonTitle,
     lessonSlug,
     lessonReleaseDate,

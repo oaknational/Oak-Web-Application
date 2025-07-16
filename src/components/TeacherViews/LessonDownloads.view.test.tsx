@@ -170,10 +170,10 @@ describe("Hiding 'Your details", () => {
     expect(loginRequiredButton).not.toBeInTheDocument();
   });
 
-  it("should show LessonDownloadRegionBlocked when logged in but not region authorised", () => {
+  it("should show LessonDownloadRegionBlocked instead of copyright banner when logged in but not region authorised", () => {
     setUseUserReturn({ ...mockLoggedIn, user: mockUserWithoutDownloadAccess });
     mockFeatureFlagEnabled.mockReturnValue(true);
-    const { queryByText, queryByRole, getByText } = render(
+    const { queryByText, queryByRole, getByText, queryByTestId } = render(
       <LessonDownloads lesson={restrictedLesson} isCanonical={false} />,
     );
 
@@ -185,8 +185,13 @@ describe("Hiding 'Your details", () => {
       /Sorry, downloads for this lesson are only available in the UK/,
     );
 
+    const copyrightRestrictionBanner = queryByTestId(
+      "copyright-banner-signed-out",
+    );
+
     expect(regionRestrictedMessage).toBeInTheDocument();
     expect(yourDetailsHeading).not.toBeInTheDocument();
     expect(downloadButton).not.toBeInTheDocument();
+    expect(copyrightRestrictionBanner).not.toBeInTheDocument();
   });
 });
