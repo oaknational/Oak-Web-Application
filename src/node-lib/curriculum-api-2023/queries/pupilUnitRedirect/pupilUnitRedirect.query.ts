@@ -13,7 +13,7 @@ export const pupilUnitRedirectQuery =
   async (args: {
     incomingPath: string;
   }): Promise<{
-    redirectData: Redirect;
+    pupilUnitRedirectData: Redirect;
   }> => {
     const { incomingPath } = args;
 
@@ -21,7 +21,7 @@ export const pupilUnitRedirectQuery =
       incomingPath,
     });
 
-    if (res.redirectData.length > 1) {
+    if (res.pupilUnitRedirectData.length > 1) {
       const error = new OakError({
         code: "curriculum-api/uniqueness-assumption-violated",
       });
@@ -32,26 +32,28 @@ export const pupilUnitRedirectQuery =
       });
     }
 
-    if (res.redirectData.length === 0) {
+    if (res.pupilUnitRedirectData.length === 0) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    const [redirectSnake] = res.redirectData;
+    const [pupilUnitRedirectSnake] = res.pupilUnitRedirectData;
 
-    if (!redirectSnake) {
+    if (!pupilUnitRedirectSnake) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
     redirectSchema.parse({
-      ...redirectSnake,
+      ...pupilUnitRedirectSnake,
     });
 
     // We've already parsed this data with Zod so we can safely cast it to the correct type
-    const redirect = keysToCamelCase(redirectSnake) as Redirect;
+    const pupilUnitRedirect = keysToCamelCase(
+      pupilUnitRedirectSnake,
+    ) as Redirect;
 
     return {
-      redirectData: {
-        ...redirect,
+      pupilUnitRedirectData: {
+        ...pupilUnitRedirect,
       },
     };
   };

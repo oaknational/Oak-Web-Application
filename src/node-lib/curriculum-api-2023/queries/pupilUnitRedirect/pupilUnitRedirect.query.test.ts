@@ -9,7 +9,7 @@ describe("pupilLesson()", () => {
         ...sdk,
         pupilUnitRedirect: jest.fn(() =>
           Promise.resolve({
-            redirectData: [],
+            pupilUnitRedirectData: [],
           }),
         ),
       })({
@@ -23,7 +23,7 @@ describe("pupilLesson()", () => {
       ...sdk,
       pupilUnitRedirect: jest.fn(() =>
         Promise.resolve({
-          redirectData: [
+          pupilUnitRedirectData: [
             {
               incoming_path: "programmes/programmeSlug/units/unitSlug/lessons",
               outgoing_path: "programmes/programmeSlug/units/unitSlug1/lessons",
@@ -37,7 +37,7 @@ describe("pupilLesson()", () => {
     });
 
     expect(redirect).toEqual({
-      redirectData: {
+      pupilUnitRedirectData: {
         incomingPath: "programmes/programmeSlug/units/unitSlug/lessons",
         outgoingPath: "programmes/programmeSlug/units/unitSlug1/lessons",
         redirectType: "301",

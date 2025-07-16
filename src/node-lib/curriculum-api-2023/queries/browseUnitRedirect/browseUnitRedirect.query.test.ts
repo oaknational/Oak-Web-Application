@@ -37,7 +37,7 @@ describe("pupilLesson()", () => {
     });
 
     expect(redirect).toEqual({
-      redirectData: {
+      browseUnitRedirectData: {
         incomingPath: "programmes/programmeSlug/units/unitSlug/lessons",
         outgoingPath: "programmes/programmeSlug/units/unitSlug1/lessons",
         redirectType: "301",

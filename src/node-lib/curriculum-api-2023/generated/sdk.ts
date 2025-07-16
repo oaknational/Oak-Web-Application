@@ -66680,7 +66680,7 @@ export type PupilUnitRedirectQueryVariables = Exact<{
 }>;
 
 
-export type PupilUnitRedirectQuery = { __typename?: 'query_root', redirectData: Array<{ __typename?: 'published_mv_redirects_units_browse_by_year_18_0_0', incoming_path?: string | null, outgoing_path?: string | null, redirect_type?: any | null }> };
+export type PupilUnitRedirectQuery = { __typename?: 'query_root', pupilUnitRedirectData: Array<{ __typename?: 'published_mv_redirects_units_browse_by_year_18_0_0', incoming_path?: string | null, outgoing_path?: string | null, redirect_type?: any | null }> };
 
 export type PupilsSitemapQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -67327,7 +67327,7 @@ export const PupilUnitListingDocument = gql`
     `;
 export const PupilUnitRedirectDocument = gql`
     query pupilUnitRedirect($incomingPath: String!) {
-  redirectData: published_mv_redirects_units_browse_by_year_18_0_0(
+  pupilUnitRedirectData: published_mv_redirects_units_browse_by_year_18_0_0(
     where: {incoming_path: {_eq: $incomingPath}}
   ) {
     incoming_path
