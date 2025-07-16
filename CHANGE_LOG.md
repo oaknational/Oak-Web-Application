@@ -1,3 +1,11 @@
+# [1.797.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.796.0...v1.797.0) (2025-07-16)
+
+
+### Features
+
+* add margin to curriculum heading in CurricHeader ([712444e](https://github.com/oaknational/Oak-Web-Application/commit/712444ecdd0c3bcf698d23e39953f79aaea4660b))
+* tighten Curric Header vertical spacing ([ebc67a0](https://github.com/oaknational/Oak-Web-Application/commit/ebc67a0456391148f99d466da1380f996a2d8e3a))
+
 # [1.796.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.795.0...v1.796.0) (2025-07-16)
 
 
