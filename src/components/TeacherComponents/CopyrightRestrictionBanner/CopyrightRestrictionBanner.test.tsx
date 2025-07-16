@@ -7,6 +7,7 @@ import {
   mockNotOnboardedUser,
   mockGeorestrictedUser,
   mockUserWithDownloadAccess,
+  mockUserWithoutDownloadAccessNotOnboarded,
 } from "@/__tests__/__helpers__/mockUser";
 
 const mockTrackContentBlock = jest.fn();
@@ -98,11 +99,8 @@ describe("CopyrightRestrictionBanner", () => {
   });
 
   describe("when signed in but not onboarded", () => {
-    beforeEach(() => {
-      setUseUserReturn(mockNotOnboardedUser);
-    });
-
     it("renders with onboarding link on a georestricted and login required lesson page", () => {
+      setUseUserReturn(mockNotOnboardedUser);
       const { getByTestId } = render(
         <CopyrightRestrictionBanner
           isGeorestricted={true}
@@ -118,6 +116,24 @@ describe("CopyrightRestrictionBanner", () => {
         "Copyrighted materials: to view and download resources from this unit, you’ll need to be in the UK and sign in.Copyrights help",
       );
       expect(link).toBeInTheDocument();
+    });
+
+    it("only renders the geoblocked banner when georestricted and not onboarded", () => {
+      setUseUserReturn({
+        ...mockLoggedIn,
+        user: mockUserWithoutDownloadAccessNotOnboarded,
+      });
+      const { getByTestId, queryByTestId } = render(
+        <CopyrightRestrictionBanner
+          isGeorestricted={true}
+          isLoginRequired={true}
+          componentType="lesson_listing"
+        />,
+      );
+      const geoBlockedBanner = getByTestId("copyright-banner-signed-in");
+      const signedOutBanner = queryByTestId("copyright-banner-signed-out");
+      expect(geoBlockedBanner).toBeInTheDocument();
+      expect(signedOutBanner).not.toBeInTheDocument();
     });
   });
 
@@ -144,7 +160,7 @@ describe("CopyrightRestrictionBanner", () => {
     it("renders on a georestricted page if user is geoblocked", () => {
       setUseUserReturn(mockGeorestrictedUser);
 
-      const { getByTestId } = render(
+      const { getByTestId, queryByTestId } = render(
         <CopyrightRestrictionBanner
           isGeorestricted={true}
           isLoginRequired={true}
@@ -152,11 +168,15 @@ describe("CopyrightRestrictionBanner", () => {
         />,
       );
 
-      const bannerText = getByTestId("copyright-banner-signed-in").textContent;
+      const signedInBannerText = getByTestId(
+        "copyright-banner-signed-in",
+      ).textContent;
+      const signedOutBanner = queryByTestId("copyright-banner-signed-out");
 
-      expect(bannerText).toEqual(
+      expect(signedInBannerText).toEqual(
         "Sorry but this unit can only be downloaded if you are located in the UK.Some of our content is restricted to the UK due to copyright. You can read more about copyrights or if you believe this is an error and you’re based in the UK, please contact us.",
       );
+      expect(signedOutBanner).not.toBeInTheDocument();
     });
 
     it("tracks content block event on a georestricted unit page when user is geoblocked", async () => {
