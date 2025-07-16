@@ -209,7 +209,7 @@ describe("getStaticProps", () => {
       unitSlug: "adding-surds-a57d",
     });
   });
-  it("should return notFound when a landing page is missing", async () => {
+  it("should return redirect when a landing page is missing", async () => {
     if (!curriculumApi2023.browseUnitRedirectQuery) {
       (curriculumApi2023 as CurriculumApi).browseUnitRedirectQuery = jest.fn();
     }
@@ -218,7 +218,7 @@ describe("getStaticProps", () => {
     (
       curriculumApi2023.browseUnitRedirectQuery as jest.Mock
     ).mockResolvedValueOnce({
-      redirectData: {
+      browseUnitRedirectData: {
         incomingPath: "lessons/old-lesson-slug",
         outgoingPath: "lessons/new-lesson-slug",
       },
