@@ -1,4 +1,5 @@
 import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import UnitDownloadButton from "./UnitDownloadButton";
 
@@ -19,8 +20,23 @@ jest.mock(
 
 jest.mock("@clerk/nextjs", () => ({
   useUser: jest.fn(),
+  useAuth: jest.fn().mockReturnValue({
+    getToken: jest.fn(() => Promise.resolve("mockToken")),
+  }),
   SignUpButton: jest.fn(() => <button>Download unit</button>),
 }));
+
+jest.mock(
+  "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink",
+  () => jest.fn(),
+);
+
+jest.mock(
+  "@/components/SharedComponents/helpers/downloadAndShareHelpers/createDownloadLink",
+  () => ({
+    createUnitDownloadLink: jest.fn(() => Promise.resolve("mockDownloadUrl")),
+  }),
+);
 
 jest.mock("@/hooks/useMediaQuery.tsx", () => ({
   __esModule: true,
@@ -134,7 +150,7 @@ describe("UnitDownloadButton", () => {
     setDownloadError(true);
     expect(setDownloadError).toHaveBeenCalledWith(true);
   });
-  it('should call "onDownloadSuccess" when the download is successful', () => {
+  it('should call "onDownloadSuccess" when the download is successful', async () => {
     const onDownloadSuccess = jest.fn();
     renderWithProviders()(
       <UnitDownloadButton
@@ -149,7 +165,11 @@ describe("UnitDownloadButton", () => {
         georestricted={false}
       />,
     );
-    onDownloadSuccess();
+    const button = screen.getByRole("button", {
+      name: "Download (.zip 1.2MB)",
+    });
+    const user = userEvent.setup();
+    await user.click(button);
     expect(onDownloadSuccess).toHaveBeenCalledTimes(1);
   });
 });
