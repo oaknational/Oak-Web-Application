@@ -13,6 +13,19 @@ jest.mock(
   }),
 );
 
+const mockFeatureFlagEnabled = jest.fn().mockReturnValue(false);
+
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagEnabled: () => mockFeatureFlagEnabled(),
+}));
+
+const mockAuthGetToken = jest.fn().mockResolvedValue(null);
+jest.mock("@clerk/nextjs", () => ({
+  useAuth: () => ({
+    getToken: mockAuthGetToken,
+  }),
+}));
+
 const mockSetEmailInLocalStorageFn = jest.fn();
 const mockSetSchoolInLocalStorageFn = jest.fn();
 const mockSetTermsInLocalStorageFn = jest.fn();
@@ -130,6 +143,26 @@ describe("useResourceFormSubmit", () => {
         isLegacyDownload: true,
         authFlagEnabled: false,
         authToken: null,
+        selectedAdditionalFilesIds: [],
+      });
+    });
+  });
+
+  it("should call downloadLessonResources with correct parameters when feature flag returns true", async () => {
+    mockFeatureFlagEnabled.mockReturnValueOnce(true);
+    mockAuthGetToken.mockResolvedValueOnce("token");
+    const { result } = renderHook(() =>
+      useResourceFormSubmit({ isLegacyDownload: true, type: "download" }),
+    );
+    result.current.onSubmit(data, "lesson");
+
+    await waitFor(() => {
+      expect(downloadLessonResources).toHaveBeenCalledWith({
+        lessonSlug: "lesson",
+        selectedResourceTypes: ["intro-quiz-questions"],
+        isLegacyDownload: true,
+        authFlagEnabled: true,
+        authToken: "token",
         selectedAdditionalFilesIds: [],
       });
     });
