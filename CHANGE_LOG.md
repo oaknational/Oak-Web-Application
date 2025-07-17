@@ -1,3 +1,74 @@
+# [1.797.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.796.0...v1.797.0) (2025-07-16)
+
+
+### Features
+
+* add margin to curriculum heading in CurricHeader ([712444e](https://github.com/oaknational/Oak-Web-Application/commit/712444ecdd0c3bcf698d23e39953f79aaea4660b))
+* tighten Curric Header vertical spacing ([ebc67a0](https://github.com/oaknational/Oak-Web-Application/commit/ebc67a0456391148f99d466da1380f996a2d8e3a))
+
+# [1.796.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.795.0...v1.796.0) (2025-07-16)
+
+
+### Features
+
+* add useCopyrightRequirements hook ([6040035](https://github.com/oaknational/Oak-Web-Application/commit/6040035e262c1fa706a29528d495febdaa4fb3ff))
+* hide geoblocked banner on lesson downloads, do not render signedout banner when not onboarded ([29555f0](https://github.com/oaknational/Oak-Web-Application/commit/29555f0aabcf305b3586c752d0489fa930145842))
+* use hook for CopyrightRestrictionBanner ([666f0e8](https://github.com/oaknational/Oak-Web-Application/commit/666f0e8b0996a03669c994bfd2207485808a053e))
+* use hook for restricted page views ([ae7a103](https://github.com/oaknational/Oak-Web-Application/commit/ae7a103dbb455931ad7231df2f743a0d975efb36))
+* use shared copyright hook for LessonCopyrightTag ([155e6cb](https://github.com/oaknational/Oak-Web-Application/commit/155e6cb6a9cea524e2869f9820798677212ebd13))
+
+# [1.795.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.794.0...v1.795.0) (2025-07-16)
+
+
+### Bug Fixes
+
+* handle null filter values ([22bfa58](https://github.com/oaknational/Oak-Web-Application/commit/22bfa58b3537164e641b5508da45399022f66929))
+* initialise new query state from url params on load ([eecf986](https://github.com/oaknational/Oak-Web-Application/commit/eecf986791e37aaa855201fdc121a3680e108239))
+* set category to empty string when null value passed ([c9665c0](https://github.com/oaknational/Oak-Web-Application/commit/c9665c003544103853833ce3bf63e1c557ac01c2))
+* theme filters for desktop ([60409e6](https://github.com/oaknational/Oak-Web-Application/commit/60409e6eb000a1828f317364630b7977d354b82e))
+* update beta units page ([f84601b](https://github.com/oaknational/Oak-Web-Application/commit/f84601b05a99466e76d577bb86d26b0541c0e994))
+
+
+### Features
+
+* replace mobile filter component with refactored version ([1012dce](https://github.com/oaknational/Oak-Web-Application/commit/1012dceef15eb245b8230e3fa20fc3defceddeaf))
+* show count of filtered units in mobile menu ([8bbe40f](https://github.com/oaknational/Oak-Web-Application/commit/8bbe40fd864963fe54f389a40a69e9a010ed7133))
+
+# [1.794.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.793.1...v1.794.0) (2025-07-15)
+
+
+### Features
+
+* add cyber essentials logo to footer ([1458f15](https://github.com/oaknational/Oak-Web-Application/commit/1458f150e818bd113cabed39e7efb21d2acb2c69))
+
+## [1.793.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.793.0...v1.793.1) (2025-07-15)
+
+
+### Bug Fixes
+
+* add missing role="alert" around <OakFieldError/> ([dc65c18](https://github.com/oaknational/Oak-Web-Application/commit/dc65c1896132e2d30333f8b447ae04fedc41ff82))
+* added missing aria-labelledby to <Select/> ([e4f1933](https://github.com/oaknational/Oak-Web-Application/commit/e4f1933a4214f464708df2902a29c5727a1354a0))
+* bump oak-components to include alt text fix for <OakFieldError/> ([084bfab](https://github.com/oaknational/Oak-Web-Application/commit/084bfab7d278c9235f38d42ffa35b891854243ca))
+* include value label in select (a11y) ([52ea14c](https://github.com/oaknational/Oak-Web-Application/commit/52ea14c6bbf65e94e3918fffcb872180325723c1))
+* switch over to <OakFieldError/> ([6ad7223](https://github.com/oaknational/Oak-Web-Application/commit/6ad722307b2f245e783b78d5d1cd58bad353fa1b))
+
+# [1.793.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.792.2...v1.793.0) (2025-07-14)
+
+
+### Features
+
+* add CopyrightRestrictionBanner to LessonDownloads ([75efdce](https://github.com/oaknational/Oak-Web-Application/commit/75efdce2d6f68baa999b6b4e7a46b4a97c960e95))
+* add downloads restriction logic and LoginRequiredButton to ResourcePageLayout components ([154208f](https://github.com/oaknational/Oak-Web-Application/commit/154208f6dc85a6bad27828bf138d65c8c11b60ed))
+* add tracking to DownloadRegionRestructedMessage componentn  and update tests ([763b3c6](https://github.com/oaknational/Oak-Web-Application/commit/763b3c6ac54ceab650b4259f3abd7bc98f0d2eb0))
+* implement a message for non geoAuthenticated users ([d4012e5](https://github.com/oaknational/Oak-Web-Application/commit/d4012e59f51913ce88349c4f6839525528b68c45))
+
+## [1.792.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.792.1...v1.792.2) (2025-07-08)
+
+
+### Bug Fixes
+
+* update logo colour in app header ([0e36851](https://github.com/oaknational/Oak-Web-Application/commit/0e36851fea75a233b8b2d6238e08e49b790088fe))
+
 ## [1.792.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.792.0...v1.792.1) (2025-07-08)
 
 

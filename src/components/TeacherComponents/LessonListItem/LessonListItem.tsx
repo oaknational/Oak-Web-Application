@@ -1,5 +1,4 @@
 import { FC, MutableRefObject } from "react";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 import { OakP, OakSpan, OakFlex } from "@oaknational/oak-components";
 
 import { DisabledListItemHeader } from "../ListItemHeader/ListItemHeader";
@@ -127,10 +126,6 @@ const LessonListItem: FC<
 > = (props) => {
   const { lessonTitle, lessonSlug, index, firstItemRef, onClick } = props;
 
-  const restrictionEnabled = useFeatureFlagEnabled(
-    "teachers-copyright-restrictions",
-  );
-
   const isUnpublishedLesson = isUnpublishedLessonListItem(props);
 
   const { isHovered, primaryTargetProps, containerProps } =
@@ -245,10 +240,10 @@ const LessonListItem: FC<
               $gap={"all-spacing-2"}
             >
               <LessonResourceGraphics items={resources} />
-              {restrictionEnabled && isLessonListItem(props) && (
+              {isLessonListItem(props) && (
                 <LessonCopyrightTag
-                  lessonGeorestricted={props.geoRestricted}
-                  lessonLoginRequired={props.loginRequired}
+                  georestricted={props.geoRestricted}
+                  loginRequired={props.loginRequired}
                 />
               )}
             </OakFlex>

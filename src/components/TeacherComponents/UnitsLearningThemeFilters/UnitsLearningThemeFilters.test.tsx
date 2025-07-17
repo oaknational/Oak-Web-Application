@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/dom";
+import { screen, waitFor } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 
 import UnitsLearningThemeFilters from "./UnitsLearningThemeFilters";
@@ -14,6 +14,8 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
     },
   }),
 }));
+
+const setTheme = jest.fn();
 
 describe("UnitsLearningThemeFilters", () => {
   beforeAll(() => {
@@ -41,14 +43,8 @@ describe("UnitsLearningThemeFilters", () => {
           },
         ]}
         selectedThemeSlug={"all"}
-        linkProps={{
-          page: "unit-index",
-          programmeSlug: "maths-secondary-ks3",
-        }}
         idSuffix="desktop"
-        onChangeCallback={jest.fn}
-        programmeSlug="maths-secondary-ks3"
-        browseRefined={browseRefined}
+        setTheme={jest.fn()}
       />,
     );
     const themes = await screen.findAllByRole("radio");
@@ -56,8 +52,7 @@ describe("UnitsLearningThemeFilters", () => {
     expect(themes[1]).toBe(screen.getByLabelText("Algebra"));
     expect(themes[2]).toBe(screen.getByLabelText("No theme 1"));
   });
-  test("should call callback method with correct value", async () => {
-    const onChangeCallback = jest.fn();
+  test("should call setTheme method with correct value", async () => {
     renderWithProviders()(
       <UnitsLearningThemeFilters
         labelledBy={"Learning Theme Filter"}
@@ -68,71 +63,18 @@ describe("UnitsLearningThemeFilters", () => {
           },
         ]}
         selectedThemeSlug={"all"}
-        linkProps={{
-          page: "unit-index",
-          programmeSlug: "maths-secondary-ks3",
-        }}
         idSuffix="desktop"
-        onChangeCallback={onChangeCallback}
-        programmeSlug="maths-secondary-ks3"
-        browseRefined={browseRefined}
+        setTheme={setTheme}
       />,
     );
     const algebraFilter = screen.getByLabelText("Algebra");
     await userEvent.click(algebraFilter);
-    expect(onChangeCallback).toHaveBeenCalledWith("algebra");
-    const allFilter = screen.getByLabelText("All");
-    await userEvent.click(allFilter);
-    expect(onChangeCallback).toHaveBeenCalledWith(undefined);
-  });
-  test("should call tracking browse refined with correct args", async () => {
-    renderWithProviders()(
-      <UnitsLearningThemeFilters
-        programmeSlug="maths-secondary-ks3"
-        labelledBy={"Learning Theme Filter"}
-        learningThemes={[
-          {
-            themeTitle: "Grammar",
-            themeSlug: "grammar",
-          },
-        ]}
-        idSuffix="desktop"
-        selectedThemeSlug={"all"}
-        linkProps={{
-          page: "unit-index",
-          programmeSlug: "maths-secondary-ks3",
-        }}
-        trackingProps={{
-          keyStageSlug: "ks3",
-          keyStageTitle: "Key stage 3",
-          subjectSlug: "english",
-          subjectTitle: "English",
-        }}
-        browseRefined={browseRefined}
-        onChangeCallback={jest.fn}
-      />,
-    );
-
-    const grammarThread = await screen.findByText("Grammar");
-    await userEvent.click(grammarThread);
-    expect(browseRefined).toHaveBeenCalledWith({
-      platform: "owa",
-      product: "teacher lesson resources",
-      engagementIntent: "refine",
-      componentType: "filter_link",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      filterType: "Learning theme filter",
-      filterValue: "Grammar",
-      activeFilters: { keyStage: ["ks3"], subject: ["english"] },
-    });
+    expect(setTheme).toHaveBeenCalledWith("algebra");
   });
 
   test("on mobile, invokes setMobileFilter with correct value", async () => {
-    const setMobileFilter = jest.fn();
     renderWithProviders()(
       <UnitsLearningThemeFilters
-        programmeSlug="maths-secondary-ks3"
         labelledBy={"Learning Theme Filter"}
         learningThemes={[
           {
@@ -142,19 +84,7 @@ describe("UnitsLearningThemeFilters", () => {
         ]}
         idSuffix="mobile"
         selectedThemeSlug={"all"}
-        setMobileFilter={setMobileFilter}
-        linkProps={{
-          page: "unit-index",
-          programmeSlug: "maths-secondary-ks3",
-        }}
-        trackingProps={{
-          keyStageSlug: "ks3",
-          keyStageTitle: "Key stage 3",
-          subjectSlug: "english",
-          subjectTitle: "English",
-        }}
-        browseRefined={browseRefined}
-        onChangeCallback={jest.fn}
+        setTheme={setTheme}
       />,
     );
 
@@ -162,6 +92,6 @@ describe("UnitsLearningThemeFilters", () => {
     const grammarThread = screen.getByText("Grammar");
     await user.click(grammarThread);
 
-    expect(setMobileFilter).toHaveBeenCalledWith("grammar");
+    await waitFor(() => expect(setTheme).toHaveBeenCalledWith("grammar"));
   });
 });

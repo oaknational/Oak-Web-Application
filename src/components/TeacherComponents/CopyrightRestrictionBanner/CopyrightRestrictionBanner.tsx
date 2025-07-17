@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { SignUpButton, useUser } from "@clerk/nextjs";
+import { SignUpButton } from "@clerk/nextjs";
 import {
   OakFlex,
   OakLink,
@@ -10,12 +10,13 @@ import {
 } from "@oaknational/oak-components";
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+import { COPYRIGHT_CONTACT_US_LINK } from "@/utils/copyrightContactUsLink";
+import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
 
 export type CopyrightRestrictionBannerProps = {
   isGeorestricted?: boolean;
@@ -137,9 +138,7 @@ const SignedInGeorestrictedBanner = ({ isUnit }: { isUnit: boolean }) => (
         read more about copyrights
       </OakLink>{" "}
       or if you believe this is an error and you’re based in the UK, please{" "}
-      <OakLink href="https://share.hsforms.com/1CK8Y0vv-TuOeBbDac-CMTgbvumd">
-        contact us.
-      </OakLink>
+      <OakLink href={COPYRIGHT_CONTACT_US_LINK}>contact us.</OakLink>
     </OakP>
   </OakFlex>
 );
@@ -157,21 +156,23 @@ const CopyrightRestrictionBanner = (props: CopyrightRestrictionBannerProps) => {
     isLessonLegacy,
   } = props;
 
-  const { user, isSignedIn } = useUser();
-  const { track } = useAnalytics();
-  const restrictionEnabled = useFeatureFlagEnabled(
-    "teachers-copyright-restrictions",
-  );
+  const {
+    showSignedOutGeoRestricted,
+    showSignedOutLoginRequired,
+    showSignedInNotOnboarded,
+    showGeoBlocked,
+  } = useCopyrightRequirements({
+    loginRequired: isLoginRequired ?? false,
+    geoRestricted: isGeorestricted ?? false,
+  });
 
-  const showOnboardingLink = !!(user && !user.publicMetadata?.owa?.isOnboarded);
-  const isUserRegionRestricted = !!(
-    user && !user?.publicMetadata?.owa?.isRegionAuthorised
-  );
+  const { track } = useAnalytics();
+
   const isLegacy = unitSlug ? isSlugLegacy(unitSlug) : isLessonLegacy;
   const isUnit = (componentType && componentType === "lesson_listing") ?? false;
 
   useEffect(() => {
-    if (isSignedIn && isGeorestricted && isUserRegionRestricted) {
+    if (showGeoBlocked) {
       track.contentBlockNotificationDisplayed({
         platform: "owa",
         product: "teacher lesson resources",
@@ -192,9 +193,6 @@ const CopyrightRestrictionBanner = (props: CopyrightRestrictionBannerProps) => {
       });
     }
   }, [
-    isSignedIn,
-    isGeorestricted,
-    isUserRegionRestricted,
     track,
     componentType,
     unitName,
@@ -204,27 +202,27 @@ const CopyrightRestrictionBanner = (props: CopyrightRestrictionBannerProps) => {
     lessonReleaseDate,
     isLegacy,
     isUnit,
+    showGeoBlocked,
   ]);
 
-  return (
-    <>
-      {restrictionEnabled &&
-        (!isSignedIn || (isSignedIn && showOnboardingLink)) &&
-        (isGeorestricted || isLoginRequired) && (
-          <SignedOutCopyrightBanner
-            showOnboardingLink={showOnboardingLink}
-            isGeorestricted={!!isGeorestricted}
-            isUnit={!!isUnit}
-          />
-        )}
-      {restrictionEnabled &&
-        isSignedIn &&
-        isGeorestricted &&
-        isUserRegionRestricted && (
-          <SignedInGeorestrictedBanner isUnit={!!isUnit} />
-        )}
-    </>
-  );
+  const showSignedOutCopyrightBanner =
+    showSignedOutGeoRestricted ||
+    showSignedOutLoginRequired ||
+    showSignedInNotOnboarded;
+
+  const showOnboardingLink =
+    showSignedInNotOnboarded &&
+    !(showSignedOutGeoRestricted || showSignedOutLoginRequired);
+
+  return showGeoBlocked ? (
+    <SignedInGeorestrictedBanner isUnit={isUnit} />
+  ) : showSignedOutCopyrightBanner ? (
+    <SignedOutCopyrightBanner
+      showOnboardingLink={showOnboardingLink}
+      isGeorestricted={isGeorestricted ?? false}
+      isUnit={isUnit}
+    />
+  ) : null;
 };
 
 export default CopyrightRestrictionBanner;
