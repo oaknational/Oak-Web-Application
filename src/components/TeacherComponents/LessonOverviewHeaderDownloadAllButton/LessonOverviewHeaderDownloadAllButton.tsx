@@ -1,10 +1,11 @@
 import { FC } from "react";
-import { useUser } from "@clerk/nextjs";
-import { useFeatureFlagVariantKey } from "posthog-js/react";
 import { OakSmallPrimaryButton } from "@oaknational/oak-components";
+import { SignUpButton } from "@clerk/nextjs";
+import { useRouter } from "next/router";
 
 import { LessonOverviewHeaderProps as LessonOverviewHeaderDownloadAllButtonProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { resolveOakHref } from "@/common-lib/urls";
+import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
 
 export const LessonOverviewHeaderDownloadAllButton: FC<
   LessonOverviewHeaderDownloadAllButtonProps
@@ -18,17 +19,20 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
     onClickDownloadAll,
     isSpecialist,
     isCanonical,
+    geoRestricted,
+    loginRequired,
   } = props;
 
   const preselected = "all";
-  const downloads =
-    useFeatureFlagVariantKey("teacher-download-auth") === "with-login"
-      ? "downloads-auth"
-      : "downloads";
+  const router = useRouter();
+  const { showSignedOutGeoRestricted, showSignedOutLoginRequired } =
+    useCopyrightRequirements({
+      geoRestricted: geoRestricted ?? false,
+      loginRequired: loginRequired ?? false,
+    });
 
-  const { isSignedIn } = useUser();
-
-  const displaySignInMessage = downloads === "downloads-auth" && !isSignedIn;
+  const redirectToSignIn =
+    showSignedOutGeoRestricted || showSignedOutLoginRequired;
 
   if (expired || !showDownloadAll) {
     return null;
@@ -41,7 +45,6 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
           lessonSlug,
           unitSlug,
           programmeSlug,
-          downloads,
           query: { preselected },
         })
       : programmeSlug && unitSlug && !isSpecialist && !isCanonical
@@ -50,15 +53,27 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
             lessonSlug,
             unitSlug,
             programmeSlug,
-            downloads,
             query: { preselected },
           })
         : resolveOakHref({
             page: "lesson-downloads-canonical",
             lessonSlug,
-            downloads,
             query: { preselected },
           });
+
+  if (redirectToSignIn) {
+    return (
+      <SignUpButton forceRedirectUrl={router.asPath}>
+        <OakSmallPrimaryButton
+          data-testid="sign-up-button"
+          iconName="arrow-right"
+          isTrailingIcon
+        >
+          Download all resources
+        </OakSmallPrimaryButton>
+      </SignUpButton>
+    );
+  }
 
   return (
     <OakSmallPrimaryButton
@@ -67,12 +82,10 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
       href={href}
       iconName="arrow-right"
       isTrailingIcon
-      aria-label={
-        displaySignInMessage ? `Sign in to download` : `Download all resources`
-      }
+      aria-label="Download all resources"
       onClick={onClickDownloadAll}
     >
-      {displaySignInMessage ? `Sign in to download` : `Download all resources`}
+      Download all resources
     </OakSmallPrimaryButton>
   );
 };
