@@ -92,7 +92,6 @@ const DownloadConfirmationNextLessonCard: FC<
               programmeSlug={programmeSlug}
               unitSlug={unitSlug}
               lessonSlug={lessonSlug}
-              downloads="downloads"
               variant={"buttonStyledAsLink"}
               icon="chevron-right"
               $iconPosition="trailing"

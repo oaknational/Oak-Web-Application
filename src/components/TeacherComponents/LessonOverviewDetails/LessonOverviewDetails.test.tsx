@@ -48,6 +48,7 @@ describe("LessonOverviewDetails component", () => {
   it("it should not render its own title", () => {
     const { getByText } = renderWithTheme(
       <LessonOverviewDetails
+        contentRestricted={false}
         {...lessonDetailProps}
         isMathJaxLesson={false}
         updatedAt="2024-01-01T00:00:00Z"
@@ -61,6 +62,7 @@ describe("LessonOverviewDetails component", () => {
   it("should render KeyLearningPoints component with key learning points", () => {
     const { getByText } = renderWithTheme(
       <LessonOverviewDetails
+        contentRestricted={false}
         {...lessonDetailProps}
         isMathJaxLesson={false}
         updatedAt="2024-01-01T00:00:00Z"
@@ -75,6 +77,7 @@ describe("LessonOverviewDetails component", () => {
   it("should render CommonMisconceptions component with common misconceptions", () => {
     const { getByText } = renderWithTheme(
       <LessonOverviewDetails
+        contentRestricted={false}
         {...lessonDetailProps}
         isMathJaxLesson={false}
         updatedAt="2024-01-01T00:00:00Z"
@@ -89,6 +92,7 @@ describe("LessonOverviewDetails component", () => {
   it("should not render CommonMisconceptions when passed null/undefined", () => {
     const { queryByText } = renderWithTheme(
       <LessonOverviewDetails
+        contentRestricted={false}
         {...lessonDetailProps}
         displayVocab={false}
         commonMisconceptions={null}
@@ -105,6 +109,7 @@ describe("LessonOverviewDetails component", () => {
   it("should render KeyWords component with keywords", () => {
     const { getByText } = renderWithTheme(
       <LessonOverviewDetails
+        contentRestricted={false}
         {...lessonDetailProps}
         displayVocab={false}
         isMathJaxLesson={false}
@@ -120,6 +125,7 @@ describe("LessonOverviewDetails component", () => {
   it("should not render KeyWords when passed null/undefined", () => {
     const { queryByText } = renderWithTheme(
       <LessonOverviewDetails
+        contentRestricted={false}
         {...lessonDetailProps}
         displayVocab={false}
         keyWords={null}
@@ -136,6 +142,7 @@ describe("LessonOverviewDetails component", () => {
   it("should render Vocab button component", () => {
     const { getByText, getByRole } = renderWithTheme(
       <LessonOverviewDetails
+        contentRestricted={false}
         {...lessonDetailProps}
         isMathJaxLesson={false}
         updatedAt="2024-01-01T00:00:00Z"
@@ -157,6 +164,7 @@ describe("LessonOverviewDetails component", () => {
   it("should render TeacherTips component with keywords", () => {
     const { getByText } = renderWithTheme(
       <LessonOverviewDetails
+        contentRestricted={false}
         {...lessonDetailProps}
         isMathJaxLesson={false}
         updatedAt="2024-01-01T00:00:00Z"
@@ -171,6 +179,7 @@ describe("LessonOverviewDetails component", () => {
   it("should not render TeacherTips when passed null/undefined", () => {
     const { queryByText } = renderWithTheme(
       <LessonOverviewDetails
+        contentRestricted={false}
         {...lessonDetailProps}
         teacherTips={null}
         isMathJaxLesson={false}
@@ -186,6 +195,7 @@ describe("LessonOverviewDetails component", () => {
   it("if equipmentAndResources, contentGuidance and supervisionLevel are null/undefined shouldn't render any of their titles", () => {
     const { queryByText } = renderWithTheme(
       <LessonOverviewDetails
+        contentRestricted={false}
         {...lessonDetailProps}
         displayVocab={false}
         equipmentAndResources={null}
@@ -208,6 +218,7 @@ describe("LessonOverviewDetails component", () => {
   it("it should render the correct legacy license", () => {
     const { getByText, queryByText } = renderWithTheme(
       <LessonOverviewDetails
+        contentRestricted={false}
         {...lessonDetailProps}
         equipmentAndResources={null}
         contentGuidance={null}
@@ -231,6 +242,7 @@ describe("LessonOverviewDetails component", () => {
   it("it should render the correct license", () => {
     const { getByText, queryByText } = renderWithTheme(
       <LessonOverviewDetails
+        contentRestricted={false}
         {...lessonDetailProps}
         equipmentAndResources={null}
         contentGuidance={null}
