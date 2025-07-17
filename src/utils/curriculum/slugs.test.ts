@@ -153,6 +153,7 @@ describe("createTeacherProgrammeSlug", () => {
       why_this_why_now: null,
       description: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     };
     expect(createTeacherProgrammeSlug(unitData)).toEqual("science-primary-ks2");
@@ -190,6 +191,7 @@ describe("createTeacherProgrammeSlug", () => {
       why_this_why_now: null,
       description: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     };
     expect(createTeacherProgrammeSlug(unitData)).toEqual("science-primary-ks4");
@@ -227,6 +229,7 @@ describe("createTeacherProgrammeSlug", () => {
       why_this_why_now: null,
       description: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     };
     expect(createTeacherProgrammeSlug(unitData, "aqa", "foundation")).toEqual(
@@ -266,6 +269,7 @@ describe("createTeacherProgrammeSlug", () => {
       why_this_why_now: null,
       description: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     };
     expect(createTeacherProgrammeSlug(unitData, "aqa")).toEqual(
@@ -306,6 +310,7 @@ describe("createTeacherProgrammeSlug", () => {
       why_this_why_now: null,
       description: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     };
     expect(createTeacherProgrammeSlug(unitData, "aqa")).toEqual(
@@ -346,6 +351,7 @@ describe("createTeacherProgrammeSlug", () => {
       why_this_why_now: null,
       description: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     };
     expect(

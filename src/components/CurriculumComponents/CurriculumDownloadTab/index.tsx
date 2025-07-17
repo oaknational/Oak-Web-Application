@@ -184,7 +184,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     schoolId: undefined,
     schoolName: undefined,
     email: undefined,
-    downloadType: "word",
+    downloadType: "curriculum-plans",
     termsAndConditions: false,
     schoolNotListed: false,
     schools: [],
@@ -210,7 +210,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
         schoolId: localStorageData.schoolId,
         schoolName: localStorageData.schoolName,
         email: localStorageData.email,
-        downloadType: "word",
+        downloadType: "curriculum-plans",
         termsAndConditions: localStorageData.termsAndConditions,
         schoolNotListed: localStorageData.schoolNotListed,
         schools: [],
@@ -264,6 +264,8 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   const onSubmit = async (data: CurriculumDownloadViewData) => {
     setIsSubmitting(true);
 
+    const { downloadType } = data;
+
     const query = createCurriculumDownloadsQuery(
       "published",
       mvRefreshTime,
@@ -273,7 +275,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       tierSelected,
       childSubjectSelected,
     );
-    const downloadPath = `/api/curriculum-downloads/?${query}`;
+    const downloadPath = `/api/${downloadType}/?${query}`;
 
     const schoolData = {
       schoolId: data.schoolId!,
