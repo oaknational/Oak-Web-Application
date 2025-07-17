@@ -1,3 +1,10 @@
+# [1.798.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.797.0...v1.798.0) (2025-07-17)
+
+
+### Features
+
+* use copyright restrictions feature flag to set auth header in useResourceFormSubmit ([21d864c](https://github.com/oaknational/Oak-Web-Application/commit/21d864c1be9c643a32676fef4d666559bb4d65ae))
+
 # [1.797.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.796.0...v1.797.0) (2025-07-16)
 
 
