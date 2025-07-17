@@ -4,6 +4,7 @@ import { getParsedData } from "./getParsedData";
 
 import OakError from "@/errors/OakError";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { GetToken } from "clerk";
 
 const DOWNLOADS_API_URL = getBrowserConfig("downloadApiUrl");
 
@@ -101,15 +102,24 @@ export const createLessonDownloadLink = async ({
 
 export const createUnitDownloadLink = async ({
   unitFileId,
+  authFlagEnabled,
+  getToken,
 }: {
   unitFileId: string;
+  authFlagEnabled?: boolean;
+  getToken: GetToken;
 }) => {
   const downloadEndpoint = `${DOWNLOADS_API_URL}/api/unit/${unitFileId}/download`;
-
+  const authToken = await getToken();
   const meta = {
     downloadSlug: unitFileId,
   };
 
-  const url = await getDownloadLink({ downloadEndpoint, meta });
+  const url = await getDownloadLink({
+    downloadEndpoint,
+    meta,
+    authFlagEnabled,
+    authToken,
+  });
   return url;
 };
