@@ -5,7 +5,7 @@ import {
   saveDownloadsDataToLocalStorage,
   useDownloadsLocalStorage,
 } from "../../CurriculumComponents/CurriculumDownloadTab/helper";
-import { createCurriculumDownloadsQuery } from "../../CurriculumComponents/CurriculumDownloadTab";
+import { createCurriculumDownloadsUrl } from "../../CurriculumComponents/CurriculumDownloadTab";
 import { extractUrnAndSchool } from "../helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 
 import { downloadFileFromUrl } from "@/components/SharedComponents/helpers/downloadFileFromUrl";
@@ -69,7 +69,7 @@ const useCurriculumDownloads = (props: useCurriculumDownloadsProps) => {
 
   const onSubmit = async () => {
     setIsSubmitting(true);
-    const query = createCurriculumDownloadsQuery(
+    const downloadPath = createCurriculumDownloadsUrl(
       "published",
       mvRefreshTime,
       subjectSlug,
@@ -78,7 +78,6 @@ const useCurriculumDownloads = (props: useCurriculumDownloadsProps) => {
       tierSlug,
       childSubjectSlug,
     );
-    const downloadPath = `/api/curriculum-downloads/?${query}`;
 
     const schoolData = {
       schoolId: data.schoolId!,

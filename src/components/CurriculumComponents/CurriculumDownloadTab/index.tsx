@@ -60,7 +60,7 @@ function ScrollIntoViewWhenVisisble({
   return <div ref={ref}>{children}</div>;
 }
 
-export function createCurriculumDownloadsQuery(
+export function createCurriculumDownloadsUrl(
   state: "new" | "published",
   mvRefreshTime: number,
   subjectSlug: string,
@@ -81,7 +81,7 @@ export function createCurriculumDownloadsQuery(
     childSubjectSlug !== null &&
     query.set("childSubjectSlug", childSubjectSlug);
 
-  return query;
+  return `/api/curriculum-downloads/?${query}`;
 }
 
 export const trackCurriculumDownload = async (
@@ -264,7 +264,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   const onSubmit = async (data: CurriculumDownloadViewData) => {
     setIsSubmitting(true);
 
-    const query = createCurriculumDownloadsQuery(
+    const downloadPath = createCurriculumDownloadsUrl(
       "published",
       mvRefreshTime,
       slugs.subjectSlug,
@@ -273,7 +273,6 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       tierSelected,
       childSubjectSelected,
     );
-    const downloadPath = `/api/curriculum-downloads/?${query}`;
 
     const schoolData = {
       schoolId: data.schoolId!,

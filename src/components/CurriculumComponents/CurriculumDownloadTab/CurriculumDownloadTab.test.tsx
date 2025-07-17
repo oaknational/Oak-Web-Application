@@ -1,7 +1,7 @@
 import { act, screen } from "@testing-library/react";
 
 import CurriculumDownloadTab, {
-  createCurriculumDownloadsQuery,
+  createCurriculumDownloadsUrl,
   trackCurriculumDownload,
 } from ".";
 
@@ -189,7 +189,7 @@ describe("Component Curriculum Download Tab", () => {
 
 describe("Downloads tab: unit tests", () => {
   const mvRefreshTime = 1721314874829;
-  test("Query is created properly: Science secondary AQA", async () => {
+  test("URL is created properly: Science secondary AQA", async () => {
     const data = {
       mvRefreshTime: 1721314874829,
       subjectSlug: "science",
@@ -206,7 +206,7 @@ describe("Downloads tab: unit tests", () => {
       tierSlug,
       childSubjectSlug,
     } = data;
-    const query = createCurriculumDownloadsQuery(
+    const url = createCurriculumDownloadsUrl(
       "published",
       mvRefreshTime,
       subjectSlug,
@@ -215,13 +215,13 @@ describe("Downloads tab: unit tests", () => {
       tierSlug,
       childSubjectSlug,
     );
-    expect(query.toString()).toEqual(
-      `mvRefreshTime=1721314874829&subjectSlug=science&phaseSlug=secondary&state=published&ks4OptionSlug=aqa&tierSlug=foundation&childSubjectSlug=combined-science`,
+    expect(url).toEqual(
+      `/api/curriculum-downloads/?mvRefreshTime=1721314874829&subjectSlug=science&phaseSlug=secondary&state=published&ks4OptionSlug=aqa&tierSlug=foundation&childSubjectSlug=combined-science`,
     );
   });
 
-  test("Query is created properly: English primary", async () => {
-    const query = createCurriculumDownloadsQuery(
+  test("URL is created properly: English primary", async () => {
+    const url = createCurriculumDownloadsUrl(
       "published",
       mvRefreshTime,
       "english",
@@ -230,8 +230,8 @@ describe("Downloads tab: unit tests", () => {
       null,
       null,
     );
-    expect(query.toString()).toEqual(
-      `mvRefreshTime=1721314874829&subjectSlug=english&phaseSlug=primary&state=published`,
+    expect(url).toEqual(
+      `/api/curriculum-downloads/?mvRefreshTime=1721314874829&subjectSlug=english&phaseSlug=primary&state=published`,
     );
   });
 });
