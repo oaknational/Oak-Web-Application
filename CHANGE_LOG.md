@@ -1,3 +1,10 @@
+# [1.799.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.798.0...v1.799.0) (2025-07-17)
+
+
+### Features
+
+* point to upgraded sanity branch ([a39c700](https://github.com/oaknational/Oak-Web-Application/commit/a39c7003ec86e1c02f60774093d1deedd18be551))
+
 # [1.798.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.797.0...v1.798.0) (2025-07-17)
 
 
