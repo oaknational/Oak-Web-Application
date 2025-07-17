@@ -52,6 +52,26 @@ jest.mock("@bugsnag/js", () => ({
   },
 }));
 
+jest.mock("@sentry/nextjs", () => ({
+  __esModule: true,
+  getClient: jest.fn(),
+  init: jest.fn(),
+  captureException: jest.fn(),
+  withScope: jest.fn((cb) => cb()),
+}));
+
+/**
+ * Mock the ErrorBoundary component globally to avoid it swallowing errors in tests.
+ * This is necessary as the ErrorBoundary component is a global component that wraps
+ * the entire app. If an error is thrown in a test, we want Jest to see it and fail the test.
+ */
+jest.mock("./src/components/AppComponents/ErrorBoundary/ErrorBoundary", () => {
+  return {
+    __esModule: true,
+    default: ({ children }) => children,
+  };
+});
+
 jest.mock("./src/node-lib/curriculum-api-2023", () =>
   jest.requireActual("./src/node-lib/curriculum-api-2023/__mocks__"),
 );
@@ -81,6 +101,7 @@ jest.mock("./src/common-lib/error-reporter", () => ({
   __esModule: true,
   default: () => () => null,
   initialiseBugsnag: jest.fn(),
+  initialiseSentry: jest.fn(),
 }));
 
 jest.mock("@oaknational/oak-consent-client");
