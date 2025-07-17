@@ -16,10 +16,6 @@ export const UnitsLearningThemeFilters: Story = {
   args: {
     selectedThemeSlug: "some-theme",
     learningThemes: [],
-    linkProps: {
-      page: "unit-index",
-      programmeSlug: "some-programme",
-    },
   },
   render: (args) => {
     return <Component {...args} />;

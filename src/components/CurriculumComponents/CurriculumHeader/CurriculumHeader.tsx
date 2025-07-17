@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import styled from "styled-components";
 import {
   OakHeading,
   OakP,
@@ -21,6 +22,14 @@ import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { buildPageTitle } from "@/utils/curriculum/formatting";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
+
+const StyledOakHeading = styled(OakHeading)`
+  margin-left: -0.1rem;
+`;
+
+const StyledOakP = styled(OakP)`
+  line-height: 1;
+`;
 
 export type CurriculumHeaderPageProps = {
   curriculumPhaseOptions: SubjectPhasePickerData;
@@ -163,26 +172,22 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                 />
               </OakBox>
 
-              <OakFlex
-                $rowGap={["all-spacing-2", "all-spacing-2"]}
-                $justifyContent={"center"}
-                $flexDirection={"column"}
-              >
+              <OakFlex $justifyContent={"center"} $flexDirection={"column"}>
                 {keyStages.includes("ks4") && (
-                  <OakP
+                  <StyledOakP
                     $font={"heading-light-7"}
                     data-testid={"examboard-metadata"}
                   >
                     {`${ks4Option ? ks4Option.title : "All exam boards"} (KS4)`}
-                  </OakP>
+                  </StyledOakP>
                 )}
-                <OakHeading
+                <StyledOakHeading
                   tag={"h1"}
                   $font={["heading-5", "heading-3"]}
                   data-testid="curriculum-heading"
                 >
                   {pageTitle}
-                </OakHeading>
+                </StyledOakHeading>
               </OakFlex>
             </OakFlex>
           </OakBox>
