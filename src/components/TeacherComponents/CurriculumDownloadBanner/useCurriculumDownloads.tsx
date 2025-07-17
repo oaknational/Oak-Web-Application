@@ -5,13 +5,13 @@ import {
   saveDownloadsDataToLocalStorage,
   useDownloadsLocalStorage,
 } from "../../CurriculumComponents/CurriculumDownloadTab/helper";
-import { createCurriculumDownloadsUrl } from "../../CurriculumComponents/CurriculumDownloadTab";
 import { extractUrnAndSchool } from "../helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 
 import { downloadFileFromUrl } from "@/components/SharedComponents/helpers/downloadFileFromUrl";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { ResourceTypeValueType, PhaseValueType } from "@/browser-lib/avo/Avo";
 import { useOakToastContext } from "@/context/OakToast/useOakToastContext";
+import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urlBuilders";
 
 export type useCurriculumDownloadsProps = {
   mvRefreshTime: number;
