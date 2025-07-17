@@ -27,6 +27,10 @@ dotenv.config();
 async function main() {
   console.log("Writing config and secrets to temporary env file");
 
+  console.log(" --- DEBUG --- ");
+  console.log(process.env);
+  console.log(" --- DEBUG --- ");
+
   const NODE_ENV = process.env.NODE_ENV || "development";
 
   let oakConfig: OakConfig;
