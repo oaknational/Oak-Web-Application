@@ -1,9 +1,12 @@
 import { FC } from "react";
 import { OakSmallSecondaryButton } from "@oaknational/oak-components";
+import { SignUpButton } from "@clerk/nextjs";
+import { useRouter } from "next/router";
 
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { resolveOakHref } from "@/common-lib/urls";
 import { invariant } from "@/utils/invariant";
+import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
 
 export const LessonOverviewHeaderShareAllButton: FC<
   LessonOverviewHeaderProps
@@ -16,10 +19,19 @@ export const LessonOverviewHeaderShareAllButton: FC<
     onClickShareAll,
     isSpecialist,
     isCanonical,
+    geoRestricted,
+    loginRequired,
   } = props;
-
+  const { showSignedOutGeoRestricted, showSignedOutLoginRequired } =
+    useCopyrightRequirements({
+      geoRestricted: geoRestricted ?? false,
+      loginRequired: loginRequired ?? false,
+    });
+  const router = useRouter();
   const preselected = "all";
 
+  const redirectToSignUp =
+    showSignedOutGeoRestricted || showSignedOutLoginRequired;
   const href = (() => {
     if (isCanonical) {
       return resolveOakHref({
@@ -50,6 +62,20 @@ export const LessonOverviewHeaderShareAllButton: FC<
       query: { preselected },
     });
   })();
+
+  if (redirectToSignUp) {
+    return (
+      <SignUpButton forceRedirectUrl={router.asPath}>
+        <OakSmallSecondaryButton
+          iconName="arrow-right"
+          isTrailingIcon
+          data-testid="sign-up-button"
+        >
+          Share activities with pupils
+        </OakSmallSecondaryButton>
+      </SignUpButton>
+    );
+  }
 
   if (!isShareable || !href) {
     return (
