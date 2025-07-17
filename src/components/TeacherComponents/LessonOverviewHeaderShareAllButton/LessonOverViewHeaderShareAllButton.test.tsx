@@ -22,6 +22,7 @@ jest.mock("@/hooks/useCopyrightRequirements", () => ({
 }));
 
 jest.mock("next/router", () => require("next-router-mock"));
+const mockOnClickShareAll = jest.fn();
 
 const baseProps = {
   ...lessonOverviewFixture(),
@@ -29,7 +30,7 @@ const baseProps = {
   unitSlug: "test-unit",
   programmeSlug: "test-programme",
   isShareable: true,
-  onClickShareAll: jest.fn(),
+  onClickShareAll: mockOnClickShareAll,
   isSpecialist: false,
   isCanonical: false,
   geoRestricted: false,
@@ -70,7 +71,10 @@ describe("LessonOverviewHeaderShareAllButton", () => {
 
     expect(shareButton).toBeInTheDocument();
     expect(shareButton.tagName).toBe("A");
+    expect(shareButton).toHaveAttribute("href");
     expect(shareButton).toHaveTextContent("Share activities with pupils");
+    shareButton.click();
+    expect(mockOnClickShareAll).toHaveBeenCalled();
   });
 
   it("disables share button when isShareable is false", () => {
@@ -84,12 +88,12 @@ describe("LessonOverviewHeaderShareAllButton", () => {
 
   it("renders sign up button when content is restricted", () => {
     mockUseCopyrightRequirements.showSignedOutGeoRestricted = true;
-    const { queryByTestId, getByTestId } = render(
+    const { getByTestId } = render(
       <LessonOverviewHeaderShareAllButton {...baseProps} />,
     );
-    const shareButton = queryByTestId("share-all-button");
-    const signUpButton = getByTestId("sign-up-button");
-    expect(shareButton).not.toBeInTheDocument();
-    expect(signUpButton).toBeInTheDocument();
+    const shareButton = getByTestId("share-all-button");
+    expect(shareButton).not.toHaveAttribute("href");
+    shareButton.click();
+    expect(mockOnClickShareAll).not.toHaveBeenCalled();
   });
 });

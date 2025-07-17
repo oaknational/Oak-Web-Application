@@ -8,6 +8,7 @@ import {
   getPhase,
 } from "../helpers/seoTextHelpers/seoText.helpers";
 
+import RedirectToSignUpWhenRestrictedWrapper from "@/components/TeacherComponents/RedirectToSignInWhenRestrictedWrapper/RedirectToSignInWhenRestrictedWrapper";
 import { resolveOakHref } from "@/common-lib/urls";
 import {
   OakBasicAccordion,
@@ -96,16 +97,24 @@ export const LessonSeoHelper = ({
       <br />
       <OakP $font={["body-2", "body-1"]} $textAlign="left">
         {`To help you plan your ${year.toLowerCase()} ${formatSubjectName(subject)} lesson on: ${lesson},`}{" "}
-        <OakLink
-          href={resolveOakHref({
-            page: "lesson-downloads",
-            lessonSlug,
-            unitSlug,
-            programmeSlug,
-          })}
+        <RedirectToSignUpWhenRestrictedWrapper
+          contentRestricted={contentRestricted}
         >
-          download
-        </OakLink>{" "}
+          <OakLink
+            href={
+              !contentRestricted
+                ? resolveOakHref({
+                    page: "lesson-downloads",
+                    lessonSlug,
+                    unitSlug,
+                    programmeSlug,
+                  })
+                : undefined
+            }
+          >
+            download
+          </OakLink>
+        </RedirectToSignUpWhenRestrictedWrapper>{" "}
         all teaching resources for free and adapt to suit your pupils' needs.
       </OakP>
       <br />
@@ -137,20 +146,22 @@ export const LessonSeoHelper = ({
           <>
             {`Plus, you can set it as homework or revision for pupils and keep their learning on track by sharing an `}
 
-            {contentRestricted ? (
-              <SignInButton forceRedirectUrl={router.asPath}>
-                <OakLink>online pupil version</OakLink>
-              </SignInButton>
-            ) : (
+            <RedirectToSignUpWhenRestrictedWrapper
+              contentRestricted={contentRestricted}
+            >
               <OakLink
-                href={resolveOakHref({
-                  page: "pupil-lesson-canonical",
-                  lessonSlug,
-                })}
+                href={
+                  !contentRestricted
+                    ? resolveOakHref({
+                        page: "pupil-lesson-canonical",
+                        lessonSlug,
+                      })
+                    : undefined
+                }
               >
                 online pupil version
               </OakLink>
-            )}
+            </RedirectToSignUpWhenRestrictedWrapper>
             {` of this lesson.`}
           </>
         )}

@@ -22,7 +22,7 @@ jest.mock("@/hooks/useCopyrightRequirements", () => ({
 }));
 
 jest.mock("next/router", () => require("next-router-mock"));
-
+const mockDownloadAllButton = jest.fn();
 const baseProps = {
   ...lessonOverviewFixture(),
   lessonSlug: "test-lesson",
@@ -30,7 +30,7 @@ const baseProps = {
   programmeSlug: "test-programme",
   expired: false,
   showDownloadAll: true,
-  onClickDownloadAll: jest.fn(),
+  onClickDownloadAll: mockDownloadAllButton,
   isSpecialist: false,
   isCanonical: false,
   geoRestricted: false,
@@ -73,6 +73,8 @@ describe("LessonOverviewHeaderDownloadAllButton", () => {
     expect(downloadButton.tagName).toBe("A");
     expect(getByText("Download all resources")).toBeInTheDocument();
     expect(downloadButton).toHaveAttribute("href");
+    downloadButton.click();
+    expect(mockDownloadAllButton).toHaveBeenCalled();
   });
 
   it("does not render when expired is true", () => {
@@ -97,10 +99,12 @@ describe("LessonOverviewHeaderDownloadAllButton", () => {
   it("renders a sign up button when downloads are restricted", () => {
     mockUseCopyrightRequirements.showSignedOutGeoRestricted = true;
     mockUseCopyrightRequirements.showSignedOutLoginRequired = true;
-    const { queryByTestId, getByTestId } = render(
+    const { getByTestId } = render(
       <LessonOverviewHeaderDownloadAllButton {...baseProps} />,
     );
-    expect(queryByTestId("download-all-button")).not.toBeInTheDocument();
-    expect(getByTestId("sign-up-button")).toBeInTheDocument();
+    const downloadButton = getByTestId("download-all-button");
+    expect(downloadButton).not.toHaveAttribute("href");
+    downloadButton.click();
+    expect(mockDownloadAllButton).not.toHaveBeenCalled();
   });
 });

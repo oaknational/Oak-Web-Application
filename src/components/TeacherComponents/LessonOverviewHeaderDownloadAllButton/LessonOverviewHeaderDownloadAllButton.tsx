@@ -1,11 +1,10 @@
 import { FC } from "react";
 import { OakSmallPrimaryButton } from "@oaknational/oak-components";
-import { SignUpButton } from "@clerk/nextjs";
-import { useRouter } from "next/router";
 
 import { LessonOverviewHeaderProps as LessonOverviewHeaderDownloadAllButtonProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { resolveOakHref } from "@/common-lib/urls";
 import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
+import RedirectToSignUpWhenRestrictedWrapper from "@/components/TeacherComponents/RedirectToSignInWhenRestrictedWrapper/RedirectToSignInWhenRestrictedWrapper";
 
 export const LessonOverviewHeaderDownloadAllButton: FC<
   LessonOverviewHeaderDownloadAllButtonProps
@@ -24,14 +23,13 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
   } = props;
 
   const preselected = "all";
-  const router = useRouter();
   const { showSignedOutGeoRestricted, showSignedOutLoginRequired } =
     useCopyrightRequirements({
       geoRestricted: geoRestricted ?? false,
       loginRequired: loginRequired ?? false,
     });
 
-  const redirectToSignIn =
+  const contentRestricted =
     showSignedOutGeoRestricted || showSignedOutLoginRequired;
 
   if (expired || !showDownloadAll) {
@@ -61,31 +59,21 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
             query: { preselected },
           });
 
-  if (redirectToSignIn) {
-    return (
-      <SignUpButton forceRedirectUrl={router.asPath}>
-        <OakSmallPrimaryButton
-          data-testid="sign-up-button"
-          iconName="arrow-right"
-          isTrailingIcon
-        >
-          Download all resources
-        </OakSmallPrimaryButton>
-      </SignUpButton>
-    );
-  }
-
   return (
-    <OakSmallPrimaryButton
-      element="a"
-      data-testid="download-all-button"
-      href={href}
-      iconName="arrow-right"
-      isTrailingIcon
-      aria-label="Download all resources"
-      onClick={onClickDownloadAll}
+    <RedirectToSignUpWhenRestrictedWrapper
+      contentRestricted={contentRestricted}
     >
-      Download all resources
-    </OakSmallPrimaryButton>
+      <OakSmallPrimaryButton
+        element="a"
+        data-testid="download-all-button"
+        iconName="arrow-right"
+        isTrailingIcon
+        aria-label="Download all resources"
+        {...(!contentRestricted && { href })}
+        {...(!contentRestricted && { onClick: onClickDownloadAll })}
+      >
+        Download all resources
+      </OakSmallPrimaryButton>
+    </RedirectToSignUpWhenRestrictedWrapper>
   );
 };

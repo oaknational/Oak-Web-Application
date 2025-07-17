@@ -1,12 +1,11 @@
 import { FC } from "react";
 import { OakSmallSecondaryButton } from "@oaknational/oak-components";
-import { SignUpButton } from "@clerk/nextjs";
-import { useRouter } from "next/router";
 
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { resolveOakHref } from "@/common-lib/urls";
 import { invariant } from "@/utils/invariant";
 import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
+import RedirectToSignUpWhenRestrictedWrapper from "@/components/TeacherComponents/RedirectToSignInWhenRestrictedWrapper/RedirectToSignInWhenRestrictedWrapper";
 
 export const LessonOverviewHeaderShareAllButton: FC<
   LessonOverviewHeaderProps
@@ -27,10 +26,9 @@ export const LessonOverviewHeaderShareAllButton: FC<
       geoRestricted: geoRestricted ?? false,
       loginRequired: loginRequired ?? false,
     });
-  const router = useRouter();
   const preselected = "all";
 
-  const redirectToSignUp =
+  const contentRestricted =
     showSignedOutGeoRestricted || showSignedOutLoginRequired;
   const href = (() => {
     if (isCanonical) {
@@ -63,20 +61,6 @@ export const LessonOverviewHeaderShareAllButton: FC<
     });
   })();
 
-  if (redirectToSignUp) {
-    return (
-      <SignUpButton forceRedirectUrl={router.asPath}>
-        <OakSmallSecondaryButton
-          iconName="arrow-right"
-          isTrailingIcon
-          data-testid="sign-up-button"
-        >
-          Share activities with pupils
-        </OakSmallSecondaryButton>
-      </SignUpButton>
-    );
-  }
-
   if (!isShareable || !href) {
     return (
       <OakSmallSecondaryButton
@@ -91,15 +75,19 @@ export const LessonOverviewHeaderShareAllButton: FC<
   }
 
   return (
-    <OakSmallSecondaryButton
-      element="a"
-      href={href}
-      iconName="arrow-right"
-      isTrailingIcon
-      onClick={onClickShareAll}
-      data-testid="share-all-button"
+    <RedirectToSignUpWhenRestrictedWrapper
+      contentRestricted={contentRestricted}
     >
-      Share activities with pupils
-    </OakSmallSecondaryButton>
+      <OakSmallSecondaryButton
+        element="a"
+        iconName="arrow-right"
+        isTrailingIcon
+        data-testid="share-all-button"
+        {...(!contentRestricted && { href })}
+        {...(!contentRestricted && { onClick: onClickShareAll })}
+      >
+        Share activities with pupils
+      </OakSmallSecondaryButton>
+    </RedirectToSignUpWhenRestrictedWrapper>
   );
 };

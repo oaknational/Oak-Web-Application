@@ -75,16 +75,14 @@ describe("LessonOverviewFilesNeeded", () => {
 
   it("renders a sign up button when downloads are restricted", () => {
     const additionalFiles = ["file1.pdf"];
-    const { queryByRole, getByTestId } = renderWithTheme(
+    const { getByText } = renderWithTheme(
       <LessonOverviewFilesNeeded
         contentRestricted={true}
         additionalFiles={additionalFiles}
         slugs={slugs}
       />,
     );
-    expect(
-      queryByRole("link", { name: /Download lesson file/i }),
-    ).not.toBeInTheDocument();
-    expect(getByTestId("sign-up-button")).toBeInTheDocument();
+    const downloadLink = getByText(/Download lesson file/);
+    expect(downloadLink).not.toHaveAttribute("href");
   });
 });

@@ -8,80 +8,17 @@ import {
   OakTertiaryButton,
   OakUL,
 } from "@oaknational/oak-components";
-import { SignUpButton } from "@clerk/nextjs";
-import { useRouter } from "next/router";
 
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import { resolveOakHref } from "@/common-lib/urls";
 import { Slugs } from "@/components/TeacherComponents/LessonItemContainer/LessonItemContainer";
+import RedirectToSignUpWhenRestrictedWrapper from "@/components/TeacherComponents/RedirectToSignInWhenRestrictedWrapper/RedirectToSignInWhenRestrictedWrapper";
 
 type LessonOverviewFilesNeededProps = {
   contentRestricted: boolean;
   additionalFiles: string[];
   slugs: Slugs;
 };
-
-function DownloadButton({
-  programmeSlug,
-  unitSlug,
-  lessonSlug,
-  filesText,
-  contentRestricted,
-}: {
-  programmeSlug: string | null;
-  unitSlug: string | null;
-  lessonSlug: string;
-  filesText: string;
-  contentRestricted: boolean;
-}) {
-  const router = useRouter();
-  const shouldRedirectToSignUp = contentRestricted;
-
-  if (shouldRedirectToSignUp) {
-    return (
-      <SignUpButton forceRedirectUrl={router.asPath}>
-        <OakTertiaryButton
-          data-testid="sign-up-button"
-          iconName="arrow-right"
-          isTrailingIcon
-        >
-          {filesText}
-        </OakTertiaryButton>
-      </SignUpButton>
-    );
-  }
-
-  return (
-    <OakTertiaryButton
-      element="a"
-      href={
-        programmeSlug && unitSlug
-          ? resolveOakHref({
-              page: "lesson-downloads",
-              lessonSlug: lessonSlug,
-              programmeSlug: programmeSlug,
-              unitSlug: unitSlug,
-
-              query: {
-                preselected: "additional files",
-              },
-            })
-          : resolveOakHref({
-              page: "lesson-downloads-canonical",
-              lessonSlug: lessonSlug,
-
-              query: {
-                preselected: "additional files",
-              },
-            })
-      }
-      isTrailingIcon
-      iconName="arrow-right"
-    >
-      {filesText}
-    </OakTertiaryButton>
-  );
-}
 
 const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
   additionalFiles,
@@ -91,6 +28,28 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
   const { lessonSlug, unitSlug, programmeSlug } = slugs;
   const isPlural = additionalFiles.length > 1;
   const filesText = isPlural ? `Download lesson files` : `Download lesson file`;
+  const getHref = () => {
+    if (contentRestricted) return undefined;
+    return programmeSlug && unitSlug
+      ? resolveOakHref({
+          page: "lesson-downloads",
+          lessonSlug: lessonSlug,
+          programmeSlug: programmeSlug,
+          unitSlug: unitSlug,
+
+          query: {
+            preselected: "additional files",
+          },
+        })
+      : resolveOakHref({
+          page: "lesson-downloads-canonical",
+          lessonSlug: lessonSlug,
+
+          query: {
+            preselected: "additional files",
+          },
+        });
+  };
   return (
     <OakBox $background={"aqua50"} $position={"relative"}>
       <OakFlex
@@ -120,13 +79,18 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
           {`Download ${isPlural ? "these files" : "this file"} to use in the
           lesson.`}
         </OakP>
-        <DownloadButton
+        <RedirectToSignUpWhenRestrictedWrapper
           contentRestricted={contentRestricted}
-          programmeSlug={programmeSlug}
-          unitSlug={unitSlug}
-          lessonSlug={lessonSlug}
-          filesText={filesText}
-        />
+        >
+          <OakTertiaryButton
+            element="a"
+            href={getHref()}
+            isTrailingIcon
+            iconName="arrow-right"
+          >
+            {filesText}
+          </OakTertiaryButton>
+        </RedirectToSignUpWhenRestrictedWrapper>
       </OakFlex>
       <BrushBorders color="aqua50" />
     </OakBox>
