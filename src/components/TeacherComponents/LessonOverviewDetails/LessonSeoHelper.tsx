@@ -1,3 +1,6 @@
+import { SignInButton } from "@clerk/nextjs";
+import { useRouter } from "next/router";
+
 import { convertSubjectToSlug } from "../helpers/convertSubjectToSlug";
 import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
 import {
@@ -26,6 +29,7 @@ export const LessonSeoHelper = ({
   programmeSlug,
   unitSlug,
   disablePupilLink,
+  contentRestricted,
 }: {
   year: string;
   subject: string;
@@ -39,7 +43,9 @@ export const LessonSeoHelper = ({
   programmeSlug: string;
   unitSlug: string;
   disablePupilLink?: boolean;
+  contentRestricted: boolean;
 }) => {
+  const router = useRouter();
   const linkSubject = parentSubject
     ? convertSubjectToSlug(parentSubject)
     : subjectSlug;
@@ -59,17 +65,22 @@ export const LessonSeoHelper = ({
           <br />
           <OakP $font={["body-2", "body-1"]} $textAlign="left">
             {`To help you plan your ${year.toLowerCase()} ${formatSubjectName(subject)} lesson on: ${lesson},`}{" "}
-            <OakLink
-              href={resolveOakHref({
-                page: "lesson-downloads",
-                lessonSlug,
-                unitSlug,
-                programmeSlug,
-                downloads: "downloads",
-              })}
-            >
-              download
-            </OakLink>{" "}
+            {contentRestricted ? (
+              <SignInButton forceRedirectUrl={router.asPath}>
+                <OakLink>download</OakLink>
+              </SignInButton>
+            ) : (
+              <OakLink
+                href={resolveOakHref({
+                  page: "lesson-downloads",
+                  lessonSlug,
+                  unitSlug,
+                  programmeSlug,
+                })}
+              >
+                download
+              </OakLink>
+            )}{" "}
             all teaching resources for free and adapt to suit your pupils'
             needs...
           </OakP>
@@ -91,7 +102,6 @@ export const LessonSeoHelper = ({
             lessonSlug,
             unitSlug,
             programmeSlug,
-            downloads: "downloads",
           })}
         >
           download
@@ -126,14 +136,21 @@ export const LessonSeoHelper = ({
         {!disablePupilLink && (
           <>
             {`Plus, you can set it as homework or revision for pupils and keep their learning on track by sharing an `}
-            <OakLink
-              href={resolveOakHref({
-                page: "pupil-lesson-canonical",
-                lessonSlug,
-              })}
-            >
-              online pupil version
-            </OakLink>
+
+            {contentRestricted ? (
+              <SignInButton forceRedirectUrl={router.asPath}>
+                <OakLink>online pupil version</OakLink>
+              </SignInButton>
+            ) : (
+              <OakLink
+                href={resolveOakHref({
+                  page: "pupil-lesson-canonical",
+                  lessonSlug,
+                })}
+              >
+                online pupil version
+              </OakLink>
+            )}
             {` of this lesson.`}
           </>
         )}

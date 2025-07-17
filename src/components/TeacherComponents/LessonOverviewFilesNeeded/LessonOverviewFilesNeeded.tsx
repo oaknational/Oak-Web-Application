@@ -14,11 +14,9 @@ import { useRouter } from "next/router";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import { resolveOakHref } from "@/common-lib/urls";
 import { Slugs } from "@/components/TeacherComponents/LessonItemContainer/LessonItemContainer";
-import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
 
 type LessonOverviewFilesNeededProps = {
-  geoRestricted: boolean;
-  loginRequired: boolean;
+  contentRestricted: boolean;
   additionalFiles: string[];
   slugs: Slugs;
 };
@@ -28,23 +26,18 @@ function DownloadButton({
   unitSlug,
   lessonSlug,
   filesText,
-  geoRestricted,
-  loginRequired,
+  contentRestricted,
 }: {
   programmeSlug: string | null;
   unitSlug: string | null;
   lessonSlug: string;
   filesText: string;
-  geoRestricted: boolean;
-  loginRequired: boolean;
+  contentRestricted: boolean;
 }) {
-  const { showSignedOutGeoRestricted, showSignedOutLoginRequired } =
-    useCopyrightRequirements({ geoRestricted, loginRequired });
   const router = useRouter();
-  const redirectToSignUp =
-    showSignedOutGeoRestricted || showSignedOutLoginRequired;
+  const shouldRedirectToSignUp = contentRestricted;
 
-  if (redirectToSignUp) {
+  if (shouldRedirectToSignUp) {
     return (
       <SignUpButton forceRedirectUrl={router.asPath}>
         <OakTertiaryButton
@@ -93,8 +86,7 @@ function DownloadButton({
 const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
   additionalFiles,
   slugs,
-  geoRestricted,
-  loginRequired,
+  contentRestricted,
 }) => {
   const { lessonSlug, unitSlug, programmeSlug } = slugs;
   const isPlural = additionalFiles.length > 1;
@@ -129,8 +121,7 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
           lesson.`}
         </OakP>
         <DownloadButton
-          geoRestricted={geoRestricted}
-          loginRequired={loginRequired}
+          contentRestricted={contentRestricted}
           programmeSlug={programmeSlug}
           unitSlug={unitSlug}
           lessonSlug={lessonSlug}

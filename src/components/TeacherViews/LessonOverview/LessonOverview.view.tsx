@@ -504,8 +504,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   pageLinks={pageLinks}
                 >
                   <LessonDetails
-                    geoRestricted={geoRestricted}
-                    loginRequired={loginRequired}
+                    contentRestricted={contentRestricted}
                     keyLearningPoints={keyLearningPoints}
                     commonMisconceptions={misconceptionsAndCommonMistakes}
                     keyWords={

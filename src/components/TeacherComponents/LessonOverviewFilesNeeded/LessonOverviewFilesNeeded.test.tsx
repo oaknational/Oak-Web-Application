@@ -9,14 +9,6 @@ jest.mock("@/common-lib/urls", () => ({
   resolveOakHref: jest.fn(),
 }));
 
-const mockUseCopyrightRequirements = {
-  showSignedOutGeoRestricted: false,
-  showSignedOutLoginRequired: false,
-};
-jest.mock("@/hooks/useCopyrightRequirements", () => ({
-  useCopyrightRequirements: () => mockUseCopyrightRequirements,
-}));
-
 jest.mock("next/router", () => require("next-router-mock"));
 
 describe("LessonOverviewFilesNeeded", () => {
@@ -28,16 +20,13 @@ describe("LessonOverviewFilesNeeded", () => {
 
   afterEach(() => {
     jest.clearAllMocks();
-    mockUseCopyrightRequirements.showSignedOutGeoRestricted = false;
-    mockUseCopyrightRequirements.showSignedOutLoginRequired = false;
   });
 
   it("renders correctly with multiple files", () => {
     const additionalFiles = ["file1.pdf", "file2.pdf"];
     const { getByText } = renderWithTheme(
       <LessonOverviewFilesNeeded
-        geoRestricted={false}
-        loginRequired={false}
+        contentRestricted={false}
         additionalFiles={additionalFiles}
         slugs={slugs}
       />,
@@ -55,8 +44,7 @@ describe("LessonOverviewFilesNeeded", () => {
     const additionalFiles = ["file1.pdf"];
     const { getByText } = renderWithTheme(
       <LessonOverviewFilesNeeded
-        geoRestricted={false}
-        loginRequired={false}
+        contentRestricted={false}
         additionalFiles={additionalFiles}
         slugs={slugs}
       />,
@@ -74,8 +62,7 @@ describe("LessonOverviewFilesNeeded", () => {
     (resolveOakHref as jest.Mock).mockReturnValue("/mock-url");
     const { getByRole } = renderWithTheme(
       <LessonOverviewFilesNeeded
-        geoRestricted={false}
-        loginRequired={false}
+        contentRestricted={false}
         additionalFiles={additionalFiles}
         slugs={slugs}
       />,
@@ -87,13 +74,10 @@ describe("LessonOverviewFilesNeeded", () => {
   });
 
   it("renders a sign up button when downloads are restricted", () => {
-    mockUseCopyrightRequirements.showSignedOutGeoRestricted = true;
-    mockUseCopyrightRequirements.showSignedOutLoginRequired = true;
     const additionalFiles = ["file1.pdf"];
     const { queryByRole, getByTestId } = renderWithTheme(
       <LessonOverviewFilesNeeded
-        geoRestricted={true}
-        loginRequired={true}
+        contentRestricted={true}
         additionalFiles={additionalFiles}
         slugs={slugs}
       />,
