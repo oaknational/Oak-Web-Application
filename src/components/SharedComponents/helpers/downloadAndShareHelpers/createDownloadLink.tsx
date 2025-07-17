@@ -40,6 +40,12 @@ const getDownloadLink = async ({
   authFlagEnabled?: boolean;
   authToken?: string | null;
 }) => {
+  if (authFlagEnabled && !authToken) {
+    throw new OakError({
+      code: "downloads/missing-auth-token",
+      meta,
+    });
+  }
   const authHeader = authToken
     ? { Authorization: `Bearer ${authToken}` }
     : undefined;
