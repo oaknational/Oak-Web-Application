@@ -120,6 +120,7 @@ async function main() {
       // Note this is the default Vercel URL (something.vercel.app), not the alternative preview or production one.
       // The preview ones on a thenational.academy domain we could construct, if we wanted to use Vercel for
       // production we'd need to set an env, same as for Cloudbuild.
+      process.env.VERCEL_BRANCH_URL ||
       process.env.VERCEL_URL ||
       // Netlify https://docs.netlify.com/configure-builds/environment-variables/#deploy-urls-and-metadata
       // Should default to custom domain if one is set.
