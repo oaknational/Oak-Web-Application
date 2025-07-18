@@ -110,7 +110,7 @@ export const getProps = ({
         return {
           redirect: {
             destination: `${redirectData.outgoingPath}`,
-            permanent: true, // true = 308, false = 307
+            permanent: redirectData.redirectType == "301", // true = 308, false = 307
             basePath: false, // Do not prepend the basePath
           },
         };
