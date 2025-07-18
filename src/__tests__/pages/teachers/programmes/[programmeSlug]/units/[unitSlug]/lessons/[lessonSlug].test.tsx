@@ -635,7 +635,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
           }
         ).redirect,
       ).toEqual({
-        destination: "/teachers/lessons/new-lesson-slug",
+        destination: "lessons/new-lesson-slug",
         permanent: true,
         basePath: false,
       });
@@ -643,7 +643,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
       // Verify the redirect API was called with the correct parameters
       expect(curriculumApi2023.browseLessonRedirectQuery).toHaveBeenCalledWith({
         incomingPath:
-          "programmes/english-primary-ks2/units/unit-slug/lessons/old-lesson-slug",
+          "/teachers/programmes/english-primary-ks2/units/unit-slug/lessons/old-lesson-slug",
       });
     });
     it("should return not found if lesson is not found and no redirect found", async () => {

@@ -447,12 +447,12 @@ export const getStaticProps: GetStaticProps<
       if (!curriculumData) {
         const { browseUnitRedirectData: redirectData } =
           await curriculumApi2023.browseUnitRedirectQuery({
-            incomingPath: `programmes/${programmeSlug}/units/${unitSlug}`,
+            incomingPath: `/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons`,
           });
         if (redirectData) {
           return {
             redirect: {
-              destination: `/teachers/${redirectData.outgoingPath}/lessons`,
+              destination: `${redirectData.outgoingPath}`,
               permanent: true, // true = 308, false = 307
               basePath: false, // Do not prepend the basePath
             },

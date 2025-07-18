@@ -374,7 +374,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
     });
     expect(res).toEqual({
       redirect: {
-        destination: `/pupils/programmes/programmeSlug/units/unitSlug-redirected`,
+        destination: `programmes/programmeSlug/units/unitSlug-redirected`,
         permanent: true,
         basePath: false,
       },

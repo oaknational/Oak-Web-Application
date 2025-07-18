@@ -242,7 +242,7 @@ describe("Lesson Overview Canonical Page", () => {
           }
         ).redirect,
       ).toEqual({
-        destination: "/teachers/lessons/new-lesson-slug",
+        destination: "lessons/new-lesson-slug",
         permanent: true,
         basePath: false,
       });
@@ -251,7 +251,7 @@ describe("Lesson Overview Canonical Page", () => {
       expect(
         curriculumApi2023.canonicalLessonRedirectQuery,
       ).toHaveBeenCalledWith({
-        incomingPath: "lessons/old-lesson-slug",
+        incomingPath: "/teachers/lessons/old-lesson-slug",
       });
     });
     it("should return not found if lesson is not found and no redirect found", async () => {

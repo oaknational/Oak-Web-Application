@@ -237,7 +237,7 @@ describe("getStaticProps", () => {
     expect(response).toEqual({
       redirect: {
         basePath: false,
-        destination: "/teachers/lessons/new-lesson-slug/lessons",
+        destination: "lessons/new-lesson-slug",
         permanent: true,
       },
     });
