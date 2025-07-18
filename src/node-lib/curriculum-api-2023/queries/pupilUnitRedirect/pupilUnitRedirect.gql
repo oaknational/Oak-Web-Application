@@ -1,0 +1,9 @@
+query pupilUnitRedirect($incomingPath: String!) {
+  pupilUnitRedirectData: published_mv_redirects_units_browse_by_year_18_0_0(
+    where: { incoming_path: { _eq: $incomingPath } }
+  ) {
+    incoming_path
+    outgoing_path
+    redirect_type
+  }
+}

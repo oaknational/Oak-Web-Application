@@ -1,0 +1,9 @@
+query pupilCanonicalLessonRedirect($incomingPath: String!) {
+  pupilCanonicalLessonRedirectData: published_mv_redirects_lessons_canonical_by_year_19_0_0(
+    where: { incoming_path: { _eq: $incomingPath } }
+  ) {
+    incoming_path
+    outgoing_path
+    redirect_type
+  }
+}

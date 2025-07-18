@@ -50,6 +50,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { useTeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/useTeacherShareButton";
 import { useSaveUnits } from "@/node-lib/educator-api/helpers/saveUnits/useSaveUnits";
 import SavingSignedOutModal from "@/components/TeacherComponents/SavingSignedOutModal";
+import OakError from "@/errors/OakError";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -421,19 +422,46 @@ export const getStaticProps: GetStaticProps<
         throw new Error("no context.params");
       }
       const { programmeSlug, unitSlug } = context.params;
+
       if (!programmeSlug || !unitSlug) {
         throw new Error("unexpected context.params");
       }
-
-      const curriculumData = await curriculumApi2023.lessonListing({
-        programmeSlug,
-        unitSlug,
-      });
+      let curriculumData: LessonListingPageData | undefined;
+      try {
+        curriculumData = await curriculumApi2023.lessonListing({
+          programmeSlug,
+          unitSlug,
+        });
+      } catch (innerError) {
+        if (
+          innerError instanceof OakError &&
+          innerError.code === "curriculum-api/not-found"
+        ) {
+          // Let the lesson remain undefined, so the redirect logic below can run
+        } else {
+          // For other types of errors, rethrow
+          throw innerError;
+        }
+      }
 
       if (!curriculumData) {
-        return {
-          notFound: true,
-        };
+        const { browseUnitRedirectData: redirectData } =
+          await curriculumApi2023.browseUnitRedirectQuery({
+            incomingPath: `/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons`,
+          });
+        if (redirectData) {
+          return {
+            redirect: {
+              destination: `${redirectData.outgoingPath}`,
+              permanent: redirectData.redirectType == "301", // true = 308, false = 307
+              basePath: false, // Do not prepend the basePath
+            },
+          };
+        } else {
+          return {
+            notFound: true,
+          };
+        }
       }
 
       const results: GetStaticPropsResult<LessonListingPageProps> = {
