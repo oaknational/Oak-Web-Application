@@ -1,3 +1,10 @@
+# [1.800.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.799.0...v1.800.0) (2025-07-17)
+
+
+### Features
+
+* replace twitter with x logo in socialbuttons ([84b5e6d](https://github.com/oaknational/Oak-Web-Application/commit/84b5e6d7709cde49044523ac630df0d6fe077333))
+
 # [1.799.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.798.0...v1.799.0) (2025-07-17)
 
 
