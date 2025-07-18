@@ -484,8 +484,14 @@ export const LessonMedia = (props: LessonMediaProps) => {
           </OakTertiaryButton>
         )}
       </OakBox>
-      {showRestricted ? (
-        <RestrictedContentPrompt />
+      {showRestricted || showGeoBlocked ? (
+        <RestrictedContentPrompt
+          showGeoBlocked={showGeoBlocked}
+          programmeSlug={programmeSlug}
+          lessonSlug={lessonSlug}
+          unitSlug={unitSlug}
+          isCanonical={isCanonical}
+        />
       ) : (
         <>
           {listOfAllClips.length > 0 && currentClip && (
