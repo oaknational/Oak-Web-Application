@@ -1,3 +1,17 @@
+# [1.802.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.801.0...v1.802.0) (2025-07-18)
+
+
+### Features
+
+* add auth to unit download link creation behind ff ([9b97dee](https://github.com/oaknational/Oak-Web-Application/commit/9b97dee0300ed0bfb7644e9f65301fa611bc3b52))
+
+# [1.801.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.800.0...v1.801.0) (2025-07-18)
+
+
+### Features
+
+* hide lesson overview elements when geoblocked ([ec43b10](https://github.com/oaknational/Oak-Web-Application/commit/ec43b10742df5bf0b34d166459fdc110e26ceaf6))
+
 # [1.800.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.799.0...v1.800.0) (2025-07-17)
 
 
