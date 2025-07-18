@@ -1,4 +1,7 @@
-import { createLessonDownloadLink } from "./createDownloadLink";
+import {
+  createLessonDownloadLink,
+  createUnitDownloadLink,
+} from "./createDownloadLink";
 
 import OakError from "@/errors/OakError";
 
@@ -14,7 +17,7 @@ const successResponse = {
   ok: true,
 };
 
-describe("createDownloadResourcesLink()", () => {
+describe("createLessonDownloadLink()", () => {
   let downloadResourcesLink;
 
   beforeEach(() => {
@@ -181,5 +184,65 @@ describe("createDownloadResourcesLink()", () => {
         },
       }),
     );
+  });
+});
+
+describe("createUnitDownloadLink()", () => {
+  it("should set authentication header to false when flag disabled", async () => {
+    await createUnitDownloadLink({
+      unitFileId: "unitvariant-123",
+      authFlagEnabled: false,
+      getToken: jest.fn().mockResolvedValue(null),
+    });
+    expect(global.fetch).toHaveBeenCalledWith(
+      "https://mockdownloads.com/api/unit/unitvariant-123/download",
+      expect.objectContaining({
+        headers: {
+          "X-Should-Authenticate-Download": "false",
+        },
+      }),
+    );
+  });
+  it("should set authentication header to true when flag enabled", async () => {
+    const getToken = jest.fn().mockResolvedValue("testToken");
+    await createUnitDownloadLink({
+      unitFileId: "unitvariant-123",
+      authFlagEnabled: true,
+      getToken,
+    });
+    expect(global.fetch).toHaveBeenCalledWith(
+      "https://mockdownloads.com/api/unit/unitvariant-123/download",
+      expect.objectContaining({
+        headers: {
+          Authorization: "Bearer testToken",
+          "X-Should-Authenticate-Download": "true",
+        },
+      }),
+    );
+  });
+  it("should throw an error if response is not ok", async () => {
+    (global.fetch as jest.Mock).mockImplementationOnce(() =>
+      Promise.resolve({
+        ok: false,
+        json: () => Promise.resolve({ error: "Failed to fetch" }),
+      }),
+    );
+
+    await expect(async () => {
+      await createUnitDownloadLink({
+        unitFileId: "unitvariant-123",
+        authFlagEnabled: false,
+        getToken: jest.fn().mockResolvedValue(null),
+      });
+    }).rejects.toThrow();
+  });
+  it("should throw an error if authFlagEnabled is true and getToken returns null", async () => {
+    await expect(async () => {
+      await createUnitDownloadLink({
+        unitFileId: "unitvariant-123",
+        authFlagEnabled: true,
+        getToken: jest.fn().mockResolvedValue(null),
+      });
+    }).rejects.toThrow();
   });
 });
