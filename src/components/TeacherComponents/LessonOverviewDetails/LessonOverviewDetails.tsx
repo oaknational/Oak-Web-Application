@@ -55,6 +55,7 @@ type LessonOverviewDetailsProps = {
   subjectSlug: string | null | undefined;
   subjectParent: string | null | undefined;
   disablePupilLink?: boolean;
+  hideSeoHelper?: boolean;
 };
 
 const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
@@ -81,10 +82,12 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
   subjectParent,
   subjectSlug,
   disablePupilLink,
+  hideSeoHelper,
 }) => {
   const { lessonSlug, unitSlug, programmeSlug } = slugs;
   const showLessonHelperAccordion =
     !isLegacyLicense &&
+    !hideSeoHelper &&
     subject &&
     unit &&
     year &&
