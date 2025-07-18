@@ -1,3 +1,45 @@
+# [1.803.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.802.0...v1.803.0) (2025-07-18)
+
+
+### Features
+
+* add GitHub PR auto-labeler config to workflow ([703f63f](https://github.com/oaknational/Oak-Web-Application/commit/703f63fe842c1fb90c35730073aed931e1290af7))
+
+# [1.802.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.801.0...v1.802.0) (2025-07-18)
+
+
+### Features
+
+* add auth to unit download link creation behind ff ([9b97dee](https://github.com/oaknational/Oak-Web-Application/commit/9b97dee0300ed0bfb7644e9f65301fa611bc3b52))
+
+# [1.801.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.800.0...v1.801.0) (2025-07-18)
+
+
+### Features
+
+* hide lesson overview elements when geoblocked ([ec43b10](https://github.com/oaknational/Oak-Web-Application/commit/ec43b10742df5bf0b34d166459fdc110e26ceaf6))
+
+# [1.800.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.799.0...v1.800.0) (2025-07-17)
+
+
+### Features
+
+* replace twitter with x logo in socialbuttons ([84b5e6d](https://github.com/oaknational/Oak-Web-Application/commit/84b5e6d7709cde49044523ac630df0d6fe077333))
+
+# [1.799.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.798.0...v1.799.0) (2025-07-17)
+
+
+### Features
+
+* point to upgraded sanity branch ([a39c700](https://github.com/oaknational/Oak-Web-Application/commit/a39c7003ec86e1c02f60774093d1deedd18be551))
+
+# [1.798.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.797.0...v1.798.0) (2025-07-17)
+
+
+### Features
+
+* use copyright restrictions feature flag to set auth header in useResourceFormSubmit ([21d864c](https://github.com/oaknational/Oak-Web-Application/commit/21d864c1be9c643a32676fef4d666559bb4d65ae))
+
 # [1.797.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.796.0...v1.797.0) (2025-07-16)
 
 
