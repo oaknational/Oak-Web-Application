@@ -14,7 +14,7 @@ const FlexWithMaxWidth = styled(OakFlex)`
   max-width: 600px;
 `;
 
-export function RestrictedSignInPrompt() {
+export function RestrictedContentPrompt() {
   return (
     <OakFlex
       $flexDirection={"column"}

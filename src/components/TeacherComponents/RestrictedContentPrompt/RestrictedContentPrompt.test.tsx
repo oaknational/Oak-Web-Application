@@ -1,14 +1,14 @@
 import { screen } from "@testing-library/react";
 
-import { RestrictedSignInPrompt } from "./RestrictedSignInPrompt";
+import { RestrictedContentPrompt } from "./RestrictedContentPrompt";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
 
-describe("RestrictedSignInPrompt", () => {
+describe("RestrictedContentPrompt", () => {
   it("renders the component", () => {
-    render(<RestrictedSignInPrompt />);
+    render(<RestrictedContentPrompt />);
 
     expect(
       screen.getByRole("heading", { name: "Sign in to continue" }),

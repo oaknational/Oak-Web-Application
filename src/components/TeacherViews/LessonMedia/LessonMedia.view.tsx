@@ -39,7 +39,7 @@ import {
   joinTranscript,
   createLearningCycleVideosTitleMap,
 } from "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers";
-import { RestrictedSignInPrompt } from "@/components/TeacherComponents/RestrictedSignInPrompt/RestrictedSignInPrompt";
+import { RestrictedContentPrompt } from "@/components/TeacherComponents/RestrictedContentPrompt/RestrictedContentPrompt";
 import { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 import {
   KeyStageTitleValueType,
@@ -485,7 +485,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
         )}
       </OakBox>
       {showRestricted ? (
-        <RestrictedSignInPrompt />
+        <RestrictedContentPrompt />
       ) : (
         <>
           {listOfAllClips.length > 0 && currentClip && (
