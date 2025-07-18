@@ -62,7 +62,7 @@ import LessonOverviewMediaClips, {
 import LessonOverviewDocPresentation from "@/components/TeacherComponents/LessonOverviewDocPresentation";
 import { TeacherNoteInline } from "@/components/TeacherComponents/TeacherNoteInline/TeacherNoteInline";
 import LessonOverviewSideNavAnchorLinks from "@/components/TeacherComponents/LessonOverviewSideNavAnchorLinks";
-import { RestrictedSignInPrompt } from "@/components/TeacherComponents/RestrictedSignInPrompt/RestrictedSignInPrompt";
+import { RestrictedContentPrompt } from "@/components/TeacherComponents/RestrictedContentPrompt/RestrictedContentPrompt";
 import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
 
 export type LessonOverviewProps = {
@@ -815,7 +815,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
             id="restricted-content"
             ref={restrictedContentRef}
           />
-          <RestrictedSignInPrompt />
+          <RestrictedContentPrompt />
         </OakBox>
       )}
     </MathJaxLessonProvider>

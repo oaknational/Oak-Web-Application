@@ -39,7 +39,7 @@ import {
   joinTranscript,
   createLearningCycleVideosTitleMap,
 } from "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers";
-import { RestrictedSignInPrompt } from "@/components/TeacherComponents/RestrictedSignInPrompt/RestrictedSignInPrompt";
+import { RestrictedContentPrompt } from "@/components/TeacherComponents/RestrictedContentPrompt/RestrictedContentPrompt";
 import { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 import {
   KeyStageTitleValueType,
@@ -484,8 +484,14 @@ export const LessonMedia = (props: LessonMediaProps) => {
           </OakTertiaryButton>
         )}
       </OakBox>
-      {showRestricted ? (
-        <RestrictedSignInPrompt />
+      {showRestricted || showGeoBlocked ? (
+        <RestrictedContentPrompt
+          showGeoBlocked={showGeoBlocked}
+          programmeSlug={programmeSlug}
+          lessonSlug={lessonSlug}
+          unitSlug={unitSlug}
+          isCanonical={isCanonical}
+        />
       ) : (
         <>
           {listOfAllClips.length > 0 && currentClip && (

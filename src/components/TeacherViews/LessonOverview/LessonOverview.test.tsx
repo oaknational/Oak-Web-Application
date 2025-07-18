@@ -311,8 +311,8 @@ describe("lessonOverview.view", () => {
         isBeta={false}
       />,
     );
-    const restrictedSignInPrompt = getByText("Sign in to continue");
-    expect(restrictedSignInPrompt).toBeInTheDocument();
+    const restrictedContentPrompt = getByText("Sign in to continue");
+    expect(restrictedContentPrompt).toBeInTheDocument();
   });
   it("Should hide restricted content when sign in prompt is shown", () => {
     mockFeatureFlagEnabled.mockReturnValue(true);
@@ -382,8 +382,8 @@ describe("lessonOverview.view", () => {
         isBeta={false}
       />,
     );
-    const restrictedSignInPrompt = queryByText("Sign in to continue");
-    expect(restrictedSignInPrompt).not.toBeInTheDocument();
+    const restrictedContentPrompt = queryByText("Sign in to continue");
+    expect(restrictedContentPrompt).not.toBeInTheDocument();
     const quizContent = getAllByText(
       "Which of these statements about trees is true?",
     );
