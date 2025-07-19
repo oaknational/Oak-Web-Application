@@ -1,3 +1,10 @@
+# [1.803.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.802.0...v1.803.0) (2025-07-18)
+
+
+### Features
+
+* add GitHub PR auto-labeler config to workflow ([703f63f](https://github.com/oaknational/Oak-Web-Application/commit/703f63fe842c1fb90c35730073aed931e1290af7))
+
 # [1.802.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.801.0...v1.802.0) (2025-07-18)
 
 
