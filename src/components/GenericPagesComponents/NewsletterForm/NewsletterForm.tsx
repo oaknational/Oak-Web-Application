@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { OakP } from "@oaknational/oak-components";
+import { OakP, OakPrimaryButton } from "@oaknational/oak-components";
 
 import Input from "@/components/SharedComponents/Input";
 import OakError from "@/errors/OakError";
@@ -14,7 +14,6 @@ import {
   USER_ROLES,
   UserRole,
 } from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
-import Button from "@/components/SharedComponents/Button";
 
 const reportError = errorReporter("NewsletterForm.tsx");
 
@@ -131,13 +130,13 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
         {...register("userRole")}
         error={errors.userRole?.message}
       />
-      <Button
-        $mt={24}
-        label="Sign up to the newsletter"
-        $fullWidth
-        htmlButtonProps={{ disabled: loading }}
-        background="black"
-      />
+      <OakPrimaryButton
+        $mt="space-between-m"
+        width={"100%"}
+        isLoading={loading}
+      >
+        Sign up to the newsletter
+      </OakPrimaryButton>
       <OakP
         $mt={error ? "space-between-s" : "space-between-none"}
         $font={"body-3"}
