@@ -1,4 +1,4 @@
-import { ChangeEvent, FC } from "react";
+import { ChangeEvent, FC, useState } from "react";
 import {
   Control,
   Controller,
@@ -12,10 +12,12 @@ import {
   OakP,
   OakBox,
   OakLink,
+  OakTextInput,
+  OakJauntyAngleLabel,
+  OakFieldError,
 } from "@oaknational/oak-components";
 
 import FieldError from "@/components/SharedComponents/FieldError";
-import Input from "@/components/SharedComponents/Input";
 import ResourcePageDetailsCompleted from "@/components/TeacherComponents/ResourcePageDetailsCompleted";
 import ResourcePageSchoolDetails from "@/components/TeacherComponents/ResourcePageSchoolDetails";
 import ResourcePageTermsAndConditionsCheckbox from "@/components/TeacherComponents/ResourcePageTermsAndConditionsCheckbox";
@@ -53,6 +55,9 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
   showPostAlbCopyright = true,
   copyrightYear,
 }) => {
+  const [emailHasFocus, setEmailHasFocus] = useState(false);
+  const { ref, ...emailProps } = form.register("email");
+
   return (
     <>
       <OakHeading
@@ -93,18 +98,54 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                     : undefined
                 }
               />
-
-              <Input
-                id={"email"}
-                data-testid="inputEmail"
-                label="Email"
-                autoComplete="email"
-                placeholder="Enter email address here"
-                isOptional={true}
-                {...form.register("email")}
-                error={form.errors?.email?.message}
-                $mb={12}
-              />
+              <OakFlex $position="relative" $flexDirection="column" ref={ref}>
+                {form.errors?.email && (
+                  <OakBox
+                    id={form.errors?.email.message}
+                    role="alert"
+                    $mv="space-between-s"
+                  >
+                    <OakFieldError>{form.errors?.email.message}</OakFieldError>
+                  </OakBox>
+                )}
+                <OakJauntyAngleLabel
+                  label={"Email (optional)"}
+                  $color={
+                    form.errors?.email || emailHasFocus ? "white" : "black"
+                  }
+                  htmlFor={"email"}
+                  id={"email-label"}
+                  $font={"heading-7"}
+                  $background={
+                    form.errors?.email
+                      ? "red"
+                      : emailHasFocus
+                        ? "blue"
+                        : "lemon"
+                  }
+                  $zIndex="in-front"
+                  $position="absolute"
+                  $top={"-20px"}
+                  $left={"5px"}
+                  $borderRadius="border-radius-square"
+                  data-testid="jaunty-label"
+                />
+                <OakTextInput
+                  id={"email"}
+                  {...emailProps}
+                  data-testid="inputEmail"
+                  autoComplete="email"
+                  placeholder="Enter email address here"
+                  onFocus={() => setEmailHasFocus(true)}
+                  onBlur={(e) => {
+                    emailProps.onBlur(e);
+                    setEmailHasFocus(false);
+                  }}
+                  $pv="inner-padding-none"
+                  wrapperWidth="100%"
+                  $height="all-spacing-10"
+                />
+              </OakFlex>
               <OakBox
                 $font="body-3"
                 $mb={"space-between-l"}
