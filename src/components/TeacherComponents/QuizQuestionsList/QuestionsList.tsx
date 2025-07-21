@@ -13,7 +13,7 @@ const QuestionsList: FC<QuizQuestionListProps> = (props) => {
   return (
     <OakMaxWidth
       $maxWidth={["all-spacing-20", "all-spacing-21", "all-spacing-22"]}
-      $ph={"inner-padding-s"}
+      $ph={"inner-padding-ssx"}
       $pv={"inner-padding-xl5"}
       $gap={"all-spacing-8"}
     >
