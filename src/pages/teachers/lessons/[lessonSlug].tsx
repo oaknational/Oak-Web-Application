@@ -5,6 +5,7 @@ import {
 } from "next";
 import {
   OakFlex,
+  OakMaxWidth,
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
@@ -17,7 +18,6 @@ import {
 } from "@/node-lib/isr";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { LessonAppearsIn } from "@/components/TeacherComponents/LessonAppearsIn";
 import { groupLessonPathways } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
@@ -94,9 +94,9 @@ export default function LessonOverviewCanonicalPage({
         />
         {!isSpecialist && (
           <OakFlex $background={"pink50"} $width={"100%"}>
-            <MaxWidth $pv={96}>
+            <OakMaxWidth $pv="inner-padding-xl8">
               <LessonAppearsIn headingTag="h2" {...pathwayGroups} />
-            </MaxWidth>
+            </OakMaxWidth>
           </OakFlex>
         )}
         {teacherNote && isEditable && (

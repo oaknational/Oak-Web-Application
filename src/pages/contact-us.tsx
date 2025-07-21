@@ -5,12 +5,16 @@ import {
   MissingComponentHandler,
   PortableTextComponents,
 } from "@portabletext/react";
-import { OakHeading, OakP, OakFlex } from "@oaknational/oak-components";
+import {
+  OakHeading,
+  OakP,
+  OakFlex,
+  OakMaxWidth,
+} from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { ContactPage } from "@/common-lib/cms-types";
 import Layout from "@/components/AppComponents/Layout";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Card from "@/components/SharedComponents/Card";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import SummaryCard from "@/components/SharedComponents/Card/SummaryCard";
@@ -75,7 +79,10 @@ const ContactUs: NextPage<ContactPageProps> = ({ pageData }) => {
 
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
-      <MaxWidth $pt={[72, 80]} $pb={[64, 92]}>
+      <OakMaxWidth
+        $pt={["inner-padding-xl7", "inner-padding-xl8"]}
+        $pb={["inner-padding-xl6", "inner-padding-xl8"]}
+      >
         <SummaryCard {...pageData} />
         <Card
           $justifyContent={"space-between"}
@@ -111,7 +118,7 @@ const ContactUs: NextPage<ContactPageProps> = ({ pageData }) => {
           {...newsletterFormProps}
           containerProps={{ $display: ["flex", "none"], $mt: 32 }}
         />
-      </MaxWidth>
+      </OakMaxWidth>
     </Layout>
   );
 };
