@@ -5,18 +5,16 @@ import {
 } from "@react-stately/combobox";
 import { useFilter } from "@react-aria/i18n";
 import { useComboBox } from "react-aria";
-import { OakFlex, OakSpan } from "@oaknational/oak-components";
+import {
+  OakColorToken,
+  OakFlex,
+  OakJauntyAngleLabel,
+  OakTextInput,
+} from "@oaknational/oak-components";
 
 import { Popover } from "@/components/SharedComponents/Popover";
 import { ListBox } from "@/components/SharedComponents/ListBox";
-import {
-  RotatedInputLabel,
-  StyledInput,
-} from "@/components/SharedComponents/Input/Input";
-import { DropdownFocusUnderline } from "@/components/GenericPagesComponents/Select/Select";
 import { School } from "@/components/TeacherComponents/ResourcePageSchoolPicker";
-import { OakColorName } from "@/styles/theme/types";
-import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 
 // Reuse the ListBox and Popover from your component library. See below for details.
 
@@ -26,6 +24,7 @@ const ResourcePageSearchComboBox = <T extends School>(
     required?: boolean;
     errorId?: string;
     withHomeschool: boolean;
+    label: string;
   },
 ) => {
   // Setup filter function and state.
@@ -58,7 +57,7 @@ const ResourcePageSearchComboBox = <T extends School>(
   const id = useId();
   const labelId = useId();
 
-  let labelBackground: OakColorName;
+  let labelBackground: OakColorToken;
 
   if (state.isFocused) {
     labelBackground = "blue";
@@ -70,32 +69,23 @@ const ResourcePageSearchComboBox = <T extends School>(
 
   return (
     <OakFlex $width={"100%"} $position={"relative"} $display={"inline-block"}>
-      <OakFlex $width={"100%"} $position={"relative"}>
-        <BoxBorders gapPosition="rightTop" />
-        <OakFlex $position={"absolute"}>
-          <RotatedInputLabel
-            {...labelProps}
-            aria-hidden="true"
-            color={state.isFocused || hasError ? "white" : "black"}
-            htmlFor={id}
-            id={labelId}
-            $font={"heading-7"}
-            background={labelBackground}
-          >
-            {required ? (
-              <OakSpan>
-                {props.label}{" "}
-                <OakSpan $font={"heading-light-7"}>(required)</OakSpan>
-              </OakSpan>
-            ) : (
-              props.label
-            )}
-          </RotatedInputLabel>
-        </OakFlex>
+      <OakFlex $width={"100%"} $position={"relative"} ref={inputRef}>
+        <OakJauntyAngleLabel
+          label={props.label + (props.required ? " (required)" : "")}
+          $color={state.isFocused || hasError ? "white" : "black"}
+          htmlFor={id}
+          id={labelId}
+          $font={"heading-7"}
+          $background={labelBackground}
+          $zIndex="in-front"
+          $position="absolute"
+          $top={"-20px"}
+          $left={"5px"}
+          $borderRadius="border-radius-square"
+        />
 
-        <StyledInput
+        <OakTextInput
           {...inputProps}
-          ref={inputRef}
           value={String(inputProps.value)}
           id={id}
           aria-labelledby={labelId}
@@ -108,13 +98,12 @@ const ResourcePageSearchComboBox = <T extends School>(
           aria-describedby={props.errorId ? props.errorId : undefined}
           required={required}
           aria-invalid={hasError}
-        />
-        <DropdownFocusUnderline
-          isFocusVisible={state.isFocused}
-          aria-hidden="true"
-          name={"underline-1"}
-          $font={"body-3"}
-        />
+          defaultValue={props.defaultInputValue}
+          wrapperWidth={"100%"}
+          $pv="inner-padding-none"
+          $height="all-spacing-10"
+          color="black"
+         />
       </OakFlex>
 
       {state.isOpen && (
