@@ -28,14 +28,21 @@ export const SchoolSelectionView = () => {
   const [activeView, setActiveView] =
     useState<SchoolSelectionView>("school-picker");
 
-  const { formState, setValue, handleSubmit, control, trigger, reset } =
-    useForm<SchoolSelectFormProps>({
-      resolver: zodResolver(schoolSelectFormSchema),
-      mode: "onBlur",
-      defaultValues: {
-        newsletterSignUp: false,
-      },
-    });
+  const {
+    formState,
+    setValue,
+    handleSubmit,
+    control,
+    trigger,
+    reset,
+    register,
+  } = useForm<SchoolSelectFormProps>({
+    resolver: zodResolver(schoolSelectFormSchema),
+    mode: "onBlur",
+    defaultValues: {
+      newsletterSignUp: false,
+    },
+  });
 
   const setSchoolDetailsInManualForm = useCallback(
     (isSchoolName: boolean, value: string) => {
@@ -158,6 +165,7 @@ export const SchoolSelectionView = () => {
             control={control}
             onSelectFromDropdown={() => setActiveView("school-picker")}
             reset={reset}
+            register={register}
           />
         )}
       </OnboardingForm>
