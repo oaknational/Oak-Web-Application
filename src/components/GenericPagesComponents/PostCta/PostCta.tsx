@@ -1,9 +1,8 @@
 import { PortableTextComponentProps } from "@portabletext/react";
+import { OakBox, OakPrimaryButton } from "@oaknational/oak-components";
 
 import { CTA } from "../../../common-lib/cms-types";
 import { getLinkHref } from "../../../utils/portableText/resolveInternalHref";
-
-import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 
 const PostCta = (props: PortableTextComponentProps<CTA>) => {
   if (!props.value) {
@@ -12,13 +11,15 @@ const PostCta = (props: PortableTextComponentProps<CTA>) => {
   const cta = props.value;
 
   return (
-    <ButtonAsLink
-      $mt={20}
-      page={null}
-      label={cta.label}
-      href={getLinkHref(cta)}
-      background={"blue"}
-    />
+    <OakBox $mt="space-between-s">
+      <OakPrimaryButton
+        element="a"
+        href={getLinkHref(cta)}
+        // background={"blue"}
+      >
+        {cta.label}
+      </OakPrimaryButton>
+    </OakBox>
   );
 };
 
