@@ -1,9 +1,8 @@
 import React, { FC } from "react";
-import { OakHeading, OakFlex } from "@oaknational/oak-components";
+import { OakHeading, OakFlex, OakMaxWidth } from "@oaknational/oak-components";
 
 import { QuizProps } from "@/components/TeacherComponents/LessonOverviewQuizContainer/LessonOverviewQuizContainer";
 import QuizQuestionsListItem from "@/components/TeacherComponents/QuizQuestionsListItem";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 
 export type QuizQuestionListProps = QuizProps & { isMathJaxLesson: boolean };
 
@@ -12,7 +11,12 @@ const QuestionsList: FC<QuizQuestionListProps> = (props) => {
   const questionCount = questions.length;
 
   return (
-    <MaxWidth $maxWidth={[360, 580, 720]} $ph={10} $pv={56} $gap={40}>
+    <OakMaxWidth
+      $maxWidth={["all-spacing-20", "all-spacing-21", "all-spacing-22"]}
+      $ph={"inner-padding-s"}
+      $pv={"inner-padding-xl5"}
+      $gap={"all-spacing-8"}
+    >
       <OakHeading $font={"heading-5"} tag={"h3"}>
         {questionCount} Questions
       </OakHeading>
@@ -29,7 +33,7 @@ const QuestionsList: FC<QuizQuestionListProps> = (props) => {
           );
         })}
       </OakFlex>
-    </MaxWidth>
+    </OakMaxWidth>
   );
 };
 
