@@ -1,25 +1,26 @@
-import { FC } from "react";
+import { ComponentProps, FC } from "react";
 import {
   OakFlex,
   OakHeading,
   OakP,
   OakIcon,
   OakBox,
+  OakTertiaryButton,
 } from "@oaknational/oak-components";
 
 import Box from "@/components/SharedComponents/Box";
-import Button, { ButtonProps } from "@/components/SharedComponents/Button";
 
 type SuccessMessageProps = {
   title: string;
   message: string;
-  buttonProps: Exclude<ButtonProps, "varient" | "icon" | "size">;
+  buttonProps: ComponentProps<typeof OakTertiaryButton> & { label: string };
 };
 const SuccessMessage: FC<SuccessMessageProps> = ({
   title,
   message,
   buttonProps,
 }) => {
+  const { label: buttonLabel, ...buttonPropsWithoutLabel } = buttonProps;
   return (
     <OakBox
       $maxWidth="all-spacing-24"
@@ -55,15 +56,15 @@ const SuccessMessage: FC<SuccessMessageProps> = ({
           $flexShrink={1}
           $flexGrow={1}
         >
-          <OakP>
-            <Button
-              {...buttonProps}
-              variant={"buttonStyledAsLink"}
-              icon="chevron-left"
+          <OakBox>
+            <OakTertiaryButton
+              {...buttonPropsWithoutLabel}
+              iconName="chevron-left"
               data-testid="back-to-downloads-link"
-              size="small"
-            />
-          </OakP>
+            >
+              {buttonLabel}
+            </OakTertiaryButton>
+          </OakBox>
           <OakHeading tag="h2" $font={["heading-4"]}>
             {title}
           </OakHeading>
