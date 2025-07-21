@@ -102,6 +102,7 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
       $width={"100%"}
       {...boxProps}
     >
+      {/* TODO: replace with OakInputWithLabel when we have a corresponding Select component to replace DropdownSelect */}
       <Input
         id={`${id}-newsletter-signup-name`}
         label="Name"
