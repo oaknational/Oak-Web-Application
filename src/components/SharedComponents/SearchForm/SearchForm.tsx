@@ -6,12 +6,12 @@ import {
   FormEventHandler,
 } from "react";
 import styled from "styled-components";
-
 import {
   OakFlex,
   OakPrimaryButton,
   OakTextInput,
 } from "@oaknational/oak-components";
+
 import flex, { FlexCssProps } from "@/styles/utils/flex";
 import spacing, { SpacingProps } from "@/styles/utils/spacing";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -87,6 +87,7 @@ const SearchForm: FC<SearchFormProps> = (props) => {
           pv="inner-padding-m"
           width="min-content"
           iconGap="all-spacing-0"
+          aria-label="submit"
         />
       </OakFlex>
     </StyledForm>
