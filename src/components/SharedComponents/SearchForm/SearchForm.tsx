@@ -7,12 +7,15 @@ import {
 } from "react";
 import styled from "styled-components";
 
-import { OakFlex, OakTextInput } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakPrimaryButton,
+  OakTextInput,
+} from "@oaknational/oak-components";
 import flex, { FlexCssProps } from "@/styles/utils/flex";
 import spacing, { SpacingProps } from "@/styles/utils/spacing";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { ContextValueType, SearchSourceValueType } from "@/browser-lib/avo/Avo";
-import Button from "@/components/SharedComponents/Button";
 
 const StyledForm = styled.form<FlexCssProps & SpacingProps>`
   ${flex}
@@ -79,16 +82,11 @@ const SearchForm: FC<SearchFormProps> = (props) => {
           $pv="inner-padding-none"
           $height="all-spacing-10"
         />
-
-        <Button
-          icon="search"
-          label="Search"
-          shouldHideLabel={[true]}
-          iconBackground="black"
-          aria-label="Submit"
-          htmlButtonProps={{ type: "submit" }}
-          size={"large"}
-          $ml={20}
+        <OakPrimaryButton
+          iconName="search"
+          pv="inner-padding-m"
+          width="min-content"
+          iconGap="all-spacing-0"
         />
       </OakFlex>
     </StyledForm>
