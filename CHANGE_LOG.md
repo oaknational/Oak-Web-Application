@@ -1,3 +1,10 @@
+# [1.805.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.804.0...v1.805.0) (2025-07-21)
+
+
+### Features
+
+* set override_url for prod ([c04e4ef](https://github.com/oaknational/Oak-Web-Application/commit/c04e4ef8d578e6307de49f83e0c9d3b55929c0c1))
+
 # [1.804.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.803.1...v1.804.0) (2025-07-21)
 
 
