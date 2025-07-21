@@ -2,7 +2,7 @@ locals {
   required_env_keys = {
     website = {
       shared  = ["NEXT_PUBLIC_CLERK_SIGN_IN_URL", "NEXT_PUBLIC_CLERK_SIGN_UP_URL"]
-      prod    = ["OAK_CONFIG_LOCATION"]
+      prod    = ["OAK_CONFIG_LOCATION", "OVERRIDE_URL"]
       preview = ["OAK_CONFIG_LOCATION"]
     }
     storybook = {
