@@ -1,3 +1,10 @@
+## [1.803.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.803.0...v1.803.1) (2025-07-21)
+
+
+### Bug Fixes
+
+* add owa.thenational.academy as allowed origin for server actions ([90b02e9](https://github.com/oaknational/Oak-Web-Application/commit/90b02e94af0d48040be8a3e413a417499c983fb2))
+
 # [1.803.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.802.0...v1.803.0) (2025-07-18)
 
 
