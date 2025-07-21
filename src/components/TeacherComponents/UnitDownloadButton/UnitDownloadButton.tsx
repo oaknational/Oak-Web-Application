@@ -1,4 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
+import { useFeatureFlagEnabled } from "posthog-js/react";
+import { useAuth } from "@clerk/nextjs";
 
 import useUnitDownloadExistenceCheck from "../hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
 import LoginRequiredButton from "../LoginRequiredButton/LoginRequiredButton";
@@ -39,6 +41,10 @@ export type UnitDownloadButtonProps = {
 
 export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
   const { unitFileId, showNewTag, georestricted } = props;
+  const authFlagEnabled = useFeatureFlagEnabled(
+    "teachers-copyright-restrictions",
+  );
+  const auth = useAuth();
 
   const {
     onDownloadSuccess,
@@ -60,6 +66,8 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
       setDownloadError(false);
       const downloadLink = await createUnitDownloadLink({
         unitFileId,
+        authFlagEnabled,
+        getToken: auth.getToken,
       });
 
       if (downloadLink) {

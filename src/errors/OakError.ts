@@ -31,6 +31,7 @@ const ERROR_CODES = [
   "urls/failed-to-resolve",
   "downloads/failed-to-fetch",
   "downloads/check-files-failed",
+  "downloads/missing-auth-token",
   "onboarding/request-error",
   "oak-components/invalid-icon-name",
   "educator-api/failed-to-save-unit",
@@ -172,6 +173,10 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "downloads/check-files-failed": {
     message: "Failed to check file existence",
+    shouldNotify: true,
+  },
+  "downloads/missing-auth-token": {
+    message: "Missing auth token for download",
     shouldNotify: true,
   },
   "onboarding/request-error": {

@@ -8,6 +8,13 @@ locals {
       framework       = "nextjs"
       ignore_command  = "if [ \"$VERCEL_GIT_COMMIT_REF\" = \"feat/eng-1145-vercel-migration\" ]; then exit 1; else exit 0; fi"
       skew_protection = "7 days"
+
+      custom_environments = [
+        {
+          name   = "staging"
+          domain = "staging.thenational.academy"
+        }
+      ]
     },
     storybook = {
       description      = "Oak Web Application Storybook"
