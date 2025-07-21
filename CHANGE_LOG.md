@@ -1,3 +1,11 @@
+# [1.804.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.803.1...v1.804.0) (2025-07-21)
+
+
+### Features
+
+* adds OWA-staging custom environment ([4f64fdd](https://github.com/oaknational/Oak-Web-Application/commit/4f64fddf656b7c85b4191d3df77cf96df1a786a0))
+* remove hardcoded org name ([86c6f43](https://github.com/oaknational/Oak-Web-Application/commit/86c6f4316c156e562cf3c6297c47116899d4ce68))
+
 ## [1.803.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.803.0...v1.803.1) (2025-07-21)
 
 
