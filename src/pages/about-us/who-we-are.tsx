@@ -9,6 +9,7 @@ import {
   OakTypography,
   OakHeading,
   OakBox,
+  OakPrimaryButton,
 } from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
@@ -17,7 +18,6 @@ import { decorateWithIsr } from "@/node-lib/isr";
 import Layout from "@/components/AppComponents/Layout";
 import Card from "@/components/SharedComponents/Card";
 import Box from "@/components/SharedComponents/Box";
-import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import OutlineHeading from "@/components/SharedComponents/OutlineHeading";
 import GenericContactCard from "@/components/GenericPagesComponents/GenericContactCard";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
@@ -58,15 +58,15 @@ const TimeLineCard: FC<TimeLineProps> = ({
             <PortableTextWithDefaults value={bodyPortableText} />
           </OakTypography>
           {cta && (
-            <OakFlex>
-              <ButtonAsLink
-                $mt={[36]}
-                icon={"arrow-right"}
-                $iconPosition={"trailing"}
-                label={cta.label}
-                page={null}
+            <OakFlex $alignItems={"center"} $mt={"space-between-m2"}>
+              <OakPrimaryButton
+                iconName={"arrow-right"}
+                isTrailingIcon={true}
                 href={getLinkHref(cta)}
-              />
+                element="a"
+              >
+                {cta.label}
+              </OakPrimaryButton>
             </OakFlex>
           )}
         </OakGridArea>
@@ -126,13 +126,14 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
                 </OakTypography>
                 <OakFlex $justifyContent={"flex-start"}>
                   {pageData.intro.cta && (
-                    <ButtonAsLink
-                      icon={"arrow-right"}
-                      $iconPosition="trailing"
-                      label={pageData.intro.cta.label}
-                      page={null}
+                    <OakPrimaryButton
+                      iconName={"arrow-right"}
+                      isTrailingIcon={true}
+                      element="a"
                       href={getLinkHref(pageData.intro.cta)}
-                    />
+                    >
+                      {pageData.intro.cta.label}
+                    </OakPrimaryButton>
                   )}
                 </OakFlex>
               </Box>
