@@ -21,6 +21,7 @@ variable "env_vars" {
     }))
     prod = optional(object({
       OAK_CONFIG_LOCATION = optional(string)
+      OVERRIDE_URL        = optional(string)
     }))
     preview = optional(object({
       OAK_CONFIG_LOCATION             = optional(string)
