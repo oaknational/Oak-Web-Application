@@ -6,5 +6,6 @@ export const ServicePolicyMap = {
   POSTHOG: "statistics",
   GLEAP: "statistics",
   BUGSNAG: "statistics",
+  // SENTRY: "statistics",
   HUBSPOT: "statistics",
 } as const;

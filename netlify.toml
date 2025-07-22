@@ -1,5 +1,5 @@
-[[plugins]]
-package = "./netlify/plugins/github-deployments"
+# [[plugins]]
+# package = "./netlify/plugins/github-deployments"
 
 # Force all access through the managed TLD (default). HTTP
 [[redirects]]

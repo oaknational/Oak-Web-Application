@@ -1,1 +1,3 @@
-export { default, initialiseBugsnag } from "./errorReporter";
+export { default } from "./errorReporter";
+export { initialiseBugsnag } from "./bugsnag";
+export { initialiseSentry } from "./sentry";
