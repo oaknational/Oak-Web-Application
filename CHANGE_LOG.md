@@ -1,3 +1,31 @@
+# [1.806.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.805.0...v1.806.0) (2025-07-22)
+
+
+### Bug Fixes
+
+* actually include both in exclude ([4b3fe1e](https://github.com/oaknational/Oak-Web-Application/commit/4b3fe1e848a26a93746befdcc8f622dfb71b50bd))
+* added VERCEL_BRANCH_URL as fallback for NEXT_PUBLIC_CLIENT_APP_BASE_URL ([80d9797](https://github.com/oaknational/Oak-Web-Application/commit/80d979701812b831ca6af1bdaaa4ebb64c56adb0))
+* also exclude storybook environments ([42e573c](https://github.com/oaknational/Oak-Web-Application/commit/42e573c37dcea14fb2f9844d093d18f6e782b910))
+* attempt to fix vercel builds 'npm install --cpu=x64 --os=linux esbuild' ([af18cbc](https://github.com/oaknational/Oak-Web-Application/commit/af18cbcb71280469162abf3665df4ce8ea6d78c7))
+* check environment isn't storybook-console ([cfda0be](https://github.com/oaknational/Oak-Web-Application/commit/cfda0beb55d915dec025f911f31d58c21c85cd48))
+* correct location for netlify files to be excluded from coverage ([1f19942](https://github.com/oaknational/Oak-Web-Application/commit/1f19942aeba9e9b375b9c769eb81b0ca0b880bcf))
+* disable ./netlify/plugins/github-deployments (no longer exists) ([70e7dcc](https://github.com/oaknational/Oak-Web-Application/commit/70e7dcc877a9ce8f0fc14ef6b6590c7767519c98))
+* remove ./netlify/plugins/github-deployments so to not set environment_url twice ([b9b09e1](https://github.com/oaknational/Oak-Web-Application/commit/b9b09e11b504b82bbb4d59cd710a91336a09015d))
+* remove old values from NEXT_PUBLIC_CLIENT_APP_BASE_URL ([47c83c9](https://github.com/oaknational/Oak-Web-Application/commit/47c83c9a3f4fb6d14f4356170287c035a49d7e3e))
+* remove stub error ([3eb1bbe](https://github.com/oaknational/Oak-Web-Application/commit/3eb1bbe66171228e80a0efe78f957c847942d0c5))
+* revert storybook env filter change ([98b2460](https://github.com/oaknational/Oak-Web-Application/commit/98b2460e312a851b438373388350b84cdfa50363))
+* sentry error boundry fixes ([5868e81](https://github.com/oaknational/Oak-Web-Application/commit/5868e81d3a1eaf280463ec7c54b3424a9fcaf279))
+* type in deployment actions yaml ([650b8c7](https://github.com/oaknational/Oak-Web-Application/commit/650b8c7b61f7d77f984ab5b3469c01ffa92a6d98))
+* unskip and resolve lesson planning and listing tests ([7c2b58c](https://github.com/oaknational/Oak-Web-Application/commit/7c2b58c58f9c88fd020cdae10fd16286a8af9d01))
+
+
+### Features
+
+* added logs for vercel to datadog as part of terraform config ([4606f8d](https://github.com/oaknational/Oak-Web-Application/commit/4606f8d7d364a9942d42d2f0c5ffceaf1081a261))
+* added timeout monitor for Vercel like existing Netlify, made monitor names clearer on source ([20ee3f7](https://github.com/oaknational/Oak-Web-Application/commit/20ee3f745904599be6fa3f7b676ecdefc2835821))
+* push changes ([fd30a45](https://github.com/oaknational/Oak-Web-Application/commit/fd30a451f498e3f6a1dc15fbdf08ce49e4ad5e0a))
+* reinstate netlify folder and contents for ([472ec74](https://github.com/oaknational/Oak-Web-Application/commit/472ec747c7c64c21a71d76a00daf92edc32aa16d))
+
 # [1.805.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.804.0...v1.805.0) (2025-07-21)
 
 
