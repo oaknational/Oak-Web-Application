@@ -43,7 +43,7 @@ export const SpecialistLessonPage: Story = {
         "https://docs.google.com/presentation/d/18ZFU8gdczMK9U3XxmC5mN9GLN7yigCQvbSX1E0SR0WU/embed?start=false&amp;loop=false&amp",
       worksheetUrl: null,
       isWorksheetLandscape: true,
-      hasCopyrightMaterial: false,
+      hasLegacyCopyrightMaterial: false,
       videoMuxPlaybackId: null,
       videoWithSignLanguageMuxPlaybackId: null,
       transcriptSentences: null,
@@ -60,6 +60,8 @@ export const SpecialistLessonPage: Story = {
       lessonReleaseDate: "2022-02-22T12:00:00Z",
       orderInUnit: 1,
       unitTotalLessonCount: 1,
+      loginRequired: false,
+      geoRestricted: false,
     },
   },
 };

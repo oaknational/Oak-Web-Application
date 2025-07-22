@@ -18,6 +18,7 @@ const content = z.object({
       year: z.string(),
       keystage: z.string(),
       keystage_slug: z.string(),
+      pathway: z.string().nullish(),
       subject: z.string(),
       subject_slug: z.string(),
       tier: z.string().nullable(),
@@ -61,11 +62,13 @@ export type MyLibraryUnit = z.infer<typeof unit>;
 export const userListContentApiResponse = z.record(
   z.string(),
   z.object({
+    programmeSlug: z.string(),
     keystage: z.string(),
     keystageSlug: z.string(),
+    pathway: z.string().nullish(),
     subject: z.string(),
     subjectSlug: z.string(),
-    subjectCategories: z.array(z.string()).nullish(),
+    subjectCategory: z.string().nullish(),
     tier: z.string().nullable(),
     examboard: z.string().nullable(),
     units: z.array(unit),

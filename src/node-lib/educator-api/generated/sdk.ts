@@ -4092,7 +4092,7 @@ export type Content_Bool_Exp = {
 export enum Content_Constraint {
   /** unique or primary key constraint on columns "id" */
   ContentPkey = "content_pkey",
-  /** unique or primary key constraint on columns "unit_slug", "programme_slug" */
+  /** unique or primary key constraint on columns "programme_slug", "unit_slug" */
   ContentProgrammeSlugUnitSlugKey = "content_programme_slug_unit_slug_key",
 }
 
@@ -48246,9 +48246,9 @@ export type Query_Root = {
   lessons_aggregate: Lessons_Aggregate;
   /** fetch data from the table: "lessons" using primary key columns */
   lessons_by_pk?: Maybe<Lessons>;
-  /** fetch data from the table: "lists" */
+  /** An array relationship */
   lists: Array<Lists>;
-  /** fetch aggregated fields from the table: "lists" */
+  /** An aggregate relationship */
   lists_aggregate: Lists_Aggregate;
   /** fetch data from the table: "lists" using primary key columns */
   lists_by_pk?: Maybe<Lists>;
@@ -48782,10 +48782,6 @@ export type Query_Root = {
   unitvariants_aggregate: Unitvariants_Aggregate;
   /** fetch data from the table: "unitvariants" using primary key columns */
   unitvariants_by_pk?: Maybe<Unitvariants>;
-  /** fetch data from the table: "user_list_content_view" */
-  user_list_content_view: Array<User_List_Content_View>;
-  /** fetch aggregated fields from the table: "user_list_content_view" */
-  user_list_content_view_aggregate: User_List_Content_View_Aggregate;
   /** fetch data from the table: "users" */
   users: Array<Users>;
   /** fetch aggregated fields from the table: "users" */
@@ -51885,22 +51881,6 @@ export type Query_RootUnitvariants_By_PkArgs = {
   unitvariant_id: Scalars["Int"]["input"];
 };
 
-export type Query_RootUser_List_Content_ViewArgs = {
-  distinct_on?: InputMaybe<Array<User_List_Content_View_Select_Column>>;
-  limit?: InputMaybe<Scalars["Int"]["input"]>;
-  offset?: InputMaybe<Scalars["Int"]["input"]>;
-  order_by?: InputMaybe<Array<User_List_Content_View_Order_By>>;
-  where?: InputMaybe<User_List_Content_View_Bool_Exp>;
-};
-
-export type Query_RootUser_List_Content_View_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<User_List_Content_View_Select_Column>>;
-  limit?: InputMaybe<Scalars["Int"]["input"]>;
-  offset?: InputMaybe<Scalars["Int"]["input"]>;
-  order_by?: InputMaybe<Array<User_List_Content_View_Order_By>>;
-  where?: InputMaybe<User_List_Content_View_Bool_Exp>;
-};
-
 export type Query_RootUsersArgs = {
   distinct_on?: InputMaybe<Array<Users_Select_Column>>;
   limit?: InputMaybe<Scalars["Int"]["input"]>;
@@ -53966,9 +53946,9 @@ export type Subscription_Root = {
   lessons_by_pk?: Maybe<Lessons>;
   /** fetch data from the table in a streaming manner: "lessons" */
   lessons_stream: Array<Lessons>;
-  /** fetch data from the table: "lists" */
+  /** An array relationship */
   lists: Array<Lists>;
-  /** fetch aggregated fields from the table: "lists" */
+  /** An aggregate relationship */
   lists_aggregate: Lists_Aggregate;
   /** fetch data from the table: "lists" using primary key columns */
   lists_by_pk?: Maybe<Lists>;
@@ -54744,12 +54724,6 @@ export type Subscription_Root = {
   unitvariants_by_pk?: Maybe<Unitvariants>;
   /** fetch data from the table in a streaming manner: "unitvariants" */
   unitvariants_stream: Array<Unitvariants>;
-  /** fetch data from the table: "user_list_content_view" */
-  user_list_content_view: Array<User_List_Content_View>;
-  /** fetch aggregated fields from the table: "user_list_content_view" */
-  user_list_content_view_aggregate: User_List_Content_View_Aggregate;
-  /** fetch data from the table in a streaming manner: "user_list_content_view" */
-  user_list_content_view_stream: Array<User_List_Content_View>;
   /** fetch data from the table: "users" */
   users: Array<Users>;
   /** fetch aggregated fields from the table: "users" */
@@ -58973,28 +58947,6 @@ export type Subscription_RootUnitvariants_StreamArgs = {
   batch_size: Scalars["Int"]["input"];
   cursor: Array<InputMaybe<Unitvariants_Stream_Cursor_Input>>;
   where?: InputMaybe<Unitvariants_Bool_Exp>;
-};
-
-export type Subscription_RootUser_List_Content_ViewArgs = {
-  distinct_on?: InputMaybe<Array<User_List_Content_View_Select_Column>>;
-  limit?: InputMaybe<Scalars["Int"]["input"]>;
-  offset?: InputMaybe<Scalars["Int"]["input"]>;
-  order_by?: InputMaybe<Array<User_List_Content_View_Order_By>>;
-  where?: InputMaybe<User_List_Content_View_Bool_Exp>;
-};
-
-export type Subscription_RootUser_List_Content_View_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<User_List_Content_View_Select_Column>>;
-  limit?: InputMaybe<Scalars["Int"]["input"]>;
-  offset?: InputMaybe<Scalars["Int"]["input"]>;
-  order_by?: InputMaybe<Array<User_List_Content_View_Order_By>>;
-  where?: InputMaybe<User_List_Content_View_Bool_Exp>;
-};
-
-export type Subscription_RootUser_List_Content_View_StreamArgs = {
-  batch_size: Scalars["Int"]["input"];
-  cursor: Array<InputMaybe<User_List_Content_View_Stream_Cursor_Input>>;
-  where?: InputMaybe<User_List_Content_View_Bool_Exp>;
 };
 
 export type Subscription_RootUsersArgs = {
@@ -65705,186 +65657,15 @@ export type Unitvariants_Variance_Order_By = {
   unitvariant_id?: InputMaybe<Order_By>;
 };
 
-/** columns and relationships of "user_list_content_view" */
-export type User_List_Content_View = {
-  __typename?: "user_list_content_view";
-  content_id?: Maybe<Scalars["Int"]["output"]>;
-  list_id?: Maybe<Scalars["Int"]["output"]>;
-  programme_slug?: Maybe<Scalars["String"]["output"]>;
-  unit_slug?: Maybe<Scalars["String"]["output"]>;
-  user_id?: Maybe<Scalars["String"]["output"]>;
-  /** An object relationship */
-  user_list_content_mv?: Maybe<Content>;
-};
-
-/** aggregated selection of "user_list_content_view" */
-export type User_List_Content_View_Aggregate = {
-  __typename?: "user_list_content_view_aggregate";
-  aggregate?: Maybe<User_List_Content_View_Aggregate_Fields>;
-  nodes: Array<User_List_Content_View>;
-};
-
-/** aggregate fields of "user_list_content_view" */
-export type User_List_Content_View_Aggregate_Fields = {
-  __typename?: "user_list_content_view_aggregate_fields";
-  avg?: Maybe<User_List_Content_View_Avg_Fields>;
-  count: Scalars["Int"]["output"];
-  max?: Maybe<User_List_Content_View_Max_Fields>;
-  min?: Maybe<User_List_Content_View_Min_Fields>;
-  stddev?: Maybe<User_List_Content_View_Stddev_Fields>;
-  stddev_pop?: Maybe<User_List_Content_View_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<User_List_Content_View_Stddev_Samp_Fields>;
-  sum?: Maybe<User_List_Content_View_Sum_Fields>;
-  var_pop?: Maybe<User_List_Content_View_Var_Pop_Fields>;
-  var_samp?: Maybe<User_List_Content_View_Var_Samp_Fields>;
-  variance?: Maybe<User_List_Content_View_Variance_Fields>;
-};
-
-/** aggregate fields of "user_list_content_view" */
-export type User_List_Content_View_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<User_List_Content_View_Select_Column>>;
-  distinct?: InputMaybe<Scalars["Boolean"]["input"]>;
-};
-
-/** aggregate avg on columns */
-export type User_List_Content_View_Avg_Fields = {
-  __typename?: "user_list_content_view_avg_fields";
-  content_id?: Maybe<Scalars["Float"]["output"]>;
-  list_id?: Maybe<Scalars["Float"]["output"]>;
-};
-
-/** Boolean expression to filter rows from the table "user_list_content_view". All fields are combined with a logical 'AND'. */
-export type User_List_Content_View_Bool_Exp = {
-  _and?: InputMaybe<Array<User_List_Content_View_Bool_Exp>>;
-  _not?: InputMaybe<User_List_Content_View_Bool_Exp>;
-  _or?: InputMaybe<Array<User_List_Content_View_Bool_Exp>>;
-  content_id?: InputMaybe<Int_Comparison_Exp>;
-  list_id?: InputMaybe<Int_Comparison_Exp>;
-  programme_slug?: InputMaybe<String_Comparison_Exp>;
-  unit_slug?: InputMaybe<String_Comparison_Exp>;
-  user_id?: InputMaybe<String_Comparison_Exp>;
-  user_list_content_mv?: InputMaybe<Content_Bool_Exp>;
-};
-
-/** aggregate max on columns */
-export type User_List_Content_View_Max_Fields = {
-  __typename?: "user_list_content_view_max_fields";
-  content_id?: Maybe<Scalars["Int"]["output"]>;
-  list_id?: Maybe<Scalars["Int"]["output"]>;
-  programme_slug?: Maybe<Scalars["String"]["output"]>;
-  unit_slug?: Maybe<Scalars["String"]["output"]>;
-  user_id?: Maybe<Scalars["String"]["output"]>;
-};
-
-/** aggregate min on columns */
-export type User_List_Content_View_Min_Fields = {
-  __typename?: "user_list_content_view_min_fields";
-  content_id?: Maybe<Scalars["Int"]["output"]>;
-  list_id?: Maybe<Scalars["Int"]["output"]>;
-  programme_slug?: Maybe<Scalars["String"]["output"]>;
-  unit_slug?: Maybe<Scalars["String"]["output"]>;
-  user_id?: Maybe<Scalars["String"]["output"]>;
-};
-
-/** Ordering options when selecting data from "user_list_content_view". */
-export type User_List_Content_View_Order_By = {
-  content_id?: InputMaybe<Order_By>;
-  list_id?: InputMaybe<Order_By>;
-  programme_slug?: InputMaybe<Order_By>;
-  unit_slug?: InputMaybe<Order_By>;
-  user_id?: InputMaybe<Order_By>;
-  user_list_content_mv?: InputMaybe<Content_Order_By>;
-};
-
-/** select columns of table "user_list_content_view" */
-export enum User_List_Content_View_Select_Column {
-  /** column name */
-  ContentId = "content_id",
-  /** column name */
-  ListId = "list_id",
-  /** column name */
-  ProgrammeSlug = "programme_slug",
-  /** column name */
-  UnitSlug = "unit_slug",
-  /** column name */
-  UserId = "user_id",
-}
-
-/** aggregate stddev on columns */
-export type User_List_Content_View_Stddev_Fields = {
-  __typename?: "user_list_content_view_stddev_fields";
-  content_id?: Maybe<Scalars["Float"]["output"]>;
-  list_id?: Maybe<Scalars["Float"]["output"]>;
-};
-
-/** aggregate stddev_pop on columns */
-export type User_List_Content_View_Stddev_Pop_Fields = {
-  __typename?: "user_list_content_view_stddev_pop_fields";
-  content_id?: Maybe<Scalars["Float"]["output"]>;
-  list_id?: Maybe<Scalars["Float"]["output"]>;
-};
-
-/** aggregate stddev_samp on columns */
-export type User_List_Content_View_Stddev_Samp_Fields = {
-  __typename?: "user_list_content_view_stddev_samp_fields";
-  content_id?: Maybe<Scalars["Float"]["output"]>;
-  list_id?: Maybe<Scalars["Float"]["output"]>;
-};
-
-/** Streaming cursor of the table "user_list_content_view" */
-export type User_List_Content_View_Stream_Cursor_Input = {
-  /** Stream column input with initial value */
-  initial_value: User_List_Content_View_Stream_Cursor_Value_Input;
-  /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type User_List_Content_View_Stream_Cursor_Value_Input = {
-  content_id?: InputMaybe<Scalars["Int"]["input"]>;
-  list_id?: InputMaybe<Scalars["Int"]["input"]>;
-  programme_slug?: InputMaybe<Scalars["String"]["input"]>;
-  unit_slug?: InputMaybe<Scalars["String"]["input"]>;
-  user_id?: InputMaybe<Scalars["String"]["input"]>;
-};
-
-/** aggregate sum on columns */
-export type User_List_Content_View_Sum_Fields = {
-  __typename?: "user_list_content_view_sum_fields";
-  content_id?: Maybe<Scalars["Int"]["output"]>;
-  list_id?: Maybe<Scalars["Int"]["output"]>;
-};
-
-/** aggregate var_pop on columns */
-export type User_List_Content_View_Var_Pop_Fields = {
-  __typename?: "user_list_content_view_var_pop_fields";
-  content_id?: Maybe<Scalars["Float"]["output"]>;
-  list_id?: Maybe<Scalars["Float"]["output"]>;
-};
-
-/** aggregate var_samp on columns */
-export type User_List_Content_View_Var_Samp_Fields = {
-  __typename?: "user_list_content_view_var_samp_fields";
-  content_id?: Maybe<Scalars["Float"]["output"]>;
-  list_id?: Maybe<Scalars["Float"]["output"]>;
-};
-
-/** aggregate variance on columns */
-export type User_List_Content_View_Variance_Fields = {
-  __typename?: "user_list_content_view_variance_fields";
-  content_id?: Maybe<Scalars["Float"]["output"]>;
-  list_id?: Maybe<Scalars["Float"]["output"]>;
-};
-
 /** columns and relationships of "users" */
 export type Users = {
   __typename?: "users";
   created_at?: Maybe<Scalars["timestamptz"]["output"]>;
   id: Scalars["String"]["output"];
   last_signed_in?: Maybe<Scalars["timestamptz"]["output"]>;
-  /** fetch data from the table: "lists" */
+  /** An array relationship */
   lists: Array<Lists>;
-  /** fetch aggregated fields from the table: "lists" */
+  /** An aggregate relationship */
   lists_aggregate: Lists_Aggregate;
   source_app?: Maybe<Scalars["String"]["output"]>;
   updated_at?: Maybe<Scalars["timestamptz"]["output"]>;
@@ -67851,6 +67632,7 @@ export type GetUserListContentQuery = {
         unit_title?: any | null;
         optionality_title?: any | null;
         tier?: any | null;
+        pathway?: any | null;
         examboard?: any | null;
         unit_order?: any | null;
         year_order?: any | null;
@@ -67971,7 +67753,10 @@ export const GetUserContentDocument = gql`
 `;
 export const GetUserListContentDocument = gql`
   query getUserListContent($userId: String!) {
-    content_lists(where: { list: { user_id: { _eq: $userId } } }) {
+    content_lists(
+      distinct_on: content_id
+      where: { list: { user_id: { _eq: $userId } } }
+    ) {
       content {
         unit_slug
         programme_slug
@@ -67985,6 +67770,7 @@ export const GetUserListContentDocument = gql`
           unit_title: unit_data(path: "title")
           optionality_title: programme_fields(path: "optionality")
           tier: programme_fields(path: "tier")
+          pathway: programme_fields(path: "pathway")
           examboard: programme_fields(path: "examboard")
           unit_order: supplementary_data(path: "unit_order")
           year_order: programme_fields(path: "year_display_order")

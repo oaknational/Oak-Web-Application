@@ -10,7 +10,7 @@ import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 export const OAK_SOCIALS: Record<SocialNetwork, string> = {
   instagram: "oaknational",
   facebook: "oaknationalacademy",
-  twitter: "oaknational",
+  x: "oaknational",
   linkedIn: "https://www.linkedin.com/company/oak-national-academy",
 };
 
@@ -20,19 +20,14 @@ const getSocialUrl = (network: SocialNetwork, usernameOrUrl: string) => {
       return `https://instagram.com/${usernameOrUrl}`;
     case "facebook":
       return `https://facebook.com/${usernameOrUrl}`;
-    case "twitter":
-      return `https://twitter.com/${usernameOrUrl}`;
+    case "x":
+      return `https://x.com/${usernameOrUrl}`;
     case "linkedIn":
       return usernameOrUrl;
   }
 };
 
-const SOCIAL_NETWORKS = [
-  "instagram",
-  "facebook",
-  "twitter",
-  "linkedIn",
-] as const;
+const SOCIAL_NETWORKS = ["instagram", "facebook", "x", "linkedIn"] as const;
 type SocialNetwork = (typeof SOCIAL_NETWORKS)[number];
 type SocialButtonConfig = {
   label: string;
@@ -41,19 +36,19 @@ type SocialButtonConfig = {
 const SOCIAL_BUTTON_CONFIGS: Record<SocialNetwork, SocialButtonConfig> = {
   instagram: {
     label: "instagram",
-    icon: "instagram",
+    icon: "instagram-v2",
   },
   facebook: {
     label: "facebook",
-    icon: "facebook",
+    icon: "facebook-v2",
   },
-  twitter: {
-    label: "twitter",
-    icon: "twitter",
+  x: {
+    label: "x",
+    icon: "x",
   },
   linkedIn: {
     label: "linkedIn",
-    icon: "linkedin",
+    icon: "linkedin-v2",
   },
 } as const;
 

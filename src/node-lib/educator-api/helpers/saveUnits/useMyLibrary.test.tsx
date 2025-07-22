@@ -1,4 +1,4 @@
-import { act } from "@testing-library/react";
+import { act, waitFor } from "@testing-library/react";
 
 import { UserlistContentApiResponse } from "../../queries/getUserListContent/getUserListContent.types";
 
@@ -52,6 +52,7 @@ const renderHook = renderHookWithProviders();
 
 const mockProgrammeData: UserlistContentApiResponse = {
   programme1: {
+    programmeSlug: "programme1",
     units: [
       {
         unitSlug: "unit1",
@@ -77,12 +78,13 @@ const mockProgrammeData: UserlistContentApiResponse = {
     tier: null,
     subjectSlug: "maths",
     keystageSlug: "ks1",
-    subjectCategories: null,
+    subjectCategory: null,
   },
 };
 
 const mockProgrammeDataWithSubjectCategories: UserlistContentApiResponse = {
-  programme1: {
+  "programme1-Literacy": {
+    programmeSlug: "programme1",
     units: [
       {
         unitSlug: "unit1",
@@ -108,9 +110,10 @@ const mockProgrammeDataWithSubjectCategories: UserlistContentApiResponse = {
     tier: null,
     subjectSlug: "english",
     keystageSlug: "ks1",
-    subjectCategories: ["Literacy"],
+    subjectCategory: "Literacy",
   },
   programme2: {
+    programmeSlug: "programme2",
     units: [
       {
         unitSlug: "bio-unit1",
@@ -136,7 +139,40 @@ const mockProgrammeDataWithSubjectCategories: UserlistContentApiResponse = {
     tier: null,
     subjectSlug: "biology",
     keystageSlug: "ks1",
-    subjectCategories: ["Biology"],
+    subjectCategory: null,
+  },
+};
+
+const mockProgrammeDataWithPathways: UserlistContentApiResponse = {
+  programme1: {
+    programmeSlug: "programme1",
+    units: [
+      {
+        unitSlug: "unit1",
+        unitTitle: "Unit 1",
+        optionalityTitle: null,
+        savedAt: "2023-10-01T00:00:00Z",
+        unitOrder: 1,
+        yearOrder: 1,
+        year: "1",
+        lessons: [
+          {
+            slug: "lesson1",
+            title: "Lesson 1",
+            state: "published",
+            order: 1,
+          },
+        ],
+      },
+    ],
+    keystage: "KS4",
+    subject: "Maths",
+    examboard: null,
+    tier: null,
+    pathway: "Core",
+    subjectSlug: "maths",
+    keystageSlug: "ks4",
+    subjectCategory: null,
   },
 };
 
@@ -170,6 +206,7 @@ describe("useMyLibrary", () => {
         subject: "Maths",
         subjectSlug: "maths",
         subheading: "KS1",
+        uniqueProgrammeKey: "programme1",
         units: [
           {
             unitSlug: "unit1",
@@ -209,6 +246,7 @@ describe("useMyLibrary", () => {
         subject: "Biology",
         subjectSlug: "biology",
         subheading: "KS1",
+        uniqueProgrammeKey: "programme2",
         units: [
           {
             unitSlug: "bio-unit1",
@@ -237,7 +275,8 @@ describe("useMyLibrary", () => {
         programmeTitle: "English: Literacy KS1",
         subject: "English",
         subjectSlug: "english",
-        subheading: "KS1",
+        subheading: "Literacy KS1",
+        uniqueProgrammeKey: "programme1-Literacy",
         units: [
           {
             unitSlug: "unit1",
@@ -258,6 +297,46 @@ describe("useMyLibrary", () => {
           },
         ],
         searchQuery: "literacy",
+      },
+    ]);
+  });
+  it("should handle programmes with pathways", async () => {
+    mockUseGetEducatorData.mockImplementation(() => ({
+      data: mockProgrammeDataWithPathways,
+      error: null,
+      isLoading: false,
+    }));
+    const { result } = renderHook(() => useMyLibrary());
+    expect(result.current.collectionData).toEqual([
+      {
+        keystage: "KS4",
+        keystageSlug: "ks4",
+        programmeSlug: "programme1",
+        programmeTitle: "Maths Core KS4",
+        subject: "Maths",
+        subjectSlug: "maths",
+        subheading: "Core KS4",
+        uniqueProgrammeKey: "programme1",
+        units: [
+          {
+            unitSlug: "unit1",
+            unitTitle: "Unit 1",
+            optionalityTitle: null,
+            savedAt: "2023-10-01T00:00:00Z",
+            unitOrder: 1,
+            yearOrder: 1,
+            year: "1",
+            lessons: [
+              {
+                slug: "lesson1",
+                title: "Lesson 1",
+                state: "published",
+                order: 1,
+              },
+            ],
+          },
+        ],
+        searchQuery: null,
       },
     ]);
   });
@@ -284,12 +363,20 @@ describe("useMyLibrary", () => {
     act(() =>
       result.current.onSaveToggle("unit1", "programme1", mockTrackingData),
     );
-    expect(result.current.isUnitSaved("unit1-programme1")).toBe(false);
+    await waitFor(() =>
+      expect(result.current.isUnitSaved("unit1-programme1")).toBe(false),
+    );
+
+    await waitFor(() =>
+      expect(result.current.isUnitSaving("unit1-programme1")).toBe(false),
+    );
 
     act(() =>
       result.current.onSaveToggle("unit1", "programme1", mockTrackingData),
     );
-    expect(result.current.isUnitSaved("unit1-programme1")).toBe(true);
+    await waitFor(() =>
+      expect(result.current.isUnitSaved("unit1-programme1")).toBe(true),
+    );
   });
   it("should decrement and increment units count when toggling save on a unit", async () => {
     mockUseGetEducatorData.mockImplementation(() => ({
@@ -302,12 +389,16 @@ describe("useMyLibrary", () => {
     act(() =>
       result.current.onSaveToggle("unit1", "programme1", mockTrackingData),
     );
-    expect(mockDecrementSavedUnitsCount).toHaveBeenCalled();
+    await waitFor(() =>
+      expect(mockDecrementSavedUnitsCount).toHaveBeenCalled(),
+    );
 
     act(() =>
       result.current.onSaveToggle("unit1", "programme1", mockTrackingData),
     );
-    expect(mockIncrementSavedUnitsCount).toHaveBeenCalled();
+    await waitFor(() =>
+      expect(mockIncrementSavedUnitsCount).toHaveBeenCalled(),
+    );
   });
   it("should update toast props when saving a unit", async () => {
     mockUseGetEducatorData.mockImplementation(() => ({
@@ -321,6 +412,6 @@ describe("useMyLibrary", () => {
       result.current.onSaveToggle("unit1", "programme1", mockTrackingData),
     );
 
-    expect(mockSetOakToastProps).toHaveBeenCalled();
+    await waitFor(() => expect(mockSetOakToastProps).toHaveBeenCalled());
   });
 });

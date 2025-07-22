@@ -38,6 +38,7 @@ export const useMyLibrary = () => {
     null,
   );
   const [locallySavedUnits, setLocallySavedUnits] = useState<Array<string>>([]);
+  const [isSavingUnit, setIsSavingUnit] = useState<string | null>(null);
 
   useEffect(() => {
     if (savedProgrammeUnits) {
@@ -46,27 +47,27 @@ export const useMyLibrary = () => {
 
       if (parsedData.success) {
         const collectionData = Object.entries(parsedData.data)
-          .map(([programmeSlug, programmeData]) => {
+          .map(([uniqueProgrammeKey, programmeData]) => {
             const {
+              programmeSlug,
               keystage,
+              pathway,
               subject,
               examboard,
               tier,
               units,
               subjectSlug,
               keystageSlug,
-              subjectCategories,
+              subjectCategory,
             } = programmeData;
-            const subheading = `${examboard ? examboard + " " : ""}${tier ? tier + " " : ""}${keystage}`;
-            const validSubjectCategory =
-              subjectCategories &&
-              subjectCategories[0] &&
-              subjectCategories[0] !== subject
-                ? subjectCategories[0]
-                : null;
-            const programmeTitle = `${subject}${validSubjectCategory ? `: ${validSubjectCategory}` : ""} ${subheading}`;
-            const searchQuery = validSubjectCategory
-              ? `${kebabCase(validSubjectCategory)}`
+
+            const subjectCategoryHeading = `${subjectCategory ? `${subjectCategory} ` : ""}`;
+
+            const subheading = `${subjectCategoryHeading}${examboard ? examboard + " " : ""}${tier ? tier + " " : ""}${pathway ? pathway + " " : ""}${keystage}`;
+
+            const programmeTitle = `${subject}${subjectCategoryHeading && ":"} ${subheading}`;
+            const searchQuery = subjectCategory
+              ? `${kebabCase(subjectCategory)}`
               : null;
 
             units.sort(
@@ -83,6 +84,7 @@ export const useMyLibrary = () => {
               programmeSlug,
               programmeTitle,
               searchQuery,
+              uniqueProgrammeKey,
             };
           })
           .sort((a, b) => {
@@ -116,6 +118,11 @@ export const useMyLibrary = () => {
     [locallySavedUnits],
   );
 
+  const isUnitSaving = useCallback(
+    (unitProgrammeSlug: string) => isSavingUnit === unitProgrammeSlug,
+    [isSavingUnit],
+  );
+
   const { setCurrentToastProps } = useOakToastContext();
 
   const onSave = async (
@@ -125,6 +132,7 @@ export const useMyLibrary = () => {
     trackingData: TrackingProgrammeData,
   ) => {
     setCurrentToastProps(SavedToastProps);
+    setIsSavingUnit(unitProgrammeSlug);
     incrementSavedUnitsCount();
     setLocallySavedUnits((prev) => [...prev, unitProgrammeSlug]);
     await postEducatorData(
@@ -138,6 +146,7 @@ export const useMyLibrary = () => {
         decrementSavedUnitsCount();
       },
     );
+    setIsSavingUnit(null);
     track.contentSaved({
       platform: "owa",
       product: "teacher lesson resources",
@@ -161,6 +170,7 @@ export const useMyLibrary = () => {
     trackingData: TrackingProgrammeData,
   ) => {
     setCurrentToastProps(UnsavedToastProps);
+    setIsSavingUnit(unitProgrammeSlug);
     decrementSavedUnitsCount();
     setLocallySavedUnits((prev) =>
       prev.filter((slug) => slug !== unitProgrammeSlug),
@@ -174,6 +184,7 @@ export const useMyLibrary = () => {
         incrementSavedUnitsCount();
       },
     );
+    setIsSavingUnit(null);
     track.contentUnsaved({
       platform: "owa",
       product: "teacher lesson resources",
@@ -196,15 +207,18 @@ export const useMyLibrary = () => {
     trackingData: TrackingProgrammeData,
   ) => {
     const unitProgrammeSlug = getUnitProgrammeSlug(unitSlug, programmeSlug);
-    if (isUnitSaved(unitProgrammeSlug)) {
-      onUnsave(unitSlug, programmeSlug, unitProgrammeSlug, trackingData);
-    } else {
-      onSave(unitSlug, programmeSlug, unitProgrammeSlug, trackingData);
+    if (!isUnitSaving(unitProgrammeSlug)) {
+      if (isUnitSaved(unitProgrammeSlug)) {
+        onUnsave(unitSlug, programmeSlug, unitProgrammeSlug, trackingData);
+      } else {
+        onSave(unitSlug, programmeSlug, unitProgrammeSlug, trackingData);
+      }
     }
   };
 
   return {
     isUnitSaved,
+    isUnitSaving,
     onSaveToggle,
     isLoading,
     collectionData,

@@ -207,7 +207,7 @@ export const baseLessonOverviewSchema = z.object({
   videoWithSignLanguageMuxPlaybackId: z.string().nullable(),
   transcriptSentences: z.union([z.array(z.string()), z.string()]).nullable(),
   isWorksheetLandscape: z.boolean().optional().nullable(),
-  hasCopyrightMaterial: z.boolean().optional().nullable(),
+  hasLegacyCopyrightMaterial: z.boolean().optional().nullable(),
   expired: z.boolean().nullable(),
   starterQuiz: lessonOverviewQuizData,
   exitQuiz: lessonOverviewQuizData,
@@ -224,6 +224,8 @@ export const baseLessonOverviewSchema = z.object({
   lessonReleaseDate: z.string().nullable(),
   orderInUnit: z.number().nullable(),
   unitTotalLessonCount: z.number().nullable(),
+  loginRequired: z.boolean(),
+  geoRestricted: z.boolean(),
 });
 export type LessonBase = z.infer<typeof baseLessonOverviewSchema>;
 
@@ -307,12 +309,14 @@ export const lessonListItemSchema = z.object({
   videoCount: z.number().nullish(),
   presentationCount: z.number().nullish(),
   worksheetCount: z.number().nullish(),
-  hasCopyrightMaterial: z.boolean().nullish(),
+  hasLegacyCopyrightMaterial: z.boolean().nullish(),
   orderInUnit: z.number().nullish(),
   lessonCohort: z.string().nullish(),
   actions: camelActionSchema.nullish(),
   isUnpublished: z.literal(false),
   lessonReleaseDate: z.string().nullable(),
+  geoRestricted: z.boolean(),
+  loginRequired: z.boolean(),
 });
 
 export type LessonListItem = z.infer<typeof lessonListItemSchema>;

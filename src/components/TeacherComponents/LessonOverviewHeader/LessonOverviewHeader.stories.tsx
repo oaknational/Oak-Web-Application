@@ -113,7 +113,7 @@ const props = {
   transcriptSentences: null,
   isWorksheetLandscape: false,
   hasDownloadableResources: true,
-  hasCopyrightMaterial: false,
+  hasLegacyCopyrightMaterial: false,
   yearTitle: "Year 1",
   introQuiz: [],
   exitQuiz: [],

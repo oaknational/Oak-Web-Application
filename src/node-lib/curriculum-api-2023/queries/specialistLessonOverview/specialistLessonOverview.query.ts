@@ -92,6 +92,8 @@ export const generateLessonOverviewFromRaw = (
     isLegacy: true,
     isSpecialist: true,
     isCanonical: false,
+    loginRequired: false,
+    geoRestricted: false,
     lessonSlug: lesson.lesson_slug,
     lessonTitle: lesson.lesson_title,
     programmeSlug: lesson.synthetic_programme_slug,
@@ -113,7 +115,7 @@ export const generateLessonOverviewFromRaw = (
     videoMuxPlaybackId: lesson.video_mux_playback_id,
     videoWithSignLanguageMuxPlaybackId:
       lesson.video_with_sign_language_mux_playback_id,
-    hasCopyrightMaterial: lesson.contains_copyright_content,
+    hasLegacyCopyrightMaterial: lesson.contains_copyright_content,
     supervisionLevel: lesson.supervision_level,
     starterQuiz: lesson.starter_quiz,
     exitQuiz: lesson.exit_quiz,

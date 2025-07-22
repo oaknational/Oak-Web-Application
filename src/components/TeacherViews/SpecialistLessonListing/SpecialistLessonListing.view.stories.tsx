@@ -39,7 +39,7 @@ export const SpecialistLessonListingPage: Story = {
           videoCount: 1,
           presentationCount: 1,
           worksheetCount: 2,
-          hasCopyrightMaterial: false,
+          hasLegacyCopyrightMaterial: false,
           orderInUnit: 1,
         },
         {
@@ -58,7 +58,7 @@ export const SpecialistLessonListingPage: Story = {
           videoCount: 1,
           presentationCount: 0,
           worksheetCount: 2,
-          hasCopyrightMaterial: false,
+          hasLegacyCopyrightMaterial: false,
           orderInUnit: 1,
         },
         {
@@ -78,7 +78,7 @@ export const SpecialistLessonListingPage: Story = {
           videoCount: 1,
           presentationCount: 1,
           worksheetCount: 2,
-          hasCopyrightMaterial: false,
+          hasLegacyCopyrightMaterial: false,
           orderInUnit: 1,
         },
       ],

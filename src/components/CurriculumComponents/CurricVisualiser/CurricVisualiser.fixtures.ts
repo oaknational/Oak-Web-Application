@@ -1298,7 +1298,6 @@ export const secondaryMathsYearData = {
     pathways: [pathways[0], pathways[1]],
     tiers: [tiers[0], tiers[1]],
     subjectCategories: [],
-
     groupAs: null,
     isSwimming: false,
     units: [createUnit({ year: "11" })],

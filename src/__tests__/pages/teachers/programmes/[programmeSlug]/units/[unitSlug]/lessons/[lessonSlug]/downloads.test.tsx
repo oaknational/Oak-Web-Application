@@ -34,7 +34,11 @@ const getDownloadResourcesExistenceData = {
     "worksheet-pdf": true,
   },
 };
-
+const mockFeatureFlagEnabled = jest.fn().mockReturnValue(false);
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagVariantKey: () => "with login",
+  useFeatureFlagEnabled: () => mockFeatureFlagEnabled(),
+}));
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 jest.mock(
   "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence",
@@ -346,7 +350,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       await waitForNextTick();
 
       const description = computeAccessibleDescription(input);
-      expect(description).toBe("Please enter a valid email address");
+      expect(description).toBe("Error Please enter a valid email address");
     });
 
     it("should not display error hint on blur email if empty", async () => {

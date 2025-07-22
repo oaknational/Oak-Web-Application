@@ -36,7 +36,7 @@ export const getTransformedLessons = (
       if (publishedLesson) {
         const lesson =
           partialSyntheticUnitvariantLessonsSchema.parse(publishedLesson);
-        const hasCopyrightMaterial =
+        const hasLegacyCopyrightMaterial =
           publishedLesson.lesson_data.copyright_content?.find(
             (c: { copyright_info: string }) =>
               c.copyright_info === "This lesson contains copyright material.",
@@ -56,12 +56,14 @@ export const getTransformedLessons = (
           videoCount: lesson.lesson_data.video_id ? 1 : 0,
           presentationCount: lesson.lesson_data.asset_id_slidedeck ? 1 : 0,
           worksheetCount: lesson.lesson_data.asset_id_worksheet ? 1 : 0,
-          hasCopyrightMaterial,
+          hasLegacyCopyrightMaterial,
           orderInUnit: lesson.order_in_unit,
           lessonCohort: lesson.lesson_data._cohort,
           actions: (keysToCamelCase(lesson.actions) || null) as Actions,
           isUnpublished: false,
           lessonReleaseDate: lesson.lesson_data.lesson_release_date,
+          geoRestricted: lesson.features?.agf__geo_restricted ?? false,
+          loginRequired: lesson.features?.agf__login_required ?? false,
         };
         return transformedLesson;
       } else {
@@ -89,6 +91,7 @@ export const getPackagedUnit = (
   packagedUnitData: PackagedUnitData,
   unitLessons: LessonListSchema,
   containsGeorestrictedLessons: boolean,
+  containsLoginRequiredLessons: boolean,
 ): LessonListingPageData => {
   const {
     programmeFields,
@@ -132,6 +135,7 @@ export const getPackagedUnit = (
     pathwayDisplayOrder: modifiedProgrammeFields.pathway_display_order,
     actions: combinedActions,
     containsGeorestrictedLessons,
+    containsLoginRequiredLessons,
   };
 };
 
@@ -152,6 +156,9 @@ const lessonListingQuery =
 
     const containsGeorestrictedLessons = modifiedLessons.some(
       (lesson) => lesson.features?.agf__geo_restricted === true,
+    );
+    const containsLoginRequiredLessons = modifiedLessons.some(
+      (lesson) => lesson.features?.agf__login_required === true,
     );
 
     const parsedModifiedLessons =
@@ -175,6 +182,7 @@ const lessonListingQuery =
       packagedUnitData,
       unitLessons,
       containsGeorestrictedLessons,
+      containsLoginRequiredLessons,
     );
     return lessonListingPageDataSchema.parse(packagedUnit);
   };

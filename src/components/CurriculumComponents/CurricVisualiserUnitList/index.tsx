@@ -4,11 +4,19 @@ import { OakFlex, OakP } from "@oaknational/oak-components";
 import styled from "styled-components";
 import { useSearchParams } from "next/navigation";
 
-import CurriculumUnitCard from "../CurricUnitCard";
+import CurricUnitCard from "../CurricUnitCard";
 
 import { isHighlightedUnit } from "@/utils/curriculum/filtering";
-import { CurriculumFilters, Unit, YearData } from "@/utils/curriculum/types";
+import {
+  CurriculumFilters,
+  Thread,
+  Unit,
+  YearData,
+} from "@/utils/curriculum/types";
 import { getSubjectCategoryMessage } from "@/utils/curriculum/formatting";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import { buildUnitOverviewAccessedAnalytics } from "@/utils/curriculum/analytics";
 
 const UnitList = styled("ol")`
   margin: 0;
@@ -35,6 +43,7 @@ type CurricVisualiserUnitListProps = {
   year: string;
   yearData: YearData;
   basePath: string;
+  selectedThread?: Thread;
 };
 export function CurricVisualiserUnitList({
   units,
@@ -42,8 +51,23 @@ export function CurricVisualiserUnitList({
   year,
   filters,
   basePath,
+  selectedThread,
 }: CurricVisualiserUnitListProps) {
+  const { track } = useAnalytics();
+  const { analyticsUseCase } = useAnalyticsPageProps();
   const searchParams = useSearchParams();
+
+  const onClick = (unit: Unit, isHighlighted: boolean) => {
+    track.unitOverviewAccessed(
+      buildUnitOverviewAccessedAnalytics({
+        unit,
+        isHighlighted,
+        componentType: "unit_info_button",
+        selectedThread,
+        analyticsUseCase,
+      }),
+    );
+  };
 
   function getItems(unit: Unit, index: number) {
     const isHighlighted = isHighlightedUnit(unit, filters.threads);
@@ -54,12 +78,13 @@ export function CurricVisualiserUnitList({
 
     return (
       <UnitListItem key={`${unit.slug}-${index}`}>
-        <CurriculumUnitCard
+        <CurricUnitCard
           unit={unit}
           key={unit.slug + index}
           index={index}
           isHighlighted={isHighlighted}
           href={unitUrl}
+          onClick={() => onClick(unit, isHighlighted)}
         />
       </UnitListItem>
     );

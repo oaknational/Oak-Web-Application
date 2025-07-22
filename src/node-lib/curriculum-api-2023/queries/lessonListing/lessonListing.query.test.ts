@@ -68,6 +68,7 @@ describe("lessonListing()", () => {
         pathwayDisplayOrder: null,
         actions: {},
         containsGeorestrictedLessons: false,
+        containsLoginRequiredLessons: false,
         lessons: [
           {
             lessonSlug: "lesson-slug",
@@ -79,10 +80,12 @@ describe("lessonListing()", () => {
             videoCount: 0,
             presentationCount: 0,
             worksheetCount: 0,
-            hasCopyrightMaterial: false,
+            hasLegacyCopyrightMaterial: false,
             orderInUnit: 1,
             lessonCohort: "2023-2024",
             actions: null,
+            geoRestricted: false,
+            loginRequired: false,
             isUnpublished: false,
             lessonReleaseDate: "2023-01-01T00:00:00.000Z",
           },
@@ -208,6 +211,7 @@ describe("lessonListing()", () => {
         mockPackagedUnitData,
         getTransformedLessons([syntheticUnitvariantLessonsByKsFixture({})]),
         false,
+        false,
       );
       expect(transformedLessons).toEqual({
         examBoardSlug: null,
@@ -218,7 +222,7 @@ describe("lessonListing()", () => {
           {
             description: "lesson-description",
             expired: false,
-            hasCopyrightMaterial: false,
+            hasLegacyCopyrightMaterial: false,
             lessonCohort: "2023-2024",
             lessonReleaseDate: null,
             lessonSlug: "lesson-slug",
@@ -230,6 +234,8 @@ describe("lessonListing()", () => {
             videoCount: 0,
             worksheetCount: 0,
             actions: null,
+            geoRestricted: false,
+            loginRequired: false,
             isUnpublished: false,
           },
         ],
@@ -249,6 +255,7 @@ describe("lessonListing()", () => {
         pathwayDisplayOrder: null,
         actions: {},
         containsGeorestrictedLessons: false,
+        containsLoginRequiredLessons: false,
       });
     });
     test("getTransformedUnit returns the correct data for optionality units", () => {
@@ -266,6 +273,7 @@ describe("lessonListing()", () => {
           }),
         ]),
         false,
+        false,
       );
       expect(transformedLessons).toEqual({
         examBoardSlug: null,
@@ -276,7 +284,7 @@ describe("lessonListing()", () => {
           {
             description: "lesson-description",
             expired: false,
-            hasCopyrightMaterial: false,
+            hasLegacyCopyrightMaterial: false,
             lessonCohort: "2023-2024",
             lessonReleaseDate: null,
             lessonSlug: "lesson-slug",
@@ -288,6 +296,8 @@ describe("lessonListing()", () => {
             videoCount: 0,
             worksheetCount: 0,
             actions: null,
+            geoRestricted: false,
+            loginRequired: false,
             isUnpublished: false,
           },
         ],
@@ -307,6 +317,7 @@ describe("lessonListing()", () => {
         pathwayDisplayOrder: null,
         actions: {},
         containsGeorestrictedLessons: false,
+        containsLoginRequiredLessons: false,
       });
     });
     test("getTransformedLessons returns the correct data", async () => {
@@ -317,7 +328,7 @@ describe("lessonListing()", () => {
         {
           description: "lesson-description",
           expired: false,
-          hasCopyrightMaterial: false,
+          hasLegacyCopyrightMaterial: false,
           lessonCohort: "2023-2024",
           lessonSlug: "lesson-slug",
           lessonTitle: "lesson-title",
@@ -328,6 +339,8 @@ describe("lessonListing()", () => {
           videoCount: 0,
           worksheetCount: 0,
           actions: null,
+          geoRestricted: false,
+          loginRequired: false,
           isUnpublished: false,
           lessonReleaseDate: null,
         },

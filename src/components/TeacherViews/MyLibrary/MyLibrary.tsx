@@ -27,6 +27,7 @@ export type CollectionData = Array<{
   programmeSlug: string;
   programmeTitle: string;
   searchQuery: string | null;
+  uniqueProgrammeKey: string;
 }>;
 
 type MyLibraryProps = {
@@ -38,10 +39,12 @@ type MyLibraryProps = {
     trackingData: TrackingProgrammeData,
   ) => void;
   isUnitSaved: (unitProgrammeSlug: string) => boolean;
+  isUnitSaving: (unitProgrammeSlug: string) => boolean;
 };
 
 export default function MyLibrary(props: MyLibraryProps) {
-  const { collectionData, isLoading, onSaveToggle, isUnitSaved } = props;
+  const { collectionData, isLoading, onSaveToggle, isUnitSaved, isUnitSaving } =
+    props;
 
   return (
     <OakMaxWidth
@@ -73,7 +76,7 @@ export default function MyLibrary(props: MyLibraryProps) {
               menuItems={collectionData.map((item) => ({
                 heading: item.subject,
                 subheading: item.subheading,
-                href: `#${item.programmeSlug}`,
+                href: `#${item.uniqueProgrammeKey}`,
               }))}
               heading="Collections"
               anchorTargetId="collections-menu"
@@ -88,9 +91,9 @@ export default function MyLibrary(props: MyLibraryProps) {
           >
             {collectionData.map((collection) => (
               <MyLibraryProgrammeCard
-                key={collection.programmeSlug}
+                key={collection.uniqueProgrammeKey}
                 programmeTitle={collection.programmeTitle}
-                anchorId={collection.programmeSlug}
+                anchorId={collection.uniqueProgrammeKey}
                 programmeHref={resolveOakHref({
                   page: "unit-index",
                   programmeSlug: collection.programmeSlug,
@@ -112,6 +115,12 @@ export default function MyLibrary(props: MyLibraryProps) {
                       subjectSlug: collection.subjectSlug,
                     }),
                   isSaved: isUnitSaved(
+                    getUnitProgrammeSlug(
+                      unit.unitSlug,
+                      collection.programmeSlug,
+                    ),
+                  ),
+                  isSaving: isUnitSaving(
                     getUnitProgrammeSlug(
                       unit.unitSlug,
                       collection.programmeSlug,

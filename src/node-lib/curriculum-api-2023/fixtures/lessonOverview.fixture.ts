@@ -27,6 +27,8 @@ const lessonOverviewFixture = (
     lessonEquipmentAndResources: null,
     teacherTips: null,
     pathways: [],
+    loginRequired: false,
+    geoRestricted: false,
     keyLearningPoints: [
       {
         keyLearningPoint:
@@ -85,7 +87,7 @@ const lessonOverviewFixture = (
     worksheetUrl:
       "https://docs.google.com/presentation/d/1gjXZk0ylpz--95u4cIpTN6UPfEnWoIk6xH6pW23_mqY/embed?start=false&amp;loop=false&amp",
     isWorksheetLandscape: true,
-    hasCopyrightMaterial: false,
+    hasLegacyCopyrightMaterial: false,
     videoMuxPlaybackId: null,
     videoWithSignLanguageMuxPlaybackId: null,
     transcriptSentences: ["this is a sentence", "this is another sentence"],

@@ -22,8 +22,6 @@ export type Scalars = {
   entity_type_enum: { input: any; output: any; }
   json: { input: any; output: any; }
   jsonb: { input: any; output: any; }
-  redirect_entity_source_enum: { input: any; output: any; }
-  redirect_type_enum: { input: any; output: any; }
   timestamp: { input: any; output: any; }
   timestamptz: { input: any; output: any; }
 };
@@ -8662,10 +8660,6 @@ export type Mutation_Root = {
   delete_programmes?: Maybe<Programmes_Mutation_Response>;
   /** delete single row from the table: "programmes" */
   delete_programmes_by_pk?: Maybe<Programmes>;
-  /** delete data from the table: "published.redirects" */
-  delete_published_redirects?: Maybe<Published_Redirects_Mutation_Response>;
-  /** delete single row from the table: "published.redirects" */
-  delete_published_redirects_by_pk?: Maybe<Published_Redirects>;
   /** delete data from the table: "published.viewmanager" */
   delete_published_viewmanager?: Maybe<Published_Viewmanager_Mutation_Response>;
   /** delete single row from the table: "published.viewmanager" */
@@ -8840,10 +8834,6 @@ export type Mutation_Root = {
   insert_programmes?: Maybe<Programmes_Mutation_Response>;
   /** insert a single row into the table: "programmes" */
   insert_programmes_one?: Maybe<Programmes>;
-  /** insert data into the table: "published.redirects" */
-  insert_published_redirects?: Maybe<Published_Redirects_Mutation_Response>;
-  /** insert a single row into the table: "published.redirects" */
-  insert_published_redirects_one?: Maybe<Published_Redirects>;
   /** insert data into the table: "published.viewmanager" */
   insert_published_viewmanager?: Maybe<Published_Viewmanager_Mutation_Response>;
   /** insert data into the table: "published.viewmanager_mvs" */
@@ -9078,12 +9068,6 @@ export type Mutation_Root = {
   update_programmes_by_pk?: Maybe<Programmes>;
   /** update multiples rows of table: "programmes" */
   update_programmes_many?: Maybe<Array<Maybe<Programmes_Mutation_Response>>>;
-  /** update data of the table: "published.redirects" */
-  update_published_redirects?: Maybe<Published_Redirects_Mutation_Response>;
-  /** update single row of the table: "published.redirects" */
-  update_published_redirects_by_pk?: Maybe<Published_Redirects>;
-  /** update multiples rows of table: "published.redirects" */
-  update_published_redirects_many?: Maybe<Array<Maybe<Published_Redirects_Mutation_Response>>>;
   /** update data of the table: "published.viewmanager" */
   update_published_viewmanager?: Maybe<Published_Viewmanager_Mutation_Response>;
   /** update single row of the table: "published.viewmanager" */
@@ -9539,19 +9523,6 @@ export type Mutation_RootDelete_ProgrammesArgs = {
 export type Mutation_RootDelete_Programmes_By_PkArgs = {
   _state: Scalars['String']['input'];
   programme_id: Scalars['Int']['input'];
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_Published_RedirectsArgs = {
-  where: Published_Redirects_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_Published_Redirects_By_PkArgs = {
-  entity_id: Scalars['Int']['input'];
-  entity_source: Scalars['redirect_entity_source_enum']['input'];
 };
 
 
@@ -10144,20 +10115,6 @@ export type Mutation_RootInsert_ProgrammesArgs = {
 export type Mutation_RootInsert_Programmes_OneArgs = {
   object: Programmes_Insert_Input;
   on_conflict?: InputMaybe<Programmes_On_Conflict>;
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_Published_RedirectsArgs = {
-  objects: Array<Published_Redirects_Insert_Input>;
-  on_conflict?: InputMaybe<Published_Redirects_On_Conflict>;
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_Published_Redirects_OneArgs = {
-  object: Published_Redirects_Insert_Input;
-  on_conflict?: InputMaybe<Published_Redirects_On_Conflict>;
 };
 
 
@@ -11238,28 +11195,6 @@ export type Mutation_RootUpdate_Programmes_By_PkArgs = {
 /** mutation root */
 export type Mutation_RootUpdate_Programmes_ManyArgs = {
   updates: Array<Programmes_Updates>;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdate_Published_RedirectsArgs = {
-  _inc?: InputMaybe<Published_Redirects_Inc_Input>;
-  _set?: InputMaybe<Published_Redirects_Set_Input>;
-  where: Published_Redirects_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdate_Published_Redirects_By_PkArgs = {
-  _inc?: InputMaybe<Published_Redirects_Inc_Input>;
-  _set?: InputMaybe<Published_Redirects_Set_Input>;
-  pk_columns: Published_Redirects_Pk_Columns_Input;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdate_Published_Redirects_ManyArgs = {
-  updates: Array<Published_Redirects_Updates>;
 };
 
 
@@ -35816,285 +35751,6 @@ export type Published_Mv_Threads_By_Unit_1_0_0_Variance_Fields = {
   unit_id?: Maybe<Scalars['Float']['output']>;
 };
 
-/** columns and relationships of "published.redirects" */
-export type Published_Redirects = {
-  __typename?: 'published_redirects';
-  created_at?: Maybe<Scalars['timestamp']['output']>;
-  entity_id: Scalars['Int']['output'];
-  entity_source: Scalars['redirect_entity_source_enum']['output'];
-  redirect_entity_id?: Maybe<Scalars['Int']['output']>;
-  redirect_entity_source?: Maybe<Scalars['redirect_entity_source_enum']['output']>;
-  redirect_type: Scalars['redirect_type_enum']['output'];
-  redirect_url?: Maybe<Scalars['String']['output']>;
-  updated_at?: Maybe<Scalars['timestamp']['output']>;
-};
-
-/** aggregated selection of "published.redirects" */
-export type Published_Redirects_Aggregate = {
-  __typename?: 'published_redirects_aggregate';
-  aggregate?: Maybe<Published_Redirects_Aggregate_Fields>;
-  nodes: Array<Published_Redirects>;
-};
-
-/** aggregate fields of "published.redirects" */
-export type Published_Redirects_Aggregate_Fields = {
-  __typename?: 'published_redirects_aggregate_fields';
-  avg?: Maybe<Published_Redirects_Avg_Fields>;
-  count: Scalars['Int']['output'];
-  max?: Maybe<Published_Redirects_Max_Fields>;
-  min?: Maybe<Published_Redirects_Min_Fields>;
-  stddev?: Maybe<Published_Redirects_Stddev_Fields>;
-  stddev_pop?: Maybe<Published_Redirects_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Published_Redirects_Stddev_Samp_Fields>;
-  sum?: Maybe<Published_Redirects_Sum_Fields>;
-  var_pop?: Maybe<Published_Redirects_Var_Pop_Fields>;
-  var_samp?: Maybe<Published_Redirects_Var_Samp_Fields>;
-  variance?: Maybe<Published_Redirects_Variance_Fields>;
-};
-
-
-/** aggregate fields of "published.redirects" */
-export type Published_Redirects_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Published_Redirects_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** aggregate avg on columns */
-export type Published_Redirects_Avg_Fields = {
-  __typename?: 'published_redirects_avg_fields';
-  entity_id?: Maybe<Scalars['Float']['output']>;
-  redirect_entity_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** Boolean expression to filter rows from the table "published.redirects". All fields are combined with a logical 'AND'. */
-export type Published_Redirects_Bool_Exp = {
-  _and?: InputMaybe<Array<Published_Redirects_Bool_Exp>>;
-  _not?: InputMaybe<Published_Redirects_Bool_Exp>;
-  _or?: InputMaybe<Array<Published_Redirects_Bool_Exp>>;
-  created_at?: InputMaybe<Timestamp_Comparison_Exp>;
-  entity_id?: InputMaybe<Int_Comparison_Exp>;
-  entity_source?: InputMaybe<Redirect_Entity_Source_Enum_Comparison_Exp>;
-  redirect_entity_id?: InputMaybe<Int_Comparison_Exp>;
-  redirect_entity_source?: InputMaybe<Redirect_Entity_Source_Enum_Comparison_Exp>;
-  redirect_type?: InputMaybe<Redirect_Type_Enum_Comparison_Exp>;
-  redirect_url?: InputMaybe<String_Comparison_Exp>;
-  updated_at?: InputMaybe<Timestamp_Comparison_Exp>;
-};
-
-/** unique or primary key constraints on table "published.redirects" */
-export enum Published_Redirects_Constraint {
-  /** unique or primary key constraint on columns "entity_id", "entity_source" */
-  RedirectsPkey = 'redirects_pkey'
-}
-
-/** input type for incrementing numeric columns in table "published.redirects" */
-export type Published_Redirects_Inc_Input = {
-  entity_id?: InputMaybe<Scalars['Int']['input']>;
-  redirect_entity_id?: InputMaybe<Scalars['Int']['input']>;
-};
-
-/** input type for inserting data into table "published.redirects" */
-export type Published_Redirects_Insert_Input = {
-  created_at?: InputMaybe<Scalars['timestamp']['input']>;
-  entity_id?: InputMaybe<Scalars['Int']['input']>;
-  entity_source?: InputMaybe<Scalars['redirect_entity_source_enum']['input']>;
-  redirect_entity_id?: InputMaybe<Scalars['Int']['input']>;
-  redirect_entity_source?: InputMaybe<Scalars['redirect_entity_source_enum']['input']>;
-  redirect_type?: InputMaybe<Scalars['redirect_type_enum']['input']>;
-  redirect_url?: InputMaybe<Scalars['String']['input']>;
-  updated_at?: InputMaybe<Scalars['timestamp']['input']>;
-};
-
-/** aggregate max on columns */
-export type Published_Redirects_Max_Fields = {
-  __typename?: 'published_redirects_max_fields';
-  created_at?: Maybe<Scalars['timestamp']['output']>;
-  entity_id?: Maybe<Scalars['Int']['output']>;
-  entity_source?: Maybe<Scalars['redirect_entity_source_enum']['output']>;
-  redirect_entity_id?: Maybe<Scalars['Int']['output']>;
-  redirect_entity_source?: Maybe<Scalars['redirect_entity_source_enum']['output']>;
-  redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
-  redirect_url?: Maybe<Scalars['String']['output']>;
-  updated_at?: Maybe<Scalars['timestamp']['output']>;
-};
-
-/** aggregate min on columns */
-export type Published_Redirects_Min_Fields = {
-  __typename?: 'published_redirects_min_fields';
-  created_at?: Maybe<Scalars['timestamp']['output']>;
-  entity_id?: Maybe<Scalars['Int']['output']>;
-  entity_source?: Maybe<Scalars['redirect_entity_source_enum']['output']>;
-  redirect_entity_id?: Maybe<Scalars['Int']['output']>;
-  redirect_entity_source?: Maybe<Scalars['redirect_entity_source_enum']['output']>;
-  redirect_type?: Maybe<Scalars['redirect_type_enum']['output']>;
-  redirect_url?: Maybe<Scalars['String']['output']>;
-  updated_at?: Maybe<Scalars['timestamp']['output']>;
-};
-
-/** response of any mutation on the table "published.redirects" */
-export type Published_Redirects_Mutation_Response = {
-  __typename?: 'published_redirects_mutation_response';
-  /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int']['output'];
-  /** data from the rows affected by the mutation */
-  returning: Array<Published_Redirects>;
-};
-
-/** on_conflict condition type for table "published.redirects" */
-export type Published_Redirects_On_Conflict = {
-  constraint: Published_Redirects_Constraint;
-  update_columns?: Array<Published_Redirects_Update_Column>;
-  where?: InputMaybe<Published_Redirects_Bool_Exp>;
-};
-
-/** Ordering options when selecting data from "published.redirects". */
-export type Published_Redirects_Order_By = {
-  created_at?: InputMaybe<Order_By>;
-  entity_id?: InputMaybe<Order_By>;
-  entity_source?: InputMaybe<Order_By>;
-  redirect_entity_id?: InputMaybe<Order_By>;
-  redirect_entity_source?: InputMaybe<Order_By>;
-  redirect_type?: InputMaybe<Order_By>;
-  redirect_url?: InputMaybe<Order_By>;
-  updated_at?: InputMaybe<Order_By>;
-};
-
-/** primary key columns input for table: published.redirects */
-export type Published_Redirects_Pk_Columns_Input = {
-  entity_id: Scalars['Int']['input'];
-  entity_source: Scalars['redirect_entity_source_enum']['input'];
-};
-
-/** select columns of table "published.redirects" */
-export enum Published_Redirects_Select_Column {
-  /** column name */
-  CreatedAt = 'created_at',
-  /** column name */
-  EntityId = 'entity_id',
-  /** column name */
-  EntitySource = 'entity_source',
-  /** column name */
-  RedirectEntityId = 'redirect_entity_id',
-  /** column name */
-  RedirectEntitySource = 'redirect_entity_source',
-  /** column name */
-  RedirectType = 'redirect_type',
-  /** column name */
-  RedirectUrl = 'redirect_url',
-  /** column name */
-  UpdatedAt = 'updated_at'
-}
-
-/** input type for updating data in table "published.redirects" */
-export type Published_Redirects_Set_Input = {
-  created_at?: InputMaybe<Scalars['timestamp']['input']>;
-  entity_id?: InputMaybe<Scalars['Int']['input']>;
-  entity_source?: InputMaybe<Scalars['redirect_entity_source_enum']['input']>;
-  redirect_entity_id?: InputMaybe<Scalars['Int']['input']>;
-  redirect_entity_source?: InputMaybe<Scalars['redirect_entity_source_enum']['input']>;
-  redirect_type?: InputMaybe<Scalars['redirect_type_enum']['input']>;
-  redirect_url?: InputMaybe<Scalars['String']['input']>;
-  updated_at?: InputMaybe<Scalars['timestamp']['input']>;
-};
-
-/** aggregate stddev on columns */
-export type Published_Redirects_Stddev_Fields = {
-  __typename?: 'published_redirects_stddev_fields';
-  entity_id?: Maybe<Scalars['Float']['output']>;
-  redirect_entity_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_pop on columns */
-export type Published_Redirects_Stddev_Pop_Fields = {
-  __typename?: 'published_redirects_stddev_pop_fields';
-  entity_id?: Maybe<Scalars['Float']['output']>;
-  redirect_entity_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate stddev_samp on columns */
-export type Published_Redirects_Stddev_Samp_Fields = {
-  __typename?: 'published_redirects_stddev_samp_fields';
-  entity_id?: Maybe<Scalars['Float']['output']>;
-  redirect_entity_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** Streaming cursor of the table "published_redirects" */
-export type Published_Redirects_Stream_Cursor_Input = {
-  /** Stream column input with initial value */
-  initial_value: Published_Redirects_Stream_Cursor_Value_Input;
-  /** cursor ordering */
-  ordering?: InputMaybe<Cursor_Ordering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type Published_Redirects_Stream_Cursor_Value_Input = {
-  created_at?: InputMaybe<Scalars['timestamp']['input']>;
-  entity_id?: InputMaybe<Scalars['Int']['input']>;
-  entity_source?: InputMaybe<Scalars['redirect_entity_source_enum']['input']>;
-  redirect_entity_id?: InputMaybe<Scalars['Int']['input']>;
-  redirect_entity_source?: InputMaybe<Scalars['redirect_entity_source_enum']['input']>;
-  redirect_type?: InputMaybe<Scalars['redirect_type_enum']['input']>;
-  redirect_url?: InputMaybe<Scalars['String']['input']>;
-  updated_at?: InputMaybe<Scalars['timestamp']['input']>;
-};
-
-/** aggregate sum on columns */
-export type Published_Redirects_Sum_Fields = {
-  __typename?: 'published_redirects_sum_fields';
-  entity_id?: Maybe<Scalars['Int']['output']>;
-  redirect_entity_id?: Maybe<Scalars['Int']['output']>;
-};
-
-/** update columns of table "published.redirects" */
-export enum Published_Redirects_Update_Column {
-  /** column name */
-  CreatedAt = 'created_at',
-  /** column name */
-  EntityId = 'entity_id',
-  /** column name */
-  EntitySource = 'entity_source',
-  /** column name */
-  RedirectEntityId = 'redirect_entity_id',
-  /** column name */
-  RedirectEntitySource = 'redirect_entity_source',
-  /** column name */
-  RedirectType = 'redirect_type',
-  /** column name */
-  RedirectUrl = 'redirect_url',
-  /** column name */
-  UpdatedAt = 'updated_at'
-}
-
-export type Published_Redirects_Updates = {
-  /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<Published_Redirects_Inc_Input>;
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<Published_Redirects_Set_Input>;
-  /** filter the rows which have to be updated */
-  where: Published_Redirects_Bool_Exp;
-};
-
-/** aggregate var_pop on columns */
-export type Published_Redirects_Var_Pop_Fields = {
-  __typename?: 'published_redirects_var_pop_fields';
-  entity_id?: Maybe<Scalars['Float']['output']>;
-  redirect_entity_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate var_samp on columns */
-export type Published_Redirects_Var_Samp_Fields = {
-  __typename?: 'published_redirects_var_samp_fields';
-  entity_id?: Maybe<Scalars['Float']['output']>;
-  redirect_entity_id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** aggregate variance on columns */
-export type Published_Redirects_Variance_Fields = {
-  __typename?: 'published_redirects_variance_fields';
-  entity_id?: Maybe<Scalars['Float']['output']>;
-  redirect_entity_id?: Maybe<Scalars['Float']['output']>;
-};
-
 /** columns and relationships of "published.view_curriculum_overview_0_7" */
 export type Published_View_Curriculum_Overview_0_7 = {
   __typename?: 'published_view_curriculum_overview_0_7';
@@ -47505,12 +47161,6 @@ export type Query_Root = {
   published_mv_threads_by_unit_1_0_0: Array<Published_Mv_Threads_By_Unit_1_0_0>;
   /** fetch aggregated fields from the table: "published.mv_threads_by_unit_1_0_0" */
   published_mv_threads_by_unit_1_0_0_aggregate: Published_Mv_Threads_By_Unit_1_0_0_Aggregate;
-  /** fetch data from the table: "published.redirects" */
-  published_redirects: Array<Published_Redirects>;
-  /** fetch aggregated fields from the table: "published.redirects" */
-  published_redirects_aggregate: Published_Redirects_Aggregate;
-  /** fetch data from the table: "published.redirects" using primary key columns */
-  published_redirects_by_pk?: Maybe<Published_Redirects>;
   /** fetch data from the table: "published.view_curriculum_overview_0_7" */
   published_view_curriculum_overview_0_7: Array<Published_View_Curriculum_Overview_0_7>;
   /** fetch aggregated fields from the table: "published.view_curriculum_overview_0_7" */
@@ -49485,30 +49135,6 @@ export type Query_RootPublished_Mv_Threads_By_Unit_1_0_0_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Published_Mv_Threads_By_Unit_1_0_0_Order_By>>;
   where?: InputMaybe<Published_Mv_Threads_By_Unit_1_0_0_Bool_Exp>;
-};
-
-
-export type Query_RootPublished_RedirectsArgs = {
-  distinct_on?: InputMaybe<Array<Published_Redirects_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Redirects_Order_By>>;
-  where?: InputMaybe<Published_Redirects_Bool_Exp>;
-};
-
-
-export type Query_RootPublished_Redirects_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_Redirects_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Redirects_Order_By>>;
-  where?: InputMaybe<Published_Redirects_Bool_Exp>;
-};
-
-
-export type Query_RootPublished_Redirects_By_PkArgs = {
-  entity_id: Scalars['Int']['input'];
-  entity_source: Scalars['redirect_entity_source_enum']['input'];
 };
 
 
@@ -52357,32 +51983,6 @@ export type Quizzes_Variance_Order_By = {
   quiz_id?: InputMaybe<Order_By>;
 };
 
-/** Boolean expression to compare columns of type "redirect_entity_source_enum". All fields are combined with logical 'AND'. */
-export type Redirect_Entity_Source_Enum_Comparison_Exp = {
-  _eq?: InputMaybe<Scalars['redirect_entity_source_enum']['input']>;
-  _gt?: InputMaybe<Scalars['redirect_entity_source_enum']['input']>;
-  _gte?: InputMaybe<Scalars['redirect_entity_source_enum']['input']>;
-  _in?: InputMaybe<Array<Scalars['redirect_entity_source_enum']['input']>>;
-  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
-  _lt?: InputMaybe<Scalars['redirect_entity_source_enum']['input']>;
-  _lte?: InputMaybe<Scalars['redirect_entity_source_enum']['input']>;
-  _neq?: InputMaybe<Scalars['redirect_entity_source_enum']['input']>;
-  _nin?: InputMaybe<Array<Scalars['redirect_entity_source_enum']['input']>>;
-};
-
-/** Boolean expression to compare columns of type "redirect_type_enum". All fields are combined with logical 'AND'. */
-export type Redirect_Type_Enum_Comparison_Exp = {
-  _eq?: InputMaybe<Scalars['redirect_type_enum']['input']>;
-  _gt?: InputMaybe<Scalars['redirect_type_enum']['input']>;
-  _gte?: InputMaybe<Scalars['redirect_type_enum']['input']>;
-  _in?: InputMaybe<Array<Scalars['redirect_type_enum']['input']>>;
-  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
-  _lt?: InputMaybe<Scalars['redirect_type_enum']['input']>;
-  _lte?: InputMaybe<Scalars['redirect_type_enum']['input']>;
-  _neq?: InputMaybe<Scalars['redirect_type_enum']['input']>;
-  _nin?: InputMaybe<Array<Scalars['redirect_type_enum']['input']>>;
-};
-
 export type Subscription_Root = {
   __typename?: 'subscription_root';
   /** fetch data from the table: "assets" */
@@ -52967,14 +52567,6 @@ export type Subscription_Root = {
   published_mv_threads_by_unit_1_0_0_aggregate: Published_Mv_Threads_By_Unit_1_0_0_Aggregate;
   /** fetch data from the table in a streaming manner: "published.mv_threads_by_unit_1_0_0" */
   published_mv_threads_by_unit_1_0_0_stream: Array<Published_Mv_Threads_By_Unit_1_0_0>;
-  /** fetch data from the table: "published.redirects" */
-  published_redirects: Array<Published_Redirects>;
-  /** fetch aggregated fields from the table: "published.redirects" */
-  published_redirects_aggregate: Published_Redirects_Aggregate;
-  /** fetch data from the table: "published.redirects" using primary key columns */
-  published_redirects_by_pk?: Maybe<Published_Redirects>;
-  /** fetch data from the table in a streaming manner: "published.redirects" */
-  published_redirects_stream: Array<Published_Redirects>;
   /** fetch data from the table: "published.view_curriculum_overview_0_7" */
   published_view_curriculum_overview_0_7: Array<Published_View_Curriculum_Overview_0_7>;
   /** fetch aggregated fields from the table: "published.view_curriculum_overview_0_7" */
@@ -55663,37 +55255,6 @@ export type Subscription_RootPublished_Mv_Threads_By_Unit_1_0_0_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Published_Mv_Threads_By_Unit_1_0_0_Stream_Cursor_Input>>;
   where?: InputMaybe<Published_Mv_Threads_By_Unit_1_0_0_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_RedirectsArgs = {
-  distinct_on?: InputMaybe<Array<Published_Redirects_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Redirects_Order_By>>;
-  where?: InputMaybe<Published_Redirects_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_Redirects_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Published_Redirects_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Published_Redirects_Order_By>>;
-  where?: InputMaybe<Published_Redirects_Bool_Exp>;
-};
-
-
-export type Subscription_RootPublished_Redirects_By_PkArgs = {
-  entity_id: Scalars['Int']['input'];
-  entity_source: Scalars['redirect_entity_source_enum']['input'];
-};
-
-
-export type Subscription_RootPublished_Redirects_StreamArgs = {
-  batch_size: Scalars['Int']['input'];
-  cursor: Array<InputMaybe<Published_Redirects_Stream_Cursor_Input>>;
-  where?: InputMaybe<Published_Redirects_Bool_Exp>;
 };
 
 
@@ -65127,7 +64688,7 @@ export type LessonOverviewQueryVariables = Exact<{
 }>;
 
 
-export type LessonOverviewQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_17_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, programme_slug_by_year?: any | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_published_9_0_0', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, phonics_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_google_drive_downloadable_version?: boolean | null, has_slide_deck_asset_object?: boolean | null, worksheet_asset_id?: number | null, has_worksheet_asset_object?: boolean | null, worksheet_answers_asset_id?: number | null, has_worksheet_answers_asset_object?: boolean | null, supplementary_asset_id?: number | null, has_supplementary_asset_object?: boolean | null, slide_deck_asset_id?: number | null, slide_deck_asset_object_url?: string | null, worksheet_asset_object_url?: string | null, supplementary_asset_object_url?: string | null, has_lesson_guide_google_drive_downloadable_version?: boolean | null, lesson_guide_asset_object_url?: string | null, has_lesson_guide_object?: boolean | null, lesson_guide_asset_id?: number | null, downloadable_files?: any | null, lesson_release_date?: any | null }>, unitData: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_16_0_0', lesson_count?: number | null, supplementary_data?: any | null }> };
+export type LessonOverviewQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_17_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, programme_slug_by_year?: any | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_published_9_0_0', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, phonics_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_google_drive_downloadable_version?: boolean | null, has_slide_deck_asset_object?: boolean | null, worksheet_asset_id?: number | null, has_worksheet_asset_object?: boolean | null, worksheet_answers_asset_id?: number | null, has_worksheet_answers_asset_object?: boolean | null, supplementary_asset_id?: number | null, has_supplementary_asset_object?: boolean | null, slide_deck_asset_id?: number | null, slide_deck_asset_object_url?: string | null, worksheet_asset_object_url?: string | null, supplementary_asset_object_url?: string | null, has_lesson_guide_google_drive_downloadable_version?: boolean | null, lesson_guide_asset_object_url?: string | null, has_lesson_guide_object?: boolean | null, lesson_guide_asset_id?: number | null, downloadable_files?: any | null, lesson_release_date?: any | null, geo_restricted?: boolean | null, login_required?: boolean | null }>, unitData: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_16_0_0', lesson_count?: number | null, supplementary_data?: any | null }> };
 
 export type LessonShareQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
@@ -65589,6 +65150,8 @@ export const LessonOverviewDocument = gql`
     lesson_guide_asset_id
     downloadable_files
     lesson_release_date
+    geo_restricted
+    login_required
   }
   unitData: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_16_0_0(
     where: $unitDataWhere
@@ -66393,125 +65956,125 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    curriculumOverview(variables?: CurriculumOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<CurriculumOverviewQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<CurriculumOverviewQuery>(CurriculumOverviewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'curriculumOverview', 'query', variables);
+    curriculumOverview(variables?: CurriculumOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CurriculumOverviewQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CurriculumOverviewQuery>({ document: CurriculumOverviewDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'curriculumOverview', 'query', variables);
     },
-    curriculumPhaseOptions(variables?: CurriculumPhaseOptionsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<CurriculumPhaseOptionsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<CurriculumPhaseOptionsQuery>(CurriculumPhaseOptionsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'curriculumPhaseOptions', 'query', variables);
+    curriculumPhaseOptions(variables?: CurriculumPhaseOptionsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CurriculumPhaseOptionsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CurriculumPhaseOptionsQuery>({ document: CurriculumPhaseOptionsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'curriculumPhaseOptions', 'query', variables);
     },
-    curriculumSequence(variables?: CurriculumSequenceQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<CurriculumSequenceQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<CurriculumSequenceQuery>(CurriculumSequenceDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'curriculumSequence', 'query', variables);
+    curriculumSequence(variables?: CurriculumSequenceQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CurriculumSequenceQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CurriculumSequenceQuery>({ document: CurriculumSequenceDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'curriculumSequence', 'query', variables);
     },
-    betaLessonMediaClips(variables: BetaLessonMediaClipsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<BetaLessonMediaClipsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<BetaLessonMediaClipsQuery>(BetaLessonMediaClipsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'betaLessonMediaClips', 'query', variables);
+    betaLessonMediaClips(variables: BetaLessonMediaClipsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<BetaLessonMediaClipsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<BetaLessonMediaClipsQuery>({ document: BetaLessonMediaClipsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'betaLessonMediaClips', 'query', variables);
     },
-    lessonDownloads(variables: LessonDownloadsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonDownloadsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<LessonDownloadsQuery>(LessonDownloadsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonDownloads', 'query', variables);
+    lessonDownloads(variables: LessonDownloadsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<LessonDownloadsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonDownloadsQuery>({ document: LessonDownloadsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'lessonDownloads', 'query', variables);
     },
-    lessonListing(variables: LessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<LessonListingQuery>(LessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonListing', 'query', variables);
+    lessonListing(variables: LessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<LessonListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonListingQuery>({ document: LessonListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'lessonListing', 'query', variables);
     },
-    lessonMediaClips(variables?: LessonMediaClipsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonMediaClipsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<LessonMediaClipsQuery>(LessonMediaClipsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonMediaClips', 'query', variables);
+    lessonMediaClips(variables?: LessonMediaClipsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<LessonMediaClipsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonMediaClipsQuery>({ document: LessonMediaClipsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'lessonMediaClips', 'query', variables);
     },
-    lessonOverview(variables: LessonOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonOverviewQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<LessonOverviewQuery>(LessonOverviewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonOverview', 'query', variables);
+    lessonOverview(variables: LessonOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<LessonOverviewQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonOverviewQuery>({ document: LessonOverviewDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'lessonOverview', 'query', variables);
     },
-    lessonShare(variables: LessonShareQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonShareQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<LessonShareQuery>(LessonShareDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonShare', 'query', variables);
+    lessonShare(variables: LessonShareQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<LessonShareQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonShareQuery>({ document: LessonShareDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'lessonShare', 'query', variables);
     },
-    programmeListing(variables?: ProgrammeListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<ProgrammeListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<ProgrammeListingQuery>(ProgrammeListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'programmeListing', 'query', variables);
+    programmeListing(variables?: ProgrammeListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<ProgrammeListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ProgrammeListingQuery>({ document: ProgrammeListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'programmeListing', 'query', variables);
     },
-    pupilLesson(variables: PupilLessonQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilLessonQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PupilLessonQuery>(PupilLessonDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilLesson', 'query', variables);
+    pupilLesson(variables: PupilLessonQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PupilLessonQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilLessonQuery>({ document: PupilLessonDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pupilLesson', 'query', variables);
     },
-    pupilLessonListing(variables: PupilLessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilLessonListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PupilLessonListingQuery>(PupilLessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilLessonListing', 'query', variables);
+    pupilLessonListing(variables: PupilLessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PupilLessonListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilLessonListingQuery>({ document: PupilLessonListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pupilLessonListing', 'query', variables);
     },
-    pupilPreviewLesson(variables: PupilPreviewLessonQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilPreviewLessonQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PupilPreviewLessonQuery>(PupilPreviewLessonDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilPreviewLesson', 'query', variables);
+    pupilPreviewLesson(variables: PupilPreviewLessonQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PupilPreviewLessonQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilPreviewLessonQuery>({ document: PupilPreviewLessonDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pupilPreviewLesson', 'query', variables);
     },
-    pupilProgrammeListing(variables: PupilProgrammeListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilProgrammeListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PupilProgrammeListingQuery>(PupilProgrammeListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilProgrammeListing', 'query', variables);
+    pupilProgrammeListing(variables: PupilProgrammeListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PupilProgrammeListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilProgrammeListingQuery>({ document: PupilProgrammeListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pupilProgrammeListing', 'query', variables);
     },
-    pupilSubjectListing(variables: PupilSubjectListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilSubjectListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PupilSubjectListingQuery>(PupilSubjectListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilSubjectListing', 'query', variables);
+    pupilSubjectListing(variables: PupilSubjectListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PupilSubjectListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilSubjectListingQuery>({ document: PupilSubjectListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pupilSubjectListing', 'query', variables);
     },
-    pupilUnitListing(variables: PupilUnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilUnitListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PupilUnitListingQuery>(PupilUnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilUnitListing', 'query', variables);
+    pupilUnitListing(variables: PupilUnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PupilUnitListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilUnitListingQuery>({ document: PupilUnitListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pupilUnitListing', 'query', variables);
     },
-    pupilsSitemap(variables?: PupilsSitemapQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilsSitemapQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PupilsSitemapQuery>(PupilsSitemapDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilsSitemap', 'query', variables);
+    pupilsSitemap(variables?: PupilsSitemapQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PupilsSitemapQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilsSitemapQuery>({ document: PupilsSitemapDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pupilsSitemap', 'query', variables);
     },
-    refreshedMVTime(variables: RefreshedMvTimeQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<RefreshedMvTimeQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<RefreshedMvTimeQuery>(RefreshedMvTimeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'refreshedMVTime', 'query', variables);
+    refreshedMVTime(variables: RefreshedMvTimeQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<RefreshedMvTimeQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<RefreshedMvTimeQuery>({ document: RefreshedMvTimeDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'refreshedMVTime', 'query', variables);
     },
-    searchPage(variables?: SearchPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SearchPageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SearchPageQuery>(SearchPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'searchPage', 'query', variables);
+    searchPage(variables?: SearchPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SearchPageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SearchPageQuery>({ document: SearchPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'searchPage', 'query', variables);
     },
-    specialistLessonDownloads(variables?: SpecialistLessonDownloadsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistLessonDownloadsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonDownloadsQuery>(SpecialistLessonDownloadsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonDownloads', 'query', variables);
+    specialistLessonDownloads(variables?: SpecialistLessonDownloadsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistLessonDownloadsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonDownloadsQuery>({ document: SpecialistLessonDownloadsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistLessonDownloads', 'query', variables);
     },
-    specialistLessonListing(variables?: SpecialistLessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistLessonListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonListingQuery>(SpecialistLessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonListing', 'query', variables);
+    specialistLessonListing(variables?: SpecialistLessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistLessonListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonListingQuery>({ document: SpecialistLessonListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistLessonListing', 'query', variables);
     },
-    specialistLessonOverview(variables: SpecialistLessonOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistLessonOverviewQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonOverviewQuery>(SpecialistLessonOverviewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonOverview', 'query', variables);
+    specialistLessonOverview(variables: SpecialistLessonOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistLessonOverviewQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonOverviewQuery>({ document: SpecialistLessonOverviewDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistLessonOverview', 'query', variables);
     },
-    specialistLessonOverviewCanonical(variables: SpecialistLessonOverviewCanonicalQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistLessonOverviewCanonicalQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonOverviewCanonicalQuery>(SpecialistLessonOverviewCanonicalDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonOverviewCanonical', 'query', variables);
+    specialistLessonOverviewCanonical(variables: SpecialistLessonOverviewCanonicalQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistLessonOverviewCanonicalQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonOverviewCanonicalQuery>({ document: SpecialistLessonOverviewCanonicalDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistLessonOverviewCanonical', 'query', variables);
     },
-    specialistLessonShare(variables?: SpecialistLessonShareQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistLessonShareQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonShareQuery>(SpecialistLessonShareDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonShare', 'query', variables);
+    specialistLessonShare(variables?: SpecialistLessonShareQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistLessonShareQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonShareQuery>({ document: SpecialistLessonShareDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistLessonShare', 'query', variables);
     },
-    specialistProgrammeListing(variables?: SpecialistProgrammeListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistProgrammeListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistProgrammeListingQuery>(SpecialistProgrammeListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistProgrammeListing', 'query', variables);
+    specialistProgrammeListing(variables?: SpecialistProgrammeListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistProgrammeListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistProgrammeListingQuery>({ document: SpecialistProgrammeListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistProgrammeListing', 'query', variables);
     },
-    specialistProgrammeListingCounts(variables: SpecialistProgrammeListingCountsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistProgrammeListingCountsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistProgrammeListingCountsQuery>(SpecialistProgrammeListingCountsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistProgrammeListingCounts', 'query', variables);
+    specialistProgrammeListingCounts(variables: SpecialistProgrammeListingCountsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistProgrammeListingCountsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistProgrammeListingCountsQuery>({ document: SpecialistProgrammeListingCountsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistProgrammeListingCounts', 'query', variables);
     },
-    specialistSubjectListing(variables?: SpecialistSubjectListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistSubjectListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistSubjectListingQuery>(SpecialistSubjectListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistSubjectListing', 'query', variables);
+    specialistSubjectListing(variables?: SpecialistSubjectListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistSubjectListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistSubjectListingQuery>({ document: SpecialistSubjectListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistSubjectListing', 'query', variables);
     },
-    specialistUnitsAndLessonCount(variables?: SpecialistUnitsAndLessonCountQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistUnitsAndLessonCountQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistUnitsAndLessonCountQuery>(SpecialistUnitsAndLessonCountDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistUnitsAndLessonCount', 'query', variables);
+    specialistUnitsAndLessonCount(variables?: SpecialistUnitsAndLessonCountQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistUnitsAndLessonCountQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistUnitsAndLessonCountQuery>({ document: SpecialistUnitsAndLessonCountDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistUnitsAndLessonCount', 'query', variables);
     },
-    developmentStageUnitCount(variables: DevelopmentStageUnitCountQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<DevelopmentStageUnitCountQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<DevelopmentStageUnitCountQuery>(DevelopmentStageUnitCountDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'developmentStageUnitCount', 'query', variables);
+    developmentStageUnitCount(variables: DevelopmentStageUnitCountQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<DevelopmentStageUnitCountQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<DevelopmentStageUnitCountQuery>({ document: DevelopmentStageUnitCountDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'developmentStageUnitCount', 'query', variables);
     },
-    developmentStages(variables?: DevelopmentStagesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<DevelopmentStagesQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<DevelopmentStagesQuery>(DevelopmentStagesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'developmentStages', 'query', variables);
+    developmentStages(variables?: DevelopmentStagesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<DevelopmentStagesQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<DevelopmentStagesQuery>({ document: DevelopmentStagesDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'developmentStages', 'query', variables);
     },
-    specialistLessonCount(variables: SpecialistLessonCountQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistLessonCountQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonCountQuery>(SpecialistLessonCountDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonCount', 'query', variables);
+    specialistLessonCount(variables: SpecialistLessonCountQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistLessonCountQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonCountQuery>({ document: SpecialistLessonCountDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistLessonCount', 'query', variables);
     },
-    specialistUnitListing(variables: SpecialistUnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistUnitListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistUnitListingQuery>(SpecialistUnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistUnitListing', 'query', variables);
+    specialistUnitListing(variables: SpecialistUnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistUnitListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistUnitListingQuery>({ document: SpecialistUnitListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistUnitListing', 'query', variables);
     },
-    subjectListing(variables?: SubjectListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SubjectListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SubjectListingQuery>(SubjectListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'subjectListing', 'query', variables);
+    subjectListing(variables?: SubjectListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SubjectListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SubjectListingQuery>({ document: SubjectListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'subjectListing', 'query', variables);
     },
-    teachersPreviewLesson(variables: TeachersPreviewLessonQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersPreviewLessonQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeachersPreviewLessonQuery>(TeachersPreviewLessonDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersPreviewLesson', 'query', variables);
+    teachersPreviewLesson(variables: TeachersPreviewLessonQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TeachersPreviewLessonQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TeachersPreviewLessonQuery>({ document: TeachersPreviewLessonDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'teachersPreviewLesson', 'query', variables);
     },
-    teacherPreviewLessonDownload(variables: TeacherPreviewLessonDownloadQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeacherPreviewLessonDownloadQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeacherPreviewLessonDownloadQuery>(TeacherPreviewLessonDownloadDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teacherPreviewLessonDownload', 'query', variables);
+    teacherPreviewLessonDownload(variables: TeacherPreviewLessonDownloadQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TeacherPreviewLessonDownloadQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TeacherPreviewLessonDownloadQuery>({ document: TeacherPreviewLessonDownloadDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'teacherPreviewLessonDownload', 'query', variables);
     },
-    teacherPreviewLessonListing(variables: TeacherPreviewLessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeacherPreviewLessonListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeacherPreviewLessonListingQuery>(TeacherPreviewLessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teacherPreviewLessonListing', 'query', variables);
+    teacherPreviewLessonListing(variables: TeacherPreviewLessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TeacherPreviewLessonListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TeacherPreviewLessonListingQuery>({ document: TeacherPreviewLessonListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'teacherPreviewLessonListing', 'query', variables);
     },
-    teachersPreviewUnitListing(variables: TeachersPreviewUnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersPreviewUnitListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeachersPreviewUnitListingQuery>(TeachersPreviewUnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersPreviewUnitListing', 'query', variables);
+    teachersPreviewUnitListing(variables: TeachersPreviewUnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TeachersPreviewUnitListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TeachersPreviewUnitListingQuery>({ document: TeachersPreviewUnitListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'teachersPreviewUnitListing', 'query', variables);
     },
-    teachersHomePage(variables?: TeachersHomePageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersHomePageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeachersHomePageQuery>(TeachersHomePageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersHomePage', 'query', variables);
+    teachersHomePage(variables?: TeachersHomePageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TeachersHomePageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TeachersHomePageQuery>({ document: TeachersHomePageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'teachersHomePage', 'query', variables);
     },
-    teachersSitemap(variables?: TeachersSitemapQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersSitemapQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeachersSitemapQuery>(TeachersSitemapDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersSitemap', 'query', variables);
+    teachersSitemap(variables?: TeachersSitemapQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TeachersSitemapQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TeachersSitemapQuery>({ document: TeachersSitemapDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'teachersSitemap', 'query', variables);
     },
-    unitListing(variables: UnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<UnitListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<UnitListingQuery>(UnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'unitListing', 'query', variables);
+    unitListing(variables: UnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<UnitListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<UnitListingQuery>({ document: UnitListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'unitListing', 'query', variables);
     }
   };
 }

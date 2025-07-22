@@ -10,6 +10,7 @@ export const generateMockCollectionData = (count: number): CollectionData => {
     programmeTitle:
       index === 3 ? "Programme: subcategory KS4" : `Programme ${index + 1} KS4`,
     searchQuery: null,
+    uniqueProgrammeKey: `programme-${index + 1}`,
     units: [
       {
         unitSlug: `unit-${index + 1}`,

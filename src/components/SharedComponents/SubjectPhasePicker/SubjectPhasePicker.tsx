@@ -43,6 +43,14 @@ import useMediaQuery from "@/hooks/useMediaQuery";
 import type { CurriculumTab } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
 
+const TruncatedFlex = styled(OakFlex)`
+  max-width: calc(100% - 1rem);
+
+  @media (min-width: 750px) {
+    max-width: calc(100% - 8rem);
+  }
+`;
+
 // FIXME: This is from <@/pages-helpers/pupil/options-pages/options-pages-helpers> being duplicated here to fix bundle issues.
 const isExamboardSlug = (
   examboardSlug: ProgrammeFields["examboard_slug"] | string | null,
@@ -545,6 +553,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       if (isMobile) {
         setIsNavigating(true);
       } else {
+        setIsNavigating(true);
         setShowPhases(false);
       }
 
@@ -952,14 +961,20 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           </OakFlex>
                         )}
                         {showKS4OptionError && (
-                          <OakFlex>
+                          <TruncatedFlex>
                             <OakIcon
                               iconName="content-guidance"
                               $colorFilter={"red"}
                               $height={"all-spacing-6"}
                             />
-                            Select an option for KS4
-                          </OakFlex>
+                            <OakSpan
+                              $textOverflow="ellipsis"
+                              $overflow="hidden"
+                              $whiteSpace="nowrap"
+                            >
+                              Select an option for KS4
+                            </OakSpan>
+                          </TruncatedFlex>
                         )}
                         {selectedPhase && !showKS4OptionError && (
                           <>
@@ -1436,6 +1451,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     isTrailingIcon={true}
                     onClick={handleViewCurriculum}
                     data-testid="lot-picker-view-curriculum-button"
+                    isLoading={isNavigating}
                   >
                     View
                   </OakPrimaryButton>

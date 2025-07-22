@@ -23,7 +23,7 @@ describe("hasLessonMathJax", () => {
     videoWithSignLanguageMuxPlaybackId: null,
     transcriptSentences: null,
     isWorksheetLandscape: null,
-    hasCopyrightMaterial: null,
+    hasLegacyCopyrightMaterial: null,
     expired: null,
     starterQuiz: [],
     exitQuiz: [],
@@ -48,6 +48,8 @@ describe("hasLessonMathJax", () => {
     lessonReleaseDate: "2022-02-01T00:00:00Z",
     orderInUnit: 1,
     unitTotalLessonCount: 1,
+    loginRequired: false,
+    geoRestricted: false,
   };
 
   it("detects MathJax in keyLearningPoints", () => {

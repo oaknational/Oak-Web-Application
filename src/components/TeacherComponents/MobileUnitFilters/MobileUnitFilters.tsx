@@ -1,5 +1,6 @@
 import React, { FC, useState, useEffect } from "react";
 import {
+  OakBox,
   OakFieldset,
   OakFilterDrawer,
   OakFlex,
@@ -7,24 +8,26 @@ import {
   OakPrimaryButton,
   OakTertiaryButton,
 } from "@oaknational/oak-components";
-import { useRouter } from "next/router";
 
 import UnitsLearningThemeFilters from "../UnitsLearningThemeFilters/UnitsLearningThemeFilters";
 
 import YearGroupFilters from "@/components/TeacherComponents/YearGroupFilters";
 import SubjectCategoryFilters from "@/components/TeacherComponents/SubjectCategoryFilters";
-import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
-import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import filterUnits from "@/utils/filterUnits/filterUnits";
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 import { SpecialistUnitListingData } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
+import { FilterQuery } from "@/hooks/useUnitFilterState";
 
 export type MobileUnitFiltersProps = {
   numberOfUnits: number;
-  browseRefined: TrackFns["browseRefined"];
-  setSelectedThemeSlug: (theme: string | undefined) => void;
   learningThemesFilterId: string;
-  isSpecialist?: boolean;
+  updateActiveFilters: (queryObj: FilterQuery | null) => void;
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  handleSubmitQuery: () => void;
+  incomingThemeSlug: string;
+  incomingCategorySlug: string;
+  incomingYearGroupSlug: string;
 } & (UnitListingData | SpecialistUnitListingData);
 
 // Type guard as due to differences in specialist and non-specialist unit listing data
@@ -38,94 +41,50 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
   const {
     learningThemes,
     numberOfUnits,
-    programmeSlug,
-    browseRefined,
-    setSelectedThemeSlug,
     learningThemesFilterId,
-    subjectTitle,
-    subjectSlug,
     units,
-    isSpecialist,
+    updateActiveFilters,
+    isOpen,
+    setIsOpen,
+    handleSubmitQuery,
+    incomingThemeSlug,
+    incomingCategorySlug,
+    incomingYearGroupSlug,
   } = props;
   const isUnitListing = isUnitListingData(props);
-  const router = useRouter();
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [year, setYear] = useState(router.query["year"]?.toString() ?? "");
-  const [category, setCategory] = useState<string>(
-    router.query["category"]?.toString() ?? "",
-  );
-  const [theme, setTheme] = useState<string | undefined>(
-    router.query["learning-theme"]?.toString() ?? "",
-  );
+
   const [currNumberOfUnits, setCurrNumberOfUnits] = useState(numberOfUnits);
 
   useEffect(() => {
-    const inputTheme = theme === "all" ? undefined : theme;
-
+    const inputTheme =
+      incomingThemeSlug === "all" ? undefined : incomingThemeSlug;
     if (isUnitListing) {
       const filteredUnits = filterUnits({
         themeSlug: inputTheme,
-        categorySlug: category,
-        yearGroup: year,
+        categorySlug: incomingCategorySlug,
+        yearGroup: incomingYearGroupSlug,
         units: units as UnitListingData["units"],
       });
       setCurrNumberOfUnits(filteredUnits.length);
     } else {
       const filteredUnits = filterUnits({
         themeSlug: inputTheme,
-        categorySlug: category,
-        yearGroup: year,
+        categorySlug: incomingCategorySlug,
+        yearGroup: incomingYearGroupSlug,
         units: units as SpecialistUnitListingData["units"],
       });
       setCurrNumberOfUnits(filteredUnits.length);
     }
-  }, [year, category, theme, units, isUnitListing]);
+  }, [
+    incomingCategorySlug,
+    incomingThemeSlug,
+    incomingYearGroupSlug,
+    units,
+    isUnitListing,
+  ]);
 
-  const handleClearAllFilters = () => {
-    setYear("");
-    setCategory("");
-    setTheme(undefined);
-  };
-
-  const handleSubmitButton = () => {
-    if (isUnitListing) {
-      browseRefined({
-        platform: "owa",
-        product: "teacher lesson resources",
-        engagementIntent: "refine",
-        componentType: "filter_link",
-        eventVersion: "2.0.0",
-        analyticsUseCase: "Teacher",
-        filterValue: "show results button",
-        filterType: "Subject filter",
-        activeFilters: {
-          content_types: "units",
-          learning_themes: theme,
-          categories: category,
-          year: year,
-        },
-      });
-    }
-    router.replace({
-      pathname: router.pathname,
-      query: {
-        ...(year && { year: year }),
-        programmeSlug,
-        ...(category && { category: category }),
-        ...(theme && { "learning-theme": theme }),
-      },
-    });
-    setIsOpen(false);
-  };
-
-  const handleClose = () => {
-    setIsOpen(false);
-    setYear(router.query["year"]?.toString() ?? "");
-    setCategory(router.query["category"]?.toString() ?? "");
-    setTheme(router.query["learning-theme"]?.toString() ?? "");
-  };
   return (
-    <>
+    <OakBox $display={["auto", "auto", "none"]}>
       <OakTertiaryButton
         isTrailingIcon
         iconName="filter"
@@ -135,11 +94,11 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
       </OakTertiaryButton>
       <OakFilterDrawer
         isOpen={isOpen}
-        onClose={() => handleClose()}
-        clearAllInputs={() => handleClearAllFilters()}
+        onClose={() => setIsOpen(false)}
+        clearAllInputs={() => updateActiveFilters(null)}
         footerSlot={
           <OakFlex $width={"100%"} $alignSelf={"center"}>
-            <OakPrimaryButton onClick={handleSubmitButton}>
+            <OakPrimaryButton onClick={() => handleSubmitQuery()}>
               {`Show results (${currNumberOfUnits})`}
             </OakPrimaryButton>
           </OakFlex>
@@ -149,22 +108,17 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
           {isUnitListing && props.yearGroups.length > 1 && (
             <YearGroupFilters
               idSuffix="mobile"
-              programmeSlug={programmeSlug}
               yearGroups={props.yearGroups}
-              browseRefined={browseRefined}
-              activeMobileFilter={year}
-              setYear={setYear}
+              yearGroupSlug={incomingYearGroupSlug}
+              setYear={(year) => updateActiveFilters({ year })}
             />
           )}
           {isUnitListing && props.subjectCategories.length > 1 && (
             <SubjectCategoryFilters
               idSuffix="mobile"
-              programmeSlug={programmeSlug}
               subjectCategories={props.subjectCategories}
-              categorySlug={category}
-              browseRefined={browseRefined}
-              setCategory={setCategory}
-              activeMobileFilter={category}
+              categorySlug={incomingCategorySlug}
+              setCategory={(category) => updateActiveFilters({ category })}
             />
           )}
           {learningThemes.length > 1 && (
@@ -175,42 +129,16 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
 
               <UnitsLearningThemeFilters
                 idSuffix="mobile"
-                programmeSlug={programmeSlug}
-                onChangeCallback={setSelectedThemeSlug}
                 labelledBy={learningThemesFilterId}
                 learningThemes={learningThemes}
-                selectedThemeSlug={theme ?? "all"}
-                linkProps={
-                  !isSpecialist
-                    ? {
-                        page: "unit-index",
-                        programmeSlug,
-                      }
-                    : {
-                        page: "specialist-unit-index",
-                        programmeSlug: programmeSlug,
-                      }
-                }
-                trackingProps={
-                  isUnitListing && !isSpecialist
-                    ? {
-                        keyStageSlug: props.keyStageSlug,
-                        keyStageTitle:
-                          props.keyStageTitle as KeyStageTitleValueType,
-                        subjectTitle,
-                        subjectSlug,
-                      }
-                    : undefined
-                }
-                setMobileFilter={setTheme}
-                activeMobileFilter={theme}
-                browseRefined={browseRefined}
+                selectedThemeSlug={incomingThemeSlug}
+                setTheme={(theme) => updateActiveFilters({ theme })}
               />
             </>
           )}
         </OakFieldset>
       </OakFilterDrawer>
-    </>
+    </OakBox>
   );
 };
 

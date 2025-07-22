@@ -20,6 +20,7 @@ const sampleUnits = [
     lessons: completeUnitLessons,
     onSave: () => console.log("Unsave unit 1"),
     isSaved: true,
+    isSaving: false,
   },
   {
     unitTitle: "Writing for Different Audiences",
@@ -31,6 +32,7 @@ const sampleUnits = [
     lessons: incompleteUnitLessons,
     onSave: () => console.log("Unsave unit 2"),
     isSaved: true,
+    isSaving: false,
   },
   {
     unitTitle: "Poetry Analysis: Romanticism",
@@ -42,6 +44,7 @@ const sampleUnits = [
     lessons: completeUnitLessons.slice(0, 3),
     onSave: () => console.log("Unsave unit 3"),
     isSaved: true,
+    isSaving: false,
   },
 ];
 

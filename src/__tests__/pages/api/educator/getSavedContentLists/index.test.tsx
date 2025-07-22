@@ -78,12 +78,14 @@ describe("api/educator-api/getSavedContentLists", () => {
     expect(res._getStatusCode()).toBe(200);
     expect(res._getJSONData()).toEqual({
       "mock-programme": {
+        programmeSlug: "mock-programme",
         keystage: "KS2",
         keystageSlug: "ks2",
         subject: "Maths",
         subjectSlug: "maths",
         tier: null,
         examboard: null,
+        subjectCategory: null,
         units: [
           {
             unitSlug: "mock-unit",
