@@ -4,6 +4,7 @@ import {
   OakP,
   OakImage,
   OakPrimaryButton,
+  OakLink,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
@@ -11,6 +12,10 @@ import LoginRequiredButton from "../LoginRequiredButton/LoginRequiredButton";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
+import {
+  COPYRIGHT_CONTACT_US_LINK,
+  COPYRIGHT_SUPPORT_LINK,
+} from "@/utils/copyrightLinks";
 
 type RestrictedContentPromptProps = {
   showGeoBlocked?: boolean;
@@ -81,9 +86,12 @@ const GeoblockedPrompt = ({
         Sorry but this content is only available in the UK.
       </OakHeading>
       <OakP $font={"body-1"}>
-        Some of our content is restricted to the UK due to copyright. You can
-        read more about copyrights or if you believe this is an error and you’re
-        based in the UK, please contact us.
+        Some of our content is restricted to the UK due to copyright. You can{" "}
+        <OakLink href={COPYRIGHT_SUPPORT_LINK}>
+          read more about copyrights
+        </OakLink>{" "}
+        or if you believe this is an error and you’re based in the UK, please{" "}
+        <OakLink href={COPYRIGHT_CONTACT_US_LINK}>contact us.</OakLink>
       </OakP>
     </OakFlex>
     {programmeSlug && unitSlug && lessonSlug && !isCanonical && (
