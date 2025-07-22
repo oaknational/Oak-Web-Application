@@ -56,6 +56,8 @@ describe("TeacherShareNotesButton", () => {
   const defaultProps = {
     isEditable: false,
     noteSaved: false,
+    loginRequired: false,
+    geoRestricted: false,
     setTeacherNotesOpen: jest.fn(),
     onTeacherNotesOpen: jest.fn(),
     shareUrl: "https://example.com/share",

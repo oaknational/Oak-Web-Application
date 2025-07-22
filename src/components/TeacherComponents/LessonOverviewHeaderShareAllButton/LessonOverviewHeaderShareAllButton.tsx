@@ -21,11 +21,14 @@ export const LessonOverviewHeaderShareAllButton: FC<
     geoRestricted,
     loginRequired,
   } = props;
-  const { showSignedOutGeoRestricted, showSignedOutLoginRequired } =
-    useCopyrightRequirements({
-      geoRestricted: geoRestricted ?? false,
-      loginRequired: loginRequired ?? false,
-    });
+  const {
+    showSignedOutGeoRestricted,
+    showSignedOutLoginRequired,
+    showGeoBlocked,
+  } = useCopyrightRequirements({
+    geoRestricted: geoRestricted ?? false,
+    loginRequired: loginRequired ?? false,
+  });
   const preselected = "all";
 
   const contentRestricted =
@@ -61,6 +64,7 @@ export const LessonOverviewHeaderShareAllButton: FC<
     });
   })();
 
+  if (showGeoBlocked) return null;
   if (!isShareable || !href) {
     return (
       <OakSmallSecondaryButton

@@ -23,16 +23,19 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
   } = props;
 
   const preselected = "all";
-  const { showSignedOutGeoRestricted, showSignedOutLoginRequired } =
-    useCopyrightRequirements({
-      geoRestricted: geoRestricted ?? false,
-      loginRequired: loginRequired ?? false,
-    });
+  const {
+    showSignedOutGeoRestricted,
+    showSignedOutLoginRequired,
+    showGeoBlocked,
+  } = useCopyrightRequirements({
+    geoRestricted: geoRestricted ?? false,
+    loginRequired: loginRequired ?? false,
+  });
 
   const contentRestricted =
     showSignedOutGeoRestricted || showSignedOutLoginRequired;
 
-  if (expired || !showDownloadAll) {
+  if (expired || !showDownloadAll || showGeoBlocked) {
     return null;
   }
 

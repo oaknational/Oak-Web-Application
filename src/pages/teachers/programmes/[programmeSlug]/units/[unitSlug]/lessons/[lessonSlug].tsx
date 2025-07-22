@@ -45,6 +45,8 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     keyStageTitle,
     isLegacy,
     lessonReleaseDate,
+    loginRequired,
+    geoRestricted,
   } = curriculumData;
 
   const {
@@ -63,6 +65,8 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     unitSlug,
     programmeSlug,
     source: "lesson-browse",
+    loginRequired,
+    geoRestricted,
     curriculumTrackingProps: {
       lessonName: lessonTitle,
       lessonSlug: lessonSlug,
