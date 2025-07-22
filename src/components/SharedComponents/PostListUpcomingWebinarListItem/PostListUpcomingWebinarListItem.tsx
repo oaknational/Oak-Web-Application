@@ -14,7 +14,6 @@ import OwaLink from "@/components/SharedComponents/OwaLink";
 import formatDate from "@/utils/formatDate";
 import { PostListItemProps } from "@/components/SharedComponents/PostListItem";
 import useClickableCard from "@/hooks/useClickableCard";
-import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 type PostListUpcomingWebinarListItemProps = PostListItemProps & {
@@ -57,7 +56,7 @@ const PostListUpcomingWebinarListItem: FC<
       $width={"100%"}
       $font={["body-4", "body-3"]}
     >
-      <Box $mr="auto">
+      <OakBox $mr="auto">
         <OakP>Coming soon, {formatDate(date, { month: "short" })}</OakP>
         <OakHeading
           tag={titleTag}
@@ -77,7 +76,7 @@ const PostListUpcomingWebinarListItem: FC<
         <OakP $mt="space-between-ssx">
           <LineClamp lines={2}>{summary}</LineClamp>
         </OakP>
-      </Box>
+      </OakBox>
       <OakBox
         $mt={["space-between-m2", "space-between-none"]}
         $ml={["space-between-none", "space-between-l"]}

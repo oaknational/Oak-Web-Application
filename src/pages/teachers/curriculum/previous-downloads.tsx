@@ -13,7 +13,6 @@ import {
 } from "@oaknational/oak-components";
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
-import Box from "@/components/SharedComponents/Box/Box";
 import curriculumPreviousDownloadsFixture, {
   DOWNLOAD_CATEGORIES,
   DownloadCategory,
@@ -113,11 +112,11 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
       $background={"white"}
     >
       <OakBox $background={"mint"} $pt="inner-padding-l">
-        <Box
-          $maxWidth={1280}
+        <OakBox
+          $maxWidth={"all-spacing-24"}
           $mh={"auto"}
-          $ph={28}
-          $pb={56}
+          $ph={"inner-padding-xl"}
+          $pb={"inner-padding-xl5"}
           $width={"100%"}
           data-testid="breadcrumbsContainer"
         >
@@ -151,9 +150,9 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
             $mv={"space-between-m"}
           />
           <OakFlex>
-            <Box
+            <OakBox
               $background={"mint30"}
-              $mr={12}
+              $mr={"space-between-xs"}
               $mv={"auto"}
               $position={"relative"}
             >
@@ -164,7 +163,7 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
                 $height={"all-spacing-16"}
                 data-testid="icon"
               />
-            </Box>
+            </OakBox>
             <OakBox $ml="space-between-m2">
               <OakHeading
                 tag={"h1"}
@@ -174,25 +173,25 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
               >
                 Previously released curricula
               </OakHeading>
-              <Box $maxWidth={720}>
+              <OakBox $maxWidth={"all-spacing-22"}>
                 <OakP $font="body-1" data-testid="description">
                   Download our curricula from previous academic years to explore
                   our curriculum sequences, lesson information and the
                   curriculum principles that underpin them.
                 </OakP>
-              </Box>
+              </OakBox>
             </OakBox>
           </OakFlex>
-        </Box>
+        </OakBox>
       </OakBox>
 
       <OakBox $background={"mint30"}>
-        <Box
+        <OakBox
           $display={["block", "none", "none"]}
-          $maxWidth={1280}
+          $maxWidth={"all-spacing-24"}
           $mh={"auto"}
-          $ph={28}
-          $pv={24}
+          $ph={"inner-padding-xl"}
+          $pv={"inner-padding-xl"}
           $width={"100%"}
         >
           <DropdownSelect
@@ -209,14 +208,14 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
             selectedValue={activeTab}
             $zIndex={"dropdownMenu"}
           />
-        </Box>
-        <Box
+        </OakBox>
+        <OakBox
           $display={["none", "block", "block"]}
-          $maxWidth={1280}
+          $maxWidth={"all-spacing-24"}
           $mh={"auto"}
           $width={"100%"}
-          $ph={28}
-          $pt={32}
+          $ph={"inner-padding-xl2"}
+          $pt={"inner-padding-xl2"}
         >
           <OakP $color="grey70" $font="heading-7" $mb={"space-between-m"}>
             Select a category:
@@ -229,7 +228,7 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
             links={links}
             data-testid="tabularNav"
           />
-        </Box>
+        </OakBox>
       </OakBox>
 
       <CurriculumDownloads

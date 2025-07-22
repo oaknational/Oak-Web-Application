@@ -8,6 +8,7 @@ import {
   OakFlex,
   OakMaxWidth,
   OakPrimaryButton,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
@@ -19,7 +20,6 @@ import SupportYourTeamTextBlockCardImageCta from "@/components/GenericPagesCompo
 import SupportYourTeamBubbleMessage from "@/components/GenericPagesComponents/SupportYourTeamBubbleMessage";
 import getPageProps from "@/node-lib/getPageProps";
 import Layout from "@/components/AppComponents/Layout";
-import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import { resolveOakHref } from "@/common-lib/urls";
 
@@ -133,7 +133,9 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
           $flexDirection={"column"}
           $mt="space-between-l"
         >
-          <Box $maxWidth={["100%", 380, 380]}>
+          <OakBox
+            $maxWidth={["all-spacing-22", "all-spacing-20", "all-spacing-20"]}
+          >
             <OakHeading
               $textAlign={"center"}
               $font={["heading-5", "heading-4"]}
@@ -161,7 +163,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
                 Search our lessons
               </OakPrimaryButton>
             </OakFlex>
-          </Box>
+          </OakBox>
         </OakFlex>
       </OakMaxWidth>
     </Layout>
