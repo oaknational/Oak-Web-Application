@@ -44,7 +44,7 @@ const RoleSelectionView = () => {
     clearErrors(role);
   };
 
-  const { onChange, ...rest } = register("other");
+  const { onChange, ref, ...rest } = register("other");
 
   return (
     <OnboardingLayout
