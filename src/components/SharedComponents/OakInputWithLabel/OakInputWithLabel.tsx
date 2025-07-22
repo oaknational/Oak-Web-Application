@@ -19,22 +19,29 @@ export const OakInputWithLabel = ({
   required,
   placeholder = "",
   name,
+  defaultValue,
 }: {
   label: string;
   required: boolean;
   error?: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
-  ref: RefCallBack;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  ref?: RefCallBack;
   placeholder?: string;
   id: string;
   autocomplete?: string;
   name: string;
+  defaultValue?: string;
 }) => {
   const [hasFocus, setHasFocus] = useState(false);
 
   return (
-    <OakFlex $position="relative" $flexDirection="column" ref={ref}>
+    <OakFlex
+      $position="relative"
+      $flexDirection="column"
+      ref={ref}
+      $width="100%"
+    >
       {error && (
         <OakBox id={error} role="alert" $mv="space-between-s">
           <OakFieldError>{error}</OakFieldError>
@@ -61,7 +68,7 @@ export const OakInputWithLabel = ({
         onChange={onChange}
         onFocus={() => setHasFocus(true)}
         onBlur={(e) => {
-          onBlur(e);
+          onBlur?.(e);
           setHasFocus(false);
         }}
         $pv="inner-padding-none"
@@ -69,6 +76,7 @@ export const OakInputWithLabel = ({
         $height="all-spacing-10"
         autoComplete={autocomplete}
         name={name}
+        defaultValue={defaultValue}
       />
     </OakFlex>
   );
