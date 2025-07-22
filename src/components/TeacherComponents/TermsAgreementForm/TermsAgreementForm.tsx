@@ -98,7 +98,12 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                     : undefined
                 }
               />
-              <OakFlex $position="relative" $flexDirection="column" ref={ref}>
+              <OakFlex
+                $position="relative"
+                $flexDirection="column"
+                ref={ref}
+                $mb="space-between-s"
+              >
                 {form.errors?.email && (
                   <OakBox
                     id={form.errors?.email.message}
