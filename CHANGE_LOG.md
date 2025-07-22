@@ -1,3 +1,10 @@
+## [1.806.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.806.1...v1.806.2) (2025-07-22)
+
+
+### Bug Fixes
+
+* Allow Vercel host headers in Clerk ([4e7c240](https://github.com/oaknational/Oak-Web-Application/commit/4e7c2408badbe7ac1d61588843a8f43cf63c151e))
+
 ## [1.806.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.806.0...v1.806.1) (2025-07-22)
 
 # [1.806.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.805.0...v1.806.0) (2025-07-22)
