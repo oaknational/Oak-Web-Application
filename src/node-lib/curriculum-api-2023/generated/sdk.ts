@@ -23414,6 +23414,154 @@ export type Published_Mv_Get_Tpc_Media_By_Lesson_Slug_1_0_0_Variance_Fields = {
   lesson_id?: Maybe<Scalars['Float']['output']>;
 };
 
+/** columns and relationships of "published.mv_get_tpc_works_by_lesson_slug_1_0_0" */
+export type Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0 = {
+  __typename?: 'published_mv_get_tpc_works_by_lesson_slug_1_0_0';
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  works_list?: Maybe<Scalars['jsonb']['output']>;
+};
+
+
+/** columns and relationships of "published.mv_get_tpc_works_by_lesson_slug_1_0_0" */
+export type Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0Works_ListArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "published.mv_get_tpc_works_by_lesson_slug_1_0_0" */
+export type Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Aggregate = {
+  __typename?: 'published_mv_get_tpc_works_by_lesson_slug_1_0_0_aggregate';
+  aggregate?: Maybe<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0>;
+};
+
+/** aggregate fields of "published.mv_get_tpc_works_by_lesson_slug_1_0_0" */
+export type Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Aggregate_Fields = {
+  __typename?: 'published_mv_get_tpc_works_by_lesson_slug_1_0_0_aggregate_fields';
+  avg?: Maybe<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Max_Fields>;
+  min?: Maybe<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Min_Fields>;
+  stddev?: Maybe<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Stddev_Fields>;
+  stddev_pop?: Maybe<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Stddev_Samp_Fields>;
+  sum?: Maybe<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Sum_Fields>;
+  var_pop?: Maybe<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Var_Pop_Fields>;
+  var_samp?: Maybe<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Var_Samp_Fields>;
+  variance?: Maybe<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Variance_Fields>;
+};
+
+
+/** aggregate fields of "published.mv_get_tpc_works_by_lesson_slug_1_0_0" */
+export type Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** aggregate avg on columns */
+export type Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Avg_Fields = {
+  __typename?: 'published_mv_get_tpc_works_by_lesson_slug_1_0_0_avg_fields';
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "published.mv_get_tpc_works_by_lesson_slug_1_0_0". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Bool_Exp>>;
+  lesson_id?: InputMaybe<Int_Comparison_Exp>;
+  slug?: InputMaybe<String_Comparison_Exp>;
+  works_list?: InputMaybe<Jsonb_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Max_Fields = {
+  __typename?: 'published_mv_get_tpc_works_by_lesson_slug_1_0_0_max_fields';
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Min_Fields = {
+  __typename?: 'published_mv_get_tpc_works_by_lesson_slug_1_0_0_min_fields';
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+};
+
+/** Ordering options when selecting data from "published.mv_get_tpc_works_by_lesson_slug_1_0_0". */
+export type Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Order_By = {
+  lesson_id?: InputMaybe<Order_By>;
+  slug?: InputMaybe<Order_By>;
+  works_list?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.mv_get_tpc_works_by_lesson_slug_1_0_0" */
+export enum Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Select_Column {
+  /** column name */
+  LessonId = 'lesson_id',
+  /** column name */
+  Slug = 'slug',
+  /** column name */
+  WorksList = 'works_list'
+}
+
+/** aggregate stddev on columns */
+export type Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Stddev_Fields = {
+  __typename?: 'published_mv_get_tpc_works_by_lesson_slug_1_0_0_stddev_fields';
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Stddev_Pop_Fields = {
+  __typename?: 'published_mv_get_tpc_works_by_lesson_slug_1_0_0_stddev_pop_fields';
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Stddev_Samp_Fields = {
+  __typename?: 'published_mv_get_tpc_works_by_lesson_slug_1_0_0_stddev_samp_fields';
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "published_mv_get_tpc_works_by_lesson_slug_1_0_0" */
+export type Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Stream_Cursor_Value_Input = {
+  lesson_id?: InputMaybe<Scalars['Int']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  works_list?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Sum_Fields = {
+  __typename?: 'published_mv_get_tpc_works_by_lesson_slug_1_0_0_sum_fields';
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+};
+
+/** aggregate var_pop on columns */
+export type Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Var_Pop_Fields = {
+  __typename?: 'published_mv_get_tpc_works_by_lesson_slug_1_0_0_var_pop_fields';
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Var_Samp_Fields = {
+  __typename?: 'published_mv_get_tpc_works_by_lesson_slug_1_0_0_var_samp_fields';
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Variance_Fields = {
+  __typename?: 'published_mv_get_tpc_works_by_lesson_slug_1_0_0_variance_fields';
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+};
+
 /** columns and relationships of "published.mv_homepage_3_0_1" */
 export type Published_Mv_Homepage_3_0_1 = {
   __typename?: 'published_mv_homepage_3_0_1';
@@ -48851,6 +48999,10 @@ export type Query_Root = {
   published_mv_get_tpc_media_by_lesson_slug_1_0_0: Array<Published_Mv_Get_Tpc_Media_By_Lesson_Slug_1_0_0>;
   /** fetch aggregated fields from the table: "published.mv_get_tpc_media_by_lesson_slug_1_0_0" */
   published_mv_get_tpc_media_by_lesson_slug_1_0_0_aggregate: Published_Mv_Get_Tpc_Media_By_Lesson_Slug_1_0_0_Aggregate;
+  /** fetch data from the table: "published.mv_get_tpc_works_by_lesson_slug_1_0_0" */
+  published_mv_get_tpc_works_by_lesson_slug_1_0_0: Array<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0>;
+  /** fetch aggregated fields from the table: "published.mv_get_tpc_works_by_lesson_slug_1_0_0" */
+  published_mv_get_tpc_works_by_lesson_slug_1_0_0_aggregate: Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Aggregate;
   /** fetch data from the table: "published.mv_homepage_3_0_1" */
   published_mv_homepage_3_0_1: Array<Published_Mv_Homepage_3_0_1>;
   /** fetch aggregated fields from the table: "published.mv_homepage_3_0_1" */
@@ -50303,6 +50455,24 @@ export type Query_RootPublished_Mv_Get_Tpc_Media_By_Lesson_Slug_1_0_0_AggregateA
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Published_Mv_Get_Tpc_Media_By_Lesson_Slug_1_0_0_Order_By>>;
   where?: InputMaybe<Published_Mv_Get_Tpc_Media_By_Lesson_Slug_1_0_0_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Bool_Exp>;
 };
 
 
@@ -54559,6 +54729,12 @@ export type Subscription_Root = {
   published_mv_get_tpc_media_by_lesson_slug_1_0_0_aggregate: Published_Mv_Get_Tpc_Media_By_Lesson_Slug_1_0_0_Aggregate;
   /** fetch data from the table in a streaming manner: "published.mv_get_tpc_media_by_lesson_slug_1_0_0" */
   published_mv_get_tpc_media_by_lesson_slug_1_0_0_stream: Array<Published_Mv_Get_Tpc_Media_By_Lesson_Slug_1_0_0>;
+  /** fetch data from the table: "published.mv_get_tpc_works_by_lesson_slug_1_0_0" */
+  published_mv_get_tpc_works_by_lesson_slug_1_0_0: Array<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0>;
+  /** fetch aggregated fields from the table: "published.mv_get_tpc_works_by_lesson_slug_1_0_0" */
+  published_mv_get_tpc_works_by_lesson_slug_1_0_0_aggregate: Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_get_tpc_works_by_lesson_slug_1_0_0" */
+  published_mv_get_tpc_works_by_lesson_slug_1_0_0_stream: Array<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0>;
   /** fetch data from the table: "published.mv_homepage_3_0_1" */
   published_mv_homepage_3_0_1: Array<Published_Mv_Homepage_3_0_1>;
   /** fetch aggregated fields from the table: "published.mv_homepage_3_0_1" */
@@ -56547,6 +56723,31 @@ export type Subscription_RootPublished_Mv_Get_Tpc_Media_By_Lesson_Slug_1_0_0_Str
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Published_Mv_Get_Tpc_Media_By_Lesson_Slug_1_0_0_Stream_Cursor_Input>>;
   where?: InputMaybe<Published_Mv_Get_Tpc_Media_By_Lesson_Slug_1_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Get_Tpc_Works_By_Lesson_Slug_1_0_0_Bool_Exp>;
 };
 
 
@@ -67391,7 +67592,7 @@ export type BrowseUnitRedirectQueryVariables = Exact<{
 }>;
 
 
-export type BrowseUnitRedirectQuery = { __typename?: 'query_root', browseUnitRedirectData: Array<{ __typename?: 'published_mv_redirects_units_browse_by_year_18_0_0', incoming_path?: string | null, outgoing_path?: string | null, redirect_type?: any | null }> };
+export type BrowseUnitRedirectQuery = { __typename?: 'query_root', browseUnitRedirectData: Array<{ __typename?: 'published_mv_redirects_units_browse_by_keystage_18_0_0', incoming_path?: string | null, outgoing_path?: string | null, redirect_type?: any | null }> };
 
 export type CanonicalLessonRedirectQueryVariables = Exact<{
   incomingPath: Scalars['String']['input'];
@@ -67724,7 +67925,7 @@ export const BrowseLessonRedirectDocument = gql`
     `;
 export const BrowseUnitRedirectDocument = gql`
     query browseUnitRedirect($incomingPath: String!) {
-  browseUnitRedirectData: published_mv_redirects_units_browse_by_year_18_0_0(
+  browseUnitRedirectData: published_mv_redirects_units_browse_by_keystage_18_0_0(
     where: {incoming_path: {_eq: $incomingPath}}
   ) {
     incoming_path
