@@ -121,7 +121,7 @@ export function RestrictedContentPrompt({
   lessonSlug,
   unitSlug,
   isCanonical,
-}: RestrictedContentPromptProps) {
+}: Readonly<RestrictedContentPromptProps>) {
   return (
     <OakFlex
       $flexDirection={"column"}
