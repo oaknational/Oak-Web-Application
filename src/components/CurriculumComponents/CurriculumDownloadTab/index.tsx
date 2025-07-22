@@ -45,7 +45,7 @@ import { ResourceFormProps } from "@/components/TeacherComponents/types/download
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { convertUnitSlugToTitle } from "@/components/TeacherViews/Search/helpers";
 import { downloadFileFromUrl } from "@/components/SharedComponents/helpers/downloadFileFromUrl";
-import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urlBuilders";
+import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urls";
 
 function ScrollIntoViewWhenVisisble({
   children,

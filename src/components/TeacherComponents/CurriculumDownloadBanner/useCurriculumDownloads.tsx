@@ -11,7 +11,7 @@ import { downloadFileFromUrl } from "@/components/SharedComponents/helpers/downl
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { ResourceTypeValueType, PhaseValueType } from "@/browser-lib/avo/Avo";
 import { useOakToastContext } from "@/context/OakToast/useOakToastContext";
-import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urlBuilders";
+import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urls";
 
 export type useCurriculumDownloadsProps = {
   mvRefreshTime: number;

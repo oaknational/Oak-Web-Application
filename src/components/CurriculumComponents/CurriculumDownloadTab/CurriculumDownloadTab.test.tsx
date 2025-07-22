@@ -6,7 +6,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { DISABLE_DOWNLOADS } from "@/utils/curriculum/constants";
-import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urlBuilders";
+import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urls";
 
 const render = renderWithProviders();
 const mvRefreshTime = 1721314874829;
