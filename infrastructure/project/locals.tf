@@ -2,7 +2,7 @@ locals {
   required_env_keys = {
     website = {
       shared  = ["NEXT_PUBLIC_CLERK_SIGN_IN_URL", "NEXT_PUBLIC_CLERK_SIGN_UP_URL"]
-      prod    = ["OAK_CONFIG_LOCATION"]
+      prod    = ["OAK_CONFIG_LOCATION", "OVERRIDE_URL"]
       preview = ["OAK_CONFIG_LOCATION"]
     }
     storybook = {
@@ -55,6 +55,34 @@ locals {
       }
     ]
   ])
+
+  custom_env_names = [for ce in try(local.build_config.custom_environments, []) : ce.name]
+
+  custom_env_vars = flatten([
+    for env_name, env_map in var.custom_env_vars : ([
+      contains(local.custom_env_names, env_name) ? [
+        for key, value in env_map : {
+          custom_environment_name = env_name
+          key                     = key
+          value                   = value
+        }
+      ]
+      : []
+    ])
+  ])
+
+  custom_env_vars_shared = flatten([
+    for env in local.custom_env_names :
+    [
+      for key, value in var.env_vars.shared : {
+        key                     = key
+        value                   = value
+        custom_environment_name = env
+      }
+    ]
+  ])
+
+  all_custom_env_vars = concat(local.custom_env_vars, local.custom_env_vars_shared)
 
   environment_variables = concat(local.non_sensitive_vars, local.sensitive_vars)
 }
