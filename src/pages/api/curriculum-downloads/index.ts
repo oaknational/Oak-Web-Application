@@ -308,7 +308,6 @@ export default async function handler(
 
     res
       .setHeader("content-type", "application/msword")
-      .setHeader("Netlify-Vary", "query")
       .setHeader(
         "Cache-Control",
         `public, durable, s-maxage=${s_maxage_seconds}, stale-while-revalidate=${stale_while_revalidate_seconds}`,
