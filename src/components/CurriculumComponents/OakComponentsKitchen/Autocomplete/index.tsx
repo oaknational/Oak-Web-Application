@@ -1,5 +1,5 @@
 import { useComboBoxState } from "@react-stately/combobox";
-import { ComponentProps, useRef } from "react";
+import { useRef } from "react";
 import { CollectionChildren, Key } from "@react-types/shared";
 import { useComboBox, useFilter } from "react-aria";
 import { Item } from "react-stately";
@@ -12,7 +12,6 @@ import {
 
 import { Popover } from "@/components/SharedComponents/Popover";
 import { ListBox } from "@/components/SharedComponents/ListBox";
-import Input from "@/components/SharedComponents/Input";
 
 export const AutocompleteItem = Item;
 
@@ -25,7 +24,13 @@ export const AutocompleteItem = Item;
  */
 
 type AutocompleteProps = {
-  inputProps: ComponentProps<typeof Input>;
+  inputProps: {
+    id: string;
+    label: string;
+    error?: string;
+    placeholder?: string;
+    name?: string;
+  };
   value?: string;
   onChange: (value: string, textValue: string) => void;
   onInputChange?: (value: string) => void;
