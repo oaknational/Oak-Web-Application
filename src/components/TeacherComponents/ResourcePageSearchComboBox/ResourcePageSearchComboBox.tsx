@@ -103,7 +103,7 @@ const ResourcePageSearchComboBox = <T extends School>(
           $pv="inner-padding-none"
           $height="all-spacing-10"
           color="black"
-         />
+        />
       </OakFlex>
 
       {state.isOpen && (
