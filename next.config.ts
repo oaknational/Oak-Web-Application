@@ -392,21 +392,23 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
   return withBundleAnalyzer(nextConfig);
 };
 
-module.exports = withSentryConfig(module.exports, {
-  org: process.env.NEXT_PUBLIC_SENTRY_ORGANISATION_IDENTIFIER,
-  project: process.env.NEXT_PUBLIC_SENTRY_PROJECT_IDENTIFIER,
+if (process.env.SENTRY_ENABLED === "true") {
+  module.exports = withSentryConfig(module.exports, {
+    org: process.env.NEXT_PUBLIC_SENTRY_ORGANISATION_IDENTIFIER,
+    project: process.env.NEXT_PUBLIC_SENTRY_PROJECT_IDENTIFIER,
 
-  // Tunnel requests to Sentry through our own server
-  tunnelRoute: "/monitoring",
+    // Tunnel requests to Sentry through our own server
+    tunnelRoute: "/monitoring",
 
-  // Disable sourcemaps as they're handled manually by webpack above
-  sourcemaps: {
-    disable: true,
-  },
+    // Disable sourcemaps as they're handled manually by webpack above
+    sourcemaps: {
+      disable: true,
+    },
 
-  // Hides source maps from generated client bundles
-  hideSourceMaps: true,
+    // Hides source maps from generated client bundles
+    hideSourceMaps: true,
 
-  // Automatically tree-shake Sentry logger statements to reduce bundle size
-  disableLogger: true,
-});
+    // Automatically tree-shake Sentry logger statements to reduce bundle size
+    disableLogger: true,
+  });
+}
