@@ -115,15 +115,8 @@ async function main() {
     // Oak
     // App hosting URL, needed for accurate sitemaps (and canonical URLs in the metadata?).
     NEXT_PUBLIC_CLIENT_APP_BASE_URL:
-      // Fixed URL defined in the Cloudbuild trigger UI.
-      process.env.CLOUDBUILD_DEPLOYMENT_BASE_URL ||
-      // Note this is the default Vercel URL (something.vercel.app), not the alternative preview or production one.
-      // The preview ones on a thenational.academy domain we could construct, if we wanted to use Vercel for
-      // production we'd need to set an env, same as for Cloudbuild.
-      process.env.VERCEL_URL ||
-      // Netlify https://docs.netlify.com/configure-builds/environment-variables/#deploy-urls-and-metadata
-      // Should default to custom domain if one is set.
-      process.env.URL ||
+      process.env.OVERRIDE_URL ||
+      process.env.VERCEL_BRANCH_URL ||
       // Default to value in config, currently localhost:3000
       oakConfig.oak.appBaseUrl,
     NEXT_PUBLIC_SEARCH_API_URL: oakConfig.oak.searchApiUrl,
@@ -275,6 +268,18 @@ async function main() {
     DEVELOPMENT_USER_REGION:
       process.env.DEVELOPMENT_USER_REGION ||
       oakConfig.clerk.developmentUserRegion,
+
+    // Sentry
+    NEXT_PUBLIC_SENTRY_DSN:
+      process.env.NEXT_PUBLIC_SENTRY_DSN || oakConfig.sentry.dsn,
+    NEXT_PUBLIC_SENTRY_ORGANISATION_IDENTIFIER:
+      process.env.NEXT_PUBLIC_SENTRY_ORGANISATION_IDENTIFIER ||
+      oakConfig.sentry.organisationIdentifier,
+    NEXT_PUBLIC_SENTRY_PROJECT_IDENTIFIER:
+      process.env.NEXT_PUBLIC_SENTRY_PROJECT_IDENTIFIER ||
+      oakConfig.sentry.projectIdentifier,
+    SENTRY_AUTH_TOKEN:
+      process.env.SENTRY_AUTH_TOKEN || secretsFromNetwork.SENTRY_AUTH_TOKEN,
   };
 
   const serializedEnv = Object.entries(env).reduce((acc, [key, value]) => {
