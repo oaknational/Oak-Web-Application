@@ -5,7 +5,7 @@ import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/Lesson
 import { resolveOakHref } from "@/common-lib/urls";
 import { invariant } from "@/utils/invariant";
 import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
-import RedirectToSignUpWhenRestrictedWrapper from "@/components/TeacherComponents/RedirectToSignInWhenRestrictedWrapper/RedirectToSignInWhenRestrictedWrapper";
+import RedirectToSignUpWhenRestrictedWrapper from "@/components/TeacherComponents/RedirectToSignUpWhenRestrictedWrapper/RedirectToSignUpWhenRestrictedWrapper";
 
 export const LessonOverviewHeaderShareAllButton: FC<
   LessonOverviewHeaderProps

@@ -8,7 +8,7 @@ import {
   getPhase,
 } from "../helpers/seoTextHelpers/seoText.helpers";
 
-import RedirectToSignUpWhenRestrictedWrapper from "@/components/TeacherComponents/RedirectToSignInWhenRestrictedWrapper/RedirectToSignInWhenRestrictedWrapper";
+import RedirectToSignUpWhenRestrictedWrapper from "@/components/TeacherComponents/RedirectToSignUpWhenRestrictedWrapper/RedirectToSignUpWhenRestrictedWrapper";
 import { resolveOakHref } from "@/common-lib/urls";
 import {
   OakBasicAccordion,
