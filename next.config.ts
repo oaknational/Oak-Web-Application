@@ -289,7 +289,7 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
           "*.vercel.thenational.academy",
           "owa.thenational.academy",
           "owa-vercel.thenational.academy",
-          "www.thenational.academy"
+          "www.thenational.academy",
         ],
       },
     },
