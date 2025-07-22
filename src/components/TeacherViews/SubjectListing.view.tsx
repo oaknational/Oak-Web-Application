@@ -6,13 +6,13 @@ import {
   OakGridArea,
   OakP,
   OakHandDrawnHR,
+  OakMaxWidth,
 } from "@oaknational/oak-components";
 
 import OwaLink from "../SharedComponents/OwaLink";
 
 import { SubjectListingPageProps } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
 import SubjectListingCardDouble from "@/components/TeacherComponents/SubjectListingCard";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
@@ -33,7 +33,10 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
 
   return (
     <OakFlex $flexDirection={"column"}>
-      <MaxWidth $maxWidth={[480, 840, 1280]} $ph={[12]}>
+      <OakMaxWidth
+        $maxWidth={["all-spacing-21", "all-spacing-23", "all-spacing-24"]}
+        $ph="inner-padding-s"
+      >
         <Flex
           $flexDirection="column"
           $gap={16}
@@ -125,7 +128,7 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
             </OakGrid>
           </>
         )}
-      </MaxWidth>
+      </OakMaxWidth>
     </OakFlex>
   );
 };
