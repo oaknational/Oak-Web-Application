@@ -17,7 +17,7 @@ resource "terraform_data" "workspace_validation" {
 }
 
 module "vercel" {
-  source                 = "github.com/oaknational/oak-terraform-modules//modules/vercel_project?ref=v1.2.3"
+  source                 = "github.com/oaknational/oak-terraform-modules//modules/vercel_project?ref=v1.2.5"
   build_command          = try(local.build_config.build_command, null)
   build_type             = local.build_config.build_type
   cloudflare_zone_domain = var.cloudflare_zone_domain
@@ -29,6 +29,9 @@ module "vercel" {
   deployment_type        = local.build_config.deployment_type
   git_repo               = "oaknational/Oak-Web-Application"
   skew_protection        = local.build_config.skew_protection
+  custom_environments    = try(local.build_config.custom_environments, [])
+
+  custom_env_vars = local.build_type == "website" ? local.all_custom_env_vars : []
 
   environment_variables = [
     for ev in local.environment_variables : ev

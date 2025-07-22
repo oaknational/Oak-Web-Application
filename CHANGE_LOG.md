@@ -1,3 +1,25 @@
+# [1.805.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.804.0...v1.805.0) (2025-07-21)
+
+
+### Features
+
+* set override_url for prod ([c04e4ef](https://github.com/oaknational/Oak-Web-Application/commit/c04e4ef8d578e6307de49f83e0c9d3b55929c0c1))
+
+# [1.804.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.803.1...v1.804.0) (2025-07-21)
+
+
+### Features
+
+* adds OWA-staging custom environment ([4f64fdd](https://github.com/oaknational/Oak-Web-Application/commit/4f64fddf656b7c85b4191d3df77cf96df1a786a0))
+* remove hardcoded org name ([86c6f43](https://github.com/oaknational/Oak-Web-Application/commit/86c6f4316c156e562cf3c6297c47116899d4ce68))
+
+## [1.803.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.803.0...v1.803.1) (2025-07-21)
+
+
+### Bug Fixes
+
+* add owa.thenational.academy as allowed origin for server actions ([90b02e9](https://github.com/oaknational/Oak-Web-Application/commit/90b02e94af0d48040be8a3e413a417499c983fb2))
+
 # [1.803.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.802.0...v1.803.0) (2025-07-18)
 
 

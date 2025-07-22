@@ -3,6 +3,15 @@ variable "cloudflare_zone_domain" {
   type        = string
 }
 
+variable "custom_env_vars" {
+  description = "Maps each of custom-environment name to a set of env vars"
+  type = object({
+    staging = optional(object({
+      CURRICULUM_API_2023_URL = string
+    }))
+  })
+  default = {}
+}
 
 variable "env_vars" {
   type = object({
@@ -12,6 +21,7 @@ variable "env_vars" {
     }))
     prod = optional(object({
       OAK_CONFIG_LOCATION = optional(string)
+      OVERRIDE_URL        = optional(string)
     }))
     preview = optional(object({
       OAK_CONFIG_LOCATION             = optional(string)
