@@ -285,9 +285,11 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
     experimental: {
       serverActions: {
         allowedOrigins: [
-          "*.netlify.app",
-          "*.netlify.thenational.academy",
+          "*.vercel-preview.thenational.academy",
+          "*.vercel.thenational.academy",
           "owa.thenational.academy",
+          "owa-vercel.thenational.academy",
+          "www.thenational.academy"
         ],
       },
     },
