@@ -1,3 +1,10 @@
+## [1.806.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.806.2...v1.806.3) (2025-07-22)
+
+
+### Bug Fixes
+
+* disable sentry ([2300cec](https://github.com/oaknational/Oak-Web-Application/commit/2300cecda438220c52115220540b0807bdbac6ea))
+
 ## [1.806.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.806.1...v1.806.2) (2025-07-22)
 
 
