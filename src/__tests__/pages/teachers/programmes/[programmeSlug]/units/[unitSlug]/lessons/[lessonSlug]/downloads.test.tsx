@@ -476,7 +476,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       });
     });
 
-    it.only("prefills email from saved in local storage", async () => {
+    it("prefills email from saved in local storage", async () => {
       const { result } = renderHook(() => useLocalStorageForDownloads());
 
       act(() => {
