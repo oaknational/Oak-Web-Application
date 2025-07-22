@@ -76,7 +76,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       expect(res).toEqual({
         redirect: {
           destination: "/pupils/lessons/lessonSlug-redirected",
-          permanent: true,
+          permanent: false,
           basePath: false,
         },
       });
@@ -95,7 +95,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       expect(res).toEqual({
         redirect: {
           destination: "/pupils/lessons/lessonSlug-redirected",
-          permanent: true,
+          permanent: false,
           basePath: false,
         },
       });

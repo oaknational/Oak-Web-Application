@@ -636,7 +636,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         ).redirect,
       ).toEqual({
         destination: "lessons/new-lesson-slug",
-        permanent: true,
+        permanent: false,
         basePath: false,
       });
 

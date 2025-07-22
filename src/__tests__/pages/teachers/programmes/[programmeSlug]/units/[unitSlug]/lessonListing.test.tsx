@@ -238,7 +238,7 @@ describe("getStaticProps", () => {
       redirect: {
         basePath: false,
         destination: "lessons/new-lesson-slug",
-        permanent: true,
+        permanent: false,
       },
     });
   });

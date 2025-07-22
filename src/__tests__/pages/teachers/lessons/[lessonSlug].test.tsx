@@ -243,7 +243,7 @@ describe("Lesson Overview Canonical Page", () => {
         ).redirect,
       ).toEqual({
         destination: "lessons/new-lesson-slug",
-        permanent: true,
+        permanent: false,
         basePath: false,
       });
 
