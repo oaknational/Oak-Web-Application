@@ -41,7 +41,7 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
       <Controller
         name="manualSchoolName"
         control={control}
-        render={({ field: { onChange, onBlur, value, ref } }) => {
+        render={({ field: { onChange, onBlur, value } }) => {
           const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
             onChange(e.target.value);
             onManualSchoolInputChange(true, e.target.value);
@@ -55,7 +55,6 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
             <OakInputWithLabel
               label="School name"
               placeholder="Type school name"
-              ref={ref}
               name="manualSchoolName"
               required
               id={"school-name"}
@@ -74,7 +73,7 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
       <Controller
         name="schoolAddress"
         control={control}
-        render={({ field: { onChange, onBlur, value, ref } }) => {
+        render={({ field: { onChange, onBlur, value } }) => {
           const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
             onChange(e.target.value);
             onManualSchoolInputChange(false, e.target.value);
@@ -89,7 +88,6 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
             <OakInputWithLabel
               label="School address"
               placeholder="Type school address"
-              ref={ref}
               name="schoolAddress"
               required
               id={"school-address"}
