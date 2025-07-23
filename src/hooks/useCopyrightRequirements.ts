@@ -6,7 +6,7 @@ interface UseCopyrightRequirementsProps {
   geoRestricted: boolean;
 }
 
-interface UseCopyrightRequirementsReturn {
+export interface UseCopyrightRequirementsReturn {
   showSignedOutLoginRequired: boolean;
   showSignedOutGeoRestricted: boolean;
   showSignedInNotOnboarded: boolean;

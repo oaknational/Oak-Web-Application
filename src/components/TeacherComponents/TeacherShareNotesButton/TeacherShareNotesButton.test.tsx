@@ -3,6 +3,12 @@ import { render, screen, fireEvent } from "@testing-library/react";
 
 import { TeacherShareNotesButton } from "./TeacherShareNotesButton";
 
+import {
+  defaultCopyrightRequirements,
+  signedInGeoBlocked,
+  signedOutLoginRequired,
+} from "@/__tests__/__helpers__/mockCopyrightRequirements";
+
 // Mock the imported components
 jest.mock("@oaknational/oak-components", () => ({
   OakSmallSecondaryButton: ({
@@ -52,13 +58,10 @@ jest.mock("@oaknational/oak-consent-client", () => ({
   useOakConsent: () => mockUseOakConsent(),
 }));
 
-const mockUseCopyrightRequirements = {
-  showSignedOutGeoRestricted: false,
-  showSignedOutLoginRequired: false,
-  showGeoBlocked: false,
-};
+// Mock useCopyrightRequirements
+let mockCopyrightRequirements = defaultCopyrightRequirements;
 jest.mock("@/hooks/useCopyrightRequirements", () => ({
-  useCopyrightRequirements: () => mockUseCopyrightRequirements,
+  useCopyrightRequirements: () => mockCopyrightRequirements,
 }));
 
 describe("TeacherShareNotesButton", () => {
@@ -85,7 +88,9 @@ describe("TeacherShareNotesButton", () => {
       },
     });
   });
-
+  afterEach(() => {
+    mockCopyrightRequirements = defaultCopyrightRequirements;
+  });
   it("is rendered and enabled when cookies are accepted", () => {
     mockUseOakConsent.mockReturnValue({
       state: {
@@ -190,7 +195,7 @@ describe("TeacherShareNotesButton", () => {
   });
 
   it("redirects to sign up when content is restricted and user is not signed in", () => {
-    mockUseCopyrightRequirements.showSignedOutLoginRequired = true;
+    mockCopyrightRequirements = signedOutLoginRequired;
     const { getByText } = render(<TeacherShareNotesButton {...defaultProps} />);
     const shareButton = getByText("Share resources with colleague");
     shareButton.click();
@@ -198,7 +203,7 @@ describe("TeacherShareNotesButton", () => {
   });
 
   it("does not render when signed in and not region authorised", () => {
-    mockUseCopyrightRequirements.showGeoBlocked = true;
+    mockCopyrightRequirements = signedInGeoBlocked;
     const { queryByTestId } = render(
       <TeacherShareNotesButton {...defaultProps} />,
     );

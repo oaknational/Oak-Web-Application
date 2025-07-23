@@ -7,17 +7,18 @@ import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lesso
 import { OakColorName } from "@/styles/theme";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import { AnalyticsUseCaseValueType } from "@/browser-lib/avo/Avo";
+import {
+  defaultCopyrightRequirements,
+  signedInGeoBlocked,
+  signedOutLoginRequired,
+} from "@/__tests__/__helpers__/mockCopyrightRequirements";
 
 const mockFeatureFlagEnabled = jest.fn();
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => mockFeatureFlagEnabled(),
 }));
 
-const mockUseCopyrightRequirements = {
-  showSignedOutGeoRestricted: false,
-  showSignedOutLoginRequired: false,
-  showGeoBlocked: false,
-};
+let mockUseCopyrightRequirements = defaultCopyrightRequirements;
 jest.mock("@/hooks/useCopyrightRequirements", () => ({
   useCopyrightRequirements: () => mockUseCopyrightRequirements,
 }));
@@ -88,7 +89,7 @@ describe("LessonOverviewHeaderShareAllButton", () => {
   });
 
   it("renders sign up button when content is restricted", () => {
-    mockUseCopyrightRequirements.showSignedOutGeoRestricted = true;
+    mockUseCopyrightRequirements = signedOutLoginRequired;
     const { getByTestId } = render(
       <LessonOverviewHeaderShareAllButton {...baseProps} />,
     );
@@ -99,7 +100,7 @@ describe("LessonOverviewHeaderShareAllButton", () => {
   });
 
   it("does not render a button when geoBlocked", () => {
-    mockUseCopyrightRequirements.showGeoBlocked = true;
+    mockUseCopyrightRequirements = signedInGeoBlocked;
     const { queryByTestId } = render(
       <LessonOverviewHeaderShareAllButton {...baseProps} />,
     );

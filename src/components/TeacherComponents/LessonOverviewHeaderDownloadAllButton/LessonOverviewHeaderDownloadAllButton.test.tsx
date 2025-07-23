@@ -7,17 +7,18 @@ import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lesso
 import { OakColorName } from "@/styles/theme";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import { AnalyticsUseCaseValueType } from "@/browser-lib/avo/Avo";
+import {
+  defaultCopyrightRequirements,
+  signedInGeoBlocked,
+  signedOutLoginRequired,
+} from "@/__tests__/__helpers__/mockCopyrightRequirements";
 
 const mockFeatureFlagEnabled = jest.fn();
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => mockFeatureFlagEnabled(),
 }));
 
-const mockUseCopyrightRequirements = {
-  showSignedOutGeoRestricted: false,
-  showSignedOutLoginRequired: false,
-  showGeoBlocked: false,
-};
+let mockUseCopyrightRequirements = defaultCopyrightRequirements;
 jest.mock("@/hooks/useCopyrightRequirements", () => ({
   useCopyrightRequirements: () => mockUseCopyrightRequirements,
 }));
@@ -60,6 +61,7 @@ describe("LessonOverviewHeaderDownloadAllButton", () => {
   });
 
   afterEach(() => {
+    mockUseCopyrightRequirements = defaultCopyrightRequirements;
     jest.clearAllMocks();
   });
 
@@ -98,8 +100,7 @@ describe("LessonOverviewHeaderDownloadAllButton", () => {
   });
 
   it("renders a sign up button when downloads are restricted", () => {
-    mockUseCopyrightRequirements.showSignedOutGeoRestricted = true;
-    mockUseCopyrightRequirements.showSignedOutLoginRequired = true;
+    mockUseCopyrightRequirements = signedOutLoginRequired;
     const { getByTestId } = render(
       <LessonOverviewHeaderDownloadAllButton {...baseProps} />,
     );
@@ -109,9 +110,7 @@ describe("LessonOverviewHeaderDownloadAllButton", () => {
     expect(mockDownloadAllButton).not.toHaveBeenCalled();
   });
   it("does not render anything when geoBlocked", () => {
-    mockUseCopyrightRequirements.showSignedOutGeoRestricted = false;
-    mockUseCopyrightRequirements.showSignedOutLoginRequired = false;
-    mockUseCopyrightRequirements.showGeoBlocked = true;
+    mockUseCopyrightRequirements = signedInGeoBlocked;
     const { queryByTestId } = render(
       <LessonOverviewHeaderDownloadAllButton {...baseProps} />,
     );
