@@ -189,6 +189,7 @@ describe("LessonItemContainer", () => {
     );
 
     const downloadLinkButton = screen.getByTestId("download-button");
+
     expect(downloadLinkButton).toHaveAttribute(
       "href",
       "/teachers/programmes/english-primary-ks2/units/grammar-1-simple-compound-and-adverbial-complex-sentences/lessons/lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences/downloads?preselected=worksheet",

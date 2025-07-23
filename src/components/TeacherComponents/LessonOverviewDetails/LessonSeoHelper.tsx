@@ -76,6 +76,7 @@ export const LessonSeoHelper = ({
                   page: "lesson-downloads",
                   lessonSlug,
                   unitSlug,
+                  downloads: "downloads",
                   programmeSlug,
                 })}
               >
@@ -105,6 +106,7 @@ export const LessonSeoHelper = ({
               !contentRestricted
                 ? resolveOakHref({
                     page: "lesson-downloads",
+                    downloads: "downloads",
                     lessonSlug,
                     unitSlug,
                     programmeSlug,

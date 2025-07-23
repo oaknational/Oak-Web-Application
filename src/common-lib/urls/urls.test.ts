@@ -132,6 +132,7 @@ describe("urls.ts", () => {
           page: "lesson-downloads",
           programmeSlug: "primary-ks2-maths",
           unitSlug: "geometry-349",
+          downloads: "downloads",
           lessonSlug: "semi-circles-48",
         }),
       ).toBe(

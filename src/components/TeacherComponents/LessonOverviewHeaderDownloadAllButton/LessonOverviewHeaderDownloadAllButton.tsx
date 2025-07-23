@@ -46,6 +46,7 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
           lessonSlug,
           unitSlug,
           programmeSlug,
+          downloads: "downloads",
           query: { preselected },
         })
       : programmeSlug && unitSlug && !isSpecialist && !isCanonical
@@ -54,11 +55,13 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
             lessonSlug,
             unitSlug,
             programmeSlug,
+            downloads: "downloads",
             query: { preselected },
           })
         : resolveOakHref({
             page: "lesson-downloads-canonical",
             lessonSlug,
+            downloads: "downloads",
             query: { preselected },
           });
 

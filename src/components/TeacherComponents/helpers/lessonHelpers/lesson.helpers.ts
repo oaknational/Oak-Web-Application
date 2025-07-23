@@ -148,6 +148,7 @@ export const getLessonDownloadsBreadCrumb = ({
         page: "lesson-downloads",
         programmeSlug,
         unitSlug,
+        downloads: "downloads",
         lessonSlug,
       },
       label: "Downloads",
@@ -158,7 +159,9 @@ export const getLessonDownloadsBreadCrumb = ({
       oakLinkProps: {
         page: "lesson-downloads-canonical",
         lessonSlug,
+        downloads: "downloads",
       },
+
       label: "Downloads",
       disabled,
     };
@@ -253,6 +256,7 @@ export const getBreadCrumbForSpecialistDownload = ({
             programmeSlug,
             unitSlug,
             lessonSlug,
+            downloads: "downloads",
           },
           label: "Downloads",
           disabled,

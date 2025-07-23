@@ -199,6 +199,8 @@ export type LessonDownloadsLinkProps = {
   programmeSlug: string;
   unitSlug: string;
   lessonSlug: string;
+  // @TODO remove this when auth is no longer behind a feature flag
+  downloads: "downloads" | "downloads-auth";
   query?: {
     preselected: PreselectedDownloadType | null;
   };
@@ -214,7 +216,8 @@ export type SpecialistLessonDownloadsLinkProps = Omit<
 export type LessonDownloadsCanonicalLinkProps = {
   page: "lesson-downloads-canonical";
   lessonSlug: string;
-
+  // @TODO remove this when auth is no longer behind a feature flag
+  downloads: "downloads" | "downloads-auth";
   query?: {
     preselected: PreselectedDownloadType | null;
   };

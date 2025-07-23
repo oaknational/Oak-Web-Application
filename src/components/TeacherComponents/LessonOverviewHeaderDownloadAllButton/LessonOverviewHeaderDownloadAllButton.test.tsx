@@ -16,6 +16,7 @@ jest.mock("posthog-js/react", () => ({
 const mockUseCopyrightRequirements = {
   showSignedOutGeoRestricted: false,
   showSignedOutLoginRequired: false,
+  showGeoBlocked: false,
 };
 jest.mock("@/hooks/useCopyrightRequirements", () => ({
   useCopyrightRequirements: () => mockUseCopyrightRequirements,

@@ -36,7 +36,7 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
           lessonSlug: lessonSlug,
           programmeSlug: programmeSlug,
           unitSlug: unitSlug,
-
+          downloads: "downloads",
           query: {
             preselected: "additional files",
           },
@@ -44,7 +44,7 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
       : resolveOakHref({
           page: "lesson-downloads-canonical",
           lessonSlug: lessonSlug,
-
+          downloads: "downloads",
           query: {
             preselected: "additional files",
           },

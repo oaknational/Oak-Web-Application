@@ -94,7 +94,7 @@ export function LessonItemContainerLink({
           lessonSlug,
           unitSlug,
           programmeSlug,
-
+          downloads: "downloads",
           query: isPreselectedDownloadType(preselected)
             ? { preselected }
             : undefined,
@@ -105,12 +105,14 @@ export function LessonItemContainerLink({
             lessonSlug,
             unitSlug,
             programmeSlug,
+            downloads: "downloads",
             query: isPreselectedDownloadType(preselected)
               ? { preselected }
               : undefined,
           }
         : {
             page: "lesson-downloads-canonical",
+            downloads: "downloads",
             lessonSlug,
             query: isPreselectedDownloadType(preselected)
               ? { preselected }
