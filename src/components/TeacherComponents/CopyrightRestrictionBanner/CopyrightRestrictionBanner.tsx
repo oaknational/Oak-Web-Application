@@ -92,7 +92,10 @@ const SignedOutCopyrightBanner = ({
             <SignUpButton
               forceRedirectUrl={`/onboarding?returnTo=${router.asPath}`}
             >
-              <OakSecondaryLink data-testid="copyright-banner-signin-link">
+              <OakSecondaryLink
+                data-testid="copyright-banner-signin-link"
+                element="button"
+              >
                 sign in.
               </OakSecondaryLink>
             </SignUpButton>
