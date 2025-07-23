@@ -1,6 +1,6 @@
 import { LessonDownloadRegionBlocked } from "./LessonDownloadRegionBlocked";
 
-import { COPYRIGHT_CONTACT_US_LINK } from "@/utils/copyrightContactUsLink";
+import { COPYRIGHT_CONTACT_US_LINK } from "@/utils/copyrightLinks";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
