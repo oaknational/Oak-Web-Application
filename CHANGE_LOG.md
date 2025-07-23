@@ -1,3 +1,11 @@
+# [1.807.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.806.4...v1.807.0) (2025-07-23)
+
+
+### Features
+
+* update copyright links ([7f18420](https://github.com/oaknational/Oak-Web-Application/commit/7f184201842da0aed38889388ed9d961432cc38a))
+* update restrictedsigninprompt for geoblocked media clips page ([1d3ee50](https://github.com/oaknational/Oak-Web-Application/commit/1d3ee5027c39b03615e5ffc1fc7d840ac7e26a1c))
+
 ## [1.806.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.806.3...v1.806.4) (2025-07-23)
 
 ## [1.806.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.806.2...v1.806.3) (2025-07-22)
