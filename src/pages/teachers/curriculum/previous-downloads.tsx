@@ -207,7 +207,7 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
               label: category,
             }))}
             selectedValue={activeTab}
-            $zIndex={"dropdownMenu"}
+            $zIndex={"mobile-filters"}
           />
         </Box>
         <Box
@@ -223,7 +223,7 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
           </OakP>
           <TabularNav
             $font={"heading-6"}
-            $maxWidth={1280}
+            $maxWidth={"all-spacing-24"}
             $mh={"auto"}
             label="Curriculum Selection"
             links={links}

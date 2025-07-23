@@ -28,11 +28,11 @@ export const QuizQuestionsMCAnswers = (props: {
     ).length > 0;
 
   return (
-    <Flex
+    <OakFlex
       $flexDirection={"column"}
       $alignItems={containsImages ? undefined : "start"}
       role="list"
-      $gap={8}
+      $gap={"space-between-ssx"}
     >
       {answers.map((choice, i) => {
         const imageAnswers = choice.answer.filter(
@@ -120,6 +120,6 @@ export const QuizQuestionsMCAnswers = (props: {
           </Flex>
         );
       })}
-    </Flex>
+    </OakFlex>
   );
 };

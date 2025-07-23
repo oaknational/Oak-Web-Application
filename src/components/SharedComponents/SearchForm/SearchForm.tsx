@@ -8,17 +8,16 @@ import {
 import styled from "styled-components";
 import {
   OakFlex,
+  OakFlexProps,
   OakPrimaryButton,
   OakTextInput,
 } from "@oaknational/oak-components";
 
-import flex, { FlexCssProps } from "@/styles/utils/flex";
 import spacing, { SpacingProps } from "@/styles/utils/spacing";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { ContextValueType, SearchSourceValueType } from "@/browser-lib/avo/Avo";
 
-const StyledForm = styled.form<FlexCssProps & SpacingProps>`
-  ${flex}
+const StyledForm = styled(OakFlex)<OakFlexProps & SpacingProps>`
   ${spacing}
   display: flex;
 `;
@@ -61,7 +60,12 @@ const SearchForm: FC<SearchFormProps> = (props) => {
   );
 
   return (
-    <StyledForm role="search" onSubmit={onSubmit} $alignItems={"center"}>
+    <StyledForm
+      as="form"
+      role="search"
+      onSubmit={onSubmit}
+      $alignItems={"center"}
+    >
       <OakFlex
         $width={"100%"}
         $flexDirection={"row"}

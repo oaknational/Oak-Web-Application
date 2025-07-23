@@ -207,7 +207,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     return tiers.length > 0 ? (
       <nav aria-label="tiers" data-testid="tiers-nav">
         <TabularNav
-          $mb={[10, 10, 24]}
+          $mb={["space-between-xs", "space-between-xs", "space-between-m"]}
           label="tiers"
           links={tiers.map(
             ({ tierTitle: title, tierSlug: slug, tierProgrammeSlug }) => ({

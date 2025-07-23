@@ -182,10 +182,6 @@ const theme: OakTheme = {
       text: "black",
     },
   },
-  menu: {
-    background: "pink50",
-    width: 720,
-  },
   header: {
     height: "all-spacing-12",
     background: "mint50",

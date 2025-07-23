@@ -124,7 +124,7 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
       />
       <DropdownSelect
         id={`${id}-newsletter-signup-userrole`}
-        $mt={32}
+        $mt={"space-between-m2"}
         label="Role"
         placeholder="What describes you best?"
         listItems={userTypeOptions}

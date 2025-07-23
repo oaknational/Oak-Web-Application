@@ -24,7 +24,6 @@ import {
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import Box from "@/components/SharedComponents/Box";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import type {
   KS4Option,
   Phase,
@@ -1023,11 +1022,11 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         onWrapEnd={onFocusPhasesEnd}
                       >
                         {showPhaseError && (
-                          <Flex
+                          <OakFlex
                             id={phaseErrorId}
                             role="alert"
                             $flexDirection={"row"}
-                            $mb={20}
+                            $mb={"space-between-m"}
                           >
                             <OakIcon
                               iconName="content-guidance"
@@ -1037,15 +1036,15 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                             <OakP $color={"red"}>
                               Select a school phase to view the curriculum
                             </OakP>
-                          </Flex>
+                          </OakFlex>
                         )}
                         {showKS4OptionError ? (
-                          <Flex
+                          <OakFlex
                             id={ks4OptionErrorId}
                             role="alert"
                             aria-live="polite"
                             $flexDirection={"row"}
-                            $mb={20}
+                            $mb={"space-between-m"}
                           >
                             <OakIcon
                               iconName="content-guidance"
@@ -1055,7 +1054,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                             <OakP $color={"red"}>
                               Select a KS4 option to view the curriculum
                             </OakP>
-                          </Flex>
+                          </OakFlex>
                         ) : (
                           ""
                         )}
@@ -1250,10 +1249,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           </OakHeading>
 
                           {showPhaseError && (
-                            <Flex
+                            <OakFlex
                               id={phaseErrorId}
                               $flexDirection="row"
-                              $mb={20}
+                              $mb={"space-between-m"}
                             >
                               <OakIcon
                                 iconName="content-guidance"
@@ -1263,14 +1262,14 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                               <OakP $color="red">
                                 Select a school phase to view the curriculum
                               </OakP>
-                            </Flex>
+                            </OakFlex>
                           )}
 
                           {showKS4OptionError && (
-                            <Flex
+                            <OakFlex
                               id={ks4OptionErrorId}
                               $flexDirection="row"
-                              $mb={20}
+                              $mb={"space-between-m"}
                             >
                               <OakIcon
                                 iconName="content-guidance"
@@ -1280,7 +1279,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                               <OakP $color="red">
                                 Select a KS4 option to view the curriculum
                               </OakP>
-                            </Flex>
+                            </OakFlex>
                           )}
 
                           <OakFlex

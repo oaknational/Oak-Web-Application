@@ -4,15 +4,10 @@ import {
   OakP,
   OakImage,
 } from "@oaknational/oak-components";
-import styled from "styled-components";
 
 import LoginRequiredButton from "../LoginRequiredButton/LoginRequiredButton";
 
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
-
-const FlexWithMaxWidth = styled(OakFlex)`
-  max-width: 600px;
-`;
 
 export function RestrictedSignInPrompt() {
   return (
@@ -26,13 +21,14 @@ export function RestrictedSignInPrompt() {
       $background={["bg-primary", "mint"]}
       $color={"text-primary"}
     >
-      <FlexWithMaxWidth
+      <OakFlex
         $flexDirection={"column"}
         $gap={"space-between-xl"}
         $alignItems={"start"}
         $pa={"inner-padding-xl4"}
         $borderRadius={"border-radius-l"}
         $background={"bg-primary"}
+        $maxWidth={"all-spacing-22"}
       >
         <OakFlex
           $flexDirection={"row"}
@@ -69,7 +65,7 @@ export function RestrictedSignInPrompt() {
           />
         </OakFlex>
         <LoginRequiredButton width={"100%"} />
-      </FlexWithMaxWidth>
+      </OakFlex>
     </OakFlex>
   );
 }
