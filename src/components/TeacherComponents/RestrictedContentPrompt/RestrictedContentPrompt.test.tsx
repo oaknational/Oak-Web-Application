@@ -3,8 +3,6 @@ import { screen } from "@testing-library/react";
 import { RestrictedContentPrompt } from "./RestrictedContentPrompt";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
-import { mockGeorestrictedUser } from "@/__tests__/__helpers__/mockUser";
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 
 const render = renderWithProviders();
@@ -44,8 +42,6 @@ describe("RestrictedContentPrompt", () => {
   });
 
   it("renders the geoblocked prompt with non-canonical link when geoblocked and non-canonical lesson", () => {
-    setUseUserReturn(mockGeorestrictedUser);
-
     render(
       <RestrictedContentPrompt
         showGeoBlocked={true}
@@ -68,8 +64,6 @@ describe("RestrictedContentPrompt", () => {
   });
 
   it("renders the geoblocked prompt with canonical link when geoblocked and canonical lesson", () => {
-    setUseUserReturn(mockGeorestrictedUser);
-
     render(
       <RestrictedContentPrompt
         showGeoBlocked={true}
