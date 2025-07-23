@@ -148,8 +148,8 @@ export const getLessonDownloadsBreadCrumb = ({
         page: "lesson-downloads",
         programmeSlug,
         unitSlug,
-        downloads: "downloads",
         lessonSlug,
+        downloads: "downloads",
       },
       label: "Downloads",
       disabled,
@@ -161,7 +161,6 @@ export const getLessonDownloadsBreadCrumb = ({
         lessonSlug,
         downloads: "downloads",
       },
-
       label: "Downloads",
       disabled,
     };

@@ -89,10 +89,10 @@ const DownloadConfirmationNextLessonCard: FC<
 
             <ButtonAsLink
               page={"lesson-downloads"}
-              downloads="downloads"
               programmeSlug={programmeSlug}
               unitSlug={unitSlug}
               lessonSlug={lessonSlug}
+              downloads="downloads"
               variant={"buttonStyledAsLink"}
               icon="chevron-right"
               $iconPosition="trailing"
