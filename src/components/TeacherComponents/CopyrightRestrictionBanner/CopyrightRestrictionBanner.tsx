@@ -15,7 +15,10 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
-import { COPYRIGHT_CONTACT_US_LINK } from "@/utils/copyrightContactUsLink";
+import {
+  COPYRIGHT_CONTACT_US_LINK,
+  COPYRIGHT_SUPPORT_LINK,
+} from "@/utils/copyrightLinks";
 import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
 
 export type CopyrightRestrictionBannerProps = {
@@ -102,7 +105,7 @@ const SignedOutCopyrightBanner = ({
         </OakP>
       </StyledFlex>
       <OakSecondaryLink
-        href="https://support.thenational.academy/what-is-copyright-and-signing-in"
+        href={COPYRIGHT_SUPPORT_LINK}
         isTrailingIcon
         iconName={"external"}
       >
@@ -134,7 +137,7 @@ const SignedInGeorestrictedBanner = ({ isUnit }: { isUnit: boolean }) => (
     </OakP>
     <OakP $font={["body-2", "body-1"]} $color={"text-primary"}>
       Some of our content is restricted to the UK due to copyright. You can{" "}
-      <OakLink href="https://support.thenational.academy/what-is-copyright-and-signing-in">
+      <OakLink href={COPYRIGHT_SUPPORT_LINK}>
         read more about copyrights
       </OakLink>{" "}
       or if you believe this is an error and you’re based in the UK, please{" "}
