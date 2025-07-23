@@ -15,6 +15,8 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonDownloadsCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloadsCanonical.schema";
 import { getCommonPathway } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonDownloads } from "@/components/TeacherViews/LessonDownloads.view";
+import { handleInnerError } from "@/pages-helpers/pupil/lessons-pages/handleInnerError";
+import { getRedirect } from "@/pages-helpers/pupil/lessons-pages/getRedirects";
 
 export type LessonDownloadsCanonicalPageProps = {
   curriculumData: LessonDownloadsCanonical;
@@ -80,14 +82,31 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug } = context.params;
 
-      const curriculumData =
-        await curriculumApi2023.lessonDownloads<LessonDownloadsCanonical>({
-          lessonSlug,
-        });
+      let curriculumData;
+      try {
+        curriculumData =
+          await curriculumApi2023.lessonDownloads<LessonDownloadsCanonical>({
+            lessonSlug,
+          });
+      } catch (innerError) {
+        handleInnerError(innerError);
+      }
+
       if (!curriculumData) {
-        return {
-          notFound: true,
-        };
+        const redirect = await getRedirect({
+          canonical: true,
+          context: context.params,
+        });
+        if (redirect) {
+          return {
+            redirect,
+          };
+        } else {
+          // If no redirect is found, return a 404
+          return {
+            notFound: true,
+          };
+        }
       }
 
       const results: GetStaticPropsResult<LessonDownloadsCanonicalPageProps> = {

@@ -27,6 +27,8 @@ import { populateLessonWithTranscript } from "@/utils/handleTranscript";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesModal/TeacherNotesModal";
 import { useLesson } from "@/pages-helpers/teacher/useLesson/useLesson";
+import { getRedirect } from "@/pages-helpers/pupil/lessons-pages/getRedirects";
+import { handleInnerError } from "@/pages-helpers/pupil/lessons-pages/handleInnerError";
 
 type PageProps = {
   lesson: LessonOverviewCanonical;
@@ -165,33 +167,18 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
             });
             lesson = await populateLessonWithTranscript(lesson);
           } catch (innerError) {
-            if (
-              innerError instanceof OakError &&
-              innerError.code === "curriculum-api/not-found"
-            ) {
-              // Let the lesson remain undefined, so the redirect logic below can run
-            } else {
-              // For other types of errors, rethrow
-              throw innerError;
-            }
+            handleInnerError(innerError);
           }
-        } else {
-          // For other types of errors, rethrow
-          throw error;
         }
       }
       if (!lesson) {
-        const { canonicalLessonRedirectData: redirectData } =
-          await curriculumApi2023.canonicalLessonRedirectQuery({
-            incomingPath: `/teachers/lessons/${lessonSlug}`,
-          });
-        if (redirectData) {
+        const redirect = await getRedirect({
+          canonical: true,
+          context: context.params,
+        });
+        if (redirect) {
           return {
-            redirect: {
-              destination: `${redirectData.outgoingPath}`,
-              permanent: redirectData.redirectType == "301", // true = 308, false = 307
-              basePath: false, // Do not prepend the basePath
-            },
+            redirect,
           };
         } else {
           // If no redirect is found, return a 404

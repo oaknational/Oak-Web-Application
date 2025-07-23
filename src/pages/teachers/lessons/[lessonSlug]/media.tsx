@@ -19,6 +19,8 @@ import {
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { populateMediaClipsWithTranscripts } from "@/utils/handleTranscript";
+import { handleInnerError } from "@/pages-helpers/pupil/lessons-pages/handleInnerError";
+import { getRedirect } from "@/pages-helpers/pupil/lessons-pages/getRedirects";
 
 export type CanonicalLessonMediaClipsPageProps = {
   curriculumData: CanonicalLessonMediaClips;
@@ -72,14 +74,31 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug } = context.params;
 
-      const curriculumData =
-        await curriculumApi2023.lessonMediaClips<CanonicalLessonMediaClips>({
-          lessonSlug,
-        });
+      let curriculumData;
+      try {
+        curriculumData =
+          await curriculumApi2023.lessonMediaClips<CanonicalLessonMediaClips>({
+            lessonSlug,
+          });
+      } catch (innerError) {
+        handleInnerError(innerError);
+      }
+
       if (!curriculumData || !curriculumData.mediaClips) {
-        return {
-          notFound: true,
-        };
+        const redirect = await getRedirect({
+          canonical: true,
+          context: context.params,
+        });
+        if (redirect) {
+          return {
+            redirect,
+          };
+        } else {
+          // If no redirect is found, return a 404
+          return {
+            notFound: true,
+          };
+        }
       }
 
       const mediaClipsWithTranscripts = curriculumData.mediaClips
