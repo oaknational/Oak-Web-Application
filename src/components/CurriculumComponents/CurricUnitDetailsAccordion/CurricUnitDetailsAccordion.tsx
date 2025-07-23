@@ -85,7 +85,7 @@ export default function CurricUnitDetailsAccordion({
       {/* @todo replace with OakFlex - work out $maxHeight, why is it  OakFlex if it has display set to either block or none? */}
       <OakFlex
         data-testid={"accordion-container"}
-        $maxHeight={isToggleOpen ? "unset" : 0}
+        style={{ maxHeight: isToggleOpen ? 9600 : 0 }}
         $transition={"standard-ease"}
         $display={isToggleOpen ? "block" : "none"}
       >
