@@ -81,12 +81,10 @@ const SignedOutCopyrightBanner = ({
           {showOnboardingLink ? (
             <OakSecondaryLink
               data-testid="copyright-banner-onboarding-link"
-              onClick={() =>
-                router.push({
-                  pathname: resolveOakHref({ page: "onboarding" }),
-                  query: { returnTo: router.asPath },
-                })
-              }
+              href={resolveOakHref({
+                page: "onboarding",
+                query: { returnTo: router.asPath },
+              })}
             >
               sign in.
             </OakSecondaryLink>
