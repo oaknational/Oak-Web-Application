@@ -7,6 +7,7 @@ import {
   OakP,
   OakSecondaryLink,
   OakSpan,
+  OakHeading,
 } from "@oaknational/oak-components";
 import { useRouter } from "next/router";
 import styled from "styled-components";
@@ -128,10 +129,17 @@ const SignedInGeorestrictedBanner = ({ isUnit }: { isUnit: boolean }) => (
     $maxWidth={"all-spacing-23"}
     data-testid="copyright-banner-signed-in"
   >
-    <OakP $font={["heading-7", "heading-5"]} $color={"text-primary"}>
-      Sorry but this {isUnit ? "unit" : "lesson"} can only be downloaded if you
-      are located in the UK.
-    </OakP>
+    <OakHeading
+      tag="h2"
+      $font={["heading-7", "heading-5"]}
+      $color={"text-primary"}
+    >
+      Sorry but
+      {isUnit
+        ? " this unit can only be downloaded if you are located "
+        : " this lesson is only available "}
+      in the UK.
+    </OakHeading>
     <OakP $font={["body-2", "body-1"]} $color={"text-primary"}>
       Some of our content is restricted to the UK due to copyright. You can{" "}
       <OakLink href="https://support.thenational.academy/what-is-copyright-and-signing-in">
