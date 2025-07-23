@@ -2,6 +2,8 @@ import { readFileSync, writeFileSync, appendFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { withSentryConfig } from "@sentry/nextjs";
+import { sentryWebpackPlugin } from "@sentry/webpack-plugin";
 import buildWithBundleAnalyzer from "@next/bundle-analyzer";
 import StatoscopeWebpackPlugin from "@statoscope/webpack-plugin";
 import CopyPlugin from "copy-webpack-plugin";
@@ -247,11 +249,29 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
           publicPath: "https://*/_next/",
           overwrite: true,
         };
-        const bugsnagSourcemapUploaderPlugin =
-          new BugsnagSourceMapUploaderPlugin(
-            bugsnagSourcemapInfo,
-          ) as unknown as WebpackPluginInstance;
-        config.plugins?.push(bugsnagSourcemapUploaderPlugin);
+
+        if (process.env.SENTRY_ENABLED === "true") {
+          // Upload production sourcemaps to Sentry
+          config.plugins?.push(
+            sentryWebpackPlugin({
+              authToken: process.env.SENTRY_AUTH_TOKEN,
+              org: oakConfig.sentry.organisationIdentifier,
+              project: oakConfig.sentry.projectIdentifier,
+              release: {
+                name: appVersion,
+              },
+              reactComponentAnnotation: {
+                enabled: true,
+              },
+            }) as unknown as WebpackPluginInstance,
+          );
+        } else {
+          const bugsnagSourcemapUploaderPlugin =
+            new BugsnagSourceMapUploaderPlugin(
+              bugsnagSourcemapInfo,
+            ) as unknown as WebpackPluginInstance;
+          config.plugins?.push(bugsnagSourcemapUploaderPlugin);
+        }
       }
 
       return config;
@@ -264,7 +284,13 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
     // https://nextjs.org/docs/app/api-reference/config/next-config-js/serverActions#allowedorigins
     experimental: {
       serverActions: {
-        allowedOrigins: ["*.netlify.app", "*.netlify.thenational.academy"],
+        allowedOrigins: [
+          "*.vercel-preview.thenational.academy",
+          "*.vercel.thenational.academy",
+          "owa.thenational.academy",
+          "owa-vercel.thenational.academy",
+          "www.thenational.academy",
+        ],
       },
     },
     // Need this so static URLs and dynamic URLs match.
@@ -367,3 +393,24 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
 
   return withBundleAnalyzer(nextConfig);
 };
+
+if (process.env.SENTRY_ENABLED === "true") {
+  module.exports = withSentryConfig(module.exports, {
+    org: process.env.NEXT_PUBLIC_SENTRY_ORGANISATION_IDENTIFIER,
+    project: process.env.NEXT_PUBLIC_SENTRY_PROJECT_IDENTIFIER,
+
+    // Tunnel requests to Sentry through our own server
+    tunnelRoute: "/monitoring",
+
+    // Disable sourcemaps as they're handled manually by webpack above
+    sourcemaps: {
+      disable: true,
+    },
+
+    // Hides source maps from generated client bundles
+    hideSourceMaps: true,
+
+    // Automatically tree-shake Sentry logger statements to reduce bundle size
+    disableLogger: true,
+  });
+}

@@ -31,6 +31,7 @@ const ERROR_CODES = [
   "urls/failed-to-resolve",
   "downloads/failed-to-fetch",
   "downloads/check-files-failed",
+  "downloads/missing-auth-token",
   "onboarding/request-error",
   "oak-components/invalid-icon-name",
   "educator-api/failed-to-save-unit",
@@ -44,9 +45,10 @@ type ErrorConfig = {
   message: string;
   // @todo responseStatusCode to be union type
   responseStatusCode?: number;
-  // Whether or not to notify bugsnag
+  // Whether the error should be reported to error monitoring services
   shouldNotify: boolean;
 };
+
 const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   "misc/unknown": {
     message: "An unknown error has occurred",
@@ -171,6 +173,10 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "downloads/check-files-failed": {
     message: "Failed to check file existence",
+    shouldNotify: true,
+  },
+  "downloads/missing-auth-token": {
+    message: "Missing auth token for download",
     shouldNotify: true,
   },
   "onboarding/request-error": {

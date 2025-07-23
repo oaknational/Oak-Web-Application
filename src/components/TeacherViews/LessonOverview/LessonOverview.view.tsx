@@ -62,7 +62,7 @@ import LessonOverviewMediaClips, {
 import LessonOverviewDocPresentation from "@/components/TeacherComponents/LessonOverviewDocPresentation";
 import { TeacherNoteInline } from "@/components/TeacherComponents/TeacherNoteInline/TeacherNoteInline";
 import LessonOverviewSideNavAnchorLinks from "@/components/TeacherComponents/LessonOverviewSideNavAnchorLinks";
-import { RestrictedSignInPrompt } from "@/components/TeacherComponents/RestrictedSignInPrompt/RestrictedSignInPrompt";
+import { RestrictedContentPrompt } from "@/components/TeacherComponents/RestrictedContentPrompt/RestrictedContentPrompt";
 import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
 
 export type LessonOverviewProps = {
@@ -134,7 +134,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   });
 
   const contentRestricted =
-    showSignedOutGeoRestricted || showSignedOutLoginRequired;
+    showSignedOutGeoRestricted || showSignedOutLoginRequired || showGeoBlocked;
 
   const isSubHeader =
     useFeatureFlagVariantKey("lesson-overview-subheader-experiment") === "test";
@@ -368,20 +368,22 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
               $display={["none", "block"]}
               $top={"all-spacing-14"} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size. This could be achieved with a new helperFunction get nextAvailableSize
             >
-              <OakFlex
-                as="nav"
-                aria-label="page navigation"
-                $flexDirection={"column"}
-                $alignItems={"flex-start"}
-                $gap={["all-spacing-2"]}
-                $pr={["inner-padding-m"]}
-              >
-                <LessonOverviewSideNavAnchorLinks
-                  contentRestricted={contentRestricted}
-                  links={pageLinks}
-                  currentSectionId={currentSectionId}
-                />
-              </OakFlex>
+              {!showGeoBlocked && (
+                <OakFlex
+                  as="nav"
+                  aria-label="page navigation"
+                  $flexDirection={"column"}
+                  $alignItems={"flex-start"}
+                  $gap={["all-spacing-2"]}
+                  $pr={["inner-padding-m"]}
+                >
+                  <LessonOverviewSideNavAnchorLinks
+                    contentRestricted={contentRestricted}
+                    links={pageLinks}
+                    currentSectionId={currentSectionId}
+                  />
+                </OakFlex>
+              )}
             </OakGridArea>
 
             <OakGridArea $colSpan={[12, 9]}>
@@ -505,6 +507,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   anchorId="lesson-details"
                   slugs={slugs}
                   pageLinks={pageLinks}
+                  isFinalElement={showGeoBlocked}
                 >
                   <LessonDetails
                     showGeoBlocked={showGeoBlocked}
@@ -534,6 +537,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     subjectSlug={subjectSlug}
                     subjectParent={subjectParent}
                     disablePupilLink={actions?.disablePupilShare}
+                    hideSeoHelper={showGeoBlocked}
                   />
                 </LessonItemContainer>
 
@@ -803,7 +807,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
           </OakGrid>
         )}
       </OakMaxWidth>
-      {contentRestricted && (
+      {contentRestricted && !showGeoBlocked && (
         <OakBox
           $position={"relative"}
           id={getContainerId("restricted-content")}
@@ -813,7 +817,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
             id="restricted-content"
             ref={restrictedContentRef}
           />
-          <RestrictedSignInPrompt />
+          <RestrictedContentPrompt />
         </OakBox>
       )}
     </MathJaxLessonProvider>
