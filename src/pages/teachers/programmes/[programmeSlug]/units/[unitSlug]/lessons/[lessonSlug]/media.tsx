@@ -46,6 +46,8 @@ export const LessonMediaClipsPage: NextPage<LessonMediaClipsPageProps> = ({
             programmeSlug
           }/units/${unitSlug}/lessons/${lessonSlug}`,
         }),
+        noIndex: true,
+        noFollow: true,
       }}
     >
       <LessonMedia isCanonical={false} lesson={curriculumData} />

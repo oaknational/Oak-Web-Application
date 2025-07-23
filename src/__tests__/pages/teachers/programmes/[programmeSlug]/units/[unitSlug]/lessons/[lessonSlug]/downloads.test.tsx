@@ -588,7 +588,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
         canonical:
           "NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/combined-science-secondary-ks4-foundation-edexcel/units/measuring-waves/lessons/transverse-waves",
-        robots: "noindex,follow",
+        robots: "noindex,nofollow",
       });
     });
   });

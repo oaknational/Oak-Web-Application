@@ -37,6 +37,7 @@ const LessonDownloadsPage = ({ curriculumData }: LessonDownloadsPageProps) => {
           }`,
         }),
         noIndex: true,
+        noFollow: true,
       }}
     >
       <LessonDownloads isCanonical={false} lesson={curriculumData} />
