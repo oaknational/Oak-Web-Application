@@ -124,11 +124,14 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     loginRequired,
     geoRestricted,
   } = lesson;
-  const { showSignedOutGeoRestricted, showSignedOutLoginRequired } =
-    useCopyrightRequirements({
-      loginRequired,
-      geoRestricted,
-    });
+  const {
+    showSignedOutGeoRestricted,
+    showSignedOutLoginRequired,
+    showGeoBlocked,
+  } = useCopyrightRequirements({
+    loginRequired,
+    geoRestricted,
+  });
 
   const contentRestricted =
     showSignedOutGeoRestricted || showSignedOutLoginRequired;
@@ -504,6 +507,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   pageLinks={pageLinks}
                 >
                   <LessonDetails
+                    showGeoBlocked={showGeoBlocked}
                     contentRestricted={contentRestricted}
                     keyLearningPoints={keyLearningPoints}
                     commonMisconceptions={misconceptionsAndCommonMistakes}

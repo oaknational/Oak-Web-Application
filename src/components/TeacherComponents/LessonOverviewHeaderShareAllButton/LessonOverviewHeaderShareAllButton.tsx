@@ -5,7 +5,7 @@ import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/Lesson
 import { resolveOakHref } from "@/common-lib/urls";
 import { invariant } from "@/utils/invariant";
 import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
-import RedirectToSignUpWhenRestrictedWrapper from "@/components/TeacherComponents/RedirectToSignUpWhenRestrictedWrapper/RedirectToSignUpWhenRestrictedWrapper";
+import RedirectOrHideWhenRestrictedWrapper from "@/components/TeacherComponents/RedirectOrHideWhenRestrictedWrapper/RedirectOrHideWhenRestrictedWrapper";
 
 export const LessonOverviewHeaderShareAllButton: FC<
   LessonOverviewHeaderProps
@@ -64,7 +64,6 @@ export const LessonOverviewHeaderShareAllButton: FC<
     });
   })();
 
-  if (showGeoBlocked) return null;
   if (!isShareable || !href) {
     return (
       <OakSmallSecondaryButton
@@ -79,7 +78,8 @@ export const LessonOverviewHeaderShareAllButton: FC<
   }
 
   return (
-    <RedirectToSignUpWhenRestrictedWrapper
+    <RedirectOrHideWhenRestrictedWrapper
+      showGeoBlocked={showGeoBlocked}
       contentRestricted={contentRestricted}
     >
       <OakSmallSecondaryButton
@@ -92,6 +92,6 @@ export const LessonOverviewHeaderShareAllButton: FC<
       >
         Share activities with pupils
       </OakSmallSecondaryButton>
-    </RedirectToSignUpWhenRestrictedWrapper>
+    </RedirectOrHideWhenRestrictedWrapper>
   );
 };

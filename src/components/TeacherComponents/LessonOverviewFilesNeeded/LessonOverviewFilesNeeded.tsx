@@ -12,10 +12,11 @@ import {
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import { resolveOakHref } from "@/common-lib/urls";
 import { Slugs } from "@/components/TeacherComponents/LessonItemContainer/LessonItemContainer";
-import RedirectToSignUpWhenRestrictedWrapper from "@/components/TeacherComponents/RedirectToSignUpWhenRestrictedWrapper/RedirectToSignUpWhenRestrictedWrapper";
+import RedirectOrHideWhenRestrictedWrapper from "@/components/TeacherComponents/RedirectOrHideWhenRestrictedWrapper/RedirectOrHideWhenRestrictedWrapper";
 
-type LessonOverviewFilesNeededProps = {
+export type LessonOverviewFilesNeededProps = {
   contentRestricted: boolean;
+  showGeoBlocked: boolean;
   additionalFiles: string[];
   slugs: Slugs;
 };
@@ -24,6 +25,7 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
   additionalFiles,
   slugs,
   contentRestricted,
+  showGeoBlocked,
 }) => {
   const { lessonSlug, unitSlug, programmeSlug } = slugs;
   const isPlural = additionalFiles.length > 1;
@@ -79,7 +81,8 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
           {`Download ${isPlural ? "these files" : "this file"} to use in the
           lesson.`}
         </OakP>
-        <RedirectToSignUpWhenRestrictedWrapper
+        <RedirectOrHideWhenRestrictedWrapper
+          showGeoBlocked={showGeoBlocked}
           contentRestricted={contentRestricted}
         >
           <OakTertiaryButton
@@ -90,7 +93,7 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
           >
             {filesText}
           </OakTertiaryButton>
-        </RedirectToSignUpWhenRestrictedWrapper>
+        </RedirectOrHideWhenRestrictedWrapper>
       </OakFlex>
       <BrushBorders color="aqua50" />
     </OakBox>

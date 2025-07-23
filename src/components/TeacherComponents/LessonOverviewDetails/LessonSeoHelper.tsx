@@ -8,7 +8,7 @@ import {
   getPhase,
 } from "../helpers/seoTextHelpers/seoText.helpers";
 
-import RedirectToSignUpWhenRestrictedWrapper from "@/components/TeacherComponents/RedirectToSignUpWhenRestrictedWrapper/RedirectToSignUpWhenRestrictedWrapper";
+import RedirectOrHideWhenRestrictedWrapper from "@/components/TeacherComponents/RedirectOrHideWhenRestrictedWrapper/RedirectOrHideWhenRestrictedWrapper";
 import { resolveOakHref } from "@/common-lib/urls";
 import {
   OakBasicAccordion,
@@ -31,6 +31,7 @@ export const LessonSeoHelper = ({
   unitSlug,
   disablePupilLink,
   contentRestricted,
+  showGeoBlocked,
 }: {
   year: string;
   subject: string;
@@ -45,6 +46,7 @@ export const LessonSeoHelper = ({
   unitSlug: string;
   disablePupilLink?: boolean;
   contentRestricted: boolean;
+  showGeoBlocked: boolean;
 }) => {
   const router = useRouter();
   const linkSubject = parentSubject
@@ -98,7 +100,8 @@ export const LessonSeoHelper = ({
       <br />
       <OakP $font={["body-2", "body-1"]} $textAlign="left">
         {`To help you plan your ${year.toLowerCase()} ${formatSubjectName(subject)} lesson on: ${lesson},`}{" "}
-        <RedirectToSignUpWhenRestrictedWrapper
+        <RedirectOrHideWhenRestrictedWrapper
+          showGeoBlocked={showGeoBlocked}
           contentRestricted={contentRestricted}
         >
           <OakLink
@@ -116,7 +119,7 @@ export const LessonSeoHelper = ({
           >
             download
           </OakLink>
-        </RedirectToSignUpWhenRestrictedWrapper>{" "}
+        </RedirectOrHideWhenRestrictedWrapper>{" "}
         all teaching resources for free and adapt to suit your pupils' needs.
       </OakP>
       <br />
@@ -148,7 +151,8 @@ export const LessonSeoHelper = ({
           <>
             {`Plus, you can set it as homework or revision for pupils and keep their learning on track by sharing an `}
 
-            <RedirectToSignUpWhenRestrictedWrapper
+            <RedirectOrHideWhenRestrictedWrapper
+              showGeoBlocked={showGeoBlocked}
               contentRestricted={contentRestricted}
             >
               <OakLink
@@ -163,7 +167,7 @@ export const LessonSeoHelper = ({
               >
                 online pupil version
               </OakLink>
-            </RedirectToSignUpWhenRestrictedWrapper>
+            </RedirectOrHideWhenRestrictedWrapper>
             {` of this lesson.`}
           </>
         )}

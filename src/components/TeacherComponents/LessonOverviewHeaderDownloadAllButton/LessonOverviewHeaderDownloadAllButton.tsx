@@ -4,7 +4,7 @@ import { OakSmallPrimaryButton } from "@oaknational/oak-components";
 import { LessonOverviewHeaderProps as LessonOverviewHeaderDownloadAllButtonProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { resolveOakHref } from "@/common-lib/urls";
 import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
-import RedirectToSignUpWhenRestrictedWrapper from "@/components/TeacherComponents/RedirectToSignUpWhenRestrictedWrapper/RedirectToSignUpWhenRestrictedWrapper";
+import RedirectOrHideWhenRestrictedWrapper from "@/components/TeacherComponents/RedirectOrHideWhenRestrictedWrapper/RedirectOrHideWhenRestrictedWrapper";
 
 export const LessonOverviewHeaderDownloadAllButton: FC<
   LessonOverviewHeaderDownloadAllButtonProps
@@ -66,7 +66,8 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
           });
 
   return (
-    <RedirectToSignUpWhenRestrictedWrapper
+    <RedirectOrHideWhenRestrictedWrapper
+      showGeoBlocked={showGeoBlocked}
       contentRestricted={contentRestricted}
     >
       <OakSmallPrimaryButton
@@ -80,6 +81,6 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
       >
         Download all resources
       </OakSmallPrimaryButton>
-    </RedirectToSignUpWhenRestrictedWrapper>
+    </RedirectOrHideWhenRestrictedWrapper>
   );
 };

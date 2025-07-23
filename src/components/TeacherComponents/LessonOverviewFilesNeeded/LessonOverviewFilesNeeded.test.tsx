@@ -1,6 +1,8 @@
 import React from "react";
 
-import LessonOverviewFilesNeeded from "./LessonOverviewFilesNeeded";
+import LessonOverviewFilesNeeded, {
+  LessonOverviewFilesNeededProps,
+} from "./LessonOverviewFilesNeeded";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -10,12 +12,16 @@ jest.mock("@/common-lib/urls", () => ({
 }));
 
 jest.mock("next/router", () => require("next-router-mock"));
-
 describe("LessonOverviewFilesNeeded", () => {
-  const slugs = {
-    lessonSlug: "lesson-slug",
-    unitSlug: "unit-slug",
-    programmeSlug: "programme-slug",
+  const defaultProps: LessonOverviewFilesNeededProps = {
+    contentRestricted: false,
+    showGeoBlocked: false,
+    additionalFiles: [],
+    slugs: {
+      lessonSlug: "lesson-slug",
+      unitSlug: "unit-slug",
+      programmeSlug: "programme-slug",
+    },
   };
 
   afterEach(() => {
@@ -26,9 +32,8 @@ describe("LessonOverviewFilesNeeded", () => {
     const additionalFiles = ["file1.pdf", "file2.pdf"];
     const { getByText } = renderWithTheme(
       <LessonOverviewFilesNeeded
-        contentRestricted={false}
+        {...defaultProps}
         additionalFiles={additionalFiles}
-        slugs={slugs}
       />,
     );
     expect(getByText("Files needed for this lesson")).toBeInTheDocument();
@@ -44,9 +49,8 @@ describe("LessonOverviewFilesNeeded", () => {
     const additionalFiles = ["file1.pdf"];
     const { getByText } = renderWithTheme(
       <LessonOverviewFilesNeeded
-        contentRestricted={false}
+        {...defaultProps}
         additionalFiles={additionalFiles}
-        slugs={slugs}
       />,
     );
     expect(getByText("File needed for this lesson")).toBeInTheDocument();
@@ -62,9 +66,8 @@ describe("LessonOverviewFilesNeeded", () => {
     (resolveOakHref as jest.Mock).mockReturnValue("/mock-url");
     const { getByRole } = renderWithTheme(
       <LessonOverviewFilesNeeded
-        contentRestricted={false}
+        {...defaultProps}
         additionalFiles={additionalFiles}
-        slugs={slugs}
       />,
     );
     const downloadButton = getByRole("link", {
@@ -75,14 +78,17 @@ describe("LessonOverviewFilesNeeded", () => {
 
   it("renders a sign up button when downloads are restricted", () => {
     const additionalFiles = ["file1.pdf"];
+    (resolveOakHref as jest.Mock).mockReturnValue("/mock-url");
     const { getByText } = renderWithTheme(
       <LessonOverviewFilesNeeded
+        {...defaultProps}
         contentRestricted={true}
         additionalFiles={additionalFiles}
-        slugs={slugs}
       />,
     );
-    const downloadLink = getByText(/Download lesson file/);
-    expect(downloadLink).not.toHaveAttribute("href");
+
+    const downloadButton = getByText(/Download lesson file/i).closest("a");
+
+    expect(downloadButton).not.toHaveAttribute("href", "/mock-url");
   });
 });

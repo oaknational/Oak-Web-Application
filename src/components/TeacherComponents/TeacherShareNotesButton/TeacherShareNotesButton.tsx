@@ -4,7 +4,7 @@ import { useOakConsent } from "@oaknational/oak-consent-client";
 import { useTeacherShareButton } from "../TeacherShareButton/useTeacherShareButton";
 
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
-import RedirectToSignUpWhenRestrictedWrapper from "@/components/TeacherComponents/RedirectToSignUpWhenRestrictedWrapper/RedirectToSignUpWhenRestrictedWrapper";
+import RedirectOrHideWhenRestrictedWrapper from "@/components/TeacherComponents/RedirectOrHideWhenRestrictedWrapper/RedirectOrHideWhenRestrictedWrapper";
 import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
 
 export const TeacherShareNotesButton = ({
@@ -42,11 +42,10 @@ export const TeacherShareNotesButton = ({
       policy.consentState === "denied" || policy.consentState === "pending",
   );
 
-  if (showGeoBlocked) return null;
-
   if (isEditable === false) {
     return (
-      <RedirectToSignUpWhenRestrictedWrapper
+      <RedirectOrHideWhenRestrictedWrapper
+        showGeoBlocked={showGeoBlocked}
         contentRestricted={contentRestricted}
       >
         <TeacherShareButton
@@ -55,14 +54,15 @@ export const TeacherShareNotesButton = ({
           shareUrl={shareUrl}
           handleClick={contentRestricted ? undefined : () => handleClick()}
         />
-      </RedirectToSignUpWhenRestrictedWrapper>
+      </RedirectOrHideWhenRestrictedWrapper>
     );
   }
 
   if (isEditable === null || state.requiresInteraction) return undefined;
 
   return (
-    <RedirectToSignUpWhenRestrictedWrapper
+    <RedirectOrHideWhenRestrictedWrapper
+      showGeoBlocked={showGeoBlocked}
       contentRestricted={contentRestricted}
     >
       <OakSmallSecondaryButton
@@ -75,6 +75,6 @@ export const TeacherShareNotesButton = ({
           ? "Edit teacher note and share"
           : "Add teacher note and share"}
       </OakSmallSecondaryButton>
-    </RedirectToSignUpWhenRestrictedWrapper>
+    </RedirectOrHideWhenRestrictedWrapper>
   );
 };
