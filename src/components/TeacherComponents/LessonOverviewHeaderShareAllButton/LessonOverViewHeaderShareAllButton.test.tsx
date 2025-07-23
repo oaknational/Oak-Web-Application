@@ -16,6 +16,7 @@ jest.mock("posthog-js/react", () => ({
 const mockUseCopyrightRequirements = {
   showSignedOutGeoRestricted: false,
   showSignedOutLoginRequired: false,
+  showGeoBlocked: false,
 };
 jest.mock("@/hooks/useCopyrightRequirements", () => ({
   useCopyrightRequirements: () => mockUseCopyrightRequirements,
@@ -95,5 +96,14 @@ describe("LessonOverviewHeaderShareAllButton", () => {
     expect(shareButton).not.toHaveAttribute("href");
     shareButton.click();
     expect(mockOnClickShareAll).not.toHaveBeenCalled();
+  });
+
+  it("does not render a button when geoBlocked", () => {
+    mockUseCopyrightRequirements.showGeoBlocked = true;
+    const { queryByTestId } = render(
+      <LessonOverviewHeaderShareAllButton {...baseProps} />,
+    );
+    const shareButton = queryByTestId("share-all-button");
+    expect(shareButton).not.toBeInTheDocument();
   });
 });

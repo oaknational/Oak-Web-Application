@@ -52,6 +52,15 @@ jest.mock("@oaknational/oak-consent-client", () => ({
   useOakConsent: () => mockUseOakConsent(),
 }));
 
+const mockUseCopyrightRequirements = {
+  showSignedOutGeoRestricted: false,
+  showSignedOutLoginRequired: false,
+  showGeoBlocked: false,
+};
+jest.mock("@/hooks/useCopyrightRequirements", () => ({
+  useCopyrightRequirements: () => mockUseCopyrightRequirements,
+}));
+
 describe("TeacherShareNotesButton", () => {
   const defaultProps = {
     isEditable: false,
@@ -178,5 +187,22 @@ describe("TeacherShareNotesButton", () => {
     expect(
       screen.queryByText("Share resources with colleague"),
     ).toBeInTheDocument();
+  });
+
+  it("redirects to sign up when content is restricted and user is not signed in", () => {
+    mockUseCopyrightRequirements.showSignedOutLoginRequired = true;
+    const { getByText } = render(<TeacherShareNotesButton {...defaultProps} />);
+    const shareButton = getByText("Share resources with colleague");
+    shareButton.click();
+    expect(defaultProps.onTeacherNotesOpen).not.toHaveBeenCalled();
+  });
+
+  it("does not render when signed in and not region authorised", () => {
+    mockUseCopyrightRequirements.showGeoBlocked = true;
+    const { queryByTestId } = render(
+      <TeacherShareNotesButton {...defaultProps} />,
+    );
+    const shareButton = queryByTestId("share-button");
+    expect(shareButton).not.toBeInTheDocument();
   });
 });

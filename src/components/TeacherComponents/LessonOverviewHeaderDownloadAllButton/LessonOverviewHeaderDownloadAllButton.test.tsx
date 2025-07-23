@@ -108,4 +108,14 @@ describe("LessonOverviewHeaderDownloadAllButton", () => {
     downloadButton.click();
     expect(mockDownloadAllButton).not.toHaveBeenCalled();
   });
+  it("does not render anything when geoBlocked", () => {
+    mockUseCopyrightRequirements.showSignedOutGeoRestricted = false;
+    mockUseCopyrightRequirements.showSignedOutLoginRequired = false;
+    mockUseCopyrightRequirements.showGeoBlocked = true;
+    const { queryByTestId } = render(
+      <LessonOverviewHeaderDownloadAllButton {...baseProps} />,
+    );
+    const downloadButton = queryByTestId("download-all-button");
+    expect(downloadButton).not.toBeInTheDocument();
+  });
 });
