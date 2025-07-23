@@ -1,7 +1,4 @@
-import {
-  redirectSchema,
-  Redirect,
-} from "../canonicalLessonRedirect/canonicalLessonRedirect.schema";
+import { redirectSchema, Redirect } from "../../shared.schema";
 
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
