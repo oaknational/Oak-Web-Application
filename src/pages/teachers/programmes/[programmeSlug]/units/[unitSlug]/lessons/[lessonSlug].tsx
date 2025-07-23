@@ -23,6 +23,7 @@ import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesMo
 import { useLesson } from "@/pages-helpers/teacher/useLesson/useLesson";
 import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
 import { handleInnerError } from "@/pages-helpers/pupil/lessons-pages/handleInnerError";
+import { getRedirect } from "@/pages-helpers/pupil/lessons-pages/getRedirects";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewPageData;
@@ -174,17 +175,10 @@ export const getStaticProps: GetStaticProps<
       }
 
       if (!lessonPageData) {
-        const { redirectData } =
-          await curriculumApi2023.browseLessonRedirectQuery({
-            incomingPath: `/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
-          });
-        if (redirectData) {
+        const redirect = await getRedirect(context.params);
+        if (redirect) {
           return {
-            redirect: {
-              destination: `${redirectData.outgoingPath}`,
-              permanent: redirectData.redirectType == "301", // true = 308, false = 307
-              basePath: false, // Do not prepend the basePath
-            },
+            redirect,
           };
         } else {
           // If no redirect is found, return a 404
