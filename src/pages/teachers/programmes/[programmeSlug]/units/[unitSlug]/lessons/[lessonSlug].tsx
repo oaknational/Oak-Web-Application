@@ -22,7 +22,7 @@ import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesModal/TeacherNotesModal";
 import { useLesson } from "@/pages-helpers/teacher/useLesson/useLesson";
 import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
-import OakError from "@/errors/OakError";
+import { handleInnerError } from "@/pages-helpers/pupil/lessons-pages/handleInnerError";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewPageData;
@@ -170,15 +170,7 @@ export const getStaticProps: GetStaticProps<
         });
         lessonPageData = await populateLessonWithTranscript(curriculumData);
       } catch (innerError) {
-        if (
-          innerError instanceof OakError &&
-          innerError.code === "curriculum-api/not-found"
-        ) {
-          // Let the lesson remain undefined, so the redirect logic below can run
-        } else {
-          // For other types of errors, rethrow
-          throw innerError;
-        }
+        handleInnerError(innerError);
       }
 
       if (!lessonPageData) {

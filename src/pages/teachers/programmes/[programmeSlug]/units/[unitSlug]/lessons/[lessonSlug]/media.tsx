@@ -20,6 +20,8 @@ import {
   MediaClipListCamelCase,
 } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { populateMediaClipsWithTranscripts } from "@/utils/handleTranscript";
+import { handleInnerError } from "@/pages-helpers/pupil/lessons-pages/handleInnerError";
+import { getRedirect } from "@/pages-helpers/pupil/lessons-pages/getRedirects";
 
 export type LessonMediaClipsPageProps = {
   curriculumData: LessonMediaClipsData;
@@ -83,18 +85,31 @@ export const getStaticProps: GetStaticProps<
         throw new Error("No context.params");
       }
       const { lessonSlug, programmeSlug, unitSlug } = context.params;
+      let curriculumData;
 
-      const curriculumData =
-        await curriculumApi2023.lessonMediaClips<LessonMediaClipsData>({
-          lessonSlug,
-          programmeSlug,
-          unitSlug,
-        });
+      try {
+        curriculumData =
+          await curriculumApi2023.lessonMediaClips<LessonMediaClipsData>({
+            lessonSlug,
+            programmeSlug,
+            unitSlug,
+          });
+      } catch (innerError) {
+        handleInnerError(innerError);
+      }
 
       if (!curriculumData || !curriculumData.mediaClips) {
-        return {
-          notFound: true,
-        };
+        const redirect = await getRedirect(context.params);
+        if (redirect) {
+          return {
+            redirect,
+          };
+        } else {
+          // If no redirect is found, return a 404
+          return {
+            notFound: true,
+          };
+        }
       }
 
       const mediaClipsWithTranscripts = curriculumData.mediaClips
