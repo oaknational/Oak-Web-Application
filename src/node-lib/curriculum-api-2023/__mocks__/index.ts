@@ -61,6 +61,7 @@ const curriculumApi: Pick<
   | "browseUnitRedirectQuery"
   | "pupilCanonicalLessonRedirectQuery"
   | "pupilBrowseLessonRedirectQuery"
+  | "pupilUnitRedirectQuery"
 > = {
   curriculumPhaseOptions: jest.fn(async () => {
     return curriculumPhaseOptionsFixture();
@@ -180,8 +181,17 @@ const curriculumApi: Pick<
     return {
       browseUnitRedirectData: {
         incomingPath: `programmes/programmeSlug/units/unitSlug`,
-        outgoingPath: `programmes/programmeSlug/units/unitSlug-redirected`,
-        redirectType: "301",
+        outgoingPath: `/teachers/programmes/programmeSlug/units/unitSlug-redirected`,
+        redirectType: 301 as const,
+      },
+    };
+  }),
+  pupilUnitRedirectQuery: jest.fn(async () => {
+    return {
+      pupilUnitRedirectData: {
+        incomingPath: `programmes/programmeSlug/units/unitSlug`,
+        outgoingPath: `pupils/programmes/programmeSlug/units/unitSlug-redirected`,
+        redirectType: 301 as const,
       },
     };
   }),
@@ -190,7 +200,7 @@ const curriculumApi: Pick<
       pupilCanonicalLessonRedirectData: {
         incomingPath: `/pupils/lessons/lessonSlug`,
         outgoingPath: `/pupils/lessons/lessonSlug-redirected`,
-        redirectType: "301",
+        redirectType: 301 as const,
       },
     };
   }),
@@ -199,7 +209,7 @@ const curriculumApi: Pick<
       pupilBrowseLessonRedirectData: {
         incomingPath: `/pupilslessons/lessonSlug`,
         outgoingPath: `/pupils/lessons/lessonSlug-redirected`,
-        redirectType: "301",
+        redirectType: 301 as const,
       },
     };
   }),

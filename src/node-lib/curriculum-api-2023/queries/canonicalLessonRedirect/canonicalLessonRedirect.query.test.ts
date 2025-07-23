@@ -27,7 +27,7 @@ describe("pupilLesson()", () => {
             {
               incoming_path: "lessons/lesson-slug",
               outgoing_path: "lessons/new-lesson-slug",
-              redirect_type: "301",
+              redirect_type: 301,
             },
           ],
         }),
@@ -40,7 +40,7 @@ describe("pupilLesson()", () => {
       canonicalLessonRedirectData: {
         incomingPath: "lessons/lesson-slug",
         outgoingPath: "lessons/new-lesson-slug",
-        redirectType: "301",
+        redirectType: 301,
       },
     });
   });

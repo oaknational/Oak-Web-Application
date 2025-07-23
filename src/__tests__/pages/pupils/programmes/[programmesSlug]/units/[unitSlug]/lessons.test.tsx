@@ -374,8 +374,8 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
     });
     expect(res).toEqual({
       redirect: {
-        destination: `programmes/programmeSlug/units/unitSlug-redirected`,
-        permanent: true,
+        destination: `pupils/programmes/programmeSlug/units/unitSlug-redirected`,
+        statusCode: 301, // true = 308, false = 307
         basePath: false,
       },
     });
@@ -390,7 +390,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
 
     // mock the return value of the API call
     (
-      curriculumApi2023.default.browseUnitRedirectQuery as jest.Mock
+      curriculumApi2023.default.pupilUnitRedirectQuery as jest.Mock
     ).mockRejectedValueOnce(new OakError({ code: "curriculum-api/not-found" }));
 
     const res = await getStaticProps({

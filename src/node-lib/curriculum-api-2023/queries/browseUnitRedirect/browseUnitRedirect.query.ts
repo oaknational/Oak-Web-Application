@@ -42,6 +42,11 @@ export const browseUnitRedirectQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
+    browseUnitRedirectSnake.redirect_type = parseInt(
+      browseUnitRedirectSnake.redirect_type,
+      10,
+    );
+
     redirectSchema.parse({
       ...browseUnitRedirectSnake,
     });

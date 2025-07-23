@@ -22,8 +22,8 @@ import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesModal/TeacherNotesModal";
 import { useLesson } from "@/pages-helpers/teacher/useLesson/useLesson";
 import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
-import { handleInnerError } from "@/pages-helpers/pupil/lessons-pages/handleInnerError";
-import { getRedirect } from "@/pages-helpers/pupil/lessons-pages/getRedirects";
+import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
+import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewPageData;
@@ -171,24 +171,17 @@ export const getStaticProps: GetStaticProps<
         });
         lessonPageData = await populateLessonWithTranscript(curriculumData);
       } catch (innerError) {
-        handleInnerError(innerError);
+        allowNotFoundError(innerError);
       }
 
       if (!lessonPageData) {
         const redirect = await getRedirect({
-          canonical: false,
+          isCanonical: false,
           context: context.params,
+          isTeacher: true,
+          isLesson: true,
         });
-        if (redirect) {
-          return {
-            redirect,
-          };
-        } else {
-          // If no redirect is found, return a 404
-          return {
-            notFound: true,
-          };
-        }
+        return redirect ? { redirect } : { notFound: true };
       }
 
       const results: GetStaticPropsResult<LessonOverviewPageProps> = {

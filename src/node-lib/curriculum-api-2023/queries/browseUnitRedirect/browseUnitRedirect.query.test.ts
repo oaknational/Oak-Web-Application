@@ -27,7 +27,7 @@ describe("pupilLesson()", () => {
             {
               incoming_path: "programmes/programmeSlug/units/unitSlug/lessons",
               outgoing_path: "programmes/programmeSlug/units/unitSlug1/lessons",
-              redirect_type: "301",
+              redirect_type: 301,
             },
           ],
         }),
@@ -40,7 +40,7 @@ describe("pupilLesson()", () => {
       browseUnitRedirectData: {
         incomingPath: "programmes/programmeSlug/units/unitSlug/lessons",
         outgoingPath: "programmes/programmeSlug/units/unitSlug1/lessons",
-        redirectType: "301",
+        redirectType: 301,
       },
     });
   });

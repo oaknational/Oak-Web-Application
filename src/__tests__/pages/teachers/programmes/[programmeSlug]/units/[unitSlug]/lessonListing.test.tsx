@@ -15,9 +15,8 @@ import lessonListingFixture, {
 import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
-import curriculumApi2023, {
-  CurriculumApi,
-} from "@/node-lib/curriculum-api-2023";
+import { CurriculumApi } from "@/node-lib/curriculum-api-2023";
+import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import OakError from "@/errors/OakError";
 
 const render = renderWithProviders();
@@ -211,19 +210,21 @@ describe("getStaticProps", () => {
     });
   });
   it("should return redirect when a landing page is missing", async () => {
-    if (!curriculumApi2023.browseUnitRedirectQuery) {
-      (curriculumApi2023 as CurriculumApi).browseUnitRedirectQuery = jest.fn();
+    if (!curriculumApi2023.default.browseUnitRedirectQuery) {
+      (curriculumApi2023.default as CurriculumApi).browseUnitRedirectQuery =
+        jest.fn();
     }
 
     (curriculumApi.lessonListing as jest.Mock).mockRejectedValueOnce(
       new OakError({ code: "curriculum-api/not-found" }),
     );
     (
-      curriculumApi2023.browseUnitRedirectQuery as jest.Mock
+      curriculumApi2023.default.browseUnitRedirectQuery as jest.Mock
     ).mockResolvedValueOnce({
       browseUnitRedirectData: {
         incomingPath: "lessons/old-lesson-slug",
         outgoingPath: "lessons/new-lesson-slug",
+        redirectType: 301, // true = 308, false = 307
       },
     });
 
@@ -238,18 +239,19 @@ describe("getStaticProps", () => {
       redirect: {
         basePath: false,
         destination: "lessons/new-lesson-slug",
-        permanent: false,
+        statusCode: 301, // true = 308, false = 307
       },
     });
   });
   it("should return notFound when no lessons are found and no redirect", async () => {
-    if (!curriculumApi2023.browseUnitRedirectQuery) {
-      (curriculumApi2023 as CurriculumApi).browseUnitRedirectQuery = jest.fn();
+    if (!curriculumApi2023.default.browseUnitRedirectQuery) {
+      (curriculumApi2023.default as CurriculumApi).browseUnitRedirectQuery =
+        jest.fn();
     }
 
     (curriculumApi.lessonListing as jest.Mock).mockResolvedValueOnce(undefined);
     (
-      curriculumApi2023.browseUnitRedirectQuery as jest.Mock
+      curriculumApi2023.default.browseUnitRedirectQuery as jest.Mock
     ).mockRejectedValueOnce(new OakError({ code: "curriculum-api/not-found" }));
 
     const context = {

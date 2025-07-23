@@ -218,6 +218,7 @@ describe("Lesson Overview Canonical Page", () => {
         canonicalLessonRedirectData: {
           incomingPath: "lessons/old-lesson-slug",
           outgoingPath: "lessons/new-lesson-slug",
+          redirectType: 301 as const, // true = 308, false = 307
         },
       });
 
@@ -243,7 +244,7 @@ describe("Lesson Overview Canonical Page", () => {
         ).redirect,
       ).toEqual({
         destination: "lessons/new-lesson-slug",
-        permanent: false,
+        statusCode: 301, // true = 308, false = 307
         basePath: false,
       });
 

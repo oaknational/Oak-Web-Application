@@ -16,8 +16,8 @@ import { LessonShare } from "@/components/TeacherViews/LessonShare/LessonShare.v
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
-import { handleInnerError } from "@/pages-helpers/pupil/lessons-pages/handleInnerError";
-import { getRedirect } from "@/pages-helpers/pupil/lessons-pages/getRedirects";
+import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
+import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 
 export type LessonSharePageProps = {
   curriculumData: LessonShareData;
@@ -88,24 +88,17 @@ export const getStaticProps: GetStaticProps<
           lessonSlug,
         });
       } catch (innerError) {
-        handleInnerError(innerError);
+        allowNotFoundError(innerError);
       }
 
       if (!curriculumData) {
         const redirect = await getRedirect({
-          canonical: false,
+          isCanonical: false,
           context: context.params,
+          isTeacher: true,
+          isLesson: true,
         });
-        if (redirect) {
-          return {
-            redirect,
-          };
-        } else {
-          // If no redirect is found, return a 404
-          return {
-            notFound: true,
-          };
-        }
+        return redirect ? { redirect } : { notFound: true };
       }
 
       const results: GetStaticPropsResult<LessonSharePageProps> = {

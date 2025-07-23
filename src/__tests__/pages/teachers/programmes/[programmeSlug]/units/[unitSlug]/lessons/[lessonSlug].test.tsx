@@ -610,6 +610,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         redirectData: {
           incomingPath: "lessons/old-lesson-slug",
           outgoingPath: "lessons/new-lesson-slug",
+          redirectType: 301 as const, // true = 308, false = 307
         },
       });
 
@@ -629,14 +630,14 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
           result as {
             redirect: {
               destination: string;
-              permanent: boolean;
+              statusCode: number; // 301 or 308
               basePath: boolean;
             };
           }
         ).redirect,
       ).toEqual({
         destination: "lessons/new-lesson-slug",
-        permanent: false,
+        statusCode: 301 as const, // true = 308, false = 307
         basePath: false,
       });
 

@@ -8,9 +8,10 @@ import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-st
 import { PupilViewsLessonListing } from "@/components/PupilViews/PupilLessonListing/PupilLessonListing.view";
 import { resolveOakHref } from "@/common-lib/urls";
 import { validateProgrammeSlug } from "@/utils/validateProgrammeSlug";
-import OakError from "@/errors/OakError";
+import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
+import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 
-type PupilLessonListingURLParams = {
+export type PupilLessonListingURLParams = {
   programmeSlug: string;
   unitSlug: string;
 };
@@ -124,36 +125,17 @@ export const getStaticProps: GetStaticProps<
         );
         backLinkDataArray = [...backLinkData];
       } catch (innerError) {
-        if (
-          innerError instanceof OakError &&
-          innerError.code === "curriculum-api/not-found"
-        ) {
-          // Let the lesson remain undefined, so the redirect logic below can run
-        } else {
-          return {
-            notFound: true,
-          };
-        }
+        allowNotFoundError(innerError);
       }
 
       if (!filteredBrowseData || filteredBrowseData.length === 0) {
-        const { browseUnitRedirectData: redirectData } =
-          await curriculumApi2023.browseUnitRedirectQuery({
-            incomingPath: `/pupils/programmes/${programmeSlug}/units/${unitSlug}/lessons`,
-          });
-        if (redirectData) {
-          return {
-            redirect: {
-              destination: `${redirectData.outgoingPath}`,
-              permanent: redirectData.redirectType == "301", // true = 308, false = 307
-              basePath: false, // Do not prepend the basePath
-            },
-          };
-        } else {
-          return {
-            notFound: true,
-          };
-        }
+        const redirect = await getRedirect({
+          isCanonical: false,
+          context: context.params,
+          isTeacher: false,
+          isLesson: false,
+        });
+        return redirect ? { redirect } : { notFound: true };
       }
 
       /**

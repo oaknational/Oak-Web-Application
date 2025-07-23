@@ -1,5 +1,8 @@
 import { GetStaticPropsContext, GetStaticPropsResult, PreviewData } from "next";
 
+import { getRedirect } from "../../shared/lesson-pages/getRedirects";
+import { allowNotFoundError } from "../../shared/lesson-pages/allowNotFoundError";
+
 import { resolveOakHref } from "@/common-lib/urls";
 import {
   isLessonReviewSection,
@@ -14,7 +17,6 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { invariant } from "@/utils/invariant";
 import { WorksheetInfo } from "@/components/PupilViews/PupilIntro";
 import { getWorksheetInfo } from "@/components/PupilComponents/pupilUtils/getWorksheetInfo";
-import OakError from "@/errors/OakError";
 
 export type PupilLessonPageURLParams = {
   lessonSlug: string;
@@ -72,54 +74,34 @@ export const getProps = ({
         }
       })();
     } catch (innerError) {
-      if (
-        innerError instanceof OakError &&
-        innerError.code === "curriculum-api/not-found"
-      ) {
-        // Let the lesson remain undefined, so the redirect logic below can run
-      } else {
-        // For other types of errors, rethrow
-        throw innerError;
-      }
+      allowNotFoundError(innerError);
     }
-
     if (!res) {
-      const redirectData = await (async () => {
+      const redirect = await (async () => {
         switch (page) {
           case "canonical": {
-            const redirectQueryResult =
-              await curriculumApi2023.pupilCanonicalLessonRedirectQuery({
-                incomingPath: `/pupils/lessons/${lessonSlug}`,
-              });
-            return redirectQueryResult.pupilCanonicalLessonRedirectData;
+            return await getRedirect({
+              isCanonical: true,
+              context: context.params!,
+              isTeacher: false,
+              isLesson: true,
+            });
           }
           case "browse": {
-            const redirectQueryResult =
-              await curriculumApi2023.pupilBrowseLessonRedirectQuery({
-                incomingPath: `/pupils/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
-              });
-            return redirectQueryResult.pupilBrowseLessonRedirectData;
+            return await getRedirect({
+              isCanonical: false,
+              context: context.params!,
+              isTeacher: false,
+              isLesson: true,
+            });
           }
           case "preview":
-            return null; // No redirects for preview page
+            return undefined; // No redirects for preview page
           default:
             throw new Error(`Invalid page type: ${page}`);
         }
       })();
-      if (redirectData) {
-        return {
-          redirect: {
-            destination: `${redirectData.outgoingPath}`,
-            permanent: redirectData.redirectType == "301", // true = 308, false = 307
-            basePath: false, // Do not prepend the basePath
-          },
-        };
-      } else {
-        // If no redirect is found, return a 404
-        return {
-          notFound: true,
-        };
-      }
+      return redirect ? { redirect } : { notFound: true };
     }
 
     const { browseData, content } = res;

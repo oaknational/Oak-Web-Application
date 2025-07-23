@@ -448,6 +448,7 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
         redirectData: {
           incomingPath: "lessons/old-lesson-slug",
           outgoingPath: "lessons/new-lesson-slug",
+          redirectType: 301, // Temporary redirect
         },
       });
       const result = await getStaticProps({
@@ -466,14 +467,14 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
           result as {
             redirect: {
               destination: string;
-              permanent: boolean;
+              statusCode: number;
               basePath: boolean;
             };
           }
         ).redirect,
       ).toEqual({
         destination: "lessons/new-lesson-slug",
-        permanent: false,
+        statusCode: 301, // 307 is the default for temporary redirects
         basePath: false,
       });
 

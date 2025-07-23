@@ -144,6 +144,7 @@ describe("LessonMediaClipsPage", () => {
         redirectData: {
           incomingPath: "lessons/old-lesson-slug",
           outgoingPath: "lessons/new-lesson-slug",
+          redirectType: 301, // Temporary redirect
         },
       });
       const result = await getStaticProps({
@@ -169,7 +170,7 @@ describe("LessonMediaClipsPage", () => {
         ).redirect,
       ).toEqual({
         destination: "lessons/new-lesson-slug",
-        permanent: false,
+        statusCode: 301, // Temporary redirect
         basePath: false,
       });
 
