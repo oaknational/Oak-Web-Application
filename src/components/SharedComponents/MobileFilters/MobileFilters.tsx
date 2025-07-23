@@ -8,11 +8,15 @@ import {
   ReactNode,
 } from "react";
 import styled from "styled-components";
-import { OakBox, OakBoxProps } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakBoxProps,
+  OakFlex,
+  OakFlexProps,
+} from "@oaknational/oak-components";
 
 import Button from "@/components/SharedComponents/Button";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 import useEventListener from "@/hooks/useEventListener";
 import Cover from "@/components/SharedComponents/Cover";
 import { IconName } from "@/components/SharedComponents/Icon.deprecated";
@@ -47,7 +51,7 @@ export type MobileFiltersProps = {
   providedId?: string;
   iconBackground?: OakColorName;
   applyForTablet?: boolean;
-} & FlexProps;
+} & OakFlexProps;
 const MobileFilters: FC<MobileFiltersProps> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [categoryListHeight, setCategoryListHeight] = useState<number>(0);
@@ -103,15 +107,15 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
   }, [isOpen, menuOpen, close]);
 
   return (
-    <Flex
-      $mt={props.$mt ?? 24}
+    <OakFlex
+      $mt={props.$mt ?? "space-between-m"}
       $display={["flex", applyForTablet ? "flex" : "none", "none"]}
       $flexDirection={"column"}
       $width={"100%"}
       {...flexProps}
     >
       <Cover $pointerEvents={isOpen ? null : "none"} onClick={close} />
-      <Flex $alignSelf={props.$alignSelf}>
+      <OakFlex $alignSelf={props.$alignSelf}>
         {withBackButton &&
           (page === "blog-index" || page === "webinar-index") && (
             <OakBox
@@ -144,7 +148,7 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
           aria-expanded={isOpen}
           aria-controls={menuId}
         />
-      </Flex>
+      </OakFlex>
       <OakBox $width={"100%"} $position={"relative"}>
         <StyledCategoryList
           $isOpen={isOpen}
@@ -171,7 +175,7 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
           </StyledCategoryListInner>
         </StyledCategoryList>
       </OakBox>
-    </Flex>
+    </OakFlex>
   );
 };
 

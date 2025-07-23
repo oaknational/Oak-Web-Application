@@ -3,7 +3,6 @@ import { z } from "zod";
 
 import { CheckboxConfig } from "@/components/SharedComponents/Checkbox";
 import { SelectListBoxConfig } from "@/components/SharedComponents/ListBox/ListBox";
-import { MenuConfig } from "@/components/AppComponents/AppHeaderMenu";
 import { VideoStyleConfig } from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
 import { HeaderConfig } from "@/components/AppComponents/StyledHeader/StyledHeader";
 
@@ -271,7 +270,6 @@ export type OakTheme = {
   selectListBox: SelectListBoxConfig;
   toggle: ToggleStyleConfig;
   video: VideoStyleConfig;
-  menu: MenuConfig;
 };
 
 export type PropsWithTheme<Props = unknown> = ThemedStyledProps<

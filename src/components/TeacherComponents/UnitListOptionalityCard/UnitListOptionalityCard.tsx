@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { OakBox, OakHeading, OakP } from "@oaknational/oak-components";
+import { OakFlex, OakBox, OakHeading, OakP } from "@oaknational/oak-components";
 
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import UnitListItem, {
@@ -34,14 +34,14 @@ const UnitListOptionalityCard: FC<UnitListOptionalityCardProps> = ({
       data-testid="unit-optionality-card"
       role="listitem"
     >
-      <Flex>
-        <Flex
+      <OakFlex>
+        <OakFlex
           $flexDirection={"column"}
           $alignItems={"center"}
           $justifyContent={"center"}
-          $pt={[0, 12]}
-          $pb={[0, 12]}
-          $maxWidth={[64, 80]}
+          $pt={["inner-padding-none", "inner-padding-s"]}
+          $pb={["inner-padding-none", "inner-padding-s"]}
+          $maxWidth={["all-spacing-11", "all-spacing-13"]}
         >
           <OakHeading
             tag="h6"
@@ -59,16 +59,16 @@ const UnitListOptionalityCard: FC<UnitListOptionalityCardProps> = ({
           >
             {stringIndex}
           </OutlineHeading>
-        </Flex>
-        <Flex
+        </OakFlex>
+        <OakFlex
           $flexDirection={["column"]}
-          $pl={[16, 24]}
-          $pr={[16, 24]}
-          $pt={12}
-          $pb={12}
+          $pl={["inner-padding-m", "inner-padding-xl"]}
+          $pr={["inner-padding-m", "inner-padding-xl"]}
+          $pt={"inner-padding-s"}
+          $pb={"inner-padding-s"}
           $width={"100%"}
         >
-          <Flex $mb={16} $flexDirection={"column"}>
+          <OakFlex $mb={"space-between-s"} $flexDirection={"column"}>
             <OakP
               $font={"heading-light-7"}
               $mt="space-between-sssx"
@@ -80,7 +80,7 @@ const UnitListOptionalityCard: FC<UnitListOptionalityCardProps> = ({
             <OakHeading tag="h6" $font={"heading-6"} $mv="space-between-none">
               {unitTitle}
             </OakHeading>
-          </Flex>
+          </OakFlex>
           <Flex $cg={12} $width={"100%"} $flexWrap={"wrap"}>
             {unitOptions.map((unitOption: UnitOption) => {
               return (
@@ -102,8 +102,8 @@ const UnitListOptionalityCard: FC<UnitListOptionalityCardProps> = ({
               );
             })}
           </Flex>
-        </Flex>
-      </Flex>
+        </OakFlex>
+      </OakFlex>
     </OakBox>
   );
 };

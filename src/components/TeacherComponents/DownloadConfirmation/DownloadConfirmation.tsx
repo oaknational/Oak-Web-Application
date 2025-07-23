@@ -1,5 +1,6 @@
 import { FC, useRef, useEffect } from "react";
 import {
+  OakFlex,
   OakHeading,
   OakSpan,
   OakBox,
@@ -125,11 +126,11 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
 
   return (
     <>
-      <Flex
+      <OakFlex
         $flexDirection={["column", "row"]}
         $alignItems={["flex-start", "center"]}
-        $gap={[24, 24, 120]}
-        $mb={[56, 0]}
+        $gap={["space-between-m", "space-between-m", "all-spacing-16"]}
+        $mb={["space-between-xl", "space-between-none"]}
       >
         <Flex
           $alignItems={"center"}
@@ -232,7 +233,7 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
           </OakBox>
           {teacherShareButton}
         </Flex>
-      </Flex>
+      </OakFlex>
 
       {displayNextLessonContainer && isNextLessonsAvailable && (
         <DownloadConfirmationNextLessonContainer

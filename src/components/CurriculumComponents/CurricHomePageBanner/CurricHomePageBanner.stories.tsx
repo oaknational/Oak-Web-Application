@@ -2,8 +2,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import CurricHomePageBanner from "./CurricHomePageBanner";
 
-import { OakColorName } from "@/styles/theme";
-
 const meta: Meta<typeof CurricHomePageBanner> = {
   component: CurricHomePageBanner,
 };
@@ -13,7 +11,7 @@ type Story = StoryObj<typeof CurricHomePageBanner>;
 
 export const Banner: Story = {
   args: {
-    background: "lemon" as OakColorName,
+    background: "lemon",
     newText: "New exciting feature available!",
     ctaText: "Learn more",
     page: "home",

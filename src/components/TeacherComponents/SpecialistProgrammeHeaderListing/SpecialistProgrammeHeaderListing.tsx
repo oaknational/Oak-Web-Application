@@ -7,12 +7,12 @@ import {
   OakSpan,
   OakFlex,
   OakColorFilterToken,
+  OakColorToken,
 } from "@oaknational/oak-components";
 
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
-import { OakColorName } from "@/styles/theme";
 
 /**
  * This is a header for the specialist listing pages (programme).
@@ -21,7 +21,7 @@ import { OakColorName } from "@/styles/theme";
 
 export type SpecialistHeaderListingProps = {
   breadcrumbs: Breadcrumb[];
-  background?: OakColorName;
+  background?: OakColorToken;
   subjectTitle: string;
   subjectSlug: string;
   subjectIconBackgroundColor?: OakColorFilterToken;

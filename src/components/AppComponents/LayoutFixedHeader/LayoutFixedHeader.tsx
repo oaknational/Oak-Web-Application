@@ -22,7 +22,7 @@ const LayoutFixedHeader: FC<HeaderProps> = ({ children, $background }) => (
       $background={$background}
       $justifyContent={["space-between"]}
       $alignItems={["center"]}
-      $zIndex="fixedHeader"
+      $zIndex="fixed-header"
       $position="fixed"
     >
       {children}

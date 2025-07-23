@@ -1,5 +1,5 @@
 import { FC, HTMLProps, RefObject, useEffect, useRef } from "react";
-import styled, { useTheme } from "styled-components";
+import styled from "styled-components";
 import { Transition, TransitionStatus } from "react-transition-group";
 import { useRouter } from "next/router";
 import { FocusOn } from "react-focus-on";
@@ -17,22 +17,15 @@ import { useMenuContext } from "@/context/Menu/";
 import Logo from "@/components/AppComponents/Logo";
 import { OAK_SOCIALS } from "@/components/SharedComponents/SocialButtons/SocialButtons";
 import MenuBackdrop from "@/components/AppComponents/MenuBackdrop";
-import { OakColorName, PixelSpacing } from "@/styles/theme/types";
 import SocialButtons from "@/components/SharedComponents/SocialButtons";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
-
-export type MenuConfig = {
-  width: PixelSpacing;
-  background: OakColorName;
-};
 
 export type TransitionProps = {
   state: TransitionStatus;
 };
 const transitionDuration = 250;
 
-export const SideMenu = styled(Flex)<TransitionProps>`
+export const SideMenu = styled(OakFlex)<TransitionProps>`
   transition: transform ${transitionDuration}ms ease-in-out;
   transform: ${(props) => {
     switch (props.state) {
@@ -71,8 +64,6 @@ const NavMenuList = styled("nav")<OakFlexProps & OakBoxProps>`
 
 const AppHeaderMenu: FC<AppHeaderMenuProps> = ({ children, menuButtonRef }) => {
   const { open, closeMenu } = useMenuContext();
-  const theme = useTheme();
-  const { menu: menuConfig } = theme;
   const { pathname } = useRouter();
   const ref = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -107,13 +98,13 @@ const AppHeaderMenu: FC<AppHeaderMenuProps> = ({ children, menuButtonRef }) => {
             <SideMenu
               data-testid={"menu"}
               $position="fixed"
-              $top={0}
-              $right={0}
+              $top={"all-spacing-0"}
+              $right={"all-spacing-0"}
               $height="100%"
               $maxWidth="100%"
-              $width={menuConfig.width}
+              $width={"all-spacing-22"}
               $flexDirection={"column"}
-              $background={menuConfig.background}
+              $background={"pink50"}
               state={state}
               $zIndex={"neutral"}
               aria-expanded={open}
