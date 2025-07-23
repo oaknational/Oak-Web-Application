@@ -45,8 +45,6 @@ const teacherPreviewLessonQuery =
     }
     const parsedLessonContent = lessonContentSchemaFull.parse({
       ...content,
-      geo_restricted: true,
-      login_required: true,
     });
 
     const [unitDataSnake] = res.unitData;
