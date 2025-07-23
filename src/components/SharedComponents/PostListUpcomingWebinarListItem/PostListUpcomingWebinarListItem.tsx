@@ -2,6 +2,7 @@ import { FC } from "react";
 import { useHover } from "react-aria";
 import {
   OakBox,
+  OakFlex,
   OakHeading,
   OakP,
   OakPrimaryButton,
@@ -14,7 +15,6 @@ import OwaLink from "@/components/SharedComponents/OwaLink";
 import formatDate from "@/utils/formatDate";
 import { PostListItemProps } from "@/components/SharedComponents/PostListItem";
 import useClickableCard from "@/hooks/useClickableCard";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 type PostListUpcomingWebinarListItemProps = PostListItemProps & {
   signUpHref: string;
@@ -48,7 +48,7 @@ const PostListUpcomingWebinarListItem: FC<
     {},
   );
   return (
-    <Flex
+    <OakFlex
       {...containerProps}
       $position={"relative"}
       $flexDirection={["column", "row"]}
@@ -94,7 +94,7 @@ const PostListUpcomingWebinarListItem: FC<
           <ScreenReaderOnly>{`on the webinar: ${title}`}</ScreenReaderOnly>
         </OakPrimaryButton>
       </OakBox>
-    </Flex>
+    </OakFlex>
   );
 };
 
