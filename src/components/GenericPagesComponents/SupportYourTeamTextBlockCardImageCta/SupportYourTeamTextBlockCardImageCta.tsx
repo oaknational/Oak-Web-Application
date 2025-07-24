@@ -1,11 +1,14 @@
 import { PortableTextComponents } from "@portabletext/react";
 import { FC } from "react";
-import { OakHeading, OakFlex } from "@oaknational/oak-components";
+import {
+  OakHeading,
+  OakFlex,
+  OakPrimaryButton,
+} from "@oaknational/oak-components";
 
 import { TextBlock } from "@/common-lib/cms-types";
 import { OakColorName } from "@/styles/theme";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
-import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Card from "@/components/SharedComponents/Card";
 import CardImage, {
   CardImageProps,
@@ -62,20 +65,16 @@ const SupportYourTeamTextBlockCardImageCta: FC<
           withoutDefaultComponents
         />
         {cta && (
-          <OakFlex>
-            <ButtonAsLink
-              $mt={32}
+          <OakFlex $pt="inner-padding-xl2">
+            <OakPrimaryButton
+              element="a"
               href={getLinkHref(cta)}
-              page={null}
-              label={cta.label}
-              icon={"arrow-right"}
-              $iconPosition={"trailing"}
-              htmlAnchorProps={{ target: "_self" }}
-              // @TODO: This link is dynamic, not always a support link
-              // so we may not always want to open it in a new tab
-              // See owa issue #619
-              // When this is standardized remove the exclusions from sonar
-            />
+              iconName={"arrow-right"}
+              isTrailingIcon={true}
+              target="_self"
+            >
+              {cta.label}
+            </OakPrimaryButton>
           </OakFlex>
         )}
       </OakFlex>

@@ -1,8 +1,7 @@
 import styled from "styled-components";
-
-import { box } from "../../SharedComponents/Box";
+import { oakBoxCss } from "@oaknational/oak-components";
 
 const Form = styled.form`
-  ${box}
+  ${oakBoxCss}
 `;
 export default Form;

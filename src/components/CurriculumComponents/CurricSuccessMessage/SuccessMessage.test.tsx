@@ -1,4 +1,4 @@
-import { getAllByRole, getByRole } from "@testing-library/dom";
+import { getByRole } from "@testing-library/dom";
 
 import SuccessMessage from ".";
 
@@ -18,10 +18,7 @@ describe("SuccessMessage", () => {
     const headingElement = getByRole(baseElement, "heading", { level: 2 });
     expect(headingElement).toHaveTextContent("Success");
 
-    const messageElement = getAllByRole(baseElement, "paragraph");
-    expect(messageElement[1]).toHaveTextContent(
-      "We hope this worked correctly",
-    );
+    expect(baseElement).toHaveTextContent("We hope this worked correctly");
 
     const buttonElement = getByRole(baseElement, "button");
     expect(buttonElement).toHaveTextContent("Back");

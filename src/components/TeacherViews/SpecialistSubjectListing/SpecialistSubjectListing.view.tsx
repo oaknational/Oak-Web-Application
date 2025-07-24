@@ -1,8 +1,7 @@
 import { FC } from "react";
-import { OakHeading, OakFlex } from "@oaknational/oak-components";
+import { OakHeading, OakFlex, OakMaxWidth } from "@oaknational/oak-components";
 
 import SpecialistSubjectCardSection from "@/components/TeacherComponents/SpecialistSubjectListingCardSection/SpecialistSubjectListingCardSection";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { SpecialistSubjectListingPageData } from "@/node-lib/curriculum-api-2023/queries/specialistSubjectListing/specialistSubjectListing.schema";
 
 const SpecialistSubjectListing: FC<SpecialistSubjectListingPageData> = (
@@ -11,7 +10,10 @@ const SpecialistSubjectListing: FC<SpecialistSubjectListingPageData> = (
   const { specialist, therapies } = props;
   return (
     <OakFlex $flexDirection={"column"} $mv="space-between-xl">
-      <MaxWidth $maxWidth={[480, 840, 1280]} $ph={[12]}>
+      <OakMaxWidth
+        $maxWidth={["all-spacing-21", "all-spacing-23", "all-spacing-24"]}
+        $ph="inner-padding-s"
+      >
         <OakHeading
           $font={"heading-1"}
           tag={"h1"}
@@ -35,7 +37,7 @@ const SpecialistSubjectListing: FC<SpecialistSubjectListingPageData> = (
             summary="These resources provide tools for delivering support across four therapeutic streams. Choose the best starting point or approach to meet your pupils' developmental needs."
           />
         </OakFlex>
-      </MaxWidth>
+      </OakMaxWidth>
     </OakFlex>
   );
 };

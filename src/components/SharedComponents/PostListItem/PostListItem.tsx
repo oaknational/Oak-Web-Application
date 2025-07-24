@@ -5,6 +5,7 @@ import {
   OakHeading,
   OakHeadingTag,
   OakFlex,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import PostListItemImage from "./PostListItemImage";
@@ -18,7 +19,6 @@ import { ResolveOakHrefProps } from "@/common-lib/urls";
 import formatDate from "@/utils/formatDate";
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
-import Box from "@/components/SharedComponents/Box";
 
 type PostListItemContentType = "blog-post" | "webinar";
 
@@ -111,13 +111,13 @@ const PostListItem: FC<PostListItemProps> = (props) => {
       $pa={0}
     >
       {withImage && (
-        <Box
+        <OakBox
           $display={imageDisplay}
           $position={"relative"}
-          $minWidth={240}
-          $maxWidth={[160, "none"]}
-          $mr={[0, 32]}
-          $mb={[32, 0]}
+          $minWidth={"all-spacing-19"}
+          $maxWidth={["all-spacing-17", "all-spacing-0"]}
+          $mr={["space-between-none", "space-between-m2"]}
+          $mb={["space-between-m2", "space-between-none"]}
         >
           <BoxBorders
             $zIndex={"in-front"}
@@ -125,12 +125,12 @@ const PostListItem: FC<PostListItemProps> = (props) => {
               props.contentType === "webinar" ? undefined : "bottomRight"
             }
           />
-          <Box $ma={1}>
+          <OakBox $ma={"space-between-sssx"}>
             <AspectRatio ratio={"3:2"}>
               <PostListItemImage {...props} />
             </AspectRatio>
-          </Box>
-        </Box>
+          </OakBox>
+        </OakBox>
       )}
       <OakFlex $flexDirection="column" $alignItems="flex-start" $width="100%">
         <OakFlex

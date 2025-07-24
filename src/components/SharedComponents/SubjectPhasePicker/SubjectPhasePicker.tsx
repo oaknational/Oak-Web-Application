@@ -22,7 +22,6 @@ import {
 } from "@oaknational/oak-curriculum-schema";
 
 import OwaLink from "@/components/SharedComponents/OwaLink";
-import Box from "@/components/SharedComponents/Box";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import type {
@@ -183,7 +182,7 @@ const FocusIndicatorAlt = styled(FocusIndicator)<object>`
   }
 `;
 
-const SelectionDropDownBox = styled(Box)<object>`
+const SelectionDropDownBox = styled(OakBox)<object>`
   width: calc(100% + 2px);
   margin-left: -2px;
 
@@ -288,8 +287,8 @@ function SubjectContainer({
               ariaLabel="Close subject picker modal"
               onClose={onClick}
               $position={"absolute"}
-              $top={-12}
-              $right={-12}
+              $top={"all-spacing-3"}
+              $right={"all-spacing-3"}
             />
           )}
 
@@ -717,18 +716,16 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 </PickerButton>
               </FocusIndicatorAlt>
             </OakFlex>
-
             {/* DESKTOP SUBJECT PICKER */}
             {showSubjects && !isMobile && !isMobileLotPickerModalOpen && (
               <SelectionDropDownBox
                 $background={"white"}
-                $dropShadow="interactiveCardHover"
-                $left={0}
-                $mt={8}
-                $pa={24}
+                $left={"all-spacing-0"}
+                $mt={"space-between-ssx"}
+                $pa={"inner-padding-xl"}
                 $position="absolute"
-                $top={["50%", "100%"]}
-                $zIndex={"modalDialog"}
+                $top={"all-spacing-12"}
+                $zIndex={"modal-dialog"}
                 $width={"100%"}
               >
                 <FocusOn
@@ -776,7 +773,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 </FocusOn>
               </SelectionDropDownBox>
             )}
-
             {/* MOBILE SUBJECT PICKER */}
             {isMobileLotPickerModalOpen && isMobile && (
               <FocusOn
@@ -887,7 +883,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 </OakBox>
               </FocusOn>
             )}
-
             {/* SEPARATOR */}
             <OakBox
               $height={"all-spacing-9"}
@@ -903,9 +898,8 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 hideRight={true}
               />
             </OakBox>
-
             {/* PHASE Button */}
-            <Box $width={["50%", "60%"]} $position={"relative"}>
+            <OakBox $width={"all-spacing-20"} $position={"relative"}>
               <OakFlex
                 $position={"relative"}
                 $flexDirection={"row"}
@@ -1003,12 +997,11 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 {showPhases && !isMobile && (
                   <SelectionDropDownBox
                     $background={"white"}
-                    $dropShadow="interactiveCardHover"
-                    $mt={8}
-                    $pa={28}
+                    $mt={"space-between-ssx"}
+                    $pa={"inner-padding-xl2"}
                     $position="absolute"
-                    $top={"100%"}
-                    $zIndex={"modalDialog"}
+                    $top={"all-spacing-12"}
+                    $zIndex={"modal-dialog"}
                     className="phase-selection"
                   >
                     <FocusOn
@@ -1082,8 +1075,8 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                             ariaLabel="Close phase picker"
                             onClose={() => setShowPhases(false)}
                             $position={"absolute"}
-                            $top={12}
-                            $right={12}
+                            $top={"all-spacing-3"}
+                            $right={"all-spacing-3"}
                           />
                           {(selectedSubject?.phases ?? phases).map((phase) => (
                             <ButtonContainer
@@ -1457,7 +1450,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   </OakPrimaryButton>
                 </OakFlex>
               </OakFlex>
-            </Box>
+            </OakBox>
           </OakFlex>
         </OakFlex>
       </OakBox>

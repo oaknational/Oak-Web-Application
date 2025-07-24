@@ -4,6 +4,7 @@ import {
   OakPagination,
   OakUL,
   OakHandDrawnHR,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import UpcomingWebinarListItem from "../PostListUpcomingWebinarListItem";
@@ -13,7 +14,6 @@ import PostListItem, {
   PostListItemProps,
 } from "@/components/SharedComponents/PostListItem";
 import { PaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
-import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export type PostListProps = {
@@ -125,13 +125,17 @@ const PostList: FC<PostListProps> = (props) => {
         </>
       ) : null}
       {withPagination && (
-        <Box $width="100%" $mt={[0, "auto"]} $pt={48}>
+        <OakBox
+          $width="100%"
+          $mt={["space-between-none", "auto"]}
+          $pt={"inner-padding-xl4"}
+        >
           <OakPagination
             {...paginationProps}
             pageName={blogsOrWebinars}
             paginationHref={paginationRoute}
           />
-        </Box>
+        </OakBox>
       )}
     </Flex>
   );

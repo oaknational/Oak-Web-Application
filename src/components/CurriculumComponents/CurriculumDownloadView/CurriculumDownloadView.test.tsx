@@ -1,5 +1,5 @@
 import { useUser } from "@clerk/nextjs";
-import { act, waitFor } from "@testing-library/react";
+import { act, screen, waitFor } from "@testing-library/react";
 
 import CurriculumDownloadView, { CurriculumDownloadViewData } from ".";
 
@@ -117,7 +117,9 @@ describe("CurriculumDownloadView", () => {
         />,
       );
       expect(getByTestId("download-school-isnt-listed")).toBeVisible();
-      expect(getByTestId("download-email")).toBeVisible();
+      expect(
+        screen.getByPlaceholderText("Type your email address"),
+      ).toBeVisible();
       expect(getByTestId("download-accept-terms")).toBeVisible();
     });
 

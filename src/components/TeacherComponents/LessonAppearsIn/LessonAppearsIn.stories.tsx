@@ -1,10 +1,8 @@
 import React from "react";
 import { StoryFn, Meta } from "@storybook/react";
-import { OakFlex } from "@oaknational/oak-components";
+import { OakFlex, OakMaxWidth } from "@oaknational/oak-components";
 
 import { LessonAppearsIn as Component } from "./LessonAppearsIn";
-
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 
 export default {
   component: Component,
@@ -13,9 +11,9 @@ export default {
 
 const Template: StoryFn<typeof Component> = (args) => (
   <OakFlex $background={"pink50"}>
-    <MaxWidth $pa={120}>
+    <OakMaxWidth $pa="inner-padding-xl8">
       <Component {...args} />
-    </MaxWidth>
+    </OakMaxWidth>
   </OakFlex>
 );
 
