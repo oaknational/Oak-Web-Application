@@ -1,6 +1,6 @@
 import React from "react";
 import { GetStaticPathsResult, GetStaticProps, NextPage } from "next";
-import { OakMaxWidth } from "@oaknational/oak-components";
+import { OakBox, OakMaxWidth } from "@oaknational/oak-components";
 
 import { getSeoProps } from "@//browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/SharedComponents/AppLayout";
@@ -9,7 +9,6 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
-import Box from "@/components/SharedComponents/Box";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import {
   KeyStageData,
@@ -42,7 +41,6 @@ export type SubjectListingPageProps = {
 
 const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
   const { keyStageSlug, keyStageTitle, keyStages } = props;
-  const containerHeight = keyStages.length > 4 ? 172 : 120;
   const { track } = useAnalytics();
 
   const metaDescriptionSlug =
@@ -60,7 +58,7 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
       }}
       $background="white"
     >
-      <Box $background={"lavender50"} $height={[containerHeight, 140]}>
+      <OakBox $background={"lavender50"}>
         <OakMaxWidth
           $ph="inner-padding-s"
           $maxWidth={["all-spacing-21", "all-spacing-23", "all-spacing-24"]}
@@ -87,7 +85,7 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
             }
           />
         </OakMaxWidth>
-      </Box>
+      </OakBox>
       <SubjectListingPage
         subjects={props.subjects}
         keyStageSlug={keyStageSlug}
