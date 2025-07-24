@@ -27,6 +27,8 @@ import { populateLessonWithTranscript } from "@/utils/handleTranscript";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesModal/TeacherNotesModal";
 import { useLesson } from "@/pages-helpers/teacher/useLesson/useLesson";
+import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
+import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 
 type PageProps = {
   lesson: LessonOverviewCanonical;
@@ -159,19 +161,25 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
           error instanceof OakError &&
           error.code === "curriculum-api/not-found"
         ) {
-          await new Promise((resolve) => setTimeout(resolve, 0)); // TODO: remove this
-          lesson = await curriculumApi2023.lessonOverview({
-            lessonSlug,
-          });
-          lesson = await populateLessonWithTranscript(lesson);
+          try {
+            lesson = await curriculumApi2023.lessonOverview({
+              lessonSlug,
+            });
+            lesson = await populateLessonWithTranscript(lesson);
+          } catch (innerError) {
+            allowNotFoundError(innerError);
+          }
         }
       }
       if (!lesson) {
-        return {
-          notFound: true,
-        };
+        const redirect = await getRedirect({
+          isCanonical: true,
+          context: context.params,
+          isTeacher: true,
+          isLesson: true,
+        });
+        return redirect ? { redirect } : { notFound: true };
       }
-
       const results: GetStaticPropsResult<PageProps> = {
         props: {
           lesson,
