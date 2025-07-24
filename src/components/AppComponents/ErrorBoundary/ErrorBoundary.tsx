@@ -1,8 +1,9 @@
 import React, { Component, ErrorInfo, FC, ReactNode, useMemo } from "react";
 import Bugsnag from "@bugsnag/js";
+import * as Sentry from "@sentry/nextjs";
 
-import { bugsnagInitialised } from "@/browser-lib/bugsnag/useBugsnag";
 import ErrorView from "@/components/AppComponents/ErrorView";
+import { bugsnagInitialised } from "@/browser-lib/bugsnag/useBugsnag";
 
 const ClientErrorView: FC = () => {
   return (
@@ -10,12 +11,6 @@ const ClientErrorView: FC = () => {
   );
 };
 
-/**
- * NonBusgnagErrorBoundary is used in the case that the user has
- * not accepted the appropriate cookie policy. It means in the case
- * of unhandled errors, the user will be shown ClientErrorView, but that
- * the error will not be reported to bugsnag.
- */
 class NonBugsnagErrorBoundary extends Component<
   { children?: ReactNode },
   { hasError: boolean }
@@ -26,10 +21,7 @@ class NonBugsnagErrorBoundary extends Component<
   }
 
   static getDerivedStateFromError(error: Error) {
-    console.log(error);
-    if (error && error.stack) {
-      console.log(error.stack);
-    }
+    console.error(error);
 
     // Update state so the next render will show the fallback UI.
     return { hasError: true };
@@ -50,19 +42,28 @@ type FallbackComponentProps = {
   info: ErrorInfo;
   clearError: () => void;
 };
+
 const FallbackComponent: FC<FallbackComponentProps> = () => {
-  // Here we might want to allow the user to clearError(), reset state etc
   return <ClientErrorView />;
 };
 
 export type ErrorBoundaryProps = {
   children?: React.ReactNode;
 };
+
 /**
- * ErrorBoundary will catch any uncaught errors, showing the user ClientErrorView
- * and sending a report of the uncaught error to bugsnag.
+ * Wrapper around the respective error boundaries for both Bugsnag and Sentry.
+ * This will catch any uncaught errors and show the user {@link ClientErrorView},
+ * whilst also reporting the error to the respective error reporting service
+ * (if consent has been given).
+ *
+ * We can safely use both the Bugsnag and Sentry error boundaries without
+ * risking they'll send error reports when the user has not consented to the
+ * relevant cookie policy. This is because the error boundaries will only
+ * send error reports if the service has been initialised, which only happens
+ * if the user has consented.
  */
-const ErrorBoundary: FC<ErrorBoundaryProps> = (props) => {
+function BugsnagErrorBoundary(props: ErrorBoundaryProps) {
   const isBugsnagInitialised = bugsnagInitialised();
   const BugsnagErrorBoundary = useMemo(() => {
     if (isBugsnagInitialised) {
@@ -75,8 +76,31 @@ const ErrorBoundary: FC<ErrorBoundaryProps> = (props) => {
   }
 
   return (
-    <BugsnagErrorBoundary FallbackComponent={FallbackComponent} {...props} />
+    <>
+      {BugsnagErrorBoundary ? (
+        <BugsnagErrorBoundary
+          FallbackComponent={FallbackComponent}
+          {...props}
+        />
+      ) : (
+        props.children
+      )}
+    </>
   );
-};
+}
 
-export default ErrorBoundary;
+function SentryErrorBoundary({ children }: ErrorBoundaryProps) {
+  return (
+    <Sentry.ErrorBoundary fallback={<ClientErrorView />}>
+      {children}
+    </Sentry.ErrorBoundary>
+  );
+}
+
+export default function ErrorBoundary({ children }: ErrorBoundaryProps) {
+  if (process.env.SENTRY_ENABLED === "true") {
+    return <SentryErrorBoundary>{children}</SentryErrorBoundary>;
+  } else {
+    return <BugsnagErrorBoundary>{children}</BugsnagErrorBoundary>;
+  }
+}

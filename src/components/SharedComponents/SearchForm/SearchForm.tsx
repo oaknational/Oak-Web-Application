@@ -6,14 +6,16 @@ import {
   FormEventHandler,
 } from "react";
 import styled from "styled-components";
-import { OakFlex } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakPrimaryButton,
+  OakTextInput,
+} from "@oaknational/oak-components";
 
 import flex, { FlexCssProps } from "@/styles/utils/flex";
 import spacing, { SpacingProps } from "@/styles/utils/spacing";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { ContextValueType, SearchSourceValueType } from "@/browser-lib/avo/Avo";
-import Input from "@/components/SharedComponents/Input/Input";
-import Button from "@/components/SharedComponents/Button";
 
 const StyledForm = styled.form<FlexCssProps & SpacingProps>`
   ${flex}
@@ -60,10 +62,14 @@ const SearchForm: FC<SearchFormProps> = (props) => {
 
   return (
     <StyledForm role="search" onSubmit={onSubmit} $alignItems={"center"}>
-      <OakFlex $width={"100%"} $flexDirection={"row"} $alignItems={"center"}>
-        <Input
-          $mb={0}
-          label="Search"
+      <OakFlex
+        $width={"100%"}
+        $flexDirection={"row"}
+        $alignItems={"center"}
+        $gap="space-between-s"
+      >
+        <OakTextInput
+          $mb={"space-between-none"}
           id="search-form-search-input"
           value={value}
           type="search"
@@ -72,17 +78,16 @@ const SearchForm: FC<SearchFormProps> = (props) => {
           onFocus={() => {
             trackSearchJourneyInitiated();
           }}
+          wrapperWidth="100%"
+          $pv="inner-padding-none"
+          $height="all-spacing-10"
         />
-
-        <Button
-          icon="search"
-          label="Search"
-          shouldHideLabel={[true]}
-          iconBackground="black"
-          aria-label="Submit"
-          htmlButtonProps={{ type: "submit" }}
-          size={"large"}
-          $ml={20}
+        <OakPrimaryButton
+          iconName="search"
+          pv="inner-padding-m"
+          width="min-content"
+          iconGap="all-spacing-0"
+          aria-label="submit"
         />
       </OakFlex>
     </StyledForm>
