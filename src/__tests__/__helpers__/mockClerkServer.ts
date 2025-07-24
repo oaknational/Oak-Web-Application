@@ -152,6 +152,8 @@ export const mockGetAuthSignedIn: AuthObject = {
   has: () => false,
   factorVerificationAge: null,
   debug: () => ({}),
+  tokenType: "session_token",
+  isAuthenticated: true,
 };
 
 /**
@@ -171,4 +173,6 @@ export const mockGetAuthSignedOut: AuthObject = {
   has: () => false,
   factorVerificationAge: null,
   debug: () => ({}),
+  tokenType: "session_token",
+  isAuthenticated: false,
 };

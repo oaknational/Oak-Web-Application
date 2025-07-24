@@ -69,9 +69,9 @@
     "@types/react-dom": "^18.3.0"
   },
   "dependencies": {
-    "@bugsnag/js": "^8.2.0",
-    "@bugsnag/plugin-react": "^8.2.0",
-    "@clerk/nextjs": "^6.18.0",
+    "@bugsnag/js": "^8.4.0",
+    "@bugsnag/plugin-react": "^8.4.0",
+    "@clerk/nextjs": "^6.25.5",
     "@google-cloud/storage": "^7.16.0",
     "@hookform/resolvers": "^3.9.1",
     "@hubspot/api-client": "^11.2.0",
@@ -109,7 +109,7 @@
     "lodash": "^4.17.21",
     "mathjax": "^3.2.2",
     "nanoid": "^5.0.8",
-    "next": "^15.3.0",
+    "next": "^15.4.3",
     "next-cloudinary": "^6.16.0",
     "next-seo": "^6.6.0",
     "node-fetch": "^2.6.7",
@@ -139,7 +139,7 @@
     "uuid": "^11.1.0",
     "webvtt-parser": "^2.2.0",
     "xml-js": "^1.6.11",
-    "zod": "^3.25.67"
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@actions/core": "^1.11.1",
@@ -257,7 +257,7 @@
     "tsx": "^4.20.3",
     "typescript": "^5.8.3",
     "typescript-plugin-css-modules": "^5.0.2",
-    "webpack": "^5.99.9",
+    "webpack": "^5.100.2",
     "webpack-bugsnag-plugins": "^1.9.0",
     "whatwg-fetch": "^3.6.20",
     "yargs": "^17.7.2"
