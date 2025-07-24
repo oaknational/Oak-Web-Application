@@ -257,7 +257,7 @@
     "tsx": "^4.20.3",
     "typescript": "^5.8.3",
     "typescript-plugin-css-modules": "^5.0.2",
-    "webpack": "^5.99.9",
+    "webpack": "^5.100.2",
     "webpack-bugsnag-plugins": "^1.9.0",
     "whatwg-fetch": "^3.6.20",
     "yargs": "^17.7.2"
