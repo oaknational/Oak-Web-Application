@@ -50,6 +50,8 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { useTeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/useTeacherShareButton";
 import { useSaveUnits } from "@/node-lib/educator-api/helpers/saveUnits/useSaveUnits";
 import SavingSignedOutModal from "@/components/TeacherComponents/SavingSignedOutModal";
+import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
+import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -421,19 +423,28 @@ export const getStaticProps: GetStaticProps<
         throw new Error("no context.params");
       }
       const { programmeSlug, unitSlug } = context.params;
+
       if (!programmeSlug || !unitSlug) {
         throw new Error("unexpected context.params");
       }
-
-      const curriculumData = await curriculumApi2023.lessonListing({
-        programmeSlug,
-        unitSlug,
-      });
+      let curriculumData: LessonListingPageData | undefined;
+      try {
+        curriculumData = await curriculumApi2023.lessonListing({
+          programmeSlug,
+          unitSlug,
+        });
+      } catch (innerError) {
+        allowNotFoundError(innerError);
+      }
 
       if (!curriculumData) {
-        return {
-          notFound: true,
-        };
+        const redirect = await getRedirect({
+          isCanonical: false,
+          context: context.params,
+          isTeacher: true,
+          isLesson: false,
+        });
+        return redirect ? { redirect } : { notFound: true };
       }
 
       const results: GetStaticPropsResult<LessonListingPageProps> = {
