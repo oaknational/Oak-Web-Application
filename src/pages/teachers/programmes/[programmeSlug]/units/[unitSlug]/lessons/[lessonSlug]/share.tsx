@@ -42,6 +42,7 @@ const LessonSharePage: NextPage<LessonSharePageProps> = ({
           }`,
         }),
         noIndex: true,
+        noFollow: true,
       }}
     >
       <LessonShare isCanonical={false} lesson={curriculumData} />
