@@ -234,7 +234,7 @@ export default async function handler(
       examboardTitle: data.combinedCurriculumData.examboardTitle,
       childSubjectSlug,
       tierSlug,
-      suffix: "NC alignment",
+      prefix: "NC alignment",
     });
 
     res

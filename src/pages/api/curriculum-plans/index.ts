@@ -276,7 +276,7 @@ export default async function handler(
   });
 
   // FIXME: Poor use of types here
-  if (!data.notFound) {
+  if (data.notFound === false) {
     const buffer = await docx(
       data.combinedCurriculumData,
       {
@@ -296,7 +296,7 @@ export default async function handler(
       examboardTitle: data.combinedCurriculumData?.examboardTitle,
       childSubjectSlug,
       tierSlug,
-      suffix: "curriculum plan",
+      prefix: "Curriculum plan",
     });
 
     res
