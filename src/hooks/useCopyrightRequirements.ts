@@ -11,13 +11,14 @@ export interface UseCopyrightRequirementsReturn {
   showSignedOutGeoRestricted: boolean;
   showSignedInNotOnboarded: boolean;
   showGeoBlocked: boolean;
+  isLoaded: boolean;
 }
 
 export function useCopyrightRequirements({
   loginRequired,
   geoRestricted,
 }: UseCopyrightRequirementsProps): UseCopyrightRequirementsReturn {
-  const { user, isSignedIn } = useUser();
+  const { user, isSignedIn, isLoaded } = useUser();
   const featureFlagEnabled = useFeatureFlagEnabled(
     "teachers-copyright-restrictions",
   );
@@ -31,6 +32,7 @@ export function useCopyrightRequirements({
       showSignedOutLoginRequired: false,
       showSignedOutGeoRestricted: false,
       showSignedInNotOnboarded: false,
+      isLoaded,
     };
   }
 
@@ -46,5 +48,6 @@ export function useCopyrightRequirements({
       isSignedIn && geoRestricted && !isUserRegionAuthorised,
     ),
     showSignedInNotOnboarded,
+    isLoaded,
   };
 }

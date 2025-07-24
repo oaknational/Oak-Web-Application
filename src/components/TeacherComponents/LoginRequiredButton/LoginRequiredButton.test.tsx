@@ -24,21 +24,21 @@ describe("LoginRequiredButton", () => {
     setUseUserReturn(mockLoggedOut);
   });
   it("should render a sign up button", () => {
-    render(<LoginRequiredButton />);
+    render(<LoginRequiredButton loginRequired={true} geoRestricted={false} />);
     expect(
       screen.getByRole("button", { name: /sign up/i }),
     ).toBeInTheDocument();
   });
   it("should render an onboarding button", () => {
     setUseUserReturn(mockNotOnboardedUser);
-    render(<LoginRequiredButton />);
+    render(<LoginRequiredButton loginRequired={true} geoRestricted={false} />);
     expect(
       screen.getByRole("button", { name: /complete sign up to continue/i }),
     ).toBeInTheDocument();
   });
   it("should render a loading button", () => {
     setUseUserReturn(mockLoadingUser);
-    render(<LoginRequiredButton />);
+    render(<LoginRequiredButton loginRequired={true} geoRestricted={false} />);
     expect(
       screen.getByRole("button", { name: /loading.../i }),
     ).toBeInTheDocument();
@@ -48,6 +48,8 @@ describe("LoginRequiredButton", () => {
     const mockOnClick = jest.fn();
     render(
       <LoginRequiredButton
+        loginRequired={true}
+        geoRestricted={true}
         actionProps={{
           name: "Action",
           onClick: mockOnClick,
@@ -64,7 +66,11 @@ describe("LoginRequiredButton", () => {
   });
   it("renders alternate sign in text", () => {
     render(
-      <LoginRequiredButton signUpProps={{ name: "Register to continue" }} />,
+      <LoginRequiredButton
+        loginRequired={true}
+        geoRestricted={false}
+        signUpProps={{ name: "Register to continue" }}
+      />,
     );
     const signUpButton = screen.getByRole("button", {
       name: /register to continue/i,
@@ -79,6 +85,8 @@ describe("LoginRequiredButton", () => {
     setUseUserReturn(mockGeorestrictedUser);
     render(
       <LoginRequiredButton
+        loginRequired={false}
+        geoRestricted={true}
         actionProps={{
           name: "Download",
           onClick: jest.fn(),
@@ -90,17 +98,35 @@ describe("LoginRequiredButton", () => {
     expect(disabledButton).toBeDisabled();
   });
   it("renders a primary variant", () => {
-    render(<LoginRequiredButton buttonVariant="primary" />);
+    render(
+      <LoginRequiredButton
+        loginRequired={true}
+        geoRestricted={false}
+        buttonVariant="primary"
+      />,
+    );
     const primaryButton = screen.getByRole("button", { name: /sign up/i });
     expect(primaryButton).toHaveStyle("background-color: #222222");
   });
   it("renders a secondary variant", () => {
-    render(<LoginRequiredButton buttonVariant="secondary" />);
+    render(
+      <LoginRequiredButton
+        loginRequired={true}
+        geoRestricted={false}
+        buttonVariant="secondary"
+      />,
+    );
     const secondaryButton = screen.getByRole("button", { name: /sign up/i });
     expect(secondaryButton).toHaveStyle("background-color: #ffffff");
   });
   it("renders a tertiary variant", () => {
-    render(<LoginRequiredButton buttonVariant="tertiary" />);
+    render(
+      <LoginRequiredButton
+        loginRequired={true}
+        geoRestricted={false}
+        buttonVariant="tertiary"
+      />,
+    );
     const tertiaryButton = screen.getByRole("button", { name: /sign up/i });
     expect(tertiaryButton).toHaveStyle("background: none");
   });
