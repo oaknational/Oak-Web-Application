@@ -8,8 +8,6 @@ import {
   OakTertiaryButton,
 } from "@oaknational/oak-components";
 
-import Box from "@/components/SharedComponents/Box";
-
 type SuccessMessageProps = {
   title: string;
   message: string;
@@ -41,13 +39,16 @@ const SuccessMessage: FC<SuccessMessageProps> = ({
           $justifyContent={"center"}
           $flexShrink={1}
         >
-          <Box $height={[140, 240, 270]} $width={[166, 240, 320]}>
+          <OakBox
+            $height={["all-spacing-16", "all-spacing-19", "all-spacing-19"]}
+            $width={["all-spacing-17", "all-spacing-19", "all-spacing-20"]}
+          >
             <OakIcon
               iconName="tick-mark-happiness"
               $width={"100%"}
               $height={"100%"}
             />
-          </Box>
+          </OakBox>
         </OakFlex>
         <OakFlex
           $flexDirection={"column"}

@@ -2,14 +2,18 @@ import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { OakP, OakPrimaryButton } from "@oaknational/oak-components";
+import {
+  OakBoxProps,
+  OakP,
+  OakPrimaryButton,
+} from "@oaknational/oak-components";
 
 import Input from "@/components/SharedComponents/Input";
 import OakError from "@/errors/OakError";
 import DropdownSelect from "@/components/GenericPagesComponents/DropdownSelect";
 import errorReporter from "@/common-lib/error-reporter";
 import Form from "@/components/GenericPagesComponents/Form";
-import { BoxProps } from "@/components/SharedComponents/Box";
+// import { BoxProps } from "@/components/SharedComponents/Box";
 import {
   USER_ROLES,
   UserRole,
@@ -49,7 +53,7 @@ const userTypeOptions = USER_ROLES.map((userRole) => ({
 }));
 
 type NewsletterFormValues = z.infer<typeof schema>;
-export type NewsletterFormProps = BoxProps & {
+export type NewsletterFormProps = OakBoxProps & {
   onSubmit: (values: NewsletterFormValues) => Promise<string | void>;
   id: string;
   descriptionId?: string;

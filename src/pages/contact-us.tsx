@@ -10,6 +10,7 @@ import {
   OakP,
   OakFlex,
   OakMaxWidth,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
@@ -18,7 +19,6 @@ import Layout from "@/components/AppComponents/Layout";
 import Card from "@/components/SharedComponents/Card";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import SummaryCard from "@/components/SharedComponents/Card/SummaryCard";
-import Box from "@/components/SharedComponents/Box";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
@@ -97,13 +97,13 @@ const ContactUs: NextPage<ContactPageProps> = ({ pageData }) => {
             $alignItems={["flex-start", "center"]}
             $flexDirection={["column", "row"]}
           >
-            <Box $maxWidth={720}>
+            <OakBox $maxWidth={"all-spacing-22"}>
               <PortableTextWithDefaults
                 components={portableTextComponents}
                 value={pageData.bodyPortableText}
                 onMissingComponent={logMissingPortableTextComponents}
               />
-            </Box>
+            </OakBox>
             <NewsletterFormWrap
               {...newsletterFormProps}
               containerProps={{

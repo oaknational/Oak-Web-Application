@@ -17,7 +17,6 @@ import { AboutWhoWeArePage, TextBlock } from "@/common-lib/cms-types";
 import { decorateWithIsr } from "@/node-lib/isr";
 import Layout from "@/components/AppComponents/Layout";
 import Card from "@/components/SharedComponents/Card";
-import Box from "@/components/SharedComponents/Box";
 import OutlineHeading from "@/components/SharedComponents/OutlineHeading";
 import GenericContactCard from "@/components/GenericPagesComponents/GenericContactCard";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
@@ -115,7 +114,9 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
                   <TranscriptToggle transcriptSentences={videoCaptions} />
                 </OakBox>
               )}
-              <Box $width={["100%", "100%", "50%"]}>
+              <OakBox
+              // $width={["100%", "100%", "50%"]}
+              >
                 <OakTypography
                   $mb={"space-between-m2"}
                   $font={["body-2", "body-1"]}
@@ -136,7 +137,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
                     </OakPrimaryButton>
                   )}
                 </OakFlex>
-              </Box>
+              </OakBox>
             </OakFlex>
           </OakFlex>
           {videoCaptions && (
