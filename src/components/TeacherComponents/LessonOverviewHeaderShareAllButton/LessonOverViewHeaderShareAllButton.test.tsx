@@ -1,5 +1,11 @@
 import { OakColorFilterToken } from "@oaknational/oak-components";
 
+import {
+  defaultCopyrightRequirements,
+  signedOutGeoRestricted,
+  signedOutLoginRequired,
+} from "../../../__tests__/__helpers__/mockCopyrightRequirements";
+
 import { LessonOverviewHeaderShareAllButton } from "./LessonOverviewHeaderShareAllButton";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -7,11 +13,8 @@ import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lesso
 import { OakColorName } from "@/styles/theme";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import { AnalyticsUseCaseValueType } from "@/browser-lib/avo/Avo";
-import {
-  defaultCopyrightRequirements,
-  signedInGeoBlocked,
-  signedOutLoginRequired,
-} from "@/__tests__/__helpers__/mockCopyrightRequirements";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
+import { mockGeorestrictedUser } from "@/__tests__/__helpers__/mockUser";
 
 const mockFeatureFlagEnabled = jest.fn();
 jest.mock("posthog-js/react", () => ({
@@ -100,7 +103,8 @@ describe("LessonOverviewHeaderShareAllButton", () => {
   });
 
   it("does not render a button when geoBlocked", () => {
-    mockUseCopyrightRequirements = signedInGeoBlocked;
+    mockUseCopyrightRequirements = signedOutGeoRestricted;
+    setUseUserReturn(mockGeorestrictedUser);
     const { queryByTestId } = render(
       <LessonOverviewHeaderShareAllButton {...baseProps} />,
     );

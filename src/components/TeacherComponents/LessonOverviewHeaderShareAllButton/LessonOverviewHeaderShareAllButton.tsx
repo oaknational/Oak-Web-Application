@@ -4,8 +4,7 @@ import { OakSmallSecondaryButton } from "@oaknational/oak-components";
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { resolveOakHref } from "@/common-lib/urls";
 import { invariant } from "@/utils/invariant";
-import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
-import RedirectOrHideWhenRestrictedWrapper from "@/components/TeacherComponents/RedirectOrHideWhenRestrictedWrapper/RedirectOrHideWhenRestrictedWrapper";
+import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
 
 export const LessonOverviewHeaderShareAllButton: FC<
   LessonOverviewHeaderProps
@@ -21,18 +20,9 @@ export const LessonOverviewHeaderShareAllButton: FC<
     geoRestricted,
     loginRequired,
   } = props;
-  const {
-    showSignedOutGeoRestricted,
-    showSignedOutLoginRequired,
-    showGeoBlocked,
-  } = useCopyrightRequirements({
-    geoRestricted: geoRestricted ?? false,
-    loginRequired: loginRequired ?? false,
-  });
+
   const preselected = "all";
 
-  const contentRestricted =
-    showSignedOutGeoRestricted || showSignedOutLoginRequired;
   const href = (() => {
     if (isCanonical) {
       return resolveOakHref({
@@ -78,20 +68,25 @@ export const LessonOverviewHeaderShareAllButton: FC<
   }
 
   return (
-    <RedirectOrHideWhenRestrictedWrapper
-      showGeoBlocked={showGeoBlocked}
-      contentRestricted={contentRestricted}
-    >
-      <OakSmallSecondaryButton
-        element="a"
-        iconName="arrow-right"
-        isTrailingIcon
-        data-testid="share-all-button"
-        {...(!contentRestricted && { href })}
-        {...(!contentRestricted && { onClick: onClickShareAll })}
-      >
-        Share activities with pupils
-      </OakSmallSecondaryButton>
-    </RedirectOrHideWhenRestrictedWrapper>
+    <LoginRequiredButton
+      loginRequired={loginRequired ?? false}
+      geoRestricted={geoRestricted ?? false}
+      onboardingProps={{ name: "Share activities with pupils" }}
+      signUpProps={{ name: "Share activities with pupils" }}
+      actionProps={{
+        name: "Share activities with pupils",
+        onClick: onClickShareAll,
+        isActionGeorestricted: true,
+        shouldHidewhenGeoRestricted: true,
+        href: href,
+      }}
+      sizeVariant="small"
+      buttonVariant="secondary"
+      element="a"
+      data-testid="share-all-button"
+      iconName="arrow-right"
+      isTrailingIcon
+      aria-label="Share all resources"
+    />
   );
 };

@@ -1,10 +1,8 @@
 import { FC } from "react";
-import { OakSmallPrimaryButton } from "@oaknational/oak-components";
 
 import { LessonOverviewHeaderProps as LessonOverviewHeaderDownloadAllButtonProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { resolveOakHref } from "@/common-lib/urls";
-import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
-import RedirectOrHideWhenRestrictedWrapper from "@/components/TeacherComponents/RedirectOrHideWhenRestrictedWrapper/RedirectOrHideWhenRestrictedWrapper";
+import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
 
 export const LessonOverviewHeaderDownloadAllButton: FC<
   LessonOverviewHeaderDownloadAllButtonProps
@@ -23,19 +21,8 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
   } = props;
 
   const preselected = "all";
-  const {
-    showSignedOutGeoRestricted,
-    showSignedOutLoginRequired,
-    showGeoBlocked,
-  } = useCopyrightRequirements({
-    geoRestricted: geoRestricted ?? false,
-    loginRequired: loginRequired ?? false,
-  });
 
-  const contentRestricted =
-    showSignedOutGeoRestricted || showSignedOutLoginRequired;
-
-  if (expired || !showDownloadAll || showGeoBlocked) {
+  if (expired || !showDownloadAll) {
     return null;
   }
 
@@ -66,21 +53,24 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
           });
 
   return (
-    <RedirectOrHideWhenRestrictedWrapper
-      showGeoBlocked={showGeoBlocked}
-      contentRestricted={contentRestricted}
-    >
-      <OakSmallPrimaryButton
-        element="a"
-        data-testid="download-all-button"
-        iconName="arrow-right"
-        isTrailingIcon
-        aria-label="Download all resources"
-        {...(!contentRestricted && { href })}
-        {...(!contentRestricted && { onClick: onClickDownloadAll })}
-      >
-        Download all resources
-      </OakSmallPrimaryButton>
-    </RedirectOrHideWhenRestrictedWrapper>
+    <LoginRequiredButton
+      loginRequired={loginRequired ?? false}
+      geoRestricted={geoRestricted ?? false}
+      onboardingProps={{ name: "Download all resources" }}
+      signUpProps={{ name: "Download all resources" }}
+      actionProps={{
+        name: "Download all resources",
+        onClick: onClickDownloadAll,
+        isActionGeorestricted: true,
+        shouldHidewhenGeoRestricted: true,
+        href: href,
+      }}
+      sizeVariant="small"
+      element="a"
+      data-testid="download-all-button"
+      iconName="arrow-right"
+      isTrailingIcon
+      aria-label="Download all resources"
+    />
   );
 };
