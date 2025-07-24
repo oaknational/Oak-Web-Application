@@ -119,12 +119,12 @@ describe("pages/lesson-planning.tsx", () => {
     );
 
     expect(
+      screen.queryByText(testPlanALessonPageData.hero.author.name),
+    ).not.toBeInTheDocument();
+    expect(
       screen.queryByAltText(
         `${testPlanALessonPageData.hero.author.name} profile picture`,
       ),
-    ).not.toBeInTheDocument();
-    expect(
-      screen.queryByAltText(testPlanALessonPageData.hero.image?.altText ?? ""),
     ).not.toBeInTheDocument();
   });
 

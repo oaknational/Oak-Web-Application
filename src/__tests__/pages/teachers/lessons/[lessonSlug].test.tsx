@@ -10,7 +10,9 @@ import renderWithProviders, {
   allProviders,
 } from "@/__tests__/__helpers__/renderWithProviders";
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import curriculumApi2023, {
+  CurriculumApi,
+} from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
 import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
@@ -195,13 +197,80 @@ describe("Lesson Overview Canonical Page", () => {
         getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>),
       ).rejects.toThrowError();
     });
-    it("should return not found if lesson is not found", async () => {
+    it("should return a redirect if no lesson is found", async () => {
+      if (!curriculumApi2023.canonicalLessonRedirectQuery) {
+        (curriculumApi2023 as CurriculumApi).canonicalLessonRedirectQuery =
+          jest.fn();
+      }
+
+      (
+        curriculumApi2023.specialistLessonOverviewCanonical as jest.Mock
+      ).mockRejectedValueOnce(
+        new OakError({ code: "curriculum-api/not-found" }),
+      );
+
+      (curriculumApi2023.lessonOverview as jest.Mock).mockRejectedValueOnce(
+        new OakError({ code: "curriculum-api/not-found" }),
+      );
+      (
+        curriculumApi2023.canonicalLessonRedirectQuery as jest.Mock
+      ).mockResolvedValueOnce({
+        canonicalLessonRedirectData: {
+          incomingPath: "lessons/old-lesson-slug",
+          outgoingPath: "lessons/new-lesson-slug",
+          redirectType: 301 as const, // true = 308, false = 307
+        },
+      });
+
+      // Call getStaticProps with a test lesson slug
+      const result = await getStaticProps({
+        params: {
+          lessonSlug: "old-lesson-slug",
+        },
+        query: {},
+      } as GetStaticPropsContext<URLParams, PreviewData>);
+
+      // Verify the redirect properties
+      expect(result).toHaveProperty("redirect");
+      expect(
+        (
+          result as {
+            redirect: {
+              destination: string;
+              permanent: boolean;
+              basePath: boolean;
+            };
+          }
+        ).redirect,
+      ).toEqual({
+        destination: "lessons/new-lesson-slug",
+        statusCode: 301, // true = 308, false = 307
+        basePath: false,
+      });
+
+      // Verify the redirect API was called with the correct parameters
+      expect(
+        curriculumApi2023.canonicalLessonRedirectQuery,
+      ).toHaveBeenCalledWith({
+        incomingPath: "/teachers/lessons/old-lesson-slug",
+      });
+    });
+    it("should return not found if lesson is not found and no redirect found", async () => {
+      if (!curriculumApi2023.canonicalLessonRedirectQuery) {
+        (curriculumApi2023 as CurriculumApi).canonicalLessonRedirectQuery =
+          jest.fn();
+      }
       (
         curriculumApi2023.specialistLessonOverviewCanonical as jest.Mock
       ).mockRejectedValueOnce(
         new OakError({ code: "curriculum-api/not-found" }),
       );
       (curriculumApi2023.lessonOverview as jest.Mock).mockRejectedValueOnce(
+        new OakError({ code: "curriculum-api/not-found" }),
+      );
+      (
+        curriculumApi2023.canonicalLessonRedirectQuery as jest.Mock
+      ).mockRejectedValueOnce(
         new OakError({ code: "curriculum-api/not-found" }),
       );
 

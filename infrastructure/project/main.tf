@@ -37,5 +37,4 @@ module "vercel" {
     for ev in local.environment_variables : ev
     if ev.value != null && ev.value != ""
   ]
-
 }
