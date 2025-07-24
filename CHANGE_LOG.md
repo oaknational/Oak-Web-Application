@@ -1,3 +1,10 @@
+# [1.810.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.809.0...v1.810.0) (2025-07-24)
+
+
+### Features
+
+* set lesson child pages seo to nofollow ([5111413](https://github.com/oaknational/Oak-Web-Application/commit/5111413ebec6d409dc52a0ddfda94a9b7dcd7267))
+
 # [1.809.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.808.0...v1.809.0) (2025-07-24)
 
 
