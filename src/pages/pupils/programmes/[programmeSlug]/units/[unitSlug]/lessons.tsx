@@ -8,8 +8,10 @@ import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-st
 import { PupilViewsLessonListing } from "@/components/PupilViews/PupilLessonListing/PupilLessonListing.view";
 import { resolveOakHref } from "@/common-lib/urls";
 import { validateProgrammeSlug } from "@/utils/validateProgrammeSlug";
+import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
+import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 
-type PupilLessonListingURLParams = {
+export type PupilLessonListingURLParams = {
   programmeSlug: string;
   unitSlug: string;
 };
@@ -110,20 +112,30 @@ export const getStaticProps: GetStaticProps<
       // validate the programmeSlug ahead of the call to the API
       validateProgrammeSlug(programmeSlug);
 
-      const { browseData, backLinkData } =
-        await curriculumApi2023.pupilLessonListingQuery({
-          programmeSlug,
-          unitSlug,
-        });
-
-      const filteredBrowseData = browseData.filter(
-        (lesson) => !lesson.lessonData.deprecatedFields?.isSensitive,
-      );
+      let filteredBrowseData: LessonListingBrowseData = [];
+      let backLinkDataArray: { programmeSlug: string }[] = [];
+      try {
+        const { browseData, backLinkData } =
+          await curriculumApi2023.pupilLessonListingQuery({
+            programmeSlug,
+            unitSlug,
+          });
+        filteredBrowseData = browseData.filter(
+          (lesson) => !lesson.lessonData.deprecatedFields?.isSensitive,
+        );
+        backLinkDataArray = [...backLinkData];
+      } catch (innerError) {
+        allowNotFoundError(innerError);
+      }
 
       if (!filteredBrowseData || filteredBrowseData.length === 0) {
-        return {
-          notFound: true,
-        };
+        const redirect = await getRedirect({
+          isCanonical: false,
+          context: context.params,
+          isTeacher: false,
+          isLesson: false,
+        });
+        return redirect ? { redirect } : { notFound: true };
       }
 
       /**
@@ -144,7 +156,7 @@ export const getStaticProps: GetStaticProps<
 
         const baseSlug = matches?.[0];
         const nonLegacyProgrammeSlug = programmeSlug.replace(/-l$/, "");
-        const backLinkEquivalent = backLinkData.find(
+        const backLinkEquivalent = backLinkDataArray.find(
           (b) => b.programmeSlug === nonLegacyProgrammeSlug,
         );
 
@@ -157,10 +169,10 @@ export const getStaticProps: GetStaticProps<
             return { programmeSlug };
           case backLinkEquivalent !== undefined:
             return { programmeSlug: backLinkEquivalent.programmeSlug };
-          case backLinkData.length > 1:
+          case backLinkDataArray.length > 1:
             return { programmeSlug: baseSlug, options: true };
-          case backLinkData[0]?.programmeSlug !== undefined:
-            return { programmeSlug: backLinkData[0].programmeSlug };
+          case backLinkDataArray[0]?.programmeSlug !== undefined:
+            return { programmeSlug: backLinkDataArray[0].programmeSlug };
           default:
             return { programmeSlug };
         }
