@@ -706,16 +706,15 @@ export async function generateEmptyDocx() {
     join(
       process.cwd(),
       "./src/pages-helpers/curriculum/docx/empty-document.docx",
-    )
+    ),
   );
 }
-
 
 export async function generateEmptyXlsx() {
   return generateEmptyOoxml(
     join(
       process.cwd(),
       "./src/pages-helpers/curriculum/xlsx/empty-document.xlsx",
-    )
+    ),
   );
 }

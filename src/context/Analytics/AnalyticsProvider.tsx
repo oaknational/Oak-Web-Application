@@ -29,7 +29,7 @@ import { useHubspotCookieContactLookup } from "../../browser-lib/hubspot/hooks/u
 
 import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
 
-type ServiceName = "posthog" | "gleap" | "bugsnag" | "hubspot";
+type ServiceName = "posthog" | "gleap" | "bugsnag" | "hubspot" | "sentry";
 export type UserId = string;
 export type EventName = string;
 export type EventProperties = Record<string, unknown>;

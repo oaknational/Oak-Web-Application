@@ -402,23 +402,45 @@ export function getFilename(
     examboardTitle,
     childSubjectSlug,
     tierSlug,
-    suffix,
+    prefix,
   }: {
     subjectTitle: string;
     phaseTitle: string;
     examboardTitle?: string | null;
     childSubjectSlug?: string;
     tierSlug?: string;
-    suffix?: string;
+    prefix: string;
   },
 ) {
+  // Handle child subject formatting based on file type
+  const childSubjectTitle = childSubjectSlug
+    ? childSubjectSlug
+        .split("-")
+        .map((word) => capitalize(word))
+        .join(" ")
+    : null;
+
+  let subjectParts: string[];
+
+  if (fileExt === "xlsx") {
+    // For xlsx files: Use child subject as replacement (e.g., "Physics" instead of "Science")
+    subjectParts = childSubjectTitle ? [childSubjectTitle] : [subjectTitle];
+  } else if (fileExt === "docx") {
+    // For docx files: Include both main subject and child subject (e.g., "Science - Biology")
+    subjectParts = childSubjectTitle
+      ? [subjectTitle, childSubjectTitle]
+      : [subjectTitle];
+  } else {
+    // Fallback to xlsx behaviour
+    subjectParts = childSubjectTitle ? [childSubjectTitle] : [subjectTitle];
+  }
+
   const pageTitle: string = [
-    subjectTitle,
+    prefix,
+    ...subjectParts,
     phaseTitle,
     examboardTitle,
-    capitalize(childSubjectSlug?.split("-").join(" ")),
     capitalize(tierSlug),
-    suffix,
     format(
       Date.now(),
       // Note: dashes "-" rather than ":" because colon is invalid on windows

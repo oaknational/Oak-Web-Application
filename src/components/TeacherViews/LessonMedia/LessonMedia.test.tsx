@@ -269,7 +269,7 @@ describe("LessonMedia view", () => {
     );
   });
 
-  it('Renders "RestrictedSignInPrompt" when geoRestricted or loginRequired is true and the user is not Signed in', () => {
+  it('Renders "RestrictedContentPrompt" when geoRestricted or loginRequired is true and the user is not Signed in', () => {
     mockFeatureFlagEnabled.mockReturnValue(true);
     setUseUserReturn(mockLoggedOut);
     const { queryByTestId, getByText } = render(
@@ -278,13 +278,13 @@ describe("LessonMedia view", () => {
         isCanonical={false}
       />,
     );
-    const restrictedSignInPrompt = getByText("Sign in to continue");
+    const restrictedContentPrompt = getByText("Sign in to continue");
     const mediaClipWrapper = queryByTestId("media-clip-wrapper");
     expect(mediaClipWrapper).not.toBeInTheDocument();
-    expect(restrictedSignInPrompt).toBeInTheDocument();
+    expect(restrictedContentPrompt).toBeInTheDocument();
   });
 
-  it("does not render 'RestrictedSignInPrompt' when geoRestricted or loginRequired is false", () => {
+  it("does not render 'RestrictedContentPrompt' when geoRestricted or loginRequired is false", () => {
     mockFeatureFlagEnabled.mockReturnValue(true);
     setUseUserReturn(mockLoggedOut);
     const { queryByText } = render(
@@ -293,11 +293,11 @@ describe("LessonMedia view", () => {
         isCanonical={false}
       />,
     );
-    const restrictedSignInPrompt = queryByText("Sign in to continue");
-    expect(restrictedSignInPrompt).not.toBeInTheDocument();
+    const restrictedContentPrompt = queryByText("Sign in to continue");
+    expect(restrictedContentPrompt).not.toBeInTheDocument();
   });
 
-  it("does not render 'RestrictedSignInPrompt' when feature flag is disabled", () => {
+  it("does not render 'RestrictedContentPrompt' when feature flag is disabled", () => {
     mockFeatureFlagEnabled.mockReturnValue(false);
     setUseUserReturn(mockLoggedOut);
     const { queryByText } = render(
@@ -306,8 +306,8 @@ describe("LessonMedia view", () => {
         isCanonical={false}
       />,
     );
-    const restrictedSignInPrompt = queryByText("Sign in to continue");
-    expect(restrictedSignInPrompt).not.toBeInTheDocument();
+    const restrictedContentPrompt = queryByText("Sign in to continue");
+    expect(restrictedContentPrompt).not.toBeInTheDocument();
   });
 
   it("tracks contentBlockNotificationDisplayed event when user is signed in and geoblocked", () => {

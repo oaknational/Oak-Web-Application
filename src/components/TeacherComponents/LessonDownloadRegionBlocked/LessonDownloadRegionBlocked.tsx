@@ -9,7 +9,7 @@ import {
 import { useEffect } from "react";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import { COPYRIGHT_CONTACT_US_LINK } from "@/utils/copyrightContactUsLink";
+import { COPYRIGHT_CONTACT_US_LINK } from "@/utils/copyrightLinks";
 
 interface LessonDownloadRegionBlockedProps {
   lessonName: string;

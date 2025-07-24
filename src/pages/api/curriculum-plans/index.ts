@@ -276,7 +276,7 @@ export default async function handler(
   });
 
   // FIXME: Poor use of types here
-  if (!data.notFound) {
+  if (data.notFound === false) {
     const buffer = await docx(
       data.combinedCurriculumData,
       {
@@ -296,12 +296,11 @@ export default async function handler(
       examboardTitle: data.combinedCurriculumData?.examboardTitle,
       childSubjectSlug,
       tierSlug,
-      suffix: "curriculum plan",
+      prefix: "Curriculum plan",
     });
 
     res
       .setHeader("content-type", "application/msword")
-      .setHeader("Netlify-Vary", "query")
       .setHeader(
         "Cache-Control",
         `public, durable, s-maxage=${s_maxage_seconds}, stale-while-revalidate=${stale_while_revalidate_seconds}`,
