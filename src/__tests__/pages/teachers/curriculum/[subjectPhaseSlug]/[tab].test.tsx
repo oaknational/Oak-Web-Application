@@ -902,6 +902,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               why_this_why_now: null,
               state: "published",
               prior_knowledge_requirements: [],
+              national_curriculum_content: [],
             },
           ],
           groupAs: null,
@@ -1000,6 +1001,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               why_this_why_now: null,
               state: "published",
               prior_knowledge_requirements: [],
+              national_curriculum_content: [],
             },
             {
               connection_future_unit_description:
@@ -1095,6 +1097,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               why_this_why_now: null,
               state: "published",
               prior_knowledge_requirements: [],
+              national_curriculum_content: [],
             },
             {
               connection_future_unit_description:
@@ -1184,6 +1187,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               why_this_why_now: null,
               state: "published",
               prior_knowledge_requirements: [],
+              national_curriculum_content: [],
             },
             {
               connection_future_unit_description:
@@ -1274,6 +1278,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               why_this_why_now: null,
               state: "published",
               prior_knowledge_requirements: [],
+              national_curriculum_content: [],
             },
           ],
           groupAs: null,
@@ -1385,6 +1390,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               why_this_why_now: null,
               state: "published",
               prior_knowledge_requirements: [],
+              national_curriculum_content: [],
             },
           ],
           groupAs: null,
