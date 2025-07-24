@@ -336,6 +336,9 @@ type CurriculumPreviousDownloadsLinkProps = {
 
 type OnboardingLinkProps = {
   page: "onboarding";
+  query?: {
+    returnTo: string;
+  };
 };
 
 type OnboardingSchoolSelectionLinkProps = {

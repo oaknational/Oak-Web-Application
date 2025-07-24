@@ -37,7 +37,7 @@ export function useCopyrightRequirements({
   const showSignedInNotOnboarded =
     !isUserOnboarded && (loginRequired || geoRestricted);
   const isUserRegionAuthorised =
-    user?.publicMetadata?.owa?.isRegionAuthorised ?? false;
+    user?.publicMetadata?.owa?.isRegionAuthorised !== false;
 
   return {
     showSignedOutLoginRequired: !isSignedIn && loginRequired,
