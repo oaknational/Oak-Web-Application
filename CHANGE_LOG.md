@@ -1,3 +1,11 @@
+## [1.807.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.807.0...v1.807.1) (2025-07-24)
+
+
+### Bug Fixes
+
+* dont set region authorised to false if it is undefined ([73ca021](https://github.com/oaknational/Oak-Web-Application/commit/73ca02140253cd9ee8de5c8fa8537b31b7b903a2))
+* use a button element so the sign in link is tabbable ([73e9cb0](https://github.com/oaknational/Oak-Web-Application/commit/73e9cb02ac00e078d9308f9e570a55e22382cfe2))
+
 # [1.807.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.806.4...v1.807.0) (2025-07-23)
 
 
