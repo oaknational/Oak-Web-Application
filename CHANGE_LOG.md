@@ -1,3 +1,11 @@
+# [1.809.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.808.0...v1.809.0) (2025-07-24)
+
+
+### Features
+
+* enable previewing of new lessons without unit data ([9089450](https://github.com/oaknational/Oak-Web-Application/commit/9089450cf4c9152b0e38ac0731237d7765d4ff59))
+* use features for restrictions instead of mv data ([e4ab626](https://github.com/oaknational/Oak-Web-Application/commit/e4ab626e61efa9b7a902f3447662d5428b2f917e))
+
 # [1.808.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.807.2...v1.808.0) (2025-07-24)
 
 
