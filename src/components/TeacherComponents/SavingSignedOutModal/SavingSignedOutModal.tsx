@@ -37,6 +37,8 @@ const SavingSignedOutModalContent = () => {
         quickly sign up and start saving.
       </OakP>
       <LoginRequiredButton
+        loginRequired={true}
+        geoRestricted={false}
         onboardingProps={{ name: "Finish sign up" }}
         width="100%"
       />

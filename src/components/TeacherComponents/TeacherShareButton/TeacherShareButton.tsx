@@ -12,7 +12,7 @@ export const TeacherShareButton = ({
 }: {
   label: string;
   variant: "primary" | "secondary";
-  handleClick: () => void;
+  handleClick?: () => void;
   shareUrl: string | null;
 }) => {
   if (variant === "primary") {

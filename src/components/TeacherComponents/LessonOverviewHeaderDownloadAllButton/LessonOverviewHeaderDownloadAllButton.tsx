@@ -1,10 +1,8 @@
 import { FC } from "react";
-import { useUser } from "@clerk/nextjs";
-import { useFeatureFlagVariantKey } from "posthog-js/react";
-import { OakSmallPrimaryButton } from "@oaknational/oak-components";
 
 import { LessonOverviewHeaderProps as LessonOverviewHeaderDownloadAllButtonProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { resolveOakHref } from "@/common-lib/urls";
+import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
 
 export const LessonOverviewHeaderDownloadAllButton: FC<
   LessonOverviewHeaderDownloadAllButtonProps
@@ -18,17 +16,11 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
     onClickDownloadAll,
     isSpecialist,
     isCanonical,
+    geoRestricted,
+    loginRequired,
   } = props;
 
   const preselected = "all";
-  const downloads =
-    useFeatureFlagVariantKey("teacher-download-auth") === "with-login"
-      ? "downloads-auth"
-      : "downloads";
-
-  const { isSignedIn } = useUser();
-
-  const displaySignInMessage = downloads === "downloads-auth" && !isSignedIn;
 
   if (expired || !showDownloadAll) {
     return null;
@@ -41,7 +33,7 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
           lessonSlug,
           unitSlug,
           programmeSlug,
-          downloads,
+          downloads: "downloads",
           query: { preselected },
         })
       : programmeSlug && unitSlug && !isSpecialist && !isCanonical
@@ -50,29 +42,35 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
             lessonSlug,
             unitSlug,
             programmeSlug,
-            downloads,
+            downloads: "downloads",
             query: { preselected },
           })
         : resolveOakHref({
             page: "lesson-downloads-canonical",
             lessonSlug,
-            downloads,
+            downloads: "downloads",
             query: { preselected },
           });
 
   return (
-    <OakSmallPrimaryButton
+    <LoginRequiredButton
+      loginRequired={loginRequired ?? false}
+      geoRestricted={geoRestricted ?? false}
+      onboardingProps={{ name: "Download all resources" }}
+      signUpProps={{ name: "Download all resources" }}
+      actionProps={{
+        name: "Download all resources",
+        onClick: onClickDownloadAll,
+        isActionGeorestricted: true,
+        shouldHidewhenGeoRestricted: true,
+        href: href,
+      }}
+      sizeVariant="small"
       element="a"
       data-testid="download-all-button"
-      href={href}
       iconName="arrow-right"
       isTrailingIcon
-      aria-label={
-        displaySignInMessage ? `Sign in to download` : `Download all resources`
-      }
-      onClick={onClickDownloadAll}
-    >
-      {displaySignInMessage ? `Sign in to download` : `Download all resources`}
-    </OakSmallPrimaryButton>
+      aria-label="Download all resources"
+    />
   );
 };

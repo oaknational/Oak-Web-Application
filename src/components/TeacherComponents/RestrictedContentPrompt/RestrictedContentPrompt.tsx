@@ -65,7 +65,11 @@ const SignInPrompt = () => (
         )}
       />
     </OakFlex>
-    <LoginRequiredButton width={"100%"} />
+    <LoginRequiredButton
+      loginRequired={true}
+      geoRestricted={true}
+      width={"100%"}
+    />
   </>
 );
 

@@ -36,7 +36,9 @@ import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredBut
 
 export type ResourcePageLayoutProps = ResourcePageDetailsCompletedProps &
   ResourcePageSchoolDetailsProps & {
-    downloadsRestricted: boolean;
+    geoRestricted?: boolean;
+    loginRequired?: boolean;
+    downloadsRestricted?: boolean;
     header: string;
     handleToggleSelectAll: () => void;
     selectAllChecked: boolean;
@@ -172,6 +174,8 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
                 />
               </OakBox>
               <LoginRequiredButton
+                loginRequired={props.loginRequired ?? false}
+                geoRestricted={props.geoRestricted ?? false}
                 signUpProps={{ name: "Sign in to continue" }}
                 iconName="arrow-right"
                 isTrailingIcon

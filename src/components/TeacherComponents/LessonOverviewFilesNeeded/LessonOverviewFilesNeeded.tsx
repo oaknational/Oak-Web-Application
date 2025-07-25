@@ -12,8 +12,11 @@ import {
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import { resolveOakHref } from "@/common-lib/urls";
 import { Slugs } from "@/components/TeacherComponents/LessonItemContainer/LessonItemContainer";
+import RedirectOrHideWhenRestrictedWrapper from "@/components/TeacherComponents/RedirectOrHideWhenRestrictedWrapper/RedirectOrHideWhenRestrictedWrapper";
 
-type LessonOverviewFilesNeededProps = {
+export type LessonOverviewFilesNeededProps = {
+  contentRestricted: boolean;
+  showGeoBlocked: boolean;
   additionalFiles: string[];
   slugs: Slugs;
 };
@@ -21,10 +24,34 @@ type LessonOverviewFilesNeededProps = {
 const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
   additionalFiles,
   slugs,
+  contentRestricted,
+  showGeoBlocked,
 }) => {
   const { lessonSlug, unitSlug, programmeSlug } = slugs;
   const isPlural = additionalFiles.length > 1;
   const filesText = isPlural ? `Download lesson files` : `Download lesson file`;
+  const getHref = () => {
+    if (contentRestricted) return undefined;
+    return programmeSlug && unitSlug
+      ? resolveOakHref({
+          page: "lesson-downloads",
+          lessonSlug: lessonSlug,
+          programmeSlug: programmeSlug,
+          unitSlug: unitSlug,
+          downloads: "downloads",
+          query: {
+            preselected: "additional files",
+          },
+        })
+      : resolveOakHref({
+          page: "lesson-downloads-canonical",
+          lessonSlug: lessonSlug,
+          downloads: "downloads",
+          query: {
+            preselected: "additional files",
+          },
+        });
+  };
   return (
     <OakBox $background={"aqua50"} $position={"relative"}>
       <OakFlex
@@ -54,34 +81,19 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
           {`Download ${isPlural ? "these files" : "this file"} to use in the
           lesson.`}
         </OakP>
-        <OakTertiaryButton
-          element="a"
-          href={
-            programmeSlug && unitSlug
-              ? resolveOakHref({
-                  page: "lesson-downloads",
-                  lessonSlug: lessonSlug,
-                  programmeSlug: programmeSlug,
-                  unitSlug: unitSlug,
-                  downloads: "downloads",
-                  query: {
-                    preselected: "additional files",
-                  },
-                })
-              : resolveOakHref({
-                  page: "lesson-downloads-canonical",
-                  lessonSlug: lessonSlug,
-                  downloads: "downloads",
-                  query: {
-                    preselected: "additional files",
-                  },
-                })
-          }
-          isTrailingIcon
-          iconName="arrow-right"
+        <RedirectOrHideWhenRestrictedWrapper
+          showGeoBlocked={showGeoBlocked}
+          contentRestricted={contentRestricted}
         >
-          {filesText}
-        </OakTertiaryButton>
+          <OakTertiaryButton
+            element="a"
+            href={getHref()}
+            isTrailingIcon
+            iconName="arrow-right"
+          >
+            {filesText}
+          </OakTertiaryButton>
+        </RedirectOrHideWhenRestrictedWrapper>
       </OakFlex>
       <BrushBorders color="aqua50" />
     </OakBox>

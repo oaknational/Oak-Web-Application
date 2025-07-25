@@ -8,6 +8,10 @@ import ResourcePageLayoutB, {
 
 import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import {
+  defaultCopyrightRequirements,
+  signedOutLoginRequired,
+} from "@/__tests__/__helpers__/mockCopyrightRequirements";
 
 type PropsWithoutForm = Omit<
   ResourcePageLayoutProps,
@@ -34,7 +38,10 @@ const props: PropsWithoutForm = {
   showTermsAgreement: true,
   isLoading: false,
 };
-
+let mockUseCopyrightRequirements = defaultCopyrightRequirements;
+jest.mock("@/hooks/useCopyrightRequirements", () => ({
+  useCopyrightRequirements: () => mockUseCopyrightRequirements,
+}));
 const ComponentWrapper = (props: PropsWithoutForm) => {
   const { control, register, trigger } = useForm<ResourceFormProps>();
 
@@ -49,6 +56,9 @@ const ComponentWrapper = (props: PropsWithoutForm) => {
 };
 
 describe("Downloads/Share Layout", () => {
+  afterEach(() => {
+    mockUseCopyrightRequirements = defaultCopyrightRequirements;
+  });
   it("renders a toggleable select all checkbox", async () => {
     let checked = true;
     const { rerender } = renderWithTheme(
@@ -153,13 +163,17 @@ describe("Downloads/Share Layout", () => {
   });
 
   it("renders LoginRequired button instead of CTA component when downloadsRestricted is true", () => {
-    const restrictedProps = { ...props, downloadsRestricted: true };
-    const { queryByRole } = renderWithTheme(
+    const restrictedProps = {
+      ...props,
+      downloadsRestricted: true,
+    };
+    mockUseCopyrightRequirements = signedOutLoginRequired;
+    const { queryByRole, getByRole } = renderWithTheme(
       <ComponentWrapper {...restrictedProps} />,
     );
 
     const ctaButton = queryByRole("button", { name: "CTA" });
-    const loginRequiredButton = queryByRole("button", {
+    const loginRequiredButton = getByRole("button", {
       name: "Sign in to continue",
     });
     expect(ctaButton).not.toBeInTheDocument();

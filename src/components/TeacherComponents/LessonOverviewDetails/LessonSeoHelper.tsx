@@ -1,3 +1,6 @@
+import { SignInButton } from "@clerk/nextjs";
+import { useRouter } from "next/router";
+
 import { convertSubjectToSlug } from "../helpers/convertSubjectToSlug";
 import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
 import {
@@ -5,6 +8,7 @@ import {
   getPhase,
 } from "../helpers/seoTextHelpers/seoText.helpers";
 
+import RedirectOrHideWhenRestrictedWrapper from "@/components/TeacherComponents/RedirectOrHideWhenRestrictedWrapper/RedirectOrHideWhenRestrictedWrapper";
 import { resolveOakHref } from "@/common-lib/urls";
 import {
   OakBasicAccordion,
@@ -26,6 +30,8 @@ export const LessonSeoHelper = ({
   programmeSlug,
   unitSlug,
   disablePupilLink,
+  contentRestricted,
+  showGeoBlocked,
 }: {
   year: string;
   subject: string;
@@ -39,7 +45,10 @@ export const LessonSeoHelper = ({
   programmeSlug: string;
   unitSlug: string;
   disablePupilLink?: boolean;
+  contentRestricted: boolean;
+  showGeoBlocked: boolean;
 }) => {
+  const router = useRouter();
   const linkSubject = parentSubject
     ? convertSubjectToSlug(parentSubject)
     : subjectSlug;
@@ -59,17 +68,23 @@ export const LessonSeoHelper = ({
           <br />
           <OakP $font={["body-2", "body-1"]} $textAlign="left">
             {`To help you plan your ${year.toLowerCase()} ${formatSubjectName(subject)} lesson on: ${lesson},`}{" "}
-            <OakLink
-              href={resolveOakHref({
-                page: "lesson-downloads",
-                lessonSlug,
-                unitSlug,
-                programmeSlug,
-                downloads: "downloads",
-              })}
-            >
-              download
-            </OakLink>{" "}
+            {contentRestricted ? (
+              <SignInButton forceRedirectUrl={router.asPath}>
+                <OakLink>download</OakLink>
+              </SignInButton>
+            ) : (
+              <OakLink
+                href={resolveOakHref({
+                  page: "lesson-downloads",
+                  lessonSlug,
+                  unitSlug,
+                  downloads: "downloads",
+                  programmeSlug,
+                })}
+              >
+                download
+              </OakLink>
+            )}{" "}
             all teaching resources for free and adapt to suit your pupils'
             needs...
           </OakP>
@@ -85,17 +100,26 @@ export const LessonSeoHelper = ({
       <br />
       <OakP $font={["body-2", "body-1"]} $textAlign="left">
         {`To help you plan your ${year.toLowerCase()} ${formatSubjectName(subject)} lesson on: ${lesson},`}{" "}
-        <OakLink
-          href={resolveOakHref({
-            page: "lesson-downloads",
-            lessonSlug,
-            unitSlug,
-            programmeSlug,
-            downloads: "downloads",
-          })}
+        <RedirectOrHideWhenRestrictedWrapper
+          showGeoBlocked={showGeoBlocked}
+          contentRestricted={contentRestricted}
         >
-          download
-        </OakLink>{" "}
+          <OakLink
+            href={
+              !contentRestricted
+                ? resolveOakHref({
+                    page: "lesson-downloads",
+                    downloads: "downloads",
+                    lessonSlug,
+                    unitSlug,
+                    programmeSlug,
+                  })
+                : undefined
+            }
+          >
+            download
+          </OakLink>
+        </RedirectOrHideWhenRestrictedWrapper>{" "}
         all teaching resources for free and adapt to suit your pupils' needs.
       </OakP>
       <br />
@@ -126,14 +150,24 @@ export const LessonSeoHelper = ({
         {!disablePupilLink && (
           <>
             {`Plus, you can set it as homework or revision for pupils and keep their learning on track by sharing an `}
-            <OakLink
-              href={resolveOakHref({
-                page: "pupil-lesson-canonical",
-                lessonSlug,
-              })}
+
+            <RedirectOrHideWhenRestrictedWrapper
+              showGeoBlocked={showGeoBlocked}
+              contentRestricted={contentRestricted}
             >
-              online pupil version
-            </OakLink>
+              <OakLink
+                href={
+                  !contentRestricted
+                    ? resolveOakHref({
+                        page: "pupil-lesson-canonical",
+                        lessonSlug,
+                      })
+                    : undefined
+                }
+              >
+                online pupil version
+              </OakLink>
+            </RedirectOrHideWhenRestrictedWrapper>
             {` of this lesson.`}
           </>
         )}

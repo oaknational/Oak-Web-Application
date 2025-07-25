@@ -34,6 +34,8 @@ const lessonDetailProps = {
     unitSlug: "unit-slug",
     programmeSlug: "programme-slug",
   },
+  contentRestricted: false,
+  showGeoBlocked: false,
   year: "year 7",
   subject: "maths",
   keystage: "ks3",

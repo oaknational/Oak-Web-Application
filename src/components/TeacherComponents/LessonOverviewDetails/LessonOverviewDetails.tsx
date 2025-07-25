@@ -55,6 +55,8 @@ type LessonOverviewDetailsProps = {
   subjectSlug: string | null | undefined;
   subjectParent: string | null | undefined;
   disablePupilLink?: boolean;
+  contentRestricted: boolean;
+  showGeoBlocked: boolean;
   hideSeoHelper?: boolean;
 };
 
@@ -82,6 +84,8 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
   subjectParent,
   subjectSlug,
   disablePupilLink,
+  contentRestricted,
+  showGeoBlocked,
   hideSeoHelper,
 }) => {
   const { lessonSlug, unitSlug, programmeSlug } = slugs;
@@ -133,6 +137,8 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
             )}
             {showLessonHelperAccordion && (
               <LessonSeoHelper
+                showGeoBlocked={showGeoBlocked}
+                contentRestricted={contentRestricted}
                 lessonSlug={lessonSlug}
                 year={year}
                 programmeSlug={programmeSlug}
@@ -158,6 +164,8 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
           >
             {additionalFiles && (
               <LessonOverviewFilesNeeded
+                showGeoBlocked={showGeoBlocked}
+                contentRestricted={contentRestricted}
                 slugs={slugs}
                 additionalFiles={additionalFiles}
               />

@@ -21,6 +21,8 @@ export type UseLessonProps = {
   unitSlug?: string;
   programmeSlug?: string;
   source: "lesson-browse" | "lesson-canonical";
+  loginRequired: boolean;
+  geoRestricted: boolean;
   curriculumTrackingProps: CurriculumTrackingProps & {
     lessonReleaseDate: string;
     lessonReleaseCohort: LessonReleaseCohortValueType;
@@ -46,6 +48,8 @@ type UseLessonReturn = {
 export const useLesson = ({
   programmeSlug,
   source,
+  loginRequired,
+  geoRestricted,
   curriculumTrackingProps,
 }: UseLessonProps): UseLessonReturn => {
   const [teacherNotesOpen, setTeacherNotesOpen] = useState(false);
@@ -104,6 +108,8 @@ export const useLesson = ({
     <TeacherShareNotesButton
       isEditable={isEditable}
       noteSaved={noteSaved}
+      loginRequired={loginRequired}
+      geoRestricted={geoRestricted}
       onTeacherNotesOpen={handleTeacherNotesOpen}
       shareUrl={shareUrl}
       shareActivated={shareActivated}

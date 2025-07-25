@@ -510,6 +510,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   isFinalElement={showGeoBlocked}
                 >
                   <LessonDetails
+                    showGeoBlocked={showGeoBlocked}
+                    contentRestricted={contentRestricted}
                     keyLearningPoints={keyLearningPoints}
                     commonMisconceptions={misconceptionsAndCommonMistakes}
                     keyWords={
