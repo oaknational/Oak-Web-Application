@@ -104,16 +104,16 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
     showGeoBlocked,
     isLoaded,
   } = useCopyrightRequirements({ loginRequired, geoRestricted });
-
+  const contentRestricted = loginRequired || geoRestricted;
   const buttonState = useMemo((): ButtonState => {
-    if (!isLoaded) {
+    if (contentRestricted && !isLoaded) {
       return "loading";
     } else if (showSignedOutGeoRestricted || showSignedOutLoginRequired) {
       return "signup";
     } else if (showSignedInNotOnboarded) {
       return "onboarding";
     } else if (actionProps) {
-      if (showGeoBlocked) {
+      if (actionProps.isActionGeorestricted && showGeoBlocked) {
         return "georestricted";
       }
       return "action";
@@ -121,6 +121,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
       return "null";
     }
   }, [
+    contentRestricted,
     isLoaded,
     showSignedOutGeoRestricted,
     showSignedOutLoginRequired,
@@ -133,7 +134,13 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
 
   const shouldHideButton =
     showGeoBlocked && actionProps?.shouldHidewhenGeoRestricted;
-
+  if (
+    actionProps?.href ===
+    "/teachers/programmes/english-primary-ks1/units/yoshi-the-stonecutter-reading/lessons/building-comprehension-of-yoshi-the-stonecutter/share?preselected=all"
+  ) {
+    console.log(buttonState, shouldHideButton);
+    console.log(shouldHideButton ? "none" : "block");
+  }
   switch (buttonState) {
     case "onboarding":
       return (
@@ -176,11 +183,12 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
     case "action":
     case "georestricted":
       return (
-        <OakBox $display={shouldHideButton ? "none" : "true"}>
+        <OakBox $display={shouldHideButton ? "none" : "block"}>
           <ButtonComponent
             element={element}
             onClick={actionProps?.onClick}
             iconName={actionProps?.iconName}
+            href={actionProps?.href}
             isTrailingIcon={actionProps?.isTrailingIcon}
             disabled={buttonState === "georestricted"}
             {...overrideProps}

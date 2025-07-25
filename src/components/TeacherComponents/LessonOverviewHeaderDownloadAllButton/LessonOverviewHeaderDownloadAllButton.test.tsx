@@ -111,10 +111,10 @@ describe("LessonOverviewHeaderDownloadAllButton", () => {
   });
   it("does not render anything when geoBlocked", () => {
     mockUseCopyrightRequirements = signedInGeoBlocked;
-    const { queryByTestId } = render(
+    const { getByTestId } = render(
       <LessonOverviewHeaderDownloadAllButton {...baseProps} />,
     );
-    const downloadButton = queryByTestId("download-all-button");
-    expect(downloadButton).not.toBeInTheDocument();
+    const downloadButton = getByTestId("download-all-button");
+    expect(downloadButton).not.toBeVisible();
   });
 });

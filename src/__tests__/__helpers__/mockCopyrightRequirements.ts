@@ -5,6 +5,7 @@ export const signedOutLoginRequired: UseCopyrightRequirementsReturn = {
   showSignedOutGeoRestricted: false,
   showSignedInNotOnboarded: false,
   showSignedOutLoginRequired: true,
+  isLoaded: true,
 };
 
 export const signedInGeoBlocked: UseCopyrightRequirementsReturn = {
@@ -12,6 +13,7 @@ export const signedInGeoBlocked: UseCopyrightRequirementsReturn = {
   showSignedOutGeoRestricted: false,
   showSignedInNotOnboarded: false,
   showSignedOutLoginRequired: false,
+  isLoaded: true,
 };
 
 export const signedOutGeoRestricted: UseCopyrightRequirementsReturn = {
@@ -19,6 +21,7 @@ export const signedOutGeoRestricted: UseCopyrightRequirementsReturn = {
   showSignedOutGeoRestricted: true,
   showSignedInNotOnboarded: false,
   showSignedOutLoginRequired: false,
+  isLoaded: true,
 };
 
 export const signedInNotOnboarded: UseCopyrightRequirementsReturn = {
@@ -26,6 +29,7 @@ export const signedInNotOnboarded: UseCopyrightRequirementsReturn = {
   showSignedOutGeoRestricted: false,
   showSignedInNotOnboarded: true,
   showSignedOutLoginRequired: false,
+  isLoaded: true,
 };
 
 export const defaultCopyrightRequirements: UseCopyrightRequirementsReturn = {
@@ -33,4 +37,10 @@ export const defaultCopyrightRequirements: UseCopyrightRequirementsReturn = {
   showSignedOutGeoRestricted: false,
   showSignedInNotOnboarded: false,
   showSignedOutLoginRequired: false,
+  isLoaded: true,
+};
+
+export const isLoading: UseCopyrightRequirementsReturn = {
+  ...defaultCopyrightRequirements,
+  isLoaded: false,
 };

@@ -4,7 +4,6 @@ import { useOakConsent } from "@oaknational/oak-consent-client";
 import { useTeacherShareButton } from "../TeacherShareButton/useTeacherShareButton";
 
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
-import RedirectOrHideWhenRestrictedWrapper from "@/components/TeacherComponents/RedirectOrHideWhenRestrictedWrapper/RedirectOrHideWhenRestrictedWrapper";
 import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
 
 export const TeacherShareNotesButton = ({
@@ -24,57 +23,41 @@ export const TeacherShareNotesButton = ({
   loginRequired: boolean;
   geoRestricted: boolean;
 }) => {
-  const {
-    showSignedOutGeoRestricted,
-    showSignedOutLoginRequired,
-    showGeoBlocked,
-  } = useCopyrightRequirements({ geoRestricted, loginRequired });
-
-  const contentRestricted =
-    showSignedOutGeoRestricted || showSignedOutLoginRequired;
+  const { showGeoBlocked } = useCopyrightRequirements({
+    geoRestricted,
+    loginRequired,
+  });
+  const { state } = useOakConsent();
   const { handleClick } = useTeacherShareButton({
     shareUrl,
     shareActivated,
   });
-  const { state } = useOakConsent();
+  if (showGeoBlocked) return null;
   const cookiesNotAccepted = !!state.policyConsents.find(
     (policy) =>
       policy.consentState === "denied" || policy.consentState === "pending",
   );
-
   if (isEditable === false) {
     return (
-      <RedirectOrHideWhenRestrictedWrapper
-        showGeoBlocked={showGeoBlocked}
-        contentRestricted={contentRestricted}
-      >
-        <TeacherShareButton
-          label="Share resources with colleague"
-          variant={"secondary"}
-          shareUrl={shareUrl}
-          handleClick={contentRestricted ? undefined : () => handleClick()}
-        />
-      </RedirectOrHideWhenRestrictedWrapper>
+      <TeacherShareButton
+        label="Share resources with colleague"
+        variant={"secondary"}
+        shareUrl={shareUrl}
+        handleClick={handleClick}
+      />
     );
   }
 
   if (isEditable === null || state.requiresInteraction) return undefined;
 
   return (
-    <RedirectOrHideWhenRestrictedWrapper
-      showGeoBlocked={showGeoBlocked}
-      contentRestricted={contentRestricted}
+    <OakSmallSecondaryButton
+      disabled={cookiesNotAccepted}
+      iconName={noteSaved ? "edit" : "share"}
+      isTrailingIcon
+      onClick={onTeacherNotesOpen}
     >
-      <OakSmallSecondaryButton
-        disabled={cookiesNotAccepted}
-        iconName={noteSaved ? "edit" : "share"}
-        isTrailingIcon
-        onClick={contentRestricted ? undefined : () => onTeacherNotesOpen()}
-      >
-        {noteSaved
-          ? "Edit teacher note and share"
-          : "Add teacher note and share"}
-      </OakSmallSecondaryButton>
-    </RedirectOrHideWhenRestrictedWrapper>
+      {noteSaved ? "Edit teacher note and share" : "Add teacher note and share"}
+    </OakSmallSecondaryButton>
   );
 };
