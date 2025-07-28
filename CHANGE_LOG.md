@@ -1,3 +1,10 @@
+## [1.811.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.811.1...v1.811.2) (2025-07-28)
+
+
+### Bug Fixes
+
+* update types ([668e3c4](https://github.com/oaknational/Oak-Web-Application/commit/668e3c4ec59552c0d68ee4721cc9de02a09e0370))
+
 ## [1.811.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.811.0...v1.811.1) (2025-07-28)
 
 
