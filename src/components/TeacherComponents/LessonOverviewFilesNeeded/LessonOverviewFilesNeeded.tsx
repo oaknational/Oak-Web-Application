@@ -89,6 +89,7 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
             name: filesText,
             href: getHref(),
             isActionGeorestricted: geoRestricted,
+            shouldHidewhenGeoRestricted: true,
           }}
         />
       </OakFlex>

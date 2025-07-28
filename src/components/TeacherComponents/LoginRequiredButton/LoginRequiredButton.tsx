@@ -104,6 +104,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
     showGeoBlocked,
     isLoaded,
   } = useCopyrightRequirements({ loginRequired, geoRestricted });
+
   const contentRestricted = loginRequired || geoRestricted;
   const buttonState = useMemo((): ButtonState => {
     if (contentRestricted && !isLoaded) {

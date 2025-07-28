@@ -8,6 +8,7 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { resolveOakHref } from "@/common-lib/urls";
 import {
   defaultCopyrightRequirements,
+  signedInGeoBlocked,
   signedOutLoginRequired,
 } from "@/__tests__/__helpers__/mockCopyrightRequirements";
 
@@ -100,5 +101,21 @@ describe("LessonOverviewFilesNeeded", () => {
     const downloadButton = getByText(/Download lesson file/i).closest("button");
 
     expect(downloadButton).not.toHaveAttribute("href", "/mock-url");
+  });
+
+  it("renders nothing when geoblocked", () => {
+    mockCopyrightRequirements = signedInGeoBlocked;
+    const additionalFiles = ["file1.pdf"];
+    const { queryByText } = renderWithTheme(
+      <LessonOverviewFilesNeeded
+        {...defaultProps}
+        geoRestricted={true}
+        additionalFiles={additionalFiles}
+      />,
+    );
+
+    const downloadButton = queryByText(/Download lesson file/i);
+
+    expect(downloadButton).not.toBeVisible();
   });
 });
