@@ -154,7 +154,7 @@ describe("createLessonDownloadLink()", () => {
       selection: "exit-quiz-answers,worksheet-pdf",
       isLegacyDownload: true,
       authToken,
-      authFlagEnabled: true,
+      authRequired: true,
     });
 
     expect(global.fetch).toBeCalledWith(
@@ -173,7 +173,7 @@ describe("createLessonDownloadLink()", () => {
       lessonSlug: "lesson-slug",
       selection: "exit-quiz-answers,worksheet-pdf",
       isLegacyDownload: true,
-      authFlagEnabled: false,
+      authRequired: false,
     });
 
     expect(global.fetch).toBeCalledWith(
@@ -191,7 +191,7 @@ describe("createUnitDownloadLink()", () => {
   it("should set authentication header to false when flag disabled", async () => {
     await createUnitDownloadLink({
       unitFileId: "unitvariant-123",
-      authFlagEnabled: false,
+      authRequired: false,
       getToken: jest.fn().mockResolvedValue(null),
     });
     expect(global.fetch).toHaveBeenCalledWith(
@@ -207,7 +207,7 @@ describe("createUnitDownloadLink()", () => {
     const getToken = jest.fn().mockResolvedValue("testToken");
     await createUnitDownloadLink({
       unitFileId: "unitvariant-123",
-      authFlagEnabled: true,
+      authRequired: true,
       getToken,
     });
     expect(global.fetch).toHaveBeenCalledWith(
@@ -231,7 +231,7 @@ describe("createUnitDownloadLink()", () => {
     await expect(async () => {
       await createUnitDownloadLink({
         unitFileId: "unitvariant-123",
-        authFlagEnabled: false,
+        authRequired: false,
         getToken: jest.fn().mockResolvedValue(null),
       });
     }).rejects.toThrow();
@@ -240,7 +240,7 @@ describe("createUnitDownloadLink()", () => {
     await expect(async () => {
       await createUnitDownloadLink({
         unitFileId: "unitvariant-123",
-        authFlagEnabled: true,
+        authRequired: true,
         getToken: jest.fn().mockResolvedValue(null),
       });
     }).rejects.toThrow();
