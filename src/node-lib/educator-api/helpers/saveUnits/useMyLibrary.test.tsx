@@ -439,4 +439,27 @@ describe("useMyLibrary", () => {
 
     await waitFor(() => expect(mockSetOakToastProps).toHaveBeenCalled());
   });
+  it("should handle saving and unsaving programme with subject categories", async () => {
+    mockUseGetEducatorData.mockImplementation(() => ({
+      data: mockProgrammeDataWithSubjectCategories,
+      error: null,
+      isLoading: false,
+    }));
+    const { result } = renderHook(() => useMyLibrary());
+    expect(result.current.isUnitSaved("unit1-programme1-Literacy")).toBe(true);
+
+    act(() =>
+      result.current.onSaveToggle(
+        "unit1",
+        "programme1",
+        "programme1-Literacy",
+        mockTrackingData,
+      ),
+    );
+    await waitFor(() =>
+      expect(result.current.isUnitSaved("unit1-programme1-Literacy")).toBe(
+        false,
+      ),
+    );
+  });
 });
