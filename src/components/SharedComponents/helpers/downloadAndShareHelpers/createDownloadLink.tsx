@@ -28,7 +28,7 @@ export type DownloadsApiDownloadResponseSchema = z.infer<typeof schema>;
 const getDownloadLink = async ({
   downloadEndpoint,
   meta,
-  authFlagEnabled,
+  authRequired,
   authToken,
 }: {
   downloadEndpoint: string;
@@ -37,10 +37,10 @@ const getDownloadLink = async ({
     selection?: string;
     isLegacyDownload?: boolean;
   };
-  authFlagEnabled?: boolean;
+  authRequired?: boolean;
   authToken?: string | null;
 }) => {
-  if (authFlagEnabled && !authToken) {
+  if (authRequired && !authToken) {
     throw new OakError({
       code: "downloads/missing-auth-token",
       meta,
@@ -53,9 +53,7 @@ const getDownloadLink = async ({
   const res = await fetch(downloadEndpoint, {
     headers: {
       ...authHeader,
-      "X-Should-Authenticate-Download": JSON.stringify(
-        Boolean(authFlagEnabled),
-      ),
+      "X-Should-Authenticate-Download": JSON.stringify(Boolean(authRequired)),
     },
   });
 
@@ -77,14 +75,14 @@ export const createLessonDownloadLink = async ({
   isLegacyDownload,
   selection,
   additionalFilesIdsSelection,
-  authFlagEnabled,
+  authRequired,
   authToken,
 }: {
   lessonSlug: string;
   isLegacyDownload: boolean;
   selection?: string;
   additionalFilesIdsSelection?: string;
-  authFlagEnabled?: boolean;
+  authRequired?: boolean;
   authToken?: string | null;
 }) => {
   const selectionString = selection ? `?selection=${selection}` : "";
@@ -100,7 +98,7 @@ export const createLessonDownloadLink = async ({
   const url = await getDownloadLink({
     downloadEndpoint,
     meta,
-    authFlagEnabled,
+    authRequired,
     authToken,
   });
   return url;
@@ -108,11 +106,11 @@ export const createLessonDownloadLink = async ({
 
 export const createUnitDownloadLink = async ({
   unitFileId,
-  authFlagEnabled,
+  authRequired,
   getToken,
 }: {
   unitFileId: string;
-  authFlagEnabled?: boolean;
+  authRequired?: boolean;
   getToken: GetToken;
 }) => {
   const downloadEndpoint = `${DOWNLOADS_API_URL}/api/unit/${unitFileId}/download`;
@@ -124,7 +122,7 @@ export const createUnitDownloadLink = async ({
   const url = await getDownloadLink({
     downloadEndpoint,
     meta,
-    authFlagEnabled,
+    authRequired,
     authToken,
   });
   return url;

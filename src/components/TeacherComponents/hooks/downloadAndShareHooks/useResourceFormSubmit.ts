@@ -11,7 +11,10 @@ import downloadLessonResources from "@/components/SharedComponents/helpers/downl
 
 type UseResourceFormProps = {
   onSubmit?: () => void;
-} & ({ type: "share" } | { type: "download"; isLegacyDownload: boolean });
+} & (
+  | { type: "share" }
+  | { type: "download"; isLegacyDownload: boolean; authRequired: boolean }
+);
 
 const useResourceFormSubmit = (props: UseResourceFormProps) => {
   const {
@@ -73,13 +76,13 @@ const useResourceFormSubmit = (props: UseResourceFormProps) => {
             .filter((d) => additionalFilesRegex.test(d))
             .map((d) => parseInt(d.split("additional-files-")?.[1] ?? ""))
         : [];
-
+      const authRequired = authFlagEnabled && props.authRequired;
       await downloadLessonResources({
         lessonSlug: slug,
         selectedResourceTypes: selectedResourceTypes as DownloadResourceType[],
         selectedAdditionalFilesIds,
         isLegacyDownload: props.isLegacyDownload,
-        authFlagEnabled,
+        authRequired,
         authToken: accessToken,
       });
     }
