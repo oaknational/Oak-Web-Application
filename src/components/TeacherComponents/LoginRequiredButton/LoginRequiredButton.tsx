@@ -28,7 +28,7 @@ type ButtonState =
   | "null";
 
 type ActionProps = {
-  onClick: () => void | Promise<void>;
+  onClick?: () => void | Promise<void>;
   name: string;
   isActionGeorestricted: boolean;
   shouldHidewhenGeoRestricted?: boolean;
@@ -134,13 +134,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
 
   const shouldHideButton =
     showGeoBlocked && actionProps?.shouldHidewhenGeoRestricted;
-  if (
-    actionProps?.href ===
-    "/teachers/programmes/english-primary-ks1/units/yoshi-the-stonecutter-reading/lessons/building-comprehension-of-yoshi-the-stonecutter/share?preselected=all"
-  ) {
-    console.log(buttonState, shouldHideButton);
-    console.log(shouldHideButton ? "none" : "block");
-  }
+
   switch (buttonState) {
     case "onboarding":
       return (

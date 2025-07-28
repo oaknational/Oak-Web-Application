@@ -6,16 +6,25 @@ import LessonOverviewFilesNeeded, {
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { resolveOakHref } from "@/common-lib/urls";
+import {
+  defaultCopyrightRequirements,
+  signedOutLoginRequired,
+} from "@/__tests__/__helpers__/mockCopyrightRequirements";
 
 jest.mock("@/common-lib/urls", () => ({
   resolveOakHref: jest.fn(),
 }));
 
+let mockCopyrightRequirements = defaultCopyrightRequirements;
+jest.mock("@/hooks/useCopyrightRequirements", () => ({
+  useCopyrightRequirements: () => mockCopyrightRequirements,
+}));
+
 jest.mock("next/router", () => require("next-router-mock"));
 describe("LessonOverviewFilesNeeded", () => {
   const defaultProps: LessonOverviewFilesNeededProps = {
-    contentRestricted: false,
-    showGeoBlocked: false,
+    loginRequired: false,
+    geoRestricted: false,
     additionalFiles: [],
     slugs: {
       lessonSlug: "lesson-slug",
@@ -77,17 +86,18 @@ describe("LessonOverviewFilesNeeded", () => {
   });
 
   it("renders a sign up button when downloads are restricted", () => {
+    mockCopyrightRequirements = signedOutLoginRequired;
     const additionalFiles = ["file1.pdf"];
     (resolveOakHref as jest.Mock).mockReturnValue("/mock-url");
     const { getByText } = renderWithTheme(
       <LessonOverviewFilesNeeded
         {...defaultProps}
-        contentRestricted={true}
+        loginRequired={true}
         additionalFiles={additionalFiles}
       />,
     );
 
-    const downloadButton = getByText(/Download lesson file/i).closest("a");
+    const downloadButton = getByText(/Download lesson file/i).closest("button");
 
     expect(downloadButton).not.toHaveAttribute("href", "/mock-url");
   });

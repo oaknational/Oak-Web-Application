@@ -5,18 +5,17 @@ import {
   OakIcon,
   OakLI,
   OakP,
-  OakTertiaryButton,
   OakUL,
 } from "@oaknational/oak-components";
 
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import { resolveOakHref } from "@/common-lib/urls";
 import { Slugs } from "@/components/TeacherComponents/LessonItemContainer/LessonItemContainer";
-import RedirectOrHideWhenRestrictedWrapper from "@/components/TeacherComponents/RedirectOrHideWhenRestrictedWrapper/RedirectOrHideWhenRestrictedWrapper";
+import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
 
 export type LessonOverviewFilesNeededProps = {
-  contentRestricted: boolean;
-  showGeoBlocked: boolean;
+  loginRequired: boolean;
+  geoRestricted: boolean;
   additionalFiles: string[];
   slugs: Slugs;
 };
@@ -24,14 +23,13 @@ export type LessonOverviewFilesNeededProps = {
 const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
   additionalFiles,
   slugs,
-  contentRestricted,
-  showGeoBlocked,
+  loginRequired,
+  geoRestricted,
 }) => {
   const { lessonSlug, unitSlug, programmeSlug } = slugs;
   const isPlural = additionalFiles.length > 1;
   const filesText = isPlural ? `Download lesson files` : `Download lesson file`;
   const getHref = () => {
-    if (contentRestricted) return undefined;
     return programmeSlug && unitSlug
       ? resolveOakHref({
           page: "lesson-downloads",
@@ -81,19 +79,18 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
           {`Download ${isPlural ? "these files" : "this file"} to use in the
           lesson.`}
         </OakP>
-        <RedirectOrHideWhenRestrictedWrapper
-          showGeoBlocked={showGeoBlocked}
-          contentRestricted={contentRestricted}
-        >
-          <OakTertiaryButton
-            element="a"
-            href={getHref()}
-            isTrailingIcon
-            iconName="arrow-right"
-          >
-            {filesText}
-          </OakTertiaryButton>
-        </RedirectOrHideWhenRestrictedWrapper>
+        <LoginRequiredButton
+          element="a"
+          loginRequired={loginRequired}
+          geoRestricted={geoRestricted}
+          buttonVariant="tertiary"
+          signUpProps={{ name: filesText }}
+          actionProps={{
+            name: filesText,
+            href: getHref(),
+            isActionGeorestricted: geoRestricted,
+          }}
+        />
       </OakFlex>
       <BrushBorders color="aqua50" />
     </OakBox>

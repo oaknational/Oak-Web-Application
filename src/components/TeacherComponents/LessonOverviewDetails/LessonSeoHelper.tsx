@@ -1,14 +1,11 @@
-import { SignInButton } from "@clerk/nextjs";
-import { useRouter } from "next/router";
-
 import { convertSubjectToSlug } from "../helpers/convertSubjectToSlug";
 import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
 import {
   formatSubjectName,
   getPhase,
 } from "../helpers/seoTextHelpers/seoText.helpers";
+import LoginRequiredLink from "../LoginRequiredLink/LoginRequiredLink";
 
-import RedirectOrHideWhenRestrictedWrapper from "@/components/TeacherComponents/RedirectOrHideWhenRestrictedWrapper/RedirectOrHideWhenRestrictedWrapper";
 import { resolveOakHref } from "@/common-lib/urls";
 import {
   OakBasicAccordion,
@@ -30,8 +27,8 @@ export const LessonSeoHelper = ({
   programmeSlug,
   unitSlug,
   disablePupilLink,
-  contentRestricted,
-  showGeoBlocked,
+  geoRestricted,
+  loginRequired,
 }: {
   year: string;
   subject: string;
@@ -45,10 +42,9 @@ export const LessonSeoHelper = ({
   programmeSlug: string;
   unitSlug: string;
   disablePupilLink?: boolean;
-  contentRestricted: boolean;
-  showGeoBlocked: boolean;
+  loginRequired: boolean;
+  geoRestricted: boolean;
 }) => {
-  const router = useRouter();
   const linkSubject = parentSubject
     ? convertSubjectToSlug(parentSubject)
     : subjectSlug;
@@ -68,23 +64,25 @@ export const LessonSeoHelper = ({
           <br />
           <OakP $font={["body-2", "body-1"]} $textAlign="left">
             {`To help you plan your ${year.toLowerCase()} ${formatSubjectName(subject)} lesson on: ${lesson},`}{" "}
-            {contentRestricted ? (
-              <SignInButton forceRedirectUrl={router.asPath}>
-                <OakLink>download</OakLink>
-              </SignInButton>
-            ) : (
-              <OakLink
-                href={resolveOakHref({
-                  page: "lesson-downloads",
-                  lessonSlug,
-                  unitSlug,
-                  downloads: "downloads",
-                  programmeSlug,
-                })}
-              >
-                download
-              </OakLink>
-            )}{" "}
+            {
+              <LoginRequiredLink
+                geoRestricted={geoRestricted}
+                loginRequired={loginRequired}
+                signUpProps={{ name: "download" }}
+                onboardingProps={{ name: "download" }}
+                actionProps={{
+                  name: "download",
+                  href: resolveOakHref({
+                    page: "lesson-downloads",
+                    downloads: "downloads",
+                    lessonSlug,
+                    unitSlug,
+                    programmeSlug,
+                  }),
+                  isActionGeorestricted: true,
+                }}
+              />
+            }{" "}
             all teaching resources for free and adapt to suit your pupils'
             needs...
           </OakP>
@@ -100,26 +98,23 @@ export const LessonSeoHelper = ({
       <br />
       <OakP $font={["body-2", "body-1"]} $textAlign="left">
         {`To help you plan your ${year.toLowerCase()} ${formatSubjectName(subject)} lesson on: ${lesson},`}{" "}
-        <RedirectOrHideWhenRestrictedWrapper
-          showGeoBlocked={showGeoBlocked}
-          contentRestricted={contentRestricted}
-        >
-          <OakLink
-            href={
-              !contentRestricted
-                ? resolveOakHref({
-                    page: "lesson-downloads",
-                    downloads: "downloads",
-                    lessonSlug,
-                    unitSlug,
-                    programmeSlug,
-                  })
-                : undefined
-            }
-          >
-            download
-          </OakLink>
-        </RedirectOrHideWhenRestrictedWrapper>{" "}
+        <LoginRequiredLink
+          geoRestricted={geoRestricted}
+          loginRequired={loginRequired}
+          signUpProps={{ name: "download" }}
+          onboardingProps={{ name: "download" }}
+          actionProps={{
+            name: "download",
+            href: resolveOakHref({
+              page: "lesson-downloads",
+              downloads: "downloads",
+              lessonSlug,
+              unitSlug,
+              programmeSlug,
+            }),
+            isActionGeorestricted: true,
+          }}
+        />{" "}
         all teaching resources for free and adapt to suit your pupils' needs.
       </OakP>
       <br />
@@ -151,23 +146,22 @@ export const LessonSeoHelper = ({
           <>
             {`Plus, you can set it as homework or revision for pupils and keep their learning on track by sharing an `}
 
-            <RedirectOrHideWhenRestrictedWrapper
-              showGeoBlocked={showGeoBlocked}
-              contentRestricted={contentRestricted}
-            >
-              <OakLink
-                href={
-                  !contentRestricted
-                    ? resolveOakHref({
-                        page: "pupil-lesson-canonical",
-                        lessonSlug,
-                      })
-                    : undefined
-                }
-              >
-                online pupil version
-              </OakLink>
-            </RedirectOrHideWhenRestrictedWrapper>
+            <LoginRequiredLink
+              geoRestricted={geoRestricted}
+              loginRequired={loginRequired}
+              signUpProps={{ name: "online pupil version" }}
+              onboardingProps={{ name: "online pupil version" }}
+              actionProps={{
+                name: "online pupil version",
+                href: resolveOakHref({
+                  page: "pupil-lesson-canonical",
+
+                  lessonSlug,
+                }),
+                isActionGeorestricted: true,
+              }}
+            />
+
             {` of this lesson.`}
           </>
         )}
