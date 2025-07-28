@@ -141,11 +141,11 @@ exports[`CurriculumTab renders 1`] = `
                           style="width: 50%;"
                         >
                           <div
-                            class="sc-fqkvVR sc-1c55d370-0 sc-f853cf38-3 jEHEPk knawKC kvYbqs"
+                            class="sc-fqkvVR sc-1c55d370-0 sc-77eed22a-3 jEHEPk knawKC dCNFYz"
                           >
                             <button
                               aria-expanded="false"
-                              class="sc-f853cf38-2 eRssHP"
+                              class="sc-77eed22a-2 gTXDaE"
                               data-testid="subject-picker-button"
                               title="Subject"
                             >
@@ -209,11 +209,11 @@ exports[`CurriculumTab renders 1`] = `
                             class="sc-fqkvVR sc-gsFSXq fxkSvJ ehZBcc"
                           >
                             <div
-                              class="sc-fqkvVR sc-1c55d370-0 sc-f853cf38-3 eMDDOo knawKC kvYbqs"
+                              class="sc-fqkvVR sc-1c55d370-0 sc-77eed22a-3 eMDDOo knawKC dCNFYz"
                             >
                               <button
                                 aria-expanded="false"
-                                class="sc-f853cf38-2 eRssHP"
+                                class="sc-77eed22a-2 gTXDaE"
                                 data-testid="phase-picker-button"
                                 title="Phase"
                               >
@@ -331,11 +331,11 @@ exports[`CurriculumTab renders 1`] = `
                       style="width: 50%;"
                     >
                       <div
-                        class="sc-fqkvVR sc-1c55d370-0 sc-f853cf38-3 jEHEPk knawKC kvYbqs"
+                        class="sc-fqkvVR sc-1c55d370-0 sc-77eed22a-3 jEHEPk knawKC dCNFYz"
                       >
                         <button
                           aria-expanded="false"
-                          class="sc-f853cf38-2 eRssHP"
+                          class="sc-77eed22a-2 gTXDaE"
                           data-testid="subject-picker-button"
                           title="Subject"
                         >
@@ -399,11 +399,11 @@ exports[`CurriculumTab renders 1`] = `
                         class="sc-fqkvVR sc-gsFSXq fxkSvJ ehZBcc"
                       >
                         <div
-                          class="sc-fqkvVR sc-1c55d370-0 sc-f853cf38-3 eMDDOo knawKC kvYbqs"
+                          class="sc-fqkvVR sc-1c55d370-0 sc-77eed22a-3 eMDDOo knawKC dCNFYz"
                         >
                           <button
                             aria-expanded="false"
-                            class="sc-f853cf38-2 eRssHP"
+                            class="sc-77eed22a-2 gTXDaE"
                             data-testid="phase-picker-button"
                             title="Phase"
                           >
