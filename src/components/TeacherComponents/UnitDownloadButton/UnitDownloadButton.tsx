@@ -67,7 +67,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
       setDownloadError(false);
       const downloadLink = await createUnitDownloadLink({
         unitFileId,
-        authFlagEnabled,
+        authRequired: authFlagEnabled,
         getToken: auth.getToken,
       });
 

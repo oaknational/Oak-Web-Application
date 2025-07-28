@@ -42,6 +42,7 @@ const LessonDownloadsCanonicalPage = (
           description: "Lesson downloads",
         }),
         noIndex: true,
+        noFollow: true,
       }}
     >
       <LessonDownloads isCanonical lesson={curriculumData} />

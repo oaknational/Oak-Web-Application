@@ -19,6 +19,10 @@ import LessonSharePage, {
 } from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/share";
 import lessonShareFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonShare.fixture";
 import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__";
+import curriculumApi2023, {
+  CurriculumApi,
+} from "@/node-lib/curriculum-api-2023";
+import OakError from "@/errors/OakError";
 
 const props: LessonSharePageProps = {
   curriculumData: lessonShareFixtures(),
@@ -366,7 +370,7 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
         canonical:
           "NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/maths-higher-ks4-l/units/geometry/lessons/macbeth-lesson-1",
-        robots: "noindex,follow",
+        robots: "noindex,nofollow",
       });
     });
   });
@@ -413,9 +417,17 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
         lessonSlug: "adding-surds-a57d",
       });
     });
-    it("should return notFound when a landing page is missing", async () => {
+    it("should return notFound when a landing page is missing and no redirect", async () => {
+      if (!curriculumApi2023.browseLessonRedirectQuery) {
+        (curriculumApi2023 as CurriculumApi).browseLessonRedirectQuery =
+          jest.fn();
+      }
       (curriculumApi.lessonShare as jest.Mock).mockResolvedValueOnce(undefined);
-
+      (
+        curriculumApi2023.browseLessonRedirectQuery as jest.Mock
+      ).mockRejectedValueOnce(
+        new OakError({ code: "curriculum-api/not-found" }),
+      );
       const context = {
         params: {
           programmeSlug: "maths-secondary-ks4-higher-l",
@@ -426,6 +438,50 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
       const response = await getStaticProps(context);
       expect(response).toEqual({
         notFound: true,
+      });
+    });
+    it("should return redirect when a landing page is missing", async () => {
+      (curriculumApi.lessonShare as jest.Mock).mockResolvedValueOnce(undefined);
+      (
+        curriculumApi2023.browseLessonRedirectQuery as jest.Mock
+      ).mockResolvedValueOnce({
+        redirectData: {
+          incomingPath: "lessons/old-lesson-slug",
+          outgoingPath: "lessons/new-lesson-slug",
+          redirectType: 301, // Temporary redirect
+        },
+      });
+      const result = await getStaticProps({
+        params: {
+          lessonSlug: "old-lesson-slug",
+          programmeSlug: "english-primary-ks2",
+          unitSlug: "unit-slug",
+        },
+        query: {},
+      } as GetStaticPropsContext<URLParams, PreviewData>);
+
+      // Verify the redirect properties
+      expect(result).toHaveProperty("redirect");
+      expect(
+        (
+          result as {
+            redirect: {
+              destination: string;
+              statusCode: number;
+              basePath: boolean;
+            };
+          }
+        ).redirect,
+      ).toEqual({
+        destination: "lessons/new-lesson-slug",
+        statusCode: 301, // 307 is the default for temporary redirects
+        basePath: false,
+      });
+
+      // Verify the redirect API was called with the correct parameters
+      expect(curriculumApi2023.browseLessonRedirectQuery).toHaveBeenCalledWith({
+        incomingPath:
+          "/teachers/programmes/english-primary-ks2/units/unit-slug/lessons/old-lesson-slug",
       });
     });
     it("should throw error", async () => {

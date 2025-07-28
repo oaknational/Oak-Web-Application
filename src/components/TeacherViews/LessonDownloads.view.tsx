@@ -226,6 +226,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const { onSubmit } = useResourceFormSubmit({
     type: "download",
     isLegacyDownload,
+    authRequired: downloadsRestricted,
   });
 
   const { onHubspotSubmit } = useHubspotSubmit();

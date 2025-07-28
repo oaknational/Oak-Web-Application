@@ -1,3 +1,94 @@
+## [1.811.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.811.1...v1.811.2) (2025-07-28)
+
+
+### Bug Fixes
+
+* update types ([668e3c4](https://github.com/oaknational/Oak-Web-Application/commit/668e3c4ec59552c0d68ee4721cc9de02a09e0370))
+
+## [1.811.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.811.0...v1.811.1) (2025-07-28)
+
+
+### Bug Fixes
+
+* only use auth token when required by lesson restrictions ([f9c5fd3](https://github.com/oaknational/Oak-Web-Application/commit/f9c5fd30074696b40d43a77bc60ebc143f35c56d))
+
+# [1.811.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.810.0...v1.811.0) (2025-07-25)
+
+
+### Features
+
+* put OWA live on vercel ([8108fbf](https://github.com/oaknational/Oak-Web-Application/commit/8108fbf7d5fd60817ab6ead9c5aa443efb0b6e09))
+
+# [1.810.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.809.0...v1.810.0) (2025-07-24)
+
+
+### Features
+
+* set lesson child pages seo to nofollow ([5111413](https://github.com/oaknational/Oak-Web-Application/commit/5111413ebec6d409dc52a0ddfda94a9b7dcd7267))
+
+# [1.809.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.808.0...v1.809.0) (2025-07-24)
+
+
+### Features
+
+* enable previewing of new lessons without unit data ([9089450](https://github.com/oaknational/Oak-Web-Application/commit/9089450cf4c9152b0e38ac0731237d7765d4ff59))
+* use features for restrictions instead of mv data ([e4ab626](https://github.com/oaknational/Oak-Web-Application/commit/e4ab626e61efa9b7a902f3447662d5428b2f917e))
+
+# [1.808.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.807.2...v1.808.0) (2025-07-24)
+
+
+### Bug Fixes
+
+* fix test ([d35d598](https://github.com/oaknational/Oak-Web-Application/commit/d35d5981f1b456823fd41d956ebd9f0579dde38d))
+* fix test ([87d4bea](https://github.com/oaknational/Oak-Web-Application/commit/87d4beabd2f2949b0abb8f93c5d5d2f2113f0770))
+* merge main ([4edf835](https://github.com/oaknational/Oak-Web-Application/commit/4edf8359f0829ddb4e2c75c4e26b69000ca22d45))
+* point at teacher mv ([4212c57](https://github.com/oaknational/Oak-Web-Application/commit/4212c5784d4780f3e35b7682e0ad10f903a23826))
+* pupil unit listin redirect ([326e8ae](https://github.com/oaknational/Oak-Web-Application/commit/326e8ae774b7d7aadaa862bba04ad2924d5b1e4a))
+* sonar dup refactor ([2ed2d79](https://github.com/oaknational/Oak-Web-Application/commit/2ed2d791216bd8a8431eef701e6c23676bb2340b))
+* sonar dup refactor ([89e48ad](https://github.com/oaknational/Oak-Web-Application/commit/89e48ad6a58f0a12373d76d296dd401a4646364f))
+* sonar dup refactor ([08389a2](https://github.com/oaknational/Oak-Web-Application/commit/08389a24c69d7da6b3c12b1a15191c8a64a1c9fb))
+* sonar dup refactor ([46d45fc](https://github.com/oaknational/Oak-Web-Application/commit/46d45fcdecaf0dd4748eb309f6d78a394d759028))
+* test coverage ([9e2aab4](https://github.com/oaknational/Oak-Web-Application/commit/9e2aab4cdadc7a2e04249451bc91ceb6b02ad7c2))
+* test coverage ([858c4bc](https://github.com/oaknational/Oak-Web-Application/commit/858c4bc7752050c94d42fe75adff4c4afda9c8d3))
+* test coverage ([cae42c2](https://github.com/oaknational/Oak-Web-Application/commit/cae42c263fb2735fdb34f7466b6f2b86bc6edf73))
+
+
+### Features
+
+* add canonical pupil redirect to pupil ([4ad2f95](https://github.com/oaknational/Oak-Web-Application/commit/4ad2f9597c80fc3b84fe77b413549696bc7ba9a3))
+* add lesson browse  pupil redirect to pupil ([b729f90](https://github.com/oaknational/Oak-Web-Application/commit/b729f90083fcd0e82d8f44c0827382fda1bdd8ad))
+* add redirect to teacher browse ([7c01df8](https://github.com/oaknational/Oak-Web-Application/commit/7c01df8bd24f194cbd8a47f4f46f3fb11497f749))
+* add redirect to unit test ([d223187](https://github.com/oaknational/Oak-Web-Application/commit/d2231877e73ebd5c3beff49bedcd8bf654170f04))
+* add redirects to canonical lesson page ([49b0ec5](https://github.com/oaknational/Oak-Web-Application/commit/49b0ec5c8dc0e0718b428b502140d79c741c36ce))
+* add unit listing queries to pages ([3feef83](https://github.com/oaknational/Oak-Web-Application/commit/3feef83d3dc91ecfeba185cfe3c49ca23aeb26fc))
+* fix redirect url ([aac1fb2](https://github.com/oaknational/Oak-Web-Application/commit/aac1fb253eb6a1dc3ca3709fc798d3b38000b6f8))
+* fix redirect url ([3e498e1](https://github.com/oaknational/Oak-Web-Application/commit/3e498e145012cbecc563966eb5efb355a9a0cb06))
+* handle preview ([47e7028](https://github.com/oaknational/Oak-Web-Application/commit/47e7028c81b71607daaa4fcde5d6a91bb6b31d6f))
+* merge main ([625eaa5](https://github.com/oaknational/Oak-Web-Application/commit/625eaa58d1923b041a9cf5fb45f428dc4049c52d))
+* merge main ([52ab5e9](https://github.com/oaknational/Oak-Web-Application/commit/52ab5e98e3d524c00ebb4a268d435c7a44fa5e79))
+* merge main ([cc5a00a](https://github.com/oaknational/Oak-Web-Application/commit/cc5a00a37628aaec285bb3a3ccd69b76e6c50d35))
+* merge main ([7cedb2e](https://github.com/oaknational/Oak-Web-Application/commit/7cedb2ec936a997f4e3ff6e1e3534b9277bb61f5))
+* merge main ([e789ca8](https://github.com/oaknational/Oak-Web-Application/commit/e789ca8d15ec10766f58b9d29781d08afa5af86c))
+* merge main ([db1d419](https://github.com/oaknational/Oak-Web-Application/commit/db1d41942e0bb769682a739fdb002c2f38b8fd9c))
+* redirect all lesson browse paths ([63c58ce](https://github.com/oaknational/Oak-Web-Application/commit/63c58ce4e6a8087e8fbc0fb0c173625ca462b95c))
+* redirect all lesson browse paths ([38785aa](https://github.com/oaknational/Oak-Web-Application/commit/38785aa48f040f430f1ce9bd196db616bb268608))
+* redirect all lesson browse paths tests ([cccf478](https://github.com/oaknational/Oak-Web-Application/commit/cccf47891307b8dcb83b306c7bc59fb00a88cd0c))
+* redirect all lesson canonical pages ([ddb2117](https://github.com/oaknational/Oak-Web-Application/commit/ddb211797483bd65a1ffb93601e5683a7b2c985f))
+* redirect type data ([69c7eee](https://github.com/oaknational/Oak-Web-Application/commit/69c7eeeafaf785e711327ba8613b822771a49740))
+* redirect type data ([bd5e835](https://github.com/oaknational/Oak-Web-Application/commit/bd5e835b3439a98ece8ed92c8a4c02fcdc43338a))
+* refactor redirect functions ([df566d3](https://github.com/oaknational/Oak-Web-Application/commit/df566d3f9ed68791882bc7754993f29a6bc13567))
+* uniform urls ([2bbbbcf](https://github.com/oaknational/Oak-Web-Application/commit/2bbbbcf65930bcdf7748ec4cfbb9f392a2af051d))
+
+## [1.807.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.807.1...v1.807.2) (2025-07-24)
+
+## [1.807.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.807.0...v1.807.1) (2025-07-24)
+
+
+### Bug Fixes
+
+* dont set region authorised to false if it is undefined ([73ca021](https://github.com/oaknational/Oak-Web-Application/commit/73ca02140253cd9ee8de5c8fa8537b31b7b903a2))
+* use a button element so the sign in link is tabbable ([73e9cb0](https://github.com/oaknational/Oak-Web-Application/commit/73e9cb02ac00e078d9308f9e570a55e22382cfe2))
+
 # [1.807.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.806.4...v1.807.0) (2025-07-23)
 
 
