@@ -114,7 +114,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
     } else if (showSignedInNotOnboarded) {
       return "onboarding";
     } else if (actionProps) {
-      if (actionProps.isActionGeorestricted && showGeoBlocked) {
+      if (showGeoBlocked) {
         return "georestricted";
       }
       return "action";

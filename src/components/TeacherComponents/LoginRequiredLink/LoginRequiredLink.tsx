@@ -22,7 +22,6 @@ type LinkState =
 type ActionProps = {
   href: string;
   name: string;
-  isActionGeorestricted: boolean;
   iconName?: OakIconName;
   isTrailingIcon?: boolean;
 };
@@ -83,7 +82,7 @@ const LoginRequiredLink = (props: LoginRequiredLinkProps) => {
     } else if (showSignedInNotOnboarded) {
       return "onboarding";
     } else if (actionProps) {
-      if (actionProps.isActionGeorestricted && showGeoBlocked) {
+      if (showGeoBlocked) {
         return "georestricted";
       }
       return "action";

@@ -79,7 +79,6 @@ export const LessonSeoHelper = ({
                     unitSlug,
                     programmeSlug,
                   }),
-                  isActionGeorestricted: true,
                 }}
               />
             }{" "}
@@ -112,7 +111,6 @@ export const LessonSeoHelper = ({
               unitSlug,
               programmeSlug,
             }),
-            isActionGeorestricted: true,
           }}
         />{" "}
         all teaching resources for free and adapt to suit your pupils' needs.
@@ -158,7 +156,6 @@ export const LessonSeoHelper = ({
 
                   lessonSlug,
                 }),
-                isActionGeorestricted: true,
               }}
             />
 
