@@ -1,7 +1,8 @@
+import { OakFlex, OakFlexProps } from "@oaknational/oak-components";
+
 import ButtonAsLink, {
   ButtonAsLinkProps,
 } from "@/components/SharedComponents/Button/ButtonAsLink";
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 
 /**
  * TabularNav is a 'nav' component which renders 'minimal' (text-link) link
@@ -17,12 +18,17 @@ const TabularNav = ({
   label,
   links,
   ...flexProps
-}: FlexProps & {
+}: OakFlexProps & {
   label: string;
   links: ButtonAsLinkProps[];
 }) => {
   return (
-    <Flex as="nav" aria-label={label} $pv={4} {...flexProps}>
+    <OakFlex
+      as="nav"
+      aria-label={label}
+      $pv={"inner-padding-ssx"}
+      {...flexProps}
+    >
       {links.map((link, i) => {
         return (
           <ButtonAsLink
@@ -35,7 +41,7 @@ const TabularNav = ({
           />
         );
       })}
-    </Flex>
+    </OakFlex>
   );
 };
 

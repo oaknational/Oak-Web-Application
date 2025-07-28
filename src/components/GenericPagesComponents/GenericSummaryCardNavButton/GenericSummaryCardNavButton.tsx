@@ -9,7 +9,6 @@ import {
 import useIsCurrent from "@/components/SharedComponents/useIsCurrent/useIsCurrent";
 import { HTMLAnchorProps } from "@/components/SharedComponents/Button/common";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 type LinkProps = {
   label: string;
@@ -54,7 +53,7 @@ export const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
         />
       </OakBox>
       {/* Mobile */}
-      <Flex $flexDirection={"row"} $display={["flex", "none"]}>
+      <OakFlex $flexDirection={"row"} $display={["flex", "none"]}>
         <ButtonAsLink
           htmlAnchorProps={htmlAnchorProps}
           isCurrent={isCurrent}
@@ -67,7 +66,7 @@ export const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
           href={href}
           $mr={[0, 36]}
         />
-      </Flex>
+      </OakFlex>
     </OakLI>
   );
 };

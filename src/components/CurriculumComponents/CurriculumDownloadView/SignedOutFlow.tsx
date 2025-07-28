@@ -7,6 +7,7 @@ import {
   OakP,
   OakPrimaryButton,
   OakUL,
+  OakFlexProps,
 } from "@oaknational/oak-components";
 import { FormEvent, useId, useState } from "react";
 import styled from "styled-components";
@@ -19,14 +20,11 @@ import { submitSchema } from "./schema";
 import { DownloadType, School, runSchema } from "./helper";
 import { CurriculumResourcesSelector } from "./CurriculumResourcesSelector";
 
-import flex, { FlexCssProps } from "@/styles/utils/flex";
 import spacing, { SpacingProps } from "@/styles/utils/spacing";
 import ResourcePageDetailsCompleted from "@/components/TeacherComponents/ResourcePageDetailsCompleted";
 
-const StyledForm = styled.form<FlexCssProps & SpacingProps>`
-  ${flex}
+const StyledForm = styled(OakFlex)<OakFlexProps & SpacingProps>`
   ${spacing}
-    display: flex;
 `;
 
 export type CurriculumDownloadViewData = {
@@ -111,7 +109,11 @@ export default function SignedOutFlow({
           <OakHeading tag="h3" $font={["heading-5"]}>
             Your details
           </OakHeading>
-          <StyledForm onSubmit={onSubmitLocal} $alignItems={"center"}>
+          <StyledForm
+            as={"form"}
+            onSubmit={onSubmitLocal}
+            $alignItems={"center"}
+          >
             <OakFlex $flexDirection={"column"}>
               {!isComplete && (
                 <OakFlex

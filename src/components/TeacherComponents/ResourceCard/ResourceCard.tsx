@@ -125,12 +125,12 @@ const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
         $background={isHovered ? "grey20" : "white"}
         $overflow="hidden"
       >
-        <Flex
+        <OakFlex
           $flexDirection="column"
           $justifyContent="center"
-          $ph={16}
-          $pv={useDownloadsExperiment ? 10 : 16}
-          $pr={48}
+          $ph={"inner-padding-m"}
+          $pv={useDownloadsExperiment ? "inner-padding-s" : "inner-padding-m"}
+          $pr={"inner-padding-xl4"}
           $width="100%"
         >
           <OakP
@@ -158,7 +158,7 @@ const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
               />
             )}
           </OakFlex>
-        </Flex>
+        </OakFlex>
       </Flex>
     </BoxWithFocusState>
   );

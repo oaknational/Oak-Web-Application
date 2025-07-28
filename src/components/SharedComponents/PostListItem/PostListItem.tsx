@@ -18,7 +18,6 @@ import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxB
 import { ResolveOakHrefProps } from "@/common-lib/urls";
 import formatDate from "@/utils/formatDate";
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 type PostListItemContentType = "blog-post" | "webinar";
 
@@ -103,12 +102,12 @@ const PostListItem: FC<PostListItemProps> = (props) => {
   const blogDate = formatDate(date);
 
   return (
-    <Flex
+    <OakFlex
       {...containerProps}
       $position={"relative"}
       $flexDirection={["column", "row"]}
       $alignItems={"center"}
-      $pa={0}
+      $pa={"inner-padding-none"}
     >
       {withImage && (
         <OakBox
@@ -174,7 +173,7 @@ const PostListItem: FC<PostListItemProps> = (props) => {
           <LineClamp lines={2}>{summary}</LineClamp>
         </OakP>
       </OakFlex>
-    </Flex>
+    </OakFlex>
   );
 };
 
