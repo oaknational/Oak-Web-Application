@@ -1,3 +1,10 @@
+## [1.811.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.811.0...v1.811.1) (2025-07-28)
+
+
+### Bug Fixes
+
+* only use auth token when required by lesson restrictions ([f9c5fd3](https://github.com/oaknational/Oak-Web-Application/commit/f9c5fd30074696b40d43a77bc60ebc143f35c56d))
+
 # [1.811.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.810.0...v1.811.0) (2025-07-25)
 
 
