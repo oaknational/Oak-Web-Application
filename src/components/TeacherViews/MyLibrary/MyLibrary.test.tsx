@@ -1,4 +1,5 @@
 import { screen } from "@testing-library/dom";
+import userEvent from "@testing-library/user-event";
 
 import MyLibrary from "./MyLibrary";
 
@@ -47,5 +48,21 @@ describe("MyLibrary", () => {
 
     const sideMenuItems = screen.getAllByRole("link", { name: /Subject/i });
     expect(sideMenuItems).toHaveLength(5);
+  });
+  it("calls isUnitSaved with correct arguments", async () => {
+    const mockIsUnitSaved = jest.fn().mockResolvedValue(true);
+    render(
+      <MyLibrary
+        collectionData={generateMockCollectionData(1)}
+        isLoading={false}
+        onSaveToggle={jest.fn()}
+        isUnitSaved={mockIsUnitSaved}
+        isUnitSaving={jest.fn().mockResolvedValue(false)}
+      />,
+    );
+    const saveButton = screen.getByRole("button", { name: /Save/i });
+    const user = userEvent.setup();
+    await user.click(saveButton);
+    expect(mockIsUnitSaved).toHaveBeenCalledWith("unit-1-programme-1");
   });
 });
