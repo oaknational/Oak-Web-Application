@@ -20,6 +20,7 @@ export const generateMockCollectionData = (count: number): CollectionData => {
         unitOrder: 1,
         yearOrder: 1,
         year: `Year ${index + 1}`,
+        yearSlug: `year-${index + 1}`,
         lessons: [
           {
             slug: `lesson-${index + 1}-1`,

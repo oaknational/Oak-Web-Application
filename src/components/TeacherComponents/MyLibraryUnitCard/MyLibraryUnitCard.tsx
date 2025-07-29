@@ -89,6 +89,7 @@ const UnitCardHeader = ({ ...props }: MyLibraryUnitCardProps) => {
             programmeSlug: props.programmeSlug,
             unitSlug: props.unitSlug,
           })}
+          onClick={props.trackUnitAccessed}
         >
           <OakHeading
             tag="h3"
@@ -200,12 +201,13 @@ const UnitCardContent = ({
 
 export type MyLibraryUnitCardProps = Omit<
   MyLibraryUnit,
-  "yearOrder" | "unitOrder"
+  "yearOrder" | "unitOrder" | "yearSlug" | "pathway" | "examboard"
 > & {
   programmeSlug: string;
   onSave: () => void;
   isSaved: boolean;
   isSaving: boolean;
+  trackUnitAccessed: () => void;
 };
 
 export default function MyLibraryUnitCard(props: MyLibraryUnitCardProps) {

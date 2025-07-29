@@ -12,10 +12,16 @@ import {
   getUnitProgrammeSlug,
   TrackingProgrammeData,
 } from "@/node-lib/educator-api/helpers/saveUnits/utils";
-import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import {
+  ExamBoardValueType,
+  KeyStageTitleValueType,
+  PathwayValueType,
+  TierNameValueType,
+} from "@/browser-lib/avo/Avo";
 import { resolveOakHref } from "@/common-lib/urls";
 import MyLibraryProgrammeCard from "@/components/TeacherComponents/MyLibraryProgrammeCard/MyLibraryProgrammeCard";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 
 export type CollectionData = Array<{
   subject: string;
@@ -46,7 +52,7 @@ type MyLibraryProps = {
 export default function MyLibrary(props: MyLibraryProps) {
   const { collectionData, isLoading, onSaveToggle, isUnitSaved, isUnitSaving } =
     props;
-
+  const { track } = useAnalytics();
   return (
     <OakMaxWidth
       $gap={["space-between-none", "space-between-l"]}
@@ -106,6 +112,27 @@ export default function MyLibrary(props: MyLibraryProps) {
                 savedUnits={collection.units.map((unit) => ({
                   ...unit,
                   programmeSlug: collection.programmeSlug,
+                  trackUnitAccessed: () =>
+                    track.unitAccessed({
+                      platform: "owa",
+                      product: "teacher lesson resources",
+                      engagementIntent: "refine",
+                      componentType: "unit_card",
+                      eventVersion: "2.0.0",
+                      analyticsUseCase: "Teacher",
+                      unitName: unit.unitTitle,
+                      unitSlug: unit.unitSlug,
+                      subjectTitle: collection.subject,
+                      subjectSlug: collection.subjectSlug,
+                      keyStageTitle:
+                        collection.keystage as KeyStageTitleValueType,
+                      keyStageSlug: collection.keystageSlug,
+                      yearGroupName: unit.year,
+                      yearGroupSlug: unit.yearSlug,
+                      tierName: unit.tier as TierNameValueType,
+                      examBoard: unit.examboard as ExamBoardValueType,
+                      pathway: unit.pathway as PathwayValueType,
+                    }),
                   onSave: () =>
                     onSaveToggle(
                       unit.unitSlug,
