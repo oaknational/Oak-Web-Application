@@ -39,6 +39,12 @@ import { betaLessonMediaClipsQuery } from "./queries/lessonBetaMediaClips/lesson
 import curriculumPhaseOptionsQuery from "./queries/curriculumPhaseOptions/curriculumPhaseOptions.query";
 import curriculumPhaseOptionsSchema from "./queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import curriculumSequenceSchema from "./queries/curriculumSequence/curriculumSequence.schema";
+import { canonicalLessonRedirectQuery } from "./queries/canonicalLessonRedirect/canonicalLessonRedirect.query";
+import { browseLessonRedirectQuery } from "./queries/browseLessonRedirect/browseLessonRedirect.query";
+import { browseUnitRedirectQuery } from "./queries/browseUnitRedirect/browseUnitRedirect.query";
+import { pupilUnitRedirectQuery } from "./queries/pupilUnitRedirect/pupilUnitRedirect.query";
+import { pupilCanonicalLessonRedirectQuery } from "./queries/pupilCanonicalLessonRedirect/pupilCanonicalLessonRedirect.query";
+import { pupilBrowseLessonRedirectQuery } from "./queries/pupilBrowseLessonRedirect/pupilBrowseLessonRedirect.query";
 
 export const keyStageSchema = z.object({
   slug: z.string(),
@@ -133,6 +139,12 @@ const curriculumApi2023 = {
   lessonShare: lessonShareQuery(sdk),
   lessonOverview: lessonOverviewQuery(sdk),
   pupilLessonQuery: pupilLessonQuery(sdk),
+  pupilCanonicalLessonRedirectQuery: pupilCanonicalLessonRedirectQuery(sdk),
+  pupilBrowseLessonRedirectQuery: pupilBrowseLessonRedirectQuery(sdk),
+  canonicalLessonRedirectQuery: canonicalLessonRedirectQuery(sdk),
+  browseLessonRedirectQuery: browseLessonRedirectQuery(sdk),
+  browseUnitRedirectQuery: browseUnitRedirectQuery(sdk),
+  pupilUnitRedirectQuery: pupilUnitRedirectQuery(sdk),
   pupilPreviewLessonQuery: pupilPreviewLessonQuery(sdk),
   pupilUnitListingQuery: pupilUnitListingQuery(sdk),
   pupilLessonListingQuery: pupilLessonListingQuery(sdk),
@@ -159,6 +171,7 @@ const curriculumApi2023 = {
   betaLessonMediaClipsQuery: betaLessonMediaClipsQuery(sdk),
   specialistLessonOverview: specialistLessonOverview(sdk),
   specialistLessonOverviewCanonical: specialistLessonOverviewCanonical(sdk),
+
   specialistSubjectListing: specialistSubjectListingQuery(sdk),
   specialistUnitListing: specialistUnitListingQuery(sdk),
   specialistProgrammeListing: specialistProgrammeListingQuery(sdk),

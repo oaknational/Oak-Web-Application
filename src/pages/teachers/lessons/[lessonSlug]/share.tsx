@@ -15,6 +15,8 @@ import getPageProps from "@/node-lib/getPageProps";
 import { LessonShare } from "@/components/TeacherViews/LessonShare/LessonShare.view";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonShareCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
+import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
+import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 
 export type LessonShareCanonicalPageProps = {
   curriculumData: LessonShareCanonical;
@@ -34,6 +36,7 @@ const LessonShareCanonicalPage: NextPage<LessonShareCanonicalPageProps> = ({
             "Share online lesson activities with your students, such as videos, worksheets and quizzes.",
         }),
         noIndex: true,
+        noFollow: true,
       }}
     >
       <LessonShare isCanonical={true} lesson={curriculumData} />
@@ -70,15 +73,24 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug } = context.params;
 
-      const curriculumData =
-        await curriculumApi2023.lessonShare<LessonShareCanonical>({
-          lessonSlug,
-        });
+      let curriculumData;
+      try {
+        curriculumData =
+          await curriculumApi2023.lessonShare<LessonShareCanonical>({
+            lessonSlug,
+          });
+      } catch (innerError) {
+        allowNotFoundError(innerError);
+      }
 
       if (!curriculumData) {
-        return {
-          notFound: true,
-        };
+        const redirect = await getRedirect({
+          isCanonical: true,
+          context: context.params,
+          isTeacher: true,
+          isLesson: true,
+        });
+        return redirect ? { redirect } : { notFound: true };
       }
 
       const results: GetStaticPropsResult<LessonShareCanonicalPageProps> = {

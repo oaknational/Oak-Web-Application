@@ -45,11 +45,6 @@ const AppHeader: FC<HeaderProps> = () => {
   const { isSignedIn } = useUser();
   const router = useRouter();
 
-  const returnToParams = new URLSearchParams({
-    returnTo: router.asPath,
-  }).toString();
-  const onboardingRedirectUrl = `${resolveOakHref({ page: "onboarding" })}?${returnToParams}`;
-
   return (
     <header>
       <StyledHeader
@@ -95,7 +90,10 @@ const AppHeader: FC<HeaderProps> = () => {
             <TeacherAccountButton
               selectedArea={selectedArea}
               isSignedIn={isSignedIn ? true : false}
-              onboardingRedirectUrl={onboardingRedirectUrl}
+              onboardingRedirectUrl={resolveOakHref({
+                page: "onboarding",
+                query: { returnTo: router.asPath },
+              })}
             />
             <OwaLink
               page={"teachers-home-page"}

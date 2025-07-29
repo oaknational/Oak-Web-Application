@@ -1,5 +1,8 @@
 import { GetStaticPropsContext, GetStaticPropsResult, PreviewData } from "next";
 
+import { getRedirect } from "../../shared/lesson-pages/getRedirects";
+import { allowNotFoundError } from "../../shared/lesson-pages/allowNotFoundError";
+
 import { resolveOakHref } from "@/common-lib/urls";
 import {
   isLessonReviewSection,
@@ -48,32 +51,57 @@ export const getProps = ({
         notFound: true,
       };
     }
-
-    const res = await (() => {
-      switch (page) {
-        case "preview":
-          return curriculumApi2023.pupilPreviewLessonQuery({
-            lessonSlug,
-          });
-        case "canonical":
-          return curriculumApi2023.pupilLessonQuery({
-            lessonSlug,
-          });
-        case "browse":
-          return curriculumApi2023.pupilLessonQuery({
-            programmeSlug,
-            lessonSlug,
-            unitSlug,
-          });
-        default:
-          throw new Error(`Invalid page type: ${page}`);
-      }
-    })();
-
+    let res;
+    try {
+      res = await (() => {
+        switch (page) {
+          case "preview":
+            return curriculumApi2023.pupilPreviewLessonQuery({
+              lessonSlug,
+            });
+          case "canonical":
+            return curriculumApi2023.pupilLessonQuery({
+              lessonSlug,
+            });
+          case "browse":
+            return curriculumApi2023.pupilLessonQuery({
+              programmeSlug,
+              lessonSlug,
+              unitSlug,
+            });
+          default:
+            throw new Error(`Invalid page type: ${page}`);
+        }
+      })();
+    } catch (innerError) {
+      allowNotFoundError(innerError);
+    }
     if (!res) {
-      return {
-        notFound: true,
-      };
+      const redirect = await (async () => {
+        switch (page) {
+          case "canonical": {
+            return await getRedirect({
+              isCanonical: true,
+              context: context.params!,
+              isTeacher: false,
+              isLesson: true,
+            });
+          }
+          case "browse": {
+            return await getRedirect({
+              isCanonical: false,
+              context: context.params!,
+              isTeacher: false,
+              isLesson: true,
+            });
+          }
+          case "preview":
+            return undefined; // No redirects for preview page
+          default:
+            throw new Error(`Invalid page type: ${page}`);
+        }
+      })();
+      return redirect ? { redirect } : { notFound: true };
     }
 
     const { browseData, content } = res;

@@ -34,6 +34,8 @@ const BetaLessonMediaPage: NextPage<CanonicalLessonMediaClipsPageProps> = ({
           description: "View beta extra video and audio for the lesson",
           canonicalURL: `${getBrowserConfig("seoAppUrl")}/teachers/beta/lessons/${lessonSlug}`,
         }),
+        noIndex: true,
+        noFollow: true,
       }}
     >
       <LessonMedia isCanonical={true} lesson={curriculumData} />
