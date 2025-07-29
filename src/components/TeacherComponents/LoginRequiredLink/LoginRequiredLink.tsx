@@ -119,7 +119,7 @@ const LoginRequiredLink = (props: LoginRequiredLinkProps) => {
         <SignUpButton
           forceRedirectUrl={`/onboarding?returnTo=${router.asPath}`}
         >
-          <LinkVariant {...overrideProps}>
+          <LinkVariant {...overrideProps} href={"#"}>
             {signUpProps?.name ?? "Sign up"}
           </LinkVariant>
         </SignUpButton>
