@@ -89,7 +89,7 @@ describe("common-lib/error-reporter", () => {
     it("should report the error to both Sentry and Bugsnag", async () => {
       await reportError(testError);
 
-      if (process.env.NEXT_SENTRY_ENABLED === "true") {
+      if (process.env.NEXT_PUBLIC_SENTRY_ENABLED === "true") {
         expect(Sentry.captureException).toHaveBeenCalledWith(testError);
       } else {
         expect(mockNotify).toHaveBeenCalledWith(testError, expect.anything());
@@ -98,7 +98,7 @@ describe("common-lib/error-reporter", () => {
 
     it("adds relevant fields to bugsnag and Sentry events", async () => {
       await reportError(testError, testData);
-      if (process.env.NEXT_SENTRY_ENABLED === "true") {
+      if (process.env.NEXT_PUBLIC_SENTRY_ENABLED === "true") {
         expect(mockSetTag).toHaveBeenCalledWith("context", testContext);
         expect(mockSetLevel).toHaveBeenCalledWith("error");
         expect(mockSetFingerprint).toHaveBeenCalledWith([
@@ -115,7 +115,7 @@ describe("common-lib/error-reporter", () => {
       const aggregatedMeta = { ...parentMetaFields, ...childMetaFields };
       await reportError(testError, testData);
 
-      if (process.env.NEXT_SENTRY_ENABLED === "true") {
+      if (process.env.NEXT_PUBLIC_SENTRY_ENABLED === "true") {
         Object.entries(aggregatedMeta).forEach(([key, value]) => {
           expect(mockSetExtra).toHaveBeenCalledWith(key, value);
         });
@@ -124,7 +124,7 @@ describe("common-lib/error-reporter", () => {
       }
     });
 
-    if (process.env.NEXT_SENTRY_ENABLED !== "true") {
+    if (process.env.NEXT_PUBLIC_SENTRY_ENABLED !== "true") {
       it("logs if bugsnag.notify throws", async () => {
         mockNotify.mockImplementationOnce(() => Promise.reject("bad thing"));
 
@@ -145,7 +145,7 @@ describe("common-lib/error-reporter", () => {
       const oakError = new OakError({ code: "misc/unknown", originalError });
       await reportError(oakError);
 
-      if (process.env.NEXT_SENTRY_ENABLED === "true") {
+      if (process.env.NEXT_PUBLIC_SENTRY_ENABLED === "true") {
         expect(mockSetExtra).toHaveBeenCalledWith(
           "originalError",
           originalError,
@@ -163,7 +163,7 @@ describe("common-lib/error-reporter", () => {
       error.hasBeenReported = true;
 
       await reportError(error);
-      if (process.env.NEXT_SENTRY_ENABLED === "true") {
+      if (process.env.NEXT_PUBLIC_SENTRY_ENABLED === "true") {
         expect(Sentry.captureException).not.toHaveBeenCalled();
       } else {
         expect(mockNotify).not.toHaveBeenCalled();
@@ -201,7 +201,7 @@ describe("common-lib/error-reporter", () => {
 
       await reportError(error);
 
-      if (process.env.NEXT_SENTRY_ENABLED === "true") {
+      if (process.env.NEXT_PUBLIC_SENTRY_ENABLED === "true") {
         expect(Sentry.captureException).toHaveBeenCalled();
       } else {
         expect(mockNotify).toHaveBeenCalled();
@@ -222,7 +222,7 @@ describe("common-lib/error-reporter", () => {
       await reportError(error);
       await reportError(error);
 
-      if (process.env.NEXT_SENTRY_ENABLED === "true") {
+      if (process.env.NEXT_PUBLIC_SENTRY_ENABLED === "true") {
         expect(Sentry.captureException).toHaveBeenCalledTimes(1);
       } else {
         expect(mockNotify).toHaveBeenCalledTimes(1);
@@ -243,7 +243,7 @@ describe("common-lib/error-reporter", () => {
     it("should not report the error", async () => {
       await reportError(testError);
 
-      if (process.env.NEXT_SENTRY_ENABLED === "true") {
+      if (process.env.NEXT_PUBLIC_SENTRY_ENABLED === "true") {
         expect(Sentry.captureException).not.toHaveBeenCalled();
       } else {
         expect(mockNotify).not.toHaveBeenCalled();

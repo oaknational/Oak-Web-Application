@@ -419,8 +419,8 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     description: "The DSN for the Sentry project",
   },
   sentryEnabled: {
-    value: process.env.NEXT_SENTRY_ENABLED,
-    envName: "NEXT_SENTRY_ENABLED",
+    value: process.env.NEXT_PUBLIC_SENTRY_ENABLED,
+    envName: "NEXT_PUBLIC_SENTRY_ENABLED",
     required: true,
     availableInBrowser: true,
     default: "false",
