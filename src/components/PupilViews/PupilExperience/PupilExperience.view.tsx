@@ -37,6 +37,7 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
 import { ContentGuidanceWarningValueType } from "@/browser-lib/avo/Avo";
+import { PupilRedirectedOverlay } from "@/components/PupilComponents/PupilRedirectedOverlay/PupilRedirectedOverlay";
 
 export const pickAvailableSectionsForLesson = (lessonContent: LessonContent) =>
   allLessonReviewSections.filter((section) => {
@@ -257,6 +258,7 @@ const PupilExperienceLayout = ({
       }}
     >
       <OakThemeProvider theme={oakDefaultTheme}>
+        <PupilRedirectedOverlay />
         <CookieConsentStyles />
         <LessonEngineProvider
           initialLessonReviewSections={availableSections}

@@ -1,5 +1,6 @@
 import { act } from "@testing-library/react";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
+import mockRouter from "next-router-mock";
 
 import {
   getDedupedPupilLessonOutcome,
@@ -389,5 +390,30 @@ describe("lessonOverview.view", () => {
     );
 
     expect(quizContent[0]).toBeInTheDocument();
+  });
+});
+describe("redirected overlay", () => {
+  beforeEach(() => {
+    mockRouter.setCurrentUrl("/?redirected=true");
+  });
+  it("Should show redirect modal when redirected query param is present", () => {
+    mockFeatureFlagEnabled.mockReturnValue(false);
+    setUseUserReturn(mockLoggedOut);
+    mockRouter.setCurrentUrl("/?redirected=true");
+    const { getByTestId } = render(
+      <LessonOverview
+        lesson={{
+          ...lessonOverviewFixture({
+            lessonReleaseDate: undefined,
+            isLegacy: false,
+          }),
+          isSpecialist: false,
+          isCanonical: false,
+          hasMediaClips: true,
+        }}
+        isBeta={false}
+      />,
+    );
+    expect(getByTestId("teacher-redirected-overlay-btn")).toBeInTheDocument();
   });
 });

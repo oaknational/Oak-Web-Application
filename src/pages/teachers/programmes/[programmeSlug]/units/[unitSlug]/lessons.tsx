@@ -52,6 +52,7 @@ import { useSaveUnits } from "@/node-lib/educator-api/helpers/saveUnits/useSaveU
 import SavingSignedOutModal from "@/components/TeacherComponents/SavingSignedOutModal";
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
+import { TeacherRedirectedOverlay } from "@/components/TeacherComponents/TeacherRedirectedOverlay/TeacherRedirectedOverlay";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -389,6 +390,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
             }}
           />
         )}
+        <TeacherRedirectedOverlay />
       </OakThemeProvider>
     </AppLayout>
   );

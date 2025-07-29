@@ -243,7 +243,7 @@ describe("Lesson Overview Canonical Page", () => {
           }
         ).redirect,
       ).toEqual({
-        destination: "lessons/new-lesson-slug",
+        destination: "lessons/new-lesson-slug?redirected=true",
         statusCode: 301, // true = 308, false = 307
         basePath: false,
       });
