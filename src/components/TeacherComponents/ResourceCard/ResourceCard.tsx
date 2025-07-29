@@ -2,7 +2,7 @@ import { FC } from "react";
 import {
   OakIconName,
   OakTagFunctional,
-  OakDownloadCheckBox,
+  OakDownloadCard,
 } from "@oaknational/oak-components";
 
 import type { DownloadResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
@@ -11,7 +11,7 @@ import { LessonShareResourceData } from "@/node-lib/curriculum-api-2023/queries/
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import Box from "@/components/SharedComponents/Box";
 
-export type ResourceCardProps = CheckboxProps & {
+export type ResourceCardProps = Omit<CheckboxProps, "checked"> & {
   label: string;
   resourceType: DownloadResourceType | LessonShareResourceData["type"];
   subtitle: string;
@@ -19,6 +19,8 @@ export type ResourceCardProps = CheckboxProps & {
   subjectIcon?: string;
   isEditable?: boolean;
   useDownloadsExperiment?: boolean;
+  asRadio?: boolean;
+  checked?: boolean;
 };
 
 const RESOURCE_TYPE_ICON_MAP: Record<
@@ -42,7 +44,7 @@ const RESOURCE_TYPE_ICON_MAP: Record<
 
 const ResourceCard: FC<ResourceCardProps> = (props) => {
   const {
-    checked = false,
+    checked,
     onChange,
     id,
     name,
@@ -53,6 +55,8 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
     resourceType,
     subjectIcon,
     isEditable,
+    disabled,
+    asRadio = false,
   } = props;
 
   const isCurriculumIcon = resourceType === "curriculum-pdf";
@@ -63,15 +67,17 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
 
   return (
     <Box $width={320}>
-      <OakDownloadCheckBox
+      <OakDownloadCard
         id={id}
         data-testid="resourceCard"
         value={id}
         name={name}
         titleSlot={label}
         checked={checked}
+        disabled={disabled}
         onChange={onChange}
         onBlur={onBlur}
+        asRadio={asRadio}
         formatSlot={
           <>
             {subtitle}

@@ -85,6 +85,7 @@ const LessonShareCardGroup: FC<LessonShareCardGroupProps> = (props) => {
                       resource.type,
                     );
                   }}
+                  disabled={true}
                   checked={fieldValue.includes(resource.type)}
                   onBlur={onBlur}
                   hasError={props.hasError}

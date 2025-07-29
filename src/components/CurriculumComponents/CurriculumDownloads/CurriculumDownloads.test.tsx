@@ -52,7 +52,7 @@ beforeEach(() => {
   localStorage.clear();
 });
 
-describe("Component - Curriculum Header", () => {
+describe("CurriculumDownloads", () => {
   const renderComponent = () => {
     const defaultProps = {
       category: testCategory as DownloadCategory,
@@ -76,7 +76,6 @@ describe("Component - Curriculum Header", () => {
             category={testCategory}
             downloads={downloads}
           />
-          ;
           <button
             onClick={() => downloadsRef.current?.clearSelection()}
             data-testid="clearButton"

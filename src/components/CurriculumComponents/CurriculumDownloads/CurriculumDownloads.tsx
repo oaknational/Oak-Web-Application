@@ -10,6 +10,7 @@ import {
   OakP,
   OakBox,
   OakIcon,
+  OakRadioGroup,
 } from "@oaknational/oak-components";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -272,39 +273,47 @@ function CurriculumDownloads(
                 >
                   {form.errors?.resources?.message}
                 </FieldError>
-                <OakFlex
-                  $flexWrap={"wrap"}
-                  data-testid="cardsContainer"
-                  $gap={"all-spacing-4"}
-                  $mb={"space-between-m"}
+
+                <OakRadioGroup
+                  name="downloads"
+                  value={selectedUrl}
+                  onChange={(e) => {
+                    const url = e.target.value;
+                    if (url === "") {
+                      form.setValue("resources", []);
+                    } else {
+                      setSelectedUrl(url);
+                      form.setValue("resources", [url]);
+                      if (form.errors.resources) {
+                        form.errors.resources = undefined;
+                        form.trigger();
+                      }
+                    }
+                  }}
                 >
-                  {downloads.map((download) => (
-                    <ResourceCard
-                      key={download.label}
-                      id={download.url}
-                      name={download.label}
-                      label={download.label}
-                      subtitle={"PDF"}
-                      resourceType="curriculum-pdf"
-                      onChange={() => {
-                        if (download.url === "") {
-                          form.setValue("resources", []);
-                        } else {
-                          setSelectedUrl(download.url);
-                          form.setValue("resources", [download.url]);
-                          if (form.errors.resources) {
-                            form.errors.resources = undefined;
-                            form.trigger();
-                          }
-                        }
-                      }}
-                      checked={selectedUrl === download.url}
-                      onBlur={() => {}}
-                      hasError={form.errors?.resources ? true : false}
-                      subjectIcon={download.icon}
-                    />
-                  ))}
-                </OakFlex>
+                  <OakFlex
+                    $flexWrap={"wrap"}
+                    data-testid="cardsContainer"
+                    $gap={"all-spacing-4"}
+                    $mb={"space-between-m"}
+                  >
+                    {downloads.map((download) => (
+                      <ResourceCard
+                        key={download.label}
+                        id={download.url}
+                        name={download.label}
+                        label={download.label}
+                        subtitle={"PDF"}
+                        resourceType="curriculum-pdf"
+                        onBlur={() => {}}
+                        hasError={form.errors?.resources ? true : false}
+                        subjectIcon={download.icon}
+                        onChange={() => {}}
+                        asRadio={true}
+                      />
+                    ))}
+                  </OakFlex>
+                </OakRadioGroup>
               </OakGridArea>
               <OakGridArea $colSpan={[12, 12, 5]}>
                 <TermsAgreementForm
