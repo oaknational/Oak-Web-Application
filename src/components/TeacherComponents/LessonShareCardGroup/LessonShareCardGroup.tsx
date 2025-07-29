@@ -77,18 +77,17 @@ const LessonShareCardGroup: FC<LessonShareCardGroupProps> = (props) => {
                       : resource.metadata! // this cannot be null here
                   }
                   resourceType={resource.type}
-                  onChange={(e) =>
+                  onChange={(e) => {
                     checkboxOnChangeHandler(
                       e,
                       onChange,
                       fieldValue,
                       resource.type,
-                    )
-                  }
+                    );
+                  }}
                   checked={fieldValue.includes(resource.type)}
                   onBlur={onBlur}
                   hasError={props.hasError}
-                  hideCheckbox={props.hideCheckboxes}
                 />
               );
             }}

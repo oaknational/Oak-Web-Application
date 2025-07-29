@@ -59,9 +59,7 @@ export function CurriculumResourcesSelector({
                 subtitle={download.subTitle ?? ""}
                 resourceType="curriculum-pdf"
                 onChange={() => {}}
-                checked={false}
-                onBlur={() => {}}
-                useRadio={true}
+                checked={true}
                 subjectIcon={download.icon}
               />
             );

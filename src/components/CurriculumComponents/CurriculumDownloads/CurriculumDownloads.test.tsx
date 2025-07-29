@@ -97,8 +97,8 @@ describe("Component - Curriculum Header", () => {
   });
 
   test("renders download cards", async () => {
-    const { findAllByLabelText } = renderComponent();
-    const cards = await findAllByLabelText(frenchResource.label);
+    const { findAllByText } = renderComponent();
+    const cards = await findAllByText(frenchResource.label);
     expect(cards).toHaveLength(1);
   });
 
