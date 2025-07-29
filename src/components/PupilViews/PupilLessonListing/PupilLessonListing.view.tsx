@@ -18,6 +18,7 @@ import { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
+import { PupilRedirectedOverlay } from "@/components/PupilComponents/PupilRedirectedOverlay/PupilRedirectedOverlay";
 
 export type PupilLessonListingViewProps = {
   unitData: LessonListingBrowseData[number]["unitData"];
@@ -154,6 +155,7 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
               })}
             </OakPupilJourneyList>
           </OakBox>
+          <PupilRedirectedOverlay />
         </OakPupilJourneyLayout>
       </AppLayout>
     </OakThemeProvider>
