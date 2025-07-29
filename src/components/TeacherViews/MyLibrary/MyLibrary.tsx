@@ -133,6 +133,29 @@ export default function MyLibrary(props: MyLibraryProps) {
                       examBoard: unit.examboard as ExamBoardValueType,
                       pathway: unit.pathway as PathwayValueType,
                     }),
+                  trackLessonAccessed: (lessonSlug: string) =>
+                    track.lessonAccessed({
+                      platform: "owa",
+                      product: "teacher lesson resources",
+                      engagementIntent: "refine",
+                      componentType: "lesson_card",
+                      eventVersion: "2.0.0",
+                      analyticsUseCase: "Teacher",
+                      unitName: unit.unitTitle,
+                      unitSlug: unit.unitSlug,
+                      lessonName: lessonSlug,
+                      keyStageTitle:
+                        collection.keystage as KeyStageTitleValueType,
+                      keyStageSlug: collection.keystageSlug,
+                      yearGroupName: unit.year,
+                      yearGroupSlug: unit.yearSlug,
+                      tierName: unit.tier as TierNameValueType,
+                      examBoard: unit.examboard as ExamBoardValueType,
+                      pathway: unit.pathway as PathwayValueType,
+                      lessonSlug,
+                      lessonReleaseCohort: "2023-2026",
+                      lessonReleaseDate: "", // TODO: do we need this? we don't have it easily accessible
+                    }),
                   onSave: () =>
                     onSaveToggle(
                       unit.unitSlug,

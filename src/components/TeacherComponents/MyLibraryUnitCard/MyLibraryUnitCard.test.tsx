@@ -28,6 +28,7 @@ const generateLessons = (
   });
 };
 const mockTrackUnitAccessed = jest.fn();
+const mockTrackLessonAccessed = jest.fn();
 const completeUnitLessons = generateLessons(5, "published");
 const mockUnit = {
   index: 1,
@@ -42,6 +43,7 @@ const mockUnit = {
   isSaved: false,
   isSaving: false,
   trackUnitAccessed: mockTrackUnitAccessed,
+  trackLessonAccessed: mockTrackLessonAccessed,
 };
 
 // Mock secondary link so it doesn't attempt to navigate on click
@@ -125,7 +127,7 @@ describe("MyLibraryUnitCard", () => {
     const styles = getComputedStyle(lesson0);
     expect(styles.color).toBe("rgb(128, 128, 128)");
   });
-  it("calls trackUnitAccessed when a unitis clicked", async () => {
+  it("calls trackUnitAccessed when a unit is clicked", async () => {
     render(
       <MyLibraryUnitCard {...mockUnit} lessons={completeUnitLessons} isSaved />,
     );
@@ -138,5 +140,14 @@ describe("MyLibraryUnitCard", () => {
     const user = userEvent.setup();
     await user.click(unitLink);
     expect(mockTrackUnitAccessed).toHaveBeenCalled();
+  });
+  it("calls trackLessonAccessed when a lesson is clicked", async () => {
+    render(
+      <MyLibraryUnitCard {...mockUnit} lessons={completeUnitLessons} isSaved />,
+    );
+    const lessonLink = screen.getByText("Lesson 0");
+    const user = userEvent.setup();
+    await user.click(lessonLink);
+    expect(mockTrackLessonAccessed).toHaveBeenCalledWith("lesson-0-published");
   });
 });

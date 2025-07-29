@@ -26,6 +26,8 @@ const mockUnits = [
     onSave: jest.fn(),
     isSaved: true,
     isSaving: false,
+    trackUnitAccessed: jest.fn(),
+    trackLessonAccessed: jest.fn(),
   },
   {
     unitTitle: "Poetry Analysis",
@@ -38,6 +40,8 @@ const mockUnits = [
     onSave: jest.fn(),
     isSaved: false,
     isSaving: false,
+    trackUnitAccessed: jest.fn(),
+    trackLessonAccessed: jest.fn(),
   },
 ];
 

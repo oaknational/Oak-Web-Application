@@ -9,11 +9,13 @@ import { generateMockCollectionData } from "@/fixtures/teachers/myLibrary/collec
 const render = renderWithProviders();
 
 const mockTrackUnitAccessed = jest.fn();
+const mockTrackLessonAccessed = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: jest.fn().mockReturnValue({
     track: {
       unitAccessed: (...args: []) => mockTrackUnitAccessed(...args),
+      lessonAccessed: (...args: []) => mockTrackLessonAccessed(...args),
     },
   }),
 }));
@@ -109,7 +111,7 @@ describe("MyLibrary", () => {
         componentType: "unit_card",
         engagementIntent: "refine",
         eventVersion: "2.0.0",
-        examBoard: undefined,
+        examBoard: "AQA",
         keyStageSlug: "ks4",
         keyStageTitle: "KS4",
         pathway: undefined,
@@ -117,12 +119,48 @@ describe("MyLibrary", () => {
         product: "teacher lesson resources",
         subjectSlug: "subject-1",
         subjectTitle: "Subject 1",
-        tierName: undefined,
+        tierName: "Foundation",
         unitName: "Unit 1: Topic",
         unitSlug: "unit-1",
         yearGroupName: "Year 1",
         yearGroupSlug: "year-1",
       }),
     );
+  });
+  it("tracks lesson accessed with the correct arguments", async () => {
+    render(
+      <MyLibrary
+        collectionData={generateMockCollectionData(1)}
+        isLoading={false}
+        onSaveToggle={jest.fn()}
+        isUnitSaved={() => false}
+        isUnitSaving={() => false}
+      />,
+    );
+
+    const lessonLink = screen.getByText("Lesson 1 - Part 1");
+    const user = userEvent.setup();
+    await user.click(lessonLink);
+    expect(mockTrackLessonAccessed).toHaveBeenCalledWith({
+      analyticsUseCase: "Teacher",
+      componentType: "lesson_card",
+      engagementIntent: "refine",
+      eventVersion: "2.0.0",
+      examBoard: "AQA",
+      keyStageSlug: "ks4",
+      keyStageTitle: "KS4",
+      lessonName: "lesson-1-1",
+      lessonReleaseCohort: "2023-2026",
+      lessonReleaseDate: "",
+      lessonSlug: "lesson-1-1",
+      pathway: undefined,
+      platform: "owa",
+      product: "teacher lesson resources",
+      tierName: "Foundation",
+      unitName: "Unit 1: Topic",
+      unitSlug: "unit-1",
+      yearGroupName: "Year 1",
+      yearGroupSlug: "year-1",
+    });
   });
 });

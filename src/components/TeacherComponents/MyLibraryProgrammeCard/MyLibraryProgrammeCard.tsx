@@ -117,6 +117,7 @@ export default function MyLibraryProgrammeCard(
               isSaved={unit.isSaved}
               isSaving={unit.isSaving}
               trackUnitAccessed={unit.trackUnitAccessed}
+              trackLessonAccessed={unit.trackLessonAccessed}
             />
           </OakLI>
         ))}
