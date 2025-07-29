@@ -6,20 +6,11 @@ import {
   OakSecondaryLink,
 } from "@oaknational/oak-components";
 import { useRouter } from "next/router";
-import { useMemo } from "react";
 
 import { resolveOakHref } from "@/common-lib/urls";
-import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
+import { useLoginRequiredState } from "@/hooks/useLoginRequiredState";
 
-type LinkState =
-  | "loading"
-  | "action"
-  | "onboarding"
-  | "signup"
-  | "georestricted"
-  | "null";
-
-type ActionProps = {
+export type ActionProps = {
   href: string;
   name: string;
   iconName?: OakIconName;
@@ -65,39 +56,12 @@ const LoginRequiredLink = (props: LoginRequiredLinkProps) => {
     ...overrideProps
   } = props;
   const router = useRouter();
-  const {
-    showSignedInNotOnboarded,
-    showSignedOutGeoRestricted,
-    showSignedOutLoginRequired,
-    showGeoBlocked,
-    isLoaded,
-  } = useCopyrightRequirements({ loginRequired, geoRestricted });
 
-  const contentRestricted = loginRequired || geoRestricted;
-  const linkState = useMemo((): LinkState => {
-    if (contentRestricted && !isLoaded) {
-      return "loading";
-    } else if (showSignedOutGeoRestricted || showSignedOutLoginRequired) {
-      return "signup";
-    } else if (showSignedInNotOnboarded) {
-      return "onboarding";
-    } else if (actionProps) {
-      if (showGeoBlocked) {
-        return "georestricted";
-      }
-      return "action";
-    } else {
-      return "null";
-    }
-  }, [
-    contentRestricted,
-    isLoaded,
-    showSignedOutGeoRestricted,
-    showSignedOutLoginRequired,
-    showSignedInNotOnboarded,
-    actionProps,
-    showGeoBlocked,
-  ]);
+  const { state: linkState } = useLoginRequiredState({
+    geoRestricted,
+    loginRequired,
+    hasActionProps: !!actionProps,
+  });
 
   const LinkVariant = getLinkVariant(variant);
 
