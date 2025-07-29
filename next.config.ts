@@ -250,7 +250,7 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
           overwrite: true,
         };
 
-        if (process.env.SENTRY_ENABLED === "true") {
+        if (process.env.NEXT_SENTRY_ENABLED === "true") {
           // Upload production sourcemaps to Sentry
           config.plugins?.push(
             sentryWebpackPlugin({
@@ -394,7 +394,7 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
   return withBundleAnalyzer(nextConfig);
 };
 
-if (process.env.SENTRY_ENABLED === "true") {
+if (process.env.NEXT_SENTRY_ENABLED === "true") {
   module.exports = withSentryConfig(module.exports, {
     org: process.env.NEXT_PUBLIC_SENTRY_ORGANISATION_IDENTIFIER,
     project: process.env.NEXT_PUBLIC_SENTRY_PROJECT_IDENTIFIER,

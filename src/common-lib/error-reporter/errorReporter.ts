@@ -8,6 +8,7 @@ import bugsnagNotify from "./bugsnagNotify";
 
 import { consentClient } from "@/browser-lib/cookie-consent/consentClient";
 import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
 export type ErrorData = Record<string, unknown> & {
   severity?: Event["severity"];
@@ -111,7 +112,7 @@ const errorReporter = (
       metaFields.originalError = originalError;
       metaFields.oakErrorMeta = oakErrorMeta;
 
-      if (process.env.SENTRY_ENABLED === "true") {
+      if (getBrowserConfig("sentryEnabled") === "true") {
         Sentry.withScope((scope) => {
           scope.setTag("context", context);
 
