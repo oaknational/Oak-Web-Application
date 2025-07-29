@@ -1,3 +1,10 @@
+# [1.812.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.811.3...v1.812.0) (2025-07-29)
+
+
+### Features
+
+* attach www domain directly and remove lb" ([54e377f](https://github.com/oaknational/Oak-Web-Application/commit/54e377fbaeb214a3b03bb4007a396c9c5ed123e3))
+
 ## [1.811.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.811.2...v1.811.3) (2025-07-29)
 
 
