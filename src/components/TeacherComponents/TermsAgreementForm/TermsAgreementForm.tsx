@@ -115,6 +115,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                 )}
                 <OakJauntyAngleLabel
                   label={"Email (optional)"}
+                  as="label"
                   $color={
                     form.errors?.email || emailHasFocus ? "white" : "black"
                   }

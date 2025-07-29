@@ -74,6 +74,7 @@ const ResourcePageSearchComboBox = <T extends School>(
           label={props.label + (props.required ? " (required)" : "")}
           $color={state.isFocused || hasError ? "white" : "black"}
           htmlFor={id}
+          as="label"
           id={labelId}
           $font={"heading-7"}
           $background={labelBackground}

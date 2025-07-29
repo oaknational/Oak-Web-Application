@@ -50,7 +50,8 @@ export const OakInputWithLabel = ({
       <OakJauntyAngleLabel
         label={label + (required ? " (required)" : "")}
         $color={!!error || hasFocus ? "white" : "black"}
-        htmlFor={"label"}
+        htmlFor={id}
+        as="label"
         id={label + "-label"}
         $font={"heading-7"}
         $background={error ? "red" : hasFocus ? "blue" : "lemon"}

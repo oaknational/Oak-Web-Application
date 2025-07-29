@@ -85,6 +85,7 @@ const Autocomplete = (props: AutocompleteProps) => {
           label={props.inputProps.label}
           $color={state.isFocused || props.inputProps.error ? "white" : "black"}
           htmlFor={inputProps.id}
+          as="label"
           id={"autocomplete-label"}
           $font={"heading-7"}
           $background={
