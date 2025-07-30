@@ -4,6 +4,7 @@ import {
   formatSubjectName,
   getPhase,
 } from "../helpers/seoTextHelpers/seoText.helpers";
+import LoginRequiredLink from "../LoginRequiredLink/LoginRequiredLink";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import {
@@ -26,6 +27,8 @@ export const LessonSeoHelper = ({
   programmeSlug,
   unitSlug,
   disablePupilLink,
+  geoRestricted,
+  loginRequired,
 }: {
   year: string;
   subject: string;
@@ -39,6 +42,8 @@ export const LessonSeoHelper = ({
   programmeSlug: string;
   unitSlug: string;
   disablePupilLink?: boolean;
+  loginRequired: boolean;
+  geoRestricted: boolean;
 }) => {
   const linkSubject = parentSubject
     ? convertSubjectToSlug(parentSubject)
@@ -59,17 +64,24 @@ export const LessonSeoHelper = ({
           <br />
           <OakP $font={["body-2", "body-1"]} $textAlign="left">
             {`To help you plan your ${year.toLowerCase()} ${formatSubjectName(subject)} lesson on: ${lesson},`}{" "}
-            <OakLink
-              href={resolveOakHref({
-                page: "lesson-downloads",
-                lessonSlug,
-                unitSlug,
-                programmeSlug,
-                downloads: "downloads",
-              })}
-            >
-              download
-            </OakLink>{" "}
+            {
+              <LoginRequiredLink
+                geoRestricted={geoRestricted}
+                loginRequired={loginRequired}
+                signUpProps={{ name: "download" }}
+                onboardingProps={{ name: "download" }}
+                actionProps={{
+                  name: "download",
+                  href: resolveOakHref({
+                    page: "lesson-downloads",
+                    downloads: "downloads",
+                    lessonSlug,
+                    unitSlug,
+                    programmeSlug,
+                  }),
+                }}
+              />
+            }{" "}
             all teaching resources for free and adapt to suit your pupils'
             needs...
           </OakP>
@@ -85,17 +97,22 @@ export const LessonSeoHelper = ({
       <br />
       <OakP $font={["body-2", "body-1"]} $textAlign="left">
         {`To help you plan your ${year.toLowerCase()} ${formatSubjectName(subject)} lesson on: ${lesson},`}{" "}
-        <OakLink
-          href={resolveOakHref({
-            page: "lesson-downloads",
-            lessonSlug,
-            unitSlug,
-            programmeSlug,
-            downloads: "downloads",
-          })}
-        >
-          download
-        </OakLink>{" "}
+        <LoginRequiredLink
+          geoRestricted={geoRestricted}
+          loginRequired={loginRequired}
+          signUpProps={{ name: "download" }}
+          onboardingProps={{ name: "download" }}
+          actionProps={{
+            name: "download",
+            href: resolveOakHref({
+              page: "lesson-downloads",
+              downloads: "downloads",
+              lessonSlug,
+              unitSlug,
+              programmeSlug,
+            }),
+          }}
+        />{" "}
         all teaching resources for free and adapt to suit your pupils' needs.
       </OakP>
       <br />
@@ -126,14 +143,22 @@ export const LessonSeoHelper = ({
         {!disablePupilLink && (
           <>
             {`Plus, you can set it as homework or revision for pupils and keep their learning on track by sharing an `}
-            <OakLink
-              href={resolveOakHref({
-                page: "pupil-lesson-canonical",
-                lessonSlug,
-              })}
-            >
-              online pupil version
-            </OakLink>
+
+            <LoginRequiredLink
+              geoRestricted={geoRestricted}
+              loginRequired={loginRequired}
+              signUpProps={{ name: "online pupil version" }}
+              onboardingProps={{ name: "online pupil version" }}
+              actionProps={{
+                name: "online pupil version",
+                href: resolveOakHref({
+                  page: "pupil-lesson-canonical",
+
+                  lessonSlug,
+                }),
+              }}
+            />
+
             {` of this lesson.`}
           </>
         )}

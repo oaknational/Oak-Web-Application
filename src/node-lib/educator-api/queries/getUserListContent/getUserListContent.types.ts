@@ -16,6 +16,7 @@ const content = z.object({
       unit_title: z.string(),
       optionality_title: z.string().nullish(),
       year: z.string(),
+      year_slug: z.string(),
       keystage: z.string(),
       keystage_slug: z.string(),
       pathway: z.string().nullish(),
@@ -47,6 +48,10 @@ const unit = z.object({
   unitOrder: z.number(),
   yearOrder: z.number(),
   year: z.string(),
+  yearSlug: z.string(),
+  tier: z.string().nullish(),
+  examboard: z.string().nullish(),
+  pathway: z.string().nullish(),
   lessons: z.array(
     z.object({
       slug: z.string(),

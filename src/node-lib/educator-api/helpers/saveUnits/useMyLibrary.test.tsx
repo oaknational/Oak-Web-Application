@@ -62,6 +62,7 @@ const mockProgrammeData: UserlistContentApiResponse = {
         unitOrder: 1,
         yearOrder: 1,
         year: "1",
+        yearSlug: "year-1",
         lessons: [
           {
             slug: "lesson1",
@@ -94,6 +95,7 @@ const mockProgrammeDataWithSubjectCategories: UserlistContentApiResponse = {
         unitOrder: 1,
         yearOrder: 1,
         year: "1",
+        yearSlug: "year-1",
         lessons: [
           {
             slug: "lesson1",
@@ -123,6 +125,7 @@ const mockProgrammeDataWithSubjectCategories: UserlistContentApiResponse = {
         unitOrder: 1,
         yearOrder: 1,
         year: "1",
+        yearSlug: "year-1",
         lessons: [
           {
             slug: "bio-lesson-1",
@@ -155,6 +158,7 @@ const mockProgrammeDataWithPathways: UserlistContentApiResponse = {
         unitOrder: 1,
         yearOrder: 1,
         year: "1",
+        yearSlug: "year-1",
         lessons: [
           {
             slug: "lesson1",
@@ -216,6 +220,7 @@ describe("useMyLibrary", () => {
             unitOrder: 1,
             yearOrder: 1,
             year: "1",
+            yearSlug: "year-1",
             lessons: [
               {
                 slug: "lesson1",
@@ -256,6 +261,7 @@ describe("useMyLibrary", () => {
             unitOrder: 1,
             yearOrder: 1,
             year: "1",
+            yearSlug: "year-1",
             lessons: [
               {
                 slug: "bio-lesson-1",
@@ -286,6 +292,7 @@ describe("useMyLibrary", () => {
             unitOrder: 1,
             yearOrder: 1,
             year: "1",
+            yearSlug: "year-1",
             lessons: [
               {
                 slug: "lesson1",
@@ -326,6 +333,7 @@ describe("useMyLibrary", () => {
             unitOrder: 1,
             yearOrder: 1,
             year: "1",
+            yearSlug: "year-1",
             lessons: [
               {
                 slug: "lesson1",
@@ -361,7 +369,12 @@ describe("useMyLibrary", () => {
     expect(result.current.isUnitSaved("unit1-programme1")).toBe(true);
 
     act(() =>
-      result.current.onSaveToggle("unit1", "programme1", mockTrackingData),
+      result.current.onSaveToggle(
+        "unit1",
+        "programme1",
+        "programme1",
+        mockTrackingData,
+      ),
     );
     await waitFor(() =>
       expect(result.current.isUnitSaved("unit1-programme1")).toBe(false),
@@ -372,7 +385,12 @@ describe("useMyLibrary", () => {
     );
 
     act(() =>
-      result.current.onSaveToggle("unit1", "programme1", mockTrackingData),
+      result.current.onSaveToggle(
+        "unit1",
+        "programme1",
+        "programme1",
+        mockTrackingData,
+      ),
     );
     await waitFor(() =>
       expect(result.current.isUnitSaved("unit1-programme1")).toBe(true),
@@ -387,14 +405,24 @@ describe("useMyLibrary", () => {
     const { result } = renderHook(() => useMyLibrary());
 
     act(() =>
-      result.current.onSaveToggle("unit1", "programme1", mockTrackingData),
+      result.current.onSaveToggle(
+        "unit1",
+        "programme1",
+        "programme1",
+        mockTrackingData,
+      ),
     );
     await waitFor(() =>
       expect(mockDecrementSavedUnitsCount).toHaveBeenCalled(),
     );
 
     act(() =>
-      result.current.onSaveToggle("unit1", "programme1", mockTrackingData),
+      result.current.onSaveToggle(
+        "unit1",
+        "programme1",
+        "unit1-programme1",
+        mockTrackingData,
+      ),
     );
     await waitFor(() =>
       expect(mockIncrementSavedUnitsCount).toHaveBeenCalled(),
@@ -409,9 +437,37 @@ describe("useMyLibrary", () => {
     const { result } = renderHook(() => useMyLibrary());
 
     act(() =>
-      result.current.onSaveToggle("unit1", "programme1", mockTrackingData),
+      result.current.onSaveToggle(
+        "unit1",
+        "programme1",
+        "unit1-programme1",
+        mockTrackingData,
+      ),
     );
 
     await waitFor(() => expect(mockSetOakToastProps).toHaveBeenCalled());
+  });
+  it("should handle saving and unsaving programme with subject categories", async () => {
+    mockUseGetEducatorData.mockImplementation(() => ({
+      data: mockProgrammeDataWithSubjectCategories,
+      error: null,
+      isLoading: false,
+    }));
+    const { result } = renderHook(() => useMyLibrary());
+    expect(result.current.isUnitSaved("unit1-programme1-Literacy")).toBe(true);
+
+    act(() =>
+      result.current.onSaveToggle(
+        "unit1",
+        "programme1",
+        "programme1-Literacy",
+        mockTrackingData,
+      ),
+    );
+    await waitFor(() =>
+      expect(result.current.isUnitSaved("unit1-programme1-Literacy")).toBe(
+        false,
+      ),
+    );
   });
 });
