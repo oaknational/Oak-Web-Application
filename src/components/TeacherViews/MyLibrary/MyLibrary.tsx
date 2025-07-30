@@ -108,6 +108,19 @@ export default function MyLibrary(props: MyLibraryProps) {
                     category: collection.searchQuery,
                   },
                 })}
+                trackBrowseRefined={() =>
+                  track.browseRefined({
+                    platform: "owa",
+                    product: "teacher lesson resources",
+                    engagementIntent: "refine",
+                    componentType: "programme_card",
+                    eventVersion: "2.0.0",
+                    analyticsUseCase: "Teacher",
+                    filterType: "Subject filter",
+                    filterValue: collection.subject,
+                    activeFilters: [],
+                  })
+                }
                 iconName={getValidSubjectIconName(collection.subjectSlug)}
                 savedUnits={collection.units.map((unit) => ({
                   ...unit,

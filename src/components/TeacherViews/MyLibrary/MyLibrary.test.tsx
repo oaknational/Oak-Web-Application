@@ -10,12 +10,14 @@ const render = renderWithProviders();
 
 const mockTrackUnitAccessed = jest.fn();
 const mockTrackLessonAccessed = jest.fn();
+const mockTrackBrowseRefined = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: jest.fn().mockReturnValue({
     track: {
       unitAccessed: (...args: []) => mockTrackUnitAccessed(...args),
       lessonAccessed: (...args: []) => mockTrackLessonAccessed(...args),
+      browseRefined: (...args: []) => mockTrackBrowseRefined(...args),
     },
   }),
 }));
@@ -161,6 +163,37 @@ describe("MyLibrary", () => {
       unitSlug: "unit-1",
       yearGroupName: "Year 1",
       yearGroupSlug: "year-1",
+    });
+  });
+  it("tracks browse refined with the correct arguments", async () => {
+    render(
+      <MyLibrary
+        collectionData={generateMockCollectionData(1)}
+        isLoading={false}
+        onSaveToggle={jest.fn()}
+        isUnitSaved={() => false}
+        isUnitSaving={() => false}
+      />,
+    );
+
+    const programmeLink = screen
+      .getByRole("heading", { name: "Programme 1 KS4" })
+      .closest("a");
+    if (!programmeLink) {
+      throw new Error("Programme link not found");
+    }
+    const user = userEvent.setup();
+    await user.click(programmeLink);
+    expect(mockTrackBrowseRefined).toHaveBeenCalledWith({
+      analyticsUseCase: "Teacher",
+      componentType: "programme_card",
+      engagementIntent: "refine",
+      eventVersion: "2.0.0",
+      platform: "owa",
+      product: "teacher lesson resources",
+      filterValue: "Subject 1",
+      filterType: "Subject filter",
+      activeFilters: [],
     });
   });
 });

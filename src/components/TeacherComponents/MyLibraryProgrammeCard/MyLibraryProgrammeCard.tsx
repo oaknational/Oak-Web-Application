@@ -67,13 +67,20 @@ interface MyLibraryProgrammeCardProps {
   anchorId: string;
   iconName: OakIconName;
   savedUnits: Array<MyLibraryUnitCardProps>;
+  trackBrowseRefined: () => void;
 }
 
 export default function MyLibraryProgrammeCard(
   props: MyLibraryProgrammeCardProps,
 ) {
-  const { savedUnits, programmeTitle, programmeHref, iconName, anchorId } =
-    props;
+  const {
+    savedUnits,
+    programmeTitle,
+    programmeHref,
+    iconName,
+    anchorId,
+    trackBrowseRefined,
+  } = props;
 
   const headingIdString = `programme-heading-${programmeTitle.split(" ").join("-").toLowerCase()}`;
 
@@ -88,7 +95,7 @@ export default function MyLibraryProgrammeCard(
       $position="relative"
     >
       <OakAnchorTarget id={anchorId} />
-      <StyledLink href={programmeHref}>
+      <StyledLink href={programmeHref} onClick={trackBrowseRefined}>
         <ProgrammeHeader
           headingIdString={headingIdString}
           iconName={iconName}
