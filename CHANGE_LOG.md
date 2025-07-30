@@ -1,3 +1,24 @@
+# [1.813.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.812.0...v1.813.0) (2025-07-29)
+
+
+### Bug Fixes
+
+* fix type errors ([e6b5379](https://github.com/oaknational/Oak-Web-Application/commit/e6b5379939e7ae9a0bace50f4a27b256c3de0a17))
+* make signup link tabbable ([4254c10](https://github.com/oaknational/Oak-Web-Application/commit/4254c105fd309c179bd4d4b7b2c9dcad88ee4668))
+* return downloads props to fix bug with href construction ([996f56a](https://github.com/oaknational/Oak-Web-Application/commit/996f56a33ed498311f0161e5ea6ce5bb98ad9073))
+* rm georestricted prop from actions, fix optional handleclick prop in teacher share ([d385010](https://github.com/oaknational/Oak-Web-Application/commit/d385010045ebfe3c380bdfd24a7b019644e2966c))
+* update georestricted banner copy in line with designs, refactor to use heading ([7ebc497](https://github.com/oaknational/Oak-Web-Application/commit/7ebc49725672c55dcd8707f6c708e22b85ae2c71))
+
+
+### Features
+
+* create a wrapper component to consolidate redirect logic ([973259f](https://github.com/oaknational/Oak-Web-Application/commit/973259f75b78eded2e77e29df733bbf09f3ca080))
+* hide links when geoblocked, redirect/hide teacher notes btn ([d7e25e3](https://github.com/oaknational/Oak-Web-Application/commit/d7e25e32df7e5ea019ae86ff6305523fffd929db))
+* redirect from SEO links, refactor to call copyright requirements hook from 1 place ([84b7c35](https://github.com/oaknational/Oak-Web-Application/commit/84b7c35489c9e174308a69c2a5e389e8c7e0f41c))
+* redirect to sign up from download all button when content restricted ([4b06432](https://github.com/oaknational/Oak-Web-Application/commit/4b064329fdcb85680cc7f2fe7e7f3c9dcdd1ccef))
+* redirect to sign up from lesson files download button ([a8ec42e](https://github.com/oaknational/Oak-Web-Application/commit/a8ec42ea10ee4aa78abe85a20d8a6ace3f6b6470))
+* redirect to sign up from share all button when content restricted ([236c36b](https://github.com/oaknational/Oak-Web-Application/commit/236c36b85f2ae6bf9f8aea7915339137a605a59e))
+
 # [1.812.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.811.3...v1.812.0) (2025-07-29)
 
 

@@ -57,6 +57,8 @@ export default function LessonOverviewCanonicalPage({
   } = useLesson({
     lessonSlug: lesson.lessonSlug,
     source: "lesson-canonical",
+    loginRequired: lesson.loginRequired,
+    geoRestricted: lesson.geoRestricted,
     curriculumTrackingProps: {
       lessonName: lesson.lessonTitle,
       lessonSlug: lesson.lessonSlug,
