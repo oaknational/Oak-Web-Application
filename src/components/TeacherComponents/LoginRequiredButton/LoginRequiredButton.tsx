@@ -62,6 +62,7 @@ type BaseProps = {
   buttonVariant?: ButtonVariant;
   sizeVariant?: SizeVariant;
   element?: "a" | "button";
+  isBehindFeatureFlag?: boolean;
 };
 
 type LoginRequiredButtonProps = BaseProps & OakPrimaryButtonProps;
@@ -94,6 +95,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
     element = "button",
     loginRequired,
     geoRestricted,
+    isBehindFeatureFlag,
     ...overrideProps
   } = props;
   const router = useRouter();
@@ -103,7 +105,11 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
     showSignedOutLoginRequired,
     showGeoBlocked,
     isLoaded,
-  } = useCopyrightRequirements({ loginRequired, geoRestricted });
+  } = useCopyrightRequirements({
+    loginRequired,
+    geoRestricted,
+    isBehindFeatureFlag,
+  });
 
   const contentRestricted = loginRequired || geoRestricted;
   const buttonState = useMemo((): ButtonState => {
