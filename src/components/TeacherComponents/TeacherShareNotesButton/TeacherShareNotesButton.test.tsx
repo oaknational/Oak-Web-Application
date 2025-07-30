@@ -3,6 +3,11 @@ import { render, screen, fireEvent } from "@testing-library/react";
 
 import { TeacherShareNotesButton } from "./TeacherShareNotesButton";
 
+import {
+  defaultCopyrightRequirements,
+  signedInGeoBlocked,
+} from "@/__tests__/__helpers__/mockCopyrightRequirements";
+
 // Mock the imported components
 jest.mock("@oaknational/oak-components", () => ({
   OakSmallSecondaryButton: ({
@@ -52,10 +57,17 @@ jest.mock("@oaknational/oak-consent-client", () => ({
   useOakConsent: () => mockUseOakConsent(),
 }));
 
+let mockCopyrightRequirements = defaultCopyrightRequirements;
+jest.mock("@/hooks/useCopyrightRequirements", () => ({
+  useCopyrightRequirements: () => mockCopyrightRequirements,
+}));
+
 describe("TeacherShareNotesButton", () => {
   const defaultProps = {
     isEditable: false,
     noteSaved: false,
+    loginRequired: false,
+    geoRestricted: false,
     setTeacherNotesOpen: jest.fn(),
     onTeacherNotesOpen: jest.fn(),
     shareUrl: "https://example.com/share",
@@ -74,7 +86,9 @@ describe("TeacherShareNotesButton", () => {
       },
     });
   });
-
+  afterEach(() => {
+    mockCopyrightRequirements = defaultCopyrightRequirements;
+  });
   it("is rendered and enabled when cookies are accepted", () => {
     mockUseOakConsent.mockReturnValue({
       state: {
@@ -176,5 +190,15 @@ describe("TeacherShareNotesButton", () => {
     expect(
       screen.queryByText("Share resources with colleague"),
     ).toBeInTheDocument();
+  });
+
+  it("does not render when signed in and not region authorised", () => {
+    mockCopyrightRequirements = signedInGeoBlocked;
+
+    const { queryByTestId } = render(
+      <TeacherShareNotesButton {...defaultProps} />,
+    );
+    const shareButton = queryByTestId("share-button");
+    expect(shareButton).not.toBeInTheDocument();
   });
 });

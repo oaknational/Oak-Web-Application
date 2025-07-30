@@ -223,7 +223,8 @@ export function LessonShare(props: LessonShareProps) {
           />
         </OakBox>
         <ResourcePageLayout
-          downloadsRestricted={false}
+          loginRequired={false}
+          geoRestricted={false}
           page={"share"}
           errors={form.errors}
           handleToggleSelectAll={handleToggleSelectAll}
