@@ -167,7 +167,7 @@ export default function MyLibrary(props: MyLibraryProps) {
                       pathway: unit.pathway as PathwayValueType,
                       lessonSlug,
                       lessonReleaseCohort: "2023-2026",
-                      lessonReleaseDate: "", // TODO: do we need this? we don't have it easily accessible
+                      lessonReleaseDate: "", // we don't have access to lesson content data here
                     }),
                   onSave: () =>
                     onSaveToggle(
