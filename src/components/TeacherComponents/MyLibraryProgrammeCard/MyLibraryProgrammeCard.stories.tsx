@@ -21,6 +21,8 @@ const sampleUnits = [
     onSave: () => console.log("Unsave unit 1"),
     isSaved: true,
     isSaving: false,
+    trackUnitAccessed: () => console.log("Track unit accessed 1"),
+    trackLessonAccessed: () => console.log("Track lesson accessed 1"),
   },
   {
     unitTitle: "Writing for Different Audiences",
@@ -33,6 +35,8 @@ const sampleUnits = [
     onSave: () => console.log("Unsave unit 2"),
     isSaved: true,
     isSaving: false,
+    trackUnitAccessed: () => console.log("Track unit accessed 2"),
+    trackLessonAccessed: () => console.log("Track lesson accessed"),
   },
   {
     unitTitle: "Poetry Analysis: Romanticism",
@@ -45,6 +49,8 @@ const sampleUnits = [
     onSave: () => console.log("Unsave unit 3"),
     isSaved: true,
     isSaving: false,
+    trackUnitAccessed: () => console.log("Track unit accessed 3"),
+    trackLessonAccessed: () => console.log("Track lesson accessed"),
   },
 ];
 

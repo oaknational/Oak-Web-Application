@@ -62,6 +62,7 @@ const mockProgrammeData: UserlistContentApiResponse = {
         unitOrder: 1,
         yearOrder: 1,
         year: "1",
+        yearSlug: "year-1",
         lessons: [
           {
             slug: "lesson1",
@@ -94,6 +95,7 @@ const mockProgrammeDataWithSubjectCategories: UserlistContentApiResponse = {
         unitOrder: 1,
         yearOrder: 1,
         year: "1",
+        yearSlug: "year-1",
         lessons: [
           {
             slug: "lesson1",
@@ -123,6 +125,7 @@ const mockProgrammeDataWithSubjectCategories: UserlistContentApiResponse = {
         unitOrder: 1,
         yearOrder: 1,
         year: "1",
+        yearSlug: "year-1",
         lessons: [
           {
             slug: "bio-lesson-1",
@@ -155,6 +158,7 @@ const mockProgrammeDataWithPathways: UserlistContentApiResponse = {
         unitOrder: 1,
         yearOrder: 1,
         year: "1",
+        yearSlug: "year-1",
         lessons: [
           {
             slug: "lesson1",
@@ -216,6 +220,7 @@ describe("useMyLibrary", () => {
             unitOrder: 1,
             yearOrder: 1,
             year: "1",
+            yearSlug: "year-1",
             lessons: [
               {
                 slug: "lesson1",
@@ -256,6 +261,7 @@ describe("useMyLibrary", () => {
             unitOrder: 1,
             yearOrder: 1,
             year: "1",
+            yearSlug: "year-1",
             lessons: [
               {
                 slug: "bio-lesson-1",
@@ -286,6 +292,7 @@ describe("useMyLibrary", () => {
             unitOrder: 1,
             yearOrder: 1,
             year: "1",
+            yearSlug: "year-1",
             lessons: [
               {
                 slug: "lesson1",
@@ -326,6 +333,7 @@ describe("useMyLibrary", () => {
             unitOrder: 1,
             yearOrder: 1,
             year: "1",
+            yearSlug: "year-1",
             lessons: [
               {
                 slug: "lesson1",
