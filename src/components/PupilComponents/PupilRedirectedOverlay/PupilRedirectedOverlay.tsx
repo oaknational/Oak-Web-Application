@@ -18,6 +18,7 @@ export const PupilRedirectedOverlay = () => {
   return (
     <OakModalCenter
       isOpen={!!redirected && show}
+      onClose={() => setShow(false)}
       footerSlot={
         <OakFlex
           $mt={"space-between-xl"}
