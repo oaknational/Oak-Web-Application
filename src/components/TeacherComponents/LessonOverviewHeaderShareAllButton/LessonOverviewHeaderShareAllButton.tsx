@@ -4,6 +4,7 @@ import { OakSmallSecondaryButton } from "@oaknational/oak-components";
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { resolveOakHref } from "@/common-lib/urls";
 import { invariant } from "@/utils/invariant";
+import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
 
 export const LessonOverviewHeaderShareAllButton: FC<
   LessonOverviewHeaderProps
@@ -16,6 +17,8 @@ export const LessonOverviewHeaderShareAllButton: FC<
     onClickShareAll,
     isSpecialist,
     isCanonical,
+    geoRestricted,
+    loginRequired,
   } = props;
 
   const preselected = "all";
@@ -65,15 +68,25 @@ export const LessonOverviewHeaderShareAllButton: FC<
   }
 
   return (
-    <OakSmallSecondaryButton
+    <LoginRequiredButton
+      loginRequired={loginRequired ?? false}
+      geoRestricted={geoRestricted ?? false}
+      onboardingProps={{ name: "Share activities with pupils" }}
+      signUpProps={{ name: "Share activities with pupils" }}
+      actionProps={{
+        name: "Share activities with pupils",
+        onClick: onClickShareAll,
+        isActionGeorestricted: true,
+        shouldHidewhenGeoRestricted: true,
+        href: href,
+      }}
+      sizeVariant="small"
+      buttonVariant="secondary"
       element="a"
-      href={href}
+      data-testid="share-all-button"
       iconName="arrow-right"
       isTrailingIcon
-      onClick={onClickShareAll}
-      data-testid="share-all-button"
-    >
-      Share activities with pupils
-    </OakSmallSecondaryButton>
+      aria-label="Share all resources"
+    />
   );
 };
