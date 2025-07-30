@@ -36,6 +36,7 @@ type MyLibraryProps = {
   onSaveToggle: (
     unitSlug: string,
     programmeSlug: string,
+    uniqueProgrammeKey: string,
     trackingData: TrackingProgrammeData,
   ) => void;
   isUnitSaved: (unitProgrammeSlug: string) => boolean;
@@ -106,24 +107,29 @@ export default function MyLibrary(props: MyLibraryProps) {
                   ...unit,
                   programmeSlug: collection.programmeSlug,
                   onSave: () =>
-                    onSaveToggle(unit.unitSlug, collection.programmeSlug, {
-                      keyStageTitle:
-                        collection.keystage as KeyStageTitleValueType,
-                      subjectTitle: collection.subject,
-                      savedFrom: "my-library-save-button",
-                      keyStageSlug: collection.keystageSlug,
-                      subjectSlug: collection.subjectSlug,
-                    }),
+                    onSaveToggle(
+                      unit.unitSlug,
+                      collection.programmeSlug,
+                      collection.uniqueProgrammeKey,
+                      {
+                        keyStageTitle:
+                          collection.keystage as KeyStageTitleValueType,
+                        subjectTitle: collection.subject,
+                        savedFrom: "my-library-save-button",
+                        keyStageSlug: collection.keystageSlug,
+                        subjectSlug: collection.subjectSlug,
+                      },
+                    ),
                   isSaved: isUnitSaved(
                     getUnitProgrammeSlug(
                       unit.unitSlug,
-                      collection.programmeSlug,
+                      collection.uniqueProgrammeKey,
                     ),
                   ),
                   isSaving: isUnitSaving(
                     getUnitProgrammeSlug(
                       unit.unitSlug,
-                      collection.programmeSlug,
+                      collection.uniqueProgrammeKey,
                     ),
                   ),
                 }))}

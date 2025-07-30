@@ -217,6 +217,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                     onDownloadSuccess={onUnitDownloadSuccess}
                     showNewTag={false}
                     georestricted={Boolean(isGeorestrictedUnit)}
+                    loginRequired={Boolean(isLoginRequiredUnit)}
                   />
                 )}
                 {shareButton}

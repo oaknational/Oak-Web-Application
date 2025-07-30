@@ -5,15 +5,17 @@ import {
   OakIcon,
   OakLI,
   OakP,
-  OakTertiaryButton,
   OakUL,
 } from "@oaknational/oak-components";
 
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import { resolveOakHref } from "@/common-lib/urls";
 import { Slugs } from "@/components/TeacherComponents/LessonItemContainer/LessonItemContainer";
+import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
 
-type LessonOverviewFilesNeededProps = {
+export type LessonOverviewFilesNeededProps = {
+  loginRequired: boolean;
+  geoRestricted: boolean;
   additionalFiles: string[];
   slugs: Slugs;
 };
@@ -21,10 +23,33 @@ type LessonOverviewFilesNeededProps = {
 const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
   additionalFiles,
   slugs,
+  loginRequired,
+  geoRestricted,
 }) => {
   const { lessonSlug, unitSlug, programmeSlug } = slugs;
   const isPlural = additionalFiles.length > 1;
   const filesText = isPlural ? `Download lesson files` : `Download lesson file`;
+  const getHref = () => {
+    return programmeSlug && unitSlug
+      ? resolveOakHref({
+          page: "lesson-downloads",
+          lessonSlug: lessonSlug,
+          programmeSlug: programmeSlug,
+          unitSlug: unitSlug,
+          downloads: "downloads",
+          query: {
+            preselected: "additional files",
+          },
+        })
+      : resolveOakHref({
+          page: "lesson-downloads-canonical",
+          lessonSlug: lessonSlug,
+          downloads: "downloads",
+          query: {
+            preselected: "additional files",
+          },
+        });
+  };
   return (
     <OakBox $background={"aqua50"} $position={"relative"}>
       <OakFlex
@@ -54,34 +79,19 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
           {`Download ${isPlural ? "these files" : "this file"} to use in the
           lesson.`}
         </OakP>
-        <OakTertiaryButton
+        <LoginRequiredButton
           element="a"
-          href={
-            programmeSlug && unitSlug
-              ? resolveOakHref({
-                  page: "lesson-downloads",
-                  lessonSlug: lessonSlug,
-                  programmeSlug: programmeSlug,
-                  unitSlug: unitSlug,
-                  downloads: "downloads",
-                  query: {
-                    preselected: "additional files",
-                  },
-                })
-              : resolveOakHref({
-                  page: "lesson-downloads-canonical",
-                  lessonSlug: lessonSlug,
-                  downloads: "downloads",
-                  query: {
-                    preselected: "additional files",
-                  },
-                })
-          }
-          isTrailingIcon
-          iconName="arrow-right"
-        >
-          {filesText}
-        </OakTertiaryButton>
+          loginRequired={loginRequired}
+          geoRestricted={geoRestricted}
+          buttonVariant="tertiary"
+          signUpProps={{ name: filesText }}
+          actionProps={{
+            name: filesText,
+            href: getHref(),
+            isActionGeorestricted: geoRestricted,
+            shouldHidewhenGeoRestricted: true,
+          }}
+        />
       </OakFlex>
       <BrushBorders color="aqua50" />
     </OakBox>
