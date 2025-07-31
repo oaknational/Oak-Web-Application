@@ -4,12 +4,17 @@ import {
   OakTagFunctional,
   OakDownloadCard,
 } from "@oaknational/oak-components";
+import styled from "styled-components";
 
 import type { DownloadResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { CheckboxProps } from "@/components/SharedComponents/Checkbox/Checkbox";
 import { LessonShareResourceData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
-import Box from "@/components/SharedComponents/Box";
+
+const CustomSizing = styled("div")`
+  display: grid;
+  width: 320px;
+`;
 
 export type ResourceCardProps = Omit<CheckboxProps, "checked"> & {
   label: string;
@@ -66,7 +71,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
       : RESOURCE_TYPE_ICON_MAP[resourceType];
 
   return (
-    <Box $width={320}>
+    <CustomSizing>
       <OakDownloadCard
         id={id}
         data-testid="resourceCard"
@@ -98,7 +103,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
         }
         iconName={iconName}
       />
-    </Box>
+    </CustomSizing>
   );
 };
 
