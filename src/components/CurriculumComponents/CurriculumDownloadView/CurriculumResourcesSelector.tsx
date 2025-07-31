@@ -1,4 +1,8 @@
-import { OakFlex, OakHeading } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakHeading,
+  OakRadioGroup,
+} from "@oaknational/oak-components";
 
 import {
   DOWNLOAD_TYPES,
@@ -7,7 +11,6 @@ import {
   assertValidDownloadType,
 } from "./helper";
 
-import RadioGroup from "@/components/SharedComponents/RadioButtons/RadioGroup";
 import ResourceCard from "@/components/TeacherComponents/ResourceCard";
 
 export type CurriculumDownloadViewData = {
@@ -40,11 +43,12 @@ export function CurriculumResourcesSelector({
       <OakHeading tag="h3" $font={["heading-5"]} data-testid="download-heading">
         Curriculum resources
       </OakHeading>
-      <RadioGroup
+      <OakRadioGroup
+        name="subject-download-options"
         aria-label="Subject Download Options"
         value={downloadType}
-        onChange={(val) => {
-          const newDownloadType = assertValidDownloadType(val);
+        onChange={(e) => {
+          const newDownloadType = assertValidDownloadType(e.target.value);
           onChangeDownloadType(newDownloadType);
         }}
       >
@@ -59,15 +63,13 @@ export function CurriculumResourcesSelector({
                 subtitle={download.subTitle ?? ""}
                 resourceType="curriculum-pdf"
                 onChange={() => {}}
-                checked={false}
-                onBlur={() => {}}
-                useRadio={true}
                 subjectIcon={download.icon}
+                asRadio={true}
               />
             );
           })}
         </OakFlex>
-      </RadioGroup>
+      </OakRadioGroup>
     </OakFlex>
   );
 }

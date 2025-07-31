@@ -1,4 +1,3 @@
-import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import ResourceCard from "./ResourceCard";
@@ -7,7 +6,7 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("ResourceCard", () => {
   it("renders a checkbox with an icon, title and resource file type", () => {
-    renderWithTheme(
+    const { getByText, getByRole } = renderWithTheme(
       <ResourceCard
         id="unique-123"
         name="downloadResources"
@@ -19,11 +18,11 @@ describe("ResourceCard", () => {
       />,
     );
 
-    const input = screen.getByRole("checkbox");
+    const input = getByRole("checkbox");
 
     expect(input).toBeInTheDocument();
-    expect(screen.getByText("Worksheet")).toBeInTheDocument();
-    expect(screen.getByText("PDF")).toBeInTheDocument();
+    expect(getByText("Worksheet")).toBeInTheDocument();
+    expect(getByText("PDF")).toBeInTheDocument();
   });
 
   it("changes on click on label", async () => {
@@ -33,7 +32,7 @@ describe("ResourceCard", () => {
       value = !value;
     };
 
-    const { rerender } = renderWithTheme(
+    const { rerender, getByRole, getByText } = renderWithTheme(
       <ResourceCard
         id="unique-123"
         checked={value}
@@ -47,10 +46,10 @@ describe("ResourceCard", () => {
 
     const user = userEvent.setup();
 
-    const input = screen.getByRole("checkbox");
+    const input = getByRole("checkbox");
     expect(input).not.toBeChecked();
 
-    const label = screen.getByText("Worksheet");
+    const label = getByText("Worksheet");
     await user.click(label);
 
     rerender(
@@ -68,29 +67,8 @@ describe("ResourceCard", () => {
     expect(input).toBeChecked();
   });
 
-  it("does not render a checkbox when showCheckbox is false", () => {
-    renderWithTheme(
-      <ResourceCard
-        id="unique-123"
-        name="downloadResources"
-        label="Worksheet"
-        subtitle="PDF"
-        checked
-        onChange={jest.fn()}
-        resourceType="worksheet-pdf"
-        hideCheckbox={true}
-      />,
-    );
-
-    const input = screen.queryByRole("checkbox");
-
-    expect(input).not.toBeInTheDocument();
-    expect(screen.getByText("Worksheet")).toBeInTheDocument();
-    expect(screen.getByText("PDF")).toBeInTheDocument();
-  });
-
   it("renders isEditable tag correctly", () => {
-    renderWithTheme(
+    const { getByText } = renderWithTheme(
       <ResourceCard
         id="unique-123"
         name="downloadResources"
@@ -103,6 +81,6 @@ describe("ResourceCard", () => {
       />,
     );
 
-    expect(screen.getByText("Editable")).toBeInTheDocument();
+    expect(getByText("Editable")).toBeInTheDocument();
   });
 });
