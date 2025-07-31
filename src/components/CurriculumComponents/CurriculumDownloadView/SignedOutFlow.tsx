@@ -82,7 +82,10 @@ export default function SignedOutFlow({
       const newSubmitValidatioResults = runSchema(submitSchema, data);
       setErrors(newSubmitValidatioResults.errors);
       if (newSubmitValidatioResults.success) {
-        onSubmit(data);
+        onSubmit({
+          ...data,
+          downloadType,
+        });
       }
     }
   };

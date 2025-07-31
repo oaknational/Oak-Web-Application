@@ -34,6 +34,7 @@ const BASE_UNIT: Unit = {
   unit_options: [],
   state: "published",
   year: "5",
+  national_curriculum_content: [],
   prior_knowledge_requirements: [],
 };
 

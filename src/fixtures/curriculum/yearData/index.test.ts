@@ -64,6 +64,7 @@ describe("createSubjectCategory", () => {
           why_this_why_now: null,
           year: "5",
           prior_knowledge_requirements: [],
+          national_curriculum_content: [],
         },
       ],
       childSubjects: [

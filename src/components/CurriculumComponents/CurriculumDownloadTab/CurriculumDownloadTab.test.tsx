@@ -205,6 +205,7 @@ describe("Downloads tab: unit tests", () => {
       childSubjectSlug,
     } = data;
     const url = createCurriculumDownloadsUrl(
+      "curriculum-plans",
       "published",
       mvRefreshTime,
       subjectSlug,
@@ -214,12 +215,13 @@ describe("Downloads tab: unit tests", () => {
       childSubjectSlug,
     );
     expect(url).toEqual(
-      `/api/curriculum-downloads/?mvRefreshTime=1721314874829&subjectSlug=science&phaseSlug=secondary&state=published&ks4OptionSlug=aqa&tierSlug=foundation&childSubjectSlug=combined-science`,
+      `/api/curriculum-plans/?mvRefreshTime=1721314874829&subjectSlug=science&phaseSlug=secondary&state=published&ks4OptionSlug=aqa&tierSlug=foundation&childSubjectSlug=combined-science`,
     );
   });
 
   test("URL is created properly: English primary", async () => {
     const url = createCurriculumDownloadsUrl(
+      "curriculum-plans",
       "published",
       mvRefreshTime,
       "english",
@@ -229,7 +231,7 @@ describe("Downloads tab: unit tests", () => {
       null,
     );
     expect(url).toEqual(
-      `/api/curriculum-downloads/?mvRefreshTime=1721314874829&subjectSlug=english&phaseSlug=primary&state=published`,
+      `/api/curriculum-plans/?mvRefreshTime=1721314874829&subjectSlug=english&phaseSlug=primary&state=published`,
     );
   });
 });
@@ -261,7 +263,7 @@ describe("trackCurriculumDownload", () => {
           status: "Open",
         },
       ],
-      downloadType: "word" as const,
+      downloadType: "curriculum-plans" as const,
     };
 
     const subjectTitle = "Mathematics";

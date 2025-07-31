@@ -2,7 +2,10 @@
  * Centralised URL builders for curriculum-related API endpoints
  */
 
+import { ValidDownloadTypes } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
+
 export function createCurriculumDownloadsUrl(
+  type: ValidDownloadTypes,
   state: "new" | "published",
   mvRefreshTime: number,
   subjectSlug: string,
@@ -23,5 +26,5 @@ export function createCurriculumDownloadsUrl(
     childSubjectSlug !== null &&
     query.set("childSubjectSlug", childSubjectSlug);
 
-  return `/api/curriculum-downloads/?${query}`;
+  return `/api/${type}/?${query}`;
 }

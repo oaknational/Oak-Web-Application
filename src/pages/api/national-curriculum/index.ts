@@ -1,19 +1,17 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { format } from "date-fns";
 import { z } from "zod";
-import { capitalize, isUndefined, omitBy } from "lodash";
+import { isUndefined, omitBy } from "lodash";
 
-import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
-import CMSClient from "@/node-lib/cms";
 import curriculumApi2023, {
   CurriculumOverviewMVData,
   CurriculumUnitsTabData,
 } from "@/node-lib/curriculum-api-2023";
-import docx, { CombinedCurriculumData } from "@/pages-helpers/curriculum/docx";
-import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
 import { logErrorMessage } from "@/utils/curriculum/testing";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
+import xlsxNationalCurriculum from "@/pages-helpers/curriculum/xlsx";
+import { getFilename } from "@/utils/curriculum/formatting";
+import { getMvRefreshTime } from "@/pages-helpers/curriculum/xlsx/getMvRefreshTime";
 
 export const curriculumDownloadQuerySchema = z.object({
   mvRefreshTime: z.string(),
@@ -29,20 +27,29 @@ export type curriculumDownloadQueryProps = z.infer<
   typeof curriculumDownloadQuerySchema
 >;
 
-type getDataReturn =
-  | { notFound: true }
-  | {
-      notFound: false;
-      combinedCurriculumData: CombinedCurriculumData;
-      ks4OptionSlug?: string;
-      subjectSlug: string;
-      phaseSlug: string;
-      state: string;
-      tierSlug?: string;
-      childSubjectSlug?: string;
-      dataWarnings: string[];
-      ks4Options: Ks4Option[];
-    };
+export type Output = CurriculumUnitsTabData & {
+  subjectTitle: string;
+  phaseTitle: string;
+  examboardTitle: string | null;
+};
+
+type Data = {
+  notFound: false;
+  combinedCurriculumData: CombinedCurriculumData;
+  ks4OptionSlug?: string;
+  subjectSlug: string;
+  phaseSlug: string;
+  state: string;
+  tierSlug?: string;
+  childSubjectSlug?: string;
+  dataWarnings: string[];
+  ks4Options: Ks4Option[];
+};
+
+export type CombinedCurriculumData = CurriculumUnitsTabData &
+  CurriculumOverviewMVData;
+
+type getDataReturn = { notFound: true } | Data;
 async function getData(opts: {
   subjectSlug: string;
   phaseSlug: string;
@@ -60,7 +67,6 @@ async function getData(opts: {
     tierSlug,
   } = opts;
 
-  let curriculumOverviewSanityData: CurriculumOverviewSanityData | null;
   let curriculumOverviewTabData: CurriculumOverviewMVData | null;
   let curriculumData: CurriculumUnitsTabData | null;
   const dataWarnings: string[] = [];
@@ -111,63 +117,7 @@ async function getData(opts: {
       phaseSlug,
     });
 
-    curriculumOverviewSanityData = await CMSClient.curriculumOverviewPage({
-      previewMode: false,
-      ...{ subjectTitle: curriculumOverviewTabData.subjectTitle, phaseSlug },
-    });
-
-    if (!curriculumOverviewSanityData) {
-      dataWarnings.push("Sanity CMS data is missing, dummy data will be used.");
-      curriculumOverviewSanityData = {
-        id: "001ae718-80a4-42ef-8dea-809528ecc847",
-        subjectPrinciples: [
-          "Subject principles are undefined for this record. Please check the CMS.",
-        ],
-        partnerBio:
-          "Partner bio is undefined for this record. Please check the CMS.",
-        curriculumPartner: {
-          name: "Partner name is undefined for this record. Please check the CMS.",
-          image: null,
-        },
-        curriculumPartnerOverviews: [],
-        video: {
-          title:
-            "Video title is undefined for this record. Please check the CMS.",
-          video: {
-            asset: { assetId: "", playbackId: "undefined", thumbTime: null },
-          },
-        },
-        curriculumSeoTextRaw: null,
-        curriculumExplainer: {
-          explainerRaw: [
-            {
-              children: [
-                {
-                  _type: "span",
-                  marks: [],
-                  text: "Aims and purpose",
-                  _key: "470ecdd07b7d",
-                },
-              ],
-              _type: "block",
-              style: "heading2",
-              _key: "82cf6558d6f8",
-              markDefs: [],
-            },
-          ],
-        },
-        videoAuthor:
-          "Video author is undefined for this record. Please check the CMS.",
-        videoExplainer:
-          "Video explainer is undefined for this record. Please check the CMS.",
-      };
-    }
-
-    if (
-      !curriculumOverviewSanityData ||
-      !curriculumOverviewTabData ||
-      !curriculumData
-    ) {
+    if (!curriculumOverviewTabData || !curriculumData) {
       return {
         notFound: true,
       };
@@ -198,7 +148,6 @@ async function getData(opts: {
   const combinedCurriculumData: CombinedCurriculumData = {
     ...curriculumData,
     ...curriculumOverviewTabData,
-    ...curriculumOverviewSanityData,
     ...{ state },
     examboardTitle: ks4Option?.title ?? null,
   };
@@ -259,7 +208,7 @@ export default async function handler(
     ) as Record<string, string>;
     const newSlugs = new URLSearchParams(slugOb);
 
-    const redirectUrl = `/api/curriculum-downloads/?${newSlugs}`;
+    const redirectUrl = `/api/national-curriculum/?${newSlugs}`;
 
     // Netlify-Vary is a hack to hopefully resolve
     res.setHeader("Netlify-Vary", "query").redirect(307, redirectUrl);
@@ -276,38 +225,24 @@ export default async function handler(
   });
 
   // FIXME: Poor use of types here
-  if (!data.notFound) {
-    const buffer = await docx(
-      data.combinedCurriculumData,
-      {
-        subjectSlug: data.subjectSlug,
-        phaseSlug: data.phaseSlug,
-        keyStageSlug: data.phaseSlug,
-        ks4OptionSlug: data.ks4OptionSlug,
-        tierSlug,
-        childSubjectSlug,
-      },
-      data.ks4Options,
-    );
+  if (data.notFound === false) {
+    const buffer = await xlsxNationalCurriculum(data.combinedCurriculumData);
 
-    const pageTitle: string = [
-      data.combinedCurriculumData?.subjectTitle,
-      data.combinedCurriculumData?.phaseTitle,
-      data.combinedCurriculumData?.examboardTitle,
-      capitalize(childSubjectSlug?.split("-").join(" ")),
-      capitalize(tierSlug),
-    ]
-      .filter(Boolean)
-      .join(" - ");
-
-    const filename = `${pageTitle} - ${format(
-      Date.now(),
-      // Note: dashes "-" rather than ":" because colon is invalid on windows
-      "dd-MM-yyyy",
-    )}.docx`;
+    const filename = getFilename("xlsx", {
+      subjectTitle: data.combinedCurriculumData.subjectTitle,
+      phaseTitle: data.combinedCurriculumData.phaseTitle,
+      examboardTitle: data.combinedCurriculumData.examboardTitle,
+      childSubjectSlug,
+      tierSlug,
+      prefix: "NC alignment",
+    });
 
     res
-      .setHeader("content-type", "application/msword")
+      .setHeader(
+        "content-type",
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      )
+      .setHeader("Netlify-Vary", "query")
       .setHeader(
         "Cache-Control",
         `public, durable, s-maxage=${s_maxage_seconds}, stale-while-revalidate=${stale_while_revalidate_seconds}`,
