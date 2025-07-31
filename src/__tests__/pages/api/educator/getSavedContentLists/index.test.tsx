@@ -23,6 +23,7 @@ jest.mock("@/node-lib/educator-api", () => ({
               {
                 unit_title: "Mock Unit",
                 year: "1",
+                year_slug: "year-1",
                 keystage: "KS2",
                 keystage_slug: "ks2",
                 tier: null,
@@ -94,6 +95,9 @@ describe("api/educator-api/getSavedContentLists", () => {
             unitOrder: 1,
             yearOrder: 1,
             year: "1",
+            tier: null,
+            examboard: null,
+            yearSlug: "year-1",
             savedAt: expect.any(String), // Date string
             lessons: [
               {

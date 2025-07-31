@@ -204,9 +204,13 @@ export const useMyLibrary = () => {
   const onSaveToggle = (
     unitSlug: string,
     programmeSlug: string,
+    uniqueProgrammeKey: string,
     trackingData: TrackingProgrammeData,
   ) => {
-    const unitProgrammeSlug = getUnitProgrammeSlug(unitSlug, programmeSlug);
+    const unitProgrammeSlug = getUnitProgrammeSlug(
+      unitSlug,
+      uniqueProgrammeKey,
+    );
     if (!isUnitSaving(unitProgrammeSlug)) {
       if (isUnitSaved(unitProgrammeSlug)) {
         onUnsave(unitSlug, programmeSlug, unitProgrammeSlug, trackingData);

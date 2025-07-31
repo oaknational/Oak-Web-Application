@@ -1,5 +1,6 @@
-import { SignUpButton, useUser } from "@clerk/nextjs";
+import { SignUpButton } from "@clerk/nextjs";
 import {
+  OakBox,
   OakFlex,
   OakIconName,
   OakLoadingSpinner,
@@ -14,9 +15,9 @@ import {
 } from "@oaknational/oak-components";
 import { useRouter } from "next/router";
 import { useMemo } from "react";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { resolveOakHref } from "@/common-lib/urls";
+import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
 
 type ButtonState =
   | "loading"
@@ -27,11 +28,13 @@ type ButtonState =
   | "null";
 
 type ActionProps = {
-  onClick: () => void | Promise<void>;
+  onClick?: () => void | Promise<void>;
   name: string;
+  isActionGeorestricted: boolean;
+  shouldHidewhenGeoRestricted?: boolean;
+  href?: string;
   iconName?: OakIconName;
   isTrailingIcon?: boolean;
-  isActionGeorestricted: boolean;
   loading?: boolean;
   showNewTag?: boolean;
 };
@@ -50,13 +53,19 @@ type OnboardingProps = {
 type ButtonVariant = "primary" | "secondary" | "tertiary";
 type SizeVariant = "small" | "large";
 
-type LoginRequiredButtonProps = {
+type BaseProps = {
+  geoRestricted: boolean;
+  loginRequired: boolean;
   actionProps?: ActionProps;
   signUpProps?: SignUpProps;
   onboardingProps?: OnboardingProps;
   buttonVariant?: ButtonVariant;
   sizeVariant?: SizeVariant;
-} & OakPrimaryButtonProps;
+  element?: "a" | "button";
+  isBehindFeatureFlag?: boolean;
+};
+
+type LoginRequiredButtonProps = BaseProps & OakPrimaryButtonProps;
 
 const getButtonVariant = (variant: ButtonVariant, sizeVariant: SizeVariant) => {
   switch (variant) {
@@ -70,6 +79,7 @@ const getButtonVariant = (variant: ButtonVariant, sizeVariant: SizeVariant) => {
       return sizeVariant === "small"
         ? OakSmallTertiaryInvertedButton
         : OakTertiaryButton;
+
     default:
       return OakPrimaryButton;
   }
@@ -82,38 +92,55 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
     onboardingProps,
     buttonVariant = "primary",
     sizeVariant = "large",
-    ...buttonOverrideProps
+    element = "button",
+    loginRequired,
+    geoRestricted,
+    isBehindFeatureFlag,
+    ...overrideProps
   } = props;
   const router = useRouter();
-  const { isSignedIn, isLoaded, user } = useUser();
-  const restrictionEnabled = useFeatureFlagEnabled(
-    "teachers-copyright-restrictions",
-  );
+  const {
+    showSignedInNotOnboarded,
+    showSignedOutGeoRestricted,
+    showSignedOutLoginRequired,
+    showGeoBlocked,
+    isLoaded,
+  } = useCopyrightRequirements({
+    loginRequired,
+    geoRestricted,
+    isBehindFeatureFlag,
+  });
 
+  const contentRestricted = loginRequired || geoRestricted;
   const buttonState = useMemo((): ButtonState => {
-    const userOnboarded = user?.publicMetadata?.owa?.isOnboarded;
-
-    if (!isLoaded) {
+    if (contentRestricted && !isLoaded) {
       return "loading";
-    } else if (!isSignedIn) {
+    } else if (showSignedOutGeoRestricted || showSignedOutLoginRequired) {
       return "signup";
-    } else if (isSignedIn && !userOnboarded) {
+    } else if (showSignedInNotOnboarded) {
       return "onboarding";
-    } else if (userOnboarded && actionProps) {
-      if (
-        actionProps.isActionGeorestricted &&
-        !user?.publicMetadata?.owa?.isRegionAuthorised &&
-        restrictionEnabled
-      ) {
+    } else if (actionProps) {
+      if (showGeoBlocked) {
         return "georestricted";
       }
       return "action";
     } else {
       return "null";
     }
-  }, [isLoaded, isSignedIn, user, actionProps, restrictionEnabled]);
+  }, [
+    contentRestricted,
+    isLoaded,
+    showSignedOutGeoRestricted,
+    showSignedOutLoginRequired,
+    showSignedInNotOnboarded,
+    actionProps,
+    showGeoBlocked,
+  ]);
 
   const ButtonComponent = getButtonVariant(buttonVariant, sizeVariant);
+
+  const shouldHideButton =
+    showGeoBlocked && actionProps?.shouldHidewhenGeoRestricted;
 
   switch (buttonState) {
     case "onboarding":
@@ -125,7 +152,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
               query: { returnTo: router.asPath },
             })
           }
-          {...buttonOverrideProps}
+          {...overrideProps}
         >
           {onboardingProps?.name ?? "Complete sign up to continue"}
         </ButtonComponent>
@@ -138,7 +165,7 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
           <ButtonComponent
             iconName={signUpProps?.iconName}
             isTrailingIcon={signUpProps?.isTrailingIcon}
-            {...buttonOverrideProps}
+            {...overrideProps}
           >
             <OakFlex $alignItems="center" $gap="space-between-xs">
               {signUpProps?.showNewTag && (
@@ -157,32 +184,36 @@ const LoginRequiredButton = (props: LoginRequiredButtonProps) => {
     case "action":
     case "georestricted":
       return (
-        <ButtonComponent
-          onClick={actionProps?.onClick}
-          iconName={actionProps?.iconName}
-          isTrailingIcon={actionProps?.isTrailingIcon}
-          disabled={buttonState === "georestricted"}
-          {...buttonOverrideProps}
-        >
-          <OakFlex $alignItems="center" $gap="space-between-xs">
-            {actionProps?.showNewTag && !actionProps?.loading && (
-              <OakTagFunctional
-                label="New"
-                $background="mint"
-                $color="text-primary"
-                $pv={"inner-padding-none"}
-              />
-            )}
-            {actionProps?.loading && (
-              <OakLoadingSpinner data-testid="loading-spinner" />
-            )}
-            {actionProps?.name}
-          </OakFlex>
-        </ButtonComponent>
+        <OakBox $display={shouldHideButton ? "none" : "block"}>
+          <ButtonComponent
+            element={element}
+            onClick={actionProps?.onClick}
+            iconName={actionProps?.iconName}
+            href={actionProps?.href}
+            isTrailingIcon={actionProps?.isTrailingIcon}
+            disabled={buttonState === "georestricted"}
+            {...overrideProps}
+          >
+            <OakFlex $alignItems="center" $gap="space-between-xs">
+              {actionProps?.showNewTag && !actionProps?.loading && (
+                <OakTagFunctional
+                  label="New"
+                  $background="mint"
+                  $color="text-primary"
+                  $pv={"inner-padding-none"}
+                />
+              )}
+              {actionProps?.loading && (
+                <OakLoadingSpinner data-testid="loading-spinner" />
+              )}
+              {actionProps?.name}
+            </OakFlex>
+          </ButtonComponent>
+        </OakBox>
       );
     case "loading":
       return (
-        <ButtonComponent isLoading {...buttonOverrideProps}>
+        <ButtonComponent isLoading {...overrideProps}>
           Loading...
         </ButtonComponent>
       );

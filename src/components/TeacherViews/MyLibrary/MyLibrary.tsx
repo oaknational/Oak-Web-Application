@@ -12,10 +12,16 @@ import {
   getUnitProgrammeSlug,
   TrackingProgrammeData,
 } from "@/node-lib/educator-api/helpers/saveUnits/utils";
-import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import {
+  ExamBoardValueType,
+  KeyStageTitleValueType,
+  PathwayValueType,
+  TierNameValueType,
+} from "@/browser-lib/avo/Avo";
 import { resolveOakHref } from "@/common-lib/urls";
 import MyLibraryProgrammeCard from "@/components/TeacherComponents/MyLibraryProgrammeCard/MyLibraryProgrammeCard";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 
 export type CollectionData = Array<{
   subject: string;
@@ -36,6 +42,7 @@ type MyLibraryProps = {
   onSaveToggle: (
     unitSlug: string,
     programmeSlug: string,
+    uniqueProgrammeKey: string,
     trackingData: TrackingProgrammeData,
   ) => void;
   isUnitSaved: (unitProgrammeSlug: string) => boolean;
@@ -45,7 +52,7 @@ type MyLibraryProps = {
 export default function MyLibrary(props: MyLibraryProps) {
   const { collectionData, isLoading, onSaveToggle, isUnitSaved, isUnitSaving } =
     props;
-
+  const { track } = useAnalytics();
   return (
     <OakMaxWidth
       $gap={["space-between-none", "space-between-l"]}
@@ -101,29 +108,91 @@ export default function MyLibrary(props: MyLibraryProps) {
                     category: collection.searchQuery,
                   },
                 })}
+                trackBrowseRefined={() =>
+                  track.browseRefined({
+                    platform: "owa",
+                    product: "teacher lesson resources",
+                    engagementIntent: "refine",
+                    componentType: "programme_card",
+                    eventVersion: "2.0.0",
+                    analyticsUseCase: "Teacher",
+                    filterType: "Subject filter",
+                    filterValue: collection.subject,
+                    activeFilters: [],
+                  })
+                }
                 iconName={getValidSubjectIconName(collection.subjectSlug)}
                 savedUnits={collection.units.map((unit) => ({
                   ...unit,
                   programmeSlug: collection.programmeSlug,
-                  onSave: () =>
-                    onSaveToggle(unit.unitSlug, collection.programmeSlug, {
+                  trackUnitAccessed: () =>
+                    track.unitAccessed({
+                      platform: "owa",
+                      product: "teacher lesson resources",
+                      engagementIntent: "refine",
+                      componentType: "unit_card",
+                      eventVersion: "2.0.0",
+                      analyticsUseCase: "Teacher",
+                      unitName: unit.unitTitle,
+                      unitSlug: unit.unitSlug,
+                      subjectTitle: collection.subject,
+                      subjectSlug: collection.subjectSlug,
                       keyStageTitle:
                         collection.keystage as KeyStageTitleValueType,
-                      subjectTitle: collection.subject,
-                      savedFrom: "my-library-save-button",
                       keyStageSlug: collection.keystageSlug,
-                      subjectSlug: collection.subjectSlug,
+                      yearGroupName: unit.year,
+                      yearGroupSlug: unit.yearSlug,
+                      tierName: unit.tier as TierNameValueType,
+                      examBoard: unit.examboard as ExamBoardValueType,
+                      pathway: unit.pathway as PathwayValueType,
                     }),
+                  trackLessonAccessed: (lessonSlug: string) =>
+                    track.lessonAccessed({
+                      platform: "owa",
+                      product: "teacher lesson resources",
+                      engagementIntent: "refine",
+                      componentType: "lesson_card",
+                      eventVersion: "2.0.0",
+                      analyticsUseCase: "Teacher",
+                      unitName: unit.unitTitle,
+                      unitSlug: unit.unitSlug,
+                      lessonName: lessonSlug,
+                      keyStageTitle:
+                        collection.keystage as KeyStageTitleValueType,
+                      keyStageSlug: collection.keystageSlug,
+                      yearGroupName: unit.year,
+                      yearGroupSlug: unit.yearSlug,
+                      tierName: unit.tier as TierNameValueType,
+                      examBoard: unit.examboard as ExamBoardValueType,
+                      pathway: unit.pathway as PathwayValueType,
+                      lessonSlug,
+                      lessonReleaseCohort: "2023-2026",
+                      lessonReleaseDate: "", // we don't have access to lesson content data here
+                    }),
+                  onSave: () =>
+                    onSaveToggle(
+                      unit.unitSlug,
+                      collection.programmeSlug,
+                      collection.uniqueProgrammeKey,
+                      {
+                        keyStageTitle:
+                          collection.keystage as KeyStageTitleValueType,
+                        subjectTitle: collection.subject,
+                        savedFrom: "my-library-save-button",
+                        keyStageSlug: collection.keystageSlug,
+                        subjectSlug: collection.subjectSlug,
+                      },
+                    ),
                   isSaved: isUnitSaved(
                     getUnitProgrammeSlug(
                       unit.unitSlug,
-                      collection.programmeSlug,
+                      collection.uniqueProgrammeKey,
                     ),
                   ),
                   isSaving: isUnitSaving(
                     getUnitProgrammeSlug(
                       unit.unitSlug,
-                      collection.programmeSlug,
+                      collection.uniqueProgrammeKey,
                     ),
                   ),
                 }))}

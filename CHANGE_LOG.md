@@ -1,3 +1,84 @@
+## [1.814.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.814.0...v1.814.1) (2025-07-31)
+
+# [1.814.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.813.1...v1.814.0) (2025-07-30)
+
+
+### Features
+
+* add browse refined tracking on programme click ([1136592](https://github.com/oaknational/Oak-Web-Application/commit/11365922851dff67fd9c2f560bae4045eada913f))
+* add lesson accessed event to my library lesson links ([7e95b70](https://github.com/oaknational/Oak-Web-Application/commit/7e95b70f51193b6ccfbc6d4ba881e3b2690cf975))
+* add unit accessed tracking on unit title link in my library ([e6e5046](https://github.com/oaknational/Oak-Web-Application/commit/e6e5046cef76974ab59ff0a01cd82c7eb175e973))
+
+## [1.813.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.813.0...v1.813.1) (2025-07-30)
+
+
+### Bug Fixes
+
+* fix button missing from saving signed out modal ([28d68fb](https://github.com/oaknational/Oak-Web-Application/commit/28d68fb25d9cba2a27dd4d17901a00eb9348787e))
+
+# [1.813.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.812.0...v1.813.0) (2025-07-29)
+
+
+### Bug Fixes
+
+* fix type errors ([e6b5379](https://github.com/oaknational/Oak-Web-Application/commit/e6b5379939e7ae9a0bace50f4a27b256c3de0a17))
+* make signup link tabbable ([4254c10](https://github.com/oaknational/Oak-Web-Application/commit/4254c105fd309c179bd4d4b7b2c9dcad88ee4668))
+* return downloads props to fix bug with href construction ([996f56a](https://github.com/oaknational/Oak-Web-Application/commit/996f56a33ed498311f0161e5ea6ce5bb98ad9073))
+* rm georestricted prop from actions, fix optional handleclick prop in teacher share ([d385010](https://github.com/oaknational/Oak-Web-Application/commit/d385010045ebfe3c380bdfd24a7b019644e2966c))
+* update georestricted banner copy in line with designs, refactor to use heading ([7ebc497](https://github.com/oaknational/Oak-Web-Application/commit/7ebc49725672c55dcd8707f6c708e22b85ae2c71))
+
+
+### Features
+
+* create a wrapper component to consolidate redirect logic ([973259f](https://github.com/oaknational/Oak-Web-Application/commit/973259f75b78eded2e77e29df733bbf09f3ca080))
+* hide links when geoblocked, redirect/hide teacher notes btn ([d7e25e3](https://github.com/oaknational/Oak-Web-Application/commit/d7e25e32df7e5ea019ae86ff6305523fffd929db))
+* redirect from SEO links, refactor to call copyright requirements hook from 1 place ([84b7c35](https://github.com/oaknational/Oak-Web-Application/commit/84b7c35489c9e174308a69c2a5e389e8c7e0f41c))
+* redirect to sign up from download all button when content restricted ([4b06432](https://github.com/oaknational/Oak-Web-Application/commit/4b064329fdcb85680cc7f2fe7e7f3c9dcdd1ccef))
+* redirect to sign up from lesson files download button ([a8ec42e](https://github.com/oaknational/Oak-Web-Application/commit/a8ec42ea10ee4aa78abe85a20d8a6ace3f6b6470))
+* redirect to sign up from share all button when content restricted ([236c36b](https://github.com/oaknational/Oak-Web-Application/commit/236c36b85f2ae6bf9f8aea7915339137a605a59e))
+
+# [1.812.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.811.3...v1.812.0) (2025-07-29)
+
+
+### Features
+
+* attach www domain directly and remove lb" ([54e377f](https://github.com/oaknational/Oak-Web-Application/commit/54e377fbaeb214a3b03bb4007a396c9c5ed123e3))
+
+## [1.811.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.811.2...v1.811.3) (2025-07-29)
+
+
+### Bug Fixes
+
+* use unique programme key with categories included for saved status ([0a53d2c](https://github.com/oaknational/Oak-Web-Application/commit/0a53d2ca91510e9f06f08acc8a12914fb1178b60))
+
+## [1.811.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.811.1...v1.811.2) (2025-07-28)
+
+
+### Bug Fixes
+
+* update types ([668e3c4](https://github.com/oaknational/Oak-Web-Application/commit/668e3c4ec59552c0d68ee4721cc9de02a09e0370))
+
+## [1.811.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.811.0...v1.811.1) (2025-07-28)
+
+
+### Bug Fixes
+
+* only use auth token when required by lesson restrictions ([f9c5fd3](https://github.com/oaknational/Oak-Web-Application/commit/f9c5fd30074696b40d43a77bc60ebc143f35c56d))
+
+# [1.811.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.810.0...v1.811.0) (2025-07-25)
+
+
+### Features
+
+* put OWA live on vercel ([8108fbf](https://github.com/oaknational/Oak-Web-Application/commit/8108fbf7d5fd60817ab6ead9c5aa443efb0b6e09))
+
+# [1.810.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.809.0...v1.810.0) (2025-07-24)
+
+
+### Features
+
+* set lesson child pages seo to nofollow ([5111413](https://github.com/oaknational/Oak-Web-Application/commit/5111413ebec6d409dc52a0ddfda94a9b7dcd7267))
+
 # [1.809.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.808.0...v1.809.0) (2025-07-24)
 
 

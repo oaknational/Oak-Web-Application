@@ -19,6 +19,8 @@ const unit = {
   onSave: () => console.log("onSave!"),
   isSaved: false,
   isSaving: false,
+  trackUnitAccessed: () => console.log("Track unit accessed"),
+  trackLessonAccessed: () => console.log("Track lesson accessed"),
 };
 
 const meta: Meta<typeof MyLibraryUnitCard> = {

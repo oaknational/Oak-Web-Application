@@ -37,10 +37,11 @@ export type UnitDownloadButtonProps = {
   downloadInProgress: boolean;
   showNewTag: boolean;
   georestricted: boolean;
+  loginRequired: boolean;
 };
 
 export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
-  const { unitFileId, showNewTag, georestricted } = props;
+  const { unitFileId, showNewTag, georestricted, loginRequired } = props;
   const authFlagEnabled = useFeatureFlagEnabled(
     "teachers-copyright-restrictions",
   );
@@ -66,7 +67,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
       setDownloadError(false);
       const downloadLink = await createUnitDownloadLink({
         unitFileId,
-        authFlagEnabled,
+        authRequired: authFlagEnabled,
         getToken: auth.getToken,
       });
 
@@ -87,6 +88,8 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
 
   return showDownloadButton ? (
     <LoginRequiredButton
+      loginRequired={loginRequired}
+      geoRestricted={georestricted}
       sizeVariant={isMobile ? "small" : "large"}
       actionProps={{
         onClick: onUnitDownloadClick,
