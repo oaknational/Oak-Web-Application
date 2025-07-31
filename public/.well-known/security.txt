@@ -12,8 +12,8 @@ Preferred-Languages: en
 Encryption: https://www.thenational.academy/.well-known/pgp-key.txt
 Encryption: https://keys.openpgp.org/vks/v1/by-fingerprint/E925058764BF1E055A95CFA7971F062051B60B7D
 
-# This security is annually reviewed
-Expires: 2025-07-31T20:59:00.000Z
+# This security policy is annually reviewed
+Expires: 2026-08-01T10:48:00.000Z
 
 # Oak National Academy Security Disclosure Policy
 Policy: https://www.thenational.academy/legal/security-disclosure-policy/
@@ -30,17 +30,17 @@ Hiring: https://jobs.thenational.academy
 # Please see https://securitytxt.org/ for details of the specification of this file
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEE6SUFh2S/HgValc+nlx8GIFG2C30FAmao6tIACgkQlx8GIFG2
-C302aQ/+PFi4Z5tUz8nWS/TyNi7jBzCfn3d/qXn7gAAtUQ0IREo3Ks/0uo1NwRiv
-E1pTI9Sl3tb+ZcBEs99H2E9yEV3aeys5ptauDte/4BL+LNDnLgLwQuaQxqrWJJtD
-lf7ADNFl4Knnn52aEpgoT6WLL+kWjZbTa6c/aJ2EBibR5cd0eL4LEcfjbytibmPV
-kGlhvjECclHR7ByscaFyW4k+iQhEOA3R9A1aS7l5N9is5U/JFw/PwyOwDM2I6Ati
-04Ejq3tefEhce/Kt3vssbb6a5GaTOjkbwzqS1byT3GN/vobpRNguQvMuGWIJinsd
-1qpTpoYQrho0nUqJEQ2aQV1lxkstBI7PSYjI+lCxODyv4oZAYJc1vWlq98Oyv/6k
-BIx5I/CMy/rbOxmYZBDLacrJd6V4owfrGv6mlr7OmzZ+JsFG4krcwmCtxlK0alBw
-9iQvEvNn1UdsFryw+aVUn6z9Clh27QlLM/Li3X+nabaeu9trBoi0GMKzE9epvvOQ
-9Jcg7MxCJYZ5K1zkhvrNh8/HkM58VTz7qSfF3RBAC3w3lqYwzqdo1OEGIgyPHu5V
-T3rQjKvNv3bVwnwcHWCy46NIpzmZesD/ANrNnfMixAWnOu7OOqWeoWD7pMP5spVi
-y+jfajD/cPTlBge+ys332vKXEr+5gZfoNH9hgqPBp5HD2DRFMoE=
-=EUmq
+iQIzBAEBCgAdFiEE6SUFh2S/HgValc+nlx8GIFG2C30FAmiHTkEACgkQlx8GIFG2
+C32mkRAAkeYYYDxPktBwcrUUZimeFl+O6Gfg+WA3/WCf0vmjIABF5gMj1oIwxXHv
+uNaOBjdk1VpEXlOQGf/G5dZOmEA8DH2dlhNiKTb95pNc1VhwNY+nHZ0jxyDroffy
++ltyITzmq7Dg2laTg3vLsUGQJuicrbNtv1DmXaeLm6DKO+N3I3kd45jOXEqc+IUZ
+kQ9dn8ks8as2Exc8jBIfXXPeQmkaWWs2XsNdEKeb3Da2d9z0Ape4Ia/0TgJhE+d4
+E+1FPKYdwMAxmXDIcWBMC4uZdHfSC7D7M9rrcJ6VhgoK3AlNjqSNpcg9xMQo7M3/
+URCQ8PXE/lnZpZ2ZTbSMV3Q4NFaLvMbHF72xvkViQIIeg6GuIBwAWJM3MqaZIyqx
+3+e3Cjjkjn1h2rk3xPas4Kj1amLc6TDnAvV9fDiNmtDvNESzn9UPL8MkIbTFedYi
+lsizOm7Hw4OJ9lfZbwG7+KzvZLePAy5EIgdgcKQuYLLj7DF5UlTgwWfnNCMV4F9X
+UMFF8AJjr3FvtsTHFCciAEVgEHJjNIFXLDrUc2MqTOx9LSiXtt3VHCvtuPS2VYmn
+mYJbTjQ/6M4vNgURXsQyNL9QLElPLXmCJDD5K9dbQRb6P5unAIM56Es5DI3F9sZP
+yO/c+wKpgede8L3XDInt6hGGIUEQlSNIYDi469Ho4/QTc0GmmLE=
+=x2y4
 -----END PGP SIGNATURE-----
