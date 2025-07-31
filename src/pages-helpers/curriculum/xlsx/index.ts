@@ -4,6 +4,8 @@ import { generateEmptyXlsx, JSZipCached } from "../docx/docx";
 import { cdata, safeXml, xmlCompact } from "../docx/xml";
 import { formatCurriculumUnitsData } from "../docx/tab-helpers";
 
+import { createXmlIndexMap } from "./builder";
+
 import { Unit } from "@/utils/curriculum/types";
 import {
   CurriculumOverviewMVData,
@@ -27,7 +29,192 @@ function addOrUpdateSheet(zip: JSZipCached, sheetNumber: number, xml: string) {
 }
 
 function buildStyle() {
-  return safeXml`
+  const { xml: fontsXml, indexMap: fontIndexMap } = createXmlIndexMap({
+    arial12: safeXml`
+      <font>
+        <sz val="12" />
+        <color theme="1" />
+        <name val="Arial" />
+        <family val="2" />
+      </font>
+    `,
+    arialBold22: safeXml`
+      <font>
+        <sz val="22" />
+        <color rgb="FFFFFFFF" />
+        <name val="Arial Bold" />
+        <family val="2" />
+      </font>
+    `,
+    arialBold24: safeXml`
+      <font>
+        <sz val="24" />
+        <color rgb="FF000000" />
+        <name val="Arial Bold" />
+        <family val="2" />
+      </font>
+    `,
+    arialBold14: safeXml`
+      <font>
+        <sz val="14" />
+        <color rgb="FF000000" />
+        <name val="Arial Bold" />
+        <family val="2" />
+      </font>
+    `,
+  });
+
+  const { xml: fillsXml, indexMap: fillIndexMap } = createXmlIndexMap({
+    none: safeXml`
+      <fill>
+        <patternFill patternType="none" />
+      </fill>
+    `,
+    temp1: safeXml`
+      <fill>
+        <patternFill patternType="gray125" />
+      </fill>
+    `,
+    temp2: safeXml`
+      <fill>
+        ,
+        <patternFill patternType="solid">
+          <fgColor rgb="FFF2F2F2" />
+          <bgColor rgb="FFC6EFCE" />
+        </patternFill>
+      </fill>
+    `,
+    temp3: safeXml`
+      <fill>
+        <patternFill patternType="solid">
+          <fgColor rgb="FFC8F2C2" />
+          <bgColor rgb="FFC6EFCE" />
+        </patternFill>
+      </fill>
+    `,
+    temp4: safeXml`
+      <fill>
+        <patternFill patternType="solid">
+          <fgColor rgb="FFEBFCEB" />
+          <bgColor rgb="FFC6EFCE" />
+        </patternFill>
+      </fill>
+    `,
+    temp5: safeXml`
+      <fill>
+        <patternFill patternType="solid">
+          <fgColor rgb="FF000000" />
+          <bgColor rgb="FFFFFFFF" />
+        </patternFill>
+      </fill>
+    `,
+  });
+
+  const { xml: bordersXml, indexMap: borderIndexMap } = createXmlIndexMap({
+    none: safeXml`
+      <border>
+        <left />
+        <right />
+        <top />
+        <bottom />
+        <diagonal />
+      </border>
+    `,
+    lightGray: safeXml`
+      <border>
+        <left style="thin">
+          <color rgb="FFD4D4D4" />
+        </left>
+        <right style="thin">
+          <color rgb="FFD4D4D4" />
+        </right>
+        <top style="thin">
+          <color rgb="FFD4D4D4" />
+        </top>
+        <bottom style="thin">
+          <color rgb="FFD4D4D4" />
+        </bottom>
+        <diagonal />
+      </border>
+    `,
+  });
+
+  const { xml: cellStylesXml, indexMap: cellStyleIndexMap } = createXmlIndexMap(
+    {
+      temp0: safeXml`
+        <xf
+          numFmtId="0"
+          fontId="${fontIndexMap.arial12}"
+          fillId="${fillIndexMap.none}"
+          borderId="${borderIndexMap.lightGray}"
+          xfId="0"
+          applyBorder="0"
+        />
+      `,
+      temp1: safeXml`
+        <xf
+          numFmtId="0"
+          fontId="${fontIndexMap.arialBold24}"
+          fillId="${fillIndexMap.temp2}"
+          borderId="${borderIndexMap.lightGray}"
+          xfId="0"
+          applyBorder="0"
+        >
+          <alignment wrapText="1" vertical="top" />
+        </xf>
+      `,
+      temp2: safeXml`
+        <xf
+          numFmtId="0"
+          fontId="${fontIndexMap.arialBold14}"
+          fillId="${fillIndexMap.temp3}"
+          borderId="${borderIndexMap.lightGray}"
+          xfId="0"
+          applyBorder="0"
+        >
+          <alignment wrapText="1" vertical="top" />
+        </xf>
+      `,
+      temp3: safeXml`
+        <xf
+          numFmtId="0"
+          fontId="${fontIndexMap.arialBold14}"
+          fillId="${fillIndexMap.temp3}"
+          borderId="${borderIndexMap.lightGray}"
+          xfId="0"
+          applyBorder="0"
+        >
+          <alignment wrapText="1" vertical="top" />
+        </xf>
+      `,
+      temp4: safeXml`
+        <xf
+          numFmtId="0"
+          fontId="${fontIndexMap.arial12}"
+          fillId="${fillIndexMap.temp4}"
+          borderId="${borderIndexMap.lightGray}"
+          xfId="0"
+          applyBorder="0"
+        >
+          <alignment wrapText="1" vertical="center" />
+        </xf>
+      `,
+      temp5: safeXml`
+        <xf
+          numFmtId="0"
+          fontId="${fontIndexMap.arialBold22}"
+          fillId="${fillIndexMap.temp5}"
+          borderId="${borderIndexMap.lightGray}"
+          xfId="0"
+          applyBorder="0"
+        >
+          <alignment wrapText="1" horizontal="center" vertical="center" />
+        </xf>
+      `,
+    },
+  );
+
+  const styleXml = safeXml`
     <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
     <styleSheet
       xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"
@@ -37,151 +224,13 @@ function buildStyle() {
       xmlns:x16r2="http://schemas.microsoft.com/office/spreadsheetml/2015/02/main"
       xmlns:xr="http://schemas.microsoft.com/office/spreadsheetml/2014/revision"
     >
-      <fonts count="1" x14ac:knownFonts="1">
-        <font>
-          <sz val="12" />
-          <color theme="1" />
-          <name val="Arial" />
-          <family val="2" />
-        </font>
-        <font>
-          <sz val="22" />
-          <color rgb="FFFFFFFF" />
-          <name val="Arial Bold" />
-          <family val="2" />
-        </font>
-        <font>
-          <sz val="24" />
-          <color rgb="FF000000" />
-          <name val="Arial Bold" />
-          <family val="2" />
-        </font>
-        <font>
-          <sz val="14" />
-          <color rgb="FF000000" />
-          <name val="Arial Bold" />
-          <family val="2" />
-        </font>
-      </fonts>
-      <fills count="3">
-        <fill>
-          <patternFill patternType="none" />
-        </fill>
-        <fill>
-          <patternFill patternType="gray125" />
-        </fill>
-        <fill>
-          <patternFill patternType="solid">
-            <fgColor rgb="FFF2F2F2" />
-            <bgColor rgb="FFC6EFCE" />
-          </patternFill>
-        </fill>
-        <fill>
-          <patternFill patternType="solid">
-            <fgColor rgb="FFC8F2C2" />
-            <bgColor rgb="FFC6EFCE" />
-          </patternFill>
-        </fill>
-        <fill>
-          <patternFill patternType="solid">
-            <fgColor rgb="FFEBFCEB" />
-            <bgColor rgb="FFC6EFCE" />
-          </patternFill>
-        </fill>
-        <fill>
-          <patternFill patternType="solid">
-            <fgColor rgb="FF000000" />
-            <bgColor rgb="FFFFFFFF" />
-          </patternFill>
-        </fill>
-      </fills>
-      <borders count="1">
-        <border>
-          <left />
-          <right />
-          <top />
-          <bottom />
-          <diagonal />
-        </border>
-        <border>
-          <left style="thin">
-            <color rgb="FFD4D4D4" />
-          </left>
-          <right style="thin">
-            <color rgb="FFD4D4D4" />
-          </right>
-          <top style="thin">
-            <color rgb="FFD4D4D4" />
-          </top>
-          <bottom style="thin">
-            <color rgb="FFD4D4D4" />
-          </bottom>
-          <diagonal />
-        </border>
-      </borders>
+      <fonts count="1" x14ac:knownFonts="1">${fontsXml}</fonts>
+      <fills count="3">${fillsXml}</fills>
+      <borders count="1">${bordersXml}</borders>
       <cellStyleXfs count="1">
         <xf numFmtId="0" fontId="0" fillId="0" borderId="1" />
       </cellStyleXfs>
-      <cellXfs count="1">
-        <xf
-          numFmtId="0"
-          fontId="0"
-          fillId="0"
-          borderId="1"
-          xfId="0"
-          applyBorder="0"
-        />
-        <xf
-          numFmtId="0"
-          fontId="2"
-          fillId="2"
-          borderId="1"
-          xfId="0"
-          applyBorder="0"
-        >
-          <alignment wrapText="1" vertical="top" />
-        </xf>
-        <xf
-          numFmtId="0"
-          fontId="3"
-          fillId="3"
-          borderId="1"
-          xfId="0"
-          applyBorder="0"
-        >
-          <alignment wrapText="1" vertical="top" />
-        </xf>
-        <xf
-          numFmtId="0"
-          fontId="3"
-          fillId="3"
-          borderId="1"
-          xfId="0"
-          applyBorder="0"
-        >
-          <alignment wrapText="1" vertical="top" />
-        </xf>
-        <xf
-          numFmtId="0"
-          fontId="0"
-          fillId="4"
-          borderId="1"
-          xfId="0"
-          applyBorder="0"
-        >
-          <alignment wrapText="1" vertical="center" />
-        </xf>
-        <xf
-          numFmtId="0"
-          fontId="1"
-          fillId="5"
-          borderId="1"
-          xfId="0"
-          applyBorder="0"
-        >
-          <alignment wrapText="1" horizontal="center" vertical="center" />
-        </xf>
-      </cellXfs>
+      <cellXfs count="1">${cellStylesXml}</cellXfs>
       <cellStyles count="1">
         <cellStyle name="Normal" xfId="0" builtinId="0" />
       </cellStyles>
@@ -207,9 +256,17 @@ function buildStyle() {
       </extLst>
     </styleSheet>
   `.trim();
+
+  return {
+    styleXml,
+    cellStyleIndexMap,
+  };
 }
 
-function buildNatCurric(data: BuildNationalCurriculumData) {
+function buildNatCurric<T extends Record<string, string>>(
+  cellStyleIndexMap: T,
+  data: BuildNationalCurriculumData,
+) {
   return safeXml`
     <worksheet
       xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"
@@ -256,7 +313,7 @@ function buildNatCurric(data: BuildNationalCurriculumData) {
       </cols>
       <sheetData>
         <row r="1" spans="1:26">
-          <c r="A1" t="inlineStr" s="1">
+          <c r="A1" t="inlineStr" s="${cellStyleIndexMap.temp1!}">
             <is>
               <t>
                 ${cdata(
@@ -267,7 +324,7 @@ function buildNatCurric(data: BuildNationalCurriculumData) {
           </c>
         </row>
         <row r="2" spans="1:26">
-          <c r="A2" t="inlineStr" s="2">
+          <c r="A2" t="inlineStr" s="${cellStyleIndexMap.temp2!}">
             <is>
               <t xml:space="preserve">${cdata(
                   `\nNational curriculum statement\n`,
@@ -279,7 +336,7 @@ function buildNatCurric(data: BuildNationalCurriculumData) {
               <c
                 r="${cartesianToExcelCoords([unitIndex + 2, 2])}"
                 t="inlineStr"
-                s="3"
+                s="${cellStyleIndexMap.temp3!}"
               >
                 <is>
                   <r>
@@ -299,17 +356,17 @@ function buildNatCurric(data: BuildNationalCurriculumData) {
           })}
         </row>
         <row r="3" spans="1:26">
-          <c r="A3" t="inlineStr" s="2">
+          <c r="A3" t="inlineStr" s="${cellStyleIndexMap.temp2!}">
             <is>
               <t />
             </is>
           </c>
-          ${data.unitData.map((unit, unitIndex) => {
+          ${data.unitData.map((_unit, unitIndex) => {
             return safeXml`
               <c
                 r="${cartesianToExcelCoords([unitIndex + 2, 3])}"
                 t="inlineStr"
-                s="3"
+                s="${cellStyleIndexMap.temp3!}"
               >
                 <is>
                   <r>
@@ -332,7 +389,11 @@ function buildNatCurric(data: BuildNationalCurriculumData) {
             const yPos = 4 + nationalCurricTextIndex;
             return safeXml`
               <row r="${yPos}" spans="1:${data.unitData.length + 1}">
-                <c r="${cartesianToExcelCoords([1, yPos])}" t="inlineStr" s="4">
+                <c
+                  r="${cartesianToExcelCoords([1, yPos])}"
+                  t="inlineStr"
+                  s="${cellStyleIndexMap.temp4!}"
+                >
                   <is>
                     <t xml:space="preserve">${cdata(
                         `\n${nationalCurricText}\n`,
@@ -344,7 +405,9 @@ function buildNatCurric(data: BuildNationalCurriculumData) {
                     <c
                       r="${cartesianToExcelCoords([unitIndex + 2, yPos])}"
                       t="inlineStr"
-                      s="${unit.nationalCurricIds.includes(id) ? "5" : "0"}"
+                      s="${unit.nationalCurricIds.includes(id)
+                        ? cellStyleIndexMap.temp5!
+                        : cellStyleIndexMap.temp0!}"
                     >
                       <is>
                         <t>
@@ -395,6 +458,9 @@ async function buildNationalCurriculum(
   zip: JSZipCached,
   data: BuildNationalCurriculumData[],
 ) {
+  const { styleXml, cellStyleIndexMap } = buildStyle();
+  zip.writeString("xl/styles.xml", styleXml);
+
   data.forEach((item, index) => {
     zip.writeString(
       `xl/worksheets/_rels/sheet${10 + index}.xml.rels`,
@@ -418,7 +484,11 @@ async function buildNationalCurriculum(
         </Relationships>
       `.trim(),
     );
-    addOrUpdateSheet(zip, 10 + index, xmlCompact(buildNatCurric(item)));
+    addOrUpdateSheet(
+      zip,
+      10 + index,
+      xmlCompact(buildNatCurric(cellStyleIndexMap, item)),
+    );
   });
 
   zip.writeString(
@@ -450,8 +520,6 @@ async function buildNationalCurriculum(
       </Relationships>
     `.trim(),
   );
-
-  zip.writeString("xl/styles.xml", buildStyle());
 
   zip.writeString(
     "xl/workbook.xml",
