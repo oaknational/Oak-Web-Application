@@ -319,6 +319,7 @@ const PupilExperienceLayout = ({
           </OakBox>
         </LessonEngineProvider>
         <PupilRedirectedOverlay
+          isLessonPage={true}
           onLoaded={(isShowing) => setRedirectOverlayCleared(!isShowing)}
           onClose={() => setRedirectOverlayCleared(true)}
         />
