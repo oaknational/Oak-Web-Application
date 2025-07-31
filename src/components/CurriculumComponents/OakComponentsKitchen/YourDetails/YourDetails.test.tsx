@@ -1,5 +1,5 @@
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
-import { act, fireEvent } from "@testing-library/react";
+import { act, fireEvent, screen, waitFor } from "@testing-library/react";
 
 import YourDetails from ".";
 
@@ -186,8 +186,8 @@ describe("YourDetails", () => {
   });
 
   describe("email", () => {
-    it("initial", () => {
-      const { getByTestId } = renderWithTheme(
+    it("initial", async () => {
+      renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
           <YourDetails
             schools={[]}
@@ -200,13 +200,15 @@ describe("YourDetails", () => {
         </OakThemeProvider>,
       );
 
-      const inputElement = getByTestId("download-email");
-      expect(inputElement).toHaveValue("test@example.com");
+      const inputElement = screen.getByPlaceholderText(
+        "Type your email address",
+      );
+      await waitFor(() => expect(inputElement).toHaveValue("test@example.com"));
     });
 
     it("change", () => {
       const onChange = jest.fn();
-      const { getByTestId } = renderWithTheme(
+      renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
           <YourDetails
             schools={[]}
@@ -219,7 +221,9 @@ describe("YourDetails", () => {
         </OakThemeProvider>,
       );
 
-      const inputElement = getByTestId("download-email");
+      const inputElement = screen.getByPlaceholderText(
+        "Type your email address",
+      );
       expect(inputElement).toHaveValue("test@example.com");
 
       act(() => {
@@ -237,7 +241,7 @@ describe("YourDetails", () => {
 
     it("clear", () => {
       const onChange = jest.fn();
-      const { getByTestId } = renderWithTheme(
+      renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
           <YourDetails
             schools={[]}
@@ -250,7 +254,9 @@ describe("YourDetails", () => {
         </OakThemeProvider>,
       );
 
-      const inputElement = getByTestId("download-email");
+      const inputElement = screen.getByPlaceholderText(
+        "Type your email address",
+      );
       expect(inputElement).toHaveValue("test@example.com");
 
       act(() => {

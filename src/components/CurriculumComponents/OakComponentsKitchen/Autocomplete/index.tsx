@@ -1,13 +1,17 @@
 import { useComboBoxState } from "@react-stately/combobox";
-import { ComponentProps, useRef } from "react";
+import { useRef } from "react";
 import { CollectionChildren, Key } from "@react-types/shared";
 import { useComboBox, useFilter } from "react-aria";
 import { Item } from "react-stately";
-import { OakBox } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakFlex,
+  OakJauntyAngleLabel,
+  OakTextInput,
+} from "@oaknational/oak-components";
 
 import { Popover } from "@/components/SharedComponents/Popover";
 import { ListBox } from "@/components/SharedComponents/ListBox";
-import Input from "@/components/SharedComponents/Input";
 
 export const AutocompleteItem = Item;
 
@@ -20,7 +24,13 @@ export const AutocompleteItem = Item;
  */
 
 type AutocompleteProps = {
-  inputProps: ComponentProps<typeof Input>;
+  inputProps: {
+    id: string;
+    label: string;
+    error?: string;
+    placeholder?: string;
+    name?: string;
+  };
   value?: string;
   onChange: (value: string, textValue: string) => void;
   onInputChange?: (value: string) => void;
@@ -70,15 +80,41 @@ const Autocomplete = (props: AutocompleteProps) => {
 
   return (
     <OakBox $width={"100%"}>
-      <Input
-        {...props.inputProps}
-        {...inputProps}
-        data-testid="input"
-        placeholder={props.inputProps.placeholder}
-        value={String(inputProps.value)}
-        $mb={0}
-        ref={inputRef}
-      />
+      <OakFlex $width={"100%"} $position={"relative"} ref={inputRef}>
+        <OakJauntyAngleLabel
+          label={props.inputProps.label}
+          $color={state.isFocused || props.inputProps.error ? "white" : "black"}
+          htmlFor={inputProps.id}
+          as="label"
+          id={"autocomplete-label"}
+          $font={"heading-7"}
+          $background={
+            props.inputProps.error ? "red" : state.isFocused ? "blue" : "lemon"
+          }
+          $zIndex="in-front"
+          $position="absolute"
+          $top={"-20px"}
+          $left={"5px"}
+          $borderRadius="border-radius-square"
+          data-testid="jaunty-label"
+        />
+        <OakTextInput
+          {...inputProps}
+          value={String(inputProps.value)}
+          id={inputProps.id}
+          aria-labelledby={"autocomplete-label"}
+          data-testid={"autocomplete-input"}
+          placeholder={props.inputProps.placeholder}
+          aria-describedby={undefined}
+          required={true}
+          aria-invalid={props.inputProps.error ? "true" : undefined}
+          defaultValue={undefined}
+          wrapperWidth={"100%"}
+          $pv="inner-padding-none"
+          $height="all-spacing-10"
+          color="black"
+        />
+      </OakFlex>
       {isOpen && (
         <OakBox $position={"relative"}>
           <Popover

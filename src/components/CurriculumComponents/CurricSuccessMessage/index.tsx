@@ -1,25 +1,24 @@
-import { FC } from "react";
+import { ComponentProps, FC } from "react";
 import {
   OakFlex,
   OakHeading,
   OakP,
   OakIcon,
   OakBox,
+  OakTertiaryButton,
 } from "@oaknational/oak-components";
-
-import Box from "@/components/SharedComponents/Box";
-import Button, { ButtonProps } from "@/components/SharedComponents/Button";
 
 type SuccessMessageProps = {
   title: string;
   message: string;
-  buttonProps: Exclude<ButtonProps, "varient" | "icon" | "size">;
+  buttonProps: ComponentProps<typeof OakTertiaryButton> & { label: string };
 };
 const SuccessMessage: FC<SuccessMessageProps> = ({
   title,
   message,
   buttonProps,
 }) => {
+  const { label: buttonLabel, ...buttonPropsWithoutLabel } = buttonProps;
   return (
     <OakBox
       $maxWidth="all-spacing-24"
@@ -40,13 +39,16 @@ const SuccessMessage: FC<SuccessMessageProps> = ({
           $justifyContent={"center"}
           $flexShrink={1}
         >
-          <Box $height={[140, 240, 270]} $width={[166, 240, 320]}>
+          <OakBox
+            $height={["all-spacing-16", "all-spacing-19", "all-spacing-19"]}
+            $width={["all-spacing-17", "all-spacing-19", "all-spacing-20"]}
+          >
             <OakIcon
               iconName="tick-mark-happiness"
               $width={"100%"}
               $height={"100%"}
             />
-          </Box>
+          </OakBox>
         </OakFlex>
         <OakFlex
           $flexDirection={"column"}
@@ -55,15 +57,15 @@ const SuccessMessage: FC<SuccessMessageProps> = ({
           $flexShrink={1}
           $flexGrow={1}
         >
-          <OakP>
-            <Button
-              {...buttonProps}
-              variant={"buttonStyledAsLink"}
-              icon="chevron-left"
+          <OakBox>
+            <OakTertiaryButton
+              {...buttonPropsWithoutLabel}
+              iconName="chevron-left"
               data-testid="back-to-downloads-link"
-              size="small"
-            />
-          </OakP>
+            >
+              {buttonLabel}
+            </OakTertiaryButton>
+          </OakBox>
           <OakHeading tag="h2" $font={["heading-4"]}>
             {title}
           </OakHeading>

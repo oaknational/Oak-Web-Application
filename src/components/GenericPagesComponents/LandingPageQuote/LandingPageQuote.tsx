@@ -16,7 +16,11 @@ export const LandingPageQuote: FC<QuoteSchema> = ({ text, attribution }) => {
       $maxWidth={[720]}
       $ma={"auto"}
     >
-      <Blockquote $mb={[16]} $font={"heading-4"} $textAlign={"center"}>
+      <Blockquote
+        $mb={["space-between-s"]}
+        $font={"heading-4"}
+        $textAlign={"center"}
+      >
         &ldquo;{text}&rdquo;
       </Blockquote>
 

@@ -1,36 +1,23 @@
-import { FC, useState } from "react";
-import { OakBox } from "@oaknational/oak-components";
-
-import TranscriptViewer from "./TranscriptViewer";
-
-import Button from "@/components/SharedComponents/Button";
+import { FC, useId } from "react";
+import { OakP, OakVideoTranscript } from "@oaknational/oak-components";
 
 const TranscriptToggle: FC<{
   transcriptSentences: string[];
 }> = ({ transcriptSentences }) => {
-  const [transcriptOn, setTranscriptOn] = useState(false);
-
-  const toggleTranscript = () => {
-    setTranscriptOn(!transcriptOn);
-  };
+  const id = useId();
   return (
     <>
-      <OakBox>
-        <Button
-          label={transcriptOn ? "Hide transcript" : "Show transcript"}
-          icon={transcriptOn ? "chevron-up" : "chevron-down"}
-          onClick={toggleTranscript}
-          variant="minimal"
-          background="white"
-          iconBackground="blue"
-          $iconPosition="trailing"
-          aria-controls="transcript-viewer"
-          aria-expanded={transcriptOn}
-        />
-      </OakBox>
-      {transcriptOn && (
-        <TranscriptViewer transcriptSentences={transcriptSentences} />
-      )}
+      <OakVideoTranscript id={id}>
+        {transcriptSentences.map(
+          (transcriptSentence, transcriptSentenceIndex) => {
+            return (
+              <OakP key={transcriptSentenceIndex} $mb="space-between-s">
+                {transcriptSentence}
+              </OakP>
+            );
+          },
+        )}
+      </OakVideoTranscript>
     </>
   );
 };

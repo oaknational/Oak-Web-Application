@@ -1,15 +1,20 @@
 import { FC } from "react";
 import { useHover } from "react-aria";
-import { OakHeading, OakP } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakFlex,
+  OakHeading,
+  OakP,
+  OakPrimaryButton,
+} from "@oaknational/oak-components";
+
+import ScreenReaderOnly from "../ScreenReaderOnly";
 
 import LineClamp from "@/components/SharedComponents/LineClamp";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import formatDate from "@/utils/formatDate";
 import { PostListItemProps } from "@/components/SharedComponents/PostListItem";
 import useClickableCard from "@/hooks/useClickableCard";
-import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 type PostListUpcomingWebinarListItemProps = PostListItemProps & {
   signUpHref: string;
@@ -43,7 +48,7 @@ const PostListUpcomingWebinarListItem: FC<
     {},
   );
   return (
-    <Flex
+    <OakFlex
       {...containerProps}
       $position={"relative"}
       $flexDirection={["column", "row"]}
@@ -51,7 +56,7 @@ const PostListUpcomingWebinarListItem: FC<
       $width={"100%"}
       $font={["body-4", "body-3"]}
     >
-      <Box $mr="auto">
+      <OakBox $mr="auto">
         <OakP>Coming soon, {formatDate(date, { month: "short" })}</OakP>
         <OakHeading
           tag={titleTag}
@@ -71,21 +76,25 @@ const PostListUpcomingWebinarListItem: FC<
         <OakP $mt="space-between-ssx">
           <LineClamp lines={2}>{summary}</LineClamp>
         </OakP>
-      </Box>
-      <ButtonAsLink
-        {...buttonHoverProps}
-        $mt={[28, 0]}
-        $ml={[0, 48]}
-        background="blue"
-        htmlAnchorProps={{ onClick: signUpOnClick, target: "_blank" }}
-        page={null}
-        href={signUpHref}
-        label="Save my place"
-        labelSuffixA11y={`on the webinar: ${title}`}
-        icon="chevron-right"
-        $iconPosition="trailing"
-      />
-    </Flex>
+      </OakBox>
+      <OakBox
+        $mt={["space-between-m2", "space-between-none"]}
+        $ml={["space-between-none", "space-between-l"]}
+      >
+        <OakPrimaryButton
+          {...buttonHoverProps}
+          onClick={signUpOnClick}
+          element="a"
+          target="_blank"
+          href={signUpHref}
+          iconName="chevron-right"
+          isTrailingIcon={true}
+        >
+          Save my place
+          <ScreenReaderOnly>{`on the webinar: ${title}`}</ScreenReaderOnly>
+        </OakPrimaryButton>
+      </OakBox>
+    </OakFlex>
   );
 };
 

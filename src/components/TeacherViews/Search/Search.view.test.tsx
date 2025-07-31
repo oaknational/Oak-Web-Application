@@ -310,7 +310,7 @@ describe("Search.page.tsx", () => {
     const user = userEvent.setup();
     const setSearchTerm = props.setSearchTerm as jest.Mock;
     setSearchTerm.mockClear();
-    const submit = getByRole("button", { name: "Submit" });
+    const submit = getByRole("button", { name: "submit" });
     await user.click(submit);
     expect(setSearchTerm).toHaveBeenCalledTimes(1);
   });
@@ -329,7 +329,9 @@ describe("Search.page.tsx", () => {
     const user = userEvent.setup();
     await user.tab();
     await user.tab();
-    expect(getByRole("button", { name: "Submit" })).toHaveFocus();
+    const submitButton = getByRole("button", { name: "submit" });
+
+    expect(submitButton).toHaveFocus();
   });
   test("clicking result description clicks the link", async () => {
     const { getByText, getByRole } = render(

@@ -48,12 +48,12 @@ describe("TranscriptToggle", () => {
 
     // Click to show the transcript
     await userEvent.click(button);
-    expect(screen.getByText("This is sentence one.")).toBeInTheDocument();
-    expect(screen.getByText("This is sentence two.")).toBeInTheDocument();
+    expect(screen.getByText("This is sentence one.")).toBeVisible();
+    expect(screen.getByText("This is sentence two.")).toBeVisible();
 
     // Click to hide the transcript
     await userEvent.click(button);
-    expect(screen.queryByText("This is sentence one.")).not.toBeInTheDocument();
-    expect(screen.queryByText("This is sentence two.")).not.toBeInTheDocument();
+    expect(screen.queryByText("This is sentence one.")).not.toBeVisible();
+    expect(screen.queryByText("This is sentence two.")).not.toBeVisible();
   });
 });

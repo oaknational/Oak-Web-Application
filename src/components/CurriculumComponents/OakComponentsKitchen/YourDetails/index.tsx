@@ -8,9 +8,9 @@ import { ComponentProps, useMemo } from "react";
 
 import Autocomplete, { AutocompleteItem } from "../Autocomplete";
 
-import Input from "@/components/SharedComponents/Input";
 import { resolveOakHref } from "@/common-lib/urls";
 import { formatSchoolName } from "@/components/TeacherComponents/ResourcePageSchoolPicker/formatSchoolName";
+import { OakInputWithLabel } from "@/components/SharedComponents/OakInputWithLabel/OakInputWithLabel";
 
 /*
  * Waiting for the following components to be in oak-components
@@ -185,15 +185,16 @@ export default function YourDetails({
         $alignItems={"start"}
         $gap={"space-between-xs"}
       >
-        <Input
-          $mb={0}
+        <OakInputWithLabel
           label="Email (optional)"
           id="download-email"
           data-testid="download-email"
-          value={data.email}
-          type="text"
           error={errors.email}
           onChange={(e) => onChange({ email: e.target.value })}
+          required={false}
+          placeholder="Type your email address"
+          name="download-email"
+          defaultValue={data.email}
         />
 
         <OakP $font={["body-3"]}>

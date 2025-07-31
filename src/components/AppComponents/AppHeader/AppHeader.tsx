@@ -51,7 +51,7 @@ const AppHeader: FC<HeaderProps> = () => {
         $background="white"
         $justifyContent={["space-between"]}
         $alignItems={["center"]}
-        $zIndex="fixedHeader"
+        $zIndex="fixed-header"
         $position={"relative"}
         data-testid="app-header"
       >

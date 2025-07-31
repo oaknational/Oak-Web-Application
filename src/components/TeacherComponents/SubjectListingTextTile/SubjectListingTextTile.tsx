@@ -1,14 +1,13 @@
 import { FC } from "react";
 import styled from "styled-components";
-import { OakSvg } from "@oaknational/oak-components";
+import { OakSvg, OakFlex, OakFlexProps } from "@oaknational/oak-components";
 
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 import { zIndexMap } from "@/styles/utils/zIndex";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 
 export type SubjectListingTextTile = {
   children: React.ReactNode;
-} & FlexProps;
+} & OakFlexProps;
 
 const TileFocusUnderline = styled(OakSvg)`
   display: none;
@@ -22,7 +21,7 @@ const TileFocusUnderline = styled(OakSvg)`
   z-index: ${zIndexMap.inFront};
   outline: none;
 `;
-const TextTileWrap = styled(Flex)`
+const TextTileWrap = styled(OakFlex)`
   &:focus-within ${TileFocusUnderline} {
     display: inline;
   }
@@ -38,7 +37,7 @@ const SubjectListingTextTile: FC<SubjectListingTextTile> = (
       $flexDirection={"column"}
       $position={"relative"}
       $flex={1}
-      $borderRadius={4}
+      $borderRadius={"border-radius-s"}
       $outline={"none"}
       $width={"100%"}
       {...flexProps}

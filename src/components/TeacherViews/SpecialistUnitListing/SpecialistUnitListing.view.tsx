@@ -10,7 +10,6 @@ import {
   OakMaxWidth,
 } from "@oaknational/oak-components";
 
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import UnitList from "@/components/TeacherComponents/UnitList";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import TabularNav from "@/components/SharedComponents/TabularNav";
@@ -167,7 +166,10 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
             </OakBox>
           </OakGridArea>
           <OakGridArea $order={[1, 0]} $colSpan={[12, 12, 9]}>
-            <Flex $flexDirection={["column-reverse", "column"]} $pt={[24, 48]}>
+            <OakFlex
+              $flexDirection={["column-reverse", "column"]}
+              $pt={["inner-padding-xl", "inner-padding-xl4"]}
+            >
               <OakFlex
                 $minWidth="all-spacing-16"
                 $mb="space-between-m"
@@ -204,10 +206,10 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                   data-testid="development-nav"
                 >
                   <TabularNav
-                    $mb={[10, 24]}
+                    $mb={["space-between-xs", "space-between-m"]}
                     label="themes"
                     $flexWrap={"wrap"}
-                    $gap={[12, 0]}
+                    $gap={["space-between-xs", "space-between-none"]}
                     links={developmentStage.map(
                       ({ title, slug, lessonCount, programmeSlug }) => ({
                         label: `${title} (${lessonCount})`,
@@ -220,7 +222,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                   />
                 </nav>
               )}
-            </Flex>
+            </OakFlex>
 
             <UnitList
               {...curriculumData}

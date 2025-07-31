@@ -9,16 +9,13 @@ import Flex from "@/components/SharedComponents/Flex.deprecated";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 
 const UnitTabBanner = () => {
-  {
-    /* @todo replace with OakFlex - work out padding value */
-  }
   return (
-    <Flex
+    <OakFlex
       $flexDirection={["column", "row"]}
       $background={"mint"}
-      $mt={48}
-      $pa={48}
-      $gap={24}
+      $mt={"space-between-l"}
+      $pa={"inner-padding-xl4"}
+      $gap={"space-between-m"}
     >
       <OakFlex
         $flexDirection={["column", "row"]}
@@ -62,7 +59,7 @@ const UnitTabBanner = () => {
           $iconPosition="trailing"
         />
       </OakFlex>
-    </Flex>
+    </OakFlex>
   );
 };
 

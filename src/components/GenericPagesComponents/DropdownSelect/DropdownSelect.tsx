@@ -1,5 +1,5 @@
 import { FC, forwardRef } from "react";
-import { OakIconName } from "@oaknational/oak-components";
+import { OakIconName, OakFlexProps } from "@oaknational/oak-components";
 
 import FieldError from "@/components/SharedComponents/FieldError";
 import {
@@ -8,13 +8,12 @@ import {
   SelectItem,
 } from "@/components/GenericPagesComponents/Select";
 import { Label } from "@/components/SharedComponents/ListBox/ListBox";
-import { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 
 type SelectChangeHandler = (e: {
   target: { name: string; value: string };
 }) => void;
 
-type DropdownSelectProps = FlexProps & {
+type DropdownSelectProps = OakFlexProps & {
   id: string;
   listItems: SelectItem[];
   name: string;
