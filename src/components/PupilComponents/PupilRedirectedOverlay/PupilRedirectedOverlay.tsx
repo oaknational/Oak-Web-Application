@@ -8,17 +8,33 @@ import {
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-export const PupilRedirectedOverlay = () => {
+type PupilRedirectedOverlayProps = {
+  onLoaded?: (isShowing: boolean) => void;
+  onClose?: () => void;
+};
+export const PupilRedirectedOverlay = ({
+  onLoaded,
+  onClose,
+}: PupilRedirectedOverlayProps) => {
   const [show, setShow] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
   const router = useRouter();
   const { redirected } = router.query;
+  const close = () => {
+    setShow(false);
+    setDismissed(true);
+    if (onClose) onClose();
+  };
   useEffect(() => {
-    if (redirected) setShow(true);
-  }, [redirected, setShow]);
+    if (router.isReady && !dismissed) {
+      if (redirected) setShow(true);
+      if (onLoaded) onLoaded(!!redirected);
+    }
+  }, [redirected, setShow, router.isReady, onLoaded, dismissed]);
   return (
     <OakModalCenter
       isOpen={!!redirected && show}
-      onClose={() => setShow(false)}
+      onClose={close}
       footerSlot={
         <OakFlex
           $mt={"space-between-xl"}
@@ -27,7 +43,7 @@ export const PupilRedirectedOverlay = () => {
           $alignItems={"center"}
         >
           <OakPrimaryButton
-            onClick={() => setShow(false)}
+            onClick={close}
             data-testid={"pupil-redirected-overlay-btn"}
           >
             Continue

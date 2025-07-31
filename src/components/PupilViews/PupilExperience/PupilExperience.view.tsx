@@ -217,6 +217,8 @@ const PupilExperienceLayout = ({
 
   const isSensitive = lessonContent.deprecatedFields?.isSensitive === true;
 
+  const [redirectOverlayCleared, setRedirectOverlayCleared] = useState(false);
+
   const handleContentGuidanceAccept = () => {
     setIsOpen(false);
     track.contentGuidanceAccepted({
@@ -258,7 +260,6 @@ const PupilExperienceLayout = ({
       }}
     >
       <OakThemeProvider theme={oakDefaultTheme}>
-        <PupilRedirectedOverlay />
         <CookieConsentStyles />
         <LessonEngineProvider
           initialLessonReviewSections={availableSections}
@@ -266,7 +267,7 @@ const PupilExperienceLayout = ({
         >
           {hasAgeRestriction ? (
             <OakPupilJourneyContentGuidance
-              isOpen={isOpen}
+              isOpen={isOpen && redirectOverlayCleared}
               onAccept={handleContentGuidanceAccept}
               onDecline={handleContentGuidanceDecline}
               title={getAgeRestrictionString(ageRestriction)}
@@ -290,7 +291,7 @@ const PupilExperienceLayout = ({
             />
           ) : (
             <OakPupilJourneyContentGuidance
-              isOpen={isOpen}
+              isOpen={isOpen && redirectOverlayCleared}
               onAccept={handleContentGuidanceAccept}
               onDecline={handleContentGuidanceDecline}
               contentGuidance={lessonContent.contentGuidance}
@@ -317,6 +318,10 @@ const PupilExperienceLayout = ({
             </OakBox>
           </OakBox>
         </LessonEngineProvider>
+        <PupilRedirectedOverlay
+          onLoaded={(isShowing) => setRedirectOverlayCleared(!isShowing)}
+          onClose={() => setRedirectOverlayCleared(true)}
+        />
       </OakThemeProvider>
     </PupilLayout>
   );
