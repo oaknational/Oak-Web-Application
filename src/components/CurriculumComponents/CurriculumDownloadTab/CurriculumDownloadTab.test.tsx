@@ -205,6 +205,7 @@ describe("Downloads tab: unit tests", () => {
       childSubjectSlug,
     } = data;
     const url = createCurriculumDownloadsUrl(
+      "curriculum-plans",
       "published",
       mvRefreshTime,
       subjectSlug,
@@ -220,6 +221,7 @@ describe("Downloads tab: unit tests", () => {
 
   test("URL is created properly: English primary", async () => {
     const url = createCurriculumDownloadsUrl(
+      "curriculum-plans",
       "published",
       mvRefreshTime,
       "english",

@@ -242,6 +242,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     setIsSubmitting(true);
 
     const downloadPath = createCurriculumDownloadsUrl(
+      data.downloadType,
       "published",
       mvRefreshTime,
       slugs.subjectSlug,

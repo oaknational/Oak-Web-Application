@@ -43,6 +43,8 @@ export const validDownloadTypes = [
   "national-curriculum",
 ] as const;
 
+export type ValidDownloadTypes = (typeof validDownloadTypes)[number];
+
 export function assertValidDownloadType(val: string) {
   if (!validDownloadTypes.includes(val as DownloadType)) {
     throw new Error("Invalid ");

@@ -208,7 +208,7 @@ export default async function handler(
     ) as Record<string, string>;
     const newSlugs = new URLSearchParams(slugOb);
 
-    const redirectUrl = `/api/curriculum-downloads/?${newSlugs}`;
+    const redirectUrl = `/api/national-curriculum/?${newSlugs}`;
 
     // Netlify-Vary is a hack to hopefully resolve
     res.setHeader("Netlify-Vary", "query").redirect(307, redirectUrl);
