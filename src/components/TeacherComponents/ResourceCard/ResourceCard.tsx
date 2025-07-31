@@ -56,7 +56,6 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
     label,
     subtitle,
     onBlur,
-    // hasError = false,
     resourceType,
     subjectIcon,
     isEditable,
