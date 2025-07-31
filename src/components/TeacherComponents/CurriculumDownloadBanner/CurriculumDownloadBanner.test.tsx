@@ -109,7 +109,7 @@ describe("CurriculumDownloadBanner", () => {
 
     await waitFor(() =>
       expect(mockDownloadFileFromUrl).toHaveBeenCalledWith(
-        "/api/curriculum-downloads/?mvRefreshTime=0&subjectSlug=maths&phaseSlug=primary&state=published",
+        "/api/curriculum-plans/?mvRefreshTime=0&subjectSlug=maths&phaseSlug=primary&state=published",
       ),
     );
   });
@@ -135,7 +135,7 @@ describe("CurriculumDownloadBanner", () => {
 
     await waitFor(() =>
       expect(mockDownloadFileFromUrl).toHaveBeenCalledWith(
-        "/api/curriculum-downloads/?mvRefreshTime=0&subjectSlug=maths&phaseSlug=primary&state=published&ks4OptionSlug=core",
+        "/api/curriculum-plans/?mvRefreshTime=0&subjectSlug=maths&phaseSlug=primary&state=published&ks4OptionSlug=core",
       ),
     );
   });
@@ -167,7 +167,7 @@ describe("CurriculumDownloadBanner", () => {
 
     await waitFor(() =>
       expect(mockDownloadFileFromUrl).toHaveBeenCalledWith(
-        "/api/curriculum-downloads/?mvRefreshTime=0&subjectSlug=science&phaseSlug=primary&state=published&childSubjectSlug=biology",
+        "/api/curriculum-plans/?mvRefreshTime=0&subjectSlug=science&phaseSlug=primary&state=published&childSubjectSlug=biology",
       ),
     );
   });

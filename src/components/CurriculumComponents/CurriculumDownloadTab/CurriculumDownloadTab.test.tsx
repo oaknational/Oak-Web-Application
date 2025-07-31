@@ -215,7 +215,7 @@ describe("Downloads tab: unit tests", () => {
       childSubjectSlug,
     );
     expect(url).toEqual(
-      `/api/curriculum-downloads/?mvRefreshTime=1721314874829&subjectSlug=science&phaseSlug=secondary&state=published&ks4OptionSlug=aqa&tierSlug=foundation&childSubjectSlug=combined-science`,
+      `/api/curriculum-plans/?mvRefreshTime=1721314874829&subjectSlug=science&phaseSlug=secondary&state=published&ks4OptionSlug=aqa&tierSlug=foundation&childSubjectSlug=combined-science`,
     );
   });
 
@@ -231,7 +231,7 @@ describe("Downloads tab: unit tests", () => {
       null,
     );
     expect(url).toEqual(
-      `/api/curriculum-downloads/?mvRefreshTime=1721314874829&subjectSlug=english&phaseSlug=primary&state=published`,
+      `/api/curriculum-plans/?mvRefreshTime=1721314874829&subjectSlug=english&phaseSlug=primary&state=published`,
     );
   });
 });
