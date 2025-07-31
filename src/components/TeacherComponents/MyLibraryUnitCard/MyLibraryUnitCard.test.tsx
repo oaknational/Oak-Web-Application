@@ -1,4 +1,5 @@
 import { screen } from "@testing-library/dom";
+import userEvent from "@testing-library/user-event";
 
 import MyLibraryUnitCard from "./MyLibraryUnitCard";
 
@@ -26,7 +27,8 @@ const generateLessons = (
     };
   });
 };
-
+const mockTrackUnitAccessed = jest.fn();
+const mockTrackLessonAccessed = jest.fn();
 const completeUnitLessons = generateLessons(5, "published");
 const mockUnit = {
   index: 1,
@@ -40,7 +42,16 @@ const mockUnit = {
   onSave: jest.fn(),
   isSaved: false,
   isSaving: false,
+  trackUnitAccessed: mockTrackUnitAccessed,
+  trackLessonAccessed: mockTrackLessonAccessed,
 };
+
+// Mock secondary link so it doesn't attempt to navigate on click
+jest.mock("@oaknational/oak-components", () => ({
+  ...jest.requireActual("@oaknational/oak-components"),
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  OakSecondaryLink: (props: any) => <a {...props} href="" />,
+}));
 
 const incompleteUnitLessons = generateLessons(2, "new");
 
@@ -115,5 +126,28 @@ describe("MyLibraryUnitCard", () => {
     const lesson0 = screen.getByText(/Lesson 0/);
     const styles = getComputedStyle(lesson0);
     expect(styles.color).toBe("rgb(128, 128, 128)");
+  });
+  it("calls trackUnitAccessed when a unit is clicked", async () => {
+    render(
+      <MyLibraryUnitCard {...mockUnit} lessons={completeUnitLessons} isSaved />,
+    );
+    const unitLink = screen
+      .getByRole("heading", { name: "Saved Unit" })
+      .closest("a");
+    if (!unitLink) {
+      throw new Error("Unit link not found");
+    }
+    const user = userEvent.setup();
+    await user.click(unitLink);
+    expect(mockTrackUnitAccessed).toHaveBeenCalled();
+  });
+  it("calls trackLessonAccessed when a lesson is clicked", async () => {
+    render(
+      <MyLibraryUnitCard {...mockUnit} lessons={completeUnitLessons} isSaved />,
+    );
+    const lessonLink = screen.getByText("Lesson 0");
+    const user = userEvent.setup();
+    await user.click(lessonLink);
+    expect(mockTrackLessonAccessed).toHaveBeenCalledWith("lesson-0-published");
   });
 });

@@ -1,3 +1,21 @@
+## [1.814.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.814.0...v1.814.1) (2025-07-31)
+
+# [1.814.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.813.1...v1.814.0) (2025-07-30)
+
+
+### Features
+
+* add browse refined tracking on programme click ([1136592](https://github.com/oaknational/Oak-Web-Application/commit/11365922851dff67fd9c2f560bae4045eada913f))
+* add lesson accessed event to my library lesson links ([7e95b70](https://github.com/oaknational/Oak-Web-Application/commit/7e95b70f51193b6ccfbc6d4ba881e3b2690cf975))
+* add unit accessed tracking on unit title link in my library ([e6e5046](https://github.com/oaknational/Oak-Web-Application/commit/e6e5046cef76974ab59ff0a01cd82c7eb175e973))
+
+## [1.813.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.813.0...v1.813.1) (2025-07-30)
+
+
+### Bug Fixes
+
+* fix button missing from saving signed out modal ([28d68fb](https://github.com/oaknational/Oak-Web-Application/commit/28d68fb25d9cba2a27dd4d17901a00eb9348787e))
+
 # [1.813.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.812.0...v1.813.0) (2025-07-29)
 
 
