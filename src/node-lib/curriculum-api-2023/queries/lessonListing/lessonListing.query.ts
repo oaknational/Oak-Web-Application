@@ -64,7 +64,6 @@ export const getTransformedLessons = (
           lessonReleaseDate: lesson.lesson_data.lesson_release_date,
           geoRestricted: lesson.features?.agf__geo_restricted ?? false,
           loginRequired: lesson.features?.agf__login_required ?? false,
-          isLegacy: lesson.is_legacy,
         };
         return transformedLesson;
       } else {
