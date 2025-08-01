@@ -37,6 +37,7 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
 import { ContentGuidanceWarningValueType } from "@/browser-lib/avo/Avo";
+import { PupilRedirectedOverlay } from "@/components/PupilComponents/PupilRedirectedOverlay/PupilRedirectedOverlay";
 
 export const pickAvailableSectionsForLesson = (lessonContent: LessonContent) =>
   allLessonReviewSections.filter((section) => {
@@ -216,6 +217,8 @@ const PupilExperienceLayout = ({
 
   const isSensitive = lessonContent.deprecatedFields?.isSensitive === true;
 
+  const [redirectOverlayCleared, setRedirectOverlayCleared] = useState(false);
+
   const handleContentGuidanceAccept = () => {
     setIsOpen(false);
     track.contentGuidanceAccepted({
@@ -264,7 +267,7 @@ const PupilExperienceLayout = ({
         >
           {hasAgeRestriction ? (
             <OakPupilJourneyContentGuidance
-              isOpen={isOpen}
+              isOpen={isOpen && redirectOverlayCleared}
               onAccept={handleContentGuidanceAccept}
               onDecline={handleContentGuidanceDecline}
               title={getAgeRestrictionString(ageRestriction)}
@@ -288,7 +291,7 @@ const PupilExperienceLayout = ({
             />
           ) : (
             <OakPupilJourneyContentGuidance
-              isOpen={isOpen}
+              isOpen={isOpen && redirectOverlayCleared}
               onAccept={handleContentGuidanceAccept}
               onDecline={handleContentGuidanceDecline}
               contentGuidance={lessonContent.contentGuidance}
@@ -315,6 +318,11 @@ const PupilExperienceLayout = ({
             </OakBox>
           </OakBox>
         </LessonEngineProvider>
+        <PupilRedirectedOverlay
+          isLessonPage={true}
+          onLoaded={(isShowing) => setRedirectOverlayCleared(!isShowing)}
+          onClose={() => setRedirectOverlayCleared(true)}
+        />
       </OakThemeProvider>
     </PupilLayout>
   );

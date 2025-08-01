@@ -636,7 +636,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
           }
         ).redirect,
       ).toEqual({
-        destination: "lessons/new-lesson-slug",
+        destination: "lessons/new-lesson-slug?redirected=true",
         statusCode: 301 as const, // true = 308, false = 307
         basePath: false,
       });

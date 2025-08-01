@@ -4,6 +4,7 @@ import {
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
+import mockRouter from "next-router-mock";
 
 import { PupilViewsUnitListing } from "./PupilUnitListing.view";
 
@@ -300,5 +301,25 @@ describe("PupilViewsUnitListing", () => {
       "financial-education-banner",
     );
     expect(financeSubjectDescription).not.toBeInTheDocument();
+  });
+});
+describe("redirected overlay", () => {
+  beforeEach(() => {
+    mockRouter.setCurrentUrl("/?redirected=true");
+  });
+  it("should show redirect modal when redirected query param is present", async () => {
+    mockRouter.setCurrentUrl("/?redirected=true");
+    const { getByTestId } = await renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <PupilViewsUnitListing
+          unitSections={unitSections}
+          phase="secondary"
+          backHrefSlugs={backHrefSlugs}
+          subjectCategories={[]}
+          programmeFields={programmeFields}
+        />
+      </OakThemeProvider>,
+    );
+    expect(getByTestId("pupil-redirected-overlay-btn")).toBeInTheDocument();
   });
 });

@@ -1,6 +1,7 @@
 import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { OakTooltipProps } from "@oaknational/oak-components";
+import mockRouter from "next-router-mock";
 
 import {
   PupilExperienceView,
@@ -530,5 +531,40 @@ describe("PupilExperienceView", () => {
     );
 
     expect(queryByText("Lesson Title")).toBeNull();
+  });
+});
+describe("redirected overlay", () => {
+  beforeEach(() => {
+    mockRouter.setCurrentUrl("/?redirected=true");
+  });
+  it("Should show redirect modal when redirected query param is present", () => {
+    mockRouter.setCurrentUrl("/?redirected=true");
+    const lessonContent = lessonContentFixture({
+      lessonTitle: "Lesson Title",
+    });
+    const lessonBrowseData = lessonBrowseDataFixture({
+      lessonSlug: "lesson-slug",
+      programmeSlug: "programme-slug",
+      unitSlug: "unit-slug",
+    });
+
+    jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
+      createLessonEngineContext({
+        currentSection: "overview",
+      }),
+    );
+    const { getByTestId } = render(
+      <PupilExperienceView
+        lessonContent={lessonContent}
+        browseData={lessonBrowseData}
+        hasWorksheet={false}
+        hasAdditionalFiles={false}
+        additionalFiles={null}
+        worksheetInfo={null}
+        initialSection="overview"
+        pageType="browse"
+      />,
+    );
+    expect(getByTestId("pupil-redirected-overlay-btn")).toBeInTheDocument();
   });
 });

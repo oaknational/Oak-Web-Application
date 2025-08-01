@@ -169,7 +169,7 @@ describe("LessonMediaClipsPage", () => {
           }
         ).redirect,
       ).toEqual({
-        destination: "lessons/new-lesson-slug",
+        destination: "lessons/new-lesson-slug?redirected=true",
         statusCode: 301, // Temporary redirect
         basePath: false,
       });
