@@ -418,6 +418,14 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     default: null,
     description: "The DSN for the Sentry project",
   },
+  sentryEnabled: {
+    value: process.env.NEXT_PUBLIC_SENTRY_ENABLED,
+    envName: "NEXT_PUBLIC_SENTRY_ENABLED",
+    required: true,
+    availableInBrowser: true,
+    default: "false",
+    description: "Whether sentry is enabled or not",
+  },
 });
 
 for (const [, envVarConfig] of Object.entries(envVars)) {

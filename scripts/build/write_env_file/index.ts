@@ -191,6 +191,7 @@ async function main() {
       NEXT_PUBLIC_SANITY_ASSET_CDN_HOST || oakConfig.sanity.assetCDNHost,
     // Disable ISR per environment, "on" sets the config to `true` all other values including undefined result in `false`.
     DISABLE_ISR: process.env.DISABLE_ISR,
+    NEXT_PUBLIC_SENTRY_ENABLED: process.env.NEXT_PUBLIC_SENTRY_ENABLED,
 
     // Seo
 
