@@ -1,4 +1,8 @@
-import { OakTypography, OakFlex } from "@oaknational/oak-components";
+import {
+  OakTypography,
+  OakFlex,
+  OakHeading,
+} from "@oaknational/oak-components";
 
 import {
   shortAnswerTitleFormatter,
@@ -24,20 +28,22 @@ export const QuizQuestionsQuestionStem = ({
     <OakFlex $flexDirection={"column"} $gap="all-spacing-1">
       <OakFlex key="stem-header">
         {showIndex && (
-          <OakTypography
+          <OakHeading
             $font={["body-2-bold", "body-1-bold"]}
             $mr="space-between-xs"
+            tag="h4"
           >
             {displayNumber}
-          </OakTypography>
+          </OakHeading>
         )}
         {questionStem[0]?.type === "text" && (
-          <OakTypography
+          <OakHeading
             key={`q-${displayNumber}-stem-element-0`}
             $font={["body-2-bold", "body-1-bold"]}
+            tag="h4"
           >
             {shortAnswerTitleFormatter(removeMarkdown(questionStem[0].text))}
-          </OakTypography>
+          </OakHeading>
         )}
       </OakFlex>
 
