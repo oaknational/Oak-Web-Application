@@ -1,5 +1,5 @@
 query unitListing($programmeSlug: String!) {
-  units: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_16_0_0(
+  units: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0(
     where: { programme_slug: { _eq: $programmeSlug } }
   ) {
     is_legacy
