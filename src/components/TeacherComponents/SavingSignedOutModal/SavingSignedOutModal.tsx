@@ -39,6 +39,7 @@ const SavingSignedOutModalContent = () => {
       <LoginRequiredButton
         loginRequired={true}
         geoRestricted={false}
+        isBehindFeatureFlag={false}
         onboardingProps={{ name: "Finish sign up" }}
         width="100%"
       />

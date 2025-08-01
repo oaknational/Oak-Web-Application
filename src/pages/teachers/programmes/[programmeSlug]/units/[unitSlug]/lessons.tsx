@@ -198,7 +198,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
   const showRiskAssessmentBanner = !!actions?.isPePractical && isSignedIn;
 
   const unpublishedLessonCount = lessons.filter(
-    (lesson) => lesson.isUnpublished,
+    (lesson) => lesson.isUnpublished && !lesson.expired,
   ).length;
 
   const lessonCountHeader = unpublishedLessonCount

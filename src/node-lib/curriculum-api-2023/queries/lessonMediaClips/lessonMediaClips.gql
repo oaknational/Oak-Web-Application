@@ -1,7 +1,7 @@
 query lessonMediaClips(
-  $browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_keystage_17_0_0_bool_exp
+  $browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0_bool_exp
 ) {
-  browseData: published_mv_synthetic_unitvariant_lessons_by_keystage_17_0_0(
+  browseData: published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0(
     where: $browseDataWhere
   ) {
     lesson_slug
