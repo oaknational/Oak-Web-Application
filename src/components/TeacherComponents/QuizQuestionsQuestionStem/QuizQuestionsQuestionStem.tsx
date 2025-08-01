@@ -2,6 +2,7 @@ import {
   OakTypography,
   OakFlex,
   OakHeading,
+  OakSpan,
 } from "@oaknational/oak-components";
 
 import {
@@ -10,6 +11,7 @@ import {
 } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import QuizImage from "@/components/TeacherComponents/QuizImage";
 import {
+  isStemTextObject,
   StemImageObject,
   StemTextObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
@@ -24,25 +26,24 @@ export const QuizQuestionsQuestionStem = ({
   showIndex?: boolean;
 }) => {
   const displayNumber = `Q${index + 1}.`;
+  const questionText =
+    questionStem[0] &&
+    isStemTextObject(questionStem[0]) &&
+    questionStem[0].text;
   return (
     <OakFlex $flexDirection={"column"} $gap="all-spacing-1">
       <OakFlex key="stem-header">
-        {showIndex && (
-          <OakHeading
-            $font={["body-2-bold", "body-1-bold"]}
-            $mr="space-between-xs"
-            tag="h4"
-          >
-            {displayNumber}
-          </OakHeading>
-        )}
-        {questionStem[0]?.type === "text" && (
+        {(showIndex || questionText) && (
           <OakHeading
             key={`q-${displayNumber}-stem-element-0`}
             $font={["body-2-bold", "body-1-bold"]}
             tag="h4"
           >
-            {shortAnswerTitleFormatter(removeMarkdown(questionStem[0].text))}
+            {showIndex && (
+              <OakSpan $mr="space-between-xs">{displayNumber}</OakSpan>
+            )}
+            {questionText &&
+              shortAnswerTitleFormatter(removeMarkdown(questionText))}
           </OakHeading>
         )}
       </OakFlex>
