@@ -1,3 +1,62 @@
+# [1.819.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.818.0...v1.819.0) (2025-08-04)
+
+
+### Bug Fixes
+
+* added flexy boxes to <OakDownloadCard/> ([b6aa564](https://github.com/oaknational/Oak-Web-Application/commit/b6aa56461abea7b5fc930a45bd3579b2cb0921ef))
+* amend <ResourceCard/> to fit with <OakDownloadCheckBox/> ([75e2ff6](https://github.com/oaknational/Oak-Web-Application/commit/75e2ff647a4b6f8e918383fc58d236ddc86add96))
+* bump oak-components to 1.134.0 ([1a222ad](https://github.com/oaknational/Oak-Web-Application/commit/1a222ad4eee275fad5d305d4891506bd4bc06e2c))
+* bumped @oaknational/oak-components version ([c9a86fd](https://github.com/oaknational/Oak-Web-Application/commit/c9a86fd020af34066f1b8a24070e94919466356c))
+* changed <RadioGroup/> to <OakRadioGroup/> ([16c8e3e](https://github.com/oaknational/Oak-Web-Application/commit/16c8e3ec12ca74d1775978c7ea52a43ad312402e))
+
+
+### Features
+
+* added <OakDownloadCheckBox/> into app replacing old component ([50b2e03](https://github.com/oaknational/Oak-Web-Application/commit/50b2e03989958c95d1bec0c612189337d2ddbd33))
+
+# [1.818.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.817.0...v1.818.0) (2025-08-04)
+
+
+### Bug Fixes
+
+* pass firstItemRef to search results card ([0ea137b](https://github.com/oaknational/Oak-Web-Application/commit/0ea137b4d2b74f9b67093ebffbf33bc0ff794555))
+* when changing pages on postlists  only show focus underline when focus is already visible ([ba1401f](https://github.com/oaknational/Oak-Web-Application/commit/ba1401f13d3efb904d59ae7fcb758675f2e84340))
+
+
+### Features
+
+* focus first element on page after navigating ([d55894d](https://github.com/oaknational/Oak-Web-Application/commit/d55894d0cf3dec1f644606eefce78c6ed22c7dc2))
+
+# [1.817.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.816.0...v1.817.0) (2025-08-04)
+
+
+### Bug Fixes
+
+* made sure redirect modal closes on pupil area ([433a47e](https://github.com/oaknational/Oak-Web-Application/commit/433a47e2aeeb53ff1c7af7dc4b8bdb0ca3509dd0))
+* redirect modal takes priority over content guidance modal but still shows both ([57cbe7d](https://github.com/oaknational/Oak-Web-Application/commit/57cbe7d3f66ae6092065ac798df097a5f7ecc1a4))
+
+
+### Features
+
+* added redirect modals for pupil unit and lesson listing pages ([d824e87](https://github.com/oaknational/Oak-Web-Application/commit/d824e877efcbe9d62cf14d794d99e0a69a927746))
+* added redirect modals that show after being redirected to a unit or lesson for pupil/teacher ([7c94abf](https://github.com/oaknational/Oak-Web-Application/commit/7c94abfda0d40b0ac8e1ff73e43985045e9da737))
+
+# [1.816.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.815.0...v1.816.0) (2025-08-01)
+
+
+### Features
+
+* migrate owa-staging to vercel ([2697b95](https://github.com/oaknational/Oak-Web-Application/commit/2697b95ac66c8da24462546fb0ef39e9eb23c464))
+
+# [1.815.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.814.1...v1.815.0) (2025-07-31)
+
+
+### Features
+
+* remove banner from expired lessons page ([faae020](https://github.com/oaknational/Oak-Web-Application/commit/faae02085430c52feec85d4ef5c369088f680aa4))
+* remove banner from expired lessons page ([93918ba](https://github.com/oaknational/Oak-Web-Application/commit/93918ba526652d9c17860664beab03db388782dd))
+* remove banner from expired lessons page ([d2d5992](https://github.com/oaknational/Oak-Web-Application/commit/d2d599259aec908a1dcd11e6065aede6fc8614c3))
+
 ## [1.814.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.814.0...v1.814.1) (2025-07-31)
 
 # [1.814.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.813.1...v1.814.0) (2025-07-30)

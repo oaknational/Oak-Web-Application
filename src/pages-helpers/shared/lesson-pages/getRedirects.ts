@@ -73,7 +73,7 @@ export const getRedirect = async (
 
   if (redirectData) {
     return {
-      destination: `${redirectData.outgoingPath}`,
+      destination: `${redirectData.outgoingPath}?redirected=true`,
       statusCode: redirectData.redirectType, // true = 308, false = 307
       basePath: false, // Do not prepend the basePath
     };
