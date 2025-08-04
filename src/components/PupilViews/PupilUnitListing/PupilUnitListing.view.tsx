@@ -19,6 +19,7 @@ import RelatedSubjectsBanner from "@/components/PupilComponents/RelatedSubjectsB
 import PupilSubjectDescription from "@/components/PupilComponents/PupilSubjectDescription/PupilSubjectDescription";
 import { UnitListLegacyBanner } from "@/components/TeacherComponents/UnitList/UnitListLegacyBanner";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+import { PupilRedirectedOverlay } from "@/components/PupilComponents/PupilRedirectedOverlay/PupilRedirectedOverlay";
 
 export type PupilViewsUnitListingProps = {
   unitSections: UnitsSectionData[];
@@ -152,6 +153,7 @@ export const PupilViewsUnitListing = ({
           <SignpostTeachersInlineBanner />
         </OakBox>
       </OakBox>
+      <PupilRedirectedOverlay />
     </OakPupilJourneyLayout>
   );
 };

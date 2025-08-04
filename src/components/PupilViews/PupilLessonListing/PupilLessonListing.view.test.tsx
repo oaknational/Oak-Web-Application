@@ -3,6 +3,7 @@ import {
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
+import mockRouter from "next-router-mock";
 
 import { PupilViewsLessonListing } from "./PupilLessonListing.view";
 
@@ -110,5 +111,21 @@ describe("PupilViewsLessonListing", () => {
       </OakThemeProvider>,
     );
     expect(getByText("(2)")).toBeInTheDocument();
+  });
+
+  describe("redirected overlay", () => {
+    beforeEach(() => {
+      mockRouter.setCurrentUrl("/?redirected=true");
+    });
+    it("should show redirect modal when redirected query param is present", () => {
+      mockRouter.setCurrentUrl("/?redirected=true");
+      const { getByTestId } = render(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          {" "}
+          <PupilViewsLessonListing {...props} />
+        </OakThemeProvider>,
+      );
+      expect(getByTestId("pupil-redirected-overlay-btn")).toBeInTheDocument();
+    });
   });
 });
