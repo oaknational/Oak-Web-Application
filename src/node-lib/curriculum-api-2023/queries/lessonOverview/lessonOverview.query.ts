@@ -314,6 +314,9 @@ const lessonOverviewQuery =
       unitDataWhere,
     });
 
+    const worksList = res.tpcWorks[0]?.works_list ?? [];
+    const hasRestrictedTcpWorks = worksList.length > 0;
+
     const modifiedBrowseData = applyGenericOverridesAndExceptions<
       LessonOverviewQuery["browseData"][number]
     >({
@@ -369,9 +372,10 @@ const lessonOverviewQuery =
     }) as LessonOverviewContent;
     const unitData = keysToCamelCase(unitDataSnake) as LessonUnitDataByKs;
 
-    return lessonOverviewSchema.parse(
-      transformedLessonOverviewData(browseData, content, pathways, unitData),
-    );
+    return lessonOverviewSchema.parse({
+      ...transformedLessonOverviewData(browseData, content, pathways, unitData),
+      hasRestrictedTcpWorks,
+    });
   };
 
 export default lessonOverviewQuery;

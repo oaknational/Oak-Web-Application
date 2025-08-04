@@ -69290,7 +69290,7 @@ export type LessonOverviewQueryVariables = Exact<{
 }>;
 
 
-export type LessonOverviewQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, programme_slug_by_year?: any | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_published_9_0_0', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, phonics_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_google_drive_downloadable_version?: boolean | null, has_slide_deck_asset_object?: boolean | null, worksheet_asset_id?: number | null, has_worksheet_asset_object?: boolean | null, worksheet_answers_asset_id?: number | null, has_worksheet_answers_asset_object?: boolean | null, supplementary_asset_id?: number | null, has_supplementary_asset_object?: boolean | null, slide_deck_asset_id?: number | null, slide_deck_asset_object_url?: string | null, worksheet_asset_object_url?: string | null, supplementary_asset_object_url?: string | null, has_lesson_guide_google_drive_downloadable_version?: boolean | null, lesson_guide_asset_object_url?: string | null, has_lesson_guide_object?: boolean | null, lesson_guide_asset_id?: number | null, downloadable_files?: any | null, lesson_release_date?: any | null, geo_restricted?: boolean | null, login_required?: boolean | null }>, unitData: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0', lesson_count?: number | null, supplementary_data?: any | null }> };
+export type LessonOverviewQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, programme_slug_by_year?: any | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_published_9_0_0', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, phonics_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_google_drive_downloadable_version?: boolean | null, has_slide_deck_asset_object?: boolean | null, worksheet_asset_id?: number | null, has_worksheet_asset_object?: boolean | null, worksheet_answers_asset_id?: number | null, has_worksheet_answers_asset_object?: boolean | null, supplementary_asset_id?: number | null, has_supplementary_asset_object?: boolean | null, slide_deck_asset_id?: number | null, slide_deck_asset_object_url?: string | null, worksheet_asset_object_url?: string | null, supplementary_asset_object_url?: string | null, has_lesson_guide_google_drive_downloadable_version?: boolean | null, lesson_guide_asset_object_url?: string | null, has_lesson_guide_object?: boolean | null, lesson_guide_asset_id?: number | null, downloadable_files?: any | null, lesson_release_date?: any | null, geo_restricted?: boolean | null, login_required?: boolean | null }>, unitData: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0', lesson_count?: number | null, supplementary_data?: any | null }>, tpcWorks: Array<{ __typename?: 'published_mv_get_tpc_works_by_lesson_slug_1_0_0', slug?: string | null, lesson_id?: number | null, works_list?: any | null }> };
 
 export type LessonShareQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
@@ -69813,6 +69813,13 @@ export const LessonOverviewDocument = gql`
   ) {
     lesson_count
     supplementary_data
+  }
+  tpcWorks: published_mv_get_tpc_works_by_lesson_slug_1_0_0(
+    where: {slug: {_eq: $lessonSlug}}
+  ) {
+    slug
+    lesson_id
+    works_list
   }
 }
     `;
@@ -70644,143 +70651,143 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    browseLessonRedirect(variables: BrowseLessonRedirectQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<BrowseLessonRedirectQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<BrowseLessonRedirectQuery>({ document: BrowseLessonRedirectDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'browseLessonRedirect', 'query', variables);
+    browseLessonRedirect(variables: BrowseLessonRedirectQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<BrowseLessonRedirectQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<BrowseLessonRedirectQuery>(BrowseLessonRedirectDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'browseLessonRedirect', 'query', variables);
     },
-    browseUnitRedirect(variables: BrowseUnitRedirectQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<BrowseUnitRedirectQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<BrowseUnitRedirectQuery>({ document: BrowseUnitRedirectDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'browseUnitRedirect', 'query', variables);
+    browseUnitRedirect(variables: BrowseUnitRedirectQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<BrowseUnitRedirectQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<BrowseUnitRedirectQuery>(BrowseUnitRedirectDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'browseUnitRedirect', 'query', variables);
     },
-    canonicalLessonRedirect(variables: CanonicalLessonRedirectQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CanonicalLessonRedirectQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<CanonicalLessonRedirectQuery>({ document: CanonicalLessonRedirectDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'canonicalLessonRedirect', 'query', variables);
+    canonicalLessonRedirect(variables: CanonicalLessonRedirectQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<CanonicalLessonRedirectQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CanonicalLessonRedirectQuery>(CanonicalLessonRedirectDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'canonicalLessonRedirect', 'query', variables);
     },
-    curriculumOverview(variables?: CurriculumOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CurriculumOverviewQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<CurriculumOverviewQuery>({ document: CurriculumOverviewDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'curriculumOverview', 'query', variables);
+    curriculumOverview(variables?: CurriculumOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<CurriculumOverviewQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CurriculumOverviewQuery>(CurriculumOverviewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'curriculumOverview', 'query', variables);
     },
-    curriculumPhaseOptions(variables?: CurriculumPhaseOptionsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CurriculumPhaseOptionsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<CurriculumPhaseOptionsQuery>({ document: CurriculumPhaseOptionsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'curriculumPhaseOptions', 'query', variables);
+    curriculumPhaseOptions(variables?: CurriculumPhaseOptionsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<CurriculumPhaseOptionsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CurriculumPhaseOptionsQuery>(CurriculumPhaseOptionsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'curriculumPhaseOptions', 'query', variables);
     },
-    curriculumSequence(variables?: CurriculumSequenceQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CurriculumSequenceQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<CurriculumSequenceQuery>({ document: CurriculumSequenceDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'curriculumSequence', 'query', variables);
+    curriculumSequence(variables?: CurriculumSequenceQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<CurriculumSequenceQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CurriculumSequenceQuery>(CurriculumSequenceDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'curriculumSequence', 'query', variables);
     },
-    betaLessonMediaClips(variables: BetaLessonMediaClipsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<BetaLessonMediaClipsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<BetaLessonMediaClipsQuery>({ document: BetaLessonMediaClipsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'betaLessonMediaClips', 'query', variables);
+    betaLessonMediaClips(variables: BetaLessonMediaClipsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<BetaLessonMediaClipsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<BetaLessonMediaClipsQuery>(BetaLessonMediaClipsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'betaLessonMediaClips', 'query', variables);
     },
-    lessonDownloads(variables: LessonDownloadsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<LessonDownloadsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<LessonDownloadsQuery>({ document: LessonDownloadsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'lessonDownloads', 'query', variables);
+    lessonDownloads(variables: LessonDownloadsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonDownloadsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonDownloadsQuery>(LessonDownloadsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonDownloads', 'query', variables);
     },
-    lessonListing(variables: LessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<LessonListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<LessonListingQuery>({ document: LessonListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'lessonListing', 'query', variables);
+    lessonListing(variables: LessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonListingQuery>(LessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonListing', 'query', variables);
     },
-    lessonMediaClips(variables?: LessonMediaClipsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<LessonMediaClipsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<LessonMediaClipsQuery>({ document: LessonMediaClipsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'lessonMediaClips', 'query', variables);
+    lessonMediaClips(variables?: LessonMediaClipsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonMediaClipsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonMediaClipsQuery>(LessonMediaClipsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonMediaClips', 'query', variables);
     },
-    lessonOverview(variables: LessonOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<LessonOverviewQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<LessonOverviewQuery>({ document: LessonOverviewDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'lessonOverview', 'query', variables);
+    lessonOverview(variables: LessonOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonOverviewQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonOverviewQuery>(LessonOverviewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonOverview', 'query', variables);
     },
-    lessonShare(variables: LessonShareQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<LessonShareQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<LessonShareQuery>({ document: LessonShareDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'lessonShare', 'query', variables);
+    lessonShare(variables: LessonShareQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonShareQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonShareQuery>(LessonShareDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonShare', 'query', variables);
     },
-    programmeListing(variables?: ProgrammeListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<ProgrammeListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<ProgrammeListingQuery>({ document: ProgrammeListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'programmeListing', 'query', variables);
+    programmeListing(variables?: ProgrammeListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<ProgrammeListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ProgrammeListingQuery>(ProgrammeListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'programmeListing', 'query', variables);
     },
-    pupilBrowseLessonRedirect(variables: PupilBrowseLessonRedirectQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PupilBrowseLessonRedirectQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PupilBrowseLessonRedirectQuery>({ document: PupilBrowseLessonRedirectDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pupilBrowseLessonRedirect', 'query', variables);
+    pupilBrowseLessonRedirect(variables: PupilBrowseLessonRedirectQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilBrowseLessonRedirectQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilBrowseLessonRedirectQuery>(PupilBrowseLessonRedirectDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilBrowseLessonRedirect', 'query', variables);
     },
-    pupilCanonicalLessonRedirect(variables: PupilCanonicalLessonRedirectQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PupilCanonicalLessonRedirectQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PupilCanonicalLessonRedirectQuery>({ document: PupilCanonicalLessonRedirectDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pupilCanonicalLessonRedirect', 'query', variables);
+    pupilCanonicalLessonRedirect(variables: PupilCanonicalLessonRedirectQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilCanonicalLessonRedirectQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilCanonicalLessonRedirectQuery>(PupilCanonicalLessonRedirectDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilCanonicalLessonRedirect', 'query', variables);
     },
-    pupilLesson(variables: PupilLessonQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PupilLessonQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PupilLessonQuery>({ document: PupilLessonDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pupilLesson', 'query', variables);
+    pupilLesson(variables: PupilLessonQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilLessonQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilLessonQuery>(PupilLessonDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilLesson', 'query', variables);
     },
-    pupilLessonListing(variables: PupilLessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PupilLessonListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PupilLessonListingQuery>({ document: PupilLessonListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pupilLessonListing', 'query', variables);
+    pupilLessonListing(variables: PupilLessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilLessonListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilLessonListingQuery>(PupilLessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilLessonListing', 'query', variables);
     },
-    pupilPreviewLesson(variables: PupilPreviewLessonQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PupilPreviewLessonQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PupilPreviewLessonQuery>({ document: PupilPreviewLessonDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pupilPreviewLesson', 'query', variables);
+    pupilPreviewLesson(variables: PupilPreviewLessonQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilPreviewLessonQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilPreviewLessonQuery>(PupilPreviewLessonDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilPreviewLesson', 'query', variables);
     },
-    pupilProgrammeListing(variables: PupilProgrammeListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PupilProgrammeListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PupilProgrammeListingQuery>({ document: PupilProgrammeListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pupilProgrammeListing', 'query', variables);
+    pupilProgrammeListing(variables: PupilProgrammeListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilProgrammeListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilProgrammeListingQuery>(PupilProgrammeListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilProgrammeListing', 'query', variables);
     },
-    pupilSubjectListing(variables: PupilSubjectListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PupilSubjectListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PupilSubjectListingQuery>({ document: PupilSubjectListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pupilSubjectListing', 'query', variables);
+    pupilSubjectListing(variables: PupilSubjectListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilSubjectListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilSubjectListingQuery>(PupilSubjectListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilSubjectListing', 'query', variables);
     },
-    pupilUnitListing(variables: PupilUnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PupilUnitListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PupilUnitListingQuery>({ document: PupilUnitListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pupilUnitListing', 'query', variables);
+    pupilUnitListing(variables: PupilUnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilUnitListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilUnitListingQuery>(PupilUnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilUnitListing', 'query', variables);
     },
-    pupilUnitRedirect(variables: PupilUnitRedirectQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PupilUnitRedirectQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PupilUnitRedirectQuery>({ document: PupilUnitRedirectDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pupilUnitRedirect', 'query', variables);
+    pupilUnitRedirect(variables: PupilUnitRedirectQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilUnitRedirectQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilUnitRedirectQuery>(PupilUnitRedirectDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilUnitRedirect', 'query', variables);
     },
-    pupilsSitemap(variables?: PupilsSitemapQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<PupilsSitemapQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PupilsSitemapQuery>({ document: PupilsSitemapDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'pupilsSitemap', 'query', variables);
+    pupilsSitemap(variables?: PupilsSitemapQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilsSitemapQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilsSitemapQuery>(PupilsSitemapDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilsSitemap', 'query', variables);
     },
-    refreshedMVTime(variables: RefreshedMvTimeQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<RefreshedMvTimeQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<RefreshedMvTimeQuery>({ document: RefreshedMvTimeDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'refreshedMVTime', 'query', variables);
+    refreshedMVTime(variables: RefreshedMvTimeQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<RefreshedMvTimeQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<RefreshedMvTimeQuery>(RefreshedMvTimeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'refreshedMVTime', 'query', variables);
     },
-    searchPage(variables?: SearchPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SearchPageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SearchPageQuery>({ document: SearchPageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'searchPage', 'query', variables);
+    searchPage(variables?: SearchPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SearchPageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SearchPageQuery>(SearchPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'searchPage', 'query', variables);
     },
-    specialistLessonDownloads(variables?: SpecialistLessonDownloadsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistLessonDownloadsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonDownloadsQuery>({ document: SpecialistLessonDownloadsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistLessonDownloads', 'query', variables);
+    specialistLessonDownloads(variables?: SpecialistLessonDownloadsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistLessonDownloadsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonDownloadsQuery>(SpecialistLessonDownloadsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonDownloads', 'query', variables);
     },
-    specialistLessonListing(variables?: SpecialistLessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistLessonListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonListingQuery>({ document: SpecialistLessonListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistLessonListing', 'query', variables);
+    specialistLessonListing(variables?: SpecialistLessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistLessonListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonListingQuery>(SpecialistLessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonListing', 'query', variables);
     },
-    specialistLessonOverview(variables: SpecialistLessonOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistLessonOverviewQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonOverviewQuery>({ document: SpecialistLessonOverviewDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistLessonOverview', 'query', variables);
+    specialistLessonOverview(variables: SpecialistLessonOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistLessonOverviewQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonOverviewQuery>(SpecialistLessonOverviewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonOverview', 'query', variables);
     },
-    specialistLessonOverviewCanonical(variables: SpecialistLessonOverviewCanonicalQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistLessonOverviewCanonicalQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonOverviewCanonicalQuery>({ document: SpecialistLessonOverviewCanonicalDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistLessonOverviewCanonical', 'query', variables);
+    specialistLessonOverviewCanonical(variables: SpecialistLessonOverviewCanonicalQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistLessonOverviewCanonicalQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonOverviewCanonicalQuery>(SpecialistLessonOverviewCanonicalDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonOverviewCanonical', 'query', variables);
     },
-    specialistLessonShare(variables?: SpecialistLessonShareQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistLessonShareQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonShareQuery>({ document: SpecialistLessonShareDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistLessonShare', 'query', variables);
+    specialistLessonShare(variables?: SpecialistLessonShareQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistLessonShareQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonShareQuery>(SpecialistLessonShareDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonShare', 'query', variables);
     },
-    specialistProgrammeListing(variables?: SpecialistProgrammeListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistProgrammeListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistProgrammeListingQuery>({ document: SpecialistProgrammeListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistProgrammeListing', 'query', variables);
+    specialistProgrammeListing(variables?: SpecialistProgrammeListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistProgrammeListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistProgrammeListingQuery>(SpecialistProgrammeListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistProgrammeListing', 'query', variables);
     },
-    specialistProgrammeListingCounts(variables: SpecialistProgrammeListingCountsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistProgrammeListingCountsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistProgrammeListingCountsQuery>({ document: SpecialistProgrammeListingCountsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistProgrammeListingCounts', 'query', variables);
+    specialistProgrammeListingCounts(variables: SpecialistProgrammeListingCountsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistProgrammeListingCountsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistProgrammeListingCountsQuery>(SpecialistProgrammeListingCountsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistProgrammeListingCounts', 'query', variables);
     },
-    specialistSubjectListing(variables?: SpecialistSubjectListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistSubjectListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistSubjectListingQuery>({ document: SpecialistSubjectListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistSubjectListing', 'query', variables);
+    specialistSubjectListing(variables?: SpecialistSubjectListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistSubjectListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistSubjectListingQuery>(SpecialistSubjectListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistSubjectListing', 'query', variables);
     },
-    specialistUnitsAndLessonCount(variables?: SpecialistUnitsAndLessonCountQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistUnitsAndLessonCountQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistUnitsAndLessonCountQuery>({ document: SpecialistUnitsAndLessonCountDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistUnitsAndLessonCount', 'query', variables);
+    specialistUnitsAndLessonCount(variables?: SpecialistUnitsAndLessonCountQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistUnitsAndLessonCountQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistUnitsAndLessonCountQuery>(SpecialistUnitsAndLessonCountDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistUnitsAndLessonCount', 'query', variables);
     },
-    developmentStageUnitCount(variables: DevelopmentStageUnitCountQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<DevelopmentStageUnitCountQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<DevelopmentStageUnitCountQuery>({ document: DevelopmentStageUnitCountDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'developmentStageUnitCount', 'query', variables);
+    developmentStageUnitCount(variables: DevelopmentStageUnitCountQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<DevelopmentStageUnitCountQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<DevelopmentStageUnitCountQuery>(DevelopmentStageUnitCountDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'developmentStageUnitCount', 'query', variables);
     },
-    developmentStages(variables?: DevelopmentStagesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<DevelopmentStagesQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<DevelopmentStagesQuery>({ document: DevelopmentStagesDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'developmentStages', 'query', variables);
+    developmentStages(variables?: DevelopmentStagesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<DevelopmentStagesQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<DevelopmentStagesQuery>(DevelopmentStagesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'developmentStages', 'query', variables);
     },
-    specialistLessonCount(variables: SpecialistLessonCountQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistLessonCountQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonCountQuery>({ document: SpecialistLessonCountDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistLessonCount', 'query', variables);
+    specialistLessonCount(variables: SpecialistLessonCountQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistLessonCountQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistLessonCountQuery>(SpecialistLessonCountDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistLessonCount', 'query', variables);
     },
-    specialistUnitListing(variables: SpecialistUnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SpecialistUnitListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistUnitListingQuery>({ document: SpecialistUnitListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'specialistUnitListing', 'query', variables);
+    specialistUnitListing(variables: SpecialistUnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SpecialistUnitListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SpecialistUnitListingQuery>(SpecialistUnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'specialistUnitListing', 'query', variables);
     },
-    subjectListing(variables?: SubjectListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<SubjectListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<SubjectListingQuery>({ document: SubjectListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'subjectListing', 'query', variables);
+    subjectListing(variables?: SubjectListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SubjectListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SubjectListingQuery>(SubjectListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'subjectListing', 'query', variables);
     },
-    teachersPreviewLesson(variables: TeachersPreviewLessonQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TeachersPreviewLessonQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeachersPreviewLessonQuery>({ document: TeachersPreviewLessonDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'teachersPreviewLesson', 'query', variables);
+    teachersPreviewLesson(variables: TeachersPreviewLessonQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersPreviewLessonQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TeachersPreviewLessonQuery>(TeachersPreviewLessonDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersPreviewLesson', 'query', variables);
     },
-    teacherPreviewLessonDownload(variables: TeacherPreviewLessonDownloadQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TeacherPreviewLessonDownloadQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeacherPreviewLessonDownloadQuery>({ document: TeacherPreviewLessonDownloadDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'teacherPreviewLessonDownload', 'query', variables);
+    teacherPreviewLessonDownload(variables: TeacherPreviewLessonDownloadQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeacherPreviewLessonDownloadQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TeacherPreviewLessonDownloadQuery>(TeacherPreviewLessonDownloadDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teacherPreviewLessonDownload', 'query', variables);
     },
-    teacherPreviewLessonListing(variables: TeacherPreviewLessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TeacherPreviewLessonListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeacherPreviewLessonListingQuery>({ document: TeacherPreviewLessonListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'teacherPreviewLessonListing', 'query', variables);
+    teacherPreviewLessonListing(variables: TeacherPreviewLessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeacherPreviewLessonListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TeacherPreviewLessonListingQuery>(TeacherPreviewLessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teacherPreviewLessonListing', 'query', variables);
     },
-    teachersPreviewUnitListing(variables: TeachersPreviewUnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TeachersPreviewUnitListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeachersPreviewUnitListingQuery>({ document: TeachersPreviewUnitListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'teachersPreviewUnitListing', 'query', variables);
+    teachersPreviewUnitListing(variables: TeachersPreviewUnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersPreviewUnitListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TeachersPreviewUnitListingQuery>(TeachersPreviewUnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersPreviewUnitListing', 'query', variables);
     },
-    teachersHomePage(variables?: TeachersHomePageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TeachersHomePageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeachersHomePageQuery>({ document: TeachersHomePageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'teachersHomePage', 'query', variables);
+    teachersHomePage(variables?: TeachersHomePageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersHomePageQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TeachersHomePageQuery>(TeachersHomePageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersHomePage', 'query', variables);
     },
-    teachersSitemap(variables?: TeachersSitemapQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TeachersSitemapQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeachersSitemapQuery>({ document: TeachersSitemapDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'teachersSitemap', 'query', variables);
+    teachersSitemap(variables?: TeachersSitemapQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersSitemapQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TeachersSitemapQuery>(TeachersSitemapDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersSitemap', 'query', variables);
     },
-    unitListing(variables: UnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<UnitListingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<UnitListingQuery>({ document: UnitListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'unitListing', 'query', variables);
+    unitListing(variables: UnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<UnitListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<UnitListingQuery>(UnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'unitListing', 'query', variables);
     }
   };
 }
