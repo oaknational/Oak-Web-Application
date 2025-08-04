@@ -37,7 +37,7 @@ import {
 } from "@/utils/curriculum/by-pathway";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 
-function generateGroupedUnits(
+export function generateGroupedUnits(
   data: CurriculumUnitsFormattedData<CombinedCurriculumData["units"][number]>,
 ) {
   const unitOptions = Object.entries(data.yearData as UnitsByPathway).flatMap(

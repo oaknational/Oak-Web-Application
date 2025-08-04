@@ -2,11 +2,17 @@ import { cartesianToExcelCoords, pxToColumnWidth } from "@ooxml-tools/units";
 
 import { generateEmptyXlsx, JSZipCached } from "../docx/docx";
 import { cdata, safeXml, xmlCompact } from "../docx/xml";
-import { formatCurriculumUnitsData } from "../docx/tab-helpers";
+import {
+  CurriculumUnitsFormattedData,
+  formatCurriculumUnitsData,
+} from "../docx/tab-helpers";
+import { generateGroupedUnits } from "../docx/builder/8_units/8_units";
+import { CombinedCurriculumData } from "../docx";
+import { groupUnitsBySubjectCategory } from "../docx/builder/helper";
 
 import { createXmlIndexMap } from "./builder";
 
-import { Unit } from "@/utils/curriculum/types";
+import { Unit, UnitOption } from "@/utils/curriculum/types";
 import {
   CurriculumOverviewMVData,
   CurriculumUnitsTabData,
@@ -263,13 +269,164 @@ function buildStyle() {
   };
 }
 
+function buildGoToUnitResourceCell<T extends Record<string, string>>(
+  cellStyleIndexMap: T,
+  x: number,
+  y: number,
+) {
+  return safeXml`
+    <c
+      r="${cartesianToExcelCoords([x, y])}"
+      t="inlineStr"
+      s="${cellStyleIndexMap.temp3!}"
+    >
+      <is>
+        <r>
+          <rPr>
+            <sz val="12" />
+            <color rgb="FF000000" />
+            <rFont val="Arial" />
+            <family val="2" />
+            <u val="single" />
+          </rPr>
+          <t>Go to unit resources</t>
+        </r>
+      </is>
+    </c>
+  `;
+}
+
+function buildUnitCell<T extends Record<string, string>>(
+  cellStyleIndexMap: T,
+  x: number,
+  y: number,
+  unit: Unit,
+  unitIndex: number,
+) {
+  return safeXml`
+    <c
+      r="${cartesianToExcelCoords([x, y])}"
+      t="inlineStr"
+      s="${cellStyleIndexMap.temp3!}"
+    >
+      <is>
+        <r>
+          <rPr>
+            <sz val="14" />
+            <color rgb="FF000000" />
+            <rFont val="Arial" />
+            <family val="2" />
+          </rPr>
+          <t xml:space="preserve">${cdata(`\nUnit ${unitIndex + 1}\n`)}</t>
+        </r>
+        <r>
+          <rPr>
+            <sz val="14" />
+            <color rgb="FF000000" />
+            <rFont val="Arial Bold" />
+            <family val="2" />
+          </rPr>
+          <t xml:space="preserve">${cdata(`${unit.title}\n`)}</t>
+        </r>
+      </is>
+    </c>
+  `;
+}
+
+function buildUnitOptionCell<T extends Record<string, string>>(
+  cellStyleIndexMap: T,
+  x: number,
+  y: number,
+  unitOption: UnitOption,
+  unitOptionIndex: number,
+) {
+  return safeXml`
+    <c
+      r="${cartesianToExcelCoords([x, y])}"
+      t="inlineStr"
+      s="${cellStyleIndexMap.temp3!}"
+    >
+      <is>
+        <r>
+          <rPr>
+            <sz val="14" />
+            <color rgb="FF000000" />
+            <rFont val="Arial" />
+            <family val="2" />
+          </rPr>
+          <t xml:space="preserve">${cdata(
+              `\nOption ${unitOptionIndex + 1}\n`,
+            )}</t>
+        </r>
+        <r>
+          <rPr>
+            <sz val="14" />
+            <color rgb="FF000000" />
+            <rFont val="Arial Bold" />
+            <family val="2" />
+          </rPr>
+          <t xml:space="preserve">${cdata(`${unitOption.title}\n`)}</t>
+        </r>
+      </is>
+    </c>
+  `;
+}
+
+function buildTickCell<T extends Record<string, string>>(
+  cellStyleIndexMap: T,
+  hasNcCriteria: boolean,
+  x: number,
+  y: number,
+) {
+  return safeXml`
+    <c
+      r="${cartesianToExcelCoords([x, y])}"
+      t="inlineStr"
+      s="${hasNcCriteria ? cellStyleIndexMap.temp5! : cellStyleIndexMap.temp0!}"
+    >
+      <is>
+        <t>${cdata(hasNcCriteria ? "✓" : "")}</t>
+      </is>
+    </c>
+  `;
+}
+
+function buildNcCriteriaText<T extends Record<string, string>>(
+  cellStyleIndexMap: T,
+  nationalCurricText: string,
+  x: number,
+  y: number,
+) {
+  return safeXml`
+    <c
+      r="${cartesianToExcelCoords([x, y])}"
+      t="inlineStr"
+      s="${cellStyleIndexMap.temp4!}"
+    >
+      <is>
+        <t xml:space="preserve">${cdata(`\n${nationalCurricText}\n`)}</t>
+      </is>
+    </c>
+  `;
+}
+
 function buildNatCurric<T extends Record<string, string>>(
   cellStyleIndexMap: T,
   data: BuildNationalCurriculumData,
+  formattedData: FormattedData,
 ) {
   const unitXml: string[] = [];
   const linkXml: string[] = [];
   const goToUnitResourcesXml: string[] = [];
+
+  const groupedUnits = generateGroupedUnits(formattedData);
+  const groupedSubcatUnits = groupUnitsBySubjectCategory(
+    groupedUnits[2]!.units,
+  );
+  // const enableGroupBySubjectCategory = groupedUnits[0]?.units[0]?.actions?.subject_category_actions?.group_by_subjectcategory;
+
+  console.log("groupedSubcatUnits=", groupedSubcatUnits[1]);
+
   for (const [unitIndex, unit] of data.unitData.entries()) {
     linkXml.push(safeXml`
       <hyperlink
@@ -277,54 +434,22 @@ function buildNatCurric<T extends Record<string, string>>(
         r:id="rId${1000 + linkXml.length}"
       />
     `);
-    goToUnitResourcesXml.push(safeXml`
-      <c
-        r="${cartesianToExcelCoords([goToUnitResourcesXml.length + 2, 3])}"
-        t="inlineStr"
-        s="${cellStyleIndexMap.temp3!}"
-      >
-        <is>
-          <r>
-            <rPr>
-              <sz val="12" />
-              <color rgb="FF000000" />
-              <rFont val="Arial" />
-              <family val="2" />
-              <u val="single" />
-            </rPr>
-            <t>Go to unit resources</t>
-          </r>
-        </is>
-      </c>
-    `);
-    unitXml.push(safeXml`
-      <c
-        r="${cartesianToExcelCoords([unitXml.length + 2, 2])}"
-        t="inlineStr"
-        s="${cellStyleIndexMap.temp3!}"
-      >
-        <is>
-          <r>
-            <rPr>
-              <sz val="14" />
-              <color rgb="FF000000" />
-              <rFont val="Arial" />
-              <family val="2" />
-            </rPr>
-            <t xml:space="preserve">${cdata(`\nUnit ${unitIndex + 1}\n`)}</t>
-          </r>
-          <r>
-            <rPr>
-              <sz val="14" />
-              <color rgb="FF000000" />
-              <rFont val="Arial Bold" />
-              <family val="2" />
-            </rPr>
-            <t xml:space="preserve">${cdata(`${unit.unit.title}\n`)}</t>
-          </r>
-        </is>
-      </c>
-    `);
+    goToUnitResourcesXml.push(
+      buildGoToUnitResourceCell(
+        cellStyleIndexMap,
+        goToUnitResourcesXml.length + 2,
+        3,
+      ),
+    );
+    unitXml.push(
+      buildUnitCell(
+        cellStyleIndexMap,
+        unitXml.length + 2,
+        2,
+        unit.unit,
+        unitIndex,
+      ),
+    );
 
     for (const [
       unitOptionIndex,
@@ -336,56 +461,22 @@ function buildNatCurric<T extends Record<string, string>>(
           r:id="rId${1000 + linkXml.length}"
         />
       `);
-      goToUnitResourcesXml.push(safeXml`
-        <c
-          r="${cartesianToExcelCoords([goToUnitResourcesXml.length + 2, 3])}"
-          t="inlineStr"
-          s="${cellStyleIndexMap.temp3!}"
-        >
-          <is>
-            <r>
-              <rPr>
-                <sz val="12" />
-                <color rgb="FF000000" />
-                <rFont val="Arial" />
-                <family val="2" />
-                <u val="single" />
-              </rPr>
-              <t>Go to unit resources</t>
-            </r>
-          </is>
-        </c>
-      `);
-      unitXml.push(safeXml`
-        <c
-          r="${cartesianToExcelCoords([unitXml.length + 2, 2])}"
-          t="inlineStr"
-          s="${cellStyleIndexMap.temp3!}"
-        >
-          <is>
-            <r>
-              <rPr>
-                <sz val="14" />
-                <color rgb="FF000000" />
-                <rFont val="Arial" />
-                <family val="2" />
-              </rPr>
-              <t xml:space="preserve">${cdata(
-                  `\nOption ${unitOptionIndex + 1}\n`,
-                )}</t>
-            </r>
-            <r>
-              <rPr>
-                <sz val="14" />
-                <color rgb="FF000000" />
-                <rFont val="Arial Bold" />
-                <family val="2" />
-              </rPr>
-              <t xml:space="preserve">${cdata(`${unitOption.title}\n`)}</t>
-            </r>
-          </is>
-        </c>
-      `);
+      goToUnitResourcesXml.push(
+        buildGoToUnitResourceCell(
+          cellStyleIndexMap,
+          goToUnitResourcesXml.length + 2,
+          3,
+        ),
+      );
+      unitXml.push(
+        buildUnitOptionCell(
+          cellStyleIndexMap,
+          unitXml.length + 2,
+          2,
+          unitOption,
+          unitOptionIndex,
+        ),
+      );
     }
   }
 
@@ -435,7 +526,11 @@ function buildNatCurric<T extends Record<string, string>>(
       </cols>
       <sheetData>
         <row r="1" spans="1:26">
-          <c r="A1" t="inlineStr" s="${cellStyleIndexMap.temp1!}">
+          <c
+            r="${cartesianToExcelCoords([1, 1])}"
+            t="inlineStr"
+            s="${cellStyleIndexMap.temp1!}"
+          >
             <is>
               <t>
                 ${cdata(
@@ -456,7 +551,11 @@ function buildNatCurric<T extends Record<string, string>>(
           ${unitXml}
         </row>
         <row r="3" spans="1:26">
-          <c r="A3" t="inlineStr" s="${cellStyleIndexMap.temp2!}">
+          <c
+            r="${cartesianToExcelCoords([1, 3])}"
+            t="inlineStr"
+            s="${cellStyleIndexMap.temp2!}"
+          >
             <is>
               <t />
             </is>
@@ -470,50 +569,35 @@ function buildNatCurric<T extends Record<string, string>>(
 
             for (const unit of data.unitData) {
               const hasNcCriteria = unit.nationalCurricIds.includes(id);
-              tickXml.push(safeXml`
-                <c
-                  r="${cartesianToExcelCoords([tickXml.length + 2, yPos])}"
-                  t="inlineStr"
-                  s="${hasNcCriteria
-                    ? cellStyleIndexMap.temp5!
-                    : cellStyleIndexMap.temp0!}"
-                >
-                  <is>
-                    <t>${cdata(hasNcCriteria ? "✓" : "")}</t>
-                  </is>
-                </c>
-              `);
+              tickXml.push(
+                buildTickCell(
+                  cellStyleIndexMap,
+                  hasNcCriteria,
+                  tickXml.length + 2,
+                  yPos,
+                ),
+              );
 
               unit.unit.unit_options.forEach(() => {
-                tickXml.push(safeXml`
-                  <c
-                    r="${cartesianToExcelCoords([tickXml.length + 2, yPos])}"
-                    t="inlineStr"
-                    s="${hasNcCriteria
-                      ? cellStyleIndexMap.temp5!
-                      : cellStyleIndexMap.temp0!}"
-                  >
-                    <is>
-                      <t>${cdata(hasNcCriteria ? "✓" : "")}</t>
-                    </is>
-                  </c>
-                `);
+                tickXml.push(
+                  buildTickCell(
+                    cellStyleIndexMap,
+                    hasNcCriteria,
+                    tickXml.length + 2,
+                    yPos,
+                  ),
+                );
               });
             }
 
             return safeXml`
               <row r="${yPos}" spans="1:${unitXml.length + 2}">
-                <c
-                  r="${cartesianToExcelCoords([1, yPos])}"
-                  t="inlineStr"
-                  s="${cellStyleIndexMap.temp4!}"
-                >
-                  <is>
-                    <t xml:space="preserve">${cdata(
-                        `\n${nationalCurricText}\n`,
-                      )}</t>
-                  </is>
-                </c>
+                ${buildNcCriteriaText(
+                  cellStyleIndexMap,
+                  nationalCurricText,
+                  1,
+                  yPos,
+                )}
                 ${tickXml}
               </row>
             `;
@@ -533,6 +617,10 @@ function buildNatCurric<T extends Record<string, string>>(
   `.trim();
 }
 
+type FormattedData = CurriculumUnitsFormattedData<
+  CombinedCurriculumData["units"][number]
+>;
+
 type BuildNationalCurriculumData = {
   year: string;
   nationalCurric: Map<number, string>;
@@ -544,6 +632,7 @@ type BuildNationalCurriculumData = {
 async function buildNationalCurriculum(
   zip: JSZipCached,
   data: BuildNationalCurriculumData[],
+  formattedData: FormattedData,
 ) {
   const { styleXml, cellStyleIndexMap } = buildStyle();
   zip.writeString("xl/styles.xml", styleXml);
@@ -589,7 +678,7 @@ async function buildNationalCurriculum(
     addOrUpdateSheet(
       zip,
       10 + index,
-      xmlCompact(buildNatCurric(cellStyleIndexMap, item)),
+      xmlCompact(buildNatCurric(cellStyleIndexMap, item, formattedData)),
     );
   });
 
@@ -744,7 +833,7 @@ export default async function xlsxNationalCurriculum(
     },
   );
 
-  await buildNationalCurriculum(zip, obj);
+  await buildNationalCurriculum(zip, obj, formattedData);
 
   return await zip.zipToBuffer();
 }
