@@ -267,6 +267,128 @@ function buildNatCurric<T extends Record<string, string>>(
   cellStyleIndexMap: T,
   data: BuildNationalCurriculumData,
 ) {
+  const unitXml: string[] = [];
+  const linkXml: string[] = [];
+  const goToUnitResourcesXml: string[] = [];
+  for (const [unitIndex, unit] of data.unitData.entries()) {
+    linkXml.push(safeXml`
+      <hyperlink
+        ref="${cartesianToExcelCoords([linkXml.length + 2, 3])}"
+        r:id="rId${1000 + linkXml.length}"
+      />
+    `);
+    goToUnitResourcesXml.push(safeXml`
+      <c
+        r="${cartesianToExcelCoords([goToUnitResourcesXml.length + 2, 3])}"
+        t="inlineStr"
+        s="${cellStyleIndexMap.temp3!}"
+      >
+        <is>
+          <r>
+            <rPr>
+              <sz val="12" />
+              <color rgb="FF000000" />
+              <rFont val="Arial" />
+              <family val="2" />
+              <u val="single" />
+            </rPr>
+            <t>Go to unit resources</t>
+          </r>
+        </is>
+      </c>
+    `);
+    unitXml.push(safeXml`
+      <c
+        r="${cartesianToExcelCoords([unitXml.length + 2, 2])}"
+        t="inlineStr"
+        s="${cellStyleIndexMap.temp3!}"
+      >
+        <is>
+          <r>
+            <rPr>
+              <sz val="14" />
+              <color rgb="FF000000" />
+              <rFont val="Arial" />
+              <family val="2" />
+            </rPr>
+            <t xml:space="preserve">${cdata(`\nUnit ${unitIndex + 1}\n`)}</t>
+          </r>
+          <r>
+            <rPr>
+              <sz val="14" />
+              <color rgb="FF000000" />
+              <rFont val="Arial Bold" />
+              <family val="2" />
+            </rPr>
+            <t xml:space="preserve">${cdata(`${unit.unit.title}\n`)}</t>
+          </r>
+        </is>
+      </c>
+    `);
+
+    for (const [
+      unitOptionIndex,
+      unitOption,
+    ] of unit.unit.unit_options.entries()) {
+      linkXml.push(safeXml`
+        <hyperlink
+          ref="${cartesianToExcelCoords([linkXml.length + 2, 3])}"
+          r:id="rId${1000 + linkXml.length}"
+        />
+      `);
+      goToUnitResourcesXml.push(safeXml`
+        <c
+          r="${cartesianToExcelCoords([goToUnitResourcesXml.length + 2, 3])}"
+          t="inlineStr"
+          s="${cellStyleIndexMap.temp3!}"
+        >
+          <is>
+            <r>
+              <rPr>
+                <sz val="12" />
+                <color rgb="FF000000" />
+                <rFont val="Arial" />
+                <family val="2" />
+                <u val="single" />
+              </rPr>
+              <t>Go to unit resources</t>
+            </r>
+          </is>
+        </c>
+      `);
+      unitXml.push(safeXml`
+        <c
+          r="${cartesianToExcelCoords([unitXml.length + 2, 2])}"
+          t="inlineStr"
+          s="${cellStyleIndexMap.temp3!}"
+        >
+          <is>
+            <r>
+              <rPr>
+                <sz val="14" />
+                <color rgb="FF000000" />
+                <rFont val="Arial" />
+                <family val="2" />
+              </rPr>
+              <t xml:space="preserve">${cdata(
+                  `\nOption ${unitOptionIndex + 1}\n`,
+                )}</t>
+            </r>
+            <r>
+              <rPr>
+                <sz val="14" />
+                <color rgb="FF000000" />
+                <rFont val="Arial Bold" />
+                <family val="2" />
+              </rPr>
+              <t xml:space="preserve">${cdata(`${unitOption.title}\n`)}</t>
+            </r>
+          </is>
+        </c>
+      `);
+    }
+  }
+
   return safeXml`
     <worksheet
       xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"
@@ -306,7 +428,7 @@ function buildNatCurric<T extends Record<string, string>>(
         />
         <col
           min="2"
-          max="${data.unitData.length + 1}"
+          max="${unitXml.length + 1}"
           width="${pxToColumnWidth(185, 7)}"
           customWidth="1"
         />
@@ -331,29 +453,7 @@ function buildNatCurric<T extends Record<string, string>>(
                 )}</t>
             </is>
           </c>
-          ${data.unitData.map((unit, unitIndex) => {
-            return safeXml`
-              <c
-                r="${cartesianToExcelCoords([unitIndex + 2, 2])}"
-                t="inlineStr"
-                s="${cellStyleIndexMap.temp3!}"
-              >
-                <is>
-                  <r>
-                    <rPr>
-                      <sz val="14" />
-                      <color rgb="FF000000" />
-                      <rFont val="Arial Bold" />
-                      <family val="2" />
-                    </rPr>
-                    <t xml:space="preserve">${cdata(
-                        `\nUnit ${unitIndex + 1}\n${unit.unit.title}\n`,
-                      )}</t>
-                  </r>
-                </is>
-              </c>
-            `;
-          })}
+          ${unitXml}
         </row>
         <row r="3" spans="1:26">
           <c r="A3" t="inlineStr" s="${cellStyleIndexMap.temp2!}">
@@ -361,28 +461,7 @@ function buildNatCurric<T extends Record<string, string>>(
               <t />
             </is>
           </c>
-          ${data.unitData.map((_unit, unitIndex) => {
-            return safeXml`
-              <c
-                r="${cartesianToExcelCoords([unitIndex + 2, 3])}"
-                t="inlineStr"
-                s="${cellStyleIndexMap.temp3!}"
-              >
-                <is>
-                  <r>
-                    <rPr>
-                      <sz val="12" />
-                      <color rgb="FF000000" />
-                      <rFont val="Arial" />
-                      <family val="2" />
-                      <u val="single" />
-                    </rPr>
-                    <t>Go to unit resources</t>
-                  </r>
-                </is>
-              </c>
-            `;
-          })}
+          ${goToUnitResourcesXml}
         </row>
         ${[...data.nationalCurric.entries()].map(
           ([id, nationalCurricText], nationalCurricTextIndex) => {
@@ -424,16 +503,7 @@ function buildNatCurric<T extends Record<string, string>>(
           },
         )}
       </sheetData>
-      <hyperlinks>
-        ${data.unitData.map((unit, unitIndex) => {
-          return safeXml`
-            <hyperlink
-              ref="${cartesianToExcelCoords([unitIndex + 2, 3])}"
-              r:id="rId${1000 + unitIndex}"
-            />
-          `;
-        })}
-      </hyperlinks>
+      <hyperlinks>${linkXml}</hyperlinks>
       <pageMargins
         left="0.7"
         right="0.7"
@@ -462,6 +532,32 @@ async function buildNationalCurriculum(
   zip.writeString("xl/styles.xml", styleXml);
 
   data.forEach((item, index) => {
+    const linksXml = [];
+    for (const unit of item.unitData) {
+      linksXml.push(safeXml`
+        <Relationship
+          Id="rId${1000 + linksXml.length}"
+          Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink"
+          Target="https://www.thenational.academy/teachers/curriculum/${unit
+            .unit.subject_slug}-${unit.unit.phase_slug}/units/${unit.unit.slug}"
+          TargetMode="External"
+        />
+      `);
+
+      for (const unitOption of unit.unit.unit_options) {
+        linksXml.push(safeXml`
+          <Relationship
+            Id="rId${1000 + linksXml.length}"
+            Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink"
+            Target="https://www.thenational.academy/teachers/curriculum/${unit
+              .unit.subject_slug}-${unit.unit
+              .phase_slug}/units/${unitOption.slug!}"
+            TargetMode="External"
+          />
+        `);
+      }
+    }
+
     zip.writeString(
       `xl/worksheets/_rels/sheet${10 + index}.xml.rels`,
       safeXml`
@@ -469,18 +565,7 @@ async function buildNationalCurriculum(
         <Relationships
           xmlns="http://schemas.openxmlformats.org/package/2006/relationships"
         >
-          ${item.unitData.map((unit, unitIndex) => {
-            return safeXml`
-              <Relationship
-                Id="rId${1000 + unitIndex}"
-                Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink"
-                Target="https://www.thenational.academy/teachers/curriculum/${unit
-                  .unit.subject_slug}-${unit.unit.phase_slug}/units/${unit.unit
-                  .slug}"
-                TargetMode="External"
-              />
-            `;
-          })}
+          ${linksXml}
         </Relationships>
       `.trim(),
     );
