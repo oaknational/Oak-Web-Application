@@ -898,7 +898,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               />
             </OakBox>
             {/* PHASE Button */}
-            <OakBox $width={"all-spacing-20"} $position={"relative"}>
+            <OakBox $position={"relative"} style={{ width: "50%" }}>
               <OakFlex
                 $position={"relative"}
                 $flexDirection={"row"}
