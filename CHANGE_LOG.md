@@ -1,3 +1,17 @@
+# [1.817.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.816.0...v1.817.0) (2025-08-04)
+
+
+### Bug Fixes
+
+* made sure redirect modal closes on pupil area ([433a47e](https://github.com/oaknational/Oak-Web-Application/commit/433a47e2aeeb53ff1c7af7dc4b8bdb0ca3509dd0))
+* redirect modal takes priority over content guidance modal but still shows both ([57cbe7d](https://github.com/oaknational/Oak-Web-Application/commit/57cbe7d3f66ae6092065ac798df097a5f7ecc1a4))
+
+
+### Features
+
+* added redirect modals for pupil unit and lesson listing pages ([d824e87](https://github.com/oaknational/Oak-Web-Application/commit/d824e877efcbe9d62cf14d794d99e0a69a927746))
+* added redirect modals that show after being redirected to a unit or lesson for pupil/teacher ([7c94abf](https://github.com/oaknational/Oak-Web-Application/commit/7c94abfda0d40b0ac8e1ff73e43985045e9da737))
+
 # [1.816.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.815.0...v1.816.0) (2025-08-01)
 
 
