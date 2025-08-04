@@ -3,6 +3,7 @@ import {
   OakFlex,
   OakHeading,
   OakSpan,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import {
@@ -43,8 +44,11 @@ export const QuizQuestionsQuestionStem = ({
               {showIndex && (
                 <OakSpan $mr="space-between-xs">{displayNumber}</OakSpan>
               )}
-              {questionText &&
-                shortAnswerTitleFormatter(removeMarkdown(questionText))}
+              {questionText && (
+                <OakBox>
+                  {shortAnswerTitleFormatter(removeMarkdown(questionText))}
+                </OakBox>
+              )}
             </>
           )}
         </OakFlex>
