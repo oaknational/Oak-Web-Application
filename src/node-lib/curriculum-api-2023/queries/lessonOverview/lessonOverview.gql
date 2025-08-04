@@ -1,9 +1,9 @@
 query lessonOverview(
-  $browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_keystage_17_0_0_bool_exp
+  $browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0_bool_exp
   $lessonSlug: String!
-  $unitDataWhere: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_16_0_0_bool_exp
+  $unitDataWhere: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0_bool_exp
 ) {
-  browseData: published_mv_synthetic_unitvariant_lessons_by_keystage_17_0_0(
+  browseData: published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0(
     where: $browseDataWhere
   ) {
     lesson_slug
@@ -65,7 +65,7 @@ query lessonOverview(
     geo_restricted
     login_required
   }
-  unitData: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_16_0_0(
+  unitData: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0(
     where: $unitDataWhere
   ) {
     lesson_count

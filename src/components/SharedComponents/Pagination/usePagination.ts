@@ -80,6 +80,7 @@ const usePagination = <T>(
       )
       .then(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
+        firstItemRef.current?.focus();
       });
   };
 

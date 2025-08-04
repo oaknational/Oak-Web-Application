@@ -8,9 +8,22 @@ variable "custom_env_vars" {
   type = object({
     staging = optional(object({
       CURRICULUM_API_2023_URL = string
+      OVERRIDE_URL            = string
+      OAK_CONFIG_LOCATION     = string
     }))
   })
   default = {}
+}
+
+variable "sensitive_custom_env_vars" {
+  description = "Maps each of sensitive custom-environment name to a set of env vars"
+  type = object({
+    staging = optional(object({
+      GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT = string
+    }))
+  })
+  sensitive = true
+  default   = {}
 }
 
 variable "env_vars" {
