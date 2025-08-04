@@ -473,7 +473,7 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
           }
         ).redirect,
       ).toEqual({
-        destination: "lessons/new-lesson-slug",
+        destination: "lessons/new-lesson-slug?redirected=true",
         statusCode: 301, // 307 is the default for temporary redirects
         basePath: false,
       });
