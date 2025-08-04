@@ -32,8 +32,8 @@ export function useLessonPopStateHandler(
  * Sets the current lesson section in the URL and history state
  */
 export function useNavigateToSection() {
-  const { query } = useRouter();
-  const initialSection = query.section?.toString();
+  const router = useRouter();
+  const initialSection = router.query?.section?.toString();
   const activeSectionRef = useRef<LessonSection>(
     initialSection && isLessonSection(initialSection)
       ? initialSection
@@ -43,12 +43,14 @@ export function useNavigateToSection() {
 
   return useCallback(
     function navigateToSection(section: LessonSection) {
-      const method =
-        activeSectionRef.current === section ? "replaceState" : "pushState";
-      window.history[method](section, "", getHref(section));
-      activeSectionRef.current = section;
+      if (router.isReady) {
+        const method =
+          activeSectionRef.current === section ? "replaceState" : "pushState";
+        window.history[method](section, "", getHref(section));
+        activeSectionRef.current = section;
+      }
     },
-    [getHref],
+    [getHref, router],
   );
 }
 

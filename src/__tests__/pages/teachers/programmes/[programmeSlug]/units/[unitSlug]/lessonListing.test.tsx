@@ -1,6 +1,7 @@
 import { GetStaticPropsContext, PreviewData } from "next";
 import userEvent from "@testing-library/user-event";
 import { screen } from "@testing-library/dom";
+import mockRouter from "next-router-mock";
 
 import LessonListPage, {
   getStaticProps,
@@ -238,7 +239,7 @@ describe("getStaticProps", () => {
     expect(response).toEqual({
       redirect: {
         basePath: false,
-        destination: "lessons/new-lesson-slug",
+        destination: "lessons/new-lesson-slug?redirected=true",
         statusCode: 301, // true = 308, false = 307
       },
     });
@@ -313,5 +314,17 @@ describe("tracking", () => {
       lessonReleaseDate: "2025-09-29T14:00:00.000Z",
       pathway: null,
     });
+  });
+});
+describe("redirected overlay", () => {
+  beforeEach(() => {
+    mockRouter.setCurrentUrl("/?redirected=true");
+  });
+  it("should show redirect modal when redirected query param is present", () => {
+    mockRouter.setCurrentUrl("/?redirected=true");
+    const { getByTestId } = render(
+      <LessonListPage curriculumData={lessonListingFixture()} />,
+    );
+    expect(getByTestId("teacher-redirected-overlay-btn")).toBeInTheDocument();
   });
 });
