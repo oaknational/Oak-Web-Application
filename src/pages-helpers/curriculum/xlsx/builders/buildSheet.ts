@@ -1,9 +1,8 @@
 import { cartesianToExcelCoords, pxToColumnWidth } from "@ooxml-tools/units";
 
 import { BuildNationalCurriculumData, FormattedData } from "..";
-import { generateGroupedUnits } from "../../docx/builder/8_units/8_units";
-import { groupUnitsBySubjectCategory } from "../../docx/builder/helper";
 import { cdata, safeXml } from "../../docx/xml";
+import { getFlatUnits } from "../helper";
 
 import { buildGoToUnitResourceCell } from "./buildGoToUnitResourceCell";
 import { buildTickCell } from "./buildTickCell";
@@ -19,15 +18,9 @@ export function buildSheet<T extends Record<string, string>>(
   const unitXml: string[] = [];
   const linkXml: string[] = [];
   const goToUnitResourcesXml: string[] = [];
+  const flatUnits = getFlatUnits(formattedData);
 
-  const groupedUnits = generateGroupedUnits(formattedData);
-  const groupedSubcatUnits = groupUnitsBySubjectCategory(
-    groupedUnits[2]!.units,
-  );
-  // const enableGroupBySubjectCategory = groupedUnits[0]?.units[0]?.actions?.subject_category_actions?.group_by_subjectcategory;
-  console.log("groupedSubcatUnits=", groupedSubcatUnits[1]);
-
-  for (const [unitIndex, unit] of data.unitData.entries()) {
+  for (const unit of flatUnits) {
     linkXml.push(safeXml`
       <hyperlink
         ref="${cartesianToExcelCoords([linkXml.length + 2, 3])}"
@@ -46,15 +39,13 @@ export function buildSheet<T extends Record<string, string>>(
         cellStyleIndexMap,
         unitXml.length + 2,
         2,
-        unit.unit,
-        unitIndex,
+        unit,
+        unit.unitIndex,
+        unit.subjectCategory.title,
       ),
     );
 
-    for (const [
-      unitOptionIndex,
-      unitOption,
-    ] of unit.unit.unit_options.entries()) {
+    for (const [unitOptionIndex, unitOption] of unit.unit_options.entries()) {
       linkXml.push(safeXml`
         <hyperlink
           ref="${cartesianToExcelCoords([linkXml.length + 2, 3])}"
@@ -125,7 +116,7 @@ export function buildSheet<T extends Record<string, string>>(
         />
       </cols>
       <sheetData>
-        <row r="1" spans="1:26">
+        <row r="1" spans="1:${unitXml.length + 1}">
           <c
             r="${cartesianToExcelCoords([1, 1])}"
             t="inlineStr"
@@ -140,7 +131,7 @@ export function buildSheet<T extends Record<string, string>>(
             </is>
           </c>
         </row>
-        <row r="2" spans="1:26">
+        <row r="2" spans="1:${unitXml.length + 1}">
           <c r="A2" t="inlineStr" s="${cellStyleIndexMap.temp2!}">
             <is>
               <t xml:space="preserve">${cdata(
@@ -150,7 +141,7 @@ export function buildSheet<T extends Record<string, string>>(
           </c>
           ${unitXml}
         </row>
-        <row r="3" spans="1:26">
+        <row r="3" spans="1:${unitXml.length + 1}">
           <c
             r="${cartesianToExcelCoords([1, 3])}"
             t="inlineStr"
@@ -167,8 +158,10 @@ export function buildSheet<T extends Record<string, string>>(
             const yPos = 4 + nationalCurricTextIndex;
             const tickXml: string[] = [];
 
-            for (const unit of data.unitData) {
-              const hasNcCriteria = unit.nationalCurricIds.includes(id);
+            for (const unit of flatUnits) {
+              const hasNcCriteria = !!unit.national_curriculum_content?.find(
+                (item) => item.id === id,
+              );
               tickXml.push(
                 buildTickCell(
                   cellStyleIndexMap,
@@ -178,7 +171,7 @@ export function buildSheet<T extends Record<string, string>>(
                 ),
               );
 
-              unit.unit.unit_options.forEach(() => {
+              unit.unit_options.forEach(() => {
                 tickXml.push(
                   buildTickCell(
                     cellStyleIndexMap,
@@ -191,7 +184,7 @@ export function buildSheet<T extends Record<string, string>>(
             }
 
             return safeXml`
-              <row r="${yPos}" spans="1:${unitXml.length + 2}">
+              <row r="${yPos}" spans="1:${tickXml.length + 1}">
                 ${buildNcCriteriaText(
                   cellStyleIndexMap,
                   nationalCurricText,

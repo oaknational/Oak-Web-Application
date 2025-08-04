@@ -10,6 +10,7 @@ export function buildUnitCell<T extends Record<string, string>>(
   y: number,
   unit: Unit,
   unitIndex: number,
+  prefix: string,
 ) {
   return safeXml`
     <c
@@ -25,7 +26,9 @@ export function buildUnitCell<T extends Record<string, string>>(
             <rFont val="Arial" />
             <family val="2" />
           </rPr>
-          <t xml:space="preserve">${cdata(`\nUnit ${unitIndex + 1}\n`)}</t>
+          <t xml:space="preserve">${cdata(
+              `\n${prefix ? `${prefix}\n` : ""}Unit ${unitIndex + 1}\n`,
+            )}</t>
         </r>
         <r>
           <rPr>

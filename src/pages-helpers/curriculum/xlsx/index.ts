@@ -7,7 +7,7 @@ import {
 import { CombinedCurriculumData } from "../docx";
 
 import { buildStyle } from "./builders/buildStyles";
-import { addOrUpdateSheet } from "./helper";
+import { addOrUpdateSheet, getFlatUnits } from "./helper";
 import { buildSheet } from "./builders/buildSheet";
 import { buildWorkbook } from "./builders/buildWorkbook";
 
@@ -37,27 +37,26 @@ async function buildNationalCurriculum(
   const { styleXml, cellStyleIndexMap } = buildStyle();
   zip.writeString("xl/styles.xml", styleXml);
 
+  const flatUnits = getFlatUnits(formattedData);
+
   data.forEach((item, index) => {
     const linksXml = [];
-    for (const unit of item.unitData) {
+    for (const unit of flatUnits) {
       linksXml.push(safeXml`
         <Relationship
           Id="rId${1000 + linksXml.length}"
           Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink"
-          Target="https://www.thenational.academy/teachers/curriculum/${unit
-            .unit.subject_slug}-${unit.unit.phase_slug}/units/${unit.unit.slug}"
+          Target="https://www.thenational.academy/teachers/curriculum/${unit.subject_slug}-${unit.phase_slug}/units/${unit.slug}"
           TargetMode="External"
         />
       `);
 
-      for (const unitOption of unit.unit.unit_options) {
+      for (const unitOption of unit.unit_options) {
         linksXml.push(safeXml`
           <Relationship
             Id="rId${1000 + linksXml.length}"
             Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink"
-            Target="https://www.thenational.academy/teachers/curriculum/${unit
-              .unit.subject_slug}-${unit.unit
-              .phase_slug}/units/${unitOption.slug!}"
+            Target="https://www.thenational.academy/teachers/curriculum/${unit.subject_slug}-${unit.phase_slug}/units/${unitOption.slug!}"
             TargetMode="External"
           />
         `);
