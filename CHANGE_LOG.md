@@ -1,3 +1,29 @@
+# [1.821.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.820.0...v1.821.0) (2025-08-04)
+
+
+### Bug Fixes
+
+* unit list accessibility issues ([d10cb0d](https://github.com/oaknational/Oak-Web-Application/commit/d10cb0d6202aac5db86410b90386c88c277eb18b))
+
+
+### Features
+
+* update oak-components for unit list optionality item ([0a7e760](https://github.com/oaknational/Oak-Web-Application/commit/0a7e76080bb19d121d8211b017da4c6d83df3d83))
+
+# [1.820.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.819.0...v1.820.0) (2025-08-04)
+
+
+### Bug Fixes
+
+* make sure all question elements are wrapped in a single element ([cecdd19](https://github.com/oaknational/Oak-Web-Application/commit/cecdd1967c59d7f6aea994cacb9f0eae2bd3451b))
+* reinstate proper spacing between question number and title ([94516dd](https://github.com/oaknational/Oak-Web-Application/commit/94516dd2c961e048131bfe265c85d442e6a633ea))
+* update quiz questions in teacher view to use heading instead of p tags ([17e8793](https://github.com/oaknational/Oak-Web-Application/commit/17e8793358484e1ea372da556eaee7db8418a68a))
+
+
+### Features
+
+* wrap question number and text in a single heading element when present ([2dc1924](https://github.com/oaknational/Oak-Web-Application/commit/2dc19246d7042407cc9867a56405d37299f280cb))
+
 # [1.819.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.818.0...v1.819.0) (2025-08-04)
 
 
