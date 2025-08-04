@@ -1,3 +1,10 @@
+# [1.822.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.821.0...v1.822.0) (2025-08-04)
+
+
+### Features
+
+* refactor sensitive env vars to individual variables for easier management ([382a578](https://github.com/oaknational/Oak-Web-Application/commit/382a578689ebb830eccd2b69377234d581372416))
+
 # [1.821.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.820.0...v1.821.0) (2025-08-04)
 
 
