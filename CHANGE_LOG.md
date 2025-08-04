@@ -1,3 +1,16 @@
+# [1.818.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.817.0...v1.818.0) (2025-08-04)
+
+
+### Bug Fixes
+
+* pass firstItemRef to search results card ([0ea137b](https://github.com/oaknational/Oak-Web-Application/commit/0ea137b4d2b74f9b67093ebffbf33bc0ff794555))
+* when changing pages on postlists  only show focus underline when focus is already visible ([ba1401f](https://github.com/oaknational/Oak-Web-Application/commit/ba1401f13d3efb904d59ae7fcb758675f2e84340))
+
+
+### Features
+
+* focus first element on page after navigating ([d55894d](https://github.com/oaknational/Oak-Web-Application/commit/d55894d0cf3dec1f644606eefce78c6ed22c7dc2))
+
 # [1.817.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.816.0...v1.817.0) (2025-08-04)
 
 
