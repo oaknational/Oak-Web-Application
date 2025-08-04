@@ -1,3 +1,15 @@
+# [1.821.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.820.0...v1.821.0) (2025-08-04)
+
+
+### Bug Fixes
+
+* unit list accessibility issues ([d10cb0d](https://github.com/oaknational/Oak-Web-Application/commit/d10cb0d6202aac5db86410b90386c88c277eb18b))
+
+
+### Features
+
+* update oak-components for unit list optionality item ([0a7e760](https://github.com/oaknational/Oak-Web-Application/commit/0a7e76080bb19d121d8211b017da4c6d83df3d83))
+
 # [1.820.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.819.0...v1.820.0) (2025-08-04)
 
 
