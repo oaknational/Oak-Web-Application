@@ -466,8 +466,43 @@ function buildNatCurric<T extends Record<string, string>>(
         ${[...data.nationalCurric.entries()].map(
           ([id, nationalCurricText], nationalCurricTextIndex) => {
             const yPos = 4 + nationalCurricTextIndex;
+            const tickXml: string[] = [];
+
+            for (const unit of data.unitData) {
+              const hasNcCriteria = unit.nationalCurricIds.includes(id);
+              tickXml.push(safeXml`
+                <c
+                  r="${cartesianToExcelCoords([tickXml.length + 2, yPos])}"
+                  t="inlineStr"
+                  s="${hasNcCriteria
+                    ? cellStyleIndexMap.temp5!
+                    : cellStyleIndexMap.temp0!}"
+                >
+                  <is>
+                    <t>${cdata(hasNcCriteria ? "✓" : "")}</t>
+                  </is>
+                </c>
+              `);
+
+              unit.unit.unit_options.forEach(() => {
+                tickXml.push(safeXml`
+                  <c
+                    r="${cartesianToExcelCoords([tickXml.length + 2, yPos])}"
+                    t="inlineStr"
+                    s="${hasNcCriteria
+                      ? cellStyleIndexMap.temp5!
+                      : cellStyleIndexMap.temp0!}"
+                  >
+                    <is>
+                      <t>${cdata(hasNcCriteria ? "✓" : "")}</t>
+                    </is>
+                  </c>
+                `);
+              });
+            }
+
             return safeXml`
-              <row r="${yPos}" spans="1:${data.unitData.length + 1}">
+              <row r="${yPos}" spans="1:${unitXml.length + 2}">
                 <c
                   r="${cartesianToExcelCoords([1, yPos])}"
                   t="inlineStr"
@@ -479,25 +514,7 @@ function buildNatCurric<T extends Record<string, string>>(
                       )}</t>
                   </is>
                 </c>
-                ${data.unitData.map((unit, unitIndex) => {
-                  return safeXml`
-                    <c
-                      r="${cartesianToExcelCoords([unitIndex + 2, yPos])}"
-                      t="inlineStr"
-                      s="${unit.nationalCurricIds.includes(id)
-                        ? cellStyleIndexMap.temp5!
-                        : cellStyleIndexMap.temp0!}"
-                    >
-                      <is>
-                        <t>
-                          ${cdata(
-                            unit.nationalCurricIds.includes(id) ? "✓" : "",
-                          )}
-                        </t>
-                      </is>
-                    </c>
-                  `;
-                })}
+                ${tickXml}
               </row>
             `;
           },
