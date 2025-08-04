@@ -32,21 +32,23 @@ export const QuizQuestionsQuestionStem = ({
     questionStem[0].text;
   return (
     <OakFlex $flexDirection={"column"} $gap="all-spacing-1">
-      <OakFlex key="stem-header">
-        {(showIndex || questionText) && (
-          <OakHeading
-            key={`q-${displayNumber}-stem-element-0`}
-            $font={["body-2-bold", "body-1-bold"]}
-            tag="h4"
-          >
-            {showIndex && (
-              <OakSpan $mr="space-between-xs">{displayNumber}</OakSpan>
-            )}
-            {questionText &&
-              shortAnswerTitleFormatter(removeMarkdown(questionText))}
-          </OakHeading>
-        )}
-      </OakFlex>
+      <OakHeading
+        key={`q-${displayNumber}-stem-element-0`}
+        $font={["body-2-bold", "body-1-bold"]}
+        tag="h4"
+      >
+        <OakFlex key="stem-header">
+          {(showIndex || questionText) && (
+            <>
+              {showIndex && (
+                <OakSpan $mr="space-between-xs">{displayNumber}</OakSpan>
+              )}
+              {questionText &&
+                shortAnswerTitleFormatter(removeMarkdown(questionText))}
+            </>
+          )}
+        </OakFlex>
+      </OakHeading>
 
       {questionStem.map((stemItem, i) => {
         if (stemItem.type === "text" && i > 0) {
