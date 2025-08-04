@@ -120,7 +120,7 @@ describe("UnitDownloadButton", () => {
         unitFileId="mockSlug"
         showNewTag
         georestricted={false}
-        loginRequired={false}
+        loginRequired={true}
       />,
     );
     const button = screen.getByText("Download unit");

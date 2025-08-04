@@ -41,7 +41,7 @@ export type UnitDownloadButtonProps = {
 };
 
 export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
-  const { unitFileId, showNewTag, georestricted, loginRequired } = props;
+  const { unitFileId, showNewTag, georestricted } = props;
   const authFlagEnabled = useFeatureFlagEnabled(
     "teachers-copyright-restrictions",
   );
@@ -88,7 +88,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
 
   return showDownloadButton ? (
     <LoginRequiredButton
-      loginRequired={loginRequired}
+      loginRequired={true}
       geoRestricted={georestricted}
       sizeVariant={isMobile ? "small" : "large"}
       actionProps={{
