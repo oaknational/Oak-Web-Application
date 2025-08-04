@@ -1,3 +1,19 @@
+# [1.819.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.818.0...v1.819.0) (2025-08-04)
+
+
+### Bug Fixes
+
+* added flexy boxes to <OakDownloadCard/> ([b6aa564](https://github.com/oaknational/Oak-Web-Application/commit/b6aa56461abea7b5fc930a45bd3579b2cb0921ef))
+* amend <ResourceCard/> to fit with <OakDownloadCheckBox/> ([75e2ff6](https://github.com/oaknational/Oak-Web-Application/commit/75e2ff647a4b6f8e918383fc58d236ddc86add96))
+* bump oak-components to 1.134.0 ([1a222ad](https://github.com/oaknational/Oak-Web-Application/commit/1a222ad4eee275fad5d305d4891506bd4bc06e2c))
+* bumped @oaknational/oak-components version ([c9a86fd](https://github.com/oaknational/Oak-Web-Application/commit/c9a86fd020af34066f1b8a24070e94919466356c))
+* changed <RadioGroup/> to <OakRadioGroup/> ([16c8e3e](https://github.com/oaknational/Oak-Web-Application/commit/16c8e3ec12ca74d1775978c7ea52a43ad312402e))
+
+
+### Features
+
+* added <OakDownloadCheckBox/> into app replacing old component ([50b2e03](https://github.com/oaknational/Oak-Web-Application/commit/50b2e03989958c95d1bec0c612189337d2ddbd33))
+
 # [1.818.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.817.0...v1.818.0) (2025-08-04)
 
 
