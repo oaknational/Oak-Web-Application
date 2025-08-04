@@ -6,9 +6,10 @@ import UnitDownloadButton from "./UnitDownloadButton";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import {
+  mockGeorestrictedUser,
   mockLoggedIn,
   mockLoggedOut,
-  mockUserWithDownloadAccessNotOnboarded,
+  mockNotOnboardedUser,
 } from "@/__tests__/__helpers__/mockUser";
 
 jest.mock(
@@ -41,15 +42,18 @@ jest.mock("@/hooks/useMediaQuery.tsx", () => ({
   }),
 }));
 
+const mockFeatureFlagEnabled = jest.fn();
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagEnabled: () => mockFeatureFlagEnabled(),
+}));
+
 describe("UnitDownloadButton", () => {
   beforeEach(() => {
     setUseUserReturn(mockLoggedIn);
   });
+
   it("should render a continue button when logged in but not onboarded", () => {
-    setUseUserReturn({
-      ...mockLoggedIn,
-      user: mockUserWithDownloadAccessNotOnboarded,
-    });
+    setUseUserReturn(mockNotOnboardedUser);
     renderWithProviders()(
       <UnitDownloadButton
         setDownloadError={jest.fn()}
@@ -121,7 +125,48 @@ describe("UnitDownloadButton", () => {
     const button = screen.getByText("Download unit");
     expect(button).toBeInTheDocument();
   });
-  it("should disable the button when content is geoRestricted and user is not region authenticated", () => {});
+  it("with feature flag enabled should disable the button when geoblocked", () => {
+    setUseUserReturn(mockGeorestrictedUser);
+    mockFeatureFlagEnabled.mockReturnValueOnce(true);
+    renderWithProviders()(
+      <UnitDownloadButton
+        setDownloadError={jest.fn()}
+        setDownloadInProgress={jest.fn()}
+        setShowDownloadMessage={jest.fn()}
+        setShowIncompleteMessage={jest.fn()}
+        downloadInProgress={false}
+        onDownloadSuccess={jest.fn()}
+        unitFileId="mockSlug"
+        showNewTag
+        geoRestricted={true}
+      />,
+    );
+    const button = screen.getByRole("button", {
+      name: "Download (.zip 1.2MB)",
+    });
+    expect(button).toBeDisabled();
+  });
+  it("with feature flag disabled should not disable the button when geoblocked", () => {
+    setUseUserReturn(mockGeorestrictedUser);
+    mockFeatureFlagEnabled.mockReturnValueOnce(false);
+    renderWithProviders()(
+      <UnitDownloadButton
+        setDownloadError={jest.fn()}
+        setDownloadInProgress={jest.fn()}
+        setShowDownloadMessage={jest.fn()}
+        setShowIncompleteMessage={jest.fn()}
+        downloadInProgress={false}
+        onDownloadSuccess={jest.fn()}
+        unitFileId="mockSlug"
+        showNewTag
+        geoRestricted={true}
+      />,
+    );
+    const button = screen.getByRole("button", {
+      name: "Download (.zip 1.2MB)",
+    });
+    expect(button).toBeEnabled();
+  });
   it("should set an error when the download fails", () => {
     const setDownloadError = jest.fn();
     renderWithProviders()(

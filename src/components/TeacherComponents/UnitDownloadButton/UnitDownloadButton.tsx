@@ -190,11 +190,13 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
 
   const showOnboardButton =
     showDownloadButton && user && !user.publicMetadata?.owa?.isOnboarded;
+
   const isGeoBlocked =
     showDownloadButton &&
     isSignedIn &&
     geoRestricted &&
-    !user.publicMetadata?.owa?.isRegionAuthorised;
+    !user.publicMetadata?.owa?.isRegionAuthorised &&
+    authFlagEnabled;
 
   return showOnboardButton ? (
     <UnitDownloadOnboardButton
