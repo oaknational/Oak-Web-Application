@@ -19,6 +19,8 @@ type Story = StoryObj<typeof Component>;
 const LessonOverviewFilesNeededComponent = (
   args: JSX.IntrinsicAttributes & {
     additionalFiles: string[];
+    loginRequired: boolean;
+    geoRestricted: boolean;
     slugs: {
       lessonSlug: string;
       unitSlug: string | null;
@@ -36,6 +38,8 @@ const LessonOverviewFilesNeededComponent = (
 export const Default: Story = {
   args: {
     additionalFiles: ["file1 (pdf)"],
+    loginRequired: false,
+    geoRestricted: false,
     slugs: {
       lessonSlug: "lesson-slug",
       unitSlug: "unit-slug",

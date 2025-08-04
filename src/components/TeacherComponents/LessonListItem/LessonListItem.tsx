@@ -205,17 +205,17 @@ const LessonListItem: FC<
             $mt={["space-between-ssx", "space-between-none"]}
             $mr={["space-between-s", "space-between-none"]}
           >
-            {isUnpublishedLesson ? (
+            {props.expired ? (
+              <OakP $mt="space-between-ssx" $font={["body-3", "body-2"]}>
+                This lesson is currently unavailable.
+              </OakP>
+            ) : isUnpublishedLesson ? (
               <OakP
                 $mt="space-between-ssx"
                 $font={["body-3", "body-2"]}
                 $color="text-disabled"
               >
                 Coming soon...
-              </OakP>
-            ) : props.expired ? (
-              <OakP $mt="space-between-ssx" $font={["body-3", "body-2"]}>
-                This lesson is currently unavailable.
               </OakP>
             ) : (
               <>

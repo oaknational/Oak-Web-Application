@@ -2,7 +2,7 @@ locals {
   builds = {
     website = {
       description     = "Oak Web Application Website"
-      domains         = ["owa.thenational.academy"]
+      domains         = ["owa.thenational.academy", "www.thenational.academy"]
       build_type      = "website"
       deployment_type = "standard_protection"
       framework       = "nextjs"
@@ -11,7 +11,7 @@ locals {
       custom_environments = [
         {
           name   = "staging"
-          domain = "staging.thenational.academy"
+          domain = "owa-staging.thenational.academy"
         }
       ]
     },

@@ -71,6 +71,20 @@ locals {
     ])
   ])
 
+  sensitive_custom_env_vars = flatten([
+    for env_name, env_map in var.sensitive_custom_env_vars : ([
+      contains(local.custom_env_names, env_name) ? [
+        for key, value in env_map : {
+          custom_environment_name = env_name
+          key                     = key
+          value                   = value
+          sensitive               = true
+        }
+      ]
+      : []
+    ])
+  ])
+
   custom_env_vars_shared = flatten([
     for env in local.custom_env_names :
     [
@@ -82,7 +96,7 @@ locals {
     ]
   ])
 
-  all_custom_env_vars = concat(local.custom_env_vars, local.custom_env_vars_shared)
+  all_custom_env_vars = concat(local.custom_env_vars, local.sensitive_custom_env_vars, local.custom_env_vars_shared)
 
   environment_variables = concat(local.non_sensitive_vars, local.sensitive_vars)
 }

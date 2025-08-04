@@ -9,6 +9,7 @@ query getUserListContent($userId: String!) {
       browse_mv {
         lessons: supplementary_data(path: "static_lesson_list")
         year: programme_fields(path: "year_description")
+        year_slug: programme_fields(path: "year_slug")
         keystage: programme_fields(path: "keystage")
         keystage_slug: programme_fields(path: "keystage_slug")
         subject: programme_fields(path: "subject")

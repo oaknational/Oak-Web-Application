@@ -1,5 +1,3 @@
-import { useFeatureFlagVariantKey } from "posthog-js/react";
-
 import ButtonAsLink, {
   ButtonAsLinkProps,
 } from "@/components/SharedComponents/Button/ButtonAsLink";
@@ -86,11 +84,6 @@ export function LessonItemContainerLink({
               : undefined,
           };
 
-  const downloads =
-    useFeatureFlagVariantKey("teacher-download-auth") === "with-login"
-      ? "downloads-auth"
-      : "downloads";
-
   const downloadLinkProps:
     | LessonDownloadsLinkProps
     | LessonDownloadsCanonicalLinkProps
@@ -101,7 +94,7 @@ export function LessonItemContainerLink({
           lessonSlug,
           unitSlug,
           programmeSlug,
-          downloads,
+          downloads: "downloads",
           query: isPreselectedDownloadType(preselected)
             ? { preselected }
             : undefined,
@@ -112,15 +105,15 @@ export function LessonItemContainerLink({
             lessonSlug,
             unitSlug,
             programmeSlug,
-            downloads,
+            downloads: "downloads",
             query: isPreselectedDownloadType(preselected)
               ? { preselected }
               : undefined,
           }
         : {
             page: "lesson-downloads-canonical",
+            downloads: "downloads",
             lessonSlug,
-            downloads,
             query: isPreselectedDownloadType(preselected)
               ? { preselected }
               : undefined,

@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, MutableRefObject, useState } from "react";
 import {
   OakHeading,
   OakP,
@@ -109,11 +109,18 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
     children: React.ReactNode;
   };
 
-  const ClickableSearchCard = (props: ButtonProps | LinkProps) => {
+  type ClickableSearchCardProps = ButtonProps | LinkProps;
+
+  const ClickableSearchCard = (
+    props: ClickableSearchCardProps & {
+      firstItemRef?: MutableRefObject<HTMLAnchorElement | null> | null;
+    },
+  ) => {
     const isDesktop = useMediaQuery("desktop");
     return (
       <StyledFlexWithFocusState
         {...props}
+        ref={props.firstItemRef}
         $pa="inner-padding-xl"
         $mb="space-between-m2"
         $borderRadius="border-radius-m2"
@@ -183,6 +190,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
   const PathwayResultCard = () => {
     return (
       <ClickableSearchCard
+        firstItemRef={props.firstItemRef}
         as="button"
         onClick={() => {
           const toggleOpen = !isToggleOpen;
@@ -203,6 +211,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
   const SingleResultCard = () => {
     return (
       <ClickableSearchCard
+        firstItemRef={props.firstItemRef}
         as="a"
         href={resolveOakHref(buttonLinkProps)}
         onClick={() => onClick?.(props)}

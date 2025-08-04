@@ -3,15 +3,23 @@ import userEvent from "@testing-library/user-event";
 
 import SavingSignedOutModal from "./SavingSignedOutModal";
 
-import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
-import { mockLoggedIn, mockLoggedOut } from "@/__tests__/__helpers__/mockUser";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import {
+  defaultCopyrightRequirements,
+  signedInNotOnboarded,
+  signedOutLoginRequired,
+} from "@/__tests__/__helpers__/mockCopyrightRequirements";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
+import { mockLoggedOut } from "@/__tests__/__helpers__/mockUser";
 
 jest.mock("@clerk/nextjs", () => ({
   useUser: jest.fn(),
   SignUpButton: jest.fn(() => <button>Sign up</button>),
 }));
-
+let mockUseCopyrightRequirements = defaultCopyrightRequirements;
+jest.mock("@/hooks/useCopyrightRequirements", () => ({
+  useCopyrightRequirements: () => mockUseCopyrightRequirements,
+}));
 describe("SavingSignedOutModal", () => {
   const mockOnClose = jest.fn();
 
@@ -38,6 +46,7 @@ describe("SavingSignedOutModal", () => {
   });
 
   it("should render the sign up button when user is signed out", () => {
+    mockUseCopyrightRequirements = signedOutLoginRequired;
     renderWithProviders()(
       <SavingSignedOutModal isOpen={true} onClose={mockOnClose} />,
     );
@@ -48,18 +57,7 @@ describe("SavingSignedOutModal", () => {
   });
 
   it("should render the Finish sign up button when user is signed in but not onboarded", () => {
-    setUseUserReturn({
-      ...mockLoggedIn,
-      user: {
-        ...mockLoggedIn.user,
-        publicMetadata: {
-          owa: {
-            isOnboarded: false,
-          },
-        },
-      },
-    });
-
+    mockUseCopyrightRequirements = signedInNotOnboarded;
     renderWithProviders()(
       <SavingSignedOutModal isOpen={true} onClose={mockOnClose} />,
     );

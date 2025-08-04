@@ -1,3 +1,115 @@
+# [1.819.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.818.0...v1.819.0) (2025-08-04)
+
+
+### Bug Fixes
+
+* added flexy boxes to <OakDownloadCard/> ([b6aa564](https://github.com/oaknational/Oak-Web-Application/commit/b6aa56461abea7b5fc930a45bd3579b2cb0921ef))
+* amend <ResourceCard/> to fit with <OakDownloadCheckBox/> ([75e2ff6](https://github.com/oaknational/Oak-Web-Application/commit/75e2ff647a4b6f8e918383fc58d236ddc86add96))
+* bump oak-components to 1.134.0 ([1a222ad](https://github.com/oaknational/Oak-Web-Application/commit/1a222ad4eee275fad5d305d4891506bd4bc06e2c))
+* bumped @oaknational/oak-components version ([c9a86fd](https://github.com/oaknational/Oak-Web-Application/commit/c9a86fd020af34066f1b8a24070e94919466356c))
+* changed <RadioGroup/> to <OakRadioGroup/> ([16c8e3e](https://github.com/oaknational/Oak-Web-Application/commit/16c8e3ec12ca74d1775978c7ea52a43ad312402e))
+
+
+### Features
+
+* added <OakDownloadCheckBox/> into app replacing old component ([50b2e03](https://github.com/oaknational/Oak-Web-Application/commit/50b2e03989958c95d1bec0c612189337d2ddbd33))
+
+# [1.818.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.817.0...v1.818.0) (2025-08-04)
+
+
+### Bug Fixes
+
+* pass firstItemRef to search results card ([0ea137b](https://github.com/oaknational/Oak-Web-Application/commit/0ea137b4d2b74f9b67093ebffbf33bc0ff794555))
+* when changing pages on postlists  only show focus underline when focus is already visible ([ba1401f](https://github.com/oaknational/Oak-Web-Application/commit/ba1401f13d3efb904d59ae7fcb758675f2e84340))
+
+
+### Features
+
+* focus first element on page after navigating ([d55894d](https://github.com/oaknational/Oak-Web-Application/commit/d55894d0cf3dec1f644606eefce78c6ed22c7dc2))
+
+# [1.817.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.816.0...v1.817.0) (2025-08-04)
+
+
+### Bug Fixes
+
+* made sure redirect modal closes on pupil area ([433a47e](https://github.com/oaknational/Oak-Web-Application/commit/433a47e2aeeb53ff1c7af7dc4b8bdb0ca3509dd0))
+* redirect modal takes priority over content guidance modal but still shows both ([57cbe7d](https://github.com/oaknational/Oak-Web-Application/commit/57cbe7d3f66ae6092065ac798df097a5f7ecc1a4))
+
+
+### Features
+
+* added redirect modals for pupil unit and lesson listing pages ([d824e87](https://github.com/oaknational/Oak-Web-Application/commit/d824e877efcbe9d62cf14d794d99e0a69a927746))
+* added redirect modals that show after being redirected to a unit or lesson for pupil/teacher ([7c94abf](https://github.com/oaknational/Oak-Web-Application/commit/7c94abfda0d40b0ac8e1ff73e43985045e9da737))
+
+# [1.816.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.815.0...v1.816.0) (2025-08-01)
+
+
+### Features
+
+* migrate owa-staging to vercel ([2697b95](https://github.com/oaknational/Oak-Web-Application/commit/2697b95ac66c8da24462546fb0ef39e9eb23c464))
+
+# [1.815.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.814.1...v1.815.0) (2025-07-31)
+
+
+### Features
+
+* remove banner from expired lessons page ([faae020](https://github.com/oaknational/Oak-Web-Application/commit/faae02085430c52feec85d4ef5c369088f680aa4))
+* remove banner from expired lessons page ([93918ba](https://github.com/oaknational/Oak-Web-Application/commit/93918ba526652d9c17860664beab03db388782dd))
+* remove banner from expired lessons page ([d2d5992](https://github.com/oaknational/Oak-Web-Application/commit/d2d599259aec908a1dcd11e6065aede6fc8614c3))
+
+## [1.814.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.814.0...v1.814.1) (2025-07-31)
+
+# [1.814.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.813.1...v1.814.0) (2025-07-30)
+
+
+### Features
+
+* add browse refined tracking on programme click ([1136592](https://github.com/oaknational/Oak-Web-Application/commit/11365922851dff67fd9c2f560bae4045eada913f))
+* add lesson accessed event to my library lesson links ([7e95b70](https://github.com/oaknational/Oak-Web-Application/commit/7e95b70f51193b6ccfbc6d4ba881e3b2690cf975))
+* add unit accessed tracking on unit title link in my library ([e6e5046](https://github.com/oaknational/Oak-Web-Application/commit/e6e5046cef76974ab59ff0a01cd82c7eb175e973))
+
+## [1.813.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.813.0...v1.813.1) (2025-07-30)
+
+
+### Bug Fixes
+
+* fix button missing from saving signed out modal ([28d68fb](https://github.com/oaknational/Oak-Web-Application/commit/28d68fb25d9cba2a27dd4d17901a00eb9348787e))
+
+# [1.813.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.812.0...v1.813.0) (2025-07-29)
+
+
+### Bug Fixes
+
+* fix type errors ([e6b5379](https://github.com/oaknational/Oak-Web-Application/commit/e6b5379939e7ae9a0bace50f4a27b256c3de0a17))
+* make signup link tabbable ([4254c10](https://github.com/oaknational/Oak-Web-Application/commit/4254c105fd309c179bd4d4b7b2c9dcad88ee4668))
+* return downloads props to fix bug with href construction ([996f56a](https://github.com/oaknational/Oak-Web-Application/commit/996f56a33ed498311f0161e5ea6ce5bb98ad9073))
+* rm georestricted prop from actions, fix optional handleclick prop in teacher share ([d385010](https://github.com/oaknational/Oak-Web-Application/commit/d385010045ebfe3c380bdfd24a7b019644e2966c))
+* update georestricted banner copy in line with designs, refactor to use heading ([7ebc497](https://github.com/oaknational/Oak-Web-Application/commit/7ebc49725672c55dcd8707f6c708e22b85ae2c71))
+
+
+### Features
+
+* create a wrapper component to consolidate redirect logic ([973259f](https://github.com/oaknational/Oak-Web-Application/commit/973259f75b78eded2e77e29df733bbf09f3ca080))
+* hide links when geoblocked, redirect/hide teacher notes btn ([d7e25e3](https://github.com/oaknational/Oak-Web-Application/commit/d7e25e32df7e5ea019ae86ff6305523fffd929db))
+* redirect from SEO links, refactor to call copyright requirements hook from 1 place ([84b7c35](https://github.com/oaknational/Oak-Web-Application/commit/84b7c35489c9e174308a69c2a5e389e8c7e0f41c))
+* redirect to sign up from download all button when content restricted ([4b06432](https://github.com/oaknational/Oak-Web-Application/commit/4b064329fdcb85680cc7f2fe7e7f3c9dcdd1ccef))
+* redirect to sign up from lesson files download button ([a8ec42e](https://github.com/oaknational/Oak-Web-Application/commit/a8ec42ea10ee4aa78abe85a20d8a6ace3f6b6470))
+* redirect to sign up from share all button when content restricted ([236c36b](https://github.com/oaknational/Oak-Web-Application/commit/236c36b85f2ae6bf9f8aea7915339137a605a59e))
+
+# [1.812.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.811.3...v1.812.0) (2025-07-29)
+
+
+### Features
+
+* attach www domain directly and remove lb" ([54e377f](https://github.com/oaknational/Oak-Web-Application/commit/54e377fbaeb214a3b03bb4007a396c9c5ed123e3))
+
+## [1.811.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.811.2...v1.811.3) (2025-07-29)
+
+
+### Bug Fixes
+
+* use unique programme key with categories included for saved status ([0a53d2c](https://github.com/oaknational/Oak-Web-Application/commit/0a53d2ca91510e9f06f08acc8a12914fb1178b60))
+
 ## [1.811.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.811.1...v1.811.2) (2025-07-28)
 
 

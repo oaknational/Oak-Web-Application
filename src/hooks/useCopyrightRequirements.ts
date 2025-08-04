@@ -4,20 +4,23 @@ import { useFeatureFlagEnabled } from "posthog-js/react";
 interface UseCopyrightRequirementsProps {
   loginRequired: boolean;
   geoRestricted: boolean;
+  isBehindFeatureFlag?: boolean;
 }
 
-interface UseCopyrightRequirementsReturn {
+export interface UseCopyrightRequirementsReturn {
   showSignedOutLoginRequired: boolean;
   showSignedOutGeoRestricted: boolean;
   showSignedInNotOnboarded: boolean;
   showGeoBlocked: boolean;
+  isLoaded: boolean;
 }
 
 export function useCopyrightRequirements({
   loginRequired,
   geoRestricted,
+  isBehindFeatureFlag = true,
 }: UseCopyrightRequirementsProps): UseCopyrightRequirementsReturn {
-  const { user, isSignedIn } = useUser();
+  const { user, isSignedIn, isLoaded } = useUser();
   const featureFlagEnabled = useFeatureFlagEnabled(
     "teachers-copyright-restrictions",
   );
@@ -25,12 +28,13 @@ export function useCopyrightRequirements({
   const isUserOnboarded =
     (isSignedIn && user?.publicMetadata?.owa?.isOnboarded) ?? false;
 
-  if (!featureFlagEnabled) {
+  if (isBehindFeatureFlag && !featureFlagEnabled) {
     return {
       showGeoBlocked: false,
       showSignedOutLoginRequired: false,
       showSignedOutGeoRestricted: false,
       showSignedInNotOnboarded: false,
+      isLoaded,
     };
   }
 
@@ -46,5 +50,6 @@ export function useCopyrightRequirements({
       isSignedIn && geoRestricted && !isUserRegionAuthorised,
     ),
     showSignedInNotOnboarded,
+    isLoaded,
   };
 }

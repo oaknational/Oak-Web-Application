@@ -327,6 +327,7 @@ export const unpublishedLessonListItemSchema = z.object({
   orderInUnit: z.number().nullish(),
   isUnpublished: z.literal(true),
   lessonReleaseDate: z.string().nullable(),
+  expired: z.boolean().nullable(),
 });
 
 export type UnpublishedLessonListItem = z.infer<

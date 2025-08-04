@@ -72,6 +72,10 @@ async function handleRequest(req: NextApiRequest, res: NextApiResponse) {
           unitOrder: browseData.unit_order,
           yearOrder: browseData.year_order,
           year: browseData.year,
+          yearSlug: browseData.year_slug,
+          tier: browseData.tier,
+          examboard: browseData.examboard,
+          pathway: browseData.pathway,
         });
       }
       return acc;

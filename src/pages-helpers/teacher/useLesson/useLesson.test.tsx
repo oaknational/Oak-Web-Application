@@ -33,6 +33,8 @@ describe("useLesson", () => {
   const defaultProps: UseLessonProps = {
     lessonSlug: "test-lesson",
     source: "lesson-browse" as const,
+    loginRequired: false,
+    geoRestricted: false,
     curriculumTrackingProps: {
       lessonName: "Test Lesson",
       lessonSlug: "test-lesson",

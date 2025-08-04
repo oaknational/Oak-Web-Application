@@ -52,6 +52,7 @@ import { convertSubjectToSlug } from "@/components/TeacherComponents/helpers/con
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
 import { isUnitListData } from "@/components/TeacherComponents/UnitList/helpers";
 import { useUnitFilterState } from "@/hooks/useUnitFilterState";
+import { TeacherRedirectedOverlay } from "@/components/TeacherComponents/TeacherRedirectedOverlay/TeacherRedirectedOverlay";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -404,6 +405,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
             ))}
           </OakFlex>
         </OakMaxWidth>
+        <TeacherRedirectedOverlay />
       </AppLayout>
     </OakThemeProvider>
   );

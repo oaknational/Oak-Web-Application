@@ -374,7 +374,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
     });
     expect(res).toEqual({
       redirect: {
-        destination: `pupils/programmes/programmeSlug/units/unitSlug-redirected`,
+        destination: `pupils/programmes/programmeSlug/units/unitSlug-redirected?redirected=true`,
         statusCode: 301, // true = 308, false = 307
         basePath: false,
       },

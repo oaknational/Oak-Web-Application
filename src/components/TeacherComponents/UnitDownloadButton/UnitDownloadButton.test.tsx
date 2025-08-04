@@ -3,9 +3,12 @@ import userEvent from "@testing-library/user-event";
 
 import UnitDownloadButton from "./UnitDownloadButton";
 
-import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
-import { mockLoggedIn, mockLoggedOut } from "@/__tests__/__helpers__/mockUser";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import {
+  defaultCopyrightRequirements,
+  signedInNotOnboarded,
+  signedOutLoginRequired,
+} from "@/__tests__/__helpers__/mockCopyrightRequirements";
 
 jest.mock(
   "@/components/TeacherComponents/hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck",
@@ -18,12 +21,9 @@ jest.mock(
   },
 );
 
-jest.mock("@clerk/nextjs", () => ({
-  useUser: jest.fn(),
-  useAuth: jest.fn().mockReturnValue({
-    getToken: jest.fn(() => Promise.resolve("mockToken")),
-  }),
-  SignUpButton: jest.fn(() => <button>Download unit</button>),
+let mockUseCopyrightRequirements = defaultCopyrightRequirements;
+jest.mock("@/hooks/useCopyrightRequirements", () => ({
+  useCopyrightRequirements: () => mockUseCopyrightRequirements,
 }));
 
 jest.mock(
@@ -47,21 +47,11 @@ jest.mock("@/hooks/useMediaQuery.tsx", () => ({
 
 describe("UnitDownloadButton", () => {
   beforeEach(() => {
-    setUseUserReturn(mockLoggedIn);
+    mockUseCopyrightRequirements = defaultCopyrightRequirements;
   });
 
   it("should render a continue button when logged in but not onboarded", () => {
-    setUseUserReturn({
-      ...mockLoggedIn,
-      user: {
-        ...mockLoggedIn.user,
-        publicMetadata: {
-          owa: {
-            isOnboarded: false,
-          },
-        },
-      },
-    });
+    mockUseCopyrightRequirements = signedInNotOnboarded;
     renderWithProviders()(
       <UnitDownloadButton
         setDownloadError={jest.fn()}
@@ -73,6 +63,7 @@ describe("UnitDownloadButton", () => {
         unitFileId="mockSlug"
         showNewTag
         georestricted={false}
+        loginRequired={false}
       />,
     );
     const button = screen.getByText("Complete sign up to download this unit");
@@ -90,6 +81,7 @@ describe("UnitDownloadButton", () => {
         unitFileId="mockSlug"
         showNewTag
         georestricted={false}
+        loginRequired={false}
       />,
     );
     const button = screen.getByText("Download (.zip 1.2MB)");
@@ -107,6 +99,7 @@ describe("UnitDownloadButton", () => {
         unitFileId="mockSlug"
         showNewTag
         georestricted={false}
+        loginRequired={false}
       />,
     );
     const button = screen.getByText("Downloading...");
@@ -115,7 +108,7 @@ describe("UnitDownloadButton", () => {
     expect(spinner).toBeInTheDocument();
   });
   it("should render a sign in button when logged out", () => {
-    setUseUserReturn(mockLoggedOut);
+    mockUseCopyrightRequirements = signedOutLoginRequired;
     renderWithProviders()(
       <UnitDownloadButton
         setDownloadError={jest.fn()}
@@ -127,6 +120,7 @@ describe("UnitDownloadButton", () => {
         unitFileId="mockSlug"
         showNewTag
         georestricted={false}
+        loginRequired={false}
       />,
     );
     const button = screen.getByText("Download unit");
@@ -145,6 +139,7 @@ describe("UnitDownloadButton", () => {
         unitFileId="mockSlug"
         showNewTag
         georestricted={false}
+        loginRequired={false}
       />,
     );
     setDownloadError(true);
@@ -163,6 +158,7 @@ describe("UnitDownloadButton", () => {
         unitFileId="mockSlug"
         showNewTag
         georestricted={false}
+        loginRequired={false}
       />,
     );
     const button = screen.getByRole("button", {

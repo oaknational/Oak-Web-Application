@@ -64,6 +64,7 @@ import { TeacherNoteInline } from "@/components/TeacherComponents/TeacherNoteInl
 import LessonOverviewSideNavAnchorLinks from "@/components/TeacherComponents/LessonOverviewSideNavAnchorLinks";
 import { RestrictedContentPrompt } from "@/components/TeacherComponents/RestrictedContentPrompt/RestrictedContentPrompt";
 import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
+import { TeacherRedirectedOverlay } from "@/components/TeacherComponents/TeacherRedirectedOverlay/TeacherRedirectedOverlay";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads } & {
@@ -510,6 +511,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   isFinalElement={showGeoBlocked}
                 >
                   <LessonDetails
+                    loginRequired={loginRequired}
+                    geoRestricted={geoRestricted}
                     keyLearningPoints={keyLearningPoints}
                     commonMisconceptions={misconceptionsAndCommonMistakes}
                     keyWords={
@@ -818,6 +821,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
           <RestrictedContentPrompt />
         </OakBox>
       )}
+      <TeacherRedirectedOverlay />
     </MathJaxLessonProvider>
   );
 }

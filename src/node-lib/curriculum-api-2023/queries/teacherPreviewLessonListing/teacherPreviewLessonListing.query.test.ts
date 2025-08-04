@@ -65,6 +65,7 @@ describe("teacherPreviewLessonListing()", () => {
             isUnpublished: true,
             orderInUnit: 1,
             lessonReleaseDate: "unreleased",
+            expired: false,
           },
         ],
       });

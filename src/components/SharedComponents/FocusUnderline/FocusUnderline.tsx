@@ -24,7 +24,7 @@ export const focusUnderlineStyles = css`
     outline: none;
   }
 
-  :focus ${FocusUnderline} {
+  :focus-visible ${FocusUnderline} {
     position: absolute;
     display: block;
     right: 0;

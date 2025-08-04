@@ -16,10 +16,13 @@ export const generateMockCollectionData = (count: number): CollectionData => {
         unitSlug: `unit-${index + 1}`,
         unitTitle: `Unit ${index + 1}: Topic`,
         optionalityTitle: null,
+        examboard: index % 2 === 0 ? "AQA" : "Edexcel",
+        tier: index % 2 === 0 ? "Foundation" : "Higher",
         savedAt: new Date().toISOString(),
         unitOrder: 1,
         yearOrder: 1,
         year: `Year ${index + 1}`,
+        yearSlug: `year-${index + 1}`,
         lessons: [
           {
             slug: `lesson-${index + 1}-1`,
