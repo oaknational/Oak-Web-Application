@@ -14,7 +14,7 @@ export type CurriculumDownloadViewData = {
   schoolId?: string;
   schoolName?: string;
   email?: string;
-  downloadType: DownloadType;
+  downloadTypes: DownloadType[];
   termsAndConditions?: boolean;
   schoolNotListed?: boolean;
 };
@@ -28,7 +28,9 @@ export type CurriculumDownloadViewProps = {
   onBackToKs4Options?: () => void;
 };
 const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = (props) => {
-  const [downloadType, setDownloadType] = useState(DOWNLOAD_TYPES[0]!.id);
+  const [downloadTypes, setDownloadTypes] = useState(() =>
+    DOWNLOAD_TYPES.map(({ id }) => id),
+  );
   const user = useUser();
 
   return (
@@ -59,8 +61,8 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = (props) => {
               {!user.isSignedIn && (
                 <SignedOutFlow
                   {...props}
-                  onChangeDownloadType={setDownloadType}
-                  downloadType={downloadType}
+                  onChangeDownloadTypes={setDownloadTypes}
+                  downloadTypes={downloadTypes}
                 />
               )}
               {user.isSignedIn && <SignedInFlow {...props} user={user} />}
