@@ -73,6 +73,7 @@ export const getTransformedLessons = (
           orderInUnit: staticLesson.order,
           isUnpublished: true,
           lessonReleaseDate: null,
+          expired: lessons[0]?.is_legacy ?? false,
         };
       }
     });

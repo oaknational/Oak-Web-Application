@@ -1,3 +1,113 @@
+# [1.822.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.821.0...v1.822.0) (2025-08-04)
+
+
+### Features
+
+* refactor sensitive env vars to individual variables for easier management ([382a578](https://github.com/oaknational/Oak-Web-Application/commit/382a578689ebb830eccd2b69377234d581372416))
+
+# [1.821.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.820.0...v1.821.0) (2025-08-04)
+
+
+### Bug Fixes
+
+* unit list accessibility issues ([d10cb0d](https://github.com/oaknational/Oak-Web-Application/commit/d10cb0d6202aac5db86410b90386c88c277eb18b))
+
+
+### Features
+
+* update oak-components for unit list optionality item ([0a7e760](https://github.com/oaknational/Oak-Web-Application/commit/0a7e76080bb19d121d8211b017da4c6d83df3d83))
+
+# [1.820.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.819.0...v1.820.0) (2025-08-04)
+
+
+### Bug Fixes
+
+* make sure all question elements are wrapped in a single element ([cecdd19](https://github.com/oaknational/Oak-Web-Application/commit/cecdd1967c59d7f6aea994cacb9f0eae2bd3451b))
+* reinstate proper spacing between question number and title ([94516dd](https://github.com/oaknational/Oak-Web-Application/commit/94516dd2c961e048131bfe265c85d442e6a633ea))
+* update quiz questions in teacher view to use heading instead of p tags ([17e8793](https://github.com/oaknational/Oak-Web-Application/commit/17e8793358484e1ea372da556eaee7db8418a68a))
+
+
+### Features
+
+* wrap question number and text in a single heading element when present ([2dc1924](https://github.com/oaknational/Oak-Web-Application/commit/2dc19246d7042407cc9867a56405d37299f280cb))
+
+# [1.819.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.818.0...v1.819.0) (2025-08-04)
+
+
+### Bug Fixes
+
+* added flexy boxes to <OakDownloadCard/> ([b6aa564](https://github.com/oaknational/Oak-Web-Application/commit/b6aa56461abea7b5fc930a45bd3579b2cb0921ef))
+* amend <ResourceCard/> to fit with <OakDownloadCheckBox/> ([75e2ff6](https://github.com/oaknational/Oak-Web-Application/commit/75e2ff647a4b6f8e918383fc58d236ddc86add96))
+* bump oak-components to 1.134.0 ([1a222ad](https://github.com/oaknational/Oak-Web-Application/commit/1a222ad4eee275fad5d305d4891506bd4bc06e2c))
+* bumped @oaknational/oak-components version ([c9a86fd](https://github.com/oaknational/Oak-Web-Application/commit/c9a86fd020af34066f1b8a24070e94919466356c))
+* changed <RadioGroup/> to <OakRadioGroup/> ([16c8e3e](https://github.com/oaknational/Oak-Web-Application/commit/16c8e3ec12ca74d1775978c7ea52a43ad312402e))
+
+
+### Features
+
+* added <OakDownloadCheckBox/> into app replacing old component ([50b2e03](https://github.com/oaknational/Oak-Web-Application/commit/50b2e03989958c95d1bec0c612189337d2ddbd33))
+
+# [1.818.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.817.0...v1.818.0) (2025-08-04)
+
+
+### Bug Fixes
+
+* pass firstItemRef to search results card ([0ea137b](https://github.com/oaknational/Oak-Web-Application/commit/0ea137b4d2b74f9b67093ebffbf33bc0ff794555))
+* when changing pages on postlists  only show focus underline when focus is already visible ([ba1401f](https://github.com/oaknational/Oak-Web-Application/commit/ba1401f13d3efb904d59ae7fcb758675f2e84340))
+
+
+### Features
+
+* focus first element on page after navigating ([d55894d](https://github.com/oaknational/Oak-Web-Application/commit/d55894d0cf3dec1f644606eefce78c6ed22c7dc2))
+
+# [1.817.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.816.0...v1.817.0) (2025-08-04)
+
+
+### Bug Fixes
+
+* made sure redirect modal closes on pupil area ([433a47e](https://github.com/oaknational/Oak-Web-Application/commit/433a47e2aeeb53ff1c7af7dc4b8bdb0ca3509dd0))
+* redirect modal takes priority over content guidance modal but still shows both ([57cbe7d](https://github.com/oaknational/Oak-Web-Application/commit/57cbe7d3f66ae6092065ac798df097a5f7ecc1a4))
+
+
+### Features
+
+* added redirect modals for pupil unit and lesson listing pages ([d824e87](https://github.com/oaknational/Oak-Web-Application/commit/d824e877efcbe9d62cf14d794d99e0a69a927746))
+* added redirect modals that show after being redirected to a unit or lesson for pupil/teacher ([7c94abf](https://github.com/oaknational/Oak-Web-Application/commit/7c94abfda0d40b0ac8e1ff73e43985045e9da737))
+
+# [1.816.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.815.0...v1.816.0) (2025-08-01)
+
+
+### Features
+
+* migrate owa-staging to vercel ([2697b95](https://github.com/oaknational/Oak-Web-Application/commit/2697b95ac66c8da24462546fb0ef39e9eb23c464))
+
+# [1.815.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.814.1...v1.815.0) (2025-07-31)
+
+
+### Features
+
+* remove banner from expired lessons page ([faae020](https://github.com/oaknational/Oak-Web-Application/commit/faae02085430c52feec85d4ef5c369088f680aa4))
+* remove banner from expired lessons page ([93918ba](https://github.com/oaknational/Oak-Web-Application/commit/93918ba526652d9c17860664beab03db388782dd))
+* remove banner from expired lessons page ([d2d5992](https://github.com/oaknational/Oak-Web-Application/commit/d2d599259aec908a1dcd11e6065aede6fc8614c3))
+
+## [1.814.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.814.0...v1.814.1) (2025-07-31)
+
+# [1.814.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.813.1...v1.814.0) (2025-07-30)
+
+
+### Features
+
+* add browse refined tracking on programme click ([1136592](https://github.com/oaknational/Oak-Web-Application/commit/11365922851dff67fd9c2f560bae4045eada913f))
+* add lesson accessed event to my library lesson links ([7e95b70](https://github.com/oaknational/Oak-Web-Application/commit/7e95b70f51193b6ccfbc6d4ba881e3b2690cf975))
+* add unit accessed tracking on unit title link in my library ([e6e5046](https://github.com/oaknational/Oak-Web-Application/commit/e6e5046cef76974ab59ff0a01cd82c7eb175e973))
+
+## [1.813.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.813.0...v1.813.1) (2025-07-30)
+
+
+### Bug Fixes
+
+* fix button missing from saving signed out modal ([28d68fb](https://github.com/oaknational/Oak-Web-Application/commit/28d68fb25d9cba2a27dd4d17901a00eb9348787e))
+
 # [1.813.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.812.0...v1.813.0) (2025-07-29)
 
 

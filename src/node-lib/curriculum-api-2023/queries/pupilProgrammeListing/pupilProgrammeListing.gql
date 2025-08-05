@@ -1,5 +1,5 @@
 query pupilProgrammeListing($baseSlug: String!) {
-  data: published_mv_synthetic_programmes_by_year_11_1_0(
+  data: published_mv_synthetic_programmes_by_year_18_0_0(
     where: { base_slug: { _eq: $baseSlug } }
   ) {
     programme_slug
