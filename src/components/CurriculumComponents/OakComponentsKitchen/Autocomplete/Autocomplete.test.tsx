@@ -89,7 +89,7 @@ describe("Autocomplete", () => {
       const inputElement = getByRole("combobox");
       expect(inputElement).toHaveValue("Black Bear");
 
-      const labelElement = getByTestId("rotated-input-label");
+      const labelElement = getByTestId("jaunty-label");
       expect(labelElement).toHaveTextContent("Pick a bear");
     });
 
@@ -219,7 +219,7 @@ describe("Autocomplete", () => {
       const inputElement = getByRole("combobox");
       expect(inputElement).toHaveValue("Black Bear");
 
-      const labelElement = getByTestId("rotated-input-label");
+      const labelElement = getByTestId("jaunty-label");
       expect(labelElement).toHaveTextContent("Pick a bear");
     });
 

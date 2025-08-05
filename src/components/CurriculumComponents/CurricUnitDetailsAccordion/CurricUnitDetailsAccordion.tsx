@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { useFocusVisible, useFocusWithin } from "react-aria";
-import { OakIcon, OakBox } from "@oaknational/oak-components";
+import { OakFlex, OakIcon, OakBox } from "@oaknational/oak-components";
 import { snakeCase } from "lodash";
 
 import useClickableCard from "@/hooks/useClickableCard";
 import Card from "@/components/SharedComponents/Card";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Button from "@/components/SharedComponents/Button";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
@@ -83,15 +82,15 @@ export default function CurricUnitDetailsAccordion({
           />
         </h3>
       </Card>
-      {/* @todo replace with OakFlex - work out $maxHeight, why is it Flex if it has display set to either block or none? */}
-      <Flex
+      {/* @todo replace with OakFlex - work out $maxHeight, why is it  OakFlex if it has display set to either block or none? */}
+      <OakFlex
         data-testid={"accordion-container"}
-        $maxHeight={isToggleOpen ? 9600 : 0}
-        $transition={"all 0.3s ease"}
+        style={{ maxHeight: isToggleOpen ? 9600 : 0 }}
+        $transition={"standard-ease"}
         $display={isToggleOpen ? "block" : "none"}
       >
         {children}
-      </Flex>
+      </OakFlex>
       <BoxBorders hideLeft hideRight hideBottom={!lastAccordion || isFocused} />
 
       {isFocused && isFocusVisible && (

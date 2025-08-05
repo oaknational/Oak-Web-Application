@@ -1,9 +1,10 @@
+import { OakFlex, OakFlexProps } from "@oaknational/oak-components";
+
 import { ComponentTypeValueType, PhaseValueType } from "@/browser-lib/avo/Avo";
 import { ButtonVariant } from "@/components/SharedComponents/Button/common";
 import ButtonAsLink, {
   ButtonAsLinkProps,
 } from "@/components/SharedComponents/Button/ButtonAsLink";
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 
 /**
@@ -18,7 +19,7 @@ const CurriculumHeaderTabNav = ({
   links,
   variant = "flat",
   ...flexProps
-}: FlexProps & {
+}: OakFlexProps & {
   label: string;
   links: ButtonAsLinkProps[];
   variant?: ButtonVariant;
@@ -37,11 +38,11 @@ const CurriculumHeaderTabNav = ({
   };
 
   return (
-    <Flex
+    <OakFlex
       as="nav"
       aria-label={label}
-      $mv={0}
-      $pv={0}
+      $mv={"space-between-none"}
+      $pv={"inner-padding-none"}
       $overflowY={"hidden"}
       $overflowX={"auto"}
       {...flexProps}
@@ -76,7 +77,7 @@ const CurriculumHeaderTabNav = ({
           </li>
         ))}
       </ul>
-    </Flex>
+    </OakFlex>
   );
 };
 
