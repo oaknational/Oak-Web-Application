@@ -81,7 +81,7 @@ export const LessonOverviewHeaderShareAllButton: FC<
       isTrailingIcon
       aria-label="Share all resources"
     >
-      Share all activities with pupils
+      Share activities with pupils
     </OakSmallSecondaryButton>
   );
 };
