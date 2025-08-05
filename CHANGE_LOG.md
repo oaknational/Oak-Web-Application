@@ -1,3 +1,10 @@
+# [1.824.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.823.0...v1.824.0) (2025-08-05)
+
+
+### Features
+
+* disable button when feature flag enabled and geoblocked ([beedbaa](https://github.com/oaknational/Oak-Web-Application/commit/beedbaaae89c471ba8c87a4b8b38ef5303c24146))
+
 # [1.823.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.822.1...v1.823.0) (2025-08-05)
 
 
