@@ -1,3 +1,12 @@
+## [1.822.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.822.0...v1.822.1) (2025-08-05)
+
+
+### Bug Fixes
+
+* changed NEXT_SENTRY_ENABLED -> NEXT_PUBLIC_SENTRY_ENABLED ([fc6ceb4](https://github.com/oaknational/Oak-Web-Application/commit/fc6ceb4f828fd40888368f9b7accdaaac4d7c2bc))
+* disable sentry in error reporter ([5eeb19c](https://github.com/oaknational/Oak-Web-Application/commit/5eeb19c3cf31b819f274abb765737a8cda6dde0f))
+* use getBrowserConfig("sentryEnabled") instead ([6086443](https://github.com/oaknational/Oak-Web-Application/commit/60864430a95d524a1e0ed07c8aa899bad674dee3))
+
 # [1.822.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.821.0...v1.822.0) (2025-08-04)
 
 
