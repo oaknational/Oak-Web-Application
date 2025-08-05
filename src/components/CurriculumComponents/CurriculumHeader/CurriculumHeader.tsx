@@ -12,7 +12,6 @@ import {
 
 import CurriculumHeaderTabNav from "../CurriculumHeaderTabNav";
 
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import SubjectPhasePicker, {
   SubjectPhasePickerData,
@@ -146,8 +145,10 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
         </OakBox>
       </OakFlex>
       <OakBox $background={color2}>
-        {/* @todo replace with OakFlex - work out padding as max padding in oak-components is 24px */}
-        <Flex $pb={[24, 24]} $pt={[20, 30]}>
+        <OakFlex
+          $pb={"inner-padding-xl"}
+          $pt={["inner-padding-l", "inner-padding-xl2"]}
+        >
           <OakBox
             $maxWidth="all-spacing-24"
             $mh={"auto"}
@@ -191,8 +192,12 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               </OakFlex>
             </OakFlex>
           </OakBox>
-        </Flex>
-        <Flex $borderColor="mint30" $background={"mint"} $bt={2}>
+        </OakFlex>
+        <OakFlex
+          $borderColor="mint30"
+          $background={"mint"}
+          $bt={"border-solid-m"}
+        >
           <OakBox
             $maxWidth="all-spacing-24"
             $ph={["inner-padding-none", "inner-padding-l"]}
@@ -205,7 +210,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               links={links}
               variant="flat"
               $alignItems={"center"}
-              $height={[60, 64]}
+              $height={"all-spacing-11"}
               trackingData={{
                 subjectSlug: currentSelection.subject.slug,
                 subjectTitle: currentSelection.subject.title,
@@ -214,7 +219,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               $background={"mint"}
             />
           </OakBox>
-        </Flex>
+        </OakFlex>
       </OakBox>
     </OakBox>
   );

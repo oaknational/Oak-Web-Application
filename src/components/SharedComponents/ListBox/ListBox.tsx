@@ -11,7 +11,6 @@ import {
   OakCombinedColorToken,
 } from "@oaknational/oak-components";
 
-import { InputFocusUnderline } from "@/components/SharedComponents/Input/Input";
 import theme, { OakColorName } from "@/styles/theme";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 
@@ -51,10 +50,6 @@ const ListItem = styled(OakLI)<ListItemProps>`
   cursor: default;
   outline: none;
   width: 100%;
-
-  &:focus-within ${InputFocusUnderline} {
-    display: inline;
-  }
 `;
 
 interface ListBoxProps extends AriaListBoxOptions<unknown> {

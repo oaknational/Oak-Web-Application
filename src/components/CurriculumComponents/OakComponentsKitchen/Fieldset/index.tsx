@@ -1,16 +1,19 @@
-import { OakP, OakPProps } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakBoxProps,
+  OakP,
+  OakPProps,
+} from "@oaknational/oak-components";
 import { FC } from "react";
 import styled from "styled-components";
 
-import Box, { BoxProps } from "@/components/SharedComponents/Box";
-
-const BoxFieldSet = styled(Box)`
+const BoxFieldSet = styled(OakBox)`
   padding-inline-start: 0;
   padding-inline-end: 0;
   border: none;
 `;
 
-export const Fieldset = (props: Omit<BoxProps, "as">) => {
+export const Fieldset = (props: Omit<OakBoxProps, "as">) => {
   return <BoxFieldSet {...props} as="fieldset" />;
 };
 
