@@ -77,7 +77,9 @@ function getRegion(req: Request, userId: string) {
       },
     });
 
-    reportError(error);
+    reportError(error, {
+      message: "Region header not found",
+    });
   }
   return region;
 }
