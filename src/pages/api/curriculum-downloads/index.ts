@@ -1,3 +1,4 @@
+import emailRegExp from "email-regex";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { format } from "date-fns";
 import { z } from "zod";
@@ -24,6 +25,8 @@ export const curriculumDownloadQuerySchema = z.object({
   tierSlug: z.string().optional(),
   childSubjectSlug: z.string().optional(),
 });
+
+emailRegExp().test("testing@exmaple.com");
 
 export type curriculumDownloadQueryProps = z.infer<
   typeof curriculumDownloadQuerySchema
