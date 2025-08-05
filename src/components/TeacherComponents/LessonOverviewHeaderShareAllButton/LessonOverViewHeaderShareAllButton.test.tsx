@@ -1,4 +1,7 @@
-import { OakColorFilterToken } from "@oaknational/oak-components";
+import {
+  OakColorFilterToken,
+  OakColorToken,
+} from "@oaknational/oak-components";
 
 import { LessonOverviewHeaderShareAllButton } from "./LessonOverviewHeaderShareAllButton";
 
@@ -9,7 +12,6 @@ import {
 } from "@/__tests__/__helpers__/mockCopyrightRequirements";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
-import { OakColorName } from "@/styles/theme";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import { AnalyticsUseCaseValueType } from "@/browser-lib/avo/Avo";
 
@@ -38,7 +40,7 @@ const baseProps = {
   geoRestricted: false,
   loginRequired: false,
   breadcrumbs: [],
-  background: "white" as OakColorName,
+  background: "white" as OakColorToken,
   isNew: false,
   subjectIconBackgroundColor: "white" as OakColorFilterToken,
   subjectSlug: "test-subject",

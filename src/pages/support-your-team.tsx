@@ -7,6 +7,8 @@ import {
   OakP,
   OakFlex,
   OakMaxWidth,
+  OakPrimaryButton,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
@@ -18,9 +20,8 @@ import SupportYourTeamTextBlockCardImageCta from "@/components/GenericPagesCompo
 import SupportYourTeamBubbleMessage from "@/components/GenericPagesComponents/SupportYourTeamBubbleMessage";
 import getPageProps from "@/node-lib/getPageProps";
 import Layout from "@/components/AppComponents/Layout";
-import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
+import { resolveOakHref } from "@/common-lib/urls";
 
 export type SupportPageProps = {
   pageData: SupportPage;
@@ -74,15 +75,20 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
             />
           </OakFlex>
         </OakFlex>
-        <OakFlex $justifyContent={"center"}>
-          <ButtonAsLink
-            $mt={32}
-            $mb={92}
-            page={"home"}
-            label={"Search our lessons"}
-            icon={"arrow-right"}
-            $iconPosition={"trailing"}
-          />
+        <OakFlex
+          $justifyContent={"center"}
+          $pt="inner-padding-xl2"
+          $pb={"inner-padding-xl8"}
+          $alignItems={"center"}
+        >
+          <OakPrimaryButton
+            element="a"
+            href={resolveOakHref({ page: "home" })}
+            iconName={"arrow-right"}
+            isTrailingIcon={true}
+          >
+            Search our lessons
+          </OakPrimaryButton>
         </OakFlex>
         <OakGrid
           $mb={"space-between-xl"}
@@ -127,7 +133,9 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
           $flexDirection={"column"}
           $mt="space-between-l"
         >
-          <Box $maxWidth={["100%", 380, 380]}>
+          <OakBox
+            $maxWidth={["all-spacing-22", "all-spacing-20", "all-spacing-20"]}
+          >
             <OakHeading
               $textAlign={"center"}
               $font={["heading-5", "heading-4"]}
@@ -140,17 +148,22 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
               Search our lessons to find all the resources you need to support
               your team.
             </OakP>
-            <OakFlex $justifyContent={"center"}>
-              <ButtonAsLink
-                $mt={32}
-                $mb={92}
-                page={"home"}
-                label={"Search our lessons"}
-                icon={"arrow-right"}
-                $iconPosition={"trailing"}
-              />
+            <OakFlex
+              $justifyContent={"center"}
+              $pt="inner-padding-xl2"
+              $pb={"inner-padding-xl8"}
+              $alignItems={"center"}
+            >
+              <OakPrimaryButton
+                element="a"
+                href={resolveOakHref({ page: "home" })}
+                iconName={"arrow-right"}
+                isTrailingIcon={true}
+              >
+                Search our lessons
+              </OakPrimaryButton>
             </OakFlex>
-          </Box>
+          </OakBox>
         </OakFlex>
       </OakMaxWidth>
     </Layout>

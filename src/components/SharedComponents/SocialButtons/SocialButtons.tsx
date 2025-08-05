@@ -1,11 +1,11 @@
 import { FC, useId } from "react";
+import { OakFlex, OakFlexProps } from "@oaknational/oak-components";
 
 import { PixelSpacing } from "@/styles/theme";
 import { ResponsiveValues } from "@/styles/utils/responsive";
 import { ButtonSize } from "@/components/SharedComponents/Button/common";
 import { IconName } from "@/components/SharedComponents/Icon.deprecated";
 import IconButtonAsLink from "@/components/SharedComponents/Button/IconButtonAsLink";
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 
 export const OAK_SOCIALS: Record<SocialNetwork, string> = {
   instagram: "oaknational",
@@ -54,7 +54,7 @@ const SOCIAL_BUTTON_CONFIGS: Record<SocialNetwork, SocialButtonConfig> = {
 
 type SocialUrls = Partial<Record<SocialNetwork, string | null | undefined>>;
 
-type SocialButtonsProps = FlexProps &
+type SocialButtonsProps = OakFlexProps &
   SocialUrls & {
     /**
      * for: who's social media accounts are being linekd
@@ -80,7 +80,7 @@ const SocialButtons: FC<SocialButtonsProps> = (props) => {
   }
 
   return (
-    <Flex $alignItems={"center"} $justifyContent={"center"} {...flexProps}>
+    <OakFlex $alignItems={"center"} $justifyContent={"center"} {...flexProps}>
       {socialsToShow.map((network) => {
         const { label, icon } = SOCIAL_BUTTON_CONFIGS[network];
         const profile = props[network];
@@ -104,7 +104,7 @@ const SocialButtons: FC<SocialButtonsProps> = (props) => {
           />
         );
       })}
-    </Flex>
+    </OakFlex>
   );
 };
 
