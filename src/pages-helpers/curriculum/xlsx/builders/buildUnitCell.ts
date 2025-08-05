@@ -10,7 +10,7 @@ export function buildUnitCell<T extends Record<string, string>>(
   y: number,
   unit: Unit,
   unitIndex: number,
-  prefix: string,
+  prefix?: string,
 ) {
   return safeXml`
     <c

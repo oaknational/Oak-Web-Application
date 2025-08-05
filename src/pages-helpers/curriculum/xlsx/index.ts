@@ -7,7 +7,7 @@ import {
 import { CombinedCurriculumData } from "../docx";
 
 import { buildStyle } from "./builders/buildStyles";
-import { addOrUpdateSheet, getFlatUnits } from "./helper";
+import { addOrUpdateSheet } from "./helper";
 import { buildSheet } from "./builders/buildSheet";
 import { buildWorkbook } from "./builders/buildWorkbook";
 
@@ -32,12 +32,11 @@ export type BuildNationalCurriculumData = {
 async function buildNationalCurriculum(
   zip: JSZipCached,
   data: BuildNationalCurriculumData[],
-  formattedData: FormattedData,
 ) {
   const { styleXml, cellStyleIndexMap } = buildStyle();
   zip.writeString("xl/styles.xml", styleXml);
 
-  const flatUnits = getFlatUnits(formattedData);
+  const flatUnits = data.flatMap((bar) => bar.unitData.map((foo) => foo.unit));
 
   data.forEach((item, index) => {
     const linksXml = [];
@@ -77,7 +76,7 @@ async function buildNationalCurriculum(
     addOrUpdateSheet(
       zip,
       10 + index,
-      xmlCompact(buildSheet(cellStyleIndexMap, item, formattedData)),
+      xmlCompact(buildSheet(cellStyleIndexMap, item)),
     );
   });
 
@@ -159,7 +158,7 @@ export default async function xlsxNationalCurriculum(
     },
   );
 
-  await buildNationalCurriculum(zip, obj, formattedData);
+  await buildNationalCurriculum(zip, obj);
 
   return await zip.zipToBuffer();
 }

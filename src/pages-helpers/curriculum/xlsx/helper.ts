@@ -1,7 +1,7 @@
-import { generateGroupedUnits } from "../docx/builder/8_units/8_units";
 import { groupUnitsBySubjectCategory } from "../docx/builder/helper";
 import { JSZipCached } from "../docx/docx";
-import { CurriculumUnitsFormattedData } from "../docx/tab-helpers";
+
+import { SubjectCategory, Unit } from "@/utils/curriculum/types";
 
 export function createXmlIndexMap<T extends Record<string, string>>(def: T) {
   const indexMap: Record<keyof typeof def, string> = {} as Record<
@@ -32,20 +32,35 @@ export function addOrUpdateSheet(
   );
 }
 
-export function getFlatUnits(formattedData: CurriculumUnitsFormattedData) {
-  const groupedUnits = generateGroupedUnits(formattedData);
-  const groupedSubcatUnits = groupUnitsBySubjectCategory(
-    groupedUnits[2]!.units,
-  );
+type GetFlatUnitsOutput = (Unit & {
+  unitIndex: number;
+  subjectCategory?: SubjectCategory;
+})[];
 
-  const flatUnits = groupedSubcatUnits.flatMap(({ units, subjectCategory }) => {
+export function getFlatUnits(units: Unit[]): GetFlatUnitsOutput {
+  const enableGroupBySubjectCategory =
+    units[0]?.actions?.subject_category_actions?.group_by_subjectcategory;
+  const groupedSubcatUnits = groupUnitsBySubjectCategory(units);
+
+  if (enableGroupBySubjectCategory) {
+    const flatUnits = groupedSubcatUnits.flatMap(
+      ({ units, subjectCategory }) => {
+        return units.map((unit, unitIndex) => {
+          return {
+            subjectCategory,
+            unitIndex,
+            ...unit,
+          };
+        });
+      },
+    );
+    return flatUnits;
+  } else {
     return units.map((unit, unitIndex) => {
       return {
-        subjectCategory,
-        unitIndex,
         ...unit,
+        unitIndex,
       };
     });
-  });
-  return flatUnits;
+  }
 }

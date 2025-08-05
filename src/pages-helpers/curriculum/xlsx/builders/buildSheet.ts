@@ -1,6 +1,6 @@
 import { cartesianToExcelCoords, pxToColumnWidth } from "@ooxml-tools/units";
 
-import { BuildNationalCurriculumData, FormattedData } from "..";
+import { BuildNationalCurriculumData } from "..";
 import { cdata, safeXml } from "../../docx/xml";
 import { getFlatUnits } from "../helper";
 
@@ -13,12 +13,11 @@ import { buildUnitCell } from "./buildUnitCell";
 export function buildSheet<T extends Record<string, string>>(
   cellStyleIndexMap: T,
   data: BuildNationalCurriculumData,
-  formattedData: FormattedData,
 ) {
   const unitXml: string[] = [];
   const linkXml: string[] = [];
   const goToUnitResourcesXml: string[] = [];
-  const flatUnits = getFlatUnits(formattedData);
+  const flatUnits = getFlatUnits(data.unitData.map((item) => item.unit));
 
   for (const unit of flatUnits) {
     linkXml.push(safeXml`
@@ -41,7 +40,7 @@ export function buildSheet<T extends Record<string, string>>(
         2,
         unit,
         unit.unitIndex,
-        unit.subjectCategory.title,
+        unit.subjectCategory?.title,
       ),
     );
 
