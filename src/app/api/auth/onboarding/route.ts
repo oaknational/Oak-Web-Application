@@ -64,6 +64,7 @@ function getReferrerOrigin(req: Request) {
 function getRegion(req: Request, userId: string) {
   let region = req.headers.get("x-vercel-ip-country") || undefined;
   if (process.env.NODE_ENV !== "production") {
+    console.log("Using development user region");
     region = getBrowserConfig("developmentUserRegion");
   }
 
