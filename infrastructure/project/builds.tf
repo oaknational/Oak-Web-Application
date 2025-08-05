@@ -22,8 +22,6 @@ locals {
       build_type       = "storybook"
       deployment_type  = "all_deployments"
       framework        = "storybook"
-      git_branch       = "feat/eng-1145-vercel-migration"
-      ignore_command   = "if [ \"$VERCEL_GIT_COMMIT_REF\" = \"feat/eng-1145-vercel-migration\" ]; then exit 1; else exit 0; fi"
       output_directory = "storybook-static"
       skew_protection  = "1 day"
     }
