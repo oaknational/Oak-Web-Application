@@ -62,7 +62,7 @@ function getReferrerOrigin(req: Request) {
 }
 
 function getRegion(req: Request, userId: string) {
-  let region = req.headers.get("x-country") || undefined;
+  let region = req.headers.get("x-vercel-ip-country") || undefined;
   if (process.env.NODE_ENV !== "production") {
     region = getBrowserConfig("developmentUserRegion");
   }
@@ -72,7 +72,7 @@ function getRegion(req: Request, userId: string) {
       code: "onboarding/request-error",
       meta: {
         message:
-          "Region header not found in header: x-country or developmentUserRegion",
+          "Region header not found in header: x-vercel-ip-country or developmentUserRegion",
         user: userId,
       },
     });

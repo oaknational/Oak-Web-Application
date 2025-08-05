@@ -41,7 +41,7 @@ describe("/api/auth/onboarding", () => {
       body: JSON.stringify({ isTeacher: true }),
       headers: {
         referer: "http://example.com/foo",
-        "x-country": "US",
+        "x-vercel-ip-country": "US",
       },
     });
 
@@ -125,7 +125,7 @@ describe("/api/auth/onboarding", () => {
         body: JSON.stringify({ isTeacher: true }),
         headers: {
           referer: "http://example.com/foo",
-          "x-country": countryCode!,
+          "x-vercel-ip-country": countryCode!,
         },
       });
       await POST(req);
