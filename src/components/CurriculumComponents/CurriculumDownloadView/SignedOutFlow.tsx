@@ -100,7 +100,7 @@ export default function SignedOutFlow({
       $gap={["space-between-m2", "space-between-l"]}
       $flexDirection={["column", "row"]}
     >
-      <OakBox $width={["100%", "all-spacing-21"]} $textAlign={"left"}>
+      <OakBox $width={["100%", "all-spacing-20"]} $textAlign={"left"}>
         <CurriculumDownloadSelection
           downloadTypes={downloadTypes}
           onChange={onChangeDownloadTypes}

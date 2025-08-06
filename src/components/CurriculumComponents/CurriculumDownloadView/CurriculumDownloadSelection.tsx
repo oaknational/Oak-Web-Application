@@ -2,7 +2,6 @@ import {
   OakDownloadCard,
   OakFlex,
   OakHeading,
-  OakTagFunctional,
 } from "@oaknational/oak-components";
 import { uniq } from "lodash";
 
@@ -23,13 +22,12 @@ export function CurriculumDownloadSelection({
 }: CurriculumDownloadSelectionProps) {
   return (
     <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
-      <OakHeading tag="h3" $font={["heading-5"]} data-testid="download-heading">
+      <OakHeading tag="h3" $font={["heading-4"]} data-testid="download-heading">
         Curriculum resources
       </OakHeading>
       <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
         {DOWNLOAD_TYPES.map((download) => {
           const isChecked = downloadTypes.includes(download.id);
-          const isEditable = download.subTitle?.includes("accessible");
 
           return (
             <OakDownloadCard
@@ -52,24 +50,7 @@ export function CurriculumDownloadSelection({
                 }
                 onChange(newDownloadTypes);
               }}
-              formatSlot={
-                <>
-                  {download.subTitle}
-                  {isEditable && (
-                    <OakTagFunctional
-                      key="tag"
-                      $ml={"space-between-ssx"}
-                      $display="inline"
-                      $color={"text-primary"}
-                      $font={"heading-light-7"}
-                      $ph={"inner-padding-ssx"}
-                      $pv={"inner-padding-ssx"}
-                      label="Editable"
-                      $background={"bg-decorative2-main"}
-                    />
-                  )}
-                </>
-              }
+              formatSlot={download.subTitle}
               iconName={download.icon}
             />
           );

@@ -68,7 +68,7 @@ export default function SignedInFlow({ onSubmit, schools }: SignedInFlowProps) {
       $flexDirection="column"
       $alignItems={"flex-start"}
     >
-      <OakBox $width={["100%", "all-spacing-21"]} $textAlign={"left"}>
+      <OakBox $width={["100%", "all-spacing-20"]} $textAlign={"left"}>
         <CurriculumDownloadSelection
           downloadTypes={downloadTypes}
           onChange={setDownloadTypes}
