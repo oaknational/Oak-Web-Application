@@ -1,7 +1,6 @@
 import type { Element } from "xml-js";
 
 import { cdata, safeXml } from "../../xml";
-import { CombinedCurriculumData } from "../..";
 import {
   cmToEmu,
   cmToTwip,
@@ -15,7 +14,10 @@ import { createUnitsListingByYear } from "../../tab-helpers";
 
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import { createTeacherProgrammeSlug } from "@/utils/curriculum/slugs";
-import { SubjectCategory } from "@/utils/curriculum/types";
+import {
+  CombinedCurriculumData,
+  SubjectCategory,
+} from "@/utils/curriculum/types";
 import {
   getIsUnitDescriptionEnabled,
   priorKnowledgeRequirementsEnabled,

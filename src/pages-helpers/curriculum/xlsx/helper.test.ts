@@ -1,4 +1,4 @@
-import { createXmlIndexMap } from "./builder";
+import { createXmlIndexMap } from "./helper";
 
 describe("createXmlIndexMap", () => {
   it("should return XML and mapped keys/indexes", () => {

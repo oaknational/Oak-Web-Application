@@ -16,7 +16,7 @@ interface PopoverProps {
 const Wrapper = styled.div`
   position: absolute;
   top: 100%;
-  z-index: ${zIndexMap.inFront};
+  z-index: ${zIndexMap.modalDialog};
   width: 100%;
   background: white;
 `;

@@ -2,10 +2,8 @@
  * Centralised URL builders for curriculum-related API endpoints
  */
 
-import { ValidDownloadTypes } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
-
 export function createCurriculumDownloadsUrl(
-  type: ValidDownloadTypes,
+  types: string[],
   state: "new" | "published",
   mvRefreshTime: number,
   subjectSlug: string,
@@ -15,6 +13,7 @@ export function createCurriculumDownloadsUrl(
   childSubjectSlug: string | null,
 ) {
   const query = new URLSearchParams({
+    types: types.join(","),
     mvRefreshTime: String(mvRefreshTime),
     subjectSlug: subjectSlug,
     phaseSlug: phaseSlug,
@@ -26,5 +25,5 @@ export function createCurriculumDownloadsUrl(
     childSubjectSlug !== null &&
     query.set("childSubjectSlug", childSubjectSlug);
 
-  return `/api/${type}/?${query}`;
+  return `/api/curriculum-downloads/?${query}`;
 }

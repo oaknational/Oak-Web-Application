@@ -170,7 +170,7 @@ describe("search autocomplete", () => {
 
     const { getByText } = renderWithTheme(<Wrapper />);
 
-    expect(getByText("(required)")).toBeInTheDocument();
+    expect(getByText("School picker (required)")).toBeInTheDocument();
   });
 
   it("renders a listbox of schools", async () => {

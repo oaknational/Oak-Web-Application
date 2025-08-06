@@ -1,8 +1,9 @@
 import { cdata, safeXml, xmlElementToJson } from "../xml";
-import { CombinedCurriculumData } from "..";
 import { appendBodyElements, JSZipCached, wrapInBookmarkPoint } from "../docx";
 
 import { getPortableTextTypes, portableTextToDocx } from "./portableText";
+
+import { CombinedCurriculumData } from "@/utils/curriculum/types";
 
 export default async function generate(
   zip: JSZipCached,
