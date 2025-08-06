@@ -1,3 +1,10 @@
+## [1.826.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.826.0...v1.826.1) (2025-08-06)
+
+
+### Bug Fixes
+
+* keystage keypad heading accessibility ([e0e00b4](https://github.com/oaknational/Oak-Web-Application/commit/e0e00b40ed476860ef511c384e4ca72fc9c3246b))
+
 # [1.826.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.825.0...v1.826.0) (2025-08-06)
 
 
