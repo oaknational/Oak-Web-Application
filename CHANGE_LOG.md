@@ -1,3 +1,10 @@
+# [1.827.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.826.1...v1.827.0) (2025-08-06)
+
+
+### Features
+
+* hide share with pupils button when content is copyrighted ([7de7b3c](https://github.com/oaknational/Oak-Web-Application/commit/7de7b3c8a17104645f7ac4ea370d92f4f51acea8))
+
 ## [1.826.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.826.0...v1.826.1) (2025-08-06)
 
 
