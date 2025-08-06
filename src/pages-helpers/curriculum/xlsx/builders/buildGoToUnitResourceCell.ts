@@ -1,6 +1,5 @@
 import { cartesianToExcelCoords } from "@ooxml-tools/units";
-
-import { safeXml } from "../../docx/xml";
+import { safeXml } from "@ooxml-tools/xml";
 
 export function buildGoToUnitResourceCell<T extends Record<string, string>>(
   cellStyleIndexMap: T,

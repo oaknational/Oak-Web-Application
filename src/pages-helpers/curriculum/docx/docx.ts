@@ -6,11 +6,11 @@ import sharp from "sharp";
 import { glob } from "glob";
 import JSZip from "jszip";
 import { ElementCompact, type Element } from "xml-js";
+import { safeXml } from "@ooxml-tools/xml";
 
 import {
   collapseFragments,
   jsonXmlToXmlString,
-  safeXml,
   xmlElementToJson,
   xmlRootToJson,
 } from "./xml";

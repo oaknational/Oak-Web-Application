@@ -1,4 +1,6 @@
-import { cdata, safeXml, xmlElementToJson } from "../xml";
+import { safeXml } from "@ooxml-tools/xml";
+
+import { cdata, xmlElementToJson } from "../xml";
 import { appendBodyElements, insertNumbering, JSZipCached } from "../docx";
 import { createThreadOptions, createUnitsListingByYear } from "../tab-helpers";
 

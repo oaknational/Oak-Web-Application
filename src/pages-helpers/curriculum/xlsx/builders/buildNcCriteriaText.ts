@@ -1,6 +1,7 @@
 import { cartesianToExcelCoords } from "@ooxml-tools/units";
+import { safeXml } from "@ooxml-tools/xml";
 
-import { cdata, safeXml } from "../../docx/xml";
+import { cdata } from "../../docx/xml";
 
 export function buildNcCriteriaText<T extends Record<string, string>>(
   cellStyleIndexMap: T,

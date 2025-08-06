@@ -1,4 +1,4 @@
-import { safeXml } from "../../docx/xml";
+import { safeXml } from "@ooxml-tools/xml";
 
 export function buildWorkbook({ sheets }: { sheets: string[] }) {
   return safeXml`

@@ -1,7 +1,6 @@
-import { compact } from "@ooxml-tools/xml";
+import { compact, safeXml } from "@ooxml-tools/xml";
 
 import { generateEmptyXlsx, JSZipCached } from "../docx/docx";
-import { safeXml } from "../docx/xml";
 import {
   CurriculumUnitsFormattedData,
   formatCurriculumUnitsData,

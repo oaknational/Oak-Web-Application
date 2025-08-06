@@ -1,8 +1,9 @@
 import { join } from "path";
 
 import { uniqBy } from "lodash";
+import { safeXml } from "@ooxml-tools/xml";
 
-import { cdata, safeXml, xmlElementToJson } from "../../xml";
+import { cdata, xmlElementToJson } from "../../xml";
 import { Slugs } from "../..";
 import {
   insertImages,

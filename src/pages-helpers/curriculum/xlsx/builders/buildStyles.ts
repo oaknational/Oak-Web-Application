@@ -1,4 +1,5 @@
-import { safeXml } from "../../docx/xml";
+import { safeXml } from "@ooxml-tools/xml";
+
 import { createXmlIndexMap } from "../helper";
 
 export function buildStyle() {

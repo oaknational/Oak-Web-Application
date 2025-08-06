@@ -1,4 +1,6 @@
-import { cdata, safeXml, xmlElementToJson } from "../xml";
+import { safeXml } from "@ooxml-tools/xml";
+
+import { cdata, xmlElementToJson } from "../xml";
 import { appendBodyElements, JSZipCached, wrapInBookmarkPoint } from "../docx";
 
 import { getPortableTextTypes, portableTextToDocx } from "./portableText";
