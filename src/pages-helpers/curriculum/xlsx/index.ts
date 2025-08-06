@@ -1,5 +1,7 @@
+import { compact } from "@ooxml-tools/xml";
+
 import { generateEmptyXlsx, JSZipCached } from "../docx/docx";
-import { safeXml, xmlCompact } from "../docx/xml";
+import { safeXml } from "../docx/xml";
 import {
   CurriculumUnitsFormattedData,
   formatCurriculumUnitsData,
@@ -75,7 +77,7 @@ async function buildNationalCurriculum(
     addOrUpdateSheet(
       zip,
       10 + index,
-      xmlCompact(buildSheet(cellStyleIndexMap, item)),
+      compact(buildSheet(cellStyleIndexMap, item)),
     );
   });
 
