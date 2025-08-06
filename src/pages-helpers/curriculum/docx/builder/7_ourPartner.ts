@@ -1,7 +1,6 @@
 import { join } from "path";
 
 import { cdata, safeXml, xmlElementToJson } from "../xml";
-import { CombinedCurriculumData } from "..";
 import {
   appendBodyElements,
   cmToEmu,
@@ -15,6 +14,7 @@ import { generateGridCols, makeTransparentIfSanity } from "./helper";
 import { getPortableTextTypes, portableTextToDocx } from "./portableText";
 
 import { CurriculumPartnerOverview } from "@/node-lib/sanity-graphql/generated/sdk";
+import { CombinedCurriculumData } from "@/utils/curriculum/types";
 
 async function buildPartnerBioText(
   zip: JSZipCached,

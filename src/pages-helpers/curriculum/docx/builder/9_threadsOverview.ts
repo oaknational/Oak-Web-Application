@@ -1,7 +1,6 @@
 import { join } from "path";
 
 import { cdata, safeXml, xmlElementToJson } from "../xml";
-import { CombinedCurriculumData } from "..";
 import {
   appendBodyElements,
   cmToEmu,
@@ -14,6 +13,8 @@ import {
 import { createThreadOptions } from "../tab-helpers";
 
 import { generateGridCols, uncapitalizeSubject } from "./helper";
+
+import { CombinedCurriculumData } from "@/utils/curriculum/types";
 
 export default async function generate(
   zip: JSZipCached,

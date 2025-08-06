@@ -2,7 +2,7 @@ import { join } from "path";
 
 import { capitalize } from "lodash";
 
-import { CombinedCurriculumData, Slugs } from "..";
+import { Slugs } from "..";
 import { cdata, safeXml, xmlElementToJson } from "../xml";
 import {
   appendBodyElements,
@@ -15,6 +15,7 @@ import {
 import { generateIconURL, subjectFromUnits } from "./helper";
 
 import { getShortPhaseText } from "@/utils/curriculum/formatting";
+import { CombinedCurriculumData } from "@/utils/curriculum/types";
 
 const PARTNER_IMG_WIDTH = 475 * 2;
 

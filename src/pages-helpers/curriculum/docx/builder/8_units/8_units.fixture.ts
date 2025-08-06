@@ -1,4 +1,4 @@
-import { CombinedCurriculumData } from "../..";
+import { CombinedCurriculumData } from "@/utils/curriculum/types";
 
 export const data: CombinedCurriculumData = {
   units: [

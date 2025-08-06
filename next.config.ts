@@ -124,6 +124,8 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
       "**/*": ["node_modules/@swc/core/**/*", "node_modules/@swc/helpers/**/*"],
     },
 
+    transpilePackages: ["@ooxml-tools/units"],
+
     webpack: function getWebpackConfig(
       config: WebpackConfig,
       { dev, defaultLoaders, isServer }: WebpackConfigContext,
