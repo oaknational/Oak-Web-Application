@@ -39,7 +39,7 @@ export function buildSheet<T extends Record<string, string>>(
         x: unitXml.length + 2,
         y: 2,
         unit,
-        unitIndex: unit.unitIndex,
+        unitIndex: unit.order,
         prefix: unit.subjectCategory?.title,
       }),
     );

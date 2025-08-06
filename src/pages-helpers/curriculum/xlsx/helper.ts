@@ -33,22 +33,20 @@ export function addOrUpdateSheet(
 }
 
 type GetFlatUnitsOutput = (Unit & {
-  unitIndex: number;
   subjectCategory?: SubjectCategory;
 })[];
 
 export function getFlatUnits(units: Unit[]): GetFlatUnitsOutput {
   const enableGroupBySubjectCategory =
     units[0]?.actions?.subject_category_actions?.group_by_subjectcategory;
-  const groupedSubcatUnits = groupUnitsBySubjectCategory(units);
 
   if (enableGroupBySubjectCategory) {
+    const groupedSubcatUnits = groupUnitsBySubjectCategory(units);
     const flatUnits = groupedSubcatUnits.flatMap(
       ({ units, subjectCategory }) => {
-        return units.map((unit, unitIndex) => {
+        return units.map((unit) => {
           return {
             subjectCategory,
-            unitIndex,
             ...unit,
           };
         });
@@ -56,10 +54,9 @@ export function getFlatUnits(units: Unit[]): GetFlatUnitsOutput {
     );
     return flatUnits;
   } else {
-    return units.map((unit, unitIndex) => {
+    return units.map((unit) => {
       return {
         ...unit,
-        unitIndex,
       };
     });
   }

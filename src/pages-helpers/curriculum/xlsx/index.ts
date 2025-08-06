@@ -6,7 +6,7 @@ import {
   formatCurriculumUnitsData,
 } from "../docx/tab-helpers";
 
-import { buildStyle } from "./builders/buildStyles";
+import { buildStyles } from "./builders/buildStyles";
 import { addOrUpdateSheet } from "./helper";
 import { buildSheet } from "./builders/buildSheet";
 import { buildWorkbook } from "./builders/buildWorkbook";
@@ -33,7 +33,7 @@ async function buildNationalCurriculum(
   zip: JSZipCached,
   data: BuildNationalCurriculumData[],
 ) {
-  const { styleXml, cellStyleIndexMap } = buildStyle();
+  const { styleXml, cellStyleIndexMap } = buildStyles();
   zip.writeString("xl/styles.xml", styleXml);
 
   const flatUnits = data.flatMap((bar) => bar.unitData.map((foo) => foo.unit));

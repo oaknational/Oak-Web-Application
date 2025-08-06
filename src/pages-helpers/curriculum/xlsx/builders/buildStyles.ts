@@ -2,7 +2,7 @@ import { safeXml } from "@ooxml-tools/xml";
 
 import { createXmlIndexMap } from "../helper";
 
-export function buildStyle() {
+export function buildStyles() {
   const { xml: fontsXml, indexMap: fontIndexMap } = createXmlIndexMap({
     arial12: safeXml`
       <font>
