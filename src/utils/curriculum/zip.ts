@@ -6,6 +6,9 @@ export type OutputFile = {
 };
 
 export async function zipFromFiles(files: OutputFile[]) {
+  if (files.length < 1) {
+    throw new Error("Must provide at least one file");
+  }
   const zip = new JSZip();
   for (const { filename, buffer } of files) {
     zip.file(filename, buffer);
