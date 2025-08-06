@@ -123,7 +123,6 @@ export default function SignedOutFlow({
             {DOWNLOAD_TYPES.map((download) => {
               const isChecked = downloadTypes.includes(download.id);
               const isEditable = download.subTitle?.includes("accessible");
-              console.log("download.icon, ", download.icon);
 
               return (
                 <OakDownloadCard
