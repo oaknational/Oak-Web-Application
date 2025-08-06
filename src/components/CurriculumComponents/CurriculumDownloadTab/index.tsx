@@ -241,18 +241,16 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   const onSubmit = async (data: CurriculumDownloadViewData) => {
     setIsSubmitting(true);
 
-    const downloadPaths = data.downloadTypes.map((downloadType) => {
-      return createCurriculumDownloadsUrl(
-        downloadType,
-        "published",
-        mvRefreshTime,
-        slugs.subjectSlug,
-        slugs.phaseSlug,
-        slugs.ks4OptionSlug,
-        tierSelected,
-        childSubjectSelected,
-      );
-    });
+    const downloadPath = createCurriculumDownloadsUrl(
+      data.downloadTypes,
+      "published",
+      mvRefreshTime,
+      slugs.subjectSlug,
+      slugs.phaseSlug,
+      slugs.ks4OptionSlug,
+      tierSelected,
+      childSubjectSelected,
+    );
 
     const schoolData = {
       schoolId: data.schoolId!,
@@ -264,9 +262,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     saveDownloadsDataToLocalStorage(schoolData);
 
     try {
-      for (const downloadPath of downloadPaths) {
-        await downloadFileFromUrl(downloadPath);
-      }
+      await downloadFileFromUrl(downloadPath);
     } finally {
       await trackCurriculumDownload(
         data,

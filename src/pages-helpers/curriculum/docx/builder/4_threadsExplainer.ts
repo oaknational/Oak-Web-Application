@@ -1,7 +1,7 @@
 import { join } from "path";
 
 import { cdata, safeXml, xmlElementToJson } from "../xml";
-import { CombinedCurriculumData, Slugs } from "..";
+import { Slugs } from "..";
 import {
   appendBodyElements,
   cmToEmu,
@@ -17,6 +17,8 @@ import {
 import { createThreadOptions } from "../tab-helpers";
 
 import { createCurriculumSlug } from "./helper";
+
+import { CombinedCurriculumData } from "@/utils/curriculum/types";
 
 export default async function generate(
   zip: JSZipCached,
