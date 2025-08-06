@@ -6,14 +6,9 @@ import sharp from "sharp";
 import { glob } from "glob";
 import JSZip from "jszip";
 import { ElementCompact, type Element } from "xml-js";
-import { safeXml } from "@ooxml-tools/xml";
+import { collapseFragments, safeXml } from "@ooxml-tools/xml";
 
-import {
-  collapseFragments,
-  jsonXmlToXmlString,
-  xmlElementToJson,
-  xmlRootToJson,
-} from "./xml";
+import { jsonXmlToXmlString, xmlElementToJson, xmlRootToJson } from "./xml";
 
 import { notUndefined } from "@/utils/curriculum/types";
 

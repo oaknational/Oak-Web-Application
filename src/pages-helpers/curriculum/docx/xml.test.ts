@@ -1,6 +1,7 @@
+import { collapseFragments } from "@ooxml-tools/xml";
+
 import {
   cdataJson,
-  collapseFragments,
   createFragment,
   jsonXmlToXmlString,
   xmlElementToJson,
