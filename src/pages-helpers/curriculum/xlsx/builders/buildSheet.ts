@@ -2,7 +2,7 @@ import { cartesianToExcelCoords, pxToColumnWidth } from "@ooxml-tools/units";
 
 import { BuildNationalCurriculumData } from "..";
 import { cdata, safeXml } from "../../docx/xml";
-import { getFlatUnits } from "../helper";
+import { getFlatUnits, XmlIndexMap } from "../helper";
 
 import { buildGoToUnitResourceCell } from "./buildGoToUnitResourceCell";
 import { buildTickCell } from "./buildTickCell";
@@ -10,7 +10,7 @@ import { buildNcCriteriaText } from "./buildNcCriteriaText";
 import { buildUnitOptionCell } from "./buildUnitOptionCell";
 import { buildUnitCell } from "./buildUnitCell";
 
-export function buildSheet<T extends Record<string, string>>(
+export function buildSheet<T extends XmlIndexMap>(
   cellStyleIndexMap: T,
   data: BuildNationalCurriculumData,
 ) {

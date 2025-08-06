@@ -3,7 +3,9 @@ import { JSZipCached } from "../docx/docx";
 
 import { SubjectCategory, Unit } from "@/utils/curriculum/types";
 
-export function createXmlIndexMap<T extends Record<string, string>>(def: T) {
+export type XmlIndexMap = Record<string, string>;
+
+export function createXmlIndexMap<T extends XmlIndexMap>(def: T) {
   const indexMap: Record<keyof typeof def, string> = {} as Record<
     keyof typeof def,
     string
