@@ -6,17 +6,25 @@ import {
   OakP,
   OakPrimaryButton,
   OakUL,
+  OakDownloadCard,
+  OakTagFunctional,
 } from "@oaknational/oak-components";
 import { FormEvent, useId, useState } from "react";
 import styled from "styled-components";
+import { uniq } from "lodash";
 
 import AcceptTerms from "../OakComponentsKitchen/AcceptTerms";
 import YourDetails from "../OakComponentsKitchen/YourDetails";
 import Terms from "../OakComponentsKitchen/Terms";
 
 import { submitSchema } from "./schema";
-import { DownloadType, School, runSchema } from "./helper";
-import { CurriculumResourcesSelector } from "./CurriculumResourcesSelector";
+import {
+  DownloadType,
+  DOWNLOAD_TYPES,
+  School,
+  runSchema,
+  assertValidDownloadType,
+} from "./helper";
 
 import Box from "@/components/SharedComponents/Box";
 import flex, { FlexCssProps } from "@/styles/utils/flex";
@@ -103,10 +111,67 @@ export default function SignedOutFlow({
       $flexDirection={["column", "row"]}
     >
       <Box $width={["100%", 510]} $textAlign={"left"}>
-        <CurriculumResourcesSelector
-          downloadTypes={downloadTypes}
-          onChangeDownloadTypes={onChangeDownloadTypes}
-        />
+        <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
+          <OakHeading
+            tag="h3"
+            $font={["heading-5"]}
+            data-testid="download-heading"
+          >
+            Curriculum resources
+          </OakHeading>
+          <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
+            {DOWNLOAD_TYPES.map((download) => {
+              const isChecked = downloadTypes.includes(download.id);
+              const isEditable = download.subTitle?.includes("accessible");
+              console.log("download.icon, ", download.icon);
+
+              return (
+                <OakDownloadCard
+                  key={download.id}
+                  id={download.id}
+                  data-testid="resourceCard"
+                  value={download.id}
+                  name="curriculum-download"
+                  titleSlot={download.label}
+                  checked={isChecked}
+                  onChange={(e) => {
+                    const downloadType = assertValidDownloadType(
+                      e.target.value,
+                    );
+                    let newDownloadTypes: DownloadType[];
+                    if (e.target.checked) {
+                      newDownloadTypes = uniq([...downloadTypes, downloadType]);
+                    } else {
+                      newDownloadTypes = downloadTypes.filter(
+                        (id) => id !== downloadType,
+                      );
+                    }
+                    onChangeDownloadTypes(newDownloadTypes);
+                  }}
+                  formatSlot={
+                    <>
+                      {download.subTitle}
+                      {isEditable && (
+                        <OakTagFunctional
+                          key="tag"
+                          $ml={"space-between-ssx"}
+                          $display="inline"
+                          $color={"text-primary"}
+                          $font={"heading-light-7"}
+                          $ph={"inner-padding-ssx"}
+                          $pv={"inner-padding-ssx"}
+                          label="Editable"
+                          $background={"bg-decorative2-main"}
+                        />
+                      )}
+                    </>
+                  }
+                  iconName={download.icon}
+                />
+              );
+            })}
+          </OakFlex>
+        </OakFlex>
       </Box>
 
       <Box $maxWidth={["100%", 400]} $textAlign={"left"}>

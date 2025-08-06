@@ -58,19 +58,19 @@ export const DOWNLOAD_TYPES: {
   id: DownloadType;
   label: string;
   disabled?: boolean;
-  icon: string;
+  icon: "curriculum-plan" | "spreadsheet";
   subTitle?: string;
 }[] = [
   {
     id: "curriculum-plans",
     label: "Curriculum plan",
     subTitle: "Word (accessible)",
-    icon: "maths",
+    icon: "curriculum-plan",
   },
   {
     id: "national-curriculum",
     label: "National curriculum",
     subTitle: "XLSX",
-    icon: "maths",
+    icon: "spreadsheet",
   },
 ];
