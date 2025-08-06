@@ -4,11 +4,13 @@ import userEvent from "@testing-library/user-event";
 import UnitDownloadButton from "./UnitDownloadButton";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import {
-  defaultCopyrightRequirements,
-  signedInNotOnboarded,
-  signedOutLoginRequired,
-} from "@/__tests__/__helpers__/mockCopyrightRequirements";
+  mockGeorestrictedUser,
+  mockLoggedIn,
+  mockLoggedOut,
+  mockNotOnboardedUser,
+} from "@/__tests__/__helpers__/mockUser";
 
 jest.mock(
   "@/components/TeacherComponents/hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck",
@@ -20,11 +22,6 @@ jest.mock(
     }));
   },
 );
-
-let mockUseCopyrightRequirements = defaultCopyrightRequirements;
-jest.mock("@/hooks/useCopyrightRequirements", () => ({
-  useCopyrightRequirements: () => mockUseCopyrightRequirements,
-}));
 
 jest.mock(
   "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink",
@@ -45,13 +42,18 @@ jest.mock("@/hooks/useMediaQuery.tsx", () => ({
   }),
 }));
 
+const mockFeatureFlagEnabled = jest.fn();
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagEnabled: () => mockFeatureFlagEnabled(),
+}));
+
 describe("UnitDownloadButton", () => {
   beforeEach(() => {
-    mockUseCopyrightRequirements = defaultCopyrightRequirements;
+    setUseUserReturn(mockLoggedIn);
   });
 
   it("should render a continue button when logged in but not onboarded", () => {
-    mockUseCopyrightRequirements = signedInNotOnboarded;
+    setUseUserReturn(mockNotOnboardedUser);
     renderWithProviders()(
       <UnitDownloadButton
         setDownloadError={jest.fn()}
@@ -62,14 +64,14 @@ describe("UnitDownloadButton", () => {
         onDownloadSuccess={jest.fn()}
         unitFileId="mockSlug"
         showNewTag
-        georestricted={false}
-        loginRequired={false}
+        geoRestricted={false}
       />,
     );
     const button = screen.getByText("Complete sign up to download this unit");
     expect(button).toBeInTheDocument();
   });
   it("should render a download button when logged in", () => {
+    setUseUserReturn(mockLoggedIn);
     renderWithProviders()(
       <UnitDownloadButton
         setDownloadError={jest.fn()}
@@ -80,8 +82,7 @@ describe("UnitDownloadButton", () => {
         onDownloadSuccess={jest.fn()}
         unitFileId="mockSlug"
         showNewTag
-        georestricted={false}
-        loginRequired={false}
+        geoRestricted={false}
       />,
     );
     const button = screen.getByText("Download (.zip 1.2MB)");
@@ -98,8 +99,7 @@ describe("UnitDownloadButton", () => {
         onDownloadSuccess={jest.fn()}
         unitFileId="mockSlug"
         showNewTag
-        georestricted={false}
-        loginRequired={false}
+        geoRestricted={false}
       />,
     );
     const button = screen.getByText("Downloading...");
@@ -108,7 +108,7 @@ describe("UnitDownloadButton", () => {
     expect(spinner).toBeInTheDocument();
   });
   it("should render a sign in button when logged out", () => {
-    mockUseCopyrightRequirements = signedOutLoginRequired;
+    setUseUserReturn(mockLoggedOut);
     renderWithProviders()(
       <UnitDownloadButton
         setDownloadError={jest.fn()}
@@ -119,12 +119,53 @@ describe("UnitDownloadButton", () => {
         onDownloadSuccess={jest.fn()}
         unitFileId="mockSlug"
         showNewTag
-        georestricted={false}
-        loginRequired={false}
+        geoRestricted={false}
       />,
     );
     const button = screen.getByText("Download unit");
     expect(button).toBeInTheDocument();
+  });
+  it("with feature flag enabled should disable the button when geoblocked", () => {
+    setUseUserReturn(mockGeorestrictedUser);
+    mockFeatureFlagEnabled.mockReturnValueOnce(true);
+    renderWithProviders()(
+      <UnitDownloadButton
+        setDownloadError={jest.fn()}
+        setDownloadInProgress={jest.fn()}
+        setShowDownloadMessage={jest.fn()}
+        setShowIncompleteMessage={jest.fn()}
+        downloadInProgress={false}
+        onDownloadSuccess={jest.fn()}
+        unitFileId="mockSlug"
+        showNewTag
+        geoRestricted={true}
+      />,
+    );
+    const button = screen.getByRole("button", {
+      name: "Download (.zip 1.2MB)",
+    });
+    expect(button).toBeDisabled();
+  });
+  it("with feature flag disabled should not disable the button when geoblocked", () => {
+    setUseUserReturn(mockGeorestrictedUser);
+    mockFeatureFlagEnabled.mockReturnValueOnce(false);
+    renderWithProviders()(
+      <UnitDownloadButton
+        setDownloadError={jest.fn()}
+        setDownloadInProgress={jest.fn()}
+        setShowDownloadMessage={jest.fn()}
+        setShowIncompleteMessage={jest.fn()}
+        downloadInProgress={false}
+        onDownloadSuccess={jest.fn()}
+        unitFileId="mockSlug"
+        showNewTag
+        geoRestricted={true}
+      />,
+    );
+    const button = screen.getByRole("button", {
+      name: "Download (.zip 1.2MB)",
+    });
+    expect(button).toBeEnabled();
   });
   it("should set an error when the download fails", () => {
     const setDownloadError = jest.fn();
@@ -138,8 +179,7 @@ describe("UnitDownloadButton", () => {
         onDownloadSuccess={jest.fn()}
         unitFileId="mockSlug"
         showNewTag
-        georestricted={false}
-        loginRequired={false}
+        geoRestricted={false}
       />,
     );
     setDownloadError(true);
@@ -147,6 +187,7 @@ describe("UnitDownloadButton", () => {
   });
   it('should call "onDownloadSuccess" when the download is successful', async () => {
     const onDownloadSuccess = jest.fn();
+
     renderWithProviders()(
       <UnitDownloadButton
         setDownloadError={jest.fn()}
@@ -157,8 +198,7 @@ describe("UnitDownloadButton", () => {
         onDownloadSuccess={onDownloadSuccess}
         unitFileId="mockSlug"
         showNewTag
-        georestricted={false}
-        loginRequired={false}
+        geoRestricted={false}
       />,
     );
     const button = screen.getByRole("button", {

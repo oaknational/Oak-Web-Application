@@ -73,9 +73,9 @@ describe("Component Curriculum Download Tab", () => {
 
   if (!DISABLE_DOWNLOADS) {
     test("user can see download form", async () => {
-      const { findByText, findAllByTestId } = renderComponent();
+      const { findByText, findAllByRole } = renderComponent();
       const formHeading = await findByText("Your details");
-      const formInputs = await findAllByTestId("input");
+      const formInputs = await findAllByRole("textbox");
       expect(formHeading).toBeInTheDocument();
       expect(formInputs).toHaveLength(1);
     });
