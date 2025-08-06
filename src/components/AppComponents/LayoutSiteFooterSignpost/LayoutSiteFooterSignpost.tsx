@@ -1,12 +1,11 @@
 import React, { FC } from "react";
-import { OakHeading, OakP } from "@oaknational/oak-components";
+import { OakHeading, OakP, OakBox } from "@oaknational/oak-components";
 
 import OwaLink from "@/components/SharedComponents/OwaLink";
-import Box from "@/components/SharedComponents/Box";
 
 const LayoutSiteFooterSignpost: FC = () => {
   return (
-    <Box>
+    <OakBox>
       <OakHeading tag={"h2"} $font={"heading-7"} $mb="space-between-m">
         Teachers - early access
       </OakHeading>
@@ -19,7 +18,7 @@ const LayoutSiteFooterSignpost: FC = () => {
           help@thenational.academy
         </OwaLink>
       </OakP>
-    </Box>
+    </OakBox>
   );
 };
 

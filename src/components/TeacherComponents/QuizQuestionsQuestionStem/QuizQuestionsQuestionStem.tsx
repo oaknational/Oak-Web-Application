@@ -1,4 +1,10 @@
-import { OakTypography, OakFlex } from "@oaknational/oak-components";
+import {
+  OakTypography,
+  OakFlex,
+  OakHeading,
+  OakSpan,
+  OakBox,
+} from "@oaknational/oak-components";
 
 import {
   shortAnswerTitleFormatter,
@@ -6,6 +12,7 @@ import {
 } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import QuizImage from "@/components/TeacherComponents/QuizImage";
 import {
+  isStemTextObject,
   StemImageObject,
   StemTextObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
@@ -20,26 +27,32 @@ export const QuizQuestionsQuestionStem = ({
   showIndex?: boolean;
 }) => {
   const displayNumber = `Q${index + 1}.`;
+  const questionText =
+    questionStem[0] &&
+    isStemTextObject(questionStem[0]) &&
+    questionStem[0].text;
   return (
     <OakFlex $flexDirection={"column"} $gap="all-spacing-1">
-      <OakFlex key="stem-header">
-        {showIndex && (
-          <OakTypography
-            $font={["body-2-bold", "body-1-bold"]}
-            $mr="space-between-xs"
-          >
-            {displayNumber}
-          </OakTypography>
-        )}
-        {questionStem[0]?.type === "text" && (
-          <OakTypography
-            key={`q-${displayNumber}-stem-element-0`}
-            $font={["body-2-bold", "body-1-bold"]}
-          >
-            {shortAnswerTitleFormatter(removeMarkdown(questionStem[0].text))}
-          </OakTypography>
-        )}
-      </OakFlex>
+      <OakHeading
+        key={`q-${displayNumber}-stem-element-0`}
+        $font={["body-2-bold", "body-1-bold"]}
+        tag="h4"
+      >
+        <OakFlex key="stem-header">
+          {(showIndex || questionText) && (
+            <>
+              {showIndex && (
+                <OakSpan $mr="space-between-xs">{displayNumber}</OakSpan>
+              )}
+              {questionText && (
+                <OakBox>
+                  {shortAnswerTitleFormatter(removeMarkdown(questionText))}
+                </OakBox>
+              )}
+            </>
+          )}
+        </OakFlex>
+      </OakHeading>
 
       {questionStem.map((stemItem, i) => {
         if (stemItem.type === "text" && i > 0) {

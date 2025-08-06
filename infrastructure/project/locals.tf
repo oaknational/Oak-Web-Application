@@ -45,14 +45,28 @@ locals {
     ]
   ])
 
+  sensitive_env_vars = {
+    shared = {}
+    prod = {
+      CLERK_SECRET_KEY                      = var.clerk_secret_key_prod
+      GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT = var.google_secret_manager_service_account_prod
+      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY     = var.next_public_clerk_publishable_key_prod
+    }
+    preview = {
+      CLERK_SECRET_KEY                      = var.clerk_secret_key_preview
+      GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT = var.google_secret_manager_service_account_preview
+      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY     = var.next_public_clerk_publishable_key_preview
+    }
+  }
+
   sensitive_vars = flatten([
     for group, target in local.env_groups : [
-      for key, value in var.sensitive_env_vars[group] : {
+      for key, value in local.sensitive_env_vars[group] : {
         key       = key
         value     = value
         target    = target
         sensitive = true
-      }
+      } if value != null
     ]
   ])
 

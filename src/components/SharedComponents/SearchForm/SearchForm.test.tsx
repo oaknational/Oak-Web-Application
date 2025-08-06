@@ -11,8 +11,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const handleSubmit = jest.fn();
 
-const providers = { theme: {} };
-const render = renderWithProviders(providers);
+const render = renderWithProviders();
 const searchJourneyInitiated = jest.fn();
 const searchAttempted = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics.ts", () => ({
@@ -34,17 +33,17 @@ describe("<SearchForm />", () => {
   });
 
   it("renders", () => {
-    const { getByRole } = render(
+    render(
       <SearchForm
         searchContext="homepage"
-        placeholderText=""
+        placeholderText="Search by keyword or topic"
         searchTerm=""
         handleSubmit={handleSubmit}
         analyticsSearchSource={"homepage search box"}
       />,
     );
-    const button = getByRole("button");
-    expect(button).toBeInTheDocument();
+    const input = screen.getByPlaceholderText("Search by keyword or topic");
+    expect(input).toBeInTheDocument();
   });
 
   it("typing text and clicking button submit is handled correctly", async () => {
@@ -64,7 +63,7 @@ describe("<SearchForm />", () => {
     await user.click(searchField);
     await user.keyboard(searchTerm);
 
-    const searchButton = getByRole("button");
+    const searchButton = getByRole("button", { name: "submit" });
     await user.click(searchButton);
 
     expect(handleSubmit).toHaveBeenCalledWith({ searchTerm });
@@ -88,7 +87,7 @@ describe("<SearchForm />", () => {
     await user.click(searchField);
     await user.keyboard(addedText);
 
-    const searchButton = getByRole("button");
+    const searchButton = getByRole("button", { name: "submit" });
     await user.click(searchButton);
 
     expect(handleSubmit).toHaveBeenCalledWith({
