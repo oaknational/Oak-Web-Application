@@ -1,19 +1,19 @@
 import { FC } from "react";
 import {
+  OakFlex,
   OakBox,
   OakHandDrawnHR,
   OakTypography,
+  OakColorToken,
 } from "@oaknational/oak-components";
 
-import { OakColorName } from "@/styles/theme";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly/";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Tag from "@/components/SharedComponents/TagPromotional";
 import { ResolveOakHrefProps } from "@/common-lib/urls";
 
 export type HomePageBannerProps = {
-  background: OakColorName;
+  background: OakColorToken;
   newText: string;
   ctaText: string;
 } & ResolveOakHrefProps;
@@ -25,27 +25,31 @@ const HomePageBanner: FC<HomePageBannerProps> = ({
   ...linkProps
 }) => (
   <OakBox role="banner">
-    <Flex
+    <OakFlex
       $background={background}
       $justifyContent={["center"]}
       $alignItems={"center"}
-      $pv={8}
-      $ph={[8, 10]}
+      $pv={"inner-padding-xs"}
+      $ph={["inner-padding-xs", "inner-padding-s"]}
     >
-      <Flex
+      <OakFlex
         $alignItems={"center"}
         $flexWrap={"wrap"}
-        $gap={[4, 40]}
+        $gap={["all-spacing-1", "all-spacing-8"]}
         $flexDirection={["column", "row"]}
         $justifyContent={"center"}
-        $pv={0}
+        $pv={"inner-padding-none"}
       >
-        <Flex $alignItems={"center"} $gap={[0, 4]} $minWidth={["fit-content"]}>
+        <OakFlex
+          $alignItems={"center"}
+          $gap={["all-spacing-0", "all-spacing-1"]}
+          $minWidth={["fit-content"]}
+        >
           <Tag aria-hidden="true" size={"small"} />
           <OakTypography $font={["body-3", "body-2"]}>
             <ScreenReaderOnly>New&nbsp;</ScreenReaderOnly> {newText}
           </OakTypography>
-        </Flex>
+        </OakFlex>
         <ButtonAsLink
           $ml={[20, 0]}
           {...linkProps}
@@ -57,8 +61,8 @@ const HomePageBanner: FC<HomePageBannerProps> = ({
           size={"medium"}
           $mh={0}
         />
-      </Flex>
-    </Flex>
+      </OakFlex>
+    </OakFlex>
     <OakBox $background={"lemon"} $height={"all-spacing-1"}>
       <OakHandDrawnHR hrColor={"black"} $height={"all-spacing-1"} />
     </OakBox>

@@ -1,3 +1,121 @@
+# [1.827.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.826.1...v1.827.0) (2025-08-06)
+
+
+### Features
+
+* hide share with pupils button when content is copyrighted ([7de7b3c](https://github.com/oaknational/Oak-Web-Application/commit/7de7b3c8a17104645f7ac4ea370d92f4f51acea8))
+
+## [1.826.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.826.0...v1.826.1) (2025-08-06)
+
+
+### Bug Fixes
+
+* keystage keypad heading accessibility ([e0e00b4](https://github.com/oaknational/Oak-Web-Application/commit/e0e00b40ed476860ef511c384e4ca72fc9c3246b))
+
+# [1.826.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.825.0...v1.826.0) (2025-08-06)
+
+
+### Features
+
+* implement auth check on sub routes ([27e9d24](https://github.com/oaknational/Oak-Web-Application/commit/27e9d246c776f91837405087eb622905ee030db7))
+* implement authentication check and redirect in onboarding page ([847025b](https://github.com/oaknational/Oak-Web-Application/commit/847025be2de61590b0d4072070ed77cefbe368b4))
+
+# [1.825.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.824.0...v1.825.0) (2025-08-06)
+
+
+### Bug Fixes
+
+* remove pa11y url for taken down lessons ([9cf44cc](https://github.com/oaknational/Oak-Web-Application/commit/9cf44cc21705ebe2482027db45d4a2d5d0401c0a))
+* use correct header key for country code in vercel headers ([cd6f45c](https://github.com/oaknational/Oak-Web-Application/commit/cd6f45ccd8495537f6d8f9d69f118a1f016efb99))
+
+
+### Features
+
+* add additional error data ([5c751d6](https://github.com/oaknational/Oak-Web-Application/commit/5c751d6f7a6681d08bf87185a57e83f708d21a6a))
+
+# [1.824.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.823.0...v1.824.0) (2025-08-05)
+
+
+### Features
+
+* disable button when feature flag enabled and geoblocked ([beedbaa](https://github.com/oaknational/Oak-Web-Application/commit/beedbaaae89c471ba8c87a4b8b38ef5303c24146))
+
+# [1.823.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.822.1...v1.823.0) (2025-08-05)
+
+
+### Bug Fixes
+
+* added missing Heading.deprecated to old-components script ([ca19449](https://github.com/oaknational/Oak-Web-Application/commit/ca19449a5408dc9014882a3f30731ad19d2aa80a))
+* dont pass ref to oak input with label from role selection other ([df570d0](https://github.com/oaknational/Oak-Web-Application/commit/df570d0c1f6a769a77bda466af65d36ecc4a0636))
+* ensure OakBox in subjectphasepicker uses % width ([7f06dfe](https://github.com/oaknational/Oak-Web-Application/commit/7f06dfe91ed3d4ecce5808b8e80285f5e1d09467))
+* remove ref passed to oak input in manual school entry ([73c50f3](https://github.com/oaknational/Oak-Web-Application/commit/73c50f32cdb207664443489fe827a41c33bb7f9e))
+* remove unused prop ([2758710](https://github.com/oaknational/Oak-Web-Application/commit/27587106332e12148b4e0023ae341b517f98eedb))
+* render jaunty angle labels as label elements in downloads forms ([9ab240b](https://github.com/oaknational/Oak-Web-Application/commit/9ab240bcb553bd0061640dae075c75f0533d9d68))
+* update snaps ([703e8c9](https://github.com/oaknational/Oak-Web-Application/commit/703e8c9c2abad2ff7775b47386b9b2e265323e45))
+* used style prop and fixed max-height on accordion for css animation to work ([4418f06](https://github.com/oaknational/Oak-Web-Application/commit/4418f0607b43822fb25b864497867f06683ca78d))
+* zindex of school picker ([7637387](https://github.com/oaknational/Oak-Web-Application/commit/76373870fb358ca8331c2f9fcd82f6c9eef46f44))
+
+
+### Features
+
+* .../SharedComponents/Button to <OakTertiaryButton/> in <CurricSuccessMessage/> ([8e175cf](https://github.com/oaknational/Oak-Web-Application/commit/8e175cf66aa913cfd0531bc0f68785d9c590a37e))
+* <ButtonAsLink/> to <OakTertiaryButton/> in lesson downloads ([defb806](https://github.com/oaknational/Oak-Web-Application/commit/defb80627e09d306a1afde4dbed27c2b40b34f13))
+* add component for oak input with label ([118d070](https://github.com/oaknational/Oak-Web-Application/commit/118d07054b95ccac2b7180f1da09f7671f95f97e))
+* added old-component script ready for hack day ([8c546e8](https://github.com/oaknational/Oak-Web-Application/commit/8c546e863c4df40f93a4ae91d12093dc4a1c1808))
+* change padding token for max width ([fceb682](https://github.com/oaknational/Oak-Web-Application/commit/fceb682467fc37b30177ca16075e5c8c48f8fb83))
+* remove box ([e7246ec](https://github.com/oaknational/Oak-Web-Application/commit/e7246ec0f741e2c5024f8674ff9cd4613eb59c15))
+* remove input import for props in autocomplete ([8027e8d](https://github.com/oaknational/Oak-Web-Application/commit/8027e8d7ccafd8d3d2bac6896241abc030da8138))
+* replace button with oakPrimaryButton in search form ([15fc5fe](https://github.com/oaknational/Oak-Web-Application/commit/15fc5fe76aa2cebd53a9e39a14c4ceccf7a7e914))
+* replace curriculum download school picker with oak components version ([3427c94](https://github.com/oaknational/Oak-Web-Application/commit/3427c9465363ea158cdd056defb8e91e8e5de709))
+* replace email input for downloads with oak text input ([ea6c6a7](https://github.com/oaknational/Oak-Web-Application/commit/ea6c6a71d4ee0bd992bfa94179559ea4fa8d5a44))
+* replace input in search form with oak text input ([218d0c1](https://github.com/oaknational/Oak-Web-Application/commit/218d0c18c374cf27c44e49e2c34fab89a9e949bf))
+* replace onboarding manual school input with oak input with label ([a8fd045](https://github.com/oaknational/Oak-Web-Application/commit/a8fd045188f3a89e20922079bdd712a8d47ce782))
+* update school picker to use oak text input ([3f93d4c](https://github.com/oaknational/Oak-Web-Application/commit/3f93d4c920d8e4fc2385be300863d3c3a35fd8be))
+* updated <ButtonAsLink/> to <OakPrimaryButton/> in /support-your-team ([d785dc0](https://github.com/oaknational/Oak-Web-Application/commit/d785dc04f751ddd4956664bab013c8b71de514a0))
+* use oak input with label in onboarding role selection ([a0815b7](https://github.com/oaknational/Oak-Web-Application/commit/a0815b76c393d3f17b4bbdd1916a7b27ea6138a5))
+
+## [1.822.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.822.0...v1.822.1) (2025-08-05)
+
+
+### Bug Fixes
+
+* changed NEXT_SENTRY_ENABLED -> NEXT_PUBLIC_SENTRY_ENABLED ([fc6ceb4](https://github.com/oaknational/Oak-Web-Application/commit/fc6ceb4f828fd40888368f9b7accdaaac4d7c2bc))
+* disable sentry in error reporter ([5eeb19c](https://github.com/oaknational/Oak-Web-Application/commit/5eeb19c3cf31b819f274abb765737a8cda6dde0f))
+* use getBrowserConfig("sentryEnabled") instead ([6086443](https://github.com/oaknational/Oak-Web-Application/commit/60864430a95d524a1e0ed07c8aa899bad674dee3))
+
+# [1.822.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.821.0...v1.822.0) (2025-08-04)
+
+
+### Features
+
+* refactor sensitive env vars to individual variables for easier management ([382a578](https://github.com/oaknational/Oak-Web-Application/commit/382a578689ebb830eccd2b69377234d581372416))
+
+# [1.821.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.820.0...v1.821.0) (2025-08-04)
+
+
+### Bug Fixes
+
+* unit list accessibility issues ([d10cb0d](https://github.com/oaknational/Oak-Web-Application/commit/d10cb0d6202aac5db86410b90386c88c277eb18b))
+
+
+### Features
+
+* update oak-components for unit list optionality item ([0a7e760](https://github.com/oaknational/Oak-Web-Application/commit/0a7e76080bb19d121d8211b017da4c6d83df3d83))
+
+# [1.820.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.819.0...v1.820.0) (2025-08-04)
+
+
+### Bug Fixes
+
+* make sure all question elements are wrapped in a single element ([cecdd19](https://github.com/oaknational/Oak-Web-Application/commit/cecdd1967c59d7f6aea994cacb9f0eae2bd3451b))
+* reinstate proper spacing between question number and title ([94516dd](https://github.com/oaknational/Oak-Web-Application/commit/94516dd2c961e048131bfe265c85d442e6a633ea))
+* update quiz questions in teacher view to use heading instead of p tags ([17e8793](https://github.com/oaknational/Oak-Web-Application/commit/17e8793358484e1ea372da556eaee7db8418a68a))
+
+
+### Features
+
+* wrap question number and text in a single heading element when present ([2dc1924](https://github.com/oaknational/Oak-Web-Application/commit/2dc19246d7042407cc9867a56405d37299f280cb))
+
 # [1.819.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.818.0...v1.819.0) (2025-08-04)
 
 

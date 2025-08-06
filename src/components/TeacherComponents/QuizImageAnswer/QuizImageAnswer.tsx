@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { VisuallyHidden } from "react-aria";
-import { OakIcon } from "@oaknational/oak-components";
+import { OakFlex, OakIcon } from "@oaknational/oak-components";
 
 import {
   calcDims,
@@ -9,7 +9,6 @@ import {
 
 import QuizOakImage from "@/components/TeacherComponents/QuizOakImage";
 import { StemImageObject } from "@/node-lib/curriculum-api-2023/shared.schema";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 type ImageProps = {
   src: StemImageObject["imageObject"];
@@ -21,19 +20,19 @@ const QuizImageAnswer: FC<ImageProps> = ({ src, alt, answerIsCorrect }) => {
   const [dims, setDims] = useState(calcDims(src.width, src.height));
   const containerBackgroundColor = answerIsCorrect ? "lemon50" : "white";
   return (
-    <Flex
-      $borderRadius={8}
+    <OakFlex
+      $borderRadius={"border-radius-m2"}
       $height={"100%"}
-      $pa={8}
+      $pa={"inner-padding-xs"}
       $background={containerBackgroundColor}
     >
       {answerIsCorrect && (
         <VisuallyHidden>Correct Answer: {removeMarkdown(alt)}</VisuallyHidden>
       )}
-      <Flex
+      <OakFlex
         $background={containerBackgroundColor}
         $alignItems={"center"}
-        $minWidth={32}
+        $minWidth={"all-spacing-7"}
         aria-hidden
       >
         {answerIsCorrect && (
@@ -44,23 +43,27 @@ const QuizImageAnswer: FC<ImageProps> = ({ src, alt, answerIsCorrect }) => {
             $height={"all-spacing-6"}
           />
         )}
-      </Flex>
-      <Flex $ba={1} $background={"white"} $borderRadius={8}>
-        <Flex
-          $ph={10}
-          $pv={16}
+      </OakFlex>
+      <OakFlex
+        $ba={"border-solid-s"}
+        $background={"white"}
+        $borderRadius={"border-radius-m2"}
+      >
+        <OakFlex
+          $ph={"inner-padding-s"}
+          $pv={"inner-padding-m"}
           $overflow={"hidden"}
           $position={"relative"}
-          $minWidth={dims.width ? undefined : 96}
-          $minHeight={dims.height ? undefined : 96}
+          $minWidth={dims.width ? undefined : "all-spacing-14"}
+          $minHeight={dims.height ? undefined : "all-spacing-14"}
           $justifyContent={"center"}
           $borderColor={"grey50"}
-          $borderRadius={8}
+          $borderRadius={"border-radius-m2"}
         >
           <QuizOakImage src={src} dims={dims} setDims={setDims} alt={alt} />
-        </Flex>
-      </Flex>
-    </Flex>
+        </OakFlex>
+      </OakFlex>
+    </OakFlex>
   );
 };
 
