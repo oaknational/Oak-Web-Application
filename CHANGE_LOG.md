@@ -1,3 +1,16 @@
+# [1.825.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.824.0...v1.825.0) (2025-08-06)
+
+
+### Bug Fixes
+
+* remove pa11y url for taken down lessons ([9cf44cc](https://github.com/oaknational/Oak-Web-Application/commit/9cf44cc21705ebe2482027db45d4a2d5d0401c0a))
+* use correct header key for country code in vercel headers ([cd6f45c](https://github.com/oaknational/Oak-Web-Application/commit/cd6f45ccd8495537f6d8f9d69f118a1f016efb99))
+
+
+### Features
+
+* add additional error data ([5c751d6](https://github.com/oaknational/Oak-Web-Application/commit/5c751d6f7a6681d08bf87185a57e83f708d21a6a))
+
 # [1.824.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.823.0...v1.824.0) (2025-08-05)
 
 
