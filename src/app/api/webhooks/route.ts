@@ -1,6 +1,11 @@
 import { Webhook } from "svix";
 import { headers } from "next/headers";
-import { WebhookEvent } from "@clerk/nextjs/server";
+import {
+  clerkClient,
+  SessionWebhookEvent,
+  User,
+  WebhookEvent,
+} from "@clerk/nextjs/server";
 import { NextRequest } from "next/server";
 
 import getServerConfig from "@/node-lib/getServerConfig";
@@ -73,6 +78,27 @@ export async function POST(req: NextRequest) {
       });
     }
   }
-
+  if (id && evt.type === "session.created") {
+    await handleSessionCreatedEvent(evt);
+  }
   return new Response("Webhook received", { status: 200 });
+}
+
+async function handleSessionCreatedEvent(evt: SessionWebhookEvent) {
+  function getIsTargetUser(user: User) {
+    //  if user.createdAt is between 21/07/20205 and 06/08/20205
+    const createdAt = new Date(user.createdAt);
+    const startDate = new Date("2025-07-21");
+    const endDate = new Date("2025-08-06");
+    return createdAt >= startDate && createdAt <= endDate;
+  }
+
+  const client = await clerkClient();
+  const user = await client.users.getUser(evt.data.user_id);
+  const isTargetUser = getIsTargetUser(user);
+  if (isTargetUser) {
+    client.users.updateUser(user.id, {
+      unsafeMetadata: { requiresGeoLocation: true },
+    });
+  }
 }
