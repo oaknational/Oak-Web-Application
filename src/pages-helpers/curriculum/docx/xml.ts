@@ -1,10 +1,20 @@
-import { js2xml, xml2js } from "xml-js";
+import { js2xml, json2xml, xml2js } from "xml-js";
 import type { Element } from "xml-js";
 
 export function xmlRootToJson(xmlData: string) {
   return xml2js(xmlData, {
     compact: false,
     captureSpacesBetweenElements: false,
+  });
+}
+
+export function prettyFormat(input: string) {
+  return json2xml(JSON.stringify(xmlRootToJson(input) as Element), {
+    spaces: 2,
+    compact: false,
+    indentText: true,
+    fullTagEmptyElement: true,
+    indentAttributes: true,
   });
 }
 

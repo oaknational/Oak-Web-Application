@@ -3,14 +3,21 @@ import { cdata, safeXml } from "@ooxml-tools/xml";
 
 import { Unit } from "@/utils/curriculum/types";
 
-export function buildUnitCell<T extends Record<string, string>>(
-  cellStyleIndexMap: T,
-  x: number,
-  y: number,
-  unit: Unit,
-  unitIndex: number,
-  prefix?: string,
-) {
+export function buildUnitCell<T extends Record<string, string>>({
+  cellStyleIndexMap,
+  x,
+  y,
+  unit,
+  unitIndex,
+  prefix,
+}: {
+  cellStyleIndexMap: T;
+  x: number;
+  y: number;
+  unit: Unit;
+  unitIndex: number;
+  prefix?: string;
+}) {
   return safeXml`
     <c
       r="${cartesianToExcelCoords([x, y])}"
