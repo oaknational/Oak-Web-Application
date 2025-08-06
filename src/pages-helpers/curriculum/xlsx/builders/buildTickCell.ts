@@ -1,7 +1,9 @@
 import { cartesianToExcelCoords } from "@ooxml-tools/units";
 import { cdata, safeXml } from "@ooxml-tools/xml";
 
-export function buildTickCell<T extends Record<string, string>>(
+import { XmlIndexMap } from "../helper";
+
+export function buildTickCell<T extends XmlIndexMap>(
   cellStyleIndexMap: T,
   hasNcCriteria: boolean,
   x: number,

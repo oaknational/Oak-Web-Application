@@ -2,12 +2,12 @@ import {
   OakBox,
   OakFieldError,
   OakFlex,
+  OakFlexProps,
   OakHeading,
   OakLI,
   OakP,
   OakPrimaryButton,
   OakUL,
-  OakFlexProps,
 } from "@oaknational/oak-components";
 import { FormEvent, useId, useState } from "react";
 import styled from "styled-components";
@@ -18,7 +18,7 @@ import Terms from "../OakComponentsKitchen/Terms";
 
 import { submitSchema } from "./schema";
 import { DownloadType, School, runSchema } from "./helper";
-import { CurriculumResourcesSelector } from "./CurriculumResourcesSelector";
+import { CurriculumDownloadSelection } from "./CurriculumDownloadSelection";
 
 import spacing, { SpacingProps } from "@/styles/utils/spacing";
 import ResourcePageDetailsCompleted from "@/components/TeacherComponents/ResourcePageDetailsCompleted";
@@ -100,10 +100,10 @@ export default function SignedOutFlow({
       $gap={["space-between-m2", "space-between-l"]}
       $flexDirection={["column", "row"]}
     >
-      <OakBox $width={["100%", "all-spacing-21"]} $textAlign={"left"}>
-        <CurriculumResourcesSelector
+      <OakBox $width={["100%", "all-spacing-20"]} $textAlign={"left"}>
+        <CurriculumDownloadSelection
           downloadTypes={downloadTypes}
-          onChangeDownloadTypes={onChangeDownloadTypes}
+          onChange={onChangeDownloadTypes}
         />
       </OakBox>
 

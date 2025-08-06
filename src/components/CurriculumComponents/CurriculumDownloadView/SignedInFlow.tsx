@@ -5,7 +5,7 @@ import { useUser } from "@clerk/nextjs";
 import Terms from "../OakComponentsKitchen/Terms";
 
 import { DOWNLOAD_TYPES, DownloadType, School } from "./helper";
-import { CurriculumResourcesSelector } from "./CurriculumResourcesSelector";
+import { CurriculumDownloadSelection } from "./CurriculumDownloadSelection";
 
 import { CurriculumDownloadViewProps } from ".";
 
@@ -68,10 +68,10 @@ export default function SignedInFlow({ onSubmit, schools }: SignedInFlowProps) {
       $flexDirection="column"
       $alignItems={"flex-start"}
     >
-      <OakBox $width={["100%", "all-spacing-21"]} $textAlign={"left"}>
-        <CurriculumResourcesSelector
+      <OakBox $width={["100%", "all-spacing-20"]} $textAlign={"left"}>
+        <CurriculumDownloadSelection
           downloadTypes={downloadTypes}
-          onChangeDownloadTypes={setDownloadTypes}
+          onChange={setDownloadTypes}
         />
         <OakBox $mt="space-between-m">
           <Terms />

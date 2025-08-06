@@ -1,9 +1,11 @@
 import { cartesianToExcelCoords } from "@ooxml-tools/units";
 import { cdata, safeXml } from "@ooxml-tools/xml";
 
+import { XmlIndexMap } from "../helper";
+
 import { UnitOption } from "@/utils/curriculum/types";
 
-export function buildUnitOptionCell<T extends Record<string, string>>({
+export function buildUnitOptionCell<T extends XmlIndexMap>({
   cellStyleIndexMap,
   x,
   y,

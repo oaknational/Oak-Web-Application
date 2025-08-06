@@ -1,7 +1,9 @@
 import { cartesianToExcelCoords } from "@ooxml-tools/units";
 import { cdata, safeXml } from "@ooxml-tools/xml";
 
-export function buildNcCriteriaText<T extends Record<string, string>>({
+import { XmlIndexMap } from "../helper";
+
+export function buildNcCriteriaText<T extends XmlIndexMap>({
   cellStyleIndexMap,
   nationalCurricText,
   x,
