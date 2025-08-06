@@ -1,15 +1,15 @@
 import { FC } from "react";
 import {
+  OakFlex,
   OakMaxWidth,
   OakHandDrawnHR,
   OakBox,
+  OakColorToken,
 } from "@oaknational/oak-components";
 
 import Breadcrumbs, {
   Breadcrumb,
 } from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
-import { OakColorName } from "@/styles/theme";
 
 /**
  * This is a wrapper for the headers on the lesson overview and listing pages.
@@ -19,14 +19,14 @@ import { OakColorName } from "@/styles/theme";
 export interface LessonHeaderWrapperProps {
   children?: React.ReactNode;
   breadcrumbs: Breadcrumb[];
-  background: OakColorName;
+  background: OakColorToken;
 }
 
 export const LessonHeaderWrapper: FC<LessonHeaderWrapperProps> = (props) => {
   const { children, breadcrumbs, background } = props;
 
   return (
-    <Flex $flexGrow={1} $background={background}>
+    <OakFlex $flexGrow={1} $background={background}>
       <OakMaxWidth
         $ph={"inner-padding-s"}
         $mb={["space-between-m2", "space-between-xl"]}
@@ -42,6 +42,6 @@ export const LessonHeaderWrapper: FC<LessonHeaderWrapperProps> = (props) => {
         />
         {children}
       </OakMaxWidth>
-    </Flex>
+    </OakFlex>
   );
 };

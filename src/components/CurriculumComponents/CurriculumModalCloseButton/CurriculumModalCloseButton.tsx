@@ -1,16 +1,16 @@
 import React, { FC } from "react";
 import styled from "styled-components";
+import { OakBox, oakBoxCss, OakBoxProps } from "@oaknational/oak-components";
 
-import Box, { box, BoxProps } from "@/components/SharedComponents/Box";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 
-type CurriculumModalCloseButtonProps = BoxProps & {
+type CurriculumModalCloseButtonProps = OakBoxProps & {
   onClose: () => void;
   ariaLabel?: string;
 };
 
-const CurriculumModalCloseButtonBox = styled(Box)<BoxProps>`
-  ${box}
+const CurriculumModalCloseButtonBox = styled(OakBox)<OakBoxProps>`
+  ${oakBoxCss}
 `;
 export const CurriculumModalCloseButton: FC<
   CurriculumModalCloseButtonProps

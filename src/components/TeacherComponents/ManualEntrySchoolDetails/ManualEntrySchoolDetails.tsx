@@ -10,7 +10,7 @@ import { OakBox, OakFlex, OakLink } from "@oaknational/oak-components";
 
 import { SchoolSelectFormProps } from "../OnboardingForm/OnboardingForm.schema";
 
-import Input from "@/components/SharedComponents/Input";
+import { OakInputWithLabel } from "@/components/SharedComponents/OakInputWithLabel/OakInputWithLabel";
 
 type ManualEntrySchoolDetailsProps = {
   setValue: UseFormSetValue<SchoolSelectFormProps>;
@@ -31,6 +31,7 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
   return (
     <OakFlex
       $flexDirection={"column"}
+      $gap="space-between-l"
       $mt={
         "manualSchoolName" in hasErrors
           ? "space-between-none"
@@ -51,11 +52,10 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
           };
 
           return (
-            <Input
+            <OakInputWithLabel
               label="School name"
               placeholder="Type school name"
-              value={value ?? ""}
-              isRequired
+              name="manualSchoolName"
               required
               id={"school-name"}
               onBlur={onBlurHandler}
@@ -65,7 +65,6 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
                   ? "Enter school name"
                   : undefined
               }
-              $mb={"schoolAddress" in hasErrors ? 16 : 32}
             />
           );
         }}
@@ -86,11 +85,10 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
           };
 
           return (
-            <Input
+            <OakInputWithLabel
               label="School address"
               placeholder="Type school address"
-              value={value ?? ""}
-              isRequired
+              name="schoolAddress"
               required
               id={"school-address"}
               onBlur={onBlurHandler}

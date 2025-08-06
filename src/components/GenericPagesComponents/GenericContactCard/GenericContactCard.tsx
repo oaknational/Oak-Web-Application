@@ -6,6 +6,7 @@ import {
   OakTypography,
   OakHeading,
   OakFlex,
+  OakPrimaryButton,
 } from "@oaknational/oak-components";
 
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
@@ -14,7 +15,7 @@ import { PortableTextJSON } from "@/common-lib/cms-types";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import Card from "@/components/SharedComponents/Card";
-import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
+import { resolveOakHref } from "@/common-lib/urls";
 
 const genericContactCardPortableTextComponents: PortableTextComponents = {
   block: {
@@ -61,7 +62,12 @@ const GenericContactCard: FC<GenericContactCardProps> = (props) => {
               value={props.infoPortableText}
             />
             <OakFlex $mb={["space-between-m2", "space-between-none"]}>
-              <ButtonAsLink label={"Contact us"} page="contact" />
+              <OakPrimaryButton
+                element="a"
+                href={resolveOakHref({ page: "contact" })}
+              >
+                Contact us
+              </OakPrimaryButton>
             </OakFlex>
           </Card>
         </OakGridArea>

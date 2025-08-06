@@ -1,5 +1,6 @@
 import React from "react";
 import { GetStaticPathsResult, GetStaticProps, NextPage } from "next";
+import { OakBox, OakMaxWidth } from "@oaknational/oak-components";
 
 import { getSeoProps } from "@//browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/SharedComponents/AppLayout";
@@ -8,7 +9,6 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
-import Box from "@/components/SharedComponents/Box";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import {
   KeyStageData,
@@ -16,7 +16,6 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/subjectListing/subjectListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
 import KeyStageKeypad from "@/components/SharedComponents/KeyStageKeypad";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { getCombinedSubjects } from "@/pages-helpers/teacher/subject-listing-page/getCombinedSubjects";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 
@@ -42,7 +41,6 @@ export type SubjectListingPageProps = {
 
 const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
   const { keyStageSlug, keyStageTitle, keyStages } = props;
-  const containerHeight = keyStages.length > 4 ? 172 : 120;
   const { track } = useAnalytics();
 
   const metaDescriptionSlug =
@@ -60,8 +58,12 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
       }}
       $background="white"
     >
-      <Box $background={"lavender50"} $height={[containerHeight, 140]}>
-        <MaxWidth $ph={12} $maxWidth={[480, 840, 1280]} $pv={32}>
+      <OakBox $background={"lavender50"}>
+        <OakMaxWidth
+          $ph="inner-padding-s"
+          $maxWidth={["all-spacing-21", "all-spacing-23", "all-spacing-24"]}
+          $pv="inner-padding-xl2"
+        >
           <KeyStageKeypad
             keyStages={keyStages}
             title="Select key stage"
@@ -82,8 +84,8 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
               })
             }
           />
-        </MaxWidth>
-      </Box>
+        </OakMaxWidth>
+      </OakBox>
       <SubjectListingPage
         subjects={props.subjects}
         keyStageSlug={keyStageSlug}
