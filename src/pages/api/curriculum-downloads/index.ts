@@ -2,7 +2,7 @@ import { isUndefined, omitBy } from "lodash";
 import { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
 
-import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
+import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
 import { getFilename } from "@/utils/curriculum/formatting";
 import docx from "@/pages-helpers/curriculum/docx";
 import xlsxNationalCurriculum from "@/pages-helpers/curriculum/xlsx";
