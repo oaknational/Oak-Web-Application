@@ -161,7 +161,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     schoolId: undefined,
     schoolName: undefined,
     email: undefined,
-    downloadType: "curriculum-plans",
+    downloadTypes: ["curriculum-plans"],
     termsAndConditions: false,
     schoolNotListed: false,
     schools: [],
@@ -187,7 +187,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
         schoolId: localStorageData.schoolId,
         schoolName: localStorageData.schoolName,
         email: localStorageData.email,
-        downloadType: "curriculum-plans",
+        downloadTypes: ["curriculum-plans"],
         termsAndConditions: localStorageData.termsAndConditions,
         schoolNotListed: localStorageData.schoolNotListed,
         schools: [],
@@ -241,16 +241,18 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   const onSubmit = async (data: CurriculumDownloadViewData) => {
     setIsSubmitting(true);
 
-    const downloadPath = createCurriculumDownloadsUrl(
-      data.downloadType,
-      "published",
-      mvRefreshTime,
-      slugs.subjectSlug,
-      slugs.phaseSlug,
-      slugs.ks4OptionSlug,
-      tierSelected,
-      childSubjectSelected,
-    );
+    const downloadPaths = data.downloadTypes.map((downloadType) => {
+      return createCurriculumDownloadsUrl(
+        downloadType,
+        "published",
+        mvRefreshTime,
+        slugs.subjectSlug,
+        slugs.phaseSlug,
+        slugs.ks4OptionSlug,
+        tierSelected,
+        childSubjectSelected,
+      );
+    });
 
     const schoolData = {
       schoolId: data.schoolId!,
@@ -262,7 +264,9 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     saveDownloadsDataToLocalStorage(schoolData);
 
     try {
-      await downloadFileFromUrl(downloadPath);
+      for (const downloadPath of downloadPaths) {
+        await downloadFileFromUrl(downloadPath);
+      }
     } finally {
       await trackCurriculumDownload(
         data,

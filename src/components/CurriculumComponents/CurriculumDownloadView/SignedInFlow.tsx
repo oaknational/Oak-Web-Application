@@ -34,7 +34,9 @@ type SignedInFlowProps = CurriculumDownloadViewProps & {
 };
 export default function SignedInFlow({ onSubmit, schools }: SignedInFlowProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [downloadType, setDownloadType] = useState(DOWNLOAD_TYPES[0]!.id);
+  const [downloadTypes, setDownloadTypes] = useState(() =>
+    DOWNLOAD_TYPES.map(({ id }) => id),
+  );
 
   const onDownload = async () => {
     try {
@@ -49,7 +51,7 @@ export default function SignedInFlow({ onSubmit, schools }: SignedInFlowProps) {
             undefined,
           schoolName: hubspotContact.schoolName ?? undefined,
           email: hubspotContact?.email,
-          downloadType: downloadType,
+          downloadTypes: downloadTypes,
           termsAndConditions: true,
           schoolNotListed: !hubspotContact.schoolId,
         });
@@ -69,8 +71,8 @@ export default function SignedInFlow({ onSubmit, schools }: SignedInFlowProps) {
     >
       <Box $width={["100%", 510]} $textAlign={"left"}>
         <CurriculumResourcesSelector
-          downloadType={downloadType}
-          onChangeDownloadType={setDownloadType}
+          downloadTypes={downloadTypes}
+          onChangeDownloadTypes={setDownloadTypes}
         />
         <OakBox $mt="space-between-m">
           <Terms />
@@ -79,6 +81,7 @@ export default function SignedInFlow({ onSubmit, schools }: SignedInFlowProps) {
       <OakPrimaryButton
         data-testid="download"
         isLoading={isSubmitting}
+        disabled={downloadTypes.length < 1}
         onClick={onDownload}
         iconName="download"
         isTrailingIcon={true}

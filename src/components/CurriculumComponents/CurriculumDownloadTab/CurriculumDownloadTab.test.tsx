@@ -1,5 +1,7 @@
 import { act, screen } from "@testing-library/react";
 
+import { DownloadType } from "../CurriculumDownloadView/helper";
+
 import CurriculumDownloadTab, { trackCurriculumDownload } from ".";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -263,7 +265,7 @@ describe("trackCurriculumDownload", () => {
           status: "Open",
         },
       ],
-      downloadType: "curriculum-plans" as const,
+      downloadTypes: ["curriculum-plans"] as DownloadType[],
     };
 
     const subjectTitle = "Mathematics";

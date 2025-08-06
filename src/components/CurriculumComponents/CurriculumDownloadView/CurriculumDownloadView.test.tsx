@@ -44,7 +44,7 @@ describe("CurriculumDownloadView", () => {
           },
         ],
         email: "test@example.com",
-        downloadType: "curriculum-plans",
+        downloadTypes: ["curriculum-plans"],
         schoolNotListed: true,
         termsAndConditions: true,
       } as const;
@@ -75,7 +75,7 @@ describe("CurriculumDownloadView", () => {
           },
         ],
         email: "test@example.com",
-        downloadType: "curriculum-plans",
+        downloadTypes: ["curriculum-plans"],
         schoolNotListed: true,
         termsAndConditions: true,
       } as const;
@@ -105,7 +105,7 @@ describe("CurriculumDownloadView", () => {
           },
         ],
         email: undefined,
-        downloadType: "curriculum-plans",
+        downloadTypes: ["curriculum-plans"],
         schoolNotListed: false,
         termsAndConditions: true,
       } as const;
@@ -142,7 +142,7 @@ describe("CurriculumDownloadView", () => {
           },
         ],
         email: undefined,
-        downloadType: "curriculum-plans",
+        downloadTypes: ["curriculum-plans"],
         schoolNotListed: false,
         termsAndConditions: true,
       } as const;
@@ -160,7 +160,7 @@ describe("CurriculumDownloadView", () => {
 
       await waitFor(() => {
         expect(onSubmit).toHaveBeenCalledWith({
-          downloadType: "curriculum-plans",
+          downloadTypes: ["curriculum-plans", "national-curriculum"],
           email: "EMAIL",
           schoolId: "SCHOOL_ID-SCHOOL_NAME",
           schoolName: "SCHOOL_NAME",

@@ -34,7 +34,7 @@ export type CurriculumDownloadViewData = {
   schoolId?: string;
   schoolName?: string;
   email?: string;
-  downloadType: DownloadType;
+  downloadTypes: DownloadType[];
   termsAndConditions?: boolean;
   schoolNotListed?: boolean;
 };
@@ -52,8 +52,8 @@ type SignedOutFlowProps = {
   schools: School[];
   onChange?: (value: CurriculumDownloadViewData) => void;
   onSubmit?: (value: CurriculumDownloadViewData) => void;
-  downloadType: DownloadType;
-  onChangeDownloadType: (newDownloadType: DownloadType) => void;
+  downloadTypes: DownloadType[];
+  onChangeDownloadTypes: (newDownloadType: DownloadType[]) => void;
 };
 export default function SignedOutFlow({
   schools,
@@ -61,8 +61,8 @@ export default function SignedOutFlow({
   onChange,
   onSubmit,
   isSubmitting,
-  downloadType,
-  onChangeDownloadType,
+  downloadTypes,
+  onChangeDownloadTypes,
 }: SignedOutFlowProps) {
   const errorMessageListId = useId();
   const [errors, setErrors] = useState<CurriculumDownloadViewErrors>({});
@@ -84,7 +84,7 @@ export default function SignedOutFlow({
       if (newSubmitValidatioResults.success) {
         onSubmit({
           ...data,
-          downloadType,
+          downloadTypes,
         });
       }
     }
@@ -104,8 +104,8 @@ export default function SignedOutFlow({
     >
       <Box $width={["100%", 510]} $textAlign={"left"}>
         <CurriculumResourcesSelector
-          downloadType={downloadType}
-          onChangeDownloadType={onChangeDownloadType}
+          downloadTypes={downloadTypes}
+          onChangeDownloadTypes={onChangeDownloadTypes}
         />
       </Box>
 
@@ -179,7 +179,7 @@ export default function SignedOutFlow({
                   aria-errormessage={errorMessageListId}
                   isLoading={isSubmitting}
                   type="submit"
-                  disabled={false}
+                  disabled={downloadTypes.length < 1}
                   iconName="download"
                   isTrailingIcon={true}
                 >
