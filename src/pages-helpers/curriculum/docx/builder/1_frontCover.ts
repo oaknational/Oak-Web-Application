@@ -1,10 +1,10 @@
 import { join } from "path";
 
 import { capitalize } from "lodash";
-import { safeXml } from "@ooxml-tools/xml";
+import { cdata, safeXml } from "@ooxml-tools/xml";
 
 import { Slugs } from "..";
-import { cdata, xmlElementToJson } from "../xml";
+import { xmlElementToJson } from "../xml";
 import {
   appendBodyElements,
   cmToEmu,

@@ -75,10 +75,6 @@ export function jsonXmlToXmlString(json: Element): string {
   return output;
 }
 
-export function cdata(input: string | number) {
-  return `<![CDATA[${input}]]>`;
-}
-
 export function cdataJson(input: Element): Element {
   if (input.type !== "text") {
     throw new Error("Expecting text node");

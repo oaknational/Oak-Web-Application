@@ -1,7 +1,6 @@
 import type { Element } from "xml-js";
-import { safeXml } from "@ooxml-tools/xml";
+import { cdata, safeXml } from "@ooxml-tools/xml";
 
-import { cdata } from "../../xml";
 import {
   cmToEmu,
   cmToTwip,

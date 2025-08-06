@@ -1,6 +1,6 @@
-import { safeXml } from "@ooxml-tools/xml";
+import { cdata, safeXml } from "@ooxml-tools/xml";
 
-import { cdata, xmlElementToJson } from "../xml";
+import { xmlElementToJson } from "../xml";
 import {
   appendBodyElements,
   JSZipCached,

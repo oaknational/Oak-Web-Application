@@ -1,5 +1,4 @@
 import {
-  cdata,
   cdataJson,
   collapseFragments,
   createFragment,
@@ -270,13 +269,7 @@ describe("xml", () => {
     });
   });
 
-  describe("cdata", () => {
-    it("should return correct format", () => {
-      expect(cdata("testing")).toEqual(`<![CDATA[testing]]>`);
-    });
-  });
-
-  describe("cdata", () => {
+  describe("cdataJson", () => {
     it("valid should return correct format", () => {
       expect(cdataJson({ type: "text", text: "hello" })).toEqual({
         type: "cdata",

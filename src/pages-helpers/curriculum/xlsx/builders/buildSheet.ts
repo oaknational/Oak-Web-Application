@@ -1,8 +1,7 @@
 import { cartesianToExcelCoords, pxToColumnWidth } from "@ooxml-tools/units";
-import { safeXml } from "@ooxml-tools/xml";
+import { cdata, safeXml } from "@ooxml-tools/xml";
 
 import { BuildNationalCurriculumData } from "..";
-import { cdata } from "../../docx/xml";
 import { getFlatUnits } from "../helper";
 
 import { buildGoToUnitResourceCell } from "./buildGoToUnitResourceCell";
