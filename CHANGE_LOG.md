@@ -1,3 +1,18 @@
+## [1.826.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.826.0...v1.826.1) (2025-08-06)
+
+
+### Bug Fixes
+
+* keystage keypad heading accessibility ([e0e00b4](https://github.com/oaknational/Oak-Web-Application/commit/e0e00b40ed476860ef511c384e4ca72fc9c3246b))
+
+# [1.826.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.825.0...v1.826.0) (2025-08-06)
+
+
+### Features
+
+* implement auth check on sub routes ([27e9d24](https://github.com/oaknational/Oak-Web-Application/commit/27e9d246c776f91837405087eb622905ee030db7))
+* implement authentication check and redirect in onboarding page ([847025b](https://github.com/oaknational/Oak-Web-Application/commit/847025be2de61590b0d4072070ed77cefbe368b4))
+
 # [1.825.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.824.0...v1.825.0) (2025-08-06)
 
 

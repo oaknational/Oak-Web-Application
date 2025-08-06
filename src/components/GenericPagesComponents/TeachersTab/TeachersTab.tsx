@@ -66,6 +66,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                 <KeyStageKeypad
                   keyStages={keyStages}
                   title="View subjects by key stage"
+                  titleTag="h3"
                   trackingOnClick={(
                     filterValue: string,
                     activeFilters: Record<string, string[]>,
