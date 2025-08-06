@@ -85,4 +85,18 @@ describe("QuizQuestionsQuestionStem", () => {
 
     expect(secondaryText).toBeInTheDocument();
   });
+  it("renders question as headings", () => {
+    if (!mcqText) throw new Error("mcqText is null");
+
+    const { getByRole } = renderWithTheme(
+      <QuizQuestionsQuestionStem
+        questionStem={mcqText.questionStem}
+        index={0}
+      />,
+    );
+    const heading = getByRole("heading");
+
+    expect(heading).toBeInTheDocument();
+    expect(heading).toHaveTextContent("Q1.What is a main clause?");
+  });
 });

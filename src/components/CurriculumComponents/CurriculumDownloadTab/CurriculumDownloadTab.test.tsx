@@ -73,9 +73,9 @@ describe("Component Curriculum Download Tab", () => {
 
   if (!DISABLE_DOWNLOADS) {
     test("user can see download form", async () => {
-      const { findByText, findAllByTestId } = renderComponent();
+      const { findByText, findAllByRole } = renderComponent();
       const formHeading = await findByText("Your details");
-      const formInputs = await findAllByTestId("input");
+      const formInputs = await findAllByRole("textbox");
       expect(formHeading).toBeInTheDocument();
       expect(formInputs).toHaveLength(1);
     });
@@ -207,7 +207,7 @@ describe("Downloads tab: unit tests", () => {
       childSubjectSlug,
     } = data;
     const url = createCurriculumDownloadsUrl(
-      "curriculum-plans",
+      ["curriculum-plans"],
       "published",
       mvRefreshTime,
       subjectSlug,
@@ -217,13 +217,13 @@ describe("Downloads tab: unit tests", () => {
       childSubjectSlug,
     );
     expect(url).toEqual(
-      `/api/curriculum-plans/?mvRefreshTime=1721314874829&subjectSlug=science&phaseSlug=secondary&state=published&ks4OptionSlug=aqa&tierSlug=foundation&childSubjectSlug=combined-science`,
+      `/api/curriculum-downloads/?types=curriculum-plans&mvRefreshTime=1721314874829&subjectSlug=science&phaseSlug=secondary&state=published&ks4OptionSlug=aqa&tierSlug=foundation&childSubjectSlug=combined-science`,
     );
   });
 
   test("URL is created properly: English primary", async () => {
     const url = createCurriculumDownloadsUrl(
-      "curriculum-plans",
+      ["curriculum-plans"],
       "published",
       mvRefreshTime,
       "english",
@@ -233,7 +233,7 @@ describe("Downloads tab: unit tests", () => {
       null,
     );
     expect(url).toEqual(
-      `/api/curriculum-plans/?mvRefreshTime=1721314874829&subjectSlug=english&phaseSlug=primary&state=published`,
+      `/api/curriculum-downloads/?types=curriculum-plans&mvRefreshTime=1721314874829&subjectSlug=english&phaseSlug=primary&state=published`,
     );
   });
 });

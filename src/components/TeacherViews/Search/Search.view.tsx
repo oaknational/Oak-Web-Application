@@ -285,7 +285,7 @@ const Search: FC<SearchProps> = (props) => {
                 </OakFlex>
                 <OakFlex $mb="space-between-m2">
                   <MobileFilters
-                    $mt={0}
+                    $mt={"space-between-none"}
                     label="Filters"
                     labelOpened="Close"
                     iconOpened="cross"

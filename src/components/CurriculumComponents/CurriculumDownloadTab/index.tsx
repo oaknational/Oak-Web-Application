@@ -13,6 +13,7 @@ import {
   oakDefaultTheme,
   Tier,
   Subject,
+  OakBox,
 } from "@oaknational/oak-components";
 import { mapKeys, camelCase, capitalize } from "lodash";
 
@@ -30,7 +31,6 @@ import {
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly/ScreenReaderOnly";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import Box from "@/components/SharedComponents/Box";
 import { useFetch } from "@/hooks/useFetch";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import {
@@ -241,18 +241,16 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   const onSubmit = async (data: CurriculumDownloadViewData) => {
     setIsSubmitting(true);
 
-    const downloadPaths = data.downloadTypes.map((downloadType) => {
-      return createCurriculumDownloadsUrl(
-        downloadType,
-        "published",
-        mvRefreshTime,
-        slugs.subjectSlug,
-        slugs.phaseSlug,
-        slugs.ks4OptionSlug,
-        tierSelected,
-        childSubjectSelected,
-      );
-    });
+    const downloadPath = createCurriculumDownloadsUrl(
+      data.downloadTypes,
+      "published",
+      mvRefreshTime,
+      slugs.subjectSlug,
+      slugs.phaseSlug,
+      slugs.ks4OptionSlug,
+      tierSelected,
+      childSubjectSelected,
+    );
 
     const schoolData = {
       schoolId: data.schoolId!,
@@ -264,9 +262,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     saveDownloadsDataToLocalStorage(schoolData);
 
     try {
-      for (const downloadPath of downloadPaths) {
-        await downloadFileFromUrl(downloadPath);
-      }
+      await downloadFileFromUrl(downloadPath);
     } finally {
       await trackCurriculumDownload(
         data,
@@ -307,15 +303,15 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
 
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
-      <Box
+      <OakBox
         id="curriculum-downloads"
         aria-labelledby="curriculum-downloads-heading"
-        $maxWidth={1280}
+        $maxWidth={"all-spacing-24"}
         $mh={"auto"}
-        $ph={18}
-        $pt={[48, 0]}
-        $pb={[48]}
-        $mt={[0, 48, 48]}
+        $ph={"inner-padding-m"}
+        $pt={["inner-padding-xl4", "inner-padding-none"]}
+        $pb={["inner-padding-xl4"]}
+        $mt={["space-between-none", "space-between-l", "space-between-l"]}
         $borderColor="red"
         $width={"100%"}
         role="region"
@@ -342,7 +338,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
             data={data}
           />
         )}
-      </Box>
+      </OakBox>
     </OakThemeProvider>
   );
 };

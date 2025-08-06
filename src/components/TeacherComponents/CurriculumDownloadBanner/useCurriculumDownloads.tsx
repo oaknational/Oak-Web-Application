@@ -70,7 +70,7 @@ const useCurriculumDownloads = (props: useCurriculumDownloadsProps) => {
   const onSubmit = async () => {
     setIsSubmitting(true);
     const downloadPath = createCurriculumDownloadsUrl(
-      data.downloadTypes[0]!,
+      data.downloadTypes,
       "published",
       mvRefreshTime,
       subjectSlug,

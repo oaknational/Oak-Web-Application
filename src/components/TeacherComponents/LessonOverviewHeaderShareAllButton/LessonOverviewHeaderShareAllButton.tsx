@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { OakSmallSecondaryButton } from "@oaknational/oak-components";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { resolveOakHref } from "@/common-lib/urls";
 import { invariant } from "@/utils/invariant";
-import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
 
 export const LessonOverviewHeaderShareAllButton: FC<
   LessonOverviewHeaderProps
@@ -20,6 +20,10 @@ export const LessonOverviewHeaderShareAllButton: FC<
     geoRestricted,
     loginRequired,
   } = props;
+  const featureFlagEnabled = useFeatureFlagEnabled(
+    "teachers-copyright-restrictions",
+  );
+  if (featureFlagEnabled && (geoRestricted || loginRequired)) return null;
 
   const preselected = "all";
 
@@ -68,25 +72,16 @@ export const LessonOverviewHeaderShareAllButton: FC<
   }
 
   return (
-    <LoginRequiredButton
-      loginRequired={loginRequired ?? false}
-      geoRestricted={geoRestricted ?? false}
-      onboardingProps={{ name: "Share activities with pupils" }}
-      signUpProps={{ name: "Share activities with pupils" }}
-      actionProps={{
-        name: "Share activities with pupils",
-        onClick: onClickShareAll,
-        isActionGeorestricted: true,
-        shouldHidewhenGeoRestricted: true,
-        href: href,
-      }}
-      sizeVariant="small"
-      buttonVariant="secondary"
+    <OakSmallSecondaryButton
       element="a"
+      href={href}
+      onClick={onClickShareAll}
       data-testid="share-all-button"
       iconName="arrow-right"
       isTrailingIcon
       aria-label="Share all resources"
-    />
+    >
+      Share activities with pupils
+    </OakSmallSecondaryButton>
   );
 };

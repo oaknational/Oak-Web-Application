@@ -8,7 +8,6 @@ import { Control, UseFormTrigger, useForm } from "react-hook-form";
 
 import { OnboardingLayout } from "../../../TeacherComponents/OnboardingLayout/OnboardingLayout";
 
-import Input from "@/components/SharedComponents/Input";
 import OnboardingForm from "@/components/TeacherComponents/OnboardingForm/OnboardingForm";
 import {
   OnboardingFormProps,
@@ -20,6 +19,7 @@ import {
   onboardingRoleOptions,
   OnboardingRoleType,
 } from "@/components/TeacherComponents/OnboardingForm/onboardingActions/onboardingRoleOptions";
+import { OakInputWithLabel } from "@/components/SharedComponents/OakInputWithLabel/OakInputWithLabel";
 
 const RoleSelectionView = () => {
   const {
@@ -30,6 +30,7 @@ const RoleSelectionView = () => {
     getValues,
     control,
     trigger,
+    register,
   } = useForm<RoleSelectFormProps>({
     resolver: zodResolver(roleSelectFormSchema),
     mode: "onBlur",
@@ -42,6 +43,8 @@ const RoleSelectionView = () => {
     setValue(role, value);
     clearErrors(role);
   };
+
+  const { onChange, ref, ...rest } = register("other");
 
   return (
     <OnboardingLayout
@@ -86,19 +89,18 @@ const RoleSelectionView = () => {
           ))}
         </OakRadioGroup>
         {getValues().role === "Other" && (
-          <OakBox $mt="space-between-m">
-            <Input
+          <OakBox $mt="space-between-l">
+            <OakInputWithLabel
               id="other-role"
               error={formState.errors.other?.message}
               label="Your role"
-              isRequired
               required
-              onChange={(event) => handleChange("other", event.target.value)}
-              $mb={0}
               placeholder="Type your role"
               aria-describedby={
                 formState.errors.other ? "other-role" : undefined
               }
+              {...rest}
+              onChange={(event) => handleChange("other", event.target.value)}
             />
           </OakBox>
         )}

@@ -1,5 +1,10 @@
 import { FC, MutableRefObject } from "react";
-import { OakP, OakSpan, OakFlex } from "@oaknational/oak-components";
+import {
+  OakP,
+  OakSpan,
+  OakFlex,
+  OakColorToken,
+} from "@oaknational/oak-components";
 
 import { DisabledListItemHeader } from "../ListItemHeader/ListItemHeader";
 import { LessonCopyrightTag } from "../LessonCopyrightTag/LessonCopyrightTag";
@@ -12,7 +17,6 @@ import { LessonResourceGraphicsItemProps } from "@/components/TeacherComponents/
 import { LessonListingPageData } from "@/node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 import ListItemIndexMobile from "@/components/TeacherComponents/ListItemIndexMobile";
 import ListItemIndexDesktop from "@/components/TeacherComponents/ListItemIndexDesktop";
-import { OakColorName } from "@/styles/theme";
 import { SpecialistLesson } from "@/node-lib/curriculum-api-2023/queries/specialistLessonListing/specialistLessonListing.schema";
 import { UnpublishedLessonListItem } from "@/node-lib/curriculum-api-2023/shared.schema";
 
@@ -137,11 +141,11 @@ const LessonListItem: FC<
     ? undefined
     : getAvailableResourceList(props);
 
-  const background =
+  const background: OakColorToken =
     (isUnpublishedLesson && props.isUnpublished) || props.expired
       ? "grey30"
       : "pink";
-  const backgroundOnHover: OakColorName = "pink60";
+  const backgroundOnHover: OakColorToken = "pink110";
 
   return (
     <ListItemCard

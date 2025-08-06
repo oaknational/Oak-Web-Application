@@ -4,7 +4,6 @@ import {
   CurriculumUnitsFormattedData,
   formatCurriculumUnitsData,
 } from "../docx/tab-helpers";
-import { CombinedCurriculumData } from "../docx";
 
 import { buildStyle } from "./builders/buildStyles";
 import { addOrUpdateSheet } from "./helper";
@@ -15,7 +14,7 @@ import {
   CurriculumOverviewMVData,
   CurriculumUnitsTabData,
 } from "@/node-lib/curriculum-api-2023";
-import { Unit } from "@/utils/curriculum/types";
+import { CombinedCurriculumData, Unit } from "@/utils/curriculum/types";
 
 export type FormattedData = CurriculumUnitsFormattedData<
   CombinedCurriculumData["units"][number]

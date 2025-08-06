@@ -5,11 +5,10 @@ import { useUser } from "@clerk/nextjs";
 import Terms from "../OakComponentsKitchen/Terms";
 
 import { DOWNLOAD_TYPES, DownloadType, School } from "./helper";
-import { CurriculumResourcesSelector } from "./CurriculumResourcesSelector";
+import { CurriculumDownloadSelection } from "./CurriculumDownloadSelection";
 
 import { CurriculumDownloadViewProps } from ".";
 
-import Box from "@/components/SharedComponents/Box";
 import { fetchHubspotContactDetails } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/fetchHubspotContactDetails";
 
 export type CurriculumDownloadViewData = {
@@ -69,15 +68,15 @@ export default function SignedInFlow({ onSubmit, schools }: SignedInFlowProps) {
       $flexDirection="column"
       $alignItems={"flex-start"}
     >
-      <Box $width={["100%", 510]} $textAlign={"left"}>
-        <CurriculumResourcesSelector
+      <OakBox $width={["100%", "all-spacing-20"]} $textAlign={"left"}>
+        <CurriculumDownloadSelection
           downloadTypes={downloadTypes}
-          onChangeDownloadTypes={setDownloadTypes}
+          onChange={setDownloadTypes}
         />
         <OakBox $mt="space-between-m">
           <Terms />
         </OakBox>
-      </Box>
+      </OakBox>
       <OakPrimaryButton
         data-testid="download"
         isLoading={isSubmitting}

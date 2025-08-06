@@ -41,7 +41,7 @@ describe("/api/auth/onboarding", () => {
       body: JSON.stringify({ isTeacher: true }),
       headers: {
         referer: "http://example.com/foo",
-        "x-country": "US",
+        "x-vercel-ip-country": "US",
       },
     });
 
@@ -100,7 +100,7 @@ describe("/api/auth/onboarding", () => {
       }),
     );
   });
-  it("sets the x-country header as region", async () => {
+  it("sets the x-vercel-ip-country header as region", async () => {
     await POST(req);
 
     expect(updateUserMetadata).toHaveBeenCalledWith(
@@ -125,7 +125,7 @@ describe("/api/auth/onboarding", () => {
         body: JSON.stringify({ isTeacher: true }),
         headers: {
           referer: "http://example.com/foo",
-          "x-country": countryCode!,
+          "x-vercel-ip-country": countryCode!,
         },
       });
       await POST(req);
@@ -142,7 +142,7 @@ describe("/api/auth/onboarding", () => {
       );
     },
   );
-  it("sets the x-country header as region", async () => {
+  it("sets the x-vercel-ip-country header as region", async () => {
     await POST(req);
 
     expect(updateUserMetadata).toHaveBeenCalledWith(
@@ -155,7 +155,7 @@ describe("/api/auth/onboarding", () => {
     );
   });
 
-  it("reports error when user has no region from x-country in header ", async () => {
+  it("reports error when user has no region from x-vercel-ip-country in header ", async () => {
     await POST(
       new Request("http://example.com", {
         method: "POST",
@@ -171,10 +171,13 @@ describe("/api/auth/onboarding", () => {
         code: "onboarding/request-error",
         meta: {
           message:
-            "Region header not found in header: x-country or developmentUserRegion",
+            "Region header not found in header: x-vercel-ip-country or developmentUserRegion",
           user: "123",
         },
       }),
+      {
+        message: "Region header not found",
+      },
     );
   });
 

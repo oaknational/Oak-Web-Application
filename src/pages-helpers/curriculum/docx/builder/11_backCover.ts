@@ -1,7 +1,6 @@
 import { join } from "path";
 
 import { cdata, safeXml, xmlElementToJson } from "../xml";
-import { CombinedCurriculumData } from "..";
 import {
   appendBodyElements,
   cmToEmu,
@@ -16,6 +15,7 @@ import {
 import { getPortableTextTypes, portableTextToDocx } from "./portableText";
 
 import { PortableTextJSON } from "@/common-lib/cms-types";
+import { CombinedCurriculumData } from "@/utils/curriculum/types";
 
 export default async function generate(
   zip: JSZipCached,
