@@ -13,6 +13,7 @@ import { buildUnitCell } from "./buildUnitCell";
 export function buildSheet<T extends XmlIndexMap>(
   cellStyleIndexMap: T,
   data: BuildNationalCurriculumData,
+  subtitle: string,
 ) {
   const unitXml: string[] = [];
   const linkXml: string[] = [];
@@ -124,7 +125,7 @@ export function buildSheet<T extends XmlIndexMap>(
             <is>
               <t>
                 ${cdata(
-                  `Year ${data.unitData[0]?.unit.year ?? ""} ${data.unitData[0]!.unit.subject}`,
+                  `Year ${data.unitData[0]?.unit.year ?? ""} ${data.unitData[0]!.unit.subject} ${subtitle}`,
                 )}
               </t>
             </is>

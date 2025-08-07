@@ -1,10 +1,13 @@
 import { safeXml } from "@ooxml-tools/xml";
+import { capitalize } from "lodash";
 
 import { generateEmptyXlsx, JSZipCached } from "../docx/docx";
 import {
   CurriculumUnitsFormattedData,
   formatCurriculumUnitsData,
 } from "../docx/tab-helpers";
+import { subjectFromUnits } from "../docx/builder/helper";
+import { Slugs } from "../docx";
 
 import { buildStyles } from "./builders/buildStyles";
 import { addOrUpdateSheet } from "./helper";
@@ -33,6 +36,7 @@ export type BuildNationalCurriculumData = {
 async function buildNationalCurriculum(
   zip: JSZipCached,
   data: BuildNationalCurriculumData[],
+  subtitle: string,
 ) {
   const { styleXml, cellStyleIndexMap } = buildStyles();
   zip.writeString("xl/styles.xml", styleXml);
@@ -74,7 +78,11 @@ async function buildNationalCurriculum(
         </Relationships>
       `.trim(),
     );
-    addOrUpdateSheet(zip, 10 + index, buildSheet(cellStyleIndexMap, item));
+    addOrUpdateSheet(
+      zip,
+      10 + index,
+      buildSheet(cellStyleIndexMap, item, subtitle),
+    );
   });
 
   zip.writeString(
@@ -125,10 +133,24 @@ async function buildNationalCurriculum(
 
 export default async function xlsxNationalCurriculum(
   data: CurriculumUnitsTabData & CurriculumOverviewMVData,
+  slugs: Slugs,
 ) {
   const zip = await generateEmptyXlsx();
 
   const formattedData = formatCurriculumUnitsData(data);
+
+  const examboardTitle = data.examboardTitle ? `${data.examboardTitle}` : "";
+  const tierTitle = slugs.tierSlug ? `${capitalize(slugs.tierSlug)}` : "";
+
+  const childSubjectTitle =
+    subjectFromUnits(data.units, slugs.childSubjectSlug) ?? "";
+
+  const subtitle =
+    examboardTitle !== "" || tierTitle !== "" || childSubjectTitle !== ""
+      ? [examboardTitle, childSubjectTitle, tierTitle]
+          .filter(Boolean)
+          .join(", ") + " (KS4)"
+      : "";
 
   const obj = Object.entries(formattedData.yearData)
     .map(([year, { units }]) => {
@@ -157,7 +179,7 @@ export default async function xlsxNationalCurriculum(
       return sortYears(itemA.year, itemB.year);
     });
 
-  await buildNationalCurriculum(zip, obj);
+  await buildNationalCurriculum(zip, obj, subtitle);
 
   return await zip.zipToBuffer();
 }
