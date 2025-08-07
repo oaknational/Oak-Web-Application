@@ -1201,4 +1201,31 @@ describe("getFilename", () => {
       );
     });
   });
+
+  describe("Combined zip files", () => {
+    it("without suffix", () => {
+      const result = getFilename("zip", {
+        subjectTitle: "Mathematics",
+        phaseTitle: "Secondary",
+        tierSlug: "higher",
+        prefix: "Curriculum documents",
+      });
+      expect(result).toBe(
+        "Curriculum documents - Mathematics - Secondary - Higher - 10-06-2025.zip",
+      );
+    });
+
+    it("with suffix", () => {
+      const result = getFilename("zip", {
+        subjectTitle: "Mathematics",
+        phaseTitle: "Secondary",
+        tierSlug: "higher",
+        prefix: "Curriculum documents",
+        suffix: "00000000",
+      });
+      expect(result).toBe(
+        "Curriculum documents - Mathematics - Secondary - Higher - 10-06-2025 - 00000000.zip",
+      );
+    });
+  });
 });
