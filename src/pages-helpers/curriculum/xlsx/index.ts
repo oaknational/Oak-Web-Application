@@ -16,6 +16,7 @@ import {
   CurriculumUnitsTabData,
 } from "@/node-lib/curriculum-api-2023";
 import { CombinedCurriculumData, Unit } from "@/utils/curriculum/types";
+import { sortYears } from "@/utils/curriculum/sorting";
 
 export type FormattedData = CurriculumUnitsFormattedData<
   CombinedCurriculumData["units"][number]
@@ -36,9 +37,9 @@ async function buildNationalCurriculum(
   const { styleXml, cellStyleIndexMap } = buildStyles();
   zip.writeString("xl/styles.xml", styleXml);
 
-  const flatUnits = data.flatMap((bar) => bar.unitData.map((foo) => foo.unit));
-
   data.forEach((item, index) => {
+    const flatUnits = item.unitData.map((foo) => foo.unit);
+
     const linksXml = [];
     for (const unit of flatUnits) {
       linksXml.push(safeXml`
@@ -129,8 +130,8 @@ export default async function xlsxNationalCurriculum(
 
   const formattedData = formatCurriculumUnitsData(data);
 
-  const obj = Object.entries(formattedData.yearData).map(
-    ([year, { units }]) => {
+  const obj = Object.entries(formattedData.yearData)
+    .map(([year, { units }]) => {
       const nationalCurric = new Map<number, string>();
 
       const unitData = units.map((unit) => {
@@ -151,8 +152,10 @@ export default async function xlsxNationalCurriculum(
         nationalCurric,
         unitData,
       };
-    },
-  );
+    })
+    .sort((itemA, itemB) => {
+      return sortYears(itemA.year, itemB.year);
+    });
 
   await buildNationalCurriculum(zip, obj);
 

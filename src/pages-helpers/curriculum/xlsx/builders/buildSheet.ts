@@ -39,7 +39,7 @@ export function buildSheet<T extends XmlIndexMap>(
         x: unitXml.length + 2,
         y: 2,
         unit,
-        unitIndex: unit.order,
+        unitNumber: unit.order,
         prefix: unit.subjectCategory?.title,
       }),
     );

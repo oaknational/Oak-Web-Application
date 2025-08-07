@@ -10,14 +10,14 @@ export function buildUnitCell<T extends XmlIndexMap>({
   x,
   y,
   unit,
-  unitIndex,
+  unitNumber,
   prefix,
 }: {
   cellStyleIndexMap: T;
   x: number;
   y: number;
   unit: Unit;
-  unitIndex: number;
+  unitNumber: number;
   prefix?: string;
 }) {
   return safeXml`
@@ -35,7 +35,7 @@ export function buildUnitCell<T extends XmlIndexMap>({
             <family val="2" />
           </rPr>
           <t xml:space="preserve">${cdata(
-              `\n${prefix ? `${prefix}\n` : ""}Unit ${unitIndex + 1}\n`,
+              `\n${prefix ? `${prefix}\n` : ""}Unit ${unitNumber}\n`,
             )}</t>
         </r>
         <r>

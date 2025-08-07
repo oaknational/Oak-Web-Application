@@ -11,7 +11,7 @@ describe("buildUnitCall", () => {
       x: 1,
       y: 1,
       unit: createUnit(),
-      unitIndex: 1,
+      unitNumber: 1,
       prefix: "PREFIX",
     });
     expect(prettyFormat(output)).toMatchSnapshot();
@@ -23,7 +23,7 @@ describe("buildUnitCall", () => {
       x: 1,
       y: 1,
       unit: createUnit(),
-      unitIndex: 1,
+      unitNumber: 1,
     });
     expect(prettyFormat(output)).toMatchSnapshot();
   });

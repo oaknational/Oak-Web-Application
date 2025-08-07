@@ -26,7 +26,7 @@ exports[`buildUnitCall with prefix 1`] = `
         xml:space="preserve"
       ><![CDATA[
 PREFIX
-Unit 2
+Unit 1
 ]]></t>
     </r>
     <r>
@@ -78,7 +78,7 @@ exports[`buildUnitCall without prefix 1`] = `
       <t
         xml:space="preserve"
       ><![CDATA[
-Unit 2
+Unit 1
 ]]></t>
     </r>
     <r>
