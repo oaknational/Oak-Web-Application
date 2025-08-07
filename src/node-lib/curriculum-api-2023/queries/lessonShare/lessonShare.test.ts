@@ -91,6 +91,8 @@ describe("lessonShare()", () => {
               unit_data: unitDataFixture(),
               supplementary_data: { unit_order: 1, order_in_unit: 1 },
               lessonReleaseDate: null,
+              georestricted: false,
+              loginRequired: false,
             },
           ],
         }),
