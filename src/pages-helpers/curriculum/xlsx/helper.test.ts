@@ -1,7 +1,13 @@
-import { createXmlIndexMap, getFlatUnits } from "./helper";
+import diff from "microdiff";
+
+import { generateEmptyXlsx } from "../docx/docx";
+import { zipToSimpleObject } from "../docx/zip";
+
+import { addOrUpdateSheet, createXmlIndexMap, getFlatUnits } from "./helper";
 
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { createSubjectCategory } from "@/fixtures/curriculum/subjectCategories";
+
 
 describe("createXmlIndexMap", () => {
   it("should return XML and mapped keys/indexes", () => {
@@ -74,6 +80,96 @@ describe("getFlatUnits", () => {
       { ...units[1], order: 2 },
       { ...units[2], order: 3 },
       { ...units[3], order: 4 },
+    ]);
+  });
+});
+
+describe("addOrUpdateSheet", () => {
+  test("add new", async () => {
+    const zip = await generateEmptyXlsx();
+
+    const initialState = await zipToSimpleObject(zip.getJsZip(), {
+      convertXmlToJson: true,
+      hashBuffers: true,
+    });
+
+    addOrUpdateSheet(zip, 2, "<worksheet></worksheet>");
+
+    const newState = await zipToSimpleObject(zip.getJsZip(), {
+      convertXmlToJson: true,
+      hashBuffers: true,
+    });
+
+    const diffResults = diff(initialState, newState, {});
+    expect(diffResults).toEqual([
+      {
+        path: ["xl/worksheets/sheet2.xml"],
+        type: "CREATE",
+        value: {
+          declaration: {
+            attributes: {
+              encoding: "UTF-8",
+              standalone: "yes",
+              version: "1.0",
+            },
+          },
+          elements: [
+            {
+              name: "worksheet",
+              type: "element",
+            },
+          ],
+        },
+      },
+    ]);
+  });
+
+  test("update existing", async () => {
+    const zip = await generateEmptyXlsx();
+    addOrUpdateSheet(zip, 1, `<worksheet></worksheet>`);
+
+    const initialState = await zipToSimpleObject(zip.getJsZip(), {
+      convertXmlToJson: true,
+      hashBuffers: true,
+    });
+
+    addOrUpdateSheet(zip, 2, `<worksheet><dimension ref="A1" /></worksheet>`);
+
+    const newState = await zipToSimpleObject(zip.getJsZip(), {
+      convertXmlToJson: true,
+      hashBuffers: true,
+    });
+
+    const diffResults = diff(initialState, newState, {});
+    expect(diffResults).toEqual([
+      {
+        path: ["xl/worksheets/sheet2.xml"],
+        type: "CREATE",
+        value: {
+          declaration: {
+            attributes: {
+              encoding: "UTF-8",
+              standalone: "yes",
+              version: "1.0",
+            },
+          },
+          elements: [
+            {
+              elements: [
+                {
+                  attributes: {
+                    ref: "A1",
+                  },
+                  name: "dimension",
+                  type: "element",
+                },
+              ],
+              name: "worksheet",
+              type: "element",
+            },
+          ],
+        },
+      },
     ]);
   });
 });
