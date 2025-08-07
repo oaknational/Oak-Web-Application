@@ -1,7 +1,6 @@
 import { SessionWebhookEvent, User } from "@clerk/nextjs/server";
 
-import { handleSessionCreatedEvent } from "./handleSessionCreatedEvent";
-
+import { handleSessionCreatedEvent } from "@/utils/handleSessionCreatedEvent";
 import {
   installMockClerkClient,
   mockServerUser,

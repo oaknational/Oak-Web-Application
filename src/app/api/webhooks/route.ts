@@ -3,8 +3,7 @@ import { headers } from "next/headers";
 import { WebhookEvent } from "@clerk/nextjs/server";
 import { NextRequest } from "next/server";
 
-import { handleSessionCreatedEvent } from "./handleSessionCreatedEvent";
-
+import { handleSessionCreatedEvent } from "@/utils/handleSessionCreatedEvent";
 import getServerConfig from "@/node-lib/getServerConfig";
 import { getWebhookEducatorApi } from "@/node-lib/educator-api";
 import errorReporter from "@/common-lib/error-reporter";
