@@ -129,6 +129,19 @@ export function buildSheet<T extends XmlIndexMap>(
               </t>
             </is>
           </c>
+          ${unitXml.map((_, index) => {
+            return safeXml`
+              <c
+                r="${cartesianToExcelCoords([index + 2, 1])}"
+                t="inlineStr"
+                s="${cellStyleIndexMap.temp1!}"
+              >
+                <is>
+                  <t />
+                </is>
+              </c>
+            `;
+          })}
         </row>
         <row r="2" spans="1:${unitXml.length + 1}">
           <c r="A2" t="inlineStr" s="${cellStyleIndexMap.temp2!}">
