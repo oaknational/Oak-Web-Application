@@ -490,5 +490,22 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
         getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>),
       ).rejects.toThrowError("No context.params");
     });
+
+    it("should return a 404 page if lesson is georestricted or login required", async () => {
+      (curriculumApi.lessonShare as jest.Mock).mockResolvedValueOnce(
+        lessonShareFixtures({ georestricted: true, loginRequired: true }),
+      );
+
+      const result = await getStaticProps({
+        params: {
+          lessonSlug: "macbeth-lesson-1",
+          programmeSlug: "math-higher-ks4-l",
+          unitSlug: "shakespeare",
+        },
+        query: {},
+      } as GetStaticPropsContext<URLParams, PreviewData>);
+
+      expect(result).toEqual({ notFound: true });
+    });
   });
 });
