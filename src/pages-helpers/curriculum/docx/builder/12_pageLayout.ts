@@ -1,4 +1,6 @@
-import { safeXml, xmlElementToJson } from "../xml";
+import { safeXml } from "@ooxml-tools/xml";
+
+import { xmlElementToJson } from "../xml";
 import { appendBodyElements, createFooter, JSZipCached } from "../docx";
 
 type Margins = {

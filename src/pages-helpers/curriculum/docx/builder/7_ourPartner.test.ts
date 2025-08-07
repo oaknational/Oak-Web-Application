@@ -1,8 +1,9 @@
-import { CombinedCurriculumData } from "..";
 import { generateEmptyDocx } from "../docx";
 
 import generate from "./7_ourPartner";
 import { zipToSnapshotObject } from "./helper";
+
+import { CombinedCurriculumData } from "@/utils/curriculum/types";
 
 // From <https://stackoverflow.com/a/9967193>
 const EMPTY_PNG =

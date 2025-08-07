@@ -1,9 +1,10 @@
 import { join } from "path";
 
 import { uniqBy } from "lodash";
+import { cdata, safeXml } from "@ooxml-tools/xml";
 
-import { cdata, safeXml, xmlElementToJson } from "../../xml";
-import { CombinedCurriculumData, Slugs } from "../..";
+import { xmlElementToJson } from "../../xml";
+import { Slugs } from "../..";
 import {
   insertImages,
   insertLinks,
@@ -28,7 +29,7 @@ import {
 import { buildUnit } from "./unit_detail";
 
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
-import { Unit } from "@/utils/curriculum/types";
+import { CombinedCurriculumData, Unit } from "@/utils/curriculum/types";
 import {
   getModes,
   groupUnitsByPathway,
@@ -37,7 +38,7 @@ import {
 } from "@/utils/curriculum/by-pathway";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 
-function generateGroupedUnits(
+export function generateGroupedUnits(
   data: CurriculumUnitsFormattedData<CombinedCurriculumData["units"][number]>,
 ) {
   const unitOptions = Object.entries(data.yearData as UnitsByPathway).flatMap(

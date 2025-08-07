@@ -41,7 +41,7 @@ const useCurriculumDownloads = (props: useCurriculumDownloadsProps) => {
     schoolId: undefined,
     schoolName: undefined,
     email: undefined,
-    downloadType: "word",
+    downloadTypes: ["curriculum-plans"],
     termsAndConditions: false,
     schoolNotListed: false,
     schools: [],
@@ -59,7 +59,7 @@ const useCurriculumDownloads = (props: useCurriculumDownloadsProps) => {
         schoolId: localStorageData.schoolId,
         schoolName: localStorageData.schoolName,
         email: localStorageData.email,
-        downloadType: "word",
+        downloadTypes: ["curriculum-plans"],
         termsAndConditions: localStorageData.termsAndConditions,
         schoolNotListed: localStorageData.schoolNotListed,
         schools: [],
@@ -70,6 +70,7 @@ const useCurriculumDownloads = (props: useCurriculumDownloadsProps) => {
   const onSubmit = async () => {
     setIsSubmitting(true);
     const downloadPath = createCurriculumDownloadsUrl(
+      data.downloadTypes,
       "published",
       mvRefreshTime,
       subjectSlug,

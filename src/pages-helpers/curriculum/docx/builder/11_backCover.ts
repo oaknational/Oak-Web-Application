@@ -1,7 +1,8 @@
 import { join } from "path";
 
-import { cdata, safeXml, xmlElementToJson } from "../xml";
-import { CombinedCurriculumData } from "..";
+import { cdata, safeXml } from "@ooxml-tools/xml";
+
+import { xmlElementToJson } from "../xml";
 import {
   appendBodyElements,
   cmToEmu,
@@ -16,6 +17,7 @@ import {
 import { getPortableTextTypes, portableTextToDocx } from "./portableText";
 
 import { PortableTextJSON } from "@/common-lib/cms-types";
+import { CombinedCurriculumData } from "@/utils/curriculum/types";
 
 export default async function generate(
   zip: JSZipCached,

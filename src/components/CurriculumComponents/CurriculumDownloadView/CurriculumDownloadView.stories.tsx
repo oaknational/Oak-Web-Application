@@ -107,7 +107,7 @@ export const CurriculumDownloadView: Story = {
       ],
       schoolId: undefined,
       email: "test@example.com",
-      downloadType: "word",
+      downloadTypes: ["curriculum-plans"],
       termsAndConditions: true,
       schoolNotListed: false,
     },

@@ -2,12 +2,6 @@ import { join } from "path";
 
 import { format } from "date-fns";
 
-import type {
-  CurriculumOverviewMVData,
-  CurriculumUnitsTabData,
-} from "../../../node-lib/curriculum-api-2023";
-import type { CurriculumOverviewSanityData } from "../../../common-lib/cms-types";
-
 import * as builder from "./builder";
 import {
   cmToEmu,
@@ -19,10 +13,7 @@ import {
 } from "./docx";
 
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
-
-export type CombinedCurriculumData = CurriculumUnitsTabData &
-  CurriculumOverviewMVData &
-  CurriculumOverviewSanityData;
+import { CombinedCurriculumData } from "@/utils/curriculum/types";
 
 export type Slugs = {
   subjectSlug: string;

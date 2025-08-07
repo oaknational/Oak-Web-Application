@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`buildUnitOptionCell 1`] = `
+"<c
+  r="A1"
+  t="inlineStr"
+  s="TEMP_3"
+>
+  <is>
+    <r>
+      <rPr>
+        <sz
+          val="14"
+        ></sz>
+        <color
+          rgb="FF000000"
+        ></color>
+        <rFont
+          val="Arial"
+        ></rFont>
+        <family
+          val="2"
+        ></family>
+      </rPr>
+      <t
+        xml:space="preserve"
+      ><![CDATA[
+Option 2
+]]></t>
+    </r>
+    <r>
+      <rPr>
+        <sz
+          val="14"
+        ></sz>
+        <color
+          rgb="FF000000"
+        ></color>
+        <rFont
+          val="Arial Bold"
+        ></rFont>
+        <family
+          val="2"
+        ></family>
+      </rPr>
+      <t
+        xml:space="preserve"
+      ><![CDATA[Test
+]]></t>
+    </r>
+  </is>
+</c>"
+`;

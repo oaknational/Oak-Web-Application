@@ -6,14 +6,9 @@ import sharp from "sharp";
 import { glob } from "glob";
 import JSZip from "jszip";
 import { ElementCompact, type Element } from "xml-js";
+import { collapseFragments, safeXml } from "@ooxml-tools/xml";
 
-import {
-  collapseFragments,
-  jsonXmlToXmlString,
-  safeXml,
-  xmlElementToJson,
-  xmlRootToJson,
-} from "./xml";
+import { jsonXmlToXmlString, xmlElementToJson, xmlRootToJson } from "./xml";
 
 import { notUndefined } from "@/utils/curriculum/types";
 
@@ -684,11 +679,7 @@ export class JSZipCached {
   }
 }
 
-export async function generateEmptyDocx() {
-  const basedir = join(
-    process.cwd(),
-    "./src/pages-helpers/curriculum/docx/empty-document.docx",
-  );
+export async function generateEmptyOoxml(basedir: string) {
   const files = await glob(`${basedir}/**/*`, { dot: true });
 
   const zip = new JSZip();
@@ -703,4 +694,22 @@ export async function generateEmptyDocx() {
   }
 
   return new JSZipCached(zip);
+}
+
+export async function generateEmptyDocx() {
+  return generateEmptyOoxml(
+    join(
+      process.cwd(),
+      "./src/pages-helpers/curriculum/docx/empty-document.docx",
+    ),
+  );
+}
+
+export async function generateEmptyXlsx() {
+  return generateEmptyOoxml(
+    join(
+      process.cwd(),
+      "./src/pages-helpers/curriculum/xlsx/empty-document.xlsx",
+    ),
+  );
 }

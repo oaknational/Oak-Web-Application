@@ -1,8 +1,11 @@
-import { cdata, safeXml, xmlElementToJson } from "../xml";
-import { CombinedCurriculumData } from "..";
+import { cdata, safeXml } from "@ooxml-tools/xml";
+
+import { xmlElementToJson } from "../xml";
 import { appendBodyElements, JSZipCached, wrapInBookmarkPoint } from "../docx";
 
 import { getPortableTextTypes, portableTextToDocx } from "./portableText";
+
+import { CombinedCurriculumData } from "@/utils/curriculum/types";
 
 export default async function generate(
   zip: JSZipCached,

@@ -5,10 +5,10 @@ import {
   isValidIconName,
 } from "@oaknational/oak-components";
 
-import { CombinedCurriculumData, Slugs } from "..";
 import { zipToSimpleObject } from "../zip";
+import { Slugs } from "..";
 
-import { Unit } from "@/utils/curriculum/types";
+import { CombinedCurriculumData, Unit } from "@/utils/curriculum/types";
 
 /**
  * Uncapitalize everything except acronyms

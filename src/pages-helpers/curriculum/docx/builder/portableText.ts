@@ -1,4 +1,5 @@
-import { cdata, safeXml } from "../xml";
+import { cdata, safeXml } from "@ooxml-tools/xml";
+
 import { insertNumbering, JSZipCached, line240 } from "../docx";
 
 import { PortableTextJSON } from "@/common-lib/cms-types";

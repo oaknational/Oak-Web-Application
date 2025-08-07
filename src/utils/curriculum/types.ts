@@ -1,4 +1,8 @@
-import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
+import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
+import {
+  CurriculumOverviewMVData,
+  CurriculumUnitsTabData,
+} from "@/node-lib/curriculum-api-2023";
 
 export function notUndefined<TValue>(
   value: TValue | undefined,
@@ -70,3 +74,7 @@ export type Lesson = {
   slug?: string;
   _state?: string;
 };
+
+export type CombinedCurriculumData = CurriculumUnitsTabData &
+  CurriculumOverviewMVData &
+  CurriculumOverviewSanityData;

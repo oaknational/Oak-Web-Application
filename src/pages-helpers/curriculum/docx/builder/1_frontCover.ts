@@ -1,9 +1,10 @@
 import { join } from "path";
 
 import { capitalize } from "lodash";
+import { cdata, safeXml } from "@ooxml-tools/xml";
 
-import { CombinedCurriculumData, Slugs } from "..";
-import { cdata, safeXml, xmlElementToJson } from "../xml";
+import { Slugs } from "..";
+import { xmlElementToJson } from "../xml";
 import {
   appendBodyElements,
   cmToEmu,
@@ -15,6 +16,7 @@ import {
 import { generateIconURL, subjectFromUnits } from "./helper";
 
 import { getShortPhaseText } from "@/utils/curriculum/formatting";
+import { CombinedCurriculumData } from "@/utils/curriculum/types";
 
 const PARTNER_IMG_WIDTH = 475 * 2;
 

@@ -161,7 +161,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     schoolId: undefined,
     schoolName: undefined,
     email: undefined,
-    downloadType: "word",
+    downloadTypes: ["curriculum-plans"],
     termsAndConditions: false,
     schoolNotListed: false,
     schools: [],
@@ -187,7 +187,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
         schoolId: localStorageData.schoolId,
         schoolName: localStorageData.schoolName,
         email: localStorageData.email,
-        downloadType: "word",
+        downloadTypes: ["curriculum-plans"],
         termsAndConditions: localStorageData.termsAndConditions,
         schoolNotListed: localStorageData.schoolNotListed,
         schools: [],
@@ -242,6 +242,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     setIsSubmitting(true);
 
     const downloadPath = createCurriculumDownloadsUrl(
+      data.downloadTypes,
       "published",
       mvRefreshTime,
       slugs.subjectSlug,

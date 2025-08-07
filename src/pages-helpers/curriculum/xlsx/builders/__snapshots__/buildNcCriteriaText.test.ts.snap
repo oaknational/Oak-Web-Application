@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`buildNcCriteriaText 1`] = `
+"<c
+  r="A2"
+  t="inlineStr"
+  s=""
+>
+  <is>
+    <t
+      xml:space="preserve"
+    ><![CDATA[
+TEST_TEXT
+]]></t>
+  </is>
+</c>"
+`;
