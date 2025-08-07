@@ -1,4 +1,4 @@
-import { compact, safeXml } from "@ooxml-tools/xml";
+import { safeXml } from "@ooxml-tools/xml";
 
 import { generateEmptyXlsx, JSZipCached } from "../docx/docx";
 import {
@@ -73,11 +73,7 @@ async function buildNationalCurriculum(
         </Relationships>
       `.trim(),
     );
-    addOrUpdateSheet(
-      zip,
-      10 + index,
-      compact(buildSheet(cellStyleIndexMap, item)),
-    );
+    addOrUpdateSheet(zip, 10 + index, buildSheet(cellStyleIndexMap, item));
   });
 
   zip.writeString(
