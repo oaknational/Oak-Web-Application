@@ -1,3 +1,10 @@
+# [1.828.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.827.0...v1.828.0) (2025-08-07)
+
+
+### Features
+
+* add detectify firewall bypass rule ([d7350b0](https://github.com/oaknational/Oak-Web-Application/commit/d7350b07d69f30edddb281a40a6f5d7785e1f7c9))
+
 # [1.827.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.826.1...v1.827.0) (2025-08-06)
 
 
