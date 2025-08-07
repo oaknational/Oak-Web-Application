@@ -1,10 +1,13 @@
 import { safeXml } from "@ooxml-tools/xml";
+import { capitalize } from "lodash";
 
 import { generateEmptyXlsx, JSZipCached } from "../docx/docx";
 import {
   CurriculumUnitsFormattedData,
   formatCurriculumUnitsData,
 } from "../docx/tab-helpers";
+import { subjectFromUnits } from "../docx/builder/helper";
+import { Slugs } from "../docx";
 
 import { buildStyles } from "./builders/buildStyles";
 import { addOrUpdateSheet } from "./helper";
@@ -17,6 +20,7 @@ import {
 } from "@/node-lib/curriculum-api-2023";
 import { CombinedCurriculumData, Unit } from "@/utils/curriculum/types";
 import { sortYears } from "@/utils/curriculum/sorting";
+import { keystageFromYear } from "@/utils/curriculum/keystage";
 
 export type FormattedData = CurriculumUnitsFormattedData<
   CombinedCurriculumData["units"][number]
@@ -33,6 +37,9 @@ export type BuildNationalCurriculumData = {
 async function buildNationalCurriculum(
   zip: JSZipCached,
   data: BuildNationalCurriculumData[],
+  originalData: CurriculumUnitsTabData & CurriculumOverviewMVData,
+  slugs: Slugs,
+  formattedData: CurriculumUnitsFormattedData,
 ) {
   const { styleXml, cellStyleIndexMap } = buildStyles();
   zip.writeString("xl/styles.xml", styleXml);
@@ -74,7 +81,11 @@ async function buildNationalCurriculum(
         </Relationships>
       `.trim(),
     );
-    addOrUpdateSheet(zip, 10 + index, buildSheet(cellStyleIndexMap, item));
+    addOrUpdateSheet(
+      zip,
+      10 + index,
+      buildSheet(cellStyleIndexMap, item, originalData, slugs, formattedData),
+    );
   });
 
   zip.writeString(
@@ -123,8 +134,46 @@ async function buildNationalCurriculum(
   );
 }
 
+export function generateYearTitle(
+  formattedData: CurriculumUnitsFormattedData,
+  year: string,
+  data: CurriculumUnitsTabData & CurriculumOverviewMVData,
+  slugs: Slugs,
+) {
+  if (year in formattedData.yearData) {
+    const { groupAs } = formattedData.yearData[year]!;
+    if (groupAs && year === "all-years") {
+      return `${groupAs} (all years)`;
+    }
+  }
+
+  let examboardTitle;
+  if (data.examboardTitle) {
+    if (keystageFromYear(year) === "ks4") {
+      examboardTitle =
+        data.examboardTitle === "Core" ? `${data.examboardTitle}` : "GCSE";
+    }
+  }
+
+  const tierTitle = slugs.tierSlug ? `${capitalize(slugs.tierSlug)}` : "";
+
+  const childSubjectTitle =
+    subjectFromUnits(data.units, slugs.childSubjectSlug) ?? "";
+
+  const title = [
+    !childSubjectTitle ? data.subjectTitle : null,
+    examboardTitle,
+    childSubjectTitle,
+    tierTitle,
+  ]
+    .filter(Boolean)
+    .join(", ");
+  return `Year ${year} ${title}`;
+}
+
 export default async function xlsxNationalCurriculum(
   data: CurriculumUnitsTabData & CurriculumOverviewMVData,
+  slugs: Slugs,
 ) {
   const zip = await generateEmptyXlsx();
 
@@ -157,7 +206,7 @@ export default async function xlsxNationalCurriculum(
       return sortYears(itemA.year, itemB.year);
     });
 
-  await buildNationalCurriculum(zip, obj);
+  await buildNationalCurriculum(zip, obj, data, slugs, formattedData);
 
   return await zip.zipToBuffer();
 }
