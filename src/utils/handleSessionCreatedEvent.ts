@@ -14,7 +14,7 @@ export async function handleSessionCreatedEvent(evt: SessionWebhookEvent) {
   const isTargetUser = getIsTargetUser(user);
   if (isTargetUser) {
     try {
-      client.users.updateUser(user.id, {
+      await client.users.updateUser(user.id, {
         unsafeMetadata: { requiresGeoLocation: true },
       });
     } catch (error) {

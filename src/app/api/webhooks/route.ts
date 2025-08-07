@@ -75,7 +75,16 @@ export async function POST(req: NextRequest) {
     }
   }
   if (id && evt.type === "session.created") {
-    await handleSessionCreatedEvent(evt);
+    try {
+      await handleSessionCreatedEvent(evt);
+    } catch (error) {
+      reportError(error, {
+        message: "Failed to update requiresGeolocation",
+      });
+      return new Response("Error: could not update user", {
+        status: 500,
+      });
+    }
   }
   return new Response("Webhook received", { status: 200 });
 }
