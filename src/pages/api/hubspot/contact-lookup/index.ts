@@ -51,7 +51,7 @@ export const getHubspotContactByCookie = async (
     const contactData = await contactIds.json();
 
     // If no email is found for the cookie, return null
-    if (!contactData.properties?.email?.value) {
+    if (!contactData.properties.email?.value) {
       return null;
     }
 

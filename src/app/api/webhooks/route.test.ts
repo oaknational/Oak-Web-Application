@@ -37,7 +37,7 @@ jest.mock("@/node-lib/educator-api", () => ({
   }),
 }));
 
-describe("/api/auth/onboarding", () => {
+describe("/api/webhooks", () => {
   let req: NextRequest;
   beforeEach(() => {
     jest.restoreAllMocks();
