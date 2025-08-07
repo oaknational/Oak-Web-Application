@@ -36,7 +36,9 @@ export type BuildNationalCurriculumData = {
 async function buildNationalCurriculum(
   zip: JSZipCached,
   data: BuildNationalCurriculumData[],
-  subtitle: string,
+  originalData: CurriculumUnitsTabData & CurriculumOverviewMVData,
+  slugs: Slugs,
+  formattedData: CurriculumUnitsFormattedData,
 ) {
   const { styleXml, cellStyleIndexMap } = buildStyles();
   zip.writeString("xl/styles.xml", styleXml);
@@ -81,7 +83,7 @@ async function buildNationalCurriculum(
     addOrUpdateSheet(
       zip,
       10 + index,
-      buildSheet(cellStyleIndexMap, item, subtitle),
+      buildSheet(cellStyleIndexMap, item, originalData, slugs, formattedData),
     );
   });
 
@@ -131,6 +133,37 @@ async function buildNationalCurriculum(
   );
 }
 
+export function generateYearTitle(
+  formattedData: CurriculumUnitsFormattedData,
+  year: string,
+  data: CurriculumUnitsTabData & CurriculumOverviewMVData,
+  slugs: Slugs,
+) {
+  if (year in formattedData.yearData) {
+    const { groupAs } = formattedData.yearData[year]!;
+    if (groupAs && year === "all-years") {
+      return `${groupAs} (all years)`;
+    }
+  }
+
+  const examboardTitle =
+    data.examboardTitle === "Core" ? `${data.examboardTitle}` : "";
+  const tierTitle = slugs.tierSlug ? `${capitalize(slugs.tierSlug)}` : "";
+
+  const childSubjectTitle =
+    subjectFromUnits(data.units, slugs.childSubjectSlug) ?? "";
+
+  const title = [
+    !childSubjectTitle ? data.subjectTitle : null,
+    examboardTitle,
+    childSubjectTitle,
+    tierTitle,
+  ]
+    .filter(Boolean)
+    .join(", ");
+  return `Year ${year} ${title}`;
+}
+
 export default async function xlsxNationalCurriculum(
   data: CurriculumUnitsTabData & CurriculumOverviewMVData,
   slugs: Slugs,
@@ -138,19 +171,6 @@ export default async function xlsxNationalCurriculum(
   const zip = await generateEmptyXlsx();
 
   const formattedData = formatCurriculumUnitsData(data);
-
-  const examboardTitle = data.examboardTitle ? `${data.examboardTitle}` : "";
-  const tierTitle = slugs.tierSlug ? `${capitalize(slugs.tierSlug)}` : "";
-
-  const childSubjectTitle =
-    subjectFromUnits(data.units, slugs.childSubjectSlug) ?? "";
-
-  const subtitle =
-    examboardTitle !== "" || tierTitle !== "" || childSubjectTitle !== ""
-      ? [examboardTitle, childSubjectTitle, tierTitle]
-          .filter(Boolean)
-          .join(", ") + " (KS4)"
-      : "";
 
   const obj = Object.entries(formattedData.yearData)
     .map(([year, { units }]) => {
@@ -179,7 +199,7 @@ export default async function xlsxNationalCurriculum(
       return sortYears(itemA.year, itemB.year);
     });
 
-  await buildNationalCurriculum(zip, obj, subtitle);
+  await buildNationalCurriculum(zip, obj, data, slugs, formattedData);
 
   return await zip.zipToBuffer();
 }

@@ -1,8 +1,10 @@
 import { cartesianToExcelCoords, pxToColumnWidth } from "@ooxml-tools/units";
 import { cdata, safeXml } from "@ooxml-tools/xml";
 
-import { BuildNationalCurriculumData } from "..";
+import { BuildNationalCurriculumData, generateYearTitle } from "..";
 import { getFlatUnits, XmlIndexMap } from "../helper";
+import { Slugs } from "../../docx";
+import { CurriculumUnitsFormattedData } from "../../docx/tab-helpers";
 
 import { buildGoToUnitResourceCell } from "./buildGoToUnitResourceCell";
 import { buildTickCell } from "./buildTickCell";
@@ -10,15 +12,29 @@ import { buildNcCriteriaText } from "./buildNcCriteriaText";
 import { buildUnitOptionCell } from "./buildUnitOptionCell";
 import { buildUnitCell } from "./buildUnitCell";
 
+import {
+  CurriculumOverviewMVData,
+  CurriculumUnitsTabData,
+} from "@/node-lib/curriculum-api-2023";
+
 export function buildSheet<T extends XmlIndexMap>(
   cellStyleIndexMap: T,
   data: BuildNationalCurriculumData,
-  subtitle: string,
+  originalData: CurriculumUnitsTabData & CurriculumOverviewMVData,
+  slugs: Slugs,
+  formattedData: CurriculumUnitsFormattedData,
 ) {
   const unitXml: string[] = [];
   const linkXml: string[] = [];
   const goToUnitResourcesXml: string[] = [];
   const flatUnits = getFlatUnits(data.unitData.map((item) => item.unit));
+
+  const title = generateYearTitle(
+    formattedData,
+    data.year,
+    originalData,
+    slugs,
+  );
 
   for (const unit of flatUnits) {
     linkXml.push(safeXml`
@@ -123,11 +139,7 @@ export function buildSheet<T extends XmlIndexMap>(
             s="${cellStyleIndexMap.temp1!}"
           >
             <is>
-              <t>
-                ${cdata(
-                  `Year ${data.unitData[0]?.unit.year ?? ""} ${data.unitData[0]!.unit.subject} ${subtitle}`,
-                )}
-              </t>
+              <t>${cdata(`${title}`)}</t>
             </is>
           </c>
           ${unitXml.map((_, index) => {
