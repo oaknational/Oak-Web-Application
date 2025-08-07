@@ -29,10 +29,30 @@ describe("getFlatUnits", () => {
     const subcat1 = createSubjectCategory({ id: 1, slug: "subcat1" });
     const subcat2 = createSubjectCategory({ id: 2, slug: "subcat1" });
     const units = [
-      createUnit({ slug: "one", subjectcategories: [subcat1], actions }),
-      createUnit({ slug: "two", subjectcategories: [subcat2], actions }),
-      createUnit({ slug: "three", subjectcategories: [subcat1], actions }),
-      createUnit({ slug: "four", subjectcategories: [subcat2], actions }),
+      createUnit({
+        slug: "one",
+        order: 1,
+        subjectcategories: [subcat1],
+        actions,
+      }),
+      createUnit({
+        slug: "two",
+        order: 5,
+        subjectcategories: [subcat2],
+        actions,
+      }),
+      createUnit({
+        slug: "three",
+        order: 7,
+        subjectcategories: [subcat1],
+        actions,
+      }),
+      createUnit({
+        slug: "four",
+        order: 9,
+        subjectcategories: [subcat2],
+        actions,
+      }),
     ];
     const flatUnits = getFlatUnits(units);
     expect(flatUnits).toEqual([
@@ -56,19 +76,19 @@ describe("getFlatUnits", () => {
       }),
       createUnit({
         slug: "two",
-        order: 2,
+        order: 5,
         subjectcategories: [subcat2],
         actions,
       }),
       createUnit({
         slug: "three",
-        order: 3,
+        order: 7,
         subjectcategories: [subcat1],
         actions,
       }),
       createUnit({
         slug: "four",
-        order: 4,
+        order: 9,
         subjectcategories: [subcat2],
         actions,
       }),
