@@ -1,25 +1,14 @@
 import { clerkClient, SessionWebhookEvent, User } from "@clerk/nextjs/server";
 
 export async function handleSessionCreatedEvent(evt: SessionWebhookEvent) {
-  let client;
-  let user;
-
-  try {
-    client = await clerkClient();
-    user = await client.users.getUser(evt.data.user_id);
-  } catch (error) {
-    throw new Error("User not found");
-  }
+  const client = await clerkClient();
+  const user = await client.users.getUser(evt.data.user_id);
 
   const isTargetUser = getIsTargetUser(user);
   if (isTargetUser) {
-    try {
-      await client.users.updateUser(user.id, {
-        unsafeMetadata: { requiresGeoLocation: true },
-      });
-    } catch (error) {
-      throw new Error("Error updating user");
-    }
+    await client.users.updateUser(user.id, {
+      unsafeMetadata: { requiresGeoLocation: true },
+    });
   }
 }
 
