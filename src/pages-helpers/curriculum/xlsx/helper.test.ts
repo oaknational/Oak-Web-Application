@@ -8,7 +8,6 @@ import { addOrUpdateSheet, createXmlIndexMap, getFlatUnits } from "./helper";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { createSubjectCategory } from "@/fixtures/curriculum/subjectCategories";
 
-
 describe("createXmlIndexMap", () => {
   it("should return XML and mapped keys/indexes", () => {
     const { xml, indexMap } = createXmlIndexMap({
