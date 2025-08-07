@@ -20,6 +20,7 @@ import {
 } from "@/node-lib/curriculum-api-2023";
 import { CombinedCurriculumData, Unit } from "@/utils/curriculum/types";
 import { sortYears } from "@/utils/curriculum/sorting";
+import { keystageFromYear } from "@/utils/curriculum/keystage";
 
 export type FormattedData = CurriculumUnitsFormattedData<
   CombinedCurriculumData["units"][number]
@@ -146,8 +147,14 @@ export function generateYearTitle(
     }
   }
 
-  const examboardTitle =
-    data.examboardTitle === "Core" ? `${data.examboardTitle}` : "";
+  let examboardTitle;
+  if (data.examboardTitle) {
+    if (keystageFromYear(year) === "ks4") {
+      examboardTitle =
+        data.examboardTitle === "Core" ? `${data.examboardTitle}` : "GCSE";
+    }
+  }
+
   const tierTitle = slugs.tierSlug ? `${capitalize(slugs.tierSlug)}` : "";
 
   const childSubjectTitle =
