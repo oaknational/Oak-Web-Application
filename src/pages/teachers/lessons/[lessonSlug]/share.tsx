@@ -84,6 +84,7 @@ export const getStaticProps: GetStaticProps<
       }
 
       if (!curriculumData) {
+        console.log("hello");
         const redirect = await getRedirect({
           isCanonical: true,
           context: context.params,
