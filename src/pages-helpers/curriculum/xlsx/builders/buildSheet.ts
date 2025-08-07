@@ -1,7 +1,7 @@
 import { cartesianToExcelCoords, pxToColumnWidth } from "@ooxml-tools/units";
+import { cdata, safeXml } from "@ooxml-tools/xml";
 
 import { BuildNationalCurriculumData } from "..";
-import { cdata, safeXml } from "../../docx/xml";
 import { getFlatUnits, XmlIndexMap } from "../helper";
 
 import { buildGoToUnitResourceCell } from "./buildGoToUnitResourceCell";
@@ -27,21 +27,21 @@ export function buildSheet<T extends XmlIndexMap>(
       />
     `);
     goToUnitResourcesXml.push(
-      buildGoToUnitResourceCell(
+      buildGoToUnitResourceCell({
         cellStyleIndexMap,
-        goToUnitResourcesXml.length + 2,
-        3,
-      ),
+        x: goToUnitResourcesXml.length + 2,
+        y: 3,
+      }),
     );
     unitXml.push(
-      buildUnitCell(
+      buildUnitCell({
         cellStyleIndexMap,
-        unitXml.length + 2,
-        2,
+        x: unitXml.length + 2,
+        y: 2,
         unit,
-        unit.unitIndex,
-        unit.subjectCategory?.title,
-      ),
+        unitIndex: unit.order,
+        prefix: unit.subjectCategory?.title,
+      }),
     );
 
     for (const [unitOptionIndex, unitOption] of unit.unit_options.entries()) {
@@ -52,20 +52,20 @@ export function buildSheet<T extends XmlIndexMap>(
         />
       `);
       goToUnitResourcesXml.push(
-        buildGoToUnitResourceCell(
+        buildGoToUnitResourceCell({
           cellStyleIndexMap,
-          goToUnitResourcesXml.length + 2,
-          3,
-        ),
+          x: goToUnitResourcesXml.length + 2,
+          y: 3,
+        }),
       );
       unitXml.push(
-        buildUnitOptionCell(
+        buildUnitOptionCell({
           cellStyleIndexMap,
-          unitXml.length + 2,
-          2,
-          unitOption,
+          x: unitXml.length + 2,
+          y: 2,
+          unitOption: unitOption,
           unitOptionIndex,
-        ),
+        }),
       );
     }
   }
@@ -184,12 +184,12 @@ export function buildSheet<T extends XmlIndexMap>(
 
             return safeXml`
               <row r="${yPos}" spans="1:${tickXml.length + 1}">
-                ${buildNcCriteriaText(
+                ${buildNcCriteriaText({
                   cellStyleIndexMap,
                   nationalCurricText,
-                  1,
-                  yPos,
-                )}
+                  x: 1,
+                  y: yPos,
+                })}
                 ${tickXml}
               </row>
             `;

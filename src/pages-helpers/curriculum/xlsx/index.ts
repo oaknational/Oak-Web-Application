@@ -1,11 +1,12 @@
+import { compact, safeXml } from "@ooxml-tools/xml";
+
 import { generateEmptyXlsx, JSZipCached } from "../docx/docx";
-import { safeXml, xmlCompact } from "../docx/xml";
 import {
   CurriculumUnitsFormattedData,
   formatCurriculumUnitsData,
 } from "../docx/tab-helpers";
 
-import { buildStyle } from "./builders/buildStyles";
+import { buildStyles } from "./builders/buildStyles";
 import { addOrUpdateSheet } from "./helper";
 import { buildSheet } from "./builders/buildSheet";
 import { buildWorkbook } from "./builders/buildWorkbook";
@@ -32,7 +33,7 @@ async function buildNationalCurriculum(
   zip: JSZipCached,
   data: BuildNationalCurriculumData[],
 ) {
-  const { styleXml, cellStyleIndexMap } = buildStyle();
+  const { styleXml, cellStyleIndexMap } = buildStyles();
   zip.writeString("xl/styles.xml", styleXml);
 
   const flatUnits = data.flatMap((bar) => bar.unitData.map((foo) => foo.unit));
@@ -75,7 +76,7 @@ async function buildNationalCurriculum(
     addOrUpdateSheet(
       zip,
       10 + index,
-      xmlCompact(buildSheet(cellStyleIndexMap, item)),
+      compact(buildSheet(cellStyleIndexMap, item)),
     );
   });
 

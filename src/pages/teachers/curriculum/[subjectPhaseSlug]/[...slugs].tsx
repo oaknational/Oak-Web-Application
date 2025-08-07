@@ -30,7 +30,7 @@ import getPageProps from "@/node-lib/getPageProps";
 import OakError from "@/errors/OakError";
 import { buildCurriculumMetadata } from "@/components/CurriculumComponents/helpers/curriculumMetadata";
 import CurriculumDownloadTab from "@/components/CurriculumComponents/CurriculumDownloadTab";
-import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
+import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
 import {
   getKs4RedirectSlug,
   isValidSubjectPhaseSlug,

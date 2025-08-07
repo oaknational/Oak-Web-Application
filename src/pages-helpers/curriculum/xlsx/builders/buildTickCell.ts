@@ -1,6 +1,6 @@
 import { cartesianToExcelCoords } from "@ooxml-tools/units";
+import { cdata, safeXml } from "@ooxml-tools/xml";
 
-import { cdata, safeXml } from "../../docx/xml";
 import { XmlIndexMap } from "../helper";
 
 export function buildTickCell<T extends XmlIndexMap>(

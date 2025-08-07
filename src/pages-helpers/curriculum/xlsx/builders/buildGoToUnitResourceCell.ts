@@ -1,13 +1,17 @@
 import { cartesianToExcelCoords } from "@ooxml-tools/units";
+import { safeXml } from "@ooxml-tools/xml";
 
-import { safeXml } from "../../docx/xml";
 import { XmlIndexMap } from "../helper";
 
-export function buildGoToUnitResourceCell<T extends XmlIndexMap>(
-  cellStyleIndexMap: T,
-  x: number,
-  y: number,
-) {
+export function buildGoToUnitResourceCell<T extends XmlIndexMap>({
+  cellStyleIndexMap,
+  x,
+  y,
+}: {
+  cellStyleIndexMap: T;
+  x: number;
+  y: number;
+}) {
   return safeXml`
     <c
       r="${cartesianToExcelCoords([x, y])}"

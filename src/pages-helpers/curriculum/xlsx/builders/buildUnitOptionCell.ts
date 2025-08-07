@@ -1,17 +1,23 @@
 import { cartesianToExcelCoords } from "@ooxml-tools/units";
+import { cdata, safeXml } from "@ooxml-tools/xml";
 
-import { cdata, safeXml } from "../../docx/xml";
 import { XmlIndexMap } from "../helper";
 
 import { UnitOption } from "@/utils/curriculum/types";
 
-export function buildUnitOptionCell<T extends XmlIndexMap>(
-  cellStyleIndexMap: T,
-  x: number,
-  y: number,
-  unitOption: UnitOption,
-  unitOptionIndex: number,
-) {
+export function buildUnitOptionCell<T extends XmlIndexMap>({
+  cellStyleIndexMap,
+  x,
+  y,
+  unitOption,
+  unitOptionIndex,
+}: {
+  cellStyleIndexMap: T;
+  x: number;
+  y: number;
+  unitOption: UnitOption;
+  unitOptionIndex: number;
+}) {
   return safeXml`
     <c
       r="${cartesianToExcelCoords([x, y])}"
