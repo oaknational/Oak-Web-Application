@@ -19,10 +19,13 @@ export type LessonOverviewCreateWithAiNavProps = {
 export const LessonOverviewCreateWithAiNav = ({
   lessonSlug,
   programmeSlug,
+  trackCreateWithAiButtonClicked,
+  trackTeachingMaterialsSelected,
 }: LessonOverviewHeaderProps) => {
   return (
     <LessonOverviewDropdownNavButton
       primaryActionText={"Create more with AI"}
+      onPrimaryAction={trackCreateWithAiButtonClicked}
       footer={
         <>
           <OakSmallPrimaryInvertedButton
@@ -45,6 +48,7 @@ export const LessonOverviewCreateWithAiNav = ({
       items={[
         {
           label: "Glossary",
+          onClick: () => trackTeachingMaterialsSelected("glossary"),
           href: resolveOakHref({
             page: "labs-teaching-materials",
             query: {
@@ -56,6 +60,7 @@ export const LessonOverviewCreateWithAiNav = ({
         },
         {
           label: "Comprehension task",
+          onClick: () => trackTeachingMaterialsSelected("comprehension task"),
           href: resolveOakHref({
             page: "labs-teaching-materials",
             query: {
@@ -67,6 +72,7 @@ export const LessonOverviewCreateWithAiNav = ({
         },
         {
           label: "Exit quiz",
+          onClick: () => trackTeachingMaterialsSelected("exit quiz"),
           href: resolveOakHref({
             page: "labs-teaching-materials",
             query: {
@@ -78,6 +84,7 @@ export const LessonOverviewCreateWithAiNav = ({
         },
         {
           label: "Starter quiz",
+          onClick: () => trackTeachingMaterialsSelected("starter quiz"),
           href: resolveOakHref({
             page: "labs-teaching-materials",
             query: {

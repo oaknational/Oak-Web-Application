@@ -70,7 +70,7 @@ export const lessonOverviewSchema = baseLessonOverviewSchema.extend({
   lessonReleaseDate: z.string().nullable(),
   loginRequired: z.boolean(),
   geoRestricted: z.boolean(),
-  excludedFromTeachingMaterials: z.boolean().optional(),
+  excludedFromTeachingMaterials: z.boolean(),
 });
 
 export type LessonOverviewPageData = z.infer<typeof lessonOverviewSchema>;

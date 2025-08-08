@@ -13,7 +13,10 @@ import {
   LessonOverviewHeaderDesktopB,
 } from "@/components/TeacherComponents/LessonOverviewHeaderDesktop";
 import { OakColorName } from "@/styles/theme";
-import { AnalyticsUseCaseValueType } from "@/browser-lib/avo/Avo";
+import {
+  AnalyticsUseCaseValueType,
+  TeachingMaterialTypeValueType,
+} from "@/browser-lib/avo/Avo";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 
 /**
@@ -64,6 +67,10 @@ export type LessonOverviewHeaderProps = {
   teacherShareButton?: React.ReactNode;
   // AI
   excludedFromTeachingMaterials: boolean;
+  trackTeachingMaterialsSelected: (
+    teachingMaterialType: TeachingMaterialTypeValueType,
+  ) => void;
+  trackCreateWithAiButtonClicked: () => void;
 };
 
 const LessonOverviewHeader: FC<LessonOverviewHeaderProps> = (props) => {
