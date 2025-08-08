@@ -12,6 +12,7 @@ import {
 import { constructPathwayLesson, toSentenceCase } from "../../helpers";
 import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
 import { getCorrectYear } from "../../helpers/getCorrectYear";
+import { isExcludedFromTeachingMaterials } from "../../helpers/teachingMaterialsAi/isExcluded";
 
 import lessonOverviewSchema, {
   lessonContentSchema,
@@ -314,8 +315,8 @@ const lessonOverviewQuery =
       unitDataWhere,
     });
 
-    const worksList = res.tpcWorks[0]?.works_list ?? [];
-    const hasRestrictedTcpWorks = worksList.length > 0;
+    const restrictedAndHighlyRestrictedWorksList =
+      res.tpcWorks[0]?.works_list ?? [];
 
     const modifiedBrowseData = applyGenericOverridesAndExceptions<
       LessonOverviewQuery["browseData"][number]
@@ -372,9 +373,15 @@ const lessonOverviewQuery =
     }) as LessonOverviewContent;
     const unitData = keysToCamelCase(unitDataSnake) as LessonUnitDataByKs;
 
+    const excludedFromTeachingMaterials = isExcludedFromTeachingMaterials(
+      browseData.lessonData,
+      restrictedAndHighlyRestrictedWorksList,
+      content,
+    );
+
     return lessonOverviewSchema.parse({
       ...transformedLessonOverviewData(browseData, content, pathways, unitData),
-      hasRestrictedTcpWorks,
+      excludedFromTeachingMaterials,
     });
   };
 
