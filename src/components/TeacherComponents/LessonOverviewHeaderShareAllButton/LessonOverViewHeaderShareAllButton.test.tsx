@@ -1,26 +1,18 @@
-import { OakColorFilterToken } from "@oaknational/oak-components";
+import {
+  OakColorFilterToken,
+  OakColorToken,
+} from "@oaknational/oak-components";
 
 import { LessonOverviewHeaderShareAllButton } from "./LessonOverviewHeaderShareAllButton";
 
-import {
-  defaultCopyrightRequirements,
-  signedInGeoBlocked,
-  signedOutLoginRequired,
-} from "@/__tests__/__helpers__/mockCopyrightRequirements";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
-import { OakColorName } from "@/styles/theme";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import { AnalyticsUseCaseValueType } from "@/browser-lib/avo/Avo";
 
 const mockFeatureFlagEnabled = jest.fn();
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => mockFeatureFlagEnabled(),
-}));
-
-let mockUseCopyrightRequirements = defaultCopyrightRequirements;
-jest.mock("@/hooks/useCopyrightRequirements", () => ({
-  useCopyrightRequirements: () => mockUseCopyrightRequirements,
 }));
 
 jest.mock("next/router", () => require("next-router-mock"));
@@ -38,7 +30,7 @@ const baseProps = {
   geoRestricted: false,
   loginRequired: false,
   breadcrumbs: [],
-  background: "white" as OakColorName,
+  background: "white" as OakColorToken,
   isNew: false,
   subjectIconBackgroundColor: "white" as OakColorFilterToken,
   subjectSlug: "test-subject",
@@ -57,7 +49,7 @@ const render = renderWithProviders();
 
 describe("LessonOverviewHeaderShareAllButton", () => {
   beforeEach(() => {
-    mockFeatureFlagEnabled.mockReturnValueOnce(false);
+    mockFeatureFlagEnabled.mockReturnValue(false);
   });
 
   afterEach(() => {
@@ -88,28 +80,41 @@ describe("LessonOverviewHeaderShareAllButton", () => {
     expect(shareButton.tagName).toBe("BUTTON");
   });
 
-  it("renders sign up button when content is restricted", () => {
-    mockUseCopyrightRequirements = signedOutLoginRequired;
-    const { getByTestId } = render(
-      <LessonOverviewHeaderShareAllButton {...baseProps} />,
+  it("renders a button when feature flag disabled and content is restricted", () => {
+    mockFeatureFlagEnabled.mockReturnValue(false);
+    const { queryByTestId } = render(
+      <LessonOverviewHeaderShareAllButton
+        {...baseProps}
+        loginRequired={true}
+        geoRestricted={true}
+      />,
     );
-    const shareButton = getByTestId("share-all-button");
-    expect(shareButton).not.toHaveAttribute("href");
-    shareButton.click();
-    expect(mockOnClickShareAll).not.toHaveBeenCalled();
+    const shareButton = queryByTestId("share-all-button");
+    expect(shareButton).toBeInTheDocument();
   });
 
-  it("does not render a button when geoBlocked", () => {
-    mockUseCopyrightRequirements = signedInGeoBlocked;
+  it("does not render a button when loginRequired and feature flag enabled", () => {
+    mockFeatureFlagEnabled.mockReturnValue(true);
 
-    const { getByTestId } = render(
+    const { queryByTestId } = render(
+      <LessonOverviewHeaderShareAllButton
+        {...baseProps}
+        loginRequired={true}
+      />,
+    );
+    const shareButton = queryByTestId("share-all-button");
+    expect(shareButton).not.toBeInTheDocument();
+  });
+
+  it("does not render a button when geoRestricted and feature flag enabled", () => {
+    mockFeatureFlagEnabled.mockReturnValue(true);
+    const { queryByTestId } = render(
       <LessonOverviewHeaderShareAllButton
         {...baseProps}
         geoRestricted={true}
-        loginRequired={false}
       />,
     );
-    const shareButton = getByTestId("share-all-button");
-    expect(shareButton).not.toBeVisible();
+    const shareButton = queryByTestId("share-all-button");
+    expect(shareButton).not.toBeInTheDocument();
   });
 });

@@ -25,6 +25,7 @@ export type KeypadItem = TeachersHomePageData["keyStages"][number];
 
 export type KeyStageKeypadProps = {
   title: string;
+  titleTag?: "h2" | "h3";
   keyStages: KeypadItem[];
   years?: KeypadItem[];
 } & KeyStageOnClick;
@@ -86,6 +87,7 @@ const KeyPadGrid = (
  */
 const KeyStageKeypad: FC<KeyStageKeypadProps> = ({
   title,
+  titleTag = "h2",
   keyStages,
   trackingOnClick,
   years,
@@ -103,9 +105,14 @@ const KeyStageKeypad: FC<KeyStageKeypadProps> = ({
 
   return (
     <nav aria-label="key stages and year groups">
-      <OakP $color={"black"} $mb="space-between-s" $font={"heading-7"}>
+      <OakHeading
+        tag={titleTag}
+        $color={"black"}
+        $mb="space-between-s"
+        $font={"heading-7"}
+      >
         {title}
-      </OakP>
+      </OakHeading>
       <OakBox $display={["none", "block"]}>
         <KeyPadGrid
           keyStages={keyStages}

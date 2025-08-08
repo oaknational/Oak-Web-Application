@@ -1,23 +1,25 @@
 import { FC, useRef, useEffect } from "react";
 import {
+  OakFlex,
   OakHeading,
   OakSpan,
   OakBox,
   OakIcon,
   OakLink,
+  OakTertiaryButton,
 } from "@oaknational/oak-components";
 import { useOakConsent } from "@oaknational/oak-consent-client";
 
 import { useTeacherShareButton } from "../TeacherShareButton/useTeacherShareButton";
 
 import Flex from "@/components/SharedComponents/Flex.deprecated";
-import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import DownloadConfirmationNextLessonContainer from "@/components/TeacherComponents/DownloadConfirmationNextLessonContainer";
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
 import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
 import { OnwardContentSelectedProperties } from "@/browser-lib/avo/Avo";
+import { resolveOakHref } from "@/common-lib/urls";
 
 type DownloadConfirmationProps = {
   lessonSlug: string | null;
@@ -124,11 +126,11 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
 
   return (
     <>
-      <Flex
+      <OakFlex
         $flexDirection={["column", "row"]}
         $alignItems={["flex-start", "center"]}
-        $gap={[24, 24, 120]}
-        $mb={[56, 0]}
+        $gap={["space-between-m", "space-between-m", "all-spacing-16"]}
+        $mb={["space-between-xl", "space-between-none"]}
       >
         <Flex
           $alignItems={"center"}
@@ -151,21 +153,20 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
           $maxWidth={600}
         >
           {unitSlug && unitTitle && programmeSlug ? (
-            <ButtonAsLink
+            <OakTertiaryButton
               {...focusRef}
-              htmlAnchorProps={{ tabIndex: 0 }}
-              page={
-                isSpecialist ? "specialist-lesson-overview" : "lesson-overview"
-              }
-              lessonSlug={lessonSlug}
-              programmeSlug={programmeSlug}
-              unitSlug={unitSlug}
-              label="Back to lesson"
-              variant={"buttonStyledAsLink"}
-              icon="chevron-left"
-              iconBackground="grey20"
+              tabIndex={0}
+              element="a"
+              href={resolveOakHref({
+                page: isSpecialist
+                  ? "specialist-lesson-overview"
+                  : "lesson-overview",
+                lessonSlug: lessonSlug,
+                programmeSlug: programmeSlug,
+                unitSlug: unitSlug,
+              })}
+              iconName="chevron-left"
               data-testid="back-to-lesson-link"
-              size="small"
               onClick={() =>
                 onwardContentSelected({
                   lessonName: lessonTitle,
@@ -175,18 +176,19 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
                   onwardIntent: "view-lesson",
                 })
               }
-            />
+            >
+              Back to lesson
+            </OakTertiaryButton>
           ) : (
-            <ButtonAsLink
+            <OakTertiaryButton
               {...focusRef}
-              page={"lesson-overview-canonical"}
-              lessonSlug={lessonSlug}
-              label="Back to lesson"
-              variant={"buttonStyledAsLink"}
-              icon="chevron-left"
-              iconBackground="grey20"
+              element="a"
+              href={resolveOakHref({
+                page: "lesson-overview-canonical",
+                lessonSlug: lessonSlug,
+              })}
+              iconName="chevron-left"
               data-testid="back-to-lesson-link"
-              size="small"
               onClick={() => {
                 onwardContentSelected({
                   lessonName: lessonTitle,
@@ -196,7 +198,9 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
                   onwardIntent: "view-lesson",
                 });
               }}
-            />
+            >
+              Back to lesson
+            </OakTertiaryButton>
           )}
 
           <OakHeading tag="h1" $font={["heading-4", "heading-3"]}>
@@ -229,7 +233,7 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
           </OakBox>
           {teacherShareButton}
         </Flex>
-      </Flex>
+      </OakFlex>
 
       {displayNextLessonContainer && isNextLessonsAvailable && (
         <DownloadConfirmationNextLessonContainer

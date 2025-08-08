@@ -45,14 +45,28 @@ locals {
     ]
   ])
 
+  sensitive_env_vars = {
+    shared = {}
+    prod = {
+      CLERK_SECRET_KEY                      = var.clerk_secret_key_prod
+      GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT = var.google_secret_manager_service_account_prod
+      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY     = var.next_public_clerk_publishable_key_prod
+    }
+    preview = {
+      CLERK_SECRET_KEY                      = var.clerk_secret_key_preview
+      GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT = var.google_secret_manager_service_account_preview
+      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY     = var.next_public_clerk_publishable_key_preview
+    }
+  }
+
   sensitive_vars = flatten([
     for group, target in local.env_groups : [
-      for key, value in var.sensitive_env_vars[group] : {
+      for key, value in local.sensitive_env_vars[group] : {
         key       = key
         value     = value
         target    = target
         sensitive = true
-      }
+      } if value != null
     ]
   ])
 
@@ -71,6 +85,20 @@ locals {
     ])
   ])
 
+  sensitive_custom_env_vars = flatten([
+    for env_name, env_map in var.sensitive_custom_env_vars : ([
+      contains(local.custom_env_names, env_name) ? [
+        for key, value in env_map : {
+          custom_environment_name = env_name
+          key                     = key
+          value                   = value
+          sensitive               = true
+        }
+      ]
+      : []
+    ])
+  ])
+
   custom_env_vars_shared = flatten([
     for env in local.custom_env_names :
     [
@@ -82,7 +110,7 @@ locals {
     ]
   ])
 
-  all_custom_env_vars = concat(local.custom_env_vars, local.custom_env_vars_shared)
+  all_custom_env_vars = concat(local.custom_env_vars, local.sensitive_custom_env_vars, local.custom_env_vars_shared)
 
   environment_variables = concat(local.non_sensitive_vars, local.sensitive_vars)
 }

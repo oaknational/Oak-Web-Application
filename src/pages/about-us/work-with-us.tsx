@@ -7,6 +7,7 @@ import {
   OakGridArea,
   OakHeading,
   OakTypography,
+  OakPrimaryButton,
 } from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
@@ -14,7 +15,6 @@ import { AboutWorkWithUsPage } from "@/common-lib/cms-types";
 import Layout from "@/components/AppComponents/Layout";
 import Card from "@/components/SharedComponents/Card";
 import GenericContactCard from "@/components/GenericPagesComponents/GenericContactCard";
-import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import GenericIntroCard from "@/components/GenericPagesComponents/GenericIntroCard";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSummaryCard";
@@ -73,17 +73,14 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                   </OakTypography>
                   {card.cta?.linkType == "external" && (
                     <OakFlex>
-                      <ButtonAsLink
-                        background="blue"
-                        label={card.cta.label}
-                        page={null}
+                      <OakPrimaryButton
+                        element="a"
                         href={card.cta.external}
-                        icon={"external"}
-                        $iconPosition={"trailing"}
-                        iconBackground="lemon"
+                        iconName={"external"}
+                        isTrailingIcon={true}
                       >
                         {card.cta.label}
-                      </ButtonAsLink>
+                      </OakPrimaryButton>
                     </OakFlex>
                   )}
                   <BrushBorders hideOnMobileH color={"aqua"} />

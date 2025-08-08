@@ -1,6 +1,9 @@
-import { OakBox, OakHandDrawnHR } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakHandDrawnHR,
+  OakMaxWidth,
+} from "@oaknational/oak-components";
 
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
 import {
   getLessonOverviewBreadCrumb,
@@ -181,7 +184,10 @@ export function LessonShare(props: LessonShareProps) {
 
   return (
     <OakBox $ph={["inner-padding-m", null]} $background={"grey20"}>
-      <MaxWidth $pb={80} $maxWidth={[480, 840, 1280]}>
+      <OakMaxWidth
+        inner-padding-xl8
+        $maxWidth={["all-spacing-21", "all-spacing-23", "all-spacing-24"]}
+      >
         <OakBox $mb={"space-between-m2"} $mt={"space-between-m"}>
           <Breadcrumbs
             breadcrumbs={
@@ -285,7 +291,7 @@ export function LessonShare(props: LessonShareProps) {
             />
           }
         />
-      </MaxWidth>
+      </OakMaxWidth>
     </OakBox>
   );
 }

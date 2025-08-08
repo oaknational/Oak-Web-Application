@@ -4,6 +4,7 @@ import * as Sentry from "@sentry/nextjs";
 
 import ErrorView from "@/components/AppComponents/ErrorView";
 import { bugsnagInitialised } from "@/browser-lib/bugsnag/useBugsnag";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
 const ClientErrorView: FC = () => {
   return (
@@ -98,7 +99,7 @@ function SentryErrorBoundary({ children }: ErrorBoundaryProps) {
 }
 
 export default function ErrorBoundary({ children }: ErrorBoundaryProps) {
-  if (process.env.SENTRY_ENABLED === "true") {
+  if (getBrowserConfig("sentryEnabled") === "true") {
     return <SentryErrorBoundary>{children}</SentryErrorBoundary>;
   } else {
     return <BugsnagErrorBoundary>{children}</BugsnagErrorBoundary>;

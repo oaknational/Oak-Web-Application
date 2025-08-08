@@ -57,6 +57,12 @@ const stemTextObjectSchema = z.object({
 
 export type StemTextObject = z.infer<typeof stemTextObjectSchema>;
 
+export const isStemTextObject = (
+  obj: StemTextObject | StemImageObject,
+): obj is StemTextObject => {
+  return obj.type === "text";
+};
+
 const stemImageObjectSchema = z.object({
   imageObject: z.object({
     format: z.enum(["png", "jpg", "jpeg", "webp", "gif", "svg"]).optional(),

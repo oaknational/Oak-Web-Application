@@ -1,5 +1,8 @@
 import React, { FC } from "react";
-import { OakColorFilterToken } from "@oaknational/oak-components";
+import {
+  OakColorFilterToken,
+  OakColorToken,
+} from "@oaknational/oak-components";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
@@ -12,7 +15,6 @@ import {
   LessonOverviewHeaderDesktop,
   LessonOverviewHeaderDesktopB,
 } from "@/components/TeacherComponents/LessonOverviewHeaderDesktop";
-import { OakColorName } from "@/styles/theme";
 import {
   AnalyticsUseCaseValueType,
   TeachingMaterialTypeValueType,
@@ -52,7 +54,7 @@ export type LessonOverviewHeaderProps = {
   lessonReleaseDate?: string | null;
   // other props
   breadcrumbs: Breadcrumb[];
-  background: OakColorName;
+  background: OakColorToken;
   isNew: boolean;
   isShareable: boolean;
   subjectIconBackgroundColor: OakColorFilterToken;
