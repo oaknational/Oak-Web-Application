@@ -9,6 +9,9 @@ import {
   OakBox,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
+import { useFeatureFlagEnabled } from "posthog-js/react";
+
+import { LessonOverviewCreateWithAiNav } from "../LessonOverviewCreateWithAINav/LessonOverviewCreateWithAiNav";
 
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { LessonOverviewHeaderDownloadAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderDownloadAllButton";
@@ -49,7 +52,10 @@ export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
     lessonReleaseDate,
     unitTitle,
     unitSlug,
+    excludedFromTeachingMaterials,
   } = props;
+
+  const isCreateWithAiEnabled = useFeatureFlagEnabled("create-with-ai-button");
 
   return (
     <OakBox $display={["none", "grid"]}>
@@ -104,6 +110,9 @@ export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
                 <LessonOverviewHeaderDownloadAllButton {...props} />
                 {showShare && <LessonOverviewHeaderShareAllButton {...props} />}
                 {teacherShareButton}
+                {!excludedFromTeachingMaterials && isCreateWithAiEnabled && (
+                  <LessonOverviewCreateWithAiNav {...props} />
+                )}
               </OakFlex>
               <CopyrightRestrictionBanner
                 isGeorestricted={geoRestricted}

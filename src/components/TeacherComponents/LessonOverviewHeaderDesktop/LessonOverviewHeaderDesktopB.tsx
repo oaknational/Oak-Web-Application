@@ -11,6 +11,9 @@ import {
   OakTagFunctional,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
+import { useFeatureFlagEnabled } from "posthog-js/react";
+
+import { LessonOverviewCreateWithAiNav } from "../LessonOverviewCreateWithAINav/LessonOverviewCreateWithAiNav";
 
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { LessonOverviewHeaderDownloadAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderDownloadAllButton";
@@ -60,11 +63,14 @@ export const LessonOverviewHeaderDesktopB: FC<LessonOverviewHeaderProps> = (
     lessonSlug,
     lessonReleaseDate,
     unitSlug,
+    excludedFromTeachingMaterials,
   } = props;
 
   const previousBreadcrumb = breadcrumbs[breadcrumbs.length - 2];
   const shouldShowBackButton =
     !!previousBreadcrumb && !!unitTitle && !!programmeSlug;
+
+  const isCreateWithAiEnabled = useFeatureFlagEnabled("create-with-ai-button");
 
   return (
     <OakBox $display={["none", "grid"]}>
@@ -150,6 +156,9 @@ export const LessonOverviewHeaderDesktopB: FC<LessonOverviewHeaderProps> = (
                 <LessonOverviewHeaderDownloadAllButton {...props} />
                 {showShare && <LessonOverviewHeaderShareAllButton {...props} />}
                 {teacherShareButton}
+                {!excludedFromTeachingMaterials && isCreateWithAiEnabled && (
+                  <LessonOverviewCreateWithAiNav {...props} />
+                )}
               </OakFlex>
               <CopyrightRestrictionBanner
                 isGeorestricted={geoRestricted}

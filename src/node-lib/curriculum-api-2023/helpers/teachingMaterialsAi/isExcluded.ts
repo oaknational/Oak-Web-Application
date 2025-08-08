@@ -15,7 +15,6 @@ export const isExcludedFromTeachingMaterials = (
   worksList: WorksListItem[], // all items are restricted or highly restricted
   content: LessonOverviewContent,
 ): boolean => {
-  console.log(content);
   const excludedFromTeachingMaterials = worksList.length > 0;
   const hasRestrictedId = isRestrictedLessonId(browseData.lessonUid);
   const hasRestrictedContent = content

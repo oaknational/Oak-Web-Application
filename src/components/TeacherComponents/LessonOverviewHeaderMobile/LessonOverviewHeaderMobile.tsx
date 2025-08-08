@@ -6,6 +6,9 @@ import {
   OakFlex,
   OakBox,
 } from "@oaknational/oak-components";
+import { useFeatureFlagEnabled } from "posthog-js/react";
+
+import { LessonOverviewCreateWithAiNav } from "../LessonOverviewCreateWithAINav";
 
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { LessonOverviewHeaderDownloadAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderDownloadAllButton";
@@ -37,7 +40,10 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
     lessonReleaseDate,
     unitTitle,
     unitSlug,
+    excludedFromTeachingMaterials,
   } = props;
+
+  const isCreateWithAiEnabled = useFeatureFlagEnabled("create-with-ai-button");
 
   return (
     <OakFlex
@@ -80,6 +86,9 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
       <LessonOverviewHeaderDownloadAllButton {...props} />
       {showShare && <LessonOverviewHeaderShareAllButton {...props} />}
       {teacherShareButton}
+      {!excludedFromTeachingMaterials && isCreateWithAiEnabled && (
+        <LessonOverviewCreateWithAiNav {...props} />
+      )}
       <CopyrightRestrictionBanner
         isGeorestricted={geoRestricted}
         isLoginRequired={loginRequired}

@@ -62,6 +62,8 @@ export type LessonOverviewHeaderProps = {
   showShare: boolean;
   // teacher share
   teacherShareButton?: React.ReactNode;
+  // AI
+  excludedFromTeachingMaterials: boolean;
 };
 
 const LessonOverviewHeader: FC<LessonOverviewHeaderProps> = (props) => {

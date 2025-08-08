@@ -9,6 +9,8 @@ import {
   OakTagFunctional,
 } from "@oaknational/oak-components";
 
+import { LessonOverviewCreateWithAiNav } from "../LessonOverviewCreateWithAINav";
+
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { LessonOverviewHeaderDownloadAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderDownloadAllButton";
 import { LessonOverviewHeaderShareAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderShareAllButton";
@@ -44,6 +46,7 @@ export const LessonOverviewHeaderMobileB: FC<LessonOverviewHeaderProps> = (
     lessonSlug,
     lessonReleaseDate,
     unitSlug,
+    excludedFromTeachingMaterials,
   } = props;
 
   const previousBreadcrumb = breadcrumbs[breadcrumbs.length - 2];
@@ -114,6 +117,9 @@ export const LessonOverviewHeaderMobileB: FC<LessonOverviewHeaderProps> = (
       <LessonOverviewHeaderDownloadAllButton {...props} />
       {showShare && <LessonOverviewHeaderShareAllButton {...props} />}
       {teacherShareButton}
+      {!excludedFromTeachingMaterials && (
+        <LessonOverviewCreateWithAiNav {...props} />
+      )}
       {(geoRestricted || loginRequired) && (
         <CopyrightRestrictionBanner
           isGeorestricted={geoRestricted}
