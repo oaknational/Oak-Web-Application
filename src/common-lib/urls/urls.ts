@@ -309,6 +309,10 @@ type OurTeachersLinkProps = { page: "our-teachers" };
 type OakCurriculumLinkProps = { page: "oak-curriculum" };
 type ClassroomLinkProps = { page: "classroom" };
 type LabsLinkProps = { page: "labs" };
+type LabsTeachingMaterialsLinkProps = {
+  page: "labs-teaching-materials";
+  query?: UrlQueryObject;
+};
 type TeacherHubLinkProps = { page: "teacher-hub" };
 type CurriculumLandingPageLinkProps = {
   page: "curriculum-landing-page";
@@ -364,6 +368,7 @@ type MyLibraryProps = {
 
 export type OakLinkProps =
   | LabsLinkProps
+  | LabsTeachingMaterialsLinkProps
   | SubjectListingLinkProps
   | TeachersHomePageProps
   | SpecialistSubjectListingLinkProps
@@ -490,7 +495,19 @@ export function createOakPageConfig<ResolveHrefProps extends OakLinkProps>(
       return {
         ...props,
         matchHref: () => false,
-        resolveHref: () => props.url,
+        resolveHref: (resolveHrefProps: ResolveHrefProps) => {
+          let url = props.url;
+          if ("query" in resolveHrefProps && resolveHrefProps.query) {
+            const queryString = createQueryStringFromObject(
+              resolveHrefProps.query,
+            );
+            if (queryString) {
+              url = `${url}?${queryString}`;
+            }
+          }
+
+          return url;
+        },
       };
     case "internal":
       return {
@@ -641,6 +658,12 @@ export const OAK_PAGES: {
     analyticsPageName: "[external] Labs",
     configType: "external",
     pageType: "labs",
+  }),
+  "labs-teaching-materials": createOakPageConfig({
+    url: "https://labs.thenational.academy/aila/teaching-materials",
+    analyticsPageName: "[external] Labs",
+    configType: "external",
+    pageType: "labs-teaching-materials",
   }),
   "support-your-team": createOakPageConfig({
     pathPattern: "/support-your-team",
