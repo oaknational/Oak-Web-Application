@@ -51,6 +51,8 @@ const baseProps = {
   isShareable: true,
   onClickShareAll: jest.fn(),
   showShare: true,
+  trackTeachingMaterialsSelected: jest.fn(),
+  trackCreateWithAiButtonClicked: jest.fn(),
 };
 
 const render = renderWithProviders();

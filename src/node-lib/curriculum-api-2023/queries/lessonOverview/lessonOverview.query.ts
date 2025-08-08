@@ -162,6 +162,7 @@ export const transformedLessonOverviewData = (
   content: LessonOverviewContent,
   pathways: LessonPathway[] | [],
   unitData: LessonUnitDataByKs,
+  excludedFromTeachingMaterials: boolean,
 ): LessonOverviewPageData => {
   const reportError = errorReporter("transformedLessonOverviewData");
   const starterQuiz = lessonOverviewQuizData.parse(content.starterQuiz);
@@ -269,6 +270,7 @@ export const transformedLessonOverviewData = (
       1,
     geoRestricted: browseData.features?.agf_geoRestricted ?? false,
     loginRequired: browseData.features?.agf_loginRequired ?? false,
+    excludedFromTeachingMaterials,
   };
 };
 
@@ -380,8 +382,13 @@ const lessonOverviewQuery =
     );
 
     return lessonOverviewSchema.parse({
-      ...transformedLessonOverviewData(browseData, content, pathways, unitData),
-      excludedFromTeachingMaterials,
+      ...transformedLessonOverviewData(
+        browseData,
+        content,
+        pathways,
+        unitData,
+        excludedFromTeachingMaterials,
+      ),
     });
   };
 

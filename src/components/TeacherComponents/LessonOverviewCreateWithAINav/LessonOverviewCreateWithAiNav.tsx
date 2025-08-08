@@ -48,7 +48,9 @@ export const LessonOverviewCreateWithAiNav = ({
       items={[
         {
           label: "Glossary",
-          onClick: () => trackTeachingMaterialsSelected("glossary"),
+          onClick: () =>
+            trackTeachingMaterialsSelected &&
+            trackTeachingMaterialsSelected("glossary"),
           href: resolveOakHref({
             page: "labs-teaching-materials",
             query: {
@@ -60,7 +62,9 @@ export const LessonOverviewCreateWithAiNav = ({
         },
         {
           label: "Comprehension task",
-          onClick: () => trackTeachingMaterialsSelected("comprehension task"),
+          onClick: () =>
+            trackTeachingMaterialsSelected &&
+            trackTeachingMaterialsSelected("comprehension task"),
           href: resolveOakHref({
             page: "labs-teaching-materials",
             query: {
@@ -72,7 +76,9 @@ export const LessonOverviewCreateWithAiNav = ({
         },
         {
           label: "Exit quiz",
-          onClick: () => trackTeachingMaterialsSelected("exit quiz"),
+          onClick: () =>
+            trackTeachingMaterialsSelected &&
+            trackTeachingMaterialsSelected("exit quiz"),
           href: resolveOakHref({
             page: "labs-teaching-materials",
             query: {
@@ -84,7 +90,9 @@ export const LessonOverviewCreateWithAiNav = ({
         },
         {
           label: "Starter quiz",
-          onClick: () => trackTeachingMaterialsSelected("starter quiz"),
+          onClick: () =>
+            trackTeachingMaterialsSelected &&
+            trackTeachingMaterialsSelected("starter quiz"),
           href: resolveOakHref({
             page: "labs-teaching-materials",
             query: {

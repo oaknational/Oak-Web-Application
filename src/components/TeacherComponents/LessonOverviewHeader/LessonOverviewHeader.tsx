@@ -66,11 +66,11 @@ export type LessonOverviewHeaderProps = {
   // teacher share
   teacherShareButton?: React.ReactNode;
   // AI
-  excludedFromTeachingMaterials: boolean;
-  trackTeachingMaterialsSelected: (
+  excludedFromTeachingMaterials?: boolean;
+  trackTeachingMaterialsSelected?: (
     teachingMaterialType: TeachingMaterialTypeValueType,
   ) => void;
-  trackCreateWithAiButtonClicked: () => void;
+  trackCreateWithAiButtonClicked?: () => void;
 };
 
 const LessonOverviewHeader: FC<LessonOverviewHeaderProps> = (props) => {

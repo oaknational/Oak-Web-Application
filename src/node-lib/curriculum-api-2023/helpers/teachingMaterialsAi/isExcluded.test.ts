@@ -10,17 +10,17 @@ interface WorksListItem {
 }
 
 describe("isExcludedFromTeachingMaterials", () => {
-  const mockBrowseData: LessonBrowseDataByKs = {
+  const mockBrowseData: LessonBrowseDataByKs["lessonData"] = {
     lessonData: {
       lessonUid: "LESSON-123",
     },
-  } as LessonBrowseDataByKs;
+  } as unknown as LessonBrowseDataByKs["lessonData"];
 
-  const restrictedLessonBrowseData: LessonBrowseDataByKs = {
+  const restrictedLessonBrowseData: LessonBrowseDataByKs["lessonData"] = {
     lessonData: {
       lessonUid: "LESS-OIDMT-O3146", // This is in the restricted list
     },
-  } as LessonBrowseDataByKs;
+  } as unknown as LessonBrowseDataByKs["lessonData"];
 
   const mockContent: LessonOverviewContent = {
     contentGuidance: null,
