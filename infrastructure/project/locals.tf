@@ -6,9 +6,9 @@ locals {
       preview = ["OAK_CONFIG_LOCATION"]
     }
     storybook = {
-      shared  = []
-      prod    = ["OAK_CONFIG_LOCATION"]
-      preview = ["OAK_CONFIG_LOCATION", "NEXT_PUBLIC_CLIENT_APP_BASE_URL"]
+      shared  = ["NEXT_PUBLIC_CLIENT_APP_BASE_URL"]
+      prod    = ["OAK_CONFIG_LOCATION", "OVERRIDE_APP_VERSION"]
+      preview = ["OAK_CONFIG_LOCATION"]
     }
   }
 
