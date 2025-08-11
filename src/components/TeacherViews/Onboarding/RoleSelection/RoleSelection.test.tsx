@@ -39,7 +39,8 @@ describe("RoleSelection", () => {
 
     await userEvent.click(otherRadio);
 
-    const otherRoleInput = await screen.findByLabelText(/your role/i);
+    const otherRoleInput =
+      await screen.findByPlaceholderText(/type your role/i);
     expect(otherRoleInput).toBeDefined();
     expect(otherRoleInput).toBeVisible();
 

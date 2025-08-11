@@ -8,7 +8,6 @@ import {
 } from "@oaknational/oak-components";
 
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import { MatchAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export const QuizQuestionsMatchAnswers = ({
@@ -50,7 +49,10 @@ export const QuizQuestionsMatchAnswers = ({
                 $width={"all-spacing-6"}
                 $height={"all-spacing-6"}
               />
-              <Flex $flexWrap={"wrap"} $width={["100%", "100%", "max-content"]}>
+              <OakFlex
+                $flexWrap={"wrap"}
+                $width={["100%", "100%", "max-content"]}
+              >
                 <OakP
                   $whiteSpace={"nowrap"}
                   $font={["body-2-bold", "body-1-bold"]}
@@ -73,7 +75,7 @@ export const QuizQuestionsMatchAnswers = ({
                     $mt={"space-between-none"}
                   />
                 </OakP>
-              </Flex>
+              </OakFlex>
             </OakFlex>
           )
         );

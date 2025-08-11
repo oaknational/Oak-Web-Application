@@ -9,6 +9,7 @@ import {
   OakP,
   OakSecondaryButton,
   OakTagFunctional,
+  OakColorToken,
 } from "@oaknational/oak-components";
 
 import UnitDownloadButton, {
@@ -22,9 +23,7 @@ import RiskAssessmentBanner from "@/components/TeacherComponents/RiskAssessmentB
 import HeaderListingCurriculumDownloadButton from "@/components/TeacherComponents/HeaderListingCurriculumDownloadButton";
 import CopyrightRestrictionBanner from "@/components/TeacherComponents/CopyrightRestrictionBanner/CopyrightRestrictionBanner";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import { OakColorName } from "@/styles/theme";
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 import TeacherSubjectDescription from "@/components/TeacherComponents/TeacherSubjectDescription/TeacherSubjectDescription";
 
@@ -35,7 +34,7 @@ import TeacherSubjectDescription from "@/components/TeacherComponents/TeacherSub
 
 export type HeaderListingProps = {
   breadcrumbs: Breadcrumb[];
-  background: OakColorName;
+  background: OakColorToken;
   subjectTitle: string;
   subjectSlug: string;
   subjectIconBackgroundColor: OakColorFilterToken;
@@ -216,8 +215,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                     unitFileId={unitDownloadFileId}
                     onDownloadSuccess={onUnitDownloadSuccess}
                     showNewTag={false}
-                    georestricted={Boolean(isGeorestrictedUnit)}
-                    loginRequired={Boolean(isLoginRequiredUnit)}
+                    geoRestricted={Boolean(isGeorestrictedUnit)}
                   />
                 )}
                 {shareButton}
@@ -274,7 +272,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
         )}
         <OakBox $display={["block", "none", "none"]}>{bannersBlock}</OakBox>
       </OakFlex>
-      <Flex $background={background} $display={["inline", "none"]}>
+      <OakFlex $background={background} $display={["inline", "none"]}>
         {hasCurriculumDownload && isKeyStagesAvailable && (
           <HeaderListingCurriculumDownloadButton
             keyStageSlug={keyStageSlug}
@@ -294,7 +292,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
             data-testid="curriculum-downloads-link"
           />
         )}
-      </Flex>
+      </OakFlex>
     </LessonHeaderWrapper>
   );
 };
