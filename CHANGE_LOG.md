@@ -1,3 +1,34 @@
+## [1.828.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.828.0...v1.828.1) (2025-08-07)
+
+# [1.828.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.827.0...v1.828.0) (2025-08-07)
+
+
+### Features
+
+* add detectify firewall bypass rule ([d7350b0](https://github.com/oaknational/Oak-Web-Application/commit/d7350b07d69f30edddb281a40a6f5d7785e1f7c9))
+
+# [1.827.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.826.1...v1.827.0) (2025-08-06)
+
+
+### Features
+
+* hide share with pupils button when content is copyrighted ([7de7b3c](https://github.com/oaknational/Oak-Web-Application/commit/7de7b3c8a17104645f7ac4ea370d92f4f51acea8))
+
+## [1.826.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.826.0...v1.826.1) (2025-08-06)
+
+
+### Bug Fixes
+
+* keystage keypad heading accessibility ([e0e00b4](https://github.com/oaknational/Oak-Web-Application/commit/e0e00b40ed476860ef511c384e4ca72fc9c3246b))
+
+# [1.826.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.825.0...v1.826.0) (2025-08-06)
+
+
+### Features
+
+* implement auth check on sub routes ([27e9d24](https://github.com/oaknational/Oak-Web-Application/commit/27e9d246c776f91837405087eb622905ee030db7))
+* implement authentication check and redirect in onboarding page ([847025b](https://github.com/oaknational/Oak-Web-Application/commit/847025be2de61590b0d4072070ed77cefbe368b4))
+
 # [1.825.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.824.0...v1.825.0) (2025-08-06)
 
 
