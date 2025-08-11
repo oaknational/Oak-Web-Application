@@ -56,9 +56,10 @@ export function getFlatUnits(units: Unit[]): GetFlatUnitsOutput {
     );
     return flatUnits;
   } else {
-    return units.map((unit) => {
+    return units.map((unit, unitIndex) => {
       return {
         ...unit,
+        order: unitIndex + 1,
       };
     });
   }
