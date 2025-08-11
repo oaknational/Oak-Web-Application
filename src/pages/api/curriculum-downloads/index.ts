@@ -17,6 +17,7 @@ import curriculumApi2023, {
 import { logErrorMessage } from "@/utils/curriculum/testing";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { CombinedCurriculumData } from "@/utils/curriculum/types";
+import { generateHash } from "@/pages-helpers/curriculum/docx/docx";
 
 const stale_while_revalidate_seconds = 60 * 3;
 const s_maxage_seconds = 60 * 60 * 24;
@@ -359,7 +360,11 @@ export default async function handler(
         examboardTitle: data.combinedCurriculumData?.examboardTitle,
         childSubjectSlug,
         tierSlug,
-        prefix: "Documents",
+        prefix: "Curriculum downloads",
+        suffix: generateHash([...types, actualMvRefreshTime].join("|")).slice(
+          0,
+          8,
+        ),
       });
     } else if (files.length === 1 && files[0]) {
       outputBuffer = files[0].buffer;
