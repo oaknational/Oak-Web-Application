@@ -403,6 +403,7 @@ export function getFilename(
     childSubjectSlug,
     tierSlug,
     prefix,
+    suffix,
   }: {
     subjectTitle: string;
     phaseTitle: string;
@@ -410,6 +411,7 @@ export function getFilename(
     childSubjectSlug?: string;
     tierSlug?: string;
     prefix: string;
+    suffix?: string;
   },
 ) {
   // Handle child subject formatting based on file type
@@ -446,6 +448,7 @@ export function getFilename(
       // Note: dashes "-" rather than ":" because colon is invalid on windows
       "dd-MM-yyyy",
     ),
+    suffix,
   ]
     .filter(Boolean)
     .join(" - ");
