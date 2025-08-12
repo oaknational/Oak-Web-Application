@@ -17,6 +17,8 @@ import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
+import { Wall } from "@/components/AppComponents/Wall";
+import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 
 export type LessonDownloadsPageProps = {
   curriculumData: LessonDownloadsPageData;
@@ -110,4 +112,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default LessonDownloadsPage;
+export default withOnboardingRequired(LessonDownloadsPage, Wall);

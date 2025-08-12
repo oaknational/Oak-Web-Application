@@ -7,6 +7,8 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { SpecialistSubjectListingPageData } from "@/node-lib/curriculum-api-2023/queries/specialistSubjectListing/specialistSubjectListing.schema";
 import SpecialistSubjectListing from "@/components/TeacherViews/SpecialistSubjectListing/SpecialistSubjectListing.view";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import { Wall } from "@/components/AppComponents/Wall";
+import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 
 export type SpecialistSubjectistingPageProps = {
   curriculumData: SpecialistSubjectListingPageData;
@@ -68,4 +70,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default SpecialistSubjectListingPage;
+export default withOnboardingRequired(SpecialistSubjectListingPage, Wall);

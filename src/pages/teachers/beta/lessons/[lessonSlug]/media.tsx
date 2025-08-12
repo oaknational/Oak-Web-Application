@@ -21,6 +21,8 @@ import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { LessonMedia } from "@/components/TeacherViews/LessonMedia/LessonMedia.view";
 import { CanonicalLessonMediaClipsPageProps } from "@/pages/teachers/lessons/[lessonSlug]/media";
 import { populateMediaClipsWithTranscripts } from "@/utils/handleTranscript";
+import { Wall } from "@/components/AppComponents/Wall";
+import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 
 const BetaLessonMediaPage: NextPage<CanonicalLessonMediaClipsPageProps> = ({
   curriculumData,
@@ -103,4 +105,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default BetaLessonMediaPage;
+export default withOnboardingRequired(BetaLessonMediaPage, Wall);

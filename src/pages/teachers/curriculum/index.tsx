@@ -24,6 +24,8 @@ import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pag
 import HomepageCurriculumLandingHero from "@/components/GenericPagesComponents/HomepageCurriculumLandingHero";
 import CurricInfoCard from "@/components/CurriculumComponents/CurricInfoCard";
 import CurricQuote from "@/components/CurriculumComponents/CurricQuote";
+import { Wall } from "@/components/AppComponents/Wall";
+import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 
 export type CurriculumHomePageProps = {
   curriculumPhaseOptions: SubjectPhasePickerData;
@@ -293,4 +295,4 @@ export const getStaticProps: GetStaticProps<
   return resultsWithIsr;
 };
 
-export default CurriculumHomePage;
+export default withOnboardingRequired(CurriculumHomePage, Wall);

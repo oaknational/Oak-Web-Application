@@ -17,6 +17,8 @@ import { getCommonPathway } from "@/components/TeacherComponents/helpers/lessonH
 import { LessonDownloads } from "@/components/TeacherViews/LessonDownloads.view";
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
+import { Wall } from "@/components/AppComponents/Wall";
+import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 
 export type LessonDownloadsCanonicalPageProps = {
   curriculumData: LessonDownloadsCanonical;
@@ -115,4 +117,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default LessonDownloadsCanonicalPage;
+export default withOnboardingRequired(LessonDownloadsCanonicalPage, Wall);

@@ -16,6 +16,8 @@ import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { SpecialistUnitListingData } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
 import SpecialistUnitListing from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view";
+import { Wall } from "@/components/AppComponents/Wall";
+import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 
 export type SpecialistUnitListingPageProps = {
   curriculumData: SpecialistUnitListingData;
@@ -102,4 +104,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default SpecialistUnitListingPage;
+export default withOnboardingRequired(SpecialistUnitListingPage, Wall);

@@ -8,6 +8,8 @@ import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/l
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
+import { Wall } from "@/components/AppComponents/Wall";
+import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 
 export type TeacherPreviewLessonPageProps = {
   curriculumData: LessonOverviewPageData;
@@ -80,4 +82,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default TeacherPreviewLessonPage;
+export default withOnboardingRequired(TeacherPreviewLessonPage, Wall);

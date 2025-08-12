@@ -16,6 +16,8 @@ import {
 } from "@/node-lib/isr";
 import { SpecialistLessonListingData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonListing/specialistLessonListing.schema";
 import SpecialistLessonListing from "@/components/TeacherViews/SpecialistLessonListing/SpecialistLessonListing.view";
+import { Wall } from "@/components/AppComponents/Wall";
+import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 
 export type SpecialistLessonListingPageProps = {
   curriculumData: SpecialistLessonListingData;
@@ -96,4 +98,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default SpecialistLessonListingPage;
+export default withOnboardingRequired(SpecialistLessonListingPage, Wall);

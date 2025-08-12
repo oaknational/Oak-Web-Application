@@ -15,6 +15,8 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
 import SpecialistLesson from "@/components/TeacherViews/SpecialistLesson/SpecialistLesson.view";
 import { SpecialistLessonOverviewData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonOverview/specialistLessonOverview.schema";
+import { Wall } from "@/components/AppComponents/Wall";
+import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 
 export type SpecialistLessonOverviewPageProps = {
   curriculumData: SpecialistLessonOverviewData;
@@ -91,4 +93,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default SpecialistLessonOverviewPage;
+export default withOnboardingRequired(SpecialistLessonOverviewPage, Wall);
