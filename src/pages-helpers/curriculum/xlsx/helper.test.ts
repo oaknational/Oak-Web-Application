@@ -3,10 +3,16 @@ import diff from "microdiff";
 import { generateEmptyXlsx } from "../docx/docx";
 import { zipToSimpleObject } from "../docx/zip";
 
-import { addOrUpdateSheet, createXmlIndexMap, getFlatUnits } from "./helper";
+import {
+  addOrUpdateSheet,
+  createXmlIndexMap,
+  generateYearTitle,
+  getFlatUnits,
+} from "./helper";
 
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { createSubjectCategory } from "@/fixtures/curriculum/subjectCategories";
+import { createYearData } from "@/fixtures/curriculum/yearData";
 
 describe("createXmlIndexMap", () => {
   it("should return XML and mapped keys/indexes", () => {
@@ -170,5 +176,215 @@ describe("addOrUpdateSheet", () => {
         },
       },
     ]);
+  });
+});
+
+describe("generateYearTitle", () => {
+  // For relevant KS4 worksheets, include pathway or tier in the sheet title in the NC document
+  test("Year 10 Physical education, Core", () => {
+    const formattedData = {
+      yearData: {
+        "10": createYearData({
+          units: [
+            createUnit({
+              year: "10",
+              subject: "Physical education",
+              examboard: "Core",
+            }),
+          ],
+        }),
+      },
+      threadOptions: [],
+      yearOptions: ["10"],
+    };
+    const year = "10";
+    const slugs = {
+      subjectSlug: "physical-education",
+      phaseSlug: "secondary",
+      ks4OptionSlug: "core",
+      keyStageSlug: undefined,
+      tierSlug: undefined,
+      childSubjectSlug: undefined,
+    };
+    const output = generateYearTitle(formattedData, year, slugs);
+    expect(output).toEqual("Year 10 Physical education, Core");
+  });
+
+  test("Year 11 Physical education, GCSE", () => {
+    const formattedData = {
+      yearData: {
+        "11": createYearData({
+          units: [
+            createUnit({
+              year: "11",
+              subject: "Physical education",
+              examboard: "AQA",
+            }),
+          ],
+        }),
+      },
+      threadOptions: [],
+      yearOptions: ["11"],
+    };
+    const year = "11";
+    const slugs = {
+      subjectSlug: "physical-education",
+      phaseSlug: "secondary",
+      ks4OptionSlug: "gcse",
+      keyStageSlug: undefined,
+      tierSlug: undefined,
+      childSubjectSlug: undefined,
+    };
+    const output = generateYearTitle(formattedData, year, slugs);
+    expect(output).toEqual("Year 11 Physical education, GCSE");
+  });
+
+  test("Year 11 Chemistry, Foundation", () => {
+    const formattedData = {
+      yearData: {
+        "11": createYearData({
+          units: [
+            createUnit({
+              year: "11",
+              subject_slug: "chemistry",
+              examboard: "AQA",
+              tier: "Foundation",
+            }),
+          ],
+        }),
+      },
+      threadOptions: [],
+      tiers: ["foundation"],
+      yearOptions: ["11"],
+    };
+    const year = "11";
+    const slugs = {
+      subjectSlug: "science",
+      phaseSlug: "secondary",
+      ks4OptionSlug: "gcse",
+      keyStageSlug: undefined,
+      tierSlug: "foundation",
+      childSubjectSlug: "chemistry",
+    };
+    const output = generateYearTitle(formattedData, year, slugs);
+    expect(output).toEqual("Year 11 Chemistry, Foundation");
+  });
+
+  test("Year 10 Combined science, Higher", () => {
+    const formattedData = {
+      yearData: {
+        "11": createYearData({
+          units: [
+            createUnit({
+              year: "11",
+              subject_slug: "chemistry",
+              examboard: "AQA",
+              tier: "Foundation",
+            }),
+          ],
+        }),
+      },
+      threadOptions: [],
+      tiers: ["foundation"],
+      yearOptions: ["11"],
+    };
+    const year = "11";
+    const slugs = {
+      subjectSlug: "science",
+      phaseSlug: "secondary",
+      ks4OptionSlug: "gcse",
+      keyStageSlug: undefined,
+      tierSlug: "higher",
+      childSubjectSlug: "chemistry",
+    };
+    const output = generateYearTitle(formattedData, year, slugs);
+    expect(output).toEqual("Year 11 Chemistry, Higher");
+  });
+
+  // When a year has a subject title override (i.e. KS4 GCSE Computing = Computer science), update the subject name accordingly in the sheet title.
+  test("Year 10 Computer science, GCSE", () => {
+    const formattedData = {
+      yearData: {
+        "10": createYearData({
+          units: [
+            createUnit({
+              year: "10",
+              subject_slug: "computing",
+              examboard: "AQA",
+            }),
+          ],
+        }),
+      },
+      threadOptions: [],
+      tiers: ["foundation"],
+      yearOptions: ["10"],
+    };
+    const year = "10";
+    const slugs = {
+      subjectSlug: "computing",
+      phaseSlug: "secondary",
+      ks4OptionSlug: "gcse",
+      keyStageSlug: "aqa",
+    };
+    const output = generateYearTitle(formattedData, year, slugs);
+    expect(output).toEqual("Year 10 Computer Science, GCSE");
+  });
+
+  // Year groups that do not have these modifiers (i.e. Years 1-9) should have default titles
+  test("Year 9 Physical education", () => {
+    const formattedData = {
+      yearData: {
+        "9": createYearData({
+          units: [
+            createUnit({
+              year: "9",
+              subject: "Physical education",
+            }),
+          ],
+        }),
+      },
+      threadOptions: [],
+      yearOptions: ["9"],
+    };
+    const year = "9";
+    const slugs = {
+      subjectSlug: "physical-education",
+      phaseSlug: "secondary",
+      ks4OptionSlug: undefined,
+      keyStageSlug: undefined,
+      tierSlug: undefined,
+      childSubjectSlug: undefined,
+    };
+    const output = generateYearTitle(formattedData, year, slugs);
+    expect(output).toEqual("Year 9 Physical education");
+  });
+
+  // When units are grouped as all-years, replace the sheet title with {groupAs} (all years) and the worksheet name with {groupAs}
+  test("Swimming and water safety (all years)", () => {
+    const formattedData = {
+      yearData: {
+        "all-years": createYearData({
+          groupAs: "Swimming and water safety",
+          units: [
+            createUnit({
+              year: "7",
+            }),
+          ],
+        }),
+      },
+      threadOptions: [],
+      yearOptions: ["all-years"],
+    };
+    const year = "all-years";
+    const slugs = {
+      subjectSlug: "physical-education",
+      phaseSlug: "primary",
+      ks4OptionSlug: undefined,
+      keyStageSlug: undefined,
+      tierSlug: undefined,
+      childSubjectSlug: undefined,
+    };
+    const output = generateYearTitle(formattedData, year, slugs);
+    expect(output).toEqual("Swimming and water safety (all years)");
   });
 });

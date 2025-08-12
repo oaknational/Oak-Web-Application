@@ -1,8 +1,8 @@
 import { cartesianToExcelCoords, pxToColumnWidth } from "@ooxml-tools/units";
 import { cdata, safeXml } from "@ooxml-tools/xml";
 
-import { BuildNationalCurriculumData, generateYearTitle } from "..";
-import { getFlatUnits, XmlIndexMap } from "../helper";
+import { BuildNationalCurriculumData } from "..";
+import { generateYearTitle, getFlatUnits, XmlIndexMap } from "../helper";
 import { Slugs } from "../../docx";
 import { CurriculumUnitsFormattedData } from "../../docx/tab-helpers";
 
@@ -29,12 +29,7 @@ export function buildSheet<T extends XmlIndexMap>(
   const goToUnitResourcesXml: string[] = [];
   const flatUnits = getFlatUnits(data.unitData.map((item) => item.unit));
 
-  const title = generateYearTitle(
-    formattedData,
-    data.year,
-    originalData,
-    slugs,
-  );
+  const title = generateYearTitle(formattedData, data.year, slugs);
 
   for (const unit of flatUnits) {
     linkXml.push(safeXml`

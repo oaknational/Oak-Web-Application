@@ -1,16 +1,14 @@
 import { safeXml } from "@ooxml-tools/xml";
-import { capitalize } from "lodash";
 
 import { generateEmptyXlsx, JSZipCached } from "../docx/docx";
 import {
   CurriculumUnitsFormattedData,
   formatCurriculumUnitsData,
 } from "../docx/tab-helpers";
-import { subjectFromUnits } from "../docx/builder/helper";
 import { Slugs } from "../docx";
 
 import { buildStyles } from "./builders/buildStyles";
-import { addOrUpdateSheet } from "./helper";
+import { addOrUpdateSheet, generateSheetTitle } from "./helper";
 import { buildSheet } from "./builders/buildSheet";
 import { buildWorkbook } from "./builders/buildWorkbook";
 
@@ -20,7 +18,6 @@ import {
 } from "@/node-lib/curriculum-api-2023";
 import { CombinedCurriculumData, Unit } from "@/utils/curriculum/types";
 import { sortYears } from "@/utils/curriculum/sorting";
-import { keystageFromYear } from "@/utils/curriculum/keystage";
 
 export type FormattedData = CurriculumUnitsFormattedData<
   CombinedCurriculumData["units"][number]
@@ -124,7 +121,7 @@ async function buildNationalCurriculum(
       sheets: data.map((item, index) => {
         return safeXml`
           <sheet
-            name="Year ${item.year}"
+            name="${generateSheetTitle(formattedData, item.year)}"
             sheetId="${index + 1}"
             r:id="rId${10 + index}"
           />
@@ -132,43 +129,6 @@ async function buildNationalCurriculum(
       }),
     }),
   );
-}
-
-export function generateYearTitle(
-  formattedData: CurriculumUnitsFormattedData,
-  year: string,
-  data: CurriculumUnitsTabData & CurriculumOverviewMVData,
-  slugs: Slugs,
-) {
-  if (year in formattedData.yearData) {
-    const { groupAs } = formattedData.yearData[year]!;
-    if (groupAs && year === "all-years") {
-      return `${groupAs} (all years)`;
-    }
-  }
-
-  let examboardTitle;
-  if (data.examboardTitle) {
-    if (keystageFromYear(year) === "ks4") {
-      examboardTitle =
-        data.examboardTitle === "Core" ? `${data.examboardTitle}` : "GCSE";
-    }
-  }
-
-  const tierTitle = slugs.tierSlug ? `${capitalize(slugs.tierSlug)}` : "";
-
-  const childSubjectTitle =
-    subjectFromUnits(data.units, slugs.childSubjectSlug) ?? "";
-
-  const title = [
-    !childSubjectTitle ? data.subjectTitle : null,
-    examboardTitle,
-    childSubjectTitle,
-    tierTitle,
-  ]
-    .filter(Boolean)
-    .join(", ");
-  return `Year ${year} ${title}`;
 }
 
 export default async function xlsxNationalCurriculum(
