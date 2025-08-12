@@ -16,36 +16,25 @@ import {
   CurriculumOverviewMVData,
   CurriculumUnitsTabData,
 } from "@/node-lib/curriculum-api-2023";
-import { CombinedCurriculumData, Unit } from "@/utils/curriculum/types";
-import { sortYears } from "@/utils/curriculum/sorting";
+import { CombinedCurriculumData } from "@/utils/curriculum/types";
 
 export type FormattedData = CurriculumUnitsFormattedData<
   CombinedCurriculumData["units"][number]
 >;
 
-export type BuildNationalCurriculumData = {
-  year: string;
-  nationalCurric: Map<number, string>;
-  unitData: {
-    unit: Unit;
-    nationalCurricIds: number[];
-  }[];
-};
 async function buildNationalCurriculum(
   zip: JSZipCached,
-  data: BuildNationalCurriculumData[],
-  originalData: CurriculumUnitsTabData & CurriculumOverviewMVData,
   slugs: Slugs,
   formattedData: CurriculumUnitsFormattedData,
 ) {
   const { styleXml, cellStyleIndexMap } = buildStyles();
   zip.writeString("xl/styles.xml", styleXml);
 
-  data.forEach((item, index) => {
-    const flatUnits = item.unitData.map((foo) => foo.unit);
+  formattedData.yearOptions.forEach((year, index) => {
+    const units = formattedData.yearData[year]!.units;
 
     const linksXml = [];
-    for (const unit of flatUnits) {
+    for (const unit of units) {
       linksXml.push(safeXml`
         <Relationship
           Id="rId${1000 + linksXml.length}"
@@ -81,7 +70,7 @@ async function buildNationalCurriculum(
     addOrUpdateSheet(
       zip,
       10 + index,
-      buildSheet(cellStyleIndexMap, item, originalData, slugs, formattedData),
+      buildSheet(cellStyleIndexMap, formattedData, year, slugs),
     );
   });
 
@@ -102,7 +91,7 @@ async function buildNationalCurriculum(
           Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/theme"
           Target="theme/theme1.xml"
         />
-        ${data.map((_, index) => {
+        ${formattedData.yearOptions.map((_, index) => {
           return safeXml`
             <Relationship
               Id="rId${10 + index}"
@@ -118,10 +107,10 @@ async function buildNationalCurriculum(
   zip.writeString(
     "xl/workbook.xml",
     buildWorkbook({
-      sheets: data.map((item, index) => {
+      sheets: formattedData.yearOptions.map((year, index) => {
         return safeXml`
           <sheet
-            name="${generateSheetTitle(formattedData, item.year)}"
+            name="${generateSheetTitle(formattedData, year)}"
             sheetId="${index + 1}"
             r:id="rId${10 + index}"
           />
@@ -136,37 +125,7 @@ export default async function xlsxNationalCurriculum(
   slugs: Slugs,
 ) {
   const zip = await generateEmptyXlsx();
-
   const formattedData = formatCurriculumUnitsData(data);
-
-  const obj = Object.entries(formattedData.yearData)
-    .map(([year, { units }]) => {
-      const nationalCurric = new Map<number, string>();
-
-      const unitData = units.map((unit) => {
-        const ids: number[] = [];
-        unit.national_curriculum_content?.forEach((cc) => {
-          nationalCurric.set(cc.id, cc.title);
-          ids.push(cc.id);
-        });
-
-        return {
-          unit,
-          nationalCurricIds: ids,
-        };
-      });
-
-      return {
-        year,
-        nationalCurric,
-        unitData,
-      };
-    })
-    .sort((itemA, itemB) => {
-      return sortYears(itemA.year, itemB.year);
-    });
-
-  await buildNationalCurriculum(zip, obj, data, slugs, formattedData);
-
+  await buildNationalCurriculum(zip, slugs, formattedData);
   return await zip.zipToBuffer();
 }

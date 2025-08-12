@@ -1,7 +1,6 @@
 import { cartesianToExcelCoords, pxToColumnWidth } from "@ooxml-tools/units";
 import { cdata, safeXml } from "@ooxml-tools/xml";
 
-import { BuildNationalCurriculumData } from "..";
 import { generateYearTitle, getFlatUnits, XmlIndexMap } from "../helper";
 import { Slugs } from "../../docx";
 import { CurriculumUnitsFormattedData } from "../../docx/tab-helpers";
@@ -12,24 +11,18 @@ import { buildNcCriteriaText } from "./buildNcCriteriaText";
 import { buildUnitOptionCell } from "./buildUnitOptionCell";
 import { buildUnitCell } from "./buildUnitCell";
 
-import {
-  CurriculumOverviewMVData,
-  CurriculumUnitsTabData,
-} from "@/node-lib/curriculum-api-2023";
-
 export function buildSheet<T extends XmlIndexMap>(
   cellStyleIndexMap: T,
-  data: BuildNationalCurriculumData,
-  originalData: CurriculumUnitsTabData & CurriculumOverviewMVData,
-  slugs: Slugs,
   formattedData: CurriculumUnitsFormattedData,
+  year: string,
+  slugs: Slugs,
 ) {
   const unitXml: string[] = [];
   const linkXml: string[] = [];
   const goToUnitResourcesXml: string[] = [];
-  const flatUnits = getFlatUnits(data.unitData.map((item) => item.unit));
+  const flatUnits = getFlatUnits(formattedData.yearData[year]!.units);
 
-  const title = generateYearTitle(formattedData, data.year, slugs);
+  const title = generateYearTitle(formattedData, year, slugs);
 
   for (const unit of flatUnits) {
     linkXml.push(safeXml`
@@ -173,8 +166,8 @@ export function buildSheet<T extends XmlIndexMap>(
           </c>
           ${goToUnitResourcesXml}
         </row>
-        ${[...data.nationalCurric.entries()].map(
-          ([id, nationalCurricText], nationalCurricTextIndex) => {
+        ${formattedData.yearData[year]!.nationalCurriculum.map(
+          ({ id, title }, nationalCurricTextIndex) => {
             const yPos = 4 + nationalCurricTextIndex;
             const tickXml: string[] = [];
 
@@ -207,7 +200,7 @@ export function buildSheet<T extends XmlIndexMap>(
               <row r="${yPos}" spans="1:${tickXml.length + 1}">
                 ${buildNcCriteriaText({
                   cellStyleIndexMap,
-                  nationalCurricText,
+                  criteriaText: title,
                   x: 1,
                   y: yPos,
                 })}

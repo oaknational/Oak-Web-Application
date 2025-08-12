@@ -5,7 +5,7 @@ import { buildNcCriteriaText } from "./buildNcCriteriaText";
 test("buildNcCriteriaText", () => {
   const output = buildNcCriteriaText({
     cellStyleIndexMap: {},
-    nationalCurricText: "TEST_TEXT",
+    criteriaText: "TEST_TEXT",
     x: 1,
     y: 2,
   });

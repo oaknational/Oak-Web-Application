@@ -126,6 +126,7 @@ const CurricVisualiserFixture: ComponentProps<typeof CurricVisualiser> = {
       subjectCategories: [],
       isSwimming: false,
       groupAs: null,
+      nationalCurriculum: [],
     },
   },
   setVisibleMobileYearRefID: jest.fn(() => {}),

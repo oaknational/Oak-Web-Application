@@ -343,8 +343,7 @@ describe("generateYearTitle", () => {
     const slugs = {
       subjectSlug: "computing",
       phaseSlug: "secondary",
-      ks4OptionSlug: "gcse",
-      keyStageSlug: "aqa",
+      ks4OptionSlug: "aqa",
     };
     const output = generateYearTitle(formattedData, year, slugs);
     expect(output).toEqual("Year 10 Computer Science, GCSE");
