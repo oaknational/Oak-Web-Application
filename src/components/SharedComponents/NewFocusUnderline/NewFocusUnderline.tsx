@@ -1,7 +1,9 @@
 import styled, { css } from "styled-components";
 import { OakSvg } from "@oaknational/oak-components";
 
-const NewFocusUnderline = styled(OakSvg).attrs({
+import { SvgName } from "../SpriteSheet/getSvgId";
+
+const NewFocusUnderline = styled(OakSvg).attrs<{ name?: SvgName }>({
   name: "underline-3",
   color: "black",
 })`
@@ -17,11 +19,11 @@ export const newFocusUnderlineStyles = css`
     display: none;
   }
 
-  :focus {
+  &:focus {
     outline: none;
   }
 
-  :focus ${NewFocusUnderline} {
+  &:focus ${NewFocusUnderline} {
     position: absolute;
     display: block;
     right: 0;

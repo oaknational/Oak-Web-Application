@@ -1,9 +1,4 @@
-import {
-  css,
-  DefaultTheme,
-  Interpolation,
-  ThemedStyledProps,
-} from "styled-components";
+import { css, ExecutionProps, Interpolation } from "styled-components";
 
 import truthy from "../../utils/truthy";
 import { PropsWithTheme } from "../theme";
@@ -37,7 +32,9 @@ export type ResponsiveValues<Value> = (Value | null) | (Value | null)[];
 const responsive =
   <Props, T extends string | number | undefined | null>(
     attr: string,
-    getValues: (props: Props) => ResponsiveValues<T | undefined | null>,
+    getValues: (
+      props: Props & ExecutionProps,
+    ) => ResponsiveValues<T | undefined | null>,
     parse:
       | ((unparsed: T | undefined | null) => string | number | undefined | null)
       | ((
@@ -46,7 +43,9 @@ const responsive =
       x,
     ) => x,
   ) =>
-  (props: Props): Interpolation<ThemedStyledProps<Props, DefaultTheme>> => {
+  (
+    props: Props & ExecutionProps,
+  ): Interpolation<Omit<Props & ExecutionProps, "theme">> => {
     const attrCss = (value: T | undefined | null) =>
       typeof value === "undefined"
         ? undefined

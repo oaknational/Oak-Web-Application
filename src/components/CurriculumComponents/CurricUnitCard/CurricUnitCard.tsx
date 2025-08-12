@@ -29,7 +29,7 @@ const StyledLink = styled(Link)<HTMLButtonProps & { $isHighlighted: boolean }>`
   outline: none;
   cursor: pointer;
   background: ${({ $isHighlighted }) => ($isHighlighted ? "black" : "white")};
-  &:hover {
+  :hover {
     background: ${({ $isHighlighted }) =>
       $isHighlighted ? "#575757" : "#F2F2F2"};
   }

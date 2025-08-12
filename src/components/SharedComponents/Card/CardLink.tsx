@@ -1,7 +1,7 @@
 import { forwardRef, ReactNode } from "react";
 import styled, { css } from "styled-components";
 import Link from "next/link";
-import { OakSvg } from "@oaknational/oak-components";
+import { OakSvg, OakSvgProps } from "@oaknational/oak-components";
 
 import {
   OwaLinkProps,
@@ -12,10 +12,11 @@ import { DROP_SHADOW } from "@/styles/utils/dropShadow";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 import { HOVER_SHADOW_TRANSITION } from "@/styles/transitions";
 
-export const CardLinkFocusUnderline = styled(OakSvg).attrs((props) => ({
-  ...props,
+export const CardLinkFocusUnderline = styled(OakSvg).attrs<{
+  name?: OakSvgProps["name"];
+}>({
   name: "underline",
-}))`
+})`
   display: none;
   position: absolute;
   bottom: -9px;
@@ -46,7 +47,7 @@ type StyleProps = {
 };
 
 const StyledNextLink = styled.a<StyleProps>`
-  ::after {
+  &::after {
     content: "";
     position: absolute;
     top: 0;
@@ -57,7 +58,7 @@ const StyledNextLink = styled.a<StyleProps>`
     transition: ${HOVER_SHADOW_TRANSITION};
   }
 
-  :hover {
+  &:hover {
     ${(props) =>
       props.$hoverStyles.includes("underline-link-text") &&
       css`
@@ -67,13 +68,13 @@ const StyledNextLink = styled.a<StyleProps>`
     ${(props) =>
       props.$hoverStyles.includes("drop-shadow") &&
       css`
-        ::after {
+        &::after {
           box-shadow: ${DROP_SHADOW.interactiveCardHover};
         }
       `}
   }
 
-  :focus {
+  &:focus {
     ${(props) =>
       props.$hideDefaultFocus &&
       css`

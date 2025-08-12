@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { render } from "@testing-library/react";
 
-import imageSize from "./imageSize";
+import imageSize, { ImageSizeProps } from "./imageSize";
 
 describe("size", () => {
   test.each([
@@ -12,7 +12,7 @@ describe("size", () => {
       [prop]: value,
     };
 
-    const StyledComponent = styled.div`
+    const StyledComponent = styled.div<ImageSizeProps>`
       ${imageSize}
     `;
     const { getByTestId } = render(

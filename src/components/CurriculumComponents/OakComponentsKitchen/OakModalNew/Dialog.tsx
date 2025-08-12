@@ -24,7 +24,7 @@ const DialogBase = styled("dialog")`
     pointer-events: none;
   }
 
-  ::backdrop {
+  &::backdrop {
     padding: 0;
     margin: 0;
     background: none;

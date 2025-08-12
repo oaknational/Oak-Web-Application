@@ -21,16 +21,16 @@ const UnstyledInput = styled.input`
   box-shadow: none;
   font-family: ${(props) => props.theme.fonts.ui};
 
-  ::placeholder {
+  &::placeholder {
     color: ${getColorByLocation(
       ({ theme }) => theme.input.states.default.placeholder,
     )};
   }
 
-  ::-webkit-search-decoration,
-  ::-webkit-search-cancel-button,
-  ::-webkit-search-results-button,
-  ::-webkit-search-results-decoration {
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
     appearance: none;
   }
 `;

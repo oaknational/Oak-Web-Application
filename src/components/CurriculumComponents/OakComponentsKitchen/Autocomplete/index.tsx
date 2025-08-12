@@ -93,8 +93,7 @@ const Autocomplete = (props: AutocompleteProps) => {
           }
           $zIndex="in-front"
           $position="absolute"
-          $top={"-20px"}
-          $left={"5px"}
+          style={{ top: -20, left: 5 }}
           $borderRadius="border-radius-square"
           data-testid="jaunty-label"
         />

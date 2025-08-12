@@ -74,7 +74,7 @@ export const CardImageButton: StoryObj<typeof Component> = {
   ),
 
   args: {
-    pa: 0,
+    $pa: 0,
   },
 };
 

@@ -6,13 +6,14 @@ import getColorByName from "@/styles/themeHelpers/getColorByName";
 import { ButtonBackground } from "@/components/SharedComponents/Button/common";
 import { HOVER_SHADOW_TRANSITION } from "@/styles/transitions";
 
-const buttonBorder = css<{ background: ButtonBackground }>`
+type ButtonBorderProps = { background: ButtonBackground };
+const buttonBorder = css<ButtonBorderProps>`
   position: absolute;
   color: ${(props) => getColorByName(props.background)};
   mask-position: center;
 `;
 
-const buttonBorderTop = css`
+const buttonBorderTop = css<ButtonBorderProps>`
   ${buttonBorder}
   height: 4px;
   left: 0;
@@ -20,7 +21,7 @@ const buttonBorderTop = css`
   transition: ${HOVER_SHADOW_TRANSITION};
 `;
 
-const buttonBorderRight = css`
+const buttonBorderRight = css<ButtonBorderProps>`
   ${buttonBorder}
   width: 7px;
   top: -2px;
@@ -29,7 +30,7 @@ const buttonBorderRight = css`
   transition: ${HOVER_SHADOW_TRANSITION};
 `;
 
-const buttonBorderBottom = css`
+const buttonBorderBottom = css<ButtonBorderProps>`
   ${buttonBorder}
   height: 6px;
   top: calc(100% - 1px);
@@ -37,7 +38,7 @@ const buttonBorderBottom = css`
   transition: ${HOVER_SHADOW_TRANSITION};
 `;
 
-const buttonBorderLeft = css`
+const buttonBorderLeft = css<ButtonBorderProps>`
   ${buttonBorder}
   width: 7px;
   top: -1px;
@@ -46,16 +47,16 @@ const buttonBorderLeft = css`
   transition: ${HOVER_SHADOW_TRANSITION};
 `;
 
-const ButtonBorderTop = styled(OakSvg)`
+const ButtonBorderTop = styled(OakSvg)<ButtonBorderProps>`
   ${buttonBorderTop}
 `;
-const ButtonBorderRight = styled(OakSvg)`
+const ButtonBorderRight = styled(OakSvg)<ButtonBorderProps>`
   ${buttonBorderRight}
 `;
-const ButtonBorderBottom = styled(OakSvg)`
+const ButtonBorderBottom = styled(OakSvg)<ButtonBorderProps>`
   ${buttonBorderBottom}
 `;
-const ButtonBorderLeft = styled(OakSvg)`
+const ButtonBorderLeft = styled(OakSvg)<ButtonBorderProps>`
   ${buttonBorderLeft}
 `;
 

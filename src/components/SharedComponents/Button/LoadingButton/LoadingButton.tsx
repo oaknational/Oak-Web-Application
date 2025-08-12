@@ -57,7 +57,7 @@ const StyledButton = styled(UnstyledButton)`
         ? "#808080"
         : getColorByName(props.color as OakColorName)};
       cursor: ${props["aria-disabled"] ? "not-allowed" : "pointer"};
-      :hover:not(:focus) ${ButtonLabel} {
+      &:hover:not(:focus) ${ButtonLabel} {
         text-decoration: ${props["aria-disabled"] ? "none" : "underline"};
       }
     `;
@@ -86,7 +86,7 @@ const StyledLink = styled(Link)`
         ? "#808080"
         : getColorByName(props.color as OakColorName)};
       cursor: ${props["aria-disabled"] ? "not-allowed" : "pointer"};
-      :hover:not(:focus) ${ButtonLabel} {
+      &:hover:not(:focus) ${ButtonLabel} {
         text-decoration: ${props["aria-disabled"] ? "none" : "underline"};
       }
     `;

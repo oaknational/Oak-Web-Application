@@ -98,14 +98,14 @@ const ButtonContainer = styled.div`
       border: 1px solid var(--Tokens-Border-border-neutral-lighter, #cacaca);
       background: var(--Tokens-Background-bg-primary, #fff);
 
-      :focus-visible {
+      &:focus-visible {
         /* drop-shadow-focus  */
         box-shadow:
           0px 0px 0px 2px #ffe555,
           0px 0px 0px 5px #575757;
       }
 
-      :active {
+      &:active {
         border-radius: var(--Border-Radius-border-radius-s, 4px);
         border: 1px solid var(--Tokens-Border-border-neutral-lighter, #cacaca);
         background: var(--Tokens-Background-bg-primary, #fff);
@@ -116,7 +116,7 @@ const ButtonContainer = styled.div`
           4px 4px 0px 0px #575757;
       }
 
-      :hover {
+      &:hover {
         border-radius: var(--Border-Radius-border-radius-s, 4px);
         border: 1px solid var(--Tokens-Border-border-neutral-lighter, #cacaca);
         background: var(--Tokens-Background-bg-neutral, #f2f2f2);
@@ -140,7 +140,7 @@ const ButtonContainer = styled.div`
       background-color: #222222;
       color: #fff;
 
-      :hover {
+      &:hover {
         background: #222222;
         color: #fff;
 

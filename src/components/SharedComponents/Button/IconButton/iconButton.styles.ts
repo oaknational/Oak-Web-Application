@@ -51,7 +51,7 @@ const iconButtonStyles = css<IconButtonStylesProps>`
     color: ${getButtonColor(props.background, props.variant)};
   `}
 
-  :disabled {
+  &:disabled {
     ${disabledStyles}
   }
 
@@ -61,11 +61,11 @@ const iconButtonStyles = css<IconButtonStylesProps>`
     transition: filter 0.3s ease-in-out;
   }
 
-  :hover ${BackgroundIcon} {
+  &:hover ${BackgroundIcon} {
     filter: drop-shadow(0 0 3px rgb(0 0 0 / 50%));
   }
 
-  :focus {
+  &:focus {
     outline: none;
   }
 

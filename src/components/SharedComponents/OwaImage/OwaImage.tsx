@@ -8,7 +8,7 @@ export type OwaImageProps = ImageProps & BoxProps;
  * OwaImage is a wrapper round next/image which adds convenience style
  * props to the api
  */
-const OwaImage = styled(Image)`
+const OwaImage = styled(Image)<BoxProps>`
   ${box}
 `;
 

@@ -1,5 +1,3 @@
-import { css } from "styled-components";
-
 import responsive from "./responsive";
 
 type DropShadowVariant =
@@ -29,12 +27,10 @@ const parseDropShadow = (variant?: DropShadowVariant | null) => {
 
   return DROP_SHADOW[variant];
 };
-const dropShadow = css`
-  ${responsive<DropShadowProps, DropShadowVariant>(
-    "box-shadow",
-    (props) => props.$dropShadow,
-    parseDropShadow,
-  )}
-`;
+const dropShadow = responsive<DropShadowProps, DropShadowVariant>(
+  "box-shadow",
+  (props) => props.$dropShadow,
+  parseDropShadow,
+);
 
 export default dropShadow;

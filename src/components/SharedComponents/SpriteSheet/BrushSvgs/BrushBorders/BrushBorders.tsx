@@ -24,7 +24,7 @@ const RIGHT_THICKNESS = 8;
 const BOTTOM_THICKNESS = 11;
 const LEFT_THICKNESS = 8;
 
-const brushBorderTop = css`
+const brushBorderTop = css<BrushBordersProps>`
   ${brushBorder}
   ${$selectedStyle}
   height: ${TOP_THICKNESS}px;
@@ -32,7 +32,7 @@ const brushBorderTop = css`
   bottom: calc(100% - 2px);
 `;
 
-const brushBorderRight = css`
+const brushBorderRight = css<BrushBordersProps>`
   ${brushBorder}
   ${$selectedStyle}
   width: ${RIGHT_THICKNESS}px;
@@ -41,7 +41,7 @@ const brushBorderRight = css`
   height: calc(100% + ${TOP_THICKNESS}px);
 `;
 
-const brushBorderBottom = css`
+const brushBorderBottom = css<BrushBordersProps>`
   ${brushBorder}
   ${$selectedStyle}
   height: ${BOTTOM_THICKNESS}px;
@@ -49,7 +49,7 @@ const brushBorderBottom = css`
   left: 0;
 `;
 
-const brushBorderLeft = css`
+const brushBorderLeft = css<BrushBordersProps>`
   ${brushBorder}
   ${$selectedStyle}
   width: ${LEFT_THICKNESS}px;
@@ -58,19 +58,19 @@ const brushBorderLeft = css`
   height: calc(100% + 4px + ${BOTTOM_THICKNESS}px);
 `;
 
-const BrushBorderTop = styled(Svg)`
+const BrushBorderTop = styled(Svg)<BrushBordersProps>`
   ${brushBorderTop}
   ${(props) => props.hideOnMobileV && hideBrushOnMobile}
 `;
-const BrushBorderRight = styled(Svg)`
+const BrushBorderRight = styled(Svg)<BrushBordersProps>`
   ${brushBorderRight}
   ${(props) => props.hideOnMobileH && hideBrushOnMobile}
 `;
-const BrushBorderBottom = styled(Svg)`
+const BrushBorderBottom = styled(Svg)<BrushBordersProps>`
   ${brushBorderBottom}
   ${(props) => props.hideOnMobileV && hideBrushOnMobile}
 `;
-const BrushBorderLeft = styled(Svg)`
+const BrushBorderLeft = styled(Svg)<BrushBordersProps>`
   ${brushBorderLeft}
   ${(props) => props.hideOnMobileH && hideBrushOnMobile}
 `;

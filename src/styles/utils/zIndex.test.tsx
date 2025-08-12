@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { render } from "@testing-library/react";
 
-import zIndex from "./zIndex";
+import zIndex, { ZIndexProps } from "./zIndex";
 
 describe("zIndex", () => {
   test("should correctly handle prop 'zIndex' as string", async () => {
-    const StyledComponent = styled.div`
+    const StyledComponent = styled.div<ZIndexProps>`
       ${zIndex}
     `;
     const { getByTestId } = render(
@@ -15,7 +15,7 @@ describe("zIndex", () => {
     expect(getByTestId("test")).toHaveStyle("z-index: 1");
   });
   test("should correctly handle prop 'zIndex' as array", async () => {
-    const StyledComponent = styled.div`
+    const StyledComponent = styled.div<ZIndexProps>`
       ${zIndex}
     `;
     const { getByTestId } = render(

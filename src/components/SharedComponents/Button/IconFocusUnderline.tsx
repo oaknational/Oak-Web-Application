@@ -1,10 +1,14 @@
 import styled, { css } from "styled-components";
 
+import { SvgName } from "../SpriteSheet/getSvgId";
+
 import { OakColorName } from "@/styles/theme";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 import Svg from "@/components/SharedComponents/Svg";
 
-export const IconFocusUnderline = styled(Svg).attrs({ name: "underline-1" })<{
+export const IconFocusUnderline = styled(Svg).attrs<{ name?: SvgName }>({
+  name: "underline-1",
+})<{
   $color: OakColorName;
 }>`
   color: ${(props) => getColorByName(props.$color)};

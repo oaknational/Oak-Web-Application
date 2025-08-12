@@ -57,7 +57,7 @@ export const box = css<BoxProps>`
     /* onClick might be passed in the useClickableCard pattern */
     props.onClick &&
     css`
-      :hover {
+      &:hover {
         cursor: pointer;
       }
     `}

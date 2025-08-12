@@ -2,7 +2,7 @@ import { FC } from "react";
 import styled from "styled-components";
 import { OakSpan, OakSpanProps } from "@oaknational/oak-components";
 
-import typography from "@/styles/utils/typography";
+import typography, { TypographyProps } from "@/styles/utils/typography";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 
 export type ButtonLabelProps = {
@@ -10,7 +10,9 @@ export type ButtonLabelProps = {
   labelSuffixA11y?: string;
 } & OakSpanProps;
 
-const ButtonLabelWithScreenReaderTitle: FC<ButtonLabelProps> = (props) => {
+const ButtonLabelWithScreenReaderTitle: FC<
+  ButtonLabelProps & TypographyProps
+> = (props) => {
   const { children, labelSuffixA11y, ...rest } = props;
   return (
     <OakSpan {...rest}>

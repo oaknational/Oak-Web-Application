@@ -67,11 +67,11 @@ const StyledNextLink = styled.a<StyleProps>`
   ${(props) => props.$isHovered && $hoverStyles}
 
   ${(props) => props.$isSelected && $selectedStyle}
-  :hover {
+  &:hover {
     ${$hoverStyles}
   }
 
-  :focus {
+  &:focus {
     ${(props) =>
       props.$hideDefaultFocus &&
       css`

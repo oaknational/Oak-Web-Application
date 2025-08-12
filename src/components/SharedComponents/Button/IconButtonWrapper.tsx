@@ -26,7 +26,7 @@ const IconButtonWrapper = styled.div<IconButtonWrapperProps>`
     color: ${getButtonColor(props.background, props.variant)};
   `}
 
-  :disabled {
+  &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }

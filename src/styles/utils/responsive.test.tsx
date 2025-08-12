@@ -1,16 +1,11 @@
-import styled, {
-  css,
-  DefaultTheme,
-  FlattenSimpleInterpolation,
-  Interpolation,
-  ThemedStyledProps,
-} from "styled-components";
+import styled, { css, Interpolation } from "styled-components";
 import { render } from "@testing-library/react";
 
 import { OakColorName } from "../theme";
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import responsive from "./responsive";
+import { PaddingProps } from "./spacing";
 
 type TestProps = {
   [k: string]: OakColorName | string | string[] | number | number[];
@@ -22,11 +17,7 @@ type TestProps = {
  * For this reason we need to "stringify" (and minify) the css that we get from responsive
  * in order to compare it with the expected css values.
  */
-const stringify = (
-  cssArray:
-    | FlattenSimpleInterpolation
-    | Interpolation<ThemedStyledProps<TestProps, DefaultTheme>>,
-) =>
+const stringify = (cssArray: Interpolation<TestProps>) =>
   (Array.isArray(cssArray) ? cssArray : [cssArray])
     ?.flatMap((str: unknown) => (typeof str === "string" ? str.trim() : str))
     .flat()
@@ -45,13 +36,13 @@ describe("responsive", () => {
     const props = {
       pl: 12,
     };
-    const styles = responsive(
+    const styles = responsive<TestProps, string | number>(
       "padding-left",
-      (props: TestProps) => props.pl,
+      (props) => props.pl,
       pxOrUndefined,
     )(props);
-    const StyledComponent = styled.div`
-      ${styles}
+    const StyledComponent = styled.div<PaddingProps>`
+      ${styles as string}
     `;
     const { getByTestId } = render(
       <StyledComponent data-testid="test" $pl={12} />,

@@ -107,11 +107,11 @@ const buttonStyles = css<ButtonStylesProps>`
 
   transition: ${HOVER_SHADOW_TRANSITION};
 
-  :focus {
+  &:focus {
     outline: none;
   }
 
-  :disabled {
+  &:disabled {
     ${disabledStyles}
   }
 
@@ -136,13 +136,13 @@ const buttonStyles = css<ButtonStylesProps>`
   ${(props) =>
     (props.variant === "brush" || props.variant === "brushNav") &&
     css`
-      :hover {
+      &:hover {
         box-shadow: ${props["aria-disabled"]
           ? "none"
           : getButtonDropShadowColor(props.background)};
       }
 
-      :focus ${ButtonFocusUnderline} {
+      &:focus ${ButtonFocusUnderline} {
         display: block;
         bottom: -4px;
         left: -4px;
@@ -151,14 +151,14 @@ const buttonStyles = css<ButtonStylesProps>`
         transform: rotate(-1deg);
       }
 
-      :disabled {
+      &:disabled {
         background-color: ${getColorByLocation(
           ({ theme }) => theme.button.disabled.background,
         )};
         cursor: not-allowed;
       }
 
-      :hover ${ButtonLabel} {
+      &:hover ${ButtonLabel} {
         text-decoration: underline;
       }
     `}
@@ -170,11 +170,11 @@ const buttonStyles = css<ButtonStylesProps>`
         transition: filter 0.3s ease-in-out;
       }
 
-      :hover ${BackgroundIcon} {
+      &:hover ${BackgroundIcon} {
         filter: drop-shadow(0 0 3px rgb(0 0 0 / 50%));
       }
 
-      :focus ${ButtonMinimalFocusUnderline} {
+      &:focus ${ButtonMinimalFocusUnderline} {
         display: block;
         bottom: -4px;
         left: 0;
@@ -193,7 +193,7 @@ const buttonStyles = css<ButtonStylesProps>`
     props.$hoverStyles.includes("underline-link-text") &&
     !props.disabled &&
     css`
-      :hover:not(:focus) ${ButtonLabel} {
+      &:hover:not(:focus) ${ButtonLabel} {
         text-decoration: underline;
       }
     `}
@@ -265,7 +265,7 @@ const buttonStyles = css<ButtonStylesProps>`
           display: block;
         }
       }
-      :hover:not(:focus) ${ButtonLabel} {
+      &:hover:not(:focus) ${ButtonLabel} {
         text-decoration: underline;
       }
     `}

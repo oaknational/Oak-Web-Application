@@ -1,4 +1,4 @@
-import { ThemedStyledProps, DefaultTheme } from "styled-components";
+import { ExecutionContext } from "styled-components";
 import { z } from "zod";
 
 import { CheckboxConfig } from "@/components/SharedComponents/Checkbox";
@@ -272,7 +272,4 @@ export type OakTheme = {
   video: VideoStyleConfig;
 };
 
-export type PropsWithTheme<Props = unknown> = ThemedStyledProps<
-  Props,
-  DefaultTheme
->;
+export type PropsWithTheme<Props = unknown> = Props & ExecutionContext;
