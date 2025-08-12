@@ -133,10 +133,11 @@ export default function YourDetails({
           isControlled={true}
           data-testid="school"
           inputProps={{
-            label: "School (required)",
+            label: data.schoolNotListed ? "School" : "School (required)",
             id: "download-school",
             error: errors.schoolId,
             placeholder: "Type school name, postcode, or ‘homeschool’",
+            required: !data.schoolNotListed,
           }}
           onChange={(value, textValue) => {
             onChange({
