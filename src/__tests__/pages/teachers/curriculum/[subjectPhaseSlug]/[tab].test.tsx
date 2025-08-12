@@ -25,6 +25,8 @@ import {
   formatCurriculumUnitsData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { DISABLE_DOWNLOADS } from "@/utils/curriculum/constants";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
+import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 
 const render = renderWithProviders();
 
@@ -596,6 +598,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       disconnect: () => null,
     });
     window.IntersectionObserver = mockIntersectionObserver;
+    setUseUserReturn(mockLoggedIn);
   });
 
   describe("components rendering on page", () => {

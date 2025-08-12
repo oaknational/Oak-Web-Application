@@ -17,6 +17,8 @@ import OakError from "@/errors/OakError";
 import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import { useTeacherNotes } from "@/pages-helpers/teacher/share-experiments/useTeacherNotes";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
+import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 
 const url = "";
 
@@ -87,6 +89,7 @@ const lesson = lessonOverviewFixture({
 describe("Lesson Overview Canonical Page", () => {
   beforeAll(() => {
     console.error = jest.fn();
+    setUseUserReturn(mockLoggedIn);
   });
 
   describe("LessonOverviewCanonicalPage", () => {

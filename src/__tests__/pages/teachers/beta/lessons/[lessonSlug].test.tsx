@@ -9,6 +9,8 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
+import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 
 const render = renderWithProviders();
 
@@ -18,6 +20,7 @@ const lesson = lessonOverviewFixture({
 });
 
 describe("TeacherPreviewLessonPage", () => {
+  setUseUserReturn(mockLoggedIn);
   it("Renders title from the props", async () => {
     const result = render(<TeacherPreviewLessonPage curriculumData={lesson} />);
 

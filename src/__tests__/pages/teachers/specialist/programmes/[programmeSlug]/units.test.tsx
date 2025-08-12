@@ -9,6 +9,8 @@ import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import specialistUnitListingFixture from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.fixture";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
+import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
@@ -21,6 +23,7 @@ describe("pages/specialist/programmes/[programmeSlug]/units", () => {
   });
 
   it("renders title from props ", () => {
+    setUseUserReturn(mockLoggedIn);
     const { getByRole } = render(
       <SpecialistUnitListingPage
         curriculumData={specialistUnitListingFixture()}

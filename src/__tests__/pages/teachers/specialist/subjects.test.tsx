@@ -6,10 +6,15 @@ import SpecialistSubjectListingPage, {
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import curriculumApi from "@/node-lib/curriculum-api-2023";
 import { specialistSubjectListingFixture2023 } from "@/node-lib/curriculum-api-2023/fixtures/specialistSubjectListing.fixture";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
+import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 
 const render = renderWithProviders();
 
 describe("pages/specialist/subjects", () => {
+  beforeAll(() => {
+    setUseUserReturn(mockLoggedIn);
+  });
   it("renders therapies and specialist", () => {
     render(
       <SpecialistSubjectListingPage

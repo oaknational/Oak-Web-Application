@@ -14,6 +14,8 @@ import unitListingFixture, {
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
+import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
@@ -24,6 +26,7 @@ jest.mock("@/utils/resultsPerPage", () => ({
 
 beforeEach(() => {
   window.HTMLElement.prototype.scrollIntoView = jest.fn();
+  setUseUserReturn(mockLoggedIn);
 });
 
 const unitSelected = jest.fn();

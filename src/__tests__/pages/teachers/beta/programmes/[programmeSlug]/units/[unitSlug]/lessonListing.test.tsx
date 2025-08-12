@@ -12,6 +12,8 @@ import lessonListingFixture, {
 } from "@/node-lib/curriculum-api-2023/fixtures/lessonListing.fixture";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
+import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 
 const lessonAccessed = jest.fn();
 const teacherShareInitiated = jest.fn();
@@ -43,6 +45,7 @@ const lesson = lessonListingFixture({
 
 describe("TeacherPreviewLessonPage", () => {
   it("Renders title from the props", async () => {
+    setUseUserReturn(mockLoggedIn);
     const result = render(
       <TeacherPreviewLessonListingPage curriculumData={lesson} />,
     );

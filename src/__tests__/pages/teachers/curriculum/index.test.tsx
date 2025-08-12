@@ -1,5 +1,7 @@
 import { screen } from "@testing-library/react";
 
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
+import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 import CurriculumHomePage, {
   CurriculumHomePageProps,
 } from "@/pages/teachers/curriculum";
@@ -23,6 +25,9 @@ jest.mock(
 );
 
 describe("pages/curriculum/index", () => {
+  beforeEach(() => {
+    setUseUserReturn(mockLoggedIn);
+  });
   it("Renders correct title", () => {
     render(<CurriculumHomePage {...props} />);
 

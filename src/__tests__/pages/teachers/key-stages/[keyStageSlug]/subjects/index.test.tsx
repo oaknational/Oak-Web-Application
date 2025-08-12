@@ -10,11 +10,16 @@ import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import subjectPagePropsFixture from "@/node-lib/curriculum-api-2023/fixtures/subjectListing.fixture";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
+import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 const props = subjectPagePropsFixture();
 
 describe("pages/key-stages/[keyStageSlug]/subjects", () => {
+  beforeEach(() => {
+    setUseUserReturn(mockLoggedIn);
+  });
   it("Renders title from props ", async () => {
     renderWithProviders()(<SubjectListingPage {...props} />);
 

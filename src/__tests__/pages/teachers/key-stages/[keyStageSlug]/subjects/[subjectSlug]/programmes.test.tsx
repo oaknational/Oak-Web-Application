@@ -15,6 +15,8 @@ import programmeListingFixture, {
 } from "@/node-lib/curriculum-api-2023/fixtures/programmeListing.fixture";
 import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__";
 import { ProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
+import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 
 const render = renderWithProviders();
 
@@ -118,6 +120,7 @@ describe("programmes listing page", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();
+    setUseUserReturn(mockLoggedIn);
   });
   describe("component rendering on page", () => {
     it("renders title from props ", () => {
