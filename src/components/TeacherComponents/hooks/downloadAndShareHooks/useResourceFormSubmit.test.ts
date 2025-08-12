@@ -57,7 +57,6 @@ describe("useResourceFormSubmit", () => {
       useResourceFormSubmit({
         isLegacyDownload: true,
         type: "download",
-        authRequired: false,
       }),
     );
     result.current.onSubmit(data, "lesson");
@@ -74,7 +73,6 @@ describe("useResourceFormSubmit", () => {
       useResourceFormSubmit({
         isLegacyDownload: true,
         type: "download",
-        authRequired: false,
       }),
     );
     result.current.onSubmit(data, "lesson");
@@ -99,7 +97,6 @@ describe("useResourceFormSubmit", () => {
       useResourceFormSubmit({
         isLegacyDownload: true,
         type: "download",
-        authRequired: false,
       }),
     );
     result.current.onSubmit(data, "lesson");
@@ -124,7 +121,6 @@ describe("useResourceFormSubmit", () => {
       useResourceFormSubmit({
         isLegacyDownload: true,
         type: "download",
-        authRequired: false,
       }),
     );
     result.current.onSubmit(data, "lesson");
@@ -141,7 +137,6 @@ describe("useResourceFormSubmit", () => {
       useResourceFormSubmit({
         isLegacyDownload: true,
         type: "download",
-        authRequired: false,
       }),
     );
     result.current.onSubmit(data, "lesson");
@@ -155,7 +150,6 @@ describe("useResourceFormSubmit", () => {
       useResourceFormSubmit({
         isLegacyDownload: true,
         type: "download",
-        authRequired: false,
       }),
     );
     result.current.onSubmit(data, "lesson");
@@ -179,7 +173,6 @@ describe("useResourceFormSubmit", () => {
       useResourceFormSubmit({
         isLegacyDownload: true,
         type: "download",
-        authRequired: true,
       }),
     );
     result.current.onSubmit(data, "lesson");
@@ -214,7 +207,6 @@ describe("useResourceFormSubmit", () => {
       useResourceFormSubmit({
         isLegacyDownload: true,
         type: "download",
-        authRequired: false,
       }),
     );
     result.current.onSubmit(dataWithAdditionalFiles, "lesson");

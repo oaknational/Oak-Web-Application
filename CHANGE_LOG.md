@@ -1,3 +1,10 @@
+## [1.828.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.828.1...v1.828.2) (2025-08-12)
+
+
+### Bug Fixes
+
+* fix authentication headers in lesson download requests ([9d76e74](https://github.com/oaknational/Oak-Web-Application/commit/9d76e741cb054b2d1e0bdf981a28a361ee5c4119))
+
 ## [1.828.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.828.0...v1.828.1) (2025-08-07)
 
 # [1.828.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.827.0...v1.828.0) (2025-08-07)
