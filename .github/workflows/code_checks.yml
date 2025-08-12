@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       # Check out full history so Sonar can identify PR changes.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - name: Use Node.js
@@ -44,7 +44,7 @@ jobs:
       group: large-runners
     steps:
       # Check out full history so Sonar can identify PR changes.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - name: Use Node.js

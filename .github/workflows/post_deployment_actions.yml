@@ -17,7 +17,7 @@ jobs:
     name: Add deploy URL to PR description
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       # Note we can't use caching here, because caching needs GITHUB_REF to be defined,
       # and Vercel deployment_status events set deployment.ref to the SHA, not the triggering
       # branch or pull request.
@@ -50,7 +50,7 @@ jobs:
   #   name: Warm Caches
   #   runs-on: ubuntu-24.04
   #   steps:
-  #     - uses: actions/checkout@v4
+  #     - uses: actions/checkout@v5
   #     - name: Use Node.js
   #       uses: actions/setup-node@v4
   #       with:
@@ -74,7 +74,7 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
@@ -116,7 +116,7 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
