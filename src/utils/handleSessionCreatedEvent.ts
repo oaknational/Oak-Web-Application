@@ -15,7 +15,7 @@ export async function handleSessionCreatedEvent(evt: SessionWebhookEvent) {
 function getIsTargetUser(user: User) {
   //  if user.createdAt is between 21/07/20205 and 06/08/20205
   const createdAt = new Date(user.createdAt);
-  const startDate = new Date("2025-07-21");
-  const endDate = new Date("2025-08-06");
+  const startDate = new Date("2025-07-21T00:00:00.000Z");
+  const endDate = new Date("2025-08-06T23:59:59.000Z");
   return createdAt >= startDate && createdAt <= endDate;
 }

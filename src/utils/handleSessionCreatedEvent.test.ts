@@ -77,7 +77,8 @@ describe("handleSessionCreatedEvent", () => {
   test("should update user metadata when user is created on start date boundary", async () => {
     const userOnStartDate: User = {
       id: "user_123",
-      createdAt: new Date("2025-07-21").getTime(), // Exactly on start date
+      // midnight on the start date
+      createdAt: new Date("2025-07-21T00:00:00.000Z").getTime(),
     } as User;
 
     getUser.mockResolvedValue(userOnStartDate);
@@ -94,7 +95,8 @@ describe("handleSessionCreatedEvent", () => {
   test("should update user metadata when user is created on end date boundary", async () => {
     const userOnEndDate: User = {
       id: "user_123",
-      createdAt: new Date("2025-08-06").getTime(), // Exactly on end date
+      // 11pm on the end date
+      createdAt: new Date("2025-08-06T23:59:00.000Z").getTime(),
     } as User;
 
     getUser.mockResolvedValue(userOnEndDate);
