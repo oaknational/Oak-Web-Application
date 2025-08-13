@@ -90,7 +90,9 @@ export default function SignedOutFlow({
 
   const [isComplete, setIsComplete] = useState(() => {
     return (
-      (Boolean(data.schoolId?.length) || Boolean(data.email?.length)) &&
+      (Boolean(data.schoolId?.length) ||
+        data.schoolNotListed === true ||
+        Boolean(data.email?.length)) &&
       data.termsAndConditions
     );
   });
