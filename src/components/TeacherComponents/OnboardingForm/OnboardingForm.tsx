@@ -238,7 +238,7 @@ const OnboardingForm = ({
               $gap="space-between-ssx"
               $pb={props.subheading ? "inner-padding-m" : "inner-padding-none"}
             >
-              <OakSpan role="legend" id={"form-legend"} $font="heading-6">
+              <OakSpan id={"form-legend"} $font="heading-6" as="legend">
                 {props.heading}
               </OakSpan>
               {props.subheading && (
