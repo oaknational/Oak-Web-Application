@@ -11,6 +11,7 @@ import { useUser } from "@clerk/nextjs";
 import {
   OakBox,
   OakCheckBox,
+  OakFieldset,
   OakFlex,
   OakInlineBanner,
   OakP,
@@ -226,81 +227,84 @@ const OnboardingForm = ({
         }
       >
         <Logo height={48} width={104} variant="with text" />
-        <OakFlex
-          $gap="space-between-m"
-          $flexDirection={"column"}
-          $width="100%"
-          role={"fieldset"}
-        >
+        <OakFieldset $width="100%">
           <OakFlex
-            $flexDirection="column"
-            $gap="space-between-ssx"
-            $pb={props.subheading ? "inner-padding-m" : "inner-padding-none"}
+            $gap="space-between-m"
+            $flexDirection={"column"}
+            $width="100%"
           >
-            <OakSpan role="legend" id={"form-legend"} $font="heading-6">
-              {props.heading}
-            </OakSpan>
-            {props.subheading && (
-              <OakP $font="body-2" $color="text-subdued">
-                {props.subheading}
-              </OakP>
-            )}
-          </OakFlex>
-          <OakBox aria-live="polite" $display="contents">
-            {submitError && (
-              <OakInlineBanner
-                isOpen
-                icon="error"
-                type="error"
-                message={submitError}
-                $width="100%"
-                $mt="space-between-m"
+            <OakFlex
+              $flexDirection="column"
+              $gap="space-between-ssx"
+              $pb={props.subheading ? "inner-padding-m" : "inner-padding-none"}
+            >
+              <OakSpan role="legend" id={"form-legend"} $font="heading-6">
+                {props.heading}
+              </OakSpan>
+              {props.subheading && (
+                <OakP $font="body-2" $color="text-subdued">
+                  {props.subheading}
+                </OakP>
+              )}
+            </OakFlex>
+            <OakBox aria-live="polite" $display="contents">
+              {submitError && (
+                <OakInlineBanner
+                  isOpen
+                  icon="error"
+                  type="error"
+                  message={submitError}
+                  $width="100%"
+                  $mt="space-between-m"
+                />
+              )}
+            </OakBox>
+            <OakBox>{props.children}</OakBox>
+            <OakFlex
+              $pv="inner-padding-xl"
+              $gap="space-between-xs"
+              $flexDirection="column"
+            >
+              <OakPrimaryButton
+                disabled={isSubmitting}
+                width="100%"
+                type="submit"
+                onClick={props.onSubmit}
+                name="continue"
+                aria-description={
+                  props.continueButtonDescription ?? submitError ?? undefined
+                }
+              >
+                Continue
+              </OakPrimaryButton>
+              {props.secondaryButton?.(isSubmitting)}
+            </OakFlex>
+            {showNewsletterSignUp && (
+              <Controller
+                control={props.control}
+                name="newsletterSignUp"
+                render={({ field: { value, onChange, name, onBlur } }) => {
+                  const onChangeHandler = (
+                    e: ChangeEvent<HTMLInputElement>,
+                  ) => {
+                    onChange(e.target.checked);
+                    props.trigger("newsletterSignUp");
+                  };
+                  return (
+                    <OakCheckBox
+                      checked={value ?? false}
+                      name={name}
+                      onBlur={onBlur}
+                      onChange={onChangeHandler}
+                      value="Sign up for our latest resources and updates by email. Unsubscribe at any time"
+                      id="newsletterSignUp"
+                    />
+                  );
+                }}
               />
             )}
-          </OakBox>
-          <OakBox>{props.children}</OakBox>
-          <OakFlex
-            $pv="inner-padding-xl"
-            $gap="space-between-xs"
-            $flexDirection="column"
-          >
-            <OakPrimaryButton
-              disabled={isSubmitting}
-              width="100%"
-              type="submit"
-              onClick={props.onSubmit}
-              name="continue"
-              aria-description={
-                props.continueButtonDescription ?? submitError ?? undefined
-              }
-            >
-              Continue
-            </OakPrimaryButton>
-            {props.secondaryButton?.(isSubmitting)}
-          </OakFlex>
-          {showNewsletterSignUp && (
-            <Controller
-              control={props.control}
-              name="newsletterSignUp"
-              render={({ field: { value, onChange, name, onBlur } }) => {
-                const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-                  onChange(e.target.checked);
-                  props.trigger("newsletterSignUp");
-                };
-                return (
-                  <OakCheckBox
-                    checked={value ?? false}
-                    name={name}
-                    onBlur={onBlur}
-                    onChange={onChangeHandler}
-                    value="Sign up for our latest resources and updates by email. Unsubscribe at any time"
-                    id="newsletterSignUp"
-                  />
-                );
-              }}
-            />
-          )}
-        </OakFlex>
+          </OakFlex>{" "}
+        </OakFieldset>
       </OakFlex>
     </OakFlex>
   );
