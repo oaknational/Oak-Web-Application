@@ -34,6 +34,7 @@ export async function POST(req: Request) {
 
     const client = await clerkClient();
     await client.users.updateUserMetadata(user.id, userMetadata);
+    console.log("User region metadata updated");
 
     return Response.json(userMetadata);
   } catch (error) {
