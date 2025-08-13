@@ -106,7 +106,7 @@ export function generateSheetTitle(
 ) {
   // Guard, should never trigger
   if (!formattedData.yearData[year]) {
-    throw new Error("invalid");
+    throw new Error("Missing yearData");
   }
 
   const { groupAs } = formattedData.yearData[year];

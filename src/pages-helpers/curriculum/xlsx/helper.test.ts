@@ -481,4 +481,15 @@ describe("generateSheetTitle", () => {
       "Swimming and water safety",
     );
   });
+
+  test("errors if year data is missing", () => {
+    const formattedData = {
+      yearData: {},
+      threadOptions: [],
+      yearOptions: ["10"],
+    };
+    expect(() => generateSheetTitle(formattedData, "10")).toThrow(
+      new Error("Missing yearData"),
+    );
+  });
 });
