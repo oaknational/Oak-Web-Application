@@ -6,13 +6,17 @@ import { zipToSimpleObject } from "../docx/zip";
 import {
   addOrUpdateSheet,
   createXmlIndexMap,
+  generateSheetTitle,
   generateYearTitle,
   getFlatUnits,
+  getSubjectOveride,
+  ks4OptionSlugToPathway,
 } from "./helper";
 
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { createSubjectCategory } from "@/fixtures/curriculum/subjectCategories";
 import { createYearData } from "@/fixtures/curriculum/yearData";
+import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
 
 describe("createXmlIndexMap", () => {
   it("should return XML and mapped keys/indexes", () => {
@@ -405,5 +409,76 @@ describe("generateYearTitle", () => {
     };
     const output = generateYearTitle(formattedData, year, slugs);
     expect(output).toEqual("Swimming and water safety (all years)");
+  });
+});
+
+describe("ks4OptionSlugToPathway", () => {
+  test("core", () => {
+    expect(ks4OptionSlugToPathway("gcse")).toEqual("GCSE");
+  });
+
+  test("gcse", () => {
+    expect(ks4OptionSlugToPathway("core")).toEqual("Core");
+  });
+});
+
+describe("isExamboardSlug", () => {
+  test("valid", () => {
+    expect(isExamboardSlug("aqa")).toEqual(true);
+  });
+
+  test("invalid", () => {
+    expect(isExamboardSlug("foo")).toEqual(false);
+  });
+});
+
+describe("getSubjectOveride", () => {
+  test("override", () => {
+    expect(getSubjectOveride("english", "10", "aqa")).toEqual(undefined);
+  });
+
+  test("non-override", () => {
+    expect(getSubjectOveride("computing", "10", "aqa")).toEqual(
+      "Computer Science",
+    );
+  });
+});
+
+describe("generateSheetTitle", () => {
+  test("non-grouping", () => {
+    const formattedData = {
+      yearData: {
+        "10": createYearData({
+          units: [
+            createUnit({
+              year: "10",
+            }),
+          ],
+        }),
+      },
+      threadOptions: [],
+      yearOptions: ["10"],
+    };
+    expect(generateSheetTitle(formattedData, "10")).toEqual("Year 10");
+  });
+
+  test("grouping", () => {
+    const formattedData = {
+      yearData: {
+        "all-years": createYearData({
+          groupAs: "Swimming and water safety",
+          units: [
+            createUnit({
+              year: "3",
+            }),
+          ],
+        }),
+      },
+      threadOptions: [],
+      yearOptions: ["all-years"],
+    };
+    expect(generateSheetTitle(formattedData, "all-years")).toEqual(
+      "Swimming and water safety",
+    );
   });
 });

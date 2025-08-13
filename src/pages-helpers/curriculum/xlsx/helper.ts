@@ -142,7 +142,6 @@ export function generateYearTitle(
     slugs.ks4OptionSlug,
   );
 
-  // HACKS
   const subjectTitle = units[0]!.subject;
 
   const title = [
