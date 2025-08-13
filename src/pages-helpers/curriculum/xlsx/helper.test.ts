@@ -382,6 +382,34 @@ describe("generateYearTitle", () => {
     expect(output).toEqual("Year 9 Physical education");
   });
 
+  test("Year 9 Physical education", () => {
+    const formattedData = {
+      yearData: {
+        "9": createYearData({
+          units: [
+            createUnit({
+              year: "9",
+              subject: "Physical education",
+            }),
+          ],
+        }),
+      },
+      threadOptions: [],
+      yearOptions: ["9"],
+    };
+    const year = "9";
+    const slugs = {
+      subjectSlug: "physical-education",
+      phaseSlug: "secondary",
+      ks4OptionSlug: undefined,
+      keyStageSlug: undefined,
+      tierSlug: "higher",
+      childSubjectSlug: undefined,
+    };
+    const output = generateYearTitle(formattedData, year, slugs);
+    expect(output).toEqual("Year 9 Physical education");
+  });
+
   // When units are grouped as all-years, replace the worksheet name with {groupAs}
   test("Swimming and water safety (all years)", () => {
     const formattedData = {

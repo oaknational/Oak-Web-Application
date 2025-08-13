@@ -146,9 +146,11 @@ export function generateYearTitle(
 
   const title = [
     !childSubjectTitle ? (subjectOverrideTitle ?? subjectTitle) : null,
-    !slugs.tierSlug ? ks4OptionSlugToPathway(slugs.ks4OptionSlug) : null,
+    !slugs.tierSlug && keystageFromYear(year) === "ks4"
+      ? ks4OptionSlugToPathway(slugs.ks4OptionSlug)
+      : null,
     childSubjectTitle,
-    tierTitle,
+    keystageFromYear(year) === "ks4" ? tierTitle : null,
   ]
     .filter(Boolean)
     .join(", ");
