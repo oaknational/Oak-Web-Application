@@ -56,6 +56,11 @@ function getDeploymentTestUrls() {
     "/teachers/lessons/duncan-as-a-father-figure/downloads",
     "/teachers/lessons/transverse-waves",
     "/teachers/lessons/transverse-waves/downloads",
+    // User pages
+    "/sign-up",
+    "/sign-in",
+    "/onboarding",
+    "/onboarding/role-selection",
     // Pupil pages
     "/pupils/years",
     "/pupils/years/year-10/subjects",
