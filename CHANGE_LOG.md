@@ -1,3 +1,34 @@
+## [1.830.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.830.0...v1.830.1) (2025-08-13)
+
+
+### Bug Fixes
+
+* typo ([18b7b28](https://github.com/oaknational/Oak-Web-Application/commit/18b7b2829cbb2670363965e23ed6a113a1acdaf4))
+
+# [1.830.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.829.0...v1.830.0) (2025-08-13)
+
+
+### Bug Fixes
+
+* **curriculum-downloads:** allow download when "My school isn’t listed” is ticked ([327ce26](https://github.com/oaknational/Oak-Web-Application/commit/327ce26d737e2a2fd4d2c4e67c645e805e84ff80))
+
+
+### Features
+
+* reinstate School (required) label ([7a6cef7](https://github.com/oaknational/Oak-Web-Application/commit/7a6cef784b3a40e4ba39e4921a32667b03910478))
+
+# [1.829.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.828.2...v1.829.0) (2025-08-12)
+
+
+### Bug Fixes
+
+* fix getIsTargetUser not returning correct value for accounts crreated at boundary ([5dbfe32](https://github.com/oaknational/Oak-Web-Application/commit/5dbfe322a3d5a3e1c31f96542a7e72bb81537614))
+
+
+### Features
+
+* set up handler for session created event ([0071766](https://github.com/oaknational/Oak-Web-Application/commit/0071766c96344a80136dff40adad8e6f5d03248a))
+
 ## [1.828.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.828.1...v1.828.2) (2025-08-12)
 
 
