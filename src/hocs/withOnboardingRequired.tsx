@@ -12,10 +12,10 @@ export function withOnboardingRequired<P extends object>(
 ) {
   function WrappedComponent(props: Readonly<P>) {
     useRequireOnboarding();
-    const { isSignedIn, user } = useUser();
+    const { isSignedIn, user, isLoaded } = useUser();
     const isOnboarded = user?.publicMetadata?.owa?.isOnboarded;
 
-    if (isSignedIn && !isOnboarded) {
+    if (!isLoaded || (isSignedIn && !isOnboarded)) {
       if (FallbackComponent) {
         return (
           <FallbackComponent>
@@ -23,7 +23,6 @@ export function withOnboardingRequired<P extends object>(
           </FallbackComponent>
         );
       }
-
       return null;
     }
 
