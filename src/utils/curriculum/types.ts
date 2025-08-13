@@ -42,6 +42,11 @@ export interface Pathway {
   pathway_slug: string;
 }
 
+export type NationalCurriculumCriteria = {
+  id: number;
+  title: string;
+};
+
 export type YearData = {
   [key: string]: {
     units: Unit[];
@@ -51,6 +56,7 @@ export type YearData = {
     isSwimming: boolean;
     groupAs: string | null;
     pathways: Pathway[];
+    nationalCurriculum: NationalCurriculumCriteria[];
   };
 };
 

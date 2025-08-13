@@ -1,8 +1,9 @@
 import { cartesianToExcelCoords, pxToColumnWidth } from "@ooxml-tools/units";
 import { cdata, safeXml } from "@ooxml-tools/xml";
 
-import { BuildNationalCurriculumData } from "..";
-import { getFlatUnits, XmlIndexMap } from "../helper";
+import { generateYearTitle, getFlatUnits, XmlIndexMap } from "../helper";
+import { Slugs } from "../../docx";
+import { CurriculumUnitsFormattedData } from "../../docx/tab-helpers";
 
 import { buildGoToUnitResourceCell } from "./buildGoToUnitResourceCell";
 import { buildTickCell } from "./buildTickCell";
@@ -12,12 +13,16 @@ import { buildUnitCell } from "./buildUnitCell";
 
 export function buildSheet<T extends XmlIndexMap>(
   cellStyleIndexMap: T,
-  data: BuildNationalCurriculumData,
+  formattedData: CurriculumUnitsFormattedData,
+  year: string,
+  slugs: Slugs,
 ) {
   const unitXml: string[] = [];
   const linkXml: string[] = [];
   const goToUnitResourcesXml: string[] = [];
-  const flatUnits = getFlatUnits(data.unitData.map((item) => item.unit));
+  const flatUnits = getFlatUnits(formattedData.yearData[year]!.units);
+
+  const title = generateYearTitle(formattedData, year, slugs);
 
   for (const unit of flatUnits) {
     linkXml.push(safeXml`
@@ -122,11 +127,7 @@ export function buildSheet<T extends XmlIndexMap>(
             s="${cellStyleIndexMap.temp1!}"
           >
             <is>
-              <t>
-                ${cdata(
-                  `Year ${data.unitData[0]?.unit.year ?? ""} ${data.unitData[0]!.unit.subject}`,
-                )}
-              </t>
+              <t>${cdata(`${title}`)}</t>
             </is>
           </c>
           ${unitXml.map((_, index) => {
@@ -165,8 +166,8 @@ export function buildSheet<T extends XmlIndexMap>(
           </c>
           ${goToUnitResourcesXml}
         </row>
-        ${[...data.nationalCurric.entries()].map(
-          ([id, nationalCurricText], nationalCurricTextIndex) => {
+        ${formattedData.yearData[year]!.nationalCurriculum.map(
+          ({ id, title }, nationalCurricTextIndex) => {
             const yPos = 4 + nationalCurricTextIndex;
             const tickXml: string[] = [];
 
@@ -199,7 +200,7 @@ export function buildSheet<T extends XmlIndexMap>(
               <row r="${yPos}" spans="1:${tickXml.length + 1}">
                 ${buildNcCriteriaText({
                   cellStyleIndexMap,
-                  nationalCurricText,
+                  criteriaText: title,
                   x: 1,
                   y: yPos,
                 })}
