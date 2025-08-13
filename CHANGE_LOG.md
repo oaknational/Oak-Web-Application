@@ -1,3 +1,15 @@
+# [1.829.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.828.2...v1.829.0) (2025-08-12)
+
+
+### Bug Fixes
+
+* fix getIsTargetUser not returning correct value for accounts crreated at boundary ([5dbfe32](https://github.com/oaknational/Oak-Web-Application/commit/5dbfe322a3d5a3e1c31f96542a7e72bb81537614))
+
+
+### Features
+
+* set up handler for session created event ([0071766](https://github.com/oaknational/Oak-Web-Application/commit/0071766c96344a80136dff40adad8e6f5d03248a))
+
 ## [1.828.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.828.1...v1.828.2) (2025-08-12)
 
 
