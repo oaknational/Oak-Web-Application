@@ -20,6 +20,7 @@ import LessonDownloadsPage, {
 } from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
 import {
   mockLoggedIn,
+  mockLoggedOut,
   mockUserWithDownloadAccess,
 } from "@/__tests__/__helpers__/mockUser";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
@@ -95,6 +96,7 @@ jest.mock(
 beforeEach(() => {
   renderHook(() => useForm());
   localStorage.clear();
+  setUseUserReturn(mockLoggedOut);
 });
 const render = renderWithProviders();
 

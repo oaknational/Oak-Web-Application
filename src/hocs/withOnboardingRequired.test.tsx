@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react";
-import { useUser } from "@clerk/nextjs";
 
 import { withOnboardingRequired } from "./withOnboardingRequired";
 
@@ -8,21 +7,17 @@ import {
   mockLoggedIn,
   mockLoggedOut,
 } from "@/__tests__/__helpers__/mockUser";
-import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
-
-type UseUserReturn = ReturnType<typeof useUser>;
+import {
+  setUseUserReturn,
+  UseUserReturn,
+} from "@/__tests__/__helpers__/mockClerk";
 
 describe(withOnboardingRequired, () => {
   const OriginalComponent = () => <div data-testid="canary" />;
   const Subject = withOnboardingRequired(() => <div data-testid="canary" />);
 
-  beforeEach(() => {
-    setUseUserReturn(mockLoadingUser);
-  });
-
   describe.each<[string, UseUserReturn]>([
     ["clerk has yet to load", mockLoadingUser],
-    ["the user is not signed-in", mockLoggedOut],
     [
       "the user is signed in but not onboarded",
       {
@@ -63,15 +58,19 @@ describe(withOnboardingRequired, () => {
     });
   });
 
-  describe("when the user is signed in and onboarded", () => {
-    beforeEach(() => {
-      setUseUserReturn(mockLoggedIn);
-    });
+  it("renders the component when the user is signed in and onboarded", () => {
+    setUseUserReturn(mockLoggedIn);
 
-    it("renders the component", () => {
-      render(<Subject />);
+    render(<Subject />);
 
-      expect(screen.queryByTestId("canary")).toBeInTheDocument();
-    });
+    expect(screen.queryByTestId("canary")).toBeInTheDocument();
+  });
+
+  it("renders the component when the user is signed out", () => {
+    setUseUserReturn(mockLoggedOut);
+
+    render(<Subject />);
+
+    expect(screen.queryByTestId("canary")).toBeInTheDocument();
   });
 });
