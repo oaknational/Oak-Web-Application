@@ -5,12 +5,12 @@ import { XmlIndexMap } from "../helper";
 
 export function buildNcCriteriaText<T extends XmlIndexMap>({
   cellStyleIndexMap,
-  nationalCurricText,
+  criteriaText,
   x,
   y,
 }: {
   cellStyleIndexMap: T;
-  nationalCurricText: string;
+  criteriaText: string;
   x: number;
   y: number;
 }) {
@@ -21,7 +21,7 @@ export function buildNcCriteriaText<T extends XmlIndexMap>({
       s="${cellStyleIndexMap.temp4!}"
     >
       <is>
-        <t xml:space="preserve">${cdata(`\n${nationalCurricText}\n`)}</t>
+        <t xml:space="preserve">${cdata(`\n${criteriaText}\n`)}</t>
       </is>
     </c>
   `;

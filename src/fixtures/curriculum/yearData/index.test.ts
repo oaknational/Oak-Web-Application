@@ -15,6 +15,7 @@ describe("createSubjectCategory", () => {
       tiers: [],
       pathways: [],
       isSwimming: false,
+      nationalCurriculum: [],
       groupAs: null,
     });
   });
@@ -27,6 +28,7 @@ describe("createSubjectCategory", () => {
       tiers: [createTier({ tier_slug: "test" })],
       pathways: [],
       isSwimming: true,
+      nationalCurriculum: [],
       groupAs: "testing_group",
     });
     expect(result).toEqual({
@@ -88,6 +90,7 @@ describe("createSubjectCategory", () => {
       ],
       pathways: [],
       isSwimming: true,
+      nationalCurriculum: [],
       groupAs: "testing_group",
     });
   });

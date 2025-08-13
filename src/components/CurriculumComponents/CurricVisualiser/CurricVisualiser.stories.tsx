@@ -96,6 +96,7 @@ const curriculumVisualiserFixture: ComponentProps<typeof Component> = {
       isSwimming: false,
       groupAs: null,
       pathways: [],
+      nationalCurriculum: [],
     },
   },
   setVisibleMobileYearRefID: () => {},
