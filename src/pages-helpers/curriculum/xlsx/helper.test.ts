@@ -382,7 +382,7 @@ describe("generateYearTitle", () => {
     expect(output).toEqual("Year 9 Physical education");
   });
 
-  // When units are grouped as all-years, replace the sheet title with {groupAs} (all years) and the worksheet name with {groupAs}
+  // When units are grouped as all-years, replace the worksheet name with {groupAs}
   test("Swimming and water safety (all years)", () => {
     const formattedData = {
       yearData: {
@@ -413,11 +413,11 @@ describe("generateYearTitle", () => {
 });
 
 describe("ks4OptionSlugToPathway", () => {
-  test("core", () => {
+  test("gcse", () => {
     expect(ks4OptionSlugToPathway("gcse")).toEqual("GCSE");
   });
 
-  test("gcse", () => {
+  test("core", () => {
     expect(ks4OptionSlugToPathway("core")).toEqual("Core");
   });
 });
