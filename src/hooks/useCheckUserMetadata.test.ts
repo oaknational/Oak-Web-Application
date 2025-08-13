@@ -58,7 +58,7 @@ describe("useCheckUserMetadata", () => {
 
     useCheckUserMetadata();
 
-    expect(fetchMock).toHaveBeenCalledWith("/api/onboarding", {
+    expect(fetchMock).toHaveBeenCalledWith("/api/update-region", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
     });

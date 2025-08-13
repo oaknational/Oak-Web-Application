@@ -27,7 +27,7 @@ process.env.NODE_ENV = "production";
 const updateUserMetadata = jest.fn();
 const getUser = jest.fn();
 
-describe("/api/onboarding", () => {
+describe("/api/update-region", () => {
   installMockClerkClient({
     updateUserMetadata,
     getUser,
