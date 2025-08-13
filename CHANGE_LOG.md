@@ -1,3 +1,15 @@
+# [1.830.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.829.0...v1.830.0) (2025-08-13)
+
+
+### Bug Fixes
+
+* **curriculum-downloads:** allow download when "My school isn’t listed” is ticked ([327ce26](https://github.com/oaknational/Oak-Web-Application/commit/327ce26d737e2a2fd4d2c4e67c645e805e84ff80))
+
+
+### Features
+
+* reinstate School (required) label ([7a6cef7](https://github.com/oaknational/Oak-Web-Application/commit/7a6cef784b3a40e4ba39e4921a32667b03910478))
+
 # [1.829.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.828.2...v1.829.0) (2025-08-12)
 
 
