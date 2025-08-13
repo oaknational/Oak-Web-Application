@@ -106,7 +106,7 @@ locals {
         key                     = key
         value                   = value
         custom_environment_name = env
-      }
+      } if value != null
     ]
   ])
 
