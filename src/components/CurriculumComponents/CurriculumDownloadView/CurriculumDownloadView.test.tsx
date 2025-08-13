@@ -117,6 +117,28 @@ describe("CurriculumDownloadView", () => {
       expect(completeElement).toContainHTML("My school isn’t listed");
     });
 
+    test("if availableDownloadTypes doesn't contain 'national-curriculum' the option shouldn't exist", async () => {
+      const initialData: CurriculumDownloadViewData = {
+        schoolId: undefined,
+        schools: [],
+        email: "test@example.com",
+        downloadTypes: ["curriculum-plans"],
+        schoolNotListed: true,
+        termsAndConditions: true,
+      } as const;
+      const { getAllByTestId } = render(
+        <CurriculumDownloadView
+          data={initialData}
+          schools={[]}
+          isSubmitting={false}
+          availableDownloadTypes={["curriculum-plans"]}
+        />,
+      );
+      const resourceCardElements = getAllByTestId("resourceCard");
+      expect(resourceCardElements.length).toEqual(1);
+      expect(resourceCardElements[0]).toHaveTextContent("Curriculum plan");
+    });
+
     test("submits when school not listed and no email is supplied", async () => {
       const initialData: CurriculumDownloadViewData = {
         schoolId: undefined,
