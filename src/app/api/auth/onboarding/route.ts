@@ -2,17 +2,7 @@ import { clerkClient, currentUser } from "@clerk/nextjs/server";
 import { ZodError } from "zod";
 
 import { onboardingSchema } from "@/common-lib/schemas/onboarding";
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
-import errorReporter from "@/common-lib/error-reporter";
-import OakError from "@/errors/OakError";
-
-const reportError = errorReporter("onboardingRoute");
-
-/**
- * ISO 3166-1 alpha-2 country codes for countries whose users
- * are authorised to download region restricted content
- */
-const ALLOWED_REGIONS = ["GB", "IM", "GG", "JE"];
+import { getRegion, ALLOWED_REGIONS } from "@/utils/onboarding/getRegion";
 
 export async function POST(req: Request) {
   const user = await currentUser();
@@ -24,7 +14,8 @@ export async function POST(req: Request) {
   try {
     const owaData = onboardingSchema.parse(await req.json());
     const sourceApp = user.publicMetadata.sourceApp ?? getReferrerOrigin(req);
-    const region = user.privateMetadata.region ?? getRegion(req, user.id);
+    const region =
+      user.privateMetadata.region ?? getRegion(req, user.id, "onboardingRoute");
     const isRegionAuthorised = ALLOWED_REGIONS.includes(region!);
 
     const publicMetadata: UserPublicMetadata = {
@@ -59,28 +50,4 @@ function getReferrerOrigin(req: Request) {
   if (typeof referrer === "string") {
     return new URL(referrer).origin;
   }
-}
-
-function getRegion(req: Request, userId: string) {
-  let region = req.headers.get("x-vercel-ip-country") || undefined;
-  if (process.env.NODE_ENV !== "production") {
-    console.log("Using development user region");
-    region = getBrowserConfig("developmentUserRegion");
-  }
-
-  if (!region) {
-    const error = new OakError({
-      code: "onboarding/request-error",
-      meta: {
-        message:
-          "Region header not found in header: x-vercel-ip-country or developmentUserRegion",
-        user: userId,
-      },
-    });
-
-    reportError(error, {
-      message: "Region header not found",
-    });
-  }
-  return region;
 }
