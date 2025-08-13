@@ -13,7 +13,7 @@ export async function POST(req: Request) {
   try {
     const region =
       user.privateMetadata.region ??
-      getRegion(req, user.id, "regionCheckRoute");
+      getRegion(req, user.id, "updateRegionRoute");
     const isRegionAuthorised = ALLOWED_REGIONS.includes(region!);
 
     const userMetadata: {
