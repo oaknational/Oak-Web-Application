@@ -54,7 +54,7 @@ export function assertValidDownloadType(val: string) {
 
 export type DownloadType = (typeof validDownloadTypes)[number];
 
-export const DOWNLOAD_TYPES: {
+export const DOWNLOAD_TYPE_LABELS: {
   id: DownloadType;
   label: string;
   disabled?: boolean;
@@ -74,3 +74,7 @@ export const DOWNLOAD_TYPES: {
     icon: "spreadsheet",
   },
 ];
+
+export const DOWNLOAD_TYPES = DOWNLOAD_TYPE_LABELS.map(({ id }) => id);
+
+export type DownloadTypeLabel = (typeof DOWNLOAD_TYPE_LABELS)[number];

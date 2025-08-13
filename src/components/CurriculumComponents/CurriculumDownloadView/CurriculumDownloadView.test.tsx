@@ -1,6 +1,8 @@
 import { useUser } from "@clerk/nextjs";
 import { act, screen, waitFor, fireEvent } from "@testing-library/react";
 
+import { DOWNLOAD_TYPES } from "./helper";
+
 import CurriculumDownloadView, { CurriculumDownloadViewData } from ".";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -53,6 +55,7 @@ describe("CurriculumDownloadView", () => {
           data={initialData}
           schools={[]}
           isSubmitting={false}
+          availableDownloadTypes={DOWNLOAD_TYPES}
         />,
       );
       expect(baseElement).toHaveTextContent(
@@ -85,6 +88,7 @@ describe("CurriculumDownloadView", () => {
           data={initialData}
           schools={[]}
           isSubmitting={false}
+          availableDownloadTypes={DOWNLOAD_TYPES}
         />,
       );
       const completeElement = getByTestId("details-completed");
@@ -106,6 +110,7 @@ describe("CurriculumDownloadView", () => {
           data={initialData}
           schools={[]}
           isSubmitting={false}
+          availableDownloadTypes={DOWNLOAD_TYPES}
         />,
       );
       const completeElement = getByTestId("details-completed");
@@ -126,6 +131,7 @@ describe("CurriculumDownloadView", () => {
           data={initialData}
           schools={[]}
           isSubmitting={false}
+          availableDownloadTypes={DOWNLOAD_TYPES}
         />,
       );
       const completeElement = getByTestId("details-completed");
@@ -150,6 +156,7 @@ describe("CurriculumDownloadView", () => {
           schools={[]}
           isSubmitting={false}
           onSubmit={onSubmit}
+          availableDownloadTypes={DOWNLOAD_TYPES}
         />,
       );
 
@@ -190,6 +197,7 @@ describe("CurriculumDownloadView", () => {
           data={initialData}
           schools={[]}
           isSubmitting={false}
+          availableDownloadTypes={DOWNLOAD_TYPES}
         />,
       );
       expect(getByTestId("download-school-isnt-listed")).toBeVisible();
@@ -230,6 +238,7 @@ describe("CurriculumDownloadView", () => {
           schools={[]}
           isSubmitting={false}
           onSubmit={onSubmit}
+          availableDownloadTypes={DOWNLOAD_TYPES}
         />,
       );
       act(() => {
@@ -275,6 +284,7 @@ describe("CurriculumDownloadView", () => {
             data={initialData}
             schools={[]}
             isSubmitting={false}
+            availableDownloadTypes={DOWNLOAD_TYPES}
           />,
         );
 

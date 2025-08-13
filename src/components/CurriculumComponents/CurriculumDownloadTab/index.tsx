@@ -20,7 +20,7 @@ import { mapKeys, camelCase, capitalize } from "lodash";
 import CurriculumDownloadView, {
   CurriculumDownloadViewData,
 } from "../CurriculumDownloadView";
-import { School } from "../CurriculumDownloadView/helper";
+import { DOWNLOAD_TYPE_LABELS, School } from "../CurriculumDownloadView/helper";
 import CurricSuccessMessage from "../CurricSuccessMessage";
 
 import {
@@ -46,6 +46,8 @@ import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { convertUnitSlugToTitle } from "@/components/TeacherViews/Search/helpers";
 import { downloadFileFromUrl } from "@/components/SharedComponents/helpers/downloadFileFromUrl";
 import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urls";
+import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { doUnitsHaveNc, flatUnitsFromYearData } from "@/utils/curriculum/units";
 
 function ScrollIntoViewWhenVisisble({
   children,
@@ -114,6 +116,7 @@ export type CurriculumDownloadTabProps = {
   slugs: CurriculumSelectionSlugs;
   tiers: { tier: string; tier_slug: string }[];
   child_subjects?: { subject: string; subject_slug: string }[];
+  formattedData: CurriculumUnitsFormattedData;
 };
 const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   mvRefreshTime,
@@ -121,10 +124,19 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   tiers: snake_tiers,
   child_subjects,
   curriculumInfo,
+  formattedData,
 }) => {
   const { track } = useAnalytics();
   const { onHubspotSubmit } = useHubspotSubmit();
   const { analyticsUseCase } = useAnalyticsPageProps();
+  const availableDownloadTypes = useMemo(() => {
+    return DOWNLOAD_TYPE_LABELS.map(({ id }) => id).filter((id) => {
+      if (id === "national-curriculum") {
+        return doUnitsHaveNc(flatUnitsFromYearData(formattedData.yearData));
+      }
+      return true;
+    });
+  }, [formattedData]);
 
   // Convert the data into OWA component format (using camelCase instead of snake_case for keys.)
   const [tierSelected, setTierSelected] = useState<string | null>(null);
@@ -336,6 +348,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
             onChange={setData}
             schools={schoolList ?? []}
             data={data}
+            availableDownloadTypes={availableDownloadTypes}
           />
         )}
       </OakBox>

@@ -2,7 +2,7 @@ import { OakBox, OakInlineBanner } from "@oaknational/oak-components";
 import { FC, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 
-import { DOWNLOAD_TYPES, DownloadType, School } from "./helper";
+import { DOWNLOAD_TYPE_LABELS, DownloadType, School } from "./helper";
 import SignedOutFlow from "./SignedOutFlow";
 import SignedInFlow from "./SignedInFlow";
 
@@ -26,10 +26,11 @@ export type CurriculumDownloadViewProps = {
   onChange?: (value: CurriculumDownloadViewData) => void;
   onSubmit?: (value: CurriculumDownloadViewData) => void;
   onBackToKs4Options?: () => void;
+  availableDownloadTypes: DownloadType[];
 };
 const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = (props) => {
   const [downloadTypes, setDownloadTypes] = useState(() =>
-    DOWNLOAD_TYPES.map(({ id }) => id),
+    DOWNLOAD_TYPE_LABELS.map(({ id }) => id),
   );
   const user = useUser();
 
@@ -63,9 +64,16 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = (props) => {
                   {...props}
                   onChangeDownloadTypes={setDownloadTypes}
                   downloadTypes={downloadTypes}
+                  availableDownloadTypes={props.availableDownloadTypes}
                 />
               )}
-              {user.isSignedIn && <SignedInFlow {...props} user={user} />}
+              {user.isSignedIn && (
+                <SignedInFlow
+                  {...props}
+                  user={user}
+                  availableDownloadTypes={props.availableDownloadTypes}
+                />
+              )}
             </>
           )}
         </>

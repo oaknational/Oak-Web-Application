@@ -4,7 +4,7 @@ import { useUser } from "@clerk/nextjs";
 
 import Terms from "../OakComponentsKitchen/Terms";
 
-import { DOWNLOAD_TYPES, DownloadType, School } from "./helper";
+import { DOWNLOAD_TYPE_LABELS, DownloadType, School } from "./helper";
 import { CurriculumDownloadSelection } from "./CurriculumDownloadSelection";
 
 import { CurriculumDownloadViewProps } from ".";
@@ -31,10 +31,14 @@ export type CurriculumDownloadViewErrors = Partial<{
 type SignedInFlowProps = CurriculumDownloadViewProps & {
   user: ReturnType<typeof useUser>;
 };
-export default function SignedInFlow({ onSubmit, schools }: SignedInFlowProps) {
+export default function SignedInFlow({
+  onSubmit,
+  schools,
+  availableDownloadTypes,
+}: SignedInFlowProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [downloadTypes, setDownloadTypes] = useState(() =>
-    DOWNLOAD_TYPES.map(({ id }) => id),
+    DOWNLOAD_TYPE_LABELS.map(({ id }) => id),
   );
 
   const onDownload = async () => {
@@ -72,6 +76,7 @@ export default function SignedInFlow({ onSubmit, schools }: SignedInFlowProps) {
         <CurriculumDownloadSelection
           downloadTypes={downloadTypes}
           onChange={setDownloadTypes}
+          availableDownloadTypes={availableDownloadTypes}
         />
         <OakBox $mt="space-between-m">
           <Terms />

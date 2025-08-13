@@ -2,7 +2,7 @@ import { OakFlex, OakHeading } from "@oaknational/oak-components";
 import { uniq } from "lodash";
 
 import {
-  DOWNLOAD_TYPES,
+  DOWNLOAD_TYPE_LABELS,
   DownloadType,
   School,
   assertValidDownloadType,
@@ -41,7 +41,7 @@ export function CurriculumResourcesSelector({
         Curriculum resources
       </OakHeading>
       <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
-        {DOWNLOAD_TYPES.map((download) => {
+        {DOWNLOAD_TYPE_LABELS.map((download) => {
           return (
             <ResourceCard
               id={download.id}
