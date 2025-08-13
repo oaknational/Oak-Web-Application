@@ -137,6 +137,7 @@ export default function YourDetails({
             id: "download-school",
             error: errors.schoolId,
             placeholder: "Type school name, postcode, or ‘homeschool’",
+            required: !data.schoolNotListed,
           }}
           onChange={(value, textValue) => {
             onChange({
