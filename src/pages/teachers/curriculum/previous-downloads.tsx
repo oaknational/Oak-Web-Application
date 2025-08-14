@@ -29,12 +29,43 @@ import CurriculumDownloads, {
 import DropdownSelect from "@/components/GenericPagesComponents/DropdownSelect";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
+type Document = ReturnType<
+  typeof curriculumPreviousDownloadsFixture
+>["documents"][0];
+
+function excludeBySlug(
+  data: { documents: Document[] },
+  excludeSlugs: string[],
+) {
+  return {
+    documents: data.documents.filter((document) => {
+      return !excludeSlugs.includes(document.slug);
+    }),
+  };
+}
+
 const CurriculumPreviousDownloadsPage: NextPage = () => {
   const router = useRouter();
-  const data = curriculumPreviousDownloadsFixture();
+  const data = excludeBySlug(curriculumPreviousDownloadsFixture(), [
+    "early-years-foundation-stage-maths",
+    "key-stage-1-english",
+    "key-stage-1-history",
+    "key-stage-1-maths",
+    "key-stage-1-science",
+    "key-stage-2-english",
+    "key-stage-2-history",
+    "key-stage-2-maths",
+    "key-stage-2-science",
+    "key-stage-3-english",
+    "key-stage-3-history",
+    "key-stage-3-maths",
+    "key-stage-3-science",
+    "key-stage-4-english",
+    "key-stage-4-history",
+    "key-stage-4-maths",
+  ]);
   const [activeTab, setActiveTab] = useState<DownloadCategory>("EYFS");
   const downloadsRef = useRef<CurriculumDownloadsRef>(null);
-  type Document = (typeof data)["documents"][0];
 
   const categoryDocuments = useMemo(() => {
     const documents: { [key in DownloadCategory]?: Document[] } = {};
