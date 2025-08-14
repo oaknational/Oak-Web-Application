@@ -1,5 +1,5 @@
 import { clerkClient, currentUser } from "@clerk/nextjs/server";
-import { ZodError } from "zod";
+import { isClerkAPIResponseError } from "@clerk/nextjs/errors";
 
 import { getRegion, ALLOWED_REGIONS } from "@/utils/onboarding/getRegion";
 
@@ -38,8 +38,9 @@ export async function POST(req: Request) {
 
     return Response.json(userMetadata);
   } catch (error) {
-    if (error instanceof ZodError) {
-      return Response.json(error.format(), { status: 400 });
+    if (isClerkAPIResponseError(error)) {
+      console.error("Update user region error:", error);
+      return new Response(error.message, { status: error.status });
     }
 
     throw error;
