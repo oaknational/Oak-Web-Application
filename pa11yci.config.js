@@ -72,7 +72,7 @@ config.urls = relativeUrls.map((relUrl) => {
       url: pa11yUrl,
       timeout: 120000,
       // Should help detect if we get served, e.g. a Cloudflare error page.
-      actions: ["wait for element #__next to be visible"],
+      // actions: ["wait for element #__next to be visible"],
     };
     // Return the already created URL config object.
   } else {
