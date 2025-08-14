@@ -1,6 +1,6 @@
 import { FC } from "react";
 import styled from "styled-components";
-import { OakUL, OakIcon } from "@oaknational/oak-components";
+import { OakUL, OakIcon, OakSpan } from "@oaknational/oak-components";
 
 import { BreadcrumbJsonLd } from "@/browser-lib/seo/getJsonLd";
 import OwaLink from "@/components/SharedComponents/OwaLink";
@@ -75,7 +75,7 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
                 )}
                 <BreadcrumbConstrainer>
                   {disabled ? (
-                    <>{label}</>
+                    <OakSpan aria-current="true">{label}</OakSpan>
                   ) : (
                     <OwaLink {...oakLinkProps}>{label}</OwaLink>
                   )}
