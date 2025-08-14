@@ -59,8 +59,6 @@ function getDeploymentTestUrls() {
     // User pages
     "/sign-up",
     "/sign-in",
-    "/onboarding",
-    "/onboarding/role-selection",
     // Pupil pages
     "/pupils/years",
     "/pupils/years/year-10/subjects",
