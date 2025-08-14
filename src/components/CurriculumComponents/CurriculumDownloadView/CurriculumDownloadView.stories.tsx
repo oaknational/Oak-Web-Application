@@ -3,6 +3,8 @@ import { Meta, StoryObj } from "@storybook/react";
 import { useEffect, useState } from "react";
 import { action } from "@storybook/addon-actions";
 
+import { DOWNLOAD_TYPES } from "./helper";
+
 import Component, { CurriculumDownloadViewData } from ".";
 
 const meta: Meta<typeof Component> = {
@@ -132,6 +134,7 @@ export const CurriculumDownloadView: Story = {
           onSubmit={onSubmit}
           isSubmitting={isSubmitting}
           schools={[]}
+          availableDownloadTypes={DOWNLOAD_TYPES}
         />
       </OakThemeProvider>
     );

@@ -6,7 +6,7 @@ import {
 import { uniq } from "lodash";
 
 import {
-  DOWNLOAD_TYPES,
+  DOWNLOAD_TYPE_LABELS,
   DownloadType,
   assertValidDownloadType,
 } from "./helper";
@@ -14,19 +14,24 @@ import {
 interface CurriculumDownloadSelectionProps {
   downloadTypes: DownloadType[];
   onChange: (downloadTypes: DownloadType[]) => void;
+  availableDownloadTypes: DownloadType[];
 }
 
 export function CurriculumDownloadSelection({
   downloadTypes,
   onChange,
+  availableDownloadTypes,
 }: CurriculumDownloadSelectionProps) {
+  const shownDownloadTypes = DOWNLOAD_TYPE_LABELS.filter(({ id }) =>
+    availableDownloadTypes.includes(id),
+  );
   return (
     <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
       <OakHeading tag="h3" $font={["heading-4"]} data-testid="download-heading">
         Curriculum resources
       </OakHeading>
       <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
-        {DOWNLOAD_TYPES.map((download) => {
+        {shownDownloadTypes.map((download) => {
           const isChecked = downloadTypes.includes(download.id);
 
           return (
