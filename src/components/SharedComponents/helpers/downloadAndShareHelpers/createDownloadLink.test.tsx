@@ -168,6 +168,18 @@ describe("createLessonDownloadLink()", () => {
     );
   });
 
+  it("should not throw an error if authRequired & no auth token provided", async () => {
+    expect(async () => {
+      await createLessonDownloadLink({
+        lessonSlug: "lesson-slug",
+        selection: "exit-quiz-answers,worksheet-pdf",
+        isLegacyDownload: true,
+        authToken: null,
+        authRequired: true,
+      });
+    }).not.toThrow();
+  });
+
   it("should fetch with X-Should-Authenticate-Download set to false when authFlagEnabled is false", async () => {
     await createLessonDownloadLink({
       lessonSlug: "lesson-slug",
@@ -236,13 +248,13 @@ describe("createUnitDownloadLink()", () => {
       });
     }).rejects.toThrow();
   });
-  it("should throw an error if authFlagEnabled is true and getToken returns null", async () => {
-    await expect(async () => {
+  it("should not throw an error if authFlagEnabled is true and getToken returns null", async () => {
+    expect(async () => {
       await createUnitDownloadLink({
         unitFileId: "unitvariant-123",
         authRequired: true,
         getToken: jest.fn().mockResolvedValue(null),
       });
-    }).rejects.toThrow();
+    }).not.toThrow();
   });
 });

@@ -349,3 +349,18 @@ describe("getLegacyProgrammeSlug", () => {
     expect(result).toBe("history-programme-l");
   });
 });
+describe("redirected overlay", () => {
+  beforeEach(() => {
+    mockRouter.setCurrentUrl("/?redirected=true");
+  });
+  it("should show redirect modal when redirected query param is present", () => {
+    mockRouter.setCurrentUrl("/?redirected=true");
+    const { getByTestId } = render(
+      <UnitListingPage
+        curriculumData={unitListingFixture()}
+        curriculumRefreshTime={0}
+      />,
+    );
+    expect(getByTestId("teacher-redirected-overlay-btn")).toBeInTheDocument();
+  });
+});

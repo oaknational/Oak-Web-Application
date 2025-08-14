@@ -2,19 +2,22 @@ import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { OakP } from "@oaknational/oak-components";
+import {
+  OakBoxProps,
+  OakP,
+  OakPrimaryButton,
+} from "@oaknational/oak-components";
 
 import Input from "@/components/SharedComponents/Input";
 import OakError from "@/errors/OakError";
 import DropdownSelect from "@/components/GenericPagesComponents/DropdownSelect";
 import errorReporter from "@/common-lib/error-reporter";
 import Form from "@/components/GenericPagesComponents/Form";
-import { BoxProps } from "@/components/SharedComponents/Box";
+// import { BoxProps } from "@/components/SharedComponents/Box";
 import {
   USER_ROLES,
   UserRole,
 } from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
-import Button from "@/components/SharedComponents/Button";
 
 const reportError = errorReporter("NewsletterForm.tsx");
 
@@ -50,7 +53,7 @@ const userTypeOptions = USER_ROLES.map((userRole) => ({
 }));
 
 type NewsletterFormValues = z.infer<typeof schema>;
-export type NewsletterFormProps = BoxProps & {
+export type NewsletterFormProps = OakBoxProps & {
   onSubmit: (values: NewsletterFormValues) => Promise<string | void>;
   id: string;
   descriptionId?: string;
@@ -102,6 +105,7 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
       $width={"100%"}
       {...boxProps}
     >
+      {/* TODO: replace with OakInputWithLabel when we have a corresponding Select component to replace DropdownSelect */}
       <Input
         id={`${id}-newsletter-signup-name`}
         label="Name"
@@ -124,20 +128,20 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
       />
       <DropdownSelect
         id={`${id}-newsletter-signup-userrole`}
-        $mt={32}
+        $mt={"space-between-m2"}
         label="Role"
         placeholder="What describes you best?"
         listItems={userTypeOptions}
         {...register("userRole")}
         error={errors.userRole?.message}
       />
-      <Button
-        $mt={24}
-        label="Sign up to the newsletter"
-        $fullWidth
-        htmlButtonProps={{ disabled: loading }}
-        background="black"
-      />
+      <OakPrimaryButton
+        $mt="space-between-m"
+        width={"100%"}
+        isLoading={loading}
+      >
+        Sign up to the newsletter
+      </OakPrimaryButton>
       <OakP
         $mt={error ? "space-between-s" : "space-between-none"}
         $font={"body-3"}

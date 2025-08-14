@@ -1,11 +1,10 @@
 import { FC } from "react";
+import { OakColorToken, OakFlex } from "@oaknational/oak-components";
 
-import { OakColorName } from "@/styles/theme/types";
 import OutlineHeading from "@/components/SharedComponents/OutlineHeading";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export type ListItemIndexMobileProps = {
-  background: OakColorName;
+  background: OakColorToken;
   index: number;
   expired?: boolean | null;
 };
@@ -14,12 +13,12 @@ const ListItemIndexMobile: FC<ListItemIndexMobileProps> = (props) => {
   const { background, index, expired } = props;
 
   return (
-    <Flex
+    <OakFlex
       $justifyContent={"center"}
       $display={["flex", "none"]}
       $alignItems={"center"}
-      $minWidth={[64, 72]}
-      $minHeight={[64, 72]}
+      $minWidth={["all-spacing-11", "all-spacing-12"]}
+      $minHeight={["all-spacing-11", "all-spacing-12"]}
       $height={"100%"}
       $background={background}
       $position={"relative"}
@@ -32,7 +31,7 @@ const ListItemIndexMobile: FC<ListItemIndexMobileProps> = (props) => {
       >
         {index.toString()}
       </OutlineHeading>
-    </Flex>
+    </OakFlex>
   );
 };
 

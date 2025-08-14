@@ -9,7 +9,6 @@ import { CurriculumResourcesSelector } from "./CurriculumResourcesSelector";
 
 import { CurriculumDownloadViewProps } from ".";
 
-import Box from "@/components/SharedComponents/Box";
 import { fetchHubspotContactDetails } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/fetchHubspotContactDetails";
 
 export type CurriculumDownloadViewData = {
@@ -67,7 +66,7 @@ export default function SignedInFlow({ onSubmit, schools }: SignedInFlowProps) {
       $flexDirection="column"
       $alignItems={"flex-start"}
     >
-      <Box $width={["100%", 510]} $textAlign={"left"}>
+      <OakBox $width={["100%", "all-spacing-21"]} $textAlign={"left"}>
         <CurriculumResourcesSelector
           downloadType={downloadType}
           onChangeDownloadType={setDownloadType}
@@ -75,7 +74,7 @@ export default function SignedInFlow({ onSubmit, schools }: SignedInFlowProps) {
         <OakBox $mt="space-between-m">
           <Terms />
         </OakBox>
-      </Box>
+      </OakBox>
       <OakPrimaryButton
         data-testid="download"
         isLoading={isSubmitting}

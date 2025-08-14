@@ -202,8 +202,9 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
       // HACK: wait for next tick
       await waitForNextTick();
 
-      const description = computeAccessibleDescription(input);
-      expect(description).toBe("Error Please enter a valid email address");
+      expect(
+        screen.getByText("Please enter a valid email address"),
+      ).toBeInTheDocument();
     });
 
     it("should not display error hint on blur email if empty", async () => {
@@ -297,7 +298,7 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
       await user.click(editButton);
 
       const emailAddress = result.current.emailFromLocalStorage;
-      expect(getByTestId("rotated-input-label")).toBeInTheDocument();
+      expect(getByTestId("jaunty-label")).toBeInTheDocument();
       const emailValue = getByDisplayValue(emailAddress);
       expect(emailValue).toBeInTheDocument();
       expect(emailAddress).toBe("test@test.com");
@@ -473,7 +474,7 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
           }
         ).redirect,
       ).toEqual({
-        destination: "lessons/new-lesson-slug",
+        destination: "lessons/new-lesson-slug?redirected=true",
         statusCode: 301, // 307 is the default for temporary redirects
         basePath: false,
       });

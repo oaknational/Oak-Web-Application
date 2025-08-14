@@ -1,5 +1,5 @@
 import { useUser } from "@clerk/nextjs";
-import { act, waitFor } from "@testing-library/react";
+import { act, screen, waitFor } from "@testing-library/react";
 
 import CurriculumDownloadView, { CurriculumDownloadViewData } from ".";
 
@@ -61,9 +61,9 @@ describe("CurriculumDownloadView", () => {
     });
   }
   if (!DISABLE_DOWNLOADS) {
-    test("with data", async () => {
+    test("renders details completed when school and email are supplied and terms accepted", async () => {
       const initialData: CurriculumDownloadViewData = {
-        schoolId: undefined,
+        schoolId: "URN-Test",
         schools: [
           {
             urn: "",
@@ -74,6 +74,28 @@ describe("CurriculumDownloadView", () => {
             status: "",
           },
         ],
+        email: "test@example.com",
+        downloadType: "word",
+        schoolNotListed: false,
+        schoolName: "Test School",
+        termsAndConditions: true,
+      } as const;
+      const { getByTestId } = render(
+        <CurriculumDownloadView
+          data={initialData}
+          schools={[]}
+          isSubmitting={false}
+        />,
+      );
+      const completeElement = getByTestId("details-completed");
+      expect(completeElement).toContainHTML("Test School");
+      expect(completeElement).toContainHTML("test@example.com");
+    });
+
+    test("submits when school not listed and email is supplied", async () => {
+      const initialData: CurriculumDownloadViewData = {
+        schoolId: undefined,
+        schools: [],
         email: "test@example.com",
         downloadType: "word",
         schoolNotListed: true,
@@ -88,10 +110,64 @@ describe("CurriculumDownloadView", () => {
       );
       const completeElement = getByTestId("details-completed");
       expect(completeElement).toContainHTML("My school isn’t listed");
-      expect(completeElement).toContainHTML("test@example.com");
     });
 
-    test("no data", async () => {
+    test("submits when school not listed and no email is supplied", async () => {
+      const initialData: CurriculumDownloadViewData = {
+        schoolId: undefined,
+        schools: [],
+        email: undefined,
+        downloadType: "word",
+        schoolNotListed: true,
+        termsAndConditions: true,
+      } as const;
+      const { getByTestId } = render(
+        <CurriculumDownloadView
+          data={initialData}
+          schools={[]}
+          isSubmitting={false}
+        />,
+      );
+      const completeElement = getByTestId("details-completed");
+      expect(completeElement).toContainHTML("My school isn’t listed");
+      // The below assertion refers to the email field
+      expect(completeElement).toContainHTML("Not provided");
+    });
+
+    test("does not submit when terms are not accepted", async () => {
+      const onSubmit = jest.fn();
+      const initialData: CurriculumDownloadViewData = {
+        schoolId: undefined,
+        schools: [],
+        email: "test@example.com",
+        downloadType: "word",
+        schoolNotListed: true,
+        termsAndConditions: false,
+      } as const;
+      const { getByRole } = render(
+        <CurriculumDownloadView
+          data={initialData}
+          schools={[]}
+          isSubmitting={false}
+          onSubmit={onSubmit}
+        />,
+      );
+
+      act(() => {
+        getByRole("button", { name: /download/i }).click();
+      });
+
+      await waitFor(() => {
+        expect(onSubmit).not.toHaveBeenCalled();
+        const errors = screen.getAllByText(
+          "Accept terms and conditions to continue",
+        );
+        expect(errors.length).toBeGreaterThanOrEqual(1);
+        expect(errors[0]).toBeVisible();
+      });
+    });
+
+    test("requires input when no data is provided", async () => {
       const initialData: CurriculumDownloadViewData = {
         schoolId: undefined,
         schools: [
@@ -117,7 +193,9 @@ describe("CurriculumDownloadView", () => {
         />,
       );
       expect(getByTestId("download-school-isnt-listed")).toBeVisible();
-      expect(getByTestId("download-email")).toBeVisible();
+      expect(
+        screen.getByPlaceholderText("Type your email address"),
+      ).toBeVisible();
       expect(getByTestId("download-accept-terms")).toBeVisible();
     });
 

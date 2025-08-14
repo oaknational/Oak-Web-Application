@@ -65,8 +65,10 @@ const SubjectListingCardCountCardWithPathways: FC<
             $background={"white"}
             $flexDirection={"column"}
             $position={"relative"}
-            $flex={1}
             key={pathwaySlug}
+            $flexGrow={1}
+            $flexShrink={1}
+            $flexBasis={0}
           >
             <OwaLink
               {...oakLinkProps}

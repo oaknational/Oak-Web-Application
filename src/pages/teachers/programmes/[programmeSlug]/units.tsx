@@ -52,6 +52,7 @@ import { convertSubjectToSlug } from "@/components/TeacherComponents/helpers/con
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
 import { isUnitListData } from "@/components/TeacherComponents/UnitList/helpers";
 import { useUnitFilterState } from "@/hooks/useUnitFilterState";
+import { TeacherRedirectedOverlay } from "@/components/TeacherComponents/TeacherRedirectedOverlay/TeacherRedirectedOverlay";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -191,7 +192,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     return tiers.length > 0 ? (
       <nav aria-label="tiers" data-testid="tiers-nav">
         <TabularNav
-          $mb={[10, 10, 24]}
+          $mb={["space-between-xs", "space-between-xs", "space-between-m"]}
           label="tiers"
           links={tiers.map(
             ({ tierTitle: title, tierSlug: slug, tierProgrammeSlug }) => ({
@@ -404,6 +405,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
             ))}
           </OakFlex>
         </OakMaxWidth>
+        <TeacherRedirectedOverlay />
       </AppLayout>
     </OakThemeProvider>
   );
