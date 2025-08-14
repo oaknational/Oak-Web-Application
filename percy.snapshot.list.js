@@ -20,8 +20,10 @@ const snapshotRelativeUrls = getDeploymentTestUrls().map((url) => {
     url,
     // Wait for the Next app to load.
     waitForSelector: `#__next:not(:has([data-testid="loading"]))`,
-    // waitForTimeout: 3000,
   };
+  if (url.startsWith("/teachers/")) {
+    snapshotConfig.waitForTimeout = 120000;
+  }
   return snapshotConfig;
 });
 

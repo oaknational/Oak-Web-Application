@@ -17,7 +17,12 @@ export const Wall = ({ children }: PropsWithChildren) => {
       <OakBox as="noscript" $position="absolute">
         JavaScript is required to access this content
       </OakBox>
-      <OakBox data-testid="content" aria-hidden="true" $opacity="transparent">
+      <OakBox
+        id="wall"
+        data-testid="content"
+        aria-hidden="true"
+        $opacity="transparent"
+      >
         {children}
       </OakBox>
     </OakThemeProvider>
