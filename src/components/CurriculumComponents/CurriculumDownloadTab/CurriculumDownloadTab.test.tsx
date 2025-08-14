@@ -9,6 +9,8 @@ import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { DISABLE_DOWNLOADS } from "@/utils/curriculum/constants";
 import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urls";
+import { createYearData } from "@/fixtures/curriculum/yearData";
+import { createUnit } from "@/fixtures/curriculum/unit";
 
 const render = renderWithProviders();
 const mvRefreshTime = 1721314874829;
@@ -56,6 +58,15 @@ describe("Component Curriculum Download Tab", () => {
   const renderComponent = (overrides = {}) => {
     const defaultProps = {
       slugs: parseSubjectPhaseSlug("english-secondary-aqa")!,
+      formattedData: {
+        yearOptions: [],
+        threadOptions: [],
+        yearData: {
+          "7": createYearData({
+            units: [createUnit({ slug: "test" })],
+          }),
+        },
+      },
       mvRefreshTime,
       tiers: [],
       childSubjects: [],

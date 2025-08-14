@@ -52,6 +52,7 @@ type SignedOutFlowProps = {
   onSubmit?: (value: CurriculumDownloadViewData) => void;
   downloadTypes: DownloadType[];
   onChangeDownloadTypes: (newDownloadType: DownloadType[]) => void;
+  availableDownloadTypes: DownloadType[];
 };
 export default function SignedOutFlow({
   schools,
@@ -61,6 +62,7 @@ export default function SignedOutFlow({
   isSubmitting,
   downloadTypes,
   onChangeDownloadTypes,
+  availableDownloadTypes,
 }: SignedOutFlowProps) {
   const errorMessageListId = useId();
   const [errors, setErrors] = useState<CurriculumDownloadViewErrors>({});
@@ -106,6 +108,7 @@ export default function SignedOutFlow({
         <CurriculumDownloadSelection
           downloadTypes={downloadTypes}
           onChange={onChangeDownloadTypes}
+          availableDownloadTypes={availableDownloadTypes}
         />
       </OakBox>
 

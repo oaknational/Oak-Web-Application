@@ -1,6 +1,8 @@
 import { useUser } from "@clerk/nextjs";
 import { act, screen, waitFor, fireEvent } from "@testing-library/react";
 
+import { DOWNLOAD_TYPES } from "./helper";
+
 import CurriculumDownloadView, { CurriculumDownloadViewData } from ".";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -53,6 +55,7 @@ describe("CurriculumDownloadView", () => {
           data={initialData}
           schools={[]}
           isSubmitting={false}
+          availableDownloadTypes={DOWNLOAD_TYPES}
         />,
       );
       expect(baseElement).toHaveTextContent(
@@ -85,6 +88,7 @@ describe("CurriculumDownloadView", () => {
           data={initialData}
           schools={[]}
           isSubmitting={false}
+          availableDownloadTypes={DOWNLOAD_TYPES}
         />,
       );
       const completeElement = getByTestId("details-completed");
@@ -106,10 +110,33 @@ describe("CurriculumDownloadView", () => {
           data={initialData}
           schools={[]}
           isSubmitting={false}
+          availableDownloadTypes={DOWNLOAD_TYPES}
         />,
       );
       const completeElement = getByTestId("details-completed");
       expect(completeElement).toContainHTML("My school isn’t listed");
+    });
+
+    test("if availableDownloadTypes doesn't contain 'national-curriculum' the option shouldn't exist", async () => {
+      const initialData: CurriculumDownloadViewData = {
+        schoolId: undefined,
+        schools: [],
+        email: "test@example.com",
+        downloadTypes: ["curriculum-plans"],
+        schoolNotListed: true,
+        termsAndConditions: true,
+      } as const;
+      const { getAllByTestId } = render(
+        <CurriculumDownloadView
+          data={initialData}
+          schools={[]}
+          isSubmitting={false}
+          availableDownloadTypes={["curriculum-plans"]}
+        />,
+      );
+      const resourceCardElements = getAllByTestId("resourceCard");
+      expect(resourceCardElements.length).toEqual(1);
+      expect(resourceCardElements[0]).toHaveTextContent("Curriculum plan");
     });
 
     test("submits when school not listed and no email is supplied", async () => {
@@ -126,6 +153,7 @@ describe("CurriculumDownloadView", () => {
           data={initialData}
           schools={[]}
           isSubmitting={false}
+          availableDownloadTypes={DOWNLOAD_TYPES}
         />,
       );
       const completeElement = getByTestId("details-completed");
@@ -150,6 +178,7 @@ describe("CurriculumDownloadView", () => {
           schools={[]}
           isSubmitting={false}
           onSubmit={onSubmit}
+          availableDownloadTypes={DOWNLOAD_TYPES}
         />,
       );
 
@@ -190,6 +219,7 @@ describe("CurriculumDownloadView", () => {
           data={initialData}
           schools={[]}
           isSubmitting={false}
+          availableDownloadTypes={DOWNLOAD_TYPES}
         />,
       );
       expect(getByTestId("download-school-isnt-listed")).toBeVisible();
@@ -230,6 +260,7 @@ describe("CurriculumDownloadView", () => {
           schools={[]}
           isSubmitting={false}
           onSubmit={onSubmit}
+          availableDownloadTypes={DOWNLOAD_TYPES}
         />,
       );
       act(() => {
@@ -275,6 +306,7 @@ describe("CurriculumDownloadView", () => {
             data={initialData}
             schools={[]}
             isSubmitting={false}
+            availableDownloadTypes={DOWNLOAD_TYPES}
           />,
         );
 
