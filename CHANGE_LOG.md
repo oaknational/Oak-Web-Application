@@ -1,3 +1,10 @@
+## [1.830.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.830.0...v1.830.1) (2025-08-13)
+
+
+### Bug Fixes
+
+* typo ([18b7b28](https://github.com/oaknational/Oak-Web-Application/commit/18b7b2829cbb2670363965e23ed6a113a1acdaf4))
+
 # [1.830.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.829.0...v1.830.0) (2025-08-13)
 
 
