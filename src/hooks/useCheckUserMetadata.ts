@@ -1,23 +1,26 @@
 import { useUser } from "@clerk/nextjs";
+import useSWR from "swr";
 
 export async function useCheckUserMetadata() {
-  const { isSignedIn, user } = useUser();
+  const { user } = useUser();
 
   const updateRegionApiRoute = "/api/update-region";
 
-  if (!isSignedIn || !user) {
-    return;
-  }
-  const requiresGeoLocation = user.unsafeMetadata?.requiresGeoLocation;
-
-  if (!requiresGeoLocation) {
-    return;
-  } else {
-    await fetch(updateRegionApiRoute, {
+  const fetcher = async (url: string) => {
+    const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
     });
-  }
+
+    return response.json();
+  };
+
+  useSWR(
+    user && user.unsafeMetadata?.requiresGeoLocation
+      ? updateRegionApiRoute
+      : null,
+    fetcher,
+  );
 }

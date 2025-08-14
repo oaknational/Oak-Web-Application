@@ -1,5 +1,3 @@
-import fetchMock from "jest-fetch-mock";
-
 import { useCheckUserMetadata } from "@/hooks/useCheckUserMetadata";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import {
@@ -8,21 +6,19 @@ import {
   mockUser,
 } from "@/__tests__/__helpers__/mockUser";
 
+const mockUseSWR = jest.fn();
+jest.mock("swr", () => ({
+  __esModule: true,
+  default: (...args: []) => mockUseSWR(...args),
+}));
+
 describe("useCheckUserMetadata", () => {
-  beforeAll(() => {
-    fetchMock.enableMocks();
-  });
-
-  afterAll(() => {
-    fetchMock.disableMocks();
-  });
-
   test("should not call API if user is not signed in", () => {
     setUseUserReturn(mockLoggedOut);
 
     useCheckUserMetadata();
 
-    expect(fetchMock).not.toHaveBeenCalled();
+    expect(mockUseSWR).toHaveBeenCalledWith(null, expect.any(Function));
   });
 
   test("should not call API if user does not have requiresGeoLocation", () => {
@@ -30,7 +26,7 @@ describe("useCheckUserMetadata", () => {
 
     useCheckUserMetadata();
 
-    expect(fetchMock).not.toHaveBeenCalled();
+    expect(mockUseSWR).toHaveBeenCalledWith(null, expect.any(Function));
   });
 
   test("should not call API if user has requiresGeoLocation set to false", () => {
@@ -44,7 +40,7 @@ describe("useCheckUserMetadata", () => {
 
     useCheckUserMetadata();
 
-    expect(fetchMock).not.toHaveBeenCalled();
+    expect(mockUseSWR).toHaveBeenCalledWith(null, expect.any(Function));
   });
 
   test("should call API if user has requiresGeoLocation set to true", () => {
@@ -58,9 +54,9 @@ describe("useCheckUserMetadata", () => {
 
     useCheckUserMetadata();
 
-    expect(fetchMock).toHaveBeenCalledWith("/api/update-region", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-    });
+    expect(mockUseSWR).toHaveBeenCalledWith(
+      "/api/update-region",
+      expect.any(Function),
+    );
   });
 });
