@@ -75,7 +75,7 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
                 )}
                 <BreadcrumbConstrainer>
                   {disabled ? (
-                    <OakSpan aria-current="true">{label}</OakSpan>
+                    <OakSpan aria-current="page">{label}</OakSpan>
                   ) : (
                     <OwaLink {...oakLinkProps}>{label}</OwaLink>
                   )}
