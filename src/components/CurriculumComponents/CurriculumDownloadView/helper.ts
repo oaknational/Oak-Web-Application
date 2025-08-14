@@ -1,5 +1,7 @@
 import { ZodType } from "zod";
 
+import { ENABLE_NC_XLSX_DOCUMENT } from "@/utils/curriculum/constants";
+
 export type School = {
   urn: string;
   la: string;
@@ -75,6 +77,13 @@ export const DOWNLOAD_TYPE_LABELS: {
   },
 ];
 
-export const DOWNLOAD_TYPES = DOWNLOAD_TYPE_LABELS.map(({ id }) => id);
+export const DOWNLOAD_TYPES = DOWNLOAD_TYPE_LABELS.map(({ id }) => id).filter(
+  (id) => {
+    if (id === "national-curriculum" && !ENABLE_NC_XLSX_DOCUMENT) {
+      return false;
+    }
+    return true;
+  },
+);
 
 export type DownloadTypeLabel = (typeof DOWNLOAD_TYPE_LABELS)[number];
