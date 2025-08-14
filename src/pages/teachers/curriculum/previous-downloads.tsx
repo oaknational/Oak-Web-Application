@@ -28,6 +28,7 @@ import CurriculumDownloads, {
 } from "@/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads";
 import DropdownSelect from "@/components/GenericPagesComponents/DropdownSelect";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { PREVIOUS_DOWNLOAD_EXCLUSIONS } from "@/utils/curriculum/constants";
 
 type Document = ReturnType<
   typeof curriculumPreviousDownloadsFixture
@@ -46,24 +47,10 @@ function excludeBySlug(
 
 const CurriculumPreviousDownloadsPage: NextPage = () => {
   const router = useRouter();
-  const data = excludeBySlug(curriculumPreviousDownloadsFixture(), [
-    "early-years-foundation-stage-maths",
-    "key-stage-1-english",
-    "key-stage-1-history",
-    "key-stage-1-maths",
-    "key-stage-1-science",
-    "key-stage-2-english",
-    "key-stage-2-history",
-    "key-stage-2-maths",
-    "key-stage-2-science",
-    "key-stage-3-english",
-    "key-stage-3-history",
-    "key-stage-3-maths",
-    "key-stage-3-science",
-    "key-stage-4-english",
-    "key-stage-4-history",
-    "key-stage-4-maths",
-  ]);
+  const data = excludeBySlug(
+    curriculumPreviousDownloadsFixture(),
+    PREVIOUS_DOWNLOAD_EXCLUSIONS,
+  );
   const [activeTab, setActiveTab] = useState<DownloadCategory>("EYFS");
   const downloadsRef = useRef<CurriculumDownloadsRef>(null);
 

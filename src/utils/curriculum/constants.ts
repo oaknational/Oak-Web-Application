@@ -3,3 +3,21 @@ export const ENABLE_FILTERS_IN_SEARCH_PARAMS = true;
 export const DISABLE_DOWNLOADS = false;
 export const ENABLE_WTWN_BY_UNIT_DESCRIPTION_FEATURE = true;
 export const ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS = true;
+export const PREVIOUS_DOWNLOAD_EXCLUSIONS = [
+  "early-years-foundation-stage-maths",
+  "key-stage-1-english",
+  "key-stage-1-history",
+  "key-stage-1-maths",
+  "key-stage-1-science",
+  "key-stage-2-english",
+  "key-stage-2-history",
+  "key-stage-2-maths",
+  "key-stage-2-science",
+  "key-stage-3-english",
+  "key-stage-3-history",
+  "key-stage-3-maths",
+  "key-stage-3-science",
+  "key-stage-4-english",
+  "key-stage-4-history",
+  "key-stage-4-maths",
+];
