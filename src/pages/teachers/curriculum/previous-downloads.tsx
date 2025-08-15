@@ -28,13 +28,31 @@ import CurriculumDownloads, {
 } from "@/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads";
 import DropdownSelect from "@/components/GenericPagesComponents/DropdownSelect";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { PREVIOUS_DOWNLOAD_EXCLUSIONS } from "@/utils/curriculum/constants";
+
+type Document = ReturnType<
+  typeof curriculumPreviousDownloadsFixture
+>["documents"][0];
+
+function excludeBySlug(
+  data: { documents: Document[] },
+  excludeSlugs: string[],
+) {
+  return {
+    documents: data.documents.filter((document) => {
+      return !excludeSlugs.includes(document.slug);
+    }),
+  };
+}
 
 const CurriculumPreviousDownloadsPage: NextPage = () => {
   const router = useRouter();
-  const data = curriculumPreviousDownloadsFixture();
+  const data = excludeBySlug(
+    curriculumPreviousDownloadsFixture(),
+    PREVIOUS_DOWNLOAD_EXCLUSIONS,
+  );
   const [activeTab, setActiveTab] = useState<DownloadCategory>("EYFS");
   const downloadsRef = useRef<CurriculumDownloadsRef>(null);
-  type Document = (typeof data)["documents"][0];
 
   const categoryDocuments = useMemo(() => {
     const documents: { [key in DownloadCategory]?: Document[] } = {};
