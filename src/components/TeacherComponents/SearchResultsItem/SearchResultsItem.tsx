@@ -8,6 +8,8 @@ import {
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
+import { getPathwayCardProps } from "./getPathwaysProps";
+
 import SearchResultsSubjectIcon from "@/components/TeacherComponents/SearchResultsSubjectIcon";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import TagPromotional from "@/components/SharedComponents/TagPromotional";
@@ -188,6 +190,13 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
   };
 
   const PathwayResultCard = () => {
+    const { pathwaysDropdownLabel, pathwaysButtonAriaLabel, dropdownContent } =
+      getPathwayCardProps(
+        pathways,
+        subjectTitle,
+        type === "unit" ? title : props.unitTitle,
+      );
+
     return (
       <ClickableSearchCard
         firstItemRef={props.firstItemRef}
@@ -197,12 +206,15 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
           setToggleOpen(toggleOpen);
           onToggleClick?.({ ...props, isToggleOpen: toggleOpen });
         }}
+        aria-label={pathwaysButtonAriaLabel}
       >
         <CardContent />
         <SearchDropdown
           {...props}
           isToggleOpen={isToggleOpen}
           isHovered={isHovered}
+          label={pathwaysDropdownLabel}
+          dropdownContent={dropdownContent}
         />
       </ClickableSearchCard>
     );
