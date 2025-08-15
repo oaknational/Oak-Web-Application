@@ -227,7 +227,7 @@ const OnboardingForm = ({
         }
       >
         <Logo height={48} width={104} variant="with text" />
-        <OakFieldset $width="100%" role="fieldset">
+        <OakFieldset $width="100%">
           <OakSpan
             id={"form-legend"}
             $font="heading-6"
