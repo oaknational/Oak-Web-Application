@@ -54,11 +54,11 @@ describe("Onboarding form", () => {
   it("should render the onboarding form with fieldset and legend", async () => {
     renderForm();
 
-    const fieldset = screen.getByRole("fieldset");
-    expect(fieldset).toBeInTheDocument();
     const legend = screen.getByText(/Select your school/i);
     expect(legend).toBeInTheDocument();
+    const fieldset = legend.closest("fieldset");
 
+    expect(fieldset).toBeInTheDocument();
     expect(fieldset).toContainElement(legend);
   });
 

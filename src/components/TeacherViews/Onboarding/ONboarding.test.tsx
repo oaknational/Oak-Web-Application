@@ -32,11 +32,11 @@ describe("Onboarding view", () => {
   it("renders a legend in a fieldset", () => {
     renderWithProviders()(<OnboardingView />);
 
-    const fieldset = screen.getByRole("fieldset");
-    expect(fieldset).toBeInTheDocument();
     const legend = screen.getByText(/Do you work in a school?/i);
     expect(legend).toBeInTheDocument();
+    const fieldset = legend.closest("fieldset");
 
+    expect(fieldset).toBeInTheDocument();
     expect(fieldset).toContainElement(legend);
   });
 
