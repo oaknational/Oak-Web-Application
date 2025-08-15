@@ -4,6 +4,7 @@ import LessonDownloadsPage from "./downloads";
 
 import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 import { withPageAuthRequired } from "@/hocs/withPageAuthRequired";
+import { Wall } from "@/components/AppComponents/Wall";
 
 export { getStaticPaths, getStaticProps } from "./downloads";
 
