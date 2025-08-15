@@ -75,6 +75,7 @@ config.urls = relativeUrls.map((relUrl) => {
     return {
       url: pa11yUrl,
       // teacher routes redirect to onboarding and need some extra time to render
+      timeout: isTeacherRoute ? 200000 : 120000,
       actions,
     };
     // Return the already created URL config object.
