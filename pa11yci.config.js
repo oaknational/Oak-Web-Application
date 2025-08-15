@@ -69,12 +69,13 @@ config.urls = relativeUrls.map((relUrl) => {
   if (typeof relUrl === "string") {
     const pa11yUrl = new URL(relUrl, baseUrl).href;
     const isTeacherRoute = relUrl.startsWith("/teachers/");
-
+    const actions = isTeacherRoute
+      ? ["wait for element #wall to be removed"]
+      : ["wait for element #__next to be visible"];
     return {
       url: pa11yUrl,
       // teacher routes redirect to onboarding and need some extra time to render
-      timeout: isTeacherRoute ? 500000 : 120000,
-      actions: ["wait for element #__next to be visible"],
+      actions,
     };
     // Return the already created URL config object.
   } else {
