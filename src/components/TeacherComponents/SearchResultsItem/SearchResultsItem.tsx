@@ -8,6 +8,8 @@ import {
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
+import { getPathwayCardProps } from "./getPathwaysProps";
+
 import SearchResultsSubjectIcon from "@/components/TeacherComponents/SearchResultsSubjectIcon";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import TagPromotional from "@/components/SharedComponents/TagPromotional";
@@ -187,32 +189,14 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
     );
   };
 
-  const getSlug = (item: string | null | undefined) => item || "";
-
-  const examDropdownContent = pathways
-    .filter(({ examBoardSlug }) => examBoardSlug !== null)
-    .sort((a, b) => {
-      return (
-        getSlug(a.examBoardSlug).localeCompare(getSlug(b.examBoardSlug)) ||
-        getSlug(b.tierSlug).localeCompare(getSlug(a.tierSlug))
-      );
-    });
-
-  const tierDropdownContent = pathways
-    .filter(({ examBoardSlug, tierSlug }) => !examBoardSlug && tierSlug)
-    .sort((a, b) => {
-      return getSlug(b.tierSlug).localeCompare(getSlug(a.tierSlug));
-    });
-
-  const isExamBoardDropdown = examDropdownContent.length > 0;
-  const isTierDropdown = tierDropdownContent.length > 0;
-
-  const pathwaysDropdownLabel = `Select ${
-    isExamBoardDropdown ? "exam board" : isTierDropdown ? "tier" : "unit"
-  }`;
-  const pathwaysButtonAriaLabel = `${pathwaysDropdownLabel} for ${type}: ${props.title}`;
-
   const PathwayResultCard = () => {
+    const { pathwaysDropdownLabel, pathwaysButtonAriaLabel, dropdownContent } =
+      getPathwayCardProps(
+        pathways,
+        subjectTitle,
+        type === "unit" ? title : props.unitTitle,
+      );
+
     return (
       <ClickableSearchCard
         firstItemRef={props.firstItemRef}
@@ -230,13 +214,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
           isToggleOpen={isToggleOpen}
           isHovered={isHovered}
           label={pathwaysDropdownLabel}
-          dropdownContent={
-            isExamBoardDropdown
-              ? examDropdownContent
-              : isTierDropdown
-                ? tierDropdownContent
-                : pathways
-          }
+          dropdownContent={dropdownContent}
         />
       </ClickableSearchCard>
     );
