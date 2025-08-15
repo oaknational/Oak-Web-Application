@@ -1,3 +1,52 @@
+# [1.831.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.830.2...v1.831.0) (2025-08-14)
+
+
+### Features
+
+* add logs for region onboarding api route ([fa5a27d](https://github.com/oaknational/Oak-Web-Application/commit/fa5a27d20e815fb458a3a720ebaab0b2b9ebad9f))
+* set isRegionAuthorised for users with requiresGeoLocation ([5b90f5f](https://github.com/oaknational/Oak-Web-Application/commit/5b90f5f91496e244b81506a428e4ae1edd535f0e))
+* use swr in usecheckusermetadata hook ([e951e54](https://github.com/oaknational/Oak-Web-Application/commit/e951e541f0bdd37da038498ccc1b5e474a4047a6))
+
+## [1.830.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.830.1...v1.830.2) (2025-08-14)
+
+## [1.830.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.830.0...v1.830.1) (2025-08-13)
+
+
+### Bug Fixes
+
+* typo ([18b7b28](https://github.com/oaknational/Oak-Web-Application/commit/18b7b2829cbb2670363965e23ed6a113a1acdaf4))
+
+# [1.830.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.829.0...v1.830.0) (2025-08-13)
+
+
+### Bug Fixes
+
+* **curriculum-downloads:** allow download when "My school isn’t listed” is ticked ([327ce26](https://github.com/oaknational/Oak-Web-Application/commit/327ce26d737e2a2fd4d2c4e67c645e805e84ff80))
+
+
+### Features
+
+* reinstate School (required) label ([7a6cef7](https://github.com/oaknational/Oak-Web-Application/commit/7a6cef784b3a40e4ba39e4921a32667b03910478))
+
+# [1.829.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.828.2...v1.829.0) (2025-08-12)
+
+
+### Bug Fixes
+
+* fix getIsTargetUser not returning correct value for accounts crreated at boundary ([5dbfe32](https://github.com/oaknational/Oak-Web-Application/commit/5dbfe322a3d5a3e1c31f96542a7e72bb81537614))
+
+
+### Features
+
+* set up handler for session created event ([0071766](https://github.com/oaknational/Oak-Web-Application/commit/0071766c96344a80136dff40adad8e6f5d03248a))
+
+## [1.828.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.828.1...v1.828.2) (2025-08-12)
+
+
+### Bug Fixes
+
+* fix authentication headers in lesson download requests ([9d76e74](https://github.com/oaknational/Oak-Web-Application/commit/9d76e741cb054b2d1e0bdf981a28a361ee5c4119))
+
 ## [1.828.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.828.0...v1.828.1) (2025-08-07)
 
 # [1.828.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.827.0...v1.828.0) (2025-08-07)

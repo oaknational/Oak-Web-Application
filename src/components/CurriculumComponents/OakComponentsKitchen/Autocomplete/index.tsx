@@ -30,6 +30,7 @@ type AutocompleteProps = {
     error?: string;
     placeholder?: string;
     name?: string;
+    required?: boolean;
   };
   value?: string;
   onChange: (value: string, textValue: string) => void;
@@ -100,13 +101,13 @@ const Autocomplete = (props: AutocompleteProps) => {
         />
         <OakTextInput
           {...inputProps}
-          value={String(inputProps.value)}
+          value={String(inputProps.value ?? "")}
           id={inputProps.id}
           aria-labelledby={"autocomplete-label"}
           data-testid={"autocomplete-input"}
           placeholder={props.inputProps.placeholder}
           aria-describedby={undefined}
-          required={true}
+          required={props.inputProps.required ?? true}
           aria-invalid={props.inputProps.error ? "true" : undefined}
           defaultValue={undefined}
           wrapperWidth={"100%"}
