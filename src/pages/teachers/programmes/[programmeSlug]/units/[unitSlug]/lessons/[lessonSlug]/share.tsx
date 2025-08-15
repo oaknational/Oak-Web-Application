@@ -102,6 +102,12 @@ export const getStaticProps: GetStaticProps<
         return redirect ? { redirect } : { notFound: true };
       }
 
+      if (curriculumData.georestricted || curriculumData.loginRequired) {
+        return {
+          notFound: true,
+        };
+      }
+
       const results: GetStaticPropsResult<LessonSharePageProps> = {
         props: {
           curriculumData,
