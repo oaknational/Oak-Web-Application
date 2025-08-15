@@ -16,6 +16,8 @@ import HeaderListing from "@/components/TeacherComponents/HeaderListing/HeaderLi
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import { Wall } from "@/components/AppComponents/Wall";
+import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 
 const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
   const {
@@ -223,4 +225,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default ProgrammesListingPage;
+export default withOnboardingRequired(ProgrammesListingPage, Wall);

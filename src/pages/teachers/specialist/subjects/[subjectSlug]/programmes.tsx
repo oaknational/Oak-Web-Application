@@ -16,6 +16,8 @@ import {
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
 import SpecialistProgrammeListingView from "@/components/TeacherViews/SpecialistProgrammeListing/SpecialistProgrammeListing.view";
+import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
+import { Wall } from "@/components/AppComponents/Wall";
 
 export type SpecialistProgrammeListingPageProps = {
   curriculumData: SpecialistProgrammeListingPageData;
@@ -97,4 +99,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default SpecialistProgrammeListingPage;
+export default withOnboardingRequired(SpecialistProgrammeListingPage, Wall);

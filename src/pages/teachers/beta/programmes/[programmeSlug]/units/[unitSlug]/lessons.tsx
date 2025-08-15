@@ -48,6 +48,8 @@ import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experimen
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { resolveOakHref } from "@/common-lib/urls";
 import { useTeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/useTeacherShareButton";
+import { Wall } from "@/components/AppComponents/Wall";
+import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
 };
@@ -409,4 +411,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default LessonListPage;
+export default withOnboardingRequired(LessonListPage, Wall);

@@ -22,6 +22,8 @@ import {
 import { populateMediaClipsWithTranscripts } from "@/utils/handleTranscript";
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
+import { Wall } from "@/components/AppComponents/Wall";
+import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 
 export type LessonMediaClipsPageProps = {
   curriculumData: LessonMediaClipsData;
@@ -135,4 +137,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default LessonMediaClipsPage;
+export default withOnboardingRequired(LessonMediaClipsPage, Wall);

@@ -68,10 +68,15 @@ config.urls = relativeUrls.map((relUrl) => {
   // This is the current default.
   if (typeof relUrl === "string") {
     const pa11yUrl = new URL(relUrl, baseUrl).href;
+    const isTeacherRoute = relUrl.startsWith("/teachers/");
+    const actions = isTeacherRoute
+      ? ["wait for element #wall to be removed"]
+      : ["wait for element #__next to be visible"];
     return {
       url: pa11yUrl,
-      // Should help detect if we get served, e.g. a Cloudflare error page.
-      actions: ["wait for element #__next to be visible"],
+      // teacher routes redirect to onboarding and need some extra time to render
+      timeout: isTeacherRoute ? 200000 : 120000,
+      actions,
     };
     // Return the already created URL config object.
   } else {

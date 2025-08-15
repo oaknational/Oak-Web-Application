@@ -18,6 +18,8 @@ import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonSh
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
+import { Wall } from "@/components/AppComponents/Wall";
+import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 
 export type LessonSharePageProps = {
   curriculumData: LessonShareData;
@@ -112,4 +114,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default LessonSharePage;
+export default withOnboardingRequired(LessonSharePage, Wall);

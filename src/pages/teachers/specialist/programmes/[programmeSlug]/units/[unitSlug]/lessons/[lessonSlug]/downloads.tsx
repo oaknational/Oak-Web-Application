@@ -14,6 +14,8 @@ import { SpecialistLessonDownloadsPageData } from "@/node-lib/curriculum-api-202
 import SpecialistLessonDownloads from "@/components/TeacherViews/SpecialistLessonDownloads/SpecialistLessonDownloads.view";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import { Wall } from "@/components/AppComponents/Wall";
+import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 
 const SpecialistLessonDownloadsPage = ({
   curriculumData,
@@ -94,4 +96,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default SpecialistLessonDownloadsPage;
+export default withOnboardingRequired(SpecialistLessonDownloadsPage, Wall);

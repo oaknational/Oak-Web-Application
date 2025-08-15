@@ -53,6 +53,8 @@ import SavingSignedOutModal from "@/components/TeacherComponents/SavingSignedOut
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 import { TeacherRedirectedOverlay } from "@/components/TeacherComponents/TeacherRedirectedOverlay/TeacherRedirectedOverlay";
+import { Wall } from "@/components/AppComponents/Wall";
+import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -459,4 +461,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default LessonListPage;
+export default withOnboardingRequired(LessonListPage, Wall);
