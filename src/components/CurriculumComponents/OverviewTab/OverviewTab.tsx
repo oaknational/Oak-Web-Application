@@ -228,6 +228,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
       <OakBox
         id="curriculum-overview"
         aria-labelledby="curriculum-overview-heading"
+        tabIndex={-1}
         $maxWidth="all-spacing-24"
         $mh={"auto"}
         $ph="inner-padding-m"

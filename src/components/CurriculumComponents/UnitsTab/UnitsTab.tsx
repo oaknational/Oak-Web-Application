@@ -82,6 +82,7 @@ export default function UnitsTab({
       <OakBox
         id="curriculum-units"
         aria-labelledby="curriculum-unit-sequence-heading"
+        tabIndex={-1}
         $maxWidth={"all-spacing-24"}
         $mh={"auto"}
         $ph={["inner-padding-none", "inner-padding-l"]}

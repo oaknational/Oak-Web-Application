@@ -53,6 +53,7 @@ export type LayoutProps = {
   $background?: OakColorToken;
   headerCta?: CTA | null;
   banner?: React.ReactNode;
+  skipLinkHref?: string;
 };
 
 const Layout: FC<LayoutProps> = (props) => {
@@ -90,7 +91,9 @@ const Layout: FC<LayoutProps> = (props) => {
             $top={"all-spacing-14"}
             $left={"all-spacing-6"}
           >
-            <SkipLink href="#main">Skip to content</SkipLink>
+            <SkipLink href={props.skipLinkHref ?? "#main"}>
+              Skip to content
+            </SkipLink>
           </OakBox>
           {banner}
           <Header breadcrumbs={breadcrumbs} headerCta={props.headerCta} />
