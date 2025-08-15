@@ -1,3 +1,12 @@
+# [1.831.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.830.2...v1.831.0) (2025-08-14)
+
+
+### Features
+
+* add logs for region onboarding api route ([fa5a27d](https://github.com/oaknational/Oak-Web-Application/commit/fa5a27d20e815fb458a3a720ebaab0b2b9ebad9f))
+* set isRegionAuthorised for users with requiresGeoLocation ([5b90f5f](https://github.com/oaknational/Oak-Web-Application/commit/5b90f5f91496e244b81506a428e4ae1edd535f0e))
+* use swr in usecheckusermetadata hook ([e951e54](https://github.com/oaknational/Oak-Web-Application/commit/e951e541f0bdd37da038498ccc1b5e474a4047a6))
+
 ## [1.830.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.830.1...v1.830.2) (2025-08-14)
 
 ## [1.830.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.830.0...v1.830.1) (2025-08-13)
