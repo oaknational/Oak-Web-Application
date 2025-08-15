@@ -48,6 +48,7 @@ import { downloadFileFromUrl } from "@/components/SharedComponents/helpers/downl
 import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urls";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { doUnitsHaveNc, flatUnitsFromYearData } from "@/utils/curriculum/units";
+import { ENABLE_NC_XLSX_DOCUMENT } from "@/utils/curriculum/constants";
 
 function ScrollIntoViewWhenVisisble({
   children,
@@ -132,7 +133,10 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   const availableDownloadTypes = useMemo(() => {
     return DOWNLOAD_TYPE_LABELS.map(({ id }) => id).filter((id) => {
       if (id === "national-curriculum") {
-        return doUnitsHaveNc(flatUnitsFromYearData(formattedData.yearData));
+        return (
+          ENABLE_NC_XLSX_DOCUMENT &&
+          doUnitsHaveNc(flatUnitsFromYearData(formattedData.yearData))
+        );
       }
       return true;
     });
