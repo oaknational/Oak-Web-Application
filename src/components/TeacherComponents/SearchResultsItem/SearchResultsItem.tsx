@@ -187,6 +187,31 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
     );
   };
 
+  const getSlug = (item: string | null | undefined) => item || "";
+
+  const examDropdownContent = pathways
+    .filter(({ examBoardSlug }) => examBoardSlug !== null)
+    .sort((a, b) => {
+      return (
+        getSlug(a.examBoardSlug).localeCompare(getSlug(b.examBoardSlug)) ||
+        getSlug(b.tierSlug).localeCompare(getSlug(a.tierSlug))
+      );
+    });
+
+  const tierDropdownContent = pathways
+    .filter(({ examBoardSlug, tierSlug }) => !examBoardSlug && tierSlug)
+    .sort((a, b) => {
+      return getSlug(b.tierSlug).localeCompare(getSlug(a.tierSlug));
+    });
+
+  const isExamBoardDropdown = examDropdownContent.length > 0;
+  const isTierDropdown = tierDropdownContent.length > 0;
+
+  const pathwaysDropdownLabel = `Select ${
+    isExamBoardDropdown ? "exam board" : isTierDropdown ? "tier" : "unit"
+  }`;
+  const pathwaysButtonAriaLabel = `${pathwaysDropdownLabel} for ${type}: ${props.title}`;
+
   const PathwayResultCard = () => {
     return (
       <ClickableSearchCard
@@ -197,12 +222,21 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
           setToggleOpen(toggleOpen);
           onToggleClick?.({ ...props, isToggleOpen: toggleOpen });
         }}
+        aria-label={pathwaysButtonAriaLabel}
       >
         <CardContent />
         <SearchDropdown
           {...props}
           isToggleOpen={isToggleOpen}
           isHovered={isHovered}
+          label={pathwaysDropdownLabel}
+          dropdownContent={
+            isExamBoardDropdown
+              ? examDropdownContent
+              : isTierDropdown
+                ? tierDropdownContent
+                : pathways
+          }
         />
       </ClickableSearchCard>
     );
