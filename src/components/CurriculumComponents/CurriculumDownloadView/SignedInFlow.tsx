@@ -4,8 +4,8 @@ import { useUser } from "@clerk/nextjs";
 
 import Terms from "../OakComponentsKitchen/Terms";
 
-import { DOWNLOAD_TYPES, DownloadType, School } from "./helper";
-import { CurriculumResourcesSelector } from "./CurriculumResourcesSelector";
+import { DOWNLOAD_TYPE_LABELS, DownloadType, School } from "./helper";
+import { CurriculumDownloadSelection } from "./CurriculumDownloadSelection";
 
 import { CurriculumDownloadViewProps } from ".";
 
@@ -31,9 +31,15 @@ export type CurriculumDownloadViewErrors = Partial<{
 type SignedInFlowProps = CurriculumDownloadViewProps & {
   user: ReturnType<typeof useUser>;
 };
-export default function SignedInFlow({ onSubmit, schools }: SignedInFlowProps) {
+export default function SignedInFlow({
+  onSubmit,
+  schools,
+  availableDownloadTypes,
+}: SignedInFlowProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [downloadType, setDownloadType] = useState(DOWNLOAD_TYPES[0]!.id);
+  const [downloadTypes, setDownloadTypes] = useState(() =>
+    DOWNLOAD_TYPE_LABELS.map(({ id }) => id),
+  );
 
   const onDownload = async () => {
     try {
@@ -48,7 +54,7 @@ export default function SignedInFlow({ onSubmit, schools }: SignedInFlowProps) {
             undefined,
           schoolName: hubspotContact.schoolName ?? undefined,
           email: hubspotContact?.email,
-          downloadType: downloadType,
+          downloadTypes: downloadTypes,
           termsAndConditions: true,
           schoolNotListed: !hubspotContact.schoolId,
         });
@@ -66,10 +72,11 @@ export default function SignedInFlow({ onSubmit, schools }: SignedInFlowProps) {
       $flexDirection="column"
       $alignItems={"flex-start"}
     >
-      <OakBox $width={["100%", "all-spacing-21"]} $textAlign={"left"}>
-        <CurriculumResourcesSelector
-          downloadType={downloadType}
-          onChangeDownloadType={setDownloadType}
+      <OakBox $width={["100%", "all-spacing-20"]} $textAlign={"left"}>
+        <CurriculumDownloadSelection
+          downloadTypes={downloadTypes}
+          onChange={setDownloadTypes}
+          availableDownloadTypes={availableDownloadTypes}
         />
         <OakBox $mt="space-between-m">
           <Terms />
@@ -78,6 +85,7 @@ export default function SignedInFlow({ onSubmit, schools }: SignedInFlowProps) {
       <OakPrimaryButton
         data-testid="download"
         isLoading={isSubmitting}
+        disabled={downloadTypes.length < 1}
         onClick={onDownload}
         iconName="download"
         isTrailingIcon={true}

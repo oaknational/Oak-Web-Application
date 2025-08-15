@@ -21,3 +21,14 @@ export function findUnitOrOptionBySlug(
 
   return { unit, unitOption };
 }
+
+export function doUnitsHaveNc(units: Unit[]) {
+  const count = units.reduce((total, unit) => {
+    return total + (unit.national_curriculum_content?.length ?? 0);
+  }, 0);
+  return count > 0;
+}
+
+export function flatUnitsFromYearData(yearData: YearData) {
+  return Object.values(yearData).flatMap((yr) => yr.units);
+}

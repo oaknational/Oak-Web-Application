@@ -14,6 +14,7 @@ export const basicSetup = {
       groupAs: null,
       threads: [thread1, thread2, thread3],
       isSwimming: false,
+      nationalCurriculum: [],
       subjectCategories: [],
       units: [
         createUnit({
@@ -36,6 +37,7 @@ export const basicSetup = {
       tiers: [],
       groupAs: null,
       isSwimming: false,
+      nationalCurriculum: [],
       subjectCategories: [],
       units: [createUnit({ year: "2", threads: [] })],
     },

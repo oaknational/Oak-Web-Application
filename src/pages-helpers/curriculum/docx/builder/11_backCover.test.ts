@@ -1,8 +1,9 @@
-import { CombinedCurriculumData } from "..";
 import { generateEmptyDocx } from "../docx";
 
 import generate from "./11_backCover";
 import { zipToSnapshotObject } from "./helper";
+
+import { CombinedCurriculumData } from "@/utils/curriculum/types";
 
 describe("11_backCover", () => {
   it("simple", async () => {

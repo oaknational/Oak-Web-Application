@@ -1,4 +1,6 @@
 import { PortableTextBlock } from "@portabletext/types";
+import { capitalize } from "lodash";
+import { format } from "date-fns";
 
 import { CurriculumFilters, YearData } from "./types";
 import { keystageFromYear } from "./keystage";
@@ -390,4 +392,66 @@ export function getSubjectCategoryMessage(
 
   // If the current year does have units do not show a message
   return null;
+}
+
+export function getFilename(
+  fileExt: string,
+  {
+    subjectTitle,
+    phaseTitle,
+    examboardTitle,
+    childSubjectSlug,
+    tierSlug,
+    prefix,
+    suffix,
+  }: {
+    subjectTitle: string;
+    phaseTitle: string;
+    examboardTitle?: string | null;
+    childSubjectSlug?: string;
+    tierSlug?: string;
+    prefix: string;
+    suffix?: string;
+  },
+) {
+  // Handle child subject formatting based on file type
+  const childSubjectTitle = childSubjectSlug
+    ? childSubjectSlug
+        .split("-")
+        .map((word) => capitalize(word))
+        .join(" ")
+    : null;
+
+  let subjectParts: string[];
+
+  if (fileExt === "xlsx") {
+    // For xlsx files: Use child subject as replacement (e.g., "Physics" instead of "Science")
+    subjectParts = childSubjectTitle ? [childSubjectTitle] : [subjectTitle];
+  } else if (fileExt === "docx") {
+    // For docx files: Include both main subject and child subject (e.g., "Science - Biology")
+    subjectParts = childSubjectTitle
+      ? [subjectTitle, childSubjectTitle]
+      : [subjectTitle];
+  } else {
+    // Fallback to xlsx behaviour
+    subjectParts = childSubjectTitle ? [childSubjectTitle] : [subjectTitle];
+  }
+
+  const pageTitle: string = [
+    prefix,
+    ...subjectParts,
+    phaseTitle,
+    examboardTitle,
+    capitalize(tierSlug),
+    format(
+      Date.now(),
+      // Note: dashes "-" rather than ":" because colon is invalid on windows
+      "dd-MM-yyyy",
+    ),
+    suffix,
+  ]
+    .filter(Boolean)
+    .join(" - ");
+
+  return `${pageTitle}.${fileExt}`;
 }

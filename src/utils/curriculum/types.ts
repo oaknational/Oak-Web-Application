@@ -1,4 +1,8 @@
-import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
+import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
+import {
+  CurriculumOverviewMVData,
+  CurriculumUnitsTabData,
+} from "@/node-lib/curriculum-api-2023";
 
 export function notUndefined<TValue>(
   value: TValue | undefined,
@@ -38,6 +42,11 @@ export interface Pathway {
   pathway_slug: string;
 }
 
+export type NationalCurriculumCriteria = {
+  id: number;
+  title: string;
+};
+
 export type YearData = {
   [key: string]: {
     units: Unit[];
@@ -47,6 +56,7 @@ export type YearData = {
     isSwimming: boolean;
     groupAs: string | null;
     pathways: Pathway[];
+    nationalCurriculum: NationalCurriculumCriteria[];
   };
 };
 
@@ -70,3 +80,7 @@ export type Lesson = {
   slug?: string;
   _state?: string;
 };
+
+export type CombinedCurriculumData = CurriculumUnitsTabData &
+  CurriculumOverviewMVData &
+  CurriculumOverviewSanityData;

@@ -1,8 +1,9 @@
-import { CombinedCurriculumData } from "..";
 import { generateEmptyDocx } from "../docx";
 
 import generate from "./9_threadsOverview";
 import { zipToSnapshotObject } from "./helper";
+
+import { CombinedCurriculumData } from "@/utils/curriculum/types";
 
 describe("9_threadsOverview", () => {
   it("simple", async () => {

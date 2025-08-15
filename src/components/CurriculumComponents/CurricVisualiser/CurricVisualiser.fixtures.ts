@@ -4,6 +4,7 @@ import { createUnit } from "@/fixtures/curriculum/unit";
 import { createTier } from "@/fixtures/curriculum/tier";
 import { YearData } from "@/utils/curriculum/types";
 import { createPathway } from "@/fixtures/curriculum/pathway";
+import { createYearData } from "@/fixtures/curriculum/yearData";
 
 const subjectCategoryOne = createSubjectCategory({
   id: 1,
@@ -40,6 +41,7 @@ export const noMissingUnitsFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "7", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "7", subjectcategories: [subjectCategoryTwo] }),
@@ -53,6 +55,7 @@ export const noMissingUnitsFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "8", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "8", subjectcategories: [subjectCategoryTwo] }),
@@ -66,6 +69,7 @@ export const noMissingUnitsFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "9", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "9", subjectcategories: [subjectCategoryTwo] }),
@@ -79,6 +83,7 @@ export const noMissingUnitsFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "10", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "10", subjectcategories: [subjectCategoryTwo] }),
@@ -92,6 +97,7 @@ export const noMissingUnitsFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "11", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "11", subjectcategories: [subjectCategoryTwo] }),
@@ -108,6 +114,7 @@ export const missingUnitsForEntirePhaseFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [createUnit({ year: "7", subjectcategories: [subjectCategoryTwo] })],
   },
   "8": {
@@ -118,6 +125,7 @@ export const missingUnitsForEntirePhaseFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [createUnit({ year: "8", subjectcategories: [subjectCategoryTwo] })],
   },
   "9": {
@@ -128,6 +136,7 @@ export const missingUnitsForEntirePhaseFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [createUnit({ year: "9", subjectcategories: [subjectCategoryTwo] })],
   },
   "10": {
@@ -138,6 +147,7 @@ export const missingUnitsForEntirePhaseFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "10", subjectcategories: [subjectCategoryTwo] }),
     ],
@@ -150,6 +160,7 @@ export const missingUnitsForEntirePhaseFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "11", subjectcategories: [subjectCategoryTwo] }),
     ],
@@ -165,6 +176,7 @@ export const missingUnitsForFirstYearFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [createUnit({ year: "7", subjectcategories: [subjectCategoryTwo] })],
   },
   "8": {
@@ -175,6 +187,7 @@ export const missingUnitsForFirstYearFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "8", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "8", subjectcategories: [subjectCategoryTwo] }),
@@ -188,6 +201,7 @@ export const missingUnitsForFirstYearFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "9", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "9", subjectcategories: [subjectCategoryTwo] }),
@@ -201,6 +215,7 @@ export const missingUnitsForFirstYearFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "10", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "10", subjectcategories: [subjectCategoryTwo] }),
@@ -214,6 +229,7 @@ export const missingUnitsForFirstYearFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "11", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "11", subjectcategories: [subjectCategoryTwo] }),
@@ -230,6 +246,7 @@ export const missingUnitsForFirstYearPrimaryFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [createUnit({ year: "1", subjectcategories: [subjectCategoryTwo] })],
   },
   "2": {
@@ -240,6 +257,7 @@ export const missingUnitsForFirstYearPrimaryFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "2", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "2", subjectcategories: [subjectCategoryTwo] }),
@@ -253,6 +271,7 @@ export const missingUnitsForFirstYearPrimaryFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "3", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "3", subjectcategories: [subjectCategoryTwo] }),
@@ -266,6 +285,7 @@ export const missingUnitsForFirstYearPrimaryFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "4", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "4", subjectcategories: [subjectCategoryTwo] }),
@@ -279,6 +299,7 @@ export const missingUnitsForFirstYearPrimaryFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "5", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "5", subjectcategories: [subjectCategoryTwo] }),
@@ -292,6 +313,7 @@ export const missingUnitsForFirstYearPrimaryFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "6", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "6", subjectcategories: [subjectCategoryTwo] }),
@@ -308,6 +330,7 @@ export const missingUnitsForSecondYearFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "7", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "7", subjectcategories: [subjectCategoryTwo] }),
@@ -321,6 +344,7 @@ export const missingUnitsForSecondYearFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [createUnit({ year: "8", subjectcategories: [subjectCategoryTwo] })],
   },
   "9": {
@@ -331,6 +355,7 @@ export const missingUnitsForSecondYearFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "9", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "9", subjectcategories: [subjectCategoryTwo] }),
@@ -344,6 +369,7 @@ export const missingUnitsForSecondYearFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "10", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "10", subjectcategories: [subjectCategoryTwo] }),
@@ -357,6 +383,7 @@ export const missingUnitsForSecondYearFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "11", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "11", subjectcategories: [subjectCategoryTwo] }),
@@ -372,6 +399,7 @@ export const missingConsecutiveUnitsAtStartFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     subjectCategories: [subjectCategoryTwo],
     units: [createUnit({ year: "7", subjectcategories: [subjectCategoryTwo] })],
   },
@@ -382,6 +410,7 @@ export const missingConsecutiveUnitsAtStartFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     subjectCategories: [subjectCategoryTwo],
     units: [createUnit({ year: "8", subjectcategories: [subjectCategoryTwo] })],
   },
@@ -392,6 +421,7 @@ export const missingConsecutiveUnitsAtStartFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     subjectCategories: [subjectCategoryTwo],
     units: [createUnit({ year: "9", subjectcategories: [subjectCategoryTwo] })],
   },
@@ -402,6 +432,7 @@ export const missingConsecutiveUnitsAtStartFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
     units: [
       createUnit({ year: "10", subjectcategories: [subjectCategoryOne] }),
@@ -415,6 +446,7 @@ export const missingConsecutiveUnitsAtStartFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
     units: [
       createUnit({ year: "11", subjectcategories: [subjectCategoryOne] }),
@@ -431,6 +463,7 @@ export const missingConsecutiveUnitsAtStartPrimaryFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     subjectCategories: [subjectCategoryTwo],
     units: [createUnit({ year: "1", subjectcategories: [subjectCategoryTwo] })],
   },
@@ -441,6 +474,7 @@ export const missingConsecutiveUnitsAtStartPrimaryFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     subjectCategories: [subjectCategoryTwo],
     units: [createUnit({ year: "2", subjectcategories: [subjectCategoryTwo] })],
   },
@@ -451,6 +485,7 @@ export const missingConsecutiveUnitsAtStartPrimaryFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     subjectCategories: [subjectCategoryTwo],
     units: [createUnit({ year: "3", subjectcategories: [subjectCategoryTwo] })],
   },
@@ -461,6 +496,7 @@ export const missingConsecutiveUnitsAtStartPrimaryFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
     units: [
       createUnit({ year: "4", subjectcategories: [subjectCategoryOne] }),
@@ -474,6 +510,7 @@ export const missingConsecutiveUnitsAtStartPrimaryFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
     units: [
       createUnit({ year: "5", subjectcategories: [subjectCategoryOne] }),
@@ -487,6 +524,7 @@ export const missingConsecutiveUnitsAtStartPrimaryFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
     units: [
       createUnit({ year: "6", subjectcategories: [subjectCategoryOne] }),
@@ -504,6 +542,7 @@ export const missingUnitsInMiddleFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "7", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "7", subjectcategories: [subjectCategoryTwo] }),
@@ -517,6 +556,7 @@ export const missingUnitsInMiddleFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [createUnit({ year: "8", subjectcategories: [subjectCategoryTwo] })],
   },
   "9": {
@@ -527,6 +567,7 @@ export const missingUnitsInMiddleFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [createUnit({ year: "9", subjectcategories: [subjectCategoryTwo] })],
   },
   "10": {
@@ -537,6 +578,7 @@ export const missingUnitsInMiddleFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "10", subjectcategories: [subjectCategoryTwo] }),
     ],
@@ -549,6 +591,7 @@ export const missingUnitsInMiddleFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "11", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "11", subjectcategories: [subjectCategoryTwo] }),
@@ -565,6 +608,7 @@ export const missingConsecutiveUnitsAtEndFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "7", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "7", subjectcategories: [subjectCategoryTwo] }),
@@ -578,6 +622,7 @@ export const missingConsecutiveUnitsAtEndFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "8", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "8", subjectcategories: [subjectCategoryTwo] }),
@@ -591,6 +636,7 @@ export const missingConsecutiveUnitsAtEndFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [createUnit({ year: "9", subjectcategories: [subjectCategoryTwo] })],
   },
   "10": {
@@ -601,6 +647,7 @@ export const missingConsecutiveUnitsAtEndFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "10", subjectcategories: [subjectCategoryTwo] }),
     ],
@@ -613,6 +660,7 @@ export const missingConsecutiveUnitsAtEndFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "11", subjectcategories: [subjectCategoryTwo] }),
     ],
@@ -628,6 +676,7 @@ export const missingAlternateUnitsFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [createUnit({ year: "7", subjectcategories: [subjectCategoryTwo] })],
   },
   "8": {
@@ -638,6 +687,7 @@ export const missingAlternateUnitsFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "8", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "8", subjectcategories: [subjectCategoryTwo] }),
@@ -651,6 +701,7 @@ export const missingAlternateUnitsFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [createUnit({ year: "9", subjectcategories: [subjectCategoryTwo] })],
   },
   "10": {
@@ -661,6 +712,7 @@ export const missingAlternateUnitsFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "10", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "10", subjectcategories: [subjectCategoryTwo] }),
@@ -674,6 +726,7 @@ export const missingAlternateUnitsFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "11", subjectcategories: [subjectCategoryTwo] }),
     ],
@@ -689,6 +742,7 @@ export const missingUnitForLastYearFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "7", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "7", subjectcategories: [subjectCategoryTwo] }),
@@ -702,6 +756,7 @@ export const missingUnitForLastYearFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "8", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "8", subjectcategories: [subjectCategoryTwo] }),
@@ -715,6 +770,7 @@ export const missingUnitForLastYearFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "9", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "9", subjectcategories: [subjectCategoryTwo] }),
@@ -728,6 +784,7 @@ export const missingUnitForLastYearFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "10", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "10", subjectcategories: [subjectCategoryTwo] }),
@@ -741,6 +798,7 @@ export const missingUnitForLastYearFixture = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({ year: "11", subjectcategories: [subjectCategoryTwo] }),
     ],
@@ -770,6 +828,7 @@ export const primaryEnglishYearData = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({
         year: "1",
@@ -788,6 +847,7 @@ export const primaryEnglishYearData = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({
         year: "2",
@@ -811,6 +871,7 @@ export const primaryEnglishYearData = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({
         year: "3",
@@ -839,6 +900,7 @@ export const primaryEnglishYearData = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({
         year: "4",
@@ -872,6 +934,7 @@ export const primaryEnglishYearData = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({
         year: "5",
@@ -907,6 +970,7 @@ export const primaryEnglishYearData = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({
         year: "6",
@@ -942,6 +1006,7 @@ export const primaryScienceYearData = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({
         year: "1",
@@ -960,6 +1025,7 @@ export const primaryScienceYearData = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({
         year: "2",
@@ -983,6 +1049,7 @@ export const primaryScienceYearData = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({
         year: "3",
@@ -1011,6 +1078,7 @@ export const primaryScienceYearData = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({
         year: "4",
@@ -1041,6 +1109,7 @@ export const primaryScienceYearData = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({
         year: "5",
@@ -1060,6 +1129,7 @@ export const primaryScienceYearData = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [
       createUnit({
         year: "6",
@@ -1099,14 +1169,8 @@ const secondaryScienceChildSubjects = [
 ];
 
 export const secondaryScienceYearData: YearData = {
-  "7": {
-    childSubjects: [],
-    pathways: [],
-    tiers: [],
+  "7": createYearData({
     subjectCategories: secondaryScienceSubjectCategories,
-
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({
         year: "7",
@@ -1121,15 +1185,9 @@ export const secondaryScienceYearData: YearData = {
         subjectcategories: [secondaryScienceSubjectCategories[2]!],
       }),
     ],
-  },
-  "8": {
-    childSubjects: [],
-    pathways: [],
-    tiers: [],
+  }),
+  "8": createYearData({
     subjectCategories: secondaryScienceSubjectCategories,
-
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({
         year: "8",
@@ -1140,15 +1198,9 @@ export const secondaryScienceYearData: YearData = {
         subjectcategories: [secondaryScienceSubjectCategories[2]!],
       }),
     ],
-  },
-  "9": {
-    childSubjects: [],
-    pathways: [],
-    tiers: [],
+  }),
+  "9": createYearData({
     subjectCategories: secondaryScienceSubjectCategories,
-
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({
         year: "9",
@@ -1163,14 +1215,11 @@ export const secondaryScienceYearData: YearData = {
         subjectcategories: [secondaryScienceSubjectCategories[3]!],
       }),
     ],
-  },
-  "10": {
-    pathways: [],
+  }),
+  "10": createYearData({
     childSubjects: secondaryScienceChildSubjects,
     tiers: [tiers[0]!, tiers[1]!],
     subjectCategories: secondaryScienceSubjectCategories,
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({
         year: "10",
@@ -1204,14 +1253,11 @@ export const secondaryScienceYearData: YearData = {
         subject_slug: "combined-science",
       }),
     ],
-  },
-  "11": {
-    pathways: [],
+  }),
+  "11": createYearData({
     childSubjects: secondaryScienceChildSubjects,
     tiers: [tiers[0]!, tiers[1]!],
     subjectCategories: secondaryScienceSubjectCategories,
-    groupAs: null,
-    isSwimming: false,
     units: [
       createUnit({
         year: "11",
@@ -1247,7 +1293,7 @@ export const secondaryScienceYearData: YearData = {
         subject_slug: "combined-science",
       }),
     ],
-  },
+  }),
 };
 
 // Secondary Maths Fixture
@@ -1261,6 +1307,7 @@ export const secondaryMathsYearData = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [createUnit({ year: "7" })],
   },
   "8": {
@@ -1271,6 +1318,7 @@ export const secondaryMathsYearData = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [createUnit({ year: "8" })],
   },
   "9": {
@@ -1281,6 +1329,7 @@ export const secondaryMathsYearData = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [createUnit({ year: "9" })],
   },
   "10": {
@@ -1291,6 +1340,7 @@ export const secondaryMathsYearData = {
 
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [createUnit({ year: "10" })],
   },
   "11": {
@@ -1300,6 +1350,7 @@ export const secondaryMathsYearData = {
     subjectCategories: [],
     groupAs: null,
     isSwimming: false,
+    nationalCurriculum: [],
     units: [createUnit({ year: "11" })],
   },
 };

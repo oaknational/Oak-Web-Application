@@ -12,6 +12,7 @@ export const ks4Setup = {
       groupAs: null,
       tiers: [tierFoundation, tierHigher],
       isSwimming: false,
+      nationalCurriculum: [],
       subjectCategories: [],
       units: [
         createUnit({
@@ -30,6 +31,7 @@ export const ks4Setup = {
       tiers: [],
       groupAs: null,
       isSwimming: false,
+      nationalCurriculum: [],
       subjectCategories: [],
       units: [createUnit({ year: "2", threads: [] })],
     },
@@ -46,6 +48,7 @@ export const ks3and4Setup = {
       groupAs: null,
       tiers: [tierFoundation, tierHigher],
       isSwimming: false,
+      nationalCurriculum: [],
       subjectCategories: [],
       units: [
         createUnit({
@@ -64,6 +67,7 @@ export const ks3and4Setup = {
       groupAs: null,
       tiers: [tierFoundation, tierHigher],
       isSwimming: false,
+      nationalCurriculum: [],
       subjectCategories: [],
       units: [
         createUnit({
@@ -82,6 +86,7 @@ export const ks3and4Setup = {
       groupAs: null,
       tiers: [tierFoundation, tierHigher],
       isSwimming: false,
+      nationalCurriculum: [],
       subjectCategories: [],
       units: [
         createUnit({
@@ -100,6 +105,7 @@ export const ks3and4Setup = {
       groupAs: null,
       tiers: [tierFoundation, tierHigher],
       isSwimming: false,
+      nationalCurriculum: [],
       subjectCategories: [],
       units: [
         createUnit({
@@ -118,6 +124,7 @@ export const ks3and4Setup = {
       tiers: [],
       groupAs: null,
       isSwimming: false,
+      nationalCurriculum: [],
       subjectCategories: [],
       units: [createUnit({ year: "2", threads: [] })],
     },

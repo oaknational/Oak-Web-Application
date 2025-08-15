@@ -1,6 +1,8 @@
 import { join } from "path";
 
-import { cdata, safeXml, xmlElementToJson } from "../xml";
+import { cdata, safeXml } from "@ooxml-tools/xml";
+
+import { xmlElementToJson } from "../xml";
 import {
   appendBodyElements,
   cmToEmu,

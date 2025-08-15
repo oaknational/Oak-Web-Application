@@ -53,6 +53,7 @@ const mockYearData: YearData = {
     subjectCategories: [],
     isSwimming: false,
     groupAs: null,
+    nationalCurriculum: [],
   },
   "8": {
     units: [
@@ -72,6 +73,7 @@ const mockYearData: YearData = {
     subjectCategories: [],
     isSwimming: false,
     groupAs: null,
+    nationalCurriculum: [],
   },
 };
 

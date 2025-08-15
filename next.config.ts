@@ -124,6 +124,9 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
       "**/*": ["node_modules/@swc/core/**/*", "node_modules/@swc/helpers/**/*"],
     },
 
+    // See <https://github.com/vercel/next.js/issues/40183#issuecomment-3063588870>
+    transpilePackages: ["@ooxml-tools/units", "@ooxml-tools/xml"],
+
     webpack: function getWebpackConfig(
       config: WebpackConfig,
       { dev, defaultLoaders, isServer }: WebpackConfigContext,

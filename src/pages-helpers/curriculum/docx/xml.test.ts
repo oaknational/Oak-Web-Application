@@ -1,10 +1,9 @@
+import { collapseFragments } from "@ooxml-tools/xml";
+
 import {
-  cdata,
   cdataJson,
-  collapseFragments,
   createFragment,
   jsonXmlToXmlString,
-  safeXml,
   xmlElementToJson,
   xmlRootToJson,
 } from "./xml";
@@ -271,13 +270,7 @@ describe("xml", () => {
     });
   });
 
-  describe("cdata", () => {
-    it("should return correct format", () => {
-      expect(cdata("testing")).toEqual(`<![CDATA[testing]]>`);
-    });
-  });
-
-  describe("cdata", () => {
+  describe("cdataJson", () => {
     it("valid should return correct format", () => {
       expect(cdataJson({ type: "text", text: "hello" })).toEqual({
         type: "cdata",
@@ -289,48 +282,6 @@ describe("xml", () => {
       expect(() => cdataJson({ type: "w:t", elements: [] })).toThrow(
         "Expecting text node",
       );
-    });
-  });
-
-  describe("safeXml", () => {
-    const originalEnv = process.env;
-
-    beforeEach(() => {
-      jest.resetModules();
-      process.env = {
-        ...originalEnv,
-        NODE_ENV: "development",
-      };
-    });
-
-    afterEach(() => {
-      process.env = originalEnv;
-    });
-
-    it("string", () => {
-      const element = safeXml`<test>${"testing"}</test>`;
-      expect(element).toEqual("<test>testing</test>");
-    });
-
-    it("number", () => {
-      const element = safeXml`<test>${1234}</test>`;
-      expect(element).toEqual("<test>1234</test>");
-    });
-
-    it("string[]", () => {
-      const element = safeXml`<test>${["a", "b", "c"]}</test>`;
-      expect(element).toEqual("<test>abc</test>");
-    });
-
-    it("number[]", () => {
-      const element = safeXml`<test>${[1, 2, 3]}</test>`;
-      expect(element).toEqual("<test>123</test>");
-    });
-
-    it("throws in development", () => {
-      expect(() => {
-        safeXml`<test>${"testing"}</testing>`;
-      }).toThrow();
     });
   });
 });

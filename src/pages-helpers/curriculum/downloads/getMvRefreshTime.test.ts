@@ -11,6 +11,7 @@ describe("getMvRefreshTime", () => {
     await getMvRefreshTime();
     expect(curriculumApi2023.default.refreshedMVTime).toHaveBeenCalled();
   });
+
   it("should record error when query returns no records", async () => {
     (
       curriculumApi2023.default.refreshedMVTime as jest.Mock
@@ -20,6 +21,7 @@ describe("getMvRefreshTime", () => {
       "Could not find MV refresh time for curriculum downloads cache",
     );
   });
+
   it("should return number relating to latest refresh time - test A", async () => {
     (
       curriculumApi2023.default.refreshedMVTime as jest.Mock
@@ -34,11 +36,16 @@ describe("getMvRefreshTime", () => {
     const mvTime = await getMvRefreshTime();
     expect(mvTime).toEqual(1720396803016);
   });
+
   it("should return number relating to latest refresh time  - test B", async () => {
     (
       curriculumApi2023.default.refreshedMVTime as jest.Mock
     ).mockResolvedValueOnce({
       data: [
+        {
+          last_refresh_finish: "2024-07-07T00:00:03.01694+00:00",
+          materializedview_name: "mv_curriculum_sequence_b_0_0_4",
+        },
         {
           last_refresh_finish: "2024-07-07T00:00:04.01694+00:00",
           materializedview_name: "mv_curriculum_sequence_b_0_0_4",
