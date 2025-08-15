@@ -18,7 +18,6 @@ import getPageProps from "@/node-lib/getPageProps";
 import KeyStageKeypad from "@/components/SharedComponents/KeyStageKeypad";
 import { getCombinedSubjects } from "@/pages-helpers/teacher/subject-listing-page/getCombinedSubjects";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import { Wall } from "@/components/AppComponents/Wall";
 import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 
 export type KeyStagePageProps = {
@@ -172,4 +171,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default withOnboardingRequired(SubjectListing, Wall);
+export default withOnboardingRequired(SubjectListing);

@@ -24,7 +24,6 @@ import { useLesson } from "@/pages-helpers/teacher/useLesson/useLesson";
 import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
-import { Wall } from "@/components/AppComponents/Wall";
 import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 
 export type LessonOverviewPageProps = {
@@ -201,4 +200,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default withOnboardingRequired(LessonOverviewPage, Wall);
+export default withOnboardingRequired(LessonOverviewPage);

@@ -15,7 +15,6 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonDownloadsCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloadsCanonical.schema";
 import { getCommonPathway } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonDownloads } from "@/components/TeacherViews/LessonDownloads.view";
-import { Wall } from "@/components/AppComponents/Wall";
 import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 
 export type LessonDownloadsCanonicalPageProps = {
@@ -108,4 +107,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default withOnboardingRequired(LessonDownloadsCanonicalPage, Wall);
+export default withOnboardingRequired(LessonDownloadsCanonicalPage);

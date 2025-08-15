@@ -21,7 +21,6 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { populateMediaClipsWithTranscripts } from "@/utils/handleTranscript";
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
-import { Wall } from "@/components/AppComponents/Wall";
 import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 
 export type CanonicalLessonMediaClipsPageProps = {
@@ -118,4 +117,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default withOnboardingRequired(CanonicalLessonMediaClipsPage, Wall);
+export default withOnboardingRequired(CanonicalLessonMediaClipsPage);

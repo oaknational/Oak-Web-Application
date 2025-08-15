@@ -28,7 +28,6 @@ import CurriculumDownloads, {
 } from "@/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads";
 import DropdownSelect from "@/components/GenericPagesComponents/DropdownSelect";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
-import { Wall } from "@/components/AppComponents/Wall";
 import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 
 const CurriculumPreviousDownloadsPage: NextPage = () => {
@@ -242,4 +241,4 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
   );
 };
 
-export default withOnboardingRequired(CurriculumPreviousDownloadsPage, Wall);
+export default withOnboardingRequired(CurriculumPreviousDownloadsPage);

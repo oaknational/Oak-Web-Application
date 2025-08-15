@@ -29,7 +29,6 @@ import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesMo
 import { useLesson } from "@/pages-helpers/teacher/useLesson/useLesson";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
-import { Wall } from "@/components/AppComponents/Wall";
 import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 
 type PageProps = {
@@ -195,4 +194,4 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
     },
   });
 };
-export default withOnboardingRequired(LessonOverviewCanonicalPage, Wall);
+export default withOnboardingRequired(LessonOverviewCanonicalPage);

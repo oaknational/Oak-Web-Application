@@ -17,7 +17,6 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonShareCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
-import { Wall } from "@/components/AppComponents/Wall";
 import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 
 export type LessonShareCanonicalPageProps = {
@@ -105,4 +104,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default withOnboardingRequired(LessonShareCanonicalPage, Wall);
+export default withOnboardingRequired(LessonShareCanonicalPage);

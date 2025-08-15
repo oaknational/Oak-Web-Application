@@ -54,7 +54,6 @@ import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics"
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { getUnitSeoFromYearData } from "@/utils/curriculum/seo";
 import { SeoProps } from "@/browser-lib/seo/Seo";
-import { Wall } from "@/components/AppComponents/Wall";
 import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 
 const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
@@ -357,4 +356,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default withOnboardingRequired(CurriculumInfoPage, Wall);
+export default withOnboardingRequired(CurriculumInfoPage);

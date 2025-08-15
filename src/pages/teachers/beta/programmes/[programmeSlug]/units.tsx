@@ -49,7 +49,6 @@ import DesktopUnitFilters from "@/components/TeacherComponents/DesktopUnitFilter
 import RelatedSubjectsBanner from "@/components/TeacherComponents/RelatedSubjectsBanner/RelatedSubjectsBanner";
 import { isUnitListData } from "@/components/TeacherComponents/UnitList/helpers";
 import { useUnitFilterState } from "@/hooks/useUnitFilterState";
-import { Wall } from "@/components/AppComponents/Wall";
 import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 
 export type UnitListingPageProps = {
@@ -473,4 +472,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default withOnboardingRequired(UnitListingPage, Wall);
+export default withOnboardingRequired(UnitListingPage);

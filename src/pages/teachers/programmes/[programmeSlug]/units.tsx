@@ -53,7 +53,6 @@ import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTi
 import { isUnitListData } from "@/components/TeacherComponents/UnitList/helpers";
 import { useUnitFilterState } from "@/hooks/useUnitFilterState";
 import { TeacherRedirectedOverlay } from "@/components/TeacherComponents/TeacherRedirectedOverlay/TeacherRedirectedOverlay";
-import { Wall } from "@/components/AppComponents/Wall";
 import { withOnboardingRequired } from "@/hocs/withOnboardingRequired";
 
 export type UnitListingPageProps = {
@@ -498,4 +497,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default withOnboardingRequired(UnitListingPage, Wall);
+export default withOnboardingRequired(UnitListingPage);
