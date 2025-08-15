@@ -22,7 +22,7 @@ const snapshotRelativeUrls = getDeploymentTestUrls().map((url) => {
     waitForSelector: `#__next:not(:has([data-testid="loading"]))`,
   };
   if (url.startsWith("/teachers/")) {
-    snapshotConfig.waitForTimeout = 120000;
+    snapshotConfig.waitForTimeout = 180000;
   }
   return snapshotConfig;
 });

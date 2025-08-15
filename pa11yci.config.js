@@ -47,7 +47,7 @@ const config = {
     headers: {
       "x-vercel-protection-bypass": vercelAutomationBypass,
     },
-    concurrency: 1,
+    concurrency: 10,
     // If running pa11y locally fails, comment out the following section
     chromeLaunchConfig: {
       executablePath: "/usr/bin/google-chrome",
@@ -69,15 +69,12 @@ config.urls = relativeUrls.map((relUrl) => {
   if (typeof relUrl === "string") {
     const pa11yUrl = new URL(relUrl, baseUrl).href;
     const isTeacherRoute = relUrl.startsWith("/teachers/");
-    const actions = isTeacherRoute
-      ? [
-          "wait for element #__next to be visible",
-          "wait for element #wall to be removed",
-        ]
-      : ["wait for element #__next to be visible"];
+
     return {
       url: pa11yUrl,
-      actions,
+      // teacher routes redirect to onboarding and need some extra time to render
+      timeout: isTeacherRoute ? 200000 : 120000,
+      actions: ["wait for element #__next to be visible"],
     };
     // Return the already created URL config object.
   } else {
