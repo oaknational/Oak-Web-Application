@@ -227,7 +227,7 @@ const OnboardingForm = ({
         }
       >
         <Logo height={48} width={104} variant="with text" />
-        <OakFieldset $width="100%" role="fieldset">
+        <OakFieldset $width="100%">
           <OakFlex
             $gap="space-between-m"
             $flexDirection={"column"}
