@@ -227,26 +227,30 @@ const OnboardingForm = ({
         }
       >
         <Logo height={48} width={104} variant="with text" />
-        <OakFieldset $width="100%">
+        <OakFieldset $width="100%" role="fieldset">
+          <OakSpan
+            id={"form-legend"}
+            $font="heading-6"
+            as="legend"
+            $mb={props.subheading ? "space-between-ssx" : "space-between-m"}
+            $pa="inner-padding-none"
+          >
+            {props.heading}
+          </OakSpan>
           <OakFlex
             $gap="space-between-m"
             $flexDirection={"column"}
             $width="100%"
           >
-            <OakFlex
-              $flexDirection="column"
-              $gap="space-between-ssx"
-              $pb={props.subheading ? "inner-padding-m" : "inner-padding-none"}
-            >
-              <OakSpan id={"form-legend"} $font="heading-6" as="legend">
-                {props.heading}
-              </OakSpan>
-              {props.subheading && (
-                <OakP $font="body-2" $color="text-subdued">
-                  {props.subheading}
-                </OakP>
-              )}
-            </OakFlex>
+            {props.subheading && (
+              <OakP
+                $font="body-2"
+                $color="text-subdued"
+                $mb={"space-between-s"}
+              >
+                {props.subheading}
+              </OakP>
+            )}
             <OakBox aria-live="polite" $display="contents">
               {submitError && (
                 <OakInlineBanner
