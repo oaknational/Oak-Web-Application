@@ -159,12 +159,18 @@ describe("SearchDropdown component", () => {
     const links = screen.getAllByRole("link");
     expect(links).toHaveLength(2);
 
-    // expect(link).toHaveAttribute(
-    //   "href",
-    //   expect.stringContaining(
-    //     "/teachers/programmes/maths-program-1/units/algebra-unit/lessons/the-fde-cycle-68w3ct",
-    //   ),
-    // );
+    expect(links[0]).toHaveAttribute(
+      "href",
+      expect.stringContaining(
+        "/teachers/programmes/maths-program-1/units/algebra-unit-1/lessons/the-fde-cycle-68w3ct",
+      ),
+    );
+    expect(links[1]).toHaveAttribute(
+      "href",
+      expect.stringContaining(
+        "/teachers/programmes/maths-program-2/units/algebra-unit-2/lessons/the-fde-cycle-68w3ct",
+      ),
+    );
   });
 
   test("unit type links, link to lesson-index pages", async () => {
