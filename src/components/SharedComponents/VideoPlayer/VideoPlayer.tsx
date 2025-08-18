@@ -46,6 +46,7 @@ export type VideoPlayerProps = {
   isAudioClip?: boolean;
   loadingTextColor?: OakColorToken;
   defaultHiddenCaptions?: boolean;
+  cloudinaryUrl?: string | null;
 };
 
 export type VideoEventCallbackArgs = {
@@ -90,6 +91,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     isAudioClip,
     loadingTextColor = "black",
     defaultHiddenCaptions = false,
+    cloudinaryUrl,
   } = props;
 
   const mediaElRef = useRef<MuxPlayerElement>(null);
@@ -116,7 +118,11 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     };
   };
 
-  const videoTracking = useVideoTracking({ getState, pathwayData });
+  const videoTracking = useVideoTracking({
+    getState,
+    pathwayData,
+    cloudinaryUrl,
+  });
 
   const thumbnailToken = useSignedThumbnailToken({
     playbackId,

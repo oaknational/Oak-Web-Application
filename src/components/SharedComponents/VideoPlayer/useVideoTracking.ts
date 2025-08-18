@@ -53,6 +53,7 @@ export type VideoTrackingGetState = () => {
 type UseVideoTrackingProps = {
   getState: VideoTrackingGetState;
   pathwayData?: PupilPathwayData;
+  cloudinaryUrl?: string | null;
 };
 const useVideoTracking = (props: UseVideoTrackingProps) => {
   const { track } = useAnalytics();
@@ -66,9 +67,17 @@ const useVideoTracking = (props: UseVideoTrackingProps) => {
     if (!eventProps) {
       return;
     }
-    track.videoPlayed({ ...eventProps, ...pathwayData });
+    track.videoPlayed({
+      ...eventProps,
+      ...pathwayData,
+      cloudinaryUrl: props.cloudinaryUrl,
+    });
     if (!started) {
-      track.videoStarted({ ...eventProps, ...pathwayData });
+      track.videoStarted({
+        ...eventProps,
+        ...pathwayData,
+        cloudinaryUrl: props.cloudinaryUrl,
+      });
       setStarted(true);
     }
   };
@@ -77,14 +86,22 @@ const useVideoTracking = (props: UseVideoTrackingProps) => {
     if (!eventProps) {
       return;
     }
-    track.videoPaused({ ...eventProps, ...pathwayData });
+    track.videoPaused({
+      ...eventProps,
+      ...pathwayData,
+      cloudinaryUrl: props.cloudinaryUrl,
+    });
   };
   const onEnd = () => {
     const eventProps = getEventPropsOrWarn(props);
     if (!eventProps) {
       return;
     }
-    track.videoFinished({ ...eventProps, ...pathwayData });
+    track.videoFinished({
+      ...eventProps,
+      ...pathwayData,
+      cloudinaryUrl: props.cloudinaryUrl,
+    });
   };
 
   return {

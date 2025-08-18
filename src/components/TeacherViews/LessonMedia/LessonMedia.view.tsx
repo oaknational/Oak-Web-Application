@@ -328,6 +328,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
       userEventCallback={handleVideoEvents}
       loadingTextColor="white"
       defaultHiddenCaptions={isPEPractical}
+      cloudinaryUrl={currentClip.mediaObject.url}
     />
   );
 
