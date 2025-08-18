@@ -1,3 +1,22 @@
+# [1.832.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.831.0...v1.832.0) (2025-08-15)
+
+
+### Bug Fixes
+
+* make legend first child of fieldset ([55fdb14](https://github.com/oaknational/Oak-Web-Application/commit/55fdb14af6f17c7437d2eb09cc12c4f5e12d5423))
+* remove actions step from sign up pages in pa11y ([7b42da6](https://github.com/oaknational/Oak-Web-Application/commit/7b42da6ad5af0e7b4859d5e286d929ba63c50ba5))
+* remove fieldset again ([260a7fd](https://github.com/oaknational/Oak-Web-Application/commit/260a7fd4b0efde45ff243c63a8fe08faea725a38))
+* remove fieldset role ([6e88901](https://github.com/oaknational/Oak-Web-Application/commit/6e88901322e567477da39b8a2e5a70dcb19297b4))
+* remove onboarding pages as we can't login ([9fda293](https://github.com/oaknational/Oak-Web-Application/commit/9fda29374e610f943b033414372adb59a4c4dca5))
+* set timeout in each url config ([e92ce21](https://github.com/oaknational/Oak-Web-Application/commit/e92ce215cac596f66e1be473653a9aa087e9edb6))
+* use fieldset element instead of role on div ([a27d547](https://github.com/oaknational/Oak-Web-Application/commit/a27d5472f1527956936d40679507b99e921a7041))
+* use legend element instead of span with a role ([5c33a7b](https://github.com/oaknational/Oak-Web-Application/commit/5c33a7bcca7156126b5c72b83eca3cddfcd930b1))
+
+
+### Features
+
+* add user pages to pa11y ci test urls ([4b02d0b](https://github.com/oaknational/Oak-Web-Application/commit/4b02d0bc40341cbd40a136ac9110ce4f31bd592e))
+
 # [1.831.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.830.2...v1.831.0) (2025-08-14)
 
 
