@@ -223,7 +223,7 @@ const CopyrightRestrictionBanner = (props: CopyrightRestrictionBannerProps) => {
     showSignedInNotOnboarded;
 
   const showOnboardingLink = showSignedInNotOnboarded;
-  console.log(showSignedInNotOnboarded);
+
   return showGeoBlocked ? (
     <SignedInGeorestrictedBanner isUnit={isUnit} />
   ) : showSignedOutCopyrightBanner ? (
