@@ -1,3 +1,10 @@
+# [1.833.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.832.0...v1.833.0) (2025-08-18)
+
+
+### Features
+
+* **a11y,curriculum-visualiser:** make 'Skip to content' jump past header to active tab content ([3b1ac6b](https://github.com/oaknational/Oak-Web-Application/commit/3b1ac6b9b2c3f5d55f765187305e46d5420e8493))
+
 # [1.832.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.831.0...v1.832.0) (2025-08-15)
 
 
