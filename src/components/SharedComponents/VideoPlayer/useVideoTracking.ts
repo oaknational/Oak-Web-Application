@@ -54,6 +54,7 @@ type UseVideoTrackingProps = {
   getState: VideoTrackingGetState;
   pathwayData?: PupilPathwayData;
   cloudinaryUrl?: string | null;
+  muxAssetId?: string | null;
 };
 const useVideoTracking = (props: UseVideoTrackingProps) => {
   const { track } = useAnalytics();
@@ -71,12 +72,14 @@ const useVideoTracking = (props: UseVideoTrackingProps) => {
       ...eventProps,
       ...pathwayData,
       cloudinaryUrl: props.cloudinaryUrl,
+      muxAssetId: props.muxAssetId,
     });
     if (!started) {
       track.videoStarted({
         ...eventProps,
         ...pathwayData,
         cloudinaryUrl: props.cloudinaryUrl,
+        muxAssetId: props.muxAssetId,
       });
       setStarted(true);
     }
@@ -90,6 +93,7 @@ const useVideoTracking = (props: UseVideoTrackingProps) => {
       ...eventProps,
       ...pathwayData,
       cloudinaryUrl: props.cloudinaryUrl,
+      muxAssetId: props.muxAssetId,
     });
   };
   const onEnd = () => {
@@ -101,6 +105,7 @@ const useVideoTracking = (props: UseVideoTrackingProps) => {
       ...eventProps,
       ...pathwayData,
       cloudinaryUrl: props.cloudinaryUrl,
+      muxAssetId: props.muxAssetId,
     });
   };
 

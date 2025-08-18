@@ -974,7 +974,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "p8nLYrovjkegOF7smCJ2",
+          "ac": "QEjDpRHxmcZrotn0kLfX",
           "br": "cp9vaq9ICBdBi3ctXzgG1",
           "en": env,
           "ev": eventId,
@@ -1001,7 +1001,7 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "p8nLYrovjkegOF7smCJ2",
+          "ac": "QEjDpRHxmcZrotn0kLfX",
           "br": "cp9vaq9ICBdBi3ctXzgG1",
           "en": env,
           "ty": type,
@@ -1834,6 +1834,7 @@ export interface VideoStartedProperties {
   releaseGroup: string | null | undefined;
   phase: PhaseValueType | null | undefined;
   cloudinaryUrl: string | null | undefined;
+  muxAssetId: string | null | undefined;
 }
 /**
  * Video Started: A video is played for the first time after a user lands on a page
@@ -1864,6 +1865,7 @@ export interface VideoStartedProperties {
  * @param properties.releaseGroup: Categorisation used to identify and distinguish different batches or versions of content based on when they became available on Oak's Platform (e.g legacy, cohort)
  * @param properties.phase: School phase related to key stage and age of audience
  * @param properties.cloudinaryUrl: no description
+ * @param properties.muxAssetId: no description
  * 
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/cp9vaq9ICBdBi3ctXzgG1/events/G0I28K0B2f}
  */
@@ -1931,6 +1933,9 @@ export function videoStarted(properties: VideoStartedProperties) {
   properties.cloudinaryUrl !== undefined && properties.cloudinaryUrl !== null ?
     eventPropertiesArray.push({id: "IFEzo8NmuRBZcbTOf3fSr", name: "Cloudinary Url", value: properties.cloudinaryUrl}) :
     eventPropertiesArray.push({id: "IFEzo8NmuRBZcbTOf3fSr", name: "Cloudinary Url", value: null});
+  properties.muxAssetId !== undefined && properties.muxAssetId !== null ?
+    eventPropertiesArray.push({id: "epT5BpeF8uu2yJdFNZMly", name: "Mux Asset Id", value: properties.muxAssetId}) :
+    eventPropertiesArray.push({id: "epT5BpeF8uu2yJdFNZMly", name: "Mux Asset Id", value: null});
   let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
   // @ts-ignore
   let userPropertiesArray: array = [];
@@ -1940,7 +1945,7 @@ export function videoStarted(properties: VideoStartedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "G0I28K0B2f", "70205d5173b31ff960b508f1d278049b893f898da97e3d312e2f4af34ad9c99f", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "G0I28K0B2f", "76fe9bd227d389e8aed268ff0437eb8f58faf3d23b2237910b1899f9f813c18e", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Video Started", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -1951,7 +1956,7 @@ export function videoStarted(properties: VideoStartedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Video Started", eventProperties, "G0I28K0B2f", "70205d5173b31ff960b508f1d278049b893f898da97e3d312e2f4af34ad9c99f");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Video Started", eventProperties, "G0I28K0B2f", "76fe9bd227d389e8aed268ff0437eb8f58faf3d23b2237910b1899f9f813c18e");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Video Started", (Object as any).assign({}, eventProperties));
@@ -1986,6 +1991,7 @@ export interface VideoPausedProperties {
   releaseGroup: string | null | undefined;
   phase: PhaseValueType | null | undefined;
   cloudinaryUrl: string | null | undefined;
+  muxAssetId: string | null | undefined;
 }
 /**
  * Video Paused: A video is paused before it it finished
@@ -2016,6 +2022,7 @@ export interface VideoPausedProperties {
  * @param properties.releaseGroup: Categorisation used to identify and distinguish different batches or versions of content based on when they became available on Oak's Platform (e.g legacy, cohort)
  * @param properties.phase: School phase related to key stage and age of audience
  * @param properties.cloudinaryUrl: no description
+ * @param properties.muxAssetId: no description
  * 
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/cp9vaq9ICBdBi3ctXzgG1/events/z91WauKeVB}
  */
@@ -2083,6 +2090,9 @@ export function videoPaused(properties: VideoPausedProperties) {
   properties.cloudinaryUrl !== undefined && properties.cloudinaryUrl !== null ?
     eventPropertiesArray.push({id: "IFEzo8NmuRBZcbTOf3fSr", name: "Cloudinary Url", value: properties.cloudinaryUrl}) :
     eventPropertiesArray.push({id: "IFEzo8NmuRBZcbTOf3fSr", name: "Cloudinary Url", value: null});
+  properties.muxAssetId !== undefined && properties.muxAssetId !== null ?
+    eventPropertiesArray.push({id: "epT5BpeF8uu2yJdFNZMly", name: "Mux Asset Id", value: properties.muxAssetId}) :
+    eventPropertiesArray.push({id: "epT5BpeF8uu2yJdFNZMly", name: "Mux Asset Id", value: null});
   let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
   // @ts-ignore
   let userPropertiesArray: array = [];
@@ -2092,7 +2102,7 @@ export function videoPaused(properties: VideoPausedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "z91WauKeVB", "ab2181e66477f7700bfa4fe06119723caa4930125329e6bafdfd4ab6bef6ac3f", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "z91WauKeVB", "8e3a79254b7657c36ab9d414571ad51fe35c430c428ceae840fd20ce34915998", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Video Paused", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -2103,7 +2113,7 @@ export function videoPaused(properties: VideoPausedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Video Paused", eventProperties, "z91WauKeVB", "ab2181e66477f7700bfa4fe06119723caa4930125329e6bafdfd4ab6bef6ac3f");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Video Paused", eventProperties, "z91WauKeVB", "8e3a79254b7657c36ab9d414571ad51fe35c430c428ceae840fd20ce34915998");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Video Paused", (Object as any).assign({}, eventProperties));
@@ -2138,6 +2148,7 @@ export interface VideoPlayedProperties {
   releaseGroup: string | null | undefined;
   phase: PhaseValueType | null | undefined;
   cloudinaryUrl: string | null | undefined;
+  muxAssetId: string | null | undefined;
 }
 /**
  * Video Played: A video is played again after being paused
@@ -2168,6 +2179,7 @@ export interface VideoPlayedProperties {
  * @param properties.releaseGroup: Categorisation used to identify and distinguish different batches or versions of content based on when they became available on Oak's Platform (e.g legacy, cohort)
  * @param properties.phase: School phase related to key stage and age of audience
  * @param properties.cloudinaryUrl: no description
+ * @param properties.muxAssetId: no description
  * 
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/cp9vaq9ICBdBi3ctXzgG1/events/r4DFADUHFh}
  */
@@ -2235,6 +2247,9 @@ export function videoPlayed(properties: VideoPlayedProperties) {
   properties.cloudinaryUrl !== undefined && properties.cloudinaryUrl !== null ?
     eventPropertiesArray.push({id: "IFEzo8NmuRBZcbTOf3fSr", name: "Cloudinary Url", value: properties.cloudinaryUrl}) :
     eventPropertiesArray.push({id: "IFEzo8NmuRBZcbTOf3fSr", name: "Cloudinary Url", value: null});
+  properties.muxAssetId !== undefined && properties.muxAssetId !== null ?
+    eventPropertiesArray.push({id: "epT5BpeF8uu2yJdFNZMly", name: "Mux Asset Id", value: properties.muxAssetId}) :
+    eventPropertiesArray.push({id: "epT5BpeF8uu2yJdFNZMly", name: "Mux Asset Id", value: null});
   let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
   // @ts-ignore
   let userPropertiesArray: array = [];
@@ -2244,7 +2259,7 @@ export function videoPlayed(properties: VideoPlayedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "r4DFADUHFh", "279f0fa922149e25595ea7c0c703739aa043b01d51683658ceb293e7fed7c881", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "r4DFADUHFh", "9f6d65978e76cc1724afb711534fea692d3e184b154437239a524a3ca1a885b0", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Video Played", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -2255,7 +2270,7 @@ export function videoPlayed(properties: VideoPlayedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Video Played", eventProperties, "r4DFADUHFh", "279f0fa922149e25595ea7c0c703739aa043b01d51683658ceb293e7fed7c881");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Video Played", eventProperties, "r4DFADUHFh", "9f6d65978e76cc1724afb711534fea692d3e184b154437239a524a3ca1a885b0");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Video Played", (Object as any).assign({}, eventProperties));
@@ -2290,6 +2305,7 @@ export interface VideoFinishedProperties {
   phase: PhaseValueType | null | undefined;
   releaseGroup: string | null | undefined;
   cloudinaryUrl: string | null | undefined;
+  muxAssetId: string | null | undefined;
 }
 /**
  * Video Finished: The end of a video is reached
@@ -2320,6 +2336,7 @@ export interface VideoFinishedProperties {
  * @param properties.phase: School phase related to key stage and age of audience
  * @param properties.releaseGroup: Categorisation used to identify and distinguish different batches or versions of content based on when they became available on Oak's Platform (e.g legacy, cohort)
  * @param properties.cloudinaryUrl: no description
+ * @param properties.muxAssetId: no description
  * 
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/cp9vaq9ICBdBi3ctXzgG1/events/NP9klWkaki}
  */
@@ -2387,6 +2404,9 @@ export function videoFinished(properties: VideoFinishedProperties) {
   properties.cloudinaryUrl !== undefined && properties.cloudinaryUrl !== null ?
     eventPropertiesArray.push({id: "IFEzo8NmuRBZcbTOf3fSr", name: "Cloudinary Url", value: properties.cloudinaryUrl}) :
     eventPropertiesArray.push({id: "IFEzo8NmuRBZcbTOf3fSr", name: "Cloudinary Url", value: null});
+  properties.muxAssetId !== undefined && properties.muxAssetId !== null ?
+    eventPropertiesArray.push({id: "epT5BpeF8uu2yJdFNZMly", name: "Mux Asset Id", value: properties.muxAssetId}) :
+    eventPropertiesArray.push({id: "epT5BpeF8uu2yJdFNZMly", name: "Mux Asset Id", value: null});
   let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
   // @ts-ignore
   let userPropertiesArray: array = [];
@@ -2396,7 +2416,7 @@ export function videoFinished(properties: VideoFinishedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "NP9klWkaki", "2e4feb41558017e9e84246b065caf7b66d50dcd3041062955a76123ae6061535", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "NP9klWkaki", "281254c0386f7f5cdf9cbc7554416d31bd14e7106094b482cb957e767dd7f298", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Video Finished", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -2407,7 +2427,7 @@ export function videoFinished(properties: VideoFinishedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Video Finished", eventProperties, "NP9klWkaki", "2e4feb41558017e9e84246b065caf7b66d50dcd3041062955a76123ae6061535");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Video Finished", eventProperties, "NP9klWkaki", "281254c0386f7f5cdf9cbc7554416d31bd14e7106094b482cb957e767dd7f298");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Video Finished", (Object as any).assign({}, eventProperties));

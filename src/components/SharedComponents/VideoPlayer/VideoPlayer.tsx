@@ -47,6 +47,7 @@ export type VideoPlayerProps = {
   loadingTextColor?: OakColorToken;
   defaultHiddenCaptions?: boolean;
   cloudinaryUrl?: string | null;
+  muxAssetId?: string | null;
 };
 
 export type VideoEventCallbackArgs = {
@@ -92,6 +93,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     loadingTextColor = "black",
     defaultHiddenCaptions = false,
     cloudinaryUrl,
+    muxAssetId,
   } = props;
 
   const mediaElRef = useRef<MuxPlayerElement>(null);
@@ -122,6 +124,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     getState,
     pathwayData,
     cloudinaryUrl,
+    muxAssetId,
   });
 
   const thumbnailToken = useSignedThumbnailToken({
