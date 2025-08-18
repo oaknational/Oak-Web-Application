@@ -1,3 +1,16 @@
+# [1.834.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.833.0...v1.834.0) (2025-08-18)
+
+
+### Bug Fixes
+
+* add missing env_vars to prod ([914e217](https://github.com/oaknational/Oak-Web-Application/commit/914e217bd95fb5347ebcbdf2e5f383da8c480f4c))
+
+
+### Features
+
+* fix custom_env_vars_shared variable filtering ([21cdd57](https://github.com/oaknational/Oak-Web-Application/commit/21cdd57f662e4fe418e222f60ca0d36c9950bbf5))
+* manage OVERRIDE_APP_VERSION var in terraform ([7cbed91](https://github.com/oaknational/Oak-Web-Application/commit/7cbed9188fe578a7204dc12b20c374b96ecd327e))
+
 # [1.833.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.832.0...v1.833.0) (2025-08-18)
 
 
