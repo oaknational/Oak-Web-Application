@@ -366,7 +366,7 @@ const Search: FC<SearchProps> = (props) => {
               {shouldShowError && (
                 <p>There was an error fetching search results</p>
               )}
-              {shouldShowLoading && <p>Loading...</p>}
+              {shouldShowLoading && <p data-testid="loading">Loading...</p>}
               {shouldShowNoResultsMessage && (
                 <OakBox id="search-results" $mb={"space-between-xxl"}>
                   <NoSearchResults searchTerm={query.term} />
