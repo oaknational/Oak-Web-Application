@@ -1,3 +1,51 @@
+## [1.834.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.834.0...v1.834.1) (2025-08-19)
+
+
+### Bug Fixes
+
+* add test id loading so percy waits for search page to be loaded ([7b17bd9](https://github.com/oaknational/Oak-Web-Application/commit/7b17bd937b886f09c1b8fbb38216894956c0e47b))
+* move aria label to button element ([e30b314](https://github.com/oaknational/Oak-Web-Application/commit/e30b314dcbd12b1ca3d4ce80e97e7c60f3c2614c))
+* un comment test cases ([9caeb77](https://github.com/oaknational/Oak-Web-Application/commit/9caeb77bfced54981955bcc7ec5c957f8bf9eac1))
+
+# [1.834.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.833.0...v1.834.0) (2025-08-18)
+
+
+### Bug Fixes
+
+* add missing env_vars to prod ([914e217](https://github.com/oaknational/Oak-Web-Application/commit/914e217bd95fb5347ebcbdf2e5f383da8c480f4c))
+
+
+### Features
+
+* fix custom_env_vars_shared variable filtering ([21cdd57](https://github.com/oaknational/Oak-Web-Application/commit/21cdd57f662e4fe418e222f60ca0d36c9950bbf5))
+* manage OVERRIDE_APP_VERSION var in terraform ([7cbed91](https://github.com/oaknational/Oak-Web-Application/commit/7cbed9188fe578a7204dc12b20c374b96ecd327e))
+
+# [1.833.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.832.0...v1.833.0) (2025-08-18)
+
+
+### Features
+
+* **a11y,curriculum-visualiser:** make 'Skip to content' jump past header to active tab content ([3b1ac6b](https://github.com/oaknational/Oak-Web-Application/commit/3b1ac6b9b2c3f5d55f765187305e46d5420e8493))
+
+# [1.832.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.831.0...v1.832.0) (2025-08-15)
+
+
+### Bug Fixes
+
+* make legend first child of fieldset ([55fdb14](https://github.com/oaknational/Oak-Web-Application/commit/55fdb14af6f17c7437d2eb09cc12c4f5e12d5423))
+* remove actions step from sign up pages in pa11y ([7b42da6](https://github.com/oaknational/Oak-Web-Application/commit/7b42da6ad5af0e7b4859d5e286d929ba63c50ba5))
+* remove fieldset again ([260a7fd](https://github.com/oaknational/Oak-Web-Application/commit/260a7fd4b0efde45ff243c63a8fe08faea725a38))
+* remove fieldset role ([6e88901](https://github.com/oaknational/Oak-Web-Application/commit/6e88901322e567477da39b8a2e5a70dcb19297b4))
+* remove onboarding pages as we can't login ([9fda293](https://github.com/oaknational/Oak-Web-Application/commit/9fda29374e610f943b033414372adb59a4c4dca5))
+* set timeout in each url config ([e92ce21](https://github.com/oaknational/Oak-Web-Application/commit/e92ce215cac596f66e1be473653a9aa087e9edb6))
+* use fieldset element instead of role on div ([a27d547](https://github.com/oaknational/Oak-Web-Application/commit/a27d5472f1527956936d40679507b99e921a7041))
+* use legend element instead of span with a role ([5c33a7b](https://github.com/oaknational/Oak-Web-Application/commit/5c33a7bcca7156126b5c72b83eca3cddfcd930b1))
+
+
+### Features
+
+* add user pages to pa11y ci test urls ([4b02d0b](https://github.com/oaknational/Oak-Web-Application/commit/4b02d0bc40341cbd40a136ac9110ce4f31bd592e))
+
 # [1.831.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.830.2...v1.831.0) (2025-08-14)
 
 

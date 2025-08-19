@@ -25,11 +25,11 @@ describe("Onboarding view", () => {
   it("renders a fieldset and legend", async () => {
     renderWithProviders()(<SchoolSelectionView />);
 
-    const fieldset = await screen.findByRole("fieldset");
-    expect(fieldset).toBeInTheDocument();
     const legend = await screen.findByText(/Select your school/i);
     expect(legend).toBeInTheDocument();
+    const fieldset = legend.closest("fieldset");
 
+    expect(fieldset).toBeInTheDocument();
     expect(fieldset).toContainElement(legend);
   });
   it("renders a school picker", async () => {

@@ -305,6 +305,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       <OakBox
         id="curriculum-downloads"
         aria-labelledby="curriculum-downloads-heading"
+        tabIndex={-1}
         $maxWidth={"all-spacing-24"}
         $mh={"auto"}
         $ph={"inner-padding-m"}
