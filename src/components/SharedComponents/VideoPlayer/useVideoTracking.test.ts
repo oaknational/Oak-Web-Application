@@ -73,6 +73,21 @@ describe("useVideoTracking", () => {
     result.current.onEnd();
     expect(videoFinished).toHaveBeenCalledWith(eventProps);
   });
+  it("calls tracking with mux asset id and cloudinary url", () => {
+    const { result } = renderHook(() =>
+      useVideoTracking({
+        getState,
+        cloudinaryUrl: "https://example.com/video.mp4",
+        muxAssetId: "mux12345",
+      }),
+    );
+    act(() => result.current.onPlay());
+    expect(videoPlayed).toHaveBeenCalledWith({
+      ...eventProps,
+      cloudinaryUrl: "https://example.com/video.mp4",
+      muxAssetId: "mux12345",
+    });
+  });
   test("calls correct number of times when a sequence is run", () => {
     const { result } = renderHook(() => useVideoTracking({ getState }));
     act(() => {
