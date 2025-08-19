@@ -1,3 +1,12 @@
+## [1.834.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.834.0...v1.834.1) (2025-08-19)
+
+
+### Bug Fixes
+
+* add test id loading so percy waits for search page to be loaded ([7b17bd9](https://github.com/oaknational/Oak-Web-Application/commit/7b17bd937b886f09c1b8fbb38216894956c0e47b))
+* move aria label to button element ([e30b314](https://github.com/oaknational/Oak-Web-Application/commit/e30b314dcbd12b1ca3d4ce80e97e7c60f3c2614c))
+* un comment test cases ([9caeb77](https://github.com/oaknational/Oak-Web-Application/commit/9caeb77bfced54981955bcc7ec5c957f8bf9eac1))
+
 # [1.834.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.833.0...v1.834.0) (2025-08-18)
 
 
