@@ -25,6 +25,7 @@ export const ks4Setup = {
       tiers: [],
       groupAs: null,
       isSwimming: false,
+      nationalCurriculum: [],
       subjectCategories: [
         subjectCategoryBiology,
         subjectCategoryChemistry,
@@ -51,6 +52,7 @@ export const ks4Setup = {
       tiers: [],
       groupAs: null,
       isSwimming: false,
+      nationalCurriculum: [],
       subjectCategories: [],
       units: [createUnit({ year: "2", subjectcategories: [] })],
     },
@@ -67,6 +69,7 @@ export const ks3and4Setup = {
       tiers: [],
       groupAs: null,
       isSwimming: false,
+      nationalCurriculum: [],
       subjectCategories: [subjectCategoryBiology],
       units: [
         createUnit({
@@ -81,6 +84,7 @@ export const ks3and4Setup = {
       tiers: [],
       groupAs: null,
       isSwimming: false,
+      nationalCurriculum: [],
       subjectCategories: [subjectCategoryBiology],
       units: [
         createUnit({
@@ -95,6 +99,7 @@ export const ks3and4Setup = {
       tiers: [],
       groupAs: null,
       isSwimming: false,
+      nationalCurriculum: [],
       subjectCategories: [subjectCategoryBiology],
       units: [
         createUnit({
@@ -109,6 +114,7 @@ export const ks3and4Setup = {
       tiers: [],
       groupAs: null,
       isSwimming: false,
+      nationalCurriculum: [],
       subjectCategories: [
         subjectCategoryBiology,
         subjectCategoryChemistry,
@@ -135,6 +141,7 @@ export const ks3and4Setup = {
       tiers: [],
       groupAs: null,
       isSwimming: false,
+      nationalCurriculum: [],
       subjectCategories: [],
       units: [createUnit({ year: "11", subjectcategories: [] })],
     },
