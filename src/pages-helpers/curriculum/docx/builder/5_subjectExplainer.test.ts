@@ -1,8 +1,9 @@
-import { CombinedCurriculumData } from "..";
 import { generateEmptyDocx } from "../docx";
 
 import generate from "./5_subjectExplainer";
 import { zipToSnapshotObject } from "./helper";
+
+import { CombinedCurriculumData } from "@/utils/curriculum/types";
 
 describe("5_subjectExplainer", () => {
   beforeEach(() => {

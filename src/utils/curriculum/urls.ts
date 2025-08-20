@@ -3,6 +3,7 @@
  */
 
 export function createCurriculumDownloadsUrl(
+  types: string[],
   state: "new" | "published",
   mvRefreshTime: number,
   subjectSlug: string,
@@ -12,6 +13,7 @@ export function createCurriculumDownloadsUrl(
   childSubjectSlug: string | null,
 ) {
   const query = new URLSearchParams({
+    types: types.join(","),
     mvRefreshTime: String(mvRefreshTime),
     subjectSlug: subjectSlug,
     phaseSlug: phaseSlug,

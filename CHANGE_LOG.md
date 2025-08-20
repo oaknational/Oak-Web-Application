@@ -1,3 +1,76 @@
+# [1.837.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.836.0...v1.837.0) (2025-08-20)
+
+
+### Bug Fixes
+
+* a really hacky version of generateYearTitle() for NC/xlsx I can write tests against ([57598d0](https://github.com/oaknational/Oak-Web-Application/commit/57598d0c14194884face7fe83aaee6de05abc48c))
+* add new lines above & below cells ([04e60ff](https://github.com/oaknational/Oak-Web-Application/commit/04e60ff08f0a0b29ed22b1044d9a080c884a8b6b))
+* added ENABLE_NC_XLSX_DOCUMENT to put NC alignment document behind a flag ([110be24](https://github.com/oaknational/Oak-Web-Application/commit/110be2464a3968706916dd11a82bad916061acd6))
+* added generateYearTitle()/generateSheetTitle() helpers with fixes for new title ACs ([d6bec68](https://github.com/oaknational/Oak-Web-Application/commit/d6bec686d4ebab96a98690c6d08f2dbdec0ffb40))
+* added in download types to curric download tab ([e5b6cf8](https://github.com/oaknational/Oak-Web-Application/commit/e5b6cf8e739da56efb3cd53cc944427c4c7b8909))
+* added missing tests for buildWorkbook(...) on xlsx ([013d250](https://github.com/oaknational/Oak-Web-Application/commit/013d25078c12204975ab601eee9c3bac74ee1575))
+* added missing ticks for NC criteria for unit options ([447fd67](https://github.com/oaknational/Oak-Web-Application/commit/447fd67559e2d25478f535ea1424b4a3050db879))
+* added subtitle from curric-plans (docx) to NC alignment sheet ([eab0c1a](https://github.com/oaknational/Oak-Web-Application/commit/eab0c1aa816764db42b0b203b340bf95f92403ff))
+* added xmlCompact(...) to fix .xlsx in pages ([ae522ea](https://github.com/oaknational/Oak-Web-Application/commit/ae522ea2d85c3fc1f6c066a0735624fedf97301b))
+* amend pa11y rules to resolve CI error ([ce57522](https://github.com/oaknational/Oak-Web-Application/commit/ce5752275df505637d4d832656fdef680c6afff1))
+* bad conflict resolving of ENABLE_NC_XLSX_DOCUMENT ([efd13c6](https://github.com/oaknational/Oak-Web-Application/commit/efd13c6782897e53efb571b88aeec5d3a0684ad1))
+* changed Core/GCSE in NC worksheet title ([2cb67ed](https://github.com/oaknational/Oak-Web-Application/commit/2cb67ed36a79765e789f812f06f9680cc195bb1b))
+* design review fixes ([0709887](https://github.com/oaknational/Oak-Web-Application/commit/0709887db61d07ec11505b2681c98fafcfc75ace))
+* fixes for ks3 in generateYearTitle(...) ([b0ea4b5](https://github.com/oaknational/Oak-Web-Application/commit/b0ea4b5c6f2da5e4f0989406d7cbc1d32fc5b076))
+* remove cell compact as it's causing whitespace issues ([e469b13](https://github.com/oaknational/Oak-Web-Application/commit/e469b13a399da78431deb9ab4225f31cb6c91bbe))
+* set ENABLE_NC_XLSX_DOCUMENT to false ([1090f88](https://github.com/oaknational/Oak-Web-Application/commit/1090f88354c41aec6aa3930f6d5a91b70a16f2d6))
+* set initial download state to availableDownloadTypes ([e285964](https://github.com/oaknational/Oak-Web-Application/commit/e285964803dc50c1e7b5472fd7acfb2642835196))
+* swimming all-years ordering fix ([eb53133](https://github.com/oaknational/Oak-Web-Application/commit/eb5313332d51cfffa9bde58cbac25a3b076da012))
+* trim whitespace from XML nodes ([1c01fc1](https://github.com/oaknational/Oak-Web-Application/commit/1c01fc1a3975f67ca9ffca6bb413ef2a7d5445ef))
+* type issues ([45a8523](https://github.com/oaknational/Oak-Web-Application/commit/45a85237342c99dbe4a1195adcb6a6988aa18e9c))
+* unit numbers and year sorting in NC document ([93972d7](https://github.com/oaknational/Oak-Web-Application/commit/93972d7880be52f121a0b685593929c6924faa31))
+
+
+### Features
+
+* added correct filenames for docx/xlsx ([23537b2](https://github.com/oaknational/Oak-Web-Application/commit/23537b2705d1df428e2800f099e483d3959c358a))
+* added hash to output filename of zip based on contents ([1b14a67](https://github.com/oaknational/Oak-Web-Application/commit/1b14a677fbc9d125818347b44dd1808d979472d8))
+* added hyperlinks to units in NC xlsx ([8e770ee](https://github.com/oaknational/Oak-Web-Application/commit/8e770ee8675a52791fcd728b47bdc65ae6c4f862))
+* added in subject category grouping ([4e50fc0](https://github.com/oaknational/Oak-Web-Application/commit/4e50fc05b957678d578fd86fa48153f28f4c1082))
+* added missing nationalCurriculum to fixtures ([431af6f](https://github.com/oaknational/Oak-Web-Application/commit/431af6f209cf7af96397e890f10fd2414fd137bb))
+* added subject-category grouping to NC document (.xlsx) ([e5cae7d](https://github.com/oaknational/Oak-Web-Application/commit/e5cae7dfdd135b4bd314dd9572130eec1634344a))
+* added unit optionality to NC downloads ([bbb4f88](https://github.com/oaknational/Oak-Web-Application/commit/bbb4f887e0b2dcc2a4a29fd709f106aa9c4f9b7d))
+* allow download of multiple files from curric downloads ([7bf394d](https://github.com/oaknational/Oak-Web-Application/commit/7bf394ddef37dfb294e5736f8f27a4fb8f9bb801))
+* disable NC document downloads for subjects without NC ([259d36b](https://github.com/oaknational/Oak-Web-Application/commit/259d36b8e5b16d525068c23f831b64ced5f7c96e))
+* initial national curric xlsx download work ([493f7c1](https://github.com/oaknational/Oak-Web-Application/commit/493f7c1178c75f5db774494c4c77b258bfd96a8f))
+* initial work untangling fixed indexes into references ([6e7f881](https://github.com/oaknational/Oak-Web-Application/commit/6e7f881f98a4d325788a48795a450e8ff0342c1d))
+* more xlsx experimenting ([440be91](https://github.com/oaknational/Oak-Web-Application/commit/440be91fa179c9ec4dfa0ea76daadac2036a26fd))
+* multiple files from curric downloads now downloaded as a zip ([0d4ef2e](https://github.com/oaknational/Oak-Web-Application/commit/0d4ef2e3d25c59e35f93bd39920fb3254bfc355a))
+* national-curric .xlsx improvements + UI for downloading ([e0de7fa](https://github.com/oaknational/Oak-Web-Application/commit/e0de7fa5f30ed797f9fc28ff90f83068ede689b3))
+* update getFilename to support NC alignment xlsx file ([5d8d03d](https://github.com/oaknational/Oak-Web-Application/commit/5d8d03ded6ece3016fb3c43ecd6451268bf9c2ff))
+* update Oak components to include new icons ([197e852](https://github.com/oaknational/Oak-Web-Application/commit/197e852294cd52de941736687d08c4fc5f7219df))
+* use new icons for NC and curric plan downloads ([e826c97](https://github.com/oaknational/Oak-Web-Application/commit/e826c97c06a421c8d0f8159a66979dde5fc24a09))
+
+# [1.836.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.835.0...v1.836.0) (2025-08-20)
+
+
+### Bug Fixes
+
+* update copyright banner text and improve onboarding condition logic ([95635e0](https://github.com/oaknational/Oak-Web-Application/commit/95635e0d23e9b870f4a58c446689b520c008b2b1))
+
+
+### Features
+
+* hide content from non onboarded users on overview and d/l pages ([ead4903](https://github.com/oaknational/Oak-Web-Application/commit/ead4903ceb75a8e513b0899c216467a4e92323a2))
+* restrict media page ([90f949d](https://github.com/oaknational/Oak-Web-Application/commit/90f949d2bbb0c92dfdc43c4586e4f18c08ca90d8))
+
+# [1.835.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.834.2...v1.835.0) (2025-08-19)
+
+
+### Bug Fixes
+
+* use different ids for desktop and mobile transcript elements ([5dea50b](https://github.com/oaknational/Oak-Web-Application/commit/5dea50b8c6a0c07e2d03d2a03da7a653528d368f))
+
+
+### Features
+
+* add urls to pa11y ([2326fb0](https://github.com/oaknational/Oak-Web-Application/commit/2326fb0ce48875be8da8a3da0c49cab692116fa2))
+
 ## [1.834.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.834.1...v1.834.2) (2025-08-19)
 
 ## [1.834.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.834.0...v1.834.1) (2025-08-19)
