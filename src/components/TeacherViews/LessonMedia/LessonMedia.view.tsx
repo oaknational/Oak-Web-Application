@@ -94,13 +94,16 @@ export const LessonMedia = (props: LessonMediaProps) => {
     showSignedOutLoginRequired,
     showSignedOutGeoRestricted,
     showGeoBlocked,
+    showSignedInNotOnboarded,
   } = useCopyrightRequirements({
     loginRequired,
     geoRestricted,
   });
 
   const showRestricted =
-    showSignedOutLoginRequired || showSignedOutGeoRestricted;
+    showSignedOutLoginRequired ||
+    showSignedOutGeoRestricted ||
+    showSignedInNotOnboarded;
 
   const subjectSlug = isCanonical
     ? (lesson?.pathways[0]?.subjectSlug ?? "")
