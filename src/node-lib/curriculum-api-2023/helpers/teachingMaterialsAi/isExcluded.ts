@@ -17,7 +17,7 @@ export const isExcludedFromTeachingMaterials = (
 ): boolean => {
   const excludedFromTeachingMaterials = worksList.length > 0;
   const hasRestrictedId = isRestrictedLessonId(browseData.lessonUid);
-  const hasRestrictedContent = content
+  const hasRestrictedContentGuidanceThemes = content
     ? hasRestrictedContentGuidance(content.contentGuidance)
     : false;
   const isLegacy = content.isLegacy ?? false;
@@ -25,7 +25,7 @@ export const isExcludedFromTeachingMaterials = (
   return (
     excludedFromTeachingMaterials ||
     hasRestrictedId ||
-    hasRestrictedContent ||
+    hasRestrictedContentGuidanceThemes ||
     isLegacy
   );
 };

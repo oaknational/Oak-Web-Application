@@ -4,17 +4,12 @@ import {
   OakIcon,
   OakSmallPrimaryInvertedButton,
   OakSpan,
+  OakSmallSecondaryButtonWithDropdown,
 } from "@oaknational/oak-components";
 
 import { LessonOverviewHeaderProps } from "../LessonOverviewHeader";
-import { LessonOverviewDropdownNavButton } from "../LessonOverviewDropdownNavButton/LessonOverviewDropdownNavButton";
 
 import { resolveOakHref } from "@/common-lib/urls";
-
-export type LessonOverviewCreateWithAiNavProps = {
-  lessonSlug: string;
-  programmeSlug: string;
-};
 
 export const LessonOverviewCreateWithAiNav = ({
   lessonSlug,
@@ -23,86 +18,121 @@ export const LessonOverviewCreateWithAiNav = ({
   trackTeachingMaterialsSelected,
 }: LessonOverviewHeaderProps) => {
   return (
-    <LessonOverviewDropdownNavButton
-      primaryActionText={"Create more with AI"}
+    <OakSmallSecondaryButtonWithDropdown
+      primaryActionText="Create more with AI"
       onPrimaryAction={trackCreateWithAiButtonClicked}
-      footer={
-        <>
-          <OakSmallPrimaryInvertedButton
-            element="a"
-            href="https://www.oaknationalacademy.com/ai"
-            target="_blank"
-          >
-            <OakFlex $flexDirection={"column"}>
-              <OakSpan>Learn more about Aila, Oak's AI </OakSpan>
-              <OakFlex $alignItems={"center"}>
-                <OakSpan>lesson assistant </OakSpan>
-                <OakIcon iconHeight="all-spacing-6" iconName="external" />
-              </OakFlex>
-            </OakFlex>
-          </OakSmallPrimaryInvertedButton>
-        </>
+      leadingButtonIcon={
+        <OakFlex
+          $borderRadius={"border-radius-s"}
+          $ph={"inner-padding-ssx"}
+          $mr={"space-between-ssx"}
+          $background={"lemon"}
+          $alignItems={"center"}
+          $justifyContent={"center"}
+          $pr={"inner-padding-ssx"}
+        >
+          <OakIcon
+            $height={"all-spacing-4"}
+            $width={"all-spacing-4"}
+            iconName={"ai"}
+          />
+          <OakSpan $font="body-3">{"New"}</OakSpan>
+        </OakFlex>
       }
-      leadingItemIcon="ai"
-      isNew={true}
-      items={[
-        {
-          label: "Glossary",
-          onClick: () =>
-            trackTeachingMaterialsSelected &&
-            trackTeachingMaterialsSelected("glossary"),
-          href: resolveOakHref({
-            page: "labs-teaching-materials",
-            query: {
-              lessonSlug,
-              programmeSlug,
-              docType: "additional-glossary",
-            },
-          }),
-        },
-        {
-          label: "Comprehension task",
-          onClick: () =>
-            trackTeachingMaterialsSelected &&
-            trackTeachingMaterialsSelected("comprehension task"),
-          href: resolveOakHref({
-            page: "labs-teaching-materials",
-            query: {
-              lessonSlug,
-              programmeSlug,
-              docType: "additional-comprehension",
-            },
-          }),
-        },
-        {
-          label: "Exit quiz",
-          onClick: () =>
-            trackTeachingMaterialsSelected &&
-            trackTeachingMaterialsSelected("exit quiz"),
-          href: resolveOakHref({
-            page: "labs-teaching-materials",
-            query: {
-              lessonSlug,
-              programmeSlug,
-              docType: "additional-exit-quiz",
-            },
-          }),
-        },
-        {
-          label: "Starter quiz",
-          onClick: () =>
-            trackTeachingMaterialsSelected &&
-            trackTeachingMaterialsSelected("starter quiz"),
-          href: resolveOakHref({
-            page: "labs-teaching-materials",
-            query: {
-              lessonSlug,
-              programmeSlug,
-              docType: "additional-starter-quiz",
-            },
-          }),
-        },
-      ]}
-    />
+    >
+      <OakSmallSecondaryButtonWithDropdown.Item
+        iconName="external"
+        aria-label="Glossary"
+        element="a"
+        href={resolveOakHref({
+          page: "labs-teaching-materials",
+          query: {
+            lessonSlug,
+            programmeSlug,
+            docType: "additional-glossary",
+          },
+        })}
+        onClick={() =>
+          trackTeachingMaterialsSelected &&
+          trackTeachingMaterialsSelected("glossary")
+        }
+      >
+        Glossary
+      </OakSmallSecondaryButtonWithDropdown.Item>
+      <OakSmallSecondaryButtonWithDropdown.Item
+        iconName="external"
+        aria-label="Comprehension task"
+        element="a"
+        href={resolveOakHref({
+          page: "labs-teaching-materials",
+          query: {
+            lessonSlug,
+            programmeSlug,
+            docType: "additional-comprehension",
+          },
+        })}
+        onClick={() =>
+          trackTeachingMaterialsSelected &&
+          trackTeachingMaterialsSelected("comprehension task")
+        }
+      >
+        Comprehension task
+      </OakSmallSecondaryButtonWithDropdown.Item>
+      <OakSmallSecondaryButtonWithDropdown.Item
+        iconName="external"
+        element="a"
+        aria-label="More starter quiz questions"
+        href={resolveOakHref({
+          page: "labs-teaching-materials",
+          query: {
+            lessonSlug,
+            programmeSlug,
+            docType: "additional-starter-quiz",
+          },
+        })}
+        onClick={() =>
+          trackTeachingMaterialsSelected &&
+          trackTeachingMaterialsSelected("starter quiz")
+        }
+      >
+        More starter quiz questions
+      </OakSmallSecondaryButtonWithDropdown.Item>
+      <OakSmallSecondaryButtonWithDropdown.Item
+        iconName="external"
+        element="a"
+        aria-label="More exit quiz questions"
+        href={resolveOakHref({
+          page: "labs-teaching-materials",
+          query: {
+            lessonSlug,
+            programmeSlug,
+            docType: "additional-exit-quiz",
+          },
+        })}
+        onClick={() =>
+          trackTeachingMaterialsSelected &&
+          trackTeachingMaterialsSelected("exit quiz")
+        }
+      >
+        More exit quiz questions
+      </OakSmallSecondaryButtonWithDropdown.Item>
+
+      <OakSmallSecondaryButtonWithDropdown.Divider />
+
+      <OakSmallPrimaryInvertedButton
+        element="a"
+        href="https://www.oaknationalacademy.com/ai"
+        target="_blank"
+        $whiteSpace={"normal"}
+      >
+        <OakFlex $font={"body-3"} $flexDirection={"column"}>
+          <OakSpan>Learn more about Aila, Oak's AI </OakSpan>
+          <OakFlex $font={"body-3"} $alignItems={"center"}>
+            <OakSpan>lesson assistant </OakSpan>
+            <OakIcon iconHeight="all-spacing-6" iconName="external" />
+          </OakFlex>
+        </OakFlex>
+      </OakSmallPrimaryInvertedButton>
+    </OakSmallSecondaryButtonWithDropdown>
   );
 };
