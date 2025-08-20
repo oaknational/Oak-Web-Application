@@ -12,6 +12,7 @@ describe("LessonMediaClipInfo component", () => {
         keyStageTitle="Key stage 2"
         yearTitle="Year 2"
         subjectTitle="Maths"
+        isMobile={false}
       />,
     );
     const clipTitle = getByText("Clip title");
@@ -34,6 +35,7 @@ describe("LessonMediaClipInfo component", () => {
           yearTitle="Year 2"
           subjectTitle="Maths"
           videoTranscript={videoTranscript}
+          isMobile={false}
         />
       </OakThemeProvider>,
     );

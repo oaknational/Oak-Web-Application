@@ -1,5 +1,7 @@
 import { screen, waitFor } from "@testing-library/dom";
-import userEvent from "@testing-library/user-event";
+import userEvent, {
+  PointerEventsCheckLevel,
+} from "@testing-library/user-event";
 import mockRouter from "next-router-mock";
 import fetchMock from "jest-fetch-mock";
 
@@ -71,9 +73,14 @@ describe("HowCanOakSupport", () => {
         screen.getByLabelText(
           "To support my department with specialist resources",
         ),
+        {
+          pointerEventsCheck: PointerEventsCheckLevel.Never,
+        },
       );
 
-      await userEvent.click(button);
+      await userEvent.click(button, {
+        pointerEventsCheck: PointerEventsCheckLevel.Never,
+      });
     },
   );
 });

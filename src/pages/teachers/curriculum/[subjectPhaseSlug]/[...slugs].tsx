@@ -180,6 +180,12 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
     filters,
   ]);
 
+  const tabAnchor = useMemo(() => {
+    if (tab === "units") return "#curriculum-units";
+    if (tab === "overview") return "#curriculum-overview";
+    return "#curriculum-downloads";
+  }, [tab]);
+
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <AppLayout
@@ -207,6 +213,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
           ...additionalSeo,
         }}
         $background={"white"}
+        skipLinkHref={tabAnchor}
       >
         <CurriculumHeader
           tab={tab}
