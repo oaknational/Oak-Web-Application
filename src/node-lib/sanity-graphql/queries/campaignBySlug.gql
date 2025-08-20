@@ -1,0 +1,55 @@
+query campaignBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
+  allCampaignPage(
+    where: { _: $isDraftFilter, slug: { current: { eq: $slug } } }
+    sort: { _updatedAt: DESC }
+    limit: 1
+  ) {
+    id: _id
+    title
+    slug {
+      current
+    }
+    header {
+      heading
+      image {
+        ...ImageWithAltText
+      }
+      subheading
+    }
+    content {
+      ... on CampaignIntro {
+        type: __typename
+        headingPortableTextWithPromo: headingRaw
+        bodyPortableTextWithPromo: bodyRaw
+      }
+      ... on NewsletterSignUp {
+        type: __typename
+        heading
+        bodyPortableText: bodyRaw
+        buttonCta
+        formId
+      }
+      ... on CampaignVideoBanner {
+        type: __typename
+        headingPortableTextWithPromo: headingRaw
+        subheadingPortableTextWithPromo: subheadingRaw
+        video {
+          ...Video
+        }
+      }
+      ... on CampaignPromoBanner {
+        type: __typename
+        headingPortableTextWithPromo: headingRaw
+        bodyPortableTextWithPromo: bodyRaw
+        media {
+          ...ImageWithAltText
+          ...Video
+        }
+        buttonCta
+      }
+    }
+    seo {
+      ...Seo
+    }
+  }
+}
