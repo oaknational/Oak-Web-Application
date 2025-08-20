@@ -44,6 +44,7 @@ export const LessonOverviewCreateWithAiNav = ({
         iconName="external"
         aria-label="Glossary"
         element="a"
+        target="_blank"
         href={resolveOakHref({
           page: "labs-teaching-materials",
           query: {
@@ -63,6 +64,7 @@ export const LessonOverviewCreateWithAiNav = ({
         iconName="external"
         aria-label="Comprehension task"
         element="a"
+        target="_blank"
         href={resolveOakHref({
           page: "labs-teaching-materials",
           query: {
@@ -81,6 +83,7 @@ export const LessonOverviewCreateWithAiNav = ({
       <OakSmallSecondaryButtonWithDropdown.Item
         iconName="external"
         element="a"
+        target="_blank"
         aria-label="More starter quiz questions"
         href={resolveOakHref({
           page: "labs-teaching-materials",
@@ -100,6 +103,7 @@ export const LessonOverviewCreateWithAiNav = ({
       <OakSmallSecondaryButtonWithDropdown.Item
         iconName="external"
         element="a"
+        target="_blank"
         aria-label="More exit quiz questions"
         href={resolveOakHref({
           page: "labs-teaching-materials",

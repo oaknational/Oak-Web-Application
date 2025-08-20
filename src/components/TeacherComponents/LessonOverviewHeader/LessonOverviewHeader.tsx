@@ -3,18 +3,11 @@ import {
   OakColorFilterToken,
   OakColorToken,
 } from "@oaknational/oak-components";
-import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
-import {
-  LessonOverviewHeaderMobile,
-  LessonOverviewHeaderMobileB,
-} from "@/components/TeacherComponents/LessonOverviewHeaderMobile";
-import {
-  LessonOverviewHeaderDesktop,
-  LessonOverviewHeaderDesktopB,
-} from "@/components/TeacherComponents/LessonOverviewHeaderDesktop";
+import { LessonOverviewHeaderMobile } from "@/components/TeacherComponents/LessonOverviewHeaderMobile";
+import { LessonOverviewHeaderDesktop } from "@/components/TeacherComponents/LessonOverviewHeaderDesktop";
 import {
   AnalyticsUseCaseValueType,
   TeachingMaterialTypeValueType,
@@ -77,19 +70,11 @@ export type LessonOverviewHeaderProps = {
 
 const LessonOverviewHeader: FC<LessonOverviewHeaderProps> = (props) => {
   const { breadcrumbs, background } = props;
-  const isSignpostExperiment =
-    useFeatureFlagVariantKey("lesson-overview-signposting-experiment") ===
-    "test";
-  const DesktopHeader = isSignpostExperiment
-    ? LessonOverviewHeaderDesktopB
-    : LessonOverviewHeaderDesktop;
-  const MobileHeader = isSignpostExperiment
-    ? LessonOverviewHeaderMobileB
-    : LessonOverviewHeaderMobile;
+
   return (
     <LessonHeaderWrapper breadcrumbs={breadcrumbs} background={background}>
-      <DesktopHeader {...props} />
-      <MobileHeader {...props} />
+      <LessonOverviewHeaderDesktop {...props} />
+      <LessonOverviewHeaderMobile {...props} />
     </LessonHeaderWrapper>
   );
 };

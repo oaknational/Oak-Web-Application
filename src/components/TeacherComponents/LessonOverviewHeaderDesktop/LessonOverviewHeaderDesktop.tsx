@@ -73,6 +73,12 @@ export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
   const isCreateWithAiEnabled =
     useFeatureFlagVariantKey("create-with-ai-button") === "test";
 
+  console.log(
+    "isCreateWithAiEnabled",
+    isCreateWithAiEnabled,
+    useFeatureFlagVariantKey("create-with-ai-button"),
+  );
+
   return (
     <OakBox $display={["none", "grid"]}>
       <OakGrid>
