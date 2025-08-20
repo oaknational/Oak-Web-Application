@@ -1,3 +1,16 @@
+# [1.836.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.835.0...v1.836.0) (2025-08-20)
+
+
+### Bug Fixes
+
+* update copyright banner text and improve onboarding condition logic ([95635e0](https://github.com/oaknational/Oak-Web-Application/commit/95635e0d23e9b870f4a58c446689b520c008b2b1))
+
+
+### Features
+
+* hide content from non onboarded users on overview and d/l pages ([ead4903](https://github.com/oaknational/Oak-Web-Application/commit/ead4903ceb75a8e513b0899c216467a4e92323a2))
+* restrict media page ([90f949d](https://github.com/oaknational/Oak-Web-Application/commit/90f949d2bbb0c92dfdc43c4586e4f18c08ca90d8))
+
 # [1.835.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.834.2...v1.835.0) (2025-08-19)
 
 
