@@ -22,7 +22,7 @@ export type CampaignSinglePageProps = {
   campaign: CampaignPage;
 };
 
-const textComponents: PortableTextComponents = {
+const h2: PortableTextComponents = {
   block: {
     normal: (props) => {
       return (
@@ -48,7 +48,7 @@ const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
           return (
             <PortableTextWithDefaults
               value={content.headingPortableTextWithPromo}
-              components={textComponents}
+              components={h2}
             />
           );
         }
