@@ -6,7 +6,10 @@ import { DOWNLOAD_TYPES } from "./helper";
 import CurriculumDownloadView, { CurriculumDownloadViewData } from ".";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import { DISABLE_DOWNLOADS } from "@/utils/curriculum/constants";
+import {
+  DISABLE_DOWNLOADS,
+  ENABLE_NC_XLSX_DOCUMENT,
+} from "@/utils/curriculum/constants";
 
 const render = renderWithProviders();
 
@@ -311,7 +314,7 @@ describe("CurriculumDownloadView", () => {
         );
 
         const resourceCards = getAllByTestId("resourceCard");
-        expect(resourceCards).toHaveLength(2);
+        expect(resourceCards).toHaveLength(ENABLE_NC_XLSX_DOCUMENT ? 2 : 1);
         resourceCards.forEach((card) => {
           const checkbox = card.querySelector('input[type="checkbox"]');
           expect(checkbox).toBeChecked();
