@@ -1,6 +1,9 @@
 import { GetServerSidePropsContext } from "next";
 
-import { getServerSideProps } from "@/pages/campaigns/[campaignSlug]";
+import CampaignSinglePage, {
+  getServerSideProps,
+} from "@/pages/campaigns/[campaignSlug]";
+import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 
 const campaignBySlug = jest.fn().mockResolvedValue({
   title: "Test Campaign",
@@ -74,6 +77,31 @@ describe("Campaign page", () => {
           title: "Test Campaign",
         },
       },
+    });
+  });
+  it("renders the correct SEO props", () => {
+    const { seo } = renderWithSeo()(
+      <CampaignSinglePage
+        campaign={{
+          id: "test-campaign-id",
+          title: "Test Campaign",
+          slug: "test-campaign",
+          header: {
+            heading: "Heading",
+            image: {},
+          },
+          content: [],
+          seo: {
+            title: "Test Campaign SEO Title",
+            description: "Test Campaign SEO Description",
+          },
+        }}
+      />,
+    );
+
+    expect(seo).toMatchObject({
+      title: "Test Campaign SEO Title | NEXT_PUBLIC_SEO_APP_NAME",
+      description: "Test Campaign SEO Description",
     });
   });
 });

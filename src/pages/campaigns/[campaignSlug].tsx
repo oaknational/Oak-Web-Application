@@ -29,13 +29,17 @@ const h2: PortableTextComponents = {
 };
 
 const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
-  console.log("CampaignSinglePage props:", props);
-
   return (
     <AppLayout
-      seoProps={getSeoProps({
-        title: props.campaign.seo?.title || props.campaign.title,
-      })}
+      seoProps={{
+        ...getSeoProps({
+          ...props.campaign.seo,
+          title: props.campaign.seo?.title || props.campaign.title,
+          description: props.campaign.seo?.description,
+        }),
+        noIndex: true,
+        noFollow: true,
+      }}
     >
       {props.campaign.content.map((content) => {
         if (content.type === "CampaignIntro") {
