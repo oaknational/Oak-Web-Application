@@ -50,7 +50,11 @@ function getDeploymentTestUrls() {
     "/teachers/programmes/spanish-secondary-ks4-edexcel/units/travel-and-tourism-nuevas-experiencias/lessons",
     "/teachers/programmes/biology-secondary-ks4-higher-aqa/units/health-and-disease/lessons",
     "/teachers/programmes/history-primary-ks1/units/traditional-stories-what-do-they-tell-us-about-the-distant-past-1757/lessons", // optionality variant using null lessons
-    "/teachers/programmes/physical-education-primary-ks2/units/invasion-games-principles-of-attack-and-defence-through-ball-games/lessons/passing-and-receiving-skills",
+    "/teachers/programmes/physical-education-primary-ks2/units/invasion-games-principles-of-attack-and-defence-through-ball-games/lessons/passing-and-receiving-skills", // practical PE lesson
+    "/teachers/programmes/computing-primary-ks1/units/building-sequences-in-programs/lessons/building-blocks-to-create-a-sequence", // lesson with media clips and additional materials
+    "/teachers/programmes/computing-primary-ks1/units/digital-writing/lessons/comparing-digital-writing-to-using-a-pencil", // lesson with lesson files,
+    "/teachers/programmes/geography-secondary-ks4-edexcelb/units/global-inequalities/lessons", // incomplete unit
+    "/teachers/programmes/combined-science-secondary-ks4-foundation-aqa/units?page=2", // unit with pagination
     "/teachers/programmes/music-primary-ks2/units/compose-and-create-improvising-within-hindustani-classical-music/lessons/playing-taals-and-speaking-bols/media", // media clips page
     // Canonical lesson pages
     "/teachers/lessons/duncan-as-a-father-figure",

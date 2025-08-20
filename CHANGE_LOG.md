@@ -1,3 +1,28 @@
+# [1.836.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.835.0...v1.836.0) (2025-08-20)
+
+
+### Bug Fixes
+
+* update copyright banner text and improve onboarding condition logic ([95635e0](https://github.com/oaknational/Oak-Web-Application/commit/95635e0d23e9b870f4a58c446689b520c008b2b1))
+
+
+### Features
+
+* hide content from non onboarded users on overview and d/l pages ([ead4903](https://github.com/oaknational/Oak-Web-Application/commit/ead4903ceb75a8e513b0899c216467a4e92323a2))
+* restrict media page ([90f949d](https://github.com/oaknational/Oak-Web-Application/commit/90f949d2bbb0c92dfdc43c4586e4f18c08ca90d8))
+
+# [1.835.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.834.2...v1.835.0) (2025-08-19)
+
+
+### Bug Fixes
+
+* use different ids for desktop and mobile transcript elements ([5dea50b](https://github.com/oaknational/Oak-Web-Application/commit/5dea50b8c6a0c07e2d03d2a03da7a653528d368f))
+
+
+### Features
+
+* add urls to pa11y ([2326fb0](https://github.com/oaknational/Oak-Web-Application/commit/2326fb0ce48875be8da8a3da0c49cab692116fa2))
+
 ## [1.834.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.834.1...v1.834.2) (2025-08-19)
 
 ## [1.834.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.834.0...v1.834.1) (2025-08-19)
