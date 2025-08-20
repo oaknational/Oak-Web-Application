@@ -401,20 +401,26 @@ export const LessonMedia = (props: LessonMediaProps) => {
   );
 
   // media clip info component
-  const lessonMediaClipInfo = currentClip && subjectTitle && (
-    <LessonMediaClipInfo
-      clipTitle={
-        currentClip.customTitle
-          ? currentClip.customTitle
-          : currentClip.mediaObject.displayName
-      }
-      keyStageTitle={keyStageTitle}
-      yearTitle={yearTitle ?? ""}
-      subjectTitle={subjectTitle}
-      videoTranscript={joinTranscript(currentClip)}
-      copyLinkButtonEnabled={true}
-    />
-  );
+  const MediaClipInfo = ({ isMobile }: { isMobile: boolean }) => {
+    return (
+      currentClip &&
+      subjectTitle && (
+        <LessonMediaClipInfo
+          clipTitle={
+            currentClip.customTitle
+              ? currentClip.customTitle
+              : currentClip.mediaObject.displayName
+          }
+          keyStageTitle={keyStageTitle}
+          yearTitle={yearTitle ?? ""}
+          subjectTitle={subjectTitle}
+          videoTranscript={joinTranscript(currentClip)}
+          copyLinkButtonEnabled={true}
+          isMobile={isMobile}
+        />
+      )
+    );
+  };
 
   const helpArticleLink = (
     <OakTertiaryInvertedButton
@@ -523,7 +529,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
                   {videoPlayer}
                 </OakFlex>
                 <OakBox $display={["block", "block", "none"]} $width={"100%"}>
-                  {lessonMediaClipInfo}
+                  <MediaClipInfo isMobile />
                 </OakBox>
                 <OakBox
                   $width={["auto", "auto", "all-spacing-21"]}
@@ -537,7 +543,9 @@ export const LessonMedia = (props: LessonMediaProps) => {
                 $pb="inner-padding-xl4"
               >
                 <OakGrid>
-                  <OakGridArea $colSpan={8}>{lessonMediaClipInfo}</OakGridArea>
+                  <OakGridArea $colSpan={8}>
+                    <MediaClipInfo isMobile={false} />
+                  </OakGridArea>
                   <OakGridArea $colSpan={4} $alignItems={"flex-end"}>
                     {helpArticleLink}
                   </OakGridArea>

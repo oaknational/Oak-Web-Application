@@ -5,11 +5,22 @@ import {
   OakP,
   OakIcon,
   OakBox,
+  OakLink,
+  OakSpan,
 } from "@oaknational/oak-components";
+import styled from "styled-components";
 
 import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
-import OwaLink from "@/components/SharedComponents/OwaLink";
 import { PathwaySchemaCamel } from "@/context/Search/search.types";
+import { LessonOverviewLinkProps, resolveOakHref } from "@/common-lib/urls";
+
+const StyledOakLink = styled(OakLink)`
+  text-decoration: none;
+
+  :hover {
+    text-decoration: underline;
+  }
+`;
 
 const SearchDropdown: FC<
   SearchResultsItemProps & {
@@ -77,22 +88,24 @@ const SearchDropdown: FC<
                   $mb="space-between-none"
                   $textAlign="left"
                 >
-                  <OwaLink
-                    $color={"navy"}
-                    data-testid="search-dropdown-link"
-                    $font={"heading-7"}
-                    $width={"fit-content"}
-                    $focusStyles={["new-underline"]}
+                  <StyledOakLink
                     {...props.buttonLinkProps}
-                    programmeSlug={item.programmeSlug}
-                    unitSlug={item.unitSlug}
-                    onClick={(e) => {
+                    onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                       onClick?.({ ...props, isToggleOpen });
                       e.stopPropagation();
                     }}
+                    data-testid="search-dropdown-link"
+                    href={resolveOakHref({
+                      programmeSlug: item.programmeSlug,
+                      unitSlug: item.unitSlug,
+                      lessonSlug: (
+                        props.buttonLinkProps as LessonOverviewLinkProps
+                      )?.lessonSlug,
+                      page: props.buttonLinkProps.page,
+                    })}
                   >
-                    {buttonTitle}
-                  </OwaLink>
+                    <OakSpan $font="heading-7">{buttonTitle}</OakSpan>
+                  </StyledOakLink>
                 </OakLI>
               );
             })}

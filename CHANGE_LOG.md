@@ -1,3 +1,17 @@
+# [1.835.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.834.2...v1.835.0) (2025-08-19)
+
+
+### Bug Fixes
+
+* use different ids for desktop and mobile transcript elements ([5dea50b](https://github.com/oaknational/Oak-Web-Application/commit/5dea50b8c6a0c07e2d03d2a03da7a653528d368f))
+
+
+### Features
+
+* add urls to pa11y ([2326fb0](https://github.com/oaknational/Oak-Web-Application/commit/2326fb0ce48875be8da8a3da0c49cab692116fa2))
+
+## [1.834.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.834.1...v1.834.2) (2025-08-19)
+
 ## [1.834.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.834.0...v1.834.1) (2025-08-19)
 
 
