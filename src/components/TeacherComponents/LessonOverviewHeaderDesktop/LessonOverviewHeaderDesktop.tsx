@@ -7,9 +7,11 @@ import {
   OakSpan,
   OakFlex,
   OakBox,
+  OakTertiaryButton,
+  OakTagFunctional,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
-import { useFeatureFlagEnabled } from "posthog-js/react";
+import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import { LessonOverviewCreateWithAiNav } from "../LessonOverviewCreateWithAINav/LessonOverviewCreateWithAiNav";
 
@@ -19,13 +21,18 @@ import { LessonOverviewHeaderShareAllButton } from "@/components/TeacherComponen
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
 import CopyrightRestrictionBanner from "@/components/TeacherComponents/CopyrightRestrictionBanner/CopyrightRestrictionBanner";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
+import { resolveOakHref } from "@/common-lib/urls";
 
-const CustomDimensionFlex = styled(OakFlex)`
-  height: 200px;
+const CustomDimensionRow = styled(OakFlex)`
   width: 200px;
   @media (max-width: 1280px) {
-    height: 172px;
     width: 172px;
+  }
+`;
+const CustomDimensionSquare = styled(CustomDimensionRow)`
+  height: 200px;
+  @media (max-width: 1280px) {
+    height: 172px;
   }
 `;
 
@@ -45,36 +52,76 @@ export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
     isCanonical,
     phonicsOutcome,
     teacherShareButton,
+    orderInUnit,
+    unitTotalLessonCount,
+    breadcrumbs,
+    programmeSlug,
+    unitTitle,
     geoRestricted,
     loginRequired,
     isLegacy,
     lessonSlug,
     lessonReleaseDate,
-    unitTitle,
     unitSlug,
     excludedFromTeachingMaterials,
   } = props;
 
-  const isCreateWithAiEnabled = useFeatureFlagEnabled("create-with-ai-button");
+  const previousBreadcrumb = breadcrumbs[breadcrumbs.length - 2];
+  const shouldShowBackButton =
+    !!previousBreadcrumb && !!unitTitle && !!programmeSlug;
+
+  const isCreateWithAiEnabled =
+    useFeatureFlagVariantKey("create-with-ai-button") === "test";
 
   return (
     <OakBox $display={["none", "grid"]}>
       <OakGrid>
         <OakGridArea $justifyContent={"center"} $colSpan={[12, 3]}>
-          <CustomDimensionFlex>
-            <SubjectIconBrushBorders
-              subjectSlug={subjectSlug}
-              color={subjectIconBackgroundColor}
-              isNew={isNew}
-            />
-          </CustomDimensionFlex>
+          <OakFlex
+            $flexDirection={"column"}
+            $alignItems={"flex-start"}
+            $gap={"space-between-m2"}
+          >
+            {shouldShowBackButton && (
+              <CustomDimensionRow data-testid={"back-button-row"}>
+                <OakTertiaryButton
+                  element="a"
+                  href={
+                    "href" in previousBreadcrumb.oakLinkProps
+                      ? previousBreadcrumb.oakLinkProps.href
+                      : resolveOakHref(previousBreadcrumb.oakLinkProps)
+                  }
+                  iconName="arrow-left"
+                >
+                  View unit
+                </OakTertiaryButton>
+              </CustomDimensionRow>
+            )}
+            <CustomDimensionSquare>
+              <SubjectIconBrushBorders
+                subjectSlug={subjectSlug}
+                color={subjectIconBackgroundColor}
+                isNew={isNew}
+              />
+            </CustomDimensionSquare>
+          </OakFlex>
         </OakGridArea>
         <OakGridArea
-          $justifyContent={"center"}
+          $justifyContent={"flex-start"}
           $colSpan={[12, 9]}
           $alignItems={"flex-start"}
         >
           <OakFlex $flexDirection={"column"} $gap="all-spacing-2">
+            {shouldShowBackButton && (
+              <OakTagFunctional
+                data-testid={"lesson-count-tag"}
+                label={`Lesson ${orderInUnit} of ${unitTotalLessonCount}`}
+                $background={"bg-decorative4-main"}
+                $mb={"space-between-s"}
+                $width={"fit-content"}
+                useSpan={true}
+              />
+            )}
             {(examBoardTitle || yearTitle || tierTitle) && (
               <OakSpan $color={"grey60"} $font={"heading-light-7"}>
                 <LessonMetadata
