@@ -35,6 +35,7 @@ function getDeploymentTestUrls() {
     "/teachers/programmes/maths-secondary-ks4-foundation/units",
     "/teachers/programmes/computing-secondary-ks4-gcse-l/units",
     "/teachers/programmes/maths-secondary-ks4-foundation/units/algebraic-manipulation/lessons", // unit with tiers
+    "/teachers/programmes/history-secondary-ks4-aqa/units/period-studies-5163/lessons?page=2", // unit with pagination
     "/teachers/programmes/design-technology-secondary-ks3-l/units/packaging-pop-outs-bc35/lessons/designing-for-others-6mtk2t", // all yellow boxes
     "/teachers/programmes/maths-secondary-ks4-foundation/units/algebraic-manipulation/lessons/further-algebraic-terminology/downloads?preselected=slide+deck",
     "/teachers/search?term=equate&keyStages=ks4", // results with tier and examboard drop downs

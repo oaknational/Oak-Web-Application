@@ -1,7 +1,8 @@
 import { join } from "path";
 
-import { cdata, safeXml, xmlElementToJson } from "../xml";
-import { CombinedCurriculumData } from "..";
+import { cdata, safeXml } from "@ooxml-tools/xml";
+
+import { xmlElementToJson } from "../xml";
 import {
   appendBodyElements,
   cmToEmu,
@@ -14,6 +15,8 @@ import {
 import { createThreadOptions } from "../tab-helpers";
 
 import { generateGridCols, uncapitalizeSubject } from "./helper";
+
+import { CombinedCurriculumData } from "@/utils/curriculum/types";
 
 export default async function generate(
   zip: JSZipCached,
