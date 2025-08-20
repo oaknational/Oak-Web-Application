@@ -5,6 +5,8 @@ import { NextRequest } from "next/server";
 
 import { POST } from "./route";
 
+import { handleSessionCreatedEvent } from "@/utils/handleSessionCreatedEvent";
+
 const reportError = jest.fn();
 jest.mock("@/common-lib/error-reporter", () => ({
   __esModule: true,
@@ -37,7 +39,11 @@ jest.mock("@/node-lib/educator-api", () => ({
   }),
 }));
 
-describe("/api/auth/onboarding", () => {
+jest.mock("@/utils/handleSessionCreatedEvent", () => ({
+  handleSessionCreatedEvent: jest.fn(),
+}));
+
+describe("/api/webhooks", () => {
   let req: NextRequest;
   beforeEach(() => {
     jest.restoreAllMocks();
@@ -71,6 +77,41 @@ describe("/api/auth/onboarding", () => {
   test("returns 500 error when user update fails", async () => {
     mockCreateUser.mockRejectedValueOnce(new Error("Failed to create user"));
     const res = await POST(req);
+    expect(res.status).toBe(500);
+  });
+
+  test("does not call handleSessionCreatedEvent when type of event is user.updated", async () => {
+    mockVerify.mockReturnValue({
+      data: { id: "123" },
+      type: "user.updated",
+    });
+
+    await POST(req);
+
+    expect(handleSessionCreatedEvent).not.toHaveBeenCalled();
+  });
+
+  test("calls handleSessionCreatedEvent when type of event is session.created", async () => {
+    mockVerify.mockReturnValue({
+      data: { id: "123" },
+      type: "session.created",
+    });
+
+    await POST(req);
+
+    expect(handleSessionCreatedEvent).toHaveBeenCalled();
+  });
+
+  test("returns 500 error when the event handler throws", async () => {
+    mockVerify.mockReturnValue({
+      data: { id: "123" },
+      type: "session.created",
+    });
+    jest
+      .mocked(handleSessionCreatedEvent)
+      .mockRejectedValueOnce(new Error("Error"));
+    const res = await POST(req);
+
     expect(res.status).toBe(500);
   });
 });

@@ -126,12 +126,15 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     showGeoBlocked,
     showSignedOutLoginRequired,
     showSignedOutGeoRestricted,
+    showSignedInNotOnboarded,
   } = useCopyrightRequirements({
     loginRequired: loginRequired ?? false,
     geoRestricted: geoRestricted ?? false,
   });
   const downloadsRestricted =
-    showSignedOutGeoRestricted || showSignedOutLoginRequired;
+    showSignedOutGeoRestricted ||
+    showSignedOutLoginRequired ||
+    showSignedInNotOnboarded;
   downloads.forEach((download) => {
     if (download.type === "presentation") {
       download.label = "Lesson slides";
@@ -229,7 +232,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const { onSubmit } = useResourceFormSubmit({
     type: "download",
     isLegacyDownload,
-    authRequired: downloadsRestricted,
   });
 
   const { onHubspotSubmit } = useHubspotSubmit();

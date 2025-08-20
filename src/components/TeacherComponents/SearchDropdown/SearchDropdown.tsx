@@ -5,50 +5,34 @@ import {
   OakP,
   OakIcon,
   OakBox,
+  OakLink,
+  OakSpan,
 } from "@oaknational/oak-components";
+import styled from "styled-components";
 
 import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
-import OwaLink from "@/components/SharedComponents/OwaLink";
 import { PathwaySchemaCamel } from "@/context/Search/search.types";
+import { LessonOverviewLinkProps, resolveOakHref } from "@/common-lib/urls";
+
+const StyledOakLink = styled(OakLink)`
+  text-decoration: none;
+
+  :hover {
+    text-decoration: underline;
+  }
+`;
 
 const SearchDropdown: FC<
   SearchResultsItemProps & {
     isToggleOpen: boolean;
     isHovered: boolean;
+    label: string;
+    isExamBoardDropdown?: boolean;
+    isTierDropdown?: boolean;
+    dropdownContent: PathwaySchemaCamel[];
   }
 > = (props) => {
-  const { pathways, onClick, type, isToggleOpen, isHovered } = props;
-
-  const getSlug = (item: string | null | undefined) => item || "";
-
-  const examDropdownContent = pathways
-    .filter(({ examBoardSlug }) => examBoardSlug !== null)
-    .sort((a, b) => {
-      return (
-        getSlug(a.examBoardSlug).localeCompare(getSlug(b.examBoardSlug)) ||
-        getSlug(b.tierSlug).localeCompare(getSlug(a.tierSlug))
-      );
-    });
-
-  const tierDropdownContent = pathways
-    .filter(({ examBoardSlug, tierSlug }) => !examBoardSlug && tierSlug)
-    .sort((a, b) => {
-      return getSlug(b.tierSlug).localeCompare(getSlug(a.tierSlug));
-    });
-
-  const isExamBoardDropdown = examDropdownContent.length > 0;
-  const isTierDropdown = tierDropdownContent.length > 0;
-
-  const label = `Select ${
-    isExamBoardDropdown ? "exam board" : isTierDropdown ? "tier" : "unit"
-  }`;
-  const ariaLabel = `${label} for ${type}: ${props.title}`;
-
-  const dropDownContent = isExamBoardDropdown
-    ? examDropdownContent
-    : isTierDropdown
-      ? tierDropdownContent
-      : pathways;
+  const { onClick, isToggleOpen, isHovered, label, dropdownContent } = props;
 
   const getDropdownButtonTitle = (item: PathwaySchemaCamel) => {
     const examboardTitle = !!item.examBoardTitle;
@@ -72,7 +56,6 @@ const SearchDropdown: FC<
           $font="heading-7"
           $color={isToggleOpen ? "navy120" : "navy"}
           $textDecoration={isHovered && !isToggleOpen ? "underline" : "none"}
-          aria-label={ariaLabel}
         >
           {label}
         </OakP>
@@ -86,7 +69,7 @@ const SearchDropdown: FC<
         $display={isToggleOpen ? "block" : "none"}
         $transition="standard-ease"
       >
-        {dropDownContent.length > 0 && (
+        {dropdownContent.length > 0 && (
           <OakFlex
             as="ul"
             $mt="space-between-xs"
@@ -97,7 +80,7 @@ const SearchDropdown: FC<
             $pa="inner-padding-none"
             style={{ listStyleType: "none" }}
           >
-            {dropDownContent.map((item, index) => {
+            {dropdownContent.map((item, index) => {
               const buttonTitle = getDropdownButtonTitle(item);
               return (
                 <OakLI
@@ -105,22 +88,24 @@ const SearchDropdown: FC<
                   $mb="space-between-none"
                   $textAlign="left"
                 >
-                  <OwaLink
-                    $color={"navy"}
-                    data-testid="search-dropdown-link"
-                    $font={"heading-7"}
-                    $width={"fit-content"}
-                    $focusStyles={["new-underline"]}
+                  <StyledOakLink
                     {...props.buttonLinkProps}
-                    programmeSlug={item.programmeSlug}
-                    unitSlug={item.unitSlug}
-                    onClick={(e) => {
+                    onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                       onClick?.({ ...props, isToggleOpen });
                       e.stopPropagation();
                     }}
+                    data-testid="search-dropdown-link"
+                    href={resolveOakHref({
+                      programmeSlug: item.programmeSlug,
+                      unitSlug: item.unitSlug,
+                      lessonSlug: (
+                        props.buttonLinkProps as LessonOverviewLinkProps
+                      )?.lessonSlug,
+                      page: props.buttonLinkProps.page,
+                    })}
                   >
-                    {buttonTitle}
-                  </OwaLink>
+                    <OakSpan $font="heading-7">{buttonTitle}</OakSpan>
+                  </StyledOakLink>
                 </OakLI>
               );
             })}

@@ -1,10 +1,12 @@
 import { join } from "path";
 
-import { CombinedCurriculumData, Slugs } from "..";
+import { Slugs } from "..";
 import { generateEmptyDocx } from "../docx";
 
 import generate from "./1_frontCover";
 import { zipToSnapshotObject } from "./helper";
+
+import { CombinedCurriculumData } from "@/utils/curriculum/types";
 
 jest.mock("@/pages-helpers/curriculum/docx/builder/helper", () => ({
   __esModule: true,

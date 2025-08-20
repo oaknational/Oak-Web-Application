@@ -25,6 +25,7 @@ export const basicSetup: CurricVisualiserFiltersProps["data"] = {
       tiers: [],
       groupAs: null,
       isSwimming: false,
+      nationalCurriculum: [],
       subjectCategories: [subjectCat1, subjectCat2, subjectCat3],
       units: [
         createUnit({
@@ -45,6 +46,7 @@ export const basicSetup: CurricVisualiserFiltersProps["data"] = {
       tiers: [],
       groupAs: null,
       isSwimming: false,
+      nationalCurriculum: [],
       subjectCategories: [],
       units: [
         createUnit({
@@ -64,6 +66,7 @@ export const basicSetup: CurricVisualiserFiltersProps["data"] = {
       tiers: [],
       groupAs: null,
       isSwimming: false,
+      nationalCurriculum: [],
       subjectCategories: [],
       units: [
         createUnit({
@@ -87,6 +90,7 @@ export const basicSetup: CurricVisualiserFiltersProps["data"] = {
       tiers: [tierFoundation, tierHigher],
       groupAs: null,
       isSwimming: false,
+      nationalCurriculum: [],
       subjectCategories: [],
       units: [
         createUnit({
@@ -112,6 +116,7 @@ export const basicSetup: CurricVisualiserFiltersProps["data"] = {
       tiers: [],
       groupAs: null,
       isSwimming: false,
+      nationalCurriculum: [],
       subjectCategories: [],
       units: [
         createUnit({

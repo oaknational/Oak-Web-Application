@@ -2,12 +2,12 @@ import {
   OakBox,
   OakFieldError,
   OakFlex,
+  OakFlexProps,
   OakHeading,
   OakLI,
   OakP,
   OakPrimaryButton,
   OakUL,
-  OakFlexProps,
 } from "@oaknational/oak-components";
 import { FormEvent, useId, useState } from "react";
 import styled from "styled-components";
@@ -18,7 +18,7 @@ import Terms from "../OakComponentsKitchen/Terms";
 
 import { submitSchema } from "./schema";
 import { DownloadType, School, runSchema } from "./helper";
-import { CurriculumResourcesSelector } from "./CurriculumResourcesSelector";
+import { CurriculumDownloadSelection } from "./CurriculumDownloadSelection";
 
 import spacing, { SpacingProps } from "@/styles/utils/spacing";
 import ResourcePageDetailsCompleted from "@/components/TeacherComponents/ResourcePageDetailsCompleted";
@@ -32,7 +32,7 @@ export type CurriculumDownloadViewData = {
   schoolId?: string;
   schoolName?: string;
   email?: string;
-  downloadType: DownloadType;
+  downloadTypes: DownloadType[];
   termsAndConditions?: boolean;
   schoolNotListed?: boolean;
 };
@@ -50,8 +50,9 @@ type SignedOutFlowProps = {
   schools: School[];
   onChange?: (value: CurriculumDownloadViewData) => void;
   onSubmit?: (value: CurriculumDownloadViewData) => void;
-  downloadType: DownloadType;
-  onChangeDownloadType: (newDownloadType: DownloadType) => void;
+  downloadTypes: DownloadType[];
+  onChangeDownloadTypes: (newDownloadType: DownloadType[]) => void;
+  availableDownloadTypes: DownloadType[];
 };
 export default function SignedOutFlow({
   schools,
@@ -59,8 +60,9 @@ export default function SignedOutFlow({
   onChange,
   onSubmit,
   isSubmitting,
-  downloadType,
-  onChangeDownloadType,
+  downloadTypes,
+  onChangeDownloadTypes,
+  availableDownloadTypes,
 }: SignedOutFlowProps) {
   const errorMessageListId = useId();
   const [errors, setErrors] = useState<CurriculumDownloadViewErrors>({});
@@ -80,14 +82,19 @@ export default function SignedOutFlow({
       const newSubmitValidatioResults = runSchema(submitSchema, data);
       setErrors(newSubmitValidatioResults.errors);
       if (newSubmitValidatioResults.success) {
-        onSubmit(data);
+        onSubmit({
+          ...data,
+          downloadTypes,
+        });
       }
     }
   };
 
   const [isComplete, setIsComplete] = useState(() => {
     return (
-      (Boolean(data.schoolId?.length) || Boolean(data.email?.length)) &&
+      (Boolean(data.schoolId?.length) ||
+        data.schoolNotListed === true ||
+        Boolean(data.email?.length)) &&
       data.termsAndConditions
     );
   });
@@ -97,10 +104,11 @@ export default function SignedOutFlow({
       $gap={["space-between-m2", "space-between-l"]}
       $flexDirection={["column", "row"]}
     >
-      <OakBox $width={["100%", "all-spacing-21"]} $textAlign={"left"}>
-        <CurriculumResourcesSelector
-          downloadType={downloadType}
-          onChangeDownloadType={onChangeDownloadType}
+      <OakBox $width={["100%", "all-spacing-20"]} $textAlign={"left"}>
+        <CurriculumDownloadSelection
+          downloadTypes={downloadTypes}
+          onChange={onChangeDownloadTypes}
+          availableDownloadTypes={availableDownloadTypes}
         />
       </OakBox>
 
@@ -178,7 +186,7 @@ export default function SignedOutFlow({
                   aria-errormessage={errorMessageListId}
                   isLoading={isSubmitting}
                   type="submit"
-                  disabled={false}
+                  disabled={downloadTypes.length < 1}
                   iconName="download"
                   isTrailingIcon={true}
                 >

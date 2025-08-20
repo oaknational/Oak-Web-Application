@@ -90,7 +90,7 @@ const SignedOutCopyrightBanner = ({
                 query: { returnTo: router.asPath },
               })}
             >
-              sign in.
+              complete sign up.
             </OakSecondaryLink>
           ) : (
             <SignUpButton
@@ -222,15 +222,11 @@ const CopyrightRestrictionBanner = (props: CopyrightRestrictionBannerProps) => {
     showSignedOutLoginRequired ||
     showSignedInNotOnboarded;
 
-  const showOnboardingLink =
-    showSignedInNotOnboarded &&
-    !(showSignedOutGeoRestricted || showSignedOutLoginRequired);
-
   return showGeoBlocked ? (
     <SignedInGeorestrictedBanner isUnit={isUnit} />
   ) : showSignedOutCopyrightBanner ? (
     <SignedOutCopyrightBanner
-      showOnboardingLink={showOnboardingLink}
+      showOnboardingLink={showSignedInNotOnboarded}
       isGeorestricted={isGeorestricted ?? false}
       isUnit={isUnit}
     />

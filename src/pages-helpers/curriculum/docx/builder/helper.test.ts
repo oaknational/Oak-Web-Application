@@ -1,7 +1,6 @@
 import { generateOakIconURL } from "@oaknational/oak-components";
 
 import { xmlRootToJson } from "../xml";
-import { CombinedCurriculumData } from "..";
 
 import {
   generateGridCols,
@@ -19,7 +18,7 @@ import {
 } from "./helper";
 
 import { createUnit } from "@/fixtures/curriculum/unit";
-import { Unit } from "@/utils/curriculum/types";
+import { CombinedCurriculumData, Unit } from "@/utils/curriculum/types";
 
 describe("helper", () => {
   it("uncapitalize", async () => {

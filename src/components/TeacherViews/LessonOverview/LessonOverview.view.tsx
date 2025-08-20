@@ -131,13 +131,17 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     showSignedOutGeoRestricted,
     showSignedOutLoginRequired,
     showGeoBlocked,
+    showSignedInNotOnboarded,
   } = useCopyrightRequirements({
     loginRequired,
     geoRestricted,
   });
 
   const contentRestricted =
-    showSignedOutGeoRestricted || showSignedOutLoginRequired || showGeoBlocked;
+    showSignedOutGeoRestricted ||
+    showSignedOutLoginRequired ||
+    showGeoBlocked ||
+    showSignedInNotOnboarded;
 
   const isSubHeader =
     useFeatureFlagVariantKey("lesson-overview-subheader-experiment") === "test";
