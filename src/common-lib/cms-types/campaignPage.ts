@@ -35,7 +35,8 @@ export const campaignPageSchema = z
         z.object({
           type: z.literal("CampaignPromoBanner"),
           headingPortableTextWithPromo: portableTextSchema,
-          bodyPortableTextWithPromo: portableTextSchema,
+          bodyPortableTextWithPromo: portableTextSchema.nullish(),
+          subheadingPortableTextWithPromo: portableTextSchema.nullish(),
           media: z.array(imageSchema.nullish(), videoSchema.nullish()),
         }),
         z.object({
