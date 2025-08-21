@@ -106,7 +106,7 @@ export const LessonOverviewCreateWithAiDropdown = ({
         $whiteSpace={"normal"}
       >
         <OakFlex $font={"body-3"} $flexDirection={"column"}>
-          <OakSpan>Learn more about Aila, Oak's AI </OakSpan>
+          <OakSpan>Learn more about Aila, Oak’s AI </OakSpan>
           <OakFlex $font={"body-3"} $alignItems={"center"}>
             <OakSpan>lesson assistant </OakSpan>
             <OakIcon iconHeight="all-spacing-6" iconName="external" />
