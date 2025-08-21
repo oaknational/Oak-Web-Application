@@ -25,6 +25,7 @@ jest.mock("posthog-js/react", () => ({
 
 const lessonMediaClipsStarted = jest.fn();
 const lessonResourceDownloadStarted = jest.fn();
+const teachingMaterialsSelected = jest.fn();
 
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
@@ -34,6 +35,8 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
         lessonMediaClipsStarted(...args),
       lessonResourceDownloadStarted: (...args: []) =>
         lessonResourceDownloadStarted(...args),
+      teachingMaterialsSelected: (...args: []) =>
+        teachingMaterialsSelected(...args),
     },
   }),
 }));
