@@ -5,7 +5,7 @@ import {
   OakFieldError,
   OakP,
 } from "@oaknational/oak-components";
-import { useState } from "react";
+import { useId, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 
 import Terms from "../OakComponentsKitchen/Terms";
@@ -43,6 +43,7 @@ export default function SignedInFlow({
   submitError,
   availableDownloadTypes,
 }: SignedInFlowProps) {
+  const submitErrorId = useId();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [downloadTypes, setDownloadTypes] = useState(() =>
     DOWNLOAD_TYPE_LABELS.map(({ id }) => id),
@@ -90,14 +91,17 @@ export default function SignedInFlow({
         </OakBox>
       </OakBox>
       {submitError && (
-        <OakFieldError>
-          <OakP>{submitError}</OakP>
-        </OakFieldError>
+        <OakBox id={submitErrorId}>
+          <OakFieldError>
+            <OakP>{submitError}</OakP>
+          </OakFieldError>
+        </OakBox>
       )}
       <OakPrimaryButton
         data-testid="download"
         isLoading={isSubmitting}
         disabled={downloadTypes.length < 1}
+        aria-describedby={submitError ? submitErrorId : undefined}
         onClick={onDownload}
         iconName="download"
         isTrailingIcon={true}

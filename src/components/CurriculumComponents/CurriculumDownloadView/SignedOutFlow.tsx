@@ -67,6 +67,7 @@ export default function SignedOutFlow({
   submitError,
 }: SignedOutFlowProps) {
   const errorMessageListId = useId();
+  const submitErrorId = useId();
   const [errors, setErrors] = useState<CurriculumDownloadViewErrors>({});
   const hasErrors = Object.keys(errors).length;
 
@@ -173,9 +174,11 @@ export default function SignedOutFlow({
                 $mv={"space-between-s"}
               >
                 {submitError && (
-                  <OakFieldError>
-                    <OakP>{submitError}</OakP>
-                  </OakFieldError>
+                  <OakBox id={submitErrorId}>
+                    <OakFieldError>
+                      <OakP>{submitError}</OakP>
+                    </OakFieldError>
+                  </OakBox>
                 )}
                 {hasErrors > 0 && (
                   <div id={errorMessageListId}>
@@ -194,6 +197,7 @@ export default function SignedOutFlow({
                   isLoading={isSubmitting}
                   type="submit"
                   disabled={downloadTypes.length < 1}
+                  aria-describedby={submitError ? submitErrorId : undefined}
                   iconName="download"
                   isTrailingIcon={true}
                 >

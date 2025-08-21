@@ -299,7 +299,6 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       );
       setIsDone(true);
     } catch (err) {
-      // Report to Bugsnag/Sentry (respecting consent via errorReporter)
       reportError(err, { severity: "warning" });
       setSubmitError(
         "There was an error downloading your files. Please try again.",
