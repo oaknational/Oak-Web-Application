@@ -29,16 +29,17 @@ variable "sensitive_custom_env_vars" {
 variable "env_vars" {
   type = object({
     shared = optional(object({
-      NEXT_PUBLIC_CLERK_SIGN_IN_URL = optional(string)
-      NEXT_PUBLIC_CLERK_SIGN_UP_URL = optional(string)
+      NEXT_PUBLIC_CLERK_SIGN_IN_URL   = optional(string)
+      NEXT_PUBLIC_CLERK_SIGN_UP_URL   = optional(string)
+      NEXT_PUBLIC_CLIENT_APP_BASE_URL = optional(string)
     }))
     prod = optional(object({
-      OAK_CONFIG_LOCATION = optional(string)
-      OVERRIDE_URL        = optional(string)
+      OAK_CONFIG_LOCATION  = optional(string)
+      OVERRIDE_APP_VERSION = optional(string)
+      OVERRIDE_URL         = optional(string)
     }))
     preview = optional(object({
-      OAK_CONFIG_LOCATION             = optional(string)
-      NEXT_PUBLIC_CLIENT_APP_BASE_URL = optional(string)
+      OAK_CONFIG_LOCATION = optional(string)
     }))
   })
   validation {

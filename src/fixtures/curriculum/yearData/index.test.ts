@@ -15,6 +15,7 @@ describe("createSubjectCategory", () => {
       tiers: [],
       pathways: [],
       isSwimming: false,
+      nationalCurriculum: [],
       groupAs: null,
     });
   });
@@ -27,6 +28,7 @@ describe("createSubjectCategory", () => {
       tiers: [createTier({ tier_slug: "test" })],
       pathways: [],
       isSwimming: true,
+      nationalCurriculum: [],
       groupAs: "testing_group",
     });
     expect(result).toEqual({
@@ -64,6 +66,7 @@ describe("createSubjectCategory", () => {
           why_this_why_now: null,
           year: "5",
           prior_knowledge_requirements: [],
+          national_curriculum_content: [],
         },
       ],
       childSubjects: [
@@ -87,6 +90,7 @@ describe("createSubjectCategory", () => {
       ],
       pathways: [],
       isSwimming: true,
+      nationalCurriculum: [],
       groupAs: "testing_group",
     });
   });

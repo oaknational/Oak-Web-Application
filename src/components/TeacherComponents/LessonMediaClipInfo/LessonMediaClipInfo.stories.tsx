@@ -15,6 +15,7 @@ const props: LessonMediaClipInfoProps = {
   keyStageTitle: "KS 3",
   subjectTitle: "Maths",
   yearTitle: "Year 2",
+  isMobile: false,
   videoTranscript: (
     <OakP>
       Hi, I'm Rebecca, your computing teacher for the collaborating online
