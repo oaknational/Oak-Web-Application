@@ -494,17 +494,16 @@ export function createOakPageConfig<ResolveHrefProps extends OakLinkProps>(
         ...props,
         matchHref: () => false,
         resolveHref: (resolveHrefProps: ResolveHrefProps) => {
-          let url = props.url;
           if ("query" in resolveHrefProps && resolveHrefProps.query) {
             const queryString = createQueryStringFromObject(
               resolveHrefProps.query,
             );
             if (queryString) {
-              url = `${url}?${queryString}`;
+              return `${props.url}?${queryString}`;
             }
           }
 
-          return url;
+          return props.url;
         },
       };
     case "internal":
