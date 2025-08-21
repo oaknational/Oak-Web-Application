@@ -1,3 +1,12 @@
+# [1.839.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.838.0...v1.839.0) (2025-08-21)
+
+
+### Features
+
+* add complex copyright count ([f98956f](https://github.com/oaknational/Oak-Web-Application/commit/f98956f47108e0db16b6e99af9c45e176a74e4a5))
+* add complex copyright count ([933d829](https://github.com/oaknational/Oak-Web-Application/commit/933d829e419b99c6dbf983455e769353eadb9af6))
+* add complex copyright count ([cc4a427](https://github.com/oaknational/Oak-Web-Application/commit/cc4a427bf94a0f04c8a7705a353532506a675cde))
+
 # [1.838.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.837.0...v1.838.0) (2025-08-21)
 
 
