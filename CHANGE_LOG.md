@@ -1,3 +1,19 @@
+# [1.842.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.841.0...v1.842.0) (2025-08-21)
+
+
+### Bug Fixes
+
+* don't send video paused event when the video finishes ([376dfff](https://github.com/oaknational/Oak-Web-Application/commit/376dfff5884043e2070c97daa4b104963c332672))
+* fire video started event when each video is played from the start ([7fc25d2](https://github.com/oaknational/Oak-Web-Application/commit/7fc25d2cd823a9f5a637ec3f487f34e432899aea))
+* send video finished event for any video that ends on the media page ([cd2b2ae](https://github.com/oaknational/Oak-Web-Application/commit/cd2b2ae4349bf4cd10f2a230d79afc1b7a8f77bc))
+* update tracking event in beta page ([300a219](https://github.com/oaknational/Oak-Web-Application/commit/300a21911af2c10eecfceb2566ecd46a2f475cf4))
+
+
+### Features
+
+* add cloudinary url to video tracking events ([98375a2](https://github.com/oaknational/Oak-Web-Application/commit/98375a2b677de7a4529bcc8bd07e3bb87a323f4c))
+* add mux asset id to media clips video tracking ([9049e37](https://github.com/oaknational/Oak-Web-Application/commit/9049e37dcb57c23118b6a10721f0e44975ab3197))
+
 # [1.841.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.840.0...v1.841.0) (2025-08-21)
 
 
