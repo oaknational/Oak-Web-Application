@@ -53,6 +53,7 @@ type SignedOutFlowProps = {
   downloadTypes: DownloadType[];
   onChangeDownloadTypes: (newDownloadType: DownloadType[]) => void;
   availableDownloadTypes: DownloadType[];
+  submitError?: string;
 };
 export default function SignedOutFlow({
   schools,
@@ -63,6 +64,7 @@ export default function SignedOutFlow({
   downloadTypes,
   onChangeDownloadTypes,
   availableDownloadTypes,
+  submitError,
 }: SignedOutFlowProps) {
   const errorMessageListId = useId();
   const [errors, setErrors] = useState<CurriculumDownloadViewErrors>({});
@@ -170,6 +172,11 @@ export default function SignedOutFlow({
                 $gap={"space-between-m"}
                 $mv={"space-between-s"}
               >
+                {submitError && (
+                  <OakFieldError>
+                    <OakP>{submitError}</OakP>
+                  </OakFieldError>
+                )}
                 {hasErrors > 0 && (
                   <div id={errorMessageListId}>
                     <OakFieldError>

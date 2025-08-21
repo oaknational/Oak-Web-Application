@@ -173,6 +173,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     useState<boolean>(false);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | undefined>(undefined);
   const [data, setData] = useState<CurriculumDownloadViewData>(() => ({
     schoolId: undefined,
     schoolName: undefined,
@@ -256,6 +257,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
 
   const onSubmit = async (data: CurriculumDownloadViewData) => {
     setIsSubmitting(true);
+    setSubmitError(undefined);
 
     const downloadPath = createCurriculumDownloadsUrl(
       data.downloadTypes,
@@ -279,7 +281,6 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
 
     try {
       await downloadFileFromUrl(downloadPath);
-    } finally {
       await trackCurriculumDownload(
         data,
         curriculumInfo.subjectTitle,
@@ -288,8 +289,13 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
         analyticsUseCase,
         slugs,
       );
-      setIsSubmitting(false);
       setIsDone(true);
+    } catch (err) {
+      setSubmitError(
+        "There was an error downloading your files. Please try again.",
+      );
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -354,6 +360,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
             schools={schoolList ?? []}
             data={data}
             availableDownloadTypes={availableDownloadTypes}
+            submitError={submitError}
           />
         )}
       </OakBox>

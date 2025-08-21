@@ -1,4 +1,10 @@
-import { OakBox, OakFlex, OakPrimaryButton } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakFlex,
+  OakPrimaryButton,
+  OakFieldError,
+  OakP,
+} from "@oaknational/oak-components";
 import { useState } from "react";
 import { useUser } from "@clerk/nextjs";
 
@@ -34,6 +40,7 @@ type SignedInFlowProps = CurriculumDownloadViewProps & {
 export default function SignedInFlow({
   onSubmit,
   schools,
+  submitError,
   availableDownloadTypes,
 }: SignedInFlowProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -82,6 +89,11 @@ export default function SignedInFlow({
           <Terms />
         </OakBox>
       </OakBox>
+      {submitError && (
+        <OakFieldError>
+          <OakP>{submitError}</OakP>
+        </OakFieldError>
+      )}
       <OakPrimaryButton
         data-testid="download"
         isLoading={isSubmitting}
