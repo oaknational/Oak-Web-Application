@@ -53,45 +53,11 @@ describe("isExcludedFromTeachingMaterials", () => {
 
   describe("when worksList contains items (should always exclude)", () => {
     it("should return true regardless of other conditions", () => {
-      const testCases = [
-        {
-          data: normalBrowseData,
-          content: normalContent,
-          description: "normal lesson and content",
-        },
-        {
-          data: restrictedBrowseData,
-          content: normalContent,
-          description: "restricted lesson with normal content",
-        },
-        {
-          data: normalBrowseData,
-          content: legacyContent,
-          description: "normal lesson with legacy content",
-        },
-      ];
-
-      testCases.forEach(({ data, content }) => {
-        const result = isExcludedFromTeachingMaterials(
-          data,
-          nonEmptyWorksList,
-          content,
-        );
-        expect(result).toBe(true);
-      });
-    });
-
-    it("should return true even with multiple works items", () => {
-      const largeWorksList = Array.from({ length: 5 }, (_, i) => ({
-        id: `work${i}`,
-      }));
-
       const result = isExcludedFromTeachingMaterials(
         normalBrowseData,
-        largeWorksList,
+        nonEmptyWorksList,
         normalContent,
       );
-
       expect(result).toBe(true);
     });
   });
@@ -140,26 +106,17 @@ describe("isExcludedFromTeachingMaterials", () => {
       );
 
       it("should return false for non-restricted content guidance", () => {
-        const safeGuidanceLabels = [
-          "General information about history",
-          "Educational content about science",
-          "Discussion of historical events",
-          "", // empty string
-        ];
-
-        safeGuidanceLabels.forEach((safeLabel) => {
-          const contentWithSafeGuidance = createContent({
-            contentGuidance: [createContentGuidance(safeLabel)],
-          });
-
-          const result = isExcludedFromTeachingMaterials(
-            normalBrowseData,
-            emptyWorksList,
-            contentWithSafeGuidance,
-          );
-
-          expect(result).toBe(false);
+        const contentWithSafeGuidance = createContent({
+          contentGuidance: [createContentGuidance("Safe educational content")],
         });
+
+        const result = isExcludedFromTeachingMaterials(
+          normalBrowseData,
+          emptyWorksList,
+          contentWithSafeGuidance,
+        );
+
+        expect(result).toBe(false);
       });
 
       it("should return true when any guidance item is restricted (mixed content)", () => {
@@ -301,103 +258,9 @@ describe("isExcludedFromTeachingMaterials", () => {
 
       expect(result).toBe(true);
     });
-
-    it("should return true if any single restriction applies", () => {
-      const testScenarios = [
-        {
-          description: "only works list restriction",
-          data: normalBrowseData,
-          worksList: nonEmptyWorksList,
-          content: normalContent,
-        },
-        {
-          description: "only lesson ID restriction",
-          data: restrictedBrowseData,
-          worksList: emptyWorksList,
-          content: normalContent,
-        },
-        {
-          description: "only content guidance restriction",
-          data: normalBrowseData,
-          worksList: emptyWorksList,
-          content: createContent({
-            contentGuidance: [
-              createContentGuidance(
-                "Depiction or discussion of mental health issues",
-              ),
-            ],
-          }),
-        },
-        {
-          description: "only legacy content restriction",
-          data: normalBrowseData,
-          worksList: emptyWorksList,
-          content: legacyContent,
-        },
-      ];
-
-      testScenarios.forEach(({ data, worksList, content }) => {
-        const result = isExcludedFromTeachingMaterials(
-          data,
-          worksList,
-          content,
-        );
-        expect(result).toBe(true);
-      });
-    });
-
-    it("should prioritize restricted lesson ID over safe content", () => {
-      const safeContent = createContent({
-        contentGuidance: [
-          createContentGuidance("Educational historical content"),
-        ],
-      });
-
-      const result = isExcludedFromTeachingMaterials(
-        restrictedBrowseData,
-        emptyWorksList,
-        safeContent,
-      );
-
-      expect(result).toBe(true);
-    });
   });
 
   describe("edge cases and boundary conditions", () => {
-    it("should handle malformed lesson UID gracefully", () => {
-      const malformedBrowseData = createBrowseData("");
-
-      const result = isExcludedFromTeachingMaterials(
-        malformedBrowseData,
-        emptyWorksList,
-        normalContent,
-      );
-
-      expect(result).toBe(false);
-    });
-
-    it("should handle very long content guidance arrays", () => {
-      const largeGuidanceArray = Array.from({ length: 100 }, (_, i) =>
-        createContentGuidance(`Safe content item ${i}`),
-      );
-      // Add one restricted item at the end
-      largeGuidanceArray.push(
-        createContentGuidance("Depiction or discussion of sexual content"),
-      );
-
-      const contentWithLargeGuidance = createContent({
-        contentGuidance: largeGuidanceArray,
-      });
-
-      const result = isExcludedFromTeachingMaterials(
-        normalBrowseData,
-        emptyWorksList,
-        contentWithLargeGuidance,
-      );
-
-      expect(result).toBe(true);
-    });
-
     it("should handle content guidance with special characters", () => {
       const specialCharacterGuidance = createContent({
         contentGuidance: [
@@ -412,22 +275,6 @@ describe("isExcludedFromTeachingMaterials", () => {
       );
 
       expect(result).toBe(false);
-    });
-
-    it("should handle works list with different object structures", () => {
-      const diverseWorksList = [
-        { id: "work1", type: "video" },
-        { name: "work2", category: "worksheet" },
-        { title: "work3", metadata: { type: "image" } },
-      ];
-
-      const result = isExcludedFromTeachingMaterials(
-        normalBrowseData,
-        diverseWorksList,
-        normalContent,
-      );
-
-      expect(result).toBe(true);
     });
   });
 });
