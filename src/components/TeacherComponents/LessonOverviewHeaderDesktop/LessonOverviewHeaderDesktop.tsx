@@ -9,6 +9,7 @@ import {
   OakBox,
   OakTertiaryButton,
   OakTagFunctional,
+  OakSmallSecondaryButtonWithDropdown,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
@@ -155,8 +156,15 @@ export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
                 $flexWrap={"wrap"}
               >
                 <LessonOverviewHeaderDownloadAllButton {...props} />
-                {showShare && <LessonOverviewHeaderShareAllButton {...props} />}
-                {teacherShareButton}
+                {/* {showShare && <LessonOverviewHeaderShareAllButton {...props} />} */}
+                <OakSmallSecondaryButtonWithDropdown
+                  primaryActionText={"Share lesson"}
+                >
+                  {teacherShareButton}
+                  {showShare && (
+                    <LessonOverviewHeaderShareAllButton {...props} />
+                  )}
+                </OakSmallSecondaryButtonWithDropdown>
                 {!excludedFromTeachingMaterials && isCreateWithAiEnabled && (
                   <LessonOverviewCreateWithAiNav {...props} />
                 )}
