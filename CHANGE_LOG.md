@@ -1,3 +1,12 @@
+# [1.840.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.839.0...v1.840.0) (2025-08-21)
+
+
+### Features
+
+* add campaign page to owa on beta route ([585f7d5](https://github.com/oaknational/Oak-Web-Application/commit/585f7d566839610a634bdf0936fb3cb24ea31b1a))
+* add promo stamp styling and example usage on campaign page ([dbb068d](https://github.com/oaknational/Oak-Web-Application/commit/dbb068d3e7698027f0e4536ed7c24faa8dd7be2d))
+* add subheading field to promo banner schema ([434697d](https://github.com/oaknational/Oak-Web-Application/commit/434697d54282064a9fff089353872501fc32f530))
+
 # [1.839.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.838.0...v1.839.0) (2025-08-21)
 
 
