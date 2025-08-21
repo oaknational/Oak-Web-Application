@@ -2,7 +2,12 @@ import React, { FC } from "react";
 import {
   OakColorFilterToken,
   OakColorToken,
+  OakSmallSecondaryButtonWithDropdown,
 } from "@oaknational/oak-components";
+import { useFeatureFlagVariantKey } from "posthog-js/react";
+
+import { TeacherShareNotesButton } from "../TeacherShareNotesButton/TeacherShareNotesButton";
+import { LessonOverviewHeaderShareAllButton } from "../LessonOverviewHeaderShareAllButton";
 
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
@@ -13,6 +18,7 @@ import {
   TeachingMaterialTypeValueType,
 } from "@/browser-lib/avo/Avo";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
+import { teacherNotesButtonProps } from "@/pages-helpers/teacher/useLesson/useLesson";
 
 /**
  * This is a header for the lesson overview page.
@@ -60,6 +66,7 @@ export type LessonOverviewHeaderProps = {
   showShare: boolean;
   // teacher share
   teacherShareButton?: React.ReactNode;
+  teacherShareButtonProps?: teacherNotesButtonProps;
   // AI
   excludedFromTeachingMaterials?: boolean;
   trackTeachingMaterialsSelected?: (
@@ -69,12 +76,38 @@ export type LessonOverviewHeaderProps = {
 };
 
 const LessonOverviewHeader: FC<LessonOverviewHeaderProps> = (props) => {
-  const { breadcrumbs, background } = props;
+  const { breadcrumbs, background, teacherShareButtonProps, showShare } = props;
+
+  const isCreateWithAiEnabled =
+    useFeatureFlagVariantKey("create-with-ai-button") === "test";
+
+  const shouldUseDropdown =
+    isCreateWithAiEnabled && showShare && teacherShareButtonProps;
+
+  const shareButtons = shouldUseDropdown ? (
+    <OakSmallSecondaryButtonWithDropdown primaryActionText={"Share lesson"}>
+      <LessonOverviewHeaderShareAllButton variant="dropdown" {...props} />
+      <TeacherShareNotesButton
+        variant="dropdown"
+        {...teacherShareButtonProps}
+      />
+    </OakSmallSecondaryButtonWithDropdown>
+  ) : (
+    <>
+      {showShare && <LessonOverviewHeaderShareAllButton {...props} />}
+      {teacherShareButtonProps && (
+        <TeacherShareNotesButton
+          variant="dropdown"
+          {...teacherShareButtonProps}
+        />
+      )}
+    </>
+  );
 
   return (
     <LessonHeaderWrapper breadcrumbs={breadcrumbs} background={background}>
-      <LessonOverviewHeaderDesktop {...props} />
-      <LessonOverviewHeaderMobile {...props} />
+      <LessonOverviewHeaderDesktop {...props} shareButtons={shareButtons} />
+      <LessonOverviewHeaderMobile {...props} shareButtons={shareButtons} />
     </LessonHeaderWrapper>
   );
 };

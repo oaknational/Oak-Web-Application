@@ -1,5 +1,8 @@
 import { FC } from "react";
-import { OakSmallSecondaryButton } from "@oaknational/oak-components";
+import {
+  OakSmallPrimaryInvertedButton,
+  OakSmallSecondaryButton,
+} from "@oaknational/oak-components";
 import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
@@ -7,7 +10,9 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { invariant } from "@/utils/invariant";
 
 export const LessonOverviewHeaderShareAllButton: FC<
-  LessonOverviewHeaderProps
+  LessonOverviewHeaderProps & {
+    variant?: "primary" | "dropdown";
+  }
 > = (props) => {
   const {
     lessonSlug,
@@ -19,11 +24,17 @@ export const LessonOverviewHeaderShareAllButton: FC<
     isCanonical,
     geoRestricted,
     loginRequired,
+    variant = "primary",
   } = props;
   const featureFlagEnabled = useFeatureFlagEnabled(
     "teachers-copyright-restrictions",
   );
   if (featureFlagEnabled && (geoRestricted || loginRequired)) return null;
+
+  const OakButton =
+    variant === "dropdown"
+      ? OakSmallPrimaryInvertedButton
+      : OakSmallSecondaryButton;
 
   const preselected = "all";
 
@@ -60,19 +71,19 @@ export const LessonOverviewHeaderShareAllButton: FC<
 
   if (!isShareable || !href) {
     return (
-      <OakSmallSecondaryButton
+      <OakButton
         iconName="arrow-right"
         isTrailingIcon
         disabled={true}
         data-testid="share-all-button"
       >
         Share activities with pupils
-      </OakSmallSecondaryButton>
+      </OakButton>
     );
   }
 
   return (
-    <OakSmallSecondaryButton
+    <OakButton
       element="a"
       href={href}
       onClick={onClickShareAll}
@@ -82,6 +93,6 @@ export const LessonOverviewHeaderShareAllButton: FC<
       aria-label="Share all resources"
     >
       Share activities with pupils
-    </OakSmallSecondaryButton>
+    </OakButton>
   );
 };

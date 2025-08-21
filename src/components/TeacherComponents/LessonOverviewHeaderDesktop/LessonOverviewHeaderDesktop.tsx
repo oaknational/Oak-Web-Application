@@ -9,16 +9,14 @@ import {
   OakBox,
   OakTertiaryButton,
   OakTagFunctional,
-  OakSmallSecondaryButtonWithDropdown,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
 
-import { LessonOverviewCreateWithAiNav } from "../LessonOverviewCreateWithAINav/LessonOverviewCreateWithAiNav";
+import { LessonOverviewCreateWithAiDropdown } from "../LessonOverviewCreateWithAiDropdown";
 
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { LessonOverviewHeaderDownloadAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderDownloadAllButton";
-import { LessonOverviewHeaderShareAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderShareAllButton";
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
 import CopyrightRestrictionBanner from "@/components/TeacherComponents/CopyrightRestrictionBanner/CopyrightRestrictionBanner";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
@@ -37,9 +35,9 @@ const CustomDimensionSquare = styled(CustomDimensionRow)`
   }
 `;
 
-export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
-  props,
-) => {
+export const LessonOverviewHeaderDesktop: FC<
+  LessonOverviewHeaderProps & { shareButtons: React.ReactNode }
+> = (props) => {
   const {
     subjectSlug,
     yearTitle,
@@ -49,10 +47,8 @@ export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
     isNew,
     subjectIconBackgroundColor,
     pupilLessonOutcome,
-    showShare,
     isCanonical,
     phonicsOutcome,
-    teacherShareButton,
     orderInUnit,
     unitTotalLessonCount,
     breadcrumbs,
@@ -65,6 +61,7 @@ export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
     lessonReleaseDate,
     unitSlug,
     excludedFromTeachingMaterials,
+    shareButtons,
   } = props;
 
   const previousBreadcrumb = breadcrumbs[breadcrumbs.length - 2];
@@ -156,17 +153,9 @@ export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
                 $flexWrap={"wrap"}
               >
                 <LessonOverviewHeaderDownloadAllButton {...props} />
-                {/* {showShare && <LessonOverviewHeaderShareAllButton {...props} />} */}
-                <OakSmallSecondaryButtonWithDropdown
-                  primaryActionText={"Share lesson"}
-                >
-                  {teacherShareButton}
-                  {showShare && (
-                    <LessonOverviewHeaderShareAllButton {...props} />
-                  )}
-                </OakSmallSecondaryButtonWithDropdown>
+                {shareButtons}
                 {!excludedFromTeachingMaterials && isCreateWithAiEnabled && (
-                  <LessonOverviewCreateWithAiNav {...props} />
+                  <LessonOverviewCreateWithAiDropdown {...props} />
                 )}
               </OakFlex>
               <CopyrightRestrictionBanner

@@ -67,10 +67,12 @@ import LessonOverviewSideNavAnchorLinks from "@/components/TeacherComponents/Les
 import { RestrictedContentPrompt } from "@/components/TeacherComponents/RestrictedContentPrompt/RestrictedContentPrompt";
 import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
 import { TeacherRedirectedOverlay } from "@/components/TeacherComponents/TeacherRedirectedOverlay/TeacherRedirectedOverlay";
+import { teacherNotesButtonProps } from "@/pages-helpers/teacher/useLesson/useLesson";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads } & {
     teacherShareButton?: React.ReactNode;
+    teacherShareButtonProps?: teacherNotesButtonProps;
     teacherNoteHtml?: string;
     teacherNoteError?: string | null;
   };

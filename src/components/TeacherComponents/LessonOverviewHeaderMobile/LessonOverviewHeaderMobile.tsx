@@ -9,19 +9,18 @@ import {
   OakTagFunctional,
 } from "@oaknational/oak-components";
 
-import { LessonOverviewCreateWithAiNav } from "../LessonOverviewCreateWithAINav";
+import { LessonOverviewCreateWithAiDropdown } from "../LessonOverviewCreateWithAiDropdown";
 
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { LessonOverviewHeaderDownloadAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderDownloadAllButton";
-import { LessonOverviewHeaderShareAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderShareAllButton";
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
 import CopyrightRestrictionBanner from "@/components/TeacherComponents/CopyrightRestrictionBanner/CopyrightRestrictionBanner";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import { resolveOakHref } from "@/common-lib/urls";
 
-export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
-  props,
-) => {
+export const LessonOverviewHeaderMobile: FC<
+  LessonOverviewHeaderProps & { shareButtons: React.ReactNode }
+> = (props) => {
   const {
     subjectSlug,
     yearTitle,
@@ -31,10 +30,8 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
     pupilLessonOutcome,
     isNew,
     subjectIconBackgroundColor,
-    showShare,
     isCanonical,
     phonicsOutcome,
-    teacherShareButton,
     orderInUnit,
     unitTotalLessonCount,
     breadcrumbs,
@@ -47,6 +44,7 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
     lessonReleaseDate,
     unitSlug,
     excludedFromTeachingMaterials,
+    shareButtons,
   } = props;
 
   const previousBreadcrumb = breadcrumbs[breadcrumbs.length - 2];
@@ -115,10 +113,9 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
         </OakBox>
       </OakBox>
       <LessonOverviewHeaderDownloadAllButton {...props} />
-      {showShare && <LessonOverviewHeaderShareAllButton {...props} />}
-      {teacherShareButton}
+      {shareButtons}
       {!excludedFromTeachingMaterials && (
-        <LessonOverviewCreateWithAiNav {...props} />
+        <LessonOverviewCreateWithAiDropdown {...props} />
       )}
       {(geoRestricted || loginRequired) && (
         <CopyrightRestrictionBanner
