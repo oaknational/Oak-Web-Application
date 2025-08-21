@@ -162,7 +162,8 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     // and site monitoring synthetics.
     mediaElRef.current?.classList.add(PLAYING_CLASSNAME);
     setVideoIsPlaying(true);
-    videoTracking.onPlay();
+    const isVideoStart = mediaElRef.current?.currentTime === 0;
+    videoTracking.onPlay(isVideoStart);
     userEventCallback({
       event: "play",
       duration: getDuration(mediaElRef),

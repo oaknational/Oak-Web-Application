@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { VideoLocationValueType } from "@/browser-lib/avo/Avo";
 import errorReporter from "@/common-lib/error-reporter";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -58,34 +56,35 @@ type UseVideoTrackingProps = {
 };
 const useVideoTracking = (props: UseVideoTrackingProps) => {
   const { track } = useAnalytics();
-  const [started, setStarted] = useState(false);
+
   const pathwayData = props.pathwayData
     ? props.pathwayData
     : ({} as PupilPathwayData);
 
-  const onPlay = () => {
+  const onPlay = (isVideoStart: boolean) => {
     const eventProps = getEventPropsOrWarn(props);
     if (!eventProps) {
       return;
     }
+
     track.videoPlayed({
       ...eventProps,
       ...pathwayData,
       cloudinaryUrl: props.cloudinaryUrl,
       muxAssetId: props.muxAssetId,
     });
-    if (!started) {
+    if (isVideoStart) {
       track.videoStarted({
         ...eventProps,
         ...pathwayData,
         cloudinaryUrl: props.cloudinaryUrl,
         muxAssetId: props.muxAssetId,
       });
-      setStarted(true);
     }
   };
   const onPause = () => {
     const eventProps = getEventPropsOrWarn(props);
+
     if (!eventProps) {
       return;
     }
@@ -98,6 +97,7 @@ const useVideoTracking = (props: UseVideoTrackingProps) => {
   };
   const onEnd = () => {
     const eventProps = getEventPropsOrWarn(props);
+
     if (!eventProps) {
       return;
     }
