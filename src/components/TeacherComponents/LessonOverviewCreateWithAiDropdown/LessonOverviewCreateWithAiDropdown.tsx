@@ -11,7 +11,7 @@ import { LessonOverviewHeaderProps } from "../LessonOverviewHeader";
 
 import { resolveOakHref } from "@/common-lib/urls";
 
-export const LessonOverviewCreateWithAiNav = ({
+export const LessonOverviewCreateWithAiDropdown = ({
   lessonSlug,
   programmeSlug,
   trackCreateWithAiButtonClicked,

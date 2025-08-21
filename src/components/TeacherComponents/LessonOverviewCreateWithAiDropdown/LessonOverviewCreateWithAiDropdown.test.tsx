@@ -3,11 +3,11 @@ import userEvent from "@testing-library/user-event";
 
 import { LessonOverviewHeaderProps } from "../LessonOverviewHeader";
 
-import { LessonOverviewCreateWithAiNav } from "./LessonOverviewCreateWithAiNav";
+import { LessonOverviewCreateWithAiDropdown } from "./LessonOverviewCreateWithAiDropdown";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-describe("LessonOverviewCreateWithAiNav", () => {
+describe("LessonOverviewCreateWithAiDropdown", () => {
   let mockTrackCreateWithAiButtonClicked: jest.Mock;
   let mockTrackTeachingMaterialsSelected: jest.Mock;
   let defaultProps: LessonOverviewHeaderProps;
@@ -80,7 +80,7 @@ describe("LessonOverviewCreateWithAiNav", () => {
     it("calls trackCreateWithAiButtonClicked when primary button is clicked", async () => {
       const user = userEvent.setup();
       const { getByText } = renderWithTheme(
-        <LessonOverviewCreateWithAiNav {...defaultProps} />,
+        <LessonOverviewCreateWithAiDropdown {...defaultProps} />,
       );
 
       await user.click(getByText("Create more with AI"));
@@ -91,7 +91,7 @@ describe("LessonOverviewCreateWithAiNav", () => {
     it("calls trackTeachingMaterialsSelected with correct parameter when glossary is clicked", async () => {
       const user = userEvent.setup();
       const { getByText } = renderWithTheme(
-        <LessonOverviewCreateWithAiNav {...defaultProps} />,
+        <LessonOverviewCreateWithAiDropdown {...defaultProps} />,
       );
 
       // Open the dropdown
@@ -111,7 +111,7 @@ describe("LessonOverviewCreateWithAiNav", () => {
     it("calls trackTeachingMaterialsSelected with correct parameter when comprehension task is clicked", async () => {
       const user = userEvent.setup();
       const { getByText } = renderWithTheme(
-        <LessonOverviewCreateWithAiNav {...defaultProps} />,
+        <LessonOverviewCreateWithAiDropdown {...defaultProps} />,
       );
 
       // Open the dropdown
@@ -127,7 +127,7 @@ describe("LessonOverviewCreateWithAiNav", () => {
     it("calls trackTeachingMaterialsSelected with correct parameter when exit quiz is clicked", async () => {
       const user = userEvent.setup();
       const { getByText } = renderWithTheme(
-        <LessonOverviewCreateWithAiNav {...defaultProps} />,
+        <LessonOverviewCreateWithAiDropdown {...defaultProps} />,
       );
 
       // Open the dropdown
@@ -143,7 +143,7 @@ describe("LessonOverviewCreateWithAiNav", () => {
     it("calls trackTeachingMaterialsSelected with correct parameter when starter quiz is clicked", async () => {
       const user = userEvent.setup();
       const { getByText } = renderWithTheme(
-        <LessonOverviewCreateWithAiNav {...defaultProps} />,
+        <LessonOverviewCreateWithAiDropdown {...defaultProps} />,
       );
 
       // Open the dropdown
