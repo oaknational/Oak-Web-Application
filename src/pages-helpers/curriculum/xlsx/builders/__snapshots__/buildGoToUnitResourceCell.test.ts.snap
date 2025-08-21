@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`buildGoToUnitResourceCell 1`] = `
+"<c
+  r="A1"
+  t="inlineStr"
+  s="TEMP_3"
+>
+  <is>
+    <r>
+      <rPr>
+        <sz
+          val="12"
+        ></sz>
+        <color
+          rgb="FF000000"
+        ></color>
+        <rFont
+          val="Arial"
+        ></rFont>
+        <family
+          val="2"
+        ></family>
+        <u
+          val="single"
+        ></u>
+      </rPr>
+      <t>
+        Go to unit resources
+      </t>
+    </r>
+  </is>
+</c>"
+`;

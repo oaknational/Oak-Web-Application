@@ -160,6 +160,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -444,6 +445,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -567,6 +569,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -711,6 +714,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -938,6 +942,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -1165,6 +1170,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -1235,6 +1241,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -1459,6 +1466,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -1530,6 +1538,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -1833,6 +1842,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -1974,6 +1984,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -2097,6 +2108,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -2247,6 +2259,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -2437,6 +2450,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -2518,6 +2532,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -2711,6 +2726,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -2993,6 +3009,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -3191,6 +3208,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -3326,6 +3344,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -3529,6 +3548,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -3760,6 +3780,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -4243,6 +4264,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -5087,6 +5109,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -5282,6 +5305,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -5385,6 +5409,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -5557,6 +5582,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -5680,6 +5706,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -5848,6 +5875,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -6125,6 +6153,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -6293,6 +6322,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -6362,6 +6392,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -6513,6 +6544,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -6632,6 +6664,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -6727,6 +6760,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -6851,6 +6885,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -7057,6 +7092,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -7250,6 +7286,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -7345,6 +7382,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -7522,6 +7560,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -7727,6 +7766,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -7990,6 +8030,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -8259,6 +8300,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -8363,6 +8405,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -8599,6 +8642,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -8864,6 +8908,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -9455,6 +9500,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -9602,6 +9648,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -9693,6 +9740,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -10176,6 +10224,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -10422,6 +10471,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -10892,6 +10942,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -11250,6 +11301,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -11405,6 +11457,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -11510,6 +11563,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -11705,6 +11759,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -11901,6 +11956,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -12291,6 +12347,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -12395,6 +12452,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -12582,6 +12640,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -12850,6 +12909,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
     {
@@ -13049,6 +13109,7 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
       prior_knowledge_requirements: [],
     },
   ],

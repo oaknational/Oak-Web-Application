@@ -22,6 +22,7 @@ export type LessonMediaClipInfoProps = {
   videoTranscript?: ReactNode;
   signLanguageButtonEnabled?: boolean;
   copyLinkButtonEnabled?: boolean;
+  isMobile: boolean;
   onSignLanguageButtonClick?: (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => void;
@@ -37,6 +38,7 @@ export const LessonMediaClipInfo: FC<LessonMediaClipInfoProps> = ({
   signLanguageButtonEnabled = false,
   onSignLanguageButtonClick = () => {},
   copyLinkButtonEnabled = false,
+  isMobile,
 }: LessonMediaClipInfoProps) => {
   return (
     <OakBox>
@@ -51,7 +53,7 @@ export const LessonMediaClipInfo: FC<LessonMediaClipInfoProps> = ({
         $mb="space-between-m"
       />
       <OakVideoTranscript
-        id={"video-transcript"}
+        id={`video-transcript-${isMobile ? "mobile" : "desktop"}`}
         signLanguageControl={
           signLanguageButtonEnabled && (
             <OakSignLanguageButton onClick={onSignLanguageButtonClick} />

@@ -20,7 +20,7 @@ import { mapKeys, camelCase, capitalize } from "lodash";
 import CurriculumDownloadView, {
   CurriculumDownloadViewData,
 } from "../CurriculumDownloadView";
-import { School } from "../CurriculumDownloadView/helper";
+import { DOWNLOAD_TYPE_LABELS, School } from "../CurriculumDownloadView/helper";
 import CurricSuccessMessage from "../CurricSuccessMessage";
 
 import {
@@ -46,6 +46,9 @@ import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { convertUnitSlugToTitle } from "@/components/TeacherViews/Search/helpers";
 import { downloadFileFromUrl } from "@/components/SharedComponents/helpers/downloadFileFromUrl";
 import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urls";
+import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { doUnitsHaveNc, flatUnitsFromYearData } from "@/utils/curriculum/units";
+import { ENABLE_NC_XLSX_DOCUMENT } from "@/utils/curriculum/constants";
 
 function ScrollIntoViewWhenVisisble({
   children,
@@ -114,6 +117,7 @@ export type CurriculumDownloadTabProps = {
   slugs: CurriculumSelectionSlugs;
   tiers: { tier: string; tier_slug: string }[];
   child_subjects?: { subject: string; subject_slug: string }[];
+  formattedData: CurriculumUnitsFormattedData;
 };
 const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   mvRefreshTime,
@@ -121,10 +125,22 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   tiers: snake_tiers,
   child_subjects,
   curriculumInfo,
+  formattedData,
 }) => {
   const { track } = useAnalytics();
   const { onHubspotSubmit } = useHubspotSubmit();
   const { analyticsUseCase } = useAnalyticsPageProps();
+  const availableDownloadTypes = useMemo(() => {
+    return DOWNLOAD_TYPE_LABELS.map(({ id }) => id).filter((id) => {
+      if (id === "national-curriculum") {
+        return (
+          ENABLE_NC_XLSX_DOCUMENT &&
+          doUnitsHaveNc(flatUnitsFromYearData(formattedData.yearData))
+        );
+      }
+      return true;
+    });
+  }, [formattedData]);
 
   // Convert the data into OWA component format (using camelCase instead of snake_case for keys.)
   const [tierSelected, setTierSelected] = useState<string | null>(null);
@@ -161,7 +177,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     schoolId: undefined,
     schoolName: undefined,
     email: undefined,
-    downloadType: "word",
+    downloadTypes: ["curriculum-plans"],
     termsAndConditions: false,
     schoolNotListed: false,
     schools: [],
@@ -187,7 +203,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
         schoolId: localStorageData.schoolId,
         schoolName: localStorageData.schoolName,
         email: localStorageData.email,
-        downloadType: "word",
+        downloadTypes: ["curriculum-plans"],
         termsAndConditions: localStorageData.termsAndConditions,
         schoolNotListed: localStorageData.schoolNotListed,
         schools: [],
@@ -242,6 +258,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     setIsSubmitting(true);
 
     const downloadPath = createCurriculumDownloadsUrl(
+      data.downloadTypes,
       "published",
       mvRefreshTime,
       slugs.subjectSlug,
@@ -305,6 +322,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       <OakBox
         id="curriculum-downloads"
         aria-labelledby="curriculum-downloads-heading"
+        tabIndex={-1}
         $maxWidth={"all-spacing-24"}
         $mh={"auto"}
         $ph={"inner-padding-m"}
@@ -335,6 +353,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
             onChange={setData}
             schools={schoolList ?? []}
             data={data}
+            availableDownloadTypes={availableDownloadTypes}
           />
         )}
       </OakBox>

@@ -113,7 +113,7 @@ describe("CopyrightRestrictionBanner", () => {
       const link = getByTestId("copyright-banner-onboarding-link");
 
       expect(bannerText).toEqual(
-        "Copyrighted materials: to view and download resources from this unit, you’ll need to be in the UK and sign in.Copyrights help",
+        "Copyrighted materials: to view and download resources from this unit, you’ll need to be in the UK and complete sign up.Copyrights help",
       );
       expect(link).toBeInTheDocument();
     });
