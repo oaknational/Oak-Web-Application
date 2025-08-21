@@ -18,6 +18,7 @@ export const ks4Setup = {
       groupAs: null,
       isSwimming: false,
       subjectCategories: [],
+      nationalCurriculum: [],
       units: [
         createUnit({
           year: "10",
@@ -43,6 +44,7 @@ export const ks4Setup = {
       groupAs: null,
       isSwimming: false,
       subjectCategories: [],
+      nationalCurriculum: [],
       units: [createUnit({ year: "2", subjectcategories: [] })],
     },
   },
@@ -59,6 +61,7 @@ export const ks3and4Setup = {
       groupAs: null,
       isSwimming: false,
       subjectCategories: [],
+      nationalCurriculum: [],
       units: [
         createUnit({
           year: "7",
@@ -74,6 +77,7 @@ export const ks3and4Setup = {
       groupAs: null,
       isSwimming: false,
       subjectCategories: [],
+      nationalCurriculum: [],
       units: [
         createUnit({
           year: "8",
@@ -89,6 +93,7 @@ export const ks3and4Setup = {
       groupAs: null,
       isSwimming: false,
       subjectCategories: [],
+      nationalCurriculum: [],
       units: [
         createUnit({
           year: "9",
@@ -108,6 +113,7 @@ export const ks3and4Setup = {
       groupAs: null,
       isSwimming: false,
       subjectCategories: [],
+      nationalCurriculum: [],
       units: [
         createUnit({
           year: "10",
@@ -133,6 +139,7 @@ export const ks3and4Setup = {
       groupAs: null,
       isSwimming: false,
       subjectCategories: [],
+      nationalCurriculum: [],
       units: [createUnit({ year: "2", subjectcategories: [] })],
     },
   },

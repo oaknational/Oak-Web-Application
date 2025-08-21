@@ -10,6 +10,10 @@ import { SearchProps } from "./search.view.types";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { SearchHit, SearchQuery } from "@/context/Search/search.types";
 import { LEGACY_COHORT } from "@/config/cohort";
+import {
+  setupMockLinkClick,
+  teardownMockLinkClick,
+} from "@/utils/mockLinkClick";
 
 jest.mock("@mux/mux-player-react/lazy", () => {
   return forwardRef((props, ref) => {
@@ -228,6 +232,11 @@ describe("Search.page.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     mockRouter.setCurrentUrl("/teachers/search");
+    setupMockLinkClick();
+  });
+
+  afterEach(() => {
+    teardownMockLinkClick();
   });
 
   test("status: error message displayed status is fail", () => {

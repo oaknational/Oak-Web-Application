@@ -38,8 +38,9 @@ export function useCopyrightRequirements({
     };
   }
 
-  const showSignedInNotOnboarded =
-    !isUserOnboarded && (loginRequired || geoRestricted);
+  const showSignedInNotOnboarded = Boolean(
+    !isUserOnboarded && (loginRequired || geoRestricted) && isSignedIn,
+  );
   const isUserRegionAuthorised =
     user?.publicMetadata?.owa?.isRegionAuthorised !== false;
 
