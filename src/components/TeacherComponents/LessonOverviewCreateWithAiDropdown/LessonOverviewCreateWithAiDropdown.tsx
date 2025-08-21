@@ -10,6 +10,39 @@ import {
 import { LessonOverviewHeaderProps } from "../LessonOverviewHeader";
 
 import { resolveOakHref } from "@/common-lib/urls";
+import { TeachingMaterialTypeValueType } from "@/browser-lib/avo/Avo";
+
+const teachingMaterials: Array<{
+  docType: string;
+  label: string;
+  ariaLabel: string;
+  trackingName: TeachingMaterialTypeValueType;
+}> = [
+  {
+    docType: "additional-glossary",
+    label: "Glossary",
+    ariaLabel: "Glossary",
+    trackingName: "glossary",
+  },
+  {
+    docType: "additional-comprehension",
+    label: "Comprehension task",
+    ariaLabel: "Comprehension task",
+    trackingName: "comprehension task",
+  },
+  {
+    docType: "additional-starter-quiz",
+    label: "More starter quiz questions",
+    ariaLabel: "More starter quiz questions",
+    trackingName: "starter quiz",
+  },
+  {
+    docType: "additional-exit-quiz",
+    label: "More exit quiz questions",
+    ariaLabel: "More exit quiz questions",
+    trackingName: "exit quiz",
+  },
+];
 
 export const LessonOverviewCreateWithAiDropdown = ({
   lessonSlug,
@@ -40,86 +73,29 @@ export const LessonOverviewCreateWithAiDropdown = ({
         </OakFlex>
       }
     >
-      <OakSmallSecondaryButtonWithDropdown.Item
-        iconName="external"
-        aria-label="Glossary"
-        element="a"
-        target="_blank"
-        href={resolveOakHref({
-          page: "labs-teaching-materials",
-          query: {
-            lessonSlug,
-            programmeSlug,
-            docType: "additional-glossary",
-          },
-        })}
-        onClick={() =>
-          trackTeachingMaterialsSelected &&
-          trackTeachingMaterialsSelected("glossary")
-        }
-      >
-        Glossary
-      </OakSmallSecondaryButtonWithDropdown.Item>
-      <OakSmallSecondaryButtonWithDropdown.Item
-        iconName="external"
-        aria-label="Comprehension task"
-        element="a"
-        target="_blank"
-        href={resolveOakHref({
-          page: "labs-teaching-materials",
-          query: {
-            lessonSlug,
-            programmeSlug,
-            docType: "additional-comprehension",
-          },
-        })}
-        onClick={() =>
-          trackTeachingMaterialsSelected &&
-          trackTeachingMaterialsSelected("comprehension task")
-        }
-      >
-        Comprehension task
-      </OakSmallSecondaryButtonWithDropdown.Item>
-      <OakSmallSecondaryButtonWithDropdown.Item
-        iconName="external"
-        element="a"
-        target="_blank"
-        aria-label="More starter quiz questions"
-        href={resolveOakHref({
-          page: "labs-teaching-materials",
-          query: {
-            lessonSlug,
-            programmeSlug,
-            docType: "additional-starter-quiz",
-          },
-        })}
-        onClick={() =>
-          trackTeachingMaterialsSelected &&
-          trackTeachingMaterialsSelected("starter quiz")
-        }
-      >
-        More starter quiz questions
-      </OakSmallSecondaryButtonWithDropdown.Item>
-      <OakSmallSecondaryButtonWithDropdown.Item
-        iconName="external"
-        element="a"
-        target="_blank"
-        aria-label="More exit quiz questions"
-        href={resolveOakHref({
-          page: "labs-teaching-materials",
-          query: {
-            lessonSlug,
-            programmeSlug,
-            docType: "additional-exit-quiz",
-          },
-        })}
-        onClick={() =>
-          trackTeachingMaterialsSelected &&
-          trackTeachingMaterialsSelected("exit quiz")
-        }
-      >
-        More exit quiz questions
-      </OakSmallSecondaryButtonWithDropdown.Item>
+      {teachingMaterials.map((material) => (
+        <OakSmallSecondaryButtonWithDropdown.Item
+          key={material.docType}
+          iconName="external"
+          aria-label={material.ariaLabel}
+          element="a"
+          target="_blank"
+          href={resolveOakHref({
+            page: "labs-teaching-materials",
+            query: {
+              lessonSlug,
+              programmeSlug,
+              docType: material.docType,
+            },
+          })}
+          onClick={() =>
+            trackTeachingMaterialsSelected &&
+            trackTeachingMaterialsSelected(material.trackingName)
+          }
+        >
+          {material.label}
+        </OakSmallSecondaryButtonWithDropdown.Item>
+      ))}
 
       <OakSmallSecondaryButtonWithDropdown.Divider />
 
