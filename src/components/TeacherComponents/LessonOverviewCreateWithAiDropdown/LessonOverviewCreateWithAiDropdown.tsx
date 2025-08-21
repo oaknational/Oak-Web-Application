@@ -89,8 +89,7 @@ export const LessonOverviewCreateWithAiDropdown = ({
             },
           })}
           onClick={() =>
-            trackTeachingMaterialsSelected &&
-            trackTeachingMaterialsSelected(material.trackingName)
+            trackTeachingMaterialsSelected?.(material.trackingName)
           }
         >
           {material.label}
