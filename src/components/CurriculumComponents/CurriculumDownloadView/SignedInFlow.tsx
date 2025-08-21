@@ -91,7 +91,7 @@ export default function SignedInFlow({
         </OakBox>
       </OakBox>
       {submitError && (
-        <OakBox id={submitErrorId}>
+        <OakBox id={submitErrorId} $width={"all-spacing-20"}>
           <OakFieldError>
             <OakP>{submitError}</OakP>
           </OakFieldError>
