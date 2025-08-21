@@ -23,6 +23,10 @@ describe("LessonShareCanonicalPage", () => {
   });
 
   describe("getStaticProps", () => {
+    afterEach(() => {
+      jest.resetAllMocks();
+    });
+
     it("Should fetch the correct data", async () => {
       const propsResult = (await getStaticProps({
         params: {
@@ -37,6 +41,7 @@ describe("LessonShareCanonicalPage", () => {
         "macbeth-lesson-1",
       );
     });
+
     it("should throw error if no context params", async () => {
       await expect(
         getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>),
@@ -51,6 +56,23 @@ describe("LessonShareCanonicalPage", () => {
       await expect(
         getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>),
       ).rejects.toThrowError();
+    });
+
+    it("should return a 404 page if lesson is georestricted or login required", async () => {
+      (curriculumApi2023.lessonShare as jest.Mock).mockResolvedValue(
+        lessonShareFixtures({ georestricted: true, loginRequired: true }),
+      );
+
+      const result = await getStaticProps({
+        params: {
+          lessonSlug: "macbeth-lesson-1",
+          programmeSlug: "math-higher-ks4-l",
+          unitSlug: "shakespeare",
+        },
+        query: {},
+      } as GetStaticPropsContext<URLParams, PreviewData>);
+
+      expect(result).toEqual({ notFound: true });
     });
   });
 });
