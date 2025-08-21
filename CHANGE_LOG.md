@@ -1,3 +1,10 @@
+# [1.841.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.840.0...v1.841.0) (2025-08-21)
+
+
+### Features
+
+* update home page copy ([b5c124c](https://github.com/oaknational/Oak-Web-Application/commit/b5c124cca9d3224640df875d5bba6f68ce636839))
+
 # [1.840.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.839.0...v1.840.0) (2025-08-21)
 
 
