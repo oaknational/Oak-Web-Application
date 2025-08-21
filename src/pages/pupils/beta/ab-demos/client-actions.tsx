@@ -67,6 +67,8 @@ const Page = () => {
       isMuted: false,
       timeElapsedSeconds: 0,
       videoLocation: null,
+      muxAssetId: null,
+      cloudinaryUrl: null,
       ...pathwayData,
     });
 

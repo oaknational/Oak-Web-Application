@@ -43,11 +43,11 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                 Teachers
               </OakHeading>
               <OakHeading $font={"heading-3"} tag={"h2"}>
-                Time-saving teaching resources
+                Powerful planning tools for every teacher and school
               </OakHeading>
               <OakTypography $font={"body-1"}>
-                Get a head-start on your lesson planning using quality-checked
-                resources you can download and adapt for free.
+                From curriculum planning to classroom teaching, Oak saves time
+                at every step.
               </OakTypography>
               <OakGrid $mt="space-between-s">
                 <OakGridArea $colSpan={[12, 12, 11]}>

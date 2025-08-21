@@ -90,6 +90,10 @@ const lessonShareQuery =
         lessonTitle: parsedRawLesson.lesson_title,
         lessonReleaseDate:
           parsedModifiedBrowseData.lesson_data.lesson_release_date,
+        georestricted:
+          parsedModifiedBrowseData.features?.agf__geo_restricted ?? false,
+        loginRequired:
+          parsedModifiedBrowseData.features?.agf__login_required ?? false,
       });
       return lesson as T;
     } else {
@@ -103,6 +107,10 @@ const lessonShareQuery =
         expired: parsedRawLesson.expired,
         lessonReleaseDate:
           parsedModifiedBrowseData.lesson_data.lesson_release_date,
+        georestricted:
+          parsedModifiedBrowseData.features?.agf__geo_restricted ?? false,
+        loginRequired:
+          parsedModifiedBrowseData.features?.agf__login_required ?? false,
       });
 
       return lesson as T;
