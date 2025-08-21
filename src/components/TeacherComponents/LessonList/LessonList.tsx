@@ -6,6 +6,7 @@ import {
   OakFlex,
   OakPagination,
   OakBox,
+  OakCheckBox,
 } from "@oaknational/oak-components";
 
 import SignPostToAila from "../NoSearchResults/SignPostToAila";
@@ -44,6 +45,8 @@ export type LessonListProps = {
   subjectTitle?: string;
   programmeSlug?: string;
   examBoardSlug?: string | null;
+  showCheckboxes?: boolean;
+  onCheckboxSelected?: (props: LessonListItemProps) => void;
 };
 
 const LESSONS_PER_PAGE = 20;
@@ -70,6 +73,8 @@ const LessonList: FC<LessonListProps> = (props) => {
     keyStageSlug,
     programmeSlug,
     examBoardSlug,
+    showCheckboxes,
+    onCheckboxSelected,
   } = props;
   const { currentPage, pageSize, firstItemRef, paginationRoute } =
     paginationProps;
@@ -97,18 +102,45 @@ const LessonList: FC<LessonListProps> = (props) => {
       {currentPageItems?.length ? (
         <>
           <OakUL aria-label="A list of lessons" $reset>
-            {currentPageItems.map((item, index) => (
-              <LessonListItem
-                key={`${item.lessonSlug}-${index}`}
-                {...props}
-                {...item}
-                unitTitle={unitTitle}
-                hideTopHeading
-                index={index + pageSize * (currentPage - 1)}
-                firstItemRef={index === 0 ? firstItemRef : null}
-                onClick={onClick}
-              />
-            ))}
+            {currentPageItems.map((item, index) =>
+              showCheckboxes ? (
+                <OakFlex $gap={"all-spacing-3"}>
+                  <OakFlex>
+                    <OakCheckBox
+                      id={item.lessonSlug}
+                      value={item.lessonSlug}
+                      displayValue={""}
+                      checkboxSize={"all-spacing-8"}
+                      onChange={() => {
+                        if (onCheckboxSelected)
+                          onCheckboxSelected(item as LessonListItemProps);
+                      }}
+                    />
+                  </OakFlex>
+                  <LessonListItem
+                    key={`${item.lessonSlug}-${index}`}
+                    {...props}
+                    {...item}
+                    unitTitle={unitTitle}
+                    hideTopHeading
+                    index={index + pageSize * (currentPage - 1)}
+                    firstItemRef={index === 0 ? firstItemRef : null}
+                    onClick={onClick}
+                  />
+                </OakFlex>
+              ) : (
+                <LessonListItem
+                  key={`${item.lessonSlug}-${index}`}
+                  {...props}
+                  {...item}
+                  unitTitle={unitTitle}
+                  hideTopHeading
+                  index={index + pageSize * (currentPage - 1)}
+                  firstItemRef={index === 0 ? firstItemRef : null}
+                  onClick={onClick}
+                />
+              ),
+            )}
           </OakUL>
         </>
       ) : null}
