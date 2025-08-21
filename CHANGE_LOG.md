@@ -1,3 +1,10 @@
+# [1.838.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.837.0...v1.838.0) (2025-08-21)
+
+
+### Features
+
+* return 404 for copyright lesson share pages ([5fc3d3f](https://github.com/oaknational/Oak-Web-Application/commit/5fc3d3f81fb4f8e67a4e435f7448c275e501bd81))
+
 # [1.837.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.836.0...v1.837.0) (2025-08-20)
 
 
