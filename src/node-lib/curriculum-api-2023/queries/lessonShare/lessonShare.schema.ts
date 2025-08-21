@@ -28,6 +28,8 @@ const baseLessonShareSchema = z.object({
   isLegacy: z.boolean(),
   expired: z.boolean().nullable(),
   lessonReleaseDate: z.string().nullable(),
+  georestricted: z.boolean(),
+  loginRequired: z.boolean(),
 });
 
 export const baseLessonBrowseSchema = z.object({
