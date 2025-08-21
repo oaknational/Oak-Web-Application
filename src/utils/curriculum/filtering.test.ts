@@ -77,6 +77,7 @@ describe("filtering", () => {
           pathways: [],
           isSwimming: false,
           groupAs: null,
+          nationalCurriculum: [],
         },
         "8": {
           units: [
@@ -91,6 +92,7 @@ describe("filtering", () => {
           pathways: [],
           isSwimming: false,
           groupAs: null,
+          nationalCurriculum: [],
         },
       };
       const out = getDefaultChildSubjectForYearGroup(input);
@@ -107,6 +109,7 @@ describe("filtering", () => {
           pathways: [],
           isSwimming: false,
           groupAs: null,
+          nationalCurriculum: [],
         },
         "8": {
           units: [createUnit({ slug: "test2" })],
@@ -116,6 +119,7 @@ describe("filtering", () => {
           pathways: [],
           isSwimming: false,
           groupAs: null,
+          nationalCurriculum: [],
         },
       };
       const out = getDefaultChildSubjectForYearGroup(input);
@@ -136,6 +140,7 @@ describe("filtering", () => {
           pathways: [],
           isSwimming: false,
           groupAs: null,
+          nationalCurriculum: [],
         },
         "8": {
           units: [createUnit({ slug: "test1", subjectcategories: [subCat2] })],
@@ -145,6 +150,7 @@ describe("filtering", () => {
           pathways: [],
           isSwimming: false,
           groupAs: null,
+          nationalCurriculum: [],
         },
       };
       const out = getDefaultSubjectCategoriesForYearGroup(input);
@@ -161,6 +167,7 @@ describe("filtering", () => {
           pathways: [],
           isSwimming: false,
           groupAs: null,
+          nationalCurriculum: [],
         },
         "8": {
           units: [createUnit({ slug: "test1", subjectcategories: [] })],
@@ -170,6 +177,7 @@ describe("filtering", () => {
           pathways: [],
           isSwimming: false,
           groupAs: null,
+          nationalCurriculum: [],
         },
       };
       const out = getDefaultSubjectCategoriesForYearGroup(input);
@@ -192,6 +200,7 @@ describe("filtering", () => {
           pathways: [],
           isSwimming: false,
           groupAs: null,
+          nationalCurriculum: [],
         },
         "8": {
           units: [
@@ -203,6 +212,7 @@ describe("filtering", () => {
           pathways: [],
           isSwimming: false,
           groupAs: null,
+          nationalCurriculum: [],
         } as CurriculumUnitsYearData[number],
       };
       const out = getDefaultTiersForYearGroup(input);
@@ -219,6 +229,7 @@ describe("filtering", () => {
           pathways: [],
           isSwimming: false,
           groupAs: null,
+          nationalCurriculum: [],
         },
         "8": {
           units: [createUnit({ slug: "test2", tier_slug: undefined })],
@@ -228,6 +239,7 @@ describe("filtering", () => {
           pathways: [],
           isSwimming: false,
           groupAs: null,
+          nationalCurriculum: [],
         } as CurriculumUnitsYearData[number],
       };
       const out = getDefaultTiersForYearGroup(input);
@@ -1019,6 +1031,7 @@ describe("subjectCategoryFor*", () => {
         pathways: [],
         isSwimming: false,
         groupAs: null,
+        nationalCurriculum: [],
       },
     },
     yearOptions: ["7"],
@@ -1077,6 +1090,7 @@ describe("buildTextDescribingFilter", () => {
         pathways: [],
         isSwimming: false,
         groupAs: null,
+        nationalCurriculum: [],
       },
     },
     yearOptions: ["7"],
@@ -1093,6 +1107,7 @@ describe("buildTextDescribingFilter", () => {
         pathways: [],
         isSwimming: false,
         groupAs: null,
+        nationalCurriculum: [],
       },
     },
     yearOptions: ["7"],
@@ -1109,6 +1124,7 @@ describe("buildTextDescribingFilter", () => {
         pathways: [],
         isSwimming: false,
         groupAs: null,
+        nationalCurriculum: [],
       },
     },
     yearOptions: ["7"],
@@ -1125,6 +1141,7 @@ describe("buildTextDescribingFilter", () => {
         pathways: [],
         isSwimming: false,
         groupAs: null,
+        nationalCurriculum: [],
       },
       "6": {
         units: [],
@@ -1134,6 +1151,7 @@ describe("buildTextDescribingFilter", () => {
         pathways: [],
         isSwimming: false,
         groupAs: null,
+        nationalCurriculum: [],
       },
     },
     yearOptions: ["7"],
@@ -1222,6 +1240,7 @@ describe("getNumberOfSelectedUnits", () => {
       isSwimming: false,
       groupAs: null,
       pathways: [],
+      nationalCurriculum: [],
     },
     "8": {
       units: [
@@ -1235,6 +1254,7 @@ describe("getNumberOfSelectedUnits", () => {
       isSwimming: false,
       groupAs: null,
       pathways: [],
+      nationalCurriculum: [],
     },
   };
 

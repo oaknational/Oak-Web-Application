@@ -1,5 +1,7 @@
 import { ZodType } from "zod";
 
+import { ENABLE_NC_XLSX_DOCUMENT } from "@/utils/curriculum/constants";
+
 export type School = {
   urn: string;
   la: string;
@@ -38,7 +40,12 @@ export function runSchema<T extends Record<string, unknown>>(
   };
 }
 
-export const validDownloadTypes = ["word", "pdf"] as const;
+export const validDownloadTypes = [
+  "curriculum-plans",
+  "national-curriculum",
+] as const;
+
+export type ValidDownloadTypes = (typeof validDownloadTypes)[number];
 
 export function assertValidDownloadType(val: string) {
   if (!validDownloadTypes.includes(val as DownloadType)) {
@@ -49,23 +56,34 @@ export function assertValidDownloadType(val: string) {
 
 export type DownloadType = (typeof validDownloadTypes)[number];
 
-export const DOWNLOAD_TYPES: {
+export const DOWNLOAD_TYPE_LABELS: {
   id: DownloadType;
   label: string;
   disabled?: boolean;
-  icon: string;
+  icon: "curriculum-plan" | "spreadsheet";
   subTitle?: string;
 }[] = [
   {
-    id: "word",
+    id: "curriculum-plans",
     label: "Curriculum plan",
     subTitle: "Word (accessible)",
-    icon: "maths",
+    icon: "curriculum-plan",
   },
-  // {
-  //   id: "pdf",
-  //   label: "Curriculum plan",
-  //   subTitle: "PDF",
-  //   icon: "maths"
-  // },
+  {
+    id: "national-curriculum",
+    label: "National curriculum",
+    subTitle: "XLSX",
+    icon: "spreadsheet",
+  },
 ];
+
+export const DOWNLOAD_TYPES = DOWNLOAD_TYPE_LABELS.map(({ id }) => id).filter(
+  (id) => {
+    if (id === "national-curriculum" && !ENABLE_NC_XLSX_DOCUMENT) {
+      return false;
+    }
+    return true;
+  },
+);
+
+export type DownloadTypeLabel = (typeof DOWNLOAD_TYPE_LABELS)[number];

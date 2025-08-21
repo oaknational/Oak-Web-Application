@@ -1,5 +1,6 @@
-import { cdata, safeXml, xmlElementToJson } from "../xml";
-import { CombinedCurriculumData } from "..";
+import { cdata, safeXml } from "@ooxml-tools/xml";
+
+import { xmlElementToJson } from "../xml";
 import { appendBodyElements, insertNumbering, JSZipCached } from "../docx";
 import { createThreadOptions, createUnitsListingByYear } from "../tab-helpers";
 
@@ -11,7 +12,7 @@ import {
 } from "./helper";
 
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
-import { Unit } from "@/utils/curriculum/types";
+import { CombinedCurriculumData, Unit } from "@/utils/curriculum/types";
 import { getSuffixFromPathway } from "@/utils/curriculum/pathways";
 
 function sortByOrder(units: Unit[]) {
