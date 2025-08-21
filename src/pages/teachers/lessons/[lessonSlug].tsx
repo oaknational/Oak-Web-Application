@@ -45,7 +45,7 @@ export default function LessonOverviewCanonicalPage({
 }: PageProps): JSX.Element {
   const {
     teacherNotesButton,
-    teacherNotesButtonProps,
+    TeacherNotesButtonProps,
     teacherNoteHtml,
     teacherNotesOpen,
     setTeacherNotesOpen,
@@ -92,7 +92,7 @@ export default function LessonOverviewCanonicalPage({
             isCanonical: true,
             isSpecialist,
             teacherShareButton: teacherNotesButton,
-            teacherShareButtonProps: teacherNotesButtonProps,
+            teacherShareButtonProps: TeacherNotesButtonProps,
             teacherNoteHtml: teacherNoteHtml,
             teacherNoteError: error,
           }}

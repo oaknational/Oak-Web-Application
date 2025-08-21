@@ -53,7 +53,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
 
   const {
     teacherNotesButton,
-    teacherNotesButtonProps,
+    TeacherNotesButtonProps,
     teacherNoteHtml,
     teacherNotesOpen,
     setTeacherNotesOpen,
@@ -112,7 +112,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             isCanonical: false,
             isSpecialist: false,
             teacherShareButton: teacherNotesButton,
-            teacherShareButtonProps: teacherNotesButtonProps,
+            teacherShareButtonProps: TeacherNotesButtonProps,
             teacherNoteHtml,
             teacherNoteError: error,
           }}

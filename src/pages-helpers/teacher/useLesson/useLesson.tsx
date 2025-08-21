@@ -29,7 +29,7 @@ export type UseLessonProps = {
   };
 };
 
-export type teacherNotesButtonProps = {
+export type TeacherNotesButtonProps = {
   isEditable: boolean | null;
   noteSaved: boolean;
   loginRequired: boolean;
@@ -41,7 +41,7 @@ export type teacherNotesButtonProps = {
 
 type UseLessonReturn = {
   teacherNotesButton: JSX.Element;
-  teacherNotesButtonProps: teacherNotesButtonProps;
+  TeacherNotesButtonProps: TeacherNotesButtonProps;
   teacherNoteHtml: string | undefined;
   teacherNotesOpen: boolean;
   setTeacherNotesOpen: (open: boolean) => void;
@@ -127,7 +127,7 @@ export const useLesson = ({
     />
   );
 
-  const teacherNotesButtonProps = {
+  const TeacherNotesButtonProps = {
     isEditable,
     noteSaved,
     loginRequired,
@@ -141,7 +141,7 @@ export const useLesson = ({
 
   return {
     teacherNotesButton,
-    teacherNotesButtonProps,
+    TeacherNotesButtonProps,
     teacherNoteHtml,
     teacherNotesOpen,
     setTeacherNotesOpen,

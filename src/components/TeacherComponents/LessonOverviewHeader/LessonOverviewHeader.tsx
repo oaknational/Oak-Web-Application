@@ -18,7 +18,7 @@ import {
   TeachingMaterialTypeValueType,
 } from "@/browser-lib/avo/Avo";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
-import { teacherNotesButtonProps } from "@/pages-helpers/teacher/useLesson/useLesson";
+import { TeacherNotesButtonProps } from "@/pages-helpers/teacher/useLesson/useLesson";
 
 /**
  * This is a header for the lesson overview page.
@@ -66,7 +66,7 @@ export type LessonOverviewHeaderProps = {
   showShare: boolean;
   // teacher share
   teacherShareButton?: React.ReactNode;
-  teacherShareButtonProps?: teacherNotesButtonProps;
+  teacherShareButtonProps?: TeacherNotesButtonProps;
   // AI
   excludedFromTeachingMaterials?: boolean;
   trackTeachingMaterialsSelected?: (
