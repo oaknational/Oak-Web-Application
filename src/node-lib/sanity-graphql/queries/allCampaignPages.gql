@@ -1,0 +1,18 @@
+query allCampaignPages(
+  $isDraftFilter: Sanity_DocumentFilter
+  $limit: Int = 9999
+) {
+  allCampaignPage(
+    where: { _: $isDraftFilter }
+    sort: [{ _updatedAt: DESC }]
+    limit: $limit
+  ) {
+    id: _id
+    slug {
+      current
+    }
+    seo {
+      ...Seo
+    }
+  }
+}

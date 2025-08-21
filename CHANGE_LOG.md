@@ -1,3 +1,28 @@
+# [1.840.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.839.0...v1.840.0) (2025-08-21)
+
+
+### Features
+
+* add campaign page to owa on beta route ([585f7d5](https://github.com/oaknational/Oak-Web-Application/commit/585f7d566839610a634bdf0936fb3cb24ea31b1a))
+* add promo stamp styling and example usage on campaign page ([dbb068d](https://github.com/oaknational/Oak-Web-Application/commit/dbb068d3e7698027f0e4536ed7c24faa8dd7be2d))
+* add subheading field to promo banner schema ([434697d](https://github.com/oaknational/Oak-Web-Application/commit/434697d54282064a9fff089353872501fc32f530))
+
+# [1.839.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.838.0...v1.839.0) (2025-08-21)
+
+
+### Features
+
+* add complex copyright count ([f98956f](https://github.com/oaknational/Oak-Web-Application/commit/f98956f47108e0db16b6e99af9c45e176a74e4a5))
+* add complex copyright count ([933d829](https://github.com/oaknational/Oak-Web-Application/commit/933d829e419b99c6dbf983455e769353eadb9af6))
+* add complex copyright count ([cc4a427](https://github.com/oaknational/Oak-Web-Application/commit/cc4a427bf94a0f04c8a7705a353532506a675cde))
+
+# [1.838.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.837.0...v1.838.0) (2025-08-21)
+
+
+### Features
+
+* return 404 for copyright lesson share pages ([5fc3d3f](https://github.com/oaknational/Oak-Web-Application/commit/5fc3d3f81fb4f8e67a4e435f7448c275e501bd81))
+
 # [1.837.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.836.0...v1.837.0) (2025-08-20)
 
 
