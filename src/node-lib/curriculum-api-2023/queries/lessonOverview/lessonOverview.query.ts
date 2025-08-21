@@ -317,8 +317,6 @@ const lessonOverviewQuery =
       unitDataWhere,
     });
 
-    console.log("RESO", res.tpcWorks[0]);
-
     const restrictedAndHighlyRestrictedWorksList =
       res.tpcWorks[0]?.works_list ?? [];
 
