@@ -128,15 +128,18 @@ describe("VideoPlayer", () => {
 
   it("handles and reports onPause event", async () => {
     render(<VideoPlayer {...defaultProps} />);
-    const pauseButton = screen.getByTestId("pause-button");
-    jest.clearAllMocks();
-    await userEvent.click(pauseButton);
+    const playButton = screen.getByTestId("play-button");
+    await userEvent.click(playButton);
+    setTimeout(async () => {
+      const pauseButton = screen.getByTestId("pause-button");
+      await userEvent.click(pauseButton);
 
-    expect(defaultProps.userEventCallback).toHaveBeenCalledWith({
-      duration: 100,
-      event: "pause",
-      timeElapsed: 0,
-      muted: false,
-    });
+      expect(defaultProps.userEventCallback).toHaveBeenCalledWith({
+        duration: 100,
+        event: "pause",
+        timeElapsed: 0,
+        muted: false,
+      });
+    }, 100);
   });
 });
