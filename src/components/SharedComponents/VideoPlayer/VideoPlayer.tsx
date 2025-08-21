@@ -97,7 +97,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   } = props;
 
   const mediaElRef = useRef<MuxPlayerElement>(null);
-  const hasTrackedEndRef = useRef(false);
+  const [endTracked, setEndTracked] = useState<string | null>(null);
   const [envKey] = useState(INITIAL_ENV_KEY);
   const [debug] = useState(INITIAL_DEBUG);
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
@@ -185,9 +185,9 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   };
 
   const onTimeUpdate = () => {
-    if (getPercentageElapsed(mediaElRef) >= 90 && !hasTrackedEndRef.current) {
+    if (getPercentageElapsed(mediaElRef) >= 90 && endTracked !== playbackId) {
       videoTracking.onEnd();
-      hasTrackedEndRef.current = true;
+      setEndTracked(playbackId);
       userEventCallback({
         event: "end",
         duration: getDuration(mediaElRef),
