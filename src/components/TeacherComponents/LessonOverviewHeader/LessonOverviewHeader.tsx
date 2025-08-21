@@ -76,10 +76,17 @@ export type LessonOverviewHeaderProps = {
 };
 
 const LessonOverviewHeader: FC<LessonOverviewHeaderProps> = (props) => {
-  const { breadcrumbs, background, teacherShareButtonProps, showShare } = props;
+  const {
+    breadcrumbs,
+    background,
+    teacherShareButtonProps,
+    showShare,
+    excludedFromTeachingMaterials,
+  } = props;
 
   const isCreateWithAiEnabled =
-    useFeatureFlagVariantKey("create-with-ai-button") === "test";
+    useFeatureFlagVariantKey("create-with-ai-button") === "test" &&
+    !excludedFromTeachingMaterials;
 
   const shouldUseDropdown =
     isCreateWithAiEnabled && showShare && teacherShareButtonProps;
@@ -96,10 +103,7 @@ const LessonOverviewHeader: FC<LessonOverviewHeaderProps> = (props) => {
     <>
       {showShare && <LessonOverviewHeaderShareAllButton {...props} />}
       {teacherShareButtonProps && (
-        <TeacherShareNotesButton
-          variant="dropdown"
-          {...teacherShareButtonProps}
-        />
+        <TeacherShareNotesButton {...teacherShareButtonProps} />
       )}
     </>
   );

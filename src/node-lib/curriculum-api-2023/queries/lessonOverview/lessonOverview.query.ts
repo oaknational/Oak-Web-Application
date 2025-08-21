@@ -317,6 +317,8 @@ const lessonOverviewQuery =
       unitDataWhere,
     });
 
+    console.log("RESO", res.tpcWorks[0]);
+
     const restrictedAndHighlyRestrictedWorksList =
       res.tpcWorks[0]?.works_list ?? [];
 
@@ -374,6 +376,7 @@ const lessonOverviewQuery =
       ...contentSnake,
     }) as LessonOverviewContent;
     const unitData = keysToCamelCase(unitDataSnake) as LessonUnitDataByKs;
+    console.log("restricted", restrictedAndHighlyRestrictedWorksList);
 
     const excludedFromTeachingMaterials = isExcludedFromTeachingMaterials(
       browseData.lessonData,
