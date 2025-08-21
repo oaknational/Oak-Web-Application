@@ -1,5 +1,11 @@
-import { OakBox, OakFlex, OakPrimaryButton } from "@oaknational/oak-components";
-import { useState } from "react";
+import {
+  OakBox,
+  OakFlex,
+  OakPrimaryButton,
+  OakFieldError,
+  OakP,
+} from "@oaknational/oak-components";
+import { useId, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 
 import Terms from "../OakComponentsKitchen/Terms";
@@ -34,8 +40,10 @@ type SignedInFlowProps = CurriculumDownloadViewProps & {
 export default function SignedInFlow({
   onSubmit,
   schools,
+  submitError,
   availableDownloadTypes,
 }: SignedInFlowProps) {
+  const submitErrorId = useId();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [downloadTypes, setDownloadTypes] = useState(() =>
     DOWNLOAD_TYPE_LABELS.map(({ id }) => id),
@@ -82,10 +90,18 @@ export default function SignedInFlow({
           <Terms />
         </OakBox>
       </OakBox>
+      {submitError && (
+        <OakBox id={submitErrorId} $width={"all-spacing-20"}>
+          <OakFieldError>
+            <OakP>{submitError}</OakP>
+          </OakFieldError>
+        </OakBox>
+      )}
       <OakPrimaryButton
         data-testid="download"
         isLoading={isSubmitting}
         disabled={downloadTypes.length < 1}
+        aria-describedby={submitError ? submitErrorId : undefined}
         onClick={onDownload}
         iconName="download"
         isTrailingIcon={true}
