@@ -175,13 +175,17 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   const onPause = () => {
     mediaElRef.current?.classList.remove(PLAYING_CLASSNAME);
     setVideoIsPlaying(false);
-    videoTracking.onPause();
-    userEventCallback({
-      event: "pause",
-      duration: getDuration(mediaElRef),
-      timeElapsed: getTimeElapsed(mediaElRef),
-      muted: mediaElRef.current?.muted || false,
-    });
+    const isVideoFinished =
+      mediaElRef.current?.currentTime === mediaElRef.current?.duration;
+    if (!isVideoFinished) {
+      videoTracking.onPause();
+      userEventCallback({
+        event: "pause",
+        duration: getDuration(mediaElRef),
+        timeElapsed: getTimeElapsed(mediaElRef),
+        muted: mediaElRef.current?.muted || false,
+      });
+    }
   };
 
   const onTimeUpdate = () => {
