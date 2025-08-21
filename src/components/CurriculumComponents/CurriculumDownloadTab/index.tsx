@@ -46,6 +46,7 @@ import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { convertUnitSlugToTitle } from "@/components/TeacherViews/Search/helpers";
 import { downloadFileFromUrl } from "@/components/SharedComponents/helpers/downloadFileFromUrl";
 import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urls";
+import errorReporter from "@/common-lib/error-reporter";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { doUnitsHaveNc, flatUnitsFromYearData } from "@/utils/curriculum/units";
 import { ENABLE_NC_XLSX_DOCUMENT } from "@/utils/curriculum/constants";
@@ -258,6 +259,13 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   const onSubmit = async (data: CurriculumDownloadViewData) => {
     setIsSubmitting(true);
     setSubmitError(undefined);
+    const reportError = errorReporter("curriculum-download", {
+      subjectSlug: slugs.subjectSlug,
+      phaseSlug: slugs.phaseSlug,
+      ks4OptionSlug: slugs.ks4OptionSlug,
+      tierSelected,
+      childSubjectSelected,
+    });
 
     const downloadPath = createCurriculumDownloadsUrl(
       data.downloadTypes,
@@ -291,6 +299,8 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       );
       setIsDone(true);
     } catch (err) {
+      // Report to Bugsnag/Sentry (respecting consent via errorReporter)
+      reportError(err, { severity: "warning" });
       setSubmitError(
         "There was an error downloading your files. Please try again.",
       );
