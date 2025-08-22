@@ -149,7 +149,9 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
                 examBoardSlug={examBoardSlug}
                 subjectSlug={subjectSlug}
                 parentSubject={subjectParent}
-                disablePupilLink={disablePupilLink}
+                disablePupilLink={
+                  disablePupilLink || geoRestricted || loginRequired
+                }
                 lesson={lesson}
               />
             )}
