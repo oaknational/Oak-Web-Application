@@ -1,4 +1,5 @@
 import { GetServerSidePropsContext } from "next";
+import { screen } from "@testing-library/dom";
 
 import CampaignSinglePage, {
   getServerSideProps,
@@ -6,8 +7,8 @@ import CampaignSinglePage, {
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { CampaignPage } from "@/common-lib/cms-types/campaignPage";
-import { screen } from "@testing-library/dom";
 import { mockImageAsset } from "@/__tests__/__helpers__/cms";
+import keyStagesFixture from "@/node-lib/curriculum-api-2023/fixtures/keyStages.fixture";
 
 const mockCampaign: CampaignPage = {
   id: "test-id",
@@ -31,11 +32,19 @@ const mockCampaign: CampaignPage = {
 };
 
 const campaignBySlug = jest.fn().mockResolvedValue(mockCampaign);
+const keyStages = jest.fn().mockResolvedValue(keyStagesFixture());
 
 jest.mock("@/node-lib/cms", () => ({
   __esModule: true,
   default: {
     campaignPageBySlug: (...args: []) => campaignBySlug(args),
+  },
+}));
+
+jest.mock("@/node-lib/curriculum-api-2023", () => ({
+  __esModule: true,
+  default: {
+    keyStages: () => keyStages(),
   },
 }));
 
@@ -95,18 +104,33 @@ describe("Campaign page", () => {
     expect(res).toEqual({
       props: {
         campaign: mockCampaign,
+        keyStages: keyStagesFixture(),
       },
     });
   });
-  it("renders a header", () => {
-    render(<CampaignSinglePage campaign={mockCampaign} />);
+  it("renders a header component", () => {
+    render(
+      <CampaignSinglePage
+        campaign={mockCampaign}
+        keyStages={keyStagesFixture()}
+      />,
+    );
     const header = screen.getByTestId("campaign-header");
     expect(header).toBeInTheDocument();
     expect(header).toHaveTextContent("Test Campaign Header");
+    const keystageButton = screen.getByText("KS1");
+    expect(keystageButton).toBeInTheDocument();
+    const searchInput = screen.getByPlaceholderText(
+      "Search by keyword or topic",
+    );
+    expect(searchInput).toBeInTheDocument();
   });
   it("renders the correct SEO props", () => {
     const { seo } = renderWithSeo()(
-      <CampaignSinglePage campaign={mockCampaign} />,
+      <CampaignSinglePage
+        campaign={mockCampaign}
+        keyStages={keyStagesFixture()}
+      />,
     );
 
     expect(seo).toMatchObject({

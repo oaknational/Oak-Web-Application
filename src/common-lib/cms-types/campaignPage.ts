@@ -9,15 +9,19 @@ import {
 } from "./base";
 import { portableTextSchema } from "./portableText";
 
+const campaignHeaderSchema = z.object({
+  heading: z.string(),
+  subheading: z.string().nullish(),
+  image: imageSchema,
+});
+
+export type CampaignHeader = z.infer<typeof campaignHeaderSchema>;
+
 export const campaignPageSchema = z
   .object({
     title: z.string(),
     slug: slugSchema,
-    header: z.object({
-      heading: z.string(),
-      subheading: z.string().nullish(),
-      image: imageSchema,
-    }),
+    header: campaignHeaderSchema,
     content: z.array(
       z.discriminatedUnion("type", [
         z.object({
