@@ -1,8 +1,8 @@
 import { KeyStageKeypadProps } from "../../components/SharedComponents/KeyStageKeypad/KeyStageKeypad";
-import teachersHomePageFixture from "../../node-lib/curriculum-api-2023/fixtures/teachersHomePage.fixture";
+import keyStagesFixture from "../../node-lib/curriculum-api-2023/fixtures/keyStages.fixture";
 
 const keyStageKeypad: KeyStageKeypadProps = {
-  keyStages: teachersHomePageFixture().keyStages,
+  keyStages: keyStagesFixture().keyStages,
   title: "Select key stage",
   trackingOnClick: () => {},
   years: [

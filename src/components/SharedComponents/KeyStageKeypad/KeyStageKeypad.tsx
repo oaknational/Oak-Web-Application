@@ -12,7 +12,7 @@ import {
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import useIsCurrent from "@/components/SharedComponents/useIsCurrent/useIsCurrent";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
-import { TeachersHomePageData } from "@/node-lib/curriculum-api-2023";
+import { KeyStagesData } from "@/node-lib/curriculum-api-2023";
 
 type KeyStageOnClick = {
   trackingOnClick: (
@@ -21,7 +21,7 @@ type KeyStageOnClick = {
   ) => void;
 };
 
-export type KeypadItem = TeachersHomePageData["keyStages"][number];
+export type KeypadItem = KeyStagesData["keyStages"][number];
 
 export type KeyStageKeypadProps = {
   title: string;
