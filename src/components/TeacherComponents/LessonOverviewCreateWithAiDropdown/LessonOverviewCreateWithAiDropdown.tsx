@@ -5,6 +5,7 @@ import {
   OakSmallPrimaryInvertedButton,
   OakSpan,
   OakSmallSecondaryButtonWithDropdown,
+  OakTagFunctional,
 } from "@oaknational/oak-components";
 
 import { LessonOverviewHeaderProps } from "../LessonOverviewHeader";
@@ -55,22 +56,19 @@ export const LessonOverviewCreateWithAiDropdown = ({
       primaryActionText="Create more with AI"
       onPrimaryAction={trackCreateWithAiButtonClicked}
       leadingButtonIcon={
-        <OakFlex
+        <OakTagFunctional
           $borderRadius={"border-radius-s"}
           $ph={"inner-padding-ssx"}
+          $gap={"all-spacing-05"}
           $mr={"space-between-ssx"}
           $background={"lemon"}
           $alignItems={"center"}
           $justifyContent={"center"}
-          $pr={"inner-padding-ssx"}
-        >
-          <OakIcon
-            $height={"all-spacing-4"}
-            $width={"all-spacing-4"}
-            iconName={"ai"}
-          />
-          <OakSpan $font="body-3">{"New"}</OakSpan>
-        </OakFlex>
+          label={"New"}
+          $height={"all-spacing-5"}
+          iconName="ai"
+          $font={"body-3"}
+        />
       }
     >
       {teachingMaterials.map((material) => (
