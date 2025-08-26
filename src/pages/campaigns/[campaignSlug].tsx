@@ -1,16 +1,16 @@
 import { GetServerSideProps, GetServerSidePropsResult, NextPage } from "next";
-import { OakHeading } from "@oaknational/oak-components";
+import { OakFlex, OakHeading } from "@oaknational/oak-components";
 import { PortableTextComponents } from "@portabletext/react";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { CampaignPage } from "@/common-lib/cms-types/campaignPage";
 import CMSClient from "@/node-lib/cms";
-import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import getPageProps from "@/node-lib/getPageProps";
+import CMSImage from "@/components/SharedComponents/CMSImage";
 
 export type CampaignSinglePageProps = {
   campaign: CampaignPage;
@@ -41,16 +41,23 @@ const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
         noFollow: true,
       }}
     >
-      {props.campaign.content.map((content) => {
-        if (content.type === "CampaignIntro") {
-          return (
-            <PortableTextWithDefaults
-              value={content.headingPortableTextWithPromo}
-              components={h2}
-            />
-          );
-        }
-      })}
+      <OakFlex
+        $background="bg-decorative5-very-subdued"
+        $width="all-spacing-24"
+        data-testid="campaign-header"
+        $pa="inner-padding-xl6"
+      >
+        <OakFlex $flexDirection="column">
+          <OakHeading tag="h1" $font="heading-2">
+            {props.campaign.header.heading}
+          </OakHeading>
+        </OakFlex>
+        <CMSImage
+          image={props.campaign.header.image}
+          $objectFit="contain"
+          format={null}
+        />
+      </OakFlex>
     </AppLayout>
   );
 };
