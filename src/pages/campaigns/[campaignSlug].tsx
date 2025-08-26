@@ -80,7 +80,6 @@ const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
               $flexDirection="column"
               $gap="space-between-m2"
             >
-              {/* TODO: restyle keystage keypad btns */}
               <KeyStageKeypad
                 title="View subjects by key stage"
                 titleTag="h3"
@@ -91,20 +90,19 @@ const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
                 $height={"all-spacing-0"}
                 $bt={"border-solid-m"}
                 $borderColor={"white"}
-               />
+              />
               <OakFlex $flexDirection="column" $gap="space-between-s">
                 <OakHeading tag="h3" $font="heading-7">
                   Or search by keyword
                 </OakHeading>
-                {/* TODO: update anlytics search types */}
                 <SearchForm
-                  searchContext="search"
+                  searchContext="campaign"
                   placeholderText="Search by keyword or topic"
                   searchTerm=""
                   handleSubmit={(value) => {
                     setSearchTerm(value);
                   }}
-                  analyticsSearchSource={"search page search box"}
+                  analyticsSearchSource={"campaign page"}
                 />
               </OakFlex>
             </OakFlex>
