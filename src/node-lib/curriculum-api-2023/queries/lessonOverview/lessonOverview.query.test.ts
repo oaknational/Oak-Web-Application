@@ -48,6 +48,7 @@ describe("lessonOverview()", () => {
             content: [_lessonContentFixture],
             additionalFiles: [_additionalFilesFixture],
             unitData: [],
+            tpcWorks: [],
           }),
         ),
       })({
@@ -67,6 +68,7 @@ describe("lessonOverview()", () => {
             browseData: [],
             additionalFiles: [],
             unitData: [],
+            tpcWorks: [],
           }),
         ),
       })({
@@ -121,6 +123,7 @@ describe("lessonOverview()", () => {
           content: [_lessonContentFixture],
           additionalFiles: [_additionalFilesFixture],
           unitData: [_unitDataFixture],
+          tpcWorks: [],
         }),
       ),
     })({
@@ -247,6 +250,7 @@ describe("lessonOverview()", () => {
           content: [_lessonContentFixture],
           additionalFiles: [],
           unitData: _unitDataFixture,
+          tpcWorks: [],
         }),
       ),
     })({
@@ -273,6 +277,7 @@ describe("lessonOverview()", () => {
             content: [],
             additionalFiles: [],
             unitData: [],
+            tpcWorks: [],
           }),
         ),
       })({

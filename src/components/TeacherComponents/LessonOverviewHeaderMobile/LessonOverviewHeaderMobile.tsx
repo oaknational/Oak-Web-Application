@@ -5,18 +5,22 @@ import {
   OakSpan,
   OakFlex,
   OakBox,
+  OakTertiaryButton,
+  OakTagFunctional,
 } from "@oaknational/oak-components";
+
+import { LessonOverviewCreateWithAiDropdown } from "../LessonOverviewCreateWithAiDropdown";
 
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { LessonOverviewHeaderDownloadAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderDownloadAllButton";
-import { LessonOverviewHeaderShareAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderShareAllButton";
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
 import CopyrightRestrictionBanner from "@/components/TeacherComponents/CopyrightRestrictionBanner/CopyrightRestrictionBanner";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
+import { resolveOakHref } from "@/common-lib/urls";
 
-export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
-  props,
-) => {
+export const LessonOverviewHeaderMobile: FC<
+  LessonOverviewHeaderProps & { shareButtons: React.ReactNode }
+> = (props) => {
   const {
     subjectSlug,
     yearTitle,
@@ -26,18 +30,26 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
     pupilLessonOutcome,
     isNew,
     subjectIconBackgroundColor,
-    showShare,
     isCanonical,
     phonicsOutcome,
-    teacherShareButton,
+    orderInUnit,
+    unitTotalLessonCount,
+    breadcrumbs,
+    programmeSlug,
+    unitTitle,
     geoRestricted,
     loginRequired,
     isLegacy,
     lessonSlug,
     lessonReleaseDate,
-    unitTitle,
     unitSlug,
+    excludedFromTeachingMaterials,
+    shareButtons,
   } = props;
+
+  const previousBreadcrumb = breadcrumbs[breadcrumbs.length - 2];
+  const shouldShowBackButton =
+    !!previousBreadcrumb && !!unitTitle && !!programmeSlug;
 
   return (
     <OakFlex
@@ -45,6 +57,29 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
       $display={["flex", "none"]}
       $gap={"all-spacing-6"}
     >
+      <OakFlex $justifyContent={"space-between"} $alignItems={"center"}>
+        {shouldShowBackButton && (
+          <>
+            <OakTertiaryButton
+              element="a"
+              href={
+                "href" in previousBreadcrumb.oakLinkProps
+                  ? previousBreadcrumb.oakLinkProps.href
+                  : resolveOakHref(previousBreadcrumb.oakLinkProps)
+              }
+              iconName="arrow-left"
+            >
+              View unit
+            </OakTertiaryButton>
+            <OakTagFunctional
+              label={`Lesson ${orderInUnit} of ${unitTotalLessonCount}`}
+              $background={"bg-decorative4-main"}
+              $width={"fit-content"}
+              useSpan={true}
+            />
+          </>
+        )}
+      </OakFlex>
       <OakFlex>
         <OakBox $mr="space-between-s" $height="all-spacing-13">
           <SubjectIconBrushBorders
@@ -78,8 +113,11 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
         </OakBox>
       </OakBox>
       <LessonOverviewHeaderDownloadAllButton {...props} />
-      {showShare && <LessonOverviewHeaderShareAllButton {...props} />}
-      {teacherShareButton}
+      {shareButtons}
+      {!excludedFromTeachingMaterials && (
+        <LessonOverviewCreateWithAiDropdown {...props} />
+      )}
+
       <CopyrightRestrictionBanner
         isGeorestricted={geoRestricted}
         isLoginRequired={loginRequired}

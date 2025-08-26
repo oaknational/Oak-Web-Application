@@ -12,6 +12,7 @@ import {
   OakAnchorTarget,
 } from "@oaknational/oak-components";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
+import { useUser } from "@clerk/nextjs";
 
 import { getContainerId } from "../../TeacherComponents/LessonItemContainer/LessonItemContainer";
 
@@ -41,6 +42,7 @@ import type {
   PathwayValueType,
   ExamBoardValueType,
   TierNameValueType,
+  TeachingMaterialTypeValueType,
 } from "@/browser-lib/avo/Avo";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import LessonDetails from "@/components/TeacherComponents/LessonOverviewDetails";
@@ -65,10 +67,12 @@ import LessonOverviewSideNavAnchorLinks from "@/components/TeacherComponents/Les
 import { RestrictedContentPrompt } from "@/components/TeacherComponents/RestrictedContentPrompt/RestrictedContentPrompt";
 import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
 import { TeacherRedirectedOverlay } from "@/components/TeacherComponents/TeacherRedirectedOverlay/TeacherRedirectedOverlay";
+import { TeacherNotesButtonProps } from "@/pages-helpers/teacher/useLesson/useLesson";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads } & {
     teacherShareButton?: React.ReactNode;
+    teacherShareButtonProps?: TeacherNotesButtonProps;
     teacherNoteHtml?: string;
     teacherNoteError?: string | null;
   };
@@ -162,7 +166,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     subjectParent,
     pathwayTitle,
   } = commonPathway;
-
+  const user = useUser();
   const isLegacyLicense = !lessonCohort || lessonCohort === LEGACY_COHORT;
   const isNew = lessonCohort === NEW_COHORT;
   const isMathJaxLesson = hasLessonMathJax(
@@ -253,6 +257,33 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
       lessonSlug,
       lessonReleaseCohort: lesson.isLegacy ? "2020-2023" : "2023-2026",
       lessonReleaseDate: lessonReleaseDate ?? "unreleased",
+    });
+  };
+
+  const trackCreateWithAiButtonClicked = () => {
+    track.createTeachingMaterialsInitiated({
+      platform: "owa",
+      product: "teacher lesson resources",
+      engagementIntent: "use",
+      componentType: "create_teaching_material_button",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
+      isLoggedIn: user.isSignedIn ?? false,
+    });
+  };
+
+  const trackTeachingMaterialsSelected = (
+    teachingMaterialType: TeachingMaterialTypeValueType,
+  ) => {
+    track.teachingMaterialsSelected({
+      platform: "owa",
+      product: "teacher lesson resources",
+      engagementIntent: "use",
+      componentType: "create_teaching_material_button",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
+      interactionId: "",
+      teachingMaterialType: teachingMaterialType,
     });
   };
 
@@ -353,6 +384,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         showDownloadAll={showDownloadAll}
         showShare={showShare}
         teacherShareButton={teacherShareButton}
+        trackTeachingMaterialsSelected={trackTeachingMaterialsSelected}
+        trackCreateWithAiButtonClicked={trackCreateWithAiButtonClicked}
       />
       <OakMaxWidth $ph={"inner-padding-m"} $pb={"inner-padding-xl8"}>
         {expired ? (
