@@ -22,7 +22,7 @@ export const CampaignPageHeader = ({
       $width={"100%"}
       $pa={["inner-padding-xl2", "inner-padding-xl2", "inner-padding-xl6"]}
       $borderRadius="border-radius-xl"
-      $justifyContent={["center", "center", "initial"]}
+      $justifyContent={["center", "center", "space-between"]}
       $gap="space-between-l"
     >
       <OakFlex $flexDirection="column" $gap="space-between-m2">
