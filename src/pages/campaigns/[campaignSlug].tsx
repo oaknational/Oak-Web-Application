@@ -1,5 +1,5 @@
 import { GetServerSideProps, GetServerSidePropsResult, NextPage } from "next";
-import { OakFlex, OakHeading } from "@oaknational/oak-components";
+import { OakBox, OakFlex, OakHeading } from "@oaknational/oak-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { CampaignPage } from "@/common-lib/cms-types/campaignPage";
@@ -76,7 +76,7 @@ const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
               {props.campaign.header.heading}
             </OakHeading>
             <OakFlex
-              $width={["100%", "100%", "all-spacing-21"]}
+              $width={["100%", "100%", "max-content"]}
               $flexDirection="column"
               $gap="space-between-m2"
             >
@@ -87,6 +87,11 @@ const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
                 keyStages={props.keyStages.keyStages}
                 trackingOnClick={() => {}}
               />
+              <OakBox
+                $height={"all-spacing-0"}
+                $bt={"border-solid-m"}
+                $borderColor={"white"}
+               />
               <OakFlex $flexDirection="column" $gap="space-between-s">
                 <OakHeading tag="h3" $font="heading-7">
                   Or search by keyword
