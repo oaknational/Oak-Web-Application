@@ -117,19 +117,18 @@ export const LessonOverviewHeaderMobile: FC<
       {!excludedFromTeachingMaterials && (
         <LessonOverviewCreateWithAiDropdown {...props} />
       )}
-      {(geoRestricted || loginRequired) && (
-        <CopyrightRestrictionBanner
-          isGeorestricted={geoRestricted}
-          isLoginRequired={loginRequired}
-          componentType="lesson_overview"
-          isLessonLegacy={isLegacy}
-          lessonName={lessonTitle}
-          lessonSlug={lessonSlug}
-          lessonReleaseDate={lessonReleaseDate}
-          unitName={unitTitle}
-          unitSlug={unitSlug}
-        />
-      )}
+
+      <CopyrightRestrictionBanner
+        isGeorestricted={geoRestricted}
+        isLoginRequired={loginRequired}
+        componentType="lesson_overview"
+        isLessonLegacy={isLegacy}
+        lessonName={lessonTitle}
+        lessonSlug={lessonSlug}
+        lessonReleaseDate={lessonReleaseDate}
+        unitName={unitTitle}
+        unitSlug={unitSlug}
+      />
     </OakFlex>
   );
 };
