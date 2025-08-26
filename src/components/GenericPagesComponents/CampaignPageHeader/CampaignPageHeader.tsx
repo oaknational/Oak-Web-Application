@@ -1,4 +1,4 @@
-import { OakFlex, OakHeading, OakBox } from "@oaknational/oak-components";
+import { OakFlex, OakHeading, OakBox, OakP } from "@oaknational/oak-components";
 
 import { CampaignHeader } from "@/common-lib/cms-types/campaignPage";
 import CMSImage from "@/components/SharedComponents/CMSImage";
@@ -36,6 +36,9 @@ export const CampaignPageHeader = ({
         <OakHeading tag="h1" $font={["heading-4", "heading-2"]}>
           {campaignHeader.heading}
         </OakHeading>
+        {campaignHeader.subheading && (
+          <OakP $font={"body-1"}>{campaignHeader.subheading}</OakP>
+        )}
         <OakFlex
           $width={["100%", "100%", "max-content"]}
           $flexDirection="column"
