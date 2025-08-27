@@ -1,3 +1,10 @@
+## [1.842.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.842.0...v1.842.1) (2025-08-22)
+
+
+### Bug Fixes
+
+* rm pupil link from seo accordion when loginrequired or georestricted ([d2dc4ea](https://github.com/oaknational/Oak-Web-Application/commit/d2dc4ea3bf615fd2dc04d1be0088e97ea9a19f66))
+
 # [1.842.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.841.0...v1.842.0) (2025-08-21)
 
 
