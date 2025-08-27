@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-import { documentSchema, imageSchema, seoSchema } from "./base";
+import { documentSchema, imageSchema, seoSchema, videoSchema } from "./base";
 import { cardSchema, textAndMediaSchema } from "./blocks";
 import { linkSchema } from "./cta";
 import { portableTextSchema } from "./portableText";
@@ -28,6 +28,14 @@ export const testimonialSchema = z.object({
   image: imageSchema.nullish(),
 });
 
+const campaignPromoBannerSchema = z.object({
+  headingPortableTextWithPromo: portableTextSchema,
+  subheadingPortableTextWithPromo: portableTextSchema.nullish(),
+  bodyPortableTextWithPromo: portableTextSchema.nullish(),
+  buttonCta: z.string().nullish(),
+  media: z.array(imageSchema.nullish(), videoSchema.nullish()),
+});
+
 export const homePageSchema = z
   .object({
     heading: z.string(),
@@ -46,6 +54,7 @@ export const homePageSchema = z
     seo: seoSchema.nullish(),
     testimonials: z.array(testimonialSchema).nullable(),
     intro: textAndMediaSchema.optional().nullable(),
+    campaignPromoBanner: campaignPromoBannerSchema.nullable(),
   })
   .merge(documentSchema);
 
