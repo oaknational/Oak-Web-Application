@@ -13,23 +13,12 @@ import curriculumApi2023, {
   KeyStagesData,
 } from "@/node-lib/curriculum-api-2023";
 import { CampaignPageHeader } from "@/components/GenericPagesComponents/CampaignPageHeader/CampaignPageHeader";
+import { CampaignPageIntro } from "@/components/GenericPagesComponents/CampaignPageIntro/CampaignPageIntro";
 
 export type CampaignSinglePageProps = {
   campaign: CampaignPage;
   keyStages: KeyStagesData;
 };
-
-// const h2: PortableTextComponents = {
-//   block: {
-//     normal: (props) => {
-//       return (
-//         <OakHeading $font="heading-2" tag="h2">
-//           {props.children}
-//         </OakHeading>
-//       );
-//     },
-//   },
-// };
 
 const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
   return (
@@ -55,6 +44,16 @@ const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
           campaignHeader={props.campaign.header}
           keyStages={props.keyStages}
         />
+        {props.campaign.content.map((section) => {
+          if (section.type === "CampaignIntro") {
+            return (
+              <CampaignPageIntro
+                heading={section.headingPortableTextWithPromo}
+                body={section.bodyPortableTextWithPromo}
+              />
+            );
+          }
+        })}
       </OakFlex>
     </AppLayout>
   );
