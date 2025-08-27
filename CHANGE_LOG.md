@@ -1,3 +1,23 @@
+# [1.843.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.842.1...v1.843.0) (2025-08-27)
+
+
+### Bug Fixes
+
+* centre alignment for mobile column ([b8843a3](https://github.com/oaknational/Oak-Web-Application/commit/b8843a3527a7767afe795744ec02a54fff446e60))
+* justify content on large desktop ([7ac58fb](https://github.com/oaknational/Oak-Web-Application/commit/7ac58fb8e502a9249c2b19323b43dfd8f0d4534a))
+* mock link button in test to prevent nav ([8281b02](https://github.com/oaknational/Oak-Web-Application/commit/8281b0290dfb51c248e65962d0d3cc28fbd2a1b0))
+
+
+### Features
+
+* add desktop and mobile layout for header ([e5c1e7b](https://github.com/oaknational/Oak-Web-Application/commit/e5c1e7bdb4d381418401fef6fc5949b45295035a))
+* add heading and image to campaign page ([4816677](https://github.com/oaknational/Oak-Web-Application/commit/4816677fd8b773a1d7f2d4f02dd3a4e11b4fde90))
+* add optional subheading ([a41a97b](https://github.com/oaknational/Oak-Web-Application/commit/a41a97b91b5145e8abfd0d751331145a5502b67a))
+* extract header to generic components ([5ec9b45](https://github.com/oaknational/Oak-Web-Application/commit/5ec9b451bcc7d5e3beb40c27f87387c2c1af2418))
+* update keystage keypad component to use oak components ([23cfeec](https://github.com/oaknational/Oak-Web-Application/commit/23cfeec434d2234096a65abb11581fe0c6c65440))
+* update search context values ([fa19a58](https://github.com/oaknational/Oak-Web-Application/commit/fa19a582ffcdf3cf1eb2b01cb747b84d76826a3c))
+* use max width for header component ([8ae165c](https://github.com/oaknational/Oak-Web-Application/commit/8ae165c223d810e183291af6cf821395ecfd4e77))
+
 ## [1.842.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.842.0...v1.842.1) (2025-08-22)
 
 
