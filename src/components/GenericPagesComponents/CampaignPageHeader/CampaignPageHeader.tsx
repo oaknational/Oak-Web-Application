@@ -1,4 +1,10 @@
-import { OakFlex, OakHeading, OakBox, OakP } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakHeading,
+  OakBox,
+  OakP,
+  OakMaxWidth,
+} from "@oaknational/oak-components";
 
 import { CampaignHeader } from "@/common-lib/cms-types/campaignPage";
 import CMSImage from "@/components/SharedComponents/CMSImage";
@@ -16,14 +22,16 @@ export const CampaignPageHeader = ({
 }) => {
   const { setSearchTerm } = useSearch({});
   return (
-    <OakFlex
+    <OakMaxWidth
       $background="bg-decorative5-very-subdued"
       data-testid="campaign-header"
-      $width={"100%"}
-      $pa={["inner-padding-xl2", "inner-padding-xl2", "inner-padding-xl6"]}
+      $pv={["inner-padding-xl2", "inner-padding-xl2", "inner-padding-xl6"]}
+      $ph={["inner-padding-xl2", "inner-padding-xl2", "inner-padding-xl6"]}
       $borderRadius="border-radius-xl"
       $justifyContent={["center", "center", "space-between"]}
       $gap="space-between-l"
+      $maxWidth={["unset", "all-spacing-24"]}
+      $flexDirection={"row"}
     >
       <OakFlex $flexDirection="column" $gap="space-between-m2">
         <CMSImage
@@ -78,6 +86,6 @@ export const CampaignPageHeader = ({
         $width="none"
         $objectFit="contain"
       />
-    </OakFlex>
+    </OakMaxWidth>
   );
 };
