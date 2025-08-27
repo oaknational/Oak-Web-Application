@@ -1,32 +1,35 @@
 import { GetServerSideProps, GetServerSidePropsResult, NextPage } from "next";
-import { OakHeading } from "@oaknational/oak-components";
-import { PortableTextComponents } from "@portabletext/react";
+import { OakFlex } from "@oaknational/oak-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { CampaignPage } from "@/common-lib/cms-types/campaignPage";
 import CMSClient from "@/node-lib/cms";
-import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import getPageProps from "@/node-lib/getPageProps";
+import curriculumApi2023, {
+  KeyStagesData,
+} from "@/node-lib/curriculum-api-2023";
+import { CampaignPageHeader } from "@/components/GenericPagesComponents/CampaignPageHeader/CampaignPageHeader";
 
 export type CampaignSinglePageProps = {
   campaign: CampaignPage;
+  keyStages: KeyStagesData;
 };
 
-const h2: PortableTextComponents = {
-  block: {
-    normal: (props) => {
-      return (
-        <OakHeading $font="heading-2" tag="h2">
-          {props.children}
-        </OakHeading>
-      );
-    },
-  },
-};
+// const h2: PortableTextComponents = {
+//   block: {
+//     normal: (props) => {
+//       return (
+//         <OakHeading $font="heading-2" tag="h2">
+//           {props.children}
+//         </OakHeading>
+//       );
+//     },
+//   },
+// };
 
 const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
   return (
@@ -41,16 +44,18 @@ const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
         noFollow: true,
       }}
     >
-      {props.campaign.content.map((content) => {
-        if (content.type === "CampaignIntro") {
-          return (
-            <PortableTextWithDefaults
-              value={content.headingPortableTextWithPromo}
-              components={h2}
-            />
-          );
-        }
-      })}
+      <OakFlex
+        $alignItems="center"
+        $flexDirection="column"
+        $width="100%"
+        $pv={"inner-padding-xl2"}
+        $ph={["inner-padding-l", "inner-padding-l", "inner-padding-xl5"]}
+      >
+        <CampaignPageHeader
+          campaignHeader={props.campaign.header}
+          keyStages={props.keyStages}
+        />
+      </OakFlex>
     </AppLayout>
   );
 };
@@ -117,7 +122,9 @@ export const getServerSideProps: GetServerSideProps<
         },
       );
 
-      if (!campaignPageResult) {
+      const keyStages = await curriculumApi2023.keyStages();
+
+      if (!campaignPageResult || !keyStages) {
         return {
           notFound: true,
         };
@@ -126,6 +133,7 @@ export const getServerSideProps: GetServerSideProps<
       const results: GetServerSidePropsResult<CampaignSinglePageProps> = {
         props: {
           campaign: campaignPageResult,
+          keyStages,
         },
       };
       return results;

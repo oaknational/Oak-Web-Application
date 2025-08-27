@@ -8,7 +8,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   // SITEMAP_BASE_URL is written to the .env file during next.config.js execution.
   const sitemapBaseUrl = process.env.SITEMAP_BASE_URL || "";
 
-  const keyStages = await curriculumApi2023.teachersHomePage();
+  const keyStages = await curriculumApi2023.keyStages();
 
   const keystageSlugs = keyStages.keyStages.map((ks) => `${ks.slug}/subjects`);
 
