@@ -1,4 +1,5 @@
-import { screen } from "@testing-library/dom";
+import { screen, waitFor } from "@testing-library/dom";
+import userEvent from "@testing-library/user-event";
 
 import { CampaignPageHeader } from "./CampaignPageHeader";
 
@@ -12,6 +13,14 @@ const mockCampaignHeader = {
   heading: "Test Campaign Header",
   image: mockImageAsset(),
 };
+
+const setSearchTerm = jest.fn();
+jest.mock("@/context/Search/useSearch", () => ({
+  __esModule: true,
+  default: () => ({
+    setSearchTerm,
+  }),
+}));
 
 describe("CampaignHeader", () => {
   it("renders a heading", () => {
@@ -63,5 +72,21 @@ describe("CampaignHeader", () => {
     );
     const subheading = screen.getByText("This is a subheading");
     expect(subheading).toBeInTheDocument();
+  });
+  it("calls setSearchTerm when a search is performed", async () => {
+    render(
+      <CampaignPageHeader
+        campaignHeader={mockCampaignHeader}
+        keyStages={keyStagesFixture()}
+      />,
+    );
+    const searchInput = screen.getByPlaceholderText(
+      "Search by keyword or topic",
+    );
+    const user = userEvent.setup();
+    await user.type(searchInput, "test search{enter}");
+    await waitFor(() =>
+      expect(setSearchTerm).toHaveBeenCalledWith({ searchTerm: "test search" }),
+    );
   });
 });
