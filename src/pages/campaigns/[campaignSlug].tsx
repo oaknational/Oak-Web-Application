@@ -1,11 +1,6 @@
 import { GetServerSideProps, GetServerSidePropsResult, NextPage } from "next";
-import {
-  OakBox,
-  OakFlex,
-  OakHeading,
-  OakMaxWidth,
-} from "@oaknational/oak-components";
-import { PortableTextComponents } from "@portabletext/react";
+import { OakHeading, OakMaxWidth, OakP } from "@oaknational/oak-components";
+import { PortableTextBlock, PortableTextComponents } from "@portabletext/react";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { CampaignPage } from "@/common-lib/cms-types/campaignPage";
@@ -16,8 +11,8 @@ import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import getPageProps from "@/node-lib/getPageProps";
-import CMSImage from "@/components/SharedComponents/CMSImage";
 import { Image } from "@/common-lib/cms-types";
+import { CampaignPromoBanner } from "@/components/TeacherComponents/CampaignPromoBanner/CampaignPromoBanner";
 
 export type CampaignSinglePageProps = {
   campaign: CampaignPage;
@@ -31,6 +26,14 @@ const h2: PortableTextComponents = {
           {props.children}
         </OakHeading>
       );
+    },
+  },
+};
+
+const p: PortableTextComponents = {
+  block: {
+    normal: (props) => {
+      return <OakP>{props.children}</OakP>;
     },
   },
 };
@@ -61,33 +64,22 @@ const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
           if (content.type === "CampaignPromoBanner") {
             // we get an array here but seem to expect an object
             const media: Image = content.media[0] as Image;
+
             return (
-              <OakFlex
-                $flexDirection={["column", "row"]}
-                $width={"100%"}
-                $gap={"space-between-m2"}
-                $borderRadius={"border-radius-xl"}
-                $pv={["inner-padding-xl5"]}
-                $ph={["inner-padding-xl"]}
-              >
-                <OakFlex
-                  $flexDirection={"column"}
-                  $gap={["space-between-m", "space-between-l"]}
-                >
-                  <PortableTextWithDefaults
-                    value={content.headingPortableTextWithPromo}
-                    components={h2}
-                  />
-
-                  <PortableTextWithDefaults
-                    value={content.bodyPortableTextWithPromo}
-                  />
-                </OakFlex>
-
-                <OakBox>
-                  <CMSImage image={media} />
-                </OakBox>
-              </OakFlex>
+              <CampaignPromoBanner
+                heading={{
+                  content:
+                    content.headingPortableTextWithPromo as unknown as PortableTextBlock,
+                  component: h2,
+                }}
+                body={{
+                  content:
+                    content.bodyPortableTextWithPromo as unknown as PortableTextBlock,
+                  component: p,
+                }}
+                page="campaign"
+                media={media}
+              />
             );
           }
         })}
