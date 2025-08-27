@@ -7,7 +7,7 @@ import Banners from "@/components/CurriculumComponents/Banners";
 import { HomePageLowerView } from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023, {
-  TeachersHomePageData,
+  KeyStagesData,
 } from "@/node-lib/curriculum-api-2023";
 import {
   getBlogPosts,
@@ -16,7 +16,7 @@ import {
 import { HomePage } from "@/common-lib/cms-types";
 
 export type TeachersHomePageProps = HomePageProps & {
-  curriculumData: TeachersHomePageData;
+  curriculumData: KeyStagesData;
 };
 
 export type HomePageProps = {
@@ -69,7 +69,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
         };
       }
 
-      const curriculumData = await curriculumApi2023.teachersHomePage();
+      const curriculumData = await curriculumApi2023.keyStages();
 
       const results: GetStaticPropsResult<TeachersHomePageProps> = {
         props: {

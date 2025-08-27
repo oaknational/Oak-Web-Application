@@ -11,7 +11,7 @@ import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lesso
 import { CurriculumApi } from "@/node-lib/curriculum-api-2023";
 import curriculumPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumPhaseOptions.fixture";
 import { curriculumOverviewMVFixture } from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
-import teachersHomePageFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersHomePage.fixture";
+import keyStagesFixture from "@/node-lib/curriculum-api-2023/fixtures/keyStages.fixture";
 import specialistUnitListingFixture from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.fixture";
 import specialistLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/specialistLessonOverview.fixture";
 import { lessonContentFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonContent.fixture";
@@ -35,7 +35,7 @@ const curriculumApi: Pick<
   | "subjectListingPage"
   | "lessonListing"
   | "programmeListingPage"
-  | "teachersHomePage"
+  | "keyStages"
   | "pupilLessonQuery"
   | "pupilPreviewLessonQuery"
   | "pupilLessonListingQuery"
@@ -78,8 +78,8 @@ const curriculumApi: Pick<
   lessonListing: jest.fn(async () => {
     return lessonListingFixture();
   }),
-  teachersHomePage: jest.fn(async () => {
-    return teachersHomePageFixture();
+  keyStages: jest.fn(async () => {
+    return keyStagesFixture();
   }),
   pupilLessonQuery: jest.fn(async () => {
     return {
