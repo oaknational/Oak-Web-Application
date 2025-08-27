@@ -33,7 +33,11 @@ export const CampaignPageHeader = ({
       $maxWidth={["unset", "all-spacing-24"]}
       $flexDirection={"row"}
     >
-      <OakFlex $flexDirection="column" $gap="space-between-m2">
+      <OakFlex
+        $flexDirection="column"
+        $gap="space-between-m2"
+        $alignItems={["center", "center", "flex-start"]}
+      >
         <CMSImage
           $display={["block", "block", "none"]}
           image={campaignHeader.image}
