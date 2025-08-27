@@ -1,8 +1,6 @@
-import { TeachersHomePageData } from "..";
+import { KeyStagesData } from "..";
 
-const teachersHomePageFixture = (
-  partial?: Partial<TeachersHomePageData>,
-): TeachersHomePageData => {
+const keyStagesFixture = (partial?: Partial<KeyStagesData>): KeyStagesData => {
   return {
     keyStages: [
       { shortCode: "KS1", slug: "ks1", title: "Key Stage 1", displayOrder: 2 },
@@ -15,4 +13,4 @@ const teachersHomePageFixture = (
   };
 };
 
-export default teachersHomePageFixture;
+export default keyStagesFixture;
