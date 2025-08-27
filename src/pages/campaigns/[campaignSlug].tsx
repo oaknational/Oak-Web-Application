@@ -50,6 +50,7 @@ const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
               <CampaignPageIntro
                 heading={section.headingPortableTextWithPromo}
                 body={section.bodyPortableTextWithPromo}
+                key={section.type}
               />
             );
           }

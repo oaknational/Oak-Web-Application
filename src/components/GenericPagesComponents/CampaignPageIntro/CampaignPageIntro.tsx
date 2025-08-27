@@ -44,7 +44,6 @@ export const CampaignPageIntro = ({
   return (
     <OakGrid
       $mt={["space-between-xxl", "space-between-xxl", "space-between-xxxl"]}
-      key={"campaign-intro"}
       $maxWidth={["unset", "all-spacing-24"]}
     >
       <OakGridArea
