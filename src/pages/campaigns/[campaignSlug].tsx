@@ -1,33 +1,24 @@
 import { GetServerSideProps, GetServerSidePropsResult, NextPage } from "next";
-import { OakHeading, OakMaxWidth } from "@oaknational/oak-components";
-import { PortableTextBlock, PortableTextComponents } from "@portabletext/react";
+import { OakFlex } from "@oaknational/oak-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { CampaignPage } from "@/common-lib/cms-types/campaignPage";
 import CMSClient from "@/node-lib/cms";
-import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import getPageProps from "@/node-lib/getPageProps";
-import { Image } from "@/common-lib/cms-types";
+import curriculumApi2023, {
+  KeyStagesData,
+} from "@/node-lib/curriculum-api-2023";
+import { CampaignPageHeader } from "@/components/GenericPagesComponents/CampaignPageHeader/CampaignPageHeader";
+import { CampaignPageIntro } from "@/components/GenericPagesComponents/CampaignPageIntro/CampaignPageIntro";
 import { CampaignPromoBanner } from "@/components/TeacherComponents/CampaignPromoBanner/CampaignPromoBanner";
 
 export type CampaignSinglePageProps = {
   campaign: CampaignPage;
-};
-
-const h2: PortableTextComponents = {
-  block: {
-    normal: (props) => {
-      return (
-        <OakHeading $font={["heading-5", "heading-4", "heading-2"]} tag="h2">
-          {props.children}
-        </OakHeading>
-      );
-    },
-  },
+  keyStages: KeyStagesData;
 };
 
 const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
@@ -43,35 +34,38 @@ const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
         noFollow: true,
       }}
     >
-      <OakMaxWidth>
-        {props.campaign.content.map((content) => {
-          if (content.type === "CampaignIntro") {
+      <OakFlex
+        $alignItems="center"
+        $flexDirection="column"
+        $width="100%"
+        $pv={"inner-padding-xl2"}
+        $ph={["inner-padding-l", "inner-padding-l", "inner-padding-xl5"]}
+      >
+        <CampaignPageHeader
+          campaignHeader={props.campaign.header}
+          keyStages={props.keyStages}
+        />
+        {props.campaign.content.map((section) => {
+          if (section.type === "CampaignIntro") {
             return (
-              <PortableTextWithDefaults
-                value={content.headingPortableTextWithPromo}
-                components={h2}
+              <CampaignPageIntro
+                heading={section.headingPortableTextWithPromo}
+                body={section.bodyPortableTextWithPromo}
+                key={section.type}
               />
             );
           }
-          if (content.type === "CampaignPromoBanner") {
-            // we get an array here but seem to expect an object
-            const media: Image = content.media[0] as Image;
-
+          if (section.type === "CampaignPromoBanner") {
             return (
               <CampaignPromoBanner
-                heading={
-                  content.headingPortableTextWithPromo as unknown as PortableTextBlock
-                }
-                body={
-                  content.bodyPortableTextWithPromo as unknown as PortableTextBlock
-                }
-                page="campaign"
-                media={media}
+                heading={section.headingPortableTextWithPromo}
+                body={section.bodyPortableTextWithPromo}
+                media={section.media[0]}
               />
             );
           }
         })}
-      </OakMaxWidth>
+      </OakFlex>
     </AppLayout>
   );
 };
@@ -138,7 +132,9 @@ export const getServerSideProps: GetServerSideProps<
         },
       );
 
-      if (!campaignPageResult) {
+      const keyStages = await curriculumApi2023.keyStages();
+
+      if (!campaignPageResult || !keyStages) {
         return {
           notFound: true,
         };
@@ -147,6 +143,7 @@ export const getServerSideProps: GetServerSideProps<
       const results: GetServerSidePropsResult<CampaignSinglePageProps> = {
         props: {
           campaign: campaignPageResult,
+          keyStages,
         },
       };
       return results;

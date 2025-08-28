@@ -62,6 +62,7 @@ export function CampaignPromoBanner({
 }) {
   return (
     <OakFlex
+      $maxWidth={"all-spacing-24"}
       $flexDirection={["column", "row"]}
       $width={"100%"}
       $gap={"space-between-m2"}
@@ -98,7 +99,7 @@ export function CampaignPromoBanner({
         $flexShrink={1}
         $flexBasis={0}
       >
-        <CMSImage image={media} />
+        <CMSImage $objectFit={"contain"} image={media} />
       </OakFlex>
     </OakFlex>
   );

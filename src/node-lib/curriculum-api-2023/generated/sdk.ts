@@ -8662,6 +8662,8 @@ export type Mutation_Root = {
   delete_programmes?: Maybe<Programmes_Mutation_Response>;
   /** delete single row from the table: "programmes" */
   delete_programmes_by_pk?: Maybe<Programmes>;
+  /** delete data from the table: "published.overrides_and_exceptions" */
+  delete_published_overrides_and_exceptions?: Maybe<Published_Overrides_And_Exceptions_Mutation_Response>;
   /** delete data from the table: "published.redirects" */
   delete_published_redirects?: Maybe<Published_Redirects_Mutation_Response>;
   /** delete single row from the table: "published.redirects" */
@@ -8840,6 +8842,10 @@ export type Mutation_Root = {
   insert_programmes?: Maybe<Programmes_Mutation_Response>;
   /** insert a single row into the table: "programmes" */
   insert_programmes_one?: Maybe<Programmes>;
+  /** insert data into the table: "published.overrides_and_exceptions" */
+  insert_published_overrides_and_exceptions?: Maybe<Published_Overrides_And_Exceptions_Mutation_Response>;
+  /** insert a single row into the table: "published.overrides_and_exceptions" */
+  insert_published_overrides_and_exceptions_one?: Maybe<Published_Overrides_And_Exceptions>;
   /** insert data into the table: "published.redirects" */
   insert_published_redirects?: Maybe<Published_Redirects_Mutation_Response>;
   /** insert a single row into the table: "published.redirects" */
@@ -9078,6 +9084,10 @@ export type Mutation_Root = {
   update_programmes_by_pk?: Maybe<Programmes>;
   /** update multiples rows of table: "programmes" */
   update_programmes_many?: Maybe<Array<Maybe<Programmes_Mutation_Response>>>;
+  /** update data of the table: "published.overrides_and_exceptions" */
+  update_published_overrides_and_exceptions?: Maybe<Published_Overrides_And_Exceptions_Mutation_Response>;
+  /** update multiples rows of table: "published.overrides_and_exceptions" */
+  update_published_overrides_and_exceptions_many?: Maybe<Array<Maybe<Published_Overrides_And_Exceptions_Mutation_Response>>>;
   /** update data of the table: "published.redirects" */
   update_published_redirects?: Maybe<Published_Redirects_Mutation_Response>;
   /** update single row of the table: "published.redirects" */
@@ -9539,6 +9549,12 @@ export type Mutation_RootDelete_ProgrammesArgs = {
 export type Mutation_RootDelete_Programmes_By_PkArgs = {
   _state: Scalars['String']['input'];
   programme_id: Scalars['Int']['input'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Published_Overrides_And_ExceptionsArgs = {
+  where: Published_Overrides_And_Exceptions_Bool_Exp;
 };
 
 
@@ -10144,6 +10160,18 @@ export type Mutation_RootInsert_ProgrammesArgs = {
 export type Mutation_RootInsert_Programmes_OneArgs = {
   object: Programmes_Insert_Input;
   on_conflict?: InputMaybe<Programmes_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Published_Overrides_And_ExceptionsArgs = {
+  objects: Array<Published_Overrides_And_Exceptions_Insert_Input>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Published_Overrides_And_Exceptions_OneArgs = {
+  object: Published_Overrides_And_Exceptions_Insert_Input;
 };
 
 
@@ -11238,6 +11266,25 @@ export type Mutation_RootUpdate_Programmes_By_PkArgs = {
 /** mutation root */
 export type Mutation_RootUpdate_Programmes_ManyArgs = {
   updates: Array<Programmes_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Published_Overrides_And_ExceptionsArgs = {
+  _append?: InputMaybe<Published_Overrides_And_Exceptions_Append_Input>;
+  _delete_at_path?: InputMaybe<Published_Overrides_And_Exceptions_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Published_Overrides_And_Exceptions_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Published_Overrides_And_Exceptions_Delete_Key_Input>;
+  _inc?: InputMaybe<Published_Overrides_And_Exceptions_Inc_Input>;
+  _prepend?: InputMaybe<Published_Overrides_And_Exceptions_Prepend_Input>;
+  _set?: InputMaybe<Published_Overrides_And_Exceptions_Set_Input>;
+  where: Published_Overrides_And_Exceptions_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Published_Overrides_And_Exceptions_ManyArgs = {
+  updates: Array<Published_Overrides_And_Exceptions_Updates>;
 };
 
 
@@ -38374,6 +38421,303 @@ export type Published_Mv_Threads_By_Unit_1_0_0_Variance_Fields = {
   unit_id?: Maybe<Scalars['Float']['output']>;
 };
 
+/** columns and relationships of "published.overrides_and_exceptions" */
+export type Published_Overrides_And_Exceptions = {
+  __typename?: 'published_overrides_and_exceptions';
+  actions: Scalars['jsonb']['output'];
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  overrides_and_exceptions_id: Scalars['Int']['output'];
+  select_by_features: Scalars['jsonb']['output'];
+  select_by_programme_fields: Scalars['jsonb']['output'];
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+  used_by_queries: Scalars['jsonb']['output'];
+};
+
+
+/** columns and relationships of "published.overrides_and_exceptions" */
+export type Published_Overrides_And_ExceptionsActionsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.overrides_and_exceptions" */
+export type Published_Overrides_And_ExceptionsSelect_By_FeaturesArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.overrides_and_exceptions" */
+export type Published_Overrides_And_ExceptionsSelect_By_Programme_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.overrides_and_exceptions" */
+export type Published_Overrides_And_ExceptionsUsed_By_QueriesArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "published.overrides_and_exceptions" */
+export type Published_Overrides_And_Exceptions_Aggregate = {
+  __typename?: 'published_overrides_and_exceptions_aggregate';
+  aggregate?: Maybe<Published_Overrides_And_Exceptions_Aggregate_Fields>;
+  nodes: Array<Published_Overrides_And_Exceptions>;
+};
+
+/** aggregate fields of "published.overrides_and_exceptions" */
+export type Published_Overrides_And_Exceptions_Aggregate_Fields = {
+  __typename?: 'published_overrides_and_exceptions_aggregate_fields';
+  avg?: Maybe<Published_Overrides_And_Exceptions_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_Overrides_And_Exceptions_Max_Fields>;
+  min?: Maybe<Published_Overrides_And_Exceptions_Min_Fields>;
+  stddev?: Maybe<Published_Overrides_And_Exceptions_Stddev_Fields>;
+  stddev_pop?: Maybe<Published_Overrides_And_Exceptions_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Published_Overrides_And_Exceptions_Stddev_Samp_Fields>;
+  sum?: Maybe<Published_Overrides_And_Exceptions_Sum_Fields>;
+  var_pop?: Maybe<Published_Overrides_And_Exceptions_Var_Pop_Fields>;
+  var_samp?: Maybe<Published_Overrides_And_Exceptions_Var_Samp_Fields>;
+  variance?: Maybe<Published_Overrides_And_Exceptions_Variance_Fields>;
+};
+
+
+/** aggregate fields of "published.overrides_and_exceptions" */
+export type Published_Overrides_And_Exceptions_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Overrides_And_Exceptions_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Published_Overrides_And_Exceptions_Append_Input = {
+  actions?: InputMaybe<Scalars['jsonb']['input']>;
+  select_by_features?: InputMaybe<Scalars['jsonb']['input']>;
+  select_by_programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  used_by_queries?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
+/** aggregate avg on columns */
+export type Published_Overrides_And_Exceptions_Avg_Fields = {
+  __typename?: 'published_overrides_and_exceptions_avg_fields';
+  overrides_and_exceptions_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "published.overrides_and_exceptions". All fields are combined with a logical 'AND'. */
+export type Published_Overrides_And_Exceptions_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Overrides_And_Exceptions_Bool_Exp>>;
+  _not?: InputMaybe<Published_Overrides_And_Exceptions_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Overrides_And_Exceptions_Bool_Exp>>;
+  actions?: InputMaybe<Jsonb_Comparison_Exp>;
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  description?: InputMaybe<String_Comparison_Exp>;
+  overrides_and_exceptions_id?: InputMaybe<Int_Comparison_Exp>;
+  select_by_features?: InputMaybe<Jsonb_Comparison_Exp>;
+  select_by_programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  used_by_queries?: InputMaybe<Jsonb_Comparison_Exp>;
+};
+
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Published_Overrides_And_Exceptions_Delete_At_Path_Input = {
+  actions?: InputMaybe<Array<Scalars['String']['input']>>;
+  select_by_features?: InputMaybe<Array<Scalars['String']['input']>>;
+  select_by_programme_fields?: InputMaybe<Array<Scalars['String']['input']>>;
+  used_by_queries?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Published_Overrides_And_Exceptions_Delete_Elem_Input = {
+  actions?: InputMaybe<Scalars['Int']['input']>;
+  select_by_features?: InputMaybe<Scalars['Int']['input']>;
+  select_by_programme_fields?: InputMaybe<Scalars['Int']['input']>;
+  used_by_queries?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Published_Overrides_And_Exceptions_Delete_Key_Input = {
+  actions?: InputMaybe<Scalars['String']['input']>;
+  select_by_features?: InputMaybe<Scalars['String']['input']>;
+  select_by_programme_fields?: InputMaybe<Scalars['String']['input']>;
+  used_by_queries?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** input type for incrementing numeric columns in table "published.overrides_and_exceptions" */
+export type Published_Overrides_And_Exceptions_Inc_Input = {
+  overrides_and_exceptions_id?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** input type for inserting data into table "published.overrides_and_exceptions" */
+export type Published_Overrides_And_Exceptions_Insert_Input = {
+  actions?: InputMaybe<Scalars['jsonb']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  overrides_and_exceptions_id?: InputMaybe<Scalars['Int']['input']>;
+  select_by_features?: InputMaybe<Scalars['jsonb']['input']>;
+  select_by_programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  used_by_queries?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
+/** aggregate max on columns */
+export type Published_Overrides_And_Exceptions_Max_Fields = {
+  __typename?: 'published_overrides_and_exceptions_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  overrides_and_exceptions_id?: Maybe<Scalars['Int']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_Overrides_And_Exceptions_Min_Fields = {
+  __typename?: 'published_overrides_and_exceptions_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  overrides_and_exceptions_id?: Maybe<Scalars['Int']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** response of any mutation on the table "published.overrides_and_exceptions" */
+export type Published_Overrides_And_Exceptions_Mutation_Response = {
+  __typename?: 'published_overrides_and_exceptions_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Published_Overrides_And_Exceptions>;
+};
+
+/** Ordering options when selecting data from "published.overrides_and_exceptions". */
+export type Published_Overrides_And_Exceptions_Order_By = {
+  actions?: InputMaybe<Order_By>;
+  created_at?: InputMaybe<Order_By>;
+  description?: InputMaybe<Order_By>;
+  overrides_and_exceptions_id?: InputMaybe<Order_By>;
+  select_by_features?: InputMaybe<Order_By>;
+  select_by_programme_fields?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+  used_by_queries?: InputMaybe<Order_By>;
+};
+
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Published_Overrides_And_Exceptions_Prepend_Input = {
+  actions?: InputMaybe<Scalars['jsonb']['input']>;
+  select_by_features?: InputMaybe<Scalars['jsonb']['input']>;
+  select_by_programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  used_by_queries?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
+/** select columns of table "published.overrides_and_exceptions" */
+export enum Published_Overrides_And_Exceptions_Select_Column {
+  /** column name */
+  Actions = 'actions',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Description = 'description',
+  /** column name */
+  OverridesAndExceptionsId = 'overrides_and_exceptions_id',
+  /** column name */
+  SelectByFeatures = 'select_by_features',
+  /** column name */
+  SelectByProgrammeFields = 'select_by_programme_fields',
+  /** column name */
+  UpdatedAt = 'updated_at',
+  /** column name */
+  UsedByQueries = 'used_by_queries'
+}
+
+/** input type for updating data in table "published.overrides_and_exceptions" */
+export type Published_Overrides_And_Exceptions_Set_Input = {
+  actions?: InputMaybe<Scalars['jsonb']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  overrides_and_exceptions_id?: InputMaybe<Scalars['Int']['input']>;
+  select_by_features?: InputMaybe<Scalars['jsonb']['input']>;
+  select_by_programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  used_by_queries?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
+/** aggregate stddev on columns */
+export type Published_Overrides_And_Exceptions_Stddev_Fields = {
+  __typename?: 'published_overrides_and_exceptions_stddev_fields';
+  overrides_and_exceptions_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Published_Overrides_And_Exceptions_Stddev_Pop_Fields = {
+  __typename?: 'published_overrides_and_exceptions_stddev_pop_fields';
+  overrides_and_exceptions_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Published_Overrides_And_Exceptions_Stddev_Samp_Fields = {
+  __typename?: 'published_overrides_and_exceptions_stddev_samp_fields';
+  overrides_and_exceptions_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "published_overrides_and_exceptions" */
+export type Published_Overrides_And_Exceptions_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_Overrides_And_Exceptions_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_Overrides_And_Exceptions_Stream_Cursor_Value_Input = {
+  actions?: InputMaybe<Scalars['jsonb']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  overrides_and_exceptions_id?: InputMaybe<Scalars['Int']['input']>;
+  select_by_features?: InputMaybe<Scalars['jsonb']['input']>;
+  select_by_programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  used_by_queries?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Published_Overrides_And_Exceptions_Sum_Fields = {
+  __typename?: 'published_overrides_and_exceptions_sum_fields';
+  overrides_and_exceptions_id?: Maybe<Scalars['Int']['output']>;
+};
+
+export type Published_Overrides_And_Exceptions_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<Published_Overrides_And_Exceptions_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<Published_Overrides_And_Exceptions_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<Published_Overrides_And_Exceptions_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<Published_Overrides_And_Exceptions_Delete_Key_Input>;
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Published_Overrides_And_Exceptions_Inc_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<Published_Overrides_And_Exceptions_Prepend_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Published_Overrides_And_Exceptions_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Published_Overrides_And_Exceptions_Bool_Exp;
+};
+
+/** aggregate var_pop on columns */
+export type Published_Overrides_And_Exceptions_Var_Pop_Fields = {
+  __typename?: 'published_overrides_and_exceptions_var_pop_fields';
+  overrides_and_exceptions_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Published_Overrides_And_Exceptions_Var_Samp_Fields = {
+  __typename?: 'published_overrides_and_exceptions_var_samp_fields';
+  overrides_and_exceptions_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Published_Overrides_And_Exceptions_Variance_Fields = {
+  __typename?: 'published_overrides_and_exceptions_variance_fields';
+  overrides_and_exceptions_id?: Maybe<Scalars['Float']['output']>;
+};
+
 /** columns and relationships of "published.redirects" */
 export type Published_Redirects = {
   __typename?: 'published_redirects';
@@ -50853,6 +51197,10 @@ export type Query_Root = {
   published_mv_threads_by_unit_1_0_0: Array<Published_Mv_Threads_By_Unit_1_0_0>;
   /** fetch aggregated fields from the table: "published.mv_threads_by_unit_1_0_0" */
   published_mv_threads_by_unit_1_0_0_aggregate: Published_Mv_Threads_By_Unit_1_0_0_Aggregate;
+  /** fetch data from the table: "published.overrides_and_exceptions" */
+  published_overrides_and_exceptions: Array<Published_Overrides_And_Exceptions>;
+  /** fetch aggregated fields from the table: "published.overrides_and_exceptions" */
+  published_overrides_and_exceptions_aggregate: Published_Overrides_And_Exceptions_Aggregate;
   /** fetch data from the table: "published.redirects" */
   published_redirects: Array<Published_Redirects>;
   /** fetch aggregated fields from the table: "published.redirects" */
@@ -53163,6 +53511,24 @@ export type Query_RootPublished_Mv_Threads_By_Unit_1_0_0_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Published_Mv_Threads_By_Unit_1_0_0_Order_By>>;
   where?: InputMaybe<Published_Mv_Threads_By_Unit_1_0_0_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Overrides_And_ExceptionsArgs = {
+  distinct_on?: InputMaybe<Array<Published_Overrides_And_Exceptions_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Overrides_And_Exceptions_Order_By>>;
+  where?: InputMaybe<Published_Overrides_And_Exceptions_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Overrides_And_Exceptions_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Overrides_And_Exceptions_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Overrides_And_Exceptions_Order_By>>;
+  where?: InputMaybe<Published_Overrides_And_Exceptions_Bool_Exp>;
 };
 
 
@@ -56855,6 +57221,12 @@ export type Subscription_Root = {
   published_mv_threads_by_unit_1_0_0_aggregate: Published_Mv_Threads_By_Unit_1_0_0_Aggregate;
   /** fetch data from the table in a streaming manner: "published.mv_threads_by_unit_1_0_0" */
   published_mv_threads_by_unit_1_0_0_stream: Array<Published_Mv_Threads_By_Unit_1_0_0>;
+  /** fetch data from the table: "published.overrides_and_exceptions" */
+  published_overrides_and_exceptions: Array<Published_Overrides_And_Exceptions>;
+  /** fetch aggregated fields from the table: "published.overrides_and_exceptions" */
+  published_overrides_and_exceptions_aggregate: Published_Overrides_And_Exceptions_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.overrides_and_exceptions" */
+  published_overrides_and_exceptions_stream: Array<Published_Overrides_And_Exceptions>;
   /** fetch data from the table: "published.redirects" */
   published_redirects: Array<Published_Redirects>;
   /** fetch aggregated fields from the table: "published.redirects" */
@@ -60012,6 +60384,31 @@ export type Subscription_RootPublished_Mv_Threads_By_Unit_1_0_0_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Published_Mv_Threads_By_Unit_1_0_0_Stream_Cursor_Input>>;
   where?: InputMaybe<Published_Mv_Threads_By_Unit_1_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Overrides_And_ExceptionsArgs = {
+  distinct_on?: InputMaybe<Array<Published_Overrides_And_Exceptions_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Overrides_And_Exceptions_Order_By>>;
+  where?: InputMaybe<Published_Overrides_And_Exceptions_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Overrides_And_Exceptions_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Overrides_And_Exceptions_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Overrides_And_Exceptions_Order_By>>;
+  where?: InputMaybe<Published_Overrides_And_Exceptions_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Overrides_And_Exceptions_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_Overrides_And_Exceptions_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Overrides_And_Exceptions_Bool_Exp>;
 };
 
 
@@ -69610,6 +70007,11 @@ export type CurriculumSequenceQueryVariables = Exact<{
 
 export type CurriculumSequenceQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_curriculum_sequence_b_13_0_19', connection_prior_unit_description?: string | null, connection_future_unit_description?: string | null, connection_future_unit_title?: string | null, connection_prior_unit_title?: string | null, domain?: string | null, domain_id?: string | null, examboard?: string | null, examboard_slug?: string | null, keystage_slug?: string | null, lessons?: any | null, order?: number | null, planned_number_of_lessons?: number | null, phase?: string | null, phase_slug?: string | null, slug?: string | null, subject?: string | null, subject_slug?: string | null, subject_parent?: string | null, subject_parent_slug?: string | null, tags?: any | null, subjectcategories?: any | null, tier?: string | null, tier_slug?: string | null, title?: string | null, why_this_why_now?: string | null, description?: string | null, cycle?: string | null, features?: any | null, parent_programme_features?: any | null, national_curriculum_content?: any | null, prior_knowledge_requirements?: any | null, actions?: any | null, unit_options?: any | null, threads?: any | null, year?: string | null, pathway?: string | null, pathway_slug?: string | null, state?: string | null }> };
 
+export type KeyStagesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type KeyStagesQuery = { __typename?: 'query_root', keyStages: Array<{ __typename?: 'published_mv_homepage_3_0_1', keyStages?: any | null }> };
+
 export type BetaLessonMediaClipsQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
 }>;
@@ -69883,11 +70285,6 @@ export type TeachersPreviewUnitListingQueryVariables = Exact<{
 
 export type TeachersPreviewUnitListingQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_ks_new_15_0_0', is_legacy?: boolean | null, programme_slug?: string | null, unit_slug?: string | null, programme_fields?: any | null, unit_data?: any | null, lesson_count?: number | null, lesson_expired_count?: number | null, lesson_sensitive_count?: number | null, expired?: boolean | null, supplementary_data?: any | null, threads?: any | null, actions?: any | null, features?: any | null }> };
 
-export type TeachersHomePageQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type TeachersHomePageQuery = { __typename?: 'query_root', teachersHomePage: Array<{ __typename?: 'published_mv_homepage_3_0_1', keyStages?: any | null }> };
-
 export type TeachersSitemapQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -70001,6 +70398,13 @@ export const CurriculumSequenceDocument = gql`
     pathway
     pathway_slug
     state
+  }
+}
+    `;
+export const KeyStagesDocument = gql`
+    query keyStages {
+  keyStages: published_mv_homepage_3_0_1 {
+    keyStages: key_stages
   }
 }
     `;
@@ -70924,13 +71328,6 @@ export const TeachersPreviewUnitListingDocument = gql`
   }
 }
     `;
-export const TeachersHomePageDocument = gql`
-    query teachersHomePage {
-  teachersHomePage: published_mv_homepage_3_0_1 {
-    keyStages: key_stages
-  }
-}
-    `;
 export const TeachersSitemapDocument = gql`
     query teachersSitemap {
   keyStages: published_mv_key_stages_2_0_0 {
@@ -71020,6 +71417,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     curriculumSequence(variables?: CurriculumSequenceQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CurriculumSequenceQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<CurriculumSequenceQuery>({ document: CurriculumSequenceDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'curriculumSequence', 'query', variables);
+    },
+    keyStages(variables?: KeyStagesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<KeyStagesQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<KeyStagesQuery>({ document: KeyStagesDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'keyStages', 'query', variables);
     },
     betaLessonMediaClips(variables: BetaLessonMediaClipsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<BetaLessonMediaClipsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<BetaLessonMediaClipsQuery>({ document: BetaLessonMediaClipsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'betaLessonMediaClips', 'query', variables);
@@ -71131,9 +71531,6 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     teachersPreviewUnitListing(variables: TeachersPreviewUnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TeachersPreviewUnitListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeachersPreviewUnitListingQuery>({ document: TeachersPreviewUnitListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'teachersPreviewUnitListing', 'query', variables);
-    },
-    teachersHomePage(variables?: TeachersHomePageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TeachersHomePageQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeachersHomePageQuery>({ document: TeachersHomePageDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'teachersHomePage', 'query', variables);
     },
     teachersSitemap(variables?: TeachersSitemapQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<TeachersSitemapQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeachersSitemapQuery>({ document: TeachersSitemapDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'teachersSitemap', 'query', variables);
