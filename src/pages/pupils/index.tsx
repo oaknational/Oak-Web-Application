@@ -14,6 +14,7 @@ import {
 const Pupils: NextPage<HomePageProps> = (props) => {
   const testimonials = props.pageData?.testimonials;
   const intro = props.pageData?.intro;
+  const campaignPromoBanner = props.pageData.campaignPromoBanner;
 
   return (
     <AppLayout
@@ -29,6 +30,7 @@ const Pupils: NextPage<HomePageProps> = (props) => {
       <HomePageTabImageNav current={"pupils"} />
       <PupilTab aria-current="page" />
       <HomePageLowerView
+        campaignPromoBanner={campaignPromoBanner}
         posts={props.posts}
         testimonials={testimonials}
         introVideo={intro}

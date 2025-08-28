@@ -31,8 +31,8 @@ export const postToPostListItem = (post: SerializedPost): PostListItemProps => {
 
 export type HomePageLowerViewProps = {
   posts: SerializedPost[];
-  campaignPromoBanner: CampaignPromoBannerType | null;
   testimonials: HomePage["testimonials"];
+  campaignPromoBanner?: CampaignPromoBannerType | null;
   introVideo?: HomePage["intro"];
 };
 

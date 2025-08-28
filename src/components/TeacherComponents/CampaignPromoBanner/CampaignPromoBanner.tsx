@@ -5,7 +5,7 @@ import { PortableTextWithDefaults } from "../../SharedComponents/PortableText";
 import CMSImage from "../../SharedComponents/CMSImage";
 
 import { Image, Video } from "@/common-lib/cms-types";
-import { textStyles } from "@/components/GenericPagesComponents/CampaignPageIntro/CampaignPageIntro";
+import { textStyles } from "@/pages/campaigns/[campaignSlug]";
 
 export function CampaignPromoBanner({
   media,
