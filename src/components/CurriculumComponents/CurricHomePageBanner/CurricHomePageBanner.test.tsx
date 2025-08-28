@@ -8,7 +8,7 @@ import oakDefaultTheme from "@/styles/theme";
 describe("HomePageBanner", () => {
   const defaultProps: HomePageBannerProps = {
     background: "lemon",
-    newText: "Subjects added",
+    message: <div>Subjects added</div>,
     ctaText: "See curriculum plans",
     page: "curriculum-landing-page",
   };
@@ -102,7 +102,7 @@ describe("HomePageBanner", () => {
     const colors = ["white", "black", "mint", "lavender", "pink"] as const;
 
     colors.forEach((color) => {
-      const { getByRole, getByText, getByTestId, unmount } = renderBanner({
+      const { getByRole, getByTestId, unmount } = renderBanner({
         ...defaultProps,
         background: color,
       });
@@ -111,7 +111,6 @@ describe("HomePageBanner", () => {
       expect(banner).toBeInTheDocument();
 
       expect(getByTestId("new-icon")).toBeInTheDocument();
-      expect(getByText(defaultProps.newText)).toBeInTheDocument();
       expect(getByRole("link")).toBeInTheDocument();
 
       unmount();
