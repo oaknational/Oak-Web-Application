@@ -1,3 +1,12 @@
+## [1.844.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.844.0...v1.844.1) (2025-08-28)
+
+
+### Bug Fixes
+
+* **a11y:** associate Download button with inline error via aria-describedby ([b1b49cb](https://github.com/oaknational/Oak-Web-Application/commit/b1b49cbcb9a91ce170763a14433176c05d4c87db))
+* **curriculum-downloads:** report download failures via Bugsnag ([ab94faf](https://github.com/oaknational/Oak-Web-Application/commit/ab94faf8944c95fc0fc4c8abe1395011fa5d15fc))
+* **curriculum-downloads:** show inline error on failed download and avoid false success ([a04526d](https://github.com/oaknational/Oak-Web-Application/commit/a04526d7225717a27090c2236d380a1a11741d03))
+
 # [1.844.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.843.0...v1.844.0) (2025-08-28)
 
 
