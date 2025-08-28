@@ -1,6 +1,8 @@
 import { OakFlex, OakP, OakPromoTag } from "@oaknational/oak-components";
 import { useFeatureFlagEnabled } from "posthog-js/react";
 
+import { PromoSpan } from "../PromoSpan/PromoSpan";
+
 import PromoBanner from "@/components/SharedComponents/PromoBanner";
 
 export default function Banners() {
@@ -9,7 +11,12 @@ export default function Banners() {
   );
 
   const muthbustingContent = (
-    <OakP>Myths about teaching can hold you back</OakP>
+    <OakP $font={"body-2"}>
+      <PromoSpan>
+        <OakP $font={"body-3-bold"}>Myths</OakP>
+      </PromoSpan>{" "}
+      about teaching <b>can hold you back</b>
+    </OakP>
   );
   const curriculumContent = (
     <OakFlex $gap="space-between-ssx">
