@@ -9,13 +9,13 @@ import {
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import { ResolveOakHrefProps } from "@/common-lib/urls";
 
-export type HomePageBannerProps = {
+export type PromoBannerProps = {
   background: OakColorToken;
   message: ReactNode;
   ctaText: string;
 } & ResolveOakHrefProps;
 
-const PromoBanner: FC<HomePageBannerProps> = ({
+const PromoBanner: FC<PromoBannerProps> = ({
   background,
   message,
   ctaText,

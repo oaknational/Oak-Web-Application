@@ -7,7 +7,7 @@ import {
   OakThemeProvider,
 } from "@oaknational/oak-components";
 
-import PromoBanner from "./CurricHomePageBanner";
+import PromoBanner from "./PromoBanner";
 
 const meta: Meta<typeof PromoBanner> = {
   component: PromoBanner,

@@ -1,7 +1,7 @@
 import { OakFlex, OakP, OakPromoTag } from "@oaknational/oak-components";
 import { useFeatureFlagEnabled } from "posthog-js/react";
 
-import CurricHomePageBanner from "@/components/CurriculumComponents/CurricHomePageBanner";
+import PromoBanner from "@/components/SharedComponents/PromoBanner";
 
 export default function Banners() {
   const isMythbustingCampaignActive = useFeatureFlagEnabled(
@@ -31,7 +31,7 @@ export default function Banners() {
     : "curriculum-landing-page";
 
   return (
-    <CurricHomePageBanner
+    <PromoBanner
       background={background}
       ctaText={ctaText}
       page={page}

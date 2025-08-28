@@ -1,12 +1,12 @@
 import { render } from "@testing-library/react";
 import { ThemeProvider } from "styled-components";
 
-import HomePageBanner, { HomePageBannerProps } from "./CurricHomePageBanner";
+import HomePageBanner, { PromoBannerProps } from "./PromoBanner";
 
 import oakDefaultTheme from "@/styles/theme";
 
 describe("HomePageBanner", () => {
-  const defaultProps: HomePageBannerProps = {
+  const defaultProps: PromoBannerProps = {
     background: "lemon",
     message: <div>Subjects added</div>,
     ctaText: "See curriculum plans",
