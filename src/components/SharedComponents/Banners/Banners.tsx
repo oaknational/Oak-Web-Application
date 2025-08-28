@@ -4,6 +4,7 @@ import { useFeatureFlagEnabled } from "posthog-js/react";
 import { PromoSpan } from "../PromoSpan/PromoSpan";
 
 import PromoBanner from "@/components/SharedComponents/PromoBanner";
+import { ResolveOakHrefProps } from "@/common-lib/urls";
 
 export default function Banners() {
   const isMythbustingCampaignActive = useFeatureFlagEnabled(
@@ -32,17 +33,16 @@ export default function Banners() {
     ? "Learn why"
     : "See curriculum plans";
 
-  // TODO: add campaign page
-  const page = isMythbustingCampaignActive
-    ? "curriculum-landing-page"
-    : "curriculum-landing-page";
+  const linkProps: ResolveOakHrefProps = isMythbustingCampaignActive
+    ? { page: "campaign-single", campaignSlug: "mythbusting" }
+    : { page: "curriculum-landing-page" };
 
   return (
     <PromoBanner
       background={background}
       ctaText={ctaText}
-      page={page}
       message={message}
+      {...linkProps}
     />
   );
 }
