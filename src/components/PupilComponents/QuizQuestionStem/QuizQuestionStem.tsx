@@ -22,12 +22,14 @@ export interface QuizQuestionStemProps {
   questionStem: (ImageItem | TextItem)[];
   index: number;
   takeFullHeight?: boolean;
+  questionUid: string;
 }
 
 export const QuizQuestionStem = ({
   questionStem,
   index,
   takeFullHeight,
+  questionUid,
 }: QuizQuestionStemProps) => {
   const [scaled, setScaled] = useState(false);
   const displayNumber = `Q${index + 1}.`;
@@ -57,6 +59,7 @@ export const QuizQuestionStem = ({
               key={`q-${displayNumber}-stem-element-0`}
               $font={["heading-6", "heading-4", "heading-4"]}
               $width={"100%"}
+              id={`${questionUid}-legend`}
             >
               {shortAnswerTitleFormatter(removeMarkdown(questionStem[0].text))}
             </OakBox>
