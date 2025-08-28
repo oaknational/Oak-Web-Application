@@ -7,7 +7,6 @@ import {
   OakPrimaryButton,
   OakTagFunctional,
 } from "@oaknational/oak-components";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import useUnitDownloadExistenceCheck from "../hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
 
@@ -142,9 +141,6 @@ export type UnitDownloadButtonProps = {
 export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
   const { unitFileId, geoRestricted } = props;
   const { isSignedIn, isLoaded, user } = useUser();
-  const authFlagEnabled = useFeatureFlagEnabled(
-    "teachers-copyright-restrictions",
-  );
   const auth = useAuth();
   const router = useRouter();
 
@@ -168,7 +164,6 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
       setDownloadError(false);
       const downloadLink = await createUnitDownloadLink({
         unitFileId,
-        authRequired: authFlagEnabled,
         getToken: auth.getToken,
       });
 
@@ -195,8 +190,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
     showDownloadButton &&
     isSignedIn &&
     geoRestricted &&
-    !user.publicMetadata?.owa?.isRegionAuthorised &&
-    authFlagEnabled;
+    !user.publicMetadata?.owa?.isRegionAuthorised;
 
   return showOnboardButton ? (
     <UnitDownloadOnboardButton

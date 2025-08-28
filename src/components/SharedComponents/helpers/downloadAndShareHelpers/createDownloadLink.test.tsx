@@ -112,7 +112,7 @@ describe("createLessonDownloadLink()", () => {
 
     expect(global.fetch).toBeCalledWith(
       "https://mockdownloads.com/api/lesson/lesson-slug/download?selection=exit-quiz-answers,worksheet-pdf",
-      { headers: { "X-Should-Authenticate-Download": "false" } },
+      { headers: {} },
     );
   });
   it("should fetch from download api if isLegacyDownloads = false", async () => {
@@ -124,7 +124,7 @@ describe("createLessonDownloadLink()", () => {
 
     expect(global.fetch).toBeCalledWith(
       "https://mockdownloads.com/api/lesson/lesson-slug/download?selection=exit-quiz-answers,worksheet-pdf",
-      { headers: { "X-Should-Authenticate-Download": "false" } },
+      { headers: {} },
     );
   });
   it("should throw an error when NEXT_PUBLIC_DOWNLOAD_API_URL is not defined", async () => {
@@ -154,7 +154,6 @@ describe("createLessonDownloadLink()", () => {
       selection: "exit-quiz-answers,worksheet-pdf",
       isLegacyDownload: true,
       authToken,
-      authRequired: true,
     });
 
     expect(global.fetch).toBeCalledWith(
@@ -162,76 +161,24 @@ describe("createLessonDownloadLink()", () => {
       expect.objectContaining({
         headers: {
           Authorization: `Bearer ${authToken}`,
-          "X-Should-Authenticate-Download": "true",
         },
       }),
     );
   });
 
-  it("should not throw an error if authRequired & no auth token provided", async () => {
+  it("should not throw an error if no auth token provided", async () => {
     expect(async () => {
       await createLessonDownloadLink({
         lessonSlug: "lesson-slug",
         selection: "exit-quiz-answers,worksheet-pdf",
         isLegacyDownload: true,
         authToken: null,
-        authRequired: true,
       });
     }).not.toThrow();
-  });
-
-  it("should fetch with X-Should-Authenticate-Download set to false when authFlagEnabled is false", async () => {
-    await createLessonDownloadLink({
-      lessonSlug: "lesson-slug",
-      selection: "exit-quiz-answers,worksheet-pdf",
-      isLegacyDownload: true,
-      authRequired: false,
-    });
-
-    expect(global.fetch).toBeCalledWith(
-      expect.any(String),
-      expect.objectContaining({
-        headers: {
-          "X-Should-Authenticate-Download": "false",
-        },
-      }),
-    );
   });
 });
 
 describe("createUnitDownloadLink()", () => {
-  it("should set authentication header to false when flag disabled", async () => {
-    await createUnitDownloadLink({
-      unitFileId: "unitvariant-123",
-      authRequired: false,
-      getToken: jest.fn().mockResolvedValue(null),
-    });
-    expect(global.fetch).toHaveBeenCalledWith(
-      "https://mockdownloads.com/api/unit/unitvariant-123/download",
-      expect.objectContaining({
-        headers: {
-          "X-Should-Authenticate-Download": "false",
-        },
-      }),
-    );
-  });
-  it("should set authentication header to true when flag enabled", async () => {
-    const getToken = jest.fn().mockResolvedValue("testToken");
-    await createUnitDownloadLink({
-      unitFileId: "unitvariant-123",
-      authRequired: true,
-      getToken,
-    });
-    expect(global.fetch).toHaveBeenCalledWith(
-      "https://mockdownloads.com/api/unit/unitvariant-123/download",
-      expect.objectContaining({
-        headers: {
-          Authorization: "Bearer testToken",
-          "X-Should-Authenticate-Download": "true",
-        },
-      }),
-    );
-  });
   it("should throw an error if response is not ok", async () => {
     (global.fetch as jest.Mock).mockImplementationOnce(() =>
       Promise.resolve({
@@ -243,16 +190,14 @@ describe("createUnitDownloadLink()", () => {
     await expect(async () => {
       await createUnitDownloadLink({
         unitFileId: "unitvariant-123",
-        authRequired: false,
         getToken: jest.fn().mockResolvedValue(null),
       });
     }).rejects.toThrow();
   });
-  it("should not throw an error if authFlagEnabled is true and getToken returns null", async () => {
+  it("should not throw an error if getToken returns null", async () => {
     expect(async () => {
       await createUnitDownloadLink({
         unitFileId: "unitvariant-123",
-        authRequired: true,
         getToken: jest.fn().mockResolvedValue(null),
       });
     }).not.toThrow();

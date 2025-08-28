@@ -159,31 +159,7 @@ describe("useResourceFormSubmit", () => {
         lessonSlug: "lesson",
         selectedResourceTypes: ["intro-quiz-questions"],
         isLegacyDownload: true,
-        authRequired: false,
         authToken: null,
-        selectedAdditionalFilesIds: [],
-      });
-    });
-  });
-
-  it("should call downloadLessonResources with correct parameters when feature flag returns true", async () => {
-    mockFeatureFlagEnabled.mockReturnValueOnce(true);
-    mockAuthGetToken.mockResolvedValueOnce("token");
-    const { result } = renderHook(() =>
-      useResourceFormSubmit({
-        isLegacyDownload: true,
-        type: "download",
-      }),
-    );
-    result.current.onSubmit(data, "lesson");
-
-    await waitFor(() => {
-      expect(downloadLessonResources).toHaveBeenCalledWith({
-        lessonSlug: "lesson",
-        selectedResourceTypes: ["intro-quiz-questions"],
-        isLegacyDownload: true,
-        authRequired: true,
-        authToken: "token",
         selectedAdditionalFilesIds: [],
       });
     });
@@ -216,7 +192,6 @@ describe("useResourceFormSubmit", () => {
         lessonSlug: "lesson",
         selectedResourceTypes: ["intro-quiz-questions", "additional-files"],
         isLegacyDownload: true,
-        authRequired: false,
         authToken: null,
         selectedAdditionalFilesIds: [123, 345],
       });
