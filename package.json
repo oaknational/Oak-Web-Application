@@ -256,7 +256,7 @@
     "svg-sprite": "^2.0.2",
     "ts-node": "^10.9.2",
     "tsx": "^4.20.3",
-    "typescript": "^5.8.3",
+    "typescript": "^5.9.2",
     "typescript-plugin-css-modules": "^5.2.0",
     "webpack": "^5.100.2",
     "webpack-bugsnag-plugins": "^1.9.0",
