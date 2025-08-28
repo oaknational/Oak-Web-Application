@@ -56,13 +56,15 @@ const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
             );
           }
           if (section.type === "CampaignPromoBanner") {
-            return (
-              <CampaignPromoBanner
-                heading={section.headingPortableTextWithPromo}
-                body={section.bodyPortableTextWithPromo}
-                media={section.media[0]}
-              />
-            );
+            const media = section.media[0];
+            if (media)
+              return (
+                <CampaignPromoBanner
+                  heading={section.headingPortableTextWithPromo}
+                  body={section.bodyPortableTextWithPromo}
+                  media={media}
+                />
+              );
           }
         })}
       </OakFlex>

@@ -53,11 +53,10 @@ export function CampaignPromoBanner({
   body,
   buttonCta,
 }: {
-  page: Page;
-  heading: PortableTextBlock;
+  heading: PortableTextBlock[];
   media: Image | Video;
-  subheading?: PortableTextBlock;
-  body?: PortableTextBlock;
+  subheading?: PortableTextBlock[] | null;
+  body?: PortableTextBlock[] | null;
   buttonCta?: string;
 }) {
   return (

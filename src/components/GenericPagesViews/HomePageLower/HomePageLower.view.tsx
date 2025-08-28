@@ -97,7 +97,7 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
             </OakGrid>
           </OakMaxWidth>
         )}
-      {campaignPromoBanner && (
+      {campaignPromoBanner && campaignPromoBanner.media[0] && (
         <OakMaxWidth>
           <OakBox
             $borderRadius={"border-radius-xl"}
@@ -107,8 +107,7 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
               heading={campaignPromoBanner?.headingPortableTextWithPromo}
               subheading={campaignPromoBanner?.subheadingPortableTextWithPromo}
               buttonCta={campaignPromoBanner.buttonCta ?? undefined}
-              media={campaignPromoBanner.media[0]}
-              page="home"
+              media={campaignPromoBanner?.media[0]}
             />
           </OakBox>
         </OakMaxWidth>
