@@ -19,8 +19,9 @@ import { SerializedPost } from "@/pages-helpers/home/getBlogPosts";
 import { webinarToPostListItem } from "@/components/GenericPagesViews/WebinarsIndex.view";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { Testimonials } from "@/components/GenericPagesComponents/Testimonials";
-import { HomePage } from "@/common-lib/cms-types";
+import { CampaignPromoBannerType, HomePage } from "@/common-lib/cms-types";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
+import { CampaignPromoBanner } from "@/components/TeacherComponents/CampaignPromoBanner/CampaignPromoBanner";
 
 export const postToPostListItem = (post: SerializedPost): PostListItemProps => {
   return post.type === "blog-post"
@@ -30,11 +31,13 @@ export const postToPostListItem = (post: SerializedPost): PostListItemProps => {
 
 export type HomePageLowerViewProps = {
   posts: SerializedPost[];
+  campaignPromoBanner: CampaignPromoBannerType | null;
   testimonials: HomePage["testimonials"];
   introVideo?: HomePage["intro"];
 };
 
 export const HomePageLowerView = (props: HomePageLowerViewProps) => {
+  const { campaignPromoBanner } = props;
   const posts = props.posts.map(postToPostListItem);
   const blogListProps = usePostList({ items: posts, withImage: true });
   const { introVideo } = props;
@@ -94,6 +97,22 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
             </OakGrid>
           </OakMaxWidth>
         )}
+      {campaignPromoBanner && (
+        <OakMaxWidth>
+          <OakBox
+            $borderRadius={"border-radius-xl"}
+            $background={"bg-decorative5-very-subdued"}
+          >
+            <CampaignPromoBanner
+              heading={campaignPromoBanner?.headingPortableTextWithPromo}
+              subheading={campaignPromoBanner?.subheadingPortableTextWithPromo}
+              buttonCta={campaignPromoBanner.buttonCta ?? undefined}
+              media={campaignPromoBanner.media[0]}
+              page="home"
+            />
+          </OakBox>
+        </OakMaxWidth>
+      )}
       <OakMaxWidth>
         <BlogAndWebinarList
           blogListPosts={blogListProps}

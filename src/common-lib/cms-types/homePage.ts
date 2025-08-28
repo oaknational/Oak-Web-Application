@@ -27,7 +27,7 @@ export const testimonialSchema = z.object({
   }),
   image: imageSchema.nullish(),
 });
-
+export type CampaignPromoBannerType = z.infer<typeof campaignPromoBannerSchema>;
 const campaignPromoBannerSchema = z.object({
   headingPortableTextWithPromo: portableTextSchema,
   subheadingPortableTextWithPromo: portableTextSchema.nullish(),

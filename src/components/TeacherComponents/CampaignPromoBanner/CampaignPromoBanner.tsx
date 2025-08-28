@@ -1,4 +1,10 @@
-import { OakBox, OakFlex, OakPrimaryButton } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakFlex,
+  OakHeading,
+  OakP,
+  OakPrimaryButton,
+} from "@oaknational/oak-components";
 import { PortableTextBlock, PortableTextComponents } from "@portabletext/react";
 
 import { PortableTextWithDefaults } from "../../SharedComponents/PortableText";
@@ -7,23 +13,52 @@ import CMSImage from "../../SharedComponents/CMSImage";
 import { Image, Video } from "@/common-lib/cms-types";
 
 export type Page = "home" | "campaign";
-interface TextBlockWithComponent {
-  content: PortableTextBlock;
-  component: PortableTextComponents;
-}
+
+const h2: PortableTextComponents = {
+  block: {
+    normal: (props) => {
+      return (
+        <OakHeading $font={["heading-5", "heading-4", "heading-2"]} tag="h2">
+          {props.children}
+        </OakHeading>
+      );
+    },
+  },
+};
+
+const h3: PortableTextComponents = {
+  block: {
+    normal: (props) => {
+      return (
+        <OakHeading $font={["heading-light-5"]} tag="h3">
+          {props.children}
+        </OakHeading>
+      );
+    },
+  },
+};
+
+const p: PortableTextComponents = {
+  block: {
+    normal: (props) => {
+      return <OakP>{props.children}</OakP>;
+    },
+  },
+};
+
 export function CampaignPromoBanner({
   media,
   heading,
   subheading,
   body,
-  cta,
+  buttonCta,
 }: {
   page: Page;
-  heading: TextBlockWithComponent;
+  heading: PortableTextBlock;
   media: Image | Video;
-  subheading?: TextBlockWithComponent;
-  body?: TextBlockWithComponent;
-  cta?: string;
+  subheading?: PortableTextBlock;
+  body?: PortableTextBlock;
+  buttonCta?: string;
 }) {
   return (
     <OakFlex
@@ -36,31 +71,35 @@ export function CampaignPromoBanner({
     >
       <OakFlex
         $flexDirection={"column"}
+        $flexGrow={1}
+        $flexShrink={1}
+        $flexBasis={0}
         $gap={["space-between-m", "space-between-l"]}
       >
-        <PortableTextWithDefaults
-          value={heading.content}
-          components={heading.component}
-        />
+        <PortableTextWithDefaults value={heading} components={h2} />
         {subheading && (
-          <PortableTextWithDefaults
-            value={subheading.content}
-            components={subheading.component}
-          />
+          <PortableTextWithDefaults value={subheading} components={h3} />
         )}
         {body && (
           <OakBox>
-            <PortableTextWithDefaults
-              value={body.content}
-              components={body.component}
-            />
+            <PortableTextWithDefaults value={body} components={p} />
           </OakBox>
         )}
-        {cta && <OakPrimaryButton />}
+        {buttonCta && (
+          <OakPrimaryButton isTrailingIcon={true} iconName="arrow-right">
+            {buttonCta}
+          </OakPrimaryButton>
+        )}
       </OakFlex>
-      <OakBox>
+      <OakFlex
+        $width={"100%"}
+        $minWidth={0}
+        $flexGrow={1}
+        $flexShrink={1}
+        $flexBasis={0}
+      >
         <CMSImage image={media} />
-      </OakBox>
+      </OakFlex>
     </OakFlex>
   );
 }

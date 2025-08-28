@@ -1,5 +1,5 @@
 import { GetServerSideProps, GetServerSidePropsResult, NextPage } from "next";
-import { OakHeading, OakMaxWidth, OakP } from "@oaknational/oak-components";
+import { OakHeading, OakMaxWidth } from "@oaknational/oak-components";
 import { PortableTextBlock, PortableTextComponents } from "@portabletext/react";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -26,14 +26,6 @@ const h2: PortableTextComponents = {
           {props.children}
         </OakHeading>
       );
-    },
-  },
-};
-
-const p: PortableTextComponents = {
-  block: {
-    normal: (props) => {
-      return <OakP>{props.children}</OakP>;
     },
   },
 };
@@ -67,16 +59,12 @@ const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
 
             return (
               <CampaignPromoBanner
-                heading={{
-                  content:
-                    content.headingPortableTextWithPromo as unknown as PortableTextBlock,
-                  component: h2,
-                }}
-                body={{
-                  content:
-                    content.bodyPortableTextWithPromo as unknown as PortableTextBlock,
-                  component: p,
-                }}
+                heading={
+                  content.headingPortableTextWithPromo as unknown as PortableTextBlock
+                }
+                body={
+                  content.bodyPortableTextWithPromo as unknown as PortableTextBlock
+                }
                 page="campaign"
                 media={media}
               />
