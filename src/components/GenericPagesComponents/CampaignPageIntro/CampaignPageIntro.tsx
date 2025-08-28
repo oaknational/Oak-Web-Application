@@ -1,38 +1,8 @@
-import {
-  OakHeading,
-  OakGrid,
-  OakGridArea,
-  OakP,
-} from "@oaknational/oak-components";
-import { PortableTextBlock, PortableTextComponents } from "@portabletext/react";
+import { OakGrid, OakGridArea } from "@oaknational/oak-components";
+import { PortableTextBlock } from "@portabletext/react";
 
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
-
-const textStyles: PortableTextComponents = {
-  block: {
-    heading1: (props) => {
-      return (
-        <OakHeading $font={["heading-5", "heading-5", "heading-2"]} tag="h2">
-          {props.children}
-        </OakHeading>
-      );
-    },
-    heading5: (props) => {
-      return (
-        <OakHeading
-          $font={["heading-6", "heading-6", "heading-5"]}
-          tag="h3"
-          $mb={"space-between-m"}
-        >
-          {props.children}
-        </OakHeading>
-      );
-    },
-    normal: (props) => {
-      return <OakP $font={["body-1", "body-1"]}>{props.children}</OakP>;
-    },
-  },
-};
+import { textStyles } from "@/pages/campaigns/[campaignSlug]";
 
 export const CampaignPageIntro = ({
   heading,

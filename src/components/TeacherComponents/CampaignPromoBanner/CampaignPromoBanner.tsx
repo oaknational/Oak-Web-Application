@@ -1,50 +1,11 @@
-import {
-  OakBox,
-  OakFlex,
-  OakHeading,
-  OakP,
-  OakPrimaryButton,
-} from "@oaknational/oak-components";
-import { PortableTextBlock, PortableTextComponents } from "@portabletext/react";
+import { OakBox, OakFlex, OakPrimaryButton } from "@oaknational/oak-components";
+import { PortableTextBlock } from "@portabletext/react";
 
 import { PortableTextWithDefaults } from "../../SharedComponents/PortableText";
 import CMSImage from "../../SharedComponents/CMSImage";
 
 import { Image, Video } from "@/common-lib/cms-types";
-
-export type Page = "home" | "campaign";
-
-const h2: PortableTextComponents = {
-  block: {
-    normal: (props) => {
-      return (
-        <OakHeading $font={["heading-5", "heading-4", "heading-2"]} tag="h2">
-          {props.children}
-        </OakHeading>
-      );
-    },
-  },
-};
-
-const h3: PortableTextComponents = {
-  block: {
-    normal: (props) => {
-      return (
-        <OakHeading $font={["heading-light-5"]} tag="h3">
-          {props.children}
-        </OakHeading>
-      );
-    },
-  },
-};
-
-const p: PortableTextComponents = {
-  block: {
-    normal: (props) => {
-      return <OakP>{props.children}</OakP>;
-    },
-  },
-};
+import { textStyles } from "@/components/GenericPagesComponents/CampaignPageIntro/CampaignPageIntro";
 
 export function CampaignPromoBanner({
   media,
@@ -76,13 +37,16 @@ export function CampaignPromoBanner({
         $flexBasis={0}
         $gap={["space-between-m", "space-between-l"]}
       >
-        <PortableTextWithDefaults value={heading} components={h2} />
+        <PortableTextWithDefaults value={heading} components={textStyles} />
         {subheading && (
-          <PortableTextWithDefaults value={subheading} components={h3} />
+          <PortableTextWithDefaults
+            value={subheading}
+            components={textStyles}
+          />
         )}
         {body && (
           <OakBox>
-            <PortableTextWithDefaults value={body} components={p} />
+            <PortableTextWithDefaults value={body} components={textStyles} />
           </OakBox>
         )}
         {buttonCta && (
