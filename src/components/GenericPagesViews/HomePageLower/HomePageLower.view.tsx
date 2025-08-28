@@ -7,6 +7,7 @@ import {
   OakMaxWidth,
   OakP,
 } from "@oaknational/oak-components";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import BlogAndWebinarList from "@/components/GenericPagesComponents/BlogAndWebinarList";
@@ -46,6 +47,13 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
   const newsletterFormProps = useNewsletterForm({
     onSubmit: track.newsletterSignUpCompleted,
   });
+  const campaignFeatureFlagEnabled = useFeatureFlagEnabled(
+    "mythbusting-campaign",
+  );
+  const showCampaignBanner =
+    campaignFeatureFlagEnabled &&
+    campaignPromoBanner &&
+    campaignPromoBanner.media[0];
 
   return (
     <>
@@ -97,7 +105,7 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
             </OakGrid>
           </OakMaxWidth>
         )}
-      {campaignPromoBanner && campaignPromoBanner.media[0] && (
+      {showCampaignBanner && (
         <OakMaxWidth>
           <OakBox
             $borderRadius={"border-radius-xl"}
@@ -106,8 +114,8 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
             <CampaignPromoBanner
               heading={campaignPromoBanner?.headingPortableTextWithPromo}
               subheading={campaignPromoBanner?.subheadingPortableTextWithPromo}
-              buttonCta={campaignPromoBanner.buttonCta ?? undefined}
-              media={campaignPromoBanner?.media[0]}
+              buttonCta={campaignPromoBanner.buttonCta}
+              media={campaignPromoBanner.media[0]!}
             />
           </OakBox>
         </OakMaxWidth>

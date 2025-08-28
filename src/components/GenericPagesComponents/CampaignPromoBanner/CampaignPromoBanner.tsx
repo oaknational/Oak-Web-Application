@@ -18,7 +18,7 @@ export function CampaignPromoBanner({
   media: Image | Video;
   subheading?: PortableTextBlock[] | null;
   body?: PortableTextBlock[] | null;
-  buttonCta?: string;
+  buttonCta?: string | null;
 }) {
   return (
     <OakFlex
