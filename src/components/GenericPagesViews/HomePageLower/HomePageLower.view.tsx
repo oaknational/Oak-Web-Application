@@ -21,7 +21,7 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import { Testimonials } from "@/components/GenericPagesComponents/Testimonials";
 import { CampaignPromoBannerType, HomePage } from "@/common-lib/cms-types";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
-import { CampaignPromoBanner } from "@/components/TeacherComponents/CampaignPromoBanner/CampaignPromoBanner";
+import { CampaignPromoBanner } from "@/components/GenericPagesComponents/CampaignPromoBanner/CampaignPromoBanner";
 
 export const postToPostListItem = (post: SerializedPost): PostListItemProps => {
   return post.type === "blog-post"
