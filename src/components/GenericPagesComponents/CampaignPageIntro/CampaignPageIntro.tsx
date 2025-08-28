@@ -49,7 +49,7 @@ export const CampaignPageIntro = ({
       <OakGridArea
         $colSpan={[12, 10, 10]}
         $colStart={[1, 2, 2]}
-        $mb={"space-between-l"}
+        $mb={["space-between-m", "space-between-l"]}
       >
         <PortableTextWithDefaults value={heading} components={textStyles} />
       </OakGridArea>
