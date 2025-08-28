@@ -33,7 +33,7 @@ export default function Banners({
     </OakP>
   );
   const curriculumContent = (
-    <OakFlex $gap="space-between-ssx">
+    <OakFlex $gap="space-between-ssx" $alignItems={"center"}>
       <OakPromoTag /> Subjects added
     </OakFlex>
   );
