@@ -1,6 +1,8 @@
 import { PortableTextBlock } from "@portabletext/react";
 
-export const headingPortableText: PortableTextBlock[] = [
+export const headingPortableText = (
+  text: string = "Transform Your Teaching with Oak Resources",
+): PortableTextBlock[] => [
   {
     _type: "block",
     style: "heading2",
@@ -9,7 +11,7 @@ export const headingPortableText: PortableTextBlock[] = [
     children: [
       {
         marks: [],
-        text: "Transform Your Teaching with Oak Resources",
+        text,
         _key: "banner-heading-text",
         _type: "span",
       },
@@ -17,7 +19,9 @@ export const headingPortableText: PortableTextBlock[] = [
   },
 ];
 
-export const subheadingPortableText: PortableTextBlock[] = [
+export const subheadingPortableText = (
+  text: string = "Expert-made resources for every lesson",
+): PortableTextBlock[] => [
   {
     _type: "block",
     style: "heading3",
@@ -26,7 +30,7 @@ export const subheadingPortableText: PortableTextBlock[] = [
     children: [
       {
         marks: [],
-        text: "Expert-made resources for every lesson",
+        text,
         _key: "banner-subheading-text",
         _type: "span",
       },
@@ -34,11 +38,13 @@ export const subheadingPortableText: PortableTextBlock[] = [
   },
 ];
 
-export const bodyPortableText: PortableTextBlock[] = [
+export const bodyPortableText = (
+  text: string = "Discover comprehensive curriculum resources designed by education experts to support your teaching and save you time. From lesson plans to interactive activities, we've got everything you need for engaging classroom experiences.",
+): PortableTextBlock[] => [
   {
     children: [
       {
-        text: "Discover comprehensive curriculum resources designed by education experts to support your teaching and save you time. From lesson plans to interactive activities, we've got everything you need for engaging classroom experiences.",
+        text,
         _key: "banner-body-text",
         _type: "span",
         marks: [],
@@ -51,7 +57,11 @@ export const bodyPortableText: PortableTextBlock[] = [
   },
 ];
 
-export const bodyPortableTextWithStyling: PortableTextBlock[] = [
+export const bodyPortableTextWithStyling = (
+  styledText1: string = "Expert-designed",
+  styledText2: string = " resources that make teaching easier and more effective.",
+  styledText3: string = "With complete curriculum coverage across all subjects, Oak provides the planning power behind great classroom teaching.",
+): PortableTextBlock[] => [
   {
     _key: "styled-body-1",
     markDefs: [],
@@ -60,12 +70,12 @@ export const bodyPortableTextWithStyling: PortableTextBlock[] = [
         _key: "styled-span-1",
         _type: "span",
         marks: ["strong"],
-        text: "Expert-designed",
+        text: styledText1,
       },
       {
         _type: "span",
         marks: [],
-        text: " resources that make teaching easier and more effective.",
+        text: styledText2,
         _key: "styled-span-2",
       },
     ],
@@ -78,7 +88,7 @@ export const bodyPortableTextWithStyling: PortableTextBlock[] = [
       {
         _type: "span",
         marks: [],
-        text: "With complete curriculum coverage across all subjects, Oak provides the planning power behind great classroom teaching.",
+        text: styledText3,
         _key: "styled-span-3",
       },
     ],
@@ -87,5 +97,3 @@ export const bodyPortableTextWithStyling: PortableTextBlock[] = [
     _key: "styled-body-2",
   },
 ];
-
-export const buttonCtaText = "Explore Resources";

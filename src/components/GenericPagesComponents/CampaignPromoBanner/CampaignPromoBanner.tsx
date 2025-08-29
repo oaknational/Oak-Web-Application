@@ -3,9 +3,9 @@ import { PortableTextBlock } from "@portabletext/react";
 
 import { PortableTextWithDefaults } from "../../SharedComponents/PortableText";
 import CMSImage from "../../SharedComponents/CMSImage";
+import { campaignTextStyles } from "../CampaignPageIntro/CampaignPageIntro";
 
 import { Image, Video } from "@/common-lib/cms-types";
-import { textStyles } from "@/pages/campaigns/[campaignSlug]";
 
 export function CampaignPromoBanner({
   media,
@@ -37,16 +37,22 @@ export function CampaignPromoBanner({
         $flexBasis={0}
         $gap={["space-between-m", "space-between-l"]}
       >
-        <PortableTextWithDefaults value={heading} components={textStyles} />
+        <PortableTextWithDefaults
+          value={heading}
+          components={campaignTextStyles}
+        />
         {subheading && (
           <PortableTextWithDefaults
             value={subheading}
-            components={textStyles}
+            components={campaignTextStyles}
           />
         )}
         {body && (
           <OakBox>
-            <PortableTextWithDefaults value={body} components={textStyles} />
+            <PortableTextWithDefaults
+              value={body}
+              components={campaignTextStyles}
+            />
           </OakBox>
         )}
         {buttonCta && (

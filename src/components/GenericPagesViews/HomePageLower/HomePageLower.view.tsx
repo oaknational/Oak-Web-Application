@@ -51,9 +51,7 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
     "mythbusting-campaign",
   );
   const showCampaignBanner =
-    campaignFeatureFlagEnabled &&
-    campaignPromoBanner &&
-    campaignPromoBanner.media[0];
+    campaignFeatureFlagEnabled && campaignPromoBanner?.media[0];
 
   return (
     <>

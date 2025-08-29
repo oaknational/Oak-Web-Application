@@ -3,14 +3,13 @@ import { Meta, StoryObj } from "@storybook/react";
 import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import { CampaignPromoBanner } from "./CampaignPromoBanner";
-import {
-  headingPortableText,
-  buttonCtaText,
-  bodyPortableText,
-  subheadingPortableText,
-} from "./campaignPromoBanner.fixtures";
 
 import { mockImageAsset } from "@/__tests__/__helpers__/cms";
+import {
+  bodyPortableText,
+  headingPortableText,
+  subheadingPortableText,
+} from "@/fixtures/campaign/portableText";
 
 const meta: Meta<typeof CampaignPromoBanner> = {
   component: CampaignPromoBanner,
@@ -25,9 +24,9 @@ export const Default: Story = {
   render: () => (
     <OakThemeProvider theme={oakDefaultTheme}>
       <CampaignPromoBanner
-        heading={headingPortableText}
-        subheading={subheadingPortableText}
-        buttonCta={buttonCtaText}
+        heading={headingPortableText()}
+        subheading={subheadingPortableText()}
+        buttonCta={"buttonCtaText"}
         media={mockImageAsset()}
       />
     </OakThemeProvider>
@@ -38,10 +37,10 @@ export const WithBodyText: Story = {
   render: () => (
     <OakThemeProvider theme={oakDefaultTheme}>
       <CampaignPromoBanner
-        heading={headingPortableText}
-        subheading={subheadingPortableText}
-        body={bodyPortableText}
-        buttonCta={buttonCtaText}
+        heading={headingPortableText()}
+        subheading={subheadingPortableText()}
+        body={bodyPortableText()}
+        buttonCta={"buttonCtaText"}
         media={mockImageAsset()}
       />
     </OakThemeProvider>

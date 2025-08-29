@@ -1,13 +1,12 @@
 import { CampaignPromoBanner } from "./CampaignPromoBanner";
-import {
-  headingPortableText,
-  subheadingPortableText,
-  bodyPortableText,
-  buttonCtaText,
-} from "./campaignPromoBanner.fixtures";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { mockImageAsset } from "@/__tests__/__helpers__/cms";
+import {
+  bodyPortableText,
+  headingPortableText,
+  subheadingPortableText,
+} from "@/fixtures/campaign/portableText";
 
 const render = renderWithProviders();
 
@@ -15,7 +14,7 @@ describe("CampaignPromoBanner", () => {
   it("should render the heading", () => {
     const { getByRole } = render(
       <CampaignPromoBanner
-        heading={headingPortableText}
+        heading={headingPortableText()}
         media={mockImageAsset()}
       />,
     );
@@ -23,7 +22,7 @@ describe("CampaignPromoBanner", () => {
     const heading = getByRole("heading");
     expect(heading).toBeInTheDocument();
 
-    const headingText = headingPortableText[0]?.children[0]?.text;
+    const headingText = headingPortableText()[0]?.children[0]?.text;
     if (!headingText) throw new Error("No heading text found in fixture");
     expect(heading).toHaveTextContent(headingText);
   });
@@ -31,7 +30,7 @@ describe("CampaignPromoBanner", () => {
   it("should render the image", async () => {
     const { getByAltText } = render(
       <CampaignPromoBanner
-        heading={headingPortableText}
+        heading={headingPortableText()}
         media={{ ...mockImageAsset(), altText: "test" }}
       />,
     );
@@ -44,9 +43,9 @@ describe("CampaignPromoBanner", () => {
   it("should render subheading when provided", () => {
     const { getByRole } = render(
       <CampaignPromoBanner
-        heading={headingPortableText}
+        heading={headingPortableText()}
         media={mockImageAsset()}
-        subheading={subheadingPortableText}
+        subheading={subheadingPortableText()}
       />,
     );
 
@@ -57,13 +56,13 @@ describe("CampaignPromoBanner", () => {
   it("should render body text when provided", () => {
     const { getByText } = render(
       <CampaignPromoBanner
-        heading={headingPortableText}
+        heading={headingPortableText()}
         media={mockImageAsset()}
-        body={bodyPortableText}
+        body={bodyPortableText()}
       />,
     );
 
-    const bodyText = bodyPortableText[0]?.children[0]?.text;
+    const bodyText = bodyPortableText()[0]?.children[0]?.text;
 
     const body = getByText(bodyText);
     expect(body).toBeInTheDocument();
@@ -72,34 +71,34 @@ describe("CampaignPromoBanner", () => {
   it("should render CTA button when provided", () => {
     const { getByRole } = render(
       <CampaignPromoBanner
-        heading={headingPortableText}
+        heading={headingPortableText()}
         media={mockImageAsset()}
-        buttonCta={buttonCtaText}
+        buttonCta={"buttonCtaText"}
       />,
     );
 
-    const button = getByRole("button", { name: buttonCtaText });
+    const button = getByRole("button", { name: "buttonCtaText" });
     expect(button).toBeInTheDocument();
-    expect(button).toHaveTextContent(buttonCtaText);
+    expect(button).toHaveTextContent("buttonCtaText");
   });
 
   it("should not render optional props when not provided", () => {
     const { queryByText, queryByRole } = render(
       <CampaignPromoBanner
-        heading={headingPortableText}
+        heading={headingPortableText()}
         media={mockImageAsset()}
       />,
     );
 
     const subheading = queryByText(
-      subheadingPortableText[0]?.children[0]?.text || "",
+      subheadingPortableText()[0]?.children[0]?.text || "",
     );
     expect(subheading).not.toBeInTheDocument();
 
-    const body = queryByText(bodyPortableText[0]?.children[0]?.text || "");
+    const body = queryByText(bodyPortableText()[0]?.children[0]?.text || "");
     expect(body).not.toBeInTheDocument();
 
-    const button = queryByRole("button", { name: buttonCtaText });
+    const button = queryByRole("button", { name: "buttonCtaText" });
     expect(button).not.toBeInTheDocument();
   });
 });
