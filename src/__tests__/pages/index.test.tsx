@@ -27,6 +27,12 @@ const props: TeachersHomePageProps = {
     ],
   },
   pageData: {
+    campaignPromoBanner: {
+      headingPortableTextWithPromo: [],
+      subheadingPortableTextWithPromo: [],
+      media: [],
+      buttonCta: "",
+    },
     heading: "",
     id: "",
     summaryPortableText: [],

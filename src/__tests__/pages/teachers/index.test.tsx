@@ -38,6 +38,12 @@ const props: TeachersHomePageProps = {
     heading: "",
     id: "",
     summaryPortableText: [],
+    campaignPromoBanner: {
+      headingPortableTextWithPromo: [],
+      subheadingPortableTextWithPromo: [],
+      media: [],
+      buttonCta: "",
+    },
     notification: { enabled: false },
     sidebarCard1: { title: "", bodyPortableText: [] },
     sidebarCard2: { title: "", bodyPortableText: [] },

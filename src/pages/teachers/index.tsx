@@ -29,6 +29,7 @@ const TeachersHomePage: NextPage<TeachersHomePageProps> = (props) => {
 
   const testimonials = pageData?.testimonials;
   const intro = pageData?.intro;
+  const campaignPromoBanner = pageData.campaignPromoBanner;
 
   return (
     <AppLayout
@@ -43,6 +44,7 @@ const TeachersHomePage: NextPage<TeachersHomePageProps> = (props) => {
       <HomePageTabImageNav current={"teachers"} />
       <TeachersTab keyStages={curriculumData.keyStages} aria-current="page" />
       <HomePageLowerView
+        campaignPromoBanner={campaignPromoBanner}
         posts={posts}
         testimonials={testimonials}
         introVideo={intro}

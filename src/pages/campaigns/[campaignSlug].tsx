@@ -14,6 +14,7 @@ import curriculumApi2023, {
 } from "@/node-lib/curriculum-api-2023";
 import { CampaignPageHeader } from "@/components/GenericPagesComponents/CampaignPageHeader/CampaignPageHeader";
 import { CampaignPageIntro } from "@/components/GenericPagesComponents/CampaignPageIntro/CampaignPageIntro";
+import { CampaignPromoBanner } from "@/components/GenericPagesComponents/CampaignPromoBanner/CampaignPromoBanner";
 
 export type CampaignSinglePageProps = {
   campaign: CampaignPage;
@@ -53,6 +54,18 @@ const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
                 key={section.type}
               />
             );
+          }
+          if (section.type === "CampaignPromoBanner") {
+            const media = section.media[0];
+            if (media)
+              return (
+                <CampaignPromoBanner
+                  heading={section.headingPortableTextWithPromo}
+                  body={section.bodyPortableTextWithPromo}
+                  media={media}
+                  key={section.type}
+                />
+              );
           }
         })}
       </OakFlex>
