@@ -81,6 +81,25 @@ export default {
         use: ["@svgr/webpack"],
       },
     ];
+    // Add webpack plugin to handle node: scheme imports
+    const webpack = require("webpack");
+    config.plugins = config.plugins || [];
+    config.plugins.push(
+      new webpack.NormalModuleReplacementPlugin(/^node:/, (resource) => {
+        const module = resource.request.replace(/^node:/, "");
+        switch (module) {
+          case "crypto":
+          case "fs":
+          case "path":
+          case "path/posix":
+          case "readline":
+            resource.request = "util"; // Replace with a safe browser module
+            break;
+          default:
+            resource.request = "util";
+        }
+      }),
+    );
 
     return config;
   },
