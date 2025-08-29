@@ -33,6 +33,7 @@ export const Default: Story = {
     </OakThemeProvider>
   ),
 };
+
 export const WithBodyText: Story = {
   render: () => (
     <OakThemeProvider theme={oakDefaultTheme}>
