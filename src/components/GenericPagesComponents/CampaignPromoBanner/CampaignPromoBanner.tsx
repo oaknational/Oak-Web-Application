@@ -6,6 +6,7 @@ import CMSImage from "../../SharedComponents/CMSImage";
 import { campaignTextStyles } from "../CampaignPageIntro/CampaignPageIntro";
 
 import { Image, Video } from "@/common-lib/cms-types";
+import { resolveOakHref } from "@/common-lib/urls";
 
 export function CampaignPromoBanner({
   media,
@@ -56,7 +57,15 @@ export function CampaignPromoBanner({
           </OakBox>
         )}
         {buttonCta && (
-          <OakPrimaryButton isTrailingIcon={true} iconName="arrow-right">
+          <OakPrimaryButton
+            element="a"
+            isTrailingIcon={true}
+            href={resolveOakHref({
+              page: "campaign-single",
+              campaignSlug: "mythbusting",
+            })}
+            iconName="arrow-right"
+          >
             {buttonCta}
           </OakPrimaryButton>
         )}

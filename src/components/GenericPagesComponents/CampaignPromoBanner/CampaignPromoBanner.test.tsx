@@ -10,6 +10,10 @@ import {
 
 const render = renderWithProviders();
 
+jest.mock("@/common-lib/urls", () => ({
+  resolveOakHref: jest.fn(),
+}));
+
 describe("CampaignPromoBanner", () => {
   it("should render the heading", () => {
     const { getByRole } = render(
@@ -68,8 +72,8 @@ describe("CampaignPromoBanner", () => {
     expect(body).toBeInTheDocument();
   });
 
-  it("should render CTA button when provided", () => {
-    const { getByRole } = render(
+  it("should render CTA button when provided", async () => {
+    const { getByText } = render(
       <CampaignPromoBanner
         heading={headingPortableText()}
         media={mockImageAsset()}
@@ -77,7 +81,7 @@ describe("CampaignPromoBanner", () => {
       />,
     );
 
-    const button = getByRole("button", { name: "buttonCtaText" });
+    const button = getByText("buttonCtaText").closest("a");
     expect(button).toBeInTheDocument();
     expect(button).toHaveTextContent("buttonCtaText");
   });
