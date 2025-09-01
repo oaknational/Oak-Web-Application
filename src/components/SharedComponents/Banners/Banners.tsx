@@ -24,7 +24,7 @@ export default function Banners({
     return null;
   }
 
-  const muthbustingContent = (
+  const mythbustingContent = (
     <OakP $font={"body-2"}>
       <PromoSpan>
         <OakSpan $font={"body-3-bold"}>Myths</OakSpan>
@@ -39,7 +39,7 @@ export default function Banners({
   );
 
   const message = isMythbustingCampaignActive
-    ? muthbustingContent
+    ? mythbustingContent
     : curriculumContent;
   const background = isMythbustingCampaignActive ? "lemon30" : "lemon";
   const ctaText = isMythbustingCampaignActive
