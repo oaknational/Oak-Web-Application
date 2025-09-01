@@ -29,13 +29,14 @@ export function CampaignPromoBanner({
       $gap={"space-between-m2"}
       $borderRadius={"border-radius-xl"}
       $pv={["inner-padding-xl5"]}
-      $ph={["inner-padding-xl"]}
+      $ph={["inner-padding-xl4"]}
     >
       <OakFlex
         $flexDirection={"column"}
         $flexGrow={1}
         $flexShrink={1}
         $flexBasis={0}
+        $justifyContent={"center"}
         $gap={["space-between-m", "space-between-l"]}
       >
         <PortableTextWithDefaults
