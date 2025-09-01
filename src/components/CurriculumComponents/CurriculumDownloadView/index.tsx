@@ -27,6 +27,7 @@ export type CurriculumDownloadViewProps = {
   onSubmit?: (value: CurriculumDownloadViewData) => void;
   onBackToKs4Options?: () => void;
   availableDownloadTypes: DownloadType[];
+  submitError?: string;
 };
 const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = (props) => {
   const [downloadTypes, setDownloadTypes] = useState(
