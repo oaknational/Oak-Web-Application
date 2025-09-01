@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { VideoLocationValueType } from "@/browser-lib/avo/Avo";
 import errorReporter from "@/common-lib/error-reporter";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -53,38 +51,62 @@ export type VideoTrackingGetState = () => {
 type UseVideoTrackingProps = {
   getState: VideoTrackingGetState;
   pathwayData?: PupilPathwayData;
+  cloudinaryUrl?: string | null;
+  muxAssetId?: string | null;
 };
 const useVideoTracking = (props: UseVideoTrackingProps) => {
   const { track } = useAnalytics();
-  const [started, setStarted] = useState(false);
+
   const pathwayData = props.pathwayData
     ? props.pathwayData
     : ({} as PupilPathwayData);
 
-  const onPlay = () => {
+  const onPlay = (isVideoStart: boolean) => {
     const eventProps = getEventPropsOrWarn(props);
     if (!eventProps) {
       return;
     }
-    track.videoPlayed({ ...eventProps, ...pathwayData });
-    if (!started) {
-      track.videoStarted({ ...eventProps, ...pathwayData });
-      setStarted(true);
+
+    track.videoPlayed({
+      ...eventProps,
+      ...pathwayData,
+      cloudinaryUrl: props.cloudinaryUrl,
+      muxAssetId: props.muxAssetId,
+    });
+    if (isVideoStart) {
+      track.videoStarted({
+        ...eventProps,
+        ...pathwayData,
+        cloudinaryUrl: props.cloudinaryUrl,
+        muxAssetId: props.muxAssetId,
+      });
     }
   };
   const onPause = () => {
     const eventProps = getEventPropsOrWarn(props);
+
     if (!eventProps) {
       return;
     }
-    track.videoPaused({ ...eventProps, ...pathwayData });
+    track.videoPaused({
+      ...eventProps,
+      ...pathwayData,
+      cloudinaryUrl: props.cloudinaryUrl,
+      muxAssetId: props.muxAssetId,
+    });
   };
   const onEnd = () => {
     const eventProps = getEventPropsOrWarn(props);
+
     if (!eventProps) {
       return;
     }
-    track.videoFinished({ ...eventProps, ...pathwayData });
+    track.videoFinished({
+      ...eventProps,
+      ...pathwayData,
+      cloudinaryUrl: props.cloudinaryUrl,
+      muxAssetId: props.muxAssetId,
+    });
   };
 
   return {

@@ -319,6 +319,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
       mediaClipIndex: parseInt(clickedMediaClip?.order.toString() ?? "0") ?? 0,
     });
   };
+
   const videoPlayer = currentClip && (
     <VideoPlayer
       playbackId={getPlaybackId(currentClip) || ""}
@@ -331,6 +332,8 @@ export const LessonMedia = (props: LessonMediaProps) => {
       userEventCallback={handleVideoEvents}
       loadingTextColor="white"
       defaultHiddenCaptions={isPEPractical}
+      cloudinaryUrl={currentClip.mediaObject.url}
+      muxAssetId={currentClip.videoObject?.muxAssetId}
     />
   );
 

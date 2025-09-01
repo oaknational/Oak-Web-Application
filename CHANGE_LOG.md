@@ -1,3 +1,84 @@
+## [1.844.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.844.0...v1.844.1) (2025-08-28)
+
+
+### Bug Fixes
+
+* **a11y:** associate Download button with inline error via aria-describedby ([b1b49cb](https://github.com/oaknational/Oak-Web-Application/commit/b1b49cbcb9a91ce170763a14433176c05d4c87db))
+* **curriculum-downloads:** report download failures via Bugsnag ([ab94faf](https://github.com/oaknational/Oak-Web-Application/commit/ab94faf8944c95fc0fc4c8abe1395011fa5d15fc))
+* **curriculum-downloads:** show inline error on failed download and avoid false success ([a04526d](https://github.com/oaknational/Oak-Web-Application/commit/a04526d7225717a27090c2236d380a1a11741d03))
+
+# [1.844.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.843.0...v1.844.0) (2025-08-28)
+
+
+### Bug Fixes
+
+* spacing between heading on mobile ([3393042](https://github.com/oaknational/Oak-Web-Application/commit/3393042bb198c0ab20368ff45da9a77065825aec))
+* unique key for component ([49d95a2](https://github.com/oaknational/Oak-Web-Application/commit/49d95a2b956018722d1118fe04fd0699ebecccec))
+
+
+### Features
+
+* add campaign intro component ([7d2a290](https://github.com/oaknational/Oak-Web-Application/commit/7d2a290217a53941eef335ed8862fef0b5a01451))
+
+# [1.843.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.842.1...v1.843.0) (2025-08-27)
+
+
+### Bug Fixes
+
+* centre alignment for mobile column ([b8843a3](https://github.com/oaknational/Oak-Web-Application/commit/b8843a3527a7767afe795744ec02a54fff446e60))
+* justify content on large desktop ([7ac58fb](https://github.com/oaknational/Oak-Web-Application/commit/7ac58fb8e502a9249c2b19323b43dfd8f0d4534a))
+* mock link button in test to prevent nav ([8281b02](https://github.com/oaknational/Oak-Web-Application/commit/8281b0290dfb51c248e65962d0d3cc28fbd2a1b0))
+
+
+### Features
+
+* add desktop and mobile layout for header ([e5c1e7b](https://github.com/oaknational/Oak-Web-Application/commit/e5c1e7bdb4d381418401fef6fc5949b45295035a))
+* add heading and image to campaign page ([4816677](https://github.com/oaknational/Oak-Web-Application/commit/4816677fd8b773a1d7f2d4f02dd3a4e11b4fde90))
+* add optional subheading ([a41a97b](https://github.com/oaknational/Oak-Web-Application/commit/a41a97b91b5145e8abfd0d751331145a5502b67a))
+* extract header to generic components ([5ec9b45](https://github.com/oaknational/Oak-Web-Application/commit/5ec9b451bcc7d5e3beb40c27f87387c2c1af2418))
+* update keystage keypad component to use oak components ([23cfeec](https://github.com/oaknational/Oak-Web-Application/commit/23cfeec434d2234096a65abb11581fe0c6c65440))
+* update search context values ([fa19a58](https://github.com/oaknational/Oak-Web-Application/commit/fa19a582ffcdf3cf1eb2b01cb747b84d76826a3c))
+* use max width for header component ([8ae165c](https://github.com/oaknational/Oak-Web-Application/commit/8ae165c223d810e183291af6cf821395ecfd4e77))
+
+## [1.842.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.842.0...v1.842.1) (2025-08-22)
+
+
+### Bug Fixes
+
+* rm pupil link from seo accordion when loginrequired or georestricted ([d2dc4ea](https://github.com/oaknational/Oak-Web-Application/commit/d2dc4ea3bf615fd2dc04d1be0088e97ea9a19f66))
+
+# [1.842.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.841.0...v1.842.0) (2025-08-21)
+
+
+### Bug Fixes
+
+* don't send video paused event when the video finishes ([376dfff](https://github.com/oaknational/Oak-Web-Application/commit/376dfff5884043e2070c97daa4b104963c332672))
+* fire video started event when each video is played from the start ([7fc25d2](https://github.com/oaknational/Oak-Web-Application/commit/7fc25d2cd823a9f5a637ec3f487f34e432899aea))
+* send video finished event for any video that ends on the media page ([cd2b2ae](https://github.com/oaknational/Oak-Web-Application/commit/cd2b2ae4349bf4cd10f2a230d79afc1b7a8f77bc))
+* update tracking event in beta page ([300a219](https://github.com/oaknational/Oak-Web-Application/commit/300a21911af2c10eecfceb2566ecd46a2f475cf4))
+
+
+### Features
+
+* add cloudinary url to video tracking events ([98375a2](https://github.com/oaknational/Oak-Web-Application/commit/98375a2b677de7a4529bcc8bd07e3bb87a323f4c))
+* add mux asset id to media clips video tracking ([9049e37](https://github.com/oaknational/Oak-Web-Application/commit/9049e37dcb57c23118b6a10721f0e44975ab3197))
+
+# [1.841.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.840.0...v1.841.0) (2025-08-21)
+
+
+### Features
+
+* update home page copy ([b5c124c](https://github.com/oaknational/Oak-Web-Application/commit/b5c124cca9d3224640df875d5bba6f68ce636839))
+
+# [1.840.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.839.0...v1.840.0) (2025-08-21)
+
+
+### Features
+
+* add campaign page to owa on beta route ([585f7d5](https://github.com/oaknational/Oak-Web-Application/commit/585f7d566839610a634bdf0936fb3cb24ea31b1a))
+* add promo stamp styling and example usage on campaign page ([dbb068d](https://github.com/oaknational/Oak-Web-Application/commit/dbb068d3e7698027f0e4536ed7c24faa8dd7be2d))
+* add subheading field to promo banner schema ([434697d](https://github.com/oaknational/Oak-Web-Application/commit/434697d54282064a9fff089353872501fc32f530))
+
 # [1.839.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.838.0...v1.839.0) (2025-08-21)
 
 

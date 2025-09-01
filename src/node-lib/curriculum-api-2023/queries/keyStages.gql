@@ -1,0 +1,5 @@
+query keyStages {
+  keyStages: published_mv_homepage_3_0_1 {
+    keyStages: key_stages
+  }
+}
