@@ -81,14 +81,6 @@ export default {
         use: ["@svgr/webpack"],
       },
     ];
-    // Add webpack plugin to handle node: scheme imports
-    const webpack = require("webpack");
-    config.plugins = config.plugins || [];
-    config.plugins.push(
-      new webpack.NormalModuleReplacementPlugin(/^node:/, (resource) => {
-        resource.request = "util";
-      }),
-    );
 
     return config;
   },
