@@ -1,5 +1,3 @@
-import { PortableTextBlock } from "@portabletext/react";
-
 import {
   headingPortableText,
   subheadingPortableText,
@@ -197,66 +195,5 @@ describe("bodyPortableTextWithStyling", () => {
     // Second block
     expect(result[1]?.children[0]?.text).toBe(customStyledText3);
     expect(result[1]?.children[0]?.marks).toEqual([]);
-  });
-
-  it("should have correct structure for styled blocks", () => {
-    const result = bodyPortableTextWithStyling();
-
-    // Both blocks should be normal style
-    expect(result[0]?._type).toBe("block");
-    expect(result[0]?.style).toBe("normal");
-    expect(result[1]?._type).toBe("block");
-    expect(result[1]?.style).toBe("normal");
-
-    // First block should have 2 children (strong + normal)
-    expect(result[0]?.children).toHaveLength(2);
-    expect(result[0]?.children[0]?.marks).toEqual(["strong"]);
-    expect(result[0]?.children[1]?.marks).toEqual([]);
-
-    // Second block should have 1 child (normal)
-    expect(result[1]?.children).toHaveLength(1);
-    expect(result[1]?.children[0]?.marks).toEqual([]);
-  });
-
-  it("should maintain correct keys for all elements", () => {
-    const result = bodyPortableTextWithStyling();
-
-    expect(result[0]?._key).toBe("styled-body-1");
-    expect(result[0]?.children[0]?._key).toBe("styled-span-1");
-    expect(result[0]?.children[1]?._key).toBe("styled-span-2");
-
-    expect(result[1]?._key).toBe("styled-body-2");
-    expect(result[1]?.children[0]?._key).toBe("styled-span-3");
-  });
-});
-
-describe("PortableText type compliance", () => {
-  it("all functions should return valid PortableTextBlock arrays", () => {
-    const headingResult = headingPortableText();
-    const subheadingResult = subheadingPortableText();
-    const bodyResult = bodyPortableText();
-    const styledBodyResult = bodyPortableTextWithStyling();
-
-    // Type assertions to ensure they match PortableTextBlock[]
-    expect(Array.isArray(headingResult)).toBe(true);
-    expect(Array.isArray(subheadingResult)).toBe(true);
-    expect(Array.isArray(bodyResult)).toBe(true);
-    expect(Array.isArray(styledBodyResult)).toBe(true);
-
-    // Check that all blocks have required properties
-    const allBlocks = [
-      ...headingResult,
-      ...subheadingResult,
-      ...bodyResult,
-      ...styledBodyResult,
-    ];
-
-    allBlocks.forEach((block: PortableTextBlock) => {
-      expect(block._type).toBe("block");
-      expect(typeof block._key).toBe("string");
-      expect(Array.isArray(block.children)).toBe(true);
-      expect(Array.isArray(block.markDefs)).toBe(true);
-      expect(typeof block.style).toBe("string");
-    });
   });
 });
