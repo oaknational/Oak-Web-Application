@@ -15,12 +15,12 @@ export function CampaignPromoBanner({
   body,
   buttonCta,
 }: {
-  textStyles: PortableTextComponents;
   heading: PortableTextBlock[];
   media: Image | Video;
   subheading?: PortableTextBlock[] | null;
   body?: PortableTextBlock[] | null;
   buttonCta?: string | null;
+  textStyles?: PortableTextComponents;
 }) {
   return (
     <OakFlex

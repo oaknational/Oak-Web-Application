@@ -8,7 +8,6 @@ import {
   headingPortableText,
   bodyPortableTextWithStyling,
 } from "@/fixtures/campaign/portableText";
-import { campaignTextStyles } from "@/pages/campaigns/[campaignSlug]";
 
 const meta: Meta<typeof CampaignPageIntro> = {
   component: CampaignPageIntro,
@@ -22,7 +21,6 @@ export const Default: Story = {
   render: () => (
     <OakThemeProvider theme={oakDefaultTheme}>
       <CampaignPageIntro
-        textStyles={campaignTextStyles}
         heading={headingPortableText()}
         body={bodyPortableTextWithStyling()}
       />

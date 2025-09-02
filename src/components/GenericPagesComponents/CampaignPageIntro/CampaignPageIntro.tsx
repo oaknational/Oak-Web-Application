@@ -10,7 +10,7 @@ export const CampaignPageIntro = ({
 }: {
   heading: PortableTextBlock[];
   body: PortableTextBlock[];
-  textStyles: PortableTextComponents;
+  textStyles?: PortableTextComponents;
 }) => {
   return (
     <OakGrid
