@@ -1,3 +1,25 @@
+# [1.846.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.845.1...v1.846.0) (2025-09-02)
+
+
+### Bug Fixes
+
+* add missing newline in CampaignPromoBanner stories for better readability ([d337e1b](https://github.com/oaknational/Oak-Web-Application/commit/d337e1b486e068f0e936f8324a264f2c46176742))
+* fix type errors ([f80f10b](https://github.com/oaknational/Oak-Web-Application/commit/f80f10bca82a6927fabe1ce4781be8a4b6f7bde2))
+* increase horizontal padding, justify center on text ([a7082b3](https://github.com/oaknational/Oak-Web-Application/commit/a7082b36c6c7e596c6c45019b39e07758aacf4c6))
+* rm from pupil page ([4dc7e49](https://github.com/oaknational/Oak-Web-Application/commit/4dc7e490ac25b66ad821a9953ddad443f22a64ff))
+* update CampaignPromoBanner stories to include subheading and remove unnecessary parameters ([8949966](https://github.com/oaknational/Oak-Web-Application/commit/89499662067d38d80d12e957f292bc88c4e28d58))
+* update import path for text styles in CampaignPromoBanner component ([65c5055](https://github.com/oaknational/Oak-Web-Application/commit/65c50557ce8a595f1dcbfbf9d0ed756c80f82538))
+
+
+### Features
+
+* add feature flag check to homepage ([8bb9456](https://github.com/oaknational/Oak-Web-Application/commit/8bb945634f3f212b38ad29856ddc0b8899ea4d6a))
+* add text and image to campaigns page ([1eb9541](https://github.com/oaknational/Oak-Web-Application/commit/1eb9541d057b39bcd3ed90e5ae6236455dc3a322))
+* amend homepage sanity query to pull through campaign promo banner ([52f5b1d](https://github.com/oaknational/Oak-Web-Application/commit/52f5b1dc058bfe6d85977dbc15172383871a1363))
+* integrate campaign promo banner into homepage and campaign pages ([c3ef2db](https://github.com/oaknational/Oak-Web-Application/commit/c3ef2dbb9f77b0c5aba2bae2ed4ae949d0f98820))
+* link to campaign from cta ([7df9d8a](https://github.com/oaknational/Oak-Web-Application/commit/7df9d8a129eebc8b9b4f75e03ec30dba66c1fa28))
+* make campaign promo banner component ([5391bbd](https://github.com/oaknational/Oak-Web-Application/commit/5391bbd29ea20cc122d1a4a710dc00ce8a03ad9c))
+
 ## [1.845.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.845.0...v1.845.1) (2025-09-02)
 
 # [1.845.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.844.1...v1.845.0) (2025-09-02)
