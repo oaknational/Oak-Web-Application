@@ -52,5 +52,16 @@ query homepage($isDraftFilter: Sanity_DocumentFilter) {
     intro {
       ...TextAndMedia
     }
+    campaignPromoBanner {
+      type: __typename
+      headingPortableTextWithPromo: headingRaw
+      subheadingPortableTextWithPromo: subheadingRaw
+      bodyPortableTextWithPromo: bodyRaw
+      media {
+        ...ImageWithAltText
+        ...Video
+      }
+      buttonCta
+    }
   }
 }

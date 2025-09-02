@@ -9,6 +9,10 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { CampaignPage } from "@/common-lib/cms-types/campaignPage";
 import { mockImageAsset } from "@/__tests__/__helpers__/cms";
 import keyStagesFixture from "@/node-lib/curriculum-api-2023/fixtures/keyStages.fixture";
+import {
+  bodyPortableText,
+  headingPortableText,
+} from "@/fixtures/campaign/portableText";
 
 const mockCampaign: CampaignPage = {
   id: "test-id",
@@ -16,7 +20,14 @@ const mockCampaign: CampaignPage = {
     {
       headingPortableTextWithPromo: [],
       type: "CampaignIntro",
-      bodyPortableTextWithPromo: [],
+      bodyPortableTextWithPromo: bodyPortableText("campaign-intro-body-text"),
+    },
+    {
+      headingPortableTextWithPromo: headingPortableText(
+        "campaign-promo-heading-text",
+      ),
+      type: "CampaignPromoBanner",
+      media: [{ ...mockImageAsset(), altText: "campaign-promo-test" }],
     },
   ],
   header: {
@@ -125,6 +136,65 @@ describe("Campaign page", () => {
     );
     expect(searchInput).toBeInTheDocument();
   });
+  it("renders a promo banner component", () => {
+    render(
+      <CampaignSinglePage
+        campaign={mockCampaign}
+        keyStages={keyStagesFixture()}
+      />,
+    );
+    const promoBanner = screen.getByText("campaign-promo-heading-text");
+    expect(promoBanner).toBeInTheDocument();
+  });
+  it("renders an intro component", () => {
+    render(
+      <CampaignSinglePage
+        campaign={mockCampaign}
+        keyStages={keyStagesFixture()}
+      />,
+    );
+    const campaignIntro = screen.getByText("campaign-intro-body-text");
+    expect(campaignIntro).toBeInTheDocument();
+  });
+
+  it("does not render a campaign promo banner when not supplied", () => {
+    const campaignWithoutPromo = {
+      ...mockCampaign,
+      content: mockCampaign.content.filter(
+        (item) => item.type !== "CampaignPromoBanner",
+      ),
+    };
+
+    render(
+      <CampaignSinglePage
+        campaign={campaignWithoutPromo}
+        keyStages={keyStagesFixture()}
+      />,
+    );
+
+    const promoBanner = screen.queryByText("campaign-promo-heading-text");
+    expect(promoBanner).not.toBeInTheDocument();
+  });
+
+  it("does not render a campaign intro when not supplied", () => {
+    const campaignWithoutIntro = {
+      ...mockCampaign,
+      content: mockCampaign.content.filter(
+        (item) => item.type !== "CampaignIntro",
+      ),
+    };
+
+    render(
+      <CampaignSinglePage
+        campaign={campaignWithoutIntro}
+        keyStages={keyStagesFixture()}
+      />,
+    );
+
+    const campaignIntro = screen.queryByText("campaign-intro-body-text");
+    expect(campaignIntro).not.toBeInTheDocument();
+  });
+
   it("renders the correct SEO props", () => {
     const { seo } = renderWithSeo()(
       <CampaignSinglePage
