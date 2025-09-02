@@ -1,3 +1,10 @@
+# [1.847.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.846.0...v1.847.0) (2025-09-02)
+
+
+### Features
+
+* updates module version ([873ecca](https://github.com/oaknational/Oak-Web-Application/commit/873ecca9a3887efae88b31f037d0b3823a135a3b))
+
 # [1.846.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.845.1...v1.846.0) (2025-09-02)
 
 
