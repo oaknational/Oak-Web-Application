@@ -1,3 +1,10 @@
+## [1.847.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.847.0...v1.847.1) (2025-09-02)
+
+
+### Bug Fixes
+
+* made sure that ul and li wrap selector buttons in pupil views for a11y purposes ([1eb74d6](https://github.com/oaknational/Oak-Web-Application/commit/1eb74d6c4724478a34372168bb21b2defe6cd9ed))
+
 # [1.847.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.846.0...v1.847.0) (2025-09-02)
 
 
