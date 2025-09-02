@@ -3,7 +3,7 @@ import { GetStaticProps, NextPage } from "next";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import getPageProps from "@/node-lib/getPageProps";
 import HomePageTabImageNav from "@/components/GenericPagesComponents/HomePageTabImageNav";
-import Banners from "@/components/CurriculumComponents/Banners";
+import Banners from "@/components/SharedComponents/Banners";
 import PupilTab from "@/components/GenericPagesComponents/PupilTab";
 import { HomePageLowerView } from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";
 import {

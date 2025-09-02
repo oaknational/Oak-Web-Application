@@ -53,7 +53,7 @@ export const keyStageSchema = z.object({
   displayOrder: z.number().optional(),
 });
 
-const teachersHomePageData = z.object({
+const keyStagesData = z.object({
   keyStages: z.array(keyStageSchema),
 });
 
@@ -104,7 +104,7 @@ export type CurriculumPhaseOptions = z.infer<
   typeof curriculumPhaseOptionsSchema
 >;
 export type CurriculumPhaseOption = CurriculumPhaseOptions[number];
-export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
+export type KeyStagesData = z.infer<typeof keyStagesData>;
 export type CurriculumOverviewMVData = z.infer<typeof curriculumOverviewSchema>;
 export type SearchPageData = z.infer<typeof searchPageSchema>;
 
@@ -157,12 +157,12 @@ const curriculumApi2023 = {
   subjectListingPage: subjectListingQuery(sdk),
   curriculumPhaseOptions: curriculumPhaseOptionsQuery(sdk),
   unitListing: unitListingQuery(sdk),
-  teachersHomePage: async () => {
-    const res = await sdk.teachersHomePage();
-    const teachersHomePage = getFirstResultOrNull()({
-      results: res.teachersHomePage,
+  keyStages: async () => {
+    const res = await sdk.keyStages();
+    const keyStages = getFirstResultOrNull()({
+      results: res.keyStages,
     });
-    return teachersHomePageData.parse(teachersHomePage);
+    return keyStagesData.parse(keyStages);
   },
   teacherPreviewLesson: teacherPreviewLessonQuery(sdk),
   teachersPreviewLessonDownload: teachersPreviewLessonDownloadQuery(sdk),

@@ -53,6 +53,7 @@ import SavingSignedOutModal from "@/components/TeacherComponents/SavingSignedOut
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 import { TeacherRedirectedOverlay } from "@/components/TeacherComponents/TeacherRedirectedOverlay/TeacherRedirectedOverlay";
+import Banners from "@/components/SharedComponents/Banners";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -241,6 +242,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         isLastPage={isLastPage}
       />
       <OakThemeProvider theme={oakDefaultTheme}>
+        <Banners hideIfFeatureFlagDisabled />
         <HeaderListing
           breadcrumbs={[
             {

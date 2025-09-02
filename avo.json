@@ -7,17 +7,17 @@
     "name": "Oak's Tracking Plan"
   },
   "branch": {
-    "id": "cp9vaq9ICBdBi3ctXzgG1",
-    "name": "update-video-events"
+    "id": "bZy0PU4ZNyo1ZYrQFZ0zJ",
+    "name": "add-campaign-page-type"
   },
   "sources": [
     {
       "id": "OXY1Uf7nb",
       "name": "Oak Web Application",
       "path": "src/browser-lib/avo/Avo.ts",
-      "actionId": "bJd1WlhNrBWrcEuTqhlU",
-      "branchId": "cp9vaq9ICBdBi3ctXzgG1",
-      "updatedAt": "2025-08-26T08:45:56.915Z"
+      "actionId": "1eX0kcr9HfgatouQo656",
+      "branchId": "bZy0PU4ZNyo1ZYrQFZ0zJ",
+      "updatedAt": "2025-09-02T08:28:29.722Z"
     }
   ],
   "force": false

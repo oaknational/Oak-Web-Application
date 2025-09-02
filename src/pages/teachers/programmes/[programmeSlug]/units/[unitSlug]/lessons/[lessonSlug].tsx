@@ -24,6 +24,7 @@ import { useLesson } from "@/pages-helpers/teacher/useLesson/useLesson";
 import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
+import Banners from "@/components/SharedComponents/Banners";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewPageData;
@@ -106,6 +107,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
       }}
     >
       <OakThemeProvider theme={oakDefaultTheme}>
+        <Banners hideIfFeatureFlagDisabled />
         <LessonOverview
           lesson={{
             ...curriculumData,

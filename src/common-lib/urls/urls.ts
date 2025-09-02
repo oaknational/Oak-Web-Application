@@ -282,6 +282,10 @@ type SpecialistSubjectListingLinkProps = {
 
 type WebinarSingleLinkProps = { page: "webinar-single"; webinarSlug: string };
 type BlogSingleLinkProps = { page: "blog-single"; blogSlug: string };
+type CampaignSingleLinkProps = {
+  page: "campaign-single";
+  campaignSlug: string;
+};
 type AboutUsBoardLinkProps = { page: "about-board" };
 type AboutUsWhoWeAreLinkProps = { page: "about-who-we-are" };
 type AboutUsLeadershipLinkProps = { page: "about-leadership" };
@@ -400,6 +404,7 @@ export type OakLinkProps =
   | SpecialistProgrammeListingLinkProps
   | BlogListingLinkProps
   | BlogSingleLinkProps
+  | CampaignSingleLinkProps
   | WebinarListingLinkProps
   | WebinarSingleLinkProps
   | HelpLinkProps
@@ -874,6 +879,12 @@ export const OAK_PAGES: {
     analyticsPageName: "Blog",
     configType: "internal",
     pageType: "blog-single",
+  }),
+  "campaign-single": createOakPageConfig({
+    analyticsPageName: "Campaign",
+    configType: "internal",
+    pageType: "campaign-single",
+    pathPattern: "/campaigns/:campaignSlug",
   }),
   "webinar-single": createOakPageConfig({
     pathPattern: "/webinars/:webinarSlug",

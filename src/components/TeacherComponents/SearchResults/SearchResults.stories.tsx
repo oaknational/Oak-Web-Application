@@ -4,7 +4,7 @@ import Component from "./SearchResults";
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 import elasticResponseFixture from "@/context/Search/search-api/2023/elasticResponse.2023.fixture.json";
-import teachersHomePageFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersHomePage.fixture";
+import keyStagesFixture from "@/node-lib/curriculum-api-2023/fixtures/keyStages.fixture";
 import { searchResultsHitsSchema } from "@/context/Search/search.schema";
 
 export default {
@@ -14,7 +14,7 @@ export default {
 } as Meta<typeof Component>;
 
 const hits = searchResultsHitsSchema.parse(elasticResponseFixture.hits.hits);
-const allKeyStages = teachersHomePageFixture().keyStages;
+const allKeyStages = keyStagesFixture().keyStages;
 
 export const SearchResults = {
   args: {
