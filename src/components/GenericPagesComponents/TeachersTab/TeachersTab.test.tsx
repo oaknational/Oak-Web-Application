@@ -5,6 +5,7 @@ import TeachersTab from "./TeachersTab";
 
 import keyStageKeypad from "@/browser-lib/fixtures/keyStageKeypad";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => false,
 }));
@@ -17,6 +18,13 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
       browseRefinedAccessed: (...args: unknown[]) => browseRefined(...args),
     },
   }),
+}));
+
+// Mock link button so it doesn't attempt to navigate on click
+jest.mock("@oaknational/oak-components", () => ({
+  ...jest.requireActual("@oaknational/oak-components"),
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  OakPrimaryInvertedButton: (args: any) => <a {...args} href="" />,
 }));
 
 describe("TeachersTab", () => {

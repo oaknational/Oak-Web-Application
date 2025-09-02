@@ -18,6 +18,7 @@ import getPageProps from "@/node-lib/getPageProps";
 import KeyStageKeypad from "@/components/SharedComponents/KeyStageKeypad";
 import { getCombinedSubjects } from "@/pages-helpers/teacher/subject-listing-page/getCombinedSubjects";
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import Banners from "@/components/SharedComponents/Banners";
 
 export type KeyStagePageProps = {
   keyStageTitle: string;
@@ -58,6 +59,7 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
       }}
       $background="white"
     >
+      <Banners hideIfFeatureFlagDisabled />
       <OakBox $background={"lavender50"}>
         <OakMaxWidth
           $ph="inner-padding-s"

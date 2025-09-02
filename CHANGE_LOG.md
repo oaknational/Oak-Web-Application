@@ -1,3 +1,64 @@
+# [1.845.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.844.1...v1.845.0) (2025-09-02)
+
+
+### Bug Fixes
+
+* align center on curriculum banner content ([056f62f](https://github.com/oaknational/Oak-Web-Application/commit/056f62f253a4af0caa4df47d3d5c58368ae2fdba))
+* typo ([66ff8ec](https://github.com/oaknational/Oak-Web-Application/commit/66ff8ecc60af46ad0735cc44b624e3c6c32b83e3))
+
+
+### Features
+
+* add banner to subject listing pages ([de3f203](https://github.com/oaknational/Oak-Web-Application/commit/de3f2032d183c43a95e8ecff3064378fe7561885))
+* add banners to required pages ([c116e66](https://github.com/oaknational/Oak-Web-Application/commit/c116e66e20880bd1e242e079623d4e54bc927625))
+* add campaign page type ([1dc7dc7](https://github.com/oaknational/Oak-Web-Application/commit/1dc7dc70564bf69658dcdc7cb7635248d7b7fc06))
+* add link to campaign page in banner ([958ba2e](https://github.com/oaknational/Oak-Web-Application/commit/958ba2e7601f062a72dd2d008ce73c6b95c53fc2))
+* add prop to hide banner when ff disabled ([81aad8c](https://github.com/oaknational/Oak-Web-Application/commit/81aad8c12475d18ab1243923f38a017b924d4bf1))
+* extract PromoSpan to component ([9701d15](https://github.com/oaknational/Oak-Web-Application/commit/9701d1526399cb16a450c6bb63e4391a152fca05))
+* update curriculum banner with optional mythbusting styling ([14ebdd7](https://github.com/oaknational/Oak-Web-Application/commit/14ebdd74d14354e329ab2a022fe7ce14048467dc))
+
+## [1.844.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.844.0...v1.844.1) (2025-08-28)
+
+
+### Bug Fixes
+
+* **a11y:** associate Download button with inline error via aria-describedby ([b1b49cb](https://github.com/oaknational/Oak-Web-Application/commit/b1b49cbcb9a91ce170763a14433176c05d4c87db))
+* **curriculum-downloads:** report download failures via Bugsnag ([ab94faf](https://github.com/oaknational/Oak-Web-Application/commit/ab94faf8944c95fc0fc4c8abe1395011fa5d15fc))
+* **curriculum-downloads:** show inline error on failed download and avoid false success ([a04526d](https://github.com/oaknational/Oak-Web-Application/commit/a04526d7225717a27090c2236d380a1a11741d03))
+
+# [1.844.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.843.0...v1.844.0) (2025-08-28)
+
+
+### Bug Fixes
+
+* spacing between heading on mobile ([3393042](https://github.com/oaknational/Oak-Web-Application/commit/3393042bb198c0ab20368ff45da9a77065825aec))
+* unique key for component ([49d95a2](https://github.com/oaknational/Oak-Web-Application/commit/49d95a2b956018722d1118fe04fd0699ebecccec))
+
+
+### Features
+
+* add campaign intro component ([7d2a290](https://github.com/oaknational/Oak-Web-Application/commit/7d2a290217a53941eef335ed8862fef0b5a01451))
+
+# [1.843.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.842.1...v1.843.0) (2025-08-27)
+
+
+### Bug Fixes
+
+* centre alignment for mobile column ([b8843a3](https://github.com/oaknational/Oak-Web-Application/commit/b8843a3527a7767afe795744ec02a54fff446e60))
+* justify content on large desktop ([7ac58fb](https://github.com/oaknational/Oak-Web-Application/commit/7ac58fb8e502a9249c2b19323b43dfd8f0d4534a))
+* mock link button in test to prevent nav ([8281b02](https://github.com/oaknational/Oak-Web-Application/commit/8281b0290dfb51c248e65962d0d3cc28fbd2a1b0))
+
+
+### Features
+
+* add desktop and mobile layout for header ([e5c1e7b](https://github.com/oaknational/Oak-Web-Application/commit/e5c1e7bdb4d381418401fef6fc5949b45295035a))
+* add heading and image to campaign page ([4816677](https://github.com/oaknational/Oak-Web-Application/commit/4816677fd8b773a1d7f2d4f02dd3a4e11b4fde90))
+* add optional subheading ([a41a97b](https://github.com/oaknational/Oak-Web-Application/commit/a41a97b91b5145e8abfd0d751331145a5502b67a))
+* extract header to generic components ([5ec9b45](https://github.com/oaknational/Oak-Web-Application/commit/5ec9b451bcc7d5e3beb40c27f87387c2c1af2418))
+* update keystage keypad component to use oak components ([23cfeec](https://github.com/oaknational/Oak-Web-Application/commit/23cfeec434d2234096a65abb11581fe0c6c65440))
+* update search context values ([fa19a58](https://github.com/oaknational/Oak-Web-Application/commit/fa19a582ffcdf3cf1eb2b01cb747b84d76826a3c))
+* use max width for header component ([8ae165c](https://github.com/oaknational/Oak-Web-Application/commit/8ae165c223d810e183291af6cf821395ecfd4e77))
+
 ## [1.842.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.842.0...v1.842.1) (2025-08-22)
 
 

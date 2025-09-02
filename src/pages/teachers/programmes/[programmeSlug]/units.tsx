@@ -53,6 +53,7 @@ import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefr
 import { isUnitListData } from "@/components/TeacherComponents/UnitList/helpers";
 import { useUnitFilterState } from "@/hooks/useUnitFilterState";
 import { TeacherRedirectedOverlay } from "@/components/TeacherComponents/TeacherRedirectedOverlay/TeacherRedirectedOverlay";
+import Banners from "@/components/SharedComponents/Banners";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -233,6 +234,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
           isFirstPage={isFirstPage}
           isLastPage={isLastPage}
         />
+        <Banners hideIfFeatureFlagDisabled />
         <HeaderListing
           breadcrumbs={[
             {
