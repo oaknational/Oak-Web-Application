@@ -32,7 +32,7 @@ export default function Banners({
       about teaching <b>can hold you back</b>
     </OakP>
   );
-  const curriculumContent = (
+  const curriculumBannerContent = (
     <OakFlex $gap="space-between-ssx" $alignItems={"center"}>
       <OakPromoTag /> Subjects added
     </OakFlex>
@@ -40,7 +40,7 @@ export default function Banners({
 
   const message = isMythbustingCampaignActive
     ? mythbustingContent
-    : curriculumContent;
+    : curriculumBannerContent;
   const background = isMythbustingCampaignActive ? "lemon30" : "lemon";
   const ctaText = isMythbustingCampaignActive
     ? "Learn why"

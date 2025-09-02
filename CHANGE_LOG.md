@@ -1,3 +1,24 @@
+## [1.845.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.845.0...v1.845.1) (2025-09-02)
+
+# [1.845.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.844.1...v1.845.0) (2025-09-02)
+
+
+### Bug Fixes
+
+* align center on curriculum banner content ([056f62f](https://github.com/oaknational/Oak-Web-Application/commit/056f62f253a4af0caa4df47d3d5c58368ae2fdba))
+* typo ([66ff8ec](https://github.com/oaknational/Oak-Web-Application/commit/66ff8ecc60af46ad0735cc44b624e3c6c32b83e3))
+
+
+### Features
+
+* add banner to subject listing pages ([de3f203](https://github.com/oaknational/Oak-Web-Application/commit/de3f2032d183c43a95e8ecff3064378fe7561885))
+* add banners to required pages ([c116e66](https://github.com/oaknational/Oak-Web-Application/commit/c116e66e20880bd1e242e079623d4e54bc927625))
+* add campaign page type ([1dc7dc7](https://github.com/oaknational/Oak-Web-Application/commit/1dc7dc70564bf69658dcdc7cb7635248d7b7fc06))
+* add link to campaign page in banner ([958ba2e](https://github.com/oaknational/Oak-Web-Application/commit/958ba2e7601f062a72dd2d008ce73c6b95c53fc2))
+* add prop to hide banner when ff disabled ([81aad8c](https://github.com/oaknational/Oak-Web-Application/commit/81aad8c12475d18ab1243923f38a017b924d4bf1))
+* extract PromoSpan to component ([9701d15](https://github.com/oaknational/Oak-Web-Application/commit/9701d1526399cb16a450c6bb63e4391a152fca05))
+* update curriculum banner with optional mythbusting styling ([14ebdd7](https://github.com/oaknational/Oak-Web-Application/commit/14ebdd74d14354e329ab2a022fe7ce14048467dc))
+
 ## [1.844.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.844.0...v1.844.1) (2025-08-28)
 
 
