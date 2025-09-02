@@ -1,3 +1,11 @@
+## [1.847.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.847.1...v1.847.2) (2025-09-02)
+
+
+### Bug Fixes
+
+* added role and labelledby to multi answer checkboxes questions in quizzes ([3408de7](https://github.com/oaknational/Oak-Web-Application/commit/3408de78d6ee32f1b51e5a53a652b95d0257f582))
+* ensure that radio groups in quizzes are associated with question stem labels ([1169595](https://github.com/oaknational/Oak-Web-Application/commit/11695951a5c5fb3fd589cd9e9bb6fe2fac2afecc))
+
 ## [1.847.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.847.0...v1.847.1) (2025-09-02)
 
 

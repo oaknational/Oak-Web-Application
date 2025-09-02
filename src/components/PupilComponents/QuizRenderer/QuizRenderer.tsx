@@ -126,6 +126,7 @@ export const QuizRenderer = (props: QuizRenderProps) => {
           <MathJaxWrap>
             {questionStem && (
               <QuizQuestionStem
+                questionUid={currentQuestionData.questionUid}
                 questionStem={questionStem}
                 index={currentQuestionIndex}
                 takeFullHeight={
