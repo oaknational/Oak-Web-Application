@@ -23,6 +23,7 @@ import { Testimonials } from "@/components/GenericPagesComponents/Testimonials";
 import { CampaignPromoBannerType, HomePage } from "@/common-lib/cms-types";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import { CampaignPromoBanner } from "@/components/GenericPagesComponents/CampaignPromoBanner/CampaignPromoBanner";
+import { campaignTextStyles } from "@/pages/campaigns/[campaignSlug]";
 
 export const postToPostListItem = (post: SerializedPost): PostListItemProps => {
   return post.type === "blog-post"
@@ -110,6 +111,7 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
             $background={"bg-decorative5-very-subdued"}
           >
             <CampaignPromoBanner
+              textStyles={campaignTextStyles}
               heading={campaignPromoBanner?.headingPortableTextWithPromo}
               subheading={campaignPromoBanner?.subheadingPortableTextWithPromo}
               buttonCta={campaignPromoBanner.buttonCta}

@@ -6,6 +6,7 @@ import { CampaignPageIntro } from "./CampaignPageIntro";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { headingPortableText } from "@/fixtures/campaign/portableText";
+import { campaignTextStyles } from "@/pages/campaigns/[campaignSlug]";
 
 const render = renderWithProviders();
 
@@ -13,6 +14,7 @@ describe("CampaignPageIntro", () => {
   it("should render a heading", () => {
     render(
       <CampaignPageIntro
+        textStyles={campaignTextStyles}
         heading={headingPortableText()}
         body={bodyPortableText}
       />,
@@ -26,6 +28,7 @@ describe("CampaignPageIntro", () => {
   it("should render body text as a p", () => {
     render(
       <CampaignPageIntro
+        textStyles={campaignTextStyles}
         heading={headingPortableText()}
         body={bodyPortableText}
       />,

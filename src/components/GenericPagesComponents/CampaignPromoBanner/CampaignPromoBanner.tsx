@@ -1,20 +1,21 @@
 import { OakBox, OakFlex, OakPrimaryButton } from "@oaknational/oak-components";
-import { PortableTextBlock } from "@portabletext/react";
+import { PortableTextBlock, PortableTextComponents } from "@portabletext/react";
 
 import { PortableTextWithDefaults } from "../../SharedComponents/PortableText";
 import CMSImage from "../../SharedComponents/CMSImage";
-import { campaignTextStyles } from "../CampaignPageIntro/CampaignPageIntro";
 
 import { Image, Video } from "@/common-lib/cms-types";
 import { resolveOakHref } from "@/common-lib/urls";
 
 export function CampaignPromoBanner({
+  textStyles,
   media,
   heading,
   subheading,
   body,
   buttonCta,
 }: {
+  textStyles: PortableTextComponents;
   heading: PortableTextBlock[];
   media: Image | Video;
   subheading?: PortableTextBlock[] | null;
@@ -39,22 +40,16 @@ export function CampaignPromoBanner({
         $justifyContent={"center"}
         $gap={["space-between-m", "space-between-l"]}
       >
-        <PortableTextWithDefaults
-          value={heading}
-          components={campaignTextStyles}
-        />
+        <PortableTextWithDefaults value={heading} components={textStyles} />
         {subheading && (
           <PortableTextWithDefaults
             value={subheading}
-            components={campaignTextStyles}
+            components={textStyles}
           />
         )}
         {body && (
           <OakBox>
-            <PortableTextWithDefaults
-              value={body}
-              components={campaignTextStyles}
-            />
+            <PortableTextWithDefaults value={body} components={textStyles} />
           </OakBox>
         )}
         {buttonCta && (

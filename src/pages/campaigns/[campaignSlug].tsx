@@ -1,5 +1,6 @@
 import { GetServerSideProps, GetServerSidePropsResult, NextPage } from "next";
-import { OakFlex } from "@oaknational/oak-components";
+import { OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
+import { PortableTextComponents } from "@portabletext/react";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { CampaignPage } from "@/common-lib/cms-types/campaignPage";
@@ -20,7 +21,48 @@ export type CampaignSinglePageProps = {
   campaign: CampaignPage;
   keyStages: KeyStagesData;
 };
-
+export const campaignTextStyles: PortableTextComponents = {
+  block: {
+    heading1: (props) => {
+      return (
+        <OakHeading $font={["heading-5", "heading-5", "heading-2"]} tag="h2">
+          {props.children}
+        </OakHeading>
+      );
+    },
+    heading2: (props) => {
+      return (
+        <OakHeading $font={["heading-5", "heading-4", "heading-3"]} tag="h2">
+          {props.children}
+        </OakHeading>
+      );
+    },
+    heading3: (props) => {
+      return (
+        <OakHeading
+          $font={["heading-light-7", "heading-light-6", "heading-light-5"]}
+          tag="h3"
+        >
+          {props.children}
+        </OakHeading>
+      );
+    },
+    heading5: (props) => {
+      return (
+        <OakHeading
+          $font={["heading-6", "heading-6", "heading-5"]}
+          tag="h3"
+          $mb={"space-between-m"}
+        >
+          {props.children}
+        </OakHeading>
+      );
+    },
+    normal: (props) => {
+      return <OakP $font={["body-1", "body-1"]}>{props.children}</OakP>;
+    },
+  },
+};
 const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
   return (
     <AppLayout
@@ -49,6 +91,7 @@ const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
           if (section.type === "CampaignIntro") {
             return (
               <CampaignPageIntro
+                textStyles={campaignTextStyles}
                 heading={section.headingPortableTextWithPromo}
                 body={section.bodyPortableTextWithPromo}
                 key={section.type}
@@ -60,6 +103,7 @@ const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
             if (media)
               return (
                 <CampaignPromoBanner
+                  textStyles={campaignTextStyles}
                   heading={section.headingPortableTextWithPromo}
                   body={section.bodyPortableTextWithPromo}
                   media={media}

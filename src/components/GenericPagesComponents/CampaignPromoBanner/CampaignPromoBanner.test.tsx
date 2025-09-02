@@ -7,6 +7,7 @@ import {
   headingPortableText,
   subheadingPortableText,
 } from "@/fixtures/campaign/portableText";
+import { campaignTextStyles } from "@/pages/campaigns/[campaignSlug]";
 
 const render = renderWithProviders();
 
@@ -18,6 +19,7 @@ describe("CampaignPromoBanner", () => {
   it("should render the heading", () => {
     const { getByRole } = render(
       <CampaignPromoBanner
+        textStyles={campaignTextStyles}
         heading={headingPortableText()}
         media={mockImageAsset()}
       />,
@@ -34,6 +36,7 @@ describe("CampaignPromoBanner", () => {
   it("should render the image", async () => {
     const { getByAltText } = render(
       <CampaignPromoBanner
+        textStyles={campaignTextStyles}
         heading={headingPortableText()}
         media={{ ...mockImageAsset(), altText: "test" }}
       />,
@@ -47,6 +50,7 @@ describe("CampaignPromoBanner", () => {
   it("should render subheading when provided", () => {
     const { getByRole } = render(
       <CampaignPromoBanner
+        textStyles={campaignTextStyles}
         heading={headingPortableText()}
         media={mockImageAsset()}
         subheading={subheadingPortableText()}
@@ -60,6 +64,7 @@ describe("CampaignPromoBanner", () => {
   it("should render body text when provided", () => {
     const { getByText } = render(
       <CampaignPromoBanner
+        textStyles={campaignTextStyles}
         heading={headingPortableText()}
         media={mockImageAsset()}
         body={bodyPortableText()}
@@ -75,6 +80,7 @@ describe("CampaignPromoBanner", () => {
   it("should render CTA button when provided", async () => {
     const { getByText } = render(
       <CampaignPromoBanner
+        textStyles={campaignTextStyles}
         heading={headingPortableText()}
         media={mockImageAsset()}
         buttonCta={"buttonCtaText"}
@@ -89,6 +95,7 @@ describe("CampaignPromoBanner", () => {
   it("should not render optional props when not provided", () => {
     const { queryByText, queryByRole } = render(
       <CampaignPromoBanner
+        textStyles={campaignTextStyles}
         heading={headingPortableText()}
         media={mockImageAsset()}
       />,

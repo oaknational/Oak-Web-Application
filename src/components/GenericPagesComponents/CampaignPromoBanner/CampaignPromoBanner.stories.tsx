@@ -10,6 +10,7 @@ import {
   headingPortableText,
   subheadingPortableText,
 } from "@/fixtures/campaign/portableText";
+import { campaignTextStyles } from "@/pages/campaigns/[campaignSlug]";
 
 const meta: Meta<typeof CampaignPromoBanner> = {
   component: CampaignPromoBanner,
@@ -24,6 +25,7 @@ export const Default: Story = {
   render: () => (
     <OakThemeProvider theme={oakDefaultTheme}>
       <CampaignPromoBanner
+        textStyles={campaignTextStyles}
         heading={headingPortableText()}
         subheading={subheadingPortableText()}
         buttonCta={"buttonCtaText"}
@@ -37,6 +39,7 @@ export const WithBodyText: Story = {
   render: () => (
     <OakThemeProvider theme={oakDefaultTheme}>
       <CampaignPromoBanner
+        textStyles={campaignTextStyles}
         heading={headingPortableText()}
         subheading={subheadingPortableText()}
         body={bodyPortableText()}
