@@ -4,7 +4,7 @@ exports[`Fieldset all options 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR sc-kAyceB cuUXqb bYnAjW"
+      class="sc-fqkvVR sc-gsFSXq cuUXqb gXxntV"
       data-testid="oak-inline-banner"
     >
       <div
@@ -33,7 +33,7 @@ exports[`Fieldset all options 1`] = `
       </div>
     </div>
     <div
-      class="sc-fqkvVR sc-kAyceB kIGjQG bYnAjW"
+      class="sc-fqkvVR sc-gsFSXq kIGjQG gXxntV"
       data-testid="oak-inline-banner"
     >
       <div
@@ -62,7 +62,7 @@ exports[`Fieldset all options 1`] = `
       </div>
     </div>
     <div
-      class="sc-fqkvVR sc-kAyceB gIcfVA bYnAjW"
+      class="sc-fqkvVR sc-gsFSXq gIcfVA gXxntV"
       data-testid="oak-inline-banner"
     >
       <div
@@ -91,7 +91,7 @@ exports[`Fieldset all options 1`] = `
       </div>
     </div>
     <div
-      class="sc-fqkvVR sc-kAyceB WVWoR bYnAjW"
+      class="sc-fqkvVR sc-gsFSXq WVWoR gXxntV"
       data-testid="oak-inline-banner"
     >
       <div
@@ -120,7 +120,7 @@ exports[`Fieldset all options 1`] = `
       </div>
     </div>
     <div
-      class="sc-fqkvVR sc-kAyceB dDVBBt bYnAjW"
+      class="sc-fqkvVR sc-gsFSXq dDVBBt gXxntV"
       data-testid="oak-inline-banner"
     >
       <div
@@ -156,7 +156,7 @@ exports[`Fieldset default options 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR sc-kAyceB cuUXqb bYnAjW"
+      class="sc-fqkvVR sc-gsFSXq cuUXqb gXxntV"
       data-testid="oak-inline-banner"
     >
       <div

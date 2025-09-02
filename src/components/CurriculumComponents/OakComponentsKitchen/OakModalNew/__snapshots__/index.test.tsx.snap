@@ -11,18 +11,18 @@ exports[`OakModalNew should match snapshot 1`] = `
       class="sc-fqkvVR sc-fd1b6bd3-0 hJRGVt jsTHOJ"
     />
     <div
-      class="sc-fqkvVR sc-kAyceB sc-702fbad0-0 hBVYLH joHkzz igbdss"
+      class="sc-fqkvVR sc-gsFSXq sc-702fbad0-0 hBVYLH hDihdg igbdss"
       data-testid="sidebar-modal"
       direction="right"
     >
       <div
-        class="sc-fqkvVR sc-kAyceB kwqmrC jOTTNg"
+        class="sc-fqkvVR sc-gsFSXq kwqmrC ibSZJr"
       >
         <div
-          class="sc-fqkvVR sc-kAyceB kUmAOC kyta-DD"
+          class="sc-fqkvVR sc-gsFSXq kUmAOC dNHjLk"
         >
           <h3
-            class="sc-kpDqfm iMTebT"
+            class="sc-dhKdcB kxDsEU"
             data-testid="modal-title"
           >
             test_title
@@ -81,13 +81,13 @@ exports[`OakModalNew should match snapshot 1`] = `
           </div>
         </div>
         <div
-          class="sc-fqkvVR sc-kAyceB dWuEkM jFSWFH"
+          class="sc-fqkvVR sc-gsFSXq dWuEkM JfWBw"
           data-testid="modal-content"
         >
           test_content
         </div>
         <div
-          class="sc-fqkvVR sc-kAyceB eGXHla cuPHGn"
+          class="sc-fqkvVR sc-gsFSXq eGXHla XmDSc"
           data-testid="modal-footer"
         >
           test_footer
