@@ -8,7 +8,7 @@ exports[`CurriculumTab renders 1`] = `
     >
       <div
         aria-live="polite"
-        class="sc-fqkvVR sc-gsFSXq sc-d65e4df9-0 hkKUlc cQyxGE jTGGef"
+        class="sc-fqkvVR sc-kAyceB sc-d65e4df9-0 hkKUlc iPEHGb jTGGef"
       />
       <div
         class="sc-fqkvVR gZEYWU"
@@ -35,71 +35,71 @@ exports[`CurriculumTab renders 1`] = `
           </div>
         </div>
         <div
-          class="sc-fqkvVR sc-gsFSXq sc-cwHptR itRfeb ibSZJr"
+          class="sc-fqkvVR sc-kAyceB sc-jEACwC itRfeb jOTTNg"
         >
           <div
-            class="sc-fqkvVR sc-gsFSXq fgBWrW hDihdg"
+            class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
           >
             <div
-              class="sc-fqkvVR sc-gsFSXq blCXVh eqRNuD"
+              class="sc-fqkvVR sc-kAyceB blCXVh kKfJVM"
             >
               <h1
-                class="sc-dhKdcB cMkAuQ"
+                class="sc-kpDqfm jyPSa-D"
               >
                 Teachers & subject leads
               </h1>
               <h2
-                class="sc-dhKdcB bzyrBu"
+                class="sc-kpDqfm eIdxtB"
               >
                 Curriculum plans
               </h2>
               <div
-                class="sc-fqkvVR sc-gsFSXq fgBWrW bOTBNE"
+                class="sc-fqkvVR sc-kAyceB fgBWrW eeevb"
               >
                  
                 <div
-                  class="sc-fqkvVR sc-eldPxv iGOzG gvClhl"
+                  class="sc-fqkvVR sc-fPXMVe iGOzG feoMFy"
                 >
                   All of our curriculum plans are:
                 </div>
                 <ul
-                  class="sc-fPXMVe lpuqhW"
+                  class="sc-gFqAkR iOFWbq"
                 >
                   <li
-                    class="sc-dAlyuH kPmtoE"
+                    class="sc-cwHptR dIHCIz"
                   >
                     National curriculum-aligned
                   </li>
                   <li
-                    class="sc-dAlyuH kPmtoE"
+                    class="sc-cwHptR dIHCIz"
                   >
                     Sequenced across year groups
                   </li>
                   <li
-                    class="sc-dAlyuH kPmtoE"
+                    class="sc-cwHptR dIHCIz"
                   >
                     Designed by curriculum experts
                   </li>
                 </ul>
               </div>
               <div
-                class="sc-fqkvVR sc-gsFSXq bmnVAU erhMjA"
+                class="sc-fqkvVR sc-kAyceB bmnVAU bSQGkj"
               >
                 <a
-                  class="sc-JrDLc cEyXEU"
+                  class="sc-bypJrT eQPxKr sc-ddjGPC"
                   href="/teachers/curriculum"
                 >
                   <span
-                    class="sc-kpDqfm psnGs"
+                    class="sc-dAlyuH gAWMRU"
                   >
                     <span
-                      class="sc-fqkvVR sc-eldPxv dWmZcx iGHzbF"
+                      class="sc-fqkvVR sc-fPXMVe dWmZcx hpuazS"
                     >
                       Our curriculum planning approach
                     </span>
                   </span>
                   <div
-                    class="sc-fqkvVR kbnxKi sc-fXSgeo"
+                    class="sc-fqkvVR kbnxKi sc-klVQfs"
                   >
                     <img
                       alt=""
@@ -131,13 +131,13 @@ exports[`CurriculumTab renders 1`] = `
                     data-testid="lot-picker"
                   >
                     <div
-                      class="sc-fqkvVR sc-gsFSXq iRyopa juXCUD"
+                      class="sc-fqkvVR sc-kAyceB iRyopa gBKvQs"
                     >
                       <div
-                        class="sc-fqkvVR sc-gsFSXq gJgCTZ ectRTh"
+                        class="sc-fqkvVR sc-kAyceB gJgCTZ hpdcS"
                       >
                         <div
-                          class="sc-fqkvVR sc-gsFSXq fxkSvJ kHulgy"
+                          class="sc-fqkvVR sc-kAyceB fxkSvJ beqJNd"
                           style="width: 50%;"
                         >
                           <div
@@ -153,7 +153,7 @@ exports[`CurriculumTab renders 1`] = `
                                 class="sc-fqkvVR iHZIMJ"
                               >
                                 <span
-                                  class="sc-kpDqfm gGqndO"
+                                  class="sc-dAlyuH eUClCC"
                                   data-testid="subject-picker-button-heading"
                                 >
                                   Subject
@@ -207,7 +207,7 @@ exports[`CurriculumTab renders 1`] = `
                           style="width: 50%;"
                         >
                           <div
-                            class="sc-fqkvVR sc-gsFSXq fxkSvJ ehZBcc"
+                            class="sc-fqkvVR sc-kAyceB fxkSvJ jDFpDX"
                           >
                             <div
                               class="sc-fqkvVR sc-1c55d370-0 sc-9e2d8449-3 eMDDOo knawKC cDrIuV"
@@ -222,7 +222,7 @@ exports[`CurriculumTab renders 1`] = `
                                   class="sc-fqkvVR bBVkkf"
                                 >
                                   <span
-                                    class="sc-kpDqfm gGqndO"
+                                    class="sc-dAlyuH eUClCC"
                                     data-testid="phase-picker-button-heading"
                                   >
                                     School phase
@@ -236,10 +236,10 @@ exports[`CurriculumTab renders 1`] = `
                               </button>
                             </div>
                             <div
-                              class="sc-fqkvVR sc-gsFSXq edMMHU bKBnOm"
+                              class="sc-fqkvVR sc-kAyceB edMMHU hilJOZ"
                             >
                               <div
-                                class="sc-fqkvVR sc-iHbSHJ eJBGXR fIxqXk"
+                                class="sc-fqkvVR sc-fXSgeo eJBGXR efioha"
                               >
                                 <div
                                   class="sc-fqkvVR iPpXCP grey-shadow"
@@ -248,14 +248,14 @@ exports[`CurriculumTab renders 1`] = `
                                   class="sc-fqkvVR iPpXCP yellow-shadow"
                                 />
                                 <button
-                                  class="sc-lcIPJg sc-hRJfrW lcdeJA eJSoyq internal-button"
+                                  class="sc-iHGNWf sc-esYiGF NgRfG dRQKXW internal-button"
                                   data-testid="lot-picker-view-curriculum-button"
                                 >
                                   <div
-                                    class="sc-fqkvVR sc-gsFSXq fgBWrW dzOlKm"
+                                    class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                                   >
                                     <span
-                                      class="sc-kpDqfm jpmbqG"
+                                      class="sc-dAlyuH hcOVuy"
                                     >
                                       View
                                     </span>
@@ -285,10 +285,10 @@ exports[`CurriculumTab renders 1`] = `
               </div>
             </div>
             <div
-              class="sc-fqkvVR sc-gsFSXq ivrxlG gdRCvt"
+              class="sc-fqkvVR sc-kAyceB ivrxlG gyAcWO"
             >
               <div
-                class="sc-fqkvVR sc-gsFSXq fgBWrW imOBLi"
+                class="sc-fqkvVR sc-kAyceB fgBWrW gOiVFh"
               >
                 <img
                   alt=""
@@ -322,13 +322,13 @@ exports[`CurriculumTab renders 1`] = `
                 data-testid="lot-picker"
               >
                 <div
-                  class="sc-fqkvVR sc-gsFSXq iRyopa juXCUD"
+                  class="sc-fqkvVR sc-kAyceB iRyopa gBKvQs"
                 >
                   <div
-                    class="sc-fqkvVR sc-gsFSXq gJgCTZ ectRTh"
+                    class="sc-fqkvVR sc-kAyceB gJgCTZ hpdcS"
                   >
                     <div
-                      class="sc-fqkvVR sc-gsFSXq fxkSvJ kHulgy"
+                      class="sc-fqkvVR sc-kAyceB fxkSvJ beqJNd"
                       style="width: 50%;"
                     >
                       <div
@@ -344,7 +344,7 @@ exports[`CurriculumTab renders 1`] = `
                             class="sc-fqkvVR iHZIMJ"
                           >
                             <span
-                              class="sc-kpDqfm gGqndO"
+                              class="sc-dAlyuH eUClCC"
                               data-testid="subject-picker-button-heading"
                             >
                               Subject
@@ -398,7 +398,7 @@ exports[`CurriculumTab renders 1`] = `
                       style="width: 50%;"
                     >
                       <div
-                        class="sc-fqkvVR sc-gsFSXq fxkSvJ ehZBcc"
+                        class="sc-fqkvVR sc-kAyceB fxkSvJ jDFpDX"
                       >
                         <div
                           class="sc-fqkvVR sc-1c55d370-0 sc-9e2d8449-3 eMDDOo knawKC cDrIuV"
@@ -413,7 +413,7 @@ exports[`CurriculumTab renders 1`] = `
                               class="sc-fqkvVR bBVkkf"
                             >
                               <span
-                                class="sc-kpDqfm gGqndO"
+                                class="sc-dAlyuH eUClCC"
                                 data-testid="phase-picker-button-heading"
                               >
                                 School phase
@@ -427,10 +427,10 @@ exports[`CurriculumTab renders 1`] = `
                           </button>
                         </div>
                         <div
-                          class="sc-fqkvVR sc-gsFSXq edMMHU bKBnOm"
+                          class="sc-fqkvVR sc-kAyceB edMMHU hilJOZ"
                         >
                           <div
-                            class="sc-fqkvVR sc-iHbSHJ eJBGXR fIxqXk"
+                            class="sc-fqkvVR sc-fXSgeo eJBGXR efioha"
                           >
                             <div
                               class="sc-fqkvVR iPpXCP grey-shadow"
@@ -439,14 +439,14 @@ exports[`CurriculumTab renders 1`] = `
                               class="sc-fqkvVR iPpXCP yellow-shadow"
                             />
                             <button
-                              class="sc-lcIPJg sc-hRJfrW lcdeJA eJSoyq internal-button"
+                              class="sc-iHGNWf sc-esYiGF NgRfG dRQKXW internal-button"
                               data-testid="lot-picker-view-curriculum-button"
                             >
                               <div
-                                class="sc-fqkvVR sc-gsFSXq fgBWrW dzOlKm"
+                                class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                               >
                                 <span
-                                  class="sc-kpDqfm jpmbqG"
+                                  class="sc-dAlyuH hcOVuy"
                                 >
                                   View
                                 </span>
@@ -488,13 +488,13 @@ exports[`CurriculumTab renders 1`] = `
           class="sc-fqkvVR jMNzyV"
         >
           <div
-            class="sc-fqkvVR sc-gsFSXq krbSaB iLFXKS"
+            class="sc-fqkvVR sc-kAyceB krbSaB jIxDmZ"
           >
             <div
               class="sc-fqkvVR kJPpVN"
             >
               <strong
-                class="sc-kpDqfm bwvRQn"
+                class="sc-dAlyuH dHeyJr"
               >
                 This site uses cookies to store information on your computer.
               </strong>
@@ -502,25 +502,25 @@ exports[`CurriculumTab renders 1`] = `
               Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
             </div>
             <div
-              class="sc-fqkvVR sc-gsFSXq fgBWrW ftCnYI"
+              class="sc-fqkvVR sc-kAyceB fgBWrW eaKFMD"
             >
               <div
-                class="sc-fqkvVR sc-gsFSXq fOyTgd gZFQMg"
+                class="sc-fqkvVR sc-kAyceB fOyTgd TDtQj"
               >
                 <button
-                  class="sc-JrDLc cEyXEU"
+                  class="sc-bypJrT eQPxKr sc-ddjGPC"
                   data-testid="cookie-banner-reject"
                   type="button"
                 >
                   <span
-                    class="sc-kpDqfm psnGs"
+                    class="sc-dAlyuH gAWMRU"
                   >
                     Reject non-essential cookies
                   </span>
                 </button>
               </div>
               <div
-                class="sc-fqkvVR sc-iHbSHJ eJBGXR fIxqXk"
+                class="sc-fqkvVR sc-fXSgeo eJBGXR efioha"
               >
                 <div
                   class="sc-fqkvVR iPpXCP grey-shadow"
@@ -529,13 +529,13 @@ exports[`CurriculumTab renders 1`] = `
                   class="sc-fqkvVR iPpXCP yellow-shadow"
                 />
                 <button
-                  class="sc-lcIPJg sc-hRJfrW kjNddQ dpmFSv internal-button"
+                  class="sc-iHGNWf sc-esYiGF iKUgIm hnQzKH internal-button"
                 >
                   <div
-                    class="sc-fqkvVR sc-gsFSXq fgBWrW dzOlKm"
+                    class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                   >
                     <span
-                      class="sc-kpDqfm jpmbqG"
+                      class="sc-dAlyuH hcOVuy"
                     >
                       Cookie settings
                     </span>
@@ -543,7 +543,7 @@ exports[`CurriculumTab renders 1`] = `
                 </button>
               </div>
               <div
-                class="sc-fqkvVR sc-iHbSHJ eJBGXR fIxqXk"
+                class="sc-fqkvVR sc-fXSgeo eJBGXR efioha"
               >
                 <div
                   class="sc-fqkvVR iPpXCP grey-shadow"
@@ -552,14 +552,14 @@ exports[`CurriculumTab renders 1`] = `
                   class="sc-fqkvVR iPpXCP yellow-shadow"
                 />
                 <button
-                  class="sc-lcIPJg sc-hRJfrW lcdeJA eJSoyq internal-button"
+                  class="sc-iHGNWf sc-esYiGF NgRfG dRQKXW internal-button"
                   data-testid="cookie-banner-accept"
                 >
                   <div
-                    class="sc-fqkvVR sc-gsFSXq fgBWrW dzOlKm"
+                    class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                   >
                     <span
-                      class="sc-kpDqfm jpmbqG"
+                      class="sc-dAlyuH hcOVuy"
                     >
                       Accept all cookies
                     </span>
