@@ -4,7 +4,7 @@ import AppLayout from "@/components/SharedComponents/AppLayout";
 import getPageProps from "@/node-lib/getPageProps";
 import HomePageTabImageNav from "@/components/GenericPagesComponents/HomePageTabImageNav";
 import { HomePage } from "@/common-lib/cms-types";
-import Banners from "@/components/CurriculumComponents/Banners";
+import Banners from "@/components/SharedComponents/Banners";
 import { HomePageLowerView } from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";
 import AiTab from "@/components/GenericPagesComponents/AiTab";
 import {
