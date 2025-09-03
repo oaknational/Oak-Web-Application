@@ -81,6 +81,32 @@ export function convertQuestionMath(questions: LessonOverviewQuizData) {
           }),
         };
       }
+      if (multipleChoiceAnswers) {
+        newAnswers = {
+          ...newAnswers,
+          "multiple-choice": multipleChoiceAnswers.map((item) => {
+            if (item.answer && item.answer.length > 0) {
+              const newItemAnswer = item.answer.map((answerItem) => {
+                if (answerItem.type === "text") {
+                  const html = generateHtml(answerItem.text);
+                  return {
+                    ...answerItem,
+                    html,
+                  };
+                } else {
+                  return answerItem;
+                }
+              });
+              return {
+                ...item,
+                answer: newItemAnswer,
+              };
+            } else {
+              return item;
+            }
+          }),
+        };
+      }
     }
 
     return {
