@@ -28,7 +28,6 @@ export type DownloadsApiDownloadResponseSchema = z.infer<typeof schema>;
 const getDownloadLink = async ({
   downloadEndpoint,
   meta,
-  authRequired,
   authToken,
 }: {
   downloadEndpoint: string;
@@ -37,7 +36,6 @@ const getDownloadLink = async ({
     selection?: string;
     isLegacyDownload?: boolean;
   };
-  authRequired?: boolean;
   authToken?: string | null;
 }) => {
   const authHeader = authToken
@@ -47,7 +45,6 @@ const getDownloadLink = async ({
   const res = await fetch(downloadEndpoint, {
     headers: {
       ...authHeader,
-      "X-Should-Authenticate-Download": JSON.stringify(Boolean(authRequired)),
     },
   });
 
@@ -69,14 +66,12 @@ export const createLessonDownloadLink = async ({
   isLegacyDownload,
   selection,
   additionalFilesIdsSelection,
-  authRequired,
   authToken,
 }: {
   lessonSlug: string;
   isLegacyDownload: boolean;
   selection?: string;
   additionalFilesIdsSelection?: string;
-  authRequired?: boolean;
   authToken?: string | null;
 }) => {
   const selectionString = selection ? `?selection=${selection}` : "";
@@ -92,7 +87,6 @@ export const createLessonDownloadLink = async ({
   const url = await getDownloadLink({
     downloadEndpoint,
     meta,
-    authRequired,
     authToken,
   });
   return url;
@@ -100,11 +94,9 @@ export const createLessonDownloadLink = async ({
 
 export const createUnitDownloadLink = async ({
   unitFileId,
-  authRequired,
   getToken,
 }: {
   unitFileId: string;
-  authRequired?: boolean;
   getToken: GetToken;
 }) => {
   const downloadEndpoint = `${DOWNLOADS_API_URL}/api/unit/${unitFileId}/download`;
@@ -116,7 +108,6 @@ export const createUnitDownloadLink = async ({
   const url = await getDownloadLink({
     downloadEndpoint,
     meta,
-    authRequired,
     authToken,
   });
   return url;

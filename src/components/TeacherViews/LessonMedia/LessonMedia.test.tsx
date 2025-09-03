@@ -30,12 +30,6 @@ jest.mock("next/router", () => ({
   useRouter: jest.fn(),
 }));
 
-const mockFeatureFlagEnabled = jest.fn().mockReturnValue(false);
-
-jest.mock("posthog-js/react", () => ({
-  useFeatureFlagEnabled: () => mockFeatureFlagEnabled(),
-}));
-
 const mockTrackContentBlock = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
@@ -270,7 +264,6 @@ describe("LessonMedia view", () => {
   });
 
   it('Renders "RestrictedContentPrompt" when geoRestricted or loginRequired is true and the user is not Signed in', () => {
-    mockFeatureFlagEnabled.mockReturnValue(true);
     setUseUserReturn(mockLoggedOut);
     const { queryByTestId, getByText } = render(
       <LessonMedia
@@ -285,7 +278,6 @@ describe("LessonMedia view", () => {
   });
 
   it("does not render 'RestrictedContentPrompt' when geoRestricted or loginRequired is false", () => {
-    mockFeatureFlagEnabled.mockReturnValue(true);
     setUseUserReturn(mockLoggedOut);
     const { queryByText } = render(
       <LessonMedia
@@ -297,21 +289,7 @@ describe("LessonMedia view", () => {
     expect(restrictedContentPrompt).not.toBeInTheDocument();
   });
 
-  it("does not render 'RestrictedContentPrompt' when feature flag is disabled", () => {
-    mockFeatureFlagEnabled.mockReturnValue(false);
-    setUseUserReturn(mockLoggedOut);
-    const { queryByText } = render(
-      <LessonMedia
-        lesson={{ ...lesson, geoRestricted: true, loginRequired: true }}
-        isCanonical={false}
-      />,
-    );
-    const restrictedContentPrompt = queryByText("Sign in to continue");
-    expect(restrictedContentPrompt).not.toBeInTheDocument();
-  });
-
   it("tracks contentBlockNotificationDisplayed event when user is signed in and geoblocked", () => {
-    mockFeatureFlagEnabled.mockReturnValue(true);
     setUseUserReturn(mockGeorestrictedUser);
     render(
       <LessonMedia
