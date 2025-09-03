@@ -16,11 +16,9 @@ import {
 } from "@/__tests__/__helpers__/mockUser";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-const mockFeatureFlagEnabled = jest.fn().mockReturnValue(false);
-
 jest.mock("posthog-js/react", () => ({
+  ...jest.requireActual("posthog-js/react"),
   useFeatureFlagVariantKey: jest.fn(),
-  useFeatureFlagEnabled: () => mockFeatureFlagEnabled(),
 }));
 
 const lessonMediaClipsStarted = jest.fn();
@@ -298,8 +296,7 @@ describe("lessonOverview.view", () => {
       });
     });
   });
-  it("Should show the sign in prompt when geoRestricted or loginRequired is true, the user is not signed in, and feature flag enabled", () => {
-    mockFeatureFlagEnabled.mockReturnValue(true);
+  it("Should show the sign in prompt when geoRestricted or loginRequired is true, the user is not signed in", () => {
     setUseUserReturn(mockLoggedOut);
 
     const { getByText } = render(
@@ -319,7 +316,6 @@ describe("lessonOverview.view", () => {
     expect(restrictedContentPrompt).toBeInTheDocument();
   });
   it("Should hide restricted content when sign in prompt is shown", () => {
-    mockFeatureFlagEnabled.mockReturnValue(true);
     setUseUserReturn(mockLoggedOut);
 
     const { queryByText } = render(
@@ -341,33 +337,8 @@ describe("lessonOverview.view", () => {
 
     expect(quizContent).not.toBeInTheDocument();
   });
-  it("Should not show the sign in prompt when feature flag disabled", () => {
-    mockFeatureFlagEnabled.mockReturnValue(false);
-    setUseUserReturn(mockLoggedOut);
-    const { queryByText, getAllByText } = render(
-      <LessonOverview
-        lesson={{
-          ...lessonOverviewFixture(),
-          isSpecialist: false,
-          isCanonical: false,
-          hasMediaClips: true,
-          geoRestricted: true,
-          loginRequired: true,
-        }}
-        isBeta={false}
-      />,
-    );
 
-    const restrictedSignInPrompt = queryByText("Sign in to continue");
-    expect(restrictedSignInPrompt).not.toBeInTheDocument();
-    const quizContent = getAllByText(
-      "Which of these statements about trees is true?",
-    );
-
-    expect(quizContent[0]).toBeInTheDocument();
-  });
   it("Should not show the sign in prompt when the user is signed in", () => {
-    mockFeatureFlagEnabled.mockReturnValue(true);
     setUseUserReturn({
       ...mockLoggedIn,
       user: mockUserWithDownloadAccess,
@@ -400,7 +371,6 @@ describe("redirected overlay", () => {
     mockRouter.setCurrentUrl("/?redirected=true");
   });
   it("Should show redirect modal when redirected query param is present", () => {
-    mockFeatureFlagEnabled.mockReturnValue(false);
     setUseUserReturn(mockLoggedOut);
     mockRouter.setCurrentUrl("/?redirected=true");
     const { getByTestId } = render(

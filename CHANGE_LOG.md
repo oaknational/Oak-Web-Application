@@ -1,3 +1,19 @@
+# [1.848.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.847.2...v1.848.0) (2025-09-03)
+
+
+### Features
+
+* remove authRequired ff check on download functionality ([5ccc4eb](https://github.com/oaknational/Oak-Web-Application/commit/5ccc4eb22ca8308af7c35d06ccd0229455b216f8))
+* remove isBehindFeatureFlag param from usecopyright hook ([daa9d0f](https://github.com/oaknational/Oak-Web-Application/commit/daa9d0fc2f30cf6cc9e572994820601757ff9ffc))
+
+## [1.847.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.847.1...v1.847.2) (2025-09-02)
+
+
+### Bug Fixes
+
+* added role and labelledby to multi answer checkboxes questions in quizzes ([3408de7](https://github.com/oaknational/Oak-Web-Application/commit/3408de78d6ee32f1b51e5a53a652b95d0257f582))
+* ensure that radio groups in quizzes are associated with question stem labels ([1169595](https://github.com/oaknational/Oak-Web-Application/commit/11695951a5c5fb3fd589cd9e9bb6fe2fac2afecc))
+
 ## [1.847.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.847.0...v1.847.1) (2025-09-02)
 
 
