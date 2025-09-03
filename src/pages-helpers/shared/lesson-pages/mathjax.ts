@@ -107,6 +107,26 @@ export function convertQuestionMath(questions: LessonOverviewQuizData) {
           }),
         };
       }
+      if (matchAnswers) {
+        newAnswers = {
+          ...newAnswers,
+          match: matchAnswers.map((item) => {
+            const newMatchOption = item.matchOption.map((mo) => ({
+              ...mo,
+              html: generateHtml(mo.text),
+            }));
+            const newCorrectChoice = item.correctChoice.map((cc) => ({
+              ...cc,
+              html: generateHtml(cc.text),
+            }));
+            return {
+              ...item,
+              matchOption: newMatchOption,
+              correctChoice: newCorrectChoice,
+            };
+          }),
+        };
+      }
     }
 
     return {
