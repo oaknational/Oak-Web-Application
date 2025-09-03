@@ -39,8 +39,10 @@ describe("filterUnits", () => {
           yearOrder: 1,
           expired: false,
           expiredLessonCount: 0,
+          unpublishedLessonCount: 0,
           yearTitle: "Year 10",
-          year: "year-10",
+          yearSlug: "year-10",
+          year: "10",
           cohort: "2023-2024",
           subjectCategories: null,
           learningThemes: [
@@ -77,8 +79,10 @@ describe("filterUnits", () => {
           yearOrder: 1,
           expired: false,
           expiredLessonCount: 0,
+          unpublishedLessonCount: 0,
           yearTitle: "Year 10",
-          year: "year-10",
+          yearSlug: "year-10",
+          year: "10",
           cohort: "2023-2024",
           subjectCategories: [
             {
@@ -110,8 +114,10 @@ describe("filterUnits", () => {
           expired: false,
           yearOrder: 1,
           expiredLessonCount: 0,
+          unpublishedLessonCount: 0,
           yearTitle: "Year 10",
-          year: "year-10",
+          yearSlug: "year-10",
+          year: "10",
           cohort: "2023-2024",
           subjectCategories: [
             {
@@ -160,8 +166,10 @@ describe("filterUnits", () => {
           ],
 
           expiredLessonCount: 0,
+          unpublishedLessonCount: 0,
           yearTitle: "Year 10",
-          year: "year-10",
+          yearSlug: "year-10",
+          year: "10",
           cohort: "2023-2024",
           learningThemes: [
             {
@@ -185,7 +193,7 @@ describe("filterUnits", () => {
 
     filteredUnits.forEach((unit) => {
       unit.forEach((u) => {
-        expect(u.year).toBe(params.yearGroup);
+        expect(u.yearSlug).toBe(params.yearGroup);
         expect(u.yearTitle).toBe("Year 10");
       });
     });
@@ -208,6 +216,7 @@ describe("filterUnits", () => {
           subjectTitle: "Computing",
           lessonCount: 6,
           unitStudyOrder: 3,
+          unpublishedLessonCount: 0,
           expired: false,
           yearOrder: 1,
           subjectCategories: [
@@ -219,7 +228,8 @@ describe("filterUnits", () => {
 
           expiredLessonCount: 0,
           yearTitle: "Year 10",
-          year: "year-10",
+          yearSlug: "year-10",
+          year: "10",
           cohort: "2023-2024",
           learningThemes: [
             {

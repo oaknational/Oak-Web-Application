@@ -1,5 +1,13 @@
 import { FC, MutableRefObject } from "react";
-import { OakP, OakSpan, OakFlex, OakBox } from "@oaknational/oak-components";
+import {
+  OakP,
+  OakSpan,
+  OakFlex,
+  OakColorToken,
+} from "@oaknational/oak-components";
+
+import { DisabledListItemHeader } from "../ListItemHeader/ListItemHeader";
+import { LessonCopyrightTag } from "../LessonCopyrightTag/LessonCopyrightTag";
 
 import useClickableCard from "@/hooks/useClickableCard";
 import LessonResourceGraphics from "@/components/TeacherComponents/LessonResourceGraphics";
@@ -9,8 +17,8 @@ import { LessonResourceGraphicsItemProps } from "@/components/TeacherComponents/
 import { LessonListingPageData } from "@/node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 import ListItemIndexMobile from "@/components/TeacherComponents/ListItemIndexMobile";
 import ListItemIndexDesktop from "@/components/TeacherComponents/ListItemIndexDesktop";
-import { OakColorName } from "@/styles/theme";
 import { SpecialistLesson } from "@/node-lib/curriculum-api-2023/queries/specialistLessonListing/specialistLessonListing.schema";
+import { UnpublishedLessonListItem } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export type LessonListItemProps = LessonListingPageData["lessons"][number] & {
   programmeSlug: string;
@@ -22,18 +30,35 @@ export type LessonListItemProps = LessonListingPageData["lessons"][number] & {
   unitTitle: string;
   yearSlug: string;
   yearTitle: string;
+  geoRestricted: boolean;
+  loginRequired: boolean;
   hideTopHeading?: boolean;
   hitCount?: number;
   index: number;
   currentPage?: number;
   firstItemRef?: MutableRefObject<HTMLAnchorElement | null> | null;
   onClick: (props: LessonListItemProps | SpecialistLessonListItemProps) => void;
+  isUnpublished: false;
+};
+
+type UnpublishedLessonListItemProps = UnpublishedLessonListItem & {
+  index: number;
+  firstItemRef?: MutableRefObject<HTMLAnchorElement | null> | null;
+  unitTitle: string;
+  hideTopHeading?: boolean;
+  onClick: (props: LessonListItemProps | SpecialistLessonListItemProps) => void;
 };
 
 export const isLessonListItem = (
-  u: LessonListItemProps | SpecialistLesson,
+  u: LessonListItemProps | SpecialistLesson | UnpublishedLessonListItem,
 ): u is LessonListItemProps => {
   return (u as LessonListItemProps).programmeSlug !== undefined;
+};
+
+export const isUnpublishedLessonListItem = (
+  u: LessonListItemProps | UnpublishedLessonListItem | SpecialistLesson,
+): u is UnpublishedLessonListItem => {
+  return (u as UnpublishedLessonListItem).isUnpublished === true;
 };
 
 export type SpecialistLessonListItemProps = SpecialistLesson & {
@@ -51,11 +76,11 @@ function getAvailableResourceList({
   videoCount,
   presentationCount,
   worksheetCount,
-  hasCopyrightMaterial,
+  hasLegacyCopyrightMaterial,
 }: LessonListItemProps | SpecialistLessonListItemProps) {
   const resources: LessonResourceGraphicsItemProps[] = [];
 
-  if (presentationCount && !hasCopyrightMaterial) {
+  if (presentationCount && !hasLegacyCopyrightMaterial) {
     resources.push({
       titleSingular: "Slide deck",
       titlePlural: "Slide decks",
@@ -99,43 +124,45 @@ function getAvailableResourceList({
  * Links to a lesson-index page
  */
 const LessonListItem: FC<
-  LessonListItemProps | SpecialistLessonListItemProps
+  | LessonListItemProps
+  | SpecialistLessonListItemProps
+  | UnpublishedLessonListItemProps
 > = (props) => {
-  const {
-    lessonTitle,
-    lessonSlug,
-    description,
-    expired,
-    subjectSlug,
-    index,
-    firstItemRef,
-    pupilLessonOutcome,
-    onClick,
-  } = props;
+  const { lessonTitle, lessonSlug, index, firstItemRef, onClick } = props;
+
+  const isUnpublishedLesson = isUnpublishedLessonListItem(props);
 
   const { isHovered, primaryTargetProps, containerProps } =
     useClickableCard<HTMLAnchorElement>(firstItemRef);
 
-  const resources = getAvailableResourceList(props);
+  const disabled = isUnpublishedLesson ? props.isUnpublished : props.expired;
 
-  const background = expired ? "grey30" : "pink";
-  const backgroundOnHover: OakColorName = "pink60";
+  const resources = isUnpublishedLesson
+    ? undefined
+    : getAvailableResourceList(props);
+
+  const background: OakColorToken =
+    (isUnpublishedLesson && props.isUnpublished) || props.expired
+      ? "grey30"
+      : "pink";
+  const backgroundOnHover: OakColorToken = "pink110";
+
   return (
     <ListItemCard
       title={lessonTitle}
-      subjectSlug={subjectSlug}
+      subjectSlug={isUnpublishedLesson ? "" : props.subjectSlug}
       index={index}
       isHovered={isHovered}
-      background={expired ? "grey20" : "white"}
+      background={disabled ? "grey20" : "white"}
       containerProps={containerProps}
-      expired={expired}
+      disabled={disabled}
       key={`LessonList-LessonListItem-${lessonSlug}`}
       data-testid={"lesson-list-item"}
     >
       <ListItemIndexDesktop
         index={index + 1}
-        background={isHovered && !expired ? backgroundOnHover : background}
-        expired={expired}
+        background={isHovered && !disabled ? backgroundOnHover : background}
+        disabled={disabled}
       />
 
       <OakFlex
@@ -151,15 +178,19 @@ const LessonListItem: FC<
             $height={"100%"}
             $pa={["inner-padding-m", "inner-padding-none"]}
           >
-            <ListItemHeader
-              {...props}
-              primaryTargetProps={primaryTargetProps}
-              page="Lesson"
-              index={index}
-              onClick={() => onClick({ ...props })}
-              title={lessonTitle}
-              slug={lessonSlug}
-            />
+            {disabled || isUnpublishedLesson ? (
+              <DisabledListItemHeader index={index} itemTitle={lessonTitle} />
+            ) : (
+              <ListItemHeader
+                {...props}
+                primaryTargetProps={primaryTargetProps}
+                page="Lesson"
+                index={index}
+                onClick={() => onClick({ ...props })}
+                title={lessonTitle}
+                slug={lessonSlug}
+              />
+            )}
           </OakFlex>
         </OakFlex>
         <OakFlex
@@ -174,32 +205,52 @@ const LessonListItem: FC<
             $mt={["space-between-ssx", "space-between-none"]}
             $mr={["space-between-s", "space-between-none"]}
           >
-            {expired ? (
+            {props.expired ? (
               <OakP $mt="space-between-ssx" $font={["body-3", "body-2"]}>
                 This lesson is currently unavailable.
               </OakP>
+            ) : isUnpublishedLesson ? (
+              <OakP
+                $mt="space-between-ssx"
+                $font={["body-3", "body-2"]}
+                $color="text-disabled"
+              >
+                Coming soon...
+              </OakP>
             ) : (
               <>
-                {description ? (
+                {props.description ? (
                   <OakSpan
                     dangerouslySetInnerHTML={{
-                      __html: description,
+                      __html: props.description,
                     }}
                     $font={["body-3", "body-2"]}
                     $color={"grey70"}
                   />
                 ) : (
                   <OakP $font={["body-3", "body-2"]} $color={"grey70"}>
-                    {pupilLessonOutcome}
+                    {props.pupilLessonOutcome}
                   </OakP>
                 )}
               </>
             )}
           </OakFlex>
-          {resources.length > 0 && !expired && (
-            <OakBox>
+          {resources && resources.length > 0 && !disabled && (
+            <OakFlex
+              $width="100%"
+              $justifyContent="space-between"
+              $alignItems={"center"}
+              $flexWrap={"wrap"}
+              $gap={"all-spacing-2"}
+            >
               <LessonResourceGraphics items={resources} />
-            </OakBox>
+              {isLessonListItem(props) && (
+                <LessonCopyrightTag
+                  georestricted={props.geoRestricted}
+                  loginRequired={props.loginRequired}
+                />
+              )}
+            </OakFlex>
           )}
         </OakFlex>
       </OakFlex>

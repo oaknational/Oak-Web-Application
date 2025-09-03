@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { useRouter } from "next/router";
+import styled from "styled-components";
 import {
   OakHeading,
   OakP,
@@ -12,7 +12,6 @@ import {
 
 import CurriculumHeaderTabNav from "../CurriculumHeaderTabNav";
 
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import SubjectPhasePicker, {
   SubjectPhasePickerData,
@@ -20,9 +19,16 @@ import SubjectPhasePicker, {
 import { ButtonAsLinkProps } from "@/components/SharedComponents/Button/ButtonAsLink";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
-import { CurriculumTab } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { buildPageTitle } from "@/utils/curriculum/formatting";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
+
+const StyledOakHeading = styled(OakHeading)`
+  margin-left: -0.1rem;
+`;
+
+const StyledOakP = styled(OakP)`
+  line-height: 1;
+`;
 
 export type CurriculumHeaderPageProps = {
   curriculumPhaseOptions: SubjectPhasePickerData;
@@ -30,6 +36,7 @@ export type CurriculumHeaderPageProps = {
   keyStages: string[];
   color1?: OakColorToken;
   color2?: OakColorToken;
+  tab: "overview" | "units" | "downloads";
 };
 
 const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
@@ -38,9 +45,8 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   curriculumSelectionSlugs,
   curriculumPhaseOptions,
   keyStages,
+  tab,
 }) => {
-  const router = useRouter();
-  const tab = router.query.tab as CurriculumTab;
   const subject = curriculumPhaseOptions.subjects.find(
     (subject) => subject.slug === curriculumSelectionSlugs.subjectSlug,
   ) as SubjectPhasePickerData["subjects"][number] | undefined;
@@ -93,7 +99,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   ];
 
   return (
-    <OakBox $mb="space-between-l">
+    <OakBox>
       {/* @todo replace with OakFlex - colours type needs updating to oak-components colour token */}
       <OakFlex $background={color1} $pv="inner-padding-l">
         <OakBox
@@ -139,8 +145,10 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
         </OakBox>
       </OakFlex>
       <OakBox $background={color2}>
-        {/* @todo replace with OakFlex - work out padding as max padding in oak-components is 24px */}
-        <Flex $pb={[24, 24]} $pt={[20, 30]}>
+        <OakFlex
+          $pb={"inner-padding-xl"}
+          $pt={["inner-padding-l", "inner-padding-xl2"]}
+        >
           <OakBox
             $maxWidth="all-spacing-24"
             $mh={"auto"}
@@ -165,31 +173,31 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                 />
               </OakBox>
 
-              <OakFlex
-                $rowGap={["all-spacing-2", "all-spacing-2"]}
-                $justifyContent={"center"}
-                $flexDirection={"column"}
-              >
+              <OakFlex $justifyContent={"center"} $flexDirection={"column"}>
                 {keyStages.includes("ks4") && (
-                  <OakP
+                  <StyledOakP
                     $font={"heading-light-7"}
                     data-testid={"examboard-metadata"}
                   >
                     {`${ks4Option ? ks4Option.title : "All exam boards"} (KS4)`}
-                  </OakP>
+                  </StyledOakP>
                 )}
-                <OakHeading
+                <StyledOakHeading
                   tag={"h1"}
                   $font={["heading-5", "heading-3"]}
                   data-testid="curriculum-heading"
                 >
                   {pageTitle}
-                </OakHeading>
+                </StyledOakHeading>
               </OakFlex>
             </OakFlex>
           </OakBox>
-        </Flex>
-        <Flex $borderColor="mint30" $bt={2}>
+        </OakFlex>
+        <OakFlex
+          $borderColor="mint30"
+          $background={"mint"}
+          $bt={"border-solid-m"}
+        >
           <OakBox
             $maxWidth="all-spacing-24"
             $ph={["inner-padding-none", "inner-padding-l"]}
@@ -202,15 +210,16 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               links={links}
               variant="flat"
               $alignItems={"center"}
-              $height={[60, 64]}
+              $height={"all-spacing-11"}
               trackingData={{
                 subjectSlug: currentSelection.subject.slug,
                 subjectTitle: currentSelection.subject.title,
                 phaseSlug: currentSelection.phase.slug as PhaseValueType,
               }}
+              $background={"mint"}
             />
           </OakBox>
-        </Flex>
+        </OakFlex>
       </OakBox>
     </OakBox>
   );

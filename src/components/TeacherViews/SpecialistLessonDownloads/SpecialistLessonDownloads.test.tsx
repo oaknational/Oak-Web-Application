@@ -18,7 +18,7 @@ describe("SpecialistLessonDownloads", () => {
   });
 
   test("renders with the correct resources to download", () => {
-    const { getAllByTestId, getByText } = render(
+    const { getAllByTestId, getByText, getAllByText } = render(
       <SpecialistLessonDownloads
         curriculumData={specialistLessonDownloadsFixtures()}
       />,
@@ -28,8 +28,8 @@ describe("SpecialistLessonDownloads", () => {
 
     expect(resources).toHaveLength(4);
 
-    expect(getByText("Worksheet")).toBeInTheDocument();
-    expect(getByText("Presentation")).toBeInTheDocument();
+    expect(getAllByText("Worksheet")[0]).toBeInTheDocument();
+    expect(getByText("Lesson slides")).toBeInTheDocument();
     expect(getByText("Exit quiz questions")).toBeInTheDocument();
     expect(getByText("Exit quiz answers")).toBeInTheDocument();
   });

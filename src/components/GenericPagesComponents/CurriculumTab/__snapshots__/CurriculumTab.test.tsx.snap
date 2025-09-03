@@ -7,8 +7,33 @@ exports[`CurriculumTab renders 1`] = `
       data-overlay-container="true"
     >
       <div
-        class="sc-fqkvVR iKBTzE"
+        aria-live="polite"
+        class="sc-fqkvVR sc-gsFSXq sc-d65e4df9-0 hkKUlc cQyxGE jTGGef"
+      />
+      <div
+        class="sc-fqkvVR gZEYWU"
       >
+        <div
+          style="position: absolute; inset: 0; overflow: hidden; pointer-events: none;"
+        >
+          <div
+            style="position: absolute; bottom: 18px; right: calc(-40rem + 50vw - 200px); width: 529px; height: 420px;"
+          >
+            <div
+              class="sc-fqkvVR gdtuvF"
+            >
+              <img
+                alt=""
+                class="sc-dcJsrY koGnIf"
+                data-nimg="fill"
+                decoding="async"
+                loading="lazy"
+                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1740665310/OWA/ui-graphics/looping-line-5_vdknco.svg"
+                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+              />
+            </div>
+          </div>
+        </div>
         <div
           class="sc-fqkvVR sc-gsFSXq sc-cwHptR itRfeb ibSZJr"
         >
@@ -77,7 +102,7 @@ exports[`CurriculumTab renders 1`] = `
                     class="sc-fqkvVR kbnxKi sc-fXSgeo"
                   >
                     <img
-                      alt="chevron-right"
+                      alt=""
                       class="sc-dcJsrY cDKKvZ"
                       data-nimg="fill"
                       decoding="async"
@@ -91,10 +116,9 @@ exports[`CurriculumTab renders 1`] = `
               <div
                 class="sc-fqkvVR hEDAbB"
               >
-                <div
+                <nav
                   aria-labelledby="choose-curriculum-label"
                   class="sc-fqkvVR fgBWrW"
-                  role="group"
                 >
                   <div
                     class="sc-fqkvVR iKkOLq"
@@ -117,10 +141,11 @@ exports[`CurriculumTab renders 1`] = `
                           style="width: 50%;"
                         >
                           <div
-                            class="sc-fqkvVR sc-9dfc1bad-0 sc-47b15246-2 jEHEPk fAkCpO evzFxe"
+                            class="sc-fqkvVR sc-1c55d370-0 sc-9e2d8449-3 jEHEPk knawKC cDrIuV"
                           >
                             <button
-                              class="sc-47b15246-1 fDOTWT"
+                              aria-expanded="false"
+                              class="sc-9e2d8449-2 jSAqjS"
                               data-testid="subject-picker-button"
                               title="Subject"
                             >
@@ -178,16 +203,18 @@ exports[`CurriculumTab renders 1`] = `
                           </div>
                         </div>
                         <div
-                          class="sc-ad0ad6f5-0 jWQsSO"
+                          class="sc-fqkvVR cVTiFC"
+                          style="width: 50%;"
                         >
                           <div
                             class="sc-fqkvVR sc-gsFSXq fxkSvJ ehZBcc"
                           >
                             <div
-                              class="sc-fqkvVR sc-9dfc1bad-0 sc-47b15246-2 eMDDOo fAkCpO evzFxe"
+                              class="sc-fqkvVR sc-1c55d370-0 sc-9e2d8449-3 eMDDOo knawKC cDrIuV"
                             >
                               <button
-                                class="sc-47b15246-1 fDOTWT"
+                                aria-expanded="false"
+                                class="sc-9e2d8449-2 jSAqjS"
                                 data-testid="phase-picker-button"
                                 title="Phase"
                               >
@@ -236,7 +263,7 @@ exports[`CurriculumTab renders 1`] = `
                                       class="sc-fqkvVR kbnxKi"
                                     >
                                       <img
-                                        alt="arrow-right"
+                                        alt=""
                                         class="sc-dcJsrY bDcxkE"
                                         data-nimg="fill"
                                         decoding="async"
@@ -254,7 +281,7 @@ exports[`CurriculumTab renders 1`] = `
                       </div>
                     </div>
                   </div>
-                </div>
+                </nav>
               </div>
             </div>
             <div
@@ -268,7 +295,6 @@ exports[`CurriculumTab renders 1`] = `
                   class="sc-6170517-0 geyTVX"
                   data-nimg="1"
                   decoding="async"
-                  fetchpriority="high"
                   height="628"
                   src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b63430479cc683ffce99280e132c671325d1a0fd-1048x628.jpg?w=1080&h=647&fm=webp&q=80&fit=clip&auto=format"
                   srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b63430479cc683ffce99280e132c671325d1a0fd-1048x628.jpg?w=640&h=383&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b63430479cc683ffce99280e132c671325d1a0fd-1048x628.jpg?w=1080&h=647&fm=webp&q=80&fit=clip&auto=format 2x"
@@ -281,10 +307,9 @@ exports[`CurriculumTab renders 1`] = `
           <div
             class="sc-fqkvVR gEooAa"
           >
-            <div
+            <nav
               aria-labelledby="choose-curriculum-label"
               class="sc-fqkvVR fgBWrW"
-              role="group"
             >
               <div
                 class="sc-fqkvVR iKkOLq"
@@ -307,10 +332,11 @@ exports[`CurriculumTab renders 1`] = `
                       style="width: 50%;"
                     >
                       <div
-                        class="sc-fqkvVR sc-9dfc1bad-0 sc-47b15246-2 jEHEPk fAkCpO evzFxe"
+                        class="sc-fqkvVR sc-1c55d370-0 sc-9e2d8449-3 jEHEPk knawKC cDrIuV"
                       >
                         <button
-                          class="sc-47b15246-1 fDOTWT"
+                          aria-expanded="false"
+                          class="sc-9e2d8449-2 jSAqjS"
                           data-testid="subject-picker-button"
                           title="Subject"
                         >
@@ -368,16 +394,18 @@ exports[`CurriculumTab renders 1`] = `
                       </div>
                     </div>
                     <div
-                      class="sc-ad0ad6f5-0 jWQsSO"
+                      class="sc-fqkvVR cVTiFC"
+                      style="width: 50%;"
                     >
                       <div
                         class="sc-fqkvVR sc-gsFSXq fxkSvJ ehZBcc"
                       >
                         <div
-                          class="sc-fqkvVR sc-9dfc1bad-0 sc-47b15246-2 eMDDOo fAkCpO evzFxe"
+                          class="sc-fqkvVR sc-1c55d370-0 sc-9e2d8449-3 eMDDOo knawKC cDrIuV"
                         >
                           <button
-                            class="sc-47b15246-1 fDOTWT"
+                            aria-expanded="false"
+                            class="sc-9e2d8449-2 jSAqjS"
                             data-testid="phase-picker-button"
                             title="Phase"
                           >
@@ -426,7 +454,7 @@ exports[`CurriculumTab renders 1`] = `
                                   class="sc-fqkvVR kbnxKi"
                                 >
                                   <img
-                                    alt="arrow-right"
+                                    alt=""
                                     class="sc-dcJsrY bDcxkE"
                                     data-nimg="fill"
                                     decoding="async"
@@ -444,96 +472,100 @@ exports[`CurriculumTab renders 1`] = `
                   </div>
                 </div>
               </div>
-            </div>
+            </nav>
           </div>
         </div>
       </div>
     </div>
     <div
-      class="sc-fqkvVR grAKRD"
-      data-testid="cookie-banner"
+      class="sc-fqkvVR eEXsKT"
     >
       <div
-        class="sc-fqkvVR jMNzyV"
+        class="sc-fqkvVR aMutw"
+        data-testid="cookie-banner"
       >
         <div
-          class="sc-fqkvVR sc-gsFSXq krbSaB iLFXKS"
+          class="sc-fqkvVR jMNzyV"
         >
           <div
-            class="sc-fqkvVR kJPpVN"
-          >
-            <strong
-              class="sc-kpDqfm bwvRQn"
-            >
-              This site uses cookies to store information on your computer.
-            </strong>
-             
-            Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
-          </div>
-          <div
-            class="sc-fqkvVR sc-gsFSXq fgBWrW ftCnYI"
+            class="sc-fqkvVR sc-gsFSXq krbSaB iLFXKS"
           >
             <div
-              class="sc-fqkvVR sc-gsFSXq fOyTgd gZFQMg"
+              class="sc-fqkvVR kJPpVN"
             >
-              <button
-                class="sc-JrDLc cEyXEU"
-                data-testid="cookie-banner-reject"
-                type="button"
+              <strong
+                class="sc-kpDqfm bwvRQn"
               >
-                <span
-                  class="sc-kpDqfm psnGs"
-                >
-                  Reject non-essential cookies
-                </span>
-              </button>
+                This site uses cookies to store information on your computer.
+              </strong>
+               
+              Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
             </div>
             <div
-              class="sc-fqkvVR sc-iHbSHJ eJBGXR fIxqXk"
+              class="sc-fqkvVR sc-gsFSXq fgBWrW ftCnYI"
             >
               <div
-                class="sc-fqkvVR iPpXCP grey-shadow"
-              />
-              <div
-                class="sc-fqkvVR iPpXCP yellow-shadow"
-              />
-              <button
-                class="sc-lcIPJg sc-hRJfrW kjNddQ dpmFSv internal-button"
+                class="sc-fqkvVR sc-gsFSXq fOyTgd gZFQMg"
               >
-                <div
-                  class="sc-fqkvVR sc-gsFSXq fgBWrW dzOlKm"
+                <button
+                  class="sc-JrDLc cEyXEU"
+                  data-testid="cookie-banner-reject"
+                  type="button"
                 >
                   <span
-                    class="sc-kpDqfm jpmbqG"
+                    class="sc-kpDqfm psnGs"
                   >
-                    Cookie settings
+                    Reject non-essential cookies
                   </span>
-                </div>
-              </button>
-            </div>
-            <div
-              class="sc-fqkvVR sc-iHbSHJ eJBGXR fIxqXk"
-            >
+                </button>
+              </div>
               <div
-                class="sc-fqkvVR iPpXCP grey-shadow"
-              />
-              <div
-                class="sc-fqkvVR iPpXCP yellow-shadow"
-              />
-              <button
-                class="sc-lcIPJg sc-hRJfrW lcdeJA eJSoyq internal-button"
-                data-testid="cookie-banner-accept"
+                class="sc-fqkvVR sc-iHbSHJ eJBGXR fIxqXk"
               >
                 <div
-                  class="sc-fqkvVR sc-gsFSXq fgBWrW dzOlKm"
+                  class="sc-fqkvVR iPpXCP grey-shadow"
+                />
+                <div
+                  class="sc-fqkvVR iPpXCP yellow-shadow"
+                />
+                <button
+                  class="sc-lcIPJg sc-hRJfrW kjNddQ dpmFSv internal-button"
                 >
-                  <span
-                    class="sc-kpDqfm jpmbqG"
+                  <div
+                    class="sc-fqkvVR sc-gsFSXq fgBWrW dzOlKm"
                   >
-                    Accept all cookies
-                  </span>
-                </div>
-              </button>
+                    <span
+                      class="sc-kpDqfm jpmbqG"
+                    >
+                      Cookie settings
+                    </span>
+                  </div>
+                </button>
+              </div>
+              <div
+                class="sc-fqkvVR sc-iHbSHJ eJBGXR fIxqXk"
+              >
+                <div
+                  class="sc-fqkvVR iPpXCP grey-shadow"
+                />
+                <div
+                  class="sc-fqkvVR iPpXCP yellow-shadow"
+                />
+                <button
+                  class="sc-lcIPJg sc-hRJfrW lcdeJA eJSoyq internal-button"
+                  data-testid="cookie-banner-accept"
+                >
+                  <div
+                    class="sc-fqkvVR sc-gsFSXq fgBWrW dzOlKm"
+                  >
+                    <span
+                      class="sc-kpDqfm jpmbqG"
+                    >
+                      Accept all cookies
+                    </span>
+                  </div>
+                </button>
+              </div>
             </div>
           </div>
         </div>

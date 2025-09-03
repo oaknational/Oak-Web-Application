@@ -2,12 +2,21 @@ import userEvent from "@testing-library/user-event";
 
 import DownloadConfirmation from "./DownloadConfirmation";
 
-import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
+import { OnwardContentSelectedProperties } from "@/browser-lib/avo/Avo";
+import {
+  setupMockLinkClick,
+  teardownMockLinkClick,
+  mockLinkClick,
+} from "@/utils/mockLinkClick";
 
-const onwardContentSelected =
-  jest.fn() as unknown as TrackFns["onwardContentSelected"];
+const onwardContentSelected = jest.fn() as unknown as (
+  properties: Omit<
+    OnwardContentSelectedProperties,
+    "lessonReleaseDate" | "lessonReleaseCohort"
+  >,
+) => void;
 
 jest.mock(
   "@/pages-helpers/teacher/share-experiments/useShareExperiment",
@@ -22,14 +31,19 @@ jest.mock(
 
 jest.mock("@oaknational/oak-consent-client", () => ({
   __esModule: true,
+  ...jest.requireActual("@oaknational/oak-consent-client"),
   useOakConsent: jest.fn(() => ({
     state: {
       policyConsents: [
         {
           consentState: "denied",
+          policyParties: [],
+          policyId: "1",
         },
         {
           consentState: "granted",
+          policyParties: [],
+          policyId: "2",
         },
       ],
     },
@@ -40,7 +54,12 @@ window.scrollTo = jest.fn();
 
 describe("DownloadConfirmation component", () => {
   beforeEach(() => {
+    setupMockLinkClick();
     jest.clearAllMocks();
+  });
+
+  afterEach(() => {
+    teardownMockLinkClick();
   });
 
   const expectScrollTopOnRender = () => {
@@ -51,7 +70,9 @@ describe("DownloadConfirmation component", () => {
     });
   };
 
-  const curriculumTrackingProps: CurriculumTrackingProps = {
+  const curriculumTrackingProps: CurriculumTrackingProps & {
+    lessonReleaseDate: string;
+  } = {
     lessonName: "Test lesson",
     lessonSlug: "test-lesson",
     unitName: "Test unit",
@@ -60,15 +81,17 @@ describe("DownloadConfirmation component", () => {
     keyStageTitle: "Key stage 1",
     subjectSlug: "test-subject",
     subjectTitle: "Test subject",
+    lessonReleaseDate: "2025-09-29T14:00:00.000Z",
   };
 
   it("should render", () => {
-    const { getByText } = renderWithTheme(
+    const { getByText } = renderWithProviders()(
       <DownloadConfirmation
         lessonTitle="Test lesson"
         programmeSlug="test-programme"
         unitTitle="Test unit"
         isCanonical={false}
+        isLegacy={false}
         onwardContentSelected={onwardContentSelected}
         {...curriculumTrackingProps}
       />,
@@ -79,12 +102,13 @@ describe("DownloadConfirmation component", () => {
   });
 
   it("Back to lesson link", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = renderWithProviders()(
       <DownloadConfirmation
         lessonTitle="Test lesson"
         programmeSlug="test-programme"
         unitTitle="Test unit"
         isCanonical={false}
+        isLegacy={false}
         onwardContentSelected={onwardContentSelected}
         {...curriculumTrackingProps}
       />,
@@ -99,12 +123,13 @@ describe("DownloadConfirmation component", () => {
     );
   });
   it("Back to lesson link specialist", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = renderWithProviders()(
       <DownloadConfirmation
         lessonTitle="Test lesson"
         programmeSlug="test-programme"
         unitTitle="Test unit"
         isCanonical={false}
+        isLegacy={false}
         onwardContentSelected={onwardContentSelected}
         isSpecialist={true}
         {...curriculumTrackingProps}
@@ -121,11 +146,12 @@ describe("DownloadConfirmation component", () => {
   });
 
   it("when unitSlug or programmeSlug is null renders link to cannonical lesson", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = renderWithProviders()(
       <DownloadConfirmation
         lessonTitle="Test lesson"
         programmeSlug={null}
         isCanonical={false}
+        isLegacy={false}
         onwardContentSelected={onwardContentSelected}
         {...curriculumTrackingProps}
       />,
@@ -139,12 +165,13 @@ describe("DownloadConfirmation component", () => {
 
   it("should call onwardContentSelected when back to lesson link is clicked", async () => {
     const user = userEvent.setup();
-    const { getByRole } = renderWithTheme(
+    const { getByRole } = renderWithProviders()(
       <DownloadConfirmation
         lessonTitle="Test lesson"
         programmeSlug="test-programme"
         unitTitle="Test unit"
         isCanonical={false}
+        isLegacy={false}
         onwardContentSelected={onwardContentSelected}
         {...curriculumTrackingProps}
       />,
@@ -154,6 +181,9 @@ describe("DownloadConfirmation component", () => {
     const lessonLink = getByRole("link", { name: "Back to lesson" });
 
     await user.click(lessonLink);
+    expect(mockLinkClick).toHaveBeenCalledWith(
+      "http://localhost/teachers/programmes/test-programme/units/test-unit/lessons/test-lesson",
+    );
 
     expect(onwardContentSelected).toHaveBeenCalledTimes(1);
     expect(onwardContentSelected).toHaveBeenCalledWith({
@@ -167,11 +197,12 @@ describe("DownloadConfirmation component", () => {
 
   it("isCannonical onwardContentSelected fn called with correct arguments", async () => {
     const user = userEvent.setup();
-    const { getByRole } = renderWithTheme(
+    const { getByRole } = renderWithProviders()(
       <DownloadConfirmation
         lessonTitle="Test lesson"
         programmeSlug={null}
         isCanonical={true}
+        isLegacy={false}
         onwardContentSelected={onwardContentSelected}
         {...curriculumTrackingProps}
       />,
@@ -181,6 +212,9 @@ describe("DownloadConfirmation component", () => {
     const lessonLink = getByRole("link", { name: "Back to lesson" });
 
     await user.click(lessonLink);
+    expect(mockLinkClick).toHaveBeenCalledWith(
+      "http://localhost/teachers/lessons/test-lesson",
+    );
 
     expect(onwardContentSelected).toHaveBeenCalledTimes(1);
     expect(onwardContentSelected).toHaveBeenCalledWith({

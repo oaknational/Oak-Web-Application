@@ -22,21 +22,16 @@ export const Default: Story = {
   render: (args) => <DesktopUnitFilters {...args} />,
 
   args: {
-    keyStageSlug: "ks4",
-    keyStageTitle: "Key Stage 4",
-    programmeSlug: "maths-secondary-ks4-foundation",
-    selectedThemeSlug: "ratio-and-proportion",
-    subjectSlug: "maths",
-    subjectTitle: "Maths",
-    yearGroupSlug: "year-10",
     yearGroups: [
       {
         yearTitle: "Year 10",
-        year: "year-10",
+        yearSlug: "year-10",
+        year: "10",
       },
       {
         yearTitle: "Year 11",
-        year: "year-11",
+        yearSlug: "year-11",
+        year: "11",
       },
     ],
     learningThemes: [

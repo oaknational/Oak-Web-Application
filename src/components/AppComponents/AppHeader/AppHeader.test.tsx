@@ -11,6 +11,7 @@ const render = renderWithProviders();
 
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagVariantKey: jest.fn(() => "with-login"),
+  useFeatureFlagEnabled: () => false,
 }));
 
 describe("components/AppHeader", () => {
@@ -51,6 +52,8 @@ describe("components/AppHeader", () => {
     await user.keyboard("{tab}");
     await user.keyboard("{tab}");
     await user.keyboard("{tab}");
+    await user.keyboard("{tab}");
+    await user.keyboard("{tab}");
     await user.keyboard("{Enter}");
 
     expect(screen.getByTestId("menu")).toBeVisible();
@@ -68,23 +71,15 @@ describe("components/AppHeader", () => {
 
   test("it should include a link for new teacher experience", () => {
     render(<AppHeader />);
-    const teacherLink = screen.getAllByRole("link")[1];
+    const teacherLink = screen.getByRole("link", { name: /Teachers/i });
 
-    if (!teacherLink) {
-      throw new Error("Failed to find link to teacher experience");
-    }
-
-    expect(teacherLink.closest("a")).toHaveAttribute("href", "/teachers");
+    expect(teacherLink).toHaveAttribute("href", "/teachers");
   });
-  test("it should include a link for classroom", () => {
+  test("it should include a link for pupils", () => {
     render(<AppHeader />);
-    const pupilsLink = screen.getAllByRole("link")[2];
+    const pupilsLink = screen.getByRole("link", { name: /Pupils/i });
 
-    if (!pupilsLink) {
-      throw new Error("Failed to find link to classroom");
-    }
-
-    expect(pupilsLink.closest("a")).toHaveAttribute("href", "/pupils/years");
+    expect(pupilsLink).toHaveAttribute("href", "/pupils/years");
   });
 
   it("does not render a sign out button when user is not logged in", () => {
@@ -101,5 +96,21 @@ describe("components/AppHeader", () => {
 
     const signOutButton = screen.getByTestId("clerk-user-button");
     expect(signOutButton).toBeInTheDocument();
+  });
+
+  it("renders a sign up button when a user is not logged in", async () => {
+    setUseUserReturn(mockLoggedOut);
+    renderWithProviders()(<AppHeader />);
+
+    const signUpButton = screen.getByText("Sign up");
+    expect(signUpButton).toBeInTheDocument();
+  });
+
+  it("does not render a sign up button when a user is logged in", async () => {
+    setUseUserReturn(mockLoggedIn);
+    renderWithProviders()(<AppHeader />);
+
+    const signUpButton = screen.queryByRole("button", { name: /Sign up/i });
+    expect(signUpButton).not.toBeInTheDocument();
   });
 });

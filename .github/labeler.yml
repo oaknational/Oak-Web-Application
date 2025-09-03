@@ -1,0 +1,7 @@
+# Configuration for the GitHub Actions labeler
+# This file defines rules for automatically labeling PRs based on branch names
+
+# Label PRs from branches matching patterns with "adopt squad group"
+# Matches any `prefix/ADOPT-`, `ADOPT-`, `prefix/CUR-` or `CUR-` patterns
+"adopt squad group":
+  - head-branch: ['^[^/]+[/]CUR-.+', '^CUR-.+', '^[^/]+[/]ADOPT-.+', '^ADOPT-.+']

@@ -45,6 +45,8 @@ export const constructPathwayLesson = (lesson: RawSyntheticUVLesson) => {
     lessonTitle: lesson.lesson_data.title,
     tierSlug: lesson.programme_fields.tier_slug,
     tierTitle: lesson.programme_fields.tier_description,
+    pathwayTitle: lesson.programme_fields.pathway_description,
+    lessonReleaseDate: lesson.lesson_data.lesson_release_date,
   });
 };
 

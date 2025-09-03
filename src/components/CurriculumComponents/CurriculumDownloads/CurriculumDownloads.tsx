@@ -1,6 +1,5 @@
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import { useRouter } from "next/router";
-import styled from "styled-components";
 import {
   OakFlex,
   OakGrid,
@@ -11,6 +10,7 @@ import {
   OakP,
   OakBox,
   OakIcon,
+  OakRadioGroup,
 } from "@oaknational/oak-components";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -24,7 +24,6 @@ import FieldError from "@/components/SharedComponents/FieldError";
 import ResourceCard from "@/components/TeacherComponents/ResourceCard";
 import useLocalStorageForDownloads from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads";
 import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
-import RadioGroup from "@/components/SharedComponents/RadioButtons/RadioGroup";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import TermsAgreementForm from "@/components/TeacherComponents/TermsAgreementForm";
 import { DownloadCategory } from "@/node-lib/curriculum-api-2023/fixtures/curriculumPreviousDownloads.fixture";
@@ -45,17 +44,6 @@ type CurriculumDownloadsProps = {
   category: DownloadCategory;
   downloads: CurriculumDownload[];
 };
-
-const CardsContainer = styled.div`
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  > div > div {
-    display: inline-flex;
-    margin-right: 16px;
-    margin-bottom: 16px;
-  }
-`;
 
 function CurriculumDownloads(
   props: CurriculumDownloadsProps,
@@ -285,22 +273,29 @@ function CurriculumDownloads(
                 >
                   {form.errors?.resources?.message}
                 </FieldError>
-                <CardsContainer data-testid="cardsContainer">
-                  <RadioGroup
-                    aria-label="Subject Download Options"
-                    value={selectedUrl}
-                    onChange={(e) => {
-                      if (e === "") {
-                        form.setValue("resources", []);
-                      } else {
-                        setSelectedUrl(e);
-                        form.setValue("resources", [e]);
-                        if (form.errors.resources) {
-                          form.errors.resources = undefined;
-                          form.trigger();
-                        }
+
+                <OakRadioGroup
+                  name="downloads"
+                  value={selectedUrl}
+                  onChange={(e) => {
+                    const url = e.target.value;
+                    if (url === "") {
+                      form.setValue("resources", []);
+                    } else {
+                      setSelectedUrl(url);
+                      form.setValue("resources", [url]);
+                      if (form.errors.resources) {
+                        form.errors.resources = undefined;
+                        form.trigger();
                       }
-                    }}
+                    }
+                  }}
+                >
+                  <OakFlex
+                    $flexWrap={"wrap"}
+                    data-testid="cardsContainer"
+                    $gap={"all-spacing-4"}
+                    $mb={"space-between-m"}
                   >
                     {downloads.map((download) => (
                       <ResourceCard
@@ -310,16 +305,15 @@ function CurriculumDownloads(
                         label={download.label}
                         subtitle={"PDF"}
                         resourceType="curriculum-pdf"
-                        onChange={() => {}}
-                        checked={false}
                         onBlur={() => {}}
                         hasError={form.errors?.resources ? true : false}
-                        useRadio={true}
                         subjectIcon={download.icon}
+                        onChange={() => {}}
+                        asRadio={true}
                       />
                     ))}
-                  </RadioGroup>
-                </CardsContainer>
+                  </OakFlex>
+                </OakRadioGroup>
               </OakGridArea>
               <OakGridArea $colSpan={[12, 12, 5]}>
                 <TermsAgreementForm

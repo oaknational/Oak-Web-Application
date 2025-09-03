@@ -6,6 +6,10 @@ import {
   OakColorFilterToken,
   OakBox,
   OakInlineBanner,
+  OakP,
+  OakSecondaryButton,
+  OakTagFunctional,
+  OakColorToken,
 } from "@oaknational/oak-components";
 
 import UnitDownloadButton, {
@@ -17,10 +21,9 @@ import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeader
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
 import RiskAssessmentBanner from "@/components/TeacherComponents/RiskAssessmentBanner";
 import HeaderListingCurriculumDownloadButton from "@/components/TeacherComponents/HeaderListingCurriculumDownloadButton";
+import CopyrightRestrictionBanner from "@/components/TeacherComponents/CopyrightRestrictionBanner/CopyrightRestrictionBanner";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import { OakColorName } from "@/styles/theme";
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 import TeacherSubjectDescription from "@/components/TeacherComponents/TeacherSubjectDescription/TeacherSubjectDescription";
 
@@ -31,7 +34,7 @@ import TeacherSubjectDescription from "@/components/TeacherComponents/TeacherSub
 
 export type HeaderListingProps = {
   breadcrumbs: Breadcrumb[];
-  background: OakColorName;
+  background: OakColorToken;
   subjectTitle: string;
   subjectSlug: string;
   subjectIconBackgroundColor: OakColorFilterToken;
@@ -51,7 +54,15 @@ export type HeaderListingProps = {
   unitDownloadFileId?: string;
   onUnitDownloadSuccess?: () => void;
   showRiskAssessmentBanner?: boolean;
+  isIncompleteUnit?: boolean;
   subjectDescriptionUnitListingData?: UnitListingData;
+  isUnitSaved?: boolean;
+  isUnitSaving?: boolean;
+  onSave?: () => void;
+  isGeorestrictedUnit?: boolean;
+  isLoginRequiredUnit?: boolean;
+  unitTitle?: string;
+  unitSlug?: string;
 };
 
 const HeaderListing: FC<HeaderListingProps> = (props) => {
@@ -73,7 +84,15 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     unitDownloadFileId,
     onUnitDownloadSuccess,
     showRiskAssessmentBanner,
+    isIncompleteUnit,
     subjectDescriptionUnitListingData,
+    isUnitSaved,
+    isUnitSaving,
+    onSave,
+    isGeorestrictedUnit,
+    isLoginRequiredUnit,
+    unitTitle,
+    unitSlug,
   } = props;
 
   const isKeyStagesAvailable = keyStageSlug && keyStageTitle;
@@ -86,6 +105,8 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     setDownloadError,
     setDownloadInProgress,
     downloadInProgress,
+    showIncompleteMessage,
+    setShowIncompleteMessage,
   } = useUnitDownloadButtonState();
 
   const bannersBlock = (
@@ -98,15 +119,33 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
             message="Sorry, download is not working. Please try again in a few minutes."
             icon="error"
           />
-        ) : showDownloadMessage ? (
-          <OakInlineBanner
-            isOpen={showDownloadMessage}
-            canDismiss
-            onDismiss={() => setShowDownloadMessage(false)}
-            type="neutral"
-            message="Downloads may take a few minutes on slower Wi-Fi connections."
-            $mb={"space-between-s"}
-          />
+        ) : showDownloadMessage || showIncompleteMessage ? (
+          <>
+            <OakInlineBanner
+              isOpen={showDownloadMessage}
+              canDismiss
+              onDismiss={() => setShowDownloadMessage(false)}
+              type="neutral"
+              message={
+                <OakP>
+                  Downloads may take a few minutes on slower Wi-Fi connections.
+                </OakP>
+              }
+              $mb={"space-between-s"}
+              $width="max-content"
+            />
+            {isIncompleteUnit && (
+              <OakInlineBanner
+                canDismiss
+                onDismiss={() => setShowIncompleteMessage(false)}
+                isOpen={showIncompleteMessage}
+                type="neutral"
+                message={<OakP>This unit is incomplete</OakP>}
+                $mb={"space-between-s"}
+                $width="max-content"
+              />
+            )}
+          </>
         ) : null}
       </OakBox>
       {showRiskAssessmentBanner && <RiskAssessmentBanner />}
@@ -163,23 +202,64 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
             <OakFlex $flexDirection="column" $gap="space-between-s">
               <OakFlex
                 $gap="space-between-s"
-                $flexDirection={["column", "row"]}
+                $height="max-content"
+                $flexWrap="wrap"
               >
                 {unitDownloadFileId && onUnitDownloadSuccess && (
                   <UnitDownloadButton
                     setDownloadError={setDownloadError}
                     setDownloadInProgress={setDownloadInProgress}
                     setShowDownloadMessage={setShowDownloadMessage}
+                    setShowIncompleteMessage={setShowIncompleteMessage}
                     downloadInProgress={downloadInProgress}
                     unitFileId={unitDownloadFileId}
                     onDownloadSuccess={onUnitDownloadSuccess}
+                    showNewTag={false}
+                    geoRestricted={Boolean(isGeorestrictedUnit)}
                   />
                 )}
                 {shareButton}
+                {onSave && (
+                  <OakSecondaryButton
+                    iconName={
+                      isUnitSaved ? "bookmark-filled" : "bookmark-outlined"
+                    }
+                    isTrailingIcon
+                    onClick={onSave}
+                    ph={["inner-padding-xs", "inner-padding-m"]}
+                    pv={["inner-padding-ssx", "inner-padding-ssx"]}
+                    $mb={[
+                      "space-between-none",
+                      "space-between-s",
+                      "space-between-none",
+                    ]}
+                    data-testid="save-unit-button"
+                    disabled={isUnitSaving}
+                  >
+                    <OakFlex $alignItems="center" $gap={"space-between-xs"}>
+                      <OakTagFunctional
+                        label="New"
+                        $background="mint"
+                        $color="text-primary"
+                        $font="heading-light-7"
+                        $pv={"inner-padding-none"}
+                        $display={["none", "inline"]}
+                      />
+                      {isUnitSaved ? "Saved" : "Save"}
+                    </OakFlex>
+                  </OakSecondaryButton>
+                )}
               </OakFlex>
               <OakBox $display={["none", "block", "block"]}>
                 {bannersBlock}
               </OakBox>
+              <CopyrightRestrictionBanner
+                isGeorestricted={isGeorestrictedUnit}
+                isLoginRequired={isLoginRequiredUnit}
+                componentType="lesson_listing"
+                unitName={unitTitle}
+                unitSlug={unitSlug}
+              />
             </OakFlex>
           </OakFlex>
         </OakFlex>
@@ -192,7 +272,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
         )}
         <OakBox $display={["block", "none", "none"]}>{bannersBlock}</OakBox>
       </OakFlex>
-      <Flex $background={background} $display={["inline", "none"]}>
+      <OakFlex $background={background} $display={["inline", "none"]}>
         {hasCurriculumDownload && isKeyStagesAvailable && (
           <HeaderListingCurriculumDownloadButton
             keyStageSlug={keyStageSlug}
@@ -212,7 +292,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
             data-testid="curriculum-downloads-link"
           />
         )}
-      </Flex>
+      </OakFlex>
     </LessonHeaderWrapper>
   );
 };

@@ -1,8 +1,14 @@
 import {
   LessonOverviewQuery,
   Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_1_0_Bool_Exp,
+  Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Keystage_16_0_0_Bool_Exp,
 } from "../../generated/sdk";
-import { lessonOverviewQuizData, LessonPathway } from "../../shared.schema";
+import {
+  lessonOverviewQuizData,
+  LessonPathway,
+  LessonUnitDataByKs,
+  lessonUnitDataByKsSchema,
+} from "../../shared.schema";
 import { constructPathwayLesson, toSentenceCase } from "../../helpers";
 import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
 import { getCorrectYear } from "../../helpers/getCorrectYear";
@@ -154,6 +160,7 @@ export const transformedLessonOverviewData = (
   browseData: LessonBrowseDataByKs,
   content: LessonOverviewContent,
   pathways: LessonPathway[] | [],
+  unitData: LessonUnitDataByKs,
 ): LessonOverviewPageData => {
   const reportError = errorReporter("transformedLessonOverviewData");
   const starterQuiz = lessonOverviewQuizData.parse(content.starterQuiz);
@@ -190,6 +197,7 @@ export const transformedLessonOverviewData = (
     subjectTitle: browseData.programmeFields.subject,
     subjectParent: browseData.programmeFields.subjectParent || null,
     yearTitle: browseData.programmeFields.yearDescription,
+    year: browseData.programmeFields.year,
     examBoardTitle: browseData.programmeFields.examboard,
     examBoardSlug: browseData.programmeFields.examboardSlug,
     downloads: getDownloadsArray({
@@ -219,7 +227,7 @@ export const transformedLessonOverviewData = (
     teacherTips: content.teacherTips,
     lessonEquipmentAndResources: browseData.lessonData.equipmentAndResources,
     additionalMaterialUrl: content.supplementaryAssetObjectUrl,
-    keyLearningPoints: content.keyLearningPoints,
+    keyLearningPoints: content.keyLearningPoints ?? null,
     pupilLessonOutcome: content.pupilLessonOutcome,
     lessonKeywords: content.lessonKeywords,
     copyrightContent: getCopyrightContent(
@@ -251,6 +259,15 @@ export const transformedLessonOverviewData = (
       hasAdditionalFiles && additionalFiles
         ? getAdditionalFiles(additionalFiles)
         : null,
+    pathwayTitle: browseData.programmeFields.pathwayDescription ?? null,
+    lessonReleaseDate: content.lessonReleaseDate ?? null,
+    orderInUnit: browseData.orderInUnit ?? 1,
+    unitTotalLessonCount:
+      unitData?.supplementaryData?.staticLessonList?.length ??
+      unitData?.lessonCount ??
+      1,
+    geoRestricted: browseData.features?.agf_geoRestricted ?? false,
+    loginRequired: browseData.features?.agf_loginRequired ?? false,
   };
 };
 
@@ -267,23 +284,34 @@ const lessonOverviewQuery =
     const browseDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_1_0_Bool_Exp> =
       { lesson_slug: { _eq: lessonSlug } };
 
+    const unitDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariants_With_Lesson_Ids_By_Keystage_16_0_0_Bool_Exp> =
+      {
+        supplementary_data: {
+          _contains: { static_lesson_list: [{ slug: lessonSlug }] },
+        },
+      };
+
     const canonicalLesson = !unitSlug && !programmeSlug;
 
     if (unitSlug) {
       browseDataWhere["unit_slug"] = { _eq: unitSlug };
+      unitDataWhere["unit_slug"] = { _eq: unitSlug };
     }
 
     if (programmeSlug) {
       browseDataWhere["programme_slug"] = { _eq: programmeSlug };
+      unitDataWhere["programme_slug"] = { _eq: programmeSlug };
     }
 
     if (isLegacy !== undefined) {
       browseDataWhere["is_legacy"] = { _eq: isLegacy };
+      unitDataWhere["is_legacy"] = { _eq: isLegacy };
     }
 
     const res = await sdk.lessonOverview({
       browseDataWhere,
       lessonSlug,
+      unitDataWhere,
     });
 
     const modifiedBrowseData = applyGenericOverridesAndExceptions<
@@ -325,16 +353,24 @@ const lessonOverviewQuery =
     }
     const pathways = canonicalLesson ? getPathways(res) : [];
 
+    const [unitDataSnake] = res.unitData;
+
+    if (!unitDataSnake) {
+      throw new OakError({ code: "curriculum-api/not-found" });
+    }
+
     lessonBrowseDataByKsSchema.parse(browseDataSnake);
     lessonContentSchema.parse({ ...contentSnake, additional_files: null });
+    lessonUnitDataByKsSchema.parse(unitDataSnake);
 
     const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseDataByKs;
     const content = keysToCamelCase({
       ...contentSnake,
     }) as LessonOverviewContent;
+    const unitData = keysToCamelCase(unitDataSnake) as LessonUnitDataByKs;
 
     return lessonOverviewSchema.parse(
-      transformedLessonOverviewData(browseData, content, pathways),
+      transformedLessonOverviewData(browseData, content, pathways, unitData),
     );
   };
 

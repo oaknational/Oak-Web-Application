@@ -5,6 +5,7 @@ import {
 } from "next";
 import {
   OakFlex,
+  OakMaxWidth,
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
@@ -17,7 +18,6 @@ import {
 } from "@/node-lib/isr";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { LessonAppearsIn } from "@/components/TeacherComponents/LessonAppearsIn";
 import { groupLessonPathways } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
@@ -27,6 +27,8 @@ import { populateLessonWithTranscript } from "@/utils/handleTranscript";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesModal/TeacherNotesModal";
 import { useLesson } from "@/pages-helpers/teacher/useLesson/useLesson";
+import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
+import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 
 type PageProps = {
   lesson: LessonOverviewCanonical;
@@ -55,6 +57,8 @@ export default function LessonOverviewCanonicalPage({
   } = useLesson({
     lessonSlug: lesson.lessonSlug,
     source: "lesson-canonical",
+    loginRequired: lesson.loginRequired,
+    geoRestricted: lesson.geoRestricted,
     curriculumTrackingProps: {
       lessonName: lesson.lessonTitle,
       lessonSlug: lesson.lessonSlug,
@@ -64,6 +68,8 @@ export default function LessonOverviewCanonicalPage({
       subjectTitle: null,
       keyStageSlug: null,
       keyStageTitle: null,
+      lessonReleaseCohort: "2023-2026",
+      lessonReleaseDate: lesson.lessonReleaseDate ?? "unreleased",
     },
   });
 
@@ -92,9 +98,9 @@ export default function LessonOverviewCanonicalPage({
         />
         {!isSpecialist && (
           <OakFlex $background={"pink50"} $width={"100%"}>
-            <MaxWidth $pv={96}>
+            <OakMaxWidth $pv="inner-padding-xl8">
               <LessonAppearsIn headingTag="h2" {...pathwayGroups} />
-            </MaxWidth>
+            </OakMaxWidth>
           </OakFlex>
         )}
         {teacherNote && isEditable && (
@@ -157,19 +163,25 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
           error instanceof OakError &&
           error.code === "curriculum-api/not-found"
         ) {
-          await new Promise((resolve) => setTimeout(resolve, 0)); // TODO: remove this
-          lesson = await curriculumApi2023.lessonOverview({
-            lessonSlug,
-          });
-          lesson = await populateLessonWithTranscript(lesson);
+          try {
+            lesson = await curriculumApi2023.lessonOverview({
+              lessonSlug,
+            });
+            lesson = await populateLessonWithTranscript(lesson);
+          } catch (innerError) {
+            allowNotFoundError(innerError);
+          }
         }
       }
       if (!lesson) {
-        return {
-          notFound: true,
-        };
+        const redirect = await getRedirect({
+          isCanonical: true,
+          context: context.params,
+          isTeacher: true,
+          isLesson: true,
+        });
+        return redirect ? { redirect } : { notFound: true };
       }
-
       const results: GetStaticPropsResult<PageProps> = {
         props: {
           lesson,

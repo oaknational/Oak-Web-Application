@@ -1,15 +1,19 @@
-import { act, screen } from "@testing-library/react";
+import { act, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { useUser } from "@clerk/nextjs";
 
-import CurriculumDownloadTab, {
-  createCurriculumDownloadsQuery,
-  trackCurriculumDownload,
-} from ".";
+import { DownloadType } from "../CurriculumDownloadView/helper";
+
+import CurriculumDownloadTab, { trackCurriculumDownload } from ".";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import { mockPrerelease } from "@/utils/mocks";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
+import { DISABLE_DOWNLOADS } from "@/utils/curriculum/constants";
+import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urls";
+import { createYearData } from "@/fixtures/curriculum/yearData";
+import { createUnit } from "@/fixtures/curriculum/unit";
+import { downloadFileFromUrl } from "@/components/SharedComponents/helpers/downloadFileFromUrl";
 
 const render = renderWithProviders();
 const mvRefreshTime = 1721314874829;
@@ -49,6 +53,30 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   }),
 }));
 
+jest.mock("@clerk/nextjs", () => ({
+  useUser: jest.fn(() => ({
+    isLoaded: true,
+    isSignedIn: false,
+  })),
+}));
+
+jest.mock("@/components/SharedComponents/helpers/downloadFileFromUrl", () => ({
+  downloadFileFromUrl: jest.fn(),
+}));
+
+jest.mock(
+  "@/components/TeacherComponents/helpers/downloadAndShareHelpers/fetchHubspotContactDetails",
+  () => ({
+    fetchHubspotContactDetails: async () => {
+      return {
+        schoolId: "SCHOOL_ID",
+        schoolName: "SCHOOL_NAME",
+        email: "EMAIL",
+      };
+    },
+  }),
+);
+
 describe("Component Curriculum Download Tab", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -57,6 +85,15 @@ describe("Component Curriculum Download Tab", () => {
   const renderComponent = (overrides = {}) => {
     const defaultProps = {
       slugs: parseSubjectPhaseSlug("english-secondary-aqa")!,
+      formattedData: {
+        yearOptions: [],
+        threadOptions: [],
+        yearData: {
+          "7": createYearData({
+            units: [createUnit({ slug: "test" })],
+          }),
+        },
+      },
       mvRefreshTime,
       tiers: [],
       childSubjects: [],
@@ -72,20 +109,73 @@ describe("Component Curriculum Download Tab", () => {
     return render(<CurriculumDownloadTab {...defaultProps} />);
   };
 
-  test("user can see download form", async () => {
-    // NOTE: This is only active during testing.
-    mockPrerelease("curriculum.downloads");
-    const { findByText, findAllByTestId } = renderComponent();
-    const formHeading = await findByText("Your details");
-    const formInputs = await findAllByTestId("input");
-    expect(formHeading).toBeInTheDocument();
-    expect(formInputs).toHaveLength(1);
-  });
+  if (!DISABLE_DOWNLOADS) {
+    test("user can see download form", async () => {
+      const { findByText, findAllByRole } = renderComponent();
+      const formHeading = await findByText("Your details");
+      const formInputs = await findAllByRole("textbox");
+      expect(formHeading).toBeInTheDocument();
+      expect(formInputs).toHaveLength(1);
+    });
+
+    test("shows inline error when download fails (signed out)", async () => {
+      (downloadFileFromUrl as jest.Mock).mockRejectedValueOnce(
+        new Error("Network error"),
+      );
+
+      const { getByTestId, getByRole, queryByText } = renderComponent();
+
+      act(() => {
+        getByTestId("download-school-isnt-listed").click();
+      });
+      const emailInput = screen.getByPlaceholderText("Type your email address");
+      await userEvent.type(emailInput, "test@example.com");
+      act(() => {
+        getByTestId("download-accept-terms").click();
+      });
+
+      act(() => {
+        getByRole("button", { name: /download/i }).click();
+      });
+
+      await waitFor(() => {
+        expect(
+          screen.getByText(
+            "There was an error downloading your files. Please try again.",
+          ),
+        ).toBeVisible();
+        expect(queryByText("Thanks for downloading")).toBeNull();
+      });
+    });
+
+    test("shows inline error when download fails (signed in)", async () => {
+      (useUser as jest.Mock).mockReturnValue({
+        isLoaded: true,
+        isSignedIn: true,
+      });
+      (downloadFileFromUrl as jest.Mock).mockRejectedValueOnce(
+        new Error("Server error"),
+      );
+
+      const { getByTestId, queryByText } = renderComponent();
+
+      act(() => {
+        getByTestId("download").click();
+      });
+
+      await waitFor(() => {
+        expect(
+          screen.getByText(
+            "There was an error downloading your files. Please try again.",
+          ),
+        ).toBeVisible();
+        expect(queryByText("Thanks for downloading")).toBeNull();
+      });
+    });
+  }
 
   describe("Curriculum Downloads Tab: Secondary Maths", () => {
     test("user can see the tier selector for secondary maths", async () => {
-      // NOTE: This is only active during testing.
-      mockPrerelease("curriculum.downloads");
       const { findByTestId } = renderComponent({
         tiers: tiersMock,
       });
@@ -99,8 +189,6 @@ describe("Component Curriculum Download Tab", () => {
     });
 
     test("user can see correct tiers in the selector for secondary maths", async () => {
-      // NOTE: This is only active during testing.
-      mockPrerelease("curriculum.downloads");
       const { findAllByTestId } = renderComponent({ tiers: tiersMock });
       const tierRadios = await findAllByTestId("tier-radio-button");
       expect(tierRadios).toHaveLength(2);
@@ -111,8 +199,6 @@ describe("Component Curriculum Download Tab", () => {
 
   describe("Curriculum Downloads Tab: Secondary Science", () => {
     test("user can see the child subject selector for secondary science", async () => {
-      // NOTE: This is only active during testing.
-      mockPrerelease("curriculum.downloads");
       const { findByTestId } = renderComponent({
         tiers: tiersMock,
         child_subjects: childSubjectsMock,
@@ -123,8 +209,6 @@ describe("Component Curriculum Download Tab", () => {
     });
 
     test("user can see the tiers and child subject selector for secondary science", async () => {
-      // NOTE: This is only active during testing.
-      mockPrerelease("curriculum.downloads");
       const { findByTestId } = renderComponent({
         tiers: tiersMock,
         child_subjects: childSubjectsMock,
@@ -137,8 +221,6 @@ describe("Component Curriculum Download Tab", () => {
     });
 
     test("user can see the correct child subjects in the correct order", async () => {
-      // NOTE: This is only active during testing.
-      mockPrerelease("curriculum.downloads");
       const { findAllByTestId } = renderComponent({
         tiers: tiersMock,
         child_subjects: childSubjectsMock,
@@ -161,7 +243,6 @@ describe("Component Curriculum Download Tab", () => {
     });
 
     it("sends a tracking event when curriculum downloads are refined", async () => {
-      mockPrerelease("curriculum.downloads");
       const { findByTestId, findByText } = renderComponent({
         tiers: tiersMock,
         child_subjects: childSubjectsMock,
@@ -171,14 +252,14 @@ describe("Component Curriculum Download Tab", () => {
       const childSubjectSelector = await findByTestId("child-subject-selector");
       const tierSelector = await findByTestId("tier-selector");
 
-      await act(async () => {
-        await userEvent.click(childSubjectSelector);
-        await userEvent.click(tierSelector);
+      act(() => {
+        childSubjectSelector.click();
+        tierSelector.click();
       });
 
       const nextButton = await findByText("Next");
-      await act(async () => {
-        await userEvent.click(nextButton);
+      act(() => {
+        nextButton.click();
       });
 
       expect(curriculumResourcesDownloadRefined).toHaveBeenCalledTimes(1);
@@ -201,7 +282,7 @@ describe("Component Curriculum Download Tab", () => {
 
 describe("Downloads tab: unit tests", () => {
   const mvRefreshTime = 1721314874829;
-  test("Query is created properly: Science secondary AQA", async () => {
+  test("URL is created properly: Science secondary AQA", async () => {
     const data = {
       mvRefreshTime: 1721314874829,
       subjectSlug: "science",
@@ -218,7 +299,8 @@ describe("Downloads tab: unit tests", () => {
       tierSlug,
       childSubjectSlug,
     } = data;
-    const query = createCurriculumDownloadsQuery(
+    const url = createCurriculumDownloadsUrl(
+      ["curriculum-plans"],
       "published",
       mvRefreshTime,
       subjectSlug,
@@ -227,13 +309,14 @@ describe("Downloads tab: unit tests", () => {
       tierSlug,
       childSubjectSlug,
     );
-    expect(query.toString()).toEqual(
-      `mvRefreshTime=1721314874829&subjectSlug=science&phaseSlug=secondary&state=published&ks4OptionSlug=aqa&tierSlug=foundation&childSubjectSlug=combined-science`,
+    expect(url).toEqual(
+      `/api/curriculum-downloads/?types=curriculum-plans&mvRefreshTime=1721314874829&subjectSlug=science&phaseSlug=secondary&state=published&ks4OptionSlug=aqa&tierSlug=foundation&childSubjectSlug=combined-science`,
     );
   });
 
-  test("Query is created properly: English primary", async () => {
-    const query = createCurriculumDownloadsQuery(
+  test("URL is created properly: English primary", async () => {
+    const url = createCurriculumDownloadsUrl(
+      ["curriculum-plans"],
       "published",
       mvRefreshTime,
       "english",
@@ -242,8 +325,8 @@ describe("Downloads tab: unit tests", () => {
       null,
       null,
     );
-    expect(query.toString()).toEqual(
-      `mvRefreshTime=1721314874829&subjectSlug=english&phaseSlug=primary&state=published`,
+    expect(url).toEqual(
+      `/api/curriculum-downloads/?types=curriculum-plans&mvRefreshTime=1721314874829&subjectSlug=english&phaseSlug=primary&state=published`,
     );
   });
 });
@@ -275,7 +358,7 @@ describe("trackCurriculumDownload", () => {
           status: "Open",
         },
       ],
-      downloadType: "word" as const,
+      downloadTypes: ["curriculum-plans"] as DownloadType[],
     };
 
     const subjectTitle = "Mathematics";

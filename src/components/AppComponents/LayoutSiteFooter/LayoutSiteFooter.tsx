@@ -15,7 +15,9 @@ import {
   OakBox,
   OakMaxWidth,
   OakSvg,
+  OakImage,
 } from "@oaknational/oak-components";
+import styled from "styled-components";
 
 import Logo from "@/components/AppComponents/Logo";
 import OwaLink from "@/components/SharedComponents/OwaLink";
@@ -28,6 +30,7 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import { OakLinkProps } from "@/common-lib/urls";
 import useClickableCard from "@/hooks/useClickableCard";
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
+import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
 
 type LayoutFooterLinkProps = {
   text: string;
@@ -103,24 +106,6 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
     );
   }
 
-  if (props.type === "page" && props.page == "teacher-hub") {
-    return (
-      <FooterLinkIconWrapper containerProps={containerProps} {...props}>
-        <OwaLink
-          {...props}
-          {...primaryTargetProps}
-          $focusStyles={["underline"]}
-          htmlAnchorProps={{
-            onClick: () =>
-              track.teacherHubSelected({ navigatedFrom: "footer" }),
-            "aria-label": props.ariaLabel ?? undefined,
-          }}
-        >
-          {props.text}
-        </OwaLink>
-      </FooterLinkIconWrapper>
-    );
-  }
   if (props.type === "page") {
     return (
       <FooterLinkIconWrapper containerProps={containerProps} {...props}>
@@ -171,6 +156,12 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
     );
   }
 };
+
+const StyledLogo = styled(OakImage)`
+  height: 87px;
+  width: 77px;
+  margin-top: 2rem;
+`;
 
 export type FooterSection = {
   title: string;
@@ -276,9 +267,15 @@ const LayoutSiteFooter: FC = () => {
               </OakFlex>
             </OakGridArea>
           </OakGrid>
+          <StyledLogo
+            alt="Cyber Essentials Logo"
+            src={getCloudinaryImageUrl(
+              "v1751992190/OWA/illustrations/Cyber-Essentials-Logo_ryiskg.png",
+            )}
+          />
           <OakFlex
             $mb="space-between-xl"
-            $mt={["space-between-m2", "space-between-xl"]}
+            $mt={"space-between-m2"}
             $width={"100%"}
             $justifyContent={["flex-start", "space-between"]}
             $flexDirection={["column", "row"]}

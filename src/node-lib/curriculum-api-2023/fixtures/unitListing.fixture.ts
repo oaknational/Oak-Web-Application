@@ -12,14 +12,16 @@ export const unitListingFixture = (
     subjectSlug: "computing",
     subjectTitle: "Computing",
     pathwayTitle: null,
+    pathwaySlug: null,
     subjectParent: null,
     hasNewContent: false,
     tierSlug: null,
     phase: "secondary",
     yearGroups: [
       {
-        year: "year-10",
+        yearSlug: "year-10",
         yearTitle: "Year 10",
+        year: "10",
       },
     ],
     tiers: [],
@@ -47,10 +49,11 @@ export const unitListingFixture = (
           yearOrder: 1,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
-          year: "year-10",
+          yearSlug: "year-10",
+          year: "10",
           cohort: "2023-2024",
           subjectCategories: null,
-
+          unpublishedLessonCount: 0,
           learningThemes: [
             {
               themeSlug: "computer-science-1",
@@ -71,11 +74,13 @@ export const unitListingFixture = (
           subjectTitle: "Computing",
           lessonCount: 12,
           unitStudyOrder: 2,
+          unpublishedLessonCount: 0,
           yearOrder: 1,
           expired: false,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
-          year: "year-10",
+          yearSlug: "year-10",
+          year: "10",
           cohort: "2023-2024",
           subjectCategories: [
             {
@@ -83,7 +88,6 @@ export const unitListingFixture = (
               slug: "grammar",
             },
           ],
-
           learningThemes: [
             {
               themeSlug: "computer-science-2",
@@ -104,6 +108,7 @@ export const unitListingFixture = (
           subjectTitle: "Computing",
           lessonCount: 6,
           unitStudyOrder: 3,
+          unpublishedLessonCount: 0,
           expired: false,
           yearOrder: 1,
           subjectCategories: [
@@ -115,7 +120,8 @@ export const unitListingFixture = (
 
           expiredLessonCount: 0,
           yearTitle: "Year 10",
-          year: "year-10",
+          yearSlug: "year-10",
+          year: "10",
           cohort: "2023-2024",
           learningThemes: [
             {
@@ -135,6 +141,7 @@ export const unitListingFixture = (
           keyStageTitle: "Key Stage 4",
           subjectSlug: "computing",
           subjectTitle: "Computing",
+          unpublishedLessonCount: 0,
           lessonCount: 7,
           unitStudyOrder: 4,
           expired: false,
@@ -143,7 +150,8 @@ export const unitListingFixture = (
 
           expiredLessonCount: 0,
           yearTitle: "Year 10",
-          year: "year-10",
+          yearSlug: "year-10",
+          year: "10",
           cohort: "2023-2024",
           learningThemes: [
             {
@@ -159,6 +167,7 @@ export const unitListingFixture = (
           title: "Impacts on society",
           nullTitle: "Impacts on society",
           programmeSlug: "computing-secondary-ks4",
+          unpublishedLessonCount: 0,
           keyStageSlug: "ks4",
           keyStageTitle: "Key Stage 4",
           subjectSlug: "computing",
@@ -172,7 +181,8 @@ export const unitListingFixture = (
           expiredLessonCount: 0,
           yearTitle: "Year 10",
           cohort: "2023-2024",
-          year: "year-10",
+          yearSlug: "year-10",
+          year: "10",
           learningThemes: [
             {
               themeSlug: "computer-science-2",
@@ -195,12 +205,14 @@ export const unitListingFixture = (
           unitStudyOrder: 6,
           expired: false,
           yearOrder: 1,
+          unpublishedLessonCount: 0,
           subjectCategories: null,
 
           expiredLessonCount: 0,
           yearTitle: "Year 10",
           cohort: "2023-2024",
-          year: "year-10",
+          yearSlug: "year-10",
+          year: "10",
           learningThemes: [
             {
               themeSlug: "computer-science-2",
@@ -213,6 +225,7 @@ export const unitListingFixture = (
         {
           slug: "programming-1-sequence-2cbd",
           title: "Programming 1: Sequence",
+          unpublishedLessonCount: 0,
           nullTitle: "Programming 1: Sequence",
           programmeSlug: "computing-secondary-ks4",
           keyStageSlug: "ks4",
@@ -227,7 +240,8 @@ export const unitListingFixture = (
 
           expiredLessonCount: 0,
           yearTitle: "Year 10",
-          year: "year-10",
+          yearSlug: "year-10",
+          year: "10",
           cohort: "2023-2024",
           learningThemes: [
             {
@@ -244,6 +258,7 @@ export const unitListingFixture = (
           nullTitle: "Programming 2: Selection",
           programmeSlug: "computing-secondary-ks4",
           keyStageSlug: "ks4",
+          unpublishedLessonCount: 0,
           keyStageTitle: "Key Stage 4",
           subjectSlug: "computing",
           subjectTitle: "Computing",
@@ -252,7 +267,8 @@ export const unitListingFixture = (
           yearOrder: 1,
           expired: false,
           expiredLessonCount: 0,
-          year: "year-10",
+          yearSlug: "year-10",
+          year: "10",
           yearTitle: "Year 10",
           subjectCategories: null,
 
@@ -273,12 +289,14 @@ export const unitListingFixture = (
           lessonCount: 5,
           unitStudyOrder: 3,
           expired: false,
+          unpublishedLessonCount: 0,
           yearOrder: 1,
           subjectCategories: null,
 
           expiredLessonCount: 0,
           yearTitle: "Year 10",
-          year: "year-10",
+          yearSlug: "year-10",
+          year: "10",
           cohort: "2023-2024",
           learningThemes: [],
         },
@@ -290,6 +308,7 @@ export const unitListingFixture = (
           nullTitle: "Programming 4: Subroutines",
           programmeSlug: "computing-secondary-ks4",
           keyStageSlug: "ks4",
+          unpublishedLessonCount: 0,
           keyStageTitle: "Key Stage 4",
           subjectSlug: "computing",
           subjectTitle: "Computing",
@@ -301,7 +320,8 @@ export const unitListingFixture = (
 
           expiredLessonCount: 0,
           yearTitle: "Year 10",
-          year: "year-10",
+          yearSlug: "year-10",
+          year: "10",
           cohort: "2023-2024",
           learningThemes: [],
         },
@@ -319,12 +339,14 @@ export const unitListingFixture = (
           lessonCount: 10,
           unitStudyOrder: 5,
           expired: false,
+          unpublishedLessonCount: 0,
           yearOrder: 1,
           subjectCategories: null,
 
           expiredLessonCount: 0,
           yearTitle: "Year 10",
-          year: "year-10",
+          yearSlug: "year-10",
+          year: "10",
           cohort: "2023-2024",
           learningThemes: [],
         },
@@ -337,6 +359,7 @@ export const unitListingFixture = (
           programmeSlug: "computing-secondary-ks4",
           keyStageSlug: "ks4",
           keyStageTitle: "Key Stage 4",
+          unpublishedLessonCount: 0,
           subjectSlug: "computing",
           subjectTitle: "Computing",
           lessonCount: 12,
@@ -347,7 +370,8 @@ export const unitListingFixture = (
 
           expiredLessonCount: 0,
           yearTitle: "Year 10",
-          year: "year-10",
+          yearSlug: "year-10",
+          year: "10",
           cohort: "2023-2024",
           learningThemes: [],
         },
@@ -366,11 +390,13 @@ export const unitListingFixture = (
           unitStudyOrder: 7,
           expired: false,
           yearOrder: 1,
+          unpublishedLessonCount: 0,
           subjectCategories: null,
 
           expiredLessonCount: 0,
           yearTitle: "Year 10",
-          year: "year-10",
+          yearSlug: "year-10",
+          year: "10",
           cohort: "2023-2024",
           learningThemes: [],
         },
@@ -390,10 +416,12 @@ export const unitListingFixture = (
           expired: false,
           yearOrder: 1,
           subjectCategories: null,
+          unpublishedLessonCount: 0,
 
           expiredLessonCount: 0,
           yearTitle: "Year 10",
-          year: "year-10",
+          yearSlug: "year-10",
+          year: "10",
           cohort: "2023-2024",
           learningThemes: [
             {
@@ -412,6 +440,7 @@ export const unitListingFixture = (
           keyStageSlug: "ks4",
           keyStageTitle: "Key Stage 4",
           subjectSlug: "computing",
+          unpublishedLessonCount: 0,
           subjectTitle: "Computing",
           lessonCount: 5,
           unitStudyOrder: 9,
@@ -421,7 +450,8 @@ export const unitListingFixture = (
 
           expiredLessonCount: 0,
           yearTitle: "Year 10",
-          year: "year-10",
+          yearSlug: "year-10",
+          year: "10",
           cohort: "2023-2024",
           learningThemes: [
             {
@@ -508,9 +538,10 @@ export const combinedUnitListingFixture = (
           yearOrder: 1,
           expiredLessonCount: 0,
           subjectCategories: null,
-
+          unpublishedLessonCount: 0,
           yearTitle: "Year 10",
-          year: "year-10",
+          yearSlug: "year-10",
+          year: "10",
           cohort: "2023-2024",
           learningThemes: [
             {
@@ -537,8 +568,9 @@ export const combinedUnitListingFixture = (
           expiredLessonCount: 0,
           yearTitle: "Year 10",
           subjectCategories: null,
-
-          year: "year-10",
+          unpublishedLessonCount: 0,
+          yearSlug: "year-10",
+          year: "10",
           cohort: "2023-2024",
           learningThemes: [
             {
@@ -563,10 +595,11 @@ export const combinedUnitListingFixture = (
           expired: false,
           yearOrder: 1,
           subjectCategories: null,
-
+          unpublishedLessonCount: 0,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
-          year: "year-10",
+          yearSlug: "year-10",
+          year: "10",
           cohort: "2023-2024",
           learningThemes: [
             {
@@ -592,10 +625,11 @@ export const combinedUnitListingFixture = (
           yearOrder: 1,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
-          year: "year-10",
+          yearSlug: "year-10",
+          year: "10",
           cohort: "2020-2022",
           subjectCategories: null,
-
+          unpublishedLessonCount: 0,
           learningThemes: [],
         },
       ],
@@ -612,12 +646,13 @@ export const combinedUnitListingFixture = (
           lessonCount: 12,
           unitStudyOrder: 2,
           subjectCategories: null,
-
+          unpublishedLessonCount: 0,
           yearOrder: 1,
           expired: false,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
-          year: "year-10",
+          yearSlug: "year-10",
+          year: "10",
           cohort: "2020-2022",
           learningThemes: [],
         },
@@ -635,14 +670,116 @@ export const combinedUnitListingFixture = (
           lessonCount: 6,
           unitStudyOrder: 3,
           subjectCategories: null,
-
+          unpublishedLessonCount: 0,
           expired: false,
           yearOrder: 1,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
-          year: "year-10",
+          yearSlug: "year-10",
+          year: "10",
           cohort: "2020-2022",
           learningThemes: [],
+        },
+      ],
+    ],
+    ...partial,
+  };
+};
+
+export const swimmingUnitListingFixture = (
+  partial?: Partial<UnitListingData>,
+): UnitListingData => {
+  return {
+    ...unitListingFixture(),
+    units: [
+      [
+        {
+          slug: "number-1",
+          title: "Number 1",
+          nullTitle: "Number 1",
+          programmeSlug: "maths-secondary-ks4",
+          keyStageSlug: "ks4",
+          keyStageTitle: "Key Stage 4",
+          subjectSlug: "maths",
+          subjectTitle: "Maths",
+          unpublishedLessonCount: 0,
+          lessonCount: 9,
+          unitStudyOrder: 1,
+          expired: false,
+          yearOrder: 1,
+          expiredLessonCount: 0,
+          subjectCategories: null,
+          groupUnitsAs: "Swimming and water safety",
+          yearTitle: "Year 10",
+          yearSlug: "year-10",
+          year: "10",
+          cohort: "2023-2024",
+          learningThemes: [
+            {
+              themeSlug: "number-1",
+              themeTitle: "Number 1",
+            },
+          ],
+        },
+      ],
+      [
+        {
+          slug: "number-2",
+          title: "Number 2",
+          nullTitle: "Number 2",
+          programmeSlug: "maths-secondary-ks4",
+          keyStageSlug: "ks4",
+          keyStageTitle: "Key Stage 4",
+          subjectSlug: "maths",
+          subjectTitle: "Maths",
+          unpublishedLessonCount: 0,
+          lessonCount: 12,
+          unitStudyOrder: 2,
+          yearOrder: 1,
+          expired: false,
+          expiredLessonCount: 0,
+          yearTitle: "Year 10",
+          subjectCategories: null,
+          groupUnitsAs: "Swimming and water safety",
+          yearSlug: "year-10",
+          year: "10",
+          cohort: "2023-2024",
+          learningThemes: [
+            {
+              themeSlug: "number-2",
+              themeTitle: "Number 2",
+            },
+          ],
+        },
+      ],
+      [
+        {
+          slug: "number-3",
+          title: "Number 3",
+          nullTitle: "Number 3",
+          programmeSlug: "maths-secondary-ks4",
+          keyStageSlug: "ks4",
+          keyStageTitle: "Key Stage 4",
+          subjectSlug: "maths",
+          subjectTitle: "Maths",
+          unpublishedLessonCount: 0,
+          lessonCount: 6,
+          unitStudyOrder: 3,
+          expired: false,
+          yearOrder: 1,
+          subjectCategories: null,
+          groupUnitsAs: "Swimming and water safety",
+          expiredLessonCount: 0,
+          yearTitle: "Year 10",
+          yearSlug: "year-10",
+          year: "10",
+          cohort: "2023-2024",
+          learningThemes: [
+            {
+              themeSlug: "number-3",
+              themeTitle: "Number 3",
+            },
+          ],
         },
       ],
     ],

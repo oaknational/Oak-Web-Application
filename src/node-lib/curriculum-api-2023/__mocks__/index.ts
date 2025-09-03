@@ -2,6 +2,7 @@ import unitListingFixture from "../fixtures/unitListing.fixture";
 import { unitBrowseDataFixture } from "../fixtures/unitBrowseData.fixture";
 import { subjectBrowseDataFixture } from "../fixtures/subjectBrowseData.fixture";
 import { LessonShareQuery } from "../queries/lessonShare/lessonShare.query";
+import { UnitListingQueryReturn } from "../queries/unitListing/unitListing.query";
 
 import { specialistSubjectListingFixture2023 } from "@/node-lib/curriculum-api-2023/fixtures/specialistSubjectListing.fixture";
 import programmeListingFixture from "@/node-lib/curriculum-api-2023/fixtures/programmeListing.fixture";
@@ -10,7 +11,7 @@ import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lesso
 import { CurriculumApi } from "@/node-lib/curriculum-api-2023";
 import curriculumPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumPhaseOptions.fixture";
 import { curriculumOverviewMVFixture } from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
-import teachersHomePageFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersHomePage.fixture";
+import keyStagesFixture from "@/node-lib/curriculum-api-2023/fixtures/keyStages.fixture";
 import specialistUnitListingFixture from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.fixture";
 import specialistLessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/specialistLessonOverview.fixture";
 import { lessonContentFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonContent.fixture";
@@ -34,7 +35,7 @@ const curriculumApi: Pick<
   | "subjectListingPage"
   | "lessonListing"
   | "programmeListingPage"
-  | "teachersHomePage"
+  | "keyStages"
   | "pupilLessonQuery"
   | "pupilPreviewLessonQuery"
   | "pupilLessonListingQuery"
@@ -55,6 +56,12 @@ const curriculumApi: Pick<
   | "lessonMediaClips"
   | "betaLessonMediaClipsQuery"
   | "teachersPreviewLessonDownload"
+  | "teachersPreviewUnitListing"
+  | "teacherPreviewLessonListing"
+  | "browseUnitRedirectQuery"
+  | "pupilCanonicalLessonRedirectQuery"
+  | "pupilBrowseLessonRedirectQuery"
+  | "pupilUnitRedirectQuery"
 > = {
   curriculumPhaseOptions: jest.fn(async () => {
     return curriculumPhaseOptionsFixture();
@@ -71,8 +78,8 @@ const curriculumApi: Pick<
   lessonListing: jest.fn(async () => {
     return lessonListingFixture();
   }),
-  teachersHomePage: jest.fn(async () => {
-    return teachersHomePageFixture();
+  keyStages: jest.fn(async () => {
+    return keyStagesFixture();
   }),
   pupilLessonQuery: jest.fn(async () => {
     return {
@@ -100,6 +107,12 @@ const curriculumApi: Pick<
   teachersPreviewLessonDownload: jest.fn(async () => {
     return lessonDownloadsFixtures();
   }) as jest.Mocked<TeacherPreviewLessonDownloadsQuery>,
+  teachersPreviewUnitListing: jest.fn(async () => {
+    return unitListingFixture();
+  }),
+  teacherPreviewLessonListing: jest.fn(async () => {
+    return lessonListingFixture();
+  }),
   betaLessonMediaClipsQuery: jest.fn(async () => {
     return {
       ...lessonMediaClipsFixtures(),
@@ -137,7 +150,7 @@ const curriculumApi: Pick<
   }) as jest.Mocked<LessonMediaClipsQueryReturn>,
   unitListing: jest.fn(async () => {
     return unitListingFixture();
-  }),
+  }) as jest.Mocked<UnitListingQueryReturn>,
   refreshedMVTime: jest.fn(async () => {
     return refreshedMVTimeFixture();
   }),
@@ -163,6 +176,42 @@ const curriculumApi: Pick<
 
   pupilsSitemap: jest.fn(async () => {
     return mockedSiteMapResponse;
+  }),
+  browseUnitRedirectQuery: jest.fn(async () => {
+    return {
+      browseUnitRedirectData: {
+        incomingPath: `programmes/programmeSlug/units/unitSlug`,
+        outgoingPath: `/teachers/programmes/programmeSlug/units/unitSlug-redirected`,
+        redirectType: 301 as const,
+      },
+    };
+  }),
+  pupilUnitRedirectQuery: jest.fn(async () => {
+    return {
+      pupilUnitRedirectData: {
+        incomingPath: `programmes/programmeSlug/units/unitSlug`,
+        outgoingPath: `pupils/programmes/programmeSlug/units/unitSlug-redirected`,
+        redirectType: 301 as const,
+      },
+    };
+  }),
+  pupilCanonicalLessonRedirectQuery: jest.fn(async () => {
+    return {
+      pupilCanonicalLessonRedirectData: {
+        incomingPath: `/pupils/lessons/lessonSlug`,
+        outgoingPath: `/pupils/lessons/lessonSlug-redirected`,
+        redirectType: 301 as const,
+      },
+    };
+  }),
+  pupilBrowseLessonRedirectQuery: jest.fn(async () => {
+    return {
+      pupilBrowseLessonRedirectData: {
+        incomingPath: `/pupilslessons/lessonSlug`,
+        outgoingPath: `/pupils/lessons/lessonSlug-redirected`,
+        redirectType: 301 as const,
+      },
+    };
   }),
 };
 

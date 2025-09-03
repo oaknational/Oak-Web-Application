@@ -28,6 +28,7 @@ export const SpecialistLessonListingPage: Story = {
           lessonTitle: "Healthy Hugs",
           subjectSlug: "a-new-normal-123a",
           subjectTitle: "A new normal",
+          isUnpublished: false,
           unitSlug: "creative-arts",
           programmeSlug: "early-development-123a",
           programmeTitle: "Early development",
@@ -38,7 +39,7 @@ export const SpecialistLessonListingPage: Story = {
           videoCount: 1,
           presentationCount: 1,
           worksheetCount: 2,
-          hasCopyrightMaterial: false,
+          hasLegacyCopyrightMaterial: false,
           orderInUnit: 1,
         },
         {
@@ -51,11 +52,13 @@ export const SpecialistLessonListingPage: Story = {
           programmeTitle: "Early development",
           description: "By the end of this lesson, pupils will create a visual",
           expired: false,
+          isUnpublished: false,
+
           quizCount: 0,
           videoCount: 1,
           presentationCount: 0,
           worksheetCount: 2,
-          hasCopyrightMaterial: false,
+          hasLegacyCopyrightMaterial: false,
           orderInUnit: 1,
         },
         {
@@ -65,6 +68,8 @@ export const SpecialistLessonListingPage: Story = {
           subjectTitle: "A new normal",
           unitSlug: "creative-arts",
           programmeSlug: "early-development-123a",
+          isUnpublished: false,
+
           programmeTitle: "Early development",
           description:
             "By the end of the lesson, pupils will play some safe playground games",
@@ -73,7 +78,7 @@ export const SpecialistLessonListingPage: Story = {
           videoCount: 1,
           presentationCount: 1,
           worksheetCount: 2,
-          hasCopyrightMaterial: false,
+          hasLegacyCopyrightMaterial: false,
           orderInUnit: 1,
         },
       ],

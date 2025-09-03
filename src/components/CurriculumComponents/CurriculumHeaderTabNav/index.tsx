@@ -1,9 +1,10 @@
+import { OakFlex, OakFlexProps } from "@oaknational/oak-components";
+
 import { ComponentTypeValueType, PhaseValueType } from "@/browser-lib/avo/Avo";
 import { ButtonVariant } from "@/components/SharedComponents/Button/common";
 import ButtonAsLink, {
   ButtonAsLinkProps,
 } from "@/components/SharedComponents/Button/ButtonAsLink";
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 
 /**
@@ -18,7 +19,7 @@ const CurriculumHeaderTabNav = ({
   links,
   variant = "flat",
   ...flexProps
-}: FlexProps & {
+}: OakFlexProps & {
   label: string;
   links: ButtonAsLinkProps[];
   variant?: ButtonVariant;
@@ -37,42 +38,46 @@ const CurriculumHeaderTabNav = ({
   };
 
   return (
-    <Flex
+    <OakFlex
       as="nav"
       aria-label={label}
-      $mv={0}
-      $pv={0}
+      $mv={"space-between-none"}
+      $pv={"inner-padding-none"}
       $overflowY={"hidden"}
       $overflowX={"auto"}
       {...flexProps}
     >
-      {links.map((link, i) => (
-        <ButtonAsLink
-          {...link}
-          size="large"
-          variant={variant}
-          aria-current={link.isCurrent ? "page" : undefined}
-          key={`CurriculumHeaderTabNav-${link.page}-${i}`}
-          $font={["heading-7", "heading-6"]}
-          $pt={[3, 0]}
-          $ph={20}
-          data-testid="header-nav-tab"
-          onClick={() => {
-            track.curriculumVisualiserTabAccessed({
-              subjectTitle: subjectTitle,
-              subjectSlug: subjectSlug,
-              platform: "owa",
-              product: "curriculum visualiser",
-              engagementIntent: "explore",
-              componentType: getComponentType(link.page),
-              eventVersion: "2.0.0",
-              analyticsUseCase: "Teacher",
-              phase: phaseSlug,
-            });
-          }}
-        />
-      ))}
-    </Flex>
+      <ul style={{ display: "contents" }}>
+        {links.map((link, i) => (
+          <li key={link.page} style={{ display: "contents" }}>
+            <ButtonAsLink
+              {...link}
+              size="large"
+              variant={variant}
+              aria-current={link.isCurrent ? "page" : undefined}
+              key={`CurriculumHeaderTabNav-${link.page}-${i}`}
+              $font={["heading-7", "heading-6"]}
+              $pt={[3, 0]}
+              $ph={20}
+              data-testid="header-nav-tab"
+              onClick={() => {
+                track.curriculumVisualiserTabAccessed({
+                  subjectTitle: subjectTitle,
+                  subjectSlug: subjectSlug,
+                  platform: "owa",
+                  product: "curriculum visualiser",
+                  engagementIntent: "explore",
+                  componentType: getComponentType(link.page),
+                  eventVersion: "2.0.0",
+                  analyticsUseCase: "Teacher",
+                  phase: phaseSlug,
+                });
+              }}
+            />
+          </li>
+        ))}
+      </ul>
+    </OakFlex>
   );
 };
 

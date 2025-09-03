@@ -12,13 +12,13 @@ import {
   OakBox,
   isValidIconName,
 } from "@oaknational/oak-components";
-import { useState } from "react";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.schema";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
+import { PupilRedirectedOverlay } from "@/components/PupilComponents/PupilRedirectedOverlay/PupilRedirectedOverlay";
 
 export type PupilLessonListingViewProps = {
   unitData: LessonListingBrowseData[number]["unitData"];
@@ -40,12 +40,6 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
     examboard,
     phaseSlug,
   } = programmeFields;
-
-  const [showExpiredLessonsBanner, setShowExpiredLessonsBanner] =
-    useState<boolean>(
-      unitData.expirationDate !== null ||
-        orderedCurriculumData.some((c) => c.actions?.displayExpiringBanner),
-    );
 
   const baseSlug = `${subjectSlug}-${phaseSlug}-${yearSlug}`;
   const unitListingHref = `/pupils/programmes/${baseSlug}/options`; // NB. options will forward to units if no options available
@@ -109,12 +103,12 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
       </OakFlex>
 
       <ExpiringBanner
-        isOpen={showExpiredLessonsBanner}
+        isOpen={
+          unitData.expirationDate !== null ||
+          orderedCurriculumData.some((c) => c.actions?.displayExpiringBanner)
+        }
         isResourcesMessage={false}
         onwardHref={unitListingHref}
-        onClose={() => {
-          setShowExpiredLessonsBanner(false);
-        }}
       />
     </OakFlex>
   );
@@ -161,6 +155,7 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
               })}
             </OakPupilJourneyList>
           </OakBox>
+          <PupilRedirectedOverlay />
         </OakPupilJourneyLayout>
       </AppLayout>
     </OakThemeProvider>

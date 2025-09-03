@@ -44,10 +44,11 @@ export const SpecialistLessonSchema = z.object({
   worksheetCount: z.number().nullable(),
   hasCurriculumDownload: z.boolean().nullish(),
   orderInUnit: z.number(),
-  hasCopyrightMaterial: z.boolean().nullish(),
+  hasLegacyCopyrightMaterial: z.boolean().nullish(),
   developmentStageSlug: z.string().nullish(),
   developmentStageTitle: z.string().nullish(),
   developmentStage: z.string().nullish(),
+  isUnpublished: z.literal(false),
 });
 
 export type SpecialistLesson = z.infer<typeof SpecialistLessonSchema>;

@@ -90,6 +90,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "7",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -126,6 +128,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "7",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -162,6 +166,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "8",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -198,6 +204,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "8",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
       ],
     });
@@ -332,6 +340,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "7",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -368,6 +378,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "7",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -404,6 +416,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "7",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -440,6 +454,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "7",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -476,6 +492,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "8",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -512,6 +530,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "8",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -548,6 +568,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "8",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -584,6 +606,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "8",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
       ],
     });
@@ -714,6 +738,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "7",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -750,6 +776,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "7",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -786,6 +814,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "7",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -822,6 +852,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "7",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -858,6 +890,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "8",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -894,6 +928,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "8",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -930,6 +966,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "8",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -966,6 +1004,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "8",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
       ],
     });
@@ -1187,6 +1227,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "7",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -1223,6 +1265,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "7",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -1259,6 +1303,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "7",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -1295,6 +1341,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "7",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -1331,6 +1379,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "7",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -1367,6 +1417,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "7",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -1403,6 +1455,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "7",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -1439,6 +1493,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "7",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -1475,6 +1531,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "8",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -1511,6 +1569,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "8",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -1547,6 +1607,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "8",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -1583,6 +1645,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "8",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -1619,6 +1683,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "8",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -1655,6 +1721,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "8",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -1691,6 +1759,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "8",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
         {
           connection_prior_unit_description: null,
@@ -1727,6 +1797,8 @@ describe("openapi", () => {
           unit_options: [],
           year: "8",
           state: "published",
+          national_curriculum_content: [],
+          prior_knowledge_requirements: [],
         },
       ],
     });

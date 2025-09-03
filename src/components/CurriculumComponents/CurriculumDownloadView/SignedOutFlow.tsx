@@ -1,6 +1,8 @@
 import {
+  OakBox,
   OakFieldError,
   OakFlex,
+  OakFlexProps,
   OakHeading,
   OakLI,
   OakP,
@@ -16,17 +18,13 @@ import Terms from "../OakComponentsKitchen/Terms";
 
 import { submitSchema } from "./schema";
 import { DownloadType, School, runSchema } from "./helper";
-import { CurriculumResourcesSelector } from "./CurriculumResourcesSelector";
+import { CurriculumDownloadSelection } from "./CurriculumDownloadSelection";
 
-import Box from "@/components/SharedComponents/Box";
-import flex, { FlexCssProps } from "@/styles/utils/flex";
 import spacing, { SpacingProps } from "@/styles/utils/spacing";
 import ResourcePageDetailsCompleted from "@/components/TeacherComponents/ResourcePageDetailsCompleted";
 
-const StyledForm = styled.form<FlexCssProps & SpacingProps>`
-  ${flex}
+const StyledForm = styled(OakFlex)<OakFlexProps & SpacingProps>`
   ${spacing}
-    display: flex;
 `;
 
 export type CurriculumDownloadViewData = {
@@ -34,7 +32,7 @@ export type CurriculumDownloadViewData = {
   schoolId?: string;
   schoolName?: string;
   email?: string;
-  downloadType: DownloadType;
+  downloadTypes: DownloadType[];
   termsAndConditions?: boolean;
   schoolNotListed?: boolean;
 };
@@ -52,8 +50,10 @@ type SignedOutFlowProps = {
   schools: School[];
   onChange?: (value: CurriculumDownloadViewData) => void;
   onSubmit?: (value: CurriculumDownloadViewData) => void;
-  downloadType: DownloadType;
-  onChangeDownloadType: (newDownloadType: DownloadType) => void;
+  downloadTypes: DownloadType[];
+  onChangeDownloadTypes: (newDownloadType: DownloadType[]) => void;
+  availableDownloadTypes: DownloadType[];
+  submitError?: string;
 };
 export default function SignedOutFlow({
   schools,
@@ -61,10 +61,13 @@ export default function SignedOutFlow({
   onChange,
   onSubmit,
   isSubmitting,
-  downloadType,
-  onChangeDownloadType,
+  downloadTypes,
+  onChangeDownloadTypes,
+  availableDownloadTypes,
+  submitError,
 }: SignedOutFlowProps) {
   const errorMessageListId = useId();
+  const submitErrorId = useId();
   const [errors, setErrors] = useState<CurriculumDownloadViewErrors>({});
   const hasErrors = Object.keys(errors).length;
 
@@ -82,14 +85,19 @@ export default function SignedOutFlow({
       const newSubmitValidatioResults = runSchema(submitSchema, data);
       setErrors(newSubmitValidatioResults.errors);
       if (newSubmitValidatioResults.success) {
-        onSubmit(data);
+        onSubmit({
+          ...data,
+          downloadTypes,
+        });
       }
     }
   };
 
   const [isComplete, setIsComplete] = useState(() => {
     return (
-      (Boolean(data.schoolId?.length) || Boolean(data.email?.length)) &&
+      (Boolean(data.schoolId?.length) ||
+        data.schoolNotListed === true ||
+        Boolean(data.email?.length)) &&
       data.termsAndConditions
     );
   });
@@ -99,19 +107,24 @@ export default function SignedOutFlow({
       $gap={["space-between-m2", "space-between-l"]}
       $flexDirection={["column", "row"]}
     >
-      <Box $width={["100%", 510]} $textAlign={"left"}>
-        <CurriculumResourcesSelector
-          downloadType={downloadType}
-          onChangeDownloadType={onChangeDownloadType}
+      <OakBox $width={["100%", "all-spacing-20"]} $textAlign={"left"}>
+        <CurriculumDownloadSelection
+          downloadTypes={downloadTypes}
+          onChange={onChangeDownloadTypes}
+          availableDownloadTypes={availableDownloadTypes}
         />
-      </Box>
+      </OakBox>
 
-      <Box $maxWidth={["100%", 400]} $textAlign={"left"}>
+      <OakBox $maxWidth={["100%", "all-spacing-20"]} $textAlign={"left"}>
         <OakFlex $flexDirection={"column"} $gap={"space-between-m"}>
           <OakHeading tag="h3" $font={["heading-5"]}>
             Your details
           </OakHeading>
-          <StyledForm onSubmit={onSubmitLocal} $alignItems={"center"}>
+          <StyledForm
+            as={"form"}
+            onSubmit={onSubmitLocal}
+            $alignItems={"center"}
+          >
             <OakFlex $flexDirection={"column"}>
               {!isComplete && (
                 <OakFlex
@@ -160,6 +173,13 @@ export default function SignedOutFlow({
                 $gap={"space-between-m"}
                 $mv={"space-between-s"}
               >
+                {submitError && (
+                  <OakBox id={submitErrorId}>
+                    <OakFieldError>
+                      <OakP>{submitError}</OakP>
+                    </OakFieldError>
+                  </OakBox>
+                )}
                 {hasErrors > 0 && (
                   <div id={errorMessageListId}>
                     <OakFieldError>
@@ -176,7 +196,8 @@ export default function SignedOutFlow({
                   aria-errormessage={errorMessageListId}
                   isLoading={isSubmitting}
                   type="submit"
-                  disabled={false}
+                  disabled={downloadTypes.length < 1}
+                  aria-describedby={submitError ? submitErrorId : undefined}
                   iconName="download"
                   isTrailingIcon={true}
                 >
@@ -186,7 +207,7 @@ export default function SignedOutFlow({
             </OakFlex>
           </StyledForm>
         </OakFlex>
-      </Box>
+      </OakBox>
     </OakFlex>
   );
 }

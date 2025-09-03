@@ -13,6 +13,19 @@ jest.mock(
   }),
 );
 
+const mockFeatureFlagEnabled = jest.fn().mockReturnValue(false);
+
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagEnabled: () => mockFeatureFlagEnabled(),
+}));
+
+const mockAuthGetToken = jest.fn().mockResolvedValue(null);
+jest.mock("@clerk/nextjs", () => ({
+  useAuth: () => ({
+    getToken: mockAuthGetToken,
+  }),
+}));
+
 const mockSetEmailInLocalStorageFn = jest.fn();
 const mockSetSchoolInLocalStorageFn = jest.fn();
 const mockSetTermsInLocalStorageFn = jest.fn();
@@ -41,7 +54,10 @@ describe("useResourceFormSubmit", () => {
   });
   it("should set email in local storage if passed in props", async () => {
     const { result } = renderHook(() =>
-      useResourceFormSubmit({ isLegacyDownload: true, type: "download" }),
+      useResourceFormSubmit({
+        isLegacyDownload: true,
+        type: "download",
+      }),
     );
     result.current.onSubmit(data, "lesson");
 
@@ -54,7 +70,10 @@ describe("useResourceFormSubmit", () => {
 
   it("should set school in local storage if passed in props", async () => {
     const { result } = renderHook(() =>
-      useResourceFormSubmit({ isLegacyDownload: true, type: "download" }),
+      useResourceFormSubmit({
+        isLegacyDownload: true,
+        type: "download",
+      }),
     );
     result.current.onSubmit(data, "lesson");
     await waitFor(() => {
@@ -75,7 +94,10 @@ describe("useResourceFormSubmit", () => {
     };
 
     const { result } = renderHook(() =>
-      useResourceFormSubmit({ isLegacyDownload: true, type: "download" }),
+      useResourceFormSubmit({
+        isLegacyDownload: true,
+        type: "download",
+      }),
     );
     result.current.onSubmit(data, "lesson");
     await waitFor(() => {
@@ -96,7 +118,10 @@ describe("useResourceFormSubmit", () => {
     };
 
     const { result } = renderHook(() =>
-      useResourceFormSubmit({ isLegacyDownload: true, type: "download" }),
+      useResourceFormSubmit({
+        isLegacyDownload: true,
+        type: "download",
+      }),
     );
     result.current.onSubmit(data, "lesson");
     await waitFor(() => {
@@ -109,7 +134,10 @@ describe("useResourceFormSubmit", () => {
 
   it("should set terms in local storage if passed in props", async () => {
     const { result } = renderHook(() =>
-      useResourceFormSubmit({ isLegacyDownload: true, type: "download" }),
+      useResourceFormSubmit({
+        isLegacyDownload: true,
+        type: "download",
+      }),
     );
     result.current.onSubmit(data, "lesson");
     await waitFor(() => {
@@ -119,7 +147,10 @@ describe("useResourceFormSubmit", () => {
 
   it("should call downloadLessonResources with correct parameters", async () => {
     const { result } = renderHook(() =>
-      useResourceFormSubmit({ isLegacyDownload: true, type: "download" }),
+      useResourceFormSubmit({
+        isLegacyDownload: true,
+        type: "download",
+      }),
     );
     result.current.onSubmit(data, "lesson");
 
@@ -128,7 +159,6 @@ describe("useResourceFormSubmit", () => {
         lessonSlug: "lesson",
         selectedResourceTypes: ["intro-quiz-questions"],
         isLegacyDownload: true,
-        authFlagEnabled: false,
         authToken: null,
         selectedAdditionalFilesIds: [],
       });
@@ -150,7 +180,10 @@ describe("useResourceFormSubmit", () => {
     };
 
     const { result } = renderHook(() =>
-      useResourceFormSubmit({ isLegacyDownload: true, type: "download" }),
+      useResourceFormSubmit({
+        isLegacyDownload: true,
+        type: "download",
+      }),
     );
     result.current.onSubmit(dataWithAdditionalFiles, "lesson");
 
@@ -159,7 +192,6 @@ describe("useResourceFormSubmit", () => {
         lessonSlug: "lesson",
         selectedResourceTypes: ["intro-quiz-questions", "additional-files"],
         isLegacyDownload: true,
-        authFlagEnabled: false,
         authToken: null,
         selectedAdditionalFilesIds: [123, 345],
       });

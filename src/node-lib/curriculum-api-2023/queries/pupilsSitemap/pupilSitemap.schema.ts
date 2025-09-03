@@ -1,6 +1,6 @@
 import { z } from "zod";
 import {
-  syntheticUnitvariantsWithLessonIdsSchema,
+  syntheticUnitvariantsWithLessonIdsByYearsSchema,
   syntheticProgrammesByYearSchema,
   syntheticUnitvariantLessonsSchema,
 } from "@oaknational/oak-curriculum-schema";
@@ -14,7 +14,7 @@ export const pupilsSitemapDataSchema = z.object({
     }),
   ),
   units: z.array(
-    syntheticUnitvariantsWithLessonIdsSchema.pick({
+    syntheticUnitvariantsWithLessonIdsByYearsSchema.pick({
       programme_slug: true,
       unit_slug: true,
     }),

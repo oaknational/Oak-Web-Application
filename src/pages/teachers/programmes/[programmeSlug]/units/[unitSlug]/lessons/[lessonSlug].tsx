@@ -22,6 +22,9 @@ import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesModal/TeacherNotesModal";
 import { useLesson } from "@/pages-helpers/teacher/useLesson/useLesson";
 import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
+import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
+import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
+import Banners from "@/components/SharedComponents/Banners";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewPageData;
@@ -39,9 +42,14 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     lessonSlug,
     unitSlug,
     programmeSlug,
+    year,
     unitTitle,
     subjectSlug,
     keyStageTitle,
+    isLegacy,
+    lessonReleaseDate,
+    loginRequired,
+    geoRestricted,
   } = curriculumData;
 
   const {
@@ -60,6 +68,8 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     unitSlug,
     programmeSlug,
     source: "lesson-browse",
+    loginRequired,
+    geoRestricted,
     curriculumTrackingProps: {
       lessonName: lessonTitle,
       lessonSlug: lessonSlug,
@@ -69,16 +79,18 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
       subjectTitle,
       keyStageSlug,
       keyStageTitle: keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
+      lessonReleaseCohort: isLegacy ? "2020-2023" : "2023-2026",
+      lessonReleaseDate: lessonReleaseDate ?? "unreleased",
     },
   });
 
   const getLessonData = () => {
     if (tierTitle && examBoardTitle) {
-      return ` | ${tierTitle} | ${examBoardTitle}`;
+      return ` ${tierTitle} ${examBoardTitle}`;
     } else if (tierTitle) {
-      return ` | ${tierTitle}`;
+      return ` ${tierTitle}`;
     } else if (examBoardTitle) {
-      return ` | ${examBoardTitle}`;
+      return ` ${examBoardTitle}`;
     } else return "";
   };
 
@@ -86,7 +98,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     <AppLayout
       seoProps={{
         ...getSeoProps({
-          title: `Lesson: ${lessonTitle}${getLessonData()} | ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
+          title: `${lessonTitle}${getLessonData()} ${keyStageSlug.toUpperCase()} | Y${year} ${subjectTitle} Lesson Resources`,
           description:
             "View lesson content and choose resources to download or share",
           canonicalURL: `${getBrowserConfig("seoAppUrl")}/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
@@ -94,6 +106,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
       }}
     >
       <OakThemeProvider theme={oakDefaultTheme}>
+        <Banners hideIfFeatureFlagDisabled />
         <LessonOverview
           lesson={{
             ...curriculumData,
@@ -154,19 +167,29 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug, unitSlug, programmeSlug } = context.params;
 
-      const curriculumData = await curriculumApi2023.lessonOverview({
-        programmeSlug,
-        lessonSlug,
-        unitSlug,
-      });
-
-      if (!curriculumData) {
-        return {
-          notFound: true,
-        };
+      let curriculumData;
+      let lessonPageData;
+      try {
+        curriculumData = await curriculumApi2023.lessonOverview({
+          programmeSlug,
+          lessonSlug,
+          unitSlug,
+        });
+        lessonPageData = await populateLessonWithTranscript(curriculumData);
+      } catch (innerError) {
+        allowNotFoundError(innerError);
       }
 
-      const lessonPageData = await populateLessonWithTranscript(curriculumData);
+      if (!lessonPageData) {
+        const redirect = await getRedirect({
+          isCanonical: false,
+          context: context.params,
+          isTeacher: true,
+          isLesson: true,
+        });
+        return redirect ? { redirect } : { notFound: true };
+      }
+
       const results: GetStaticPropsResult<LessonOverviewPageProps> = {
         props: {
           curriculumData: lessonPageData,

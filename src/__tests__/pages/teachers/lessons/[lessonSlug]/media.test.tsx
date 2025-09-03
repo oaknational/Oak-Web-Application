@@ -15,7 +15,10 @@ import OakError from "@/errors/OakError";
 
 const render = renderWithProviders();
 
-jest.mock("posthog-js/react");
+jest.mock("@/utils/handleTranscript.ts", () => ({
+  populateLessonWithTranscript: jest.fn(),
+  populateMediaClipsWithTranscripts: jest.fn(),
+}));
 
 const mediaClips = lessonMediaClipsFixtures().mediaClips;
 
@@ -24,6 +27,9 @@ const fixtureData = {
   lessonTitle: "Running as a team",
   subjectTitle: "Physical Education",
   keyStageTitle: "Key stage 4",
+  lessonReleaseDate: "2022-02-01T00:00:00Z",
+  loginRequired: false,
+  geoRestricted: false,
   mediaClips,
   pathways: [
     {
@@ -47,6 +53,7 @@ jest.mock("next/router", () => ({
 
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagVariantKey: jest.fn(() => true),
+  useFeatureFlagEnabled: () => false,
 }));
 
 jest.mock("@google-cloud/storage", () => {

@@ -16,6 +16,8 @@ import { LessonShare } from "@/components/TeacherViews/LessonShare/LessonShare.v
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
+import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 
 export type LessonSharePageProps = {
   curriculumData: LessonShareData;
@@ -40,6 +42,7 @@ const LessonSharePage: NextPage<LessonSharePageProps> = ({
           }`,
         }),
         noIndex: true,
+        noFollow: true,
       }}
     >
       <LessonShare isCanonical={false} lesson={curriculumData} />
@@ -78,14 +81,28 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug, programmeSlug, unitSlug } = context.params;
 
-      const curriculumData =
-        await curriculumApi2023.lessonShare<LessonShareData>({
+      let curriculumData;
+      try {
+        curriculumData = await curriculumApi2023.lessonShare<LessonShareData>({
           programmeSlug,
           unitSlug,
           lessonSlug,
         });
+      } catch (innerError) {
+        allowNotFoundError(innerError);
+      }
 
       if (!curriculumData) {
+        const redirect = await getRedirect({
+          isCanonical: false,
+          context: context.params,
+          isTeacher: true,
+          isLesson: true,
+        });
+        return redirect ? { redirect } : { notFound: true };
+      }
+
+      if (curriculumData.georestricted || curriculumData.loginRequired) {
         return {
           notFound: true,
         };

@@ -1,4 +1,4 @@
-import { forwardRef, useState } from "react";
+import React, { forwardRef, useState } from "react";
 import {
   OakHeading,
   OakFlex,
@@ -7,15 +7,14 @@ import {
   oakDefaultTheme,
   OakHandDrawnHR,
   OakBox,
+  OakAnchorTarget,
 } from "@oaknational/oak-components";
 
-import {
-  getPageLinksForLesson,
-  LessonPageLinkAnchorId,
-} from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
+import { getPageLinksForLesson } from "../helpers/lessonHelpers/getPageLinksForLessons";
+
+import { LessonPageLinkAnchorId } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { containerTitleToPreselectMap } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/containerTitleToPreselectMap";
 import { LessonItemContainerLink } from "@/components/TeacherComponents/LessonItemContainerLink";
-import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import { DownloadableLessonTitles } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import LessonPlayAllButton from "@/components/TeacherComponents/LessonPlayAllButton/LessonPlayAllButton";
 
@@ -32,6 +31,9 @@ export type LessonItemTitle =
   | "Slide deck"
   | "Exit quiz"
   | "Starter quiz"
+  | "Prior knowledge starter quiz"
+  | "Assessment exit quiz"
+  | "Lesson slides"
   | "Worksheet"
   | "Lesson video"
   | "Transcript"
@@ -50,16 +52,19 @@ export type Slugs = {
 export interface LessonItemContainerProps {
   children?: React.ReactNode;
   title: LessonItemTitle | DownloadableLessonTitles;
+  downloadTitle?: string;
   anchorId: LessonPageLinkAnchorId;
   downloadable?: boolean;
   shareable?: boolean;
   displayMediaClipButton?: boolean;
   slugs?: Slugs;
   onDownloadButtonClick?: () => void;
+  onPlayALLMediaClipButtonClick?: () => void;
   isFinalElement?: boolean;
   isSpecialist: boolean;
   pageLinks: ReturnType<typeof getPageLinksForLesson>;
   isCanonical?: boolean;
+  subheader?: React.ReactNode;
 }
 
 const getPreselectedDownloadFromTitle = (title: DownloadableLessonTitles) => {
@@ -77,6 +82,7 @@ export const LessonItemContainer = forwardRef<
   const {
     children,
     title,
+    downloadTitle,
     downloadable,
     displayMediaClipButton,
     onDownloadButtonClick,
@@ -85,6 +91,8 @@ export const LessonItemContainer = forwardRef<
     shareable,
     pageLinks,
     isCanonical,
+    onPlayALLMediaClipButtonClick: onPlayAllMediaClipButtonClick,
+    subheader,
   } = props;
   const preselectedDownload = getPreselectedDownloadFromTitle(
     title as DownloadableLessonTitles,
@@ -100,12 +108,15 @@ export const LessonItemContainer = forwardRef<
     anchorId === "lesson-guide" ||
     anchorId === "worksheet" ||
     anchorId === "slide-deck" ||
+    anchorId === "quiz" ||
     anchorId === "media-clips"
       ? pageLinks[pageLinks.findIndex((link) => link.anchorId === anchorId) + 1]
           ?.anchorId || undefined
       : undefined;
 
-  const lowerCaseTitle = title.toLowerCase();
+  const lowerCaseTitle = downloadTitle
+    ? downloadTitle.toLowerCase()
+    : title.toLowerCase();
 
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
@@ -115,66 +126,82 @@ export const LessonItemContainer = forwardRef<
         id={getContainerId(anchorId)}
         tabIndex={-1}
       >
-        <AnchorTarget id={anchorId} $paddingTop={24} ref={ref} />
+        <OakAnchorTarget id={anchorId} $pt={"inner-padding-xl"} ref={ref} />
         <OakFlex
-          $flexDirection={["column", "row"]}
-          $alignItems={["start", "end"]}
-          $gap={["all-spacing-3", "all-spacing-8"]}
-          $height={["auto", "inner-padding-xl3"]}
           $mb={
             skipContentAnchor
               ? ["space-between-xs", "space-between-m", "space-between-m"]
               : ["space-between-m"]
           }
           $position={"relative"}
+          $flexDirection={"column"}
+          $gap={"space-between-xs"}
         >
-          {title && (
-            <OakHeading $font={["heading-5", "heading-4"]} tag={"h2"}>
-              {title}
-            </OakHeading>
-          )}
-          {displayMediaClipButton && slugs && (
-            <LessonPlayAllButton {...slugs} isCanonical={isCanonical} />
-          )}
-          {downloadable && slugs && (
-            <LessonItemContainerLink
-              page={"download"}
-              resourceTitle={lowerCaseTitle}
-              onClick={onDownloadButtonClick}
-              preselected={preselectedDownload}
-              isSpecialist={props.isSpecialist}
-              {...slugs}
-            />
-          )}
-          {shareable && slugs && (
-            <LessonItemContainerLink
-              page={"share"}
-              resourceTitle={lowerCaseTitle}
-              onClick={onDownloadButtonClick}
-              preselected={preselectedShare}
-              isSpecialist={props.isSpecialist}
-              {...slugs}
-            />
-          )}
+          <OakFlex
+            $flexDirection={["column", "row"]}
+            $alignItems={["start", "end"]}
+            $gap={["all-spacing-3", "all-spacing-8"]}
+            $height={["auto", "inner-padding-xl3"]}
+          >
+            {title && (
+              <OakHeading $font={["heading-5", "heading-4"]} tag={"h2"}>
+                {title}
+              </OakHeading>
+            )}
+            {displayMediaClipButton && slugs && (
+              <LessonPlayAllButton
+                {...slugs}
+                isCanonical={isCanonical}
+                onTrackingCallback={onPlayAllMediaClipButtonClick}
+              />
+            )}
+            {downloadable && slugs && (
+              <LessonItemContainerLink
+                page={"download"}
+                resourceTitle={lowerCaseTitle}
+                onClick={onDownloadButtonClick}
+                preselected={preselectedDownload}
+                isSpecialist={props.isSpecialist}
+                {...slugs}
+              />
+            )}
+            {shareable && slugs && (
+              <LessonItemContainerLink
+                page={"share"}
+                resourceTitle={lowerCaseTitle}
+                onClick={onDownloadButtonClick}
+                preselected={preselectedShare}
+                isSpecialist={props.isSpecialist}
+                {...slugs}
+              />
+            )}
 
-          {skipContentAnchor && (
-            <OakSecondaryButton
-              element="a"
-              href={`${slugs?.lessonSlug}#${skipContentAnchor}`}
-              onFocus={() => setSkipVideoButtonFocused(true)}
-              onBlur={() => setSkipVideoButtonFocused(false)}
-              style={
-                skipVideoButtonFocused
-                  ? {}
-                  : {
-                      position: "absolute",
-                      left: "-1000px",
-                      opacity: 0,
-                    }
-              }
-            >
-              {`Skip ${lowerCaseTitle}`}
-            </OakSecondaryButton>
+            {skipContentAnchor && (
+              <OakSecondaryButton
+                element="a"
+                href={`${slugs?.lessonSlug}#${skipContentAnchor}`}
+                onFocus={() => setSkipVideoButtonFocused(true)}
+                onBlur={() => setSkipVideoButtonFocused(false)}
+                style={
+                  skipVideoButtonFocused
+                    ? {}
+                    : {
+                        position: "absolute",
+                        left: "-1000px",
+                        opacity: 0,
+                      }
+                }
+              >
+                {`Skip ${lowerCaseTitle}`}
+              </OakSecondaryButton>
+            )}
+          </OakFlex>
+          {subheader && (
+            <OakFlex $flexDirection="column" $maxWidth={"all-spacing-22"}>
+              <OakHeading tag="h3" $font={"body-2"}>
+                {subheader}
+              </OakHeading>
+            </OakFlex>
           )}
         </OakFlex>
 

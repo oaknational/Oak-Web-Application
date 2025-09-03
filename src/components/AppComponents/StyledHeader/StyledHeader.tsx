@@ -1,9 +1,11 @@
 import styled, { css } from "styled-components";
-import { OakAllSpacingToken } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakAllSpacingToken,
+  OakFlexProps,
+} from "@oaknational/oak-components";
 
 import { OakColorName, OakTheme, PropsWithTheme } from "@/styles/theme";
-import background, { BackgroundProps } from "@/styles/utils/background";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export type HeaderConfig = {
   height: OakAllSpacingToken;
@@ -19,10 +21,9 @@ export const baseHeaderStyles = css`
   min-height: ${headerHeight}px;
 `;
 
-export const StyledHeader = styled(Flex)`
+export const StyledHeader = styled(OakFlex)`
   ${baseHeaderStyles}
-  ${background}
   padding: 12px 16px;
 `;
 
-export type HeaderProps = { children?: React.ReactNode } & BackgroundProps;
+export type HeaderProps = { children?: React.ReactNode } & OakFlexProps;

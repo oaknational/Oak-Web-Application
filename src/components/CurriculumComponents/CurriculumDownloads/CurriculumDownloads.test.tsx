@@ -52,7 +52,7 @@ beforeEach(() => {
   localStorage.clear();
 });
 
-describe("Component - Curriculum Header", () => {
+describe("CurriculumDownloads", () => {
   const renderComponent = () => {
     const defaultProps = {
       category: testCategory as DownloadCategory,
@@ -76,7 +76,6 @@ describe("Component - Curriculum Header", () => {
             category={testCategory}
             downloads={downloads}
           />
-          ;
           <button
             onClick={() => downloadsRef.current?.clearSelection()}
             data-testid="clearButton"
@@ -97,8 +96,8 @@ describe("Component - Curriculum Header", () => {
   });
 
   test("renders download cards", async () => {
-    const { findAllByLabelText } = renderComponent();
-    const cards = await findAllByLabelText(frenchResource.label);
+    const { findAllByText } = renderComponent();
+    const cards = await findAllByText(frenchResource.label);
     expect(cards).toHaveLength(1);
   });
 
@@ -187,7 +186,7 @@ describe("Component - Curriculum Header", () => {
     const { getByText } = renderComponent();
     await act(() => {
       const input = getByText(frenchResource.label)
-        .closest("label")
+        .closest("[data-testid='resourceCard']")
         ?.querySelector("input") as HTMLInputElement;
       expect(input?.checked).toBeTruthy();
     });

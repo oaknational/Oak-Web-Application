@@ -1,7 +1,7 @@
-import { LessonOverviewPageData } from "../queries/lessonOverview/lessonOverview.schema";
-
 import lessonMediaClipsFixtures from "./lessonMediaClips.fixture";
 import { quizQuestions } from "./quizElements.fixture";
+
+import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 
 const lessonOverviewFixture = (
   partial?: Partial<LessonOverviewPageData>,
@@ -20,12 +20,15 @@ const lessonOverviewFixture = (
     subjectSlug: "english",
     subjectTitle: "English",
     yearTitle: "Year 3",
+    year: "3",
     additionalMaterialUrl:
       "https://docs.google.com/document/d/1p2UbFuK3HmRH4yzs1QRgTi-Vh--l0PmhblLoa52rV7U/edit?usp=drivesdk",
     misconceptionsAndCommonMistakes: [{ response: "", misconception: "" }],
     lessonEquipmentAndResources: null,
     teacherTips: null,
     pathways: [],
+    loginRequired: false,
+    geoRestricted: false,
     keyLearningPoints: [
       {
         keyLearningPoint:
@@ -84,7 +87,7 @@ const lessonOverviewFixture = (
     worksheetUrl:
       "https://docs.google.com/presentation/d/1gjXZk0ylpz--95u4cIpTN6UPfEnWoIk6xH6pW23_mqY/embed?start=false&amp;loop=false&amp",
     isWorksheetLandscape: true,
-    hasCopyrightMaterial: false,
+    hasLegacyCopyrightMaterial: false,
     videoMuxPlaybackId: null,
     videoWithSignLanguageMuxPlaybackId: null,
     transcriptSentences: ["this is a sentence", "this is another sentence"],
@@ -106,6 +109,9 @@ const lessonOverviewFixture = (
     lessonMediaClips: lessonMediaClipsFixtures().mediaClips,
     additionalFiles: ["file1", "file2"],
     lessonOutline: [{ lessonOutline: "This is the lesson outline" }],
+    lessonReleaseDate: "2024-09-29T14:00:00.000Z",
+    orderInUnit: 4,
+    unitTotalLessonCount: 6,
     ...partial,
   };
 };

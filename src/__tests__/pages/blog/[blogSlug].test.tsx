@@ -5,7 +5,6 @@ import BlogSinglePage, {
   BlogSinglePageProps,
 } from "../../../pages/blog/[blogSlug]";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
-import renderWithSeo from "../../__helpers__/renderWithSeo";
 
 jest.mock("next/router", () => ({
   __esModule: true,
@@ -17,11 +16,27 @@ jest.mock("next/router", () => ({
     pathname: "/blog/[blogSlug]",
   }),
 }));
-jest.mock("next-sanity-image", () => ({
+
+jest.mock("@/components/HooksAndUtils/sanityImageBuilder", () => ({
   __esModule: true,
-  useNextSanityImage: () => ({
-    src: "www.example.com/img.png",
-  }),
+  imageBuilder: {
+    image: function () {
+      return this;
+    },
+    width: function () {
+      return this;
+    },
+    height: function () {
+      return this;
+    },
+    fit: function () {
+      return this;
+    },
+    crop: function () {
+      return this;
+    },
+    url: () => "www.example.com/img.png",
+  },
 }));
 
 const testBlog: BlogPost = {
@@ -95,16 +110,6 @@ describe("pages/blog/[blogSlug].tsx", () => {
         expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
           "A blog",
         );
-      });
-    });
-
-    describe.skip("SEO", () => {
-      it("renders the correct SEO details", async () => {
-        const { seo } = renderWithSeo()(
-          <BlogSinglePage blog={testSerializedBlog} categories={[]} />,
-        );
-
-        expect(seo).toEqual({});
       });
     });
   });

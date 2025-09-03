@@ -3,8 +3,9 @@ import { headers } from "next/headers";
 import { WebhookEvent } from "@clerk/nextjs/server";
 import { NextRequest } from "next/server";
 
+import { handleSessionCreatedEvent } from "@/utils/handleSessionCreatedEvent";
 import getServerConfig from "@/node-lib/getServerConfig";
-import { getWebhookPersonalisationApi } from "@/node-lib/personalisation-api";
+import { getWebhookEducatorApi } from "@/node-lib/educator-api";
 import errorReporter from "@/common-lib/error-reporter";
 
 export async function POST(req: NextRequest) {
@@ -21,7 +22,7 @@ export async function POST(req: NextRequest) {
   const wh = new Webhook(signingSecret);
 
   // Get headers
-  const headerPayload = headers();
+  const headerPayload = await headers();
   const svix_id = headerPayload.get("svix-id");
   const svix_timestamp = headerPayload.get("svix-timestamp");
   const svix_signature = headerPayload.get("svix-signature");
@@ -59,11 +60,11 @@ export async function POST(req: NextRequest) {
 
   // Insert or update user in db
   if (id && evt.type === "user.updated") {
-    const personalisationApi = await getWebhookPersonalisationApi(id);
+    const educatorApi = await getWebhookEducatorApi(id);
     const sourceApp = evt.data.public_metadata?.sourceApp;
 
     try {
-      await personalisationApi.createUser({ userId: id, sourceApp });
+      await educatorApi.createUser({ userId: id, sourceApp });
     } catch (error) {
       reportError(error, {
         message: "Failed to create user in database",
@@ -73,6 +74,17 @@ export async function POST(req: NextRequest) {
       });
     }
   }
-
+  if (id && evt.type === "session.created") {
+    try {
+      await handleSessionCreatedEvent(evt);
+    } catch (error) {
+      reportError(error, {
+        message: "Failed to update requiresGeolocation",
+      });
+      return new Response("Error: could not update user", {
+        status: 500,
+      });
+    }
+  }
   return new Response("Webhook received", { status: 200 });
 }

@@ -1,18 +1,19 @@
-import Bugsnag, { Event as BugsnagEvent } from "@bugsnag/js";
+import Bugsnag from "@bugsnag/js";
+import * as Sentry from "@sentry/nextjs";
 
 import OakError from "../../errors/OakError";
 
-import errorReporter, {
-  initialiseBugsnag,
-  ErrorData,
-  matchesUserAgent,
-  matchesIgnoredError,
-  getBugsnagOnError,
-} from "./errorReporter";
+import errorReporter, { ErrorData } from "./errorReporter";
 
 import { consentClient } from "@/browser-lib/cookie-consent/consentClient";
 
 jest.mock("../../browser-lib/cookie-consent/consentClient");
+jest.mock("./errorFiltering", () => ({
+  __esModule: true,
+  matchesUserAgent: jest.fn(),
+  matchesIgnoredErrorSentry: jest.fn(),
+  matchesIgnoredErrorBugsnag: jest.fn(),
+}));
 
 const parentMetaFields = {
   query: { paramName: "paramValue" },
@@ -54,98 +55,29 @@ jest.mock("./bugsnagNotify", () => ({
 const mockStart = jest.fn();
 Bugsnag.start = mockStart;
 
+// Mocks for Sentry
+const mockSetTag = jest.fn();
+const mockSetLevel = jest.fn();
+const mockSetFingerprint = jest.fn();
+const mockSetExtra = jest.fn();
+
+jest.mock("@sentry/nextjs", () => ({
+  captureException: jest.fn(),
+  withScope: jest.fn((callback) =>
+    callback({
+      setTag: mockSetTag,
+      setLevel: mockSetLevel,
+      setFingerprint: mockSetFingerprint,
+      setExtra: mockSetExtra,
+    }),
+  ),
+}));
+
 describe("common-lib/error-reporter", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  describe("matchesUserAgent", () => {
-    it("returns false if the ua string doesn't contain words in the disallow list", () => {
-      expect(
-        matchesUserAgent(
-          "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4619.141 Safari/537.36",
-        ),
-      ).toBe(false);
-    });
-    it("returns true if ua string contains 'percy'", () => {
-      expect(
-        matchesUserAgent(
-          "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_4) percy AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4619.141 Safari/537.36",
-        ),
-      ).toBe(true);
-    });
-  });
-  describe("matchesIgnoredError", () => {
-    it("returns false if the error should not be ignored", () => {
-      const shouldIgnore = matchesIgnoredError({
-        errorMessage: "Proper error that should be reported",
-        stacktrace: [],
-      });
-      expect(shouldIgnore).toBe(false);
-    });
-    it("returns true if the error should be ignored based on message", () => {
-      const shouldIgnore = matchesIgnoredError({
-        errorMessage: "Test error",
-        stacktrace: [],
-      });
-      expect(shouldIgnore).toBe(true);
-    });
-    it("returns true if the error should be ignored based on stacktrace", () => {
-      const shouldIgnore = matchesIgnoredError({
-        errorMessage: "Proper error message",
-        stacktrace: [{ file: "https://OAK_TEST_ERROR_STACKTRACE_FILE.js" }],
-      });
-      expect(shouldIgnore).toBe(true);
-    });
-    it("returns true if the error should be ignored based on subdomains", () => {
-      const shouldIgnore = matchesIgnoredError({
-        errorMessage: "Proper error message",
-        stacktrace: [{ file: "https://something.hubspot.com/foo.js" }],
-      });
-      expect(shouldIgnore).toBe(true);
-    });
-  });
-  describe("Bugsnag onError handler", () => {
-    it("Returns undefined for non-ignored error", () => {
-      const event = {
-        device: { userAgent: "real browser" },
-        errors: [
-          {
-            errorMessage: "real error",
-            stacktrace: [{ file: "real file" }],
-          },
-        ],
-      } as BugsnagEvent;
-      const result = getBugsnagOnError({ logger })(event);
-      expect(result).toBe(undefined);
-    });
-    it("Returns false for ignored user agents", () => {
-      const event = {
-        device: { userAgent: "detectify" },
-      } as BugsnagEvent;
-      const result = getBugsnagOnError({ logger })(event);
-      expect(result).toBe(false);
-    });
-    it("Returns false for ignored errors", () => {
-      const event = {
-        device: {},
-        errors: [
-          {
-            errorMessage: "Test error",
-            stacktrace: [],
-          },
-        ],
-      } as unknown as BugsnagEvent;
-      const result = getBugsnagOnError({ logger })(event);
-      expect(result).toBe(false);
-    });
-  });
-  describe("initialiseBugsnag", () => {
-    it("calls Bugsnag.start", () => {
-      const userId = "1234";
-      initialiseBugsnag(userId);
-      expect(mockStart).toHaveBeenCalled();
-    });
-  });
+
   describe("[enabled]: errorReporter()()", () => {
     beforeEach(() => {
       jest.clearAllMocks();
@@ -153,67 +85,103 @@ describe("common-lib/error-reporter", () => {
 
       (testError as { hasBeenReported?: boolean }).hasBeenReported = undefined;
     });
-    it("calls bugsnag.notify with the error", async () => {
-      reportError(testError);
 
-      expect(mockNotify).toHaveBeenCalledWith(testError, expect.anything());
+    it("should report the error to both Sentry and Bugsnag", async () => {
+      await reportError(testError);
+
+      if (process.env.NEXT_PUBLIC_SENTRY_ENABLED === "true") {
+        expect(Sentry.captureException).toHaveBeenCalledWith(testError);
+      } else {
+        expect(mockNotify).toHaveBeenCalledWith(testError, expect.anything());
+      }
     });
-    it("adds relevent fields to bugsnag event", async () => {
-      reportError(testError, testData);
 
-      expect(event.context).toBe(testContext);
-      expect(event.severity).toBe("error");
-      expect(event.groupingHash).toBe(testData.groupingHash);
+    it("adds relevant fields to bugsnag and Sentry events", async () => {
+      await reportError(testError, testData);
+      if (process.env.NEXT_PUBLIC_SENTRY_ENABLED === "true") {
+        expect(mockSetTag).toHaveBeenCalledWith("context", testContext);
+        expect(mockSetLevel).toHaveBeenCalledWith("error");
+        expect(mockSetFingerprint).toHaveBeenCalledWith([
+          testData.groupingHash,
+        ]);
+      } else {
+        expect(event.context).toBe(testContext);
+        expect(event.severity).toBe("error");
+        expect(event.groupingHash).toBe(testData.groupingHash);
+      }
     });
 
     it("adds Meta fields", async () => {
-      reportError(testError, testData);
+      const aggregatedMeta = { ...parentMetaFields, ...childMetaFields };
+      await reportError(testError, testData);
 
-      expect(event.addMetadata).toHaveBeenCalledWith("Meta", {
-        ...parentMetaFields,
-        ...childMetaFields,
+      if (process.env.NEXT_PUBLIC_SENTRY_ENABLED === "true") {
+        Object.entries(aggregatedMeta).forEach(([key, value]) => {
+          expect(mockSetExtra).toHaveBeenCalledWith(key, value);
+        });
+      } else {
+        expect(event.addMetadata).toHaveBeenCalledWith("Meta", aggregatedMeta);
+      }
+    });
+
+    if (process.env.NEXT_PUBLIC_SENTRY_ENABLED !== "true") {
+      it("logs if bugsnag.notify throws", async () => {
+        mockNotify.mockImplementationOnce(() => Promise.reject("bad thing"));
+
+        await reportError("test thing");
+        expect(consoleLog).toHaveBeenCalledWith(
+          "Failed to send error to bugsnag:",
+        );
+        expect(consoleError).toHaveBeenCalledWith("bad thing");
+        expect(consoleLog).toHaveBeenCalledWith("Original error:");
+        expect(consoleError).toHaveBeenCalledWith("test thing");
       });
-    });
+    }
 
-    it("logs if bugsnag.notify throws", async () => {
-      mockNotify.mockImplementationOnce(() => Promise.reject("bad thing"));
-
-      await reportError("test thing");
-      expect(consoleLog).toHaveBeenCalledWith(
-        "Failed to send error to bugsnag:",
-      );
-      expect(consoleError).toHaveBeenCalledWith("bad thing");
-      expect(consoleLog).toHaveBeenCalledWith("Original error:");
-      expect(consoleError).toHaveBeenCalledWith("test thing");
-    });
-    test("adds originalError if error is OakError", () => {
+    test("adds originalError if error is OakError", async () => {
       const originalError = new Error(
         "some error from somewhere (not our fault!)",
       );
       const oakError = new OakError({ code: "misc/unknown", originalError });
-      reportError(oakError);
+      await reportError(oakError);
 
-      expect(event.addMetadata).toHaveBeenCalledWith("Meta", {
-        ...parentMetaFields,
-        originalError,
-      });
+      if (process.env.NEXT_PUBLIC_SENTRY_ENABLED === "true") {
+        expect(mockSetExtra).toHaveBeenCalledWith(
+          "originalError",
+          originalError,
+        );
+      } else {
+        expect(event.addMetadata).toHaveBeenCalledWith("Meta", {
+          ...parentMetaFields,
+          originalError,
+        });
+      }
     });
-    test("will not call Bugsnag.notify if error.hasBeenReported is true", () => {
+
+    test("should not report the error if error.hasBeenReported is true", async () => {
       const error = new OakError({ code: "misc/unknown" });
       error.hasBeenReported = true;
-      reportError(error);
-      expect(mockNotify).not.toHaveBeenCalled();
+
+      await reportError(error);
+      if (process.env.NEXT_PUBLIC_SENTRY_ENABLED === "true") {
+        expect(Sentry.captureException).not.toHaveBeenCalled();
+      } else {
+        expect(mockNotify).not.toHaveBeenCalled();
+      }
     });
 
-    test("will not call Bugsnag.notify if error.config.shouldNotify is false", () => {
+    test("should not report the error if error.config.shouldNotify is false", async () => {
       const error = new OakError({ code: "preview/zod-error" });
       error.config.shouldNotify = false;
-      reportError(error);
+
+      await reportError(error);
+
       expect(mockNotify).not.toHaveBeenCalled();
+      expect(Sentry.captureException).not.toHaveBeenCalled();
     });
 
-    test("will not call Bugsnag.notify if some nested originalError.hasBeenReported is true", () => {
-      reportError({
+    test("should not report the error if some nested originalError.hasBeenReported is true", async () => {
+      await reportError({
         originalError: {
           originalError: {
             originalError: {
@@ -222,38 +190,64 @@ describe("common-lib/error-reporter", () => {
           },
         },
       });
+
       expect(mockNotify).not.toHaveBeenCalled();
+      expect(Sentry.captureException).not.toHaveBeenCalled();
     });
-    test("will not get stuck in a recursive loop", () => {
+
+    test("will not get stuck in a recursive loop", async () => {
       const error = new Error("self referential error");
       (error as { originalError?: unknown }).originalError = error;
-      reportError(error);
-      expect(mockNotify).toHaveBeenCalled();
+
+      await reportError(error);
+
+      if (process.env.NEXT_PUBLIC_SENTRY_ENABLED === "true") {
+        expect(Sentry.captureException).toHaveBeenCalled();
+      } else {
+        expect(mockNotify).toHaveBeenCalled();
+      }
     });
+
     test("sets error.hasBeenReported = true", async () => {
       const error = new OakError({ code: "misc/unknown" });
-      reportError(error);
+
+      await reportError(error);
+
       expect(error.hasBeenReported).toBe(true);
     });
-    test("will not report same error twice", () => {
+
+    test("will not report same error twice", async () => {
       const error = new OakError({ code: "misc/unknown" });
-      reportError(error);
-      reportError(error);
-      expect(mockNotify).toHaveBeenCalledTimes(1);
+
+      await reportError(error);
+      await reportError(error);
+
+      if (process.env.NEXT_PUBLIC_SENTRY_ENABLED === "true") {
+        expect(Sentry.captureException).toHaveBeenCalledTimes(1);
+      } else {
+        expect(mockNotify).toHaveBeenCalledTimes(1);
+      }
+
       expect(consoleWarn).toHaveBeenCalledWith(
         expect.stringContaining("already reported"),
       );
     });
   });
+
   describe("[disabled]: errorReporter()()", () => {
     beforeEach(() => {
       jest.clearAllMocks();
       jest.spyOn(consentClient, "getConsent").mockReturnValue("denied");
     });
-    it("does not call bugsnag.notify with the error", async () => {
-      reportError(testError);
 
-      expect(mockNotify).not.toHaveBeenCalled();
+    it("should not report the error", async () => {
+      await reportError(testError);
+
+      if (process.env.NEXT_PUBLIC_SENTRY_ENABLED === "true") {
+        expect(Sentry.captureException).not.toHaveBeenCalled();
+      } else {
+        expect(mockNotify).not.toHaveBeenCalled();
+      }
     });
   });
 });

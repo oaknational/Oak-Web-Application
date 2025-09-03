@@ -52,8 +52,10 @@ const SubjectListingCardCountCard: FC<SubjectListingCardCountCardProps> = ({
       $background={"white"}
       $flexDirection={"column"}
       $position={"relative"}
-      $flex={1}
-      $borderRadius={4}
+      $borderRadius={"border-radius-s"}
+      $flexGrow={1}
+      $flexShrink={1}
+      $flexBasis={0}
     >
       {!isLegacyLesson && (
         <TagPromotional

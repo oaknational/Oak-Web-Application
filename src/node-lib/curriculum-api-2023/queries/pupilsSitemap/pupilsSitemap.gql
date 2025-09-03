@@ -1,13 +1,13 @@
 query pupilsSitemap {
-  programmes: published_mv_synthetic_programmes_by_year_11_1_0 {
+  programmes: published_mv_synthetic_programmes_by_year_18_0_0 {
     programme_slug
   }
-  units: published_mv_synthetic_unitvariants_with_lesson_ids_by_year_14_0_0 {
+  units: published_mv_synthetic_unitvariants_with_lesson_ids_by_year_18_0_0 {
     programme_slug
     unit_slug
     actions
   }
-  lessons: published_mv_synthetic_unitvariant_lessons_by_year_12_0_0 {
+  lessons: published_mv_synthetic_unitvariant_lessons_by_year_18_0_0 {
     programme_slug
     unit_slug
     lesson_slug

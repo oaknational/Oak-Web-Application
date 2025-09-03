@@ -1,7 +1,19 @@
 import { act, render, screen } from "@testing-library/react";
 import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
+import userEvent from "@testing-library/user-event";
 
 import { TeacherShareButton } from "./TeacherShareButton";
+import { useTeacherShareButton } from "./useTeacherShareButton";
+
+import { renderHookWithProviders } from "@/__tests__/__helpers__/renderWithProviders";
+
+// Mock the clipboard API
+const clipboardWriteTextMock = jest.fn();
+Object.assign(navigator, {
+  clipboard: {
+    writeText: clipboardWriteTextMock,
+  },
+});
 
 describe("TeacherShareButton", () => {
   it("renders", () => {
@@ -10,6 +22,7 @@ describe("TeacherShareButton", () => {
         <TeacherShareButton
           shareUrl={"test"}
           variant="primary"
+          handleClick={() => {}}
           label="share me"
         />
       </OakThemeProvider>,
@@ -18,13 +31,9 @@ describe("TeacherShareButton", () => {
   });
 
   it("copies a link to the clipboard when the button is clicked", async () => {
-    // Mock the clipboard API
-    const clipboardWriteTextMock = jest.fn();
-    Object.assign(navigator, {
-      clipboard: {
-        writeText: clipboardWriteTextMock,
-      },
-    });
+    const { result } = renderHookWithProviders()(() =>
+      useTeacherShareButton({ shareUrl: "test", shareActivated: () => {} }),
+    );
 
     render(
       <OakThemeProvider theme={oakDefaultTheme}>
@@ -32,11 +41,12 @@ describe("TeacherShareButton", () => {
           shareUrl={"test"}
           variant="primary"
           label="share me"
+          handleClick={result.current.handleClick}
         />
       </OakThemeProvider>,
     );
 
-    const button = screen.getByRole("button");
+    const button = screen.getByRole("button", { name: "share me" });
     act(() => {
       button.click();
     });
@@ -47,26 +57,27 @@ describe("TeacherShareButton", () => {
   it("calls shareActivated when the button is clicked the first time", async () => {
     const shareActivatedMock = jest.fn();
 
+    const { result } = renderHookWithProviders()(() =>
+      useTeacherShareButton({
+        shareUrl: "test",
+        shareActivated: shareActivatedMock,
+      }),
+    );
+
     render(
       <OakThemeProvider theme={oakDefaultTheme}>
         <TeacherShareButton
           shareUrl={"test"}
-          shareActivated={shareActivatedMock}
           variant="primary"
           label="share me"
+          handleClick={result.current.handleClick}
         />
       </OakThemeProvider>,
     );
 
-    const button = screen.getByRole("button");
+    const button = screen.getByRole("button", { name: "share me" });
 
-    act(() => {
-      button.click();
-    });
-    expect(shareActivatedMock).toHaveBeenCalledTimes(1);
-    act(() => {
-      button.click();
-    });
+    await userEvent.click(button);
     expect(shareActivatedMock).toHaveBeenCalledTimes(1);
   });
 });

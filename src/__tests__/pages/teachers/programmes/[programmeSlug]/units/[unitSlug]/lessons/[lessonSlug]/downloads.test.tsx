@@ -21,7 +21,6 @@ import LessonDownloadsPage, {
 import {
   mockLoggedIn,
   mockUserWithDownloadAccess,
-  mockUserWithoutDownloadAccess,
 } from "@/__tests__/__helpers__/mockUser";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 
@@ -35,7 +34,11 @@ const getDownloadResourcesExistenceData = {
     "worksheet-pdf": true,
   },
 };
-
+const mockFeatureFlagEnabled = jest.fn().mockReturnValue(false);
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagVariantKey: () => "with login",
+  useFeatureFlagEnabled: () => mockFeatureFlagEnabled(),
+}));
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 jest.mock(
   "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence",
@@ -65,12 +68,15 @@ jest.mock(
 );
 
 const lessonDownloaded = jest.fn();
+const teacherShareInitiated = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
       lessonResourcesDownloaded: (...args: unknown[]) =>
         lessonDownloaded(...args),
+      teacherShareInitiated: (...args: unknown[]) =>
+        teacherShareInitiated(...args),
     },
   }),
 }));
@@ -203,7 +209,13 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       tierName: "Foundation",
       unitName: "Measuring waves",
       unitSlug: "measuring-waves",
+      lessonReleaseCohort: "2023-2026",
+      lessonReleaseDate: "2025-09-29T14:00:00.000Z",
+      pathway: null,
+      totalDownloadableResources: 2,
     });
+
+    expect(teacherShareInitiated).toHaveBeenCalledTimes(1);
   });
   it("tracks download event with correct args for lessons without pfs", async () => {
     window.scrollTo = jest.fn();
@@ -241,7 +253,6 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       emailSupplied: true,
       engagementIntent: "use",
       eventVersion: "2.0.0",
-      examBoard: null,
       keyStageSlug: "ks4",
       keyStageTitle: "Key stage 4",
       lessonName: "Transverse waves",
@@ -259,9 +270,14 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       schoolUrn: "123456",
       subjectSlug: "combined-science",
       subjectTitle: "Combined Science",
-      tierName: null,
       unitName: "Measuring waves",
       unitSlug: "measuring-waves",
+      lessonReleaseCohort: "2023-2026",
+      lessonReleaseDate: "2025-09-29T14:00:00.000Z",
+      pathway: null,
+      tierName: null,
+      examBoard: null,
+      totalDownloadableResources: 2,
     });
   });
 
@@ -333,8 +349,9 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       // HACK: wait for next tick
       await waitForNextTick();
 
-      const description = computeAccessibleDescription(input);
-      expect(description).toBe("Please enter a valid email address");
+      expect(
+        screen.getByText("Please enter a valid email address"),
+      ).toBeInTheDocument();
     });
 
     it("should not display error hint on blur email if empty", async () => {
@@ -477,7 +494,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       await user.click(editButton);
 
       const emailAddress = result.current.emailFromLocalStorage;
-      expect(getByTestId("rotated-input-label")).toBeInTheDocument();
+      expect(getByTestId("jaunty-label")).toBeInTheDocument();
       const emailValue = getByDisplayValue(emailAddress);
       expect(emailValue).toBeInTheDocument();
       expect(emailAddress).toBe("test@test.com");
@@ -572,7 +589,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
         canonical:
           "NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/combined-science-secondary-ks4-foundation-edexcel/units/measuring-waves/lessons/transverse-waves",
-        robots: "noindex,follow",
+        robots: "noindex,nofollow",
       });
     });
   });
@@ -598,26 +615,6 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
             "Sorry, downloads for this lesson are not available in your country",
           ),
         ).not.toBeInTheDocument();
-      });
-    });
-
-    describe("and the user does not have access", () => {
-      beforeEach(() => {
-        setUseUserReturn({
-          ...mockLoggedIn,
-          user: mockUserWithoutDownloadAccess,
-        });
-      });
-
-      // TODO: reinstate when geoblocking live
-      it.skip("disallows downloads", () => {
-        render(<LessonDownloadsPage curriculumData={curriculumData} />);
-
-        expect(
-          screen.queryByText(
-            "Sorry, downloads for this lesson are not available in your country",
-          ),
-        ).toBeInTheDocument();
       });
     });
   });

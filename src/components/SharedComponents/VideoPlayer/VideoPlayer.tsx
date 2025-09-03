@@ -8,13 +8,13 @@ import useVideoTracking, { VideoTrackingGetState } from "./useVideoTracking";
 import getTimeElapsed from "./getTimeElapsed";
 import getSubtitleTrack from "./getSubtitleTrack";
 import getDuration from "./getDuration";
-import getPercentageElapsed from "./getPercentageElapsed";
 import {
   PlaybackPolicy,
   useSignedVideoToken,
   useSignedThumbnailToken,
   useSignedStoryboardToken,
 } from "./useSignedVideoToken";
+import { onPause, onPlay, onTimeUpdate } from "./videoCallbacks";
 
 import theme, { OakColorName } from "@/styles/theme";
 import errorReporter from "@/common-lib/error-reporter";
@@ -46,6 +46,8 @@ export type VideoPlayerProps = {
   isAudioClip?: boolean;
   loadingTextColor?: OakColorToken;
   defaultHiddenCaptions?: boolean;
+  cloudinaryUrl?: string | null;
+  muxAssetId?: string | null;
 };
 
 export type VideoEventCallbackArgs = {
@@ -54,6 +56,28 @@ export type VideoEventCallbackArgs = {
   duration: number | null;
   muted: boolean;
 };
+
+function VideoContainer({ children }: { children: React.ReactNode }) {
+  return (
+    <OakFlex
+      // NOTE: Hiding video contents because otherwise we get some percy
+      // snapshots loaded and some pending load depending on the timing
+      // (race condition)
+      data-percy-hide="contents"
+      $alignItems={"center"}
+      $justifyContent={"center"}
+      $ba={"border-solid-l"}
+      $minWidth={"100%"}
+      $borderColor={"black"}
+      style={{
+        aspectRatio: "16/9",
+        boxSizing: "content-box",
+      }}
+    >
+      {children}
+    </OakFlex>
+  );
+}
 
 const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   const {
@@ -68,10 +92,12 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     isAudioClip,
     loadingTextColor = "black",
     defaultHiddenCaptions = false,
+    cloudinaryUrl,
+    muxAssetId,
   } = props;
 
   const mediaElRef = useRef<MuxPlayerElement>(null);
-  const hasTrackedEndRef = useRef(false);
+  const [endTracked, setEndTracked] = useState<string | null>(null);
   const [envKey] = useState(INITIAL_ENV_KEY);
   const [debug] = useState(INITIAL_DEBUG);
   const [videoIsPlaying, setVideoIsPlaying] = useState(false);
@@ -94,7 +120,12 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     };
   };
 
-  const videoTracking = useVideoTracking({ getState, pathwayData });
+  const videoTracking = useVideoTracking({
+    getState,
+    pathwayData,
+    cloudinaryUrl,
+    muxAssetId,
+  });
 
   const thumbnailToken = useSignedThumbnailToken({
     playbackId,
@@ -124,53 +155,6 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   const reportError = errorReporter("VideoPlayer.tsx");
 
   const PLAYING_CLASSNAME = "playing";
-  const onPlay = () => {
-    // This enables the detection of whether or not a video
-    // is being played without having to look in the
-    // shadow DOM, useful for simple automated test tools
-    // and site monitoring synthetics.
-    mediaElRef.current?.classList.add(PLAYING_CLASSNAME);
-    setVideoIsPlaying(true);
-    videoTracking.onPlay();
-    userEventCallback({
-      event: "play",
-      duration: getDuration(mediaElRef),
-      timeElapsed: getTimeElapsed(mediaElRef),
-      muted: mediaElRef.current?.muted || false,
-    });
-  };
-
-  const onPause = () => {
-    mediaElRef.current?.classList.remove(PLAYING_CLASSNAME);
-    setVideoIsPlaying(false);
-    videoTracking.onPause();
-    userEventCallback({
-      event: "pause",
-      duration: getDuration(mediaElRef),
-      timeElapsed: getTimeElapsed(mediaElRef),
-      muted: mediaElRef.current?.muted || false,
-    });
-  };
-
-  const onTimeUpdate = () => {
-    if (getPercentageElapsed(mediaElRef) >= 90 && !hasTrackedEndRef.current) {
-      videoTracking.onEnd();
-      hasTrackedEndRef.current = true;
-      userEventCallback({
-        event: "end",
-        duration: getDuration(mediaElRef),
-        timeElapsed: getTimeElapsed(mediaElRef),
-        muted: mediaElRef.current?.muted || false,
-      });
-    } else if (mediaElRef.current?.classList.contains(PLAYING_CLASSNAME)) {
-      userEventCallback({
-        event: "playing",
-        duration: getDuration(mediaElRef),
-        timeElapsed: getTimeElapsed(mediaElRef),
-        muted: mediaElRef.current?.muted || false,
-      });
-    }
-  };
 
   /**
    * Check if the provided error event is a network error. If it is, check the
@@ -241,21 +225,11 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
 
   if (videoToken.loading || thumbnailToken.loading || storyboardToken.loading) {
     return (
-      <OakFlex
-        $alignItems={"center"}
-        $justifyContent={"center"}
-        $ba={"border-solid-m"}
-        $minWidth={"100%"}
-        $borderColor={"black"}
-        style={{
-          aspectRatio: "16/9",
-          boxSizing: "content-box",
-        }}
-      >
+      <VideoContainer>
         <OakP $color={loadingTextColor} $textAlign="center">
           Loading...
         </OakP>
-      </OakFlex>
+      </VideoContainer>
     );
   }
 
@@ -279,15 +253,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   }
 
   return (
-    <OakFlex
-      $flexDirection={"column"}
-      $ba={"border-solid-l"}
-      $minWidth={"100%"}
-      $borderColor={"black"}
-      style={{
-        boxSizing: "content-box",
-      }}
-    >
+    <VideoContainer>
       <MuxPlayer
         key={reloadOnErrors.length}
         preload="metadata"
@@ -305,10 +271,36 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         primaryColor={theme.colors.white}
         secondaryColor={theme.colors.black}
         accentColor={theme.colors.black}
-        onPlay={onPlay}
-        onPause={onPause}
+        onPlay={() =>
+          onPlay({
+            mediaElRef,
+            setVideoIsPlaying,
+            trackOnPlay: videoTracking.onPlay,
+            userEventCallback,
+            playingClassname: PLAYING_CLASSNAME,
+          })
+        }
+        onPause={() =>
+          onPause({
+            mediaElRef,
+            setVideoIsPlaying,
+            trackOnPause: videoTracking.onPause,
+            userEventCallback,
+            playingClassname: PLAYING_CLASSNAME,
+          })
+        }
         onError={onError}
-        onTimeUpdate={onTimeUpdate}
+        onTimeUpdate={() =>
+          onTimeUpdate({
+            mediaElRef,
+            setEndTracked,
+            trackOnEnd: videoTracking.onEnd,
+            userEventCallback,
+            playbackId,
+            endTracked,
+            playingClassname: PLAYING_CLASSNAME,
+          })
+        }
         onCanPlay={() => {
           if (reloadingDueToErrors && videoIsPlaying) {
             mediaElRef.current?.play();
@@ -320,7 +312,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
           overflow: "hidden",
         }}
       />
-    </OakFlex>
+    </VideoContainer>
   );
 };
 

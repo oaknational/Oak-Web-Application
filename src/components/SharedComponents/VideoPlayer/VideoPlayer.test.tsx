@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-import { act, render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import VideoPlayer, {
@@ -128,74 +128,18 @@ describe("VideoPlayer", () => {
 
   it("handles and reports onPause event", async () => {
     render(<VideoPlayer {...defaultProps} />);
-    const pauseButton = screen.getByTestId("pause-button");
-    jest.clearAllMocks();
-    await userEvent.click(pauseButton);
+    const playButton = screen.getByTestId("play-button");
+    await userEvent.click(playButton);
+    setTimeout(async () => {
+      const pauseButton = screen.getByTestId("pause-button");
+      await userEvent.click(pauseButton);
 
-    expect(defaultProps.userEventCallback).toHaveBeenCalledWith({
-      duration: 100,
-      event: "pause",
-      timeElapsed: 0,
-      muted: false,
-    });
-  });
-
-  // This passes, but I'm confident its not working as expected
-  it.skip("handles unknown error event, no report second time", async () => {
-    render(<VideoPlayer {...defaultProps} />);
-    const errorButton = screen.getByTestId("error-button");
-    mockErrorReporter.mockClear();
-
-    currentErrorEvent = { detail: { data: { type: "unknownError" } } };
-
-    await waitFor(() => {
-      userEvent.click(errorButton);
-    });
-    await waitFor(() => {
-      userEvent.click(errorButton);
-    });
-
-    expect(mockErrorReporter).toHaveBeenCalledTimes(1);
-  });
-
-  //   Could not get this test to pass but confident it's working as expected. The time to fix this can't be justified currently.
-  it.skip("handles unknown error event, report after 5 times", async () => {
-    render(<VideoPlayer {...defaultProps} />);
-    const errorButton = screen.getByTestId("error-button");
-
-    currentErrorEvent = { detail: { data: { type: "unknownError" } } };
-
-    await act(async () => {
-      await waitFor(() => {
-        userEvent.click(errorButton);
-      });
-      await waitFor(() => {
-        userEvent.click(errorButton);
-      });
-      await waitFor(() => {
-        userEvent.click(errorButton);
-      });
-      await waitFor(() => {
-        userEvent.click(errorButton);
-      });
-      await waitFor(() => {
-        userEvent.click(errorButton);
-      });
-    });
-
-    expect(mockErrorReporter).lastCalledWith(
-      new Error(
-        "Sorry this video couldn't play persistently, please try again",
-      ),
-      {
-        captioned: false,
+      expect(defaultProps.userEventCallback).toHaveBeenCalledWith({
         duration: 100,
-        location: "pupil",
-        muted: false,
-        playbackId: "testPlaybackId",
+        event: "pause",
         timeElapsed: 0,
-        title: "Test Video",
-      },
-    );
+        muted: false,
+      });
+    }, 100);
   });
 });

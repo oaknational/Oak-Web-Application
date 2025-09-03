@@ -11,7 +11,6 @@ import {
   OakCombinedColorToken,
 } from "@oaknational/oak-components";
 
-import { InputFocusUnderline } from "@/components/SharedComponents/Input/Input";
 import theme, { OakColorName } from "@/styles/theme";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 
@@ -51,10 +50,6 @@ const ListItem = styled(OakLI)<ListItemProps>`
   cursor: default;
   outline: none;
   width: 100%;
-
-  &:focus-within ${InputFocusUnderline} {
-    display: inline;
-  }
 `;
 
 interface ListBoxProps extends AriaListBoxOptions<unknown> {
@@ -78,7 +73,11 @@ export function ListBox(props: ListBoxProps) {
   const { listBoxProps } = useListBox(props, state, listBoxRef);
 
   return (
-    <List {...listBoxProps} ref={listBoxRef}>
+    <List
+      {...listBoxProps}
+      ref={listBoxRef}
+      aria-labelledby={props["aria-labelledby"]}
+    >
       {[...state.collection].map((item) => (
         <Option key={item.key} item={item} state={state} />
       ))}

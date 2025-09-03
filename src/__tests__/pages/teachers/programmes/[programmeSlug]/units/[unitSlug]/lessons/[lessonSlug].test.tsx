@@ -17,6 +17,10 @@ import {
   mockUserWithDownloadAccess,
 } from "@/__tests__/__helpers__/mockUser";
 import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+import curriculumApi2023, {
+  CurriculumApi,
+} from "@/node-lib/curriculum-api-2023";
+import OakError from "@/errors/OakError";
 
 const props = {
   curriculumData: lessonOverviewFixture({
@@ -206,7 +210,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
   });
 
   it("updates the url", async () => {
-    const fn = jest.spyOn(window.history, "replaceState");
+    window.history.replaceState = jest.fn();
 
     (useShareExperiment as jest.Mock).mockReturnValueOnce({
       shareUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
@@ -217,7 +221,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
     });
     render(<LessonOverviewPage {...props} />);
 
-    expect(fn).toHaveBeenCalledWith(
+    expect(window.history.replaceState).toHaveBeenCalledWith(
       {},
       "",
       "http://localhost:3000/teachers/lessons/lesson-1?test=1",
@@ -256,11 +260,11 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
         title:
-          "Lesson: Adverbial complex sentences | KS2 English | NEXT_PUBLIC_SEO_APP_NAME",
+          "Adverbial complex sentences KS2 | Y3 English Lesson Resources | NEXT_PUBLIC_SEO_APP_NAME",
         description:
           "View lesson content and choose resources to download or share",
         ogTitle:
-          "Lesson: Adverbial complex sentences | KS2 English | NEXT_PUBLIC_SEO_APP_NAME",
+          "Adverbial complex sentences KS2 | Y3 English Lesson Resources | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription:
           "View lesson content and choose resources to download or share",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
@@ -286,11 +290,11 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
             "NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2025",
           ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
           ogTitle:
-            "Lesson: Adverbial complex sentences | Higher | KS2 English | NEXT_PUBLIC_SEO_APP_NAME",
+            "Adverbial complex sentences Higher KS2 | Y3 English Lesson Resources | NEXT_PUBLIC_SEO_APP_NAME",
           ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
           robots: "index,follow",
           title:
-            "Lesson: Adverbial complex sentences | Higher | KS2 English | NEXT_PUBLIC_SEO_APP_NAME",
+            "Adverbial complex sentences Higher KS2 | Y3 English Lesson Resources | NEXT_PUBLIC_SEO_APP_NAME",
         }),
       );
     });
@@ -305,12 +309,12 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
       expect(seo).toEqual(
         expect.objectContaining({
           title:
-            "Lesson: Adverbial complex sentences | AQA | KS2 English | NEXT_PUBLIC_SEO_APP_NAME",
+            "Adverbial complex sentences AQA KS2 | Y3 English Lesson Resources | NEXT_PUBLIC_SEO_APP_NAME",
           description:
             "View lesson content and choose resources to download or share",
 
           ogTitle:
-            "Lesson: Adverbial complex sentences | AQA | KS2 English | NEXT_PUBLIC_SEO_APP_NAME",
+            "Adverbial complex sentences AQA KS2 | Y3 English Lesson Resources | NEXT_PUBLIC_SEO_APP_NAME",
           ogDescription:
             "View lesson content and choose resources to download or share",
           ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
@@ -330,11 +334,11 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
       expect(seo).toEqual(
         expect.objectContaining({
           title:
-            "Lesson: Adverbial complex sentences | Higher | AQA | KS2 English | NEXT_PUBLIC_SEO_APP_NAME",
+            "Adverbial complex sentences Higher AQA KS2 | Y3 English Lesson Resources | NEXT_PUBLIC_SEO_APP_NAME",
           description:
             "View lesson content and choose resources to download or share",
           ogTitle:
-            "Lesson: Adverbial complex sentences | Higher | AQA | KS2 English | NEXT_PUBLIC_SEO_APP_NAME",
+            "Adverbial complex sentences Higher AQA KS2 | Y3 English Lesson Resources | NEXT_PUBLIC_SEO_APP_NAME",
           ogDescription:
             "View lesson content and choose resources to download or share",
           ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
@@ -384,11 +388,16 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         engagementIntent: "use",
         eventVersion: "2.0.0",
         componentType: "lesson_download_button",
+        tierName: null,
+        examBoard: null,
+        lessonReleaseCohort: "2020-2023",
+        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
+        pathway: null,
       });
     });
     it("calls track.downloadResourceButtonClicked will 'slide deck' when download slide deck button is pressed", async () => {
       const { getByText } = render(<LessonOverviewPage {...props} />);
-      const downloadButton = getByText("Download slide deck");
+      const downloadButton = getByText("Download lesson slides");
 
       act(() => {
         downloadButton.click();
@@ -411,6 +420,11 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         engagementIntent: "use",
         eventVersion: "2.0.0",
         componentType: "lesson_download_button",
+        tierName: null,
+        examBoard: null,
+        lessonReleaseCohort: "2020-2023",
+        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
+        pathway: null,
       });
     });
     it("calls track.downloadResourceButtonClicked will 'worksheet' when download worksheet button is pressed", async () => {
@@ -438,14 +452,19 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         engagementIntent: "use",
         eventVersion: "2.0.0",
         componentType: "lesson_download_button",
+        tierName: null,
+        examBoard: null,
+        lessonReleaseCohort: "2020-2023",
+        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
+        pathway: null,
       });
     });
     it("calls track.downloadResourceButtonClicked will 'exit quiz' when download exit quiz button is pressed", async () => {
-      const { getByText } = render(<LessonOverviewPage {...props} />);
-      const downloadButton = getByText("Download exit quiz");
+      const { getAllByText } = render(<LessonOverviewPage {...props} />);
+      const downloadButton = getAllByText("Download quiz pdf")[1];
 
       act(() => {
-        downloadButton.click();
+        downloadButton && downloadButton.click();
       });
 
       expect(downloadResourceButtonClicked).toHaveBeenCalledWith({
@@ -465,14 +484,19 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         engagementIntent: "use",
         eventVersion: "2.0.0",
         componentType: "lesson_download_button",
+        tierName: null,
+        examBoard: null,
+        lessonReleaseCohort: "2020-2023",
+        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
+        pathway: null,
       });
     });
     it("calls track.downloadResourceButtonClicked will 'starter quiz' when download starter quiz button is pressed", async () => {
-      const { getByText } = render(<LessonOverviewPage {...props} />);
-      const downloadButton = getByText("Download starter quiz");
+      const { getAllByText } = render(<LessonOverviewPage {...props} />);
+      const downloadButton = getAllByText("Download quiz pdf")[0];
 
       act(() => {
-        downloadButton.click();
+        downloadButton && downloadButton.click();
       });
 
       expect(downloadResourceButtonClicked).toHaveBeenCalledWith({
@@ -492,6 +516,11 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         engagementIntent: "use",
         eventVersion: "2.0.0",
         componentType: "lesson_download_button",
+        tierName: null,
+        examBoard: null,
+        lessonReleaseCohort: "2020-2023",
+        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
+        pathway: null,
       });
     });
     it("calls track.lessonShareStarted when share all button is pressed with legacy", async () => {
@@ -523,11 +552,13 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         subjectTitle: "English",
         unitName: "Simple, Compound and Adverbial Complex Sentences",
         unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
+        lessonReleaseCohort: "2020-2023",
+        lessonReleaseDate: "2024-09-29T14:00:00.000Z",
       });
     });
 
     it("updates the url if shareExperimentFlag is true", async () => {
-      const fn = jest.spyOn(window.history, "replaceState");
+      window.history.replaceState = jest.fn();
 
       (useShareExperiment as jest.Mock).mockReturnValueOnce({
         shareExperimentFlag: true,
@@ -539,7 +570,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
       });
       render(<LessonOverviewPage {...props} />);
 
-      expect(fn).toHaveBeenCalledWith(
+      expect(window.history.replaceState).toHaveBeenCalledWith(
         {},
         "",
         "http://localhost:3000/teachers/lessons/lesson-1?test=1",
@@ -564,10 +595,82 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
       );
     });
-    it("should throw error", async () => {
-      await expect(
-        getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>),
-      ).rejects.toThrowError("No context.params");
+    it("should call browseLessonRedirectQuery if no lesson is found", async () => {
+      if (!curriculumApi2023.browseLessonRedirectQuery) {
+        (curriculumApi2023 as CurriculumApi).browseLessonRedirectQuery =
+          jest.fn();
+      }
+
+      (curriculumApi2023.lessonOverview as jest.Mock).mockRejectedValueOnce(
+        new OakError({ code: "curriculum-api/not-found" }),
+      );
+      (
+        curriculumApi2023.browseLessonRedirectQuery as jest.Mock
+      ).mockResolvedValueOnce({
+        redirectData: {
+          incomingPath: "lessons/old-lesson-slug",
+          outgoingPath: "lessons/new-lesson-slug",
+          redirectType: 301 as const, // true = 308, false = 307
+        },
+      });
+
+      const result = await getStaticProps({
+        params: {
+          lessonSlug: "old-lesson-slug",
+          programmeSlug: "english-primary-ks2",
+          unitSlug: "unit-slug",
+        },
+        query: {},
+      } as GetStaticPropsContext<URLParams, PreviewData>);
+
+      // Verify the redirect properties
+      expect(result).toHaveProperty("redirect");
+      expect(
+        (
+          result as {
+            redirect: {
+              destination: string;
+              statusCode: number; // 301 or 308
+              basePath: boolean;
+            };
+          }
+        ).redirect,
+      ).toEqual({
+        destination: "lessons/new-lesson-slug?redirected=true",
+        statusCode: 301 as const, // true = 308, false = 307
+        basePath: false,
+      });
+
+      // Verify the redirect API was called with the correct parameters
+      expect(curriculumApi2023.browseLessonRedirectQuery).toHaveBeenCalledWith({
+        incomingPath:
+          "/teachers/programmes/english-primary-ks2/units/unit-slug/lessons/old-lesson-slug",
+      });
+    });
+    it("should return not found if lesson is not found and no redirect found", async () => {
+      if (!curriculumApi2023.browseLessonRedirectQuery) {
+        (curriculumApi2023 as CurriculumApi).browseLessonRedirectQuery =
+          jest.fn();
+      }
+      (curriculumApi2023.lessonOverview as jest.Mock).mockRejectedValueOnce(
+        new OakError({ code: "curriculum-api/not-found" }),
+      );
+      (
+        curriculumApi2023.browseLessonRedirectQuery as jest.Mock
+      ).mockRejectedValueOnce(
+        new OakError({ code: "curriculum-api/not-found" }),
+      );
+
+      const result = await getStaticProps({
+        params: {
+          lessonSlug: "macbeth-lesson-1",
+          programmeSlug: "english-secondary-ks3",
+          unitSlug: "unit-slug",
+        },
+        query: {},
+      } as GetStaticPropsContext<URLParams, PreviewData>);
+
+      expect((result as { notFound: boolean }).notFound).toBe(true);
     });
   });
 });

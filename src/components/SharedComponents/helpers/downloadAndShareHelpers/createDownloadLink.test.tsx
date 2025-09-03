@@ -1,4 +1,7 @@
-import { createLessonDownloadLink } from "./createDownloadLink";
+import {
+  createLessonDownloadLink,
+  createUnitDownloadLink,
+} from "./createDownloadLink";
 
 import OakError from "@/errors/OakError";
 
@@ -14,7 +17,7 @@ const successResponse = {
   ok: true,
 };
 
-describe("createDownloadResourcesLink()", () => {
+describe("createLessonDownloadLink()", () => {
   let downloadResourcesLink;
 
   beforeEach(() => {
@@ -109,7 +112,7 @@ describe("createDownloadResourcesLink()", () => {
 
     expect(global.fetch).toBeCalledWith(
       "https://mockdownloads.com/api/lesson/lesson-slug/download?selection=exit-quiz-answers,worksheet-pdf",
-      { headers: { "X-Should-Authenticate-Download": "false" } },
+      { headers: {} },
     );
   });
   it("should fetch from download api if isLegacyDownloads = false", async () => {
@@ -121,7 +124,7 @@ describe("createDownloadResourcesLink()", () => {
 
     expect(global.fetch).toBeCalledWith(
       "https://mockdownloads.com/api/lesson/lesson-slug/download?selection=exit-quiz-answers,worksheet-pdf",
-      { headers: { "X-Should-Authenticate-Download": "false" } },
+      { headers: {} },
     );
   });
   it("should throw an error when NEXT_PUBLIC_DOWNLOAD_API_URL is not defined", async () => {
@@ -151,7 +154,6 @@ describe("createDownloadResourcesLink()", () => {
       selection: "exit-quiz-answers,worksheet-pdf",
       isLegacyDownload: true,
       authToken,
-      authFlagEnabled: true,
     });
 
     expect(global.fetch).toBeCalledWith(
@@ -159,27 +161,45 @@ describe("createDownloadResourcesLink()", () => {
       expect.objectContaining({
         headers: {
           Authorization: `Bearer ${authToken}`,
-          "X-Should-Authenticate-Download": "true",
         },
       }),
     );
   });
 
-  it("should fetch with X-Should-Authenticate-Download set to false when authFlagEnabled is false", async () => {
-    await createLessonDownloadLink({
-      lessonSlug: "lesson-slug",
-      selection: "exit-quiz-answers,worksheet-pdf",
-      isLegacyDownload: true,
-      authFlagEnabled: false,
-    });
+  it("should not throw an error if no auth token provided", async () => {
+    expect(async () => {
+      await createLessonDownloadLink({
+        lessonSlug: "lesson-slug",
+        selection: "exit-quiz-answers,worksheet-pdf",
+        isLegacyDownload: true,
+        authToken: null,
+      });
+    }).not.toThrow();
+  });
+});
 
-    expect(global.fetch).toBeCalledWith(
-      expect.any(String),
-      expect.objectContaining({
-        headers: {
-          "X-Should-Authenticate-Download": "false",
-        },
+describe("createUnitDownloadLink()", () => {
+  it("should throw an error if response is not ok", async () => {
+    (global.fetch as jest.Mock).mockImplementationOnce(() =>
+      Promise.resolve({
+        ok: false,
+        json: () => Promise.resolve({ error: "Failed to fetch" }),
       }),
     );
+
+    await expect(async () => {
+      await createUnitDownloadLink({
+        unitFileId: "unitvariant-123",
+        getToken: jest.fn().mockResolvedValue(null),
+      });
+    }).rejects.toThrow();
+  });
+  it("should not throw an error if getToken returns null", async () => {
+    expect(async () => {
+      await createUnitDownloadLink({
+        unitFileId: "unitvariant-123",
+        getToken: jest.fn().mockResolvedValue(null),
+      });
+    }).not.toThrow();
   });
 });

@@ -1,10 +1,8 @@
 import { ThemedStyledProps, DefaultTheme } from "styled-components";
 import { z } from "zod";
 
-import { BadgeConfig } from "@/components/GenericPagesComponents/CurriculumTabBadge";
 import { CheckboxConfig } from "@/components/SharedComponents/Checkbox";
 import { SelectListBoxConfig } from "@/components/SharedComponents/ListBox/ListBox";
-import { MenuConfig } from "@/components/AppComponents/AppHeaderMenu";
 import { VideoStyleConfig } from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
 import { HeaderConfig } from "@/components/AppComponents/StyledHeader/StyledHeader";
 
@@ -268,12 +266,10 @@ export type OakTheme = {
   fonts: Record<OakFontName, FontValue>;
   input: InputConfig;
   button: ButtonConfig;
-  badge: BadgeConfig;
   checkbox: CheckboxConfig;
   selectListBox: SelectListBoxConfig;
   toggle: ToggleStyleConfig;
   video: VideoStyleConfig;
-  menu: MenuConfig;
 };
 
 export type PropsWithTheme<Props = unknown> = ThemedStyledProps<

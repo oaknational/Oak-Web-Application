@@ -40,6 +40,9 @@ const lessonShareFixtures = (
         metadata: "20:31",
       },
     ],
+    lessonReleaseDate: "2025-09-29T14:00:00.000Z",
+    georestricted: false,
+    loginRequired: false,
     ...partial,
   };
 };

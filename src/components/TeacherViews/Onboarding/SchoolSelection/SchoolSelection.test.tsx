@@ -25,11 +25,11 @@ describe("Onboarding view", () => {
   it("renders a fieldset and legend", async () => {
     renderWithProviders()(<SchoolSelectionView />);
 
-    const fieldset = await screen.findByRole("fieldset");
-    expect(fieldset).toBeInTheDocument();
     const legend = await screen.findByText(/Select your school/i);
     expect(legend).toBeInTheDocument();
+    const fieldset = legend.closest("fieldset");
 
+    expect(fieldset).toBeInTheDocument();
     expect(fieldset).toContainElement(legend);
   });
   it("renders a school picker", async () => {
@@ -76,8 +76,12 @@ describe("Onboarding view", () => {
 
       await userEvent.click(manualButton);
 
-      expect(await screen.findByText("School name")).toBeInTheDocument();
-      expect(await screen.findByText("School address")).toBeInTheDocument();
+      expect(
+        await screen.findByText("School name (required)"),
+      ).toBeInTheDocument();
+      expect(
+        await screen.findByText("School address (required)"),
+      ).toBeInTheDocument();
     });
 
     it("shows error message when school name is empty", async () => {

@@ -8,6 +8,8 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 const onClick = jest.fn();
 
 const props: LessonListItemProps = {
+  geoRestricted: false,
+  loginRequired: false,
   unitTitle: "Adding surds",
   programmeSlug: "maths-secondary-ks4-higher",
   expired: false,
@@ -23,13 +25,15 @@ const props: LessonListItemProps = {
   videoCount: 1,
   presentationCount: 1,
   worksheetCount: 1,
-  hasCopyrightMaterial: false,
+  hasLegacyCopyrightMaterial: false,
   hitCount: 10,
   index: 3,
   currentPage: 1,
   yearSlug: "higher",
   yearTitle: "Higher",
   onClick: onClick,
+  isUnpublished: false,
+  lessonReleaseDate: "2025-09-29T14:00:00.000Z",
 };
 
 let render: ReturnType<typeof renderWithProviders>;

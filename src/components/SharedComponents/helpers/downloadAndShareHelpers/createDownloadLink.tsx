@@ -4,6 +4,7 @@ import { getParsedData } from "./getParsedData";
 
 import OakError from "@/errors/OakError";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { GetToken } from "clerk";
 
 const DOWNLOADS_API_URL = getBrowserConfig("downloadApiUrl");
 
@@ -27,7 +28,6 @@ export type DownloadsApiDownloadResponseSchema = z.infer<typeof schema>;
 const getDownloadLink = async ({
   downloadEndpoint,
   meta,
-  authFlagEnabled,
   authToken,
 }: {
   downloadEndpoint: string;
@@ -36,7 +36,6 @@ const getDownloadLink = async ({
     selection?: string;
     isLegacyDownload?: boolean;
   };
-  authFlagEnabled?: boolean;
   authToken?: string | null;
 }) => {
   const authHeader = authToken
@@ -46,9 +45,6 @@ const getDownloadLink = async ({
   const res = await fetch(downloadEndpoint, {
     headers: {
       ...authHeader,
-      "X-Should-Authenticate-Download": JSON.stringify(
-        Boolean(authFlagEnabled),
-      ),
     },
   });
 
@@ -70,14 +66,12 @@ export const createLessonDownloadLink = async ({
   isLegacyDownload,
   selection,
   additionalFilesIdsSelection,
-  authFlagEnabled,
   authToken,
 }: {
   lessonSlug: string;
   isLegacyDownload: boolean;
   selection?: string;
   additionalFilesIdsSelection?: string;
-  authFlagEnabled?: boolean;
   authToken?: string | null;
 }) => {
   const selectionString = selection ? `?selection=${selection}` : "";
@@ -93,7 +87,6 @@ export const createLessonDownloadLink = async ({
   const url = await getDownloadLink({
     downloadEndpoint,
     meta,
-    authFlagEnabled,
     authToken,
   });
   return url;
@@ -101,15 +94,21 @@ export const createLessonDownloadLink = async ({
 
 export const createUnitDownloadLink = async ({
   unitFileId,
+  getToken,
 }: {
   unitFileId: string;
+  getToken: GetToken;
 }) => {
   const downloadEndpoint = `${DOWNLOADS_API_URL}/api/unit/${unitFileId}/download`;
-
+  const authToken = await getToken();
   const meta = {
     downloadSlug: unitFileId,
   };
 
-  const url = await getDownloadLink({ downloadEndpoint, meta });
+  const url = await getDownloadLink({
+    downloadEndpoint,
+    meta,
+    authToken,
+  });
   return url;
 };

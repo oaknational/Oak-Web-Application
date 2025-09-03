@@ -1,8 +1,4 @@
-import {
-  LessonBrowseData,
-  lessonBrowseDataSchema,
-  MediaClipListCamelCase,
-} from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
+import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { constructLessonMediaData } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/constructLessonMediaClips";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
@@ -10,6 +6,10 @@ import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 import { BetaLessonMediaClipsQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
+import {
+  LessonBrowseDataByKs,
+  lessonBrowseDataByKsSchema,
+} from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 
 export const betaLessonMediaClipsQuery =
   (sdk: Sdk) =>
@@ -48,15 +48,22 @@ export const betaLessonMediaClipsQuery =
     const lessonData = {
       ...browseDataSnake?.lesson_data,
       key_learning_points: [],
+      lesson_release_date:
+        browseDataSnake?.lesson_data?.lesson_release_date ?? null,
     };
 
-    const manipulatedData = { ...browseDataSnake, lesson_data: lessonData };
-    lessonBrowseDataSchema.parse({
+    const manipulatedData = {
+      ...browseDataSnake,
+      lesson_data: lessonData,
+    };
+    lessonBrowseDataByKsSchema.parse({
       ...manipulatedData,
       supplementary_data: { order_in_unit: 0, unit_order: 0 },
     });
 
-    const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseData & {
+    const browseData = keysToCamelCase(
+      manipulatedData,
+    ) as LessonBrowseDataByKs & {
       mediaClips: MediaClipListCamelCase;
     };
 

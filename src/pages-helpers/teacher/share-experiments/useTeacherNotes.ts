@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import {
   TeacherNoteCamelCase,
   TeacherNote,
+  TeacherNoteError,
   useOakPupil,
 } from "@oaknational/oak-pupil-client";
 
@@ -11,13 +12,17 @@ import {
 } from "./shareExperimentTypes";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import { LessonReleaseCohortValueType } from "@/browser-lib/avo/Avo";
 
 export type UseTeacherNotesProps = {
   lessonPath?: string | null;
   sidKey: string | null;
   shareId: string | null;
   enabled: boolean;
-  curriculumTrackingProps: CurriculumTrackingProps;
+  curriculumTrackingProps: CurriculumTrackingProps & {
+    lessonReleaseDate: string;
+    lessonReleaseCohort: LessonReleaseCohortValueType;
+  };
 };
 
 export const useTeacherNotes = ({
@@ -36,7 +41,7 @@ export const useTeacherNotes = ({
   );
   const [error, setError] = useState<string | null>(null);
 
-  const [isEditable, setIsEditable] = useState(false);
+  const [isEditable, setIsEditable] = useState<boolean | null>(null);
   const [noteSaved, setNoteSaved] = useState(false);
 
   const coreTrackingProps: CoreProperties = {
@@ -110,23 +115,49 @@ export const useTeacherNotes = ({
     shareId,
   ]);
 
-  const saveTeacherNote = (
+  type OakPupilClientTeacherNoteError = {
+    additionalInfo?: {
+      body?: TeacherNoteError & {
+        type: string;
+      };
+    };
+  };
+  function isTeacherNoteError(
+    error: unknown,
+  ): error is OakPupilClientTeacherNoteError {
+    if (!(error && typeof error === "object")) return false;
+    const errorObj = error as OakPupilClientTeacherNoteError;
+    return typeof errorObj.additionalInfo?.body?.type === "string";
+  }
+
+  const saveTeacherNote = async (
     updatedTeacherNote: Partial<TeacherNoteCamelCase>,
-  ): Promise<TeacherNote> => {
-    const t = { ...teacherNote, ...updatedTeacherNote } as TeacherNoteCamelCase;
-    const res = addTeacherNote({ teacherNote: t });
-    setTeacherNote(t);
-    setNoteSaved(true);
-    // No need to dedupe this event
-    track.teacherNoteSaved({
-      shareId: t.noteId,
-      linkUrl: window.location.href,
-      sourcePageSlug: lessonPath,
-      ...coreTrackingProps,
-      ...curriculumTrackingProps,
-      noteLengthChars: t.noteText.length,
-    });
-    return res.promise;
+  ): Promise<TeacherNote | TeacherNoteError> => {
+    try {
+      const t = {
+        ...teacherNote,
+        ...updatedTeacherNote,
+      } as TeacherNoteCamelCase;
+      const res = addTeacherNote({ teacherNote: t });
+      setTeacherNote(t);
+      setNoteSaved(true);
+      // No need to dedupe this event
+      track.teacherNoteSaved({
+        shareId: t.noteId,
+        linkUrl: window.location.href,
+        sourcePageSlug: lessonPath,
+        ...coreTrackingProps,
+        ...curriculumTrackingProps,
+        noteLengthChars: t.noteText.length,
+      });
+      return await res.promise;
+    } catch (err: unknown) {
+      if (isTeacherNoteError(err)) {
+        setNoteSaved(false);
+        return Promise.resolve(err?.additionalInfo?.body as TeacherNoteError);
+      }
+      throw err;
+    }
   };
 
   return { teacherNote, isEditable, error, noteSaved, saveTeacherNote };

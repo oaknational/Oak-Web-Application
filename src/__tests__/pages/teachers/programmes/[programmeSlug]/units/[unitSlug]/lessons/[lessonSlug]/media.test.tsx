@@ -12,6 +12,10 @@ import {
 } from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/media";
 import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__";
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
+import curriculumApi2023, {
+  CurriculumApi,
+} from "@/node-lib/curriculum-api-2023";
+import OakError from "@/errors/OakError";
 
 const render = renderWithProviders();
 
@@ -25,6 +29,12 @@ jest.mock("next/router", () => ({
 
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagVariantKey: jest.fn(() => true),
+  useFeatureFlagEnabled: () => false,
+}));
+
+jest.mock("@/utils/handleTranscript.ts", () => ({
+  populateLessonWithTranscript: jest.fn(),
+  populateMediaClipsWithTranscripts: jest.fn(),
 }));
 
 jest.mock("@google-cloud/storage", () => {
@@ -97,9 +107,18 @@ describe("LessonMediaClipsPage", () => {
         unitSlug: "running-and-jumping",
       });
     });
-    it("should return notFound when a landing page is missing", async () => {
+    it("should return notFound when a landing page is missing and no redirect", async () => {
+      if (!curriculumApi2023.browseLessonRedirectQuery) {
+        (curriculumApi2023 as CurriculumApi).browseLessonRedirectQuery =
+          jest.fn();
+      }
       (curriculumApi.lessonMediaClips as jest.Mock).mockResolvedValueOnce(
         undefined,
+      );
+      (
+        curriculumApi2023.browseLessonRedirectQuery as jest.Mock
+      ).mockRejectedValueOnce(
+        new OakError({ code: "curriculum-api/not-found" }),
       );
 
       const context = {
@@ -112,6 +131,53 @@ describe("LessonMediaClipsPage", () => {
       const response = await getStaticProps(context);
       expect(response).toEqual({
         notFound: true,
+      });
+    });
+    it("should return redirect when a landing page is missing", async () => {
+      (curriculumApi.lessonMediaClips as jest.Mock).mockResolvedValueOnce(
+        undefined,
+      );
+
+      (
+        curriculumApi2023.browseLessonRedirectQuery as jest.Mock
+      ).mockResolvedValueOnce({
+        redirectData: {
+          incomingPath: "lessons/old-lesson-slug",
+          outgoingPath: "lessons/new-lesson-slug",
+          redirectType: 301, // Temporary redirect
+        },
+      });
+      const result = await getStaticProps({
+        params: {
+          lessonSlug: "old-lesson-slug",
+          programmeSlug: "english-primary-ks2",
+          unitSlug: "unit-slug",
+        },
+        query: {},
+      } as GetStaticPropsContext<URLParams, PreviewData>);
+
+      // Verify the redirect properties
+      expect(result).toHaveProperty("redirect");
+      expect(
+        (
+          result as {
+            redirect: {
+              destination: string;
+              permanent: boolean;
+              basePath: boolean;
+            };
+          }
+        ).redirect,
+      ).toEqual({
+        destination: "lessons/new-lesson-slug?redirected=true",
+        statusCode: 301, // Temporary redirect
+        basePath: false,
+      });
+
+      // Verify the redirect API was called with the correct parameters
+      expect(curriculumApi2023.browseLessonRedirectQuery).toHaveBeenCalledWith({
+        incomingPath:
+          "/teachers/programmes/english-primary-ks2/units/unit-slug/lessons/old-lesson-slug",
       });
     });
     it("should throw error", async () => {

@@ -32,11 +32,13 @@ query curriculumOverview(
         }
       }
       partnerBio
+      partnerBioPortableTextRaw
     }
     video {
       ...Video
     }
     videoAuthor
     videoExplainer
+    curriculumSeoTextRaw
   }
 }

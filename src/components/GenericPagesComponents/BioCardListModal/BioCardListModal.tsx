@@ -214,10 +214,10 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
           >
             <SocialButtons
               for={name}
-              twitter={socials?.twitterUsername}
+              x={socials?.twitterUsername}
               linkedIn={socials?.linkedinUrl}
               $position={["absolute", "relative"]}
-              $left={[0]}
+              $left={["all-spacing-0"]}
               $alignItems="flex-end"
             />
             <BioCardListModalNavigationButtons

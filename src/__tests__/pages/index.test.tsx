@@ -10,6 +10,11 @@ jest.mock("next/router", () => ({
   useRouter: jest.fn(),
 }));
 
+jest.mock("@oaknational/oak-components", () => ({
+  ...jest.requireActual("@oaknational/oak-components"),
+  OakImage: jest.fn(() => <div>Mock image</div>),
+}));
+
 const props: TeachersHomePageProps = {
   curriculumData: {
     keyStages: [
@@ -22,6 +27,12 @@ const props: TeachersHomePageProps = {
     ],
   },
   pageData: {
+    campaignPromoBanner: {
+      headingPortableTextWithPromo: [],
+      subheadingPortableTextWithPromo: [],
+      media: [],
+      buttonCta: "",
+    },
     heading: "",
     id: "",
     summaryPortableText: [],

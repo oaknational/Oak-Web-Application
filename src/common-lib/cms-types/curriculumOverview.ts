@@ -20,12 +20,14 @@ export const curriculumOverviewCMSSchema = z
     curriculumPartnerOverviews: z.array(
       z.object({
         partnerBio: z.string(),
+        partnerBioPortableTextRaw: portableTextSchema.nullable(),
         curriculumPartner: curriculumPartnerSchema,
       }),
     ),
     video: videoSchema.nullish(),
     videoAuthor: z.string().nullish(),
     videoExplainer: z.string().nullish(),
+    curriculumSeoTextRaw: portableTextSchema.nullable(),
   })
   .merge(documentSchema);
 

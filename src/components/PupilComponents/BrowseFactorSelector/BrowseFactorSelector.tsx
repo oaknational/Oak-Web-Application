@@ -1,4 +1,8 @@
-import { OakPupilJourneyYearButton } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakLI,
+  OakPupilJourneyYearButton,
+} from "@oaknational/oak-components";
 
 import { PupilProgrammeListingData } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -78,45 +82,45 @@ export const BrowseFactorSelector = ({
     factorType === "tier" ? "factorDescription" : "factor";
 
   return (
-    <>
+    <OakFlex
+      as="ul"
+      $ma={"space-between-none"}
+      $pa={"inner-padding-none"}
+      $gap={"all-spacing-4"}
+      $flexWrap={"wrap"}
+      $justifyContent={"space-evenly"}
+    >
       {filteredFactors.map((factor) => {
-        if (getOptionsAvailable(factor)) {
-          return (
+        const hasOptions = getOptionsAvailable(factor);
+        const optionsProps = hasOptions
+          ? {
+              role: "button",
+            }
+          : {
+              role: "link",
+              element: "a" as const,
+              href: resolveOakHref({
+                page: "pupil-unit-index",
+                programmeSlug: getSlug(factor),
+              }),
+            };
+        return (
+          <OakLI $listStyle="none" key={factor.factorSlug}>
             <OakPupilJourneyYearButton
+              {...optionsProps}
               phase={phaseSlug}
-              key={factor.factorSlug}
               onClick={() => {
-                onClick(factor);
+                if (hasOptions) onClick(factor);
                 if (onTrackingCallback) {
                   onTrackingCallback(factor);
                 }
               }}
-              role="button"
             >
               {factor[buttonInnerProp]}
             </OakPupilJourneyYearButton>
-          );
-        }
-        return (
-          <OakPupilJourneyYearButton
-            role="link"
-            phase={phaseSlug}
-            key={factor.factorSlug}
-            element="a"
-            href={resolveOakHref({
-              page: "pupil-unit-index",
-              programmeSlug: getSlug(factor),
-            })}
-            onClick={() => {
-              if (onTrackingCallback) {
-                onTrackingCallback(factor);
-              }
-            }}
-          >
-            {factor[buttonInnerProp]}
-          </OakPupilJourneyYearButton>
+          </OakLI>
         );
       })}
-    </>
+    </OakFlex>
   );
 };

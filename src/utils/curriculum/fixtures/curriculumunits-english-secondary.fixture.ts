@@ -160,6 +160,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -443,6 +445,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -565,6 +569,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -708,6 +714,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -934,6 +942,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -1160,6 +1170,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -1229,6 +1241,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -1452,6 +1466,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -1522,6 +1538,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -1824,6 +1842,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -1930,6 +1950,7 @@ export default {
       subjectcategories: [
         {
           id: 18,
+          slug: "language",
           title: "Language",
         },
       ],
@@ -1963,6 +1984,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -2056,6 +2079,7 @@ export default {
       subjectcategories: [
         {
           id: 18,
+          slug: "language",
           title: "Language",
         },
       ],
@@ -2084,6 +2108,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -2204,6 +2230,7 @@ export default {
       subjectcategories: [
         {
           id: 18,
+          slug: "language",
           title: "Language",
         },
       ],
@@ -2232,6 +2259,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -2392,6 +2421,7 @@ export default {
       subjectcategories: [
         {
           id: 18,
+          slug: "language",
           title: "Language",
         },
       ],
@@ -2420,6 +2450,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -2482,6 +2514,7 @@ export default {
       subjectcategories: [
         {
           id: 18,
+          slug: "language",
           title: "Language",
         },
       ],
@@ -2499,6 +2532,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -2524,6 +2559,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -2690,6 +2726,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -2721,6 +2759,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -2970,6 +3009,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -3138,6 +3179,7 @@ export default {
       subjectcategories: [
         {
           id: 18,
+          slug: "language",
           title: "Language",
         },
       ],
@@ -3166,6 +3208,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -3271,6 +3315,7 @@ export default {
       subjectcategories: [
         {
           id: 18,
+          slug: "language",
           title: "Language",
         },
       ],
@@ -3299,6 +3344,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -3470,6 +3517,7 @@ export default {
       subjectcategories: [
         {
           id: 18,
+          slug: "language",
           title: "Language",
         },
       ],
@@ -3500,6 +3548,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -3730,6 +3780,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -3755,6 +3807,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -4211,6 +4264,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -4242,6 +4297,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -5053,6 +5109,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -5078,6 +5136,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -5246,6 +5305,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -5324,6 +5385,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -5347,6 +5409,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -5378,6 +5442,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -5517,6 +5582,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -5542,6 +5609,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -5638,6 +5706,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -5776,6 +5846,7 @@ export default {
       subjectcategories: [
         {
           id: 18,
+          slug: "language",
           title: "Language",
         },
       ],
@@ -5804,6 +5875,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -6080,6 +6153,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -6247,6 +6322,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -6315,6 +6392,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -6465,6 +6544,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -6583,6 +6664,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -6677,6 +6760,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -6702,6 +6787,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -6799,6 +6885,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -6980,6 +7068,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -7003,6 +7092,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -7028,6 +7119,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -7194,6 +7286,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -7270,6 +7364,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -7287,6 +7382,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -7312,6 +7409,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -7462,6 +7560,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -7666,6 +7766,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -7928,6 +8030,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -8196,6 +8300,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -8299,6 +8405,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -8534,6 +8642,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -8559,6 +8669,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -8797,6 +8908,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -8828,6 +8941,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -9386,6 +9500,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -9503,6 +9619,7 @@ export default {
       subjectcategories: [
         {
           id: 18,
+          slug: "language",
           title: "Language",
         },
       ],
@@ -9531,6 +9648,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -9603,6 +9722,7 @@ export default {
       subjectcategories: [
         {
           id: 18,
+          slug: "language",
           title: "Language",
         },
       ],
@@ -9620,6 +9740,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -9645,6 +9767,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -10101,6 +10224,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -10322,6 +10447,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -10345,6 +10471,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -10370,6 +10498,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -10813,6 +10942,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -10844,6 +10975,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -11169,6 +11301,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -11299,6 +11433,7 @@ export default {
       subjectcategories: [
         {
           id: 18,
+          slug: "language",
           title: "Language",
         },
       ],
@@ -11322,6 +11457,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -11408,6 +11545,7 @@ export default {
       subjectcategories: [
         {
           id: 18,
+          slug: "language",
           title: "Language",
         },
       ],
@@ -11425,6 +11563,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -11450,6 +11590,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -11618,6 +11759,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -11643,6 +11786,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -11812,6 +11956,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -11843,6 +11989,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -12200,6 +12347,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -12279,6 +12428,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -12302,6 +12452,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description: null,
@@ -12327,6 +12479,7 @@ export default {
       subjectcategories: [
         {
           id: 19,
+          slug: "literature",
           title: "Literature",
         },
       ],
@@ -12487,6 +12640,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -12754,6 +12909,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
     {
       connection_prior_unit_description:
@@ -12952,6 +13109,8 @@ export default {
       pathway: null,
       pathway_slug: null,
       state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
     },
   ],
 };

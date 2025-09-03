@@ -10,7 +10,7 @@ export const bugsnagInitialised = () => {
   return Boolean(Bugsnag._client);
 };
 
-type UseBugsnagProps = {
+export type UseBugsnagProps = {
   enabled: boolean;
   userId: MaybeDistinctId;
 };

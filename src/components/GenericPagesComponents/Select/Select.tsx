@@ -4,7 +4,13 @@ import type { AriaSelectProps } from "@react-types/select";
 import { useObjectRef } from "@react-aria/utils";
 import { useSelectState } from "react-stately";
 import { useSelect, useButton, mergeProps, useFocusRing } from "react-aria";
-import { OakSpan, OakIcon, OakIconName } from "@oaknational/oak-components";
+import {
+  OakSpan,
+  OakIcon,
+  OakIconName,
+  OakFlex,
+  OakFlexProps,
+} from "@oaknational/oak-components";
 
 import UnstyledButton from "@/components/SharedComponents/UnstyledButton";
 import {
@@ -16,7 +22,6 @@ import { Popover } from "@/components/SharedComponents/Popover";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 import ellipsis from "@/styles/ellipsis";
 import getColorByLocation from "@/styles/themeHelpers/getColorByLocation";
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 
 export { Item } from "react-stately";
@@ -40,12 +45,12 @@ type SelectProps = {
   placeholder?: string;
   icon?: OakIconName;
   myRef: Ref<HTMLButtonElement>;
-  containerProps?: FlexProps;
+  containerProps?: OakFlexProps;
   "aria-invalid"?: boolean;
   selectedValue?: string;
 };
 
-const SelectContainer = styled(Flex)`
+const SelectContainer = styled(OakFlex)`
   &:focus-within ${RotatedInputLabel} {
     background: ${getColorByName("blue")};
     color: ${getColorByName("white")};
@@ -85,7 +90,7 @@ export const SelectButton = styled(UnstyledButton)<SelectButtonProps>`
   ${selectButtonStyles}
 `;
 
-const SelectInner = styled(Flex)`
+const SelectInner = styled(OakFlex)`
   max-width: calc(100% - 20px);
 `;
 /**
@@ -142,7 +147,7 @@ export function Select<
         name={"underline-1"}
         $font={"body-3"}
       />
-      <Flex $position={"absolute"}>
+      <OakFlex $position={"absolute"}>
         <RotatedInputLabel
           background={props.onFocus ? "lavender" : "lemon"}
           color={"black"}
@@ -151,12 +156,12 @@ export function Select<
         >
           {props.label}
         </RotatedInputLabel>
-      </Flex>
+      </OakFlex>
 
       <>
         <SelectButton
           {...mergeProps(buttonProps, focusProps)}
-          aria-labelledby={labelProps.id}
+          aria-labelledby={[labelProps.id, buttonId].join(" ")}
           aria-describedby={props["aria-describedby"]}
           aria-invalid={props["aria-invalid"]}
           ref={ref}
@@ -165,7 +170,7 @@ export function Select<
           isPlaceholder={!state.selectedItem}
           id={buttonId}
         >
-          <SelectInner $pt={8} $alignItems={"center"}>
+          <SelectInner $pt={"inner-padding-xs"} $alignItems={"center"}>
             {props.icon && (
               <OakIcon
                 $mr={"space-between-ssx"}
@@ -193,7 +198,11 @@ export function Select<
         </SelectButton>
         {state.isOpen && (
           <Popover isOpen={state.isOpen} onClose={state.close}>
-            <ListBox {...menuProps} state={state} />
+            <ListBox
+              {...menuProps}
+              state={state}
+              aria-labelledby={labelProps.id}
+            />
           </Popover>
         )}
       </>

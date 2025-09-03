@@ -19,7 +19,11 @@ describe("QuestionListItem", () => {
 
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <QuizQuestionStem questionStem={mcqText.questionStem} index={0} />
+        <QuizQuestionStem
+          questionUid={mcqText.questionUid}
+          questionStem={mcqText.questionStem}
+          index={0}
+        />
       </OakThemeProvider>,
     );
     const primaryQuestionText = getByText("What is a main clause?");
@@ -30,12 +34,16 @@ describe("QuestionListItem", () => {
   it("renders question stem images", () => {
     invariant(mcqStemImage?.questionStem, "mcqStemImage.questionStem is null");
 
-    const { getByRole } = renderWithTheme(
+    const { getByAltText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <QuizQuestionStem questionStem={mcqStemImage.questionStem} index={0} />
+        <QuizQuestionStem
+          questionUid={mcqStemImage.questionUid}
+          questionStem={mcqStemImage.questionStem}
+          index={0}
+        />
       </OakThemeProvider>,
     );
-    const image = getByRole("presentation");
+    const image = getByAltText("An image in a quiz");
 
     expect(image).toBeInTheDocument();
   });
@@ -50,7 +58,11 @@ describe("QuestionListItem", () => {
 
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <QuizQuestionStem questionStem={questionStem} index={0} />
+        <QuizQuestionStem
+          questionUid={mcqStemImage.questionUid}
+          questionStem={questionStem}
+          index={0}
+        />
       </OakThemeProvider>,
     );
     const secondaryText = getByText("This is some text");

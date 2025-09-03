@@ -4,6 +4,7 @@ import { checkIsResourceCopyrightRestricted } from "../downloadAndShareHelpers/d
 
 import {
   LessonBase,
+  LessonOverviewAll,
   LessonPathway,
   SpecialistLessonPathway,
 } from "@/components/TeacherComponents/types/lesson.types";
@@ -19,6 +20,7 @@ import type { MediaClip } from "@/node-lib/curriculum-api-2023/queries/lessonMed
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 import isSlugEYFS from "@/utils/slugModifiers/isSlugEYFS";
 import { LessonItemTitle } from "@/components/TeacherComponents/LessonItemContainer";
+import { SpecialistLessonOverviewData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonOverview/specialistLessonOverview.schema";
 
 /**
  * Returns the intersection different pathways.
@@ -43,8 +45,8 @@ export const getCommonPathway = (
     tierTitle: null,
     lessonCohort: null,
     subjectParent: null,
+    pathwayTitle: null,
   };
-
   return pathways.reduce(
     (acc, pathway) => {
       Object.keys(acc).forEach((_key) => {
@@ -59,6 +61,36 @@ export const getCommonPathway = (
     },
     { ...nullPathway },
   );
+};
+export const lessonIsSpecialist = (
+  u: unknown,
+): u is SpecialistLessonOverviewData => {
+  return (
+    typeof u === "object" &&
+    (u as { isSpecialist: boolean })?.isSpecialist === true
+  );
+};
+export const getPathway = (
+  lesson: LessonOverviewAll,
+): SpecialistLessonPathway | ShallowNullable<LessonPathway> => {
+  if (lessonIsSpecialist(lesson)) {
+    return {
+      lessonSlug: lesson.lessonSlug,
+      lessonTitle: lesson.lessonTitle,
+      unitSlug: lesson.unitSlug,
+      programmeSlug: lesson.programmeSlug,
+      unitTitle: lesson.unitTitle,
+      subjectTitle: lesson.subjectTitle,
+      subjectSlug: lesson.subjectSlug,
+      developmentStageTitle: lesson.developmentStageTitle,
+      disabled: true,
+      keyStageSlug: null,
+      keyStageTitle: null,
+      pathwayTitle: null,
+    } as SpecialistLessonPathway;
+  } else {
+    return getCommonPathway(lesson.isCanonical ? lesson.pathways : [lesson]);
+  }
 };
 
 export const getLessonOverviewBreadCrumb = ({
@@ -387,7 +419,7 @@ export const getBreadcrumbsForLessonPathway = (
   return nullableBreadcrumbs.filter(truthy);
 };
 
-type GetPageLinksForLessonProps = Pick<
+export type GetPageLinksForLessonProps = Pick<
   LessonBase,
   | "lessonGuideUrl"
   | "presentationUrl"
@@ -396,7 +428,7 @@ type GetPageLinksForLessonProps = Pick<
   | "additionalMaterialUrl"
   | "starterQuiz"
   | "exitQuiz"
-  | "hasCopyrightMaterial"
+  | "hasLegacyCopyrightMaterial"
   | "hasMediaClips"
 >;
 
@@ -408,19 +440,22 @@ export type LessonPageLinkAnchorId =
   | "worksheet"
   | "starter-quiz"
   | "exit-quiz"
+  | "quiz"
   | "additional-material"
   | "media-clips";
 
-export const getPageLinksForLesson = (
+export const getPageLinksWithSubheadingsForLesson = (
   lesson: GetPageLinksForLessonProps,
   copyrightContent: CopyrightContent,
   mediaClipsLabel?: string,
 ): {
   label: string;
   anchorId: LessonPageLinkAnchorId;
+  subheading?: string;
 }[] => {
   const PAGE_LINKS: {
     label: string;
+    subheading?: string;
     anchorId: LessonPageLinkAnchorId;
     condition: (lesson: GetPageLinksForLessonProps) => boolean;
   }[] = [
@@ -430,7 +465,7 @@ export const getPageLinksForLesson = (
       condition: (lesson) => Boolean(lesson.lessonGuideUrl),
     },
     {
-      label: "Slide deck",
+      label: "Lesson slides",
       anchorId: "slide-deck",
       condition: (lesson) =>
         Boolean(
@@ -462,16 +497,38 @@ export const getPageLinksForLesson = (
       condition: (lesson) => Boolean(lesson.worksheetUrl),
     },
     {
-      label: "Starter quiz",
-      anchorId: "starter-quiz",
+      label: "Quizzes",
+      anchorId: "quiz",
+      subheading: `Prior knowledge starter quiz \nAssessment exit quiz`,
       condition: (lesson) =>
-        Boolean(lesson.starterQuiz && lesson.starterQuiz.length > 0),
+        Boolean(
+          lesson.exitQuiz &&
+            lesson.exitQuiz.length > 0 &&
+            lesson.starterQuiz &&
+            lesson.starterQuiz.length > 0,
+        ),
     },
     {
-      label: "Exit quiz",
+      label: "Quizzes",
       anchorId: "exit-quiz",
+      subheading: `Assessment exit quiz`,
       condition: (lesson) =>
-        Boolean(lesson.exitQuiz && lesson.exitQuiz.length > 0),
+        Boolean(
+          lesson.exitQuiz &&
+            lesson.exitQuiz.length > 0 &&
+            (!lesson.starterQuiz || lesson.starterQuiz.length === 0),
+        ),
+    },
+    {
+      label: "Quizzes",
+      anchorId: "starter-quiz",
+      subheading: `Prior knowledge starter quiz`,
+      condition: (lesson) =>
+        Boolean(
+          (!lesson.exitQuiz || lesson.exitQuiz.length === 0) &&
+            lesson.starterQuiz &&
+            lesson.starterQuiz.length > 0,
+        ),
     },
     {
       label: "Additional material",
@@ -481,7 +538,7 @@ export const getPageLinksForLesson = (
   ];
 
   return PAGE_LINKS.filter((pageLink) => pageLink.condition(lesson)).map(
-    (lesson) => pick(lesson, ["label", "anchorId"]),
+    (lesson) => pick(lesson, ["label", "anchorId", "subheading"]),
   );
 };
 

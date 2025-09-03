@@ -1,4 +1,10 @@
-import { YearData } from "./types";
+import { PortableTextBlock } from "@portabletext/types";
+import { capitalize } from "lodash";
+import { format } from "date-fns";
+
+import { CurriculumFilters, YearData } from "./types";
+import { keystageFromYear } from "./keystage";
+import { sortYears } from "./sorting";
 
 import { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { Phase } from "@/node-lib/curriculum-api-2023";
@@ -12,7 +18,7 @@ export function getYearGroupTitle(
   const suffixStr = suffix ? ` ${suffix}` : "";
   if (year in yearData) {
     const { groupAs } = yearData[year]!;
-    if (groupAs && year === "All years") {
+    if (groupAs && year === "all-years") {
       return `${groupAs}${suffixStr} (all years)`;
     }
   }
@@ -82,13 +88,6 @@ export function formatKeystagesShort(keyStages: string[]) {
   return keyStagesItems.length > 0 ? `KS${keyStagesItems.join("-")}` : ``;
 }
 
-export function getSuffixFromFeatures(features: Actions) {
-  if (features?.programme_field_overrides?.subject) {
-    return `(${features.programme_field_overrides?.subject})`;
-  }
-  return;
-}
-
 export function subjectTitleWithCase(title: string) {
   if (
     ["english", "french", "spanish", "german"].includes(title.toLowerCase())
@@ -119,8 +118,103 @@ export function buildPageTitle(
   return pageTitle;
 }
 
-export function joinWords(str: string[]) {
+export function joinWords(str: (number | string)[]) {
   return str.filter((str) => str !== "").join(" ");
+}
+
+export function getYearSubheadingText(
+  yearData: YearData,
+  year: string,
+  filters: Pick<
+    CurriculumFilters,
+    "childSubjects" | "subjectCategories" | "tiers"
+  >,
+  type: "core" | "non_core" | "all" | null,
+  actions?: Actions,
+): string | null {
+  // Don't show subheading for "All" years view
+  if (year === "all") {
+    return null;
+  }
+
+  const parts: string[] = [];
+
+  // Add subject from programme_field_overrides if it exists
+  if (actions?.programme_field_overrides?.subject) {
+    parts.push(actions.programme_field_overrides.subject);
+  }
+
+  const isKs4Year = keystageFromYear(year) === "ks4";
+
+  if (keystageFromYear(year) === "ks4") {
+    if (type === "core") {
+      parts.push("Core");
+    } else if (type === "non_core") {
+      parts.push("GCSE");
+    }
+  }
+
+  // Handle subject categories (KS1-KS3)
+  if (
+    filters.subjectCategories.length > 0 &&
+    !filters.subjectCategories.includes("all") && // Skip if "All" is selected
+    (!isKs4Year || filters.childSubjects.length === 0)
+  ) {
+    const subjectCategoryTitles = filters.subjectCategories
+      .map((slug) => {
+        // Try to find subject category in current year
+        const subjectCategory = yearData[year]?.subjectCategories.find((sc) => {
+          return sc.slug === slug;
+        });
+        return subjectCategory?.title;
+      })
+      .filter(Boolean);
+
+    if (subjectCategoryTitles.length > 0) {
+      parts.push(subjectCategoryTitles.join(", "));
+    }
+  }
+
+  // Handle child subjects (KS4)
+  if (filters.childSubjects.length > 0) {
+    const childSubjectTitles = filters.childSubjects
+      .map((slug) => {
+        const childSubject = yearData[year]?.childSubjects.find(
+          (cs) => cs.subject_slug === slug,
+        );
+        return childSubject?.subject;
+      })
+      .filter(Boolean);
+
+    if (childSubjectTitles.length > 0) {
+      parts.push(childSubjectTitles.join(", "));
+    }
+  }
+
+  // Handle tiers (KS4)
+  if (filters.tiers.length > 0) {
+    const tierTitles = filters.tiers
+      .map((slug) => {
+        const tier = yearData[year]?.tiers.find((t) => t.tier_slug === slug);
+        return tier?.tier;
+      })
+      .filter(Boolean);
+
+    if (tierTitles.length > 0) {
+      parts.push(tierTitles.join(", "));
+    }
+  }
+
+  return parts.length > 0 ? parts.join(", ") : null;
+}
+
+export function pluralizeUnits(count: number) {
+  if (count > 1) {
+    return "units";
+  } else if (count === 1) {
+    return "unit";
+  }
+  return "";
 }
 
 export function getPhaseFromCategory(input: DownloadCategory) {
@@ -128,4 +222,236 @@ export function getPhaseFromCategory(input: DownloadCategory) {
     return "secondary";
   }
   return "primary";
+}
+
+export function getPathwaySuffix(year: string, pathway?: string) {
+  if (["10", "11"].includes(year) && pathway) {
+    if (pathway === "core") {
+      return "Core";
+    } else if (pathway === "non_core") {
+      return "GCSE";
+    }
+  }
+}
+
+/**
+ * Extracts plain text from an array of PortableTextBlock objects,
+ * concatenates the text, and truncates it to a specified maximum length,
+ * appending an ellipsis (...) if truncation occurs.
+ *
+ * @param blocks - An array of PortableTextBlock objects to extract text from.
+ * @param maxLength - The maximum length of the truncated text. Defaults to 100.
+ * @returns The truncated plain text string, or an empty string if no text could be extracted.
+ */
+export function truncatePortableTextBlock(
+  blocks: PortableTextBlock[] | null | undefined,
+  maxLength: number = 100,
+): string {
+  if (!blocks || blocks.length === 0) return "";
+
+  let text = "";
+
+  // Extract text from all blocks
+  for (const block of blocks) {
+    if (block._type === "block" && block.children) {
+      for (const child of block.children) {
+        if (child._type === "span" && child.text) {
+          text += child.text + " ";
+        }
+      }
+    }
+  }
+
+  text = text.trim();
+  if (text.length > maxLength) {
+    return text.slice(0, maxLength) + "...";
+  }
+
+  return text;
+}
+
+export function getSubjectCategoryMessage(
+  yearData: YearData,
+  currentYear: string,
+  subjectCategories: string[],
+): string | null {
+  if (subjectCategories.length === 0) return null;
+
+  const years = Object.keys(yearData).sort(sortYears);
+  const currentIndex = years.indexOf(currentYear);
+  if (currentIndex === -1) return null;
+
+  // Identify the current phase from the year number
+  const phaseMap = {
+    primary: { start: 1, end: 6 },
+    secondary: { start: 7, end: 11 },
+  };
+  const currentYearNum = parseInt(currentYear.replace("year-", ""));
+  const currentPhase = currentYearNum <= 6 ? "primary" : "secondary";
+
+  const phaseStartNum = phaseMap[currentPhase].start;
+  const phaseEndNum = phaseMap[currentPhase].end;
+
+  // Convert phases to strings for easy comparison with "year-7"/"year-11" keys
+  const phaseStartYear = `year-${phaseStartNum}`;
+  const phaseEndYear = `year-${phaseEndNum}`;
+
+  // Gather the subject category titles
+  const subjectCategoryTitles = Array.from(
+    new Set(
+      years
+        .flatMap((yearKey) =>
+          yearData[yearKey]?.subjectCategories?.filter((sc) =>
+            subjectCategories.includes(sc.slug),
+          ),
+        )
+        .filter(Boolean)
+        .map((sc) => sc?.title),
+    ),
+  );
+
+  if (subjectCategoryTitles.length === 0) return null;
+
+  // Check if the entire phase (not just the current year) has any units for the subject categories
+  const hasAnyUnitsInPhase = years
+    .filter((y) => {
+      const yNum = parseInt(y.replace("year-", ""));
+      // Filter only those years in the same phase as currentYear
+      return currentPhase === "primary"
+        ? yNum >= 1 && yNum <= 6
+        : yNum >= 7 && yNum <= 11;
+    })
+    .some((yearKey) =>
+      yearData[yearKey]?.units?.some((unit) =>
+        unit.subjectcategories?.some((sc) =>
+          subjectCategories.includes(sc.slug),
+        ),
+      ),
+    );
+
+  // Check if this current year has any units in the selected subject categories
+  const hasCurrentYearUnits = yearData[currentYear]?.units?.some((unit) =>
+    unit.subjectcategories?.some((sc) => subjectCategories.includes(sc.slug)),
+  );
+
+  if (!hasCurrentYearUnits) {
+    // Find the first subsequent year (in the same phase) that does have units
+    const subsequentYearsInPhase = years.slice(currentIndex + 1).filter((y) => {
+      const yNum = parseInt(y.replace("year-", ""));
+      return currentPhase === "primary"
+        ? yNum >= 1 && yNum <= 6
+        : yNum >= 7 && yNum <= 11;
+    });
+
+    const firstSubsequentYearWithUnits = subsequentYearsInPhase.find(
+      (yearKey) =>
+        yearData[yearKey]?.units?.some((unit) =>
+          unit.subjectcategories?.some((sc) =>
+            subjectCategories.includes(sc.slug),
+          ),
+        ),
+    );
+
+    // If there is a future year in this phase that has units:
+    if (firstSubsequentYearWithUnits) {
+      const cleanYear = firstSubsequentYearWithUnits.replace("year-", "");
+      const isFirstYearOfPhase =
+        currentYear === phaseStartYear || currentYearNum === phaseStartNum;
+      return isFirstYearOfPhase
+        ? `'${subjectCategoryTitles.join(
+            ", ",
+          )}' units start in Year ${cleanYear}`
+        : `'${subjectCategoryTitles.join(
+            ", ",
+          )}' units continue in Year ${cleanYear}`;
+    }
+
+    // No future years in the phase that have units or we are at the end of the phase
+    const allSubsequentInPhaseEmpty = subsequentYearsInPhase.every(
+      (yearKey) =>
+        !yearData[yearKey]?.units?.some((unit) =>
+          unit.subjectcategories?.some((sc) =>
+            subjectCategories.includes(sc.id.toString()),
+          ),
+        ),
+    );
+
+    if (
+      currentYear === phaseEndYear ||
+      !hasAnyUnitsInPhase ||
+      allSubsequentInPhaseEmpty
+    ) {
+      return `No '${subjectCategoryTitles.join(
+        ", ",
+      )}' units in this year group`;
+    }
+
+    // Default fallback in case of edge conditions
+    return `No '${subjectCategoryTitles.join(", ")}' units in this year group`;
+  }
+
+  // If the current year does have units do not show a message
+  return null;
+}
+
+export function getFilename(
+  fileExt: string,
+  {
+    subjectTitle,
+    phaseTitle,
+    examboardTitle,
+    childSubjectSlug,
+    tierSlug,
+    prefix,
+    suffix,
+  }: {
+    subjectTitle: string;
+    phaseTitle: string;
+    examboardTitle?: string | null;
+    childSubjectSlug?: string;
+    tierSlug?: string;
+    prefix: string;
+    suffix?: string;
+  },
+) {
+  // Handle child subject formatting based on file type
+  const childSubjectTitle = childSubjectSlug
+    ? childSubjectSlug
+        .split("-")
+        .map((word) => capitalize(word))
+        .join(" ")
+    : null;
+
+  let subjectParts: string[];
+
+  if (fileExt === "xlsx") {
+    // For xlsx files: Use child subject as replacement (e.g., "Physics" instead of "Science")
+    subjectParts = childSubjectTitle ? [childSubjectTitle] : [subjectTitle];
+  } else if (fileExt === "docx") {
+    // For docx files: Include both main subject and child subject (e.g., "Science - Biology")
+    subjectParts = childSubjectTitle
+      ? [subjectTitle, childSubjectTitle]
+      : [subjectTitle];
+  } else {
+    // Fallback to xlsx behaviour
+    subjectParts = childSubjectTitle ? [childSubjectTitle] : [subjectTitle];
+  }
+
+  const pageTitle: string = [
+    prefix,
+    ...subjectParts,
+    phaseTitle,
+    examboardTitle,
+    capitalize(tierSlug),
+    format(
+      Date.now(),
+      // Note: dashes "-" rather than ":" because colon is invalid on windows
+      "dd-MM-yyyy",
+    ),
+    suffix,
+  ]
+    .filter(Boolean)
+    .join(" - ");
+
+  return `${pageTitle}.${fileExt}`;
 }

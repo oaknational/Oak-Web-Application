@@ -13,9 +13,9 @@ jobs:
   update_pr_description:
     # Only want to run on success, otherwise it might be "pending", or "failure".
     # Filter out storybook deployments and temporarily Netlify deployments
-    if: ${{ (github.event.deployment.ref != 'main') && (github.event.deployment_status.state == 'success') && !startsWith(github.event.deployment_status.environment, 'storybook')}}
+    if: ${{ (github.event.deployment.ref != 'main') && (github.event.deployment_status.state == 'success') && !endsWith(github.event.deployment_status.environment, 'storybook') && !endsWith(github.event.deployment_status.environment, 'storybook-console')}}
     name: Add deploy URL to PR description
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       # Note we can't use caching here, because caching needs GITHUB_REF to be defined,
@@ -48,7 +48,7 @@ jobs:
   #   # Filter out storybook deployments and temporarily Netlify deployments
   #   if: ${{ (github.event.deployment_status.state == 'success') && !startsWith(github.event.deployment_status.environment, 'storybook')}}
   #   name: Warm Caches
-  #   runs-on: ubuntu-latest
+  #   runs-on: ubuntu-24.04
   #   steps:
   #     - uses: actions/checkout@v4
   #     - name: Use Node.js
@@ -69,9 +69,9 @@ jobs:
     # needs: warm_caches
     # Only want to run on success, otherwise it might be "pending", or "failure".
     # Filter out storybook deployments and temporarily Netlify deployments
-    if: ${{ (github.event.deployment_status.state == 'success') && !startsWith(github.event.deployment_status.environment, 'storybook')}}
+    if: ${{ (github.event.deployment_status.state == 'success') && !endsWith(github.event.deployment_status.environment, 'storybook') && !endsWith(github.event.deployment_status.environment, 'storybook-console')}}
     name: Pa11y
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
 
     steps:
       - uses: actions/checkout@v4
@@ -92,8 +92,7 @@ jobs:
         run: npm run pa11y
         env:
           BASE_URL: ${{ github.event.deployment_status.environment_url }}
-          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
-          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
 
       # Set a custom status because there may be more than one deployment_status
       # event due to alternatively themed deployments, and multiple runs of this
@@ -112,9 +111,9 @@ jobs:
     # needs: warm_caches
     # Only want to run on success, otherwise it might be "pending", or "failure".
     # Filter out storybook deployments and temporarily Netlify deployments
-    if: ${{ (github.event.deployment_status.state == 'success') && !startsWith(github.event.deployment_status.environment, 'storybook')}}
+    if: ${{ (github.event.deployment_status.state == 'success') && !endsWith(github.event.deployment_status.environment, 'storybook') && !endsWith(github.event.deployment_status.environment, 'storybook-console')}}
     name: Percy
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - uses: actions/checkout@v4
@@ -148,8 +147,7 @@ jobs:
           pr_number: ${{ steps.ref_from_sha.outputs.pr_number }}
           percy_token: ${{ secrets.PERCY_TOKEN }}
         env:
-          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
-          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
           PERCY_PAGE_LOAD_TIMEOUT: 60000
 
       # Set custom status so results preserved between multiple

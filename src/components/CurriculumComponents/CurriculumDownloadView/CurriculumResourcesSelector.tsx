@@ -1,13 +1,13 @@
 import { OakFlex, OakHeading } from "@oaknational/oak-components";
+import { uniq } from "lodash";
 
 import {
-  DOWNLOAD_TYPES,
+  DOWNLOAD_TYPE_LABELS,
   DownloadType,
   School,
   assertValidDownloadType,
 } from "./helper";
 
-import RadioGroup from "@/components/SharedComponents/RadioButtons/RadioGroup";
 import ResourceCard from "@/components/TeacherComponents/ResourceCard";
 
 export type CurriculumDownloadViewData = {
@@ -28,46 +28,46 @@ export type CurriculumDownloadViewErrors = Partial<{
 }>;
 
 type CurriculumResourcesSectionProps = {
-  downloadType: DownloadType;
-  onChangeDownloadType: (newDownloadType: DownloadType) => void;
+  downloadTypes: DownloadType[];
+  onChangeDownloadTypes: (newDownloadType: DownloadType[]) => void;
 };
 export function CurriculumResourcesSelector({
-  downloadType,
-  onChangeDownloadType,
+  downloadTypes,
+  onChangeDownloadTypes,
 }: CurriculumResourcesSectionProps) {
   return (
     <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
       <OakHeading tag="h3" $font={["heading-5"]} data-testid="download-heading">
         Curriculum resources
       </OakHeading>
-      <RadioGroup
-        aria-label="Subject Download Options"
-        value={downloadType}
-        onChange={(val) => {
-          const newDownloadType = assertValidDownloadType(val);
-          onChangeDownloadType(newDownloadType);
-        }}
-      >
-        <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
-          {DOWNLOAD_TYPES.map((download) => {
-            return (
-              <ResourceCard
-                id={download.id}
-                key={download.label}
-                name={download.label}
-                label={download.label}
-                subtitle={download.subTitle ?? ""}
-                resourceType="curriculum-pdf"
-                onChange={() => {}}
-                checked={false}
-                onBlur={() => {}}
-                useRadio={true}
-                subjectIcon={download.icon}
-              />
-            );
-          })}
-        </OakFlex>
-      </RadioGroup>
+      <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
+        {DOWNLOAD_TYPE_LABELS.map((download) => {
+          return (
+            <ResourceCard
+              id={download.id}
+              key={download.label}
+              name={download.label}
+              label={download.label}
+              subtitle={download.subTitle ?? ""}
+              resourceType="curriculum-pdf"
+              subjectIcon={download.icon}
+              checked={downloadTypes.includes(download.id)}
+              onChange={(e) => {
+                const downloadType = assertValidDownloadType(e.target.value);
+                let newDownloadTypes: DownloadType[];
+                if (e.target.checked) {
+                  newDownloadTypes = uniq([...downloadTypes, downloadType]);
+                } else {
+                  newDownloadTypes = downloadTypes.filter(
+                    (id) => id !== downloadType,
+                  );
+                }
+                onChangeDownloadTypes(newDownloadTypes);
+              }}
+            />
+          );
+        })}
+      </OakFlex>
     </OakFlex>
   );
 }

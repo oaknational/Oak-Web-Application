@@ -1,7 +1,8 @@
 import { join } from "path";
 
-import { cdata, safeXml, xmlElementToJson } from "../xml";
-import { CombinedCurriculumData } from "..";
+import { cdata, safeXml } from "@ooxml-tools/xml";
+
+import { xmlElementToJson } from "../xml";
 import {
   appendBodyElements,
   cmToEmu,
@@ -12,6 +13,11 @@ import {
   insertLinks,
   wrapInLinkTo,
 } from "../docx";
+
+import { getPortableTextTypes, portableTextToDocx } from "./portableText";
+
+import { PortableTextJSON } from "@/common-lib/cms-types";
+import { CombinedCurriculumData } from "@/utils/curriculum/types";
 
 export default async function generate(
   zip: JSZipCached,
@@ -40,6 +46,43 @@ export default async function generate(
     ogl: "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
     terms: "https://www.thenational.academy/legal/terms-and-conditions",
   });
+
+  function joinPortableTextWords(words: PortableTextJSON) {
+    const out: PortableTextJSON = [];
+    words.forEach((block, index) => {
+      out.push(block);
+      if (index < words.length - 1) {
+        if (index === words.length - 2) {
+          out.push({
+            _type: "span",
+            marks: [],
+            text: " and ",
+          });
+        } else {
+          out.push({
+            _type: "span",
+            marks: [],
+            text: ", ",
+          });
+        }
+      }
+    });
+    return out;
+  }
+
+  const curriculumPartnerWords = data.curriculumPartnerOverviews.map(
+    (partner) => {
+      return {
+        _type: "span",
+        marks: [],
+        text: partner.curriculumPartner.name,
+      };
+    },
+  );
+  const curriculumPartnerText = await portableTextToDocx(
+    joinPortableTextWords(curriculumPartnerWords),
+    getPortableTextTypes(zip),
+  );
 
   const pageXml = safeXml`
     <root>
@@ -155,11 +198,18 @@ export default async function generate(
             <w:color w:val="222222" />
             <w:sz w:val="24" />
           </w:rPr>
-          <w:t>
-            ${cdata(
-              `Produced in partnership with ${data.curriculumPartner.name}.`,
-            )}
-          </w:t>
+          <w:t xml:space="preserve">${cdata(
+              `Produced in partnership with `,
+            )}</w:t>
+        </w:r>
+        ${curriculumPartnerText}
+        <w:r>
+          <w:rPr>
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+            <w:color w:val="222222" />
+            <w:sz w:val="24" />
+          </w:rPr>
+          <w:t>${cdata(`.`)}</w:t>
         </w:r>
       </w:p>
       <w:p>

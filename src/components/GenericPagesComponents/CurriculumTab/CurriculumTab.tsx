@@ -8,6 +8,7 @@ import {
   OakSecondaryLink,
   OakMaxWidth,
   OakBox,
+  OakIcon,
 } from "@oaknational/oak-components";
 
 import Illustration from "@/components/SharedComponents/Illustration";
@@ -19,12 +20,46 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 type CurriculumDownloadTabProps = {
   curriculumPhaseOptions: SubjectPhasePickerData;
 };
+
 const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
   curriculumPhaseOptions,
 }) => {
   const { track } = useAnalytics();
   return (
-    <OakBox $background={"mint"} $pv="inner-padding-xl" $ph={"inner-padding-m"}>
+    <OakBox
+      $background={"mint"}
+      $pv="inner-padding-xl"
+      $ph={"inner-padding-m"}
+      $position={"relative"}
+    >
+      {/* scroll wrapper */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          overflow: "hidden",
+          pointerEvents: "none",
+        }}
+      >
+        {/* force this positioning */}
+        <div
+          style={{
+            position: "absolute",
+            bottom: 18,
+            right: "calc(-40rem + 50vw - 200px)",
+            width: 529,
+            height: 420,
+          }}
+        >
+          <OakIcon
+            $display={["none", "none", "block"]}
+            iconName={"looping-line-5"}
+            $colorFilter={"mint30"}
+            $width={"100%"}
+            $height={"100%"}
+          />
+        </div>
+      </div>
       <OakMaxWidth $pv={"inner-padding-xl"}>
         <OakFlex>
           <OakFlex

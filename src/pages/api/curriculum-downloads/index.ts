@@ -1,8 +1,12 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import { format } from "date-fns";
+import { isUndefined, omitBy } from "lodash";
+import { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
-import { capitalize, isUndefined, omitBy } from "lodash";
 
+import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
+import { getFilename } from "@/utils/curriculum/formatting";
+import docx from "@/pages-helpers/curriculum/docx";
+import xlsxNationalCurriculum from "@/pages-helpers/curriculum/xlsx";
+import { zipFromFiles } from "@/utils/curriculum/zip";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import CMSClient from "@/node-lib/cms";
@@ -10,11 +14,19 @@ import curriculumApi2023, {
   CurriculumOverviewMVData,
   CurriculumUnitsTabData,
 } from "@/node-lib/curriculum-api-2023";
-import docx, { CombinedCurriculumData } from "@/pages-helpers/curriculum/docx";
-import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
 import { logErrorMessage } from "@/utils/curriculum/testing";
+import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
+import { CombinedCurriculumData } from "@/utils/curriculum/types";
+import { generateHash } from "@/pages-helpers/curriculum/docx/docx";
+import { ENABLE_NC_XLSX_DOCUMENT } from "@/utils/curriculum/constants";
+
+const stale_while_revalidate_seconds = 60 * 3;
+const s_maxage_seconds = 60 * 60 * 24;
 
 export const curriculumDownloadQuerySchema = z.object({
+  types: z.preprocess((val) => {
+    return String(val).split(",");
+  }, z.array(z.string())),
   mvRefreshTime: z.string(),
   subjectSlug: z.string(),
   phaseSlug: z.string(),
@@ -40,6 +52,7 @@ type getDataReturn =
       tierSlug?: string;
       childSubjectSlug?: string;
       dataWarnings: string[];
+      ks4Options: Ks4Option[];
     };
 async function getData(opts: {
   subjectSlug: string;
@@ -135,6 +148,7 @@ async function getData(opts: {
             asset: { assetId: "", playbackId: "undefined", thumbTime: null },
           },
         },
+        curriculumSeoTextRaw: null,
         curriculumExplainer: {
           explainerRaw: [
             {
@@ -183,10 +197,14 @@ async function getData(opts: {
   const subject = curriculumPhaseOptions.subjects.find((subject) => {
     return subject.slug === subjectSlug;
   }) as SubjectPhasePickerData["subjects"][number] | undefined;
+
+  if (!subject) {
+    return { notFound: true };
+  }
+
+  const ks4Options = subject.ks4_options ?? [];
   const ks4Option =
-    subject?.ks4_options?.find(
-      (ks4_option) => ks4_option.slug === ks4OptionSlug,
-    ) ?? null;
+    ks4Options.find((ks4_option) => ks4_option.slug === ks4OptionSlug) ?? null;
 
   const combinedCurriculumData: CombinedCurriculumData = {
     ...curriculumData,
@@ -206,17 +224,16 @@ async function getData(opts: {
     tierSlug,
     childSubjectSlug,
     dataWarnings,
+    ks4Options,
   };
 }
-
-const stale_while_revalidate_seconds = 60 * 3;
-const s_maxage_seconds = 60 * 60 * 24;
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Buffer>,
 ) {
   const {
+    types,
     mvRefreshTime,
     subjectSlug,
     phaseSlug,
@@ -239,6 +256,7 @@ export default async function handler(
   if (mvRefreshTimeParsed !== actualMvRefreshTime) {
     const slugOb = omitBy(
       {
+        types,
         subjectSlug,
         phaseSlug,
         state,
@@ -252,9 +270,55 @@ export default async function handler(
     const newSlugs = new URLSearchParams(slugOb);
 
     const redirectUrl = `/api/curriculum-downloads/?${newSlugs}`;
-    res.redirect(307, redirectUrl);
+
+    // Netlify-Vary is a hack to hopefully resolve
+    res.setHeader("Netlify-Vary", "query").redirect(307, redirectUrl);
     return;
   }
+
+  const allHandlers = [
+    {
+      type: "curriculum-plans",
+      handler: docx,
+      getFilename: (data: getDataReturn) => {
+        if (data.notFound) {
+          throw new Error("Data not found");
+        }
+        return getFilename("docx", {
+          subjectTitle: data.combinedCurriculumData.subjectTitle,
+          phaseTitle: data.combinedCurriculumData.phaseTitle,
+          examboardTitle: data.combinedCurriculumData?.examboardTitle,
+          childSubjectSlug,
+          tierSlug,
+          prefix: "Curriculum plan",
+        });
+      },
+    },
+    {
+      type: "national-curriculum",
+      handler: xlsxNationalCurriculum,
+      getFilename: (data: getDataReturn) => {
+        if (data.notFound) {
+          throw new Error("Data not found");
+        }
+        return getFilename("xlsx", {
+          subjectTitle: data.combinedCurriculumData.subjectTitle,
+          phaseTitle: data.combinedCurriculumData.phaseTitle,
+          examboardTitle: data.combinedCurriculumData?.examboardTitle,
+          childSubjectSlug,
+          tierSlug,
+          prefix: "NC alignment",
+        });
+      },
+    },
+  ];
+
+  const handlers = allHandlers.filter(({ type }) => {
+    if (type === "national-curriculum" && !ENABLE_NC_XLSX_DOCUMENT) {
+      return false;
+    }
+    return (types as string[]).includes(type);
+  });
 
   const data = await getData({
     subjectSlug,
@@ -266,43 +330,66 @@ export default async function handler(
   });
 
   // FIXME: Poor use of types here
-  if (!data.notFound) {
-    const buffer = await docx(data.combinedCurriculumData, {
-      subjectSlug: data.subjectSlug,
-      phaseSlug: data.phaseSlug,
-      keyStageSlug: data.phaseSlug,
-      ks4OptionSlug: data.ks4OptionSlug,
-      tierSlug,
-      childSubjectSlug,
+  if (data.notFound === false) {
+    const promises = handlers.map(async ({ handler, getFilename }) => {
+      const buffer = Buffer.from(
+        await handler(
+          data.combinedCurriculumData,
+          {
+            subjectSlug: data.subjectSlug,
+            phaseSlug: data.phaseSlug,
+            keyStageSlug: data.phaseSlug,
+            ks4OptionSlug: data.ks4OptionSlug,
+            tierSlug,
+            childSubjectSlug,
+          },
+          data.ks4Options,
+        ),
+      );
+
+      const filename = getFilename(data);
+
+      return { filename, buffer };
     });
 
-    const pageTitle: string = [
-      data.combinedCurriculumData?.subjectTitle,
-      data.combinedCurriculumData?.phaseTitle,
-      data.combinedCurriculumData?.examboardTitle,
-      capitalize(childSubjectSlug?.split("-").join(" ")),
-      capitalize(tierSlug),
-    ]
-      .filter(Boolean)
-      .join(" - ");
+    const files = await Promise.all(promises);
 
-    const filename = `${pageTitle} - ${format(
-      Date.now(),
-      // Note: dashes "-" rather than ":" because colon is invalid on windows
-      "dd-MM-yyyy",
-    )}.docx`;
+    let outputBuffer: Buffer;
+    let outputFileName: string;
+    if (files.length > 1) {
+      outputBuffer = await zipFromFiles(files);
+      outputFileName = getFilename("zip", {
+        subjectTitle: data.combinedCurriculumData.subjectTitle,
+        phaseTitle: data.combinedCurriculumData.phaseTitle,
+        examboardTitle: data.combinedCurriculumData?.examboardTitle,
+        childSubjectSlug,
+        tierSlug,
+        prefix: "Curriculum downloads",
+        suffix: generateHash([...types, actualMvRefreshTime].join("|")).slice(
+          0,
+          8,
+        ),
+      });
+    } else if (files.length === 1 && files[0]) {
+      outputBuffer = files[0].buffer;
+      outputFileName = files[0].filename;
+    } else {
+      throw new Error("Invalid file list");
+    }
 
     res
       .setHeader("content-type", "application/msword")
-      .setHeader("Netlify-Vary", "query")
       .setHeader(
         "Cache-Control",
         `public, durable, s-maxage=${s_maxage_seconds}, stale-while-revalidate=${stale_while_revalidate_seconds}`,
       )
-      .setHeader("Content-Disposition", `attachment; filename="${filename}`)
-      .setHeader("x-filename", `${filename}`)
+      .setHeader(
+        "Content-Disposition",
+        `attachment; filename="${outputFileName}`,
+      )
+      .setHeader("x-filename", `${outputFileName}`)
       .status(200)
-      .send(Buffer.from(buffer));
+      .send(Buffer.from(outputBuffer));
     return;
   } else {
     res.status(404).end();

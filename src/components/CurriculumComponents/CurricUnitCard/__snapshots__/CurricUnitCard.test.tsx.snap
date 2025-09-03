@@ -1,0 +1,314 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CurricUnitCard changes color when highlighed 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-fqkvVR sc-1c55d370-0 jdSkEU iHxKuU"
+    >
+      <a
+        class="sc-7353c220-0 eacPWx"
+        data-testid="unit-info-link"
+        href="/"
+      >
+        <div
+          class="sc-fqkvVR sc-gsFSXq hjukdb bOTBNE"
+          data-testid="unit-card"
+        >
+          <div
+            class="sc-fqkvVR fgBWrW"
+          >
+            <div
+              class="sc-9d6b6245-0 cPzdPh pa11y-ignore"
+            >
+              <span
+                aria-hidden="true"
+              >
+                1
+              </span>
+            </div>
+            <span
+              class="sc-kpDqfm fsPjOh"
+            >
+              Something nice
+            </span>
+            <div
+              class="sc-fqkvVR csHkiI"
+              data-testid="options-tag"
+            >
+              <span
+                class="sc-kpDqfm eQlqjY"
+                color="lavender"
+              >
+                2 unit options
+              </span>
+            </div>
+          </div>
+          <div
+            class="sc-fqkvVR sc-gsFSXq julalA liZwDP"
+          >
+            <div
+              class="sc-fqkvVR sc-gsFSXq fgBWrW gJyPoc"
+            >
+              <div
+                class="sc-fqkvVR sc-eldPxv kxMTGH dHEUFw"
+              >
+                Unit info
+              </div>
+              <div
+                class="sc-fqkvVR kbnxKi"
+              >
+                <img
+                  alt=""
+                  class="sc-dcJsrY beWtwI"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`CurricUnitCard highlighted state 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-fqkvVR sc-1c55d370-0 jdSkEU dNUCNM"
+    >
+      <a
+        class="sc-7353c220-0 cSHgvT"
+        data-testid="unit-info-link"
+        href="/"
+      >
+        <div
+          class="sc-fqkvVR sc-gsFSXq jFkkJb bOTBNE"
+          data-testid="highlighted-unit-card"
+        >
+          <div
+            class="sc-fqkvVR fgBWrW"
+          >
+            <div
+              class="sc-9d6b6245-0 cPzdPh pa11y-ignore"
+            >
+              <span
+                aria-hidden="true"
+              >
+                1
+              </span>
+            </div>
+            <span
+              class="sc-kpDqfm fsPjOh"
+            >
+              Something nice
+            </span>
+            <div
+              class="sc-fqkvVR csHkiI"
+              data-testid="options-tag"
+            >
+              <span
+                class="sc-kpDqfm eQlqjY"
+                color="lavender"
+              >
+                2 unit options
+              </span>
+            </div>
+          </div>
+          <div
+            class="sc-fqkvVR sc-gsFSXq julalA liZwDP"
+          >
+            <div
+              class="sc-fqkvVR sc-gsFSXq fgBWrW gJyPoc"
+            >
+              <div
+                class="sc-fqkvVR sc-eldPxv kxMTGH dHEUFw"
+              >
+                Unit info
+              </div>
+              <div
+                class="sc-fqkvVR kbnxKi"
+              >
+                <img
+                  alt=""
+                  class="sc-dcJsrY bDcxkE"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            style="border: 0px; clip-path: inset(50%); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap;"
+          >
+             (highlighted)
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`CurricUnitCard index is correct 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-fqkvVR sc-1c55d370-0 jdSkEU iHxKuU"
+    >
+      <a
+        class="sc-7353c220-0 eacPWx"
+        data-testid="unit-info-link"
+        href="/"
+      >
+        <div
+          class="sc-fqkvVR sc-gsFSXq hjukdb bOTBNE"
+          data-testid="unit-card"
+        >
+          <div
+            class="sc-fqkvVR fgBWrW"
+          >
+            <div
+              class="sc-9d6b6245-0 cPzdPh pa11y-ignore"
+            >
+              <span
+                aria-hidden="true"
+              >
+                1
+              </span>
+            </div>
+            <span
+              class="sc-kpDqfm fsPjOh"
+            >
+              Something nice
+            </span>
+            <div
+              class="sc-fqkvVR csHkiI"
+              data-testid="options-tag"
+            >
+              <span
+                class="sc-kpDqfm eQlqjY"
+                color="lavender"
+              >
+                2 unit options
+              </span>
+            </div>
+          </div>
+          <div
+            class="sc-fqkvVR sc-gsFSXq julalA liZwDP"
+          >
+            <div
+              class="sc-fqkvVR sc-gsFSXq fgBWrW gJyPoc"
+            >
+              <div
+                class="sc-fqkvVR sc-eldPxv kxMTGH dHEUFw"
+              >
+                Unit info
+              </div>
+              <div
+                class="sc-fqkvVR kbnxKi"
+              >
+                <img
+                  alt=""
+                  class="sc-dcJsrY beWtwI"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`CurricUnitCard render 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-fqkvVR sc-1c55d370-0 jdSkEU iHxKuU"
+    >
+      <a
+        class="sc-7353c220-0 eacPWx"
+        data-testid="unit-info-link"
+        href="/"
+      >
+        <div
+          class="sc-fqkvVR sc-gsFSXq hjukdb bOTBNE"
+          data-testid="unit-card"
+        >
+          <div
+            class="sc-fqkvVR fgBWrW"
+          >
+            <div
+              class="sc-9d6b6245-0 cPzdPh pa11y-ignore"
+            >
+              <span
+                aria-hidden="true"
+              >
+                1
+              </span>
+            </div>
+            <span
+              class="sc-kpDqfm fsPjOh"
+            >
+              Something nice
+            </span>
+            <div
+              class="sc-fqkvVR csHkiI"
+              data-testid="options-tag"
+            >
+              <span
+                class="sc-kpDqfm eQlqjY"
+                color="lavender"
+              >
+                2 unit options
+              </span>
+            </div>
+          </div>
+          <div
+            class="sc-fqkvVR sc-gsFSXq julalA liZwDP"
+          >
+            <div
+              class="sc-fqkvVR sc-gsFSXq fgBWrW gJyPoc"
+            >
+              <div
+                class="sc-fqkvVR sc-eldPxv kxMTGH dHEUFw"
+              >
+                Unit info
+              </div>
+              <div
+                class="sc-fqkvVR kbnxKi"
+              >
+                <img
+                  alt=""
+                  class="sc-dcJsrY beWtwI"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</body>
+`;

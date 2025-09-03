@@ -1,8 +1,13 @@
 import { z } from "zod";
-import { actionsSchema } from "@oaknational/oak-curriculum-schema";
+import {
+  actionsSchema,
+  syntheticUnitvariantsWithLessonIdsByKsSchema,
+} from "@oaknational/oak-curriculum-schema";
 
 import { zodToCamelCase } from "./helpers/zodToCamelCase";
 import { mediaClipsRecordCamelSchema } from "./queries/lessonMediaClips/lessonMediaClips.schema";
+
+import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
 export const contentGuidanceSchemaCamelCase = z.object({
   contentGuidanceLabel: z.string(),
@@ -51,6 +56,12 @@ const stemTextObjectSchema = z.object({
 });
 
 export type StemTextObject = z.infer<typeof stemTextObjectSchema>;
+
+export const isStemTextObject = (
+  obj: StemTextObject | StemImageObject,
+): obj is StemTextObject => {
+  return obj.type === "text";
+};
 
 const stemImageObjectSchema = z.object({
   imageObject: z.object({
@@ -131,6 +142,7 @@ export const lessonPathwaySchema = z.object({
   tierTitle: z.string().nullish(),
   yearGroupSlug: z.string().nullish(),
   yearGroupTitle: z.string().nullish(),
+  pathwayTitle: z.string().nullish(),
 });
 
 export type LessonPathway = z.infer<typeof lessonPathwaySchema>;
@@ -175,6 +187,7 @@ export const baseLessonOverviewSchema = z.object({
   lessonTitle: z.string(),
   tierTitle: z.string().nullable().optional(),
   tierSlug: z.string().nullable().optional(),
+  pathwayTitle: z.string().nullable().optional(),
   contentGuidance: z
     .array(contentGuidanceSchemaCamelCase)
     .nullable()
@@ -200,7 +213,7 @@ export const baseLessonOverviewSchema = z.object({
   videoWithSignLanguageMuxPlaybackId: z.string().nullable(),
   transcriptSentences: z.union([z.array(z.string()), z.string()]).nullable(),
   isWorksheetLandscape: z.boolean().optional().nullable(),
-  hasCopyrightMaterial: z.boolean().optional().nullable(),
+  hasLegacyCopyrightMaterial: z.boolean().optional().nullable(),
   expired: z.boolean().nullable(),
   starterQuiz: lessonOverviewQuizData,
   exitQuiz: lessonOverviewQuizData,
@@ -214,8 +227,23 @@ export const baseLessonOverviewSchema = z.object({
   additionalFiles: z.array(z.string()).nullable(),
   lessonMediaClips: mediaClipsRecordCamelSchema.nullish(),
   lessonOutline: z.array(z.object({ lessonOutline: z.string() })).nullable(),
+  lessonReleaseDate: z.string().nullable(),
+  orderInUnit: z.number().nullable(),
+  unitTotalLessonCount: z.number().nullable(),
+  loginRequired: z.boolean(),
+  geoRestricted: z.boolean(),
 });
 export type LessonBase = z.infer<typeof baseLessonOverviewSchema>;
+
+export const lessonUnitDataByKsSchema =
+  syntheticUnitvariantsWithLessonIdsByKsSchema.pick({
+    lesson_count: true,
+    supplementary_data: true,
+  });
+
+export type LessonUnitDataByKs = ConvertKeysToCamelCase<
+  z.infer<typeof lessonUnitDataByKsSchema>
+>;
 
 export const lessonDownloadsListSchema = z.array(
   z.object({
@@ -274,6 +302,7 @@ export const baseLessonDownloadsSchema = z.object({
   geoRestricted: z.boolean().nullable(),
   loginRequired: z.boolean().nullable(),
   actions: camelActionSchema.nullable().optional(),
+  lessonReleaseDate: z.string().nullable(),
 });
 
 export const lessonListItemSchema = z.object({
@@ -286,13 +315,33 @@ export const lessonListItemSchema = z.object({
   videoCount: z.number().nullish(),
   presentationCount: z.number().nullish(),
   worksheetCount: z.number().nullish(),
-  hasCopyrightMaterial: z.boolean().nullish(),
+  hasLegacyCopyrightMaterial: z.boolean().nullish(),
   orderInUnit: z.number().nullish(),
   lessonCohort: z.string().nullish(),
   actions: camelActionSchema.nullish(),
+  isUnpublished: z.literal(false),
+  lessonReleaseDate: z.string().nullable(),
+  geoRestricted: z.boolean(),
+  loginRequired: z.boolean(),
 });
 
-export const lessonListSchema = z.array(lessonListItemSchema);
+export type LessonListItem = z.infer<typeof lessonListItemSchema>;
+
+export const unpublishedLessonListItemSchema = z.object({
+  lessonSlug: z.string(),
+  lessonTitle: z.string(),
+  orderInUnit: z.number().nullish(),
+  isUnpublished: z.literal(true),
+  lessonReleaseDate: z.string().nullable(),
+  expired: z.boolean().nullable(),
+});
+
+export type UnpublishedLessonListItem = z.infer<
+  typeof unpublishedLessonListItemSchema
+>;
+export const lessonListSchema = z.array(
+  z.union([lessonListItemSchema, unpublishedLessonListItemSchema]),
+);
 
 export type LessonListSchema = z.infer<typeof lessonListSchema>;
 
@@ -322,3 +371,29 @@ export const lessonShareResourceSchema = z.object({
   label: z.string(),
   metadata: z.string().nullable(),
 });
+
+export const redirectSchema = z.object({
+  incoming_path: z.string(),
+  outgoing_path: z.string(),
+  redirect_type: z.union([
+    z.literal(301),
+    z.literal(302),
+    z.literal(303),
+    z.literal(307),
+    z.literal(308),
+  ]),
+});
+
+// Type representing the raw data from the API (snake_case)
+export type RedirectData = {
+  incoming_path: string;
+  outgoing_path: string;
+  redirect_type?: 301 | 302 | 303 | 307 | 308;
+};
+
+// Type representing the processed data in camelCase for use in the application
+export type Redirect = {
+  incomingPath: string;
+  outgoingPath: string;
+  redirectType: 301 | 302 | 303 | 307 | 308;
+};

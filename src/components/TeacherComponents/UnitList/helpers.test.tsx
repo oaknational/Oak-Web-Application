@@ -23,9 +23,11 @@ describe("unit list helpers", () => {
         keyStageSlug: "ks4",
         keyStageTitle: "Key Stage 4",
         yearOrder: 1,
-        year: "year-1",
+        yearSlug: "year-1",
         yearTitle: "Year 1",
+        year: "1",
         learningThemes: [],
+        unpublishedLessonCount: 0,
       },
     ]);
     expect(result).toEqual(true);
@@ -40,6 +42,7 @@ describe("unit list helpers", () => {
       subjectSlug: "biology",
       subjectTitle: "Biology",
       pathwayTitle: null,
+      pathwaySlug: null,
       subjectParent: null,
       tierSlug: "higher",
       tiers: [],
@@ -47,7 +50,7 @@ describe("unit list helpers", () => {
       phase: "secondary",
       learningThemes: [],
       hasNewContent: false,
-      yearGroups: [{ year: "year-1", yearTitle: "Year 1" }],
+      yearGroups: [{ yearSlug: "year-1", yearTitle: "Year 1", year: "1" }],
       subjectCategories: [
         { label: "Biology", slug: "biology", iconName: "icon-biology" },
       ],
@@ -70,9 +73,11 @@ describe("unit list helpers", () => {
           keyStageSlug: "ks4",
           keyStageTitle: "Key Stage 4",
           yearOrder: 1,
-          year: "year-1",
+          yearSlug: "year-1",
           yearTitle: "Year 1",
+          year: "1",
           learningThemes: [],
+          unpublishedLessonCount: 0,
         },
       ],
     ]);
@@ -88,6 +93,7 @@ describe("unit list helpers", () => {
       subjectSlug: "biology",
       subjectTitle: "Biology",
       pathwayTitle: null,
+      pathwaySlug: null,
       subjectParent: "Science",
       tierSlug: "higher",
       tiers: [],
@@ -96,7 +102,7 @@ describe("unit list helpers", () => {
       learningThemes: [],
       hasNewContent: false,
       currentPageItems: [],
-      yearGroups: [{ year: "year-10", yearTitle: "Year 10" }],
+      yearGroups: [{ yearSlug: "year-10", yearTitle: "Year 10", year: "10" }],
       subjectCategories: [
         { label: "Biology", slug: "biology", iconName: "icon-biology" },
       ],
@@ -106,6 +112,7 @@ describe("unit list helpers", () => {
     expect(result).toEqual({
       phaseSlug: "secondary",
       keyStageSlug: "ks4",
+      keyStageTitle: "Key Stage 4",
       examBoardSlug: "aqa",
     });
   });
@@ -130,7 +137,7 @@ describe("unit list helpers", () => {
       hasNewContent: false,
       currentPageItems: [],
       paginationProps: mockPaginationProps,
-      yearGroups: [{ year: "year-10", yearTitle: "Year 10" }],
+      yearGroups: [{ yearSlug: "year-10", yearTitle: "Year 10", year: "10" }],
       onClick: () => {},
     });
     expect(result).toEqual({

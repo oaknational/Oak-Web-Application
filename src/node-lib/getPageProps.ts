@@ -2,12 +2,21 @@ import { ParsedUrlQuery } from "querystring";
 
 import { GetStaticPropsContext, GetStaticPropsResult, PreviewData } from "next";
 
-import errorReporter, { initialiseBugsnag } from "../common-lib/error-reporter";
+import errorReporter, {
+  initialiseBugsnag,
+  initialiseSentry,
+} from "../common-lib/error-reporter";
 import OakError from "../errors/OakError";
 
 import { decorateWithIsr } from "./isr";
 
-initialiseBugsnag(null);
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+
+if (getBrowserConfig("sentryEnabled")) {
+  initialiseSentry(null);
+} else {
+  initialiseBugsnag(null);
+}
 
 /**
  * This function is intended to wrap NextJS page functions (e.g. getStaticProps,

@@ -9,12 +9,10 @@ const getDeploymentTestUrls = require("./src/common-lib/urls/getDeploymentTestUr
 const baseUrl = process.env.BASE_URL || "http://localhost:3000";
 const isLocalHost = new URL(baseUrl).host === "localhost:3000";
 
-// Cloudflare Access token
-const CfAccessClientId = process.env.CF_ACCESS_CLIENT_ID;
-const CfAccessClientSecret = process.env.CF_ACCESS_CLIENT_SECRET;
-if (!isLocalHost && (!CfAccessClientId || !CfAccessClientSecret)) {
+const vercelAutomationBypass = process.env.VERCEL_AUTOMATION_BYPASS_SECRET;
+if (!isLocalHost && !vercelAutomationBypass) {
   throw new TypeError(
-    "Please specify Cloudflare Access token headers in envs\nfor background info see https://developers.cloudflare.com/cloudflare-one/identity/service-tokens/",
+    "Please specify Vercel bypass token header in envs\nfor background info see https://vercel.com/docs/deployment-protection/methods-to-bypass-deployment-protection#protection-bypass-for-automation",
   );
 }
 
@@ -47,10 +45,13 @@ const config = {
       "list",
     ],
     headers: {
-      "CF-Access-Client-Id": CfAccessClientId,
-      "CF-Access-Client-Secret": CfAccessClientSecret,
+      "x-vercel-protection-bypass": vercelAutomationBypass,
     },
     concurrency: 10,
+    // If running pa11y locally fails, comment out the following section
+    chromeLaunchConfig: {
+      executablePath: "/usr/bin/google-chrome",
+    },
   },
   urls: [],
   // log: {
@@ -69,6 +70,7 @@ config.urls = relativeUrls.map((relUrl) => {
     const pa11yUrl = new URL(relUrl, baseUrl).href;
     return {
       url: pa11yUrl,
+      timeout: 120000,
       // Should help detect if we get served, e.g. a Cloudflare error page.
       actions: ["wait for element #__next to be visible"],
     };

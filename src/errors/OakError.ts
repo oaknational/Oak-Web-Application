@@ -31,8 +31,12 @@ const ERROR_CODES = [
   "urls/failed-to-resolve",
   "downloads/failed-to-fetch",
   "downloads/check-files-failed",
+  "downloads/missing-auth-token",
   "onboarding/request-error",
   "oak-components/invalid-icon-name",
+  "educator-api/failed-to-save-unit",
+  "educator-api/failed-to-get-saved-units",
+  "educator-api/failed-to-unsave-unit",
 ] as const;
 export type ErrorCode = (typeof ERROR_CODES)[number];
 
@@ -41,9 +45,10 @@ type ErrorConfig = {
   message: string;
   // @todo responseStatusCode to be union type
   responseStatusCode?: number;
-  // Whether or not to notify bugsnag
+  // Whether the error should be reported to error monitoring services
   shouldNotify: boolean;
 };
+
 const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   "misc/unknown": {
     message: "An unknown error has occurred",
@@ -170,12 +175,28 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
     message: "Failed to check file existence",
     shouldNotify: true,
   },
+  "downloads/missing-auth-token": {
+    message: "Missing auth token for download",
+    shouldNotify: true,
+  },
   "onboarding/request-error": {
     message: "Onboarding request failed",
     shouldNotify: true,
   },
   "oak-components/invalid-icon-name": {
     message: "Invalid icon name provided to OakIcon",
+    shouldNotify: true,
+  },
+  "educator-api/failed-to-get-saved-units": {
+    message: "Failed to fetch user content data from the educator API",
+    shouldNotify: true,
+  },
+  "educator-api/failed-to-save-unit": {
+    message: "Failed to save unit to the educator API",
+    shouldNotify: true,
+  },
+  "educator-api/failed-to-unsave-unit": {
+    message: "Failed to unsave unit from the educator API",
     shouldNotify: true,
   },
 };

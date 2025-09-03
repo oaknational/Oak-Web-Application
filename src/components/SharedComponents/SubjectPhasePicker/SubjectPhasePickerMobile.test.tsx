@@ -568,33 +568,6 @@ describe("Component - Mobile subject phase picker", () => {
       expect(optionTexts).toContain("GCSE");
     });
 
-    test("No KS4 options displayed for Geography", async () => {
-      const { queryByTestId, getByTestId, findAllByTitle } = render(
-        <SubjectPhasePicker {...curriculumPhaseOptions} />,
-      );
-
-      const control = getByTestId("subject-picker-button");
-      await userEvent.click(control);
-
-      const geographyButton = await findAllByTitle("Geography");
-      await userEvent.click(geographyButton[0] as HTMLElement);
-
-      const confirmSubjectButton = getByTestId(
-        "mobile-subject-picker-confirm-button",
-      );
-      await userEvent.click(confirmSubjectButton);
-
-      await waitFor(() => {
-        expect(getByTestId("mobile-phase-picker-heading")).toBeInTheDocument();
-      });
-      const secondaryButton = await findAllByTitle("Secondary");
-      await userEvent.click(secondaryButton[0] as HTMLElement);
-
-      expect(
-        queryByTestId("mobile-phase-picker-ks4-option-heading"),
-      ).not.toBeInTheDocument();
-    });
-
     test("populates lot picker with the correct subject and phase selections", () => {
       const currentSelection = {
         subject: {

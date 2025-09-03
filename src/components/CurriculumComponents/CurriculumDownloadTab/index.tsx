@@ -13,14 +13,15 @@ import {
   oakDefaultTheme,
   Tier,
   Subject,
+  OakBox,
 } from "@oaknational/oak-components";
 import { mapKeys, camelCase, capitalize } from "lodash";
 
 import CurriculumDownloadView, {
   CurriculumDownloadViewData,
 } from "../CurriculumDownloadView";
-import { School } from "../CurriculumDownloadView/helper";
-import SuccessMessage from "../SuccessMessage";
+import { DOWNLOAD_TYPE_LABELS, School } from "../CurriculumDownloadView/helper";
+import CurricSuccessMessage from "../CurricSuccessMessage";
 
 import {
   saveDownloadsDataToLocalStorage,
@@ -30,7 +31,6 @@ import {
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly/ScreenReaderOnly";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import Box from "@/components/SharedComponents/Box";
 import { useFetch } from "@/hooks/useFetch";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import {
@@ -44,6 +44,12 @@ import { extractUrnAndSchool } from "@/components/TeacherComponents/helpers/down
 import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { convertUnitSlugToTitle } from "@/components/TeacherViews/Search/helpers";
+import { downloadFileFromUrl } from "@/components/SharedComponents/helpers/downloadFileFromUrl";
+import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urls";
+import errorReporter from "@/common-lib/error-reporter";
+import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { doUnitsHaveNc, flatUnitsFromYearData } from "@/utils/curriculum/units";
+import { ENABLE_NC_XLSX_DOCUMENT } from "@/utils/curriculum/constants";
 
 function ScrollIntoViewWhenVisisble({
   children,
@@ -57,30 +63,6 @@ function ScrollIntoViewWhenVisisble({
     }
   }, [ref]);
   return <div ref={ref}>{children}</div>;
-}
-
-export function createCurriculumDownloadsQuery(
-  state: "new" | "published",
-  mvRefreshTime: number,
-  subjectSlug: string,
-  phaseSlug: string,
-  ks4OptionSlug: string | null,
-  tierSlug: string | null,
-  childSubjectSlug: string | null,
-) {
-  const query = new URLSearchParams({
-    mvRefreshTime: String(mvRefreshTime),
-    subjectSlug: subjectSlug,
-    phaseSlug: phaseSlug,
-    state: state,
-  });
-  ks4OptionSlug && query.set("ks4OptionSlug", ks4OptionSlug);
-  tierSlug && tierSlug !== null && query.set("tierSlug", tierSlug);
-  childSubjectSlug &&
-    childSubjectSlug !== null &&
-    query.set("childSubjectSlug", childSubjectSlug);
-
-  return query;
 }
 
 export const trackCurriculumDownload = async (
@@ -136,6 +118,7 @@ export type CurriculumDownloadTabProps = {
   slugs: CurriculumSelectionSlugs;
   tiers: { tier: string; tier_slug: string }[];
   child_subjects?: { subject: string; subject_slug: string }[];
+  formattedData: CurriculumUnitsFormattedData;
 };
 const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   mvRefreshTime,
@@ -143,10 +126,22 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   tiers: snake_tiers,
   child_subjects,
   curriculumInfo,
+  formattedData,
 }) => {
   const { track } = useAnalytics();
   const { onHubspotSubmit } = useHubspotSubmit();
   const { analyticsUseCase } = useAnalyticsPageProps();
+  const availableDownloadTypes = useMemo(() => {
+    return DOWNLOAD_TYPE_LABELS.map(({ id }) => id).filter((id) => {
+      if (id === "national-curriculum") {
+        return (
+          ENABLE_NC_XLSX_DOCUMENT &&
+          doUnitsHaveNc(flatUnitsFromYearData(formattedData.yearData))
+        );
+      }
+      return true;
+    });
+  }, [formattedData]);
 
   // Convert the data into OWA component format (using camelCase instead of snake_case for keys.)
   const [tierSelected, setTierSelected] = useState<string | null>(null);
@@ -179,11 +174,12 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     useState<boolean>(false);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | undefined>(undefined);
   const [data, setData] = useState<CurriculumDownloadViewData>(() => ({
     schoolId: undefined,
     schoolName: undefined,
     email: undefined,
-    downloadType: "word",
+    downloadTypes: ["curriculum-plans"],
     termsAndConditions: false,
     schoolNotListed: false,
     schools: [],
@@ -209,7 +205,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
         schoolId: localStorageData.schoolId,
         schoolName: localStorageData.schoolName,
         email: localStorageData.email,
-        downloadType: "word",
+        downloadTypes: ["curriculum-plans"],
         termsAndConditions: localStorageData.termsAndConditions,
         schoolNotListed: localStorageData.schoolNotListed,
         schools: [],
@@ -226,32 +222,6 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     `https://school-picker.thenational.academy/${schoolPickerInputValue}`,
     "school-picker/fetch-suggestions",
   );
-
-  const downloadBlob = (blob: Blob, filename: string) => {
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.style.display = "none";
-    a.href = url;
-
-    // Note: Optionally use 'x-filename' so we get the same filename on server and client
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    window.URL.revokeObjectURL(url);
-    a.remove();
-  };
-
-  const downloadFileFromUrl = async (downloadPath: string) => {
-    const resp = await fetch(downloadPath);
-
-    if (resp.status !== 200) {
-      throw new Error(`Error: ${resp.status} ${resp.statusText}`);
-    }
-
-    const blob = await resp.blob();
-    const filename = resp.headers.get("x-filename") ?? "download.docx";
-    downloadBlob(blob, filename);
-  };
 
   const handleSubjectTierSelectionAnalytics = (
     tierSelected: string | null | undefined,
@@ -288,8 +258,17 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
 
   const onSubmit = async (data: CurriculumDownloadViewData) => {
     setIsSubmitting(true);
+    setSubmitError(undefined);
+    const reportError = errorReporter("curriculum-download", {
+      subjectSlug: slugs.subjectSlug,
+      phaseSlug: slugs.phaseSlug,
+      ks4OptionSlug: slugs.ks4OptionSlug,
+      tierSelected,
+      childSubjectSelected,
+    });
 
-    const query = createCurriculumDownloadsQuery(
+    const downloadPath = createCurriculumDownloadsUrl(
+      data.downloadTypes,
       "published",
       mvRefreshTime,
       slugs.subjectSlug,
@@ -298,7 +277,6 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       tierSelected,
       childSubjectSelected,
     );
-    const downloadPath = `/api/curriculum-downloads/?${query}`;
 
     const schoolData = {
       schoolId: data.schoolId!,
@@ -311,7 +289,6 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
 
     try {
       await downloadFileFromUrl(downloadPath);
-    } finally {
       await trackCurriculumDownload(
         data,
         curriculumInfo.subjectTitle,
@@ -320,15 +297,21 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
         analyticsUseCase,
         slugs,
       );
-      setIsSubmitting(false);
       setIsDone(true);
+    } catch (err) {
+      reportError(err, { severity: "warning" });
+      setSubmitError(
+        "There was an error downloading your files. Please try again.",
+      );
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   if (isDone) {
     return (
       <ScrollIntoViewWhenVisisble>
-        <SuccessMessage
+        <CurricSuccessMessage
           title="Thanks for downloading"
           message="We hope you find the resources useful. Click the question mark in the bottom-right corner to share your feedback."
           buttonProps={{
@@ -351,13 +334,17 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
 
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
-      <Box
+      <OakBox
         id="curriculum-downloads"
         aria-labelledby="curriculum-downloads-heading"
-        $maxWidth={1280}
+        tabIndex={-1}
+        $maxWidth={"all-spacing-24"}
         $mh={"auto"}
-        $ph={18}
-        $pb={[48]}
+        $ph={"inner-padding-m"}
+        $pt={["inner-padding-xl4", "inner-padding-none"]}
+        $pb={["inner-padding-xl4"]}
+        $mt={["space-between-none", "space-between-l", "space-between-l"]}
+        $borderColor="red"
         $width={"100%"}
         role="region"
       >
@@ -381,9 +368,11 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
             onChange={setData}
             schools={schoolList ?? []}
             data={data}
+            availableDownloadTypes={availableDownloadTypes}
+            submitError={submitError}
           />
         )}
-      </Box>
+      </OakBox>
     </OakThemeProvider>
   );
 };

@@ -27,6 +27,7 @@ import {
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
 import { LessonMediaClipInfo } from "@/components/TeacherComponents/LessonMediaClipInfo";
+import { LessonMediaAttributions } from "@/components/TeacherComponents/LessonMediaAttributions/LessonMediaAttributions";
 import type {
   MediaClip,
   MediaClipListCamelCase,
@@ -38,14 +39,24 @@ import {
   joinTranscript,
   createLearningCycleVideosTitleMap,
 } from "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers";
+import { RestrictedContentPrompt } from "@/components/TeacherComponents/RestrictedContentPrompt/RestrictedContentPrompt";
 import { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
+import {
+  KeyStageTitleValueType,
+  PathwayValueType,
+} from "@/browser-lib/avo/Avo";
+import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 
 type BaseLessonMedia = {
   lessonTitle: string;
   lessonSlug: string;
   keyStageTitle: string;
+  loginRequired: boolean;
+  geoRestricted: boolean;
   mediaClips: MediaClipListCamelCase;
   lessonOutline: { lessonOutline: string }[];
+  lessonReleaseDate: string | null;
   actions?: Actions;
 };
 
@@ -74,7 +85,26 @@ export const LessonMedia = (props: LessonMediaProps) => {
     mediaClips,
     lessonOutline,
     actions,
+    lessonReleaseDate,
+    loginRequired,
+    geoRestricted,
   } = lesson;
+  const { track } = useAnalytics();
+  const {
+    showSignedOutLoginRequired,
+    showSignedOutGeoRestricted,
+    showGeoBlocked,
+    showSignedInNotOnboarded,
+  } = useCopyrightRequirements({
+    loginRequired,
+    geoRestricted,
+  });
+
+  const showRestricted =
+    showSignedOutLoginRequired ||
+    showSignedOutGeoRestricted ||
+    showSignedInNotOnboarded;
+
   const subjectSlug = isCanonical
     ? (lesson?.pathways[0]?.subjectSlug ?? "")
     : (lesson.subjectSlug ?? "");
@@ -83,7 +113,15 @@ export const LessonMedia = (props: LessonMediaProps) => {
     props.isCanonical ? props.lesson.pathways : [props.lesson],
   );
 
-  const { programmeSlug, unitSlug, subjectTitle, yearTitle } = commonPathway;
+  const {
+    programmeSlug,
+    unitSlug,
+    subjectTitle,
+    yearTitle,
+    keyStageSlug,
+    unitTitle,
+    pathwayTitle,
+  } = commonPathway;
 
   const router = useRouter();
   const { query } = router;
@@ -148,6 +186,36 @@ export const LessonMedia = (props: LessonMediaProps) => {
   };
 
   useEffect(() => {
+    if (showGeoBlocked) {
+      track.contentBlockNotificationDisplayed({
+        platform: "owa",
+        product: "teacher lesson resources",
+        engagementIntent: "explore",
+        componentType: "lesson_media_clips",
+        eventVersion: "2.0.0",
+        analyticsUseCase: "Teacher",
+        lessonName: lessonTitle ?? null,
+        lessonSlug: lessonSlug ?? null,
+        lessonReleaseCohort: "2023-2026",
+        lessonReleaseDate: lessonReleaseDate ?? null,
+        unitName: unitTitle ?? null,
+        unitSlug: unitSlug ?? null,
+        contentType: "lesson",
+        accessBlockType: "Geo-restriction",
+        accessBlockDetails: {},
+      });
+    }
+  }, [
+    track,
+    showGeoBlocked,
+    lessonTitle,
+    lessonSlug,
+    lessonReleaseDate,
+    unitTitle,
+    unitSlug,
+  ]);
+
+  useEffect(() => {
     setCurrentClip(getInitialCurrentClip(listOfAllClips, query.video));
   }, [listOfAllClips, query.video]);
 
@@ -155,14 +223,6 @@ export const LessonMedia = (props: LessonMediaProps) => {
     goToTheNextClip(String(clip.mediaId));
     setCurrentClip(clip);
     setCurrentIndex(listOfAllClips.indexOf(clip));
-  };
-
-  const onMediaClipClick = (clipSlug: string) => {
-    const clickedMediaClip = listOfAllClips.find(
-      (clip) => clip.mediaId === clipSlug,
-    );
-    clickedMediaClip && handleVideoChange(clickedMediaClip);
-    videoPlayerWrapper.current?.focus();
   };
 
   const handleVideoEvents = (e: VideoEventCallbackArgs) => {
@@ -178,18 +238,102 @@ export const LessonMedia = (props: LessonMediaProps) => {
     }
   };
 
+  const trackMediaClipsPlaylistPlayed = ({
+    learningCycle,
+    durationSeconds,
+    isCaptioned,
+    videoPlaybackId,
+    videoTitle,
+    timeElapsedSeconds,
+    isMuted,
+    mediaClipsCount,
+    mediaClipIndex,
+  }: {
+    learningCycle?: string | null;
+    durationSeconds: number;
+    isCaptioned: boolean;
+    videoPlaybackId: string[];
+    videoTitle: string;
+    timeElapsedSeconds: number;
+    isMuted: boolean;
+    mediaClipsCount: number;
+    mediaClipIndex: number;
+  }) => {
+    track.mediaClipsPlaylistPlayed({
+      platform: "owa",
+      product: "media clips",
+      engagementIntent: "use",
+      componentType: "media_clips_played",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
+      keyStageSlug,
+      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+      subjectSlug,
+      subjectTitle,
+      unitSlug,
+      unitName: unitTitle,
+      lessonSlug,
+      lessonName: lessonTitle,
+      pathway: pathwayTitle as PathwayValueType,
+      tierName: null,
+      yearGroupName: null,
+      yearGroupSlug: null,
+      examBoard: null,
+      learningCycle,
+      releaseGroup: "2023",
+      phase: null,
+      durationSeconds, // int
+      isCaptioned, // bool
+      videoPlaybackId, // list of string
+      videoTitle, // string
+      timeElapsedSeconds, // int
+      isMuted, // bool
+      videoLocation: "media clips", // nulla
+      mediaClipsCount, // int
+      mediaClipIndex,
+      lessonReleaseCohort: "2023-2026",
+      lessonReleaseDate: lessonReleaseDate ?? "unreleased",
+    });
+  };
+
+  const onMediaClipClick = (clipSlug: string) => {
+    const clickedMediaClip = listOfAllClips.find(
+      (clip) => clip.mediaId === clipSlug,
+    );
+    clickedMediaClip && handleVideoChange(clickedMediaClip);
+    videoPlayerWrapper.current?.focus();
+    trackMediaClipsPlaylistPlayed({
+      learningCycle: clickedMediaClip?.learningCycle,
+      durationSeconds: clickedMediaClip?.videoObject?.duration ?? 0,
+      isCaptioned: false,
+      videoPlaybackId: [
+        clickedMediaClip?.videoObject?.playbackIds[0]?.id ?? "",
+      ],
+      videoTitle:
+        clickedMediaClip?.customTitle ??
+        clickedMediaClip?.mediaObject?.displayName ??
+        "",
+      timeElapsedSeconds: 0,
+      isMuted: false,
+      mediaClipsCount: listOfAllClips.length,
+      mediaClipIndex: parseInt(clickedMediaClip?.order.toString() ?? "0") ?? 0,
+    });
+  };
+
   const videoPlayer = currentClip && (
     <VideoPlayer
       playbackId={getPlaybackId(currentClip) || ""}
       playbackPolicy={"signed"}
       title={currentClip.customTitle ?? currentClip?.mediaObject?.displayName}
       // avo events need updating
-      location={"lesson"}
+      location={"media clips"}
       isLegacy={false}
       isAudioClip={currentClip.mediaObject?.format === "mp3"}
       userEventCallback={handleVideoEvents}
       loadingTextColor="white"
       defaultHiddenCaptions={isPEPractical}
+      cloudinaryUrl={currentClip.mediaObject.url}
+      muxAssetId={currentClip.videoObject?.muxAssetId}
     />
   );
 
@@ -260,20 +404,26 @@ export const LessonMedia = (props: LessonMediaProps) => {
   );
 
   // media clip info component
-  const lessonMediaClipInfo = currentClip && subjectTitle && (
-    <LessonMediaClipInfo
-      clipTitle={
-        currentClip.customTitle
-          ? currentClip.customTitle
-          : currentClip.mediaObject.displayName
-      }
-      keyStageTitle={keyStageTitle}
-      yearTitle={yearTitle ?? ""}
-      subjectTitle={subjectTitle}
-      videoTranscript={joinTranscript(currentClip)}
-      copyLinkButtonEnabled={true}
-    />
-  );
+  const MediaClipInfo = ({ isMobile }: { isMobile: boolean }) => {
+    return (
+      currentClip &&
+      subjectTitle && (
+        <LessonMediaClipInfo
+          clipTitle={
+            currentClip.customTitle
+              ? currentClip.customTitle
+              : currentClip.mediaObject.displayName
+          }
+          keyStageTitle={keyStageTitle}
+          yearTitle={yearTitle ?? ""}
+          subjectTitle={subjectTitle}
+          videoTranscript={joinTranscript(currentClip)}
+          copyLinkButtonEnabled={true}
+          isMobile={isMobile}
+        />
+      )
+    );
+  };
 
   const helpArticleLink = (
     <OakTertiaryInvertedButton
@@ -346,50 +496,86 @@ export const LessonMedia = (props: LessonMediaProps) => {
           </OakTertiaryButton>
         )}
       </OakBox>
-
-      {listOfAllClips.length > 0 && currentClip && (
-        <OakBox data-testid="media-clip-wrapper">
-          <OakFlex
-            $flexDirection={["column", "column", "row"]}
-            $gap={["space-between-m", "space-between-m", "space-between-none"]}
-            $mb={"space-between-m"}
-            $height={["auto", "auto", "all-spacing-21"]}
-          >
-            <OakFlex
-              $width={["100%", "100%", "all-spacing-23"]}
-              $alignItems={"center"}
-              $background={"black"}
-              $overflow={["visible", "visible", "hidden"]}
-              $height={"100%"}
-              $br={"border-solid-m"}
-              data-testid="video-player-wrapper"
-              ref={videoPlayerWrapper}
-              tabIndex={-1}
-            >
-              {videoPlayer}
-            </OakFlex>
-            <OakBox $display={["block", "block", "none"]} $width={"100%"}>
-              {lessonMediaClipInfo}
-            </OakBox>
-            <OakBox
-              $width={["auto", "auto", "all-spacing-21"]}
-              $minWidth={["auto", "auto", "all-spacing-21"]}
-            >
-              {mediaClipList}
-            </OakBox>
-          </OakFlex>
-          <OakBox $display={["none", "none", "block"]}>
-            <OakGrid>
-              <OakGridArea $colSpan={8}>{lessonMediaClipInfo}</OakGridArea>
-              <OakGridArea $colSpan={4} $alignItems={"flex-end"}>
+      {showRestricted || showGeoBlocked ? (
+        <RestrictedContentPrompt
+          showGeoBlocked={showGeoBlocked}
+          programmeSlug={programmeSlug}
+          lessonSlug={lessonSlug}
+          unitSlug={unitSlug}
+          isCanonical={isCanonical}
+        />
+      ) : (
+        <>
+          {listOfAllClips.length > 0 && currentClip && (
+            <OakBox data-testid="media-clip-wrapper">
+              <OakFlex
+                $flexDirection={["column", "column", "row"]}
+                $gap={[
+                  "space-between-m",
+                  "space-between-m",
+                  "space-between-none",
+                ]}
+                $mb={"space-between-m"}
+                $height={["auto", "auto", "all-spacing-21"]}
+              >
+                <OakFlex
+                  $width={["100%", "100%", "all-spacing-23"]}
+                  $alignItems={"center"}
+                  $background={"black"}
+                  $overflow={["visible", "visible", "hidden"]}
+                  $height={"100%"}
+                  $br={"border-solid-m"}
+                  data-testid="video-player-wrapper"
+                  ref={videoPlayerWrapper}
+                  tabIndex={-1}
+                >
+                  {videoPlayer}
+                </OakFlex>
+                <OakBox $display={["block", "block", "none"]} $width={"100%"}>
+                  <MediaClipInfo isMobile />
+                </OakBox>
+                <OakBox
+                  $width={["auto", "auto", "all-spacing-21"]}
+                  $minWidth={["auto", "auto", "all-spacing-21"]}
+                >
+                  {mediaClipList}
+                </OakBox>
+              </OakFlex>
+              <OakBox
+                $display={["none", "none", "block"]}
+                $pb="inner-padding-xl4"
+              >
+                <OakGrid>
+                  <OakGridArea $colSpan={8}>
+                    <MediaClipInfo isMobile={false} />
+                  </OakGridArea>
+                  <OakGridArea $colSpan={4} $alignItems={"flex-end"}>
+                    {helpArticleLink}
+                  </OakGridArea>
+                </OakGrid>
+              </OakBox>
+              <OakBox $display={["block", "block", "none"]}>
                 {helpArticleLink}
-              </OakGridArea>
-            </OakGrid>
-          </OakBox>
-          <OakBox $display={["block", "block", "none"]}>
-            {helpArticleLink}
-          </OakBox>
-        </OakBox>
+              </OakBox>
+              <LessonMediaAttributions
+                mediaClipsWithAttributions={
+                  listOfAllClips
+                    .map((clip) => {
+                      const attribution =
+                        clip.mediaObject?.metadata?.attribution;
+                      return attribution
+                        ? { name: clip.mediaObject.displayName, attribution }
+                        : null;
+                    })
+                    .filter(Boolean) as Array<{
+                    name: string;
+                    attribution: string;
+                  }>
+                }
+              />
+            </OakBox>
+          )}
+        </>
       )}
     </OakMaxWidth>
   );

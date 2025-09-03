@@ -51,6 +51,8 @@ export const specialistLessonOverviewRawFixture = (
       video_with_sign_language_mux_playback_id: null,
       worksheet_url:
         "https://docs.google.com/presentation/d/1gjXZk0ylpz--95u4cIpTN6UPfEnWoIk6xH6pW23_mqY/embed?start=false&amp;loop=false&amp",
+      lesson_release_date: "2022-02-01T00:00:00Z",
+      order_in_unit: 1,
       ...partial,
     },
   ];
@@ -119,6 +121,11 @@ const specialistLessonOverviewFixture = (
     lessonMediaClips: null,
     additionalFiles: null,
     lessonOutline: null,
+    lessonReleaseDate: "2022-02-01T00:00:00Z",
+    orderInUnit: 1,
+    unitTotalLessonCount: 1,
+    loginRequired: false,
+    geoRestricted: false,
     ...partial,
   };
 };

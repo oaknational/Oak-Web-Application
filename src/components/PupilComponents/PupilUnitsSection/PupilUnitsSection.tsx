@@ -171,7 +171,12 @@ export const PupilUnitsSection = ({
         ? filteredUnits.map((optionalityUnit) => {
             if (optionalityUnit.length === 1) {
               // No optionalities
-              if (optionalityUnit[0])
+              if (
+                optionalityUnit[0] &&
+                optionalityUnit[0].lessonCount !==
+                  optionalityUnit[0].ageRestrictedLessonCount +
+                    optionalityUnit[0].complexCopyrightLessonCount
+              )
                 return renderListItem(
                   optionalityUnit[0],
                   optionalityUnit[0].supplementaryData.unitOrder,
@@ -188,12 +193,19 @@ export const PupilUnitsSection = ({
                   >
                     {optionalityUnit.map(
                       (unit) =>
-                        unit.programmeFields.optionality && (
+                        unit.programmeFields.optionality &&
+                        unit.lessonCount !==
+                          unit.ageRestrictedLessonCount +
+                            unit.complexCopyrightLessonCount && (
                           <OakPupilJourneyOptionalityButton
                             className="pupil-journey-item"
                             key={unit.unitSlug}
                             title={unit.programmeFields.optionality}
-                            numberOfLessons={unit.lessonCount}
+                            numberOfLessons={
+                              unit.lessonCount -
+                              (unit.ageRestrictedLessonCount +
+                                unit.complexCopyrightLessonCount)
+                            }
                             href={resolveOakHref({
                               page: "pupil-lesson-index",
                               programmeSlug: unit.programmeSlug,
@@ -228,7 +240,10 @@ const renderListItem = (
         : ""
     }`}
     index={index + 1}
-    numberOfLessons={unit.lessonCount}
+    numberOfLessons={
+      unit.lessonCount -
+      (unit.ageRestrictedLessonCount + unit.complexCopyrightLessonCount)
+    }
     as="a"
     href={resolveOakHref({
       page: "pupil-lesson-index",

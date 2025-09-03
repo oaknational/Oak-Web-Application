@@ -13,7 +13,7 @@ jobs:
       pull-requests: write
 
     name: add music year
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: choose year
         id: choose_year
@@ -28,3 +28,20 @@ jobs:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           find: "{owa_music_year}"
           replace: ${{ steps.choose_year.outputs.year }}
+
+  auto_label:
+    permissions:
+      contents: "read"
+      pull-requests: write
+
+    name: Auto-label CUR-* branches
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run labeler
+        uses: actions/labeler@v5
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          configuration-path: .github/labeler.yml

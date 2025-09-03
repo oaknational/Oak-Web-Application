@@ -95,6 +95,7 @@ export type UnitListingLinkProps = {
   programmeSlug: string;
   search?: {
     ["learning-theme"]?: string | null;
+    ["category"]?: string | null;
   };
 };
 
@@ -198,8 +199,7 @@ export type LessonDownloadsLinkProps = {
   programmeSlug: string;
   unitSlug: string;
   lessonSlug: string;
-  // @TODO remove this when auth is no longer behind a feature flag
-  downloads: "downloads" | "downloads-auth";
+  downloads: "downloads";
   query?: {
     preselected: PreselectedDownloadType | null;
   };
@@ -215,8 +215,7 @@ export type SpecialistLessonDownloadsLinkProps = Omit<
 export type LessonDownloadsCanonicalLinkProps = {
   page: "lesson-downloads-canonical";
   lessonSlug: string;
-  // @TODO remove this when auth is no longer behind a feature flag
-  downloads: "downloads" | "downloads-auth";
+  downloads: "downloads";
   query?: {
     preselected: PreselectedDownloadType | null;
   };
@@ -283,6 +282,10 @@ type SpecialistSubjectListingLinkProps = {
 
 type WebinarSingleLinkProps = { page: "webinar-single"; webinarSlug: string };
 type BlogSingleLinkProps = { page: "blog-single"; blogSlug: string };
+type CampaignSingleLinkProps = {
+  page: "campaign-single";
+  campaignSlug: string;
+};
 type AboutUsBoardLinkProps = { page: "about-board" };
 type AboutUsWhoWeAreLinkProps = { page: "about-who-we-are" };
 type AboutUsLeadershipLinkProps = { page: "about-leadership" };
@@ -335,6 +338,9 @@ type CurriculumPreviousDownloadsLinkProps = {
 
 type OnboardingLinkProps = {
   page: "onboarding";
+  query?: {
+    returnTo: string;
+  };
 };
 
 type OnboardingSchoolSelectionLinkProps = {
@@ -352,6 +358,10 @@ type OnboardingUseOfOak = {
 type PupilLessonCanonical = {
   page: "pupil-lesson-canonical";
   lessonSlug: string;
+};
+
+type MyLibraryProps = {
+  page: "my-library";
 };
 
 export type OakLinkProps =
@@ -389,6 +399,7 @@ export type OakLinkProps =
   | SpecialistProgrammeListingLinkProps
   | BlogListingLinkProps
   | BlogSingleLinkProps
+  | CampaignSingleLinkProps
   | WebinarListingLinkProps
   | WebinarSingleLinkProps
   | HelpLinkProps
@@ -417,7 +428,8 @@ export type OakLinkProps =
   | OnboardingSchoolSelectionLinkProps
   | OnboardingRoleSelectionLinkProps
   | OnboardingUseOfOak
-  | PupilLessonCanonical;
+  | PupilLessonCanonical
+  | MyLibraryProps;
 
 const EXTERNAL_PAGE_NAMES = [
   "[external] Careers",
@@ -846,6 +858,12 @@ export const OAK_PAGES: {
     configType: "internal",
     pageType: "blog-single",
   }),
+  "campaign-single": createOakPageConfig({
+    analyticsPageName: "Campaign",
+    configType: "internal",
+    pageType: "campaign-single",
+    pathPattern: "/campaigns/:campaignSlug",
+  }),
   "webinar-single": createOakPageConfig({
     pathPattern: "/webinars/:webinarSlug",
     analyticsPageName: "Webinar",
@@ -942,6 +960,12 @@ export const OAK_PAGES: {
     analyticsPageName: "Homepage",
     configType: "internal",
     pageType: "teachers-home-page",
+  }),
+  "my-library": createOakPageConfig({
+    pathPattern: "/teachers/my-library",
+    analyticsPageName: "My library",
+    configType: "internal",
+    pageType: "my-library",
   }),
 };
 

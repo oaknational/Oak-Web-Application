@@ -14,7 +14,7 @@ query teachersPreviewLesson($lessonSlug: String!) {
     features
     order_in_unit
   }
-  content: published_mv_lesson_content_new_8_0_0(
+  content: published_mv_lesson_content_new_9_0_0(
     where: { lesson_slug: { _eq: $lessonSlug } }
   ) {
     lesson_id
@@ -64,5 +64,16 @@ query teachersPreviewLesson($lessonSlug: String!) {
     media_clips
     downloadable_files
     has_downloadable_files
+    lesson_release_date
+  }
+  unitData: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_18_0_0(
+    where: {
+      supplementary_data: {
+        _contains: { static_lesson_list: [{ slug: $lessonSlug }] }
+      }
+    }
+  ) {
+    lesson_count
+    supplementary_data
   }
 }

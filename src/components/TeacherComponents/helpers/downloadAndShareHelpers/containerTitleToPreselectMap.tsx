@@ -6,8 +6,14 @@ export const containerTitleToPreselectMap: Omit<
 > = {
   "Lesson guide": { downloadType: "lesson guide", shareType: null },
   "Slide deck": { downloadType: "slide deck", shareType: null },
+  "Lesson slides": { downloadType: "slide deck", shareType: null },
   "Exit quiz": { downloadType: "exit quiz", shareType: "exit quiz" },
   "Starter quiz": { downloadType: "starter quiz", shareType: "starter quiz" },
+  "Prior knowledge starter quiz": {
+    downloadType: "starter quiz",
+    shareType: "starter quiz",
+  },
+  "Assessment exit quiz": { downloadType: "exit quiz", shareType: "exit quiz" },
   "Lesson overview": { downloadType: null, shareType: null },
   "Lesson details": { downloadType: null, shareType: null },
   "Additional material": {

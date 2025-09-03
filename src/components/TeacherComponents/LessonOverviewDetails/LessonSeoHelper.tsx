@@ -1,5 +1,10 @@
 import { convertSubjectToSlug } from "../helpers/convertSubjectToSlug";
 import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
+import {
+  formatSubjectName,
+  getPhase,
+} from "../helpers/seoTextHelpers/seoText.helpers";
+import LoginRequiredLink from "../LoginRequiredLink/LoginRequiredLink";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import {
@@ -8,10 +13,6 @@ import {
   OakP,
   OakLink,
 } from "@/styles/oakThemeApp";
-
-const getPhase = (year: string) => {
-  return Number(year) < 7 ? "primary" : "secondary";
-};
 
 export const LessonSeoHelper = ({
   year,
@@ -26,6 +27,8 @@ export const LessonSeoHelper = ({
   programmeSlug,
   unitSlug,
   disablePupilLink,
+  geoRestricted,
+  loginRequired,
 }: {
   year: string;
   subject: string;
@@ -39,10 +42,15 @@ export const LessonSeoHelper = ({
   programmeSlug: string;
   unitSlug: string;
   disablePupilLink?: boolean;
+  loginRequired: boolean;
+  geoRestricted: boolean;
 }) => {
   const linkSubject = parentSubject
     ? convertSubjectToSlug(parentSubject)
     : subjectSlug;
+
+  const hideCurriculumLink =
+    subjectSlug === "rshe-pshe" || subjectSlug === "financial-education";
 
   return (
     <OakBasicAccordion
@@ -55,18 +63,25 @@ export const LessonSeoHelper = ({
         <>
           <br />
           <OakP $font={["body-2", "body-1"]} $textAlign="left">
-            {`To help you plan your ${year.toLowerCase()} ${subject.toLowerCase()} lesson on: ${lesson},`}{" "}
-            <OakLink
-              href={resolveOakHref({
-                page: "lesson-downloads",
-                lessonSlug,
-                unitSlug,
-                programmeSlug,
-                downloads: "downloads",
-              })}
-            >
-              download
-            </OakLink>{" "}
+            {`To help you plan your ${year.toLowerCase()} ${formatSubjectName(subject)} lesson on: ${lesson},`}{" "}
+            {
+              <LoginRequiredLink
+                geoRestricted={geoRestricted}
+                loginRequired={loginRequired}
+                signUpProps={{ name: "download" }}
+                onboardingProps={{ name: "download" }}
+                actionProps={{
+                  name: "download",
+                  href: resolveOakHref({
+                    page: "lesson-downloads",
+                    downloads: "downloads",
+                    lessonSlug,
+                    unitSlug,
+                    programmeSlug,
+                  }),
+                }}
+              />
+            }{" "}
             all teaching resources for free and adapt to suit your pupils'
             needs...
           </OakP>
@@ -81,18 +96,23 @@ export const LessonSeoHelper = ({
     >
       <br />
       <OakP $font={["body-2", "body-1"]} $textAlign="left">
-        {`To help you plan your ${year.toLowerCase()} ${subject.toLowerCase()} lesson on: ${lesson},`}{" "}
-        <OakLink
-          href={resolveOakHref({
-            page: "lesson-downloads",
-            lessonSlug,
-            unitSlug,
-            programmeSlug,
-            downloads: "downloads",
-          })}
-        >
-          download
-        </OakLink>{" "}
+        {`To help you plan your ${year.toLowerCase()} ${formatSubjectName(subject)} lesson on: ${lesson},`}{" "}
+        <LoginRequiredLink
+          geoRestricted={geoRestricted}
+          loginRequired={loginRequired}
+          signUpProps={{ name: "download" }}
+          onboardingProps={{ name: "download" }}
+          actionProps={{
+            name: "download",
+            href: resolveOakHref({
+              page: "lesson-downloads",
+              downloads: "downloads",
+              lessonSlug,
+              unitSlug,
+              programmeSlug,
+            }),
+          }}
+        />{" "}
         all teaching resources for free and adapt to suit your pupils' needs.
       </OakP>
       <br />
@@ -123,14 +143,22 @@ export const LessonSeoHelper = ({
         {!disablePupilLink && (
           <>
             {`Plus, you can set it as homework or revision for pupils and keep their learning on track by sharing an `}
-            <OakLink
-              href={resolveOakHref({
-                page: "pupil-lesson-canonical",
-                lessonSlug,
-              })}
-            >
-              online pupil version
-            </OakLink>
+
+            <LoginRequiredLink
+              geoRestricted={geoRestricted}
+              loginRequired={loginRequired}
+              signUpProps={{ name: "online pupil version" }}
+              onboardingProps={{ name: "online pupil version" }}
+              actionProps={{
+                name: "online pupil version",
+                href: resolveOakHref({
+                  page: "pupil-lesson-canonical",
+
+                  lessonSlug,
+                }),
+              }}
+            />
+
             {` of this lesson.`}
           </>
         )}
@@ -144,7 +172,7 @@ export const LessonSeoHelper = ({
             programmeSlug,
           })}
         >
-          {keystage.toLowerCase()} {subject.toLowerCase()}
+          {keystage.toLowerCase()} {formatSubjectName(subject)}{" "}
         </OakLink>{" "}
         lessons from the{" "}
         <OakLink
@@ -157,18 +185,22 @@ export const LessonSeoHelper = ({
           {unit} unit
         </OakLink>
         , dive into the full{" "}
-        <OakLink
-          href={resolveOakHref({
-            page: "curriculum-units",
-            subjectPhaseSlug: getSubjectPhaseSlug({
-              subject: linkSubject,
-              phaseSlug: getPhase(year),
-              examBoardSlug,
-            }),
-          })}
-        >
-          {getPhase(year)} {subject.toLowerCase()} curriculum
-        </OakLink>
+        {hideCurriculumLink ? (
+          `${getPhase(year)} ${formatSubjectName(subject)} curriculum`
+        ) : (
+          <OakLink
+            href={resolveOakHref({
+              page: "curriculum-units",
+              subjectPhaseSlug: getSubjectPhaseSlug({
+                subject: linkSubject,
+                phaseSlug: getPhase(year),
+                examBoardSlug,
+              }),
+            })}
+          >
+            {getPhase(year)} {formatSubjectName(subject)} curriculum
+          </OakLink>
+        )}
         , or learn more about{" "}
         <OakLink href={resolveOakHref({ page: "lesson-planning" })}>
           lesson planning

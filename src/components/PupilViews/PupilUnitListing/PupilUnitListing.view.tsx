@@ -4,8 +4,6 @@ import {
   OakTertiaryButton,
   OakPupilJourneyHeader,
   OakBox,
-  OakInlineBanner,
-  OakSecondaryLink,
 } from "@oaknational/oak-components";
 
 import { UseBackHrefProps, useBackHref } from "./useBackHref";
@@ -19,6 +17,9 @@ import { generateKeyStageTitle } from "@/components/PupilComponents/PupilAnalyti
 import { SubjectSlugs } from "@/node-lib/curriculum-api-2023/queries/pupilSubjectListing/pupilSubjectListing.schema";
 import RelatedSubjectsBanner from "@/components/PupilComponents/RelatedSubjectsBanner/RelatedSubjectsBanner";
 import PupilSubjectDescription from "@/components/PupilComponents/PupilSubjectDescription/PupilSubjectDescription";
+import { UnitListLegacyBanner } from "@/components/TeacherComponents/UnitList/UnitListLegacyBanner";
+import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+import { PupilRedirectedOverlay } from "@/components/PupilComponents/PupilRedirectedOverlay/PupilRedirectedOverlay";
 
 export type PupilViewsUnitListingProps = {
   unitSections: UnitsSectionData[];
@@ -46,35 +47,13 @@ export const PupilViewsUnitListing = ({
     setFilterItems([subjectCategory]);
   };
 
-  const [displayExpiringBanner, setDisplayExpiringBanner] = useState<boolean[]>(
-    unitSections.map((unitSection) =>
-      unitSection.units.some((section) =>
-        section.some((unit) => unit.actions?.displayExpiringBanner),
-      ),
-    ),
+  const combinedAllUnits = unitSections.flatMap((section) =>
+    section.units.flat(),
   );
 
-  const expiringBanner = displayExpiringBanner.map((b) => (
-    <OakInlineBanner
-      canDismiss
-      cta={
-        <OakSecondaryLink
-          href="https://support.thenational.academy/lesson-unavailable"
-          iconName="chevron-right"
-          isTrailingIcon
-        >
-          Read the help article
-        </OakSecondaryLink>
-      }
-      isOpen={b}
-      message="We've made brand new and improved units for you."
-      onDismiss={() => {
-        setDisplayExpiringBanner(displayExpiringBanner.map(() => false)); // closing one closes all
-      }}
-      title="Some of these units will soon be taken down."
-      type="alert"
-    />
-  ));
+  const hasNewAndLegacyUnitsInAllSections =
+    combinedAllUnits.some((u) => isSlugLegacy(u.programmeSlug)) &&
+    combinedAllUnits.some((u) => !isSlugLegacy(u.programmeSlug));
 
   return (
     <OakPupilJourneyLayout
@@ -129,7 +108,11 @@ export const PupilViewsUnitListing = ({
               additionalInfoSlot={
                 <>
                   <PupilSubjectDescription programmeFields={programmeFields} />
-                  {expiringBanner[i]}
+                  <UnitListLegacyBanner
+                    userType={"pupil"}
+                    hasNewUnits={hasNewAndLegacyUnitsInAllSections}
+                    allLegacyUnits={unitSection.units}
+                  />
                 </>
               }
               id={`section-${i}`}
@@ -153,6 +136,7 @@ export const PupilViewsUnitListing = ({
                   keyStageSlug: programmeFields.keystageSlug,
                   tierName: unit.programmeFields.tierDescription,
                   examBoard: unit.programmeFields.examboard,
+                  pathway: unit.programmeFields.pathwayDescription,
                 });
               }}
             />
@@ -169,6 +153,7 @@ export const PupilViewsUnitListing = ({
           <SignpostTeachersInlineBanner />
         </OakBox>
       </OakBox>
+      <PupilRedirectedOverlay />
     </OakPupilJourneyLayout>
   );
 };

@@ -1,0 +1,9 @@
+query pupilBrowseLessonRedirect($incomingPath: String!) {
+  pupilBrowseLessonRedirectData: published_mv_redirects_lessons_browse_by_year_19_0_1(
+    where: { incoming_path: { _eq: $incomingPath } }
+  ) {
+    incoming_path
+    outgoing_path
+    redirect_type
+  }
+}

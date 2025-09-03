@@ -58,7 +58,7 @@ jest.mock("../../../../node-lib/cms", () => ({
   },
 }));
 
-describe("/api/preview/[[...path]]", () => {
+describe("/api/curriculum-downloads", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();
@@ -69,6 +69,7 @@ describe("/api/preview/[[...path]]", () => {
   it("redirect if old cache slug", async () => {
     const { req, res } = createNextApiMocks({
       query: {
+        types: ["curriculum-plans"],
         mvRefreshTime: (LAST_REFRESH.getTime() - 1000).toString(),
         subjectSlug: "english",
         phaseSlug: "secondary",
@@ -85,6 +86,7 @@ describe("/api/preview/[[...path]]", () => {
     it("error is invalid", async () => {
       const { req, res } = createNextApiMocks({
         query: {
+          types: ["curriculum-plans"],
           mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
           subjectSlug: "INVALID",
           phaseSlug: "INVALID",
@@ -102,6 +104,7 @@ describe("/api/preview/[[...path]]", () => {
     curriculumSequenceMock.mockResolvedValue(curriculumUnitsEnglishSecondary);
     const { req, res } = createNextApiMocks({
       query: {
+        types: ["curriculum-plans"],
         mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
         subjectSlug: "english",
         phaseSlug: "secondary",
@@ -119,6 +122,7 @@ describe("/api/preview/[[...path]]", () => {
     curriculumSequenceMock.mockResolvedValue(curriculumUnitsEnglishSecondary);
     const { req, res } = createNextApiMocks({
       query: {
+        types: ["curriculum-plans"],
         mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
         subjectSlug: "english",
         phaseSlug: "secondary",
@@ -136,6 +140,7 @@ describe("/api/preview/[[...path]]", () => {
     curriculumSequenceMock.mockRejectedValue(new Error("Missing"));
     const { req, res } = createNextApiMocks({
       query: {
+        types: ["curriculum-plans"],
         mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
         subjectSlug: "english",
         phaseSlug: "secondary",
@@ -152,6 +157,7 @@ describe("/api/preview/[[...path]]", () => {
     curriculumSequenceMock.mockRejectedValue(new Error("Missing"));
     const { req, res } = createNextApiMocks({
       query: {
+        types: ["curriculum-plans"],
         mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
         subjectSlug: "english",
         phaseSlug: "primary",
@@ -166,6 +172,7 @@ describe("/api/preview/[[...path]]", () => {
   it("returns 404 if state is new", async () => {
     const { req, res } = createNextApiMocks({
       query: {
+        types: ["curriculum-plans"],
         mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
         subjectSlug: "english",
         phaseSlug: "secondary",

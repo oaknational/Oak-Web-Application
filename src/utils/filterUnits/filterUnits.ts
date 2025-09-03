@@ -14,7 +14,7 @@ function filterUnits<
   U extends {
     learningThemes?: { themeSlug?: string | null }[] | null;
     subjectCategories?: (SubjectCategory | null)[] | null;
-    year?: string | null;
+    yearSlug?: string | null;
   },
 >({
   themeSlug,
@@ -22,11 +22,12 @@ function filterUnits<
   yearGroup,
   units,
 }: FilterUnitsParams<U>): GenericUnitListingData<U>["units"] {
+  const theme = themeSlug === "all" ? undefined : themeSlug;
   return units.filter((unitVariant) =>
     unitVariant.some((unit) => {
-      const themeMatch = themeSlug
+      const themeMatch = theme
         ? unit.learningThemes?.some(
-            (learningTheme) => learningTheme.themeSlug === themeSlug,
+            (learningTheme) => learningTheme.themeSlug === theme,
           )
         : true;
 
@@ -38,9 +39,15 @@ function filterUnits<
             return category.slug === categorySlug;
           })
         : true;
-      const yearGroupMatch = yearGroup ? unit.year === yearGroup : true;
+      const yearGroupMatch = yearGroup ? unit.yearSlug === yearGroup : true;
 
-      return themeMatch && categoryMatch && yearGroupMatch;
+      // display units with "all-years" year group within all year groups
+      const allYearsMatch = yearGroup ? unit.yearSlug === "all-years" : true;
+
+      return (
+        (themeMatch && categoryMatch && yearGroupMatch) ||
+        (themeMatch && categoryMatch && allYearsMatch)
+      );
     }),
   );
 }

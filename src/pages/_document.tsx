@@ -42,6 +42,10 @@ class MyDocument extends Document {
     return (
       <Html lang="en-GB">
         <Head>
+          <meta
+            name="pingdom-uptime-check"
+            content={getBrowserConfig("pingdomUptimeId")}
+          />
           {parse(FAVICON_LINKS_HEAD_INNER_HTML)}
           <meta
             name="release-stage"
@@ -49,11 +53,6 @@ class MyDocument extends Document {
           />
           <meta name="revised" content={new Date().toUTCString()} />
           <meta name="version" content={getBrowserConfig("appVersion")} />
-
-          <meta
-            name="pingdom-uptime-check"
-            content={getBrowserConfig("pingdomUptimeId")}
-          />
         </Head>
         <body>
           <Main />

@@ -1,4 +1,5 @@
 import * as clerk from "@clerk/nextjs/server";
+
 export type User = NonNullable<Awaited<ReturnType<typeof clerk.currentUser>>>;
 export type AuthObject = ReturnType<typeof clerk.getAuth>;
 
@@ -22,14 +23,20 @@ export function setGetAuth(auth: AuthObject) {
  */
 export async function installMockClerkClient({
   updateUserMetadata,
+  updateUser,
   getUser,
   mockUser,
 }: {
   updateUserMetadata: () => void;
+  updateUser?: () => void;
   getUser: () => void;
   mockUser: clerk.User;
 }) {
-  const mockClerkClient = getMockClerkClient({ updateUserMetadata, getUser });
+  const mockClerkClient = getMockClerkClient({
+    updateUserMetadata,
+    getUser,
+    updateUser,
+  });
   jest.spyOn(clerk, "clerkClient").mockReturnValue(mockClerkClient);
   const client = await mockClerkClient;
   jest
@@ -42,14 +49,17 @@ export async function installMockClerkClient({
 
 export function getMockClerkClient({
   updateUserMetadata,
+  updateUser,
   getUser,
 }: {
   updateUserMetadata: () => void;
+  updateUser?: () => void;
   getUser: () => void;
 }) {
   const mockClerkClient = {
     users: {
       updateUserMetadata,
+      updateUser,
       getUser,
     },
   } as unknown as ReturnType<typeof clerk.clerkClient>;
@@ -141,6 +151,7 @@ export const mockGetAuthSignedIn: AuthObject = {
     iat: 0,
   },
   sessionId: "session-id",
+  sessionStatus: null,
   actor: undefined,
   userId: "123",
   orgId: undefined,
@@ -151,6 +162,8 @@ export const mockGetAuthSignedIn: AuthObject = {
   has: () => false,
   factorVerificationAge: null,
   debug: () => ({}),
+  tokenType: "session_token",
+  isAuthenticated: true,
 };
 
 /**
@@ -159,6 +172,7 @@ export const mockGetAuthSignedIn: AuthObject = {
 export const mockGetAuthSignedOut: AuthObject = {
   sessionClaims: null,
   sessionId: null,
+  sessionStatus: null,
   actor: null,
   userId: null,
   orgId: null,
@@ -169,4 +183,6 @@ export const mockGetAuthSignedOut: AuthObject = {
   has: () => false,
   factorVerificationAge: null,
   debug: () => ({}),
+  tokenType: "session_token",
+  isAuthenticated: false,
 };

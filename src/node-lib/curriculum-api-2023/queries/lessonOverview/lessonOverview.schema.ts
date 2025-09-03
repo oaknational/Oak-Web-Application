@@ -1,16 +1,15 @@
 import { z } from "zod";
 import {
   lessonContentSchema as lessonContentSchemaFull,
-  syntheticUnitvariantLessonsSchema,
+  syntheticUnitvariantLessonsByKsSchema,
 } from "@oaknational/oak-curriculum-schema";
 
 import {
   baseLessonOverviewSchema,
   lessonPathwaySchema,
-} from "../../shared.schema";
-import { QuizQuestion } from "../pupilLesson/pupilLesson.schema";
-import { mediaClipsRecordCamelSchema } from "../lessonMediaClips/lessonMediaClips.schema";
-
+} from "@/node-lib/curriculum-api-2023/shared.schema";
+import { QuizQuestion } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { mediaClipsRecordCamelSchema } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
 export const lessonContentSchema = lessonContentSchemaFull.omit({
@@ -18,8 +17,6 @@ export const lessonContentSchema = lessonContentSchemaFull.omit({
   exit_quiz: true,
   starter_quiz: true,
   video_duration: true,
-  geo_restricted: true,
-  login_required: true,
 });
 
 export type LessonOverviewContent = Omit<
@@ -61,14 +58,18 @@ export const lessonOverviewSchema = baseLessonOverviewSchema.extend({
   subjectSlug: z.string(),
   subjectTitle: z.string(),
   subjectParent: z.string().nullish(),
-  yearTitle: z.string().nullable().optional(),
-  examBoardTitle: z.string().nullable().optional(),
+  yearTitle: z.string().nullish(),
+  year: z.string().nullish(),
+  examBoardTitle: z.string().nullish(),
   examBoardSlug: z.string().nullish(),
   downloads: lessonOverviewDownloads,
   updatedAt: z.string(),
   pathways: z.array(lessonPathwaySchema),
   additionalFiles: z.array(z.string()).nullable(),
   lessonMediaClips: mediaClipsRecordCamelSchema.nullable(),
+  lessonReleaseDate: z.string().nullable(),
+  loginRequired: z.boolean(),
+  geoRestricted: z.boolean(),
 });
 
 export type LessonOverviewPageData = z.infer<typeof lessonOverviewSchema>;
@@ -87,8 +88,7 @@ export type LessonOverviewCanonical = z.infer<
 >;
 
 export const lessonBrowseDataByKsSchema =
-  syntheticUnitvariantLessonsSchema.omit({
-    supplementary_data: true,
+  syntheticUnitvariantLessonsByKsSchema.omit({
     null_unitvariant_id: true,
   });
 

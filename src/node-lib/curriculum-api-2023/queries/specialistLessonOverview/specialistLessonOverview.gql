@@ -3,7 +3,7 @@ query specialistLessonOverview(
   $lessonSlug: String!
   $unitSlug: String!
 ) {
-  lesson: published_mv_specialist_1_0_3(
+  lesson: published_mv_specialist_1_0_4(
     where: {
       lesson_slug: { _eq: $lessonSlug }
       synthetic_programme_slug: { _eq: $programmeSlug }
@@ -39,5 +39,16 @@ query specialistLessonOverview(
     exit_quiz
     starter_quiz
     worksheet_asset_object
+    lesson_release_date
+    order_in_unit
+  }
+  allLessons: published_mv_specialist_1_0_4(
+    where: {
+      synthetic_programme_slug: { _eq: $programmeSlug }
+      unit_slug: { _eq: $unitSlug }
+    }
+  ) {
+    lesson_slug
+    lesson_title
   }
 }

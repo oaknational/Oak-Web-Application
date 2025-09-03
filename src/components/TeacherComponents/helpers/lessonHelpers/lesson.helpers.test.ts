@@ -1,18 +1,21 @@
+import { mediaClipCycleFixture } from "@oaknational/oak-curriculum-schema";
+
 import {
   createAttributionObject,
   getCommonPathway,
-  getPageLinksForLesson,
   groupLessonPathways,
   getLessonMediaBreadCrumb,
   getMediaClipLabel,
   convertBytesToMegabytes,
   sortMediaClipsByOrder,
+  getPageLinksWithSubheadingsForLesson,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import {
   quizQuestions,
   quizQuestionsNoImages,
 } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
 import type { MediaClip } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
+import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 describe("getCommonPathway()", () => {
   it("returns the intersection of a single LessonPathway", () => {
@@ -51,6 +54,7 @@ describe("getCommonPathway()", () => {
       yearSlug: null,
       yearTitle: null,
       lessonCohort: "2023-2024",
+      pathwayTitle: null,
     };
 
     expect(result).toEqual(expected);
@@ -106,6 +110,7 @@ describe("getCommonPathway()", () => {
       yearSlug: null,
       yearTitle: null,
       lessonCohort: "2023-2024",
+      pathwayTitle: null,
     };
 
     expect(result).toEqual(expected);
@@ -122,12 +127,12 @@ describe("getPageLinksForLesson()", () => {
       additionalMaterialUrl: "additional-material-url",
       starterQuiz: [],
       exitQuiz: [],
-      hasCopyrightMaterial: false,
+      hasLegacyCopyrightMaterial: false,
       hasDownloadableResources: true,
       hasMediaClips: false,
     };
 
-    const result = getPageLinksForLesson(lesson, []);
+    const result = getPageLinksWithSubheadingsForLesson(lesson, []);
 
     const expected = [
       {
@@ -136,7 +141,7 @@ describe("getPageLinksForLesson()", () => {
       },
       {
         anchorId: "slide-deck",
-        label: "Slide deck",
+        label: "Lesson slides",
       },
       {
         anchorId: "lesson-details",
@@ -167,17 +172,17 @@ describe("getPageLinksForLesson()", () => {
       additionalMaterialUrl: "additional-material-url",
       starterQuiz: ["foo"],
       exitQuiz: ["bar"],
-      hasCopyrightMaterial: false,
+      hasLegacyCopyrightMaterial: false,
       hasDownloadableResources: true,
     };
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
-    const result = getPageLinksForLesson(lesson);
+    const result = getPageLinksWithSubheadingsForLesson(lesson);
     const expected = [
       {
         anchorId: "slide-deck",
-        label: "Slide deck",
+        label: "Lesson slides",
       },
       {
         anchorId: "lesson-details",
@@ -192,12 +197,98 @@ describe("getPageLinksForLesson()", () => {
         label: "Worksheet",
       },
       {
-        anchorId: "starter-quiz",
-        label: "Starter quiz",
+        label: "Quizzes",
+        anchorId: "quiz",
+        subheading: `Prior knowledge starter quiz \nAssessment exit quiz`,
       },
       {
+        anchorId: "additional-material",
+        label: "Additional material",
+      },
+    ];
+
+    expect(result).toEqual(expected);
+  });
+  it("returns only the correct page links for a lesson only a starter quiz and no exit quiz", () => {
+    const lesson = {
+      presentationUrl: "presentation-url",
+      videoMuxPlaybackId: "video-mux-playback-id",
+      worksheetUrl: "worksheet-url",
+      additionalMaterialUrl: "additional-material-url",
+      starterQuiz: ["foo"],
+      hasLegacyCopyrightMaterial: false,
+      hasDownloadableResources: true,
+    };
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    const result = getPageLinksWithSubheadingsForLesson(lesson);
+    const expected = [
+      {
+        anchorId: "slide-deck",
+        label: "Lesson slides",
+      },
+      {
+        anchorId: "lesson-details",
+        label: "Lesson details",
+      },
+      {
+        anchorId: "video",
+        label: "Lesson video",
+      },
+      {
+        anchorId: "worksheet",
+        label: "Worksheet",
+      },
+      {
+        label: "Quizzes",
+        anchorId: "starter-quiz",
+        subheading: `Prior knowledge starter quiz`,
+      },
+      {
+        anchorId: "additional-material",
+        label: "Additional material",
+      },
+    ];
+
+    expect(result).toEqual(expected);
+  });
+  it("returns only the correct page links for a lesson only an exit quiz and no starter quiz", () => {
+    const lesson = {
+      presentationUrl: "presentation-url",
+      videoMuxPlaybackId: "video-mux-playback-id",
+      worksheetUrl: "worksheet-url",
+      additionalMaterialUrl: "additional-material-url",
+      starterQuiz: [],
+      exitQuiz: ["bar"],
+      hasLegacyCopyrightMaterial: false,
+      hasDownloadableResources: true,
+    };
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    const result = getPageLinksWithSubheadingsForLesson(lesson);
+    const expected = [
+      {
+        anchorId: "slide-deck",
+        label: "Lesson slides",
+      },
+      {
+        anchorId: "lesson-details",
+        label: "Lesson details",
+      },
+      {
+        anchorId: "video",
+        label: "Lesson video",
+      },
+      {
+        anchorId: "worksheet",
+        label: "Worksheet",
+      },
+      {
+        label: "Quizzes",
         anchorId: "exit-quiz",
-        label: "Exit quiz",
+        subheading: `Assessment exit quiz`,
       },
       {
         anchorId: "additional-material",
@@ -208,11 +299,11 @@ describe("getPageLinksForLesson()", () => {
     expect(result).toEqual(expected);
   });
 
-  it("doesn't include slidedeck if hasCopyrightMaterial", () => {
+  it("doesn't include slidedeck if hasLegacyCopyrightMaterial", () => {
     const lesson = {
       lessonGuideUrl: null,
       presentationUrl: "presentation-url",
-      hasCopyrightMaterial: true,
+      hasLegacyCopyrightMaterial: true,
       videoMuxPlaybackId: null,
       worksheetUrl: "worksheet-url",
       additionalMaterialUrl: null,
@@ -222,7 +313,7 @@ describe("getPageLinksForLesson()", () => {
       hasMediaClips: false,
     };
 
-    const result = getPageLinksForLesson(lesson, [
+    const result = getPageLinksWithSubheadingsForLesson(lesson, [
       { copyrightInfo: "This lesson contains copyright material." },
     ]);
 
@@ -755,414 +846,134 @@ describe("convertBytesToMegabytes", () => {
 
 describe("sortMediaClipsByOrder", () => {
   it("sorts media clips in ascending order based on the 'order' property", () => {
-    const mediaClips = [
-      {
-        order: "2",
-        mediaId: "191189",
-        videoId: 29845,
-        mediaType: "video",
-        customTitle: "Intro Video 2",
-        mediaObject: {
-          url: "http://example.com/video2.mp3",
-          type: "upload",
-          bytes: 122087,
-          format: "mp3",
-          duration: 7.601633,
-          displayName: "8_task_C1_2",
-          resourceType: "video",
+    const mediaClips: MediaClip[] = keysToCamelCase([
+      mediaClipCycleFixture({
+        overrides: {
+          order: "2",
         },
-        videoObject: {
-          duration: 7.603667,
-          muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
-          playbackIds: [
-            {
-              id: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
-              policy: "public",
-            },
-            {
-              id: "02mDhMdHMs4MOCAMutPLWzylp00NQgDYfiydlLQPDWI3M",
-              policy: "signed",
-            },
-          ],
-          muxPlaybackId: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
+      }),
+      mediaClipCycleFixture({
+        overrides: {
+          order: "5",
         },
-      },
-      {
-        order: "1",
-        mediaId: "191189",
-        videoId: 29845,
-        mediaType: "video",
-        customTitle: "Intro Video 1",
-        mediaObject: {
-          url: "http://example.com/video2.mp3",
-          type: "upload",
-          bytes: 122087,
-          format: "mp3",
-          duration: 7.601633,
-
-          displayName: "8_task_C1_2",
-          resourceType: "video",
+      }),
+      mediaClipCycleFixture({
+        overrides: {
+          order: "1",
         },
-        videoObject: {
-          duration: 7.603667,
-          muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
-          playbackIds: [
-            {
-              id: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
-              policy: "public",
-            },
-            {
-              id: "02mDhMdHMs4MOCAMutPLWzylp00NQgDYfiydlLQPDWI3M",
-              policy: "signed",
-            },
-          ],
-          muxPlaybackId: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
-        },
-      },
-    ];
+      }),
+    ]);
     const result = mediaClips.toSorted(sortMediaClipsByOrder);
 
-    expect(result).toEqual([
-      {
-        order: "1",
-        mediaId: "191189",
-        videoId: 29845,
-        mediaType: "video",
-        customTitle: "Intro Video 1",
-        mediaObject: {
-          url: "http://example.com/video2.mp3",
-          type: "upload",
-          bytes: 122087,
-          format: "mp3",
-          duration: 7.601633,
-          displayName: "8_task_C1_2",
-          resourceType: "video",
-        },
-        videoObject: {
-          duration: 7.603667,
-          muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
-          playbackIds: [
-            {
-              id: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
-              policy: "public",
-            },
-            {
-              id: "02mDhMdHMs4MOCAMutPLWzylp00NQgDYfiydlLQPDWI3M",
-              policy: "signed",
-            },
-          ],
-          muxPlaybackId: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
-        },
-      },
-      {
-        order: "2",
-        mediaId: "191189",
-        videoId: 29845,
-        mediaType: "video",
-        customTitle: "Intro Video 2",
-        mediaObject: {
-          url: "http://example.com/video2.mp3",
-          type: "upload",
-          bytes: 122087,
-          format: "mp3",
-          duration: 7.601633,
-          displayName: "8_task_C1_2",
-          resourceType: "video",
-        },
-        videoObject: {
-          duration: 7.603667,
-          muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
-          playbackIds: [
-            {
-              id: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
-              policy: "public",
-            },
-            {
-              id: "02mDhMdHMs4MOCAMutPLWzylp00NQgDYfiydlLQPDWI3M",
-              policy: "signed",
-            },
-          ],
-          muxPlaybackId: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
-        },
-      },
-    ]);
+    expect(result).toEqual(
+      keysToCamelCase([
+        mediaClipCycleFixture({
+          overrides: {
+            order: "1",
+          },
+        }),
+        mediaClipCycleFixture({
+          overrides: {
+            order: "2",
+          },
+        }),
+        mediaClipCycleFixture({
+          overrides: {
+            order: "5",
+          },
+        }),
+      ]),
+    );
   });
 
   it("returns 0 when two media clips have the same 'order' property", () => {
-    const mediaClips: MediaClip[] = [
-      {
-        order: "2",
-        mediaId: "191189",
-        videoId: 29845,
-        mediaType: "video",
-        customTitle: "Intro Video 2",
-        mediaObject: {
-          url: "http://example.com/video2.mp3",
-          type: "upload",
-          bytes: 122087,
-          format: "mp3",
-          duration: 7.601633,
-
-          displayName: "8_task_C1_2",
-          resourceType: "video",
+    const mediaClips: MediaClip[] = keysToCamelCase([
+      mediaClipCycleFixture({
+        overrides: {
+          order: "1",
+          media_id: "456",
         },
-        videoObject: {
-          duration: 7.603667,
-          muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
-          playbackIds: [
-            {
-              id: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
-              policy: "public",
-            },
-            {
-              id: "02mDhMdHMs4MOCAMutPLWzylp00NQgDYfiydlLQPDWI3M",
-              policy: "signed",
-            },
-          ],
-          muxPlaybackId: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
+      }),
+      mediaClipCycleFixture({
+        overrides: {
+          order: "1",
+          media_id: "123",
         },
-      },
-      {
-        order: "2",
-        mediaId: "191134489",
-        videoId: 29845,
-        mediaType: "video",
-        customTitle: "Intro Video 3",
-        mediaObject: {
-          url: "http://example.com/video3.mp3",
-          type: "upload",
-          bytes: 122087,
-          format: "mp3",
-          duration: 7.601633,
-          displayName: "8_task_C1_2",
-          resourceType: "video",
-        },
-        videoObject: {
-          duration: 7.603667,
-          muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
-          playbackIds: [
-            {
-              id: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
-              policy: "public",
-            },
-            {
-              id: "02mDhMdHMs4MOCAMutPLWzylp00NQgDYfiydlLQPDWI3M",
-              policy: "signed",
-            },
-          ],
-          muxPlaybackId: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
-        },
-      },
-    ];
+      }),
+    ]);
 
     const result = mediaClips.toSorted(sortMediaClipsByOrder);
 
-    expect(result).toEqual([
-      {
-        order: "2",
-        mediaId: "191189",
-        videoId: 29845,
-        mediaType: "video",
-        customTitle: "Intro Video 2",
-        mediaObject: {
-          url: "http://example.com/video2.mp3",
-          type: "upload",
-          bytes: 122087,
-          format: "mp3",
-          duration: 7.601633,
-
-          displayName: "8_task_C1_2",
-          resourceType: "video",
-        },
-        videoObject: {
-          duration: 7.603667,
-          muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
-          playbackIds: [
-            {
-              id: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
-              policy: "public",
-            },
-            {
-              id: "02mDhMdHMs4MOCAMutPLWzylp00NQgDYfiydlLQPDWI3M",
-              policy: "signed",
-            },
-          ],
-          muxPlaybackId: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
-        },
-      },
-      {
-        order: "2",
-        mediaId: "191134489",
-        videoId: 29845,
-        mediaType: "video",
-        customTitle: "Intro Video 3",
-        mediaObject: {
-          url: "http://example.com/video3.mp3",
-          type: "upload",
-          bytes: 122087,
-          format: "mp3",
-          duration: 7.601633,
-          displayName: "8_task_C1_2",
-          resourceType: "video",
-        },
-        videoObject: {
-          duration: 7.603667,
-          muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
-          playbackIds: [
-            {
-              id: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
-              policy: "public",
-            },
-            {
-              id: "02mDhMdHMs4MOCAMutPLWzylp00NQgDYfiydlLQPDWI3M",
-              policy: "signed",
-            },
-          ],
-          muxPlaybackId: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
-        },
-      },
-    ]);
+    expect(result).toEqual(
+      keysToCamelCase([
+        mediaClipCycleFixture({
+          overrides: {
+            order: "1",
+            media_id: "456",
+          },
+        }),
+        mediaClipCycleFixture({
+          overrides: {
+            order: "1",
+            media_id: "123",
+          },
+        }),
+      ]),
+    );
   });
 
   it("handles empty arrays without errors", () => {
     const mediaClips: MediaClip[] = [];
-
     const result = mediaClips.toSorted(sortMediaClipsByOrder);
 
     expect(result).toEqual([]);
   });
 
   it("handles media clips with non-numeric 'order' values gracefully", () => {
-    const mediaClips: MediaClip[] = [
-      {
-        order: "2",
-        mediaId: "191134489",
-        videoId: 29845,
-        mediaType: "video",
-        customTitle: "Intro Video 3",
-        mediaObject: {
-          url: "http://example.com/video3.mp3",
-          type: "upload",
-          bytes: 122087,
-          format: "mp3",
-          duration: 7.601633,
-          displayName: "8_task_C1_2",
-          resourceType: "video",
+    const mediaClips: MediaClip[] = keysToCamelCase([
+      mediaClipCycleFixture({
+        overrides: {
+          order: "abc",
+          media_id: "123",
         },
-        videoObject: {
-          duration: 7.603667,
-          muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
-          playbackIds: [
-            {
-              id: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
-              policy: "public",
-            },
-            {
-              id: "02mDhMdHMs4MOCAMutPLWzylp00NQgDYfiydlLQPDWI3M",
-              policy: "signed",
-            },
-          ],
-          muxPlaybackId: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
+      }),
+      mediaClipCycleFixture({
+        overrides: {
+          order: "2",
+          media_id: "456",
         },
-      },
-      {
-        order: "ab",
-        mediaId: "191134489",
-        videoId: 29845,
-        mediaType: "video",
-        customTitle: "Intro Video 3",
-        mediaObject: {
-          url: "http://example.com/video3.mp3",
-          type: "upload",
-          bytes: 122087,
-          format: "mp3",
-          duration: 7.601633,
-          displayName: "8_task_C1_2",
-          resourceType: "video",
+      }),
+      mediaClipCycleFixture({
+        overrides: {
+          order: "1",
+          media_id: "456",
         },
-        videoObject: {
-          duration: 7.603667,
-          muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
-          playbackIds: [
-            {
-              id: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
-              policy: "public",
-            },
-            {
-              id: "02mDhMdHMs4MOCAMutPLWzylp00NQgDYfiydlLQPDWI3M",
-              policy: "signed",
-            },
-          ],
-          muxPlaybackId: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
-        },
-      },
-    ];
+      }),
+    ]);
 
     const result = mediaClips.toSorted(sortMediaClipsByOrder);
 
-    expect(result).toEqual([
-      {
-        order: "2",
-        mediaId: "191134489",
-        videoId: 29845,
-        mediaType: "video",
-        customTitle: "Intro Video 3",
-        mediaObject: {
-          url: "http://example.com/video3.mp3",
-          type: "upload",
-          bytes: 122087,
-          format: "mp3",
-          duration: 7.601633,
-          displayName: "8_task_C1_2",
-          resourceType: "video",
-        },
-        videoObject: {
-          duration: 7.603667,
-          muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
-          playbackIds: [
-            {
-              id: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
-              policy: "public",
-            },
-            {
-              id: "02mDhMdHMs4MOCAMutPLWzylp00NQgDYfiydlLQPDWI3M",
-              policy: "signed",
-            },
-          ],
-          muxPlaybackId: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
-        },
-      },
-      {
-        order: "ab",
-        mediaId: "191134489",
-        videoId: 29845,
-        mediaType: "video",
-        customTitle: "Intro Video 3",
-        mediaObject: {
-          url: "http://example.com/video3.mp3",
-          type: "upload",
-          bytes: 122087,
-          format: "mp3",
-          duration: 7.601633,
-          displayName: "8_task_C1_2",
-          resourceType: "video",
-        },
-        videoObject: {
-          duration: 7.603667,
-          muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
-          playbackIds: [
-            {
-              id: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
-              policy: "public",
-            },
-            {
-              id: "02mDhMdHMs4MOCAMutPLWzylp00NQgDYfiydlLQPDWI3M",
-              policy: "signed",
-            },
-          ],
-          muxPlaybackId: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
-        },
-      },
-    ]);
+    expect(result).toEqual(
+      keysToCamelCase([
+        mediaClipCycleFixture({
+          overrides: {
+            order: "abc",
+            media_id: "123",
+          },
+        }),
+        mediaClipCycleFixture({
+          overrides: {
+            order: "1",
+            media_id: "456",
+          },
+        }),
+        mediaClipCycleFixture({
+          overrides: {
+            order: "2",
+            media_id: "456",
+          },
+        }),
+      ]),
+    );
   });
 });

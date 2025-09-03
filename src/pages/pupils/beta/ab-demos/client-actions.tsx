@@ -10,6 +10,7 @@ import {
 } from "@oaknational/oak-components";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import { LessonReleaseCohortValueType } from "@/browser-lib/avo/Avo";
 
 /**
  *
@@ -53,6 +54,8 @@ const Page = () => {
       pathway: undefined,
       releaseGroup: undefined,
       phase: undefined,
+      lessonReleaseDate: "2023-10-01",
+      lessonReleaseCohort: "2020-2023" as LessonReleaseCohortValueType,
     };
 
     // record success event
@@ -64,6 +67,8 @@ const Page = () => {
       isMuted: false,
       timeElapsedSeconds: 0,
       videoLocation: null,
+      muxAssetId: null,
+      cloudinaryUrl: null,
       ...pathwayData,
     });
 

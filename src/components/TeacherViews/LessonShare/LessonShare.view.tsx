@@ -1,6 +1,9 @@
-import { OakBox, OakHandDrawnHR } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakHandDrawnHR,
+  OakMaxWidth,
+} from "@oaknational/oak-components";
 
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
 import {
   getLessonOverviewBreadCrumb,
@@ -9,11 +12,11 @@ import {
   getBreadcrumbsForSpecialistLessonPathway,
   getBreadCrumbForSpecialistShare,
   getCommonPathway,
+  lessonIsSpecialist,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import {
   LessonPathway,
   SpecialistLessonPathway,
-  lessonIsSpecialist,
 } from "@/components/TeacherComponents/types/lesson.types";
 import ResourcePageLayout from "@/components/TeacherComponents/ResourcePageLayout";
 import LessonShareCardGroup from "@/components/TeacherComponents/LessonShareCardGroup";
@@ -51,6 +54,7 @@ export type LessonShareProps =
         lessonSlug: string;
         shareableResources: LessonShareData["shareableResources"];
         pathways: LessonPathway[];
+        lessonReleaseDate: string | null;
       };
     }
   | {
@@ -63,6 +67,7 @@ export type LessonShareProps =
         lessonTitle: string;
         lessonSlug: string;
         shareableResources: LessonShareData["shareableResources"];
+        lessonReleaseDate: string | null;
       };
     }
   | {
@@ -88,6 +93,7 @@ export function LessonShare(props: LessonShareProps) {
     isLegacy,
     expired,
     isSpecialist,
+    lessonReleaseDate,
   } = lesson;
 
   const commonPathway =
@@ -171,12 +177,17 @@ export function LessonShare(props: LessonShareProps) {
         .map((r) => classroomActivityMap[r])
         .filter((r) => r !== undefined) as ResourceTypesValueType[],
       audience: "Pupil",
+      lessonReleaseCohort: isLegacy ? "2020-2023" : "2023-2026",
+      lessonReleaseDate: lessonReleaseDate ?? "unpublished",
     });
   };
 
   return (
     <OakBox $ph={["inner-padding-m", null]} $background={"grey20"}>
-      <MaxWidth $pb={80} $maxWidth={[480, 840, 1280]}>
+      <OakMaxWidth
+        inner-padding-xl8
+        $maxWidth={["all-spacing-21", "all-spacing-23", "all-spacing-24"]}
+      >
         <OakBox $mb={"space-between-m2"} $mt={"space-between-m"}>
           <Breadcrumbs
             breadcrumbs={
@@ -218,6 +229,8 @@ export function LessonShare(props: LessonShareProps) {
           />
         </OakBox>
         <ResourcePageLayout
+          loginRequired={false}
+          geoRestricted={false}
           page={"share"}
           errors={form.errors}
           handleToggleSelectAll={handleToggleSelectAll}
@@ -278,7 +291,7 @@ export function LessonShare(props: LessonShareProps) {
             />
           }
         />
-      </MaxWidth>
+      </OakMaxWidth>
     </OakBox>
   );
 }

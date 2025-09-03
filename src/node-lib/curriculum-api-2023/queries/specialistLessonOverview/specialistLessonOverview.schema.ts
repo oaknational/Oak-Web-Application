@@ -21,6 +21,8 @@ export type SpecialistLessonOverviewData = Omit<
   | "examBoardTitle"
   | "lessonMediaClips"
   | "subjectParent"
+  | "geoRestricted"
+  | "loginRequired"
 > & {
   isCanonical: false;
   developmentStageTitle: string;
@@ -30,6 +32,8 @@ export type SpecialistLessonOverviewData = Omit<
   threads?: Threads[] | null;
   updatedAt: string;
   lessonMediaClips: null;
+  loginRequired: boolean;
+  geoRestricted: boolean;
 };
 
 const content_guidance_schema = z.object({
@@ -105,6 +109,8 @@ export const specialistLessonOverviewRawSchema = z.array(
     starter_quiz_asset_object: legacyAssetObjectSchema,
     exit_quiz_asset_object: legacyAssetObjectSchema,
     worksheet_asset_object: legacyAssetObjectSchema,
+    lesson_release_date: z.string().nullable(),
+    order_in_unit: z.number(),
   }),
 );
 

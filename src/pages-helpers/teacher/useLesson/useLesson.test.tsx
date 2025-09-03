@@ -33,6 +33,8 @@ describe("useLesson", () => {
   const defaultProps: UseLessonProps = {
     lessonSlug: "test-lesson",
     source: "lesson-browse" as const,
+    loginRequired: false,
+    geoRestricted: false,
     curriculumTrackingProps: {
       lessonName: "Test Lesson",
       lessonSlug: "test-lesson",
@@ -42,6 +44,8 @@ describe("useLesson", () => {
       subjectTitle: "Test Subject",
       keyStageSlug: "test-ks",
       keyStageTitle: "Key stage 4",
+      lessonReleaseCohort: "2020-2023",
+      lessonReleaseDate: "2020-2023",
     },
   };
 

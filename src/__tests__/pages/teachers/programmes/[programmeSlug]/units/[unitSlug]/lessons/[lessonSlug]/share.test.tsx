@@ -19,6 +19,10 @@ import LessonSharePage, {
 } from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/share";
 import lessonShareFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonShare.fixture";
 import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__";
+import curriculumApi2023, {
+  CurriculumApi,
+} from "@/node-lib/curriculum-api-2023";
+import OakError from "@/errors/OakError";
 
 const props: LessonSharePageProps = {
   curriculumData: lessonShareFixtures(),
@@ -112,6 +116,8 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
       analyticsUseCase: "Teacher",
       resourceTypes: ["starter-quiz", "video", "exit-quiz"],
       audience: "Pupil",
+      lessonReleaseCohort: "2020-2023",
+      lessonReleaseDate: "2025-09-29T14:00:00.000Z",
     });
   });
 
@@ -196,8 +202,9 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
       // HACK: wait for next tick
       await waitForNextTick();
 
-      const description = computeAccessibleDescription(input);
-      expect(description).toBe("Please enter a valid email address");
+      expect(
+        screen.getByText("Please enter a valid email address"),
+      ).toBeInTheDocument();
     });
 
     it("should not display error hint on blur email if empty", async () => {
@@ -213,36 +220,6 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
 
       const description = computeAccessibleDescription(input);
       expect(description).toBe("");
-    });
-  });
-
-  describe("selected resources count", () => {
-    it.skip("should select all resources if user checks 'Select all'", async () => {
-      // Temporarily skipping this test as the functionality is disabled until work is complete on pupil side
-      const { getByRole } = render(<LessonSharePage {...props} />);
-
-      const selectAllCheckbox = getByRole("checkbox", { name: "Select all" });
-      expect(selectAllCheckbox).toBeChecked();
-
-      const exitQuizQuestions = screen.getByLabelText("Exit quiz");
-      const exitQuizAnswers = screen.getByLabelText("Video");
-
-      expect(exitQuizQuestions).toBeChecked();
-      expect(exitQuizAnswers).toBeChecked();
-    });
-
-    it.skip("should deselect all resources if user deselects 'Select all'", async () => {
-      // Temporarily skipping this test as the functionality is disabled until work is complete on pupil side
-      const { getByRole } = render(<LessonSharePage {...props} />);
-
-      const selectAllCheckbox = getByRole("checkbox", { name: "Select all" });
-      const user = userEvent.setup();
-      await user.click(selectAllCheckbox);
-
-      const exitQuizQuestions = screen.getByLabelText("Exit quiz");
-      const exitQuizAnswers = screen.getByLabelText("Video");
-      expect(exitQuizQuestions).not.toBeChecked();
-      expect(exitQuizAnswers).not.toBeChecked();
     });
   });
 
@@ -321,7 +298,7 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
       await user.click(editButton);
 
       const emailAddress = result.current.emailFromLocalStorage;
-      expect(getByTestId("rotated-input-label")).toBeInTheDocument();
+      expect(getByTestId("jaunty-label")).toBeInTheDocument();
       const emailValue = getByDisplayValue(emailAddress);
       expect(emailValue).toBeInTheDocument();
       expect(emailAddress).toBe("test@test.com");
@@ -394,7 +371,7 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
         canonical:
           "NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/maths-higher-ks4-l/units/geometry/lessons/macbeth-lesson-1",
-        robots: "noindex,follow",
+        robots: "noindex,nofollow",
       });
     });
   });
@@ -441,9 +418,17 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
         lessonSlug: "adding-surds-a57d",
       });
     });
-    it("should return notFound when a landing page is missing", async () => {
+    it("should return notFound when a landing page is missing and no redirect", async () => {
+      if (!curriculumApi2023.browseLessonRedirectQuery) {
+        (curriculumApi2023 as CurriculumApi).browseLessonRedirectQuery =
+          jest.fn();
+      }
       (curriculumApi.lessonShare as jest.Mock).mockResolvedValueOnce(undefined);
-
+      (
+        curriculumApi2023.browseLessonRedirectQuery as jest.Mock
+      ).mockRejectedValueOnce(
+        new OakError({ code: "curriculum-api/not-found" }),
+      );
       const context = {
         params: {
           programmeSlug: "maths-secondary-ks4-higher-l",
@@ -456,10 +441,71 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
         notFound: true,
       });
     });
+    it("should return redirect when a landing page is missing", async () => {
+      (curriculumApi.lessonShare as jest.Mock).mockResolvedValueOnce(undefined);
+      (
+        curriculumApi2023.browseLessonRedirectQuery as jest.Mock
+      ).mockResolvedValueOnce({
+        redirectData: {
+          incomingPath: "lessons/old-lesson-slug",
+          outgoingPath: "lessons/new-lesson-slug",
+          redirectType: 301, // Temporary redirect
+        },
+      });
+      const result = await getStaticProps({
+        params: {
+          lessonSlug: "old-lesson-slug",
+          programmeSlug: "english-primary-ks2",
+          unitSlug: "unit-slug",
+        },
+        query: {},
+      } as GetStaticPropsContext<URLParams, PreviewData>);
+
+      // Verify the redirect properties
+      expect(result).toHaveProperty("redirect");
+      expect(
+        (
+          result as {
+            redirect: {
+              destination: string;
+              statusCode: number;
+              basePath: boolean;
+            };
+          }
+        ).redirect,
+      ).toEqual({
+        destination: "lessons/new-lesson-slug?redirected=true",
+        statusCode: 301, // 307 is the default for temporary redirects
+        basePath: false,
+      });
+
+      // Verify the redirect API was called with the correct parameters
+      expect(curriculumApi2023.browseLessonRedirectQuery).toHaveBeenCalledWith({
+        incomingPath:
+          "/teachers/programmes/english-primary-ks2/units/unit-slug/lessons/old-lesson-slug",
+      });
+    });
     it("should throw error", async () => {
       await expect(
         getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>),
       ).rejects.toThrowError("No context.params");
+    });
+
+    it("should return a 404 page if lesson is georestricted or login required", async () => {
+      (curriculumApi.lessonShare as jest.Mock).mockResolvedValueOnce(
+        lessonShareFixtures({ georestricted: true, loginRequired: true }),
+      );
+
+      const result = await getStaticProps({
+        params: {
+          lessonSlug: "macbeth-lesson-1",
+          programmeSlug: "math-higher-ks4-l",
+          unitSlug: "shakespeare",
+        },
+        query: {},
+      } as GetStaticPropsContext<URLParams, PreviewData>);
+
+      expect(result).toEqual({ notFound: true });
     });
   });
 });

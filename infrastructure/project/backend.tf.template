@@ -1,0 +1,8 @@
+terraform {
+  cloud {
+    organization = "your-organizaton-name"
+    workspaces {
+      tags = ["repo:Oak-Web-Application", "config:project"]
+    }
+  }
+}

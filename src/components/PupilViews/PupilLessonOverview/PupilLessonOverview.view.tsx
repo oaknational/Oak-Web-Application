@@ -17,6 +17,7 @@ import {
   OakSpan,
   OakSubjectIcon,
   isValidIconName,
+  OakLI,
 } from "@oaknational/oak-components";
 
 import {
@@ -77,11 +78,6 @@ export const PupilViewsLessonOverview = ({
   useEffect(() => {
     setIsMounted(true);
   }, []);
-  const [showExpiredLessonsBanner, setShowExpiredLessonsBanner] =
-    useState<boolean>(
-      expirationDate !== null ||
-        browseData.actions?.displayExpiringBanner === true,
-    );
 
   const baseSlug = `${browseData.programmeFields.subjectSlug}-${browseData.programmeFields.phaseSlug}-${browseData.programmeFields.yearSlug}`;
   const unitListingHref = `/pupils/programmes/${baseSlug}/options`; // NB. options will forward to units if no options available
@@ -117,13 +113,13 @@ export const PupilViewsLessonOverview = ({
 
   const expiringBanner = (
     <ExpiringBanner
-      isOpen={showExpiredLessonsBanner}
+      isOpen={
+        expirationDate !== null ||
+        browseData.actions?.displayExpiringBanner === true
+      }
       isResourcesMessage={false}
       isSingular={true}
       onwardHref={unitListingHref}
-      onClose={() => {
-        setShowExpiredLessonsBanner(false);
-      }}
     />
   );
 
@@ -293,52 +289,66 @@ export const PupilViewsLessonOverview = ({
             $colSpan={[12, 12, 5]}
             $ph={["inner-padding-m", "inner-padding-none"]}
           >
-            <OakFlex $gap="space-between-s" $flexDirection="column">
+            <OakFlex
+              as="ul"
+              $ma={"space-between-none"}
+              $pa={"inner-padding-none"}
+              $gap="space-between-s"
+              $flexDirection="column"
+            >
               {lessonReviewSections.includes("intro") && (
-                <OakLessonNavItem
-                  {...getSectionLinkProps("intro", () => {
-                    trackSectionStarted("intro");
-                    updateCurrentSection("intro");
-                  })}
-                  lessonSectionName="intro"
-                  progress={pickProgressForSection("intro")}
-                />
+                <OakLI $listStyle="none">
+                  <OakLessonNavItem
+                    {...getSectionLinkProps("intro", () => {
+                      trackSectionStarted("intro");
+                      updateCurrentSection("intro");
+                    })}
+                    lessonSectionName="intro"
+                    progress={pickProgressForSection("intro")}
+                  />
+                </OakLI>
               )}
               {lessonReviewSections.includes("starter-quiz") && (
-                <OakLessonNavItem
-                  {...getSectionLinkProps("starter-quiz", () => {
-                    trackSectionStarted("starter-quiz");
-                    updateCurrentSection("starter-quiz");
-                  })}
-                  lessonSectionName="starter-quiz"
-                  progress={pickProgressForSection("starter-quiz")}
-                  numQuestions={starterQuizNumQuestions}
-                  grade={sectionResults["starter-quiz"]?.grade ?? 0}
-                  data-testid="starter-quiz"
-                />
+                <OakLI $listStyle="none">
+                  <OakLessonNavItem
+                    {...getSectionLinkProps("starter-quiz", () => {
+                      trackSectionStarted("starter-quiz");
+                      updateCurrentSection("starter-quiz");
+                    })}
+                    lessonSectionName="starter-quiz"
+                    progress={pickProgressForSection("starter-quiz")}
+                    numQuestions={starterQuizNumQuestions}
+                    grade={sectionResults["starter-quiz"]?.grade ?? 0}
+                    data-testid="starter-quiz"
+                  />
+                </OakLI>
               )}
               {lessonReviewSections.includes("video") && (
-                <OakLessonNavItem
-                  {...getSectionLinkProps("video", () => {
-                    trackSectionStarted("video");
-                    updateCurrentSection("video");
-                  })}
-                  lessonSectionName="video"
-                  progress={pickProgressForSection("video")}
-                />
+                <OakLI $listStyle="none">
+                  <OakLessonNavItem
+                    {...getSectionLinkProps("video", () => {
+                      trackSectionStarted("video");
+                      updateCurrentSection("video");
+                    })}
+                    lessonSectionName="video"
+                    progress={pickProgressForSection("video")}
+                  />
+                </OakLI>
               )}
               {lessonReviewSections.includes("exit-quiz") && (
-                <OakLessonNavItem
-                  {...getSectionLinkProps("exit-quiz", () => {
-                    trackSectionStarted("exit-quiz");
-                    updateCurrentSection("exit-quiz");
-                  })}
-                  lessonSectionName="exit-quiz"
-                  progress={pickProgressForSection("exit-quiz")}
-                  numQuestions={exitQuizNumQuestions}
-                  grade={sectionResults["exit-quiz"]?.grade ?? 0}
-                  data-testid="exit-quiz"
-                />
+                <OakLI $listStyle="none">
+                  <OakLessonNavItem
+                    {...getSectionLinkProps("exit-quiz", () => {
+                      trackSectionStarted("exit-quiz");
+                      updateCurrentSection("exit-quiz");
+                    })}
+                    lessonSectionName="exit-quiz"
+                    progress={pickProgressForSection("exit-quiz")}
+                    numQuestions={exitQuizNumQuestions}
+                    grade={sectionResults["exit-quiz"]?.grade ?? 0}
+                    data-testid="exit-quiz"
+                  />
+                </OakLI>
               )}
             </OakFlex>
           </OakGridArea>

@@ -1,7 +1,7 @@
 import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import mockRouter from "next-router-mock";
 import { OakTooltipProps } from "@oaknational/oak-components";
+import mockRouter from "next-router-mock";
 
 import {
   PupilExperienceView,
@@ -292,7 +292,47 @@ describe("PupilExperienceView", () => {
     });
   });
 
-  it.skip("should navigate away from page when 'take me back' is clicked", async () => {
+  it("should render the default message on lessons that age restriction and no content guidance", () => {
+    const lessonContent = lessonContentFixture({
+      lessonTitle: "Lesson Title",
+      contentGuidance: null,
+      supervisionLevel: null,
+    });
+    const lessonBrowseData = lessonBrowseDataFixture({
+      features: {
+        ageRestriction: "7_and_above",
+      },
+    });
+
+    jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
+      createLessonEngineContext({
+        currentSection: "overview",
+      }),
+    );
+    const { getByRole } = render(
+      <PupilExperienceView
+        lessonContent={lessonContent}
+        browseData={lessonBrowseData}
+        hasWorksheet={false}
+        hasAdditionalFiles={false}
+        additionalFiles={null}
+        worksheetInfo={null}
+        initialSection="overview"
+        pageType="browse"
+      />,
+    );
+    const dialog = getByRole("alertdialog");
+
+    expect(dialog).toBeInTheDocument();
+    expect(dialog).toHaveTextContent(
+      "To view this lesson, you must be in year 7 and above",
+    );
+    expect(dialog).toHaveTextContent(
+      "Speak to an adult before starting this lesson.",
+    );
+  });
+
+  it("should render the correct message on lessons that age restriction and content guidance", () => {
     const supervisionLevel = "Supervision Level";
     const contentguidanceLabel = "Guidance Title";
     const lessonContent = lessonContentFixture({
@@ -306,18 +346,19 @@ describe("PupilExperienceView", () => {
       ],
       supervisionLevel,
     });
-    const lessonBrowseData = lessonBrowseDataFixture({});
+    const lessonBrowseData = lessonBrowseDataFixture({
+      features: {
+        ageRestriction: "10_and_above",
+      },
+    });
 
     jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
       createLessonEngineContext({
         currentSection: "overview",
       }),
     );
-    mockRouter.push("/initial-path");
-
-    const { getByTestId } = render(
+    const { getByTestId, getByRole } = render(
       <PupilExperienceView
-        backUrl="/somewhere-else"
         lessonContent={lessonContent}
         browseData={lessonBrowseData}
         hasWorksheet={false}
@@ -328,12 +369,20 @@ describe("PupilExperienceView", () => {
         pageType="browse"
       />,
     );
+    const dialog = getByRole("alertdialog");
 
-    expect(mockRouter.asPath).toBe("/initial-path");
-    await userEvent.click(getByTestId("declineButton"));
-    waitFor(() => {
-      expect(mockRouter.asPath).toBe("/somewhere-else");
-    });
+    expect(dialog).toBeInTheDocument();
+    expect(dialog).toHaveTextContent(
+      "To view this lesson, you must be in year 10 and above",
+    );
+    expect(dialog).toHaveTextContent(contentguidanceLabel);
+    expect(dialog).toHaveTextContent(supervisionLevel);
+    expect(getByTestId("content-guidance-info")).toHaveTextContent(
+      contentguidanceLabel,
+    );
+    expect(getByTestId("suervision-level-info")).toHaveTextContent(
+      supervisionLevel,
+    );
   });
   it("should have robots meta tag with index & follow", async () => {
     const supervisionLevel = "Supervision Level";
@@ -482,5 +531,40 @@ describe("PupilExperienceView", () => {
     );
 
     expect(queryByText("Lesson Title")).toBeNull();
+  });
+});
+describe("redirected overlay", () => {
+  beforeEach(() => {
+    mockRouter.setCurrentUrl("/?redirected=true");
+  });
+  it("Should show redirect modal when redirected query param is present", () => {
+    mockRouter.setCurrentUrl("/?redirected=true");
+    const lessonContent = lessonContentFixture({
+      lessonTitle: "Lesson Title",
+    });
+    const lessonBrowseData = lessonBrowseDataFixture({
+      lessonSlug: "lesson-slug",
+      programmeSlug: "programme-slug",
+      unitSlug: "unit-slug",
+    });
+
+    jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
+      createLessonEngineContext({
+        currentSection: "overview",
+      }),
+    );
+    const { getByTestId } = render(
+      <PupilExperienceView
+        lessonContent={lessonContent}
+        browseData={lessonBrowseData}
+        hasWorksheet={false}
+        hasAdditionalFiles={false}
+        additionalFiles={null}
+        worksheetInfo={null}
+        initialSection="overview"
+        pageType="browse"
+      />,
+    );
+    expect(getByTestId("pupil-redirected-overlay-btn")).toBeInTheDocument();
   });
 });

@@ -15,7 +15,7 @@ const lessonsWithUnitData = lessons.map((lesson) => ({
 }));
 
 jest.mock("next/router", () => ({
-  useRouter: jest.fn(),
+  useRouter: jest.fn().mockResolvedValue({ asPath: "" }),
 }));
 
 const onClick = jest.fn();
@@ -31,15 +31,16 @@ describe("components/ Lesson List", () => {
         currentPageItems={lessonsWithUnitData}
         unitTitle={"Unit title"}
         lessonCount={lessons.length}
+        lessonCountHeader={`Lessons (${lessons.length})`}
         onClick={onClick}
       />,
     );
 
-    const listHeading = getByRole("heading", { level: 2 });
+    const listHeading = getByRole("heading", { name: "Lessons (5)" });
 
     expect(listHeading).toBeInTheDocument();
   });
-  test("it renders pagination if lesson count is greater than 5 ", () => {
+  test("it renders pagination if lesson count is greater than 20 ", () => {
     const { getByTestId } = render(
       <LessonList
         paginationProps={mockPaginationProps}
@@ -48,8 +49,9 @@ describe("components/ Lesson List", () => {
         headingTag={"h2"}
         currentPageItems={lessonsWithUnitData}
         unitTitle={"Unit title"}
-        lessonCount={10}
+        lessonCount={21}
         onClick={onClick}
+        lessonCountHeader={`Lessons (${lessons.length})`}
       />,
     );
 
@@ -57,7 +59,7 @@ describe("components/ Lesson List", () => {
 
     expect(pagination).toBeInTheDocument();
   });
-  test("it does not renders pagination if lesson count is less than 5 ", () => {
+  test("it does not renders pagination if lesson count is less than or equal to 20 ", () => {
     const { queryByTestId } = render(
       <LessonList
         paginationProps={mockPaginationProps}
@@ -66,8 +68,9 @@ describe("components/ Lesson List", () => {
         headingTag={"h2"}
         currentPageItems={lessonsWithUnitData}
         unitTitle={"Unit title"}
-        lessonCount={4}
+        lessonCount={20}
         onClick={onClick}
+        lessonCountHeader={`Lessons (${lessons.length})`}
       />,
     );
 
@@ -86,6 +89,7 @@ describe("components/ Lesson List", () => {
         unitTitle={"Unit title"}
         lessonCount={4}
         onClick={onClick}
+        lessonCountHeader={`Lessons (${lessons.length})`}
       />,
     );
     const unit = getByText("Add two surds");
@@ -93,5 +97,47 @@ describe("components/ Lesson List", () => {
     await userEvent.click(unit);
 
     expect(onClick).toHaveBeenCalledTimes(1);
+  });
+  test("it renders the SEO accordion for non-legacy units", async () => {
+    const { getByTestId } = render(
+      <LessonList
+        paginationProps={mockPaginationProps}
+        subjectSlug={"computing"}
+        keyStageSlug={"ks2"}
+        headingTag={"h2"}
+        currentPageItems={lessonsWithUnitData}
+        unitTitle={"Unit title"}
+        lessonCount={4}
+        onClick={onClick}
+        lessonCountHeader={`Lessons (${lessons.length})`}
+        programmeSlug="computing-primary-ks2"
+        yearTitle="Year 6"
+        subjectTitle="Computing"
+      />,
+    );
+    const seoAccordion = getByTestId("lesson-list-seo-accordion");
+
+    expect(seoAccordion).toBeInTheDocument();
+  });
+  test("it does not render the SEO accordion for legacy units", async () => {
+    const { queryByTestId } = render(
+      <LessonList
+        paginationProps={mockPaginationProps}
+        subjectSlug={"computing"}
+        keyStageSlug={"ks2"}
+        headingTag={"h2"}
+        currentPageItems={lessonsWithUnitData}
+        unitTitle={"Unit title"}
+        lessonCount={4}
+        onClick={onClick}
+        lessonCountHeader={`Lessons (${lessons.length})`}
+        programmeSlug="computing-primary-ks2-l"
+        yearTitle="Year 6"
+        subjectTitle="Computing"
+      />,
+    );
+    const seoAccordion = queryByTestId("lesson-list-seo-accordion");
+
+    expect(seoAccordion).not.toBeInTheDocument();
   });
 });

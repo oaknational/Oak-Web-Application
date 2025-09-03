@@ -2,18 +2,23 @@ import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useForm } from "react-hook-form";
 
-import ResourcePageLayout, {
+import ResourcePageLayoutB, {
   ResourcePageLayoutProps,
 } from "./ResourcePageLayout";
 
 import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import {
+  defaultCopyrightRequirements,
+  signedOutLoginRequired,
+} from "@/__tests__/__helpers__/mockCopyrightRequirements";
 
 type PropsWithoutForm = Omit<
   ResourcePageLayoutProps,
   "control" | "register" | "triggerForm"
 >;
 const props: PropsWithoutForm = {
+  downloadsRestricted: false,
   page: "download",
   header: "Downloads",
   selectAllChecked: true,
@@ -33,12 +38,15 @@ const props: PropsWithoutForm = {
   showTermsAgreement: true,
   isLoading: false,
 };
-
+let mockUseCopyrightRequirements = defaultCopyrightRequirements;
+jest.mock("@/hooks/useCopyrightRequirements", () => ({
+  useCopyrightRequirements: () => mockUseCopyrightRequirements,
+}));
 const ComponentWrapper = (props: PropsWithoutForm) => {
   const { control, register, trigger } = useForm<ResourceFormProps>();
 
   return (
-    <ResourcePageLayout
+    <ResourcePageLayoutB
       {...props}
       control={control}
       register={register}
@@ -47,8 +55,10 @@ const ComponentWrapper = (props: PropsWithoutForm) => {
   );
 };
 
-/** TEST TIMING OUT SPORADICALLY SO SKIPPED WITH A VIEW TO FIX IN THE FUTURE */
-describe.skip("Downloads/Share Layout", () => {
+describe("Downloads/Share Layout", () => {
+  afterEach(() => {
+    mockUseCopyrightRequirements = defaultCopyrightRequirements;
+  });
   it("renders a toggleable select all checkbox", async () => {
     let checked = true;
     const { rerender } = renderWithTheme(
@@ -56,6 +66,7 @@ describe.skip("Downloads/Share Layout", () => {
         {...props}
         selectAllChecked={checked}
         handleToggleSelectAll={() => (checked = false)}
+        showTermsAgreement={false}
       />,
     );
 
@@ -73,10 +84,12 @@ describe.skip("Downloads/Share Layout", () => {
         {...props}
         selectAllChecked={checked}
         handleToggleSelectAll={() => (checked = false)}
+        showTermsAgreement={false}
       />,
     );
     expect(selectAllCheckbox).not.toBeChecked();
   });
+
   it("handles download error message ", () => {
     renderWithTheme(
       <ComponentWrapper
@@ -88,6 +101,7 @@ describe.skip("Downloads/Share Layout", () => {
     const errorMessage = screen.getByText("downloads error");
     expect(errorMessage).toBeInTheDocument();
   });
+
   it("handles api error", () => {
     const { rerender } = renderWithTheme(<ComponentWrapper {...props} />);
 
@@ -97,5 +111,72 @@ describe.skip("Downloads/Share Layout", () => {
     rerender(<ComponentWrapper {...props} apiError={"Api Error"} />);
     const apiErrorAfterRerender = screen.getByText("Api Error");
     expect(apiErrorAfterRerender).toBeInTheDocument();
+  });
+
+  it("hides select all when prop is set to false", () => {
+    renderWithTheme(
+      <ComponentWrapper
+        {...props}
+        hideSelectAll={true}
+        showTermsAgreement={false}
+      />,
+    );
+
+    const selectAllCheckbox = screen.queryByRole("checkbox", {
+      name: "Select all",
+    });
+
+    expect(selectAllCheckbox).not.toBeInTheDocument();
+  });
+
+  it("shows risk assessment banners", () => {
+    const { getAllByTestId } = renderWithTheme(
+      <ComponentWrapper
+        {...props}
+        showRiskAssessmentBanner={true}
+        showTermsAgreement={true}
+      />,
+    );
+
+    const riskAssessmentBanner = getAllByTestId("risk-assessment-message");
+    riskAssessmentBanner.forEach((banner) => {
+      expect(banner).toBeInTheDocument();
+    });
+  });
+
+  it("shows copyright when no terms are linked", () => {
+    const { getByTestId } = renderWithTheme(
+      <ComponentWrapper {...props} showTermsAgreement={false} />,
+    );
+
+    const copyright = getByTestId("copyright-container");
+    expect(copyright).toBeInTheDocument();
+  });
+
+  it("shows loading spinner", () => {
+    const { getByTestId } = renderWithTheme(
+      <ComponentWrapper {...props} isLoading={true} />,
+    );
+
+    const loadingSpinner = getByTestId("loading");
+    expect(loadingSpinner).toBeInTheDocument();
+  });
+
+  it("renders LoginRequired button instead of CTA component when downloadsRestricted is true", () => {
+    const restrictedProps = {
+      ...props,
+      downloadsRestricted: true,
+    };
+    mockUseCopyrightRequirements = signedOutLoginRequired;
+    const { queryByRole, getByRole } = renderWithTheme(
+      <ComponentWrapper {...restrictedProps} />,
+    );
+
+    const ctaButton = queryByRole("button", { name: "CTA" });
+    const loginRequiredButton = getByRole("button", {
+      name: "Sign in to continue",
+    });
+    expect(ctaButton).not.toBeInTheDocument();
+    expect(loginRequiredButton).toBeInTheDocument();
   });
 });

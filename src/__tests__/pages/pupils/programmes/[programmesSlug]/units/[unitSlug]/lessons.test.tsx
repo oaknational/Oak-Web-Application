@@ -8,6 +8,7 @@ import { lessonBrowseDataByKsFixture } from "@/node-lib/curriculum-api-2023/fixt
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 import { PupilViewsLessonListing } from "@/components/PupilViews/PupilLessonListing/PupilLessonListing.view";
 import { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.schema";
+import OakError from "@/errors/OakError";
 
 interface MockLocation {
   href: string;
@@ -65,7 +66,10 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       configurable: true,
     });
     // Restore the original window.location object after each test
-    window.location = originalLocation;
+    Object.defineProperty(window, "location", {
+      value: originalLocation,
+      writable: true,
+    });
 
     jest.clearAllMocks();
   });
@@ -348,5 +352,53 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
     } else {
       throw new Error("getStaticProps did not return  props.");
     }
+  });
+  it("should redirect to the correct unit if a redirect is found", async () => {
+    const programmeSlug = "english-secondary-year-10";
+    const unitSlug = "unit-slug";
+
+    (
+      curriculumApi2023.default.pupilLessonListingQuery as jest.Mock
+    ).mockResolvedValue({
+      browseData: [],
+      backLinkData: [],
+    });
+
+    // mock the return value of the API call
+
+    const res = await getStaticProps({
+      params: {
+        programmeSlug,
+        unitSlug,
+      },
+    });
+    expect(res).toEqual({
+      redirect: {
+        destination: `pupils/programmes/programmeSlug/units/unitSlug-redirected?redirected=true`,
+        statusCode: 301, // true = 308, false = 307
+        basePath: false,
+      },
+    });
+  });
+  it("should return notFound if no redirect is found", async () => {
+    const programmeSlug = "english-secondary-year-10";
+    const unitSlug = "unit-slug";
+
+    (
+      curriculumApi2023.default.pupilLessonListingQuery as jest.Mock
+    ).mockRejectedValueOnce(new OakError({ code: "curriculum-api/not-found" }));
+
+    // mock the return value of the API call
+    (
+      curriculumApi2023.default.pupilUnitRedirectQuery as jest.Mock
+    ).mockRejectedValueOnce(new OakError({ code: "curriculum-api/not-found" }));
+
+    const res = await getStaticProps({
+      params: {
+        programmeSlug,
+        unitSlug,
+      },
+    });
+    expect(res).toEqual({ notFound: true });
   });
 });

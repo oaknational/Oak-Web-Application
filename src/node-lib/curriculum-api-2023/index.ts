@@ -8,7 +8,6 @@ import lessonDownloadsQuery from "./queries/lessonDownloads/lessonDownloads.quer
 import programmeListingQuery from "./queries/programmeListing/programmeListing.query";
 import unitListingQuery from "./queries/unitListing/unitListing.query";
 import curriculumOverviewQuery from "./queries/curriculumOverview/curriculumOverview.query";
-import curriculumHeaderQuery from "./queries/curriculumHeader/curriculumHeader.query";
 import curriculumDownloadsQuery from "./queries/curriculumDownloads/curriculumDownloads.query";
 import curriculumOverviewSchema from "./queries/curriculumOverview/curriculumOverview.schema";
 import searchPageQuery from "./queries/searchPage/searchPage.query";
@@ -32,12 +31,20 @@ import pupilsSitemap from "./queries/pupilsSitemap/pupilsSitemap.query";
 import refreshedMVTimeQuery from "./queries/refreshedMVTime/refreshedMvTime.query";
 import teacherPreviewLessonQuery from "./queries/teacherPreviewLesson/teacherPreviewLesson.query";
 import teachersPreviewLessonDownloadQuery from "./queries/teacherPreviewLessonDownload/teacherPreviewLessonDownload.query";
+import teachersPreviewUnitListingQuery from "./queries/teacherPreviewUnitListing/teacherPreviewUnitListing.query";
+import teachersPreviewLessonListingQuery from "./queries/teacherPreviewLessonListing/teacherPreviewLessonListing.query";
 import curriculumSequenceQuery from "./queries/curriculumSequence/curriculumSequence.query";
 import { lessonMediaClipsQuery } from "./queries/lessonMediaClips/lessonMediaClips.query";
 import { betaLessonMediaClipsQuery } from "./queries/lessonBetaMediaClips/lessonBetaMediaClips.query";
 import curriculumPhaseOptionsQuery from "./queries/curriculumPhaseOptions/curriculumPhaseOptions.query";
 import curriculumPhaseOptionsSchema from "./queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import curriculumSequenceSchema from "./queries/curriculumSequence/curriculumSequence.schema";
+import { canonicalLessonRedirectQuery } from "./queries/canonicalLessonRedirect/canonicalLessonRedirect.query";
+import { browseLessonRedirectQuery } from "./queries/browseLessonRedirect/browseLessonRedirect.query";
+import { browseUnitRedirectQuery } from "./queries/browseUnitRedirect/browseUnitRedirect.query";
+import { pupilUnitRedirectQuery } from "./queries/pupilUnitRedirect/pupilUnitRedirect.query";
+import { pupilCanonicalLessonRedirectQuery } from "./queries/pupilCanonicalLessonRedirect/pupilCanonicalLessonRedirect.query";
+import { pupilBrowseLessonRedirectQuery } from "./queries/pupilBrowseLessonRedirect/pupilBrowseLessonRedirect.query";
 
 export const keyStageSchema = z.object({
   slug: z.string(),
@@ -46,7 +53,7 @@ export const keyStageSchema = z.object({
   displayOrder: z.number().optional(),
 });
 
-const teachersHomePageData = z.object({
+const keyStagesData = z.object({
   keyStages: z.array(keyStageSchema),
 });
 
@@ -97,7 +104,7 @@ export type CurriculumPhaseOptions = z.infer<
   typeof curriculumPhaseOptionsSchema
 >;
 export type CurriculumPhaseOption = CurriculumPhaseOptions[number];
-export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
+export type KeyStagesData = z.infer<typeof keyStagesData>;
 export type CurriculumOverviewMVData = z.infer<typeof curriculumOverviewSchema>;
 export type SearchPageData = z.infer<typeof searchPageSchema>;
 
@@ -126,13 +133,18 @@ const curriculumApi2023 = {
   curriculumOverview: curriculumOverviewQuery(sdk),
   curriculumSequence: curriculumSequenceQuery(sdk),
   curriculumDownloads: curriculumDownloadsQuery(),
-  curriculumHeader: curriculumHeaderQuery(sdk),
   lessonListing: lessonListingQuery(sdk),
   lessonDownloads: lessonDownloadsQuery(sdk),
   lessonMediaClips: lessonMediaClipsQuery(sdk),
   lessonShare: lessonShareQuery(sdk),
   lessonOverview: lessonOverviewQuery(sdk),
   pupilLessonQuery: pupilLessonQuery(sdk),
+  pupilCanonicalLessonRedirectQuery: pupilCanonicalLessonRedirectQuery(sdk),
+  pupilBrowseLessonRedirectQuery: pupilBrowseLessonRedirectQuery(sdk),
+  canonicalLessonRedirectQuery: canonicalLessonRedirectQuery(sdk),
+  browseLessonRedirectQuery: browseLessonRedirectQuery(sdk),
+  browseUnitRedirectQuery: browseUnitRedirectQuery(sdk),
+  pupilUnitRedirectQuery: pupilUnitRedirectQuery(sdk),
   pupilPreviewLessonQuery: pupilPreviewLessonQuery(sdk),
   pupilUnitListingQuery: pupilUnitListingQuery(sdk),
   pupilLessonListingQuery: pupilLessonListingQuery(sdk),
@@ -145,18 +157,21 @@ const curriculumApi2023 = {
   subjectListingPage: subjectListingQuery(sdk),
   curriculumPhaseOptions: curriculumPhaseOptionsQuery(sdk),
   unitListing: unitListingQuery(sdk),
-  teachersHomePage: async () => {
-    const res = await sdk.teachersHomePage();
-    const teachersHomePage = getFirstResultOrNull()({
-      results: res.teachersHomePage,
+  keyStages: async () => {
+    const res = await sdk.keyStages();
+    const keyStages = getFirstResultOrNull()({
+      results: res.keyStages,
     });
-    return teachersHomePageData.parse(teachersHomePage);
+    return keyStagesData.parse(keyStages);
   },
   teacherPreviewLesson: teacherPreviewLessonQuery(sdk),
   teachersPreviewLessonDownload: teachersPreviewLessonDownloadQuery(sdk),
+  teachersPreviewUnitListing: teachersPreviewUnitListingQuery(sdk),
+  teacherPreviewLessonListing: teachersPreviewLessonListingQuery(sdk),
   betaLessonMediaClipsQuery: betaLessonMediaClipsQuery(sdk),
   specialistLessonOverview: specialistLessonOverview(sdk),
   specialistLessonOverviewCanonical: specialistLessonOverviewCanonical(sdk),
+
   specialistSubjectListing: specialistSubjectListingQuery(sdk),
   specialistUnitListing: specialistUnitListingQuery(sdk),
   specialistProgrammeListing: specialistProgrammeListingQuery(sdk),

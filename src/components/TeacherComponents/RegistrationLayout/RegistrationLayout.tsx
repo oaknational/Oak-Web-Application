@@ -4,15 +4,12 @@ import {
   OakFlex,
   OakGrid,
   OakGridArea,
-  OakMaxWidth,
 } from "@oaknational/oak-components";
 
 type RegistrationLayoutProps = PropsWithChildren<{
   asideSlot: ReactNode;
   termsSlot?: ReactNode;
   bannerSlot?: ReactNode;
-  // A/B testing an alternate layout for registration pages
-  useAlternateLayout: boolean;
 }>;
 
 const RegistrationLayout = ({
@@ -20,9 +17,8 @@ const RegistrationLayout = ({
   asideSlot,
   termsSlot,
   bannerSlot,
-  useAlternateLayout,
 }: RegistrationLayoutProps) => {
-  return useAlternateLayout ? (
+  return (
     <OakGrid $width="100%" $height="100%">
       <OakGridArea
         $colSpan={[0, 0, 6]}
@@ -65,47 +61,6 @@ const RegistrationLayout = ({
         </OakFlex>
       </OakGridArea>
     </OakGrid>
-  ) : (
-    <OakFlex
-      $background={["white", "bg-decorative1-main"]}
-      $overflow="auto"
-      $color="black"
-    >
-      <OakMaxWidth
-        $justifyContent={"center"}
-        $minHeight={"100vh"}
-        $alignItems={["flex-start", "center"]}
-        $flexDirection="row"
-        $pv={["inner-padding-none", "inner-padding-xl3"]}
-      >
-        <OakFlex
-          $display={["none", "none", "flex"]}
-          $flexGrow={1}
-          $justifyContent="flex-end"
-          $order={2}
-        >
-          {asideSlot}
-        </OakFlex>
-        <OakFlex $display="block" $order={1} style={{ width: "400px" }}>
-          <OakFlex
-            $flexDirection="column"
-            $alignItems="center"
-            $justifyContent="center"
-          >
-            {bannerSlot}
-            <OakBox
-              $dropShadow={[null, "drop-shadow-standard"]}
-              $borderRadius="border-radius-m2"
-              $mb={["space-between-none", "space-between-m"]}
-              $width="100%"
-            >
-              {children}
-            </OakBox>
-            {termsSlot}
-          </OakFlex>
-        </OakFlex>
-      </OakMaxWidth>
-    </OakFlex>
   );
 };
 

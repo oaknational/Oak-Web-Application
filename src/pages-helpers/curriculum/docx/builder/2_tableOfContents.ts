@@ -1,5 +1,6 @@
-import { CombinedCurriculumData } from "..";
-import { cdata, safeXml, xmlElementToJson } from "../xml";
+import { cdata, safeXml } from "@ooxml-tools/xml";
+
+import { xmlElementToJson } from "../xml";
 import {
   appendBodyElements,
   JSZipCached,
@@ -12,12 +13,23 @@ import { formatCurriculumUnitsData } from "../tab-helpers";
 import { uncapitalizeSubject } from "./helper";
 
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
+import { getModes, groupUnitsByPathway } from "@/utils/curriculum/by-pathway";
+import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
+import { CombinedCurriculumData } from "@/utils/curriculum/types";
 
 export default async function generate(
   zip: JSZipCached,
-  { data }: { data: CombinedCurriculumData },
+  {
+    data,
+    ks4Options,
+  }: { data: CombinedCurriculumData; ks4Options: Ks4Option[] },
 ) {
-  const { yearOptions, yearData } = formatCurriculumUnitsData(data);
+  const yearDataOrig = formatCurriculumUnitsData(data);
+  const modes = getModes(true, ks4Options);
+  const yearData = groupUnitsByPathway({
+    modes,
+    yearData: yearDataOrig.yearData,
+  });
 
   const links = [
     {
@@ -32,10 +44,23 @@ export default async function generate(
       anchorId: "section_curriculum_overview",
       text: `${data.subjectTitle} curriculum explainer`,
     },
-    ...yearOptions.map((year) => {
+    ...Object.values(yearData).map((item) => {
+      let typeSuffix = "";
+      if (["10", "11"].includes(item.year)) {
+        if (item.type === "core") {
+          typeSuffix = "(Core)";
+        } else if (item.type === "non_core") {
+          typeSuffix = "(GCSE)";
+        }
+      }
+
+      const anchorId = `section_year_${item.type}-${item.year}`;
+      const suffix = typeSuffix ? `units ${typeSuffix}` : "units";
+      const text = getYearGroupTitle(yearDataOrig.yearData, item.year, suffix);
+
       return {
-        anchorId: `section_year_${year}`,
-        text: getYearGroupTitle(yearData, year, "units"),
+        anchorId,
+        text,
       };
     }),
     {

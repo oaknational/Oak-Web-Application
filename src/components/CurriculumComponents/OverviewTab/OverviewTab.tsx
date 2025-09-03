@@ -21,7 +21,6 @@ import { useRouter } from "next/router";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
-import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
@@ -214,12 +213,10 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   );
 
   return (
-    <>
-      <OakBox
-        $minWidth={"100%"}
-        style={{ marginTop: -40 }}
-        $display={["block", "block", "none"]}
-      >
+    <OakBox
+      $mt={["space-between-none", "space-between-none", "space-between-l"]}
+    >
+      <OakBox $minWidth={"100%"} $display={["block", "block", "none"]}>
         <OakBox
           $background={"bg-decorative1-very-subdued"}
           $ph="inner-padding-m"
@@ -231,6 +228,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
       <OakBox
         id="curriculum-overview"
         aria-labelledby="curriculum-overview-heading"
+        tabIndex={-1}
         $maxWidth="all-spacing-24"
         $mh={"auto"}
         $ph="inner-padding-m"
@@ -260,10 +258,9 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
             $mb="space-between-ssx"
             $mt={["space-between-m", "space-between-m", "space-between-none"]}
           >
-            <Box
-              $pb={48}
-              $maxWidth={["100%", "65%", "65%"]}
-              $mh={["auto", "auto", 0]}
+            <OakBox
+              $pb={"inner-padding-xl4"}
+              $mh={["auto", "auto", "space-between-none"]}
               $textAlign={"left"}
             >
               <OakBox data-testid="explainer">
@@ -298,7 +295,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                   />
                 </ExplainerStyles>
               </OakBox>
-            </Box>
+            </OakBox>
           </OakFlex>
         </OakFlex>
         {isVideoEnabled && (
@@ -310,9 +307,9 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
             $gap={["all-spacing-6", "all-spacing-16"]}
             $mb={["space-between-l", "space-between-xxxl"]}
           >
-            <Box $minWidth={["100%", "50%"]} $maxWidth={["100%", "50%"]}>
+            <OakBox>
               <CMSVideo video={video} location="lesson" />
-            </Box>
+            </OakBox>
             {/* @todo replace with OakFlex - work out $maxWidth */}
             <Flex
               $flexDirection={"column"}
@@ -370,7 +367,10 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
               $flexDirection={"column"}
             >
               {curriculumPartnerOverviews.map(
-                ({ curriculumPartner, partnerBio }, curriculumPartnerIndex) => {
+                (
+                  { curriculumPartner, partnerBio, partnerBioPortableTextRaw },
+                  curriculumPartnerIndex,
+                ) => {
                   return (
                     <OakFlex
                       key={`curriculum-partner-${curriculumPartnerIndex}`}
@@ -418,7 +418,23 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                           {curriculumPartner.name}
                         </OakHeading>
                         <OakTypography $font={"body-1"}>
-                          {partnerBio}
+                          {!partnerBioPortableTextRaw ? (
+                            partnerBio
+                          ) : (
+                            <PortableText
+                              value={partnerBioPortableTextRaw}
+                              components={{
+                                block: basePortableTextComponents.block,
+                                types: {},
+                                marks: {
+                                  strong:
+                                    basePortableTextComponents.marks!.strong,
+                                  em: basePortableTextComponents.marks!.em,
+                                  link: markComponents.link,
+                                },
+                              }}
+                            />
+                          )}
                         </OakTypography>
                       </OakFlex>
                     </OakFlex>
@@ -429,7 +445,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
           </OakFlex>
         </OakBox>
       </OakBox>
-    </>
+    </OakBox>
   );
 };
 export default OverviewTab;

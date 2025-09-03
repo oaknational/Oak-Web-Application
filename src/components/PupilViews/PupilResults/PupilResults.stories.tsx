@@ -12,12 +12,12 @@ import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { sectionResultsFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonSectionResults.fixture";
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 
-const meta: Meta<typeof PupilViewsResults> = {
+const meta = {
   component: PupilViewsResults,
   decorators: [
-    (Story) => (
+    (StoryComponent) => (
       <OakThemeProvider theme={oakDefaultTheme}>
-        <Story />
+        <StoryComponent />
       </OakThemeProvider>
     ),
   ],

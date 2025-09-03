@@ -1,4 +1,8 @@
-import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
+import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
+import {
+  CurriculumOverviewMVData,
+  CurriculumUnitsTabData,
+} from "@/node-lib/curriculum-api-2023";
 
 export function notUndefined<TValue>(
   value: TValue | undefined,
@@ -25,6 +29,7 @@ export interface Domain {
 export interface SubjectCategory {
   id: number;
   title: string;
+  slug: string;
 }
 
 export interface Tier {
@@ -32,14 +37,15 @@ export interface Tier {
   tier_slug: string;
 }
 
-export interface YearSelection {
-  [key: string]: {
-    subjectCategory?: SubjectCategory | null;
-    subject?: Subject | null;
-    domain?: Domain | null;
-    tier?: Tier | null;
-  };
+export interface Pathway {
+  pathway: string;
+  pathway_slug: string;
 }
+
+export type NationalCurriculumCriteria = {
+  id: number;
+  title: string;
+};
 
 export type YearData = {
   [key: string]: {
@@ -49,13 +55,32 @@ export type YearData = {
     subjectCategories: SubjectCategory[];
     isSwimming: boolean;
     groupAs: string | null;
+    pathways: Pathway[];
+    nationalCurriculum: NationalCurriculumCriteria[];
   };
 };
 
+export type KeyStageSlug = "ks1" | "ks2" | "ks3" | "ks4";
+
 export type Unit = CurriculumUnitsTabData["units"][number];
+
+export type UnitOption = Unit["unit_options"][number];
+
+export type CurriculumFilters = {
+  childSubjects: Subject["subject_slug"][];
+  subjectCategories: string[];
+  tiers: Tier["tier_slug"][];
+  years: string[];
+  threads: Thread["slug"][];
+  pathways: Pathway["pathway_slug"][];
+};
 
 export type Lesson = {
   title: string;
   slug?: string;
   _state?: string;
 };
+
+export type CombinedCurriculumData = CurriculumUnitsTabData &
+  CurriculumOverviewMVData &
+  CurriculumOverviewSanityData;

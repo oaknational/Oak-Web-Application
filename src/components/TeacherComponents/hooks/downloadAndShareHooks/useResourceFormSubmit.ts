@@ -1,5 +1,4 @@
 import { useAuth } from "@clerk/nextjs";
-import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
 
@@ -21,8 +20,6 @@ const useResourceFormSubmit = (props: UseResourceFormProps) => {
   } = useLocalStorageForDownloads();
 
   const auth = useAuth();
-  const authFlagEnabled =
-    useFeatureFlagVariantKey("teacher-download-auth") === "with-login";
 
   const onSubmit = async (data: ResourceFormProps, slug: string) => {
     if (props.onSubmit) {
@@ -78,7 +75,6 @@ const useResourceFormSubmit = (props: UseResourceFormProps) => {
         selectedResourceTypes: selectedResourceTypes as DownloadResourceType[],
         selectedAdditionalFilesIds,
         isLegacyDownload: props.isLegacyDownload,
-        authFlagEnabled,
         authToken: accessToken,
       });
     }

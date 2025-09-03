@@ -19,6 +19,8 @@ import {
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { populateMediaClipsWithTranscripts } from "@/utils/handleTranscript";
+import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
+import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 
 export type CanonicalLessonMediaClipsPageProps = {
   curriculumData: CanonicalLessonMediaClips;
@@ -32,10 +34,12 @@ export const CanonicalLessonMediaClipsPage: NextPage<
     <AppLayout
       seoProps={{
         ...getSeoProps({
-          title: `Lesson Share: ${lessonTitle}`,
+          title: `Lesson Media: ${lessonTitle}`,
           description:
             "Share online lesson activities with your students, such as videos, worksheets and quizzes.",
         }),
+        noIndex: true,
+        noFollow: true,
       }}
     >
       <LessonMedia isCanonical={true} lesson={curriculumData} />
@@ -72,14 +76,24 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug } = context.params;
 
-      const curriculumData =
-        await curriculumApi2023.lessonMediaClips<CanonicalLessonMediaClips>({
-          lessonSlug,
-        });
+      let curriculumData;
+      try {
+        curriculumData =
+          await curriculumApi2023.lessonMediaClips<CanonicalLessonMediaClips>({
+            lessonSlug,
+          });
+      } catch (innerError) {
+        allowNotFoundError(innerError);
+      }
+
       if (!curriculumData || !curriculumData.mediaClips) {
-        return {
-          notFound: true,
-        };
+        const redirect = await getRedirect({
+          isCanonical: true,
+          context: context.params,
+          isTeacher: true,
+          isLesson: true,
+        });
+        return redirect ? { redirect } : { notFound: true };
       }
 
       const mediaClipsWithTranscripts = curriculumData.mediaClips

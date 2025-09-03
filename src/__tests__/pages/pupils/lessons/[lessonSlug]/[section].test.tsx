@@ -62,9 +62,51 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
 
       expect(res.props.backUrl).toEqual(backUrl);
     });
-
-    it("should return 404 if lesson not found", async () => {
+    it("should return redirect if lesson not found", async () => {
       (curriculumApi2023.pupilLessonQuery as jest.Mock).mockRejectedValueOnce(
+        new OakError({ code: "curriculum-api/not-found" }),
+      );
+      const res = await getStaticProps({
+        params: {
+          lessonSlug: "lessonSlug",
+          section: "overview",
+        },
+      });
+
+      expect(res).toEqual({
+        redirect: {
+          destination: "/pupils/lessons/lessonSlug-redirected?redirected=true",
+          statusCode: 301, // true = 308, false = 307
+          basePath: false,
+        },
+      });
+    });
+    it("should return redirect if lesson not found", async () => {
+      (curriculumApi2023.pupilLessonQuery as jest.Mock).mockResolvedValueOnce(
+        null,
+      );
+
+      const res = await getStaticProps({
+        params: {
+          lessonSlug: "lessonSlug",
+          section: "overview",
+        },
+      });
+      expect(res).toEqual({
+        redirect: {
+          destination: "/pupils/lessons/lessonSlug-redirected?redirected=true",
+          statusCode: 301,
+          basePath: false,
+        },
+      });
+    });
+    it("should return 404 if lesson not found and redirect not found", async () => {
+      (curriculumApi2023.pupilLessonQuery as jest.Mock).mockRejectedValueOnce(
+        new OakError({ code: "curriculum-api/not-found" }),
+      );
+      (
+        curriculumApi2023.pupilCanonicalLessonRedirectQuery as jest.Mock
+      ).mockRejectedValueOnce(
         new OakError({ code: "curriculum-api/not-found" }),
       );
       const res = await getStaticProps({
@@ -78,10 +120,14 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
         notFound: true,
       });
     });
-
-    it("should return 404 if lesson not found", async () => {
+    it("should return 404 if lesson not found and redirect not found", async () => {
       (curriculumApi2023.pupilLessonQuery as jest.Mock).mockResolvedValueOnce(
         null,
+      );
+      (
+        curriculumApi2023.pupilCanonicalLessonRedirectQuery as jest.Mock
+      ).mockRejectedValueOnce(
+        new OakError({ code: "curriculum-api/not-found" }),
       );
       const res = await getStaticProps({
         params: {
