@@ -54,32 +54,21 @@ export const QuizQuestionsMatchAnswers = ({
                 $flexWrap={"wrap"}
                 $width={["100%", "100%", "max-content"]}
               >
-                <OakP
-                  $whiteSpace={"nowrap"}
-                  $font={["body-2-bold", "body-1-bold"]}
-                  aria-hidden
-                >
-                  <Stem stem={matchOption} />
-                  {/* TODO: handle OakCodeRenderer
+                <Stem stem={matchOption} />
+                {/* TODO: handle OakCodeRenderer
                   <OakCodeRenderer
                     string={removeMarkdown(matchOption.text)}
                     $font="code-3"
                     $mt={"space-between-none"}
                   /> */}
-                  <OakSpan>{" -"}&nbsp;</OakSpan>
-                </OakP>
-                <OakP
-                  $whiteSpace={["break-spaces", "nowrap"]}
-                  $font={["body-2", "body-1"]}
-                >
-                  <Stem stem={correctChoice} />
-                  {/* TODO: handle OakCodeRenderer
+                <OakSpan>{" -"}&nbsp;</OakSpan>
+                <Stem stem={correctChoice} />
+                {/* TODO: handle OakCodeRenderer
                   <OakCodeRenderer
                     string={removeMarkdown(correctChoice.text)}
                     $font="code-3"
                     $mt={"space-between-none"}
                   /> */}
-                </OakP>
               </OakFlex>
             </OakFlex>
           )
