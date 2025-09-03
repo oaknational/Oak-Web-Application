@@ -37,6 +37,7 @@ export const QuizQuestionsOrderAnswers = ({
               $borderRadius="border-radius-m2"
               $ph="inner-padding-xs"
               $alignItems={"flex-start"}
+              $justifyContent={"center"}
               $gap="all-spacing-2"
               role="listitem"
             >
@@ -60,7 +61,12 @@ export const QuizQuestionsOrderAnswers = ({
                 {item.correctOrder}
               </OakTypography>
 
-              <OakTypography $font={["body-2", "body-1"]} aria-hidden>
+              <OakFlex
+                $font={["body-2", "body-1"]}
+                aria-hidden
+                $alignItems={"center"}
+                $gap={"all-spacing-2"}
+              >
                 - {/* TODO: handle OakCodeRenderer */}
                 {/* <OakCodeRenderer
                   string={removeMarkdown(orderAnswer.text)}
@@ -68,7 +74,7 @@ export const QuizQuestionsOrderAnswers = ({
                   $mt={"space-between-none"}
                 /> */}
                 <Stem stem={orderAnswer} />
-              </OakTypography>
+              </OakFlex>
             </OakFlex>
           )
         );

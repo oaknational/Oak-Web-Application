@@ -43,8 +43,8 @@ export default function convertToMml({math, em=8, ex=16}: ConvertToMmlOptions) {
 
   // TODO: This is the bit I need James help with to make accessible
   // It has the MathML should we should be good once we convert it.
-  return `<div style="display: inline-block; position: relative;">
-    <div style="position: absolute; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); user-select: none;">${mathMlOutput}</div>
+  return `<span style="display: inline-block; position: relative;">
+    <span style="position: absolute; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); user-select: none;">${mathMlOutput}</span>
     ${svg}
-  </div>`;
+  </span>`;
 }
