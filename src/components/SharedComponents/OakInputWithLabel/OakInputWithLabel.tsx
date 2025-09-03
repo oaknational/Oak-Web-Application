@@ -68,7 +68,7 @@ export const OakInputWithLabel = ({
         </OakBox>
       )}
       <OakJauntyAngleLabel
-        label={label + (required ? " (required)" : "")}
+        label={label + (required === true ? " (required)" : "")}
         $color={!!error || hasFocus ? "white" : "black"}
         htmlFor={id}
         as="label"
