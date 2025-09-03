@@ -7,6 +7,7 @@ type StemProps = {
 };
 export function Stem({ stem }: StemProps) {
   // TODO: This should also deal with rendering <OakCodeRenderer/> as I've removed that else where
+  // See `shortAnswerTitleFormatter` for the logic behind it all
   return (
     <div
       dangerouslySetInnerHTML={{
