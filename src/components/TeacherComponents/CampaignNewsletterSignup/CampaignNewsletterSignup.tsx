@@ -1,44 +1,76 @@
 import { FC } from "react";
 import {
   OakFlex,
-  OakHeading,
-  OakSecondaryLink,
-  OakMaxWidth,
+  // OakSecondaryLink,
   OakPrimaryButton,
+  OakHeading,
 } from "@oaknational/oak-components";
+import { PortableTextReactComponents } from "@portabletext/react";
 
-import { resolveOakHref } from "@/common-lib/urls";
+import useSchoolPicker from "../ResourcePageSchoolPicker/useSchoolPicker";
+
+// import { resolveOakHref } from "@/common-lib/urls";
 import { OakInputWithLabel } from "@/components/SharedComponents/OakInputWithLabel/OakInputWithLabel";
-import YourDetails, {
-  School,
-} from "@/components/CurriculumComponents/OakComponentsKitchen/YourDetails";
+import YourDetails from "@/components/CurriculumComponents/OakComponentsKitchen/YourDetails"; // School,
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+import { NewsletterSignUp } from "@/common-lib/cms-types/campaignPage";
 
-export type CampaignNewsletterSignupProps = {
-  schoolId: string | undefined;
-  schoolName: string | undefined;
-  schools: School[];
-  schoolNotListed: boolean;
-  email?: string;
-  errors: string;
-  onChange: () => void;
+export type CampaignNewsletterSignupProps = NewsletterSignUp & {
+  // heading: string;
+  // body?: PortableTextBlock[] | null;
+  // buttonCta?: string | null;
+  // formId: string;
+  textStyles: Partial<PortableTextReactComponents>;
+  // schoolId: string | undefined;
+  // schoolName: string | undefined;
+  // // schools: School[];
+  // schoolNotListed: boolean;
+  // email?: string;
+  // errors: string;
+  onChange?: () => void;
 };
 
 const handleFormSubmit = () => {};
 
 const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
-  email = undefined,
-  schoolId = undefined,
-  schoolName = undefined,
-  schools = [],
-  schoolNotListed = false,
-  onChange = () => {},
+  // email = undefined,
+  // schoolId = undefined,
+  // schoolName = undefined,
+  // // schools = [],
+  // schoolNotListed = false,
+  // onChange = () => {},
+  heading,
+  bodyPortableText,
+  buttonCta,
+  // formId,
+  // textStyles,
 }) => {
-  const data = { schoolId, schoolName, email, schoolNotListed };
+  // const data = { schoolId, schoolName, email, schoolNotListed };
+  // const {
+  //   selectedSchool,
+  //   setSelectedSchool,
+  //   schoolPickerInputValue,
+  //   setSchoolPickerInputValue,
+  //   schools,
+  // } = useSchoolPicker({ withHomeschool });
+
+  const {
+    // selectedSchool,
+    // setSelectedSchool,
+    // schoolPickerInputValue,
+    // setSchoolPickerInputValue,
+    schools,
+  } = useSchoolPicker({ withHomeschool: false });
+
   return (
-    <OakMaxWidth
-      $flexDirection={"column"}
-      $justifyContent={"center"}
-      $alignItems={"center"}
+    <OakFlex
+      $maxWidth={"all-spacing-24"}
+      $flexDirection={["column", "row"]}
+      $width={"100%"}
+      $gap={"space-between-m2"}
+      $borderRadius={"border-radius-xl"}
+      $pv={["inner-padding-xl5"]}
+      $ph={["inner-padding-xl4"]}
     >
       <OakFlex
         $flexDirection={"column"}
@@ -58,9 +90,10 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
             $gap={"space-between-s"}
           >
             <OakHeading tag="h4" $font={"heading-light-4"}>
-              Think you've got to go it alone?
+              {heading}
             </OakHeading>
-            <OakFlex $alignSelf={"stretch"} $flexDirection={"column"}>
+            <PortableTextWithDefaults value={bodyPortableText} />
+            {/* <OakFlex $alignSelf={"stretch"} $flexDirection={"column"}>
               Over 200,000 teachers are with you - and with Oak. Oak's resources
               aren't here to take over your planning - they're here to give you
               a starting point so you can build on what works. Think fresh ways
@@ -77,7 +110,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
               >
                 privacy policy
               </OakSecondaryLink>
-            </OakFlex>
+            </OakFlex> */}
           </OakFlex>
           <OakFlex
             as="form"
@@ -97,24 +130,25 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
               labelBackground="mint"
             />
             <YourDetails
-              data={data}
+              data={{}}
               schools={schools}
               errors={{}}
-              onChange={onChange}
+              onChange={() => {}}
               labelBackground="mint"
               hidePrivacyPolicy={true}
+              emailRequired={true}
             />
             <OakPrimaryButton
               type="submit"
               iconName="arrow-right"
               isTrailingIcon
             >
-              Sign up and get assembly pack
+              {buttonCta}
             </OakPrimaryButton>
           </OakFlex>
         </OakFlex>
       </OakFlex>
-    </OakMaxWidth>
+    </OakFlex>
   );
 };
 

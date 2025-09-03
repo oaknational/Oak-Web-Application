@@ -14,6 +14,11 @@ import {
   SerializedPost,
 } from "@/pages-helpers/home/getBlogPosts";
 import { HomePage } from "@/common-lib/cms-types";
+import CMSClient from "@/node-lib/cms";
+import {
+  CampaignPage,
+  NewsletterSignUp,
+} from "@/common-lib/cms-types/campaignPage";
 
 export type TeachersHomePageProps = HomePageProps & {
   curriculumData: KeyStagesData;
@@ -22,14 +27,20 @@ export type TeachersHomePageProps = HomePageProps & {
 export type HomePageProps = {
   pageData: HomePage;
   posts: SerializedPost[];
+  campaignData: CampaignPage;
 };
 
 const TeachersHomePage: NextPage<TeachersHomePageProps> = (props) => {
-  const { curriculumData, posts, pageData } = props;
+  const { curriculumData, posts, pageData, campaignData } = props;
 
   const testimonials = pageData?.testimonials;
   const intro = pageData?.intro;
   const campaignPromoBanner = pageData.campaignPromoBanner;
+
+  console.log(campaignData);
+  const newsletterSignUp = campaignData.content.find(
+    ({ type }) => type === "NewsletterSignUp",
+  ) as NewsletterSignUp;
 
   return (
     <AppLayout
@@ -44,6 +55,7 @@ const TeachersHomePage: NextPage<TeachersHomePageProps> = (props) => {
       <HomePageTabImageNav current={"teachers"} />
       <TeachersTab keyStages={curriculumData.keyStages} aria-current="page" />
       <HomePageLowerView
+        newsletterSignUp={newsletterSignUp}
         campaignPromoBanner={campaignPromoBanner}
         posts={posts}
         testimonials={testimonials}
@@ -65,7 +77,10 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
         5,
       );
 
-      if (!pageData) {
+      const campaignData = await CMSClient.campaignPageBySlug("mythbusting");
+
+      console.log(campaignData);
+      if (!pageData || !campaignData) {
         return {
           notFound: true,
         };
@@ -78,6 +93,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
           pageData,
           curriculumData,
           posts,
+          campaignData,
         },
       };
       return results;

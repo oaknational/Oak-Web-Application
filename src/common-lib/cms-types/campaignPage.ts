@@ -17,6 +17,16 @@ const campaignHeaderSchema = z.object({
 
 export type CampaignHeader = z.infer<typeof campaignHeaderSchema>;
 
+export type NewsletterSignUp = z.infer<typeof newsletterSignUpSchema>;
+
+const newsletterSignUpSchema = z.object({
+  type: z.literal("NewsletterSignUp"),
+  heading: z.string(),
+  bodyPortableText: portableTextSchema,
+  buttonCta: z.string(),
+  formId: z.string(),
+});
+
 export const campaignPageSchema = z
   .object({
     title: z.string(),
