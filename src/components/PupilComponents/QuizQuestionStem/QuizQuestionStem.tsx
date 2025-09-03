@@ -8,9 +8,7 @@ import {
 
 import { CodeRenderWrapper } from "../CodeRendererWrapper/CodeRendererWrapper";
 
-import {
-  removeMarkdown,
-} from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
+import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import {
   ImageItem,
@@ -45,7 +43,6 @@ export const QuizQuestionStem = ({
         $height={takeFullHeight ? "100%" : "auto"}
         $justifyContent={["center", "flex-start"]}
       >
-                
         <OakFlex
           key="stem-header"
           $mt={
@@ -60,7 +57,9 @@ export const QuizQuestionStem = ({
               $font={["heading-6", "heading-4", "heading-4"]}
               $width={"100%"}
               id={`${questionUid}-legend`}
-              dangerouslySetInnerHTML={{__html: removeMarkdown(questionStem[0].html)}}
+              dangerouslySetInnerHTML={{
+                __html: removeMarkdown(questionStem[0].html),
+              }}
             />
           )}
         </OakFlex>
@@ -72,7 +71,9 @@ export const QuizQuestionStem = ({
                 key={`q-${displayNumber}-stem-element-${i}`}
                 $font={["body-2-bold", "body-1-bold"]}
                 $width={"100%"}
-                dangerouslySetInnerHTML={{__html: removeMarkdown(questionStem[0].html)}}
+                dangerouslySetInnerHTML={{
+                  __html: removeMarkdown(stemItem.html),
+                }}
               />
             );
           } else if (stemItem.type === "image") {
