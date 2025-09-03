@@ -43,8 +43,14 @@ function ifLastItemIsBlock(out: PortableTextItem[]) {
 }
 
 export function stemToPortableText(text: string) {
-  const regexp =
-    /(?:(\$\$([^$]|$[^$])*\$\$)|(```(?:[\s\S]*?)```|(?:`.*?`))|(.+?))/g;
+  const mathRegEx = /(\$\$([^$]|$[^$])*\$\$)/; // Matches something like "$$x+y$$"
+  const codeRegEx = /(```(?:[\s\S]*?)```|(?:`.*?`))/; // Matches something like ```console.log("hi")``` or `console.log("hi")`
+  const restRegexp = /(.+?)/; // Matches anything else
+  const regexp = new RegExp(
+    `(?:${mathRegEx.source}|${codeRegEx.source}|${restRegexp.source})`,
+    "g",
+  );
+
   let match = regexp.exec(text);
   const out: PortableTextItem[] = [];
   while (match) {
