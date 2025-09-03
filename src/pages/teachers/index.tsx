@@ -37,7 +37,6 @@ const TeachersHomePage: NextPage<TeachersHomePageProps> = (props) => {
   const intro = pageData?.intro;
   const campaignPromoBanner = pageData.campaignPromoBanner;
 
-  console.log(campaignData);
   const newsletterSignUp = campaignData.content.find(
     ({ type }) => type === "NewsletterSignUp",
   ) as NewsletterSignUp;
