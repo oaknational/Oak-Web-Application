@@ -15,7 +15,7 @@ import { getStemTextData } from "../QuizUtils/stemUtils";
 
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import { invariant } from "@/utils/invariant";
-import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
+import { Stem } from "@/components/SharedComponents/Stem";
 
 const StyledUL = styled(OakUL)`
   list-style: none;
@@ -40,18 +40,18 @@ export const QuizMatchAnswer = () => {
     `current '${questionUid}' is not a match question`,
   );
 
-  const answers = Object.fromEntries(
-    currentQuestionData.answers.match.map(({ correctChoice, matchOption }) => {
+  const answers = currentQuestionData.answers.match.map(
+    ({ correctChoice, matchOption }) => {
       invariant(matchOption, "matchOption is missing");
 
       const match = getStemTextData(matchOption);
       const choice = getStemTextData(correctChoice);
 
-      invariant(match?.text, "match_text is missing");
-      invariant(choice?.text, "choice_text is missing");
+      invariant(match?.html, "match.html is missing");
+      invariant(choice?.html, "choice.html is missing");
 
-      return [match.text, choice.text];
-    }),
+      return { match, choice };
+    },
   );
 
   const matchItems: { id: string; label: JSX.Element; announcement: string }[] =
@@ -61,11 +61,11 @@ export const QuizMatchAnswer = () => {
         label: JSX.Element;
         announcement: string;
       }[] = [];
-      Object.keys(answers).forEach((key, index) => {
+      answers.forEach(({ match }, index) => {
         matchItems.push({
           id: index.toString(),
-          label: <MathJaxWrap key={`match-${index}`}>{key}</MathJaxWrap>,
-          announcement: key,
+          label: <Stem stem={match} key={`match-${index}`} />,
+          announcement: match.text,
         });
       });
       return matchItems;
@@ -81,11 +81,11 @@ export const QuizMatchAnswer = () => {
       label: JSX.Element;
       announcement: string;
     }[] = [];
-    Object.values(answers).forEach((value, index) => {
+    Object.values(answers).forEach(({ choice }, index) => {
       choiceItems.push({
         id: index.toString(),
-        label: <MathJaxWrap key={`choice-${index}`}>{value}</MathJaxWrap>,
-        announcement: value,
+        label: <Stem key={`choice-${index}`} stem={choice} />,
+        announcement: choice.text,
       });
     });
     return choiceItems;

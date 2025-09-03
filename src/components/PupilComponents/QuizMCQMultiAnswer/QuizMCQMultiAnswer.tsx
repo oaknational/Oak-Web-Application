@@ -12,7 +12,6 @@
 import { useMemo, useState } from "react";
 import {
   OakCloudinaryImage,
-  OakCodeRenderer,
   OakFlex,
   OakJauntyAngleLabel,
   OakQuizCheckBox,
@@ -22,11 +21,11 @@ import {
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
-import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 import {
   isImage,
   isText,
 } from "@/components/PupilComponents/QuizUtils/stemUtils";
+import { Stem } from "@/components/SharedComponents/Stem";
 export type QuizMCQMultiAnswerProps = {
   onChange: () => void;
 };
@@ -128,24 +127,16 @@ export const QuizMCQMultiAnswer = ({ onChange }: QuizMCQMultiAnswerProps) => {
               : undefined;
 
           return (
-            <MathJaxWrap key={`max-jax-wrap-${index}`}>
-              <OakQuizCheckBox
-                key={`${questionUid}-answer-${index}`}
-                id={multipleChoiceAnswerId(questionUid, index)}
-                displayValue={
-                  answerText ? (
-                    <OakCodeRenderer string={answerText.text} />
-                  ) : (
-                    " "
-                  )
-                }
-                value={`answer-${index}`}
-                feedback={feedback}
-                image={answerImage}
-                onChange={onChange}
-                isHighlighted={questionState.mode === "incomplete"}
-              />
-            </MathJaxWrap>
+            <OakQuizCheckBox
+              key={`${questionUid}-answer-${index}`}
+              id={multipleChoiceAnswerId(questionUid, index)}
+              displayValue={answerText ? <Stem stem={answerText} /> : " "}
+              value={`answer-${index}`}
+              feedback={feedback}
+              image={answerImage}
+              onChange={onChange}
+              isHighlighted={questionState.mode === "incomplete"}
+            />
           );
         })}
       </OakFlex>
