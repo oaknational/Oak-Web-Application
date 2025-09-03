@@ -1,5 +1,6 @@
 import {
   OakCheckBox,
+  OakColorToken,
   OakFlex,
   OakLink,
   OakP,
@@ -108,12 +109,16 @@ type YourDetailsProps = {
     }>,
   ) => void;
   schools: School[];
+  labelBackground?: OakColorToken;
+  hidePrivacyPolicy?: boolean;
 };
 export default function YourDetails({
   schools,
   data,
   errors,
   onChange,
+  labelBackground,
+  hidePrivacyPolicy = false,
 }: YourDetailsProps) {
   const schoolsAsAutocompleteItems = useSchoolsFromApi({ schools });
   const autoCompleteList = injectCurrentSchool(
@@ -153,6 +158,7 @@ export default function YourDetails({
             });
           }}
           value={data.schoolName}
+          labelBackground={labelBackground}
         >
           {autoCompleteList.map(({ key, textValue }) => {
             const element = formatSchoolName(textValue, data.schoolName);
@@ -196,21 +202,24 @@ export default function YourDetails({
           placeholder="Type your email address"
           name="download-email"
           defaultValue={data.email}
+          labelBackground={labelBackground}
         />
 
-        <OakP $font={["body-3"]}>
-          Join over 100k teachers and get free resources and other helpful
-          content by email. Unsubscribe at any time. Read our{" "}
-          <Link
-            href={resolveOakHref({
-              page: "legal",
-              legalSlug: "privacy",
-            })}
-          >
-            privacy policy
-          </Link>
-          .
-        </OakP>
+        {!hidePrivacyPolicy && (
+          <OakP $font={["body-3"]}>
+            Join over 100k teachers and get free resources and other helpful
+            content by email. Unsubscribe at any time. Read our{" "}
+            <Link
+              href={resolveOakHref({
+                page: "legal",
+                legalSlug: "privacy",
+              })}
+            >
+              privacy policy
+            </Link>
+            .
+          </OakP>
+        )}
       </OakFlex>
     </>
   );
