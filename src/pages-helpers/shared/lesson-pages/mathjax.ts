@@ -32,6 +32,7 @@ export function convertQuestionMath(questions: LessonOverviewQuizData) {
       const matchAnswers = question.answers["match"];
       const orderAnswers = question.answers["order"];
       const shortAnswers = question.answers["short-answer"];
+
       if (orderAnswers) {
         newAnswers = {
           ...newAnswers,
@@ -58,7 +59,30 @@ export function convertQuestionMath(questions: LessonOverviewQuizData) {
           }),
         };
       }
+      if (shortAnswers) {
+        newAnswers = {
+          ...newAnswers,
+          "short-answer": shortAnswers.map((item) => {
+            const answer = item.answer.map((answer) => {
+              if (answer.type === "text") {
+                const html = generateHtml(answer.text);
+                return {
+                  ...answer,
+                  html,
+                };
+              } else {
+                return answer;
+              }
+            });
+            return {
+              ...item,
+              answer,
+            };
+          }),
+        };
+      }
     }
+
     return {
       ...question,
       questionStem: newQuestionStem,
