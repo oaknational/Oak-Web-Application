@@ -1,3 +1,11 @@
+# [1.848.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.847.2...v1.848.0) (2025-09-03)
+
+
+### Features
+
+* remove authRequired ff check on download functionality ([5ccc4eb](https://github.com/oaknational/Oak-Web-Application/commit/5ccc4eb22ca8308af7c35d06ccd0229455b216f8))
+* remove isBehindFeatureFlag param from usecopyright hook ([daa9d0f](https://github.com/oaknational/Oak-Web-Application/commit/daa9d0fc2f30cf6cc9e572994820601757ff9ffc))
+
 ## [1.847.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.847.1...v1.847.2) (2025-09-02)
 
 
