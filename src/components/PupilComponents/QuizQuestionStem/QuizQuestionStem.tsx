@@ -58,7 +58,7 @@ export const QuizQuestionStem = ({
               $width={"100%"}
               id={`${questionUid}-legend`}
             >
-              <Stem stem={questionStem} />
+              <Stem stem={questionStem[0]} />
             </OakBox>
           )}
         </OakFlex>
@@ -71,7 +71,7 @@ export const QuizQuestionStem = ({
                 $font={["body-2-bold", "body-1-bold"]}
                 $width={"100%"}
               >
-                <Stem stem={questionStem} />
+                <Stem stem={stemItem} />
               </OakBox>
             );
           } else if (stemItem.type === "image") {
