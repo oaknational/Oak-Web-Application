@@ -392,7 +392,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
                 String(mediaId),
                 playedVideos,
               )}
-              isAudioClip={false}
+              isAudioClip={true}
               imageAltText=""
               onClick={() => onMediaClipClick(String(mediaId))}
               key={`${title} ${index}`}

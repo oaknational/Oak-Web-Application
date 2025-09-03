@@ -56,6 +56,7 @@ function getDeploymentTestUrls() {
     "/teachers/programmes/computing-primary-ks1/units/digital-writing/lessons/comparing-digital-writing-to-using-a-pencil", // lesson with lesson files,
     "/teachers/programmes/geography-secondary-ks4-edexcelb/units/global-inequalities/lessons", // incomplete unit
     "/teachers/programmes/combined-science-secondary-ks4-foundation-aqa/units?page=2", // unit with pagination
+    // "/teachers/programmes/music-primary-ks2/units/compose-and-create-improvising-within-hindustani-classical-music/lessons/playing-taals-and-speaking-bols/media", // media clips page
     // Canonical lesson pages
     "/teachers/lessons/duncan-as-a-father-figure",
     "/teachers/lessons/duncan-as-a-father-figure/downloads",
