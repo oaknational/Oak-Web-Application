@@ -8,6 +8,7 @@ import {
   OakTertiaryButton,
   OakTagFunctional,
 } from "@oaknational/oak-components";
+import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import { LessonOverviewCreateWithAiDropdown } from "../LessonOverviewCreateWithAiDropdown";
 
@@ -50,6 +51,9 @@ export const LessonOverviewHeaderMobile: FC<
   const previousBreadcrumb = breadcrumbs[breadcrumbs.length - 2];
   const shouldShowBackButton =
     !!previousBreadcrumb && !!unitTitle && !!programmeSlug;
+
+  const isCreateWithAiEnabled =
+    useFeatureFlagVariantKey("create-with-ai-button") === "test";
 
   return (
     <OakFlex
@@ -114,7 +118,7 @@ export const LessonOverviewHeaderMobile: FC<
       </OakBox>
       <LessonOverviewHeaderDownloadAllButton {...props} />
       {shareButtons}
-      {!excludedFromTeachingMaterials && (
+      {!excludedFromTeachingMaterials && isCreateWithAiEnabled && (
         <LessonOverviewCreateWithAiDropdown {...props} />
       )}
 
