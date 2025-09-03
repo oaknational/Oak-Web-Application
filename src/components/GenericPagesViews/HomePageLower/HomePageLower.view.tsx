@@ -55,12 +55,8 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
     "mythbusting-campaign",
   );
 
-  console.log(campaignFeatureFlagEnabled);
-
   const showCampaignBanner =
     campaignFeatureFlagEnabled && campaignPromoBanner?.media[0];
-  // &&
-  // newsletterSignUp?.type === "NewsletterSignUp";
 
   return (
     <>
@@ -125,19 +121,21 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
               buttonCta={campaignPromoBanner.buttonCta}
               media={campaignPromoBanner.media[0]!}
             />
-            {newsletterSignUp && (
-              <CampaignNewsletterSignup
-                textStyles={campaignTextStyles}
-                heading={newsletterSignUp?.heading}
-                bodyPortableText={newsletterSignUp?.bodyPortableText}
-                buttonCta={newsletterSignUp.buttonCta}
-                formId={newsletterSignUp.formId}
-                type="NewsletterSignUp"
-              />
-            )}
           </OakBox>
         </OakMaxWidth>
       )}
+      <OakMaxWidth>
+        {newsletterSignUp && (
+          <CampaignNewsletterSignup
+            textStyles={campaignTextStyles}
+            heading={newsletterSignUp?.heading}
+            bodyPortableText={newsletterSignUp?.bodyPortableText}
+            buttonCta={newsletterSignUp.buttonCta}
+            formId={newsletterSignUp.formId}
+            type="NewsletterSignUp"
+          />
+        )}
+      </OakMaxWidth>
       <OakMaxWidth>
         <BlogAndWebinarList
           blogListPosts={blogListProps}
