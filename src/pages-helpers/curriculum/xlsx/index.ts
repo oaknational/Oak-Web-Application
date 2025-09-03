@@ -30,9 +30,17 @@ async function buildNationalCurriculum(
   const { styleXml, cellStyleIndexMap } = buildStyles();
   zip.writeString("xl/styles.xml", styleXml);
 
-  formattedData.yearOptions.forEach((year, index) => {
+  const yearOptions = formattedData.yearOptions.filter((year) => {
     const units = formattedData.yearData[year]!.units;
 
+    const shouldRenderSheet = units.every((unit) => {
+      return unit.features.national_curriculum_content;
+    });
+    return shouldRenderSheet;
+  });
+
+  yearOptions.forEach((year, index) => {
+    const units = formattedData.yearData[year]!.units;
     const linksXml = [];
     for (const unit of units) {
       linksXml.push(safeXml`
@@ -107,7 +115,7 @@ async function buildNationalCurriculum(
   zip.writeString(
     "xl/workbook.xml",
     buildWorkbook({
-      sheets: formattedData.yearOptions.map((year, index) => {
+      sheets: yearOptions.map((year, index) => {
         return safeXml`
           <sheet
             name="${generateSheetTitle(formattedData, year)}"
