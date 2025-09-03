@@ -111,7 +111,9 @@ type YourDetailsProps = {
   schools: School[];
   labelBackground?: OakColorToken;
   hidePrivacyPolicy?: boolean;
+  emailRequired?: boolean;
 };
+
 export default function YourDetails({
   schools,
   data,
@@ -119,6 +121,7 @@ export default function YourDetails({
   onChange,
   labelBackground,
   hidePrivacyPolicy = false,
+  emailRequired = false,
 }: YourDetailsProps) {
   const schoolsAsAutocompleteItems = useSchoolsFromApi({ schools });
   const autoCompleteList = injectCurrentSchool(
@@ -193,12 +196,12 @@ export default function YourDetails({
         $gap={"space-between-xs"}
       >
         <OakInputWithLabel
-          label="Email (optional)"
+          label={`Email ${emailRequired ? "" : "(optional)"}`}
           id="download-email"
           data-testid="download-email"
           error={errors.email}
           onChange={(e) => onChange({ email: e.target.value })}
-          required={false}
+          required={emailRequired}
           placeholder="Type your email address"
           name="download-email"
           defaultValue={data.email}
