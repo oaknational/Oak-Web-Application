@@ -12,7 +12,6 @@
 import { useMemo, useState } from "react";
 import {
   OakCloudinaryImage,
-  OakCodeRenderer,
   OakFlex,
   OakJauntyAngleLabel,
   OakQuizCheckBox,
@@ -27,6 +26,7 @@ import {
   isImage,
   isText,
 } from "@/components/PupilComponents/QuizUtils/stemUtils";
+import { Stem } from "@/components/SharedComponents/Stem";
 export type QuizMCQMultiAnswerProps = {
   onChange: () => void;
 };
@@ -132,13 +132,7 @@ export const QuizMCQMultiAnswer = ({ onChange }: QuizMCQMultiAnswerProps) => {
               <OakQuizCheckBox
                 key={`${questionUid}-answer-${index}`}
                 id={multipleChoiceAnswerId(questionUid, index)}
-                displayValue={
-                  answerText ? (
-                    <OakCodeRenderer string={answerText.text} />
-                  ) : (
-                    " "
-                  )
-                }
+                displayValue={answerText ? <Stem stem={answerText} /> : " "}
                 value={`answer-${index}`}
                 feedback={feedback}
                 image={answerImage}
