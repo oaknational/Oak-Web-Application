@@ -9,6 +9,7 @@ import {
 
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import { MatchAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { Stem } from "@/components/SharedComponents/Stem";
 
 export const QuizQuestionsMatchAnswers = ({
   answers,
@@ -58,22 +59,26 @@ export const QuizQuestionsMatchAnswers = ({
                   $font={["body-2-bold", "body-1-bold"]}
                   aria-hidden
                 >
+                  <Stem stem={matchOption} />
+                  {/* TODO: handle OakCodeRenderer
                   <OakCodeRenderer
                     string={removeMarkdown(matchOption.text)}
                     $font="code-3"
                     $mt={"space-between-none"}
-                  />
+                  /> */}
                   <OakSpan>{" -"}&nbsp;</OakSpan>
                 </OakP>
                 <OakP
                   $whiteSpace={["break-spaces", "nowrap"]}
                   $font={["body-2", "body-1"]}
                 >
+                  <Stem stem={correctChoice} />
+                  {/* TODO: handle OakCodeRenderer
                   <OakCodeRenderer
                     string={removeMarkdown(correctChoice.text)}
                     $font="code-3"
                     $mt={"space-between-none"}
-                  />
+                  /> */}
                 </OakP>
               </OakFlex>
             </OakFlex>

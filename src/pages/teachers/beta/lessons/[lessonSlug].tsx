@@ -8,6 +8,7 @@ import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/l
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
+import { convertQuestionMath } from "@/pages-helpers/shared/lesson-pages/mathjax";
 
 export type TeacherPreviewLessonPageProps = {
   curriculumData: LessonOverviewPageData;
@@ -71,7 +72,11 @@ export const getStaticProps: GetStaticProps<
 
       const results: GetStaticPropsResult<TeacherPreviewLessonPageProps> = {
         props: {
-          curriculumData,
+          curriculumData: {
+            ...curriculumData,
+            starterQuiz: convertQuestionMath(curriculumData.starterQuiz),
+            exitQuiz: convertQuestionMath(curriculumData.exitQuiz),
+          },
         },
       };
 
