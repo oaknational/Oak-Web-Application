@@ -25,6 +25,7 @@ import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experimen
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 import Banners from "@/components/SharedComponents/Banners";
+import { convertQuestionMath } from "@/pages-helpers/shared/lesson-pages/mathjax";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewPageData;
@@ -192,7 +193,11 @@ export const getStaticProps: GetStaticProps<
 
       const results: GetStaticPropsResult<LessonOverviewPageProps> = {
         props: {
-          curriculumData: lessonPageData,
+          curriculumData: {
+            ...lessonPageData,
+            starterQuiz: convertQuestionMath(lessonPageData.starterQuiz),
+            exitQuiz: convertQuestionMath(lessonPageData.exitQuiz),
+          },
         },
       };
 

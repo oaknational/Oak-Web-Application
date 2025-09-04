@@ -17,6 +17,11 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { invariant } from "@/utils/invariant";
 import { WorksheetInfo } from "@/components/PupilViews/PupilIntro";
 import { getWorksheetInfo } from "@/components/PupilComponents/pupilUtils/getWorksheetInfo";
+import {
+  LessonContent,
+  QuizQuestion,
+} from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { stemToPortableText } from "@/components/SharedComponents/Stem";
 
 export type PupilLessonPageURLParams = {
   lessonSlug: string;
@@ -26,6 +31,146 @@ export type PupilLessonPageURLParams = {
 };
 
 type PageType = "preview" | "canonical" | "browse";
+
+// TODO: Hack of a type here...
+type Answer = NonNullable<
+  NonNullable<QuizQuestion["answers"]>["multiple-choice"]
+>[number]["answer"][number];
+
+function convertAnswer<T extends Answer>(answer: T) {
+  if (answer && answer.type === "text") {
+    const portableText = stemToPortableText(answer.text);
+    return {
+      ...answer,
+      portableText,
+    };
+  }
+  return answer;
+}
+
+function convertMultipleChoice(
+  answer: NonNullable<QuizQuestion["answers"]>["multiple-choice"],
+) {
+  return answer?.map((a) => {
+    return {
+      ...a,
+      answer: a.answer.map((b) => convertAnswer(b)),
+    };
+  });
+}
+
+function convertShortAnswer(
+  answer: NonNullable<QuizQuestion["answers"]>["short-answer"],
+) {
+  return answer?.map((a) => {
+    return {
+      ...a,
+      answer: a.answer.map((b) => convertAnswer(b)),
+    };
+  });
+}
+
+function convertOrder(answer: NonNullable<QuizQuestion["answers"]>["order"]) {
+  return answer?.map((a) => {
+    return {
+      ...a,
+      answer: a.answer.map((b) => convertAnswer(b)),
+    };
+  });
+}
+
+function convertMatch(answer: NonNullable<QuizQuestion["answers"]>["match"]) {
+  return answer?.map((a) => {
+    return {
+      correctChoice: a.correctChoice.map((b) => convertAnswer(b)),
+      // HACK
+      matchOption: a.matchOption?.map((b) => convertAnswer(b)),
+    };
+  });
+}
+
+function convertAnswers(answers: QuizQuestion["answers"]) {
+  let out = answers;
+  if (out && out["multiple-choice"]) {
+    out = {
+      ...out,
+      "multiple-choice": convertMultipleChoice(out["multiple-choice"]),
+    };
+  }
+  if (out && out["short-answer"]) {
+    out = {
+      ...out,
+      "short-answer": convertShortAnswer(out["short-answer"]),
+    };
+  }
+  if (out && out["order"]) {
+    out = {
+      ...out,
+      order: convertOrder(out["order"]),
+    };
+  }
+  if (out && out["match"]) {
+    out = {
+      ...out,
+      match: convertMatch(out["match"]),
+    };
+  }
+  return out;
+}
+
+function convertQuestionStem(
+  questionStem: NonNullable<QuizQuestion["questionStem"]>[number],
+) {
+  if (questionStem.type === "text") {
+    // TODO: This should escape text here, rather than just replacing
+    const portableText = stemToPortableText(questionStem.text);
+    return {
+      type: questionStem.type,
+      text: questionStem.text,
+      portableText,
+    };
+  } else {
+    return questionStem;
+  }
+}
+
+export type QuizQuestionWithHtml = QuizQuestion & {
+  questionStem?:
+    | (QuizQuestion["questionStem"] & {
+        html?: string;
+      })
+    | null;
+};
+function convertQuestionMath(
+  questions: QuizQuestion[],
+): QuizQuestionWithHtml[] {
+  return questions.map((question) => {
+    let out = question;
+    if (question.questionStem) {
+      out = {
+        ...out,
+        questionStem: question.questionStem.map((stem) =>
+          convertQuestionStem(stem),
+        ),
+      };
+    }
+    if (question.answers) {
+      out = {
+        ...out,
+        answers: convertAnswers(question.answers),
+      };
+    }
+    return out;
+  });
+}
+
+function convertQuizes(content: LessonContent) {
+  return {
+    ...content,
+    starterQuiz: convertQuestionMath(content.starterQuiz),
+    exitQuiz: convertQuestionMath(content.exitQuiz),
+  };
+}
 
 export const getProps = ({
   page,
@@ -144,7 +289,7 @@ export const getProps = ({
     const results: GetStaticPropsResult<PupilExperienceViewProps> = {
       props: {
         lessonContent: {
-          ...content,
+          ...convertQuizes(content),
           transcriptSentences: transcriptSentences ?? [],
         },
         browseData,
