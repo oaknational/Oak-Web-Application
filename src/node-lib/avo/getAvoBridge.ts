@@ -1,19 +1,20 @@
 /**
  * @see https://www.avo.app/docs/implementation/start-using-avo-functions
+ * Node.js version of getAvoBridge for server-side usage
  */
-import errorReporter from "../../common-lib/error-reporter";
-import { AnalyticsService } from "../../context/Analytics/AnalyticsProvider";
-import { PosthogConfig } from "../posthog/posthog";
+import { PostHog as PostHogNode } from "posthog-node";
 
-import { CustomDestination } from "./Avo";
+import errorReporter from "../../common-lib/error-reporter";
+import { CustomDestination } from "../../browser-lib/avo/Avo";
 
 const reportError = errorReporter("getAvoBridge");
 
 type AnalyticsServices = {
-  posthog: Pick<AnalyticsService<PosthogConfig>, "track" | "identify">;
+  posthog: PostHogNode;
 };
+
 /**
- * getAvoBridge returns the bridge between Avo and our analytics services.
+ * getAvoBridge returns the bridge between Avo and our analytics services for Node.js.
  * Namely, when we call Avo.myEvent(), logEvent() gets fired below.
  * We are only using it for named tracking events, not for page views or
  * identify calls.
@@ -44,21 +45,29 @@ const getAvoBridge = ({ posthog }: AnalyticsServices) => {
       });
       return;
     }
-    // Uncomment the below line to send track events to hubspot
-    // hubspot.track(eventName, eventProperties);
 
-    posthog.track(eventName, eventProperties);
+    posthog.capture({
+      distinctId: (eventProperties.userId as string) || "anonymous",
+      event: eventName,
+      properties: eventProperties,
+    });
   };
 
   const identify: CustomDestination["identify"] = (userId) => {
-    posthog.identify(userId, {});
+    posthog.identify({
+      distinctId: userId,
+      properties: {},
+    });
   };
 
   const setUserProperties: CustomDestination["setUserProperties"] = (
     userId,
     properties,
   ) => {
-    posthog.identify(userId, properties);
+    posthog.identify({
+      distinctId: userId,
+      properties: properties || {},
+    });
   };
 
   return {
