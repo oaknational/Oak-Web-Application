@@ -4,7 +4,6 @@ import {
   OakPrimaryButton,
   OakHeading,
   OakP,
-  OakBox,
 } from "@oaknational/oak-components";
 import { PortableTextReactComponents } from "@portabletext/react";
 
@@ -84,12 +83,14 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitError("");
+    setSuccessMessage("");
     const formValidation = runSchema(newsletterSignupFormSubmitSchema, data);
 
     setErrors(formValidation.errors);
-
     if (formValidation.success) {
       setErrors({});
+
       console.log(data);
       try {
         await onHubspotSubmit({
@@ -100,6 +101,14 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
         });
         setSuccessMessage("Thanks, that's been received");
         console.log(formId);
+        setData({
+          schoolId: "",
+          schoolName: "",
+          email: "",
+          schoolNotListed: false,
+          schools: [],
+          name: "",
+        });
       } catch (error) {
         if (error instanceof OakError) {
           setSubmitError(error.message);
@@ -109,14 +118,6 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
         }
       } finally {
         setIsSubmitting(false);
-        setData({
-          schoolId: "",
-          schoolName: "",
-          email: "",
-          schoolNotListed: false,
-          schools: [],
-          name: "",
-        });
       }
     }
     setIsSubmitting(false);
@@ -194,29 +195,25 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
             >
               {buttonCta}
             </OakPrimaryButton>
-            {(submitError.length > 0 || successMessage.length > 0) && (
-              <OakBox>
-                <OakP
-                  $mt={submitError ? "space-between-s" : "space-between-none"}
-                  $font={"body-3"}
-                  aria-live="assertive"
-                  role="alert"
-                  $color="red"
-                >
-                  {submitError}
-                </OakP>
-                <OakP
-                  $mt={
-                    !submitError && successMessage
-                      ? "space-between-s"
-                      : "space-between-none"
-                  }
-                  $font={"body-3"}
-                  aria-live="polite"
-                >
-                  {!submitError && successMessage}
-                </OakP>
-              </OakBox>
+            {submitError.length > 0 && (
+              <OakP
+                $mt={"space-between-none"}
+                $font={"body-3"}
+                aria-live="assertive"
+                role="alert"
+                $color="red"
+              >
+                {submitError}
+              </OakP>
+            )}
+            {successMessage.length > 0 && submitError === "" && (
+              <OakP
+                $mt={"space-between-none"}
+                $font={"body-3"}
+                aria-live="polite"
+              >
+                {!submitError && successMessage}
+              </OakP>
             )}
           </OakFlex>
         </OakFlex>
