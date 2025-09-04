@@ -9,10 +9,9 @@ import {
 } from "@oaknational/oak-components";
 import { PortableTextReactComponents } from "@portabletext/react";
 
-import { useNewsletterForm } from "../NewsletterForm";
-
 import { newsletterSignupFormSubmitSchema } from "./CampaignNewsletterSignup.schema";
 
+import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { OakInputWithLabel } from "@/components/SharedComponents/OakInputWithLabel/OakInputWithLabel";
 import YourDetails, {
   School,
