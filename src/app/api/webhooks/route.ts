@@ -3,10 +3,14 @@ import { headers } from "next/headers";
 import { WebhookEvent } from "@clerk/nextjs/server";
 import { NextRequest } from "next/server";
 
+import { setUpEventTracking } from "./eventTracking";
+
 import { handleSessionCreatedEvent } from "@/utils/handleSessionCreatedEvent";
 import getServerConfig from "@/node-lib/getServerConfig";
 import { getWebhookEducatorApi } from "@/node-lib/educator-api";
 import errorReporter from "@/common-lib/error-reporter";
+import { userSignUpCompleted } from "@/browser-lib/avo/Avo";
+import { pickSingleSignOnService } from "@/utils/pickSingleSignOnService";
 
 export async function POST(req: NextRequest) {
   const signingSecret = getServerConfig("clerkSigningSecret");
@@ -83,6 +87,28 @@ export async function POST(req: NextRequest) {
       });
       return new Response("Error: could not update user", {
         status: 500,
+      });
+    }
+  }
+  if (id && evt.type === "user.created") {
+    try {
+      setUpEventTracking();
+
+      userSignUpCompleted({
+        platform: "owa",
+        product: "user account management",
+        engagementIntent: "explore",
+        componentType: "signup_form",
+        eventVersion: "2.0.0",
+        analyticsUseCase: null,
+        singleSignOnService: pickSingleSignOnService(
+          evt.data.external_accounts.map((account) => account.provider),
+        ),
+        userId_: id,
+      });
+    } catch (e) {
+      reportError(e, {
+        message: "Failed to track user sign-up event",
       });
     }
   }

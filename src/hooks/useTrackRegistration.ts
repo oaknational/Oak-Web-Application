@@ -2,8 +2,7 @@ import { useUser } from "@clerk/nextjs";
 import { useEffect, useRef } from "react";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import type { UserResource } from "clerk";
-import { SingleSignOnServiceValueType } from "@/browser-lib/avo/Avo";
+import { pickSingleSignOnService } from "@/utils/pickSingleSignOnService";
 
 let hasAlreadyTrackedEvent = false;
 
@@ -62,12 +61,14 @@ export function useTrackRegistration() {
         componentType: "signup_form",
         eventVersion: "2.0.0",
         analyticsUseCase: null,
-        singleSignOnService: pickSingleSignOnService(user),
+        singleSignOnService: pickSingleSignOnService(
+          user.externalAccounts.map((account) => account.provider),
+        ),
         userId_: user.id,
       });
     } else {
       track.userSignIn({ userId_: user.id });
-      alias && alias(posthogDistinctId, user.id);
+      alias?.(posthogDistinctId, user.id);
     }
 
     // Set `lastTrackedSignInAt` to `lastSignInAt` so that we
@@ -90,20 +91,4 @@ export function useTrackRegistration() {
     }
     lastUserRef.current = user;
   }, [user, track]);
-}
-
-function pickSingleSignOnService(
-  user: UserResource,
-): SingleSignOnServiceValueType {
-  const providers = user.externalAccounts.map((account) => account.provider);
-
-  if (providers.includes("google")) {
-    return "Google";
-  }
-
-  if (providers.includes("microsoft")) {
-    return "Microsoft";
-  }
-
-  return "Email";
 }
