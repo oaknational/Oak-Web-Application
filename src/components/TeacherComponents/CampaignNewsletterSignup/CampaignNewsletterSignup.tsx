@@ -45,14 +45,13 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
   textStyles,
 }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  // const [submitError, setSubmitError] = useState<string | undefined>(undefined);
 
   const [errors, setErrors] = useState<NewsletterSignUpFormErrors>({});
 
   const [data, setData] = useState<NewsletterSignUpData>(() => ({
-    schoolId: undefined,
-    schoolName: undefined,
-    email: undefined,
+    schoolId: "",
+    schoolName: "",
+    email: "",
     schoolNotListed: false,
     schools: [],
     name: "",
@@ -63,7 +62,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
       ...data,
       ...partial,
     };
-    setData?.(newData);
+    setData(newData);
   };
 
   const schoolPickerInputValue = data.schoolName;
@@ -90,7 +89,14 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
         // report error
       } finally {
         setIsSubmitting(false);
-        setData({});
+        setData({
+          schoolId: "",
+          schoolName: "",
+          email: "",
+          schoolNotListed: false,
+          schools: [],
+          name: "",
+        });
       }
     }
     setIsSubmitting(false);
@@ -148,6 +154,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
               required={true}
               labelBackground="mint"
               placeholder="Type your name"
+              value={data.name}
             />
             <YourDetails
               data={data}

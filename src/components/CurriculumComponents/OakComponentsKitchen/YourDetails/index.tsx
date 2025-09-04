@@ -206,6 +206,7 @@ export default function YourDetails({
           name="download-email"
           defaultValue={data.email}
           labelBackground={labelBackground}
+          value={data.email}
         />
 
         {!hidePrivacyPolicy && (
