@@ -47,6 +47,13 @@ export const campaignTextStyles: PortableTextComponents = {
         </OakHeading>
       );
     },
+    heading4: (props) => {
+      return (
+        <OakHeading $font={["heading-6", "heading-5", "heading-4"]} tag="h4">
+          {props.children}
+        </OakHeading>
+      );
+    },
     heading5: (props) => {
       return (
         <OakHeading
