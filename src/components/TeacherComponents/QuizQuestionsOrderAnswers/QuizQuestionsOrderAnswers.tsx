@@ -10,7 +10,6 @@ import {
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import { OrderAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { Stem } from "@/components/SharedComponents/Stem";
-import { generateHtml } from "@/pages-helpers/shared/lesson-pages/mathjax";
 
 export const QuizQuestionsOrderAnswers = ({
   answers,
@@ -36,7 +35,7 @@ export const QuizQuestionsOrderAnswers = ({
               $background={"lemon50"}
               $borderRadius="border-radius-m2"
               $ph="inner-padding-xs"
-              $alignItems={"flex-start"}
+              $alignItems={"center"}
               $justifyContent={"center"}
               $gap="all-spacing-2"
               role="listitem"

@@ -1,11 +1,5 @@
 import { VisuallyHidden } from "react-aria";
-import {
-  OakP,
-  OakSpan,
-  OakFlex,
-  OakIcon,
-  OakCodeRenderer,
-} from "@oaknational/oak-components";
+import { OakSpan, OakFlex, OakIcon } from "@oaknational/oak-components";
 
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import { MatchAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
@@ -38,6 +32,7 @@ export const QuizQuestionsMatchAnswers = ({
               role="listitem"
               key={`q-${questionNumber}-answer${i}`}
               $background={"lemon50"}
+              $alignItems={"center"}
             >
               <VisuallyHidden>
                 Correct Answer:
