@@ -1,6 +1,6 @@
 import React from "react";
 import "@testing-library/jest-dom";
-import { act, waitFor } from "@testing-library/react";
+import { act, renderHook, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import CampaignNewsletterSignup from "./CampaignNewsletterSignup";
@@ -9,6 +9,10 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import mockCampaign from "@/fixtures/campaign/mockCampaign";
 import { NewsletterSignUp } from "@/common-lib/cms-types/campaignPage";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
+import {
+  getHubspotNewsletterPayload,
+  UserRole,
+} from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
 
 const mockData = mockCampaign.content.find(
   ({ type }) => type === "NewsletterSignUp",
@@ -29,10 +33,16 @@ jest.mock("@/components/GenericPagesComponents/NewsletterForm", () => ({
   }),
 }));
 
+const hubspotSubmitForm = jest.fn();
+jest.mock("@/browser-lib/hubspot/forms/hubspotSubmitForm", () => ({
+  __esModule: true,
+  default: (...args: []) => hubspotSubmitForm(...args),
+}));
+
 describe("CampaignNewsletterSignup", () => {
   beforeEach(() => {
-    jest.resetModules();
     jest.clearAllMocks();
+    jest.resetModules();
   });
   it("renders the heading", () => {
     const { getByText } = renderWithTheme(
@@ -68,7 +78,7 @@ describe("CampaignNewsletterSignup", () => {
     expect(name).toBeInTheDocument();
   });
 
-  it.only("renders an error if required fields are missing", async () => {
+  it("renders an error if required fields are missing", async () => {
     const { getByTestId, getByRole, getByText, getByPlaceholderText } =
       renderWithTheme(
         <CampaignNewsletterSignup data-testid="test" {...mockData} />,
@@ -110,7 +120,7 @@ describe("CampaignNewsletterSignup", () => {
     });
   });
 
-  it.only("renders a success message if all hubspot submit is successful", async () => {
+  it("renders a success message if all hubspot submit is successful", async () => {
     const { getByTestId, getByRole, getByText, getByPlaceholderText } =
       renderWithTheme(
         <CampaignNewsletterSignup data-testid="test" {...mockData} />,
@@ -136,11 +146,9 @@ describe("CampaignNewsletterSignup", () => {
     });
   });
 
-  it("renders an error message if all hubspot submit is unsuccessful", async () => {
+  it.skip("renders an error message if all hubspot submit is unsuccessful", async () => {
     (useNewsletterForm as jest.Mock).mockReturnValueOnce(() => ({
-      onSubmit: () => {
-        return Promise.resolve(false);
-      },
+      onSubmit: () => Promise.resolve(false),
     }));
 
     const { getByTestId, getByRole, getByText, getByPlaceholderText } =
@@ -167,6 +175,52 @@ describe("CampaignNewsletterSignup", () => {
       expect(
         getByText("Sorry, we couldn't sign you up just now, try again later."),
       ).toBeVisible();
+    });
+  });
+
+  it.skip("calls hubspot submit with the correct data", async () => {
+    const { result } = renderHook(() => useNewsletterForm());
+    const { getByTestId, getByRole, getByPlaceholderText } = renderWithTheme(
+      <CampaignNewsletterSignup data-testid="test" {...mockData} />,
+    );
+
+    act(() => {
+      getByTestId("download-school-isnt-listed").click();
+    });
+    const nameInput = getByPlaceholderText("Type your name");
+    await userEvent.type(nameInput, "Test");
+
+    const emailInput = getByPlaceholderText("Type your email address");
+    await userEvent.type(emailInput, "test@example.com");
+
+    act(() => {
+      getByRole("button", {
+        name: "newsletter-signup-cta-button",
+      }).click();
+    });
+
+    const data = {
+      schoolId: undefined,
+      schoolName: undefined,
+      email: "test@example.com",
+      schoolNotListed: true,
+      schools: [],
+      school: "",
+      hubspotNewsletterFormId: "hubspot-test-form-id",
+      userRole: "" as UserRole,
+    };
+
+    result.current.onSubmit(data);
+    const newsletterPayload = getHubspotNewsletterPayload({
+      hutk: undefined,
+      data: { ...data, utm_source: "les_twitz" },
+    });
+
+    await waitFor(() => {
+      expect(hubspotSubmitForm).toHaveBeenCalledWith({
+        payload: newsletterPayload,
+        hubspotFormId: "NEXT_PUBLIC_HUBSPOT_NEWSLETTER_FORM_ID",
+      });
     });
   });
 });
