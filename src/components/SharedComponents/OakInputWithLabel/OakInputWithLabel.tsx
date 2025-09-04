@@ -39,7 +39,6 @@ export const OakInputWithLabel = ({
   name,
   defaultValue,
   labelBackground,
-  value,
 }: {
   label: string;
   required: boolean;
@@ -53,7 +52,7 @@ export const OakInputWithLabel = ({
   name: string;
   defaultValue?: string;
   labelBackground?: OakColorToken;
-  value?: string;
+  // value?: string;
 }) => {
   const [hasFocus, setHasFocus] = useState(false);
 
@@ -96,7 +95,6 @@ export const OakInputWithLabel = ({
           autoComplete={autocomplete}
           name={name}
           defaultValue={defaultValue}
-          value={value}
         />
       </OakFlex>
     </OakFlex>

@@ -194,7 +194,6 @@ export default function YourDetails({
         $flexDirection={"column"}
         $alignItems={"start"}
         $gap={"space-between-xs"}
-        $mt={"space-between-ssx"}
       >
         <OakInputWithLabel
           label={`Email ${emailRequired ? "" : "(optional)"}`}
@@ -205,9 +204,8 @@ export default function YourDetails({
           required={emailRequired}
           placeholder="Type your email address"
           name="download-email"
-          defaultValue={data.email}
           labelBackground={labelBackground}
-          value={data.email}
+          defaultValue={data.email}
         />
 
         {!hidePrivacyPolicy && (
