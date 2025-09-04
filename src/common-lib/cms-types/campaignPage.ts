@@ -27,6 +27,35 @@ const newsletterSignUpSchema = z.object({
   formId: z.string(),
 });
 
+export const campaignContentTypeSchema = z.discriminatedUnion("type", [
+  z.object({
+    type: z.literal("CampaignIntro"),
+    headingPortableTextWithPromo: portableTextSchema,
+    bodyPortableTextWithPromo: portableTextSchema,
+  }),
+  z.object({
+    type: z.literal("NewsletterSignUp"),
+    heading: z.string(),
+    bodyPortableText: portableTextSchema,
+    buttonCta: z.string(),
+    formId: z.string(),
+  }),
+  z.object({
+    type: z.literal("CampaignPromoBanner"),
+    headingPortableTextWithPromo: portableTextSchema,
+    bodyPortableTextWithPromo: portableTextSchema.nullish(),
+    subheadingPortableTextWithPromo: portableTextSchema.nullish(),
+    media: z.array(imageSchema.nullish(), videoSchema.nullish()),
+  }),
+  z.object({
+    type: z.literal("CampaignVideoBanner"),
+    headingPortableTextWithPromo: portableTextSchema,
+    subheadingPortableTextWithPromo: portableTextSchema,
+    video: videoSchema,
+  }),
+]);
+
+export type CampaignContentType = z.infer<typeof campaignContentTypeSchema>;
 export const campaignPageSchema = z
   .object({
     title: z.string(),
