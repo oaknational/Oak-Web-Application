@@ -78,7 +78,6 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
 
       const campaignData = await CMSClient.campaignPageBySlug("mythbusting");
 
-      console.log(campaignData);
       if (!pageData || !campaignData) {
         return {
           notFound: true,
