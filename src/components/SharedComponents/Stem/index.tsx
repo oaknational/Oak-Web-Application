@@ -7,15 +7,16 @@ const ENABLE_SSR = true;
 
 type StemProps = {
   stem: TextItem;
+  display?: string;
 };
-export function Stem({ stem }: StemProps) {
+export function Stem({ stem, display }: StemProps) {
   // TODO: This should also deal with rendering <OakCodeRenderer/> as I've removed that else where
   // See `shortAnswerTitleFormatter` for the logic behind it all
   if (ENABLE_SSR) {
     return (
       <div
         style={{
-          display: "flex",
+          display: display ?? "flex",
           height: "100%",
           padding: "6px",
           gap: "6px",

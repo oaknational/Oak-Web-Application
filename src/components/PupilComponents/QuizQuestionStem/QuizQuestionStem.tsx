@@ -58,7 +58,7 @@ export const QuizQuestionStem = ({
               $width={"100%"}
               id={`${questionUid}-legend`}
             >
-              <Stem stem={questionStem[0]} />
+              <Stem stem={questionStem[0]} display="block" />
             </OakBox>
           )}
         </OakFlex>
