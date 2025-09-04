@@ -16,6 +16,7 @@ import curriculumApi2023, {
 import { CampaignPageHeader } from "@/components/GenericPagesComponents/CampaignPageHeader/CampaignPageHeader";
 import { CampaignPageIntro } from "@/components/GenericPagesComponents/CampaignPageIntro/CampaignPageIntro";
 import { CampaignPromoBanner } from "@/components/GenericPagesComponents/CampaignPromoBanner/CampaignPromoBanner";
+import { CampaignVideoBanner } from "@/components/GenericPagesComponents/CampaignVideoBanner/CampaignVideoBanner";
 
 export type CampaignSinglePageProps = {
   campaign: CampaignPage;
@@ -117,6 +118,19 @@ const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
                   key={section.type}
                 />
               );
+          }
+          if (section.type === "CampaignVideoBanner") {
+            if (section.video) {
+              return (
+                <CampaignVideoBanner
+                  key={section.type}
+                  textStyles={campaignTextStyles}
+                  heading={section.headingPortableTextWithPromo}
+                  subheading={section.subheadingPortableTextWithPromo}
+                  video={section.video}
+                />
+              );
+            }
           }
         })}
       </OakFlex>
