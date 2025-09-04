@@ -6,7 +6,6 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { SerializedPost } from "@/pages-helpers/home/getBlogPosts";
 import keyStageKeypad from "@/browser-lib/fixtures/keyStageKeypad";
 import { BlogPostPreview, WebinarPreview } from "@/common-lib/cms-types";
-import mockCampaign from "@/fixtures/campaign/mockCampaign";
 
 const render = renderWithProviders();
 
@@ -49,18 +48,15 @@ const props: TeachersHomePageProps = {
   curriculumData: {
     keyStages: keyStageKeypad.keyStages,
   },
-  campaignData: mockCampaign,
 };
 
 const homepage = jest.fn().mockResolvedValue(props.pageData);
 const blogPosts = jest.fn().mockResolvedValue([]);
 const webinars = jest.fn().mockResolvedValue([]);
-const campaignBySlug = jest.fn().mockResolvedValue(mockCampaign);
 
 jest.mock("@/node-lib/cms", () => ({
   __esModule: true,
   default: {
-    campaignPageBySlug: (...args: []) => campaignBySlug(args),
     homepage: (...args: []) => homepage(args),
     webinars: (...args: []) => webinars(args),
     blogPosts: (...args: []) => blogPosts(args),
@@ -171,16 +167,6 @@ describe("Teachers Page", () => {
       expect(propsResult).toMatchObject({
         notFound: true,
       });
-    });
-
-    it("should load campaign data", async () => {
-      campaignBySlug.mockResolvedValueOnce(mockCampaign);
-
-      const result = (await getStaticProps({
-        params: { slug: "test-campaign" },
-      })) as { props: TeachersHomePageProps };
-
-      expect(result.props.campaignData).toMatchObject(mockCampaign);
     });
   });
 });

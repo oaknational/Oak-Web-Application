@@ -14,11 +14,6 @@ import {
   SerializedPost,
 } from "@/pages-helpers/home/getBlogPosts";
 import { HomePage } from "@/common-lib/cms-types";
-import CMSClient from "@/node-lib/cms";
-import {
-  CampaignPage,
-  CampaignVideoBannerType,
-} from "@/common-lib/cms-types/campaignPage";
 
 export type TeachersHomePageProps = HomePageProps & {
   curriculumData: KeyStagesData;
@@ -27,19 +22,14 @@ export type TeachersHomePageProps = HomePageProps & {
 export type HomePageProps = {
   pageData: HomePage;
   posts: SerializedPost[];
-  campaignData: CampaignPage;
 };
 
 const TeachersHomePage: NextPage<TeachersHomePageProps> = (props) => {
-  const { curriculumData, posts, pageData, campaignData } = props;
+  const { curriculumData, posts, pageData } = props;
 
   const testimonials = pageData?.testimonials;
   const intro = pageData?.intro;
   const campaignPromoBanner = pageData.campaignPromoBanner;
-
-  const campaignVideoBanner = campaignData.content.find(
-    ({ type }) => type === "CampaignVideoBanner",
-  ) as CampaignVideoBannerType;
 
   return (
     <AppLayout
@@ -54,7 +44,6 @@ const TeachersHomePage: NextPage<TeachersHomePageProps> = (props) => {
       <HomePageTabImageNav current={"teachers"} />
       <TeachersTab keyStages={curriculumData.keyStages} aria-current="page" />
       <HomePageLowerView
-        campaignVideoBanner={campaignVideoBanner}
         campaignPromoBanner={campaignPromoBanner}
         posts={posts}
         testimonials={testimonials}
@@ -76,9 +65,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
         5,
       );
 
-      const campaignData = await CMSClient.campaignPageBySlug("mythbusting");
-
-      if (!pageData || !campaignData) {
+      if (!pageData) {
         return {
           notFound: true,
         };
@@ -91,7 +78,6 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
           pageData,
           curriculumData,
           posts,
-          campaignData,
         },
       };
       return results;
