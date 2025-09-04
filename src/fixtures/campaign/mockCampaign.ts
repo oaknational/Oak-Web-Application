@@ -20,6 +20,13 @@ const mockCampaign: CampaignPage = {
       type: "CampaignPromoBanner",
       media: [{ ...mockImageAsset(), altText: "campaign-promo-test" }],
     },
+    {
+      type: "NewsletterSignUp",
+      heading: "newsletter-sign-up-heading-text",
+      bodyPortableText: bodyPortableText("newsletter-sign-up-body-text"),
+      buttonCta: "newsletter-signup-cta-button",
+      formId: "hubspot-test-form-id",
+    },
   ],
   header: {
     image: { ...mockImageAsset(), altText: "Test Image Alt Text" },
