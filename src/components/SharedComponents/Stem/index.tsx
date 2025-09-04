@@ -18,9 +18,10 @@ export function Stem({ stem, display }: StemProps) {
         style={{
           display: display ?? "flex",
           height: "100%",
-          padding: "6px",
-          gap: "6px",
+          padding: "4px",
+          gap: "4px",
           alignItems: "center",
+          fontWeight: 500,
         }}
         dangerouslySetInnerHTML={{
           __html: removeMarkdown(stem.html),
