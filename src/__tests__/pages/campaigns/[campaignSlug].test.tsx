@@ -14,7 +14,7 @@ import {
   headingPortableText,
 } from "@/fixtures/campaign/portableText";
 
-const mockCampaign: CampaignPage = {
+export const mockCampaign: CampaignPage = {
   id: "test-id",
   content: [
     {

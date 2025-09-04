@@ -1,3 +1,5 @@
+import { mockCampaign } from "../campaigns/[campaignSlug].test";
+
 import Home, {
   getStaticProps,
   TeachersHomePageProps,
@@ -53,6 +55,7 @@ const props: TeachersHomePageProps = {
   curriculumData: {
     keyStages: keyStageKeypad.keyStages,
   },
+  campaignData: mockCampaign,
 };
 
 describe("Teachers Page", () => {
