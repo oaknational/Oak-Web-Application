@@ -52,6 +52,7 @@ export const keywordsSchema = z.object({
 
 const stemTextObjectSchema = z.object({
   text: z.string(),
+  html: z.string().nullish(),
   type: z.literal("text"),
 });
 

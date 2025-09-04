@@ -47,9 +47,6 @@ export const QuizMatchAnswer = () => {
       const match = getStemTextData(matchOption);
       const choice = getStemTextData(correctChoice);
 
-      invariant(match?.html, "match.html is missing");
-      invariant(choice?.html, "choice.html is missing");
-
       return { match, choice };
     },
   );
@@ -65,7 +62,7 @@ export const QuizMatchAnswer = () => {
         matchItems.push({
           id: index.toString(),
           label: <Stem stem={match} key={`match-${index}`} />,
-          announcement: match.text,
+          announcement: match?.text ?? "",
         });
       });
       return matchItems;
@@ -85,7 +82,7 @@ export const QuizMatchAnswer = () => {
       choiceItems.push({
         id: index.toString(),
         label: <Stem key={`choice-${index}`} stem={choice} />,
-        announcement: choice.text,
+        announcement: choice?.text ?? "",
       });
     });
     return choiceItems;

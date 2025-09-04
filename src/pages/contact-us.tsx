@@ -25,6 +25,16 @@ import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFo
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
+const logMissingPortableTextComponents: MissingComponentHandler = (
+  message,
+  options,
+) => {
+  console.log(message, {
+    type: options.type,
+    nodeType: options.nodeType,
+  });
+};
+
 export type ContactPageProps = {
   pageData: ContactPage;
 };
