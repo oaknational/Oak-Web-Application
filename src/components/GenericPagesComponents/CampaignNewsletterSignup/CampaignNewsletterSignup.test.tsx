@@ -1,20 +1,78 @@
 import React from "react";
 import "@testing-library/jest-dom";
+import { act, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import CampaignNewsletterSignup from "./CampaignNewsletterSignup";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import mockCampaign from "@/fixtures/campaign/mockCampaign";
+import { NewsletterSignUp } from "@/common-lib/cms-types/campaignPage";
 
 const mockData = mockCampaign.content.find(
   ({ type }) => type === "NewsletterSignUp",
-);
+) as NewsletterSignUp;
+
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    identify: jest.fn(),
+  }),
+}));
 
 describe("CampaignNewsletterSignup", () => {
-  it("renders", () => {
-    const { getByTestId } = renderWithTheme(
+  it("renders the heading", () => {
+    const { getByText } = renderWithTheme(
       <CampaignNewsletterSignup data-testid="test" {...mockData} />,
     );
-    expect(getByTestId("test")).toBeInTheDocument();
+    const signUpHeading = getByText("newsletter-sign-up-heading-text");
+
+    expect(signUpHeading).toBeInTheDocument();
+  });
+
+  it("renders the cta", () => {
+    const { getByText } = renderWithTheme(
+      <CampaignNewsletterSignup data-testid="test" {...mockData} />,
+    );
+
+    const signUpCta = getByText("newsletter-signup-cta-button");
+
+    expect(signUpCta).toBeInTheDocument();
+  });
+  it("renders the form", async () => {
+    const { findAllByRole, getByText } = renderWithTheme(
+      <CampaignNewsletterSignup data-testid="test" {...mockData} />,
+    );
+    const formInputs = await findAllByRole("textbox");
+
+    expect(formInputs).toHaveLength(2);
+
+    const school = getByText("School (required)");
+    const name = getByText("Name (required)");
+    const email = getByText("Email (required)");
+    expect(email).toBeInTheDocument();
+    expect(school).toBeInTheDocument();
+    expect(name).toBeInTheDocument();
+  });
+
+  it.only("renders an error if required fields are missing", async () => {
+    const { getByTestId, getByRole, getByText, getByPlaceholderText } =
+      renderWithTheme(
+        <CampaignNewsletterSignup data-testid="test" {...mockData} />,
+      );
+
+    act(() => {
+      getByTestId("download-school-isnt-listed").click();
+    });
+    const emailInput = getByPlaceholderText("Type your email address");
+    await userEvent.type(emailInput, "test@example.com");
+
+    act(() => {
+      getByRole("button", { name: "newsletter-signup-cta-button" }).click();
+    });
+
+    await waitFor(() => {
+      expect(getByText("Please enter your name")).toBeVisible();
+    });
   });
 });
