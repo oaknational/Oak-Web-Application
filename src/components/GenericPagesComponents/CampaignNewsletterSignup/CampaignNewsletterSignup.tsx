@@ -4,6 +4,8 @@ import {
   OakPrimaryButton,
   OakHeading,
   OakP,
+  OakGrid,
+  OakGridArea,
 } from "@oaknational/oak-components";
 import { PortableTextReactComponents } from "@portabletext/react";
 
@@ -38,7 +40,7 @@ type NewsletterSignUpFormErrors = Partial<{
 }>;
 
 export type CampaignNewsletterSignupProps = NewsletterSignUp & {
-  textStyles: Partial<PortableTextReactComponents>;
+  textStyles?: Partial<PortableTextReactComponents>;
 };
 
 const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
@@ -54,8 +56,8 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
   const [errors, setErrors] = useState<NewsletterSignUpFormErrors>({});
 
   const [data, setData] = useState<NewsletterSignUpData>(() => ({
-    schoolId: "",
-    schoolName: "",
+    schoolId: undefined,
+    schoolName: undefined,
     email: "",
     schoolNotListed: false,
     schools: [],
@@ -99,8 +101,8 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
         });
         setSuccessMessage("Thanks, that's been received");
         setData({
-          schoolId: "",
-          schoolName: "",
+          schoolId: undefined,
+          schoolName: undefined,
           email: "",
           schoolNotListed: false,
           schools: [],
@@ -121,27 +123,23 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
   };
 
   return (
-    <OakFlex
-      $maxWidth={"all-spacing-24"}
-      $flexDirection={["column", "row"]}
-      $gap={"space-between-xxl"}
-      $borderRadius={"border-radius-xl"}
-      $pv={["inner-padding-xl8"]}
-      $ph={["inner-padding-xl8"]}
+    <OakGrid
+      $mt={["space-between-xxl", "space-between-xxl", "space-between-xxxl"]}
+      $maxWidth={["unset", "all-spacing-24"]}
     >
-      <OakFlex
-        $flexDirection={"column"}
-        $alignItems={"flex-end"}
-        $gap={"space-between-m"}
-        $alignSelf={"stretch"}
+      <OakGridArea
+        $colSpan={[12, 10, 10]}
+        $colStart={[1, 2, 2]}
+        $mb={["space-between-m", "space-between-l"]}
       >
         <OakFlex
-          $flexDirection={"row"}
+          $flexDirection={["column", "row"]}
           $alignItems={"center"}
           $alignSelf={"stretch"}
-          $gap={"space-between-xxxl"}
+          $gap={"space-between-xxl"}
         >
           <OakFlex
+            $maxWidth={["100%", "all-spacing-22"]}
             $alignSelf={"stretch"}
             $flexDirection={"column"}
             $gap={"space-between-s"}
@@ -156,39 +154,43 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
           </OakFlex>
           <OakFlex
             as="form"
-            // onSubmit={this.handleSubmit}
+            // onSubmit={handleSubmit}
+            $minWidth={["min-content", "all-spacing-21"]}
             $flexDirection={"column"}
             $background={"white"}
             $pa={"inner-padding-xl"}
             $gap={"space-between-m"}
             $borderRadius={"border-radius-s"}
           >
-            <OakInputWithLabel
-              label="Name"
-              id="nameInput"
-              name="Name"
-              error={errors.name}
-              onChange={(e) => onChange({ name: e.target.value })}
-              required={true}
-              labelBackground="mint"
-              placeholder="Type your name"
-              value={data.name}
-            />
-            <YourDetails
-              data={data}
-              schools={schools ?? []}
-              errors={errors}
-              onChange={onChange}
-              labelBackground="mint"
-              hidePrivacyPolicy={true}
-              emailRequired={true}
-            />
+            <OakFlex $flexDirection={"column"} $gap={"space-between-m2"}>
+              <OakInputWithLabel
+                label="Name"
+                id="nameInput"
+                name="Name"
+                error={errors.name}
+                onChange={(e) => onChange({ name: e.target.value })}
+                required={true}
+                labelBackground="mint"
+                placeholder="Type your name"
+                defaultValue={data.name}
+              />
+              <YourDetails
+                data={data}
+                schools={schools ?? []}
+                errors={errors}
+                onChange={onChange}
+                labelBackground="mint"
+                hidePrivacyPolicy={true}
+                emailRequired={true}
+              />
+            </OakFlex>
             <OakPrimaryButton
               type="submit"
               iconName="arrow-right"
               isTrailingIcon
               isLoading={isSubmitting}
               onClick={handleSubmit}
+              width={"100%"}
             >
               {buttonCta}
             </OakPrimaryButton>
@@ -214,8 +216,8 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
             )}
           </OakFlex>
         </OakFlex>
-      </OakFlex>
-    </OakFlex>
+      </OakGridArea>
+    </OakGrid>
   );
 };
 
