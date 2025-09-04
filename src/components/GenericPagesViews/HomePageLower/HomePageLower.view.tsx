@@ -24,6 +24,8 @@ import { CampaignPromoBannerType, HomePage } from "@/common-lib/cms-types";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import { CampaignPromoBanner } from "@/components/GenericPagesComponents/CampaignPromoBanner/CampaignPromoBanner";
 import { campaignTextStyles } from "@/pages/campaigns/[campaignSlug]";
+import { CampaignVideoBannerType } from "@/common-lib/cms-types/campaignPage";
+import { CampaignVideoBanner } from "@/components/GenericPagesComponents/CampaignVideoBanner/CampaignVideoBanner";
 
 export const postToPostListItem = (post: SerializedPost): PostListItemProps => {
   return post.type === "blog-post"
@@ -35,11 +37,12 @@ export type HomePageLowerViewProps = {
   posts: SerializedPost[];
   testimonials: HomePage["testimonials"];
   campaignPromoBanner?: CampaignPromoBannerType | null;
+  campaignVideoBanner?: CampaignVideoBannerType;
   introVideo?: HomePage["intro"];
 };
 
 export const HomePageLowerView = (props: HomePageLowerViewProps) => {
-  const { campaignPromoBanner } = props;
+  const { campaignPromoBanner, campaignVideoBanner } = props;
   const posts = props.posts.map(postToPostListItem);
   const blogListProps = usePostList({ items: posts, withImage: true });
   const { introVideo } = props;
@@ -118,6 +121,18 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
               media={campaignPromoBanner.media[0]!}
             />
           </OakBox>
+          {campaignVideoBanner && (
+            <OakBox>
+              <CampaignVideoBanner
+                textStyles={campaignTextStyles}
+                heading={campaignVideoBanner?.headingPortableTextWithPromo}
+                subheading={
+                  campaignVideoBanner?.subheadingPortableTextWithPromo
+                }
+                video={campaignVideoBanner.video}
+              />
+            </OakBox>
+          )}
         </OakMaxWidth>
       )}
       <OakMaxWidth>
