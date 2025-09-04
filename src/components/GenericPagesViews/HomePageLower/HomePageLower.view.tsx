@@ -24,8 +24,6 @@ import { CampaignPromoBannerType, HomePage } from "@/common-lib/cms-types";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import { CampaignPromoBanner } from "@/components/GenericPagesComponents/CampaignPromoBanner/CampaignPromoBanner";
 import { campaignTextStyles } from "@/pages/campaigns/[campaignSlug]";
-import CampaignNewsletterSignup from "@/components/GenericPagesComponents/CampaignNewsletterSignup/CampaignNewsletterSignup";
-import { NewsletterSignUp } from "@/common-lib/cms-types/campaignPage";
 
 export const postToPostListItem = (post: SerializedPost): PostListItemProps => {
   return post.type === "blog-post"
@@ -37,12 +35,11 @@ export type HomePageLowerViewProps = {
   posts: SerializedPost[];
   testimonials: HomePage["testimonials"];
   campaignPromoBanner?: CampaignPromoBannerType | null;
-  newsletterSignUp?: NewsletterSignUp | null;
   introVideo?: HomePage["intro"];
 };
 
 export const HomePageLowerView = (props: HomePageLowerViewProps) => {
-  const { campaignPromoBanner, newsletterSignUp } = props;
+  const { campaignPromoBanner } = props;
   const posts = props.posts.map(postToPostListItem);
   const blogListProps = usePostList({ items: posts, withImage: true });
   const { introVideo } = props;
@@ -122,14 +119,6 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
               media={campaignPromoBanner.media[0]!}
             />
           </OakBox>
-          {newsletterSignUp && (
-            <OakBox>
-              <CampaignNewsletterSignup
-                textStyles={campaignTextStyles}
-                {...newsletterSignUp}
-              />
-            </OakBox>
-          )}
         </OakMaxWidth>
       )}
 

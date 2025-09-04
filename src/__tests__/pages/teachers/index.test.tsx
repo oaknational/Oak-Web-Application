@@ -49,7 +49,6 @@ const props: TeachersHomePageProps = {
   curriculumData: {
     keyStages: keyStageKeypad.keyStages,
   },
-  campaignData: mockCampaign,
 };
 
 const homepage = jest.fn().mockResolvedValue(props.pageData);
@@ -171,16 +170,6 @@ describe("Teachers Page", () => {
       expect(propsResult).toMatchObject({
         notFound: true,
       });
-    });
-
-    it("should load campaign data", async () => {
-      campaignBySlug.mockResolvedValueOnce(mockCampaign);
-
-      const result = (await getStaticProps({
-        params: { slug: "test-campaign" },
-      })) as { props: TeachersHomePageProps };
-
-      expect(result.props.campaignData).toMatchObject(mockCampaign);
     });
   });
 });
