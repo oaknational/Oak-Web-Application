@@ -17,6 +17,15 @@ const campaignHeaderSchema = z.object({
 
 export type CampaignHeader = z.infer<typeof campaignHeaderSchema>;
 
+const campaignVideoBannerSchema = z.object({
+  type: z.literal("CampaignVideoBanner"),
+  headingPortableTextWithPromo: portableTextSchema,
+  subheadingPortableTextWithPromo: portableTextSchema,
+  video: videoSchema,
+});
+
+export type CampaignVideoBannerType = z.infer<typeof campaignVideoBannerSchema>;
+
 export const campaignPageSchema = z
   .object({
     title: z.string(),
