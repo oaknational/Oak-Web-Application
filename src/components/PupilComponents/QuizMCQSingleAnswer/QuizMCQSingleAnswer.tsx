@@ -74,6 +74,7 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
         $gap={"space-between-s"}
         onChange={onChange}
         disabled={isFeedbackMode}
+        aria-labelledby={`${questionUid}-legend`}
       >
         {answers?.map((answer, i) => {
           const label = answer.answer.find(isText);

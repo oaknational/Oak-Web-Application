@@ -23,10 +23,8 @@ const restrictedLesson = lessonDownloadsFixture({
   loginRequired: true,
 });
 
-const mockFeatureFlagEnabled = jest.fn().mockReturnValue(false);
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagVariantKey: jest.fn(() => "with-login"),
-  useFeatureFlagEnabled: () => mockFeatureFlagEnabled(),
 }));
 
 describe("Hiding 'Your details", () => {
@@ -65,7 +63,6 @@ describe("Hiding 'Your details", () => {
 
   it("should show LoginRequired button and hide download button & form when not logged and geo restricted", () => {
     setUseUserReturn(mockLoggedOut);
-    mockFeatureFlagEnabled.mockReturnValue(true);
     const { queryByText, getByRole, queryByRole } = render(
       <LessonDownloads
         lesson={{ ...lesson, geoRestricted: true, loginRequired: false }}
@@ -87,9 +84,8 @@ describe("Hiding 'Your details", () => {
     expect(loginRequiredButton).toBeInTheDocument();
   });
 
-  it("should show LoginRequired button and hide download button & form when not logged and loginRequired is true", () => {
+  it("should show LoginRequired button and hide download button & form when not logged in", () => {
     setUseUserReturn(mockLoggedOut);
-    mockFeatureFlagEnabled.mockReturnValue(true);
     const { queryByText, getByRole, queryByRole } = render(
       <LessonDownloads
         lesson={{ ...lesson, geoRestricted: false, loginRequired: true }}
@@ -111,9 +107,8 @@ describe("Hiding 'Your details", () => {
     expect(loginRequiredButton).toBeInTheDocument();
   });
 
-  it("should show LoginRequired button and hide download button & form when not logged and geoRestricted and loginRequired is true", () => {
+  it("should show LoginRequired button and hide download button & form when not logged and geoRestricted", () => {
     setUseUserReturn(mockLoggedOut);
-    mockFeatureFlagEnabled.mockReturnValue(true);
     const { queryByText, getByRole, queryByRole } = render(
       <LessonDownloads
         lesson={{ ...lesson, geoRestricted: true, loginRequired: true }}
@@ -133,32 +128,11 @@ describe("Hiding 'Your details", () => {
     expect(loginRequiredButton).toBeInTheDocument();
   });
 
-  it("should not show LoginRequired button when feature flag disabled", () => {
-    setUseUserReturn(mockLoggedOut);
-    mockFeatureFlagEnabled.mockReturnValue(false);
-    const { queryByRole, getByText, getByRole } = render(
-      <LessonDownloads lesson={restrictedLesson} isCanonical={false} />,
-    );
-
-    const loginRequiredButton = queryByRole("button", {
-      name: "Sign in to continue",
-    });
-    const yourDetailsHeading = getByText("Your details");
-    const downloadButton = getByRole("button", {
-      name: "Download .zip",
-    });
-    expect(yourDetailsHeading).toBeInTheDocument();
-    expect(downloadButton).toBeInTheDocument();
-
-    expect(loginRequiredButton).not.toBeInTheDocument();
-  });
-
   it("should not show LoginRequired button when logged in", () => {
     setUseUserReturn({
       ...mockLoggedIn,
       user: mockTeacherUserWithDownloadAccess,
     });
-    mockFeatureFlagEnabled.mockReturnValue(true);
     const { queryByRole } = render(
       <LessonDownloads lesson={restrictedLesson} isCanonical={false} />,
     );
@@ -172,7 +146,6 @@ describe("Hiding 'Your details", () => {
 
   it("should show LessonDownloadRegionBlocked instead of copyright banner when logged in but not region authorised", () => {
     setUseUserReturn({ ...mockLoggedIn, user: mockUserWithoutDownloadAccess });
-    mockFeatureFlagEnabled.mockReturnValue(true);
     const { queryByText, queryByRole, getByText, queryByTestId } = render(
       <LessonDownloads lesson={restrictedLesson} isCanonical={false} />,
     );
