@@ -1,4 +1,4 @@
-import { OakBox, OakFlex } from "@oaknational/oak-components";
+import { OakBox, OakGrid, OakGridArea } from "@oaknational/oak-components";
 import { PortableTextBlock, PortableTextComponents } from "@portabletext/react";
 
 import { PortableTextWithDefaults } from "../../SharedComponents/PortableText";
@@ -18,44 +18,29 @@ export function CampaignVideoBanner({
   textStyles?: PortableTextComponents;
 }) {
   return (
-    <OakFlex
-      $maxWidth={"all-spacing-24"}
-      $flexDirection={["column", "row"]}
-      $justifyContent={"center"}
-      $alignItems={"center"}
-      $width={"100%"}
-      $gap={"space-between-m"}
-      $alignSelf={"stretch"}
-      $borderRadius={"border-radius-xl"}
-      $pv={["inner-padding-xl5"]}
-      $ph={["inner-padding-xl4"]}
+    <OakGrid
+      $mt={["space-between-xxl", "space-between-xxl", "space-between-xxxl"]}
+      $maxWidth={["unset", "all-spacing-24"]}
     >
-      <OakFlex
-        $flexDirection={["column", "column", "row"]}
-        $justifyContent={"center"}
-        $alignSelf={["auto", "unset", "stretch"]}
-        $gap={["space-between-m", "space-between-m", "space-between-l"]}
-        $ph={["inner-padding-m", "inner-padding-xl3"]}
+      <OakGridArea
+        $colSpan={[12, 5, 5]}
+        $colStart={[1, 2, 2]}
+        $rowStart={0}
+        $mb={["space-between-m", "space-between-l"]}
       >
-        <OakFlex
-          $minHeight={"100%"}
-          $minWidth={["100%", "100%", "fit-content"]}
-          $mb={["space-between-none", "space-between-l"]}
-        >
-          {video && <CMSVideo video={video} location="marketing" />}
-        </OakFlex>
-
-        <OakFlex
-          $alignSelf={"stretch"}
-          $flexDirection={["column"]}
-          $gap={"space-between-m"}
-        >
-          <PortableTextWithDefaults value={heading} components={textStyles} />
-          <OakBox $minWidth={["fit-content"]}>
-            {subheading && <PortableTextWithDefaults value={subheading} />}
-          </OakBox>
-        </OakFlex>
-      </OakFlex>
-    </OakFlex>
+        {video && <CMSVideo video={video} location="marketing" />}
+      </OakGridArea>
+      <OakGridArea
+        $colSpan={[12, 4, 4]}
+        $colStart={[0, 8, 8]}
+        $rowStart={0}
+        $mb={["space-between-m", "space-between-l"]}
+      >
+        <PortableTextWithDefaults value={heading} components={textStyles} />
+        <OakBox>
+          {subheading && <PortableTextWithDefaults value={subheading} />}
+        </OakBox>
+      </OakGridArea>
+    </OakGrid>
   );
 }

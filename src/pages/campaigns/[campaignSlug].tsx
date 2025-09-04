@@ -50,7 +50,11 @@ export const campaignTextStyles: PortableTextComponents = {
     },
     heading4: (props) => {
       return (
-        <OakHeading $font={["heading-6", "heading-5", "heading-4"]} tag="h4">
+        <OakHeading
+          $font={["heading-6", "heading-5", "heading-4"]}
+          tag="h4"
+          $mb={"space-between-m"}
+        >
           {props.children}
         </OakHeading>
       );
