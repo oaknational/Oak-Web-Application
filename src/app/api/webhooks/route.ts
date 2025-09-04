@@ -9,12 +9,17 @@ import { handleSessionCreatedEvent } from "@/utils/handleSessionCreatedEvent";
 import getServerConfig from "@/node-lib/getServerConfig";
 import { getWebhookEducatorApi } from "@/node-lib/educator-api";
 import errorReporter from "@/common-lib/error-reporter";
-import { userSignUpCompleted } from "@/browser-lib/avo/Avo";
+import {
+  userSignIn,
+  userSignOut,
+  userSignUpCompleted,
+} from "@/browser-lib/avo/Avo";
 import { pickSingleSignOnService } from "@/utils/pickSingleSignOnService";
 
 export async function POST(req: NextRequest) {
   const signingSecret = getServerConfig("clerkSigningSecret");
   const reportError = errorReporter("webhooks");
+  setUpEventTracking();
 
   if (!signingSecret) {
     throw new Error(
@@ -62,55 +67,77 @@ export async function POST(req: NextRequest) {
 
   const { id } = evt.data;
 
-  // Insert or update user in db
-  if (id && evt.type === "user.updated") {
-    const educatorApi = await getWebhookEducatorApi(id);
-    const sourceApp = evt.data.public_metadata?.sourceApp;
+  // Handle webhook events based on type
+  if (id) {
+    switch (evt.type) {
+      case "user.updated": {
+        const educatorApi = await getWebhookEducatorApi(id);
+        const sourceApp = evt.data.public_metadata?.sourceApp;
 
-    try {
-      await educatorApi.createUser({ userId: id, sourceApp });
-    } catch (error) {
-      reportError(error, {
-        message: "Failed to create user in database",
-      });
-      return new Response("Error: Could not create user", {
-        status: 500,
-      });
-    }
-  }
-  if (id && evt.type === "session.created") {
-    try {
-      await handleSessionCreatedEvent(evt);
-    } catch (error) {
-      reportError(error, {
-        message: "Failed to update requiresGeolocation",
-      });
-      return new Response("Error: could not update user", {
-        status: 500,
-      });
-    }
-  }
-  if (id && evt.type === "user.created") {
-    try {
-      setUpEventTracking();
+        try {
+          await educatorApi.createUser({ userId: id, sourceApp });
+        } catch (error) {
+          reportError(error, {
+            message: "Failed to create user in database",
+          });
+          return new Response("Error: Could not create user", {
+            status: 500,
+          });
+        }
+        break;
+      }
 
-      userSignUpCompleted({
-        platform: "owa",
-        product: "user account management",
-        engagementIntent: "explore",
-        componentType: "signup_form",
-        eventVersion: "2.0.0",
-        analyticsUseCase: null,
-        singleSignOnService: pickSingleSignOnService(
-          evt.data.external_accounts.map((account) => account.provider),
-        ),
-        userId_: id,
-      });
-    } catch (e) {
-      reportError(e, {
-        message: "Failed to track user sign-up event",
-      });
+      case "session.created": {
+        try {
+          userSignIn({
+            userId_: evt.data.user_id,
+          });
+          await handleSessionCreatedEvent(evt);
+        } catch (error) {
+          reportError(error, {
+            message: "Failed to update requiresGeolocation",
+          });
+          return new Response("Error: could not update user", {
+            status: 500,
+          });
+        }
+        break;
+      }
+
+      case "session.ended":
+      case "session.removed":
+      case "session.revoked": {
+        userSignOut();
+        break;
+      }
+
+      case "user.created": {
+        try {
+          userSignUpCompleted({
+            platform: "owa",
+            product: "user account management",
+            engagementIntent: "explore",
+            componentType: "signup_form",
+            eventVersion: "2.0.0",
+            analyticsUseCase: null,
+            singleSignOnService: pickSingleSignOnService(
+              evt.data.external_accounts.map((account) => account.provider),
+            ),
+            userId_: evt.data.id,
+          });
+        } catch (e) {
+          reportError(e, {
+            message: "Failed to track user sign-up event",
+          });
+        }
+        break;
+      }
+
+      default:
+        // No action needed for other event types
+        break;
     }
   }
+
   return new Response("Webhook received", { status: 200 });
 }

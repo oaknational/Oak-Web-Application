@@ -47,7 +47,7 @@ const getAvoBridge = ({ posthog }: AnalyticsServices) => {
     }
 
     posthog.capture({
-      distinctId: (eventProperties.userId as string) || "anonymous",
+      distinctId: (eventProperties.user_id as string) || "anonymous",
       event: eventName,
       properties: eventProperties,
     });

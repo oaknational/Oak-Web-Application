@@ -11,10 +11,7 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import removeDecommissionedKeys from "@/config/removeDecommissionedKeys";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
-import {
-  useCheckUserMetadata,
-  useCheckUserMetadata,
-} from "@/hooks/useCheckUserMetadata";
+import { useCheckUserMetadata } from "@/hooks/useCheckUserMetadata";
 
 /**
  * Anything code that should run once in the browser should be placed here
