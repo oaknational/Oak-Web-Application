@@ -1,76 +1,109 @@
-import { FC } from "react";
+import { FC, FormEvent, useState } from "react";
 import {
   OakFlex,
-  // OakSecondaryLink,
   OakPrimaryButton,
   OakHeading,
 } from "@oaknational/oak-components";
 import { PortableTextReactComponents } from "@portabletext/react";
 
-import useSchoolPicker from "../ResourcePageSchoolPicker/useSchoolPicker";
+import { newsletterSignupFormSubmitSchema } from "./CampaignNewsletterSignup.schema";
 
-// import { resolveOakHref } from "@/common-lib/urls";
 import { OakInputWithLabel } from "@/components/SharedComponents/OakInputWithLabel/OakInputWithLabel";
-import YourDetails from "@/components/CurriculumComponents/OakComponentsKitchen/YourDetails"; // School,
+import YourDetails, {
+  School,
+} from "@/components/CurriculumComponents/OakComponentsKitchen/YourDetails"; // School,
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { NewsletterSignUp } from "@/common-lib/cms-types/campaignPage";
+import { useFetch } from "@/hooks/useFetch";
+import { runSchema } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
+
+type NewsletterSignUpData = Partial<{
+  schools: School[];
+  schoolId?: string;
+  schoolName?: string;
+  email?: string;
+  schoolNotListed?: boolean;
+  name: string;
+}>;
+
+type NewsletterSignUpFormErrors = Partial<{
+  schoolId: string;
+  schoolNotListed: string;
+  email: string;
+  name: string;
+}>;
 
 export type CampaignNewsletterSignupProps = NewsletterSignUp & {
-  // heading: string;
-  // body?: PortableTextBlock[] | null;
-  // buttonCta?: string | null;
-  // formId: string;
   textStyles: Partial<PortableTextReactComponents>;
-  // schoolId: string | undefined;
-  // schoolName: string | undefined;
-  // // schools: School[];
-  // schoolNotListed: boolean;
-  // email?: string;
-  // errors: string;
-  onChange?: () => void;
 };
 
-const handleFormSubmit = () => {};
-
 const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
-  // email = undefined,
-  // schoolId = undefined,
-  // schoolName = undefined,
-  // // schools = [],
-  // schoolNotListed = false,
-  // onChange = () => {},
   heading,
   bodyPortableText,
   buttonCta,
-  // formId,
-  // textStyles,
+  formId,
+  textStyles,
 }) => {
-  // const data = { schoolId, schoolName, email, schoolNotListed };
-  // const {
-  //   selectedSchool,
-  //   setSelectedSchool,
-  //   schoolPickerInputValue,
-  //   setSchoolPickerInputValue,
-  //   schools,
-  // } = useSchoolPicker({ withHomeschool });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  // const [submitError, setSubmitError] = useState<string | undefined>(undefined);
 
-  const {
-    // selectedSchool,
-    // setSelectedSchool,
-    // schoolPickerInputValue,
-    // setSchoolPickerInputValue,
-    schools,
-  } = useSchoolPicker({ withHomeschool: false });
+  const [errors, setErrors] = useState<NewsletterSignUpFormErrors>({});
+
+  const [data, setData] = useState<NewsletterSignUpData>(() => ({
+    schoolId: undefined,
+    schoolName: undefined,
+    email: undefined,
+    schoolNotListed: false,
+    schools: [],
+    name: "",
+  }));
+
+  const onChange = (partial: Partial<NewsletterSignUpData>) => {
+    const newData = {
+      ...data,
+      ...partial,
+    };
+    setData?.(newData);
+  };
+
+  const schoolPickerInputValue = data.schoolName;
+  const { data: schools } = useFetch<School[]>(
+    `https://school-picker.thenational.academy/${schoolPickerInputValue}`,
+    "school-picker/fetch-suggestions",
+  );
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    const formValidation = runSchema(newsletterSignupFormSubmitSchema, data);
+
+    setErrors(formValidation.errors);
+    console.log(data, formValidation);
+
+    if (formValidation.success) {
+      setErrors({});
+      console.log(data);
+      try {
+        // call hubspot
+        console.log(formId);
+      } catch (e) {
+        // report error
+      } finally {
+        setIsSubmitting(false);
+        setData({});
+      }
+    }
+    setIsSubmitting(false);
+  };
 
   return (
     <OakFlex
       $maxWidth={"all-spacing-24"}
       $flexDirection={["column", "row"]}
-      $width={"100%"}
-      $gap={"space-between-m2"}
+      $gap={"space-between-xxl"}
       $borderRadius={"border-radius-xl"}
-      $pv={["inner-padding-xl5"]}
-      $ph={["inner-padding-xl4"]}
+      $pv={["inner-padding-xl8"]}
+      $ph={["inner-padding-xl8"]}
     >
       <OakFlex
         $flexDirection={"column"}
@@ -82,7 +115,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
           $flexDirection={"row"}
           $alignItems={"center"}
           $alignSelf={"stretch"}
-          $gap={"space-between-xxl"}
+          $gap={"space-between-xxxl"}
         >
           <OakFlex
             $alignSelf={"stretch"}
@@ -92,48 +125,35 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
             <OakHeading tag="h4" $font={"heading-light-4"}>
               {heading}
             </OakHeading>
-            <PortableTextWithDefaults value={bodyPortableText} />
-            {/* <OakFlex $alignSelf={"stretch"} $flexDirection={"column"}>
-              Over 200,000 teachers are with you - and with Oak. Oak's resources
-              aren't here to take over your planning - they're here to give you
-              a starting point so you can build on what works. Think fresh ways
-              to tackle tricky concepts. New angles that reach every pupil. Or
-              just a little extra inspiration when the well runs dry. Our email
-              list is where we share the good stuff first, to over 200k teachers
-              - new content drops, expert insights and helpful resources. Oak is
-              free - and always will be. Unsubscribe at any time. Read our{" "}
-              <OakSecondaryLink
-                href={resolveOakHref({
-                  page: "legal",
-                  legalSlug: "privacy-policy",
-                })}
-              >
-                privacy policy
-              </OakSecondaryLink>
-            </OakFlex> */}
+            <PortableTextWithDefaults
+              value={bodyPortableText}
+              components={textStyles}
+            />
           </OakFlex>
           <OakFlex
             as="form"
+            // onSubmit={this.handleSubmit}
             $flexDirection={"column"}
             $background={"white"}
             $pa={"inner-padding-xl"}
             $gap={"space-between-m"}
             $borderRadius={"border-radius-s"}
-            onSubmit={handleFormSubmit}
           >
             <OakInputWithLabel
               label="Name"
               id="nameInput"
               name="Name"
-              onChange={() => {}}
+              error={errors.name}
+              onChange={(e) => onChange({ name: e.target.value })}
               required={true}
               labelBackground="mint"
+              placeholder="Type your name"
             />
             <YourDetails
-              data={{}}
-              schools={schools}
-              errors={{}}
-              onChange={() => {}}
+              data={data}
+              schools={schools ?? []}
+              errors={errors}
+              onChange={onChange}
               labelBackground="mint"
               hidePrivacyPolicy={true}
               emailRequired={true}
@@ -142,6 +162,8 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
               type="submit"
               iconName="arrow-right"
               isTrailingIcon
+              isLoading={isSubmitting}
+              onClick={handleSubmit}
             >
               {buttonCta}
             </OakPrimaryButton>
