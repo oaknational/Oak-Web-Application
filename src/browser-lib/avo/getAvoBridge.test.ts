@@ -16,10 +16,10 @@ function getMockPosthog(
       identify: jest.fn(),
     };
   } else {
-    return {
-      capture: jest.fn(),
-      identify: jest.fn(),
-    } as unknown as PostHogNode;
+    const mockPostHog = new PostHogNode("test-key");
+    mockPostHog.capture = jest.fn();
+    mockPostHog.identify = jest.fn();
+    return mockPostHog;
   }
 }
 
