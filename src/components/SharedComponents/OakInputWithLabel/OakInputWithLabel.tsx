@@ -58,18 +58,13 @@ export const OakInputWithLabel = ({
   const [hasFocus, setHasFocus] = useState(false);
 
   return (
-    <OakFlex $flexDirection="column">
+    <OakFlex $flexDirection="column" $width="100%">
       {error && (
         <OakBox id={error} role="alert" $pb={["inner-padding-xl"]}>
           <OakFieldError>{error}</OakFieldError>
         </OakBox>
       )}
-      <OakFlex
-        $position="relative"
-        $flexDirection="column"
-        ref={ref}
-        $width="100%"
-      >
+      <OakFlex $position="relative" $flexDirection="column" ref={ref}>
         <OakJauntyAngleLabel
           label={label + (required === true ? " (required)" : "")}
           $color={!!error || hasFocus ? "white" : "black"}
