@@ -194,6 +194,7 @@ export default function YourDetails({
         $flexDirection={"column"}
         $alignItems={"start"}
         $gap={"space-between-xs"}
+        $mt={"space-between-ssx"}
       >
         <OakInputWithLabel
           label={`Email ${emailRequired ? "" : "(optional)"}`}
