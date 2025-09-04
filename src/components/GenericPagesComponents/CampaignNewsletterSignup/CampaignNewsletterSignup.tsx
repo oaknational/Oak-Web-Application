@@ -3,10 +3,12 @@ import {
   OakFlex,
   OakPrimaryButton,
   OakHeading,
+  OakP,
+  OakBox,
 } from "@oaknational/oak-components";
 import { PortableTextReactComponents } from "@portabletext/react";
 
-// import { useHubspotSubmit } from "../../TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
+import { useNewsletterForm } from "../NewsletterForm";
 
 import { newsletterSignupFormSubmitSchema } from "./CampaignNewsletterSignup.schema";
 
@@ -18,6 +20,7 @@ import { PortableTextWithDefaults } from "@/components/SharedComponents/Portable
 import { NewsletterSignUp } from "@/common-lib/cms-types/campaignPage";
 import { useFetch } from "@/hooks/useFetch";
 import { runSchema } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
+import OakError from "@/errors/OakError";
 
 type NewsletterSignUpData = Partial<{
   schools: School[];
@@ -46,8 +49,9 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
   formId,
   textStyles,
 }) => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [submitError, setSubmitError] = useState<string>("");
+  const [successMessage, setSuccessMessage] = useState<string>("");
   const [errors, setErrors] = useState<NewsletterSignUpFormErrors>({});
 
   const [data, setData] = useState<NewsletterSignUpData>(() => ({
@@ -67,7 +71,9 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
     setData(newData);
   };
 
-  // const { onHubspotSubmit } = useHubspotSubmit(formId);
+  const { onSubmit: onHubspotSubmit } = useNewsletterForm({
+    hubspotNewsletterFormId: formId,
+  });
 
   const schoolPickerInputValue = data.schoolName;
   const { data: schools } = useFetch<School[]>(
@@ -75,7 +81,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
     "school-picker/fetch-suggestions",
   );
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     const formValidation = runSchema(newsletterSignupFormSubmitSchema, data);
@@ -86,11 +92,21 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
       setErrors({});
       console.log(data);
       try {
-        // call hubspot
-        // onHubspotSubmit(data);
+        await onHubspotSubmit({
+          school: data.schoolId ?? "notListed",
+          schoolName: data.schoolName,
+          email: data.email,
+          userRole: "",
+        });
+        setSuccessMessage("Thanks, that's been received");
         console.log(formId);
-      } catch (e) {
-        // report error
+      } catch (error) {
+        if (error instanceof OakError) {
+          setSubmitError(error.message);
+        } else {
+          reportError(error);
+          setSubmitError("An unknown error occurred");
+        }
       } finally {
         setIsSubmitting(false);
         setData({
@@ -178,6 +194,30 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
             >
               {buttonCta}
             </OakPrimaryButton>
+            {(submitError.length > 0 || successMessage.length > 0) && (
+              <OakBox>
+                <OakP
+                  $mt={submitError ? "space-between-s" : "space-between-none"}
+                  $font={"body-3"}
+                  aria-live="assertive"
+                  role="alert"
+                  $color="red"
+                >
+                  {submitError}
+                </OakP>
+                <OakP
+                  $mt={
+                    !submitError && successMessage
+                      ? "space-between-s"
+                      : "space-between-none"
+                  }
+                  $font={"body-3"}
+                  aria-live="polite"
+                >
+                  {!submitError && successMessage}
+                </OakP>
+              </OakBox>
+            )}
           </OakFlex>
         </OakFlex>
       </OakFlex>
