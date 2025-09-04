@@ -50,3 +50,7 @@ export const newsletterSignupFormSubmitSchema = z.intersection(
   partialSchema,
   schoolCombinedSchema,
 );
+
+export type CampaignNewsletterSignUpFormProps = z.infer<
+  typeof newsletterSignupFormSubmitSchema
+>;

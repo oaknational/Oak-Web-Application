@@ -24,7 +24,7 @@ import { CampaignPromoBannerType, HomePage } from "@/common-lib/cms-types";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import { CampaignPromoBanner } from "@/components/GenericPagesComponents/CampaignPromoBanner/CampaignPromoBanner";
 import { campaignTextStyles } from "@/pages/campaigns/[campaignSlug]";
-import CampaignNewsletterSignup from "@/components/TeacherComponents/CampaignNewsletterSignup/CampaignNewsletterSignup";
+import CampaignNewsletterSignup from "@/components/GenericPagesComponents/CampaignNewsletterSignup/CampaignNewsletterSignup";
 import { NewsletterSignUp } from "@/common-lib/cms-types/campaignPage";
 
 export const postToPostListItem = (post: SerializedPost): PostListItemProps => {
@@ -122,20 +122,17 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
               media={campaignPromoBanner.media[0]!}
             />
           </OakBox>
+          {newsletterSignUp && (
+            <OakBox>
+              <CampaignNewsletterSignup
+                textStyles={campaignTextStyles}
+                {...newsletterSignUp}
+              />
+            </OakBox>
+          )}
         </OakMaxWidth>
       )}
-      <OakMaxWidth>
-        {newsletterSignUp && (
-          <CampaignNewsletterSignup
-            textStyles={campaignTextStyles}
-            heading={newsletterSignUp?.heading}
-            bodyPortableText={newsletterSignUp?.bodyPortableText}
-            buttonCta={newsletterSignUp.buttonCta}
-            formId={newsletterSignUp.formId}
-            type="NewsletterSignUp"
-          />
-        )}
-      </OakMaxWidth>
+
       <OakMaxWidth>
         <BlogAndWebinarList
           blogListPosts={blogListProps}

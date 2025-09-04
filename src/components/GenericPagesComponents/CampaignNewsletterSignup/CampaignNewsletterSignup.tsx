@@ -6,6 +6,8 @@ import {
 } from "@oaknational/oak-components";
 import { PortableTextReactComponents } from "@portabletext/react";
 
+// import { useHubspotSubmit } from "../../TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
+
 import { newsletterSignupFormSubmitSchema } from "./CampaignNewsletterSignup.schema";
 
 import { OakInputWithLabel } from "@/components/SharedComponents/OakInputWithLabel/OakInputWithLabel";
@@ -65,6 +67,8 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
     setData(newData);
   };
 
+  // const { onHubspotSubmit } = useHubspotSubmit(formId);
+
   const schoolPickerInputValue = data.schoolName;
   const { data: schools } = useFetch<School[]>(
     `https://school-picker.thenational.academy/${schoolPickerInputValue}`,
@@ -77,13 +81,13 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
     const formValidation = runSchema(newsletterSignupFormSubmitSchema, data);
 
     setErrors(formValidation.errors);
-    console.log(data, formValidation);
 
     if (formValidation.success) {
       setErrors({});
       console.log(data);
       try {
         // call hubspot
+        // onHubspotSubmit(data);
         console.log(formId);
       } catch (e) {
         // report error
