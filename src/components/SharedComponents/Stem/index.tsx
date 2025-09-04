@@ -14,6 +14,13 @@ export function Stem({ stem }: StemProps) {
   if (ENABLE_SSR) {
     return (
       <div
+        style={{
+          display: "flex",
+          height: "100%",
+          padding: "6px",
+          gap: "6px",
+          alignItems: "center",
+        }}
         dangerouslySetInnerHTML={{
           __html: removeMarkdown(stem.html),
         }}
