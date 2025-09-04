@@ -22,12 +22,9 @@ export const nameInputSchema = z
   })
   .min(1, ERRORS.name);
 
-export const emailRequiredSchema = z
-  .string()
-  .email({
-    message: ERRORS.email,
-  })
-  .or(z.literal(""));
+export const emailRequiredSchema = z.string().email({
+  message: ERRORS.email,
+});
 
 const schoolCombinedSchema = z
   .object({
