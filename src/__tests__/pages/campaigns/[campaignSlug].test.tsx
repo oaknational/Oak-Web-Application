@@ -6,41 +6,8 @@ import CampaignSinglePage, {
 } from "@/pages/campaigns/[campaignSlug]";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import { CampaignPage } from "@/common-lib/cms-types/campaignPage";
-import { mockImageAsset } from "@/__tests__/__helpers__/cms";
 import keyStagesFixture from "@/node-lib/curriculum-api-2023/fixtures/keyStages.fixture";
-import {
-  bodyPortableText,
-  headingPortableText,
-} from "@/fixtures/campaign/portableText";
-
-export const mockCampaign: CampaignPage = {
-  id: "test-id",
-  content: [
-    {
-      headingPortableTextWithPromo: [],
-      type: "CampaignIntro",
-      bodyPortableTextWithPromo: bodyPortableText("campaign-intro-body-text"),
-    },
-    {
-      headingPortableTextWithPromo: headingPortableText(
-        "campaign-promo-heading-text",
-      ),
-      type: "CampaignPromoBanner",
-      media: [{ ...mockImageAsset(), altText: "campaign-promo-test" }],
-    },
-  ],
-  header: {
-    image: { ...mockImageAsset(), altText: "Test Image Alt Text" },
-    heading: "Test Campaign Header",
-  },
-  slug: "test-campaign",
-  title: "Test Campaign",
-  seo: {
-    title: "Test Campaign SEO Title",
-    description: "Test Campaign SEO Description",
-  },
-};
+import mockCampaign from "@/fixtures/campaign/mockCampaign";
 
 const campaignBySlug = jest.fn().mockResolvedValue(mockCampaign);
 const keyStages = jest.fn().mockResolvedValue(keyStagesFixture());
