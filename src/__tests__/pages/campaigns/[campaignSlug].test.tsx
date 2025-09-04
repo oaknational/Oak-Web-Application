@@ -2,45 +2,15 @@ import { GetServerSidePropsContext } from "next";
 import { screen } from "@testing-library/dom";
 
 import CampaignSinglePage, {
+  blockOrder,
   getServerSideProps,
+  sortCampaignBlocksByBlockType,
 } from "@/pages/campaigns/[campaignSlug]";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import { CampaignPage } from "@/common-lib/cms-types/campaignPage";
-import { mockImageAsset } from "@/__tests__/__helpers__/cms";
 import keyStagesFixture from "@/node-lib/curriculum-api-2023/fixtures/keyStages.fixture";
-import {
-  bodyPortableText,
-  headingPortableText,
-} from "@/fixtures/campaign/portableText";
-
-const mockCampaign: CampaignPage = {
-  id: "test-id",
-  content: [
-    {
-      headingPortableTextWithPromo: [],
-      type: "CampaignIntro",
-      bodyPortableTextWithPromo: bodyPortableText("campaign-intro-body-text"),
-    },
-    {
-      headingPortableTextWithPromo: headingPortableText(
-        "campaign-promo-heading-text",
-      ),
-      type: "CampaignPromoBanner",
-      media: [{ ...mockImageAsset(), altText: "campaign-promo-test" }],
-    },
-  ],
-  header: {
-    image: { ...mockImageAsset(), altText: "Test Image Alt Text" },
-    heading: "Test Campaign Header",
-  },
-  slug: "test-campaign",
-  title: "Test Campaign",
-  seo: {
-    title: "Test Campaign SEO Title",
-    description: "Test Campaign SEO Description",
-  },
-};
+import mockCampaign from "@/fixtures/campaign/mockCampaign";
+import { CampaignPage } from "@/node-lib/sanity-graphql/generated/sdk";
 
 const campaignBySlug = jest.fn().mockResolvedValue(mockCampaign);
 const keyStages = jest.fn().mockResolvedValue(keyStagesFixture());
@@ -57,6 +27,13 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
   default: {
     keyStages: () => keyStages(),
   },
+}));
+
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    identify: jest.fn(),
+  }),
 }));
 
 jest.mock("@/node-lib/posthog/getPosthogId", () => ({
@@ -206,6 +183,35 @@ describe("Campaign page", () => {
     expect(seo).toMatchObject({
       title: "Test Campaign SEO Title | NEXT_PUBLIC_SEO_APP_NAME",
       description: "Test Campaign SEO Description",
+    });
+  });
+
+  it("renders a sign up component", () => {
+    render(
+      <CampaignSinglePage
+        campaign={mockCampaign}
+        keyStages={keyStagesFixture()}
+      />,
+    );
+    const signUpHeading = screen.getByText("newsletter-sign-up-heading-text");
+    const signUpCta = screen.getByText("newsletter-signup-cta-button");
+    expect(signUpHeading).toBeInTheDocument();
+    expect(signUpCta).toBeInTheDocument();
+  });
+
+  describe("utils: block sorting function", () => {
+    it("sorts the mock content blocks correctly", () => {
+      const blocks = mockCampaign.content;
+      const sorted = sortCampaignBlocksByBlockType(
+        blockOrder,
+        blocks,
+      ) as CampaignPage["content"];
+
+      if (sorted) {
+        expect(sorted[0]).toBe(blocks[0]);
+        expect(sorted[1]).toBe(blocks[2]);
+        expect(sorted[2]).toBe(blocks[1]);
+      }
     });
   });
 });

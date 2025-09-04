@@ -4,9 +4,27 @@ import {
   OakFieldError,
   OakJauntyAngleLabel,
   OakTextInput,
+  OakColorToken,
 } from "@oaknational/oak-components";
 import { useState } from "react";
 import { RefCallBack } from "react-hook-form";
+
+export const getFormLabelBackground = (
+  error: string | undefined,
+  focusState: boolean | undefined,
+  backgroundColor: OakColorToken | undefined,
+) => {
+  if (error) {
+    return "red";
+  }
+  if (focusState) {
+    return "blue";
+  }
+  if (backgroundColor) {
+    return backgroundColor;
+  }
+  return "lemon";
+};
 
 export const OakInputWithLabel = ({
   error,
@@ -20,6 +38,7 @@ export const OakInputWithLabel = ({
   placeholder = "",
   name,
   defaultValue,
+  labelBackground,
 }: {
   label: string;
   required: boolean;
@@ -32,53 +51,52 @@ export const OakInputWithLabel = ({
   autocomplete?: string;
   name: string;
   defaultValue?: string;
+  labelBackground?: OakColorToken;
+  // value?: string;
 }) => {
   const [hasFocus, setHasFocus] = useState(false);
 
   return (
-    <OakFlex
-      $position="relative"
-      $flexDirection="column"
-      ref={ref}
-      $width="100%"
-    >
+    <OakFlex $flexDirection="column" $width="100%">
       {error && (
-        <OakBox id={error} role="alert" $mv="space-between-s">
+        <OakBox id={error} role="alert" $pb={["inner-padding-xl"]}>
           <OakFieldError>{error}</OakFieldError>
         </OakBox>
       )}
-      <OakJauntyAngleLabel
-        label={label + (required ? " (required)" : "")}
-        $color={!!error || hasFocus ? "white" : "black"}
-        htmlFor={id}
-        as="label"
-        id={label + "-label"}
-        $font={"heading-7"}
-        $background={error ? "red" : hasFocus ? "blue" : "lemon"}
-        $zIndex="in-front"
-        $position="absolute"
-        $top={"-20px"}
-        $left={"5px"}
-        $borderRadius="border-radius-square"
-        data-testid="jaunty-label"
-      />
-      <OakTextInput
-        id={id}
-        data-testid="text-input"
-        placeholder={placeholder}
-        onChange={onChange}
-        onFocus={() => setHasFocus(true)}
-        onBlur={(e) => {
-          onBlur?.(e);
-          setHasFocus(false);
-        }}
-        $pv="inner-padding-none"
-        wrapperWidth="100%"
-        $height="all-spacing-10"
-        autoComplete={autocomplete}
-        name={name}
-        defaultValue={defaultValue}
-      />
+      <OakFlex $position="relative" $flexDirection="column" ref={ref}>
+        <OakJauntyAngleLabel
+          label={label + (required === true ? " (required)" : "")}
+          $color={!!error || hasFocus ? "white" : "black"}
+          htmlFor={id}
+          as="label"
+          id={label + "-label"}
+          $font={"heading-7"}
+          $background={getFormLabelBackground(error, hasFocus, labelBackground)}
+          $zIndex="in-front"
+          $position="absolute"
+          $top={"-20px"}
+          $left={"5px"}
+          $borderRadius="border-radius-square"
+          data-testid="jaunty-label"
+        />
+        <OakTextInput
+          id={id}
+          data-testid="text-input"
+          placeholder={placeholder}
+          onChange={onChange}
+          onFocus={() => setHasFocus(true)}
+          onBlur={(e) => {
+            onBlur?.(e);
+            setHasFocus(false);
+          }}
+          $pv="inner-padding-none"
+          wrapperWidth="100%"
+          $height="all-spacing-10"
+          autoComplete={autocomplete}
+          name={name}
+          defaultValue={defaultValue}
+        />
+      </OakFlex>
     </OakFlex>
   );
 };

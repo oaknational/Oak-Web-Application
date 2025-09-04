@@ -1,5 +1,6 @@
 import {
   OakCheckBox,
+  OakColorToken,
   OakFlex,
   OakLink,
   OakP,
@@ -108,12 +109,19 @@ type YourDetailsProps = {
     }>,
   ) => void;
   schools: School[];
+  labelBackground?: OakColorToken;
+  hidePrivacyPolicy?: boolean;
+  emailRequired?: boolean;
 };
+
 export default function YourDetails({
   schools,
   data,
   errors,
   onChange,
+  labelBackground,
+  hidePrivacyPolicy = false,
+  emailRequired = false,
 }: YourDetailsProps) {
   const schoolsAsAutocompleteItems = useSchoolsFromApi({ schools });
   const autoCompleteList = injectCurrentSchool(
@@ -153,6 +161,7 @@ export default function YourDetails({
             });
           }}
           value={data.schoolName}
+          labelBackground={labelBackground}
         >
           {autoCompleteList.map(({ key, textValue }) => {
             const element = formatSchoolName(textValue, data.schoolName);
@@ -187,30 +196,33 @@ export default function YourDetails({
         $gap={"space-between-xs"}
       >
         <OakInputWithLabel
-          label="Email (optional)"
+          label={`Email ${emailRequired ? "" : "(optional)"}`}
           id="download-email"
           data-testid="download-email"
           error={errors.email}
           onChange={(e) => onChange({ email: e.target.value })}
-          required={false}
+          required={emailRequired}
           placeholder="Type your email address"
           name="download-email"
+          labelBackground={labelBackground}
           defaultValue={data.email}
         />
 
-        <OakP $font={["body-3"]}>
-          Join over 100k teachers and get free resources and other helpful
-          content by email. Unsubscribe at any time. Read our{" "}
-          <Link
-            href={resolveOakHref({
-              page: "legal",
-              legalSlug: "privacy",
-            })}
-          >
-            privacy policy
-          </Link>
-          .
-        </OakP>
+        {!hidePrivacyPolicy && (
+          <OakP $font={["body-3"]}>
+            Join over 100k teachers and get free resources and other helpful
+            content by email. Unsubscribe at any time. Read our{" "}
+            <Link
+              href={resolveOakHref({
+                page: "legal",
+                legalSlug: "privacy",
+              })}
+            >
+              privacy policy
+            </Link>
+            .
+          </OakP>
+        )}
       </OakFlex>
     </>
   );

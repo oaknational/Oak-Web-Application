@@ -51,6 +51,7 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
   const campaignFeatureFlagEnabled = useFeatureFlagEnabled(
     "mythbusting-campaign",
   );
+
   const showCampaignBanner =
     campaignFeatureFlagEnabled && campaignPromoBanner?.media[0];
 
@@ -120,6 +121,7 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
           </OakBox>
         </OakMaxWidth>
       )}
+
       <OakMaxWidth>
         <BlogAndWebinarList
           blogListPosts={blogListProps}

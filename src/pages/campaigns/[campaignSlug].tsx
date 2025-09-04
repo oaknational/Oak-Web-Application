@@ -3,7 +3,10 @@ import { OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
 import { PortableTextComponents } from "@portabletext/react";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import { CampaignPage } from "@/common-lib/cms-types/campaignPage";
+import {
+  CampaignContentType,
+  CampaignPage,
+} from "@/common-lib/cms-types/campaignPage";
 import CMSClient from "@/node-lib/cms";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
@@ -16,11 +19,31 @@ import curriculumApi2023, {
 import { CampaignPageHeader } from "@/components/GenericPagesComponents/CampaignPageHeader/CampaignPageHeader";
 import { CampaignPageIntro } from "@/components/GenericPagesComponents/CampaignPageIntro/CampaignPageIntro";
 import { CampaignPromoBanner } from "@/components/GenericPagesComponents/CampaignPromoBanner/CampaignPromoBanner";
+import CampaignNewsletterSignup from "@/components/GenericPagesComponents/CampaignNewsletterSignup/CampaignNewsletterSignup";
+
+export const blockOrder = [
+  "CampaignIntro",
+  "CampaignVideoBanner",
+  "NewsletterSignUp",
+  "CampaignPromoBanner",
+];
+
+export function sortCampaignBlocksByBlockType(
+  sortOrder: string[],
+  campaignBlocks: CampaignPage["content"],
+): CampaignContentType[] {
+  return sortOrder
+    .map((blockType) => {
+      return campaignBlocks.filter(({ type }) => type === blockType);
+    })
+    .flat();
+}
 
 export type CampaignSinglePageProps = {
   campaign: CampaignPage;
   keyStages: KeyStagesData;
 };
+
 export const campaignTextStyles: PortableTextComponents = {
   block: {
     heading1: (props) => {
@@ -47,6 +70,13 @@ export const campaignTextStyles: PortableTextComponents = {
         </OakHeading>
       );
     },
+    heading4: (props) => {
+      return (
+        <OakHeading $font={["heading-5", "heading-6", "heading-7"]} tag="h3">
+          {props.children}
+        </OakHeading>
+      );
+    },
     heading5: (props) => {
       return (
         <OakHeading
@@ -64,6 +94,10 @@ export const campaignTextStyles: PortableTextComponents = {
   },
 };
 const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
+  const sortedContent = sortCampaignBlocksByBlockType(
+    blockOrder,
+    props.campaign.content,
+  );
   return (
     <AppLayout
       seoProps={{
@@ -87,13 +121,22 @@ const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
           campaignHeader={props.campaign.header}
           keyStages={props.keyStages}
         />
-        {props.campaign.content.map((section) => {
+        {sortedContent.map((section: CampaignContentType) => {
           if (section.type === "CampaignIntro") {
             return (
               <CampaignPageIntro
                 textStyles={campaignTextStyles}
                 heading={section.headingPortableTextWithPromo}
                 body={section.bodyPortableTextWithPromo}
+                key={section.type}
+              />
+            );
+          }
+          if (section.type === "NewsletterSignUp") {
+            return (
+              <CampaignNewsletterSignup
+                textStyles={campaignTextStyles}
+                {...section}
                 key={section.type}
               />
             );

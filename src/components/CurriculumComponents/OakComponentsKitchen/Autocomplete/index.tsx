@@ -5,6 +5,7 @@ import { useComboBox, useFilter } from "react-aria";
 import { Item } from "react-stately";
 import {
   OakBox,
+  OakColorToken,
   OakFlex,
   OakJauntyAngleLabel,
   OakTextInput,
@@ -12,6 +13,7 @@ import {
 
 import { Popover } from "@/components/SharedComponents/Popover";
 import { ListBox } from "@/components/SharedComponents/ListBox";
+import { getFormLabelBackground } from "@/components/SharedComponents/OakInputWithLabel/OakInputWithLabel";
 
 export const AutocompleteItem = Item;
 
@@ -37,7 +39,9 @@ type AutocompleteProps = {
   onInputChange?: (value: string) => void;
   isControlled?: boolean;
   children: CollectionChildren<HTMLDivElement>;
+  labelBackground?: OakColorToken;
 };
+
 const Autocomplete = (props: AutocompleteProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const listBoxRef = useRef(null);
@@ -89,9 +93,11 @@ const Autocomplete = (props: AutocompleteProps) => {
           as="label"
           id={"autocomplete-label"}
           $font={"heading-7"}
-          $background={
-            props.inputProps.error ? "red" : state.isFocused ? "blue" : "lemon"
-          }
+          $background={getFormLabelBackground(
+            props.inputProps.error,
+            state.isFocused,
+            props.labelBackground,
+          )}
           $zIndex="in-front"
           $position="absolute"
           $top={"-20px"}
