@@ -90,8 +90,6 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
     setErrors(formValidation.errors);
     if (formValidation.success) {
       setErrors({});
-
-      console.log(data);
       try {
         await onHubspotSubmit({
           school: data.schoolId ?? "notListed",
@@ -100,7 +98,6 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
           userRole: "",
         });
         setSuccessMessage("Thanks, that's been received");
-        console.log(formId);
         setData({
           schoolId: "",
           schoolName: "",
