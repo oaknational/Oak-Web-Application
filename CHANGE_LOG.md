@@ -1,3 +1,11 @@
+## [1.848.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.848.1...v1.848.2) (2025-09-05)
+
+
+### Bug Fixes
+
+* reconstruct schoolId from urn and name from hubspot ([e245731](https://github.com/oaknational/Oak-Web-Application/commit/e245731cb79467dbf7b7f8bde450dce0e1cae090))
+* use school from form data instead of localstorage ([63a13c2](https://github.com/oaknational/Oak-Web-Application/commit/63a13c2a4482fe91e11682d5a1af4e83a91e6f9d))
+
 ## [1.848.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.848.0...v1.848.1) (2025-09-05)
 
 
