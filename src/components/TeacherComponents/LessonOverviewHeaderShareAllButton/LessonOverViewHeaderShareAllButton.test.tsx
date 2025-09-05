@@ -10,11 +10,6 @@ import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lesso
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import { AnalyticsUseCaseValueType } from "@/browser-lib/avo/Avo";
 
-const mockFeatureFlagEnabled = jest.fn();
-jest.mock("posthog-js/react", () => ({
-  useFeatureFlagEnabled: () => mockFeatureFlagEnabled(),
-}));
-
 jest.mock("next/router", () => require("next-router-mock"));
 const mockOnClickShareAll = jest.fn();
 
@@ -48,14 +43,6 @@ const baseProps = {
 const render = renderWithProviders();
 
 describe("LessonOverviewHeaderShareAllButton", () => {
-  beforeEach(() => {
-    mockFeatureFlagEnabled.mockReturnValue(false);
-  });
-
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
-
   it("renders the share button with correct text", () => {
     const { getByTestId } = render(
       <LessonOverviewHeaderShareAllButton {...baseProps} />,
@@ -80,22 +67,7 @@ describe("LessonOverviewHeaderShareAllButton", () => {
     expect(shareButton.tagName).toBe("BUTTON");
   });
 
-  it("renders a button when feature flag disabled and content is restricted", () => {
-    mockFeatureFlagEnabled.mockReturnValue(false);
-    const { queryByTestId } = render(
-      <LessonOverviewHeaderShareAllButton
-        {...baseProps}
-        loginRequired={true}
-        geoRestricted={true}
-      />,
-    );
-    const shareButton = queryByTestId("share-all-button");
-    expect(shareButton).toBeInTheDocument();
-  });
-
-  it("does not render a button when loginRequired and feature flag enabled", () => {
-    mockFeatureFlagEnabled.mockReturnValue(true);
-
+  it("does not render a button when loginRequired", () => {
     const { queryByTestId } = render(
       <LessonOverviewHeaderShareAllButton
         {...baseProps}
@@ -106,8 +78,7 @@ describe("LessonOverviewHeaderShareAllButton", () => {
     expect(shareButton).not.toBeInTheDocument();
   });
 
-  it("does not render a button when geoRestricted and feature flag enabled", () => {
-    mockFeatureFlagEnabled.mockReturnValue(true);
+  it("does not render a button when geoRestricted", () => {
     const { queryByTestId } = render(
       <LessonOverviewHeaderShareAllButton
         {...baseProps}
