@@ -232,6 +232,7 @@ export const baseLessonOverviewSchema = z.object({
   unitTotalLessonCount: z.number().nullable(),
   loginRequired: z.boolean(),
   geoRestricted: z.boolean(),
+  excludedFromTeachingMaterials: z.boolean(),
 });
 export type LessonBase = z.infer<typeof baseLessonOverviewSchema>;
 

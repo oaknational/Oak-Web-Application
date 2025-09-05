@@ -259,5 +259,56 @@ describe("urls.ts", () => {
         "https://teachers.thenational.academy",
       );
     });
+    it("Labs teaching materials", () => {
+      expect(resolveOakHref({ page: "labs-teaching-materials" })).toBe(
+        "https://labs.thenational.academy/aila/teaching-materials",
+      );
+    });
+    it("Labs teaching materials with single query parameter", () => {
+      expect(
+        resolveOakHref({
+          page: "labs-teaching-materials",
+          query: { docType: "additional-glossary" },
+        }),
+      ).toBe(
+        "https://labs.thenational.academy/aila/teaching-materials?docType=additional-glossary",
+      );
+    });
+    it("Labs teaching materials with multiple query parameters", () => {
+      expect(
+        resolveOakHref({
+          page: "labs-teaching-materials",
+          query: {
+            docType: "additional-glossary",
+            lessonSlug: "fractions-intro",
+            programmeSlug: "maths-ks2",
+          },
+        }),
+      ).toBe(
+        "https://labs.thenational.academy/aila/teaching-materials?docType=additional-glossary&lessonSlug=fractions-intro&programmeSlug=maths-ks2",
+      );
+    });
+    it("Labs teaching materials with empty query object", () => {
+      expect(
+        resolveOakHref({
+          page: "labs-teaching-materials",
+          query: {},
+        }),
+      ).toBe("https://labs.thenational.academy/aila/teaching-materials");
+    });
+    it("Labs teaching materials with null/undefined query values", () => {
+      expect(
+        resolveOakHref({
+          page: "labs-teaching-materials",
+          query: {
+            docType: null,
+            lessonSlug: undefined,
+            programmeSlug: "science-ks3",
+          },
+        }),
+      ).toBe(
+        "https://labs.thenational.academy/aila/teaching-materials?programmeSlug=science-ks3",
+      );
+    });
   });
 });

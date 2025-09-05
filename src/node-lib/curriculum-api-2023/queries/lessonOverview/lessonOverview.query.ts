@@ -12,6 +12,7 @@ import {
 import { constructPathwayLesson, toSentenceCase } from "../../helpers";
 import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
 import { getCorrectYear } from "../../helpers/getCorrectYear";
+import { isExcludedFromTeachingMaterials } from "../../helpers/teachingMaterialsAi/isExcluded";
 
 import lessonOverviewSchema, {
   lessonContentSchema,
@@ -161,6 +162,7 @@ export const transformedLessonOverviewData = (
   content: LessonOverviewContent,
   pathways: LessonPathway[] | [],
   unitData: LessonUnitDataByKs,
+  excludedFromTeachingMaterials: boolean,
 ): LessonOverviewPageData => {
   const reportError = errorReporter("transformedLessonOverviewData");
   const starterQuiz = lessonOverviewQuizData.parse(content.starterQuiz);
@@ -268,6 +270,7 @@ export const transformedLessonOverviewData = (
       1,
     geoRestricted: browseData.features?.agf_geoRestricted ?? false,
     loginRequired: browseData.features?.agf_loginRequired ?? false,
+    excludedFromTeachingMaterials,
   };
 };
 
@@ -313,6 +316,9 @@ const lessonOverviewQuery =
       lessonSlug,
       unitDataWhere,
     });
+
+    const restrictedAndHighlyRestrictedWorksList =
+      res.tpcWorks[0]?.works_list ?? [];
 
     const modifiedBrowseData = applyGenericOverridesAndExceptions<
       LessonOverviewQuery["browseData"][number]
@@ -369,9 +375,21 @@ const lessonOverviewQuery =
     }) as LessonOverviewContent;
     const unitData = keysToCamelCase(unitDataSnake) as LessonUnitDataByKs;
 
-    return lessonOverviewSchema.parse(
-      transformedLessonOverviewData(browseData, content, pathways, unitData),
+    const excludedFromTeachingMaterials = isExcludedFromTeachingMaterials(
+      browseData.lessonData,
+      restrictedAndHighlyRestrictedWorksList,
+      content,
     );
+
+    return lessonOverviewSchema.parse({
+      ...transformedLessonOverviewData(
+        browseData,
+        content,
+        pathways,
+        unitData,
+        excludedFromTeachingMaterials,
+      ),
+    });
   };
 
 export default lessonOverviewQuery;
