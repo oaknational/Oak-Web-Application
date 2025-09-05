@@ -422,7 +422,7 @@ describe("PupilExperienceView", () => {
 
     expect(
       document.querySelector("meta[name=robots]")?.getAttribute("content"),
-    ).toEqual("index,follow");
+    ).toEqual("noindex,follow");
   });
 
   it("should have robots meta tag with noindex & nofollow", async () => {

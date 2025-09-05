@@ -255,6 +255,8 @@ export const PupilViewsProgrammeListing = ({
             title: `${subjectDescription}, ${phaseSlug}, ${yearDescriptions} - Programme listing`,
             description: `Programme listing for ${subjectDescription}, ${phaseSlug}, ${yearDescriptions}`,
           }),
+          noIndex: true,
+          noFollow: false,
         }}
       >
         {" "}
