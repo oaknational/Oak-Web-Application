@@ -1,11 +1,16 @@
 import React, { FC } from "react";
+import styled from "styled-components";
 import {
   OakTypography,
   OakTypographyProps,
-  OakFlex,
   OakFlexProps,
+  OakUL,
+  OakLI,
 } from "@oaknational/oak-components";
 
+const StyledOakUL = styled(OakUL)`
+  list-style: none;
+`;
 const LessonMetadata: FC<
   {
     examBoardTitle?: string | null;
@@ -36,20 +41,25 @@ const LessonMetadata: FC<
     );
 
   const metadataElements = metadata.map((value, i) => (
-    <React.Fragment key={`${value}`}>
+    <OakLI $display={"flex"} $gap={"all-spacing-2"} key={`${value}`}>
       <OakTypography {...fontProps}>{value}</OakTypography>
       {i + 1 < metadata.length && (
         <OakTypography {...fontProps} aria-hidden>
           •
         </OakTypography>
       )}
-    </React.Fragment>
+    </OakLI>
   ));
 
   return (
-    <OakFlex $gap="all-spacing-2" $flexWrap={$flexWrap}>
+    <StyledOakUL
+      $display={"flex"}
+      $ph={"inner-padding-none"}
+      $gap="all-spacing-2"
+      $flexWrap={$flexWrap}
+    >
       {metadataElements}
-    </OakFlex>
+    </StyledOakUL>
   );
 };
 
