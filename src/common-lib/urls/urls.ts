@@ -662,7 +662,7 @@ export const OAK_PAGES: {
     pageType: "labs",
   }),
   "labs-teaching-materials": createOakPageConfig({
-    url: "https://oak-ai-lesson-assistant-eqo1mb486.vercel.thenational.academy/aila/teaching-materials",
+    url: "https://oak-ai-lesson-assistant-otn3t8nuz.vercel.thenational.academy/aila/teaching-materials",
     analyticsPageName: "[external] Labs",
     configType: "external",
     pageType: "labs-teaching-materials",
