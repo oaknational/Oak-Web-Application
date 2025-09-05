@@ -1,3 +1,19 @@
+## [1.848.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.848.1...v1.848.2) (2025-09-05)
+
+
+### Bug Fixes
+
+* reconstruct schoolId from urn and name from hubspot ([e245731](https://github.com/oaknational/Oak-Web-Application/commit/e245731cb79467dbf7b7f8bde450dce0e1cae090))
+* use school from form data instead of localstorage ([63a13c2](https://github.com/oaknational/Oak-Web-Application/commit/63a13c2a4482fe91e11682d5a1af4e83a91e6f9d))
+
+## [1.848.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.848.0...v1.848.1) (2025-09-05)
+
+
+### Bug Fixes
+
+* remove feature flag from media attributions ([b43eec8](https://github.com/oaknational/Oak-Web-Application/commit/b43eec8f814c3b8c260224e5639ddb3c5c55083f))
+* remove feature flag from share with pupil button ([dceb3a0](https://github.com/oaknational/Oak-Web-Application/commit/dceb3a08f20c9c8dfab9ccd5c0f57c53933863b0))
+
 # [1.848.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.847.2...v1.848.0) (2025-09-03)
 
 

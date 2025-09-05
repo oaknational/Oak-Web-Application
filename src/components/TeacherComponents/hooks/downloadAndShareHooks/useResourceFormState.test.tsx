@@ -296,7 +296,7 @@ describe("useResourceFormState", () => {
 
       await waitFor(() =>
         expect(mockSetSchoolInLocalStorageFn).toHaveBeenCalledWith({
-          schoolId: "1",
+          schoolId: "1-test-school",
           schoolName: "test-school",
         }),
       );
