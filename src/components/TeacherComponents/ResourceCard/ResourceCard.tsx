@@ -14,6 +14,9 @@ import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 const CustomSizing = styled("div")`
   display: grid;
   width: 320px;
+  input {
+    border: 0px;
+  }
 `;
 
 export type ResourceCardProps = Omit<CheckboxProps, "checked"> & {
