@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { OakLI, OakUL } from "@oaknational/oak-components";
-import styled from "styled-components";
 
 import LessonResourceGraphicsItem, {
   LessonResourceGraphicsItemProps,
@@ -15,15 +14,11 @@ type LessonResourceGraphicsProps = {
  * Used on lesson listing page
  */
 
-const StyledOakUL = styled(OakUL)`
-  list-style: none;
-`;
-
 const LessonResourceGraphics: FC<LessonResourceGraphicsProps> = ({ items }) => {
   return (
-    <StyledOakUL
+    <OakUL
+      $reset={true}
       $display={"flex"}
-      $ph={"inner-padding-none"}
       $gap={["space-between-xs", "space-between-s"]}
       $flexWrap="wrap"
       $justifyContent={"flex-start"}
@@ -33,7 +28,7 @@ const LessonResourceGraphics: FC<LessonResourceGraphicsProps> = ({ items }) => {
           <LessonResourceGraphicsItem {...item} />
         </OakLI>
       ))}
-    </StyledOakUL>
+    </OakUL>
   );
 };
 

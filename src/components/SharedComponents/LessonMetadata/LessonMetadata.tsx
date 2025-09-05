@@ -1,16 +1,12 @@
 import React, { FC } from "react";
-import styled from "styled-components";
 import {
   OakTypography,
   OakTypographyProps,
   OakFlexProps,
-  OakUL,
   OakLI,
+  OakUL,
 } from "@oaknational/oak-components";
 
-const StyledOakUL = styled(OakUL)`
-  list-style: none;
-`;
 const LessonMetadata: FC<
   {
     examBoardTitle?: string | null;
@@ -52,14 +48,14 @@ const LessonMetadata: FC<
   ));
 
   return (
-    <StyledOakUL
+    <OakUL
+      $reset={true}
       $display={"flex"}
-      $ph={"inner-padding-none"}
       $gap="all-spacing-2"
       $flexWrap={$flexWrap}
     >
       {metadataElements}
-    </StyledOakUL>
+    </OakUL>
   );
 };
 
