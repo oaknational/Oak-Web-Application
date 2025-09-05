@@ -2,8 +2,9 @@ import React, { FC } from "react";
 import {
   OakTypography,
   OakTypographyProps,
-  OakFlex,
   OakFlexProps,
+  OakLI,
+  OakUL,
 } from "@oaknational/oak-components";
 
 const LessonMetadata: FC<
@@ -36,20 +37,25 @@ const LessonMetadata: FC<
     );
 
   const metadataElements = metadata.map((value, i) => (
-    <React.Fragment key={`${value}`}>
+    <OakLI $display={"flex"} $gap={"all-spacing-2"} key={`${value}`}>
       <OakTypography {...fontProps}>{value}</OakTypography>
       {i + 1 < metadata.length && (
         <OakTypography {...fontProps} aria-hidden>
           •
         </OakTypography>
       )}
-    </React.Fragment>
+    </OakLI>
   ));
 
   return (
-    <OakFlex $gap="all-spacing-2" $flexWrap={$flexWrap}>
+    <OakUL
+      $reset={true}
+      $display={"flex"}
+      $gap="all-spacing-2"
+      $flexWrap={$flexWrap}
+    >
       {metadataElements}
-    </OakFlex>
+    </OakUL>
   );
 };
 
