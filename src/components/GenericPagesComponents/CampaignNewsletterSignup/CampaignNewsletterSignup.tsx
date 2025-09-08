@@ -21,6 +21,9 @@ import { NewsletterSignUp } from "@/common-lib/cms-types/campaignPage";
 import { useFetch } from "@/hooks/useFetch";
 import { runSchema } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 import OakError from "@/errors/OakError";
+import errorReporter from "@/common-lib/error-reporter";
+
+const reportError = errorReporter("CampaignNewsletterSignup");
 
 type NewsletterSignUpData = Partial<{
   schools: School[];

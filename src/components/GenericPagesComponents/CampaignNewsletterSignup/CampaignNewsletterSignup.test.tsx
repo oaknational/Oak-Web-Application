@@ -1,6 +1,6 @@
 import React from "react";
 import "@testing-library/jest-dom";
-import { act, renderHook, waitFor } from "@testing-library/react";
+import { act, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import CampaignNewsletterSignup from "./CampaignNewsletterSignup";
@@ -9,10 +9,6 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import mockCampaign from "@/fixtures/campaign/mockCampaign";
 import { NewsletterSignUp } from "@/common-lib/cms-types/campaignPage";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
-import {
-  getHubspotNewsletterPayload,
-  UserRole,
-} from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
 
 const mockData = mockCampaign.content.find(
   ({ type }) => type === "NewsletterSignUp",
@@ -25,25 +21,29 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   }),
 }));
 
-jest.mock("@/components/GenericPagesComponents/NewsletterForm", () => ({
-  useNewsletterForm: () => ({
-    onSubmit: () => {
-      return Promise.resolve(true);
-    },
-  }),
+const reportError = jest.fn();
+jest.mock("@/common-lib/error-reporter", () => ({
+  __esModule: true,
+  default:
+    () =>
+    (...args: []) =>
+      reportError(...args),
 }));
 
-const hubspotSubmitForm = jest.fn();
-jest.mock("@/browser-lib/hubspot/forms/hubspotSubmitForm", () => ({
-  __esModule: true,
-  default: (...args: []) => hubspotSubmitForm(...args),
+jest.mock("@/components/GenericPagesComponents/NewsletterForm", () => ({
+  useNewsletterForm: jest.fn(),
 }));
 
 describe("CampaignNewsletterSignup", () => {
+  const mockOnHubspotSubmit = jest.fn();
+
   beforeEach(() => {
     jest.clearAllMocks();
-    jest.resetModules();
+    (useNewsletterForm as jest.Mock).mockReturnValue({
+      onSubmit: mockOnHubspotSubmit,
+    });
   });
+
   it("renders the heading", () => {
     const { getByText } = renderWithTheme(
       <CampaignNewsletterSignup data-testid="test" {...mockData} />,
@@ -129,6 +129,7 @@ describe("CampaignNewsletterSignup", () => {
     act(() => {
       getByTestId("download-school-isnt-listed").click();
     });
+
     const nameInput = getByPlaceholderText("Type your name");
     await userEvent.type(nameInput, "Test");
 
@@ -146,11 +147,41 @@ describe("CampaignNewsletterSignup", () => {
     });
   });
 
-  it.skip("renders an error message if all hubspot submit is unsuccessful", async () => {
-    (useNewsletterForm as jest.Mock).mockReturnValueOnce(() => ({
-      onSubmit: () => Promise.resolve(false),
-    }));
+  it("calls onHubspotSubmit with the appropriate data", async () => {
+    const { getByTestId, getByRole, getByPlaceholderText } = renderWithTheme(
+      <CampaignNewsletterSignup data-testid="test" {...mockData} />,
+    );
 
+    act(() => {
+      getByTestId("download-school-isnt-listed").click();
+    });
+
+    const nameInput = getByPlaceholderText("Type your name");
+    await userEvent.type(nameInput, "Test");
+
+    const emailInput = getByPlaceholderText("Type your email address");
+    await userEvent.type(emailInput, "test@example.com");
+
+    act(() => {
+      getByRole("button", {
+        name: "newsletter-signup-cta-button",
+      }).click();
+    });
+
+    await waitFor(() => {
+      expect(mockOnHubspotSubmit).toHaveBeenCalledWith({
+        school: "notListed",
+        schoolName: undefined,
+        email: "test@example.com",
+        userRole: "",
+      });
+    });
+  });
+
+  it("renders an error message when hubspot submit is unsuccessful", async () => {
+    mockOnHubspotSubmit.mockRejectedValueOnce(
+      new Error("An unknown error occurred"),
+    );
     const { getByTestId, getByRole, getByText, getByPlaceholderText } =
       renderWithTheme(
         <CampaignNewsletterSignup data-testid="test" {...mockData} />,
@@ -159,6 +190,7 @@ describe("CampaignNewsletterSignup", () => {
     act(() => {
       getByTestId("download-school-isnt-listed").click();
     });
+
     const nameInput = getByPlaceholderText("Type your name");
     await userEvent.type(nameInput, "Test");
 
@@ -172,55 +204,7 @@ describe("CampaignNewsletterSignup", () => {
     });
 
     await waitFor(() => {
-      expect(
-        getByText("Sorry, we couldn't sign you up just now, try again later."),
-      ).toBeVisible();
-    });
-  });
-
-  it.skip("calls hubspot submit with the correct data", async () => {
-    const { result } = renderHook(() => useNewsletterForm());
-    const { getByTestId, getByRole, getByPlaceholderText } = renderWithTheme(
-      <CampaignNewsletterSignup data-testid="test" {...mockData} />,
-    );
-
-    act(() => {
-      getByTestId("download-school-isnt-listed").click();
-    });
-    const nameInput = getByPlaceholderText("Type your name");
-    await userEvent.type(nameInput, "Test");
-
-    const emailInput = getByPlaceholderText("Type your email address");
-    await userEvent.type(emailInput, "test@example.com");
-
-    act(() => {
-      getByRole("button", {
-        name: "newsletter-signup-cta-button",
-      }).click();
-    });
-
-    const data = {
-      schoolId: undefined,
-      schoolName: undefined,
-      email: "test@example.com",
-      schoolNotListed: true,
-      schools: [],
-      school: "",
-      hubspotNewsletterFormId: "hubspot-test-form-id",
-      userRole: "" as UserRole,
-    };
-
-    result.current.onSubmit(data);
-    const newsletterPayload = getHubspotNewsletterPayload({
-      hutk: undefined,
-      data: { ...data, utm_source: "les_twitz" },
-    });
-
-    await waitFor(() => {
-      expect(hubspotSubmitForm).toHaveBeenCalledWith({
-        payload: newsletterPayload,
-        hubspotFormId: "NEXT_PUBLIC_HUBSPOT_NEWSLETTER_FORM_ID",
-      });
+      expect(getByText("An unknown error occurred")).toBeVisible();
     });
   });
 });
