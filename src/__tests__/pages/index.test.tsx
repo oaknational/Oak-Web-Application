@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import HomePage from "@/pages/index";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { TeachersHomePageProps } from "@/pages/teachers";
-import mockCampaign from "@/fixtures/campaign/mockCampaign";
 
 const render = renderWithProviders();
 
@@ -42,7 +41,6 @@ const props: TeachersHomePageProps = {
     sidebarCard2: { title: "", bodyPortableText: [] },
     testimonials: [],
   },
-  campaignData: mockCampaign,
   posts: [],
 };
 
