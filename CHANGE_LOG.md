@@ -1,3 +1,18 @@
+## [1.848.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.848.3...v1.848.4) (2025-09-08)
+
+
+### Bug Fixes
+
+* use ul for LessonMetaData, fix broken tests caused by this change ([b178c0b](https://github.com/oaknational/Oak-Web-Application/commit/b178c0bb64f822b07761686b83d3bdc200e3bd8b))
+* use ul in lesson resource graphics, fix related broken test in specialist lesson listing ([7b61b0c](https://github.com/oaknational/Oak-Web-Application/commit/7b61b0c859f056c95e10b6ce18736c6e70f3c385))
+
+## [1.848.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.848.2...v1.848.3) (2025-09-08)
+
+
+### Bug Fixes
+
+* set isAudioClip to true for audio clips in media list ([163c97e](https://github.com/oaknational/Oak-Web-Application/commit/163c97ed0aa462c9f16a87ca879adc38112c81c8))
+
 ## [1.848.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.848.1...v1.848.2) (2025-09-05)
 
 
