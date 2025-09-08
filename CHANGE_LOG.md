@@ -1,3 +1,10 @@
+## [1.848.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.848.2...v1.848.3) (2025-09-08)
+
+
+### Bug Fixes
+
+* set isAudioClip to true for audio clips in media list ([163c97e](https://github.com/oaknational/Oak-Web-Application/commit/163c97ed0aa462c9f16a87ca879adc38112c81c8))
+
 ## [1.848.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.848.1...v1.848.2) (2025-09-05)
 
 
