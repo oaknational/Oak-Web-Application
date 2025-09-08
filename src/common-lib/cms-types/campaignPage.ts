@@ -61,35 +61,7 @@ export const campaignPageSchema = z
     title: z.string(),
     slug: slugSchema,
     header: campaignHeaderSchema,
-    content: z.array(
-      z.discriminatedUnion("type", [
-        z.object({
-          type: z.literal("CampaignIntro"),
-          headingPortableTextWithPromo: portableTextSchema,
-          bodyPortableTextWithPromo: portableTextSchema,
-        }),
-        z.object({
-          type: z.literal("NewsletterSignUp"),
-          heading: z.string(),
-          bodyPortableText: portableTextSchema,
-          buttonCta: z.string(),
-          formId: z.string(),
-        }),
-        z.object({
-          type: z.literal("CampaignPromoBanner"),
-          headingPortableTextWithPromo: portableTextSchema,
-          bodyPortableTextWithPromo: portableTextSchema.nullish(),
-          subheadingPortableTextWithPromo: portableTextSchema.nullish(),
-          media: z.array(imageSchema.nullish(), videoSchema.nullish()),
-        }),
-        z.object({
-          type: z.literal("CampaignVideoBanner"),
-          headingPortableTextWithPromo: portableTextSchema,
-          subheadingPortableTextWithPromo: portableTextSchema,
-          video: videoSchema,
-        }),
-      ]),
-    ),
+    content: z.array(campaignContentTypeSchema),
     seo: seoSchema.nullish(),
   })
   .merge(documentSchema);
