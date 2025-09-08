@@ -73,6 +73,7 @@ const SearchResults = (props: SearchResultsProps) => {
               }
               return (
                 <OakLI
+                  data-testid="search-list-item"
                   key={`SearchList-SearchListItem-${index}${hit._source.slug}`}
                 >
                   <SearchResultsItem
