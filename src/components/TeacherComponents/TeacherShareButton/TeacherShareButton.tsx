@@ -1,6 +1,7 @@
 import {
   OakFlex,
   OakSecondaryButton,
+  OakSmallPrimaryInvertedButton,
   OakSmallSecondaryButton,
 } from "@oaknational/oak-components";
 
@@ -11,7 +12,7 @@ export const TeacherShareButton = ({
   shareUrl,
 }: {
   label: string;
-  variant: "primary" | "secondary";
+  variant: "primary" | "secondary" | "dropdown";
   handleClick: () => void;
   shareUrl: string | null;
 }) => {
@@ -29,6 +30,17 @@ export const TeacherShareButton = ({
           {label}
         </OakSecondaryButton>
       </OakFlex>
+    );
+  } else if (variant === "dropdown") {
+    return (
+      <OakSmallPrimaryInvertedButton
+        onClick={handleClick}
+        disabled={!shareUrl}
+        iconName="share"
+        isTrailingIcon
+      >
+        {label}
+      </OakSmallPrimaryInvertedButton>
     );
   }
 
