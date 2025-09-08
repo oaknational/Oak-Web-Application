@@ -1,4 +1,8 @@
-import { act, screen } from "@testing-library/react";
+import { act, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { useUser } from "@clerk/nextjs";
+
+import { DownloadType } from "../CurriculumDownloadView/helper";
 
 import CurriculumDownloadTab, { trackCurriculumDownload } from ".";
 
@@ -7,6 +11,9 @@ import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { DISABLE_DOWNLOADS } from "@/utils/curriculum/constants";
 import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urls";
+import { createYearData } from "@/fixtures/curriculum/yearData";
+import { createUnit } from "@/fixtures/curriculum/unit";
+import { downloadFileFromUrl } from "@/components/SharedComponents/helpers/downloadFileFromUrl";
 
 const render = renderWithProviders();
 const mvRefreshTime = 1721314874829;
@@ -46,6 +53,30 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   }),
 }));
 
+jest.mock("@clerk/nextjs", () => ({
+  useUser: jest.fn(() => ({
+    isLoaded: true,
+    isSignedIn: false,
+  })),
+}));
+
+jest.mock("@/components/SharedComponents/helpers/downloadFileFromUrl", () => ({
+  downloadFileFromUrl: jest.fn(),
+}));
+
+jest.mock(
+  "@/components/TeacherComponents/helpers/downloadAndShareHelpers/fetchHubspotContactDetails",
+  () => ({
+    fetchHubspotContactDetails: async () => {
+      return {
+        schoolId: "SCHOOL_ID",
+        schoolName: "SCHOOL_NAME",
+        email: "EMAIL",
+      };
+    },
+  }),
+);
+
 describe("Component Curriculum Download Tab", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -54,6 +85,15 @@ describe("Component Curriculum Download Tab", () => {
   const renderComponent = (overrides = {}) => {
     const defaultProps = {
       slugs: parseSubjectPhaseSlug("english-secondary-aqa")!,
+      formattedData: {
+        yearOptions: [],
+        threadOptions: [],
+        yearData: {
+          "7": createYearData({
+            units: [createUnit({ slug: "test" })],
+          }),
+        },
+      },
       mvRefreshTime,
       tiers: [],
       childSubjects: [],
@@ -76,6 +116,61 @@ describe("Component Curriculum Download Tab", () => {
       const formInputs = await findAllByRole("textbox");
       expect(formHeading).toBeInTheDocument();
       expect(formInputs).toHaveLength(1);
+    });
+
+    test("shows inline error when download fails (signed out)", async () => {
+      (downloadFileFromUrl as jest.Mock).mockRejectedValueOnce(
+        new Error("Network error"),
+      );
+
+      const { getByTestId, getByRole, queryByText } = renderComponent();
+
+      act(() => {
+        getByTestId("download-school-isnt-listed").click();
+      });
+      const emailInput = screen.getByPlaceholderText("Type your email address");
+      await userEvent.type(emailInput, "test@example.com");
+      act(() => {
+        getByTestId("download-accept-terms").click();
+      });
+
+      act(() => {
+        getByRole("button", { name: /download/i }).click();
+      });
+
+      await waitFor(() => {
+        expect(
+          screen.getByText(
+            "There was an error downloading your files. Please try again.",
+          ),
+        ).toBeVisible();
+        expect(queryByText("Thanks for downloading")).toBeNull();
+      });
+    });
+
+    test("shows inline error when download fails (signed in)", async () => {
+      (useUser as jest.Mock).mockReturnValue({
+        isLoaded: true,
+        isSignedIn: true,
+      });
+      (downloadFileFromUrl as jest.Mock).mockRejectedValueOnce(
+        new Error("Server error"),
+      );
+
+      const { getByTestId, queryByText } = renderComponent();
+
+      act(() => {
+        getByTestId("download").click();
+      });
+
+      await waitFor(() => {
+        expect(
+          screen.getByText(
+            "There was an error downloading your files. Please try again.",
+          ),
+        ).toBeVisible();
+        expect(queryByText("Thanks for downloading")).toBeNull();
+      });
     });
   }
 
@@ -205,6 +300,7 @@ describe("Downloads tab: unit tests", () => {
       childSubjectSlug,
     } = data;
     const url = createCurriculumDownloadsUrl(
+      ["curriculum-plans"],
       "published",
       mvRefreshTime,
       subjectSlug,
@@ -214,12 +310,13 @@ describe("Downloads tab: unit tests", () => {
       childSubjectSlug,
     );
     expect(url).toEqual(
-      `/api/curriculum-downloads/?mvRefreshTime=1721314874829&subjectSlug=science&phaseSlug=secondary&state=published&ks4OptionSlug=aqa&tierSlug=foundation&childSubjectSlug=combined-science`,
+      `/api/curriculum-downloads/?types=curriculum-plans&mvRefreshTime=1721314874829&subjectSlug=science&phaseSlug=secondary&state=published&ks4OptionSlug=aqa&tierSlug=foundation&childSubjectSlug=combined-science`,
     );
   });
 
   test("URL is created properly: English primary", async () => {
     const url = createCurriculumDownloadsUrl(
+      ["curriculum-plans"],
       "published",
       mvRefreshTime,
       "english",
@@ -229,7 +326,7 @@ describe("Downloads tab: unit tests", () => {
       null,
     );
     expect(url).toEqual(
-      `/api/curriculum-downloads/?mvRefreshTime=1721314874829&subjectSlug=english&phaseSlug=primary&state=published`,
+      `/api/curriculum-downloads/?types=curriculum-plans&mvRefreshTime=1721314874829&subjectSlug=english&phaseSlug=primary&state=published`,
     );
   });
 });
@@ -261,7 +358,7 @@ describe("trackCurriculumDownload", () => {
           status: "Open",
         },
       ],
-      downloadType: "word" as const,
+      downloadTypes: ["curriculum-plans"] as DownloadType[],
     };
 
     const subjectTitle = "Mathematics";

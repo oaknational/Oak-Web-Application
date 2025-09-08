@@ -1,5 +1,6 @@
-import { CombinedCurriculumData } from "..";
-import { cdata, safeXml, xmlElementToJson } from "../xml";
+import { cdata, safeXml } from "@ooxml-tools/xml";
+
+import { xmlElementToJson } from "../xml";
 import {
   appendBodyElements,
   JSZipCached,
@@ -14,6 +15,7 @@ import { uncapitalizeSubject } from "./helper";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import { getModes, groupUnitsByPathway } from "@/utils/curriculum/by-pathway";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
+import { CombinedCurriculumData } from "@/utils/curriculum/types";
 
 export default async function generate(
   zip: JSZipCached,

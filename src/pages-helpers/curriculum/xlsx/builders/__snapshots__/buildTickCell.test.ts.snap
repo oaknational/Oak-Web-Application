@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`buildTickCell has NC criteria 1`] = `
+"<c
+  r="A1"
+  t="inlineStr"
+  s="TEMP_5"
+>
+  <is>
+    <t><![CDATA[✓]]></t>
+  </is>
+</c>"
+`;
+
+exports[`buildTickCell has no NC criteria 1`] = `
+"<c
+  r="A1"
+  t="inlineStr"
+  s=""
+>
+  <is>
+    <t></t>
+  </is>
+</c>"
+`;

@@ -9,6 +9,7 @@ export const unitBrowseDataFixture = (
   const snake = {
     ...syntheticUnitvariantsWithLessonIdsFixture(),
     age_restricted_lesson_count: 0,
+    complex_copyright_lesson_count: 0,
   };
   const camel = keysToCamelCase(snake) as UnitListingBrowseData[number];
   return {

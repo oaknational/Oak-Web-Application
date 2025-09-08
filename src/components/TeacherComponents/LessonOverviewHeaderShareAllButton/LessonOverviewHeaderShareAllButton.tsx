@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { OakSmallSecondaryButton } from "@oaknational/oak-components";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -20,10 +19,8 @@ export const LessonOverviewHeaderShareAllButton: FC<
     geoRestricted,
     loginRequired,
   } = props;
-  const featureFlagEnabled = useFeatureFlagEnabled(
-    "teachers-copyright-restrictions",
-  );
-  if (featureFlagEnabled && (geoRestricted || loginRequired)) return null;
+
+  if (geoRestricted || loginRequired) return null;
 
   const preselected = "all";
 

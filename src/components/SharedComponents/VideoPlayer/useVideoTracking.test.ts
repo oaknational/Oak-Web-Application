@@ -46,17 +46,17 @@ describe("useVideoTracking", () => {
   test("calls track.videoStarted only once", () => {
     const { result } = renderHook(() => useVideoTracking({ getState }));
     act(() => {
-      result.current.onPlay();
+      result.current.onPlay(true);
     });
     act(() => {
-      result.current.onPlay();
+      result.current.onPlay(false);
     });
     expect(videoStarted).toHaveBeenCalledTimes(1);
   });
   test("calls track.videoPlayed", () => {
     const { result } = renderHook(() => useVideoTracking({ getState }));
     act(() => {
-      result.current.onPlay();
+      result.current.onPlay(true);
     });
 
     expect(videoPlayed).toHaveBeenCalledWith(eventProps);
@@ -73,16 +73,31 @@ describe("useVideoTracking", () => {
     result.current.onEnd();
     expect(videoFinished).toHaveBeenCalledWith(eventProps);
   });
+  it("calls tracking with mux asset id and cloudinary url", () => {
+    const { result } = renderHook(() =>
+      useVideoTracking({
+        getState,
+        cloudinaryUrl: "https://example.com/video.mp4",
+        muxAssetId: "mux12345",
+      }),
+    );
+    act(() => result.current.onPlay(true));
+    expect(videoPlayed).toHaveBeenCalledWith({
+      ...eventProps,
+      cloudinaryUrl: "https://example.com/video.mp4",
+      muxAssetId: "mux12345",
+    });
+  });
   test("calls correct number of times when a sequence is run", () => {
     const { result } = renderHook(() => useVideoTracking({ getState }));
     act(() => {
-      result.current.onPlay();
+      result.current.onPlay(true);
     });
     act(() => {
       result.current.onPause();
     });
     act(() => {
-      result.current.onPlay();
+      result.current.onPlay(false);
     });
     act(() => {
       result.current.onPause();

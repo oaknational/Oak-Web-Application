@@ -77,7 +77,12 @@ export const QuizMCQMultiAnswer = ({ onChange }: QuizMCQMultiAnswerProps) => {
           label={`Select ${numCorrectAnswers} answers`}
         />
       </OakFlex>
-      <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
+      <OakFlex
+        $flexDirection={"column"}
+        $gap={"space-between-s"}
+        role={"group"}
+        aria-labelledby={`${questionUid}-legend`}
+      >
         {answers.map((answer, index) => {
           const filterByText = answer.answer.filter(isText);
           const filterByImage = answer.answer.filter(isImage);

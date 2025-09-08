@@ -54,11 +54,11 @@ describe("Onboarding form", () => {
   it("should render the onboarding form with fieldset and legend", async () => {
     renderForm();
 
-    const fieldset = screen.getByRole("fieldset");
-    expect(fieldset).toBeInTheDocument();
     const legend = screen.getByText(/Select your school/i);
     expect(legend).toBeInTheDocument();
+    const fieldset = legend.closest("fieldset");
 
+    expect(fieldset).toBeInTheDocument();
     expect(fieldset).toContainElement(legend);
   });
 
@@ -122,9 +122,11 @@ describe("Onboarding form", () => {
       renderForm(formState);
 
       const continueButton = screen.getByText("Continue");
-      await userEvent.click(continueButton);
       await userEvent.click(continueButton, {
-        pointerEventsCheck: PointerEventsCheckLevel.EachTarget,
+        pointerEventsCheck: PointerEventsCheckLevel.Never,
+      });
+      await userEvent.click(continueButton, {
+        pointerEventsCheck: PointerEventsCheckLevel.Never,
       });
 
       expect(onboardingActions.onboardUser).toHaveBeenCalledTimes(1);
@@ -235,6 +237,7 @@ async function submitForm(
   forceHideNewsletterSignUp?: boolean,
 ) {
   renderForm(formState, forceHideNewsletterSignUp);
-
-  await userEvent.setup().click(screen.getByText("Continue"));
+  const continueButton = screen.getByRole("button", { name: "Continue" });
+  // see https://github.com/testing-library/user-event/issues/662
+  await userEvent.click(continueButton, { pointerEventsCheck: 0 });
 }

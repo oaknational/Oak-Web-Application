@@ -16,6 +16,8 @@ import {
   OakBox,
 } from "@oaknational/oak-components";
 
+import { PromoSpan } from "../PromoSpan/PromoSpan";
+
 import { PTActionTrigger } from "./PTActionTrigger";
 
 import errorReporter from "@/common-lib/error-reporter";
@@ -192,6 +194,7 @@ export const basePortableTextComponents: PortableTextComponents = {
     anchorLink: PTAnchorLink,
     anchorTarget: PTAnchorTarget,
     action: PTActionTrigger,
+    promoStamp: (props) => <PromoSpan>{props.children}</PromoSpan>,
   },
 };
 

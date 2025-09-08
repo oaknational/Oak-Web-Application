@@ -3,11 +3,11 @@ import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import TeachersTab from "@/components/GenericPagesComponents/TeachersTab";
 import HomePageTabImageNav from "@/components/GenericPagesComponents/HomePageTabImageNav";
-import Banners from "@/components/CurriculumComponents/Banners";
+import Banners from "@/components/SharedComponents/Banners";
 import { HomePageLowerView } from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023, {
-  TeachersHomePageData,
+  KeyStagesData,
 } from "@/node-lib/curriculum-api-2023";
 import {
   getBlogPosts,
@@ -16,7 +16,7 @@ import {
 import { HomePage } from "@/common-lib/cms-types";
 
 export type TeachersHomePageProps = HomePageProps & {
-  curriculumData: TeachersHomePageData;
+  curriculumData: KeyStagesData;
 };
 
 export type HomePageProps = {
@@ -29,6 +29,7 @@ const TeachersHomePage: NextPage<TeachersHomePageProps> = (props) => {
 
   const testimonials = pageData?.testimonials;
   const intro = pageData?.intro;
+  const campaignPromoBanner = pageData.campaignPromoBanner;
 
   return (
     <AppLayout
@@ -43,6 +44,7 @@ const TeachersHomePage: NextPage<TeachersHomePageProps> = (props) => {
       <HomePageTabImageNav current={"teachers"} />
       <TeachersTab keyStages={curriculumData.keyStages} aria-current="page" />
       <HomePageLowerView
+        campaignPromoBanner={campaignPromoBanner}
         posts={posts}
         testimonials={testimonials}
         introVideo={intro}
@@ -69,7 +71,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
         };
       }
 
-      const curriculumData = await curriculumApi2023.teachersHomePage();
+      const curriculumData = await curriculumApi2023.keyStages();
 
       const results: GetStaticPropsResult<TeachersHomePageProps> = {
         props: {
