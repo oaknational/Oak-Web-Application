@@ -6,6 +6,8 @@ import {
   OakP,
   OakGrid,
   OakGridArea,
+  OakFieldError,
+  OakBox,
 } from "@oaknational/oak-components";
 import { PortableTextReactComponents } from "@portabletext/react";
 
@@ -176,6 +178,11 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
                 placeholder="Type your name"
                 defaultValue={data.name}
               />
+              {errors.schoolId && (
+                <OakBox id={errors.schoolId} role="alert">
+                  <OakFieldError>{errors.schoolId}</OakFieldError>
+                </OakBox>
+              )}
               <YourDetails
                 data={data}
                 schools={schools ?? []}
