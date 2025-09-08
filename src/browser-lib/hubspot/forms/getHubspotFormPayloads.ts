@@ -33,7 +33,7 @@ export type CampaignNewsletterHubspotFormData = {
   oakUserId?: string;
   name?: string;
   school: string;
-  schoolName?: string | undefined;
+  schoolName?: string;
   /**
    * allow "" for userRole as it's easier [than null/undefined] to use as a
    * form value. It is stripped out in getHubspotFormPayload.
