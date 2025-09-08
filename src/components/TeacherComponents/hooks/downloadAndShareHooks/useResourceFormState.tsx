@@ -93,16 +93,19 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
       setValue("email", email);
 
       if (hubspotContact) {
-        const schoolId = hubspotContact.schoolId;
-        const schoolName = hubspotContact.schoolName;
-
+        const schoolUrn = hubspotContact.schoolId;
         // @sonar-ignore
         // current sonar rule typescript:S6606 incorrectly flags this, see open issue here https://sonarsource.atlassian.net/browse/JS-373
-        const school = {
-          schoolId: schoolId || "notListed",
-          schoolName: schoolName || "notListed",
-        };
+        const schoolName = hubspotContact.schoolName || "notListed";
         // @sonar-end
+
+        // hubspot stores schoolUrn isolated from schoolName, but we need to store them together in local storage
+        const schoolId = schoolUrn ? `${schoolUrn}-${schoolName}` : "notListed";
+
+        const school = {
+          schoolId,
+          schoolName,
+        };
 
         setSchoolInLocalStorage(school);
         setSchoolFromHubspot(school);
