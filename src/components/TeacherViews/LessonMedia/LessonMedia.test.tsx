@@ -82,6 +82,19 @@ jest.mock("@/components/SharedComponents/VideoPlayer/VideoPlayer", () => {
   );
 });
 
+function getMediaClipList(mediaClipWrapper: HTMLElement) {
+  const allLists = within(mediaClipWrapper).getAllByRole("list");
+  const mediaClipList = allLists.find((list) => {
+    try {
+      within(list).getByText(/Intro Video 1/);
+      return true;
+    } catch {
+      return false;
+    }
+  });
+  return mediaClipList;
+}
+
 describe("LessonMedia view", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -117,14 +130,14 @@ describe("LessonMedia view", () => {
     );
   });
 
-  it("renders media clip player with correct amount of items", () => {
+  it("renders media clip player with correct amount of items", async () => {
     const { getByTestId } = render(
       <LessonMedia lesson={lesson} isCanonical={false} />,
     );
 
     const mediaClipWrapper = getByTestId("media-clip-wrapper");
-    const mediaClipList = within(mediaClipWrapper).getByRole("list");
-    const mediaClipListItems = within(mediaClipList).getAllByRole("listitem");
+    const mediaClipList = getMediaClipList(mediaClipWrapper);
+    const mediaClipListItems = within(mediaClipList!).getAllByRole("listitem");
 
     expect(mediaClipList).toBeInTheDocument();
     expect(mediaClipListItems.length).toEqual(3);
@@ -136,7 +149,7 @@ describe("LessonMedia view", () => {
     );
 
     const mediaClipWrapper = getByTestId("media-clip-wrapper");
-    const mediaClipList = within(mediaClipWrapper).getByRole("list");
+    const mediaClipList = getMediaClipList(mediaClipWrapper)!;
     const mediaClipListItems = within(mediaClipList).getAllByRole("listitem");
     const videoItem =
       mediaClipListItems[0] &&
@@ -159,7 +172,7 @@ describe("LessonMedia view", () => {
     );
 
     const mediaClipWrapper = getByTestId("media-clip-wrapper");
-    const mediaClipList = within(mediaClipWrapper).getByRole("list");
+    const mediaClipList = getMediaClipList(mediaClipWrapper)!;
     const mediaClipListItems = within(mediaClipList).getAllByRole("listitem");
     const audioItem =
       mediaClipListItems[1] &&
@@ -186,6 +199,7 @@ describe("LessonMedia view", () => {
               media_id: "191189",
               video_id: 29845,
               media_type: "video",
+              customTitle: "Intro Video 1",
               media_object: {
                 url: "http://example.com/video2.mp3",
                 type: "upload",
@@ -211,7 +225,7 @@ describe("LessonMedia view", () => {
       <LessonMedia lesson={lessonWithUndefinedDuration} isCanonical={false} />,
     );
     const mediaClipWrapper = getByTestId("media-clip-wrapper");
-    const mediaClipList = within(mediaClipWrapper).getByRole("list");
+    const mediaClipList = getMediaClipList(mediaClipWrapper)!;
     const mediaClipListItems = within(mediaClipList).getAllByRole("listitem");
     const videoItem =
       mediaClipListItems[0] &&
