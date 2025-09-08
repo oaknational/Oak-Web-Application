@@ -48,6 +48,11 @@ describe("xlsxNationalCurriculum e2e", () => {
     test("grouped (pathways) with exam board variance - KS4 Computing (GCSE, AQA)", async () => {
       const units = [
         createUnit({
+          year: "9",
+          subject_slug: "computing",
+          slug: "cs-unit-ks3",
+        }),
+        createUnit({
           year: "10",
           subject_slug: "computing",
           slug: "cs-unit-a",
@@ -62,7 +67,13 @@ describe("xlsxNationalCurriculum e2e", () => {
 
       const worksheets = await getWorksheetXml(units, slugs);
       const allXml = Object.values(worksheets).join("");
+      // KS3 (Y9) no override/no suffix
+      expect(allXml).toContain("Year 9 Computing");
+      expect(allXml).not.toContain("Year 9 Computer Science");
+      expect(allXml).not.toContain("Year 9 Computing, GCSE");
+      // KS4 (Y10) subject override + pathway suffix
       expect(allXml).toContain("Year 10 Computer Science, GCSE");
+      expect(allXml).not.toContain("Year 10 Computing");
     });
 
     test("grouped (pathways) with exam board variance - KS4 PE (GCSE, Edexcel)", async () => {
@@ -120,7 +131,7 @@ describe("xlsxNationalCurriculum e2e", () => {
       expect(allXml).toContain("Year 10 Citizenship, Core");
     });
 
-    test("year programmes split by exam board - KS4 History (GCSE, AQA)", async () => {
+    test("year programmes split by exam board - KS4 History", async () => {
       const units = [
         createUnit({ year: "9", subject_slug: "history", slug: "hist-a" }),
         createUnit({ year: "10", subject_slug: "history", slug: "hist-b" }),
@@ -128,15 +139,16 @@ describe("xlsxNationalCurriculum e2e", () => {
       const slugs = {
         subjectSlug: "history",
         phaseSlug: "secondary",
-        ks4OptionSlug: "aqa",
       } as const;
       const worksheets = await getWorksheetXml(units, slugs);
       const allXml = Object.values(worksheets).join("");
       expect(allXml).toContain("Year 9 History");
-      expect(allXml).toContain("Year 10 History, GCSE");
+      expect(allXml).toContain("Year 10 History");
+      expect(allXml).not.toContain("Year 9 History, GCSE");
+      expect(allXml).not.toContain("Year 10 History, GCSE");
     });
 
-    test("year programmes split by exam board - KS4 Geography (GCSE, WJEC)", async () => {
+    test("year programmes split by exam board - KS4 Geography", async () => {
       const units = [
         createUnit({
           year: "9",
@@ -152,15 +164,16 @@ describe("xlsxNationalCurriculum e2e", () => {
       const slugs = {
         subjectSlug: "geography",
         phaseSlug: "secondary",
-        ks4OptionSlug: "wjec",
       } as const;
       const worksheets = await getWorksheetXml(units, slugs);
       const allXml = Object.values(worksheets).join("");
       expect(allXml).toContain("Year 9 Geography");
-      expect(allXml).toContain("Year 10 Geography, GCSE");
+      expect(allXml).toContain("Year 10 Geography");
+      expect(allXml).not.toContain("Year 9 Geography, GCSE");
+      expect(allXml).not.toContain("Year 10 Geography, GCSE");
     });
 
-    test("year programmes split by exam board - KS4 RE (GCSE, AQA)", async () => {
+    test("year programmes split by exam board - KS4 RE", async () => {
       const units = [
         createUnit({
           year: "9",
@@ -176,12 +189,13 @@ describe("xlsxNationalCurriculum e2e", () => {
       const slugs = {
         subjectSlug: "religious-studies",
         phaseSlug: "secondary",
-        ks4OptionSlug: "aqa",
       } as const;
       const worksheets = await getWorksheetXml(units, slugs);
       const allXml = Object.values(worksheets).join("");
       expect(allXml).toContain("Year 9 Religious studies");
-      expect(allXml).toContain("Year 10 Religious studies, GCSE");
+      expect(allXml).toContain("Year 10 Religious studies");
+      expect(allXml).not.toContain("Year 9 Religious studies, GCSE");
+      expect(allXml).not.toContain("Year 10 Religious studies, GCSE");
     });
 
     test("year programmes split by tier - KS4 Maths (GCSE, Higher)", async () => {
@@ -218,6 +232,7 @@ describe("xlsxNationalCurriculum e2e", () => {
       expect(allXml).toContain("Year 9 Maths");
       expect(allXml).toContain("Year 10 Maths, Higher");
       expect(allXml).toContain("Year 11 Maths, Higher");
+      expect(allXml).not.toContain("Year 9 Maths, Higher");
     });
 
     test("year programmes split by tier and child subject - KS4 Science Chemistry (GCSE, Foundation)", async () => {
@@ -255,6 +270,7 @@ describe("xlsxNationalCurriculum e2e", () => {
       expect(allXml).toContain("Year 9 Chemistry");
       expect(allXml).toContain("Year 10 Chemistry, Foundation");
       expect(allXml).toContain("Year 11 Chemistry, Foundation");
+      expect(allXml).not.toContain("Year 9 Chemistry, Foundation");
     });
 
     test("Swimming (all-years) - Primary PE grouped as all-years", async () => {
