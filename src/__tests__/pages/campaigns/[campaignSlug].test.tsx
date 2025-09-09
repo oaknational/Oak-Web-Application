@@ -172,6 +172,36 @@ describe("Campaign page", () => {
     expect(campaignIntro).not.toBeInTheDocument();
   });
 
+  it("renders a video component when provided", () => {
+    render(
+      <CampaignSinglePage
+        campaign={mockCampaign}
+        keyStages={keyStagesFixture()}
+      />,
+    );
+    const campaignVideo = screen.getByText("campaign-video-heading-text");
+    expect(campaignVideo).toBeInTheDocument();
+  });
+
+  it("does not render a campaign video banner when not supplied", () => {
+    const campaignWithoutPromo = {
+      ...mockCampaign,
+      content: mockCampaign.content.filter(
+        (item) => item.type !== "CampaignVideoBanner",
+      ),
+    };
+
+    render(
+      <CampaignSinglePage
+        campaign={campaignWithoutPromo}
+        keyStages={keyStagesFixture()}
+      />,
+    );
+
+    const videoBanner = screen.queryByText("campaign-video-heading-text");
+    expect(videoBanner).not.toBeInTheDocument();
+  });
+
   it("renders the correct SEO props", () => {
     const { seo } = renderWithSeo()(
       <CampaignSinglePage

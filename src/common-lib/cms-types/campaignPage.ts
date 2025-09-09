@@ -56,6 +56,15 @@ export const campaignContentTypeSchema = z.discriminatedUnion("type", [
 ]);
 
 export type CampaignContentType = z.infer<typeof campaignContentTypeSchema>;
+const campaignVideoBannerSchema = z.object({
+  type: z.literal("CampaignVideoBanner"),
+  headingPortableTextWithPromo: portableTextSchema,
+  subheadingPortableTextWithPromo: portableTextSchema,
+  video: videoSchema,
+});
+
+export type CampaignVideoBannerType = z.infer<typeof campaignVideoBannerSchema>;
+
 export const campaignPageSchema = z
   .object({
     title: z.string(),
