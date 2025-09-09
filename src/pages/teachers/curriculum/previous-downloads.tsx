@@ -29,12 +29,15 @@ import CurriculumDownloads, {
 import DropdownSelect from "@/components/GenericPagesComponents/DropdownSelect";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
+type Document = ReturnType<
+  typeof curriculumPreviousDownloadsFixture
+>["documents"][0];
+
 const CurriculumPreviousDownloadsPage: NextPage = () => {
   const router = useRouter();
   const data = curriculumPreviousDownloadsFixture();
   const [activeTab, setActiveTab] = useState<DownloadCategory>("EYFS");
   const downloadsRef = useRef<CurriculumDownloadsRef>(null);
-  type Document = (typeof data)["documents"][0];
 
   const categoryDocuments = useMemo(() => {
     const documents: { [key in DownloadCategory]?: Document[] } = {};
