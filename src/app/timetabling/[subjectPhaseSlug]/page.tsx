@@ -15,5 +15,5 @@ export default async function TimetablingPage(props: TimetablingPageProps) {
   }
 
   const sequence = await curriculumApi2023.curriculumSequence(slugs);
-  return <Timetabling sequence={sequence.units ?? []} {...slugs} />;
+  return <Timetabling sequence={sequence.units ?? []} slugs={slugs} />;
 }

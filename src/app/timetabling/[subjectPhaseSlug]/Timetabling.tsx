@@ -3,17 +3,21 @@ import {
   OakBox,
   OakFlex,
   OakHeading,
+  OakIcon,
   OakInlineBanner,
   OakJauntyAngleLabel,
   OakP,
   OakTextInput,
 } from "@oaknational/oak-components";
-import { useMemo, useState } from "react";
+import { ChangeEvent, useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 
 import { ExtendedUnit, ExtendedUnitOption } from "./types";
 import { SequenceOutput } from "./SequenceOutput";
+import { slugsToString } from "./helper";
 
 import { Unit } from "@/utils/curriculum/types";
+import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
 type Data = {
   autumn1Weeks: number;
@@ -23,10 +27,13 @@ type Data = {
   summer1Weeks: number;
   summer2Weeks: number;
   lessonsPerWeek: number;
-  lessonDuration: number;
   topics: string[];
   year: number;
 };
+
+function stringIsValidNumber(value: string) {
+  return value.trim().match(/^[0-9]+$/) && !Number.isNaN(parseInt(value, 10));
+}
 
 type NumberInputProps = {
   label: string;
@@ -35,6 +42,30 @@ type NumberInputProps = {
   onChange: (newValue: number) => void;
 };
 const NumberInput = ({ label, id, value, onChange }: NumberInputProps) => {
+  const [dirtyValue, setDirtyValue] = useState(String(value));
+  const onChangeLocal = (e: ChangeEvent<HTMLInputElement>) => {
+    const strValue = e.target?.value;
+    const newValue = parseInt(strValue);
+    setDirtyValue(strValue);
+    if (stringIsValidNumber(strValue)) {
+      onChange(newValue);
+    }
+  };
+
+  useEffect(() => {
+    setDirtyValue(String(value));
+  }, [value]);
+
+  const isErroring = useMemo(
+    () => !stringIsValidNumber(dirtyValue),
+    [dirtyValue],
+  );
+  const onBlur = () => {
+    if (!stringIsValidNumber(dirtyValue)) {
+      setDirtyValue(String(value));
+    }
+  };
+
   return (
     <OakBox $position={"relative"}>
       <OakJauntyAngleLabel
@@ -54,11 +85,14 @@ const NumberInput = ({ label, id, value, onChange }: NumberInputProps) => {
       <OakTextInput
         id={id}
         data-testid="text-input"
-        onChange={(e) => onChange(parseInt(e.target?.value))}
+        onChange={onChangeLocal}
+        onBlur={onBlur}
         $pv="inner-padding-none"
         wrapperWidth="100%"
         $height="all-spacing-10"
-        value={String(value)}
+        value={dirtyValue}
+        borderColor={isErroring ? "red" : undefined}
+        background={isErroring ? "red30" : undefined}
       />
     </OakBox>
   );
@@ -119,16 +153,10 @@ function runAlgo(
 
 type TimetablingProps = {
   sequence: Unit[];
-  phaseSlug: string;
-  subjectSlug: string;
-  ks4OptionSlug: string | null;
+  slugs: CurriculumSelectionSlugs;
 };
-export function Timetabling({
-  sequence,
-  phaseSlug,
-  subjectSlug,
-  ks4OptionSlug,
-}: TimetablingProps) {
+export function Timetabling({ sequence, slugs }: TimetablingProps) {
+  const { phaseSlug, subjectSlug, ks4OptionSlug } = slugs;
   const [data, setData] = useState<Data>({
     autumn1Weeks: 6,
     autumn2Weeks: 6,
@@ -137,7 +165,6 @@ export function Timetabling({
     summer1Weeks: 6,
     summer2Weeks: 6,
     lessonsPerWeek: 2,
-    lessonDuration: 60,
     topics: [],
     year: 1,
   });
@@ -160,14 +187,14 @@ export function Timetabling({
     <OakBox $pa="inner-padding-l">
       <OakBox>
         <OakHeading tag="h1">
-          Timetabling:{" "}
+          🏓 Timetabling:{" "}
           {[phaseSlug, subjectSlug, ks4OptionSlug].filter(Boolean).join("/")}
         </OakHeading>
         <OakP $mb={"space-between-m"}>
           A test harness for timetabling exploration
         </OakP>
 
-        <OakHeading tag="h2">Picker</OakHeading>
+        <OakHeading tag="h2">Sequence details</OakHeading>
         <OakFlex
           $flexDirection={"row"}
           $gap="all-spacing-8"
@@ -266,16 +293,29 @@ export function Timetabling({
               value={data.lessonsPerWeek}
               onChange={modData("lessonsPerWeek")}
             />
-            <NumberInput
-              id={"lessonDuration"}
-              label={"Lesson duration"}
-              value={data.lessonDuration}
-              onChange={modData("lessonDuration")}
-            />
           </OakFlex>
         </OakFlex>
       </OakBox>
-      <SequenceOutput sequence={newSequence} />
+      <OakHeading tag="h2">
+        Output sequence
+        <Link
+          target="_blank"
+          href={`/teachers/curriculum/${slugsToString(slugs)}/units`}
+        >
+          <OakIcon
+            style={{ display: "inline-block" }}
+            $colorFilter="oakGreen"
+            iconName="external"
+            $width={"all-spacing-5"}
+            $height={"all-spacing-5"}
+          />
+        </Link>
+      </OakHeading>
+      <OakP>
+        This is the shortened timetable when running through our
+        work-in-progress algorithm
+      </OakP>
+      <SequenceOutput sequence={newSequence} slugs={slugs} />
       {lessonsLeftOver > 0 && (
         <OakInlineBanner
           isOpen={true}

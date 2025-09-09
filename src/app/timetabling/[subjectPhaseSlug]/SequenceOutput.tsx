@@ -1,8 +1,13 @@
 "use client";
-import { OakBox, OakHeading } from "@oaknational/oak-components";
+import { OakBox, OakIcon } from "@oaknational/oak-components";
 import { Fragment } from "react";
+import Link from "next/link";
 
 import { ExtendedUnit, ExtendedUnitOption } from "./types";
+import { slugsToString } from "./helper";
+
+import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
+
 
 function Lessons({ unit }: { unit: ExtendedUnit | ExtendedUnitOption }) {
   return (
@@ -15,7 +20,7 @@ function Lessons({ unit }: { unit: ExtendedUnit | ExtendedUnitOption }) {
               textDecoration: !lesson.included ? "line-through" : "",
             }}
           >
-            Lesson[{index + 1}]: {lesson.title}
+            🧑🏻‍🏫 Lesson#{index + 1}: {lesson.title}
           </li>
         );
       })}
@@ -24,31 +29,69 @@ function Lessons({ unit }: { unit: ExtendedUnit | ExtendedUnitOption }) {
 }
 
 function UnitOption({
-  unit,
+  unitOption,
   index,
+  slugs,
 }: {
-  unit: ExtendedUnitOption;
+  unitOption: ExtendedUnitOption;
   index: number;
+  slugs: CurriculumSelectionSlugs;
 }) {
-  const allOmitted = unit.lessons.every((lesson) => !lesson.included);
+  const allOmitted = unitOption.lessons.every((lesson) => !lesson.included);
   return (
-    <Fragment key={unit.slug}>
-      <li style={{ textDecoration: allOmitted ? "line-through" : "" }}>
-        UnitOption[<strong>{index + 1}</strong>]: {unit.title}
+    <Fragment key={unitOption.slug}>
+      <li
+        style={{
+          textDecoration: allOmitted ? "line-through" : "",
+          verticalAlign: "middle",
+        }}
+      >
+        🗂️ UnitOption#{index + 1}: {unitOption.title}
+        <Link
+          target="_blank"
+          href={`/teachers/curriculum/${slugsToString(slugs)}/units/${unitOption.slug}`}
+        >
+          <OakIcon
+            style={{ display: "inline-block" }}
+            $colorFilter="oakGreen"
+            iconName="external"
+            $width={"all-spacing-5"}
+            $height={"all-spacing-5"}
+          />
+        </Link>
       </li>
-      <Lessons unit={unit} />
+      <Lessons unit={unitOption} />
     </Fragment>
   );
 }
 
-function Unit({ unit, index }: { unit: ExtendedUnit; index: number }) {
+function Unit({
+  unit,
+  index,
+  slugs,
+}: {
+  unit: ExtendedUnit;
+  index: number;
+  slugs: CurriculumSelectionSlugs;
+}) {
   const hasOptions = unit.unit_options.length > 0;
   const allOmitted = unit.lessons.every((lesson) => !lesson.included);
   return (
     <Fragment key={unit.slug}>
       <li style={{ textDecoration: allOmitted ? "line-through" : "" }}>
-        Unit[<strong>{index}</strong>]: {unit.title}{" "}
-        {hasOptions ? "(has options)" : ""}
+        {hasOptions ? "📦" : "🗂️"} Unit#{index}: {unit.title}{" "}
+        <Link
+          target="_blank"
+          href={`/teachers/curriculum/${slugsToString(slugs)}/units/${unit.slug}`}
+        >
+          <OakIcon
+            style={{ display: "inline-block" }}
+            $colorFilter="oakGreen"
+            iconName="external"
+            $width={"all-spacing-5"}
+            $height={"all-spacing-5"}
+          />
+        </Link>
       </li>
       <ul>
         {hasOptions &&
@@ -56,8 +99,9 @@ function Unit({ unit, index }: { unit: ExtendedUnit; index: number }) {
             return (
               <UnitOption
                 key={unitOption.slug}
-                unit={unitOption}
+                unitOption={unitOption}
                 index={unitOptionIndex}
+                slugs={slugs}
               />
             );
           })}
@@ -69,14 +113,16 @@ function Unit({ unit, index }: { unit: ExtendedUnit; index: number }) {
 
 export type SequenceOutputProps = {
   sequence: ExtendedUnit[];
+  slugs: CurriculumSelectionSlugs;
 };
-export function SequenceOutput({ sequence }: SequenceOutputProps) {
+export function SequenceOutput({ slugs, sequence }: SequenceOutputProps) {
   return (
     <OakBox>
-      <OakHeading tag="h2">Output</OakHeading>
       <ul>
         {sequence.map((unit, unitIndex) => {
-          return <Unit key={unit.slug} unit={unit} index={unitIndex} />;
+          return (
+            <Unit key={unit.slug} unit={unit} index={unitIndex} slugs={slugs} />
+          );
         })}
       </ul>
     </OakBox>
