@@ -148,7 +148,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
             $flexDirection={"column"}
             $gap={"space-between-s"}
           >
-            <OakHeading tag="h4" $font={"heading-light-4"}>
+            <OakHeading tag="h4" $font={"heading-4"}>
               {heading}
             </OakHeading>
             <PortableTextWithDefaults
