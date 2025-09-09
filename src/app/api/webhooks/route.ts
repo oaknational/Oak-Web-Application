@@ -9,17 +9,12 @@ import { handleSessionCreatedEvent } from "@/utils/handleSessionCreatedEvent";
 import getServerConfig from "@/node-lib/getServerConfig";
 import { getWebhookEducatorApi } from "@/node-lib/educator-api";
 import errorReporter from "@/common-lib/error-reporter";
-import {
-  userSignIn,
-  userSignOut,
-  userSignUpCompleted,
-} from "@/browser-lib/avo/Avo";
 import { pickSingleSignOnService } from "@/utils/pickSingleSignOnService";
 
 export async function POST(req: NextRequest) {
   const signingSecret = getServerConfig("clerkSigningSecret");
   const reportError = errorReporter("webhooks");
-  setUpEventTracking();
+  const posthog = setUpEventTracking();
 
   if (!signingSecret) {
     throw new Error(
@@ -89,8 +84,10 @@ export async function POST(req: NextRequest) {
 
       case "session.created": {
         try {
-          userSignIn({
-            userId_: evt.data.user_id,
+          posthog.identify({ distinctId: evt.data.user_id });
+          posthog.capture({
+            distinctId: evt.data.user_id,
+            event: "User Sign-In",
           });
           await handleSessionCreatedEvent(evt);
         } catch (error) {
@@ -107,23 +104,32 @@ export async function POST(req: NextRequest) {
       case "session.ended":
       case "session.removed":
       case "session.revoked": {
-        userSignOut();
+        posthog.identify({ distinctId: evt.data.user_id });
+        posthog.capture({
+          distinctId: evt.data.user_id,
+          event: "User Sign-Out",
+        });
         break;
       }
 
       case "user.created": {
         try {
-          userSignUpCompleted({
-            platform: "owa",
-            product: "user account management",
-            engagementIntent: "explore",
-            componentType: "signup_form",
-            eventVersion: "2.0.0",
-            analyticsUseCase: null,
-            singleSignOnService: pickSingleSignOnService(
-              evt.data.external_accounts.map((account) => account.provider),
-            ),
-            userId_: evt.data.id,
+          posthog.identify({ distinctId: evt.data.id });
+          posthog.capture({
+            distinctId: evt.data.id,
+            event: "User Sign-Up Completed",
+            properties: {
+              platform: "owa",
+              product: "user account management",
+              engagementIntent: "explore",
+              componentType: "signup_form",
+              eventVersion: "2.0.0",
+              analyticsUseCase: null,
+              singleSignOnService: pickSingleSignOnService(
+                evt.data.external_accounts.map((account) => account.provider),
+              ),
+              userId_: evt.data.id,
+            },
           });
         } catch (e) {
           reportError(e, {

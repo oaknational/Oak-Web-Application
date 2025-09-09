@@ -46,7 +46,6 @@ const getAvoBridge = ({ posthog }: AnalyticsServices) => {
     }
     // Uncomment the below line to send track events to hubspot
     // hubspot.track(eventName, eventProperties);
-
     posthog.track(eventName, eventProperties);
   };
 

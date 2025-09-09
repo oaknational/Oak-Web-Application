@@ -1,14 +1,10 @@
 import getAvoBridge from "./getAvoBridge";
 
-type PostHogBrowser = {
-  track: jest.Mock;
-  identify: jest.Mock;
-};
-
-function getMockPosthog(): PostHogBrowser {
+function getMockPosthog() {
   return {
     track: jest.fn(),
     identify: jest.fn(),
+    setUserProperties: jest.fn(),
   };
 }
 
@@ -17,7 +13,7 @@ const testEventProperties = {
   org: "oak national",
 };
 
-describe("getAvoBridge (browser)", () => {
+describe("getAvoBridge", () => {
   test("logEvent", () => {
     const posthog = getMockPosthog();
     const avoBridge = getAvoBridge({ posthog });
