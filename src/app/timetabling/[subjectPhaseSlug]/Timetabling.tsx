@@ -296,6 +296,15 @@ export function Timetabling({ sequence, slugs }: TimetablingProps) {
           </OakFlex>
         </OakFlex>
       </OakBox>
+      <OakBox $pv="inner-padding-l">
+        <OakInlineBanner
+          isOpen={true}
+          message={"This doesn't currently support subject categories"}
+          onDismiss={() => {}}
+          type="info"
+          variant="regular"
+        />
+      </OakBox>
       <OakHeading tag="h2">
         Output sequence
         <Link
