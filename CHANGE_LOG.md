@@ -1,3 +1,33 @@
+# [1.850.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.849.2...v1.850.0) (2025-09-09)
+
+
+### Bug Fixes
+
+* also exclude "key-stage-2-english-*" from previous downloads ([fe1139d](https://github.com/oaknational/Oak-Web-Application/commit/fe1139d8fc87f91c23f391e1d7742cee5b6c24b9))
+
+
+### Features
+
+* takedown of legacy curriculum downloads from the curric UI ([4de9759](https://github.com/oaknational/Oak-Web-Application/commit/4de9759e7edbbccfd92468af2646af5a72352b3c))
+
+## [1.849.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.849.1...v1.849.2) (2025-09-09)
+
+
+### Bug Fixes
+
+* remove no index ([0fef466](https://github.com/oaknational/Oak-Web-Application/commit/0fef466848c1519d6136ca94dc323ef675fef2de))
+* remove no index ([355e296](https://github.com/oaknational/Oak-Web-Application/commit/355e29699a2a2e0f0fd87ee2cdab01bd48c340ab))
+* remove no index ([760efb7](https://github.com/oaknational/Oak-Web-Application/commit/760efb744ccea1d08746fbe60ce55551ee99c535))
+
+## [1.849.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.849.0...v1.849.1) (2025-09-09)
+
+
+### Bug Fixes
+
+* remove border from resource card input ([b86931e](https://github.com/oaknational/Oak-Web-Application/commit/b86931e28b1128b44f373a6079353688ab401352))
+* show checkbox outline on Resource card when unchecked ([ae162bf](https://github.com/oaknational/Oak-Web-Application/commit/ae162bf1fd95eacd95f6b417049ad5a3edd378ad))
+* update oak-components to bring in fix for curriculum dl radio button ([26c059f](https://github.com/oaknational/Oak-Web-Application/commit/26c059f6016cedcaaaeeaa106039c2d62ade2bd5))
+
 # [1.849.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.848.4...v1.849.0) (2025-09-08)
 
 
