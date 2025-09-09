@@ -239,8 +239,9 @@ describe("Campaign page", () => {
 
       if (sorted) {
         expect(sorted[0]).toBe(blocks[0]);
-        expect(sorted[1]).toBe(blocks[2]);
-        expect(sorted[2]).toBe(blocks[1]);
+        expect(sorted[1]).toBe(blocks[3]);
+        expect(sorted[2]).toBe(blocks[2]);
+        expect(sorted[3]).toBe(blocks[1]);
       }
     });
   });
