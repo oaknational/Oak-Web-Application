@@ -29,8 +29,19 @@ export type UseLessonProps = {
   };
 };
 
+export type TeacherNotesButtonProps = {
+  isEditable: boolean | null;
+  noteSaved: boolean;
+  loginRequired: boolean;
+  geoRestricted: boolean;
+  onTeacherNotesOpen: () => void;
+  shareUrl: string | null;
+  shareActivated: (noteLengthChars?: number) => void;
+};
+
 type UseLessonReturn = {
   teacherNotesButton: JSX.Element;
+  TeacherNotesButtonProps: TeacherNotesButtonProps;
   teacherNoteHtml: string | undefined;
   teacherNotesOpen: boolean;
   setTeacherNotesOpen: (open: boolean) => void;
@@ -116,10 +127,21 @@ export const useLesson = ({
     />
   );
 
+  const TeacherNotesButtonProps = {
+    isEditable,
+    noteSaved,
+    loginRequired,
+    geoRestricted,
+    onTeacherNotesOpen: handleTeacherNotesOpen,
+    shareUrl,
+    shareActivated,
+  };
+
   const teacherNoteHtml = !isEditable ? teacherNote?.noteHtml : undefined;
 
   return {
     teacherNotesButton,
+    TeacherNotesButtonProps,
     teacherNoteHtml,
     teacherNotesOpen,
     setTeacherNotesOpen,

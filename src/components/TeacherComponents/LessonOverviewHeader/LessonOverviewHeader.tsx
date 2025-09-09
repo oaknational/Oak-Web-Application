@@ -2,21 +2,23 @@ import React, { FC } from "react";
 import {
   OakColorFilterToken,
   OakColorToken,
+  OakSmallSecondaryButtonWithDropdown,
 } from "@oaknational/oak-components";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
 
+import { TeacherShareNotesButton } from "../TeacherShareNotesButton/TeacherShareNotesButton";
+import { LessonOverviewHeaderShareAllButton } from "../LessonOverviewHeaderShareAllButton";
+
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
+import { LessonOverviewHeaderMobile } from "@/components/TeacherComponents/LessonOverviewHeaderMobile";
+import { LessonOverviewHeaderDesktop } from "@/components/TeacherComponents/LessonOverviewHeaderDesktop";
 import {
-  LessonOverviewHeaderMobile,
-  LessonOverviewHeaderMobileB,
-} from "@/components/TeacherComponents/LessonOverviewHeaderMobile";
-import {
-  LessonOverviewHeaderDesktop,
-  LessonOverviewHeaderDesktopB,
-} from "@/components/TeacherComponents/LessonOverviewHeaderDesktop";
-import { AnalyticsUseCaseValueType } from "@/browser-lib/avo/Avo";
+  AnalyticsUseCaseValueType,
+  TeachingMaterialTypeValueType,
+} from "@/browser-lib/avo/Avo";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
+import { TeacherNotesButtonProps } from "@/pages-helpers/teacher/useLesson/useLesson";
 
 /**
  * This is a header for the lesson overview page.
@@ -64,23 +66,52 @@ export type LessonOverviewHeaderProps = {
   showShare: boolean;
   // teacher share
   teacherShareButton?: React.ReactNode;
+  teacherShareButtonProps?: TeacherNotesButtonProps;
+  // AI
+  excludedFromTeachingMaterials?: boolean;
+  trackTeachingMaterialsSelected?: (
+    teachingMaterialType: TeachingMaterialTypeValueType,
+  ) => void;
+  trackCreateWithAiButtonClicked?: () => void;
 };
 
 const LessonOverviewHeader: FC<LessonOverviewHeaderProps> = (props) => {
-  const { breadcrumbs, background } = props;
-  const isSignpostExperiment =
-    useFeatureFlagVariantKey("lesson-overview-signposting-experiment") ===
-    "test";
-  const DesktopHeader = isSignpostExperiment
-    ? LessonOverviewHeaderDesktopB
-    : LessonOverviewHeaderDesktop;
-  const MobileHeader = isSignpostExperiment
-    ? LessonOverviewHeaderMobileB
-    : LessonOverviewHeaderMobile;
+  const {
+    breadcrumbs,
+    background,
+    teacherShareButtonProps,
+    showShare,
+    excludedFromTeachingMaterials,
+  } = props;
+
+  const isCreateWithAiEnabled =
+    useFeatureFlagVariantKey("create-with-ai-button") === "test" &&
+    !excludedFromTeachingMaterials;
+
+  const shouldUseDropdown =
+    isCreateWithAiEnabled && showShare && teacherShareButtonProps;
+
+  const shareButtons = shouldUseDropdown ? (
+    <OakSmallSecondaryButtonWithDropdown primaryActionText={"Share lesson"}>
+      <LessonOverviewHeaderShareAllButton variant="dropdown" {...props} />
+      <TeacherShareNotesButton
+        variant="dropdown"
+        {...teacherShareButtonProps}
+      />
+    </OakSmallSecondaryButtonWithDropdown>
+  ) : (
+    <>
+      {showShare && <LessonOverviewHeaderShareAllButton {...props} />}
+      {teacherShareButtonProps && (
+        <TeacherShareNotesButton {...teacherShareButtonProps} />
+      )}
+    </>
+  );
+
   return (
     <LessonHeaderWrapper breadcrumbs={breadcrumbs} background={background}>
-      <DesktopHeader {...props} />
-      <MobileHeader {...props} />
+      <LessonOverviewHeaderDesktop {...props} shareButtons={shareButtons} />
+      <LessonOverviewHeaderMobile {...props} shareButtons={shareButtons} />
     </LessonHeaderWrapper>
   );
 };
