@@ -28,7 +28,9 @@ describe("SpecialistUnitListing", () => {
     const unitList = getByLabelText("A list of lessons");
     expect(unitList).toBeInTheDocument();
 
-    const listItems = within(unitList).getAllByRole("listitem");
-    expect(listItems).toHaveLength(3);
+    const lessonListItems = within(unitList).getAllByTestId(
+      "list-item-card-container",
+    );
+    expect(lessonListItems).toHaveLength(3);
   });
 });
