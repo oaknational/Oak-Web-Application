@@ -1,3 +1,12 @@
+## [1.849.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.849.1...v1.849.2) (2025-09-09)
+
+
+### Bug Fixes
+
+* remove no index ([0fef466](https://github.com/oaknational/Oak-Web-Application/commit/0fef466848c1519d6136ca94dc323ef675fef2de))
+* remove no index ([355e296](https://github.com/oaknational/Oak-Web-Application/commit/355e29699a2a2e0f0fd87ee2cdab01bd48c340ab))
+* remove no index ([760efb7](https://github.com/oaknational/Oak-Web-Application/commit/760efb744ccea1d08746fbe60ce55551ee99c535))
+
 ## [1.849.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.849.0...v1.849.1) (2025-09-09)
 
 
