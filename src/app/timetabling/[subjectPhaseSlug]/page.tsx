@@ -9,12 +9,11 @@ type TimetablingPageProps = {
 export default async function TimetablingPage(props: TimetablingPageProps) {
   const params = await props.params;
   const slugs = parseSubjectPhaseSlug(params.subjectPhaseSlug);
-  console.log(slugs);
 
   if (!slugs) {
     return <div>404</div>;
   }
 
   const sequence = await curriculumApi2023.curriculumSequence(slugs);
-  return <Timetabling sequence={sequence.units ?? []} />;
+  return <Timetabling sequence={sequence.units ?? []} {...slugs} />;
 }

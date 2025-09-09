@@ -7,9 +7,10 @@ import {
   OakP,
   OakTextInput,
 } from "@oaknational/oak-components";
-import { Fragment, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
-import { ExtendedUnit } from "./types";
+import { ExtendedUnit, ExtendedUnitOption } from "./types";
+import { SequenceOutput } from "./SequenceOutput";
 
 import { Unit } from "@/utils/curriculum/types";
 
@@ -23,6 +24,7 @@ type Data = {
   lessonsPerWeek: number;
   lessonDuration: number;
   topics: string[];
+  year: number;
 };
 
 type NumberInputProps = {
@@ -75,15 +77,32 @@ function runAlgo(input: Data, sequence: Unit[]): ExtendedUnit[] {
 
   let lessonsLeftOver = totalNumberOfLessons;
 
-  return sequence.map((unit) => {
+  const sequenceByYear = sequence
+    .filter((unit) => unit.year === String(input.year))
+    .sort((a, b) => a.order - b.order);
+
+  return sequenceByYear.map((unit) => {
+    const newLessons = (unit.lessons ?? []).map((lesson) => {
+      lessonsLeftOver--;
+      return {
+        ...lesson,
+        included: lessonsLeftOver > -1,
+      };
+    });
+
     return {
       ...unit,
-      lessons: (unit.lessons ?? []).map((lesson) => {
-        lessonsLeftOver--;
+      lessons: newLessons,
+      unit_options: unit.unit_options.map((unitOption) => {
         return {
-          ...lesson,
-          included: lessonsLeftOver > -1,
-        };
+          ...unitOption,
+          lessons: (unit.lessons ?? []).map((lesson, lessonIndex) => {
+            return {
+              ...lesson,
+              included: newLessons[lessonIndex]?.included,
+            };
+          }),
+        } as ExtendedUnitOption;
       }),
     };
   });
@@ -91,8 +110,16 @@ function runAlgo(input: Data, sequence: Unit[]): ExtendedUnit[] {
 
 type TimetablingProps = {
   sequence: Unit[];
+  phaseSlug: string;
+  subjectSlug: string;
+  ks4OptionSlug: string | null;
 };
-export function Timetabling({ sequence }: TimetablingProps) {
+export function Timetabling({
+  sequence,
+  phaseSlug,
+  subjectSlug,
+  ks4OptionSlug,
+}: TimetablingProps) {
   const [data, setData] = useState<Data>({
     autumn1Weeks: 6,
     autumn2Weeks: 6,
@@ -103,6 +130,7 @@ export function Timetabling({ sequence }: TimetablingProps) {
     lessonsPerWeek: 2,
     lessonDuration: 60,
     topics: [],
+    year: 1,
   });
 
   const modData = (key: string) => {
@@ -119,10 +147,29 @@ export function Timetabling({ sequence }: TimetablingProps) {
   return (
     <OakBox $pa="inner-padding-l">
       <OakBox>
-        <OakHeading tag="h1">Timetabling</OakHeading>
+        <OakHeading tag="h1">
+          Timetabling:{" "}
+          {[phaseSlug, subjectSlug, ks4OptionSlug].filter(Boolean).join("/")}
+        </OakHeading>
         <OakP $mb={"space-between-m"}>
           A test harness for timetabling exploration
         </OakP>
+
+        <OakHeading tag="h2">Picker</OakHeading>
+        <OakFlex
+          $flexDirection={"row"}
+          $gap="all-spacing-8"
+          $pb={"inner-padding-xl"}
+          $flexWrap={"wrap"}
+          $pt={"inner-padding-xl2"}
+        >
+          <NumberInput
+            id={"year"}
+            label={"Year"}
+            value={data.year}
+            onChange={modData("year")}
+          />
+        </OakFlex>
 
         <OakHeading tag="h2">Lengths of terms (in weeks)</OakHeading>
         <OakFlex
@@ -217,43 +264,6 @@ export function Timetabling({ sequence }: TimetablingProps) {
         </OakFlex>
       </OakBox>
       <SequenceOutput sequence={output} />
-    </OakBox>
-  );
-}
-
-type SequenceOutputProps = {
-  sequence: ExtendedUnit[];
-};
-function SequenceOutput({ sequence }: SequenceOutputProps) {
-  return (
-    <OakBox>
-      <OakHeading tag="h2">Output</OakHeading>
-      <ul>
-        {sequence.map((unit) => {
-          const allOmitted = unit.lessons.every((lesson) => !lesson.included);
-          return (
-            <Fragment key={unit.slug}>
-              <li style={{ textDecoration: allOmitted ? "line-through" : "" }}>
-                {unit.title}
-              </li>
-              <ul>
-                {unit.lessons.map((lesson) => {
-                  return (
-                    <li
-                      key={lesson.slug}
-                      style={{
-                        textDecoration: !lesson.included ? "line-through" : "",
-                      }}
-                    >
-                      {lesson.title}
-                    </li>
-                  );
-                })}
-              </ul>
-            </Fragment>
-          );
-        })}
-      </ul>
     </OakBox>
   );
 }
