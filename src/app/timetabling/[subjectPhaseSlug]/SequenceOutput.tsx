@@ -7,7 +7,7 @@ import { ExtendedUnit, ExtendedUnitOption } from "./types";
 function Lessons({ unit }: { unit: ExtendedUnit | ExtendedUnitOption }) {
   return (
     <ul>
-      {unit.lessons.map((lesson) => {
+      {unit.lessons.map((lesson, index) => {
         return (
           <li
             key={lesson.slug}
@@ -15,7 +15,7 @@ function Lessons({ unit }: { unit: ExtendedUnit | ExtendedUnitOption }) {
               textDecoration: !lesson.included ? "line-through" : "",
             }}
           >
-            {lesson.title}
+            Lesson[{index + 1}]: {lesson.title}
           </li>
         );
       })}

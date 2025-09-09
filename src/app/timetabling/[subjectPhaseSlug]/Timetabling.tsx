@@ -3,6 +3,7 @@ import {
   OakBox,
   OakFlex,
   OakHeading,
+  OakInlineBanner,
   OakJauntyAngleLabel,
   OakP,
   OakTextInput,
@@ -65,7 +66,10 @@ const NumberInput = ({ label, id, value, onChange }: NumberInputProps) => {
 
 // TODO: This is the bit we need to work out
 // What is the optimum algo for lessons
-function runAlgo(input: Data, sequence: Unit[]): ExtendedUnit[] {
+function runAlgo(
+  input: Data,
+  sequence: Unit[],
+): { sequence: ExtendedUnit[]; lessonsLeftOver: number } {
   const totalNumberOfWeeks =
     input.autumn1Weeks +
     input.autumn2Weeks +
@@ -81,7 +85,7 @@ function runAlgo(input: Data, sequence: Unit[]): ExtendedUnit[] {
     .filter((unit) => unit.year === String(input.year))
     .sort((a, b) => a.order - b.order);
 
-  return sequenceByYear.map((unit) => {
+  const newSequence = sequenceByYear.map((unit) => {
     const newLessons = (unit.lessons ?? []).map((lesson) => {
       lessonsLeftOver--;
       return {
@@ -106,6 +110,11 @@ function runAlgo(input: Data, sequence: Unit[]): ExtendedUnit[] {
       }),
     };
   });
+
+  return {
+    sequence: newSequence,
+    lessonsLeftOver: Math.max(0, lessonsLeftOver),
+  };
 }
 
 type TimetablingProps = {
@@ -142,7 +151,10 @@ export function Timetabling({
     };
   };
 
-  const output = useMemo(() => runAlgo(data, sequence), [data, sequence]);
+  const { sequence: newSequence, lessonsLeftOver } = useMemo(
+    () => runAlgo(data, sequence),
+    [data, sequence],
+  );
 
   return (
     <OakBox $pa="inner-padding-l">
@@ -263,7 +275,21 @@ export function Timetabling({
           </OakFlex>
         </OakFlex>
       </OakBox>
-      <SequenceOutput sequence={output} />
+      <SequenceOutput sequence={newSequence} />
+      {lessonsLeftOver > 0 && (
+        <OakInlineBanner
+          isOpen={true}
+          message={
+            <span>
+              Note there are <strong>{lessonsLeftOver}</strong> lesson slots
+              left over
+            </span>
+          }
+          onDismiss={() => {}}
+          type="warning"
+          variant="regular"
+        />
+      )}
     </OakBox>
   );
 }
