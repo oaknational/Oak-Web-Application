@@ -1,5 +1,5 @@
 import { CampaignPage } from "@/common-lib/cms-types/campaignPage";
-import { mockImageAsset } from "@/__tests__/__helpers__/cms";
+import { mockImageAsset, mockVideoAsset } from "@/__tests__/__helpers__/cms";
 import {
   bodyPortableText,
   headingPortableText,
@@ -19,6 +19,16 @@ const mockCampaign: CampaignPage = {
       ),
       type: "CampaignPromoBanner",
       media: [{ ...mockImageAsset(), altText: "campaign-promo-test" }],
+    },
+    {
+      headingPortableTextWithPromo: headingPortableText(
+        "campaign-video-heading-text",
+      ),
+      subheadingPortableTextWithPromo: bodyPortableText(
+        "campaign-video-subheading-text",
+      ),
+      type: "CampaignVideoBanner",
+      video: mockVideoAsset(),
     },
   ],
   header: {
