@@ -62,10 +62,10 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
   const [data, setData] = useState<NewsletterSignUpData>(() => ({
     schoolId: undefined,
     schoolName: undefined,
-    email: "",
+    email: undefined,
     schoolNotListed: false,
     schools: [],
-    name: "",
+    name: undefined,
   }));
 
   const onChange = (partial: Partial<NewsletterSignUpData>) => {
@@ -97,6 +97,12 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
     if (formValidation.success) {
       setErrors({});
       try {
+        console.log({
+          school: data.schoolId ?? "notListed",
+          schoolName: data.schoolName,
+          email: data.email,
+          userRole: "",
+        });
         await onHubspotSubmit({
           school: data.schoolId ?? "notListed",
           schoolName: data.schoolName,
@@ -107,10 +113,10 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
         setData({
           schoolId: undefined,
           schoolName: undefined,
-          email: "",
+          email: undefined,
           schoolNotListed: false,
           schools: [],
-          name: "",
+          name: undefined,
         });
       } catch (error) {
         if (error instanceof OakError) {
