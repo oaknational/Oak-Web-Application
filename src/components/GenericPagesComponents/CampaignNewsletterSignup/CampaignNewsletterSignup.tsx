@@ -97,12 +97,6 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
     if (formValidation.success) {
       setErrors({});
       try {
-        console.log({
-          school: data.schoolId ?? "notListed",
-          schoolName: data.schoolName,
-          email: data.email,
-          userRole: "",
-        });
         await onHubspotSubmit({
           school: data.schoolId ?? "notListed",
           schoolName: data.schoolName,

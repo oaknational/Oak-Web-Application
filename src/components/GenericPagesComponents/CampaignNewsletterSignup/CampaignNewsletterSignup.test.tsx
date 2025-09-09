@@ -121,6 +121,7 @@ describe("CampaignNewsletterSignup", () => {
   });
 
   it("renders a success message if all hubspot submit is successful", async () => {
+    (useNewsletterForm as jest.Mock).mockResolvedValueOnce(true);
     const { getByTestId, getByRole, getByText, getByPlaceholderText } =
       renderWithTheme(
         <CampaignNewsletterSignup data-testid="test" {...mockData} />,
@@ -148,6 +149,7 @@ describe("CampaignNewsletterSignup", () => {
   });
 
   it("calls onHubspotSubmit with the appropriate data", async () => {
+    (useNewsletterForm as jest.Mock).mockResolvedValueOnce(true);
     const { getByTestId, getByRole, getByPlaceholderText } = renderWithTheme(
       <CampaignNewsletterSignup data-testid="test" {...mockData} />,
     );
