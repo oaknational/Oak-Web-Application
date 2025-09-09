@@ -100,7 +100,7 @@ function runAlgo(
       unit_options: unit.unit_options.map((unitOption) => {
         return {
           ...unitOption,
-          lessons: (unit.lessons ?? []).map((lesson, lessonIndex) => {
+          lessons: (unitOption.lessons ?? []).map((lesson, lessonIndex) => {
             return {
               ...lesson,
               included: newLessons[lessonIndex]?.included,
