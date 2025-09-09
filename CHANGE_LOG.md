@@ -1,3 +1,22 @@
+# [1.851.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.850.0...v1.851.0) (2025-09-09)
+
+
+### Bug Fixes
+
+* remove mock campaign data from homepage ([c4255d7](https://github.com/oaknational/Oak-Web-Application/commit/c4255d79d1b17e41b1a172ff66bad6c5396cec50))
+* remove video campaign banner  from homepage ([7a45560](https://github.com/oaknational/Oak-Web-Application/commit/7a45560051599ff2a3cedefa859ab756b1b20385))
+* responsive sizing to grid ([89d4f75](https://github.com/oaknational/Oak-Web-Application/commit/89d4f75c71ca5880f13230d887aed535b2b12231))
+
+
+### Features
+
+* add video campaign banner to campaign page ([499ab12](https://github.com/oaknational/Oak-Web-Application/commit/499ab1218dbb0322264b4da0968febd6b75157dc))
+* added campaign video banner component ([a8510d2](https://github.com/oaknational/Oak-Web-Application/commit/a8510d2c940ae85e0ddfe70f04427a53019accd0))
+* added campaign video banner to homepage behind flag ([f113337](https://github.com/oaknational/Oak-Web-Application/commit/f113337686114f6c091cedbc2336b40bbfd473dc))
+* added heading 4 for portable text ([1b508e7](https://github.com/oaknational/Oak-Web-Application/commit/1b508e777e8e90161c1f8ab5bac1ad8903e42d23))
+* added schema type for video banner ([89476ac](https://github.com/oaknational/Oak-Web-Application/commit/89476ac47956af7f43e929e2b6cab06cf9f71e06))
+* pulled through campaign data for homepage ([e95d6ae](https://github.com/oaknational/Oak-Web-Application/commit/e95d6ae17790167c3ec76fe95965b01d209f92f7))
+
 # [1.850.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.849.2...v1.850.0) (2025-09-09)
 
 
