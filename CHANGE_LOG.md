@@ -1,3 +1,15 @@
+# [1.850.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.849.2...v1.850.0) (2025-09-09)
+
+
+### Bug Fixes
+
+* also exclude "key-stage-2-english-*" from previous downloads ([fe1139d](https://github.com/oaknational/Oak-Web-Application/commit/fe1139d8fc87f91c23f391e1d7742cee5b6c24b9))
+
+
+### Features
+
+* takedown of legacy curriculum downloads from the curric UI ([4de9759](https://github.com/oaknational/Oak-Web-Application/commit/4de9759e7edbbccfd92468af2646af5a72352b3c))
+
 ## [1.849.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.849.1...v1.849.2) (2025-09-09)
 
 
