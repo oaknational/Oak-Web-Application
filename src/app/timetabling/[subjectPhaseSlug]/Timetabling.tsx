@@ -9,6 +9,8 @@ import {
 } from "@oaknational/oak-components";
 import { Fragment, useMemo, useState } from "react";
 
+import { ExtendedUnit } from "./types";
+
 import { Unit } from "@/utils/curriculum/types";
 
 type Data = {
@@ -61,7 +63,7 @@ const NumberInput = ({ label, id, value, onChange }: NumberInputProps) => {
 
 // TODO: This is the bit we need to work out
 // What is the optimum algo for lessons
-function runAlgo(input: Data, sequence: Unit[]) {
+function runAlgo(input: Data, sequence: Unit[]): ExtendedUnit[] {
   const totalNumberOfWeeks =
     input.autumn1Weeks +
     input.autumn2Weeks +
@@ -75,13 +77,11 @@ function runAlgo(input: Data, sequence: Unit[]) {
 
   return sequence.map((unit) => {
     return {
-      slug: unit.slug,
-      title: unit.title,
+      ...unit,
       lessons: (unit.lessons ?? []).map((lesson) => {
         lessonsLeftOver--;
         return {
-          slug: lesson.slug,
-          title: lesson.title,
+          ...lesson,
           included: lessonsLeftOver > -1,
         };
       }),
@@ -216,39 +216,44 @@ export function Timetabling({ sequence }: TimetablingProps) {
           </OakFlex>
         </OakFlex>
       </OakBox>
-      <OakBox>
-        <OakHeading tag="h2">Output</OakHeading>
-        <ul>
-          {output.map((unit) => {
-            const allOmitted = unit.lessons.every((lesson) => !lesson.included);
-            return (
-              <Fragment key={unit.slug}>
-                <li
-                  style={{ textDecoration: allOmitted ? "line-through" : "" }}
-                >
-                  {unit.title}
-                </li>
-                <ul>
-                  {unit.lessons.map((lesson) => {
-                    return (
-                      <li
-                        key={lesson.slug}
-                        style={{
-                          textDecoration: !lesson.included
-                            ? "line-through"
-                            : "",
-                        }}
-                      >
-                        {lesson.title}
-                      </li>
-                    );
-                  })}
-                </ul>
-              </Fragment>
-            );
-          })}
-        </ul>
-      </OakBox>
+      <SequenceOutput sequence={output} />
+    </OakBox>
+  );
+}
+
+type SequenceOutputProps = {
+  sequence: ExtendedUnit[];
+};
+function SequenceOutput({ sequence }: SequenceOutputProps) {
+  return (
+    <OakBox>
+      <OakHeading tag="h2">Output</OakHeading>
+      <ul>
+        {sequence.map((unit) => {
+          const allOmitted = unit.lessons.every((lesson) => !lesson.included);
+          return (
+            <Fragment key={unit.slug}>
+              <li style={{ textDecoration: allOmitted ? "line-through" : "" }}>
+                {unit.title}
+              </li>
+              <ul>
+                {unit.lessons.map((lesson) => {
+                  return (
+                    <li
+                      key={lesson.slug}
+                      style={{
+                        textDecoration: !lesson.included ? "line-through" : "",
+                      }}
+                    >
+                      {lesson.title}
+                    </li>
+                  );
+                })}
+              </ul>
+            </Fragment>
+          );
+        })}
+      </ul>
     </OakBox>
   );
 }
