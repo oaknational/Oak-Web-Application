@@ -137,7 +137,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
         $mb={["space-between-m", "space-between-l"]}
       >
         <OakFlex
-          $flexDirection={["column", "row"]}
+          $flexDirection={["column", "column", "row"]}
           $alignItems={"center"}
           $alignSelf={"stretch"}
           $gap={"space-between-xxl"}
@@ -158,8 +158,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
           </OakFlex>
           <OakFlex
             as="form"
-            // onSubmit={handleSubmit}
-            $minWidth={["min-content", "all-spacing-21"]}
+            $minWidth={["100%", "100%", "all-spacing-21"]}
             $flexDirection={"column"}
             $background={"white"}
             $pa={"inner-padding-xl"}
