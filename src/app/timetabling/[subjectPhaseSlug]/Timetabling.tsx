@@ -7,10 +7,8 @@ import {
   OakP,
   OakTextInput,
 } from "@oaknational/oak-components";
-import { useMemo, useState } from "react";
+import { Fragment, useMemo, useState } from "react";
 
-import { createLesson } from "@/fixtures/curriculum/lesson";
-import { createUnit } from "@/fixtures/curriculum/unit";
 import { Unit } from "@/utils/curriculum/types";
 
 type Data = {
@@ -91,36 +89,10 @@ function runAlgo(input: Data, sequence: Unit[]) {
   });
 }
 
-const stubLessons = [
-  createLesson({ slug: "lesson-1" }),
-  createLesson({ slug: "lesson-2" }),
-  createLesson({ slug: "lesson-3" }),
-  createLesson({ slug: "lesson-4" }),
-  createLesson({ slug: "lesson-5" }),
-  createLesson({ slug: "lesson-6" }),
-  createLesson({ slug: "lesson-7" }),
-  createLesson({ slug: "lesson-8" }),
-  createLesson({ slug: "lesson-9" }),
-];
-
-const sequence = [
-  createUnit({ slug: "unit-1", lessons: structuredClone(stubLessons) }),
-  createUnit({ slug: "unit-2", lessons: structuredClone(stubLessons) }),
-  createUnit({ slug: "unit-3", lessons: structuredClone(stubLessons) }),
-  createUnit({ slug: "unit-4", lessons: structuredClone(stubLessons) }),
-  createUnit({ slug: "unit-5", lessons: structuredClone(stubLessons) }),
-  createUnit({ slug: "unit-6", lessons: structuredClone(stubLessons) }),
-  createUnit({ slug: "unit-7", lessons: structuredClone(stubLessons) }),
-  createUnit({ slug: "unit-8", lessons: structuredClone(stubLessons) }),
-  createUnit({ slug: "unit-9", lessons: structuredClone(stubLessons) }),
-  createUnit({ slug: "unit-10", lessons: structuredClone(stubLessons) }),
-  createUnit({ slug: "unit-11", lessons: structuredClone(stubLessons) }),
-  createUnit({ slug: "unit-12", lessons: structuredClone(stubLessons) }),
-  createUnit({ slug: "unit-13", lessons: structuredClone(stubLessons) }),
-  createUnit({ slug: "unit-14", lessons: structuredClone(stubLessons) }),
-];
-
-export default function Timetabling() {
+type TimetablingProps = {
+  sequence: Unit[];
+};
+export function Timetabling({ sequence }: TimetablingProps) {
   const [data, setData] = useState<Data>({
     autumn1Weeks: 6,
     autumn2Weeks: 6,
@@ -142,7 +114,7 @@ export default function Timetabling() {
     };
   };
 
-  const output = useMemo(() => runAlgo(data, sequence), [data]);
+  const output = useMemo(() => runAlgo(data, sequence), [data, sequence]);
 
   return (
     <OakBox $pa="inner-padding-l">
@@ -250,7 +222,7 @@ export default function Timetabling() {
           {output.map((unit) => {
             const allOmitted = unit.lessons.every((lesson) => !lesson.included);
             return (
-              <>
+              <Fragment key={unit.slug}>
                 <li
                   style={{ textDecoration: allOmitted ? "line-through" : "" }}
                 >
@@ -260,6 +232,7 @@ export default function Timetabling() {
                   {unit.lessons.map((lesson) => {
                     return (
                       <li
+                        key={lesson.slug}
                         style={{
                           textDecoration: !lesson.included
                             ? "line-through"
@@ -271,7 +244,7 @@ export default function Timetabling() {
                     );
                   })}
                 </ul>
-              </>
+              </Fragment>
             );
           })}
         </ul>
