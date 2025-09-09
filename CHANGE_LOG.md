@@ -1,3 +1,31 @@
+## [1.849.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.849.0...v1.849.1) (2025-09-09)
+
+
+### Bug Fixes
+
+* remove border from resource card input ([b86931e](https://github.com/oaknational/Oak-Web-Application/commit/b86931e28b1128b44f373a6079353688ab401352))
+* show checkbox outline on Resource card when unchecked ([ae162bf](https://github.com/oaknational/Oak-Web-Application/commit/ae162bf1fd95eacd95f6b417049ad5a3edd378ad))
+* update oak-components to bring in fix for curriculum dl radio button ([26c059f](https://github.com/oaknational/Oak-Web-Application/commit/26c059f6016cedcaaaeeaa106039c2d62ade2bd5))
+
+# [1.849.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.848.4...v1.849.0) (2025-09-08)
+
+
+### Bug Fixes
+
+* tests ([d1399c1](https://github.com/oaknational/Oak-Web-Application/commit/d1399c177a3e9f694d5a3aaed339376d84dcf374))
+* types ([2919a84](https://github.com/oaknational/Oak-Web-Application/commit/2919a84f3c90df58ef9bb110a33a78899119a3af))
+
+
+### Features
+
+* add is create with ai enabled to mobile ([ab02676](https://github.com/oaknational/Oak-Web-Application/commit/ab026761a4b1c0ed7ffdf043940df72a5f136847))
+* add tracking events for teaching materials ([3cc6245](https://github.com/oaknational/Oak-Web-Application/commit/3cc62457216453be77f30fe36b6fa181f25053b0))
+* create teaching materials button ([23b6aba](https://github.com/oaknational/Oak-Web-Application/commit/23b6aba40104140c04bad0f96a6c3624c3c33cab))
+* external url take query strings ([da46ee0](https://github.com/oaknational/Oak-Web-Application/commit/da46ee0548b149363b72eecd4dd52f26df300a42))
+* fetch tcp works from lesson overview ([b644b26](https://github.com/oaknational/Oak-Web-Application/commit/b644b26365ed464116bac192b7f091330743216f))
+* restricted works query for lesson overview ([730def5](https://github.com/oaknational/Oak-Web-Application/commit/730def529102b723f68f288a2ce78ffbac313548))
+* share button dropdown ([c8e554f](https://github.com/oaknational/Oak-Web-Application/commit/c8e554f31be0cb4bb1ac054abc02cd4ef260b08c))
+
 ## [1.848.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.848.3...v1.848.4) (2025-09-08)
 
 

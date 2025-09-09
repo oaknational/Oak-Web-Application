@@ -62,6 +62,7 @@ export const SpecialistLessonPage: Story = {
       unitTotalLessonCount: 1,
       loginRequired: false,
       geoRestricted: false,
+      excludedFromTeachingMaterials: false,
     },
   },
 };

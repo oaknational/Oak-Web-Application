@@ -88,6 +88,7 @@ const teacherPreviewLessonQuery =
       lessonContentData as LessonOverviewContent,
       [],
       unitData,
+      true,
     );
 
     const parsedLessonPreviewData = lessonOverviewSchema.parse({
