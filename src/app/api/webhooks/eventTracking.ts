@@ -12,5 +12,22 @@ export function setUpEventTracking() {
     host: getServerConfig("posthogApiHost"),
   });
 
-  initAvo({ env: getAvoEnv() }, {}, getAvoBridge({ posthog: posthogClient }));
+  // Use silent logger in test environments to prevent console output
+  const isTestEnvironment = process.env.NODE_ENV === "test";
+  const silentLogger = isTestEnvironment
+    ? {
+        logDebug: () => true,
+        logWarn: () => true,
+        logError: () => true,
+      }
+    : undefined;
+
+  initAvo(
+    {
+      env: getAvoEnv(),
+      avoLogger: silentLogger,
+    },
+    {},
+    getAvoBridge({ posthog: posthogClient }),
+  );
 }
