@@ -5,7 +5,7 @@
 import { PostHog as PostHogNode } from "posthog-node";
 
 import errorReporter from "../../common-lib/error-reporter";
-import { CustomDestination } from "../../browser-lib/avo/Avo";
+import { CustomDestination } from "../../node-lib/avo/Avo";
 
 const reportError = errorReporter("getAvoBridge");
 
@@ -20,8 +20,9 @@ type AnalyticsServices = {
  * identify calls.
  */
 const getAvoBridge = ({ posthog }: AnalyticsServices) => {
-  const logEvent: CustomDestination["logEvent"] = (
-    eventName,
+  const logEvent: CustomDestination["logEvent"] = async (
+    userId: string,
+    eventName: string,
     eventProperties = {},
   ) => {
     const isObject = (
@@ -46,21 +47,15 @@ const getAvoBridge = ({ posthog }: AnalyticsServices) => {
       return;
     }
 
+    posthog.identify({ distinctId: userId });
     posthog.capture({
-      distinctId: (eventProperties.user_id as string) || "anonymous",
+      distinctId: userId || "anonymous",
       event: eventName,
       properties: eventProperties,
     });
   };
 
-  const identify: CustomDestination["identify"] = (userId) => {
-    posthog.identify({
-      distinctId: userId,
-      properties: {},
-    });
-  };
-
-  const setUserProperties: CustomDestination["setUserProperties"] = (
+  const setUserProperties: CustomDestination["setUserProperties"] = async (
     userId,
     properties,
   ) => {
@@ -72,7 +67,6 @@ const getAvoBridge = ({ posthog }: AnalyticsServices) => {
 
   return {
     logEvent,
-    identify,
     setUserProperties,
   };
 };

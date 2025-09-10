@@ -1,6 +1,6 @@
 import { PostHog as PostHogNode } from "posthog-node";
 
-import { initAvo } from "@/browser-lib/avo/Avo";
+import { initAvo } from "@/node-lib/avo/Avo";
 import getAvoEnv from "@/browser-lib/avo/getAvoEnv";
 import getServerConfig from "@/node-lib/getServerConfig";
 import getAvoBridge from "@/node-lib/avo/getAvoBridge";
@@ -12,9 +12,5 @@ export function setUpEventTracking() {
     host: getServerConfig("posthogApiHost"),
   });
 
-  initAvo(
-    { env: getAvoEnv(), webDebugger: false },
-    {},
-    getAvoBridge({ posthog: posthogClient }),
-  );
+  initAvo({ env: getAvoEnv() }, {}, getAvoBridge({ posthog: posthogClient }));
 }

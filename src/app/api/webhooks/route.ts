@@ -13,7 +13,7 @@ import {
   userSignIn,
   userSignOut,
   userSignUpCompleted,
-} from "@/browser-lib/avo/Avo";
+} from "@/node-lib/avo/Avo";
 import { pickSingleSignOnService } from "@/utils/pickSingleSignOnService";
 
 export async function POST(req: NextRequest) {
@@ -107,7 +107,7 @@ export async function POST(req: NextRequest) {
       case "session.ended":
       case "session.removed":
       case "session.revoked": {
-        userSignOut();
+        userSignOut({ userId_: evt.data.user_id });
         break;
       }
 
