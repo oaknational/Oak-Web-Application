@@ -21,7 +21,11 @@ import { Unit } from "@/utils/curriculum/types";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
 function stringIsValidNumber(value: string) {
-  return value.trim().match(/^[0-9]+$/) && !Number.isNaN(parseInt(value, 10));
+  return (
+    value.trim().match(/^[0-9.]+$/) &&
+    !Number.isNaN(parseInt(value, 10)) &&
+    !Number.isNaN(parseFloat(value))
+  );
 }
 
 type NumberInputProps = {
@@ -34,7 +38,9 @@ const NumberInput = ({ label, id, value, onChange }: NumberInputProps) => {
   const [dirtyValue, setDirtyValue] = useState(String(value));
   const onChangeLocal = (e: ChangeEvent<HTMLInputElement>) => {
     const strValue = e.target?.value;
-    const newValue = parseInt(strValue);
+    const newValue = strValue.match(/\./)
+      ? parseFloat(strValue)
+      : parseInt(strValue);
     setDirtyValue(strValue);
     if (stringIsValidNumber(strValue)) {
       onChange(newValue);
@@ -87,22 +93,122 @@ const NumberInput = ({ label, id, value, onChange }: NumberInputProps) => {
   );
 };
 
+type Slots = {
+  autumn1Lessons: number;
+  autumn2Lessons: number;
+  spring1Lessons: number;
+  spring2Lessons: number;
+  summer1Lessons: number;
+  summer2Lessons: number;
+};
+
+function genSlots(numSlots: number): Slots {
+  return {
+    autumn1Lessons: Math.floor(numSlots * 6),
+    autumn2Lessons: Math.ceil(numSlots * 7),
+    spring1Lessons: Math.floor(numSlots * 6),
+    spring2Lessons: Math.ceil(numSlots * 7),
+    summer1Lessons: Math.floor(numSlots * 6),
+    summer2Lessons: Math.ceil(numSlots * 7),
+  };
+}
+const DEFAULT_LESSON_SLOTS: Slots = genSlots(1);
+
+function getLessonsPerTerm({
+  subject,
+  year,
+}: {
+  subject: string;
+  year: number;
+}) {
+  const MAPPINGS: Record<string, Slots> = {
+    "maths:1": genSlots(5),
+    "maths:2": genSlots(5),
+    "maths:3": genSlots(5),
+    "maths:4": genSlots(5),
+    "maths:5": genSlots(5),
+    "maths:6": genSlots(5),
+    "history:1": genSlots(1),
+    "history:2": genSlots(1),
+    "history:3": genSlots(1),
+    "history:4": genSlots(1),
+    "history:5": genSlots(1),
+    "history:6": genSlots(1),
+    "geography:1": genSlots(1),
+    "geography:2": genSlots(1),
+    "geography:3": genSlots(1),
+    "geography:4": genSlots(1),
+    "geography:5": genSlots(1),
+    "geography:6": genSlots(1),
+    "music:1": genSlots(1),
+    "music:2": genSlots(1),
+    "music:3": genSlots(1),
+    "music:4": genSlots(1),
+    "music:5": genSlots(1),
+    "music:6": genSlots(1),
+    "religious-education:1": genSlots(1),
+    "religious-education:2": genSlots(1),
+    "religious-education:3": genSlots(1),
+    "religious-education:4": genSlots(1),
+    "religious-education:5": genSlots(1),
+    "religious-education:6": genSlots(1),
+    "computing:1": genSlots(0.5),
+    "computing:2": genSlots(0.5),
+    "computing:3": genSlots(0.5),
+    "computing:4": genSlots(1),
+    "computing:5": genSlots(1),
+    "computing:6": genSlots(1),
+    "design-technology:1": genSlots(1),
+    "design-technology:2": genSlots(1),
+    "design-technology:3": genSlots(1),
+    "design-technology:4": genSlots(1),
+    "design-technology:5": genSlots(1),
+    "design-technology:6": genSlots(1),
+    "art:1": genSlots(1),
+    "art:2": genSlots(1),
+    "art:3": genSlots(1),
+    "art:4": genSlots(1),
+    "art:5": genSlots(1),
+    "art:6": genSlots(1),
+    "physical-education:1": genSlots(2),
+    "physical-education:2": genSlots(2),
+    "physical-education:3": genSlots(2),
+    "physical-education:4": genSlots(2),
+    "physical-education:5": genSlots(2),
+    "physical-education:6": genSlots(2),
+  } as const;
+
+  const key = `${subject}:${year}`;
+  return MAPPINGS[key] ?? { ...DEFAULT_LESSON_SLOTS };
+}
+
 type TimetablingProps = {
   sequence: Unit[];
   slugs: CurriculumSelectionSlugs;
 };
 export function Timetabling({ sequence, slugs }: TimetablingProps) {
   const { phaseSlug, subjectSlug, ks4OptionSlug } = slugs;
-  const [data, setData] = useState<Input>({
-    autumn1Weeks: 6,
-    autumn2Weeks: 7,
-    spring1Weeks: 6,
-    spring2Weeks: 7,
-    summer1Weeks: 6,
-    summer2Weeks: 7,
-    lessonsPerWeek: 3,
-    year: 1,
+  const [data, setData] = useState<Input>(() => {
+    return {
+      autumn1Lessons: 6,
+      autumn2Lessons: 7,
+      spring1Lessons: 6,
+      spring2Lessons: 7,
+      summer1Lessons: 6,
+      summer2Lessons: 7,
+      year: 1,
+    };
   });
+
+  useEffect(() => {
+    const lessonsPerTerm = getLessonsPerTerm({
+      subject: slugs.subjectSlug,
+      year: data.year,
+    });
+    setData((data) => {
+      return { ...data, ...lessonsPerTerm };
+    });
+  }, [slugs.subjectSlug, data.year]);
 
   const modData = (key: string) => {
     return (v: number) => {
@@ -145,7 +251,7 @@ export function Timetabling({ sequence, slugs }: TimetablingProps) {
           />
         </OakFlex>
 
-        <OakHeading tag="h2">Lengths of terms (in weeks)</OakHeading>
+        <OakHeading tag="h2">Avaliable lessons in terms</OakHeading>
         <OakFlex
           $flexDirection={["column", "row", "row"]}
           $gap="all-spacing-3"
@@ -159,16 +265,16 @@ export function Timetabling({ sequence, slugs }: TimetablingProps) {
             $pt={"inner-padding-xl2"}
           >
             <NumberInput
-              id={"autumn1Weeks"}
+              id={"autumn1Lessons"}
               label={"Autumn (half term 1)"}
-              value={data.autumn1Weeks}
-              onChange={modData("autumn1Weeks")}
+              value={data.autumn1Lessons}
+              onChange={modData("autumn1Lessons")}
             />
             <NumberInput
-              id={"autumn2Weeks"}
+              id={"autumn2Lessons"}
               label={"Autumn (half term 2)"}
-              value={data.autumn2Weeks}
-              onChange={modData("autumn2Weeks")}
+              value={data.autumn2Lessons}
+              onChange={modData("autumn2Lessons")}
             />
           </OakFlex>
           <OakFlex
@@ -178,16 +284,16 @@ export function Timetabling({ sequence, slugs }: TimetablingProps) {
             $pt={"inner-padding-xl2"}
           >
             <NumberInput
-              id={"spring1Weeks"}
+              id={"spring1Lessons"}
               label={"Spring (half term 1)"}
-              value={data.spring1Weeks}
-              onChange={modData("spring1Weeks")}
+              value={data.spring1Lessons}
+              onChange={modData("spring1Lessons")}
             />
             <NumberInput
-              id={"spring2Weeks"}
+              id={"spring2Lessons"}
               label={"Spring (half term 2)"}
-              value={data.spring2Weeks}
-              onChange={modData("spring2Weeks")}
+              value={data.spring2Lessons}
+              onChange={modData("spring2Lessons")}
             />
           </OakFlex>
           <OakFlex
@@ -197,36 +303,16 @@ export function Timetabling({ sequence, slugs }: TimetablingProps) {
             $pt={"inner-padding-xl2"}
           >
             <NumberInput
-              id={"summer1Weeks"}
+              id={"summer1Lessons"}
               label={"Summer (half term 1)"}
-              value={data.summer1Weeks}
-              onChange={modData("summer1Weeks")}
+              value={data.summer1Lessons}
+              onChange={modData("summer1Lessons")}
             />
             <NumberInput
-              id={"summer2Weeks"}
+              id={"summer2Lessons"}
               label={"Summer (half term 2)"}
-              value={data.summer2Weeks}
-              onChange={modData("summer2Weeks")}
-            />
-          </OakFlex>
-        </OakFlex>
-
-        <OakHeading tag="h2">Lesson details</OakHeading>
-        <OakFlex
-          $flexDirection={["column", "row", "row"]}
-          $gap="all-spacing-8"
-          $pb={"inner-padding-xl"}
-        >
-          <OakFlex
-            $flexDirection={"column"}
-            $gap="all-spacing-8"
-            $pt={"inner-padding-xl2"}
-          >
-            <NumberInput
-              id={"lessonsPerWeek"}
-              label={"Lessons per week"}
-              value={data.lessonsPerWeek}
-              onChange={modData("lessonsPerWeek")}
+              value={data.summer2Lessons}
+              onChange={modData("summer2Lessons")}
             />
           </OakFlex>
         </OakFlex>

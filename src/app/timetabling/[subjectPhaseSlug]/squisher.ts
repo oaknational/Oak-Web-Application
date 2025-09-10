@@ -7,14 +7,13 @@ export function squishTimetable(
   input: Input,
   sequence: Unit[],
 ): { sequence: ExtendedUnit[]; lessonsLeftOver: number } {
-  const totalNumberOfWeeks =
-    input.autumn1Weeks +
-    input.autumn2Weeks +
-    input.spring1Weeks +
-    input.spring2Weeks +
-    input.summer1Weeks +
-    input.summer2Weeks;
-  const totalNumberOfLessons = input.lessonsPerWeek * totalNumberOfWeeks;
+  const totalNumberOfLessons =
+    input.autumn1Lessons +
+    input.autumn2Lessons +
+    input.spring1Lessons +
+    input.spring2Lessons +
+    input.summer1Lessons +
+    input.summer2Lessons;
 
   let lessonsLeftOver = totalNumberOfLessons;
 

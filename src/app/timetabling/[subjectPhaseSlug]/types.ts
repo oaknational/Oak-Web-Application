@@ -10,12 +10,12 @@ export type ExtendedUnitOption = {
 } & UnitOption;
 
 export type Input = {
-  autumn1Weeks: number;
-  autumn2Weeks: number;
-  spring1Weeks: number;
-  spring2Weeks: number;
-  summer1Weeks: number;
-  summer2Weeks: number;
-  lessonsPerWeek: number;
+  autumn1Lessons: number;
+  autumn2Lessons: number;
+  spring1Lessons: number;
+  spring2Lessons: number;
+  summer1Lessons: number;
+  summer2Lessons: number;
+  //   lessonsPerWeek: number;
   year: number;
 };
