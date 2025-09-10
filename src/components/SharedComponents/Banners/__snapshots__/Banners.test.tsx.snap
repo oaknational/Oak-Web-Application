@@ -7,22 +7,22 @@ exports[`Banners shows curriculum banner when feature flag is disabled 1`] = `
     role="banner"
   >
     <div
-      class="sc-fqkvVR sc-gsFSXq kugjse dNHjLk"
+      class="sc-fqkvVR sc-kAyceB kugjse kyta-DD"
     >
       <div
-        class="sc-fqkvVR sc-gsFSXq klgPPC etmIJn"
+        class="sc-fqkvVR sc-kAyceB klgPPC hDpTCw"
       >
         <div
-          class="sc-fqkvVR sc-gsFSXq jSUKNp cTPIFj"
+          class="sc-fqkvVR sc-kAyceB jSUKNp iCbXJE"
         >
           <div
-            class="sc-fqkvVR sc-gsFSXq fgBWrW fuWGje"
+            class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
           >
             <div
-              class="sc-fqkvVR sc-gsFSXq sc-klVQfs diOTmY dNHjLk grKGiQ"
+              class="sc-fqkvVR sc-kAyceB sc-kAkpmW diOTmY kyta-DD ZHCu"
             >
               <svg
-                class="sc-hmdomO hyWSZl"
+                class="sc-hzhJZQ dBiKOq"
                 height="100%"
                 viewBox="0 0 56 27"
                 width="100%"
@@ -33,10 +33,10 @@ exports[`Banners shows curriculum banner when feature flag is disabled 1`] = `
                 />
               </svg>
               <div
-                class="sc-fqkvVR sc-gsFSXq iVAGjr dNHjLk"
+                class="sc-fqkvVR sc-kAyceB iVAGjr kyta-DD"
               >
                 <span
-                  class="sc-kpDqfm ehwAme"
+                  class="sc-dAlyuH gIwybi"
                 >
                   New
                 </span>
@@ -52,7 +52,7 @@ exports[`Banners shows curriculum banner when feature flag is disabled 1`] = `
           title="See curriculum plans"
         >
           <div
-            class="sc-fqkvVR sc-gsFSXq gHxmiG iKAPmA"
+            class="sc-fqkvVR sc-kAyceB gHxmiG zqmPr"
           >
             <span
               aria-hidden="true"
@@ -96,7 +96,7 @@ exports[`Banners shows curriculum banner when feature flag is disabled 1`] = `
               class="sc-fqkvVR fgBWrW"
             >
               <span
-                class="sc-kpDqfm sc-ca3376e3-0 fsPjOh eEriKr"
+                class="sc-dAlyuH sc-ca3376e3-0 gYScdJ eEriKr"
               >
                 See curriculum plans
               </span>
@@ -133,10 +133,10 @@ exports[`Banners shows curriculum banner when feature flag is disabled 1`] = `
       class="sc-fqkvVR cRarTX"
     >
       <div
-        class="sc-fqkvVR sc-gsFSXq sc-jxOSlx hGVAzf hDihdg"
+        class="sc-fqkvVR sc-kAyceB sc-eZkCL hGVAzf joHkzz"
       >
         <svg
-          class="sc-hmdomO hyWSZl"
+          class="sc-hzhJZQ dBiKOq"
           height="100%"
           preserveAspectRatio="none"
           viewBox="0 0 866 8"
@@ -165,13 +165,13 @@ exports[`Banners shows mythbusting banner when mythbusting campaign feature flag
     role="banner"
   >
     <div
-      class="sc-fqkvVR sc-gsFSXq duJUbP dNHjLk"
+      class="sc-fqkvVR sc-kAyceB duJUbP kyta-DD"
     >
       <div
-        class="sc-fqkvVR sc-gsFSXq klgPPC etmIJn"
+        class="sc-fqkvVR sc-kAyceB klgPPC hDpTCw"
       >
         <div
-          class="sc-fqkvVR sc-gsFSXq jSUKNp cTPIFj"
+          class="sc-fqkvVR sc-kAyceB jSUKNp iCbXJE"
         >
           <p
             class="sc-dLMFU cDKcwR"
@@ -180,7 +180,7 @@ exports[`Banners shows mythbusting banner when mythbusting campaign feature flag
               style="display: inline-block; transform: rotate(-1.5deg); padding: 4px 8px;"
             >
               <span
-                class="sc-kpDqfm fewNs"
+                class="sc-dAlyuH hyKzfI"
               >
                 Myths
               </span>
@@ -199,7 +199,7 @@ exports[`Banners shows mythbusting banner when mythbusting campaign feature flag
           title="Learn why"
         >
           <div
-            class="sc-fqkvVR sc-gsFSXq gHxmiG iKAPmA"
+            class="sc-fqkvVR sc-kAyceB gHxmiG zqmPr"
           >
             <span
               aria-hidden="true"
@@ -243,7 +243,7 @@ exports[`Banners shows mythbusting banner when mythbusting campaign feature flag
               class="sc-fqkvVR fgBWrW"
             >
               <span
-                class="sc-kpDqfm sc-ca3376e3-0 fsPjOh eEriKr"
+                class="sc-dAlyuH sc-ca3376e3-0 gYScdJ eEriKr"
               >
                 Learn why
               </span>
@@ -280,10 +280,10 @@ exports[`Banners shows mythbusting banner when mythbusting campaign feature flag
       class="sc-fqkvVR jAGTee"
     >
       <div
-        class="sc-fqkvVR sc-gsFSXq sc-jxOSlx hGVAzf hDihdg"
+        class="sc-fqkvVR sc-kAyceB sc-eZkCL hGVAzf joHkzz"
       >
         <svg
-          class="sc-hmdomO hyWSZl"
+          class="sc-hzhJZQ dBiKOq"
           height="100%"
           preserveAspectRatio="none"
           viewBox="0 0 866 8"

@@ -68,6 +68,8 @@ const PupilUnitListingPage = ({
             title: `${subject}, ${phase}, ${yearDescription} - Unit listing`,
             description: `Unit listing for ${subject}, ${phase}, ${yearDescription}`,
           }),
+          noIndex: true,
+          noFollow: false,
         }}
       >
         <PupilViewsUnitListing
