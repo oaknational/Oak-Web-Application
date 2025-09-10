@@ -282,6 +282,10 @@ type SpecialistSubjectListingLinkProps = {
 
 type WebinarSingleLinkProps = { page: "webinar-single"; webinarSlug: string };
 type BlogSingleLinkProps = { page: "blog-single"; blogSlug: string };
+type CampaignSingleLinkProps = {
+  page: "campaign-single";
+  campaignSlug: string;
+};
 type AboutUsBoardLinkProps = { page: "about-board" };
 type AboutUsWhoWeAreLinkProps = { page: "about-who-we-are" };
 type AboutUsLeadershipLinkProps = { page: "about-leadership" };
@@ -307,6 +311,10 @@ type OurTeachersLinkProps = { page: "our-teachers" };
 type OakCurriculumLinkProps = { page: "oak-curriculum" };
 type ClassroomLinkProps = { page: "classroom" };
 type LabsLinkProps = { page: "labs" };
+type LabsTeachingMaterialsLinkProps = {
+  page: "labs-teaching-materials";
+  query?: UrlQueryObject;
+};
 type TeacherHubLinkProps = { page: "teacher-hub" };
 type CurriculumLandingPageLinkProps = {
   page: "curriculum-landing-page";
@@ -362,6 +370,7 @@ type MyLibraryProps = {
 
 export type OakLinkProps =
   | LabsLinkProps
+  | LabsTeachingMaterialsLinkProps
   | SubjectListingLinkProps
   | TeachersHomePageProps
   | SpecialistSubjectListingLinkProps
@@ -395,6 +404,7 @@ export type OakLinkProps =
   | SpecialistProgrammeListingLinkProps
   | BlogListingLinkProps
   | BlogSingleLinkProps
+  | CampaignSingleLinkProps
   | WebinarListingLinkProps
   | WebinarSingleLinkProps
   | HelpLinkProps
@@ -488,7 +498,18 @@ export function createOakPageConfig<ResolveHrefProps extends OakLinkProps>(
       return {
         ...props,
         matchHref: () => false,
-        resolveHref: () => props.url,
+        resolveHref: (resolveHrefProps: ResolveHrefProps) => {
+          if ("query" in resolveHrefProps && resolveHrefProps.query) {
+            const queryString = createQueryStringFromObject(
+              resolveHrefProps.query,
+            );
+            if (queryString) {
+              return `${props.url}?${queryString}`;
+            }
+          }
+
+          return props.url;
+        },
       };
     case "internal":
       return {
@@ -639,6 +660,12 @@ export const OAK_PAGES: {
     analyticsPageName: "[external] Labs",
     configType: "external",
     pageType: "labs",
+  }),
+  "labs-teaching-materials": createOakPageConfig({
+    url: "https://labs.thenational.academy/aila/teaching-materials",
+    analyticsPageName: "[external] Labs",
+    configType: "external",
+    pageType: "labs-teaching-materials",
   }),
   "support-your-team": createOakPageConfig({
     pathPattern: "/support-your-team",
@@ -852,6 +879,12 @@ export const OAK_PAGES: {
     analyticsPageName: "Blog",
     configType: "internal",
     pageType: "blog-single",
+  }),
+  "campaign-single": createOakPageConfig({
+    analyticsPageName: "Campaign",
+    configType: "internal",
+    pageType: "campaign-single",
+    pathPattern: "/campaigns/:campaignSlug",
   }),
   "webinar-single": createOakPageConfig({
     pathPattern: "/webinars/:webinarSlug",

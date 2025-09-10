@@ -6,13 +6,8 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { SerializedPost } from "@/pages-helpers/home/getBlogPosts";
 import keyStageKeypad from "@/browser-lib/fixtures/keyStageKeypad";
 import { BlogPostPreview, WebinarPreview } from "@/common-lib/cms-types";
-import CMSClient from "@/node-lib/cms";
 
 const render = renderWithProviders();
-
-jest.mock("src/node-lib/cms");
-
-const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
 export const mockPosts = [
   {
@@ -38,6 +33,12 @@ const props: TeachersHomePageProps = {
     heading: "",
     id: "",
     summaryPortableText: [],
+    campaignPromoBanner: {
+      headingPortableTextWithPromo: [],
+      subheadingPortableTextWithPromo: [],
+      media: [],
+      buttonCta: "",
+    },
     notification: { enabled: false },
     sidebarCard1: { title: "", bodyPortableText: [] },
     sidebarCard2: { title: "", bodyPortableText: [] },
@@ -48,6 +49,19 @@ const props: TeachersHomePageProps = {
     keyStages: keyStageKeypad.keyStages,
   },
 };
+
+const homepage = jest.fn().mockResolvedValue(props.pageData);
+const blogPosts = jest.fn().mockResolvedValue([]);
+const webinars = jest.fn().mockResolvedValue([]);
+
+jest.mock("@/node-lib/cms", () => ({
+  __esModule: true,
+  default: {
+    homepage: (...args: []) => homepage(args),
+    webinars: (...args: []) => webinars(args),
+    blogPosts: (...args: []) => blogPosts(args),
+  },
+}));
 
 describe("Teachers Page", () => {
   describe("Page component", () => {
@@ -84,14 +98,10 @@ describe("Teachers Page", () => {
     beforeEach(() => {
       jest.clearAllMocks();
       jest.resetModules();
-
-      mockCMSClient.homepage.mockResolvedValue(props.pageData);
-      mockCMSClient.blogPosts.mockResolvedValue([]);
-      mockCMSClient.webinars.mockResolvedValue([]);
     });
 
     it("Should return no more than 4 posts", async () => {
-      mockCMSClient.blogPosts.mockResolvedValueOnce([
+      blogPosts.mockResolvedValueOnce([
         mockPost,
         mockPost2,
         mockPost,
@@ -107,7 +117,7 @@ describe("Teachers Page", () => {
     });
 
     it("Should sort posts by date ascending", async () => {
-      mockCMSClient.blogPosts.mockResolvedValueOnce([
+      blogPosts.mockResolvedValueOnce([
         { ...mockPost, id: "2", date: new Date("2022-01-01") },
         { ...mockPost, id: "3", date: new Date("2021-01-01") },
         { ...mockPost, id: "1", date: new Date("2023-01-01") },
@@ -121,7 +131,7 @@ describe("Teachers Page", () => {
     });
 
     it("Should filter out upcoming webinars", async () => {
-      mockCMSClient.webinars.mockResolvedValueOnce([
+      webinars.mockResolvedValueOnce([
         { ...mockPost3, id: "2", date: new Date("2022-01-01") },
         { ...mockPost3, id: "3", date: new Date("2021-01-01") },
         { ...mockPost3, id: "1", date: new Date("4023-01-01") },
@@ -135,20 +145,20 @@ describe("Teachers Page", () => {
     });
 
     it("Should not fetch draft content by default", async () => {
-      mockCMSClient.blogPosts.mockResolvedValueOnce([mockPost]);
+      blogPosts.mockResolvedValueOnce([mockPost]);
       await getStaticProps({
         params: {},
       });
 
-      expect(mockCMSClient.blogPosts).toHaveBeenCalledWith(
+      expect(blogPosts).toHaveBeenCalledWith([
         expect.objectContaining({
           previewMode: false,
         }),
-      );
+      ]);
     });
 
     it("should return notFound when the page data is missing", async () => {
-      mockCMSClient.homepage.mockResolvedValueOnce(null);
+      homepage.mockResolvedValueOnce(null);
 
       const propsResult = await getStaticProps({
         params: {},

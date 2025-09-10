@@ -11,6 +11,7 @@ import {
 
 import { filterDownloadsByCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
 import { useOnboardingStatus } from "../TeacherComponents/hooks/useOnboardingStatus";
+import Banners from "../SharedComponents/Banners";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import {
@@ -263,7 +264,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         schoolUrn,
         selectedResourcesForTracking,
       } = getFormattedDetailsForTracking({
-        school: schoolIdFromLocalStorage,
+        school: data.school,
         selectedResources,
       });
 
@@ -330,6 +331,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
       $ph={["inner-padding-m", "inner-padding-none"]}
       $background={"grey20"}
     >
+      {isDownloadSuccessful && <Banners hideIfFeatureFlagDisabled />}
       <OakMaxWidth
         $pb="inner-padding-xl8"
         $maxWidth={["all-spacing-21", "all-spacing-23", "all-spacing-24"]}
