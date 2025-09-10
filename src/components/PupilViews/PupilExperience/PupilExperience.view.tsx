@@ -255,7 +255,7 @@ const PupilExperienceLayout = ({
           title: browseData.lessonData.title,
           description: browseData.lessonData.pupilLessonOutcome,
         }),
-        noIndex: isSensitive,
+        noIndex: true,
         noFollow: isSensitive,
       }}
     >

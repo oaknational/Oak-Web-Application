@@ -6,41 +6,8 @@ import CampaignSinglePage, {
 } from "@/pages/campaigns/[campaignSlug]";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import { CampaignPage } from "@/common-lib/cms-types/campaignPage";
-import { mockImageAsset } from "@/__tests__/__helpers__/cms";
 import keyStagesFixture from "@/node-lib/curriculum-api-2023/fixtures/keyStages.fixture";
-import {
-  bodyPortableText,
-  headingPortableText,
-} from "@/fixtures/campaign/portableText";
-
-const mockCampaign: CampaignPage = {
-  id: "test-id",
-  content: [
-    {
-      headingPortableTextWithPromo: [],
-      type: "CampaignIntro",
-      bodyPortableTextWithPromo: bodyPortableText("campaign-intro-body-text"),
-    },
-    {
-      headingPortableTextWithPromo: headingPortableText(
-        "campaign-promo-heading-text",
-      ),
-      type: "CampaignPromoBanner",
-      media: [{ ...mockImageAsset(), altText: "campaign-promo-test" }],
-    },
-  ],
-  header: {
-    image: { ...mockImageAsset(), altText: "Test Image Alt Text" },
-    heading: "Test Campaign Header",
-  },
-  slug: "test-campaign",
-  title: "Test Campaign",
-  seo: {
-    title: "Test Campaign SEO Title",
-    description: "Test Campaign SEO Description",
-  },
-};
+import mockCampaign from "@/fixtures/campaign/mockCampaign";
 
 const campaignBySlug = jest.fn().mockResolvedValue(mockCampaign);
 const keyStages = jest.fn().mockResolvedValue(keyStagesFixture());
@@ -193,6 +160,36 @@ describe("Campaign page", () => {
 
     const campaignIntro = screen.queryByText("campaign-intro-body-text");
     expect(campaignIntro).not.toBeInTheDocument();
+  });
+
+  it("renders a video component when provided", () => {
+    render(
+      <CampaignSinglePage
+        campaign={mockCampaign}
+        keyStages={keyStagesFixture()}
+      />,
+    );
+    const campaignVideo = screen.getByText("campaign-video-heading-text");
+    expect(campaignVideo).toBeInTheDocument();
+  });
+
+  it("does not render a campaign video banner when not supplied", () => {
+    const campaignWithoutPromo = {
+      ...mockCampaign,
+      content: mockCampaign.content.filter(
+        (item) => item.type !== "CampaignVideoBanner",
+      ),
+    };
+
+    render(
+      <CampaignSinglePage
+        campaign={campaignWithoutPromo}
+        keyStages={keyStagesFixture()}
+      />,
+    );
+
+    const videoBanner = screen.queryByText("campaign-video-heading-text");
+    expect(videoBanner).not.toBeInTheDocument();
   });
 
   it("renders the correct SEO props", () => {
