@@ -12,24 +12,13 @@ import {
 import { ChangeEvent, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 
-import { ExtendedUnit, ExtendedUnitOption } from "./types";
 import { SequenceOutput } from "./SequenceOutput";
 import { slugsToString } from "./helper";
+import { squishTimetable } from "./squisher";
+import { Input } from "./types";
 
 import { Unit } from "@/utils/curriculum/types";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
-
-type Data = {
-  autumn1Weeks: number;
-  autumn2Weeks: number;
-  spring1Weeks: number;
-  spring2Weeks: number;
-  summer1Weeks: number;
-  summer2Weeks: number;
-  lessonsPerWeek: number;
-  topics: string[];
-  year: number;
-};
 
 function stringIsValidNumber(value: string) {
   return value.trim().match(/^[0-9]+$/) && !Number.isNaN(parseInt(value, 10));
@@ -98,74 +87,20 @@ const NumberInput = ({ label, id, value, onChange }: NumberInputProps) => {
   );
 };
 
-// TODO: This is the bit we need to work out
-// What is the optimum algo for lessons
-function runAlgo(
-  input: Data,
-  sequence: Unit[],
-): { sequence: ExtendedUnit[]; lessonsLeftOver: number } {
-  const totalNumberOfWeeks =
-    input.autumn1Weeks +
-    input.autumn2Weeks +
-    input.spring1Weeks +
-    input.spring2Weeks +
-    input.summer1Weeks +
-    input.summer2Weeks;
-  const totalNumberOfLessons = input.lessonsPerWeek * totalNumberOfWeeks;
-
-  let lessonsLeftOver = totalNumberOfLessons;
-
-  const sequenceByYear = sequence
-    .filter((unit) => unit.year === String(input.year))
-    .sort((a, b) => a.order - b.order);
-
-  const newSequence = sequenceByYear.map((unit) => {
-    const newLessons = (unit.lessons ?? []).map((lesson) => {
-      lessonsLeftOver--;
-      return {
-        ...lesson,
-        included: lessonsLeftOver > -1,
-      };
-    });
-
-    return {
-      ...unit,
-      lessons: newLessons,
-      unit_options: unit.unit_options.map((unitOption) => {
-        return {
-          ...unitOption,
-          lessons: (unitOption.lessons ?? []).map((lesson, lessonIndex) => {
-            return {
-              ...lesson,
-              included: newLessons[lessonIndex]?.included,
-            };
-          }),
-        } as ExtendedUnitOption;
-      }),
-    };
-  });
-
-  return {
-    sequence: newSequence,
-    lessonsLeftOver: Math.max(0, lessonsLeftOver),
-  };
-}
-
 type TimetablingProps = {
   sequence: Unit[];
   slugs: CurriculumSelectionSlugs;
 };
 export function Timetabling({ sequence, slugs }: TimetablingProps) {
   const { phaseSlug, subjectSlug, ks4OptionSlug } = slugs;
-  const [data, setData] = useState<Data>({
+  const [data, setData] = useState<Input>({
     autumn1Weeks: 6,
-    autumn2Weeks: 6,
+    autumn2Weeks: 7,
     spring1Weeks: 6,
-    spring2Weeks: 6,
+    spring2Weeks: 7,
     summer1Weeks: 6,
-    summer2Weeks: 6,
-    lessonsPerWeek: 2,
-    topics: [],
+    summer2Weeks: 7,
+    lessonsPerWeek: 3,
     year: 1,
   });
 
@@ -179,7 +114,7 @@ export function Timetabling({ sequence, slugs }: TimetablingProps) {
   };
 
   const { sequence: newSequence, lessonsLeftOver } = useMemo(
-    () => runAlgo(data, sequence),
+    () => squishTimetable(data, sequence),
     [data, sequence],
   );
 
@@ -188,7 +123,7 @@ export function Timetabling({ sequence, slugs }: TimetablingProps) {
       <OakBox>
         <OakHeading tag="h1">
           🏓 Timetabling:{" "}
-          {[phaseSlug, subjectSlug, ks4OptionSlug].filter(Boolean).join("/")}
+          {[subjectSlug, phaseSlug, ks4OptionSlug].filter(Boolean).join("/")}
         </OakHeading>
         <OakP $mb={"space-between-m"}>
           A test harness for timetabling exploration
@@ -196,7 +131,7 @@ export function Timetabling({ sequence, slugs }: TimetablingProps) {
 
         <OakHeading tag="h2">Sequence details</OakHeading>
         <OakFlex
-          $flexDirection={"row"}
+          $flexDirection={["column", "row", "row"]}
           $gap="all-spacing-8"
           $pb={"inner-padding-xl"}
           $flexWrap={"wrap"}
@@ -212,13 +147,13 @@ export function Timetabling({ sequence, slugs }: TimetablingProps) {
 
         <OakHeading tag="h2">Lengths of terms (in weeks)</OakHeading>
         <OakFlex
-          $flexDirection={"row"}
-          $gap="all-spacing-8"
+          $flexDirection={["column", "row", "row"]}
+          $gap="all-spacing-3"
           $pb={"inner-padding-xl"}
           $flexWrap={"wrap"}
         >
           <OakFlex
-            $minWidth={"all-spacing-19"}
+            $minWidth={"all-spacing-17"}
             $flexDirection={"column"}
             $gap="all-spacing-8"
             $pt={"inner-padding-xl2"}
@@ -237,7 +172,7 @@ export function Timetabling({ sequence, slugs }: TimetablingProps) {
             />
           </OakFlex>
           <OakFlex
-            $minWidth={"all-spacing-19"}
+            $minWidth={"all-spacing-17"}
             $flexDirection={"column"}
             $gap="all-spacing-8"
             $pt={"inner-padding-xl2"}
@@ -256,7 +191,7 @@ export function Timetabling({ sequence, slugs }: TimetablingProps) {
             />
           </OakFlex>
           <OakFlex
-            $minWidth={"all-spacing-19"}
+            $minWidth={"all-spacing-17"}
             $flexDirection={"column"}
             $gap="all-spacing-8"
             $pt={"inner-padding-xl2"}
@@ -278,7 +213,7 @@ export function Timetabling({ sequence, slugs }: TimetablingProps) {
 
         <OakHeading tag="h2">Lesson details</OakHeading>
         <OakFlex
-          $flexDirection={"row"}
+          $flexDirection={["column", "row", "row"]}
           $gap="all-spacing-8"
           $pb={"inner-padding-xl"}
         >

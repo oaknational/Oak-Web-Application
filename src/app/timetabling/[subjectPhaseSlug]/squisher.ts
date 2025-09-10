@@ -1,0 +1,55 @@
+import { ExtendedUnit, ExtendedUnitOption, Input } from "./types";
+
+import { Unit } from "@/utils/curriculum/types";
+
+// TODO: What is the optimum algo for lessons vs time optimisation
+export function squishTimetable(
+  input: Input,
+  sequence: Unit[],
+): { sequence: ExtendedUnit[]; lessonsLeftOver: number } {
+  const totalNumberOfWeeks =
+    input.autumn1Weeks +
+    input.autumn2Weeks +
+    input.spring1Weeks +
+    input.spring2Weeks +
+    input.summer1Weeks +
+    input.summer2Weeks;
+  const totalNumberOfLessons = input.lessonsPerWeek * totalNumberOfWeeks;
+
+  let lessonsLeftOver = totalNumberOfLessons;
+
+  const sequenceByYear = sequence
+    .filter((unit) => unit.year === String(input.year))
+    .sort((a, b) => a.order - b.order);
+
+  const newSequence = sequenceByYear.map((unit) => {
+    const newLessons = (unit.lessons ?? []).map((lesson) => {
+      lessonsLeftOver--;
+      return {
+        ...lesson,
+        included: lessonsLeftOver > -1,
+      };
+    });
+
+    return {
+      ...unit,
+      lessons: newLessons,
+      unit_options: unit.unit_options.map((unitOption) => {
+        return {
+          ...unitOption,
+          lessons: (unitOption.lessons ?? []).map((lesson, lessonIndex) => {
+            return {
+              ...lesson,
+              included: newLessons[lessonIndex]?.included,
+            };
+          }),
+        } as ExtendedUnitOption;
+      }),
+    };
+  });
+
+  return {
+    sequence: newSequence,
+    lessonsLeftOver: Math.max(0, lessonsLeftOver),
+  };
+}

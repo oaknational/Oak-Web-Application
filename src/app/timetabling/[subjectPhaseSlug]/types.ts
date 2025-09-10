@@ -8,3 +8,14 @@ export type ExtendedUnit = {
 export type ExtendedUnitOption = {
   lessons: (Lesson & { included: boolean })[];
 } & UnitOption;
+
+export type Input = {
+  autumn1Weeks: number;
+  autumn2Weeks: number;
+  spring1Weeks: number;
+  spring2Weeks: number;
+  summer1Weeks: number;
+  summer2Weeks: number;
+  lessonsPerWeek: number;
+  year: number;
+};

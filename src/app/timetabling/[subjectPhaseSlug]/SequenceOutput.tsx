@@ -8,7 +8,6 @@ import { slugsToString } from "./helper";
 
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
-
 function Lessons({ unit }: { unit: ExtendedUnit | ExtendedUnitOption }) {
   return (
     <ul>
@@ -20,7 +19,7 @@ function Lessons({ unit }: { unit: ExtendedUnit | ExtendedUnitOption }) {
               textDecoration: !lesson.included ? "line-through" : "",
             }}
           >
-            🧑🏻‍🏫 Lesson#{index + 1}: {lesson.title}
+            🧑‍🏫 Lesson#{index + 1}: {lesson.title}
           </li>
         );
       })}
