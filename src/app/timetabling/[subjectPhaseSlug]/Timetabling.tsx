@@ -276,8 +276,12 @@ export function Timetabling({ sequence, slugs }: TimetablingProps) {
   const {
     sequence: newSequence,
     lessonsLeftOver,
-    numberOfLessons,
-  } = useMemo(() => squishTimetable(data, sequence), [data, sequence]);
+    numberOfLessonsToRemove,
+    totalNumberOfLessons,
+  } = useMemo(
+    () => squishTimetable(data, sequence, slugs),
+    [data, sequence, slugs],
+  );
 
   return (
     <OakBox $pa="inner-padding-l">
@@ -407,7 +411,7 @@ export function Timetabling({ sequence, slugs }: TimetablingProps) {
           message={
             <span>
               Note there are <strong>{lessonsLeftOver}</strong> lesson slots (
-              {numberOfLessons} total lessons) left over
+              {totalNumberOfLessons} total lessons) left over
             </span>
           }
           onDismiss={() => {}}
@@ -415,13 +419,13 @@ export function Timetabling({ sequence, slugs }: TimetablingProps) {
           variant="regular"
         />
       )}
-      {lessonsLeftOver < 0 && (
+      {numberOfLessonsToRemove > 0 && (
         <OakInlineBanner
           isOpen={true}
           message={
             <span>
-              Note we have remove {Math.abs(lessonsLeftOver)} lessons (
-              {numberOfLessons} total lessons)
+              Note we have removed {Math.abs(numberOfLessonsToRemove)} lessons (
+              {totalNumberOfLessons} total lessons)
             </span>
           }
           onDismiss={() => {}}
