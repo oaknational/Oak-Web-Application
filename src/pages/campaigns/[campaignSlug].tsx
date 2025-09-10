@@ -16,6 +16,7 @@ import curriculumApi2023, {
 import { CampaignPageHeader } from "@/components/GenericPagesComponents/CampaignPageHeader/CampaignPageHeader";
 import { CampaignPageIntro } from "@/components/GenericPagesComponents/CampaignPageIntro/CampaignPageIntro";
 import { CampaignPromoBanner } from "@/components/GenericPagesComponents/CampaignPromoBanner/CampaignPromoBanner";
+import { CampaignVideoBanner } from "@/components/GenericPagesComponents/CampaignVideoBanner/CampaignVideoBanner";
 
 export type CampaignSinglePageProps = {
   campaign: CampaignPage;
@@ -42,6 +43,17 @@ export const campaignTextStyles: PortableTextComponents = {
         <OakHeading
           $font={["heading-light-7", "heading-light-6", "heading-light-5"]}
           tag="h3"
+        >
+          {props.children}
+        </OakHeading>
+      );
+    },
+    heading4: (props) => {
+      return (
+        <OakHeading
+          $font={["heading-6", "heading-5", "heading-4"]}
+          tag="h4"
+          $mb={"space-between-m"}
         >
           {props.children}
         </OakHeading>
@@ -110,6 +122,19 @@ const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
                   key={section.type}
                 />
               );
+          }
+          if (section.type === "CampaignVideoBanner") {
+            if (section.video) {
+              return (
+                <CampaignVideoBanner
+                  key={section.type}
+                  textStyles={campaignTextStyles}
+                  heading={section.headingPortableTextWithPromo}
+                  subheading={section.subheadingPortableTextWithPromo}
+                  video={section.video}
+                />
+              );
+            }
           }
         })}
       </OakFlex>
