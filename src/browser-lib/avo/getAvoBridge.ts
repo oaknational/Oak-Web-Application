@@ -1,6 +1,7 @@
 /**
  * @see https://www.avo.app/docs/implementation/start-using-avo-functions
  */
+
 import errorReporter from "../../common-lib/error-reporter";
 import { AnalyticsService } from "../../context/Analytics/AnalyticsProvider";
 import { PosthogConfig } from "../posthog/posthog";
@@ -46,7 +47,6 @@ const getAvoBridge = ({ posthog }: AnalyticsServices) => {
     }
     // Uncomment the below line to send track events to hubspot
     // hubspot.track(eventName, eventProperties);
-
     posthog.track(eventName, eventProperties);
   };
 

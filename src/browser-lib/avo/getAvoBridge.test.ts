@@ -1,14 +1,10 @@
 import getAvoBridge from "./getAvoBridge";
 
-type PostHogBrowser = {
-  track: jest.Mock;
-  identify: jest.Mock;
-};
-
-function getMockPosthog(): PostHogBrowser {
+function getMockPosthog() {
   return {
     track: jest.fn(),
     identify: jest.fn(),
+    setUserProperties: jest.fn(),
   };
 }
 
