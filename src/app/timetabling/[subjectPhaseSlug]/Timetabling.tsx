@@ -103,6 +103,7 @@ type Slots = {
 };
 
 function genSlots(numSlots: number): Slots {
+  // Note: We floor/ceil so we don't get fractional on weeks with even/odd numbers.
   return {
     autumn1Lessons: Math.floor(numSlots * 6),
     autumn2Lessons: Math.ceil(numSlots * 7),
@@ -128,54 +129,107 @@ function getLessonsPerTerm({
     "maths:4": genSlots(5),
     "maths:5": genSlots(5),
     "maths:6": genSlots(5),
+    "maths:7": genSlots(5),
+    "maths:8": genSlots(5),
+    "maths:9": genSlots(5),
+    "maths:10": genSlots(5),
+    "maths:11": genSlots(5),
+    // ------
     "history:1": genSlots(1),
     "history:2": genSlots(1),
     "history:3": genSlots(1),
     "history:4": genSlots(1),
     "history:5": genSlots(1),
     "history:6": genSlots(1),
+    "history:7": genSlots(2),
+    "history:8": genSlots(2),
+    "history:9": genSlots(2),
+    "history:10": genSlots(2),
+    "history:11": genSlots(2),
+    // ------
     "geography:1": genSlots(1),
     "geography:2": genSlots(1),
     "geography:3": genSlots(1),
     "geography:4": genSlots(1),
     "geography:5": genSlots(1),
     "geography:6": genSlots(1),
+    "geography:7": genSlots(2),
+    "geography:8": genSlots(2),
+    "geography:9": genSlots(2),
+    "geography:10": genSlots(2),
+    "geography:11": genSlots(2),
+    // ------
     "music:1": genSlots(1),
     "music:2": genSlots(1),
     "music:3": genSlots(1),
     "music:4": genSlots(1),
     "music:5": genSlots(1),
     "music:6": genSlots(1),
+    "music:7": genSlots(1),
+    "music:8": genSlots(1),
+    "music:9": genSlots(1),
+    "music:10": genSlots(2),
+    "music:11": genSlots(2),
+    // ------
     "religious-education:1": genSlots(1),
     "religious-education:2": genSlots(1),
     "religious-education:3": genSlots(1),
     "religious-education:4": genSlots(1),
     "religious-education:5": genSlots(1),
     "religious-education:6": genSlots(1),
+    "religious-education:7": genSlots(1),
+    "religious-education:8": genSlots(1),
+    "religious-education:9": genSlots(1),
+    "religious-education:10": genSlots(1),
+    "religious-education:11": genSlots(1),
+    // ------
     "computing:1": genSlots(0.5),
     "computing:2": genSlots(0.5),
     "computing:3": genSlots(0.5),
     "computing:4": genSlots(1),
     "computing:5": genSlots(1),
     "computing:6": genSlots(1),
+    "computing:7": genSlots(1),
+    "computing:8": genSlots(1),
+    "computing:9": genSlots(1),
+    "computing:10": genSlots(1),
+    "computing:11": genSlots(1),
+    // ------
     "design-technology:1": genSlots(1),
     "design-technology:2": genSlots(1),
     "design-technology:3": genSlots(1),
     "design-technology:4": genSlots(1),
     "design-technology:5": genSlots(1),
     "design-technology:6": genSlots(1),
+    "design-technology:7": genSlots(1),
+    "design-technology:8": genSlots(1),
+    "design-technology:9": genSlots(1),
+    "design-technology:10": genSlots(2),
+    "design-technology:11": genSlots(2),
+    // ------
     "art:1": genSlots(1),
     "art:2": genSlots(1),
     "art:3": genSlots(1),
     "art:4": genSlots(1),
     "art:5": genSlots(1),
     "art:6": genSlots(1),
+    "art:7": genSlots(1),
+    "art:8": genSlots(1),
+    "art:9": genSlots(1),
+    "art:10": genSlots(2),
+    "art:11": genSlots(2),
+    // ------
     "physical-education:1": genSlots(2),
     "physical-education:2": genSlots(2),
     "physical-education:3": genSlots(2),
     "physical-education:4": genSlots(2),
     "physical-education:5": genSlots(2),
     "physical-education:6": genSlots(2),
+    "physical-education:7": genSlots(2),
+    "physical-education:8": genSlots(2),
+    "physical-education:9": genSlots(2),
+    "physical-education:10": genSlots(2),
+    "physical-education:11": genSlots(2),
   } as const;
 
   const key = `${subject}:${year}`;
@@ -189,15 +243,15 @@ type TimetablingProps = {
 export function Timetabling({ sequence, slugs }: TimetablingProps) {
   const { phaseSlug, subjectSlug, ks4OptionSlug } = slugs;
   const [data, setData] = useState<Input>(() => {
-    return {
-      autumn1Lessons: 6,
-      autumn2Lessons: 7,
-      spring1Lessons: 6,
-      spring2Lessons: 7,
-      summer1Lessons: 6,
-      summer2Lessons: 7,
-      year: 1,
+    const year = slugs.phaseSlug === "primary" ? 1 : 7;
+    const output: Input = {
+      year,
+      ...getLessonsPerTerm({
+        subject: slugs.subjectSlug,
+        year,
+      }),
     };
+    return output;
   });
 
   useEffect(() => {
