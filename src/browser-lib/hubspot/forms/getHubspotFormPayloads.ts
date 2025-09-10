@@ -27,19 +27,9 @@ export type NewsletterHubspotFormData = {
 } & UtmParams;
 
 export type CampaignNewsletterHubspotFormData = {
-  // when sending email to 'fallback' form
-  emailTextOnly?: string;
-  email?: string;
-  oakUserId?: string;
-  name?: string;
   school: string;
   schoolName?: string;
-  /**
-   * allow "" for userRole as it's easier [than null/undefined] to use as a
-   * form value. It is stripped out in getHubspotFormPayload.
-   */
-  userRole: UserRole | "";
-} & UtmParams;
+} & NewsletterHubspotFormData;
 
 export const getUtmSnakeCaseData = (data: UtmParams) => {
   return {
