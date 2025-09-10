@@ -3,6 +3,7 @@
 
 import { SignIn } from "@clerk/nextjs";
 import { OakBox } from "@oaknational/oak-components";
+import { useSearchParams } from "next/navigation";
 
 import { formAppearanceStyles } from "../../formAppearanceStyles";
 
@@ -11,6 +12,13 @@ import RegistrationLayout from "@/components/TeacherComponents/RegistrationLayou
 import { getIllustrationAsset } from "@/image-data";
 
 function SignInPage() {
+  let signInForceRedirectUrl: string | undefined = undefined;
+  const searchParams = useSearchParams();
+  if (searchParams) {
+    signInForceRedirectUrl = searchParams.get(
+      "sign_in_force_redirect_url",
+    ) as string;
+  }
   return (
     <RegistrationLayout
       asideSlot={
@@ -23,7 +31,10 @@ function SignInPage() {
         </OakBox>
       }
     >
-      <SignIn appearance={formAppearanceStyles} />
+      <SignIn
+        signUpForceRedirectUrl={signInForceRedirectUrl}
+        appearance={formAppearanceStyles}
+      />
     </RegistrationLayout>
   );
 }

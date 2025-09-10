@@ -10,6 +10,7 @@ import {
   OakLink,
   OakP,
 } from "@oaknational/oak-components";
+import { useSearchParams } from "next/navigation";
 
 import { formAppearanceStyles } from "../../formAppearanceStyles";
 
@@ -75,7 +76,13 @@ const Banner = () => {
 
 function SignUpPage() {
   const [clerkRendered, setClerkRendered] = useState(false);
-
+  let signUpForceRedirectUrl: string | undefined = undefined;
+  const searchParams = useSearchParams();
+  if (searchParams) {
+    signUpForceRedirectUrl = searchParams.get(
+      "sign_up_force_redirect_url",
+    ) as string;
+  }
   const checkForClerkElement = useCallback(() => {
     // Clerk docs say these classnames are stable
     const clerkSignUpElement = document.getElementsByClassName(
@@ -102,6 +109,7 @@ function SignUpPage() {
       bannerSlot={clerkRendered ? <Banner /> : null}
     >
       <SignUp
+        signInForceRedirectUrl={signUpForceRedirectUrl}
         appearance={formAppearanceStyles}
         unsafeMetadata={{ owa: { lastTrackedSignInAt: null } }}
       />
