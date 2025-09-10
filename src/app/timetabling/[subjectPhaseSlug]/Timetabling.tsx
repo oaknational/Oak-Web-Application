@@ -375,7 +375,7 @@ export function Timetabling({ sequence, slugs }: TimetablingProps) {
       <OakBox $pv="inner-padding-l">
         <OakInlineBanner
           isOpen={true}
-          message={"This doesn't currently support subject categories"}
+          message={`This doesn't currently support "subject categories" or "tiers"`}
           onDismiss={() => {}}
           type="info"
           variant="regular"
