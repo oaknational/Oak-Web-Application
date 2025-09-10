@@ -51,13 +51,22 @@ export const getUtmSnakeCaseData = (data: UtmParams) => {
   };
 };
 
-export const getSnakeCaseData = (data: NewsletterHubspotFormData) => {
+export const getSnakeCaseData = (
+  data: NewsletterHubspotFormData | CampaignNewsletterHubspotFormData,
+) => {
   return {
     email: data.email,
     email_text_only: data.emailTextOnly,
     full_name: data.name,
     user_type: data.userRole,
     oak_user_id: data.oakUserId,
+    contact_school_name: "schoolName" in data ? data.schoolName : undefined,
+    contact_school_urn:
+      "school" in data
+        ? data.school === "homeschool" || data.school === "notListed"
+          ? undefined
+          : data.school.split("-")[0]
+        : undefined,
     ...getUtmSnakeCaseData(data),
   };
 };
