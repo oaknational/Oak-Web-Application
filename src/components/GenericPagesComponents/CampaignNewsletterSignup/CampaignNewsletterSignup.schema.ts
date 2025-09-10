@@ -3,7 +3,7 @@ import { z } from "zod";
 const ERRORS = {
   school: "Select school, type ‘homeschool’ or tick ‘My school isn’t listed’",
   email: "Please enter a valid email address",
-  terms: "Accept terms and conditions to continue",
+  name: "Please enter your name",
 } as const;
 
 export const schoolIdSchema = z
@@ -14,23 +14,22 @@ export const schoolIdSchema = z
   })
   .min(1, ERRORS.school);
 
-export const emailSchema = z
-  .string()
-  .email({
-    message: ERRORS.email,
+export const nameInputSchema = z
+  .string({
+    errorMap: () => ({
+      message: ERRORS.name,
+    }),
   })
-  .optional()
-  .or(z.literal(""));
+  .min(1, ERRORS.name);
 
-export const termsAndConditionsSchema = z.literal(true, {
-  errorMap: () => ({
-    message: ERRORS.terms,
-  }),
+export const emailRequiredSchema = z.string().email({
+  message: ERRORS.email,
 });
 
 const schoolCombinedSchema = z
   .object({
     schoolId: schoolIdSchema.optional(),
+
     schoolNotListed: z.boolean(),
   })
   .superRefine((values, context) => {
@@ -43,16 +42,16 @@ const schoolCombinedSchema = z
     }
   });
 
-const submitPartSchema = z.object({
-  email: emailSchema,
-  termsAndConditions: termsAndConditionsSchema,
+const partialSchema = z.object({
+  email: emailRequiredSchema,
+  name: nameInputSchema,
 });
 
-// See following for why this is required
-//
-//  - <https://timjames.dev/blog/validating-dependent-fields-with-zod-and-react-hook-form-2fa9#gotchas>
-//  - <https://github.com/colinhacks/zod/issues/479#issuecomment-1536233005>
-export const submitSchema = z.intersection(
+export const newsletterSignupFormSubmitSchema = z.intersection(
+  partialSchema,
   schoolCombinedSchema,
-  submitPartSchema,
 );
+
+export type CampaignNewsletterSignUpFormProps = z.infer<
+  typeof newsletterSignupFormSubmitSchema
+>;
