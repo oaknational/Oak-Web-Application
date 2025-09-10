@@ -12,13 +12,14 @@ import RegistrationLayout from "@/components/TeacherComponents/RegistrationLayou
 import { getIllustrationAsset } from "@/image-data";
 
 function SignInPage() {
-  let signInForceRedirectUrl: string | undefined = undefined;
+  let signUpForceRedirectUrl: string | undefined = undefined;
   const searchParams = useSearchParams();
   if (searchParams) {
-    signInForceRedirectUrl = searchParams.get(
-      "sign_in_force_redirect_url",
+    signUpForceRedirectUrl = searchParams.get(
+      "sign_up_force_redirect_url",
     ) as string;
   }
+
   return (
     <RegistrationLayout
       asideSlot={
@@ -32,7 +33,7 @@ function SignInPage() {
       }
     >
       <SignIn
-        signUpForceRedirectUrl={signInForceRedirectUrl}
+        signUpForceRedirectUrl={signUpForceRedirectUrl}
         appearance={formAppearanceStyles}
       />
     </RegistrationLayout>
