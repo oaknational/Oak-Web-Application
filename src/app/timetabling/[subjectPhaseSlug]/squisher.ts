@@ -6,7 +6,11 @@ import { Unit } from "@/utils/curriculum/types";
 export function squishTimetable(
   input: Input,
   sequence: Unit[],
-): { sequence: ExtendedUnit[]; lessonsLeftOver: number } {
+): {
+  sequence: ExtendedUnit[];
+  lessonsLeftOver: number;
+  numberOfLessons: number;
+} {
   const totalNumberOfLessons =
     input.autumn1Lessons +
     input.autumn2Lessons +
@@ -16,13 +20,14 @@ export function squishTimetable(
     input.summer2Lessons;
 
   let lessonsLeftOver = totalNumberOfLessons;
-
+  let numberOfLessons = 0;
   const sequenceByYear = sequence
     .filter((unit) => unit.year === String(input.year))
     .sort((a, b) => a.order - b.order);
 
   const newSequence = sequenceByYear.map((unit) => {
     const newLessons = (unit.lessons ?? []).map((lesson) => {
+      numberOfLessons++;
       lessonsLeftOver--;
       return {
         ...lesson,
@@ -49,6 +54,7 @@ export function squishTimetable(
 
   return {
     sequence: newSequence,
-    lessonsLeftOver: Math.max(0, lessonsLeftOver),
+    numberOfLessons,
+    lessonsLeftOver: lessonsLeftOver,
   };
 }

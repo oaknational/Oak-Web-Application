@@ -120,7 +120,12 @@ export function SequenceOutput({ slugs, sequence }: SequenceOutputProps) {
       <ul>
         {sequence.map((unit, unitIndex) => {
           return (
-            <Unit key={unit.slug} unit={unit} index={unitIndex} slugs={slugs} />
+            <Unit
+              key={`${unit.slug}-${unitIndex}`}
+              unit={unit}
+              index={unitIndex}
+              slugs={slugs}
+            />
           );
         })}
       </ul>
