@@ -13,7 +13,7 @@ const testEventProperties = {
   org: "oak national",
 };
 
-describe("getAvoBridge", () => {
+describe("getAvoBridge (browser)", () => {
   test("logEvent", () => {
     const posthog = getMockPosthog();
     const avoBridge = getAvoBridge({ posthog });

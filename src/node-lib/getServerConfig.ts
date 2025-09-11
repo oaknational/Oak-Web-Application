@@ -246,6 +246,20 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: null,
   },
+  posthogApiKey: {
+    value: process.env.NEXT_PUBLIC_POSTHOG_API_KEY,
+    envName: "NEXT_PUBLIC_POSTHOG_API_KEY",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  posthogApiHost: {
+    value: process.env.NEXT_PUBLIC_POSTHOG_API_HOST,
+    envName: "NEXT_PUBLIC_POSTHOG_API_HOST",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
 });
 
 for (const [, envVarConfig] of Object.entries(envVars)) {
