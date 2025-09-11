@@ -101,7 +101,7 @@ function SignUpPage() {
   useEffect(() => {
     checkForClerkElement();
   }, [checkForClerkElement]);
-
+  console.log(signUpForceRedirectUrl);
   return (
     <RegistrationLayout
       termsSlot={clerkRendered ? <TermsAndConditions /> : null}

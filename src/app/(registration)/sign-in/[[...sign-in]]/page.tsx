@@ -19,7 +19,7 @@ function SignInPage() {
       "sign_up_force_redirect_url",
     ) as string;
   }
-
+  console.log(signUpForceRedirectUrl);
   return (
     <RegistrationLayout
       asideSlot={
