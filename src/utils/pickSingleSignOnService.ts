@@ -7,7 +7,10 @@ export function pickSingleSignOnService(
     return "Google";
   }
 
-  if (providers.includes("microsoft")) {
+  if (
+    providers.includes("microsoft") ||
+    providers.includes("oauth_microsoft")
+  ) {
     return "Microsoft";
   }
 

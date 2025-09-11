@@ -19,6 +19,12 @@ describe("pickSingleSignOnService", () => {
     expect(result).toBe("Microsoft");
   });
 
+  it("should return 'Microsoft' when oauth_microsoft is in providers", () => {
+    const providers = ["oauth_microsoft"];
+    const result = pickSingleSignOnService(providers);
+    expect(result).toBe("Microsoft");
+  });
+
   it("should return 'Email' when no known providers are present", () => {
     const providers = ["unknown", "other"];
     const result = pickSingleSignOnService(providers);
