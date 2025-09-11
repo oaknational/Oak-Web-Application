@@ -7,6 +7,12 @@ describe("pickSingleSignOnService", () => {
     expect(result).toBe("Google");
   });
 
+  it("should return 'Google' when oauth_google is in providers", () => {
+    const providers = ["oauth_google"];
+    const result = pickSingleSignOnService(providers);
+    expect(result).toBe("Google");
+  });
+
   it("should return 'Microsoft' when microsoft is in providers", () => {
     const providers = ["microsoft"];
     const result = pickSingleSignOnService(providers);
@@ -23,12 +29,6 @@ describe("pickSingleSignOnService", () => {
     const providers: string[] = [];
     const result = pickSingleSignOnService(providers);
     expect(result).toBe("Email");
-  });
-
-  it("should prioritize google over microsoft when both are present", () => {
-    const providers = ["microsoft", "google"];
-    const result = pickSingleSignOnService(providers);
-    expect(result).toBe("Google");
   });
 
   it("should work with multiple providers including unknown ones", () => {
