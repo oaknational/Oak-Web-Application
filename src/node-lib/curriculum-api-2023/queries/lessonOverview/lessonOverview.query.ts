@@ -271,6 +271,7 @@ export const transformedLessonOverviewData = (
     geoRestricted: browseData.features?.agf_geoRestricted ?? false,
     loginRequired: browseData.features?.agf_loginRequired ?? false,
     excludedFromTeachingMaterials,
+    subjectCategories: browseData.unitData.subjectcategories || null,
   };
 };
 

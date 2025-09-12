@@ -59,6 +59,7 @@ describe("LessonOverviewCreateWithAiDropdown", () => {
       isLegacy: false,
       lessonReleaseDate: null,
       pupilLessonOutcome: null,
+      subjectCategories: ["category1", "category2"],
     };
   });
 

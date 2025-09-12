@@ -1,0 +1,190 @@
+import { LessonBrowseDataByKs } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+
+export type TeachingMaterialType =
+  | "additional-glossary"
+  | "additional-comprehension"
+  | "additional-starter-quiz"
+  | "additional-exit-quiz";
+
+// Simple configuration for specific subjects and key stages
+// Only includes subjects that have restrictions
+const subjectAvailableTeachingMaterialTypes: Record<
+  string,
+  Record<string, TeachingMaterialType[]>
+> = {
+  // Art - no comprehension for KS1
+  art: {
+    ks1: [
+      "additional-glossary",
+      "additional-starter-quiz",
+      "additional-exit-quiz",
+    ],
+  },
+
+  // Maths - no comprehension for any key stage
+  maths: {
+    ks1: [
+      "additional-glossary",
+      "additional-starter-quiz",
+      "additional-exit-quiz",
+    ],
+    ks2: [
+      "additional-glossary",
+      "additional-starter-quiz",
+      "additional-exit-quiz",
+    ],
+    ks3: [
+      "additional-glossary",
+      "additional-starter-quiz",
+      "additional-exit-quiz",
+    ],
+    ks4: [
+      "additional-glossary",
+      "additional-starter-quiz",
+      "additional-exit-quiz",
+    ],
+  },
+
+  // Science - no comprehension for KS1, no quizzes for KS1
+  science: {
+    ks1: ["additional-glossary"],
+  },
+
+  // History - no comprehension for KS1, no quizzes for KS1
+  history: {
+    ks1: ["additional-glossary"],
+  },
+
+  // Religious Education - no comprehension for KS1
+  "religious-education": {
+    ks1: [
+      "additional-glossary",
+      "additional-starter-quiz",
+      "additional-exit-quiz",
+    ],
+  },
+
+  // Computing - no comprehension for KS1
+  computing: {
+    ks1: [
+      "additional-glossary",
+      "additional-starter-quiz",
+      "additional-exit-quiz",
+    ],
+  },
+
+  // RSHE/PSHE - no comprehension for KS1
+  "rshe-pshe": {
+    ks1: [
+      "additional-glossary",
+      "additional-starter-quiz",
+      "additional-exit-quiz",
+    ],
+  },
+
+  // Financial Education - no comprehension for any key stage
+  "financial-education": {
+    ks1: [
+      "additional-glossary",
+      "additional-starter-quiz",
+      "additional-exit-quiz",
+    ],
+    ks2: [
+      "additional-glossary",
+      "additional-starter-quiz",
+      "additional-exit-quiz",
+    ],
+    ks3: [
+      "additional-glossary",
+      "additional-starter-quiz",
+      "additional-exit-quiz",
+    ],
+    ks4: [
+      "additional-glossary",
+      "additional-starter-quiz",
+      "additional-exit-quiz",
+    ],
+  },
+
+  // Modern Foreign Languages (Spanish/French) - no quizzes or comprehension
+  spanish: {
+    ks2: ["additional-glossary"],
+    ks3: ["additional-glossary"],
+    ks4: ["additional-glossary"],
+  },
+
+  french: {
+    ks2: ["additional-glossary"],
+    ks3: ["additional-glossary"],
+    ks4: ["additional-glossary"],
+  },
+
+  // Cooking and Nutrition - no comprehension for KS1
+  "cooking-nutrition": {
+    ks1: [
+      "additional-glossary",
+      "additional-starter-quiz",
+      "additional-exit-quiz",
+    ],
+  },
+
+  // Music - no comprehension for KS1
+  music: {
+    ks1: ["additional-glossary"],
+  },
+};
+
+const subjectCategoryAvailableTeachingMaterialTypes: Record<
+  string,
+  TeachingMaterialType[]
+> = {
+  Handwriting: ["additional-glossary", "additional-starter-quiz"],
+};
+
+const actionsAvailableTeachingMaterialTypes = (
+  actions: LessonBrowseDataByKs["actions"],
+): TeachingMaterialType[] | undefined => {
+  if (actions?.isPePractical) {
+    return ["additional-glossary"];
+  }
+};
+export function getAvailableTeachingMaterials(
+  subjectSlug: string | null,
+  keyStageSlug: string | null | undefined,
+  subjectCategories?: Array<string | number | null> | null,
+  actions?: LessonBrowseDataByKs["actions"],
+): TeachingMaterialType[] {
+  // Default materials for all subjects
+  const defaultMaterials: TeachingMaterialType[] = [
+    "additional-glossary",
+    "additional-comprehension",
+    "additional-starter-quiz",
+    "additional-exit-quiz",
+  ];
+
+  let availableTeachingMaterialTypes: TeachingMaterialType[] | undefined;
+
+  if (subjectSlug && keyStageSlug) {
+    availableTeachingMaterialTypes =
+      subjectAvailableTeachingMaterialTypes[subjectSlug]?.[keyStageSlug];
+  }
+  if (subjectCategories) {
+    for (const category of subjectCategories) {
+      if (subjectCategoryAvailableTeachingMaterialTypes[String(category)]) {
+        availableTeachingMaterialTypes =
+          subjectCategoryAvailableTeachingMaterialTypes[String(category)];
+        break;
+      }
+    }
+  }
+  if (actions) {
+    availableTeachingMaterialTypes =
+      actionsAvailableTeachingMaterialTypes(actions);
+  }
+
+  if (!availableTeachingMaterialTypes) {
+    return defaultMaterials;
+  }
+
+  return availableTeachingMaterialTypes;
+}
