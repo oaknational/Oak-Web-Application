@@ -2,7 +2,7 @@
 "use client";
 
 import { SignIn } from "@clerk/nextjs";
-import { useState, useCallback, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   OakBox,
   OakFlex,
@@ -10,6 +10,7 @@ import {
   OakLink,
   OakP,
 } from "@oaknational/oak-components";
+import { useRouter } from "next/navigation";
 
 import { formAppearanceStyles } from "../../formAppearanceStyles";
 
@@ -73,33 +74,66 @@ const Banner = () => {
   );
 };
 
-function SignInOrUpPage() {
-  const [clerkRendered, setClerkRendered] = useState(false);
-
-  const checkForClerkElement = useCallback(() => {
-    // Clerk docs say these classnames are stable
-    const clerkSignUpElement = document.getElementsByClassName(
-      "cl-rootBox cl-signUp-root",
-    )[0];
-    const clerkSignInElement = document.getElementsByClassName(
-      "cl-rootBox cl-signIn-root",
-    )[0];
-    if (clerkSignUpElement || clerkSignInElement) {
-      setClerkRendered(true);
-    } else {
-      setTimeout(() => checkForClerkElement(), 100);
-    }
-  }, []);
+const useClerkFormDetection = () => {
+  const [formRendered, setFormRendered] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
-    checkForClerkElement();
-  }, [checkForClerkElement]);
+    const checkForForm = () => {
+      const hasForm = document.querySelector(".cl-formButtonPrimary");
+      setFormRendered(!!hasForm);
+    };
+
+    const hasClerkElements = (element: Element) =>
+      element.matches?.(".cl-formButtonPrimary") ||
+      element.querySelector?.(".cl-formButtonPrimary");
+
+    const checkNodes = (nodes: NodeList) =>
+      Array.from(nodes).some(
+        (node) =>
+          node.nodeType === Node.ELEMENT_NODE &&
+          hasClerkElements(node as Element),
+      );
+
+    // Initial check
+    checkForForm();
+
+    // Watch for DOM changes
+    const observer = new MutationObserver((mutations) => {
+      if (
+        mutations.some(
+          (m) => checkNodes(m.addedNodes) || checkNodes(m.removedNodes),
+        )
+      ) {
+        checkForForm();
+      }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Fallback polling for slow-loading forms
+    const intervalId = setInterval(checkForForm, 100);
+    const timeoutId = setTimeout(() => clearInterval(intervalId), 5000);
+
+    return () => {
+      observer.disconnect();
+      clearInterval(intervalId);
+      clearTimeout(timeoutId);
+    };
+  }, [router]);
+
+  return formRendered;
+};
+
+function SignInOrUpPage() {
+  // Only show the banner and T's & C's when there is a submit button
+  const formRendered = useClerkFormDetection();
 
   return (
     <RegistrationLayout
-      termsSlot={clerkRendered ? <TermsAndConditions /> : null}
+      termsSlot={formRendered ? <TermsAndConditions /> : null}
       asideSlot={<RegistrationAside />}
-      bannerSlot={clerkRendered ? <Banner /> : null}
+      bannerSlot={formRendered ? <Banner /> : null}
     >
       <SignIn withSignUp appearance={formAppearanceStyles} />
     </RegistrationLayout>
