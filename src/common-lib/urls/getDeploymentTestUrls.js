@@ -64,10 +64,6 @@ function getDeploymentTestUrls() {
     "/teachers/lessons/transverse-waves/downloads",
     // User pages
     {
-      url: "/sign-up",
-      timeout: 120000,
-    },
-    {
       url: "/sign-in",
       timeout: 120000,
     },
