@@ -5,7 +5,6 @@ import { Lexend } from "next/font/google";
 import { PHProvider } from "./providers";
 import StyledComponentsRegistry from "./styles-registry";
 
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import {
   OakBox,
   OakThemeProvider,
@@ -35,8 +34,8 @@ export default function RootLayout({
             <OakThemeProvider theme={oakDefaultTheme}>
               <CookieConsentProvider>
                 <ClerkProvider
-                  signInUrl={getBrowserConfig("clerkSignInUrl")}
-                  signUpUrl={getBrowserConfig("clerkSignUpUrl")}
+                  signInUrl={"/sign-in"}
+                  signUpUrl={"/sign-in"}
                   localization={{
                     signUp: {
                       start: {

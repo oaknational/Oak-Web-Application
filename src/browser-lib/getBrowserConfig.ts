@@ -83,22 +83,6 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: true,
     default: null,
   },
-  clerkSignInUrl: {
-    value: process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL,
-    envName: "NEXT_PUBLIC_CLERK_SIGN_IN_URL",
-    required: false,
-    availableInBrowser: true,
-    default: "/sign-in",
-    description: "URL for Clerk sign-in page",
-  },
-  clerkSignUpUrl: {
-    value: process.env.NEXT_PUBLIC_CLERK_SIGN_UP_URL,
-    envName: "NEXT_PUBLIC_CLERK_SIGN_UP_URL",
-    required: false,
-    availableInBrowser: true,
-    default: "/sign-in",
-    description: "URL for Clerk sign-up page (consolidated with sign-in)",
-  },
   seoAppName: {
     value: process.env.NEXT_PUBLIC_SEO_APP_NAME,
     envName: "NEXT_PUBLIC_SEO_APP_NAME",

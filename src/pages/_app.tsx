@@ -48,8 +48,8 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
     <>
       <GlobalStyle fontFamily={lexend.style.fontFamily} />
       <ClerkProvider
-        signInUrl={getBrowserConfig("clerkSignInUrl")}
-        signUpUrl={getBrowserConfig("clerkSignUpUrl")}
+        signInUrl="/sign-in"
+        signUpUrl="/sign-in"
         afterSignOutUrl="/"
       >
         <CookieConsentProvider>
