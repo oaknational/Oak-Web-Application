@@ -73,7 +73,7 @@ export const lessonOverviewSchema = baseLessonOverviewSchema.extend({
   excludedFromTeachingMaterials: z.boolean(),
   subjectCategories: z
     .array(z.union([z.string(), z.number(), z.null()]))
-    .nullable(),
+    .nullish(),
 });
 
 export type LessonOverviewPageData = z.infer<typeof lessonOverviewSchema>;
