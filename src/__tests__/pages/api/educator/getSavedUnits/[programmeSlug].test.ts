@@ -9,6 +9,7 @@ import {
   mockGetAuthSignedIn,
   mockGetAuthSignedOut,
 } from "@/__tests__/__helpers__/mockClerkServer";
+import userContentFixture from "@/node-lib/educator-api/fixtures/userContent.fixture";
 
 jest.mock("@clerk/nextjs/server");
 
@@ -40,12 +41,12 @@ describe("/api/educator/getSavedUnits/[programmeSlug]", () => {
 
   beforeEach(() => {
     setGetAuth(mockGetAuthSignedIn);
-    mockGetUserContent.mockResolvedValue({
-      users_content: [
+    mockGetUserContent.mockResolvedValue(
+      userContentFixture([
         { users_content_lists: { content: { unit_slug: "unit1" } } },
         { users_content_lists: { content: { unit_slug: "unit2" } } },
-      ],
-    });
+      ]),
+    );
   });
 
   it("should return 200 with valid unit slugs for a signed in user", async () => {

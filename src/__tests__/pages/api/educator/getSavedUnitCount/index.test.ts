@@ -9,6 +9,7 @@ import {
   mockGetAuthSignedIn,
   mockGetAuthSignedOut,
 } from "@/__tests__/__helpers__/mockClerkServer";
+import userListContentCountFixture from "@/node-lib/educator-api/fixtures/userListContentCount.fixture";
 
 jest.mock("@clerk/nextjs/server");
 
@@ -41,9 +42,9 @@ describe("/api/educator/getSavedUnitCount", () => {
 
   beforeEach(() => {
     setGetAuth(mockGetAuthSignedIn);
-    mockGetUserListContentCount.mockResolvedValue({
-      content_lists_aggregate: { aggregate: { count: 10 } },
-    });
+    mockGetUserListContentCount.mockResolvedValue(
+      userListContentCountFixture(),
+    );
   });
 
   it("should return 200 with valid unit count for a signed in user", async () => {
