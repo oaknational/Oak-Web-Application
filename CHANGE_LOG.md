@@ -1,3 +1,10 @@
+# [1.852.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.851.0...v1.852.0) (2025-09-15)
+
+
+### Features
+
+* enable NC content with features.national_curriculum_content on the unit ([64d0bca](https://github.com/oaknational/Oak-Web-Application/commit/64d0bcae88bcc6123b7631b1b04cab6df23f5c5c))
+
 # [1.851.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.850.0...v1.851.0) (2025-09-09)
 
 
