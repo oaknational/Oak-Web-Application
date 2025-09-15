@@ -1,3 +1,21 @@
+# [1.853.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.852.0...v1.853.0) (2025-09-15)
+
+
+### Bug Fixes
+
+* add oauth_google to pickSingleSignOnService function ([d0ab559](https://github.com/oaknational/Oak-Web-Application/commit/d0ab559c34022876f831add8de41431c3bafde55))
+
+
+### Features
+
+* adapt getAvoBridge to work with server version of posthog client ([d4a5eb8](https://github.com/oaknational/Oak-Web-Application/commit/d4a5eb8c627e90b082be4f74b4bdd9125f2bb75a))
+* add oauth_microsoft to providers in pickSingleSignOnSevice ([0b28d8f](https://github.com/oaknational/Oak-Web-Application/commit/0b28d8f32b53c2b822895d89fe3e19d8c2b08566))
+* handle sign in and out events ([20ca126](https://github.com/oaknational/Oak-Web-Application/commit/20ca1264bde617f8c69d7fd930531a344ef66734))
+* implement event tracking setup and integrate with user sign-up process ([59612ed](https://github.com/oaknational/Oak-Web-Application/commit/59612eda9a513a44fb2a594f2ab462f04d97f9a8))
+* link server/client events with posthog alias ([c9c34d0](https://github.com/oaknational/Oak-Web-Application/commit/c9c34d0def627b906e943778e38efa82cc6a4005))
+* pull avo code gen from new backend source, change setup and imports accordingly ([d14d861](https://github.com/oaknational/Oak-Web-Application/commit/d14d8613d20331808fba9b080200f57bc96d4fbb))
+* remove track regsitration hook ([b66df8f](https://github.com/oaknational/Oak-Web-Application/commit/b66df8f3a506e411ab34e0e790003139a9341a30))
+
 # [1.852.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.851.0...v1.852.0) (2025-09-15)
 
 
