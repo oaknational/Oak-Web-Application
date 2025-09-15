@@ -12,6 +12,7 @@ import removeDecommissionedKeys from "@/config/removeDecommissionedKeys";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
 import { useCheckUserMetadata } from "@/hooks/useCheckUserMetadata";
+import { usePostHogAlias } from "@/hooks/usePostHogAlias";
 
 /**
  * Anything code that should run once in the browser should be placed here
@@ -52,6 +53,7 @@ const useAppHooks = () => {
   });
   useAxe({ enabled: getBrowserConfig("axeA11yLogging") === "on" });
   useCheckUserMetadata();
+  usePostHogAlias();
 };
 
 const AppHooks = () => {
