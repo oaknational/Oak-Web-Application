@@ -1,3 +1,17 @@
+# [1.855.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.854.0...v1.855.0) (2025-09-16)
+
+
+### Bug Fixes
+
+* hard-code sign up url ([695735b](https://github.com/oaknational/Oak-Web-Application/commit/695735bb78674757766f4a599a4dca42c113671f))
+* sign-up url incorrectly set in env vars ([e261d2f](https://github.com/oaknational/Oak-Web-Application/commit/e261d2f33d31e2ca8ddc06fec909f2a1a52bf494))
+
+
+### Features
+
+* consolidate sign in and up to a single page ([fe9bba7](https://github.com/oaknational/Oak-Web-Application/commit/fe9bba754283a563c441e8294efb2a5af62c1e84))
+* hide banner and terms & conditions on screens without a submit button ([e289852](https://github.com/oaknational/Oak-Web-Application/commit/e289852dfec42b59312ab4500037b3006ae38e39))
+
 # [1.854.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.853.0...v1.854.0) (2025-09-16)
 
 
