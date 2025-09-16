@@ -1,3 +1,195 @@
+## [1.856.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.856.0...v1.856.1) (2025-09-16)
+
+# [1.856.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.855.0...v1.856.0) (2025-09-16)
+
+
+### Bug Fixes
+
+* add school as well as ID to error ([5220f1a](https://github.com/oaknational/Oak-Web-Application/commit/5220f1a16b8d985f7f3a636ff99a4a1dfe78a508))
+* change to uncontrolled element ([be882a5](https://github.com/oaknational/Oak-Web-Application/commit/be882a556f64cb4873bfc4c8a3f95ff70981d519))
+* error id for emails ([7dd45ae](https://github.com/oaknational/Oak-Web-Application/commit/7dd45ae690ed5bb2a20b79c893d2c3faf28ecbce))
+* error message ordering ([73bbbaf](https://github.com/oaknational/Oak-Web-Application/commit/73bbbaf60e4a886ccb9b90c96624994a8ebe58cc))
+* midpoint sizing & flex direction for form ([1815eac](https://github.com/oaknational/Oak-Web-Application/commit/1815eacd694bf34cddbe652d20d604197e1ad76f))
+* remove console log ([dcd0e3c](https://github.com/oaknational/Oak-Web-Application/commit/dcd0e3c5f03cff95e188a228864220e78ef7354c))
+* remove from homepage ([45be960](https://github.com/oaknational/Oak-Web-Application/commit/45be960c716daca54f096de5b8609e2c0608a77b))
+* required always true if value provided bug ([9e40350](https://github.com/oaknational/Oak-Web-Application/commit/9e403503a1e7fb4f1f179f1638feffa58c4303eb))
+* responsive styling ([3f79e3a](https://github.com/oaknational/Oak-Web-Application/commit/3f79e3a920a86ab749cd2ed7f2c028f3e9dd668e))
+* revert to uncontrolled input ([de16641](https://github.com/oaknational/Oak-Web-Application/commit/de16641ecb7035b57afe8374c9aeb0cea1002a72))
+* separate sign up form ([40b4b9c](https://github.com/oaknational/Oak-Web-Application/commit/40b4b9cda52a4ded8823e7545e80f2c55406c0c6))
+* update getSnakeCaseData to handle campaign newsletter form ([31e6337](https://github.com/oaknational/Oak-Web-Application/commit/31e6337077554aa6d912df7466d41d39f338589f))
+* width for input label ([3a994b7](https://github.com/oaknational/Oak-Web-Application/commit/3a994b7f224f0f47cd44f164ce3b26cbbaff1e55))
+
+
+### Features
+
+* add campaign form data type for hubspot ([48e071a](https://github.com/oaknational/Oak-Web-Application/commit/48e071a7e8fa8e120b949c1fade5a82027937e41))
+* add colour override for form labels ([1d06460](https://github.com/oaknational/Oak-Web-Application/commit/1d064607c27da0e8b77681429f6ed9971c5c03bc))
+* add error message for school field ([0a5f854](https://github.com/oaknational/Oak-Web-Application/commit/0a5f854d1aff6a5fb9155704fa9d1d714b45c0fa))
+* add error reporter to test and component ([583f4ed](https://github.com/oaknational/Oak-Web-Application/commit/583f4ed44c58bafed06faa872e0f0390369f1182))
+* add newsletter sign up for campaign on homepage ([16e19e7](https://github.com/oaknational/Oak-Web-Application/commit/16e19e7baeca32aacbee0d00674cd9525ade0679))
+* add on click and submit behaviours for form ([37d0a75](https://github.com/oaknational/Oak-Web-Application/commit/37d0a757aada5c4c20c37411515fc38fd43aa739))
+* add to campaign page ([8777c9b](https://github.com/oaknational/Oak-Web-Application/commit/8777c9bf992f205cd2fb3b2be62853a3c6140302))
+* add type for content ([cce87f1](https://github.com/oaknational/Oak-Web-Application/commit/cce87f1d3c45557fad55c4cfbf661313b806bd80))
+* add value to control inputs ([a1997a3](https://github.com/oaknational/Oak-Web-Application/commit/a1997a3afb1afea2ff67941de612258a91627d64))
+* added campaign newsletter sign up component ([50fd2c5](https://github.com/oaknational/Oak-Web-Application/commit/50fd2c5bcec1afc5c97c15801460332e6a4008c1))
+* added error message for form submit ([c17eab5](https://github.com/oaknational/Oak-Web-Application/commit/c17eab51bafbcf7b07c99caea0dc5e7662eae466))
+* create error schema for sign up form ([953f42c](https://github.com/oaknational/Oak-Web-Application/commit/953f42c49b66808bf27ee863886389f97b1b3686))
+* make email optional ([695c2c1](https://github.com/oaknational/Oak-Web-Application/commit/695c2c10e8b3ca09d4146b424e5a42adeac2e484))
+* move to generic pages components ([6e8d834](https://github.com/oaknational/Oak-Web-Application/commit/6e8d8347a03c3fcbde67b6c6deaa7d826b498dee))
+
+# [1.855.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.854.0...v1.855.0) (2025-09-16)
+
+
+### Bug Fixes
+
+* hard-code sign up url ([695735b](https://github.com/oaknational/Oak-Web-Application/commit/695735bb78674757766f4a599a4dca42c113671f))
+* sign-up url incorrectly set in env vars ([e261d2f](https://github.com/oaknational/Oak-Web-Application/commit/e261d2f33d31e2ca8ddc06fec909f2a1a52bf494))
+
+
+### Features
+
+* consolidate sign in and up to a single page ([fe9bba7](https://github.com/oaknational/Oak-Web-Application/commit/fe9bba754283a563c441e8294efb2a5af62c1e84))
+* hide banner and terms & conditions on screens without a submit button ([e289852](https://github.com/oaknational/Oak-Web-Application/commit/e289852dfec42b59312ab4500037b3006ae38e39))
+
+# [1.854.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.853.0...v1.854.0) (2025-09-16)
+
+
+### Features
+
+* add fixtures for educator-api ([8bab22d](https://github.com/oaknational/Oak-Web-Application/commit/8bab22d64353981e975fce821af9dedc14d9979b))
+
+# [1.853.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.852.0...v1.853.0) (2025-09-15)
+
+
+### Bug Fixes
+
+* add oauth_google to pickSingleSignOnService function ([d0ab559](https://github.com/oaknational/Oak-Web-Application/commit/d0ab559c34022876f831add8de41431c3bafde55))
+
+
+### Features
+
+* adapt getAvoBridge to work with server version of posthog client ([d4a5eb8](https://github.com/oaknational/Oak-Web-Application/commit/d4a5eb8c627e90b082be4f74b4bdd9125f2bb75a))
+* add oauth_microsoft to providers in pickSingleSignOnSevice ([0b28d8f](https://github.com/oaknational/Oak-Web-Application/commit/0b28d8f32b53c2b822895d89fe3e19d8c2b08566))
+* handle sign in and out events ([20ca126](https://github.com/oaknational/Oak-Web-Application/commit/20ca1264bde617f8c69d7fd930531a344ef66734))
+* implement event tracking setup and integrate with user sign-up process ([59612ed](https://github.com/oaknational/Oak-Web-Application/commit/59612eda9a513a44fb2a594f2ab462f04d97f9a8))
+* link server/client events with posthog alias ([c9c34d0](https://github.com/oaknational/Oak-Web-Application/commit/c9c34d0def627b906e943778e38efa82cc6a4005))
+* pull avo code gen from new backend source, change setup and imports accordingly ([d14d861](https://github.com/oaknational/Oak-Web-Application/commit/d14d8613d20331808fba9b080200f57bc96d4fbb))
+* remove track regsitration hook ([b66df8f](https://github.com/oaknational/Oak-Web-Application/commit/b66df8f3a506e411ab34e0e790003139a9341a30))
+
+# [1.852.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.851.0...v1.852.0) (2025-09-15)
+
+
+### Features
+
+* enable NC content with features.national_curriculum_content on the unit ([64d0bca](https://github.com/oaknational/Oak-Web-Application/commit/64d0bcae88bcc6123b7631b1b04cab6df23f5c5c))
+
+# [1.851.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.850.0...v1.851.0) (2025-09-09)
+
+
+### Bug Fixes
+
+* remove mock campaign data from homepage ([c4255d7](https://github.com/oaknational/Oak-Web-Application/commit/c4255d79d1b17e41b1a172ff66bad6c5396cec50))
+* remove video campaign banner  from homepage ([7a45560](https://github.com/oaknational/Oak-Web-Application/commit/7a45560051599ff2a3cedefa859ab756b1b20385))
+* responsive sizing to grid ([89d4f75](https://github.com/oaknational/Oak-Web-Application/commit/89d4f75c71ca5880f13230d887aed535b2b12231))
+
+
+### Features
+
+* add video campaign banner to campaign page ([499ab12](https://github.com/oaknational/Oak-Web-Application/commit/499ab1218dbb0322264b4da0968febd6b75157dc))
+* added campaign video banner component ([a8510d2](https://github.com/oaknational/Oak-Web-Application/commit/a8510d2c940ae85e0ddfe70f04427a53019accd0))
+* added campaign video banner to homepage behind flag ([f113337](https://github.com/oaknational/Oak-Web-Application/commit/f113337686114f6c091cedbc2336b40bbfd473dc))
+* added heading 4 for portable text ([1b508e7](https://github.com/oaknational/Oak-Web-Application/commit/1b508e777e8e90161c1f8ab5bac1ad8903e42d23))
+* added schema type for video banner ([89476ac](https://github.com/oaknational/Oak-Web-Application/commit/89476ac47956af7f43e929e2b6cab06cf9f71e06))
+* pulled through campaign data for homepage ([e95d6ae](https://github.com/oaknational/Oak-Web-Application/commit/e95d6ae17790167c3ec76fe95965b01d209f92f7))
+
+# [1.850.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.849.2...v1.850.0) (2025-09-09)
+
+
+### Bug Fixes
+
+* also exclude "key-stage-2-english-*" from previous downloads ([fe1139d](https://github.com/oaknational/Oak-Web-Application/commit/fe1139d8fc87f91c23f391e1d7742cee5b6c24b9))
+
+
+### Features
+
+* takedown of legacy curriculum downloads from the curric UI ([4de9759](https://github.com/oaknational/Oak-Web-Application/commit/4de9759e7edbbccfd92468af2646af5a72352b3c))
+
+## [1.849.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.849.1...v1.849.2) (2025-09-09)
+
+
+### Bug Fixes
+
+* remove no index ([0fef466](https://github.com/oaknational/Oak-Web-Application/commit/0fef466848c1519d6136ca94dc323ef675fef2de))
+* remove no index ([355e296](https://github.com/oaknational/Oak-Web-Application/commit/355e29699a2a2e0f0fd87ee2cdab01bd48c340ab))
+* remove no index ([760efb7](https://github.com/oaknational/Oak-Web-Application/commit/760efb744ccea1d08746fbe60ce55551ee99c535))
+
+## [1.849.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.849.0...v1.849.1) (2025-09-09)
+
+
+### Bug Fixes
+
+* remove border from resource card input ([b86931e](https://github.com/oaknational/Oak-Web-Application/commit/b86931e28b1128b44f373a6079353688ab401352))
+* show checkbox outline on Resource card when unchecked ([ae162bf](https://github.com/oaknational/Oak-Web-Application/commit/ae162bf1fd95eacd95f6b417049ad5a3edd378ad))
+* update oak-components to bring in fix for curriculum dl radio button ([26c059f](https://github.com/oaknational/Oak-Web-Application/commit/26c059f6016cedcaaaeeaa106039c2d62ade2bd5))
+
+# [1.849.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.848.4...v1.849.0) (2025-09-08)
+
+
+### Bug Fixes
+
+* tests ([d1399c1](https://github.com/oaknational/Oak-Web-Application/commit/d1399c177a3e9f694d5a3aaed339376d84dcf374))
+* types ([2919a84](https://github.com/oaknational/Oak-Web-Application/commit/2919a84f3c90df58ef9bb110a33a78899119a3af))
+
+
+### Features
+
+* add is create with ai enabled to mobile ([ab02676](https://github.com/oaknational/Oak-Web-Application/commit/ab026761a4b1c0ed7ffdf043940df72a5f136847))
+* add tracking events for teaching materials ([3cc6245](https://github.com/oaknational/Oak-Web-Application/commit/3cc62457216453be77f30fe36b6fa181f25053b0))
+* create teaching materials button ([23b6aba](https://github.com/oaknational/Oak-Web-Application/commit/23b6aba40104140c04bad0f96a6c3624c3c33cab))
+* external url take query strings ([da46ee0](https://github.com/oaknational/Oak-Web-Application/commit/da46ee0548b149363b72eecd4dd52f26df300a42))
+* fetch tcp works from lesson overview ([b644b26](https://github.com/oaknational/Oak-Web-Application/commit/b644b26365ed464116bac192b7f091330743216f))
+* restricted works query for lesson overview ([730def5](https://github.com/oaknational/Oak-Web-Application/commit/730def529102b723f68f288a2ce78ffbac313548))
+* share button dropdown ([c8e554f](https://github.com/oaknational/Oak-Web-Application/commit/c8e554f31be0cb4bb1ac054abc02cd4ef260b08c))
+
+## [1.848.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.848.3...v1.848.4) (2025-09-08)
+
+
+### Bug Fixes
+
+* use ul for LessonMetaData, fix broken tests caused by this change ([b178c0b](https://github.com/oaknational/Oak-Web-Application/commit/b178c0bb64f822b07761686b83d3bdc200e3bd8b))
+* use ul in lesson resource graphics, fix related broken test in specialist lesson listing ([7b61b0c](https://github.com/oaknational/Oak-Web-Application/commit/7b61b0c859f056c95e10b6ce18736c6e70f3c385))
+
+## [1.848.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.848.2...v1.848.3) (2025-09-08)
+
+
+### Bug Fixes
+
+* set isAudioClip to true for audio clips in media list ([163c97e](https://github.com/oaknational/Oak-Web-Application/commit/163c97ed0aa462c9f16a87ca879adc38112c81c8))
+
+## [1.848.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.848.1...v1.848.2) (2025-09-05)
+
+
+### Bug Fixes
+
+* reconstruct schoolId from urn and name from hubspot ([e245731](https://github.com/oaknational/Oak-Web-Application/commit/e245731cb79467dbf7b7f8bde450dce0e1cae090))
+* use school from form data instead of localstorage ([63a13c2](https://github.com/oaknational/Oak-Web-Application/commit/63a13c2a4482fe91e11682d5a1af4e83a91e6f9d))
+
+## [1.848.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.848.0...v1.848.1) (2025-09-05)
+
+
+### Bug Fixes
+
+* remove feature flag from media attributions ([b43eec8](https://github.com/oaknational/Oak-Web-Application/commit/b43eec8f814c3b8c260224e5639ddb3c5c55083f))
+* remove feature flag from share with pupil button ([dceb3a0](https://github.com/oaknational/Oak-Web-Application/commit/dceb3a08f20c9c8dfab9ccd5c0f57c53933863b0))
+
+# [1.848.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.847.2...v1.848.0) (2025-09-03)
+
+
+### Features
+
+* remove authRequired ff check on download functionality ([5ccc4eb](https://github.com/oaknational/Oak-Web-Application/commit/5ccc4eb22ca8308af7c35d06ccd0229455b216f8))
+* remove isBehindFeatureFlag param from usecopyright hook ([daa9d0f](https://github.com/oaknational/Oak-Web-Application/commit/daa9d0fc2f30cf6cc9e572994820601757ff9ffc))
+
 ## [1.847.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.847.1...v1.847.2) (2025-09-02)
 
 
