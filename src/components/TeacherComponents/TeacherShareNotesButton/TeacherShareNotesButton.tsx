@@ -62,6 +62,7 @@ export const TeacherShareNotesButton = ({
 
   return (
     <OakButton
+      rel="nofollow"
       disabled={cookiesNotAccepted}
       iconName={noteSaved ? "edit" : "share"}
       isTrailingIcon

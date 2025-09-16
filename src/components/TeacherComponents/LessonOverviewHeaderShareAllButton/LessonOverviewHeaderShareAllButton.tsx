@@ -69,6 +69,7 @@ export const LessonOverviewHeaderShareAllButton: FC<
   if (!isShareable || !href) {
     return (
       <OakButton
+        rel="nofollow"
         iconName="arrow-right"
         isTrailingIcon
         disabled={true}
@@ -81,6 +82,7 @@ export const LessonOverviewHeaderShareAllButton: FC<
 
   return (
     <OakButton
+      rel="nofollow"
       element="a"
       href={href}
       onClick={onClickShareAll}
