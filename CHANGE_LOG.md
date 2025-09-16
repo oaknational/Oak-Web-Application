@@ -1,3 +1,10 @@
+# [1.854.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.853.0...v1.854.0) (2025-09-16)
+
+
+### Features
+
+* add fixtures for educator-api ([8bab22d](https://github.com/oaknational/Oak-Web-Application/commit/8bab22d64353981e975fce821af9dedc14d9979b))
+
 # [1.853.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.852.0...v1.853.0) (2025-09-15)
 
 
