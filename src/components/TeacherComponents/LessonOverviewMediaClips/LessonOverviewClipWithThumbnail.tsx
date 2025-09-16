@@ -16,7 +16,7 @@ export type LessonOverviewClipWithThumbnail = Omit<
   numberOfClips: number;
   isAudioClip: boolean;
   onClick?: () => void;
-  rel?: "nofollow";
+  rel?: string;
 };
 
 const LessonOverviewClipWithThumbnail: FC<LessonOverviewClipWithThumbnail> = ({

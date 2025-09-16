@@ -24,7 +24,6 @@ const UnitDownloadOnboardButton = ({
 }) => (
   <OakPrimaryButton
     width="fit-content"
-    rel="nofollow"
     onClick={onClick}
     ph={["inner-padding-xs", "inner-padding-l"]}
     pv={["inner-padding-ssx", "inner-padding-s"]}
@@ -53,7 +52,6 @@ const UnitDownloadSignInButton = ({
 }) => (
   <SignUpButton forceRedirectUrl={redirectUrl}>
     <OakPrimaryButton
-      rel="nofollow"
       iconName={"download"}
       isTrailingIcon
       ph={["inner-padding-xs", "inner-padding-l"]}
@@ -87,7 +85,6 @@ const DownloadButton = ({
   disabled: boolean;
 }) => (
   <OakPrimaryButton
-    rel="nofollow"
     iconName="download"
     isTrailingIcon
     onClick={onUnitDownloadClick}

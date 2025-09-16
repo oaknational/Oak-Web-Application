@@ -21,7 +21,6 @@ export const TeacherShareButton = ({
       <OakFlex $flexDirection={"column"} $position={"relative"}>
         <OakSecondaryButton
           onClick={handleClick}
-          rel="nofollow"
           disabled={!shareUrl}
           iconName="share"
           isTrailingIcon
