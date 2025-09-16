@@ -41,12 +41,7 @@ describe("/api/educator/getSavedUnits/[programmeSlug]", () => {
 
   beforeEach(() => {
     setGetAuth(mockGetAuthSignedIn);
-    mockGetUserContent.mockResolvedValue(
-      userContentFixture([
-        { users_content_lists: { content: { unit_slug: "unit1" } } },
-        { users_content_lists: { content: { unit_slug: "unit2" } } },
-      ]),
-    );
+    mockGetUserContent.mockResolvedValue(userContentFixture());
   });
 
   it("should return 200 with valid unit slugs for a signed in user", async () => {

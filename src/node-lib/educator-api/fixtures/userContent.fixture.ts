@@ -6,7 +6,10 @@ const userContentFixture = (
   return {
     users_content: partial
       ? partial.filter((item) => item !== undefined)
-      : [{ users_content_lists: { content: { unit_slug: "unit1" } } }],
+      : [
+          { users_content_lists: { content: { unit_slug: "unit1" } } },
+          { users_content_lists: { content: { unit_slug: "unit2" } } },
+        ],
   };
 };
 export default userContentFixture;
