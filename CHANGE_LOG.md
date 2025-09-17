@@ -1,3 +1,63 @@
+## [1.856.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.856.0...v1.856.1) (2025-09-16)
+
+# [1.856.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.855.0...v1.856.0) (2025-09-16)
+
+
+### Bug Fixes
+
+* add school as well as ID to error ([5220f1a](https://github.com/oaknational/Oak-Web-Application/commit/5220f1a16b8d985f7f3a636ff99a4a1dfe78a508))
+* change to uncontrolled element ([be882a5](https://github.com/oaknational/Oak-Web-Application/commit/be882a556f64cb4873bfc4c8a3f95ff70981d519))
+* error id for emails ([7dd45ae](https://github.com/oaknational/Oak-Web-Application/commit/7dd45ae690ed5bb2a20b79c893d2c3faf28ecbce))
+* error message ordering ([73bbbaf](https://github.com/oaknational/Oak-Web-Application/commit/73bbbaf60e4a886ccb9b90c96624994a8ebe58cc))
+* midpoint sizing & flex direction for form ([1815eac](https://github.com/oaknational/Oak-Web-Application/commit/1815eacd694bf34cddbe652d20d604197e1ad76f))
+* remove console log ([dcd0e3c](https://github.com/oaknational/Oak-Web-Application/commit/dcd0e3c5f03cff95e188a228864220e78ef7354c))
+* remove from homepage ([45be960](https://github.com/oaknational/Oak-Web-Application/commit/45be960c716daca54f096de5b8609e2c0608a77b))
+* required always true if value provided bug ([9e40350](https://github.com/oaknational/Oak-Web-Application/commit/9e403503a1e7fb4f1f179f1638feffa58c4303eb))
+* responsive styling ([3f79e3a](https://github.com/oaknational/Oak-Web-Application/commit/3f79e3a920a86ab749cd2ed7f2c028f3e9dd668e))
+* revert to uncontrolled input ([de16641](https://github.com/oaknational/Oak-Web-Application/commit/de16641ecb7035b57afe8374c9aeb0cea1002a72))
+* separate sign up form ([40b4b9c](https://github.com/oaknational/Oak-Web-Application/commit/40b4b9cda52a4ded8823e7545e80f2c55406c0c6))
+* update getSnakeCaseData to handle campaign newsletter form ([31e6337](https://github.com/oaknational/Oak-Web-Application/commit/31e6337077554aa6d912df7466d41d39f338589f))
+* width for input label ([3a994b7](https://github.com/oaknational/Oak-Web-Application/commit/3a994b7f224f0f47cd44f164ce3b26cbbaff1e55))
+
+
+### Features
+
+* add campaign form data type for hubspot ([48e071a](https://github.com/oaknational/Oak-Web-Application/commit/48e071a7e8fa8e120b949c1fade5a82027937e41))
+* add colour override for form labels ([1d06460](https://github.com/oaknational/Oak-Web-Application/commit/1d064607c27da0e8b77681429f6ed9971c5c03bc))
+* add error message for school field ([0a5f854](https://github.com/oaknational/Oak-Web-Application/commit/0a5f854d1aff6a5fb9155704fa9d1d714b45c0fa))
+* add error reporter to test and component ([583f4ed](https://github.com/oaknational/Oak-Web-Application/commit/583f4ed44c58bafed06faa872e0f0390369f1182))
+* add newsletter sign up for campaign on homepage ([16e19e7](https://github.com/oaknational/Oak-Web-Application/commit/16e19e7baeca32aacbee0d00674cd9525ade0679))
+* add on click and submit behaviours for form ([37d0a75](https://github.com/oaknational/Oak-Web-Application/commit/37d0a757aada5c4c20c37411515fc38fd43aa739))
+* add to campaign page ([8777c9b](https://github.com/oaknational/Oak-Web-Application/commit/8777c9bf992f205cd2fb3b2be62853a3c6140302))
+* add type for content ([cce87f1](https://github.com/oaknational/Oak-Web-Application/commit/cce87f1d3c45557fad55c4cfbf661313b806bd80))
+* add value to control inputs ([a1997a3](https://github.com/oaknational/Oak-Web-Application/commit/a1997a3afb1afea2ff67941de612258a91627d64))
+* added campaign newsletter sign up component ([50fd2c5](https://github.com/oaknational/Oak-Web-Application/commit/50fd2c5bcec1afc5c97c15801460332e6a4008c1))
+* added error message for form submit ([c17eab5](https://github.com/oaknational/Oak-Web-Application/commit/c17eab51bafbcf7b07c99caea0dc5e7662eae466))
+* create error schema for sign up form ([953f42c](https://github.com/oaknational/Oak-Web-Application/commit/953f42c49b66808bf27ee863886389f97b1b3686))
+* make email optional ([695c2c1](https://github.com/oaknational/Oak-Web-Application/commit/695c2c10e8b3ca09d4146b424e5a42adeac2e484))
+* move to generic pages components ([6e8d834](https://github.com/oaknational/Oak-Web-Application/commit/6e8d8347a03c3fcbde67b6c6deaa7d826b498dee))
+
+# [1.855.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.854.0...v1.855.0) (2025-09-16)
+
+
+### Bug Fixes
+
+* hard-code sign up url ([695735b](https://github.com/oaknational/Oak-Web-Application/commit/695735bb78674757766f4a599a4dca42c113671f))
+* sign-up url incorrectly set in env vars ([e261d2f](https://github.com/oaknational/Oak-Web-Application/commit/e261d2f33d31e2ca8ddc06fec909f2a1a52bf494))
+
+
+### Features
+
+* consolidate sign in and up to a single page ([fe9bba7](https://github.com/oaknational/Oak-Web-Application/commit/fe9bba754283a563c441e8294efb2a5af62c1e84))
+* hide banner and terms & conditions on screens without a submit button ([e289852](https://github.com/oaknational/Oak-Web-Application/commit/e289852dfec42b59312ab4500037b3006ae38e39))
+
+# [1.854.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.853.0...v1.854.0) (2025-09-16)
+
+
+### Features
+
+* add fixtures for educator-api ([8bab22d](https://github.com/oaknational/Oak-Web-Application/commit/8bab22d64353981e975fce821af9dedc14d9979b))
+
 # [1.853.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.852.0...v1.853.0) (2025-09-15)
 
 

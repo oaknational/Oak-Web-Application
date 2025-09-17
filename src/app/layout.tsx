@@ -34,6 +34,8 @@ export default function RootLayout({
             <OakThemeProvider theme={oakDefaultTheme}>
               <CookieConsentProvider>
                 <ClerkProvider
+                  signInUrl={"/sign-in"}
+                  signUpUrl={"/sign-in"}
                   localization={{
                     signUp: {
                       start: {
