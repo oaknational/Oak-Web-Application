@@ -19,6 +19,11 @@ const subjectAvailableTeachingMaterialTypes: Record<
       "additional-starter-quiz",
       "additional-exit-quiz",
     ],
+    ks4: [
+      "additional-glossary",
+      "additional-comprehension",
+      "additional-starter-quiz",
+    ],
   },
 
   // Maths - no comprehension for any key stage
@@ -48,6 +53,15 @@ const subjectAvailableTeachingMaterialTypes: Record<
   // Science - no comprehension for KS1, no quizzes for KS1
   science: {
     ks1: ["additional-glossary"],
+  },
+
+  // Design and Technology - no comprehension for KS1
+  "design-technology": {
+    ks1: [
+      "additional-glossary",
+      "additional-starter-quiz",
+      "additional-exit-quiz",
+    ],
   },
 
   // History - no comprehension for KS1, no quizzes for KS1
@@ -119,6 +133,12 @@ const subjectAvailableTeachingMaterialTypes: Record<
     ks4: ["additional-glossary"],
   },
 
+  // Geography - no quizzes or comprehension for KS1 & KS2
+  geography: {
+    ks1: ["additional-glossary"],
+    ks2: ["additional-glossary"],
+  },
+
   // Cooking and Nutrition - no comprehension for KS1
   "cooking-nutrition": {
     ks1: [
@@ -134,12 +154,24 @@ const subjectAvailableTeachingMaterialTypes: Record<
   },
 };
 
-const subjectCategoryAvailableTeachingMaterialTypes: Record<
-  string,
-  TeachingMaterialType[]
-> = {
-  Handwriting: ["additional-glossary", "additional-starter-quiz"],
-};
+export function getTeachingMaterialTypesByCategory(
+  categories: Array<string | number | null>,
+): TeachingMaterialType[] | undefined {
+  const subjectCategoryAvailableTeachingMaterialTypes: Record<
+    string,
+    TeachingMaterialType[]
+  > = {
+    Handwriting: ["additional-glossary", "additional-starter-quiz"],
+  };
+
+  for (const category of categories) {
+    if (subjectCategoryAvailableTeachingMaterialTypes[String(category)]) {
+      return subjectCategoryAvailableTeachingMaterialTypes[String(category)];
+    }
+  }
+
+  return undefined;
+}
 
 const actionsAvailableTeachingMaterialTypes = (
   actions: LessonBrowseDataByKs["actions"],
@@ -168,18 +200,19 @@ export function getAvailableTeachingMaterials(
     availableTeachingMaterialTypes =
       subjectAvailableTeachingMaterialTypes[subjectSlug]?.[keyStageSlug];
   }
+
   if (subjectCategories) {
-    for (const category of subjectCategories) {
-      if (subjectCategoryAvailableTeachingMaterialTypes[String(category)]) {
-        availableTeachingMaterialTypes =
-          subjectCategoryAvailableTeachingMaterialTypes[String(category)];
-        break;
-      }
+    const categoryMaterials =
+      getTeachingMaterialTypesByCategory(subjectCategories);
+    if (categoryMaterials) {
+      availableTeachingMaterialTypes = categoryMaterials;
+      console.log("AVAILABLE FROM CATEGORY", availableTeachingMaterialTypes);
     }
   }
-  if (actions) {
-    availableTeachingMaterialTypes =
-      actionsAvailableTeachingMaterialTypes(actions);
+
+  const actionMaterials = actionsAvailableTeachingMaterialTypes(actions);
+  if (actionMaterials) {
+    availableTeachingMaterialTypes = actionMaterials;
   }
 
   if (!availableTeachingMaterialTypes) {
