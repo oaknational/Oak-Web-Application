@@ -38,6 +38,7 @@ const SpecialistProgrammeListingView: FC<SpecialistProgrammeListingPageData> = (
             oakLinkProps: {
               page: "specialist-subject-index",
             },
+            disabled: true,
             label: "Specialist subjects",
           },
         ]}
