@@ -15,20 +15,19 @@ function cookieAsObj(c: ReadonlyRequestCookies) {
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
-export async function useTimetablingRoute() {
+export async function useFeatureFlag(flagName: string) {
   const cookieStore = cookieAsObj(await cookies());
 
   const posthogUserId = getPosthogIdFromCookie(cookieStore, posthogApiKey);
-
-  let variantKey: string | boolean | undefined;
+  let flag: string | boolean | undefined;
 
   if (posthogUserId) {
     // get the variant key for the user
-    variantKey = await getFeatureFlag({
-      featureFlagKey: "adopt-timetabling-proto",
+    flag = await getFeatureFlag({
+      featureFlagKey: flagName,
       posthogUserId,
     });
   }
 
-  return variantKey;
+  return { isEnabled: Boolean(flag), flag };
 }

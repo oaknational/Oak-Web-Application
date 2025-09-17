@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation";
 
-import { useTimetablingRoute } from "@/utils/curriculum/timetabling";
+import { useFeatureFlag } from "@/utils/featureFlags";
 
 const Page = async () => {
-  const isEnabled = await useTimetablingRoute();
+  const { isEnabled } = await useFeatureFlag("adopt-timetabling-proto");
   if (!isEnabled) {
     return notFound();
   }
