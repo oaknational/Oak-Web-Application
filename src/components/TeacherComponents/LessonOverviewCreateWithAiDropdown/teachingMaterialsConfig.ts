@@ -225,7 +225,6 @@ export function getAvailableTeachingMaterials(
       getTeachingMaterialTypesByCategory(subjectCategories);
     if (categoryMaterials) {
       availableTeachingMaterialTypes = categoryMaterials;
-      console.log("AVAILABLE FROM CATEGORY", availableTeachingMaterialTypes);
     }
   }
 

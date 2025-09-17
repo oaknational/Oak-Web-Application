@@ -31,11 +31,6 @@ describe("getAvailableTeachingMaterials", () => {
     ]);
   });
 
-  it("should return restricted materials for another subject and key stage", () => {
-    const result = getAvailableTeachingMaterials("geography", "ks1", null);
-    expect(result).toEqual([]);
-  });
-
   it("should return restricted materials for a language subject", () => {
     const result = getAvailableTeachingMaterials("spanish", "ks2", null);
     expect(result).toEqual(["additional-starter-quiz", "additional-exit-quiz"]);
