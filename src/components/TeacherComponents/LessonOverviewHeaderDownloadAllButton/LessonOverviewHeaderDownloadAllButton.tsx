@@ -54,6 +54,7 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
 
   return (
     <LoginRequiredButton
+      rel="nofollow"
       loginRequired={loginRequired ?? false}
       geoRestricted={geoRestricted ?? false}
       onboardingProps={{ name: "Download all resources" }}
