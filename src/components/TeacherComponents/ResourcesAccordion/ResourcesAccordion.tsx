@@ -41,6 +41,7 @@ function Header(props: ResourcesAccordionProps) {
           id="select-all"
           name="select-all"
           value={""}
+          aria-labelledby="downloads-accordion-heading"
         />
       </OakBox>
       <OakFlex
@@ -49,6 +50,7 @@ function Header(props: ResourcesAccordionProps) {
         $alignItems={"start"}
       >
         <OakHeading
+          id="downloads-accordion-heading"
           $color={"text-primary"}
           $font={"heading-6"}
           $mr={"space-between-s"}
