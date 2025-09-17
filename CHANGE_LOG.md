@@ -1,3 +1,11 @@
+# [1.857.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.856.1...v1.857.0) (2025-09-17)
+
+
+### Features
+
+* add nofollow to links to dl and media pages ([c853b37](https://github.com/oaknational/Oak-Web-Application/commit/c853b373fee2a800b53544c6f68bb27794b3ddb0))
+* rm rel=nofollow from buttons ([a9f24bf](https://github.com/oaknational/Oak-Web-Application/commit/a9f24bff8cb2f03b36df487d52e4aa02cc2c56b4))
+
 ## [1.856.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.856.0...v1.856.1) (2025-09-16)
 
 # [1.856.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.855.0...v1.856.0) (2025-09-16)

@@ -81,6 +81,7 @@ export const LessonOverviewHeaderShareAllButton: FC<
 
   return (
     <OakButton
+      rel="nofollow"
       element="a"
       href={href}
       onClick={onClickShareAll}
