@@ -1,11 +1,17 @@
 "use client";
 
-import { OakFlex, OakPrimaryButton } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakHeading,
+  OakPrimaryButton,
+} from "@oaknational/oak-components";
 
 export const CurricTimetablingNewView = () => {
   return (
     <OakFlex>
-      <h1>New timetable form</h1>
+      <OakHeading tag="h1" $font="heading-2">
+        New timetable
+      </OakHeading>
       <OakPrimaryButton element="a" href="/timetabling/name">
         Next
       </OakPrimaryButton>

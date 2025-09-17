@@ -6,7 +6,7 @@ describe("CurricTimetablingNewView", () => {
   test("component renders with heading correctly", async () => {
     const { getByRole } = renderWithTheme(<CurricTimetablingNewView />);
     const headingElement = getByRole("heading", { level: 1 });
-    expect(headingElement).toHaveTextContent("New timetable form");
+    expect(headingElement).toHaveTextContent("New timetable");
   });
 
   test("component renders with button correctly", async () => {

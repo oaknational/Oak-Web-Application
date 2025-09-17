@@ -1,7 +1,6 @@
-import { render } from "@testing-library/react";
-
 import Page from "./page";
 
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { useFeatureFlag } from "@/utils/featureFlags";
 
 jest.mock("src/utils/featureFlags");
@@ -9,7 +8,7 @@ jest.mock("src/utils/featureFlags");
 describe("/timetabling/units", () => {
   test("when enabled", async () => {
     (useFeatureFlag as jest.Mock).mockResolvedValue({ isEnabled: true });
-    const { baseElement } = render(await Page());
+    const { baseElement } = renderWithTheme(await Page());
     expect(baseElement).toHaveTextContent("View timetable");
   });
 
