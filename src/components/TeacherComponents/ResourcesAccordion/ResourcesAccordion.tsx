@@ -12,8 +12,6 @@ import styled from "styled-components";
 import { ResourcePageLayoutProps } from "../ResourcePageLayout";
 
 const StyledBox = styled(OakBox)`
-  text-decoration: none;
-
   &:has(button[aria-expanded="true"]) {
     border-bottom: none;
   }
