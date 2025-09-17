@@ -32,13 +32,13 @@ describe("getAvailableTeachingMaterials", () => {
   });
 
   it("should return restricted materials for another subject and key stage", () => {
-    const result = getAvailableTeachingMaterials("science", "ks1", null);
-    expect(result).toEqual(["additional-glossary"]);
+    const result = getAvailableTeachingMaterials("geography", "ks1", null);
+    expect(result).toEqual([]);
   });
 
   it("should return restricted materials for a language subject", () => {
     const result = getAvailableTeachingMaterials("spanish", "ks2", null);
-    expect(result).toEqual(["additional-glossary"]);
+    expect(result).toEqual(["additional-starter-quiz", "additional-exit-quiz"]);
   });
 
   it("should return all materials for a subject with no restrictions for the given key stage", () => {
@@ -73,7 +73,10 @@ describe("getAvailableTeachingMaterials - Subject Categories", () => {
     ]);
 
     const resultSpanish = getAvailableTeachingMaterials("spanish", "ks3", null);
-    expect(resultSpanish).toEqual(["additional-glossary"]);
+    expect(resultSpanish).toEqual([
+      "additional-starter-quiz",
+      "additional-exit-quiz",
+    ]);
   });
 });
 
@@ -86,6 +89,7 @@ describe("getAvailableTeachingMaterials - Action Types", () => {
     );
     expect(result).toEqual([
       "additional-glossary",
+      "additional-comprehension",
       "additional-starter-quiz",
       "additional-exit-quiz",
     ]);
@@ -93,7 +97,12 @@ describe("getAvailableTeachingMaterials - Action Types", () => {
 
   it("should return correct materials for music", () => {
     const result = getAvailableTeachingMaterials("music", "ks1", null);
-    expect(result).toEqual(["additional-glossary"]);
+    expect(result).toEqual([
+      "additional-glossary",
+      "additional-comprehension",
+      "additional-starter-quiz",
+      "additional-exit-quiz",
+    ]);
   });
 });
 

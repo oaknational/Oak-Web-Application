@@ -12,7 +12,7 @@ const subjectAvailableTeachingMaterialTypes: Record<
   string,
   Record<string, TeachingMaterialType[]>
 > = {
-  // Art - no comprehension for KS1
+  // Art
   art: {
     ks1: [
       "additional-glossary",
@@ -50,23 +50,34 @@ const subjectAvailableTeachingMaterialTypes: Record<
     ],
   },
 
-  // Science - no comprehension for KS1, no quizzes for KS1
+  // Science - all additional materials allowed
   science: {
-    ks1: ["additional-glossary"],
-  },
-
-  // Design and Technology - no comprehension for KS1
-  "design-technology": {
     ks1: [
       "additional-glossary",
+      "additional-comprehension",
       "additional-starter-quiz",
       "additional-exit-quiz",
     ],
   },
 
-  // History - no comprehension for KS1, no quizzes for KS1
+  // Design and Technology - all materials allowed
+  "design-technology": {
+    ks1: [
+      "additional-glossary",
+      "additional-comprehension",
+      "additional-starter-quiz",
+      "additional-exit-quiz",
+    ],
+  },
+
+  // History - all materials allowed
   history: {
-    ks1: ["additional-glossary"],
+    ks1: [
+      "additional-glossary",
+      "additional-comprehension",
+      "additional-starter-quiz",
+      "additional-exit-quiz",
+    ],
   },
 
   // Religious Education - no comprehension for KS1
@@ -78,19 +89,21 @@ const subjectAvailableTeachingMaterialTypes: Record<
     ],
   },
 
-  // Computing - no comprehension for KS1
+  // Computing - all materials allowed
   computing: {
     ks1: [
       "additional-glossary",
+      "additional-comprehension",
       "additional-starter-quiz",
       "additional-exit-quiz",
     ],
   },
 
-  // RSHE/PSHE - no comprehension for KS1
+  // RSHE/PSHE - all materials allowed
   "rshe-pshe": {
     ks1: [
       "additional-glossary",
+      "additional-comprehension",
       "additional-starter-quiz",
       "additional-exit-quiz",
     ],
@@ -120,37 +133,43 @@ const subjectAvailableTeachingMaterialTypes: Record<
     ],
   },
 
-  // Modern Foreign Languages (Spanish/French) - no quizzes or comprehension
+  // Modern Foreign Languages (Spanish/French/German) - starter/exit quizzes only
   spanish: {
-    ks2: ["additional-glossary"],
-    ks3: ["additional-glossary"],
-    ks4: ["additional-glossary"],
+    ks2: ["additional-starter-quiz", "additional-exit-quiz"],
+    ks3: ["additional-starter-quiz", "additional-exit-quiz"],
+    ks4: ["additional-starter-quiz", "additional-exit-quiz"],
   },
 
   french: {
-    ks2: ["additional-glossary"],
-    ks3: ["additional-glossary"],
-    ks4: ["additional-glossary"],
+    ks2: ["additional-starter-quiz", "additional-exit-quiz"],
+    ks3: ["additional-starter-quiz", "additional-exit-quiz"],
+    ks4: ["additional-starter-quiz", "additional-exit-quiz"],
   },
 
-  // Geography - no quizzes or comprehension for KS1 & KS2
-  geography: {
-    ks1: ["additional-glossary"],
-    ks2: ["additional-glossary"],
+  german: {
+    ks2: ["additional-starter-quiz", "additional-exit-quiz"],
+    ks3: ["additional-starter-quiz", "additional-exit-quiz"],
+    ks4: ["additional-starter-quiz", "additional-exit-quiz"],
   },
 
-  // Cooking and Nutrition - no comprehension for KS1
+  // Cooking and Nutrition - all materials allowed
   "cooking-nutrition": {
     ks1: [
       "additional-glossary",
+      "additional-comprehension",
       "additional-starter-quiz",
       "additional-exit-quiz",
     ],
   },
 
-  // Music - no comprehension for KS1
+  // Music - all materials allowed
   music: {
-    ks1: ["additional-glossary"],
+    ks1: [
+      "additional-glossary",
+      "additional-comprehension",
+      "additional-starter-quiz",
+      "additional-exit-quiz",
+    ],
   },
 };
 
