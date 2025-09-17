@@ -105,6 +105,7 @@ export type OwaLinkProps = Omit<LinkProps, "href" | "passHref" | "as"> &
      */
     isCurrent?: boolean;
     role?: string;
+    rel?: string;
   } & (
     | {
         /**
@@ -137,6 +138,7 @@ export const transformOwaLinkProps = <T extends OwaLinkPropsWithoutChildren>(
     prefetch,
     isCurrent,
     role,
+    rel,
     ...linkProps
   } = props;
   const href = getOwaLinkHref(props);
@@ -164,6 +166,7 @@ export const transformOwaLinkProps = <T extends OwaLinkPropsWithoutChildren>(
     disabled,
     nextLinkProps,
     isCurrent,
+    rel,
     ["aria-current"]: ariaCurrent,
     ...htmlAnchorProps,
     ...linkProps,
