@@ -15,7 +15,10 @@ function cookieAsObj(c: ReadonlyRequestCookies) {
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
-export async function useFeatureFlag(flagName: string) {
+export async function useFeatureFlag(
+  flagName: string,
+  assertType?: "boolean" | "string",
+) {
   const cookieStore = cookieAsObj(await cookies());
 
   const posthogUserId = getPosthogIdFromCookie(cookieStore, posthogApiKey);
@@ -29,5 +32,8 @@ export async function useFeatureFlag(flagName: string) {
     });
   }
 
-  return { isEnabled: Boolean(flag), flag };
+  if (assertType && typeof flag !== assertType) {
+    return;
+  }
+  return flag;
 }
