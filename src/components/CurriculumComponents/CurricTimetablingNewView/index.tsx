@@ -8,7 +8,7 @@ import {
 
 export const CurricTimetablingNewView = () => {
   return (
-    <OakFlex>
+    <OakFlex $flexDirection={"column"}>
       <OakHeading tag="h1" $font="heading-2">
         New timetable
       </OakHeading>
