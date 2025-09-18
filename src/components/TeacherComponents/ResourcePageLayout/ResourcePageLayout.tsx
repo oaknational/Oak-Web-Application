@@ -27,10 +27,10 @@ import { getFormErrorMessages } from "@/components/TeacherComponents/helpers/dow
 import TermsAgreementForm from "@/components/TeacherComponents/TermsAgreementForm";
 import NoResourcesToShare from "@/components/TeacherComponents/NoResourcesToShare";
 import FieldError from "@/components/SharedComponents/FieldError";
-import Checkbox from "@/components/SharedComponents/Checkbox";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import RiskAssessmentBanner from "@/components/TeacherComponents/RiskAssessmentBanner";
 import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
+import ResourcesAccordion from "@/components/TeacherComponents/ResourcesAccordion";
 
 /** Generic layout component for Downloads and Share page */
 
@@ -132,7 +132,11 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
           <FieldError id={"downloads-error"} withoutMarginBottom>
             {props.errors?.resources?.message}
           </FieldError>
-          {!props.hideSelectAll && (
+          <ResourcesAccordion
+            downloads="slides, quizzes, worksheet, additional materials"
+            {...props}
+          />
+          {/* {!props.hideSelectAll && (
             <OakBox $maxWidth="max-content">
               <Checkbox
                 checked={props.selectAllChecked}
@@ -145,7 +149,7 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
               />
             </OakBox>
           )}
-          {props.cardGroup}
+          {props.cardGroup} */}
           {props.showRiskAssessmentBanner && (
             <>
               {props.showTermsAgreement ? (
