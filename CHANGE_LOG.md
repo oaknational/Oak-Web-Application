@@ -1,3 +1,16 @@
+# [1.859.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.858.0...v1.859.0) (2025-09-18)
+
+
+### Bug Fixes
+
+* update tests to use renderWithTheme ([ddd729c](https://github.com/oaknational/Oak-Web-Application/commit/ddd729c0dcad7390f241f731c18738e659d0a358))
+
+
+### Features
+
+* add page view to page ([451eb09](https://github.com/oaknational/Oak-Web-Application/commit/451eb09311090ef2d7d0c020134641b3713dd9a5))
+* create page view ([4cb54be](https://github.com/oaknational/Oak-Web-Application/commit/4cb54beb9c7e7ab90d0791819b7d6e39a3110a5d))
+
 # [1.858.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.857.0...v1.858.0) (2025-09-17)
 
 
