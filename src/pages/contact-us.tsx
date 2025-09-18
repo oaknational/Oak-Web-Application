@@ -5,6 +5,7 @@ import {
   MissingComponentHandler,
   PortableTextComponents,
 } from "@portabletext/react";
+
 import {
   OakHeading,
   OakP,
@@ -12,7 +13,6 @@ import {
   OakMaxWidth,
   OakBox,
 } from "@oaknational/oak-components";
-
 import CMSClient from "@/node-lib/cms";
 import { ContactPage } from "@/common-lib/cms-types";
 import Layout from "@/components/AppComponents/Layout";
@@ -37,17 +37,6 @@ const logMissingPortableTextComponents: MissingComponentHandler = (
 
 export type ContactPageProps = {
   pageData: ContactPage;
-};
-
-// @TODO: extract
-const logMissingPortableTextComponents: MissingComponentHandler = (
-  message,
-  options,
-) => {
-  console.log(message, {
-    type: options.type,
-    nodeType: options.nodeType,
-  });
 };
 
 const BodyHeading = styled(OakHeading)`

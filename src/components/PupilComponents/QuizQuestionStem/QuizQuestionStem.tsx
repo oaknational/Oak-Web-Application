@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
+
+import { CodeRenderWrapper } from "../CodeRendererWrapper/CodeRendererWrapper";
+
 import {
   OakCloudinaryImage,
   OakFlex,
   OakScaleImageButton,
   OakBox,
 } from "@oaknational/oak-components";
-
-import { CodeRenderWrapper } from "../CodeRendererWrapper/CodeRendererWrapper";
-
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import {
   ImageItem,
@@ -58,7 +58,7 @@ export const QuizQuestionStem = ({
               $width={"100%"}
               id={`${questionUid}-legend`}
             >
-              <Stem stem={questionStem[0]} display="block" />
+              <Stem stem={questionStem[0]} />
             </OakBox>
           )}
         </OakFlex>
