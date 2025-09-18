@@ -1,20 +1,30 @@
-import { OakBox, OakHeading } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakFlex,
+  OakHeading,
+  OakSecondaryLink,
+} from "@oaknational/oak-components";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 import React from "react";
 
 type CurricYearCardProps = {
+  timetablingQueryParams?: string;
   yearTitle: string;
   yearSubheading?: string | null;
   additional?: React.ReactNode;
   children: React.ReactNode;
   isExamboard: boolean;
 };
+
 export function CurricYearCard({
+  timetablingQueryParams,
   yearTitle,
   yearSubheading,
   additional,
   children,
   isExamboard,
 }: CurricYearCardProps) {
+  const timetablingEnabled = useFeatureFlagEnabled("adopt-timetabling-proto");
   return (
     <OakBox
       $background={isExamboard ? "pink50" : "pink30"}
@@ -24,15 +34,25 @@ export function CurricYearCard({
       $borderRadius={"border-radius-s"}
       className="mobileYearDisplay"
     >
-      <OakHeading
-        tag="h3"
-        $font={["heading-5", "heading-4"]}
-        $mb={yearSubheading ? "space-between-xs" : "space-between-s"}
-        data-testid="year-heading"
-      >
-        {yearTitle}
-      </OakHeading>
-
+      <OakFlex $flexDirection={"row"} $justifyContent={"space-between"}>
+        <OakHeading
+          tag="h3"
+          $font={["heading-5", "heading-4"]}
+          $mb={yearSubheading ? "space-between-xs" : "space-between-s"}
+          data-testid="year-heading"
+        >
+          {yearTitle}
+        </OakHeading>
+        {timetablingEnabled === true && (
+          <OakSecondaryLink
+            href={`/timetabling/new?${timetablingQueryParams}`}
+            iconName="external"
+            isTrailingIcon
+          >
+            Map to school timetable
+          </OakSecondaryLink>
+        )}
+      </OakFlex>
       {yearSubheading && (
         <OakHeading
           tag="h4"
