@@ -1,22 +1,19 @@
 import React, { useEffect, useState } from "react";
+
+import { CodeRenderWrapper } from "../CodeRendererWrapper/CodeRendererWrapper";
+
 import {
   OakCloudinaryImage,
   OakFlex,
   OakScaleImageButton,
   OakBox,
 } from "@oaknational/oak-components";
-
-import { CodeRenderWrapper } from "../CodeRendererWrapper/CodeRendererWrapper";
-
-import {
-  removeMarkdown,
-  shortAnswerTitleFormatter,
-} from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import {
   ImageItem,
   TextItem,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { Stem } from "@/components/SharedComponents/Stem";
 
 export interface QuizQuestionStemProps {
   questionStem: (ImageItem | TextItem)[];
@@ -61,7 +58,7 @@ export const QuizQuestionStem = ({
               $width={"100%"}
               id={`${questionUid}-legend`}
             >
-              {shortAnswerTitleFormatter(removeMarkdown(questionStem[0].text))}
+              <Stem stem={questionStem[0]} />
             </OakBox>
           )}
         </OakFlex>
@@ -74,7 +71,7 @@ export const QuizQuestionStem = ({
                 $font={["body-2-bold", "body-1-bold"]}
                 $width={"100%"}
               >
-                {shortAnswerTitleFormatter(removeMarkdown(stemItem.text))}
+                <Stem stem={stemItem} />
               </OakBox>
             );
           } else if (stemItem.type === "image") {
