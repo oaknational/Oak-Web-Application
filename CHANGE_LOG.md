@@ -1,3 +1,10 @@
+# [1.861.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.860.0...v1.861.0) (2025-09-18)
+
+
+### Features
+
+* added <CurricShowSteps/> component ([c6bcd98](https://github.com/oaknational/Oak-Web-Application/commit/c6bcd98a6f42d14e69132ea79efb78f55f3be2bd))
+
 # [1.860.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.859.0...v1.860.0) (2025-09-18)
 
 
