@@ -30,7 +30,7 @@ export function CurricTimetableHeader({
       $pb={"inner-padding-xl3"}
     >
       <OakFlex $flexDirection={"row"}>
-        <OakFlex $flexDirection={"column"}>
+        <OakFlex $flexDirection={"column"} $flexGrow={1}>
           <OakFlex $pb={"inner-padding-s"} $alignItems={"start"}>
             <OakImage
               src={logoSrc}
@@ -39,7 +39,11 @@ export function CurricTimetableHeader({
             />
           </OakFlex>
           <OakFlex>
-            <OakFlex $gap={"all-spacing-9"} $flexDirection={"column"}>
+            <OakFlex
+              $gap={"all-spacing-9"}
+              $flexDirection={"column"}
+              $flexGrow={1}
+            >
               <OakHeading
                 tag="h1"
                 $font={"heading-2"}

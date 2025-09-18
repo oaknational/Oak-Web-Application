@@ -1,12 +1,15 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
+import {
+  OakBox,
+  oakDefaultTheme,
+  OakThemeProvider,
+} from "@oaknational/oak-components";
 
 import { CurricShowSteps } from "../CurricShowSteps";
 
 import { CurricTimetableHeader as Component } from ".";
 
 import illustrations from "@/image-data/generated/illustrations.json";
-
 
 const meta: Meta<typeof Component> = {
   component: Component,
@@ -55,6 +58,10 @@ export const WithSteps: Story = {
   args: {
     titleSlot: "Year 1 History",
     illustrationSlug: "magic-carpet",
-    additionalSlot: <CurricShowSteps numberOfSteps={4} currentStep={1} />,
+    additionalSlot: (
+      <OakBox $maxWidth={"all-spacing-20"}>
+        <CurricShowSteps numberOfSteps={4} currentStepIndex={1} />
+      </OakBox>
+    ),
   },
 };
