@@ -14,26 +14,8 @@ jest.mock("next/headers", () => ({
 }));
 
 describe("useFeatureFlag", () => {
-  test("exists", async () => {
-    getAllCookiesMock.mockReturnValue([
-      {
-        name: "ph_NEXT_PUBLIC_POSTHOG_API_KEY_posthog",
-        value: JSON.stringify({ distinct_id: "1111" }),
-      },
-    ]);
-    (getFeatureFlag as jest.Mock).mockResolvedValue(true);
-    const { result } = renderHook(() => useFeatureFlag("foo"));
-    expect(await result.current).toEqual(true);
-  });
-
-  test("does not exist", async () => {
-    getAllCookiesMock.mockReturnValue([]);
-    (getFeatureFlag as jest.Mock).mockResolvedValue(true);
-    const { result } = renderHook(() => useFeatureFlag("foo"));
-    expect(await result.current).toEqual(undefined);
-  });
-
   test("string assertion with valid type", async () => {
+    console.log = jest.fn();
     getAllCookiesMock.mockReturnValue([
       {
         name: "ph_NEXT_PUBLIC_POSTHOG_API_KEY_posthog",
@@ -43,6 +25,13 @@ describe("useFeatureFlag", () => {
     (getFeatureFlag as jest.Mock).mockResolvedValue("testing");
     const { result } = renderHook(() => useFeatureFlag("foo", "string"));
     expect(await result.current).toEqual("testing");
+    expect(console.log).toHaveBeenCalledWith(
+      "[%cfeature-flag%c] %s=%o",
+      "color: green",
+      "color: initial",
+      "foo",
+      "testing",
+    );
   });
 
   test("string assertion with invalid type", async () => {
@@ -58,6 +47,7 @@ describe("useFeatureFlag", () => {
   });
 
   test("boolean assertion with valid type", async () => {
+    console.log = jest.fn();
     getAllCookiesMock.mockReturnValue([
       {
         name: "ph_NEXT_PUBLIC_POSTHOG_API_KEY_posthog",
@@ -67,6 +57,13 @@ describe("useFeatureFlag", () => {
     (getFeatureFlag as jest.Mock).mockResolvedValue(true);
     const { result } = renderHook(() => useFeatureFlag("foo", "boolean"));
     expect(await result.current).toEqual(true);
+    expect(console.log).toHaveBeenCalledWith(
+      "[%cfeature-flag%c] %s=%o",
+      "color: green",
+      "color: initial",
+      "foo",
+      true,
+    );
   });
 
   test("boolean assertion with invalid type", async () => {
