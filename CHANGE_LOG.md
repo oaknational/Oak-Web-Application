@@ -1,3 +1,11 @@
+# [1.860.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.859.0...v1.860.0) (2025-09-18)
+
+
+### Features
+
+* make useFeatureFlag typesafe ([4dc7c7f](https://github.com/oaknational/Oak-Web-Application/commit/4dc7c7fcc23f70714b443f0c28bf6f542ee60529))
+* useFeatureFlag now just returns value and does type assertion on the type ([7d2efea](https://github.com/oaknational/Oak-Web-Application/commit/7d2efea0eba7e69a31bd78968b50a6e51d222b59))
+
 # [1.859.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.858.0...v1.859.0) (2025-09-18)
 
 
