@@ -14,14 +14,15 @@ const meta: Meta<typeof Component> = {
         max: 5,
       },
     },
-    currentStep: {
+    currentStepIndex: {
       type: "number",
+      description: "Index of the current step (zero based)",
       control: "number",
     },
   },
   parameters: {
     controls: {
-      include: ["numberOfSteps", "currentStep"],
+      include: ["numberOfSteps", "currentStepIndex"],
     },
   },
   render: (args) => <Component {...args} />,
@@ -32,7 +33,7 @@ type Story = StoryObj<typeof Component>;
 
 export const Default: Story = {
   args: {
-    currentStep: 2,
+    currentStepIndex: 2,
     numberOfSteps: 4,
   },
 };

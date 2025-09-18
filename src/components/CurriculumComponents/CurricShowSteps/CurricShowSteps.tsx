@@ -67,11 +67,11 @@ function DotWithWings({
 
 type CurricShowStepsProps = {
   numberOfSteps: number;
-  currentStep: number;
+  currentStepIndex: number;
 };
 export function CurricShowSteps({
   numberOfSteps,
-  currentStep,
+  currentStepIndex,
 }: CurricShowStepsProps) {
   return (
     <div>
@@ -85,8 +85,8 @@ export function CurricShowSteps({
             .map((_, index) => {
               const isLast = index === numberOfSteps - 1;
               const isFirst = index === 0;
-              const isCurrent = index === currentStep;
-              const isDone = index < currentStep;
+              const isCurrent = index === currentStepIndex;
+              const isDone = index < currentStepIndex;
 
               return (
                 <Fragment key={index}>
@@ -124,7 +124,7 @@ export function CurricShowSteps({
                         color="white"
                         $alignItems={"center"}
                         $justifyContent={"center"}
-                       />
+                      />
                       <OakBox
                         $position="absolute"
                         $whiteSpace={"nowrap"}
@@ -134,7 +134,7 @@ export function CurricShowSteps({
                           top: DOT_SIZE,
                         }}
                       >
-                        Step {currentStep + 1} of {numberOfSteps}
+                        Step {currentStepIndex + 1} of {numberOfSteps}
                       </OakBox>
                     </OakFlex>
                   )}
