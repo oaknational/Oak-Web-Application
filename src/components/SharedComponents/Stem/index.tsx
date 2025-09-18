@@ -27,7 +27,8 @@ type PortableTextItem =
   | PortableTextCodeBlock
   | PortableTextSpan;
 
-function ifLastItemIsBlock(out: PortableTextItem[]) {
+// Note: this mutates the input array
+function lastBlockOrNewBlock(out: PortableTextItem[]) {
   const lastItem = out.at(-1);
   if (lastItem && lastItem._type === "block") {
     return lastItem;
@@ -42,47 +43,55 @@ function ifLastItemIsBlock(out: PortableTextItem[]) {
   }
 }
 
+function joinRegexps(regexps: RegExp[], flags: string) {
+  return new RegExp(`(?:${regexps.map((re) => re.source).join("|")})`, flags);
+}
+
+const PARSER_REGEXPS = {
+  math: /(\$\$(?:[^$]|$[^$])*\$\$)/, // Matches something like "$$x+y$$"
+  codeblock: /(```(?:[\s\S]*?)```)/, // Matches something like ```console.log("hi")``` or `console.log("hi")`
+  codeinline: /(`.*?`)/, // Matches something like ```console.log("hi")``` or `console.log("hi")`
+  other: /(.+?)/, // Matches anything else
+};
+const MATH_INDEX = 1;
+const CODE_BLOCK_INDEX = 2;
+const CODE_INLINE_INDEX = 3;
+const OTHER_INDEX = 4;
+
 export function stemToPortableText(text: string) {
-  const mathRegEx = /(\$\$([^$]|$[^$])*\$\$)/; // Matches something like "$$x+y$$"
-  const codeRegEx = /(```(?:[\s\S]*?)```|(?:`.*?`))/; // Matches something like ```console.log("hi")``` or `console.log("hi")`
-  const restRegexp = /(.+?)/; // Matches anything else
-  const regexp = new RegExp(
-    `(?:${mathRegEx.source}|${codeRegEx.source}|${restRegexp.source})`,
-    "g",
-  );
+  // Note must create a new regexp here because where using RegExp.exec() for repeat execution.
+  const regexp = joinRegexps(Object.values(PARSER_REGEXPS), "g");
 
   let match = regexp.exec(text);
   const out: PortableTextItem[] = [];
   while (match) {
-    if (match[1]) {
-      const block = ifLastItemIsBlock(out);
+    if (match[MATH_INDEX]) {
+      const block = lastBlockOrNewBlock(out);
       block.children.push({
         _type: "math",
-        text: match[1],
+        text: match[MATH_INDEX],
         html: convertToMml({ math: match[1] }),
       });
-    } else if (match[3]) {
-      if (match[3].startsWith("```")) {
-        out.push({
-          _type: "codeblock",
-          text: match[3],
-        });
-      } else {
-        const block = ifLastItemIsBlock(out);
-        block.children.push({
-          _type: "codeinline",
-          text: match[3],
-        });
-      }
-    } else {
-      const block = ifLastItemIsBlock(out);
+    } else if (match[CODE_BLOCK_INDEX]) {
+      out.push({
+        _type: "codeblock",
+        text: match[CODE_BLOCK_INDEX],
+      });
+    } else if (match[CODE_INLINE_INDEX]) {
+      const block = lastBlockOrNewBlock(out);
+      block.children.push({
+        _type: "codeinline",
+        text: match[CODE_INLINE_INDEX],
+      });
+    } else if (match[OTHER_INDEX]) {
+      const block = lastBlockOrNewBlock(out);
       const lastItem = block.children.at(-1);
       if (lastItem && lastItem._type === "span") {
-        lastItem.text += match[4];
+        lastItem.text += match[OTHER_INDEX];
       } else {
         block.children.push({
           _type: "span",
-          text: String(match[4]),
+          text: String(match[OTHER_INDEX]),
         });
       }
     }
@@ -156,6 +165,8 @@ const stemComponents = {
         type: "math";
       }>,
     ) => {
+      // Note: We dangerouslySetInnerHTML here because MathJax library has given us raw HTML as output
+      // It's also worth noting that this shouldn't be used for untrusted input.
       return <OakSpan dangerouslySetInnerHTML={{ __html: props.value.html }} />;
     },
   },
