@@ -1,3 +1,24 @@
+# [1.860.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.859.0...v1.860.0) (2025-09-18)
+
+
+### Features
+
+* make useFeatureFlag typesafe ([4dc7c7f](https://github.com/oaknational/Oak-Web-Application/commit/4dc7c7fcc23f70714b443f0c28bf6f542ee60529))
+* useFeatureFlag now just returns value and does type assertion on the type ([7d2efea](https://github.com/oaknational/Oak-Web-Application/commit/7d2efea0eba7e69a31bd78968b50a6e51d222b59))
+
+# [1.859.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.858.0...v1.859.0) (2025-09-18)
+
+
+### Bug Fixes
+
+* update tests to use renderWithTheme ([ddd729c](https://github.com/oaknational/Oak-Web-Application/commit/ddd729c0dcad7390f241f731c18738e659d0a358))
+
+
+### Features
+
+* add page view to page ([451eb09](https://github.com/oaknational/Oak-Web-Application/commit/451eb09311090ef2d7d0c020134641b3713dd9a5))
+* create page view ([4cb54be](https://github.com/oaknational/Oak-Web-Application/commit/4cb54beb9c7e7ab90d0791819b7d6e39a3110a5d))
+
 # [1.858.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.857.0...v1.858.0) (2025-09-17)
 
 
