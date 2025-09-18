@@ -9,7 +9,7 @@ describe("/timetabling/units", () => {
   test("when enabled", async () => {
     (useFeatureFlag as jest.Mock).mockResolvedValue(true);
     const { baseElement } = renderWithTheme(await Page());
-    expect(baseElement).toHaveTextContent("New timetable");
+    expect(baseElement).toHaveTextContent("Enter lessons per term");
   });
 
   test("when disabled", async () => {
