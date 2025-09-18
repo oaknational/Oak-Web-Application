@@ -1,6 +1,7 @@
 import { TextItem } from "@oaknational/oak-curriculum-schema";
 import {
   MissingComponentHandler,
+  PortableTextComponents,
   PortableTextTypeComponentProps,
 } from "@portabletext/react";
 import { Fragment } from "react";
@@ -110,7 +111,7 @@ const UnderlineSpan = styled.span`
   position: relative;
 `;
 
-const stemComponents = {
+const stemComponents: PortableTextComponents = {
   types: {
     codeblock: (
       props: PortableTextTypeComponentProps<{ text: string; type: "code" }>,
@@ -170,6 +171,11 @@ const stemComponents = {
       return <OakSpan dangerouslySetInnerHTML={{ __html: props.value.html }} />;
     },
   },
+  block: {
+    normal: (props) => {
+      return <OakSpan $font={"body-1"}>{props.children}</OakSpan>;
+    },
+  },
   marks: {},
 };
 
@@ -195,6 +201,7 @@ export function Stem({ stem }: StemProps) {
         value={stem?.portableText ?? []}
         components={stemComponents}
         onMissingComponent={logMissingPortableTextComponents}
+        withoutDefaultComponents
       />
     );
   } else {
