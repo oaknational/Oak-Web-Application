@@ -48,7 +48,7 @@ type Story = StoryObj<typeof Component>;
 
 export const Default: Story = {
   args: {
-    titleSlot: "Year 1 Maths",
+    titleSlot: "Year 1 maths",
     illustrationSlug: "magic-carpet",
     additionalSlot: "Additional content goes here...",
   },
@@ -56,7 +56,7 @@ export const Default: Story = {
 
 export const WithSteps: Story = {
   args: {
-    titleSlot: "Year 1 History",
+    titleSlot: "Year 1 history",
     illustrationSlug: "magic-carpet",
     additionalSlot: (
       <OakBox $maxWidth={"all-spacing-20"}>

@@ -14,7 +14,7 @@ export const CurricTimetablingNewView = () => {
   return (
     <OakFlex $flexDirection={"column"} $pa={"inner-padding-xl5"}>
       <CurricTimetableHeader
-        titleSlot={"Subject Year N"}
+        titleSlot={"Year N subject"}
         illustrationSlug={"magic-carpet"}
         additionalSlot={
           <OakBox $maxWidth={"all-spacing-20"}>
