@@ -54,23 +54,7 @@ export function convertQuestionMath(questions: LessonOverviewQuizData) {
       if (shortAnswers) {
         newAnswers = {
           ...newAnswers,
-          "short-answer": shortAnswers.map((item) => {
-            const answer = item.answer.map((answer) => {
-              if (answer.type === "text") {
-                const portableText = stemToPortableText(answer.text);
-                return {
-                  ...answer,
-                  portableText,
-                };
-              } else {
-                return answer;
-              }
-            });
-            return {
-              ...item,
-              answer,
-            };
-          }),
+          "short-answer": shortAnswers,
         };
       }
       if (multipleChoiceAnswers) {

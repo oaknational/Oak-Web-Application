@@ -1,20 +1,21 @@
 import { VisuallyHidden } from "react-aria";
+
 import {
   OakTypography,
   OakFlex,
   OakIcon,
   OakBox,
 } from "@oaknational/oak-components";
-
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import { ShortAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { Stem } from "@/components/SharedComponents/Stem";
+import { Stem, stemToPortableText } from "@/components/SharedComponents/Stem";
 
 export const QuizQuestionsShortAnswers = ({
   answers,
 }: {
   answers: ShortAnswer[];
 }) => {
+  // TODO: move to MathJax.js logic
   const answerString = answers.reduce((acc, cur) => {
     if (acc === "") {
       return (cur.answer && cur.answer[0] && cur.answer[0].text) || acc;
@@ -22,16 +23,6 @@ export const QuizQuestionsShortAnswers = ({
 
     return cur.answer && cur.answer[0] && cur.answer[0].text
       ? `${acc}, ${cur.answer[0].text}`
-      : acc;
-  }, "");
-
-  const answerHtml = answers.reduce((acc, cur) => {
-    if (acc === "") {
-      return (cur.answer && cur.answer[0] && cur.answer[0].html) || acc;
-    }
-
-    return cur.answer && cur.answer[0] && cur.answer[0].html
-      ? `${acc}, ${cur.answer[0].html}`
       : acc;
   }, "");
 
@@ -61,13 +52,13 @@ export const QuizQuestionsShortAnswers = ({
         </OakBox>
 
         <OakTypography $font={["body-2", "body-1"]} aria-hidden>
-          {/* TODO: handle OakCodeRenderer */}
-          {/* <OakCodeRenderer
-            string={removeMarkdown(answerString)}
-            $font="code-3"
-            $mt={"space-between-none"}
-          /> */}
-          <Stem stem={{ type: "text", text: answerString, html: answerHtml }} />
+          <Stem
+            stem={{
+              type: "text",
+              text: answerString,
+              portableText: stemToPortableText(answerString),
+            }}
+          />
         </OakTypography>
       </OakFlex>
     </OakFlex>
