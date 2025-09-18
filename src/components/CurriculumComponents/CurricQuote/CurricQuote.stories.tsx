@@ -6,7 +6,7 @@ import CurricQuote from "./CurricQuote";
 const meta: Meta<typeof CurricQuote> = {
   component: CurricQuote,
   tags: ["autodocs"],
-  title: "Components/Curriculum Components/CurricQuote",
+  title: "Components/CurriculumComponents/CurricQuote",
   argTypes: {
     title: {
       control: "text",

@@ -1,10 +1,18 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import Component from ".";
 
 const meta: Meta<typeof Component> = {
   component: Component,
+  decorators: [
+    (Story) => (
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <Story />
+      </OakThemeProvider>
+    ),
+  ],
   argTypes: {
     title: {
       defaultValue: "Thanks for downloading",
@@ -25,7 +33,7 @@ const meta: Meta<typeof Component> = {
 export default meta;
 type Story = StoryObj<typeof Component>;
 
-export const SuccessMessage: Story = {
+export const Default: Story = {
   args: {
     title: "Thanks for downloading",
     message:

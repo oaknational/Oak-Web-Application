@@ -1,18 +1,10 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import Component from "./CurricUnitDetails";
 import { basicUnit } from "./CurricUnitDetails.fixtures";
 
 const meta: Meta<typeof Component> = {
   component: Component,
-  decorators: [
-    (Story) => (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Story />
-      </OakThemeProvider>
-    ),
-  ],
   argTypes: {
     unit: {
       defaultValue: basicUnit,

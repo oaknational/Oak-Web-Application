@@ -1,11 +1,18 @@
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { Meta, StoryObj } from "@storybook/react";
+import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import { CurricFiltersSubjectCategories as Component } from "./CurricFiltersSubjectCategories";
 import { ks4Setup } from "./CurricFiltersSubjectCategories.fixtures";
 
 const meta: Meta<typeof Component> = {
   component: Component,
+  decorators: [
+    (Story) => (
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <Story />
+      </OakThemeProvider>
+    ),
+  ],
   argTypes: {},
 };
 
@@ -23,13 +30,14 @@ export const CurricFiltersSubjectCategories: Story = {
       threads: [],
       pathways: [],
     },
+    slugs: {
+      phaseSlug: "primary",
+      subjectSlug: "maths",
+      ks4OptionSlug: null,
+    },
     onChangeFilters: () => {},
   },
   render: function Render(args) {
-    return (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Component {...args} />
-      </OakThemeProvider>
-    );
+    return <Component {...args} />;
   },
 };
