@@ -1,13 +1,6 @@
 import { LessonOverviewQuizData } from "@/node-lib/curriculum-api-2023/shared.schema";
-import convertToMml from "@/utils/mathjax";
 import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
-
-// TODO: This should escape text here, rather than just replacing
-export const generateHtml = (text: string) => {
-  return text.replace(/\$\$([^$]|$[^\$])*\$\$/g, (item: string) => {
-    return convertToMml({ math: item });
-  });
-};
+import { stemToPortableText } from "@/components/SharedComponents/Stem";
 
 export function convertQuestionMath(questions: LessonOverviewQuizData) {
   return questions?.map((question) => {
@@ -15,11 +8,10 @@ export function convertQuestionMath(questions: LessonOverviewQuizData) {
     if (question.questionStem) {
       newQuestionStem = question.questionStem.map((questionStem) => {
         if (questionStem.type === "text") {
-          const html = generateHtml(questionStem.text);
           return {
             type: questionStem.type,
             text: questionStem.text,
-            html,
+            portableText: stemToPortableText(questionStem.text, "h4"),
           };
         } else {
           return questionStem;
@@ -40,10 +32,10 @@ export function convertQuestionMath(questions: LessonOverviewQuizData) {
             if (item.answer && item.answer.length > 0) {
               const newItemAnswer = item.answer.map((answerItem) => {
                 if (answerItem.type === "text") {
-                  const html = generateHtml(answerItem.text);
+                  const portableText = stemToPortableText(answerItem.text);
                   return {
                     ...answerItem,
-                    html,
+                    portableText,
                   };
                 } else {
                   return answerItem;
@@ -65,10 +57,10 @@ export function convertQuestionMath(questions: LessonOverviewQuizData) {
           "short-answer": shortAnswers.map((item) => {
             const answer = item.answer.map((answer) => {
               if (answer.type === "text") {
-                const html = generateHtml(answer.text);
+                const portableText = stemToPortableText(answer.text);
                 return {
                   ...answer,
-                  html,
+                  portableText,
                 };
               } else {
                 return answer;
@@ -88,10 +80,10 @@ export function convertQuestionMath(questions: LessonOverviewQuizData) {
             if (item.answer && item.answer.length > 0) {
               const newItemAnswer = item.answer.map((answerItem) => {
                 if (answerItem.type === "text") {
-                  const html = generateHtml(answerItem.text);
+                  const portableText = stemToPortableText(answerItem.text);
                   return {
                     ...answerItem,
-                    html,
+                    portableText,
                   };
                 } else {
                   return answerItem;
@@ -113,11 +105,11 @@ export function convertQuestionMath(questions: LessonOverviewQuizData) {
           match: matchAnswers.map((item) => {
             const newMatchOption = item.matchOption.map((mo) => ({
               ...mo,
-              html: generateHtml(mo.text),
+              portableText: stemToPortableText(mo.text),
             }));
             const newCorrectChoice = item.correctChoice.map((cc) => ({
               ...cc,
-              html: generateHtml(cc.text),
+              portableText: stemToPortableText(cc.text),
             }));
             return {
               ...item,

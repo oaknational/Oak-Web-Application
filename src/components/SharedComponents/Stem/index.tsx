@@ -1,5 +1,4 @@
 import { TextItem } from "@oaknational/oak-curriculum-schema";
-import { OakCodeRenderer, OakSpan } from "@oaknational/oak-components";
 import {
   MissingComponentHandler,
   PortableTextTypeComponentProps,
@@ -9,6 +8,7 @@ import styled from "styled-components";
 
 import { PortableTextWithDefaults } from "../PortableText";
 
+import { OakCodeRenderer, OakSpan } from "@oaknational/oak-components";
 import convertToMml from "@/utils/mathjax";
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 import { shortAnswerTitleFormatter } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
@@ -28,14 +28,14 @@ type PortableTextItem =
   | PortableTextSpan;
 
 // Note: this mutates the input array
-function lastBlockOrNewBlock(out: PortableTextItem[]) {
+function lastBlockOrNewBlock(out: PortableTextItem[], style = "normal") {
   const lastItem = out.at(-1);
   if (lastItem && lastItem._type === "block") {
     return lastItem;
   } else {
     const newItem: PortableTextText = {
       _type: "block",
-      style: "normal",
+      style,
       children: [],
     };
     out.push(newItem);
@@ -58,7 +58,7 @@ const CODE_BLOCK_INDEX = 2;
 const CODE_INLINE_INDEX = 3;
 const OTHER_INDEX = 4;
 
-export function stemToPortableText(text: string) {
+export function stemToPortableText(text: string, style = "normal") {
   // Note must create a new regexp here because where using RegExp.exec() for repeat execution.
   const regexp = joinRegexps(Object.values(PARSER_REGEXPS), "g");
 
@@ -66,7 +66,7 @@ export function stemToPortableText(text: string) {
   const out: PortableTextItem[] = [];
   while (match) {
     if (match[MATH_INDEX]) {
-      const block = lastBlockOrNewBlock(out);
+      const block = lastBlockOrNewBlock(out, style);
       block.children.push({
         _type: "math",
         text: match[MATH_INDEX],
@@ -78,13 +78,13 @@ export function stemToPortableText(text: string) {
         text: match[CODE_BLOCK_INDEX],
       });
     } else if (match[CODE_INLINE_INDEX]) {
-      const block = lastBlockOrNewBlock(out);
+      const block = lastBlockOrNewBlock(out, style);
       block.children.push({
         _type: "codeinline",
         text: match[CODE_INLINE_INDEX],
       });
     } else if (match[OTHER_INDEX]) {
-      const block = lastBlockOrNewBlock(out);
+      const block = lastBlockOrNewBlock(out, style);
       const lastItem = block.children.at(-1);
       if (lastItem && lastItem._type === "span") {
         lastItem.text += match[OTHER_INDEX];
@@ -184,7 +184,7 @@ const logMissingPortableTextComponents: MissingComponentHandler = (
 };
 
 type StemProps = {
-  stem: TextItem;
+  stem?: TextItem & { portableText?: PortableTextItem[] };
 };
 export function Stem({ stem }: StemProps) {
   // TODO: This should also deal with rendering <OakCodeRenderer/> as I've removed that else where
@@ -198,6 +198,6 @@ export function Stem({ stem }: StemProps) {
       />
     );
   } else {
-    return <MathJaxWrap>{shortAnswerTitleFormatter(stem.text)}</MathJaxWrap>;
+    return <MathJaxWrap>{shortAnswerTitleFormatter(stem?.text)}</MathJaxWrap>;
   }
 }
