@@ -25,6 +25,7 @@ import {
   getModes,
 } from "@/utils/curriculum/by-pathway";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
+import { generateQueryParams } from "@/components/CurriculumComponents/helpers/curricTimetabling";
 import { findUnitOrOptionBySlug } from "@/utils/curriculum/units";
 
 type CurricVisualiserProps = {
@@ -134,6 +135,12 @@ export default function CurricVisualiser({
           itemEls.current[index] = element;
         };
 
+        const subjectSlug = units[0]?.subject_slug;
+        const timetablingQueryParams = generateQueryParams({
+          year,
+          subject: subjectSlug ?? "",
+        });
+
         const actions = units[0]?.actions;
 
         const yearTitle = getYearGroupTitle(yearData, year, undefined);
@@ -159,6 +166,7 @@ export default function CurricVisualiser({
               id={`year-${type}-${year}`}
             />
             <CurricYearCard
+              timetablingQueryParams={timetablingQueryParams}
               isExamboard={type === "non_core"}
               yearTitle={yearTitle}
               yearSubheading={yearSubheadingText}
