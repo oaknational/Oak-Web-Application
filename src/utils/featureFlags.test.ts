@@ -2,10 +2,9 @@ import { renderHook } from "@testing-library/react";
 
 import { useFeatureFlag } from "./featureFlags";
 
-jest.mock("@/node-lib/posthog/getFeatureFlag", () => ({
-  __esModule: true,
-  getFeatureFlag: () => true,
-}));
+import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
+
+jest.mock("@/node-lib/posthog/getFeatureFlag");
 
 const getAllCookiesMock = jest.fn();
 jest.mock("next/headers", () => ({
@@ -15,20 +14,67 @@ jest.mock("next/headers", () => ({
 }));
 
 describe("useFeatureFlag", () => {
-  test("exists", async () => {
+  test("string assertion with valid type", async () => {
+    console.log = jest.fn();
     getAllCookiesMock.mockReturnValue([
       {
         name: "ph_NEXT_PUBLIC_POSTHOG_API_KEY_posthog",
         value: JSON.stringify({ distinct_id: "1111" }),
       },
     ]);
-    const { result } = renderHook(() => useFeatureFlag("foo"));
-    expect(await result.current).toEqual({ isEnabled: true, flag: true });
+    (getFeatureFlag as jest.Mock).mockResolvedValue("testing");
+    const { result } = renderHook(() => useFeatureFlag("foo", "string"));
+    expect(await result.current).toEqual("testing");
+    expect(console.log).toHaveBeenCalledWith(
+      "[%cfeature-flag%c] %s=%o",
+      "color: green",
+      "color: initial",
+      "foo",
+      "testing",
+    );
   });
 
-  test("does not exist", async () => {
-    getAllCookiesMock.mockReturnValue([]);
-    const { result } = renderHook(() => useFeatureFlag("foo"));
-    expect(await result.current).toEqual({ isEnabled: false, flag: undefined });
+  test("string assertion with invalid type", async () => {
+    getAllCookiesMock.mockReturnValue([
+      {
+        name: "ph_NEXT_PUBLIC_POSTHOG_API_KEY_posthog",
+        value: JSON.stringify({ distinct_id: "1111" }),
+      },
+    ]);
+    (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+    const { result } = renderHook(() => useFeatureFlag("foo", "string"));
+    expect(await result.current).toEqual(undefined);
+  });
+
+  test("boolean assertion with valid type", async () => {
+    console.log = jest.fn();
+    getAllCookiesMock.mockReturnValue([
+      {
+        name: "ph_NEXT_PUBLIC_POSTHOG_API_KEY_posthog",
+        value: JSON.stringify({ distinct_id: "1111" }),
+      },
+    ]);
+    (getFeatureFlag as jest.Mock).mockResolvedValue(true);
+    const { result } = renderHook(() => useFeatureFlag("foo", "boolean"));
+    expect(await result.current).toEqual(true);
+    expect(console.log).toHaveBeenCalledWith(
+      "[%cfeature-flag%c] %s=%o",
+      "color: green",
+      "color: initial",
+      "foo",
+      true,
+    );
+  });
+
+  test("boolean assertion with invalid type", async () => {
+    getAllCookiesMock.mockReturnValue([
+      {
+        name: "ph_NEXT_PUBLIC_POSTHOG_API_KEY_posthog",
+        value: JSON.stringify({ distinct_id: "1111" }),
+      },
+    ]);
+    (getFeatureFlag as jest.Mock).mockResolvedValue("test");
+    const { result } = renderHook(() => useFeatureFlag("foo", "boolean"));
+    expect(await result.current).toEqual(undefined);
   });
 });

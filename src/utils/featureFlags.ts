@@ -15,7 +15,26 @@ function cookieAsObj(c: ReadonlyRequestCookies) {
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
 
-export async function useFeatureFlag(flagName: string) {
+type TypeMap = {
+  string: string;
+  boolean: boolean;
+};
+
+function assertType<T extends keyof TypeMap, F = unknown>(
+  kind: T,
+  value: TypeMap[T],
+  fallback: F,
+): TypeMap[T] | F {
+  if (typeof value !== kind) {
+    return fallback;
+  }
+  return value;
+}
+
+export async function useFeatureFlag<T extends keyof TypeMap>(
+  flagName: string,
+  expectedFlagType: T,
+): Promise<TypeMap[T] | undefined> {
   const cookieStore = cookieAsObj(await cookies());
 
   const posthogUserId = getPosthogIdFromCookie(cookieStore, posthogApiKey);
@@ -29,5 +48,15 @@ export async function useFeatureFlag(flagName: string) {
     });
   }
 
-  return { isEnabled: Boolean(flag), flag };
+  if (flag) {
+    console.log(
+      "[%cfeature-flag%c] %s=%o",
+      "color: green",
+      "color: initial",
+      flagName,
+      flag,
+    );
+  }
+
+  return assertType(expectedFlagType, flag as TypeMap[T], undefined);
 }
