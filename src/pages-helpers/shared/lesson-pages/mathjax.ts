@@ -105,7 +105,7 @@ export function convertQuestionMath(questions: LessonOverviewQuizData) {
           match: matchAnswers.map((item) => {
             const newMatchOption = item.matchOption.map((mo) => ({
               ...mo,
-              portableText: stemToPortableText(mo.text),
+              portableText: stemToPortableText(mo.text, "h4"),
             }));
             const newCorrectChoice = item.correctChoice.map((cc) => ({
               ...cc,

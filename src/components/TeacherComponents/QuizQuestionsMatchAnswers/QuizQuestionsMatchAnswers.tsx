@@ -1,6 +1,6 @@
 import { VisuallyHidden } from "react-aria";
-import { OakSpan, OakFlex, OakIcon } from "@oaknational/oak-components";
 
+import { OakFlex, OakIcon } from "@oaknational/oak-components";
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import { MatchAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { Stem } from "@/components/SharedComponents/Stem";
@@ -48,22 +48,11 @@ export const QuizQuestionsMatchAnswers = ({
               <OakFlex
                 $flexWrap={"wrap"}
                 $width={["100%", "100%", "max-content"]}
+                $font={"body-1-bold"}
+                $gap={"space-between-sssx"}
               >
-                <Stem stem={matchOption} />
-                {/* TODO: handle OakCodeRenderer
-                  <OakCodeRenderer
-                    string={removeMarkdown(matchOption.text)}
-                    $font="code-3"
-                    $mt={"space-between-none"}
-                  /> */}
-                <OakSpan>{" -"}&nbsp;</OakSpan>
+                <Stem stem={matchOption} />-
                 <Stem stem={correctChoice} />
-                {/* TODO: handle OakCodeRenderer
-                  <OakCodeRenderer
-                    string={removeMarkdown(correctChoice.text)}
-                    $font="code-3"
-                    $mt={"space-between-none"}
-                  /> */}
               </OakFlex>
             </OakFlex>
           )
