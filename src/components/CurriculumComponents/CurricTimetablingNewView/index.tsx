@@ -1,17 +1,28 @@
 "use client";
 
 import {
+  OakBox,
   OakFlex,
-  OakHeading,
+  OakP,
   OakPrimaryButton,
 } from "@oaknational/oak-components";
 
+import { CurricTimetableHeader } from "../CurricTimetableHeader";
+import { CurricShowSteps } from "../CurricShowSteps";
+
 export const CurricTimetablingNewView = () => {
   return (
-    <OakFlex $flexDirection={"column"}>
-      <OakHeading tag="h1" $font="heading-2">
-        New timetable
-      </OakHeading>
+    <OakFlex $flexDirection={"column"} $pa={"inner-padding-xl5"}>
+      <CurricTimetableHeader
+        titleSlot={"Year N subject"}
+        illustrationSlug={"magic-carpet"}
+        additionalSlot={
+          <OakBox $maxWidth={"all-spacing-20"}>
+            <CurricShowSteps numberOfSteps={2} currentStepIndex={0} />
+          </OakBox>
+        }
+      />
+      <OakP>New timetable</OakP>
       <OakPrimaryButton element="a" href="/timetabling/name">
         Next
       </OakPrimaryButton>

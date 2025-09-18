@@ -5,8 +5,8 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 describe("CurricTimetablingNewView", () => {
   test("component renders with heading correctly", async () => {
     const { getByRole } = renderWithTheme(<CurricTimetablingNewView />);
-    const headingElement = getByRole("heading", { level: 1 });
-    expect(headingElement).toHaveTextContent("New timetable");
+    const paragraphElement = getByRole("paragraph");
+    expect(paragraphElement).toHaveTextContent("New timetable");
   });
 
   test("component renders with button correctly", async () => {

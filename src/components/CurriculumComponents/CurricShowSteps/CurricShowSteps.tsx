@@ -77,7 +77,7 @@ export function CurricShowSteps({
     <div>
       <OakBox
         style={{ width: "100%", position: "relative", overflow: "hidden" }}
-        $pb={"inner-padding-xl"}
+        $pb={"inner-padding-xl2"}
       >
         <div style={{ display: "flex", alignItems: "center" }}>
           {Array(numberOfSteps)
@@ -129,6 +129,7 @@ export function CurricShowSteps({
                         $position="absolute"
                         $whiteSpace={"nowrap"}
                         data-testid="step-text"
+                        $font={"body-1"}
                         style={{
                           [isLast ? "right" : "left"]: 0,
                           top: DOT_SIZE,
