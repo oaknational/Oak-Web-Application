@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CurricTimetableHeader basic usage 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-fqkvVR iYZQrv"
+    >
+      <div
+        class="sc-fqkvVR sc-kAyceB fgBWrW dnkkZD"
+      >
+        <div
+          class="sc-fqkvVR sc-kAyceB fgBWrW eeevb"
+        >
+          <div
+            class="sc-fqkvVR sc-kAyceB cdQSNK cnUbCk"
+          >
+            <div
+              class="sc-fqkvVR jqqmXN"
+              style="height: 52px; width: 114px;"
+            >
+              <img
+                alt="Oak National Academy"
+                class="sc-dcJsrY jRtmJB"
+                data-nimg="fill"
+                decoding="async"
+                loading="lazy"
+                src="https://cdn.sanity.io/images/cuvjke51/production/e9cc7ae43ca35576d95d0c3ef22f76e0aee14eac-1920x880.svg"
+                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+              />
+            </div>
+          </div>
+          <div
+            class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+          >
+            <div
+              class="sc-fqkvVR sc-kAyceB fgBWrW hcnvGl"
+            >
+              <h1
+                class="sc-kpDqfm jGrEMo"
+                data-testid="timetable-header-title"
+              >
+                TITLE
+              </h1>
+              <div
+                class="sc-fqkvVR fgBWrW"
+                data-testid="timetable-header-additional"
+              >
+                ADDITIONAL
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="sc-fqkvVR sc-kAyceB bygFWn dnFLNa"
+        >
+          <img
+            alt=""
+            class="sc-6170517-0 gnvkSN"
+            data-nimg="fill"
+            decoding="async"
+            loading="lazy"
+            sizes="100vw"
+            src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/7c7aa0bf6b71d90b172f7f01f134c5487f810fb7-1588x872.svg?w=3840&fm=webp&q=80&fit=clip&auto=format"
+            srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/7c7aa0bf6b71d90b172f7f01f134c5487f810fb7-1588x872.svg?w=640&fm=webp&q=80&fit=clip&auto=format 640w, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/7c7aa0bf6b71d90b172f7f01f134c5487f810fb7-1588x872.svg?w=750&fm=webp&q=80&fit=clip&auto=format 750w, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/7c7aa0bf6b71d90b172f7f01f134c5487f810fb7-1588x872.svg?w=828&fm=webp&q=80&fit=clip&auto=format 828w, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/7c7aa0bf6b71d90b172f7f01f134c5487f810fb7-1588x872.svg?w=1080&fm=webp&q=80&fit=clip&auto=format 1080w, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/7c7aa0bf6b71d90b172f7f01f134c5487f810fb7-1588x872.svg?w=1200&fm=webp&q=80&fit=clip&auto=format 1200w, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/7c7aa0bf6b71d90b172f7f01f134c5487f810fb7-1588x872.svg?w=1920&fm=webp&q=80&fit=clip&auto=format 1920w, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/7c7aa0bf6b71d90b172f7f01f134c5487f810fb7-1588x872.svg?w=2048&fm=webp&q=80&fit=clip&auto=format 2048w, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/7c7aa0bf6b71d90b172f7f01f134c5487f810fb7-1588x872.svg?w=3840&fm=webp&q=80&fit=clip&auto=format 3840w"
+            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
