@@ -45,3 +45,19 @@ export type IntentRequest = z.infer<typeof intentRequestSchema>;
 export type RelatedSubject = z.infer<typeof relatedSubjectSchema>;
 export type Intent = z.infer<typeof intentSchema>;
 export type IntentResponse = z.infer<typeof intentResponseSchema>;
+
+// Helpers
+export const normalizeTerm = (s: string) =>
+  s.trim().replace(/\s+/g, " ").toLowerCase();
+
+export function parseIntentRequest(data: unknown): IntentRequest {
+  return intentRequestSchema.parse(data);
+}
+
+export function parseIntentResponse(data: unknown): IntentResponse {
+  return intentResponseSchema.parse(data);
+}
+
+export function safeParseIntentResponse(data: unknown) {
+  return intentResponseSchema.safeParse(data);
+}
