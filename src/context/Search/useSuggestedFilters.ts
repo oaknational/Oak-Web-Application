@@ -1,5 +1,19 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
+/**
+ * useSuggestedFilters — AI suggested filters hook (spike)
+ *
+ * - Guard: no-op when normalized term length < 2 or disabled.
+ * - Cache: in-memory Map keyed by normalized term for session reuse.
+ * - Fetches POST /api/search/intent and validates with shared schema.
+ * - Maps to `{ intentSubject?, intentKeyStage?, relatedSubjectSlugs[] }`.
+ * - Status: `idle | loading | success | error` (UI remains silent on error).
+ *
+ * Example
+ *  const { intentSubject, intentKeyStage, relatedSubjectSlugs, status } =
+ *    useSuggestedFilters({ term: query.term, enabled: submitted });
+ */
+
 import {
   normalizeTerm,
   intentResponseSchema,
