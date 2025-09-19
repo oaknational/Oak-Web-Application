@@ -10,6 +10,11 @@ import {
 import { SetSearchQuery, SearchQuery } from "@/context/Search/search.types";
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
 
+/**
+ * AISuggestedFilters — Desktop-only suggested filters section (spike)
+ * - Renders only when suggestions exist; silent on loading/error.
+ * - Mirrors existing filter behavior by toggling slugs in query via setQuery.
+ */
 export type AISuggestedFiltersProps = {
   intentSubject?: string;
   intentKeyStage?: string;
