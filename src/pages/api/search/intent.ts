@@ -12,6 +12,20 @@ import type {
   Intent,
 } from "@/context/Search/ai-suggested-filters.schema";
 
+/**
+ * POST /api/search/intent
+ *
+ * - Parses `{ term }` with Zod and normalizes it.
+ * - If `process.env.OPENAI_API_KEY` is present, calls `gpt-4o-mini` to infer intent
+ *   and related subjects, forcing JSON output. Otherwise, gracefully returns empty suggestions.
+ * - Validates and sanitizes the model output with shared Zod schemas and MVP whitelists.
+ * - Never throws for the spike: on any error, responds `200` with `{ intent: null, relatedSubjects: [] }`.
+ *
+ * Debug headers (spike-only, not part of long-term contract):
+ * - `X-Normalized-Term`: normalized search term
+ * - `X-Model-Used`: "1" if model was called and returned JSON, otherwise "0"
+ */
+
 // Build a strict JSON-only prompt for the model
 function buildPrompt(term: string) {
   const system =
