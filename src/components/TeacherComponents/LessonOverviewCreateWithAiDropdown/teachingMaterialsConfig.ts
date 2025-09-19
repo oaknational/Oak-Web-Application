@@ -181,6 +181,11 @@ export function getTeachingMaterialTypesByCategory(
     TeachingMaterialType[]
   > = {
     Handwriting: ["additional-glossary", "additional-starter-quiz"],
+    Spelling: [
+      "additional-glossary",
+      "additional-starter-quiz",
+      "additional-exit-quiz",
+    ],
   };
 
   for (const category of categories) {
@@ -196,7 +201,11 @@ const actionsAvailableTeachingMaterialTypes = (
   actions: LessonBrowseDataByKs["actions"],
 ): TeachingMaterialType[] | undefined => {
   if (actions?.isPePractical) {
-    return ["additional-glossary"];
+    return [
+      "additional-glossary",
+      "additional-starter-quiz",
+      "additional-exit-quiz",
+    ];
   }
 };
 export function getAvailableTeachingMaterials(

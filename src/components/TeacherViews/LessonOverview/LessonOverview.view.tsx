@@ -317,6 +317,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   const { currentSectionId } = useCurrentSection({ sectionRefs });
 
+  console.log(lesson);
+
   const starterQuizImageAttribution = createAttributionObject(starterQuiz);
 
   const exitQuizImageAttribution = createAttributionObject(exitQuiz);
