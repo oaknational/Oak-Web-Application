@@ -1,0 +1,47 @@
+import { z } from "zod";
+
+// Request schema: accepts a trimmed term with minimum length 2
+export const intentRequestSchema = z.object({
+  term: z.string().trim().min(2),
+});
+
+// Related subject suggestion item with confidence bounded between 0 and 1
+export const relatedSubjectSchema = z.object({
+  slug: z.string(),
+  name: z.string(),
+  confidence: z.number().min(0).max(1),
+});
+
+// Intent union covering subject, subject+keystage, and topic
+export const intentSchema = z
+  .union([
+    z.object({
+      type: z.literal("subject"),
+      subject: z.string(),
+      confidence: z.number().min(0).max(1),
+    }),
+    z.object({
+      type: z.literal("subject-keystage"),
+      subject: z.string(),
+      keyStage: z.string(),
+      confidence: z.number().min(0).max(1),
+    }),
+    z.object({
+      type: z.literal("topic"),
+      topic: z.string(),
+      confidence: z.number().min(0).max(1),
+    }),
+  ])
+  .nullable();
+
+// Response schema: intent and up to 5 related subjects
+export const intentResponseSchema = z.object({
+  intent: intentSchema,
+  relatedSubjects: z.array(relatedSubjectSchema).max(5),
+});
+
+// Types for consumers
+export type IntentRequest = z.infer<typeof intentRequestSchema>;
+export type RelatedSubject = z.infer<typeof relatedSubjectSchema>;
+export type Intent = z.infer<typeof intentSchema>;
+export type IntentResponse = z.infer<typeof intentResponseSchema>;
