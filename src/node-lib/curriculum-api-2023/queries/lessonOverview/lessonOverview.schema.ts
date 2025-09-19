@@ -71,6 +71,9 @@ export const lessonOverviewSchema = baseLessonOverviewSchema.extend({
   loginRequired: z.boolean(),
   geoRestricted: z.boolean(),
   excludedFromTeachingMaterials: z.boolean(),
+  subjectCategories: z
+    .array(z.union([z.string(), z.number(), z.null()]))
+    .nullish(),
 });
 
 export type LessonOverviewPageData = z.infer<typeof lessonOverviewSchema>;

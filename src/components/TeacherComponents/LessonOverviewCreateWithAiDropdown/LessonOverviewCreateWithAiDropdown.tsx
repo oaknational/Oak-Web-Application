@@ -10,11 +10,16 @@ import {
 
 import { LessonOverviewHeaderProps } from "../LessonOverviewHeader";
 
+import {
+  getAvailableTeachingMaterials,
+  TeachingMaterialType,
+} from "./teachingMaterialsConfig";
+
 import { resolveOakHref } from "@/common-lib/urls";
 import { TeachingMaterialTypeValueType } from "@/browser-lib/avo/Avo";
 
 const teachingMaterials: Array<{
-  docType: string;
+  docType: TeachingMaterialType;
   label: string;
   ariaLabel: string;
   trackingName: TeachingMaterialTypeValueType;
@@ -48,9 +53,23 @@ const teachingMaterials: Array<{
 export const LessonOverviewCreateWithAiDropdown = ({
   lessonSlug,
   programmeSlug,
+  keyStageSlug,
+  subjectCategories,
+  actions,
   trackCreateWithAiButtonClicked,
   trackTeachingMaterialsSelected,
+  subjectSlug,
 }: LessonOverviewHeaderProps) => {
+  const availableTeachingMaterialsPerSubject = getAvailableTeachingMaterials(
+    subjectSlug,
+    keyStageSlug,
+    subjectCategories,
+    actions,
+  );
+
+  const teachingMaterialsFiltered = teachingMaterials.filter((material) =>
+    availableTeachingMaterialsPerSubject.includes(material.docType),
+  );
   return (
     <OakSmallSecondaryButtonWithDropdown
       primaryActionText="Create more with AI"
@@ -71,7 +90,7 @@ export const LessonOverviewCreateWithAiDropdown = ({
         />
       }
     >
-      {teachingMaterials.map((material) => (
+      {teachingMaterialsFiltered.map((material) => (
         <OakSmallSecondaryButtonWithDropdown.Item
           key={material.docType}
           iconName="external"
