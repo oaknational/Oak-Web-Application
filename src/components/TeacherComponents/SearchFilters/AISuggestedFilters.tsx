@@ -36,6 +36,7 @@ const AISuggestedFilters: FC<AISuggestedFiltersProps> = ({
   query,
 }) => {
   const items = useMemo(() => {
+    // Render subject + key stage suggestions first, followed by related subjects
     const list: { kind: "subject" | "keyStage"; slug: string }[] = [];
     if (intentSubject) list.push({ kind: "subject", slug: intentSubject });
     if (intentKeyStage) list.push({ kind: "keyStage", slug: intentKeyStage });
