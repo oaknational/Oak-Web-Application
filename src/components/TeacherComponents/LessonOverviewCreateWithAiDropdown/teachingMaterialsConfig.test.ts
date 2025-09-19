@@ -105,7 +105,11 @@ describe("getAvailableTeachingMaterials - Actions", () => {
   it("should return glossary for PE practical lessons", () => {
     const actions = { isPePractical: true };
     const result = getAvailableTeachingMaterials(null, null, null, actions);
-    expect(result).toEqual(["additional-glossary"]);
+    expect(result).toEqual([
+      "additional-glossary",
+      "additional-starter-quiz",
+      "additional-exit-quiz",
+    ]);
   });
 
   it("should return default materials if actions are not provided", () => {
