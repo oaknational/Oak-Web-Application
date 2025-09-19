@@ -49,7 +49,11 @@ const AISuggestedFilters: FC<AISuggestedFiltersProps> = ({
   if (items.length === 0) return null;
 
   return (
-    <OakBox $mb="space-between-m2">
+    <OakBox
+      $mb="space-between-m2"
+      $bb={"border-solid-s"}
+      $borderColor={"grey40"}
+    >
       <OakFieldset>
         <OakP as={"legend"} $mb="space-between-m" $font={"heading-7"}>
           Suggested filters
