@@ -3,10 +3,10 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import {
   intentRequestSchema,
   normalizeTerm,
-
   safeParseIntentResponse,
   SUBJECT_WHITELIST,
-  KEY_STAGE_WHITELIST} from "@/context/Search/ai-suggested-filters.schema";
+  KEY_STAGE_WHITELIST,
+} from "@/context/Search/ai-suggested-filters.schema";
 import type {
   IntentResponse,
   Intent,
@@ -128,14 +128,19 @@ export default async function handler(
     return res.status(405).send("Method Not Allowed");
   }
 
-  // Parse and normalize request
-  const { term } = intentRequestSchema.parse(req.body);
-  const normalized = normalizeTerm(term);
-  // Expose normalized term for debugging in spike (non-contract header)
-  res.setHeader("X-Normalized-Term", normalized);
-  // Step 3 will try model; if unavailable, fall back in later steps
-  const modelJson = await callModel(normalized);
-  res.setHeader("X-Model-Used", modelJson ? "1" : "0");
-  const payload = sanitizeAndValidate(modelJson);
-  return res.status(200).json(payload);
+  try {
+    // Parse and normalize request
+    const { term } = intentRequestSchema.parse(req.body);
+    const normalized = normalizeTerm(term);
+    // Expose normalized term for debugging in spike (non-contract header)
+    res.setHeader("X-Normalized-Term", normalized);
+    // Try model; if unavailable or fails, fall back to empty
+    const modelJson = await callModel(normalized);
+    res.setHeader("X-Model-Used", modelJson ? "1" : "0");
+    const payload = sanitizeAndValidate(modelJson);
+    return res.status(200).json(payload);
+  } catch {
+    const fallback: IntentResponse = { intent: null, relatedSubjects: [] };
+    return res.status(200).json(fallback);
+  }
 }
