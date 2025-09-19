@@ -26,9 +26,26 @@ const cache = new Map<string, IntentResponse>();
 
 // Placeholder mapper; fleshed out in Step 4
 function mapToSuggested(resp: IntentResponse): SuggestedFilters {
-  // Placeholder mapping (Step 4 will fill this): use data to satisfy linter
-  const slugs: string[] = resp.relatedSubjects.slice(0, 0).map((s) => s.slug);
-  return { relatedSubjectSlugs: slugs, status: "success" };
+  let intentSubject: string | undefined;
+  let intentKeyStage: string | undefined;
+  if (resp.intent) {
+    if (resp.intent.type === "subject") {
+      intentSubject = resp.intent.subject;
+    } else if (resp.intent.type === "subject-keystage") {
+      intentSubject = resp.intent.subject;
+      intentKeyStage = resp.intent.keyStage;
+    }
+  }
+  const relatedSubjectSlugs = resp.relatedSubjects
+    .map((r) => r.slug)
+    .filter((s) => s !== intentSubject)
+    .slice(0, 3);
+  return {
+    intentSubject,
+    intentKeyStage,
+    relatedSubjectSlugs,
+    status: "success",
+  };
 }
 
 export function useSuggestedFilters({
