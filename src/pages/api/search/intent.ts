@@ -3,8 +3,14 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import {
   intentRequestSchema,
   normalizeTerm,
+
+  safeParseIntentResponse,
+  SUBJECT_WHITELIST,
+  KEY_STAGE_WHITELIST} from "@/context/Search/ai-suggested-filters.schema";
+import type {
+  IntentResponse,
+  Intent,
 } from "@/context/Search/ai-suggested-filters.schema";
-import type { IntentResponse } from "@/context/Search/ai-suggested-filters.schema";
 
 // Build a strict JSON-only prompt for the model
 function buildPrompt(term: string) {
@@ -58,7 +64,61 @@ async function callModel(normalizedTerm: string) {
   }
 }
 
-// ASF-2 Step 2/3: Parse request and normalize; attempt model call
+function clamp01(n: unknown): number {
+  const x = typeof n === "number" ? n : Number(n);
+  if (!Number.isFinite(x)) return 0;
+  return Math.min(1, Math.max(0, x));
+}
+
+function sanitizeAndValidate(raw: unknown): IntentResponse {
+  const parsed = safeParseIntentResponse(raw);
+  if (!parsed.success) {
+    return { intent: null, relatedSubjects: [] };
+  }
+  const data = parsed.data;
+
+  // Enforce whitelists and clamp confidences
+  let intent: Intent | null = data.intent;
+  if (intent) {
+    if (intent.type === "subject") {
+      if (!(SUBJECT_WHITELIST as readonly string[]).includes(intent.subject)) {
+        intent = null;
+      } else {
+        intent = { ...intent, confidence: clamp01(intent.confidence) };
+      }
+    } else if (intent.type === "subject-keystage") {
+      const okSubject = (SUBJECT_WHITELIST as readonly string[]).includes(
+        intent.subject,
+      );
+      const okKs = (KEY_STAGE_WHITELIST as readonly string[]).includes(
+        intent.keyStage,
+      );
+      if (!okSubject || !okKs) {
+        intent = null;
+      } else {
+        intent = { ...intent, confidence: clamp01(intent.confidence) };
+      }
+    } else if (intent.type === "topic") {
+      intent = { ...intent, confidence: clamp01(intent.confidence) };
+    }
+  }
+
+  const seen = new Set<string>();
+  const intentSubject: string | undefined =
+    intent && (intent.type === "subject" || intent.type === "subject-keystage")
+      ? intent.subject
+      : undefined;
+  const relatedSubjects = data.relatedSubjects
+    .filter((r) => (SUBJECT_WHITELIST as readonly string[]).includes(r.slug))
+    .filter((r) => r.slug !== intentSubject)
+    .filter((r) => (seen.has(r.slug) ? false : (seen.add(r.slug), true)))
+    .map((r) => ({ ...r, confidence: clamp01(r.confidence) }))
+    .slice(0, 5);
+
+  return { intent, relatedSubjects } as IntentResponse;
+}
+
+// ASF-2 Step 2/3/4: Parse request and normalize; attempt model call; validate + whitelist
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<IntentResponse | string>,
@@ -76,7 +136,6 @@ export default async function handler(
   // Step 3 will try model; if unavailable, fall back in later steps
   const modelJson = await callModel(normalized);
   res.setHeader("X-Model-Used", modelJson ? "1" : "0");
-  // For now, still return placeholder; subsequent steps validate/sanitize
-  const payload: IntentResponse = { intent: null, relatedSubjects: [] };
+  const payload = sanitizeAndValidate(modelJson);
   return res.status(200).json(payload);
 }
