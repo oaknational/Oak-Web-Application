@@ -1,6 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import { normalizeTerm } from "@/context/Search/ai-suggested-filters.schema";
+import {
+  normalizeTerm,
+  intentResponseSchema,
+} from "@/context/Search/ai-suggested-filters.schema";
 import type { IntentResponse } from "@/context/Search/ai-suggested-filters.schema";
 
 // ASF-3 Step 1: Hook with 2+ char guard (skeleton)
@@ -55,8 +58,30 @@ export function useSuggestedFilters({
       return;
     }
 
-    // Further steps will add fetch/validation
+    // Fetch + validate
+    let cancelled = false;
     setState((s) => ({ ...s, status: "loading", error: undefined }));
+    (async () => {
+      try {
+        const resp = await fetch("/api/search/intent", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ term: key }),
+        });
+        const json = await resp.json();
+        const parsed = intentResponseSchema.parse(json);
+        if (cancelled || lastKeyRef.current !== key) return;
+        cache.set(key, parsed);
+        setState(mapToSuggested(parsed));
+      } catch (e: unknown) {
+        if (cancelled || lastKeyRef.current !== key) return;
+        setState({ relatedSubjectSlugs: [], status: "error", error: `${e}` });
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
   }, [norm, enabled]);
 
   return state;
