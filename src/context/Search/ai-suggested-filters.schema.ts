@@ -61,3 +61,15 @@ export function parseIntentResponse(data: unknown): IntentResponse {
 export function safeParseIntentResponse(data: unknown) {
   return intentResponseSchema.safeParse(data);
 }
+
+// Minimal MVP whitelists (spike)
+export const SUBJECT_WHITELIST = [
+  "maths",
+  "history",
+  "physics",
+  "computing",
+] as const;
+export type SubjectSlug = (typeof SUBJECT_WHITELIST)[number];
+
+export const KEY_STAGE_WHITELIST = ["ks3", "ks4"] as const;
+export type KeyStageSlug = (typeof KEY_STAGE_WHITELIST)[number];
