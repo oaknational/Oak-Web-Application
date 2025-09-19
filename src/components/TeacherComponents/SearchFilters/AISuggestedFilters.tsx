@@ -14,6 +14,7 @@ import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
  * AISuggestedFilters — Desktop-only suggested filters section (spike)
  * - Renders only when suggestions exist; silent on loading/error.
  * - Mirrors existing filter behavior by toggling slugs in query via setQuery.
+ * - Removal: safe to delete alongside `useSuggestedFilters` wiring in Search.view.tsx.
  */
 export type AISuggestedFiltersProps = {
   intentSubject?: string;

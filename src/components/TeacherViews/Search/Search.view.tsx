@@ -27,6 +27,8 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import MobileFilters from "@/components/SharedComponents/MobileFilters";
 import SearchFilters from "@/components/TeacherComponents/SearchFilters";
+import AISuggestedFilters from "@/components/TeacherComponents/SearchFilters/AISuggestedFilters";
+import { useSuggestedFilters } from "@/context/Search/useSuggestedFilters";
 import SearchActiveFilters from "@/components/TeacherComponents/SearchActiveFilters";
 import SearchForm from "@/components/SharedComponents/SearchForm";
 import SearchResults from "@/components/TeacherComponents/SearchResults";
@@ -44,6 +46,7 @@ const CustomWidthFlex = styled(OakFlex)`
 const Search: FC<SearchProps> = (props) => {
   const {
     query,
+    setQuery,
     setSearchTerm,
     status,
     results,
@@ -61,6 +64,9 @@ const Search: FC<SearchProps> = (props) => {
   const shouldShowLoading = status === "loading";
   const shouldShowNoResultsMessage = status === "success" && !hitCount;
   const shouldShowResults = status === "success" && hitCount > 0;
+
+  // AI suggested filters (desktop only rendering)
+  const ai = useSuggestedFilters({ term: query.term, enabled: true });
 
   useEffect(() => {
     if (query.term && status === "loading") {
@@ -346,6 +352,14 @@ const Search: FC<SearchProps> = (props) => {
                     Skip to results
                   </OakSecondaryButton>
                 </OakFlex>
+                {/* Suggested filters render above existing filters when available */}
+                <AISuggestedFilters
+                  intentSubject={ai.intentSubject}
+                  intentKeyStage={ai.intentKeyStage}
+                  relatedSubjectSlugs={ai.relatedSubjectSlugs}
+                  setQuery={setQuery}
+                  query={query}
+                />
                 <SearchFilters
                   {...searchFilters}
                   trackSearchModified={trackSearchModified(
