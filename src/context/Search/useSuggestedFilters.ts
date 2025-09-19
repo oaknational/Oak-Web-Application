@@ -45,6 +45,7 @@ function mapToSuggested(resp: IntentResponse): SuggestedFilters {
     intentKeyStage,
     relatedSubjectSlugs,
     status: "success",
+    error: undefined,
   };
 }
 
