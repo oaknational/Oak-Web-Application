@@ -40,7 +40,7 @@ const AISuggestedFilters: FC<AISuggestedFiltersProps> = ({
     const list: { kind: "subject" | "keyStage"; slug: string }[] = [];
     if (intentSubject) list.push({ kind: "subject", slug: intentSubject });
     if (intentKeyStage) list.push({ kind: "keyStage", slug: intentKeyStage });
-    for (const s of relatedSubjectSlugs) {
+    for (const s of relatedSubjectSlugs.slice(0, 3)) {
       if (s !== intentSubject) list.push({ kind: "subject", slug: s });
     }
     return list;
