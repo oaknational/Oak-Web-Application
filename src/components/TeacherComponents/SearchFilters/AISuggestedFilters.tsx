@@ -88,10 +88,12 @@ const AISuggestedFilters: FC<AISuggestedFiltersProps> = ({
                 onChange={() => {
                   if (item.kind === "subject") {
                     setQuery((q) => ({
+                      ...q,
                       subjects: toggleArrayValue(q.subjects, item.slug),
                     }));
                   } else {
                     setQuery((q) => ({
+                      ...q,
                       keyStages: toggleArrayValue(q.keyStages, item.slug),
                     }));
                   }
