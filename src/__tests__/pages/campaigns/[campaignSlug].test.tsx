@@ -2,6 +2,7 @@ import { screen } from "@testing-library/dom";
 
 import CampaignSinglePage, {
   blockOrder,
+  getStaticPaths,
   getStaticProps,
   sortCampaignBlocksByBlockType,
 } from "@/pages/campaigns/[campaignSlug]";
@@ -18,6 +19,7 @@ jest.mock("@/node-lib/cms", () => ({
   __esModule: true,
   default: {
     campaignPageBySlug: (...args: []) => campaignBySlug(args),
+    campaigns: () => [{ slug: "mythbusting" }],
   },
 }));
 
@@ -92,6 +94,15 @@ describe("Campaign page", () => {
       },
     });
   });
+
+  it("Should return the paths of all campaign pages", async () => {
+    const pathsResult = await getStaticPaths();
+
+    expect(pathsResult.paths).toEqual([
+      { params: { campaignSlug: "mythbusting" } },
+    ]);
+  });
+
   it("renders a header component", () => {
     render(
       <CampaignSinglePage
