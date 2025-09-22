@@ -1,3 +1,11 @@
+# [1.862.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.861.0...v1.862.0) (2025-09-22)
+
+
+### Features
+
+* added <CurricTimetableHeader/> component ([7dcfb8d](https://github.com/oaknational/Oak-Web-Application/commit/7dcfb8dcc20a3025958c3199624fc025b857e7d5))
+* added <CurricTimetableHeader/> into /timetabling/new page ([35b614d](https://github.com/oaknational/Oak-Web-Application/commit/35b614d90180bd195f21f079287fcf5ce198e117))
+
 # [1.861.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.860.0...v1.861.0) (2025-09-18)
 
 
