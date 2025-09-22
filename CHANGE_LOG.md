@@ -1,3 +1,10 @@
+# [1.864.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.863.0...v1.864.0) (2025-09-22)
+
+
+### Features
+
+* **timetabling:** scaffold UI with headings and disabled inputs ([858ff5b](https://github.com/oaknational/Oak-Web-Application/commit/858ff5b284b8f28aaac38e71a49defe033083933))
+
 # [1.863.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.862.1...v1.863.0) (2025-09-22)
 
 
