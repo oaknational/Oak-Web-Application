@@ -1,3 +1,10 @@
+## [1.862.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.862.0...v1.862.1) (2025-09-22)
+
+
+### Bug Fixes
+
+* curric component storybooks ([04f78da](https://github.com/oaknational/Oak-Web-Application/commit/04f78dad254c9650e05b4c56f3ffc23b08612403))
+
 # [1.862.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.861.0...v1.862.0) (2025-09-22)
 
 
