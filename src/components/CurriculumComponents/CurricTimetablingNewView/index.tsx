@@ -1,5 +1,6 @@
 "use client";
 import {
+  OakBox,
   OakFlex,
   OakHeading,
   OakP,
@@ -9,12 +10,27 @@ import {
   OakMaxWidth,
 } from "@oaknational/oak-components";
 
+import { CurricTimetableHeader } from "../CurricTimetableHeader";
+import { CurricShowSteps } from "../CurricShowSteps";
+
 export const CurricTimetablingNewView = () => {
   const DEFAULT_LESSONS = 10;
 
   return (
     <OakMaxWidth $ph={["inner-padding-m", "inner-padding-xl"]}>
       <OakFlex $flexDirection={"column"} $gap={"space-between-l"}>
+        
+     <OakFlex $flexDirection={"column"} $pa={"inner-padding-xl5"}>
+      <CurricTimetableHeader
+        titleSlot={"Year N subject"}
+        illustrationSlug={"magic-carpet"}
+        additionalSlot={
+          <OakBox $maxWidth={"all-spacing-20"}>
+            <CurricShowSteps numberOfSteps={2} currentStepIndex={0} />
+          </OakBox>
+        }
+      />
+    </OakFlex>
         <OakHeading tag="h2" $font="heading-2">
           Enter lessons per term
         </OakHeading>

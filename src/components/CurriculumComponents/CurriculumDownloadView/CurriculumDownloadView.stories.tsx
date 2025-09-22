@@ -9,6 +9,13 @@ import Component, { CurriculumDownloadViewData } from ".";
 
 const meta: Meta<typeof Component> = {
   component: Component,
+  decorators: [
+    (Story) => (
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <Story />
+      </OakThemeProvider>
+    ),
+  ],
   argTypes: {},
 };
 
@@ -127,16 +134,14 @@ export const CurriculumDownloadView: Story = {
     };
 
     return (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Component
-          data={data}
-          onChange={setData}
-          onSubmit={onSubmit}
-          isSubmitting={isSubmitting}
-          schools={[]}
-          availableDownloadTypes={DOWNLOAD_TYPES}
-        />
-      </OakThemeProvider>
+      <Component
+        data={data}
+        onChange={setData}
+        onSubmit={onSubmit}
+        isSubmitting={isSubmitting}
+        schools={[]}
+        availableDownloadTypes={DOWNLOAD_TYPES}
+      />
     );
   },
 };
