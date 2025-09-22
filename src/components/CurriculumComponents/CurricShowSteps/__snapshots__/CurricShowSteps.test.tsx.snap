@@ -5,7 +5,7 @@ exports[`CurricShowSteps basic usage 1`] = `
   <div>
     <div>
       <div
-        class="sc-fqkvVR bmnVAU"
+        class="sc-fqkvVR hrLDNc"
         style="width: 100%; position: relative; overflow: hidden;"
       >
         <div
@@ -82,7 +82,7 @@ exports[`CurricShowSteps basic usage 1`] = `
               color="white"
             />
             <div
-              class="sc-fqkvVR EkzQz"
+              class="sc-fqkvVR cMqhUz"
               data-testid="step-text"
               style="left: 0px; top: 44px;"
             >
