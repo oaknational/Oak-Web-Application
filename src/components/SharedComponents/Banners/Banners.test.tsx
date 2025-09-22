@@ -13,12 +13,7 @@ describe("Banners", () => {
   beforeEach(() => {
     jest.resetAllMocks();
   });
-  test("shows curriculum banner when feature flag is disabled", async () => {
-    const { container } = render(<Banners />);
-    expect(container).toHaveTextContent("See curriculum plans");
-    expect(container).toMatchSnapshot();
-  });
-  test("shows mythbusting banner when mythbusting campaign feature flag enabled", async () => {
+  test("shows mythbusting banner", async () => {
     mockFeatureFlagEnabled.mockReturnValue(true);
     const { container } = render(<Banners />);
     expect(container).toHaveTextContent("Learn why");
