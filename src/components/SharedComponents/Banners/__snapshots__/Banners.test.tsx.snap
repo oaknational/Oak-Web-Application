@@ -146,5 +146,3 @@ exports[`Banners shows mythbusting banner 1`] = `
   </div>
 </div>
 `;
-
-exports[`Banners when hideIfFeatureFlagDisabled is true and mythbusting campaign disabled 1`] = `<div />`;

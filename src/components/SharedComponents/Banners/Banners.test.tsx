@@ -19,9 +19,4 @@ describe("Banners", () => {
     expect(container).toHaveTextContent("Learn why");
     expect(container).toMatchSnapshot();
   });
-  test("when hideIfFeatureFlagDisabled is true and mythbusting campaign disabled", async () => {
-    const { container } = render(<Banners hideIfFeatureFlagDisabled />);
-    expect(container).toBeEmptyDOMElement();
-    expect(container).toMatchSnapshot();
-  });
 });

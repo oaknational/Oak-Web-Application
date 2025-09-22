@@ -5,15 +5,7 @@ import { PromoSpan } from "../PromoSpan/PromoSpan";
 import PromoBanner from "@/components/SharedComponents/PromoBanner";
 import { ResolveOakHrefProps } from "@/common-lib/urls";
 
-export default function Banners({
-  hideIfFeatureFlagDisabled,
-}: {
-  hideIfFeatureFlagDisabled?: boolean;
-}) {
-  if (hideIfFeatureFlagDisabled) {
-    return null;
-  }
-
+export default function Banners() {
   const mythbustingContent = (
     <OakP $font={"body-2"}>
       <PromoSpan>
