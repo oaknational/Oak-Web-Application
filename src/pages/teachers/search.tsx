@@ -38,7 +38,7 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
     legacy: [{ slug: "new", title: "Show new only" }],
   });
 
-  const { results } = searchProps;
+  const results = searchProps.results?.results ?? [];
 
   const paginationProps = usePagination({
     totalResults: results.length,

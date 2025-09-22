@@ -108,10 +108,22 @@ const useSearchQuery = ({
   return { query, setQuery };
 };
 
+export type SearchSuggestion = {
+  type: "subject" | "subject-ks";
+  title: string;
+  description: string;
+  url: string;
+};
+
+type Results = {
+  results: SearchHit[];
+  suggestion: SearchSuggestion | null;
+};
+
 export type RequestStatus = "not-asked" | "loading" | "success" | "fail";
 export type UseSearchReturnType = {
   status: RequestStatus;
-  results: SearchHit[];
+  results: Results | null;
   query: SearchQuery;
   setQuery: SetSearchQuery;
   setSearchTerm: (props: { searchTerm: string }) => void;
@@ -145,7 +157,7 @@ const useSearch = (props: UseSearchProps): UseSearchReturnType => {
   });
   const [searchStartTime, setSearchStartTime] = useState<null | number>(null);
 
-  const [results, setResults] = useState<SearchHit[]>([]);
+  const [results, setResults] = useState<Results | null>(null);
   const [status, setStatus] = useState<RequestStatus>("not-asked");
 
   const legacyQueryVal =
@@ -164,7 +176,16 @@ const useSearch = (props: UseSearchProps): UseSearchReturnType => {
         setSearchStartTime(performance.now());
       },
       onSuccess: (results) => {
-        setResults(results);
+        setResults({
+          results: results,
+          suggestion: {
+            type: "subject",
+            title: "History",
+            description:
+              "Our history curriculum provides a rich, connected story of the past, with carefully sequenced units that build knowledge, vocabulary, and enquiry skills over time.",
+            url: "/history",
+          },
+        });
         setStatus("success");
       },
       onFail: () => {

@@ -12,6 +12,8 @@ import {
   OakSearchFilterCheckBox,
   OakSearchFilterCheckBoxProps,
   OakMaxWidth,
+  OakLinkCard,
+  OakTertiaryButton,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
@@ -36,10 +38,48 @@ import {
   getSortedSearchFiltersSelected,
 } from "@/context/Search/search.helpers";
 import SignPostToAila from "@/components/TeacherComponents/NoSearchResults/SignPostToAila";
+import { SearchSuggestion } from "@/context/Search/useSearch";
 
 const CustomWidthFlex = styled(OakFlex)`
   max-width: 300px;
 `;
+
+// TODO: where does this live
+type SearchSuggestionCardProps = {
+  suggestion: SearchSuggestion;
+};
+
+// TODO: where does this live
+const SearchSuggestionCard = ({ suggestion }: SearchSuggestionCardProps) => {
+  const keyStages = ["Key stage 1", "Key stage 2", "Key stage 3"];
+  return (
+    <OakBox $mb="space-between-m">
+      <OakLinkCard
+        href={suggestion.url}
+        // TODO alt for subject name
+        iconAlt={`Illustration for ${suggestion.title}`}
+        iconColor="black"
+        iconFill="bg-decorative1-main"
+        iconName="subject-history"
+        mainSection={
+          <OakFlex $flexDirection="column" $gap="space-between-xs">
+            <OakHeading $font="heading-5" tag="h1">
+              {suggestion.title}
+            </OakHeading>
+            <OakP>{suggestion.description}</OakP>
+            <OakFlex $flexDirection="row" $gap="space-between-m">
+              {keyStages.map((stage) => (
+                <OakTertiaryButton iconName="chevron-right" isTrailingIcon>
+                  {stage}
+                </OakTertiaryButton>
+              ))}
+            </OakFlex>
+          </OakFlex>
+        }
+      />
+    </OakBox>
+  );
+};
 
 const Search: FC<SearchProps> = (props) => {
   const {
@@ -55,7 +95,7 @@ const Search: FC<SearchProps> = (props) => {
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
   const router = useRouter();
-  const hitCount = results.length;
+  const hitCount = results?.results?.length || 0;
 
   const shouldShowError = status === "fail";
   const shouldShowLoading = status === "loading";
@@ -387,17 +427,28 @@ const Search: FC<SearchProps> = (props) => {
               )}
               {shouldShowResults && (
                 <OakBox $display={["none", "block"]}>
-                  <OakP $mb={"space-between-xxl"}>
-                    Showing {results.length} result
-                    {results.length === 1 ? "" : "s"}
+                  <OakP
+                    $mb={
+                      results?.suggestion
+                        ? "space-between-m"
+                        : "space-between-xxl"
+                    }
+                  >
+                    Showing {hitCount} result
+                    {hitCount === 1 ? "" : "s"}
                   </OakP>
                 </OakBox>
               )}
             </OakBox>
 
+            {results?.suggestion && (
+              <SearchSuggestionCard suggestion={results.suggestion} />
+            )}
+
             {shouldShowResults && (
               <SearchResults
-                hits={results}
+                // NOTE: will always exist at this point
+                hits={results?.results || []}
                 allKeyStages={allKeyStages}
                 query={query}
                 searchResultExpanded={(searchHit, searchRank) =>
