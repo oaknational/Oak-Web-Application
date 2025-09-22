@@ -49,7 +49,7 @@ const createSearchResult = (legacy?: boolean): SearchHit => {
 };
 
 const resultsProps: Partial<SearchProps> = {
-  results: [createSearchResult()],
+  results: { results: [createSearchResult()], suggestion: null },
   status: "success",
 };
 
@@ -87,17 +87,20 @@ const pathways = [
 ];
 
 const resultsPropsPathWays: Partial<SearchProps> = {
-  results: [
-    {
-      ...createSearchResult(),
-      ...{
-        _source: {
-          ...createSearchResult()._source,
-          pathways,
+  results: {
+    results: [
+      {
+        ...createSearchResult(),
+        ...{
+          _source: {
+            ...createSearchResult()._source,
+            pathways,
+          },
         },
       },
-    },
-  ],
+    ],
+    suggestion: null,
+  },
   status: "success",
 };
 
@@ -114,7 +117,7 @@ const props: SearchProps = {
   status: "not-asked",
   searchStartTime: 1,
   setSearchStartTime: setSearchStartTime,
-  results: [],
+  results: null,
   query: validQuery,
   setQuery: jest.fn(),
   searchFilters: {
@@ -280,7 +283,7 @@ describe("Search.page.tsx", () => {
       <SearchComponent
         {...props}
         query={{ ...props.query, term: "test search term" }}
-        results={[createSearchResult()]}
+        results={{ results: [createSearchResult()], suggestion: null }}
       />,
     );
     expect(getByRole("status")).not.toHaveTextContent("No search results");
@@ -440,17 +443,20 @@ describe("Search.page.tsx", () => {
   });
   test("searchResultExpanded is called when a dropdown toggle is expanded", async () => {
     const noneLegacyResultsPropsPathWays: Partial<SearchProps> = {
-      results: [
-        {
-          ...createSearchResult(false),
-          ...{
-            _source: {
-              ...createSearchResult(false)._source,
-              pathways,
+      results: {
+        results: [
+          {
+            ...createSearchResult(false),
+            ...{
+              _source: {
+                ...createSearchResult(false)._source,
+                pathways,
+              },
             },
           },
-        },
-      ],
+        ],
+        suggestion: null,
+      },
       status: "success",
     };
     const { getByText } = render(

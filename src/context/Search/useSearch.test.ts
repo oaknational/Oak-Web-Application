@@ -115,7 +115,7 @@ describe("useSearch()", () => {
     );
 
     await waitFor(() =>
-      expect(result.current.results[0]).toEqual({
+      expect(result.current.results?.results[0]).toEqual({
         _index: "lessons_1712737230873",
         _id: "Z38Yx44Bc8iIk5N9Klp6",
         _score: 104.29718,
@@ -150,7 +150,7 @@ describe("useSearch()", () => {
       useSearch({ allKeyStages }),
     );
     await waitFor(() => {
-      expect(result.current.results.length).toBe(4);
+      expect(result.current.results?.results.length).toBe(4);
     });
   });
   test("status should be 'fail' if fetch fails", async () => {

@@ -108,11 +108,17 @@ const useSearchQuery = ({
   return { query, setQuery };
 };
 
+// TODO find a new home
 export type SearchSuggestion = {
   type: "subject" | "subject-ks";
   title: string;
   description: string;
-  url: string;
+  slug: string;
+  keyStages: Array<{
+    slug: string;
+    title: string;
+    href: string;
+  }>;
 };
 
 type Results = {
@@ -175,16 +181,10 @@ const useSearch = (props: UseSearchProps): UseSearchReturnType => {
         setStatus("loading");
         setSearchStartTime(performance.now());
       },
-      onSuccess: (results) => {
+      onSuccess: (hits, suggestion) => {
         setResults({
-          results: results,
-          suggestion: {
-            type: "subject",
-            title: "History",
-            description:
-              "Our history curriculum provides a rich, connected story of the past, with carefully sequenced units that build knowledge, vocabulary, and enquiry skills over time.",
-            url: "/history",
-          },
+          results: hits,
+          suggestion,
         });
         setStatus("success");
       },

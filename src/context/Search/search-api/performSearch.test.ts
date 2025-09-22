@@ -41,7 +41,10 @@ describe("performSearch", () => {
       ...callbacks,
     });
 
-    expect(callbacks.onSuccess).toHaveBeenCalledWith([...mockResults2023]);
+    expect(callbacks.onSuccess).toHaveBeenCalledWith(
+      [...mockResults2023],
+      null,
+    );
   });
   test("should call onFail on fail", async () => {
     console.log = jest.fn();

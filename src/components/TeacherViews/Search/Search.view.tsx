@@ -12,8 +12,8 @@ import {
   OakSearchFilterCheckBox,
   OakSearchFilterCheckBoxProps,
   OakMaxWidth,
-  OakLinkCard,
   OakTertiaryButton,
+  OakHandDrawnCardWithIcon,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
@@ -39,6 +39,7 @@ import {
 } from "@/context/Search/search.helpers";
 import SignPostToAila from "@/components/TeacherComponents/NoSearchResults/SignPostToAila";
 import { SearchSuggestion } from "@/context/Search/useSearch";
+import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 const CustomWidthFlex = styled(OakFlex)`
   max-width: 300px;
@@ -51,32 +52,56 @@ type SearchSuggestionCardProps = {
 
 // TODO: where does this live
 const SearchSuggestionCard = ({ suggestion }: SearchSuggestionCardProps) => {
-  const keyStages = ["Key stage 1", "Key stage 2", "Key stage 3"];
+  const iconName = getValidSubjectIconName(suggestion.slug);
+
   return (
     <OakBox $mb="space-between-m">
-      <OakLinkCard
-        href={suggestion.url}
-        // TODO alt for subject name
-        iconAlt={`Illustration for ${suggestion.title}`}
-        iconColor="black"
-        iconFill="bg-decorative1-main"
-        iconName="subject-history"
-        mainSection={
-          <OakFlex $flexDirection="column" $gap="space-between-xs">
-            <OakHeading $font="heading-5" tag="h1">
-              {suggestion.title}
-            </OakHeading>
-            <OakP>{suggestion.description}</OakP>
-            <OakFlex $flexDirection="row" $gap="space-between-m">
-              {keyStages.map((stage) => (
-                <OakTertiaryButton iconName="chevron-right" isTrailingIcon>
-                  {stage}
-                </OakTertiaryButton>
-              ))}
-            </OakFlex>
+      <OakFlex
+        $flexDirection={["column-reverse", "row"]}
+        $alignItems={["flex-start", "center"]}
+        $justifyContent="space-between"
+        $gap={"space-between-m2"}
+        $background={"bg-primary"}
+        $pa="inner-padding-xl"
+        $borderRadius="border-radius-m2"
+        $width="100%"
+        $dropShadow={"drop-shadow-centred-standard"}
+      >
+        <OakFlex
+          $flexDirection="column"
+          $gap="space-between-xs"
+          $width={"100%"}
+        >
+          <OakHeading $font="heading-5" tag="h1">
+            {suggestion.title}
+          </OakHeading>
+          <OakP>{suggestion.description}</OakP>
+          <OakFlex $flexDirection="row" $gap="space-between-m">
+            {suggestion.keyStages.map((keyStage) => (
+              <OakTertiaryButton
+                key={keyStage.slug}
+                iconName="chevron-right"
+                isTrailingIcon
+                element="a"
+                href={keyStage.href}
+              >
+                {keyStage.title}
+              </OakTertiaryButton>
+            ))}
           </OakFlex>
-        }
-      />
+        </OakFlex>
+
+        <OakHandDrawnCardWithIcon
+          iconName={iconName}
+          alt={`Illustration for ${suggestion.title}`}
+          iconColor="black"
+          fill="bg-decorative1-main"
+          iconWidth={["all-spacing-11", "all-spacing-15"]}
+          iconHeight={["all-spacing-11", "all-spacing-15"]}
+          $width={["all-spacing-13", "all-spacing-17"]}
+          $height={["all-spacing-13", "all-spacing-17"]}
+        />
+      </OakFlex>
     </OakBox>
   );
 };
