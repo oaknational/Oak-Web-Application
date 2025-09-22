@@ -1,4 +1,9 @@
-import { GetServerSideProps, GetServerSidePropsResult, NextPage } from "next";
+import {
+  GetStaticPathsResult,
+  GetStaticProps,
+  GetStaticPropsResult,
+  NextPage,
+} from "next";
 import { OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
 import { PortableTextComponents } from "@portabletext/react";
 
@@ -18,6 +23,10 @@ import { CampaignPageIntro } from "@/components/GenericPagesComponents/CampaignP
 import { CampaignPromoBanner } from "@/components/GenericPagesComponents/CampaignPromoBanner/CampaignPromoBanner";
 import { CampaignVideoBanner } from "@/components/GenericPagesComponents/CampaignVideoBanner/CampaignVideoBanner";
 import CampaignNewsletterSignup from "@/components/GenericPagesComponents/CampaignNewsletterSignup/CampaignNewsletterSignup";
+import {
+  shouldSkipInitialBuild,
+  getFallbackBlockingConfig,
+} from "@/node-lib/isr";
 
 export const blockOrder = [
   "CampaignIntro",
@@ -177,33 +186,31 @@ const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
 
 type URLParams = { campaignSlug: string };
 
-// TODO: Uncomment when ready for static generation
-// export const getStaticPaths = async () => {
-//   if (shouldSkipInitialBuild) {
-//     return getFallbackBlockingConfig();
-//   }
+export const getStaticPaths = async () => {
+  if (shouldSkipInitialBuild) {
+    return getFallbackBlockingConfig();
+  }
 
-//   const campaignPages = await CMSClient.campaigns();
+  const campaignPages = await CMSClient.campaigns();
 
-//   const paths = campaignPages.map((campaign) => ({
-//     params: { campaignSlug: campaign.slug },
-//   }));
+  const paths = campaignPages.map((campaign) => ({
+    params: { campaignSlug: campaign.slug },
+  }));
 
-//   const config: GetStaticPathsResult<URLParams> = {
-//     fallback: "blocking",
-//     paths,
-//   };
-//   return config;
-// };
+  const config: GetStaticPathsResult<URLParams> = {
+    fallback: "blocking",
+    paths,
+  };
+  return config;
+};
 
-export const getServerSideProps: GetServerSideProps<
+export const getStaticProps: GetStaticProps<
   CampaignSinglePageProps,
   URLParams
 > = async (context) => {
   return getPageProps({
-    page: "campaign-single::getServerSideProps",
+    page: "campaign-single::getStaticProps",
     context,
-    withIsr: false,
     getProps: async () => {
       const campaignSlug = context.params?.campaignSlug as string;
       const isPreviewMode = context.preview === true;
@@ -223,7 +230,7 @@ export const getServerSideProps: GetServerSideProps<
         };
       }
 
-      const results: GetServerSidePropsResult<CampaignSinglePageProps> = {
+      const results: GetStaticPropsResult<CampaignSinglePageProps> = {
         props: {
           campaign: campaignPageResult,
           keyStages,
