@@ -80,23 +80,7 @@ describe("HomePageLowerView", () => {
     ).toHaveAttribute("href", "/blog/some-blog-post");
   });
 
-  it("Does not show the campaign banner when feature flag disabled", () => {
-    mockFeatureFlagEnabled.mockReturnValue(false);
-
-    render(
-      <HomePageLowerView
-        campaignPromoBanner={mockCampaignPromoBanner}
-        posts={mockPosts}
-        testimonials={null}
-        introVideo={null}
-      />,
-    );
-
-    const campaignBanner = screen.queryByText("test-heading-text");
-    expect(campaignBanner).not.toBeInTheDocument();
-  });
-
-  it("Shows campaign banner when provided and feature flag enabled", () => {
+  it("Shows campaign banner when provided", () => {
     mockFeatureFlagEnabled.mockReturnValue(true);
 
     render(

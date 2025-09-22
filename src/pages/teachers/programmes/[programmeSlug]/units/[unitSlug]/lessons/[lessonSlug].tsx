@@ -107,7 +107,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
       }}
     >
       <OakThemeProvider theme={oakDefaultTheme}>
-        <Banners hideIfFeatureFlagDisabled />
+        <Banners />
         <LessonOverview
           lesson={{
             ...curriculumData,
