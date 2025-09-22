@@ -9,9 +9,6 @@ import {
 } from "@/common-lib/cms-types/campaignPage";
 import CMSClient from "@/node-lib/cms";
 import AppLayout from "@/components/SharedComponents/AppLayout";
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
-import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
-import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023, {
   KeyStagesData,
@@ -199,8 +196,6 @@ type URLParams = { campaignSlug: string };
 //   return config;
 // };
 
-const posthogApiKey = getBrowserConfig("posthogApiKey");
-
 export const getServerSideProps: GetServerSideProps<
   CampaignSinglePageProps,
   URLParams
@@ -210,26 +205,6 @@ export const getServerSideProps: GetServerSideProps<
     context,
     withIsr: false,
     getProps: async () => {
-      const posthogUserId = getPosthogIdFromCookie(
-        context.req.cookies,
-        posthogApiKey,
-      );
-
-      let variantKey: string | boolean | undefined;
-
-      if (posthogUserId) {
-        variantKey = await getFeatureFlag({
-          featureFlagKey: "mythbusting-campaign",
-          posthogUserId,
-        });
-      }
-
-      if (variantKey !== true) {
-        return {
-          notFound: true,
-        };
-      }
-
       const campaignSlug = context.params?.campaignSlug as string;
       const isPreviewMode = context.preview === true;
 

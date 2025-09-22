@@ -1,10 +1,4 @@
-import {
-  OakFlex,
-  OakP,
-  OakPromoTag,
-  OakSpan,
-} from "@oaknational/oak-components";
-import { useFeatureFlagEnabled } from "posthog-js/react";
+import { OakP, OakSpan } from "@oaknational/oak-components";
 
 import { PromoSpan } from "../PromoSpan/PromoSpan";
 
@@ -16,11 +10,7 @@ export default function Banners({
 }: {
   hideIfFeatureFlagDisabled?: boolean;
 }) {
-  const isMythbustingCampaignActive = useFeatureFlagEnabled(
-    "mythbusting-campaign",
-  );
-
-  if (hideIfFeatureFlagDisabled && !isMythbustingCampaignActive) {
+  if (hideIfFeatureFlagDisabled) {
     return null;
   }
 
@@ -32,23 +22,15 @@ export default function Banners({
       about teaching <b>can hold you back</b>
     </OakP>
   );
-  const curriculumBannerContent = (
-    <OakFlex $gap="space-between-ssx" $alignItems={"center"}>
-      <OakPromoTag /> Subjects added
-    </OakFlex>
-  );
 
-  const message = isMythbustingCampaignActive
-    ? mythbustingContent
-    : curriculumBannerContent;
-  const background = isMythbustingCampaignActive ? "lemon30" : "lemon";
-  const ctaText = isMythbustingCampaignActive
-    ? "Learn why"
-    : "See curriculum plans";
+  const message = mythbustingContent;
+  const background = "lemon30";
+  const ctaText = "Learn why";
 
-  const linkProps: ResolveOakHrefProps = isMythbustingCampaignActive
-    ? { page: "campaign-single", campaignSlug: "mythbusting" }
-    : { page: "curriculum-landing-page" };
+  const linkProps: ResolveOakHrefProps = {
+    page: "campaign-single",
+    campaignSlug: "mythbusting",
+  };
 
   return (
     <PromoBanner
