@@ -242,7 +242,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         isLastPage={isLastPage}
       />
       <OakThemeProvider theme={oakDefaultTheme}>
-        <Banners hideIfFeatureFlagDisabled />
+        <Banners />
         <HeaderListing
           breadcrumbs={[
             {

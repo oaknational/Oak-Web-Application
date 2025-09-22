@@ -59,7 +59,7 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
       }}
       $background="white"
     >
-      <Banners hideIfFeatureFlagDisabled />
+      <Banners />
       <OakBox $background={"lavender50"}>
         <OakMaxWidth
           $ph="inner-padding-s"

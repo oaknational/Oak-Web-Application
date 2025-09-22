@@ -1,3 +1,15 @@
+# [1.863.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.862.1...v1.863.0) (2025-09-22)
+
+
+### Bug Fixes
+
+* remove hiding of campaign banner in browse journey ([c6dfdd6](https://github.com/oaknational/Oak-Web-Application/commit/c6dfdd635b5d47a6ce2870b21949aa504355559c))
+
+
+### Features
+
+* remove mythbusting feature flag ([7909f4d](https://github.com/oaknational/Oak-Web-Application/commit/7909f4d6285a5a634913de330da41e6602d739d8))
+
 ## [1.862.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.862.0...v1.862.1) (2025-09-22)
 
 
