@@ -1,4 +1,6 @@
 import { useMemo, useState } from "react";
+import { useFeatureFlagVariantKey } from "posthog-js/react";
+import z from "zod";
 import {
   examboards,
   tierDescriptions,
@@ -43,6 +45,7 @@ import {
 } from "@/components/TeacherComponents/types/lesson.types";
 import ResourcePageLayout from "@/components/TeacherComponents/ResourcePageLayout";
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
+import DownloadPageWithAccordion from "@/components/TeacherComponents/DownloadPageWithAccordion";
 import DownloadConfirmation from "@/components/TeacherComponents/DownloadConfirmation";
 import {
   LessonDownloadsPageData,
@@ -122,6 +125,13 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     loginRequired,
     geoRestricted,
   } = lesson;
+
+  const variantKey = z.literal("control").or(z.literal("with-accordion"));
+  const featureFlag = useFeatureFlagVariantKey("teacher-download-accordion");
+  const parsedFeatureFlagKey = variantKey.safeParse(featureFlag);
+  const showDownloadPageWithAccordion =
+    parsedFeatureFlagKey.success &&
+    parsedFeatureFlagKey.data === "with-accordion";
 
   const {
     showGeoBlocked,
@@ -427,6 +437,80 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                   }
                   isLegacy={isLegacyDownload}
                   lessonReleaseDate={lessonReleaseDate ?? "unreleased"}
+                />
+              );
+            }
+            console.log({
+              onboardingStatus:
+                onboardingStatus === "not-onboarded" ||
+                onboardingStatus === "unknown",
+            });
+            if (showDownloadPageWithAccordion) {
+              return (
+                <DownloadPageWithAccordion
+                  loginRequired={loginRequired ?? false}
+                  geoRestricted={geoRestricted ?? false}
+                  downloadsRestricted={downloadsRestricted}
+                  errors={form.errors}
+                  handleToggleSelectAll={handleToggleSelectAll}
+                  selectAllChecked={selectAllChecked}
+                  showNoResources={showNoResources}
+                  showLoading={isLocalStorageLoading}
+                  email={emailFromLocalStorage}
+                  school={schoolNameFromLocalStorage}
+                  schoolId={schoolIdFromLocalStorage}
+                  setSchool={setSchool}
+                  showSavedDetails={shouldDisplayDetailsCompleted}
+                  onEditClick={handleEditDetailsCompletedClick}
+                  register={form.register}
+                  control={form.control}
+                  showPostAlbCopyright={!isLegacyDownload}
+                  resourcesHeader="Lesson resources"
+                  triggerForm={form.trigger}
+                  apiError={apiError}
+                  hideSelectAll={Boolean(expired)}
+                  updatedAt={updatedAt}
+                  withHomeschool={true}
+                  showTermsAgreement={
+                    onboardingStatus === "not-onboarded" ||
+                    onboardingStatus === "unknown"
+                  }
+                  isLoading={onboardingStatus === "loading"}
+                  cardGroup={
+                    !showNoResources && (
+                      <DownloadCardGroup
+                        control={form.control}
+                        downloads={downloadsFilteredByCopyright}
+                        additionalFiles={additionalFiles}
+                        hasError={form.errors?.resources ? true : false}
+                        triggerForm={form.trigger}
+                      />
+                    )
+                  }
+                  cta={
+                    <LoadingButton
+                      type="button"
+                      onClick={
+                        (event) => void form.handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
+                      }
+                      text={"Download .zip"}
+                      icon={"download"}
+                      isLoading={
+                        isAttemptingDownload || !hubspotLoaded // show loading state when waiting for latest school values to be populated from hubspot
+                      }
+                      disabled={
+                        (hasFormErrors ||
+                          noResourcesSelected ||
+                          showNoResources ||
+                          (!form.formState.isValid && !localStorageDetails)) &&
+                        hubspotLoaded
+                      }
+                      loadingText={
+                        isAttemptingDownload ? "Downloading..." : "Loading..."
+                      }
+                    />
+                  }
+                  showRiskAssessmentBanner={showRiskAssessmentBanner}
                 />
               );
             }
