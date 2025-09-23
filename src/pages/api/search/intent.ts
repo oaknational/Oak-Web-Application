@@ -38,7 +38,27 @@ intent is one of:
  - {"type":"topic","topic":<topic-slug-or-name>,"confidence":<0..1>}
  - or null
 relatedSubjects is an array of objects: {"slug":<subject-slug>,"name":<display-name>,"confidence":<0..1>}
-Subjects to prefer (slugs): maths, history, physics, computing. Key stages: ks3, ks4.
+  "maths",
+  "history",
+  "physics",
+  "computing",
+  "art",
+  "drama",
+  "pe",
+  "music",
+  "english",
+  "geography",
+  "chemistry",
+  "biology",
+  "religious-education",
+  "design-and-technology",
+  "modern-foreign-languages",
+  "business-studies",
+  "psychology",
+  "economics",
+  "citizenship",
+  "media-studies",
+  "physical-education",
 Term: ${term}`;
   return { system, user };
 }
@@ -69,6 +89,7 @@ async function callModel(normalizedTerm: string) {
     return null;
   }
   const json = await resp.json();
+  console.log(json);
   const content = json?.choices?.[0]?.message?.content;
   if (!content || typeof content !== "string") return null;
   try {

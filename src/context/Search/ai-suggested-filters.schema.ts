@@ -114,9 +114,26 @@ export const SUBJECT_WHITELIST = [
   "history",
   "physics",
   "computing",
+  "art",
+  "drama",
+  "pe",
+  "music",
+  "english",
+  "geography",
+  "chemistry",
+  "biology",
+  "religious-education",
+  "design-and-technology",
+  "modern-foreign-languages",
+  "business-studies",
+  "psychology",
+  "economics",
+  "citizenship",
+  "media-studies",
+  "physical-education",
 ] as const;
 export type SubjectSlug = (typeof SUBJECT_WHITELIST)[number];
 
 /** Minimal MVP key stage whitelist used for server-side filtering */
-export const KEY_STAGE_WHITELIST = ["ks3", "ks4"] as const;
+export const KEY_STAGE_WHITELIST = ["ks1", "ks2", "ks3", "ks4"] as const;
 export type KeyStageSlug = (typeof KEY_STAGE_WHITELIST)[number];
