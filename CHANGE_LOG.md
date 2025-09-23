@@ -1,3 +1,10 @@
+# [1.865.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.864.0...v1.865.0) (2025-09-23)
+
+
+### Features
+
+* bump oak-components to v1.147.0 ([d155737](https://github.com/oaknational/Oak-Web-Application/commit/d15573793007907e51b193f88f822687c5862665))
+
 # [1.864.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.863.0...v1.864.0) (2025-09-22)
 
 
