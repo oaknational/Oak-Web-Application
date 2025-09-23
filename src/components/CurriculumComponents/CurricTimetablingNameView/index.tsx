@@ -4,6 +4,7 @@ import {
   OakFlex,
   OakPrimaryButton,
   OakMaxWidth,
+  OakSecondaryButton,
 } from "@oaknational/oak-components";
 
 import { CurricTimetableHeader } from "../CurricTimetableHeader";
@@ -25,6 +26,7 @@ export const CurricTimetablingNameView = () => {
       </OakFlex>
 
       <OakMaxWidth $ph={"inner-padding-xl5"}>
+        <p>Input name</p>
         <OakFlex
           $flexDirection={"column"}
           $pa={"inner-padding-xl5"}
@@ -37,7 +39,7 @@ export const CurricTimetablingNameView = () => {
             $gap={"space-between-l"}
             $maxWidth={"all-spacing-23"}
           >
-            <OakPrimaryButton
+            <OakSecondaryButton
               element="a"
               href="/timetabling/new"
               pv="inner-padding-m"
@@ -45,7 +47,7 @@ export const CurricTimetablingNameView = () => {
               style={{ height: "auto" }}
             >
               Previous
-            </OakPrimaryButton>
+            </OakSecondaryButton>
             <OakPrimaryButton
               element="a"
               href="/timetabling/units"
