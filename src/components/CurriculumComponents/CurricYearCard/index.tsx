@@ -4,7 +4,6 @@ import {
   OakHeading,
   OakSecondaryLink,
 } from "@oaknational/oak-components";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 import React from "react";
 
 type CurricYearCardProps = {
@@ -14,6 +13,7 @@ type CurricYearCardProps = {
   additional?: React.ReactNode;
   children: React.ReactNode;
   isExamboard: boolean;
+  timetablingEnabled: boolean | undefined;
 };
 
 export function CurricYearCard({
@@ -23,8 +23,8 @@ export function CurricYearCard({
   additional,
   children,
   isExamboard,
+  timetablingEnabled,
 }: CurricYearCardProps) {
-  const timetablingEnabled = useFeatureFlagEnabled("adopt-timetabling-proto");
   return (
     <OakBox
       $background={isExamboard ? "pink50" : "pink30"}

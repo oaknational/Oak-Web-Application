@@ -19,6 +19,7 @@ describe("CurricYearCard component", () => {
     isExamboard: false,
     children: <div>Test content</div>,
     timetablingQueryParams: "subject=maths&year=7",
+    timetablingEnabled: false,
   };
 
   it("should render with year heading", () => {
@@ -38,6 +39,7 @@ describe("CurricYearCard component", () => {
         yearTitle="Year 11"
         yearSubheading="Core"
         isExamboard={false}
+        timetablingEnabled={false}
         children={<div>Content for Year 11 Mathematics</div>}
       />,
     );
@@ -130,6 +132,7 @@ describe("CurricYearCard component", () => {
         yearSubheading="Physics"
         isExamboard={true}
         children={units}
+        timetablingEnabled={false}
       />,
     );
 
@@ -150,7 +153,11 @@ describe("CurricYearCard component", () => {
   it("should render the map to timetable link if feature flag is enabled ", () => {
     mockFeatureFlagEnabled.mockReturnValue(true);
     const { container } = renderWithTheme(
-      <CurricYearCard {...defaultProps} isExamboard={false} />,
+      <CurricYearCard
+        {...defaultProps}
+        isExamboard={false}
+        timetablingEnabled={true}
+      />,
     );
 
     expect(container).toHaveTextContent("Map to school timetable");
@@ -159,7 +166,11 @@ describe("CurricYearCard component", () => {
   it("should not render the map to timetable link if feature flag is not enabled ", () => {
     mockFeatureFlagEnabled.mockReturnValue(false);
     const { container } = renderWithTheme(
-      <CurricYearCard {...defaultProps} isExamboard={false} />,
+      <CurricYearCard
+        {...defaultProps}
+        isExamboard={false}
+        timetablingEnabled={false}
+      />,
     );
 
     expect(container).not.toHaveTextContent("Map to school timetable");
@@ -168,7 +179,11 @@ describe("CurricYearCard component", () => {
   it("should have the correct href for the map to timetable link", () => {
     mockFeatureFlagEnabled.mockReturnValue(true);
     const { getByRole } = renderWithTheme(
-      <CurricYearCard {...defaultProps} isExamboard={false} />,
+      <CurricYearCard
+        {...defaultProps}
+        isExamboard={false}
+        timetablingEnabled={true}
+      />,
     );
 
     const link = getByRole("link");
