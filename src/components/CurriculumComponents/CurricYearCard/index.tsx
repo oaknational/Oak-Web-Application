@@ -7,7 +7,7 @@ import {
 import React from "react";
 
 type CurricYearCardProps = {
-  timetablingQueryParams?: string;
+  timetablingQueryParams?: URLSearchParams;
   yearTitle: string;
   yearSubheading?: string | null;
   additional?: React.ReactNode;
@@ -43,9 +43,9 @@ export function CurricYearCard({
         >
           {yearTitle}
         </OakHeading>
-        {timetablingEnabled === true && (
+        {timetablingEnabled === true && timetablingQueryParams && (
           <OakSecondaryLink
-            href={`/timetabling/new?${timetablingQueryParams}`}
+            href={`/timetabling/new?${timetablingQueryParams.toString()}`}
             iconName="external"
             isTrailingIcon
           >

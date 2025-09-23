@@ -18,7 +18,7 @@ describe("CurricYearCard component", () => {
     yearTitle: "Year 7",
     isExamboard: false,
     children: <div>Test content</div>,
-    timetablingQueryParams: "subject=maths&year=7",
+    timetablingQueryParams: new URLSearchParams("subject=maths&year=7"),
     timetablingEnabled: false,
   };
 

@@ -26,8 +26,8 @@ import {
   getModes,
 } from "@/utils/curriculum/by-pathway";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
-import { generateQueryParams } from "@/components/CurriculumComponents/helpers/curricTimetabling";
 import { findUnitOrOptionBySlug } from "@/utils/curriculum/units";
+import { generateQueryParams } from "@/utils/curriculum/queryParams";
 
 type CurricVisualiserProps = {
   selectedUnitSlug?: string | null;
