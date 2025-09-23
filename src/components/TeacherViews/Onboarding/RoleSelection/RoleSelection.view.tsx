@@ -76,6 +76,7 @@ const RoleSelectionView = () => {
             handleChange("role", getRoleValue(event.target.value) ?? "");
             clearErrors();
           }}
+          aria-label="Which of the following best describes what you do?"
           aria-describedby={formState.errors.role ? "role-error" : undefined}
         >
           {Object.entries(onboardingRoleOptions).map(([value, label]) => (
