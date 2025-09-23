@@ -1,3 +1,12 @@
+# [1.867.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.866.0...v1.867.0) (2025-09-23)
+
+
+### Features
+
+* create next and previous buttons ([97ecaac](https://github.com/oaknational/Oak-Web-Application/commit/97ecaacf01aebd6a50e477c2be0e5bf8ecf08a65))
+* replace page with view ([c665670](https://github.com/oaknational/Oak-Web-Application/commit/c665670b2ef1df878158c0147229b8ef5c4da7d2))
+* update buttons to match styling and reinsert page text ([ea941db](https://github.com/oaknational/Oak-Web-Application/commit/ea941dbff58d9bfd3351e8e11c43ff6119c3c710))
+
 # [1.866.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.865.0...v1.866.0) (2025-09-23)
 
 
