@@ -58,7 +58,6 @@ export default function CurricVisualiser({
   const searchParams = useSearchParams();
   const isMobile = useMediaQuery("mobile");
   const timetablingEnabled = useFeatureFlagEnabled("adopt-timetabling-proto");
-  console.log(timetablingEnabled);
 
   const visualiserFilters = useMemo(() => {
     if (isMobile) {
