@@ -7,7 +7,6 @@ import SubjectPhasePicker from "./SubjectPhasePicker";
 import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 
-
 jest.mock("@/hooks/useMediaQuery.tsx", () => ({
   __esModule: true,
   default: () => false,
