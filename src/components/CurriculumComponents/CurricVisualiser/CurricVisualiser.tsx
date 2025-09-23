@@ -2,6 +2,7 @@ import { useRef, useEffect, useMemo } from "react";
 import { OakBox } from "@oaknational/oak-components";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import Alert from "../OakComponentsKitchen/Alert";
 import CurricUnitModal from "../CurricUnitModal";
@@ -26,6 +27,7 @@ import {
 } from "@/utils/curriculum/by-pathway";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { findUnitOrOptionBySlug } from "@/utils/curriculum/units";
+import { generateQueryParams } from "@/utils/curriculum/queryParams";
 
 type CurricVisualiserProps = {
   selectedUnitSlug?: string | null;
@@ -55,6 +57,7 @@ export default function CurricVisualiser({
   const router = useRouter();
   const searchParams = useSearchParams();
   const isMobile = useMediaQuery("mobile");
+  const timetablingEnabled = useFeatureFlagEnabled("adopt-timetabling-proto");
 
   const visualiserFilters = useMemo(() => {
     if (isMobile) {
@@ -134,6 +137,12 @@ export default function CurricVisualiser({
           itemEls.current[index] = element;
         };
 
+        const subjectSlug = units[0]?.subject_slug;
+        const timetablingQueryParams = generateQueryParams({
+          year,
+          subject: subjectSlug ?? "",
+        });
+
         const actions = units[0]?.actions;
 
         const yearTitle = getYearGroupTitle(yearData, year, undefined);
@@ -159,6 +168,8 @@ export default function CurricVisualiser({
               id={`year-${type}-${year}`}
             />
             <CurricYearCard
+              timetablingEnabled={timetablingEnabled}
+              timetablingQueryParams={timetablingQueryParams}
               isExamboard={type === "non_core"}
               yearTitle={yearTitle}
               yearSubheading={yearSubheadingText}
