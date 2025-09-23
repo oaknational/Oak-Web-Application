@@ -346,7 +346,10 @@ export const LessonMedia = (props: LessonMediaProps) => {
     >
       {listOfAllClips.map((mediaClip, index: number) => {
         const { videoObject, mediaId, mediaObject } = mediaClip;
-        if (mediaObject?.format === "mp4" && videoObject) {
+        if (
+          (mediaObject?.format === "mp4" || mediaObject?.format === "m4v") &&
+          videoObject
+        ) {
           const signedPlaybackId = videoObject?.playbackIds?.find(
             (playbackId) => {
               return playbackId?.policy === "signed";
