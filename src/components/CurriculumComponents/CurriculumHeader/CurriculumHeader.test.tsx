@@ -25,7 +25,10 @@ describe("Component - Curriculum Header", () => {
     const defaultProps: ComponentProps<typeof CurriculumHeader> = {
       curriculumSelectionSlugs: parseSubjectPhaseSlug("english-secondary-aqa")!,
       keyStages: ["ks3", "ks4"],
-      curriculumPhaseOptions: { subjects: curriculumPhaseOptionsFixture() },
+      curriculumPhaseOptions: {
+        subjects: curriculumPhaseOptionsFixture(),
+        tab: "overview",
+      },
       tab: "overview",
       ...overrides,
     };
