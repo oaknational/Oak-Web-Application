@@ -40,6 +40,13 @@ export const CurricTimetablingNewView = () => {
     return params.toString();
   }, [searchParams, DEFAULT_SUBJECT, DEFAULT_YEAR, DEFAULT_LESSONS]);
 
+  // Extraction of subject/year for UI
+  const canonicalSelection = useMemo(() => {
+    const subject = searchParams?.get("subject") ?? DEFAULT_SUBJECT;
+    const year = searchParams?.get("year") ?? DEFAULT_YEAR;
+    return { subject, year };
+  }, [searchParams, DEFAULT_SUBJECT, DEFAULT_YEAR]);
+
   // Limit current URL to allowed keys
   const currentQueryParamsString = useMemo(() => {
     const filtered = new URLSearchParams();
@@ -65,7 +72,7 @@ export const CurricTimetablingNewView = () => {
     <>
       <OakFlex $flexDirection={"column"} $pa={"inner-padding-xl5"}>
         <CurricTimetableHeader
-          titleSlot={"Year N subject"}
+          titleSlot={`Year ${canonicalSelection.year} ${canonicalSelection.subject}`}
           illustrationSlug={"magic-carpet"}
           additionalSlot={
             <OakBox $maxWidth={"all-spacing-20"}>
