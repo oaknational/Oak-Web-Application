@@ -9,12 +9,57 @@ import {
   OakTextInput,
   OakMaxWidth,
 } from "@oaknational/oak-components";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useMemo } from "react";
 
 import { CurricTimetableHeader } from "../CurricTimetableHeader";
 import { CurricShowSteps } from "../CurricShowSteps";
 
+const ALLOWED_KEYS = ["subject", "year", "autumn", "spring", "summer"] as const;
+
 export const CurricTimetablingNewView = () => {
-  const DEFAULT_LESSONS = 10;
+  const DEFAULT_LESSONS = 30;
+  const DEFAULT_SUBJECT = "maths";
+  const DEFAULT_YEAR = "1";
+
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  // Build target query params
+  const canonicalQueryParamsString = useMemo(() => {
+    const params = new URLSearchParams();
+    const subject = searchParams?.get("subject") ?? DEFAULT_SUBJECT;
+    const year = searchParams?.get("year") ?? DEFAULT_YEAR;
+    params.set("subject", subject);
+    params.set("year", year);
+    (["autumn", "spring", "summer"] as const).forEach((key) => {
+      const value = searchParams?.get(key) ?? String(DEFAULT_LESSONS);
+      params.set(key, value);
+    });
+    return params.toString();
+  }, [searchParams, DEFAULT_SUBJECT, DEFAULT_YEAR, DEFAULT_LESSONS]);
+
+  // Limit current URL to allowed keys
+  const currentQueryParamsString = useMemo(() => {
+    const filtered = new URLSearchParams();
+    if (searchParams) {
+      ALLOWED_KEYS.forEach((key) => {
+        const value = searchParams.get(key);
+        if (value !== null) filtered.set(key, value);
+      });
+    }
+    return filtered.toString();
+  }, [searchParams]);
+
+  // Ensure that the URL shows only allowed params
+  useEffect(() => {
+    if (currentQueryParamsString !== canonicalQueryParamsString) {
+      router.replace(`${pathname}?${canonicalQueryParamsString}`);
+    }
+  }, [currentQueryParamsString, canonicalQueryParamsString, router, pathname]);
+
+  const nextHref = `name?${canonicalQueryParamsString}`;
 
   return (
     <>
@@ -152,7 +197,7 @@ export const CurricTimetablingNewView = () => {
 
           <OakPrimaryButton
             element="a"
-            href="/timetabling/name"
+            href={nextHref}
             pv="inner-padding-m"
             ph="inner-padding-l"
             style={{ height: "auto" }}
