@@ -341,7 +341,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
       $ph={["inner-padding-m", "inner-padding-none"]}
       $background={"grey20"}
     >
-      {isDownloadSuccessful && <Banners hideIfFeatureFlagDisabled />}
+      {isDownloadSuccessful && <Banners />}
       <OakMaxWidth
         $pb="inner-padding-xl8"
         $maxWidth={["all-spacing-21", "all-spacing-23", "all-spacing-24"]}
