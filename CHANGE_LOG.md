@@ -1,3 +1,44 @@
+# [1.864.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.863.0...v1.864.0) (2025-09-22)
+
+
+### Features
+
+* **timetabling:** scaffold UI with headings and disabled inputs ([858ff5b](https://github.com/oaknational/Oak-Web-Application/commit/858ff5b284b8f28aaac38e71a49defe033083933))
+
+# [1.863.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.862.1...v1.863.0) (2025-09-22)
+
+
+### Bug Fixes
+
+* remove hiding of campaign banner in browse journey ([c6dfdd6](https://github.com/oaknational/Oak-Web-Application/commit/c6dfdd635b5d47a6ce2870b21949aa504355559c))
+
+
+### Features
+
+* remove mythbusting feature flag ([7909f4d](https://github.com/oaknational/Oak-Web-Application/commit/7909f4d6285a5a634913de330da41e6602d739d8))
+
+## [1.862.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.862.0...v1.862.1) (2025-09-22)
+
+
+### Bug Fixes
+
+* curric component storybooks ([04f78da](https://github.com/oaknational/Oak-Web-Application/commit/04f78dad254c9650e05b4c56f3ffc23b08612403))
+
+# [1.862.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.861.0...v1.862.0) (2025-09-22)
+
+
+### Features
+
+* added <CurricTimetableHeader/> component ([7dcfb8d](https://github.com/oaknational/Oak-Web-Application/commit/7dcfb8dcc20a3025958c3199624fc025b857e7d5))
+* added <CurricTimetableHeader/> into /timetabling/new page ([35b614d](https://github.com/oaknational/Oak-Web-Application/commit/35b614d90180bd195f21f079287fcf5ce198e117))
+
+# [1.861.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.860.0...v1.861.0) (2025-09-18)
+
+
+### Features
+
+* added <CurricShowSteps/> component ([c6bcd98](https://github.com/oaknational/Oak-Web-Application/commit/c6bcd98a6f42d14e69132ea79efb78f55f3be2bd))
+
 # [1.860.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.859.0...v1.860.0) (2025-09-18)
 
 
