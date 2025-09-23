@@ -1,9 +1,9 @@
-import { GetServerSidePropsContext } from "next";
 import { screen } from "@testing-library/dom";
 
 import CampaignSinglePage, {
   blockOrder,
-  getServerSideProps,
+  getStaticPaths,
+  getStaticProps,
   sortCampaignBlocksByBlockType,
 } from "@/pages/campaigns/[campaignSlug]";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
@@ -19,6 +19,7 @@ jest.mock("@/node-lib/cms", () => ({
   __esModule: true,
   default: {
     campaignPageBySlug: (...args: []) => campaignBySlug(args),
+    campaigns: () => [{ slug: "mythbusting" }],
   },
 }));
 
@@ -46,17 +47,6 @@ jest.mock("@/node-lib/posthog/getFeatureFlag", () => ({
   getFeatureFlag: jest.fn().mockReturnValue(true),
 }));
 
-const getContext = (overrides: Partial<GetServerSidePropsContext>) =>
-  ({
-    req: {},
-    res: {},
-    query: {},
-    params: { campaignSlug: "test-campaign" },
-    ...overrides,
-  }) as unknown as GetServerSidePropsContext<{
-    campaignSlug: string;
-  }>;
-
 jest.mock("@/components/HooksAndUtils/sanityImageBuilder", () => ({
   imageBuilder: {
     image: jest.fn().mockReturnValue({ url: jest.fn() }),
@@ -78,7 +68,11 @@ const render = renderWithProviders();
 
 describe("Campaign page", () => {
   it("calls the correct endpoint with the correct args", async () => {
-    await getServerSideProps(getContext({}));
+    await getStaticProps({
+      params: {
+        campaignSlug: "test-campaign",
+      },
+    });
 
     expect(campaignBySlug).toHaveBeenCalledWith([
       "test-campaign",
@@ -88,7 +82,11 @@ describe("Campaign page", () => {
     ]);
   });
   it("returns the page data", async () => {
-    const res = await getServerSideProps(getContext({}));
+    const res = await getStaticProps({
+      params: {
+        campaignSlug: "test-campaign",
+      },
+    });
     expect(res).toEqual({
       props: {
         campaign: mockCampaign,
@@ -96,6 +94,15 @@ describe("Campaign page", () => {
       },
     });
   });
+
+  it("Should return the paths of all campaign pages", async () => {
+    const pathsResult = await getStaticPaths();
+
+    expect(pathsResult.paths).toEqual([
+      { params: { campaignSlug: "mythbusting" } },
+    ]);
+  });
+
   it("renders a header component", () => {
     render(
       <CampaignSinglePage

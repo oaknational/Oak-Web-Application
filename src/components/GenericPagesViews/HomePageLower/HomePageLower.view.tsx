@@ -7,7 +7,6 @@ import {
   OakMaxWidth,
   OakP,
 } from "@oaknational/oak-components";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import BlogAndWebinarList from "@/components/GenericPagesComponents/BlogAndWebinarList";
@@ -48,12 +47,8 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
   const newsletterFormProps = useNewsletterForm({
     onSubmit: track.newsletterSignUpCompleted,
   });
-  const campaignFeatureFlagEnabled = useFeatureFlagEnabled(
-    "mythbusting-campaign",
-  );
 
-  const showCampaignBanner =
-    campaignFeatureFlagEnabled && campaignPromoBanner?.media[0];
+  const showCampaignBanner = campaignPromoBanner?.media[0];
 
   return (
     <>
