@@ -5,6 +5,15 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 jest.mock("src/utils/featureFlags");
 
+jest.mock("next/navigation", () => {
+  const params = new URLSearchParams("");
+  return {
+    usePathname: () => "/timetabling/new",
+    useRouter: () => ({ replace: jest.fn() }),
+    useSearchParams: () => params,
+  };
+});
+
 describe("/timetabling/units", () => {
   test("when enabled", async () => {
     (useFeatureFlag as jest.Mock).mockResolvedValue(true);
