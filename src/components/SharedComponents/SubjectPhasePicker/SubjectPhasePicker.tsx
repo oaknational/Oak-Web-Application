@@ -38,7 +38,6 @@ import FocusWrap from "@/components/CurriculumComponents/OakComponentsKitchen/Fo
 import Button from "@/components/SharedComponents/Button";
 import { CurriculumModalCloseButton } from "@/components/CurriculumComponents/CurriculumModalCloseButton/CurriculumModalCloseButton";
 import useMediaQuery from "@/hooks/useMediaQuery";
-import type { CurriculumTab } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
 
 const TruncatedFlex = styled(OakFlex)`
@@ -75,6 +74,7 @@ export type SubjectPhasePickerData = {
     phase: Phase;
     ks4Option: KS4Option | null;
   };
+  tab: "overview" | "units" | "downloads";
 };
 
 const ButtonContainer = styled.div`
@@ -336,13 +336,13 @@ function SubjectContainer({
 const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   subjects,
   currentSelection,
+  tab,
 }) => {
   const phasePickerButton = useRef<HTMLButtonElement>(null);
   const subjectPickerButton = useRef<HTMLButtonElement>(null);
   const subjectPickerButtonDesktopContainer = useRef<HTMLDivElement>(null);
   const subjectPickerButtonMobileContainer = useRef<HTMLDivElement>(null);
   const router = useRouter();
-  const tab = (router.query.tab as CurriculumTab) ?? "units";
 
   const ks4OptionErrorId = useId();
   const phaseErrorId = useId();
@@ -545,6 +545,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       if (selectedKS4Option) {
         subjectPhaseSlug += "-" + selectedKS4Option.slug;
       }
+      const newPathname = `/teachers/curriculum/${subjectPhaseSlug}/${tab}`;
       trackViewCurriculum();
 
       // For mobile, keep the modal open during navigation
@@ -558,7 +559,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       startTransition(() => {
         router
           .push({
-            pathname: `/teachers/curriculum/${subjectPhaseSlug}/${tab}`,
+            pathname: newPathname,
           })
           .finally(() => {
             setIsNavigating(false);
