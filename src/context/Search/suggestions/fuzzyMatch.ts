@@ -9,15 +9,15 @@ import { OAK_KEYSTAGES, OAK_SUBJECTS } from "./oakSubjects";
 import { DirectMatch } from "@/pages/api/search/schemas";
 
 const subjectsFuse = new Fuse(OAK_SUBJECTS, {
-  keys: ["title", "slug", "aliases", "keyStages"],
-  threshold: 0.2, // Lower = more strict matching
-  minMatchCharLength: 2,
+  keys: ["title", "slug", "aliases"],
+  threshold: 0.6,
+  minMatchCharLength: 4,
 });
 
 const keystagesFuse = new Fuse(OAK_KEYSTAGES, {
   keys: ["slug", "title"],
-  threshold: 0.3, // increased due to shorter length of ks slugs
-  minMatchCharLength: 2,
+  threshold: 0.8,
+  minMatchCharLength: 3,
 });
 
 export const findFuzzyMatch = (query: string): DirectMatch | null => {

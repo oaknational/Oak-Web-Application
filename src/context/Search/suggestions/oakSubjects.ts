@@ -1,14 +1,17 @@
-export type SubjectData = {
+export type CurriculumData = {
   title: string;
   slug: string;
+};
+
+export type SubjectData = CurriculumData & {
   description: string;
-  keyStages: { slug: string; title: string }[];
-  examBoards: { slug: string; title: string }[];
-  years: { slug: string; title: string }[];
+  keyStages: CurriculumData[];
+  examBoards: CurriculumData[];
+  years: CurriculumData[];
   aliases: string[];
 };
 
-export const OAK_KEYSTAGES = [
+export const OAK_KEYSTAGES: CurriculumData[] = [
   {
     slug: "ks1",
     title: "Key Stage 1",

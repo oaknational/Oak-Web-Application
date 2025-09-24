@@ -83,4 +83,45 @@ describe("findFuzzyMatch", () => {
       expect(result).toMatchObject({ subject: null, keyStage: "ks1" });
     });
   });
+  describe("subjects and keystages", () => {
+    it("matches on subject and keystage slugs", () => {
+      const result = findFuzzyMatch("english ks4");
+      expect(result).toMatchObject({
+        subject: "english",
+        keyStage: "ks4",
+      });
+
+      const result2 = findFuzzyMatch("maths ks2");
+      expect(result2).toMatchObject({
+        subject: "maths",
+        keyStage: "ks2",
+      });
+    });
+    it("matches on subject slug and keystage title", () => {
+      const result = findFuzzyMatch("computing key stage 4");
+      expect(result).toMatchObject({
+        subject: "computing",
+        keyStage: "ks4",
+      });
+
+      const result2 = findFuzzyMatch("art key stage 1");
+      expect(result2).toMatchObject({
+        subject: "art",
+        keyStage: "ks1",
+      });
+    });
+    it("matches on subject title and keystage title", () => {
+      const result = findFuzzyMatch("Religious education key stage 3");
+      expect(result).toMatchObject({
+        subject: "religious-education",
+        keyStage: "ks3",
+      });
+
+      const result2 = findFuzzyMatch("RSHE key stage 1");
+      expect(result2).toMatchObject({
+        subject: "rshe-pshe",
+        keyStage: "ks1",
+      });
+    });
+  });
 });
