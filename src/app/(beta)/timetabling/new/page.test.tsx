@@ -3,7 +3,7 @@ import Page from "./page";
 import { useFeatureFlag } from "@/utils/featureFlags";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-jest.mock("src/utils/featureFlags");
+jest.mock("@/utils/featureFlags");
 
 jest.mock("next/navigation", () => {
   const params = new URLSearchParams("");
@@ -11,6 +11,9 @@ jest.mock("next/navigation", () => {
     usePathname: () => "/timetabling/new",
     useRouter: () => ({ replace: jest.fn() }),
     useSearchParams: () => params,
+    notFound: () => {
+      throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
+    },
   };
 });
 
