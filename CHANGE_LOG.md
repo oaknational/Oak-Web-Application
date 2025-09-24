@@ -1,3 +1,10 @@
+## [1.867.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.867.1...v1.867.2) (2025-09-24)
+
+
+### Bug Fixes
+
+* preserve tab with changing selection in the lot picker ([890b5a5](https://github.com/oaknational/Oak-Web-Application/commit/890b5a5a3542bcf09c1d6da05676720cd17b463c))
+
 ## [1.867.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.867.0...v1.867.1) (2025-09-23)
 
 # [1.867.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.866.0...v1.867.0) (2025-09-23)
