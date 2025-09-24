@@ -1,3 +1,26 @@
+## [1.867.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.867.0...v1.867.1) (2025-09-23)
+
+# [1.867.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.866.0...v1.867.0) (2025-09-23)
+
+
+### Features
+
+* create next and previous buttons ([97ecaac](https://github.com/oaknational/Oak-Web-Application/commit/97ecaacf01aebd6a50e477c2be0e5bf8ecf08a65))
+* replace page with view ([c665670](https://github.com/oaknational/Oak-Web-Application/commit/c665670b2ef1df878158c0147229b8ef5c4da7d2))
+* update buttons to match styling and reinsert page text ([ea941db](https://github.com/oaknational/Oak-Web-Application/commit/ea941dbff58d9bfd3351e8e11c43ff6119c3c710))
+
+# [1.866.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.865.0...v1.866.0) (2025-09-23)
+
+
+### Features
+
+* add feature flag to year card ([bd0eeb3](https://github.com/oaknational/Oak-Web-Application/commit/bd0eeb373ece6563a52e015304ec703529bb526e))
+* add map to timetable link when feature flag enabled ([aa4b970](https://github.com/oaknational/Oak-Web-Application/commit/aa4b970181e4478d3980505e857d2cbd8b9186c4))
+* create helper to generate query params ([19d8dff](https://github.com/oaknational/Oak-Web-Application/commit/19d8dff7366b8b9af18b7d764427a6624a358c0f))
+* move query param generator to utils and type as search params ([6b981b9](https://github.com/oaknational/Oak-Web-Application/commit/6b981b953d0d58d4ccc5a9bc3cae46b5b5f18f1e))
+* pass down query params to year card ([3bda907](https://github.com/oaknational/Oak-Web-Application/commit/3bda90794147e4cb544939f235d4265ec6ce6f0d))
+* update to use url search params args ([28e69b9](https://github.com/oaknational/Oak-Web-Application/commit/28e69b9804febfac4fe38cd73fe0ace69b699416))
+
 # [1.865.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.864.0...v1.865.0) (2025-09-23)
 
 
