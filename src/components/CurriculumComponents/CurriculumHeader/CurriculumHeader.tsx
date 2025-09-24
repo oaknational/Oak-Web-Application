@@ -141,6 +141,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
           <SubjectPhasePicker
             {...curriculumPhaseOptions}
             currentSelection={currentSelection}
+            tab={tab}
           />
         </OakBox>
       </OakFlex>

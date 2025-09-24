@@ -1,3 +1,25 @@
+## [1.868.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.868.0...v1.868.1) (2025-09-24)
+
+
+### Bug Fixes
+
+* show media clips with filetype m4v ([91dd17b](https://github.com/oaknational/Oak-Web-Application/commit/91dd17b6ce05fbdbaeb9746761dfab871a0cb582))
+* show media clips with filetype m4v ([e7f4883](https://github.com/oaknational/Oak-Web-Application/commit/e7f488378806e45d700b9f7506fbc6d370d086e7))
+
+# [1.868.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.867.2...v1.868.0) (2025-09-24)
+
+
+### Features
+
+* add empty endpoint scaffold for search intent ([3e5d171](https://github.com/oaknational/Oak-Web-Application/commit/3e5d171d0fb016763ed8cd2491743640b34bfe7f))
+
+## [1.867.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.867.1...v1.867.2) (2025-09-24)
+
+
+### Bug Fixes
+
+* preserve tab with changing selection in the lot picker ([890b5a5](https://github.com/oaknational/Oak-Web-Application/commit/890b5a5a3542bcf09c1d6da05676720cd17b463c))
+
 ## [1.867.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.867.0...v1.867.1) (2025-09-23)
 
 # [1.867.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.866.0...v1.867.0) (2025-09-23)

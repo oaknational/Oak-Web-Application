@@ -294,6 +294,7 @@ describe("unitsTab !subject error", () => {
           ks4_options: [],
         },
       ],
+      tab: "units" as const,
     };
 
     expect(() => {
