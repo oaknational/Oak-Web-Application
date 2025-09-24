@@ -1,3 +1,10 @@
+# [1.868.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.867.2...v1.868.0) (2025-09-24)
+
+
+### Features
+
+* add empty endpoint scaffold for search intent ([3e5d171](https://github.com/oaknational/Oak-Web-Application/commit/3e5d171d0fb016763ed8cd2491743640b34bfe7f))
+
 ## [1.867.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.867.1...v1.867.2) (2025-09-24)
 
 
