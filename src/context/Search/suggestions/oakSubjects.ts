@@ -8,6 +8,25 @@ export type SubjectData = {
   aliases: string[];
 };
 
+export const OAK_KEYSTAGES = [
+  {
+    slug: "ks1",
+    title: "Key Stage 1",
+  },
+  {
+    slug: "ks2",
+    title: "Key Stage 2",
+  },
+  {
+    slug: "ks3",
+    title: "Key Stage 3",
+  },
+  {
+    slug: "ks4",
+    title: "Key Stage 4",
+  },
+];
+
 export const OAK_SUBJECTS: SubjectData[] = [
   {
     title: "Art and design",
