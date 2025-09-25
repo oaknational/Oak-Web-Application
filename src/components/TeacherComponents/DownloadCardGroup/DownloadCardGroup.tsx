@@ -26,6 +26,7 @@ type DownloadCardProps = {
   downloadType: string;
   triggerForm: () => void;
   hasError: boolean;
+  useDownloadsExperiment?: boolean;
 };
 const DownloadCard: FC<DownloadCardProps> = ({
   control,
@@ -33,6 +34,7 @@ const DownloadCard: FC<DownloadCardProps> = ({
   downloadType,
   triggerForm,
   hasError,
+  useDownloadsExperiment,
 }) => {
   return (
     <Controller
@@ -73,7 +75,7 @@ const DownloadCard: FC<DownloadCardProps> = ({
             onBlur={onBlur}
             hasError={hasError}
             data-testid={`download-card-${downloadType}`}
-            useDownloadsExperiment={true}
+            useDownloadsExperiment={useDownloadsExperiment}
             isEditable={isEditable}
           />
         );
@@ -88,6 +90,7 @@ export type DownloadCardGroupProps = {
   control: Control<ResourceFormProps>;
   hasError?: boolean;
   triggerForm: () => void;
+  useDownloadsExperiment?: boolean;
 };
 const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
   downloads,
@@ -95,6 +98,7 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
   control,
   hasError = false,
   triggerForm,
+  useDownloadsExperiment = false,
 }) => {
   const groupedDownloads = groupDownloadResources(downloads, additionalFiles);
 
@@ -135,6 +139,7 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
                     downloadType={downloadType}
                     triggerForm={triggerForm}
                     hasError={hasError}
+                    useDownloadsExperiment={useDownloadsExperiment}
                   />
                 );
               })}

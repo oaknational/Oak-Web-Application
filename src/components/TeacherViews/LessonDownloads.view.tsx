@@ -479,6 +479,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                         additionalFiles={additionalFiles}
                         hasError={form.errors?.resources ? true : false}
                         triggerForm={form.trigger}
+                        useDownloadsExperiment={showDownloadPageWithAccordion}
                       />
                     )
                   }
@@ -506,6 +507,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                     />
                   }
                   showRiskAssessmentBanner={showRiskAssessmentBanner}
+                  downloads={downloadsFilteredByCopyright}
+                  additionalFiles={additionalFiles}
                 />
               );
             }

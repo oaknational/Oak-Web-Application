@@ -9,6 +9,7 @@ import {
   OakLI,
   OakGrid,
   OakGridArea,
+  OakDownloadsAccordion,
 } from "@oaknational/oak-components";
 import {
   Control,
@@ -23,12 +24,12 @@ import { ResourceFormProps } from "@/components/TeacherComponents/types/download
 import { DelayedLoadingSpinner } from "@/components/TeacherComponents/ResourcePageLayout/ResourcePageLayout";
 import CopyrightNotice from "@/components/TeacherComponents/CopyrightNotice";
 import FieldError from "@/components/SharedComponents/FieldError";
-import Checkbox from "@/components/SharedComponents/Checkbox";
 import RiskAssessmentBanner from "@/components/TeacherComponents/RiskAssessmentBanner";
 import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
 import NoResourcesToDownload from "@/components/TeacherComponents/NoResourcesToDownload";
 import TermsAgreementForm from "@/components/TeacherComponents/TermsAgreementForm";
 import { getFormErrorMessages } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadFormErrorMessage";
+import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 
 type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
   ResourcePageSchoolDetailsProps & {
@@ -54,7 +55,41 @@ type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
     showTermsAgreement: boolean;
     isLoading: boolean;
     showRiskAssessmentBanner?: boolean;
+    downloads?: LessonDownloadsPageData["downloads"];
+    additionalFiles?: LessonDownloadsPageData["additionalFiles"];
   };
+
+const getAccordionText = (
+  downloads: LessonDownloadsPageData["downloads"],
+  additionalFiles: LessonDownloadsPageData["additionalFiles"],
+) => {
+  const resources = [];
+  const resourceTypes: Record<string, string> = {
+    presentation: "slides",
+    "intro-quiz-questions": "quizzes",
+    "intro-quiz-answers": "quizzes",
+    "exit-quiz-questions": "quizzes",
+    "exit-quiz-answers": "quizzes",
+    "worksheet-pdf": "worksheets",
+    "worksheet-pptx": "worksheets",
+    "supplementary-pdf": "additional materials",
+    "supplementary-docx": "additional materials",
+    "lesson-guide-pdf": "lesson guide",
+    "additional-files": "additional files",
+  };
+
+  for (const download of downloads as Array<{ type?: string }>) {
+    if (download.type && download.type in resourceTypes) {
+      resources.push(resourceTypes[download.type]);
+    }
+  }
+  if (additionalFiles && additionalFiles.length > 0) {
+    resources.push("additional files");
+  }
+  const resourcesText = Array.from(new Set(resources)).join(", ");
+
+  return resourcesText.charAt(0).toUpperCase() + resourcesText.slice(1);
+};
 
 // TODO: Rename component if experiment is successful
 const DownloadPageWithAccordion: FC<DownloadPageWithAccordionProps> = (
@@ -90,51 +125,48 @@ const DownloadPageWithAccordionContent = (
   const showFormErrors = hasFormErrors && !props.downloadsRestricted;
   const showForm = props.showTermsAgreement && !props.downloadsRestricted;
   const hideCallToAction = props.downloadsRestricted;
-
+  console.log(props.downloads);
   return (
     <OakFlex
       $flexDirection={"column"}
       $gap={"space-between-l"}
       $maxWidth={"all-spacing-22"}
     >
-      <OakBox
-        $pa={"inner-padding-none"}
-        $ba={"border-solid-none"}
-        as={"fieldset"}
+      <OakDownloadsAccordion
+        downloadsText={getAccordionText(
+          props.downloads ?? [],
+          props.additionalFiles ?? [],
+        )}
+        handleToggleSelectAll={props.handleToggleSelectAll}
+        selectAllChecked={props.selectAllChecked}
+        id="downloads-accordion"
       >
         <OakBox
-          as="legend"
-          $position="absolute"
-          $width="all-spacing-0"
-          $height="all-spacing-0"
           $pa={"inner-padding-none"}
-          $overflow="hidden"
+          $ba={"border-solid-none"}
+          as={"fieldset"}
         >
-          Select resources to download
-        </OakBox>
-        <FieldError id={"downloads-error"} withoutMarginBottom>
-          {props.errors?.resources?.message}
-        </FieldError>
-        {!props.hideSelectAll && (
-          <OakBox $maxWidth="max-content">
-            <Checkbox
-              checked={props.selectAllChecked}
-              onChange={props.handleToggleSelectAll}
-              id="select-all"
-              name="select-all"
-              variant="withLabel"
-              labelText="Select all"
-              labelFontWeight={600}
-            />
+          <OakBox
+            as="legend"
+            $position="absolute"
+            $width="all-spacing-0"
+            $height="all-spacing-0"
+            $pa={"inner-padding-none"}
+            $overflow="hidden"
+          >
+            Select resources to download
           </OakBox>
-        )}
-        {props.cardGroup}
-        {/* {props.showRiskAssessmentBanner && ( */}
-        <OakBox $mv="space-between-s">
-          <RiskAssessmentBanner />
+          <FieldError id={"downloads-error"} withoutMarginBottom>
+            {props.errors?.resources?.message}
+          </FieldError>
+          {props.cardGroup}
+          {props.showRiskAssessmentBanner && (
+            <OakBox $mv="space-between-s">
+              <RiskAssessmentBanner />
+            </OakBox>
+          )}
         </OakBox>
-        {/* )} */}
-      </OakBox>
+      </OakDownloadsAccordion>
 
       {props.showNoResources && <NoResourcesToDownload />}
       {!props.showNoResources && (
