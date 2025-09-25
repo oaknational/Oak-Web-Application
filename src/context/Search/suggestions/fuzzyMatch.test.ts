@@ -1,5 +1,5 @@
 import { findFuzzyMatch } from "./fuzzyMatch";
-import { OAK_SUBJECTS } from "./oakCuriculumData";
+import { OAK_SUBJECTS } from "./oakCurriculumData";
 
 describe("findFuzzyMatch", () => {
   it("should return null for empty query", () => {

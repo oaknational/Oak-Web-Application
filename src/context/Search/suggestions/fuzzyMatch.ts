@@ -11,7 +11,7 @@ import {
   OAK_KEYSTAGES,
   OAK_SUBJECTS,
   OAK_YEARS,
-} from "./oakCuriculumData";
+} from "./oakCurriculumData";
 
 import { DirectMatch } from "@/pages/api/search/schemas";
 
