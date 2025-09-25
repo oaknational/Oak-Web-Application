@@ -125,7 +125,7 @@ describe("components/AppHeader", () => {
       "true",
     );
   });
-  it.only("teacher link should have aria-current=true when selected area is TEACHER", () => {
+  it("teacher link should have aria-current=true when selected area is TEACHER", () => {
     const { getByRole } = render(<AppHeader />);
 
     expect(getByRole("link", { name: /Pupils/i })).toHaveAttribute(
