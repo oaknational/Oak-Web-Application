@@ -1,5 +1,11 @@
 import { FC, ReactNode, useState } from "react";
-import { OakFlex, OakP, OakIcon, OakBox } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakIcon,
+  OakBox,
+  OakTertiaryInvertedButton,
+  OakSpan,
+} from "@oaknational/oak-components";
 
 export interface MiniDropdownProps {
   label: string;
@@ -45,10 +51,7 @@ const MiniDropdown: FC<MiniDropdownProps> = ({
 
   return (
     <OakFlex $flexDirection={"column"} $justifyContent={"center"}>
-      <OakFlex
-        $alignItems="center"
-        $background="transparent"
-        $pa="inner-padding-none"
+      <OakTertiaryInvertedButton
         onClick={handleToggle}
         onKeyDown={(e: React.KeyboardEvent) => {
           if (e.key === "Enter" || e.key === " ") {
@@ -59,23 +62,29 @@ const MiniDropdown: FC<MiniDropdownProps> = ({
         aria-expanded={isOpen}
         aria-controls={contentId}
         aria-label={`${label} dropdown, ${isOpen ? "expanded" : "collapsed"}`}
-        role="button"
-        tabIndex={0}
       >
-        <OakP
-          $font="heading-7"
-          $color={isOpen ? "navy120" : "navy"}
-          $textDecoration={isHovered && !isOpen ? "underline" : "none"}
+        <OakFlex
+          $flexDirection={"row"}
+          $alignContent={"center"}
+          $justifyContent={"center"}
+          $alignItems={"center"}
         >
-          {label}
-        </OakP>
-        <OakIcon
-          iconName={isOpen ? "chevron-up" : "chevron-down"}
-          $colorFilter={isOpen ? "navy120" : "navy"}
-          $width="all-spacing-6"
-          aria-hidden="true"
-        />
-      </OakFlex>
+          <OakSpan
+            $font="heading-7"
+            $color={isOpen ? "navy120" : "navy"}
+            $textDecoration={isHovered && !isOpen ? "underline" : "none"}
+            $textAlign={"center"}
+          >
+            {label}
+          </OakSpan>
+          <OakIcon
+            iconName={isOpen ? "chevron-up" : "chevron-down"}
+            $colorFilter={isOpen ? "navy120" : "navy"}
+            $width="all-spacing-6"
+            aria-hidden="true"
+          />
+        </OakFlex>
+      </OakTertiaryInvertedButton>
       <OakBox
         id={contentId}
         $display={isOpen ? "block" : "none"}
