@@ -7,13 +7,73 @@ import { intentRequestSchema, searchIntentSchema } from "./schemas";
 
 import errorReporter from "@/common-lib/error-reporter/errorReporter";
 import OakError from "@/errors/OakError";
+import { OAK_SUBJECTS } from "@/context/Search/suggestions/oakCurriculumData";
 
 const reportError = errorReporter("search-intent");
 const client = new OpenAI();
 
-// Build prompt dynamically from curriculum data
-function buildSystemPrompt(subjects: string[]): string {
-  return `You are analyzing a search term for a UK education platform.
+const DUMMY_DIRECT_MATCH_RESPONSE = {
+  directMatch: {
+    subject: "maths",
+    keyStage: null,
+    year: null,
+    examBoard: null,
+  },
+  suggestedFilters: [
+    { type: "subject", value: "maths" },
+    { type: "key-stage", value: "ks1" },
+    { type: "key-stage", value: "ks2" },
+    { type: "key-stage", value: "ks3" },
+    { type: "key-stage", value: "ks4" },
+    { type: "exam-board", value: "aqa" },
+    { type: "exam-board", value: "edexcel" },
+  ],
+} satisfies z.infer<typeof searchIntentSchema>;
+
+const handler: NextApiHandler = async (req, res) => {
+  let searchTerm: string;
+
+  try {
+    const parsed = intentRequestSchema.parse(req.query);
+    searchTerm = parsed.searchTerm;
+  } catch (err) {
+    return res.status(400).json({ error: "Invalid search term" });
+  }
+
+  try {
+    // TEMP: return direct match response if searchTerm is "maths"
+    if (searchTerm === "maths") {
+      const payload = searchIntentSchema.parse(DUMMY_DIRECT_MATCH_RESPONSE);
+      return res.status(200).json(payload);
+    }
+
+    const modelResponse = await callModel(searchTerm);
+
+    const payload = {
+      directMatch: null,
+      suggestedFilters: [
+        ...modelResponse.map((filter) => {
+          return { type: "subject", slug: filter.slug };
+        }),
+      ],
+    };
+    return res.status(200).json(payload);
+  } catch (err) {
+    const error = new OakError({
+      code: "search/failed-to-get-intent",
+      meta: {
+        error: err,
+      },
+    });
+    reportError(error);
+
+    return res.status(500).json({ error: JSON.stringify(error) });
+  }
+};
+
+export async function callModel(searchTerm: string) {
+  const subjects = OAK_SUBJECTS.map((subject) => subject.slug);
+  const systemContent = `You are analyzing a search term for a UK education platform.
 
 The platform has the following available subject names:
 ${subjects.join(",")}
@@ -38,101 +98,7 @@ Examples:
 
 Analyze the user's search term:
 `;
-}
 
-const DUMMY_DIRECT_MATCH_RESPONSE = {
-  directMatch: {
-    subject: "maths",
-    keyStage: null,
-    year: null,
-    examBoard: null,
-  },
-  suggestedFilters: [
-    { type: "subject", value: "maths" },
-    { type: "key-stage", value: "ks1" },
-    { type: "key-stage", value: "ks2" },
-    { type: "key-stage", value: "ks3" },
-    { type: "key-stage", value: "ks4" },
-    { type: "exam-board", value: "aqa" },
-    { type: "exam-board", value: "edexcel" },
-  ],
-} satisfies z.infer<typeof searchIntentSchema>;
-
-const DUMMY_SUBJECT_LIST = [
-  "Computing (non-GCSE)",
-  "Art and design",
-  "Citizenship",
-  "Computing",
-  "Design and technology",
-  "Drama",
-  "English",
-  "French",
-  "Geography",
-  "German",
-  "History",
-  "Latin",
-  "Maths",
-  "Music",
-  "Physical education",
-  "RSHE (PSHE)",
-  "Religious education",
-  "Science",
-  "Biology",
-  "Chemistry",
-  "Combined science",
-  "Physics",
-  "Spanish",
-  "Cooking and nutrition",
-  "Financial education",
-];
-
-const handler: NextApiHandler = async (req, res) => {
-  let searchTerm: string;
-
-  try {
-    const parsed = intentRequestSchema.parse(req.query);
-    searchTerm = parsed.searchTerm;
-  } catch (err) {
-    return res.status(400).json({ error: "Invalid search term" });
-  }
-
-  try {
-    // TEMP: return direct match response if searchTerm is "maths"
-    if (searchTerm === "maths") {
-      const payload = searchIntentSchema.parse(DUMMY_DIRECT_MATCH_RESPONSE);
-      return res.status(200).json(payload);
-    }
-
-    const modelResponse = await callModel(searchTerm, DUMMY_SUBJECT_LIST);
-    const sortedResponse = modelResponse
-      .sort((a, b) => a.confidence - b.confidence)
-      .reverse();
-    const payload = {
-      directMatch: null,
-      suggestedFilters: [
-        ...sortedResponse.map((filter) => {
-          return { type: "subject", name: filter.name };
-        }),
-      ],
-    };
-    return res.status(200).json(payload);
-  } catch (err) {
-    const error = new OakError({
-      code: "search/failed-to-get-intent",
-      meta: {
-        error: err,
-      },
-    });
-    reportError(error);
-
-    return res.status(500).json({ error: JSON.stringify(error) });
-  }
-};
-
-export async function callModel(searchTerm: string, subjects: string[]) {
-  const systemContent = buildSystemPrompt(subjects);
-
-  // Create a dynamic schema that restricts subject names to the available subjects
   const subjectsEnum = z.enum(subjects as [string, ...string[]]);
 
   const response = await client.responses.parse({
@@ -156,7 +122,7 @@ export async function callModel(searchTerm: string, subjects: string[]) {
         z.object({
           subjects: z.array(
             z.object({
-              name: subjectsEnum,
+              slug: subjectsEnum,
               confidence: z.number().min(1).max(5),
             }),
           ),
@@ -166,8 +132,10 @@ export async function callModel(searchTerm: string, subjects: string[]) {
     },
   });
   const parsedResponse = response.output_parsed;
-  if (parsedResponse) return parsedResponse.subjects;
-  return [];
+  const sortedResponse = parsedResponse?.subjects
+    .sort((a, b) => a.confidence - b.confidence)
+    .reverse();
+  return sortedResponse ?? [];
 }
 
 export default handler;
