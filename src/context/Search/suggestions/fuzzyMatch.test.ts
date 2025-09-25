@@ -132,5 +132,20 @@ describe("findFuzzyMatch", () => {
         keyStage: "ks1",
       });
     });
+    it("matches partial subjects", () => {
+      const result = findFuzzyMatch("englis ks3");
+      expect(result).toMatchObject({ subject: "english", keyStage: "ks3" });
+    });
+    it("matches typos", () => {
+      const result = findFuzzyMatch("ks2 georgaphy ");
+      expect(result).toMatchObject({ subject: "geography", keyStage: "ks2" });
+    });
+    it("matches aliases", () => {
+      const result = findFuzzyMatch("food tech ks4");
+      expect(result).toMatchObject({
+        subject: "cooking-nutrition",
+        keyStage: "ks4",
+      });
+    });
   });
 });
