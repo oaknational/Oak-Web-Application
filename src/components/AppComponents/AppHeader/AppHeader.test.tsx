@@ -9,6 +9,10 @@ import { mockLoggedIn, mockLoggedOut } from "@/__tests__/__helpers__/mockUser";
 
 const render = renderWithProviders();
 
+jest.mock("@/hooks/useSelectedArea", () => {
+  return jest.fn(() => "PUPILS");
+});
+
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagVariantKey: jest.fn(() => "with-login"),
   useFeatureFlagEnabled: () => false,
@@ -112,5 +116,21 @@ describe("components/AppHeader", () => {
 
     const signUpButton = screen.queryByRole("button", { name: /Sign up/i });
     expect(signUpButton).not.toBeInTheDocument();
+  });
+  it("pupil link should have aria-current=true when selected area is PUPIL", () => {
+    const { getByRole } = render(<AppHeader />);
+
+    expect(getByRole("link", { name: /Pupils/i })).toHaveAttribute(
+      "aria-current",
+      "true",
+    );
+  });
+  it.only("teacher link should have aria-current=true when selected area is TEACHER", () => {
+    const { getByRole } = render(<AppHeader />);
+
+    expect(getByRole("link", { name: /Pupils/i })).toHaveAttribute(
+      "aria-current",
+      "true",
+    );
   });
 });
