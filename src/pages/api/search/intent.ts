@@ -3,11 +3,7 @@ import { zodTextFormat } from "openai/helpers/zod";
 import type { NextApiHandler } from "next";
 import { z } from "zod";
 
-import {
-  aiResponseSchema,
-  intentRequestSchema,
-  searchIntentSchema,
-} from "./schemas";
+import { intentRequestSchema, searchIntentSchema } from "./schemas";
 
 import errorReporter from "@/common-lib/error-reporter/errorReporter";
 import OakError from "@/errors/OakError";
@@ -102,6 +98,9 @@ const handler: NextApiHandler = async (req, res) => {
 async function callModel(searchTerm: string, subjects: string[]) {
   const systemContent = buildSystemPrompt(subjects);
 
+  // Create a dynamic schema that restricts subject names to the available subjects
+  const subjectsEnum = z.enum(subjects as [string, ...string[]]);
+
   const response = await client.responses.parse({
     model: "gpt-5-nano",
     input: [
@@ -119,7 +118,17 @@ async function callModel(searchTerm: string, subjects: string[]) {
       },
     ],
     text: {
-      format: zodTextFormat(aiResponseSchema, "subjects"),
+      format: zodTextFormat(
+        z.object({
+          subjects: z.array(
+            z.object({
+              name: subjectsEnum,
+              confidence: z.number().min(1).max(5),
+            }),
+          ),
+        }),
+        "subjects",
+      ),
     },
   });
   const parsedResponse = response.output_parsed;
