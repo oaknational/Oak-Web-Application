@@ -1,3 +1,10 @@
+# [1.869.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.868.1...v1.869.0) (2025-09-25)
+
+
+### Features
+
+* add hard coded data to be used for ai search experiment ([a32e1a5](https://github.com/oaknational/Oak-Web-Application/commit/a32e1a51c5325e0139b27486f5f075027d68ab18))
+
 ## [1.868.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.868.0...v1.868.1) (2025-09-24)
 
 
