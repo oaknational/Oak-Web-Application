@@ -221,4 +221,50 @@ describe("findFuzzyMatch", () => {
       });
     });
   });
+  describe("subjects and years", () => {
+    it("matches on subject and years slugs", () => {
+      const result = findFuzzyMatch("english year 1");
+      expect(result).toMatchObject({
+        subject: "english",
+        year: "year-1",
+      });
+
+      const result2 = findFuzzyMatch("maths year 3");
+      expect(result2).toMatchObject({
+        subject: "maths",
+        year: "year-3",
+      });
+    });
+    it("matches on subject title and year", () => {
+      const result = findFuzzyMatch("Religious education year 5");
+      expect(result).toMatchObject({
+        subject: "religious-education",
+        year: "year-5",
+      });
+
+      const result2 = findFuzzyMatch("RSHE year11");
+      expect(result2).toMatchObject({
+        subject: "rshe-pshe",
+        year: "year-11",
+      });
+    });
+    it("matches partial subjects", () => {
+      const result = findFuzzyMatch("englis y3");
+      expect(result).toMatchObject({
+        subject: "english",
+        year: "year-3",
+      });
+    });
+    it("matches typos", () => {
+      const result = findFuzzyMatch("year2 georgaphy ");
+      expect(result).toMatchObject({ subject: "geography", year: "year-2" });
+    });
+    it("matches subject aliases", () => {
+      const result = findFuzzyMatch("food tech year 4");
+      expect(result).toMatchObject({
+        subject: "cooking-nutrition",
+        year: "year-4",
+      });
+    });
+  });
 });
