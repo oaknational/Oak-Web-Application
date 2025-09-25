@@ -71,7 +71,7 @@
   "dependencies": {
     "@bugsnag/js": "^8.4.0",
     "@bugsnag/plugin-react": "^8.4.0",
-    "@clerk/nextjs": "^6.25.5",
+    "@clerk/nextjs": "^6.32.2",
     "@google-cloud/storage": "^7.17.0",
     "@hookform/resolvers": "^3.10.0",
     "@hubspot/api-client": "^11.2.0",
@@ -162,7 +162,7 @@
     "@next/eslint-plugin-next": "^15.3.0",
     "@percy/cli": "^1.30.11",
     "@prettier/plugin-xml": "3.2.2",
-    "@sanity/client": "^6.24.1",
+    "@sanity/client": "^7.11.2",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/exec": "^7.1.0",
     "@semantic-release/git": "^10.0.1",
