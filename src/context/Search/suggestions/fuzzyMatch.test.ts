@@ -165,6 +165,25 @@ describe("findFuzzyMatch", () => {
       expect(result).toMatchObject({ year: slug });
     });
   });
+  describe("examboards", () => {
+    it.each(["aqa", "ocr", "edexcel", "eduqas", "edexcelb"])(
+      "matches slugs",
+      (term) => {
+        const result = findFuzzyMatch(term);
+        expect(result).toMatchObject({ examBoard: term });
+      },
+    );
+    it.each([
+      ["AQA", "aqa"],
+      ["OCR", "ocr"],
+      ["Edexcel", "edexcel"],
+      ["Eduqas", "eduqas"],
+      ["EdexcelB", "edexcelb"],
+    ])("matches titles", (term, slug) => {
+      const result = findFuzzyMatch(term);
+      expect(result).toMatchObject({ examBoard: slug });
+    });
+  });
   describe("subjects and keystages", () => {
     it("matches on subject and keystage slugs", () => {
       const result = findFuzzyMatch("english ks4");
@@ -264,6 +283,35 @@ describe("findFuzzyMatch", () => {
       expect(result).toMatchObject({
         subject: "cooking-nutrition",
         year: "year-4",
+      });
+    });
+  });
+  describe("subjects and examboards", () => {
+    it("matches on subject title and examboard", () => {
+      const result = findFuzzyMatch("English aqa");
+      expect(result).toMatchObject({
+        subject: "english",
+        examBoard: "aqa",
+      });
+
+      const result2 = findFuzzyMatch("history edexcel");
+      expect(result2).toMatchObject({
+        subject: "history",
+        examBoard: "edexcel",
+      });
+    });
+    it("matches partial subjects", () => {
+      const result = findFuzzyMatch("englis ocr");
+      expect(result).toMatchObject({
+        subject: "english",
+        examBoard: "ocr",
+      });
+    });
+    it("matches typos", () => {
+      const result = findFuzzyMatch("eduqas georgaphy ");
+      expect(result).toMatchObject({
+        subject: "geography",
+        examBoard: "eduqas",
       });
     });
   });

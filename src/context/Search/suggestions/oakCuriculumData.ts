@@ -88,6 +88,29 @@ export const OAK_YEARS: CurriculumData[] = [
   },
 ];
 
+export const OAK_EXAMBOARDS: CurriculumData[] = [
+  {
+    slug: "aqa",
+    title: "AQA",
+  },
+  {
+    slug: "edexcel",
+    title: "Edexcel",
+  },
+  {
+    slug: "edexcelb",
+    title: "EdexcelB",
+  },
+  {
+    slug: "eduqas",
+    title: "Eduqas",
+  },
+  {
+    slug: "ocr",
+    title: "OCR",
+  },
+];
+
 export const OAK_SUBJECTS: SubjectData[] = [
   {
     title: "Art and design",
