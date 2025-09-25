@@ -152,7 +152,7 @@ describe("findFuzzyMatch", () => {
       expect(result).toMatchObject({ year: slug });
     });
     it.each([
-      ["year1", "year-1"],
+      ["y1", "year-1"],
       ["y2", "year-2"],
       ["y3", "year-3"],
       ["y4", "year-4"],
