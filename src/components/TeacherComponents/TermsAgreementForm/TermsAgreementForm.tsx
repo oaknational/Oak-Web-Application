@@ -167,8 +167,9 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                 $mb={"space-between-l"}
                 data-testid="newsletter-policy"
               >
-                Join over 100k teachers and get free resources and other helpful
-                content by email. Unsubscribe at any time. Read our{" "}
+                Join over 200k teachers and get free resources and other helpful
+                content by email. Oak is free, and always will be. Unsubscribe
+                at any time. Read our{" "}
                 <OakLink
                   href={resolveOakHref({
                     page: "legal",
