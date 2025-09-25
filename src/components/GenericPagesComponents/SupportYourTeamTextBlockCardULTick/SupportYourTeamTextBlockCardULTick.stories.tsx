@@ -1,5 +1,5 @@
 import React from "react";
-import { StoryFn, Meta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/nextjs";
 import { OakHeading, OakP } from "@oaknational/oak-components";
 
 import { SupportYourTeamTextBlockCardULTick as Component } from "./SupportYourTeamTextBlockCardULTick";

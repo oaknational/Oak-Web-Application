@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/nextjs";
 import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import { CurricFiltersSubjectCategories as Component } from "./CurricFiltersSubjectCategories";

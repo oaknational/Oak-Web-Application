@@ -2,7 +2,7 @@ import React from "react";
 import { ThemeProvider } from "styled-components";
 import * as NextImage from "next/image";
 import { RouterContext } from "next/dist/shared/lib/router-context.shared-runtime";
-import { fn } from "@storybook/test";
+import { fn } from "storybook/test";
 import { Lexend } from "next/font/google";
 import "./jest-mock";
 
@@ -32,6 +32,7 @@ export const parameters = {
     // 👇 Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked
     args: { onClick: fn(), onSubmit: fn() },
   },
+
   controls: {
     // sorts component props into alphabetical order
     sort: "alpha",
@@ -40,6 +41,7 @@ export const parameters = {
       date: /Date$/,
     },
   },
+
   options: {
     storySort: {
       method: "alphabetical",
@@ -47,14 +49,21 @@ export const parameters = {
       order: ["Introduction"],
     },
   },
+
   viewMode: "docs",
+
   previewTabs: {
     canvas: {
       hidden: true,
     },
   },
+
   nextRouter: {
     Provider: RouterContext.Provider,
+  },
+
+  docs: {
+    codePanel: true,
   },
 };
 
