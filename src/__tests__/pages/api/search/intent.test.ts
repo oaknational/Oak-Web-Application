@@ -10,19 +10,13 @@ jest.mock("@/common-lib/error-reporter", () => ({
       mockErrorReporter(...args),
 }));
 
+const mockParse = jest.fn();
 jest.mock("openai", () => {
   return {
     __esModule: true,
     default: jest.fn().mockImplementation(() => ({
       responses: {
-        parse: jest.fn().mockResolvedValue({
-          output_parsed: {
-            subjects: [
-              { name: "English", confidence: 2 },
-              { name: "Drama", confidence: 5 },
-            ],
-          },
-        }),
+        parse: () => mockParse(),
       },
     })),
   };
@@ -61,7 +55,15 @@ describe("/api/search/intent", () => {
     });
   });
 
-  it("should return AI response for other search terms", async () => {
+  it("should return AI response for other search terms and sort them by confidence", async () => {
+    mockParse.mockResolvedValue({
+      output_parsed: {
+        subjects: [
+          { name: "English", confidence: 2 },
+          { name: "Drama", confidence: 4 },
+        ],
+      },
+    });
     const { req, res } = createNextApiMocks({
       method: "GET",
       query: { searchTerm: "science" },
