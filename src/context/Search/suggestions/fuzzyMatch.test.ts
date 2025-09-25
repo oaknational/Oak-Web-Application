@@ -318,7 +318,7 @@ describe("findFuzzyMatch", () => {
       });
     });
   });
-  describe.only("combinations of all pfs", () => {
+  describe("combinations of all pfs", () => {
     const subjectsWithExamboardsByKs = OAK_SUBJECTS.filter(
       (subject) => subject.examBoards.length > 0,
     )
