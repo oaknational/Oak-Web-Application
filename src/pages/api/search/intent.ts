@@ -49,7 +49,6 @@ const handler: NextApiHandler = async (req, res) => {
   try {
     // TEMP: return direct match response if searchTerm is "maths"
     if (searchTerm === "maths") {
-      console.log("isMaths");
       const payload = searchIntentSchema.parse(DUMMY_DIRECT_MATCH_RESPONSE);
       return res.status(200).json(payload);
     }
@@ -64,7 +63,7 @@ const handler: NextApiHandler = async (req, res) => {
       },
     });
     reportError(error);
-    console.log("Error:", error);
+
     return res.status(500).json({ error: JSON.stringify(error) });
   }
 };
