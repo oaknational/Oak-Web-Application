@@ -23,6 +23,7 @@ type PupilViewsSubjectListingProps = {
 export const PupilViewsSubjectListing = ({
   subjects,
 }: PupilViewsSubjectListingProps) => {
+  console.log("subjects", subjects);
   const { track } = useAnalytics();
   const groupedBySubject = groupBy(
     subjects,
