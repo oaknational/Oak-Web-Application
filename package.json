@@ -163,7 +163,7 @@
     "@next/eslint-plugin-next": "^15.3.0",
     "@percy/cli": "^1.30.11",
     "@prettier/plugin-xml": "3.2.2",
-    "@sanity/client": "^6.24.1",
+    "@sanity/client": "^7.11.2",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/exec": "^7.1.0",
     "@semantic-release/git": "^10.0.1",
