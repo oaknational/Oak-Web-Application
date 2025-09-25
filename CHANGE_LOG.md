@@ -1,3 +1,11 @@
+## [1.868.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.868.0...v1.868.1) (2025-09-24)
+
+
+### Bug Fixes
+
+* show media clips with filetype m4v ([91dd17b](https://github.com/oaknational/Oak-Web-Application/commit/91dd17b6ce05fbdbaeb9746761dfab871a0cb582))
+* show media clips with filetype m4v ([e7f4883](https://github.com/oaknational/Oak-Web-Application/commit/e7f488378806e45d700b9f7506fbc6d370d086e7))
+
 # [1.868.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.867.2...v1.868.0) (2025-09-24)
 
 
