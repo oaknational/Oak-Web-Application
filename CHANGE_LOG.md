@@ -1,3 +1,11 @@
+# [1.870.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.869.0...v1.870.0) (2025-09-25)
+
+
+### Features
+
+* ensure header title reflects query params ([0d1a3ce](https://github.com/oaknational/Oak-Web-Application/commit/0d1a3ce996c525e91e2a4556ba173bf1ec2c0bd5))
+* persist step-1 query string ([381d470](https://github.com/oaknational/Oak-Web-Application/commit/381d470f7deb93384aca194dd54749d974382197))
+
 # [1.869.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.868.1...v1.869.0) (2025-09-25)
 
 
