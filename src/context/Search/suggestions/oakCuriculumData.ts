@@ -30,30 +30,60 @@ export const OAK_KEYSTAGES: CurriculumData[] = [
   },
 ];
 
+export const OAK_YEARS: CurriculumData[] = [
+  {
+    slug: "year-1",
+    title: "Year 1",
+  },
+  {
+    slug: "year-2",
+    title: "Year 2",
+  },
+  {
+    slug: "year-3",
+    title: "Year 3",
+  },
+  {
+    slug: "year-4",
+    title: "Year 4",
+  },
+  {
+    slug: "year-5",
+    title: "Year 5",
+  },
+  {
+    slug: "year-6",
+    title: "Year 6",
+  },
+  {
+    slug: "year-7",
+    title: "Year 7",
+  },
+  {
+    slug: "year-8",
+    title: "Year 8",
+  },
+  {
+    slug: "year-9",
+    title: "Year 9",
+  },
+  {
+    slug: "year-10",
+    title: "Year 10",
+  },
+  {
+    slug: "year-11",
+    title: "Year 11",
+  },
+];
+
 export const OAK_SUBJECTS: SubjectData[] = [
   {
     title: "Art and design",
     slug: "art",
     description:
       "Our art and design curriculum is mapped to ensure that pupils explore knowledge, skills, content, processes, behaviours and attributes that will help them grow into young artists that are independent, capable and able to confidently engage with art in the world around them. \nPupils are exposed to a range of media, skills, and techniques, including links to real-world creative industries. We encourage art analysis and discussions with a careful selection of artworks by a wide range of artists, makers and designers’ past and present. Artists and artworks are contextualised and presented in ways that allow pupils to understand how art shapes and is shaped by the wider world. \nPupils will develop their ability to make and engage with art through structured, sequential threads of learning that are embedded to ensure they are securely learned. There will be a growing conviction of their ability to make and share responses to art and themes and to make art, craft and design they value.",
-    keyStages: [
-      {
-        slug: "ks1",
-        title: "Key Stage 1",
-      },
-      {
-        slug: "ks2",
-        title: "Key Stage 2",
-      },
-      {
-        slug: "ks3",
-        title: "Key Stage 3",
-      },
-      {
-        slug: "ks4",
-        title: "Key Stage 4",
-      },
-    ],
+    keyStages: OAK_KEYSTAGES,
     examBoards: [],
     years: [
       {
@@ -144,24 +174,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     slug: "computing",
     description:
       "We want pupils to leave Y11, ready to progress to higher levels of study or to a professional career with the following:\n● A strong grasp of how to use technology safely, respectfully and responsibly including social media and mobile devices\n● Multiple experiences to develop their skills, capabilities and creativity in computer science, digital media and information technology across a range of digital tools and devices\n● A strong understanding of how to apply analytical, computational and problem solving skills to a wide range of situations\n● Multiple experiences of programming where they have had the opportunity to encounter design, write and debug increasingly complex and modular programs\n● A strong awareness of current and emerging technologies and the impact these technologies may have on themselves and wider society",
-    keyStages: [
-      {
-        slug: "ks1",
-        title: "Key Stage 1",
-      },
-      {
-        slug: "ks2",
-        title: "Key Stage 2",
-      },
-      {
-        slug: "ks3",
-        title: "Key Stage 3",
-      },
-      {
-        slug: "ks4",
-        title: "Key Stage 4",
-      },
-    ],
+    keyStages: OAK_KEYSTAGES,
     examBoards: [
       {
         slug: "aqa",
@@ -172,52 +185,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
         title: "OCR",
       },
     ],
-    years: [
-      {
-        slug: "year-1",
-        title: "Year 1",
-      },
-      {
-        slug: "year-2",
-        title: "Year 2",
-      },
-      {
-        slug: "year-3",
-        title: "Year 3",
-      },
-      {
-        slug: "year-4",
-        title: "Year 4",
-      },
-      {
-        slug: "year-5",
-        title: "Year 5",
-      },
-      {
-        slug: "year-6",
-        title: "Year 6",
-      },
-      {
-        slug: "year-7",
-        title: "Year 7",
-      },
-      {
-        slug: "year-8",
-        title: "Year 8",
-      },
-      {
-        slug: "year-9",
-        title: "Year 9",
-      },
-      {
-        slug: "year-10",
-        title: "Year 10",
-      },
-      {
-        slug: "year-11",
-        title: "Year 11",
-      },
-    ],
+    years: OAK_YEARS,
     aliases: ["ict", "computer science", "cs", "computers"],
   },
   {
@@ -225,71 +193,9 @@ export const OAK_SUBJECTS: SubjectData[] = [
     slug: "design-technology",
     description:
       "Our curriculum is designed using authentic context-led units. It is centred around the knowledge of designing, making, evaluating, and technology and its interaction with society.\n\nThrough careful sequencing of the curriculum, pupils will develop their design and technology capability with increased confidence and autonomy. Knowledge and skills are applied through the manufacture of prototypes using a variety of materials, processes, and systems suitable to a context. Pupils will appreciate how technology works and, through critique, consider its impact on the world.\n\nPupils communicate and iterate both physically and digitally, mastering strategies including design thinking. Through repeat exposure to user and earth-centred design, pupils develop a sense of environmental consciousness, challenge stereotypes, and gain inspiration from the world around them.",
-    keyStages: [
-      {
-        slug: "ks1",
-        title: "Key Stage 1",
-      },
-      {
-        slug: "ks2",
-        title: "Key Stage 2",
-      },
-      {
-        slug: "ks3",
-        title: "Key Stage 3",
-      },
-      {
-        slug: "ks4",
-        title: "Key Stage 4",
-      },
-    ],
+    keyStages: OAK_KEYSTAGES,
     examBoards: [],
-    years: [
-      {
-        slug: "year-1",
-        title: "Year 1",
-      },
-      {
-        slug: "year-2",
-        title: "Year 2",
-      },
-      {
-        slug: "year-3",
-        title: "Year 3",
-      },
-      {
-        slug: "year-4",
-        title: "Year 4",
-      },
-      {
-        slug: "year-5",
-        title: "Year 5",
-      },
-      {
-        slug: "year-6",
-        title: "Year 6",
-      },
-      {
-        slug: "year-7",
-        title: "Year 7",
-      },
-      {
-        slug: "year-8",
-        title: "Year 8",
-      },
-      {
-        slug: "year-9",
-        title: "Year 9",
-      },
-      {
-        slug: "year-10",
-        title: "Year 10",
-      },
-      {
-        slug: "year-11",
-        title: "Year 11",
-      },
-    ],
+    years: OAK_YEARS,
     aliases: ["design and technology", "design & technology", "dt", "d&t"],
   },
   {
@@ -340,24 +246,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     slug: "english",
     description:
       "Our curriculum is thoughtfully designed to instil confidence and ignite a genuine passion for the language. It systematically nurtures pupils’ critical skills and knowledge until they are firmly grounded, enabling them to write with purpose and read with fluency and enjoyment.\n\nEvery facet of the English domain - spoken language, reading, writing, spelling, handwriting, grammar, vocabulary development, and poetry - is meticulously addressed, both as discrete and interwoven threads. Pupils engage in repeated and diversified practice, steadily progressing through well-defined steps, ensuring that learning is applicable across various contexts.\n\nWe take pride in nurturing students' sense of identity and self-esteem through a rich tapestry of diverse texts, instilling in them a dual identity as both readers and writers. All pupils emerge as exceptional communicators, regardless of their initial starting points, ready for further study and lifelong engagement with reading.",
-    keyStages: [
-      {
-        slug: "ks1",
-        title: "Key Stage 1",
-      },
-      {
-        slug: "ks2",
-        title: "Key Stage 2",
-      },
-      {
-        slug: "ks3",
-        title: "Key Stage 3",
-      },
-      {
-        slug: "ks4",
-        title: "Key Stage 4",
-      },
-    ],
+    keyStages: OAK_KEYSTAGES,
     examBoards: [
       {
         slug: "aqa",
@@ -372,52 +261,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
         title: "Eduqas",
       },
     ],
-    years: [
-      {
-        slug: "year-1",
-        title: "Year 1",
-      },
-      {
-        slug: "year-2",
-        title: "Year 2",
-      },
-      {
-        slug: "year-3",
-        title: "Year 3",
-      },
-      {
-        slug: "year-4",
-        title: "Year 4",
-      },
-      {
-        slug: "year-5",
-        title: "Year 5",
-      },
-      {
-        slug: "year-6",
-        title: "Year 6",
-      },
-      {
-        slug: "year-7",
-        title: "Year 7",
-      },
-      {
-        slug: "year-8",
-        title: "Year 8",
-      },
-      {
-        slug: "year-9",
-        title: "Year 9",
-      },
-      {
-        slug: "year-10",
-        title: "Year 10",
-      },
-      {
-        slug: "year-11",
-        title: "Year 11",
-      },
-    ],
+    years: OAK_YEARS,
     aliases: [
       "ela",
       "english language arts",
@@ -497,24 +341,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     slug: "geography",
     description:
       "Our geography curriculum is designed to develop pupils' geographical knowledge to better understand the world. It is structured around a carefully planned progression, allowing pupils to apply their geographical knowledge across a range of regional and thematic units. Key concepts and locations are revisited in increasingly complex contexts, helping pupils develop a deep knowledge and understanding of places, their locations, and their connections with the rest of the world. \n\nThe curriculum integrates mapwork, GIS, and graphical skills into units, enabling pupils to analyse geographical information over time and space.  This adaptable curriculum connects learning to real-world contexts, empowering students with the knowledge to grapple with complex issues, such as climate change and sustainability, and allow them to better understand their surroundings at both a local and global scale.\n\n",
-    keyStages: [
-      {
-        slug: "ks1",
-        title: "Key Stage 1",
-      },
-      {
-        slug: "ks2",
-        title: "Key Stage 2",
-      },
-      {
-        slug: "ks3",
-        title: "Key Stage 3",
-      },
-      {
-        slug: "ks4",
-        title: "Key Stage 4",
-      },
-    ],
+    keyStages: OAK_KEYSTAGES,
     examBoards: [
       {
         slug: "aqa",
@@ -525,52 +352,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
         title: "Edexcel B",
       },
     ],
-    years: [
-      {
-        slug: "year-1",
-        title: "Year 1",
-      },
-      {
-        slug: "year-2",
-        title: "Year 2",
-      },
-      {
-        slug: "year-3",
-        title: "Year 3",
-      },
-      {
-        slug: "year-4",
-        title: "Year 4",
-      },
-      {
-        slug: "year-5",
-        title: "Year 5",
-      },
-      {
-        slug: "year-6",
-        title: "Year 6",
-      },
-      {
-        slug: "year-7",
-        title: "Year 7",
-      },
-      {
-        slug: "year-8",
-        title: "Year 8",
-      },
-      {
-        slug: "year-9",
-        title: "Year 9",
-      },
-      {
-        slug: "year-10",
-        title: "Year 10",
-      },
-      {
-        slug: "year-11",
-        title: "Year 11",
-      },
-    ],
+    years: OAK_YEARS,
     aliases: ["geog"],
   },
   {
@@ -627,24 +409,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     slug: "history",
     description:
       "Our history curriculum is anchored in both substantive and disciplinary knowledge. By exploring British, European, and World history chronologically, it equips students to comprehend not just what transpired across extensive spans of time and geography, but also the intricate connections that link the events, civilizations, and developments they encounter.\nWe embrace the core objectives of the national curriculum and place a specific emphasis on knowledge, vocabulary, and diversity. Throughout our curriculum, we employ rigorous historical enquiry to shape students' disciplinary and substantive journeys. By incorporating a rich array of historical narratives, we secure knowledge retention and coherence across phases. Broad themes unite the curriculum, grounded in universal concepts that extend across its entirety.",
-    keyStages: [
-      {
-        slug: "ks1",
-        title: "Key Stage 1",
-      },
-      {
-        slug: "ks2",
-        title: "Key Stage 2",
-      },
-      {
-        slug: "ks3",
-        title: "Key Stage 3",
-      },
-      {
-        slug: "ks4",
-        title: "Key Stage 4",
-      },
-    ],
+    keyStages: OAK_KEYSTAGES,
     examBoards: [
       {
         slug: "aqa",
@@ -655,52 +420,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
         title: "Edexcel",
       },
     ],
-    years: [
-      {
-        slug: "year-1",
-        title: "Year 1",
-      },
-      {
-        slug: "year-2",
-        title: "Year 2",
-      },
-      {
-        slug: "year-3",
-        title: "Year 3",
-      },
-      {
-        slug: "year-4",
-        title: "Year 4",
-      },
-      {
-        slug: "year-5",
-        title: "Year 5",
-      },
-      {
-        slug: "year-6",
-        title: "Year 6",
-      },
-      {
-        slug: "year-7",
-        title: "Year 7",
-      },
-      {
-        slug: "year-8",
-        title: "Year 8",
-      },
-      {
-        slug: "year-9",
-        title: "Year 9",
-      },
-      {
-        slug: "year-10",
-        title: "Year 10",
-      },
-      {
-        slug: "year-11",
-        title: "Year 11",
-      },
-    ],
+    years: OAK_YEARS,
     aliases: ["hist"],
   },
   {
@@ -883,24 +603,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     slug: "physical-education",
     description:
       "Our physical education curriculum is built upon developing pupils’ knowledge, skills and the confidence to pursue a healthy active lifestyle. By offering diverse physical activities, we aim to develop pupils' physical competence, enhance their understanding of the importance of active living, and instil a purposeful, inclusive approach towards health, physical activity and competition. \n\nCurriculum threads provide additional levels of coherence between units. They allow for continuity in learning and help pupils achieve higher levels of proficiency in various disciplines, alongside increasingly complex physical activities. The curriculum also emphasises holistic development through the move, think, feel and connect framework. We focus on teamwork, leadership and personal responsibility whilst promoting respect, fairness and self-discipline. Our goal is to nurture well-rounded individuals who value physical activity and embody healthy lifestyle choices.\n",
-    keyStages: [
-      {
-        slug: "ks1",
-        title: "Key Stage 1",
-      },
-      {
-        slug: "ks2",
-        title: "Key Stage 2",
-      },
-      {
-        slug: "ks3",
-        title: "Key Stage 3",
-      },
-      {
-        slug: "ks4",
-        title: "Key Stage 4",
-      },
-    ],
+    keyStages: OAK_KEYSTAGES,
     examBoards: [
       {
         slug: "aqa",
@@ -971,71 +674,9 @@ export const OAK_SUBJECTS: SubjectData[] = [
     title: "RSHE (PSHE)",
     slug: "rshe-pshe",
     description: "",
-    keyStages: [
-      {
-        slug: "ks1",
-        title: "Key Stage 1",
-      },
-      {
-        slug: "ks2",
-        title: "Key Stage 2",
-      },
-      {
-        slug: "ks3",
-        title: "Key Stage 3",
-      },
-      {
-        slug: "ks4",
-        title: "Key Stage 4",
-      },
-    ],
+    keyStages: OAK_KEYSTAGES,
     examBoards: [],
-    years: [
-      {
-        slug: "year-1",
-        title: "Year 1",
-      },
-      {
-        slug: "year-2",
-        title: "Year 2",
-      },
-      {
-        slug: "year-3",
-        title: "Year 3",
-      },
-      {
-        slug: "year-4",
-        title: "Year 4",
-      },
-      {
-        slug: "year-5",
-        title: "Year 5",
-      },
-      {
-        slug: "year-6",
-        title: "Year 6",
-      },
-      {
-        slug: "year-7",
-        title: "Year 7",
-      },
-      {
-        slug: "year-8",
-        title: "Year 8",
-      },
-      {
-        slug: "year-9",
-        title: "Year 9",
-      },
-      {
-        slug: "year-10",
-        title: "Year 10",
-      },
-      {
-        slug: "year-11",
-        title: "Year 11",
-      },
-    ],
+    years: OAK_YEARS,
     aliases: [
       "pshe",
       "rshe",
@@ -1050,24 +691,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     slug: "religious-education",
     description:
       "In our curriculum, pupils meet worldviews in a way that builds complexity and depth. By the end of Year 11 pupils will have: \n● A strong grasp of concepts, such as covenant and dharma, being able to articulate the diverse ways in which they have been interpreted. \n● A grounding in key philosophical and ethical traditions leading to a secure understanding of how questions of belief, suffering and goodness have been addressed and contested.\n● Multiple opportunities to examine the continuing influence of religion and non religion in the world today, and to understand how religions have challenged and been challenged by society. \n● Multiple opportunities to explore case studies of religion and non-religion leading to a secure understanding of the complexity and diversity of worldviews in the UK and globally. \n● A secure grasp of the disciplines of religious study, such as theology, philosophy and social science, and the methods that scholars might use to answer questions.",
-    keyStages: [
-      {
-        slug: "ks1",
-        title: "Key Stage 1",
-      },
-      {
-        slug: "ks2",
-        title: "Key Stage 2",
-      },
-      {
-        slug: "ks3",
-        title: "Key Stage 3",
-      },
-      {
-        slug: "ks4",
-        title: "Key Stage 4",
-      },
-    ],
+    keyStages: OAK_KEYSTAGES,
     examBoards: [
       {
         slug: "aqa",
@@ -1082,52 +706,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
         title: "Edexcel B",
       },
     ],
-    years: [
-      {
-        slug: "year-1",
-        title: "Year 1",
-      },
-      {
-        slug: "year-2",
-        title: "Year 2",
-      },
-      {
-        slug: "year-3",
-        title: "Year 3",
-      },
-      {
-        slug: "year-4",
-        title: "Year 4",
-      },
-      {
-        slug: "year-5",
-        title: "Year 5",
-      },
-      {
-        slug: "year-6",
-        title: "Year 6",
-      },
-      {
-        slug: "year-7",
-        title: "Year 7",
-      },
-      {
-        slug: "year-8",
-        title: "Year 8",
-      },
-      {
-        slug: "year-9",
-        title: "Year 9",
-      },
-      {
-        slug: "year-10",
-        title: "Year 10",
-      },
-      {
-        slug: "year-11",
-        title: "Year 11",
-      },
-    ],
+    years: OAK_YEARS,
     aliases: ["religious education", "re", "religion", "religious studies"],
   },
   {
@@ -1471,71 +1050,9 @@ export const OAK_SUBJECTS: SubjectData[] = [
     title: "Financial education",
     slug: "financial-education",
     description: "",
-    keyStages: [
-      {
-        slug: "ks1",
-        title: "Key Stage 1",
-      },
-      {
-        slug: "ks2",
-        title: "Key Stage 2",
-      },
-      {
-        slug: "ks3",
-        title: "Key Stage 3",
-      },
-      {
-        slug: "ks4",
-        title: "Key Stage 4",
-      },
-    ],
+    keyStages: OAK_KEYSTAGES,
     examBoards: [],
-    years: [
-      {
-        slug: "year-1",
-        title: "Year 1",
-      },
-      {
-        slug: "year-2",
-        title: "Year 2",
-      },
-      {
-        slug: "year-3",
-        title: "Year 3",
-      },
-      {
-        slug: "year-4",
-        title: "Year 4",
-      },
-      {
-        slug: "year-5",
-        title: "Year 5",
-      },
-      {
-        slug: "year-6",
-        title: "Year 6",
-      },
-      {
-        slug: "year-7",
-        title: "Year 7",
-      },
-      {
-        slug: "year-8",
-        title: "Year 8",
-      },
-      {
-        slug: "year-9",
-        title: "Year 9",
-      },
-      {
-        slug: "year-10",
-        title: "Year 10",
-      },
-      {
-        slug: "year-11",
-        title: "Year 11",
-      },
-    ],
+    years: OAK_YEARS,
     aliases: [
       "financial literacy",
       "money management",
