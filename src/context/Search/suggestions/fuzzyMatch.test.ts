@@ -92,6 +92,47 @@ describe("findFuzzyMatch", () => {
       expect(result).toMatchObject({ subject: null, keyStage: "ks1" });
     });
   });
+  describe("years", () => {
+    it.each([
+      "year-1",
+      "year-2",
+      "year-3",
+      "year-4",
+      "year-5",
+      "year-6",
+      "year-7",
+      "year-8",
+      "year-9",
+      "year-10",
+      "year-11",
+    ])(`matches year slug`, (year) => {
+      const result = findFuzzyMatch(year);
+      expect(result).toMatchObject({ year: year });
+    });
+    it.each([
+      ["year-1", "Year 1"],
+      ["year-2", "Year 2"],
+      ["year-3", "Year 3"],
+      ["year-4", "Year 4"],
+      ["year-5", "Year 5"],
+      ["year-6", "Year 6"],
+      ["year-7", "Year 7"],
+      ["year-8", "Year 8"],
+      ["year-9", "Year 9"],
+      ["year-10", "Year 10"],
+      ["year-11", "Year 11"],
+    ])(`matches year title`, (slug, title) => {
+      const result = findFuzzyMatch(title);
+      expect(result).toMatchObject({ year: slug });
+    });
+    it("matches with typos", () => {
+      const result = findFuzzyMatch("yea 1");
+      expect(result).toMatchObject({ year: "year-1" });
+
+      const result2 = findFuzzyMatch("yr 5");
+      expect(result2).toMatchObject({ year: "year-5" });
+    });
+  });
   describe("subjects and keystages", () => {
     it("matches on subject and keystage slugs", () => {
       const result = findFuzzyMatch("english ks4");
