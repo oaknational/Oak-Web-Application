@@ -7,7 +7,6 @@ import { intentRequestSchema, searchIntentSchema } from "./schemas";
 
 import errorReporter from "@/common-lib/error-reporter/errorReporter";
 import OakError from "@/errors/OakError";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 const reportError = errorReporter("search-intent");
 const client = new OpenAI();
@@ -59,6 +58,34 @@ const DUMMY_DIRECT_MATCH_RESPONSE = {
   ],
 } satisfies z.infer<typeof searchIntentSchema>;
 
+const DUMMY_SUBJECT_LIST = [
+  "Computing (non-GCSE)",
+  "Art and design",
+  "Citizenship",
+  "Computing",
+  "Design and technology",
+  "Drama",
+  "English",
+  "French",
+  "Geography",
+  "German",
+  "History",
+  "Latin",
+  "Maths",
+  "Music",
+  "Physical education",
+  "RSHE (PSHE)",
+  "Religious education",
+  "Science",
+  "Biology",
+  "Chemistry",
+  "Combined science",
+  "Physics",
+  "Spanish",
+  "Cooking and nutrition",
+  "Financial education",
+];
+
 const handler: NextApiHandler = async (req, res) => {
   let searchTerm: string;
 
@@ -66,7 +93,6 @@ const handler: NextApiHandler = async (req, res) => {
     const parsed = intentRequestSchema.parse(req.query);
     searchTerm = parsed.searchTerm;
   } catch (err) {
-    console.error("Invalid search term:", err);
     return res.status(400).json({ error: "Invalid search term" });
   }
 
@@ -76,13 +102,11 @@ const handler: NextApiHandler = async (req, res) => {
       const payload = searchIntentSchema.parse(DUMMY_DIRECT_MATCH_RESPONSE);
       return res.status(200).json(payload);
     }
-    const curriculumData = await curriculumApi2023.searchPage();
-    const subjectList = curriculumData.subjects.map((subject) => subject.title);
-    const payload = await callModel(searchTerm, subjectList);
+
+    const payload = await callModel(searchTerm, DUMMY_SUBJECT_LIST);
 
     return res.status(200).json(payload);
   } catch (err) {
-    console.log(err);
     const error = new OakError({
       code: "search/failed-to-get-intent",
       meta: {
