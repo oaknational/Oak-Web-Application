@@ -1,5 +1,5 @@
 import { createNextApiMocks } from "@/__tests__/__helpers__/createNextApiMocks";
-import handler from "@/pages/api/search/intent";
+import handler, { callModel } from "@/pages/api/search/intent";
 
 const mockErrorReporter = jest.fn();
 jest.mock("@/common-lib/error-reporter", () => ({
@@ -55,12 +55,12 @@ describe("/api/search/intent", () => {
     });
   });
 
-  it("should return AI response for other search terms and sort them by confidence", async () => {
+  it("should return AI response for other search terms", async () => {
     mockParse.mockResolvedValue({
       output_parsed: {
         subjects: [
-          { name: "English", confidence: 2 },
-          { name: "Drama", confidence: 4 },
+          { slug: "english", confidence: 2 },
+          { slug: "drama", confidence: 4 },
         ],
       },
     });
@@ -75,8 +75,8 @@ describe("/api/search/intent", () => {
     expect(res._getJSONData()).toEqual({
       directMatch: null,
       suggestedFilters: [
-        { type: "subject", name: "Drama" },
-        { type: "subject", name: "English" },
+        { type: "subject", slug: "drama" },
+        { type: "subject", slug: "english" },
       ],
     });
   });
@@ -107,5 +107,100 @@ describe("/api/search/intent", () => {
     expect(res._getJSONData()).toEqual({
       error: "Invalid search term",
     });
+  });
+
+  it("should handle empty response from OpenAI", async () => {
+    mockParse.mockResolvedValue({
+      output_parsed: {
+        subjects: [],
+      },
+    });
+
+    const { req, res } = createNextApiMocks({
+      method: "GET",
+      query: { searchTerm: "unknown" },
+    });
+
+    await handler(req, res);
+
+    expect(res._getStatusCode()).toBe(200);
+    expect(res._getJSONData()).toEqual({
+      directMatch: null,
+      suggestedFilters: [],
+    });
+  });
+
+  it("should handle null output_parsed from OpenAI", async () => {
+    mockParse.mockResolvedValue({
+      output_parsed: null,
+    });
+
+    const { req, res } = createNextApiMocks({
+      method: "GET",
+      query: { searchTerm: "test" },
+    });
+
+    await handler(req, res);
+
+    expect(res._getStatusCode()).toBe(200);
+    expect(res._getJSONData()).toEqual({
+      directMatch: null,
+      suggestedFilters: [],
+    });
+  });
+});
+
+describe("callModel function", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it("should return a sorted subjects array", async () => {
+    mockParse.mockResolvedValue({
+      output_parsed: {
+        subjects: [
+          { slug: "history", confidence: 3 },
+          { slug: "maths", confidence: 5 },
+          { slug: "science", confidence: 4 },
+        ],
+      },
+    });
+
+    const result = await callModel("education");
+
+    expect(result).toEqual([
+      { slug: "maths", confidence: 5 },
+      { slug: "science", confidence: 4 },
+      { slug: "history", confidence: 3 },
+    ]);
+  });
+
+  it("should return empty array when output_parsed is null", async () => {
+    mockParse.mockResolvedValue({
+      output_parsed: null,
+    });
+
+    const result = await callModel("test");
+
+    expect(result).toEqual([]);
+  });
+
+  it("should return empty array when no subjects in response", async () => {
+    mockParse.mockResolvedValue({
+      output_parsed: {
+        subjects: [],
+      },
+    });
+
+    const result = await callModel("unknown");
+
+    expect(result).toEqual([]);
+  });
+
+  it("should throw error when OpenAI API fails", async () => {
+    const apiError = new Error("OpenAI API failure");
+    mockParse.mockRejectedValue(apiError);
+
+    await expect(callModel("test")).rejects.toThrow("OpenAI API failure");
   });
 });
