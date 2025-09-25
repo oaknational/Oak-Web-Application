@@ -3,19 +3,14 @@ import {
   OakFlex,
   OakHeading,
   OakSpan,
-  OakBox,
 } from "@oaknational/oak-components";
-
-import {
-  shortAnswerTitleFormatter,
-  removeMarkdown,
-} from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import QuizImage from "@/components/TeacherComponents/QuizImage";
 import {
   isStemTextObject,
   StemImageObject,
   StemTextObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { Stem } from "@/components/SharedComponents/Stem";
 
 export const QuizQuestionsQuestionStem = ({
   questionStem,
@@ -44,11 +39,10 @@ export const QuizQuestionsQuestionStem = ({
               {showIndex && (
                 <OakSpan $mr="space-between-xs">{displayNumber}</OakSpan>
               )}
-              {questionText && (
-                <OakBox>
-                  {shortAnswerTitleFormatter(removeMarkdown(questionText))}
-                </OakBox>
-              )}
+              {/* TODO: dont repeat this validation logic */}
+              {questionStem[0] &&
+                isStemTextObject(questionStem[0]) &&
+                questionStem[0].text && <Stem stem={questionStem[0]} />}
             </>
           )}
         </OakFlex>
@@ -61,7 +55,7 @@ export const QuizQuestionsQuestionStem = ({
               key={`q-${displayNumber}-stem-element-${i}`}
               $font={["body-2-bold", "body-1-bold"]}
             >
-              {shortAnswerTitleFormatter(removeMarkdown(stemItem.text))}
+              <Stem stem={stemItem} />
             </OakTypography>
           );
         } else if (stemItem.type === "image") {
