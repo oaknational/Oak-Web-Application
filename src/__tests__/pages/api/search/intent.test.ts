@@ -10,6 +10,24 @@ jest.mock("@/common-lib/error-reporter", () => ({
       mockErrorReporter(...args),
 }));
 
+jest.mock("openai", () => {
+  return {
+    __esModule: true,
+    default: jest.fn().mockImplementation(() => ({
+      responses: {
+        parse: jest.fn().mockResolvedValue({
+          output_parsed: {
+            subjects: [
+              { name: "English", confidence: 2 },
+              { name: "Drama", confidence: 5 },
+            ],
+          },
+        }),
+      },
+    })),
+  };
+});
+
 describe("/api/search/intent", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -55,10 +73,8 @@ describe("/api/search/intent", () => {
     expect(res._getJSONData()).toEqual({
       directMatch: null,
       suggestedFilters: [
-        { type: "subject", value: "maths" },
-        { type: "key-stage", value: "ks4" },
-        { type: "exam-board", value: "aqa" },
-        { type: "subject", value: "science" },
+        { type: "subject", name: "Drama" },
+        { type: "subject", name: "English" },
       ],
     });
   });

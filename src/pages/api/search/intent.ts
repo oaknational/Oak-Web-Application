@@ -103,8 +103,18 @@ const handler: NextApiHandler = async (req, res) => {
       return res.status(200).json(payload);
     }
 
-    const payload = await callModel(searchTerm, DUMMY_SUBJECT_LIST);
-
+    const modelResponse = await callModel(searchTerm, DUMMY_SUBJECT_LIST);
+    const sortedResponse = modelResponse
+      .sort((a, b) => a.confidence - b.confidence)
+      .reverse();
+    const payload = {
+      directMatch: null,
+      suggestedFilters: [
+        ...sortedResponse.map((filter) => {
+          return { type: "subject", name: filter.name };
+        }),
+      ],
+    };
     return res.status(200).json(payload);
   } catch (err) {
     const error = new OakError({
@@ -119,7 +129,7 @@ const handler: NextApiHandler = async (req, res) => {
   }
 };
 
-async function callModel(searchTerm: string, subjects: string[]) {
+export async function callModel(searchTerm: string, subjects: string[]) {
   const systemContent = buildSystemPrompt(subjects);
 
   // Create a dynamic schema that restricts subject names to the available subjects
