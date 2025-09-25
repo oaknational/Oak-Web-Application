@@ -14,11 +14,11 @@ import { useMemo } from "react";
 import { CurricTimetableHeader } from "../CurricTimetableHeader";
 import { CurricShowSteps } from "../CurricShowSteps";
 
-import { useStep1Params } from "./useStep1Params";
+import { useTimetableHeaderParams } from "./useTimetableHeaderParams";
 
 export const CurricTimetablingNewView = () => {
   const DEFAULT_LESSONS = 30;
-  const { subject, year, queryString } = useStep1Params();
+  const { subject, year, queryString } = useTimetableHeaderParams();
 
   const nextHref = useMemo(() => `name?${queryString}`, [queryString]);
 

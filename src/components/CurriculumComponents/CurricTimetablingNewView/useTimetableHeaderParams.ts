@@ -3,16 +3,26 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo } from "react";
 
-const ALLOWED_KEYS = ["subject", "year", "autumn", "spring", "summer"] as const;
+const TIMETABLE_HEADER_PARAM_KEYS = [
+  "subject",
+  "year",
+  "autumn",
+  "spring",
+  "summer",
+  "name",
+] as const;
 
-export interface Step1ParamsHook {
+export type TimetableHeaderParamKey =
+  (typeof TIMETABLE_HEADER_PARAM_KEYS)[number];
+
+export interface TimetableHeaderParamsHook {
   subject: string;
   year: string;
   queryParams: URLSearchParams;
   queryString: string;
 }
 
-export function useStep1Params(): Step1ParamsHook {
+export function useTimetableHeaderParams(): TimetableHeaderParamsHook {
   const DEFAULT_LESSONS = 30;
   const DEFAULT_SUBJECT = "maths";
   const DEFAULT_YEAR = "1";
@@ -31,6 +41,8 @@ export function useStep1Params(): Step1ParamsHook {
       const value = searchParams?.get(key) ?? String(DEFAULT_LESSONS);
       params.set(key, value);
     });
+    const providedName = searchParams?.get("name");
+    if (providedName) params.set("name", providedName);
     return params;
   }, [searchParams, DEFAULT_SUBJECT, DEFAULT_YEAR, DEFAULT_LESSONS]);
 
@@ -48,7 +60,7 @@ export function useStep1Params(): Step1ParamsHook {
   const currentQueryParamsString = useMemo(() => {
     const filtered = new URLSearchParams();
     if (searchParams) {
-      ALLOWED_KEYS.forEach((key) => {
+      TIMETABLE_HEADER_PARAM_KEYS.forEach((key) => {
         const value = searchParams.get(key);
         if (value !== null) filtered.set(key, value);
       });
