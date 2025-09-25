@@ -1,4 +1,5 @@
 import { findFuzzyMatch } from "./fuzzyMatch";
+import { OAK_SUBJECTS } from "./oakCuriculumData";
 
 describe("findFuzzyMatch", () => {
   it("should return null for empty query", () => {
@@ -317,29 +318,57 @@ describe("findFuzzyMatch", () => {
       });
     });
   });
-  describe("combinations of all pfs", () => {
-    // TODO - struggles with 2+ factors in the search, sometimes gets incorrect subject rather than null
-    it.skip.each([
-      ["edexcel geography ks4", "geography", "ks4", "edexcel"],
-      ["aqa history ks4", "history", "ks4", "aqa"],
-      ["spanish ks4 ocr", "spanish", "ks4", "ocr"],
-    ])(
-      "can handle subject + keystage + examboard",
-      (term, subject, keyStage, examBoard) => {
+  describe.only("combinations of all pfs", () => {
+    const subjectsWithExamboardsByKs = OAK_SUBJECTS.filter(
+      (subject) => subject.examBoards.length > 0,
+    )
+      .map((subject) =>
+        subject.examBoards.map((eb) => [
+          `${eb.title} ${subject.title} ks4`,
+          eb.slug,
+          subject.slug,
+        ]),
+      )
+      .flat();
+
+    const subjectsWithExamboardsByYear = OAK_SUBJECTS.filter(
+      (subject) => subject.examBoards.length > 0,
+    )
+      .map((subject) =>
+        subject.examBoards.flatMap((eb) => [
+          [
+            `${eb.title} ${subject.title} year 10`,
+            eb.slug,
+            subject.slug,
+            "year-10",
+          ],
+          [
+            `${eb.title} ${subject.title} year 11`,
+            eb.slug,
+            subject.slug,
+            "year-11",
+          ],
+        ]),
+      )
+      .flat();
+
+    // TODO - it really struggles to get these correct with 3 factors in the search
+    // mostly it's coming up null for a factor, but sometimes returning an incorrect match :(
+    // eg history -> chemistry, year-1 -> year-11
+    it.skip.each(subjectsWithExamboardsByKs)(
+      "can handle %p",
+      (term, examBoard, subject) => {
         const result = findFuzzyMatch(term);
         expect(result).toMatchObject({
           subject,
-          keyStage,
+          keyStage: "ks4",
           examBoard,
         });
       },
     );
-    it.skip.each([
-      ["year 11 french aqa", "french", "year-11", "aqa"],
-      ["history year10 edexcel", "history", "year-10", "edexcel"],
-    ])(
-      "can handle subject + year + examboard",
-      (term, subject, year, examBoard) => {
+    it.skip.each(subjectsWithExamboardsByYear)(
+      "can handle %p",
+      (term, examBoard, subject, year) => {
         const result = findFuzzyMatch(term);
         expect(result).toMatchObject({
           subject,
