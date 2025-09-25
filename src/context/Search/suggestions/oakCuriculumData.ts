@@ -1,6 +1,7 @@
 export type CurriculumData = {
   title: string;
   slug: string;
+  aliases: string[];
 };
 
 export type SubjectData = CurriculumData & {
@@ -8,25 +9,28 @@ export type SubjectData = CurriculumData & {
   keyStages: CurriculumData[];
   examBoards: CurriculumData[];
   years: CurriculumData[];
-  aliases: string[];
 };
 
 export const OAK_KEYSTAGES: CurriculumData[] = [
   {
     slug: "ks1",
     title: "Key Stage 1",
+    aliases: [],
   },
   {
     slug: "ks2",
     title: "Key Stage 2",
+    aliases: [],
   },
   {
     slug: "ks3",
     title: "Key Stage 3",
+    aliases: [],
   },
   {
     slug: "ks4",
     title: "Key Stage 4",
+    aliases: [],
   },
 ];
 
@@ -34,46 +38,57 @@ export const OAK_YEARS: CurriculumData[] = [
   {
     slug: "year-1",
     title: "Year 1",
+    aliases: ["y1", "year1"],
   },
   {
     slug: "year-2",
     title: "Year 2",
+    aliases: ["y2", "year2"],
   },
   {
     slug: "year-3",
     title: "Year 3",
+    aliases: ["y3", "year3"],
   },
   {
     slug: "year-4",
     title: "Year 4",
+    aliases: ["y4", "year4"],
   },
   {
     slug: "year-5",
     title: "Year 5",
+    aliases: ["y5", "year5"],
   },
   {
     slug: "year-6",
     title: "Year 6",
+    aliases: ["y6", "year6"],
   },
   {
     slug: "year-7",
     title: "Year 7",
+    aliases: ["y7", "year7"],
   },
   {
     slug: "year-8",
     title: "Year 8",
+    aliases: ["y8", "year8"],
   },
   {
     slug: "year-9",
     title: "Year 9",
+    aliases: ["y9", "year9"],
   },
   {
     slug: "year-10",
     title: "Year 10",
+    aliases: ["y10", "year10"],
   },
   {
     slug: "year-11",
     title: "Year 11",
+    aliases: ["y11", "year11"],
   },
 ];
 

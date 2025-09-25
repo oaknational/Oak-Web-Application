@@ -22,9 +22,9 @@ const keystagesFuse = new Fuse(OAK_KEYSTAGES, {
 });
 
 const yearsFuse = new Fuse(OAK_YEARS, {
-  keys: ["slug", "title"],
+  keys: ["slug", "title", "aliases"],
   threshold: 0.8,
-  minMatchCharLength: 3,
+  minMatchCharLength: 2,
 });
 
 export const findFuzzyMatch = (query: string): DirectMatch | null => {

@@ -132,6 +132,38 @@ describe("findFuzzyMatch", () => {
       const result2 = findFuzzyMatch("yr 5");
       expect(result2).toMatchObject({ year: "year-5" });
     });
+    it.each([
+      ["year1", "year-1"],
+      ["year2", "year-2"],
+      ["year3", "year-3"],
+      ["year4", "year-4"],
+      ["year5", "year-5"],
+      ["year6", "year-6"],
+      ["year7", "year-7"],
+      ["year8", "year-8"],
+      ["year9", "year-9"],
+      ["year10", "year-10"],
+      ["year11", "year-11"],
+    ])("matches without spaces", (term, slug) => {
+      const result = findFuzzyMatch(term);
+      expect(result).toMatchObject({ year: slug });
+    });
+    it.each([
+      ["year1", "year-1"],
+      ["y2", "year-2"],
+      ["y3", "year-3"],
+      ["y4", "year-4"],
+      ["y5", "year-5"],
+      ["y6", "year-6"],
+      ["y7", "year-7"],
+      ["y8", "year-8"],
+      ["y9", "year-9"],
+      ["y10", "year-10"],
+      ["y11", "year-11"],
+    ])("matches short forms", (term, slug) => {
+      const result = findFuzzyMatch(term);
+      expect(result).toMatchObject({ year: slug });
+    });
   });
   describe("subjects and keystages", () => {
     it("matches on subject and keystage slugs", () => {
