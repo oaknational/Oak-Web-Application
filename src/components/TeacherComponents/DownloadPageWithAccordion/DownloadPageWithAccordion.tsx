@@ -1,5 +1,15 @@
 import { FC } from "react";
-import { OakBox, OakFlex, OakHeading } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakFlex,
+  OakHeading,
+  OakIcon,
+  OakP,
+  OakUL,
+  OakLI,
+  OakGrid,
+  OakGridArea,
+} from "@oaknational/oak-components";
 import {
   Control,
   FieldErrors,
@@ -13,6 +23,12 @@ import { ResourceFormProps } from "@/components/TeacherComponents/types/download
 import { DelayedLoadingSpinner } from "@/components/TeacherComponents/ResourcePageLayout/ResourcePageLayout";
 import CopyrightNotice from "@/components/TeacherComponents/CopyrightNotice";
 import FieldError from "@/components/SharedComponents/FieldError";
+import Checkbox from "@/components/SharedComponents/Checkbox";
+import RiskAssessmentBanner from "@/components/TeacherComponents/RiskAssessmentBanner";
+import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
+import NoResourcesToDownload from "@/components/TeacherComponents/NoResourcesToDownload";
+import TermsAgreementForm from "@/components/TeacherComponents/TermsAgreementForm";
+import { getFormErrorMessages } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadFormErrorMessage";
 
 type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
   ResourcePageSchoolDetailsProps & {
@@ -32,7 +48,6 @@ type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
     showPostAlbCopyright: boolean;
     showSavedDetails: boolean;
     cta: React.ReactNode;
-    resourcesHeader?: string;
     triggerForm: UseFormTrigger<ResourceFormProps>;
     apiError?: string | null;
     updatedAt: string;
@@ -46,9 +61,10 @@ const DownloadPageWithAccordion: FC<DownloadPageWithAccordionProps> = (
   props: DownloadPageWithAccordionProps,
 ) => {
   return (
-    <OakFlex $justifyContent={"center"}>
-      <OakFlex
-        $maxWidth={"all-spacing-22"}
+    <OakGrid>
+      <OakGridArea
+        $colStart={4}
+        $colSpan={6}
         $flexDirection={"column"}
         $gap={"space-between-l"}
       >
@@ -62,8 +78,8 @@ const DownloadPageWithAccordion: FC<DownloadPageWithAccordionProps> = (
         ) : (
           <DownloadPageWithAccordionContent {...props} />
         )}
-      </OakFlex>
-    </OakFlex>
+      </OakGridArea>
+    </OakGrid>
   );
 };
 
@@ -71,30 +87,145 @@ const DownloadPageWithAccordionContent = (
   props: DownloadPageWithAccordionProps,
 ) => {
   const hasFormErrors = Object.keys(props.errors).length > 0;
-  // const showFormErrors = hasFormErrors && !props.downloadsRestricted;
-  // const showForm = props.showTermsAgreement && !props.downloadsRestricted;
+  const showFormErrors = hasFormErrors && !props.downloadsRestricted;
+  const showForm = props.showTermsAgreement && !props.downloadsRestricted;
   const hideCallToAction = props.downloadsRestricted;
 
   return (
-    <OakFlex $flexDirection={"column"} $gap={"space-between-l"}>
-      {!hideCallToAction && props.cta}
-      {props.apiError && !hasFormErrors && (
-        <FieldError
-          id="download-error"
-          data-testid="download-error"
-          variant={"large"}
-          withoutMarginBottom
-          ariaLive="polite"
+    <OakFlex
+      $flexDirection={"column"}
+      $gap={"space-between-l"}
+      $maxWidth={"all-spacing-22"}
+    >
+      <OakBox
+        $pa={"inner-padding-none"}
+        $ba={"border-solid-none"}
+        as={"fieldset"}
+      >
+        <OakBox
+          as="legend"
+          $position="absolute"
+          $width="all-spacing-0"
+          $height="all-spacing-0"
+          $pa={"inner-padding-none"}
+          $overflow="hidden"
         >
-          {props.apiError}
+          Select resources to download
+        </OakBox>
+        <FieldError id={"downloads-error"} withoutMarginBottom>
+          {props.errors?.resources?.message}
         </FieldError>
+        {!props.hideSelectAll && (
+          <OakBox $maxWidth="max-content">
+            <Checkbox
+              checked={props.selectAllChecked}
+              onChange={props.handleToggleSelectAll}
+              id="select-all"
+              name="select-all"
+              variant="withLabel"
+              labelText="Select all"
+              labelFontWeight={600}
+            />
+          </OakBox>
+        )}
+        {props.cardGroup}
+        {/* {props.showRiskAssessmentBanner && ( */}
+        <OakBox $mv="space-between-s">
+          <RiskAssessmentBanner />
+        </OakBox>
+        {/* )} */}
+      </OakBox>
+
+      {props.showNoResources && <NoResourcesToDownload />}
+      {!props.showNoResources && (
+        <>
+          {showForm && (
+            <>
+              <TermsAgreementForm
+                form={{
+                  control: props.control,
+                  register: props.register,
+                  errors: props.errors,
+                  trigger: props.triggerForm,
+                }}
+                isLoading={props.showLoading}
+                email={props.email}
+                schoolId={props.schoolId}
+                schoolName={props.school}
+                setSchool={props.setSchool}
+                showSavedDetails={props.showSavedDetails}
+                handleEditDetailsCompletedClick={props.onEditClick}
+                showPostAlbCopyright={props.showPostAlbCopyright}
+                copyrightYear={props.updatedAt}
+                isDownloadPageExperiment
+              />
+              {props.showRiskAssessmentBanner && (
+                <OakBox
+                  $display={["block", "block", "none"]}
+                  $mv="space-between-s"
+                >
+                  <RiskAssessmentBanner />
+                </OakBox>
+              )}
+            </>
+          )}
+          {showFormErrors && (
+            <OakFlex $flexDirection={"row"}>
+              <OakIcon
+                iconName="content-guidance"
+                $colorFilter={"red"}
+                $width={"all-spacing-6"}
+                $height={"all-spacing-6"}
+              />
+              <OakFlex $flexDirection={"column"}>
+                <OakP $ml="space-between-sssx" $color={"red"}>
+                  To complete correct the following:
+                </OakP>
+                <OakUL $mr="space-between-m">
+                  {getFormErrorMessages(props.errors).map((err, i) => {
+                    return (
+                      <OakLI $color={"red"} key={i}>
+                        {err}
+                      </OakLI>
+                    );
+                  })}
+                </OakUL>
+              </OakFlex>
+            </OakFlex>
+          )}
+
+          {hideCallToAction ? (
+            <LoginRequiredButton
+              loginRequired={props.loginRequired ?? false}
+              geoRestricted={props.geoRestricted ?? false}
+              signUpProps={{ name: "Sign in to continue" }}
+              iconName="arrow-right"
+              isTrailingIcon
+            />
+          ) : (
+            props.cta
+          )}
+
+          {props.apiError && !hasFormErrors && (
+            <FieldError
+              id="download-error"
+              data-testid="download-error"
+              variant={"large"}
+              withoutMarginBottom
+              ariaLive="polite"
+            >
+              {props.apiError}
+            </FieldError>
+          )}
+
+          <CopyrightNotice
+            fullWidth
+            showPostAlbCopyright={props.showPostAlbCopyright}
+            openLinksExternally={true}
+            copyrightYear={props.updatedAt}
+          />
+        </>
       )}
-      <CopyrightNotice
-        fullWidth
-        showPostAlbCopyright={props.showPostAlbCopyright}
-        openLinksExternally={true}
-        copyrightYear={props.updatedAt}
-      />
     </OakFlex>
   );
 };

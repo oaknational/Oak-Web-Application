@@ -440,11 +440,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                 />
               );
             }
-            console.log({
-              onboardingStatus:
-                onboardingStatus === "not-onboarded" ||
-                onboardingStatus === "unknown",
-            });
+
             if (showDownloadPageWithAccordion) {
               return (
                 <DownloadPageWithAccordion
@@ -465,7 +461,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                   register={form.register}
                   control={form.control}
                   showPostAlbCopyright={!isLegacyDownload}
-                  resourcesHeader="Lesson resources"
                   triggerForm={form.trigger}
                   apiError={apiError}
                   hideSelectAll={Boolean(expired)}

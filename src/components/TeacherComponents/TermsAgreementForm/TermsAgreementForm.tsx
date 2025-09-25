@@ -41,6 +41,7 @@ export type TermsAgreementFormProps = {
   handleEditDetailsCompletedClick?: () => void;
   showPostAlbCopyright?: boolean;
   copyrightYear: string;
+  isDownloadPageExperiment?: boolean;
 };
 
 const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
@@ -54,19 +55,22 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
   handleEditDetailsCompletedClick = () => {},
   showPostAlbCopyright = true,
   copyrightYear,
+  isDownloadPageExperiment = false,
 }) => {
   const [emailHasFocus, setEmailHasFocus] = useState(false);
   const { ref, ...emailProps } = form.register("email");
 
   return (
     <>
-      <OakHeading
-        tag="h2"
-        $font={["heading-6", "heading-5"]}
-        $mb={["space-between-m", "space-between-m2"]}
-      >
-        Your details
-      </OakHeading>
+      {!isDownloadPageExperiment && (
+        <OakHeading
+          tag="h2"
+          $font={["heading-6", "heading-5"]}
+          $mb={["space-between-m", "space-between-m2"]}
+        >
+          Your details
+        </OakHeading>
+      )}
       {form?.errors.school && (
         <FieldError ariaLive="polite" id="school-error">
           {form.errors.school?.message}
@@ -86,7 +90,13 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
               onEditClick={handleEditDetailsCompletedClick}
             />
           ) : (
-            <OakBox $maxWidth={[null, "all-spacing-21", "all-spacing-21"]}>
+            <OakBox
+              $maxWidth={
+                isDownloadPageExperiment
+                  ? null
+                  : [null, "all-spacing-21", "all-spacing-21"]
+              }
+            >
               <ResourcePageSchoolDetails
                 errors={form.errors}
                 setSchool={setSchool}
@@ -199,13 +209,15 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
               />
             </OakBox>
           )}
-          <OakBox $maxWidth="all-spacing-21">
-            <CopyrightNotice
-              showPostAlbCopyright={showPostAlbCopyright}
-              openLinksExternally={true}
-              copyrightYear={copyrightYear}
-            />
-          </OakBox>
+          {!isDownloadPageExperiment && (
+            <OakBox $maxWidth="all-spacing-21">
+              <CopyrightNotice
+                showPostAlbCopyright={showPostAlbCopyright}
+                openLinksExternally={true}
+                copyrightYear={copyrightYear}
+              />
+            </OakBox>
+          )}
         </OakFlex>
       )}
     </>
