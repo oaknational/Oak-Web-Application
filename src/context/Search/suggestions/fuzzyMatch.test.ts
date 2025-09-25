@@ -50,6 +50,15 @@ describe("findFuzzyMatch", () => {
         keyStage: null,
       });
     });
+    it("should not match longer strings with subjects in them", () => {
+      const result = findFuzzyMatch(
+        "the history of mathematics in ancient greece",
+      );
+      expect(result).toBeNull();
+
+      const result2 = findFuzzyMatch("the geography of the nile river");
+      expect(result2).toBeNull();
+    });
   });
   describe("keystages", () => {
     it("should match keystage slugs", () => {
