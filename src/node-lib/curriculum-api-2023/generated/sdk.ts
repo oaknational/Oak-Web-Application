@@ -71012,7 +71012,7 @@ export type PupilProgrammeListingQueryVariables = Exact<{
 }>;
 
 
-export type PupilProgrammeListingQuery = { __typename?: 'query_root', data: Array<{ __typename?: 'published_mv_synthetic_programmes_by_year_18_0_0', programme_slug?: string | null, year_slug?: string | null, programme_fields?: any | null, actions?: any | null, features?: any | null }> };
+export type PupilProgrammeListingQuery = { __typename?: 'query_root', data: Array<{ __typename?: 'published_mv_synthetic_programmes_by_year_18_2_0', programme_slug?: string | null, year_slug?: string | null, programme_fields?: any | null, actions?: any | null, features?: any | null }> };
 
 export type PupilSubjectListingQueryVariables = Exact<{
   yearSlug: Scalars['String']['input'];
@@ -71663,7 +71663,7 @@ export const PupilPreviewLessonDocument = gql`
     `;
 export const PupilProgrammeListingDocument = gql`
     query pupilProgrammeListing($baseSlug: String!) {
-  data: published_mv_synthetic_programmes_by_year_18_0_0(
+  data: published_mv_synthetic_programmes_by_year_18_2_0(
     where: {base_slug: {_eq: $baseSlug}}
   ) {
     programme_slug
