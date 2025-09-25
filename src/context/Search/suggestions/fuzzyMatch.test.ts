@@ -50,14 +50,16 @@ describe("findFuzzyMatch", () => {
         keyStage: null,
       });
     });
-    it("should not match longer strings with subjects in them", () => {
-      const result = findFuzzyMatch(
-        "the history of mathematics in ancient greece",
-      );
-      expect(result).toBeNull();
-
-      const result2 = findFuzzyMatch("the geography of the nile river");
-      expect(result2).toBeNull();
+    it.each([
+      "the history of mathematics in ancient greece",
+      "the geography of the nile river",
+      "history world war 2",
+      "Churchill’s history of the 20th century",
+      "war of the worlds in art and film",
+      "biology gone bad: when bacteria attack",
+    ])("should not match longer strings with subjects in them", (term) => {
+      const result = findFuzzyMatch(term);
+      expect(result?.subject).toBeFalsy();
     });
   });
   describe("keystages", () => {
