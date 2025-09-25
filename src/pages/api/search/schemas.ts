@@ -17,6 +17,16 @@ export const directMatchSchema = z.object({
   examBoard: examboardSlugs.nullable(),
 });
 
+export const aiResponseSchema = z.object({
+  subjects: z.array(
+    z.object({
+      name: z.string(),
+      confidence: z.number().min(1).max(5),
+    }),
+  ),
+});
+export type AIResponse = z.infer<typeof aiResponseSchema>;
+
 export const suggestedFilterSchema = z.union([
   z.object({
     type: z.literal("subject"),
