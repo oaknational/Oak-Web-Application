@@ -315,4 +315,48 @@ describe("findFuzzyMatch", () => {
       });
     });
   });
+  describe("combinations of all pfs", () => {
+    // TODO - struggles with 2+ factors in the search, sometimes gets incorrect subject rather than null
+    it.skip.each([
+      ["edexcel geography ks4", "geography", "ks4", "edexcel"],
+      ["aqa history ks4", "history", "ks4", "aqa"],
+      ["spanish ks4 ocr", "spanish", "ks4", "ocr"],
+    ])(
+      "can handle subject + keystage + examboard",
+      (term, subject, keyStage, examBoard) => {
+        const result = findFuzzyMatch(term);
+        expect(result).toMatchObject({
+          subject,
+          keyStage,
+          examBoard,
+        });
+      },
+    );
+    it.skip.each([
+      ["year 11 french aqa", "french", "year-11", "aqa"],
+      ["history year10 edexcel", "history", "year-10", "edexcel"],
+    ])(
+      "can handle subject + year + examboard",
+      (term, subject, year, examBoard) => {
+        const result = findFuzzyMatch(term);
+        expect(result).toMatchObject({
+          subject,
+          year,
+          examBoard,
+        });
+      },
+    );
+    it.each([
+      "how to teach ks4 geography in france",
+      "year 1 class about how to read music ",
+      "whats a good ocr curriculum for ks3 students about macbeth",
+      "the history of art in 19th century spain",
+    ])(
+      "returns null when multiple terms are included in a longer sentence",
+      (term) => {
+        const result = findFuzzyMatch(term);
+        expect(result).toBeNull();
+      },
+    );
+  });
 });
