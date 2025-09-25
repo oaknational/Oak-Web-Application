@@ -3,6 +3,7 @@ import { ParsedUrlQuery } from "querystring";
 import searchPageFixture from "../../node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
 
 import {
+  convertSearchIntentToFilters,
   getActiveFilters,
   getFilterForQuery,
   getFiltersFromQuery,
@@ -16,6 +17,7 @@ import { lessonSearchHitSchema, unitSearchHitSchema } from "./search.schema";
 import { hitsFixture } from "./search-api/2023/searchResults.fixture";
 
 import { LEGACY_COHORT } from "@/config/cohort";
+import { SearchIntent } from "@/pages/api/search/schemas";
 
 const lessonHit = lessonSearchHitSchema.parse(
   hitsFixture.find((hit) => hit._source.type === "lesson"),
@@ -222,5 +224,90 @@ describe("search helpers", () => {
     };
     const highlight = getHighlightFromAllFields(rawHighlight, "a match");
     expect(highlight).toBeUndefined();
+  });
+  describe("convertSearchIntentToFilters", () => {
+    test("it returns undefined if no suggested filters", () => {
+      const result = convertSearchIntentToFilters(undefined);
+      expect(result).toBeUndefined();
+    });
+    test("it returns expected suggested filters for directMatch match", () => {
+      const searchIntent: SearchIntent = {
+        directMatch: {
+          subject: { slug: "maths", title: "Maths" },
+          keyStage: { slug: "ks2", title: "Ks2" },
+          examBoard: { slug: "aqa", title: "Aqa" },
+          year: null,
+        },
+        suggestedFilters: [],
+      };
+      const result = convertSearchIntentToFilters(searchIntent);
+      expect(result).toEqual([
+        { type: "subject", slug: "maths", value: "Maths" },
+        { type: "key-stage", slug: "ks2", value: "Ks2" },
+        { type: "exam-board", slug: "aqa", value: "Aqa" },
+      ]);
+    });
+    test("it returns expected suggested filters for directMatch with suggestions", () => {
+      const searchIntent: SearchIntent = {
+        directMatch: {
+          subject: { slug: "maths", title: "Maths" },
+          keyStage: null,
+          examBoard: null,
+          year: { slug: "year-1", title: "Year 1" },
+        },
+        suggestedFilters: [
+          { type: "key-stage", slug: "ks2", title: "Ks2" },
+          { type: "exam-board", slug: "aqa", title: "Aqa" },
+        ],
+      };
+      const result = convertSearchIntentToFilters(searchIntent);
+      expect(result).toEqual([
+        { type: "subject", slug: "maths", value: "Maths" },
+        { type: "key-stage", slug: "ks2", value: "Ks2" },
+        { type: "year", slug: "year-1", value: "Year 1" },
+        { type: "exam-board", slug: "aqa", value: "Aqa" },
+      ]);
+    });
+    test("it returns expected suggested filters in the correct order, subject, ks, year, exam", () => {
+      const searchIntent: SearchIntent = {
+        directMatch: null,
+        suggestedFilters: [
+          { type: "exam-board", slug: "aqa", title: "Aqa" },
+          { type: "key-stage", slug: "ks2", title: "Ks2" },
+          { type: "subject", slug: "history", title: "History" },
+          { type: "subject", slug: "maths", title: "Maths" },
+          { type: "year", slug: "year-1", title: "Year 1" },
+        ],
+      };
+      const result = convertSearchIntentToFilters(searchIntent);
+      expect(result).toEqual([
+        { type: "subject", slug: "history", value: "History" },
+        { type: "subject", slug: "maths", value: "Maths" },
+        { type: "key-stage", slug: "ks2", value: "Ks2" },
+        { type: "year", slug: "year-1", value: "Year 1" },
+        { type: "exam-board", slug: "aqa", value: "Aqa" },
+      ]);
+    });
+    test("it removes any duplicates", () => {
+      const searchIntent: SearchIntent = {
+        directMatch: null,
+        suggestedFilters: [
+          { type: "exam-board", slug: "aqa", title: "Aqa" },
+          { type: "key-stage", slug: "ks2", title: "Ks2" },
+          { type: "key-stage", slug: "ks2", title: "Ks2" },
+          { type: "subject", slug: "history", title: "History" },
+          { type: "subject", slug: "maths", title: "Maths" },
+          { type: "year", slug: "year-1", title: "Year 1" },
+        ],
+      };
+      const result = convertSearchIntentToFilters(searchIntent);
+      expect(result).toEqual([
+        { type: "subject", slug: "history", value: "History" },
+        { type: "subject", slug: "maths", value: "Maths" },
+        { type: "key-stage", slug: "ks2", value: "Ks2" },
+        { type: "year", slug: "year-1", value: "Year 1" },
+        { type: "exam-board", slug: "aqa", value: "Aqa" },
+      ]);
+    });
   });
 });

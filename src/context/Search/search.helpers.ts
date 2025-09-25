@@ -8,6 +8,7 @@ import {
   PathwaySchema,
 } from "./search.types";
 import { RawHighlightSchema } from "./search.schema";
+import { SuggestedSearchFilter } from "./useSuggestedFilters";
 
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
@@ -20,6 +21,7 @@ import {
 } from "@/common-lib/urls";
 import { LEGACY_COHORT } from "@/config/cohort";
 import { removeHTMLTags } from "@/components/TeacherViews/Search/helpers";
+import { SearchIntent } from "@/pages/api/search/schemas";
 
 const reportError = errorReporter("search/helpers");
 
@@ -347,3 +349,69 @@ export const getHighlightFromAllFields = (
     );
   }
 };
+
+export function convertSearchIntentToFilters(
+  searchIntent?: SearchIntent,
+): SuggestedSearchFilter[] | undefined {
+  if (!searchIntent) return undefined;
+
+  // Define the priority order for filter types
+  const filterOrder: SuggestedSearchFilter["type"][] = [
+    "subject",
+    "key-stage",
+    "year",
+    "exam-board",
+  ];
+
+  // Collect all filters first
+  const allFilters: SuggestedSearchFilter[] = [];
+
+  // Helper function to add filter if it exists
+  const addFilter = (
+    item: { title: string; slug: string } | null,
+    type: SuggestedSearchFilter["type"],
+  ) => {
+    if (item) {
+      allFilters.push({
+        type,
+        value: item.title,
+        slug: item.slug,
+      });
+    }
+  };
+
+  // Add direct matches
+  if (searchIntent.directMatch) {
+    const { subject, keyStage, year, examBoard } = searchIntent.directMatch;
+    addFilter(subject, "subject");
+    addFilter(keyStage, "key-stage");
+    addFilter(year, "year");
+    addFilter(examBoard, "exam-board");
+  }
+
+  // Add suggested filters
+  searchIntent.suggestedFilters.forEach((filter) => {
+    addFilter(filter, filter.type);
+  });
+
+  // Remove duplicates and sort by priority order
+  const seen = new Set<string>();
+  const uniqueFilters = allFilters.filter((filter) => {
+    const key = `${filter.type}-${filter.value}-${filter.slug}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+
+  // Sort by the defined priority order
+  uniqueFilters.sort((a, b) => {
+    const aIndex = filterOrder.indexOf(a.type);
+    const bIndex = filterOrder.indexOf(b.type);
+    return aIndex - bIndex;
+  });
+
+  return uniqueFilters;
+}
+
+export const normalizeTerm = (s: string) =>
+  s.trim().replace(/\s+/g, " ").toLowerCase();
