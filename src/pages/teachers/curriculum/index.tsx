@@ -64,6 +64,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                 oakLinkProps: {
                   page: "curriculum-landing-page",
                 },
+                disabled: true,
                 label: "Oak's curricula",
               },
             ]}
