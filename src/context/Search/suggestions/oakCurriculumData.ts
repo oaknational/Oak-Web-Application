@@ -220,7 +220,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
       },
     ],
     years: OAK_YEARS,
-    aliases: ["ict", "computer science", "cs", "computers"],
+    aliases: ["ict", "computer science", "computers"],
   },
   {
     title: "Design and technology",

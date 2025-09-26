@@ -7,6 +7,7 @@ import {
 } from "@oaknational/oak-curriculum-schema";
 
 import {
+  CurriculumData,
   OAK_EXAMBOARDS,
   OAK_KEYSTAGES,
   OAK_SUBJECTS,
@@ -14,13 +15,6 @@ import {
 } from "./oakCurriculumData";
 
 import { DirectMatch } from "@/pages/api/search/schemas";
-
-const subjectsFuse = new Fuse(OAK_SUBJECTS, {
-  keys: ["title", "slug", "aliases"],
-  threshold: 0.6,
-  minMatchCharLength: 4,
-  ignoreLocation: true,
-});
 
 const keystagesFuse = new Fuse(OAK_KEYSTAGES, {
   keys: ["slug", "title"],
@@ -43,13 +37,38 @@ const examboardsFuse = new Fuse(OAK_EXAMBOARDS, {
   ignoreLocation: true,
 });
 
+const getMatches = (query: string, data: CurriculumData[]) => {
+  return data
+    .map((subject) => {
+      const slugRegex = new RegExp(subject.slug, "i");
+      const matchesSlug = query.match(slugRegex);
+
+      const titleRegex = new RegExp(subject.title, "i");
+      const matchesTitle = query.match(titleRegex);
+
+      const matchesAlias = subject.aliases?.some((alias) => {
+        const aliasRegex = new RegExp(alias, "i");
+        return query.match(aliasRegex);
+      });
+
+      if (matchesSlug || matchesTitle || matchesAlias) {
+        return subject.slug;
+      } else {
+        return null;
+      }
+    })
+    .filter((match) => !!match);
+};
+
 export const findFuzzyMatch = (query: string): DirectMatch | null => {
   if (!query.trim() || query.length < 2) {
     return null;
   }
 
-  const subjectResults = subjectsFuse.search(query);
-  const parsedSubject = subjectSlugs.safeParse(subjectResults[0]?.item.slug);
+  const matchedSubjects = getMatches(query, OAK_SUBJECTS);
+  // if there are multiple matches we don't have a way to rank them so discard them all
+  const subjectMatch = matchedSubjects.length === 1 ? matchedSubjects[0] : null;
+  const parsedSubject = subjectSlugs.safeParse(subjectMatch);
 
   const keystageResults = keystagesFuse.search(query);
   const parsedKeystage = keystageSlugs.safeParse(keystageResults[0]?.item.slug);
