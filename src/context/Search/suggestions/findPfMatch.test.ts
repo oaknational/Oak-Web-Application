@@ -237,6 +237,7 @@ describe("findFuzzyMatch", () => {
       "year 1 class about how to read music ",
       "whats a good ocr curriculum for ks3 students about macbeth",
       "the history of art in 19th century spain",
+      "the great depression ks4 history aqa",
     ])(
       "returns null when multiple terms are included in a longer sentence",
       (term) => {

@@ -16,7 +16,6 @@ export const getIsAmbiguousMatch = (
     .filter((pf) => !!pf)
     .join(" ")
     .split(" ").length;
-
   const isAmbiguousMatch = queryWordLength - matchesWordLength > 2;
   return isAmbiguousMatch;
 };
