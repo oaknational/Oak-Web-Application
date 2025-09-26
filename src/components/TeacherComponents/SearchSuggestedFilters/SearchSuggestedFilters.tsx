@@ -26,6 +26,14 @@ function toggleArrayValue(arr: string[] | undefined, value: string): string[] {
   return Array.from(set);
 }
 
+// Map filter types to their corresponding query properties
+const FILTER_TYPE_MAP = {
+  subject: "subjects",
+  "key-stage": "keyStages",
+  year: "yearGroups",
+  "exam-board": "examBoards",
+} as const;
+
 const SuggestedFilters: FC<SuggestedFiltersProps> = ({
   setQuery,
   query,
@@ -34,6 +42,23 @@ const SuggestedFilters: FC<SuggestedFiltersProps> = ({
   if (searchFilters === undefined || searchFilters.length === 0) {
     return null;
   }
+
+  const getCheckedState = (item: SuggestedSearchFilter): boolean => {
+    const queryProperty = FILTER_TYPE_MAP[item.type];
+    return queryProperty
+      ? (query[queryProperty] ?? []).includes(item.slug)
+      : false;
+  };
+
+  const handleFilterChange = (item: SuggestedSearchFilter) => {
+    const queryProperty = FILTER_TYPE_MAP[item.type];
+    if (!queryProperty) return;
+
+    setQuery((q) => ({
+      ...q,
+      [queryProperty]: toggleArrayValue(q[queryProperty], item.slug),
+    }));
+  };
 
   return (
     <OakBox
@@ -52,22 +77,7 @@ const SuggestedFilters: FC<SuggestedFiltersProps> = ({
           $flexWrap={"wrap"}
         >
           {searchFilters.map((item) => {
-            const getCheckedState = () => {
-              switch (item.type) {
-                case "subject":
-                  return (query.subjects ?? []).includes(item.slug);
-                case "key-stage":
-                  return (query.keyStages ?? []).includes(item.slug);
-                case "year":
-                  return (query.yearGroups ?? []).includes(item.slug);
-                case "exam-board":
-                  return (query.examBoards ?? []).includes(item.slug);
-                default:
-                  return false;
-              }
-            };
-
-            const checked = getCheckedState();
+            const checked = getCheckedState(item);
             const id = `ai-suggested-${item.type}-${item.slug}`;
 
             return (
@@ -78,34 +88,7 @@ const SuggestedFilters: FC<SuggestedFiltersProps> = ({
                 aria-label={`${item.value} suggested filter`}
                 displayValue={item.value}
                 checked={checked}
-                onChange={() => {
-                  switch (item.type) {
-                    case "subject":
-                      setQuery((q) => ({
-                        ...q,
-                        subjects: toggleArrayValue(q.subjects, item.slug),
-                      }));
-                      break;
-                    case "key-stage":
-                      setQuery((q) => ({
-                        ...q,
-                        keyStages: toggleArrayValue(q.keyStages, item.slug),
-                      }));
-                      break;
-                    case "year":
-                      setQuery((q) => ({
-                        ...q,
-                        yearGroups: toggleArrayValue(q.yearGroups, item.slug),
-                      }));
-                      break;
-                    case "exam-board":
-                      setQuery((q) => ({
-                        ...q,
-                        examBoards: toggleArrayValue(q.examBoards, item.slug),
-                      }));
-                      break;
-                  }
-                }}
+                onChange={() => handleFilterChange(item)}
                 value={"Suggested filter"}
               />
             );
