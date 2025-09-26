@@ -31,7 +31,7 @@ const SuggestedFilters: FC<SuggestedFiltersProps> = ({
   query,
   searchFilters,
 }) => {
-  if (searchFilters === undefined) {
+  if (searchFilters === undefined || searchFilters.length === 0) {
     return null;
   }
 

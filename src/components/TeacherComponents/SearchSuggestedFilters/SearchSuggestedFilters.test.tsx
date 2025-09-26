@@ -160,4 +160,19 @@ describe("SearchSuggestedFilters", () => {
     await user.click(year1);
     expect(getCurrent().yearGroups).toEqual([]);
   });
+  it(" Does not render if no searchFilters are provided", () => {
+    const query: SearchQuery = {
+      term: "",
+      subjects: [],
+      keyStages: [],
+      examBoards: [],
+    };
+    const { setQuery } = createSetQuery(query);
+
+    renderWithTheme(
+      <SuggestedFilters setQuery={setQuery} query={query} searchFilters={[]} />,
+    );
+
+    expect(screen.queryByText("Suggested filters")).not.toBeInTheDocument();
+  });
 });

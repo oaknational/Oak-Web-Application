@@ -88,7 +88,7 @@ describe("useSuggestedFilters", () => {
     expect(result.current).toEqual(validSearchFilters);
     expect(global.fetch).toHaveBeenCalledTimes(1);
     expect(global.fetch).toHaveBeenCalledWith(
-      "/api/search/intent?query=maths",
+      "/api/search/intent?searchTerm=maths",
       {
         method: "GET",
         headers: { "Content-Type": "application/json" },
@@ -108,7 +108,7 @@ describe("useSuggestedFilters", () => {
     });
     expect(global.fetch).toHaveBeenCalledTimes(1);
     expect(global.fetch).toHaveBeenCalledWith(
-      "/api/search/intent?query=maths",
+      "/api/search/intent?searchTerm=maths",
       {
         method: "GET",
         headers: { "Content-Type": "application/json" },

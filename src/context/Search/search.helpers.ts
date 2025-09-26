@@ -394,7 +394,7 @@ export function convertSearchIntentToFilters(
     addFilter(filter, filter.type);
   });
 
-  // Remove duplicates and sort by priority order
+  // Remove duplicates
   const seen = new Set<string>();
   const uniqueFilters = allFilters.filter((filter) => {
     const key = `${filter.type}-${filter.value}-${filter.slug}`;
