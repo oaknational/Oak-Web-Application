@@ -111,15 +111,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
     children: React.ReactNode;
   };
 
-  type DivProps = {
-    as: "div";
-    tabIndex: number;
-    onClick: () => void;
-    children: React.ReactNode;
-    role: "button";
-  };
-
-  type ClickableSearchCardProps = ButtonProps | LinkProps | DivProps;
+  type ClickableSearchCardProps = ButtonProps | LinkProps;
 
   const ClickableSearchCard = (
     props: ClickableSearchCardProps & {
@@ -208,9 +200,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
     return (
       <ClickableSearchCard
         firstItemRef={props.firstItemRef}
-        as="div"
-        role="button"
-        tabIndex={0}
+        as="button"
         onClick={() => {
           const toggleOpen = !isToggleOpen;
           setToggleOpen(toggleOpen);
