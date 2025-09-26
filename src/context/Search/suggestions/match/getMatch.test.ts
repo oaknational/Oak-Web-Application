@@ -7,18 +7,18 @@ describe("getMatch", () => {
     "should match on title",
     (title, slug) => {
       const result = getMatch(title, OAK_SUBJECTS);
-      expect(result).toBe(slug);
+      expect(result?.slug).toBe(slug);
     },
   );
   it.each(OAK_SUBJECTS.map((s) => s.slug))("should match on slug", (slug) => {
     const result = getMatch(slug, OAK_SUBJECTS);
-    expect(result).toBe(slug);
+    expect(result?.slug).toBe(slug);
   });
   it.each(OAK_SUBJECTS.map((s) => [s.title.toUpperCase(), s.slug]))(
     "should match case-insensitive queries",
     (title, slug) => {
       const result = getMatch(title, OAK_SUBJECTS);
-      expect(result).toBe(slug);
+      expect(result?.slug).toBe(slug);
     },
   );
   const subjectsWithAliases = OAK_SUBJECTS.filter(
@@ -29,7 +29,7 @@ describe("getMatch", () => {
     if (aliases && typeof aliases !== "string") {
       aliases?.forEach((alias: string) => {
         const result = getMatch(alias, OAK_SUBJECTS);
-        expect(result).toBe(slug);
+        expect(result?.slug).toBe(slug);
       });
     }
   });
