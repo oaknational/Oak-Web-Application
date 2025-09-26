@@ -3,8 +3,8 @@ import {
   OakFlex,
   OakIcon,
   OakBox,
-  OakTertiaryInvertedButton,
   OakSpan,
+  OakLink,
 } from "@oaknational/oak-components";
 
 export interface MiniDropdownProps {
@@ -33,7 +33,8 @@ const MiniDropdown: FC<MiniDropdownProps> = ({
   const isControlled = isToggleOpen !== undefined;
   const isOpen = isControlled ? isToggleOpen : internalIsOpen;
 
-  const handleToggle = () => {
+  const handleToggle = (e: React.MouseEvent | React.KeyboardEvent) => {
+    e.preventDefault();
     const newIsOpen = !isOpen;
 
     // Update internal state if uncontrolled
@@ -50,47 +51,50 @@ const MiniDropdown: FC<MiniDropdownProps> = ({
   const contentId = `${dropdownId}-content`;
 
   return (
-    <OakFlex $flexDirection={"column"} $justifyContent={"center"}>
-      <OakTertiaryInvertedButton
-        onClick={handleToggle}
-        onKeyDown={(e: React.KeyboardEvent) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            handleToggle();
-          }
-        }}
-        aria-expanded={isOpen}
-        aria-controls={contentId}
-        aria-label={`${label} dropdown, ${isOpen ? "expanded" : "collapsed"}`}
-      >
-        <OakFlex
-          $flexDirection={"row"}
-          $alignContent={"center"}
-          $justifyContent={"center"}
-          $alignItems={"center"}
+    <OakFlex $width="fit-content" $flexDirection={"column"}>
+      <OakBox $width="fit-content">
+        <OakLink
+          element="button"
+          onClick={handleToggle}
+          onKeyDown={(e: React.KeyboardEvent) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              handleToggle(e);
+            }
+          }}
+          aria-expanded={isOpen}
+          aria-controls={contentId}
+          aria-label={`${label} dropdown, ${isOpen ? "expanded" : "collapsed"}`}
         >
-          <OakSpan
-            $font="heading-7"
-            $color={isOpen ? "navy120" : "navy"}
-            $textDecoration={isHovered && !isOpen ? "underline" : "none"}
-            $textAlign={"center"}
+          <OakFlex
+            $flexDirection={"row"}
+            $alignSelf="flex-start"
+            $alignItems={"center"}
+            $flexShrink={1}
           >
-            {label}
-          </OakSpan>
-          <OakIcon
-            iconName={isOpen ? "chevron-up" : "chevron-down"}
-            $colorFilter={isOpen ? "navy120" : "navy"}
-            $width="all-spacing-6"
-            aria-hidden="true"
-          />
-        </OakFlex>
-      </OakTertiaryInvertedButton>
+            <OakSpan
+              $font="heading-7"
+              $color={isOpen ? "navy120" : "navy"}
+              $textDecoration={isHovered && !isOpen ? "underline" : "none"}
+              $textAlign={"center"}
+            >
+              {label}
+            </OakSpan>
+            <OakIcon
+              iconName={isOpen ? "chevron-up" : "chevron-down"}
+              $colorFilter={isOpen ? "navy120" : "navy"}
+              $width="all-spacing-6"
+              aria-hidden="true"
+            />
+          </OakFlex>
+        </OakLink>
+      </OakBox>
       <OakBox
-        id={contentId}
-        $display={isOpen ? "block" : "none"}
         $transition="standard-ease"
-        role="region"
+        id={contentId}
         aria-labelledby={dropdownId}
+        $display={isOpen ? "block" : "none"}
+        role="region"
       >
         {children}
       </OakBox>

@@ -338,13 +338,9 @@ const Search: FC<SearchProps> = (props) => {
                 />
                 <MobileDrawerNav
                   $mt={"space-between-none"}
-                  labelOpened="Close"
-                  iconOpened="cross"
-                  iconClosed="mini-menu"
-                  iconBackground="black"
                   $alignSelf={"flex-end"}
-                  label={""}
                   applyForTablet={true}
+                  label="All filters"
                 >
                   <OakBox $pt="inner-padding-m">
                     <SearchFilters

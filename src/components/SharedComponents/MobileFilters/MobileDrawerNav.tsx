@@ -17,10 +17,7 @@ import {
 
 import useEventListener from "@/hooks/useEventListener";
 import Cover from "@/components/SharedComponents/Cover";
-import { IconName } from "@/components/SharedComponents/Icon.deprecated";
 import { useMenuContext } from "@/context/Menu";
-import { PostCategoryPage } from "@/components/SharedComponents/PostCategoryList/PostCategoryList";
-import { OakColorName } from "@/styles/theme";
 import MiniDropdown from "@/components/TeacherComponents/MiniDropdown";
 
 const StyledCategoryList = styled(OakBox)<
@@ -39,19 +36,12 @@ const StyledCategoryListInner = styled(OakBox)<
   top: 100%;
 `;
 
-export type MobileFiltersProps = {
-  withBackButton?: boolean;
-  page?: PostCategoryPage;
+export type MobileDrawerNavProps = {
   children: ReactNode;
-  iconOpened?: IconName;
-  iconClosed?: IconName;
-  label: string;
-  labelOpened?: string;
-  providedId?: string;
-  iconBackground?: OakColorName;
   applyForTablet?: boolean;
+  label: string;
 } & OakFlexProps;
-const MobileDrawerNav: FC<MobileFiltersProps> = (props) => {
+const MobileDrawerNav: FC<MobileDrawerNavProps> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [categoryListHeight, setCategoryListHeight] = useState<number>(0);
 
@@ -67,40 +57,21 @@ const MobileDrawerNav: FC<MobileFiltersProps> = (props) => {
   useEventListener("resize", () => {
     checkAndSetHeight();
   });
+  const close = useCallback(() => {
+    setIsOpen(false);
+  }, [setIsOpen]);
   useEffect(() => {
     checkAndSetHeight();
   }, [categoryListRef]);
 
-  const {
-    withBackButton,
-    page,
-    children,
-    label,
-    providedId,
-    applyForTablet,
-    ...flexProps
-  } = props;
-
-  const menuId = useId();
-
-  // Allow the ID to passed in from that parent component
-  // for labelling of nested child components.
-  let triggerId = providedId;
-  const definiteId = useId();
-  if (triggerId === undefined) {
-    triggerId = definiteId;
-  }
-
-  const close = useCallback(() => {
-    setIsOpen(false);
-  }, [setIsOpen]);
-
-  // Close the dropdown if the menu is open
   useEffect(() => {
     if (isOpen && menuOpen) {
       close();
     }
   }, [isOpen, menuOpen, close]);
+  const menuId = useId();
+  const triggerId = useId();
+  const { children, applyForTablet, label, ...flexProps } = props;
 
   return (
     <OakFlex
@@ -111,33 +82,28 @@ const MobileDrawerNav: FC<MobileFiltersProps> = (props) => {
       {...flexProps}
     >
       <Cover $pointerEvents={isOpen ? null : "none"} onClick={close} />
-
-      <MiniDropdown
-        onToggle={setIsOpen}
-        label={"All filters"}
-        children={undefined}
-      />
+      <MiniDropdown onToggle={setIsOpen} label={label} children={undefined} />
       <OakBox $width={"100%"} $position={"relative"}>
         <StyledCategoryList
+          $display={["block", applyForTablet ? "block" : "none", "none"]}
+          $background={isOpen ? "white" : "transparent"}
           $isOpen={isOpen}
           $categoryListHeight={categoryListHeight}
-          $display={["block", applyForTablet ? "block" : "none", "none"]}
+          $dropShadow={"drop-shadow-standard"}
           $position="absolute"
           $transition="standard-ease"
           $width="100%"
           $zIndex="mobile-filters"
-          $background={isOpen ? "white" : "transparent"}
-          $dropShadow={"drop-shadow-standard"}
         >
           <StyledCategoryListInner
+            $opacity={isOpen ? "opaque" : "transparent"}
             id={menuId}
+            $transition="standard-ease"
             ref={categoryListRef}
             $isOpen={isOpen}
-            $transition="standard-ease"
             $width="100%"
-            $opacity={isOpen ? "opaque" : "transparent"}
-            aria-labelledby={triggerId}
             $visibility={isOpen ? "visible" : "hidden"}
+            aria-labelledby={triggerId}
           >
             {children}
           </StyledCategoryListInner>

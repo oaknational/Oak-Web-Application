@@ -74,8 +74,8 @@ const SuggestedFilters: FC<SuggestedFiltersProps> = ({
               <OakSearchFilterCheckBox
                 key={id}
                 id={id}
-                name={`ai-${item.type}-filters`}
-                aria-label={`${item.value} filter`}
+                name={`ai-${item.type}-suggested-filters`}
+                aria-label={`${item.value} suggested filter`}
                 displayValue={item.value}
                 checked={checked}
                 onChange={() => {
