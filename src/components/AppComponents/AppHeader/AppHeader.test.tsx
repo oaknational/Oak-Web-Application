@@ -8,7 +8,6 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import { mockLoggedIn, mockLoggedOut } from "@/__tests__/__helpers__/mockUser";
 
-
 // At the top of your test file
 jest.mock("next/router", () => ({
   useRouter: jest.fn(),
