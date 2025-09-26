@@ -257,19 +257,27 @@ describe("findFuzzyMatch", () => {
     });
   });
   describe("subjects and examboards", () => {
-    it("matches on subject title and examboard", () => {
-      const result = findFuzzyMatch("English aqa");
-      expect(result).toMatchObject({
-        subject: "english",
-        examBoard: "aqa",
-      });
-
-      const result2 = findFuzzyMatch("history edexcel");
-      expect(result2).toMatchObject({
-        subject: "history",
-        examBoard: "edexcel",
-      });
-    });
+    const subjectsWithExamBoards = OAK_SUBJECTS.filter(
+      (subject) => subject.examBoards.length > 0,
+    )
+      .map((subject) =>
+        subject.examBoards.map((eb) => [
+          `${eb.title} ${subject.title}`,
+          eb.slug,
+          subject.slug,
+        ]),
+      )
+      .flat();
+    it.each(subjectsWithExamBoards)(
+      "matches on subject title and examboard %p",
+      (term, examBoard, subject) => {
+        const result = findFuzzyMatch(term);
+        expect(result).toMatchObject({
+          subject,
+          examBoard,
+        });
+      },
+    );
   });
   describe("combinations of all pfs", () => {
     const subjectsWithExamboardsByKs = OAK_SUBJECTS.filter(

@@ -99,7 +99,7 @@ export const OAK_EXAMBOARDS: CurriculumData[] = [
   },
   {
     slug: "edexcelb",
-    title: "EdexcelB",
+    title: "Edexcel B",
   },
   {
     slug: "eduqas",
