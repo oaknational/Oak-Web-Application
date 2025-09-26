@@ -93,7 +93,6 @@ const subjectAvailableTeachingMaterialTypes: Record<
   computing: {
     ks1: [
       "additional-glossary",
-      "additional-comprehension",
       "additional-starter-quiz",
       "additional-exit-quiz",
     ],
