@@ -22,7 +22,7 @@ describe("rankMatches", () => {
     "should rank partial matches behind full matches",
     (query, matches, slug) => {
       const result = rankMatches(query, matches);
-      expect(result).toBe(slug);
+      expect(result?.slug).toBe(slug);
     },
   );
   it.each([
@@ -44,14 +44,14 @@ describe("rankMatches", () => {
     ],
   ])("should not favour longer matches", (query, matches, slug) => {
     const result = rankMatches(query, matches);
-    expect(result).toBe(slug);
+    expect(result?.slug).toBe(slug);
   });
   it("should prioritise whole word matches", () => {
     const result = rankMatches("Edexcel Biology", [
       { slug: "edexcel", matched: "edexcel" },
       { slug: "edexcelb", matched: "Edexcel B" },
     ]);
-    expect(result).toBe("edexcel");
+    expect(result?.slug).toBe("edexcel");
   });
   it.each([
     [
@@ -80,6 +80,6 @@ describe("rankMatches", () => {
     ],
   ])("should handle science edge case terms", (query, matches, slug) => {
     const result = rankMatches(query, matches);
-    expect(result).toBe(slug);
+    expect(result?.slug).toBe(slug);
   });
 });

@@ -2,8 +2,13 @@ import { CurriculumData } from "../oakCurriculumData";
 
 import { rankMatches } from "./rankMatches";
 
-export const getMatch = (query: string, data: CurriculumData[]) => {
-  const matches: Array<{ slug: string; matched: string }> = [];
+export type MatchResult = { slug: string; matched: string };
+
+export const getMatch = (
+  query: string,
+  data: CurriculumData[],
+): MatchResult | undefined => {
+  const matches: Array<MatchResult> = [];
 
   data.forEach((datum) => {
     const slugRegex = new RegExp(datum.slug, "i");
@@ -31,5 +36,5 @@ export const getMatch = (query: string, data: CurriculumData[]) => {
     const ranked = rankMatches(query, matches);
     return ranked;
   }
-  return matches[0]?.slug;
+  return matches[0];
 };

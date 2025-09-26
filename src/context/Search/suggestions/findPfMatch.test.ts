@@ -17,15 +17,15 @@ describe("findFuzzyMatch", () => {
   it("should return null for queries that don't match any subject", () => {
     expect(findPfMatch("xyzzyx")).toBeNull();
   });
-  // TODO: long strings
-  it.skip.each([
+
+  it.each([
     "the history of mathematics in ancient greece",
     "the geography of the nile river",
     "history world war 2",
     "Churchill’s history of the 20th century",
     "war of the worlds in art and film",
     "biology gone bad: when bacteria attack",
-  ])("should not match longer strings with subjects in them", (term) => {
+  ])("should not match longer strings with subjects in them %p", (term) => {
     const result = findPfMatch(term);
     expect(result?.subject).toBeFalsy();
   });
@@ -38,7 +38,7 @@ describe("findFuzzyMatch", () => {
       },
     );
     it.each(OAK_KEYSTAGES.map((ks) => [ks.title, ks.slug]))(
-      "should match key stage titles",
+      "should match key stage titles %p",
       (title, slug) => {
         const result = findPfMatch(title);
         expect(result).toMatchObject({ keyStage: slug });
@@ -232,8 +232,7 @@ describe("findFuzzyMatch", () => {
         });
       },
     );
-    // TODO: long strings
-    it.skip.each([
+    it.each([
       "how to teach ks4 geography in france",
       "year 1 class about how to read music ",
       "whats a good ocr curriculum for ks3 students about macbeth",

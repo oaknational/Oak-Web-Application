@@ -1,6 +1,7 @@
-type MatchResult = {
+type RankResult = {
   slug: string;
   score: number;
+  matched: string;
 };
 
 // A very ranking for when multiple matches are found
@@ -8,10 +9,10 @@ type MatchResult = {
 export function rankMatches(
   query: string,
   candidates: Array<{ slug: string; matched: string }>,
-): string | undefined {
+): RankResult | undefined {
   const queryLower = query.toLowerCase().trim();
   const queryWords = queryLower.split(/\s+/);
-  const scoredMatches: MatchResult[] = [];
+  const scoredMatches: RankResult[] = [];
 
   for (const candidate of candidates) {
     const candidateLower = candidate.matched.toLowerCase().trim();
@@ -21,7 +22,11 @@ export function rankMatches(
     // Check for complete query match first
     if (candidateLower === queryLower) {
       score = 10000; // Highest possible score for complete match
-      scoredMatches.push({ slug: candidate.slug, score });
+      scoredMatches.push({
+        slug: candidate.slug,
+        score,
+        matched: candidate.matched,
+      });
       continue;
     }
 
@@ -54,10 +59,14 @@ export function rankMatches(
       // Small penalty for extra length beyond matched words
       score -= Math.max(0, candidate.matched.length - queryLower.length) * 2;
 
-      scoredMatches.push({ slug: candidate.slug, score });
+      scoredMatches.push({
+        slug: candidate.slug,
+        score,
+        matched: candidate.matched,
+      });
     }
   }
 
   scoredMatches.sort((a, b) => b.score - a.score);
-  return scoredMatches[0]?.slug;
+  return scoredMatches[0];
 }
