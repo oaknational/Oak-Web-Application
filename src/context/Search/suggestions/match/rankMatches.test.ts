@@ -53,4 +53,33 @@ describe("rankMatches", () => {
     ]);
     expect(result).toBe("edexcel");
   });
+  it.each([
+    [
+      "chemistry science",
+      [
+        { slug: "science", matched: "science" },
+        { slug: "science", matched: "Science" },
+        { slug: "chemistry", matched: "chemistry" },
+        { slug: "chemistry", matched: "Chemistry" },
+        { slug: "chemistry", matched: "bio" },
+        { slug: "chemistry", matched: "chemistry science" },
+      ],
+      "chemistry",
+    ],
+    [
+      "biology science",
+      [
+        { slug: "science", matched: "science" },
+        { slug: "science", matched: "Science" },
+        { slug: "biology", matched: "biology" },
+        { slug: "biology", matched: "Biology" },
+        { slug: "biology", matched: "bio" },
+        { slug: "biology", matched: "biology science" },
+      ],
+      "biology",
+    ],
+  ])("should handle science edge case terms", (query, matches, slug) => {
+    const result = rankMatches(query, matches);
+    expect(result).toBe(slug);
+  });
 });

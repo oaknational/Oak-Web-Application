@@ -3,36 +3,29 @@ import { CurriculumData } from "../oakCurriculumData";
 import { rankMatches } from "./rankMatches";
 
 export const getMatch = (query: string, data: CurriculumData[]) => {
-  const matches = data
-    .map((datum) => {
-      let matched;
-      const slugRegex = new RegExp(datum.slug, "i");
-      const matchesSlug = query.match(slugRegex);
-      if (matchesSlug) {
-        matched = datum.slug;
-      } else {
-        const titleRegex = new RegExp(datum.title, "i");
-        const matchesTitle = query.match(titleRegex);
-        if (matchesTitle) {
-          matched = datum.title;
-        } else {
-          datum.aliases?.forEach((alias) => {
-            const aliasRegex = new RegExp(alias, "i");
-            const matches = query.match(aliasRegex);
-            if (matches) {
-              matched = alias;
-            }
-          });
-        }
-      }
+  const matches: Array<{ slug: string; matched: string }> = [];
 
-      if (matched) {
-        return { slug: datum.slug, matched };
-      } else {
-        return null;
+  data.forEach((datum) => {
+    const slugRegex = new RegExp(datum.slug, "i");
+    const matchesSlug = query.match(slugRegex);
+    if (matchesSlug) {
+      matches.push({ slug: datum.slug, matched: datum.slug });
+    }
+
+    const titleRegex = new RegExp(datum.title, "i");
+    const matchesTitle = query.match(titleRegex);
+    if (matchesTitle) {
+      matches.push({ slug: datum.slug, matched: datum.title });
+    }
+
+    datum.aliases?.forEach((alias) => {
+      const aliasRegex = new RegExp(alias, "i");
+      const matchesAlias = query.match(aliasRegex);
+      if (matchesAlias) {
+        matches.push({ slug: datum.slug, matched: alias });
       }
-    })
-    .filter((match) => !!match);
+    });
+  });
 
   if (matches.length > 1) {
     const ranked = rankMatches(query, matches);

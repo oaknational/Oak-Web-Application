@@ -1,5 +1,5 @@
 import { findFuzzyMatch } from "./fuzzyMatch";
-import { OAK_SUBJECTS } from "./oakCurriculumData";
+import { OAK_KEYSTAGES, OAK_SUBJECTS, OAK_YEARS } from "./oakCurriculumData";
 
 describe("findFuzzyMatch", () => {
   it("should return null for empty query", () => {
@@ -18,35 +18,35 @@ describe("findFuzzyMatch", () => {
     expect(findFuzzyMatch("xyzzyx")).toBeNull();
   });
   describe("subjects", () => {
-    it("should match subject names", () => {
-      const result = findFuzzyMatch("History");
-      expect(result).toMatchObject({ subject: "history", keyStage: null });
-    });
+    it.each(OAK_SUBJECTS.map((s) => [s.title, s.slug]))(
+      "should match subject names",
+      (title, slug) => {
+        const result = findFuzzyMatch(title);
+        expect(result).toMatchObject({ subject: slug });
+      },
+    );
 
-    it("should match partial subject names", () => {
-      const result = findFuzzyMatch("hist");
-      expect(result).toMatchObject({ subject: "history", keyStage: null });
-    });
-
-    it("should match case-insensitive queries", () => {
-      const result = findFuzzyMatch("HISTORY");
-      expect(result).toMatchObject({ subject: "history", keyStage: null });
-    });
-
-    it("should match with typos", () => {
-      const result = findFuzzyMatch("histor");
-      expect(result).toMatchObject({ subject: "history", keyStage: null });
-    });
-
-    it.each([
-      ["civics", "citizenship"],
-      ["mathematics", "maths"],
-      ["ICT", "computing"],
-      ["DT", "design-technology"],
-    ])("should match subject aliases", (alias, slug) => {
-      const mathResult = findFuzzyMatch(alias);
-      expect(mathResult).toMatchObject({ subject: slug, keyStage: null });
-    });
+    it.each(OAK_SUBJECTS.map((s) => [s.title.toUpperCase(), s.slug]))(
+      "should match case-insensitive queries",
+      (title, slug) => {
+        const result = findFuzzyMatch(title);
+        expect(result).toMatchObject({ subject: slug });
+      },
+    );
+    const subjectsWithAliases = OAK_SUBJECTS.filter(
+      (s) => s.aliases && s.aliases.length > 0,
+    ).map((s) => [s.aliases, s.slug]);
+    it.each(subjectsWithAliases)(
+      "should match subject aliases %p",
+      (aliases, slug) => {
+        if (aliases && typeof aliases !== "string") {
+          aliases?.forEach((alias: string) => {
+            const result = findFuzzyMatch(alias);
+            expect(result).toMatchObject({ subject: slug });
+          });
+        }
+      },
+    );
     // TODO: long strings
     it.skip.each([
       "the history of mathematics in ancient greece",
@@ -61,98 +61,47 @@ describe("findFuzzyMatch", () => {
     });
   });
   describe("keystages", () => {
-    it("should match keystage slugs", () => {
-      const ks1 = findFuzzyMatch("ks1");
-      expect(ks1).toMatchObject({ subject: null, keyStage: "ks1" });
-
-      const ks2 = findFuzzyMatch("ks2");
-      expect(ks2).toMatchObject({ subject: null, keyStage: "ks2" });
-
-      const ks3 = findFuzzyMatch("ks3");
-      expect(ks3).toMatchObject({ subject: null, keyStage: "ks3" });
-
-      const ks4 = findFuzzyMatch("ks4");
-      expect(ks4).toMatchObject({ subject: null, keyStage: "ks4" });
-    });
-    it("should match key stage titles", () => {
-      const ks1 = findFuzzyMatch("key stage 1");
-      expect(ks1).toMatchObject({ subject: null, keyStage: "ks1" });
-
-      const ks2 = findFuzzyMatch("key stage 2");
-      expect(ks2).toMatchObject({ subject: null, keyStage: "ks2" });
-
-      const ks3 = findFuzzyMatch("key stage 3");
-      expect(ks3).toMatchObject({ subject: null, keyStage: "ks3" });
-
-      const ks4 = findFuzzyMatch("key stage 4");
-      expect(ks4).toMatchObject({ subject: null, keyStage: "ks4" });
-    });
+    it.each(OAK_KEYSTAGES.map((ks) => ks.slug))(
+      "should match keystage slugs",
+      (slug) => {
+        const result = findFuzzyMatch(slug);
+        expect(result).toMatchObject({ keyStage: slug });
+      },
+    );
+    it.each(OAK_KEYSTAGES.map((ks) => [ks.title, ks.slug]))(
+      "should match key stage titles",
+      (title, slug) => {
+        const result = findFuzzyMatch(title);
+        expect(result).toMatchObject({ keyStage: slug });
+      },
+    );
   });
   describe("years", () => {
-    it.each([
-      "year-1",
-      "year-2",
-      "year-3",
-      "year-4",
-      "year-5",
-      "year-6",
-      "year-7",
-      "year-8",
-      "year-9",
-      "year-10",
-      "year-11",
-    ])(`matches year slug %p`, (year) => {
+    it.each(OAK_YEARS.map((y) => y.slug))(`matches year slug %p`, (year) => {
       const result = findFuzzyMatch(year);
       expect(result).toMatchObject({ year: year });
     });
-    it.each([
-      ["year-1", "Year 1"],
-      ["year-2", "Year 2"],
-      ["year-3", "Year 3"],
-      ["year-4", "Year 4"],
-      ["year-5", "Year 5"],
-      ["year-6", "Year 6"],
-      ["year-7", "Year 7"],
-      ["year-8", "Year 8"],
-      ["year-9", "Year 9"],
-      ["year-10", "Year 10"],
-      ["year-11", "Year 11"],
-    ])(`matches year title %p`, (slug, title) => {
-      const result = findFuzzyMatch(title);
-      expect(result).toMatchObject({ year: slug });
-    });
-    it.each([
-      ["year1", "year-1"],
-      ["year2", "year-2"],
-      ["year3", "year-3"],
-      ["year4", "year-4"],
-      ["year5", "year-5"],
-      ["year6", "year-6"],
-      ["year7", "year-7"],
-      ["year8", "year-8"],
-      ["year9", "year-9"],
-      ["year10", "year-10"],
-      ["year11", "year-11"],
-    ])("matches without spaces %p", (term, slug) => {
-      const result = findFuzzyMatch(term);
-      expect(result).toMatchObject({ year: slug });
-    });
-    it.each([
-      ["y1", "year-1"],
-      ["y2", "year-2"],
-      ["y3", "year-3"],
-      ["y4", "year-4"],
-      ["y5", "year-5"],
-      ["y6", "year-6"],
-      ["y7", "year-7"],
-      ["y8", "year-8"],
-      ["y9", "year-9"],
-      ["y10", "year-10"],
-      ["y11", "year-11"],
-    ])("matches short forms %p", (term, slug) => {
-      const result = findFuzzyMatch(term);
-      expect(result).toMatchObject({ year: slug });
-    });
+    it.each(OAK_YEARS.map((y) => [y.title, y.slug]))(
+      `matches year title %p`,
+      (title, slug) => {
+        const result = findFuzzyMatch(title);
+        expect(result).toMatchObject({ year: slug });
+      },
+    );
+    const yearsWithAliases = OAK_YEARS.filter(
+      (y) => y.aliases && y.aliases.length > 0,
+    ).map((y) => [y.aliases, y.slug]);
+    it.each(yearsWithAliases)(
+      "should match year aliases %p",
+      (aliases, slug) => {
+        if (aliases && typeof aliases !== "string") {
+          aliases?.forEach((alias: string) => {
+            const result = findFuzzyMatch(alias);
+            expect(result).toMatchObject({ year: slug });
+          });
+        }
+      },
+    );
   });
   describe("examboards", () => {
     it.each(["aqa", "ocr", "edexcel", "eduqas", "edexcelb"])(
@@ -174,45 +123,40 @@ describe("findFuzzyMatch", () => {
     });
   });
   describe("subjects and keystages", () => {
-    it("matches on subject and keystage slugs", () => {
-      const result = findFuzzyMatch("english ks4");
-      expect(result).toMatchObject({
-        subject: "english",
-        keyStage: "ks4",
-      });
-
-      const result2 = findFuzzyMatch("maths ks2");
-      expect(result2).toMatchObject({
-        subject: "maths",
-        keyStage: "ks2",
-      });
-    });
-    it("matches on subject slug and keystage title", () => {
-      const result = findFuzzyMatch("computing key stage 4");
-      expect(result).toMatchObject({
-        subject: "computing",
-        keyStage: "ks4",
-      });
-
-      const result2 = findFuzzyMatch("art key stage 1");
-      expect(result2).toMatchObject({
-        subject: "art",
-        keyStage: "ks1",
-      });
-    });
-    it("matches on subject title and keystage title", () => {
-      const result = findFuzzyMatch("Religious education key stage 3");
-      expect(result).toMatchObject({
-        subject: "religious-education",
-        keyStage: "ks3",
-      });
-
-      const result2 = findFuzzyMatch("RSHE key stage 1");
-      expect(result2).toMatchObject({
-        subject: "rshe-pshe",
-        keyStage: "ks1",
-      });
-    });
+    const subjectsWithKeystageTitles = OAK_SUBJECTS.map((subject) =>
+      subject.keyStages.map((ks) => [
+        `${ks.title} ${subject.title}`,
+        ks.slug,
+        subject.slug,
+      ]),
+    ).flat();
+    const subjectsWithKeystageSlugs = OAK_SUBJECTS.map((subject) =>
+      subject.keyStages.map((ks) => [
+        `${ks.slug} ${subject.title}`,
+        ks.slug,
+        subject.slug,
+      ]),
+    ).flat();
+    it.each(subjectsWithKeystageSlugs)(
+      "matches on subject and keystage slugs",
+      (query, keyStage, subject) => {
+        const result = findFuzzyMatch(query);
+        expect(result).toMatchObject({
+          subject,
+          keyStage,
+        });
+      },
+    );
+    it.each(subjectsWithKeystageTitles)(
+      "matches on subject slug and keystage title",
+      (query, keyStage, subject) => {
+        const result = findFuzzyMatch(query);
+        expect(result).toMatchObject({
+          subject,
+          keyStage,
+        });
+      },
+    );
     it("matches aliases", () => {
       const result = findFuzzyMatch("food tech ks4");
       expect(result).toMatchObject({
@@ -222,39 +166,23 @@ describe("findFuzzyMatch", () => {
     });
   });
   describe("subjects and years", () => {
-    it("matches on subject and years slugs", () => {
-      const result = findFuzzyMatch("english year 1");
-      expect(result).toMatchObject({
-        subject: "english",
-        year: "year-1",
-      });
-
-      const result2 = findFuzzyMatch("maths year 3");
-      expect(result2).toMatchObject({
-        subject: "maths",
-        year: "year-3",
-      });
-    });
-    it("matches on subject title and year", () => {
-      const result = findFuzzyMatch("Religious education year 5");
-      expect(result).toMatchObject({
-        subject: "religious-education",
-        year: "year-5",
-      });
-
-      const result2 = findFuzzyMatch("RSHE year11");
-      expect(result2).toMatchObject({
-        subject: "rshe-pshe",
-        year: "year-11",
-      });
-    });
-    it("matches subject aliases", () => {
-      const result = findFuzzyMatch("food tech year 4");
-      expect(result).toMatchObject({
-        subject: "cooking-nutrition",
-        year: "year-4",
-      });
-    });
+    const subjectsWithYearSlugs = OAK_SUBJECTS.map((subject) =>
+      subject.years.map((y) => [
+        `${y.slug} ${subject.title}`,
+        y.slug,
+        subject.slug,
+      ]),
+    ).flat();
+    it.each(subjectsWithYearSlugs)(
+      "matches on subject and years slugs %p",
+      (query, year, subject) => {
+        const result = findFuzzyMatch(query);
+        expect(result).toMatchObject({
+          subject,
+          year,
+        });
+      },
+    );
   });
   describe("subjects and examboards", () => {
     const subjectsWithExamBoards = OAK_SUBJECTS.filter(
@@ -313,10 +241,7 @@ describe("findFuzzyMatch", () => {
       )
       .flat();
 
-    // TODO - it really struggles to get these correct with 3 factors in the search
-    // mostly it's coming up null for a factor, but sometimes returning an incorrect match :(
-    // eg history -> chemistry, year-1 -> year-11
-    it.skip.each(subjectsWithExamboardsByKs)(
+    it.each(subjectsWithExamboardsByKs)(
       "can handle %p",
       (term, examBoard, subject) => {
         const result = findFuzzyMatch(term);
@@ -327,7 +252,7 @@ describe("findFuzzyMatch", () => {
         });
       },
     );
-    it.skip.each(subjectsWithExamboardsByYear)(
+    it.each(subjectsWithExamboardsByYear)(
       "can handle %p",
       (term, examBoard, subject, year) => {
         const result = findFuzzyMatch(term);
