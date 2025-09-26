@@ -237,7 +237,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
       },
     ],
     years: OAK_YEARS.filter((y) => y.slug !== "r" && y.slug !== "all-years"),
-    aliases: ["ict", "computer science", "computers"],
+    aliases: ["ict", "computer science", "cs", "computers"],
   },
   {
     title: "Design and technology",
