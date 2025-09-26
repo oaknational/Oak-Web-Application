@@ -4,8 +4,6 @@ type RankResult = {
   matched: string;
 };
 
-// A very ranking for when multiple matches are found
-// Complete matches ranked highest
 export function rankMatches(
   query: string,
   candidates: Array<{ slug: string; matched: string }>,
@@ -55,9 +53,6 @@ export function rankMatches(
     if (matchedWords > 0) {
       // Bonus for matching more words
       score += matchedWords * 200;
-
-      // Small penalty for extra length beyond matched words
-      score -= Math.max(0, candidate.matched.length - queryLower.length) * 2;
 
       scoredMatches.push({
         slug: candidate.slug,
