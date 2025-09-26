@@ -101,7 +101,7 @@ describe("findFuzzyMatch", () => {
       "year-9",
       "year-10",
       "year-11",
-    ])(`matches year slug`, (year) => {
+    ])(`matches year slug %p`, (year) => {
       const result = findFuzzyMatch(year);
       expect(result).toMatchObject({ year: year });
     });
@@ -117,16 +117,9 @@ describe("findFuzzyMatch", () => {
       ["year-9", "Year 9"],
       ["year-10", "Year 10"],
       ["year-11", "Year 11"],
-    ])(`matches year title`, (slug, title) => {
+    ])(`matches year title %p`, (slug, title) => {
       const result = findFuzzyMatch(title);
       expect(result).toMatchObject({ year: slug });
-    });
-    it("matches with typos", () => {
-      const result = findFuzzyMatch("yea 1");
-      expect(result).toMatchObject({ year: "year-1" });
-
-      const result2 = findFuzzyMatch("yr 5");
-      expect(result2).toMatchObject({ year: "year-5" });
     });
     it.each([
       ["year1", "year-1"],
@@ -140,7 +133,7 @@ describe("findFuzzyMatch", () => {
       ["year9", "year-9"],
       ["year10", "year-10"],
       ["year11", "year-11"],
-    ])("matches without spaces", (term, slug) => {
+    ])("matches without spaces %p", (term, slug) => {
       const result = findFuzzyMatch(term);
       expect(result).toMatchObject({ year: slug });
     });
@@ -156,7 +149,7 @@ describe("findFuzzyMatch", () => {
       ["y9", "year-9"],
       ["y10", "year-10"],
       ["y11", "year-11"],
-    ])("matches short forms", (term, slug) => {
+    ])("matches short forms %p", (term, slug) => {
       const result = findFuzzyMatch(term);
       expect(result).toMatchObject({ year: slug });
     });

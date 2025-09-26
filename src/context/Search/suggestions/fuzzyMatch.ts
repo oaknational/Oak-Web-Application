@@ -16,13 +16,6 @@ import {
 
 import { DirectMatch } from "@/pages/api/search/schemas";
 
-const yearsFuse = new Fuse(OAK_YEARS, {
-  keys: ["slug", "title", "aliases"],
-  threshold: 0.8,
-  minMatchCharLength: 2,
-  ignoreLocation: true,
-});
-
 const examboardsFuse = new Fuse(OAK_EXAMBOARDS, {
   keys: ["slug", "title"],
   threshold: 0.8,
@@ -30,31 +23,46 @@ const examboardsFuse = new Fuse(OAK_EXAMBOARDS, {
   ignoreLocation: true,
 });
 
-const getMatches = (query: string, data: CurriculumData[]) => {
+const getMatch = (query: string, data: CurriculumData[]) => {
   const matches = data
-    .map((subject) => {
-      const slugRegex = new RegExp(subject.slug, "i");
+    .map((datum) => {
+      const slugRegex = new RegExp(datum.slug, "i");
       const matchesSlug = query.match(slugRegex);
 
-      const titleRegex = new RegExp(subject.title, "i");
+      const titleRegex = new RegExp(datum.title, "i");
       const matchesTitle = query.match(titleRegex);
 
-      const matchesAlias = subject.aliases?.some((alias) => {
+      const matchesAlias = datum.aliases?.some((alias) => {
         const aliasRegex = new RegExp(alias, "i");
         return query.match(aliasRegex);
       });
 
       if (matchesSlug || matchesTitle || matchesAlias) {
-        return subject.slug;
+        return datum.slug;
       } else {
         return null;
       }
     })
     .filter((match) => !!match);
 
-  // if there are multiple matches we don't have a way to rank them so discard them all
-  const match = matches.length === 1 ? matches[0] : null;
-  return match;
+  // if there are multiple matches rank them by how many characters they match in the query term
+  if (matches.length > 1) {
+    const ranked = rankMatches(query, matches as string[]);
+    return ranked[0]?.match;
+  }
+  return matches[0];
+};
+
+const rankMatches = (query: string, matches: string[]) => {
+  return matches
+    .map((match) => {
+      const leftoverChars = query.length - match.length;
+      return {
+        match,
+        leftoverChars,
+      };
+    })
+    .sort((a, b) => a.leftoverChars - b.leftoverChars);
 };
 
 export const findFuzzyMatch = (query: string): DirectMatch | null => {
@@ -62,14 +70,14 @@ export const findFuzzyMatch = (query: string): DirectMatch | null => {
     return null;
   }
 
-  const subjectMatch = getMatches(query, OAK_SUBJECTS);
+  const subjectMatch = getMatch(query, OAK_SUBJECTS);
   const parsedSubject = subjectSlugs.safeParse(subjectMatch);
 
-  const keystageMatch = getMatches(query, OAK_KEYSTAGES);
+  const keystageMatch = getMatch(query, OAK_KEYSTAGES);
   const parsedKeystage = keystageSlugs.safeParse(keystageMatch);
 
-  const yearResults = yearsFuse.search(query);
-  const parsedYear = yearSlugs.safeParse(yearResults[0]?.item.slug);
+  const yearMatch = getMatch(query, OAK_YEARS);
+  const parsedYear = yearSlugs.safeParse(yearMatch);
 
   const examboardResults = examboardsFuse.search(query);
   const parsedExamboard = examboardSlugs.safeParse(
