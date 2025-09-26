@@ -11,28 +11,52 @@ export const intentRequestSchema = z.object({
 });
 
 export const directMatchSchema = z.object({
-  subject: subjectSlugs.nullable(),
-  keyStage: keystageSlugs.nullable(),
-  year: yearSlugs.nullable(),
-  examBoard: examboardSlugs.nullable(),
+  subject: z
+    .object({
+      slug: subjectSlugs,
+      title: z.string(),
+    })
+    .nullable(),
+  keyStage: z
+    .object({
+      slug: keystageSlugs,
+      title: z.string(),
+    })
+    .nullable(),
+  year: z
+    .object({
+      slug: yearSlugs,
+      title: z.string(),
+    })
+    .nullable(),
+  examBoard: z
+    .object({
+      slug: examboardSlugs,
+      title: z.string(),
+    })
+    .nullable(),
 });
 
 export const suggestedFilterSchema = z.union([
   z.object({
     type: z.literal("subject"),
-    value: subjectSlugs,
+    slug: subjectSlugs,
+    title: z.string(),
   }),
   z.object({
     type: z.literal("key-stage"),
-    value: keystageSlugs,
+    slug: keystageSlugs,
+    title: z.string(),
   }),
   z.object({
     type: z.literal("year"),
-    value: yearSlugs,
+    slug: yearSlugs,
+    title: z.string(),
   }),
   z.object({
     type: z.literal("exam-board"),
-    value: examboardSlugs,
+    slug: examboardSlugs,
+    title: z.string(),
   }),
 ]);
 
@@ -40,3 +64,5 @@ export const searchIntentSchema = z.object({
   directMatch: directMatchSchema.nullable(),
   suggestedFilters: z.array(suggestedFilterSchema),
 });
+
+export type SearchIntent = z.infer<typeof searchIntentSchema>;
