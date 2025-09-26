@@ -44,7 +44,7 @@ export function useSuggestedFilters({
     setState((s) => ({ ...s, status: "loading", error: undefined }));
     (async () => {
       try {
-        const resp = await fetch(`/api/search/intent?query=${key}`, {
+        const resp = await fetch(`/api/search/intent?searchTerm=${key}`, {
           method: "GET",
           headers: { "Content-Type": "application/json" },
         });

@@ -38,9 +38,9 @@ const DUMMY_AI_RESPONSE = {
 
 const handler: NextApiHandler = async (req, res) => {
   let searchTerm: string;
-  const { query } = req.query;
+
   try {
-    const parsed = intentRequestSchema.parse({ searchTerm: query });
+    const parsed = intentRequestSchema.parse(req.query);
     searchTerm = parsed.searchTerm;
   } catch (err) {
     return res.status(400).json({ error: "Invalid search term" });
