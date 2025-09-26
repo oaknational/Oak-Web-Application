@@ -42,14 +42,3 @@ export const searchIntentSchema = z.object({
   directMatch: directMatchSchema.nullable(),
   suggestedFilters: z.array(suggestedFilterSchema),
 });
-
-export type SearchSuggestion = {
-  type: "subject" | "subject-ks";
-  title: string;
-  description: string;
-  slug: string;
-  keyStages: Array<{
-    slug: string;
-    title: string;
-  }>;
-};
