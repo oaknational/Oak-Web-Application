@@ -1,27 +1,27 @@
-import { findFuzzyMatch } from "./fuzzyMatch";
+import { findPfMatch } from "./findPfMatch";
 import { OAK_KEYSTAGES, OAK_SUBJECTS, OAK_YEARS } from "./oakCurriculumData";
 
 describe("findFuzzyMatch", () => {
   it("should return null for empty query", () => {
-    expect(findFuzzyMatch("")).toBeNull();
+    expect(findPfMatch("")).toBeNull();
   });
 
   it("should return null for whitespace-only query", () => {
-    expect(findFuzzyMatch("   ")).toBeNull();
+    expect(findPfMatch("   ")).toBeNull();
   });
 
   it("should return null for single character query", () => {
-    expect(findFuzzyMatch("h")).toBeNull();
+    expect(findPfMatch("h")).toBeNull();
   });
 
   it("should return null for queries that don't match any subject", () => {
-    expect(findFuzzyMatch("xyzzyx")).toBeNull();
+    expect(findPfMatch("xyzzyx")).toBeNull();
   });
   describe("subjects", () => {
     it.each(OAK_SUBJECTS.map((s) => [s.title, s.slug]))(
       "should match subject names",
       (title, slug) => {
-        const result = findFuzzyMatch(title);
+        const result = findPfMatch(title);
         expect(result).toMatchObject({ subject: slug });
       },
     );
@@ -29,7 +29,7 @@ describe("findFuzzyMatch", () => {
     it.each(OAK_SUBJECTS.map((s) => [s.title.toUpperCase(), s.slug]))(
       "should match case-insensitive queries",
       (title, slug) => {
-        const result = findFuzzyMatch(title);
+        const result = findPfMatch(title);
         expect(result).toMatchObject({ subject: slug });
       },
     );
@@ -41,7 +41,7 @@ describe("findFuzzyMatch", () => {
       (aliases, slug) => {
         if (aliases && typeof aliases !== "string") {
           aliases?.forEach((alias: string) => {
-            const result = findFuzzyMatch(alias);
+            const result = findPfMatch(alias);
             expect(result).toMatchObject({ subject: slug });
           });
         }
@@ -56,7 +56,7 @@ describe("findFuzzyMatch", () => {
       "war of the worlds in art and film",
       "biology gone bad: when bacteria attack",
     ])("should not match longer strings with subjects in them", (term) => {
-      const result = findFuzzyMatch(term);
+      const result = findPfMatch(term);
       expect(result?.subject).toBeFalsy();
     });
   });
@@ -64,27 +64,27 @@ describe("findFuzzyMatch", () => {
     it.each(OAK_KEYSTAGES.map((ks) => ks.slug))(
       "should match keystage slugs",
       (slug) => {
-        const result = findFuzzyMatch(slug);
+        const result = findPfMatch(slug);
         expect(result).toMatchObject({ keyStage: slug });
       },
     );
     it.each(OAK_KEYSTAGES.map((ks) => [ks.title, ks.slug]))(
       "should match key stage titles",
       (title, slug) => {
-        const result = findFuzzyMatch(title);
+        const result = findPfMatch(title);
         expect(result).toMatchObject({ keyStage: slug });
       },
     );
   });
   describe("years", () => {
     it.each(OAK_YEARS.map((y) => y.slug))(`matches year slug %p`, (year) => {
-      const result = findFuzzyMatch(year);
+      const result = findPfMatch(year);
       expect(result).toMatchObject({ year: year });
     });
     it.each(OAK_YEARS.map((y) => [y.title, y.slug]))(
       `matches year title %p`,
       (title, slug) => {
-        const result = findFuzzyMatch(title);
+        const result = findPfMatch(title);
         expect(result).toMatchObject({ year: slug });
       },
     );
@@ -96,7 +96,7 @@ describe("findFuzzyMatch", () => {
       (aliases, slug) => {
         if (aliases && typeof aliases !== "string") {
           aliases?.forEach((alias: string) => {
-            const result = findFuzzyMatch(alias);
+            const result = findPfMatch(alias);
             expect(result).toMatchObject({ year: slug });
           });
         }
@@ -107,7 +107,7 @@ describe("findFuzzyMatch", () => {
     it.each(["aqa", "ocr", "edexcel", "eduqas", "edexcelb"])(
       "matches slugs",
       (term) => {
-        const result = findFuzzyMatch(term);
+        const result = findPfMatch(term);
         expect(result).toMatchObject({ examBoard: term });
       },
     );
@@ -118,7 +118,7 @@ describe("findFuzzyMatch", () => {
       ["Eduqas", "eduqas"],
       ["EdexcelB", "edexcelb"],
     ])("matches titles", (term, slug) => {
-      const result = findFuzzyMatch(term);
+      const result = findPfMatch(term);
       expect(result).toMatchObject({ examBoard: slug });
     });
   });
@@ -140,7 +140,7 @@ describe("findFuzzyMatch", () => {
     it.each(subjectsWithKeystageSlugs)(
       "matches on subject and keystage slugs",
       (query, keyStage, subject) => {
-        const result = findFuzzyMatch(query);
+        const result = findPfMatch(query);
         expect(result).toMatchObject({
           subject,
           keyStage,
@@ -150,7 +150,7 @@ describe("findFuzzyMatch", () => {
     it.each(subjectsWithKeystageTitles)(
       "matches on subject slug and keystage title",
       (query, keyStage, subject) => {
-        const result = findFuzzyMatch(query);
+        const result = findPfMatch(query);
         expect(result).toMatchObject({
           subject,
           keyStage,
@@ -158,7 +158,7 @@ describe("findFuzzyMatch", () => {
       },
     );
     it("matches aliases", () => {
-      const result = findFuzzyMatch("food tech ks4");
+      const result = findPfMatch("food tech ks4");
       expect(result).toMatchObject({
         subject: "cooking-nutrition",
         keyStage: "ks4",
@@ -176,7 +176,7 @@ describe("findFuzzyMatch", () => {
     it.each(subjectsWithYearSlugs)(
       "matches on subject and years slugs %p",
       (query, year, subject) => {
-        const result = findFuzzyMatch(query);
+        const result = findPfMatch(query);
         expect(result).toMatchObject({
           subject,
           year,
@@ -199,7 +199,7 @@ describe("findFuzzyMatch", () => {
     it.each(subjectsWithExamBoards)(
       "matches on subject title and examboard %p",
       (term, examBoard, subject) => {
-        const result = findFuzzyMatch(term);
+        const result = findPfMatch(term);
         expect(result).toMatchObject({
           subject,
           examBoard,
@@ -244,7 +244,7 @@ describe("findFuzzyMatch", () => {
     it.each(subjectsWithExamboardsByKs)(
       "can handle %p",
       (term, examBoard, subject) => {
-        const result = findFuzzyMatch(term);
+        const result = findPfMatch(term);
         expect(result).toMatchObject({
           subject,
           keyStage: "ks4",
@@ -255,7 +255,7 @@ describe("findFuzzyMatch", () => {
     it.each(subjectsWithExamboardsByYear)(
       "can handle %p",
       (term, examBoard, subject, year) => {
-        const result = findFuzzyMatch(term);
+        const result = findPfMatch(term);
         expect(result).toMatchObject({
           subject,
           year,
@@ -272,7 +272,7 @@ describe("findFuzzyMatch", () => {
     ])(
       "returns null when multiple terms are included in a longer sentence",
       (term) => {
-        const result = findFuzzyMatch(term);
+        const result = findPfMatch(term);
         expect(result).toBeNull();
       },
     );

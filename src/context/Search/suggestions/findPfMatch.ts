@@ -15,7 +15,10 @@ import { getMatch } from "./match/getMatch";
 
 import { DirectMatch } from "@/pages/api/search/schemas";
 
-export const findFuzzyMatch = (query: string): DirectMatch | null => {
+/**
+ * Searches within a query for any pfs (programme factors) that can be matched exactly within the term
+ */
+export const findPfMatch = (query: string): DirectMatch | null => {
   if (!query.trim() || query.length < 2) {
     return null;
   }
