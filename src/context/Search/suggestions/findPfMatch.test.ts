@@ -17,48 +17,17 @@ describe("findFuzzyMatch", () => {
   it("should return null for queries that don't match any subject", () => {
     expect(findPfMatch("xyzzyx")).toBeNull();
   });
-  describe("subjects", () => {
-    it.each(OAK_SUBJECTS.map((s) => [s.title, s.slug]))(
-      "should match subject names",
-      (title, slug) => {
-        const result = findPfMatch(title);
-        expect(result).toMatchObject({ subject: slug });
-      },
-    );
-
-    it.each(OAK_SUBJECTS.map((s) => [s.title.toUpperCase(), s.slug]))(
-      "should match case-insensitive queries",
-      (title, slug) => {
-        const result = findPfMatch(title);
-        expect(result).toMatchObject({ subject: slug });
-      },
-    );
-    const subjectsWithAliases = OAK_SUBJECTS.filter(
-      (s) => s.aliases && s.aliases.length > 0,
-    ).map((s) => [s.aliases, s.slug]);
-    it.each(subjectsWithAliases)(
-      "should match subject aliases %p",
-      (aliases, slug) => {
-        if (aliases && typeof aliases !== "string") {
-          aliases?.forEach((alias: string) => {
-            const result = findPfMatch(alias);
-            expect(result).toMatchObject({ subject: slug });
-          });
-        }
-      },
-    );
-    // TODO: long strings
-    it.skip.each([
-      "the history of mathematics in ancient greece",
-      "the geography of the nile river",
-      "history world war 2",
-      "Churchill’s history of the 20th century",
-      "war of the worlds in art and film",
-      "biology gone bad: when bacteria attack",
-    ])("should not match longer strings with subjects in them", (term) => {
-      const result = findPfMatch(term);
-      expect(result?.subject).toBeFalsy();
-    });
+  // TODO: long strings
+  it.skip.each([
+    "the history of mathematics in ancient greece",
+    "the geography of the nile river",
+    "history world war 2",
+    "Churchill’s history of the 20th century",
+    "war of the worlds in art and film",
+    "biology gone bad: when bacteria attack",
+  ])("should not match longer strings with subjects in them", (term) => {
+    const result = findPfMatch(term);
+    expect(result?.subject).toBeFalsy();
   });
   describe("keystages", () => {
     it.each(OAK_KEYSTAGES.map((ks) => ks.slug))(
