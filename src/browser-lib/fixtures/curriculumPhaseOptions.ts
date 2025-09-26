@@ -139,6 +139,7 @@ const curriculumPhaseOptions = {
       ],
     },
   ],
+  tab: "units" as const,
 };
 
 export default curriculumPhaseOptions;

@@ -1,11 +1,18 @@
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { Meta, StoryObj } from "@storybook/react";
+import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import { CurricFiltersThreads as Component } from "./CurricFiltersThreads";
 import { basicSetup } from "./CurricFiltersThreads.fixtures";
 
 const meta: Meta<typeof Component> = {
   component: Component,
+  decorators: [
+    (Story) => (
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <Story />
+      </OakThemeProvider>
+    ),
+  ],
   argTypes: {},
 };
 
@@ -26,10 +33,6 @@ export const CurricFiltersThreads: Story = {
     onChangeFilters: () => {},
   },
   render: function Render(args) {
-    return (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Component {...args} />
-      </OakThemeProvider>
-    );
+    return <Component {...args} />;
   },
 };

@@ -1,3 +1,139 @@
+# [1.870.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.869.0...v1.870.0) (2025-09-25)
+
+
+### Features
+
+* ensure header title reflects query params ([0d1a3ce](https://github.com/oaknational/Oak-Web-Application/commit/0d1a3ce996c525e91e2a4556ba173bf1ec2c0bd5))
+* persist step-1 query string ([381d470](https://github.com/oaknational/Oak-Web-Application/commit/381d470f7deb93384aca194dd54749d974382197))
+
+# [1.869.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.868.1...v1.869.0) (2025-09-25)
+
+
+### Features
+
+* add hard coded data to be used for ai search experiment ([a32e1a5](https://github.com/oaknational/Oak-Web-Application/commit/a32e1a51c5325e0139b27486f5f075027d68ab18))
+
+## [1.868.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.868.0...v1.868.1) (2025-09-24)
+
+
+### Bug Fixes
+
+* show media clips with filetype m4v ([91dd17b](https://github.com/oaknational/Oak-Web-Application/commit/91dd17b6ce05fbdbaeb9746761dfab871a0cb582))
+* show media clips with filetype m4v ([e7f4883](https://github.com/oaknational/Oak-Web-Application/commit/e7f488378806e45d700b9f7506fbc6d370d086e7))
+
+# [1.868.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.867.2...v1.868.0) (2025-09-24)
+
+
+### Features
+
+* add empty endpoint scaffold for search intent ([3e5d171](https://github.com/oaknational/Oak-Web-Application/commit/3e5d171d0fb016763ed8cd2491743640b34bfe7f))
+
+## [1.867.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.867.1...v1.867.2) (2025-09-24)
+
+
+### Bug Fixes
+
+* preserve tab with changing selection in the lot picker ([890b5a5](https://github.com/oaknational/Oak-Web-Application/commit/890b5a5a3542bcf09c1d6da05676720cd17b463c))
+
+## [1.867.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.867.0...v1.867.1) (2025-09-23)
+
+# [1.867.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.866.0...v1.867.0) (2025-09-23)
+
+
+### Features
+
+* create next and previous buttons ([97ecaac](https://github.com/oaknational/Oak-Web-Application/commit/97ecaacf01aebd6a50e477c2be0e5bf8ecf08a65))
+* replace page with view ([c665670](https://github.com/oaknational/Oak-Web-Application/commit/c665670b2ef1df878158c0147229b8ef5c4da7d2))
+* update buttons to match styling and reinsert page text ([ea941db](https://github.com/oaknational/Oak-Web-Application/commit/ea941dbff58d9bfd3351e8e11c43ff6119c3c710))
+
+# [1.866.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.865.0...v1.866.0) (2025-09-23)
+
+
+### Features
+
+* add feature flag to year card ([bd0eeb3](https://github.com/oaknational/Oak-Web-Application/commit/bd0eeb373ece6563a52e015304ec703529bb526e))
+* add map to timetable link when feature flag enabled ([aa4b970](https://github.com/oaknational/Oak-Web-Application/commit/aa4b970181e4478d3980505e857d2cbd8b9186c4))
+* create helper to generate query params ([19d8dff](https://github.com/oaknational/Oak-Web-Application/commit/19d8dff7366b8b9af18b7d764427a6624a358c0f))
+* move query param generator to utils and type as search params ([6b981b9](https://github.com/oaknational/Oak-Web-Application/commit/6b981b953d0d58d4ccc5a9bc3cae46b5b5f18f1e))
+* pass down query params to year card ([3bda907](https://github.com/oaknational/Oak-Web-Application/commit/3bda90794147e4cb544939f235d4265ec6ce6f0d))
+* update to use url search params args ([28e69b9](https://github.com/oaknational/Oak-Web-Application/commit/28e69b9804febfac4fe38cd73fe0ace69b699416))
+
+# [1.865.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.864.0...v1.865.0) (2025-09-23)
+
+
+### Features
+
+* bump oak-components to v1.147.0 ([d155737](https://github.com/oaknational/Oak-Web-Application/commit/d15573793007907e51b193f88f822687c5862665))
+
+# [1.864.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.863.0...v1.864.0) (2025-09-22)
+
+
+### Features
+
+* **timetabling:** scaffold UI with headings and disabled inputs ([858ff5b](https://github.com/oaknational/Oak-Web-Application/commit/858ff5b284b8f28aaac38e71a49defe033083933))
+
+# [1.863.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.862.1...v1.863.0) (2025-09-22)
+
+
+### Bug Fixes
+
+* remove hiding of campaign banner in browse journey ([c6dfdd6](https://github.com/oaknational/Oak-Web-Application/commit/c6dfdd635b5d47a6ce2870b21949aa504355559c))
+
+
+### Features
+
+* remove mythbusting feature flag ([7909f4d](https://github.com/oaknational/Oak-Web-Application/commit/7909f4d6285a5a634913de330da41e6602d739d8))
+
+## [1.862.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.862.0...v1.862.1) (2025-09-22)
+
+
+### Bug Fixes
+
+* curric component storybooks ([04f78da](https://github.com/oaknational/Oak-Web-Application/commit/04f78dad254c9650e05b4c56f3ffc23b08612403))
+
+# [1.862.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.861.0...v1.862.0) (2025-09-22)
+
+
+### Features
+
+* added <CurricTimetableHeader/> component ([7dcfb8d](https://github.com/oaknational/Oak-Web-Application/commit/7dcfb8dcc20a3025958c3199624fc025b857e7d5))
+* added <CurricTimetableHeader/> into /timetabling/new page ([35b614d](https://github.com/oaknational/Oak-Web-Application/commit/35b614d90180bd195f21f079287fcf5ce198e117))
+
+# [1.861.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.860.0...v1.861.0) (2025-09-18)
+
+
+### Features
+
+* added <CurricShowSteps/> component ([c6bcd98](https://github.com/oaknational/Oak-Web-Application/commit/c6bcd98a6f42d14e69132ea79efb78f55f3be2bd))
+
+# [1.860.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.859.0...v1.860.0) (2025-09-18)
+
+
+### Features
+
+* make useFeatureFlag typesafe ([4dc7c7f](https://github.com/oaknational/Oak-Web-Application/commit/4dc7c7fcc23f70714b443f0c28bf6f542ee60529))
+* useFeatureFlag now just returns value and does type assertion on the type ([7d2efea](https://github.com/oaknational/Oak-Web-Application/commit/7d2efea0eba7e69a31bd78968b50a6e51d222b59))
+
+# [1.859.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.858.0...v1.859.0) (2025-09-18)
+
+
+### Bug Fixes
+
+* update tests to use renderWithTheme ([ddd729c](https://github.com/oaknational/Oak-Web-Application/commit/ddd729c0dcad7390f241f731c18738e659d0a358))
+
+
+### Features
+
+* add page view to page ([451eb09](https://github.com/oaknational/Oak-Web-Application/commit/451eb09311090ef2d7d0c020134641b3713dd9a5))
+* create page view ([4cb54be](https://github.com/oaknational/Oak-Web-Application/commit/4cb54beb9c7e7ab90d0791819b7d6e39a3110a5d))
+
+# [1.858.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.857.0...v1.858.0) (2025-09-17)
+
+
+### Features
+
+* add routing and pages ([3c339f0](https://github.com/oaknational/Oak-Web-Application/commit/3c339f0c197c033f2cf5cf42ac91fff6d342d621))
+
 # [1.857.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.856.1...v1.857.0) (2025-09-17)
 
 
