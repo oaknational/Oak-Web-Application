@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import { Testimonials } from "./Testimonials";

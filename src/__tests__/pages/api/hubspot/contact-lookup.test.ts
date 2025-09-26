@@ -6,7 +6,7 @@ import { Client as HubspotClient } from "@hubspot/api-client";
 import { createMocks } from "node-mocks-http";
 
 // Import the handler without any mocking
-import { createHandler } from ".";
+import { createHandler } from "src/pages/api/hubspot/contact-lookup/";
 
 describe("/api/hubspot/contact-lookup", () => {
   const hubspot = new HubspotClient();

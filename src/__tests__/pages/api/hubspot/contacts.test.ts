@@ -5,8 +5,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { Client as HubspotClient } from "@hubspot/api-client";
 import { createMocks } from "node-mocks-http";
 
-import { createHandler } from ".";
-
+import { createHandler } from "src/pages/api/hubspot/contacts/";
 import {
   installMockClerkClient,
   mockGetAuthSignedIn,

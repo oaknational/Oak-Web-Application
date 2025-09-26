@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StoryFn, Meta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/nextjs";
 import { OverlayContainer, OverlayProvider } from "react-aria";
 import { OakBox } from "@oaknational/oak-components";
 
