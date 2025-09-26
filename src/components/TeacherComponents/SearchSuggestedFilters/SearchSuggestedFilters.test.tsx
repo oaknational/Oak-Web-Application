@@ -55,13 +55,15 @@ describe("SearchSuggestedFilters", () => {
       />,
     );
 
-    expect(screen.getByLabelText("Maths filter")).toBeInTheDocument();
-    expect(screen.getByLabelText("Ks1 filter")).toBeInTheDocument();
-    expect(screen.getByLabelText("Ks2 filter")).toBeInTheDocument();
-    expect(screen.getByLabelText("Ks3 filter")).toBeInTheDocument();
-    expect(screen.getByLabelText("Ks4 filter")).toBeInTheDocument();
-    expect(screen.getByLabelText("Aqa filter")).toBeInTheDocument();
-    expect(screen.getByLabelText("Edexcel filter")).toBeInTheDocument();
+    expect(screen.getByLabelText("Maths suggested filter")).toBeInTheDocument();
+    expect(screen.getByLabelText("Ks1 suggested filter")).toBeInTheDocument();
+    expect(screen.getByLabelText("Ks2 suggested filter")).toBeInTheDocument();
+    expect(screen.getByLabelText("Ks3 suggested filter")).toBeInTheDocument();
+    expect(screen.getByLabelText("Ks4 suggested filter")).toBeInTheDocument();
+    expect(screen.getByLabelText("Aqa suggested filter")).toBeInTheDocument();
+    expect(
+      screen.getByLabelText("Edexcel suggested filter"),
+    ).toBeInTheDocument();
   });
 
   it("sets checked state based on query", () => {
@@ -82,16 +84,20 @@ describe("SearchSuggestedFilters", () => {
     );
 
     expect(
-      screen.getByRole("checkbox", { name: /Maths filter/i }),
+      screen.getByRole("checkbox", { name: /Maths suggested filter/i }),
     ).toBeChecked();
-    expect(screen.getByRole("checkbox", { name: /Ks2 filter/i })).toBeChecked();
-    expect(screen.getByRole("checkbox", { name: /Aqa filter/i })).toBeChecked();
+    expect(
+      screen.getByRole("checkbox", { name: /Ks2 suggested filter/i }),
+    ).toBeChecked();
+    expect(
+      screen.getByRole("checkbox", { name: /Aqa suggested filter/i }),
+    ).toBeChecked();
 
     expect(
-      screen.getByRole("checkbox", { name: /Ks1 filter/i }),
+      screen.getByRole("checkbox", { name: /Ks1 suggested filter/i }),
     ).not.toBeChecked();
     expect(
-      screen.getByRole("checkbox", { name: /Edexcel filter/i }),
+      screen.getByRole("checkbox", { name: /Edexcel suggested filter/i }),
     ).not.toBeChecked();
   });
 
@@ -107,7 +113,9 @@ describe("SearchSuggestedFilters", () => {
       />,
     );
 
-    const maths = screen.getByRole("checkbox", { name: /Maths filter/i });
+    const maths = screen.getByRole("checkbox", {
+      name: /Maths suggested filter/i,
+    });
     await user.click(maths);
     expect(getCurrent().subjects).toEqual(["maths"]);
 
@@ -128,7 +136,7 @@ describe("SearchSuggestedFilters", () => {
       />,
     );
 
-    const ks1 = screen.getByRole("checkbox", { name: /Ks1 filter/i });
+    const ks1 = screen.getByRole("checkbox", { name: /Ks1 suggested filter/i });
     await user.click(ks1);
     expect(getCurrent().keyStages).toEqual(["ks1"]);
 
@@ -153,7 +161,9 @@ describe("SearchSuggestedFilters", () => {
       />,
     );
 
-    const year1 = screen.getByRole("checkbox", { name: /Year-1 filter/i });
+    const year1 = screen.getByRole("checkbox", {
+      name: /Year-1 suggested filter/i,
+    });
     await user.click(year1);
     expect(getCurrent().yearGroups).toEqual(["year-1"]);
 
