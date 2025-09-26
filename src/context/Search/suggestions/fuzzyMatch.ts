@@ -1,4 +1,3 @@
-import Fuse from "fuse.js";
 import {
   examboardSlugs,
   keystageSlugs,
@@ -15,13 +14,6 @@ import {
 } from "./oakCurriculumData";
 
 import { DirectMatch } from "@/pages/api/search/schemas";
-
-const examboardsFuse = new Fuse(OAK_EXAMBOARDS, {
-  keys: ["slug", "title"],
-  threshold: 0.8,
-  minMatchCharLength: 3,
-  ignoreLocation: true,
-});
 
 const getMatch = (query: string, data: CurriculumData[]) => {
   const matches = data
@@ -79,10 +71,8 @@ export const findFuzzyMatch = (query: string): DirectMatch | null => {
   const yearMatch = getMatch(query, OAK_YEARS);
   const parsedYear = yearSlugs.safeParse(yearMatch);
 
-  const examboardResults = examboardsFuse.search(query);
-  const parsedExamboard = examboardSlugs.safeParse(
-    examboardResults[0]?.item.slug,
-  );
+  const examboardMatch = getMatch(query, OAK_EXAMBOARDS);
+  const parsedExamboard = examboardSlugs.safeParse(examboardMatch);
 
   if (
     !parsedSubject.data &&
