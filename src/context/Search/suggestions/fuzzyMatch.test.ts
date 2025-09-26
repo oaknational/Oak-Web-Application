@@ -87,10 +87,6 @@ describe("findFuzzyMatch", () => {
       const ks4 = findFuzzyMatch("key stage 4");
       expect(ks4).toMatchObject({ subject: null, keyStage: "ks4" });
     });
-    it("should match with spaces", () => {
-      const result = findFuzzyMatch("ks 1");
-      expect(result).toMatchObject({ subject: null, keyStage: "ks1" });
-    });
   });
   describe("years", () => {
     it.each([

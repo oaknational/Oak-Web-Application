@@ -16,13 +16,6 @@ import {
 
 import { DirectMatch } from "@/pages/api/search/schemas";
 
-const keystagesFuse = new Fuse(OAK_KEYSTAGES, {
-  keys: ["slug", "title"],
-  threshold: 0.8,
-  minMatchCharLength: 3,
-  ignoreLocation: true,
-});
-
 const yearsFuse = new Fuse(OAK_YEARS, {
   keys: ["slug", "title", "aliases"],
   threshold: 0.8,
@@ -38,7 +31,7 @@ const examboardsFuse = new Fuse(OAK_EXAMBOARDS, {
 });
 
 const getMatches = (query: string, data: CurriculumData[]) => {
-  return data
+  const matches = data
     .map((subject) => {
       const slugRegex = new RegExp(subject.slug, "i");
       const matchesSlug = query.match(slugRegex);
@@ -58,6 +51,10 @@ const getMatches = (query: string, data: CurriculumData[]) => {
       }
     })
     .filter((match) => !!match);
+
+  // if there are multiple matches we don't have a way to rank them so discard them all
+  const match = matches.length === 1 ? matches[0] : null;
+  return match;
 };
 
 export const findFuzzyMatch = (query: string): DirectMatch | null => {
@@ -65,13 +62,11 @@ export const findFuzzyMatch = (query: string): DirectMatch | null => {
     return null;
   }
 
-  const matchedSubjects = getMatches(query, OAK_SUBJECTS);
-  // if there are multiple matches we don't have a way to rank them so discard them all
-  const subjectMatch = matchedSubjects.length === 1 ? matchedSubjects[0] : null;
+  const subjectMatch = getMatches(query, OAK_SUBJECTS);
   const parsedSubject = subjectSlugs.safeParse(subjectMatch);
 
-  const keystageResults = keystagesFuse.search(query);
-  const parsedKeystage = keystageSlugs.safeParse(keystageResults[0]?.item.slug);
+  const keystageMatch = getMatches(query, OAK_KEYSTAGES);
+  const parsedKeystage = keystageSlugs.safeParse(keystageMatch);
 
   const yearResults = yearsFuse.search(query);
   const parsedYear = yearSlugs.safeParse(yearResults[0]?.item.slug);
