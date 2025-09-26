@@ -13,6 +13,15 @@ export type SubjectData = CurriculumData & {
 
 export const OAK_KEYSTAGES: CurriculumData[] = [
   {
+    slug: "early-years-foundation-stage",
+    title: "EYFS",
+    aliases: [
+      "early years",
+      "early years foundation",
+      "early years foundation stage",
+    ],
+  },
+  {
     slug: "ks1",
     title: "Key Stage 1",
   },
@@ -31,6 +40,10 @@ export const OAK_KEYSTAGES: CurriculumData[] = [
 ];
 
 export const OAK_YEARS: CurriculumData[] = [
+  {
+    slug: "reception",
+    title: "Reception",
+  },
   {
     slug: "year-1",
     title: "Year 1",
@@ -85,6 +98,10 @@ export const OAK_YEARS: CurriculumData[] = [
     slug: "year-11",
     title: "Year 11",
     aliases: ["y11", "year11"],
+  },
+  {
+    slug: "all-years",
+    title: "All years",
   },
 ];
 
@@ -219,7 +236,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
         title: "OCR",
       },
     ],
-    years: OAK_YEARS,
+    years: OAK_YEARS.filter((y) => y.slug !== "r" && y.slug !== "all-years"),
     aliases: ["ict", "computer science", "computers"],
   },
   {
@@ -229,7 +246,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
       "Our curriculum is designed using authentic context-led units. It is centred around the knowledge of designing, making, evaluating, and technology and its interaction with society.\n\nThrough careful sequencing of the curriculum, pupils will develop their design and technology capability with increased confidence and autonomy. Knowledge and skills are applied through the manufacture of prototypes using a variety of materials, processes, and systems suitable to a context. Pupils will appreciate how technology works and, through critique, consider its impact on the world.\n\nPupils communicate and iterate both physically and digitally, mastering strategies including design thinking. Through repeat exposure to user and earth-centred design, pupils develop a sense of environmental consciousness, challenge stereotypes, and gain inspiration from the world around them.",
     keyStages: OAK_KEYSTAGES,
     examBoards: [],
-    years: OAK_YEARS,
+    years: OAK_YEARS.filter((y) => y.slug !== "r" && y.slug !== "all-years"),
     aliases: ["design and technology", "design & technology", "dt", "d&t"],
   },
   {
@@ -295,7 +312,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
         title: "Eduqas",
       },
     ],
-    years: OAK_YEARS,
+    years: OAK_YEARS.filter((y) => y.slug !== "r" && y.slug !== "all-years"),
     aliases: [
       "ela",
       "english language arts",
@@ -386,7 +403,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
         title: "Edexcel B",
       },
     ],
-    years: OAK_YEARS,
+    years: OAK_YEARS.filter((y) => y.slug !== "r" && y.slug !== "all-years"),
     aliases: ["geog"],
   },
   {
@@ -454,7 +471,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
         title: "Edexcel",
       },
     ],
-    years: OAK_YEARS,
+    years: OAK_YEARS.filter((y) => y.slug !== "r" && y.slug !== "all-years"),
     aliases: ["hist"],
   },
   {
@@ -710,7 +727,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     description: "",
     keyStages: OAK_KEYSTAGES,
     examBoards: [],
-    years: OAK_YEARS,
+    years: OAK_YEARS.filter((y) => y.slug !== "r" && y.slug !== "all-years"),
     aliases: [
       "pshe",
       "rshe",
@@ -740,7 +757,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
         title: "Edexcel B",
       },
     ],
-    years: OAK_YEARS,
+    years: OAK_YEARS.filter((y) => y.slug !== "r" && y.slug !== "all-years"),
     aliases: ["religious education", "re", "religion", "religious studies"],
   },
   {
@@ -1086,7 +1103,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     description: "",
     keyStages: OAK_KEYSTAGES,
     examBoards: [],
-    years: OAK_YEARS,
+    years: OAK_YEARS.filter((y) => y.slug !== "r" && y.slug !== "all-years"),
     aliases: [
       "financial literacy",
       "money management",
