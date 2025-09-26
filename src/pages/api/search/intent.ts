@@ -1,3 +1,5 @@
+import OpenAI from "openai";
+import { zodTextFormat } from "openai/helpers/zod";
 import type { NextApiHandler } from "next";
 import { z } from "zod";
 
@@ -5,8 +7,10 @@ import { intentRequestSchema, searchIntentSchema } from "./schemas";
 
 import errorReporter from "@/common-lib/error-reporter/errorReporter";
 import OakError from "@/errors/OakError";
+import { OAK_SUBJECTS } from "@/context/Search/suggestions/oakCurriculumData";
 
 const reportError = errorReporter("search-intent");
+const client = new OpenAI();
 
 const DUMMY_DIRECT_MATCH_RESPONSE = {
   directMatch: {
@@ -23,16 +27,6 @@ const DUMMY_DIRECT_MATCH_RESPONSE = {
     { type: "key-stage", value: "ks4" },
     { type: "exam-board", value: "aqa" },
     { type: "exam-board", value: "edexcel" },
-  ],
-} satisfies z.infer<typeof searchIntentSchema>;
-
-const DUMMY_AI_RESPONSE = {
-  directMatch: null,
-  suggestedFilters: [
-    { type: "subject", value: "maths" },
-    { type: "key-stage", value: "ks4" },
-    { type: "exam-board", value: "aqa" },
-    { type: "subject", value: "science" },
   ],
 } satisfies z.infer<typeof searchIntentSchema>;
 
@@ -53,7 +47,16 @@ const handler: NextApiHandler = async (req, res) => {
       return res.status(200).json(payload);
     }
 
-    const payload = searchIntentSchema.parse(DUMMY_AI_RESPONSE);
+    const modelResponse = await callModel(searchTerm);
+
+    const payload = {
+      directMatch: null,
+      suggestedFilters: [
+        ...modelResponse.map((filter) => {
+          return { type: "subject", slug: filter.slug };
+        }),
+      ],
+    };
     return res.status(200).json(payload);
   } catch (err) {
     const error = new OakError({
@@ -67,5 +70,72 @@ const handler: NextApiHandler = async (req, res) => {
     return res.status(500).json({ error: JSON.stringify(error) });
   }
 };
+
+export async function callModel(searchTerm: string) {
+  const subjects = OAK_SUBJECTS.map((subject) => subject.slug);
+  const systemContent = `You are analyzing a search term for a UK education platform.
+
+The platform has the following available subject names:
+${subjects.join(",")}
+
+Analyze the search term and identify which subject names are relevant, with confidence scores 1-5 (5 being most confident).
+
+Rules:
+- Only return subject names from the list above
+- Use confidence scores: 1 (low) to 5 (high)  
+- Be conservative with confidence scores
+- Return max 3-4 most relevant subjects
+- Focus on direct subject matches first
+
+Return your response as a JSON object with this exact structure:
+{"subjects": [{"name": "subject-name", "confidence": 1-5}]}
+
+Examples:
+- "maths" → {"subjects": [{"name": "maths", "confidence": 5}]}
+- "shakespeare" → {"subjects": [{"name": "english", "confidence": 5}, {"name": "drama", "confidence": 3}]}
+- "ww1" → {"subjects": [{"name": "history", "confidence": 5}]}
+- "photosynthesis" → {"subjects": [{"name": "biology", "confidence": 5}, {"name": "science", "confidence": 4}]}
+
+Analyze the user's search term:
+`;
+
+  const subjectsEnum = z.enum(subjects as [string, ...string[]]);
+
+  const response = await client.responses.parse({
+    model: "gpt-5-nano",
+    input: [
+      {
+        role: "system",
+        content: systemContent,
+      },
+      {
+        role: "user",
+        content: `
+        <retrieved-data>
+        ${searchTerm}
+        </retrieved-data>
+        `,
+      },
+    ],
+    text: {
+      format: zodTextFormat(
+        z.object({
+          subjects: z.array(
+            z.object({
+              slug: subjectsEnum,
+              confidence: z.number().min(1).max(5),
+            }),
+          ),
+        }),
+        "subjects",
+      ),
+    },
+  });
+  const parsedResponse = response.output_parsed;
+  const sortedResponse = parsedResponse?.subjects
+    .sort((a, b) => a.confidence - b.confidence)
+    .reverse();
+  return sortedResponse ?? [];
+}
 
 export default handler;
