@@ -20,16 +20,15 @@ import { generateQueryParams } from "@/utils/curriculum/queryParams";
 export const CurricTimetablingNameView = () => {
   const DEFAULT_NAME_VALUE = "Oak National Academy";
 
-  const { subject, year, queryString } = useTimetableHeaderParams();
-  const queryParams = generateQueryParams({ name: DEFAULT_NAME_VALUE });
-  const unitsHref = useMemo(
-    () => `units?${queryString}&${queryParams.toString()}`,
-    [queryString, queryParams],
-  );
-  const newHref = useMemo(
-    () => `new?${queryString}&${queryParams.toString()}`,
-    [queryString, queryParams],
-  );
+  const { subject, year, name, queryString } = useTimetableHeaderParams();
+
+  const queryParams = generateQueryParams({ name: name ?? DEFAULT_NAME_VALUE });
+
+  const paramString = name
+    ? queryParams
+    : `${queryString}&${queryParams.toString()}`;
+  const unitsHref = useMemo(() => `units?${paramString}`, [paramString]);
+  const newHref = useMemo(() => `new?${paramString}`, [paramString]);
 
   return (
     <>
@@ -81,7 +80,7 @@ export const CurricTimetablingNameView = () => {
               id="autumn-lessons"
               placeholder="Type school name"
               disabled
-              defaultValue={DEFAULT_NAME_VALUE}
+              defaultValue={name ?? DEFAULT_NAME_VALUE}
               aria-describedby="autumn-heading"
               wrapperWidth="100%"
               $pv="inner-padding-none"

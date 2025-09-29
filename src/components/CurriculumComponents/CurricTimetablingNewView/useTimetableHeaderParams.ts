@@ -18,6 +18,7 @@ export type TimetableHeaderParamKey =
 export interface TimetableHeaderParamsHook {
   subject: string;
   year: string;
+  name: string | undefined | null;
   queryParams: URLSearchParams;
   queryString: string;
 }
@@ -42,7 +43,9 @@ export function useTimetableHeaderParams(): TimetableHeaderParamsHook {
       params.set(key, value);
     });
     const providedName = searchParams?.get("name");
-    if (providedName) params.set("name", providedName);
+    if (providedName) {
+      params.set("name", providedName);
+    }
     return params;
   }, [searchParams, DEFAULT_SUBJECT, DEFAULT_YEAR, DEFAULT_LESSONS]);
 
@@ -51,10 +54,11 @@ export function useTimetableHeaderParams(): TimetableHeaderParamsHook {
     [canonicalQueryParams],
   );
 
-  const { subject, year } = useMemo(() => {
+  const { subject, year, name } = useMemo(() => {
     const s = searchParams?.get("subject") ?? DEFAULT_SUBJECT;
     const y = searchParams?.get("year") ?? DEFAULT_YEAR;
-    return { subject: s, year: y };
+    const n = searchParams?.get("name");
+    return { subject: s, year: y, name: n };
   }, [searchParams, DEFAULT_SUBJECT, DEFAULT_YEAR]);
 
   const currentQueryParamsString = useMemo(() => {
@@ -77,6 +81,7 @@ export function useTimetableHeaderParams(): TimetableHeaderParamsHook {
   return {
     subject,
     year,
+    name,
     queryParams: canonicalQueryParams,
     queryString: canonicalQueryParamsString,
   };
