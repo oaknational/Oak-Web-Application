@@ -26,6 +26,10 @@ export const CurricTimetablingNameView = () => {
     () => `units?${queryString}&${queryParams.toString()}`,
     [queryString, queryParams],
   );
+  const newHref = useMemo(
+    () => `new?${queryString}&${queryParams.toString()}`,
+    [queryString, queryParams],
+  );
 
   return (
     <>
@@ -93,7 +97,7 @@ export const CurricTimetablingNameView = () => {
           >
             <OakSecondaryButton
               element="a"
-              href="/timetabling/new"
+              href={newHref}
               pv="inner-padding-m"
               ph="inner-padding-l"
               style={{ height: "auto" }}

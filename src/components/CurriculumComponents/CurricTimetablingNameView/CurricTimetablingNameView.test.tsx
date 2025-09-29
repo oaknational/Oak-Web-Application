@@ -43,11 +43,14 @@ describe("CurricTimetablingNewView", () => {
     expect(button).toBeInTheDocument();
   });
 
-  test("the previous button directs to correct page", async () => {
+  test("the previous button directs to correct page and name persists", async () => {
     const { getByRole } = renderWithTheme(<CurricTimetablingNameView />);
 
     const button = getByRole("link", { name: /Previous/i });
 
-    expect(button).toHaveAttribute("href", "/timetabling/new");
+    expect(button).toHaveAttribute(
+      "href",
+      "new?subject=maths&year=1&autumn=30&spring=30&summer=30&name=Oak+National+Academy",
+    );
   });
 });
