@@ -125,13 +125,16 @@ const DownloadPageWithAccordionContent = (
   const showFormErrors = hasFormErrors && !props.downloadsRestricted;
   const showForm = props.showTermsAgreement && !props.downloadsRestricted;
   const hideCallToAction = props.downloadsRestricted;
-  console.log(props.downloads);
+
   return (
     <OakFlex
       $flexDirection={"column"}
       $gap={"space-between-l"}
       $maxWidth={"all-spacing-22"}
     >
+      <FieldError id={"downloads-error"} withoutMarginBottom>
+        {props.errors?.resources?.message}
+      </FieldError>
       <OakDownloadsAccordion
         downloadsText={getAccordionText(
           props.downloads ?? [],
@@ -156,9 +159,6 @@ const DownloadPageWithAccordionContent = (
           >
             Select resources to download
           </OakBox>
-          <FieldError id={"downloads-error"} withoutMarginBottom>
-            {props.errors?.resources?.message}
-          </FieldError>
           {props.cardGroup}
           {props.showRiskAssessmentBanner && (
             <OakBox $mv="space-between-s">
