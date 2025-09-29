@@ -1,3 +1,15 @@
+# [1.871.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.870.1...v1.871.0) (2025-09-29)
+
+
+### Bug Fixes
+
+* <OakRadioGroup/> now requires a label ([55e9905](https://github.com/oaknational/Oak-Web-Application/commit/55e9905ee66a6e2a9702479179368c74cfdca2e5))
+
+
+### Features
+
+* bumped oak-components to v1.147.2 ([500c501](https://github.com/oaknational/Oak-Web-Application/commit/500c501e5c09d5872e14390a2fddb080bb8aceef))
+
 ## [1.870.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.870.0...v1.870.1) (2025-09-29)
 
 
