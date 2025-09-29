@@ -276,6 +276,7 @@ const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
     const subjects = await curriculumApi2023.curriculumPhaseOptions();
     return {
       subjects: filterValidCurriculumPhaseOptions(subjects),
+      tab: "units",
     };
   };
 
