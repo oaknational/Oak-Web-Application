@@ -335,7 +335,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     !hasResources ||
     Boolean(expired) ||
     downloadsFilteredByCopyright.length === 0;
-
+  console.log(showGeoBlocked);
   return (
     <OakBox
       $ph={["inner-padding-m", "inner-padding-none"]}
@@ -509,6 +509,11 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                   showRiskAssessmentBanner={showRiskAssessmentBanner}
                   downloads={downloadsFilteredByCopyright}
                   additionalFiles={additionalFiles}
+                  showGeoBlocked={showGeoBlocked}
+                  lessonSlug={lessonSlug}
+                  lessonTitle={lessonTitle}
+                  lessonReleaseDate={lessonReleaseDate}
+                  isLegacy={isLegacy}
                 />
               );
             }
@@ -586,7 +591,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         )}
         <OakBox $mt={"space-between-xl"}>
           {/* This page has its own geoblocked message, so we're hiding the banner in that case */}
-          {!showGeoBlocked && (
+          {!showGeoBlocked && !showDownloadPageWithAccordion && (
             <CopyrightRestrictionBanner
               isGeorestricted={geoRestricted ?? undefined}
               isLoginRequired={loginRequired ?? undefined}

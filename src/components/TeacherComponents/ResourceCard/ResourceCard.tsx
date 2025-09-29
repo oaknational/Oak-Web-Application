@@ -16,9 +16,13 @@ const CustomSizing = styled("div")<{
   useDownloadsExperiment?: boolean;
 }>`
   display: grid;
-  width: ${(props) => (props.useDownloadsExperiment ? "300px" : "320px")};
+  width: ${(props) => (props.useDownloadsExperiment ? "100%" : "320px")};
   input {
     border: ${(props) => (props.checked ? "0" : "default")};
+  }
+
+  @media (min-width: 1280px) {
+    width: ${(props) => (props.useDownloadsExperiment ? "300px" : "320px")};
   }
 `;
 

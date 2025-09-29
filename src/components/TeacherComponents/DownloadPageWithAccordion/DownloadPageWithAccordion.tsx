@@ -18,6 +18,8 @@ import {
   UseFormTrigger,
 } from "react-hook-form";
 
+import CopyrightRestrictionBanner from "../CopyrightRestrictionBanner/CopyrightRestrictionBanner";
+
 import { ResourcePageDetailsCompletedProps } from "@/components/TeacherComponents/ResourcePageDetailsCompleted/ResourcePageDetailsCompleted";
 import { ResourcePageSchoolDetailsProps } from "@/components/TeacherComponents/ResourcePageSchoolDetails/ResourcePageSchoolDetails";
 import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
@@ -57,6 +59,11 @@ type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
     showRiskAssessmentBanner?: boolean;
     downloads?: LessonDownloadsPageData["downloads"];
     additionalFiles?: LessonDownloadsPageData["additionalFiles"];
+    showGeoBlocked?: boolean;
+    lessonSlug?: string;
+    lessonTitle?: string;
+    lessonReleaseDate?: string | null;
+    isLegacy?: boolean;
   };
 
 const getAccordionText = (
@@ -95,11 +102,21 @@ const getAccordionText = (
 const DownloadPageWithAccordion: FC<DownloadPageWithAccordionProps> = (
   props: DownloadPageWithAccordionProps,
 ) => {
+  const {
+    showGeoBlocked,
+    geoRestricted,
+    loginRequired,
+    lessonTitle,
+    lessonSlug,
+    lessonReleaseDate,
+    isLegacy,
+  } = props;
+
   return (
     <OakGrid>
       <OakGridArea
-        $colStart={4}
-        $colSpan={6}
+        $colStart={[null, null, 4]}
+        $colSpan={[12, 12, 6]}
         $flexDirection={"column"}
         $gap={"space-between-l"}
       >
@@ -112,6 +129,17 @@ const DownloadPageWithAccordion: FC<DownloadPageWithAccordionProps> = (
           </OakBox>
         ) : (
           <DownloadPageWithAccordionContent {...props} />
+        )}
+        {!showGeoBlocked && (
+          <CopyrightRestrictionBanner
+            isGeorestricted={geoRestricted ?? undefined}
+            isLoginRequired={loginRequired ?? undefined}
+            componentType="lesson_downloads"
+            lessonName={lessonTitle}
+            lessonSlug={lessonSlug}
+            lessonReleaseDate={lessonReleaseDate}
+            isLessonLegacy={isLegacy}
+          />
         )}
       </OakGridArea>
     </OakGrid>
@@ -127,11 +155,7 @@ const DownloadPageWithAccordionContent = (
   const hideCallToAction = props.downloadsRestricted;
 
   return (
-    <OakFlex
-      $flexDirection={"column"}
-      $gap={"space-between-l"}
-      $maxWidth={"all-spacing-22"}
-    >
+    <OakFlex $flexDirection={"column"} $gap={"space-between-l"}>
       <FieldError id={"downloads-error"} withoutMarginBottom>
         {props.errors?.resources?.message}
       </FieldError>

@@ -122,7 +122,10 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
             <OakGrid
               $position="relative"
               $width="max-content"
-              $gridTemplateColumns={["1fr", "max-content max-content"]}
+              $gridTemplateColumns={[
+                "1fr",
+                `${useDownloadsExperiment ? "1fr 1fr" : "max-content max-content"}`,
+              ]}
               $cg={"space-between-s"}
               $rg={"space-between-s"}
             >
