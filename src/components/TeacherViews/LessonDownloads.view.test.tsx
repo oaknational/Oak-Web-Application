@@ -171,7 +171,7 @@ describe("Hiding 'Your details", () => {
   });
 });
 
-describe.only("With downloads page experiment feature flag", () => {
+describe("With downloads page experiment feature flag", () => {
   it("should render the downloads accordion when with-accordion variant is active", () => {
     (useFeatureFlagVariantKey as jest.Mock).mockReturnValue("with-accordion");
     const { queryByText } = render(
