@@ -15,20 +15,21 @@ import { CurricTimetableHeader } from "../CurricTimetableHeader";
 import { CurricShowSteps } from "../CurricShowSteps";
 import { useTimetableHeaderParams } from "../CurricTimetablingNewView/useTimetableHeaderParams";
 
-import { generateQueryParams } from "@/utils/curriculum/queryParams";
-
 export const CurricTimetablingNameView = () => {
   const DEFAULT_NAME_VALUE = "Oak National Academy";
 
-  const { subject, year, name, queryString } = useTimetableHeaderParams();
+  const { subject, year, name, queryParams, queryString } =
+    useTimetableHeaderParams();
 
-  const queryParams = generateQueryParams({ name: name ?? DEFAULT_NAME_VALUE });
+  const params = useMemo(() => {
+    if (queryParams && !queryParams.has("name")) {
+      const updatedParams = new URLSearchParams(queryString);
+      updatedParams.append("name", DEFAULT_NAME_VALUE);
 
-  const paramString = name
-    ? queryParams
-    : `${queryString}&${queryParams.toString()}`;
-  const unitsHref = useMemo(() => `units?${paramString}`, [paramString]);
-  const newHref = useMemo(() => `new?${paramString}`, [paramString]);
+      return updatedParams.toString();
+    }
+    return queryString;
+  }, [queryParams, queryString]);
 
   return (
     <>
@@ -96,7 +97,8 @@ export const CurricTimetablingNameView = () => {
           >
             <OakSecondaryButton
               element="a"
-              href={newHref}
+              // href={newHref}
+              href={`new?${params}`}
               pv="inner-padding-m"
               ph="inner-padding-l"
               style={{ height: "auto" }}
@@ -106,7 +108,8 @@ export const CurricTimetablingNameView = () => {
             </OakSecondaryButton>
             <OakPrimaryButton
               element="a"
-              href={unitsHref}
+              // href={unitsHref}
+              href={`units?${params}`}
               pv="inner-padding-m"
               ph="inner-padding-l"
               style={{ height: "auto" }}
