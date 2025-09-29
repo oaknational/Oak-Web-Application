@@ -76,8 +76,6 @@ export async function callModel(searchTerm: string) {
   const subjects = OAK_SUBJECTS.map((subject) => subject.slug);
   const prompt = buildSearchIntentPrompt(searchTerm, subjects);
 
-  const subjectsEnum = z.enum(subjects as [string, ...string[]]);
-
   const response = await client.responses.parse({
     model: "gpt-5-nano",
     input: prompt,
@@ -86,7 +84,7 @@ export async function callModel(searchTerm: string) {
         z.object({
           subjects: z.array(
             z.object({
-              slug: subjectsEnum,
+              slug: z.string(),
               confidence: z.number().min(1).max(5),
             }),
           ),
@@ -96,10 +94,17 @@ export async function callModel(searchTerm: string) {
     },
   });
   const parsedResponse = response.output_parsed;
-  const sortedResponse = parsedResponse?.subjects
+
+  // Filter out any subjects that aren't in our OAK_SUBJECTS array
+  const validSubjects =
+    parsedResponse?.subjects?.filter((subject) =>
+      subjects.includes(subject.slug),
+    ) ?? [];
+
+  const sortedResponse = validSubjects
     .sort((a, b) => a.confidence - b.confidence)
     .reverse();
-  return sortedResponse ?? [];
+  return sortedResponse;
 }
 
 export default handler;
