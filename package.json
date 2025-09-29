@@ -243,7 +243,7 @@
     "prettier": "3.3.3",
     "prettier-plugin-embed": "^0.4.15",
     "properties-file": "^3.5.9",
-    "puppeteer": "^21.11.0",
+    "puppeteer": "^24.15.0",
     "rimraf": "^6.0.1",
     "semantic-release": "^24.2.4",
     "sharp": "^0.34.2",
