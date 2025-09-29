@@ -193,6 +193,10 @@ async function main() {
     DISABLE_ISR: process.env.DISABLE_ISR,
     NEXT_PUBLIC_SENTRY_ENABLED: process.env.NEXT_PUBLIC_SENTRY_ENABLED,
 
+    // Search API
+    OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+    SEARCH_ENABLED_IN_PROD: process.env.SEARCH_ENABLED_IN_PROD,
+
     // Seo
 
     NEXT_PUBLIC_SEO_APP_NAME:

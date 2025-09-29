@@ -31,7 +31,18 @@ const DUMMY_DIRECT_MATCH_RESPONSE = {
   ],
 } satisfies z.infer<typeof searchIntentSchema>;
 
+const disableEndpoint = () => {
+  const isProduction = process.env.NODE_ENV === "production";
+  if (!isProduction) return false;
+  const searchDisabled = process.env.SEARCH_ENABLED_IN_PROD === "false";
+  return searchDisabled;
+};
+
 const handler: NextApiHandler = async (req, res) => {
+  if (disableEndpoint()) {
+    return;
+  }
+
   let searchTerm: string;
 
   try {
@@ -95,7 +106,6 @@ export async function callModel(searchTerm: string) {
   });
   const parsedResponse = response.output_parsed;
 
-  // Filter out any subjects that aren't in our OAK_SUBJECTS array
   const validSubjects =
     parsedResponse?.subjects?.filter((subject) =>
       subjects.includes(subject.slug),
