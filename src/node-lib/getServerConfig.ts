@@ -253,12 +253,12 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: null,
   },
-  searchEnabledInProd: {
-    value: process.env.SEARCH_ENABLED_IN_PROD,
-    envName: "SEARCH_ENABLED_IN_PROD",
-    required: true,
+  aiSearchEnabled: {
+    value: process.env.AI_SEARCH_ENABLED === "true",
+    envName: "AI_SEARCH_ENABLED",
+    required: false,
     availableInBrowser: false,
-    default: null,
+    default: false,
   },
   posthogApiKey: {
     value: process.env.NEXT_PUBLIC_POSTHOG_API_KEY,
