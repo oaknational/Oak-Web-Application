@@ -13,6 +13,7 @@ import QuizImageAnswer from "@/components/TeacherComponents/QuizImageAnswer";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Typography from "@/components/SharedComponents/Typography";
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { Stem } from "@/components/SharedComponents/Stem";
 
 export const QuizQuestionsMCAnswers = (props: {
   answers: MCAnswer[];
@@ -65,11 +66,13 @@ export const QuizQuestionsMCAnswers = (props: {
                     $font={["body-2", "body-1"]}
                     $ph={40}
                   >
+                    <Stem stem={answerItem} />
+                    {/* TODO: handle OakCodeRenderer
                     <OakCodeRenderer
                       string={removeMarkdown(answerItem.text)}
                       $font="code-3"
                       $mt={"space-between-none"}
-                    />
+                    /> */}
                   </Typography>
                 );
               } else if (answerItem.type === "text" && choice.answerIsCorrect) {
@@ -93,11 +96,13 @@ export const QuizQuestionsMCAnswers = (props: {
                     </VisuallyHidden>
 
                     <OakTypography $font={["body-2", "body-1"]} aria-hidden>
-                      <OakCodeRenderer
-                        string={removeMarkdown(answerItem.text)}
-                        $font="code-3"
-                        $mt={"space-between-none"}
-                      />
+                      <Stem stem={answerItem} />
+                      {/* TODO: handle OakCodeRenderer
+                    <OakCodeRenderer
+                      string={removeMarkdown(answerItem.text)}
+                      $font="code-3"
+                      $mt={"space-between-none"}
+                    /> */}
                     </OakTypography>
                   </OakFlex>
                 );
