@@ -1,3 +1,74 @@
+## [1.870.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.870.0...v1.870.1) (2025-09-29)
+
+
+### Bug Fixes
+
+* indicate current section in header ([b417e10](https://github.com/oaknational/Oak-Web-Application/commit/b417e1070c408c2f58ab0158eed76537f2ffe259))
+* indicate current section in header ([c7fcd8c](https://github.com/oaknational/Oak-Web-Application/commit/c7fcd8c58f4895fa14b4a8d93a54ba75d851c728))
+* indicate current section in header ([15eb898](https://github.com/oaknational/Oak-Web-Application/commit/15eb8989bbaaafd51dd0474b98df8cf025320f5f))
+* indicate current section in header ([5e30251](https://github.com/oaknational/Oak-Web-Application/commit/5e30251066962657814aef71bf5229304f50984e))
+* indicate current section in header ([063b2b9](https://github.com/oaknational/Oak-Web-Application/commit/063b2b948f6955b5e16a9ad8d1fcd3dc9fdc60cc))
+
+# [1.870.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.869.0...v1.870.0) (2025-09-25)
+
+
+### Features
+
+* ensure header title reflects query params ([0d1a3ce](https://github.com/oaknational/Oak-Web-Application/commit/0d1a3ce996c525e91e2a4556ba173bf1ec2c0bd5))
+* persist step-1 query string ([381d470](https://github.com/oaknational/Oak-Web-Application/commit/381d470f7deb93384aca194dd54749d974382197))
+
+# [1.869.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.868.1...v1.869.0) (2025-09-25)
+
+
+### Features
+
+* add hard coded data to be used for ai search experiment ([a32e1a5](https://github.com/oaknational/Oak-Web-Application/commit/a32e1a51c5325e0139b27486f5f075027d68ab18))
+
+## [1.868.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.868.0...v1.868.1) (2025-09-24)
+
+
+### Bug Fixes
+
+* show media clips with filetype m4v ([91dd17b](https://github.com/oaknational/Oak-Web-Application/commit/91dd17b6ce05fbdbaeb9746761dfab871a0cb582))
+* show media clips with filetype m4v ([e7f4883](https://github.com/oaknational/Oak-Web-Application/commit/e7f488378806e45d700b9f7506fbc6d370d086e7))
+
+# [1.868.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.867.2...v1.868.0) (2025-09-24)
+
+
+### Features
+
+* add empty endpoint scaffold for search intent ([3e5d171](https://github.com/oaknational/Oak-Web-Application/commit/3e5d171d0fb016763ed8cd2491743640b34bfe7f))
+
+## [1.867.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.867.1...v1.867.2) (2025-09-24)
+
+
+### Bug Fixes
+
+* preserve tab with changing selection in the lot picker ([890b5a5](https://github.com/oaknational/Oak-Web-Application/commit/890b5a5a3542bcf09c1d6da05676720cd17b463c))
+
+## [1.867.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.867.0...v1.867.1) (2025-09-23)
+
+# [1.867.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.866.0...v1.867.0) (2025-09-23)
+
+
+### Features
+
+* create next and previous buttons ([97ecaac](https://github.com/oaknational/Oak-Web-Application/commit/97ecaacf01aebd6a50e477c2be0e5bf8ecf08a65))
+* replace page with view ([c665670](https://github.com/oaknational/Oak-Web-Application/commit/c665670b2ef1df878158c0147229b8ef5c4da7d2))
+* update buttons to match styling and reinsert page text ([ea941db](https://github.com/oaknational/Oak-Web-Application/commit/ea941dbff58d9bfd3351e8e11c43ff6119c3c710))
+
+# [1.866.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.865.0...v1.866.0) (2025-09-23)
+
+
+### Features
+
+* add feature flag to year card ([bd0eeb3](https://github.com/oaknational/Oak-Web-Application/commit/bd0eeb373ece6563a52e015304ec703529bb526e))
+* add map to timetable link when feature flag enabled ([aa4b970](https://github.com/oaknational/Oak-Web-Application/commit/aa4b970181e4478d3980505e857d2cbd8b9186c4))
+* create helper to generate query params ([19d8dff](https://github.com/oaknational/Oak-Web-Application/commit/19d8dff7366b8b9af18b7d764427a6624a358c0f))
+* move query param generator to utils and type as search params ([6b981b9](https://github.com/oaknational/Oak-Web-Application/commit/6b981b953d0d58d4ccc5a9bc3cae46b5b5f18f1e))
+* pass down query params to year card ([3bda907](https://github.com/oaknational/Oak-Web-Application/commit/3bda90794147e4cb544939f235d4265ec6ce6f0d))
+* update to use url search params args ([28e69b9](https://github.com/oaknational/Oak-Web-Application/commit/28e69b9804febfac4fe38cd73fe0ace69b699416))
+
 # [1.865.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.864.0...v1.865.0) (2025-09-23)
 
 

@@ -269,6 +269,7 @@ const LayoutSiteFooter: FC = () => {
           </OakGrid>
           <StyledLogo
             alt="Cyber Essentials Logo"
+            data-percy-hide="contents"
             src={getCloudinaryImageUrl(
               "v1751992190/OWA/illustrations/Cyber-Essentials-Logo_ryiskg.png",
             )}

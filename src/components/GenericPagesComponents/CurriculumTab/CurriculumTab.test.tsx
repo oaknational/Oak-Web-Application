@@ -15,6 +15,7 @@ describe("CurriculumTab", () => {
       <CurriculumTab
         curriculumPhaseOptions={{
           subjects: curriculumPhaseOptions.options,
+          tab: "units",
         }}
       />,
     );
@@ -28,6 +29,7 @@ describe("CurriculumTab", () => {
       <CurriculumTab
         curriculumPhaseOptions={{
           subjects: curriculumPhaseOptions.options,
+          tab: "units",
         }}
       />,
     );
