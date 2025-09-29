@@ -1,3 +1,14 @@
+## [1.870.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.870.0...v1.870.1) (2025-09-29)
+
+
+### Bug Fixes
+
+* indicate current section in header ([b417e10](https://github.com/oaknational/Oak-Web-Application/commit/b417e1070c408c2f58ab0158eed76537f2ffe259))
+* indicate current section in header ([c7fcd8c](https://github.com/oaknational/Oak-Web-Application/commit/c7fcd8c58f4895fa14b4a8d93a54ba75d851c728))
+* indicate current section in header ([15eb898](https://github.com/oaknational/Oak-Web-Application/commit/15eb8989bbaaafd51dd0474b98df8cf025320f5f))
+* indicate current section in header ([5e30251](https://github.com/oaknational/Oak-Web-Application/commit/5e30251066962657814aef71bf5229304f50984e))
+* indicate current section in header ([063b2b9](https://github.com/oaknational/Oak-Web-Application/commit/063b2b948f6955b5e16a9ad8d1fcd3dc9fdc60cc))
+
 # [1.870.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.869.0...v1.870.0) (2025-09-25)
 
 
