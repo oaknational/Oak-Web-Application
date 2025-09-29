@@ -95,6 +95,7 @@ const YearListingPage = () => {
                 <OakHandDrawnHR
                   hrColor={"border-neutral-lighter"}
                   $width={"100%"}
+                  aria-hidden="true"
                 />
                 <OakHeading
                   tag="h3"
