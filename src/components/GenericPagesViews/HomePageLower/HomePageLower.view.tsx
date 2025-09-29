@@ -40,7 +40,7 @@ export type HomePageLowerViewProps = {
 
 export const HomePageLowerView = (props: HomePageLowerViewProps) => {
   const { campaignPromoBanner } = props;
-  console.log("diego cpp", campaignPromoBanner);
+
   const posts = props.posts.map(postToPostListItem);
   const blogListProps = usePostList({ items: posts, withImage: true });
   const { introVideo } = props;
