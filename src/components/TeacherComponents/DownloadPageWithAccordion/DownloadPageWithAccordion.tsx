@@ -59,11 +59,11 @@ type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
     showRiskAssessmentBanner?: boolean;
     downloads?: LessonDownloadsPageData["downloads"];
     additionalFiles?: LessonDownloadsPageData["additionalFiles"];
-    showGeoBlocked?: boolean;
-    lessonSlug?: string;
-    lessonTitle?: string;
-    lessonReleaseDate?: string | null;
-    isLegacy?: boolean;
+    showGeoBlocked: boolean;
+    lessonSlug: string;
+    lessonTitle: string;
+    lessonReleaseDate: string | null;
+    isLegacy: boolean;
   };
 
 const getAccordionText = (
@@ -103,6 +103,7 @@ const DownloadPageWithAccordion: FC<DownloadPageWithAccordionProps> = (
   props: DownloadPageWithAccordionProps,
 ) => {
   const {
+    isLoading,
     showGeoBlocked,
     geoRestricted,
     loginRequired,
@@ -123,7 +124,7 @@ const DownloadPageWithAccordion: FC<DownloadPageWithAccordionProps> = (
         <OakHeading tag="h1" $font={["heading-5", "heading-4"]}>
           Download
         </OakHeading>
-        {props.isLoading ? (
+        {isLoading ? (
           <OakBox $minHeight="all-spacing-21">
             <DelayedLoadingSpinner $delay={300} data-testid="loading" />
           </OakBox>
@@ -149,23 +150,49 @@ const DownloadPageWithAccordion: FC<DownloadPageWithAccordionProps> = (
 const DownloadPageWithAccordionContent = (
   props: DownloadPageWithAccordionProps,
 ) => {
-  const hasFormErrors = Object.keys(props.errors).length > 0;
-  const showFormErrors = hasFormErrors && !props.downloadsRestricted;
-  const showForm = props.showTermsAgreement && !props.downloadsRestricted;
-  const hideCallToAction = props.downloadsRestricted;
+  const {
+    errors,
+    downloadsRestricted,
+    showTermsAgreement,
+    downloads,
+    additionalFiles,
+    handleToggleSelectAll,
+    selectAllChecked,
+    cardGroup,
+    showRiskAssessmentBanner,
+    showNoResources,
+    control,
+    register,
+    triggerForm,
+    showLoading,
+    email,
+    schoolId,
+    school,
+    setSchool,
+    showSavedDetails,
+    onEditClick,
+    showPostAlbCopyright,
+    updatedAt,
+    loginRequired,
+    geoRestricted,
+    cta,
+    apiError,
+  } = props;
+
+  const hasFormErrors = Object.keys(errors).length > 0;
+  const showFormErrors = hasFormErrors && !downloadsRestricted;
+  const showForm = showTermsAgreement && !downloadsRestricted;
+  const hideCallToAction = downloadsRestricted;
 
   return (
     <OakFlex $flexDirection={"column"} $gap={"space-between-l"}>
       <FieldError id={"downloads-error"} withoutMarginBottom>
-        {props.errors?.resources?.message}
+        {errors?.resources?.message}
       </FieldError>
       <OakDownloadsAccordion
-        downloadsText={getAccordionText(
-          props.downloads ?? [],
-          props.additionalFiles ?? [],
-        )}
-        handleToggleSelectAll={props.handleToggleSelectAll}
-        selectAllChecked={props.selectAllChecked}
+        downloadsText={getAccordionText(downloads ?? [], additionalFiles ?? [])}
+        handleToggleSelectAll={handleToggleSelectAll}
+        selectAllChecked={selectAllChecked}
         id="downloads-accordion"
       >
         <OakBox
@@ -183,8 +210,8 @@ const DownloadPageWithAccordionContent = (
           >
             Select resources to download
           </OakBox>
-          {props.cardGroup}
-          {props.showRiskAssessmentBanner && (
+          {cardGroup}
+          {showRiskAssessmentBanner && (
             <OakBox $mv="space-between-s">
               <RiskAssessmentBanner />
             </OakBox>
@@ -192,30 +219,31 @@ const DownloadPageWithAccordionContent = (
         </OakBox>
       </OakDownloadsAccordion>
 
-      {props.showNoResources && <NoResourcesToDownload />}
-      {!props.showNoResources && (
+      {showNoResources ? (
+        <NoResourcesToDownload />
+      ) : (
         <>
           {showForm && (
             <>
               <TermsAgreementForm
                 form={{
-                  control: props.control,
-                  register: props.register,
-                  errors: props.errors,
-                  trigger: props.triggerForm,
+                  control: control,
+                  register: register,
+                  errors: errors,
+                  trigger: triggerForm,
                 }}
-                isLoading={props.showLoading}
-                email={props.email}
-                schoolId={props.schoolId}
-                schoolName={props.school}
-                setSchool={props.setSchool}
-                showSavedDetails={props.showSavedDetails}
-                handleEditDetailsCompletedClick={props.onEditClick}
-                showPostAlbCopyright={props.showPostAlbCopyright}
-                copyrightYear={props.updatedAt}
+                isLoading={showLoading}
+                email={email}
+                schoolId={schoolId}
+                schoolName={school}
+                setSchool={setSchool}
+                showSavedDetails={showSavedDetails}
+                handleEditDetailsCompletedClick={onEditClick}
+                showPostAlbCopyright={showPostAlbCopyright}
+                copyrightYear={updatedAt}
                 isDownloadPageExperiment
               />
-              {props.showRiskAssessmentBanner && (
+              {showRiskAssessmentBanner && (
                 <OakBox
                   $display={["block", "block", "none"]}
                   $mv="space-between-s"
@@ -238,7 +266,7 @@ const DownloadPageWithAccordionContent = (
                   To complete correct the following:
                 </OakP>
                 <OakUL $mr="space-between-m">
-                  {getFormErrorMessages(props.errors).map((err, i) => {
+                  {getFormErrorMessages(errors).map((err, i) => {
                     return (
                       <OakLI $color={"red"} key={i}>
                         {err}
@@ -249,20 +277,18 @@ const DownloadPageWithAccordionContent = (
               </OakFlex>
             </OakFlex>
           )}
-
           {hideCallToAction ? (
             <LoginRequiredButton
-              loginRequired={props.loginRequired ?? false}
-              geoRestricted={props.geoRestricted ?? false}
+              loginRequired={loginRequired ?? false}
+              geoRestricted={geoRestricted ?? false}
               signUpProps={{ name: "Sign in to continue" }}
               iconName="arrow-right"
               isTrailingIcon
             />
           ) : (
-            props.cta
+            cta
           )}
-
-          {props.apiError && !hasFormErrors && (
+          {apiError && !hasFormErrors && (
             <FieldError
               id="download-error"
               data-testid="download-error"
@@ -270,15 +296,14 @@ const DownloadPageWithAccordionContent = (
               withoutMarginBottom
               ariaLive="polite"
             >
-              {props.apiError}
+              {apiError}
             </FieldError>
           )}
-
           <CopyrightNotice
             fullWidth
-            showPostAlbCopyright={props.showPostAlbCopyright}
+            showPostAlbCopyright={showPostAlbCopyright}
             openLinksExternally={true}
-            copyrightYear={props.updatedAt}
+            copyrightYear={updatedAt}
           />
         </>
       )}
