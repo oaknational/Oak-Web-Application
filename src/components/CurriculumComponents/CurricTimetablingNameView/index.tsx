@@ -34,15 +34,17 @@ export const CurricTimetablingNameView = () => {
         $flexDirection={"column"}
         $gap={"space-between-l"}
       >
-        <CurricTimetableHeader
-          titleSlot={`Year ${year} ${subject}`}
-          illustrationSlug={"magic-carpet"}
-          additionalSlot={
-            <OakBox $maxWidth={"all-spacing-20"}>
-              <CurricShowSteps numberOfSteps={2} currentStepIndex={1} />
-            </OakBox>
-          }
-        />
+        <OakFlex $flexDirection={"column"} $pt={"inner-padding-xl5"}>
+          <CurricTimetableHeader
+            titleSlot={`Year ${year} ${subject}`}
+            illustrationSlug={"magic-carpet"}
+            additionalSlot={
+              <OakBox $maxWidth={"all-spacing-20"}>
+                <CurricShowSteps numberOfSteps={2} currentStepIndex={1} />
+              </OakBox>
+            }
+          />
+        </OakFlex>
 
         <OakFlex
           $flexDirection={"column"}
