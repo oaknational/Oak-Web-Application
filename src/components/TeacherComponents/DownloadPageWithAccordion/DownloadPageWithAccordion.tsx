@@ -97,21 +97,9 @@ const getAccordionText = (
   return resourcesText.charAt(0).toUpperCase() + resourcesText.slice(1);
 };
 
-// TODO: Rename component if experiment is successful
 const DownloadPageWithAccordion: FC<DownloadPageWithAccordionProps> = (
   props: DownloadPageWithAccordionProps,
 ) => {
-  const {
-    isLoading,
-    showGeoBlocked,
-    geoRestricted,
-    loginRequired,
-    lessonTitle,
-    lessonSlug,
-    lessonReleaseDate,
-    isLegacy,
-  } = props;
-
   return (
     <OakGrid>
       <OakGridArea
@@ -123,22 +111,22 @@ const DownloadPageWithAccordion: FC<DownloadPageWithAccordionProps> = (
         <OakHeading tag="h1" $font={["heading-5", "heading-4"]}>
           Download
         </OakHeading>
-        {isLoading ? (
+        {props.isLoading ? (
           <OakBox $minHeight="all-spacing-21">
             <DelayedLoadingSpinner $delay={300} data-testid="loading" />
           </OakBox>
         ) : (
           <DownloadPageWithAccordionContent {...props} />
         )}
-        {!showGeoBlocked && (
+        {!props.showGeoBlocked && (
           <CopyrightRestrictionBanner
-            isGeorestricted={geoRestricted ?? undefined}
-            isLoginRequired={loginRequired ?? undefined}
+            isGeorestricted={props.geoRestricted ?? undefined}
+            isLoginRequired={props.loginRequired ?? undefined}
             componentType="lesson_downloads"
-            lessonName={lessonTitle}
-            lessonSlug={lessonSlug}
-            lessonReleaseDate={lessonReleaseDate}
-            isLessonLegacy={isLegacy}
+            lessonName={props.lessonTitle}
+            lessonSlug={props.lessonSlug}
+            lessonReleaseDate={props.lessonReleaseDate}
+            isLessonLegacy={props.isLegacy}
           />
         )}
       </OakGridArea>
@@ -265,9 +253,9 @@ const DownloadPageWithAccordionContent = (
                   To complete correct the following:
                 </OakP>
                 <OakUL $mr="space-between-m">
-                  {getFormErrorMessages(errors).map((err, i) => {
+                  {getFormErrorMessages(errors).map((err) => {
                     return (
-                      <OakLI $color={"red"} key={i}>
+                      <OakLI $color={"red"} key={err}>
                         {err}
                       </OakLI>
                     );

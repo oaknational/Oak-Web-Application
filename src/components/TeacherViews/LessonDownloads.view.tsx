@@ -476,7 +476,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                         control={form.control}
                         downloads={downloadsFilteredByCopyright}
                         additionalFiles={additionalFiles}
-                        hasError={form.errors?.resources ? true : false}
+                        hasError={Boolean(form.errors?.resources)}
                         triggerForm={form.trigger}
                         useDownloadsExperiment={showDownloadPageWithAccordion}
                       />
