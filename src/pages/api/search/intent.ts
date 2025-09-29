@@ -7,6 +7,7 @@ import { intentRequestSchema, searchIntentSchema } from "./schemas";
 
 import errorReporter from "@/common-lib/error-reporter/errorReporter";
 import OakError from "@/errors/OakError";
+import { buildSearchIntentPrompt } from "@/utils/promptBuilder";
 import { OAK_SUBJECTS } from "@/context/Search/suggestions/oakCurriculumData";
 
 const reportError = errorReporter("search-intent");
@@ -73,50 +74,13 @@ const handler: NextApiHandler = async (req, res) => {
 
 export async function callModel(searchTerm: string) {
   const subjects = OAK_SUBJECTS.map((subject) => subject.slug);
-  const systemContent = `You are analyzing a search term for a UK education platform.
-
-The platform has the following available subject names:
-${subjects.join(",")}
-
-Analyze the search term and identify which subject names are relevant, with confidence scores 1-5 (5 being most confident).
-
-Rules:
-- Only return subject names from the list above
-- Use confidence scores: 1 (low) to 5 (high)  
-- Be conservative with confidence scores
-- Return max 3-4 most relevant subjects
-- Focus on direct subject matches first
-
-Return your response as a JSON object with this exact structure:
-{"subjects": [{"name": "subject-name", "confidence": 1-5}]}
-
-Examples:
-- "maths" → {"subjects": [{"name": "maths", "confidence": 5}]}
-- "shakespeare" → {"subjects": [{"name": "english", "confidence": 5}, {"name": "drama", "confidence": 3}]}
-- "ww1" → {"subjects": [{"name": "history", "confidence": 5}]}
-- "photosynthesis" → {"subjects": [{"name": "biology", "confidence": 5}, {"name": "science", "confidence": 4}]}
-
-Analyze the user's search term:
-`;
+  const prompt = buildSearchIntentPrompt(searchTerm, subjects);
 
   const subjectsEnum = z.enum(subjects as [string, ...string[]]);
 
   const response = await client.responses.parse({
     model: "gpt-5-nano",
-    input: [
-      {
-        role: "system",
-        content: systemContent,
-      },
-      {
-        role: "user",
-        content: `
-        <retrieved-data>
-        ${searchTerm}
-        </retrieved-data>
-        `,
-      },
-    ],
+    input: prompt,
     text: {
       format: zodTextFormat(
         z.object({
