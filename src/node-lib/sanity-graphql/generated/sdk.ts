@@ -483,8 +483,11 @@ export type AiHomepage = Document & {
   belowTheFoldVideo?: Maybe<Video>;
   /** Optional second video for below the fold section */
   belowTheFoldVideo2?: Maybe<Video>;
+  giveFeedbackLink?: Maybe<Link>;
   heading?: Maybe<Scalars['String']['output']>;
   heroVideo?: Maybe<Video>;
+  promptExamples?: Maybe<Array<Maybe<IconTitleFile>>>;
+  sampleLessons?: Maybe<Array<Maybe<IconTitleFile>>>;
   seo?: Maybe<Seo>;
 };
 
@@ -499,6 +502,7 @@ export type AiHomepageFilter = {
   _updatedAt?: InputMaybe<DatetimeFilter>;
   belowTheFoldVideo?: InputMaybe<VideoFilter>;
   belowTheFoldVideo2?: InputMaybe<VideoFilter>;
+  giveFeedbackLink?: InputMaybe<LinkFilter>;
   heading?: InputMaybe<StringFilter>;
   heroVideo?: InputMaybe<VideoFilter>;
   seo?: InputMaybe<SeoFilter>;
@@ -511,6 +515,7 @@ export type AiHomepageSorting = {
   _rev?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
   _updatedAt?: InputMaybe<SortOrder>;
+  giveFeedbackLink?: InputMaybe<LinkSorting>;
   heading?: InputMaybe<SortOrder>;
   seo?: InputMaybe<SeoSorting>;
 };
@@ -1008,6 +1013,7 @@ export type CampaignPromoBanner = {
   _type?: Maybe<Scalars['String']['output']>;
   bodyRaw?: Maybe<Scalars['JSON']['output']>;
   buttonCta?: Maybe<Scalars['String']['output']>;
+  buttonUrl?: Maybe<Scalars['String']['output']>;
   headingRaw?: Maybe<Scalars['JSON']['output']>;
   media?: Maybe<Array<Maybe<ImageWithAltTextOrVideo>>>;
   subheadingRaw?: Maybe<Scalars['JSON']['output']>;
@@ -1017,12 +1023,14 @@ export type CampaignPromoBannerFilter = {
   _key?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
   buttonCta?: InputMaybe<StringFilter>;
+  buttonUrl?: InputMaybe<StringFilter>;
 };
 
 export type CampaignPromoBannerSorting = {
   _key?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
   buttonCta?: InputMaybe<SortOrder>;
+  buttonUrl?: InputMaybe<SortOrder>;
 };
 
 export type CampaignVideoBanner = {
@@ -1043,7 +1051,6 @@ export type CampaignVideoBannerFilter = {
 export type CampaignVideoBannerSorting = {
   _key?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
-  video?: InputMaybe<VideoSorting>;
 };
 
 export type Card = {
@@ -1870,6 +1877,41 @@ export type IdFilter = {
   /** Checks if the value is not equal to the given input. */
   neq?: InputMaybe<Scalars['ID']['input']>;
   nin?: InputMaybe<Array<Scalars['ID']['input']>>;
+};
+
+export type IconTitleFile = {
+  __typename?: 'IconTitleFile';
+  _key?: Maybe<Scalars['String']['output']>;
+  _type?: Maybe<Scalars['String']['output']>;
+  file?: Maybe<File>;
+  fileName?: Maybe<Scalars['String']['output']>;
+  iconName?: Maybe<Scalars['String']['output']>;
+  iconTileBackgroundColour?: Maybe<Scalars['String']['output']>;
+  /** Optional file name to show on mobile */
+  mobileFileName?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type IconTitleFileFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  file?: InputMaybe<FileFilter>;
+  fileName?: InputMaybe<StringFilter>;
+  iconName?: InputMaybe<StringFilter>;
+  iconTileBackgroundColour?: InputMaybe<StringFilter>;
+  mobileFileName?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+};
+
+export type IconTitleFileSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  file?: InputMaybe<FileSorting>;
+  fileName?: InputMaybe<SortOrder>;
+  iconName?: InputMaybe<SortOrder>;
+  iconTileBackgroundColour?: InputMaybe<SortOrder>;
+  mobileFileName?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
 };
 
 export type Illustration = Document & {
@@ -5083,7 +5125,7 @@ export type CampaignBySlugQueryVariables = Exact<{
 }>;
 
 
-export type CampaignBySlugQuery = { __typename?: 'RootQuery', allCampaignPage: Array<{ __typename?: 'CampaignPage', title?: string | null, id?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, header?: { __typename?: 'CampaignPageHeader', heading?: string | null, subheading?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, content?: Array<{ __typename?: 'CampaignIntro', type: 'CampaignIntro', headingPortableTextWithPromo?: any | null, bodyPortableTextWithPromo?: any | null } | { __typename?: 'CampaignPromoBanner', buttonCta?: string | null, type: 'CampaignPromoBanner', headingPortableTextWithPromo?: any | null, subheadingPortableTextWithPromo?: any | null, bodyPortableTextWithPromo?: any | null, media?: Array<{ __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null> | null } | { __typename?: 'CampaignVideoBanner', type: 'CampaignVideoBanner', headingPortableTextWithPromo?: any | null, subheadingPortableTextWithPromo?: any | null, video?: { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null } | { __typename?: 'NewsletterSignUp', heading?: string | null, buttonCta?: string | null, formId?: string | null, type: 'NewsletterSignUp', bodyPortableText?: any | null } | null> | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
+export type CampaignBySlugQuery = { __typename?: 'RootQuery', allCampaignPage: Array<{ __typename?: 'CampaignPage', title?: string | null, id?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null, header?: { __typename?: 'CampaignPageHeader', heading?: string | null, subheading?: string | null, image?: { __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, content?: Array<{ __typename?: 'CampaignIntro', type: 'CampaignIntro', headingPortableTextWithPromo?: any | null, bodyPortableTextWithPromo?: any | null } | { __typename?: 'CampaignPromoBanner', buttonCta?: string | null, buttonUrl?: string | null, type: 'CampaignPromoBanner', headingPortableTextWithPromo?: any | null, subheadingPortableTextWithPromo?: any | null, bodyPortableTextWithPromo?: any | null, media?: Array<{ __typename?: 'ImageWithAltText', altText?: string | null, isPresentational?: boolean | null, asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null> | null } | { __typename?: 'CampaignVideoBanner', type: 'CampaignVideoBanner', headingPortableTextWithPromo?: any | null, subheadingPortableTextWithPromo?: any | null, video?: { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null } | { __typename?: 'NewsletterSignUp', heading?: string | null, buttonCta?: string | null, formId?: string | null, type: 'NewsletterSignUp', bodyPortableText?: any | null } | null> | null, seo?: { __typename?: 'Seo', title?: string | null, description?: string | null, canonicalURL?: string | null } | null }> };
 
 export type CardFragment = { __typename?: 'Card', title?: string | null, bodyPortableText?: any | null, image?: { __typename?: 'ImageWithAltText', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null } | null, cta?: { __typename?: 'Cta', label?: string | null, linkType?: string | null, external?: string | null, anchor?: string | null, internal?: { __typename?: 'AboutCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageBoard', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageLeadership', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePagePartners', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWhoWeAre', id?: string | null, contentType?: string | null } | { __typename?: 'AboutCorePageWorkWithUs', id?: string | null, contentType?: string | null } | { __typename?: 'Attachment', title?: string | null, id?: string | null, contentType?: string | null, file?: { __typename?: 'File', asset?: { __typename?: 'SanityFileAsset', extension?: string | null, size?: number | null, url?: string | null } | null } | null } | { __typename?: 'ContactCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Homepage', id?: string | null, contentType?: string | null } | { __typename?: 'LandingPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'NewsListingPage', id?: string | null, contentType?: string | null } | { __typename?: 'NewsPost', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'PlanningCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'PolicyPage', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'SupportCorePage', id?: string | null, contentType?: string | null } | { __typename?: 'Webinar', id?: string | null, contentType?: string | null, slug?: { __typename?: 'Slug', current?: string | null } | null } | { __typename?: 'WebinarListingPage', id?: string | null, contentType?: string | null } | null } | null };
 
@@ -6015,6 +6057,7 @@ export const CampaignBySlugDocument = gql`
           ...Video
         }
         buttonCta
+        buttonUrl
       }
     }
     seo {

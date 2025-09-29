@@ -46,6 +46,8 @@ export const campaignContentTypeSchema = z.discriminatedUnion("type", [
     bodyPortableTextWithPromo: portableTextSchema.nullish(),
     subheadingPortableTextWithPromo: portableTextSchema.nullish(),
     media: z.array(imageSchema.nullish(), videoSchema.nullish()),
+    buttonCta: z.string().nullish(),
+    buttonUrl: z.string().nullish(),
   }),
   z.object({
     type: z.literal("CampaignVideoBanner"),
