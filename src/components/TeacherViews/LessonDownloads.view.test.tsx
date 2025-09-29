@@ -1,3 +1,5 @@
+import { useFeatureFlagVariantKey } from "posthog-js/react";
+
 import { LessonDownloads } from "./LessonDownloads.view";
 
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
@@ -24,18 +26,18 @@ const restrictedLesson = lessonDownloadsFixture({
 });
 
 jest.mock("posthog-js/react", () => ({
-  useFeatureFlagVariantKey: jest.fn(() => "with-login"),
+  useFeatureFlagVariantKey: jest.fn(),
 }));
 
 describe("Hiding 'Your details", () => {
   beforeEach(() => {
+    (useFeatureFlagVariantKey as jest.Mock).mockReturnValue("control");
     jest.clearAllMocks();
   });
   it("should show 'Your Details' when not logged in", () => {
     const result = render(
       <LessonDownloads lesson={lesson} isCanonical={false} />,
     );
-
     expect(result.queryByText("Your details")).toBeInTheDocument();
   });
   it("should not show 'Your Details' when fully onboarded", () => {
@@ -166,5 +168,18 @@ describe("Hiding 'Your details", () => {
     expect(yourDetailsHeading).not.toBeInTheDocument();
     expect(downloadButton).not.toBeInTheDocument();
     expect(copyrightRestrictionBanner).not.toBeInTheDocument();
+  });
+});
+
+describe.only("With downloads page experiment feature flag", () => {
+  it("should render the downloads accordion when with-accordion variant is active", () => {
+    (useFeatureFlagVariantKey as jest.Mock).mockReturnValue("with-accordion");
+    const { queryByText } = render(
+      <LessonDownloads lesson={lesson} isCanonical={false} />,
+    );
+
+    const downloadsAccordion = queryByText("All resources selected");
+
+    expect(downloadsAccordion).toBeInTheDocument();
   });
 });

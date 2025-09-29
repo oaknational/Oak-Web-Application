@@ -335,7 +335,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     !hasResources ||
     Boolean(expired) ||
     downloadsFilteredByCopyright.length === 0;
-  console.log(showGeoBlocked);
+
   return (
     <OakBox
       $ph={["inner-padding-m", "inner-padding-none"]}
@@ -463,7 +463,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                   showPostAlbCopyright={!isLegacyDownload}
                   triggerForm={form.trigger}
                   apiError={apiError}
-                  hideSelectAll={Boolean(expired)}
                   updatedAt={updatedAt}
                   withHomeschool={true}
                   showTermsAgreement={

@@ -33,7 +33,7 @@ import TermsAgreementForm from "@/components/TeacherComponents/TermsAgreementFor
 import { getFormErrorMessages } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadFormErrorMessage";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 
-type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
+export type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
   ResourcePageSchoolDetailsProps & {
     geoRestricted: boolean;
     loginRequired: boolean;
@@ -44,7 +44,6 @@ type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
     cardGroup: React.ReactNode;
     showLoading: boolean;
     showNoResources: boolean;
-    hideSelectAll?: boolean;
     schoolId?: string;
     register: UseFormRegister<ResourceFormProps>;
     control: Control<ResourceFormProps>;
