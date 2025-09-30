@@ -40,7 +40,7 @@ jobs:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           prNumber: ${{ steps.ref_from_sha.outputs.pr_number }}
           find: "{owa_deployment_url}"
-          replace: ${{ github.event.deployment_status.environment_url }}
+          replace: ${{ vars.NEXT_PUBLIC_VERCEL_BRANCH_URL }}
 
   # Warm the caches on the test URLs
   # warm_caches:
