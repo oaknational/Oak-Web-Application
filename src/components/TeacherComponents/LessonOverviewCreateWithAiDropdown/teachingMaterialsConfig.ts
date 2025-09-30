@@ -214,7 +214,7 @@ export function getAvailableTeachingMaterials(
   subjectCategories?: Array<string | number | null> | null,
   actions?: LessonBrowseDataByKs["actions"],
 ): TeachingMaterialType[] {
-  // Default materials for all subjects
+  // Default teaching materials for all subjects
   const defaultMaterials: TeachingMaterialType[] = [
     "additional-glossary",
     "additional-comprehension",
