@@ -49,7 +49,7 @@ describe("CurricTimetablingNewView", () => {
     );
     const input = getByPlaceholderText("Type school name");
 
-    userEvent.type(input, "Oak national");
+    await userEvent.type(input, "Oak national");
 
     await waitFor(() => {
       const button = getByRole("link", { name: /Finish/i });
@@ -78,7 +78,7 @@ describe("CurricTimetablingNewView", () => {
     const button = getByRole("link", { name: /Previous/i });
     const input = getByPlaceholderText("Type school name");
 
-    userEvent.type(input, "Oak national");
+    await userEvent.type(input, "Oak national");
 
     await waitFor(() => {
       expect(button).toHaveAttribute(
