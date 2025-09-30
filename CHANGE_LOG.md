@@ -1,3 +1,21 @@
+# [1.873.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.872.0...v1.873.0) (2025-09-30)
+
+
+### Features
+
+* add in default name input ([8eb5dda](https://github.com/oaknational/Oak-Web-Application/commit/8eb5ddaf50a79209d0db2023b56bab00a94b9dfc))
+* get name from param hook ([7f11f3c](https://github.com/oaknational/Oak-Web-Application/commit/7f11f3ccad36db08173015fd1cca9c2ec126b093))
+* name persistence when clicking previous ([5d75c35](https://github.com/oaknational/Oak-Web-Application/commit/5d75c3531580547e8d83e1b6d77bdf8cc3710861))
+* update params using memo ([569b2b3](https://github.com/oaknational/Oak-Web-Application/commit/569b2b3db358a1eb6378b89ce3a923f9b69562b9))
+
+# [1.872.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.871.1...v1.872.0) (2025-09-30)
+
+
+### Features
+
+* add more subject restrictions ([ad0c74b](https://github.com/oaknational/Oak-Web-Application/commit/ad0c74b03856bb3178b1150768245b7646181b6f))
+* restrict teaching material types at lesson level ([2f5c615](https://github.com/oaknational/Oak-Web-Application/commit/2f5c615899c2b1ece89a04bcbe3110f17ee284bb))
+
 ## [1.871.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.871.0...v1.871.1) (2025-09-29)
 
 
