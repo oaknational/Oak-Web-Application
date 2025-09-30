@@ -12,6 +12,10 @@ const mockSearchParams = new URLSearchParams(
   "subject=maths&year=1&autumn=30&spring=30&summer=30",
 );
 
+const mockSearchParamsWithName = new URLSearchParams(
+  "subject=maths&year=1&autumn=30&spring=30&summer=30&name=Test+Test",
+);
+
 jest.mock("next/navigation", () => ({
   usePathname: () => "/timetabling/name",
   useRouter: () => ({ replace: mockReplace }),
@@ -42,7 +46,6 @@ describe("CurricTimetablingNewView", () => {
   });
 
   test("the next button directs to correct page with user input", async () => {
-    mockReplace = jest.fn();
     mockParams = mockSearchParams;
     const { getByRole, getByPlaceholderText } = renderWithTheme(
       <CurricTimetablingNameView />,
@@ -89,10 +92,7 @@ describe("CurricTimetablingNewView", () => {
   });
 
   test("having name in params directs to correct prev page", async () => {
-    mockReplace = jest.fn();
-    const paramsWithName = mockSearchParams;
-    paramsWithName.append("name", "Test Test");
-    mockParams = paramsWithName;
+    mockParams = mockSearchParamsWithName;
     const { getByRole } = renderWithTheme(<CurricTimetablingNameView />);
 
     const prevNameBtn = getByRole("link", { name: /Previous/i });
@@ -104,10 +104,7 @@ describe("CurricTimetablingNewView", () => {
   });
 
   test("having name in params directs to correct next page", async () => {
-    mockReplace = jest.fn();
-    const paramsWithName = mockSearchParams;
-    paramsWithName.append("name", "Test Test");
-    mockParams = paramsWithName;
+    mockParams = mockSearchParamsWithName;
     const { getByRole } = renderWithTheme(<CurricTimetablingNameView />);
 
     const finishNameBtn = getByRole("link", { name: /Finish/i });
@@ -119,10 +116,7 @@ describe("CurricTimetablingNewView", () => {
   });
 
   test("having name in params shows correct input", async () => {
-    mockReplace = jest.fn();
-    const paramsWithName = mockSearchParams;
-    paramsWithName.append("name", "Test Test");
-    mockParams = paramsWithName;
+    mockParams = mockSearchParamsWithName;
     const { getByPlaceholderText } = renderWithTheme(
       <CurricTimetablingNameView />,
     );
@@ -133,9 +127,7 @@ describe("CurricTimetablingNewView", () => {
   });
 
   test("no input has correct parameters", async () => {
-    mockParams = new URLSearchParams(
-      "subject=maths&year=1&autumn=30&spring=30&summer=30",
-    );
+    mockParams = mockSearchParams;
     const { getByRole } = renderWithTheme(<CurricTimetablingNameView />);
 
     const finishNameBtn = getByRole("link", { name: /Finish/i });
