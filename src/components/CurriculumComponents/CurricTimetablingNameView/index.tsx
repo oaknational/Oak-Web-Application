@@ -32,95 +32,93 @@ export const CurricTimetablingNameView = () => {
   }, [queryParams, queryString]);
 
   return (
-    <>
-      <OakMaxWidth
-        $ph={"inner-padding-xl5"}
+    <OakMaxWidth
+      $ph={"inner-padding-xl5"}
+      $flexDirection={"column"}
+      $gap={"space-between-l"}
+    >
+      <OakFlex $flexDirection={"column"} $pt={"inner-padding-xl5"}>
+        <CurricTimetableHeader
+          titleSlot={`Year ${year} ${subject}`}
+          illustrationSlug={"magic-carpet"}
+          additionalSlot={
+            <OakBox $maxWidth={"all-spacing-20"}>
+              <CurricShowSteps numberOfSteps={2} currentStepIndex={1} />
+            </OakBox>
+          }
+        />
+      </OakFlex>
+
+      <OakFlex
         $flexDirection={"column"}
         $gap={"space-between-l"}
+        $ph={"inner-padding-xl5"}
       >
-        <OakFlex $flexDirection={"column"} $pt={"inner-padding-xl5"}>
-          <CurricTimetableHeader
-            titleSlot={`Year ${year} ${subject}`}
-            illustrationSlug={"magic-carpet"}
-            additionalSlot={
-              <OakBox $maxWidth={"all-spacing-20"}>
-                <CurricShowSteps numberOfSteps={2} currentStepIndex={1} />
-              </OakBox>
-            }
+        <OakHeading tag="h2" $font="heading-2">
+          Name your timetable
+        </OakHeading>
+
+        <OakFlex
+          $position="relative"
+          $flexDirection="column"
+          $maxWidth={["100%", "all-spacing-20"]}
+        >
+          <OakJauntyAngleLabel
+            as="label"
+            htmlFor="autumn-lessons"
+            label="School or class name (optional)"
+            $font="heading-7"
+            $background="lemon"
+            $color="black"
+            $zIndex="in-front"
+            $position="absolute"
+            $top={"-20px"}
+            $left={"5px"}
+            $borderRadius="border-radius-square"
+          />
+          <OakTextInput
+            id="autumn-lessons"
+            placeholder="Type school name"
+            disabled
+            defaultValue={name ?? DEFAULT_NAME_VALUE}
+            aria-describedby="autumn-heading"
+            wrapperWidth="100%"
+            $pv="inner-padding-none"
+            $height="all-spacing-10"
           />
         </OakFlex>
 
         <OakFlex
-          $flexDirection={"column"}
-          $gap={"space-between-l"}
-          $ph={"inner-padding-xl5"}
+          $flexDirection={"row"}
+          $justifyContent={"start"}
+          $gap={"space-between-m"}
+          $maxWidth={"all-spacing-23"}
         >
-          <OakHeading tag="h2" $font="heading-2">
-            Name your timetable
-          </OakHeading>
-
-          <OakFlex
-            $position="relative"
-            $flexDirection="column"
-            $maxWidth={["100%", "all-spacing-20"]}
+          <OakSecondaryButton
+            element="a"
+            // href={newHref}
+            href={`new?${params}`}
+            pv="inner-padding-m"
+            ph="inner-padding-l"
+            style={{ height: "auto" }}
+            iconName="arrow-left"
           >
-            <OakJauntyAngleLabel
-              as="label"
-              htmlFor="autumn-lessons"
-              label="School or class name (optional)"
-              $font="heading-7"
-              $background="lemon"
-              $color="black"
-              $zIndex="in-front"
-              $position="absolute"
-              $top={"-20px"}
-              $left={"5px"}
-              $borderRadius="border-radius-square"
-            />
-            <OakTextInput
-              id="autumn-lessons"
-              placeholder="Type school name"
-              disabled
-              defaultValue={name ?? DEFAULT_NAME_VALUE}
-              aria-describedby="autumn-heading"
-              wrapperWidth="100%"
-              $pv="inner-padding-none"
-              $height="all-spacing-10"
-            />
-          </OakFlex>
-
-          <OakFlex
-            $flexDirection={"row"}
-            $justifyContent={"start"}
-            $gap={"space-between-m"}
-            $maxWidth={"all-spacing-23"}
+            Previous
+          </OakSecondaryButton>
+          <OakPrimaryButton
+            element="a"
+            // href={unitsHref}
+            href={`units?${params}`}
+            pv="inner-padding-m"
+            ph="inner-padding-l"
+            style={{ height: "auto" }}
+            iconName="arrow-right"
+            isTrailingIcon
           >
-            <OakSecondaryButton
-              element="a"
-              // href={newHref}
-              href={`new?${params}`}
-              pv="inner-padding-m"
-              ph="inner-padding-l"
-              style={{ height: "auto" }}
-              iconName="arrow-left"
-            >
-              Previous
-            </OakSecondaryButton>
-            <OakPrimaryButton
-              element="a"
-              // href={unitsHref}
-              href={`units?${params}`}
-              pv="inner-padding-m"
-              ph="inner-padding-l"
-              style={{ height: "auto" }}
-              iconName="arrow-right"
-              isTrailingIcon
-            >
-              Finish
-            </OakPrimaryButton>
-          </OakFlex>
+            Finish
+          </OakPrimaryButton>
         </OakFlex>
-      </OakMaxWidth>
-    </>
+      </OakFlex>
+    </OakMaxWidth>
   );
 };
