@@ -119,7 +119,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
     render(<LessonOverviewPage curriculumData={lessonOverviewFixture()} />);
 
     expect(screen.getAllByTestId("download-all-button")[0]).toHaveTextContent(
-      "Download all resources",
+      "Download all",
     );
   });
 
