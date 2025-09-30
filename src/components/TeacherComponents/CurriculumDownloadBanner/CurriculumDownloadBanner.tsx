@@ -47,13 +47,12 @@ const CurriculumDownloadBanner = (props: CurriculumDownloadBannerProps) => {
       mainSection={
         <OakFlex $flexDirection="column" $gap="space-between-s">
           <OakHeading tag="h2">
-            Fully resourced {subjectTitle.toLocaleLowerCase()} curriculum is
-            coming this autumn.
+            New fully-sequenced curriculum plan and lesson resources for{" "}
+            {subjectTitle}.
           </OakHeading>
           <OakP $font="heading-light-7">
-            We’re busy creating the final lessons and units. Download the
-            curriculum plan now to explore what’s coming and the thinking behind
-            our curriculum design.
+            Download the curriculum plan now to explore the thinking behind our
+            curriculum design.
           </OakP>
           <OakSmallPrimaryButton
             isTrailingIcon

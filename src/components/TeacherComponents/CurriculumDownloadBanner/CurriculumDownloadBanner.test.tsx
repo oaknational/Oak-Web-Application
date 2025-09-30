@@ -60,7 +60,7 @@ describe("CurriculumDownloadBanner", () => {
     render(<CurriculumDownloadBanner {...defaultProps} />);
 
     const heading = screen.getByRole("heading", {
-      name: "Fully resourced maths curriculum is coming this autumn.",
+      name: "New fully-sequenced curriculum plan and lesson resources for Maths.",
     });
     expect(heading).toBeInTheDocument();
     const downloadButton = screen.getByRole("button", {
