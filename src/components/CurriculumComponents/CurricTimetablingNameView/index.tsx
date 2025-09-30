@@ -96,7 +96,6 @@ export const CurricTimetablingNameView = () => {
         >
           <OakSecondaryButton
             element="a"
-            // href={newHref}
             href={`new?${params}`}
             pv="inner-padding-m"
             ph="inner-padding-l"
@@ -107,7 +106,6 @@ export const CurricTimetablingNameView = () => {
           </OakSecondaryButton>
           <OakPrimaryButton
             element="a"
-            // href={unitsHref}
             href={`units?${params}`}
             pv="inner-padding-m"
             ph="inner-padding-l"
