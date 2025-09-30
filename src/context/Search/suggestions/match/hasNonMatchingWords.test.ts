@@ -8,13 +8,13 @@ describe("hasNonMatchingWords", () => {
     expect(result).toBe(true);
   });
   it("returns false when there are 2 extra words", () => {
-    const result = hasNonMatchingWords("history of golf", {
+    const result = hasNonMatchingWords("history of ww2", {
       subject: "history",
     });
     expect(result).toBe(false);
   });
   it("returns false when there is 1 extra word", () => {
-    const result = hasNonMatchingWords("golf history", {
+    const result = hasNonMatchingWords("history curriculum", {
       subject: "history",
     });
     expect(result).toBe(false);
