@@ -195,6 +195,8 @@ async function main() {
 
     // Search API
     OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+    AI_GATEWAY_URL: process.env.AI_GATEWAY_URL,
+    AI_GATEWAY_API_KEY: process.env.AI_GATEWAY_API_KEY,
     SEARCH_ENABLED_IN_PROD: process.env.SEARCH_ENABLED_IN_PROD,
 
     // Seo

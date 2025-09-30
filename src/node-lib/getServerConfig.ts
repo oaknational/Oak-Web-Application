@@ -260,6 +260,20 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: null,
   },
+  aiGatewayUrl: {
+    value: process.env.AI_GATEWAY_URL,
+    envName: "AI_GATEWAY_URL",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  aiGatewayApiKey: {
+    value: process.env.AI_GATEWAY_API_KEY,
+    envName: "AI_GATEWAY_API_KEY",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
   posthogApiKey: {
     value: process.env.NEXT_PUBLIC_POSTHOG_API_KEY,
     envName: "NEXT_PUBLIC_POSTHOG_API_KEY",

@@ -1,5 +1,5 @@
 import OpenAI from "openai";
-import { zodTextFormat } from "openai/helpers/zod";
+import { zodResponseFormat } from "openai/helpers/zod";
 import type { NextApiHandler } from "next";
 import { z } from "zod";
 
@@ -7,11 +7,17 @@ import { intentRequestSchema, searchIntentSchema } from "./schemas";
 
 import errorReporter from "@/common-lib/error-reporter/errorReporter";
 import OakError from "@/errors/OakError";
-import { buildSearchIntentPrompt } from "@/utils/promptBuilder";
+import { buildSearchIntentPrompt } from "@/utils/search/promptBuilder";
 import { OAK_SUBJECTS } from "@/context/Search/suggestions/oakCurriculumData";
+import { invariant } from "@/utils/invariant";
 
 const reportError = errorReporter("search-intent");
-const client = new OpenAI();
+const aiClient = new OpenAI({
+  apiKey: process.env.AI_GATEWAY_API_KEY,
+  baseURL: "https://ai-gateway.vercel.sh/v1",
+});
+
+const MODEL = "cerebras/qwen-3-32b";
 
 const DUMMY_DIRECT_MATCH_RESPONSE = {
   directMatch: {
@@ -73,10 +79,10 @@ const handler: NextApiHandler = async (req, res) => {
   } catch (err) {
     const error = new OakError({
       code: "search/failed-to-get-intent",
-      meta: {
-        error: err,
-      },
+      originalError: err,
     });
+    // console.error(error);
+    // console.error(error.originalError);
     reportError(error);
 
     return res.status(500).json({ error: JSON.stringify(error) });
@@ -87,29 +93,31 @@ export async function callModel(searchTerm: string) {
   const subjects = OAK_SUBJECTS.map((subject) => subject.slug);
   const prompt = buildSearchIntentPrompt(searchTerm, subjects);
 
-  const response = await client.responses.parse({
-    model: "gpt-5-nano",
-    input: prompt,
-    text: {
-      format: zodTextFormat(
-        z.object({
-          subjects: z.array(
-            z.object({
-              slug: z.string(),
-              confidence: z.number().min(1).max(5),
-            }),
-          ),
-        }),
-        "subjects",
-      ),
-    },
-  });
-  const parsedResponse = response.output_parsed;
+  // console.log("Querying LLM for search intent", { model: MODEL });
 
-  const validSubjects =
-    parsedResponse?.subjects?.filter((subject) =>
-      subjects.includes(subject.slug),
-    ) ?? [];
+  const response = await aiClient.chat.completions.parse({
+    model: MODEL,
+    messages: prompt,
+    response_format: zodResponseFormat(
+      z.object({
+        subjects: z.array(
+          z.object({
+            slug: z.string(),
+            confidence: z.number().min(1).max(5),
+          }),
+        ),
+      }),
+      "subjects",
+    ),
+  });
+
+  const parsedResponse = response.choices[0]?.message?.parsed;
+  invariant(parsedResponse, "No LLM response");
+  // console.log(`Received LLM response ${parsedResponse}`);
+
+  const validSubjects = parsedResponse.subjects.filter((subject) =>
+    subjects.includes(subject.slug),
+  );
 
   const sortedResponse = validSubjects
     .sort((a, b) => a.confidence - b.confidence)
