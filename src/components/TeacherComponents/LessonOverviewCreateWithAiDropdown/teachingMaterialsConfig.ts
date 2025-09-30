@@ -187,10 +187,11 @@ export function getTeachingMaterialTypesByCategory(
     ],
   };
 
-  for (const category of categories) {
-    if (subjectCategoryAvailableTeachingMaterialTypes[String(category)]) {
-      return subjectCategoryAvailableTeachingMaterialTypes[String(category)];
-    }
+  const foundCategory = categories.find(
+    (c) => subjectCategoryAvailableTeachingMaterialTypes[String(c)],
+  );
+  if (foundCategory) {
+    return subjectCategoryAvailableTeachingMaterialTypes[String(foundCategory)];
   }
 
   return undefined;
