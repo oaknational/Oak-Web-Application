@@ -5,22 +5,39 @@ import {
   OakHeading,
   OakP,
   OakPrimaryButton,
-  OakJauntyAngleLabel,
-  OakTextInput,
   OakMaxWidth,
 } from "@oaknational/oak-components";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 import { CurricTimetableHeader } from "../CurricTimetableHeader";
 import { CurricShowSteps } from "../CurricShowSteps";
+import { CurricNumberInput } from "../CurricNumberInput";
 
 import { useTimetableHeaderParams } from "./useTimetableHeaderParams";
 
 export const CurricTimetablingNewView = () => {
   const DEFAULT_LESSONS = 30;
-  const { subject, year, queryString } = useTimetableHeaderParams();
+  const { subject, year, queryParams } = useTimetableHeaderParams();
 
-  const nextHref = useMemo(() => `name?${queryString}`, [queryString]);
+  const [autumnLessons, setAutumnLessons] = useState(
+    parseInt(queryParams.get("autumn") ?? String(DEFAULT_LESSONS), 10),
+  );
+  const [springLessons, setSpringLessons] = useState(
+    parseInt(queryParams.get("spring") ?? String(DEFAULT_LESSONS), 10),
+  );
+  const [summerLessons, setSummerLessons] = useState(
+    parseInt(queryParams.get("summer") ?? String(DEFAULT_LESSONS), 10),
+  );
+
+  const nextHref = useMemo(() => {
+    const params = new URLSearchParams();
+    params.set("subject", subject);
+    params.set("year", year);
+    params.set("autumn", String(autumnLessons));
+    params.set("spring", String(springLessons));
+    params.set("summer", String(summerLessons));
+    return `name?${params.toString()}`;
+  }, [subject, year, autumnLessons, springLessons, summerLessons]);
 
   return (
     <>
@@ -61,30 +78,12 @@ export const CurricTimetablingNewView = () => {
               <OakHeading id="autumn-heading" tag="h3" $font="heading-3">
                 Autumn
               </OakHeading>
-              <OakFlex $position="relative" $flexDirection="column">
-                <OakJauntyAngleLabel
-                  as="label"
-                  htmlFor="autumn-lessons"
-                  label="Number of lessons"
-                  $font="heading-7"
-                  $background="lemon"
-                  $color="black"
-                  $zIndex="in-front"
-                  $position="absolute"
-                  $top={"-20px"}
-                  $left={"5px"}
-                  $borderRadius="border-radius-square"
-                />
-                <OakTextInput
-                  id="autumn-lessons"
-                  defaultValue={String(DEFAULT_LESSONS)}
-                  disabled
-                  aria-describedby="autumn-heading"
-                  wrapperWidth="100%"
-                  $pv="inner-padding-none"
-                  $height="all-spacing-10"
-                />
-              </OakFlex>
+              <CurricNumberInput
+                label="Number of lessons"
+                id="autumn-lessons"
+                value={autumnLessons}
+                onChange={setAutumnLessons}
+              />
             </OakFlex>
 
             <OakFlex
@@ -95,30 +94,12 @@ export const CurricTimetablingNewView = () => {
               <OakHeading id="spring-heading" tag="h3" $font="heading-3">
                 Spring
               </OakHeading>
-              <OakFlex $position="relative" $flexDirection="column">
-                <OakJauntyAngleLabel
-                  as="label"
-                  htmlFor="spring-lessons"
-                  label="Number of lessons"
-                  $font="heading-7"
-                  $background="lemon"
-                  $color="black"
-                  $zIndex="in-front"
-                  $position="absolute"
-                  $top={"-20px"}
-                  $left={"5px"}
-                  $borderRadius="border-radius-square"
-                />
-                <OakTextInput
-                  id="spring-lessons"
-                  defaultValue={String(DEFAULT_LESSONS)}
-                  disabled
-                  aria-describedby="spring-heading"
-                  wrapperWidth="100%"
-                  $pv="inner-padding-none"
-                  $height="all-spacing-10"
-                />
-              </OakFlex>
+              <CurricNumberInput
+                label="Number of lessons"
+                id="spring-lessons"
+                value={springLessons}
+                onChange={setSpringLessons}
+              />
             </OakFlex>
 
             <OakFlex
@@ -129,30 +110,12 @@ export const CurricTimetablingNewView = () => {
               <OakHeading id="summer-heading" tag="h3" $font="heading-3">
                 Summer
               </OakHeading>
-              <OakFlex $position="relative" $flexDirection="column">
-                <OakJauntyAngleLabel
-                  as="label"
-                  htmlFor="summer-lessons"
-                  label="Number of lessons"
-                  $font="heading-7"
-                  $background="lemon"
-                  $color="black"
-                  $zIndex="in-front"
-                  $position="absolute"
-                  $top={"-20px"}
-                  $left={"5px"}
-                  $borderRadius="border-radius-square"
-                />
-                <OakTextInput
-                  id="summer-lessons"
-                  defaultValue={String(DEFAULT_LESSONS)}
-                  disabled
-                  aria-describedby="summer-heading"
-                  wrapperWidth="100%"
-                  $pv="inner-padding-none"
-                  $height="all-spacing-10"
-                />
-              </OakFlex>
+              <CurricNumberInput
+                label="Number of lessons"
+                id="summer-lessons"
+                value={summerLessons}
+                onChange={setSummerLessons}
+              />
             </OakFlex>
           </OakFlex>
 
