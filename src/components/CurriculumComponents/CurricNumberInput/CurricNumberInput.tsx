@@ -19,6 +19,7 @@ export interface CurricNumberInputProps {
   onChange: (newValue: number) => void;
   min?: number;
   max?: number;
+  onValidationChange?: (isValid: boolean) => void;
 }
 
 export function CurricNumberInput({
@@ -28,6 +29,7 @@ export function CurricNumberInput({
   onChange,
   min = 5,
   max = 35,
+  onValidationChange,
 }: CurricNumberInputProps) {
   const [dirtyValue, setDirtyValue] = useState(String(value));
   const onChangeLocal = (e: ChangeEvent<HTMLInputElement>) => {
@@ -47,6 +49,12 @@ export function CurricNumberInput({
     () => !stringIsValidNumber(dirtyValue, min, max),
     [dirtyValue, min, max],
   );
+
+  useEffect(() => {
+    if (onValidationChange) {
+      onValidationChange(!isErroring);
+    }
+  }, [isErroring, onValidationChange]);
   const onBlur = () => {
     if (!stringIsValidNumber(dirtyValue, min, max)) {
       setDirtyValue(String(value));

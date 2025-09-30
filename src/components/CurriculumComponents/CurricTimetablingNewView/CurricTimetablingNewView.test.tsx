@@ -167,4 +167,42 @@ describe("CurricTimetablingNewView", () => {
       "name?subject=maths&year=1&autumn=20&spring=25&summer=35",
     );
   });
+
+  test("disables next button when any input is invalid", () => {
+    mockParams = new URLSearchParams(
+      "subject=maths&year=1&autumn=30&spring=30&summer=30",
+    );
+    const { getAllByLabelText, getByRole, queryByRole } = renderWithTheme(
+      <CurricTimetablingNewView />,
+    );
+    const inputs = getAllByLabelText("Number of lessons") as HTMLInputElement[];
+
+    // Initially, button should be a link (enabled)
+    expect(getByRole("link")).toBeInTheDocument();
+    expect(queryByRole("button")).not.toBeInTheDocument();
+
+    // Change autumn to invalid value (below min)
+    fireEvent.change(inputs[0]!, { target: { value: "3" } });
+
+    // Button should now be a disabled button
+    expect(queryByRole("link")).not.toBeInTheDocument();
+    const button = getByRole("button");
+    expect(button).toBeInTheDocument();
+    expect(button).toBeDisabled();
+    expect(button).toHaveTextContent("Next");
+
+    // Change autumn back to valid value
+    fireEvent.change(inputs[0]!, { target: { value: "20" } });
+
+    // Button should be a link again (enabled)
+    expect(getByRole("link")).toBeInTheDocument();
+    expect(queryByRole("button")).not.toBeInTheDocument();
+
+    // Change spring to invalid value (above max)
+    fireEvent.change(inputs[1]!, { target: { value: "50" } });
+
+    // Button should be disabled again
+    expect(queryByRole("link")).not.toBeInTheDocument();
+    expect(getByRole("button")).toBeDisabled();
+  });
 });

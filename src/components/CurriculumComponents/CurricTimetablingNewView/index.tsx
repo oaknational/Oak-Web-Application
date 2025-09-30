@@ -29,6 +29,12 @@ export const CurricTimetablingNewView = () => {
     parseInt(queryParams.get("summer") ?? String(DEFAULT_LESSONS), 10),
   );
 
+  const [isAutumnValid, setIsAutumnValid] = useState(true);
+  const [isSpringValid, setIsSpringValid] = useState(true);
+  const [isSummerValid, setIsSummerValid] = useState(true);
+
+  const isFormValid = isAutumnValid && isSpringValid && isSummerValid;
+
   const nextHref = useMemo(() => {
     const params = new URLSearchParams();
     params.set("subject", subject);
@@ -83,6 +89,7 @@ export const CurricTimetablingNewView = () => {
                 id="autumn-lessons"
                 value={autumnLessons}
                 onChange={setAutumnLessons}
+                onValidationChange={setIsAutumnValid}
               />
             </OakFlex>
 
@@ -99,6 +106,7 @@ export const CurricTimetablingNewView = () => {
                 id="spring-lessons"
                 value={springLessons}
                 onChange={setSpringLessons}
+                onValidationChange={setIsSpringValid}
               />
             </OakFlex>
 
@@ -115,19 +123,34 @@ export const CurricTimetablingNewView = () => {
                 id="summer-lessons"
                 value={summerLessons}
                 onChange={setSummerLessons}
+                onValidationChange={setIsSummerValid}
               />
             </OakFlex>
           </OakFlex>
 
-          <OakPrimaryButton
-            element="a"
-            href={nextHref}
-            pv="inner-padding-m"
-            ph="inner-padding-l"
-            style={{ height: "auto" }}
-          >
-            Next
-          </OakPrimaryButton>
+          {isFormValid ? (
+            <OakPrimaryButton
+              element="a"
+              href={nextHref}
+              pv="inner-padding-m"
+              ph="inner-padding-l"
+              style={{ height: "auto" }}
+              isTrailingIcon={false}
+            >
+              Next
+            </OakPrimaryButton>
+          ) : (
+            <OakPrimaryButton
+              element="button"
+              pv="inner-padding-m"
+              ph="inner-padding-l"
+              style={{ height: "auto" }}
+              disabled={true}
+              isTrailingIcon={false}
+            >
+              Next
+            </OakPrimaryButton>
+          )}
         </OakFlex>
       </OakMaxWidth>
     </>
