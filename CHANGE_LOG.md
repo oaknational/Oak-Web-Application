@@ -1,3 +1,25 @@
+## [1.871.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.871.0...v1.871.1) (2025-09-29)
+
+
+### Bug Fixes
+
+* remove year 11 music from pupil view ([c471c06](https://github.com/oaknational/Oak-Web-Application/commit/c471c06f48a10d3f4b260fb5b7c2851a4c119b6a))
+* remove year 11 music from pupil view ([c0febd8](https://github.com/oaknational/Oak-Web-Application/commit/c0febd816ea749201685aea365921919b65987f8))
+* update programme listing mv ([6579ae8](https://github.com/oaknational/Oak-Web-Application/commit/6579ae83a5976885c5a5bebcc6a4213e4f55b158))
+* update schema to check for actions ([2ea6d07](https://github.com/oaknational/Oak-Web-Application/commit/2ea6d076517b93ec70f3c8f66791fb7d2657cbc4))
+
+# [1.871.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.870.1...v1.871.0) (2025-09-29)
+
+
+### Bug Fixes
+
+* <OakRadioGroup/> now requires a label ([55e9905](https://github.com/oaknational/Oak-Web-Application/commit/55e9905ee66a6e2a9702479179368c74cfdca2e5))
+
+
+### Features
+
+* bumped oak-components to v1.147.2 ([500c501](https://github.com/oaknational/Oak-Web-Application/commit/500c501e5c09d5872e14390a2fddb080bb8aceef))
+
 ## [1.870.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.870.0...v1.870.1) (2025-09-29)
 
 
