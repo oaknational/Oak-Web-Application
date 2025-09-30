@@ -86,7 +86,7 @@ exports[`CurriculumTab renders 1`] = `
                 class="sc-fqkvVR sc-kAyceB bmnVAU bSQGkj"
               >
                 <a
-                  class="sc-ddjGPC jZmCQY sc-dSCufp"
+                  class="sc-bypJrT eQPxKr sc-ddjGPC"
                   href="/teachers/curriculum"
                 >
                   <span
@@ -99,7 +99,7 @@ exports[`CurriculumTab renders 1`] = `
                     </span>
                   </span>
                   <div
-                    class="sc-fqkvVR kbnxKi sc-bypJrT"
+                    class="sc-fqkvVR kbnxKi sc-klVQfs"
                   >
                     <img
                       alt=""
@@ -508,7 +508,7 @@ exports[`CurriculumTab renders 1`] = `
                 class="sc-fqkvVR sc-kAyceB fOyTgd TDtQj"
               >
                 <button
-                  class="sc-ddjGPC jZmCQY sc-dSCufp"
+                  class="sc-bypJrT eQPxKr sc-ddjGPC"
                   data-testid="cookie-banner-reject"
                   type="button"
                 >
