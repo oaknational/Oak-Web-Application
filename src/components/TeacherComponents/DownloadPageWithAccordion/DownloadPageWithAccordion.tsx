@@ -228,7 +228,7 @@ const DownloadPageWithAccordionContent = (
                 handleEditDetailsCompletedClick={onEditClick}
                 showPostAlbCopyright={showPostAlbCopyright}
                 copyrightYear={updatedAt}
-                useDownloadsExperiment
+                isDownloadsExperiment
               />
               {showRiskAssessmentBanner && (
                 <OakBox

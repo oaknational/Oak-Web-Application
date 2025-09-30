@@ -26,7 +26,7 @@ type DownloadCardProps = {
   downloadType: string;
   triggerForm: () => void;
   hasError: boolean;
-  useDownloadsExperiment?: boolean;
+  isDownloadsExperiment?: boolean;
 };
 const DownloadCard: FC<DownloadCardProps> = ({
   control,
@@ -34,7 +34,7 @@ const DownloadCard: FC<DownloadCardProps> = ({
   downloadType,
   triggerForm,
   hasError,
-  useDownloadsExperiment,
+  isDownloadsExperiment,
 }) => {
   return (
     <Controller
@@ -75,7 +75,7 @@ const DownloadCard: FC<DownloadCardProps> = ({
             onBlur={onBlur}
             hasError={hasError}
             data-testid={`download-card-${downloadType}`}
-            useDownloadsExperiment={useDownloadsExperiment}
+            isDownloadsExperiment={isDownloadsExperiment}
             isEditable={isEditable}
           />
         );
@@ -90,7 +90,7 @@ export type DownloadCardGroupProps = {
   control: Control<ResourceFormProps>;
   hasError?: boolean;
   triggerForm: () => void;
-  useDownloadsExperiment?: boolean;
+  isDownloadsExperiment?: boolean;
 };
 const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
   downloads,
@@ -98,7 +98,7 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
   control,
   hasError = false,
   triggerForm,
-  useDownloadsExperiment = false,
+  isDownloadsExperiment = false,
 }) => {
   const groupedDownloads = groupDownloadResources(downloads, additionalFiles);
 
@@ -124,7 +124,7 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
               $width="max-content"
               $gridTemplateColumns={[
                 "1fr",
-                `${useDownloadsExperiment ? "1fr 1fr" : "max-content max-content"}`,
+                `${isDownloadsExperiment ? "1fr 1fr" : "max-content max-content"}`,
               ]}
               $cg={"space-between-s"}
               $rg={"space-between-s"}
@@ -142,7 +142,7 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
                     downloadType={downloadType}
                     triggerForm={triggerForm}
                     hasError={hasError}
-                    useDownloadsExperiment={useDownloadsExperiment}
+                    isDownloadsExperiment={isDownloadsExperiment}
                   />
                 );
               })}

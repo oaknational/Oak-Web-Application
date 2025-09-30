@@ -75,8 +75,8 @@ describe("TermsAgreementForm (School, email and terms form within the teacher an
     const detailsCompletedComponent = getByTestId("termsCheckbox");
     expect(detailsCompletedComponent).toBeInTheDocument();
   });
-  it("does not show heading and copyright notice when useDownloadsExperiment is true", async () => {
-    const { queryByText } = render(<Wrapper useDownloadsExperiment />);
+  it("does not show heading and copyright notice when isDownloadsExperiment is true", async () => {
+    const { queryByText } = render(<Wrapper isDownloadsExperiment />);
     const heading = queryByText("Your details");
     const copyrightNotice = queryByText("Open Government Licence version 3.0");
     expect(heading).not.toBeInTheDocument();

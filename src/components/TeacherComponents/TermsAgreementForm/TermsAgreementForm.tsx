@@ -41,7 +41,7 @@ export type TermsAgreementFormProps = {
   handleEditDetailsCompletedClick?: () => void;
   showPostAlbCopyright?: boolean;
   copyrightYear: string;
-  useDownloadsExperiment?: boolean;
+  isDownloadsExperiment?: boolean;
 };
 
 const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
@@ -55,14 +55,14 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
   handleEditDetailsCompletedClick = () => {},
   showPostAlbCopyright = true,
   copyrightYear,
-  useDownloadsExperiment = false,
+  isDownloadsExperiment = false,
 }) => {
   const [emailHasFocus, setEmailHasFocus] = useState(false);
   const { ref, ...emailProps } = form.register("email");
 
   return (
     <>
-      {!useDownloadsExperiment && (
+      {!isDownloadsExperiment && (
         <OakHeading
           tag="h2"
           $font={["heading-6", "heading-5"]}
@@ -92,7 +92,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
           ) : (
             <OakBox
               $maxWidth={
-                useDownloadsExperiment
+                isDownloadsExperiment
                   ? null
                   : [null, "all-spacing-21", "all-spacing-21"]
               }
@@ -210,7 +210,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
               />
             </OakBox>
           )}
-          {!useDownloadsExperiment && (
+          {!isDownloadsExperiment && (
             <OakBox $maxWidth="all-spacing-21">
               <CopyrightNotice
                 showPostAlbCopyright={showPostAlbCopyright}

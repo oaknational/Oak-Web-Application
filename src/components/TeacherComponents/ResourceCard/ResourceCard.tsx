@@ -13,16 +13,16 @@ import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 const CustomSizing = styled("div")<{
   checked?: boolean;
-  useDownloadsExperiment?: boolean;
+  isDownloadsExperiment?: boolean;
 }>`
   display: grid;
-  width: ${(props) => (props.useDownloadsExperiment ? "100%" : "320px")};
+  width: ${(props) => (props.isDownloadsExperiment ? "100%" : "320px")};
   input {
     border: ${(props) => (props.checked ? "0" : "default")};
   }
 
   @media (min-width: 1280px) {
-    width: ${(props) => (props.useDownloadsExperiment ? "300px" : "320px")};
+    width: ${(props) => (props.isDownloadsExperiment ? "300px" : "320px")};
   }
 `;
 
@@ -33,7 +33,7 @@ export type ResourceCardProps = Omit<CheckboxProps, "checked"> & {
   hasError?: boolean;
   subjectIcon?: string;
   isEditable?: boolean;
-  useDownloadsExperiment?: boolean;
+  isDownloadsExperiment?: boolean;
   asRadio?: boolean;
   checked?: boolean;
 };
@@ -71,7 +71,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
     isEditable,
     disabled,
     asRadio = false,
-    useDownloadsExperiment = false,
+    isDownloadsExperiment = false,
   } = props;
 
   const isCurriculumIcon = resourceType === "curriculum-pdf";
@@ -83,7 +83,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
   return (
     <CustomSizing
       checked={checked}
-      useDownloadsExperiment={useDownloadsExperiment}
+      isDownloadsExperiment={isDownloadsExperiment}
     >
       <OakDownloadCard
         id={id}

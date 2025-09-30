@@ -473,7 +473,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                         additionalFiles={additionalFiles}
                         hasError={Boolean(form.errors?.resources)}
                         triggerForm={form.trigger}
-                        useDownloadsExperiment={showDownloadPageWithAccordion}
+                        isDownloadsExperiment={showDownloadPageWithAccordion}
                       />
                     )
                   }
