@@ -10,7 +10,6 @@ variable "custom_env_vars" {
       CURRICULUM_API_2023_URL = string
       OVERRIDE_URL            = string
       OAK_CONFIG_LOCATION     = string
-      AI_SEARCH_ENABLED       = optional(string, "true")
     }))
   })
   default = {}

@@ -194,7 +194,8 @@ async function main() {
     NEXT_PUBLIC_SENTRY_ENABLED: process.env.NEXT_PUBLIC_SENTRY_ENABLED,
 
     // Search API
-    OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+    OPENAI_API_KEY:
+      process.env.OPENAI_API_KEY || secretsFromNetwork.OPENAI_API_KEY,
     SEARCH_ENABLED_IN_PROD: process.env.SEARCH_ENABLED_IN_PROD,
 
     // Seo
