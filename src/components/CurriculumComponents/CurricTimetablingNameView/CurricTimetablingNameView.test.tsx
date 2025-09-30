@@ -1,3 +1,6 @@
+import userEvent from "@testing-library/user-event";
+import { waitFor } from "@testing-library/dom";
+
 import { CurricTimetablingNameView } from ".";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
@@ -18,7 +21,13 @@ jest.mock("next/navigation", () => ({
 describe("CurricTimetablingNewView", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    jest.resetAllMocks();
   });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   test("component renders with heading correctly", async () => {
     const { getByRole } = renderWithTheme(<CurricTimetablingNameView />);
     const headingElement = getByRole("heading", { level: 2 });
@@ -32,17 +41,24 @@ describe("CurricTimetablingNewView", () => {
     expect(button).toBeInTheDocument();
   });
 
-  test("the next button directs to correct page", async () => {
+  test("the next button directs to correct page with user input", async () => {
     mockReplace = jest.fn();
     mockParams = mockSearchParams;
-    const { getByRole } = renderWithTheme(<CurricTimetablingNameView />);
-
-    const button = getByRole("link", { name: /Finish/i });
-
-    expect(button).toHaveAttribute(
-      "href",
-      "units?subject=maths&year=1&autumn=30&spring=30&summer=30&name=Oak+National+Academy",
+    const { getByRole, getByPlaceholderText } = renderWithTheme(
+      <CurricTimetablingNameView />,
     );
+    const input = getByPlaceholderText("Type school name");
+
+    userEvent.type(input, "Oak national");
+
+    await waitFor(() => {
+      const button = getByRole("link", { name: /Finish/i });
+
+      expect(button).toHaveAttribute(
+        "href",
+        "units?subject=maths&year=1&autumn=30&spring=30&summer=30&name=Oak+national",
+      );
+    });
   });
 
   test("component renders previous button", async () => {
@@ -52,17 +68,24 @@ describe("CurricTimetablingNewView", () => {
     expect(button).toBeInTheDocument();
   });
 
-  test("the previous button directs to correct page and name persists", async () => {
+  test("inputting a name persists for previous button", async () => {
     mockReplace = jest.fn();
     mockParams = mockSearchParams;
-    const { getByRole } = renderWithTheme(<CurricTimetablingNameView />);
+    const { getByRole, getByPlaceholderText } = renderWithTheme(
+      <CurricTimetablingNameView />,
+    );
 
     const button = getByRole("link", { name: /Previous/i });
+    const input = getByPlaceholderText("Type school name");
 
-    expect(button).toHaveAttribute(
-      "href",
-      "new?subject=maths&year=1&autumn=30&spring=30&summer=30&name=Oak+National+Academy",
-    );
+    userEvent.type(input, "Oak national");
+
+    await waitFor(() => {
+      expect(button).toHaveAttribute(
+        "href",
+        "new?subject=maths&year=1&autumn=30&spring=30&summer=30&name=Oak+national",
+      );
+    });
   });
 
   test("having name in params directs to correct prev page", async () => {
@@ -107,5 +130,19 @@ describe("CurricTimetablingNewView", () => {
     const inputField = getByPlaceholderText("Type school name");
 
     expect(inputField).toHaveValue("Test Test");
+  });
+
+  test("no input has correct parameters", async () => {
+    mockParams = new URLSearchParams(
+      "subject=maths&year=1&autumn=30&spring=30&summer=30",
+    );
+    const { getByRole } = renderWithTheme(<CurricTimetablingNameView />);
+
+    const finishNameBtn = getByRole("link", { name: /Finish/i });
+
+    expect(finishNameBtn).toHaveAttribute(
+      "href",
+      "units?subject=maths&year=1&autumn=30&spring=30&summer=30",
+    );
   });
 });

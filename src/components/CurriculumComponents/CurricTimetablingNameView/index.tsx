@@ -1,5 +1,5 @@
 "use client";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   OakBox,
   OakFlex,
@@ -16,20 +16,26 @@ import { CurricShowSteps } from "../CurricShowSteps";
 import { useTimetableHeaderParams } from "../CurricTimetablingNewView/useTimetableHeaderParams";
 
 export const CurricTimetablingNameView = () => {
-  const DEFAULT_NAME_VALUE = "Oak National Academy";
+  const { subject, year, name, queryString } = useTimetableHeaderParams();
 
-  const { subject, year, name, queryParams, queryString } =
-    useTimetableHeaderParams();
+  const [nameValue, setNameValue] = useState<string>("");
+
+  useEffect(() => {
+    if (name && nameValue === "") {
+      setNameValue(name);
+    }
+  }, [name, nameValue]);
 
   const params = useMemo(() => {
-    if (queryParams && !queryParams.has("name")) {
+    if (!name && nameValue !== "") {
       const updatedParams = new URLSearchParams(queryString);
-      updatedParams.append("name", DEFAULT_NAME_VALUE);
+      updatedParams.append("name", nameValue);
 
       return updatedParams.toString();
     }
+
     return queryString;
-  }, [queryParams, queryString]);
+  }, [name, queryString, nameValue]);
 
   return (
     <OakMaxWidth
@@ -79,8 +85,8 @@ export const CurricTimetablingNameView = () => {
           <OakTextInput
             id="autumn-lessons"
             placeholder="Type school name"
-            disabled
-            defaultValue={name ?? DEFAULT_NAME_VALUE}
+            value={nameValue}
+            onChange={(e) => setNameValue(e.target.value)}
             aria-describedby="autumn-heading"
             wrapperWidth="100%"
             $pv="inner-padding-none"
