@@ -67,6 +67,7 @@ export default function SignpostTeachersInlineBanner({
             canDismiss
             type="neutral"
             title="Teachers"
+            titleTag="h2"
             message="Download adaptable teaching resources"
             isOpen
             $width="100%"
