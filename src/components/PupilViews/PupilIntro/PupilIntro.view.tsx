@@ -1,4 +1,9 @@
 import { useEffect } from "react";
+
+
+import { useWorksheetDownload } from "./useWorksheetDownload";
+import { useAdditionalFilesDownload } from "./useAdditionalFilesDownload";
+
 import {
   OakBackLink,
   OakBox,
@@ -20,10 +25,6 @@ import {
   OakStaticMessageCard,
   OakUL,
 } from "@oaknational/oak-components";
-
-import { useWorksheetDownload } from "./useWorksheetDownload";
-import { useAdditionalFilesDownload } from "./useAdditionalFilesDownload";
-
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { CopyrightNotice } from "@/components/PupilComponents/CopyrightNotice";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
@@ -230,7 +231,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
         >
           <OakFlex $maxWidth={["100%", "100%", "fit-content"]}>
             <OakStaticMessageCard>
-              <OakCardHeader iconName="question-mark" tag="h1">
+              <OakCardHeader iconName="question-mark" tag="h2">
                 Are you ready to learn?
               </OakCardHeader>
               <OakP>
@@ -244,7 +245,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
           <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
             {hasAdditionalFiles && !!additionalFiles?.length && (
               <OakLessonInfoCard>
-                <OakCardHeader iconName="additional-material" tag="h1">
+                <OakCardHeader iconName="additional-material" tag="h2">
                   {`File${additionalFiles.length > 1 ? "s" : ""} you will need for this lesson`}
                 </OakCardHeader>
                 <OakUL
@@ -274,7 +275,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
             )}
             {equipmentAndResources?.[0]?.equipment && (
               <OakLessonInfoCard>
-                <OakCardHeader iconName="equipment-required" tag="h1">
+                <OakCardHeader iconName="equipment-required" tag="h2">
                   Equipment
                 </OakCardHeader>
                 <OakP $font={"body-1"}>
@@ -284,7 +285,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
             )}
             {removedGuidanceDuplicates.length > 0 && (
               <OakLessonInfoCard>
-                <OakCardHeader iconName="content-guidance" tag="h1">
+                <OakCardHeader iconName="content-guidance" tag="h2">
                   Content guidance
                 </OakCardHeader>
                 {removedGuidanceDuplicates.map((guidance: string) => {
@@ -298,7 +299,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
             )}
             {ageRestriction && removedGuidanceDuplicates.length === 0 && (
               <OakLessonInfoCard>
-                <OakCardHeader iconName="content-guidance" tag="h1">
+                <OakCardHeader iconName="content-guidance" tag="h2">
                   Content guidance
                 </OakCardHeader>
                 <OakP $font={"body-1"} key={"age-restriction"}>
@@ -308,7 +309,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
             )}
             {supervisionLevel && (
               <OakLessonInfoCard>
-                <OakCardHeader iconName="supervision-level" tag="h1">
+                <OakCardHeader iconName="supervision-level" tag="h2">
                   Supervision
                 </OakCardHeader>
                 <OakP $font={"body-1"}>{supervisionLevel}</OakP>
@@ -316,7 +317,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
             )}
             {hasWorksheet && (
               <OakLessonInfoCard>
-                <OakCardHeader iconName="worksheet-3" tag="h1">
+                <OakCardHeader iconName="worksheet-3" tag="h2">
                   Worksheet
                 </OakCardHeader>
                 <OakP $font={"body-1"}>Optional</OakP>
