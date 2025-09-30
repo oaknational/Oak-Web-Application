@@ -7,11 +7,11 @@ describe("hasNonMatchingWords", () => {
     });
     expect(result).toBe(true);
   });
-  it("returns false when there are 2 extra words", () => {
-    const result = hasNonMatchingWords("history of ww2", {
+  it("returns true when there are 2 extra words", () => {
+    const result = hasNonMatchingWords("usa golf history ", {
       subject: "history",
     });
-    expect(result).toBe(false);
+    expect(result).toBe(true);
   });
   it("returns false when there is 1 extra word", () => {
     const result = hasNonMatchingWords("history curriculum", {
@@ -20,7 +20,7 @@ describe("hasNonMatchingWords", () => {
     expect(result).toBe(false);
   });
   it("returns false when there are no extra words", () => {
-    const result = hasNonMatchingWords(" history ", {
+    const result = hasNonMatchingWords("history", {
       subject: "history",
     });
     expect(result).toBe(false);

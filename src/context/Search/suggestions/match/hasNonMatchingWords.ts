@@ -1,4 +1,4 @@
-// A crude approximation to determine whether the search term contains more than two words that weren't matched
+// A crude approximation to determine whether the search term contains more than 1 word that wasn't matched
 // If it does, we consider the match to be ambiguous
 export const hasNonMatchingWords = (
   query: string,
@@ -16,5 +16,5 @@ export const hasNonMatchingWords = (
     .filter((pf) => !!pf)
     .join(" ")
     .split(" ").length;
-  return queryWordLength - matchesWordLength > 2;
+  return queryWordLength - matchesWordLength > 1;
 };
