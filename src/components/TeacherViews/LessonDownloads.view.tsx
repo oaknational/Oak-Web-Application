@@ -1,6 +1,5 @@
 import { useMemo, useState } from "react";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
-import z from "zod";
 import {
   examboards,
   tierDescriptions,
@@ -126,12 +125,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     geoRestricted,
   } = lesson;
 
-  const variantKey = z.literal("control").or(z.literal("with-accordion"));
-  const featureFlag = useFeatureFlagVariantKey("teacher-download-accordion");
-  const parsedFeatureFlagKey = variantKey.safeParse(featureFlag);
   const showDownloadPageWithAccordion =
-    parsedFeatureFlagKey.success &&
-    parsedFeatureFlagKey.data === "with-accordion";
+    useFeatureFlagVariantKey("teacher-download-accordion") === "with-accordion";
 
   const {
     showGeoBlocked,
