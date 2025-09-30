@@ -12,7 +12,7 @@ import {
   OAK_YEARS,
 } from "./oakCurriculumData";
 import { getMatch } from "./match/getMatch";
-import { getIsAmbiguousMatch } from "./match/getIsAmbiguousMatch";
+import { hasNonMatchingWords } from "./match/hasNonMatchingWords";
 
 import { DirectMatch } from "@/pages/api/search/schemas";
 
@@ -45,7 +45,7 @@ export const findPfMatch = (query: string): DirectMatch | null => {
     return null;
   }
 
-  const isAmbiguousMatch = getIsAmbiguousMatch(query, {
+  const isAmbiguousMatch = hasNonMatchingWords(query, {
     subject: subjectMatch?.matched,
     keyStage: keystageMatch?.matched,
     year: yearMatch?.matched,

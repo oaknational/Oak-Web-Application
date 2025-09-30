@@ -1,26 +1,26 @@
-import { getIsAmbiguousMatch } from "./getIsAmbiguousMatch";
+import { hasNonMatchingWords } from "./hasNonMatchingWords";
 
-describe("isAmbiguousMatch", () => {
+describe("hasNonMatchingWords", () => {
   it("returns true when the term contains 3 extra words", () => {
-    const result = getIsAmbiguousMatch("the history of golf", {
+    const result = hasNonMatchingWords("the history of golf", {
       subject: "history",
     });
     expect(result).toBe(true);
   });
   it("returns false when there are 2 extra words", () => {
-    const result = getIsAmbiguousMatch("history of golf", {
+    const result = hasNonMatchingWords("history of golf", {
       subject: "history",
     });
     expect(result).toBe(false);
   });
   it("returns false when there is 1 extra word", () => {
-    const result = getIsAmbiguousMatch("golf history", {
+    const result = hasNonMatchingWords("golf history", {
       subject: "history",
     });
     expect(result).toBe(false);
   });
   it("returns false when there are no extra words", () => {
-    const result = getIsAmbiguousMatch(" history ", {
+    const result = hasNonMatchingWords(" history ", {
       subject: "history",
     });
     expect(result).toBe(false);

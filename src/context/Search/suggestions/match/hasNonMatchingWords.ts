@@ -1,6 +1,6 @@
 // A crude approximation to determine whether the search term contains more than two words that weren't matched
 // If it does, we consider the match to be ambiguous
-export const getIsAmbiguousMatch = (
+export const hasNonMatchingWords = (
   query: string,
   matches: {
     subject?: string | null;
@@ -16,6 +16,5 @@ export const getIsAmbiguousMatch = (
     .filter((pf) => !!pf)
     .join(" ")
     .split(" ").length;
-  const isAmbiguousMatch = queryWordLength - matchesWordLength > 2;
-  return isAmbiguousMatch;
+  return queryWordLength - matchesWordLength > 2;
 };
