@@ -10,23 +10,31 @@ import {
   OakMaxWidth,
 } from "@oaknational/oak-components";
 import { useMemo } from "react";
+import { useParams } from "next/navigation";
 
 import { CurricTimetableHeader } from "../CurricTimetableHeader";
 import { CurricShowSteps } from "../CurricShowSteps";
 
-import { useTimetableHeaderParams } from "./useTimetableHeaderParams";
+import {
+  simpleObjectAsSearchParams,
+  useTimetableParams,
+} from "@/utils/curriculum/timetabling";
+import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 
 export const CurricTimetablingNewView = () => {
-  const DEFAULT_LESSONS = 30;
-  const { subject, year, queryString } = useTimetableHeaderParams();
-
-  const nextHref = useMemo(() => `name?${queryString}`, [queryString]);
+  const params = useParams<{ subjectPhaseSlug: string }>();
+  const { subjectSlug } = parseSubjectPhaseSlug(params!.subjectPhaseSlug)!;
+  const [data, setData] = useTimetableParams();
+  const nextHref = useMemo(
+    () => `name?${simpleObjectAsSearchParams(data, { name: "" })}`,
+    [data],
+  );
 
   return (
     <>
       <OakFlex $flexDirection={"column"} $pa={"inner-padding-xl5"}>
         <CurricTimetableHeader
-          titleSlot={`Year ${year} ${subject}`}
+          titleSlot={`Year ${data.year} ${subjectSlug}`}
           illustrationSlug={"magic-carpet"}
           additionalSlot={
             <OakBox $maxWidth={"all-spacing-20"}>
@@ -77,8 +85,8 @@ export const CurricTimetablingNewView = () => {
                 />
                 <OakTextInput
                   id="autumn-lessons"
-                  defaultValue={String(DEFAULT_LESSONS)}
-                  disabled
+                  value={String(data.autumn)}
+                  onChange={(e) => setData({ autumn: Number(e.target.value) })}
                   aria-describedby="autumn-heading"
                   wrapperWidth="100%"
                   $pv="inner-padding-none"
@@ -111,8 +119,8 @@ export const CurricTimetablingNewView = () => {
                 />
                 <OakTextInput
                   id="spring-lessons"
-                  defaultValue={String(DEFAULT_LESSONS)}
-                  disabled
+                  value={String(data.spring)}
+                  onChange={(e) => setData({ spring: Number(e.target.value) })}
                   aria-describedby="spring-heading"
                   wrapperWidth="100%"
                   $pv="inner-padding-none"
@@ -145,8 +153,8 @@ export const CurricTimetablingNewView = () => {
                 />
                 <OakTextInput
                   id="summer-lessons"
-                  defaultValue={String(DEFAULT_LESSONS)}
-                  disabled
+                  value={String(data.summer)}
+                  onChange={(e) => setData({ summer: Number(e.target.value) })}
                   aria-describedby="summer-heading"
                   wrapperWidth="100%"
                   $pv="inner-padding-none"

@@ -18,8 +18,6 @@ describe("CurricYearCard component", () => {
     yearTitle: "Year 7",
     isExamboard: false,
     children: <div>Test content</div>,
-    timetablingQueryParams: new URLSearchParams("subject=maths&year=7"),
-    timetablingEnabled: false,
   };
 
   it("should render with year heading", () => {
@@ -39,7 +37,6 @@ describe("CurricYearCard component", () => {
         yearTitle="Year 11"
         yearSubheading="Core"
         isExamboard={false}
-        timetablingEnabled={false}
         children={<div>Content for Year 11 Mathematics</div>}
       />,
     );
@@ -132,7 +129,6 @@ describe("CurricYearCard component", () => {
         yearSubheading="Physics"
         isExamboard={true}
         children={units}
-        timetablingEnabled={false}
       />,
     );
 
@@ -156,7 +152,7 @@ describe("CurricYearCard component", () => {
       <CurricYearCard
         {...defaultProps}
         isExamboard={false}
-        timetablingEnabled={true}
+        timetablingUrl={"/timetabling/maths-primary/new?year=7"}
       />,
     );
 
@@ -166,11 +162,7 @@ describe("CurricYearCard component", () => {
   it("should not render the map to timetable link if feature flag is not enabled ", () => {
     mockFeatureFlagEnabled.mockReturnValue(false);
     const { container } = renderWithTheme(
-      <CurricYearCard
-        {...defaultProps}
-        isExamboard={false}
-        timetablingEnabled={false}
-      />,
+      <CurricYearCard {...defaultProps} isExamboard={false} />,
     );
 
     expect(container).not.toHaveTextContent("Map to school timetable");
@@ -182,7 +174,7 @@ describe("CurricYearCard component", () => {
       <CurricYearCard
         {...defaultProps}
         isExamboard={false}
-        timetablingEnabled={true}
+        timetablingUrl={"/timetabling/maths-primary/new?year=7"}
       />,
     );
 
@@ -190,7 +182,7 @@ describe("CurricYearCard component", () => {
 
     expect(link).toHaveAttribute(
       "href",
-      "/timetabling/new?subject=maths&year=7",
+      "/timetabling/maths-primary/new?year=7",
     );
   });
 });

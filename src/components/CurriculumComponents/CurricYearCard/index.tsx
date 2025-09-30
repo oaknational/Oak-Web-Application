@@ -7,23 +7,21 @@ import {
 import React from "react";
 
 type CurricYearCardProps = {
-  timetablingQueryParams?: URLSearchParams;
   yearTitle: string;
   yearSubheading?: string | null;
   additional?: React.ReactNode;
   children: React.ReactNode;
   isExamboard: boolean;
-  timetablingEnabled: boolean | undefined;
+  timetablingUrl?: string;
 };
 
 export function CurricYearCard({
-  timetablingQueryParams,
   yearTitle,
   yearSubheading,
   additional,
   children,
   isExamboard,
-  timetablingEnabled,
+  timetablingUrl,
 }: CurricYearCardProps) {
   return (
     <OakBox
@@ -43,9 +41,9 @@ export function CurricYearCard({
         >
           {yearTitle}
         </OakHeading>
-        {timetablingEnabled === true && timetablingQueryParams && (
+        {timetablingUrl && (
           <OakSecondaryLink
-            href={`/timetabling/new?${timetablingQueryParams.toString()}`}
+            href={timetablingUrl}
             iconName="external"
             isTrailingIcon
           >

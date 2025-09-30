@@ -136,6 +136,7 @@ export default function UnitsTab({
               yearData={yearData}
               setVisibleMobileYearRefID={setVisibleMobileYearRefID}
               threadOptions={threadOptions}
+              slugs={slugs}
             />
           }
           curriculumSeoText={curriculumSeoText}

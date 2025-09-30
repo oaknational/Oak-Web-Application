@@ -131,6 +131,11 @@ const CurricVisualiserFixture: ComponentProps<typeof CurricVisualiser> = {
   },
   setVisibleMobileYearRefID: jest.fn(() => {}),
   basePath: "/",
+  slugs: {
+    phaseSlug: "secondary",
+    subjectSlug: "maths",
+    ks4OptionSlug: null,
+  },
 };
 
 describe("visualiser", () => {

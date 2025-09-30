@@ -2,20 +2,22 @@ import { CurricTimetablingNameView } from ".";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-let mockParams = new URLSearchParams("");
+let mockSearchParams = new URLSearchParams("");
 let mockReplace = jest.fn();
+const mockUseParams = jest.fn(() => ({ subjectPhaseSlug: "maths-primary" }));
 
-const mockSearchParams = new URLSearchParams(
+const defaultSearchParams = new URLSearchParams(
   "subject=maths&year=1&autumn=30&spring=30&summer=30",
 );
 
 jest.mock("next/navigation", () => ({
   usePathname: () => "/timetabling/name",
   useRouter: () => ({ replace: mockReplace }),
-  useSearchParams: () => mockParams,
+  useSearchParams: () => mockSearchParams,
+  useParams: (...args: []) => mockUseParams(...args),
 }));
 
-describe("CurricTimetablingNewView", () => {
+describe("CurricTimetablingNameView", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -34,14 +36,14 @@ describe("CurricTimetablingNewView", () => {
 
   test("the next button directs to correct page", async () => {
     mockReplace = jest.fn();
-    mockParams = mockSearchParams;
+    mockSearchParams = defaultSearchParams;
     const { getByRole } = renderWithTheme(<CurricTimetablingNameView />);
 
     const button = getByRole("link", { name: /Finish/i });
 
     expect(button).toHaveAttribute(
       "href",
-      "units?subject=maths&year=1&autumn=30&spring=30&summer=30&name=Oak+National+Academy",
+      "units?autumn=30&name=&spring=30&summer=30&year=1",
     );
   });
 
@@ -54,52 +56,52 @@ describe("CurricTimetablingNewView", () => {
 
   test("the previous button directs to correct page and name persists", async () => {
     mockReplace = jest.fn();
-    mockParams = mockSearchParams;
+    mockSearchParams = defaultSearchParams;
     const { getByRole } = renderWithTheme(<CurricTimetablingNameView />);
 
     const button = getByRole("link", { name: /Previous/i });
 
     expect(button).toHaveAttribute(
       "href",
-      "new?subject=maths&year=1&autumn=30&spring=30&summer=30&name=Oak+National+Academy",
+      "new?autumn=30&name=&spring=30&summer=30&year=1",
     );
   });
 
   test("having name in params directs to correct prev page", async () => {
     mockReplace = jest.fn();
-    const paramsWithName = mockSearchParams;
+    const paramsWithName = defaultSearchParams;
     paramsWithName.append("name", "Test Test");
-    mockParams = paramsWithName;
+    mockSearchParams = paramsWithName;
     const { getByRole } = renderWithTheme(<CurricTimetablingNameView />);
 
     const prevNameBtn = getByRole("link", { name: /Previous/i });
 
     expect(prevNameBtn).toHaveAttribute(
       "href",
-      "new?subject=maths&year=1&autumn=30&spring=30&summer=30&name=Test+Test",
+      "new?autumn=30&name=Test+Test&spring=30&summer=30&year=1",
     );
   });
 
   test("having name in params directs to correct next page", async () => {
     mockReplace = jest.fn();
-    const paramsWithName = mockSearchParams;
+    const paramsWithName = defaultSearchParams;
     paramsWithName.append("name", "Test Test");
-    mockParams = paramsWithName;
+    mockSearchParams = paramsWithName;
     const { getByRole } = renderWithTheme(<CurricTimetablingNameView />);
 
     const finishNameBtn = getByRole("link", { name: /Finish/i });
 
     expect(finishNameBtn).toHaveAttribute(
       "href",
-      "units?subject=maths&year=1&autumn=30&spring=30&summer=30&name=Test+Test",
+      "units?autumn=30&name=Test+Test&spring=30&summer=30&year=1",
     );
   });
 
   test("having name in params shows correct input", async () => {
     mockReplace = jest.fn();
-    const paramsWithName = mockSearchParams;
+    const paramsWithName = defaultSearchParams;
     paramsWithName.append("name", "Test Test");
-    mockParams = paramsWithName;
+    mockSearchParams = paramsWithName;
     const { getByPlaceholderText } = renderWithTheme(
       <CurricTimetablingNameView />,
     );

@@ -2,13 +2,15 @@ import { CurricTimetablingNewView } from ".";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-let mockParams = new URLSearchParams("");
-let mockReplace = jest.fn();
+let mockSearchParams = new URLSearchParams("");
+const mockReplace = jest.fn();
+const mockUseParams = jest.fn(() => ({ subjectPhaseSlug: "maths-primary" }));
 
 jest.mock("next/navigation", () => ({
   usePathname: () => "/timetabling/new",
   useRouter: () => ({ replace: mockReplace }),
-  useSearchParams: () => mockParams,
+  useSearchParams: () => mockSearchParams,
+  useParams: (...args: []) => mockUseParams(...args),
 }));
 
 describe("CurricTimetablingNewView", () => {
@@ -26,12 +28,12 @@ describe("CurricTimetablingNewView", () => {
   });
 
   test("the next button directs to correct page", async () => {
-    mockParams = new URLSearchParams("");
+    mockSearchParams = new URLSearchParams("");
     const { getByRole } = renderWithTheme(<CurricTimetablingNewView />);
     const linkElement = getByRole("link");
     expect(linkElement).toHaveAttribute(
       "href",
-      "name?subject=maths&year=1&autumn=30&spring=30&summer=30",
+      "name?autumn=30&spring=30&summer=30&year=1",
     );
   });
 
@@ -40,7 +42,6 @@ describe("CurricTimetablingNewView", () => {
     const inputs = getAllByLabelText("Number of lessons") as HTMLInputElement[];
     expect(inputs).toHaveLength(3);
     inputs.forEach((input) => {
-      expect(input).toBeDisabled();
       expect(input).toHaveValue("30");
     });
   });
@@ -62,44 +63,5 @@ describe("CurricTimetablingNewView", () => {
     expect(inputs[0]).toHaveAttribute("aria-describedby", autumn.id);
     expect(inputs[1]).toHaveAttribute("aria-describedby", spring.id);
     expect(inputs[2]).toHaveAttribute("aria-describedby", summer.id);
-  });
-
-  test("normalises URL with defaults when missing", () => {
-    mockReplace = jest.fn();
-    mockParams = new URLSearchParams("");
-    const { unmount } = renderWithTheme(<CurricTimetablingNewView />);
-    expect(mockReplace).toHaveBeenCalledWith(
-      "/timetabling/new?subject=maths&year=1&autumn=30&spring=30&summer=30",
-    );
-    unmount();
-  });
-
-  test("fills missing terms, preserves allowed keys, drops others", () => {
-    mockReplace = jest.fn();
-    mockParams = new URLSearchParams(
-      "subject=science&year=2&spring=10&foo=bar",
-    );
-    const { unmount, getByRole } = renderWithTheme(
-      <CurricTimetablingNewView />,
-    );
-    expect(mockReplace).toHaveBeenCalledWith(
-      "/timetabling/new?subject=science&year=2&autumn=30&spring=10&summer=30",
-    );
-    const linkElement = getByRole("link");
-    expect(linkElement).toHaveAttribute(
-      "href",
-      "name?subject=science&year=2&autumn=30&spring=10&summer=30",
-    );
-    unmount();
-  });
-
-  test("does not replace query params when already correct", () => {
-    mockReplace = jest.fn();
-    mockParams = new URLSearchParams(
-      "subject=maths&year=1&autumn=30&spring=30&summer=30",
-    );
-    const { unmount } = renderWithTheme(<CurricTimetablingNewView />);
-    expect(mockReplace).not.toHaveBeenCalled();
-    unmount();
   });
 });
