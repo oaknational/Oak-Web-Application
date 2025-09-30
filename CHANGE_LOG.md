@@ -1,3 +1,62 @@
+# [1.874.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.873.1...v1.874.0) (2025-09-30)
+
+
+### Bug Fixes
+
+* sonar issues ([0b11352](https://github.com/oaknational/Oak-Web-Application/commit/0b11352fdb507ad0c097e66897dceb0171f0dc6e))
+
+
+### Features
+
+* add experiment downloads page and feature flag ([87bca89](https://github.com/oaknational/Oak-Web-Application/commit/87bca895fbe3acec203daeb792b75e192e280696))
+* add newsletter form to experiment download page ([5056c91](https://github.com/oaknational/Oak-Web-Application/commit/5056c911a48929c9e808a7893f28b4883c2e3247))
+* add oakdownloadsaccordion ([bfa2813](https://github.com/oaknational/Oak-Web-Application/commit/bfa2813eba04c478a77e387d50c378164c1a18cf))
+* experiment downloads page responsiveness ([ff12a5e](https://github.com/oaknational/Oak-Web-Application/commit/ff12a5ec38134ef3b9747301fc1da95f9bd3807b))
+* move field errors to outside accordion ([d980090](https://github.com/oaknational/Oak-Web-Application/commit/d98009093fcd8d6eb4456a3d72cba4fdeb1178a0))
+* update terms agreement form copy ([6089b61](https://github.com/oaknational/Oak-Web-Application/commit/6089b61f6abcc0fad7bb8788043b193899206154))
+
+## [1.873.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.873.0...v1.873.1) (2025-09-30)
+
+# [1.873.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.872.0...v1.873.0) (2025-09-30)
+
+
+### Features
+
+* add in default name input ([8eb5dda](https://github.com/oaknational/Oak-Web-Application/commit/8eb5ddaf50a79209d0db2023b56bab00a94b9dfc))
+* get name from param hook ([7f11f3c](https://github.com/oaknational/Oak-Web-Application/commit/7f11f3ccad36db08173015fd1cca9c2ec126b093))
+* name persistence when clicking previous ([5d75c35](https://github.com/oaknational/Oak-Web-Application/commit/5d75c3531580547e8d83e1b6d77bdf8cc3710861))
+* update params using memo ([569b2b3](https://github.com/oaknational/Oak-Web-Application/commit/569b2b3db358a1eb6378b89ce3a923f9b69562b9))
+
+# [1.872.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.871.1...v1.872.0) (2025-09-30)
+
+
+### Features
+
+* add more subject restrictions ([ad0c74b](https://github.com/oaknational/Oak-Web-Application/commit/ad0c74b03856bb3178b1150768245b7646181b6f))
+* restrict teaching material types at lesson level ([2f5c615](https://github.com/oaknational/Oak-Web-Application/commit/2f5c615899c2b1ece89a04bcbe3110f17ee284bb))
+
+## [1.871.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.871.0...v1.871.1) (2025-09-29)
+
+
+### Bug Fixes
+
+* remove year 11 music from pupil view ([c471c06](https://github.com/oaknational/Oak-Web-Application/commit/c471c06f48a10d3f4b260fb5b7c2851a4c119b6a))
+* remove year 11 music from pupil view ([c0febd8](https://github.com/oaknational/Oak-Web-Application/commit/c0febd816ea749201685aea365921919b65987f8))
+* update programme listing mv ([6579ae8](https://github.com/oaknational/Oak-Web-Application/commit/6579ae83a5976885c5a5bebcc6a4213e4f55b158))
+* update schema to check for actions ([2ea6d07](https://github.com/oaknational/Oak-Web-Application/commit/2ea6d076517b93ec70f3c8f66791fb7d2657cbc4))
+
+# [1.871.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.870.1...v1.871.0) (2025-09-29)
+
+
+### Bug Fixes
+
+* <OakRadioGroup/> now requires a label ([55e9905](https://github.com/oaknational/Oak-Web-Application/commit/55e9905ee66a6e2a9702479179368c74cfdca2e5))
+
+
+### Features
+
+* bumped oak-components to v1.147.2 ([500c501](https://github.com/oaknational/Oak-Web-Application/commit/500c501e5c09d5872e14390a2fddb080bb8aceef))
+
 ## [1.870.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.870.0...v1.870.1) (2025-09-29)
 
 
