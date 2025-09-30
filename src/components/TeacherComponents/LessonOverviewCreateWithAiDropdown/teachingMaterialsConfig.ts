@@ -222,6 +222,17 @@ export function getAvailableTeachingMaterials(
     "additional-exit-quiz",
   ];
 
+  if (subjectCategories) {
+    const categoryMaterials =
+      getTeachingMaterialTypesByCategory(subjectCategories);
+    if (categoryMaterials) {
+      return categoryMaterials;
+    }
+  }
+  const actionMaterials = actionsAvailableTeachingMaterialTypes(actions);
+  if (actionMaterials) {
+    return actionMaterials;
+  }
   let availableTeachingMaterialTypes: TeachingMaterialType[] | undefined;
 
   if (subjectSlug && keyStageSlug) {
@@ -229,22 +240,5 @@ export function getAvailableTeachingMaterials(
       subjectAvailableTeachingMaterialTypes[subjectSlug]?.[keyStageSlug];
   }
 
-  if (subjectCategories) {
-    const categoryMaterials =
-      getTeachingMaterialTypesByCategory(subjectCategories);
-    if (categoryMaterials) {
-      availableTeachingMaterialTypes = categoryMaterials;
-    }
-  }
-
-  const actionMaterials = actionsAvailableTeachingMaterialTypes(actions);
-  if (actionMaterials) {
-    availableTeachingMaterialTypes = actionMaterials;
-  }
-
-  if (!availableTeachingMaterialTypes) {
-    return defaultMaterials;
-  }
-
-  return availableTeachingMaterialTypes;
+  return availableTeachingMaterialTypes || defaultMaterials;
 }
