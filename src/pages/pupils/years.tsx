@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import {
   OakFlex,
   OakGrid,
@@ -9,9 +11,8 @@ import {
   oakDefaultTheme,
   OakHandDrawnHR,
   OakBox,
+  OakP,
 } from "@oaknational/oak-components";
-import { useState } from "react";
-
 import { resolveOakHref } from "@/common-lib/urls";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -84,12 +85,9 @@ const YearListingPage = () => {
                   <OakHeading tag="h1" $font={["heading-5", "heading-4"]}>
                     Welcome to Oak!
                   </OakHeading>
-                  <OakHeading
-                    tag="h2"
-                    $font={["heading-light-7", "heading-light-6"]}
-                  >
+                  <OakP $font={["heading-light-7", "heading-light-6"]}>
                     Learn or revise what you want, when you want.
-                  </OakHeading>
+                  </OakP>
                 </OakFlex>
 
                 <OakHandDrawnHR
@@ -98,7 +96,7 @@ const YearListingPage = () => {
                   aria-hidden="true"
                 />
                 <OakHeading
-                  tag="h3"
+                  tag="h2"
                   $font={["heading-6", "heading-5"]}
                   $mv={"space-between-l"}
                 >
