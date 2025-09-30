@@ -1,3 +1,11 @@
+# [1.872.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.871.1...v1.872.0) (2025-09-30)
+
+
+### Features
+
+* add more subject restrictions ([ad0c74b](https://github.com/oaknational/Oak-Web-Application/commit/ad0c74b03856bb3178b1150768245b7646181b6f))
+* restrict teaching material types at lesson level ([2f5c615](https://github.com/oaknational/Oak-Web-Application/commit/2f5c615899c2b1ece89a04bcbe3110f17ee284bb))
+
 ## [1.871.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.871.0...v1.871.1) (2025-09-29)
 
 
