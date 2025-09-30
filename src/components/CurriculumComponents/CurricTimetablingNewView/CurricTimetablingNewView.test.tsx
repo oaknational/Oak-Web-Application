@@ -15,13 +15,17 @@ jest.mock("next/navigation", () => ({
 
 describe("CurricTimetablingNewView", () => {
   test("component renders with heading correctly", async () => {
-    const { getByRole } = renderWithTheme(<CurricTimetablingNewView />);
+    const { getByRole } = renderWithTheme(
+      <CurricTimetablingNewView subjectPhaseSlug="maths-primary" />,
+    );
     const headingElement = getByRole("heading", { level: 2 });
     expect(headingElement).toHaveTextContent("Enter lessons per term");
   });
 
   test("component renders with button correctly", async () => {
-    const { getByRole } = renderWithTheme(<CurricTimetablingNewView />);
+    const { getByRole } = renderWithTheme(
+      <CurricTimetablingNewView subjectPhaseSlug="maths-primary" />,
+    );
 
     const linkElement = getByRole("link");
     expect(linkElement).toHaveTextContent("Next");
@@ -29,7 +33,9 @@ describe("CurricTimetablingNewView", () => {
 
   test("the next button directs to correct page", async () => {
     mockSearchParams = new URLSearchParams("");
-    const { getByRole } = renderWithTheme(<CurricTimetablingNewView />);
+    const { getByRole } = renderWithTheme(
+      <CurricTimetablingNewView subjectPhaseSlug="maths-primary" />,
+    );
     const linkElement = getByRole("link");
     expect(linkElement).toHaveAttribute(
       "href",
@@ -38,7 +44,9 @@ describe("CurricTimetablingNewView", () => {
   });
 
   test("renders three disabled number inputs with default value 30", () => {
-    const { getAllByLabelText } = renderWithTheme(<CurricTimetablingNewView />);
+    const { getAllByLabelText } = renderWithTheme(
+      <CurricTimetablingNewView subjectPhaseSlug="maths-primary" />,
+    );
     const inputs = getAllByLabelText("Number of lessons") as HTMLInputElement[];
     expect(inputs).toHaveLength(3);
     inputs.forEach((input) => {
@@ -48,7 +56,7 @@ describe("CurricTimetablingNewView", () => {
 
   test("associates headings to inputs via aria-describedby", () => {
     const { getAllByLabelText, getByText } = renderWithTheme(
-      <CurricTimetablingNewView />,
+      <CurricTimetablingNewView subjectPhaseSlug="maths-primary" />,
     );
     const inputs = getAllByLabelText("Number of lessons") as HTMLInputElement[];
 

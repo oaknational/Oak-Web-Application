@@ -11,7 +11,6 @@ jest.mock("next/navigation", () => {
     __esModule: true,
     usePathname: () => "/timetabling/maths-primary/new",
     useSearchParams: () => defaultSearchParams,
-    useParams: () => ({ subjectPhaseSlug: "maths-primary" }),
     notFound: () => {
       throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
     },
@@ -21,14 +20,20 @@ jest.mock("next/navigation", () => {
 describe("/timetabling/name", () => {
   test("when enabled", async () => {
     (useFeatureFlag as jest.Mock).mockResolvedValue(true);
-    const { baseElement } = renderWithTheme(await Page());
+    const { baseElement } = renderWithTheme(
+      await Page({
+        params: Promise.resolve({ subjectPhaseSlug: "maths-primary" }),
+      }),
+    );
     expect(baseElement).toHaveTextContent("Name your timetable");
   });
 
   test("when disabled", async () => {
     (useFeatureFlag as jest.Mock).mockResolvedValue(false);
     expect(async () => {
-      return await Page();
+      return await Page({
+        params: Promise.resolve({ subjectPhaseSlug: "maths-primary" }),
+      });
     }).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
   });
 });

@@ -10,7 +10,7 @@ import {
   OakMaxWidth,
 } from "@oaknational/oak-components";
 import { useMemo } from "react";
-import { useParams } from "next/navigation";
+import Link from "next/link";
 
 import { CurricTimetableHeader } from "../CurricTimetableHeader";
 import { CurricShowSteps } from "../CurricShowSteps";
@@ -21,9 +21,11 @@ import {
 } from "@/utils/curriculum/timetabling";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 
-export const CurricTimetablingNewView = () => {
-  const params = useParams<{ subjectPhaseSlug: string }>();
-  const { subjectSlug } = parseSubjectPhaseSlug(params!.subjectPhaseSlug)!;
+type CurricTimetablingNewViewProps = { subjectPhaseSlug: string };
+export const CurricTimetablingNewView = ({
+  subjectPhaseSlug,
+}: CurricTimetablingNewViewProps) => {
+  const { subjectSlug } = parseSubjectPhaseSlug(subjectPhaseSlug)!;
   const [data, setData] = useTimetableParams();
   const nextHref = useMemo(
     () => `name?${simpleObjectAsSearchParams(data, { name: "" })}`,
@@ -165,7 +167,7 @@ export const CurricTimetablingNewView = () => {
           </OakFlex>
 
           <OakPrimaryButton
-            element="a"
+            element={Link}
             href={nextHref}
             pv="inner-padding-m"
             ph="inner-padding-l"

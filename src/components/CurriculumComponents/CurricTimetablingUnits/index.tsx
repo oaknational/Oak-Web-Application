@@ -1,6 +1,5 @@
 "use client";
 import { OakBox, OakFlex, OakMaxWidth } from "@oaknational/oak-components";
-import { useParams } from "next/navigation";
 
 import { CurricTimetableHeader } from "../CurricTimetableHeader";
 import { CurricShowSteps } from "../CurricShowSteps";
@@ -8,10 +7,12 @@ import { CurricShowSteps } from "../CurricShowSteps";
 import { useTimetableParams } from "@/utils/curriculum/timetabling";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 
-export const CurricTimetablingUnits = () => {
+type CurricTimetablingUnitsProps = { subjectPhaseSlug: string };
+export const CurricTimetablingUnits = ({
+  subjectPhaseSlug,
+}: CurricTimetablingUnitsProps) => {
   const [data] = useTimetableParams();
-  const params = useParams<{ subjectPhaseSlug: string }>();
-  const { subjectSlug } = parseSubjectPhaseSlug(params!.subjectPhaseSlug)!;
+  const { subjectSlug } = parseSubjectPhaseSlug(subjectPhaseSlug)!;
 
   return (
     <>

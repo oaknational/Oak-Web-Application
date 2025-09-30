@@ -9,7 +9,7 @@ import {
   OakTextInput,
   OakMaxWidth,
 } from "@oaknational/oak-components";
-import { useParams } from "next/navigation";
+import Link from "next/link";
 
 import { CurricTimetableHeader } from "../CurricTimetableHeader";
 import { CurricShowSteps } from "../CurricShowSteps";
@@ -20,10 +20,12 @@ import {
 } from "@/utils/curriculum/timetabling";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 
-export const CurricTimetablingNameView = () => {
+type CurricTimetablingNameViewProps = { subjectPhaseSlug: string };
+export const CurricTimetablingNameView = ({
+  subjectPhaseSlug,
+}: CurricTimetablingNameViewProps) => {
   const [data, setData] = useTimetableParams();
-  const params = useParams<{ subjectPhaseSlug: string }>();
-  const { subjectSlug } = parseSubjectPhaseSlug(params!.subjectPhaseSlug)!;
+  const { subjectSlug } = parseSubjectPhaseSlug(subjectPhaseSlug)!;
 
   return (
     <OakMaxWidth
@@ -89,7 +91,7 @@ export const CurricTimetablingNameView = () => {
           $maxWidth={"all-spacing-23"}
         >
           <OakSecondaryButton
-            element="a"
+            element={Link}
             href={`new?${simpleObjectAsSearchParams(data)}`}
             pv="inner-padding-m"
             ph="inner-padding-l"
@@ -99,7 +101,7 @@ export const CurricTimetablingNameView = () => {
             Previous
           </OakSecondaryButton>
           <OakPrimaryButton
-            element="a"
+            element={Link}
             href={`units?${simpleObjectAsSearchParams(data)}`}
             pv="inner-padding-m"
             ph="inner-padding-l"
