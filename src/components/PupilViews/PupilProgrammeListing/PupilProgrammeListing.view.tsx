@@ -48,6 +48,13 @@ export const PupilViewsProgrammeListing = ({
   pathways,
 }: PupilViewsProgrammeListingProps) => {
   const { track } = useAnalytics();
+
+  const setFocusAfterClose = () => {
+    const topNavButton = document.getElementById("top-nav-button");
+    if (topNavButton) {
+      topNavButton.focus();
+    }
+  };
   const orderedFactors: ("pathway" | "examboard" | "tier")[] = [
     "pathway",
     "examboard",
@@ -119,6 +126,7 @@ export const PupilViewsProgrammeListing = ({
       case "pathway":
         return (
           <OakTertiaryButton
+            id="top-nav-button"
             iconName="arrow-left"
             onClick={() =>
               setChosenFactors({ ...chosenFactors, [option]: null })
@@ -130,6 +138,7 @@ export const PupilViewsProgrammeListing = ({
       default:
         return (
           <OakTertiaryButton
+            id="top-nav-button"
             iconName="arrow-left"
             element="a"
             href={resolveOakHref({
@@ -284,7 +293,7 @@ export const PupilViewsProgrammeListing = ({
                 <BrowseOptions />
               </OakPupilJourneyProgrammeOptions>
             </OakBox>
-            <SignpostTeachersInlineBanner />
+            <SignpostTeachersInlineBanner onCallBack={setFocusAfterClose} />
           </OakBox>
         </OakPupilJourneyLayout>
       </AppLayout>

@@ -9,6 +9,10 @@ import styled from "styled-components";
 
 import useReferrer, { referrerSources } from "@/hooks/useReferrer";
 
+type SignpostTeachersInlineBannerProps = {
+  onCallBack?: () => void;
+};
+
 const durationInSeconds = 0.5;
 
 const ExpandInBox = styled(OakBox)<{ $state: TransitionStatus }>`
@@ -33,11 +37,18 @@ const ExpandInBox = styled(OakBox)<{ $state: TransitionStatus }>`
   }};
 `;
 
-export default function SignpostTeachersInlineBanner() {
+export default function SignpostTeachersInlineBanner({
+  onCallBack,
+}: SignpostTeachersInlineBannerProps) {
   const [userIsOpen, setUserIsOpen] = useState(true);
   const transitionRef = useRef<HTMLDivElement>(null);
   const source = useReferrer();
   const showInlineBanner = source && source !== referrerSources.internal;
+
+  const handleClose = () => {
+    setUserIsOpen(false);
+    onCallBack?.();
+  };
 
   return (
     <Transition
@@ -59,7 +70,7 @@ export default function SignpostTeachersInlineBanner() {
             message="Download adaptable teaching resources"
             isOpen
             $width="100%"
-            onDismiss={() => setUserIsOpen(false)}
+            onDismiss={handleClose}
             cta={
               <OakSecondaryLink
                 href="/"
