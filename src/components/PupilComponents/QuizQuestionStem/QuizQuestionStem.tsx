@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
+
+import { CodeRenderWrapper } from "../CodeRendererWrapper/CodeRendererWrapper";
+
 import {
   OakCloudinaryImage,
   OakFlex,
   OakScaleImageButton,
   OakBox,
+  OakHeading,
 } from "@oaknational/oak-components";
-
-import { CodeRenderWrapper } from "../CodeRendererWrapper/CodeRendererWrapper";
-
 import {
   removeMarkdown,
   shortAnswerTitleFormatter,
@@ -38,84 +39,92 @@ export const QuizQuestionStem = ({
   }, [questionStem]);
 
   return (
-    <CodeRenderWrapper>
-      <OakFlex
-        $flexDirection={"column"}
-        $gap={"space-between-s"}
-        $color={"text-primary"}
-        $height={takeFullHeight ? "100%" : "auto"}
-        $justifyContent={["center", "flex-start"]}
-      >
+    <OakHeading tag="h2">
+      <CodeRenderWrapper>
         <OakFlex
-          key="stem-header"
-          $mt={
-            takeFullHeight
-              ? ["space-between-none", "space-between-xl", "space-between-xxl"]
-              : "space-between-none"
-          }
+          $flexDirection={"column"}
+          $gap={"space-between-s"}
+          $color={"text-primary"}
+          $height={takeFullHeight ? "100%" : "auto"}
+          $justifyContent={["center", "flex-start"]}
         >
-          {questionStem[0]?.type === "text" && (
-            <OakBox
-              key={`q-${displayNumber}-stem-element-0`}
-              $font={["heading-6", "heading-4", "heading-4"]}
-              $width={"100%"}
-              id={`${questionUid}-legend`}
-            >
-              {shortAnswerTitleFormatter(removeMarkdown(questionStem[0].text))}
-            </OakBox>
-          )}
-        </OakFlex>
-
-        {questionStem.map((stemItem, i) => {
-          if (stemItem.type === "text" && i > 0) {
-            return (
+          <OakFlex
+            key="stem-header"
+            $mt={
+              takeFullHeight
+                ? [
+                    "space-between-none",
+                    "space-between-xl",
+                    "space-between-xxl",
+                  ]
+                : "space-between-none"
+            }
+          >
+            {questionStem[0]?.type === "text" && (
               <OakBox
-                key={`q-${displayNumber}-stem-element-${i}`}
-                $font={["body-2-bold", "body-1-bold"]}
+                key={`q-${displayNumber}-stem-element-0`}
+                $font={["heading-6", "heading-4", "heading-4"]}
                 $width={"100%"}
+                id={`${questionUid}-legend`}
               >
-                {shortAnswerTitleFormatter(removeMarkdown(stemItem.text))}
-              </OakBox>
-            );
-          } else if (stemItem.type === "image") {
-            return (
-              <OakFlex
-                $pv={"inner-padding-xl"}
-                key={`q-${displayNumber}-stem-element-${i}`}
-              >
-                {stemItem.imageObject.publicId && (
-                  <OakFlex>
-                    <OakCloudinaryImage
-                      cloudinaryId={stemItem.imageObject.publicId}
-                      height={stemItem.imageObject.height}
-                      width={stemItem.imageObject.width}
-                      alt={"An image in a quiz"}
-                      $minWidth={scaled ? "all-spacing-20" : "all-spacing-19"}
-                      placeholder="oak"
-                      sizes={getSizes(["100vw", 1200])}
-                      $background={"white"}
-                      role="presentation"
-                    />
-                    <OakFlex
-                      $width={"all-spacing-7"}
-                      $height={"all-spacing-7"}
-                      $pointerEvents={"auto"}
-                    >
-                      <OakScaleImageButton
-                        onImageScaleCallback={(e) => {
-                          e.stopPropagation();
-                          setScaled(!scaled);
-                        }}
-                        isExpanded={scaled}
-                      />
-                    </OakFlex>
-                  </OakFlex>
+                {shortAnswerTitleFormatter(
+                  removeMarkdown(questionStem[0].text),
                 )}
-              </OakFlex>
-            );
-          }
-        })}
-      </OakFlex>
-    </CodeRenderWrapper>
+              </OakBox>
+            )}
+          </OakFlex>
+
+          {questionStem.map((stemItem, i) => {
+            if (stemItem.type === "text" && i > 0) {
+              return (
+                <OakBox
+                  key={`q-${displayNumber}-stem-element-${i}`}
+                  $font={["body-2-bold", "body-1-bold"]}
+                  $width={"100%"}
+                >
+                  {shortAnswerTitleFormatter(removeMarkdown(stemItem.text))}
+                </OakBox>
+              );
+            } else if (stemItem.type === "image") {
+              return (
+                <OakFlex
+                  $pv={"inner-padding-xl"}
+                  key={`q-${displayNumber}-stem-element-${i}`}
+                >
+                  {stemItem.imageObject.publicId && (
+                    <OakFlex>
+                      <OakCloudinaryImage
+                        cloudinaryId={stemItem.imageObject.publicId}
+                        height={stemItem.imageObject.height}
+                        width={stemItem.imageObject.width}
+                        alt={"An image in a quiz"}
+                        $minWidth={scaled ? "all-spacing-20" : "all-spacing-19"}
+                        placeholder="oak"
+                        sizes={getSizes(["100vw", 1200])}
+                        $background={"white"}
+                        role="presentation"
+                      />
+                      <OakFlex
+                        $width={"all-spacing-7"}
+                        $height={"all-spacing-7"}
+                        $pointerEvents={"auto"}
+                      >
+                        <OakScaleImageButton
+                          onImageScaleCallback={(e) => {
+                            e.stopPropagation();
+                            setScaled(!scaled);
+                          }}
+                          isExpanded={scaled}
+                        />
+                      </OakFlex>
+                    </OakFlex>
+                  )}
+                </OakFlex>
+              );
+            }
+          })}
+        </OakFlex>
+      </CodeRenderWrapper>
+    </OakHeading>
   );
 };
