@@ -37,11 +37,9 @@ variable "env_vars" {
       OAK_CONFIG_LOCATION  = optional(string)
       OVERRIDE_APP_VERSION = optional(string)
       OVERRIDE_URL         = optional(string)
-      AI_SEARCH_ENABLED    = optional(string, "false")
     }))
     preview = optional(object({
       OAK_CONFIG_LOCATION = optional(string)
-      AI_SEARCH_ENABLED   = optional(string, "true")
     }))
   })
   validation {
