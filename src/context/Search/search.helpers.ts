@@ -6,9 +6,9 @@ import {
   UnitSearchHit,
   SearchHit,
   PathwaySchema,
+  SuggestedSearchFilter,
 } from "./search.types";
 import { RawHighlightSchema } from "./search.schema";
-import { SuggestedSearchFilter } from "./useSuggestedFilters";
 
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
@@ -390,9 +390,9 @@ export function convertSearchIntentToFilters(
   }
 
   // Add suggested filters
-  searchIntent.suggestedFilters.forEach((filter) => {
+  for (const filter of searchIntent.suggestedFilters) {
     addFilter(filter, filter.type);
-  });
+  }
 
   // Remove duplicates
   const seen = new Set<string>();
@@ -414,4 +414,4 @@ export function convertSearchIntentToFilters(
 }
 
 export const normalizeTerm = (s: string) =>
-  s.trim().replace(/\s+/g, " ").toLowerCase();
+  s.trim().replaceAll(/\s+/, " ").toLowerCase();

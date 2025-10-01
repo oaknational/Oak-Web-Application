@@ -47,7 +47,7 @@ const MiniDropdown: FC<MiniDropdownProps> = ({
   };
 
   const dropdownId =
-    id || `mini-dropdown-${label.toLowerCase().replace(/\s+/g, "-")}`;
+    id || `mini-dropdown-${label.toLowerCase().replaceAll(/\s+/g, "-")}`;
   const contentId = `${dropdownId}-content`;
 
   return (
@@ -95,7 +95,6 @@ const MiniDropdown: FC<MiniDropdownProps> = ({
         id={contentId}
         aria-labelledby={dropdownId}
         $display={isOpen ? "block" : "none"}
-        role="region"
       >
         {children}
       </OakBox>

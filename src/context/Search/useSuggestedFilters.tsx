@@ -1,24 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { convertSearchIntentToFilters, normalizeTerm } from "./search.helpers";
+import { SuggestedFilters } from "./search.types";
 
 import { searchIntentSchema } from "@/common-lib/schemas/search-intent";
-
-export type SuggestedFilters = {
-  searchFilters: SuggestedSearchFilter[] | undefined;
-  status: "idle" | "loading" | "success" | "error";
-  error?: string;
-};
 
 const initial: SuggestedFilters = {
   searchFilters: undefined,
   status: "idle",
-};
-
-export type SuggestedSearchFilter = {
-  type: "subject" | "key-stage" | "year" | "exam-board";
-  value: string;
-  slug: string;
 };
 
 export function useSuggestedFilters({
