@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/react";
+import { Meta } from "@storybook/nextjs";
 
 import { LandingPageTextBlock as Component } from "./LandingPageTextBlock";
 

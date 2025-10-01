@@ -1,5 +1,5 @@
 import React from "react";
-import { StoryFn, Meta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/nextjs";
 import { OakHeading } from "@oaknational/oak-components";
 
 import Component from "./Icon.deprecated";
