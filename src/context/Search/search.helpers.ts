@@ -414,4 +414,4 @@ export function convertSearchIntentToFilters(
 }
 
 export const normalizeTerm = (s: string) =>
-  s.trim().replaceAll(/\s+/, " ").toLowerCase();
+  s.trim().replaceAll(/\s+/g, " ").toLowerCase();
