@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from "react";
-
-import { CodeRenderWrapper } from "../CodeRendererWrapper/CodeRendererWrapper";
-
 import {
   OakCloudinaryImage,
   OakFlex,
@@ -9,6 +6,9 @@ import {
   OakBox,
   OakHeading,
 } from "@oaknational/oak-components";
+
+import { CodeRenderWrapper } from "../CodeRendererWrapper/CodeRendererWrapper";
+
 import {
   removeMarkdown,
   shortAnswerTitleFormatter,
