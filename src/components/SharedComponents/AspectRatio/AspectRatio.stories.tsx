@@ -1,5 +1,5 @@
 import { OakBox } from "@oaknational/oak-components";
-import { StoryFn, Meta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/nextjs";
 
 import Component, { ASPECT_RATIOS } from "./AspectRatio";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { StoryObj, StoryFn, Meta } from "@storybook/react";
+import { StoryObj, StoryFn, Meta } from "@storybook/nextjs";
 import { OakP, OakFlex } from "@oaknational/oak-components";
 
 import Component from ".";

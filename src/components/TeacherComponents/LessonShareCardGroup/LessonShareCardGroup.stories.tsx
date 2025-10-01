@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/nextjs";
 import { Control, useForm } from "react-hook-form";
 
 import { ResourceFormProps } from "../types/downloadAndShare.types";
