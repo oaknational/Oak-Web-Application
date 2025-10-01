@@ -10,7 +10,7 @@ Fixes #
 
 ## How to test
 
-1. Go to {owa_deployment_url}
+1. Go to [OWA Preview URL from Vercel bot comment]/path/to/page
 2. Click on \_\_\_\_\_\_
 3. You should see \_\_\_\_\_\_
 
