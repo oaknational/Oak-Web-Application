@@ -1,5 +1,4 @@
 "use client";
-import { useMemo } from "react";
 import {
   OakBox,
   OakFlex,
@@ -10,26 +9,23 @@ import {
   OakTextInput,
   OakMaxWidth,
 } from "@oaknational/oak-components";
+import Link from "next/link";
 
 import { CurricTimetableHeader } from "../CurricTimetableHeader";
 import { CurricShowSteps } from "../CurricShowSteps";
-import { useTimetableHeaderParams } from "../CurricTimetablingNewView/useTimetableHeaderParams";
 
-export const CurricTimetablingNameView = () => {
-  const DEFAULT_NAME_VALUE = "Oak National Academy";
+import {
+  simpleObjectAsSearchParams,
+  useTimetableParams,
+} from "@/utils/curriculum/timetabling";
+import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 
-  const { subject, year, name, queryParams, queryString } =
-    useTimetableHeaderParams();
-
-  const params = useMemo(() => {
-    if (queryParams && !queryParams.has("name")) {
-      const updatedParams = new URLSearchParams(queryString);
-      updatedParams.append("name", DEFAULT_NAME_VALUE);
-
-      return updatedParams.toString();
-    }
-    return queryString;
-  }, [queryParams, queryString]);
+type CurricTimetablingNameViewProps = { subjectPhaseSlug: string };
+export const CurricTimetablingNameView = ({
+  subjectPhaseSlug,
+}: CurricTimetablingNameViewProps) => {
+  const [data, setData] = useTimetableParams();
+  const { subjectSlug } = parseSubjectPhaseSlug(subjectPhaseSlug)!;
 
   return (
     <OakMaxWidth
@@ -39,7 +35,7 @@ export const CurricTimetablingNameView = () => {
     >
       <OakFlex $flexDirection={"column"} $pt={"inner-padding-xl5"}>
         <CurricTimetableHeader
-          titleSlot={`Year ${year} ${subject}`}
+          titleSlot={`Year ${data.year} ${subjectSlug}`}
           illustrationSlug={"magic-carpet"}
           additionalSlot={
             <OakBox $maxWidth={"all-spacing-20"}>
@@ -79,8 +75,8 @@ export const CurricTimetablingNameView = () => {
           <OakTextInput
             id="autumn-lessons"
             placeholder="Type school name"
-            disabled
-            defaultValue={name ?? DEFAULT_NAME_VALUE}
+            value={data.name}
+            onChange={(e) => setData({ name: e.target.value })}
             aria-describedby="autumn-heading"
             wrapperWidth="100%"
             $pv="inner-padding-none"
@@ -95,8 +91,8 @@ export const CurricTimetablingNameView = () => {
           $maxWidth={"all-spacing-23"}
         >
           <OakSecondaryButton
-            element="a"
-            href={`new?${params}`}
+            element={Link}
+            href={`new?${simpleObjectAsSearchParams(data)}`}
             pv="inner-padding-m"
             ph="inner-padding-l"
             style={{ height: "auto" }}
@@ -105,8 +101,8 @@ export const CurricTimetablingNameView = () => {
             Previous
           </OakSecondaryButton>
           <OakPrimaryButton
-            element="a"
-            href={`units?${params}`}
+            element={Link}
+            href={`units?${simpleObjectAsSearchParams(data)}`}
             pv="inner-padding-m"
             ph="inner-padding-l"
             style={{ height: "auto" }}

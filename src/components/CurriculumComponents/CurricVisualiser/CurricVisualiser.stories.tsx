@@ -101,6 +101,11 @@ const curriculumVisualiserFixture: ComponentProps<typeof Component> = {
   },
   setVisibleMobileYearRefID: () => {},
   basePath: "/",
+  slugs: {
+    phaseSlug: "secondary",
+    subjectSlug: "english",
+    ks4OptionSlug: null,
+  },
 };
 
 export const Basic: Story = {
