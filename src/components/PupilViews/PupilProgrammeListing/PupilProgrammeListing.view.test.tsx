@@ -26,6 +26,27 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   }),
 }));
 
+// Add this mock at the top of your test file with the other mocks
+jest.mock(
+  "@/components/PupilComponents/SignpostTeachersInlineBanner/SignpostTeachersInlineBanner",
+  () => ({
+    __esModule: true,
+    default: ({ onCallBack }: { onCallBack: () => void }) => (
+      <div>
+        <span>Mocked SignpostTeachersInlineBanner</span>
+        <button
+          aria-label="Close"
+          onClick={() => {
+            onCallBack();
+          }}
+        >
+          Close
+        </button>
+      </div>
+    ),
+  }),
+);
+
 const programmesPathwaysEBs = pupilProgrammeListingFixturePathwaysEBs();
 const examboards = getAvailableProgrammeFactor({
   factorPrefix: "examboard",
@@ -210,5 +231,39 @@ describe("PublicProgrammeListing", () => {
       </OakThemeProvider>,
     );
     expect(getByText("Change subject")).toBeInTheDocument();
+  });
+  it("calls setFocusAfterClose function after SignpostTeachersInlineBanner is closed", () => {
+    // Mock document.getElementById and HTMLElement.focus
+    const mockFocus = jest.fn();
+
+    jest
+      .spyOn(document, "getElementById")
+      .mockReturnValue({ focus: mockFocus } as unknown as HTMLElement);
+
+    const { getByLabelText } = render(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <PupilViewsProgrammeListing
+          baseSlug="my-subject"
+          yearSlug="year-11"
+          programmes={programmesEBs}
+          examboards={examboardsEBs}
+          pathways={[]}
+          tiers={[]}
+        />
+      </OakThemeProvider>,
+    );
+
+    const closeButton = getByLabelText("Close");
+    act(() => {
+      closeButton.click();
+    });
+
+    // Verify that getElementById was called with the correct ID
+    expect(document.getElementById).toHaveBeenCalledWith("top-nav-button");
+    // Verify that focus was called on the element
+    expect(mockFocus).toHaveBeenCalledTimes(1);
+
+    // Clean up the mock
+    jest.restoreAllMocks();
   });
 });
