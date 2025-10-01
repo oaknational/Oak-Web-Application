@@ -1,3 +1,5 @@
+import { screen } from "@testing-library/dom";
+
 import { CampaignPromoBanner } from "./CampaignPromoBanner";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -77,8 +79,24 @@ describe("CampaignPromoBanner", () => {
     expect(body).toBeInTheDocument();
   });
 
-  it("should render CTA button when provided", async () => {
+  it("should render a button when URL and CTA provided", async () => {
     const { getByText } = render(
+      <CampaignPromoBanner
+        textStyles={campaignTextStyles}
+        heading={headingPortableText()}
+        media={mockImageAsset()}
+        buttonCta={"buttonCtaText"}
+        buttonUrl="http://testurl.com"
+      />,
+    );
+
+    const button = getByText("buttonCtaText").closest("a");
+    expect(button).toBeInTheDocument();
+    expect(button).toHaveTextContent("buttonCtaText");
+    expect(button).toHaveProperty("href", "http://testurl.com/");
+  });
+  it("should not render a button when either CTA or URL is not provided", () => {
+    render(
       <CampaignPromoBanner
         textStyles={campaignTextStyles}
         heading={headingPortableText()}
@@ -86,10 +104,8 @@ describe("CampaignPromoBanner", () => {
         buttonCta={"buttonCtaText"}
       />,
     );
-
-    const button = getByText("buttonCtaText").closest("a");
-    expect(button).toBeInTheDocument();
-    expect(button).toHaveTextContent("buttonCtaText");
+    const button = screen.queryByText("buttonCtaText");
+    expect(button).not.toBeInTheDocument();
   });
 
   it("should not render optional props when not provided", () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { StoryFn, Meta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/nextjs";
 import { OakFlex, OakMaxWidth } from "@oaknational/oak-components";
 
 import { LessonAppearsIn as Component } from "./LessonAppearsIn";

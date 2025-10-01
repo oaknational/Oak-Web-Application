@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/react";
+import { Meta } from "@storybook/nextjs";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import Component from "./LayoutLandingPagesHeader";

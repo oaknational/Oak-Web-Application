@@ -1,5 +1,5 @@
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/nextjs";
 import { ComponentProps } from "react";
 
 // import { mockOptionalityUnit, mockUnitWhyThisWhyNow } from "./CurricUnitModalContent.fixtures";
@@ -101,6 +101,11 @@ const curriculumVisualiserFixture: ComponentProps<typeof Component> = {
   },
   setVisibleMobileYearRefID: () => {},
   basePath: "/",
+  slugs: {
+    phaseSlug: "secondary",
+    subjectSlug: "english",
+    ks4OptionSlug: null,
+  },
 };
 
 export const Basic: Story = {

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 
 import Component from "./SpecialistLessonDownloads.view";
 import { downloads, nextLessons } from "./SpecialistLessonDownloads.fixture";

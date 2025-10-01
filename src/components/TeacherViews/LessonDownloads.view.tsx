@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useFeatureFlagVariantKey } from "posthog-js/react";
 import {
   examboards,
   tierDescriptions,
@@ -43,6 +44,7 @@ import {
 } from "@/components/TeacherComponents/types/lesson.types";
 import ResourcePageLayout from "@/components/TeacherComponents/ResourcePageLayout";
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
+import DownloadPageWithAccordion from "@/components/TeacherComponents/DownloadPageWithAccordion";
 import DownloadConfirmation from "@/components/TeacherComponents/DownloadConfirmation";
 import {
   LessonDownloadsPageData,
@@ -122,6 +124,9 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     loginRequired,
     geoRestricted,
   } = lesson;
+
+  const showDownloadPageWithAccordion =
+    useFeatureFlagVariantKey("teacher-download-accordion") === "with-accordion";
 
   const {
     showGeoBlocked,
@@ -431,6 +436,82 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               );
             }
 
+            if (showDownloadPageWithAccordion) {
+              return (
+                <DownloadPageWithAccordion
+                  loginRequired={loginRequired ?? false}
+                  geoRestricted={geoRestricted ?? false}
+                  downloadsRestricted={downloadsRestricted}
+                  errors={form.errors}
+                  handleToggleSelectAll={handleToggleSelectAll}
+                  selectAllChecked={selectAllChecked}
+                  showNoResources={showNoResources}
+                  showLoading={isLocalStorageLoading}
+                  email={emailFromLocalStorage}
+                  school={schoolNameFromLocalStorage}
+                  schoolId={schoolIdFromLocalStorage}
+                  setSchool={setSchool}
+                  showSavedDetails={shouldDisplayDetailsCompleted}
+                  onEditClick={handleEditDetailsCompletedClick}
+                  register={form.register}
+                  control={form.control}
+                  showPostAlbCopyright={!isLegacyDownload}
+                  triggerForm={form.trigger}
+                  apiError={apiError}
+                  updatedAt={updatedAt}
+                  withHomeschool={true}
+                  showTermsAgreement={
+                    onboardingStatus === "not-onboarded" ||
+                    onboardingStatus === "unknown"
+                  }
+                  isLoading={onboardingStatus === "loading"}
+                  cardGroup={
+                    !showNoResources && (
+                      <DownloadCardGroup
+                        control={form.control}
+                        downloads={downloadsFilteredByCopyright}
+                        additionalFiles={additionalFiles}
+                        hasError={Boolean(form.errors?.resources)}
+                        triggerForm={form.trigger}
+                        isDownloadsExperiment={showDownloadPageWithAccordion}
+                      />
+                    )
+                  }
+                  cta={
+                    <LoadingButton
+                      type="button"
+                      onClick={
+                        (event) => void form.handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
+                      }
+                      text={"Download .zip"}
+                      icon={"download"}
+                      isLoading={
+                        isAttemptingDownload || !hubspotLoaded // show loading state when waiting for latest school values to be populated from hubspot
+                      }
+                      disabled={
+                        (hasFormErrors ||
+                          noResourcesSelected ||
+                          showNoResources ||
+                          (!form.formState.isValid && !localStorageDetails)) &&
+                        hubspotLoaded
+                      }
+                      loadingText={
+                        isAttemptingDownload ? "Downloading..." : "Loading..."
+                      }
+                    />
+                  }
+                  showRiskAssessmentBanner={showRiskAssessmentBanner}
+                  downloads={downloadsFilteredByCopyright}
+                  additionalFiles={additionalFiles}
+                  showGeoBlocked={showGeoBlocked}
+                  lessonSlug={lessonSlug}
+                  lessonTitle={lessonTitle}
+                  lessonReleaseDate={lessonReleaseDate}
+                  isLegacy={isLegacy}
+                />
+              );
+            }
+
             return (
               <ResourcePageLayout
                 loginRequired={loginRequired ?? false}
@@ -504,7 +585,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         )}
         <OakBox $mt={"space-between-xl"}>
           {/* This page has its own geoblocked message, so we're hiding the banner in that case */}
-          {!showGeoBlocked && (
+          {!showGeoBlocked && !showDownloadPageWithAccordion && (
             <CopyrightRestrictionBanner
               isGeorestricted={geoRestricted ?? undefined}
               isLoginRequired={loginRequired ?? undefined}
