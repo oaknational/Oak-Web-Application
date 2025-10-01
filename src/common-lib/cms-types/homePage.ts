@@ -1,9 +1,10 @@
 import * as z from "zod";
 
-import { documentSchema, imageSchema, seoSchema, videoSchema } from "./base";
+import { documentSchema, imageSchema, seoSchema } from "./base";
 import { cardSchema, textAndMediaSchema } from "./blocks";
 import { linkSchema } from "./cta";
 import { portableTextSchema } from "./portableText";
+import { campaignPromoBannerSchema } from "./campaignPage";
 
 const notificationSchema = z.discriminatedUnion("enabled", [
   z.object({ enabled: z.literal(false) }),
@@ -26,14 +27,6 @@ export const testimonialSchema = z.object({
     organisation: z.string().nullable(),
   }),
   image: imageSchema.nullish(),
-});
-export type CampaignPromoBannerType = z.infer<typeof campaignPromoBannerSchema>;
-const campaignPromoBannerSchema = z.object({
-  headingPortableTextWithPromo: portableTextSchema,
-  subheadingPortableTextWithPromo: portableTextSchema.nullish(),
-  bodyPortableTextWithPromo: portableTextSchema.nullish(),
-  buttonCta: z.string().nullish(),
-  media: z.array(imageSchema.nullish(), videoSchema.nullish()),
 });
 
 export const homePageSchema = z

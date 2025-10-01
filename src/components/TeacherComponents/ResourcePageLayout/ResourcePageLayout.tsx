@@ -290,7 +290,9 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
   );
 }
 
-const DelayedLoadingSpinner = styled(OakLoadingSpinner)<{ $delay?: number }>`
+export const DelayedLoadingSpinner = styled(OakLoadingSpinner)<{
+  $delay?: number;
+}>`
   ${({ $delay }) => {
     if ($delay) {
       return `

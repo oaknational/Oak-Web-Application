@@ -1,7 +1,7 @@
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/nextjs";
 import { useEffect, useState } from "react";
-import { action } from "@storybook/addon-actions";
+import { action } from "storybook/actions";
 
 import { DOWNLOAD_TYPES } from "./helper";
 
