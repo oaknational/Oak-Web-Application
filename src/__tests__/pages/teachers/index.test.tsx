@@ -1,9 +1,9 @@
-import { getStaticProps } from "@/pages/teachers/index";
+import { getServerSideProps } from "@/pages/teachers/index";
 
 describe("Teachers Page", () => {
-  describe("getStaticProps", () => {
+  describe("getServerSideProps", () => {
     it("Should redirect to home '/'", async () => {
-      const result = await getStaticProps();
+      const result = await getServerSideProps();
 
       expect(result).toEqual({
         redirect: {
