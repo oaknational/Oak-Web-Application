@@ -3,13 +3,13 @@ import Page from "./page";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { useFeatureFlag } from "@/utils/featureFlags";
 
-jest.mock("src/utils/featureFlags");
+jest.mock("@/utils/featureFlags");
 
 jest.mock("next/navigation", () => {
   const defaultSearchParams = new URLSearchParams("");
   return {
     __esModule: true,
-    usePathname: () => "/timetabling/maths-primary/new",
+    usePathname: () => "/timetabling/maths-primary/units",
     useSearchParams: () => defaultSearchParams,
     notFound: () => {
       throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
