@@ -46,7 +46,7 @@ const HomePageTabImageNav = ({ current }: { current: HomePageTab }) => {
         <OakHomepageTabButton
           title="Teaching resources"
           iconName="homepage-teacher"
-          href="/teachers"
+          href="/"
           element="a"
           isActive={current === "teachers"}
           onClick={() => handleAnalytics("teachers")}
