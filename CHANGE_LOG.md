@@ -1,3 +1,10 @@
+## [1.876.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.876.0...v1.876.1) (2025-10-01)
+
+
+### Bug Fixes
+
+* typo always setting year to 1 in "Map to school timetable" link ([eb8b8a5](https://github.com/oaknational/Oak-Web-Application/commit/eb8b8a5d47565df63d2f8a408cee3cccf983bb36))
+
 # [1.876.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.875.1...v1.876.0) (2025-10-01)
 
 
