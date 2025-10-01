@@ -18,7 +18,7 @@ jest.mock("next/navigation", () => {
 });
 
 describe("/timetabling/name", () => {
-  test("when enabled", async () => {
+  test("basic", async () => {
     (useFeatureFlag as jest.Mock).mockResolvedValue(true);
     const { baseElement } = renderWithTheme(
       await Page({
@@ -27,13 +27,4 @@ describe("/timetabling/name", () => {
     );
     expect(baseElement).toHaveTextContent("Name your timetable");
   });
-
-  // test("when disabled", async () => {
-  //   (useFeatureFlag as jest.Mock).mockResolvedValue(false);
-  //   expect(async () => {
-  //     return await Page({
-  //       params: Promise.resolve({ subjectPhaseSlug: "maths-primary" }),
-  //     });
-  //   }).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
-  // });
 });

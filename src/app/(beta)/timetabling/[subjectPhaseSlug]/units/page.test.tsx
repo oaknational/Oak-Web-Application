@@ -27,13 +27,4 @@ describe("/timetabling/units", () => {
     );
     expect(baseElement).toHaveTextContent("Year 1 maths");
   });
-
-  // test("when disabled", async () => {
-  //   (useFeatureFlag as jest.Mock).mockResolvedValue(false);
-  //   expect(async () => {
-  //     return await Page({
-  //       params: Promise.resolve({ subjectPhaseSlug: "maths-primary" }),
-  //     });
-  //   }).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
-  // });
 });
