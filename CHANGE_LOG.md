@@ -1,3 +1,34 @@
+# [1.876.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.875.1...v1.876.0) (2025-10-01)
+
+
+### Bug Fixes
+
+* incorrect import ([3615d1b](https://github.com/oaknational/Oak-Web-Application/commit/3615d1bd0f422a538654c7e724141f0b879f719a))
+* make alises optional on curriculum data ([b6127b3](https://github.com/oaknational/Oak-Web-Application/commit/b6127b3aa6eacae027c12ed57b4d31ec924d0dcc))
+* revert snapshot updates ([b29697c](https://github.com/oaknational/Oak-Web-Application/commit/b29697cf8500054be000f2d5ff869fe24cc1a861))
+* typo in test ([b04ddd2](https://github.com/oaknational/Oak-Web-Application/commit/b04ddd259ce0f2d841bdc9c4f802a9c84a2b29c8))
+* update property access in test ([206d5b1](https://github.com/oaknational/Oak-Web-Application/commit/206d5b1e33338a9d27a06096adfda43bd7585a4a))
+
+
+### Features
+
+* add 'cs' alias back in ([7fdaad6](https://github.com/oaknational/Oak-Web-Application/commit/7fdaad6c9805c724f0f65e072654974da0f53c3a))
+* add basic ranking system for multiple matches ([651e0ab](https://github.com/oaknational/Oak-Web-Application/commit/651e0ab48dac09abb6a04bb5d9ba093ed3728fd5))
+* add examboard matching ([ea33d66](https://github.com/oaknational/Oak-Web-Application/commit/ea33d6686eeffa0d2cad8e6a5c682a741d759143))
+* add fuse.js library for fuzzy matching ([5078deb](https://github.com/oaknational/Oak-Web-Application/commit/5078debdd019757501b3b4a29cbcc52a1611f1fd))
+* add fuzzy keystage matching ([9173159](https://github.com/oaknational/Oak-Web-Application/commit/917315953d6b8a00ce1598082ad19ad3e72f250d))
+* add fuzzy match function ([fb18a00](https://github.com/oaknational/Oak-Web-Application/commit/fb18a00ec47aa3ce60477416b8026b2e5016098d))
+* add fuzzy matching on years ([1123c1b](https://github.com/oaknational/Oak-Web-Application/commit/1123c1b8fe3fc2cd02b4aaec3977435ce6d840cc))
+* add hardcoded subject data ([d15d0bd](https://github.com/oaknational/Oak-Web-Application/commit/d15d0bd70fb2f5d651af16ac43e291e7a27ed2a0))
+* add method to filter out ambiguous matches ([e3e0d72](https://github.com/oaknational/Oak-Web-Application/commit/e3e0d72d97f3393b44d105be57124577bc16fc9f))
+* add oak years const ([8e712a3](https://github.com/oaknational/Oak-Web-Application/commit/8e712a3028ada0f040538d0f2c61b15bacd83356))
+* add some missing curriculum data ([5cc93d1](https://github.com/oaknational/Oak-Web-Application/commit/5cc93d1a98a97f9da23209f25360958641d25b53))
+* configure fuzzy matching for subject and keystage ([ceff834](https://github.com/oaknational/Oak-Web-Application/commit/ceff8341cbe5dc4d6c701d2f0459debae5836c15))
+* make matching stricter ([16ae96b](https://github.com/oaknational/Oak-Web-Application/commit/16ae96b834676db061e511e4a2087d3556618c19))
+* tweak scoring to remove extra length penalty ([e4e64b1](https://github.com/oaknational/Oak-Web-Application/commit/e4e64b1d7444503b944d735c4897f27dc5a22d39))
+
+## [1.875.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.875.0...v1.875.1) (2025-10-01)
+
 # [1.875.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.874.0...v1.875.0) (2025-10-01)
 
 
