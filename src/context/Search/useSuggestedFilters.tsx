@@ -1,13 +1,26 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
+import useSWR from "swr";
 
 import { convertSearchIntentToFilters, normalizeTerm } from "./search.helpers";
 import { SuggestedFilters } from "./search.types";
 
 import { searchIntentSchema } from "@/common-lib/schemas/search-intent";
+import errorReporter from "@/common-lib/error-reporter";
 
-const initial: SuggestedFilters = {
-  searchFilters: undefined,
-  status: "idle",
+const reportError = errorReporter("useSuggestedFilters");
+
+const fetcher = async (url: string) => {
+  const resp = await fetch(url, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  });
+
+  if (!resp.ok) {
+    throw new Error(`HTTP error! status: ${resp.status}`);
+  }
+
+  const json = await resp.json();
+  return searchIntentSchema.parse(json);
 };
 
 export function useSuggestedFilters({
@@ -18,35 +31,49 @@ export function useSuggestedFilters({
   enabled?: boolean;
 }): SuggestedFilters {
   const norm = useMemo(() => normalizeTerm(term), [term]);
-  const [state, setState] = useState<SuggestedFilters>(initial);
 
-  useEffect(() => {
-    const key = norm;
-    if (!enabled || key.length < 2) {
-      setState(initial);
-      return;
-    }
+  const swrKey =
+    enabled && norm.length >= 2
+      ? `/api/search/intent?searchTerm=${norm}`
+      : null;
 
-    setState((s) => ({ ...s, status: "loading", error: undefined }));
-    (async () => {
-      try {
-        const resp = await fetch(`/api/search/intent?searchTerm=${key}`, {
-          method: "GET",
-          headers: { "Content-Type": "application/json" },
-        });
-        const json = await resp.json();
-        const parsed = searchIntentSchema.parse(json);
+  const { data, error, isLoading } = useSWR(swrKey, fetcher, {
+    revalidateOnFocus: false,
+    dedupingInterval: 5000,
+  });
 
-        setState({
-          searchFilters: convertSearchIntentToFilters(parsed),
-          status: "success",
-          error: undefined,
-        });
-      } catch (e: unknown) {
-        setState({ searchFilters: [], status: "error", error: `${e}` });
-      }
-    })();
-  }, [norm, enabled]);
+  if (!enabled || norm.length < 2) {
+    return {
+      searchFilters: undefined,
+      status: "idle",
+    };
+  }
 
-  return state;
+  if (isLoading) {
+    return {
+      searchFilters: undefined,
+      status: "loading",
+    };
+  }
+
+  if (error) {
+    reportError(error);
+    return {
+      searchFilters: [],
+      status: "error",
+      error: `${error}`,
+    };
+  }
+
+  if (data) {
+    return {
+      searchFilters: convertSearchIntentToFilters(data),
+      status: "success",
+    };
+  }
+
+  return {
+    searchFilters: undefined,
+    status: "idle",
+  };
 }

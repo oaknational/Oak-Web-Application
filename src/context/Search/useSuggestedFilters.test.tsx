@@ -1,7 +1,31 @@
-import { renderHook, waitFor } from "@testing-library/react";
+import { renderHook } from "@testing-library/react";
 
 import { useSuggestedFilters } from "./useSuggestedFilters";
 import { SuggestedFilters } from "./search.types";
+
+const mockUseSWR = jest.fn<
+  { data: unknown; error: unknown; isLoading: boolean },
+  []
+>(() => ({
+  data: null,
+  error: null,
+  isLoading: false,
+}));
+
+jest.mock("swr", () => ({
+  __esModule: true,
+  default: (...args: []) => mockUseSWR(...args),
+}));
+
+const reportError = jest.fn();
+
+jest.mock("@/common-lib/error-reporter", () => ({
+  __esModule: true,
+  default:
+    () =>
+    (...args: []) =>
+      reportError(...args),
+}));
 
 const validSearchIntentPayload = {
   directMatch: {
@@ -38,82 +62,122 @@ const validSearchFilters: SuggestedFilters = {
 describe("useSuggestedFilters", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    global.fetch = jest.fn().mockResolvedValue({
-      ok: true,
-      json: async () => validSearchIntentPayload,
-    });
   });
+
   it("returns undefined and status 'idle' if is not enabled", () => {
+    mockUseSWR.mockImplementationOnce(() => ({
+      data: null,
+      error: null,
+      isLoading: false,
+    }));
+
     const { result } = renderHook(() =>
       useSuggestedFilters({ term: "maths", enabled: false }),
     );
+
     expect(result.current).toEqual({
       searchFilters: undefined,
       status: "idle",
     });
+
+    // SWR should be called with null key when disabled
+    expect(mockUseSWR).toHaveBeenCalledWith(
+      null,
+      expect.any(Function),
+      expect.any(Object),
+    );
   });
+
   it("returns undefined and status 'idle' if term length is < 2", () => {
+    mockUseSWR.mockImplementationOnce(() => ({
+      data: null,
+      error: null,
+      isLoading: false,
+    }));
+
     const { result } = renderHook(() =>
       useSuggestedFilters({ term: "m", enabled: true }),
     );
+
     expect(result.current).toEqual({
       searchFilters: undefined,
       status: "idle",
     });
+
+    // SWR should be called with null key when term is too short
+    expect(mockUseSWR).toHaveBeenCalledWith(
+      null,
+      expect.any(Function),
+      expect.any(Object),
+    );
   });
-  it("returns status loading and status 'idle' if term length is < 2", async () => {
-    global.fetch = jest.fn().mockResolvedValue({
-      ok: true,
-      json: () => deferred.promise,
+
+  it("returns status 'loading' when SWR is loading", () => {
+    mockUseSWR.mockImplementationOnce(() => ({
+      data: null,
+      error: null,
+      isLoading: true,
+    }));
+
+    const { result } = renderHook(() =>
+      useSuggestedFilters({ term: "maths", enabled: true }),
+    );
+
+    expect(result.current).toEqual({
+      searchFilters: undefined,
+      status: "loading",
     });
-    function createDeferred() {
-      let resolve, reject;
-      const promise = new Promise((res, rej) => {
-        resolve = res;
-        reject = rej;
-      });
-      return { promise, resolve, reject };
-    }
-    const deferred = createDeferred();
-    const { result } = renderHook(() =>
-      useSuggestedFilters({ term: "maths", enabled: true }),
-    );
-    await waitFor(() => expect(result.current.status).toBe("loading"));
-    if (!deferred.resolve) throw new Error("deferred.resolve is undefined");
-  });
-  it("returns search filters and status 'success' when fetch resolves", async () => {
-    const { result } = renderHook(() =>
-      useSuggestedFilters({ term: "maths", enabled: true }),
-    );
-    await waitFor(() => expect(result.current.status).toBe("success"));
-    expect(result.current).toEqual(validSearchFilters);
-    expect(global.fetch).toHaveBeenCalledTimes(1);
-    expect(global.fetch).toHaveBeenCalledWith(
+
+    expect(mockUseSWR).toHaveBeenCalledWith(
       "/api/search/intent?searchTerm=maths",
-      {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      },
+      expect.any(Function),
+      expect.any(Object),
     );
   });
-  it("returns empty search filters and status 'error' when fetch fails", async () => {
-    global.fetch = jest.fn().mockRejectedValue(new Error("Fetch failed"));
+
+  it("returns search filters and status 'success' when SWR has data", () => {
+    mockUseSWR.mockImplementationOnce(() => ({
+      data: validSearchIntentPayload,
+      error: null,
+      isLoading: false,
+    }));
+
+    const { result } = renderHook(() =>
+      useSuggestedFilters({ term: "science", enabled: true }),
+    );
+
+    expect(result.current).toEqual(validSearchFilters);
+    expect(mockUseSWR).toHaveBeenCalledWith(
+      "/api/search/intent?searchTerm=science",
+      expect.any(Function),
+      expect.any(Object),
+    );
+  });
+
+  it("returns empty search filters and status 'error' when SWR has error", () => {
+    const mockError = new Error("Fetch failed");
+    mockUseSWR.mockImplementationOnce(() => ({
+      data: null,
+      error: mockError,
+      isLoading: false,
+    }));
+
     const { result } = renderHook(() =>
       useSuggestedFilters({ term: "maths", enabled: true }),
     );
-    await waitFor(() => expect(result.current.status).toBe("error"));
+
+    expect(reportError).toHaveBeenCalledWith(mockError);
+
     expect(result.current).toEqual({
       searchFilters: [],
       status: "error",
       error: "Error: Fetch failed",
     });
-    expect(global.fetch).toHaveBeenCalledTimes(1);
-    expect(global.fetch).toHaveBeenCalledWith(
+
+    expect(mockUseSWR).toHaveBeenCalledWith(
       "/api/search/intent?searchTerm=maths",
-      {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      },
+      expect.any(Function),
+      expect.any(Object),
     );
   });
 });
