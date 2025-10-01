@@ -8,6 +8,7 @@ export const getStaticProps = async () => {
   return {
     redirect: {
       destination: "/",
+      statusCode: 301,
     },
   };
 };
