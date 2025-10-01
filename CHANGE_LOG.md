@@ -1,3 +1,12 @@
+# [1.875.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.874.0...v1.875.0) (2025-10-01)
+
+
+### Features
+
+* add button url to homepage query ([d68fdf3](https://github.com/oaknational/Oak-Web-Application/commit/d68fdf3518284126988d9ff564dcf9b23a242f99))
+* add campaign button url to promo banner on campaign and home pages ([91ddeed](https://github.com/oaknational/Oak-Web-Application/commit/91ddeeda490f2755291db88242daad1c71878c12))
+* add new buttonUrl field to campaign promo banner ([8e7d6ad](https://github.com/oaknational/Oak-Web-Application/commit/8e7d6adb170a8e0ecfd7a315a8abca0a9b8781f9))
+
 # [1.874.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.873.1...v1.874.0) (2025-09-30)
 
 
