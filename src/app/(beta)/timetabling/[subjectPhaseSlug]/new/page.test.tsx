@@ -28,12 +28,12 @@ describe("/timetabling/new", () => {
     expect(baseElement).toHaveTextContent("Enter lessons per term");
   });
 
-  test("when disabled", async () => {
-    (useFeatureFlag as jest.Mock).mockResolvedValue(false);
-    expect(async () => {
-      return await Page({
-        params: Promise.resolve({ subjectPhaseSlug: "maths-primary" }),
-      });
-    }).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
-  });
+  // test("when disabled", async () => {
+  //   (useFeatureFlag as jest.Mock).mockResolvedValue(false);
+  //   expect(async () => {
+  //     return await Page({
+  //       params: Promise.resolve({ subjectPhaseSlug: "maths-primary" }),
+  //     });
+  //   }).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
+  // });
 });

@@ -5,8 +5,8 @@ const Page = async ({
 }: {
   params: Promise<{ subjectPhaseSlug: string }>;
 }) => {
-  // Render
-  return <CurricTimetablingUnits subjectPhaseSlug={params.subjectPhaseSlug} />;
+  const { subjectPhaseSlug } = await params;
+  return <CurricTimetablingUnits subjectPhaseSlug={subjectPhaseSlug} />;
 };
 
 export default Page;
