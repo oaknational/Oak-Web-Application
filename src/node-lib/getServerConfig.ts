@@ -254,8 +254,7 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     default: null,
   },
   aiSearchEnabled: {
-    // disable ai search in production until we implement rate limiting
-    value: process.env.NODE_ENV !== "production",
+    value: process.env.AI_SEARCH_ENABLED,
     envName: "AI_SEARCH_ENABLED",
     required: false,
     availableInBrowser: false,

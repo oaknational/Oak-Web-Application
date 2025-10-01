@@ -196,7 +196,8 @@ async function main() {
     // Search API
     OPENAI_API_KEY:
       process.env.OPENAI_API_KEY || secretsFromNetwork.OPENAI_API_KEY,
-    AI_SEARCH_ENABLED: process.env.AI_SEARCH_ENABLED,
+    AI_SEARCH_ENABLED:
+      process.env.AI_SEARCH_ENABLED || oakConfig.oak.aiSearchEnabled,
 
     // Seo
 
