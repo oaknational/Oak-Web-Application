@@ -141,7 +141,7 @@ export default function CurricVisualiser({
           itemEls.current[index] = element;
         };
         const timetablingUrl = timetablingEnabled
-          ? `/timetabling/${getSubjectPhaseSlug({ subject: slugs.subjectSlug, examBoardSlug: slugs.ks4OptionSlug, phaseSlug: slugs.phaseSlug })}/new?${generateQueryParams({ year: 1 })}`
+          ? `/timetabling/${getSubjectPhaseSlug({ subject: slugs.subjectSlug, examBoardSlug: slugs.ks4OptionSlug, phaseSlug: slugs.phaseSlug })}/new?${generateQueryParams({ year })}`
           : undefined;
 
         const actions = units[0]?.actions;
