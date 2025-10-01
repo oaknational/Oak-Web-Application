@@ -1,5 +1,9 @@
 import { FC } from "react";
-import { OakSpan, OakFlex } from "@oaknational/oak-components";
+import {
+  OakSpan,
+  OakFlex,
+  OakSmallTertiaryInvertedButton,
+} from "@oaknational/oak-components";
 import {
   examboardSlugs,
   keystageSlugs,
@@ -7,8 +11,6 @@ import {
   yearSlugs,
 } from "@oaknational/oak-curriculum-schema";
 
-import Button from "@/components/SharedComponents/Button";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import {
   UseSearchFiltersReturnType,
   KeyStage,
@@ -78,10 +80,10 @@ const SearchActiveFilters: FC<SearchActiveFiltersProps> = (props) => {
     SearchCheckBoxProps)[] = activeFilters.slice(0, maxActiveFilters);
 
   return (
-    <Flex
-      $alignItems={["flex-start", "center"]}
-      $flexDirection={["column", "row"]}
-      $minHeight={44}
+    <OakFlex
+      $alignItems={"center"}
+      $flexDirection={"row"}
+      $alignContent={"center"}
       $display={activeFilters.length ? "flex" : "none"}
     >
       <OakSpan $font="heading-light-7" $mr="space-between-s">
@@ -89,8 +91,8 @@ const SearchActiveFilters: FC<SearchActiveFiltersProps> = (props) => {
       </OakSpan>
       <OakFlex $flexWrap={"wrap"} $alignItems={"center"}>
         {slicedActiveFilters.map(({ slug, title, onChange, ...props }) => (
-          <Button
-            label={"shortCode" in props ? props.shortCode : title}
+          <OakSmallTertiaryInvertedButton
+            $mr={"space-between-xs"}
             aria-label={`Remove ${title} filter`}
             key={`active-filter-${title}-${slug}`}
             onClick={() => {
@@ -101,19 +103,18 @@ const SearchActiveFilters: FC<SearchActiveFiltersProps> = (props) => {
               });
               onChange();
             }}
-            variant="buttonStyledAsLink"
-            icon="cross"
+            iconName="cross"
             $font={"heading-7"}
-            $color={"grey70"}
-            $iconPosition="trailing"
-            $mr={16}
-          />
+            isTrailingIcon
+          >
+            {"shortCode" in props ? props.shortCode : title}
+          </OakSmallTertiaryInvertedButton>
         ))}
         {activeFilters.length > maxActiveFilters && (
           <OakSpan $font="body-1-bold">...</OakSpan>
         )}
       </OakFlex>
-    </Flex>
+    </OakFlex>
   );
 };
 

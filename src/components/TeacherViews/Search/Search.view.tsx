@@ -40,7 +40,6 @@ import SignPostToAila from "@/components/TeacherComponents/NoSearchResults/SignP
 import MiniDropDown from "@/components/TeacherComponents/MiniDropdown";
 import SearchSuggestedFilters from "@/components/TeacherComponents/SearchSuggestedFilters/SearchSuggestedFilters";
 import { useSuggestedFilters } from "@/context/Search/useSuggestedFilters";
-import MobileDrawerNav from "@/components/SharedComponents/MobileFilters/MobileDrawerNav";
 
 const CustomWidthFlex = styled(OakFlex)`
   max-width: 300px;
@@ -336,12 +335,8 @@ const Search: FC<SearchProps> = (props) => {
                   query={query}
                   searchFilters={suggestedFilters.searchFilters}
                 />
-                <MobileDrawerNav
-                  $mt={"space-between-none"}
-                  $alignSelf={"flex-end"}
-                  applyForTablet={true}
-                  label="All filters"
-                >
+
+                <MiniDropDown label="All filters">
                   <OakBox $pt="inner-padding-m">
                     <SearchFilters
                       {...searchFilters}
@@ -351,10 +346,14 @@ const Search: FC<SearchProps> = (props) => {
                       )}
                     />
                   </OakBox>
-                </MobileDrawerNav>
+                </MiniDropDown>
               </OakBox>
             )}
-            <OakBox $pl={["inner-padding-none", "inner-padding-xl"]}>
+            <OakBox
+              $height={"all-spacing-4"}
+              $pl={["inner-padding-none", "inner-padding-xl"]}
+              $mb={"space-between-m"}
+            >
               <SearchActiveFilters
                 searchFilters={searchFilters}
                 trackSearchModified={trackSearchModified(

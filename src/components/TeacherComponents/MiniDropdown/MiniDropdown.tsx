@@ -65,6 +65,7 @@ const MiniDropdown: FC<MiniDropdownProps> = ({
           aria-expanded={isOpen}
           aria-controls={contentId}
           aria-label={`${label} dropdown, ${isOpen ? "expanded" : "collapsed"}`}
+          style={{ textDecoration: "none" }}
         >
           <OakFlex
             $flexDirection={"row"}

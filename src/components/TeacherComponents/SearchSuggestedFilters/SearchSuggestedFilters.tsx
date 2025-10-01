@@ -61,11 +61,7 @@ const SuggestedFilters: FC<SuggestedFiltersProps> = ({
   };
 
   return (
-    <OakBox
-      $mb="space-between-m2"
-      $bb={"border-solid-s"}
-      $borderColor={"grey40"}
-    >
+    <OakBox>
       <OakFieldset>
         <OakP as={"legend"} $mb="space-between-m" $font={"heading-7"}>
           Suggested filters
