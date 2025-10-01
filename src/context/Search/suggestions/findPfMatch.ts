@@ -14,7 +14,7 @@ import {
 import { getMatch } from "./match/getMatch";
 import { hasNonMatchingWords } from "./match/hasNonMatchingWords";
 
-import { DirectMatch } from "@/pages/api/search/schemas";
+import { DirectMatch } from "@/common-lib/schemas/search-intent";
 
 /**
  * Searches within a query for any pfs (programme factors) that can be matched exactly within the term
