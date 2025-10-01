@@ -60,6 +60,7 @@ const handler: NextApiHandler = async (req, res) => {
       };
       return res.status(200).json(payload);
     }
+    return res.status(503).json({ message: "ai search currently unavailable" });
   } catch (err) {
     const error = new OakError({
       code: "search/failed-to-get-intent",
