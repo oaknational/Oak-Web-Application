@@ -1,6 +1,7 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import { SuggestedFilters, useSuggestedFilters } from "./useSuggestedFilters";
+import { useSuggestedFilters } from "./useSuggestedFilters";
+import { SuggestedFilters } from "./search.types";
 
 const validSearchIntentPayload = {
   directMatch: {
