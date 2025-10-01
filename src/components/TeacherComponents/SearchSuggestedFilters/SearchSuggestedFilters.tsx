@@ -7,8 +7,11 @@ import {
   OakSearchFilterCheckBox,
 } from "@oaknational/oak-components";
 
-import { SetSearchQuery, SearchQuery } from "@/context/Search/search.types";
-import { SuggestedSearchFilter } from "@/context/Search/useSuggestedFilters";
+import {
+  SetSearchQuery,
+  SearchQuery,
+  SuggestedSearchFilter,
+} from "@/context/Search/search.types";
 
 export type SuggestedFiltersProps = {
   setQuery: SetSearchQuery;
