@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { convertSearchIntentToFilters, normalizeTerm } from "./search.helpers";
 import { SuggestedFilters } from "./search.types";
@@ -19,12 +19,9 @@ export function useSuggestedFilters({
 }): SuggestedFilters {
   const norm = useMemo(() => normalizeTerm(term), [term]);
   const [state, setState] = useState<SuggestedFilters>(initial);
-  const lastKeyRef = useRef<string>("");
 
   useEffect(() => {
     const key = norm;
-    lastKeyRef.current = key;
-
     if (!enabled || key.length < 2) {
       setState(initial);
       return;
