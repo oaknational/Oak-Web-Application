@@ -8,6 +8,7 @@ describe("Teachers Page", () => {
       expect(result).toEqual({
         redirect: {
           destination: "/",
+          statusCode: 301,
         },
       });
     });
