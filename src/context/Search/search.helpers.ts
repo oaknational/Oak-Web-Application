@@ -21,7 +21,7 @@ import {
 } from "@/common-lib/urls";
 import { LEGACY_COHORT } from "@/config/cohort";
 import { removeHTMLTags } from "@/components/TeacherViews/Search/helpers";
-import { SearchIntent } from "@/pages/api/search/schemas";
+import { SearchIntent } from "@/common-lib/schemas/search-intent";
 
 const reportError = errorReporter("search/helpers");
 

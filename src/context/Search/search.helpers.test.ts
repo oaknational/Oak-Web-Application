@@ -17,7 +17,7 @@ import { lessonSearchHitSchema, unitSearchHitSchema } from "./search.schema";
 import { hitsFixture } from "./search-api/2023/searchResults.fixture";
 
 import { LEGACY_COHORT } from "@/config/cohort";
-import { SearchIntent } from "@/pages/api/search/schemas";
+import { SearchIntent } from "@/common-lib/schemas/search-intent";
 
 const lessonHit = lessonSearchHitSchema.parse(
   hitsFixture.find((hit) => hit._source.type === "lesson"),

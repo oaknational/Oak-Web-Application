@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 import { convertSearchIntentToFilters, normalizeTerm } from "./search.helpers";
 
-import { searchIntentSchema } from "@/pages/api/search/schemas";
+import { searchIntentSchema } from "@/common-lib/schemas/search-intent";
 
 export type SuggestedFilters = {
   searchFilters: SuggestedSearchFilter[] | undefined;

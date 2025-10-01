@@ -4,9 +4,9 @@ import userEvent from "@testing-library/user-event";
 import SuggestedFilters from "./SearchSuggestedFilters";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import { SearchIntent } from "@/pages/api/search/schemas";
 import { convertSearchIntentToFilters } from "@/context/Search/search.helpers";
 import { SearchQuery, SetSearchQuery } from "@/context/Search/search.types";
+import { SearchIntent } from "@/common-lib/schemas/search-intent";
 
 function createSetQuery(initial: SearchQuery): {
   setQuery: SetSearchQuery;
