@@ -36,7 +36,7 @@ const useAnalyticsService = <T>({
         setLoaded(true);
       }
     };
-    if (consentState === "granted" && !hasAttemptedInit) {
+    if (!hasAttemptedInit) {
       attemptInit();
     }
   }, [consentState, hasAttemptedInit, config, service, setPosthogDistinctId]);
