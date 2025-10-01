@@ -5,11 +5,23 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 jest.mock("src/utils/featureFlags");
 
+jest.mock("next/navigation", () => {
+  const params = new URLSearchParams("");
+  return {
+    usePathname: () => "/timetabling/name",
+    useRouter: () => ({ replace: jest.fn() }),
+    useSearchParams: () => params,
+    notFound: () => {
+      throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
+    },
+  };
+});
+
 describe("/timetabling/units", () => {
   test("when enabled", async () => {
     (useFeatureFlag as jest.Mock).mockResolvedValue(true);
     const { baseElement } = renderWithTheme(await Page());
-    expect(baseElement).toHaveTextContent("Input name");
+    expect(baseElement).toHaveTextContent("Name your timetable");
   });
 
   test("when disabled", async () => {

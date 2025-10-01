@@ -37,6 +37,8 @@ export const directMatchSchema = z.object({
     .nullable(),
 });
 
+export type DirectMatch = z.infer<typeof directMatchSchema>;
+
 export const suggestedFilterSchema = z.union([
   z.object({
     type: z.literal("subject"),

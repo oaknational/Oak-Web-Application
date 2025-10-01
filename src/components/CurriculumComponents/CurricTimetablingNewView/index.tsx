@@ -9,18 +9,24 @@ import {
   OakTextInput,
   OakMaxWidth,
 } from "@oaknational/oak-components";
+import { useMemo } from "react";
 
 import { CurricTimetableHeader } from "../CurricTimetableHeader";
 import { CurricShowSteps } from "../CurricShowSteps";
 
+import { useTimetableHeaderParams } from "./useTimetableHeaderParams";
+
 export const CurricTimetablingNewView = () => {
-  const DEFAULT_LESSONS = 10;
+  const DEFAULT_LESSONS = 30;
+  const { subject, year, queryString } = useTimetableHeaderParams();
+
+  const nextHref = useMemo(() => `name?${queryString}`, [queryString]);
 
   return (
     <>
       <OakFlex $flexDirection={"column"} $pa={"inner-padding-xl5"}>
         <CurricTimetableHeader
-          titleSlot={"Year N subject"}
+          titleSlot={`Year ${year} ${subject}`}
           illustrationSlug={"magic-carpet"}
           additionalSlot={
             <OakBox $maxWidth={"all-spacing-20"}>
@@ -152,7 +158,7 @@ export const CurricTimetablingNewView = () => {
 
           <OakPrimaryButton
             element="a"
-            href="/timetabling/name"
+            href={nextHref}
             pv="inner-padding-m"
             ph="inner-padding-l"
             style={{ height: "auto" }}

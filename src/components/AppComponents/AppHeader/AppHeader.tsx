@@ -99,6 +99,7 @@ const AppHeader: FC<HeaderProps> = () => {
               page={"teachers-home-page"}
               $focusStyles={["underline"]}
               $isSelected={true}
+              aria-current={selectedArea !== siteAreas.pupils}
             >
               Teachers
               {selectedArea == siteAreas.teachers && (
@@ -118,6 +119,7 @@ const AppHeader: FC<HeaderProps> = () => {
                     track.classroomSelected({ navigatedFrom: "header" }),
                   "aria-label": "Pupils browse years",
                 }}
+                aria-current={selectedArea == siteAreas.pupils}
               >
                 Pupils
                 {selectedArea == siteAreas.pupils && (
