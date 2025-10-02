@@ -193,7 +193,7 @@ async function main() {
     DISABLE_ISR: process.env.DISABLE_ISR,
     NEXT_PUBLIC_SENTRY_ENABLED: process.env.NEXT_PUBLIC_SENTRY_ENABLED,
 
-    // Search API
+    // AI FEATURES
     AI_GATEWAY_URL: process.env.AI_GATEWAY_URL,
     AI_GATEWAY_API_KEY: process.env.AI_GATEWAY_API_KEY,
     OPENAI_API_KEY:
