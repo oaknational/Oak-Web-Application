@@ -25,10 +25,11 @@ import {
   formatCurriculumUnitsData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { DISABLE_DOWNLOADS } from "@/utils/curriculum/constants";
+import { Unit } from "@/utils/curriculum/types";
 
 const render = renderWithProviders();
 
-const unitData = [
+const unitData: Unit[] = [
   {
     connection_prior_unit_description:
       "Pupils learned about the roles of hormones in human reproduction, including control of the menstrual cycle, and other uses of hormones such as in in contraception.",
@@ -94,6 +95,9 @@ const unitData = [
     description: null,
     national_curriculum_content: [],
     prior_knowledge_requirements: [],
+    features: undefined,
+    parent_programme_features: undefined,
+    actions: undefined,
   },
   {
     connection_prior_unit_description:
@@ -176,6 +180,9 @@ const unitData = [
     description: null,
     national_curriculum_content: [],
     prior_knowledge_requirements: [],
+    features: undefined,
+    parent_programme_features: undefined,
+    actions: undefined,
   },
   {
     connection_prior_unit_description:
@@ -253,6 +260,9 @@ const unitData = [
     description: null,
     national_curriculum_content: [],
     prior_knowledge_requirements: [],
+    features: undefined,
+    parent_programme_features: undefined,
+    actions: undefined,
   },
   {
     connection_prior_unit_description:
@@ -345,6 +355,9 @@ const unitData = [
     description: null,
     national_curriculum_content: [],
     prior_knowledge_requirements: [],
+    features: undefined,
+    parent_programme_features: undefined,
+    actions: undefined,
   },
   {
     connection_prior_unit_description:
@@ -431,6 +444,9 @@ const unitData = [
     description: null,
     national_curriculum_content: [],
     prior_knowledge_requirements: [],
+    features: undefined,
+    parent_programme_features: undefined,
+    actions: undefined,
   },
   {
     connection_prior_unit_description:
@@ -520,6 +536,9 @@ const unitData = [
     description: null,
     national_curriculum_content: [],
     prior_knowledge_requirements: [],
+    features: undefined,
+    parent_programme_features: undefined,
+    actions: undefined,
   },
 ];
 

@@ -26,7 +26,10 @@ export const QuizAttribution = ({ questionData }: QuizAttributionProps) => {
         ) ?? [];
 
       const questionAttribution = questionImages.map((stem, i) => {
-        if ("attribution" in stem.imageObject.metadata) {
+        if (
+          stem.imageObject.metadata &&
+          "attribution" in stem.imageObject.metadata
+        ) {
           const idx =
             (_questionData.length > 1 ? `${qnum + 1}.` : "") + (i + 1);
           const attribution = stem.imageObject.metadata.attribution;
@@ -38,7 +41,10 @@ export const QuizAttribution = ({ questionData }: QuizAttributionProps) => {
         return null;
       });
       const answerAttributions = answerImages.map((stem, i) => {
-        if ("attribution" in stem.imageObject.metadata) {
+        if (
+          stem.imageObject.metadata &&
+          "attribution" in stem.imageObject.metadata
+        ) {
           const idx =
             (_questionData.length > 1 ? `${qnum + 1}.` : "") +
             (i + 1 + questionImages.length);

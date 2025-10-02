@@ -6,8 +6,8 @@ import { convertKey } from "@/utils/snakeCaseConverter";
 export const zodToCamelCase = <T extends z.ZodObject<z.ZodRawShape>>(
   schema: T,
 ): z.ZodTypeAny => {
-  if (!(schema._def.typeName === "ZodObject")) {
-    throw new Error("zodToCamelCase only works with ZodObject schemas");
+  if (!(schema.def.type === "object")) {
+    throw new Error('zodToCamelCase only works with "object schemas"');
   }
 
   const transformedShape: Record<string, z.ZodTypeAny> = {};
@@ -18,7 +18,7 @@ export const zodToCamelCase = <T extends z.ZodObject<z.ZodRawShape>>(
     if (value !== undefined) {
       // Recursively transform nested schemas
       transformedShape[camelKey] =
-        value?._def.typeName === "ZodObject"
+        value?.def.typeName === "ZodObject"
           ? zodToCamelCase(value as z.ZodObject<z.ZodRawShape>)
           : value;
     }

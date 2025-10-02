@@ -16,11 +16,11 @@ import {
 } from "@oaknational/oak-components";
 import { sortBy } from "lodash";
 import { flushSync } from "react-dom";
+
 import {
   examboardSlugs,
   ProgrammeFields,
 } from "@oaknational/oak-curriculum-schema";
-
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 import type {
@@ -52,7 +52,7 @@ const TruncatedFlex = styled(OakFlex)`
 const isExamboardSlug = (
   examboardSlug: ProgrammeFields["examboard_slug"] | string | null,
 ): examboardSlug is ProgrammeFields["examboard_slug"] =>
-  Object.keys(examboardSlugs.Values).includes(examboardSlug ?? "");
+  Object.keys(examboardSlugs.def.entries).includes(examboardSlug ?? "");
 
 const DEFAULT_KEYSTAGES = [
   { slug: "ks1" },

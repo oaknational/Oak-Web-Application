@@ -1,12 +1,13 @@
-import {
-  SyntheticUnitvariantLessons,
-  syntheticUnitvariantLessonsFixture,
-} from "@oaknational/oak-curriculum-schema";
 
 import { LessonDownloadsListSchema } from "./lessonDownloads.schema";
 import constructCanonicalLessonDownloads from "./constructCanonicalLessonDownloads";
 import { downloadAssetsFixture } from "./downloadUtils.test";
 import { LessonDownloadsCanonical } from "./lessonDownloadsCanonical.schema";
+
+import {
+  SyntheticUnitvariantLessons,
+  syntheticUnitvariantLessonsFixture,
+} from "@oaknational/oak-curriculum-schema";
 
 describe("constructCanonicalLessonDownloads", () => {
   it("should construct LessonDownloadsCanonical correctly", () => {
@@ -24,7 +25,7 @@ describe("constructCanonicalLessonDownloads", () => {
             slug: "lesson-slug",
             pupil_lesson_outcome: "pupil-lesson-outcome",
             phonics_outcome: null,
-            key_learning_points: [Array],
+            key_learning_points: [],
             equipment_and_resources: null,
             content_guidance_details: null,
             content_guidance: null,
@@ -113,7 +114,7 @@ describe("constructCanonicalLessonDownloads", () => {
             slug: "lesson-slug",
             pupil_lesson_outcome: "pupil-lesson-outcome",
             phonics_outcome: null,
-            key_learning_points: [Array],
+            key_learning_points: [],
             equipment_and_resources: null,
             content_guidance_details: null,
             content_guidance: null,
@@ -148,7 +149,11 @@ describe("constructCanonicalLessonDownloads", () => {
             slug: "lesson-slug",
             pupil_lesson_outcome: "pupil-lesson-outcome",
             phonics_outcome: null,
-            key_learning_points: [{}],
+            key_learning_points: [
+              {
+                key_learning_point: "",
+              },
+            ],
             equipment_and_resources: null,
             content_guidance_details: null,
             content_guidance: null,

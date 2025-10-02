@@ -1,9 +1,11 @@
 import { CurriculumUnitsTabData } from "..";
 
+import { Unit } from "@/utils/curriculum/types";
+
 const curriculumUnitsTabFixture = (
   partial?: Partial<CurriculumUnitsTabData>,
-): CurriculumUnitsTabData => ({
-  ...{
+): CurriculumUnitsTabData => {
+  const defaults: { units: Unit[] } = {
     units: [
       {
         connection_prior_unit_description:
@@ -110,6 +112,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -207,6 +212,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -285,6 +293,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -370,6 +381,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -455,6 +469,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -544,6 +561,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -633,6 +653,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -737,6 +760,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -841,6 +867,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -907,6 +936,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -977,6 +1009,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -1102,6 +1137,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -1217,6 +1255,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -1278,6 +1319,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -1343,6 +1387,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -1443,6 +1490,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -1554,6 +1604,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -1646,6 +1699,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -1752,6 +1808,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -1858,6 +1917,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -1922,6 +1984,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -2007,6 +2072,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -2147,6 +2215,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -2297,6 +2368,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -2382,6 +2456,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -2467,6 +2544,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -2576,6 +2656,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -2680,6 +2763,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -2744,6 +2830,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -2819,6 +2908,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -2889,6 +2981,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -3009,6 +3104,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -3123,6 +3221,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -3238,6 +3339,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -3330,6 +3434,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -3436,6 +3543,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -3543,6 +3653,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -3629,6 +3742,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -3713,6 +3829,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -3792,6 +3911,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -3891,6 +4013,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -3990,6 +4115,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -4084,6 +4212,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -4180,6 +4311,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -4264,6 +4398,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -4354,6 +4491,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -4449,6 +4589,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -4513,6 +4656,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -4591,6 +4737,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -4679,6 +4828,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -4785,6 +4937,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -4862,6 +5017,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -4960,6 +5118,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -5049,6 +5210,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -5188,6 +5352,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -5247,6 +5414,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -5306,6 +5476,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -5410,6 +5583,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -5504,6 +5680,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -5594,6 +5773,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -5718,6 +5900,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -5837,6 +6022,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -5922,6 +6110,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -6006,6 +6197,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -6131,6 +6325,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -6261,6 +6458,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -6373,6 +6573,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -6457,6 +6660,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -6564,6 +6770,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -6652,6 +6861,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -6771,6 +6983,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -6840,6 +7055,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -6924,6 +7142,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -7003,6 +7224,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -7094,6 +7318,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -7184,6 +7411,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -7254,6 +7484,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -7313,6 +7546,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -7396,6 +7632,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -7474,6 +7713,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -7533,6 +7775,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -7592,6 +7837,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -7702,6 +7950,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -7800,6 +8051,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -7902,6 +8156,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -8009,6 +8266,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -8115,6 +8375,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -8202,6 +8465,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -8289,6 +8555,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -8420,6 +8689,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -8581,6 +8853,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -8667,6 +8942,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -8773,6 +9051,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -8878,6 +9159,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -8954,6 +9238,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -9024,6 +9311,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -9107,6 +9397,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -9200,6 +9493,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -9325,6 +9621,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -9440,6 +9739,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -9519,6 +9821,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -9597,6 +9902,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -9703,6 +10011,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -9809,6 +10120,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -9910,6 +10224,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -9979,6 +10296,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -10048,6 +10368,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -10147,6 +10470,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -10246,6 +10572,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -10350,6 +10679,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -10454,6 +10786,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -10549,6 +10884,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -10637,6 +10975,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -10752,6 +11093,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -10857,6 +11201,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -10947,6 +11294,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -11038,6 +11388,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -11134,6 +11487,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -11230,6 +11586,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -11298,6 +11657,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -11365,6 +11727,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -11444,6 +11809,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -11518,6 +11886,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -11607,6 +11978,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -11703,6 +12077,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -11794,6 +12171,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -11904,6 +12284,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -12013,6 +12396,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -12105,6 +12491,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -12211,6 +12600,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -12318,6 +12710,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -12402,6 +12797,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -12486,6 +12884,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -12606,6 +13007,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -12746,6 +13150,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -12891,6 +13298,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -12956,6 +13366,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -13020,6 +13433,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -13090,6 +13506,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -13149,6 +13568,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -13226,6 +13648,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -13332,6 +13757,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -13428,6 +13856,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -13497,6 +13928,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -13566,6 +14000,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -13654,6 +14091,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -13741,6 +14181,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -13828,6 +14271,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -13903,6 +14349,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -13973,6 +14422,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -14081,6 +14533,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -14182,6 +14637,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -14257,6 +14715,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -14346,6 +14807,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -14437,6 +14901,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -14503,6 +14970,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -14570,6 +15040,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -14642,6 +15115,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -14720,6 +15196,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -14826,6 +15305,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -14914,6 +15396,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -15002,6 +15487,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -15079,6 +15567,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -15148,6 +15639,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -15217,6 +15711,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -15295,6 +15792,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -15373,6 +15873,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -15455,6 +15958,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -15561,6 +16067,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -15658,6 +16167,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -15755,6 +16267,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -15894,6 +16409,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -15990,6 +16508,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -16081,6 +16602,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -16187,6 +16711,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -16285,6 +16812,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -16354,6 +16884,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -16423,6 +16956,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -16518,6 +17054,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -16622,6 +17161,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -16716,6 +17258,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -16775,6 +17320,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -16834,6 +17382,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -16902,6 +17453,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -16969,6 +17523,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -17074,6 +17631,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -17184,6 +17744,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -17298,6 +17861,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -17367,6 +17933,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -17448,6 +18017,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -17529,6 +18101,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -17608,6 +18183,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -17687,6 +18265,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -17755,6 +18336,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -17828,6 +18412,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -17918,6 +18505,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -18009,6 +18599,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -18076,6 +18669,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -18142,6 +18738,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -18211,6 +18810,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -18280,6 +18882,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -18378,6 +18983,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -18478,6 +19086,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -18599,6 +19210,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -18740,6 +19354,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -18809,6 +19426,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -18878,6 +19498,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -18953,6 +19576,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -19058,6 +19684,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -19153,6 +19782,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -19258,6 +19890,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -19364,6 +19999,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -19446,6 +20084,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -19528,6 +20169,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -19617,6 +20261,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -19706,6 +20353,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -19793,6 +20443,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -19880,6 +20533,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -19984,6 +20640,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -20088,6 +20747,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -20162,6 +20824,9 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
       {
         connection_prior_unit_description:
@@ -20241,10 +20906,16 @@ const curriculumUnitsTabFixture = (
         state: "published",
         national_curriculum_content: [],
         prior_knowledge_requirements: [],
+        features: undefined,
+        parent_programme_features: undefined,
+        actions: undefined,
       },
     ],
+  };
+  return {
+    ...defaults,
     ...partial,
-  },
-});
+  };
+};
 
 export default curriculumUnitsTabFixture;

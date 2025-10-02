@@ -1,10 +1,10 @@
 import { GetStaticPropsContext, GetStaticPropsResult } from "next";
+
 import {
   ProgrammeFields,
   examboardSlugs,
   pathwaySlugs,
 } from "@oaknational/oak-curriculum-schema";
-
 import { PupilProgrammeListingData } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
 import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
@@ -114,9 +114,9 @@ export const getYearSlug = ({
 export const isExamboardSlug = (
   examboardSlug: ProgrammeFields["examboard_slug"] | string | null,
 ): examboardSlug is ProgrammeFields["examboard_slug"] =>
-  Object.keys(examboardSlugs.Values).includes(examboardSlug ?? "");
+  Object.keys(examboardSlugs.def.entries).includes(examboardSlug ?? "");
 
 export const isPathwaySlug = (
   pathwaySlug: ProgrammeFields["pathway_slug"] | string | null,
 ): pathwaySlug is ProgrammeFields["pathway_slug"] =>
-  Object.keys(pathwaySlugs.Values).includes(pathwaySlug ?? "");
+  Object.keys(pathwaySlugs.def.entries).includes(pathwaySlug ?? "");

@@ -1,5 +1,4 @@
 import { pathwaySlugs } from "@oaknational/oak-curriculum-schema";
-
 import {
   KeyStageSubjectData,
   SubjectListingPageData,
@@ -7,7 +6,7 @@ import {
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 
 type CombinedSubject = KeyStageSubjectData & { isNew: boolean };
-const pathwaySlugsArray = Object.keys(pathwaySlugs.Values);
+const pathwaySlugsArray = Object.values(pathwaySlugs.def.entries);
 
 export const getCombinedSubjects = (
   curriculumData: SubjectListingPageData,

@@ -36,6 +36,9 @@ const BASE_UNIT: Unit = {
   year: "5",
   national_curriculum_content: [],
   prior_knowledge_requirements: [],
+  features: undefined,
+  parent_programme_features: undefined,
+  actions: undefined,
 };
 
 export function getPhaseTitle(year: string) {

@@ -131,7 +131,7 @@ export const parseResults = <S extends ZodSchema, D>(
           code: "preview/zod-error",
           originalError: error,
           meta: {
-            errors: error.errors,
+            errors: [error],
           },
         });
         throw oakError;

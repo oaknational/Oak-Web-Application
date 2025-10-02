@@ -1,14 +1,15 @@
-import {
-  syntheticUnitvariantLessonsFixture,
-  lessonDataFixture,
-  additionalFilesFixture,
-} from "@oaknational/oak-curriculum-schema";
 import { ZodError } from "zod";
 
 import sdk from "../../sdk";
 
 import lessonDownloads from "./lessonDownloads.query";
 import { LessonDownloadsPageData } from "./lessonDownloads.schema";
+
+import {
+  syntheticUnitvariantLessonsFixture,
+  lessonDataFixture,
+  additionalFilesFixture,
+} from "@oaknational/oak-curriculum-schema";
 
 const downloadAssets = {
   has_slide_deck_asset_object: true,
@@ -171,15 +172,13 @@ describe("lessonDownloads()", () => {
       });
     } catch (error: unknown) {
       const err = error as ZodError;
-      expect(err.errors).toEqual([
-        {
-          code: "invalid_type",
-          expected: "boolean",
-          message: "Required",
-          path: ["has_slide_deck_asset_object"],
-          received: "undefined",
-        },
-      ]);
+      expect(err).toEqual({
+        code: "invalid_type",
+        expected: "boolean",
+        message: "Required",
+        path: ["has_slide_deck_asset_object"],
+        received: "undefined",
+      });
     }
   });
 });
@@ -258,15 +257,13 @@ describe("lessonDownloadsCanonical()", () => {
       });
     } catch (error: unknown) {
       const typedError = error as ZodError;
-      expect(typedError.errors).toEqual([
-        {
-          code: "invalid_type",
-          expected: "boolean",
-          message: "Required",
-          path: ["has_slide_deck_asset_object"],
-          received: "undefined",
-        },
-      ]);
+      expect(typedError).toEqual({
+        code: "invalid_type",
+        expected: "boolean",
+        message: "Required",
+        path: ["has_slide_deck_asset_object"],
+        received: "undefined",
+      });
     }
   });
 

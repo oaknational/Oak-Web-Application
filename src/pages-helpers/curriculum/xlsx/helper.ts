@@ -1,5 +1,5 @@
 import { capitalize } from "lodash";
-import { examboardSlugs } from "@oaknational/oak-curriculum-schema";
+
 
 import {
   groupUnitsBySubjectCategory,
@@ -9,6 +9,7 @@ import { JSZipCached } from "../docx/docx";
 import { CurriculumUnitsFormattedData } from "../docx/tab-helpers";
 import { Slugs } from "../docx";
 
+import { examboardSlugs } from "@oaknational/oak-curriculum-schema";
 import { SubjectCategory, Unit } from "@/utils/curriculum/types";
 import { keystageFromYear } from "@/utils/curriculum/keystage";
 
@@ -81,7 +82,7 @@ export function ks4OptionSlugToPathway(ks4OptionSlug?: string | null) {
 }
 
 function isExamboardSlug(examboardSlug: string) {
-  return Object.keys(examboardSlugs.Values).includes(examboardSlug ?? "");
+  return Object.keys(examboardSlugs.def.entries).includes(examboardSlug ?? "");
 }
 
 // This is an old HACK and should be replace with "features" on the programme

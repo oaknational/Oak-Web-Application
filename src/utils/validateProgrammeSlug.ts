@@ -16,7 +16,7 @@ export const validateProgrammeSlug = (programmeSlug: string) => {
   }
 
   const phaseIndex = parts.findIndex((part) =>
-    phaseSlugs._def.values.find((slug) => slug === part),
+    Object.values(phaseSlugs.def.entries).find((slug) => slug === part),
   );
 
   if (phaseIndex < 0) {
@@ -33,7 +33,7 @@ export const validateProgrammeSlug = (programmeSlug: string) => {
 
   //NB. maths core tier will be accidentally parsed as a pathway but it doesn't effect the output
   const pathwayIndex = parts.findIndex((part) =>
-    pathwaySlugs._def.values.find((slug) => slug === part),
+    Object.values(pathwaySlugs.def.entries).find((slug) => slug === part),
   );
 
   if (pathwayIndex > -1) {
@@ -42,7 +42,7 @@ export const validateProgrammeSlug = (programmeSlug: string) => {
   }
 
   const tierIndex = parts.findIndex((part) =>
-    tierSlugs._def.values.find((slug) => slug === part),
+    Object.values(tierSlugs.def.entries).find((slug) => slug === part),
   );
 
   if (tierIndex > -1) {
@@ -53,7 +53,7 @@ export const validateProgrammeSlug = (programmeSlug: string) => {
   }
 
   const examboardIndex = parts.findIndex((part) =>
-    examboardSlugs._def.values.find((slug) => slug === part),
+    Object.values(examboardSlugs.def.entries).find((slug) => slug === part),
   );
 
   if (examboardIndex > -1) {

@@ -175,6 +175,8 @@ export default async function openApiRequest(
       state: "published",
       national_curriculum_content: [],
       prior_knowledge_requirements: apiUnit.prior_knowledge_requirements ?? [],
+      parent_programme_features: undefined,
+      actions: undefined,
     };
   });
 

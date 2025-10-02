@@ -5,6 +5,7 @@ import {
   KS4_EXAMBOARD_PREFERENCE,
   parseSubjectPhaseSlug,
 } from "./slugs";
+import { Unit } from "./types";
 
 import { CurriculumPhaseOptions } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.query";
 
@@ -121,7 +122,7 @@ describe("getKs4RedirectSlug", () => {
 
 describe("createTeacherProgrammeSlug", () => {
   test("unit data ks2 returns correct programme slug", () => {
-    const unitData = {
+    const unitData: Unit = {
       planned_number_of_lessons: 5,
       connection_future_unit_description: null,
       connection_prior_unit_description: null,
@@ -155,11 +156,14 @@ describe("createTeacherProgrammeSlug", () => {
       state: "published",
       national_curriculum_content: [],
       prior_knowledge_requirements: [],
+      features: undefined,
+      parent_programme_features: undefined,
+      actions: undefined,
     };
     expect(createTeacherProgrammeSlug(unitData)).toEqual("science-primary-ks2");
   });
   test("unit data ks4 returns correct programme slug", () => {
-    const unitData = {
+    const unitData: Unit = {
       planned_number_of_lessons: 5,
       connection_future_unit_description: null,
       connection_prior_unit_description: null,
@@ -193,11 +197,14 @@ describe("createTeacherProgrammeSlug", () => {
       state: "published",
       national_curriculum_content: [],
       prior_knowledge_requirements: [],
+      features: undefined,
+      parent_programme_features: undefined,
+      actions: undefined,
     };
     expect(createTeacherProgrammeSlug(unitData)).toEqual("science-primary-ks4");
   });
   test("unit data with exam board and tier returns the correct programme slug", () => {
-    const unitData = {
+    const unitData: Unit = {
       planned_number_of_lessons: 5,
       connection_future_unit_description: null,
       connection_prior_unit_description: null,
@@ -231,13 +238,16 @@ describe("createTeacherProgrammeSlug", () => {
       state: "published",
       national_curriculum_content: [],
       prior_knowledge_requirements: [],
+      features: undefined,
+      parent_programme_features: undefined,
+      actions: undefined,
     };
     expect(createTeacherProgrammeSlug(unitData, "aqa", "foundation")).toEqual(
       "combined-science-secondary-ks4-foundation-aqa",
     );
   });
   test("unit data for ks3 returns the correct programme slug", () => {
-    const unitData = {
+    const unitData: Unit = {
       planned_number_of_lessons: 5,
       connection_future_unit_description: null,
       connection_prior_unit_description: null,
@@ -271,6 +281,9 @@ describe("createTeacherProgrammeSlug", () => {
       state: "published",
       national_curriculum_content: [],
       prior_knowledge_requirements: [],
+      features: undefined,
+      parent_programme_features: undefined,
+      actions: undefined,
     };
     expect(createTeacherProgrammeSlug(unitData, "aqa")).toEqual(
       "combined-science-secondary-ks3",
@@ -278,7 +291,7 @@ describe("createTeacherProgrammeSlug", () => {
   });
 
   test("unit data for ks3 returns the correct programme slug", () => {
-    const unitData = {
+    const unitData: Unit = {
       planned_number_of_lessons: 5,
       connection_future_unit_description: null,
       connection_prior_unit_description: null,
@@ -312,6 +325,9 @@ describe("createTeacherProgrammeSlug", () => {
       state: "published",
       national_curriculum_content: [],
       prior_knowledge_requirements: [],
+      features: undefined,
+      parent_programme_features: undefined,
+      actions: undefined,
     };
     expect(createTeacherProgrammeSlug(unitData, "aqa")).toEqual(
       "combined-science-secondary-ks3",
@@ -319,7 +335,7 @@ describe("createTeacherProgrammeSlug", () => {
   });
 
   test("unit data with exam board and tier returns the correct programme slug", () => {
-    const unitData = {
+    const unitData: Unit = {
       planned_number_of_lessons: 5,
       connection_future_unit_description: null,
       connection_prior_unit_description: null,
@@ -353,6 +369,9 @@ describe("createTeacherProgrammeSlug", () => {
       state: "published",
       national_curriculum_content: [],
       prior_knowledge_requirements: [],
+      features: undefined,
+      parent_programme_features: undefined,
+      actions: undefined,
     };
     expect(
       createTeacherProgrammeSlug(unitData, "aqa", "foundation", "gcse"),

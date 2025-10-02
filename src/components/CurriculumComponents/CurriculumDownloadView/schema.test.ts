@@ -1,4 +1,4 @@
-import { SafeParseError } from "zod";
+import { ZodSafeParseError } from "zod";
 
 import {
   emailSchema,
@@ -10,30 +10,23 @@ import {
 describe("CurriculumDownloadView / schema", () => {
   test("schoolIdSchema", () => {
     const out = schoolIdSchema.safeParse("");
-    const error = (out as SafeParseError<unknown>).error;
+    const error = (out as ZodSafeParseError<unknown>).error;
     expect(error).toBeDefined();
-    expect(error.errors).toHaveLength(1);
-    expect(error.errors[0]!.message).toEqual(
+    expect(error.message).toEqual(
       "Select school, type ‘homeschool’ or tick ‘My school isn’t listed’",
     );
   });
   test("emailSchema", () => {
     const out = emailSchema.safeParse("foobar");
-    const error = (out as SafeParseError<unknown>).error;
+    const error = (out as ZodSafeParseError<unknown>).error;
     expect(error).toBeDefined();
-    expect(error.errors).toHaveLength(1);
-    expect(error.errors[0]!.message).toEqual(
-      "Please enter a valid email address",
-    );
+    expect(error.message).toEqual("Please enter a valid email address");
   });
   test("termsAndConditionsSchema", () => {
     const out = termsAndConditionsSchema.safeParse(false);
-    const error = (out as SafeParseError<unknown>).error;
+    const error = (out as ZodSafeParseError<unknown>).error;
     expect(error).toBeDefined();
-    expect(error.errors).toHaveLength(1);
-    expect(error.errors[0]!.message).toEqual(
-      "Accept terms and conditions to continue",
-    );
+    expect(error.message).toEqual("Accept terms and conditions to continue");
   });
   test("submitSchema", () => {
     const out = submitSchema.safeParse({
@@ -43,10 +36,9 @@ describe("CurriculumDownloadView / schema", () => {
       termsAndConditions: true,
     });
     expect(out.success).toEqual(false);
-    const error = (out as SafeParseError<unknown>).error;
+    const error = (out as ZodSafeParseError<unknown>).error;
     expect(error).toBeDefined();
-    expect(error.errors).toHaveLength(1);
-    expect(error.errors[0]!.message).toEqual(
+    expect(error.message).toEqual(
       "Select school, type ‘homeschool’ or tick ‘My school isn’t listed’",
     );
   });
@@ -59,10 +51,9 @@ describe("CurriculumDownloadView / schema", () => {
       termsAndConditions: true,
     });
     expect(out.success).toEqual(false);
-    const error = (out as SafeParseError<unknown>).error;
+    const error = (out as ZodSafeParseError<unknown>).error;
     expect(error).toBeDefined();
-    expect(error.errors).toHaveLength(1);
-    expect(error.errors[0]!.message).toEqual(
+    expect(error.message).toEqual(
       "Select school, type ‘homeschool’ or tick ‘My school isn’t listed’",
     );
   });
