@@ -194,10 +194,12 @@ async function main() {
     NEXT_PUBLIC_SENTRY_ENABLED: process.env.NEXT_PUBLIC_SENTRY_ENABLED,
 
     // Search API
-    OPENAI_API_KEY: process.env.OPENAI_API_KEY,
     AI_GATEWAY_URL: process.env.AI_GATEWAY_URL,
     AI_GATEWAY_API_KEY: process.env.AI_GATEWAY_API_KEY,
-    SEARCH_ENABLED_IN_PROD: process.env.SEARCH_ENABLED_IN_PROD,
+    OPENAI_API_KEY:
+      process.env.OPENAI_API_KEY || secretsFromNetwork.OPENAI_API_KEY,
+    AI_SEARCH_ENABLED:
+      process.env.AI_SEARCH_ENABLED || oakConfig.oak.aiSearchEnabled,
 
     // Seo
 

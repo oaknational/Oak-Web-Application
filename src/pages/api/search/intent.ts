@@ -10,6 +10,7 @@ import OakError from "@/errors/OakError";
 import { buildSearchIntentPrompt } from "@/utils/search/promptBuilder";
 import { OAK_SUBJECTS } from "@/context/Search/suggestions/oakCurriculumData";
 import { invariant } from "@/utils/invariant";
+import getServerConfig from "@/node-lib/getServerConfig";
 
 const reportError = errorReporter("search-intent");
 const aiClient = new OpenAI({
@@ -37,17 +38,8 @@ const DUMMY_DIRECT_MATCH_RESPONSE = {
   ],
 } satisfies z.infer<typeof searchIntentSchema>;
 
-const disableEndpoint = () => {
-  const isProduction = process.env.NODE_ENV === "production";
-  if (!isProduction) return false;
-  const searchDisabled = process.env.SEARCH_ENABLED_IN_PROD === "false";
-  return searchDisabled;
-};
-
 const handler: NextApiHandler = async (req, res) => {
-  if (disableEndpoint()) {
-    return;
-  }
+  const aiSearchEnabled = getServerConfig("aiSearchEnabled");
 
   let searchTerm: string;
 
@@ -63,19 +55,18 @@ const handler: NextApiHandler = async (req, res) => {
     if (searchTerm === "maths") {
       const payload = searchIntentSchema.parse(DUMMY_DIRECT_MATCH_RESPONSE);
       return res.status(200).json(payload);
-    }
+    } else if (aiSearchEnabled) {
+      const subjectsFromModel = await callModel(searchTerm);
 
-    const modelResponse = await callModel(searchTerm);
-
-    const payload = {
-      directMatch: null,
-      suggestedFilters: [
-        ...modelResponse.map((filter) => {
+      const payload = {
+        directMatch: null,
+        suggestedFilters: subjectsFromModel.map((filter) => {
           return { type: "subject", slug: filter.slug };
         }),
-      ],
-    };
-    return res.status(200).json(payload);
+      };
+      return res.status(200).json(payload);
+    }
+    return res.status(503).json({ message: "ai search currently unavailable" });
   } catch (err) {
     const error = new OakError({
       code: "search/failed-to-get-intent",
@@ -119,9 +110,9 @@ export async function callModel(searchTerm: string) {
     subjects.includes(subject.slug),
   );
 
-  const sortedResponse = validSubjects
-    .sort((a, b) => a.confidence - b.confidence)
-    .reverse();
+  const sortedResponse = validSubjects.sort(
+    (a, b) => b.confidence - a.confidence,
+  );
   return sortedResponse;
 }
 
