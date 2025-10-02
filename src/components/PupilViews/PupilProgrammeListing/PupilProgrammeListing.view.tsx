@@ -293,7 +293,7 @@ export const PupilViewsProgrammeListing = ({
                 <BrowseOptions />
               </OakPupilJourneyProgrammeOptions>
             </OakBox>
-            <SignpostTeachersInlineBanner onCallBack={setFocusAfterClose} />
+            <SignpostTeachersInlineBanner onClose={setFocusAfterClose} />
           </OakBox>
         </OakPupilJourneyLayout>
       </AppLayout>

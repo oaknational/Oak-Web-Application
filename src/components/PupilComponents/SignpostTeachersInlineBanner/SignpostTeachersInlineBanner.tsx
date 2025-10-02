@@ -10,7 +10,7 @@ import styled from "styled-components";
 import useReferrer, { referrerSources } from "@/hooks/useReferrer";
 
 type SignpostTeachersInlineBannerProps = {
-  onCallBack?: () => void;
+  onClose?: () => void;
 };
 
 const durationInSeconds = 0.5;
@@ -38,7 +38,7 @@ const ExpandInBox = styled(OakBox)<{ $state: TransitionStatus }>`
 `;
 
 export default function SignpostTeachersInlineBanner({
-  onCallBack,
+  onClose,
 }: SignpostTeachersInlineBannerProps) {
   const [userIsOpen, setUserIsOpen] = useState(true);
   const transitionRef = useRef<HTMLDivElement>(null);
@@ -47,7 +47,7 @@ export default function SignpostTeachersInlineBanner({
 
   const handleClose = () => {
     setUserIsOpen(false);
-    onCallBack?.();
+    onClose?.();
   };
 
   return (
