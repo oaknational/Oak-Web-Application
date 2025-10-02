@@ -330,9 +330,9 @@ export function createDownloadsData(
 }
 
 // HACK: Set of hacks to solve data issues temporarily
-function frontendHackForUnitIssues(units: Unit[]) {
+export function frontendHackForUnitIssues(units: Unit[]) {
   return units.filter((unit) => {
-    if (unit.subject_slug === "music" && unit.year === "11") {
+    if (unit.subject_slug === "music" && ["10", "11"].includes(unit.year)) {
       return false;
     }
     return true;
