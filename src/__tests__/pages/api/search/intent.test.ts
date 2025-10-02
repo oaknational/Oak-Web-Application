@@ -1,13 +1,9 @@
 import { createNextApiMocks } from "@/__tests__/__helpers__/createNextApiMocks";
 import handler, { callModel } from "@/pages/api/search/intent";
 
-const mockErrorReporter = jest.fn();
-jest.mock("@/common-lib/error-reporter", () => ({
+jest.mock("@/common-lib/error-reporter/errorReporter", () => ({
   __esModule: true,
-  default:
-    () =>
-    (...args: []) =>
-      mockErrorReporter(...args),
+  default: () => jest.fn(),
 }));
 
 const mockParse = jest.fn();
@@ -15,8 +11,10 @@ jest.mock("openai", () => {
   return {
     __esModule: true,
     default: jest.fn().mockImplementation(() => ({
-      responses: {
-        parse: () => mockParse(),
+      chat: {
+        completions: {
+          parse: () => mockParse(),
+        },
       },
     })),
   };
@@ -57,12 +55,18 @@ describe("/api/search/intent", () => {
 
   it("should return AI response for other search terms", async () => {
     mockParse.mockResolvedValue({
-      output_parsed: {
-        subjects: [
-          { slug: "english", confidence: 2 },
-          { slug: "drama", confidence: 4 },
-        ],
-      },
+      choices: [
+        {
+          message: {
+            parsed: {
+              subjects: [
+                { slug: "english", confidence: 2 },
+                { slug: "drama", confidence: 4 },
+              ],
+            },
+          },
+        },
+      ],
     });
     const { req, res } = createNextApiMocks({
       method: "GET",
@@ -111,9 +115,15 @@ describe("/api/search/intent", () => {
 
   it("should handle empty response from OpenAI", async () => {
     mockParse.mockResolvedValue({
-      output_parsed: {
-        subjects: [],
-      },
+      choices: [
+        {
+          message: {
+            parsed: {
+              subjects: [],
+            },
+          },
+        },
+      ],
     });
 
     const { req, res } = createNextApiMocks({
@@ -132,7 +142,13 @@ describe("/api/search/intent", () => {
 
   it("should handle null output_parsed from OpenAI", async () => {
     mockParse.mockResolvedValue({
-      output_parsed: null,
+      choices: [
+        {
+          message: {
+            parsed: null,
+          },
+        },
+      ],
     });
 
     const { req, res } = createNextApiMocks({
@@ -142,11 +158,7 @@ describe("/api/search/intent", () => {
 
     await handler(req, res);
 
-    expect(res._getStatusCode()).toBe(200);
-    expect(res._getJSONData()).toEqual({
-      directMatch: null,
-      suggestedFilters: [],
-    });
+    expect(res._getStatusCode()).toBe(500);
   });
 });
 
@@ -157,13 +169,19 @@ describe("callModel function", () => {
 
   it("should return a sorted subjects array", async () => {
     mockParse.mockResolvedValue({
-      output_parsed: {
-        subjects: [
-          { slug: "history", confidence: 3 },
-          { slug: "maths", confidence: 5 },
-          { slug: "science", confidence: 4 },
-        ],
-      },
+      choices: [
+        {
+          message: {
+            parsed: {
+              subjects: [
+                { slug: "history", confidence: 3 },
+                { slug: "maths", confidence: 5 },
+                { slug: "science", confidence: 4 },
+              ],
+            },
+          },
+        },
+      ],
     });
 
     const result = await callModel("education");
@@ -177,19 +195,29 @@ describe("callModel function", () => {
 
   it("should return empty array when output_parsed is null", async () => {
     mockParse.mockResolvedValue({
-      output_parsed: null,
+      choices: [
+        {
+          message: {
+            parsed: null,
+          },
+        },
+      ],
     });
 
-    const result = await callModel("test");
-
-    expect(result).toEqual([]);
+    await expect(callModel("test")).rejects.toThrow();
   });
 
   it("should return empty array when no subjects in response", async () => {
     mockParse.mockResolvedValue({
-      output_parsed: {
-        subjects: [],
-      },
+      choices: [
+        {
+          message: {
+            parsed: {
+              subjects: [],
+            },
+          },
+        },
+      ],
     });
 
     const result = await callModel("unknown");

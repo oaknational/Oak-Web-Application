@@ -72,8 +72,6 @@ const handler: NextApiHandler = async (req, res) => {
       code: "search/failed-to-get-intent",
       originalError: err,
     });
-    // console.error(error);
-    // console.error(error.originalError);
     reportError(error);
 
     return res.status(500).json({ error: JSON.stringify(error) });
@@ -83,8 +81,6 @@ const handler: NextApiHandler = async (req, res) => {
 export async function callModel(searchTerm: string) {
   const subjects = OAK_SUBJECTS.map((subject) => subject.slug);
   const prompt = buildSearchIntentPrompt(searchTerm, subjects);
-
-  // console.log("Querying LLM for search intent", { model: MODEL });
 
   const response = await aiClient.chat.completions.parse({
     model: MODEL,
@@ -104,7 +100,6 @@ export async function callModel(searchTerm: string) {
 
   const parsedResponse = response.choices[0]?.message?.parsed;
   invariant(parsedResponse, "No LLM response");
-  // console.log(`Received LLM response ${parsedResponse}`);
 
   const validSubjects = parsedResponse.subjects.filter((subject) =>
     subjects.includes(subject.slug),
