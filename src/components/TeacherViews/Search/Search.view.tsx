@@ -307,6 +307,7 @@ const Search: FC<SearchProps> = (props) => {
                       iconClosed="mini-menu"
                       iconBackground="black"
                       $alignSelf={"flex-end"}
+                      applyForTablet
                     >
                       <OakBox $mt={["space-between-m", null, null]}>
                         <SearchFilters
