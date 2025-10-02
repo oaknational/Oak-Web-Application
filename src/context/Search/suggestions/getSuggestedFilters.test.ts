@@ -1,4 +1,4 @@
-import { getSuggestedFilters } from "./getSuggestedFilters";
+import { getSuggestedFiltersFromSubject } from "./getSuggestedFilters";
 
 const mockErrorReporter = jest.fn();
 jest.mock("@/common-lib/error-reporter", () => ({
@@ -10,7 +10,7 @@ jest.mock("@/common-lib/error-reporter", () => ({
 }));
 describe("getSuggestedFilters", () => {
   it("gets the correct suggested filters", () => {
-    const res = getSuggestedFilters("maths", {
+    const res = getSuggestedFiltersFromSubject("maths", {
       subject: "maths",
       keyStage: null,
       year: null,
@@ -25,7 +25,7 @@ describe("getSuggestedFilters", () => {
     ]);
   });
   it("does not get suggested filters for ks when property is a direct match", () => {
-    const res = getSuggestedFilters("english", {
+    const res = getSuggestedFiltersFromSubject("english", {
       subject: "english",
       keyStage: "ks4",
       year: null,
@@ -38,7 +38,7 @@ describe("getSuggestedFilters", () => {
     ]);
   });
   it("throws an error when subject not found in data", () => {
-    const res = getSuggestedFilters("classics", {
+    const res = getSuggestedFiltersFromSubject("classics", {
       subject: null,
       keyStage: null,
       examBoard: null,

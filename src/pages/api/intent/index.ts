@@ -7,7 +7,7 @@ import {
 import errorReporter from "@/common-lib/error-reporter/errorReporter";
 import OakError from "@/errors/OakError";
 import { findPfMatch } from "@/context/Search/suggestions/findPfMatch";
-import { getSuggestedFilters } from "@/context/Search/suggestions/getSuggestedFilters";
+import { getSuggestedFiltersFromSubject } from "@/context/Search/suggestions/getSuggestedFilters";
 import getServerConfig from "@/node-lib/getServerConfig";
 import { callModel } from "@/context/Search/ai/callModel";
 
@@ -31,7 +31,10 @@ const handler: NextApiHandler = async (req, res) => {
     if (pfMatch?.subject) {
       const payload: SearchIntent = {
         directMatch: pfMatch,
-        suggestedFilters: getSuggestedFilters(pfMatch.subject, pfMatch),
+        suggestedFilters: getSuggestedFiltersFromSubject(
+          pfMatch.subject,
+          pfMatch,
+        ),
       };
       return res.status(200).json(payload);
     } else if (aiSearchEnabled) {
@@ -39,7 +42,7 @@ const handler: NextApiHandler = async (req, res) => {
       const bestSubjectMatch = subjectsFromModel[0]?.slug;
 
       const suggestedFiltersFromSubject = bestSubjectMatch
-        ? getSuggestedFilters(bestSubjectMatch, pfMatch)
+        ? getSuggestedFiltersFromSubject(bestSubjectMatch, pfMatch)
         : [];
 
       const suggestedFilters = subjectsFromModel

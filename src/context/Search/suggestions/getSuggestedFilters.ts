@@ -11,7 +11,7 @@ import {
 } from "@/common-lib/schemas/search-intent";
 import errorReporter from "@/common-lib/error-reporter";
 
-export const getSuggestedFilters = (
+export const getSuggestedFiltersFromSubject = (
   subject: string,
   directMatch: DirectMatch | null,
 ) => {
@@ -27,7 +27,10 @@ export const getSuggestedFilters = (
     return suggestedFilters;
   }
 
-  if (!directMatch?.keyStage) {
+  const includeKeystages =
+    directMatch == null || (!directMatch.keyStage && directMatch.year === null);
+
+  if (includeKeystages) {
     oakSubject.keyStages.forEach((ks) => {
       const parsed = keystageSlugs.parse(ks.slug);
       suggestedFilters.push({
@@ -36,13 +39,15 @@ export const getSuggestedFilters = (
       });
     });
   }
+
   const includeExamboard =
+    !directMatch?.examBoard &&
     (directMatch?.keyStage === "ks4" || directMatch?.keyStage === null) &&
     (directMatch?.year === "year-10" ||
       directMatch?.year === "year-11" ||
       directMatch?.year === null);
 
-  if (!directMatch?.examBoard && includeExamboard) {
+  if (includeExamboard) {
     oakSubject.examBoards.forEach((eb) => {
       const parsed = examboardSlugs.parse(eb.slug);
       suggestedFilters.push({

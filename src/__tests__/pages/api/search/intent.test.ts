@@ -72,10 +72,10 @@ describe("/api/search/intent", () => {
       suggestedFilters: [],
     });
   });
-  it("should return suggested filters for missing direct matches", async () => {
+  it("should return suggested keystages ", async () => {
     const { req, res } = createNextApiMocks({
       method: "GET",
-      query: { searchTerm: "year 10 english edexcel" },
+      query: { searchTerm: "english edexcel" },
     });
 
     await handler(req, res);
@@ -86,7 +86,7 @@ describe("/api/search/intent", () => {
         subject: "english",
         keyStage: null,
         examBoard: "edexcel",
-        year: "year-10",
+        year: null,
       },
       suggestedFilters: [
         { type: "key-stage", value: "ks1" },
@@ -94,6 +94,25 @@ describe("/api/search/intent", () => {
         { type: "key-stage", value: "ks3" },
         { type: "key-stage", value: "ks4" },
       ],
+    });
+  });
+  it("should not return keystage options when year in direct match ", async () => {
+    const { req, res } = createNextApiMocks({
+      method: "GET",
+      query: { searchTerm: "year 10 maths" },
+    });
+
+    await handler(req, res);
+
+    expect(res._getStatusCode()).toBe(200);
+    expect(res._getJSONData()).toEqual({
+      directMatch: {
+        subject: "maths",
+        keyStage: null,
+        examBoard: null,
+        year: "year-10",
+      },
+      suggestedFilters: [],
     });
   });
   it("should not call AI when there is a direct subject match", async () => {
@@ -111,31 +130,6 @@ describe("/api/search/intent", () => {
 
     expect(res._getStatusCode()).toBe(200);
     expect(mockCallModel).not.toHaveBeenCalled();
-  });
-  it("should not return direct match for examboards when not applicable to direct year match", async () => {
-    const { req, res } = createNextApiMocks({
-      method: "GET",
-      query: { searchTerm: "year 3 english" },
-    });
-
-    await handler(req, res);
-
-    expect(res._getStatusCode()).toBe(200);
-
-    expect(res._getJSONData()).toEqual({
-      directMatch: {
-        subject: "english",
-        keyStage: null,
-        year: "year-3",
-        examBoard: null,
-      },
-      suggestedFilters: [
-        { type: "key-stage", value: "ks1" },
-        { type: "key-stage", value: "ks2" },
-        { type: "key-stage", value: "ks3" },
-        { type: "key-stage", value: "ks4" },
-      ],
-    });
   });
   it("should not return direct match for examboards when not applicable to direct ks match", async () => {
     const { req, res } = createNextApiMocks({
