@@ -40,12 +40,15 @@ export const getSuggestedFiltersFromSubject = (
     });
   }
 
+  // We don't want to show suggestions for examboard filters if the search term includes
+  // direct match for keystages or years that don't contain examboards
   const includeExamboard =
-    !directMatch?.examBoard &&
-    (directMatch?.keyStage === "ks4" || directMatch?.keyStage === null) &&
-    (directMatch?.year === "year-10" ||
-      directMatch?.year === "year-11" ||
-      directMatch?.year === null);
+    directMatch === null ||
+    (!directMatch.examBoard &&
+      (directMatch.keyStage === "ks4" || directMatch.keyStage === null) &&
+      (directMatch.year === "year-10" ||
+        directMatch.year === "year-11" ||
+        directMatch.year === null));
 
   if (includeExamboard) {
     oakSubject.examBoards.forEach((eb) => {

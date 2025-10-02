@@ -146,6 +146,33 @@ describe("/api/search/intent", () => {
       ],
     });
   });
+  it("should get suggested pf filters from ai subject match", async () => {
+    mockParse.mockResolvedValue({
+      output_parsed: {
+        subjects: [{ slug: "geography", confidence: 4 }],
+      },
+    });
+    const { req, res } = createNextApiMocks({
+      method: "GET",
+      query: { searchTerm: "flooding" },
+    });
+
+    await handler(req, res);
+
+    expect(res._getStatusCode()).toBe(200);
+    expect(res._getJSONData()).toEqual({
+      directMatch: null,
+      suggestedFilters: [
+        { type: "subject", value: "geography" },
+        { type: "key-stage", value: "ks1" },
+        { type: "key-stage", value: "ks2" },
+        { type: "key-stage", value: "ks3" },
+        { type: "key-stage", value: "ks4" },
+        { type: "exam-board", value: "aqa" },
+        { type: "exam-board", value: "edexcelb" },
+      ],
+    });
+  });
   it("should return 400 for missing searchTerm", async () => {
     const { req, res } = createNextApiMocks({
       method: "GET",
