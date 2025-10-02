@@ -35,6 +35,7 @@ Analyze the user's search term:
     },
     {
       role: "user" as const,
+      // XML wrappers around user inputs are a recommended guard against prompt injection attacks
       content: `
         <retrieved-data>
         ${searchTerm}

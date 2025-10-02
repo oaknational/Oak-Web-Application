@@ -115,10 +115,8 @@ export async function callModel(searchTerm: string) {
       subjects.includes(subject.slug),
     ) ?? [];
 
-  const sortedResponse = validSubjects.sort(
-    (a, b) => b.confidence - a.confidence,
-  );
-  return sortedResponse;
+  validSubjects.sort((a, b) => b.confidence - a.confidence);
+  return validSubjects;
 }
 
 export default handler;

@@ -193,7 +193,7 @@ async function main() {
     DISABLE_ISR: process.env.DISABLE_ISR,
     NEXT_PUBLIC_SENTRY_ENABLED: process.env.NEXT_PUBLIC_SENTRY_ENABLED,
 
-    // Search API
+    // AI FEATURES
     OPENAI_API_KEY:
       process.env.OPENAI_API_KEY || secretsFromNetwork.OPENAI_API_KEY,
     AI_SEARCH_ENABLED:
