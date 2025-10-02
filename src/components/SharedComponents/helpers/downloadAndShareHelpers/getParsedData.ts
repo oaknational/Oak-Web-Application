@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { ZodType } from "zod";
 
 import OakError, { ErrorInfo } from "@/errors/OakError";
 
@@ -15,14 +15,14 @@ export type Meta =
       isLegacyDownload?: boolean;
     };
 
-export const getParsedData = (
+export function getParsedData<T extends ZodType>(
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   json: any,
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
-  schema: z.AnyZodObject,
+  schema: T,
   oakErrorCode: ErrorInfo["code"],
   meta?: Meta,
-) => {
+) {
   const parsedJson = schema.safeParse(json);
 
   if (!parsedJson.success) {
@@ -38,18 +38,16 @@ export const getParsedData = (
     });
   }
 
-  const { data, error } = parsedJson.data;
-
-  if (!data || error) {
+  if (!parsedJson.data || parsedJson.error) {
     throw new OakError({
       code: oakErrorCode,
       meta: {
         ...meta,
-        error,
+        error: parsedJson.error,
         errorSource: "getParsedData - no data or error",
       },
     });
   }
 
-  return data;
-};
+  return parsedJson.data;
+}

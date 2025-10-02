@@ -64,7 +64,7 @@ type CanonicalLesson = BaseLessonMedia & {
   pathways: LessonPathway[];
 };
 
-type NonCanonicalLesson = BaseLessonMedia & LessonPathway;
+export type NonCanonicalLesson = BaseLessonMedia & LessonPathway;
 
 type LessonMediaProps =
   | {

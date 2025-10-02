@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { within } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 
-import { LessonMedia } from "./LessonMedia.view";
+import { LessonMedia, NonCanonicalLesson } from "./LessonMedia.view";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -18,7 +18,7 @@ import {
 
 const render = renderWithProviders();
 
-const lesson = {
+const lesson: NonCanonicalLesson = {
   ...lessonMediaClipsFixtures(),
   lessonOutline: [{ lessonOutline: "Sample outline" }],
   actions: [{ action: "Sample action" }],
@@ -190,7 +190,7 @@ describe("LessonMedia view", () => {
   });
 
   it("handles edge case media clip video object", async () => {
-    const lessonWithUndefinedDuration = {
+    const lessonWithUndefinedDuration: NonCanonicalLesson = {
       ...lessonMediaClipsFixtures({
         mediaClips: keysToCamelCase({
           intro: [

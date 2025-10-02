@@ -2,7 +2,7 @@
 // https://usehooks-ts.com/react-hook/use-local-storage
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import isEqual from "lodash/isEqual";
-import { z, ZodJSONSchema } from "zod";
+import { z, ZodType } from "zod";
 
 import useStableCallback from "./useStableCallback";
 import useEventListener from "./useEventListener";
@@ -42,7 +42,7 @@ function useLocalStorage<T>(
   initialValue: T,
   // pass an areEqual function to ensure state doesn't get updated too often
   areEqual?: (a: T, b: T) => boolean,
-  schema?: ZodJSONSchema,
+  schema?: ZodType,
 ): [T, SetValue<T>] {
   // Get from local storage then
   // parse stored json or return initialValue

@@ -15,9 +15,9 @@ import {
   OakFlex,
   OakMaxWidth,
 } from "@oaknational/oak-components";
-import { examboards, tierSlugs } from "@oaknational/oak-curriculum-schema";
 import { z } from "zod";
 
+import { examboards, tierSlugs } from "@oaknational/oak-curriculum-schema";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
@@ -175,7 +175,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
         keyStageTitle: keyStageTitle as KeyStageTitleValueType,
         subjectTitle,
         subjectSlug,
-        yearGroupName: props.yearTitle,
+        yearGroupName: props.yearTitle ?? "",
         yearGroupSlug: (props as UnitListItemProps).yearSlug,
         tierName: tier ?? null,
         examBoard: examBoardTitle,

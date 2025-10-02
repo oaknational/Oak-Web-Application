@@ -58,7 +58,7 @@ const getDownloadLink = async ({
 
   const data = getParsedData(json, schema, "downloads/failed-to-fetch", meta);
 
-  return data.url;
+  return data.data?.url;
 };
 
 export const createLessonDownloadLink = async ({

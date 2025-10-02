@@ -1,28 +1,39 @@
-import { z } from "zod";
+import { z, ZodType } from "zod";
 
-import { convertKey } from "@/utils/snakeCaseConverter";
+const snakeToCamel = (str: string) =>
+  str.replace(/_([a-z])/g, (_, c) => c.toUpperCase());
 
-// Recursively transform Zod schema keys from snake_case to camelCase
-export const zodToCamelCase = <T extends z.ZodObject<z.ZodRawShape>>(
-  schema: T,
-): z.ZodTypeAny => {
-  if (!(schema.def.type === "object")) {
-    throw new Error('zodToCamelCase only works with "object schemas"');
+// eslint-disable-next-line  @typescript-eslint/no-explicit-any
+function keysToCamel<T>(obj: T): any {
+  if (Array.isArray(obj)) return obj.map(keysToCamel);
+  if (obj !== null && typeof obj === "object") {
+    return Object.fromEntries(
+      Object.entries(obj).map(([k, v]) => [snakeToCamel(k), keysToCamel(v)]),
+    );
   }
+  return obj;
+}
 
-  const transformedShape: Record<string, z.ZodTypeAny> = {};
+// Type-level mapping: snake_case → camelCase
+type SnakeToCamel<S extends string> = S extends `${infer Head}_${infer Tail}`
+  ? `${Head}${Capitalize<SnakeToCamel<Tail>>}`
+  : S;
 
-  Object.keys(schema.shape).forEach((key) => {
-    const camelKey = convertKey(key);
-    const value = schema.shape[key];
-    if (value !== undefined) {
-      // Recursively transform nested schemas
-      transformedShape[camelKey] =
-        value?.def.typeName === "ZodObject"
-          ? zodToCamelCase(value as z.ZodObject<z.ZodRawShape>)
-          : value;
-    }
-  });
+type KeysToCamel<U> =
+  U extends Array<infer V>
+    ? Array<KeysToCamel<V>>
+    : U extends object
+      ? {
+          [K in keyof U as SnakeToCamel<string & K>]: KeysToCamel<U[K]>;
+        }
+      : U;
 
-  return z.object(transformedShape);
-};
+// Fully generic reusable function with internal type mapping
+export function zodToCamelCase<T extends ZodType>(schema: T) {
+  const newSchema = schema.transform((data) =>
+    keysToCamel(data),
+  ) as unknown as {
+    parse: (input: z.infer<T>) => KeysToCamel<z.infer<T>>;
+  };
+  return newSchema as z.ZodType<ReturnType<typeof newSchema.parse>>;
+}

@@ -1,7 +1,3 @@
-import {
-  lessonDataFixture,
-  syntheticUnitvariantLessonsByKsFixture,
-} from "@oaknational/oak-curriculum-schema";
 
 import sdk from "../../sdk";
 
@@ -10,6 +6,11 @@ import lessonListing, {
   getPackagedUnit,
 } from "./lessonListing.query";
 import { lessonListingPageDataSchema } from "./lessonListing.schema";
+
+import {
+  lessonDataFixture,
+  syntheticUnitvariantLessonsByKsFixture,
+} from "@oaknational/oak-curriculum-schema";
 
 describe("lessonListing()", () => {
   describe("lessonListing query", () => {
@@ -108,7 +109,11 @@ describe("lessonListing()", () => {
             description: "lesson-description-2",
             slug: "lesson-slug-2",
             pupil_lesson_outcome: "pupil-lesson-outcome",
-            key_learning_points: [{}],
+            key_learning_points: [
+              {
+                key_learning_point: "",
+              },
+            ],
             equipment_and_resources: null,
             content_guidance_details: null,
             phonics_outcome: null,

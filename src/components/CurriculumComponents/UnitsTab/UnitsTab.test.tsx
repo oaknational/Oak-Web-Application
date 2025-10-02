@@ -2,7 +2,7 @@ import { render } from "@testing-library/react";
 import React from "react";
 
 import { formatCurriculumUnitsData } from "../../../pages-helpers/curriculum/docx/tab-helpers";
-import { CurriculumFilters } from "../../../utils/curriculum/types";
+import { CurriculumFilters, Unit } from "../../../utils/curriculum/types";
 
 import UnitsTab from "./UnitsTab";
 
@@ -229,44 +229,46 @@ describe("unitsTab !subject error", () => {
       phaseSlug: "primary",
     };
 
+    const unit: Unit = {
+      planned_number_of_lessons: 8,
+      domain: "Grammar",
+      domain_id: 17,
+      connection_future_unit_description: null,
+      connection_prior_unit_description: null,
+      connection_future_unit_title: null,
+      connection_prior_unit_title: null,
+      examboard: null,
+      examboard_slug: null,
+      keystage_slug: "ks2",
+      lessons: [],
+      order: 1,
+      phase: "Primary",
+      phase_slug: "primary",
+      slug: "test-unit",
+      subject: "English",
+      subject_parent: null,
+      subject_parent_slug: null,
+      subject_slug: "english",
+      tags: null,
+      subjectcategories: null,
+      threads: [],
+      tier: null,
+      tier_slug: null,
+      title: "Test Unit",
+      unit_options: [],
+      year: "6",
+      cycle: "1",
+      why_this_why_now: null,
+      description: null,
+      state: "published",
+      national_curriculum_content: [],
+      prior_knowledge_requirements: [],
+      features: undefined,
+      parent_programme_features: undefined,
+      actions: undefined,
+    };
     const mockFormattedData = formatCurriculumUnitsData({
-      units: [
-        {
-          planned_number_of_lessons: 8,
-          domain: "Grammar",
-          domain_id: 17,
-          connection_future_unit_description: null,
-          connection_prior_unit_description: null,
-          connection_future_unit_title: null,
-          connection_prior_unit_title: null,
-          examboard: null,
-          examboard_slug: null,
-          keystage_slug: "ks2",
-          lessons: [],
-          order: 1,
-          phase: "Primary",
-          phase_slug: "primary",
-          slug: "test-unit",
-          subject: "English",
-          subject_parent: null,
-          subject_parent_slug: null,
-          subject_slug: "english",
-          tags: null,
-          subjectcategories: null,
-          threads: [],
-          tier: null,
-          tier_slug: null,
-          title: "Test Unit",
-          unit_options: [],
-          year: "6",
-          cycle: "1",
-          why_this_why_now: null,
-          description: null,
-          state: "published",
-          national_curriculum_content: [],
-          prior_knowledge_requirements: [],
-        },
-      ],
+      units: [unit],
     });
 
     const mockFilters: CurriculumFilters = {
