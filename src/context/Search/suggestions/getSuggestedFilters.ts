@@ -36,7 +36,13 @@ export const getSuggestedFilters = (
       });
     });
   }
-  if (!directMatch.examBoard) {
+  const includeExamboard =
+    (directMatch.keyStage === "ks4" || directMatch.keyStage === null) &&
+    (directMatch.year === "year-10" ||
+      directMatch.year === "year-11" ||
+      directMatch.year === null);
+
+  if (!directMatch.examBoard && includeExamboard) {
     oakSubject.examBoards.forEach((eb) => {
       const parsed = examboardSlugs.parse(eb.slug);
       suggestedFilters.push({

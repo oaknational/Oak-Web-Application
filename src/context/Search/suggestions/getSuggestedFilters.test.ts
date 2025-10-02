@@ -24,10 +24,10 @@ describe("getSuggestedFilters", () => {
       { type: "key-stage", value: "ks4" },
     ]);
   });
-  it("does not get suggested filters when property is a direct match", () => {
+  it("does not get suggested filters for ks when property is a direct match", () => {
     const res = getSuggestedFilters("english", {
       subject: "english",
-      keyStage: "ks2",
+      keyStage: "ks4",
       year: null,
       examBoard: null,
     });

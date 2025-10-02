@@ -37,12 +37,21 @@ const handler: NextApiHandler = async (req, res) => {
     } else if (aiSearchEnabled) {
       // TODO: get suggested filters from subject intent
       const subjectsFromModel = await callModel(searchTerm);
+      const bestSubjectMatch = subjectsFromModel[0]?.slug;
+
+      const suggestedFiltersFromSubject = getSuggestedFilters(
+        bestSubjectMatch,
+        {},
+      );
+      const suggestedFilters = subjectsFromModel
+        .map((filter) => {
+          return { type: "subject", value: filter.slug };
+        })
+        .concat(suggestedFiltersFromSubject);
 
       const payload = {
         directMatch: null,
-        suggestedFilters: subjectsFromModel.map((filter) => {
-          return { type: "subject", slug: filter.slug };
-        }),
+        suggestedFilters,
       };
       return res.status(200).json(payload);
     }
