@@ -185,6 +185,36 @@ describe("/api/search/intent", () => {
       ],
     });
   });
+  it("should combine direct matches and ai suggestions", async () => {
+    mockParse.mockResolvedValue({
+      output_parsed: {
+        subjects: [
+          { slug: "english", confidence: 2 },
+          { slug: "drama", confidence: 4 },
+        ],
+      },
+    });
+    const { req, res } = createNextApiMocks({
+      method: "GET",
+      query: { searchTerm: "ks3 macbeth" },
+    });
+
+    await handler(req, res);
+
+    expect(res._getStatusCode()).toBe(200);
+    expect(res._getJSONData()).toEqual({
+      directMatch: {
+        examBoard: null,
+        keyStage: "ks3",
+        subject: null,
+        year: null,
+      },
+      suggestedFilters: [
+        { type: "subject", value: "drama" },
+        { type: "subject", value: "english" },
+      ],
+    });
+  });
   it("should not return a direct match when the search term doesnt contain one", async () => {
     mockParse.mockResolvedValue({
       output_parsed: {

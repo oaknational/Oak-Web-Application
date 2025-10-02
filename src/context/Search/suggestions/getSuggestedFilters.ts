@@ -13,7 +13,7 @@ import errorReporter from "@/common-lib/error-reporter";
 
 export const getSuggestedFilters = (
   subject: string,
-  directMatch: DirectMatch,
+  directMatch: DirectMatch | null,
 ) => {
   const report = errorReporter("suggestedFilters");
   const suggestedFilters: SuggestedFilter[] = [];
@@ -27,7 +27,7 @@ export const getSuggestedFilters = (
     return suggestedFilters;
   }
 
-  if (!directMatch.keyStage) {
+  if (!directMatch?.keyStage) {
     oakSubject.keyStages.forEach((ks) => {
       const parsed = keystageSlugs.parse(ks.slug);
       suggestedFilters.push({
@@ -37,12 +37,12 @@ export const getSuggestedFilters = (
     });
   }
   const includeExamboard =
-    (directMatch.keyStage === "ks4" || directMatch.keyStage === null) &&
-    (directMatch.year === "year-10" ||
-      directMatch.year === "year-11" ||
-      directMatch.year === null);
+    (directMatch?.keyStage === "ks4" || directMatch?.keyStage === null) &&
+    (directMatch?.year === "year-10" ||
+      directMatch?.year === "year-11" ||
+      directMatch?.year === null);
 
-  if (!directMatch.examBoard && includeExamboard) {
+  if (!directMatch?.examBoard && includeExamboard) {
     oakSubject.examBoards.forEach((eb) => {
       const parsed = examboardSlugs.parse(eb.slug);
       suggestedFilters.push({
