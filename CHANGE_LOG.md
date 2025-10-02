@@ -1,3 +1,15 @@
+# [1.878.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.877.0...v1.878.0) (2025-10-02)
+
+
+### Bug Fixes
+
+* capitalise language subjects only ([6b94807](https://github.com/oaknational/Oak-Web-Application/commit/6b948079c861616e3cb988a37e02a73735af441b))
+
+
+### Features
+
+* update curriculum banner copy ([8068ba9](https://github.com/oaknational/Oak-Web-Application/commit/8068ba9cc8c2998f75f68d88629a9b8dca820a87))
+
 # [1.877.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.876.1...v1.877.0) (2025-10-01)
 
 

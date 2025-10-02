@@ -60,7 +60,7 @@ describe("CurriculumDownloadBanner", () => {
     render(<CurriculumDownloadBanner {...defaultProps} />);
 
     const heading = screen.getByRole("heading", {
-      name: "Fully resourced maths curriculum is coming this autumn.",
+      name: "New fully-sequenced curriculum plan and lesson resources for maths.",
     });
     expect(heading).toBeInTheDocument();
     const downloadButton = screen.getByRole("button", {
@@ -236,5 +236,19 @@ describe("CurriculumDownloadBanner", () => {
         screen.getByText("Something went wrong with your download"),
       ).toBeInTheDocument();
     });
+  });
+  it("capitalises language subjects correctly", () => {
+    render(
+      <CurriculumDownloadBanner
+        {...defaultProps}
+        subjectSlug="french"
+        subjectTitle="French"
+      />,
+    );
+
+    const heading = screen.getByRole("heading", {
+      name: "New fully-sequenced curriculum plan and lesson resources for French.",
+    });
+    expect(heading).toBeInTheDocument();
   });
 });
