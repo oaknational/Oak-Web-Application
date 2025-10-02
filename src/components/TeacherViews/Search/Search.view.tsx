@@ -307,7 +307,6 @@ const Search: FC<SearchProps> = (props) => {
                       iconClosed="mini-menu"
                       iconBackground="black"
                       $alignSelf={"flex-end"}
-                      applyForTablet
                     >
                       <OakBox $mt={["space-between-m", null, null]}>
                         <SearchFilters
@@ -351,7 +350,11 @@ const Search: FC<SearchProps> = (props) => {
               </OakBox>
             )}
             <OakBox
-              $height={"all-spacing-4"}
+              $height={[
+                "space-between-none",
+                "space-between-none",
+                "all-spacing-1",
+              ]}
               $pl={["inner-padding-none", "inner-padding-xl"]}
               $mb={"space-between-m"}
             >
@@ -369,7 +372,11 @@ const Search: FC<SearchProps> = (props) => {
               <CustomWidthFlex
                 $flexDirection="column"
                 $mb="space-between-m2"
-                $display={["none", "none", "flex"]}
+                $display={[
+                  "none",
+                  isAiExperimentSearchEnabled ? "none" : "flex",
+                  "flex",
+                ]}
               >
                 {isAiExperimentSearchEnabled ? (
                   <>
