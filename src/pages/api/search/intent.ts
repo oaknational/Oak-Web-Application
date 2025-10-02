@@ -14,8 +14,8 @@ import getServerConfig from "@/node-lib/getServerConfig";
 
 const reportError = errorReporter("search-intent");
 const aiClient = new OpenAI({
-  apiKey: process.env.AI_GATEWAY_API_KEY,
-  baseURL: "https://ai-gateway.vercel.sh/v1",
+  apiKey: getServerConfig("aiGatewayApiKey"),
+  baseURL: getServerConfig("aiGatewayUrl"),
 });
 
 const MODEL = "cerebras/qwen-3-32b";

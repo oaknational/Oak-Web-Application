@@ -194,8 +194,10 @@ async function main() {
     NEXT_PUBLIC_SENTRY_ENABLED: process.env.NEXT_PUBLIC_SENTRY_ENABLED,
 
     // AI FEATURES
-    AI_GATEWAY_URL: process.env.AI_GATEWAY_URL,
-    AI_GATEWAY_API_KEY: process.env.AI_GATEWAY_API_KEY,
+    AI_GATEWAY_URL:
+      process.env.AI_GATEWAY_URL || oakConfig.aiFeatures.gatewayURL,
+    AI_GATEWAY_API_KEY:
+      process.env.AI_GATEWAY_API_KEY || secretsFromNetwork.AI_GATEWAY_API_KEY,
     OPENAI_API_KEY:
       process.env.OPENAI_API_KEY || secretsFromNetwork.OPENAI_API_KEY,
     AI_SEARCH_ENABLED:
