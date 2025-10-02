@@ -1,6 +1,5 @@
 import type { NextApiHandler } from "next";
 import { z } from "zod";
-import { Redis } from "@upstash/redis";
 
 import {
   intentRequestSchema,
@@ -8,9 +7,7 @@ import {
 } from "@/common-lib/schemas/search-intent";
 import errorReporter from "@/common-lib/error-reporter/errorReporter";
 import OakError from "@/errors/OakError";
-
-// Initialize Redis
-const redis = Redis.fromEnv();
+import { checkRateLimit } from "@/utils/rateLimiter/rateLimiter";
 
 const reportError = errorReporter("search-intent");
 
@@ -45,8 +42,19 @@ const DUMMY_AI_RESPONSE = {
 const handler: NextApiHandler = async (req, res) => {
   let searchTerm: string;
 
-  const result = await redis.get("item");
-  console.log(JSON.stringify(result));
+  // Check rate limit using IP address
+  const rateLimitResult = await checkRateLimit(req);
+
+  console.log("Rate limit response", rateLimitResult);
+
+  if (!rateLimitResult.success) {
+    return res.status(429).json({
+      error: "Rate limit exceeded or IP not found",
+      ...rateLimitResult,
+    });
+    // What we do , error or slack notification ?
+  }
+
   try {
     const parsed = intentRequestSchema.parse(req.query);
     searchTerm = parsed.searchTerm;
