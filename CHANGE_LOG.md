@@ -1,3 +1,26 @@
+# [1.879.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.878.0...v1.879.0) (2025-10-02)
+
+
+### Bug Fixes
+
+* a11y change from heading to p tag ([97c690b](https://github.com/oaknational/Oak-Web-Application/commit/97c690b78760100b5ba2240b11b83508f1d0cd6f))
+* a11y make questions a heading ([e03e25b](https://github.com/oaknational/Oak-Web-Application/commit/e03e25b8136e2d15465912a482d1b1a803ac03af))
+* a11y pupil intro page cards h2 tags ([0a688de](https://github.com/oaknational/Oak-Web-Application/commit/0a688de4664eee65c3fa2b718cc51ef63648a3aa))
+* add aria to component ([dba06fe](https://github.com/oaknational/Oak-Web-Application/commit/dba06fe75dd0b11f80ea8d26223cbc43822efe2d))
+* add test coverage ([7b12eca](https://github.com/oaknational/Oak-Web-Application/commit/7b12eca57ce9a41b4e45a642fb9fa4ab43f4cd0e))
+* lint ([1f67de7](https://github.com/oaknational/Oak-Web-Application/commit/1f67de72eee01aa5f2a316597288775bfd71cac9))
+* merge main ([ea1f998](https://github.com/oaknational/Oak-Web-Application/commit/ea1f998a0271f34bbfda345c18c25390e4196167))
+* update oak components ([1a82797](https://github.com/oaknational/Oak-Web-Application/commit/1a827976516da7a3a20672e29c15418313d571f1))
+* update snap ([8ad25dc](https://github.com/oaknational/Oak-Web-Application/commit/8ad25dc923a345d60a4f9137cb1637cfd5f3754b))
+
+
+### Features
+
+* a11y teacher banner set tag h2 ([809dc13](https://github.com/oaknational/Oak-Web-Application/commit/809dc13b853ec97d0116c682b39ed88da95661cb))
+* manage focus after banner close ([93c106c](https://github.com/oaknational/Oak-Web-Application/commit/93c106c8c7d15e8f4dbfce5f0c2ac32fc3ab2112))
+* variable name ([cc14418](https://github.com/oaknational/Oak-Web-Application/commit/cc14418537cf60018cf01ad7f2818280e536015f))
+* variable name ([e5fe204](https://github.com/oaknational/Oak-Web-Application/commit/e5fe2046642fdb5c790fd0d0a984f86fde7cf4f5))
+
 # [1.878.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.877.0...v1.878.0) (2025-10-02)
 
 
