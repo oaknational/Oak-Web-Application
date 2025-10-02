@@ -1,5 +1,5 @@
-// import { StoryFn, Meta } from "@storybook/react";
-// import type {Meta} from "@storybook/react";
+// import { StoryFn, Meta } from "@storybook/nextjs";
+// import type {Meta} from "@storybook/nextjs";
 
 // import Component from "./PostListItem";
 
@@ -25,7 +25,7 @@
 //   contentType: "blog-post",
 // };
 
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 
 import Component from "./PostListItem";
 

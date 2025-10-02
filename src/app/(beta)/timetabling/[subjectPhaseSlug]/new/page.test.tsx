@@ -6,28 +6,34 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 jest.mock("@/utils/featureFlags");
 
 jest.mock("next/navigation", () => {
-  const params = new URLSearchParams("");
+  const defaultSearchParams = new URLSearchParams("");
   return {
-    usePathname: () => "/timetabling/new",
-    useRouter: () => ({ replace: jest.fn() }),
-    useSearchParams: () => params,
+    __esModule: true,
+    usePathname: () => "/timetabling/maths-primary/new",
+    useSearchParams: () => defaultSearchParams,
     notFound: () => {
       throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
     },
   };
 });
 
-describe("/timetabling/units", () => {
+describe("/timetabling/new", () => {
   test("when enabled", async () => {
     (useFeatureFlag as jest.Mock).mockResolvedValue(true);
-    const { baseElement } = renderWithTheme(await Page());
+    const { baseElement } = renderWithTheme(
+      await Page({
+        params: Promise.resolve({ subjectPhaseSlug: "maths-primary" }),
+      }),
+    );
     expect(baseElement).toHaveTextContent("Enter lessons per term");
   });
 
   test("when disabled", async () => {
     (useFeatureFlag as jest.Mock).mockResolvedValue(false);
     expect(async () => {
-      return await Page();
+      return await Page({
+        params: Promise.resolve({ subjectPhaseSlug: "maths-primary" }),
+      });
     }).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
   });
 });

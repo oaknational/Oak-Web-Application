@@ -127,6 +127,7 @@ const specialistLessonOverviewFixture = (
     loginRequired: false,
     geoRestricted: false,
     excludedFromTeachingMaterials: false,
+    subjectCategories: null,
     ...partial,
   };
 };

@@ -123,6 +123,7 @@ exports[`Banners shows mythbusting banner 1`] = `
     >
       <div
         class="sc-fqkvVR sc-kAyceB sc-ggpjZQ hGVAzf joHkzz"
+        focusable="false"
       >
         <svg
           class="sc-hzhJZQ dBiKOq"

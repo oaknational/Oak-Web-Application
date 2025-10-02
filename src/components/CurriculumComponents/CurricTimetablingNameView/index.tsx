@@ -3,19 +3,39 @@ import {
   OakBox,
   OakFlex,
   OakPrimaryButton,
-  OakMaxWidth,
   OakSecondaryButton,
+  OakHeading,
+  OakJauntyAngleLabel,
+  OakTextInput,
+  OakMaxWidth,
 } from "@oaknational/oak-components";
+import Link from "next/link";
 
 import { CurricTimetableHeader } from "../CurricTimetableHeader";
 import { CurricShowSteps } from "../CurricShowSteps";
 
-export const CurricTimetablingNameView = () => {
+import {
+  simpleObjectAsSearchParams,
+  useTimetableParams,
+} from "@/utils/curriculum/timetabling";
+import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
+
+type CurricTimetablingNameViewProps = { subjectPhaseSlug: string };
+export const CurricTimetablingNameView = ({
+  subjectPhaseSlug,
+}: CurricTimetablingNameViewProps) => {
+  const [data, setData] = useTimetableParams();
+  const { subjectSlug } = parseSubjectPhaseSlug(subjectPhaseSlug)!;
+
   return (
-    <>
-      <OakFlex $flexDirection={"column"} $pa={"inner-padding-xl5"}>
+    <OakMaxWidth
+      $ph={"inner-padding-xl5"}
+      $flexDirection={"column"}
+      $gap={"space-between-l"}
+    >
+      <OakFlex $flexDirection={"column"} $pt={"inner-padding-xl5"}>
         <CurricTimetableHeader
-          titleSlot={"Year N subject"}
+          titleSlot={`Year ${data.year} ${subjectSlug}`}
           illustrationSlug={"magic-carpet"}
           additionalSlot={
             <OakBox $maxWidth={"all-spacing-20"}>
@@ -25,41 +45,74 @@ export const CurricTimetablingNameView = () => {
         />
       </OakFlex>
 
-      <OakMaxWidth $ph={"inner-padding-xl5"}>
-        <p>Input name</p>
+      <OakFlex
+        $flexDirection={"column"}
+        $gap={"space-between-l"}
+        $ph={"inner-padding-xl5"}
+      >
+        <OakHeading tag="h2" $font="heading-2">
+          Name your timetable
+        </OakHeading>
+
         <OakFlex
-          $flexDirection={"column"}
-          $pa={"inner-padding-xl5"}
-          $gap={"space-between-l"}
+          $position="relative"
+          $flexDirection="column"
+          $maxWidth={["100%", "all-spacing-20"]}
+        >
+          <OakJauntyAngleLabel
+            as="label"
+            htmlFor="autumn-lessons"
+            label="School or class name (optional)"
+            $font="heading-7"
+            $background="lemon"
+            $color="black"
+            $zIndex="in-front"
+            $position="absolute"
+            $top={"-20px"}
+            $left={"5px"}
+            $borderRadius="border-radius-square"
+          />
+          <OakTextInput
+            id="autumn-lessons"
+            placeholder="Type school name"
+            value={data.name}
+            onChange={(e) => setData({ name: e.target.value })}
+            aria-describedby="autumn-heading"
+            wrapperWidth="100%"
+            $pv="inner-padding-none"
+            $height="all-spacing-10"
+          />
+        </OakFlex>
+
+        <OakFlex
+          $flexDirection={"row"}
+          $justifyContent={"start"}
+          $gap={"space-between-m"}
           $maxWidth={"all-spacing-23"}
         >
-          <OakFlex
-            $flexDirection={"row"}
-            $pa={"inner-padding-xl5"}
-            $gap={"space-between-l"}
-            $maxWidth={"all-spacing-23"}
+          <OakSecondaryButton
+            element={Link}
+            href={`new?${simpleObjectAsSearchParams(data)}`}
+            pv="inner-padding-m"
+            ph="inner-padding-l"
+            style={{ height: "auto" }}
+            iconName="arrow-left"
           >
-            <OakSecondaryButton
-              element="a"
-              href="/timetabling/new"
-              pv="inner-padding-m"
-              ph="inner-padding-l"
-              style={{ height: "auto" }}
-            >
-              Previous
-            </OakSecondaryButton>
-            <OakPrimaryButton
-              element="a"
-              href="/timetabling/units"
-              pv="inner-padding-m"
-              ph="inner-padding-l"
-              style={{ height: "auto" }}
-            >
-              Next
-            </OakPrimaryButton>
-          </OakFlex>
+            Previous
+          </OakSecondaryButton>
+          <OakPrimaryButton
+            element={Link}
+            href={`units?${simpleObjectAsSearchParams(data)}`}
+            pv="inner-padding-m"
+            ph="inner-padding-l"
+            style={{ height: "auto" }}
+            iconName="arrow-right"
+            isTrailingIcon
+          >
+            Finish
+          </OakPrimaryButton>
         </OakFlex>
-      </OakMaxWidth>
-    </>
+      </OakFlex>
+    </OakMaxWidth>
   );
 };

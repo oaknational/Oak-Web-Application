@@ -3,8 +3,10 @@ import { zodTextFormat } from "openai/helpers/zod";
 import type { NextApiHandler } from "next";
 import { z } from "zod";
 
-import { intentRequestSchema, searchIntentSchema } from "./schemas";
-
+import {
+  intentRequestSchema,
+  searchIntentSchema,
+} from "@/common-lib/schemas/search-intent";
 import errorReporter from "@/common-lib/error-reporter/errorReporter";
 import OakError from "@/errors/OakError";
 import { buildSearchIntentPrompt } from "@/utils/promptBuilder";
