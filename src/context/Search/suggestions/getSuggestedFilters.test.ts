@@ -37,6 +37,43 @@ describe("getSuggestedFilters", () => {
       { type: "exam-board", value: "eduqas" },
     ]);
   });
+  it("suggests examboards when applicable keystage or year in direct match", () => {
+    const res = getSuggestedFiltersFromSubject("geography", {
+      subject: "geography",
+      keyStage: "ks4",
+      year: null,
+      examBoard: null,
+    });
+    expect(res).toEqual([
+      { type: "exam-board", value: "aqa" },
+      { type: "exam-board", value: "edexcelb" },
+    ]);
+  });
+  it("suggests examboards when year and keystage are null", () => {
+    const res = getSuggestedFiltersFromSubject("geography", {
+      subject: "geography",
+      keyStage: null,
+      year: null,
+      examBoard: null,
+    });
+    expect(res).toEqual([
+      { type: "key-stage", value: "ks1" },
+      { type: "key-stage", value: "ks2" },
+      { type: "key-stage", value: "ks3" },
+      { type: "key-stage", value: "ks4" },
+      { type: "exam-board", value: "aqa" },
+      { type: "exam-board", value: "edexcelb" },
+    ]);
+  });
+  it("should not return keystage options when year in direct match ", async () => {
+    const res = getSuggestedFiltersFromSubject("maths", {
+      subject: "maths",
+      year: "year-1",
+      keyStage: null,
+      examBoard: null,
+    });
+    expect(res).toEqual([]);
+  });
   it("throws an error when subject not found in data", () => {
     const res = getSuggestedFiltersFromSubject("classics", {
       subject: null,

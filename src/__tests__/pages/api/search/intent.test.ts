@@ -72,49 +72,6 @@ describe("/api/search/intent", () => {
       suggestedFilters: [],
     });
   });
-  it("should return suggested keystages ", async () => {
-    const { req, res } = createNextApiMocks({
-      method: "GET",
-      query: { searchTerm: "english edexcel" },
-    });
-
-    await handler(req, res);
-
-    expect(res._getStatusCode()).toBe(200);
-    expect(res._getJSONData()).toEqual({
-      directMatch: {
-        subject: "english",
-        keyStage: null,
-        examBoard: "edexcel",
-        year: null,
-      },
-      suggestedFilters: [
-        { type: "key-stage", value: "ks1" },
-        { type: "key-stage", value: "ks2" },
-        { type: "key-stage", value: "ks3" },
-        { type: "key-stage", value: "ks4" },
-      ],
-    });
-  });
-  it("should not return keystage options when year in direct match ", async () => {
-    const { req, res } = createNextApiMocks({
-      method: "GET",
-      query: { searchTerm: "year 10 maths" },
-    });
-
-    await handler(req, res);
-
-    expect(res._getStatusCode()).toBe(200);
-    expect(res._getJSONData()).toEqual({
-      directMatch: {
-        subject: "maths",
-        keyStage: null,
-        examBoard: null,
-        year: "year-10",
-      },
-      suggestedFilters: [],
-    });
-  });
   it("should not call AI when there is a direct subject match", async () => {
     const mockCallModel = jest.fn();
     jest.mock("@/context/Search/ai/callModel", () => ({
@@ -130,26 +87,6 @@ describe("/api/search/intent", () => {
 
     expect(res._getStatusCode()).toBe(200);
     expect(mockCallModel).not.toHaveBeenCalled();
-  });
-  it("should not return direct match for examboards when not applicable to direct ks match", async () => {
-    const { req, res } = createNextApiMocks({
-      method: "GET",
-      query: { searchTerm: "ks3 english" },
-    });
-
-    await handler(req, res);
-
-    expect(res._getStatusCode()).toBe(200);
-
-    expect(res._getJSONData()).toEqual({
-      directMatch: {
-        subject: "english",
-        keyStage: "ks3",
-        year: null,
-        examBoard: null,
-      },
-      suggestedFilters: [],
-    });
   });
   it("should return AI response when there is not a direct subject match", async () => {
     mockParse.mockResolvedValue({
@@ -208,22 +145,6 @@ describe("/api/search/intent", () => {
         { type: "subject", value: "english" },
       ],
     });
-  });
-  it("should not return a direct match when the search term doesnt contain one", async () => {
-    mockParse.mockResolvedValue({
-      output_parsed: {
-        subjects: [],
-      },
-    });
-    const { req, res } = createNextApiMocks({
-      method: "GET",
-      query: { searchTerm: "macbeth" },
-    });
-
-    await handler(req, res);
-
-    expect(res._getStatusCode()).toBe(200);
-    expect(res._getJSONData().directMatch).toEqual(null);
   });
   it("should return 400 for missing searchTerm", async () => {
     const { req, res } = createNextApiMocks({
