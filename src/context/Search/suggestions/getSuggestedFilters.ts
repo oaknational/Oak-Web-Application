@@ -9,22 +9,27 @@ import {
   DirectMatch,
   SuggestedFilter,
 } from "@/common-lib/schemas/search-intent";
+import errorReporter from "@/common-lib/error-reporter";
 
 export const getSuggestedFilters = (
   subject: string,
   directMatch: DirectMatch,
 ) => {
-  const oakSubject = OAK_SUBJECTS.find((s) => s.slug === subject);
-  if (!oakSubject) {
-    // TODO: handle properly
-    throw new Error("subject does not exist");
-  }
+  const report = errorReporter("suggestedFilters");
   const suggestedFilters: SuggestedFilter[] = [];
+  const oakSubject = OAK_SUBJECTS.find((s) => s.slug === subject);
+
+  if (!oakSubject) {
+    report(new Error("Invalid subject"), {
+      severity: "warning",
+      subject,
+    });
+    return suggestedFilters;
+  }
 
   if (!directMatch.keyStage) {
-    const keystagesForSubject = oakSubject.keyStages.map((ks) => ks.slug);
-    keystagesForSubject.forEach((ks) => {
-      const parsed = keystageSlugs.parse(ks);
+    oakSubject.keyStages.forEach((ks) => {
+      const parsed = keystageSlugs.parse(ks.slug);
       suggestedFilters.push({
         type: "key-stage" as const,
         value: parsed,
@@ -32,9 +37,8 @@ export const getSuggestedFilters = (
     });
   }
   if (!directMatch.examBoard) {
-    const examboardsForSubject = oakSubject.examBoards.map((eb) => eb.slug);
-    examboardsForSubject.forEach((eb) => {
-      const parsed = examboardSlugs.parse(eb);
+    oakSubject.examBoards.forEach((eb) => {
+      const parsed = examboardSlugs.parse(eb.slug);
       suggestedFilters.push({
         type: "exam-board" as const,
         value: parsed,

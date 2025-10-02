@@ -1,5 +1,13 @@
 import { getSuggestedFilters } from "./getSuggestedFilters";
 
+const mockErrorReporter = jest.fn();
+jest.mock("@/common-lib/error-reporter", () => ({
+  __esModule: true,
+  default:
+    () =>
+    (...args: []) =>
+      mockErrorReporter(...args),
+}));
 describe("getSuggestedFilters", () => {
   it("gets the correct suggested filters", () => {
     const res = getSuggestedFilters("maths", {
@@ -29,5 +37,20 @@ describe("getSuggestedFilters", () => {
       { type: "exam-board", value: "eduqas" },
     ]);
   });
-  it.todo("throws an error when subject not found in data");
+  it("throws an error when subject not found in data", () => {
+    const res = getSuggestedFilters("classics", {
+      subject: null,
+      keyStage: null,
+      examBoard: null,
+      year: null,
+    });
+    expect(res).toEqual([]);
+    expect(mockErrorReporter).toHaveBeenCalledWith(
+      new Error("Invalid subject"),
+      {
+        severity: "warning",
+        subject: "classics",
+      },
+    );
+  });
 });
