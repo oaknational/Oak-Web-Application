@@ -17,11 +17,11 @@ describe("getSuggestedFilters", () => {
       examBoard: null,
     });
     expect(res).toEqual([
+      { type: "key-stage", value: "early-years-foundation-stage" },
       { type: "key-stage", value: "ks1" },
       { type: "key-stage", value: "ks2" },
       { type: "key-stage", value: "ks3" },
       { type: "key-stage", value: "ks4" },
-      { type: "key-stage", value: "early-years-foundation-stage" },
     ]);
   });
   it("does not get suggested filters when property is a direct match", () => {

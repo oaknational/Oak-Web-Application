@@ -33,20 +33,68 @@ describe("/api/search/intent", () => {
         examBoard: null,
       },
       suggestedFilters: [
+        { type: "key-stage", value: "early-years-foundation-stage" },
         { type: "key-stage", value: "ks1" },
         { type: "key-stage", value: "ks2" },
         { type: "key-stage", value: "ks3" },
         { type: "key-stage", value: "ks4" },
-        { type: "key-stage", value: "early-years-foundation-stage" },
       ],
     });
   });
-  it.todo(
-    "should return combinations of pfs as direct match when in search term",
-  );
-  it.todo(
-    "should not return a direct match when the search term doesnt contain one",
-  );
+  it("should return combinations of pfs as direct match when in search term", async () => {
+    const { req, res } = createNextApiMocks({
+      method: "GET",
+      query: { searchTerm: "ks4 french aqa" },
+    });
+
+    await handler(req, res);
+
+    expect(res._getStatusCode()).toBe(200);
+    expect(res._getJSONData()).toEqual({
+      directMatch: {
+        subject: "french",
+        keyStage: "ks4",
+        examBoard: "aqa",
+        year: null,
+      },
+      suggestedFilters: [],
+    });
+  });
+  it("should return suggested filters for missing direct matches", async () => {
+    const { req, res } = createNextApiMocks({
+      method: "GET",
+      query: { searchTerm: "year 10 english edexcel" },
+    });
+
+    await handler(req, res);
+
+    expect(res._getStatusCode()).toBe(200);
+    expect(res._getJSONData()).toEqual({
+      directMatch: {
+        subject: "english",
+        keyStage: null,
+        examBoard: "edexcel",
+        year: "year-10",
+      },
+      suggestedFilters: [
+        { type: "key-stage", value: "ks1" },
+        { type: "key-stage", value: "ks2" },
+        { type: "key-stage", value: "ks3" },
+        { type: "key-stage", value: "ks4" },
+      ],
+    });
+  });
+  it("should not return a direct match when the search term doesnt contain one", async () => {
+    const { req, res } = createNextApiMocks({
+      method: "GET",
+      query: { searchTerm: "no direct match" },
+    });
+
+    await handler(req, res);
+
+    expect(res._getStatusCode()).toBe(200);
+    expect(res._getJSONData().directMatch).toEqual(null);
+  });
   it.todo("should not call AI when there is a direct subject match");
   it.todo("should call ai when there is not a direct subject match");
   it.todo("should return direct matches for ks");
