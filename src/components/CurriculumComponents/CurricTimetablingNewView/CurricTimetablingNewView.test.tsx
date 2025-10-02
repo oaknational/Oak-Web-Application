@@ -7,6 +7,14 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 let mockSearchParams = new URLSearchParams("");
 const mockReplace = jest.fn();
 const mockUseParams = jest.fn(() => ({ subjectPhaseSlug: "maths-primary" }));
+const mockReplaceState = jest.fn();
+
+Object.defineProperty(window, "history", {
+  writable: true,
+  value: {
+    replaceState: mockReplaceState,
+  },
+});
 
 jest.mock("next/navigation", () => ({
   usePathname: () => "/timetabling/new",
@@ -16,6 +24,10 @@ jest.mock("next/navigation", () => ({
 }));
 
 describe("CurricTimetablingNewView", () => {
+  beforeEach(() => {
+    mockReplaceState.mockClear();
+  });
+
   test("component renders with heading correctly", async () => {
     const { getByRole } = renderWithTheme(
       <CurricTimetablingNewView subjectPhaseSlug="maths-primary" />,
@@ -151,6 +163,34 @@ describe("CurricTimetablingNewView", () => {
     expect(linkElement).toHaveAttribute(
       "href",
       "name?autumn=20&spring=25&summer=35&year=1",
+    );
+  });
+
+  test("populates URL with defaults when landing", () => {
+    mockSearchParams = new URLSearchParams("year=1");
+    renderWithTheme(
+      <CurricTimetablingNewView subjectPhaseSlug="maths-primary" />,
+    );
+
+    // Should call history.replaceState to populate defaults
+    expect(mockReplaceState).toHaveBeenCalledWith(
+      {},
+      "",
+      "/timetabling/new?autumn=30&spring=30&summer=30&year=1",
+    );
+  });
+
+  test("normalizes URL removing empty name param", () => {
+    mockSearchParams = new URLSearchParams("year=1&name=");
+    renderWithTheme(
+      <CurricTimetablingNewView subjectPhaseSlug="maths-primary" />,
+    );
+
+    // Should remove empty name param
+    expect(mockReplaceState).toHaveBeenCalledWith(
+      {},
+      "",
+      "/timetabling/new?autumn=30&spring=30&summer=30&year=1",
     );
   });
 });
