@@ -33,26 +33,25 @@ const handler: NextApiHandler = async (req, res) => {
   try {
     const pfMatch = findPfMatch(searchTerm);
 
-    if (!pfMatch || pfMatch.subject === null) {
-      if (aiSearchEnabled) {
-        // use AI to get subject intent if no direct match for subject
-        // TODO: get suggested filters from subject intent
-        const subjectsFromModel = await callModel(searchTerm);
-        const payload = {
-          directMatch: null,
-          suggestedFilters: subjectsFromModel.map((filter) => {
-            return { type: "subject", slug: filter.slug };
-          }),
-        };
-        return res.status(200).json(payload);
-      }
-    } else {
+    if (pfMatch?.subject) {
       const payload: SearchIntent = {
         directMatch: pfMatch,
         suggestedFilters: getSuggestedFilters(pfMatch.subject, pfMatch),
       };
       return res.status(200).json(payload);
+    } else if (aiSearchEnabled) {
+      // TODO: get suggested filters from subject intent
+      const subjectsFromModel = await callModel(searchTerm);
+
+      const payload = {
+        directMatch: null,
+        suggestedFilters: subjectsFromModel.map((filter) => {
+          return { type: "subject", slug: filter.slug };
+        }),
+      };
+      return res.status(200).json(payload);
     }
+
     return res.status(503).json({ message: "AI search currently unavailable" });
   } catch (err) {
     const error = new OakError({
@@ -91,16 +90,11 @@ export async function callModel(searchTerm: string) {
       effort: "low",
     },
   });
+
   const parsedResponse = response.output_parsed;
 
   if (response.error) {
-    const error = new OakError({
-      code: "search/failed-to-get-intent",
-      meta: {
-        error: response.error,
-      },
-    });
-    reportError(error);
+    throw response.error;
   }
 
   const validSubjects =

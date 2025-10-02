@@ -97,9 +97,14 @@ describe("/api/search/intent", () => {
     });
   });
   it("should not return a direct match when the search term doesnt contain one", async () => {
+    mockParse.mockResolvedValue({
+      output_parsed: {
+        subjects: [],
+      },
+    });
     const { req, res } = createNextApiMocks({
       method: "GET",
-      query: { searchTerm: "no direct match" },
+      query: { searchTerm: "macbeth" },
     });
 
     await handler(req, res);
