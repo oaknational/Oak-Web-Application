@@ -15,7 +15,7 @@ describe("/api/search/intent", () => {
     jest.clearAllMocks();
   });
 
-  it("should return direct match response for 'maths' search term", async () => {
+  it("should return direct match response for 'maths' search term with appropriate keystage filters", async () => {
     const { req, res } = createNextApiMocks({
       method: "GET",
       query: { searchTerm: "maths" },
@@ -24,6 +24,7 @@ describe("/api/search/intent", () => {
     await handler(req, res);
 
     expect(res._getStatusCode()).toBe(200);
+
     expect(res._getJSONData()).toEqual({
       directMatch: {
         subject: "maths",
@@ -32,21 +33,33 @@ describe("/api/search/intent", () => {
         examBoard: null,
       },
       suggestedFilters: [
-        { type: "subject", value: "maths" },
         { type: "key-stage", value: "ks1" },
         { type: "key-stage", value: "ks2" },
         { type: "key-stage", value: "ks3" },
         { type: "key-stage", value: "ks4" },
-        { type: "exam-board", value: "aqa" },
-        { type: "exam-board", value: "edexcel" },
+        { type: "key-stage", value: "early-years-foundation-stage" },
       ],
     });
   });
+  it.todo(
+    "should return combinations of pfs as direct match when in search term",
+  );
+  it.todo(
+    "should not return a direct match when the search term doesnt contain one",
+  );
+  it.todo("should not call AI when there is a direct subject match");
+  it.todo("should call ai when there is not a direct subject match");
+  it.todo("should return direct matches for ks");
+  it.todo("should return direct match for examboard");
+  it.todo("should return direct match for years");
+  it.todo(
+    "should return suggested filters based on subject curriculum data when no direct match",
+  );
 
   it("should return AI response for other search terms", async () => {
     const { req, res } = createNextApiMocks({
       method: "GET",
-      query: { searchTerm: "science" },
+      query: { searchTerm: "golf" },
     });
 
     await handler(req, res);
