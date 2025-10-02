@@ -13,7 +13,9 @@ import {
 } from "@/__tests__/__helpers__/mockUser";
 
 const render = renderWithProviders();
-
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagVariantKey: jest.fn(),
+}));
 describe("pages/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads", () => {
   it("renders lessons", () => {
     render(
