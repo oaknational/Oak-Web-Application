@@ -64,3 +64,15 @@ export type SearchHit = z.infer<typeof searchResultsHitSchema>;
 
 export type PathwaySchema = z.infer<typeof pathwaySchema>;
 export type PathwaySchemaCamel = SnakeToCamel<PathwaySchema>;
+
+export type SuggestedFilters = {
+  searchFilters: SuggestedSearchFilter[] | undefined;
+  status: "idle" | "loading" | "success" | "error";
+  error?: string;
+};
+
+export type SuggestedSearchFilter = {
+  type: "subject" | "key-stage" | "year" | "exam-board";
+  value: string;
+  slug: string;
+};
