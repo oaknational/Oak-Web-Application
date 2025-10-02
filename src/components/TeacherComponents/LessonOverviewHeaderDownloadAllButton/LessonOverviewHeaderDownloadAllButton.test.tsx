@@ -78,7 +78,7 @@ describe("LessonOverviewHeaderDownloadAllButton", () => {
 
     expect(downloadButton).toBeInTheDocument();
     expect(downloadButton.tagName).toBe("A");
-    expect(getByText("Download all resources")).toBeInTheDocument();
+    expect(getByText("Download all")).toBeInTheDocument();
     expect(downloadButton).toHaveAttribute("href");
     downloadButton.click();
     expect(mockDownloadAllButton).toHaveBeenCalled();
