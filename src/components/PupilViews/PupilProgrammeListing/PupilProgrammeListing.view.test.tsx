@@ -31,13 +31,13 @@ jest.mock(
   "@/components/PupilComponents/SignpostTeachersInlineBanner/SignpostTeachersInlineBanner",
   () => ({
     __esModule: true,
-    default: ({ onCallBack }: { onCallBack: () => void }) => (
+    default: ({ onClose }: { onClose: () => void }) => (
       <div>
         <span>Mocked SignpostTeachersInlineBanner</span>
         <button
           aria-label="Close"
           onClick={() => {
-            onCallBack();
+            onClose();
           }}
         >
           Close
