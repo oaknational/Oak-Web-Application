@@ -42,13 +42,14 @@ export const getSuggestedFiltersFromSubject = (
 
   // We don't want to show suggestions for examboard filters if the search term includes
   // direct match for keystages or years that don't contain examboards
+  const yearsForExamboards = [null, "year-10", "year-11"];
+  const keystagesForExamboards = [null, "ks4"];
+
   const includeExamboard =
     directMatch === null ||
-    (!directMatch.examBoard &&
-      (directMatch.keyStage === "ks4" || directMatch.keyStage === null) &&
-      (directMatch.year === "year-10" ||
-        directMatch.year === "year-11" ||
-        directMatch.year === null));
+    (directMatch.examBoard === null &&
+      keystagesForExamboards.includes(directMatch.keyStage) &&
+      yearsForExamboards.includes(directMatch.year));
 
   if (includeExamboard) {
     oakSubject.examBoards.forEach((eb) => {
