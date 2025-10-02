@@ -109,6 +109,7 @@ const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
     blockOrder,
     props.campaign.content,
   );
+
   return (
     <AppLayout
       seoProps={{
@@ -162,6 +163,8 @@ const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
                   body={section.bodyPortableTextWithPromo}
                   media={media}
                   key={section.type}
+                  buttonCta={section.buttonCta}
+                  buttonUrl={section.buttonUrl}
                 />
               );
           }

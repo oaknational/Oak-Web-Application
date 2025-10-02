@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+
 import {
   OakBox,
   OakFlex,
@@ -10,32 +10,23 @@ import {
   OakTextInput,
   OakMaxWidth,
 } from "@oaknational/oak-components";
+import Link from "next/link";
 
 import { CurricTimetableHeader } from "../CurricTimetableHeader";
 import { CurricShowSteps } from "../CurricShowSteps";
-import { useTimetableHeaderParams } from "../CurricTimetablingNewView/useTimetableHeaderParams";
 
-export const CurricTimetablingNameView = () => {
-  const { subject, year, name, queryString } = useTimetableHeaderParams();
+import {
+  simpleObjectAsSearchParams,
+  useTimetableParams,
+} from "@/utils/curriculum/timetabling";
+import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 
-  const [nameValue, setNameValue] = useState<string>("");
-
-  useEffect(() => {
-    if (name && nameValue === "") {
-      setNameValue(name);
-    }
-  }, [name, nameValue]);
-
-  const params = useMemo(() => {
-    if (!name && nameValue !== "") {
-      const updatedParams = new URLSearchParams(queryString);
-      updatedParams.append("name", nameValue);
-
-      return updatedParams.toString();
-    }
-
-    return queryString;
-  }, [name, queryString, nameValue]);
+type CurricTimetablingNameViewProps = { subjectPhaseSlug: string };
+export const CurricTimetablingNameView = ({
+  subjectPhaseSlug,
+}: CurricTimetablingNameViewProps) => {
+  const [data, setData] = useTimetableParams();
+  const { subjectSlug } = parseSubjectPhaseSlug(subjectPhaseSlug)!;
 
   return (
     <OakMaxWidth
@@ -45,7 +36,7 @@ export const CurricTimetablingNameView = () => {
     >
       <OakFlex $flexDirection={"column"} $pt={"inner-padding-xl5"}>
         <CurricTimetableHeader
-          titleSlot={`Year ${year} ${subject}`}
+          titleSlot={`Year ${data.year} ${subjectSlug}`}
           illustrationSlug={"magic-carpet"}
           additionalSlot={
             <OakBox $maxWidth={"all-spacing-20"}>
@@ -85,8 +76,8 @@ export const CurricTimetablingNameView = () => {
           <OakTextInput
             id="autumn-lessons"
             placeholder="Type school name"
-            value={nameValue}
-            onChange={(e) => setNameValue(e.target.value)}
+            value={data.name}
+            onChange={(e) => setData({ name: e.target.value })}
             aria-describedby="autumn-heading"
             wrapperWidth="100%"
             $pv="inner-padding-none"
@@ -101,8 +92,8 @@ export const CurricTimetablingNameView = () => {
           $maxWidth={"all-spacing-23"}
         >
           <OakSecondaryButton
-            element="a"
-            href={`new?${params}`}
+            element={Link}
+            href={`new?${simpleObjectAsSearchParams(data)}`}
             pv="inner-padding-m"
             ph="inner-padding-l"
             style={{ height: "auto" }}
@@ -111,8 +102,8 @@ export const CurricTimetablingNameView = () => {
             Previous
           </OakSecondaryButton>
           <OakPrimaryButton
-            element="a"
-            href={`units?${params}`}
+            element={Link}
+            href={`units?${simpleObjectAsSearchParams(data)}`}
             pv="inner-padding-m"
             ph="inner-padding-l"
             style={{ height: "auto" }}

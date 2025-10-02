@@ -47,6 +47,7 @@ query campaignBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
           ...Video
         }
         buttonCta
+        buttonUrl
       }
     }
     seo {
