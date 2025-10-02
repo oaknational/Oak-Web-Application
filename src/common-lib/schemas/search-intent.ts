@@ -37,8 +37,11 @@ export const suggestedFilterSchema = z.union([
     value: examboardSlugs,
   }),
 ]);
+export type SuggestedFilter = z.infer<typeof suggestedFilterSchema>;
 
 export const searchIntentSchema = z.object({
   directMatch: directMatchSchema.nullable(),
   suggestedFilters: z.array(suggestedFilterSchema),
 });
+
+export type SearchIntent = z.infer<typeof searchIntentSchema>;

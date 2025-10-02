@@ -246,6 +246,20 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: null,
   },
+  openAiApiKey: {
+    value: process.env.OPENAI_API_KEY,
+    envName: "OPENAI_API_KEY",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  aiSearchEnabled: {
+    value: process.env.AI_SEARCH_ENABLED,
+    envName: "AI_SEARCH_ENABLED",
+    required: false,
+    availableInBrowser: false,
+    default: false,
+  },
   posthogApiKey: {
     value: process.env.NEXT_PUBLIC_POSTHOG_API_KEY,
     envName: "NEXT_PUBLIC_POSTHOG_API_KEY",

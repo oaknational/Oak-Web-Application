@@ -193,6 +193,12 @@ async function main() {
     DISABLE_ISR: process.env.DISABLE_ISR,
     NEXT_PUBLIC_SENTRY_ENABLED: process.env.NEXT_PUBLIC_SENTRY_ENABLED,
 
+    // AI FEATURES
+    OPENAI_API_KEY:
+      process.env.OPENAI_API_KEY || secretsFromNetwork.OPENAI_API_KEY,
+    AI_SEARCH_ENABLED:
+      process.env.AI_SEARCH_ENABLED || oakConfig.oak.aiSearchEnabled,
+
     // Seo
 
     NEXT_PUBLIC_SEO_APP_NAME:

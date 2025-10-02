@@ -46,7 +46,8 @@
     "educatorApiUrl": "url",
     "educatorApiAuthRole": "role",
     "vercelApiUrl": "https://api.thenational.academy",
-    "downloadApiUrl": "https://downloads-api.thenational.academy"
+    "downloadApiUrl": "https://downloads-api.thenational.academy",
+    "aiSearchEnabled": "true"
   },
   "posthog": {
     "apiHost": "http://localhost:8899",
