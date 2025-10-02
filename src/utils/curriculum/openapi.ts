@@ -7,7 +7,7 @@ const unitSchema = z.object({
   unitTitle: z.string(),
   unitSlug: z.string(),
   order: z.number(),
-  prior_knowledge_requirements: z.array(z.string()).default([]),
+  prior_knowledge_requirements: z.array(z.string()).prefault([]),
 });
 const nonSubjectSchema = z.object({
   year: z.number(),

@@ -1,12 +1,13 @@
 import { z } from "zod";
-import {
-  actionsSchema,
-  syntheticUnitvariantsWithLessonIdsByKsSchema,
-} from "@oaknational/oak-curriculum-schema";
+
 
 import { zodToCamelCase } from "./helpers/zodToCamelCase";
 import { mediaClipsRecordCamelSchema } from "./queries/lessonMediaClips/lessonMediaClips.schema";
 
+import {
+  actionsSchema,
+  syntheticUnitvariantsWithLessonIdsByKsSchema,
+} from "@oaknational/oak-curriculum-schema";
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
 export const contentGuidanceSchemaCamelCase = z.object({
@@ -66,8 +67,8 @@ export const isStemTextObject = (
 const stemImageObjectSchema = z.object({
   imageObject: z.object({
     format: z.enum(["png", "jpg", "jpeg", "webp", "gif", "svg"]).optional(),
-    secureUrl: z.string().url(),
-    url: z.string().url().optional(),
+    secureUrl: z.url(),
+    url: z.url().optional(),
     height: z.number().optional(),
     width: z.number().optional(),
     metadata: z.union([

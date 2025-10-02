@@ -7,7 +7,9 @@ const baseSchema = z.object({
 export const roleSelectFormSchema = z
   .object({
     ...baseSchema.shape,
-    role: z.string({ message: "Please select what describes you best" }),
+    role: z.string({
+      error: "Please select what describes you best",
+    }),
     other: z.string().trim().optional(),
   })
   .refine(
@@ -18,8 +20,8 @@ export const roleSelectFormSchema = z
       return true;
     },
     {
-      message: "Please tell us what your role is",
       path: ["other"],
+      error: "Please tell us what your role is",
     },
   );
 
@@ -31,9 +33,7 @@ export type RoleSelectFormProps = RoleSelectFormValues & {
 const ukSchoolSchema = z.object({
   school: z
     .string({
-      errorMap: () => ({
-        message: "Please select your school",
-      }),
+      error: () => "Please select your school",
     })
     .min(1, "Select school"),
   schoolName: z.string().optional(),
@@ -56,9 +56,7 @@ export type SchoolSelectFormProps = SchoolSelectFormValues & {
 };
 export const worksInSchoolFormSchema = z.object({
   worksInSchool: z.boolean({
-    errorMap: () => ({
-      message: "Please select if you work in a school",
-    }),
+    error: () => "Please select if you work in a school",
   }),
 });
 type WorksInSchoolFormValues = z.infer<typeof worksInSchoolFormSchema>;

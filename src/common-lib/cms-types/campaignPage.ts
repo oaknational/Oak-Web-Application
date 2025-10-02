@@ -80,6 +80,6 @@ export const campaignPageSchema = z
     content: z.array(campaignContentTypeSchema),
     seo: seoSchema.nullish(),
   })
-  .merge(documentSchema);
+  .extend(documentSchema.shape);
 
 export type CampaignPage = z.infer<typeof campaignPageSchema>;

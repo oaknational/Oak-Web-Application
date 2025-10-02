@@ -24,15 +24,16 @@ const reportError = errorReporter("NewsletterForm.tsx");
 const schema = z.object({
   name: z
     .string()
-    .min(1, { message: "Enter a name" })
+    .min(1, {
+      error: "Enter a name",
+    })
     .max(60, "Name must contain fewer than 60 charaters"),
   email: z
-    .string()
-    .min(1, {
-      message: "Enter an email",
-    })
     .email({
-      message: "Enter a valid email",
+      error: "Enter a valid email",
+    })
+    .min(1, {
+      error: "Enter an email",
     }),
   userRole: z.union([z.enum(USER_ROLES), z.literal("")]),
 });

@@ -29,11 +29,11 @@ const defaults = {
 };
 
 const schema = z.object({
-  autumn: z.coerce.number().default(defaults.autumn),
-  spring: z.coerce.number().default(defaults.spring),
-  summer: z.coerce.number().default(defaults.summer),
-  year: z.string().default("1"),
-  name: z.string().default(defaults.name),
+  autumn: z.coerce.number().prefault(defaults.autumn),
+  spring: z.coerce.number().prefault(defaults.spring),
+  summer: z.coerce.number().prefault(defaults.summer),
+  year: z.string().prefault("1"),
+  name: z.string().prefault(defaults.name),
 });
 
 type TimetableParams = z.infer<typeof schema>;
