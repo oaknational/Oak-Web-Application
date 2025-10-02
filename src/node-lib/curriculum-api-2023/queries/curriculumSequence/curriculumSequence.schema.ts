@@ -17,7 +17,7 @@ const curriculumSequenceSchema = z.object({
       keystage_slug: z.string(),
       lessons: z
         .array(
-          z.strictObject({
+          z.object({
             slug: z.string().optional(),
             title: z.string(),
             _state: z.string().optional(),
@@ -79,7 +79,7 @@ const curriculumSequenceSchema = z.object({
           unitvariant_id: z.number(),
           slug: z.string().optional(),
           lessons: z.array(
-            z.strictObject({
+            z.object({
               slug: z.string().optional(),
               title: z.string(),
               _state: z.string().optional(),
