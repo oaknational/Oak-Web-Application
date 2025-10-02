@@ -42,11 +42,11 @@ const useAnalyticsService = <T>({
   }, [consentState, hasAttemptedInit, config, service, setPosthogDistinctId]);
 
   useEffect(() => {
-    // do not track
     if (loaded) {
       if (consentState === "granted") {
         service.optIn();
       }
+      // do not track
       if (consentState === "denied") {
         service.optOut();
         if (setPosthogDistinctId) {

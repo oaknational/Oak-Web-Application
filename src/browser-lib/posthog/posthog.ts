@@ -26,7 +26,7 @@ export const posthogToAnalyticsServiceWithoutQueue = (
         client.init(apiKey, {
           api_host: apiHost,
           ui_host: uiHost,
-          opt_out_capturing_by_default: true,
+          cookieless_mode: "on_reject",
           debug: getBrowserConfig("releaseStage") !== "production",
           loaded: () => {
             const legacyAnonymousId = getLegacyAnonymousId();
