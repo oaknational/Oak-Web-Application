@@ -1,5 +1,5 @@
 import OpenAI from "openai";
-import { zodTextFormat } from "openai/helpers/zod";
+import { zodResponseFormat } from "openai/helpers/zod";
 import type { NextApiHandler } from "next";
 import { z } from "zod";
 
@@ -9,12 +9,18 @@ import {
 } from "@/common-lib/schemas/search-intent";
 import errorReporter from "@/common-lib/error-reporter/errorReporter";
 import OakError from "@/errors/OakError";
-import { buildSearchIntentPrompt } from "@/utils/promptBuilder";
+import { buildSearchIntentPrompt } from "@/utils/search/promptBuilder";
 import { OAK_SUBJECTS } from "@/context/Search/suggestions/oakCurriculumData";
+import { invariant } from "@/utils/invariant";
 import getServerConfig from "@/node-lib/getServerConfig";
 
 const reportError = errorReporter("search-intent");
-const client = new OpenAI();
+const aiClient = new OpenAI({
+  apiKey: getServerConfig("aiGatewayApiKey"),
+  baseURL: getServerConfig("aiGatewayUrl"),
+});
+
+const MODEL = "cerebras/qwen-3-32b";
 
 export const DUMMY_DIRECT_MATCH_RESPONSE = {
   directMatch: {
@@ -66,9 +72,7 @@ const handler: NextApiHandler = async (req, res) => {
   } catch (err) {
     const error = new OakError({
       code: "search/failed-to-get-intent",
-      meta: {
-        error: err,
-      },
+      originalError: err,
     });
     reportError(error);
 
@@ -80,42 +84,28 @@ export async function callModel(searchTerm: string) {
   const subjects = OAK_SUBJECTS.map((subject) => subject.slug);
   const prompt = buildSearchIntentPrompt(searchTerm, subjects);
 
-  const response = await client.responses.parse({
-    model: "gpt-5-nano",
-    input: prompt,
-    text: {
-      format: zodTextFormat(
-        z.object({
-          subjects: z.array(
-            z.object({
-              slug: z.string(),
-              confidence: z.number().min(1).max(5),
-            }),
-          ),
-        }),
-        "subjects",
-      ),
-    },
-    reasoning: {
-      effort: "low",
-    },
+  const response = await aiClient.chat.completions.parse({
+    model: MODEL,
+    messages: prompt,
+    response_format: zodResponseFormat(
+      z.object({
+        subjects: z.array(
+          z.object({
+            slug: z.string(),
+            confidence: z.number().min(1).max(5),
+          }),
+        ),
+      }),
+      "subjects",
+    ),
   });
-  const parsedResponse = response.output_parsed;
 
-  if (response.error) {
-    const error = new OakError({
-      code: "search/failed-to-get-intent",
-      meta: {
-        error: response.error,
-      },
-    });
-    reportError(error);
-  }
+  const parsedResponse = response.choices[0]?.message?.parsed;
+  invariant(parsedResponse, "No LLM response");
 
-  const validSubjects =
-    parsedResponse?.subjects?.filter((subject) =>
-      subjects.includes(subject.slug),
-    ) ?? [];
+  const validSubjects = parsedResponse.subjects.filter((subject) =>
+    subjects.includes(subject.slug),
+  );
 
   validSubjects.sort((a, b) => b.confidence - a.confidence);
   return validSubjects;
