@@ -329,13 +329,23 @@ export function createDownloadsData(
   return downloadsData;
 }
 
+// HACK: Set of hacks to solve data issues temporarily
+export function frontendHackForUnitIssues(units: Unit[]) {
+  return units.filter((unit) => {
+    if (unit.subject_slug === "music" && ["10", "11"].includes(unit.year)) {
+      return false;
+    }
+    return true;
+  });
+}
+
 export function formatCurriculumUnitsData(
   data: CurriculumUnitsTabData,
 ): CurriculumUnitsFormattedData {
   const { units } = data;
 
   // Filtering for tiers, ideally this would be fixed in the MV, but for now we need to filter out here.
-  const filteredUnits = units;
+  const filteredUnits = frontendHackForUnitIssues(units);
   const yearData = createUnitsListingByYear(filteredUnits);
   const threadOptions = createThreadOptions(filteredUnits);
   const yearOptions = createYearOptions(filteredUnits);
