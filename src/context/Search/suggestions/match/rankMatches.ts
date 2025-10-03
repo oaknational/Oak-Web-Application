@@ -1,12 +1,13 @@
 type RankResult = {
   slug: string;
+  title: string;
   score: number;
   matched: string;
 };
 
 export function rankMatches(
   query: string,
-  candidates: Array<{ slug: string; matched: string }>,
+  candidates: Array<{ slug: string; title: string; matched: string }>,
 ): RankResult | undefined {
   const queryLower = query.toLowerCase().trim();
   const queryWords = queryLower.split(/\s+/);
@@ -22,6 +23,7 @@ export function rankMatches(
       score = 10000; // Highest possible score for complete match
       scoredMatches.push({
         slug: candidate.slug,
+        title: candidate.title,
         score,
         matched: candidate.matched,
       });
@@ -56,6 +58,7 @@ export function rankMatches(
 
       scoredMatches.push({
         slug: candidate.slug,
+        title: candidate.title,
         score,
         matched: candidate.matched,
       });

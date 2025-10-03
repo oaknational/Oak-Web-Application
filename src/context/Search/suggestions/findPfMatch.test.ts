@@ -34,27 +34,29 @@ describe("findFuzzyMatch", () => {
       "should match keystage slugs",
       (slug) => {
         const result = findPfMatch(slug);
-        expect(result).toMatchObject({ keyStage: slug });
+        expect(result?.keyStage?.slug).toBe(slug);
+        expect(result?.keyStage?.title).toBeTruthy();
       },
     );
     it.each(OAK_KEYSTAGES.map((ks) => [ks.title, ks.slug]))(
       "should match key stage titles %p",
       (title, slug) => {
         const result = findPfMatch(title);
-        expect(result).toMatchObject({ keyStage: slug });
+        expect(result).toMatchObject({ keyStage: { title, slug } });
       },
     );
   });
   describe("years", () => {
     it.each(OAK_YEARS.map((y) => y.slug))(`matches year slug %p`, (year) => {
       const result = findPfMatch(year);
-      expect(result).toMatchObject({ year: year });
+      expect(result?.year?.slug).toBe(year);
+      expect(result?.year?.title).toBeTruthy();
     });
     it.each(OAK_YEARS.map((y) => [y.title, y.slug]))(
       `matches year title %p`,
       (title, slug) => {
         const result = findPfMatch(title);
-        expect(result).toMatchObject({ year: slug });
+        expect(result).toMatchObject({ year: { title, slug } });
       },
     );
     const yearsWithAliases = OAK_YEARS.filter(
@@ -66,7 +68,8 @@ describe("findFuzzyMatch", () => {
         if (aliases && typeof aliases !== "string") {
           aliases?.forEach((alias: string) => {
             const result = findPfMatch(alias);
-            expect(result).toMatchObject({ year: slug });
+            expect(result?.year?.slug).toBe(slug);
+            expect(result?.year?.title).toBeTruthy();
           });
         }
       },
@@ -77,7 +80,7 @@ describe("findFuzzyMatch", () => {
       "matches slugs",
       (term) => {
         const result = findPfMatch(term);
-        expect(result).toMatchObject({ examBoard: term });
+        expect(result?.examBoard?.slug).toBe(term);
       },
     );
     it.each([
@@ -85,10 +88,10 @@ describe("findFuzzyMatch", () => {
       ["OCR", "ocr"],
       ["Edexcel", "edexcel"],
       ["Eduqas", "eduqas"],
-      ["EdexcelB", "edexcelb"],
+      ["Edexcel B", "edexcelb"],
     ])("matches titles", (term, slug) => {
       const result = findPfMatch(term);
-      expect(result).toMatchObject({ examBoard: slug });
+      expect(result).toMatchObject({ examBoard: { title: term, slug } });
     });
   });
   describe("subjects and keystages", () => {
@@ -110,28 +113,22 @@ describe("findFuzzyMatch", () => {
       "matches on subject and keystage slugs",
       (query, keyStage, subject) => {
         const result = findPfMatch(query);
-        expect(result).toMatchObject({
-          subject,
-          keyStage,
-        });
+        expect(result?.subject?.slug).toBe(subject);
+        expect(result?.keyStage?.slug).toBe(keyStage);
       },
     );
     it.each(subjectsWithKeystageTitles)(
       "matches on subject slug and keystage title",
       (query, keyStage, subject) => {
         const result = findPfMatch(query);
-        expect(result).toMatchObject({
-          subject,
-          keyStage,
-        });
+        expect(result?.subject?.slug).toBe(subject);
+        expect(result?.keyStage?.slug).toBe(keyStage);
       },
     );
     it("matches aliases", () => {
       const result = findPfMatch("food tech ks4");
-      expect(result).toMatchObject({
-        subject: "cooking-nutrition",
-        keyStage: "ks4",
-      });
+      expect(result?.subject?.slug).toBe("cooking-nutrition");
+      expect(result?.keyStage?.slug).toBe("ks4");
     });
   });
   describe("subjects and years", () => {
@@ -146,10 +143,8 @@ describe("findFuzzyMatch", () => {
       "matches on subject and years slugs %p",
       (query, year, subject) => {
         const result = findPfMatch(query);
-        expect(result).toMatchObject({
-          subject,
-          year,
-        });
+        expect(result?.subject?.slug).toBe(subject);
+        expect(result?.year?.slug).toBe(year);
       },
     );
   });
@@ -169,10 +164,8 @@ describe("findFuzzyMatch", () => {
       "matches on subject title and examboard %p",
       (term, examBoard, subject) => {
         const result = findPfMatch(term);
-        expect(result).toMatchObject({
-          subject,
-          examBoard,
-        });
+        expect(result?.subject?.slug).toBe(subject);
+        expect(result?.examBoard?.slug).toBe(examBoard);
       },
     );
   });
@@ -214,22 +207,18 @@ describe("findFuzzyMatch", () => {
       "can handle %p",
       (term, examBoard, subject) => {
         const result = findPfMatch(term);
-        expect(result).toMatchObject({
-          subject,
-          keyStage: "ks4",
-          examBoard,
-        });
+        expect(result?.subject?.slug).toBe(subject);
+        expect(result?.keyStage?.slug).toBe("ks4");
+        expect(result?.examBoard?.slug).toBe(examBoard);
       },
     );
     it.each(subjectsWithExamboardsByYear)(
       "can handle %p",
       (term, examBoard, subject, year) => {
         const result = findPfMatch(term);
-        expect(result).toMatchObject({
-          subject,
-          year,
-          examBoard,
-        });
+        expect(result?.subject?.slug).toBe(subject);
+        expect(result?.year?.slug).toBe(year);
+        expect(result?.examBoard?.slug).toBe(examBoard);
       },
     );
     it.each([

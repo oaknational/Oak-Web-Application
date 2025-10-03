@@ -1,3 +1,27 @@
+# [1.880.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.879.0...v1.880.0) (2025-10-02)
+
+
+### Bug Fixes
+
+*  add missing apply for tablet prop ([2c0cca9](https://github.com/oaknational/Oak-Web-Application/commit/2c0cca95a71c319ce1453b7cd1f0d5101e4784e4))
+* button desendant of button ([7a5a247](https://github.com/oaknational/Oak-Web-Application/commit/7a5a2471a5efd39717125bf2324dfc7c3fb9edf6))
+* dont render suggested filters when empty array ([499eb67](https://github.com/oaknational/Oak-Web-Application/commit/499eb67b52d033ebee716b8a4cfc4ebba1d3da35))
+* missed g in regex ([3ab529f](https://github.com/oaknational/Oak-Web-Application/commit/3ab529fc9e7b3f454f2f7d302aa154846012495f))
+
+
+### Features
+
+* add title to fuzzy search ([10e2688](https://github.com/oaknational/Oak-Web-Application/commit/10e26883ec7935ad7b9cfa0a134251c4fff88c5e))
+* add title to schema ([6be0f49](https://github.com/oaknational/Oak-Web-Application/commit/6be0f49d559606b13d95bbb6f6a7d32bbcf9bbaf))
+* convert to filter helper ([2f5536c](https://github.com/oaknational/Oak-Web-Application/commit/2f5536c7e2ddb60851f582157b35635e520c1c84))
+* mini dropdown component ([0dc6bd1](https://github.com/oaknational/Oak-Web-Application/commit/0dc6bd193f8dbe4bca4f21d0accaed58fe0d4aa8))
+* mini dropdown componnent ([e4d1550](https://github.com/oaknational/Oak-Web-Application/commit/e4d15504a3138ec574556df0fd712b75a3c2fab5))
+* mobile drawer nav ([c689054](https://github.com/oaknational/Oak-Web-Application/commit/c68905447aa22e952d8b1f0378ba7084810161a9))
+* search suggested filters ([2768eb2](https://github.com/oaknational/Oak-Web-Application/commit/2768eb23107df0a2ef3fbe6e0b35cdd7f3dde445))
+* search view updates ([f2a5c30](https://github.com/oaknational/Oak-Web-Application/commit/f2a5c30c19d4b6ad8ba27095a383c89c19404e19))
+* use mini drop down for mobile filters ([d184a46](https://github.com/oaknational/Oak-Web-Application/commit/d184a46ea2ebc481caaf7a51e3b9149fec7b7756))
+* use suggested filters hook ([6a697f0](https://github.com/oaknational/Oak-Web-Application/commit/6a697f00eb193edc8c94a5c7fbfbf04ad001d74f))
+
 # [1.879.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.878.0...v1.879.0) (2025-10-02)
 
 
