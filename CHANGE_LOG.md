@@ -1,3 +1,27 @@
+# [1.881.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.880.0...v1.881.0) (2025-10-03)
+
+
+### Bug Fixes
+
+* ai search enabled env var misnamed ([08afa8a](https://github.com/oaknational/Oak-Web-Application/commit/08afa8acfccf448ecdadfe2b73e0d976b5f3e709))
+* preview env not allowing ai search ([cc8f1bd](https://github.com/oaknational/Oak-Web-Application/commit/cc8f1bd3e5c8d084b86a32fe376198bcfc3958a9))
+* return sorted array directly, organise env vars better, explanatory comment for prompt xml ([fdf77a6](https://github.com/oaknational/Oak-Web-Application/commit/fdf77a6d91a5af7277943a2cb512040eac83586a))
+
+
+### Features
+
+* add api key config and search feature flag for production environment ([0a6af74](https://github.com/oaknational/Oak-Web-Application/commit/0a6af74f8882edbea71ebbdc2e8c0cf2e528a6f4))
+* call open ai model with subject list from curriculum data ([9ecb211](https://github.com/oaknational/Oak-Web-Application/commit/9ecb21136801e12efd8476ae8d49e6bed3b0f1aa))
+* format model response correctly ([6620b0a](https://github.com/oaknational/Oak-Web-Application/commit/6620b0a2995023d63a0815cf9513c0bd375836d4))
+* match api response to schema, mock openai in tests ([4e4030c](https://github.com/oaknational/Oak-Web-Application/commit/4e4030c5040e65847dbbb4f4967e74a8aa4fe8fa))
+* rename variables, change aienabled variable depending on env ([6d41514](https://github.com/oaknational/Oak-Web-Application/commit/6d415142fc47e07484c02efda6797854218a1ceb))
+* return 503 when service is unavailable ([72d3829](https://github.com/oaknational/Oak-Web-Application/commit/72d382949fa9f58cfab5097b80fb1d548ccbddaf))
+* update environment variable configurations and disable AI search in production ([e647e7e](https://github.com/oaknational/Oak-Web-Application/commit/e647e7eb0fb90a820b2dcf169afb4bb5f04d73a0))
+* use curriculum data ([50f9d72](https://github.com/oaknational/Oak-Web-Application/commit/50f9d723eee5f6950679e9f0394c55f28fb467d2))
+* use dummy subject data ([5e68ae2](https://github.com/oaknational/Oak-Web-Application/commit/5e68ae2784e2a6e42e6adc8c2194012e09292b11))
+* use dynamic subjects enum ([1198f07](https://github.com/oaknational/Oak-Web-Application/commit/1198f0737c8455f4f163ccd3c983f73143649c99))
+* validate output in callModel function ([b99bf18](https://github.com/oaknational/Oak-Web-Application/commit/b99bf183c230afb1ddb7fea1b3cd866e91f7498d))
+
 # [1.880.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.879.0...v1.880.0) (2025-10-02)
 
 
