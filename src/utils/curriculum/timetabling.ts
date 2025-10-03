@@ -49,6 +49,14 @@ function safeFetchData(searchParams: ReadonlyURLSearchParams | null) {
   return result.data ?? {};
 }
 
+function filterEmptyName(data: Partial<TimetableParams>) {
+  const filtered = { ...data };
+  if (!filtered.name || filtered.name === "") {
+    delete filtered.name;
+  }
+  return filtered;
+}
+
 export function useTimetableParams(): useTimetableParamsHook {
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -61,10 +69,28 @@ export function useTimetableParams(): useTimetableParamsHook {
     setData(safeFetchData(searchParams));
   }, [searchParams]);
 
+  // Populate URL with defaults on mount
+  useEffect(() => {
+    const currentData = safeFetchData(searchParams);
+    const filteredData = filterEmptyName(currentData);
+    const newParams = simpleObjectAsSearchParams(filteredData);
+    const currentParamsString = searchParams?.toString() || "";
+
+    if (currentParamsString !== newParams.toString()) {
+      window.history.replaceState(
+        {},
+        "",
+        `${pathname}?${newParams.toString()}`,
+      );
+    }
+  }, [pathname, searchParams]);
+
   const setDataHandler = (newData: Partial<TimetableParams>) => {
     const result = schema.safeParse({ ...data, ...newData });
     const allData = result.data ?? {};
-    const newSearchParams = simpleObjectAsSearchParams(allData, defaults);
+    const filteredData = filterEmptyName(allData);
+
+    const newSearchParams = simpleObjectAsSearchParams(filteredData);
     setData(allData);
     window.history.replaceState(
       {},
