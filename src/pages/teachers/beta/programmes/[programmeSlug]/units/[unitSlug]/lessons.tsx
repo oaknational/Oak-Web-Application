@@ -41,10 +41,10 @@ import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix
 import isSlugEYFS from "@/utils/slugModifiers/isSlugEYFS";
 import PaginationHead from "@/components/SharedComponents/Pagination/PaginationHead";
 import { isLessonListItem } from "@/components/TeacherComponents/LessonListItem/LessonListItem";
-import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+import { useShare } from "@/pages-helpers/teacher/share/useShare";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
 import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
-import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
+import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share/shareTypes";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { resolveOakHref } from "@/common-lib/urls";
 import { useTeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/useTeacherShareButton";
@@ -93,7 +93,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
   } = curriculumData;
 
   const unitListingHref = `/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/programmes`;
-  const { shareUrl, browserUrl, shareActivated } = useShareExperiment({
+  const { shareUrl, browserUrl, shareActivated } = useShare({
     programmeSlug: programmeSlug ?? undefined,
     source: "lesson-listing",
     curriculumTrackingProps: {

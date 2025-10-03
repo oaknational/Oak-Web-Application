@@ -10,15 +10,12 @@ import {
   storeActivationKey,
   storeConversionShareId,
 } from "./createShareId";
-import {
-  CoreProperties,
-  CurriculumTrackingProps,
-} from "./shareExperimentTypes";
+import { CoreProperties, CurriculumTrackingProps } from "./shareTypes";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { LessonReleaseCohortValueType } from "@/browser-lib/avo/Avo";
 
-export const useShareExperiment = ({
+export const useShare = ({
   programmeSlug,
   source,
   shareBaseUrl,

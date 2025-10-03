@@ -1,8 +1,8 @@
 import { renderHook } from "@testing-library/react";
 
-import { useShareExperiment } from "./useShareExperiment";
+import { useShare } from "./useShare";
 import { getShareIdKey, createAndStoreShareId } from "./createShareId";
-import { CurriculumTrackingProps } from "./shareExperimentTypes";
+import { CurriculumTrackingProps } from "./shareTypes";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { LessonReleaseCohortValueType } from "@/browser-lib/avo/Avo";
@@ -33,7 +33,7 @@ interface MockLocation {
   href: string;
 }
 
-describe("useShareExperiments", () => {
+describe("useShare", () => {
   const curriculumTrackingProps: CurriculumTrackingProps & {
     lessonReleaseDate: string;
     lessonReleaseCohort: LessonReleaseCohortValueType;
@@ -70,7 +70,7 @@ describe("useShareExperiments", () => {
   it("should generate a shareId", () => {
     // hook wrapper
     const { result } = renderHook(() =>
-      useShareExperiment({
+      useShare({
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
@@ -88,7 +88,7 @@ describe("useShareExperiments", () => {
 
     // hook wrapper
     const { result } = renderHook(() =>
-      useShareExperiment({
+      useShare({
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         shareBaseUrl: "http://localhost:3000/teachers/lessons/lesson-slug",
@@ -111,7 +111,7 @@ describe("useShareExperiments", () => {
 
     // hook wrapper
     renderHook(() =>
-      useShareExperiment({
+      useShare({
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
@@ -130,7 +130,7 @@ describe("useShareExperiments", () => {
 
     // hook wrapper
     renderHook(() =>
-      useShareExperiment({
+      useShare({
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
@@ -150,7 +150,7 @@ describe("useShareExperiments", () => {
 
     // hook wrapper
     renderHook(() =>
-      useShareExperiment({
+      useShare({
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
@@ -173,7 +173,7 @@ describe("useShareExperiments", () => {
 
     // hook wrapper
     renderHook(() =>
-      useShareExperiment({
+      useShare({
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
@@ -192,7 +192,7 @@ describe("useShareExperiments", () => {
 
     // hook wrapper
     renderHook(() =>
-      useShareExperiment({
+      useShare({
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
@@ -215,7 +215,7 @@ describe("useShareExperiments", () => {
 
     // hook wrapper
     renderHook(() =>
-      useShareExperiment({
+      useShare({
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
@@ -230,7 +230,7 @@ describe("useShareExperiments", () => {
     const mockTrack = useAnalytics().track;
 
     const { result } = renderHook(() =>
-      useShareExperiment({
+      useShare({
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
@@ -251,7 +251,7 @@ describe("useShareExperiments", () => {
     localStorage.setItem(`av-${key}`, JSON.stringify(true));
 
     const { result } = renderHook(() =>
-      useShareExperiment({
+      useShare({
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
@@ -265,8 +265,12 @@ describe("useShareExperiments", () => {
   });
 
   it("should not update browserUrl if overrideExistingShareId is false and urlShareId is present", () => {
+    const key = getShareIdKey("lesson-slug_unit-slug_programmeSlug");
+
+    window.location.search = `?${key}=test-share-id&sm=0&src=1`;
+
     const { result } = renderHook(() =>
-      useShareExperiment({
+      useShare({
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         shareBaseUrl: "http://localhost:3000/teachers/lessons/lesson-slug",

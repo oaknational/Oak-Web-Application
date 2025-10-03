@@ -15,30 +15,26 @@ import curriculumApi2023, {
 } from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
 import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
-import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
-import { useTeacherNotes } from "@/pages-helpers/teacher/share-experiments/useTeacherNotes";
+import { useShare } from "@/pages-helpers/teacher/share/useShare";
+import { useTeacherNotes } from "@/pages-helpers/teacher/share/useTeacherNotes";
 
 const url = "";
 
-// mock useShareExperiment
-jest.mock(
-  "@/pages-helpers/teacher/share-experiments/useShareExperiment",
-  () => {
-    return {
-      __esModule: true,
-      useShareExperiment: jest.fn(() => ({
-        shareExperimentFlag: false,
-        shareUrl: "",
-        browserUrl: url,
-        shareActivated: false,
-        shareIdRef: { current: "" },
-        shareIdKeyRef: { current: "" },
-      })),
-    };
-  },
-);
+// mock useShare
+jest.mock("@/pages-helpers/teacher/share/useShare", () => {
+  return {
+    __esModule: true,
+    useShare: jest.fn(() => ({
+      shareUrl: "",
+      browserUrl: url,
+      shareActivated: false,
+      shareIdRef: { current: "" },
+      shareIdKeyRef: { current: "" },
+    })),
+  };
+});
 
-jest.mock("@/pages-helpers/teacher/share-experiments/useTeacherNotes", () => {
+jest.mock("@/pages-helpers/teacher/share/useTeacherNotes", () => {
   return {
     __esModule: true,
     useTeacherNotes: jest.fn(() => ({
@@ -122,7 +118,7 @@ describe("Lesson Overview Canonical Page", () => {
     it("updates the url", async () => {
       window.history.replaceState = jest.fn();
 
-      (useShareExperiment as jest.Mock).mockReturnValueOnce({
+      (useShare as jest.Mock).mockReturnValueOnce({
         shareUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
         browserUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
         shareActivated: false,
