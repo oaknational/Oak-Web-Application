@@ -80,11 +80,6 @@ export const useShareExperiment = ({
       }
     }
 
-    // don't continue if feature flag is not yet ready
-    if (overrideExistingShareId === null) {
-      return;
-    }
-
     // don't continue if we already have a shareId
     if (shareIdRef.current) {
       return;
