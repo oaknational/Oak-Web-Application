@@ -59,8 +59,8 @@ describe("/api/search/intent", () => {
     mockParse.mockResolvedValue({
       output_parsed: {
         subjects: [
-          { slug: "english", confidence: 2 },
-          { slug: "drama", confidence: 4 },
+          { slug: "maths", confidence: 4 },
+          { slug: "science", confidence: 2 },
         ],
       },
     });
@@ -76,8 +76,6 @@ describe("/api/search/intent", () => {
       directMatch: null,
       suggestedFilters: [
         { type: "subject", slug: "maths", title: "Maths" },
-        { type: "key-stage", slug: "ks4", title: "Key Stage 4" },
-        { type: "exam-board", slug: "aqa", title: "AQA" },
         { type: "subject", slug: "science", title: "Science" },
       ],
     });

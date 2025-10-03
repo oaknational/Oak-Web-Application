@@ -53,11 +53,20 @@ const handler: NextApiHandler = async (req, res) => {
       return res.status(200).json(payload);
     } else if (aiSearchEnabled) {
       const subjectsFromModel = await callModel(searchTerm);
+      const getTitleFromSlug = (slug: string) => {
+        const subject = OAK_SUBJECTS.find((subject) => subject.slug === slug);
+        if (!subject) throw new Error("failed to find subject title");
+        return subject?.title || slug;
+      };
 
       const payload = {
         directMatch: null,
         suggestedFilters: subjectsFromModel.map((filter) => {
-          return { type: "subject", slug: filter.slug };
+          return {
+            type: "subject",
+            slug: filter.slug,
+            title: getTitleFromSlug(filter.slug),
+          };
         }),
       };
       return res.status(200).json(payload);
