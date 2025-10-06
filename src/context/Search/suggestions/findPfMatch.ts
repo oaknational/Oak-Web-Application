@@ -4,6 +4,7 @@ import {
   subjectSlugs,
   yearSlugs,
 } from "@oaknational/oak-curriculum-schema";
+import z from "zod";
 
 import {
   OAK_EXAMBOARDS,
@@ -25,16 +26,24 @@ export const findPfMatch = (query: string): DirectMatch | null => {
   }
 
   const subjectMatch = getMatch(query, OAK_SUBJECTS);
-  const parsedSubject = subjectSlugs.safeParse(subjectMatch?.slug);
+  const parsedSubject = z
+    .object({ title: z.string(), slug: subjectSlugs })
+    .safeParse(subjectMatch);
 
   const keystageMatch = getMatch(query, OAK_KEYSTAGES);
-  const parsedKeystage = keystageSlugs.safeParse(keystageMatch?.slug);
+  const parsedKeystage = z
+    .object({ title: z.string(), slug: keystageSlugs })
+    .safeParse(keystageMatch);
 
   const yearMatch = getMatch(query, OAK_YEARS);
-  const parsedYear = yearSlugs.safeParse(yearMatch?.slug);
+  const parsedYear = z
+    .object({ title: z.string(), slug: yearSlugs })
+    .safeParse(yearMatch);
 
   const examboardMatch = getMatch(query, OAK_EXAMBOARDS);
-  const parsedExamboard = examboardSlugs.safeParse(examboardMatch?.slug);
+  const parsedExamboard = z
+    .object({ title: z.string(), slug: examboardSlugs })
+    .safeParse(examboardMatch);
 
   if (
     !parsedSubject.data &&
