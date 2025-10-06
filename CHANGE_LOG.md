@@ -1,3 +1,10 @@
+# [1.882.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.881.1...v1.882.0) (2025-10-06)
+
+
+### Features
+
+* add editable input for name ([aa2973c](https://github.com/oaknational/Oak-Web-Application/commit/aa2973c730792d286773f455d27355fb88d3272b))
+
 ## [1.881.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.881.0...v1.881.1) (2025-10-06)
 
 # [1.881.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.880.0...v1.881.0) (2025-10-03)
