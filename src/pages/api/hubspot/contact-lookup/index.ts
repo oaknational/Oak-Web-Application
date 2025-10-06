@@ -51,7 +51,7 @@ export const getHubspotContactByCookie = async (
     const contactData = await contactIds.json();
 
     // If no email is found for the cookie, return null
-    if (!contactData.properties.email?.value) {
+    if (!contactData.properties?.email?.value) {
       return null;
     }
 
@@ -82,6 +82,7 @@ export function createHandler(hubspotClient: HubspotClient) {
 
       // Try email-based lookup first
       if ("email" in body) {
+        console.log("diego email body", body);
         const { email } = emailLookupSchema.parse(body);
         const contact = await getHubspotContactByEmail(hubspotClient, email);
         return res.status(200).json({ contact });
