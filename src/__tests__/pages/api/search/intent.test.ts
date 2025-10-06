@@ -66,11 +66,12 @@ describe("/api/search/intent", () => {
     await handler(req, res);
 
     expect(res._getStatusCode()).toBe(200);
+
     expect(res._getJSONData()).toEqual({
       directMatch: {
-        subject: "french",
-        keyStage: "ks4",
-        examBoard: "aqa",
+        subject: { title: "French", slug: "french" },
+        keyStage: { title: "Key Stage 4", slug: "ks4" },
+        examBoard: { title: "AQA", slug: "aqa" },
         year: null,
       },
       suggestedFilters: [],
@@ -112,11 +113,17 @@ describe("/api/search/intent", () => {
     expect(res._getJSONData()).toEqual({
       directMatch: null,
       suggestedFilters: [
-        { type: "subject", value: "drama" },
-        { type: "subject", value: "english" },
-        { type: "key-stage", value: "ks1" },
-        { type: "key-stage", value: "ks2" },
-        { type: "key-stage", value: "ks3" },
+        { type: "subject", slug: "maths", title: "Maths" },
+        { type: "subject", slug: "science", title: "Science" },
+        {
+          type: "key-stage",
+          slug: "early-years-foundation-stage",
+          title: "EYFS",
+        },
+        { type: "key-stage", slug: "ks1", title: "Key Stage 1" },
+        { type: "key-stage", slug: "ks2", title: "Key Stage 2" },
+        { type: "key-stage", slug: "ks3", title: "Key Stage 3" },
+        { type: "key-stage", slug: "ks4", title: "Key Stage 4" },
       ],
     });
   });
@@ -139,14 +146,14 @@ describe("/api/search/intent", () => {
     expect(res._getStatusCode()).toBe(200);
     expect(res._getJSONData()).toEqual({
       directMatch: {
-        examBoard: null,
-        keyStage: "ks3",
         subject: null,
+        keyStage: { title: "Key Stage 3", slug: "ks3" },
+        examBoard: null,
         year: null,
       },
       suggestedFilters: [
-        { type: "subject", value: "drama" },
-        { type: "subject", value: "english" },
+        { type: "subject", slug: "drama", title: "Drama" },
+        { type: "subject", slug: "english", title: "English" },
       ],
     });
   });
@@ -164,16 +171,17 @@ describe("/api/search/intent", () => {
     await handler(req, res);
 
     expect(res._getStatusCode()).toBe(200);
+
     expect(res._getJSONData()).toEqual({
       directMatch: null,
       suggestedFilters: [
-        { type: "subject", value: "geography" },
-        { type: "key-stage", value: "ks1" },
-        { type: "key-stage", value: "ks2" },
-        { type: "key-stage", value: "ks3" },
-        { type: "key-stage", value: "ks4" },
-        { type: "exam-board", value: "aqa" },
-        { type: "exam-board", value: "edexcelb" },
+        { type: "subject", slug: "geography", title: "Geography" },
+        { type: "key-stage", slug: "ks1", title: "Key Stage 1" },
+        { type: "key-stage", slug: "ks2", title: "Key Stage 2" },
+        { type: "key-stage", slug: "ks3", title: "Key Stage 3" },
+        { type: "key-stage", slug: "ks4", title: "Key Stage 4" },
+        { type: "exam-board", slug: "aqa", title: "AQA" },
+        { type: "exam-board", slug: "edexcelb", title: "Edexcel B" },
       ],
     });
   });
