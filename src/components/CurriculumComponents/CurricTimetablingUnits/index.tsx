@@ -54,8 +54,9 @@ export const CurricTimetablingUnits = ({
 
         <OakMaxWidth $ph={"inner-padding-xl5"}>
           <OakFlex $flexDirection={"row"}>
-            <OakFlex $width={"all-spacing-21"}>
-              <OakHeading tag="h2">Fitler and highlight</OakHeading>
+            <OakFlex $width={"all-spacing-21"} $flexDirection={"column"}>
+              <OakHeading tag="h2">Filter and highlight</OakHeading>
+              <pre>{JSON.stringify(data, null, 2)}</pre>
             </OakFlex>
             <OakFlex $flexGrow={1}>
               <ul>
