@@ -1,8 +1,4 @@
-import {
-  OakFlex,
-  OakJauntyAngleLabel,
-  OakTextInput,
-} from "@oaknational/oak-components";
+import { OakTextInput } from "@oaknational/oak-components";
 import { useMemo, useState, useEffect, ChangeEvent } from "react";
 
 function stringIsValidNumber(value: string, min: number, max: number) {
@@ -14,7 +10,6 @@ function stringIsValidNumber(value: string, min: number, max: number) {
 
 export interface CurricNumberInputProps {
   id: string;
-  label: string;
   value: number;
   onChange: (value: number) => void;
   ariaDescribedBy?: string;
@@ -26,7 +21,6 @@ export interface CurricNumberInputProps {
 
 export function CurricNumberInput({
   id,
-  label,
   value,
   onChange,
   ariaDescribedBy,
@@ -68,38 +62,22 @@ export function CurricNumberInput({
   };
 
   return (
-    <OakFlex $position="relative" $flexDirection="column">
-      <OakJauntyAngleLabel
-        as="label"
-        htmlFor={id}
-        label={label}
-        $font="heading-7"
-        $background="lemon"
-        $color="black"
-        $zIndex="in-front"
-        $position="absolute"
-        $top={"-20px"}
-        $left={"5px"}
-        $borderRadius="border-radius-square"
-        data-testid="jaunty-label"
-      />
-      <OakTextInput
-        id={id}
-        data-testid="text-input"
-        type="number"
-        min={min}
-        max={max}
-        step={step}
-        value={dirtyValue}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        aria-describedby={ariaDescribedBy}
-        wrapperWidth="100%"
-        $pv="inner-padding-none"
-        $height="all-spacing-10"
-        borderColor={isErroring ? "red" : undefined}
-        background={isErroring ? "red30" : undefined}
-      />
-    </OakFlex>
+    <OakTextInput
+      id={id}
+      data-testid="text-input"
+      type="number"
+      min={min}
+      max={max}
+      step={step}
+      value={dirtyValue}
+      onChange={handleChange}
+      onBlur={handleBlur}
+      aria-describedby={ariaDescribedBy}
+      wrapperWidth="100%"
+      $pv="inner-padding-none"
+      $height="all-spacing-10"
+      borderColor={isErroring ? "red" : undefined}
+      background={isErroring ? "red30" : undefined}
+    />
   );
 }
