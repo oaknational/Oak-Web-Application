@@ -181,6 +181,7 @@ const DownloadPageWithAccordionContent = (
         handleToggleSelectAll={handleToggleSelectAll}
         selectAllChecked={selectAllChecked}
         id="downloads-accordion"
+        initialOpen={!selectAllChecked}
       >
         <OakBox
           $pa={"inner-padding-none"}

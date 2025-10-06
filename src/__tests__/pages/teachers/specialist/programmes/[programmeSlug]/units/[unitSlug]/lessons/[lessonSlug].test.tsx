@@ -59,7 +59,7 @@ describe("pages/teachers/specialist/programmes/units/[unitSlug]/lessons/[lessonS
     );
 
     expect(screen.getAllByTestId("download-all-button")[0]).toHaveTextContent(
-      "Download all resources",
+      "Download all",
     );
   });
 
