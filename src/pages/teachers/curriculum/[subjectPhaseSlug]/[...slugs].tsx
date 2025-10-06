@@ -97,8 +97,9 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   }, [curriculumUnitsFormattedData]);
 
   const onChangeUrl = useCallback(
-    (url: string) =>
-      router.replace(url, undefined, { scroll: false, shallow: true }),
+    (url: string) => {
+      router.replace(url, undefined, { scroll: false, shallow: true });
+    },
     [router],
   );
   const [filters, setFilters] = useFilters(defaultFilter, { onChangeUrl });
