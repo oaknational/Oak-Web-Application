@@ -3,6 +3,7 @@ import {
   OakBox,
   OakFlex,
   OakHeading,
+  OakJauntyAngleLabel,
   OakP,
   oakDefaultTheme,
   OakThemeProvider,
@@ -19,10 +20,6 @@ const meta: Meta<typeof Component> = {
     id: {
       control: "text",
       description: "The unique identifier for the input",
-    },
-    label: {
-      control: "text",
-      description: "The label text displayed on the jaunty angle label",
     },
     value: {
       control: "number",
@@ -61,7 +58,24 @@ type Story = StoryObj<typeof Component>;
 
 function InteractiveWrapper(args: React.ComponentProps<typeof Component>) {
   const [value, setValue] = useState(args.value);
-  return <Component {...args} value={value} onChange={setValue} />;
+  return (
+    <OakFlex $position="relative" $flexDirection="column">
+      <OakJauntyAngleLabel
+        as="label"
+        htmlFor={args.id}
+        label="Number of lessons"
+        $font="heading-7"
+        $background="lemon"
+        $color="black"
+        $zIndex="in-front"
+        $position="absolute"
+        $top={"-20px"}
+        $left={"5px"}
+        $borderRadius="border-radius-square"
+      />
+      <Component {...args} value={value} onChange={setValue} />
+    </OakFlex>
+  );
 }
 
 function ValidationDemo() {
@@ -71,16 +85,30 @@ function ValidationDemo() {
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <OakFlex $flexDirection="column" $gap="space-between-m">
-        <Component
-          id="validated-input"
-          label="Number of lessons"
-          value={value}
-          onChange={setValue}
-          min={5}
-          max={35}
-          step={1}
-          onValidationChange={setIsValid}
-        />
+        <OakFlex $position="relative" $flexDirection="column">
+          <OakJauntyAngleLabel
+            as="label"
+            htmlFor="validated-input"
+            label="Number of lessons"
+            $font="heading-7"
+            $background="lemon"
+            $color="black"
+            $zIndex="in-front"
+            $position="absolute"
+            $top={"-20px"}
+            $left={"5px"}
+            $borderRadius="border-radius-square"
+          />
+          <Component
+            id="validated-input"
+            value={value}
+            onChange={setValue}
+            min={5}
+            max={35}
+            step={1}
+            onValidationChange={setIsValid}
+          />
+        </OakFlex>
         <OakBox $pa="inner-padding-m">
           <OakP $font="body-2">
             Validation status: {isValid ? "✓ Valid" : "✗ Invalid"}
@@ -106,48 +134,90 @@ function MultipleInputsDemo() {
           <OakHeading id="autumn-heading" tag="h3" $font="heading-3">
             Autumn
           </OakHeading>
-          <Component
-            id="autumn-lessons"
-            label="Number of lessons"
-            value={autumn}
-            onChange={setAutumn}
-            ariaDescribedBy="autumn-heading"
-            min={5}
-            max={35}
-            step={1}
-          />
+          <OakFlex $position="relative" $flexDirection="column">
+            <OakJauntyAngleLabel
+              as="label"
+              htmlFor="autumn-lessons"
+              label="Number of lessons"
+              $font="heading-7"
+              $background="lemon"
+              $color="black"
+              $zIndex="in-front"
+              $position="absolute"
+              $top={"-20px"}
+              $left={"5px"}
+              $borderRadius="border-radius-square"
+            />
+            <Component
+              id="autumn-lessons"
+              value={autumn}
+              onChange={setAutumn}
+              ariaDescribedBy="autumn-heading"
+              min={5}
+              max={35}
+              step={1}
+            />
+          </OakFlex>
         </OakFlex>
 
         <OakFlex $flexDirection="column" $gap="space-between-m2">
           <OakHeading id="spring-heading" tag="h3" $font="heading-3">
             Spring
           </OakHeading>
-          <Component
-            id="spring-lessons"
-            label="Number of lessons"
-            value={spring}
-            onChange={setSpring}
-            ariaDescribedBy="spring-heading"
-            min={5}
-            max={35}
-            step={1}
-          />
+          <OakFlex $position="relative" $flexDirection="column">
+            <OakJauntyAngleLabel
+              as="label"
+              htmlFor="spring-lessons"
+              label="Number of lessons"
+              $font="heading-7"
+              $background="lemon"
+              $color="black"
+              $zIndex="in-front"
+              $position="absolute"
+              $top={"-20px"}
+              $left={"5px"}
+              $borderRadius="border-radius-square"
+            />
+            <Component
+              id="spring-lessons"
+              value={spring}
+              onChange={setSpring}
+              ariaDescribedBy="spring-heading"
+              min={5}
+              max={35}
+              step={1}
+            />
+          </OakFlex>
         </OakFlex>
 
         <OakFlex $flexDirection="column" $gap="space-between-m2">
           <OakHeading id="summer-heading" tag="h3" $font="heading-3">
             Summer
           </OakHeading>
-          <Component
-            id="summer-lessons"
-            label="Number of lessons"
-            value={summer}
-            onChange={setSummer}
-            ariaDescribedBy="summer-heading"
-            min={5}
-            max={35}
-            step={1}
-          />
+          <OakFlex $position="relative" $flexDirection="column">
+            <OakJauntyAngleLabel
+              as="label"
+              htmlFor="summer-lessons"
+              label="Number of lessons"
+              $font="heading-7"
+              $background="lemon"
+              $color="black"
+              $zIndex="in-front"
+              $position="absolute"
+              $top={"-20px"}
+              $left={"5px"}
+              $borderRadius="border-radius-square"
+            />
+            <Component
+              id="summer-lessons"
+              value={summer}
+              onChange={setSummer}
+              ariaDescribedBy="summer-heading"
+              min={5}
+              max={35}
+              step={1}
+            />
+          </OakFlex>
         </OakFlex>
       </OakFlex>
     </OakThemeProvider>
@@ -157,7 +227,6 @@ function MultipleInputsDemo() {
 export const Default: Story = {
   args: {
     id: "lessons-input",
-    label: "Number of lessons",
     value: 30,
     min: 5,
     max: 35,
@@ -169,7 +238,6 @@ export const Default: Story = {
 export const MinimumValue: Story = {
   args: {
     id: "lessons-min",
-    label: "Number of lessons",
     value: 5,
     min: 5,
     max: 35,
@@ -181,7 +249,6 @@ export const MinimumValue: Story = {
 export const MaximumValue: Story = {
   args: {
     id: "lessons-max",
-    label: "Number of lessons",
     value: 35,
     min: 5,
     max: 35,
@@ -193,7 +260,6 @@ export const MaximumValue: Story = {
 export const CustomRange: Story = {
   args: {
     id: "lessons-custom",
-    label: "Number of lessons",
     value: 50,
     min: 20,
     max: 100,
@@ -205,7 +271,6 @@ export const CustomRange: Story = {
 export const WithDescription: Story = {
   args: {
     id: "lessons-described",
-    label: "Number of lessons",
     value: 30,
     min: 5,
     max: 35,
@@ -231,7 +296,6 @@ export const MultipleInputs: Story = {
 export const SmallStep: Story = {
   args: {
     id: "lessons-small-step",
-    label: "Number of lessons",
     value: 30,
     min: 5,
     max: 35,
@@ -243,7 +307,6 @@ export const SmallStep: Story = {
 export const LargeStep: Story = {
   args: {
     id: "lessons-large-step",
-    label: "Number of lessons",
     value: 30,
     min: 5,
     max: 35,
