@@ -16,9 +16,7 @@ import {
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 
 const render = renderWithProviders();
-jest.mock("posthog-js/react", () => ({
-  useFeatureFlagVariantKey: jest.fn(),
-}));
+
 const lesson = lessonDownloadsFixture({
   lessonTitle: "The meaning of time",
 });
