@@ -1,5 +1,6 @@
 "use client";
 import {
+  OakBox,
   OakFlex,
   OakInformativeModal,
   OakMaxWidth,
@@ -61,7 +62,7 @@ export const CurricTimetablingUnits = ({
         onClose={() => setModalOpen(false)}
         closeOnBackgroundClick={true}
       >
-        Edit details modal
+        <OakBox data-testid="edit-details-modal">Edit details modal</OakBox>
       </OakInformativeModal>
 
       <OakMaxWidth $ph={"inner-padding-xl5"}>

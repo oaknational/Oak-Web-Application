@@ -1,8 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CurricTimetableHeader basic usage 1`] = `
-<body>
-  <div>
+exports[`CurricTimetablingUnits snapshot 1`] = `
+<div>
+  <div
+    class="sc-fqkvVR sc-kAyceB fDrQuw eeevb"
+  >
     <div
       class="sc-fqkvVR iYZQrv"
     >
@@ -40,13 +42,88 @@ exports[`CurricTimetableHeader basic usage 1`] = `
                 class="sc-kpDqfm jGrEMo"
                 data-testid="timetable-header-title"
               >
-                TITLE
+                Year 1 maths
               </h1>
               <div
                 class="sc-fqkvVR fgBWrW"
                 data-testid="timetable-header-additional"
               >
-                ADDITIONAL
+                <div
+                  class="sc-fqkvVR sc-kAyceB emCiKl ddfwpL"
+                >
+                  <div
+                    class="sc-fqkvVR sc-fXSgeo eJBGXR efioha"
+                  >
+                    <div
+                      class="sc-fqkvVR iPpXCP grey-shadow"
+                    />
+                    <div
+                      class="sc-fqkvVR iPpXCP yellow-shadow"
+                    />
+                    <button
+                      class="sc-iHGNWf sc-esYiGF iKUgIm hnQzKH internal-button"
+                    >
+                      <div
+                        class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
+                      >
+                        <span
+                          class="sc-dAlyuH hcOVuy"
+                        >
+                          Edit details
+                        </span>
+                        <div
+                          class="sc-fqkvVR kbnxKi"
+                        >
+                          <img
+                            alt=""
+                            class="sc-dcJsrY beWtwI"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1727861316/icons/Icon_Copy_qxgynv.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </div>
+                      </div>
+                    </button>
+                  </div>
+                  <div
+                    class="sc-fqkvVR sc-fXSgeo eJBGXR efioha"
+                  >
+                    <div
+                      class="sc-fqkvVR iPpXCP grey-shadow"
+                    />
+                    <div
+                      class="sc-fqkvVR iPpXCP yellow-shadow"
+                    />
+                    <button
+                      class="sc-iHGNWf sc-esYiGF iKUgIm hnQzKH internal-button"
+                    >
+                      <div
+                        class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
+                      >
+                        <span
+                          class="sc-dAlyuH hcOVuy"
+                        >
+                          Copy link
+                        </span>
+                        <div
+                          class="sc-fqkvVR kbnxKi"
+                        >
+                          <img
+                            alt=""
+                            class="sc-dcJsrY beWtwI"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699894149/icons/qxlunbg5tfrdherzsvlt.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </div>
+                      </div>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -69,5 +146,18 @@ exports[`CurricTimetableHeader basic usage 1`] = `
       </div>
     </div>
   </div>
-</body>
+  <div
+    class="sc-fqkvVR sc-kAyceB sc-jEACwC drEYrk jOTTNg"
+  >
+    <pre>
+      {
+  "autumn": 30,
+  "spring": 30,
+  "summer": 30,
+  "year": "1",
+  "name": ""
+}
+    </pre>
+  </div>
+</div>
 `;
