@@ -11,9 +11,10 @@ import {
   CurricFiltersSubjectCategories,
   CurricFiltersThreads,
   CurricFiltersTiers,
+  CurricFiltersYears,
 } from "../CurricVisualiserFilters";
 
-import { CurriculumFilters } from "@/utils/curriculum/types";
+import { CurriculumFilters, DEFAULT_FILTERS } from "@/utils/curriculum/types";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { shouldDisplayFilter } from "@/utils/curriculum/filtering";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
@@ -25,13 +26,16 @@ export type CurricVisualiserFiltersProps = {
   data: CurriculumUnitsFormattedData;
   slugs: CurriculumSelectionSlugs;
   ks4Options: SubjectPhasePickerData["subjects"][number]["ks4_options"];
+  includeFilters?: (keyof CurriculumFilters)[];
 };
 
-export default function CurricVisualiserFiltersTimetabling({
+export default function CurricVisualiserFiltersDesktop({
   filters,
   onChangeFilters,
   data,
   slugs,
+  ks4Options,
+  includeFilters = DEFAULT_FILTERS,
 }: CurricVisualiserFiltersProps) {
   return (
     <OakBox $mr={"space-between-s"}>
@@ -41,49 +45,67 @@ export default function CurricVisualiserFiltersTimetabling({
         Filter and highlight
       </OakHeading>
 
-      {shouldDisplayFilter(data, filters, "subjectCategories") && (
-        <>
-          <CurricFiltersSubjectCategories
-            filters={filters}
-            onChangeFilters={onChangeFilters}
-            data={data}
-            slugs={slugs}
-          />
-          <OakHandDrawnHR hrColor={"grey40"} $mv={"space-between-m2"} />
-        </>
-      )}
+      {includeFilters.includes("years") &&
+        shouldDisplayFilter(data, filters, "years") && (
+          <>
+            <CurricFiltersYears
+              filters={filters}
+              onChangeFilters={onChangeFilters}
+              data={data}
+              ks4Options={ks4Options}
+              slugs={slugs}
+            />
+            <OakHandDrawnHR hrColor={"grey40"} $mv={"space-between-m2"} />
+          </>
+        )}
 
-      {shouldDisplayFilter(data, filters, "childSubjects") && (
-        <>
-          <CurricFiltersChildSubjects
-            filters={filters}
-            onChangeFilters={onChangeFilters}
-            data={data}
-          />
-          <OakHandDrawnHR hrColor={"grey40"} $mv={"space-between-m2"} />
-        </>
-      )}
-      {shouldDisplayFilter(data, filters, "tiers") && (
-        <>
-          <CurricFiltersTiers
-            filters={filters}
-            onChangeFilters={onChangeFilters}
-            data={data}
-          />
-          <OakHandDrawnHR hrColor={"grey40"} $mv={"space-between-m2"} />
-        </>
-      )}
+      {includeFilters.includes("subjectCategories") &&
+        shouldDisplayFilter(data, filters, "subjectCategories") && (
+          <>
+            <CurricFiltersSubjectCategories
+              filters={filters}
+              onChangeFilters={onChangeFilters}
+              data={data}
+              slugs={slugs}
+            />
+            <OakHandDrawnHR hrColor={"grey40"} $mv={"space-between-m2"} />
+          </>
+        )}
 
-      {shouldDisplayFilter(data, filters, "threads") && (
-        <>
-          {/* TODO: This contains old style components */}
-          <CurricFiltersThreads
-            filters={filters}
-            onChangeFilters={onChangeFilters}
-            data={data}
-          />
-        </>
-      )}
+      {includeFilters.includes("childSubjects") &&
+        shouldDisplayFilter(data, filters, "childSubjects") && (
+          <>
+            <CurricFiltersChildSubjects
+              filters={filters}
+              onChangeFilters={onChangeFilters}
+              data={data}
+            />
+            <OakHandDrawnHR hrColor={"grey40"} $mv={"space-between-m2"} />
+          </>
+        )}
+      {includeFilters.includes("tiers") &&
+        shouldDisplayFilter(data, filters, "tiers") && (
+          <>
+            <CurricFiltersTiers
+              filters={filters}
+              onChangeFilters={onChangeFilters}
+              data={data}
+            />
+            <OakHandDrawnHR hrColor={"grey40"} $mv={"space-between-m2"} />
+          </>
+        )}
+
+      {includeFilters.includes("threads") &&
+        shouldDisplayFilter(data, filters, "threads") && (
+          <>
+            {/* TODO: This contains old style components */}
+            <CurricFiltersThreads
+              filters={filters}
+              onChangeFilters={onChangeFilters}
+              data={data}
+            />
+          </>
+        )}
     </OakBox>
   );
 }

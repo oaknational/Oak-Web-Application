@@ -5,7 +5,7 @@ import { useCallback, useMemo } from "react";
 
 import { CurricTimetableHeader } from "../CurricTimetableHeader";
 import { CurricShowSteps } from "../CurricShowSteps";
-import CurricVisualiserFiltersTimetabling from "../CurricVisualiserFiltersDesktop";
+import CurricVisualiserFiltersDesktop from "../CurricVisualiserFiltersDesktop";
 
 import { useTimetableParams } from "@/utils/curriculum/timetabling";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
@@ -64,12 +64,19 @@ export const CurricTimetablingUnits = ({
         <OakMaxWidth $ph={"inner-padding-xl5"}>
           <OakFlex $flexDirection={"row"}>
             <OakFlex $width={"all-spacing-21"}>
-              <CurricVisualiserFiltersTimetabling
+              <CurricVisualiserFiltersDesktop
                 filters={filters}
                 onChangeFilters={setFilters}
                 data={unitData}
                 slugs={slugs}
                 ks4Options={ks4Options}
+                includeFilters={[
+                  "childSubjects",
+                  "subjectCategories",
+                  "tiers",
+                  "threads",
+                  "pathways",
+                ]}
               />
             </OakFlex>
             <OakFlex $flexGrow={1}>

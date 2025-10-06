@@ -32,6 +32,14 @@ export const CurricVisualiserFiltersMobile: Story = {
       phaseSlug: "primary",
       ks4OptionSlug: null,
     },
+    includeFilters: [
+      "childSubjects",
+      "subjectCategories",
+      "tiers",
+      "years",
+      "threads",
+      "pathways",
+    ],
   },
   render: function Render(args) {
     return (
