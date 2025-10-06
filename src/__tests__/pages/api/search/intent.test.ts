@@ -1,5 +1,5 @@
 import { createNextApiMocks } from "@/__tests__/__helpers__/createNextApiMocks";
-import handler from "@/pages/api/intent";
+import handler from "@/pages/api/search/intent";
 
 const mockErrorReporter = jest.fn();
 jest.mock("@/common-lib/error-reporter", () => ({
