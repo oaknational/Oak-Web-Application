@@ -829,7 +829,7 @@ describe("useFilters", () => {
     it("initial state", () => {
       const defaultFilter = createFilter();
       const { result } = renderHook(() => {
-        return useFilters(defaultFilter, { onChangeUrl: () => {} });
+        return useFilters(defaultFilter);
       });
       const [filters] = result.current;
       expect(filters).toEqual(defaultFilter);
@@ -839,7 +839,7 @@ describe("useFilters", () => {
       const defaultFilter = createFilter();
       const updateFilterValue = createFilter({});
       const { result, rerender } = renderHook(() => {
-        return useFilters(defaultFilter, { onChangeUrl: () => {} });
+        return useFilters(defaultFilter);
       });
 
       const [, setFilters] = result.current;
@@ -861,7 +861,7 @@ describe("useFilters", () => {
 
       const defaultFilter = createFilter();
       const { result } = renderHook(() => {
-        return useFilters(defaultFilter, { onChangeUrl: () => {} });
+        return useFilters(defaultFilter);
       });
       const [filters] = result.current;
       expect(filters).toEqual({
@@ -872,20 +872,24 @@ describe("useFilters", () => {
 
     it("updating state", () => {
       (isCurricRoutingEnabled as jest.Mock).mockReturnValue(true);
-      const onChangeUrlMock = jest.fn();
+
       const defaultFilter = createFilter();
       const updateFilterValue = createFilter({
         tiers: ["foundation"],
       });
       const { result, rerender } = renderHook(() => {
-        return useFilters(defaultFilter, { onChangeUrl: onChangeUrlMock });
+        return useFilters(defaultFilter);
       });
 
       const [, setFilters] = result.current;
       act(() => {
         setFilters(updateFilterValue);
       });
-      expect(onChangeUrlMock).toHaveBeenCalledWith("/?tiers=foundation");
+      expect(replaceMock).toHaveBeenCalledWith(
+        "/?tiers=foundation",
+        undefined,
+        { scroll: false, shallow: true },
+      );
 
       rerender();
       const [filters] = result.current;

@@ -75,17 +75,6 @@ export type CurriculumFilters = {
   pathways: Pathway["pathway_slug"][];
 };
 
-type CurriculumFilterKeys = keyof CurriculumFilters;
-
-export const DEFAULT_FILTERS: CurriculumFilterKeys[] = [
-  "childSubjects",
-  "subjectCategories",
-  "tiers",
-  "years",
-  "threads",
-  "pathways",
-];
-
 export type Lesson = {
   title: string;
   slug?: string;

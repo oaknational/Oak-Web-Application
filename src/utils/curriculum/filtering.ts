@@ -1,6 +1,7 @@
 import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 import { useCallback, useLayoutEffect, useState } from "react";
 import { isEqual } from "lodash";
+import { useRouter } from "next/router";
 
 import { findFirstMatchingFeatures } from "./features";
 import {
@@ -141,9 +142,9 @@ export function mergeInFilterParams(
 
 export function useFilters(
   defaultFilter: CurriculumFilters,
-  { onChangeUrl }: { onChangeUrl: (newUrl: string) => void },
 ): [CurriculumFilters, (newFilters: CurriculumFilters) => void] {
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   const [filters, setLocalFilters] = useState<CurriculumFilters>(defaultFilter);
   useLayoutEffect(() => {
@@ -157,17 +158,20 @@ export function useFilters(
   const setFilters = useCallback(
     (newFilters: CurriculumFilters) => {
       if (isCurricRoutingEnabled()) {
-        const newQs = Object.entries(filtersToQuery(newFilters, defaultFilter));
-        const newSearchParams = new URLSearchParams([...(searchParams ?? [])]);
-        for (const [key, value] of newQs) {
-          newSearchParams.set(key, value);
-        }
-        const url = location.pathname + "?" + newSearchParams.toString();
-        onChangeUrl(url);
+        const url =
+          location.pathname +
+          "?" +
+          new URLSearchParams(
+            Object.entries(filtersToQuery(newFilters, defaultFilter)),
+          ).toString();
+        router.replace(url, undefined, {
+          shallow: true,
+          scroll: false,
+        });
       }
       setLocalFilters(newFilters);
     },
-    [onChangeUrl, defaultFilter, searchParams],
+    [router, defaultFilter],
   );
 
   return [filters, setFilters];
