@@ -27,7 +27,7 @@ export type CurricVisualiserFiltersProps = {
   ks4Options: SubjectPhasePickerData["subjects"][number]["ks4_options"];
 };
 
-export default function CurricVisualiserFiltersTimetabling({
+export default function CurricVisualiserFiltersDesktop({
   filters,
   onChangeFilters,
   data,
@@ -40,6 +40,19 @@ export default function CurricVisualiserFiltersTimetabling({
       <OakHeading tag="h3" $font={"heading-5"} $mb="space-between-m">
         Filter and highlight
       </OakHeading>
+
+      {/* {shouldDisplayFilter(data, filters, "years") && (
+        <>
+          <CurricFiltersYears
+            filters={filters}
+            onChangeFilters={onChangeFilters}
+            data={data}
+            ks4Options={ks4Options}
+            slugs={slugs}
+          />
+          <OakHandDrawnHR hrColor={"grey40"} $mv={"space-between-m2"} />
+        </>
+      )} */}
 
       {shouldDisplayFilter(data, filters, "subjectCategories") && (
         <>
