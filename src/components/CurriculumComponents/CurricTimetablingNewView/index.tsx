@@ -1,6 +1,5 @@
 "use client";
 import {
-  OakBox,
   OakFlex,
   OakHeading,
   OakP,
@@ -13,7 +12,6 @@ import { useMemo } from "react";
 import Link from "next/link";
 
 import { CurricTimetableHeader } from "../CurricTimetableHeader";
-import { CurricShowSteps } from "../CurricShowSteps";
 
 import {
   simpleObjectAsSearchParams,
@@ -38,11 +36,6 @@ export const CurricTimetablingNewView = ({
         <CurricTimetableHeader
           titleSlot={`Year ${data.year} ${subjectSlug}`}
           illustrationSlug={"magic-carpet"}
-          additionalSlot={
-            <OakBox $maxWidth={"all-spacing-20"}>
-              <CurricShowSteps numberOfSteps={2} currentStepIndex={0} />
-            </OakBox>
-          }
         />
       </OakFlex>
 
