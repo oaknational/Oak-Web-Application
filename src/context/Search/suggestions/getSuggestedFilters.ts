@@ -35,7 +35,8 @@ export const getSuggestedFiltersFromSubject = (
       const parsed = keystageSlugs.parse(ks.slug);
       suggestedFilters.push({
         type: "key-stage" as const,
-        value: parsed,
+        slug: parsed,
+        title: ks.title,
       });
     });
   }
@@ -48,15 +49,16 @@ export const getSuggestedFiltersFromSubject = (
   const includeExamboard =
     directMatch === null ||
     (directMatch.examBoard === null &&
-      keystagesForExamboards.includes(directMatch.keyStage) &&
-      yearsForExamboards.includes(directMatch.year));
+      keystagesForExamboards.includes(directMatch.keyStage?.slug ?? null) &&
+      yearsForExamboards.includes(directMatch.year?.slug ?? null));
 
   if (includeExamboard) {
     oakSubject.examBoards.forEach((eb) => {
       const parsed = examboardSlugs.parse(eb.slug);
       suggestedFilters.push({
         type: "exam-board" as const,
-        value: parsed,
+        slug: parsed,
+        title: eb.title,
       });
     });
   }

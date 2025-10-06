@@ -39,17 +39,21 @@ describe("/api/search/intent", () => {
 
     expect(res._getJSONData()).toEqual({
       directMatch: {
-        subject: "maths",
+        subject: { slug: "maths", title: "Maths" },
         keyStage: null,
         year: null,
         examBoard: null,
       },
       suggestedFilters: [
-        { type: "key-stage", value: "early-years-foundation-stage" },
-        { type: "key-stage", value: "ks1" },
-        { type: "key-stage", value: "ks2" },
-        { type: "key-stage", value: "ks3" },
-        { type: "key-stage", value: "ks4" },
+        {
+          type: "key-stage",
+          slug: "early-years-foundation-stage",
+          title: "EYFS",
+        },
+        { type: "key-stage", slug: "ks1", title: "Key Stage 1" },
+        { type: "key-stage", slug: "ks2", title: "Key Stage 2" },
+        { type: "key-stage", slug: "ks3", title: "Key Stage 3" },
+        { type: "key-stage", slug: "ks4", title: "Key Stage 4" },
       ],
     });
   });
@@ -92,8 +96,8 @@ describe("/api/search/intent", () => {
     mockParse.mockResolvedValue({
       output_parsed: {
         subjects: [
-          { slug: "english", confidence: 2 },
-          { slug: "drama", confidence: 4 },
+          { slug: "maths", confidence: 4 },
+          { slug: "science", confidence: 2 },
         ],
       },
     });

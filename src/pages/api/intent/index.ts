@@ -10,6 +10,7 @@ import { findPfMatch } from "@/context/Search/suggestions/findPfMatch";
 import { getSuggestedFiltersFromSubject } from "@/context/Search/suggestions/getSuggestedFilters";
 import getServerConfig from "@/node-lib/getServerConfig";
 import { callModel } from "@/context/Search/ai/callModel";
+import { OAK_SUBJECTS } from "@/context/Search/suggestions/oakCurriculumData";
 
 const reportError = errorReporter("search-intent");
 
@@ -32,7 +33,7 @@ const handler: NextApiHandler = async (req, res) => {
       const payload: SearchIntent = {
         directMatch: pfMatch,
         suggestedFilters: getSuggestedFiltersFromSubject(
-          pfMatch.subject,
+          pfMatch.subject.slug,
           pfMatch,
         ),
       };
@@ -47,7 +48,10 @@ const handler: NextApiHandler = async (req, res) => {
 
       const suggestedFilters = subjectsFromModel
         .map((filter) => {
-          return { type: "subject", value: filter.slug };
+          const title = OAK_SUBJECTS.find(
+            (subject) => subject.slug === filter.slug,
+          )?.title;
+          return { type: "subject", slug: filter.slug, title };
         })
         .concat(suggestedFiltersFromSubject);
 
