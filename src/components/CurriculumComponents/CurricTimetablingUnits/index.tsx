@@ -17,7 +17,6 @@ import {
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { getDefaultFilter, useFilters } from "@/utils/curriculum/filtering";
 
-
 type CurricTimetablingUnitsProps = {
   subjectPhaseSlug: string;
   units: Unit[];
