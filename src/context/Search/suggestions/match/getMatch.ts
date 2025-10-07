@@ -2,7 +2,7 @@ import { CurriculumData } from "../oakCurriculumData";
 
 import { rankMatches } from "./rankMatches";
 
-export type MatchResult = { slug: string; matched: string };
+export type MatchResult = { slug: string; title: string; matched: string };
 
 const getMatchLowerCase = (query: string, term: string) => {
   const termLower = term.toLowerCase();
@@ -20,18 +20,26 @@ export const getMatch = (
   data.forEach((datum) => {
     const matchesSlug = getMatchLowerCase(query, datum.slug);
     if (matchesSlug) {
-      matches.push({ slug: datum.slug, matched: datum.slug });
+      matches.push({
+        slug: datum.slug,
+        title: datum.title,
+        matched: datum.slug,
+      });
     }
 
     const matchesTitle = getMatchLowerCase(query, datum.title);
     if (matchesTitle) {
-      matches.push({ slug: datum.slug, matched: datum.title });
+      matches.push({
+        slug: datum.slug,
+        title: datum.title,
+        matched: datum.title,
+      });
     }
 
     datum.aliases?.forEach((alias) => {
       const matchesAlias = getMatchLowerCase(query, alias);
       if (matchesAlias) {
-        matches.push({ slug: datum.slug, matched: alias });
+        matches.push({ slug: datum.slug, title: datum.title, matched: alias });
       }
     });
   });
