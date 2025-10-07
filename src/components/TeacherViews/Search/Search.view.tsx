@@ -229,7 +229,7 @@ const Search: FC<SearchProps> = (props) => {
             $colStart={1}
             $rowStart={1}
             $mt={["space-between-none", "space-between-m"]}
-            $mb={["space-between-ssx", "space-between-xxl"]}
+            $mb={["space-between-ssx", "space-between-l"]}
           >
             <OakFlex
               $flexDirection={["column"]}
