@@ -28,7 +28,7 @@ export const CurricTimetablingNewView = ({
   const { subjectSlug } = parseSubjectPhaseSlug(subjectPhaseSlug)!;
   const [data, setData] = useTimetableParams();
   const nextHref = useMemo(
-    () => `name?${simpleObjectAsSearchParams(data, { name: "" })}`,
+    () => `units?${simpleObjectAsSearchParams(data, { name: "" })}`,
     [data],
   );
 
