@@ -391,118 +391,108 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               unitSlug: unitSlug!,
             })}
           />
-        ) : (
-          (() => {
-            if (isDownloadSuccessful) {
-              return (
-                <DownloadConfirmation
-                  lessonSlug={lessonSlug}
-                  lessonTitle={lessonTitle}
-                  unitSlug={unitSlug}
-                  unitTitle={unitTitle}
-                  programmeSlug={programmeSlug}
-                  data-testid="downloads-confirmation"
-                  isCanonical={props.isCanonical}
-                  nextLessons={lesson.nextLessons}
-                  onwardContentSelected={(props) => {
-                    onwardContentSelected({
-                      ...props,
-                      lessonReleaseCohort: isLegacyDownload
-                        ? "2020-2023"
-                        : "2023-2026",
-                      lessonReleaseDate: lessonReleaseDate ?? "unreleased",
-                    });
-                  }}
-                  isSpecialist={isSpecialist}
-                  subjectSlug={subjectSlug}
-                  subjectTitle={subjectTitle}
-                  keyStageSlug={
-                    keyStageSlug === undefined ? null : keyStageSlug
-                  }
-                  keyStageTitle={
-                    keyStageTitle === undefined
-                      ? null
-                      : (keyStageTitle as KeyStageTitleValueType)
-                  }
-                  isLegacy={isLegacyDownload}
-                  lessonReleaseDate={lessonReleaseDate ?? "unreleased"}
-                />
-              );
+        ) : isDownloadSuccessful ? (
+          <DownloadConfirmation
+            lessonSlug={lessonSlug}
+            lessonTitle={lessonTitle}
+            unitSlug={unitSlug}
+            unitTitle={unitTitle}
+            programmeSlug={programmeSlug}
+            data-testid="downloads-confirmation"
+            isCanonical={props.isCanonical}
+            nextLessons={lesson.nextLessons}
+            onwardContentSelected={(props) => {
+              onwardContentSelected({
+                ...props,
+                lessonReleaseCohort: isLegacyDownload
+                  ? "2020-2023"
+                  : "2023-2026",
+                lessonReleaseDate: lessonReleaseDate ?? "unreleased",
+              });
+            }}
+            isSpecialist={isSpecialist}
+            subjectSlug={subjectSlug}
+            subjectTitle={subjectTitle}
+            keyStageSlug={keyStageSlug === undefined ? null : keyStageSlug}
+            keyStageTitle={
+              keyStageTitle === undefined
+                ? null
+                : (keyStageTitle as KeyStageTitleValueType)
             }
-
-            return (
-              <DownloadPageWithAccordion
-                loginRequired={loginRequired ?? false}
-                geoRestricted={geoRestricted ?? false}
-                downloadsRestricted={downloadsRestricted}
-                errors={form.errors}
-                handleToggleSelectAll={handleToggleSelectAll}
-                selectAllChecked={selectAllChecked}
-                showNoResources={showNoResources}
-                showLoading={isLocalStorageLoading}
-                email={emailFromLocalStorage}
-                school={schoolNameFromLocalStorage}
-                schoolId={schoolIdFromLocalStorage}
-                setSchool={setSchool}
-                showSavedDetails={shouldDisplayDetailsCompleted}
-                onEditClick={handleEditDetailsCompletedClick}
-                register={form.register}
-                control={form.control}
-                showPostAlbCopyright={!isLegacyDownload}
-                triggerForm={form.trigger}
-                apiError={apiError}
-                updatedAt={updatedAt}
-                withHomeschool={true}
-                showTermsAgreement={
-                  onboardingStatus === "not-onboarded" ||
-                  onboardingStatus === "unknown"
+            isLegacy={isLegacyDownload}
+            lessonReleaseDate={lessonReleaseDate ?? "unreleased"}
+          />
+        ) : (
+          <DownloadPageWithAccordion
+            loginRequired={loginRequired ?? false}
+            geoRestricted={geoRestricted ?? false}
+            downloadsRestricted={downloadsRestricted}
+            errors={form.errors}
+            handleToggleSelectAll={handleToggleSelectAll}
+            selectAllChecked={selectAllChecked}
+            showNoResources={showNoResources}
+            showLoading={isLocalStorageLoading}
+            email={emailFromLocalStorage}
+            school={schoolNameFromLocalStorage}
+            schoolId={schoolIdFromLocalStorage}
+            setSchool={setSchool}
+            showSavedDetails={shouldDisplayDetailsCompleted}
+            onEditClick={handleEditDetailsCompletedClick}
+            register={form.register}
+            control={form.control}
+            showPostAlbCopyright={!isLegacyDownload}
+            triggerForm={form.trigger}
+            apiError={apiError}
+            updatedAt={updatedAt}
+            withHomeschool={true}
+            showTermsAgreement={
+              onboardingStatus === "not-onboarded" ||
+              onboardingStatus === "unknown"
+            }
+            isLoading={onboardingStatus === "loading"}
+            cardGroup={
+              !showNoResources && (
+                <DownloadCardGroup
+                  control={form.control}
+                  downloads={downloadsFilteredByCopyright}
+                  additionalFiles={additionalFiles}
+                  hasError={Boolean(form.errors?.resources)}
+                  triggerForm={form.trigger}
+                />
+              )
+            }
+            cta={
+              <LoadingButton
+                type="button"
+                onClick={
+                  (event) => void form.handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
                 }
-                isLoading={onboardingStatus === "loading"}
-                cardGroup={
-                  !showNoResources && (
-                    <DownloadCardGroup
-                      control={form.control}
-                      downloads={downloadsFilteredByCopyright}
-                      additionalFiles={additionalFiles}
-                      hasError={Boolean(form.errors?.resources)}
-                      triggerForm={form.trigger}
-                    />
-                  )
+                text={"Download .zip"}
+                icon={"download"}
+                isLoading={
+                  isAttemptingDownload || !hubspotLoaded // show loading state when waiting for latest school values to be populated from hubspot
                 }
-                cta={
-                  <LoadingButton
-                    type="button"
-                    onClick={
-                      (event) => void form.handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
-                    }
-                    text={"Download .zip"}
-                    icon={"download"}
-                    isLoading={
-                      isAttemptingDownload || !hubspotLoaded // show loading state when waiting for latest school values to be populated from hubspot
-                    }
-                    disabled={
-                      (hasFormErrors ||
-                        noResourcesSelected ||
-                        showNoResources ||
-                        (!form.formState.isValid && !localStorageDetails)) &&
-                      hubspotLoaded
-                    }
-                    loadingText={
-                      isAttemptingDownload ? "Downloading..." : "Loading..."
-                    }
-                  />
+                disabled={
+                  (hasFormErrors ||
+                    noResourcesSelected ||
+                    showNoResources ||
+                    (!form.formState.isValid && !localStorageDetails)) &&
+                  hubspotLoaded
                 }
-                showRiskAssessmentBanner={showRiskAssessmentBanner}
-                downloads={downloadsFilteredByCopyright}
-                additionalFiles={additionalFiles}
-                showGeoBlocked={showGeoBlocked}
-                lessonSlug={lessonSlug}
-                lessonTitle={lessonTitle}
-                lessonReleaseDate={lessonReleaseDate}
-                isLegacy={isLegacy}
+                loadingText={
+                  isAttemptingDownload ? "Downloading..." : "Loading..."
+                }
               />
-            );
-          })()
+            }
+            showRiskAssessmentBanner={showRiskAssessmentBanner}
+            downloads={downloadsFilteredByCopyright}
+            additionalFiles={additionalFiles}
+            showGeoBlocked={showGeoBlocked}
+            lessonSlug={lessonSlug}
+            lessonTitle={lessonTitle}
+            lessonReleaseDate={lessonReleaseDate}
+            isLegacy={isLegacy}
+          />
         )}
       </OakMaxWidth>
     </OakBox>
