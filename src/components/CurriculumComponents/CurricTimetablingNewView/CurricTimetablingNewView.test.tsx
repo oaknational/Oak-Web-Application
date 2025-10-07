@@ -51,7 +51,7 @@ describe("CurricTimetablingNewView", () => {
     const linkElement = getByRole("link");
     expect(linkElement).toHaveAttribute(
       "href",
-      "name?autumn=30&spring=30&summer=30&year=1",
+      "units?autumn=30&spring=30&summer=30&year=1",
     );
   });
 
@@ -121,28 +121,28 @@ describe("CurricTimetablingNewView", () => {
     // Initial state
     expect(linkElement).toHaveAttribute(
       "href",
-      "name?autumn=30&spring=30&summer=30&year=1",
+      "units?autumn=30&spring=30&summer=30&year=1",
     );
 
     // Change autumn lessons to 25
     fireEvent.change(inputs[0]!, { target: { value: "25" } });
     expect(linkElement).toHaveAttribute(
       "href",
-      "name?autumn=25&spring=30&summer=30&year=1",
+      "units?autumn=25&spring=30&summer=30&year=1",
     );
 
     // Change spring lessons to 15
     fireEvent.change(inputs[1]!, { target: { value: "15" } });
     expect(linkElement).toHaveAttribute(
       "href",
-      "name?autumn=25&spring=15&summer=30&year=1",
+      "units?autumn=25&spring=15&summer=30&year=1",
     );
 
     // Change summer lessons to 20
     fireEvent.change(inputs[2]!, { target: { value: "20" } });
     expect(linkElement).toHaveAttribute(
       "href",
-      "name?autumn=25&spring=15&summer=20&year=1",
+      "units?autumn=25&spring=15&summer=20&year=1",
     );
   });
 
@@ -160,7 +160,7 @@ describe("CurricTimetablingNewView", () => {
     const linkElement = getByRole("link");
     expect(linkElement).toHaveAttribute(
       "href",
-      "name?autumn=20&spring=25&summer=35&year=1",
+      "units?autumn=20&spring=25&summer=35&year=1",
     );
   });
 
