@@ -1,3 +1,16 @@
+# [1.884.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.883.0...v1.884.0) (2025-10-07)
+
+
+### Bug Fixes
+
+* code quality don't return router.replace promise ([e92b68b](https://github.com/oaknational/Oak-Web-Application/commit/e92b68bc2b2131e4d89d862f57574ab0f0718ffb))
+* typo + added back in debug info to UI ([0148286](https://github.com/oaknational/Oak-Web-Application/commit/014828662615a68cfa0b896d2ee89779f2e3b0f7))
+
+
+### Features
+
+* added filtering and MV data to timetabling feature ([981d6ce](https://github.com/oaknational/Oak-Web-Application/commit/981d6ceb5f03b70a623443915c867b21d2abc2af))
+
 # [1.883.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.882.1...v1.883.0) (2025-10-07)
 
 
