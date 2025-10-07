@@ -33,7 +33,7 @@ export type ResourceCardProps = Omit<CheckboxProps, "checked"> & {
   hasError?: boolean;
   subjectIcon?: string;
   isEditable?: boolean;
-  isDownloadsExperiment?: boolean;
+  useDownloadPageLayout: boolean;
   asRadio?: boolean;
   checked?: boolean;
 };
@@ -71,7 +71,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
     isEditable,
     disabled,
     asRadio = false,
-    isDownloadsExperiment = false,
+    useDownloadPageLayout = false,
   } = props;
 
   const isCurriculumIcon = resourceType === "curriculum-pdf";
@@ -83,7 +83,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
   return (
     <CustomSizing
       checked={checked}
-      isDownloadsExperiment={isDownloadsExperiment}
+      isDownloadsExperiment={useDownloadPageLayout}
     >
       <OakDownloadCard
         id={id}
