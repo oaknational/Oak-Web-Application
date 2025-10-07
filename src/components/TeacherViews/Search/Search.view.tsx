@@ -7,10 +7,7 @@ import {
   OakFlex,
   OakSecondaryButton,
   OakP,
-  isValidIconName,
   OakBox,
-  OakSearchFilterCheckBox,
-  OakSearchFilterCheckBoxProps,
   OakMaxWidth,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
@@ -22,6 +19,7 @@ import {
   removeHTMLTags,
   trackSearchModified,
 } from "./helpers";
+import { ContentFilterToggle } from "./ContentFilterToggle";
 
 import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -231,12 +229,12 @@ const Search: FC<SearchProps> = (props) => {
             $colStart={1}
             $rowStart={1}
             $mt={["space-between-none", "space-between-m"]}
-            $mb={"space-between-ssx"}
+            $mb={["space-between-ssx", "space-between-xxl"]}
           >
             <OakFlex
               $flexDirection={["column"]}
               $mb={["space-between-m", "space-between-m2"]}
-              $pa={["inner-padding-none", "inner-padding-xl"]}
+              $pt={["inner-padding-none", "inner-padding-xl"]}
             >
               <OakBox $display={["none", "block"]}>
                 <OakHeading tag="h1" $font={"heading-4"} $mb="space-between-m2">
@@ -255,50 +253,31 @@ const Search: FC<SearchProps> = (props) => {
                 />
               </OakBox>
 
-              <OakBox $mt={["space-between-none", "space-between-m2"]}>
+              {!isAiExperimentSearchEnabled && (
                 <OakFlex
-                  $gap={"space-between-xs"}
-                  $flexWrap={"wrap"}
-                  $position={"absolute"}
-                  $zIndex={"modal-close-button"}
+                  $mt={["space-between-none", "space-between-m2"]}
+                  $alignItems={"center"}
+                  $display={["flex", "none"]}
                 >
-                  {searchFilters.contentTypeFilters
-                    .map((contentTypeFilter) => {
-                      const icon = isValidIconName(
-                        `teacher-${contentTypeFilter.slug}`,
-                      )
-                        ? (`teacher-${contentTypeFilter.slug}` as OakSearchFilterCheckBoxProps["icon"])
-                        : undefined;
-
-                      return (
-                        <OakSearchFilterCheckBox
-                          name={"typeFilters"}
-                          displayValue={contentTypeFilter.title}
-                          key={`search-filters-type-${contentTypeFilter.slug}`}
-                          aria-label={`${contentTypeFilter.title} filter`}
-                          id={`search-filters-type-${contentTypeFilter.slug}`}
-                          icon={icon}
-                          value={"Content type filter"}
-                          keepIconColor={true}
-                          {...contentTypeFilter}
-                          onChange={() => {
-                            trackSearchModified(
-                              query.term,
-                              track.searchFilterModified,
-                            )({
-                              checked: contentTypeFilter.checked,
-                              filterType: "Content type filter",
-                              filterValue: contentTypeFilter.slug,
-                            });
-                            contentTypeFilter.onChange();
-                          }}
-                        />
-                      );
-                    })
-                    .reverse()}
-                </OakFlex>
-                {!isAiExperimentSearchEnabled && (
-                  <OakFlex $mb="space-between-m2">
+                  <ContentFilterToggle
+                    contentTypeFilters={searchFilters.contentTypeFilters}
+                    trackSearchModified={(checked, filterType, filterValue) =>
+                      trackSearchModified(
+                        query.term,
+                        track.searchFilterModified,
+                      )({
+                        checked,
+                        filterType,
+                        filterValue,
+                      })
+                    }
+                  />
+                  <OakBox
+                    $position={"absolute"}
+                    $width={"100%"}
+                    $ph={"inner-padding-m"}
+                    $left={"all-spacing-0"}
+                  >
                     <MobileFilters
                       $mt={"space-between-none"}
                       label="Filters"
@@ -306,7 +285,6 @@ const Search: FC<SearchProps> = (props) => {
                       iconOpened="cross"
                       iconClosed="mini-menu"
                       iconBackground="black"
-                      $alignSelf={"flex-end"}
                     >
                       <OakBox $mt={["space-between-m", null, null]}>
                         <SearchFilters
@@ -319,13 +297,12 @@ const Search: FC<SearchProps> = (props) => {
                         />
                       </OakBox>
                     </MobileFilters>
-                  </OakFlex>
-                )}
-              </OakBox>
+                  </OakBox>
+                </OakFlex>
+              )}
             </OakFlex>
             {isAiExperimentSearchEnabled && (
               <OakBox
-                $pt="inner-padding-xl3"
                 $display={["block", "block", "none"]}
                 $mb="space-between-m2"
                 $ph={["inner-padding-none", "inner-padding-xl"]}
@@ -355,8 +332,7 @@ const Search: FC<SearchProps> = (props) => {
                 "space-between-none",
                 "all-spacing-1",
               ]}
-              $pl={["inner-padding-none", "inner-padding-xl"]}
-              $mb={"space-between-m"}
+              $mb={"space-between-s"}
             >
               <SearchActiveFilters
                 searchFilters={searchFilters}
@@ -368,7 +344,7 @@ const Search: FC<SearchProps> = (props) => {
             </OakBox>
           </OakGridArea>
           {!shouldShowNoResultsMessage && (
-            <OakGridArea $colSpan={[12, 3]} $colStart={[1, 10]} $rowStart={2}>
+            <OakGridArea $colSpan={[12, 3]} $colStart={[1, 1]} $rowStart={2}>
               <CustomWidthFlex
                 $flexDirection="column"
                 $mb="space-between-m2"
@@ -443,13 +419,8 @@ const Search: FC<SearchProps> = (props) => {
               </CustomWidthFlex>
             </OakGridArea>
           )}
-          <OakGridArea
-            $colSpan={[12, 9]}
-            $colStart={1}
-            $rowStart={2}
-            $pr={"inner-padding-m"}
-          >
-            <OakBox role="status" aria-live="polite" $pl="inner-padding-xl">
+          <OakGridArea $colSpan={[12, 7]} $colStart={[1, 5]} $rowStart={2}>
+            <OakBox role="status" aria-live="polite">
               {shouldShowError && (
                 <p>There was an error fetching search results</p>
               )}
@@ -473,34 +444,51 @@ const Search: FC<SearchProps> = (props) => {
                 </OakBox>
               )}
               {shouldShowResults && (
-                <OakBox $display={["none", "block"]}>
-                  <OakP $mb={"space-between-xxl"}>
-                    Showing {results.length} result
-                    {results.length === 1 ? "" : "s"}
-                  </OakP>
-                </OakBox>
+                <OakFlex $flexDirection="column" $gap={"space-between-xl"}>
+                  <OakFlex
+                    $flexDirection={"column"}
+                    $gap={"space-between-m"}
+                    $display={["none", "flex"]}
+                    $pl="inner-padding-xl"
+                  >
+                    <ContentFilterToggle
+                      contentTypeFilters={searchFilters.contentTypeFilters}
+                      trackSearchModified={(checked, filterType, filterValue) =>
+                        trackSearchModified(
+                          query.term,
+                          track.searchFilterModified,
+                        )({
+                          checked,
+                          filterType,
+                          filterValue,
+                        })
+                      }
+                    />
+                    <OakP $font={"heading-light-7"}>
+                      Showing {results.length} result
+                      {results.length === 1 ? "" : "s"}
+                    </OakP>
+                  </OakFlex>
+                  <SearchResults
+                    hits={results}
+                    allKeyStages={allKeyStages}
+                    query={query}
+                    searchResultExpanded={(searchHit, searchRank) =>
+                      searchResultExpanded({
+                        searchHit,
+                        searchRank,
+                      })
+                    }
+                    searchResultOpened={(searchHit, searchRank) =>
+                      searchResultOpened({
+                        searchHit,
+                        searchRank,
+                      })
+                    }
+                  />
+                </OakFlex>
               )}
             </OakBox>
-
-            {shouldShowResults && (
-              <SearchResults
-                hits={results}
-                allKeyStages={allKeyStages}
-                query={query}
-                searchResultExpanded={(searchHit, searchRank) =>
-                  searchResultExpanded({
-                    searchHit,
-                    searchRank,
-                  })
-                }
-                searchResultOpened={(searchHit, searchRank) =>
-                  searchResultOpened({
-                    searchHit,
-                    searchRank,
-                  })
-                }
-              />
-            )}
           </OakGridArea>
         </OakGrid>
       </OakMaxWidth>
