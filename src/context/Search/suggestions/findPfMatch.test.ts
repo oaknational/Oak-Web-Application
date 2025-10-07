@@ -228,10 +228,10 @@ describe("findFuzzyMatch", () => {
       "the history of art in 19th century spain",
       "the great depression ks4 history aqa",
     ])(
-      "returns null when multiple terms are included in a longer sentence",
+      "returns null for subject when multiple terms are included in a longer sentence",
       (term) => {
         const result = findPfMatch(term);
-        expect(result).toBeNull();
+        expect(result?.subject).toBeNull();
       },
     );
   });
