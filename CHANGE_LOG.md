@@ -1,3 +1,31 @@
+# [1.885.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.884.0...v1.885.0) (2025-10-07)
+
+
+### Bug Fixes
+
+* update timetabling navigation from name to units page ([a5a22fb](https://github.com/oaknational/Oak-Web-Application/commit/a5a22fb03b8b9cda10b86bce8b7c3e03672ebe0e))
+
+
+### Features
+
+* add Storybook stories for CurricNumberInput ([c8b7a69](https://github.com/oaknational/Oak-Web-Application/commit/c8b7a69a1f48a2298e2da84d848517f14d20fe85))
+* add URL normalisation for timetabling view ([2e162b8](https://github.com/oaknational/Oak-Web-Application/commit/2e162b898c3a1e180dcb4705827c5a17a91446d0))
+* create CurricNumberInput component ([073ff7d](https://github.com/oaknational/Oak-Web-Application/commit/073ff7d6ba2a3d4314b25b4cb066added58ec7bc))
+* integrate CurricNumberInput component into timetabling view ([cb10ade](https://github.com/oaknational/Oak-Web-Application/commit/cb10ade5cface419e787a07b249003ba4be84080))
+
+# [1.884.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.883.0...v1.884.0) (2025-10-07)
+
+
+### Bug Fixes
+
+* code quality don't return router.replace promise ([e92b68b](https://github.com/oaknational/Oak-Web-Application/commit/e92b68bc2b2131e4d89d862f57574ab0f0718ffb))
+* typo + added back in debug info to UI ([0148286](https://github.com/oaknational/Oak-Web-Application/commit/014828662615a68cfa0b896d2ee89779f2e3b0f7))
+
+
+### Features
+
+* added filtering and MV data to timetabling feature ([981d6ce](https://github.com/oaknational/Oak-Web-Application/commit/981d6ceb5f03b70a623443915c867b21d2abc2af))
+
 # [1.883.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.882.1...v1.883.0) (2025-10-07)
 
 

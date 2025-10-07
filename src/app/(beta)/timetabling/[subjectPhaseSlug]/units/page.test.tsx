@@ -5,6 +5,26 @@ import { useFeatureFlag } from "@/utils/featureFlags";
 
 jest.mock("@/utils/featureFlags");
 
+jest.mock("@/node-lib/curriculum-api-2023", () => ({
+  curriculumSequence: jest.fn(() => ({ units: [] })),
+  curriculumPhaseOptions: jest.fn(() => {
+    return [
+      {
+        tab: "units",
+        slug: "maths",
+        title: "Maths",
+        phases: [
+          {
+            slug: "primary",
+            title: "Primary",
+          },
+        ],
+        ks4_options: [],
+      },
+    ];
+  }),
+}));
+
 jest.mock("next/navigation", () => {
   const defaultSearchParams = new URLSearchParams("");
   return {
