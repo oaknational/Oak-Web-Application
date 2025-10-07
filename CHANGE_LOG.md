@@ -1,3 +1,10 @@
+## [1.885.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.885.0...v1.885.1) (2025-10-07)
+
+
+### Bug Fixes
+
+* check string aiSearchEnabled config ([9ccf02e](https://github.com/oaknational/Oak-Web-Application/commit/9ccf02e07cfec75b2fba0fb8418545f00ab1f2e6))
+
 # [1.885.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.884.0...v1.885.0) (2025-10-07)
 
 
