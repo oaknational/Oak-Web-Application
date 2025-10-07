@@ -55,6 +55,19 @@ jest.mock("posthog-js/react", () => {
   };
 });
 
+jest.mock("next/router", () => ({
+  useRouter: jest.fn(() => ({
+    replace: jest.fn(),
+    pathname: "/teachers/lessons/lesson-1",
+    query: { lessonSlug: "lesson-1" },
+  })),
+}));
+
+jest.mock("@/hooks/useAnalyticsPageProps.ts", () => ({
+  __esModule: true,
+  default: () => () => null,
+}));
+
 const mockCookieConsent = new MockOakConsentClient({
   policyConsents: [
     {
@@ -116,7 +129,12 @@ describe("Lesson Overview Canonical Page", () => {
     });
 
     it("updates the url", async () => {
-      window.history.replaceState = jest.fn();
+      const mockReplace = jest.fn();
+      (jest.requireMock("next/router").useRouter as jest.Mock).mockReturnValue({
+        replace: mockReplace,
+        pathname: "/teachers/lessons/lesson-1",
+        query: { lessonSlug: "lesson-1" },
+      });
 
       (useShare as jest.Mock).mockReturnValueOnce({
         shareUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
@@ -132,10 +150,16 @@ describe("Lesson Overview Canonical Page", () => {
         />,
       );
 
-      expect(window.history.replaceState).toHaveBeenCalledWith(
-        {},
-        "",
-        "http://localhost:3000/teachers/lessons/lesson-1?test=1",
+      expect(mockReplace).toHaveBeenCalledWith(
+        {
+          pathname: "/teachers/lessons/lesson-1",
+          query: {
+            lessonSlug: "lesson-1",
+            test: "1",
+          },
+        },
+        undefined,
+        { shallow: true },
       );
     });
 
