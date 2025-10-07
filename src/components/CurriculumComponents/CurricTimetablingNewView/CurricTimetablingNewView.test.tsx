@@ -39,7 +39,7 @@ describe("CurricTimetablingNewView", () => {
     const linkElement = getByRole("link");
     expect(linkElement).toHaveAttribute(
       "href",
-      "name?autumn=30&spring=30&summer=30&year=1",
+      "units?autumn=30&spring=30&summer=30&year=1",
     );
   });
 
