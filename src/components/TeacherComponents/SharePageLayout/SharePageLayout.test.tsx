@@ -2,9 +2,7 @@ import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useForm } from "react-hook-form";
 
-import ResourcePageLayoutB, {
-  ResourcePageLayoutProps,
-} from "./ResourcePageLayout";
+import ResourcePageLayoutB, { SharePageLayoutProps } from "./SharePageLayout";
 
 import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
@@ -14,7 +12,7 @@ import {
 } from "@/__tests__/__helpers__/mockCopyrightRequirements";
 
 type PropsWithoutForm = Omit<
-  ResourcePageLayoutProps,
+  SharePageLayoutProps,
   "control" | "register" | "triggerForm"
 >;
 const props: PropsWithoutForm = {

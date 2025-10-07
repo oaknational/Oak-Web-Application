@@ -18,7 +18,7 @@ import {
   LessonPathway,
   SpecialistLessonPathway,
 } from "@/components/TeacherComponents/types/lesson.types";
-import ResourcePageLayout from "@/components/TeacherComponents/ResourcePageLayout";
+import SharePageLayout from "@/components/TeacherComponents/SharePageLayout";
 import LessonShareCardGroup from "@/components/TeacherComponents/LessonShareCardGroup";
 import LessonShareLinks from "@/components/TeacherComponents/LessonShareLinks";
 import { getHrefForSocialSharing } from "@/components/TeacherComponents/LessonShareLinks/getHrefForSocialSharing";
@@ -228,10 +228,9 @@ export function LessonShare(props: LessonShareProps) {
             $mb={"space-between-m"}
           />
         </OakBox>
-        <ResourcePageLayout
+        <SharePageLayout
           loginRequired={false}
           geoRestricted={false}
-          page={"share"}
           errors={form.errors}
           handleToggleSelectAll={handleToggleSelectAll}
           selectAllChecked={selectAllChecked}
@@ -253,7 +252,6 @@ export function LessonShare(props: LessonShareProps) {
           control={form.control}
           showPostAlbCopyright={!isLegacy}
           triggerForm={form.trigger}
-          hideSelectAll={true}
           withHomeschool={true}
           //updateAt hardcoded, only legacy share available currently
           updatedAt={"2022"}

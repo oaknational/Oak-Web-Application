@@ -2,9 +2,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs";
 import React from "react";
 import { useForm } from "react-hook-form";
 
-import ResourcePageLayout, {
-  ResourcePageLayoutProps,
-} from "./ResourcePageLayout";
+import SharePageLayout, { SharePageLayoutProps } from "./SharePageLayout";
 
 import Component from ".";
 
@@ -19,10 +17,10 @@ const meta: Meta<typeof Component> = {
 export default meta;
 type Story = StoryObj<typeof Component>;
 
-const Wrapper = (args: ResourcePageLayoutProps) => {
+const Wrapper = (args: SharePageLayoutProps) => {
   const { control, register } = useForm<ResourceFormProps>();
   return (
-    <ResourcePageLayout
+    <SharePageLayout
       {...args}
       register={register}
       control={control}
