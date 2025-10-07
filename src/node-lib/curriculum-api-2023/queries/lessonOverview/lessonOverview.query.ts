@@ -254,7 +254,7 @@ export const transformedLessonOverviewData = (
     phonicsOutcome: content.phonicsOutcome,
     pathways: pathways,
     actions: browseData.actions,
-    hasMediaClips: Boolean(browseData.lessonData.mediaClips),
+    hasMediaClips: mediaClips ? Object.keys(mediaClips).length > 0 : false,
     lessonOutline: browseData.lessonData.lessonOutline ?? null,
     lessonMediaClips: mediaClips,
     additionalFiles:
