@@ -99,6 +99,7 @@
     "@types/uuid": "^10.0.0",
     "@upstash/ratelimit": "^2.0.6",
     "@upstash/redis": "^1.35.4",
+    "@vercel/functions": "^3.1.2",
     "better-react-mathjax": "^2.3.0",
     "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.1",

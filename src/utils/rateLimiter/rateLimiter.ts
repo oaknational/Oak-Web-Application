@@ -1,33 +1,50 @@
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 import { NextApiRequest } from "next";
+import { waitUntil } from "@vercel/functions";
 
-const environment = process.env.NODE_ENV;
+import getServerConfig from "@/node-lib/getServerConfig";
 
-const ratelimit = new Ratelimit({
-  redis: Redis.fromEnv(),
-  limiter: Ratelimit.fixedWindow(environment !== "production" ? 5 : 50, "1 d"),
-  prefix: "@upstash/ratelimit",
-  analytics: true,
-});
+export function createRateLimiter(
+  prefix: string,
+  algorithm: Ratelimit["limiter"],
+) {
+  return new Ratelimit({
+    redis: new Redis({
+      url: getServerConfig("upstashRedisUrl"),
+      token: getServerConfig("upstashRedisToken"),
+    }),
+    limiter: algorithm,
+    prefix,
+  });
+}
 
-// Helper function to check rate limit based on IP address
-export async function checkRateLimit(
+function getIpFromRequest(req: NextApiRequest): string {
+  // NOTE: Using x-forwarded-for isn't supported by default on vercel as it can be spoofed if not using a proxy like cloudflare
+  // https://vercel.com/docs/headers/request-headers#x-forwarded-for
+  const forwardedFor = req.headers["x-forwarded-for"];
+  if (typeof forwardedFor === "string") {
+    const firstForwardedFor = forwardedFor.split(",")[0];
+    if (firstForwardedFor) {
+      return firstForwardedFor;
+    }
+  }
+  if (req.socket.remoteAddress) {
+    return req.socket.remoteAddress;
+  }
+  throw new Error("IP address is required for rate limiting");
+}
+
+export async function checkRateLimitByIp(
+  rateLimiter: Ratelimit,
   req: NextApiRequest,
-): Promise<{ success: boolean; limit?: number; remaining?: number }> {
-  const ip =
-    typeof req.headers["x-forwarded-for"] === "string"
-      ? req.headers["x-forwarded-for"].split(",")[0]
-      : req.socket?.remoteAddress || null;
+): Promise<{ success: boolean; limit: number; remaining: number }> {
+  const ipAddress = getIpFromRequest(req);
+  const { success, limit, remaining, pending } =
+    await rateLimiter.limit(ipAddress);
 
-  if (ip === "::1" || ip === "127.0.0.1") {
-    // localhost
-    return { success: true, limit: 2, remaining: 2 };
-  }
-  if (!ip) {
-    return { success: false };
-  }
+  // https://upstash.com/docs/redis/sdks/ratelimit-ts/gettingstarted#serverless-environments
+  waitUntil(pending);
 
-  const { success, limit, remaining } = await ratelimit.limit(ip);
   return { success, limit, remaining };
 }

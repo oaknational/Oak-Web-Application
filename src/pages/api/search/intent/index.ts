@@ -1,4 +1,5 @@
 import type { NextApiHandler } from "next";
+import { Ratelimit } from "@upstash/ratelimit";
 
 import {
   intentRequestSchema,
@@ -11,17 +12,27 @@ import { getSuggestedFiltersFromSubject } from "@/context/Search/suggestions/get
 import getServerConfig from "@/node-lib/getServerConfig";
 import { callModel } from "@/context/Search/ai/callModel";
 import { OAK_SUBJECTS } from "@/context/Search/suggestions/oakCurriculumData";
-import { checkRateLimit } from "@/utils/rateLimiter/rateLimiter";
+import {
+  checkRateLimitByIp,
+  createRateLimiter,
+} from "@/utils/rateLimiter/rateLimiter";
 
 const reportError = errorReporter("search-intent");
+
+const rateLimiter = createRateLimiter(
+  "search-intent:rate-limit",
+  Ratelimit.fixedWindow(
+    parseInt(getServerConfig("aiSearchRateLimitPer24h"), 10),
+    "24h",
+  ),
+);
 
 const handler: NextApiHandler = async (req, res) => {
   const aiSearchEnabled = getServerConfig("aiSearchEnabled") === "true";
 
   let searchTerm: string;
 
-  // Check rate limit using IP address
-  const rateLimitResult = await checkRateLimit(req);
+  const rateLimitResult = await checkRateLimitByIp(rateLimiter, req);
   // console.log("Rate limit response", rateLimitResult);
 
   if (!rateLimitResult.success) {
