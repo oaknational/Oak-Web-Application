@@ -229,7 +229,7 @@ const Search: FC<SearchProps> = (props) => {
             $colStart={1}
             $rowStart={1}
             $mt={["space-between-none", "space-between-m"]}
-            $mb={["space-between-ssx", "space-between-l"]}
+            $mb={["space-between-ssx", "space-between-ssx", "space-between-l"]}
           >
             <OakFlex
               $flexDirection={["column"]}
@@ -304,8 +304,12 @@ const Search: FC<SearchProps> = (props) => {
             {isAiExperimentSearchEnabled && (
               <OakBox
                 $display={["block", "block", "none"]}
-                $mb="space-between-m2"
-                $ph={["inner-padding-none", "inner-padding-xl"]}
+                $mb="space-between-xs"
+                $ph={[
+                  "inner-padding-none",
+                  "inner-padding-none",
+                  "inner-padding-xl",
+                ]}
               >
                 <SearchSuggestedFilters
                   setQuery={setQuery}
@@ -419,7 +423,11 @@ const Search: FC<SearchProps> = (props) => {
               </CustomWidthFlex>
             </OakGridArea>
           )}
-          <OakGridArea $colSpan={[12, 7]} $colStart={[1, 5]} $rowStart={2}>
+          <OakGridArea
+            $colSpan={[12, 12, 7]}
+            $colStart={[1, 1, 5]}
+            $rowStart={2}
+          >
             <OakBox role="status" aria-live="polite">
               {shouldShowError && (
                 <p>There was an error fetching search results</p>
@@ -448,7 +456,7 @@ const Search: FC<SearchProps> = (props) => {
                   <OakFlex
                     $flexDirection={"column"}
                     $gap={"space-between-m"}
-                    $display={["none", "flex"]}
+                    $display={["none", "none", "flex"]}
                     $pl="inner-padding-xl"
                   >
                     <ContentFilterToggle
