@@ -1,13 +1,13 @@
 import { createNextApiMocks } from "@/__tests__/__helpers__/createNextApiMocks";
 import handler from "@/pages/api/search/intent";
 
-const mockErrorReporter = jest.fn();
-jest.mock("@/common-lib/error-reporter", () => ({
+jest.mock("@/common-lib/error-reporter/errorReporter", () => ({
   __esModule: true,
-  default:
-    () =>
-    (...args: []) =>
-      mockErrorReporter(...args),
+  default: () => jest.fn(),
+}));
+
+jest.mock("@/context/Search/ai/withSuggestionCache", () => ({
+  withSuggestionCache: jest.fn((_searchTerm, fn) => fn()),
 }));
 
 const mockParse = jest.fn();
@@ -78,9 +78,9 @@ describe("/api/search/intent", () => {
     });
   });
   it("should not call AI when there is a direct subject match", async () => {
-    const mockCallModel = jest.fn();
-    jest.mock("@/context/Search/ai/callModel", () => ({
-      callModel: () => mockCallModel(),
+    const mockGenerateSuggestions = jest.fn();
+    jest.mock("@/context/Search/ai/generateSuggestions", () => ({
+      generateSuggestions: () => mockGenerateSuggestions(),
     }));
 
     const { req, res } = createNextApiMocks({
@@ -91,7 +91,7 @@ describe("/api/search/intent", () => {
     await handler(req, res);
 
     expect(res._getStatusCode()).toBe(200);
-    expect(mockCallModel).not.toHaveBeenCalled();
+    expect(mockGenerateSuggestions).not.toHaveBeenCalled();
   });
   it("should return AI response when there is not a direct subject match", async () => {
     mockParse.mockResolvedValue({

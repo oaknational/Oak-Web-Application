@@ -1,4 +1,4 @@
-import { callModel } from "./callModel";
+import { generateSuggestions } from "./generateSuggestions";
 const mockErrorReporter = jest.fn();
 jest.mock("@/common-lib/error-reporter", () => ({
   __esModule: true,
@@ -19,7 +19,7 @@ jest.mock("openai", () => {
     })),
   };
 });
-describe("callModel", () => {
+describe("generateSuggestions", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -35,7 +35,7 @@ describe("callModel", () => {
       },
     });
 
-    const result = await callModel("education");
+    const result = await generateSuggestions("education");
 
     expect(result).toEqual([
       { slug: "maths", confidence: 5 },
@@ -49,7 +49,7 @@ describe("callModel", () => {
       output_parsed: null,
     });
 
-    const result = await callModel("test");
+    const result = await generateSuggestions("test");
 
     expect(result).toEqual([]);
   });
@@ -61,7 +61,7 @@ describe("callModel", () => {
       },
     });
 
-    const result = await callModel("unknown");
+    const result = await generateSuggestions("unknown");
 
     expect(result).toEqual([]);
   });
@@ -70,6 +70,8 @@ describe("callModel", () => {
     const apiError = new Error("OpenAI API failure");
     mockParse.mockRejectedValue(apiError);
 
-    await expect(callModel("test")).rejects.toThrow("OpenAI API failure");
+    await expect(generateSuggestions("test")).rejects.toThrow(
+      "OpenAI API failure",
+    );
   });
 });
