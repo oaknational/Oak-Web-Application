@@ -13,9 +13,7 @@ import { checkRateLimitByIp, createRateLimiter } from "./rateLimiter";
 // }));
 
 jest.mock("@upstash/redis", () => ({
-  Redis: {
-    fromEnv: jest.fn(),
-  },
+  Redis: jest.fn().mockImplementation(() => ({})),
 }));
 
 const rateLimiter = createRateLimiter(
