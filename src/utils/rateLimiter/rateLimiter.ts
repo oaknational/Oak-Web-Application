@@ -3,6 +3,8 @@ import { Redis } from "@upstash/redis";
 import { NextApiRequest } from "next";
 import { waitUntil } from "@vercel/functions";
 
+import { invariant } from "../invariant";
+
 import getServerConfig from "@/node-lib/getServerConfig";
 
 export function createRateLimiter(
@@ -20,14 +22,11 @@ export function createRateLimiter(
 }
 
 function getIpFromRequest(req: NextApiRequest): string {
-  // NOTE: Using x-forwarded-for isn't supported by default on vercel as it can be spoofed if not using a proxy like cloudflare
-  // https://vercel.com/docs/headers/request-headers#x-forwarded-for
-  const forwardedFor = req.headers["x-forwarded-for"];
-  if (typeof forwardedFor === "string") {
-    const firstForwardedFor = forwardedFor.split(",")[0];
-    if (firstForwardedFor) {
-      return firstForwardedFor;
-    }
+  // cf-connecting-ip is safer than x-forwarded-for which can be spooked
+  const cfIp = req.headers["cf-connecting-ip"];
+  if (cfIp) {
+    invariant(typeof cfIp === "string", "cf-connecting-ip must be a string");
+    return cfIp;
   }
   if (req.socket.remoteAddress) {
     return req.socket.remoteAddress;
