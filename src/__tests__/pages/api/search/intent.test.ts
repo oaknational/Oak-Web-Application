@@ -22,6 +22,17 @@ jest.mock("openai", () => {
   };
 });
 
+const mockCheckRateLimitByIp = jest.fn().mockResolvedValue({
+  success: true,
+  limit: 100,
+  remaining: 99,
+  reset: 1767970937185,
+});
+jest.mock("@/utils/rateLimiter/rateLimiter", () => ({
+  checkRateLimitByIp: (...args: unknown[]) => mockCheckRateLimitByIp(...args),
+  createRateLimiter: jest.fn(),
+}));
+
 describe("/api/search/intent", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -248,5 +259,26 @@ describe("/api/search/intent", () => {
       directMatch: null,
       suggestedFilters: [],
     });
+  });
+  it("should return 429 when rate limit is exceeded", async () => {
+    mockCheckRateLimitByIp.mockResolvedValue({
+      success: false,
+      limit: 100,
+      remaining: 0,
+      reset: 1767970937185,
+    });
+
+    const { req, res } = createNextApiMocks({
+      method: "GET",
+      query: { searchTerm: "unknown topic" },
+    });
+
+    await handler(req, res);
+
+    expect(res._getStatusCode()).toBe(429);
+    expect(res._getJSONData()).toEqual({
+      error: "Rate limit exceeded",
+    });
+    expect(mockParse).not.toHaveBeenCalled();
   });
 });

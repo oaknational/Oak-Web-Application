@@ -37,13 +37,17 @@ function getIpFromRequest(req: NextApiRequest): string {
 export async function checkRateLimitByIp(
   rateLimiter: Ratelimit,
   req: NextApiRequest,
-): Promise<{ success: boolean; limit: number; remaining: number }> {
+): Promise<{
+  success: boolean;
+  limit: number;
+  remaining: number;
+  reset: number;
+}> {
   const ipAddress = getIpFromRequest(req);
-  const { success, limit, remaining, pending } =
-    await rateLimiter.limit(ipAddress);
+  const { pending, ...rateLimitResult } = await rateLimiter.limit(ipAddress);
 
   // https://upstash.com/docs/redis/sdks/ratelimit-ts/gettingstarted#serverless-environments
   waitUntil(pending);
 
-  return { success, limit, remaining };
+  return rateLimitResult;
 }

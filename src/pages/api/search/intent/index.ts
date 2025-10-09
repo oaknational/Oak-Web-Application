@@ -56,10 +56,7 @@ const handler: NextApiHandler = async (req, res) => {
       const rateLimitResult = await checkRateLimitByIp(rateLimiter, req);
       // console.log("Rate limit response", rateLimitResult);
       if (!rateLimitResult.success) {
-        return res.status(429).json({
-          error: "Rate limit exceeded or IP not found",
-          ...rateLimitResult,
-        });
+        return res.status(429).json({ error: "Rate limit exceeded" });
       }
 
       const subjectsFromModel = await callModel(searchTerm);
