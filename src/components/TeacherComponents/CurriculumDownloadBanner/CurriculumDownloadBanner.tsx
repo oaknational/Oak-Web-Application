@@ -41,19 +41,27 @@ const CurriculumDownloadBanner = (props: CurriculumDownloadBannerProps) => {
     childSubjectSlug,
   });
 
+  const subjectDisplayTitle = [
+    "english",
+    "french",
+    "spanish",
+    "german",
+  ].includes(subjectSlug)
+    ? subjectTitle
+    : subjectTitle.toLowerCase();
+
   return (
     <OakLinkCard
       hasAnimation
       mainSection={
         <OakFlex $flexDirection="column" $gap="space-between-s">
           <OakHeading tag="h2">
-            Fully resourced {subjectTitle.toLocaleLowerCase()} curriculum is
-            coming this autumn.
+            New fully-sequenced curriculum plan and lesson resources for{" "}
+            {subjectDisplayTitle}.
           </OakHeading>
           <OakP $font="heading-light-7">
-            We’re busy creating the final lessons and units. Download the
-            curriculum plan now to explore what’s coming and the thinking behind
-            our curriculum design.
+            Download the curriculum plan now to explore the thinking behind our
+            curriculum design.
           </OakP>
           <OakSmallPrimaryButton
             isTrailingIcon

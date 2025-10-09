@@ -1,53 +1,78 @@
+import { fireEvent } from "@testing-library/react";
+
 import { CurricTimetablingNewView } from ".";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-let mockParams = new URLSearchParams("");
-let mockReplace = jest.fn();
+let mockSearchParams = new URLSearchParams("");
+const mockReplace = jest.fn();
+const mockUseParams = jest.fn(() => ({ subjectPhaseSlug: "maths-primary" }));
 
 jest.mock("next/navigation", () => ({
   usePathname: () => "/timetabling/new",
   useRouter: () => ({ replace: mockReplace }),
-  useSearchParams: () => mockParams,
+  useSearchParams: () => mockSearchParams,
+  useParams: (...args: []) => mockUseParams(...args),
 }));
 
 describe("CurricTimetablingNewView", () => {
+  let replaceStateSpy: jest.SpyInstance;
+
+  beforeEach(() => {
+    replaceStateSpy = jest.spyOn(window.history, "replaceState");
+  });
+
+  afterEach(() => {
+    replaceStateSpy.mockRestore();
+  });
+
   test("component renders with heading correctly", async () => {
-    const { getByRole } = renderWithTheme(<CurricTimetablingNewView />);
+    const { getByRole } = renderWithTheme(
+      <CurricTimetablingNewView subjectPhaseSlug="maths-primary" />,
+    );
     const headingElement = getByRole("heading", { level: 2 });
     expect(headingElement).toHaveTextContent("Enter lessons per term");
   });
 
   test("component renders with button correctly", async () => {
-    const { getByRole } = renderWithTheme(<CurricTimetablingNewView />);
+    const { getByRole } = renderWithTheme(
+      <CurricTimetablingNewView subjectPhaseSlug="maths-primary" />,
+    );
 
     const linkElement = getByRole("link");
     expect(linkElement).toHaveTextContent("Next");
   });
 
   test("the next button directs to correct page", async () => {
-    mockParams = new URLSearchParams("");
-    const { getByRole } = renderWithTheme(<CurricTimetablingNewView />);
+    mockSearchParams = new URLSearchParams("");
+    const { getByRole } = renderWithTheme(
+      <CurricTimetablingNewView subjectPhaseSlug="maths-primary" />,
+    );
     const linkElement = getByRole("link");
     expect(linkElement).toHaveAttribute(
       "href",
-      "name?subject=maths&year=1&autumn=30&spring=30&summer=30",
+      "units?autumn=30&spring=30&summer=30&year=1",
     );
   });
 
-  test("renders three disabled number inputs with default value 30", () => {
-    const { getAllByLabelText } = renderWithTheme(<CurricTimetablingNewView />);
+  test("renders three interactive number inputs with default value 30", () => {
+    const { getAllByLabelText } = renderWithTheme(
+      <CurricTimetablingNewView subjectPhaseSlug="maths-primary" />,
+    );
     const inputs = getAllByLabelText("Number of lessons") as HTMLInputElement[];
     expect(inputs).toHaveLength(3);
     inputs.forEach((input) => {
-      expect(input).toBeDisabled();
-      expect(input).toHaveValue("30");
+      expect(input).not.toBeDisabled();
+      expect(input).toHaveValue(30);
+      expect(input).toHaveAttribute("type", "number");
+      expect(input).toHaveAttribute("min", "5");
+      expect(input).toHaveAttribute("max", "35");
     });
   });
 
   test("associates headings to inputs via aria-describedby", () => {
     const { getAllByLabelText, getByText } = renderWithTheme(
-      <CurricTimetablingNewView />,
+      <CurricTimetablingNewView subjectPhaseSlug="maths-primary" />,
     );
     const inputs = getAllByLabelText("Number of lessons") as HTMLInputElement[];
 
@@ -64,42 +89,106 @@ describe("CurricTimetablingNewView", () => {
     expect(inputs[2]).toHaveAttribute("aria-describedby", summer.id);
   });
 
-  test("normalises URL with defaults when missing", () => {
-    mockReplace = jest.fn();
-    mockParams = new URLSearchParams("");
-    const { unmount } = renderWithTheme(<CurricTimetablingNewView />);
-    expect(mockReplace).toHaveBeenCalledWith(
-      "/timetabling/new?subject=maths&year=1&autumn=30&spring=30&summer=30",
+  test("renders headings and inputs with correct IDs", () => {
+    const { getAllByLabelText, getByText } = renderWithTheme(
+      <CurricTimetablingNewView subjectPhaseSlug="maths-primary" />,
     );
-    unmount();
+    const inputs = getAllByLabelText("Number of lessons") as HTMLInputElement[];
+
+    const autumn = getByText("Autumn");
+    const spring = getByText("Spring");
+    const summer = getByText("Summer");
+
+    expect(autumn.id).toBe("autumn-heading");
+    expect(spring.id).toBe("spring-heading");
+    expect(summer.id).toBe("summer-heading");
+
+    expect(inputs[0]).toHaveAttribute("id", "autumn-lessons");
+    expect(inputs[1]).toHaveAttribute("id", "spring-lessons");
+    expect(inputs[2]).toHaveAttribute("id", "summer-lessons");
   });
 
-  test("fills missing terms, preserves allowed keys, drops others", () => {
-    mockReplace = jest.fn();
-    mockParams = new URLSearchParams(
-      "subject=science&year=2&spring=10&foo=bar",
+  test("updates next button href when input values change", () => {
+    mockSearchParams = new URLSearchParams("");
+    const { getAllByLabelText, getByRole } = renderWithTheme(
+      <CurricTimetablingNewView subjectPhaseSlug="maths-primary" />,
     );
-    const { unmount, getByRole } = renderWithTheme(
-      <CurricTimetablingNewView />,
+    const inputs = getAllByLabelText("Number of lessons") as HTMLInputElement[];
+    const linkElement = getByRole("link");
+
+    expect(inputs).toHaveLength(3);
+
+    // Initial state
+    expect(linkElement).toHaveAttribute(
+      "href",
+      "units?autumn=30&spring=30&summer=30&year=1",
     );
-    expect(mockReplace).toHaveBeenCalledWith(
-      "/timetabling/new?subject=science&year=2&autumn=30&spring=10&summer=30",
+
+    // Change autumn lessons to 25
+    fireEvent.change(inputs[0]!, { target: { value: "25" } });
+    expect(linkElement).toHaveAttribute(
+      "href",
+      "units?autumn=25&spring=30&summer=30&year=1",
     );
+
+    // Change spring lessons to 15
+    fireEvent.change(inputs[1]!, { target: { value: "15" } });
+    expect(linkElement).toHaveAttribute(
+      "href",
+      "units?autumn=25&spring=15&summer=30&year=1",
+    );
+
+    // Change summer lessons to 20
+    fireEvent.change(inputs[2]!, { target: { value: "20" } });
+    expect(linkElement).toHaveAttribute(
+      "href",
+      "units?autumn=25&spring=15&summer=20&year=1",
+    );
+  });
+
+  test("initializes input values from URL params", () => {
+    mockSearchParams = new URLSearchParams("autumn=20&spring=25&summer=35");
+    const { getAllByLabelText, getByRole } = renderWithTheme(
+      <CurricTimetablingNewView subjectPhaseSlug="maths-primary" />,
+    );
+    const inputs = getAllByLabelText("Number of lessons") as HTMLInputElement[];
+
+    expect(inputs[0]).toHaveValue(20);
+    expect(inputs[1]).toHaveValue(25);
+    expect(inputs[2]).toHaveValue(35);
+
     const linkElement = getByRole("link");
     expect(linkElement).toHaveAttribute(
       "href",
-      "name?subject=science&year=2&autumn=30&spring=10&summer=30",
+      "units?autumn=20&spring=25&summer=35&year=1",
     );
-    unmount();
   });
 
-  test("does not replace query params when already correct", () => {
-    mockReplace = jest.fn();
-    mockParams = new URLSearchParams(
-      "subject=maths&year=1&autumn=30&spring=30&summer=30",
+  test("populates URL with defaults when landing", () => {
+    mockSearchParams = new URLSearchParams("year=1");
+    renderWithTheme(
+      <CurricTimetablingNewView subjectPhaseSlug="maths-primary" />,
     );
-    const { unmount } = renderWithTheme(<CurricTimetablingNewView />);
-    expect(mockReplace).not.toHaveBeenCalled();
-    unmount();
+
+    // Should call history.replaceState to populate defaults
+    expect(replaceStateSpy).toHaveBeenCalledWith(
+      {},
+      "",
+      "/timetabling/new?autumn=30&spring=30&summer=30&year=1",
+    );
+  });
+
+  test("normalises URL removing empty name param", () => {
+    mockSearchParams = new URLSearchParams("year=1&name=");
+    renderWithTheme(
+      <CurricTimetablingNewView subjectPhaseSlug="maths-primary" />,
+    );
+
+    // Should remove empty name param
+    expect(replaceStateSpy).toHaveBeenCalledWith(
+      {},
+      "",
+      "/timetabling/new?autumn=30&spring=30&summer=30&year=1",
+    );
   });
 });

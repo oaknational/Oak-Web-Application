@@ -5,16 +5,16 @@ describe("rankMatches", () => {
     [
       "mathematics",
       [
-        { slug: "computing", matched: "cs" },
-        { slug: "maths", matched: "mathematics" },
+        { slug: "computing", title: "Computing", matched: "cs" },
+        { slug: "maths", title: "Mathematics", matched: "mathematics" },
       ],
       "maths",
     ],
     [
       "year 10",
       [
-        { slug: "year-10", matched: "year 10" },
-        { slug: "year-11", matched: "year 11" },
+        { slug: "year-10", title: "Year 10", matched: "year 10" },
+        { slug: "year-11", title: "Year 11", matched: "year 11" },
       ],
       "year-10",
     ],
@@ -29,16 +29,20 @@ describe("rankMatches", () => {
     [
       "French AQA",
       [
-        { slug: "french", matched: "french" },
-        { slug: "religious education", matched: "re" },
+        { slug: "french", title: "French", matched: "french" },
+        {
+          slug: "religious education",
+          title: "Religious Education",
+          matched: "re",
+        },
       ],
       "french",
     ],
     [
       "Edexcel B geography",
       [
-        { slug: "edexcel", matched: "edexcel" },
-        { slug: "edexcelb", matched: "Edexcel B" },
+        { slug: "edexcel", title: "Edexcel", matched: "edexcel" },
+        { slug: "edexcelb", title: "Edexcel B", matched: "Edexcel B" },
       ],
       "edexcelb",
     ],
@@ -48,8 +52,8 @@ describe("rankMatches", () => {
   });
   it("should prioritise whole word matches", () => {
     const result = rankMatches("Edexcel Biology", [
-      { slug: "edexcel", matched: "edexcel" },
-      { slug: "edexcelb", matched: "Edexcel B" },
+      { slug: "edexcel", title: "Edexcel", matched: "edexcel" },
+      { slug: "edexcelb", title: "Edexcel B", matched: "Edexcel B" },
     ]);
     expect(result?.slug).toBe("edexcel");
   });
@@ -57,24 +61,24 @@ describe("rankMatches", () => {
     [
       "chemistry science",
       [
-        { slug: "science", matched: "science" },
-        { slug: "science", matched: "Science" },
-        { slug: "chemistry", matched: "chemistry" },
-        { slug: "chemistry", matched: "Chemistry" },
-        { slug: "chemistry", matched: "bio" },
-        { slug: "chemistry", matched: "chemistry science" },
+        { slug: "science", title: "Science", matched: "science" },
+        { slug: "science", title: "Science", matched: "Science" },
+        { slug: "chemistry", title: "Chemistry", matched: "chemistry" },
+        { slug: "chemistry", title: "Chemistry", matched: "Chemistry" },
+        { slug: "chemistry", title: "Chemistry", matched: "bio" },
+        { slug: "chemistry", title: "Chemistry", matched: "chemistry science" },
       ],
       "chemistry",
     ],
     [
       "biology science",
       [
-        { slug: "science", matched: "science" },
-        { slug: "science", matched: "Science" },
-        { slug: "biology", matched: "biology" },
-        { slug: "biology", matched: "Biology" },
-        { slug: "biology", matched: "bio" },
-        { slug: "biology", matched: "biology science" },
+        { slug: "science", title: "Science", matched: "science" },
+        { slug: "science", title: "Science", matched: "Science" },
+        { slug: "biology", title: "Biology", matched: "biology" },
+        { slug: "biology", title: "Biology", matched: "Biology" },
+        { slug: "biology", title: "Biology", matched: "bio" },
+        { slug: "biology", title: "Biology", matched: "biology science" },
       ],
       "biology",
     ],

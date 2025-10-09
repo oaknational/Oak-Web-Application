@@ -5,28 +5,38 @@ import {
   OakHeading,
   OakP,
   OakPrimaryButton,
-  OakJauntyAngleLabel,
-  OakTextInput,
   OakMaxWidth,
+  OakJauntyAngleLabel,
 } from "@oaknational/oak-components";
 import { useMemo } from "react";
+import Link from "next/link";
 
 import { CurricTimetableHeader } from "../CurricTimetableHeader";
 import { CurricShowSteps } from "../CurricShowSteps";
+import { CurricNumberInput } from "../CurricNumberInput";
 
-import { useTimetableHeaderParams } from "./useTimetableHeaderParams";
+import {
+  simpleObjectAsSearchParams,
+  useTimetableParams,
+} from "@/utils/curriculum/timetabling";
+import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 
-export const CurricTimetablingNewView = () => {
-  const DEFAULT_LESSONS = 30;
-  const { subject, year, queryString } = useTimetableHeaderParams();
-
-  const nextHref = useMemo(() => `name?${queryString}`, [queryString]);
+type CurricTimetablingNewViewProps = { subjectPhaseSlug: string };
+export const CurricTimetablingNewView = ({
+  subjectPhaseSlug,
+}: CurricTimetablingNewViewProps) => {
+  const { subjectSlug } = parseSubjectPhaseSlug(subjectPhaseSlug)!;
+  const [data, setData] = useTimetableParams();
+  const nextHref = useMemo(
+    () => `units?${simpleObjectAsSearchParams(data, { name: "" })}`,
+    [data],
+  );
 
   return (
     <>
       <OakFlex $flexDirection={"column"} $pa={"inner-padding-xl5"}>
         <CurricTimetableHeader
-          titleSlot={`Year ${year} ${subject}`}
+          titleSlot={`Year ${data.year} ${subjectSlug}`}
           illustrationSlug={"magic-carpet"}
           additionalSlot={
             <OakBox $maxWidth={"all-spacing-20"}>
@@ -75,14 +85,14 @@ export const CurricTimetablingNewView = () => {
                   $left={"5px"}
                   $borderRadius="border-radius-square"
                 />
-                <OakTextInput
+                <CurricNumberInput
                   id="autumn-lessons"
-                  defaultValue={String(DEFAULT_LESSONS)}
-                  disabled
-                  aria-describedby="autumn-heading"
-                  wrapperWidth="100%"
-                  $pv="inner-padding-none"
-                  $height="all-spacing-10"
+                  value={data.autumn ?? 30}
+                  onChange={(value) => setData({ autumn: value })}
+                  ariaDescribedBy="autumn-heading"
+                  min={5}
+                  max={35}
+                  step={1}
                 />
               </OakFlex>
             </OakFlex>
@@ -109,14 +119,14 @@ export const CurricTimetablingNewView = () => {
                   $left={"5px"}
                   $borderRadius="border-radius-square"
                 />
-                <OakTextInput
+                <CurricNumberInput
                   id="spring-lessons"
-                  defaultValue={String(DEFAULT_LESSONS)}
-                  disabled
-                  aria-describedby="spring-heading"
-                  wrapperWidth="100%"
-                  $pv="inner-padding-none"
-                  $height="all-spacing-10"
+                  value={data.spring ?? 30}
+                  onChange={(value) => setData({ spring: value })}
+                  ariaDescribedBy="spring-heading"
+                  min={5}
+                  max={35}
+                  step={1}
                 />
               </OakFlex>
             </OakFlex>
@@ -143,21 +153,21 @@ export const CurricTimetablingNewView = () => {
                   $left={"5px"}
                   $borderRadius="border-radius-square"
                 />
-                <OakTextInput
+                <CurricNumberInput
                   id="summer-lessons"
-                  defaultValue={String(DEFAULT_LESSONS)}
-                  disabled
-                  aria-describedby="summer-heading"
-                  wrapperWidth="100%"
-                  $pv="inner-padding-none"
-                  $height="all-spacing-10"
+                  value={data.summer ?? 30}
+                  onChange={(value) => setData({ summer: value })}
+                  ariaDescribedBy="summer-heading"
+                  min={5}
+                  max={35}
+                  step={1}
                 />
               </OakFlex>
             </OakFlex>
           </OakFlex>
 
           <OakPrimaryButton
-            element="a"
+            element={Link}
             href={nextHref}
             pv="inner-padding-m"
             ph="inner-padding-l"
