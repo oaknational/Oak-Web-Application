@@ -32,16 +32,6 @@ const handler: NextApiHandler = async (req, res) => {
 
   let searchTerm: string;
 
-  const rateLimitResult = await checkRateLimitByIp(rateLimiter, req);
-  // console.log("Rate limit response", rateLimitResult);
-
-  if (!rateLimitResult.success) {
-    return res.status(429).json({
-      error: "Rate limit exceeded or IP not found",
-      ...rateLimitResult,
-    });
-  }
-
   try {
     const parsed = intentRequestSchema.parse(req.query);
     searchTerm = parsed.searchTerm;
@@ -62,6 +52,16 @@ const handler: NextApiHandler = async (req, res) => {
       };
       return res.status(200).json(payload);
     } else if (aiSearchEnabled) {
+      // TODO: When we have LLM response caching, only rate limit new generations
+      const rateLimitResult = await checkRateLimitByIp(rateLimiter, req);
+      // console.log("Rate limit response", rateLimitResult);
+      if (!rateLimitResult.success) {
+        return res.status(429).json({
+          error: "Rate limit exceeded or IP not found",
+          ...rateLimitResult,
+        });
+      }
+
       const subjectsFromModel = await callModel(searchTerm);
       const bestSubjectMatch = subjectsFromModel[0]?.slug;
 
