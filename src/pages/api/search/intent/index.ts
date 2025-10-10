@@ -66,9 +66,7 @@ const handler: NextApiHandler = async (req, res) => {
   } catch (err) {
     const error = new OakError({
       code: "search/failed-to-get-intent",
-      meta: {
-        error: err,
-      },
+      originalError: err,
     });
     reportError(error);
 
