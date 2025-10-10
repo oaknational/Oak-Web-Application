@@ -285,7 +285,6 @@ const Search: FC<SearchProps> = (props) => {
                       labelOpened="Close"
                       iconOpened="cross"
                       iconClosed="filter"
-                      iconBackground="black"
                     >
                       <OakBox $mt={["space-between-m", null, null]}>
                         <SearchFilters

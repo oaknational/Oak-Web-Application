@@ -11,7 +11,6 @@ import styled from "styled-components";
 import {
   OakBox,
   OakBoxProps,
-  OakCombinedColorToken,
   OakFlex,
   OakFlexProps,
   OakIconName,
@@ -49,7 +48,6 @@ export type MobileFiltersProps = {
   label: string;
   labelOpened?: string;
   providedId?: string;
-  iconBackground?: OakCombinedColorToken;
   applyForTablet?: boolean;
 } & OakFlexProps;
 const MobileFilters: FC<MobileFiltersProps> = (props) => {
@@ -143,7 +141,6 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
           id={triggerId}
           $ml="auto"
           iconName={isOpen ? iconOpened : iconClosed}
-          iconBackground={props.iconBackground ?? "blue"}
           isTrailingIcon
           onClick={() => setIsOpen((isOpen) => !isOpen)}
           aria-expanded={isOpen}
