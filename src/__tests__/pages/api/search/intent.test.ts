@@ -22,6 +22,18 @@ jest.mock("openai", () => {
   };
 });
 
+const mockCheckRateLimitByIp = jest.fn().mockResolvedValue({
+  success: true,
+  limit: 100,
+  remaining: 99,
+  reset: 1767970937185,
+});
+
+jest.mock("@/utils/rateLimiter/rateLimiter", () => ({
+  checkRateLimitByIp: (...args: unknown[]) => mockCheckRateLimitByIp(...args),
+  createRateLimiter: jest.fn(() => ({ type: "mock-rate-limiter" })),
+}));
+
 describe("/api/search/intent", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -92,6 +104,28 @@ describe("/api/search/intent", () => {
 
     expect(res._getStatusCode()).toBe(200);
     expect(mockCallModel).not.toHaveBeenCalled();
+    expect(mockCheckRateLimitByIp).not.toHaveBeenCalled();
+  });
+  it("should call rate limiter with correct arguments for AI searches", async () => {
+    mockParse.mockResolvedValue({
+      output_parsed: {
+        subjects: [{ slug: "physical-education", confidence: 4 }],
+      },
+    });
+
+    const { req, res } = createNextApiMocks({
+      method: "GET",
+      query: { searchTerm: "basketball" },
+    });
+
+    await handler(req, res);
+
+    expect(mockCheckRateLimitByIp).toHaveBeenCalledTimes(1);
+    expect(mockCheckRateLimitByIp).toHaveBeenCalledWith(
+      { type: "mock-rate-limiter" },
+      req,
+    );
+    expect(res._getStatusCode()).toBe(200);
   });
   it("should return AI response when there is not a direct subject match", async () => {
     mockParse.mockResolvedValue({
@@ -104,11 +138,12 @@ describe("/api/search/intent", () => {
     });
     const { req, res } = createNextApiMocks({
       method: "GET",
-      query: { searchTerm: "golf" },
+      query: { searchTerm: "algebra" },
     });
 
     await handler(req, res);
 
+    expect(mockCheckRateLimitByIp).toHaveBeenCalledTimes(1);
     expect(res._getStatusCode()).toBe(200);
     expect(res._getJSONData()).toEqual({
       directMatch: null,
@@ -248,5 +283,27 @@ describe("/api/search/intent", () => {
       directMatch: null,
       suggestedFilters: [],
     });
+  });
+  it("should return 429 when rate limit is exceeded", async () => {
+    mockCheckRateLimitByIp.mockResolvedValue({
+      success: false,
+      limit: 100,
+      remaining: 0,
+      reset: 1767970937185,
+    });
+
+    const { req, res } = createNextApiMocks({
+      method: "GET",
+      query: { searchTerm: "unknown topic" },
+    });
+
+    await handler(req, res);
+
+    expect(mockCheckRateLimitByIp).toHaveBeenCalledTimes(1);
+    expect(res._getStatusCode()).toBe(429);
+    expect(res._getJSONData()).toEqual({
+      error: "Rate limit exceeded",
+    });
+    expect(mockParse).not.toHaveBeenCalled();
   });
 });
