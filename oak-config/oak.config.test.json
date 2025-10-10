@@ -106,8 +106,8 @@
   "googleSecretManager": {
     "projectId": "123451"
   },
-  "aiFeatures": {
-    "gatewayURL": "https://ai-gateway.vercel.sh/FAKE",
+  "aiGateway": {
+    "gatewayUrl": "https://ai-gateway.vercel.sh/FAKE",
     "requiredSecrets": ["AI_GATEWAY_API_KEY", "AI_GATEWAY_URL"]
   }
 }

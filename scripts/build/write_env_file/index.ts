@@ -197,7 +197,7 @@ async function main() {
     AI_SEARCH_ENABLED:
       process.env.AI_SEARCH_ENABLED || oakConfig.oak.aiSearchEnabled,
     AI_GATEWAY_URL:
-      process.env.AI_GATEWAY_URL || oakConfig.aiFeatures.gatewayURL,
+      process.env.AI_GATEWAY_URL || oakConfig.aiGateway.gatewayUrl,
     AI_GATEWAY_API_KEY:
       process.env.AI_GATEWAY_API_KEY || secretsFromNetwork.AI_GATEWAY_API_KEY,
 
