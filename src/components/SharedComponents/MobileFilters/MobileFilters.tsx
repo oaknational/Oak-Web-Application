@@ -161,6 +161,7 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
           $zIndex="mobile-filters"
           $background={isOpen ? "white" : "transparent"}
           $dropShadow={"drop-shadow-standard"}
+          $pointerEvents={"all"}
         >
           <StyledCategoryListInner
             id={menuId}
