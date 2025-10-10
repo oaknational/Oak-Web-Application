@@ -9,7 +9,8 @@ import OakError from "@/errors/OakError";
 import { findPfMatch } from "@/context/Search/suggestions/findPfMatch";
 import { getSuggestedFiltersFromSubject } from "@/context/Search/suggestions/getSuggestedFilters";
 import getServerConfig from "@/node-lib/getServerConfig";
-import { callModel } from "@/context/Search/ai/callModel";
+import { withSuggestionCache } from "@/context/Search/ai/withSuggestionCache";
+import { generateSuggestions } from "@/context/Search/ai/generateSuggestions";
 import { OAK_SUBJECTS } from "@/context/Search/suggestions/oakCurriculumData";
 
 const reportError = errorReporter("search-intent");
@@ -39,7 +40,9 @@ const handler: NextApiHandler = async (req, res) => {
       };
       return res.status(200).json(payload);
     } else if (aiSearchEnabled) {
-      const subjectsFromModel = await callModel(searchTerm);
+      const subjectsFromModel = await withSuggestionCache(searchTerm, () =>
+        generateSuggestions(searchTerm),
+      );
       const bestSubjectMatch = subjectsFromModel[0]?.slug;
 
       const suggestedFiltersFromSubject = bestSubjectMatch

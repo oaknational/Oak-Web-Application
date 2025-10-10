@@ -260,6 +260,20 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: false,
   },
+  upstashRedisUrl: {
+    value: process.env.UPSTASH_REDIS_URL,
+    envName: "UPSTASH_REDIS_URL",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  upstashRedisToken: {
+    value: process.env.UPSTASH_REDIS_TOKEN,
+    envName: "UPSTASH_REDIS_TOKEN",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
   posthogApiKey: {
     value: process.env.NEXT_PUBLIC_POSTHOG_API_KEY,
     envName: "NEXT_PUBLIC_POSTHOG_API_KEY",

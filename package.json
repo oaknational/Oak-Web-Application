@@ -97,6 +97,7 @@
     "@tiptap/react": "^2.14.0",
     "@tiptap/starter-kit": "^2.14.0",
     "@types/uuid": "^10.0.0",
+    "@upstash/redis": "^1.35.5",
     "better-react-mathjax": "^2.3.0",
     "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.1",

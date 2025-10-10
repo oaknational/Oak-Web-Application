@@ -6,8 +6,17 @@ import { OAK_SUBJECTS } from "../suggestions/oakCurriculumData";
 
 import { buildSearchIntentPrompt } from "@/utils/promptBuilder";
 
+export const suggestionsSchema = z.array(
+  z.object({
+    slug: z.string(),
+    confidence: z.number().min(1).max(5),
+  }),
+);
+
+export type Suggestions = z.infer<typeof suggestionsSchema>;
+
 const client = new OpenAI();
-export async function callModel(searchTerm: string) {
+export async function generateSuggestions(searchTerm: string) {
   const subjects = OAK_SUBJECTS.map((subject) => subject.slug);
   const prompt = buildSearchIntentPrompt(searchTerm, subjects);
 
