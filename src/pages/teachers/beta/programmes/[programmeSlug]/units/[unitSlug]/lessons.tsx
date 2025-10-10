@@ -5,6 +5,7 @@ import {
   GetStaticPropsResult,
   GetStaticPathsResult,
 } from "next";
+import { useRouter } from "next/router";
 import { useUser } from "@clerk/nextjs";
 import {
   OakGrid,
@@ -77,6 +78,7 @@ function getHydratedLessonsFromUnit(unit: LessonListingPageData) {
 const LessonListPage: NextPage<LessonListingPageProps> = ({
   curriculumData,
 }) => {
+  const router = useRouter();
   const {
     unitSlug,
     unitvariantId,
@@ -114,10 +116,21 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
   });
 
   useEffect(() => {
-    if (window.location.href !== browserUrl) {
-      window.history.replaceState({}, "", browserUrl);
+    if (browserUrl && window.location.href !== browserUrl) {
+      const url = new URL(browserUrl);
+      router.replace(
+        {
+          pathname: router.pathname,
+          query: {
+            ...router.query,
+            ...Object.fromEntries(url.searchParams),
+          },
+        },
+        undefined,
+        { shallow: true },
+      );
     }
-  }, [browserUrl]);
+  }, [browserUrl, router]);
 
   const { handleClick } = useTeacherShareButton({
     shareUrl,

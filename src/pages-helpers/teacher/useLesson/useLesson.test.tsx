@@ -1,5 +1,6 @@
 import { renderHook, act } from "@testing-library/react";
 import { useFeatureFlagEnabled } from "posthog-js/react";
+import { useRouter } from "next/router";
 
 import { useLesson, UseLessonProps } from "./useLesson";
 
@@ -23,6 +24,12 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: jest.fn(() => ({
     track: { teacherNoteDialogOpened: jest.fn() },
+  })),
+}));
+
+jest.mock("next/router", () => ({
+  useRouter: jest.fn(() => ({
+    replace: jest.fn(),
   })),
 }));
 
@@ -82,11 +89,6 @@ describe("useLesson", () => {
       value: mockLocation,
       writable: true,
     });
-
-    // mock the history.replaceState method
-    jest.spyOn(window.history, "replaceState").mockImplementation(() => {
-      return;
-    });
   });
 
   it("should initialize with correct default state", () => {
@@ -117,14 +119,24 @@ describe("useLesson", () => {
   });
 
   it("should update browser URL when different from current location", () => {
-    const replaceStateSpy = jest.spyOn(window.history, "replaceState");
+    const mockReplace = jest.fn();
+    const mockRouter = {
+      replace: mockReplace,
+      pathname: "/teachers/lessons/test-lesson",
+      query: { lessonSlug: "test-lesson" },
+    };
+
+    (useRouter as jest.Mock).mockReturnValue(mockRouter);
 
     renderHook(() => useLesson(defaultProps));
 
-    expect(replaceStateSpy).toHaveBeenCalledWith(
-      {},
-      "",
-      "https://browser.example.com",
+    expect(mockReplace).toHaveBeenCalledWith(
+      {
+        pathname: "/teachers/lessons/test-lesson",
+        query: { lessonSlug: "test-lesson" },
+      },
+      undefined,
+      { shallow: true },
     );
   });
 

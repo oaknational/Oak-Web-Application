@@ -1,7 +1,6 @@
 import { GetStaticPropsContext, PreviewData } from "next";
 import userEvent from "@testing-library/user-event";
 import { screen } from "@testing-library/dom";
-import mockRouter from "next-router-mock";
 
 import LessonListPage, {
   getStaticProps,
@@ -43,6 +42,21 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 
 // mock save functionality
 window.global.fetch = jest.fn().mockResolvedValue({ ok: true });
+
+const mockRouter = {
+  replace: jest.fn(),
+  pathname: "/",
+  asPath: "/",
+  query: {
+    // programmeSlug: "test-programme-slug",
+    // unitSlug: "test-unit-slug",
+    redirected: "",
+  },
+};
+
+jest.mock("next/router", () => ({
+  useRouter: jest.fn(() => mockRouter),
+}));
 
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: jest.fn().mockReturnValue(true),
@@ -317,11 +331,12 @@ describe("tracking", () => {
   });
 });
 describe("redirected overlay", () => {
-  beforeEach(() => {
-    mockRouter.setCurrentUrl("/?redirected=true");
-  });
   it("should show redirect modal when redirected query param is present", () => {
-    mockRouter.setCurrentUrl("/?redirected=true");
+    mockRouter.query = {
+      ...mockRouter.query,
+      redirected: "true",
+    };
+
     const { getByTestId } = render(
       <LessonListPage curriculumData={lessonListingFixture()} />,
     );

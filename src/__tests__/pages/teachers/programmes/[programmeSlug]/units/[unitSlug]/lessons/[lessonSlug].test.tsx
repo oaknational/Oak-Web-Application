@@ -87,6 +87,19 @@ jest.mock("@/pages-helpers/teacher/share/useTeacherNotes", () => {
   };
 });
 
+jest.mock("next/router", () => ({
+  useRouter: jest.fn(() => ({
+    replace: jest.fn(),
+    pathname: "/",
+    asPath: "/",
+    query: {
+      lessonSlug: "lessonSlug",
+      unitSlug: "unitSlug",
+      programmeSlug: "programmeSlug",
+    },
+  })),
+}));
+
 const render = renderWithProviders();
 
 describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]", () => {
@@ -206,7 +219,17 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
   });
 
   it("updates the url", async () => {
-    window.history.replaceState = jest.fn();
+    const mockReplace = jest.fn();
+    (jest.requireMock("next/router").useRouter as jest.Mock).mockReturnValue({
+      replace: mockReplace,
+      pathname: "/",
+      asPath: "/",
+      query: {
+        lessonSlug: "lessonSlug",
+        unitSlug: "unitSlug",
+        programmeSlug: "programmeSlug",
+      },
+    });
 
     (useShare as jest.Mock).mockReturnValueOnce({
       shareUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
@@ -217,10 +240,18 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
     });
     render(<LessonOverviewPage {...props} />);
 
-    expect(window.history.replaceState).toHaveBeenCalledWith(
-      {},
-      "",
-      "http://localhost:3000/teachers/lessons/lesson-1?test=1",
+    expect(mockReplace).toHaveBeenCalledWith(
+      {
+        pathname: "/",
+        query: {
+          lessonSlug: "lessonSlug",
+          unitSlug: "unitSlug",
+          programmeSlug: "programmeSlug",
+          test: "1",
+        },
+      },
+      undefined,
+      { shallow: true },
     );
   });
 
@@ -314,6 +345,9 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
           ogDescription:
             "View lesson content and choose resources to download or share",
           ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
+          ogImage:
+            "NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2025",
+          ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
           canonical: `NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
           robots: "index,follow",
         }),
