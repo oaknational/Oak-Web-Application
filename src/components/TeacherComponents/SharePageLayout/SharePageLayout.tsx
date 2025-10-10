@@ -128,9 +128,9 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
                           To complete correct the following:
                         </OakP>
                         <OakUL $mr="space-between-m">
-                          {getFormErrorMessages(props.errors).map((err, i) => {
+                          {getFormErrorMessages(props.errors).map((err) => {
                             return (
-                              <OakLI $color={"red"} key={i}>
+                              <OakLI $color={"red"} key={err}>
                                 {err}
                               </OakLI>
                             );
