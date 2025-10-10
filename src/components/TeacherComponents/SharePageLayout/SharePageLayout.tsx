@@ -26,16 +26,10 @@ import { getFormErrorMessages } from "@/components/TeacherComponents/helpers/dow
 import TermsAgreementForm from "@/components/TeacherComponents/TermsAgreementForm";
 import NoResourcesToShare from "@/components/TeacherComponents/NoResourcesToShare";
 import FieldError from "@/components/SharedComponents/FieldError";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
-import RiskAssessmentBanner from "@/components/TeacherComponents/RiskAssessmentBanner";
 
 export type SharePageLayoutProps = ResourcePageDetailsCompletedProps &
   ResourcePageSchoolDetailsProps & {
-    geoRestricted?: boolean;
-    loginRequired?: boolean;
     header: string;
-    handleToggleSelectAll: () => void;
-    selectAllChecked: boolean;
     errors: FieldErrors<ResourceFormProps>;
     cardGroup: React.ReactNode;
     showLoading: boolean;
@@ -46,13 +40,11 @@ export type SharePageLayoutProps = ResourcePageDetailsCompletedProps &
     showPostAlbCopyright: boolean;
     showSavedDetails: boolean;
     cta: React.ReactNode;
-    resourcesHeader?: string;
     triggerForm: UseFormTrigger<ResourceFormProps>;
     apiError?: string | null;
     updatedAt: string;
     showTermsAgreement: boolean;
     isLoading: boolean;
-    showRiskAssessmentBanner?: boolean;
   };
 
 const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
@@ -80,34 +72,18 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
             $alignItems={"flex-start"}
             $position={"relative"}
           >
-            <OakBox $pa={"inner-padding-none"} $ba={"border-solid-none"}>
-              <Flex $flexDirection="column" $gap={16} $width={["100%", 720]}>
-                {props.resourcesHeader && (
-                  <OakHeading
-                    tag="h2"
-                    $font={["heading-6", "heading-5"]}
-                    $mb={"space-between-ssx"}
-                  >
-                    {props.resourcesHeader}
-                  </OakHeading>
-                )}
-                <FieldError id={"downloads-error"} withoutMarginBottom>
-                  {props.errors?.resources?.message}
-                </FieldError>
-
-                {props.cardGroup}
-                {props.showRiskAssessmentBanner &&
-                  (props.showTermsAgreement ? (
-                    <OakBox $display={["none", "none", "block"]}>
-                      <RiskAssessmentBanner />
-                    </OakBox>
-                  ) : (
-                    <OakBox $mv="space-between-s">
-                      <RiskAssessmentBanner />
-                    </OakBox>
-                  ))}
-              </Flex>
-            </OakBox>
+            <OakFlex
+              $pa={"inner-padding-none"}
+              $ba={"border-solid-none"}
+              $flexDirection="column"
+              $gap={"space-between-s"}
+              $width={"100%"}
+            >
+              <FieldError id={"downloads-error"} withoutMarginBottom>
+                {props.errors?.resources?.message}
+              </FieldError>
+              {props.cardGroup}
+            </OakFlex>
 
             <OakFlex
               $flexDirection="column"
@@ -121,33 +97,23 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
               ) : (
                 <>
                   {props.showTermsAgreement && (
-                    <>
-                      <TermsAgreementForm
-                        form={{
-                          control: props.control,
-                          register: props.register,
-                          errors: props.errors,
-                          trigger: props.triggerForm,
-                        }}
-                        isLoading={props.showLoading}
-                        email={props.email}
-                        schoolId={props.schoolId}
-                        schoolName={props.school}
-                        setSchool={props.setSchool}
-                        showSavedDetails={props.showSavedDetails}
-                        handleEditDetailsCompletedClick={props.onEditClick}
-                        showPostAlbCopyright={props.showPostAlbCopyright}
-                        copyrightYear={props.updatedAt}
-                      />
-                      {props.showRiskAssessmentBanner && (
-                        <OakBox
-                          $display={["block", "block", "none"]}
-                          $mv="space-between-s"
-                        >
-                          <RiskAssessmentBanner />
-                        </OakBox>
-                      )}
-                    </>
+                    <TermsAgreementForm
+                      form={{
+                        control: props.control,
+                        register: props.register,
+                        errors: props.errors,
+                        trigger: props.triggerForm,
+                      }}
+                      isLoading={props.showLoading}
+                      email={props.email}
+                      schoolId={props.schoolId}
+                      schoolName={props.school}
+                      setSchool={props.setSchool}
+                      showSavedDetails={props.showSavedDetails}
+                      handleEditDetailsCompletedClick={props.onEditClick}
+                      showPostAlbCopyright={props.showPostAlbCopyright}
+                      copyrightYear={props.updatedAt}
+                    />
                   )}
                   {hasFormErrors && (
                     <OakFlex $flexDirection={"row"}>

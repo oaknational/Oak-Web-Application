@@ -1,26 +1,18 @@
 import { screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { useForm } from "react-hook-form";
 
 import ResourcePageLayoutB, { SharePageLayoutProps } from "./SharePageLayout";
 
 import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import {
-  defaultCopyrightRequirements,
-  signedOutLoginRequired,
-} from "@/__tests__/__helpers__/mockCopyrightRequirements";
+import { defaultCopyrightRequirements } from "@/__tests__/__helpers__/mockCopyrightRequirements";
 
 type PropsWithoutForm = Omit<
   SharePageLayoutProps,
   "control" | "register" | "triggerForm"
 >;
 const props: PropsWithoutForm = {
-  downloadsRestricted: false,
-  page: "download",
-  header: "Downloads",
-  selectAllChecked: true,
-  handleToggleSelectAll: jest.fn(),
+  header: "Share",
   errors: {},
   showLoading: false,
   showNoResources: false,
@@ -30,7 +22,6 @@ const props: PropsWithoutForm = {
   setSchool: jest.fn(),
   cardGroup: <div>Cards</div>,
   cta: <button>CTA</button>,
-  resourcesHeader: "Lesson downloads",
   updatedAt: "2022-01-01T00:00:00Z",
   withHomeschool: true,
   showTermsAgreement: true,
@@ -57,37 +48,6 @@ describe("Downloads/Share Layout", () => {
   afterEach(() => {
     mockUseCopyrightRequirements = defaultCopyrightRequirements;
   });
-  it("renders a toggleable select all checkbox", async () => {
-    let checked = true;
-    const { rerender } = renderWithTheme(
-      <ComponentWrapper
-        {...props}
-        selectAllChecked={checked}
-        handleToggleSelectAll={() => (checked = false)}
-        showTermsAgreement={false}
-      />,
-    );
-
-    const selectAllCheckbox = screen.getByRole("checkbox", {
-      name: "Select all",
-    });
-
-    expect(selectAllCheckbox).toBeInTheDocument();
-    expect(selectAllCheckbox).toBeChecked();
-
-    const user = userEvent.setup();
-    await user.click(selectAllCheckbox);
-    rerender(
-      <ComponentWrapper
-        {...props}
-        selectAllChecked={checked}
-        handleToggleSelectAll={() => (checked = false)}
-        showTermsAgreement={false}
-      />,
-    );
-    expect(selectAllCheckbox).not.toBeChecked();
-  });
-
   it("handles download error message ", () => {
     renderWithTheme(
       <ComponentWrapper
@@ -111,37 +71,6 @@ describe("Downloads/Share Layout", () => {
     expect(apiErrorAfterRerender).toBeInTheDocument();
   });
 
-  it("hides select all when prop is set to false", () => {
-    renderWithTheme(
-      <ComponentWrapper
-        {...props}
-        hideSelectAll={true}
-        showTermsAgreement={false}
-      />,
-    );
-
-    const selectAllCheckbox = screen.queryByRole("checkbox", {
-      name: "Select all",
-    });
-
-    expect(selectAllCheckbox).not.toBeInTheDocument();
-  });
-
-  it("shows risk assessment banners", () => {
-    const { getAllByTestId } = renderWithTheme(
-      <ComponentWrapper
-        {...props}
-        showRiskAssessmentBanner={true}
-        showTermsAgreement={true}
-      />,
-    );
-
-    const riskAssessmentBanner = getAllByTestId("risk-assessment-message");
-    riskAssessmentBanner.forEach((banner) => {
-      expect(banner).toBeInTheDocument();
-    });
-  });
-
   it("shows copyright when no terms are linked", () => {
     const { getByTestId } = renderWithTheme(
       <ComponentWrapper {...props} showTermsAgreement={false} />,
@@ -158,23 +87,5 @@ describe("Downloads/Share Layout", () => {
 
     const loadingSpinner = getByTestId("loading");
     expect(loadingSpinner).toBeInTheDocument();
-  });
-
-  it("renders LoginRequired button instead of CTA component when downloadsRestricted is true", () => {
-    const restrictedProps = {
-      ...props,
-      downloadsRestricted: true,
-    };
-    mockUseCopyrightRequirements = signedOutLoginRequired;
-    const { queryByRole, getByRole } = renderWithTheme(
-      <ComponentWrapper {...restrictedProps} />,
-    );
-
-    const ctaButton = queryByRole("button", { name: "CTA" });
-    const loginRequiredButton = getByRole("button", {
-      name: "Sign in to continue",
-    });
-    expect(ctaButton).not.toBeInTheDocument();
-    expect(loginRequiredButton).toBeInTheDocument();
   });
 });

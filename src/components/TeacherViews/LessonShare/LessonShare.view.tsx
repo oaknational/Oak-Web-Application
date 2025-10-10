@@ -131,8 +131,6 @@ export function LessonShare(props: LessonShareProps) {
     selectedResources,
     hasFormErrors,
     localStorageDetails,
-    handleToggleSelectAll,
-    selectAllChecked,
     editDetailsClicked,
     setEmailInLocalStorage,
   } = useResourceFormState({
@@ -175,7 +173,7 @@ export function LessonShare(props: LessonShareProps) {
       analyticsUseCase: "Teacher",
       resourceTypes: selectedResources
         .map((r) => classroomActivityMap[r])
-        .filter((r) => r !== undefined) as ResourceTypesValueType[],
+        .filter((r) => r !== undefined),
       audience: "Pupil",
       lessonReleaseCohort: isLegacy ? "2020-2023" : "2023-2026",
       lessonReleaseDate: lessonReleaseDate ?? "unpublished",
@@ -229,11 +227,7 @@ export function LessonShare(props: LessonShareProps) {
           />
         </OakBox>
         <SharePageLayout
-          loginRequired={false}
-          geoRestricted={false}
           errors={form.errors}
-          handleToggleSelectAll={handleToggleSelectAll}
-          selectAllChecked={selectAllChecked}
           header="Share your lesson"
           showNoResources={!hasResources || Boolean(expired)}
           showLoading={isLocalStorageLoading}
