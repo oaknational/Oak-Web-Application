@@ -257,7 +257,7 @@ const Search: FC<SearchProps> = (props) => {
                 <OakFlex
                   $mt={["space-between-none", "space-between-m2"]}
                   $alignItems={"center"}
-                  $display={["flex", "none"]}
+                  $display={["flex", "none", "none"]}
                 >
                   <ContentFilterToggle
                     contentTypeFilters={searchFilters.contentTypeFilters}
@@ -424,8 +424,8 @@ const Search: FC<SearchProps> = (props) => {
             </OakGridArea>
           )}
           <OakGridArea
-            $colSpan={[12, 12, 7]}
-            $colStart={[1, 1, 5]}
+            $colSpan={[12, isAiExperimentSearchEnabled ? 12 : 7, 7]}
+            $colStart={[1, isAiExperimentSearchEnabled ? 1 : 5, 5]}
             $rowStart={2}
           >
             <OakBox role="status" aria-live="polite">
@@ -456,7 +456,11 @@ const Search: FC<SearchProps> = (props) => {
                   <OakFlex
                     $flexDirection={"column"}
                     $gap={"space-between-m"}
-                    $display={["none", "none", "flex"]}
+                    $display={[
+                      "none",
+                      isAiExperimentSearchEnabled ? "none" : "flex",
+                      "flex",
+                    ]}
                     $pl="inner-padding-xl"
                   >
                     <ContentFilterToggle
