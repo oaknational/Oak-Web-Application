@@ -978,7 +978,7 @@ export const OAK_PAGES: {
     pageType: "onboarding-use-of-oak",
   }),
   "teachers-home-page": createOakPageConfig({
-    pathPattern: "/teachers",
+    pathPattern: "/",
     analyticsPageName: "Homepage",
     configType: "internal",
     pageType: "teachers-home-page",

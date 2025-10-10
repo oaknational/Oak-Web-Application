@@ -83,7 +83,7 @@ describe("components/AppHeader", () => {
     render(<AppHeader />);
     const teacherLink = screen.getByRole("link", { name: /Teachers/i });
 
-    expect(teacherLink).toHaveAttribute("href", "/teachers");
+    expect(teacherLink).toHaveAttribute("href", "/");
   });
   test("it should include a link for pupils", () => {
     render(<AppHeader />);
