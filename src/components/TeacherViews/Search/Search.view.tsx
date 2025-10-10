@@ -276,14 +276,15 @@ const Search: FC<SearchProps> = (props) => {
                     $position={"absolute"}
                     $width={"100%"}
                     $ph={"inner-padding-m"}
-                    $left={"all-spacing-0"}
+                    $right={"all-spacing-0"}
+                    $pointerEvents={"none"}
                   >
                     <MobileFilters
                       $mt={"space-between-none"}
                       label="Filters"
                       labelOpened="Close"
                       iconOpened="cross"
-                      iconClosed="mini-menu"
+                      iconClosed="filter"
                       iconBackground="black"
                     >
                       <OakBox $mt={["space-between-m", null, null]}>
