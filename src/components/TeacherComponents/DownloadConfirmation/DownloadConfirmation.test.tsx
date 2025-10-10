@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import DownloadConfirmation from "./DownloadConfirmation";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
+import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share/shareTypes";
 import { OnwardContentSelectedProperties } from "@/browser-lib/avo/Avo";
 import {
   setupMockLinkClick,
@@ -18,16 +18,13 @@ const onwardContentSelected = jest.fn() as unknown as (
   >,
 ) => void;
 
-jest.mock(
-  "@/pages-helpers/teacher/share-experiments/useShareExperiment",
-  () => ({
-    __esModule: true,
-    useShareExperiment: jest.fn(() => ({
-      shareIdRef: { current: "test-share-id" },
-      shareIdKeyRef: { current: "test-share-id-key" },
-    })),
-  }),
-);
+jest.mock("@/pages-helpers/teacher/share/useShare", () => ({
+  __esModule: true,
+  useShare: jest.fn(() => ({
+    shareIdRef: { current: "test-share-id" },
+    shareIdKeyRef: { current: "test-share-id-key" },
+  })),
+}));
 
 jest.mock("@oaknational/oak-consent-client", () => ({
   __esModule: true,

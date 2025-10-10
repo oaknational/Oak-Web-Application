@@ -6,10 +6,7 @@ import {
   useOakPupil,
 } from "@oaknational/oak-pupil-client";
 
-import {
-  CoreProperties,
-  CurriculumTrackingProps,
-} from "./shareExperimentTypes";
+import { CoreProperties, CurriculumTrackingProps } from "./shareTypes";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { LessonReleaseCohortValueType } from "@/browser-lib/avo/Avo";

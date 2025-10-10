@@ -15,9 +15,9 @@ import { useTeacherShareButton } from "../TeacherShareButton/useTeacherShareButt
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import DownloadConfirmationNextLessonContainer from "@/components/TeacherComponents/DownloadConfirmationNextLessonContainer";
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
-import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+import { useShare } from "@/pages-helpers/teacher/share/useShare";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
-import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
+import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share/shareTypes";
 import { OnwardContentSelectedProperties } from "@/browser-lib/avo/Avo";
 import { resolveOakHref } from "@/common-lib/urls";
 
@@ -91,7 +91,7 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
     .splice(0, pathElems.indexOf(lessonSlug) + 1)
     .join("/");
 
-  const { shareUrl, shareActivated } = useShareExperiment({
+  const { shareUrl, shareActivated } = useShare({
     programmeSlug: isCanonical ? undefined : (programmeSlug ?? undefined),
     source: isCanonical ? "download-canonical" : "download-browse",
     shareBaseUrl,
