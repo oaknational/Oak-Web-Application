@@ -29,7 +29,7 @@ export const useShare = ({
     lessonReleaseDate: string;
     lessonReleaseCohort: LessonReleaseCohortValueType;
   };
-  overrideExistingShareId: boolean | null;
+  overrideExistingShareId: boolean;
 }) => {
   const shareIdRef = useRef<string | null>(null);
   const shareIdKeyRef = useRef<string | null>(null);
