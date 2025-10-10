@@ -1,4 +1,4 @@
-import { useFeatureFlagVariantKey } from "posthog-js/react";
+import { screen } from "@testing-library/dom";
 
 import { LessonDownloads } from "./LessonDownloads.view";
 
@@ -25,22 +25,18 @@ const restrictedLesson = lessonDownloadsFixture({
   loginRequired: true,
 });
 
-jest.mock("posthog-js/react", () => ({
-  useFeatureFlagVariantKey: jest.fn(),
-}));
-
 describe("Hiding 'Your details", () => {
   beforeEach(() => {
-    (useFeatureFlagVariantKey as jest.Mock).mockReturnValue("control");
-    jest.clearAllMocks();
+    setUseUserReturn(mockLoggedOut);
   });
-  it("should show 'Your Details' when not logged in", () => {
-    const result = render(
-      <LessonDownloads lesson={lesson} isCanonical={false} />,
-    );
-    expect(result.queryByText("Your details")).toBeInTheDocument();
+  it("should show details section when not logged in", async () => {
+    render(<LessonDownloads lesson={lesson} isCanonical={false} />);
+
+    const schoolSelection = screen.getByLabelText("School (required)");
+
+    expect(schoolSelection).toBeInTheDocument();
   });
-  it("should not show 'Your Details' when fully onboarded", () => {
+  it("should not show details when fully onboarded", () => {
     setUseUserReturn({
       ...mockLoggedIn,
       user: mockTeacherUserWithDownloadAccess,
@@ -49,18 +45,20 @@ describe("Hiding 'Your details", () => {
       <LessonDownloads lesson={lesson} isCanonical={false} />,
     );
 
-    expect(result.queryByText("Your details")).not.toBeInTheDocument();
+    expect(
+      result.queryByLabelText("School (required)"),
+    ).not.toBeInTheDocument();
   });
-  it("should show 'Your Details' with logged in but not fully onboarded ", () => {
+  it("should show details with logged in but not fully onboarded ", () => {
     setUseUserReturn({
       ...mockLoggedIn,
       user: mockUserWithDownloadAccessNotOnboarded,
     });
-    const result = render(
-      <LessonDownloads lesson={lesson} isCanonical={false} />,
-    );
+    render(<LessonDownloads lesson={lesson} isCanonical={false} />);
 
-    expect(result.queryByText("Your details")).toBeInTheDocument();
+    const schoolSelection = screen.getByLabelText("School (required)");
+
+    expect(schoolSelection).toBeInTheDocument();
   });
 
   it("should show LoginRequired button and hide download button & form when not logged and geo restricted", () => {
@@ -173,7 +171,6 @@ describe("Hiding 'Your details", () => {
 
 describe("With downloads page experiment feature flag", () => {
   it("should render the downloads accordion when with-accordion variant is active", () => {
-    (useFeatureFlagVariantKey as jest.Mock).mockReturnValue("with-accordion");
     const { queryByText } = render(
       <LessonDownloads lesson={lesson} isCanonical={false} />,
     );
