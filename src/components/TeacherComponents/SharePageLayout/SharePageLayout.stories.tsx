@@ -37,9 +37,7 @@ const Wrapper = (args: SharePageLayoutProps) => {
 
 export const Layout: Story = {
   args: {
-    header: "Downloads",
-    selectAllChecked: true,
-    handleToggleSelectAll: () => {},
+    header: "Share",
     errors: {},
     showLoading: false,
     showNoResources: false,

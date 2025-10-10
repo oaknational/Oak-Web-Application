@@ -30,7 +30,6 @@ export type ResourceCardProps = Omit<CheckboxProps, "checked"> & {
   label: string;
   resourceType: DownloadResourceType | LessonShareResourceData["type"];
   subtitle: string;
-  hasError?: boolean;
   subjectIcon?: string;
   isEditable?: boolean;
   useDownloadPageLayout: boolean;
