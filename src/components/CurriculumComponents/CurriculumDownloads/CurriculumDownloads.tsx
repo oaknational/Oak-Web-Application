@@ -79,7 +79,7 @@ function CurriculumDownloads(
   } = useLocalStorageForDownloads();
 
   const handleLocalStorageUpdates = (data: {
-    email?: string | undefined;
+    email?: string;
     school: string;
     schoolName: string;
     terms: boolean;
@@ -124,7 +124,7 @@ function CurriculumDownloads(
   };
 
   const trackDownloadAnalytics = (
-    data: { email?: string | undefined; school: string },
+    data: { email?: string; school: string },
     selectedDownload: CurriculumDownload,
   ) => {
     const { email, school } = data;
@@ -201,7 +201,7 @@ function CurriculumDownloads(
       setIsAttemptingDownload(false);
       setEditDetailsClicked(false);
       if (editDetailsClicked && !data.email) setEmailInLocalStorage("");
-    } catch (error) {
+    } catch {
       setIsAttemptingDownload(false);
       setHasSuccessfullyDownloaded(false);
       setApiError(
@@ -310,6 +310,7 @@ function CurriculumDownloads(
                         subjectIcon={download.icon}
                         onChange={() => {}}
                         asRadio={true}
+                        useDownloadPageLayout={false}
                       />
                     ))}
                   </OakFlex>
@@ -343,9 +344,9 @@ function CurriculumDownloads(
                         To complete correct the following:
                       </OakP>
                       <OakUL $mr={"space-between-m"} data-testid="errorList">
-                        {getFormErrorMessages(form.errors).map((err, i) => {
+                        {getFormErrorMessages(form.errors).map((err) => {
                           return (
-                            <OakLI $color={"red"} key={i}>
+                            <OakLI $color={"red"} key={err}>
                               {err}
                             </OakLI>
                           );

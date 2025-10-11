@@ -89,6 +89,7 @@ const LessonShareCardGroup: FC<LessonShareCardGroupProps> = (props) => {
                   checked={fieldValue.includes(resource.type)}
                   onBlur={onBlur}
                   hasError={props.hasError}
+                  useDownloadPageLayout={false}
                 />
               );
             }}

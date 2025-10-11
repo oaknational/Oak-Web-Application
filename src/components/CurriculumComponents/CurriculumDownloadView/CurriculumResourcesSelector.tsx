@@ -52,6 +52,7 @@ export function CurriculumResourcesSelector({
               resourceType="curriculum-pdf"
               subjectIcon={download.icon}
               checked={downloadTypes.includes(download.id)}
+              useDownloadPageLayout={false}
               onChange={(e) => {
                 const downloadType = assertValidDownloadType(e.target.value);
                 let newDownloadTypes: DownloadType[];

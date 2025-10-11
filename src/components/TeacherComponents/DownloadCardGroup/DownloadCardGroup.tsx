@@ -26,7 +26,6 @@ type DownloadCardProps = {
   downloadType: string;
   triggerForm: () => void;
   hasError: boolean;
-  isDownloadsExperiment?: boolean;
 };
 const DownloadCard: FC<DownloadCardProps> = ({
   control,
@@ -34,7 +33,6 @@ const DownloadCard: FC<DownloadCardProps> = ({
   downloadType,
   triggerForm,
   hasError,
-  isDownloadsExperiment,
 }) => {
   return (
     <Controller
@@ -75,7 +73,7 @@ const DownloadCard: FC<DownloadCardProps> = ({
             onBlur={onBlur}
             hasError={hasError}
             data-testid={`download-card-${downloadType}`}
-            isDownloadsExperiment={isDownloadsExperiment}
+            useDownloadPageLayout
             isEditable={isEditable}
           />
         );
@@ -90,7 +88,6 @@ export type DownloadCardGroupProps = {
   control: Control<ResourceFormProps>;
   hasError?: boolean;
   triggerForm: () => void;
-  isDownloadsExperiment?: boolean;
 };
 const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
   downloads,
@@ -98,7 +95,6 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
   control,
   hasError = false,
   triggerForm,
-  isDownloadsExperiment = false,
 }) => {
   const groupedDownloads = groupDownloadResources(downloads, additionalFiles);
 
@@ -122,10 +118,7 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
             <OakGrid
               $position="relative"
               $width="max-content"
-              $gridTemplateColumns={[
-                "1fr",
-                `${isDownloadsExperiment ? "1fr 1fr" : "max-content max-content"}`,
-              ]}
+              $gridTemplateColumns={["1fr", "1fr 1fr"]}
               $cg={"space-between-s"}
               $rg={"space-between-s"}
             >
@@ -142,7 +135,6 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
                     downloadType={downloadType}
                     triggerForm={triggerForm}
                     hasError={hasError}
-                    isDownloadsExperiment={isDownloadsExperiment}
                   />
                 );
               })}

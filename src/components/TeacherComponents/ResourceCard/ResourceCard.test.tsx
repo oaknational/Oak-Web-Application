@@ -15,6 +15,7 @@ describe("ResourceCard", () => {
         checked
         onChange={jest.fn()}
         resourceType="worksheet-pdf"
+        useDownloadPageLayout
       />,
     );
 
@@ -41,6 +42,7 @@ describe("ResourceCard", () => {
         subtitle="PDF"
         onChange={() => toggleValue()}
         resourceType="worksheet-pdf"
+        useDownloadPageLayout
       />,
     );
 
@@ -61,6 +63,7 @@ describe("ResourceCard", () => {
         subtitle="PDF"
         onChange={() => toggleValue()}
         resourceType="worksheet-pdf"
+        useDownloadPageLayout
       />,
     );
 
@@ -78,6 +81,7 @@ describe("ResourceCard", () => {
         onChange={jest.fn()}
         resourceType="worksheet-pdf"
         isEditable={true}
+        useDownloadPageLayout
       />,
     );
 
