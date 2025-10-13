@@ -263,20 +263,20 @@ const envVars = satisfies<Record<string, EnvVar>>()({
   aiSearchRateLimitPer24h: {
     value: process.env.AI_SEARCH_RATE_LIMIT_PER_24H,
     envName: "AI_SEARCH_RATE_LIMIT_PER_24H",
-    required: false,
-    availableInBrowser: false,
-    default: "50",
-  },
-  upstashRedisUrl: {
-    value: process.env.UPSTASH_REDIS_URL,
-    envName: "UPSTASH_REDIS_URL",
     required: true,
     availableInBrowser: false,
     default: null,
   },
-  upstashRedisToken: {
-    value: process.env.UPSTASH_REDIS_TOKEN,
-    envName: "UPSTASH_REDIS_TOKEN",
+  aiSearchKvUrl: {
+    value: process.env.AI_SEARCH_KV_URL,
+    envName: "AI_SEARCH_KV_URL",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  aiSearchKvToken: {
+    value: process.env.AI_SEARCH_KV_TOKEN,
+    envName: "AI_SEARCH_KV_TOKEN",
     required: true,
     availableInBrowser: false,
     default: null,

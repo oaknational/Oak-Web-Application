@@ -54,7 +54,6 @@ const handler: NextApiHandler = async (req, res) => {
     } else if (aiSearchEnabled) {
       // TODO: When we have LLM response caching, only rate limit new generations
       const rateLimitResult = await checkRateLimitByIp(rateLimiter, req);
-      // console.log("Rate limit response", rateLimitResult);
       if (!rateLimitResult.success) {
         return res.status(429).json({ error: "Rate limit exceeded" });
       }

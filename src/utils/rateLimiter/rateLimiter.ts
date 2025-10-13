@@ -13,8 +13,8 @@ export function createRateLimiter(
 ) {
   return new Ratelimit({
     redis: new Redis({
-      url: getServerConfig("upstashRedisUrl"),
-      token: getServerConfig("upstashRedisToken"),
+      url: getServerConfig("aiSearchKvUrl"),
+      token: getServerConfig("aiSearchKvToken"),
     }),
     limiter: algorithm,
     prefix,
@@ -22,14 +22,17 @@ export function createRateLimiter(
 }
 
 function getIpFromRequest(req: NextApiRequest): string {
-  // cf-connecting-ip is safer than x-forwarded-for which can be spooked
+  // cf-connecting-ip is the IP of the browser making the initial request to cloudflare
+  // This is safer than x-forwarded-for which can be spoofed, and is disabled by default in vercel
   const cfIp = req.headers["cf-connecting-ip"];
   if (cfIp) {
     invariant(typeof cfIp === "string", "cf-connecting-ip must be a string");
     return cfIp;
   }
-  if (req.socket.remoteAddress) {
-    return req.socket.remoteAddress;
+  const directIp = req.socket.remoteAddress;
+  // If cloudflare isn't in the request chain (eg: development), use the direct IP address
+  if (directIp) {
+    return directIp;
   }
   throw new Error("IP address is required for rate limiting");
 }
