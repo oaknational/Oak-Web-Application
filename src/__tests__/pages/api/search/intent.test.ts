@@ -1,5 +1,5 @@
 import { createNextApiMocks } from "@/__tests__/__helpers__/createNextApiMocks";
-import handler, { callModel } from "@/pages/api/search/intent";
+import handler from "@/pages/api/search/intent";
 
 const mockErrorReporter = jest.fn();
 jest.mock("@/common-lib/error-reporter", () => ({
@@ -22,12 +22,24 @@ jest.mock("openai", () => {
   };
 });
 
+const mockCheckRateLimitByIp = jest.fn().mockResolvedValue({
+  success: true,
+  limit: 100,
+  remaining: 99,
+  reset: 1767970937185,
+});
+
+jest.mock("@/utils/rateLimiter/rateLimiter", () => ({
+  checkRateLimitByIp: (...args: unknown[]) => mockCheckRateLimitByIp(...args),
+  createRateLimiter: jest.fn(() => ({ type: "mock-rate-limiter" })),
+}));
+
 describe("/api/search/intent", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it("should return direct match response for 'maths' search term", async () => {
+  it("should return direct match response for 'maths' search term with appropriate keystage filters", async () => {
     const { req, res } = createNextApiMocks({
       method: "GET",
       query: { searchTerm: "maths" },
@@ -36,6 +48,7 @@ describe("/api/search/intent", () => {
     await handler(req, res);
 
     expect(res._getStatusCode()).toBe(200);
+
     expect(res._getJSONData()).toEqual({
       directMatch: {
         subject: { slug: "maths", title: "Maths" },
@@ -44,18 +57,77 @@ describe("/api/search/intent", () => {
         examBoard: null,
       },
       suggestedFilters: [
-        { type: "subject", slug: "maths", title: "Maths" },
+        {
+          type: "key-stage",
+          slug: "early-years-foundation-stage",
+          title: "EYFS",
+        },
         { type: "key-stage", slug: "ks1", title: "Key Stage 1" },
         { type: "key-stage", slug: "ks2", title: "Key Stage 2" },
         { type: "key-stage", slug: "ks3", title: "Key Stage 3" },
         { type: "key-stage", slug: "ks4", title: "Key Stage 4" },
-        { type: "exam-board", slug: "aqa", title: "AQA" },
-        { type: "exam-board", slug: "edexcel", title: "Edexcel" },
       ],
     });
   });
+  it("should return combinations of pfs as direct match when in search term", async () => {
+    const { req, res } = createNextApiMocks({
+      method: "GET",
+      query: { searchTerm: "ks4 french aqa" },
+    });
 
-  it("should return AI response for other search terms", async () => {
+    await handler(req, res);
+
+    expect(res._getStatusCode()).toBe(200);
+
+    expect(res._getJSONData()).toEqual({
+      directMatch: {
+        subject: { title: "French", slug: "french" },
+        keyStage: { title: "Key Stage 4", slug: "ks4" },
+        examBoard: { title: "AQA", slug: "aqa" },
+        year: null,
+      },
+      suggestedFilters: [],
+    });
+  });
+  it("should not call AI when there is a direct subject match", async () => {
+    const mockCallModel = jest.fn();
+    jest.mock("@/context/Search/ai/callModel", () => ({
+      callModel: () => mockCallModel(),
+    }));
+
+    const { req, res } = createNextApiMocks({
+      method: "GET",
+      query: { searchTerm: "english" },
+    });
+
+    await handler(req, res);
+
+    expect(res._getStatusCode()).toBe(200);
+    expect(mockCallModel).not.toHaveBeenCalled();
+    expect(mockCheckRateLimitByIp).not.toHaveBeenCalled();
+  });
+  it("should call rate limiter with correct arguments for AI searches", async () => {
+    mockParse.mockResolvedValue({
+      output_parsed: {
+        subjects: [{ slug: "physical-education", confidence: 4 }],
+      },
+    });
+
+    const { req, res } = createNextApiMocks({
+      method: "GET",
+      query: { searchTerm: "basketball" },
+    });
+
+    await handler(req, res);
+
+    expect(mockCheckRateLimitByIp).toHaveBeenCalledTimes(1);
+    expect(mockCheckRateLimitByIp).toHaveBeenCalledWith(
+      { type: "mock-rate-limiter" },
+      req,
+    );
+    expect(res._getStatusCode()).toBe(200);
+  });
+  it("should return AI response when there is not a direct subject match", async () => {
     mockParse.mockResolvedValue({
       output_parsed: {
         subjects: [
@@ -66,21 +138,88 @@ describe("/api/search/intent", () => {
     });
     const { req, res } = createNextApiMocks({
       method: "GET",
-      query: { searchTerm: "science" },
+      query: { searchTerm: "algebra" },
     });
 
     await handler(req, res);
 
+    expect(mockCheckRateLimitByIp).toHaveBeenCalledTimes(1);
     expect(res._getStatusCode()).toBe(200);
     expect(res._getJSONData()).toEqual({
       directMatch: null,
       suggestedFilters: [
         { type: "subject", slug: "maths", title: "Maths" },
         { type: "subject", slug: "science", title: "Science" },
+        {
+          type: "key-stage",
+          slug: "early-years-foundation-stage",
+          title: "EYFS",
+        },
+        { type: "key-stage", slug: "ks1", title: "Key Stage 1" },
+        { type: "key-stage", slug: "ks2", title: "Key Stage 2" },
+        { type: "key-stage", slug: "ks3", title: "Key Stage 3" },
+        { type: "key-stage", slug: "ks4", title: "Key Stage 4" },
       ],
     });
   });
+  it("should combine direct matches and ai suggestions", async () => {
+    mockParse.mockResolvedValue({
+      output_parsed: {
+        subjects: [
+          { slug: "english", confidence: 2 },
+          { slug: "drama", confidence: 4 },
+        ],
+      },
+    });
+    const { req, res } = createNextApiMocks({
+      method: "GET",
+      query: { searchTerm: "ks3 macbeth" },
+    });
 
+    await handler(req, res);
+
+    expect(res._getStatusCode()).toBe(200);
+    expect(res._getJSONData()).toEqual({
+      directMatch: {
+        subject: null,
+        keyStage: { title: "Key Stage 3", slug: "ks3" },
+        examBoard: null,
+        year: null,
+      },
+      suggestedFilters: [
+        { type: "subject", slug: "drama", title: "Drama" },
+        { type: "subject", slug: "english", title: "English" },
+      ],
+    });
+  });
+  it("should get suggested pf filters from ai subject match", async () => {
+    mockParse.mockResolvedValue({
+      output_parsed: {
+        subjects: [{ slug: "geography", confidence: 4 }],
+      },
+    });
+    const { req, res } = createNextApiMocks({
+      method: "GET",
+      query: { searchTerm: "flooding" },
+    });
+
+    await handler(req, res);
+
+    expect(res._getStatusCode()).toBe(200);
+
+    expect(res._getJSONData()).toEqual({
+      directMatch: null,
+      suggestedFilters: [
+        { type: "subject", slug: "geography", title: "Geography" },
+        { type: "key-stage", slug: "ks1", title: "Key Stage 1" },
+        { type: "key-stage", slug: "ks2", title: "Key Stage 2" },
+        { type: "key-stage", slug: "ks3", title: "Key Stage 3" },
+        { type: "key-stage", slug: "ks4", title: "Key Stage 4" },
+        { type: "exam-board", slug: "aqa", title: "AQA" },
+        { type: "exam-board", slug: "edexcelb", title: "Edexcel B" },
+      ],
+    });
+  });
   it("should return 400 for missing searchTerm", async () => {
     const { req, res } = createNextApiMocks({
       method: "GET",
@@ -94,7 +233,6 @@ describe("/api/search/intent", () => {
       error: "Invalid search term",
     });
   });
-
   it("should return 400 for searchTerm that is too short", async () => {
     const { req, res } = createNextApiMocks({
       method: "GET",
@@ -108,7 +246,6 @@ describe("/api/search/intent", () => {
       error: "Invalid search term",
     });
   });
-
   it("should handle empty response from OpenAI", async () => {
     mockParse.mockResolvedValue({
       output_parsed: {
@@ -129,7 +266,6 @@ describe("/api/search/intent", () => {
       suggestedFilters: [],
     });
   });
-
   it("should handle null output_parsed from OpenAI", async () => {
     mockParse.mockResolvedValue({
       output_parsed: null,
@@ -148,59 +284,26 @@ describe("/api/search/intent", () => {
       suggestedFilters: [],
     });
   });
-});
-
-describe("callModel function", () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
-  it("should return a sorted subjects array", async () => {
-    mockParse.mockResolvedValue({
-      output_parsed: {
-        subjects: [
-          { slug: "history", confidence: 3 },
-          { slug: "maths", confidence: 5 },
-          { slug: "science", confidence: 4 },
-        ],
-      },
+  it("should return 429 when rate limit is exceeded", async () => {
+    mockCheckRateLimitByIp.mockResolvedValue({
+      success: false,
+      limit: 100,
+      remaining: 0,
+      reset: 1767970937185,
     });
 
-    const result = await callModel("education");
-
-    expect(result).toEqual([
-      { slug: "maths", confidence: 5 },
-      { slug: "science", confidence: 4 },
-      { slug: "history", confidence: 3 },
-    ]);
-  });
-
-  it("should return empty array when output_parsed is null", async () => {
-    mockParse.mockResolvedValue({
-      output_parsed: null,
+    const { req, res } = createNextApiMocks({
+      method: "GET",
+      query: { searchTerm: "unknown topic" },
     });
 
-    const result = await callModel("test");
+    await handler(req, res);
 
-    expect(result).toEqual([]);
-  });
-
-  it("should return empty array when no subjects in response", async () => {
-    mockParse.mockResolvedValue({
-      output_parsed: {
-        subjects: [],
-      },
+    expect(mockCheckRateLimitByIp).toHaveBeenCalledTimes(1);
+    expect(res._getStatusCode()).toBe(429);
+    expect(res._getJSONData()).toEqual({
+      error: "Rate limit exceeded",
     });
-
-    const result = await callModel("unknown");
-
-    expect(result).toEqual([]);
-  });
-
-  it("should throw error when OpenAI API fails", async () => {
-    const apiError = new Error("OpenAI API failure");
-    mockParse.mockRejectedValue(apiError);
-
-    await expect(callModel("test")).rejects.toThrow("OpenAI API failure");
+    expect(mockParse).not.toHaveBeenCalled();
   });
 });
