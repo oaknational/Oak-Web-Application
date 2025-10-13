@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   NextPage,
   GetStaticProps,
   GetStaticPropsResult,
   GetStaticPathsResult,
 } from "next";
-import { useRouter } from "next/router";
 import { useUser } from "@clerk/nextjs";
 import {
   OakGrid,
@@ -78,7 +77,6 @@ function getHydratedLessonsFromUnit(unit: LessonListingPageData) {
 const LessonListPage: NextPage<LessonListingPageProps> = ({
   curriculumData,
 }) => {
-  const router = useRouter();
   const {
     unitSlug,
     unitvariantId,
@@ -95,7 +93,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
   } = curriculumData;
 
   const unitListingHref = `/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/programmes`;
-  const { shareUrl, browserUrl, shareActivated } = useShare({
+  const { shareUrl, shareActivated } = useShare({
     programmeSlug: programmeSlug ?? undefined,
     source: "lesson-listing",
     curriculumTrackingProps: {
@@ -114,23 +112,6 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     },
     overrideExistingShareId: true,
   });
-
-  useEffect(() => {
-    if (browserUrl && window.location.href !== browserUrl) {
-      const url = new URL(browserUrl);
-      router.replace(
-        {
-          pathname: router.pathname,
-          query: {
-            ...router.query,
-            ...Object.fromEntries(url.searchParams),
-          },
-        },
-        undefined,
-        { shallow: true },
-      );
-    }
-  }, [browserUrl, router]);
 
   const { handleClick } = useTeacherShareButton({
     shareUrl,

@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
 import {
   TeacherNote,
   TeacherNoteCamelCase,
@@ -66,7 +65,6 @@ export const useLesson = ({
 }: UseLessonProps): UseLessonReturn => {
   const [teacherNotesOpen, setTeacherNotesOpen] = useState(false);
   const [lessonPath, setLessonPath] = useState<string | null>(null);
-  const router = useRouter();
 
   const appendedSource: ShareSource = `${source}-w-note`;
 
@@ -100,22 +98,7 @@ export const useLesson = ({
 
   useEffect(() => {
     setLessonPath(window.location.href.split("?")[0] || null);
-
-    if (browserUrl && window.location.href !== browserUrl) {
-      const url = new URL(browserUrl);
-      router.replace(
-        {
-          pathname: router.pathname,
-          query: {
-            ...router.query,
-            ...Object.fromEntries(url.searchParams),
-          },
-        },
-        undefined,
-        { shallow: true },
-      );
-    }
-  }, [browserUrl, router]);
+  }, []);
 
   const handleTeacherNotesOpen = () => {
     setTeacherNotesOpen(true);
