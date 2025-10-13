@@ -48,8 +48,6 @@ const mockRouter = {
   pathname: "/",
   asPath: "/",
   query: {
-    // programmeSlug: "test-programme-slug",
-    // unitSlug: "test-unit-slug",
     redirected: "",
   },
 };
