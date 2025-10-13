@@ -8,7 +8,6 @@ import {
   OakBox,
   OakMaxWidth,
 } from "@oaknational/oak-components";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import ImageContainer from "@/components/GenericPagesComponents/ImageContainer";
 import SearchForm from "@/components/SharedComponents/SearchForm";
@@ -25,8 +24,7 @@ type TeacherTabProps = {
 const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
   const { track } = useAnalytics();
   const { setSearchTerm } = useSearch({});
-  // TODO: remove before merging
-  console.log("Test flag enabled: ", useFeatureFlagEnabled("test-flag"));
+
   return (
     <OakFlex $background={"mint"} $pv="inner-padding-xl" $overflow={"hidden"}>
       <OakMaxWidth $ph={["inner-padding-m"]}>
