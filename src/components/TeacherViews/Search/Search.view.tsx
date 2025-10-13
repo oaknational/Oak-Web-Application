@@ -65,9 +65,8 @@ const Search: FC<SearchProps> = (props) => {
   const shouldShowNoResultsMessage = status === "success" && !hitCount;
   const shouldShowResults = status === "success" && hitCount > 0;
 
-  const isAiExperimentSearchEnabled = useFeatureFlagVariantKey(
-    "ai-experiment-search",
-  );
+  const isAiExperimentSearchEnabled =
+    useFeatureFlagVariantKey("ai-experiment-search") === "search-with-ai";
 
   const suggestedFilters = useSuggestedFilters({
     term: query.term,
