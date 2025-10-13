@@ -557,13 +557,13 @@ describe("Search.page.tsx", () => {
     expect(skipButton).not.toBeVisible();
   });
   test("shows suggested filters when ai flag enabled", () => {
-    mockAiSearchFlagEnabled.mockReturnValue(true);
+    mockAiSearchFlagEnabled.mockReturnValue("search-with-ai");
     render(<Search {...props} {...resultsPropsPathWays} />);
     const suggestedFiltersHeading = screen.getAllByText("Suggested filters");
     expect(suggestedFiltersHeading[0]).toBeInTheDocument();
   });
   test("shows all filters drop down when ai search enabled", () => {
-    mockAiSearchFlagEnabled.mockReturnValue(true);
+    mockAiSearchFlagEnabled.mockReturnValue("search-with-ai");
     render(<Search {...props} {...resultsPropsPathWays} />);
     const suggestedFiltersHeading = screen.getAllByText("All filters");
     expect(suggestedFiltersHeading[0]).toBeInTheDocument();
