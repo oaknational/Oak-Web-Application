@@ -1,3 +1,44 @@
+## [1.886.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.886.0...v1.886.1) (2025-10-13)
+
+
+### Bug Fixes
+
+* causing sentry to be always enabled ([dc927da](https://github.com/oaknational/Oak-Web-Application/commit/dc927dac7b846cc7356abbe452d4e6587a5de1b0))
+
+# [1.886.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.885.3...v1.886.0) (2025-10-13)
+
+
+### Bug Fixes
+
+* enable clicking filters in mobile dropdown ([fe5591f](https://github.com/oaknational/Oak-Web-Application/commit/fe5591f1728ac4e5bdd950d0cb49e4a7dc405123))
+* spacing ([609cf53](https://github.com/oaknational/Oak-Web-Application/commit/609cf538c5988037ad7de01d915c946673d0254b))
+* tablet layout when experiment disabled ([8b804de](https://github.com/oaknational/Oak-Web-Application/commit/8b804de4993729729a7c9086461ae8138947c310))
+* tablet spacing ([1a73b65](https://github.com/oaknational/Oak-Web-Application/commit/1a73b65c22159ba544f46c0b0664cd8130937fb0))
+* update ai flag check ([2ce5d27](https://github.com/oaknational/Oak-Web-Application/commit/2ce5d27c76966aec69128caa7eaafd3a6fd7c4ee))
+
+
+### Features
+
+* update buttons and layout to allow clicking content filters on mobile ([ee222b4](https://github.com/oaknational/Oak-Web-Application/commit/ee222b4f16186e535d9f509aad238744b04e7cbb))
+* update layout on search page ([8c99b05](https://github.com/oaknational/Oak-Web-Application/commit/8c99b05a667469e9850cd0bcb0dea4a640cb479b))
+
+## [1.885.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.885.2...v1.885.3) (2025-10-10)
+
+
+### Bug Fixes
+
+* check search feature flag variant key ([68c7d76](https://github.com/oaknational/Oak-Web-Application/commit/68c7d76357673dceea8c652ea97748893e8910ae))
+
+## [1.885.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.885.1...v1.885.2) (2025-10-09)
+
+
+### Bug Fixes
+
+* added missing 'statusCode: 301' to /teachers redirect ([894cbb7](https://github.com/oaknational/Oak-Web-Application/commit/894cbb7a78c7e0c53257091e608ace1b340cf6eb))
+* changed teachers homepage link from `/teachers` -> `/` ([6e554c4](https://github.com/oaknational/Oak-Web-Application/commit/6e554c4b5eeb4c29dfcfe12d508b3a22cff4b501))
+* getStaticProps -> getServerSideProps ([f0570cb](https://github.com/oaknational/Oak-Web-Application/commit/f0570cb41cf9c34061c53d8438400b22d69a777e))
+* redirect '/teachers' to homepage '/' and change associated links ([1d2e1f7](https://github.com/oaknational/Oak-Web-Application/commit/1d2e1f7b741c67fbb73a18fc4500cf5b34872e02))
+
 ## [1.885.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.885.0...v1.885.1) (2025-10-07)
 
 
