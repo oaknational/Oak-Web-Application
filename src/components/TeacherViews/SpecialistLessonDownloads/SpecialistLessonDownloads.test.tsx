@@ -4,9 +4,7 @@ import SpecialistLessonDownloads from "./SpecialistLessonDownloads.view";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
-jest.mock("posthog-js/react", () => ({
-  useFeatureFlagVariantKey: jest.fn(),
-}));
+
 describe("SpecialistLessonDownloads", () => {
   test("renders component", () => {
     const { getByText } = render(

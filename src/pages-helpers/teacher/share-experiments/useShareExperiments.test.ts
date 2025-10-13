@@ -7,10 +7,6 @@ import { CurriculumTrackingProps } from "./shareExperimentTypes";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { LessonReleaseCohortValueType } from "@/browser-lib/avo/Avo";
 
-jest.mock("posthog-js/react", () => ({
-  useFeatureFlagVariantKey: jest.fn(),
-}));
-
 jest.mock("@/context/Analytics/useAnalytics", () => {
   const track = {
     teacherShareInitiated: jest.fn(),
