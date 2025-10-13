@@ -82,7 +82,6 @@ export function createHandler(hubspotClient: HubspotClient) {
 
       // Try email-based lookup first
       if ("email" in body) {
-        console.log("diego email body", body);
         const { email } = emailLookupSchema.parse(body);
         const contact = await getHubspotContactByEmail(hubspotClient, email);
         return res.status(200).json({ contact });
