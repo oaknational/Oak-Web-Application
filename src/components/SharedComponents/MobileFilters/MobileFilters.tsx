@@ -13,16 +13,15 @@ import {
   OakBoxProps,
   OakFlex,
   OakFlexProps,
+  OakIconName,
+  OakTertiaryButton,
 } from "@oaknational/oak-components";
 
-import Button from "@/components/SharedComponents/Button";
-import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import useEventListener from "@/hooks/useEventListener";
 import Cover from "@/components/SharedComponents/Cover";
-import { IconName } from "@/components/SharedComponents/Icon.deprecated";
 import { useMenuContext } from "@/context/Menu";
 import { PostCategoryPage } from "@/components/SharedComponents/PostCategoryList/PostCategoryList";
-import { OakColorName } from "@/styles/theme";
+import { resolveOakHref } from "@/common-lib/urls";
 
 const StyledCategoryList = styled(OakBox)<
   OakBoxProps & { $isOpen: boolean; $categoryListHeight: number }
@@ -44,12 +43,11 @@ export type MobileFiltersProps = {
   withBackButton?: boolean;
   page?: PostCategoryPage;
   children: ReactNode;
-  iconOpened?: IconName;
-  iconClosed?: IconName;
+  iconOpened?: OakIconName;
+  iconClosed?: OakIconName;
   label: string;
   labelOpened?: string;
   providedId?: string;
-  iconBackground?: OakColorName;
   applyForTablet?: boolean;
 } & OakFlexProps;
 const MobileFilters: FC<MobileFiltersProps> = (props) => {
@@ -112,10 +110,16 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
       $display={["flex", applyForTablet ? "flex" : "none", "none"]}
       $flexDirection={"column"}
       $width={"100%"}
+      $alignItems={"flex-end"}
       {...flexProps}
     >
       <Cover $pointerEvents={isOpen ? null : "none"} onClick={close} />
-      <OakFlex $alignSelf={props.$alignSelf}>
+      <OakFlex
+        $alignSelf={props.$alignSelf}
+        $align-items={"center"}
+        $justifyContent={"space-between"}
+        $width={withBackButton ? "100%" : "auto"}
+      >
         {withBackButton &&
           (page === "blog-index" || page === "webinar-index") && (
             <OakBox
@@ -124,30 +128,27 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
               $opacity={isOpen ? "transparent" : "opaque"}
               aria-hidden={isOpen ? "true" : false}
             >
-              <ButtonAsLink
-                variant="minimal"
-                icon="arrow-left"
-                iconBackground="blue"
-                size="large"
-                label={`All ${page === "blog-index" ? "blogs" : "webinars"}`}
-                page={page}
-              />
+              <OakTertiaryButton
+                iconName="arrow-left"
+                element="a"
+                href={resolveOakHref({ page })}
+              >
+                {`All ${page === "blog-index" ? "blogs" : "webinars"}`}
+              </OakTertiaryButton>
             </OakBox>
           )}
-
-        <Button
+        <OakTertiaryButton
           id={triggerId}
           $ml="auto"
-          variant="minimal"
-          icon={isOpen ? iconOpened : iconClosed}
-          iconBackground={props.iconBackground ?? "blue"}
-          $iconPosition="trailing"
-          size="large"
-          label={isOpen ? labelOpened : label}
+          iconName={isOpen ? iconOpened : iconClosed}
+          isTrailingIcon
           onClick={() => setIsOpen((isOpen) => !isOpen)}
           aria-expanded={isOpen}
           aria-controls={menuId}
-        />
+          $pointerEvents={"all"}
+        >
+          {isOpen ? labelOpened : label}
+        </OakTertiaryButton>
       </OakFlex>
       <OakBox $width={"100%"} $position={"relative"}>
         <StyledCategoryList
@@ -160,6 +161,7 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
           $zIndex="mobile-filters"
           $background={isOpen ? "white" : "transparent"}
           $dropShadow={"drop-shadow-standard"}
+          $pointerEvents={"all"}
         >
           <StyledCategoryListInner
             id={menuId}

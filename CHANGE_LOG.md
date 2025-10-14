@@ -1,3 +1,51 @@
+# [1.888.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.887.0...v1.888.0) (2025-10-14)
+
+
+### Features
+
+* use Vercel AI Gateway with Cerebras for search intent ([72254d2](https://github.com/oaknational/Oak-Web-Application/commit/72254d2b5e2d28935842be6c5cfc348ad94a0a72))
+
+
+### Reverts
+
+* use current confir names, aiFeatures and gatewayURL ([d495209](https://github.com/oaknational/Oak-Web-Application/commit/d49520987c9ff4a84ae06c9d5851de7afa50cde7))
+
+# [1.887.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.886.1...v1.887.0) (2025-10-14)
+
+
+### Bug Fixes
+
+* check types ([a0435da](https://github.com/oaknational/Oak-Web-Application/commit/a0435da98673038e56a7bfd8132ed4d52b42532b))
+
+
+### Features
+
+* remove feature flag and use experimental layout ([acd22e3](https://github.com/oaknational/Oak-Web-Application/commit/acd22e39cdcc163c7cff0101b3f999fe26f419f1))
+
+## [1.886.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.886.0...v1.886.1) (2025-10-13)
+
+
+### Bug Fixes
+
+* causing sentry to be always enabled ([dc927da](https://github.com/oaknational/Oak-Web-Application/commit/dc927dac7b846cc7356abbe452d4e6587a5de1b0))
+
+# [1.886.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.885.3...v1.886.0) (2025-10-13)
+
+
+### Bug Fixes
+
+* enable clicking filters in mobile dropdown ([fe5591f](https://github.com/oaknational/Oak-Web-Application/commit/fe5591f1728ac4e5bdd950d0cb49e4a7dc405123))
+* spacing ([609cf53](https://github.com/oaknational/Oak-Web-Application/commit/609cf538c5988037ad7de01d915c946673d0254b))
+* tablet layout when experiment disabled ([8b804de](https://github.com/oaknational/Oak-Web-Application/commit/8b804de4993729729a7c9086461ae8138947c310))
+* tablet spacing ([1a73b65](https://github.com/oaknational/Oak-Web-Application/commit/1a73b65c22159ba544f46c0b0664cd8130937fb0))
+* update ai flag check ([2ce5d27](https://github.com/oaknational/Oak-Web-Application/commit/2ce5d27c76966aec69128caa7eaafd3a6fd7c4ee))
+
+
+### Features
+
+* update buttons and layout to allow clicking content filters on mobile ([ee222b4](https://github.com/oaknational/Oak-Web-Application/commit/ee222b4f16186e535d9f509aad238744b04e7cbb))
+* update layout on search page ([8c99b05](https://github.com/oaknational/Oak-Web-Application/commit/8c99b05a667469e9850cd0bcb0dea4a640cb479b))
+
 ## [1.885.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.885.2...v1.885.3) (2025-10-10)
 
 

@@ -1,22 +1,32 @@
 import { createNextApiMocks } from "@/__tests__/__helpers__/createNextApiMocks";
 import handler from "@/pages/api/search/intent";
 
-const mockErrorReporter = jest.fn();
-jest.mock("@/common-lib/error-reporter", () => ({
+jest.mock("@/common-lib/error-reporter/errorReporter", () => ({
   __esModule: true,
-  default:
-    () =>
-    (...args: []) =>
-      mockErrorReporter(...args),
+  default: () => jest.fn(),
 }));
 
 const mockParse = jest.fn();
+const setMockedAiResponse = (response: unknown) => {
+  mockParse.mockResolvedValue({
+    choices: [
+      {
+        message: {
+          parsed: response,
+        },
+      },
+    ],
+  });
+};
+
 jest.mock("openai", () => {
   return {
     __esModule: true,
     default: jest.fn().mockImplementation(() => ({
-      responses: {
-        parse: () => mockParse(),
+      chat: {
+        completions: {
+          parse: () => mockParse(),
+        },
       },
     })),
   };
@@ -94,13 +104,11 @@ describe("/api/search/intent", () => {
     expect(mockCallModel).not.toHaveBeenCalled();
   });
   it("should return AI response when there is not a direct subject match", async () => {
-    mockParse.mockResolvedValue({
-      output_parsed: {
-        subjects: [
-          { slug: "maths", confidence: 4 },
-          { slug: "science", confidence: 2 },
-        ],
-      },
+    setMockedAiResponse({
+      subjects: [
+        { slug: "maths", confidence: 4 },
+        { slug: "science", confidence: 2 },
+      ],
     });
     const { req, res } = createNextApiMocks({
       method: "GET",
@@ -128,13 +136,11 @@ describe("/api/search/intent", () => {
     });
   });
   it("should combine direct matches and ai suggestions", async () => {
-    mockParse.mockResolvedValue({
-      output_parsed: {
-        subjects: [
-          { slug: "english", confidence: 2 },
-          { slug: "drama", confidence: 4 },
-        ],
-      },
+    setMockedAiResponse({
+      subjects: [
+        { slug: "english", confidence: 2 },
+        { slug: "drama", confidence: 4 },
+      ],
     });
     const { req, res } = createNextApiMocks({
       method: "GET",
@@ -158,10 +164,8 @@ describe("/api/search/intent", () => {
     });
   });
   it("should get suggested pf filters from ai subject match", async () => {
-    mockParse.mockResolvedValue({
-      output_parsed: {
-        subjects: [{ slug: "geography", confidence: 4 }],
-      },
+    setMockedAiResponse({
+      subjects: [{ slug: "geography", confidence: 4 }],
     });
     const { req, res } = createNextApiMocks({
       method: "GET",
@@ -212,10 +216,8 @@ describe("/api/search/intent", () => {
     });
   });
   it("should handle empty response from OpenAI", async () => {
-    mockParse.mockResolvedValue({
-      output_parsed: {
-        subjects: [],
-      },
+    setMockedAiResponse({
+      subjects: [],
     });
 
     const { req, res } = createNextApiMocks({
@@ -231,10 +233,9 @@ describe("/api/search/intent", () => {
       suggestedFilters: [],
     });
   });
-  it("should handle null output_parsed from OpenAI", async () => {
-    mockParse.mockResolvedValue({
-      output_parsed: null,
-    });
+  it("should throw on an error from OpenAI", async () => {
+    const apiError = new Error("OpenAI API failure");
+    mockParse.mockRejectedValue(apiError);
 
     const { req, res } = createNextApiMocks({
       method: "GET",
@@ -243,10 +244,6 @@ describe("/api/search/intent", () => {
 
     await handler(req, res);
 
-    expect(res._getStatusCode()).toBe(200);
-    expect(res._getJSONData()).toEqual({
-      directMatch: null,
-      suggestedFilters: [],
-    });
+    expect(res._getStatusCode()).toBe(500);
   });
 });
