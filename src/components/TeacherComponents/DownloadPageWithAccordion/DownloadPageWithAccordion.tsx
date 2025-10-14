@@ -23,7 +23,7 @@ import CopyrightRestrictionBanner from "../CopyrightRestrictionBanner/CopyrightR
 import { ResourcePageDetailsCompletedProps } from "@/components/TeacherComponents/ResourcePageDetailsCompleted/ResourcePageDetailsCompleted";
 import { ResourcePageSchoolDetailsProps } from "@/components/TeacherComponents/ResourcePageSchoolDetails/ResourcePageSchoolDetails";
 import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
-import { DelayedLoadingSpinner } from "@/components/TeacherComponents/ResourcePageLayout/ResourcePageLayout";
+import { DelayedLoadingSpinner } from "@/components/TeacherComponents/SharePageLayout/SharePageLayout";
 import CopyrightNotice from "@/components/TeacherComponents/CopyrightNotice";
 import FieldError from "@/components/SharedComponents/FieldError";
 import RiskAssessmentBanner from "@/components/TeacherComponents/RiskAssessmentBanner";
@@ -229,7 +229,7 @@ const DownloadPageWithAccordionContent = (
                 handleEditDetailsCompletedClick={onEditClick}
                 showPostAlbCopyright={showPostAlbCopyright}
                 copyrightYear={updatedAt}
-                isDownloadsExperiment
+                useDownloadPageLayout
               />
               {showRiskAssessmentBanner && (
                 <OakBox

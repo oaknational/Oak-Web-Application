@@ -1,20 +1,30 @@
 import { callModel } from "./callModel";
-const mockErrorReporter = jest.fn();
-jest.mock("@/common-lib/error-reporter", () => ({
+
+jest.mock("@/common-lib/error-reporter/errorReporter", () => ({
   __esModule: true,
-  default:
-    () =>
-    (...args: []) =>
-      mockErrorReporter(...args),
+  default: () => jest.fn(),
 }));
 
 const mockParse = jest.fn();
+const setMockedAiResponse = (response: unknown) => {
+  mockParse.mockResolvedValue({
+    choices: [
+      {
+        message: {
+          parsed: response,
+        },
+      },
+    ],
+  });
+};
 jest.mock("openai", () => {
   return {
     __esModule: true,
     default: jest.fn().mockImplementation(() => ({
-      responses: {
-        parse: () => mockParse(),
+      chat: {
+        completions: {
+          parse: () => mockParse(),
+        },
       },
     })),
   };
@@ -25,14 +35,12 @@ describe("callModel", () => {
   });
 
   it("should return a sorted subjects array", async () => {
-    mockParse.mockResolvedValue({
-      output_parsed: {
-        subjects: [
-          { slug: "history", confidence: 3 },
-          { slug: "maths", confidence: 5 },
-          { slug: "science", confidence: 4 },
-        ],
-      },
+    setMockedAiResponse({
+      subjects: [
+        { slug: "history", confidence: 3 },
+        { slug: "maths", confidence: 5 },
+        { slug: "science", confidence: 4 },
+      ],
     });
 
     const result = await callModel("education");
@@ -44,21 +52,15 @@ describe("callModel", () => {
     ]);
   });
 
-  it("should return empty array when output_parsed is null", async () => {
-    mockParse.mockResolvedValue({
-      output_parsed: null,
-    });
+  it("should throw when response is invalid", async () => {
+    setMockedAiResponse(null);
 
-    const result = await callModel("test");
-
-    expect(result).toEqual([]);
+    await expect(callModel("test")).rejects.toThrow();
   });
 
   it("should return empty array when no subjects in response", async () => {
-    mockParse.mockResolvedValue({
-      output_parsed: {
-        subjects: [],
-      },
+    setMockedAiResponse({
+      subjects: [],
     });
 
     const result = await callModel("unknown");
