@@ -544,7 +544,7 @@ describe("lessonOverview()", () => {
   });
 });
 describe("hasMediaClips logic", () => {
-  test.only("it returns hasMediaClips as true when media clips are present", async () => {
+  test("it returns hasMediaClips as true when media clips are present", async () => {
     const _syntheticUnitvariantLessonsByKsFixture =
       syntheticUnitvariantLessonsByKsFixture({
         overrides: {
