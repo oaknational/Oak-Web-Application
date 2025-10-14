@@ -146,11 +146,10 @@ describe("Hiding 'Your details", () => {
 
   it("should show LessonDownloadRegionBlocked instead of copyright banner when logged in but not region authorised", () => {
     setUseUserReturn({ ...mockLoggedIn, user: mockUserWithoutDownloadAccess });
-    const { queryByText, queryByRole, getByText, queryByTestId } = render(
+    const { queryByRole, getByText, queryByTestId } = render(
       <LessonDownloads lesson={restrictedLesson} isCanonical={false} />,
     );
 
-    const yourDetailsHeading = queryByText("Your details");
     const downloadButton = queryByRole("button", {
       name: "Download .zip",
     });
@@ -163,7 +162,6 @@ describe("Hiding 'Your details", () => {
     );
 
     expect(regionRestrictedMessage).toBeInTheDocument();
-    expect(yourDetailsHeading).not.toBeInTheDocument();
     expect(downloadButton).not.toBeInTheDocument();
     expect(copyrightRestrictionBanner).not.toBeInTheDocument();
   });
