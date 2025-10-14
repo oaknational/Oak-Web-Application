@@ -18,7 +18,7 @@ import {
   LessonPathway,
   SpecialistLessonPathway,
 } from "@/components/TeacherComponents/types/lesson.types";
-import ResourcePageLayout from "@/components/TeacherComponents/ResourcePageLayout";
+import SharePageLayout from "@/components/TeacherComponents/SharePageLayout";
 import LessonShareCardGroup from "@/components/TeacherComponents/LessonShareCardGroup";
 import LessonShareLinks from "@/components/TeacherComponents/LessonShareLinks";
 import { getHrefForSocialSharing } from "@/components/TeacherComponents/LessonShareLinks/getHrefForSocialSharing";
@@ -131,8 +131,6 @@ export function LessonShare(props: LessonShareProps) {
     selectedResources,
     hasFormErrors,
     localStorageDetails,
-    handleToggleSelectAll,
-    selectAllChecked,
     editDetailsClicked,
     setEmailInLocalStorage,
   } = useResourceFormState({
@@ -175,7 +173,7 @@ export function LessonShare(props: LessonShareProps) {
       analyticsUseCase: "Teacher",
       resourceTypes: selectedResources
         .map((r) => classroomActivityMap[r])
-        .filter((r) => r !== undefined) as ResourceTypesValueType[],
+        .filter((r) => r !== undefined),
       audience: "Pupil",
       lessonReleaseCohort: isLegacy ? "2020-2023" : "2023-2026",
       lessonReleaseDate: lessonReleaseDate ?? "unpublished",
@@ -228,13 +226,8 @@ export function LessonShare(props: LessonShareProps) {
             $mb={"space-between-m"}
           />
         </OakBox>
-        <ResourcePageLayout
-          loginRequired={false}
-          geoRestricted={false}
-          page={"share"}
+        <SharePageLayout
           errors={form.errors}
-          handleToggleSelectAll={handleToggleSelectAll}
-          selectAllChecked={selectAllChecked}
           header="Share your lesson"
           showNoResources={!hasResources || Boolean(expired)}
           showLoading={isLocalStorageLoading}
@@ -253,7 +246,6 @@ export function LessonShare(props: LessonShareProps) {
           control={form.control}
           showPostAlbCopyright={!isLegacy}
           triggerForm={form.trigger}
-          hideSelectAll={true}
           withHomeschool={true}
           //updateAt hardcoded, only legacy share available currently
           updatedAt={"2022"}
