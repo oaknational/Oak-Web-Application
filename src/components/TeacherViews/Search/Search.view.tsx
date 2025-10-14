@@ -315,6 +315,10 @@ const Search: FC<SearchProps> = (props) => {
                   setQuery={setQuery}
                   query={query}
                   searchFilters={suggestedFilters.searchFilters}
+                  trackSearchModified={trackSearchModified(
+                    query.term,
+                    track.searchFilterModified,
+                  )}
                 />
 
                 <MiniDropDown label="All filters">
