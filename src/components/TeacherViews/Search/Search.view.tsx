@@ -268,6 +268,7 @@ const Search: FC<SearchProps> = (props) => {
                         checked,
                         filterType,
                         filterValue,
+                        searchFilterMatchType: "default",
                       })
                     }
                   />
@@ -363,6 +364,10 @@ const Search: FC<SearchProps> = (props) => {
                       setQuery={setQuery}
                       query={query}
                       searchFilters={suggestedFilters.searchFilters}
+                      trackSearchModified={trackSearchModified(
+                        query.term,
+                        track.searchFilterModified,
+                      )}
                     />
                     {suggestedFilters.status === "success" ? (
                       <MiniDropDown label="All filters">
@@ -472,6 +477,7 @@ const Search: FC<SearchProps> = (props) => {
                           checked,
                           filterType,
                           filterValue,
+                          searchFilterMatchType: "default",
                         })
                       }
                     />

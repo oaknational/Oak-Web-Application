@@ -227,7 +227,7 @@ describe("search helpers", () => {
   });
   describe("convertSearchIntentToFilters", () => {
     test("it returns undefined if no suggested filters", () => {
-      const result = convertSearchIntentToFilters(undefined);
+      const result = convertSearchIntentToFilters();
       expect(result).toBeUndefined();
     });
     test("it returns expected suggested filters for directMatch match", () => {

@@ -83,7 +83,7 @@ const sortFilters = (filters: string | string[] | undefined) => {
   } else {
     filterArray = filters;
   }
-  return filterArray.sort((a, b) => (a < b ? -1 : 1)).join(",");
+  return filterArray.toSorted((a, b) => (a < b ? -1 : 1)).join(",");
 };
 
 export const getActiveFilters = (query: ParsedUrlQuery) => {

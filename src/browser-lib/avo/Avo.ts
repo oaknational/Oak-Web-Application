@@ -974,7 +974,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "A9DtwjOqntRZFoAFBCpY",
+          "ac": "XmsGfNcxt98Vgsn1GxzY",
           "br": "QWOiBfEpmEgtaglESlnTR",
           "en": env,
           "ev": eventId,
@@ -1001,7 +1001,7 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "A9DtwjOqntRZFoAFBCpY",
+          "ac": "XmsGfNcxt98Vgsn1GxzY",
           "br": "QWOiBfEpmEgtaglESlnTR",
           "en": env,
           "ty": type,
@@ -1110,6 +1110,7 @@ export interface ActiveFilters {
 export const SearchFilterMatchType = {
   'FUZZY_MATCH': 'fuzzy_match',
   'AI': 'ai',
+  'DEFAULT': 'default',
 } as const;
 export type SearchFilterMatchTypeType = typeof SearchFilterMatchType;
 export type SearchFilterMatchTypeValueType = SearchFilterMatchTypeType[keyof SearchFilterMatchTypeType];
@@ -3777,7 +3778,6 @@ export interface SearchRefinedProperties {
   searchResultCount: number;
   activeFilters: ActiveFilters;
   searchTerm: string;
-  searchFilterMatchType: SearchFilterMatchTypeValueType;
 }
 /**
  * Search Refined: Results are returned following a change to search filters
@@ -3815,7 +3815,6 @@ NB - This will be removed, but keeping to ease transition from AUC to 'product'
 
 Only include keys/values for active filters.
  * @param properties.searchTerm: The term entered by the user for the search.
- * @param properties.searchFilterMatchType: {'ops':[{'insert':'Whether the filters applied are applied via Fuzzy Match or AI. \n'}]}
  * 
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/QWOiBfEpmEgtaglESlnTR/events/XpQ27vPNH4}
  */
@@ -3831,7 +3830,6 @@ export function searchRefined(properties: SearchRefinedProperties) {
   eventPropertiesArray.push({id: "ssKpAufWU", name: "Search Result Count", value: properties.searchResultCount});
   eventPropertiesArray.push({id: "TsVyKpbQ6", name: "Active Filters", value: properties.activeFilters});
   eventPropertiesArray.push({id: "hHufJiP_N", name: "Search Term", value: properties.searchTerm});
-  eventPropertiesArray.push({id: "-nKy8whA8hSlYVy8JvRjJ", name: "Search Filter Match Type", value: properties.searchFilterMatchType});
   let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
   // @ts-ignore
   let userPropertiesArray: array = [];
@@ -3841,7 +3839,7 @@ export function searchRefined(properties: SearchRefinedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "XpQ27vPNH4", "79751af04df02c752c434001c6f13d4aea5cb3d7ad7e16075d1c65ab10dda063", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "XpQ27vPNH4", "2b7e88caaa1f10ada0bde082d0011d8dfc5d566749a49da62d2e47e1c71a4d0d", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Search Refined", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -3852,7 +3850,7 @@ export function searchRefined(properties: SearchRefinedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Search Refined", eventProperties, "XpQ27vPNH4", "79751af04df02c752c434001c6f13d4aea5cb3d7ad7e16075d1c65ab10dda063");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Search Refined", eventProperties, "XpQ27vPNH4", "2b7e88caaa1f10ada0bde082d0011d8dfc5d566749a49da62d2e47e1c71a4d0d");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Search Refined", (Object as any).assign({}, eventProperties));
@@ -9441,6 +9439,7 @@ export interface SearchFilterModifiedProperties {
   filterType: FilterTypeValueType;
   filterValue: string;
   searchTerm: string;
+  searchFilterMatchType: SearchFilterMatchTypeValueType;
 }
 /**
  * Search Filter Modified: A search filter is added or removed using the filter buttons 
@@ -9464,6 +9463,7 @@ NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.filterType: Describes the dimension the filter is designed to control such as subject, key stage, or resource type
  * @param properties.filterValue: The value added to the filter (e.g. 'English' or 'AQA'). In the case where multiple filters are chosen simultaneously (e.g. Exam board and Tier) then both values should be sent separated by ', ' (e.g. 'AQA, Higher')
  * @param properties.searchTerm: The term entered by the user for the search.
+ * @param properties.searchFilterMatchType: {'ops':[{'insert':'Whether the filters applied are applied via Fuzzy Match or AI. \n'}]}
  * 
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/QWOiBfEpmEgtaglESlnTR/events/JbWzId2dPo6mN6Y3aHwMr}
  */
@@ -9480,6 +9480,7 @@ export function searchFilterModified(properties: SearchFilterModifiedProperties)
   eventPropertiesArray.push({id: "XPABjlx_F", name: "Filter Type", value: properties.filterType});
   eventPropertiesArray.push({id: "v3Ne3qUXs", name: "Filter Value", value: properties.filterValue});
   eventPropertiesArray.push({id: "hHufJiP_N", name: "Search Term", value: properties.searchTerm});
+  eventPropertiesArray.push({id: "-nKy8whA8hSlYVy8JvRjJ", name: "Search Filter Match Type", value: properties.searchFilterMatchType});
   let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
   // @ts-ignore
   let userPropertiesArray: array = [];
@@ -9489,7 +9490,7 @@ export function searchFilterModified(properties: SearchFilterModifiedProperties)
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "JbWzId2dPo6mN6Y3aHwMr", "76ab7cc7b2ebae5539f0feae69f7e1ee7205170452c41855cea15b15f08666d2", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "JbWzId2dPo6mN6Y3aHwMr", "0af27ca9c4d781be29e719d69bfc536627fbd48acf10dfcc7f012858e94beb5b", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Search Filter Modified", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -9500,7 +9501,7 @@ export function searchFilterModified(properties: SearchFilterModifiedProperties)
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Search Filter Modified", eventProperties, "JbWzId2dPo6mN6Y3aHwMr", "76ab7cc7b2ebae5539f0feae69f7e1ee7205170452c41855cea15b15f08666d2");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Search Filter Modified", eventProperties, "JbWzId2dPo6mN6Y3aHwMr", "0af27ca9c4d781be29e719d69bfc536627fbd48acf10dfcc7f012858e94beb5b");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Search Filter Modified", (Object as any).assign({}, eventProperties));
