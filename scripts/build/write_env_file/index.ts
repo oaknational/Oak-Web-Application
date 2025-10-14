@@ -198,6 +198,10 @@ async function main() {
       process.env.OPENAI_API_KEY || secretsFromNetwork.OPENAI_API_KEY,
     AI_SEARCH_ENABLED:
       process.env.AI_SEARCH_ENABLED || oakConfig.oak.aiSearchEnabled,
+    AI_SEARCH_KV_URL:
+      process.env.AI_SEARCH_KV_URL || secretsFromNetwork.AI_SEARCH_KV_URL,
+    AI_SEARCH_KV_TOKEN:
+      process.env.AI_SEARCH_KV_TOKEN || secretsFromNetwork.AI_SEARCH_KV_TOKEN,
 
     // Seo
 
@@ -288,7 +292,6 @@ async function main() {
     SENTRY_AUTH_TOKEN:
       process.env.SENTRY_AUTH_TOKEN || secretsFromNetwork.SENTRY_AUTH_TOKEN,
   };
-
   const serializedEnv = Object.entries(env).reduce((acc, [key, value]) => {
     return `${acc}${key}=${value}\n`;
   }, "");
