@@ -107,7 +107,6 @@
     "projectId": "123451"
   },
   "aiGateway": {
-    "gatewayUrl": "https://ai-gateway.vercel.sh/FAKE",
     "requiredSecrets": ["AI_GATEWAY_API_KEY", "AI_GATEWAY_URL"]
   }
 }
