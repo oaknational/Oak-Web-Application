@@ -13,16 +13,16 @@ import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 const CustomSizing = styled("div")<{
   checked?: boolean;
-  isDownloadsExperiment?: boolean;
+  useDownloadPageLayout?: boolean;
 }>`
   display: grid;
-  width: ${(props) => (props.isDownloadsExperiment ? "100%" : "320px")};
+  width: ${(props) => (props.useDownloadPageLayout ? "100%" : "320px")};
   input {
     border: ${(props) => (props.checked ? "0" : "default")};
   }
 
   @media (min-width: 1280px) {
-    width: ${(props) => (props.isDownloadsExperiment ? "300px" : "320px")};
+    width: ${(props) => (props.useDownloadPageLayout ? "300px" : "320px")};
   }
 `;
 
@@ -82,7 +82,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
   return (
     <CustomSizing
       checked={checked}
-      isDownloadsExperiment={useDownloadPageLayout}
+      useDownloadPageLayout={useDownloadPageLayout}
     >
       <OakDownloadCard
         id={id}
