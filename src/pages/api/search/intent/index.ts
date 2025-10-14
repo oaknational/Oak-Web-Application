@@ -15,7 +15,7 @@ import { OAK_SUBJECTS } from "@/context/Search/suggestions/oakCurriculumData";
 const reportError = errorReporter("search-intent");
 
 const handler: NextApiHandler = async (req, res) => {
-  const aiSearchEnabled = getServerConfig("aiSearchEnabled");
+  const aiSearchEnabled = getServerConfig("aiSearchEnabled") === "true";
 
   let searchTerm: string;
 
