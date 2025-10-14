@@ -19,8 +19,8 @@ jest.mock("@upstash/redis", () => ({
 jest.mock("@/node-lib/getServerConfig", () => ({
   __esModule: true,
   default: jest.fn((key: string) => {
-    if (key === "upstashRedisUrl") return "http://mock-redis";
-    if (key === "upstashRedisToken") return "mock-token";
+    if (key === "aiSearchKvUrl") return "http://mock-redis";
+    if (key === "aiSearchKvToken") return "mock-token";
     return null;
   }),
 }));
@@ -43,10 +43,10 @@ describe("withSuggestionCache", () => {
   it("should call generate function on cache miss and store result", async () => {
     const result = await withSuggestionCache("test", mockGenerateFn);
 
-    expect(mockGet).toHaveBeenCalledWith("search:intent:v1:test");
+    expect(mockGet).toHaveBeenCalledWith("search-intent:cache:v1:test");
     expect(mockGenerateFn).toHaveBeenCalled();
     expect(mockSet).toHaveBeenCalledWith(
-      "search:intent:v1:test",
+      "search-intent:cache:v1:test",
       JSON.stringify(mockSuggestions),
       { ex: 90 * 24 * 60 * 60 },
     );
@@ -58,7 +58,7 @@ describe("withSuggestionCache", () => {
 
     const result = await withSuggestionCache("test", mockGenerateFn);
 
-    expect(mockGet).toHaveBeenCalledWith("search:intent:v1:test");
+    expect(mockGet).toHaveBeenCalledWith("search-intent:cache:v1:test");
     expect(mockGenerateFn).not.toHaveBeenCalled();
     expect(mockSet).not.toHaveBeenCalled();
     expect(result).toEqual(mockSuggestions);
@@ -67,9 +67,9 @@ describe("withSuggestionCache", () => {
   it("should normalize search term to lowercase", async () => {
     await withSuggestionCache("Shakespeare", mockGenerateFn);
 
-    expect(mockGet).toHaveBeenCalledWith("search:intent:v1:shakespeare");
+    expect(mockGet).toHaveBeenCalledWith("search-intent:cache:v1:shakespeare");
     expect(mockSet).toHaveBeenCalledWith(
-      "search:intent:v1:shakespeare",
+      "search-intent:cache:v1:shakespeare",
       expect.any(String),
       expect.any(Object),
     );
@@ -78,9 +78,9 @@ describe("withSuggestionCache", () => {
   it("should remove whitespace from search term", async () => {
     await withSuggestionCache("shake speare", mockGenerateFn);
 
-    expect(mockGet).toHaveBeenCalledWith("search:intent:v1:shakespeare");
+    expect(mockGet).toHaveBeenCalledWith("search-intent:cache:v1:shakespeare");
     expect(mockSet).toHaveBeenCalledWith(
-      "search:intent:v1:shakespeare",
+      "search-intent:cache:v1:shakespeare",
       expect.any(String),
       expect.any(Object),
     );

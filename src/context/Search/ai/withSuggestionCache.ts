@@ -5,15 +5,15 @@ import { suggestionsSchema, Suggestions } from "./generateSuggestions";
 import getServerConfig from "@/node-lib/getServerConfig";
 
 const redis = new Redis({
-  url: getServerConfig("upstashRedisUrl"),
-  token: getServerConfig("upstashRedisToken"),
+  url: getServerConfig("aiSearchKvUrl"),
+  token: getServerConfig("aiSearchKvToken"),
 });
 
 const CACHE_TTL_SECONDS = 90 * 24 * 60 * 60; // 90 days
 
 function getCacheKey(searchTerm: string): string {
   const normalized = searchTerm.toLowerCase().replace(/\s+/g, "");
-  return `search:intent:v1:${normalized}`;
+  return `search-intent:cache:v1:${normalized}`;
 }
 
 export async function withSuggestionCache(

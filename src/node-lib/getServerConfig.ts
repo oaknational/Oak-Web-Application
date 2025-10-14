@@ -260,16 +260,16 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: false,
   },
-  upstashRedisUrl: {
-    value: process.env.UPSTASH_REDIS_URL,
-    envName: "UPSTASH_REDIS_URL",
+  aiSearchKvUrl: {
+    value: process.env.AI_SEARCH_KV_URL,
+    envName: "AI_SEARCH_KV_URL",
     required: true,
     availableInBrowser: false,
     default: null,
   },
-  upstashRedisToken: {
-    value: process.env.UPSTASH_REDIS_TOKEN,
-    envName: "UPSTASH_REDIS_TOKEN",
+  aiSearchKvToken: {
+    value: process.env.AI_SEARCH_KV_TOKEN,
+    envName: "AI_SEARCH_KV_TOKEN",
     required: true,
     availableInBrowser: false,
     default: null,
