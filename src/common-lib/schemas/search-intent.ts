@@ -61,6 +61,7 @@ export const suggestedFilterSchema = z.union([
     title: z.string(),
   }),
 ]);
+export type SuggestedFilter = z.infer<typeof suggestedFilterSchema>;
 
 export const searchIntentSchema = z.object({
   directMatch: directMatchSchema.nullable(),

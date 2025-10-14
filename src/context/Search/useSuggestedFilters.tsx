@@ -25,10 +25,10 @@ const fetcher = async (url: string) => {
 
 export function useSuggestedFilters({
   term,
-  enabled = true,
+  enabled,
 }: {
   term: string;
-  enabled?: boolean;
+  enabled: boolean;
 }): SuggestedFilters {
   const norm = useMemo(() => normalizeTerm(term), [term]);
 
