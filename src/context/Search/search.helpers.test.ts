@@ -242,9 +242,19 @@ describe("search helpers", () => {
       };
       const result = convertSearchIntentToFilters(searchIntent);
       expect(result).toEqual([
-        { type: "subject", slug: "maths", value: "Maths" },
-        { type: "key-stage", slug: "ks2", value: "Ks2" },
-        { type: "exam-board", slug: "aqa", value: "Aqa" },
+        {
+          type: "subject",
+          slug: "maths",
+          value: "Maths",
+          source: "fuzzy_match",
+        },
+        { type: "key-stage", slug: "ks2", value: "Ks2", source: "fuzzy_match" },
+        {
+          type: "exam-board",
+          slug: "aqa",
+          value: "Aqa",
+          source: "fuzzy_match",
+        },
       ]);
     });
     test("it returns expected suggested filters for directMatch with suggestions", () => {
@@ -262,10 +272,20 @@ describe("search helpers", () => {
       };
       const result = convertSearchIntentToFilters(searchIntent);
       expect(result).toEqual([
-        { type: "subject", slug: "maths", value: "Maths" },
-        { type: "key-stage", slug: "ks2", value: "Ks2" },
-        { type: "year", slug: "year-1", value: "Year 1" },
-        { type: "exam-board", slug: "aqa", value: "Aqa" },
+        {
+          type: "subject",
+          slug: "maths",
+          value: "Maths",
+          source: "fuzzy_match",
+        },
+        { type: "key-stage", slug: "ks2", value: "Ks2", source: "ai" },
+        {
+          type: "year",
+          slug: "year-1",
+          value: "Year 1",
+          source: "fuzzy_match",
+        },
+        { type: "exam-board", slug: "aqa", value: "Aqa", source: "ai" },
       ]);
     });
     test("it returns expected suggested filters in the correct order, subject, ks, year, exam", () => {
@@ -281,11 +301,11 @@ describe("search helpers", () => {
       };
       const result = convertSearchIntentToFilters(searchIntent);
       expect(result).toEqual([
-        { type: "subject", slug: "history", value: "History" },
-        { type: "subject", slug: "maths", value: "Maths" },
-        { type: "key-stage", slug: "ks2", value: "Ks2" },
-        { type: "year", slug: "year-1", value: "Year 1" },
-        { type: "exam-board", slug: "aqa", value: "Aqa" },
+        { type: "subject", slug: "history", value: "History", source: "ai" },
+        { type: "subject", slug: "maths", value: "Maths", source: "ai" },
+        { type: "key-stage", slug: "ks2", value: "Ks2", source: "ai" },
+        { type: "year", slug: "year-1", value: "Year 1", source: "ai" },
+        { type: "exam-board", slug: "aqa", value: "Aqa", source: "ai" },
       ]);
     });
     test("it removes any duplicates", () => {
@@ -302,11 +322,11 @@ describe("search helpers", () => {
       };
       const result = convertSearchIntentToFilters(searchIntent);
       expect(result).toEqual([
-        { type: "subject", slug: "history", value: "History" },
-        { type: "subject", slug: "maths", value: "Maths" },
-        { type: "key-stage", slug: "ks2", value: "Ks2" },
-        { type: "year", slug: "year-1", value: "Year 1" },
-        { type: "exam-board", slug: "aqa", value: "Aqa" },
+        { type: "subject", slug: "history", value: "History", source: "ai" },
+        { type: "subject", slug: "maths", value: "Maths", source: "ai" },
+        { type: "key-stage", slug: "ks2", value: "Ks2", source: "ai" },
+        { type: "year", slug: "year-1", value: "Year 1", source: "ai" },
+        { type: "exam-board", slug: "aqa", value: "Aqa", source: "ai" },
       ]);
     });
   });
