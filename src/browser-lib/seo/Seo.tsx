@@ -40,10 +40,32 @@ const Seo: FC<SeoProps> = ({
 }) => {
   const router = useRouter();
 
-  // Trim trailing slashes
-  const formattedCanonicalURL = (
-    canonicalURL || `${getBrowserConfig("seoAppUrl")}${router.asPath}`
-  )?.replace(/\/$/, ""); //?
+  // Strip sid query parameters from canonical URL to point to clean version
+  function stripSidParams(url: string): string {
+    const urlObj = new URL(url, getBrowserConfig("seoAppUrl"));
+    const params = new URLSearchParams(urlObj.search);
+
+    // Remove all parameters that start with 'sid'
+    Array.from(params.keys()).forEach((key) => {
+      if (key.startsWith("sid")) {
+        params.delete(key);
+      }
+    });
+
+    const cleanSearch = params.toString();
+    const pathname = urlObj.pathname;
+    return cleanSearch ? `${pathname}?${cleanSearch}` : pathname;
+  }
+
+  // Build canonical URL from router.asPath or provided canonicalURL
+  const baseCanonicalPath = canonicalURL
+    ? canonicalURL
+    : `${getBrowserConfig("seoAppUrl")}${router.asPath}`;
+
+  // Strip sid params and trim trailing slashes
+  const cleanPath = stripSidParams(baseCanonicalPath);
+  const formattedCanonicalURL =
+    `${getBrowserConfig("seoAppUrl")}${cleanPath}`.replace(/\/$/, "");
 
   return (
     <NextSeo
