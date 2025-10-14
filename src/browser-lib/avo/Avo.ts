@@ -974,7 +974,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "XmsGfNcxt98Vgsn1GxzY",
+          "ac": "0EN7Dj04ZfvHzBTIYYSj",
           "br": "QWOiBfEpmEgtaglESlnTR",
           "en": env,
           "ev": eventId,
@@ -1001,7 +1001,7 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "XmsGfNcxt98Vgsn1GxzY",
+          "ac": "0EN7Dj04ZfvHzBTIYYSj",
           "br": "QWOiBfEpmEgtaglESlnTR",
           "en": env,
           "ty": type,
@@ -6491,19 +6491,9 @@ export function lessonActivityAbandonedLessonAudio(properties: LessonActivityAba
 }
 
 export interface LessonAssistantAccessedProperties {
-  keyStageTitle: KeyStageTitleValueType | null | undefined;
-  keyStageSlug: string | null | undefined;
-  subjectTitle: string | null | undefined;
-  subjectSlug: string | null | undefined;
-  platform: PlatformValueType;
-  product: ProductValueType;
-  engagementIntent: EngagementIntentValueType;
-  componentType: ComponentTypeValueType;
-  eventVersion: EventVersionValueType;
-  analyticsUseCase: AnalyticsUseCaseValueType;
   isLoggedIn: boolean;
-  searchTerm: string;
-  searchResultCount: number;
+  componentType: ComponentTypeValueType;
+  product: ProductValueType;
 }
 /**
  * Lesson Assistant Accessed: A user accesses the AI Lesson Assistant by clicking on the ‘Create a lesson’ button.
@@ -6515,50 +6505,18 @@ export interface LessonAssistantAccessedProperties {
  * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/QWOiBfEpmEgtaglESlnTR/events/xsOZT-77ro/trigger/LCMU0NPnivcZrJQ58uvzN
  * 
  * @param properties the properties associated with this event
- * @param properties.keyStageTitle: Title of the current key stage.
- * @param properties.keyStageSlug: Human-readable unique ID of the current key stage.
- * @param properties.subjectTitle: Title of the current subject.
- * @param properties.subjectSlug: Human-readable unique ID of the current subject.
- * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA and Aila. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
- * @param properties.product: Product that the event was sent from to clear distinguish between Oak products
- * @param properties.engagementIntent: The level or intent of engagement behind the event. This is a high-level categorisation that helps determine whether this event is one that represents 'use' or 'advocacy for one of Oak's products, or whether this action would be considered to be related to 'exploring' Oak's products, or some kind of 'refinement' which limits the amount of content displayed (such as in a filter or a browse journey.
-
-This property should be populated with a single value for each event/product combination (i.e. the instance of each event within a product should determine the level of engagement).
- * @param properties.componentType: The web component used to carry out the action on the Oak object
- * @param properties.eventVersion: The version (semver) of the event, which acts as a tag for when the event was introduced/updated. Helps with handling events that could cause downstream logic to change or create 'breaking ' changes in the downstream pipelines.
- * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
-
-NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.isLoggedIn: Flags whether the user logged in or not before accessing the Oak object 
- * @param properties.searchTerm: The term entered by the user for the search.
- * @param properties.searchResultCount: total number of search results returned
+ * @param properties.componentType: The web component used to carry out the action on the Oak object
+ * @param properties.product: Product that the event was sent from to clear distinguish between Oak products
  * 
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/QWOiBfEpmEgtaglESlnTR/events/xsOZT-77ro}
  */
 export function lessonAssistantAccessed(properties: LessonAssistantAccessedProperties) {
   // @ts-ignore
   let eventPropertiesArray: array = [];
-  properties.keyStageTitle !== undefined && properties.keyStageTitle !== null ?
-    eventPropertiesArray.push({id: "qeEZpYqVhK", name: "Key Stage Title", value: properties.keyStageTitle}) :
-    eventPropertiesArray.push({id: "qeEZpYqVhK", name: "Key Stage Title", value: null});
-  properties.keyStageSlug !== undefined && properties.keyStageSlug !== null ?
-    eventPropertiesArray.push({id: "XMx9WMqh0H", name: "Key Stage Slug", value: properties.keyStageSlug}) :
-    eventPropertiesArray.push({id: "XMx9WMqh0H", name: "Key Stage Slug", value: null});
-  properties.subjectTitle !== undefined && properties.subjectTitle !== null ?
-    eventPropertiesArray.push({id: "-MoOjO43sV", name: "Subject Title", value: properties.subjectTitle}) :
-    eventPropertiesArray.push({id: "-MoOjO43sV", name: "Subject Title", value: null});
-  properties.subjectSlug !== undefined && properties.subjectSlug !== null ?
-    eventPropertiesArray.push({id: "8GyPDAapC-", name: "Subject Slug", value: properties.subjectSlug}) :
-    eventPropertiesArray.push({id: "8GyPDAapC-", name: "Subject Slug", value: null});
-  eventPropertiesArray.push({id: "M1ukA4HClh", name: "Platform", value: properties.platform});
-  eventPropertiesArray.push({id: "JmUs_uxup", name: "Product", value: properties.product});
-  eventPropertiesArray.push({id: "xJlB159-KB", name: "Engagement Intent", value: properties.engagementIntent});
-  eventPropertiesArray.push({id: "9b_lf1oq8", name: "Component Type", value: properties.componentType});
-  eventPropertiesArray.push({id: "3ZqdV-PbJL", name: "Event Version", value: properties.eventVersion});
-  eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
   eventPropertiesArray.push({id: "p56ECmuX6", name: "Is Logged In", value: properties.isLoggedIn});
-  eventPropertiesArray.push({id: "hHufJiP_N", name: "Search Term", value: properties.searchTerm});
-  eventPropertiesArray.push({id: "ssKpAufWU", name: "Search Result Count", value: properties.searchResultCount});
+  eventPropertiesArray.push({id: "9b_lf1oq8", name: "Component Type", value: properties.componentType});
+  eventPropertiesArray.push({id: "JmUs_uxup", name: "Product", value: properties.product});
   let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
   // @ts-ignore
   let userPropertiesArray: array = [];
@@ -6568,7 +6526,7 @@ export function lessonAssistantAccessed(properties: LessonAssistantAccessedPrope
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "xsOZT-77ro", "957c65fe6344dbd3aa29a6cebdbbd786448bc1ab2c990b3b109a77b54894856e", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "xsOZT-77ro", "5ed3b9fa82d124301b7746c5426d2d0a519107356373787c86a987f32ae79e9b", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Assistant Accessed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -6579,7 +6537,7 @@ export function lessonAssistantAccessed(properties: LessonAssistantAccessedPrope
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Assistant Accessed", eventProperties, "xsOZT-77ro", "957c65fe6344dbd3aa29a6cebdbbd786448bc1ab2c990b3b109a77b54894856e");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Assistant Accessed", eventProperties, "xsOZT-77ro", "5ed3b9fa82d124301b7746c5426d2d0a519107356373787c86a987f32ae79e9b");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Assistant Accessed", (Object as any).assign({}, eventProperties));
