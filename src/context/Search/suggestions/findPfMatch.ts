@@ -61,12 +61,10 @@ export const findPfMatch = (query: string): DirectMatch | null => {
     examBoard: examboardMatch?.matched,
   });
 
-  return isAmbiguousMatch
-    ? null
-    : {
-        subject: parsedSubject.data ?? null,
-        keyStage: parsedKeystage.data ?? null,
-        examBoard: parsedExamboard.data ?? null,
-        year: parsedYear.data ?? null,
-      };
+  return {
+    subject: isAmbiguousMatch ? null : (parsedSubject.data ?? null),
+    keyStage: parsedKeystage.data ?? null,
+    examBoard: parsedExamboard.data ?? null,
+    year: parsedYear.data ?? null,
+  };
 };

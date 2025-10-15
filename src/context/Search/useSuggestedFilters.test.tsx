@@ -47,13 +47,13 @@ const validSearchIntentPayload = {
 
 const validSearchFilters: SuggestedFilters = {
   searchFilters: [
-    { type: "subject", slug: "maths", value: "Maths" },
-    { type: "key-stage", slug: "ks1", value: "Ks1" },
-    { type: "key-stage", slug: "ks2", value: "Ks2" },
-    { type: "key-stage", slug: "ks3", value: "Ks3" },
-    { type: "key-stage", slug: "ks4", value: "Ks4" },
-    { type: "exam-board", slug: "aqa", value: "Aqa" },
-    { type: "exam-board", slug: "edexcel", value: "Edexcel" },
+    { type: "subject", slug: "maths", value: "Maths", source: "fuzzy_match" },
+    { type: "key-stage", slug: "ks1", value: "Ks1", source: "ai" },
+    { type: "key-stage", slug: "ks2", value: "Ks2", source: "ai" },
+    { type: "key-stage", slug: "ks3", value: "Ks3", source: "ai" },
+    { type: "key-stage", slug: "ks4", value: "Ks4", source: "ai" },
+    { type: "exam-board", slug: "aqa", value: "Aqa", source: "ai" },
+    { type: "exam-board", slug: "edexcel", value: "Edexcel", source: "ai" },
   ],
   status: "success",
   error: undefined,
@@ -176,6 +176,45 @@ describe("useSuggestedFilters", () => {
 
     expect(mockUseSWR).toHaveBeenCalledWith(
       "/api/search/intent?searchTerm=maths",
+      expect.any(Function),
+      expect.any(Object),
+    );
+  });
+  it("removes any whitespace from the term before sending to the API", () => {
+    mockUseSWR.mockImplementationOnce(() => ({
+      data: validSearchIntentPayload,
+      error: null,
+      isLoading: false,
+    }));
+
+    const { result } = renderHook(() =>
+      useSuggestedFilters({ term: "  maths fractions  ", enabled: true }),
+    );
+
+    expect(result.current).toEqual(validSearchFilters);
+    expect(mockUseSWR).toHaveBeenCalledWith(
+      "/api/search/intent?searchTerm=maths+fractions",
+      expect.any(Function),
+      expect.any(Object),
+    );
+  });
+  it("removes any special characters from the term before sending to the API", () => {
+    mockUseSWR.mockImplementationOnce(() => ({
+      data: validSearchIntentPayload,
+      error: null,
+      isLoading: false,
+    }));
+
+    const { result } = renderHook(() =>
+      useSuggestedFilters({
+        term: "  maths  fractions f&foo=bar   ",
+        enabled: true,
+      }),
+    );
+
+    expect(result.current).toEqual(validSearchFilters);
+    expect(mockUseSWR).toHaveBeenCalledWith(
+      "/api/search/intent?searchTerm=maths+fractions+f%26foo%3Dbar",
       expect.any(Function),
       expect.any(Object),
     );

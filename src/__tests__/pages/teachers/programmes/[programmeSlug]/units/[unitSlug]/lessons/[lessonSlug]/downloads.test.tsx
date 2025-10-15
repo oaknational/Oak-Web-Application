@@ -286,10 +286,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       render(<LessonDownloadsPage {...props} />);
 
       expect(screen.getAllByRole("heading", { level: 2 })[0]).toHaveTextContent(
-        "Lesson resources",
-      );
-      expect(screen.getAllByRole("heading", { level: 2 })[1]).toHaveTextContent(
-        "Your details",
+        "All resources selected",
       );
 
       expect(
@@ -379,11 +376,10 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
         result.current.setEmailInLocalStorage("test@test.com");
         result.current.setTermsInLocalStorage(true);
       });
-      const { getByRole } = render(<LessonDownloadsPage {...props} />);
+      render(<LessonDownloadsPage {...props} />);
 
-      const selectAllCheckbox = getByRole("checkbox", {
-        name: "Select all",
-      });
+      const selectAllCheckbox = screen.getByLabelText("All resources selected");
+
       expect(selectAllCheckbox).toBeChecked();
 
       const exitQuizQuestions = screen.getByLabelText("Exit quiz questions", {
@@ -404,8 +400,8 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
         result.current.setTermsInLocalStorage(true);
       });
 
-      const { getByRole } = render(<LessonDownloadsPage {...props} />);
-      const selectAllCheckbox = getByRole("checkbox", { name: "Select all" });
+      render(<LessonDownloadsPage {...props} />);
+      const selectAllCheckbox = screen.getByLabelText("All resources selected");
       await userEvent.click(selectAllCheckbox);
 
       const exitQuizQuestions = screen.getByLabelText("Exit quiz questions", {

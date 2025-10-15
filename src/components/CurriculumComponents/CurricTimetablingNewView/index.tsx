@@ -4,14 +4,14 @@ import {
   OakHeading,
   OakP,
   OakPrimaryButton,
-  OakJauntyAngleLabel,
-  OakTextInput,
   OakMaxWidth,
+  OakJauntyAngleLabel,
 } from "@oaknational/oak-components";
 import { useMemo } from "react";
 import Link from "next/link";
 
 import { CurricTimetableHeader } from "../CurricTimetableHeader";
+import { CurricNumberInput } from "../CurricNumberInput";
 
 import {
   simpleObjectAsSearchParams,
@@ -26,7 +26,7 @@ export const CurricTimetablingNewView = ({
   const { subjectSlug } = parseSubjectPhaseSlug(subjectPhaseSlug)!;
   const [data, setData] = useTimetableParams();
   const nextHref = useMemo(
-    () => `name?${simpleObjectAsSearchParams(data, { name: "" })}`,
+    () => `units?${simpleObjectAsSearchParams(data, { name: "" })}`,
     [data],
   );
 
@@ -78,14 +78,14 @@ export const CurricTimetablingNewView = ({
                   $left={"5px"}
                   $borderRadius="border-radius-square"
                 />
-                <OakTextInput
+                <CurricNumberInput
                   id="autumn-lessons"
-                  value={String(data.autumn)}
-                  onChange={(e) => setData({ autumn: Number(e.target.value) })}
-                  aria-describedby="autumn-heading"
-                  wrapperWidth="100%"
-                  $pv="inner-padding-none"
-                  $height="all-spacing-10"
+                  value={data.autumn ?? 30}
+                  onChange={(value) => setData({ autumn: value })}
+                  ariaDescribedBy="autumn-heading"
+                  min={5}
+                  max={35}
+                  step={1}
                 />
               </OakFlex>
             </OakFlex>
@@ -112,14 +112,14 @@ export const CurricTimetablingNewView = ({
                   $left={"5px"}
                   $borderRadius="border-radius-square"
                 />
-                <OakTextInput
+                <CurricNumberInput
                   id="spring-lessons"
-                  value={String(data.spring)}
-                  onChange={(e) => setData({ spring: Number(e.target.value) })}
-                  aria-describedby="spring-heading"
-                  wrapperWidth="100%"
-                  $pv="inner-padding-none"
-                  $height="all-spacing-10"
+                  value={data.spring ?? 30}
+                  onChange={(value) => setData({ spring: value })}
+                  ariaDescribedBy="spring-heading"
+                  min={5}
+                  max={35}
+                  step={1}
                 />
               </OakFlex>
             </OakFlex>
@@ -146,14 +146,14 @@ export const CurricTimetablingNewView = ({
                   $left={"5px"}
                   $borderRadius="border-radius-square"
                 />
-                <OakTextInput
+                <CurricNumberInput
                   id="summer-lessons"
-                  value={String(data.summer)}
-                  onChange={(e) => setData({ summer: Number(e.target.value) })}
-                  aria-describedby="summer-heading"
-                  wrapperWidth="100%"
-                  $pv="inner-padding-none"
-                  $height="all-spacing-10"
+                  value={data.summer ?? 30}
+                  onChange={(value) => setData({ summer: value })}
+                  ariaDescribedBy="summer-heading"
+                  min={5}
+                  max={35}
+                  step={1}
                 />
               </OakFlex>
             </OakFlex>
