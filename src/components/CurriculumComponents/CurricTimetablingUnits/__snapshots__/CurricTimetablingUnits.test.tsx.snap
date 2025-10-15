@@ -42,7 +42,7 @@ exports[`CurricTimetablingUnits snapshot 1`] = `
                 class="sc-kpDqfm jGrEMo"
                 data-testid="timetable-header-title"
               >
-                Year 1 maths
+                Your Transfiguration timetable
               </h1>
               <div
                 class="sc-fqkvVR fgBWrW"
@@ -149,15 +149,33 @@ exports[`CurricTimetablingUnits snapshot 1`] = `
   <div
     class="sc-fqkvVR sc-kAyceB sc-jEACwC drEYrk jOTTNg"
   >
-    <pre>
-      {
+    <div
+      class="sc-fqkvVR sc-kAyceB fgBWrW dnkkZD"
+    >
+      <div
+        class="sc-fqkvVR sc-kAyceB dglSnw eeevb"
+      >
+        <h2
+          class="sc-kpDqfm jeWvUz"
+        >
+          Filter and highlight
+        </h2>
+        <pre>
+          {
   "autumn": 30,
   "spring": 30,
   "summer": 30,
   "year": "1",
   "name": ""
 }
-    </pre>
+        </pre>
+      </div>
+      <div
+        class="sc-fqkvVR sc-kAyceB fgBWrW bAFsaQ"
+      >
+        <ul />
+      </div>
+    </div>
   </div>
 </div>
 `;

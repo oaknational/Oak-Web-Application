@@ -33,9 +33,9 @@ function getDefaultName(
 type CurricTimetablingUnitsProps = {
   subjectPhaseSlug: string;
   units: Unit[];
-  curriculumPhaseOptions: Awaited<
-    ReturnType<typeof fetchSubjectPhasePickerData>
-  >;
+  curriculumPhaseOptions:
+    | ReturnType<typeof fetchSubjectPhasePickerData>
+    | Awaited<ReturnType<typeof fetchSubjectPhasePickerData>>;
 };
 export const CurricTimetablingUnits = ({
   units,
