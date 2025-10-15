@@ -14,6 +14,7 @@ import { SearchIntent } from "@/common-lib/schemas/search-intent";
 export type SearchSuggestionBannerProps = {
   metadata?: string;
   title: string;
+  subjectSlug: string;
   body: string;
   links: Array<{
     keystageSlug: string;
@@ -27,14 +28,17 @@ const StyledOakLink = styled(OakLink)`
   font-weight: 600;
 `;
 
-export const SearchSuggestionBanner = (props: { intent: SearchIntent }) => {
-  const convertedProps = getSearchSuggestionBannerProps(props.intent);
+export const SearchSuggestionBanner = (props: {
+  intent: SearchIntent | null | undefined;
+}) => {
+  const convertedProps =
+    props.intent && getSearchSuggestionBannerProps(props.intent);
 
   if (!convertedProps) {
     return null;
   }
 
-  const { metadata, title, body, links } = convertedProps;
+  const { metadata, title, body, links, subjectSlug } = convertedProps;
 
   return (
     <OakFlex
@@ -61,7 +65,8 @@ export const SearchSuggestionBanner = (props: { intent: SearchIntent }) => {
           isTrailingIcon
           key={link.keystageSlug}
           href={resolveOakHref({
-            page: "subject-index",
+            page: "programme-index",
+            subjectSlug,
             keyStageSlug: link.keystageSlug,
           })}
         >

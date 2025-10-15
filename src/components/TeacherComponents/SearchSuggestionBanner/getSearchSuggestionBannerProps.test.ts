@@ -33,7 +33,7 @@ describe("getSearchSuggestionBannerProps", () => {
       ],
     });
   });
-  test("it returns a subject and keystage link with examboard", () => {
+  test("it returns a subject and keystage link", () => {
     const searchIntent: SearchIntent = {
       directMatch: {
         subject: { slug: "maths", title: "Maths" },
@@ -52,7 +52,6 @@ describe("getSearchSuggestionBannerProps", () => {
         {
           keystageSlug: "ks4",
           keystageTitle: "Key stage 4",
-          examboardSlug: "aqa",
         },
       ],
     });
@@ -94,7 +93,7 @@ describe("getSearchSuggestionBannerProps", () => {
       ],
     });
   });
-  test("it returns a subject and keystage links with exam boards", () => {
+  test("it returns a subject and keystage links", () => {
     const searchIntent: SearchIntent = {
       directMatch: {
         subject: { slug: "maths", title: "Maths" },
@@ -132,7 +131,6 @@ describe("getSearchSuggestionBannerProps", () => {
         {
           keystageSlug: "ks4",
           keystageTitle: "Key stage 4",
-          examboardSlug: "aqa",
         },
       ],
     });

@@ -9,6 +9,7 @@ export function getSearchSuggestionBannerProps(props: SearchIntent) {
   if (directMatch?.subject) {
     suggestion = {
       title: directMatch.subject.title,
+      subjectSlug: directMatch.subject.slug,
       body: "placeholder",
       links: [],
     };
@@ -18,29 +19,16 @@ export function getSearchSuggestionBannerProps(props: SearchIntent) {
       suggestion.links.push({
         keystageSlug: directMatch?.keyStage?.slug ?? "ks4",
         keystageTitle: directMatch?.keyStage?.title ?? "Key stage 4",
-        examboardSlug: directMatch?.examBoard?.slug,
       });
     } else {
-      const suggestedExamBoards = suggestedFilters.filter(
-        (filter) => filter.type === "exam-board",
-      );
       const suggestedKeystages = suggestedFilters.filter(
         (filter) => filter.type === "key-stage",
       );
 
-      const suggestedKeystageLinks = suggestedKeystages.flatMap((filter) => {
-        if (filter.slug === "ks4" && suggestedExamBoards.length > 0) {
-          return suggestedExamBoards.map((examboard) => ({
-            keystageSlug: filter.slug,
-            keystageTitle: filter.title,
-            examboardSlug: examboard.slug,
-          }));
-        }
-        return {
-          keystageSlug: filter.slug,
-          keystageTitle: filter.title,
-        };
-      });
+      const suggestedKeystageLinks = suggestedKeystages.flatMap((filter) => ({
+        keystageSlug: filter.slug,
+        keystageTitle: filter.title,
+      }));
       suggestion.links = suggestedKeystageLinks;
     }
   }
