@@ -715,7 +715,8 @@ export const OAK_SUBJECTS: SubjectData[] = [
   {
     title: "RSHE (PSHE)",
     slug: "rshe-pshe",
-    description: "",
+    description:
+      "Our curriculum aims to equip pupils with the knowledge and skills necessary to make informed decisions about their wellbeing, health, and relationships.  We adhere to statutory guidance, ensuring that teachers are able to deliver correct and well-informed content.",
     keyStages: oakKeystagesWithoutEyfs,
     examBoards: [],
     years: yearsWithoutAllAndR,
