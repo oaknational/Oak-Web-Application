@@ -21,8 +21,6 @@ const Page = async ({
   const sequence = await curriculumApi2023.curriculumSequence(slugs);
   const curriculumPhaseOptions = await fetchSubjectPhasePickerData();
 
-  console.log({ sequence });
-
   // Render
   return (
     <CurricTimetablingUnits
