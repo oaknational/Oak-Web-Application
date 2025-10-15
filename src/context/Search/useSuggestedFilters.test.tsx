@@ -47,13 +47,13 @@ const validSearchIntentPayload = {
 
 const validSearchFilters: SuggestedFilters = {
   searchFilters: [
-    { type: "subject", slug: "maths", value: "Maths" },
-    { type: "key-stage", slug: "ks1", value: "Ks1" },
-    { type: "key-stage", slug: "ks2", value: "Ks2" },
-    { type: "key-stage", slug: "ks3", value: "Ks3" },
-    { type: "key-stage", slug: "ks4", value: "Ks4" },
-    { type: "exam-board", slug: "aqa", value: "Aqa" },
-    { type: "exam-board", slug: "edexcel", value: "Edexcel" },
+    { type: "subject", slug: "maths", value: "Maths", source: "fuzzy_match" },
+    { type: "key-stage", slug: "ks1", value: "Ks1", source: "ai" },
+    { type: "key-stage", slug: "ks2", value: "Ks2", source: "ai" },
+    { type: "key-stage", slug: "ks3", value: "Ks3", source: "ai" },
+    { type: "key-stage", slug: "ks4", value: "Ks4", source: "ai" },
+    { type: "exam-board", slug: "aqa", value: "Aqa", source: "ai" },
+    { type: "exam-board", slug: "edexcel", value: "Edexcel", source: "ai" },
   ],
   status: "success",
   error: undefined,

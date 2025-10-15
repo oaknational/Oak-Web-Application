@@ -24,18 +24,22 @@ export const OAK_KEYSTAGES: CurriculumData[] = [
   {
     slug: "ks1",
     title: "Key Stage 1",
+    aliases: ["keystage 1"],
   },
   {
     slug: "ks2",
     title: "Key Stage 2",
+    aliases: ["keystage 2"],
   },
   {
     slug: "ks3",
     title: "Key Stage 3",
+    aliases: ["keystage 3"],
   },
   {
     slug: "ks4",
     title: "Key Stage 4",
+    aliases: ["keystage 4"],
   },
 ];
 
