@@ -1,3 +1,13 @@
+# [1.889.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.888.0...v1.889.0) (2025-10-15)
+
+
+### Features
+
+* add aliases for keystages without spaces ([8dd283d](https://github.com/oaknational/Oak-Web-Application/commit/8dd283d0b0aad66d675ab38c6d0cd97f514c8542))
+* add searchFilterMatchType to search modified event tracking ([3747e2a](https://github.com/oaknational/Oak-Web-Application/commit/3747e2a4b0a622dd6662ec3485095839f37772f5))
+* return a source value for suggested filters for tracking ([ace1446](https://github.com/oaknational/Oak-Web-Application/commit/ace1446cceee3962505880ae6cf87013610187d0))
+* track search modified on suggested filters ([2eb7523](https://github.com/oaknational/Oak-Web-Application/commit/2eb7523326492474c07972bbd9fc599a4a9e0995))
+
 # [1.888.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.887.0...v1.888.0) (2025-10-14)
 
 
