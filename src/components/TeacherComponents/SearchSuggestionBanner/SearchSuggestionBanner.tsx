@@ -60,7 +60,7 @@ export const SearchSuggestionBanner = (props: {
         {title}
       </OakHeading>
       {body && <OakP $font="body-2">{body}</OakP>}
-      <OakFlex $gap="space-between-m">
+      <OakFlex $gap="space-between-m" $flexWrap="wrap">
         {links.map((link) => (
           <StyledOakLink
             iconName="chevron-right"
