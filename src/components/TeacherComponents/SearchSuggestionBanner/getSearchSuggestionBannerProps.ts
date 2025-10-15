@@ -11,14 +11,7 @@ export function getSearchSuggestionBannerProps(props: SearchIntent) {
     const description = OAK_SUBJECTS.find(
       (subject) => subject.slug === directMatch.subject?.slug,
     )?.description;
-    if (!description) {
-      // This should be here
-      console.error(
-        "Missing description for subject: ",
-        directMatch.subject.title,
-      );
-      return null;
-    }
+
     suggestion = {
       title: directMatch.subject.title,
       subjectSlug: directMatch.subject.slug,

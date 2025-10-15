@@ -15,7 +15,7 @@ export type SearchSuggestionBannerProps = {
   metadata?: string;
   title: string;
   subjectSlug: string;
-  body: string;
+  body?: string;
   links: Array<{
     keystageSlug: string;
     keystageTitle: string;
@@ -59,7 +59,7 @@ export const SearchSuggestionBanner = (props: {
       <OakHeading $font="heading-5" tag="h3">
         {title}
       </OakHeading>
-      <OakP $font="body-2">{body}</OakP>
+      {body && <OakP $font="body-2">{body}</OakP>}
       <OakFlex $gap="space-between-m">
         {links.map((link) => (
           <StyledOakLink
