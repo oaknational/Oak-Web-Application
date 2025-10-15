@@ -10,6 +10,8 @@ import { getSearchSuggestionBannerProps } from "./getSearchSuggestionBannerProps
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { SearchIntent } from "@/common-lib/schemas/search-intent";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 
 export type SearchSuggestionBannerProps = {
   metadata?: string;
@@ -30,7 +32,12 @@ const StyledOakLink = styled(OakLink)`
 
 export const SearchSuggestionBanner = (props: {
   intent: SearchIntent | null | undefined;
+  searchTrackingData: {
+    searchFilterOptionSelected: string[];
+    searchResultCount: number;
+  };
 }) => {
+  const { track } = useAnalytics();
   const convertedProps =
     props.intent && getSearchSuggestionBannerProps(props.intent);
 
@@ -71,6 +78,25 @@ export const SearchSuggestionBanner = (props: {
               subjectSlug,
               keyStageSlug: link.keystageSlug,
             })}
+            onClick={() =>
+              track.searchResultOpened({
+                keyStageTitle: link.keystageTitle as KeyStageTitleValueType,
+                keyStageSlug: link.keystageSlug,
+                subjectTitle: title,
+                subjectSlug,
+                unitName: null,
+                unitSlug: null,
+                lessonName: null,
+                lessonSlug: null,
+                lessonReleaseCohort: "2023-2026",
+                lessonReleaseDate: "",
+                analyticsUseCase: "Teacher",
+                searchResultType: "suggestion",
+                context: "search",
+                searchRank: 1,
+                ...props.searchTrackingData,
+              })
+            }
           >
             {link.keystageTitle}
           </StyledOakLink>

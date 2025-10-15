@@ -133,6 +133,10 @@ const Search: FC<SearchProps> = (props) => {
     track,
   ]);
 
+  const searchFilterOptionSelected = getSortedSearchFiltersSelected(
+    router.query,
+  );
+
   const searchResultExpanded = ({
     searchHit,
     searchRank,
@@ -168,9 +172,7 @@ const Search: FC<SearchProps> = (props) => {
         unitName,
         unitSlug: searchHit.buttonLinkProps.unitSlug,
         searchRank: searchRank,
-        searchFilterOptionSelected: getSortedSearchFiltersSelected(
-          router.query,
-        ),
+        searchFilterOptionSelected,
         searchResultCount: hitCount,
         searchResultType: searchHit.type,
         lessonName,
@@ -490,7 +492,13 @@ const Search: FC<SearchProps> = (props) => {
                       Showing {results.length} result
                       {results.length === 1 ? "" : "s"}
                     </OakP>
-                    <SearchSuggestionBanner intent={suggestedFilters.data} />
+                    <SearchSuggestionBanner
+                      intent={suggestedFilters.data}
+                      searchTrackingData={{
+                        searchResultCount: hitCount,
+                        searchFilterOptionSelected,
+                      }}
+                    />
                   </OakFlex>
                   <SearchResults
                     hits={results}
