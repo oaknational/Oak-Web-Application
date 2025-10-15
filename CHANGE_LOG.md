@@ -1,3 +1,10 @@
+# [1.890.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.889.0...v1.890.0) (2025-10-15)
+
+
+### Features
+
+* encode url params before injecting into string ([568542f](https://github.com/oaknational/Oak-Web-Application/commit/568542f70046cee0c3e6d2310dc7b95d7d6cbe92))
+
 # [1.889.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.888.0...v1.889.0) (2025-10-15)
 
 
