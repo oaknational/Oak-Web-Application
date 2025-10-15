@@ -49,6 +49,7 @@ export const SearchSuggestionBanner = (props: {
       $flexDirection="column"
       $gap="space-between-xs"
       $display={["none", "flex"]}
+      $mt="space-between-m2"
     >
       {metadata && (
         <OakP $font="heading-light-7" $color="text-subdued">
