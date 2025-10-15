@@ -41,31 +41,61 @@ const Seo: FC<SeoProps> = ({
   const router = useRouter();
 
   // Strip sid query parameters from canonical URL to point to clean version
-  function stripSidParams(url: string): string {
-    const urlObj = new URL(url, getBrowserConfig("seoAppUrl"));
-    const params = new URLSearchParams(urlObj.search);
+  function stripSidParams(url?: string | null): string | undefined {
+    if (!url) {
+      return url ?? undefined;
+    }
 
-    // Remove all parameters that start with 'sid'
-    Array.from(params.keys()).forEach((key) => {
+    const [beforeHash = url, hashFragment] = url.split("#");
+    const [basePath = beforeHash, queryString] = beforeHash.split("?");
+
+    if (!queryString) {
+      return url;
+    }
+
+    const params = new URLSearchParams(queryString);
+    const entries = Array.from(params.entries());
+    const hasSid = entries.some(([key]) => key.startsWith("sid"));
+
+    if (!hasSid) {
+      return url;
+    }
+
+    const cleanedParams = new URLSearchParams();
+
+    for (const [key, value] of entries) {
       if (key.startsWith("sid")) {
-        params.delete(key);
+        continue;
       }
-    });
 
-    const cleanSearch = params.toString();
-    const pathname = urlObj.pathname;
-    return cleanSearch ? `${pathname}?${cleanSearch}` : pathname;
+      if (hasSid && (key === "sm" || key === "src")) {
+        continue;
+      }
+
+      cleanedParams.append(key, value);
+    }
+
+    const normalisedBasePath = basePath.replace(/\/$/, "");
+    const cleanedQuery = cleanedParams.toString();
+    const rebuilt = cleanedQuery
+      ? `${normalisedBasePath}?${cleanedQuery}`
+      : normalisedBasePath;
+
+    return hashFragment ? `${rebuilt}#${hashFragment}` : rebuilt;
   }
 
+  const seoAppUrl = getBrowserConfig("seoAppUrl");
+  const baseSeoUrl =
+    typeof seoAppUrl === "string" && seoAppUrl ? seoAppUrl : "";
+
   // Build canonical URL from router.asPath or provided canonicalURL
-  const baseCanonicalPath = canonicalURL
-    ? canonicalURL
-    : `${getBrowserConfig("seoAppUrl")}${router.asPath}`;
+  const rawCanonicalURL = canonicalURL ?? `${baseSeoUrl}${router.asPath}`;
 
   // Strip sid params and trim trailing slashes
-  const cleanPath = stripSidParams(baseCanonicalPath);
-  const formattedCanonicalURL =
-    `${getBrowserConfig("seoAppUrl")}${cleanPath}`.replace(/\/$/, "");
+  const canonicalWithoutSid = stripSidParams(rawCanonicalURL);
+  const formattedCanonicalURL = canonicalWithoutSid
+    ? canonicalWithoutSid.replace(/\/$/, "")
+    : canonicalWithoutSid;
 
   return (
     <NextSeo
