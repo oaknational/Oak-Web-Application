@@ -1,4 +1,4 @@
-import { convertUnitSlugToTitle, removeHTMLTags } from ".";
+import { convertUnitSlugToTitle, getFilterType, removeHTMLTags } from ".";
 
 describe("convertSlugToTitle", () => {
   it("should convert a slug to title", () => {
@@ -35,5 +35,32 @@ describe("removeHTMLTags", () => {
   it("should strip HTML tags with properties from a string", () => {
     const string = "<script someproperty=true>hello</script>";
     expect(removeHTMLTags(string)).toBe("hello");
+  });
+});
+
+describe("getFilterType", () => {
+  it("should return keystage filter for valid ks", () => {
+    const result = getFilterType("ks2");
+    expect(result).toBe("Key stage filter");
+  });
+  it("should return year filter for valid year", () => {
+    const result = getFilterType("year-2");
+    expect(result).toBe("Year filter");
+  });
+  it("should return subject filter for valid subject", () => {
+    const result = getFilterType("maths");
+    expect(result).toBe("Subject filter");
+  });
+  it("should return content type filter for valid content type", () => {
+    const result = getFilterType("unit");
+    expect(result).toBe("Content type filter");
+  });
+  it("should return cohort filter for new slug", () => {
+    const result = getFilterType("new");
+    expect(result).toBe("Lesson Cohort filter");
+  });
+  it("should return unkown filter for invalid slug", () => {
+    const result = getFilterType("not-a-slug");
+    expect(result).toBe("Unknown filter");
   });
 });

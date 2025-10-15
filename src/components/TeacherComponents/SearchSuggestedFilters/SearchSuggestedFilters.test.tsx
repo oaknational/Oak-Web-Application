@@ -7,6 +7,7 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { convertSearchIntentToFilters } from "@/context/Search/search.helpers";
 import { SearchQuery, SetSearchQuery } from "@/context/Search/search.types";
 import { SearchIntent } from "@/common-lib/schemas/search-intent";
+import { trackSearchModified } from "@/components/TeacherViews/Search/helpers";
 
 function createSetQuery(initial: SearchQuery): {
   setQuery: SetSearchQuery;
@@ -41,7 +42,8 @@ const MOCK_INTENT: SearchIntent = {
     { type: "exam-board", slug: "edexcel", title: "Edexcel" },
   ],
 };
-
+const mockSearchTerm = "macbeth";
+const searchFilterModifiedMock = jest.fn();
 describe("SearchSuggestedFilters", () => {
   it("renders suggested filters from provided intent", () => {
     const query: SearchQuery = { term: "maths" };
@@ -52,6 +54,10 @@ describe("SearchSuggestedFilters", () => {
         setQuery={setQuery}
         query={query}
         searchFilters={convertSearchIntentToFilters(MOCK_INTENT)}
+        trackSearchModified={trackSearchModified(
+          mockSearchTerm,
+          searchFilterModifiedMock,
+        )}
       />,
     );
 
@@ -80,6 +86,10 @@ describe("SearchSuggestedFilters", () => {
         setQuery={setQuery}
         query={query}
         searchFilters={convertSearchIntentToFilters(MOCK_INTENT)}
+        trackSearchModified={trackSearchModified(
+          mockSearchTerm,
+          searchFilterModifiedMock,
+        )}
       />,
     );
 
@@ -110,6 +120,10 @@ describe("SearchSuggestedFilters", () => {
         setQuery={setQuery}
         query={initial}
         searchFilters={convertSearchIntentToFilters(MOCK_INTENT)}
+        trackSearchModified={trackSearchModified(
+          mockSearchTerm,
+          searchFilterModifiedMock,
+        )}
       />,
     );
 
@@ -133,6 +147,10 @@ describe("SearchSuggestedFilters", () => {
         setQuery={setQuery}
         query={initial}
         searchFilters={convertSearchIntentToFilters(MOCK_INTENT)}
+        trackSearchModified={trackSearchModified(
+          mockSearchTerm,
+          searchFilterModifiedMock,
+        )}
       />,
     );
 
@@ -158,6 +176,10 @@ describe("SearchSuggestedFilters", () => {
         setQuery={setQuery}
         query={initial}
         searchFilters={convertSearchIntentToFilters(intent)}
+        trackSearchModified={trackSearchModified(
+          mockSearchTerm,
+          searchFilterModifiedMock,
+        )}
       />,
     );
 
@@ -180,7 +202,15 @@ describe("SearchSuggestedFilters", () => {
     const { setQuery } = createSetQuery(query);
 
     renderWithTheme(
-      <SuggestedFilters setQuery={setQuery} query={query} searchFilters={[]} />,
+      <SuggestedFilters
+        setQuery={setQuery}
+        query={query}
+        searchFilters={[]}
+        trackSearchModified={trackSearchModified(
+          mockSearchTerm,
+          searchFilterModifiedMock,
+        )}
+      />,
     );
 
     expect(screen.queryByText("Suggested filters")).not.toBeInTheDocument();

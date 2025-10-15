@@ -22,6 +22,7 @@ import {
 import { LEGACY_COHORT } from "@/config/cohort";
 import { removeHTMLTags } from "@/components/TeacherViews/Search/helpers";
 import { SearchIntent } from "@/common-lib/schemas/search-intent";
+import { SearchFilterMatchTypeValueType } from "@/browser-lib/avo/Avo";
 
 const reportError = errorReporter("search/helpers");
 
@@ -370,12 +371,14 @@ export function convertSearchIntentToFilters(
   const addFilter = (
     item: { title: string; slug: string } | null,
     type: SuggestedSearchFilter["type"],
+    source: SearchFilterMatchTypeValueType,
   ) => {
     if (item) {
       allFilters.push({
         type,
         value: item.title,
         slug: item.slug,
+        source,
       });
     }
   };
@@ -383,15 +386,15 @@ export function convertSearchIntentToFilters(
   // Add direct matches
   if (searchIntent.directMatch) {
     const { subject, keyStage, year, examBoard } = searchIntent.directMatch;
-    addFilter(subject, "subject");
-    addFilter(keyStage, "key-stage");
-    addFilter(year, "year");
-    addFilter(examBoard, "exam-board");
+    addFilter(subject, "subject", "fuzzy_match");
+    addFilter(keyStage, "key-stage", "fuzzy_match");
+    addFilter(year, "year", "fuzzy_match");
+    addFilter(examBoard, "exam-board", "fuzzy_match");
   }
 
   // Add suggested filters
   for (const filter of searchIntent.suggestedFilters) {
-    addFilter(filter, filter.type);
+    addFilter(filter, filter.type, "ai");
   }
 
   // Remove duplicates
