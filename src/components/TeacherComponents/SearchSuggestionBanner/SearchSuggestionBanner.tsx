@@ -59,20 +59,22 @@ export const SearchSuggestionBanner = (props: {
         {title}
       </OakHeading>
       <OakP $font="body-2">{body}</OakP>
-      {links.map((link) => (
-        <StyledOakLink
-          iconName="chevron-right"
-          isTrailingIcon
-          key={link.keystageSlug}
-          href={resolveOakHref({
-            page: "programme-index",
-            subjectSlug,
-            keyStageSlug: link.keystageSlug,
-          })}
-        >
-          {link.keystageTitle}
-        </StyledOakLink>
-      ))}
+      <OakFlex $gap="space-between-m">
+        {links.map((link) => (
+          <StyledOakLink
+            iconName="chevron-right"
+            isTrailingIcon
+            key={link.keystageSlug}
+            href={resolveOakHref({
+              page: "programme-index",
+              subjectSlug,
+              keyStageSlug: link.keystageSlug,
+            })}
+          >
+            {link.keystageTitle}
+          </StyledOakLink>
+        ))}
+      </OakFlex>
     </OakFlex>
   );
 };
