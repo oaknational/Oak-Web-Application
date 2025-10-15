@@ -14,7 +14,7 @@ locals {
 
   required_sensitive_env_keys = {
     website = {
-      shared  = []
+      shared  = ["PUPIL_FIRESTORE_ID", "GCP_PROJECT_ID", "GCP_SERVICE_ACCOUNT_EMAIL", "GCP_WORKLOAD_IDENTITY_POOL_PROVIDER_ID"]
       prod    = ["CLERK_SECRET_KEY", "GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT", "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY"]
       preview = ["CLERK_SECRET_KEY", "GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT", "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY"]
     }
@@ -110,7 +110,18 @@ locals {
     ]
   ])
 
-  all_custom_env_vars = concat(local.custom_env_vars, local.sensitive_custom_env_vars, local.custom_env_vars_shared)
+  firestore_env_vars_shared = flatten([
+    for env in local.custom_env_names :
+    [
+      for key, value in var.firestore_env_vars.shared : {
+      key                     = key
+      value                   = value
+      custom_environment_name = env
+    }
+    ]
+  ])
+
+  all_custom_env_vars = concat(local.custom_env_vars, local.sensitive_custom_env_vars, local.custom_env_vars_shared, local.firestore_env_vars_shared)
 
   environment_variables = concat(local.non_sensitive_vars, local.sensitive_vars)
 }
