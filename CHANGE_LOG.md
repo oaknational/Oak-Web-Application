@@ -1,3 +1,19 @@
+# [1.892.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.891.0...v1.892.0) (2025-10-15)
+
+
+### Bug Fixes
+
+* use cf-connecting-ip for the true remote IP ([c77ce01](https://github.com/oaknational/Oak-Web-Application/commit/c77ce01daeed8536deea11561adbab1095a7c580))
+
+
+### Features
+
+* ai kv secrets ([2088a10](https://github.com/oaknational/Oak-Web-Application/commit/2088a109a6e67dbcbd6a4f35b0abf37267b6768a))
+* make rate limiting more flexible and reliable ([2b044ae](https://github.com/oaknational/Oak-Web-Application/commit/2b044ae2761ad0617bfc235b03aa2d3276c277b9))
+* only ratelimit LLM generations ([61da749](https://github.com/oaknational/Oak-Web-Application/commit/61da749d89dbbee3ecdac7c2b241e2bb6c768388))
+* ratelimit ([b18bb98](https://github.com/oaknational/Oak-Web-Application/commit/b18bb9897d45d63f54156a57adfda0d5fb6ced72))
+* setup upstash redis ([976e9bb](https://github.com/oaknational/Oak-Web-Application/commit/976e9bbe226328f7fc60ec461410f5321342f3e1))
+
 # [1.891.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.890.1...v1.891.0) (2025-10-15)
 
 
