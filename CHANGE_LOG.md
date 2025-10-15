@@ -1,3 +1,10 @@
+# [1.891.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.890.1...v1.891.0) (2025-10-15)
+
+
+### Features
+
+* cache AI search responses through cloudflare ([74048a0](https://github.com/oaknational/Oak-Web-Application/commit/74048a095154ecd6f8e5e99b22178ce1f4a434e7))
+
 ## [1.890.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.890.0...v1.890.1) (2025-10-15)
 
 
