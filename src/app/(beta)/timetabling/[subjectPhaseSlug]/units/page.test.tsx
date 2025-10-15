@@ -1,12 +1,15 @@
 import Page from "./page";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { createUnit } from "@/fixtures/curriculum/unit";
 import { useFeatureFlag } from "@/utils/featureFlags";
 
 jest.mock("@/utils/featureFlags");
 
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
-  curriculumSequence: jest.fn(() => ({ units: [] })),
+  curriculumSequence: jest.fn(() => ({
+    units: [createUnit({ slug: "test", subject_slug: "maths" })],
+  })),
   curriculumPhaseOptions: jest.fn(() => {
     return [
       {
@@ -45,6 +48,6 @@ describe("/timetabling/units", () => {
         params: Promise.resolve({ subjectPhaseSlug: "maths-primary" }),
       }),
     );
-    expect(baseElement).toHaveTextContent("Year 1 maths");
+    expect(baseElement).toHaveTextContent("Your Maths timetable");
   });
 });
