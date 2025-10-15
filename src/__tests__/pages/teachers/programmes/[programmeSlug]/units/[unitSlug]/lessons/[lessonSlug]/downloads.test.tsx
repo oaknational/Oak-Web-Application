@@ -95,6 +95,7 @@ jest.mock(
 beforeEach(() => {
   renderHook(() => useForm());
   localStorage.clear();
+  jest.clearAllMocks();
 });
 const render = renderWithProviders();
 
