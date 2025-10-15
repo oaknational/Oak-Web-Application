@@ -8,11 +8,15 @@ import styled from "styled-components";
 
 import { resolveOakHref } from "@/common-lib/urls";
 
-type SearchSuggestionBannerProps = {
+export type SearchSuggestionBannerProps = {
   metadata?: string;
   title: string;
   body: string;
-  links: Array<{ keystageSlug: string; keystageTitle: string }>;
+  links: Array<{
+    keystageSlug: string;
+    keystageTitle: string;
+    examboardSlug?: string;
+  }>;
 };
 
 const StyledOakLink = styled(OakLink)`
