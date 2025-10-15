@@ -1,3 +1,11 @@
+# [1.893.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.892.0...v1.893.0) (2025-10-15)
+
+
+### Features
+
+* added copy-link/edit-details to timetabling units page ([39b5c7c](https://github.com/oaknational/Oak-Web-Application/commit/39b5c7cd4f811499ffe767cd9cb87a2ae288f47c))
+* added tests for edit-details and copy-link ([f083e9e](https://github.com/oaknational/Oak-Web-Application/commit/f083e9ef0060840e7aa8dcd4d52212584f33652c))
+
 # [1.892.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.891.0...v1.892.0) (2025-10-15)
 
 
