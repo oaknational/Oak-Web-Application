@@ -13,15 +13,6 @@ export type SubjectData = CurriculumData & {
 
 export const OAK_KEYSTAGES: CurriculumData[] = [
   {
-    slug: "early-years-foundation-stage",
-    title: "EYFS",
-    aliases: [
-      "early years",
-      "early years foundation",
-      "early years foundation stage",
-    ],
-  },
-  {
     slug: "ks1",
     title: "Key Stage 1",
     aliases: ["keystage 1"],
@@ -42,10 +33,6 @@ export const OAK_KEYSTAGES: CurriculumData[] = [
     aliases: ["keystage 4"],
   },
 ];
-
-const oakKeystagesWithoutEyfs = OAK_KEYSTAGES.filter(
-  (ks) => ks.slug !== "early-years-foundation-stage",
-);
 
 export const OAK_YEARS: CurriculumData[] = [
   {
@@ -146,7 +133,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     slug: "art",
     description:
       "Our curriculum instils a passion for art, craft and design.  Pupils study a broad and diverse range of art and artists, as well as learning the knowledge and skills to develop their own reflective art practice.",
-    keyStages: oakKeystagesWithoutEyfs,
+    keyStages: OAK_KEYSTAGES,
     examBoards: [],
     years: [
       {
@@ -237,7 +224,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     slug: "computing",
     description:
       "Our curriculum enables pupils to become confident and efficient users of technology and establishes the important knowledge in computing to provide a foundation for the technical nature of the subject.",
-    keyStages: oakKeystagesWithoutEyfs,
+    keyStages: OAK_KEYSTAGES,
     examBoards: [
       {
         slug: "aqa",
@@ -256,7 +243,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     slug: "design-technology",
     description:
       "Our curriculum develops pupils’ knowledge of and skills in design applied through the designing and making of prototypes.  Pupils solve real world problems in context led units and evaluate their work and the work of others.",
-    keyStages: oakKeystagesWithoutEyfs,
+    keyStages: OAK_KEYSTAGES,
     examBoards: [],
     years: yearsWithoutAllAndR,
     aliases: ["design and technology", "design & technology", "dt", "d&t"],
@@ -309,7 +296,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     slug: "english",
     description:
       "Our curriculum enables pupils to manipulate language so that they can build their own meaning, sentences and structures.  They will become confident and effective communicators with a clear understanding of language and culture.",
-    keyStages: oakKeystagesWithoutEyfs,
+    keyStages: OAK_KEYSTAGES,
     examBoards: [
       {
         slug: "aqa",
@@ -404,7 +391,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     slug: "geography",
     description:
       "Our curriculum aims to develop pupils’ understanding and curiosity of the world and their place in it. Through carefully structured learning they will analyse geographical patterns and address the social and environmental challenges the world faces.",
-    keyStages: oakKeystagesWithoutEyfs,
+    keyStages: OAK_KEYSTAGES,
     examBoards: [
       {
         slug: "aqa",
@@ -472,7 +459,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     slug: "history",
     description:
       "Our curriculum inspires curiosity about the past and develops pupils’ understanding of history as a discipline. It helps pupils understand historical concepts, methods of enquiry, and how different aspects of the past have been interpreted. ",
-    keyStages: oakKeystagesWithoutEyfs,
+    keyStages: OAK_KEYSTAGES,
     examBoards: [
       {
         slug: "aqa",
@@ -645,7 +632,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     slug: "physical-education",
     description:
       "Our curriculum develops pupils’ physical, psychological, social and emotional wellbeing. Competence and confidence are built alongside a focus on being active across a diverse range of sports and activities, encouraging lifelong participation.",
-    keyStages: oakKeystagesWithoutEyfs,
+    keyStages: OAK_KEYSTAGES,
     examBoards: [
       {
         slug: "aqa",
@@ -717,7 +704,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     slug: "rshe-pshe",
     description:
       "Our curriculum aims to equip pupils with the knowledge and skills necessary to make informed decisions about their wellbeing, health, and relationships.  We adhere to statutory guidance, ensuring that teachers are able to deliver correct and well-informed content.",
-    keyStages: oakKeystagesWithoutEyfs,
+    keyStages: OAK_KEYSTAGES,
     examBoards: [],
     years: yearsWithoutAllAndR,
     aliases: [
@@ -734,7 +721,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     slug: "religious-education",
     description:
       "Our curriculum prepares pupils to navigate the diversity of religious and non-religious worldviews that they may encounter. They will study these worldviews in human life, their teaching and traditions as well as the day-to-day experience of followers. ",
-    keyStages: oakKeystagesWithoutEyfs,
+    keyStages: OAK_KEYSTAGES,
     examBoards: [
       {
         slug: "aqa",
@@ -1094,7 +1081,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     slug: "financial-education",
     description:
       "Our financial education lessons aim to help pupils learn about money and develop financial skills to manage money sensibly, both on and offline.",
-    keyStages: oakKeystagesWithoutEyfs,
+    keyStages: OAK_KEYSTAGES,
     examBoards: [],
     years: yearsWithoutAllAndR,
     aliases: [
