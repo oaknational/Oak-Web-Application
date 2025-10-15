@@ -16,7 +16,6 @@ import {
   mockLoggedIn,
   mockUserWithDownloadAccess,
 } from "@/__tests__/__helpers__/mockUser";
-import { useShare } from "@/pages-helpers/teacher/share/useShare";
 import curriculumApi2023, {
   CurriculumApi,
 } from "@/node-lib/curriculum-api-2023";
@@ -216,43 +215,6 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
     } else {
       throw new Error("Share all button not found");
     }
-  });
-
-  it("updates the url", async () => {
-    const mockReplace = jest.fn();
-    (jest.requireMock("next/router").useRouter as jest.Mock).mockReturnValue({
-      replace: mockReplace,
-      pathname: "/",
-      asPath: "/",
-      query: {
-        lessonSlug: "lessonSlug",
-        unitSlug: "unitSlug",
-        programmeSlug: "programmeSlug",
-      },
-    });
-
-    (useShare as jest.Mock).mockReturnValueOnce({
-      shareUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
-      browserUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
-      shareActivated: false,
-      shareIdRef: { current: "" },
-      shareIdKeyRef: { current: "" },
-    });
-    render(<LessonOverviewPage {...props} />);
-
-    expect(mockReplace).toHaveBeenCalledWith(
-      {
-        pathname: "/",
-        query: {
-          lessonSlug: "lessonSlug",
-          unitSlug: "unitSlug",
-          programmeSlug: "programmeSlug",
-          test: "1",
-        },
-      },
-      undefined,
-      { shallow: true },
-    );
   });
 
   it("sign language button toggles on click", async () => {

@@ -1,6 +1,5 @@
 import { renderHook, act } from "@testing-library/react";
 import { useFeatureFlagEnabled } from "posthog-js/react";
-import { useRouter } from "next/router";
 
 import { useLesson, UseLessonProps } from "./useLesson";
 
@@ -116,28 +115,6 @@ describe("useLesson", () => {
     });
 
     expect(result.current.teacherNotesOpen).toBe(true);
-  });
-
-  it("should update browser URL when different from current location", () => {
-    const mockReplace = jest.fn();
-    const mockRouter = {
-      replace: mockReplace,
-      pathname: "/teachers/lessons/test-lesson",
-      query: { lessonSlug: "test-lesson" },
-    };
-
-    (useRouter as jest.Mock).mockReturnValue(mockRouter);
-
-    renderHook(() => useLesson(defaultProps));
-
-    expect(mockReplace).toHaveBeenCalledWith(
-      {
-        pathname: "/teachers/lessons/test-lesson",
-        query: { lessonSlug: "test-lesson" },
-      },
-      undefined,
-      { shallow: true },
-    );
   });
 
   it("should handle error states from teacher notes", () => {

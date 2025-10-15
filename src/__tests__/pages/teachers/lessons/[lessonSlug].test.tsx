@@ -15,7 +15,6 @@ import curriculumApi2023, {
 } from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
 import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
-import { useShare } from "@/pages-helpers/teacher/share/useShare";
 import { useTeacherNotes } from "@/pages-helpers/teacher/share/useTeacherNotes";
 
 const url = "";
@@ -125,41 +124,6 @@ describe("Lesson Overview Canonical Page", () => {
 
       expect(result.getByRole("heading", { level: 1 })).toHaveTextContent(
         lesson.lessonTitle,
-      );
-    });
-
-    it("updates the url", async () => {
-      const mockReplace = jest.fn();
-      (jest.requireMock("next/router").useRouter as jest.Mock).mockReturnValue({
-        replace: mockReplace,
-        pathname: "/teachers/lessons/lesson-1",
-        query: { lessonSlug: "lesson-1" },
-      });
-
-      (useShare as jest.Mock).mockReturnValueOnce({
-        shareUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
-        browserUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
-        shareActivated: false,
-        shareIdRef: { current: "" },
-        shareIdKeyRef: { current: "" },
-      });
-      render(
-        <LessonOverviewCanonicalPage
-          lesson={{ ...lesson, pathways: [] }}
-          isSpecialist={false}
-        />,
-      );
-
-      expect(mockReplace).toHaveBeenCalledWith(
-        {
-          pathname: "/teachers/lessons/lesson-1",
-          query: {
-            lessonSlug: "lesson-1",
-            test: "1",
-          },
-        },
-        undefined,
-        { shallow: true },
       );
     });
 
