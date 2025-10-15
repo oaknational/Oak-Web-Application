@@ -55,8 +55,7 @@ export const SearchSuggestionBanner = (props: {
       $borderColor="border-neutral-lighter"
       $flexDirection="column"
       $gap="space-between-xs"
-      $display={["none", "flex"]}
-      $mt="space-between-m2"
+      $mt={["space-between-none", "space-between-none", "space-between-m2"]}
     >
       {metadata && (
         <OakP $font="heading-light-7" $color="text-subdued">
@@ -67,7 +66,11 @@ export const SearchSuggestionBanner = (props: {
         {title}
       </OakHeading>
       {body && <OakP $font="body-2">{body}</OakP>}
-      <OakFlex $gap="space-between-m" $flexWrap="wrap">
+      <OakFlex
+        $gap="space-between-m"
+        $flexWrap="wrap"
+        $flexDirection={["column", "row", "row"]}
+      >
         {links.map((link) => (
           <StyledOakLink
             iconName="chevron-right"

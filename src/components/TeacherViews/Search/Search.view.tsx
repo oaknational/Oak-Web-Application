@@ -463,7 +463,14 @@ const Search: FC<SearchProps> = (props) => {
                 </OakBox>
               )}
               {shouldShowResults && (
-                <OakFlex $flexDirection="column" $gap={"space-between-xl"}>
+                <OakFlex
+                  $flexDirection="column"
+                  $gap={[
+                    "space-between-s",
+                    "space-between-s",
+                    "space-between-xl",
+                  ]}
+                >
                   <OakFlex
                     $flexDirection={"column"}
                     $gap={"space-between-m"}
@@ -500,6 +507,21 @@ const Search: FC<SearchProps> = (props) => {
                       }}
                     />
                   </OakFlex>
+                  <OakBox
+                    $display={[
+                      "block",
+                      isAiExperimentSearchEnabled ? "block" : "none",
+                      "none",
+                    ]}
+                  >
+                    <SearchSuggestionBanner
+                      intent={suggestedFilters.data}
+                      searchTrackingData={{
+                        searchResultCount: hitCount,
+                        searchFilterOptionSelected,
+                      }}
+                    />
+                  </OakBox>
                   <SearchResults
                     hits={results}
                     allKeyStages={allKeyStages}
