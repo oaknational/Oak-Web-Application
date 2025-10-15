@@ -1,5 +1,6 @@
 import { SearchSuggestionBannerProps } from "./SearchSuggestionBanner";
 
+import { OAK_SUBJECTS } from "@/context/Search/suggestions/oakCurriculumData";
 import { SearchIntent } from "@/common-lib/schemas/search-intent";
 
 export function getSearchSuggestionBannerProps(props: SearchIntent) {
@@ -7,10 +8,21 @@ export function getSearchSuggestionBannerProps(props: SearchIntent) {
   let suggestion: SearchSuggestionBannerProps | null = null;
 
   if (directMatch?.subject) {
+    const description = OAK_SUBJECTS.find(
+      (subject) => subject.slug === directMatch.subject?.slug,
+    )?.description;
+    if (!description) {
+      // This should be here
+      console.error(
+        "Missing description for subject: ",
+        directMatch.subject.title,
+      );
+      return null;
+    }
     suggestion = {
       title: directMatch.subject.title,
       subjectSlug: directMatch.subject.slug,
-      body: "placeholder",
+      body: description,
       links: [],
     };
 

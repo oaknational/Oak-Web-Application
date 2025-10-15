@@ -1,6 +1,11 @@
 import { getSearchSuggestionBannerProps } from "./getSearchSuggestionBannerProps";
 
+import { OAK_SUBJECTS } from "@/context/Search/suggestions/oakCurriculumData";
 import { SearchIntent } from "@/common-lib/schemas/search-intent";
+
+const mathsDescription = OAK_SUBJECTS.find(
+  (s) => s.slug == "maths",
+)?.description;
 
 describe("getSearchSuggestionBannerProps", () => {
   test("it returns no suggestion if no direct subject match", () => {
@@ -24,7 +29,7 @@ describe("getSearchSuggestionBannerProps", () => {
     expect(result).toMatchObject({
       metadata: "Key stage 2",
       title: "Maths",
-      body: "placeholder",
+      body: mathsDescription,
       links: [
         {
           keystageSlug: "ks2",
@@ -47,7 +52,7 @@ describe("getSearchSuggestionBannerProps", () => {
     expect(result).toMatchObject({
       metadata: "Key stage 4",
       title: "Maths",
-      body: "placeholder",
+      body: mathsDescription,
       links: [
         {
           keystageSlug: "ks4",
@@ -80,7 +85,7 @@ describe("getSearchSuggestionBannerProps", () => {
     const result = getSearchSuggestionBannerProps(searchIntent);
     expect(result).toMatchObject({
       title: "Maths",
-      body: "placeholder",
+      body: mathsDescription,
       links: [
         {
           keystageSlug: "ks1",
@@ -122,7 +127,7 @@ describe("getSearchSuggestionBannerProps", () => {
     const result = getSearchSuggestionBannerProps(searchIntent);
     expect(result).toMatchObject({
       title: "Maths",
-      body: "placeholder",
+      body: mathsDescription,
       links: [
         {
           keystageSlug: "ks1",
