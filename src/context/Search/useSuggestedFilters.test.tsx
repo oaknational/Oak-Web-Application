@@ -180,4 +180,43 @@ describe("useSuggestedFilters", () => {
       expect.any(Object),
     );
   });
+  it("removes any whitespace from the term before sending to the API", () => {
+    mockUseSWR.mockImplementationOnce(() => ({
+      data: validSearchIntentPayload,
+      error: null,
+      isLoading: false,
+    }));
+
+    const { result } = renderHook(() =>
+      useSuggestedFilters({ term: "  maths fractions  ", enabled: true }),
+    );
+
+    expect(result.current).toEqual(validSearchFilters);
+    expect(mockUseSWR).toHaveBeenCalledWith(
+      "/api/search/intent?searchTerm=maths+fractions",
+      expect.any(Function),
+      expect.any(Object),
+    );
+  });
+  it("removes any special characters from the term before sending to the API", () => {
+    mockUseSWR.mockImplementationOnce(() => ({
+      data: validSearchIntentPayload,
+      error: null,
+      isLoading: false,
+    }));
+
+    const { result } = renderHook(() =>
+      useSuggestedFilters({
+        term: "  maths  fractions f&foo=bar   ",
+        enabled: true,
+      }),
+    );
+
+    expect(result.current).toEqual(validSearchFilters);
+    expect(mockUseSWR).toHaveBeenCalledWith(
+      "/api/search/intent?searchTerm=maths+fractions+f%26foo%3Dbar",
+      expect.any(Function),
+      expect.any(Object),
+    );
+  });
 });
