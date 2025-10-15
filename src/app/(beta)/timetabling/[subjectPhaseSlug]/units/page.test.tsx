@@ -28,12 +28,13 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
   }),
 }));
 
+const defaultParams = new URLSearchParams("");
+const mockUseSearchParams = jest.fn(() => defaultParams);
 jest.mock("next/navigation", () => {
-  const defaultSearchParams = new URLSearchParams("");
   return {
     __esModule: true,
     usePathname: () => "/timetabling/maths-primary/units",
-    useSearchParams: () => defaultSearchParams,
+    useSearchParams: () => mockUseSearchParams(),
     notFound: () => {
       throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
     },
@@ -49,5 +50,16 @@ describe("/timetabling/units", () => {
       }),
     );
     expect(baseElement).toHaveTextContent("Your Maths timetable");
+  });
+
+  test("with name", async () => {
+    (useFeatureFlag as jest.Mock).mockResolvedValue(true);
+    mockUseSearchParams.mockReturnValue(new URLSearchParams("?name=Testing"));
+    const { baseElement } = renderWithTheme(
+      await Page({
+        params: Promise.resolve({ subjectPhaseSlug: "maths-primary" }),
+      }),
+    );
+    expect(baseElement).toHaveTextContent("Testing");
   });
 });
