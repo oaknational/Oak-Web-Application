@@ -49,6 +49,7 @@ import DesktopUnitFilters from "@/components/TeacherComponents/DesktopUnitFilter
 import RelatedSubjectsBanner from "@/components/TeacherComponents/RelatedSubjectsBanner/RelatedSubjectsBanner";
 import { isUnitListData } from "@/components/TeacherComponents/UnitList/helpers";
 import { useUnitFilterState } from "@/hooks/useUnitFilterState";
+import { orderUnits } from "@/utils/orderUnits";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -113,7 +114,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     themeSlug: appliedThemeSlug,
     categorySlug: appliedCategorySlug,
     yearGroup: appliedyearGroupSlug,
-    units,
+    units: orderUnits(units),
   });
 
   const filteredAndSortedUnits = filteredUnits.sort((a, b) => {
