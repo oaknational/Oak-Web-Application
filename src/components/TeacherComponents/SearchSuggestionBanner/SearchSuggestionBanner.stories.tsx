@@ -3,6 +3,8 @@ import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import { SearchSuggestionBanner as Component } from "./SearchSuggestionBanner";
 
+import { SearchIntent } from "@/common-lib/schemas/search-intent";
+
 const meta: Meta<typeof Component> = {
   component: Component,
   argTypes: {},
@@ -12,17 +14,19 @@ export default meta;
 
 type Story = StoryObj<typeof Component>;
 
+const searchIntentWithDirectSubjectAndKeystageMatch: SearchIntent = {
+  directMatch: {
+    subject: { slug: "maths", title: "Maths" },
+    keyStage: { slug: "ks2", title: "Key stage 2" },
+    examBoard: null,
+    year: null,
+  },
+  suggestedFilters: [],
+};
+
 export const Default: Story = {
   args: {
-    metadata: "Key stage 1",
-    title: "History",
-    body: "At KS3, history tells a connected story of Britain in the wider world, building powerful knowledge, vocabulary, and enquiry skills.",
-    links: [
-      {
-        keystageSlug: "ks1",
-        keystageTitle: "Key stage 1",
-      },
-    ],
+    intent: searchIntentWithDirectSubjectAndKeystageMatch,
   },
   render: (args) => (
     <OakThemeProvider theme={oakDefaultTheme}>

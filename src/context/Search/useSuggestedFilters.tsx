@@ -70,6 +70,7 @@ export function useSuggestedFilters({
     return {
       searchFilters: convertSearchIntentToFilters(data),
       status: "success",
+      data,
     };
   }
 

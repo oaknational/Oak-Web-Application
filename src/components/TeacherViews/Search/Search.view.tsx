@@ -38,6 +38,7 @@ import SignPostToAila from "@/components/TeacherComponents/NoSearchResults/SignP
 import MiniDropDown from "@/components/TeacherComponents/MiniDropdown";
 import SearchSuggestedFilters from "@/components/TeacherComponents/SearchSuggestedFilters/SearchSuggestedFilters";
 import { useSuggestedFilters } from "@/context/Search/useSuggestedFilters";
+import { SearchSuggestionBanner } from "@/components/TeacherComponents/SearchSuggestionBanner/SearchSuggestionBanner";
 
 const CustomWidthFlex = styled(OakFlex)`
   max-width: 300px;
@@ -489,6 +490,7 @@ const Search: FC<SearchProps> = (props) => {
                       Showing {results.length} result
                       {results.length === 1 ? "" : "s"}
                     </OakP>
+                    <SearchSuggestionBanner intent={suggestedFilters.data} />
                   </OakFlex>
                   <SearchResults
                     hits={results}

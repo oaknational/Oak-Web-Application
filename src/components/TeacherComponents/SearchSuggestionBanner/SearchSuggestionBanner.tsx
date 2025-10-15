@@ -6,7 +6,10 @@ import {
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
+import { getSearchSuggestionBannerProps } from "./getSearchSuggestionBannerProps";
+
 import { resolveOakHref } from "@/common-lib/urls";
+import { SearchIntent } from "@/common-lib/schemas/search-intent";
 
 export type SearchSuggestionBannerProps = {
   metadata?: string;
@@ -24,8 +27,15 @@ const StyledOakLink = styled(OakLink)`
   font-weight: 600;
 `;
 
-export const SearchSuggestionBanner = (props: SearchSuggestionBannerProps) => {
-  const { metadata, title, body, links } = props;
+export const SearchSuggestionBanner = (props: { intent: SearchIntent }) => {
+  const convertedProps = getSearchSuggestionBannerProps(props.intent);
+
+  if (!convertedProps) {
+    return null;
+  }
+
+  const { metadata, title, body, links } = convertedProps;
+
   return (
     <OakFlex
       $pa="inner-padding-xl2"
