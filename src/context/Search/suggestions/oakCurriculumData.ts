@@ -1092,7 +1092,8 @@ export const OAK_SUBJECTS: SubjectData[] = [
   {
     title: "Financial education",
     slug: "financial-education",
-    description: "",
+    description:
+      "Our financial education lessons aim to help pupils learn about money and develop financial skills to manage money sensibly, both on and offline.",
     keyStages: oakKeystagesWithoutEyfs,
     examBoards: [],
     years: yearsWithoutAllAndR,
