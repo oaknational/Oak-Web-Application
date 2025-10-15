@@ -30,11 +30,12 @@ export function getSearchSuggestionBannerProps(props: SearchIntent) {
         (filter) => filter.type === "key-stage",
       );
 
-      const suggestedKeystageLinks = suggestedKeystages.flatMap((filter) => ({
-        keystageSlug: filter.slug,
-        keystageTitle: filter.title,
-      }));
-      suggestion.links = suggestedKeystageLinks;
+      suggestedKeystages.forEach((keystage) => {
+        suggestion?.links.push({
+          keystageSlug: keystage.slug,
+          keystageTitle: keystage.title,
+        });
+      });
     }
   }
 
