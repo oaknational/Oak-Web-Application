@@ -1,3 +1,14 @@
+## [1.890.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.890.0...v1.890.1) (2025-10-15)
+
+
+### Bug Fixes
+
+* check media record object has entries ([d64533a](https://github.com/oaknational/Oak-Web-Application/commit/d64533affcb63538066845c0b35c1f297dd8887e))
+* media data test ([d585abc](https://github.com/oaknational/Oak-Web-Application/commit/d585abc74a1e5a73af8845abd37252ad1d11832d))
+* media data test ([0b3021e](https://github.com/oaknational/Oak-Web-Application/commit/0b3021ee0be4899f5ec0e2a990a2116d91b4e075))
+* media data test ([4408662](https://github.com/oaknational/Oak-Web-Application/commit/440866243faf4996ad3204767ee91104ee328c38))
+* when no media clips dont show section ([f8240e5](https://github.com/oaknational/Oak-Web-Application/commit/f8240e573a5934391c1331b77f8d2b613d103fe7))
+
 # [1.890.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.889.0...v1.890.0) (2025-10-15)
 
 
