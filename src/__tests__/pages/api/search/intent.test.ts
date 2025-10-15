@@ -40,7 +40,7 @@ describe("/api/search/intent", () => {
   it("should return direct match response for 'maths' search term with appropriate keystage filters", async () => {
     const { req, res } = createNextApiMocks({
       method: "GET",
-      query: { searchTerm: "maths" },
+      query: { v: "1", searchTerm: "maths" },
     });
 
     await handler(req, res);
@@ -70,7 +70,7 @@ describe("/api/search/intent", () => {
   it("should return combinations of pfs as direct match when in search term", async () => {
     const { req, res } = createNextApiMocks({
       method: "GET",
-      query: { searchTerm: "ks4 french aqa" },
+      query: { v: "1", searchTerm: "ks4 french aqa" },
     });
 
     await handler(req, res);
@@ -95,7 +95,7 @@ describe("/api/search/intent", () => {
 
     const { req, res } = createNextApiMocks({
       method: "GET",
-      query: { searchTerm: "english" },
+      query: { v: "1", searchTerm: "english" },
     });
 
     await handler(req, res);
@@ -112,7 +112,7 @@ describe("/api/search/intent", () => {
     });
     const { req, res } = createNextApiMocks({
       method: "GET",
-      query: { searchTerm: "golf" },
+      query: { v: "1", searchTerm: "golf" },
     });
 
     await handler(req, res);
@@ -144,7 +144,7 @@ describe("/api/search/intent", () => {
     });
     const { req, res } = createNextApiMocks({
       method: "GET",
-      query: { searchTerm: "ks3 macbeth" },
+      query: { v: "1", searchTerm: "ks3 macbeth" },
     });
 
     await handler(req, res);
@@ -169,7 +169,7 @@ describe("/api/search/intent", () => {
     });
     const { req, res } = createNextApiMocks({
       method: "GET",
-      query: { searchTerm: "flooding" },
+      query: { v: "1", searchTerm: "flooding" },
     });
 
     await handler(req, res);
@@ -205,7 +205,7 @@ describe("/api/search/intent", () => {
   it("should return 400 for searchTerm that is too short", async () => {
     const { req, res } = createNextApiMocks({
       method: "GET",
-      query: { searchTerm: "a" },
+      query: { v: "1", searchTerm: "a" },
     });
 
     await handler(req, res);
@@ -222,7 +222,7 @@ describe("/api/search/intent", () => {
 
     const { req, res } = createNextApiMocks({
       method: "GET",
-      query: { searchTerm: "unknown" },
+      query: { v: "1", searchTerm: "unknown" },
     });
 
     await handler(req, res);
@@ -239,7 +239,7 @@ describe("/api/search/intent", () => {
 
     const { req, res } = createNextApiMocks({
       method: "GET",
-      query: { searchTerm: "test" },
+      query: { v: "1", searchTerm: "test" },
     });
 
     await handler(req, res);

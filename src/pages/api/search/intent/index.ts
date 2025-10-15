@@ -14,6 +14,8 @@ import { OAK_SUBJECTS } from "@/context/Search/suggestions/oakCurriculumData";
 
 const reportError = errorReporter("search-intent");
 
+const CACHE_DURATION = 30 * 24 * 60 * 60; // 30 days
+
 const handler: NextApiHandler = async (req, res) => {
   const aiSearchEnabled = getServerConfig("aiSearchEnabled") === "true";
 
@@ -59,6 +61,11 @@ const handler: NextApiHandler = async (req, res) => {
         directMatch: pfMatch,
         suggestedFilters,
       };
+
+      // Cache AI-based response in Cloudflare for 30 days
+      // public = same cache for all users
+      res.setHeader("Cache-Control", `public, s-maxage=${CACHE_DURATION}`);
+
       return res.status(200).json(payload);
     }
 
