@@ -246,13 +246,6 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: null,
   },
-  openAiApiKey: {
-    value: process.env.OPENAI_API_KEY,
-    envName: "OPENAI_API_KEY",
-    required: true,
-    availableInBrowser: false,
-    default: null,
-  },
   aiSearchEnabled: {
     value: process.env.AI_SEARCH_ENABLED,
     envName: "AI_SEARCH_ENABLED",
@@ -277,6 +270,20 @@ const envVars = satisfies<Record<string, EnvVar>>()({
   aiSearchKvToken: {
     value: process.env.AI_SEARCH_KV_TOKEN,
     envName: "AI_SEARCH_KV_TOKEN",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  aiGatewayUrl: {
+    value: process.env.AI_GATEWAY_URL,
+    envName: "AI_GATEWAY_URL",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  aiGatewayApiKey: {
+    value: process.env.AI_GATEWAY_API_KEY,
+    envName: "AI_GATEWAY_API_KEY",
     required: true,
     availableInBrowser: false,
     default: null,

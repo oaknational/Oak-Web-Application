@@ -194,8 +194,6 @@ async function main() {
     NEXT_PUBLIC_SENTRY_ENABLED: process.env.NEXT_PUBLIC_SENTRY_ENABLED,
 
     // AI FEATURES
-    OPENAI_API_KEY:
-      process.env.OPENAI_API_KEY || secretsFromNetwork.OPENAI_API_KEY,
     AI_SEARCH_ENABLED:
       process.env.AI_SEARCH_ENABLED || oakConfig.oak.aiSearchEnabled,
     AI_SEARCH_RATE_LIMIT_PER_24H:
@@ -205,6 +203,10 @@ async function main() {
       process.env.AI_SEARCH_KV_URL || secretsFromNetwork.AI_SEARCH_KV_URL,
     AI_SEARCH_KV_TOKEN:
       process.env.AI_SEARCH_KV_TOKEN || secretsFromNetwork.AI_SEARCH_KV_TOKEN,
+    AI_GATEWAY_URL:
+      process.env.AI_GATEWAY_URL || secretsFromNetwork.AI_GATEWAY_URL,
+    AI_GATEWAY_API_KEY:
+      process.env.AI_GATEWAY_API_KEY || secretsFromNetwork.AI_GATEWAY_API_KEY,
 
     // Seo
 

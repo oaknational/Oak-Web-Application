@@ -27,6 +27,8 @@ const rateLimiter = createRateLimiter(
   ),
 );
 
+const CACHE_DURATION = 30 * 24 * 60 * 60; // 30 days
+
 const handler: NextApiHandler = async (req, res) => {
   const aiSearchEnabled = getServerConfig("aiSearchEnabled") === "true";
 
@@ -52,7 +54,6 @@ const handler: NextApiHandler = async (req, res) => {
       };
       return res.status(200).json(payload);
     } else if (aiSearchEnabled) {
-      // TODO: When we have LLM response caching, only rate limit new generations
       const rateLimitResult = await checkRateLimitByIp(rateLimiter, req);
       if (!rateLimitResult.success) {
         return res.status(429).json({ error: "Rate limit exceeded" });
@@ -78,6 +79,11 @@ const handler: NextApiHandler = async (req, res) => {
         directMatch: pfMatch,
         suggestedFilters,
       };
+
+      // Cache AI-based response in Cloudflare for 30 days
+      // public = same cache for all users
+      res.setHeader("Cache-Control", `public, s-maxage=${CACHE_DURATION}`);
+
       return res.status(200).json(payload);
     }
 
@@ -85,9 +91,7 @@ const handler: NextApiHandler = async (req, res) => {
   } catch (err) {
     const error = new OakError({
       code: "search/failed-to-get-intent",
-      meta: {
-        error: err,
-      },
+      originalError: err,
     });
     reportError(error);
 

@@ -1,3 +1,103 @@
+# [1.891.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.890.1...v1.891.0) (2025-10-15)
+
+
+### Features
+
+* cache AI search responses through cloudflare ([74048a0](https://github.com/oaknational/Oak-Web-Application/commit/74048a095154ecd6f8e5e99b22178ce1f4a434e7))
+
+## [1.890.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.890.0...v1.890.1) (2025-10-15)
+
+
+### Bug Fixes
+
+* check media record object has entries ([d64533a](https://github.com/oaknational/Oak-Web-Application/commit/d64533affcb63538066845c0b35c1f297dd8887e))
+* media data test ([d585abc](https://github.com/oaknational/Oak-Web-Application/commit/d585abc74a1e5a73af8845abd37252ad1d11832d))
+* media data test ([0b3021e](https://github.com/oaknational/Oak-Web-Application/commit/0b3021ee0be4899f5ec0e2a990a2116d91b4e075))
+* media data test ([4408662](https://github.com/oaknational/Oak-Web-Application/commit/440866243faf4996ad3204767ee91104ee328c38))
+* when no media clips dont show section ([f8240e5](https://github.com/oaknational/Oak-Web-Application/commit/f8240e573a5934391c1331b77f8d2b613d103fe7))
+
+# [1.890.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.889.0...v1.890.0) (2025-10-15)
+
+
+### Features
+
+* encode url params before injecting into string ([568542f](https://github.com/oaknational/Oak-Web-Application/commit/568542f70046cee0c3e6d2310dc7b95d7d6cbe92))
+
+# [1.889.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.888.0...v1.889.0) (2025-10-15)
+
+
+### Features
+
+* add aliases for keystages without spaces ([8dd283d](https://github.com/oaknational/Oak-Web-Application/commit/8dd283d0b0aad66d675ab38c6d0cd97f514c8542))
+* add searchFilterMatchType to search modified event tracking ([3747e2a](https://github.com/oaknational/Oak-Web-Application/commit/3747e2a4b0a622dd6662ec3485095839f37772f5))
+* return a source value for suggested filters for tracking ([ace1446](https://github.com/oaknational/Oak-Web-Application/commit/ace1446cceee3962505880ae6cf87013610187d0))
+* track search modified on suggested filters ([2eb7523](https://github.com/oaknational/Oak-Web-Application/commit/2eb7523326492474c07972bbd9fc599a4a9e0995))
+
+# [1.888.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.887.0...v1.888.0) (2025-10-14)
+
+
+### Features
+
+* use Vercel AI Gateway with Cerebras for search intent ([72254d2](https://github.com/oaknational/Oak-Web-Application/commit/72254d2b5e2d28935842be6c5cfc348ad94a0a72))
+
+
+### Reverts
+
+* use current confir names, aiFeatures and gatewayURL ([d495209](https://github.com/oaknational/Oak-Web-Application/commit/d49520987c9ff4a84ae06c9d5851de7afa50cde7))
+
+# [1.887.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.886.1...v1.887.0) (2025-10-14)
+
+
+### Bug Fixes
+
+* check types ([a0435da](https://github.com/oaknational/Oak-Web-Application/commit/a0435da98673038e56a7bfd8132ed4d52b42532b))
+
+
+### Features
+
+* remove feature flag and use experimental layout ([acd22e3](https://github.com/oaknational/Oak-Web-Application/commit/acd22e39cdcc163c7cff0101b3f999fe26f419f1))
+
+## [1.886.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.886.0...v1.886.1) (2025-10-13)
+
+
+### Bug Fixes
+
+* causing sentry to be always enabled ([dc927da](https://github.com/oaknational/Oak-Web-Application/commit/dc927dac7b846cc7356abbe452d4e6587a5de1b0))
+
+# [1.886.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.885.3...v1.886.0) (2025-10-13)
+
+
+### Bug Fixes
+
+* enable clicking filters in mobile dropdown ([fe5591f](https://github.com/oaknational/Oak-Web-Application/commit/fe5591f1728ac4e5bdd950d0cb49e4a7dc405123))
+* spacing ([609cf53](https://github.com/oaknational/Oak-Web-Application/commit/609cf538c5988037ad7de01d915c946673d0254b))
+* tablet layout when experiment disabled ([8b804de](https://github.com/oaknational/Oak-Web-Application/commit/8b804de4993729729a7c9086461ae8138947c310))
+* tablet spacing ([1a73b65](https://github.com/oaknational/Oak-Web-Application/commit/1a73b65c22159ba544f46c0b0664cd8130937fb0))
+* update ai flag check ([2ce5d27](https://github.com/oaknational/Oak-Web-Application/commit/2ce5d27c76966aec69128caa7eaafd3a6fd7c4ee))
+
+
+### Features
+
+* update buttons and layout to allow clicking content filters on mobile ([ee222b4](https://github.com/oaknational/Oak-Web-Application/commit/ee222b4f16186e535d9f509aad238744b04e7cbb))
+* update layout on search page ([8c99b05](https://github.com/oaknational/Oak-Web-Application/commit/8c99b05a667469e9850cd0bcb0dea4a640cb479b))
+
+## [1.885.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.885.2...v1.885.3) (2025-10-10)
+
+
+### Bug Fixes
+
+* check search feature flag variant key ([68c7d76](https://github.com/oaknational/Oak-Web-Application/commit/68c7d76357673dceea8c652ea97748893e8910ae))
+
+## [1.885.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.885.1...v1.885.2) (2025-10-09)
+
+
+### Bug Fixes
+
+* added missing 'statusCode: 301' to /teachers redirect ([894cbb7](https://github.com/oaknational/Oak-Web-Application/commit/894cbb7a78c7e0c53257091e608ace1b340cf6eb))
+* changed teachers homepage link from `/teachers` -> `/` ([6e554c4](https://github.com/oaknational/Oak-Web-Application/commit/6e554c4b5eeb4c29dfcfe12d508b3a22cff4b501))
+* getStaticProps -> getServerSideProps ([f0570cb](https://github.com/oaknational/Oak-Web-Application/commit/f0570cb41cf9c34061c53d8438400b22d69a777e))
+* redirect '/teachers' to homepage '/' and change associated links ([1d2e1f7](https://github.com/oaknational/Oak-Web-Application/commit/1d2e1f7b741c67fbb73a18fc4500cf5b34872e02))
+
 ## [1.885.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.885.0...v1.885.1) (2025-10-07)
 
 

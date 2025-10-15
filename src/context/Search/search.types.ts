@@ -9,6 +9,7 @@ import {
 
 import { SearchPageData } from "@/node-lib/curriculum-api-2023";
 import { SnakeToCamel } from "@/utils/util.types";
+import { SearchFilterMatchTypeValueType } from "@/browser-lib/avo/Avo";
 
 export type SearchQuery = {
   term: string;
@@ -75,4 +76,5 @@ export type SuggestedSearchFilter = {
   type: "subject" | "key-stage" | "year" | "exam-board";
   value: string;
   slug: string;
+  source: SearchFilterMatchTypeValueType;
 };
