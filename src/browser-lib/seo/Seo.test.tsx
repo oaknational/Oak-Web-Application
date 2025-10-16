@@ -171,4 +171,20 @@ describe("Seo", () => {
       "https://www.thenational.academy/teachers/curriculum/units?child_subjects=chemistry&tiers=higher&years=10",
     );
   });
+
+  it("should handle URLs with multiple hash fragments correctly", () => {
+    mockRouterAsPath.mockReturnValue(
+      "/teachers/lessons/123?sid-abc=test&page=2#section#subsection",
+    );
+
+    const { container } = renderWithTheme(
+      <Seo title="Test Page" description="Test description" />,
+    );
+
+    const canonical = container.querySelector('link[rel="canonical"]');
+    // Should strip sid param and preserve the entire hash fragment "#section#subsection"
+    expect(canonical?.getAttribute("href")).toBe(
+      "https://www.thenational.academy/teachers/lessons/123?page=2#section#subsection",
+    );
+  });
 });

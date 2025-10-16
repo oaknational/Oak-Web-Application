@@ -46,20 +46,15 @@ const Seo: FC<SeoProps> = ({
       return url ?? undefined;
     }
 
-    const [beforeHash = url, hashFragment] = url.split("#");
-    const [basePath = beforeHash, queryString] = beforeHash.split("?");
+    const parsedUrl = new URL(url);
+    const params = parsedUrl.searchParams;
 
-    if (!queryString) {
-      return url;
-    }
-
-    const params = new URLSearchParams(queryString);
-    const entries = Array.from(params.entries());
-
-    const cleanedParams = new URLSearchParams();
     let hasChanges = false;
 
-    for (const [key, value] of entries) {
+    // Create a new URLSearchParams with only non-tracking params
+    const cleanedParams = new URLSearchParams();
+
+    for (const [key, value] of params.entries()) {
       // Strip sid, sm, and src parameters
       if (key.startsWith("sid") || key === "sm" || key === "src") {
         hasChanges = true;
@@ -73,13 +68,10 @@ const Seo: FC<SeoProps> = ({
       return url;
     }
 
-    const normalisedBasePath = basePath.replace(/\/$/, "");
-    const cleanedQuery = cleanedParams.toString();
-    const rebuilt = cleanedQuery
-      ? `${normalisedBasePath}?${cleanedQuery}`
-      : normalisedBasePath;
+    // Rebuild the URL with cleaned params
+    parsedUrl.search = cleanedParams.toString();
 
-    return hashFragment ? `${rebuilt}#${hashFragment}` : rebuilt;
+    return parsedUrl.toString();
   }
 
   const seoAppUrl = getBrowserConfig("seoAppUrl");
