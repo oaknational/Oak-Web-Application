@@ -31,7 +31,11 @@ export function useSuggestedFilters({
   enabled: boolean;
 }): SuggestedFilters {
   const params = useMemo(
-    () => new URLSearchParams({ searchTerm: normalizeTerm(term) }).toString(),
+    () =>
+      new URLSearchParams({
+        v: "1",
+        searchTerm: normalizeTerm(term),
+      }).toString(),
     [term],
   );
 

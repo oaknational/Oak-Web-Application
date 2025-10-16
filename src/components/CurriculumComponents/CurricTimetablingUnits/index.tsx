@@ -3,16 +3,16 @@ import {
   OakBox,
   OakFlex,
   OakHeading,
+  OakInformativeModal,
   OakMaxWidth,
+  OakSecondaryButton,
 } from "@oaknational/oak-components";
 import { ThemeProvider } from "styled-components";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 import { CurricTimetableHeader } from "../CurricTimetableHeader";
-import { CurricShowSteps } from "../CurricShowSteps";
 
 import { useTimetableParams } from "@/utils/curriculum/timetabling";
-import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { Unit } from "@/utils/curriculum/types";
 import oakTheme from "@/styles/theme";
 import {
@@ -20,21 +20,39 @@ import {
   formatCurriculumUnitsData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
+function getDefaultName(
+  data: ReturnType<typeof useTimetableParams>[0],
+  units: Unit[],
+) {
+  if (data.name && data.name !== "") {
+    return data.name;
+  }
+  return `Your ${units[0]?.subject ?? ""} timetable`;
+}
+
 type CurricTimetablingUnitsProps = {
   subjectPhaseSlug: string;
   units: Unit[];
-  curriculumPhaseOptions: Awaited<
-    ReturnType<typeof fetchSubjectPhasePickerData>
-  >;
+  curriculumPhaseOptions:
+    | ReturnType<typeof fetchSubjectPhasePickerData>
+    | Awaited<ReturnType<typeof fetchSubjectPhasePickerData>>;
 };
 export const CurricTimetablingUnits = ({
-  subjectPhaseSlug,
   units,
 }: CurricTimetablingUnitsProps) => {
+  const [modalOpen, setModalOpen] = useState(false);
   const [data] = useTimetableParams();
-  const slugs = parseSubjectPhaseSlug(subjectPhaseSlug)!;
 
   const unitData = useMemo(() => formatCurriculumUnitsData({ units }), [units]);
+
+  const onEditDetails = () => {
+    setModalOpen(true);
+  };
+
+  const onCopyLink = () => {
+    const urlToCopy = window.location.href;
+    navigator.clipboard.writeText(urlToCopy);
+  };
 
   return (
     <>
@@ -42,15 +60,36 @@ export const CurricTimetablingUnits = ({
       <ThemeProvider theme={oakTheme}>
         <OakFlex $flexDirection={"column"} $pa={"inner-padding-xl5"}>
           <CurricTimetableHeader
-            titleSlot={`Year ${data.year} ${slugs.subjectSlug}`}
+            titleSlot={getDefaultName(data, units)}
             illustrationSlug={"magic-carpet"}
             additionalSlot={
-              <OakBox $maxWidth={"all-spacing-20"}>
-                <CurricShowSteps numberOfSteps={2} currentStepIndex={1} />
-              </OakBox>
+              <OakFlex $maxWidth={"all-spacing-20"} $gap={"all-spacing-4"}>
+                <OakSecondaryButton
+                  iconName="copy"
+                  isTrailingIcon={true}
+                  onClick={onEditDetails}
+                >
+                  Edit details
+                </OakSecondaryButton>
+                <OakSecondaryButton
+                  iconName="edit"
+                  isTrailingIcon={true}
+                  onClick={onCopyLink}
+                >
+                  Copy link
+                </OakSecondaryButton>
+              </OakFlex>
             }
           />
         </OakFlex>
+
+        <OakInformativeModal
+          isOpen={modalOpen}
+          onClose={() => setModalOpen(false)}
+          closeOnBackgroundClick={true}
+        >
+          <OakBox data-testid="edit-details-modal">Edit details modal</OakBox>
+        </OakInformativeModal>
 
         <OakMaxWidth $ph={"inner-padding-xl5"}>
           <OakFlex $flexDirection={"row"}>
