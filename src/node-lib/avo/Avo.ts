@@ -527,8 +527,8 @@ _avo_invoke = function _avo_invoke(
 ) {
   try {
     _avo_invoke_payload({
-      ac: "0EN7Dj04ZfvHzBTIYYSj",
-      br: "QWOiBfEpmEgtaglESlnTR",
+      ac: "bPG6O610Cw8EtqofqIsP",
+      br: "master",
       en: env,
       ev: eventId,
       ha: hash,
@@ -556,8 +556,8 @@ _avo_invoke_meta = function _avo_invoke_meta(
 ) {
   try {
     _avo_invoke_payload({
-      ac: "0EN7Dj04ZfvHzBTIYYSj",
-      br: "QWOiBfEpmEgtaglESlnTR",
+      ac: "bPG6O610Cw8EtqofqIsP",
+      br: "master",
       en: env,
       ty: type,
       sc: "5PhajbVijwhXVKIJtGMT",
@@ -671,8 +671,10 @@ export const ComponentType = {
   LESSON_LISTING: "lesson_listing",
   LESSON_MEDIA_CLIPS: "lesson_media_clips",
   LESSON_OVERVIEW: "lesson_overview",
-  SUGGESTED_FILTER: "suggested_filter",
   ALL_FILTERS: "all_filters",
+  SUGGESTED_FILTER: "suggested_filter",
+  CREATE_MORE_WITH_AI_BUTTON: "create_more_with_ai_button",
+  CREATE_MORE_WITH_AI_DROPDOWN: "create_more_with_ai_dropdown",
 } as const;
 export type ComponentTypeType = typeof ComponentType;
 export type ComponentTypeValueType = ComponentTypeType[keyof ComponentTypeType];
@@ -836,7 +838,7 @@ Analytics Use Case: N/A
  * 
  * When to trigger this event:
  * 1. A user uses SSO or email/password combination to create an account in Clerk.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/QWOiBfEpmEgtaglESlnTR/events/fOlHJypRwg/trigger/aV1XekNBLU
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/fOlHJypRwg/trigger/aV1XekNBLU
  * 
  * @param properties the properties associated with this event
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA and Aila. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -852,7 +854,7 @@ NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.userId_: User Id is required for server sources.
  * @param properties.singleSignOnService: The Single Sign-On (SSO) Service used at a given stage of sign-up / sign-on.
  * 
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/QWOiBfEpmEgtaglESlnTR/events/fOlHJypRwg}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/fOlHJypRwg}
  */
 export function userSignUpCompleted(
   properties: UserSignMinusUpCompletedProperties,
@@ -913,7 +915,7 @@ export function userSignUpCompleted(
       _avo_invoke(
         __AVO_ENV__,
         "fOlHJypRwg",
-        "fda561f9e6d76c6c5c4d200199a45ba725d6d166157898bca4232cc32c81cf24",
+        "969c110c1cfbef8d231faffbc920670b55c67293f8462ee2bf0e2f4568cc82cd",
         messages.map((m) =>
           Object.assign(
             {},
@@ -943,7 +945,7 @@ export function userSignUpCompleted(
             "User Sign-Up Completed",
             eventProperties,
             "fOlHJypRwg",
-            "fda561f9e6d76c6c5c4d200199a45ba725d6d166157898bca4232cc32c81cf24",
+            "969c110c1cfbef8d231faffbc920670b55c67293f8462ee2bf0e2f4568cc82cd",
           )
         : Promise.resolve(),
       // destination PostHogEU
@@ -970,7 +972,7 @@ export interface UserSignMinusInProperties {
  * @param properties the properties associated with this event
  * @param properties.userId_: User Id is required for server sources.
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/QWOiBfEpmEgtaglESlnTR/events/KiDGLM5Isg}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/KiDGLM5Isg}
  */
 export function userSignIn(properties: UserSignMinusInProperties) {
   // @ts-ignore
@@ -1044,7 +1046,7 @@ export interface UserSignMinusOutProperties {
  * @param properties the properties associated with this event
  * @param properties.userId_: User Id is required for server sources.
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/QWOiBfEpmEgtaglESlnTR/events/j0lSWreaah}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/j0lSWreaah}
  */
 export function userSignOut(properties: UserSignMinusOutProperties) {
   // @ts-ignore
