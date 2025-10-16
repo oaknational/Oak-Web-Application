@@ -129,3 +129,17 @@ variable "next_public_clerk_publishable_key_prod" {
     error_message = contains(local.required_current_sensitive_env.prod, "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY") ? "Missing next_public_clerk_publishable_key_prod for '${local.build_type}' build." : "next_public_clerk_publishable_key_prod is set but not required for '${local.build_type}' build."
   }
 }
+
+variable "firestore_env_vars" {
+  description = "GCP OIDC connection variables for pupil Firestore"
+  type = object({
+    shared = optional(object({
+      PUPIL_FIRESTORE_ID                     = string
+      GCP_PROJECT_ID                         = string
+      GCP_SERVICE_ACCOUNT_EMAIL              = string
+      GCP_WORKLOAD_IDENTITY_POOL_PROVIDER_ID = string
+    }))
+  })
+  sensitive = true
+  default   = {}
+}

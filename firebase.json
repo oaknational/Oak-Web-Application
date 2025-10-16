@@ -1,0 +1,12 @@
+{
+  "emulators": {
+    "firestore": {
+      "port": 8089,
+      "host": "localhost"
+    },
+    "ui": {
+      "port": 4000
+    },
+    "singleProjectMode": true
+  }
+}
