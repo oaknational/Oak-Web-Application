@@ -1,3 +1,25 @@
+# [1.895.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.894.0...v1.895.0) (2025-10-16)
+
+
+### Bug Fixes
+
+* dont show the card for subjects without descriptions (legacy) ([88e509b](https://github.com/oaknational/Oak-Web-Application/commit/88e509bc9679919fe4d5acc1bc334cc93d2d049d))
+* handle edge cases with search query matches ([e3d9d05](https://github.com/oaknational/Oak-Web-Application/commit/e3d9d052980084be05830319c581c8de63fe10fd))
+* handle ks4 citizenship edge case ([50c6d9a](https://github.com/oaknational/Oak-Web-Application/commit/50c6d9ae6c161e1db510e9d5bf29ace7e5e3e896))
+
+
+### Features
+
+* add descriptions to cards ([46641bb](https://github.com/oaknational/Oak-Web-Application/commit/46641bbf6b88d7f62f442fb2aa014364ee3ae76b))
+* add method to get suggestion banner props ([285a134](https://github.com/oaknational/Oak-Web-Application/commit/285a1345edcfd9e52cd25f7d8e98fe40afdb37db))
+* add SearchSuggestionBanner component ([7d05e77](https://github.com/oaknational/Oak-Web-Application/commit/7d05e776b296c8a4fb7038c00f4ae4aff916ba67))
+* add subject suggestion banner on mobile and tablet ([2632644](https://github.com/oaknational/Oak-Web-Application/commit/2632644fd921e3be19339f969f07dbc351c87616))
+* add suggestion banner to search view ([e1fe160](https://github.com/oaknational/Oak-Web-Application/commit/e1fe160a86e35f09fd73a18ff0ea28520d35c098))
+* add tracking on keystage links in banner ([1d21bc8](https://github.com/oaknational/Oak-Web-Application/commit/1d21bc870eca8072df6306d50a924f72146eb8f9))
+* link to programme index pages from suggestion card ([c753e1f](https://github.com/oaknational/Oak-Web-Application/commit/c753e1f4fd1f183345f298403b3cb7f00767940c))
+* make description optional on card ([7a6ccf9](https://github.com/oaknational/Oak-Web-Application/commit/7a6ccf93b2150457165a0680493693b9173f871a))
+* remove EYFS from keystage data ([f88cbf5](https://github.com/oaknational/Oak-Web-Application/commit/f88cbf502e7634a185cb7935397a84b35685d0a9))
+
 # [1.894.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.893.0...v1.894.0) (2025-10-16)
 
 
