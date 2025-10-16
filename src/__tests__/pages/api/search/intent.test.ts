@@ -67,11 +67,6 @@ describe("/api/search/intent", () => {
         examBoard: null,
       },
       suggestedFilters: [
-        {
-          type: "key-stage",
-          slug: "early-years-foundation-stage",
-          title: "EYFS",
-        },
         { type: "key-stage", slug: "ks1", title: "Key Stage 1" },
         { type: "key-stage", slug: "ks2", title: "Key Stage 2" },
         { type: "key-stage", slug: "ks3", title: "Key Stage 3" },
@@ -155,11 +150,6 @@ describe("/api/search/intent", () => {
       suggestedFilters: [
         { type: "subject", slug: "maths", title: "Maths" },
         { type: "subject", slug: "science", title: "Science" },
-        {
-          type: "key-stage",
-          slug: "early-years-foundation-stage",
-          title: "EYFS",
-        },
         { type: "key-stage", slug: "ks1", title: "Key Stage 1" },
         { type: "key-stage", slug: "ks2", title: "Key Stage 2" },
         { type: "key-stage", slug: "ks3", title: "Key Stage 3" },
