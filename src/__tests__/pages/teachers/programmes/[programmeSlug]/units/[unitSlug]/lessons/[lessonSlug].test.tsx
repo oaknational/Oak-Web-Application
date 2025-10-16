@@ -26,6 +26,7 @@ const props = {
   curriculumData: lessonOverviewFixture({
     videoMuxPlaybackId: "pid-001",
     videoWithSignLanguageMuxPlaybackId: "pid-002",
+    excludedFromTeachingMaterials: true,
   }),
 };
 
@@ -154,6 +155,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         curriculumData={lessonOverviewFixture({
           expired: false,
           lessonCohort: null,
+          excludedFromTeachingMaterials: true,
         })}
       />,
     );
@@ -174,6 +176,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         curriculumData={lessonOverviewFixture({
           expired: false,
           lessonCohort: LEGACY_COHORT,
+          excludedFromTeachingMaterials: true,
         })}
       />,
     );
@@ -194,6 +197,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         curriculumData={lessonOverviewFixture({
           expired: true,
           lessonCohort: NEW_COHORT,
+          excludedFromTeachingMaterials: true,
         })}
       />,
     );

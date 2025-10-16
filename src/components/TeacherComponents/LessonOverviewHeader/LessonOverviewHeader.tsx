@@ -4,7 +4,6 @@ import {
   OakColorToken,
   OakSmallSecondaryButtonWithDropdown,
 } from "@oaknational/oak-components";
-import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import { TeacherShareNotesButton } from "../TeacherShareNotesButton/TeacherShareNotesButton";
 import { LessonOverviewHeaderShareAllButton } from "../LessonOverviewHeaderShareAllButton";
@@ -87,12 +86,8 @@ const LessonOverviewHeader: FC<LessonOverviewHeaderProps> = (props) => {
     excludedFromTeachingMaterials,
   } = props;
 
-  const isCreateWithAiEnabled =
-    useFeatureFlagVariantKey("create-with-ai-button") === "test" &&
-    !excludedFromTeachingMaterials;
-
   const shouldUseDropdown =
-    isCreateWithAiEnabled && showShare && teacherShareButtonProps;
+    !excludedFromTeachingMaterials && showShare && teacherShareButtonProps;
 
   const shareButtons = shouldUseDropdown ? (
     <OakSmallSecondaryButtonWithDropdown primaryActionText={"Share lesson"}>
