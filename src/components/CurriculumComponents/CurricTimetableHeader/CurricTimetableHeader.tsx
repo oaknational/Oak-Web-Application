@@ -40,7 +40,7 @@ export function CurricTimetableHeader({
           </OakFlex>
           <OakFlex>
             <OakFlex
-              $gap={"all-spacing-9"}
+              $gap={"all-spacing-6"}
               $flexDirection={"column"}
               $flexGrow={1}
             >
