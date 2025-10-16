@@ -71,6 +71,13 @@ export const reshapeUnitData = (rawUnits: UnitsCamel): GroupedUnitsSchema => {
         a[0]!.yearOrder - b[0]!.yearOrder ||
         a[0]!.unitStudyOrder - b[0]!.unitStudyOrder
       );
+    })
+    .sort((a, b) => {
+      // Sort swimming units first
+      return (a[0]!.groupUnitsAs === "Swimming and water safety") !==
+        (b[0]!.groupUnitsAs === "Swimming and water safety")
+        ? -1
+        : 1;
     });
 
   return sortedUnits;
