@@ -79,10 +79,6 @@ jest.mock("@oaknational/oak-components", () => {
   };
 });
 
-jest.mock("posthog-js/react", () => ({
-  useFeatureFlagVariantKey: jest.fn(),
-}));
-
 // Mock the module and retain actual exports
 jest.mock("@/components/PupilComponents/QuizEngineProvider", () => ({
   ...jest.requireActual("@/components/PupilComponents/QuizEngineProvider"),
