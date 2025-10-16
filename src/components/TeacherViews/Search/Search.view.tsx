@@ -263,6 +263,7 @@ const Search: FC<SearchProps> = (props) => {
                 >
                   <ContentFilterToggle
                     contentTypeFilters={searchFilters.contentTypeFilters}
+                    idSuffix="mobile"
                     trackSearchModified={(checked, filterType, filterValue) =>
                       trackSearchModified(
                         query.term,
@@ -483,6 +484,7 @@ const Search: FC<SearchProps> = (props) => {
                   >
                     <ContentFilterToggle
                       contentTypeFilters={searchFilters.contentTypeFilters}
+                      idSuffix="desktop"
                       trackSearchModified={(checked, filterType, filterValue) =>
                         trackSearchModified(
                           query.term,

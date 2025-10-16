@@ -13,6 +13,7 @@ import { FilterTypeValueType } from "@/browser-lib/avo/Avo";
 
 type ContentFilterToggleProps = {
   contentTypeFilters: (ContentType & SearchCheckBoxProps)[];
+  idSuffix: string;
   trackSearchModified: (
     checked: boolean,
     filterType: FilterTypeValueType,
@@ -21,7 +22,7 @@ type ContentFilterToggleProps = {
 };
 
 export const ContentFilterToggle = (props: ContentFilterToggleProps) => {
-  const { contentTypeFilters, trackSearchModified } = props;
+  const { contentTypeFilters, trackSearchModified, idSuffix } = props;
   return (
     <OakFlex $gap={"space-between-xs"}>
       {contentTypeFilters
@@ -34,9 +35,9 @@ export const ContentFilterToggle = (props: ContentFilterToggleProps) => {
             <OakSearchFilterCheckBox
               name={"typeFilters"}
               displayValue={contentTypeFilter.title}
-              key={`search-filters-type-${contentTypeFilter.slug}`}
+              key={`search-filters-type-${contentTypeFilter.slug}-${idSuffix}`}
               aria-label={`${contentTypeFilter.title} filter`}
-              id={`search-filters-type-${contentTypeFilter.slug}`}
+              id={`search-filters-type-${contentTypeFilter.slug}-${idSuffix}`}
               icon={icon}
               value={"Content type filter"}
               keepIconColor={true}
