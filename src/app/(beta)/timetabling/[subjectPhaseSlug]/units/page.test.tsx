@@ -1,12 +1,15 @@
 import Page from "./page";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { createUnit } from "@/fixtures/curriculum/unit";
 import { useFeatureFlag } from "@/utils/featureFlags";
 
 jest.mock("@/utils/featureFlags");
 
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
-  curriculumSequence: jest.fn(() => ({ units: [] })),
+  curriculumSequence: jest.fn(() => ({
+    units: [createUnit({ slug: "test", subject_slug: "maths" })],
+  })),
   curriculumPhaseOptions: jest.fn(() => {
     return [
       {
@@ -25,12 +28,13 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
   }),
 }));
 
+const defaultParams = new URLSearchParams("");
+const mockUseSearchParams = jest.fn(() => defaultParams);
 jest.mock("next/navigation", () => {
-  const defaultSearchParams = new URLSearchParams("");
   return {
     __esModule: true,
     usePathname: () => "/timetabling/maths-primary/units",
-    useSearchParams: () => defaultSearchParams,
+    useSearchParams: () => mockUseSearchParams(),
     notFound: () => {
       throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
     },
@@ -45,6 +49,17 @@ describe("/timetabling/units", () => {
         params: Promise.resolve({ subjectPhaseSlug: "maths-primary" }),
       }),
     );
-    expect(baseElement).toHaveTextContent("Year 1 maths");
+    expect(baseElement).toHaveTextContent("Your Maths timetable");
+  });
+
+  test("with name", async () => {
+    (useFeatureFlag as jest.Mock).mockResolvedValue(true);
+    mockUseSearchParams.mockReturnValue(new URLSearchParams("?name=Testing"));
+    const { baseElement } = renderWithTheme(
+      await Page({
+        params: Promise.resolve({ subjectPhaseSlug: "maths-primary" }),
+      }),
+    );
+    expect(baseElement).toHaveTextContent("Testing");
   });
 });
