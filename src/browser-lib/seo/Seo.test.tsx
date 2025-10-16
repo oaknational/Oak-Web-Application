@@ -28,21 +28,6 @@ describe("Seo", () => {
     jest.clearAllMocks();
   });
 
-  it("should strip sid and other parameters to give a clean lesson journey canonical URL", () => {
-    mockRouterAsPath.mockReturnValue(
-      "/teachers/programmes/art-primary-ks1/units/mark-making/lessons?sid-472ca8=y_B0ewmo8Q&sm=0&src=3",
-    );
-
-    const { container } = renderWithTheme(
-      <Seo title="Test Page" description="Test description" />,
-    );
-
-    const canonical = container.querySelector('link[rel="canonical"]');
-    expect(canonical?.getAttribute("href")).toBe(
-      "https://www.thenational.academy/teachers/programmes/art-primary-ks1/units/mark-making/lessons",
-    );
-  });
-
   it("should handle URLs with only sid parameters", () => {
     mockRouterAsPath.mockReturnValue("/teachers?sid-abc=123");
 
@@ -71,7 +56,22 @@ describe("Seo", () => {
     );
   });
 
-  it("should not modify URLs without sid parameters", () => {
+  it("should strip sid and other parameters to give a clean lesson journey canonical URL", () => {
+    mockRouterAsPath.mockReturnValue(
+      "/teachers/programmes/art-primary-ks1/units/mark-making/lessons?sid-472ca8=y_B0ewmo8Q&sm=0&src=3",
+    );
+
+    const { container } = renderWithTheme(
+      <Seo title="Test Page" description="Test description" />,
+    );
+
+    const canonical = container.querySelector('link[rel="canonical"]');
+    expect(canonical?.getAttribute("href")).toBe(
+      "https://www.thenational.academy/teachers/programmes/art-primary-ks1/units/mark-making/lessons",
+    );
+  });
+
+  it("should not modify URLs without sid, src and sm parameters", () => {
     mockRouterAsPath.mockReturnValue("/teachers/search?q=science&page=2");
 
     const { container } = renderWithTheme(
@@ -84,10 +84,8 @@ describe("Seo", () => {
     );
   });
 
-  it("should remove sm and src parameters if they appear with a sid parameter", () => {
-    mockRouterAsPath.mockReturnValue(
-      "/teachers?sid-abc=123&sm=42&src=tracking",
-    );
+  it("should remove sm and src parameters from canonical URLs even when sid is absent", () => {
+    mockRouterAsPath.mockReturnValue("/teachers?sm=42&src=tracking");
 
     const { container } = renderWithTheme(
       <Seo title="Test Page" description="Test description" />,
@@ -96,19 +94,6 @@ describe("Seo", () => {
     const canonical = container.querySelector('link[rel="canonical"]');
     expect(canonical?.getAttribute("href")).toBe(
       "https://www.thenational.academy/teachers",
-    );
-  });
-
-  it("should preserve sm and src parameters when sid is absent", () => {
-    mockRouterAsPath.mockReturnValue("/teachers/search?sm=10&src=tracking");
-
-    const { container } = renderWithTheme(
-      <Seo title="Test Page" description="Test description" />,
-    );
-
-    const canonical = container.querySelector('link[rel="canonical"]');
-    expect(canonical?.getAttribute("href")).toBe(
-      "https://www.thenational.academy/teachers/search?sm=10&src=tracking",
     );
   });
 

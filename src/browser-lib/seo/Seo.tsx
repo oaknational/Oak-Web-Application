@@ -55,24 +55,22 @@ const Seo: FC<SeoProps> = ({
 
     const params = new URLSearchParams(queryString);
     const entries = Array.from(params.entries());
-    const hasSid = entries.some(([key]) => key.startsWith("sid"));
-
-    if (!hasSid) {
-      return url;
-    }
 
     const cleanedParams = new URLSearchParams();
+    let hasChanges = false;
 
     for (const [key, value] of entries) {
-      if (key.startsWith("sid")) {
-        continue;
-      }
-
-      if (hasSid && (key === "sm" || key === "src")) {
+      // Strip sid, sm, and src parameters
+      if (key.startsWith("sid") || key === "sm" || key === "src") {
+        hasChanges = true;
         continue;
       }
 
       cleanedParams.append(key, value);
+    }
+
+    if (!hasChanges) {
+      return url;
     }
 
     const normalisedBasePath = basePath.replace(/\/$/, "");
