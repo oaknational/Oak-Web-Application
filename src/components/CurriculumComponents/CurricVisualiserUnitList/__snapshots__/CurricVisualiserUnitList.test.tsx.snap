@@ -19,7 +19,7 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
             class="sc-fqkvVR sc-1c55d370-0 jdSkEU iHxKuU"
           >
             <a
-              class="sc-7353c220-0 eacPWx"
+              class="sc-dff9efc2-0 gEvEhn"
               data-testid="unit-info-link"
               href="/one"
             >
@@ -28,10 +28,10 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
                 data-testid="unit-card"
               >
                 <div
-                  class="sc-fqkvVR fgBWrW"
+                  class="sc-fqkvVR sc-kAyceB fgBWrW moWty"
                 >
                   <div
-                    class="sc-9d6b6245-0 cPzdPh pa11y-ignore"
+                    class="sc-9d6b6245-0 bZsOFK pa11y-ignore"
                   >
                     <span
                       aria-hidden="true"
@@ -82,7 +82,7 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
             class="sc-fqkvVR sc-1c55d370-0 jdSkEU iHxKuU"
           >
             <a
-              class="sc-7353c220-0 eacPWx"
+              class="sc-dff9efc2-0 gEvEhn"
               data-testid="unit-info-link"
               href="/two"
             >
@@ -91,10 +91,10 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
                 data-testid="unit-card"
               >
                 <div
-                  class="sc-fqkvVR fgBWrW"
+                  class="sc-fqkvVR sc-kAyceB fgBWrW moWty"
                 >
                   <div
-                    class="sc-9d6b6245-0 cPzdPh pa11y-ignore"
+                    class="sc-9d6b6245-0 bZsOFK pa11y-ignore"
                   >
                     <span
                       aria-hidden="true"
@@ -145,7 +145,7 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
             class="sc-fqkvVR sc-1c55d370-0 jdSkEU iHxKuU"
           >
             <a
-              class="sc-7353c220-0 eacPWx"
+              class="sc-dff9efc2-0 gEvEhn"
               data-testid="unit-info-link"
               href="/three"
             >
@@ -154,10 +154,10 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
                 data-testid="unit-card"
               >
                 <div
-                  class="sc-fqkvVR fgBWrW"
+                  class="sc-fqkvVR sc-kAyceB fgBWrW moWty"
                 >
                   <div
-                    class="sc-9d6b6245-0 cPzdPh pa11y-ignore"
+                    class="sc-9d6b6245-0 bZsOFK pa11y-ignore"
                   >
                     <span
                       aria-hidden="true"
@@ -208,7 +208,7 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
             class="sc-fqkvVR sc-1c55d370-0 jdSkEU iHxKuU"
           >
             <a
-              class="sc-7353c220-0 eacPWx"
+              class="sc-dff9efc2-0 gEvEhn"
               data-testid="unit-info-link"
               href="/four"
             >
@@ -217,10 +217,10 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
                 data-testid="unit-card"
               >
                 <div
-                  class="sc-fqkvVR fgBWrW"
+                  class="sc-fqkvVR sc-kAyceB fgBWrW moWty"
                 >
                   <div
-                    class="sc-9d6b6245-0 cPzdPh pa11y-ignore"
+                    class="sc-9d6b6245-0 bZsOFK pa11y-ignore"
                   >
                     <span
                       aria-hidden="true"
