@@ -39,6 +39,17 @@ export const posthogToAnalyticsServiceWithoutQueue = (
           },
           disable_session_recording: true,
           capture_pageview: false,
+          autocapture: {
+            url_allowlist: [
+              "/plan-a-lesson",
+              "/support-your-team",
+              "/blog/.*",
+              "/webinars/.*",
+              "/about-us/.*",
+              "/contact-us",
+              "/campaigns/.*",
+            ],
+          },
         });
       } else {
         resolve(client.get_distinct_id());
