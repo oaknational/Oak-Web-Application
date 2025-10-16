@@ -26,6 +26,12 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   })),
 }));
 
+jest.mock("next/router", () => ({
+  useRouter: jest.fn(() => ({
+    replace: jest.fn(),
+  })),
+}));
+
 describe("useLesson", () => {
   const defaultProps: UseLessonProps = {
     lessonSlug: "test-lesson",
@@ -82,11 +88,6 @@ describe("useLesson", () => {
       value: mockLocation,
       writable: true,
     });
-
-    // mock the history.replaceState method
-    jest.spyOn(window.history, "replaceState").mockImplementation(() => {
-      return;
-    });
   });
 
   it("should initialize with correct default state", () => {
@@ -114,18 +115,6 @@ describe("useLesson", () => {
     });
 
     expect(result.current.teacherNotesOpen).toBe(true);
-  });
-
-  it("should update browser URL when different from current location", () => {
-    const replaceStateSpy = jest.spyOn(window.history, "replaceState");
-
-    renderHook(() => useLesson(defaultProps));
-
-    expect(replaceStateSpy).toHaveBeenCalledWith(
-      {},
-      "",
-      "https://browser.example.com",
-    );
   });
 
   it("should handle error states from teacher notes", () => {

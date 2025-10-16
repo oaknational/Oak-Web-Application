@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   NextPage,
   GetStaticProps,
@@ -93,7 +93,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
   } = curriculumData;
 
   const unitListingHref = `/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/programmes`;
-  const { shareUrl, browserUrl, shareActivated } = useShare({
+  const { shareUrl, shareActivated } = useShare({
     programmeSlug: programmeSlug ?? undefined,
     source: "lesson-listing",
     curriculumTrackingProps: {
@@ -112,12 +112,6 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     },
     overrideExistingShareId: true,
   });
-
-  useEffect(() => {
-    if (window.location.href !== browserUrl) {
-      window.history.replaceState({}, "", browserUrl);
-    }
-  }, [browserUrl]);
 
   const { handleClick } = useTeacherShareButton({
     shareUrl,
