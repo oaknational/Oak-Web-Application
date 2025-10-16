@@ -7,7 +7,7 @@ import {
 } from "@oaknational/oak-pupil-client";
 
 import { useTeacherNotes } from "./useTeacherNotes";
-import { CurriculumTrackingProps } from "./shareExperimentTypes";
+import { CurriculumTrackingProps } from "./shareTypes";
 
 import { LessonReleaseCohortValueType } from "@/browser-lib/avo/Avo";
 

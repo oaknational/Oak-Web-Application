@@ -10,15 +10,12 @@ import {
   storeActivationKey,
   storeConversionShareId,
 } from "./createShareId";
-import {
-  CoreProperties,
-  CurriculumTrackingProps,
-} from "./shareExperimentTypes";
+import { CoreProperties, CurriculumTrackingProps } from "./shareTypes";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { LessonReleaseCohortValueType } from "@/browser-lib/avo/Avo";
 
-export const useShareExperiment = ({
+export const useShare = ({
   programmeSlug,
   source,
   shareBaseUrl,
@@ -78,11 +75,6 @@ export const useShareExperiment = ({
           ...curriculumTrackingProps,
         });
       }
-    }
-
-    // don't continue if feature flag is not yet ready
-    if (overrideExistingShareId === null) {
-      return;
     }
 
     // don't continue if we already have a shareId
