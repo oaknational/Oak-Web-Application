@@ -126,4 +126,49 @@ describe("Seo", () => {
       "https://www.thenational.academy/teachers",
     );
   });
+
+  it("should preserve learning-theme and year parameters while stripping tracking params", () => {
+    mockRouterAsPath.mockReturnValue(
+      "/teachers?learning-theme=finance-and-the-economy&year=year-8&sid-abc=123&sm=1",
+    );
+
+    const { container } = renderWithTheme(
+      <Seo title="Test Page" description="Test description" />,
+    );
+
+    const canonical = container.querySelector('link[rel="canonical"]');
+    expect(canonical?.getAttribute("href")).toBe(
+      "https://www.thenational.academy/teachers?learning-theme=finance-and-the-economy&year=year-8",
+    );
+  });
+
+  it("should preserve search parameters)", () => {
+    mockRouterAsPath.mockReturnValue(
+      "/teachers/search?term=romans&keyStages=ks2&curriculum=new&page=2&sid-xyz=456&src=email",
+    );
+
+    const { container } = renderWithTheme(
+      <Seo title="Test Page" description="Test description" />,
+    );
+
+    const canonical = container.querySelector('link[rel="canonical"]');
+    expect(canonical?.getAttribute("href")).toBe(
+      "https://www.thenational.academy/teachers/search?term=romans&keyStages=ks2&curriculum=new&page=2",
+    );
+  });
+
+  it("should preserve curriculum visualiser parameters", () => {
+    mockRouterAsPath.mockReturnValue(
+      "/teachers/curriculum/units?child_subjects=chemistry&tiers=higher&years=10&sid-123=abc&sm=5",
+    );
+
+    const { container } = renderWithTheme(
+      <Seo title="Test Page" description="Test description" />,
+    );
+
+    const canonical = container.querySelector('link[rel="canonical"]');
+    expect(canonical?.getAttribute("href")).toBe(
+      "https://www.thenational.academy/teachers/curriculum/units?child_subjects=chemistry&tiers=higher&years=10",
+    );
+  });
 });
