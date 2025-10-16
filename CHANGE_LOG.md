@@ -1,3 +1,10 @@
+# [1.894.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.893.0...v1.894.0) (2025-10-16)
+
+
+### Features
+
+* new component type for create with ai events ([3548163](https://github.com/oaknational/Oak-Web-Application/commit/35481638135bf2b66c19e81521d6f2868ba9dbfb))
+
 # [1.893.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.892.0...v1.893.0) (2025-10-15)
 
 
