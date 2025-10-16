@@ -42,7 +42,7 @@ type CurricUnitCardProps = {
   isHighlighted: boolean;
   href: string;
   onClick?: () => void;
-  additional: ReactNode;
+  additional?: ReactNode;
 };
 export default function CurricUnitCard(props: CurricUnitCardProps) {
   const { href, isHighlighted, unit, index, onClick } = props;
