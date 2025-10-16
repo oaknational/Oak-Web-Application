@@ -16,6 +16,10 @@ export function getSearchSuggestionBannerProps(props: SearchIntent) {
       (subject) => subject.slug === directMatch.subject?.slug,
     )?.description;
 
+    if (!description) {
+      return null;
+    }
+
     suggestion = {
       title: directMatch.subject.title,
       subjectSlug: directMatch.subject.slug,

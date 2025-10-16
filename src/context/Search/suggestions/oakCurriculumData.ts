@@ -5,7 +5,7 @@ export type CurriculumData = {
 };
 
 export type SubjectData = CurriculumData & {
-  description: string;
+  description: string | null;
   keyStages: CurriculumData[];
   examBoards: CurriculumData[];
   years: CurriculumData[];
@@ -251,7 +251,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
   {
     title: "Drama",
     slug: "drama",
-    description: "",
+    description: null,
     keyStages: [
       {
         slug: "ks1",
@@ -476,7 +476,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
   {
     title: "Latin",
     slug: "latin",
-    description: "",
+    description: null,
     keyStages: [
       {
         slug: "ks3",
