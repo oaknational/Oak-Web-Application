@@ -44,6 +44,7 @@ describe("SearchActiveFilters", () => {
         filterValue: ks,
         platform: "owa",
         product: "teacher lesson resources",
+        searchFilterMatchType: "default",
         searchTerm: "macbeth",
       });
     });
@@ -93,6 +94,7 @@ describe("SearchActiveFilters", () => {
         filterValue: subject,
         platform: "owa",
         product: "teacher lesson resources",
+        searchFilterMatchType: "default",
         searchTerm: "macbeth",
       });
     });
@@ -146,6 +148,7 @@ describe("SearchActiveFilters", () => {
         filterValue: ContentType,
         platform: "owa",
         product: "teacher lesson resources",
+        searchFilterMatchType: "default",
         searchTerm: "macbeth",
       });
     });
@@ -202,6 +205,7 @@ describe("SearchActiveFilters", () => {
         filterValue: "Year 10",
         platform: "owa",
         product: "teacher lesson resources",
+        searchFilterMatchType: "default",
         searchTerm: "macbeth",
       });
     });

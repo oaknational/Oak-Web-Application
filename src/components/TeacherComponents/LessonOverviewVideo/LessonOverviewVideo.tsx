@@ -49,6 +49,7 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
           title={title}
           location={"lesson"}
           isLegacy={isLegacy}
+          defaultHiddenCaptions={signLanguageOn}
         />
       )}
 
