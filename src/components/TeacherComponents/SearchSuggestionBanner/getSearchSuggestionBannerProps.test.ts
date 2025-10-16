@@ -9,6 +9,9 @@ const mathsDescription = OAK_SUBJECTS.find(
 const citizenshipDescription = OAK_SUBJECTS.find(
   (s) => s.slug == "citizenship",
 )?.description;
+const musicDescription = OAK_SUBJECTS.find(
+  (s) => s.slug == "music",
+)?.description;
 
 describe("getSearchSuggestionBannerProps", () => {
   test("it returns no suggestion if no direct subject match", () => {
@@ -146,31 +149,29 @@ describe("getSearchSuggestionBannerProps", () => {
   test("it returns valid keystages for the subject", () => {
     const searchIntent: SearchIntent = {
       directMatch: {
-        subject: { slug: "citizenship", title: "Citizenship" },
-        keyStage: { slug: "ks1", title: "Key Stage 1" },
+        subject: { slug: "music", title: "Music" },
+        keyStage: { slug: "ks4", title: "Key Stage 4" },
         examBoard: null,
         year: null,
       },
-      suggestedFilters: [
-        {
-          title: "Key Stage 1",
-          slug: "ks1",
-          type: "key-stage",
-        },
-      ],
+      suggestedFilters: [],
     };
     const result = getSearchSuggestionBannerProps(searchIntent);
     expect(result).toMatchObject({
-      title: "Citizenship",
-      body: citizenshipDescription,
+      title: "Music",
+      body: musicDescription,
       links: [
+        {
+          keystageSlug: "ks1",
+          keystageTitle: "Key Stage 1",
+        },
+        {
+          keystageSlug: "ks2",
+          keystageTitle: "Key Stage 2",
+        },
         {
           keystageSlug: "ks3",
           keystageTitle: "Key Stage 3",
-        },
-        {
-          keystageSlug: "ks4",
-          keystageTitle: "Key Stage 4",
         },
       ],
     });
@@ -205,6 +206,66 @@ describe("getSearchSuggestionBannerProps", () => {
         {
           keystageSlug: "ks4",
           keystageTitle: "Key Stage 4",
+        },
+      ],
+    });
+  });
+  test("it returns pathways for citizenship with direct ks4 match ", () => {
+    const searchIntent: SearchIntent = {
+      directMatch: {
+        subject: { slug: "citizenship", title: "Citizenship" },
+        keyStage: { slug: "ks4", title: "Key Stage 4" },
+        examBoard: null,
+        year: null,
+      },
+      suggestedFilters: [],
+    };
+    const result = getSearchSuggestionBannerProps(searchIntent);
+    expect(result).toMatchObject({
+      title: "Citizenship",
+      body: citizenshipDescription,
+      links: [
+        {
+          keystageSlug: "ks4",
+          keystageTitle: "Key Stage 4",
+          pathwayTitle: "Core",
+        },
+        {
+          keystageSlug: "ks4",
+          keystageTitle: "Key Stage 4",
+          pathwayTitle: "GCSE",
+        },
+      ],
+    });
+  });
+  test("it returns pathways for citizenship with no direct ks match ", () => {
+    const searchIntent: SearchIntent = {
+      directMatch: {
+        subject: { slug: "citizenship", title: "Citizenship" },
+        keyStage: null,
+        examBoard: null,
+        year: null,
+      },
+      suggestedFilters: [],
+    };
+    const result = getSearchSuggestionBannerProps(searchIntent);
+    expect(result).toMatchObject({
+      title: "Citizenship",
+      body: citizenshipDescription,
+      links: [
+        {
+          keystageSlug: "ks3",
+          keystageTitle: "Key Stage 3",
+        },
+        {
+          keystageSlug: "ks4",
+          keystageTitle: "Key Stage 4",
+          pathwayTitle: "Core",
+        },
+        {
+          keystageSlug: "ks4",
+          keystageTitle: "Key Stage 4",
+          pathwayTitle: "GCSE",
         },
       ],
     });

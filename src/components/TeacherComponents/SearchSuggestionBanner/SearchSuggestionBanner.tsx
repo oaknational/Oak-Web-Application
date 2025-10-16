@@ -13,16 +13,17 @@ import { SearchIntent } from "@/common-lib/schemas/search-intent";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 
+type KsLinkProps = {
+  keystageSlug: string;
+  keystageTitle: string;
+  pathwayTitle?: string;
+};
 export type SearchSuggestionBannerProps = {
   metadata?: string;
   title: string;
   subjectSlug: string;
   body?: string;
-  links: Array<{
-    keystageSlug: string;
-    keystageTitle: string;
-    examboardSlug?: string;
-  }>;
+  links: Array<KsLinkProps>;
 };
 
 const StyledOakLink = styled(OakLink)`
@@ -46,6 +47,33 @@ export const SearchSuggestionBanner = (props: {
   }
 
   const { metadata, title, body, links, subjectSlug } = convertedProps;
+
+  // Hacky approach to handle citizenship pathways which don't have any examboards/tiers
+  // so linking to the programme page doesn't automatically redirect as it doesn't know whether
+  // to direct to core or gcse.
+  const getLinkHref = (link: KsLinkProps) => {
+    return link.pathwayTitle
+      ? resolveOakHref({
+          page: "unit-index",
+          programmeSlug:
+            link.pathwayTitle == "Core"
+              ? "citizenship-secondary-ks4-core"
+              : "citizenship-secondary-ks4-gcse",
+        })
+      : resolveOakHref({
+          page: "programme-index",
+          subjectSlug,
+          keyStageSlug: link.keystageSlug,
+        });
+  };
+
+  const getLinkTitle = (link: KsLinkProps) => {
+    let title = link.keystageTitle;
+    if (link.pathwayTitle) {
+      title += ` (${link.pathwayTitle})`;
+    }
+    return title;
+  };
 
   return (
     <OakFlex
@@ -76,11 +104,7 @@ export const SearchSuggestionBanner = (props: {
             iconName="chevron-right"
             isTrailingIcon
             key={link.keystageSlug}
-            href={resolveOakHref({
-              page: "programme-index",
-              subjectSlug,
-              keyStageSlug: link.keystageSlug,
-            })}
+            href={getLinkHref(link)}
             onClick={() =>
               track.searchResultOpened({
                 keyStageTitle: link.keystageTitle as KeyStageTitleValueType,
@@ -101,7 +125,7 @@ export const SearchSuggestionBanner = (props: {
               })
             }
           >
-            {link.keystageTitle}
+            {getLinkTitle(link)}
           </StyledOakLink>
         ))}
       </OakFlex>
