@@ -47,6 +47,7 @@ export const posthogToAnalyticsServiceWithoutQueue = (
               "/webinars/.*",
               "/about-us/.*",
               "/contact-us",
+              "/campaigns/.*",
             ],
           },
         });
