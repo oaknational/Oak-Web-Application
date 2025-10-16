@@ -1,4 +1,5 @@
 import type { NextApiHandler } from "next";
+import { Ratelimit } from "@upstash/ratelimit";
 
 import {
   intentRequestSchema,
@@ -11,8 +12,22 @@ import { getSuggestedFiltersFromSubject } from "@/context/Search/suggestions/get
 import getServerConfig from "@/node-lib/getServerConfig";
 import { callModel } from "@/context/Search/ai/callModel";
 import { OAK_SUBJECTS } from "@/context/Search/suggestions/oakCurriculumData";
+import {
+  checkRateLimitByIp,
+  createRateLimiter,
+} from "@/utils/rateLimiter/rateLimiter";
 
 const reportError = errorReporter("search-intent");
+
+const rateLimiter = createRateLimiter(
+  "search-intent:rate-limit",
+  Ratelimit.fixedWindow(
+    parseInt(getServerConfig("aiSearchRateLimitPer24h"), 10),
+    "24h",
+  ),
+);
+
+const CACHE_DURATION = 30 * 24 * 60 * 60; // 30 days
 
 const handler: NextApiHandler = async (req, res) => {
   const aiSearchEnabled = getServerConfig("aiSearchEnabled") === "true";
@@ -39,6 +54,11 @@ const handler: NextApiHandler = async (req, res) => {
       };
       return res.status(200).json(payload);
     } else if (aiSearchEnabled) {
+      const rateLimitResult = await checkRateLimitByIp(rateLimiter, req);
+      if (!rateLimitResult.success) {
+        return res.status(429).json({ error: "Rate limit exceeded" });
+      }
+
       const subjectsFromModel = await callModel(searchTerm);
       const bestSubjectMatch = subjectsFromModel[0]?.slug;
 
@@ -59,6 +79,11 @@ const handler: NextApiHandler = async (req, res) => {
         directMatch: pfMatch,
         suggestedFilters,
       };
+
+      // Cache AI-based response in Cloudflare for 30 days
+      // public = same cache for all users
+      res.setHeader("Cache-Control", `public, s-maxage=${CACHE_DURATION}`);
+
       return res.status(200).json(payload);
     }
 
