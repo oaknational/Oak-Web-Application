@@ -38,6 +38,7 @@ import SignPostToAila from "@/components/TeacherComponents/NoSearchResults/SignP
 import MiniDropDown from "@/components/TeacherComponents/MiniDropdown";
 import SearchSuggestedFilters from "@/components/TeacherComponents/SearchSuggestedFilters/SearchSuggestedFilters";
 import { useSuggestedFilters } from "@/context/Search/useSuggestedFilters";
+import { SearchSuggestionBanner } from "@/components/TeacherComponents/SearchSuggestionBanner/SearchSuggestionBanner";
 
 const CustomWidthFlex = styled(OakFlex)`
   max-width: 300px;
@@ -132,6 +133,10 @@ const Search: FC<SearchProps> = (props) => {
     track,
   ]);
 
+  const searchFilterOptionSelected = getSortedSearchFiltersSelected(
+    router.query,
+  );
+
   const searchResultExpanded = ({
     searchHit,
     searchRank,
@@ -167,9 +172,7 @@ const Search: FC<SearchProps> = (props) => {
         unitName,
         unitSlug: searchHit.buttonLinkProps.unitSlug,
         searchRank: searchRank,
-        searchFilterOptionSelected: getSortedSearchFiltersSelected(
-          router.query,
-        ),
+        searchFilterOptionSelected,
         searchResultCount: hitCount,
         searchResultType: searchHit.type,
         lessonName,
@@ -260,6 +263,7 @@ const Search: FC<SearchProps> = (props) => {
                 >
                   <ContentFilterToggle
                     contentTypeFilters={searchFilters.contentTypeFilters}
+                    idSuffix="mobile"
                     trackSearchModified={(checked, filterType, filterValue) =>
                       trackSearchModified(
                         query.term,
@@ -460,7 +464,14 @@ const Search: FC<SearchProps> = (props) => {
                 </OakBox>
               )}
               {shouldShowResults && (
-                <OakFlex $flexDirection="column" $gap={"space-between-xl"}>
+                <OakFlex
+                  $flexDirection="column"
+                  $gap={[
+                    "space-between-s",
+                    "space-between-s",
+                    "space-between-xl",
+                  ]}
+                >
                   <OakFlex
                     $flexDirection={"column"}
                     $gap={"space-between-m"}
@@ -473,6 +484,7 @@ const Search: FC<SearchProps> = (props) => {
                   >
                     <ContentFilterToggle
                       contentTypeFilters={searchFilters.contentTypeFilters}
+                      idSuffix="desktop"
                       trackSearchModified={(checked, filterType, filterValue) =>
                         trackSearchModified(
                           query.term,
@@ -489,7 +501,29 @@ const Search: FC<SearchProps> = (props) => {
                       Showing {results.length} result
                       {results.length === 1 ? "" : "s"}
                     </OakP>
+                    <SearchSuggestionBanner
+                      intent={suggestedFilters.data}
+                      searchTrackingData={{
+                        searchResultCount: hitCount,
+                        searchFilterOptionSelected,
+                      }}
+                    />
                   </OakFlex>
+                  <OakBox
+                    $display={[
+                      "block",
+                      isAiExperimentSearchEnabled ? "block" : "none",
+                      "none",
+                    ]}
+                  >
+                    <SearchSuggestionBanner
+                      intent={suggestedFilters.data}
+                      searchTrackingData={{
+                        searchResultCount: hitCount,
+                        searchFilterOptionSelected,
+                      }}
+                    />
+                  </OakBox>
                   <SearchResults
                     hits={results}
                     allKeyStages={allKeyStages}
