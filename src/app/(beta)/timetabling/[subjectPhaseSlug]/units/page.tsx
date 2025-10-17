@@ -24,7 +24,7 @@ const Page = async ({
   // Render
   return (
     <CurricTimetablingUnits
-      subjectPhaseSlug={subjectPhaseSlug}
+      slugs={slugs}
       units={sequence.units}
       curriculumPhaseOptions={curriculumPhaseOptions}
     />
