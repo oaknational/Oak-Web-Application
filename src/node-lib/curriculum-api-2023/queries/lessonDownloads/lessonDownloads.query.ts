@@ -63,8 +63,6 @@ const lessonDownloadsQuery =
       exit_quiz,
       is_legacy,
       expired,
-      geo_restricted,
-      login_required,
       downloadable_files,
       lesson_release_date,
     } = downloadsAssetDataSchema.parse(download_assets[0]);
@@ -109,6 +107,11 @@ const lessonDownloadsQuery =
       ? keysToCamelCase(currentLesson?.lesson_data.copyright_content)
       : null;
 
+    const lessonRestrictions = {
+      geoRestricted: currentLesson?.features.agf__geo_restricted ?? false,
+      loginRequired: currentLesson?.features.agf__login_required ?? false,
+    };
+
     const parsedBrowseData = modifiedBrowseData.map((bd) =>
       rawSyntheticUVLessonSchema.parse(bd),
     );
@@ -123,8 +126,8 @@ const lessonDownloadsQuery =
         lessonReleaseDate: lesson_release_date ?? "unpublished",
         lessonCopyRight: copyright,
         restrictions: {
-          geoRestricted: geo_restricted,
-          loginRequired: login_required,
+          geoRestricted: lessonRestrictions.geoRestricted,
+          loginRequired: lessonRestrictions.loginRequired,
         },
       });
       return lessonDownloadsCanonicalSchema.parse(
@@ -144,8 +147,8 @@ const lessonDownloadsQuery =
         ...lessonDownloads,
         isLegacy: false,
         isSpecialist: false,
-        geoRestricted: geo_restricted,
-        loginRequired: login_required,
+        geoRestricted: lessonRestrictions.geoRestricted,
+        loginRequired: lessonRestrictions.loginRequired,
         lessonReleaseDate: lesson_release_date ?? "unpublished",
       }) as T;
     }
