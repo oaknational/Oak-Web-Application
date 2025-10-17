@@ -38,6 +38,7 @@ const baseProps = {
   onClickDownloadAll: jest.fn(),
   showDownloadAll: true,
   showShare: true,
+  contentRestricted: false,
 };
 
 const render = renderWithProviders();

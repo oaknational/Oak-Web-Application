@@ -65,6 +65,7 @@ export type LessonOverviewHeaderProps = {
   onClickShareAll: () => void;
   showDownloadAll: boolean;
   showShare: boolean;
+  contentRestricted: boolean;
   // teacher share
   teacherShareButton?: React.ReactNode;
   teacherShareButtonProps?: TeacherNotesButtonProps;
@@ -78,6 +79,48 @@ export type LessonOverviewHeaderProps = {
   actions?: LessonBrowseDataByKs["actions"];
 };
 
+const ShareButtons: FC<{
+  contentRestricted: boolean;
+  shouldUseDropdown: boolean;
+  showShare: boolean;
+  teacherShareButtonProps?: TeacherNotesButtonProps;
+  overviewProps: LessonOverviewHeaderProps;
+}> = ({
+  contentRestricted,
+  shouldUseDropdown,
+  showShare,
+  teacherShareButtonProps,
+  overviewProps,
+}) => {
+  if (contentRestricted) {
+    return null;
+  }
+
+  if (shouldUseDropdown && teacherShareButtonProps) {
+    return (
+      <OakSmallSecondaryButtonWithDropdown primaryActionText={"Share lesson"}>
+        <LessonOverviewHeaderShareAllButton
+          variant="dropdown"
+          {...overviewProps}
+        />
+        <TeacherShareNotesButton
+          variant="dropdown"
+          {...teacherShareButtonProps}
+        />
+      </OakSmallSecondaryButtonWithDropdown>
+    );
+  }
+
+  return (
+    <>
+      {showShare && <LessonOverviewHeaderShareAllButton {...overviewProps} />}
+      {teacherShareButtonProps && (
+        <TeacherShareNotesButton {...teacherShareButtonProps} />
+      )}
+    </>
+  );
+};
+
 const LessonOverviewHeader: FC<LessonOverviewHeaderProps> = (props) => {
   const {
     breadcrumbs,
@@ -85,30 +128,25 @@ const LessonOverviewHeader: FC<LessonOverviewHeaderProps> = (props) => {
     teacherShareButtonProps,
     showShare,
     excludedFromTeachingMaterials,
+    contentRestricted,
   } = props;
 
   const isCreateWithAiEnabled =
     useFeatureFlagVariantKey("create-with-ai-button") === "test" &&
-    !excludedFromTeachingMaterials;
+    !excludedFromTeachingMaterials &&
+    !contentRestricted;
 
   const shouldUseDropdown =
     isCreateWithAiEnabled && showShare && teacherShareButtonProps;
 
-  const shareButtons = shouldUseDropdown ? (
-    <OakSmallSecondaryButtonWithDropdown primaryActionText={"Share lesson"}>
-      <LessonOverviewHeaderShareAllButton variant="dropdown" {...props} />
-      <TeacherShareNotesButton
-        variant="dropdown"
-        {...teacherShareButtonProps}
-      />
-    </OakSmallSecondaryButtonWithDropdown>
-  ) : (
-    <>
-      {showShare && <LessonOverviewHeaderShareAllButton {...props} />}
-      {teacherShareButtonProps && (
-        <TeacherShareNotesButton {...teacherShareButtonProps} />
-      )}
-    </>
+  const shareButtons = (
+    <ShareButtons
+      contentRestricted={contentRestricted}
+      shouldUseDropdown={!!shouldUseDropdown}
+      showShare={showShare}
+      teacherShareButtonProps={teacherShareButtonProps}
+      overviewProps={props}
+    />
   );
 
   return (

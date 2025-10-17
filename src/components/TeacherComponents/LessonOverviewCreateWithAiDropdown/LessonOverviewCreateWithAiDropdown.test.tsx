@@ -60,6 +60,7 @@ describe("LessonOverviewCreateWithAiDropdown", () => {
       lessonReleaseDate: null,
       pupilLessonOutcome: null,
       subjectCategories: ["category1", "category2"],
+      contentRestricted: false,
     };
   });
 
