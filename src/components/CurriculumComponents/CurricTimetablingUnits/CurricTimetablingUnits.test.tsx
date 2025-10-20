@@ -32,8 +32,12 @@ describe("CurricTimetablingUnits", () => {
     const { container } = renderWithTheme(
       <CurricTimetablingUnits
         units={[createUnit({ slug: "test-1" }), createUnit({ slug: "test-2" })]}
-        subjectPhaseSlug={""}
         curriculumPhaseOptions={defaultCurriculumPhaseOptions}
+        slugs={{
+          phaseSlug: "primary",
+          subjectSlug: "maths",
+          ks4OptionSlug: null,
+        }}
       />,
     );
     expect(container).toMatchSnapshot();
@@ -42,8 +46,12 @@ describe("CurricTimetablingUnits", () => {
     const { getAllByRole, getByTestId } = renderWithTheme(
       <CurricTimetablingUnits
         units={[createUnit({ slug: "test-1" }), createUnit({ slug: "test-2" })]}
-        subjectPhaseSlug={""}
         curriculumPhaseOptions={defaultCurriculumPhaseOptions}
+        slugs={{
+          phaseSlug: "primary",
+          subjectSlug: "maths",
+          ks4OptionSlug: null,
+        }}
       />,
     );
     const els = getAllByRole("button");
@@ -62,8 +70,12 @@ describe("CurricTimetablingUnits", () => {
     const { getAllByRole } = renderWithTheme(
       <CurricTimetablingUnits
         units={[createUnit({ slug: "test-1" }), createUnit({ slug: "test-2" })]}
-        subjectPhaseSlug={""}
         curriculumPhaseOptions={defaultCurriculumPhaseOptions}
+        slugs={{
+          phaseSlug: "primary",
+          subjectSlug: "maths",
+          ks4OptionSlug: null,
+        }}
       />,
     );
     const els = getAllByRole("button");
