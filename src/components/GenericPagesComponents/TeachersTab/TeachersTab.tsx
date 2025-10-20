@@ -24,6 +24,7 @@ type TeacherTabProps = {
 const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
   const { track } = useAnalytics();
   const { setSearchTerm } = useSearch({});
+
   return (
     <OakFlex $background={"mint"} $pv="inner-padding-xl" $overflow={"hidden"}>
       <OakMaxWidth $ph={["inner-padding-m"]}>
