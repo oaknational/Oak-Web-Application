@@ -98,11 +98,7 @@ export const useLesson = ({
 
   useEffect(() => {
     setLessonPath(window.location.href.split("?")[0] || null);
-
-    if (window.location.href !== browserUrl) {
-      window.history.replaceState({}, "", browserUrl);
-    }
-  }, [browserUrl]);
+  }, []);
 
   const handleTeacherNotesOpen = () => {
     setTeacherNotesOpen(true);
