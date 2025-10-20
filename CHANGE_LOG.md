@@ -1,3 +1,18 @@
+# [1.896.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.895.0...v1.896.0) (2025-10-20)
+
+
+### Bug Fixes
+
+* amend SEO component logic and tests ([23e3f45](https://github.com/oaknational/Oak-Web-Application/commit/23e3f4575536beeccd9d9b2a387369a2f9973cf5))
+* revert middleware ([3d0ec54](https://github.com/oaknational/Oak-Web-Application/commit/3d0ec5471dc6d817e82f6a62e936d971430745e6))
+
+
+### Features
+
+* added "filter and highlight" to curric timetabling ([db20fdd](https://github.com/oaknational/Oak-Web-Application/commit/db20fdd3cc5d9bac6c32670cc534fa2ea2e3b18d))
+* noindex URLs with ?sid params ([3781d18](https://github.com/oaknational/Oak-Web-Application/commit/3781d18fa395b3c76d61d7b9dd7d83d42fa3da7b))
+* pass clean canonical URLs explicitly to prevent tracking params ([247c3d3](https://github.com/oaknational/Oak-Web-Application/commit/247c3d35e44c46edc3276a4b4b49acac823142f6))
+
 # [1.895.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.894.0...v1.895.0) (2025-10-16)
 
 
