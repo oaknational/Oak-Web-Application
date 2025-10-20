@@ -133,20 +133,14 @@ variable "next_public_clerk_publishable_key_prod" {
 variable "pupil_firestore_id_prod" {
   description = "Name/identifier of the Firestore DB for production environment"
   type        = string
-  sensitive   = true
-  default     = null
 }
 
 variable "pupil_firestore_id_preview" {
   description = "Name/identifier of the Firestore DB for preview environment"
   type        = string
-  sensitive   = true
-  default     = null
 }
 
 variable "terraform_cloud_organisation" {
   description = "Terraform Cloud Organisation"
   type        = string
-  sensitive   = true
-  default     = null
 }
