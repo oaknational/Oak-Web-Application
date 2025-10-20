@@ -46,6 +46,7 @@ export const LessonOverviewHeaderMobile: FC<
     unitSlug,
     excludedFromTeachingMaterials,
     shareButtons,
+    contentRestricted,
   } = props;
 
   const previousBreadcrumb = breadcrumbs[breadcrumbs.length - 2];
@@ -116,11 +117,13 @@ export const LessonOverviewHeaderMobile: FC<
           {phonicsOutcome && <OakP $font={"body-2"}>{phonicsOutcome}</OakP>}
         </OakBox>
       </OakBox>
-      <LessonOverviewHeaderDownloadAllButton {...props} />
-      {shareButtons}
-      {!excludedFromTeachingMaterials && isCreateWithAiEnabled && (
-        <LessonOverviewCreateWithAiDropdown {...props} />
+      {!contentRestricted && (
+        <LessonOverviewHeaderDownloadAllButton {...props} />
       )}
+      {shareButtons}
+      {!excludedFromTeachingMaterials &&
+        isCreateWithAiEnabled &&
+        !contentRestricted && <LessonOverviewCreateWithAiDropdown {...props} />}
 
       <CopyrightRestrictionBanner
         isGeorestricted={geoRestricted}

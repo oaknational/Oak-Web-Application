@@ -21,7 +21,6 @@ import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconB
 import CopyrightRestrictionBanner from "@/components/TeacherComponents/CopyrightRestrictionBanner/CopyrightRestrictionBanner";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import { resolveOakHref } from "@/common-lib/urls";
-import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
 
 const CustomDimensionRow = styled(OakFlex)`
   width: 200px;
@@ -63,25 +62,12 @@ export const LessonOverviewHeaderDesktop: FC<
     unitSlug,
     excludedFromTeachingMaterials,
     shareButtons,
+    contentRestricted,
   } = props;
 
   const previousBreadcrumb = breadcrumbs[breadcrumbs.length - 2];
   const shouldShowBackButton =
     !!previousBreadcrumb && !!unitTitle && !!programmeSlug;
-
-  const {
-    showSignedInNotOnboarded,
-    showSignedOutGeoRestricted,
-    showSignedOutLoginRequired,
-  } = useCopyrightRequirements({
-    loginRequired: loginRequired ?? false,
-    geoRestricted: geoRestricted ?? false,
-  });
-
-  const contentRestricted =
-    showSignedInNotOnboarded ||
-    showSignedOutGeoRestricted ||
-    showSignedOutLoginRequired;
 
   const isCreateWithAiEnabled =
     useFeatureFlagVariantKey("create-with-ai-button") === "test";
@@ -167,7 +153,9 @@ export const LessonOverviewHeaderDesktop: FC<
                 $alignItems={"flex-start"}
                 $flexWrap={"wrap"}
               >
-                <LessonOverviewHeaderDownloadAllButton {...props} />
+                {!contentRestricted && (
+                  <LessonOverviewHeaderDownloadAllButton {...props} />
+                )}
                 {shareButtons}
                 {!excludedFromTeachingMaterials &&
                   isCreateWithAiEnabled &&
