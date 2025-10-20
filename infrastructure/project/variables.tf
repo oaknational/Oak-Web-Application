@@ -130,16 +130,23 @@ variable "next_public_clerk_publishable_key_prod" {
   }
 }
 
-variable "firestore_env_vars" {
-  description = "GCP OIDC connection variables for pupil Firestore"
-  type = object({
-    shared = optional(object({
-      PUPIL_FIRESTORE_ID                     = string
-      GCP_PROJECT_ID                         = string
-      GCP_SERVICE_ACCOUNT_EMAIL              = string
-      GCP_WORKLOAD_IDENTITY_POOL_PROVIDER_ID = string
-    }))
-  })
-  sensitive = true
-  default   = {}
+variable "pupil_firestore_id_prod" {
+  description = "Name/identifier of the Firestore DB for production environment"
+  type        = string
+  sensitive   = true
+  default     = null
+}
+
+variable "pupil_firestore_id_preview" {
+  description = "Name/identifier of the Firestore DB for preview environment"
+  type        = string
+  sensitive   = true
+  default     = null
+}
+
+variable "terraform_cloud_organisation" {
+  description = "Terraform Cloud Organisation"
+  type        = string
+  sensitive   = true
+  default     = null
 }

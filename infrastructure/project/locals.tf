@@ -1,4 +1,30 @@
 locals {
+  env_names = [
+    {
+      gcp    = "prod",
+      vercel = "production"
+    },
+    {
+      gcp    = "staging",
+      vercel = "preview"
+    },
+  ]
+  superuser_workspace_prefix = "gcp-project-superuser"
+}
+
+data "terraform_remote_state" "google_projects" {
+  for_each = toset([for env_name in local.env_names : "${local.superuser_workspace_prefix}-${env_name.gcp}"])
+
+  backend = "remote"
+  config = {
+    organization = var.terraform_cloud_organisation
+    workspaces = {
+      name = each.key
+    }
+  }
+}
+
+locals {
   required_env_keys = {
     website = {
       shared  = ["NEXT_PUBLIC_CLERK_SIGN_IN_URL", "NEXT_PUBLIC_CLERK_SIGN_UP_URL"]
@@ -14,9 +40,9 @@ locals {
 
   required_sensitive_env_keys = {
     website = {
-      shared  = ["PUPIL_FIRESTORE_ID", "GCP_PROJECT_ID", "GCP_SERVICE_ACCOUNT_EMAIL", "GCP_WORKLOAD_IDENTITY_POOL_PROVIDER_ID"]
-      prod    = ["CLERK_SECRET_KEY", "GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT", "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY"]
-      preview = ["CLERK_SECRET_KEY", "GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT", "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY"]
+      shared  = []
+      prod    = ["CLERK_SECRET_KEY", "GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT", "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY", "PUPIL_FIRESTORE_ID"]
+      preview = ["CLERK_SECRET_KEY", "GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT", "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY", "PUPIL_FIRESTORE_ID"]
     }
     storybook = {
       shared  = []
@@ -51,11 +77,13 @@ locals {
       CLERK_SECRET_KEY                      = var.clerk_secret_key_prod
       GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT = var.google_secret_manager_service_account_prod
       NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY     = var.next_public_clerk_publishable_key_prod
+      PUPIL_FIRESTORE_ID                    = var.pupil_firestore_id_prod
     }
     preview = {
       CLERK_SECRET_KEY                      = var.clerk_secret_key_preview
       GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT = var.google_secret_manager_service_account_preview
       NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY     = var.next_public_clerk_publishable_key_preview
+      PUPIL_FIRESTORE_ID                    = var.pupil_firestore_id_preview
     }
   }
 
@@ -110,18 +138,22 @@ locals {
     ]
   ])
 
-  firestore_env_vars_shared = flatten([
-    for env in local.custom_env_names :
-    [
-      for key, value in var.firestore_env_vars.shared : {
-      key                     = key
-      value                   = value
-      custom_environment_name = env
-    }
+  all_custom_env_vars = concat(local.custom_env_vars, local.sensitive_custom_env_vars, local.custom_env_vars_shared)
+
+  lookup_vars = flatten([
+    for env_name in local.env_names : [
+      for key, value in {
+        "GCP_PROJECT_ID"                         = data.terraform_remote_state.google_projects["${local.superuser_workspace_prefix}-${env_name.gcp}"].outputs.project_id
+        "GCP_SERVICE_ACCOUNT_EMAIL"              = data.terraform_remote_state.google_projects["${local.superuser_workspace_prefix}-${env_name.gcp}"].outputs.project_config.workload_identity_service_accounts.vercel["oak-web-application-website::${env_name.vercel}"]
+        "GCP_WORKLOAD_IDENTITY_POOL_PROVIDER_ID" = data.terraform_remote_state.google_projects["${local.superuser_workspace_prefix}-${env_name.gcp}"].outputs.workload_identity_provider_names.vercel
+      } : {
+        key       = key
+        value     = value
+        target    = [env_name.vercel]
+        sensitive = false
+      }
     ]
   ])
 
-  all_custom_env_vars = concat(local.custom_env_vars, local.sensitive_custom_env_vars, local.custom_env_vars_shared, local.firestore_env_vars_shared)
-
-  environment_variables = concat(local.non_sensitive_vars, local.sensitive_vars)
+  environment_variables = concat(local.non_sensitive_vars, local.sensitive_vars, local.lookup_vars)
 }
