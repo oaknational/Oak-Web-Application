@@ -1,3 +1,12 @@
+## [1.896.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.896.0...v1.896.1) (2025-10-20)
+
+
+### Bug Fixes
+
+* get restrcited content data from features, not content mv ([f72faee](https://github.com/oaknational/Oak-Web-Application/commit/f72faee327671ae8783873f1e44a64cabc7cb2a6))
+* hide share and create with ai btns on restricted overview pages ([5c62f77](https://github.com/oaknational/Oak-Web-Application/commit/5c62f77a5ee6e9592de0033036a7066e5275447d))
+* update content restriction handling in lesson overview headers ([751147e](https://github.com/oaknational/Oak-Web-Application/commit/751147e607fc67a0b8c9a1e2fd66aebef974a13a))
+
 # [1.896.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.895.0...v1.896.0) (2025-10-20)
 
 
