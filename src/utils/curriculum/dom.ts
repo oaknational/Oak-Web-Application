@@ -57,3 +57,20 @@ export function getAllTabFocusableElements(
   }
   return [];
 }
+
+export function findParentNode(target: Element, fn: (el: Element) => boolean) {
+  let curr: ParentNode | null = target;
+  while ((curr = curr.parentNode)) {
+    if (curr && fn(curr as Element)) {
+      return curr as Element;
+    }
+  }
+}
+
+export function findAccosiatedLabel(root: Element, target: Element) {
+  const parentLabelElement = findParentNode(
+    target,
+    (el: Element) => el.tagName === "LABEL",
+  );
+  return parentLabelElement ?? root.querySelector(`label[for="${target.id}"]`);
+}
