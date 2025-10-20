@@ -54,7 +54,6 @@ import { isUnitListData } from "@/components/TeacherComponents/UnitList/helpers"
 import { useUnitFilterState } from "@/hooks/useUnitFilterState";
 import { TeacherRedirectedOverlay } from "@/components/TeacherComponents/TeacherRedirectedOverlay/TeacherRedirectedOverlay";
 import Banners from "@/components/SharedComponents/Banners";
-// import { orderUnits } from "@/utils/orderUnits";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;

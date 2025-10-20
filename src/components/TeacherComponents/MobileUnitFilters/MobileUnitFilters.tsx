@@ -17,7 +17,6 @@ import filterUnits from "@/utils/filterUnits/filterUnits";
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 import { SpecialistUnitListingData } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
 import { FilterQuery } from "@/hooks/useUnitFilterState";
-import { orderUnits } from "@/utils/orderUnits";
 
 export type MobileUnitFiltersProps = {
   numberOfUnits: number;
@@ -64,7 +63,7 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
         themeSlug: inputTheme,
         categorySlug: incomingCategorySlug,
         yearGroup: incomingYearGroupSlug,
-        units: orderUnits(units as UnitListingData["units"]),
+        units: units as UnitListingData["units"],
       });
       setCurrNumberOfUnits(filteredUnits.length);
     } else {
