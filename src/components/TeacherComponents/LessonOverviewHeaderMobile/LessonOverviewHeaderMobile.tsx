@@ -54,7 +54,8 @@ export const LessonOverviewHeaderMobile: FC<
     !!previousBreadcrumb && !!unitTitle && !!programmeSlug;
 
   const isCreateWithAiEnabled =
-    useFeatureFlagVariantKey("create-with-ai-button") === "test";
+    useFeatureFlagVariantKey("create-with-ai-button") === "test" &&
+    !contentRestricted;
 
   return (
     <OakFlex
@@ -117,13 +118,11 @@ export const LessonOverviewHeaderMobile: FC<
           {phonicsOutcome && <OakP $font={"body-2"}>{phonicsOutcome}</OakP>}
         </OakBox>
       </OakBox>
-      {!contentRestricted && (
-        <LessonOverviewHeaderDownloadAllButton {...props} />
-      )}
+      <LessonOverviewHeaderDownloadAllButton {...props} />
       {shareButtons}
-      {!excludedFromTeachingMaterials &&
-        isCreateWithAiEnabled &&
-        !contentRestricted && <LessonOverviewCreateWithAiDropdown {...props} />}
+      {!excludedFromTeachingMaterials && isCreateWithAiEnabled && (
+        <LessonOverviewCreateWithAiDropdown {...props} />
+      )}
 
       <CopyrightRestrictionBanner
         isGeorestricted={geoRestricted}

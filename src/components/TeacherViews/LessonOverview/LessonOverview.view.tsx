@@ -321,14 +321,14 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   const exitQuizImageAttribution = createAttributionObject(exitQuiz);
 
-  const hasCopyrightedDownloads =
+  const hasDownloadableAssets =
     downloads.filter(
       (d) =>
         d.exists === true &&
         !checkIsResourceCopyrightRestricted(d.type, copyrightContent),
     ).length > 0;
 
-  const showDownloadAll = hasCopyrightedDownloads;
+  const showDownloadAll = hasDownloadableAssets && !contentRestricted;
   const showShare =
     !isSpecialist &&
     keyStageSlug !== "early-years-foundation-stage" &&

@@ -70,7 +70,8 @@ export const LessonOverviewHeaderDesktop: FC<
     !!previousBreadcrumb && !!unitTitle && !!programmeSlug;
 
   const isCreateWithAiEnabled =
-    useFeatureFlagVariantKey("create-with-ai-button") === "test";
+    useFeatureFlagVariantKey("create-with-ai-button") === "test" &&
+    !contentRestricted;
 
   return (
     <OakBox $display={["none", "grid"]}>
@@ -153,15 +154,11 @@ export const LessonOverviewHeaderDesktop: FC<
                 $alignItems={"flex-start"}
                 $flexWrap={"wrap"}
               >
-                {!contentRestricted && (
-                  <LessonOverviewHeaderDownloadAllButton {...props} />
-                )}
+                <LessonOverviewHeaderDownloadAllButton {...props} />
                 {shareButtons}
-                {!excludedFromTeachingMaterials &&
-                  isCreateWithAiEnabled &&
-                  !contentRestricted && (
-                    <LessonOverviewCreateWithAiDropdown {...props} />
-                  )}
+                {!excludedFromTeachingMaterials && isCreateWithAiEnabled && (
+                  <LessonOverviewCreateWithAiDropdown {...props} />
+                )}
               </OakFlex>
               <CopyrightRestrictionBanner
                 isGeorestricted={geoRestricted}
