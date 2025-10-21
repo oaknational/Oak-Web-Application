@@ -35,6 +35,10 @@ jest.mock("next/navigation", () => {
     __esModule: true,
     usePathname: () => "/timetabling/maths-primary/units",
     useSearchParams: () => mockUseSearchParams(),
+    useRouter: () => ({
+      replace: jest.fn(),
+      push: jest.fn(),
+    }),
     notFound: () => {
       throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
     },
