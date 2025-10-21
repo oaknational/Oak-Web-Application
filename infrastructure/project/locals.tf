@@ -92,13 +92,11 @@ locals {
       CLERK_SECRET_KEY                      = var.clerk_secret_key_prod
       GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT = var.google_secret_manager_service_account_prod
       NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY     = var.next_public_clerk_publishable_key_prod
-      PUPIL_FIRESTORE_ID                    = var.pupil_firestore_id_prod
     }
     preview = {
       CLERK_SECRET_KEY                      = var.clerk_secret_key_preview
       GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT = var.google_secret_manager_service_account_preview
       NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY     = var.next_public_clerk_publishable_key_preview
-      PUPIL_FIRESTORE_ID                    = var.pupil_firestore_id_preview
     }
   }
 
