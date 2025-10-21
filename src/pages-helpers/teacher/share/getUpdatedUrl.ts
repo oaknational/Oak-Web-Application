@@ -3,7 +3,7 @@ import {
   getShareIdKey,
   shareMethods,
   shareSources,
-} from "@/pages-helpers/teacher/share-experiments/createShareId";
+} from "@/pages-helpers/teacher/share/createShareId";
 
 /**
  *
