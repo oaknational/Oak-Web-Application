@@ -321,17 +321,19 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   const exitQuizImageAttribution = createAttributionObject(exitQuiz);
 
-  const downloadsFilteredByCopyright = downloads.filter(
-    (d) =>
-      d.exists === true &&
-      !checkIsResourceCopyrightRestricted(d.type, copyrightContent),
-  );
+  const hasDownloadableAssets =
+    downloads.filter(
+      (d) =>
+        d.exists === true &&
+        !checkIsResourceCopyrightRestricted(d.type, copyrightContent),
+    ).length > 0;
 
-  const showDownloadAll = downloadsFilteredByCopyright.length > 0;
+  const showDownloadAll = hasDownloadableAssets && !contentRestricted;
   const showShare =
     !isSpecialist &&
     keyStageSlug !== "early-years-foundation-stage" &&
-    !actions?.disablePupilShare;
+    !actions?.disablePupilShare &&
+    !contentRestricted;
 
   const pageLinks = getPageLinksWithSubheadingsForLesson(
     lesson,
@@ -386,6 +388,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         teacherShareButton={teacherShareButton}
         trackTeachingMaterialsSelected={trackTeachingMaterialsSelected}
         trackCreateWithAiButtonClicked={trackCreateWithAiButtonClicked}
+        contentRestricted={contentRestricted}
       />
       <OakMaxWidth $ph={"inner-padding-m"} $pb={"inner-padding-xl8"}>
         {expired ? (
