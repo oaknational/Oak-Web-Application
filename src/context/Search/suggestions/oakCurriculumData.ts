@@ -5,7 +5,7 @@ export type CurriculumData = {
 };
 
 export type SubjectData = CurriculumData & {
-  description: string;
+  description: string | null;
   keyStages: CurriculumData[];
   examBoards: CurriculumData[];
   years: CurriculumData[];
@@ -13,29 +13,24 @@ export type SubjectData = CurriculumData & {
 
 export const OAK_KEYSTAGES: CurriculumData[] = [
   {
-    slug: "early-years-foundation-stage",
-    title: "EYFS",
-    aliases: [
-      "early years",
-      "early years foundation",
-      "early years foundation stage",
-    ],
-  },
-  {
     slug: "ks1",
     title: "Key Stage 1",
+    aliases: ["keystage 1"],
   },
   {
     slug: "ks2",
     title: "Key Stage 2",
+    aliases: ["keystage 2"],
   },
   {
     slug: "ks3",
     title: "Key Stage 3",
+    aliases: ["keystage 3"],
   },
   {
     slug: "ks4",
     title: "Key Stage 4",
+    aliases: ["keystage 4"],
   },
 ];
 
@@ -137,7 +132,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     title: "Art and design",
     slug: "art",
     description:
-      "Our art and design curriculum is mapped to ensure that pupils explore knowledge, skills, content, processes, behaviours and attributes that will help them grow into young artists that are independent, capable and able to confidently engage with art in the world around them. \nPupils are exposed to a range of media, skills, and techniques, including links to real-world creative industries. We encourage art analysis and discussions with a careful selection of artworks by a wide range of artists, makers and designers’ past and present. Artists and artworks are contextualised and presented in ways that allow pupils to understand how art shapes and is shaped by the wider world. \nPupils will develop their ability to make and engage with art through structured, sequential threads of learning that are embedded to ensure they are securely learned. There will be a growing conviction of their ability to make and share responses to art and themes and to make art, craft and design they value.",
+      "Our curriculum instils a passion for art, craft and design.  Pupils study a broad and diverse range of art and artists, as well as learning the knowledge and skills to develop their own reflective art practice.",
     keyStages: OAK_KEYSTAGES,
     examBoards: [],
     years: [
@@ -188,7 +183,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     title: "Citizenship",
     slug: "citizenship",
     description:
-      "Our curriculum ensures pupils are equipped with the knowledge, skills and understanding to play an effective role in public and democratic life. Pupils study the subject through the foundational citizenship concepts of power, democracy, rights, law and justice, diversity and equality, finance and economy, and active citizenship. Pupils engage in inquiry and critical thinking on political and social issues as they explore multiple perspectives, weigh evidence and engage in debates about topical issues from climate change to misinformation, how democracy can evolve and competing rights are balanced. It supports pupils to deepen citizenship knowledge and understanding as they practise research, deliberation, argumentation, decision-making, advocate for different viewpoints and take action to make a positive difference in their communities and the wider world.",
+      "Our curriculum aims to provide pupils with the knowledge and skills needed to play an effective role in public and democratic life. Pupils learn foundational concepts and are encouraged to think critically and debate on political and social issues.",
     keyStages: [
       {
         slug: "ks3",
@@ -228,7 +223,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     title: "Computing",
     slug: "computing",
     description:
-      "We want pupils to leave Y11, ready to progress to higher levels of study or to a professional career with the following:\n● A strong grasp of how to use technology safely, respectfully and responsibly including social media and mobile devices\n● Multiple experiences to develop their skills, capabilities and creativity in computer science, digital media and information technology across a range of digital tools and devices\n● A strong understanding of how to apply analytical, computational and problem solving skills to a wide range of situations\n● Multiple experiences of programming where they have had the opportunity to encounter design, write and debug increasingly complex and modular programs\n● A strong awareness of current and emerging technologies and the impact these technologies may have on themselves and wider society",
+      "Our curriculum enables pupils to become confident and efficient users of technology and establishes the important knowledge in computing to provide a foundation for the technical nature of the subject.",
     keyStages: OAK_KEYSTAGES,
     examBoards: [
       {
@@ -247,7 +242,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     title: "Design and technology",
     slug: "design-technology",
     description:
-      "Our curriculum is designed using authentic context-led units. It is centred around the knowledge of designing, making, evaluating, and technology and its interaction with society.\n\nThrough careful sequencing of the curriculum, pupils will develop their design and technology capability with increased confidence and autonomy. Knowledge and skills are applied through the manufacture of prototypes using a variety of materials, processes, and systems suitable to a context. Pupils will appreciate how technology works and, through critique, consider its impact on the world.\n\nPupils communicate and iterate both physically and digitally, mastering strategies including design thinking. Through repeat exposure to user and earth-centred design, pupils develop a sense of environmental consciousness, challenge stereotypes, and gain inspiration from the world around them.",
+      "Our curriculum develops pupils’ knowledge of and skills in design applied through the designing and making of prototypes.  Pupils solve real world problems in context led units and evaluate their work and the work of others.",
     keyStages: OAK_KEYSTAGES,
     examBoards: [],
     years: yearsWithoutAllAndR,
@@ -256,7 +251,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
   {
     title: "Drama",
     slug: "drama",
-    description: "",
+    description: null,
     keyStages: [
       {
         slug: "ks1",
@@ -300,7 +295,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     title: "English",
     slug: "english",
     description:
-      "Our curriculum is thoughtfully designed to instil confidence and ignite a genuine passion for the language. It systematically nurtures pupils’ critical skills and knowledge until they are firmly grounded, enabling them to write with purpose and read with fluency and enjoyment.\n\nEvery facet of the English domain - spoken language, reading, writing, spelling, handwriting, grammar, vocabulary development, and poetry - is meticulously addressed, both as discrete and interwoven threads. Pupils engage in repeated and diversified practice, steadily progressing through well-defined steps, ensuring that learning is applicable across various contexts.\n\nWe take pride in nurturing students' sense of identity and self-esteem through a rich tapestry of diverse texts, instilling in them a dual identity as both readers and writers. All pupils emerge as exceptional communicators, regardless of their initial starting points, ready for further study and lifelong engagement with reading.",
+      "Our curriculum enables pupils to manipulate language so that they can build their own meaning, sentences and structures.  They will become confident and effective communicators with a clear understanding of language and culture.",
     keyStages: OAK_KEYSTAGES,
     examBoards: [
       {
@@ -330,7 +325,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     title: "French",
     slug: "french",
     description:
-      "Our curriculum is innovatively designed to demystify language learning and spark interest in French. Rich content and clear communicative aims provide a meaningful opening to other cultures, whilst key language ideas connect lessons and units. We have chosen to teach the most frequently used words as these will be useful to learners whatever their context.\nAll elements of linguistic competence are meticulously interwoven through plentiful practice, first in listening and reading to build understanding, then in speaking and writing to develop manipulation and support independent context-rich effective communication. \n\nOver time, pupils apply their phonics, vocabulary and grammar knowledge through repeated practice in a variety of contexts. As a result, all pupils become effective communicators and learn new ways of thinking about language. They are motivated to study further and  use their language skills to exploit fully opportunities as global citizens. ",
+      "Our curriculum enables pupils to manipulate language so that they can build their own meaning, sentences and structures.  They will become confident and effective communicators with a clear understanding of language and culture. ",
     keyStages: [
       {
         slug: "ks2",
@@ -395,7 +390,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     title: "Geography",
     slug: "geography",
     description:
-      "Our geography curriculum is designed to develop pupils' geographical knowledge to better understand the world. It is structured around a carefully planned progression, allowing pupils to apply their geographical knowledge across a range of regional and thematic units. Key concepts and locations are revisited in increasingly complex contexts, helping pupils develop a deep knowledge and understanding of places, their locations, and their connections with the rest of the world. \n\nThe curriculum integrates mapwork, GIS, and graphical skills into units, enabling pupils to analyse geographical information over time and space.  This adaptable curriculum connects learning to real-world contexts, empowering students with the knowledge to grapple with complex issues, such as climate change and sustainability, and allow them to better understand their surroundings at both a local and global scale.\n\n",
+      "Our curriculum aims to develop pupils’ understanding and curiosity of the world and their place in it. Through carefully structured learning they will analyse geographical patterns and address the social and environmental challenges the world faces.",
     keyStages: OAK_KEYSTAGES,
     examBoards: [
       {
@@ -414,7 +409,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     title: "German",
     slug: "german",
     description:
-      "Our curriculum is innovatively designed to demystify language learning and spark interest in German. Rich content and clear communicative aims provide a meaningful opening to other cultures, whilst key language ideas connect lessons and units. We have chosen to teach the most frequently used words as these will be useful to learners whatever their context.\nAll elements of linguistic competence are meticulously interwoven through plentiful practice, first in listening and reading to build understanding, then in speaking and writing to develop manipulation and support independent context-rich effective communication. \n\nOver time, pupils apply their phonics, vocabulary and grammar knowledge through repeated practice in a variety of contexts. As a result, all pupils become confident communicators and learn new ways of thinking about language. Regardless of their starting points, they are ready for further study and to use their language skills as global citizens. \n",
+      "Our curriculum enables pupils to manipulate language so that they can build their own meaning, sentences and structures.  They will become confident and effective communicators with a clear understanding of language and culture. ",
     keyStages: [
       {
         slug: "ks3",
@@ -463,7 +458,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     title: "History",
     slug: "history",
     description:
-      "Our history curriculum is anchored in both substantive and disciplinary knowledge. By exploring British, European, and World history chronologically, it equips students to comprehend not just what transpired across extensive spans of time and geography, but also the intricate connections that link the events, civilizations, and developments they encounter.\nWe embrace the core objectives of the national curriculum and place a specific emphasis on knowledge, vocabulary, and diversity. Throughout our curriculum, we employ rigorous historical enquiry to shape students' disciplinary and substantive journeys. By incorporating a rich array of historical narratives, we secure knowledge retention and coherence across phases. Broad themes unite the curriculum, grounded in universal concepts that extend across its entirety.",
+      "Our curriculum inspires curiosity about the past and develops pupils’ understanding of history as a discipline. It helps pupils understand historical concepts, methods of enquiry, and how different aspects of the past have been interpreted. ",
     keyStages: OAK_KEYSTAGES,
     examBoards: [
       {
@@ -481,7 +476,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
   {
     title: "Latin",
     slug: "latin",
-    description: "",
+    description: null,
     keyStages: [
       {
         slug: "ks3",
@@ -517,29 +512,8 @@ export const OAK_SUBJECTS: SubjectData[] = [
     title: "Maths",
     slug: "maths",
     description:
-      "Our curriculum provides adaptable, coherently sequenced units to allow pupils to develop a deep, sustained understanding of mathematics at Key Stages 3 and 4. Evidence informed approaches including variation and the development of core sets of models and representations build pupil knowledge and conceptual understanding. Lessons are designed to be flexible, accessible and to acknowledge the diversity in our schools.\n\nCentral to the design of our curriculum is coherence in the development of key threads in mathematics. These threads reflect the structure of the National Curriculum, allowing teachers to track the development of key knowledge and skills.\n\nReasoning and problem solving are integral. Resources promote the use of vocabulary allowing pupils to articulate their thinking and strengthen both their procedural knowledge and conceptual understanding. Use of talk allows pupils to explore mathematical connections and use key vocabulary accurately when presenting their reasoning.",
-    keyStages: [
-      {
-        slug: "ks1",
-        title: "Key Stage 1",
-      },
-      {
-        slug: "ks2",
-        title: "Key Stage 2",
-      },
-      {
-        slug: "ks3",
-        title: "Key Stage 3",
-      },
-      {
-        slug: "ks4",
-        title: "Key Stage 4",
-      },
-      {
-        slug: "early-years-foundation-stage",
-        title: "Early Years Foundation Stage",
-      },
-    ],
+      "Our curriculum develops pupils’ understanding of mathematics over time so that they become competent and confident in identifying and performing the mathematics they need both at school and in their daily lives.",
+    keyStages: OAK_KEYSTAGES,
     examBoards: [],
     years: [
       {
@@ -597,7 +571,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     title: "Music",
     slug: "music",
     description:
-      "Our curriculum centres around developing pupils as musicians and is designed to be flexible and diverse, both in content and the way it is taught. Aligning with the national curriculum strands, and focusing on performing, composing and engaged listening, pupils develop a deeper understanding of music as a platform for a lifelong connection with music. Sequencing is fundamental in the design, demonstrating a route of progression which builds musicianship through developing musical knowledge, skills and specialist language. Performance threads consider accessibility, embracing singing for enjoyment and aural development and keyboard performance to encourage instrument proficiency. Composition threads promote development of creativity through a balance of artistic freedom and structured stylistic and theoretical guidance. Listening to engage with and understand music is integral as is developing an understanding of the musical elements and expression.",
+      "Our curriculum develops pupils as musicians, fostering a deeper understanding of the subject as a platform for a lifelong connection with music. Pupils develop their musicianship and experience a diverse range of musicians and styles.",
     keyStages: [
       {
         slug: "ks1",
@@ -657,7 +631,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     title: "Physical education",
     slug: "physical-education",
     description:
-      "Our physical education curriculum is built upon developing pupils’ knowledge, skills and the confidence to pursue a healthy active lifestyle. By offering diverse physical activities, we aim to develop pupils' physical competence, enhance their understanding of the importance of active living, and instil a purposeful, inclusive approach towards health, physical activity and competition. \n\nCurriculum threads provide additional levels of coherence between units. They allow for continuity in learning and help pupils achieve higher levels of proficiency in various disciplines, alongside increasingly complex physical activities. The curriculum also emphasises holistic development through the move, think, feel and connect framework. We focus on teamwork, leadership and personal responsibility whilst promoting respect, fairness and self-discipline. Our goal is to nurture well-rounded individuals who value physical activity and embody healthy lifestyle choices.\n",
+      "Our curriculum develops pupils’ physical, psychological, social and emotional wellbeing. Competence and confidence are built alongside a focus on being active across a diverse range of sports and activities, encouraging lifelong participation.",
     keyStages: OAK_KEYSTAGES,
     examBoards: [
       {
@@ -728,7 +702,8 @@ export const OAK_SUBJECTS: SubjectData[] = [
   {
     title: "RSHE (PSHE)",
     slug: "rshe-pshe",
-    description: "",
+    description:
+      "Our curriculum aims to equip pupils with the knowledge and skills necessary to make informed decisions about their wellbeing, health, and relationships.  We adhere to statutory guidance, ensuring that teachers are able to deliver correct and well-informed content.",
     keyStages: OAK_KEYSTAGES,
     examBoards: [],
     years: yearsWithoutAllAndR,
@@ -745,7 +720,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     title: "Religious education",
     slug: "religious-education",
     description:
-      "In our curriculum, pupils meet worldviews in a way that builds complexity and depth. By the end of Year 11 pupils will have: \n● A strong grasp of concepts, such as covenant and dharma, being able to articulate the diverse ways in which they have been interpreted. \n● A grounding in key philosophical and ethical traditions leading to a secure understanding of how questions of belief, suffering and goodness have been addressed and contested.\n● Multiple opportunities to examine the continuing influence of religion and non religion in the world today, and to understand how religions have challenged and been challenged by society. \n● Multiple opportunities to explore case studies of religion and non-religion leading to a secure understanding of the complexity and diversity of worldviews in the UK and globally. \n● A secure grasp of the disciplines of religious study, such as theology, philosophy and social science, and the methods that scholars might use to answer questions.",
+      "Our curriculum prepares pupils to navigate the diversity of religious and non-religious worldviews that they may encounter. They will study these worldviews in human life, their teaching and traditions as well as the day-to-day experience of followers. ",
     keyStages: OAK_KEYSTAGES,
     examBoards: [
       {
@@ -768,7 +743,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     title: "Science",
     slug: "science",
     description:
-      'Our science curriculum is built upon the exploration of big questions such as "What are living things and what are they made of?". Each unit develops scientific concepts within the national curriculum, and employs the latest research-based pedagogical strategies to address common misconceptions while enhancing pupils’ scientific knowledge and vocabulary effectively.\n\nUnits are organised into threads for each big question, providing a cohesive and seamless transition between key stages and establishing a clear trajectory for learning progression. At every key stage, units within each thread progressively tackle a big question in a meaningful and age-appropriate manner, delving deeper into answers as pupils advance through the curriculum.\n\nThe curriculum also emphasises the development of practical and fieldwork skills, mathematical proficiencies, and an understanding of scientific practices, all while embracing diversity as a fundamental principle woven into its fabric.',
+      "Our curriculum aims to develop an interest in passion for science by exploring answers to big questions. We combine substantive and disciplinary knowledge to make practical skills, mathematical proficiency, and scientific practices meaningful.",
     keyStages: [
       {
         slug: "ks1",
@@ -828,7 +803,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     title: "Biology",
     slug: "biology",
     description:
-      'Our science curriculum is built upon the exploration of big questions such as "What are living things and what are they made of?". Each unit develops scientific concepts within the national curriculum, and employs the latest research-based pedagogical strategies to address common misconceptions while enhancing pupils’ scientific knowledge and vocabulary effectively.\n\nUnits are organised into threads for each big question, providing a cohesive and seamless transition between key stages and establishing a clear trajectory for learning progression. At every key stage, units within each thread progressively tackle a big question in a meaningful and age-appropriate manner, delving deeper into answers as pupils advance through the curriculum.\n\nThe curriculum also emphasises the development of practical and fieldwork skills, mathematical proficiencies, and an understanding of scientific practices, all while embracing diversity as a fundamental principle woven into its fabric.',
+      "Our curriculum aims to develop an interest in passion for science by exploring answers to big questions. We combine substantive and disciplinary knowledge to make practical skills, mathematical proficiency, and scientific practices meaningful.",
     keyStages: [
       {
         slug: "ks4",
@@ -865,7 +840,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     title: "Chemistry",
     slug: "chemistry",
     description:
-      'Our science curriculum is built upon the exploration of big questions such as "What are living things and what are they made of?". Each unit develops scientific concepts within the national curriculum, and employs the latest research-based pedagogical strategies to address common misconceptions while enhancing pupils’ scientific knowledge and vocabulary effectively.\n\nUnits are organised into threads for each big question, providing a cohesive and seamless transition between key stages and establishing a clear trajectory for learning progression. At every key stage, units within each thread progressively tackle a big question in a meaningful and age-appropriate manner, delving deeper into answers as pupils advance through the curriculum.\n\nThe curriculum also emphasises the development of practical and fieldwork skills, mathematical proficiencies, and an understanding of scientific practices, all while embracing diversity as a fundamental principle woven into its fabric.',
+      "Our curriculum aims to develop an interest in passion for science by exploring answers to big questions. We combine substantive and disciplinary knowledge to make practical skills, mathematical proficiency, and scientific practices meaningful.",
     keyStages: [
       {
         slug: "ks4",
@@ -902,7 +877,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     title: "Combined science",
     slug: "combined-science",
     description:
-      'Our science curriculum is built upon the exploration of big questions such as "What are living things and what are they made of?". Each unit develops scientific concepts within the national curriculum, and employs the latest research-based pedagogical strategies to address common misconceptions while enhancing pupils’ scientific knowledge and vocabulary effectively.\n\nUnits are organised into threads for each big question, providing a cohesive and seamless transition between key stages and establishing a clear trajectory for learning progression. At every key stage, units within each thread progressively tackle a big question in a meaningful and age-appropriate manner, delving deeper into answers as pupils advance through the curriculum.\n\nThe curriculum also emphasises the development of practical and fieldwork skills, mathematical proficiencies, and an understanding of scientific practices, all while embracing diversity as a fundamental principle woven into its fabric.',
+      "Our curriculum aims to develop an interest in passion for science by exploring answers to big questions. We combine substantive and disciplinary knowledge to make practical skills, mathematical proficiency, and scientific practices meaningful.",
     keyStages: [
       {
         slug: "ks4",
@@ -939,7 +914,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     title: "Physics",
     slug: "physics",
     description:
-      'Our science curriculum is built upon the exploration of big questions such as "What are living things and what are they made of?". Each unit develops scientific concepts within the national curriculum, and employs the latest research-based pedagogical strategies to address common misconceptions while enhancing pupils’ scientific knowledge and vocabulary effectively.\n\nUnits are organised into threads for each big question, providing a cohesive and seamless transition between key stages and establishing a clear trajectory for learning progression. At every key stage, units within each thread progressively tackle a big question in a meaningful and age-appropriate manner, delving deeper into answers as pupils advance through the curriculum.\n\nThe curriculum also emphasises the development of practical and fieldwork skills, mathematical proficiencies, and an understanding of scientific practices, all while embracing diversity as a fundamental principle woven into its fabric.',
+      "Our curriculum aims to develop an interest in passion for science by exploring answers to big questions. We combine substantive and disciplinary knowledge to make practical skills, mathematical proficiency, and scientific practices meaningful.",
     keyStages: [
       {
         slug: "ks4",
@@ -976,7 +951,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     title: "Spanish",
     slug: "spanish",
     description:
-      "Our curriculum is innovatively designed to demystify language learning and spark interest in Spanish. Rich content and clear communicative aims provide a meaningful opening to other cultures, whilst key language ideas connect lessons and units. We have chosen to teach the most frequently used words as these will be useful to learners whatever their context.\nAll elements of linguistic competence are meticulously interwoven through plentiful practice, first in listening and reading to build understanding, then in speaking and writing to develop manipulation and support independent context-rich effective communication. \n\nOver time, pupils apply their phonics, vocabulary and grammar knowledge through repeated practice in a variety of contexts. As a result, all pupils become effective communicators and learn new ways of thinking about language. They are motivated to study further and  use their language skills to exploit fully opportunities as global citizens. ",
+      "Our curriculum enables pupils to manipulate language so that they can build their own meaning, sentences and structures.  They will become confident and effective communicators with a clear understanding of language and culture. ",
     keyStages: [
       {
         slug: "ks2",
@@ -1045,7 +1020,7 @@ export const OAK_SUBJECTS: SubjectData[] = [
     title: "Cooking and nutrition",
     slug: "cooking-nutrition",
     description:
-      "Our curriculum recognises food as a fundamental aspect of life, enriching pupils’ knowledge and skills for their and others' wellbeing now and in the future. \n\nStructured around thematic units and threads, pupils are taught nutrition, food provenance, consumer awareness, and food hygiene and safety, applying their learning via cooking, tasting and scientific investigation.\n\nOur curriculum reflects the diversity of different food cultures, acknowledging changing needs while honouring diverse backgrounds. Pupils explore food and cuisines from around the world, broadening their horizons through hands-on experiences. Critical thinking skills are developed, enabling pupils to make informed food choices, and take action on global food challenges.\n\nThrough this curriculum we want pupils to have healthier and more sustainable diets, and celebrate food as a source of nourishment, connection, and joy.\n",
+      "Our curriculum equips pupils with practical food skills and develops their understanding of healthy and sustainable diets.  They are taught to make informed decisions and to celebrate food as an important part of different cultures.",
     keyStages: [
       {
         slug: "ks1",
@@ -1104,7 +1079,8 @@ export const OAK_SUBJECTS: SubjectData[] = [
   {
     title: "Financial education",
     slug: "financial-education",
-    description: "",
+    description:
+      "Our financial education lessons aim to help pupils learn about money and develop financial skills to manage money sensibly, both on and offline.",
     keyStages: OAK_KEYSTAGES,
     examBoards: [],
     years: yearsWithoutAllAndR,

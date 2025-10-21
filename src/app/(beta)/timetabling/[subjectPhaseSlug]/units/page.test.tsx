@@ -1,16 +1,40 @@
 import Page from "./page";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { createUnit } from "@/fixtures/curriculum/unit";
 import { useFeatureFlag } from "@/utils/featureFlags";
 
-jest.mock("src/utils/featureFlags");
+jest.mock("@/utils/featureFlags");
 
+jest.mock("@/node-lib/curriculum-api-2023", () => ({
+  curriculumSequence: jest.fn(() => ({
+    units: [createUnit({ slug: "test", subject_slug: "maths" })],
+  })),
+  curriculumPhaseOptions: jest.fn(() => {
+    return [
+      {
+        tab: "units",
+        slug: "maths",
+        title: "Maths",
+        phases: [
+          {
+            slug: "primary",
+            title: "Primary",
+          },
+        ],
+        ks4_options: [],
+      },
+    ];
+  }),
+}));
+
+const defaultParams = new URLSearchParams("");
+const mockUseSearchParams = jest.fn(() => defaultParams);
 jest.mock("next/navigation", () => {
-  const defaultSearchParams = new URLSearchParams("");
   return {
     __esModule: true,
-    usePathname: () => "/timetabling/maths-primary/new",
-    useSearchParams: () => defaultSearchParams,
+    usePathname: () => "/timetabling/maths-primary/units",
+    useSearchParams: () => mockUseSearchParams(),
     notFound: () => {
       throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
     },
@@ -18,22 +42,24 @@ jest.mock("next/navigation", () => {
 });
 
 describe("/timetabling/units", () => {
-  test("when enabled", async () => {
+  test("basic", async () => {
     (useFeatureFlag as jest.Mock).mockResolvedValue(true);
     const { baseElement } = renderWithTheme(
       await Page({
         params: Promise.resolve({ subjectPhaseSlug: "maths-primary" }),
       }),
     );
-    expect(baseElement).toHaveTextContent("Year 1 maths");
+    expect(baseElement).toHaveTextContent("Your Maths timetable");
   });
 
-  test("when disabled", async () => {
-    (useFeatureFlag as jest.Mock).mockResolvedValue(false);
-    expect(async () => {
-      return await Page({
+  test("with name", async () => {
+    (useFeatureFlag as jest.Mock).mockResolvedValue(true);
+    mockUseSearchParams.mockReturnValue(new URLSearchParams("?name=Testing"));
+    const { baseElement } = renderWithTheme(
+      await Page({
         params: Promise.resolve({ subjectPhaseSlug: "maths-primary" }),
-      });
-    }).rejects.toEqual(new Error("NEXT_HTTP_ERROR_FALLBACK;404"));
+      }),
+    );
+    expect(baseElement).toHaveTextContent("Testing");
   });
 });

@@ -7,6 +7,7 @@ import {
 } from "@oaknational/oak-curriculum-schema";
 
 export const intentRequestSchema = z.object({
+  v: z.enum(["1"]),
   searchTerm: z.string().min(2).max(250),
 });
 
@@ -61,6 +62,7 @@ export const suggestedFilterSchema = z.union([
     title: z.string(),
   }),
 ]);
+export type SuggestedFilter = z.infer<typeof suggestedFilterSchema>;
 
 export const searchIntentSchema = z.object({
   directMatch: directMatchSchema.nullable(),

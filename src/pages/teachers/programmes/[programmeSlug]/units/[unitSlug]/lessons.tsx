@@ -20,6 +20,7 @@ import {
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import LessonList from "@/components/TeacherComponents/LessonList";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import {
@@ -225,6 +226,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         ...getSeoProps({
           title: `${unitTitle} ${keyStageSlug.toUpperCase()} | Y${year} ${subjectTitle} Lesson Resources${paginationTitle}`,
           description: `Free lessons and teaching resources about ${unitTitle.toLowerCase()}`,
+          canonicalURL: `${getBrowserConfig("seoAppUrl")}/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons`,
         }),
       }}
       $background="white"
