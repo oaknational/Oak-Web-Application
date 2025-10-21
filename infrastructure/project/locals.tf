@@ -140,8 +140,10 @@ locals {
 
   all_custom_env_vars = concat(local.custom_env_vars, local.sensitive_custom_env_vars, local.custom_env_vars_shared)
 
+  required_env_names = local.build_type == "website" ? local.env_names : []
+
   lookup_vars = flatten([
-    for env_name in local.env_names : [
+    for env_name in required_env_names : [
       for key, value in {
         "GCP_PROJECT_ID"                         = data.terraform_remote_state.google_projects["${local.superuser_workspace_prefix}-${env_name.gcp}"].outputs.project_id
         "GCP_SERVICE_ACCOUNT_EMAIL"              = data.terraform_remote_state.google_projects["${local.superuser_workspace_prefix}-${env_name.gcp}"].outputs.project_config.workload_identity_service_accounts.vercel["oak-web-application-website::${env_name.vercel}"]
