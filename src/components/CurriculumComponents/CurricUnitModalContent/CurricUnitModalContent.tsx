@@ -104,7 +104,7 @@ export default function CurricUnitModalContent({
                 background={undefined}
                 onClick={() => {
                   const url = join(basePath, unitData.slug);
-                  router.push(url, undefined, { shallow: true });
+                  router.push(url);
                 }}
               />
             </OakBox>
