@@ -9,9 +9,14 @@ import {
 } from "@oaknational/oak-components";
 import { ThemeProvider } from "styled-components";
 import { useMemo, useState } from "react";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import Link from "next/link";
 
 import { CurricTimetableHeader } from "../CurricTimetableHeader";
 import CurricTimetablingFilters from "../CurricTimetablingFilters";
+import CurricUnitModal from "../CurricUnitModal";
+import CurricUnitModalContentAppRouter from "../CurricUnitModalContent/CurricUnitModalContentAppRouter";
+import CurricModalErrorContent from "../CurricModalErrorContent/CurricModalErrorContent";
 
 import { useTimetableParams } from "@/utils/curriculum/timetabling";
 import { CurriculumFilters, Unit } from "@/utils/curriculum/types";
@@ -21,6 +26,7 @@ import {
   formatCurriculumUnitsData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
+import { findUnitOrOptionBySlug } from "@/utils/curriculum/units";
 
 function getDefaultName(
   data: ReturnType<typeof useTimetableParams>[0],
@@ -38,13 +44,19 @@ type CurricTimetablingUnitsProps = {
   curriculumPhaseOptions:
     | ReturnType<typeof fetchSubjectPhasePickerData>
     | Awaited<ReturnType<typeof fetchSubjectPhasePickerData>>;
+  selectedUnitSlug?: string;
 };
 export const CurricTimetablingUnits = ({
   units,
   slugs,
+  selectedUnitSlug,
 }: CurricTimetablingUnitsProps) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [data] = useTimetableParams();
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
   const [filters, setFilters] = useState<CurriculumFilters>(() => {
     return {
       years: [data.year ?? "1"],
@@ -70,6 +82,26 @@ export const CurricTimetablingUnits = ({
           : [],
     };
   }, [data, unitDataPre]);
+
+  // Find the unit data for the selected unit slug
+  const { unit: selectedUnit, unitOption: selectedUnitOption } =
+    findUnitOrOptionBySlug(unitData.yearData, selectedUnitSlug);
+
+  const displayUnitModal = !!selectedUnitSlug;
+
+  // Build the base path - should always end with /units
+  let basePath = pathname || "";
+
+  if (basePath.includes("/units/")) {
+    // If we're on a unit detail page, strip the unit slug
+    basePath = basePath.split("/units/")[0] + "/units";
+  }
+
+  const handleCloseModal = () => {
+    const searchParamsStr = searchParams?.toString() ?? "";
+    const href = `${basePath}${!searchParamsStr ? "" : `?${searchParamsStr}`}`;
+    router.replace(href);
+  };
 
   const onEditDetails = () => {
     setModalOpen(true);
@@ -134,9 +166,19 @@ export const CurricTimetablingUnits = ({
               <ul>
                 {data.year &&
                   unitData.yearData[data.year]?.units.map((unit, unitIndex) => {
+                    const searchParamsStr = searchParams?.toString() ?? "";
+                    const unitUrl = `${basePath}/${unit.slug}${!searchParamsStr ? "" : `?${searchParamsStr}`}`;
+
                     return (
                       <li key={`${unit.slug}-${unitIndex}`}>
-                        <div>📦 {unit.title}</div>
+                        <Link
+                          href={unitUrl}
+                          style={{ textDecoration: "none", color: "inherit" }}
+                        >
+                          <div style={{ cursor: "pointer" }}>
+                            📦 {unit.title}
+                          </div>
+                        </Link>
                         <ul>
                           {unit.lessons?.map((lesson, lessonIndex) => {
                             return (
@@ -153,6 +195,46 @@ export const CurricTimetablingUnits = ({
             </OakFlex>
           </OakFlex>
         </OakMaxWidth>
+
+        {/* Unit Modal */}
+        <CurricUnitModal
+          open={displayUnitModal}
+          onClose={handleCloseModal}
+          unitData={selectedUnit}
+          unitOptionData={selectedUnitOption}
+          filters={filters}
+          disableFooter={Boolean(selectedUnitSlug && !selectedUnit)}
+        >
+          {selectedUnit && (
+            <CurricUnitModalContentAppRouter
+              basePath={basePath}
+              unitData={selectedUnit}
+              unitOptionData={selectedUnitOption}
+              yearData={unitData.yearData}
+              selectedThread={null}
+            />
+          )}
+          {selectedUnitSlug && !selectedUnit && (
+            <OakBox
+              $pv={[
+                "inner-padding-xl",
+                "inner-padding-xl5",
+                "inner-padding-xl5",
+              ]}
+              $ph={[
+                "inner-padding-xl",
+                "inner-padding-xl6",
+                "inner-padding-xl6",
+              ]}
+            >
+              <CurricModalErrorContent
+                statusCode="404"
+                message="This unit does not exist."
+                additional="Close the modal to browse available units."
+              />
+            </OakBox>
+          )}
+        </CurricUnitModal>
       </ThemeProvider>
     </>
   );
