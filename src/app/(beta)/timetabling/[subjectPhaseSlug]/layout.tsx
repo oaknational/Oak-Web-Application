@@ -1,7 +1,5 @@
 import { notFound } from "next/navigation";
 
-import TimetablingProvider from "./TimetablingProvider";
-
 import { useFeatureFlag } from "@/utils/featureFlags";
 
 export default async function Layout({
@@ -14,5 +12,5 @@ export default async function Layout({
     return notFound();
   }
 
-  return <TimetablingProvider>{children}</TimetablingProvider>;
+  return <>{children}</>;
 }
