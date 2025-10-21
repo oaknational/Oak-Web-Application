@@ -12,8 +12,7 @@ export default {
         "In 'Poetry about Place and Home', pupils create their own poetry to explore their relationship with their home. In 'Single Poet Study: Maya Angelou', pupils analyse the poetry of Angelou, exploring how she uses her work to describe relationships between people and places.",
       connection_future_unit_title: "Single poet study: Maya Angelou",
       connection_prior_unit_title: "Poetry of place",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks3",
@@ -126,13 +125,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 1,
-          title: "Adapt to local context",
-          category: "",
-        },
-      ],
+
       subjectcategories: [],
       tier: null,
       tier_slug: null,
@@ -170,8 +163,7 @@ export default {
         "In 'A Monster Within', pupils explore extracts from Gothic fiction. In 'Gothic Poetry', pupils apply this learning to the poetry of Edgar Allan Poe.",
       connection_future_unit_title: "Gothic poetry",
       connection_prior_unit_title: "'The Twisted Tree': fiction reading",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks3",
@@ -413,7 +405,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [],
       tier: null,
       tier_slug: null,
@@ -455,8 +447,7 @@ export default {
         "In 'Malevolent Characters', pupils focus on a range of writing skills including how to describe the setting through action, create shifts in tone, paragraph effectively and use punctuation purposefully. In 'Science Fiction Writing', pupils further develop these writing skills, with a particular focus on the science fiction genre and how to write in this style. ",
       connection_future_unit_title: "Fiction: science fiction writing",
       connection_prior_unit_title: "Myths, legends and stories that inspire",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks3",
@@ -542,7 +533,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [],
       tier: null,
       tier_slug: null,
@@ -579,8 +570,7 @@ export default {
         "In 'Unseen Poetry', pupils need to consider the choices made by a poet, to explain how they convey meaning without having context or prior knowledge of the poem to draw on. In 'A World at War: Poetry, pupils have several opportunities to write their own poems in the style of the war poems studied, which pushes them to consider the craft of writing poetry more closely. ",
       connection_future_unit_title: "Unseen poetry",
       connection_prior_unit_title: "Myths, legends and stories that inspire",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks3",
@@ -680,13 +670,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 1,
-          title: "Adapt to local context",
-          category: "",
-        },
-      ],
+
       subjectcategories: [],
       tier: null,
       tier_slug: null,
@@ -725,8 +709,7 @@ export default {
       connection_future_unit_title: "Modern text: first study",
       connection_prior_unit_title:
         "A monster within: reading and writing Gothic fiction",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks3",
@@ -919,7 +902,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [],
       tier: null,
       tier_slug: null,
@@ -952,8 +935,7 @@ export default {
         "In 'Small Island', pupils explore the ways in which transferring Levy's novel onto the stage enables both the playwright and the director to powerfully evoke its ideas about race, identity and belonging. In 'Leave Taking', pupils build on their learning about the Windrush Generation to explore the cultural and generational conflicts, that can arise as a result of migration. ",
       connection_future_unit_title: null,
       connection_prior_unit_title: "'The Tempest'",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks3",
@@ -1147,7 +1129,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [],
       tier: null,
       tier_slug: null,
@@ -1181,8 +1163,7 @@ export default {
       connection_future_unit_title:
         "Spoken language masters: refining public speaking skills",
       connection_prior_unit_title: "Participating in effective debates",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks3",
@@ -1225,7 +1206,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [],
       tier: null,
       tier_slug: null,
@@ -1251,8 +1232,7 @@ export default {
         "In 'Othello', pupils learn about the conventions of a tragic hero, which allows them to judge whether the protagonist is more a victim of his own hamartia or rather of external pressures and a racist society. In 'Macbeth: A Tragic  Hero', pupils evaluate whether Macbeth's downfall is caused by his own hubris or whether Lady Macbeth and wider society can be blamed. ",
       connection_future_unit_title: "Macbeth: a tragic hero",
       connection_prior_unit_title: "Taking a stand",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks3",
@@ -1444,7 +1424,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [],
       tier: null,
       tier_slug: null,
@@ -1476,8 +1456,7 @@ export default {
         "In 'The fundamentals of discussion' pupils are encouraged to be confident speakers and active listeners, developing their ideas with evidence and posing questions. In 'Participating in effective debates' these skills are developed through the formal structure of debate.",
       connection_future_unit_title: "Participating in effective debates",
       connection_prior_unit_title: "Talking transitions",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks3",
@@ -1522,7 +1501,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [],
       tier: null,
       tier_slug: null,
@@ -1549,8 +1528,7 @@ export default {
       connection_future_unit_title: "Dystopian settings: descriptive writing",
       connection_prior_unit_title:
         "'When the Sky Falls': narrative and journalistic report writing",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks3",
@@ -1820,7 +1798,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [],
       tier: null,
       tier_slug: null,
@@ -1851,8 +1829,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: "Fiction: inner musings",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks4",
@@ -1946,7 +1923,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 18,
@@ -1993,8 +1970,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: "Non-fiction: teenage kicks",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks4",
@@ -2069,13 +2045,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 1,
-          title: "Adapt to local context",
-          category: "",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 18,
@@ -2118,8 +2088,7 @@ export default {
         "In 'Fiction: Inner Musings', pupils develop narrative writing skills. In 'Writing Masters', pupils experiment using language and structure to write interesting and creative texts.",
       connection_future_unit_title: "Writing masters",
       connection_prior_unit_title: "Fiction: books that changed my world",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks4",
@@ -2220,13 +2189,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 1,
-          title: "Adapt to local context",
-          category: "",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 18,
@@ -2269,8 +2232,7 @@ export default {
         "In 'Non-Fiction: Teenage Kicks', pupils evaluate how authors use language, to express similar or differing viewpoints. In 'Non-Fiction: Explorers', pupils analyse how historical or social context may lead to authors having differing views, on the same topics.",
       connection_future_unit_title: "Non-fiction: explorers",
       connection_prior_unit_title: "Non-fiction: changing views",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks4",
@@ -2411,13 +2373,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 1,
-          title: "Adapt to local context",
-          category: "",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 18,
@@ -2459,8 +2415,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: "Spoken language: the language of change",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks4",
@@ -2510,7 +2465,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 18,
@@ -2540,8 +2495,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: "Eduqas",
       examboard_slug: "eduqas",
       keystage_slug: "ks4",
@@ -2555,7 +2509,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 19,
@@ -2734,8 +2688,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -2749,13 +2702,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 1,
-          title: "Adapt to local context",
-          category: "",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 19,
@@ -3019,8 +2966,7 @@ export default {
         "In 'Non-Fiction: Changing Views', pupils compare language choices used in non-fiction texts. In 'Non-Fiction: Teenage Kicks', pupils evaluate how authors use language, to express similar or differing viewpoints.",
       connection_future_unit_title: "Non-fiction: teenage kicks",
       connection_prior_unit_title: "Non-fiction: crime and punishment",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks4",
@@ -3175,7 +3121,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 18,
@@ -3218,8 +3164,7 @@ export default {
         "In 'Fiction: Science Fiction', pupils identify and comment on recurring images and symbolism in texts. In 'Fiction: Books that Changed my World', pupils explore multiple interpretations of an author's language choices.",
       connection_future_unit_title: "Fiction: books that changed my world",
       connection_prior_unit_title: "Fiction: read around the world",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks4",
@@ -3311,7 +3256,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 18,
@@ -3355,8 +3300,7 @@ export default {
       connection_future_unit_title: "Fiction: science fiction writing",
       connection_prior_unit_title:
         "Literary perspectives from the First World War",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks4",
@@ -3507,13 +3451,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 1,
-          title: "Adapt to local context",
-          category: "",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 18,
@@ -3558,8 +3496,7 @@ export default {
         "In 'Women's rights across the ages', students look at the way language has evolved in the discussion of gender, from the 18th Century to today and to what extent this reflects changing social attitudes. In 'Macbeth: Lady Macbeth as Machiavellian Villain', students examine the play's unconventional female lead, considering how sympathetically she might be viewed by audiences across the ages. ",
       connection_future_unit_title: "Lady Macbeth as a Machiavellian villain",
       connection_prior_unit_title: "Taking a stand",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks3",
@@ -3753,7 +3690,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [],
       tier: null,
       tier_slug: null,
@@ -3788,8 +3725,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: "AQA",
       examboard_slug: "aqa",
       keystage_slug: "ks4",
@@ -3803,7 +3739,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 19,
@@ -4272,8 +4208,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: "AQA",
       examboard_slug: "aqa",
       keystage_slug: "ks4",
@@ -4287,13 +4222,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 1,
-          title: "Adapt to local context",
-          category: "",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 19,
@@ -5117,8 +5046,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: "AQA",
       examboard_slug: "aqa",
       keystage_slug: "ks4",
@@ -5132,7 +5060,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 19,
@@ -5316,8 +5244,7 @@ export default {
       connection_future_unit_title:
         "Macbeth and masculinity: the struggle for power",
       connection_prior_unit_title: "Lady Macbeth as a Machiavellian villain",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks4",
@@ -5381,7 +5308,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 19,
@@ -5417,8 +5344,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: "Eduqas",
       examboard_slug: "eduqas",
       keystage_slug: "ks4",
@@ -5432,13 +5358,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 1,
-          title: "Adapt to local context",
-          category: "",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 19,
@@ -5590,8 +5510,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks4",
@@ -5605,7 +5524,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 19,
@@ -5716,8 +5635,7 @@ export default {
         "In 'Fiction: Books that Changed My World', pupils explore how authors use language for effect in their writing. In 'Fiction: Inner Musings', pupils develop focus on using author's language choices to make nuanced evaluations about a text..",
       connection_future_unit_title: "Fiction: inner musings",
       connection_prior_unit_title: "Fiction: science fiction writing",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks4",
@@ -5836,13 +5754,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 1,
-          title: "Adapt to local context",
-          category: "",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 18,
@@ -5885,8 +5797,7 @@ export default {
         "In 'The Twisted Tree', pupils explore Gothic imagery in a contemporary text. In 'Dystopian Settings', pupils use their own dark imagery to write their own descriptive pieces.",
       connection_future_unit_title: "Dystopian settings: descriptive writing",
       connection_prior_unit_title: "Sherlock Holmes: short stories",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks3",
@@ -6131,7 +6042,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [],
       tier: null,
       tier_slug: null,
@@ -6164,8 +6075,7 @@ export default {
       connection_future_unit_title:
         "A monster within: reading and writing Gothic fiction",
       connection_prior_unit_title: "'The Twisted Tree': fiction reading",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks3",
@@ -6294,7 +6204,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [],
       tier: null,
       tier_slug: null,
@@ -6332,8 +6242,7 @@ export default {
         "In 'Participating in effective debates', pupils begin to confidently deliver complex ideas and arguments through spoken language. In 'The language of change' pupils will analyse, create and develop a presentation for delivery in a formal setting.",
       connection_future_unit_title: "Spoken language: the language of change",
       connection_prior_unit_title: "The fundamentals of effective discussion",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks3",
@@ -6376,7 +6285,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [],
       tier: null,
       tier_slug: null,
@@ -6402,8 +6311,7 @@ export default {
         "In 'Writing with passion', students use protest poetry and speeches as inspiration for their own protest writing. In 'Single Poet Study: Maya Angelou', students look in depth at the writing of a poet who is synonymous with writing as protest; in particular at the ways in which she used her poetry to voice support for the Civil Rights Movement. ",
       connection_future_unit_title: "Single poet study: Maya Angelou",
       connection_prior_unit_title: "Myths, legends and stories that inspire",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks3",
@@ -6517,7 +6425,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [],
       tier: null,
       tier_slug: null,
@@ -6555,8 +6463,7 @@ export default {
       connection_future_unit_title:
         "Women's rights across the ages: non-fiction reading and writing",
       connection_prior_unit_title: "Sherlock Holmes: short stories",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks3",
@@ -6632,7 +6539,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [],
       tier: null,
       tier_slug: null,
@@ -6675,8 +6582,7 @@ export default {
       connection_future_unit_title: "Comparing poetry from the First World War",
       connection_prior_unit_title:
         "A monster within: reading and writing Gothic fiction",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks3",
@@ -6733,7 +6639,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [],
       tier: null,
       tier_slug: null,
@@ -6768,8 +6674,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks4",
@@ -6783,7 +6688,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 19,
@@ -6894,8 +6799,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: "Poetry anthology: continued study",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks4",
@@ -7058,13 +6962,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 1,
-          title: "Adapt to local context",
-          category: "",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 19,
@@ -7100,8 +6998,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: "AQA",
       examboard_slug: "aqa",
       keystage_slug: "ks4",
@@ -7115,7 +7012,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 19,
@@ -7294,8 +7191,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks4",
@@ -7360,7 +7256,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 19,
@@ -7390,8 +7286,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks4",
@@ -7405,7 +7300,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 19,
@@ -7570,8 +7465,7 @@ export default {
         "in 'Sherlock Holmes: Short Stories', pupils practise using analytical writing sentence structures, to formulate their arguments. In 'Myths and Legends Re-Told', pupils develop these skills further, applying them to a range of pre- 20th Century texts. ",
       connection_future_unit_title: "Myths, legends and stories that inspire",
       connection_prior_unit_title: "'When the Sky Falls': reading",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks3",
@@ -7748,7 +7642,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [],
       tier: null,
       tier_slug: null,
@@ -7777,8 +7671,7 @@ export default {
       connection_future_unit_title: "Modern text: first study",
       connection_prior_unit_title:
         "Step into the unknown: fiction reading and creative writing",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks3",
@@ -8008,7 +7901,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [],
       tier: null,
       tier_slug: null,
@@ -8040,8 +7933,7 @@ export default {
         "In 'A Midsummer Night's Dream', pupils learn about marriage conventions within Shakespeare's patriarchal society. In 'Macbeth: Lady Macbeth as a Machiavellian Villain', pupils explore the ways in which this female character subverts the expectations of women in her day and question whether modern and contemporary audiences are likely to sympathise with her. ",
       connection_future_unit_title: "Lady Macbeth as a Machiavellian villain",
       connection_prior_unit_title: "'The Tempest'",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks3",
@@ -8278,7 +8170,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [],
       tier: null,
       tier_slug: null,
@@ -8311,8 +8203,7 @@ export default {
       connection_future_unit_title:
         "Women's rights across the ages: non-fiction reading and writing",
       connection_prior_unit_title: "Sherlock Holmes: short stories",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks3",
@@ -8383,7 +8274,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [],
       tier: null,
       tier_slug: null,
@@ -8415,8 +8306,7 @@ export default {
         "In 'A World at War: Short Stories', pupils explore the reasons for writing war literature and how it seeks to convey the suffering of soldiers and civilians, in times of conflict. In 'Power and Conflict Poetry', students explore the many types of conflict that arise through war, with themes including patriotism, propaganda, fear, guilt and duty.",
       connection_future_unit_title: "Poetry anthology: first study",
       connection_prior_unit_title: "'The Tempest'",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks3",
@@ -8619,7 +8509,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [],
       tier: null,
       tier_slug: null,
@@ -8650,8 +8540,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks4",
@@ -8665,7 +8554,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 19,
@@ -8916,8 +8805,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -8931,13 +8819,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 1,
-          title: "Adapt to local context",
-          category: "",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 19,
@@ -9511,8 +9393,7 @@ export default {
       connection_future_unit_title: "Non-fiction: changing views",
       connection_prior_unit_title:
         "Women's rights across the ages: non-fiction reading and writing",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks4",
@@ -9615,7 +9496,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 18,
@@ -9656,8 +9537,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks4",
@@ -9718,7 +9598,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 18,
@@ -9748,8 +9628,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: "Eduqas",
       examboard_slug: "eduqas",
       keystage_slug: "ks4",
@@ -9763,7 +9642,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 19,
@@ -10234,8 +10113,7 @@ export default {
         "In 'Macbeth: Lady Macbeth as a Machiavellian Villain', pupils focus on the role that Lady Macbeth plays in the downfall of her husband. In 'Macbeth: A Tragic Hero', pupils become more critical of Macbeth's own decisions, evaluating whether he could be considered a tragic hero.",
       connection_future_unit_title: "Macbeth: a tragic hero",
       connection_prior_unit_title: "'Othello'",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks4",
@@ -10443,7 +10321,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 19,
@@ -10479,8 +10357,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks4",
@@ -10494,7 +10371,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 19,
@@ -10950,8 +10827,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: "Eduqas",
       examboard_slug: "eduqas",
       keystage_slug: "ks4",
@@ -10965,13 +10841,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 1,
-          title: "Adapt to local context",
-          category: "",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 19,
@@ -11311,8 +11181,7 @@ export default {
       connection_future_unit_title: null,
       connection_prior_unit_title:
         "Women's rights across the ages: non-fiction reading and writing",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks4",
@@ -11429,7 +11298,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 18,
@@ -11465,8 +11334,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks4",
@@ -11541,7 +11409,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 18,
@@ -11571,8 +11439,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: "Eduqas",
       examboard_slug: "eduqas",
       keystage_slug: "ks4",
@@ -11586,7 +11453,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 19,
@@ -11767,8 +11634,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks4",
@@ -11782,7 +11648,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 19,
@@ -11964,8 +11830,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: "AQA",
       examboard_slug: "aqa",
       keystage_slug: "ks4",
@@ -11979,13 +11844,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 1,
-          title: "Adapt to local context",
-          category: "",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 19,
@@ -12356,8 +12215,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: "Macbeth: a tragic hero",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks4",
@@ -12424,7 +12282,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 19,
@@ -12460,8 +12318,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks4",
@@ -12475,7 +12332,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 19,
@@ -12651,8 +12508,7 @@ export default {
       connection_future_unit_title: "'A Midsummer Night's Dream'",
       connection_prior_unit_title:
         "Shakespeare's 'Romeo and Juliet': diary and narrative writing",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks3",
@@ -12887,7 +12743,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [],
       tier: null,
       tier_slug: null,
@@ -12919,8 +12775,7 @@ export default {
         "In 'Single Poet Study: Maya Angelou', pupils study a body of work by a single poet, in order to explore what makes her style and voice unique, giving Angelou her identity as a writer. In the second  Power and Conflict Poetry unit, pupils study the identity cluster of poems, including works by Agard, Dharker and Rumens, all of which use poetic voice to explore questions about personal identity.",
       connection_future_unit_title: "Poetry anthology: continued study",
       connection_prior_unit_title: "Poetry about place and home",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks3",
@@ -13081,7 +12936,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [],
       tier: null,
       tier_slug: null,
