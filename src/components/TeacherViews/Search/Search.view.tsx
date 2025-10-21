@@ -9,6 +9,8 @@ import {
   OakP,
   OakBox,
   OakMaxWidth,
+  OakLoadingSpinner,
+  OakSpan,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
@@ -73,7 +75,6 @@ const Search: FC<SearchProps> = (props) => {
     term: query.term,
     enabled: Boolean(isAiExperimentSearchEnabled),
   });
-
   useEffect(() => {
     if (query.term && status === "loading") {
       setSearchStartTime(performance.now());
@@ -366,6 +367,13 @@ const Search: FC<SearchProps> = (props) => {
                   "flex",
                 ]}
               >
+                {suggestedFilters.status === "loading" && (
+                  <>
+                    <OakSpan>
+                      Loading filters <OakLoadingSpinner />
+                    </OakSpan>
+                  </>
+                )}
                 {isAiExperimentSearchEnabled ? (
                   <>
                     <SearchSuggestedFilters
@@ -390,13 +398,15 @@ const Search: FC<SearchProps> = (props) => {
                         </OakBox>
                       </MiniDropDown>
                     ) : (
-                      <SearchFilters
-                        {...searchFilters}
-                        trackSearchModified={trackSearchModified(
-                          query.term,
-                          track.searchFilterModified,
-                        )}
-                      />
+                      suggestedFilters.status !== "loading" && (
+                        <SearchFilters
+                          {...searchFilters}
+                          trackSearchModified={trackSearchModified(
+                            query.term,
+                            track.searchFilterModified,
+                          )}
+                        />
+                      )
                     )}
                   </>
                 ) : (
