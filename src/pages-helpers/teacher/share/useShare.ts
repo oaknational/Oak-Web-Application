@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useRouter } from "next/router";
 
 import { getUpdatedUrl } from "./getUpdatedUrl";
 import {
@@ -10,15 +11,12 @@ import {
   storeActivationKey,
   storeConversionShareId,
 } from "./createShareId";
-import {
-  CoreProperties,
-  CurriculumTrackingProps,
-} from "./shareExperimentTypes";
+import { CoreProperties, CurriculumTrackingProps } from "./shareTypes";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { LessonReleaseCohortValueType } from "@/browser-lib/avo/Avo";
 
-export const useShareExperiment = ({
+export const useShare = ({
   programmeSlug,
   source,
   shareBaseUrl,
@@ -32,7 +30,7 @@ export const useShareExperiment = ({
     lessonReleaseDate: string;
     lessonReleaseCohort: LessonReleaseCohortValueType;
   };
-  overrideExistingShareId: boolean | null;
+  overrideExistingShareId: boolean;
 }) => {
   const shareIdRef = useRef<string | null>(null);
   const shareIdKeyRef = useRef<string | null>(null);
@@ -40,6 +38,8 @@ export const useShareExperiment = ({
   const [browserUrl, setBrowserUrl] = useState<string | null>(null);
 
   const { track } = useAnalytics();
+
+  const router = useRouter();
 
   const { lessonSlug, unitSlug } = curriculumTrackingProps;
 
@@ -78,11 +78,6 @@ export const useShareExperiment = ({
           ...curriculumTrackingProps,
         });
       }
-    }
-
-    // don't continue if feature flag is not yet ready
-    if (overrideExistingShareId === null) {
-      return;
     }
 
     // don't continue if we already have a shareId
@@ -149,6 +144,23 @@ export const useShareExperiment = ({
     coreTrackingProps,
     overrideExistingShareId,
   ]);
+
+  useEffect(() => {
+    if (browserUrl && window.location.href !== browserUrl) {
+      const url = new URL(browserUrl);
+      router.replace(
+        {
+          pathname: router.pathname,
+          query: {
+            ...router.query,
+            ...Object.fromEntries(url.searchParams),
+          },
+        },
+        undefined,
+        { shallow: true },
+      );
+    }
+  }, [browserUrl, router]);
 
   const shareActivated = (noteLengthChars?: number) => {
     if (!shareIdRef.current || !shareIdKeyRef.current) {

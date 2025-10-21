@@ -21,7 +21,7 @@ import { populateLessonWithTranscript } from "@/utils/handleTranscript";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesModal/TeacherNotesModal";
 import { useLesson } from "@/pages-helpers/teacher/useLesson/useLesson";
-import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
+import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share/shareTypes";
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 import Banners from "@/components/SharedComponents/Banners";
