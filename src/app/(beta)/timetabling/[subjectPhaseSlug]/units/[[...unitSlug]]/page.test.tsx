@@ -6,6 +6,21 @@ import { useFeatureFlag } from "@/utils/featureFlags";
 
 jest.mock("@/utils/featureFlags");
 
+// Mock window.matchMedia
+Object.defineProperty(window, "matchMedia", {
+  writable: true,
+  value: jest.fn().mockImplementation((query) => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: jest.fn(),
+    removeListener: jest.fn(),
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+    dispatchEvent: jest.fn(),
+  })),
+});
+
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
   curriculumSequence: jest.fn(() => ({
     units: [createUnit({ slug: "test", subject_slug: "maths" })],
@@ -44,6 +59,17 @@ jest.mock("next/navigation", () => {
     },
   };
 });
+
+const unitOverviewExplored = jest.fn();
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      unitOverviewExplored: (...args: unknown[]) =>
+        unitOverviewExplored(...args),
+    },
+  }),
+}));
 
 describe("/timetabling/units", () => {
   test("basic", async () => {
