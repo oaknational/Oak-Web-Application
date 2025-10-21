@@ -57,6 +57,23 @@ const validSearchFilters: SuggestedFilters = {
   ],
   status: "success",
   error: undefined,
+  data: {
+    directMatch: {
+      subject: { slug: "maths", title: "Maths" },
+      keyStage: null,
+      year: null,
+      examBoard: null,
+    },
+    suggestedFilters: [
+      { type: "subject", slug: "maths", title: "Maths" },
+      { type: "key-stage", slug: "ks1", title: "Ks1" },
+      { type: "key-stage", slug: "ks2", title: "Ks2" },
+      { type: "key-stage", slug: "ks3", title: "Ks3" },
+      { type: "key-stage", slug: "ks4", title: "Ks4" },
+      { type: "exam-board", slug: "aqa", title: "Aqa" },
+      { type: "exam-board", slug: "edexcel", title: "Edexcel" },
+    ],
+  },
 };
 
 describe("useSuggestedFilters", () => {
@@ -129,7 +146,7 @@ describe("useSuggestedFilters", () => {
     });
 
     expect(mockUseSWR).toHaveBeenCalledWith(
-      "/api/search/intent?searchTerm=maths",
+      "/api/search/intent?v=1&searchTerm=maths",
       expect.any(Function),
       expect.any(Object),
     );
@@ -148,7 +165,7 @@ describe("useSuggestedFilters", () => {
 
     expect(result.current).toEqual(validSearchFilters);
     expect(mockUseSWR).toHaveBeenCalledWith(
-      "/api/search/intent?searchTerm=science",
+      "/api/search/intent?v=1&searchTerm=science",
       expect.any(Function),
       expect.any(Object),
     );
@@ -175,7 +192,7 @@ describe("useSuggestedFilters", () => {
     });
 
     expect(mockUseSWR).toHaveBeenCalledWith(
-      "/api/search/intent?searchTerm=maths",
+      "/api/search/intent?v=1&searchTerm=maths",
       expect.any(Function),
       expect.any(Object),
     );
@@ -193,7 +210,7 @@ describe("useSuggestedFilters", () => {
 
     expect(result.current).toEqual(validSearchFilters);
     expect(mockUseSWR).toHaveBeenCalledWith(
-      "/api/search/intent?searchTerm=maths+fractions",
+      "/api/search/intent?v=1&searchTerm=maths+fractions",
       expect.any(Function),
       expect.any(Object),
     );
@@ -214,7 +231,7 @@ describe("useSuggestedFilters", () => {
 
     expect(result.current).toEqual(validSearchFilters);
     expect(mockUseSWR).toHaveBeenCalledWith(
-      "/api/search/intent?searchTerm=maths+fractions+f%26foo%3Dbar",
+      "/api/search/intent?v=1&searchTerm=maths+fractions+f%26foo%3Dbar",
       expect.any(Function),
       expect.any(Object),
     );
