@@ -15,7 +15,7 @@ import Link from "next/link";
 import { CurricTimetableHeader } from "../CurricTimetableHeader";
 import CurricTimetablingFilters from "../CurricTimetablingFilters";
 import CurricUnitModal from "../CurricUnitModal";
-import CurricUnitModalContentAppRouter from "../CurricUnitModalContent/CurricUnitModalContentAppRouter";
+import CurricUnitModalContent from "../CurricUnitModalContent/CurricUnitModalContent";
 import CurricModalErrorContent from "../CurricModalErrorContent/CurricModalErrorContent";
 
 import { useTimetableParams } from "@/utils/curriculum/timetabling";
@@ -206,7 +206,7 @@ export const CurricTimetablingUnits = ({
           disableFooter={Boolean(selectedUnitSlug && !selectedUnit)}
         >
           {selectedUnit && (
-            <CurricUnitModalContentAppRouter
+            <CurricUnitModalContent
               basePath={basePath}
               unitData={selectedUnit}
               unitOptionData={selectedUnitOption}

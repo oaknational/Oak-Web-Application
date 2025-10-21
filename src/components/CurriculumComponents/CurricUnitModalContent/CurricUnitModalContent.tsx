@@ -1,8 +1,9 @@
+"use client";
+
 import { join } from "path";
 
 import { OakHeading, OakFlex, OakBox } from "@oaknational/oak-components";
-import { useRouter } from "next/router";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import BulletList from "../OakComponentsKitchen/BulletList";
 import CurricUnitCard from "../CurricUnitCard";
