@@ -1,4 +1,4 @@
-import { CreateLessonAttemptPayload } from "@/app/api/types/pupil-api/types";
+import { CreateLessonAttemptPayload } from "@/app/api/pupil/_types/lessonAttemptTypes";
 
 export const LessonAttemptFixture = (
   partial?: Partial<CreateLessonAttemptPayload>,

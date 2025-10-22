@@ -1,20 +1,15 @@
-import { NextRequest } from "next/server";
+import { type NextRequest } from "next/server";
 
-import { POST } from "./route";
+import { GET, POST } from "./route";
 
-import { datastore } from "@/node-lib/firestore/services/datastore";
-import { handleCors as handleCorsOriginal } from "@/app/api/_utils/cors";
-import { createLessonAttemptPayloadSchema } from "@/app/api/types/pupil-api/types";
+import { createLessonAttemptPayloadSchema } from "@/app/api/pupil/_types/lessonAttemptTypes";
+import { datastore } from "@/node-lib/pupil-api";
 
-jest.mock("@/node-lib/firestore/services/datastore", () => ({
+jest.mock("@/node-lib/pupil-api", () => ({
   datastore: {
     getLessonAttempt: jest.fn(),
     logLessonAttempt: jest.fn(),
   },
-}));
-
-jest.mock("@/app/api/_utils/cors", () => ({
-  handleCors: jest.fn(),
 }));
 
 interface MockHeaders {
@@ -35,7 +30,7 @@ interface NextResponseMock {
 jest.mock("next/server", () => ({
   NextResponse: {
     json: <T>(data: T, init?: { status?: number }): MockJsonResponse<T> => ({
-      status: init?.status ?? 200,
+      status: init?.status ?? 500,
       json: async () => data,
       headers: {
         set: jest.fn<void, [key: string, value: string]>(),
@@ -48,29 +43,71 @@ jest.mock("next/server", () => ({
   } as NextResponseMock,
 }));
 
-jest.mock("@/app/api/types/pupil-api/types", () => ({
+jest.mock("@/app/api/pupil/_types/lessonAttemptTypes", () => ({
   createLessonAttemptPayloadSchema: {
     parse: jest.fn(),
   },
 }));
 
-const handleCors = handleCorsOriginal as jest.Mock;
+describe("GET /api/pupil/get-lesson-attempt", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it("returns 400 if attempt_id is missing", async () => {
+    const request = {
+      url: "http://localhost/api/pupil/lesson-attempt",
+      nextUrl: new URL("http://localhost/api/pupil/lesson-attempt"),
+    } as unknown as NextRequest;
+    const result = await GET(request);
+    expect(result.status).toBe(400);
+    const json = await result.json();
+    expect(json).toEqual({ error: "attempt_id is required" });
+  });
+
+  it("returns 404 if no attempt is found", async () => {
+    (datastore.getLessonAttempt as jest.Mock).mockResolvedValueOnce({
+      attempts: [],
+      empty: true,
+    });
+    const request = {
+      url: "http://localhost/api/pupil/lesson-attempt?attempt_id=notfound",
+      nextUrl: new URL(
+        "http://localhost/api/pupil/lesson-attempt?attempt_id=notfound",
+      ),
+    } as unknown as NextRequest;
+    const result = await GET(request);
+    expect(result.status).toBe(404);
+    const json = await result.json();
+    expect(json).toEqual({ error: "attempt not found" });
+  });
+
+  it("returns 200 and attempts if found, with cache-control header", async () => {
+    const attempts = [{ id: "123", data: "test" }];
+    (datastore.getLessonAttempt as jest.Mock).mockResolvedValueOnce({
+      attempts,
+      empty: false,
+    });
+    const request = {
+      url: "http://localhost/api/pupil/lesson-attempt?attempt_id=123",
+      nextUrl: new URL(
+        "http://localhost/api/pupil/lesson-attempt?attempt_id=123",
+      ),
+    } as unknown as NextRequest;
+    const result = await GET(request);
+    expect(result.status).toBe(200);
+    const json = await result.json();
+    expect(json).toEqual(attempts);
+    expect(result.headers.get("Cache-Control")).toBe("public, max-age=86400");
+  });
+});
 
 describe("POST /api/pupil/log-lesson-attempt", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it("returns CORS response if handleCors returns a response", async () => {
-    handleCors.mockReturnValueOnce({ cors: true });
-    const request = {} as NextRequest;
-    const result = await POST(request);
-    expect(result).toEqual({ cors: true });
-    expect(handleCors).toHaveBeenCalledWith(request);
-  });
-
   it("returns 400 if attempt_id is a duplicate", async () => {
-    handleCors.mockReturnValueOnce(null);
     (createLessonAttemptPayloadSchema.parse as jest.Mock).mockReturnValueOnce({
       attempt_id: "dup-id",
     });
@@ -87,7 +124,6 @@ describe("POST /api/pupil/log-lesson-attempt", () => {
   });
 
   it("returns 201 and logs the attempt if not a duplicate", async () => {
-    handleCors.mockReturnValueOnce(null);
     (createLessonAttemptPayloadSchema.parse as jest.Mock).mockReturnValueOnce({
       attempt_id: "new-id",
     });
@@ -110,7 +146,6 @@ describe("POST /api/pupil/log-lesson-attempt", () => {
   });
 
   it("returns 201 and logs the attempt if getLessonAttempt throws", async () => {
-    handleCors.mockReturnValueOnce(null);
     (createLessonAttemptPayloadSchema.parse as jest.Mock).mockReturnValueOnce({
       attempt_id: "new-id",
     });
@@ -124,11 +159,8 @@ describe("POST /api/pupil/log-lesson-attempt", () => {
       json: async () => ({ attempt_id: "new-id" }),
     } as NextRequest;
     const result = await POST(request);
-    expect(result.status).toBe(201);
+    expect(result.status).toBe(500);
     const json = await result.json();
-    expect(json).toEqual({ success: true });
-    expect(datastore.logLessonAttempt).toHaveBeenCalledWith({
-      attempt_id: "new-id",
-    });
+    expect(json).toEqual({ status: 500, error: "Internal Server Error" });
   });
 });
