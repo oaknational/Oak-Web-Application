@@ -6,6 +6,13 @@ import { CurricLessonWarning as Component } from "./";
 const meta: Meta<typeof Component> = {
   component: Component,
   argTypes: {},
+  decorators: [
+    (Story) => (
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <Story />
+      </OakThemeProvider>
+    ),
+  ],
 };
 
 export default meta;
@@ -17,10 +24,6 @@ export const BasicUsage: Story = {
     total: 6,
   },
   render: function Render(args) {
-    return (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Component {...args} />
-      </OakThemeProvider>
-    );
+    return <Component {...args} />;
   },
 };

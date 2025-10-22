@@ -1,4 +1,4 @@
-import { OakFlex } from "@oaknational/oak-components";
+import { OakFlex, OakSpan } from "@oaknational/oak-components";
 
 type CurricLessonWarningProps = {
   count: number;
@@ -18,7 +18,9 @@ export function CurricLessonWarning({
       >
         {/* <OakIcon iconName="warning" /> */}
       </OakFlex>{" "}
-      {count}/{total} lessons
+      <OakSpan $color={"black"}>
+        {count}/{total} lessons
+      </OakSpan>
     </OakFlex>
   );
 }

@@ -10,10 +10,14 @@ exports[`CurricLessonWarning basic usage 1`] = `
         class="sc-fqkvVR sc-kAyceB ldgGpl joHkzz"
       />
        
-      4
-      /
-      6
-       lessons
+      <span
+        class="sc-dAlyuH kYDjr"
+      >
+        4
+        /
+        6
+         lessons
+      </span>
     </div>
   </div>
 </body>
