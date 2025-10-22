@@ -12,3 +12,8 @@ export const unitWithOptions = createUnit({
     }),
   ],
 });
+
+export const unitWithoutOptions = createUnit({
+  slug: "something-nice",
+  unit_options: [],
+});
