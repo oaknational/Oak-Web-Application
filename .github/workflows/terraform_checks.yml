@@ -10,6 +10,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Run Terraform Action from oak-terraform-actions
-        uses: oaknational/oak-terraform-actions/actions/terraform-checks@main
+        uses: oaknational/oak-terraform-actions/actions/terraform-checks@e2382f19e30feee1dda19721c782277c71981653
         env:
           TF_WORKSPACE: owa-project-website # This is necessary due to the use of Terraform Workspaces and if undefined it will be `default`
