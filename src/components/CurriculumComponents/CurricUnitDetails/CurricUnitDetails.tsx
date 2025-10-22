@@ -12,7 +12,6 @@ import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import CurricUnitDetailsAccordion from "@/components/CurriculumComponents/CurricUnitDetailsAccordion";
 import { Unit, UnitOption } from "@/utils/curriculum/types";
 import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
-import { ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS } from "@/utils/curriculum/constants";
 import { priorKnowledgeRequirementsEnabled } from "@/utils/curriculum/features";
 
 export type CurricUnitDetailsProps = {
@@ -57,7 +56,6 @@ export default function CurricUnitDetails({
   }`;
 
   const shouldDisplayPriorKnowledge =
-    ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS &&
     priorKnowledgeRequirementsEnabled(unit) &&
     priorKnowledgeRequirements &&
     priorKnowledgeRequirements.length > 0;
