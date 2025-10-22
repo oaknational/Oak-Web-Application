@@ -1,3 +1,17 @@
+# [1.897.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.896.3...v1.897.0) (2025-10-22)
+
+
+### Bug Fixes
+
+* made "additional" prop on <CurricUnitCard/> optional ([8a3521b](https://github.com/oaknational/Oak-Web-Application/commit/8a3521badabbd5017434ac33f44256eca6a6a85f))
+* updated snapshots ([3fb0fbe](https://github.com/oaknational/Oak-Web-Application/commit/3fb0fbe00befc4a99591acb0d3fd6c1d96380bd1))
+* use "oak black" for text color ([01af61e](https://github.com/oaknational/Oak-Web-Application/commit/01af61e7208ce554908f87ff25a0a613657e8e78))
+
+
+### Features
+
+* added <CurricLessonWarning/> and optional "additional" props to <CurricUnitCard/> ([55bd971](https://github.com/oaknational/Oak-Web-Application/commit/55bd971922d899d3f20dbc609ceecc28464e4ae9))
+
 ## [1.896.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.896.2...v1.896.3) (2025-10-22)
 
 
