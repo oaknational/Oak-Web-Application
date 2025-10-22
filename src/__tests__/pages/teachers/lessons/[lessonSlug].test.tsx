@@ -90,6 +90,7 @@ const render = renderWithProviders({
 
 const lesson = lessonOverviewFixture({
   lessonTitle: "The meaning of time",
+  excludedFromTeachingMaterials: true,
 });
 
 describe("Lesson Overview Canonical Page", () => {

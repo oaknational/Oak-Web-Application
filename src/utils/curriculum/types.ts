@@ -21,11 +21,6 @@ export interface Subject {
   subject_slug: string;
 }
 
-export interface Domain {
-  domain: string;
-  domain_id: number;
-}
-
 export interface SubjectCategory {
   id: number;
   title: string;
