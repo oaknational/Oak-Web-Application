@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CurricLessonWarning basic usage 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
+    >
+      <div
+        class="sc-fqkvVR sc-kAyceB ldgGpl joHkzz"
+      />
+       
+      <span
+        class="sc-dAlyuH kYDjr"
+      >
+        4
+        /
+        6
+         lessons
+      </span>
+    </div>
+  </div>
+</body>
+`;
