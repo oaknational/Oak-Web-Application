@@ -130,4 +130,65 @@ describe("reshapeUnitData", () => {
       "unit-title-1",
     ]);
   });
+
+  it("sorts swimming units first", () => {
+    const rawUnits = [
+      camelCaseFixture({
+        overrides: {
+          unitSlug: "unit-slug-1",
+          unitData: { ...defaultUnitData, title: "unit-title-1" },
+          supplementaryData: { unitOrder: 2 },
+          programmeFields: {
+            ...camelCaseFixture().programmeFields,
+            yearDisplayOrder: 2,
+          },
+        },
+      }),
+      camelCaseFixture({
+        overrides: {
+          unitSlug: "unit-slug-2",
+          unitData: { ...defaultUnitData, title: "unit-title-2" },
+          supplementaryData: { unitOrder: 1 },
+          programmeFields: {
+            ...camelCaseFixture().programmeFields,
+            yearDisplayOrder: 1,
+          },
+          actions: { groupUnitsAs: "Swimming and water safety" },
+        },
+      }),
+      camelCaseFixture({
+        overrides: {
+          unitSlug: "unit-slug-3",
+          unitData: { ...defaultUnitData, title: "unit-title-3" },
+          programmeFields: {
+            ...camelCaseFixture().programmeFields,
+            yearDisplayOrder: 2,
+          },
+          supplementaryData: { unitOrder: 1 },
+          actions: { groupUnitsAs: "Swimming and water safety" },
+        },
+      }),
+      camelCaseFixture({
+        overrides: {
+          unitSlug: "unit-slug-4",
+          unitData: { ...defaultUnitData, title: "unit-title-4" },
+          programmeFields: {
+            ...camelCaseFixture().programmeFields,
+            yearDisplayOrder: 1,
+          },
+          supplementaryData: { unitOrder: 2 },
+        },
+      }),
+    ];
+
+    const res = reshapeUnitData(rawUnits);
+    expect(res).toHaveLength(4);
+    const titles = res.map((unit) => unit[0]?.title);
+    expect(titles).toEqual([
+      "unit-title-1",
+      "unit-title-3",
+      "unit-title-4",
+      "unit-title-2",
+    ]);
+  });
 });
