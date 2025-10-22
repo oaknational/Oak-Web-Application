@@ -11,8 +11,7 @@ export default {
         "In this unit, pupils learn print letter formation for all 26 letters of the alphabet. In ‘Capital letters’, pupils build on this by learning the formation of all the capital letters.",
       connection_future_unit_title: "Capital letters",
       connection_prior_unit_title: null,
-      domain: "Handwriting",
-      domain_id: 18,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -118,13 +117,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 18,
-          title: "Handwriting",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 6,
@@ -160,8 +153,7 @@ export default {
       connection_future_unit_title:
         "'The Three Billy Goats Gruff': reading and writing",
       connection_prior_unit_title: null,
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -232,13 +224,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -280,8 +266,7 @@ export default {
         "'Anna Hibiscus' Song': reading and writing",
       connection_prior_unit_title:
         "'The Three Billy Goats Gruff': reading and writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -353,13 +338,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -405,8 +384,7 @@ export default {
       connection_future_unit_title:
         "'Zim Zam Zoom' by James Carter: reading poetry",
       connection_prior_unit_title: null,
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -456,13 +434,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -498,8 +470,7 @@ export default {
       connection_future_unit_title:
         "'Jack and the Beanstalk': reading and writing",
       connection_prior_unit_title: "'Paddington': reading and writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -571,13 +542,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -623,8 +588,7 @@ export default {
         "In this unit pupils learn new GPCs for consonants.  In 'Suffixes', pupils learn spelling patterns associated with suffixes and grammar.",
       connection_future_unit_title: "Suffixes",
       connection_prior_unit_title: "Alternative GPCs for long vowels",
-      domain: "Spelling",
-      domain_id: 19,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -768,13 +732,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 19,
-          title: "Spelling",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 7,
@@ -810,8 +768,7 @@ export default {
       connection_future_unit_title: "'Lucky Dip': narrative writing",
       connection_prior_unit_title:
         "'Jack and the Beanstalk': reading and writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -903,13 +860,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -951,8 +902,7 @@ export default {
         "Tense forms: simple, progressive and perfect consolidation ",
       connection_prior_unit_title:
         "Simple, compound and adverbial complex sentences",
-      domain: "Grammar",
-      domain_id: 17,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -1002,13 +952,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 17,
-          title: "Grammar",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 5,
@@ -1043,8 +987,7 @@ export default {
         "In this unit, pupils learn to use the apostrophe for plural possession and inverted commas for direct speech. In 'Speech punctuation and apostrophes', pupils will develop their accuracy of inverted comma use in both speech first and speech second sentences.",
       connection_future_unit_title: "Apostrophes and speech punctuation  ",
       connection_prior_unit_title: "Apostrophes",
-      domain: "Grammar",
-      domain_id: 17,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -1095,13 +1038,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 17,
-          title: "Grammar",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 5,
@@ -1137,8 +1074,7 @@ export default {
       connection_future_unit_title:
         "Building fluency in silent letters, homophones, and common exception words ",
       connection_prior_unit_title: "Further study of the four joins ",
-      domain: "Handwriting",
-      domain_id: 18,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -1195,13 +1131,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 18,
-          title: "Handwriting",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 6,
@@ -1236,8 +1166,7 @@ export default {
         "In this unit, pupils learn a range of vocabulary to support writing about characters. In the next unit, pupils learn a wide range of rich vocabulary associated with weather.",
       connection_future_unit_title: "Weather: wind and hot words",
       connection_prior_unit_title: "Character: small, confident and shy words",
-      domain: "Vocabulary",
-      domain_id: 20,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -1280,13 +1209,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 20,
-          title: "Vocabulary",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 8,
@@ -1321,8 +1244,7 @@ export default {
         "In this unit, pupils will develop reading for pleasure through exploration of a range of different text types, focusing on genre and form, and introduction to a range of authors and illustrators. In 'Reading for pleasure in Year 4', pupils will build on this knowledge through the introduction to new range of texts suitable for Year 4",
       connection_future_unit_title: "Developing reading preferences in Year 4",
       connection_prior_unit_title: "'The Planet in a Pickle Jar': book club",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -1369,13 +1291,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -1408,8 +1324,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -1452,7 +1367,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 4,
@@ -1490,8 +1405,7 @@ export default {
       connection_future_unit_title:
         "King Tut or Healthy Lifestyle: non-chronological report",
       connection_prior_unit_title: "The Stone Age: non-chronological report",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -1569,13 +1483,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -1608,8 +1516,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -1623,13 +1530,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -1846,8 +1747,7 @@ export default {
         "In this unit, pupils focused on creating cohesion within a paragraph. In the Digestive System unit, pupils will learn how to create cohesion across paragraphs.",
       connection_future_unit_title: "The digestive system: explanation writing",
       connection_prior_unit_title: "How Bees Make Honey: explanation text",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -1924,13 +1824,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -1965,8 +1859,7 @@ export default {
         "In this unit, pupils used complex sentences with certain subordinating conjunctions. In 'The Jabberwocky', pupils will use a wider range of subordinating conjunctions in complex sentences.",
       connection_future_unit_title: "'Jabberwocky': narrative writing",
       connection_prior_unit_title: "'The Iron Man': narrative writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -2075,13 +1968,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -2127,8 +2014,7 @@ export default {
         "In Varjak Paw’, children discussed a linear narrative plot. In ’El Deafo’, children will look at a graphic novel and develop their understanding of a range of forms.",
       connection_future_unit_title: "'El Deafo': book club",
       connection_prior_unit_title: "'Swallow's Kiss': book club",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -2159,13 +2045,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -2198,8 +2078,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -2243,7 +2122,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 4,
@@ -2275,8 +2154,7 @@ export default {
       connection_future_unit_title: "Five sentence types",
       connection_prior_unit_title:
         "Simple, compound and adverbial complex sentences",
-      domain: "Grammar",
-      domain_id: 17,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -2340,13 +2218,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 17,
-          title: "Grammar",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 5,
@@ -2381,8 +2253,7 @@ export default {
         "In this unit, pupils learn verb and adjective suffixes.  In 'Noun and adjective suffixes', pupils learn the grammar and spelling conventions associated with noun and adjective suffixes.",
       connection_future_unit_title: "Noun and adjective suffixes",
       connection_prior_unit_title: "Prefixes, homonyms and homophones",
-      domain: "Spelling",
-      domain_id: 19,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -2482,13 +2353,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 19,
-          title: "Spelling",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 7,
@@ -2523,8 +2388,7 @@ export default {
         "In this unit, pupils learn how spelling can relate to the origin and meaning of words.  In 'Verb adjectives and noun suffixes', pupils learn the grammar and spelling conventions associated with verb, adjective and noun suffixes.",
       connection_future_unit_title: "Verb, adjective and noun suffixes",
       connection_prior_unit_title: "Noun and adjective suffixes",
-      domain: "Spelling",
-      domain_id: 19,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -2624,13 +2488,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 19,
-          title: "Spelling",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 7,
@@ -2665,8 +2523,7 @@ export default {
         "In this unit, pupils learn a range of vocabulary associated with weather, including wind and hot words. In the next unit, pupils learn a wider range of rich vocabulary, including cold, calm and stormy words.",
       connection_future_unit_title: "Weather: cold, calm and stormy words",
       connection_prior_unit_title: "Character: clever and clumsy words",
-      domain: "Vocabulary",
-      domain_id: 20,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -2723,13 +2580,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 20,
-          title: "Vocabulary",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 8,
@@ -2764,8 +2615,7 @@ export default {
         "In 'Hansel and Gretel’, children discussed the key features of a fairy tale and had rich discussions about the plot and characters within. In ’Blackberry Blue’, pupils will read a modern fairy tale, which draws upon traditional fairy tales and cultural influences.",
       connection_future_unit_title: "'Blackberry Blue': reading",
       connection_prior_unit_title: "'Anansi and the Antelope Baby': reading",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -2816,13 +2666,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -2862,8 +2706,7 @@ export default {
         "In this unit, pupils learn to report with a journalistic tone on a fictional stimulus for the first time. In 'The Titanic', pupils will learn to refine their journalistic tone with the use of passive voice.",
       connection_future_unit_title: "The Titanic: journalistic report writing",
       connection_prior_unit_title: "Anglerfish: non-chronological report",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -2949,13 +2792,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -2992,8 +2829,7 @@ export default {
         "'How to Train Your Dragon': diary and narrative writing",
       connection_prior_unit_title:
         "'The Firework Maker's Daughter': reading and diary writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -3070,13 +2906,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -3118,8 +2948,7 @@ export default {
       connection_future_unit_title: "'Arthur and the Golden Rope': reading",
       connection_prior_unit_title:
         "'Marcy and the Riddle of the Sphinx': book club",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -3169,13 +2998,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -3216,8 +3039,7 @@ export default {
       connection_future_unit_title:
         "'Curiosity: The Story of a Mars Rover': reading",
       connection_prior_unit_title: "'The Pebble in my Pocket': reading",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -3268,13 +3090,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -3319,8 +3135,7 @@ export default {
         "In 'The Wild Robot’, pupils discussed the themes of identify and belonging. In ’Greenling’, pupils will explore these themes in another narrative.",
       connection_future_unit_title: "'Greenling': reading",
       connection_prior_unit_title: "'The Iron Man': reading",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -3351,13 +3166,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -3392,8 +3201,7 @@ export default {
         "In this unit, pupils read and respond to a range of poems that link to the weather, exploring form, structure and language, before writing poems of their own. In 'Poetry inspired by animals', pupils build on this knowledge, reading and analysing classic and contemporary poetry about animals, exploring structure, form and language, whilst developing personal responses.",
       connection_future_unit_title: "Poetry inspired by animals",
       connection_prior_unit_title: "John Lyons poetry",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -3494,13 +3302,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -3537,8 +3339,7 @@ export default {
         "Building fluency with note taking, choice, quotations and emphasis",
       connection_prior_unit_title:
         "Building  fluency in the four joins, suffixes and common exception words",
-      domain: "Handwriting",
-      domain_id: 18,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -3595,13 +3396,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 18,
-          title: "Handwriting",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 6,
@@ -3639,8 +3434,7 @@ export default {
         "The aye-aye or wild cats: non-chronological report",
       connection_prior_unit_title:
         "'Curious Creatures Glowing in the Dark': reading",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -3692,13 +3486,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -3733,8 +3521,7 @@ export default {
         "In The Unforgotten Coat’, pupils discussed the theme of identify and belonging under the context of refugees. In ’Front Desk’, pupils will explore this further and discuss migration.",
       connection_future_unit_title: "'Front Desk': book club",
       connection_prior_unit_title: "'The Wild Robot': book club",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -3765,13 +3552,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -3807,8 +3588,7 @@ export default {
       connection_future_unit_title:
         "Shakespeare's 'Macbeth': narrative and soliloquy writing",
       connection_prior_unit_title: "'The Viewer': narrative writing ",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -3948,13 +3728,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -3995,8 +3769,7 @@ export default {
       connection_future_unit_title:
         "'Sherlock Holmes': descriptive and letter writing",
       connection_prior_unit_title: "'The Highwayman': narrative writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -4051,13 +3824,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -4093,8 +3860,7 @@ export default {
       connection_future_unit_title:
         "Shakespeare's 'Romeo and Juliet': diary and narrative writing",
       connection_prior_unit_title: "'The Highwayman': narrative writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -4233,13 +3999,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -4274,8 +4034,7 @@ export default {
         "In 'Front Desk’, pupils will develop their own personal responses to book. In ’Wonder’, pupils will expand on these and consider the opinions of others.",
       connection_future_unit_title: "'Wonder': book club",
       connection_prior_unit_title: "'Mirror': reading",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -4306,13 +4065,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -4354,8 +4107,7 @@ export default {
       connection_future_unit_title: "'Beowulf': narrative writing",
       connection_prior_unit_title:
         "'A Christmas Carol': narrative writing and reading",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -4406,13 +4158,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -4453,8 +4199,7 @@ export default {
         "In this unit, writers convey information in an objective, unbiased way. In the next unit, writers will convey information in a more subjective manner. ",
       connection_future_unit_title: "Polar regions: essay writing",
       connection_prior_unit_title: "The Titanic: journalistic report writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -4518,13 +4263,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -4564,8 +4303,7 @@ export default {
         "In 'Harriet Tubman: Biographical Writing', pupils learn to research an inspirational figure's life to write a celebratory biography. In this unit, pupils will write a biography based on research about a scientific theory of a famous scientist.",
       connection_future_unit_title: "Charles Darwin: biographical writing",
       connection_prior_unit_title: "The Amazon Rainforest: essay writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -4641,13 +4379,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -4682,8 +4414,7 @@ export default {
         "In 'Wonder’, pupils considered the opinions of the narrative form the author has chosen.",
       connection_future_unit_title: "'Cloud Busting': book club",
       connection_prior_unit_title: "'Front Desk': book club",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -4713,13 +4444,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -4760,8 +4485,7 @@ export default {
         "In this unit, pupils learn the difference between the active voice and the passive voice.",
       connection_future_unit_title: null,
       connection_prior_unit_title: "Three tense forms and modal verbs",
-      domain: "Grammar",
-      domain_id: 17,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -4805,13 +4529,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 17,
-          title: "Grammar",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 5,
@@ -4846,8 +4564,7 @@ export default {
         "In this unit, pupils revise all the grammar and punctuation learnt from Year 1 - Year 6.",
       connection_future_unit_title: null,
       connection_prior_unit_title: "Punctuation ",
-      domain: "Grammar",
-      domain_id: 17,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -4933,13 +4650,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 17,
-          title: "Grammar",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 5,
@@ -4976,8 +4687,7 @@ export default {
       connection_future_unit_title:
         "Letter strings, etymology and curriculum words",
       connection_prior_unit_title: "Etymology and prefixes",
-      domain: "Spelling",
-      domain_id: 19,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -5125,13 +4835,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 19,
-          title: "Spelling",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 7,
@@ -5167,8 +4871,7 @@ export default {
       connection_future_unit_title:
         "'No Country' and 'Frizzy': graphic novels exploring identity and belonging",
       connection_prior_unit_title: "Developing reading preferences in Year 5",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -5215,13 +4918,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -5257,8 +4954,7 @@ export default {
       connection_future_unit_title:
         "Climate emergency: journalistic report writing",
       connection_prior_unit_title: "Harriet Tubman: biographical writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -5326,13 +5022,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -5365,8 +5055,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -5416,7 +5105,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 4,
@@ -5453,8 +5142,7 @@ export default {
         "In 'Blackberry Blue’, pupils discussed a modern traditional tale and explored its literary influences. In ’Beowulf’, pupils will explore a more complex and classic traditional tale.",
       connection_future_unit_title: "'Beowulf': narrative writing",
       connection_prior_unit_title: "'Hansel and Gretel': reading",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -5498,13 +5186,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -5544,8 +5226,7 @@ export default {
         "In 'Poetry about migration’ pupils have explored perspectives of Empire Windrush passengers and the optimism they had arriving in Britain. In ’The Empire Windrush: diary writing’ pupils will build a fuller picture of the historical background and infer possible thoughts, feelings and emotions of passengers.",
       connection_future_unit_title: "The Empire Windrush: diary writing",
       connection_prior_unit_title: "'Coming To England': reading",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -5598,13 +5279,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -5650,8 +5325,7 @@ export default {
         "In this unit, pupils will learn to base an essay on research around the Windrush Generation and their experiences of arriving and staying in Britain. In 'Polar Regions: Essay Writing', pupils will learn techniques to develop the strength of their argument throughout an essay.",
       connection_future_unit_title: "Polar regions: essay writing",
       connection_prior_unit_title: "The Empire Windrush: diary writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -5713,13 +5387,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -5760,8 +5428,7 @@ export default {
       connection_future_unit_title:
         "'No Country' and 'Frizzy': graphic novels exploring identity and belonging",
       connection_prior_unit_title: "'El Deafo': book club",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -5792,13 +5459,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -5831,8 +5492,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -5882,7 +5542,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 4,
@@ -5917,8 +5577,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -5954,7 +5613,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 4,
@@ -5991,8 +5650,7 @@ export default {
         "In this unit, pupils learn to build grammatically accurate simple sentences with the correct word class, tense and punctuation. In 'Compound sentences', pupils will learn to join two simple sentences to build a compound sentence. ",
       connection_future_unit_title: "Compound sentences ",
       connection_prior_unit_title: "Word class ",
-      domain: "Grammar",
-      domain_id: 17,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -6056,13 +5714,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 17,
-          title: "Grammar",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 5,
@@ -6097,8 +5749,7 @@ export default {
         "In this unit, pupils applied their learning about descriptive writing to write a detailed character description of the character and themselves. In 'Otherwise', pupils will build on this by describing what they see on film.",
       connection_future_unit_title: "'Otherwise': narrative writing",
       connection_prior_unit_title: "School trip: writing a recount ",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -6156,13 +5807,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -6200,8 +5845,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -6244,7 +5888,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 4,
@@ -6281,8 +5925,7 @@ export default {
       connection_future_unit_title:
         "Alternative GPCS for consonants and homophones",
       connection_prior_unit_title: null,
-      domain: "Spelling",
-      domain_id: 19,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -6474,13 +6117,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 19,
-          title: "Spelling",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 7,
@@ -6515,8 +6152,7 @@ export default {
         "In this unit, pupils revisit capital letters and numerals. In 'Review: using lead-ins', pupils review their handwriting skills focusing on formation, size and orientation. ",
       connection_future_unit_title: "Review: using lead-ins or no lead-ins",
       connection_prior_unit_title: "The four joins",
-      domain: "Handwriting",
-      domain_id: 18,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -6573,13 +6209,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 18,
-          title: "Handwriting",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 6,
@@ -6614,8 +6244,7 @@ export default {
         "In this unit, pupils have explored how the author shows character perspective and feeling through description and speech. In 'The Planet in a Pickle Jar', pupils will explore a text where it is written from a character's perspective, which can change the storyline.",
       connection_future_unit_title: "'The Planet in a Pickle Jar': book club",
       connection_prior_unit_title: "'Yoshi the Stonecutter': reading",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -6653,13 +6282,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -6700,8 +6323,7 @@ export default {
       connection_future_unit_title:
         "The Great Fire of London: non-chronological report",
       connection_prior_unit_title: "Looking after pets: reading and writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -6761,13 +6383,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -6803,8 +6419,7 @@ export default {
       connection_future_unit_title: "School trip: recount writing",
       connection_prior_unit_title:
         "Atinuke and other authors: information text",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -6890,13 +6505,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -6932,8 +6541,7 @@ export default {
       connection_future_unit_title: "'The Sheep Pig': reading",
       connection_prior_unit_title:
         "'The Wolf, The Duck and the Mouse': book club",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -6986,13 +6594,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -7034,8 +6636,7 @@ export default {
       connection_future_unit_title:
         "Florence Nightingale and Mary Seacole: non-chronological report",
       connection_prior_unit_title: "'Otherwise': narrative writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -7122,13 +6723,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -7170,8 +6765,7 @@ export default {
       connection_future_unit_title: "'The Journey': diary writing",
       connection_prior_unit_title:
         "Florence Nightingale and Mary Seacole: non-chronological report",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -7221,13 +6815,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -7262,8 +6850,7 @@ export default {
         "In this unit, pupils read a traditional tale with increasingly complex vocabulary and words to decode and explored character motivation. In 'Mulan', pupils will build on this by reading a different traditional tale, exploring character and theme linked to their prior reading and experiences.",
       connection_future_unit_title: "'Mulan': reading",
       connection_prior_unit_title: "'Yoshi the Stonecutter': reading",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -7314,13 +6901,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -7355,8 +6936,7 @@ export default {
         "In this unit, pupils developed their personal responses to texts, expressing opinions and listening to others. In 'Reading for Pleasure in Year 3', pupils will build on this by starting to learn about how to choose texts for themselves.",
       connection_future_unit_title: "Developing reading preferences in year 3",
       connection_prior_unit_title: "'Grandad's Island': book club",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -7392,13 +6972,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -7439,8 +7013,7 @@ export default {
         "In this unit, pupils learn capital letter formation for all 26 letters of the alphabet. 'Numerals 0-10’, pupils build on this by learning the formation of the numerals 0-10.",
       connection_future_unit_title: "Numerals 1-10",
       connection_prior_unit_title: "Writing lower case letters in print",
-      domain: "Handwriting",
-      domain_id: 18,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -7518,13 +7091,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 18,
-          title: "Handwriting",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 6,
@@ -7560,8 +7127,7 @@ export default {
       connection_future_unit_title:
         "'The Magic Box': reading imaginative poetry",
       connection_prior_unit_title: "Nursery rhymes: reading poetry",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -7611,13 +7177,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -7652,8 +7212,7 @@ export default {
         "In this unit, pupils wrote a fictional narrative with a beginning, middle and end in the past tense. In 'School Trip Recount', pupils will write a personal, non-fiction recount from their own experience with a beginning, middle and end in chronological order. ",
       connection_future_unit_title: "School trip: writing a recount ",
       connection_prior_unit_title: "'Wild': reading and writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -7739,13 +7298,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -7790,8 +7343,7 @@ export default {
         "In this unit, pupils learn co-ordination to form compound sentences. In 'Adverbial complex sentences', pupils will begin to learn about subordination to form complex sentences.",
       connection_future_unit_title: "Adverbial complex sentences",
       connection_prior_unit_title: "Simple sentences",
-      domain: "Grammar",
-      domain_id: 17,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -7855,13 +7407,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 17,
-          title: "Grammar",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 5,
@@ -7897,8 +7443,7 @@ export default {
       connection_future_unit_title:
         "Simple, compound and adverbial complex sentences",
       connection_prior_unit_title: "Compound sentences ",
-      domain: "Grammar",
-      domain_id: 17,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -7948,13 +7493,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 17,
-          title: "Grammar",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 5,
@@ -7990,8 +7529,7 @@ export default {
       connection_future_unit_title: "Writing -ed and -ing suffixes",
       connection_prior_unit_title:
         "Alternative GPCS for consonants and homophones",
-      domain: "Spelling",
-      domain_id: 19,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -8134,13 +7672,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 19,
-          title: "Spelling",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 7,
@@ -8173,8 +7705,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: "Handwriting",
-      domain_id: 18,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -8188,13 +7719,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 18,
-          title: "Handwriting",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 6,
@@ -8346,8 +7871,7 @@ export default {
         "Nocturnal animals: non-chronological report",
       connection_prior_unit_title:
         "The Great Fire of London: non-chronological report",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -8418,13 +7942,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -8459,8 +7977,7 @@ export default {
         "In this unit, pupils have extended their vocabulary to learn new words for different feelings. In 'Spoken Language: Sharing your opinion', pupils will share their opinions on a range of topics and may use their extended vocabulary in their reasoning.  ",
       connection_future_unit_title: "Spoken language: sharing your opinion",
       connection_prior_unit_title: "School trip: recount writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -8510,13 +8027,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 8,
@@ -8552,8 +8063,7 @@ export default {
         "In this unit, pupils have been writing in the first person and using their own viewpoint to share their personal experiences. In 'Florence Nightingale: Diary Writing', pupils will build on these skills by writing in the first person, but from another's point of view, in a diary entry. ",
       connection_future_unit_title: "Florence Nightingale: diary writing",
       connection_prior_unit_title: "School trip: writing a recount ",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -8589,13 +8099,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -8630,8 +8134,7 @@ export default {
         "In this unit, pupils explored a text with high quality illustrations and few words and learnt to follow the narrative and understand themes through illustrations. In 'Julian is a Mermaid', pupils will explore another text where the illustrations play an important role in understanding the key themes about the characters, setting and plot.",
       connection_future_unit_title: null,
       connection_prior_unit_title: "'The Planet in a Pickle Jar': book club",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -8661,13 +8164,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -8704,8 +8201,7 @@ export default {
         "Florence Nightingale and Mary Seacole: non-chronological report",
       connection_prior_unit_title:
         "'The Owl who was Afraid of the Dark': reading",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -8743,13 +8239,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -8785,8 +8275,7 @@ export default {
       connection_future_unit_title: "Florence Nightingale: diary writing",
       connection_prior_unit_title:
         "Nocturnal animals: non-chronological report",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -8857,13 +8346,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -8899,8 +8382,7 @@ export default {
       connection_future_unit_title: "Poet focus: Joseph Coelho",
       connection_prior_unit_title:
         "'The Magic Box': reading imaginative poetry",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -8960,13 +8442,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -9001,8 +8477,7 @@ export default {
         "In 'Swallow's Kiss’ pupils explored a narrative that focuses on the refugee experience and society's response. In ’Poetry about personal experiences’ pupils reflect on these themes, alongside many others, before creating their own poems.",
       connection_future_unit_title: "Poetry about personal experiences",
       connection_prior_unit_title: "'Leaf': book club",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -9033,13 +8508,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -9074,8 +8543,7 @@ export default {
         "In this unit, pupils build on their joined up handwriting skills, focusing on the formation of the four joins, size and orientation. In 'Letter strings', pupils apply their knowledge and skills through a focus on suffixes, prefixes and other word endings. ",
       connection_future_unit_title: "Letter strings",
       connection_prior_unit_title: "Review: using lead-ins or no lead-ins",
-      domain: "Handwriting",
-      domain_id: 18,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -9132,13 +8600,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 18,
-          title: "Handwriting",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 6,
@@ -9174,8 +8636,7 @@ export default {
       connection_future_unit_title:
         "Building  fluency in the four joins, suffixes and common exception words",
       connection_prior_unit_title: "Letter strings",
-      domain: "Handwriting",
-      domain_id: 18,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -9232,13 +8693,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 18,
-          title: "Handwriting",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 6,
@@ -9273,8 +8728,7 @@ export default {
         "In this unit, pupils learn a range of vocabulary to support writing about characters, including big, beautiful and eye words.  In the next unit, pupils learn a wider range of vocabulary to describe characters, including small, confident and shy words.",
       connection_future_unit_title: "Character: small, confident and shy words",
       connection_prior_unit_title: null,
-      domain: "Vocabulary",
-      domain_id: 20,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -9331,13 +8785,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 20,
-          title: "Vocabulary",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 8,
@@ -9372,8 +8820,7 @@ export default {
         "In this unit, pupils learn a range of vocabulary to support writing about characters, including small, confident and shy words. In the next unit, pupils learn a wider range of vocabulary to describe characters, including clever and clumsy words.",
       connection_future_unit_title: "Character: clever and clumsy words",
       connection_prior_unit_title: "Character: big, beautiful and eye words",
-      domain: "Vocabulary",
-      domain_id: 20,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -9430,13 +8877,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 20,
-          title: "Vocabulary",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 8,
@@ -9471,8 +8912,7 @@ export default {
         "In Moon Dragons’, children will encounter a female protagonist who also has to defy authority and challenge female stereotypes.’",
       connection_future_unit_title: "'The Moon Dragons': reading",
       connection_prior_unit_title: "'The Children of Lir': reading",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -9522,13 +8962,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -9569,8 +9003,7 @@ export default {
       connection_future_unit_title:
         "'Marcy and the Riddle of the Sphinx': book club",
       connection_prior_unit_title: "'Mulan': reading",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -9622,13 +9055,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -9668,8 +9095,7 @@ export default {
         "In 'Marcy and the Riddle of the Sphinx’, pupils read and listened to a modern myth. They discussed the features of modern myths. In ’Arthur and the Golden Rope’, children will develop their understanding of modern myths by drawing comparisons between the texts. ",
       connection_future_unit_title: "'Arthur and the Golden Rope': reading",
       connection_prior_unit_title: "'The Moon Dragons': reading",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -9700,13 +9126,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -9747,8 +9167,7 @@ export default {
       connection_future_unit_title: "Poetry inspired by weather",
       connection_prior_unit_title:
         "'The Magic Box': reading imaginative poetry",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -9821,13 +9240,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -9863,8 +9276,7 @@ export default {
       connection_future_unit_title: "Three tense forms and modal verbs",
       connection_prior_unit_title:
         "Tense forms: simple, progressive and perfect",
-      domain: "Grammar",
-      domain_id: 17,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -9900,13 +9312,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 17,
-          title: "Grammar",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 5,
@@ -9943,8 +9349,7 @@ export default {
         "Building handwriting fluency through speed, choices and writing dialogue ",
       connection_prior_unit_title:
         "Building fluency in silent letters, homophones, and common exception words ",
-      domain: "Handwriting",
-      domain_id: 18,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -10001,13 +9406,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 18,
-          title: "Handwriting",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 6,
@@ -10043,8 +9442,7 @@ export default {
         "In 'Curious Creatures Glowing in the Dark’, pupils discussed the key features of non-fiction writing and the purpose of the text. In ’Crazy about Cats’, pupils will further discuss the features of non-fiction writing and will consider the author's use of language to engage the reader.",
       connection_future_unit_title: "'Crazy about Cats': reading",
       connection_prior_unit_title: "'Rushing Rivers': reading",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -10090,13 +9488,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -10132,8 +9524,7 @@ export default {
       connection_future_unit_title:
         "Ancient Greeks or Anglo-Saxons: non-chronological report",
       connection_prior_unit_title: "How Bees Make Honey: explanation text",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -10227,13 +9618,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -10268,8 +9653,7 @@ export default {
         'In "John Lyons Poetry: Reading", pupils learned about the poet John Lyons and responded and reflected on some of his poems. In "Poetry about Personal Experiences: Reading", pupils will reflect on their own experiences on a range of complex themes.',
       connection_future_unit_title: "Poetry about personal experiences",
       connection_prior_unit_title: "Poet focus: Joseph Coelho",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -10360,13 +9744,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -10407,8 +9785,7 @@ export default {
         "In this unit, pupils learn how to use speech first within complex sentences. In ‘The Highwayman’, pupils will learn how to use speech second within complex sentences.",
       connection_future_unit_title: "'The Highwayman': narrative writing",
       connection_prior_unit_title: "'Into the Forest': diary writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -10518,13 +9895,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -10564,8 +9935,7 @@ export default {
         "In 'Arthur and the Golden Rope’, pupils discussed the role of a hero and how a character can embody this. In ’Beowulf’, pupils will once again discuss the identity of a hero.’",
       connection_future_unit_title: "'Beowulf': narrative writing",
       connection_prior_unit_title: "'A Journey through Greek Myths': reading",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -10616,13 +9986,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -10668,8 +10032,7 @@ export default {
       connection_future_unit_title: "'The Viewer': narrative writing ",
       connection_prior_unit_title:
         "'The Happy Prince': narrative writing and reading",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -10793,13 +10156,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -10845,8 +10202,7 @@ export default {
         "In 'Speeches’, the pupils learn to follow a structure when making an argument. In 'Introduction to Debate' pupils will build on this by using the same structure to orally make arguments in front of an audience. ",
       connection_future_unit_title: "Introduction to debate",
       connection_prior_unit_title: "Healthy eating adverts: persuasive writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -10903,13 +10259,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -10945,8 +10295,7 @@ export default {
       connection_future_unit_title:
         "'No Country' and 'Frizzy': graphic novels exploring identity and belonging",
       connection_prior_unit_title: "'El Deafo': book club",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -10977,13 +10326,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -11020,8 +10363,7 @@ export default {
         "Three tense forms, modality, active voice and passive voice",
       connection_prior_unit_title:
         "Tense forms: simple, progressive and perfect consolidation ",
-      domain: "Grammar",
-      domain_id: 17,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -11073,13 +10415,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 17,
-          title: "Grammar",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 5,
@@ -11114,8 +10450,7 @@ export default {
         "In this unit, pupils learn to punctuate a third type of speech sentence: the speech interrupted sentence. ",
       connection_future_unit_title: "Punctuation ",
       connection_prior_unit_title: "Apostrophes and speech punctuation  ",
-      domain: "Grammar",
-      domain_id: 17,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -11159,13 +10494,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 17,
-          title: "Grammar",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 5,
@@ -11201,8 +10530,7 @@ export default {
       connection_future_unit_title:
         "Noun suffixes, letter strings and homophones",
       connection_prior_unit_title: "Suffixes, etymology and homophones",
-      domain: "Spelling",
-      domain_id: 19,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -11319,13 +10647,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 19,
-          title: "Spelling",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 7,
@@ -11361,8 +10683,7 @@ export default {
       connection_future_unit_title: "The Amazon Rainforest: essay writing",
       connection_prior_unit_title:
         "The aye-aye or wild cats: non-chronological report",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -11473,13 +10794,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -11514,8 +10829,7 @@ export default {
         "In this unit, pupils read and respond to a range of poems that explore personal experiences: feelings and relationships. In 'Poetry of Place', pupils build on these experiences, reading and analysing classic and contemporary poetry that evokes a strong sense of place, before writing their own.",
       connection_future_unit_title: "Poetry of place",
       connection_prior_unit_title: "Poetry inspired by weather",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -11604,13 +10918,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -11651,8 +10959,7 @@ export default {
         "In 'Mirror’, pupils discussed the experiences of two families living in two different countries.  In ’Front Desk’, pupils will explore an individual's experience of moving to a new country.",
       connection_future_unit_title: "'Front Desk': book club",
       connection_prior_unit_title: "'The Unforgotten Coat': book club",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -11702,13 +11009,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -11749,8 +11050,7 @@ export default {
         "In this unit, pupils read and analysed classic and contemporary poetry about animals, exploring structure, form and language, whilst developing personal responses. In 'Poetry of Place', pupils build on this knowledge, reading and analysing classic and contemporary poetry that evokes a strong sense of place.",
       connection_future_unit_title: "Poetry of place",
       connection_prior_unit_title: "Poetry inspired by weather",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -11837,13 +11137,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -11878,8 +11172,7 @@ export default {
       connection_future_unit_title: null,
       connection_prior_unit_title:
         "Letter strings, etymology and curriculum words",
-      domain: "Spelling",
-      domain_id: 19,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -11915,13 +11208,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 19,
-          title: "Spelling",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 7,
@@ -11956,8 +11243,7 @@ export default {
       connection_future_unit_title: null,
       connection_prior_unit_title:
         "Building handwriting fluency through speed, choices and writing dialogue ",
-      domain: "Handwriting",
-      domain_id: 18,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -12014,13 +11300,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 18,
-          title: "Handwriting",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 6,
@@ -12057,8 +11337,7 @@ export default {
       connection_future_unit_title: "Poetry about migration",
       connection_prior_unit_title:
         "'Princess Sophia Duleep Singh: My Story': reading",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -12108,13 +11387,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -12147,8 +11420,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -12162,13 +11434,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -12420,8 +11686,7 @@ export default {
         "In this unit, pupils rewrite the build-up and climax of a scene from the end of Beowulf’, focusing on interspersing dialogue to convey atmosphere and advance the action. In '’A Kind of Spark’: Narrative Writing', pupils will finesse writing a build-up and climax with a focus on switching between the past and present tense to highlight a jump in perspective.’",
       connection_future_unit_title: "'A Kind of Spark': narrative writing",
       connection_prior_unit_title: "'Beowulf': reading",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -12514,13 +11779,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -12561,8 +11820,7 @@ export default {
       connection_future_unit_title:
         "Ancient Islamic civilisation: essay writing",
       connection_prior_unit_title: "The Empire Windrush: essay writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -12628,13 +11886,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -12674,8 +11926,7 @@ export default {
         "In this unit, pupils learn the spelling and grammar conventions used with common suffixes: -ed and -ing.  In 'More suffixes and silent letters', pupils learn spelling and grammar conventions used with the suffixes -ly, -ful and -less.",
       connection_future_unit_title: "More suffixes and silent letters",
       connection_prior_unit_title: "Suffixes",
-      domain: "Spelling",
-      domain_id: 19,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -12780,13 +12031,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 19,
-          title: "Spelling",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 7,
@@ -12821,8 +12066,7 @@ export default {
         "In this unit, pupils learn the spelling and grammar conventions used with the suffixes -ly, -ful and -less.  In 'Prefixes, Homonyms and Homophones', pupils learn spelling and grammar conventions used with prefixes meaning 'not' and the spelling of homophones and homonyms.",
       connection_future_unit_title: "Prefixes, homonyms and homophones",
       connection_prior_unit_title: "Writing -ed and -ing suffixes",
-      domain: "Spelling",
-      domain_id: 19,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -12926,13 +12170,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 19,
-          title: "Spelling",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 7,
@@ -12967,8 +12205,7 @@ export default {
         "In this unit, pupils learn spelling and grammar conventions used with prefixes meaning 'not’ and the spelling of homophones and homonyms.  In 'Verb and adjectives suffixes’, pupils learn verb and adjective suffixes.",
       connection_future_unit_title: "Verb and adjective suffixes",
       connection_prior_unit_title: "More suffixes and silent letters",
-      domain: "Spelling",
-      domain_id: 19,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -13086,13 +12323,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 19,
-          title: "Spelling",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 7,
@@ -13127,8 +12358,7 @@ export default {
         "In this unit, pupils have analysed several poems by Joseph Coelho, looking for any similarities and common themes. In 'Poetry inspired by weather’, pupils will follow a similar path, but using the poet John Lyons. ",
       connection_future_unit_title: "John Lyons poetry",
       connection_prior_unit_title: "Humorous poetry",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -13232,13 +12462,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -13279,8 +12503,7 @@ export default {
         "In 'Escape from Pompeii’, pupils will read and listen to a historical narrative. They will develop their understanding of how authors use language to enhance meaning. ",
       connection_future_unit_title: "'Escape from Pompeii': reading",
       connection_prior_unit_title: "'Mulan': reading",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -13332,13 +12555,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -13374,8 +12591,7 @@ export default {
       connection_future_unit_title:
         "'Marcy and the Riddle of the Sphinx': book club",
       connection_prior_unit_title: "'Mulan': reading",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -13427,13 +12643,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -13473,8 +12683,7 @@ export default {
         "In 'The Iron Man’, pupils read and discussed the story of ’The Iron Man’. In 'The Iron Man Narrative Writing’, pupils will use the book as a stimulus for narrative writing.",
       connection_future_unit_title: "'The Iron Man': narrative writing",
       connection_prior_unit_title: "'The Sheep Pig': reading",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -13524,13 +12733,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -13573,8 +12776,7 @@ export default {
         "'The Firework Maker's Daughter': reading and diary writing",
       connection_prior_unit_title:
         "'The Day the Crayons Quit': reading and writing persuasive letters",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -13649,13 +12851,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -13684,8 +12880,7 @@ export default {
         "In 'The Sheep Pig’, pupils developed their understanding of characterisation and sequential narrative plot structure. In ’The Iron Man’, pupils will read and listen to another narrative and will discuss the plot, themes and characterisation.",
       connection_future_unit_title: "'The Iron Man': narrative writing",
       connection_prior_unit_title: "'Anansi and the Antelope Baby': reading",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -13729,13 +12924,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -13771,8 +12960,7 @@ export default {
       connection_future_unit_title:
         "'Curious Creatures Glowing in the Dark': reading",
       connection_prior_unit_title: "'The Pebble in my Pocket': reading",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -13818,13 +13006,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -13859,8 +13041,7 @@ export default {
         "In this unit, pupils learned how to use first person when writing in character for the purpose of writing a letter. In, 'The Journey', pupils will continue to write in character for the purpose of writing a diary.",
       connection_future_unit_title: "'The Journey': diary writing",
       connection_prior_unit_title: "'The Man on the Moon': narrative writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -13932,13 +13113,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -13972,8 +13147,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -14016,7 +13190,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 4,
@@ -14052,8 +13226,7 @@ export default {
       connection_future_unit_title:
         "Key grammar terminology, including determiners and fronted adverbials ",
       connection_prior_unit_title: "Word class ",
-      domain: "Grammar",
-      domain_id: 17,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -14103,13 +13276,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 17,
-          title: "Grammar",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 5,
@@ -14144,8 +13311,7 @@ export default {
         "In this unit, pupils learn the spelling and grammar conventions used with noun and adjective suffixes.  In 'Suffixes, etymology and homophones', pupils learn how spelling can relate to the origin and meaning of words.",
       connection_future_unit_title: "Suffixes, etymology and homophones",
       connection_prior_unit_title: "Verb and adjective suffixes",
-      domain: "Spelling",
-      domain_id: 19,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -14245,13 +13411,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 19,
-          title: "Spelling",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 7,
@@ -14286,8 +13446,7 @@ export default {
         "In this unit, pupils learn a range of rich vocabulary associated with weather. In the next unit, pupils learn a  range of rich vocabulary associated with taste and smell.",
       connection_future_unit_title: "Taste and smell words",
       connection_prior_unit_title: "Weather: cold, calm and stormy words",
-      domain: "Vocabulary",
-      domain_id: 20,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -14330,13 +13489,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 20,
-          title: "Vocabulary",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 8,
@@ -14372,8 +13525,7 @@ export default {
       connection_future_unit_title: null,
       connection_prior_unit_title:
         "'The Firework Maker's Daughter': reading and narrative writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -14495,13 +13647,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -14541,8 +13687,7 @@ export default {
         "In ’Walter Tull's Scrapbook’ pupils focused on significant figure from Black British history. In ’Harriet Tubman: Biographical Writing’ pupils will examine the life of Harriet Tubman and the impact she had on Black American History.",
       connection_future_unit_title: "Harriet Tubman: biographical writing",
       connection_prior_unit_title: "'El Deafo': book club",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -14594,13 +13739,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -14647,8 +13786,7 @@ export default {
       connection_future_unit_title: "School uniform: persuasive letter writing",
       connection_prior_unit_title:
         "'The Day the Crayons Quit': reading and writing persuasive letters",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -14719,13 +13857,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -14752,8 +13884,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -14767,13 +13898,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -14998,8 +14123,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -15042,7 +14166,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 4,
@@ -15078,8 +14202,7 @@ export default {
       connection_future_unit_title: "Using five sentence types ",
       connection_prior_unit_title:
         "Simple, compound, adverbial and relative complex sentences",
-      domain: "Grammar",
-      domain_id: 17,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -15136,13 +14259,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 17,
-          title: "Grammar",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 5,
@@ -15177,8 +14294,7 @@ export default {
         "In this unit, pupils learn further noun suffixes, letter strings and homophones.  In 'Etymology and prefixes', pupils learn the grammar and spelling conventions associated with prefixes.",
       connection_future_unit_title: "Etymology and prefixes",
       connection_prior_unit_title: "Verb, adjective and noun suffixes",
-      domain: "Spelling",
-      domain_id: 19,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -15277,13 +14393,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 19,
-          title: "Spelling",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 7,
@@ -15319,8 +14429,7 @@ export default {
       connection_future_unit_title: "Homophones and tense",
       connection_prior_unit_title:
         "Noun suffixes, letter strings and homophones",
-      domain: "Spelling",
-      domain_id: 19,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -15424,13 +14533,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 19,
-          title: "Spelling",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 7,
@@ -15465,8 +14568,7 @@ export default {
         "In this unit, pupils will develop reading for pleasure through exploration of a range of different text types, focusing on genre and form, and introduction to a range of authors and illustrators. In 'Reading for pleasure in Year 6', pupils will build on this knowledge through the introduction to new range of texts suitable for Year 6.",
       connection_future_unit_title: "Developing reading preferences in Year 6",
       connection_prior_unit_title: "Developing reading preferences in Year 4",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -15513,13 +14615,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -15554,8 +14650,7 @@ export default {
         "In this unit, pupils embed narrative skills including show-not-tell and dialogue to convey character and a were introduced to a range of cohesive devices. In 'The Viewer', pupils will further develop their use of cohesive devices and develop strategies to build suspense when describing a setting.",
       connection_future_unit_title: "'The Viewer': narrative writing ",
       connection_prior_unit_title: "'Whale Rider': narrative writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -15692,13 +14787,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -15733,8 +14822,7 @@ export default {
         "In ‘Introduction to Debate’, the pupils learn to justify their opinions with reasoning. In the Year 5 unit ‘Persuasive letter writing’, the pupils will build on this by using their justification skills to make a persuasive argument. ",
       connection_future_unit_title: "'Front Desk': persuasive letter writing",
       connection_prior_unit_title: "Speeches",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -15805,13 +14893,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -15846,8 +14928,7 @@ export default {
         "In 'Curiosity’, pupils read a discussed a non-fiction narrative. In ’Shackleton's Journey’, pupils will read another non-fiction narrative based on true events.",
       connection_future_unit_title: "'Shackleton's Journey': reading",
       connection_prior_unit_title: "'Escape from Pompeii': reading",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -15901,13 +14982,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -15942,8 +15017,7 @@ export default {
         "In this unit, pupils learn what the subject and object of a clause are when interrogating the five sentence types: simple, compound, adverbial complex, relative complex and non-finite complex. ",
       connection_future_unit_title: null,
       connection_prior_unit_title: "Five sentence types",
-      domain: "Grammar",
-      domain_id: 17,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -15986,13 +15060,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 17,
-          title: "Grammar",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 5,
@@ -16028,8 +15096,7 @@ export default {
       connection_future_unit_title: null,
       connection_prior_unit_title:
         "Key grammar terminology, including determiners and fronted adverbials ",
-      domain: "Grammar",
-      domain_id: 17,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -16073,13 +15140,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 17,
-          title: "Grammar",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 5,
@@ -16115,8 +15176,7 @@ export default {
         "In this unit, pupils learn a range of rich vocabulary associated with emotions. In the next unit, pupils learn a range of rich vocabulary associated with settings.",
       connection_future_unit_title: "Setting words",
       connection_prior_unit_title: "Action words",
-      domain: "Vocabulary",
-      domain_id: 20,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -16187,13 +15247,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 20,
-          title: "Vocabulary",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 8,
@@ -16227,8 +15281,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: "Emotions words",
-      domain: "Vocabulary",
-      domain_id: 20,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -16299,13 +15352,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 20,
-          title: "Vocabulary",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 8,
@@ -16340,8 +15387,7 @@ export default {
         "In this unit, pupils learn to use persuasive devices for letter writing with increasing nuance.",
       connection_future_unit_title: null,
       connection_prior_unit_title: "School uniform: persuasive letter writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -16478,13 +15524,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -16524,8 +15564,7 @@ export default {
         "In 'Girl of Ink and Stars’, pupils considered differing interpretations of the books. In ’When Stars are Scattered’, pupils will continue to discuss different interpretations of the books they read.",
       connection_future_unit_title: "'When Stars are Scattered': book club",
       connection_prior_unit_title: "'Wonder': book club",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -16556,13 +15595,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -16603,8 +15636,7 @@ export default {
       connection_future_unit_title: null,
       connection_prior_unit_title:
         "Shakespeare's 'Romeo and Juliet': diary and narrative writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -16665,13 +15697,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -16700,8 +15726,7 @@ export default {
         "In 'Beowulf’, pupils read and discussed the tale. In ’Beowulf Narrative Writing’, they will use the book as a stimulus for writing.",
       connection_future_unit_title: "'Beowulf': narrative writing",
       connection_prior_unit_title: "'Blackberry Blue': reading",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -16765,13 +15790,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -16812,8 +15831,7 @@ export default {
       connection_future_unit_title:
         "'No Country' and 'Frizzy': graphic novels exploring identity and belonging",
       connection_prior_unit_title: "Poetry about migration",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -16900,13 +15918,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -16947,8 +15959,7 @@ export default {
         "In this unit, pupils learn to further finesse the skills of persuasive and credible essay writing.",
       connection_future_unit_title: null,
       connection_prior_unit_title: "Polar regions: essay writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -17018,13 +16029,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -17064,8 +16069,7 @@ export default {
         "In 'No Country and Frizzy: graphic novels exploring identity and belonging' pupils have explored themes through the graphic novel form. In 'Cloud Busting: book club', pupils will consider how reading a narrative in verse can convey themes and characterisation.",
       connection_future_unit_title: "'Cloud Busting': book club",
       connection_prior_unit_title: "'When Stars are Scattered': book club",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -17157,13 +16161,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -17198,8 +16196,7 @@ export default {
         "In this unit, pupils learn to identify and use the four main word classes. In 'Year 1: Grammar 2: simple sentences', pupils will learn to write and say different types of simple sentence in the simple present and simple past tense.",
       connection_future_unit_title: "Simple sentences",
       connection_prior_unit_title: null,
-      domain: "Grammar",
-      domain_id: 17,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -17270,13 +16267,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 17,
-          title: "Grammar",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 5,
@@ -17312,8 +16303,7 @@ export default {
       connection_future_unit_title:
         "Pre-cursive lower case letters or lower case letters revision",
       connection_prior_unit_title: "Capital letters",
-      domain: "Handwriting",
-      domain_id: 18,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -17342,13 +16332,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 18,
-          title: "Handwriting",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 6,
@@ -17385,8 +16369,7 @@ export default {
         "'The Magic Porridge Pot': reading and writing",
       connection_prior_unit_title:
         "'A Superhero Like You': reading and writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -17460,13 +16443,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -17512,8 +16489,7 @@ export default {
       connection_future_unit_title: "Looking after pets: reading and writing",
       connection_prior_unit_title:
         "'The Magic Porridge Pot': reading and writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -17600,13 +16576,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -17652,8 +16622,7 @@ export default {
         "In this unit, pupils learnt to write descriptive sentences about characters. In 'Paddington', pupils will build on this by joining two simple ideas together using 'and'.",
       connection_future_unit_title: "'Paddington': reading and writing",
       connection_prior_unit_title: "'Anna Hibiscus' Song': reading and writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -17738,13 +16707,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -17784,8 +16747,7 @@ export default {
         "In 'Wild', pupils will apply this descriptive writing to write a narrative with a beginning, middle and end. ",
       connection_future_unit_title: "'Wild': reading and writing",
       connection_prior_unit_title: "Looking after pets: reading and writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -17871,13 +16833,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -17935,8 +16891,7 @@ export default {
         "'Ada Twist Scientist': reading and writing",
       connection_prior_unit_title:
         "'Jack and the Beanstalk': reading and writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -17986,13 +16941,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -18027,8 +16976,7 @@ export default {
         "In this unit, pupils learn the grammar rules for apostrophes for contraction and singular possession. In 'Speech punctuation and apostrophes', pupils will learn the apostrophe for plural possession.",
       connection_future_unit_title: "Speech first punctuation and apostrophes",
       connection_prior_unit_title: "Suffixes",
-      domain: "Grammar",
-      domain_id: 17,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -18064,13 +17012,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 17,
-          title: "Grammar",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 5,
@@ -18103,8 +17045,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: "Handwriting",
-      domain_id: 18,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -18118,13 +17059,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 18,
-          title: "Handwriting",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 6,
@@ -18279,8 +17214,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: "Handwriting",
-      domain_id: 18,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -18294,13 +17228,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 18,
-          title: "Handwriting",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 6,
@@ -18537,8 +17465,7 @@ export default {
       connection_future_unit_title: "'The Children of Lir': reading",
       connection_prior_unit_title:
         "'Jack and the Beanstalk': reading and writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -18589,13 +17516,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -18636,8 +17557,7 @@ export default {
       connection_future_unit_title: "'Don't Cross the Line!': book club",
       connection_prior_unit_title:
         "'The Wolf, The Duck and the Mouse': book club",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -18674,13 +17594,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -18716,8 +17630,7 @@ export default {
       connection_future_unit_title:
         "Nocturnal animals: non-chronological report",
       connection_prior_unit_title: "Monster pizza: instructions writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -18802,13 +17715,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -18844,8 +17751,7 @@ export default {
       connection_future_unit_title:
         "Atinuke and other authors: information text",
       connection_prior_unit_title: "'The Planet in a Pickle Jar': book club",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -18919,13 +17825,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -18971,8 +17871,7 @@ export default {
         "In this unit, pupils use Kit Wright's poem The Magic Box’ to explore poetic devices such as alliteration, similes and repetition. In ’Humorous Poetry’, pupils will build on this by using several different poems from different poets to explore how those devices are used by others. ’",
       connection_future_unit_title: "Humorous poetry",
       connection_prior_unit_title: "Nursery rhymes: reading poetry",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -19023,13 +17922,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -19064,8 +17957,7 @@ export default {
         "In this unit, pupils read a story related to a family. In 'Grandad's Island', pupils will read another text around a family, but in a different context, encouraging pupils to compare, contrast and respond with their personal experiences and prior reading.",
       connection_future_unit_title: "'Grandad's Island': book club",
       connection_prior_unit_title: "'Don't Cross the Line!': book club",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -19094,13 +17986,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -19135,8 +18021,7 @@ export default {
         "In this unit, pupils continued to develop their personal responses towards texts and reading. In 'Leaf', pupils will have the opportunity to consider actions that could be taken as a result of reading a fictional text, such as supporting the environment.",
       connection_future_unit_title: "'Leaf': book club",
       connection_prior_unit_title: "'And Tango Makes Three': book club",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -19172,13 +18057,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -19219,8 +18098,7 @@ export default {
         "In this unit, pupils will have spent time sharing their opinions verbally. In 'Speeches', the pupils will use their opinions to write full speeches following a set structure. ",
       connection_future_unit_title: "Speeches",
       connection_prior_unit_title: "School trip: recount writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -19256,13 +18134,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -19295,8 +18167,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks1",
@@ -19332,7 +18203,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 4,
@@ -19370,8 +18241,7 @@ export default {
       connection_future_unit_title:
         "Tense forms: simple, progressive and perfect",
       connection_prior_unit_title: "Adverbial complex sentences",
-      domain: "Grammar",
-      domain_id: 17,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -19442,13 +18312,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 17,
-          title: "Grammar",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 5,
@@ -19483,8 +18347,7 @@ export default {
         "In this visual literacy unit, pupils learned how to use use precise vocabulary to  mirror the film director's choice. In the next visual literacy unit, 'Aladdin', pupils will analyse a scene from a clip to use as as a stimulus for writing and generating descriptive vocabulary.",
       connection_future_unit_title: null,
       connection_prior_unit_title: "'Lucky Dip': narrative writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -19583,13 +18446,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -19630,8 +18487,7 @@ export default {
       connection_future_unit_title: "The Stone Age: non-chronological report",
       connection_prior_unit_title:
         "Florence Nightingale and Mary Seacole: non-chronological report",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -19724,13 +18580,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -19765,8 +18615,7 @@ export default {
         "In this unit, pupils learned how to use a range of fronted adverbials. In the next unit, pupils will learn how to use a wider range of sentence starters.",
       connection_future_unit_title: null,
       connection_prior_unit_title: "'The BFG': reading and narrative writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -19874,13 +18723,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -19921,8 +18764,7 @@ export default {
         "'The Jabberwocky: Narrative Writing' - In this unit, pupils learn how to use speech first with inverted commas. In ‘The Jabberwocky’, pupils will learn how to use speech first within complex sentences.",
       connection_future_unit_title: "'Jabberwocky': narrative writing",
       connection_prior_unit_title: "'The BFG': reading and narrative writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -20007,13 +18849,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -20048,8 +18884,7 @@ export default {
         "In this unit, pupils learnt to write a diary entry from a character's perspective with heightened emotions from a fictional context. In 'Into the Forest', pupils will learn to develop their skills of writing a diary from a fictional character's perspective. ",
       connection_future_unit_title: "'Into the Forest': diary writing",
       connection_prior_unit_title: "'The Journey': diary writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -20134,13 +18969,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -20183,8 +19012,7 @@ export default {
         "King Tut or Healthy Lifestyle: non-chronological report",
       connection_prior_unit_title:
         "The Portia Spider: non-chronological report",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -20272,13 +19100,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -20314,8 +19136,7 @@ export default {
       connection_future_unit_title:
         "Speech punctuation, parenthesis and apostrophes ",
       connection_prior_unit_title: "Speech first punctuation and apostrophes",
-      domain: "Grammar",
-      domain_id: 17,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -20352,13 +19173,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 17,
-          title: "Grammar",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 5,
@@ -20393,8 +19208,7 @@ export default {
         "In this unit, pupils learn a range of vocabulary associated with weather, including cold, calm and stormy words. In the next unit, pupils learn a wider range of rich weather vocabulary, including cloudy, dark and rainy words.",
       connection_future_unit_title: "Weather: cloudy, dark and rainy words",
       connection_prior_unit_title: "Weather: wind and hot words",
-      domain: "Vocabulary",
-      domain_id: 20,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -20451,13 +19265,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 20,
-          title: "Vocabulary",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 8,
@@ -20492,8 +19300,7 @@ export default {
         "In this unit, pupils will develop reading for pleasure through exploration of a range of different text types, focusing on genre and form, and introduction to a range of authors and illustrators. In 'Reading for pleasure in Year 5', pupils will build on this knowledge through the introduction to new range of texts suitable for Year 5.",
       connection_future_unit_title: "Developing reading preferences in Year 5",
       connection_prior_unit_title: "Developing reading preferences in year 3",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -20540,13 +19347,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -20583,8 +19384,7 @@ export default {
         "'A Christmas Carol': narrative writing and reading",
       connection_prior_unit_title:
         "'The Firework Maker's Daughter': reading and narrative writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -20679,13 +19479,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -20725,8 +19519,7 @@ export default {
         "In 'El Deafo’ pupils have explored a coming-of-age memoir detailing the author's experience of hearing loss in graphic novel form. In ’When Stars are Scattered’ pupils will explore a graphic novel memoir written by a refugee, which contains increasingly mature themes.",
       connection_future_unit_title: "'When Stars are Scattered': book club",
       connection_prior_unit_title: "'Swallow's Kiss': book club",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -20756,13 +19549,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -20809,8 +19596,7 @@ export default {
       connection_future_unit_title: "The Amazon Rainforest: essay writing",
       connection_prior_unit_title:
         "Ancient Greeks or Anglo-Saxons: non-chronological report",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -20864,13 +19650,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -20905,8 +19685,7 @@ export default {
         "In this unit, pupils apply ambitious weather vocabulary in a range of figurative settings. In 'Poetry Inspired by Weather', pupils will analyse a range of poems that include ambitious weather vocabulary.",
       connection_future_unit_title: "Poetry inspired by weather",
       connection_prior_unit_title: "Weather: cloudy, dark and rainy words",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -20970,13 +19749,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -21005,8 +19778,7 @@ export default {
         "In this unit, pupils learn to develop their ability to develop character with vocabulary and speech. In 'Whale Rider', pupils will learn to develop speech from a film to varied speech sentence structures.",
       connection_future_unit_title: "'Whale Rider': narrative writing",
       connection_prior_unit_title: "'Jabberwocky': narrative writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -21092,13 +19864,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -21143,8 +19909,7 @@ export default {
         "In 'Greenling’, pupils discussed the power of nature and its importance. In ’Blackberry Blue’, pupils will discuss how nature is central to the plot.",
       connection_future_unit_title: "'Blackberry Blue': reading",
       connection_prior_unit_title: "'The Wild Robot': book club",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -21194,13 +19959,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -21235,8 +19994,7 @@ export default {
         "In 'The Miraculous Journey of Edward Tulane', pupils discussed relationships between characters. In 'The Unforgotten Coat', pupils will revisit the important of friendship.",
       connection_future_unit_title: "'The Unforgotten Coat': book club",
       connection_prior_unit_title: "'Varjak Paw': book club",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -21267,13 +20025,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -21310,8 +20062,7 @@ export default {
         "Key terminology, including determiners, fronted adverbials and parenthesis",
       connection_prior_unit_title:
         "Review of determiners, prepositions and fronted adverbials ",
-      domain: "Grammar",
-      domain_id: 17,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -21347,13 +20098,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 17,
-          title: "Grammar",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 5,
@@ -21389,8 +20134,7 @@ export default {
         "In this unit, pupils learn a range of rich vocabulary associated with taste and smell. In the next unit, pupils learn a range of rich vocabulary associated with action.",
       connection_future_unit_title: "Action words",
       connection_prior_unit_title: "Weather: cloudy, dark and rainy words",
-      domain: "Vocabulary",
-      domain_id: 20,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -21461,13 +20205,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 20,
-          title: "Vocabulary",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 8,
@@ -21502,8 +20240,7 @@ export default {
         "In this unit, pupils learn a range of rich vocabulary associated with action. In the next unit, pupils learn a range of rich vocabulary associated with emotions.",
       connection_future_unit_title: "Emotions words",
       connection_prior_unit_title: "Taste and smell words",
-      domain: "Vocabulary",
-      domain_id: 20,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -21574,13 +20311,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 20,
-          title: "Vocabulary",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 8,
@@ -21615,8 +20346,7 @@ export default {
         "In 'How To Train Your Dragon’, pupils discussed an unlikely hero and what it means to be perceived as a hero by your community. In ’Beowulf’, pupils will encounter a traditional hero. ",
       connection_future_unit_title: "'Beowulf': narrative writing",
       connection_prior_unit_title: "'Arthur and the Golden Rope': reading",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -21669,13 +20399,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -21708,8 +20432,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -21723,13 +20446,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -21986,8 +20703,7 @@ export default {
       connection_future_unit_title: "'The Highwayman': narrative writing",
       connection_prior_unit_title:
         "'How to Train Your Dragon': diary and narrative writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -22059,13 +20775,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -22100,8 +20810,7 @@ export default {
         "In 'School Uniform: Persuasive Letter Writing', pupils develop their understanding of persuasive devices and how to apply these to a real-life context. In 'Front Desk: Persuasive Letter Writing', pupils will further develop their understanding of how to use persuasive devices and apply these to the context of a realistic fiction text.",
       connection_future_unit_title: "'Front Desk': persuasive letter writing",
       connection_prior_unit_title: "Introduction to debate",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -22194,13 +20903,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -22229,8 +20932,7 @@ export default {
         "In 'Front Desk', pupils learnt about migration and explored themes of belonging and identity in the context of a realistic fiction novel. In 'The Empire Windrush: Diary Entry', pupils will learn about the Windrush as a significant event in British history and consider the impact and experience of migrants who travelled to Britain on the Empire Windrush.",
       connection_future_unit_title: "The Empire Windrush: diary writing",
       connection_prior_unit_title: "School uniform: persuasive letter writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -22336,13 +21038,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -22383,8 +21079,7 @@ export default {
         "In 'Princess Sophia Duleep Singh’ pupils have explored a fictionalised recount of a significant historical figure's life. In ’Harriet Tubman'’ pupils will write to inform about a significant person's life, including the impact they had and legacy they left behind.",
       connection_future_unit_title: "Harriet Tubman: biographical writing",
       connection_prior_unit_title: "'Escape from Pompeii': reading",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -22439,13 +21134,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -22483,8 +21172,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -22528,7 +21216,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [],
+
       subjectcategories: [
         {
           id: 4,
@@ -22566,8 +21254,7 @@ export default {
       connection_future_unit_title: null,
       connection_prior_unit_title:
         "Speech punctuation, parenthesis and apostrophes ",
-      domain: "Grammar",
-      domain_id: 17,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -22639,13 +21326,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 17,
-          title: "Grammar",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 5,
@@ -22681,8 +21362,7 @@ export default {
       connection_future_unit_title:
         "Review and revision of all taught spelling",
       connection_prior_unit_title: "Homophones and tense",
-      domain: "Spelling",
-      domain_id: 19,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -22813,13 +21493,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 19,
-          title: "Spelling",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 7,
@@ -22855,8 +21529,7 @@ export default {
       connection_future_unit_title: "The Empire Windrush: diary writing",
       connection_prior_unit_title:
         "Shakespeare's 'Macbeth': narrative and soliloquy writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -22957,13 +21630,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -22999,8 +21666,7 @@ export default {
       connection_future_unit_title: "'When the Sky Falls': reading",
       connection_prior_unit_title:
         "'Curiosity: The Story of a Mars Rover': reading",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -23052,13 +21718,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -23093,8 +21753,7 @@ export default {
         "In this unit, pupils use a contemporary issue as the stimulus for journalistic writing, focusing on how writer's bias can shape a report.",
       connection_future_unit_title: null,
       connection_prior_unit_title: "The Titanic: journalistic report writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -23175,13 +21834,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -23216,8 +21869,7 @@ export default {
         "In 'A Kind of Spark’ pupils explored characterisation through the lens of a neurodiverse individual. In ’When the Sky Falls’, pupils will explore a historical setting through the perspective of a young boy.",
       connection_future_unit_title: "'When the Sky Falls': reading",
       connection_prior_unit_title: "'Girl of Ink and Stars': book club",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -23267,13 +21919,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -23315,8 +21961,7 @@ export default {
       connection_future_unit_title:
         "'When the Sky Falls': narrative and journalistic report writing",
       connection_prior_unit_title: "'Beowulf': narrative writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -23441,13 +22086,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -23483,8 +22122,7 @@ export default {
       connection_future_unit_title:
         "'No Country' and 'Frizzy': graphic novels exploring identity and belonging",
       connection_prior_unit_title: "'A Kind of Spark': reading",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -23534,13 +22172,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -23575,8 +22207,7 @@ export default {
         "In this unit, pupils write a narrative climax and use it as the stimulus for writing a diary entry from a character's perspective.",
       connection_future_unit_title: null,
       connection_prior_unit_title: "'A Kind of Spark': narrative writing",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -23669,13 +22300,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
@@ -23710,8 +22335,7 @@ export default {
         "In 'Cloud Busting’, the pupils read and discuss the author's use of narrative form. In KS3, pupils will continue to read books written in different forms and will consider why the author has selected these forms.’",
       connection_future_unit_title: null,
       connection_prior_unit_title: "'Wonder': book club",
-      domain: "Reading, writing & oracy",
-      domain_id: 16,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -23742,13 +22366,7 @@ export default {
       subject_slug: "english",
       subject_parent: null,
       subject_parent_slug: null,
-      tags: [
-        {
-          id: 16,
-          title: "Reading, writing & oracy",
-          category: "Domain",
-        },
-      ],
+
       subjectcategories: [
         {
           id: 4,
