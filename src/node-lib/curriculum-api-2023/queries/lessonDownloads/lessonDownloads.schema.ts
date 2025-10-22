@@ -47,8 +47,6 @@ export const downloadsAssetDataSchema = z.object({
   has_lesson_guide_object: z.boolean(),
   is_legacy: z.boolean(),
   expired: z.boolean().nullable().optional(),
-  geo_restricted: z.boolean().nullable(),
-  login_required: z.boolean().nullable(),
   downloadable_files: z.array(additionalFile).nullish(),
   lesson_release_date: z.string().nullish(),
 });

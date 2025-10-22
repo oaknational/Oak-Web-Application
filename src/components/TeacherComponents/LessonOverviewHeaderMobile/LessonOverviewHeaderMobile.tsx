@@ -46,6 +46,7 @@ export const LessonOverviewHeaderMobile: FC<
     unitSlug,
     excludedFromTeachingMaterials,
     shareButtons,
+    contentRestricted,
   } = props;
 
   const previousBreadcrumb = breadcrumbs[breadcrumbs.length - 2];
@@ -53,7 +54,8 @@ export const LessonOverviewHeaderMobile: FC<
     !!previousBreadcrumb && !!unitTitle && !!programmeSlug;
 
   const isCreateWithAiEnabled =
-    useFeatureFlagVariantKey("create-with-ai-button") === "test";
+    useFeatureFlagVariantKey("create-with-ai-button") === "test" &&
+    !contentRestricted;
 
   return (
     <OakFlex

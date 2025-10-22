@@ -1,7 +1,6 @@
 import { GetStaticPropsContext, PreviewData } from "next";
 import userEvent from "@testing-library/user-event";
 import { screen } from "@testing-library/dom";
-import mockRouter from "next-router-mock";
 
 import LessonListPage, {
   getStaticProps,
@@ -43,6 +42,19 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 
 // mock save functionality
 window.global.fetch = jest.fn().mockResolvedValue({ ok: true });
+
+const mockRouter = {
+  replace: jest.fn(),
+  pathname: "/",
+  asPath: "/",
+  query: {
+    redirected: "",
+  },
+};
+
+jest.mock("next/router", () => ({
+  useRouter: jest.fn(() => mockRouter),
+}));
 
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: jest.fn().mockReturnValue(true),
@@ -169,7 +181,8 @@ describe("SEO", () => {
         "Adding surds KS4 | Y10 Maths Lesson Resources | NEXT_PUBLIC_SEO_APP_NAME",
       ogDescription: "Free lessons and teaching resources about adding surds",
       ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
-      canonical: "NEXT_PUBLIC_SEO_APP_URL",
+      canonical:
+        "NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/maths-secondary-ks4-higher/units/adding-surds-a57d/lessons",
       robots: "index,follow",
     });
   });
@@ -191,7 +204,8 @@ describe("SEO", () => {
         "Adding surds KS4 | Y10 Maths Lesson Resources | Page 1 of 3 | NEXT_PUBLIC_SEO_APP_NAME",
       ogDescription: "Free lessons and teaching resources about adding surds",
       ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
-      canonical: "NEXT_PUBLIC_SEO_APP_URL",
+      canonical:
+        "NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/maths-secondary-ks4-higher/units/adding-surds-a57d/lessons",
       robots: "index,follow",
     });
   });
@@ -317,11 +331,12 @@ describe("tracking", () => {
   });
 });
 describe("redirected overlay", () => {
-  beforeEach(() => {
-    mockRouter.setCurrentUrl("/?redirected=true");
-  });
   it("should show redirect modal when redirected query param is present", () => {
-    mockRouter.setCurrentUrl("/?redirected=true");
+    mockRouter.query = {
+      ...mockRouter.query,
+      redirected: "true",
+    };
+
     const { getByTestId } = render(
       <LessonListPage curriculumData={lessonListingFixture()} />,
     );

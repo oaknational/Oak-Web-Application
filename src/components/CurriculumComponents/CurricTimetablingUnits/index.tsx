@@ -15,14 +15,16 @@ import { CurricTimetableHeader } from "../CurricTimetableHeader";
 import { CurricTermCard } from "../CurricTermCard";
 import CurricUnitCard from "../CurricUnitCard";
 import { CurricTimetablingYearCard } from "../CurricTimetablingYearCard";
+import CurricTimetablingFilters from "../CurricTimetablingFilters";
 
 import { useTimetableParams } from "@/utils/curriculum/timetabling";
-import { Unit } from "@/utils/curriculum/types";
+import { CurriculumFilters, Unit } from "@/utils/curriculum/types";
 import oakTheme from "@/styles/theme";
 import {
   fetchSubjectPhasePickerData,
   formatCurriculumUnitsData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
 const UnitList = styled("ol")`
   margin: 0;
@@ -54,7 +56,7 @@ function getDefaultName(
 }
 
 type CurricTimetablingUnitsProps = {
-  subjectPhaseSlug: string;
+  slugs: CurriculumSelectionSlugs;
   units: Unit[];
   curriculumPhaseOptions:
     | ReturnType<typeof fetchSubjectPhasePickerData>
@@ -62,12 +64,36 @@ type CurricTimetablingUnitsProps = {
 };
 export const CurricTimetablingUnits = ({
   units,
+  slugs,
 }: CurricTimetablingUnitsProps) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [data] = useTimetableParams();
   const isDebugMode = data.mode === "debug";
+  const [filters, setFilters] = useState<CurriculumFilters>(() => {
+    return {
+      years: [data.year ?? "1"],
+      childSubjects: [],
+      subjectCategories: [],
+      tiers: [],
+      threads: [],
+      pathways: [],
+    };
+  });
 
-  const unitData = useMemo(() => formatCurriculumUnitsData({ units }), [units]);
+  const unitDataPre = useMemo(
+    () => formatCurriculumUnitsData({ units }),
+    [units],
+  );
+
+  const unitData = useMemo(() => {
+    return {
+      ...unitDataPre,
+      yearOptions:
+        data.year && unitDataPre.yearOptions.includes(data.year)
+          ? [data.year]
+          : [],
+    };
+  }, [data, unitDataPre]);
 
   const onEditDetails = () => {
     setModalOpen(true);
@@ -118,7 +144,14 @@ export const CurricTimetablingUnits = ({
         <OakMaxWidth $ph={"inner-padding-xl5"}>
           <OakFlex $flexDirection={"row"}>
             <OakFlex $width={"all-spacing-21"} $flexDirection={"column"}>
-              <OakHeading tag="h2">Filter and highlight</OakHeading>
+              <CurricTimetablingFilters
+                filters={filters}
+                onChangeFilters={setFilters}
+                slugs={slugs}
+                data={unitData}
+              />
+
+              <OakHeading tag="h2">Debug</OakHeading>
               <pre>{JSON.stringify(data, null, 2)}</pre>
             </OakFlex>
 

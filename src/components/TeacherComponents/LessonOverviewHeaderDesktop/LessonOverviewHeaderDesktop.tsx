@@ -62,6 +62,7 @@ export const LessonOverviewHeaderDesktop: FC<
     unitSlug,
     excludedFromTeachingMaterials,
     shareButtons,
+    contentRestricted,
   } = props;
 
   const previousBreadcrumb = breadcrumbs[breadcrumbs.length - 2];
@@ -69,7 +70,8 @@ export const LessonOverviewHeaderDesktop: FC<
     !!previousBreadcrumb && !!unitTitle && !!programmeSlug;
 
   const isCreateWithAiEnabled =
-    useFeatureFlagVariantKey("create-with-ai-button") === "test";
+    useFeatureFlagVariantKey("create-with-ai-button") === "test" &&
+    !contentRestricted;
 
   return (
     <OakBox $display={["none", "grid"]}>
