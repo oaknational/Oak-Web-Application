@@ -16,7 +16,6 @@ import {
   mockLoggedIn,
   mockUserWithDownloadAccess,
 } from "@/__tests__/__helpers__/mockUser";
-import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import curriculumApi2023, {
   CurriculumApi,
 } from "@/node-lib/curriculum-api-2023";
@@ -61,25 +60,21 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   }),
 }));
 
-// mock useShareExperiment
-jest.mock(
-  "@/pages-helpers/teacher/share-experiments/useShareExperiment",
-  () => {
-    return {
-      __esModule: true,
-      useShareExperiment: jest.fn(() => ({
-        shareExperimentFlag: false,
-        shareUrl: "",
-        browserUrl: "",
-        shareActivated: false,
-        shareIdRef: { current: "" },
-        shareIdKeyRef: { current: "" },
-      })),
-    };
-  },
-);
+// mock useShare
+jest.mock("@/pages-helpers/teacher/share/useShare", () => {
+  return {
+    __esModule: true,
+    useShare: jest.fn(() => ({
+      shareUrl: "",
+      browserUrl: "",
+      shareActivated: false,
+      shareIdRef: { current: "" },
+      shareIdKeyRef: { current: "" },
+    })),
+  };
+});
 
-jest.mock("@/pages-helpers/teacher/share-experiments/useTeacherNotes", () => {
+jest.mock("@/pages-helpers/teacher/share/useTeacherNotes", () => {
   return {
     __esModule: true,
     useTeacherNotes: jest.fn(() => ({
@@ -91,6 +86,19 @@ jest.mock("@/pages-helpers/teacher/share-experiments/useTeacherNotes", () => {
     })),
   };
 });
+
+jest.mock("next/router", () => ({
+  useRouter: jest.fn(() => ({
+    replace: jest.fn(),
+    pathname: "/",
+    asPath: "/",
+    query: {
+      lessonSlug: "lessonSlug",
+      unitSlug: "unitSlug",
+      programmeSlug: "programmeSlug",
+    },
+  })),
+}));
 
 const render = renderWithProviders();
 
@@ -211,25 +219,6 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
     } else {
       throw new Error("Share all button not found");
     }
-  });
-
-  it("updates the url", async () => {
-    window.history.replaceState = jest.fn();
-
-    (useShareExperiment as jest.Mock).mockReturnValueOnce({
-      shareUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
-      browserUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
-      shareActivated: false,
-      shareIdRef: { current: "" },
-      shareIdKeyRef: { current: "" },
-    });
-    render(<LessonOverviewPage {...props} />);
-
-    expect(window.history.replaceState).toHaveBeenCalledWith(
-      {},
-      "",
-      "http://localhost:3000/teachers/lessons/lesson-1?test=1",
-    );
   });
 
   it("sign language button toggles on click", async () => {
@@ -559,26 +548,6 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         lessonReleaseCohort: "2020-2023",
         lessonReleaseDate: "2024-09-29T14:00:00.000Z",
       });
-    });
-
-    it("updates the url if shareExperimentFlag is true", async () => {
-      window.history.replaceState = jest.fn();
-
-      (useShareExperiment as jest.Mock).mockReturnValueOnce({
-        shareExperimentFlag: true,
-        shareUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
-        browserUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
-        shareActivated: false,
-        shareIdRef: { current: "" },
-        shareIdKeyRef: { current: "" },
-      });
-      render(<LessonOverviewPage {...props} />);
-
-      expect(window.history.replaceState).toHaveBeenCalledWith(
-        {},
-        "",
-        "http://localhost:3000/teachers/lessons/lesson-1?test=1",
-      );
     });
   });
   describe("getStaticProps", () => {

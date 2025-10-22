@@ -5,15 +5,15 @@ import {
   TeacherNoteError,
 } from "@oaknational/oak-pupil-client";
 
-import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
-import { useTeacherNotes } from "@/pages-helpers/teacher/share-experiments/useTeacherNotes";
+import { useShare } from "@/pages-helpers/teacher/share/useShare";
+import { useTeacherNotes } from "@/pages-helpers/teacher/share/useTeacherNotes";
 import { TeacherShareNotesButton } from "@/components/TeacherComponents/TeacherShareNotesButton/TeacherShareNotesButton";
 import {
   CoreProperties,
   CurriculumTrackingProps,
-} from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
+} from "@/pages-helpers/teacher/share/shareTypes";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import { ShareSource } from "@/pages-helpers/teacher/share-experiments/createShareId";
+import { ShareSource } from "@/pages-helpers/teacher/share/createShareId";
 import { LessonReleaseCohortValueType } from "@/browser-lib/avo/Avo";
 
 export type UseLessonProps = {
@@ -69,7 +69,7 @@ export const useLesson = ({
   const appendedSource: ShareSource = `${source}-w-note`;
 
   const { shareUrl, browserUrl, shareActivated, shareIdRef, shareIdKeyRef } =
-    useShareExperiment({
+    useShare({
       programmeSlug,
       source: appendedSource,
       curriculumTrackingProps,
@@ -98,11 +98,7 @@ export const useLesson = ({
 
   useEffect(() => {
     setLessonPath(window.location.href.split("?")[0] || null);
-
-    if (window.location.href !== browserUrl) {
-      window.history.replaceState({}, "", browserUrl);
-    }
-  }, [browserUrl]);
+  }, []);
 
   const handleTeacherNotesOpen = () => {
     setTeacherNotesOpen(true);
