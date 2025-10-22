@@ -126,6 +126,6 @@ describe("CurriculumTab", () => {
     act(() => {
       getAllByTestId("subject-picker-button")[0]?.click();
     });
-    expect(getByTestId("close-modal-button"));
+    expect(getByTestId("close-modal-button")).toBeTruthy();
   });
 });
