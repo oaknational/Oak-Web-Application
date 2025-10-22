@@ -60,8 +60,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -79,7 +78,7 @@ describe("openapi", () => {
           tier_slug: null,
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Place value",
@@ -98,8 +97,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -117,7 +115,7 @@ describe("openapi", () => {
           tier_slug: null,
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Properties of number: factors, multiples, squares and cubes",
@@ -136,8 +134,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -155,7 +152,7 @@ describe("openapi", () => {
           tier_slug: null,
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Place value",
@@ -174,8 +171,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -193,7 +189,7 @@ describe("openapi", () => {
           tier_slug: null,
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Properties of number: factors, multiples, squares and cubes",
@@ -310,8 +306,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -329,7 +324,7 @@ describe("openapi", () => {
           tier_slug: null,
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Place value",
@@ -348,8 +343,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -367,7 +361,7 @@ describe("openapi", () => {
           tier_slug: null,
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Properties of number: factors, multiples, squares and cubes",
@@ -386,8 +380,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -405,7 +398,7 @@ describe("openapi", () => {
           tier_slug: null,
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Place value",
@@ -424,8 +417,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -443,7 +435,7 @@ describe("openapi", () => {
           tier_slug: null,
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Properties of number: factors, multiples, squares and cubes",
@@ -462,8 +454,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -481,7 +472,7 @@ describe("openapi", () => {
           tier_slug: null,
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Place value",
@@ -500,8 +491,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -519,7 +509,7 @@ describe("openapi", () => {
           tier_slug: null,
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Properties of number: factors, multiples, squares and cubes",
@@ -538,8 +528,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -557,7 +546,7 @@ describe("openapi", () => {
           tier_slug: null,
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Place value",
@@ -576,8 +565,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -595,7 +583,7 @@ describe("openapi", () => {
           tier_slug: null,
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Properties of number: factors, multiples, squares and cubes",
@@ -708,8 +696,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -727,7 +714,7 @@ describe("openapi", () => {
           tier_slug: "test1",
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Place value",
@@ -746,8 +733,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -765,7 +751,7 @@ describe("openapi", () => {
           tier_slug: "test1",
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Properties of number: factors, multiples, squares and cubes",
@@ -784,8 +770,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -803,7 +788,7 @@ describe("openapi", () => {
           tier_slug: "test2",
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Place value",
@@ -822,8 +807,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -841,7 +825,7 @@ describe("openapi", () => {
           tier_slug: "test2",
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Properties of number: factors, multiples, squares and cubes",
@@ -860,8 +844,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -879,7 +862,7 @@ describe("openapi", () => {
           tier_slug: "test1",
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Place value",
@@ -898,8 +881,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -917,7 +899,7 @@ describe("openapi", () => {
           tier_slug: "test1",
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Properties of number: factors, multiples, squares and cubes",
@@ -936,8 +918,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -955,7 +936,7 @@ describe("openapi", () => {
           tier_slug: "test2",
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Place value",
@@ -974,8 +955,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -993,7 +973,7 @@ describe("openapi", () => {
           tier_slug: "test2",
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Properties of number: factors, multiples, squares and cubes",
@@ -1197,8 +1177,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -1216,7 +1195,7 @@ describe("openapi", () => {
           tier_slug: "test1",
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Place value",
@@ -1235,8 +1214,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -1254,7 +1232,7 @@ describe("openapi", () => {
           tier_slug: "test1",
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Properties of number: factors, multiples, squares and cubes",
@@ -1273,8 +1251,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -1292,7 +1269,7 @@ describe("openapi", () => {
           tier_slug: "test2",
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Place value",
@@ -1311,8 +1288,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -1330,7 +1306,7 @@ describe("openapi", () => {
           tier_slug: "test2",
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Properties of number: factors, multiples, squares and cubes",
@@ -1349,8 +1325,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -1368,7 +1343,7 @@ describe("openapi", () => {
           tier_slug: "test1",
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Place value",
@@ -1387,8 +1362,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -1406,7 +1380,7 @@ describe("openapi", () => {
           tier_slug: "test1",
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Properties of number: factors, multiples, squares and cubes",
@@ -1425,8 +1399,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -1444,7 +1417,7 @@ describe("openapi", () => {
           tier_slug: "test2",
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Place value",
@@ -1463,8 +1436,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -1482,7 +1454,7 @@ describe("openapi", () => {
           tier_slug: "test2",
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Properties of number: factors, multiples, squares and cubes",
@@ -1501,8 +1473,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -1520,7 +1491,7 @@ describe("openapi", () => {
           tier_slug: "test1",
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Place value",
@@ -1539,8 +1510,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -1558,7 +1528,7 @@ describe("openapi", () => {
           tier_slug: "test1",
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Properties of number: factors, multiples, squares and cubes",
@@ -1577,8 +1547,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -1596,7 +1565,7 @@ describe("openapi", () => {
           tier_slug: "test2",
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Place value",
@@ -1615,8 +1584,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -1634,7 +1602,7 @@ describe("openapi", () => {
           tier_slug: "test2",
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Properties of number: factors, multiples, squares and cubes",
@@ -1653,8 +1621,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -1672,7 +1639,7 @@ describe("openapi", () => {
           tier_slug: "test1",
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Place value",
@@ -1691,8 +1658,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -1710,7 +1676,7 @@ describe("openapi", () => {
           tier_slug: "test1",
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Properties of number: factors, multiples, squares and cubes",
@@ -1729,8 +1695,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -1748,7 +1713,7 @@ describe("openapi", () => {
           tier_slug: "test2",
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Place value",
@@ -1767,8 +1732,7 @@ describe("openapi", () => {
           connection_future_unit_description: null,
           connection_future_unit_title: null,
           connection_prior_unit_title: null,
-          domain: null,
-          domain_id: null,
+
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 0,
@@ -1786,7 +1750,7 @@ describe("openapi", () => {
           tier_slug: "test2",
           pathway: null,
           pathway_slug: null,
-          tags: [],
+
           subjectcategories: [],
           threads: [],
           title: "Properties of number: factors, multiples, squares and cubes",

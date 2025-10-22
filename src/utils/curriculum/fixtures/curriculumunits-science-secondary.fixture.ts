@@ -11,8 +11,7 @@ export default {
       connection_future_unit_description: "",
       connection_future_unit_title: null,
       connection_prior_unit_title: "Living organisms and their environments",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -50,7 +49,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -86,8 +85,7 @@ export default {
         "Pupils will learn how substances essential for chemical reactions, and the products of the reactions, are transported into, around and out of plants, and about factors affecting the rate of water uptake by a plant.",
       connection_future_unit_title: "Transport and exchange surfaces in plants",
       connection_prior_unit_title: "Photosynthesis: requirements and products",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -148,7 +146,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -185,8 +183,7 @@ export default {
       connection_future_unit_title: "Nuclear physics",
       connection_prior_unit_title:
         "Particle explanations of density and pressure",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -250,7 +247,7 @@ export default {
       subject_slug: "physics",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 3,
@@ -286,8 +283,7 @@ export default {
       connection_future_unit_title: "Nuclear physics",
       connection_prior_unit_title:
         "Particle explanations of density and pressure",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -351,7 +347,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 3,
@@ -386,8 +382,7 @@ export default {
         "Pupils will learn about growth through cell division, mitosis as part of the cell cycle, cancer as the result of changes in cells that lead to uncontrolled growth and division, and the formation of gametes by meiosis.",
       connection_future_unit_title: "Cell division: mitosis and meiosis",
       connection_prior_unit_title: "DNA and the genome",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -430,7 +425,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -466,8 +461,7 @@ export default {
       connection_future_unit_title:
         "Coordination and control: the human nervous system",
       connection_prior_unit_title: "Biological molecules and enzymes",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -533,7 +527,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -570,8 +564,7 @@ export default {
       connection_future_unit_title:
         "Coordination and control: the human nervous system",
       connection_prior_unit_title: "Biological molecules and enzymes",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -637,7 +630,7 @@ export default {
       subject_slug: "biology",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -673,8 +666,7 @@ export default {
         "Pupils will learn how substances essential for chemical reactions, and the products of the reactions, are transported into, around and out of plants, and about factors affecting the rate of water uptake by a plant.",
       connection_future_unit_title: "Transport and exchange surfaces in plants",
       connection_prior_unit_title: "Photosynthesis: requirements and products",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -735,7 +727,7 @@ export default {
       subject_slug: "biology",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -772,8 +764,7 @@ export default {
       connection_future_unit_title:
         "Photosynthesis: factors affecting the rate",
       connection_prior_unit_title: "Transport and exchange surfaces in plants",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -812,7 +803,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -849,8 +840,7 @@ export default {
         "Pupils will learn how substances essential for chemical reactions, and the products of the reactions, are transported into, around and out of the human body.",
       connection_future_unit_title: "Transport and exchange surfaces in humans",
       connection_prior_unit_title: "Eukaryotic and prokaryotic cells",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -924,7 +914,7 @@ export default {
       subject_slug: "biology",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -960,8 +950,7 @@ export default {
         "Pupils will learn how substances essential for chemical reactions, and the products of the reactions, are transported into, around and out of the human body.",
       connection_future_unit_title: "Transport and exchange surfaces in humans",
       connection_prior_unit_title: "Eukaryotic and prokaryotic cells",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -1035,7 +1024,7 @@ export default {
       subject_slug: "biology",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -1072,8 +1061,7 @@ export default {
       connection_future_unit_title:
         "Coordination and control: hormones and the human endocrine system",
       connection_prior_unit_title: "Transport and exchange surfaces in humans",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -1138,7 +1126,7 @@ export default {
       subject_slug: "biology",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -1175,8 +1163,7 @@ export default {
       connection_future_unit_title:
         "Coordination and control: hormones and the human endocrine system",
       connection_prior_unit_title: "Transport and exchange surfaces in humans",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -1233,7 +1220,7 @@ export default {
       subject_slug: "biology",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -1270,8 +1257,7 @@ export default {
       connection_future_unit_title: "Photosynthesis: requirements and products",
       connection_prior_unit_title:
         "Coordination and control: the human nervous system",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -1321,7 +1307,7 @@ export default {
       subject_slug: "biology",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -1358,8 +1344,7 @@ export default {
         "Pupils will learn about growth through cell division, mitosis as part of the cell cycle, cancer as the result of changes in cells that lead to uncontrolled growth and division, and the formation of gametes by meiosis.",
       connection_future_unit_title: "Cell division: mitosis and meiosis",
       connection_prior_unit_title: "DNA and the genome",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -1410,7 +1395,7 @@ export default {
       subject_slug: "biology",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -1445,8 +1430,7 @@ export default {
         "Pupils will learn about growth through cell division, mitosis as part of the cell cycle, cancer as the result of changes in cells that lead to uncontrolled growth and division, and the formation of gametes by meiosis.",
       connection_future_unit_title: "Cell division: mitosis and meiosis",
       connection_prior_unit_title: "DNA and the genome",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -1496,7 +1480,7 @@ export default {
       subject_slug: "biology",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -1531,8 +1515,7 @@ export default {
         "Pupils will learn about unspecialised cells in animals and plants, how they become specialised, and potential benefits and issues with using stem cells in medicine. ",
       connection_future_unit_title: "Stem cells and differentiation",
       connection_prior_unit_title: "Inheritance, genotype and phenotype",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -1590,7 +1573,7 @@ export default {
       subject_slug: "biology",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -1625,8 +1608,7 @@ export default {
         "Pupils will learn about unspecialised cells in animals and plants, how they become specialised, and potential benefits and issues with using stem cells in medicine. ",
       connection_future_unit_title: "Stem cells and differentiation",
       connection_prior_unit_title: "Inheritance, genotype and phenotype",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -1684,7 +1666,7 @@ export default {
       subject_slug: "biology",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -1719,8 +1701,7 @@ export default {
         "In the Structure and Bonding unit, pupils will build on their understanding of atomic structure to explore different types of chemical bonding and how these bonds affect the properties of substances.",
       connection_future_unit_title: "Structure and bonding",
       connection_prior_unit_title: "Atoms, elements and compounds",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -1791,7 +1772,7 @@ export default {
       subject_slug: "chemistry",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 2,
@@ -1831,8 +1812,7 @@ export default {
         "In the Structure and Bonding unit, pupils will build on their understanding of atomic structure to explore different types of chemical bonding and how these bonds affect the properties of substances.",
       connection_future_unit_title: "Structure and bonding",
       connection_prior_unit_title: "Atoms, elements and compounds",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -1903,7 +1883,7 @@ export default {
       subject_slug: "chemistry",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 2,
@@ -1943,8 +1923,7 @@ export default {
         "In the Chemistry of Carbon unit, pupils will build on their understanding of chemical bonding to explore the unique properties and bonding of carbon, leading to various natural and synthetic organic compounds.",
       connection_future_unit_title: "Chemistry of carbon",
       connection_prior_unit_title: "Atomic structure and the periodic table",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -2043,7 +2022,7 @@ export default {
       subject_slug: "chemistry",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 2,
@@ -2083,8 +2062,7 @@ export default {
         "In the Chemistry of Carbon unit, pupils will build on their understanding of chemical bonding to explore the unique properties and bonding of carbon, leading to various natural and synthetic organic compounds.",
       connection_future_unit_title: "Chemistry of carbon",
       connection_prior_unit_title: "Atomic structure and the periodic table",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -2183,7 +2161,7 @@ export default {
       subject_slug: "chemistry",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 2,
@@ -2223,8 +2201,7 @@ export default {
         "In the Making salts unit, pupils will learn about the production of pure salts, concentration and strength of acids, and what makes acids acidic and how bases can neutralise them.",
       connection_future_unit_title: "Making salts",
       connection_prior_unit_title: "Understanding chemical reactions",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -2345,7 +2322,7 @@ export default {
       subject_slug: "chemistry",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 2,
@@ -2380,8 +2357,7 @@ export default {
         "In the Making salts unit, pupils will learn about the production of pure salts, concentration and strength of acids, and what makes acids acidic and how bases can neutralise them.",
       connection_future_unit_title: "Making salts",
       connection_prior_unit_title: "Understanding chemical reactions",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -2445,7 +2421,7 @@ export default {
       subject_slug: "chemistry",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 2,
@@ -2480,8 +2456,7 @@ export default {
         "In the Electrolysis unit, pupils will build on their understanding of chemical reactions to explore the process of electrolysis and its applications.",
       connection_future_unit_title: "Electrolysis",
       connection_prior_unit_title: "Acids and bases",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -2581,7 +2556,7 @@ export default {
       subject_slug: "chemistry",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 2,
@@ -2621,8 +2596,7 @@ export default {
         "In the Electrolysis unit, pupils will build on their understanding of chemical reactions to explore the process of electrolysis and its applications.",
       connection_future_unit_title: "Electrolysis",
       connection_prior_unit_title: "Acids and bases",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -2750,7 +2724,7 @@ export default {
       subject_slug: "chemistry",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 2,
@@ -2790,8 +2764,7 @@ export default {
         "In the Structure and Bonding unit, pupils will build on their understanding of atomic structure to explore different types of chemical bonding and how these bonds affect the properties of substances.",
       connection_future_unit_title: "Structure and bonding",
       connection_prior_unit_title: "Atoms, elements and compounds",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -2862,7 +2835,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 2,
@@ -2902,8 +2875,7 @@ export default {
         "In the Structure and Bonding unit, pupils will build on their understanding of atomic structure to explore different types of chemical bonding and how these bonds affect the properties of substances.",
       connection_future_unit_title: "Structure and bonding",
       connection_prior_unit_title: "Atoms, elements and compounds",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -2974,7 +2946,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 2,
@@ -3014,8 +2986,7 @@ export default {
         "In the Chemistry of Carbon unit, pupils will build on their understanding of chemical bonding to explore the unique properties and bonding of carbon, leading to various natural and synthetic organic compounds.",
       connection_future_unit_title: "Chemistry of carbon",
       connection_prior_unit_title: "Atomic structure and the periodic table",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -3107,7 +3078,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 2,
@@ -3147,8 +3118,7 @@ export default {
         "In the Chemistry of Carbon unit, pupils will build on their understanding of chemical bonding to explore the unique properties and bonding of carbon, leading to various natural and synthetic organic compounds.",
       connection_future_unit_title: "Chemistry of carbon",
       connection_prior_unit_title: "Atomic structure and the periodic table",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -3233,7 +3203,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 2,
@@ -3273,8 +3243,7 @@ export default {
         "In the Energy of moving objects unit, they will build on this knowledge to learn how to calculate the amount of energy of objects have because they are moving, stretched or in a gravitational field; and to calculate energy transfers using knowledge of energy conservation and dissipation.",
       connection_future_unit_title: "Energy of moving objects",
       connection_prior_unit_title: "Moving by force",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -3380,7 +3349,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 3,
@@ -3415,8 +3384,7 @@ export default {
         "In the Energy of moving objects unit, they will build on this knowledge to learn how to calculate the amount of energy of objects have because they are moving, stretched or in a gravitational field; and to calculate energy transfers using knowledge of energy conservation and dissipation.",
       connection_future_unit_title: "Energy of moving objects",
       connection_prior_unit_title: "Moving by force",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -3527,7 +3495,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 3,
@@ -3562,8 +3530,7 @@ export default {
         "Pupils will learn how substances essential for chemical reactions, and the products of the reactions, are transported into, around and out of the human body.",
       connection_future_unit_title: "Transport and exchange surfaces in humans",
       connection_prior_unit_title: "Eukaryotic and prokaryotic cells",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -3630,7 +3597,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -3666,8 +3633,7 @@ export default {
         "Pupils will learn how substances essential for chemical reactions, and the products of the reactions, are transported into, around and out of the human body.",
       connection_future_unit_title: "Transport and exchange surfaces in humans",
       connection_prior_unit_title: "Eukaryotic and prokaryotic cells",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -3734,7 +3700,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -3771,8 +3737,7 @@ export default {
       connection_future_unit_title: "Photosynthesis: requirements and products",
       connection_prior_unit_title:
         "Coordination and control: the human nervous system",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -3822,7 +3787,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -3859,8 +3824,7 @@ export default {
         "In the Making salts unit, pupils will learn about the production of pure salts, concentration and strength of acids, and what makes acids acidic and how bases can neutralise them.",
       connection_future_unit_title: "Making salts",
       connection_prior_unit_title: "Understanding chemical reactions",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -3917,7 +3881,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 2,
@@ -3952,8 +3916,7 @@ export default {
         "In the Making salts unit, pupils will learn about the production of pure salts, concentration and strength of acids, and what makes acids acidic and how bases can neutralise them.",
       connection_future_unit_title: "Making salts",
       connection_prior_unit_title: "Understanding chemical reactions",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -4060,7 +4023,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 2,
@@ -4095,8 +4058,7 @@ export default {
         "In the Forces make things change unit, they will build on this knowledge to learn how to combine forces in two dimensions, how to calculate acceleration from a resultant force and how to calculate forces in collisions and explosions.",
       connection_future_unit_title: "Forces make things change",
       connection_prior_unit_title: "Measuring and calculating motion",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -4175,7 +4137,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 3,
@@ -4210,8 +4172,7 @@ export default {
         "In the Forces make things change unit, they will build on this knowledge to learn how to combine forces in two dimensions, how to calculate acceleration from a resultant force and how to calculate forces in collisions and explosions.",
       connection_future_unit_title: "Forces make things change",
       connection_prior_unit_title: "Measuring and calculating motion",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -4292,7 +4253,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 3,
@@ -4327,8 +4288,7 @@ export default {
         "Pupils will learn about unspecialised cells in animals and plants, how they become specialised, and potential benefits and issues with using stem cells in medicine. ",
       connection_future_unit_title: "Stem cells and differentiation",
       connection_prior_unit_title: "Inheritance, genotype and phenotype",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -4386,7 +4346,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -4421,8 +4381,7 @@ export default {
         "Pupils will learn about unspecialised cells in animals and plants, how they become specialised, and potential benefits and issues with using stem cells in medicine. ",
       connection_future_unit_title: "Stem cells and differentiation",
       connection_prior_unit_title: "Inheritance, genotype and phenotype",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -4480,7 +4439,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -4515,8 +4474,7 @@ export default {
         "In the Electrolysis unit, pupils will build on their understanding of chemical reactions to explore the process of electrolysis and its applications.",
       connection_future_unit_title: "Electrolysis",
       connection_prior_unit_title: "Acids and bases",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -4609,7 +4567,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 2,
@@ -4649,8 +4607,7 @@ export default {
         "In the Electrolysis unit, pupils will build on their understanding of chemical reactions to explore the process of electrolysis and its applications.",
       connection_future_unit_title: "Electrolysis",
       connection_prior_unit_title: "Acids and bases",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -4757,7 +4714,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 2,
@@ -4797,8 +4754,7 @@ export default {
         "In the Energy of moving objects unit, they will build on this knowledge to learn how to calculate the amount of energy of objects have because they are moving, stretched or in a gravitational field; and to calculate energy transfers using knowledge of energy conservation and dissipation.",
       connection_future_unit_title: "Energy of moving objects",
       connection_prior_unit_title: "Moving by force",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -4904,7 +4860,7 @@ export default {
       subject_slug: "physics",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 3,
@@ -4939,8 +4895,7 @@ export default {
         "In the Energy of moving objects unit, they will build on this knowledge to learn how to calculate the amount of energy of objects have because they are moving, stretched or in a gravitational field; and to calculate energy transfers using knowledge of energy conservation and dissipation.",
       connection_future_unit_title: "Energy of moving objects",
       connection_prior_unit_title: "Moving by force",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -5051,7 +5006,7 @@ export default {
       subject_slug: "physics",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 3,
@@ -5086,8 +5041,7 @@ export default {
         "In the Forces make things change unit, they will build on this knowledge to learn how to combine forces in two dimensions, how to calculate acceleration from a resultant force and how to calculate forces in collisions and explosions.",
       connection_future_unit_title: "Forces make things change",
       connection_prior_unit_title: "Measuring and calculating motion",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -5168,7 +5122,7 @@ export default {
       subject_slug: "physics",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 3,
@@ -5203,8 +5157,7 @@ export default {
         "In the Forces make things change unit, they will build on this knowledge to learn how to combine forces in two dimensions, how to calculate acceleration from a resultant force and how to calculate forces in collisions and explosions.",
       connection_future_unit_title: "Forces make things change",
       connection_prior_unit_title: "Measuring and calculating motion",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -5283,7 +5236,7 @@ export default {
       subject_slug: "physics",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 3,
@@ -5318,8 +5271,7 @@ export default {
         "Pupils will learn about the use of antibiotics against pathogens, and the development of new drugs and novel treatments for disease.",
       connection_future_unit_title: "Medicines and new treatments for disease",
       connection_prior_unit_title: "Health and disease",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -5362,7 +5314,7 @@ export default {
       subject_slug: "biology",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -5398,8 +5350,7 @@ export default {
         "Pupils will learn about the use of antibiotics against pathogens, and the development of new drugs and novel treatments for disease.",
       connection_future_unit_title: "Medicines and new treatments for disease",
       connection_prior_unit_title: "Health and disease",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -5442,7 +5393,7 @@ export default {
       subject_slug: "biology",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -5477,8 +5428,7 @@ export default {
       connection_future_unit_description: "",
       connection_future_unit_title: null,
       connection_prior_unit_title: "Living organisms and their environments",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -5539,7 +5489,7 @@ export default {
       subject_slug: "biology",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -5574,8 +5524,7 @@ export default {
       connection_future_unit_description: "",
       connection_future_unit_title: null,
       connection_prior_unit_title: "Living organisms and their environments",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -5628,7 +5577,7 @@ export default {
       subject_slug: "biology",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -5664,8 +5613,7 @@ export default {
         "Pupils will learn about uses of gene technology in medicine, such as for genetic testing, and in agriculture, such as the production of genetically engineered crop plants with desirable characteristics.",
       connection_future_unit_title: "Gene technology",
       connection_prior_unit_title: "Hormones and human reproduction",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -5702,7 +5650,7 @@ export default {
       subject_slug: "biology",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [],
       tier: "Higher",
       tier_slug: "higher",
@@ -5732,8 +5680,7 @@ export default {
         "Pupils will learn about uses of gene technology in medicine, such as for genetic testing, and in agriculture, such as the production of genetically engineered crop plants with desirable characteristics.",
       connection_future_unit_title: "Gene technology",
       connection_prior_unit_title: "Hormones and human reproduction",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -5762,7 +5709,7 @@ export default {
       subject_slug: "biology",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [],
       tier: "Foundation",
       tier_slug: "foundation",
@@ -5793,8 +5740,7 @@ export default {
       connection_future_unit_title:
         "Photosynthesis: factors affecting the rate",
       connection_prior_unit_title: "Transport and exchange surfaces in plants",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -5871,7 +5817,7 @@ export default {
       subject_slug: "biology",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -5909,8 +5855,7 @@ export default {
       connection_future_unit_title:
         "Photosynthesis: factors affecting the rate",
       connection_prior_unit_title: "Transport and exchange surfaces in plants",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -5972,7 +5917,7 @@ export default {
       subject_slug: "biology",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -6009,8 +5954,7 @@ export default {
         "In the Atmosphere and Changing Climate unit, pupils will build on their understanding of Earth's resources to learn about the evidence for the composition and evolution of the Earth's atmosphere and the impact of human activity on climate change.",
       connection_future_unit_title: "Atmosphere and changing climate",
       connection_prior_unit_title: "Earth's resources",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -6089,7 +6033,7 @@ export default {
       subject_slug: "chemistry",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 2,
@@ -6130,8 +6074,7 @@ export default {
         "In the Chemical Analysis unit, pupils will build on their knowledge of the periodic table to explore various techniques for analysing substances and interpreting data.",
       connection_future_unit_title: "Chemical analysis",
       connection_prior_unit_title: "Patterns in the periodic table",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -6181,7 +6124,7 @@ export default {
       subject_slug: "chemistry",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 2,
@@ -6221,8 +6164,7 @@ export default {
         "In the Chemical Analysis unit, pupils will build on their knowledge of the periodic table to explore various techniques for analysing substances and interpreting data.",
       connection_future_unit_title: "Chemical analysis",
       connection_prior_unit_title: "Patterns in the periodic table",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -6265,7 +6207,7 @@ export default {
       subject_slug: "chemistry",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 2,
@@ -6306,8 +6248,7 @@ export default {
       connection_future_unit_title:
         "Defences against pathogens, the human immune system and vaccination",
       connection_prior_unit_title: "Disease and drugs",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -6379,7 +6320,7 @@ export default {
       subject_slug: "biology",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -6413,8 +6354,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: "Rate of reaction",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -6492,7 +6432,7 @@ export default {
       subject_slug: "chemistry",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 2,
@@ -6531,8 +6471,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: "Rate of reaction",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -6625,7 +6564,7 @@ export default {
       subject_slug: "chemistry",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 2,
@@ -6664,8 +6603,7 @@ export default {
       connection_future_unit_description: "",
       connection_future_unit_title: null,
       connection_prior_unit_title: "Groups of the periodic table",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -6708,7 +6646,7 @@ export default {
       subject_slug: "chemistry",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [],
       tier: "Higher",
       tier_slug: "higher",
@@ -6742,8 +6680,7 @@ export default {
       connection_future_unit_description: "",
       connection_future_unit_title: null,
       connection_prior_unit_title: "Groups of the periodic table",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -6779,7 +6716,7 @@ export default {
       subject_slug: "chemistry",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [],
       tier: "Foundation",
       tier_slug: "foundation",
@@ -6813,8 +6750,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: "Chemistry of carbon",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -6892,7 +6828,7 @@ export default {
       subject_slug: "chemistry",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [],
       tier: "Foundation",
       tier_slug: "foundation",
@@ -6926,8 +6862,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: "Chemistry of carbon",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -7012,7 +6947,7 @@ export default {
       subject_slug: "chemistry",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [],
       tier: "Higher",
       tier_slug: "higher",
@@ -7047,8 +6982,7 @@ export default {
         "In the Gravity in space unit, they will build on this knowledge to learn about centripetal forces, orbital motion, stellar evolution, red shift and the big bang.",
       connection_future_unit_title: "Gravity in space",
       connection_prior_unit_title: "Energy of moving particles",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -7126,7 +7060,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 3,
@@ -7161,8 +7095,7 @@ export default {
         "In the Gravity in space unit, they will build on this knowledge to learn about centripetal forces, orbital motion, stellar evolution, red shift and the big bang.",
       connection_future_unit_title: "Gravity in space",
       connection_prior_unit_title: "Energy of moving particles",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -7212,7 +7145,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 3,
@@ -7247,8 +7180,7 @@ export default {
         "In the Atmosphere and Changing Climate unit, pupils will build on their understanding of Earth's resources to learn about the evidence for the composition and evolution of the Earth's atmosphere and the impact of human activity on climate change.",
       connection_future_unit_title: "Atmosphere and changing climate",
       connection_prior_unit_title: "Earth's resources",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -7327,7 +7259,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 2,
@@ -7368,8 +7300,7 @@ export default {
         "In A-level physics, some pupils will build on this knowledge to learn about probability and half-life equations, nuclear instability, Einstein’s equation E = mc2 that links mass and energy, and controlled nuclear fission.",
       connection_future_unit_title: null,
       connection_prior_unit_title: "Patterns in the periodic table",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -7433,7 +7364,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 3,
@@ -7468,8 +7399,7 @@ export default {
         "In A-level physics, some pupils will build on this knowledge to learn about probability and half-life equations, nuclear instability, Einstein’s equation E = mc2 that links mass and energy, and controlled nuclear fission.",
       connection_future_unit_title: null,
       connection_prior_unit_title: "Patterns in the periodic table",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -7533,7 +7463,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 3,
@@ -7568,8 +7498,7 @@ export default {
         "In the Chemical Analysis unit, pupils will build on their knowledge of the periodic table to explore various techniques for analysing substances and interpreting data.",
       connection_future_unit_title: "Chemical analysis",
       connection_prior_unit_title: "Patterns in the periodic table",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -7619,7 +7548,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 2,
@@ -7659,8 +7588,7 @@ export default {
         "In the Chemical Analysis unit, pupils will build on their knowledge of the periodic table to explore various techniques for analysing substances and interpreting data.",
       connection_future_unit_title: "Chemical analysis",
       connection_prior_unit_title: "Patterns in the periodic table",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -7703,7 +7631,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 2,
@@ -7743,8 +7671,7 @@ export default {
         "In A-level physics, some pupils will build on this knowledge to learn about the photon model of electromagnetic radiation and the use of electromagnetic radiation for collecting evidence about the universe or for generating images of the inside of a human body.",
       connection_future_unit_title: null,
       connection_prior_unit_title: "Measuring waves",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -7809,7 +7736,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 3,
@@ -7844,8 +7771,7 @@ export default {
         "In A-level physics, some pupils will build on this knowledge to learn about the photon model of electromagnetic radiation and the use of electromagnetic radiation for collecting evidence about the universe or for generating images of the inside of a human body.",
       connection_future_unit_title: null,
       connection_prior_unit_title: "Measuring waves",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -7909,7 +7835,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 3,
@@ -7943,8 +7869,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: "Rate of reaction",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -7980,7 +7905,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 2,
@@ -8019,8 +7944,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: "Rate of reaction",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -8063,7 +7987,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 2,
@@ -8103,8 +8027,7 @@ export default {
         "In the Gravity in space unit, they will build on this knowledge to learn about centripetal forces, orbital motion, stellar evolution, red shift and the big bang.",
       connection_future_unit_title: "Gravity in space",
       connection_prior_unit_title: "Energy of moving particles",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -8168,7 +8091,7 @@ export default {
       subject_slug: "physics",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 3,
@@ -8203,8 +8126,7 @@ export default {
         "In the Gravity in space unit, they will build on this knowledge to learn about centripetal forces, orbital motion, stellar evolution, red shift and the big bang.",
       connection_future_unit_title: "Gravity in space",
       connection_prior_unit_title: "Energy of moving particles",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -8296,7 +8218,7 @@ export default {
       subject_slug: "physics",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 3,
@@ -8331,8 +8253,7 @@ export default {
         "In A-level physics, some pupils will build on this knowledge to learn about probability and half-life equations, nuclear instability, Einstein’s equation E = mc2 that links mass and energy, and controlled nuclear fission.",
       connection_future_unit_title: null,
       connection_prior_unit_title: "Patterns in the periodic table",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -8417,7 +8338,7 @@ export default {
       subject_slug: "physics",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 3,
@@ -8452,8 +8373,7 @@ export default {
         "In A-level physics, some pupils will build on this knowledge to learn about probability and half-life equations, nuclear instability, Einstein’s equation E = mc2 that links mass and energy, and controlled nuclear fission.",
       connection_future_unit_title: null,
       connection_prior_unit_title: "Patterns in the periodic table",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -8538,7 +8458,7 @@ export default {
       subject_slug: "physics",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 3,
@@ -8573,8 +8493,7 @@ export default {
         "In A-level physics, some pupils will build on this knowledge to learn about the photon model of electromagnetic radiation and the use of electromagnetic radiation for collecting evidence about the universe or for generating images of the inside of a human body.",
       connection_future_unit_title: null,
       connection_prior_unit_title: "Measuring waves",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -8674,7 +8593,7 @@ export default {
       subject_slug: "physics",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 3,
@@ -8709,8 +8628,7 @@ export default {
         "In A-level physics, some pupils will build on this knowledge to learn about the photon model of electromagnetic radiation and the use of electromagnetic radiation for collecting evidence about the universe or for generating images of the inside of a human body.",
       connection_future_unit_title: null,
       connection_prior_unit_title: "Measuring waves",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -8809,7 +8727,7 @@ export default {
       subject_slug: "physics",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 3,
@@ -8843,8 +8761,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: "Our solar system and beyond",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -8902,7 +8819,7 @@ export default {
       subject_slug: "physics",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [],
       tier: "Higher",
       tier_slug: "higher",
@@ -8931,8 +8848,7 @@ export default {
       connection_future_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: "Our solar system and beyond",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -8990,7 +8906,7 @@ export default {
       subject_slug: "physics",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [],
       tier: "Foundation",
       tier_slug: "foundation",
@@ -9021,8 +8937,7 @@ export default {
       connection_future_unit_title:
         "Coordination and control: maintaining a constant internal environment",
       connection_prior_unit_title: "Aerobic and anaerobic cellular respiration",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -9090,7 +9005,7 @@ export default {
       subject_slug: "biology",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -9126,8 +9041,7 @@ export default {
         "In the Making Salts unit, pupils will build on their understanding of separation techniques to learn about the process of making salts and writing balanced chemical equations.",
       connection_future_unit_title: "Making salts",
       connection_prior_unit_title: "Separation techniques",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -9219,7 +9133,7 @@ export default {
       subject_slug: "chemistry",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 2,
@@ -9260,8 +9174,7 @@ export default {
       connection_future_unit_title:
         "Defences against pathogens, the human immune system and vaccination",
       connection_prior_unit_title: "Disease and drugs",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -9333,7 +9246,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -9369,8 +9282,7 @@ export default {
       connection_future_unit_title:
         "Coordination and control: hormones and the human endocrine system",
       connection_prior_unit_title: "Transport and exchange surfaces in humans",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -9406,7 +9318,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -9442,8 +9354,7 @@ export default {
         "In the Making Salts unit, pupils will build on their understanding of separation techniques to learn about the process of making salts and writing balanced chemical equations.",
       connection_future_unit_title: "Making salts",
       connection_prior_unit_title: "Separation techniques",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -9535,7 +9446,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 2,
@@ -9575,8 +9486,7 @@ export default {
         "In the Industrial chemistry unit, pupils will learn about chemical, industrial, environmental and economic factors of some large-scale chemical processes.",
       connection_future_unit_title: "Industrial chemistry",
       connection_prior_unit_title: "Carbon cycle and climate change",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -9661,7 +9571,7 @@ export default {
       subject_slug: "chemistry",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 2,
@@ -9698,8 +9608,7 @@ export default {
       connection_future_unit_title:
         "Coordination and control: maintaining a constant internal environment",
       connection_prior_unit_title: "Aerobic and anaerobic cellular respiration",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -9767,7 +9676,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 1,
@@ -9803,8 +9712,7 @@ export default {
         "In the Industrial chemistry unit, pupils will learn about chemical, industrial, environmental and economic factors of some large-scale chemical processes.",
       connection_future_unit_title: "Industrial chemistry",
       connection_prior_unit_title: "Carbon cycle and climate change",
-      domain: null,
-      domain_id: null,
+
       examboard: "Edexcel",
       examboard_slug: "edexcel",
       keystage_slug: "ks4",
@@ -9889,7 +9797,7 @@ export default {
       subject_slug: "combined-science",
       subject_parent: "Science",
       subject_parent_slug: "science",
-      tags: [],
+
       subjectcategories: [
         {
           id: 2,
