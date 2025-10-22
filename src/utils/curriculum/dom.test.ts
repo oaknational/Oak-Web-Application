@@ -150,14 +150,14 @@ describe("findContainingAnchor", () => {
   it("direct", () => {
     const target = root.querySelector(`*[data-testid="DIRECT"]`)!;
     const el = findContainingAnchor(target);
-    expect(el);
+    expect(el).toBeTruthy();
     expect(el?.id).toBe("direct");
   });
 
   it("as parent", () => {
     const target = root.querySelector(`*[data-testid="AS_PARENT"]`)!;
     const el = findContainingAnchor(target);
-    expect(el);
+    expect(el).toBeTruthy();
     expect(el?.id).toBe("as-parent");
   });
 

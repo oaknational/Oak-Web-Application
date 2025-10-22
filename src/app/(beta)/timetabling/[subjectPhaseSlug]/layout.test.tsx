@@ -11,7 +11,7 @@ describe("/timetabling/layout.tsx", () => {
     const { baseElement } = renderWithTheme(
       await Page({ children: <div>TESTING</div> }),
     );
-    expect(baseElement);
+    expect(baseElement).toBeTruthy();
   });
 
   test("when disabled", async () => {
