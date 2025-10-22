@@ -10,7 +10,7 @@ locals {
     },
   ]
   superuser_workspace_prefix = "gcp-project-superuser"
-  required_env_names = local.build_type == "website" ? local.env_names : []
+  required_env_names         = local.build_type == "website" ? local.env_names : []
 }
 
 data "terraform_remote_state" "google_projects" {
@@ -29,8 +29,8 @@ locals {
   required_env_keys = {
     website = {
       shared  = ["NEXT_PUBLIC_CLERK_SIGN_IN_URL", "NEXT_PUBLIC_CLERK_SIGN_UP_URL"]
-      prod    = ["OAK_CONFIG_LOCATION", "OVERRIDE_APP_VERSION", "OVERRIDE_URL"]
-      preview = ["OAK_CONFIG_LOCATION"]
+      prod    = ["OAK_CONFIG_LOCATION", "OVERRIDE_APP_VERSION", "OVERRIDE_URL", "PUPIL_FIRESTORE_ID"]
+      preview = ["OAK_CONFIG_LOCATION", "PUPIL_FIRESTORE_ID"]
     }
     storybook = {
       shared  = ["NEXT_PUBLIC_CLIENT_APP_BASE_URL"]
@@ -52,22 +52,8 @@ locals {
     }
   }
 
-  required_pupil_firestore_env_keys = {
-    website = {
-      shared  = []
-      prod    = ["PUPIL_FIRESTORE_ID"]
-      preview = ["PUPIL_FIRESTORE_ID"]
-    }
-    storybook = {
-      shared  = []
-      prod    = []
-      preview = []
-    }
-  }
-
   required_current_env           = local.required_env_keys[local.build_type]
   required_current_sensitive_env = local.required_sensitive_env_keys[local.build_type]
-  required_current_pupil_firestore_env = local.required_pupil_firestore_env_keys[local.build_type]
 
   env_groups = {
     shared  = ["production", "preview"]
@@ -159,7 +145,7 @@ locals {
         "GCP_PROJECT_ID"                         = data.terraform_remote_state.google_projects["${local.superuser_workspace_prefix}-${env_name.gcp}"].outputs.project_id
         "GCP_SERVICE_ACCOUNT_EMAIL"              = data.terraform_remote_state.google_projects["${local.superuser_workspace_prefix}-${env_name.gcp}"].outputs.project_config.workload_identity_service_accounts.vercel["oak-web-application-website::${env_name.vercel}"]
         "GCP_WORKLOAD_IDENTITY_POOL_PROVIDER_ID" = data.terraform_remote_state.google_projects["${local.superuser_workspace_prefix}-${env_name.gcp}"].outputs.workload_identity_provider_names.vercel
-      } : {
+        } : {
         key       = key
         value     = value
         target    = [env_name.vercel]
@@ -168,26 +154,5 @@ locals {
     ]
   ])
 
-  pupil_firestore_env_vars = {
-    shared = {}
-    prod = {
-      PUPIL_FIRESTORE_ID = var.pupil_firestore_id_prod
-    }
-    preview = {
-      PUPIL_FIRESTORE_ID = var.pupil_firestore_id_preview
-    }
-  }
-
-  pupil_firestore_vars = flatten([
-    for group, target in local.env_groups : [
-      for key, value in local.pupil_firestore_env_vars[group] : {
-        key       = key
-        value     = value
-        target    = target
-        sensitive = false
-      } if value != null
-    ]
-  ])
-
-  environment_variables = concat(local.non_sensitive_vars, local.sensitive_vars, local.lookup_vars, local.pupil_firestore_vars)
+  environment_variables = concat(local.non_sensitive_vars, local.sensitive_vars, local.lookup_vars)
 }

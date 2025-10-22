@@ -37,9 +37,11 @@ variable "env_vars" {
       OAK_CONFIG_LOCATION  = optional(string)
       OVERRIDE_APP_VERSION = optional(string)
       OVERRIDE_URL         = optional(string)
+      PUPIL_FIRESTORE_ID   = optional(string)
     }))
     preview = optional(object({
       OAK_CONFIG_LOCATION = optional(string)
+      PUPIL_FIRESTORE_ID  = optional(string)
     }))
   })
   validation {
@@ -127,30 +129,6 @@ variable "next_public_clerk_publishable_key_prod" {
     condition = contains(local.required_current_sensitive_env.prod, "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY") ? var.next_public_clerk_publishable_key_prod != null : var.next_public_clerk_publishable_key_prod == null
 
     error_message = contains(local.required_current_sensitive_env.prod, "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY") ? "Missing next_public_clerk_publishable_key_prod for '${local.build_type}' build." : "next_public_clerk_publishable_key_prod is set but not required for '${local.build_type}' build."
-  }
-}
-
-variable "pupil_firestore_id_prod" {
-  description = "Name/identifier of the Firestore DB for production environment"
-  type        = string
-  default     = null
-
-  validation {
-    condition = contains(local.required_current_pupil_firestore_env.prod, "PUPIL_FIRESTORE_ID") ? var.pupil_firestore_id_prod != null : var.pupil_firestore_id_prod == null
-
-    error_message = contains(local.required_current_pupil_firestore_env.prod, "PUPIL_FIRESTORE_ID") ? "Missing pupil_firestore_id_prod for '${local.build_type}' build." : "pupil_firestore_id_prod is set but not required for '${local.build_type}' build."
-  }
-}
-
-variable "pupil_firestore_id_preview" {
-  description = "Name/identifier of the Firestore DB for preview environment"
-  type        = string
-  default     = null
-
-  validation {
-    condition = contains(local.required_current_pupil_firestore_env.preview, "PUPIL_FIRESTORE_ID") ? var.pupil_firestore_id_preview != null : var.pupil_firestore_id_preview == null
-
-    error_message = contains(local.required_current_pupil_firestore_env.preview, "PUPIL_FIRESTORE_ID") ? "Missing pupil_firestore_id_preview for '${local.build_type}' build." : "pupil_firestore_id_preview is set but not required for '${local.build_type}' build."
   }
 }
 
