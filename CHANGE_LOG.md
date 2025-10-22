@@ -1,3 +1,46 @@
+# [1.899.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.898.0...v1.899.0) (2025-10-22)
+
+
+### Bug Fixes
+
+* remove domain, domain_id and tags from schema and fixed types ([9a8842c](https://github.com/oaknational/Oak-Web-Application/commit/9a8842c1790d38519e3ab04afe303803cf173442))
+
+
+### Features
+
+* bump to mv_curriculum_sequence_b_13_0_20 (domain_id, domain & tags removed) ([495d517](https://github.com/oaknational/Oak-Web-Application/commit/495d5172a0d605fe616aef52aaf41ba85bcf7377))
+
+# [1.898.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.897.0...v1.898.0) (2025-10-22)
+
+
+### Features
+
+* remove feat flag ([18a0046](https://github.com/oaknational/Oak-Web-Application/commit/18a0046dd98e33ec21bf600b96328f6b1f894bd8))
+
+# [1.897.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.896.3...v1.897.0) (2025-10-22)
+
+
+### Bug Fixes
+
+* made "additional" prop on <CurricUnitCard/> optional ([8a3521b](https://github.com/oaknational/Oak-Web-Application/commit/8a3521badabbd5017434ac33f44256eca6a6a85f))
+* updated snapshots ([3fb0fbe](https://github.com/oaknational/Oak-Web-Application/commit/3fb0fbe00befc4a99591acb0d3fd6c1d96380bd1))
+* use "oak black" for text color ([01af61e](https://github.com/oaknational/Oak-Web-Application/commit/01af61e7208ce554908f87ff25a0a613657e8e78))
+
+
+### Features
+
+* added <CurricLessonWarning/> and optional "additional" props to <CurricUnitCard/> ([55bd971](https://github.com/oaknational/Oak-Web-Application/commit/55bd971922d899d3f20dbc609ceecc28464e4ae9))
+
+## [1.896.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.896.2...v1.896.3) (2025-10-22)
+
+
+### Bug Fixes
+
+* add swimming sorting to reshapeUnitData ([b16742e](https://github.com/oaknational/Oak-Web-Application/commit/b16742e8000986be09f8a5039a89d4fb1e0ae6b5))
+* swimming units order on unit listing ([8383c03](https://github.com/oaknational/Oak-Web-Application/commit/8383c031173e7681651de5890ac14fe958d4767c))
+
+## [1.896.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.896.1...v1.896.2) (2025-10-21)
+
 ## [1.896.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.896.0...v1.896.1) (2025-10-20)
 
 
