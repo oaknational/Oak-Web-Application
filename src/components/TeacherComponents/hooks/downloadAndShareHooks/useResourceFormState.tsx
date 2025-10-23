@@ -53,6 +53,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     resolver: zodResolver(resourceFormValuesSchema),
     mode: "onBlur",
   });
+
   const [preselectAll, setPreselectAll] = useState(false);
   const [selectAllChecked, setSelectAllChecked] = useState(false);
   const [isLocalStorageLoading, setIsLocalStorageLoading] = useState(true);
@@ -261,7 +262,10 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
 
   const { errors } = formState;
   const hasFormErrors = Object.keys(errors)?.length > 0;
-  const selectedResources = (watch().resources || []) as ResourceType[];
+  const selectedResources: ResourceType[] = watch(
+    "resources",
+    [],
+  ) as ResourceType[];
 
   const [activeResources, setActiveResources] = useState<string[]>(
     getInitialResourcesState(),
@@ -280,6 +284,15 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
   }, [getInitialAdditionalFilesState, additionalResources]);
 
   const hasResources = getInitialResourcesState().length > 0;
+
+  useEffect(() => {
+    const initialResources = getInitialResourcesState();
+    if (selectedResources.length < initialResources.length) {
+      setSelectAllChecked(false);
+    } else {
+      setSelectAllChecked(true);
+    }
+  }, [selectedResources, getInitialResourcesState]);
 
   const onSelectAllClick = () =>
     setValue("resources", activeResources.concat(activeAdditonalFiles || []));
