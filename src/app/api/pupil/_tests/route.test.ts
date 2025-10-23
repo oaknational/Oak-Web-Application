@@ -7,7 +7,7 @@ import { GET, POST } from "@/app/api/pupil/lesson-attempt/route";
 import { createLessonAttemptPayloadSchema } from "@/node-lib/pupil-api/_types/lessonAttemptTypes";
 import { pupilDatastore } from "@/node-lib/pupil-api/pupilDataStore";
 
-jest.mock("@/node-lib/pupil-api", () => ({
+jest.mock("@/node-lib/pupil-api/pupilDataStore", () => ({
   pupilDatastore: {
     getLessonAttempt: jest.fn(),
     logLessonAttempt: jest.fn(),
@@ -45,7 +45,7 @@ jest.mock("next/server", () => ({
   } as NextResponseMock,
 }));
 
-jest.mock("@/app/api/pupil/_types/lessonAttemptTypes", () => ({
+jest.mock("@/node-lib/pupil-api/_types/lessonAttemptTypes", () => ({
   createLessonAttemptPayloadSchema: {
     parse: jest.fn(),
   },
