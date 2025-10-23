@@ -44,7 +44,7 @@ type TagWithMap = keyof typeof tagDimMap;
 type TagPromotionalProps = FlexProps & {
   $color?: OakColorToken;
   size?: TagWithMap;
-} & FlexProps;
+};
 
 const TagPromotional: FC<TagPromotionalProps> = ({
   $color = "lemon",

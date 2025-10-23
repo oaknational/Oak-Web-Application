@@ -393,7 +393,6 @@ export type OakLinkProps =
   | PupilSubjectListingLinkProps
   | PupilProgrammeListingLinkProps
   | PupilYearListingLinkProps
-  | PupilUnitListingLinkProps
   | SpecialistLessonOverviewLinkProps
   | LessonOverviewCanonicalLinkProps
   | LessonListingLinkProps
