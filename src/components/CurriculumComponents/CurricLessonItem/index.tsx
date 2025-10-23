@@ -15,7 +15,11 @@ export function CurricLessonItem({
   href,
 }: CurricLessonItemProps) {
   return (
-    <OakFlex $borderRadius={"border-radius-s"} $overflow={"hidden"}>
+    <OakFlex
+      $borderRadius={"border-radius-s"}
+      $overflow={"hidden"}
+      $color={"black"}
+    >
       <OakFlex
         $background={"pink"}
         $ph={"inner-padding-l"}
@@ -34,10 +38,10 @@ export function CurricLessonItem({
         $gap={"all-spacing-6"}
       >
         <OakFlex $flexGrow={1} data-testid="curric-lesson-title">
-          <OakSpan $font={"heading-light-7"}>{title}</OakSpan>
+          <OakSpan $font={"heading-7"}>{title}</OakSpan>
         </OakFlex>
         {href && (
-          <OakFlex>
+          <OakFlex $flexShrink={0}>
             <OakSecondaryLink
               href={href}
               isTrailingIcon={true}
