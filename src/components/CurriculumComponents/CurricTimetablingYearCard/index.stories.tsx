@@ -55,24 +55,24 @@ export const WithCurricTermCard: Story = {
         />
         <CurricTermCard
           title="Autumn Term"
-          numberOfWeeks={12}
-          weeksCovered={14}
+          coveredNumberOfLessons={12}
+          totalNumberOfLessons={14}
         >
           <StubUnit />
         </CurricTermCard>
 
         <CurricTermCard
           title="Spring Term"
-          numberOfWeeks={12}
-          weeksCovered={14}
+          coveredNumberOfLessons={12}
+          totalNumberOfLessons={14}
         >
           <StubUnit />
         </CurricTermCard>
 
         <CurricTermCard
           title="Summer Term"
-          numberOfWeeks={12}
-          weeksCovered={14}
+          coveredNumberOfLessons={12}
+          totalNumberOfLessons={14}
         >
           <StubUnit />
         </CurricTermCard>

@@ -10,14 +10,14 @@ import { ReactNode } from "react";
 export type CurricTermCardProps = {
   title: string;
   children: ReactNode;
-  numberOfWeeks: number;
-  weeksCovered: number;
+  coveredNumberOfLessons: number;
+  totalNumberOfLessons: number;
 };
 export function CurricTermCard({
   title,
   children,
-  numberOfWeeks,
-  weeksCovered,
+  coveredNumberOfLessons,
+  totalNumberOfLessons,
 }: CurricTermCardProps) {
   return (
     <OakFlex
@@ -33,7 +33,7 @@ export function CurricTermCard({
         </OakHeading>
         <OakFlex $gap={"all-spacing-1"} $alignItems={"center"}>
           <OakSpan>
-            Lessons cover {weeksCovered}/{numberOfWeeks} weeks
+            {coveredNumberOfLessons}/{totalNumberOfLessons} lessons scheduled
           </OakSpan>
           <OakIcon iconName="info" />
         </OakFlex>

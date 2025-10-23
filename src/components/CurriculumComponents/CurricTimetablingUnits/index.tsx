@@ -104,6 +104,10 @@ export const CurricTimetablingUnits = ({
     navigator.clipboard.writeText(urlToCopy);
   };
 
+  const unitsForYear = data.year
+    ? unitData.yearData[data.year]?.units
+    : undefined;
+
   return (
     <>
       {/* TODO: <ThemeProvider/> shouldn't be required, work down the tree and remove old components */}
@@ -161,7 +165,7 @@ export const CurricTimetablingUnits = ({
 
             <OakFlex $flexGrow={1}>
               <OakBox>
-                {data.year && (
+                {unitsForYear && (
                   <>
                     {!isDebugMode && (
                       <CurricTimetablingYearCard
@@ -184,27 +188,25 @@ export const CurricTimetablingUnits = ({
                           />
                           <CurricTermCard
                             title="Autumn Term"
-                            weeksCovered={12}
-                            numberOfWeeks={14}
+                            coveredNumberOfLessons={unitsForYear.length}
+                            totalNumberOfLessons={unitsForYear.length}
                           >
                             <UnitList role="list">
-                              {unitData.yearData[data.year]?.units.map(
-                                (unit, unitIndex) => {
-                                  return (
-                                    <UnitListItem
-                                      key={`${unit.slug}-${unitIndex}`}
-                                    >
-                                      <CurricUnitCard
-                                        key={unitIndex}
-                                        unit={unit}
-                                        index={unitIndex}
-                                        isHighlighted={false}
-                                        href={""}
-                                      />
-                                    </UnitListItem>
-                                  );
-                                },
-                              )}
+                              {unitsForYear.map((unit, unitIndex) => {
+                                return (
+                                  <UnitListItem
+                                    key={`${unit.slug}-${unitIndex}`}
+                                  >
+                                    <CurricUnitCard
+                                      key={unitIndex}
+                                      unit={unit}
+                                      index={unitIndex}
+                                      isHighlighted={false}
+                                      href={""}
+                                    />
+                                  </UnitListItem>
+                                );
+                              })}
                               {/* Empty tiles for correct flex wrapping */}
                               {Array(3)
                                 .fill(true)
