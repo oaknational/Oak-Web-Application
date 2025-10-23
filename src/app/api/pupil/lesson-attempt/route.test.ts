@@ -45,7 +45,7 @@ jest.mock("next/server", () => ({
   } as NextResponseMock,
 }));
 
-jest.mock("@/node-lib/pupil-api/_types/lessonAttemptTypes", () => ({
+jest.mock("@/node-lib/pupil-api/_types", () => ({
   createLessonAttemptPayloadSchema: {
     parse: jest.fn(),
   },
