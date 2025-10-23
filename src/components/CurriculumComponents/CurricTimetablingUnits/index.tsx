@@ -4,13 +4,13 @@ import {
   OakFlex,
   OakHeading,
   OakInformativeModal,
+  OakLink,
   OakMaxWidth,
   OakSecondaryButton,
 } from "@oaknational/oak-components";
 import { ThemeProvider } from "styled-components";
 import { useMemo, useState } from "react";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
-import Link from "next/link";
 
 import { CurricTimetableHeader } from "../CurricTimetableHeader";
 import CurricTimetablingFilters from "../CurricTimetablingFilters";
@@ -171,14 +171,9 @@ export const CurricTimetablingUnits = ({
 
                     return (
                       <li key={`${unit.slug}-${unitIndex}`}>
-                        <Link
-                          href={unitUrl}
-                          style={{ textDecoration: "none", color: "inherit" }}
-                        >
-                          <div style={{ cursor: "pointer" }}>
-                            📦 {unit.title}
-                          </div>
-                        </Link>
+                        <OakLink href={unitUrl} color="black">
+                          📦 {unit.title}
+                        </OakLink>
                         <ul>
                           {unit.lessons?.map((lesson, lessonIndex) => {
                             return (
