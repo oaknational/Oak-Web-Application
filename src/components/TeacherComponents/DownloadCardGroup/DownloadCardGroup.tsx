@@ -8,10 +8,7 @@ import {
   OakHeading,
 } from "@oaknational/oak-components";
 
-import type {
-  DownloadResourceType,
-  ResourceFormProps,
-} from "@/components/TeacherComponents/types/downloadAndShare.types";
+import type { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import ResourceCard from "@/components/TeacherComponents/ResourceCard";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
@@ -44,11 +41,7 @@ const DownloadCard: FC<DownloadCardProps> = ({
           if (e.target.checked) {
             onChange([...fieldValue, downloadType]);
           } else {
-            onChange(
-              fieldValue.filter(
-                (val: DownloadResourceType | string) => val !== downloadType,
-              ),
-            );
+            onChange(fieldValue.filter((val) => val !== downloadType));
           }
           // Trigger the form to reevaluate errors
           triggerForm();
