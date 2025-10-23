@@ -10,5 +10,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   );
 };
 
-// Default export to prevent next.js errors
-export default function Sitemap() {}
+export default function Sitemap() {
+  // Never actually gets called but keep static analysis and next.js happy
+  return <div />;
+}

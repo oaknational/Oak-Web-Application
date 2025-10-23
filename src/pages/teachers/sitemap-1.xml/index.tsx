@@ -17,4 +17,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return getServerSideSitemap(context, fields);
 };
 
-export default function Sitemap() {}
+export default function Sitemap() {
+  // Never actually gets called but keep static analysis and next.js happy
+  return <div />;
+}
