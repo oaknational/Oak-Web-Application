@@ -1,3 +1,10 @@
+# [1.900.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.8...v1.900.0) (2025-10-23)
+
+
+### Features
+
+* added getPupilFirestore helper w/ optional emulators or via GCP OIDC ([dc817a9](https://github.com/oaknational/Oak-Web-Application/commit/dc817a95801921050cb567dc6fd461c46c648104))
+
 ## [1.899.8](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.7...v1.899.8) (2025-10-23)
 
 
