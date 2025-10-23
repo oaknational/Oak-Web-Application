@@ -1,3 +1,14 @@
+## [1.899.7](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.6...v1.899.7) (2025-10-23)
+
+## [1.899.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.5...v1.899.6) (2025-10-23)
+
+## [1.899.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.4...v1.899.5) (2025-10-23)
+
+
+### Bug Fixes
+
+* removed invalid for...await (sonarcloud) ([1bdd4d4](https://github.com/oaknational/Oak-Web-Application/commit/1bdd4d43c8e018910b2d327bb859cf742e6c603a))
+
 ## [1.899.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.3...v1.899.4) (2025-10-23)
 
 
