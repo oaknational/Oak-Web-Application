@@ -1,8 +1,9 @@
+"use client";
+
 import { join } from "path";
 
 import { OakHeading, OakFlex, OakBox } from "@oaknational/oak-components";
-import { useRouter } from "next/router";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import BulletList from "../OakComponentsKitchen/BulletList";
 import CurricUnitCard from "../CurricUnitCard";
@@ -103,7 +104,7 @@ export default function CurricUnitModalContent({
                 background={undefined}
                 onClick={() => {
                   const url = join(basePath, unitData.slug);
-                  router.push(url, undefined, { shallow: true });
+                  router.push(url);
                 }}
               />
             </OakBox>
