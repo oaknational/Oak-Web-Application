@@ -7,8 +7,6 @@ const curriculumSequenceSchema = z.object({
       connection_future_unit_description: z.string().nullable(),
       connection_future_unit_title: z.string().nullable(),
       connection_prior_unit_title: z.string().nullable(),
-      domain: z.string().nullable(),
-      domain_id: z.number().nullable(),
       examboard: z.string().nullable(),
       examboard_slug: z.string().nullable(),
       planned_number_of_lessons: z.number().nullable(),
@@ -34,15 +32,6 @@ const curriculumSequenceSchema = z.object({
       tier_slug: z.string().nullable(),
       pathway: z.string().nullable().optional(),
       pathway_slug: z.string().nullable().optional(),
-      tags: z
-        .array(
-          z.object({
-            id: z.number(),
-            title: z.string(),
-            category: z.string().optional(),
-          }),
-        )
-        .nullable(),
       subjectcategories: z
         .array(
           z.object({
