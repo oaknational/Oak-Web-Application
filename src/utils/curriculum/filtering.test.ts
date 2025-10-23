@@ -24,7 +24,6 @@ import {
   useFilters,
 } from "./filtering";
 import { CurriculumFilters, YearData, Unit } from "./types";
-import { isCurricRoutingEnabled } from "./flags";
 
 import { createUnit } from "@/fixtures/curriculum/unit";
 import {
@@ -47,10 +46,6 @@ jest.mock("next/router", () => ({
 
 jest.mock("next/navigation", () => ({
   useSearchParams: jest.fn(),
-}));
-
-jest.mock("./flags", () => ({
-  isCurricRoutingEnabled: jest.fn(() => false),
 }));
 
 describe("filtering", () => {
@@ -854,7 +849,6 @@ describe("useFilters", () => {
 
   describe("with routing", () => {
     it("initial state", () => {
-      (isCurricRoutingEnabled as jest.Mock).mockReturnValue(true);
       (useSearchParams as jest.Mock).mockReturnValue(
         new URLSearchParams("?tiers=foundation"),
       );
@@ -871,8 +865,6 @@ describe("useFilters", () => {
     });
 
     it("updating state", () => {
-      (isCurricRoutingEnabled as jest.Mock).mockReturnValue(true);
-
       const defaultFilter = createFilter();
       const updateFilterValue = createFilter({
         tiers: ["foundation"],

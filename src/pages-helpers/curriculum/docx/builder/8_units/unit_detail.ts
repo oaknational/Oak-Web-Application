@@ -22,7 +22,6 @@ import {
   getIsUnitDescriptionEnabled,
   priorKnowledgeRequirementsEnabled,
 } from "@/utils/curriculum/features";
-import { ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS } from "@/utils/curriculum/constants";
 
 type Unit = CombinedCurriculumData["units"][number];
 
@@ -85,7 +84,6 @@ export async function buildUnitPriorKnowledgeReqs(
   unit: Unit | Unit["unit_options"][number],
 ) {
   if (
-    ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS &&
     priorKnowledgeRequirementsEnabled(unit) &&
     "prior_knowledge_requirements" in unit &&
     unit.prior_knowledge_requirements &&

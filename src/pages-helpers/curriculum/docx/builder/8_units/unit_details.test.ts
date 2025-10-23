@@ -16,20 +16,11 @@ jest.mock("../../docx", () => {
   };
 });
 
-const ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS_GETTER = jest.fn();
-jest.mock("@/utils/curriculum/constants", () => ({
-  __esModule: true,
-  get ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS() {
-    return ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS_GETTER();
-  },
-}));
-
 const FAKE_ZIP = {};
 
 describe("buildUnitPriorKnowledgeReqs", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS_GETTER.mockReturnValue(true);
   });
 
   test("with data & enabled", async () => {

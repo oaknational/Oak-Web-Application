@@ -1,4 +1,4 @@
-import { OakBox, OakInlineBanner } from "@oaknational/oak-components";
+import { OakBox } from "@oaknational/oak-components";
 import { FC, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 
@@ -7,7 +7,6 @@ import SignedOutFlow from "./SignedOutFlow";
 import SignedInFlow from "./SignedInFlow";
 
 import Button from "@/components/SharedComponents/Button";
-import { DISABLE_DOWNLOADS } from "@/utils/curriculum/constants";
 
 export type CurriculumDownloadViewData = {
   schools: School[];
@@ -37,45 +36,34 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = (props) => {
 
   return (
     <OakBox $color="black">
-      {DISABLE_DOWNLOADS && (
-        <OakInlineBanner
-          type="alert"
-          isOpen={true}
-          message="Sorry, we've found a problem which means you won't be able to download curriculum documents right now. We're working hard to get it fixed as soon as possible."
-        />
+      {props.onBackToKs4Options && (
+        <OakBox $mb="space-between-m">
+          <Button
+            variant={"buttonStyledAsLink"}
+            icon="chevron-left"
+            data-testid="back-to-downloads-link"
+            size="small"
+            label="Back to KS4 options"
+            onClick={props.onBackToKs4Options}
+          />
+        </OakBox>
       )}
-      {!DISABLE_DOWNLOADS && (
+      {user.isLoaded && (
         <>
-          {props.onBackToKs4Options && (
-            <OakBox $mb="space-between-m">
-              <Button
-                variant={"buttonStyledAsLink"}
-                icon="chevron-left"
-                data-testid="back-to-downloads-link"
-                size="small"
-                label="Back to KS4 options"
-                onClick={props.onBackToKs4Options}
-              />
-            </OakBox>
+          {!user.isSignedIn && (
+            <SignedOutFlow
+              {...props}
+              onChangeDownloadTypes={setDownloadTypes}
+              downloadTypes={downloadTypes}
+              availableDownloadTypes={props.availableDownloadTypes}
+            />
           )}
-          {user.isLoaded && (
-            <>
-              {!user.isSignedIn && (
-                <SignedOutFlow
-                  {...props}
-                  onChangeDownloadTypes={setDownloadTypes}
-                  downloadTypes={downloadTypes}
-                  availableDownloadTypes={props.availableDownloadTypes}
-                />
-              )}
-              {user.isSignedIn && (
-                <SignedInFlow
-                  {...props}
-                  user={user}
-                  availableDownloadTypes={props.availableDownloadTypes}
-                />
-              )}
-            </>
+          {user.isSignedIn && (
+            <SignedInFlow
+              {...props}
+              user={user}
+              availableDownloadTypes={props.availableDownloadTypes}
+            />
           )}
         </>
       )}
