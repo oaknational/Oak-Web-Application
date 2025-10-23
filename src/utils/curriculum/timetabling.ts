@@ -26,6 +26,7 @@ const defaults = {
   summer: 30,
   name: "",
   year: 1,
+  mode: "normal",
 };
 
 const schema = z.object({
@@ -34,6 +35,7 @@ const schema = z.object({
   summer: z.coerce.number().default(defaults.summer),
   year: z.string().default("1"),
   name: z.string().default(defaults.name),
+  mode: z.string().default(defaults.mode),
 });
 
 type TimetableParams = z.infer<typeof schema>;
