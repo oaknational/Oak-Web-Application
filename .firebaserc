@@ -1,17 +1,1 @@
-{
-  "projects": {
-    "default": "oak-national-academy-2022"
-  },
-  "targets": {
-    "oak-national-academy-2022": {
-      "hosting": {
-        "static-marketing-dev": [
-          "oak-static-marketing-dev"
-        ],
-        "static-marketing-prod": [
-          "oak-static-marketing-prod"
-        ]
-      }
-    }
-  }
-}
+{}

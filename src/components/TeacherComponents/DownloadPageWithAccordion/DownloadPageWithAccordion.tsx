@@ -33,7 +33,7 @@ import TermsAgreementForm from "@/components/TeacherComponents/TermsAgreementFor
 import { getFormErrorMessages } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadFormErrorMessage";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 
-export type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
+type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
   ResourcePageSchoolDetailsProps & {
     geoRestricted: boolean;
     loginRequired: boolean;
@@ -54,16 +54,19 @@ export type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
     apiError?: string | null;
     updatedAt: string;
     showTermsAgreement: boolean;
-    isLoading: boolean;
     showRiskAssessmentBanner?: boolean;
     downloads?: LessonDownloadsPageData["downloads"];
     additionalFiles?: LessonDownloadsPageData["additionalFiles"];
-    showGeoBlocked: boolean;
-    lessonSlug: string;
-    lessonTitle: string;
-    lessonReleaseDate: string | null;
-    isLegacy: boolean;
   };
+
+export type DownloadWrapperProps = {
+  isLoading: boolean;
+  showGeoBlocked: boolean;
+  lessonSlug: string;
+  lessonTitle: string;
+  lessonReleaseDate: string | null;
+  isLegacy: boolean;
+} & DownloadPageWithAccordionProps;
 
 const getAccordionText = (
   downloads: LessonDownloadsPageData["downloads"],
@@ -97,9 +100,19 @@ const getAccordionText = (
   return resourcesText.charAt(0).toUpperCase() + resourcesText.slice(1);
 };
 
-const DownloadPageWithAccordion: FC<DownloadPageWithAccordionProps> = (
-  props: DownloadPageWithAccordionProps,
+const DownloadPageWithAccordion: FC<DownloadWrapperProps> = (
+  props: DownloadWrapperProps,
 ) => {
+  const {
+    isLoading,
+    showGeoBlocked,
+    geoRestricted,
+    loginRequired,
+    lessonSlug,
+    lessonReleaseDate,
+    lessonTitle,
+    isLegacy,
+  } = props;
   return (
     <OakGrid>
       <OakGridArea
@@ -111,22 +124,22 @@ const DownloadPageWithAccordion: FC<DownloadPageWithAccordionProps> = (
         <OakHeading tag="h1" $font={["heading-5", "heading-4"]}>
           Download
         </OakHeading>
-        {props.isLoading ? (
+        {isLoading ? (
           <OakBox $minHeight="all-spacing-21">
             <DelayedLoadingSpinner $delay={300} data-testid="loading" />
           </OakBox>
         ) : (
           <DownloadPageWithAccordionContent {...props} />
         )}
-        {!props.showGeoBlocked && (
+        {!showGeoBlocked && (
           <CopyrightRestrictionBanner
-            isGeorestricted={props.geoRestricted ?? undefined}
-            isLoginRequired={props.loginRequired ?? undefined}
+            isGeorestricted={geoRestricted ?? undefined}
+            isLoginRequired={loginRequired ?? undefined}
             componentType="lesson_downloads"
-            lessonName={props.lessonTitle}
-            lessonSlug={props.lessonSlug}
-            lessonReleaseDate={props.lessonReleaseDate}
-            isLessonLegacy={props.isLegacy}
+            lessonName={lessonTitle}
+            lessonSlug={lessonSlug}
+            lessonReleaseDate={lessonReleaseDate}
+            isLessonLegacy={isLegacy}
           />
         )}
       </OakGridArea>

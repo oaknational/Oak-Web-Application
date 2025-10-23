@@ -1,3 +1,43 @@
+## [1.900.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.900.0...v1.900.1) (2025-10-23)
+
+# [1.900.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.8...v1.900.0) (2025-10-23)
+
+
+### Features
+
+* added getPupilFirestore helper w/ optional emulators or via GCP OIDC ([dc817a9](https://github.com/oaknational/Oak-Web-Application/commit/dc817a95801921050cb567dc6fd461c46c648104))
+
+## [1.899.8](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.7...v1.899.8) (2025-10-23)
+
+
+### Bug Fixes
+
+* remove duplicate type PupilUnitListingLinkProps ([517b873](https://github.com/oaknational/Oak-Web-Application/commit/517b873e3a876cc4b09ac975d20d1d0419b6497d))
+
+## [1.899.7](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.6...v1.899.7) (2025-10-23)
+
+## [1.899.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.5...v1.899.6) (2025-10-23)
+
+## [1.899.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.4...v1.899.5) (2025-10-23)
+
+
+### Bug Fixes
+
+* removed invalid for...await (sonarcloud) ([1bdd4d4](https://github.com/oaknational/Oak-Web-Application/commit/1bdd4d43c8e018910b2d327bb859cf742e6c603a))
+
+## [1.899.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.3...v1.899.4) (2025-10-23)
+
+
+### Bug Fixes
+
+* syntax for watch and update select all checked on change ([2612887](https://github.com/oaknational/Oak-Web-Application/commit/2612887d97a0a12bccd708f2d53c8410f0926dd9))
+
+## [1.899.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.2...v1.899.3) (2025-10-22)
+
+## [1.899.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.1...v1.899.2) (2025-10-22)
+
+## [1.899.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.0...v1.899.1) (2025-10-22)
+
 # [1.899.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.898.0...v1.899.0) (2025-10-22)
 
 
