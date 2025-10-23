@@ -1,8 +1,8 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { ZodError } from "zod";
 
-import { createLessonAttemptPayloadSchema } from "@/app/api/pupil/_types/lessonAttemptTypes";
-import { datastore } from "@/node-lib/pupil-api";
+import { createLessonAttemptPayloadSchema } from "@/node-lib/pupil-api/_types/lessonAttemptTypes";
+import { pupilDatastore } from "@/node-lib/pupil-api/pupilDataStore";
 import errorReporter from "@/common-lib/error-reporter";
 
 export const revalidate = 60;
@@ -18,7 +18,9 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const { attempts, empty } = await datastore.getLessonAttempt({ attemptId });
+  const { attempts, empty } = await pupilDatastore.getLessonAttempt({
+    attemptId,
+  });
 
   if (empty) {
     return NextResponse.json({ error: "attempt not found" }, { status: 404 });
@@ -42,36 +44,27 @@ export async function POST(request: NextRequest) {
     }
   }
 
-  if (data) {
-    const attemptId = data.attempt_id;
-    try {
-      const { empty } = await datastore.getLessonAttempt({ attemptId });
-      if (!empty) {
-        return NextResponse.json(
-          { error: "attempt_id is a duplicate" },
-          { status: 400 },
-        );
-      } else {
-        const result = await datastore.logLessonAttempt(data);
-        return NextResponse.json(result, { status: 201 });
-      }
-    } catch (e) {
-      const errorMessage =
-        typeof e === "object" &&
-        e !== null &&
-        "message" in e &&
-        typeof e.message === "string"
-          ? e.message
-          : "Unknown error";
-      errorReporter("lesson-attempt-logging")(new Error(errorMessage), {
-        severity: "warning",
-      });
-      return NextResponse.json({ status: 500, error: "Internal Server Error" });
-    }
-  } else {
+  if (!data)
     return NextResponse.json(
       { error: "Invalid request data" },
       { status: 400 },
     );
+
+  const attemptId = data.attempt_id;
+  try {
+    const { empty } = await pupilDatastore.getLessonAttempt({ attemptId });
+    if (!empty) {
+      return NextResponse.json(
+        { error: "attempt_id is a duplicate" },
+        { status: 400 },
+      );
+    }
+    const result = await pupilDatastore.logLessonAttempt(data);
+    return NextResponse.json(result, { status: 201 });
+  } catch (e) {
+    errorReporter("lesson-attempt-logging")(e, {
+      severity: "error",
+    });
+    return NextResponse.json({ status: 500, error: "Internal Server Error" });
   }
 }

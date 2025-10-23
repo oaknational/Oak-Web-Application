@@ -1,12 +1,14 @@
+/**
+ * @jest-environment node
+ */
 import { type NextRequest } from "next/server";
 
-import { GET, POST } from "./route";
-
-import { createLessonAttemptPayloadSchema } from "@/app/api/pupil/_types/lessonAttemptTypes";
-import { datastore } from "@/node-lib/pupil-api";
+import { GET, POST } from "@/app/api/pupil/lesson-attempt/route";
+import { createLessonAttemptPayloadSchema } from "@/node-lib/pupil-api/_types/lessonAttemptTypes";
+import { pupilDatastore } from "@/node-lib/pupil-api/pupilDataStore";
 
 jest.mock("@/node-lib/pupil-api", () => ({
-  datastore: {
+  pupilDatastore: {
     getLessonAttempt: jest.fn(),
     logLessonAttempt: jest.fn(),
   },
@@ -66,7 +68,7 @@ describe("GET /api/pupil/get-lesson-attempt", () => {
   });
 
   it("returns 404 if no attempt is found", async () => {
-    (datastore.getLessonAttempt as jest.Mock).mockResolvedValueOnce({
+    (pupilDatastore.getLessonAttempt as jest.Mock).mockResolvedValueOnce({
       attempts: [],
       empty: true,
     });
@@ -84,7 +86,7 @@ describe("GET /api/pupil/get-lesson-attempt", () => {
 
   it("returns 200 and attempts if found, with cache-control header", async () => {
     const attempts = [{ id: "123", data: "test" }];
-    (datastore.getLessonAttempt as jest.Mock).mockResolvedValueOnce({
+    (pupilDatastore.getLessonAttempt as jest.Mock).mockResolvedValueOnce({
       attempts,
       empty: false,
     });
@@ -111,7 +113,7 @@ describe("POST /api/pupil/log-lesson-attempt", () => {
     (createLessonAttemptPayloadSchema.parse as jest.Mock).mockReturnValueOnce({
       attempt_id: "dup-id",
     });
-    (datastore.getLessonAttempt as jest.Mock).mockResolvedValueOnce({
+    (pupilDatastore.getLessonAttempt as jest.Mock).mockResolvedValueOnce({
       empty: false,
     });
     const request = {
@@ -127,10 +129,10 @@ describe("POST /api/pupil/log-lesson-attempt", () => {
     (createLessonAttemptPayloadSchema.parse as jest.Mock).mockReturnValueOnce({
       attempt_id: "new-id",
     });
-    (datastore.getLessonAttempt as jest.Mock).mockResolvedValueOnce({
+    (pupilDatastore.getLessonAttempt as jest.Mock).mockResolvedValueOnce({
       empty: true,
     });
-    (datastore.logLessonAttempt as jest.Mock).mockResolvedValueOnce({
+    (pupilDatastore.logLessonAttempt as jest.Mock).mockResolvedValueOnce({
       success: true,
     });
     const request = {
@@ -140,7 +142,7 @@ describe("POST /api/pupil/log-lesson-attempt", () => {
     expect(result.status).toBe(201);
     const json = await result.json();
     expect(json).toEqual({ success: true });
-    expect(datastore.logLessonAttempt).toHaveBeenCalledWith({
+    expect(pupilDatastore.logLessonAttempt).toHaveBeenCalledWith({
       attempt_id: "new-id",
     });
   });
@@ -149,10 +151,10 @@ describe("POST /api/pupil/log-lesson-attempt", () => {
     (createLessonAttemptPayloadSchema.parse as jest.Mock).mockReturnValueOnce({
       attempt_id: "new-id",
     });
-    (datastore.getLessonAttempt as jest.Mock).mockRejectedValueOnce(
+    (pupilDatastore.getLessonAttempt as jest.Mock).mockRejectedValueOnce(
       new Error("Firestore error"),
     );
-    (datastore.logLessonAttempt as jest.Mock).mockResolvedValueOnce({
+    (pupilDatastore.logLessonAttempt as jest.Mock).mockResolvedValueOnce({
       success: true,
     });
     const request = {

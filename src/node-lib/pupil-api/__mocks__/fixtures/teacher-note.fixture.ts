@@ -1,4 +1,4 @@
-import { TeacherNote } from "@/app/api/pupil/_types/teacherNoteTypes";
+import { TeacherNote } from "@/node-lib/pupil-api/_types/teacherNoteTypes";
 
 export const TeacherNoteFixture = (
   partial?: Partial<TeacherNote>,

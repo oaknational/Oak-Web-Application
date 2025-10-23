@@ -1,13 +1,12 @@
-import { LessonAttemptFixture } from "./__mocks__/fixtures/lesson-attempt.fixture";
-
-import { datastore } from "./index";
+import { LessonAttemptFixture } from "@/node-lib/pupil-api/__mocks__/fixtures/lesson-attempt.fixture";
+import { pupilDatastore } from "@/node-lib/pupil-api/pupilDataStore";
 
 jest.mock("@bugsnag/js");
 jest.mock("@google-cloud/firestore");
 
 describe("getLessonAttempt", () => {
   it("should fetch the lesson attempt by the attemptId", async () => {
-    const { attempts } = await datastore.getLessonAttempt({
+    const { attempts } = await pupilDatastore.getLessonAttempt({
       attemptId: "sNHeiaNYiplPq62goZXUM",
     });
     expect(attempts).toEqual({

@@ -1,6 +1,5 @@
-import { TeacherNoteFixture } from "./__mocks__/fixtures/teacher-note.fixture";
-
-import { datastore } from "./index";
+import { TeacherNoteFixture } from "@/node-lib/pupil-api/__mocks__/fixtures/teacher-note.fixture";
+import { pupilDatastore } from "@/node-lib/pupil-api/pupilDataStore";
 
 describe("getTeacherNote", () => {
   beforeEach(() => {
@@ -12,7 +11,7 @@ describe("getTeacherNote", () => {
       ...TeacherNoteFixture(),
       created_at: "2021-09-01T00:00:00.000Z",
     };
-    const notes = await datastore.getTeacherNote({
+    const notes = await pupilDatastore.getTeacherNote({
       noteId: "sNHeiaNYip",
       sidKey: "sid-9226e5",
     });
@@ -21,7 +20,7 @@ describe("getTeacherNote", () => {
   });
 
   it("should return an empty array if the note is not found", async () => {
-    const notes = await datastore.getTeacherNote({
+    const notes = await pupilDatastore.getTeacherNote({
       noteId: "not-found",
       sidKey: "sid-9226e5",
     });
