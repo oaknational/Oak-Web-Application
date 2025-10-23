@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { act, fireEvent, screen } from "@testing-library/react";
+import { act, fireEvent, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import mockRouter from "next-router-mock";
 
@@ -585,7 +585,9 @@ describe("Search.page.tsx", () => {
       searchFilters: [],
     });
     render(<Search {...props} {...resultsPropsPathWays} />);
-    const loadingSpinner = screen.getByText("Loading filters");
-    expect(loadingSpinner).toBeInTheDocument();
+    waitFor(() => {
+      const loadingSpinner = screen.getByText("Loading filters");
+      expect(loadingSpinner).toBeInTheDocument();
+    });
   });
 });

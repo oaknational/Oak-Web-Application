@@ -41,6 +41,7 @@ import MiniDropDown from "@/components/TeacherComponents/MiniDropdown";
 import SearchSuggestedFilters from "@/components/TeacherComponents/SearchSuggestedFilters/SearchSuggestedFilters";
 import { useSuggestedFilters } from "@/context/Search/useSuggestedFilters";
 import { SearchSuggestionBanner } from "@/components/TeacherComponents/SearchSuggestionBanner/SearchSuggestionBanner";
+import { DelayedLoadingSpinner } from "@/components/TeacherComponents/SharePageLayout/SharePageLayout";
 
 const CustomWidthFlex = styled(OakFlex)`
   max-width: 300px;
@@ -222,9 +223,26 @@ const Search: FC<SearchProps> = (props) => {
   };
 
   const [filterButtonFocussed, setFilterButtonFocussed] = useState(false);
+  // Show loading spinner for suggested filters only if loading > 1s
+  const [showSuggestedFiltersLoading, setShowSuggestedFiltersLoading] =
+    useState(false);
+  useEffect(() => {
+    let timer: NodeJS.Timeout | null = null;
+    if (suggestedFilters.status === "loading") {
+      timer = setTimeout(() => {
+        setShowSuggestedFiltersLoading(true);
+      }, 1000);
+    } else {
+      setShowSuggestedFiltersLoading(false);
+      if (timer) clearTimeout(timer);
+    }
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
+  }, [suggestedFilters.status]);
 
   return (
-    <OakFlex $background="white" $flexDirection={"column"}>
+    <OakFlex $minHeight={"100vh"} $background="white" $flexDirection={"column"}>
       <OakMaxWidth $ph={"inner-padding-m"}>
         <OakGrid $mt={"space-between-l"} $cg={"all-spacing-4"}>
           <OakGridArea
@@ -367,13 +385,14 @@ const Search: FC<SearchProps> = (props) => {
                   "flex",
                 ]}
               >
-                {suggestedFilters.status === "loading" && (
-                  <>
-                    <OakSpan>
-                      Loading filters <OakLoadingSpinner />
-                    </OakSpan>
-                  </>
-                )}
+                {suggestedFilters.status === "loading" &&
+                  showSuggestedFiltersLoading && (
+                    <>
+                      <OakSpan>
+                        Loading filters <OakLoadingSpinner />
+                      </OakSpan>
+                    </>
+                  )}
                 {isAiExperimentSearchEnabled ? (
                   <>
                     <SearchSuggestedFilters
@@ -454,7 +473,11 @@ const Search: FC<SearchProps> = (props) => {
               {shouldShowError && (
                 <p>There was an error fetching search results</p>
               )}
-              {shouldShowLoading && <p data-testid="loading">Loading...</p>}
+              {shouldShowLoading && (
+                <>
+                  <DelayedLoadingSpinner $delay={1000} data-testid="loading" />
+                </>
+              )}
               {shouldShowNoResultsMessage && (
                 <OakBox id="search-results" $mb={"space-between-xxl"}>
                   <NoSearchResults searchTerm={query.term} />
