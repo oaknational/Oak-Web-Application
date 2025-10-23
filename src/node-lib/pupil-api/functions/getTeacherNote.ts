@@ -1,9 +1,6 @@
 import { getPupilFirestore } from "@/node-lib/firestore/getPupilFirestore";
 import { TeacherNote } from "@/node-lib/pupil-api/_types/teacherNoteTypes";
 
-jest.mock("@bugsnag/js");
-jest.mock("@google-cloud/firestore");
-
 export async function getTeacherNote({
   noteId,
   sidKey,
