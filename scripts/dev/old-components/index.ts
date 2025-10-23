@@ -154,7 +154,7 @@ async function findRefs(pattern: string) {
   const foundRefs: Record<string, string[]> = {};
   const files = await glob(pattern, {});
 
-  for await (const file of files) {
+  for (const file of files) {
     const imports = getImports(file).map(remapShortRefs);
     for (const importDef of imports) {
       const id = findImport(importDef);

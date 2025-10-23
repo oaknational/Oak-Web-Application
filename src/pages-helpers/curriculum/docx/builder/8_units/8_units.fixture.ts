@@ -10,8 +10,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: "AQA",
       examboard_slug: "aqa",
       planned_number_of_lessons: 14,
@@ -30,7 +29,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -160,8 +159,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: "AQA",
       examboard_slug: "aqa",
       planned_number_of_lessons: 52,
@@ -180,7 +178,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -500,8 +498,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 14,
@@ -520,7 +517,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -603,8 +600,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 28,
@@ -774,7 +770,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -807,8 +803,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 52,
@@ -827,7 +822,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -1004,8 +999,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 32,
@@ -1200,7 +1194,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -1226,8 +1220,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 24,
@@ -1367,7 +1360,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -1398,8 +1391,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 28,
@@ -1559,7 +1551,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -1595,8 +1587,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 28,
@@ -1759,7 +1750,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -1789,8 +1780,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 26,
@@ -1941,7 +1931,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -1977,8 +1967,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 25,
@@ -2123,7 +2112,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -2165,8 +2154,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 7,
@@ -2221,7 +2209,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -2249,8 +2237,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 14,
@@ -2269,7 +2256,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -2407,8 +2394,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 10,
@@ -2478,7 +2464,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -2501,8 +2487,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 52,
@@ -2521,7 +2506,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -2849,8 +2834,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 14,
@@ -2941,13 +2925,6 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [
-        {
-          id: 1,
-          title: "Adapt to local context",
-          category: "",
-        },
-      ],
       subjectcategories: [],
       threads: [
         {
@@ -2987,8 +2964,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 14,
@@ -3078,7 +3054,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -3106,8 +3082,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: "AQA",
       examboard_slug: "aqa",
       planned_number_of_lessons: 160,
@@ -3126,13 +3101,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [
-        {
-          id: 1,
-          title: "Adapt to local context",
-          category: "",
-        },
-      ],
+
       subjectcategories: [],
       threads: [
         {
@@ -3711,8 +3680,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: "AQA",
       examboard_slug: "aqa",
       planned_number_of_lessons: 60,
@@ -3731,13 +3699,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [
-        {
-          id: 1,
-          title: "Adapt to local context",
-          category: "",
-        },
-      ],
+
       subjectcategories: [],
       threads: [
         {
@@ -4004,8 +3966,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 22,
@@ -4135,7 +4096,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -4170,8 +4131,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 20,
@@ -4291,7 +4251,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -4321,8 +4281,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 24,
@@ -4473,7 +4432,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -4498,8 +4457,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 11,
@@ -4574,13 +4532,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [
-        {
-          id: 1,
-          title: "Adapt to local context",
-          category: "",
-        },
-      ],
+
       subjectcategories: [],
       threads: [
         {
@@ -4610,8 +4562,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 32,
@@ -4793,7 +4744,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -4819,8 +4770,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 7,
@@ -4875,7 +4825,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -4909,8 +4859,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 20,
@@ -5030,13 +4979,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [
-        {
-          id: 1,
-          title: "Adapt to local context",
-          category: "",
-        },
-      ],
+
       subjectcategories: [],
       threads: [
         {
@@ -5072,8 +5015,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 12,
@@ -5153,7 +5095,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -5189,8 +5131,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 16,
@@ -5290,7 +5231,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -5315,8 +5256,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 32,
@@ -5496,7 +5436,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -5531,8 +5471,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 25,
@@ -5678,7 +5617,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -5701,8 +5640,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: "AQA",
       examboard_slug: "aqa",
       planned_number_of_lessons: 14,
@@ -5721,7 +5659,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -5853,8 +5791,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 6,
@@ -5904,7 +5841,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -5929,8 +5866,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 25,
@@ -6076,7 +6012,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -6112,8 +6048,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 18,
@@ -6231,13 +6166,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [
-        {
-          id: 1,
-          title: "Adapt to local context",
-          category: "",
-        },
-      ],
+
       subjectcategories: [],
       threads: [
         {
@@ -6265,8 +6194,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 14,
@@ -6285,7 +6213,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -6364,8 +6292,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 7,
@@ -6421,7 +6348,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -6457,8 +6384,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 8,
@@ -6518,7 +6444,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -6548,8 +6474,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 14,
@@ -6640,7 +6565,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -6673,8 +6598,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 14,
@@ -6693,7 +6617,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -6829,8 +6753,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 10,
@@ -6902,7 +6825,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -6927,8 +6850,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 18,
@@ -7038,7 +6960,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
@@ -7078,8 +7000,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 14,
@@ -7173,13 +7094,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [
-        {
-          id: 1,
-          title: "Adapt to local context",
-          category: "",
-        },
-      ],
+
       subjectcategories: [],
       threads: [
         {
@@ -7204,8 +7119,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 16,
@@ -7307,13 +7221,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [
-        {
-          id: 1,
-          title: "Adapt to local context",
-          category: "",
-        },
-      ],
+
       subjectcategories: [],
       threads: [
         {
@@ -7348,8 +7256,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 10,
@@ -7422,13 +7329,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [
-        {
-          id: 1,
-          title: "Adapt to local context",
-          category: "",
-        },
-      ],
+
       subjectcategories: [],
       threads: [
         {
@@ -7457,8 +7358,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 8,
@@ -7518,13 +7418,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [
-        {
-          id: 1,
-          title: "Adapt to local context",
-          category: "",
-        },
-      ],
+
       subjectcategories: [],
       threads: [
         {
@@ -7558,8 +7452,7 @@ export const data: CombinedCurriculumData = {
       description: "",
       why_this_why_now: null,
       cycle: "1",
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       planned_number_of_lessons: 10,
@@ -7629,7 +7522,7 @@ export const data: CombinedCurriculumData = {
       tier_slug: null,
       pathway: null,
       pathway_slug: null,
-      tags: [],
+
       subjectcategories: [],
       threads: [
         {
