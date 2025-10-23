@@ -1,5 +1,5 @@
 import { getPupilFirestore } from "@/node-lib/firestore/getPupilFirestore";
-import { TeacherNote } from "@/node-lib/pupil-api/_types/teacherNoteTypes";
+import { TeacherNote } from "@/node-lib/pupil-api/types";
 
 export async function getTeacherNote({
   noteId,

@@ -1,7 +1,4 @@
-import {
-  LessonAttempt,
-  lessonAttemptSchema,
-} from "@/node-lib/pupil-api/_types/lessonAttemptTypes";
+import { LessonAttempt, lessonAttemptSchema } from "@/node-lib/pupil-api/types";
 import { getPupilFirestore } from "@/node-lib/firestore/getPupilFirestore";
 import errorReporter from "@/common-lib/error-reporter";
 

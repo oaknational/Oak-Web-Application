@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { ZodError } from "zod";
 
-import { createLessonAttemptPayloadSchema } from "@/node-lib/pupil-api/_types/lessonAttemptTypes";
+import { createLessonAttemptPayloadSchema } from "@/node-lib/pupil-api/types";
 import { pupilDatastore } from "@/node-lib/pupil-api/pupilDataStore";
 import errorReporter from "@/common-lib/error-reporter";
 

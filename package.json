@@ -79,7 +79,6 @@
     "@google-cloud/storage": "^7.17.0",
     "@hookform/resolvers": "^3.10.0",
     "@hubspot/api-client": "^11.2.0",
-    "@jest-mock/express": "^2.1.0",
     "@mdx-js/loader": "^3.1.0",
     "@mux/mux-node": "^9.0.1",
     "@mux/mux-player-react": "3.1.0",

@@ -4,7 +4,7 @@
 import { type NextRequest } from "next/server";
 
 import { GET, POST } from "@/app/api/pupil/lesson-attempt/route";
-import { createLessonAttemptPayloadSchema } from "@/node-lib/pupil-api/_types/lessonAttemptTypes";
+import { createLessonAttemptPayloadSchema } from "@/node-lib/pupil-api/types";
 import { pupilDatastore } from "@/node-lib/pupil-api/pupilDataStore";
 
 jest.mock("@/node-lib/pupil-api/pupilDataStore", () => ({
