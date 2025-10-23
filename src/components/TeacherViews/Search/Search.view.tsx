@@ -244,11 +244,9 @@ const Search: FC<SearchProps> = (props) => {
   const renderSuggestedFiltersSection = () => (
     <>
       {suggestedFilters.status === "loading" && showSuggestedFiltersLoading && (
-        <>
-          <OakSpan>
-            Loading filters <OakLoadingSpinner />
-          </OakSpan>
-        </>
+        <OakSpan>
+          Loading filters <OakLoadingSpinner />
+        </OakSpan>
       )}
       <SearchSuggestedFilters
         setQuery={setQuery}
