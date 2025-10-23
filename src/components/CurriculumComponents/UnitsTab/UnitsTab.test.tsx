@@ -552,7 +552,7 @@ describe("unitsTab !subject error", () => {
   //   );
   //   const yearOptions = await findAllByTestId("year-radio");
   //   const extractedYears = yearOptions.map((option) =>
-  //     parseInt(option.getAttribute("value") || "0"),
+  //     Number.parseInt(option.getAttribute("value") || "0"),
   //   );
   //   const isSorted = extractedYears.every((year, index, array) => {
   //     return index === 0 || Number(array[index - 1]) <= year;
