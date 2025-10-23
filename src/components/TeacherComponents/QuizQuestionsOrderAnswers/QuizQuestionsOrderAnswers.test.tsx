@@ -17,7 +17,7 @@ describe("QuizQuestionsOrderAnswers", () => {
     );
     const elems = getAllByRole("listitem");
 
-    expect(elems.length !== orderAnswers.length);
+    expect(elems.length !== orderAnswers.length).toBeFalsy();
 
     for (let i = 0; i < elems.length; i++) {
       expect(elems[i]).toHaveTextContent(

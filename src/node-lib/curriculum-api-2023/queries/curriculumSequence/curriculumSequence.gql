@@ -1,13 +1,11 @@
 query curriculumSequence(
-  $where: published_mv_curriculum_sequence_b_13_0_19_bool_exp
+  $where: published_mv_curriculum_sequence_b_13_0_20_bool_exp
 ) {
-  units: published_mv_curriculum_sequence_b_13_0_19(where: $where) {
+  units: published_mv_curriculum_sequence_b_13_0_20(where: $where) {
     connection_prior_unit_description
     connection_future_unit_description
     connection_future_unit_title
     connection_prior_unit_title
-    domain
-    domain_id
     examboard
     examboard_slug
     keystage_slug
@@ -21,7 +19,6 @@ query curriculumSequence(
     subject_slug
     subject_parent
     subject_parent_slug
-    tags
     subjectcategories
     tier
     tier_slug

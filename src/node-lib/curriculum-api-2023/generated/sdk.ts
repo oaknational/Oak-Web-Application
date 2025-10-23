@@ -26,6 +26,7 @@ export type Scalars = {
   redirect_type_enum: { input: any; output: any; }
   timestamp: { input: any; output: any; }
   timestamptz: { input: any; output: any; }
+  uuid: { input: any; output: any; }
 };
 
 /** Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'. */
@@ -4401,6 +4402,7 @@ export type Internal_Entity_State = {
   last_error_location?: Maybe<Scalars['String']['output']>;
   last_error_message?: Maybe<Scalars['String']['output']>;
   last_error_timestamp?: Maybe<Scalars['timestamp']['output']>;
+  last_ingest_id?: Maybe<Scalars['uuid']['output']>;
   updated_at?: Maybe<Scalars['timestamp']['output']>;
 };
 
@@ -4452,6 +4454,7 @@ export type Internal_Entity_State_Bool_Exp = {
   last_error_location?: InputMaybe<String_Comparison_Exp>;
   last_error_message?: InputMaybe<String_Comparison_Exp>;
   last_error_timestamp?: InputMaybe<Timestamp_Comparison_Exp>;
+  last_ingest_id?: InputMaybe<Uuid_Comparison_Exp>;
   updated_at?: InputMaybe<Timestamp_Comparison_Exp>;
 };
 
@@ -4475,6 +4478,7 @@ export type Internal_Entity_State_Insert_Input = {
   last_error_location?: InputMaybe<Scalars['String']['input']>;
   last_error_message?: InputMaybe<Scalars['String']['input']>;
   last_error_timestamp?: InputMaybe<Scalars['timestamp']['input']>;
+  last_ingest_id?: InputMaybe<Scalars['uuid']['input']>;
   updated_at?: InputMaybe<Scalars['timestamp']['input']>;
 };
 
@@ -4488,6 +4492,7 @@ export type Internal_Entity_State_Max_Fields = {
   last_error_location?: Maybe<Scalars['String']['output']>;
   last_error_message?: Maybe<Scalars['String']['output']>;
   last_error_timestamp?: Maybe<Scalars['timestamp']['output']>;
+  last_ingest_id?: Maybe<Scalars['uuid']['output']>;
   updated_at?: Maybe<Scalars['timestamp']['output']>;
 };
 
@@ -4501,6 +4506,7 @@ export type Internal_Entity_State_Min_Fields = {
   last_error_location?: Maybe<Scalars['String']['output']>;
   last_error_message?: Maybe<Scalars['String']['output']>;
   last_error_timestamp?: Maybe<Scalars['timestamp']['output']>;
+  last_ingest_id?: Maybe<Scalars['uuid']['output']>;
   updated_at?: Maybe<Scalars['timestamp']['output']>;
 };
 
@@ -4529,6 +4535,7 @@ export type Internal_Entity_State_Order_By = {
   last_error_location?: InputMaybe<Order_By>;
   last_error_message?: InputMaybe<Order_By>;
   last_error_timestamp?: InputMaybe<Order_By>;
+  last_ingest_id?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
 };
 
@@ -4555,6 +4562,8 @@ export enum Internal_Entity_State_Select_Column {
   /** column name */
   LastErrorTimestamp = 'last_error_timestamp',
   /** column name */
+  LastIngestId = 'last_ingest_id',
+  /** column name */
   UpdatedAt = 'updated_at'
 }
 
@@ -4567,6 +4576,7 @@ export type Internal_Entity_State_Set_Input = {
   last_error_location?: InputMaybe<Scalars['String']['input']>;
   last_error_message?: InputMaybe<Scalars['String']['input']>;
   last_error_timestamp?: InputMaybe<Scalars['timestamp']['input']>;
+  last_ingest_id?: InputMaybe<Scalars['uuid']['input']>;
   updated_at?: InputMaybe<Scalars['timestamp']['input']>;
 };
 
@@ -4605,6 +4615,7 @@ export type Internal_Entity_State_Stream_Cursor_Value_Input = {
   last_error_location?: InputMaybe<Scalars['String']['input']>;
   last_error_message?: InputMaybe<Scalars['String']['input']>;
   last_error_timestamp?: InputMaybe<Scalars['timestamp']['input']>;
+  last_ingest_id?: InputMaybe<Scalars['uuid']['input']>;
   updated_at?: InputMaybe<Scalars['timestamp']['input']>;
 };
 
@@ -4630,6 +4641,8 @@ export enum Internal_Entity_State_Update_Column {
   LastErrorMessage = 'last_error_message',
   /** column name */
   LastErrorTimestamp = 'last_error_timestamp',
+  /** column name */
+  LastIngestId = 'last_ingest_id',
   /** column name */
   UpdatedAt = 'updated_at'
 }
@@ -69500,6 +69513,19 @@ export type Unitvariants_Variance_Order_By = {
   unitvariant_id?: InputMaybe<Order_By>;
 };
 
+/** Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'. */
+export type Uuid_Comparison_Exp = {
+  _eq?: InputMaybe<Scalars['uuid']['input']>;
+  _gt?: InputMaybe<Scalars['uuid']['input']>;
+  _gte?: InputMaybe<Scalars['uuid']['input']>;
+  _in?: InputMaybe<Array<Scalars['uuid']['input']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  _lt?: InputMaybe<Scalars['uuid']['input']>;
+  _lte?: InputMaybe<Scalars['uuid']['input']>;
+  _neq?: InputMaybe<Scalars['uuid']['input']>;
+  _nin?: InputMaybe<Array<Scalars['uuid']['input']>>;
+};
+
 /** columns and relationships of "videocaptions" */
 export type Videocaptions = {
   __typename?: 'videocaptions';
@@ -70902,11 +70928,11 @@ export type CurriculumPhaseOptionsQueryVariables = Exact<{ [key: string]: never;
 export type CurriculumPhaseOptionsQuery = { __typename?: 'query_root', options: Array<{ __typename?: 'published_mv_curriculum_phase_options_0_3', title?: string | null, slug?: string | null, phases?: any | null, keystages?: any | null, ks4_options?: any | null }> };
 
 export type CurriculumSequenceQueryVariables = Exact<{
-  where?: InputMaybe<Published_Mv_Curriculum_Sequence_B_13_0_19_Bool_Exp>;
+  where?: InputMaybe<Published_Mv_Curriculum_Sequence_B_13_0_20_Bool_Exp>;
 }>;
 
 
-export type CurriculumSequenceQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_curriculum_sequence_b_13_0_19', connection_prior_unit_description?: string | null, connection_future_unit_description?: string | null, connection_future_unit_title?: string | null, connection_prior_unit_title?: string | null, domain?: string | null, domain_id?: string | null, examboard?: string | null, examboard_slug?: string | null, keystage_slug?: string | null, lessons?: any | null, order?: number | null, planned_number_of_lessons?: number | null, phase?: string | null, phase_slug?: string | null, slug?: string | null, subject?: string | null, subject_slug?: string | null, subject_parent?: string | null, subject_parent_slug?: string | null, tags?: any | null, subjectcategories?: any | null, tier?: string | null, tier_slug?: string | null, title?: string | null, why_this_why_now?: string | null, description?: string | null, cycle?: string | null, features?: any | null, parent_programme_features?: any | null, national_curriculum_content?: any | null, prior_knowledge_requirements?: any | null, actions?: any | null, unit_options?: any | null, threads?: any | null, year?: string | null, pathway?: string | null, pathway_slug?: string | null, state?: string | null }> };
+export type CurriculumSequenceQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_curriculum_sequence_b_13_0_20', connection_prior_unit_description?: string | null, connection_future_unit_description?: string | null, connection_future_unit_title?: string | null, connection_prior_unit_title?: string | null, examboard?: string | null, examboard_slug?: string | null, keystage_slug?: string | null, lessons?: any | null, order?: number | null, planned_number_of_lessons?: number | null, phase?: string | null, phase_slug?: string | null, slug?: string | null, subject?: string | null, subject_slug?: string | null, subject_parent?: string | null, subject_parent_slug?: string | null, subjectcategories?: any | null, tier?: string | null, tier_slug?: string | null, title?: string | null, why_this_why_now?: string | null, description?: string | null, cycle?: string | null, features?: any | null, parent_programme_features?: any | null, national_curriculum_content?: any | null, prior_knowledge_requirements?: any | null, actions?: any | null, unit_options?: any | null, threads?: any | null, year?: string | null, pathway?: string | null, pathway_slug?: string | null, state?: string | null }> };
 
 export type KeyStagesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -71259,14 +71285,12 @@ export const CurriculumPhaseOptionsDocument = gql`
 }
     `;
 export const CurriculumSequenceDocument = gql`
-    query curriculumSequence($where: published_mv_curriculum_sequence_b_13_0_19_bool_exp) {
-  units: published_mv_curriculum_sequence_b_13_0_19(where: $where) {
+    query curriculumSequence($where: published_mv_curriculum_sequence_b_13_0_20_bool_exp) {
+  units: published_mv_curriculum_sequence_b_13_0_20(where: $where) {
     connection_prior_unit_description
     connection_future_unit_description
     connection_future_unit_title
     connection_prior_unit_title
-    domain
-    domain_id
     examboard
     examboard_slug
     keystage_slug
@@ -71280,7 +71304,6 @@ export const CurriculumSequenceDocument = gql`
     subject_slug
     subject_parent
     subject_parent_slug
-    tags
     subjectcategories
     tier
     tier_slug

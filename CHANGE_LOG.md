@@ -1,3 +1,35 @@
+## [1.899.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.3...v1.899.4) (2025-10-23)
+
+
+### Bug Fixes
+
+* syntax for watch and update select all checked on change ([2612887](https://github.com/oaknational/Oak-Web-Application/commit/2612887d97a0a12bccd708f2d53c8410f0926dd9))
+
+## [1.899.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.2...v1.899.3) (2025-10-22)
+
+## [1.899.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.1...v1.899.2) (2025-10-22)
+
+## [1.899.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.0...v1.899.1) (2025-10-22)
+
+# [1.899.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.898.0...v1.899.0) (2025-10-22)
+
+
+### Bug Fixes
+
+* remove domain, domain_id and tags from schema and fixed types ([9a8842c](https://github.com/oaknational/Oak-Web-Application/commit/9a8842c1790d38519e3ab04afe303803cf173442))
+
+
+### Features
+
+* bump to mv_curriculum_sequence_b_13_0_20 (domain_id, domain & tags removed) ([495d517](https://github.com/oaknational/Oak-Web-Application/commit/495d5172a0d605fe616aef52aaf41ba85bcf7377))
+
+# [1.898.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.897.0...v1.898.0) (2025-10-22)
+
+
+### Features
+
+* remove feat flag ([18a0046](https://github.com/oaknational/Oak-Web-Application/commit/18a0046dd98e33ec21bf600b96328f6b1f894bd8))
+
 # [1.897.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.896.3...v1.897.0) (2025-10-22)
 
 
