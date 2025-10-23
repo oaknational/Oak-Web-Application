@@ -7,7 +7,7 @@ exports[`CurricUnitCard changes color when highlighed 1`] = `
       class="sc-fqkvVR sc-1c55d370-0 jdSkEU iHxKuU"
     >
       <a
-        class="sc-7353c220-0 eacPWx"
+        class="sc-dff9efc2-0 gEvEhn"
         data-testid="unit-info-link"
         href="/"
       >
@@ -16,10 +16,10 @@ exports[`CurricUnitCard changes color when highlighed 1`] = `
           data-testid="unit-card"
         >
           <div
-            class="sc-fqkvVR fgBWrW"
+            class="sc-fqkvVR sc-kAyceB fgBWrW moWty"
           >
             <div
-              class="sc-9d6b6245-0 cPzdPh pa11y-ignore"
+              class="sc-9d6b6245-0 bZsOFK pa11y-ignore"
             >
               <span
                 aria-hidden="true"
@@ -33,7 +33,7 @@ exports[`CurricUnitCard changes color when highlighed 1`] = `
               Something nice
             </span>
             <div
-              class="sc-fqkvVR csHkiI"
+              class="sc-fqkvVR jqPdK"
               data-testid="options-tag"
             >
               <span
@@ -84,7 +84,7 @@ exports[`CurricUnitCard highlighted state 1`] = `
       class="sc-fqkvVR sc-1c55d370-0 jdSkEU dNUCNM"
     >
       <a
-        class="sc-7353c220-0 cSHgvT"
+        class="sc-dff9efc2-0 jifKUx"
         data-testid="unit-info-link"
         href="/"
       >
@@ -93,10 +93,10 @@ exports[`CurricUnitCard highlighted state 1`] = `
           data-testid="highlighted-unit-card"
         >
           <div
-            class="sc-fqkvVR fgBWrW"
+            class="sc-fqkvVR sc-kAyceB fgBWrW moWty"
           >
             <div
-              class="sc-9d6b6245-0 cPzdPh pa11y-ignore"
+              class="sc-9d6b6245-0 bZsOFK pa11y-ignore"
             >
               <span
                 aria-hidden="true"
@@ -110,7 +110,7 @@ exports[`CurricUnitCard highlighted state 1`] = `
               Something nice
             </span>
             <div
-              class="sc-fqkvVR csHkiI"
+              class="sc-fqkvVR jqPdK"
               data-testid="options-tag"
             >
               <span
@@ -166,7 +166,7 @@ exports[`CurricUnitCard index is correct 1`] = `
       class="sc-fqkvVR sc-1c55d370-0 jdSkEU iHxKuU"
     >
       <a
-        class="sc-7353c220-0 eacPWx"
+        class="sc-dff9efc2-0 gEvEhn"
         data-testid="unit-info-link"
         href="/"
       >
@@ -175,10 +175,10 @@ exports[`CurricUnitCard index is correct 1`] = `
           data-testid="unit-card"
         >
           <div
-            class="sc-fqkvVR fgBWrW"
+            class="sc-fqkvVR sc-kAyceB fgBWrW moWty"
           >
             <div
-              class="sc-9d6b6245-0 cPzdPh pa11y-ignore"
+              class="sc-9d6b6245-0 bZsOFK pa11y-ignore"
             >
               <span
                 aria-hidden="true"
@@ -192,7 +192,7 @@ exports[`CurricUnitCard index is correct 1`] = `
               Something nice
             </span>
             <div
-              class="sc-fqkvVR csHkiI"
+              class="sc-fqkvVR jqPdK"
               data-testid="options-tag"
             >
               <span
@@ -243,7 +243,7 @@ exports[`CurricUnitCard render 1`] = `
       class="sc-fqkvVR sc-1c55d370-0 jdSkEU iHxKuU"
     >
       <a
-        class="sc-7353c220-0 eacPWx"
+        class="sc-dff9efc2-0 gEvEhn"
         data-testid="unit-info-link"
         href="/"
       >
@@ -252,10 +252,10 @@ exports[`CurricUnitCard render 1`] = `
           data-testid="unit-card"
         >
           <div
-            class="sc-fqkvVR fgBWrW"
+            class="sc-fqkvVR sc-kAyceB fgBWrW moWty"
           >
             <div
-              class="sc-9d6b6245-0 cPzdPh pa11y-ignore"
+              class="sc-9d6b6245-0 bZsOFK pa11y-ignore"
             >
               <span
                 aria-hidden="true"
@@ -269,7 +269,7 @@ exports[`CurricUnitCard render 1`] = `
               Something nice
             </span>
             <div
-              class="sc-fqkvVR csHkiI"
+              class="sc-fqkvVR jqPdK"
               data-testid="options-tag"
             >
               <span

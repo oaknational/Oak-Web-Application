@@ -1,11 +1,21 @@
 import { renderHook } from "@testing-library/react";
 
-import { useShareExperiment } from "./useShareExperiment";
+import { useShare } from "./useShare";
 import { getShareIdKey, createAndStoreShareId } from "./createShareId";
-import { CurriculumTrackingProps } from "./shareExperimentTypes";
+import { CurriculumTrackingProps } from "./shareTypes";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { LessonReleaseCohortValueType } from "@/browser-lib/avo/Avo";
+
+const mockReplace = jest.fn();
+
+jest.mock("next/router", () => ({
+  useRouter: () => ({
+    pathname: "/teachers/lessons/lesson-slug",
+    query: { existingParam: "value" },
+    replace: mockReplace,
+  }),
+}));
 
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagVariantKey: jest.fn(),
@@ -33,7 +43,7 @@ interface MockLocation {
   href: string;
 }
 
-describe("useShareExperiments", () => {
+describe("useShare", () => {
   const curriculumTrackingProps: CurriculumTrackingProps & {
     lessonReleaseDate: string;
     lessonReleaseCohort: LessonReleaseCohortValueType;
@@ -52,6 +62,7 @@ describe("useShareExperiments", () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+    mockReplace.mockClear();
 
     Object.defineProperty(window, "location", {
       writable: true,
@@ -70,7 +81,7 @@ describe("useShareExperiments", () => {
   it("should generate a shareId", () => {
     // hook wrapper
     const { result } = renderHook(() =>
-      useShareExperiment({
+      useShare({
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
@@ -88,7 +99,7 @@ describe("useShareExperiments", () => {
 
     // hook wrapper
     const { result } = renderHook(() =>
-      useShareExperiment({
+      useShare({
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         shareBaseUrl: "http://localhost:3000/teachers/lessons/lesson-slug",
@@ -111,7 +122,7 @@ describe("useShareExperiments", () => {
 
     // hook wrapper
     renderHook(() =>
-      useShareExperiment({
+      useShare({
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
@@ -130,7 +141,7 @@ describe("useShareExperiments", () => {
 
     // hook wrapper
     renderHook(() =>
-      useShareExperiment({
+      useShare({
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
@@ -150,7 +161,7 @@ describe("useShareExperiments", () => {
 
     // hook wrapper
     renderHook(() =>
-      useShareExperiment({
+      useShare({
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
@@ -173,7 +184,7 @@ describe("useShareExperiments", () => {
 
     // hook wrapper
     renderHook(() =>
-      useShareExperiment({
+      useShare({
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
@@ -192,7 +203,7 @@ describe("useShareExperiments", () => {
 
     // hook wrapper
     renderHook(() =>
-      useShareExperiment({
+      useShare({
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
@@ -215,7 +226,7 @@ describe("useShareExperiments", () => {
 
     // hook wrapper
     renderHook(() =>
-      useShareExperiment({
+      useShare({
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
@@ -230,7 +241,7 @@ describe("useShareExperiments", () => {
     const mockTrack = useAnalytics().track;
 
     const { result } = renderHook(() =>
-      useShareExperiment({
+      useShare({
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
@@ -251,7 +262,7 @@ describe("useShareExperiments", () => {
     localStorage.setItem(`av-${key}`, JSON.stringify(true));
 
     const { result } = renderHook(() =>
-      useShareExperiment({
+      useShare({
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
@@ -264,31 +275,87 @@ describe("useShareExperiments", () => {
     expect(mockTrack.teacherShareActivated).not.toHaveBeenCalled();
   });
 
-  it("should not update browserUrl if overrideExistingShareId is null", () => {
+  it("should not update browserUrl if overrideExistingShareId is false and urlShareId is present", () => {
+    const key = getShareIdKey("lesson-slug_unit-slug_programmeSlug");
+
+    window.location.search = `?${key}=test-share-id&sm=0&src=1`;
+
     const { result } = renderHook(() =>
-      useShareExperiment({
+      useShare({
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         shareBaseUrl: "http://localhost:3000/teachers/lessons/lesson-slug",
         curriculumTrackingProps,
-        overrideExistingShareId: null,
+        overrideExistingShareId: false,
       }),
     );
 
     expect(result.current.browserUrl).toBe(null);
   });
 
-  it("should not update browserUrl if overrideExistingShareId is false and urlShareId is present", () => {
-    const { result } = renderHook(() =>
-      useShareExperiment({
+  it("should call router.replace when browserUrl differs from window.location.href", () => {
+    const key = getShareIdKey("lesson-slug_unit-slug_programmeSlug");
+
+    // Set up initial window location
+    Object.defineProperty(window, "location", {
+      writable: true,
+      value: {
+        href: "http://localhost/teachers/lessons/lesson-slug",
+        assign: jest.fn(),
+        replace: jest.fn(),
+        search: "",
+      } as MockLocation,
+    });
+
+    renderHook(() =>
+      useShare({
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
-        shareBaseUrl: "http://localhost:3000/teachers/lessons/lesson-slug",
         curriculumTrackingProps,
-        overrideExistingShareId: null,
+        overrideExistingShareId: true,
       }),
     );
 
-    expect(result.current.browserUrl).toBe(null);
+    // Verify router.replace was called with the correct parameters
+    expect(mockReplace).toHaveBeenCalledWith(
+      {
+        pathname: "/teachers/lessons/lesson-slug",
+        query: {
+          existingParam: "value",
+          [key]: "xxxxxxxxxx",
+          sm: "0",
+          src: "1",
+        },
+      },
+      undefined,
+      { shallow: true },
+    );
+  });
+
+  it("should not call router.replace when browserUrl matches window.location.href", () => {
+    const key = getShareIdKey("lesson-slug_unit-slug_programmeSlug");
+    const expectedUrl = `http://localhost?${key}=xxxxxxxxxx&sm=0&src=1`;
+
+    // Set window.location.href to match what browserUrl will be
+    Object.defineProperty(window, "location", {
+      writable: true,
+      value: {
+        href: expectedUrl,
+        assign: jest.fn(),
+        replace: jest.fn(),
+        search: `?${key}=xxxxxxxxxx&sm=0&src=1`,
+      } as MockLocation,
+    });
+
+    renderHook(() =>
+      useShare({
+        programmeSlug: "programmeSlug",
+        source: "lesson-canonical",
+        curriculumTrackingProps,
+        overrideExistingShareId: true,
+      }),
+    );
+
+    expect(mockReplace).not.toHaveBeenCalled();
   });
 });

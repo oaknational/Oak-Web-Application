@@ -1,3 +1,119 @@
+## [1.899.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.4...v1.899.5) (2025-10-23)
+
+
+### Bug Fixes
+
+* removed invalid for...await (sonarcloud) ([1bdd4d4](https://github.com/oaknational/Oak-Web-Application/commit/1bdd4d43c8e018910b2d327bb859cf742e6c603a))
+
+## [1.899.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.3...v1.899.4) (2025-10-23)
+
+
+### Bug Fixes
+
+* syntax for watch and update select all checked on change ([2612887](https://github.com/oaknational/Oak-Web-Application/commit/2612887d97a0a12bccd708f2d53c8410f0926dd9))
+
+## [1.899.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.2...v1.899.3) (2025-10-22)
+
+## [1.899.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.1...v1.899.2) (2025-10-22)
+
+## [1.899.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.0...v1.899.1) (2025-10-22)
+
+# [1.899.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.898.0...v1.899.0) (2025-10-22)
+
+
+### Bug Fixes
+
+* remove domain, domain_id and tags from schema and fixed types ([9a8842c](https://github.com/oaknational/Oak-Web-Application/commit/9a8842c1790d38519e3ab04afe303803cf173442))
+
+
+### Features
+
+* bump to mv_curriculum_sequence_b_13_0_20 (domain_id, domain & tags removed) ([495d517](https://github.com/oaknational/Oak-Web-Application/commit/495d5172a0d605fe616aef52aaf41ba85bcf7377))
+
+# [1.898.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.897.0...v1.898.0) (2025-10-22)
+
+
+### Features
+
+* remove feat flag ([18a0046](https://github.com/oaknational/Oak-Web-Application/commit/18a0046dd98e33ec21bf600b96328f6b1f894bd8))
+
+# [1.897.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.896.3...v1.897.0) (2025-10-22)
+
+
+### Bug Fixes
+
+* made "additional" prop on <CurricUnitCard/> optional ([8a3521b](https://github.com/oaknational/Oak-Web-Application/commit/8a3521badabbd5017434ac33f44256eca6a6a85f))
+* updated snapshots ([3fb0fbe](https://github.com/oaknational/Oak-Web-Application/commit/3fb0fbe00befc4a99591acb0d3fd6c1d96380bd1))
+* use "oak black" for text color ([01af61e](https://github.com/oaknational/Oak-Web-Application/commit/01af61e7208ce554908f87ff25a0a613657e8e78))
+
+
+### Features
+
+* added <CurricLessonWarning/> and optional "additional" props to <CurricUnitCard/> ([55bd971](https://github.com/oaknational/Oak-Web-Application/commit/55bd971922d899d3f20dbc609ceecc28464e4ae9))
+
+## [1.896.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.896.2...v1.896.3) (2025-10-22)
+
+
+### Bug Fixes
+
+* add swimming sorting to reshapeUnitData ([b16742e](https://github.com/oaknational/Oak-Web-Application/commit/b16742e8000986be09f8a5039a89d4fb1e0ae6b5))
+* swimming units order on unit listing ([8383c03](https://github.com/oaknational/Oak-Web-Application/commit/8383c031173e7681651de5890ac14fe958d4767c))
+
+## [1.896.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.896.1...v1.896.2) (2025-10-21)
+
+## [1.896.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.896.0...v1.896.1) (2025-10-20)
+
+
+### Bug Fixes
+
+* get restrcited content data from features, not content mv ([f72faee](https://github.com/oaknational/Oak-Web-Application/commit/f72faee327671ae8783873f1e44a64cabc7cb2a6))
+* hide share and create with ai btns on restricted overview pages ([5c62f77](https://github.com/oaknational/Oak-Web-Application/commit/5c62f77a5ee6e9592de0033036a7066e5275447d))
+* update content restriction handling in lesson overview headers ([751147e](https://github.com/oaknational/Oak-Web-Application/commit/751147e607fc67a0b8c9a1e2fd66aebef974a13a))
+
+# [1.896.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.895.0...v1.896.0) (2025-10-20)
+
+
+### Bug Fixes
+
+* amend SEO component logic and tests ([23e3f45](https://github.com/oaknational/Oak-Web-Application/commit/23e3f4575536beeccd9d9b2a387369a2f9973cf5))
+* revert middleware ([3d0ec54](https://github.com/oaknational/Oak-Web-Application/commit/3d0ec5471dc6d817e82f6a62e936d971430745e6))
+
+
+### Features
+
+* added "filter and highlight" to curric timetabling ([db20fdd](https://github.com/oaknational/Oak-Web-Application/commit/db20fdd3cc5d9bac6c32670cc534fa2ea2e3b18d))
+* noindex URLs with ?sid params ([3781d18](https://github.com/oaknational/Oak-Web-Application/commit/3781d18fa395b3c76d61d7b9dd7d83d42fa3da7b))
+* pass clean canonical URLs explicitly to prevent tracking params ([247c3d3](https://github.com/oaknational/Oak-Web-Application/commit/247c3d35e44c46edc3276a4b4b49acac823142f6))
+
+# [1.895.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.894.0...v1.895.0) (2025-10-16)
+
+
+### Bug Fixes
+
+* dont show the card for subjects without descriptions (legacy) ([88e509b](https://github.com/oaknational/Oak-Web-Application/commit/88e509bc9679919fe4d5acc1bc334cc93d2d049d))
+* handle edge cases with search query matches ([e3d9d05](https://github.com/oaknational/Oak-Web-Application/commit/e3d9d052980084be05830319c581c8de63fe10fd))
+* handle ks4 citizenship edge case ([50c6d9a](https://github.com/oaknational/Oak-Web-Application/commit/50c6d9ae6c161e1db510e9d5bf29ace7e5e3e896))
+
+
+### Features
+
+* add descriptions to cards ([46641bb](https://github.com/oaknational/Oak-Web-Application/commit/46641bbf6b88d7f62f442fb2aa014364ee3ae76b))
+* add method to get suggestion banner props ([285a134](https://github.com/oaknational/Oak-Web-Application/commit/285a1345edcfd9e52cd25f7d8e98fe40afdb37db))
+* add SearchSuggestionBanner component ([7d05e77](https://github.com/oaknational/Oak-Web-Application/commit/7d05e776b296c8a4fb7038c00f4ae4aff916ba67))
+* add subject suggestion banner on mobile and tablet ([2632644](https://github.com/oaknational/Oak-Web-Application/commit/2632644fd921e3be19339f969f07dbc351c87616))
+* add suggestion banner to search view ([e1fe160](https://github.com/oaknational/Oak-Web-Application/commit/e1fe160a86e35f09fd73a18ff0ea28520d35c098))
+* add tracking on keystage links in banner ([1d21bc8](https://github.com/oaknational/Oak-Web-Application/commit/1d21bc870eca8072df6306d50a924f72146eb8f9))
+* link to programme index pages from suggestion card ([c753e1f](https://github.com/oaknational/Oak-Web-Application/commit/c753e1f4fd1f183345f298403b3cb7f00767940c))
+* make description optional on card ([7a6ccf9](https://github.com/oaknational/Oak-Web-Application/commit/7a6ccf93b2150457165a0680493693b9173f871a))
+* remove EYFS from keystage data ([f88cbf5](https://github.com/oaknational/Oak-Web-Application/commit/f88cbf502e7634a185cb7935397a84b35685d0a9))
+
+# [1.894.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.893.0...v1.894.0) (2025-10-16)
+
+
+### Features
+
+* new component type for create with ai events ([3548163](https://github.com/oaknational/Oak-Web-Application/commit/35481638135bf2b66c19e81521d6f2868ba9dbfb))
+
 # [1.893.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.892.0...v1.893.0) (2025-10-15)
 
 

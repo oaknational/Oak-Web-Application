@@ -37,9 +37,11 @@ variable "env_vars" {
       OAK_CONFIG_LOCATION  = optional(string)
       OVERRIDE_APP_VERSION = optional(string)
       OVERRIDE_URL         = optional(string)
+      PUPIL_FIRESTORE_ID   = optional(string)
     }))
     preview = optional(object({
       OAK_CONFIG_LOCATION = optional(string)
+      PUPIL_FIRESTORE_ID  = optional(string)
     }))
   })
   validation {
@@ -130,16 +132,8 @@ variable "next_public_clerk_publishable_key_prod" {
   }
 }
 
-variable "firestore_env_vars" {
-  description = "GCP OIDC connection variables for pupil Firestore"
-  type = object({
-    shared = optional(object({
-      PUPIL_FIRESTORE_ID                     = string
-      GCP_PROJECT_ID                         = string
-      GCP_SERVICE_ACCOUNT_EMAIL              = string
-      GCP_WORKLOAD_IDENTITY_POOL_PROVIDER_ID = string
-    }))
-  })
-  sensitive = true
-  default   = {}
+variable "terraform_cloud_organisation" {
+  description = "Terraform Cloud Organisation"
+  type        = string
+  default     = null
 }

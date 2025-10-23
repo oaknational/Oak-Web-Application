@@ -3,22 +3,19 @@ import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { useLesson, UseLessonProps } from "./useLesson";
 
-import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
-import { useTeacherNotes } from "@/pages-helpers/teacher/share-experiments/useTeacherNotes";
+import { useShare } from "@/pages-helpers/teacher/share/useShare";
+import { useTeacherNotes } from "@/pages-helpers/teacher/share/useTeacherNotes";
 
 // Mock all the dependencies
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: jest.fn(),
 }));
 
-jest.mock(
-  "@/pages-helpers/teacher/share-experiments/useShareExperiment",
-  () => ({
-    useShareExperiment: jest.fn(),
-  }),
-);
+jest.mock("@/pages-helpers/teacher/share/useShare", () => ({
+  useShare: jest.fn(),
+}));
 
-jest.mock("@/pages-helpers/teacher/share-experiments/useTeacherNotes", () => ({
+jest.mock("@/pages-helpers/teacher/share/useTeacherNotes", () => ({
   useTeacherNotes: jest.fn(),
 }));
 
@@ -26,6 +23,12 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: jest.fn(() => ({
     track: { teacherNoteDialogOpened: jest.fn() },
+  })),
+}));
+
+jest.mock("next/router", () => ({
+  useRouter: jest.fn(() => ({
+    replace: jest.fn(),
   })),
 }));
 
@@ -49,7 +52,7 @@ describe("useLesson", () => {
     },
   };
 
-  const mockShareExperimentReturn = {
+  const mockShareReturn = {
     shareUrl: "https://share.example.com",
     browserUrl: "https://browser.example.com",
     shareActivated: true,
@@ -69,9 +72,7 @@ describe("useLesson", () => {
     jest.clearAllMocks();
     // Setup default mocks
     (useFeatureFlagEnabled as jest.Mock).mockReturnValue(true);
-    (useShareExperiment as jest.Mock).mockReturnValue(
-      mockShareExperimentReturn,
-    );
+    (useShare as jest.Mock).mockReturnValue(mockShareReturn);
     (useTeacherNotes as jest.Mock).mockReturnValue(mockTeacherNotesReturn);
 
     // Create a mock location object
@@ -86,11 +87,6 @@ describe("useLesson", () => {
     Object.defineProperty(window, "location", {
       value: mockLocation,
       writable: true,
-    });
-
-    // mock the history.replaceState method
-    jest.spyOn(window.history, "replaceState").mockImplementation(() => {
-      return;
     });
   });
 
@@ -119,18 +115,6 @@ describe("useLesson", () => {
     });
 
     expect(result.current.teacherNotesOpen).toBe(true);
-  });
-
-  it("should update browser URL when different from current location", () => {
-    const replaceStateSpy = jest.spyOn(window.history, "replaceState");
-
-    renderHook(() => useLesson(defaultProps));
-
-    expect(replaceStateSpy).toHaveBeenCalledWith(
-      {},
-      "",
-      "https://browser.example.com",
-    );
   });
 
   it("should handle error states from teacher notes", () => {
@@ -166,10 +150,10 @@ describe("useLesson", () => {
     expect(result.current.teacherNoteHtml).toBe("<p>Test note</p>");
   });
 
-  it("should pass correct props to useShareExperiment", () => {
+  it("should pass correct props to useShare", () => {
     renderHook(() => useLesson(defaultProps));
 
-    expect(useShareExperiment).toHaveBeenCalledWith({
+    expect(useShare).toHaveBeenCalledWith({
       programmeSlug: undefined,
       source: "lesson-browse-w-note",
       curriculumTrackingProps: defaultProps.curriculumTrackingProps,
@@ -199,8 +183,8 @@ describe("useLesson", () => {
 
     it("should not update URL if current URL matches browserUrl", () => {
       const replaceStateSpy = jest.spyOn(window.history, "replaceState");
-      (useShareExperiment as jest.Mock).mockReturnValue({
-        ...mockShareExperimentReturn,
+      (useShare as jest.Mock).mockReturnValue({
+        ...mockShareReturn,
         browserUrl: "https://example.com/test",
       });
 

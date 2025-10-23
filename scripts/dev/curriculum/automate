@@ -5,15 +5,9 @@ import { hideBin } from 'yargs/helpers';
 import screenshot from './_commands/screenshot';
 import compare from './_commands/compare';
 import {buildChicken} from "./_commands/chicken"
-import { buildFixtures } from "./_commands/fixtures";
 
 
 yargs(hideBin(process.argv))
-  .command('fixtures', "generates fixtures from graphql", (yargs) => {
-    return yargs;
-  }, async () => {
-    await buildFixtures();
-  })
   .command('screenshot <label>', 'screenshot the visualiser', (yargs) => {
     return yargs
       .positional('label', {

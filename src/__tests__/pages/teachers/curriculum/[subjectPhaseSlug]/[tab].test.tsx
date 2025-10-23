@@ -36,8 +36,6 @@ const unitData = [
       "Pupils will learn about uses of gene technology in medicine, such as for genetic testing, and in agriculture, such as the production of genetically engineered crop plants with desirable characteristics.",
     connection_future_unit_title: "Gene technology",
     connection_prior_unit_title: "Hormones and human reproduction",
-    domain: null,
-    domain_id: null,
     examboard: "AQA",
     examboard_slug: "aqa",
     planned_number_of_lessons: 6,
@@ -77,7 +75,6 @@ const unitData = [
     subject_parent_slug: "science",
     tier: "Foundation",
     tier_slug: "foundation",
-    tags: [],
     subjectcategories: [],
     threads: [
       {
@@ -102,8 +99,6 @@ const unitData = [
       "Pupils will move on to construct and interpret pyramids of number and biomass from food chains data. Pupils will learn about how plants and animals are adapted to survive and the impact of changes to the environment on biodiversity. The importance of biodiversity and the importance of gene banks. How to sample plant and animal populations to aid our understanding and monitoring of populations. ",
     connection_future_unit_title: "Biodiversity",
     connection_prior_unit_title: "More about food chains",
-    domain: null,
-    domain_id: null,
     examboard: null,
     examboard_slug: null,
     planned_number_of_lessons: 9,
@@ -158,7 +153,6 @@ const unitData = [
     subject_parent_slug: null,
     tier: null,
     tier_slug: null,
-    tags: [{ id: 5, title: "Biology", category: "Discipline" }],
     subjectcategories: [{ id: 5, slug: "biology", title: "Biology" }],
     threads: [
       {
@@ -185,8 +179,6 @@ const unitData = [
     connection_future_unit_title:
       "Defences against pathogens, the human immune system and vaccination",
     connection_prior_unit_title: "Disease and drugs",
-    domain: null,
-    domain_id: null,
     examboard: "AQA",
     examboard_slug: "aqa",
     planned_number_of_lessons: 14,
@@ -236,7 +228,6 @@ const unitData = [
     subject_parent_slug: "science",
     tier: null,
     tier_slug: null,
-    tags: [],
     subjectcategories: [],
     threads: [
       {
@@ -261,8 +252,6 @@ const unitData = [
       "Pupils will learn about factors that affect the rate of photosynthesis in plants, including temperature, light intensity and carbon dioxide concentration.",
     connection_future_unit_title: "Photosynthesis: factors affecting the rate",
     connection_prior_unit_title: "Transport and exchange surfaces in plants",
-    domain: null,
-    domain_id: null,
     examboard: "AQA",
     examboard_slug: "aqa",
     planned_number_of_lessons: 13,
@@ -326,7 +315,6 @@ const unitData = [
     subject_parent_slug: "science",
     tier: "Higher",
     tier_slug: "higher",
-    tags: [],
     subjectcategories: [],
     threads: [
       {
@@ -353,8 +341,6 @@ const unitData = [
       "Pupils will learn about factors that affect the rate of photosynthesis in plants, including temperature, light intensity and carbon dioxide concentration.",
     connection_future_unit_title: "Photosynthesis: factors affecting the rate",
     connection_prior_unit_title: "Transport and exchange surfaces in plants",
-    domain: null,
-    domain_id: null,
     examboard: "AQA",
     examboard_slug: "aqa",
     planned_number_of_lessons: 13,
@@ -412,7 +398,6 @@ const unitData = [
     subject_parent_slug: "science",
     tier: "Foundation",
     tier_slug: "foundation",
-    tags: [],
     subjectcategories: [],
     threads: [
       {
@@ -440,8 +425,6 @@ const unitData = [
     connection_future_unit_title:
       "Coordination and control: maintaining a constant internal environment",
     connection_prior_unit_title: "Aerobic and anaerobic cellular respiration",
-    domain: null,
-    domain_id: null,
     examboard: "AQA",
     examboard_slug: "aqa",
     planned_number_of_lessons: 12,
@@ -502,7 +485,6 @@ const unitData = [
     subject_parent_slug: "science",
     tier: null,
     tier_slug: null,
-    tags: [],
     subjectcategories: [],
     threads: [
       {
@@ -826,8 +808,6 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               connection_prior_unit_description:
                 "Pupils learned about some common non-infectious diseases, factors that increase the risk of developing lifestyle diseases and steps we can take to help prevent them, including the impacts of smoking on the human body, and asthma and its risk factors.",
               connection_prior_unit_title: "Disease and drugs",
-              domain: null,
-              domain_id: null,
               examboard: "AQA",
               examboard_slug: "aqa",
               keystage_slug: "ks4",
@@ -883,7 +863,6 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               subject_parent: "Science",
               subject_parent_slug: "science",
               subject_slug: "combined-science",
-              tags: [],
               subjectcategories: [],
               threads: [
                 {
@@ -940,8 +919,6 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               connection_prior_unit_description:
                 "Pupils learned about the roles of hormones in human reproduction, including control of the menstrual cycle, and other uses of hormones such as in in contraception.",
               connection_prior_unit_title: "Hormones and human reproduction",
-              domain: null,
-              domain_id: null,
               examboard: "AQA",
               examboard_slug: "aqa",
               keystage_slug: "ks4",
@@ -982,7 +959,6 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               subject_parent: "Science",
               subject_parent_slug: "science",
               subject_slug: "biology",
-              tags: [],
               subjectcategories: [],
               threads: [
                 {
@@ -1013,8 +989,6 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
                 "Pupils learned how substances essential for chemical reactions, and the products of the reactions, are transported into, around and out of plants, and about factors affecting the rate of water uptake by a plant.",
               connection_prior_unit_title:
                 "Transport and exchange surfaces in plants",
-              domain: null,
-              domain_id: null,
               examboard: "AQA",
               examboard_slug: "aqa",
               keystage_slug: "ks4",
@@ -1077,7 +1051,6 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               subject_parent: "Science",
               subject_parent_slug: "science",
               subject_slug: "biology",
-              tags: [],
               subjectcategories: [],
               threads: [
                 {
@@ -1109,8 +1082,6 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
                 "Pupils learned how substances essential for chemical reactions, and the products of the reactions, are transported into, around and out of plants, and about factors affecting the rate of water uptake by a plant.",
               connection_prior_unit_title:
                 "Transport and exchange surfaces in plants",
-              domain: null,
-              domain_id: null,
               examboard: "AQA",
               examboard_slug: "aqa",
               keystage_slug: "ks4",
@@ -1167,7 +1138,6 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               subject_parent: "Science",
               subject_parent_slug: "science",
               subject_slug: "biology",
-              tags: [],
               subjectcategories: [],
               threads: [
                 {
@@ -1199,8 +1169,6 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
                 "Pupils learned about aerobic and anaerobic cellular respiration, including the chemical reactants and products of the processes, and practical ways to measure the rate of cellular respiration in living cells.",
               connection_prior_unit_title:
                 "Aerobic and anaerobic cellular respiration",
-              domain: null,
-              domain_id: null,
               examboard: "AQA",
               examboard_slug: "aqa",
               keystage_slug: "ks4",
@@ -1259,7 +1227,6 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               subject_parent: "Science",
               subject_parent_slug: "science",
               subject_slug: "combined-science",
-              tags: [],
               subjectcategories: [],
               threads: [
                 {
@@ -1305,8 +1272,6 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               connection_prior_unit_description:
                 "In Y4 pupils learnt about their local environment and to recognise that environments can change. Pupils also explored examples of human impact (both positive and negative) on environments. Pupils looked at a variety of food chains to identify producers, predators and prey.",
               connection_prior_unit_title: "More about food chains",
-              domain: null,
-              domain_id: null,
               examboard: null,
               examboard_slug: null,
               keystage_slug: "ks3",
@@ -1366,13 +1331,6 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               subject_parent: null,
               subject_parent_slug: null,
               subject_slug: "science",
-              tags: [
-                {
-                  category: "Discipline",
-                  id: 5,
-                  title: "Biology",
-                },
-              ],
               subjectcategories: [{ id: 5, slug: "biology", title: "Biology" }],
               threads: [
                 {
