@@ -241,6 +241,50 @@ const Search: FC<SearchProps> = (props) => {
     };
   }, [suggestedFilters.status]);
 
+  const renderSuggestedFiltersSection = () => (
+    <>
+      {suggestedFilters.status === "loading" && showSuggestedFiltersLoading && (
+        <>
+          <OakSpan>
+            Loading filters <OakLoadingSpinner />
+          </OakSpan>
+        </>
+      )}
+      <SearchSuggestedFilters
+        setQuery={setQuery}
+        query={query}
+        searchFilters={suggestedFilters.searchFilters}
+        trackSearchModified={trackSearchModified(
+          query.term,
+          track.searchFilterModified,
+        )}
+      />
+      {suggestedFilters.status === "success" ? (
+        <MiniDropDown label="All filters">
+          <OakBox $pt="inner-padding-m">
+            <SearchFilters
+              {...searchFilters}
+              trackSearchModified={trackSearchModified(
+                query.term,
+                track.searchFilterModified,
+              )}
+            />
+          </OakBox>
+        </MiniDropDown>
+      ) : (
+        suggestedFilters.status !== "loading" && (
+          <SearchFilters
+            {...searchFilters}
+            trackSearchModified={trackSearchModified(
+              query.term,
+              track.searchFilterModified,
+            )}
+          />
+        )
+      )}
+    </>
+  );
+
   return (
     <OakFlex $minHeight={"100vh"} $background="white" $flexDirection={"column"}>
       <OakMaxWidth $ph={"inner-padding-m"}>
@@ -334,27 +378,7 @@ const Search: FC<SearchProps> = (props) => {
                   "inner-padding-xl",
                 ]}
               >
-                <SearchSuggestedFilters
-                  setQuery={setQuery}
-                  query={query}
-                  searchFilters={suggestedFilters.searchFilters}
-                  trackSearchModified={trackSearchModified(
-                    query.term,
-                    track.searchFilterModified,
-                  )}
-                />
-
-                <MiniDropDown label="All filters">
-                  <OakBox $pt="inner-padding-m">
-                    <SearchFilters
-                      {...searchFilters}
-                      trackSearchModified={trackSearchModified(
-                        query.term,
-                        track.searchFilterModified,
-                      )}
-                    />
-                  </OakBox>
-                </MiniDropDown>
+                {renderSuggestedFiltersSection()}
               </OakBox>
             )}
             <OakBox
@@ -385,49 +409,8 @@ const Search: FC<SearchProps> = (props) => {
                   "flex",
                 ]}
               >
-                {suggestedFilters.status === "loading" &&
-                  showSuggestedFiltersLoading && (
-                    <>
-                      <OakSpan>
-                        Loading filters <OakLoadingSpinner />
-                      </OakSpan>
-                    </>
-                  )}
                 {isAiExperimentSearchEnabled ? (
-                  <>
-                    <SearchSuggestedFilters
-                      setQuery={setQuery}
-                      query={query}
-                      searchFilters={suggestedFilters.searchFilters}
-                      trackSearchModified={trackSearchModified(
-                        query.term,
-                        track.searchFilterModified,
-                      )}
-                    />
-                    {suggestedFilters.status === "success" ? (
-                      <MiniDropDown label="All filters">
-                        <OakBox $pt="inner-padding-m">
-                          <SearchFilters
-                            {...searchFilters}
-                            trackSearchModified={trackSearchModified(
-                              query.term,
-                              track.searchFilterModified,
-                            )}
-                          />
-                        </OakBox>
-                      </MiniDropDown>
-                    ) : (
-                      suggestedFilters.status !== "loading" && (
-                        <SearchFilters
-                          {...searchFilters}
-                          trackSearchModified={trackSearchModified(
-                            query.term,
-                            track.searchFilterModified,
-                          )}
-                        />
-                      )
-                    )}
-                  </>
+                  renderSuggestedFiltersSection()
                 ) : (
                   <>
                     <OakFlex
@@ -474,9 +457,7 @@ const Search: FC<SearchProps> = (props) => {
                 <p>There was an error fetching search results</p>
               )}
               {shouldShowLoading && (
-                <>
-                  <DelayedLoadingSpinner $delay={1000} data-testid="loading" />
-                </>
+                <DelayedLoadingSpinner $delay={1000} data-testid="loading" />
               )}
               {shouldShowNoResultsMessage && (
                 <OakBox id="search-results" $mb={"space-between-xxl"}>
