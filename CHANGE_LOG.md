@@ -1,3 +1,19 @@
+## [1.900.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.900.0...v1.900.1) (2025-10-23)
+
+# [1.900.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.8...v1.900.0) (2025-10-23)
+
+
+### Features
+
+* added getPupilFirestore helper w/ optional emulators or via GCP OIDC ([dc817a9](https://github.com/oaknational/Oak-Web-Application/commit/dc817a95801921050cb567dc6fd461c46c648104))
+
+## [1.899.8](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.7...v1.899.8) (2025-10-23)
+
+
+### Bug Fixes
+
+* remove duplicate type PupilUnitListingLinkProps ([517b873](https://github.com/oaknational/Oak-Web-Application/commit/517b873e3a876cc4b09ac975d20d1d0419b6497d))
+
 ## [1.899.7](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.6...v1.899.7) (2025-10-23)
 
 ## [1.899.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.5...v1.899.6) (2025-10-23)
