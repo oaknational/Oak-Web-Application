@@ -1,3 +1,10 @@
+## [1.899.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.3...v1.899.4) (2025-10-23)
+
+
+### Bug Fixes
+
+* syntax for watch and update select all checked on change ([2612887](https://github.com/oaknational/Oak-Web-Application/commit/2612887d97a0a12bccd708f2d53c8410f0926dd9))
+
 ## [1.899.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.2...v1.899.3) (2025-10-22)
 
 ## [1.899.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.1...v1.899.2) (2025-10-22)
