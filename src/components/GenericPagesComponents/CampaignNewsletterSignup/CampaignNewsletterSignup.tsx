@@ -188,6 +188,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
           $alignItems={"center"}
           $alignSelf={"stretch"}
           $gap={"space-between-xxl"}
+          $justifyContent={"space-between"}
         >
           <OakFlex
             $maxWidth={["100%", "all-spacing-22"]}
