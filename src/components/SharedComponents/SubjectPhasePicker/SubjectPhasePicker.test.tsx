@@ -410,24 +410,12 @@ describe("Component - subject phase picker", () => {
         throw new Error("Could not find button");
       }
 
-      const checkIfPhasesFocused = () => {
-        const el = getByTestId("phase-picker-button");
-        if (el.matches(":focus-within")) {
-          return true;
-        }
-        return false;
-      };
-
-      // Tab through until we tab outside the subject modal
-      let i = 0;
-      for (i; i < 20; i++) {
+      const tabCount = curriculumPhaseOptions.subjects.length + 3;
+      for (let i = 0; i < tabCount; i++) {
         await userEvent.tab();
-        if (checkIfPhasesFocused()) {
-          break;
-        }
       }
 
-      expect(getByTestId("phase-picker-button").matches(":focus")).toBe(true);
+      expect(getByTestId("phase-picker-button")).toHaveFocus();
     });
 
     test("tab focus breaks outside of phases modal", async () => {
@@ -438,28 +426,12 @@ describe("Component - subject phase picker", () => {
       );
       await userEvent.click(getByTestId("phase-picker-button"));
 
-      const checkIfPhasesFocused = () => {
-        const el = getByTestId("lot-picker-view-curriculum-button");
-        if (el.matches(":focus-within")) {
-          return true;
-        }
-        return false;
-      };
+      await userEvent.tab();
+      await userEvent.tab();
+      await userEvent.tab();
+      await userEvent.tab();
 
-      // Tab through until we tab outside the phases modal
-      let i = 0;
-      for (i; i < 20; i++) {
-        await userEvent.tab();
-        if (checkIfPhasesFocused()) {
-          break;
-        }
-      }
-
-      expect(
-        getByTestId("lot-picker-view-curriculum-button").matches(
-          ":focus-within",
-        ),
-      ).toBe(true);
+      expect(getByTestId("lot-picker-view-curriculum-button")).toHaveFocus();
     });
 
     test("close button is visible in subject picker", async () => {
