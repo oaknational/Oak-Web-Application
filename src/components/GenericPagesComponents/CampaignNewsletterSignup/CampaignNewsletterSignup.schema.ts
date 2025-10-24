@@ -29,7 +29,6 @@ export const emailRequiredSchema = z.string().email({
 const schoolCombinedSchema = z
   .object({
     schoolId: schoolIdSchema.optional(),
-
     schoolNotListed: z.boolean(),
   })
   .superRefine((values, context) => {
@@ -42,13 +41,13 @@ const schoolCombinedSchema = z
     }
   });
 
-const partialSchema = z.object({
+export const partialNewsletterSchema = z.object({
   email: emailRequiredSchema,
   name: nameInputSchema,
 });
 
 export const newsletterSignupFormSubmitSchema = z.intersection(
-  partialSchema,
+  partialNewsletterSchema,
   schoolCombinedSchema,
 );
 
