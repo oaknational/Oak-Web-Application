@@ -13,7 +13,7 @@ const campaignHeaderSchema = z.object({
   heading: z.string(),
   subheading: z.string().nullish(),
   image: imageSchema,
-  hideKsSelector: z.boolean().optional(),
+  hideKsSelector: z.boolean().nullish(),
 });
 
 export type CampaignHeader = z.infer<typeof campaignHeaderSchema>;
@@ -26,7 +26,7 @@ const newsletterSignUpSchema = z.object({
   bodyPortableText: portableTextSchema,
   buttonCta: z.string(),
   formId: z.string(),
-  freeSchoolInput: z.boolean().optional(),
+  freeSchoolInput: z.boolean().nullish(),
 });
 
 export type CampaignPromoBannerType = z.infer<typeof campaignPromoBannerSchema>;
