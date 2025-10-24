@@ -1,6 +1,6 @@
 import React from "react";
 import "@testing-library/jest-dom";
-import { act, waitFor } from "@testing-library/react";
+import { act, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import CampaignNewsletterSignup from "./CampaignNewsletterSignup";
@@ -208,5 +208,22 @@ describe("CampaignNewsletterSignup", () => {
     await waitFor(() => {
       expect(getByText("An unknown error occurred")).toBeVisible();
     });
+  });
+  it("does not show the school picker when freeSchoolInput set", () => {
+    renderWithTheme(
+      <CampaignNewsletterSignup
+        data-testid="test"
+        {...mockData}
+        freeSchoolInput
+      />,
+    );
+
+    const schoolPicker = screen.queryByRole("combobox");
+    expect(schoolPicker).not.toBeInTheDocument();
+
+    const schoolInput = screen.getByRole("textbox", {
+      name: "School or organisation (optional)",
+    });
+    expect(schoolInput).toBeInTheDocument();
   });
 });
