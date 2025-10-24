@@ -25,6 +25,7 @@ const newsletterSignUpSchema = z.object({
   bodyPortableText: portableTextSchema,
   buttonCta: z.string(),
   formId: z.string(),
+  freeSchoolInput: z.boolean().optional(),
 });
 
 export type CampaignPromoBannerType = z.infer<typeof campaignPromoBannerSchema>;
@@ -49,6 +50,7 @@ export const campaignContentTypeSchema = z.discriminatedUnion("type", [
     bodyPortableText: portableTextSchema,
     buttonCta: z.string(),
     formId: z.string(),
+    freeSchoolInput: z.boolean().optional(),
   }),
   z.object({
     type: z.literal("CampaignPromoBanner"),

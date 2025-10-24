@@ -28,6 +28,7 @@ query campaignBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
         bodyPortableText: bodyRaw
         buttonCta
         formId
+        freeSchoolInput
       }
       ... on CampaignVideoBanner {
         type: __typename
