@@ -19,9 +19,7 @@ const campaignHeaderSchema = z.object({
 export type CampaignHeader = z.infer<typeof campaignHeaderSchema>;
 
 export type NewsletterSignUp = z.infer<typeof newsletterSignUpSchema>;
-
 const newsletterSignUpSchema = z.object({
-  type: z.literal("NewsletterSignUp"),
   heading: z.string(),
   bodyPortableText: portableTextSchema,
   buttonCta: z.string(),
@@ -39,6 +37,12 @@ export const campaignPromoBannerSchema = z.object({
   media: z.array(imageSchema.nullish(), videoSchema.nullish()),
 });
 
+const campaignVideoBannerSchema = z.object({
+  headingPortableTextWithPromo: portableTextSchema,
+  subheadingPortableTextWithPromo: portableTextSchema,
+  video: videoSchema,
+});
+
 export const campaignContentTypeSchema = z.discriminatedUnion("type", [
   z.object({
     type: z.literal("CampaignIntro"),
@@ -47,11 +51,7 @@ export const campaignContentTypeSchema = z.discriminatedUnion("type", [
   }),
   z.object({
     type: z.literal("NewsletterSignUp"),
-    heading: z.string(),
-    bodyPortableText: portableTextSchema,
-    buttonCta: z.string(),
-    formId: z.string(),
-    freeSchoolInput: z.boolean().optional(),
+    ...newsletterSignUpSchema.shape,
   }),
   z.object({
     type: z.literal("CampaignPromoBanner"),
@@ -59,21 +59,11 @@ export const campaignContentTypeSchema = z.discriminatedUnion("type", [
   }),
   z.object({
     type: z.literal("CampaignVideoBanner"),
-    headingPortableTextWithPromo: portableTextSchema,
-    subheadingPortableTextWithPromo: portableTextSchema,
-    video: videoSchema,
+    ...campaignVideoBannerSchema.shape,
   }),
 ]);
 
 export type CampaignContentType = z.infer<typeof campaignContentTypeSchema>;
-const campaignVideoBannerSchema = z.object({
-  type: z.literal("CampaignVideoBanner"),
-  headingPortableTextWithPromo: portableTextSchema,
-  subheadingPortableTextWithPromo: portableTextSchema,
-  video: videoSchema,
-});
-
-export type CampaignVideoBannerType = z.infer<typeof campaignVideoBannerSchema>;
 
 export const campaignPageSchema = z
   .object({
