@@ -122,7 +122,7 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
           {
             key: "Access-Control-Allow-Origin",
             value:
-              releaseStage === "development"
+              releaseStage === "development" || releaseStage === "preview"
                 ? "*"
                 : [
                     "*.vercel-preview.thenational.academy",
