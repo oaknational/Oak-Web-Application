@@ -13,6 +13,7 @@ const campaignHeaderSchema = z.object({
   heading: z.string(),
   subheading: z.string().nullish(),
   image: imageSchema,
+  hideKsSelector: z.boolean().optional(),
 });
 
 export type CampaignHeader = z.infer<typeof campaignHeaderSchema>;

@@ -15,6 +15,7 @@ query campaignBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
         ...ImageWithAltText
       }
       subheading
+      hideKsSelector
     }
     content {
       ... on CampaignIntro {
