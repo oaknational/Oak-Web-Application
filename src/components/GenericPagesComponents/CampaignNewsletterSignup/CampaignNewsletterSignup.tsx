@@ -148,6 +148,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
           ...schoolData,
           email: data.email,
           userRole: "",
+          name: data.name,
         });
         setSuccessMessage("Thanks, that's been received");
         setData({
