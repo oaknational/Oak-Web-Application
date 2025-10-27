@@ -75,7 +75,11 @@ describe("QuizQuestionsQuestionStem", () => {
 
     const questionStem: (StemImageObject | StemTextObject)[] = [
       ...mcqStemImage.questionStem,
-      { text: "This is some text", type: "text" },
+      {
+        text: "This is some text",
+        type: "text",
+        portableText: stemToPortableText("This is some text"),
+      },
     ];
 
     const { getByText } = renderWithTheme(

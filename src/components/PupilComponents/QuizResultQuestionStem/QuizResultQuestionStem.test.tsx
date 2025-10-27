@@ -10,7 +10,10 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import { invariant } from "@/utils/invariant";
-import { StemPortableText } from "@/components/SharedComponents/Stem";
+import {
+  StemPortableText,
+  stemToPortableText,
+} from "@/components/SharedComponents/Stem";
 
 const starterQuiz = quizQuestions;
 const mcqText = starterQuiz ? starterQuiz[0] : null;
@@ -58,18 +61,7 @@ describe("QuestionListItem", () => {
       {
         text: "This is some text",
         type: "text",
-        portableText: [
-          {
-            style: "normal",
-            _type: "block",
-            children: [
-              {
-                text: "This is some text",
-                _type: "span",
-              },
-            ],
-          },
-        ],
+        portableText: stemToPortableText("This is some text"),
       },
     ];
 
@@ -88,7 +80,11 @@ describe("QuestionListItem", () => {
 
     const questionStem: ImageOrTextItem[] = [
       ...mcqStemImage.questionStem,
-      { text: "This is some text", type: "text" },
+      {
+        text: "This is some text",
+        type: "text",
+        portableText: stemToPortableText("This is some text"),
+      },
     ];
 
     const { getByText } = renderWithTheme(
@@ -106,7 +102,11 @@ describe("QuestionListItem", () => {
 
     const questionStem: ImageOrTextItem[] = [
       ...mcqStemImage.questionStem,
-      { text: "This is some text", type: "text" },
+      {
+        text: "This is some text",
+        type: "text",
+        portableText: stemToPortableText("This is some text"),
+      },
     ];
 
     const { queryByText } = renderWithTheme(
