@@ -13,7 +13,10 @@ import {
   ImageItem,
   QuizQuestion,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
-import { StemPortableText } from "@/components/SharedComponents/Stem";
+import {
+  StemPortableText,
+  stemToPortableText,
+} from "@/components/SharedComponents/Stem";
 
 export const imageObject: ImageItem["imageObject"] = {
   format: "jpg",
@@ -30,18 +33,7 @@ export const imageObject: ImageItem["imageObject"] = {
 export const questionStem: (StemPortableText | ImageItem)[] = [
   {
     text: "What is a main clause?",
-    portableText: [
-      {
-        style: "normal",
-        _type: "block",
-        children: [
-          {
-            text: "What is a main clause?",
-            _type: "span",
-          },
-        ],
-      },
-    ],
+    portableText: stemToPortableText("What is a main clause?"),
     type: "text",
   },
 ];
@@ -50,18 +42,9 @@ export const questionStemWithImage: (StemPortableText | ImageItem)[] = [
   {
     text: "Which of these statements about trees is true?",
     type: "text",
-    portableText: [
-      {
-        style: "normal",
-        _type: "block",
-        children: [
-          {
-            text: "Which of these statements about trees is true?",
-            _type: "span",
-          },
-        ],
-      },
-    ],
+    portableText: stemToPortableText(
+      "Which of these statements about trees is true?",
+    ),
   },
   {
     type: "image",
@@ -74,6 +57,9 @@ export const mcqCorrectAnswer: MCAnswer = {
     {
       text: "a group of words that contains a verb and makes complete sense",
       type: "text",
+      portableText: stemToPortableText(
+        "a group of words that contains a verb and makes complete sense",
+      ),
     },
   ],
   answerIsCorrect: true,
@@ -84,6 +70,9 @@ export const mcqIncorrectAnswer: MCAnswer = {
     {
       text: "a sentence starter followed by a comma",
       type: "text",
+      portableText: stemToPortableText(
+        "a sentence starter followed by a comma",
+      ),
     },
   ],
   answerIsCorrect: false,
@@ -96,6 +85,7 @@ export const mcqTextAnswers: MCAnswer[] = [
       {
         text: "a group of letters",
         type: "text",
+        portableText: stemToPortableText("a group of letters"),
       },
     ],
     answerIsCorrect: false,
@@ -106,6 +96,7 @@ export const mcqTextAnswers: MCAnswer[] = [
       {
         text: "a word that joins",
         type: "text",
+        portableText: stemToPortableText("a word that joins"),
       },
     ],
     answerIsCorrect: false,
@@ -122,6 +113,7 @@ export const mcqImageAnswers: MCAnswer[] = [
       {
         text: "Trees grow from seeds.",
         type: "text",
+        portableText: stemToPortableText("Trees grow from seeds."),
       },
     ],
     answerIsCorrect: true,
@@ -135,6 +127,9 @@ export const mcqImageAnswers: MCAnswer[] = [
       {
         text: "Trees grow from something different to seeds.",
         type: "text",
+        portableText: stemToPortableText(
+          "Trees grow from something different to seeds.",
+        ),
       },
     ],
     answerIsCorrect: false,
@@ -148,6 +143,9 @@ export const mcqImageAnswers: MCAnswer[] = [
       {
         text: "Trees are put in the ground by people.",
         type: "text",
+        portableText: stemToPortableText(
+          "Trees are put in the ground by people.",
+        ),
       },
     ],
     answerIsCorrect: false,
@@ -156,15 +154,25 @@ export const mcqImageAnswers: MCAnswer[] = [
 
 export const shortAnswers: ShortAnswer[] = [
   {
-    answer: [{ text: "earth", type: "text" }],
+    answer: [
+      {
+        text: "earth",
+        type: "text",
+        portableText: stemToPortableText("earth"),
+      },
+    ],
     answerIsDefault: true,
   },
   {
-    answer: [{ text: "wind", type: "text" }],
+    answer: [
+      { text: "wind", type: "text", portableText: stemToPortableText("wind") },
+    ],
     answerIsDefault: false,
   },
   {
-    answer: [{ text: "fire", type: "text" }],
+    answer: [
+      { text: "fire", type: "text", portableText: stemToPortableText("fire") },
+    ],
     answerIsDefault: false,
   },
 ];
@@ -175,12 +183,21 @@ export const orderAnswers: OrderAnswer[] = [
       {
         text: "Edward the Confessor was exiled in Normandy.",
         type: "text",
+        portableText: stemToPortableText(
+          "Edward the Confessor was exiled in Normandy.",
+        ),
       },
     ],
     correctOrder: 1,
   },
   {
-    answer: [{ text: "Edward the Confessor became king.", type: "text" }],
+    answer: [
+      {
+        text: "Edward the Confessor became king.",
+        type: "text",
+        portableText: stemToPortableText("Edward the Confessor became king."),
+      },
+    ],
     correctOrder: 2,
   },
   {
@@ -188,28 +205,73 @@ export const orderAnswers: OrderAnswer[] = [
       {
         text: "Harold Godwinson travelled to Normandy.",
         type: "text",
+        portableText: stemToPortableText(
+          "Harold Godwinson travelled to Normandy.",
+        ),
       },
     ],
     correctOrder: 3,
   },
   {
-    answer: [{ text: "Edward the Confessor died.", type: "text" }],
+    answer: [
+      {
+        text: "Edward the Confessor died.",
+        type: "text",
+        portableText: stemToPortableText("Edward the Confessor died."),
+      },
+    ],
     correctOrder: 4,
   },
 ];
 
 export const matchAnswers: MatchAnswer[] = [
   {
-    correctChoice: [{ text: "producer", type: "text" }],
-    matchOption: [{ text: "grass", type: "text" }],
+    correctChoice: [
+      {
+        text: "producer",
+        type: "text",
+        portableText: stemToPortableText("producer"),
+      },
+    ],
+    matchOption: [
+      {
+        text: "grass",
+        type: "text",
+        portableText: stemToPortableText("grass"),
+      },
+    ],
   },
   {
-    correctChoice: [{ text: "primary consumer", type: "text" }],
-    matchOption: [{ text: "cow", type: "text" }],
+    correctChoice: [
+      {
+        text: "primary consumer",
+        type: "text",
+        portableText: stemToPortableText("primary consumer"),
+      },
+    ],
+    matchOption: [
+      {
+        text: "cow",
+        type: "text",
+        portableText: stemToPortableText("cow"),
+      },
+    ],
   },
   {
-    correctChoice: [{ text: "secondary consumer", type: "text" }],
-    matchOption: [{ text: "human", type: "text" }],
+    correctChoice: [
+      {
+        text: "secondary consumer",
+        type: "text",
+        portableText: stemToPortableText("secondary consumer"),
+      },
+    ],
+    matchOption: [
+      {
+        text: "human",
+        type: "text",
+        portableText: stemToPortableText("human"),
+      },
+    ],
   },
 ];
 
@@ -238,6 +300,7 @@ export const quizQuestions: NonNullable<QuizQuestion>[] = [
             {
               text: "Trees grow from seeds.",
               type: "text",
+              portableText: stemToPortableText("Trees grow from seeds."),
             },
           ],
           answerIsCorrect: true,
@@ -247,6 +310,9 @@ export const quizQuestions: NonNullable<QuizQuestion>[] = [
             {
               text: "Trees grow from something different to seeds.",
               type: "text",
+              portableText: stemToPortableText(
+                "Trees grow from something different to seeds.",
+              ),
             },
           ],
           answerIsCorrect: false,
@@ -256,6 +322,9 @@ export const quizQuestions: NonNullable<QuizQuestion>[] = [
             {
               text: "Trees are put in the ground by people.",
               type: "text",
+              portableText: stemToPortableText(
+                "Trees are put in the ground by people.",
+              ),
             },
           ],
           answerIsCorrect: false,
@@ -300,6 +369,9 @@ export const quizQuestions: NonNullable<QuizQuestion>[] = [
       {
         text: "Match each organism from the food chain to the correct term used to describe it.",
         type: "text",
+        portableText: stemToPortableText(
+          "Match each organism from the food chain to the correct term used to describe it.",
+        ),
       },
     ],
     questionType: "match",
@@ -312,6 +384,9 @@ export const quizQuestions: NonNullable<QuizQuestion>[] = [
       {
         text: "Put the following events in the order in which they happened, according to William of Poitiers. Start with the earliest event.",
         type: "text",
+        portableText: stemToPortableText(
+          "Put the following events in the order in which they happened, according to William of Poitiers. Start with the earliest event.",
+        ),
       },
     ],
     answers: {
@@ -337,6 +412,9 @@ export const quizQuestions: NonNullable<QuizQuestion>[] = [
       {
         text: "When the roots push out of the seed, they grow down into the soil 'searching' for {{}}.",
         type: "text",
+        portableText: stemToPortableText(
+          "When the roots push out of the seed, they grow down into the soil 'searching' for {{}}.",
+        ),
       },
     ],
     questionType: "short-answer",
@@ -372,6 +450,9 @@ export const quizQuestionsNoImages: QuizQuestion[] = [
       {
         text: "When the roots push out of the seed, they grow down into the soil 'searching' for {{}}.",
         type: "text",
+        portableText: stemToPortableText(
+          "When the roots push out of the seed, they grow down into the soil 'searching' for {{}}.",
+        ),
       },
     ],
     questionType: "short-answer",
@@ -396,6 +477,9 @@ export const exitQuizQuestions: QuizQuestion[] = [
       {
         text: "The solution to the equation $${1\\over 3}a = 6$$ is when $$a =$${{}}.",
         type: "text",
+        portableText: stemToPortableText(
+          "The solution to the equation $${1\\over 3}a = 6$$ is when $$a =$${{}}.",
+        ),
       },
     ],
     questionType: "short-answer",
@@ -407,24 +491,84 @@ export const exitQuizQuestions: QuizQuestion[] = [
     answers: {
       match: [
         {
-          matchOption: [{ text: "$${1\\over 4}a + 3 = 10$$", type: "text" }],
-          correctChoice: [{ text: "$$a = 28$$", type: "text" }],
+          matchOption: [
+            {
+              text: "$${1\\over 4}a + 3 = 10$$",
+              type: "text",
+              portableText: stemToPortableText("$${1\\over 4}a + 3 = 10$$"),
+            },
+          ],
+          correctChoice: [
+            {
+              text: "$$a = 28$$",
+              type: "text",
+              portableText: stemToPortableText("$$a = 28$$"),
+            },
+          ],
         },
         {
-          matchOption: [{ text: "$${1\\over 4}(a + 3)=10$$", type: "text" }],
-          correctChoice: [{ text: "$$a = 37$$", type: "text" }],
+          matchOption: [
+            {
+              text: "$${1\\over 4}(a + 3)=10$$",
+              type: "text",
+              portableText: stemToPortableText("$${1\\over 4}(a + 3)=10$$"),
+            },
+          ],
+          correctChoice: [
+            {
+              text: "$$a = 37$$",
+              type: "text",
+              portableText: stemToPortableText("$$a = 37$$"),
+            },
+          ],
         },
         {
-          matchOption: [{ text: "$${4\\over 7} a = 1$$", type: "text" }],
-          correctChoice: [{ text: "$$a = {7\\over 4}$$", type: "text" }],
+          matchOption: [
+            {
+              text: "$${4\\over 7} a = 1$$",
+              type: "text",
+              portableText: stemToPortableText("$${4\\over 7} a = 1$$"),
+            },
+          ],
+          correctChoice: [
+            {
+              text: "$$a = {7\\over 4}$$",
+              type: "text",
+              portableText: stemToPortableText("$$a = {7\\over 4}$$"),
+            },
+          ],
         },
         {
-          matchOption: [{ text: "$${7\\over 4}a=14$$", type: "text" }],
-          correctChoice: [{ text: "$$a = 8$$", type: "text" }],
+          matchOption: [
+            {
+              text: "$${7\\over 4}a=14$$",
+              type: "text",
+              portableText: stemToPortableText("$${7\\over 4}a=14$$"),
+            },
+          ],
+          correctChoice: [
+            {
+              text: "$$a = 8$$",
+              type: "text",
+              portableText: stemToPortableText("$$a = 8$$"),
+            },
+          ],
         },
         {
-          matchOption: [{ text: "$$\\frac{a+3}{7} = 2$$", type: "text" }],
-          correctChoice: [{ text: "$$a = 11$$", type: "text" }],
+          matchOption: [
+            {
+              text: "$$\\frac{a+3}{7} = 2$$",
+              type: "text",
+              portableText: stemToPortableText("$$\\frac{a+3}{7} = 2$$"),
+            },
+          ],
+          correctChoice: [
+            {
+              text: "$$a = 11$$",
+              type: "text",
+              portableText: stemToPortableText("$$a = 11$$"),
+            },
+          ],
         },
       ],
     },
@@ -433,7 +577,13 @@ export const exitQuizQuestions: QuizQuestion[] = [
     questionId: 254010,
     questionUid: "QUES-VCHO2-54010",
     questionStem: [
-      { text: "Match each equation to its solution.", type: "text" },
+      {
+        text: "Match each equation to its solution.",
+        type: "text",
+        portableText: stemToPortableText(
+          "Match each equation to its solution.",
+        ),
+      },
     ],
     questionType: "match",
   },
@@ -444,28 +594,88 @@ export const exitQuizQuestions: QuizQuestion[] = [
     answers: {
       match: [
         {
-          matchOption: [{ text: "$${2\\over 3}x$$", type: "text" }],
-          correctChoice: [{ text: "$$2x\\over 3$$", type: "text" }],
-        },
-        {
-          matchOption: [{ text: "$$2\\over 3x$$", type: "text" }],
-          correctChoice: [{ text: "$$2({1\\over 3x})$$", type: "text" }],
+          matchOption: [
+            {
+              text: "$${2\\over 3}x$$",
+              type: "text",
+              portableText: stemToPortableText("$${2\\over 3}x$$"),
+            },
+          ],
+          correctChoice: [
+            {
+              text: "$$2x\\over 3$$",
+              type: "text",
+              portableText: stemToPortableText("$$2x\\over 3$$"),
+            },
+          ],
         },
         {
           matchOption: [
-            { text: "$${2\\over 3}\\times {1\\over 3x}$$", type: "text" },
+            {
+              text: "$$2\\over 3x$$",
+              type: "text",
+              portableText: stemToPortableText("$$2\\over 3x$$"),
+            },
           ],
-          correctChoice: [{ text: "$$2\\over 9x$$", type: "text" }],
-        },
-        {
-          matchOption: [{ text: "$$2x \\times {1\\over 9}$$", type: "text" }],
-          correctChoice: [{ text: "$$2x\\over 9$$", type: "text" }],
+          correctChoice: [
+            {
+              text: "$$2({1\\over 3x})$$",
+              type: "text",
+              portableText: stemToPortableText("$$2({1\\over 3x})$$"),
+            },
+          ],
         },
         {
           matchOption: [
-            { text: "$${3\\over 2}\\times {1\\over x}$$", type: "text" },
+            {
+              text: "$${2\\over 3}\\times {1\\over 3x}$$",
+              type: "text",
+              portableText: stemToPortableText(
+                "$${2\\over 3}\\times {1\\over 3x}$$",
+              ),
+            },
           ],
-          correctChoice: [{ text: "$$3\\over 2x$$", type: "text" }],
+          correctChoice: [
+            {
+              text: "$$2\\over 9x$$",
+              type: "text",
+              portableText: stemToPortableText("$$2\\over 9x$$"),
+            },
+          ],
+        },
+        {
+          matchOption: [
+            {
+              text: "$$2x \\times {1\\over 9}$$",
+              type: "text",
+              portableText: stemToPortableText("$$2x \\times {1\\over 9}$$"),
+            },
+          ],
+          correctChoice: [
+            {
+              text: "$$2x\\over 9$$",
+              type: "text",
+              portableText: stemToPortableText("$$2x\\over 9$$"),
+            },
+          ],
+        },
+        {
+          matchOption: [
+            {
+              text: "$${3\\over 2}\\times {1\\over x}$$",
+              type: "text",
+              portableText: stemToPortableText(
+                "$${3\\over 2}\\times {1\\over x}$$",
+              ),
+            },
+          ],
+          correctChoice: [
+            {
+              text: "$$3\\over 2x$$",
+              type: "text",
+              portableText: stemToPortableText("$$3\\over 2x$$"),
+            },
+          ],
         },
       ],
     },
@@ -477,6 +687,9 @@ export const exitQuizQuestions: QuizQuestion[] = [
       {
         text: "Match each expression to an equivalent expression.",
         type: "text",
+        portableText: stemToPortableText(
+          "Match each expression to an equivalent expression.",
+        ),
       },
     ],
     questionType: "match",
@@ -487,7 +700,12 @@ export const exitQuizQuestions: QuizQuestion[] = [
     active: false,
     answers: {
       "short-answer": [
-        { answer: [{ text: "3", type: "text" }], answerIsDefault: true },
+        {
+          answer: [
+            { text: "3", type: "text", portableText: stemToPortableText("3") },
+          ],
+          answerIsDefault: true,
+        },
       ],
     },
     feedback:
@@ -498,6 +716,9 @@ export const exitQuizQuestions: QuizQuestion[] = [
       {
         text: "The solution to the equation $${6\\over a}=2$$ is when $$a = $${{}}.",
         type: "text",
+        portableText: stemToPortableText(
+          "The solution to the equation $${6\\over a}=2$$ is when $$a = $${{}}.",
+        ),
       },
     ],
     questionType: "short-answer",
@@ -509,23 +730,53 @@ export const exitQuizQuestions: QuizQuestion[] = [
     answers: {
       "multiple-choice": [
         {
-          answer: [{ text: "$$3\\over 10$$", type: "text" }],
+          answer: [
+            {
+              text: "$$3\\over 10$$",
+              type: "text",
+              portableText: stemToPortableText("$$3\\over 10$$"),
+            },
+          ],
           answerIsCorrect: false,
         },
         {
-          answer: [{ text: "$$2\\over 15$$", type: "text" }],
+          answer: [
+            {
+              text: "$$2\\over 15$$",
+              type: "text",
+              portableText: stemToPortableText("$$2\\over 15$$"),
+            },
+          ],
           answerIsCorrect: true,
         },
         {
-          answer: [{ text: "$$2\\over 25$$", type: "text" }],
+          answer: [
+            {
+              text: "$$2\\over 25$$",
+              type: "text",
+              portableText: stemToPortableText("$$2\\over 25$$"),
+            },
+          ],
           answerIsCorrect: false,
         },
         {
-          answer: [{ text: "$$15\\over 2$$", type: "text" }],
+          answer: [
+            {
+              text: "$$15\\over 2$$",
+              type: "text",
+              portableText: stemToPortableText("$$15\\over 2$$"),
+            },
+          ],
           answerIsCorrect: false,
         },
         {
-          answer: [{ text: "$$25\\over 2$$", type: "text" }],
+          answer: [
+            {
+              text: "$$25\\over 2$$",
+              type: "text",
+              portableText: stemToPortableText("$$25\\over 2$$"),
+            },
+          ],
           answerIsCorrect: false,
         },
       ],
@@ -544,23 +795,53 @@ export const exitQuizQuestions: QuizQuestion[] = [
     answers: {
       "multiple-choice": [
         {
-          answer: [{ text: "$$-{27\\over 10}$$", type: "text" }],
+          answer: [
+            {
+              text: "$$-{27\\over 10}$$",
+              type: "text",
+              portableText: stemToPortableText("$$-{27\\over 10}$$"),
+            },
+          ],
           answerIsCorrect: false,
         },
         {
-          answer: [{ text: "$$-{3\\over 10}$$", type: "text" }],
+          answer: [
+            {
+              text: "$$-{3\\over 10}$$",
+              type: "text",
+              portableText: stemToPortableText("$$-{3\\over 10}$$"),
+            },
+          ],
           answerIsCorrect: false,
         },
         {
-          answer: [{ text: "$$1\\over 3$$", type: "text" }],
+          answer: [
+            {
+              text: "$$1\\over 3$$",
+              type: "text",
+              portableText: stemToPortableText("$$1\\over 3$$"),
+            },
+          ],
           answerIsCorrect: true,
         },
         {
-          answer: [{ text: "$$17\\over 6$$", type: "text" }],
+          answer: [
+            {
+              text: "$$17\\over 6$$",
+              type: "text",
+              portableText: stemToPortableText("$$17\\over 6$$"),
+            },
+          ],
           answerIsCorrect: false,
         },
         {
-          answer: [{ text: "$$20\\over 3$$", type: "text" }],
+          answer: [
+            {
+              text: "$$20\\over 3$$",
+              type: "text",
+              portableText: stemToPortableText("$$20\\over 3$$"),
+            },
+          ],
           answerIsCorrect: false,
         },
       ],
@@ -579,6 +860,9 @@ export const exitQuizQuestions: QuizQuestion[] = [
       {
         text: "Put the following events in the order in which they happened, according to William of Poitiers. Start with the earliest event.",
         type: "text",
+        portableText: stemToPortableText(
+          "Put the following events in the order in which they happened, according to William of Poitiers. Start with the earliest event.",
+        ),
       },
     ],
     answers: {

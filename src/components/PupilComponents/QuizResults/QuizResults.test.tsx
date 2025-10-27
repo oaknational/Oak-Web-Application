@@ -83,7 +83,7 @@ describe("QuizResult", () => {
         </OakThemeProvider>
       </MathJaxProvider>,
     );
-    const questionStem = getByText("Q2. Match each equation to its solution.");
+    const questionStem = getByText("Match each equation to its solution.");
     expect(questionStem).toBeInTheDocument();
   });
   it("render multiple choice question feedback", () => {

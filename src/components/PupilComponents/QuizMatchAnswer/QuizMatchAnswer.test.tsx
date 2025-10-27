@@ -10,6 +10,7 @@ import { QuizMatchAnswer } from "./QuizMatchAnswer";
 import { QuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { MatchAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { stemToPortableText } from "@/components/SharedComponents/Stem";
 
 const OakThemeProvider = oakComponents.OakThemeProvider;
 const oakDefaultTheme = oakComponents.oakDefaultTheme;
@@ -29,12 +30,14 @@ describe(QuizMatchAnswer, () => {
       {
         type: "text",
         text: "Mouse",
+        portableText: stemToPortableText("Mouse"),
       },
     ],
     matchOption: [
       {
         type: "text",
         text: "Likes cheese",
+        portableText: stemToPortableText("Likes cheese"),
       },
     ],
   };
@@ -43,12 +46,14 @@ describe(QuizMatchAnswer, () => {
       {
         type: "text",
         text: "Cat",
+        portableText: stemToPortableText("Cat"),
       },
     ],
     matchOption: [
       {
         type: "text",
         text: "Likes to be petted",
+        portableText: stemToPortableText("Likes to be petted"),
       },
     ],
   };
@@ -57,12 +62,14 @@ describe(QuizMatchAnswer, () => {
       {
         type: "text",
         text: "Elephant",
+        portableText: stemToPortableText("Elephant"),
       },
     ],
     matchOption: [
       {
         type: "text",
         text: "Never forgets",
+        portableText: stemToPortableText("Never forgets"),
       },
     ],
   };
@@ -75,6 +82,9 @@ describe(QuizMatchAnswer, () => {
         {
           type: "text",
           text: "Match the animals to their characteristic",
+          portableText: stemToPortableText(
+            "Match the animals to their characteristic",
+          ),
         },
       ],
       feedback: "",
