@@ -82,7 +82,10 @@ const handler: NextApiHandler = async (req, res) => {
 
       // Cache AI-based response in Cloudflare for 30 days
       // public = same cache for all users
-      res.setHeader("Cache-Control", `public, s-maxage=${CACHE_DURATION}`);
+      res.setHeader(
+        "Cloudflare-CDN-Cache-Control",
+        `public, s-maxage=${CACHE_DURATION}`,
+      );
 
       return res.status(200).json(payload);
     }
