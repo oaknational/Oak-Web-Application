@@ -11,9 +11,9 @@ import {
   OrderAnswer,
   MatchAnswer,
   ImageItem,
-  ImageOrTextItem,
   QuizQuestion,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { StemPortableText } from "@/components/SharedComponents/Stem";
 
 export const imageObject: ImageItem["imageObject"] = {
   format: "jpg",
@@ -27,17 +27,41 @@ export const imageObject: ImageItem["imageObject"] = {
   version: 1687374653,
 };
 
-export const questionStem: ImageOrTextItem[] = [
+export const questionStem: (StemPortableText | ImageItem)[] = [
   {
     text: "What is a main clause?",
+    portableText: [
+      {
+        style: "normal",
+        _type: "block",
+        children: [
+          {
+            text: "What is a main clause?",
+            _type: "span",
+          },
+        ],
+      },
+    ],
     type: "text",
   },
 ];
 
-export const questionStemWithImage: ImageOrTextItem[] = [
+export const questionStemWithImage: (StemPortableText | ImageItem)[] = [
   {
     text: "Which of these statements about trees is true?",
     type: "text",
+    portableText: [
+      {
+        style: "normal",
+        _type: "block",
+        children: [
+          {
+            text: "Which of these statements about trees is true?",
+            _type: "span",
+          },
+        ],
+      },
+    ],
   },
   {
     type: "image",

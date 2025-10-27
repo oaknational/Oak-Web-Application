@@ -4,9 +4,13 @@ import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { QuizResultQuestionStem } from "@/components/PupilComponents/QuizResultQuestionStem";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import { ImageOrTextItem } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import {
+  ImageItem,
+  ImageOrTextItem,
+} from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import { invariant } from "@/utils/invariant";
+import { StemPortableText } from "@/components/SharedComponents/Stem";
 
 const starterQuiz = quizQuestions;
 const mcqText = starterQuiz ? starterQuiz[0] : null;
@@ -25,7 +29,7 @@ describe("QuestionListItem", () => {
         />
       </OakThemeProvider>,
     );
-    const primaryQuestionText = getByText("Q1. What is a main clause?");
+    const primaryQuestionText = getByText("What is a main clause?");
 
     expect(primaryQuestionText).toBeInTheDocument();
   });
@@ -49,9 +53,24 @@ describe("QuestionListItem", () => {
   it("renders text after an image", () => {
     invariant(mcqStemImage?.questionStem, "mcqStemImage.questionStem is null");
 
-    const questionStem: ImageOrTextItem[] = [
+    const questionStem: (StemPortableText | ImageItem)[] = [
       ...mcqStemImage.questionStem,
-      { text: "This is some text", type: "text" },
+      {
+        text: "This is some text",
+        type: "text",
+        portableText: [
+          {
+            style: "normal",
+            _type: "block",
+            children: [
+              {
+                text: "This is some text",
+                _type: "span",
+              },
+            ],
+          },
+        ],
+      },
     ];
 
     const { getByText } = renderWithTheme(

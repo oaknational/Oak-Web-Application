@@ -6,10 +6,10 @@ import {
 } from "@portabletext/react";
 import { Fragment } from "react";
 import styled from "styled-components";
+import { OakCodeRenderer, OakSpan } from "@oaknational/oak-components";
 
 import { PortableTextWithDefaults } from "../PortableText";
 
-import { OakCodeRenderer, OakSpan } from "@oaknational/oak-components";
 import convertToMml from "@/utils/mathjax";
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 import { shortAnswerTitleFormatter } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
@@ -23,7 +23,7 @@ type PortableTextText = {
 type PortableTextCodeBlock = { _type: "codeblock"; text: string };
 type PortableTextCodeInline = { _type: "codeinline"; text: string };
 type PortableTextMath = { _type: "math"; text: string; html: string };
-type PortableTextItem =
+export type PortableTextItem =
   | PortableTextText
   | PortableTextCodeBlock
   | PortableTextSpan;
@@ -188,6 +188,8 @@ const logMissingPortableTextComponents: MissingComponentHandler = (
     nodeType: options.nodeType,
   });
 };
+
+export type StemPortableText = TextItem & { portableText?: PortableTextItem[] };
 
 type StemProps = {
   stem?: TextItem & { portableText?: PortableTextItem[] };

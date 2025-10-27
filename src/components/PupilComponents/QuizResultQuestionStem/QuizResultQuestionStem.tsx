@@ -6,15 +6,12 @@ import {
 
 import { CodeRenderWrapper } from "../CodeRendererWrapper/CodeRendererWrapper";
 
-import {
-  ImageItem,
-  TextItem,
-} from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { ImageItem } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
-import { Stem } from "@/components/SharedComponents/Stem";
+import { Stem, StemPortableText } from "@/components/SharedComponents/Stem";
 
 export interface QuizQuestionStemProps {
-  questionStem: (ImageItem | TextItem)[];
+  questionStem: (StemPortableText | ImageItem)[];
   displayIndex: number;
 }
 
