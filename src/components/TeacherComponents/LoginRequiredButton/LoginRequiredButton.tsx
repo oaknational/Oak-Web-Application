@@ -62,6 +62,7 @@ type BaseProps = {
   buttonVariant?: ButtonVariant;
   sizeVariant?: SizeVariant;
   element?: "a" | "button";
+  rel?: string;
 };
 
 type LoginRequiredButtonProps = BaseProps & OakPrimaryButtonProps;

@@ -29,17 +29,19 @@ variable "sensitive_custom_env_vars" {
 variable "env_vars" {
   type = object({
     shared = optional(object({
-      NEXT_PUBLIC_CLERK_SIGN_IN_URL   = optional(string)
-      NEXT_PUBLIC_CLERK_SIGN_UP_URL   = optional(string)
+      NEXT_PUBLIC_CLERK_SIGN_IN_URL   = optional(string, "/sign-in")
+      NEXT_PUBLIC_CLERK_SIGN_UP_URL   = optional(string, "/sign-in")
       NEXT_PUBLIC_CLIENT_APP_BASE_URL = optional(string)
     }))
     prod = optional(object({
       OAK_CONFIG_LOCATION  = optional(string)
       OVERRIDE_APP_VERSION = optional(string)
       OVERRIDE_URL         = optional(string)
+      PUPIL_FIRESTORE_ID   = optional(string)
     }))
     preview = optional(object({
       OAK_CONFIG_LOCATION = optional(string)
+      PUPIL_FIRESTORE_ID  = optional(string)
     }))
   })
   validation {
@@ -128,4 +130,10 @@ variable "next_public_clerk_publishable_key_prod" {
 
     error_message = contains(local.required_current_sensitive_env.prod, "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY") ? "Missing next_public_clerk_publishable_key_prod for '${local.build_type}' build." : "next_public_clerk_publishable_key_prod is set but not required for '${local.build_type}' build."
   }
+}
+
+variable "terraform_cloud_organisation" {
+  description = "Terraform Cloud Organisation"
+  type        = string
+  default     = null
 }

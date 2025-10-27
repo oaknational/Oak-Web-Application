@@ -127,8 +127,6 @@ describe("createTeacherProgrammeSlug", () => {
       connection_prior_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks2",
@@ -141,7 +139,7 @@ describe("createTeacherProgrammeSlug", () => {
       subject_parent: null,
       subject_parent_slug: null,
       subject_slug: "science",
-      tags: null,
+
       subjectcategories: null,
       threads: [],
       tier: null,
@@ -165,8 +163,7 @@ describe("createTeacherProgrammeSlug", () => {
       connection_prior_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks4",
@@ -179,7 +176,7 @@ describe("createTeacherProgrammeSlug", () => {
       subject_parent: null,
       subject_parent_slug: null,
       subject_slug: "science",
-      tags: null,
+
       subjectcategories: null,
       threads: [],
       tier: null,
@@ -203,8 +200,7 @@ describe("createTeacherProgrammeSlug", () => {
       connection_prior_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks4",
@@ -217,7 +213,7 @@ describe("createTeacherProgrammeSlug", () => {
       subject_parent: "Science",
       subject_parent_slug: "science",
       subject_slug: "combined-science",
-      tags: null,
+
       subjectcategories: null,
       threads: [],
       tier: null,
@@ -243,8 +239,7 @@ describe("createTeacherProgrammeSlug", () => {
       connection_prior_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks3",
@@ -257,7 +252,7 @@ describe("createTeacherProgrammeSlug", () => {
       subject_parent: "Science",
       subject_parent_slug: "science",
       subject_slug: "combined-science",
-      tags: null,
+
       subjectcategories: null,
       threads: [],
       tier: null,
@@ -284,8 +279,7 @@ describe("createTeacherProgrammeSlug", () => {
       connection_prior_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks3",
@@ -298,7 +292,7 @@ describe("createTeacherProgrammeSlug", () => {
       subject_parent: "Science",
       subject_parent_slug: "science",
       subject_slug: "combined-science",
-      tags: null,
+
       subjectcategories: null,
       threads: [],
       tier: null,
@@ -325,8 +319,7 @@ describe("createTeacherProgrammeSlug", () => {
       connection_prior_unit_description: null,
       connection_future_unit_title: null,
       connection_prior_unit_title: null,
-      domain: null,
-      domain_id: null,
+
       examboard: null,
       examboard_slug: null,
       keystage_slug: "ks4",
@@ -339,7 +332,7 @@ describe("createTeacherProgrammeSlug", () => {
       subject_parent: "Science",
       subject_parent_slug: "science",
       subject_slug: "combined-science",
-      tags: null,
+
       subjectcategories: null,
       threads: [],
       tier: null,

@@ -95,7 +95,7 @@ describe("<SearchResults />", () => {
   });
 
   test("it renders the search results", () => {
-    const { getAllByRole } = render(
+    const { getAllByTestId } = render(
       <SearchResults
         searchResultOpened={searchResultOpened}
         searchResultExpanded={searchResultExpanded}
@@ -103,7 +103,7 @@ describe("<SearchResults />", () => {
       />,
     );
 
-    const searchElement = getAllByRole("listitem");
+    const searchElement = getAllByTestId("search-list-item");
 
     expect(searchElement.length).toEqual(4);
   });

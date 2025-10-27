@@ -38,7 +38,7 @@ const schoolCombinedSchema = z
       context.addIssue({
         code: z.ZodIssueCode.custom,
         message: ERRORS.school,
-        path: ["school"],
+        path: ["schoolId", "school"],
       });
     }
   });

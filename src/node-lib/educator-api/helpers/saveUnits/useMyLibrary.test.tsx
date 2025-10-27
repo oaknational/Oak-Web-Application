@@ -8,6 +8,7 @@ import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import { renderHookWithProviders } from "@/__tests__/__helpers__/renderWithProviders";
+import userListContentFixture from "@/node-lib/educator-api/fixtures/userListContent.fixture";
 
 const mockSetOakToastProps = jest.fn();
 
@@ -50,72 +51,16 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 
 const renderHook = renderHookWithProviders();
 
-const mockProgrammeData: UserlistContentApiResponse = {
-  programme1: {
-    programmeSlug: "programme1",
-    units: [
-      {
-        unitSlug: "unit1",
-        unitTitle: "Unit 1",
-        optionalityTitle: null,
-        savedAt: "2023-10-01T00:00:00Z",
-        unitOrder: 1,
-        yearOrder: 1,
-        year: "1",
-        yearSlug: "year-1",
-        lessons: [
-          {
-            slug: "lesson1",
-            title: "Lesson 1",
-            state: "published",
-            order: 1,
-          },
-        ],
-      },
-    ],
-    keystage: "KS1",
-    subject: "Maths",
-    examboard: null,
-    tier: null,
-    subjectSlug: "maths",
-    keystageSlug: "ks1",
-    subjectCategory: null,
-  },
-};
+const mockProgrammeData: UserlistContentApiResponse =
+  userListContentFixture("programme1");
 
 const mockProgrammeDataWithSubjectCategories: UserlistContentApiResponse = {
-  "programme1-Literacy": {
-    programmeSlug: "programme1",
-    units: [
-      {
-        unitSlug: "unit1",
-        unitTitle: "Unit 1",
-        optionalityTitle: null,
-        savedAt: "2023-10-01T00:00:00Z",
-        unitOrder: 1,
-        yearOrder: 1,
-        year: "1",
-        yearSlug: "year-1",
-        lessons: [
-          {
-            slug: "lesson1",
-            title: "Lesson 1",
-            state: "published",
-            order: 1,
-          },
-        ],
-      },
-    ],
-    keystage: "KS1",
+  ...userListContentFixture("programme1-Literacy", {
     subject: "English",
-    examboard: null,
-    tier: null,
     subjectSlug: "english",
-    keystageSlug: "ks1",
     subjectCategory: "Literacy",
-  },
-  programme2: {
-    programmeSlug: "programme2",
+  }),
+  ...userListContentFixture("programme2", {
     units: [
       {
         unitSlug: "bio-unit1",
@@ -136,49 +81,19 @@ const mockProgrammeDataWithSubjectCategories: UserlistContentApiResponse = {
         ],
       },
     ],
-    keystage: "KS1",
     subject: "Biology",
-    examboard: null,
-    tier: null,
     subjectSlug: "biology",
-    keystageSlug: "ks1",
-    subjectCategory: null,
-  },
+  }),
 };
 
-const mockProgrammeDataWithPathways: UserlistContentApiResponse = {
-  programme1: {
-    programmeSlug: "programme1",
-    units: [
-      {
-        unitSlug: "unit1",
-        unitTitle: "Unit 1",
-        optionalityTitle: null,
-        savedAt: "2023-10-01T00:00:00Z",
-        unitOrder: 1,
-        yearOrder: 1,
-        year: "1",
-        yearSlug: "year-1",
-        lessons: [
-          {
-            slug: "lesson1",
-            title: "Lesson 1",
-            state: "published",
-            order: 1,
-          },
-        ],
-      },
-    ],
+const mockProgrammeDataWithPathways: UserlistContentApiResponse =
+  userListContentFixture("programme1", {
     keystage: "KS4",
-    subject: "Maths",
-    examboard: null,
-    tier: null,
-    pathway: "Core",
-    subjectSlug: "maths",
     keystageSlug: "ks4",
-    subjectCategory: null,
-  },
-};
+    subject: "Maths",
+    subjectSlug: "maths",
+    pathway: "Core",
+  });
 
 const mockTrackingData = {
   savedFrom: "my-library-save-button" as const,
@@ -277,7 +192,7 @@ describe("useMyLibrary", () => {
       {
         keystage: "KS1",
         keystageSlug: "ks1",
-        programmeSlug: "programme1",
+        programmeSlug: "programme1-Literacy",
         programmeTitle: "English: Literacy KS1",
         subject: "English",
         subjectSlug: "english",

@@ -33,6 +33,18 @@ jest.mock("@/hooks/useMediaQuery.tsx", () => ({
   }),
 }));
 
+jest.mock("next/router", () => ({
+  useRouter: jest.fn(() => ({
+    replace: jest.fn(),
+    pathname: "/",
+    asPath: "/",
+    query: {
+      programmeSlug: "test-programme-slug",
+      unitSlug: "test-unit-slug",
+    },
+  })),
+}));
+
 const render = renderWithProviders();
 
 const lesson = lessonListingFixture({

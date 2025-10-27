@@ -5,7 +5,6 @@ import { PortableTextWithDefaults } from "../../SharedComponents/PortableText";
 import CMSImage from "../../SharedComponents/CMSImage";
 
 import { Image, Video } from "@/common-lib/cms-types";
-import { resolveOakHref } from "@/common-lib/urls";
 
 export function CampaignPromoBanner({
   textStyles,
@@ -14,6 +13,7 @@ export function CampaignPromoBanner({
   subheading,
   body,
   buttonCta,
+  buttonUrl,
 }: {
   heading: PortableTextBlock[];
   media: Image | Video;
@@ -21,6 +21,7 @@ export function CampaignPromoBanner({
   body?: PortableTextBlock[] | null;
   buttonCta?: string | null;
   textStyles?: PortableTextComponents;
+  buttonUrl?: string | null;
 }) {
   return (
     <OakFlex
@@ -52,14 +53,11 @@ export function CampaignPromoBanner({
             <PortableTextWithDefaults value={body} components={textStyles} />
           </OakBox>
         )}
-        {buttonCta && (
+        {buttonCta && buttonUrl && (
           <OakPrimaryButton
             element="a"
             isTrailingIcon={true}
-            href={resolveOakHref({
-              page: "campaign-single",
-              campaignSlug: "mythbusting",
-            })}
+            href={buttonUrl}
             iconName="arrow-right"
           >
             {buttonCta}

@@ -14,7 +14,7 @@ describe("RoleSelection", () => {
   it("renders a group of radio buttons in a form", () => {
     renderWithProviders()(<RoleSelectionView />);
 
-    const radioGroup = screen.getByRole("radiogroup");
+    const radioGroup = screen.getAllByRole("group")[1]!;
     expect(radioGroup).toBeDefined();
 
     expect(radioGroup.closest("form")).toBeDefined();

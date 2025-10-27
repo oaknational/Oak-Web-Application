@@ -311,6 +311,10 @@ type OurTeachersLinkProps = { page: "our-teachers" };
 type OakCurriculumLinkProps = { page: "oak-curriculum" };
 type ClassroomLinkProps = { page: "classroom" };
 type LabsLinkProps = { page: "labs" };
+type LabsTeachingMaterialsLinkProps = {
+  page: "labs-teaching-materials";
+  query?: UrlQueryObject;
+};
 type TeacherHubLinkProps = { page: "teacher-hub" };
 type CurriculumLandingPageLinkProps = {
   page: "curriculum-landing-page";
@@ -366,6 +370,7 @@ type MyLibraryProps = {
 
 export type OakLinkProps =
   | LabsLinkProps
+  | LabsTeachingMaterialsLinkProps
   | SubjectListingLinkProps
   | TeachersHomePageProps
   | SpecialistSubjectListingLinkProps
@@ -388,7 +393,6 @@ export type OakLinkProps =
   | PupilSubjectListingLinkProps
   | PupilProgrammeListingLinkProps
   | PupilYearListingLinkProps
-  | PupilUnitListingLinkProps
   | SpecialistLessonOverviewLinkProps
   | LessonOverviewCanonicalLinkProps
   | LessonListingLinkProps
@@ -493,7 +497,18 @@ export function createOakPageConfig<ResolveHrefProps extends OakLinkProps>(
       return {
         ...props,
         matchHref: () => false,
-        resolveHref: () => props.url,
+        resolveHref: (resolveHrefProps: ResolveHrefProps) => {
+          if ("query" in resolveHrefProps && resolveHrefProps.query) {
+            const queryString = createQueryStringFromObject(
+              resolveHrefProps.query,
+            );
+            if (queryString) {
+              return `${props.url}?${queryString}`;
+            }
+          }
+
+          return props.url;
+        },
       };
     case "internal":
       return {
@@ -644,6 +659,12 @@ export const OAK_PAGES: {
     analyticsPageName: "[external] Labs",
     configType: "external",
     pageType: "labs",
+  }),
+  "labs-teaching-materials": createOakPageConfig({
+    url: "https://labs.thenational.academy/aila/teaching-materials",
+    analyticsPageName: "[external] Labs",
+    configType: "external",
+    pageType: "labs-teaching-materials",
   }),
   "support-your-team": createOakPageConfig({
     pathPattern: "/support-your-team",
@@ -956,7 +977,7 @@ export const OAK_PAGES: {
     pageType: "onboarding-use-of-oak",
   }),
   "teachers-home-page": createOakPageConfig({
-    pathPattern: "/teachers",
+    pathPattern: "/",
     analyticsPageName: "Homepage",
     configType: "internal",
     pageType: "teachers-home-page",

@@ -2,6 +2,7 @@ import { useRef, useEffect, useMemo } from "react";
 import { OakBox } from "@oaknational/oak-components";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import Alert from "../OakComponentsKitchen/Alert";
 import CurricUnitModal from "../CurricUnitModal";
@@ -26,6 +27,9 @@ import {
 } from "@/utils/curriculum/by-pathway";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { findUnitOrOptionBySlug } from "@/utils/curriculum/units";
+import { generateQueryParams } from "@/utils/curriculum/queryParams";
+import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
+import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
 type CurricVisualiserProps = {
   selectedUnitSlug?: string | null;
@@ -37,6 +41,7 @@ type CurricVisualiserProps = {
   threadOptions: Thread[];
   basePath: string;
   ks4Options: Ks4Option[];
+  slugs: CurriculumSelectionSlugs;
 };
 
 // Function component
@@ -51,10 +56,12 @@ export default function CurricVisualiser({
   basePath,
   ks4OptionSlug,
   ks4Options,
+  slugs,
 }: CurricVisualiserProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const isMobile = useMediaQuery("mobile");
+  const timetablingEnabled = useFeatureFlagEnabled("adopt-timetabling-proto");
 
   const visualiserFilters = useMemo(() => {
     if (isMobile) {
@@ -133,6 +140,9 @@ export default function CurricVisualiser({
         const ref = (element: HTMLDivElement) => {
           itemEls.current[index] = element;
         };
+        const timetablingUrl = timetablingEnabled
+          ? `/timetabling/${getSubjectPhaseSlug({ subject: slugs.subjectSlug, examBoardSlug: slugs.ks4OptionSlug, phaseSlug: slugs.phaseSlug })}/new?${generateQueryParams({ year })}`
+          : undefined;
 
         const actions = units[0]?.actions;
 
@@ -159,6 +169,7 @@ export default function CurricVisualiser({
               id={`year-${type}-${year}`}
             />
             <CurricYearCard
+              timetablingUrl={timetablingUrl}
               isExamboard={type === "non_core"}
               yearTitle={yearTitle}
               yearSubheading={yearSubheadingText}

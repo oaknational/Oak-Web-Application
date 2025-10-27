@@ -5,15 +5,15 @@ import {
   TeacherNoteError,
 } from "@oaknational/oak-pupil-client";
 
-import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
-import { useTeacherNotes } from "@/pages-helpers/teacher/share-experiments/useTeacherNotes";
+import { useShare } from "@/pages-helpers/teacher/share/useShare";
+import { useTeacherNotes } from "@/pages-helpers/teacher/share/useTeacherNotes";
 import { TeacherShareNotesButton } from "@/components/TeacherComponents/TeacherShareNotesButton/TeacherShareNotesButton";
 import {
   CoreProperties,
   CurriculumTrackingProps,
-} from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
+} from "@/pages-helpers/teacher/share/shareTypes";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import { ShareSource } from "@/pages-helpers/teacher/share-experiments/createShareId";
+import { ShareSource } from "@/pages-helpers/teacher/share/createShareId";
 import { LessonReleaseCohortValueType } from "@/browser-lib/avo/Avo";
 
 export type UseLessonProps = {
@@ -29,8 +29,19 @@ export type UseLessonProps = {
   };
 };
 
+export type TeacherNotesButtonProps = {
+  isEditable: boolean | null;
+  noteSaved: boolean;
+  loginRequired: boolean;
+  geoRestricted: boolean;
+  onTeacherNotesOpen: () => void;
+  shareUrl: string | null;
+  shareActivated: (noteLengthChars?: number) => void;
+};
+
 type UseLessonReturn = {
   teacherNotesButton: JSX.Element;
+  TeacherNotesButtonProps: TeacherNotesButtonProps;
   teacherNoteHtml: string | undefined;
   teacherNotesOpen: boolean;
   setTeacherNotesOpen: (open: boolean) => void;
@@ -58,7 +69,7 @@ export const useLesson = ({
   const appendedSource: ShareSource = `${source}-w-note`;
 
   const { shareUrl, browserUrl, shareActivated, shareIdRef, shareIdKeyRef } =
-    useShareExperiment({
+    useShare({
       programmeSlug,
       source: appendedSource,
       curriculumTrackingProps,
@@ -87,11 +98,7 @@ export const useLesson = ({
 
   useEffect(() => {
     setLessonPath(window.location.href.split("?")[0] || null);
-
-    if (window.location.href !== browserUrl) {
-      window.history.replaceState({}, "", browserUrl);
-    }
-  }, [browserUrl]);
+  }, []);
 
   const handleTeacherNotesOpen = () => {
     setTeacherNotesOpen(true);
@@ -116,10 +123,21 @@ export const useLesson = ({
     />
   );
 
+  const TeacherNotesButtonProps = {
+    isEditable,
+    noteSaved,
+    loginRequired,
+    geoRestricted,
+    onTeacherNotesOpen: handleTeacherNotesOpen,
+    shareUrl,
+    shareActivated,
+  };
+
   const teacherNoteHtml = !isEditable ? teacherNote?.noteHtml : undefined;
 
   return {
     teacherNotesButton,
+    TeacherNotesButtonProps,
     teacherNoteHtml,
     teacherNotesOpen,
     setTeacherNotesOpen,

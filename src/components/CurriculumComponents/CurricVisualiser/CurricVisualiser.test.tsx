@@ -69,8 +69,6 @@ const CurricVisualiserFixture: ComponentProps<typeof CurricVisualiser> = {
             "Dystopian settings: descriptive writing",
           connection_prior_unit_title:
             "'When the Sky Falls': narrative and diary writing",
-          domain: null,
-          domain_id: null,
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 32,
@@ -97,7 +95,6 @@ const CurricVisualiserFixture: ComponentProps<typeof CurricVisualiser> = {
           subject_slug: "english",
           subject_parent: null,
           subject_parent_slug: null,
-          tags: null,
           subjectcategories: null,
           tier: null,
           tier_slug: null,
@@ -131,6 +128,11 @@ const CurricVisualiserFixture: ComponentProps<typeof CurricVisualiser> = {
   },
   setVisibleMobileYearRefID: jest.fn(() => {}),
   basePath: "/",
+  slugs: {
+    phaseSlug: "secondary",
+    subjectSlug: "maths",
+    ks4OptionSlug: null,
+  },
 };
 
 describe("visualiser", () => {

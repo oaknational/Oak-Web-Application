@@ -4,7 +4,6 @@ import { OakFlex, OakIcon, OakBox } from "@oaknational/oak-components";
 import { snakeCase } from "lodash";
 
 import useClickableCard from "@/hooks/useClickableCard";
-import Card from "@/components/SharedComponents/Card";
 import Button from "@/components/SharedComponents/Button";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
@@ -43,19 +42,19 @@ export default function CurricUnitDetailsAccordion({
   });
 
   return (
-    <Card
+    <OakFlex
       $flexDirection={"column"}
-      $pv={0}
-      $ph={0}
+      $flexGrow={1}
       $position={"relative"}
       data-testid="accordion-component"
     >
-      <Card
+      <OakFlex
         {...containerProps}
         $flexDirection={"row"}
         $flexGrow={0}
+        $position={"relative"}
         $justifyContent={"space-between"}
-        $ph={0}
+        $pv={"inner-padding-xl"}
       >
         <h3 style={{ display: "contents" }}>
           <Button
@@ -81,7 +80,7 @@ export default function CurricUnitDetailsAccordion({
             $height={"all-spacing-6"}
           />
         </h3>
-      </Card>
+      </OakFlex>
       {/* @todo replace with OakFlex - work out $maxHeight, why is it  OakFlex if it has display set to either block or none? */}
       <OakFlex
         data-testid={"accordion-container"}
@@ -128,6 +127,6 @@ export default function CurricUnitDetailsAccordion({
           />
         </OakBox>
       )}
-    </Card>
+    </OakFlex>
   );
 }

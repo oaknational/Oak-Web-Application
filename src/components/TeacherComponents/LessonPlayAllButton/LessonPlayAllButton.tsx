@@ -21,6 +21,7 @@ const LessonPlayAllButton: FC<LessonPlayAllButtonProps> = ({
   return (
     <OakTertiaryButton
       element="a"
+      rel="nofollow"
       href={
         !isCanonical && programmeSlug && unitSlug
           ? resolveOakHref({

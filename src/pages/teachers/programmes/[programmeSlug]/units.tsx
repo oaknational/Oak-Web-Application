@@ -234,7 +234,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
           isFirstPage={isFirstPage}
           isLastPage={isLastPage}
         />
-        <Banners hideIfFeatureFlagDisabled />
+        <Banners />
         <HeaderListing
           breadcrumbs={[
             {

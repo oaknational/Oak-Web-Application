@@ -74,24 +74,6 @@ const curriculumPreviousDownloadsFixture = (
       },
       {
         category: "KS1",
-        icon: "english",
-        subject: "English",
-        slug: "key-stage-1-english",
-      },
-      {
-        category: "KS1",
-        icon: "history",
-        subject: "History",
-        slug: "key-stage-1-history",
-      },
-      {
-        category: "KS1",
-        icon: "maths",
-        subject: "Maths",
-        slug: "key-stage-1-maths",
-      },
-      {
-        category: "KS1",
         icon: "music",
         subject: "Music",
         slug: "key-stage-1-music",
@@ -113,12 +95,6 @@ const curriculumPreviousDownloadsFixture = (
         icon: "rshe-pshe",
         subject: "RSHE (PSHE)",
         slug: "key-stage-1-rshe-pshe",
-      },
-      {
-        category: "KS1",
-        icon: "science",
-        subject: "Science",
-        slug: "key-stage-1-science",
       },
       {
         category: "KS2",
@@ -146,30 +122,6 @@ const curriculumPreviousDownloadsFixture = (
       },
       {
         category: "KS2",
-        icon: "english",
-        subject: "English",
-        slug: "key-stage-2-english",
-      },
-      {
-        category: "KS2",
-        icon: "english-grammar",
-        subject: "English Grammar",
-        slug: "key-stage-2-english-grammar",
-      },
-      {
-        category: "KS2",
-        icon: "english-reading-for-pleasure",
-        subject: "English Reading for Pleasure",
-        slug: "key-stage-2-english-reading-for-pleasure",
-      },
-      {
-        category: "KS2",
-        icon: "english-spelling",
-        subject: "English Spelling",
-        slug: "key-stage-2-english-spelling",
-      },
-      {
-        category: "KS2",
         icon: "french",
         subject: "French",
         slug: "key-stage-2-french",
@@ -179,18 +131,6 @@ const curriculumPreviousDownloadsFixture = (
         icon: "geography",
         subject: "Geography",
         slug: "key-stage-2-geography",
-      },
-      {
-        category: "KS2",
-        icon: "history",
-        subject: "History",
-        slug: "key-stage-2-history",
-      },
-      {
-        category: "KS2",
-        icon: "maths",
-        subject: "Maths",
-        slug: "key-stage-2-maths",
       },
       {
         category: "KS2",
@@ -215,12 +155,6 @@ const curriculumPreviousDownloadsFixture = (
         icon: "rshe-pshe",
         subject: "RSHE (PSHE)",
         slug: "key-stage-2-rshe-pshe",
-      },
-      {
-        category: "KS2",
-        icon: "science",
-        subject: "Science",
-        slug: "key-stage-2-science",
       },
       {
         category: "KS2",
@@ -260,12 +194,6 @@ const curriculumPreviousDownloadsFixture = (
       },
       {
         category: "KS3",
-        icon: "english",
-        subject: "English",
-        slug: "key-stage-3-english",
-      },
-      {
-        category: "KS3",
         icon: "french",
         subject: "French",
         slug: "key-stage-3-french",
@@ -284,21 +212,9 @@ const curriculumPreviousDownloadsFixture = (
       },
       {
         category: "KS3",
-        icon: "history",
-        subject: "History",
-        slug: "key-stage-3-history",
-      },
-      {
-        category: "KS3",
         icon: "latin",
         subject: "Latin",
         slug: "key-stage-3-latin",
-      },
-      {
-        category: "KS3",
-        icon: "maths",
-        subject: "Maths",
-        slug: "key-stage-3-maths",
       },
       {
         category: "KS3",
@@ -323,12 +239,6 @@ const curriculumPreviousDownloadsFixture = (
         icon: "rshe-pshe",
         subject: "RSHE (PSHE)",
         slug: "key-stage-3-rshe-pshe",
-      },
-      {
-        category: "KS3",
-        icon: "science",
-        subject: "Science",
-        slug: "key-stage-3-science",
       },
       {
         category: "KS3",
@@ -380,12 +290,6 @@ const curriculumPreviousDownloadsFixture = (
       },
       {
         category: "KS4",
-        icon: "english",
-        subject: "English",
-        slug: "key-stage-4-english",
-      },
-      {
-        category: "KS4",
         icon: "french",
         subject: "French",
         slug: "key-stage-4-french",
@@ -404,21 +308,9 @@ const curriculumPreviousDownloadsFixture = (
       },
       {
         category: "KS4",
-        icon: "history",
-        subject: "History",
-        slug: "key-stage-4-history",
-      },
-      {
-        category: "KS4",
         icon: "latin",
         subject: "Latin",
         slug: "key-stage-4-latin",
-      },
-      {
-        category: "KS4",
-        icon: "maths",
-        subject: "Maths",
-        slug: "key-stage-4-maths",
       },
       {
         category: "KS4",

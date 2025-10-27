@@ -11,8 +11,8 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import removeDecommissionedKeys from "@/config/removeDecommissionedKeys";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
-import { useTrackRegistration } from "@/hooks/useTrackRegistration";
 import { useCheckUserMetadata } from "@/hooks/useCheckUserMetadata";
+import { usePostHogAlias } from "@/hooks/usePostHogAlias";
 
 /**
  * Anything code that should run once in the browser should be placed here
@@ -52,8 +52,8 @@ const useAppHooks = () => {
       !router.pathname.startsWith("/videos"), // Disable Gleap for standalone video pages
   });
   useAxe({ enabled: getBrowserConfig("axeA11yLogging") === "on" });
-  useTrackRegistration();
   useCheckUserMetadata();
+  usePostHogAlias();
 };
 
 const AppHooks = () => {

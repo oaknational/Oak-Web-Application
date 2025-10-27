@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 
 import Component from "./SpecialistLesson.view";
 
@@ -62,6 +62,7 @@ export const SpecialistLessonPage: Story = {
       unitTotalLessonCount: 1,
       loginRequired: false,
       geoRestricted: false,
+      excludedFromTeachingMaterials: false,
     },
   },
 };

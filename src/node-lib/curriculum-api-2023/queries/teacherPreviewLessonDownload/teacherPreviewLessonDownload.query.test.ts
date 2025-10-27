@@ -24,8 +24,6 @@ const downloadAssets = {
   has_lesson_guide_object: true,
   is_legacy: true,
   expired: true,
-  geo_restricted: false,
-  login_required: false,
   downloadable_files: additionalFilesFixture({}).downloadable_files,
 };
 

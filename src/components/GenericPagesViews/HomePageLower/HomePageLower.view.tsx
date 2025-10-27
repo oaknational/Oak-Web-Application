@@ -7,7 +7,6 @@ import {
   OakMaxWidth,
   OakP,
 } from "@oaknational/oak-components";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import BlogAndWebinarList from "@/components/GenericPagesComponents/BlogAndWebinarList";
@@ -20,10 +19,11 @@ import { SerializedPost } from "@/pages-helpers/home/getBlogPosts";
 import { webinarToPostListItem } from "@/components/GenericPagesViews/WebinarsIndex.view";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { Testimonials } from "@/components/GenericPagesComponents/Testimonials";
-import { CampaignPromoBannerType, HomePage } from "@/common-lib/cms-types";
+import { HomePage } from "@/common-lib/cms-types";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import { CampaignPromoBanner } from "@/components/GenericPagesComponents/CampaignPromoBanner/CampaignPromoBanner";
 import { campaignTextStyles } from "@/pages/campaigns/[campaignSlug]";
+import { CampaignPromoBannerType } from "@/common-lib/cms-types/campaignPage";
 
 export const postToPostListItem = (post: SerializedPost): PostListItemProps => {
   return post.type === "blog-post"
@@ -40,6 +40,7 @@ export type HomePageLowerViewProps = {
 
 export const HomePageLowerView = (props: HomePageLowerViewProps) => {
   const { campaignPromoBanner } = props;
+
   const posts = props.posts.map(postToPostListItem);
   const blogListProps = usePostList({ items: posts, withImage: true });
   const { introVideo } = props;
@@ -48,11 +49,8 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
   const newsletterFormProps = useNewsletterForm({
     onSubmit: track.newsletterSignUpCompleted,
   });
-  const campaignFeatureFlagEnabled = useFeatureFlagEnabled(
-    "mythbusting-campaign",
-  );
-  const showCampaignBanner =
-    campaignFeatureFlagEnabled && campaignPromoBanner?.media[0];
+
+  const showCampaignBanner = campaignPromoBanner?.media[0];
 
   return (
     <>
@@ -116,10 +114,12 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
               subheading={campaignPromoBanner?.subheadingPortableTextWithPromo}
               buttonCta={campaignPromoBanner.buttonCta}
               media={campaignPromoBanner.media[0]!}
+              buttonUrl={campaignPromoBanner.buttonUrl}
             />
           </OakBox>
         </OakMaxWidth>
       )}
+
       <OakMaxWidth>
         <BlogAndWebinarList
           blogListPosts={blogListProps}

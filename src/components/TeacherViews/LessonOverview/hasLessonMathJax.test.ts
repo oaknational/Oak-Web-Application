@@ -50,6 +50,7 @@ describe("hasLessonMathJax", () => {
     unitTotalLessonCount: 1,
     loginRequired: false,
     geoRestricted: false,
+    excludedFromTeachingMaterials: false,
   };
 
   it("detects MathJax in keyLearningPoints", () => {

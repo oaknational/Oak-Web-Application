@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CurricShowSteps basic usage 1`] = `
+<body>
+  <div>
+    <div>
+      <div
+        class="sc-fqkvVR hrLDNc"
+        style="width: 100%; position: relative; overflow: hidden;"
+      >
+        <div
+          style="display: flex; align-items: center;"
+        >
+          <div
+            class="sc-fqkvVR sc-kAyceB fgBWrW kyta-DD"
+            style="width: 44px; height: 44px;"
+          >
+            <div
+              class="sc-fqkvVR sc-kAyceB ibvSUR bAFsaQ"
+            />
+            <div
+              class="sc-fqkvVR sc-kAyceB hvDzQc kyta-DD"
+            >
+              <div
+                class="sc-fqkvVR kbnxKi"
+              >
+                <img
+                  alt=""
+                  class="sc-dcJsrY bDcxkE"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699954310/icons/efd3esaor6zqk7seh6kt.svg"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </div>
+            </div>
+            <div
+              class="sc-fqkvVR sc-kAyceB jkxpdi bAFsaQ"
+            />
+          </div>
+          <div
+            class="sc-fqkvVR sc-kAyceB cdDatI bAFsaQ"
+          />
+          <div
+            class="sc-fqkvVR sc-kAyceB fgBWrW kyta-DD"
+            style="width: 44px; height: 44px;"
+          >
+            <div
+              class="sc-fqkvVR sc-kAyceB jkxpdi bAFsaQ"
+            />
+            <div
+              class="sc-fqkvVR sc-kAyceB hvDzQc kyta-DD"
+            >
+              <div
+                class="sc-fqkvVR kbnxKi"
+              >
+                <img
+                  alt=""
+                  class="sc-dcJsrY bDcxkE"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699954310/icons/efd3esaor6zqk7seh6kt.svg"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </div>
+            </div>
+            <div
+              class="sc-fqkvVR sc-kAyceB jkxpdi bAFsaQ"
+            />
+          </div>
+          <div
+            class="sc-fqkvVR sc-kAyceB cdDatI bAFsaQ"
+          />
+          <div
+            class="sc-fqkvVR sc-kAyceB ffuCSZ kyta-DD"
+            style="width: 44px; height: 44px;"
+          >
+            <div
+              class="sc-fqkvVR sc-kAyceB jAHGNa kyta-DD"
+              color="white"
+            />
+            <div
+              class="sc-fqkvVR cMqhUz"
+              data-testid="step-text"
+              style="left: 0px; top: 44px;"
+            >
+              Step 
+              3
+               of 
+              4
+            </div>
+          </div>
+          <div
+            class="sc-fqkvVR sc-kAyceB cdDatI bAFsaQ"
+          />
+          <div
+            class="sc-fqkvVR sc-kAyceB fgBWrW kyta-DD"
+            style="width: 44px; height: 44px;"
+          >
+            <div
+              class="sc-fqkvVR sc-kAyceB jkxpdi bAFsaQ"
+            />
+            <div
+              class="sc-fqkvVR sc-kAyceB jGUeSQ kyta-DD"
+            />
+            <div
+              class="sc-fqkvVR sc-kAyceB ibvSUR bAFsaQ"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

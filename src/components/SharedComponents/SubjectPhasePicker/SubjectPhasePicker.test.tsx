@@ -1,13 +1,19 @@
 import userEvent from "@testing-library/user-event";
 import { getByTestId, waitFor } from "@testing-library/react";
+import { useRouter } from "next/router";
+
+import SubjectPhasePicker from "./SubjectPhasePicker";
 
 import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
-import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
 import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 
 jest.mock("@/hooks/useMediaQuery.tsx", () => ({
   __esModule: true,
   default: () => false,
+}));
+
+jest.mock("next/router", () => ({
+  useRouter: jest.fn(),
 }));
 
 const render = renderWithProvidersByName(["oakTheme", "theme"]);
@@ -180,6 +186,11 @@ describe("Component - subject phase picker", () => {
   });
 
   test("calls tracking.curriculumVisualiserAccessed once, with correct props", async () => {
+    const pushMock = jest.fn();
+    (useRouter as jest.Mock).mockReturnValue({
+      push: async (...args: []) => pushMock(...args),
+    });
+
     const { findAllByTitle, getByTitle, findByTitle, baseElement } = render(
       <SubjectPhasePicker {...curriculumPhaseOptions} />,
     );
@@ -198,6 +209,10 @@ describe("Component - subject phase picker", () => {
     );
     await userEvent.click(viewButton);
 
+    expect(pushMock).toHaveBeenCalledWith({
+      pathname: "/teachers/curriculum/english-primary/units",
+    });
+
     expect(curriculumVisualiserAccessed).toHaveBeenCalledTimes(1);
     expect(curriculumVisualiserAccessed).toHaveBeenCalledWith({
       subjectTitle: "English",
@@ -209,6 +224,42 @@ describe("Component - subject phase picker", () => {
       eventVersion: "2.0.0",
       analyticsUseCase: "Teacher",
       phase: "primary",
+    });
+  });
+
+  test("preserve tab when chaging the lot picker", async () => {
+    const pushMock = jest.fn();
+    (useRouter as jest.Mock).mockReturnValue({
+      push: async (...args: []) => pushMock(...args),
+    });
+
+    const { rerender, findAllByTitle, getByTitle, findByTitle, baseElement } =
+      render(<SubjectPhasePicker {...curriculumPhaseOptions} />);
+    await userEvent.click(getByTitle("Subject"));
+    const button = (await findAllByTitle("English"))[0];
+    if (!button) {
+      throw new Error("Could not find button");
+    }
+    await userEvent.click(button);
+
+    await userEvent.click(await findByTitle("Primary"));
+
+    const viewButton = getByTestId(
+      baseElement,
+      "lot-picker-view-curriculum-button",
+    );
+
+    await userEvent.click(viewButton);
+    expect(pushMock).toHaveBeenCalledWith({
+      pathname: "/teachers/curriculum/english-primary/units",
+    });
+
+    rerender(<SubjectPhasePicker {...curriculumPhaseOptions} tab="overview" />);
+
+    pushMock.mockReset();
+    await userEvent.click(viewButton);
+    expect(pushMock).toHaveBeenCalledWith({
+      pathname: "/teachers/curriculum/english-primary/overview",
     });
   });
 

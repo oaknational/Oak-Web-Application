@@ -1,14 +1,10 @@
 import { FC } from "react";
-import { OakSpan, OakFlex } from "@oaknational/oak-components";
 import {
-  examboardSlugs,
-  keystageSlugs,
-  subjectSlugs,
-  yearSlugs,
-} from "@oaknational/oak-curriculum-schema";
+  OakSpan,
+  OakFlex,
+  OakSmallTertiaryInvertedButton,
+} from "@oaknational/oak-components";
 
-import Button from "@/components/SharedComponents/Button";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import {
   UseSearchFiltersReturnType,
   KeyStage,
@@ -16,36 +12,14 @@ import {
   ContentType,
   SearchCheckBoxProps,
 } from "@/context/Search/search.types";
-import { TrackSearchModifiedProps } from "@/components/TeacherViews/Search/helpers";
-import { FilterTypeValueType } from "@/browser-lib/avo/Avo";
+import {
+  getFilterType,
+  TrackSearchModifiedProps,
+} from "@/components/TeacherViews/Search/helpers";
 
 type SearchActiveFiltersProps = {
   searchFilters: UseSearchFiltersReturnType;
   trackSearchModified: (props: TrackSearchModifiedProps) => void;
-};
-
-const getFilterType = (slug: string) => {
-  const isKeystageFilter = keystageSlugs.safeParse(slug).success;
-  const isYearFilter = yearSlugs.safeParse(slug).success;
-  const isSubjectFilter = subjectSlugs.safeParse(slug).success;
-  const isContentTypeFilter = slug === "lesson" || slug === "unit";
-  const isExamBoardFilter = examboardSlugs.safeParse(slug).success;
-
-  if (isKeystageFilter) {
-    return "Key stage filter" as FilterTypeValueType;
-  } else if (isYearFilter) {
-    return "Year filter" as FilterTypeValueType;
-  } else if (isSubjectFilter) {
-    return "Subject filter" as FilterTypeValueType;
-  } else if (isContentTypeFilter) {
-    return "Content type filter" as FilterTypeValueType;
-  } else if (isExamBoardFilter) {
-    return "Exam board filter" as FilterTypeValueType;
-  } else if (slug === "new") {
-    return "Lesson Cohort filter" as FilterTypeValueType;
-  } else {
-    return "Unknown filter" as FilterTypeValueType;
-  }
 };
 
 const SearchActiveFilters: FC<SearchActiveFiltersProps> = (props) => {
@@ -78,10 +52,10 @@ const SearchActiveFilters: FC<SearchActiveFiltersProps> = (props) => {
     SearchCheckBoxProps)[] = activeFilters.slice(0, maxActiveFilters);
 
   return (
-    <Flex
-      $alignItems={["flex-start", "center"]}
-      $flexDirection={["column", "row"]}
-      $minHeight={44}
+    <OakFlex
+      $alignItems={"center"}
+      $flexDirection={"row"}
+      $alignContent={"center"}
       $display={activeFilters.length ? "flex" : "none"}
     >
       <OakSpan $font="heading-light-7" $mr="space-between-s">
@@ -89,8 +63,8 @@ const SearchActiveFilters: FC<SearchActiveFiltersProps> = (props) => {
       </OakSpan>
       <OakFlex $flexWrap={"wrap"} $alignItems={"center"}>
         {slicedActiveFilters.map(({ slug, title, onChange, ...props }) => (
-          <Button
-            label={"shortCode" in props ? props.shortCode : title}
+          <OakSmallTertiaryInvertedButton
+            $mr={"space-between-xs"}
             aria-label={`Remove ${title} filter`}
             key={`active-filter-${title}-${slug}`}
             onClick={() => {
@@ -98,22 +72,22 @@ const SearchActiveFilters: FC<SearchActiveFiltersProps> = (props) => {
                 checked: true,
                 filterType: getFilterType(slug),
                 filterValue: title,
+                searchFilterMatchType: "default",
               });
               onChange();
             }}
-            variant="buttonStyledAsLink"
-            icon="cross"
+            iconName="cross"
             $font={"heading-7"}
-            $color={"grey70"}
-            $iconPosition="trailing"
-            $mr={16}
-          />
+            isTrailingIcon
+          >
+            {"shortCode" in props ? props.shortCode : title}
+          </OakSmallTertiaryInvertedButton>
         ))}
         {activeFilters.length > maxActiveFilters && (
           <OakSpan $font="body-1-bold">...</OakSpan>
         )}
       </OakFlex>
-    </Flex>
+    </OakFlex>
   );
 };
 

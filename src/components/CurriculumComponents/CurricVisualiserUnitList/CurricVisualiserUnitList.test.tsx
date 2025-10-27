@@ -37,7 +37,7 @@ describe("CurricVisualiserUnitList", () => {
     );
 
     const allLinks = await findAllByRole("link");
-    expect(allLinks[0]);
+    expect(allLinks[0]).toBeTruthy();
     act(() => {
       allLinks[0]?.click();
     });

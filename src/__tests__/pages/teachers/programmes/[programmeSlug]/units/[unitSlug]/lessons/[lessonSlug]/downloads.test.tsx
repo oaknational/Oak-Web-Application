@@ -92,10 +92,28 @@ jest.mock(
   }),
 );
 
+const mockRouter = {
+  replace: jest.fn(),
+  pathname: "/",
+  asPath: "/",
+  query: {
+    redirected: "",
+  },
+};
+
+jest.mock("next/router", () => ({
+  useRouter: jest.fn(() => mockRouter),
+}));
+
 beforeEach(() => {
   renderHook(() => useForm());
   localStorage.clear();
 });
+
+afterEach(() => {
+  jest.clearAllMocks();
+});
+
 const render = renderWithProviders();
 
 describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
@@ -177,7 +195,9 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       name: "Download .zip",
     });
     await userEvent.click(downloadButton);
+
     expect(window.scrollTo).toHaveBeenCalledTimes(1);
+
     expect(window.scrollTo).toHaveBeenCalledWith({
       behavior: "smooth",
       top: 0,
@@ -214,7 +234,6 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       pathway: null,
       totalDownloadableResources: 2,
     });
-
     expect(teacherShareInitiated).toHaveBeenCalledTimes(1);
   });
   it("tracks download event with correct args for lessons without pfs", async () => {
@@ -286,10 +305,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       render(<LessonDownloadsPage {...props} />);
 
       expect(screen.getAllByRole("heading", { level: 2 })[0]).toHaveTextContent(
-        "Lesson resources",
-      );
-      expect(screen.getAllByRole("heading", { level: 2 })[1]).toHaveTextContent(
-        "Your details",
+        "All resources selected",
       );
 
       expect(
@@ -379,11 +395,10 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
         result.current.setEmailInLocalStorage("test@test.com");
         result.current.setTermsInLocalStorage(true);
       });
-      const { getByRole } = render(<LessonDownloadsPage {...props} />);
+      render(<LessonDownloadsPage {...props} />);
 
-      const selectAllCheckbox = getByRole("checkbox", {
-        name: "Select all",
-      });
+      const selectAllCheckbox = screen.getByLabelText("All resources selected");
+
       expect(selectAllCheckbox).toBeChecked();
 
       const exitQuizQuestions = screen.getByLabelText("Exit quiz questions", {
@@ -404,8 +419,8 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
         result.current.setTermsInLocalStorage(true);
       });
 
-      const { getByRole } = render(<LessonDownloadsPage {...props} />);
-      const selectAllCheckbox = getByRole("checkbox", { name: "Select all" });
+      render(<LessonDownloadsPage {...props} />);
+      const selectAllCheckbox = screen.getByLabelText("All resources selected");
       await userEvent.click(selectAllCheckbox);
 
       const exitQuizQuestions = screen.getByLabelText("Exit quiz questions", {

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { OakFlex } from "@oaknational/oak-components";
+import { OakLI, OakUL } from "@oaknational/oak-components";
 
 import LessonResourceGraphicsItem, {
   LessonResourceGraphicsItemProps,
@@ -16,18 +16,19 @@ type LessonResourceGraphicsProps = {
 
 const LessonResourceGraphics: FC<LessonResourceGraphicsProps> = ({ items }) => {
   return (
-    <OakFlex
+    <OakUL
+      $reset={true}
+      $display={"flex"}
       $gap={["space-between-xs", "space-between-s"]}
       $flexWrap="wrap"
       $justifyContent={"flex-start"}
     >
       {items.map((item, index) => (
-        <LessonResourceGraphicsItem
-          key={`graphics-item-${item.titleSingular}-${index}`}
-          {...item}
-        />
+        <OakLI key={`graphics-item-${item.titleSingular}-${index}`}>
+          <LessonResourceGraphicsItem {...item} />
+        </OakLI>
       ))}
-    </OakFlex>
+    </OakUL>
   );
 };
 
