@@ -18,15 +18,22 @@ type PortableTextSpan = { _type: "span"; text: string };
 type PortableTextText = {
   _type: "block";
   style: string;
-  children: (PortableTextMath | PortableTextSpan | PortableTextCodeInline)[];
+  children: (
+    | PortableTextMath
+    | PortableTextSpan
+    | PortableTextCodeInline
+    | PortableAnswerSpace
+  )[];
 };
 type PortableTextCodeBlock = { _type: "codeblock"; text: string };
 type PortableTextCodeInline = { _type: "codeinline"; text: string };
 type PortableTextMath = { _type: "math"; text: string; html: string };
+type PortableAnswerSpace = { _type: "answer_space" };
 export type PortableTextItem =
   | PortableTextText
   | PortableTextCodeBlock
-  | PortableTextSpan;
+  | PortableTextSpan
+  | PortableAnswerSpace;
 
 // Note: this mutates the input array
 function lastBlockOrNewBlock(out: PortableTextItem[], style = "normal") {
@@ -52,18 +59,21 @@ const PARSER_REGEXPS = {
   math: /(\$\$(?:[^$]|$[^$])*\$\$)/, // Matches something like "$$x+y$$"
   codeblock: /(```(?:[\s\S]*?)```)/, // Matches something like ```console.log("hi")``` or `console.log("hi")`
   codeinline: /(`.*?`)/, // Matches something like ```console.log("hi")``` or `console.log("hi")`
+  answerSpace: /(\{\{(?:[^{}]|(?!\{\{|\}\})\w)*\}\})/, // Matches {{ }}
   other: /(.+?)/, // Matches anything else
 };
 const MATH_INDEX = 1;
 const CODE_BLOCK_INDEX = 2;
 const CODE_INLINE_INDEX = 3;
-const OTHER_INDEX = 4;
+const ANSWER_SPACE_INDEX = 4;
+const OTHER_INDEX = 5;
 
 export function stemToPortableText(text: string, style = "normal") {
   // Note must create a new regexp here because where using RegExp.exec() for repeat execution.
   const regexp = joinRegexps(Object.values(PARSER_REGEXPS), "g");
 
   let match = regexp.exec(text);
+
   const out: PortableTextItem[] = [];
   while (match) {
     if (match[MATH_INDEX]) {
@@ -83,6 +93,11 @@ export function stemToPortableText(text: string, style = "normal") {
       block.children.push({
         _type: "codeinline",
         text: match[CODE_INLINE_INDEX],
+      });
+    } else if (match[ANSWER_SPACE_INDEX]) {
+      const block = lastBlockOrNewBlock(out, style);
+      block.children.push({
+        _type: "answer_space",
       });
     } else if (match[OTHER_INDEX]) {
       const block = lastBlockOrNewBlock(out, style);
@@ -169,6 +184,18 @@ const stemComponents: PortableTextComponents = {
       // Note: We dangerouslySetInnerHTML here because MathJax library has given us raw HTML as output
       // It's also worth noting that this shouldn't be used for untrusted input.
       return <OakSpan dangerouslySetInnerHTML={{ __html: props.value.html }} />;
+    },
+    answer_space: () => {
+      // Note: We dangerouslySetInnerHTML here because MathJax library has given us raw HTML as output
+      // It's also worth noting that this shouldn't be used for untrusted input.
+      return (
+        <UnderlineSpan
+          // This is an empty box with a line under it, to indicate an answer would go here.
+          role="presentation"
+          title="An empty space to write an answer in"
+          data-testid="underline"
+        />
+      );
     },
   },
   block: {

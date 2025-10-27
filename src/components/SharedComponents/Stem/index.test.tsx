@@ -82,4 +82,18 @@ describe("stemToPortableText", () => {
       ],
     });
   });
+
+  test("answer space", () => {
+    const output = stemToPortableText("Give me {{ }} please");
+    expect(output.length).toEqual(1);
+    expect(output[0]).toEqual({
+      _type: "block",
+      style: "normal",
+      children: [
+        { _type: "span", text: "Give me " },
+        { _type: "answer_space" },
+        { _type: "span", text: " please" },
+      ],
+    });
+  });
 });
