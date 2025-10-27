@@ -164,7 +164,7 @@ function convertQuestionMath(
   });
 }
 
-function convertQuizes(content: LessonContent) {
+export function convertQuizes(content: LessonContent) {
   return {
     ...content,
     starterQuiz: convertQuestionMath(content.starterQuiz),
