@@ -144,6 +144,8 @@ export const generateLessonOverviewFromRaw = (
     lessonReleaseDate: lesson.lesson_release_date,
     orderInUnit: lesson.order_in_unit ?? 1,
     unitTotalLessonCount: unitLessonCount ?? 1,
+    excludedFromTeachingMaterials: true,
+    subjectCategories: null,
   };
 
   return specialistLessonOverviewSchema.parse({

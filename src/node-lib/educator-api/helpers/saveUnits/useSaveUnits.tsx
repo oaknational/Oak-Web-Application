@@ -46,7 +46,9 @@ export const useSaveUnits = (
   useEffect(() => {
     if (savedUnitsData) {
       const parsedData = unitsResponseSchema.safeParse(savedUnitsData);
-      if (parsedData.success) {
+      if (!parsedData.success) {
+        reportError(parsedData.error, { savedUnitsData });
+      } else {
         const savedUnitsString = parsedData.data.toSorted().toString();
 
         const locallySavedUnitsString = locallySavedUnits
@@ -55,8 +57,6 @@ export const useSaveUnits = (
         if (savedUnitsString !== locallySavedUnitsString) {
           setLocallySavedUnits(parsedData.data);
         }
-      } else {
-        reportError(parsedData.error, { savedUnitsData });
       }
     }
 

@@ -2,7 +2,10 @@ import {
   lessonContentFixture,
   syntheticUnitvariantLessonsByKsFixture,
   additionalFilesFixture,
+  mediaClipsFixture,
 } from "@oaknational/oak-curriculum-schema";
+
+import lessonMediaClipsFixtures from "../../fixtures/lessonMediaClips.fixture";
 
 import lessonOverview, {
   getContentGuidance,
@@ -48,6 +51,7 @@ describe("lessonOverview()", () => {
             content: [_lessonContentFixture],
             additionalFiles: [_additionalFilesFixture],
             unitData: [],
+            tpcWorks: [],
           }),
         ),
       })({
@@ -67,6 +71,7 @@ describe("lessonOverview()", () => {
             browseData: [],
             additionalFiles: [],
             unitData: [],
+            tpcWorks: [],
           }),
         ),
       })({
@@ -121,6 +126,7 @@ describe("lessonOverview()", () => {
           content: [_lessonContentFixture],
           additionalFiles: [_additionalFilesFixture],
           unitData: [_unitDataFixture],
+          tpcWorks: [],
         }),
       ),
     })({
@@ -247,6 +253,7 @@ describe("lessonOverview()", () => {
           content: [_lessonContentFixture],
           additionalFiles: [],
           unitData: _unitDataFixture,
+          tpcWorks: [],
         }),
       ),
     })({
@@ -273,6 +280,7 @@ describe("lessonOverview()", () => {
             content: [],
             additionalFiles: [],
             unitData: [],
+            tpcWorks: [],
           }),
         ),
       })({
@@ -533,5 +541,74 @@ describe("lessonOverview()", () => {
         "File 2 1.95 KB (PDF)",
       ]);
     });
+  });
+});
+describe("hasMediaClips logic", () => {
+  test("it returns hasMediaClips as true when media clips are present", async () => {
+    const _syntheticUnitvariantLessonsByKsFixture =
+      syntheticUnitvariantLessonsByKsFixture({
+        overrides: {
+          lesson_slug: "lesson-slug-test",
+          unit_slug: "unit-slug-test",
+          programme_slug: "programme-slug-test",
+          is_legacy: false,
+          programme_slug_by_year: ["programme-slug-test"],
+          lesson_data: {
+            ...syntheticUnitvariantLessonsByKsFixture({}).lesson_data,
+            ...mediaClipsFixture(),
+          },
+        },
+      });
+
+    const _lessonContentFixture = lessonContentFixture({
+      overrides: {
+        exit_quiz: [],
+        starter_quiz: [],
+      },
+    });
+
+    const _unitDataFixture = {
+      lesson_count:
+        _syntheticUnitvariantLessonsByKsFixture.static_lesson_list?.length ?? 1,
+      supplementary_data: {
+        unit_order: 16,
+        static_lesson_list: [
+          {
+            slug: "lesson-slug-test",
+            order: 1,
+            title: "Lesson Tile",
+            _state: "published",
+            lesson_uid: "test-uid",
+          },
+        ],
+      },
+    };
+
+    const lesson = await lessonOverview({
+      ...sdk,
+      lessonOverview: jest.fn(() =>
+        Promise.resolve({
+          browseData: [_syntheticUnitvariantLessonsByKsFixture],
+          content: [_lessonContentFixture],
+          additionalFiles: [_additionalFilesFixture],
+          unitData: [_unitDataFixture],
+          tpcWorks: [],
+        }),
+      ),
+    })({
+      lessonSlug: "test",
+    });
+
+    expect(lesson.lessonSlug).toEqual(
+      _syntheticUnitvariantLessonsByKsFixture.lesson_slug,
+    );
+    expect(lesson.hasMediaClips).toEqual(true);
+    expect(lesson.lessonMediaClips).toEqual(
+      lessonMediaClipsFixtures({
+        lessonSlug: "lesson-slug-test",
+        unitSlug: "unit-slug-test",
+        programmeSlug: "programme-slug-test",
+      }).mediaClips,
+    );
   });
 });

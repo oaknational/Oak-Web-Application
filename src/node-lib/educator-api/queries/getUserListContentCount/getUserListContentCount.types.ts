@@ -7,3 +7,7 @@ export const getUserListContentCountResponse = z.object({
     }),
   }),
 });
+
+export type UserListContentCountResponse = z.infer<
+  typeof getUserListContentCountResponse
+>;

@@ -233,8 +233,6 @@ describe("unitsTab !subject error", () => {
       units: [
         {
           planned_number_of_lessons: 8,
-          domain: "Grammar",
-          domain_id: 17,
           connection_future_unit_description: null,
           connection_prior_unit_description: null,
           connection_future_unit_title: null,
@@ -251,7 +249,6 @@ describe("unitsTab !subject error", () => {
           subject_parent: null,
           subject_parent_slug: null,
           subject_slug: "english",
-          tags: null,
           subjectcategories: null,
           threads: [],
           tier: null,
@@ -294,6 +291,7 @@ describe("unitsTab !subject error", () => {
           ks4_options: [],
         },
       ],
+      tab: "units" as const,
     };
 
     expect(() => {

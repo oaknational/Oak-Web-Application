@@ -1,4 +1,4 @@
-import { findUnitOrOptionBySlug } from "./units";
+import { doUnitsHaveNc, findUnitOrOptionBySlug } from "./units";
 
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { createUnitOption } from "@/fixtures/curriculum/unitOption";
@@ -60,5 +60,46 @@ describe("findUnitOrOptionBySlug", () => {
       unit: undefined,
       unitOption: undefined,
     });
+  });
+});
+
+describe("doUnitsHaveNc", () => {
+  test("none", () => {
+    const output = doUnitsHaveNc([
+      createUnit({ slug: "one" }),
+      createUnit({ slug: "two" }),
+      createUnit({ slug: "three" }),
+    ]);
+    expect(output).toEqual(false);
+  });
+
+  test("some", () => {
+    const output = doUnitsHaveNc([
+      createUnit({ slug: "one" }),
+      createUnit({
+        slug: "two",
+        features: { national_curriculum_content: true },
+      }),
+      createUnit({ slug: "three" }),
+    ]);
+    expect(output).toEqual(true);
+  });
+
+  test("all", () => {
+    const output = doUnitsHaveNc([
+      createUnit({
+        slug: "one",
+        features: { national_curriculum_content: true },
+      }),
+      createUnit({
+        slug: "two",
+        features: { national_curriculum_content: true },
+      }),
+      createUnit({
+        slug: "three",
+        features: { national_curriculum_content: true },
+      }),
+    ]);
+    expect(output).toEqual(true);
   });
 });

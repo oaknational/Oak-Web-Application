@@ -62,6 +62,7 @@ query homepage($isDraftFilter: Sanity_DocumentFilter) {
         ...Video
       }
       buttonCta
+      buttonUrl
     }
   }
 }

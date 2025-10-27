@@ -8,6 +8,7 @@ const ERROR_CODES = [
   "misc/network-error",
   "misc/unexpected-type",
   "misc/import-count",
+  "search/failed-to-get-intent",
   "search/unknown",
   "hubspot/invalid-email",
   "hubspot/unknown",
@@ -63,6 +64,11 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   "misc/unexpected-type": {
     message:
       "An unexpected type was encountered, so action may not have completed successfully",
+    shouldNotify: true,
+  },
+  "search/failed-to-get-intent": {
+    message: "Failed to get search intent",
+    responseStatusCode: 500,
     shouldNotify: true,
   },
   "search/unknown": {

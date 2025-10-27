@@ -11,3 +11,5 @@ export const getUserContentResponse = z.object({
     }),
   ),
 });
+
+export type UserContentResponse = z.infer<typeof getUserContentResponse>;

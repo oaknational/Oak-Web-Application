@@ -53,6 +53,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     resolver: zodResolver(resourceFormValuesSchema),
     mode: "onBlur",
   });
+
   const [preselectAll, setPreselectAll] = useState(false);
   const [selectAllChecked, setSelectAllChecked] = useState(false);
   const [isLocalStorageLoading, setIsLocalStorageLoading] = useState(true);
@@ -93,16 +94,19 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
       setValue("email", email);
 
       if (hubspotContact) {
-        const schoolId = hubspotContact.schoolId;
-        const schoolName = hubspotContact.schoolName;
-
+        const schoolUrn = hubspotContact.schoolId;
         // @sonar-ignore
         // current sonar rule typescript:S6606 incorrectly flags this, see open issue here https://sonarsource.atlassian.net/browse/JS-373
-        const school = {
-          schoolId: schoolId || "notListed",
-          schoolName: schoolName || "notListed",
-        };
+        const schoolName = hubspotContact.schoolName || "notListed";
         // @sonar-end
+
+        // hubspot stores schoolUrn isolated from schoolName, but we need to store them together in local storage
+        const schoolId = schoolUrn ? `${schoolUrn}-${schoolName}` : "notListed";
+
+        const school = {
+          schoolId,
+          schoolName,
+        };
 
         setSchoolInLocalStorage(school);
         setSchoolFromHubspot(school);
@@ -258,7 +262,10 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
 
   const { errors } = formState;
   const hasFormErrors = Object.keys(errors)?.length > 0;
-  const selectedResources = (watch().resources || []) as ResourceType[];
+  const selectedResources: ResourceType[] = watch(
+    "resources",
+    [],
+  ) as ResourceType[];
 
   const [activeResources, setActiveResources] = useState<string[]>(
     getInitialResourcesState(),
@@ -277,6 +284,15 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
   }, [getInitialAdditionalFilesState, additionalResources]);
 
   const hasResources = getInitialResourcesState().length > 0;
+
+  useEffect(() => {
+    const initialResources = getInitialResourcesState();
+    if (selectedResources.length < initialResources.length) {
+      setSelectAllChecked(false);
+    } else {
+      setSelectAllChecked(true);
+    }
+  }, [selectedResources, getInitialResourcesState]);
 
   const onSelectAllClick = () =>
     setValue("resources", activeResources.concat(activeAdditonalFiles || []));

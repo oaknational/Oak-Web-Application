@@ -193,6 +193,21 @@ async function main() {
     DISABLE_ISR: process.env.DISABLE_ISR,
     NEXT_PUBLIC_SENTRY_ENABLED: process.env.NEXT_PUBLIC_SENTRY_ENABLED,
 
+    // AI FEATURES
+    AI_SEARCH_ENABLED:
+      process.env.AI_SEARCH_ENABLED || oakConfig.oak.aiSearchEnabled,
+    AI_SEARCH_RATE_LIMIT_PER_24H:
+      process.env.AI_SEARCH_RATE_LIMIT_PER_24H ||
+      secretsFromNetwork.AI_SEARCH_RATE_LIMIT_PER_24H,
+    AI_SEARCH_KV_URL:
+      process.env.AI_SEARCH_KV_URL || secretsFromNetwork.AI_SEARCH_KV_URL,
+    AI_SEARCH_KV_TOKEN:
+      process.env.AI_SEARCH_KV_TOKEN || secretsFromNetwork.AI_SEARCH_KV_TOKEN,
+    AI_GATEWAY_URL:
+      process.env.AI_GATEWAY_URL || secretsFromNetwork.AI_GATEWAY_URL,
+    AI_GATEWAY_API_KEY:
+      process.env.AI_GATEWAY_API_KEY || secretsFromNetwork.AI_GATEWAY_API_KEY,
+
     // Seo
 
     NEXT_PUBLIC_SEO_APP_NAME:

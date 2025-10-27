@@ -12,7 +12,7 @@ import { decorateWithIsr } from "./isr";
 
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
-if (getBrowserConfig("sentryEnabled")) {
+if (getBrowserConfig("sentryEnabled") === "true") {
   initialiseSentry(null);
 } else {
   initialiseBugsnag(null);

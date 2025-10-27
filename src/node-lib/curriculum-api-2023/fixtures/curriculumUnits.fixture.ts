@@ -12,8 +12,7 @@ const curriculumUnitsTabFixture = (
           "In the Hidden forces unit, they will build on this knowledge to learn about turning forces, forces that hold objects on a surface, and those that make some objects float.",
         connection_future_unit_title: "Hidden forces",
         connection_prior_unit_title: "Forces including simple machines",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 10,
@@ -80,13 +79,6 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 11,
-            title: "Physics",
-            category: "Discipline",
-          },
-        ],
         subjectcategories: [
           {
             id: 11,
@@ -118,8 +110,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about biotic and abiotic components of an ecosystem, measuring population size, interdependence and competition in ecosystems, how changes in biotic and abiotic factors affect communities, the cycling of carbon and water, and the role of microorganisms in cycling materials through ecosystems.",
         connection_future_unit_title: "Living organisms and their environments",
         connection_prior_unit_title: "Ecosystems",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 8,
@@ -176,13 +167,6 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 5,
-            title: "Biology",
-            category: "Discipline",
-          },
-        ],
         subjectcategories: [
           {
             id: 11,
@@ -215,8 +199,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about differences in the cell structures of eukaryotic and prokaryotic organisms.",
         connection_future_unit_title: "Eukaryotic and prokaryotic cells",
         connection_prior_unit_title: "Breathing and respiration",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 4,
@@ -254,13 +237,6 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 5,
-            title: "Biology",
-            category: "Discipline",
-          },
-        ],
         subjectcategories: [
           {
             id: 5,
@@ -293,8 +269,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about biological molecules that are essential to life, including sugars and other carbohydrates, proteins and lipids, and the role of enzymes in catalysing the chemical reactions in which these substances are used and made.",
         connection_future_unit_title: "Biological molecules and enzymes",
         connection_prior_unit_title: "Plant nutrition and photosynthesis",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 9,
@@ -351,7 +326,6 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
         subjectcategories: [],
         threads: [
           {
@@ -378,8 +352,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about biological molecules that are essential to life, including sugars and other carbohydrates, proteins and lipids, and the role of enzymes in catalysing the chemical reactions in which these substances are used and made.",
         connection_future_unit_title: "Biological molecules and enzymes",
         connection_prior_unit_title: "Plant nutrition and photosynthesis",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 9,
@@ -436,7 +409,6 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
         subjectcategories: [],
         threads: [
           {
@@ -463,8 +435,7 @@ const curriculumUnitsTabFixture = (
           "In the Calculations involving mass unit, pupils will learn about calculating the relative formula mass of reactants and products in balanced chemical reactions, and the conservation of atoms and mass, as well as the concept of moles (HT only).",
         connection_future_unit_title: "Calculations involving masses",
         connection_prior_unit_title: "Patterns in the periodic table",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 18,
@@ -521,7 +492,6 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: null,
         tier_slug: null,
-        tags: [],
         subjectcategories: [],
         threads: [
           {
@@ -552,8 +522,7 @@ const curriculumUnitsTabFixture = (
           "In the Calculations involving mass unit, pupils will learn about calculating the relative formula mass of reactants and products in balanced chemical reactions, and the conservation of atoms and mass, as well as the concept of moles (HT only).",
         connection_future_unit_title: "Calculations involving masses",
         connection_prior_unit_title: "Patterns in the periodic table",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 18,
@@ -610,7 +579,6 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: null,
         tier_slug: null,
-        tags: [],
         subjectcategories: [],
         threads: [
           {
@@ -641,8 +609,7 @@ const curriculumUnitsTabFixture = (
           "In the Energy of moving particles unit, they will build on this knowledge to learn how the movement and nature of different particles transfers energy by conduction, and how specific heat capacity and specific latent heat quantify the effect of heating on the properties of a material.",
         connection_future_unit_title: "Energy of moving objects",
         connection_prior_unit_title: "Heating and cooling",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 15,
@@ -719,7 +686,6 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
         subjectcategories: [],
         threads: [
           {
@@ -745,8 +711,7 @@ const curriculumUnitsTabFixture = (
           "In the Energy of moving particles unit, they will build on this knowledge to learn how the movement and nature of different particles transfers energy by conduction, and how specific heat capacity and specific latent heat quantify the effect of heating on the properties of a material.",
         connection_future_unit_title: "Energy of moving objects",
         connection_prior_unit_title: "Heating and cooling",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 15,
@@ -823,7 +788,6 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
         subjectcategories: [],
         threads: [
           {
@@ -849,8 +813,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about the use of antibiotics against pathogens, and the development of new drugs and novel treatments for disease.",
         connection_future_unit_title: "Drugs and new treatments for disease",
         connection_prior_unit_title: "Health and disease",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 8,
@@ -888,7 +851,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -915,8 +878,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about the use of antibiotics against pathogens, and the development of new drugs and novel treatments for disease.",
         connection_future_unit_title: "Drugs and new treatments for disease",
         connection_prior_unit_title: "Health and disease",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 8,
@@ -958,7 +920,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -985,8 +947,7 @@ const curriculumUnitsTabFixture = (
           "In the Atmosphere and changing climate topic, pupils will learn about how the atmosphere has changed over time, as well as the effects of increased global warming and its connection with changes to the climate.",
         connection_future_unit_title: "Atmosphere and changing climate",
         connection_prior_unit_title: "Chemistry of carbon",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 15,
@@ -1078,7 +1039,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -1110,8 +1071,7 @@ const curriculumUnitsTabFixture = (
           "In the Atmosphere and changing climate topic, pupils will learn about how the atmosphere has changed over time, as well as the effects of increased global warming and its connection with changes to the climate.",
         connection_future_unit_title: "Atmosphere and changing climate",
         connection_prior_unit_title: "Chemistry of carbon",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 15,
@@ -1193,7 +1153,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -1225,8 +1185,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about the use of antibiotics against pathogens, and the development of new drugs and novel treatments for disease.",
         connection_future_unit_title: "Drugs and new treatments for disease",
         connection_prior_unit_title: "Health and disease",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 8,
@@ -1259,7 +1218,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -1286,8 +1245,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about the use of antibiotics against pathogens, and the development of new drugs and novel treatments for disease.",
         connection_future_unit_title: "Drugs and new treatments for disease",
         connection_prior_unit_title: "Health and disease",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 8,
@@ -1324,7 +1282,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -1351,8 +1309,7 @@ const curriculumUnitsTabFixture = (
           "In the Gravity in space unit, they will build on this knowledge to learn about centripetal forces, orbital motion, stellar evolution, red shift and the big bang.",
         connection_future_unit_title: "Gravity in space",
         connection_prior_unit_title: "Energy of moving particles",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 19,
@@ -1425,7 +1382,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -1451,8 +1408,7 @@ const curriculumUnitsTabFixture = (
           "In the Gravity in space unit, they will build on this knowledge to learn about centripetal forces, orbital motion, stellar evolution, red shift and the big bang.",
         connection_future_unit_title: "Gravity in space",
         connection_prior_unit_title: "Energy of moving particles",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 19,
@@ -1536,7 +1492,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -1563,8 +1519,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title: "Heating and cooling",
         connection_prior_unit_title:
           "Introduction to states of matter and changing states",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 7,
@@ -1616,13 +1571,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 8,
-            title: "Chemistry",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 8,
@@ -1654,8 +1603,7 @@ const curriculumUnitsTabFixture = (
           "In the Fuels and energetics unit, pupils will build on this knowledge to learn about endothermic and exothermic reactions and the generation of electricity from non-renewable and renewable energy resources.",
         connection_future_unit_title: "Fuels and energetics",
         connection_prior_unit_title: "Separation techniques",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 10,
@@ -1722,13 +1670,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 8,
-            title: "Chemistry",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 8,
@@ -1760,8 +1702,7 @@ const curriculumUnitsTabFixture = (
           "In the Atmosphere and changing climate unit, pupils will build on this knowledge to learn about the Earth’s atmosphere including greenhouse gases and pollutants.",
         connection_future_unit_title: "Atmosphere and changing climate",
         connection_prior_unit_title: "Understanding chemical reactions",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 10,
@@ -1828,13 +1769,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 8,
-            title: "Chemistry",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 8,
@@ -1866,8 +1801,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about dominant and recessive alleles, and how to use models of single gene inheritance to make predictions about the genotypes and phenotypes of offspring.",
         connection_future_unit_title: "Inheritance, genotype and phenotype",
         connection_prior_unit_title: "Reproduction in plants",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 11,
@@ -1904,7 +1838,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -1930,8 +1864,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about dominant and recessive alleles, and how to use models of single gene inheritance to make predictions about the genotypes and phenotypes of offspring.",
         connection_future_unit_title: "Inheritance, genotype and phenotype",
         connection_prior_unit_title: "Reproduction in plants",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 11,
@@ -1989,7 +1922,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -2015,8 +1948,7 @@ const curriculumUnitsTabFixture = (
           "In the Chemistry of carbon structures unit, pupils will learn about the ways in which carbon can form multiple covalent bonds and several different carbon structures (including nanoparticles).",
         connection_future_unit_title: "Chemistry of carbon",
         connection_prior_unit_title: "Atomic structure and the periodic table",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 20,
@@ -2124,7 +2056,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -2155,8 +2087,7 @@ const curriculumUnitsTabFixture = (
           "In the Chemistry of carbon structures unit, pupils will learn about the ways in which carbon can form multiple covalent bonds and several different carbon structures (including nanoparticles).",
         connection_future_unit_title: "Chemistry of carbon",
         connection_prior_unit_title: "Atomic structure and the periodic table",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 20,
@@ -2274,7 +2205,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -2305,8 +2236,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about biological molecules that are essential to life, including sugars and other carbohydrates, proteins and lipids, and the role of enzymes in catalysing the chemical reactions in which these substances are used and made.",
         connection_future_unit_title: "Biological molecules and enzymes",
         connection_prior_unit_title: "Plant nutrition and photosynthesis",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 9,
@@ -2363,7 +2293,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -2390,8 +2320,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about biological molecules that are essential to life, including sugars and other carbohydrates, proteins and lipids, and the role of enzymes in catalysing the chemical reactions in which these substances are used and made.",
         connection_future_unit_title: "Biological molecules and enzymes",
         connection_prior_unit_title: "Plant nutrition and photosynthesis",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 9,
@@ -2448,7 +2377,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -2475,8 +2404,7 @@ const curriculumUnitsTabFixture = (
           "In the Energy of moving objects unit, they will build on this knowledge to learn how to calculate the amount of energy of objects have because they are moving, stretched or in a gravitational field; and to calculate energy transfers using knowledge of energy conservation and dissipation.",
         connection_future_unit_title: "Energy of moving objects",
         connection_prior_unit_title: "Moving by force",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 42,
@@ -2558,7 +2486,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -2584,8 +2512,7 @@ const curriculumUnitsTabFixture = (
           "In the Energy of moving objects unit, they will build on this knowledge to learn how to calculate the amount of energy of objects have because they are moving, stretched or in a gravitational field; and to calculate energy transfers using knowledge of energy conservation and dissipation.",
         connection_future_unit_title: "Energy of moving objects",
         connection_prior_unit_title: "Moving by force",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 42,
@@ -2662,7 +2589,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -2690,8 +2617,7 @@ const curriculumUnitsTabFixture = (
           "Transport and exchange surfaces in plants",
         connection_prior_unit_title:
           "Photosynthesis: requirements and products",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 5,
@@ -2725,7 +2651,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: null,
         tier_slug: null,
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -2752,8 +2678,7 @@ const curriculumUnitsTabFixture = (
           "In the Industrial chemistry unit, pupils will learn how to use a variety of concepts and models to develop scientific explanations and understanding while appreciating the applications of chemistry, along with its limitations in terms of ethical, social, economic and environmental considerations.",
         connection_future_unit_title: "Industrial chemistry",
         connection_prior_unit_title: "Structure and bonding",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 5,
@@ -2796,7 +2721,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -2827,8 +2752,7 @@ const curriculumUnitsTabFixture = (
           "In the Industrial chemistry unit, pupils will learn how to use a variety of concepts and models to develop scientific explanations and understanding while appreciating the applications of chemistry, along with its limitations in terms of ethical, social, economic and environmental considerations.",
         connection_future_unit_title: "Industrial chemistry",
         connection_prior_unit_title: "Structure and bonding",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 5,
@@ -2866,7 +2790,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -2897,8 +2821,7 @@ const curriculumUnitsTabFixture = (
           "In the Industrial chemistry unit, pupils will build on this knowledge to learn about chemical, industrial, environmental and economic factors of some large scale chemical processes.",
         connection_future_unit_title: "Industrial chemistry",
         connection_prior_unit_title: "Energy changes in reactions",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 14,
@@ -2986,7 +2909,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: null,
         tier_slug: null,
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -3017,8 +2940,7 @@ const curriculumUnitsTabFixture = (
           "In A-level physics, some pupils will build on this knowledge to learn about probability and half-life equations, nuclear instability, Einstein’s equation E = mc2 that links mass and energy, and controlled nuclear fission.",
         connection_future_unit_title: null,
         connection_prior_unit_title: "Patterns in the periodic table",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 20,
@@ -3105,7 +3027,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -3131,8 +3053,7 @@ const curriculumUnitsTabFixture = (
           "In A-level physics, some pupils will build on this knowledge to learn about probability and half-life equations, nuclear instability, Einstein’s equation E = mc2 that links mass and energy, and controlled nuclear fission.",
         connection_future_unit_title: null,
         connection_prior_unit_title: "Patterns in the periodic table",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 20,
@@ -3220,7 +3141,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -3246,8 +3167,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about bones and muscles as examples of tissues made of cells.",
         connection_future_unit_title: "Human skeleton and muscles",
         connection_prior_unit_title: "Living things and where they live",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 6,
@@ -3299,13 +3219,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 5,
-            title: "Biology",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 5,
@@ -3338,8 +3252,7 @@ const curriculumUnitsTabFixture = (
           "In the Measuring and calculating motion unit, they will build on this knowledge to learn how to measure and calculate velocity and acceleration, and how to interpret velocity-time graphs. ",
         connection_future_unit_title: "Measuring and calculating motion",
         connection_prior_unit_title: "Forces",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 10,
@@ -3406,13 +3319,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 11,
-            title: "Physics",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 11,
@@ -3445,8 +3352,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title:
           "Particle explanations of density and pressure ",
         connection_prior_unit_title: "Forces",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 10,
@@ -3513,13 +3419,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 11,
-            title: "Physics",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 11,
@@ -3552,8 +3452,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title:
           "Defences against pathogens, the human immune system and vaccination",
         connection_prior_unit_title: "Disease and drugs",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 14,
@@ -3611,7 +3510,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: null,
         tier_slug: null,
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -3637,8 +3536,7 @@ const curriculumUnitsTabFixture = (
           "In the Separating substances unit, pupils will learn how to identify mixtures from pure substances, and separate different types of mixtures into their different components.",
         connection_future_unit_title: "Separating substances",
         connection_prior_unit_title: "Structure and bonding",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 7,
@@ -3690,7 +3588,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -3721,8 +3619,7 @@ const curriculumUnitsTabFixture = (
           "In the Separating substances unit, pupils will learn how to identify mixtures from pure substances, and separate different types of mixtures into their different components.",
         connection_future_unit_title: "Separating substances",
         connection_prior_unit_title: "Structure and bonding",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 7,
@@ -3769,7 +3666,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -3800,8 +3697,7 @@ const curriculumUnitsTabFixture = (
           "In the Energy of moving particles unit, they will build on this knowledge to learn how the movement and nature of different particles transfers energy by conduction, and how specific heat capacity and specific latent heat quantify the effect of heating on the properties of a material.",
         connection_future_unit_title: "Energy of moving objects",
         connection_prior_unit_title: "Heating and cooling",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 15,
@@ -3873,7 +3769,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -3899,8 +3795,7 @@ const curriculumUnitsTabFixture = (
           "In the Energy of moving particles unit, they will build on this knowledge to learn how the movement and nature of different particles transfers energy by conduction, and how specific heat capacity and specific latent heat quantify the effect of heating on the properties of a material.",
         connection_future_unit_title: "Energy of moving objects",
         connection_prior_unit_title: "Heating and cooling",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 15,
@@ -3972,7 +3867,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -3998,8 +3893,7 @@ const curriculumUnitsTabFixture = (
           "In the Circuit components unit, they will build on this knowledge to learn how the resistance of filament lamps and diodes change with current and about the properties and applications of light dependent resistors and thermistors.",
         connection_future_unit_title: "Circuit components",
         connection_prior_unit_title: "Resistance and parallel circuits",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 15,
@@ -4066,7 +3960,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -4092,8 +3986,7 @@ const curriculumUnitsTabFixture = (
           "In the Circuit components unit, they will build on this knowledge to learn how the resistance of filament lamps and diodes change with current and about the properties and applications of light dependent resistors and thermistors.",
         connection_future_unit_title: "Circuit components",
         connection_prior_unit_title: "Resistance and parallel circuits",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 15,
@@ -4162,7 +4055,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -4187,8 +4080,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_description: "",
         connection_future_unit_title: null,
         connection_prior_unit_title: "Living organisms and their environments",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 9,
@@ -4245,7 +4137,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -4271,8 +4163,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_description: "",
         connection_future_unit_title: null,
         connection_prior_unit_title: "Living organisms and their environments",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 9,
@@ -4335,7 +4226,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -4362,8 +4253,7 @@ const curriculumUnitsTabFixture = (
           "In the Industrial chemistry unit, pupils will learn about chemical, industrial, environmental and economic factors of some large-scale chemical processes.",
         connection_future_unit_title: "Industrial chemistry",
         connection_prior_unit_title: "Carbon cycle and climate change",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 11,
@@ -4430,7 +4320,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: null,
         tier_slug: null,
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -4459,8 +4349,7 @@ const curriculumUnitsTabFixture = (
           "Transport and exchange surfaces in plants",
         connection_prior_unit_title:
           "Photosynthesis: requirements and products",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 5,
@@ -4494,7 +4383,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: null,
         tier_slug: null,
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -4520,8 +4409,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_description: null,
         connection_future_unit_title: null,
         connection_prior_unit_title: "Magnets and electromagnets",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 15,
@@ -4573,7 +4461,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -4598,8 +4486,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_description: null,
         connection_future_unit_title: null,
         connection_prior_unit_title: "Magnets and electromagnets",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 15,
@@ -4661,7 +4548,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -4687,8 +4574,7 @@ const curriculumUnitsTabFixture = (
           "In the Gravity in space unit, they will build on this knowledge to learn to how gravitational forces cause orbital motion and about stellar evolution and cosmology, including red-shift and the big bang. ",
         connection_future_unit_title: "Gravity in space",
         connection_prior_unit_title: "Earth, Sun and Moon",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 10,
@@ -4755,13 +4641,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 11,
-            title: "Physics",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 11,
@@ -4793,8 +4673,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn that there is variation between individuals within a species, which can be described as continuous or discontinuous depending on the cause.",
         connection_future_unit_title: "Variation (differences within species)",
         connection_prior_unit_title: "Why we group and classify living things",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 4,
@@ -4831,13 +4710,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 5,
-            title: "Biology",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 5,
@@ -4871,8 +4744,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title:
           "Fossil evidence, selective breeding and explaining evolution",
         connection_prior_unit_title: "Variation (differences within species)",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 8,
@@ -4929,13 +4801,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 5,
-            title: "Biology",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 5,
@@ -4969,8 +4835,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title:
           "Transport and exchange surfaces in humans",
         connection_prior_unit_title: "Eukaryotic and prokaryotic cells",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 9,
@@ -5030,7 +4895,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: null,
         tier_slug: null,
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -5057,8 +4922,7 @@ const curriculumUnitsTabFixture = (
           "In the Making salts unit, pupils will learn about the production of pure salts, concentration and strength of acids, and what makes acids acidic and how bases can neutralise them.",
         connection_future_unit_title: "Making salts",
         connection_prior_unit_title: "States of matter",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 20,
@@ -5165,7 +5029,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: null,
         tier_slug: null,
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -5196,8 +5060,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about dominant and recessive alleles, and how to use models of single gene inheritance to make predictions about the genotypes and phenotypes of offspring.",
         connection_future_unit_title: "Inheritance, genotype and phenotype",
         connection_prior_unit_title: "Reproduction in plants",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 11,
@@ -5229,7 +5092,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -5255,8 +5118,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about dominant and recessive alleles, and how to use models of single gene inheritance to make predictions about the genotypes and phenotypes of offspring.",
         connection_future_unit_title: "Inheritance, genotype and phenotype",
         connection_prior_unit_title: "Reproduction in plants",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 11,
@@ -5288,7 +5150,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -5314,8 +5176,7 @@ const curriculumUnitsTabFixture = (
           "In the Electromagnetic waves unit, they will build on this knowledge to learn about the reflection and refraction of light, other types of electromagnetic radiation in the EM spectrum and the helpful and harmful effects of each type of radiation.",
         connection_future_unit_title: "Electromagnetic waves",
         connection_prior_unit_title: "Waves",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 13,
@@ -5392,7 +5253,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -5418,8 +5279,7 @@ const curriculumUnitsTabFixture = (
           "In the Electromagnetic waves unit, they will build on this knowledge to learn about the reflection and refraction of light, other types of electromagnetic radiation in the EM spectrum and the helpful and harmful effects of each type of radiation.",
         connection_future_unit_title: "Electromagnetic waves",
         connection_prior_unit_title: "Waves",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 13,
@@ -5486,7 +5346,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -5514,8 +5374,7 @@ const curriculumUnitsTabFixture = (
           "Coordination and control: maintaining a constant internal environment",
         connection_prior_unit_title:
           "Aerobic and anaerobic cellular respiration",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 12,
@@ -5575,7 +5434,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: null,
         tier_slug: null,
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -5601,8 +5460,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_description: null,
         connection_future_unit_title: null,
         connection_prior_unit_title: "Rate of reaction",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 15,
@@ -5695,7 +5553,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -5725,8 +5583,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_description: null,
         connection_future_unit_title: null,
         connection_prior_unit_title: "Rate of reaction",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 15,
@@ -5814,7 +5671,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -5845,8 +5702,7 @@ const curriculumUnitsTabFixture = (
           "In the Gravity in space unit, they will build on this knowledge to learn about centripetal forces, orbital motion, stellar evolution, red shift and the big bang.",
         connection_future_unit_title: "Gravity in space",
         connection_prior_unit_title: "Energy of moving particles",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 19,
@@ -5904,7 +5760,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -5930,8 +5786,7 @@ const curriculumUnitsTabFixture = (
           "In the Gravity in space unit, they will build on this knowledge to learn about centripetal forces, orbital motion, stellar evolution, red shift and the big bang.",
         connection_future_unit_title: "Gravity in space",
         connection_prior_unit_title: "Energy of moving particles",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 19,
@@ -5988,7 +5843,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -6014,8 +5869,7 @@ const curriculumUnitsTabFixture = (
           "In A-level physics, some pupils will build on this knowledge to learn about the photon model of electromagnetic radiation and the use of electromagnetic radiation for collecting evidence about the universe or for generating images of the inside of a human body.",
         connection_future_unit_title: null,
         connection_prior_unit_title: "Measuring waves",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 20,
@@ -6113,7 +5967,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -6139,8 +5993,7 @@ const curriculumUnitsTabFixture = (
           "In A-level physics, some pupils will build on this knowledge to learn about the photon model of electromagnetic radiation and the use of electromagnetic radiation for collecting evidence about the universe or for generating images of the inside of a human body.",
         connection_future_unit_title: null,
         connection_prior_unit_title: "Measuring waves",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 20,
@@ -6243,7 +6096,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -6270,8 +6123,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title: "Separation techniques",
         connection_prior_unit_title:
           "Properties, changes and separating materials",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 11,
@@ -6343,13 +6195,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 8,
-            title: "Chemistry",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 8,
@@ -6383,8 +6229,7 @@ const curriculumUnitsTabFixture = (
           "Adaptations, competition, natural selection and evolution",
         connection_prior_unit_title:
           "Species and classification (differences between species)",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 5,
@@ -6426,13 +6271,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 5,
-            title: "Biology",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 5,
@@ -6465,8 +6304,7 @@ const curriculumUnitsTabFixture = (
           "In the Using Earth's resources unit, pupils will build on this knowledge to learn about the extraction of metals by reduction with carbon, and about life cycle assessments and recycling. ",
         connection_future_unit_title: "Using Earth's resources",
         connection_prior_unit_title: "Earth's resources",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 10,
@@ -6533,13 +6371,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 8,
-            title: "Chemistry",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 8,
@@ -6573,8 +6405,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title:
           "Coordination and control: the human nervous system",
         connection_prior_unit_title: "Biological molecules and enzymes",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 8,
@@ -6633,7 +6464,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: null,
         tier_slug: null,
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -6660,8 +6491,7 @@ const curriculumUnitsTabFixture = (
           "In the Making salts unit, pupils will learn about the production of pure salts, concentration and strength of acids, and what makes acids acidic and how bases can neutralise them.",
         connection_future_unit_title: "Making salts",
         connection_prior_unit_title: "Atomic structure and the periodic table",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 18,
@@ -6753,7 +6583,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -6779,8 +6609,7 @@ const curriculumUnitsTabFixture = (
           "In the Making salts unit, pupils will learn about the production of pure salts, concentration and strength of acids, and what makes acids acidic and how bases can neutralise them.",
         connection_future_unit_title: "Making salts",
         connection_prior_unit_title: "Atomic structure and the periodic table",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 18,
@@ -6822,7 +6651,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -6848,8 +6677,7 @@ const curriculumUnitsTabFixture = (
           "In the Separating substances unit, pupils will learn how to identify mixtures from pure substances, and separate different types of mixtures into their different components.",
         connection_future_unit_title: "Separating substances",
         connection_prior_unit_title: "Structure and bonding",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 7,
@@ -6901,7 +6729,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -6932,8 +6760,7 @@ const curriculumUnitsTabFixture = (
           "In the Separating substances unit, pupils will learn how to identify mixtures from pure substances, and separate different types of mixtures into their different components.",
         connection_future_unit_title: "Separating substances",
         connection_prior_unit_title: "Structure and bonding",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 7,
@@ -6980,7 +6807,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -7011,8 +6838,7 @@ const curriculumUnitsTabFixture = (
           "In the Forces make things change unit, they will build on this knowledge to learn how to combine forces in two dimensions, how to calculate acceleration from a resultant force and how to calculate forces in collisions and explosions.",
         connection_future_unit_title: "Forces make things change",
         connection_prior_unit_title: "Measuring and calculating motion",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 42,
@@ -7076,7 +6902,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -7102,8 +6928,7 @@ const curriculumUnitsTabFixture = (
           "In the Forces make things change unit, they will build on this knowledge to learn how to combine forces in two dimensions, how to calculate acceleration from a resultant force and how to calculate forces in collisions and explosions.",
         connection_future_unit_title: "Forces make things change",
         connection_prior_unit_title: "Measuring and calculating motion",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 42,
@@ -7166,7 +6991,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -7192,8 +7017,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about the roles of hormones in controlling plant growth and development, including growth responses to stimuli including light and gravity.",
         connection_future_unit_title: "Plant growth and development",
         connection_prior_unit_title: "Stem cells and differentiation",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 6,
@@ -7236,7 +7060,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -7262,8 +7086,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about the roles of hormones in controlling plant growth and development, including growth responses to stimuli including light and gravity.",
         connection_future_unit_title: "Plant growth and development",
         connection_prior_unit_title: "Stem cells and differentiation",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 6,
@@ -7295,7 +7118,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -7320,8 +7143,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_description: "-",
         connection_future_unit_title: null,
         connection_prior_unit_title: "Making salts",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 7,
@@ -7373,7 +7195,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -7403,8 +7225,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_description: "-",
         connection_future_unit_title: null,
         connection_prior_unit_title: "Making salts",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 7,
@@ -7451,7 +7272,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -7481,8 +7302,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_description: "",
         connection_future_unit_title: null,
         connection_prior_unit_title: "Living organisms and their environments",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 9,
@@ -7514,7 +7334,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -7540,8 +7360,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_description: "",
         connection_future_unit_title: null,
         connection_prior_unit_title: "Living organisms and their environments",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 9,
@@ -7573,7 +7392,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -7599,8 +7418,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_description: null,
         connection_future_unit_title: null,
         connection_prior_unit_title: "Circuit components",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 15,
@@ -7684,7 +7502,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -7709,8 +7527,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_description: null,
         connection_future_unit_title: null,
         connection_prior_unit_title: "Circuit components",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 15,
@@ -7782,7 +7599,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -7808,8 +7625,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will move on to construct and interpret pyramids of number and biomass from food chains data. Pupils will learn about how plants and animals are adapted to survive and the impact of changes to the environment on biodiversity. The importance of biodiversity and the importance of gene banks. How to sample plant and animal populations to aid our understanding and monitoring of populations. ",
         connection_future_unit_title: "Biodiversity",
         connection_prior_unit_title: "More about food chains",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 9,
@@ -7871,13 +7687,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 5,
-            title: "Biology",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 5,
@@ -7910,8 +7720,7 @@ const curriculumUnitsTabFixture = (
           "In the Carbon cycle and climate change unit, pupils will build on this knowledge to learn about the formation of sedimentary rocks and fossil fuels.",
         connection_future_unit_title: "Carbon cycle and climate change",
         connection_prior_unit_title: "Rocks and soils ",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 10,
@@ -7978,13 +7787,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 8,
-            title: "Chemistry",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 8,
@@ -8017,8 +7820,7 @@ const curriculumUnitsTabFixture = (
           "In the Measuring waves unit, pupils will build on this knowledge to learn about the measurable features of a wave, the relationship between them and the wave equation.",
         connection_future_unit_title: "Measuring waves",
         connection_prior_unit_title: "Making images",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 10,
@@ -8085,13 +7887,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 11,
-            title: "Physics",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 11,
@@ -8125,8 +7921,7 @@ const curriculumUnitsTabFixture = (
           "Coordination and control: hormones and the human endocrine system",
         connection_prior_unit_title:
           "Transport and exchange surfaces in humans",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 10,
@@ -8183,7 +7978,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -8212,8 +8007,7 @@ const curriculumUnitsTabFixture = (
           "Coordination and control: hormones and the human endocrine system",
         connection_prior_unit_title:
           "Transport and exchange surfaces in humans",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 10,
@@ -8270,7 +8064,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -8297,8 +8091,7 @@ const curriculumUnitsTabFixture = (
           "In the Electrolysis topic, pupils will learn about the process of electrolysis, how it is used to decompose both molten and aqueous ionic substances (electrolytes), as well as the chemistry behind batteries and fuel cells.",
         connection_future_unit_title: "Electrolysis",
         connection_prior_unit_title: "Acids and bases",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 23,
@@ -8402,7 +8195,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -8428,8 +8221,7 @@ const curriculumUnitsTabFixture = (
           "In the Electrolysis topic, pupils will learn about the process of electrolysis, how it is used to decompose both molten and aqueous ionic substances (electrolytes), as well as the chemistry behind batteries and fuel cells.",
         connection_future_unit_title: "Electrolysis",
         connection_prior_unit_title: "Acids and bases",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 23,
@@ -8563,7 +8355,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -8590,8 +8382,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title:
           "Defences against pathogens, the human immune system and vaccination",
         connection_prior_unit_title: "Disease and drugs",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 14,
@@ -8649,7 +8440,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: null,
         tier_slug: null,
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -8676,8 +8467,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title: "Nuclear physics",
         connection_prior_unit_title:
           "Particle explanations of density and pressure ",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 14,
@@ -8755,7 +8545,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -8782,8 +8572,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title: "Nuclear physics",
         connection_prior_unit_title:
           "Particle explanations of density and pressure ",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 14,
@@ -8860,7 +8649,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -8886,8 +8675,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about uses of gene technology in medicine, such as for genetic testing, and in agriculture, such as the production of genetically engineered crop plants with desirable characteristics.",
         connection_future_unit_title: "Gene technology",
         connection_prior_unit_title: "Hormones and human reproduction",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 6,
@@ -8936,7 +8724,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -8962,8 +8750,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about uses of gene technology in medicine, such as for genetic testing, and in agriculture, such as the production of genetically engineered crop plants with desirable characteristics.",
         connection_future_unit_title: "Gene technology",
         connection_prior_unit_title: "Hormones and human reproduction",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 6,
@@ -9006,7 +8793,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -9031,8 +8818,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_description: null,
         connection_future_unit_title: null,
         connection_prior_unit_title: "Using Earth's resources",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 10,
@@ -9084,7 +8870,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -9114,8 +8900,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_description: null,
         connection_future_unit_title: null,
         connection_prior_unit_title: "Using Earth's resources",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 10,
@@ -9177,7 +8962,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -9208,8 +8993,7 @@ const curriculumUnitsTabFixture = (
           "In the Atmosphere and changing climate topic, pupils will learn about how the atmosphere has changed over time, as well as the effects of increased global warming and its connection with changes to the climate.",
         connection_future_unit_title: "Atmosphere and changing climate",
         connection_prior_unit_title: "Chemistry of carbon",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 15,
@@ -9301,7 +9085,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -9333,8 +9117,7 @@ const curriculumUnitsTabFixture = (
           "In the Atmosphere and changing climate topic, pupils will learn about how the atmosphere has changed over time, as well as the effects of increased global warming and its connection with changes to the climate.",
         connection_future_unit_title: "Atmosphere and changing climate",
         connection_prior_unit_title: "Chemistry of carbon",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 15,
@@ -9416,7 +9199,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -9447,8 +9230,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_description: null,
         connection_future_unit_title: null,
         connection_prior_unit_title: "Solar system and beyond",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 10,
@@ -9501,7 +9283,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -9526,8 +9308,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_description: null,
         connection_future_unit_title: null,
         connection_prior_unit_title: "Solar system and beyond",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 10,
@@ -9579,7 +9360,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -9605,8 +9386,7 @@ const curriculumUnitsTabFixture = (
           "In the Making images unit, they will build on this knowledge to learn that white light is made of different colours that can be detected by the eye, and how pinhole cameras and lenses form clear images.",
         connection_future_unit_title: "Making images",
         connection_prior_unit_title: null,
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 10,
@@ -9673,13 +9453,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 11,
-            title: "Physics",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 11,
@@ -9711,8 +9485,7 @@ const curriculumUnitsTabFixture = (
           "In the Magnets and electromagnets unit, they will build on this knowledge to learn about how electric current flows through electromagnets, factors that affect the strength of electromagnets and uses of electromagnets that include a simple electric motor.",
         connection_future_unit_title: "Magnets and electromagnets",
         connection_prior_unit_title: null,
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 10,
@@ -9779,13 +9552,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 11,
-            title: "Physics",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 11,
@@ -9817,8 +9584,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn more about non-communicable diseases in humans including cardiovascular diseases and cancer; and about communicable diseases in humans and plants caused by pathogens including bacteria, viruses, fungi and protists.",
         connection_future_unit_title: "Health and disease",
         connection_prior_unit_title: "Diet and exercise",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 9,
@@ -9880,13 +9646,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 5,
-            title: "Biology",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 5,
@@ -9920,8 +9680,7 @@ const curriculumUnitsTabFixture = (
           "Photosynthesis: requirements and products",
         connection_prior_unit_title:
           "Coordination and control: the human nervous system",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 6,
@@ -9959,7 +9718,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -9989,8 +9748,7 @@ const curriculumUnitsTabFixture = (
           "Photosynthesis: requirements and products",
         connection_prior_unit_title:
           "Coordination and control: the human nervous system",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 6,
@@ -10028,7 +9786,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -10056,8 +9814,7 @@ const curriculumUnitsTabFixture = (
           "In the Organic chemistry unit, pupils will learn more about hydrocarbons and learning about other homologous series, along with their reactions.",
         connection_future_unit_title: "Organic chemistry",
         connection_prior_unit_title: "Structure and bonding",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 10,
@@ -10124,7 +9881,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -10155,8 +9912,7 @@ const curriculumUnitsTabFixture = (
           "In the Organic chemistry unit, pupils will learn more about hydrocarbons and learning about other homologous series, along with their reactions.",
         connection_future_unit_title: "Organic chemistry",
         connection_prior_unit_title: "Structure and bonding",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 10,
@@ -10223,7 +9979,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -10254,8 +10010,7 @@ const curriculumUnitsTabFixture = (
           "In the Mains electricity unit, they will build on this knowledge to learn about the dangers of mains electricity, how to use mains electricity safely, the equations I=Q/t, V=E/Q and P=IV, and about the transmission of power in the national grid, including transformers.",
         connection_future_unit_title: "Mains electricity",
         connection_prior_unit_title: "Electric fields and circuit calculations",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 14,
@@ -10332,7 +10087,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -10358,8 +10113,7 @@ const curriculumUnitsTabFixture = (
           "In the Mains electricity unit, they will build on this knowledge to learn about the dangers of mains electricity, how to use mains electricity safely, the equations I=Q/t, V=E/Q and P=IV, and about the transmission of power in the national grid, including transformers.",
         connection_future_unit_title: "Mains electricity",
         connection_prior_unit_title: "Electric fields and circuit calculations",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 14,
@@ -10436,7 +10190,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -10464,8 +10218,7 @@ const curriculumUnitsTabFixture = (
           "Photosynthesis: factors affecting the rate",
         connection_prior_unit_title:
           "Transport and exchange surfaces in plants",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 13,
@@ -10529,7 +10282,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -10559,8 +10312,7 @@ const curriculumUnitsTabFixture = (
           "Photosynthesis: factors affecting the rate",
         connection_prior_unit_title:
           "Transport and exchange surfaces in plants",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 13,
@@ -10617,7 +10369,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -10644,8 +10396,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_description: null,
         connection_future_unit_title: null,
         connection_prior_unit_title: "Using Earth's resources",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 14,
@@ -10734,7 +10485,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -10759,8 +10510,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_description: null,
         connection_future_unit_title: null,
         connection_prior_unit_title: "Using Earth's resources",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 14,
@@ -10839,7 +10589,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -10867,8 +10617,7 @@ const curriculumUnitsTabFixture = (
           "Coordination and control: maintaining a constant internal environment",
         connection_prior_unit_title:
           "Aerobic and anaerobic cellular respiration",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 12,
@@ -10928,7 +10677,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: null,
         tier_slug: null,
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -10955,8 +10704,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about sexual reproduction in humans, including the structure and function of the male and female reproductive systems, menstrual cycle, gametes, fertilisation, gestation and birth.",
         connection_future_unit_title: "Reproduction in humans",
         connection_prior_unit_title: "Evolution and inheritance",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 7,
@@ -11008,13 +10756,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 5,
-            title: "Biology",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 5,
@@ -11046,8 +10788,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about flower structure, wind and insect pollination, fertilisation, seed and fruit formation and dispersal.",
         connection_future_unit_title: "Reproduction in plants",
         connection_prior_unit_title: "Heredity and DNA",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 8,
@@ -11104,13 +10845,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 5,
-            title: "Biology",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 5,
@@ -11142,8 +10877,7 @@ const curriculumUnitsTabFixture = (
           "In the Atomic structure and the periodic table unit, pupils will build on this knowledge to learn about how the structure of atoms in each element determine its position on the periodic table and affects its chemical and physical properties.",
         connection_future_unit_title: "Atomic structure and the periodic table",
         connection_prior_unit_title: "Atoms, elements and compounds",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 7,
@@ -11195,13 +10929,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 8,
-            title: "Chemistry",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 8,
@@ -11240,8 +10968,7 @@ const curriculumUnitsTabFixture = (
           "Aerobic and anaerobic cellular respiration",
         connection_prior_unit_title:
           "Coordination and control: hormones and the human endocrine system",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 6,
@@ -11279,7 +11006,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -11308,8 +11035,7 @@ const curriculumUnitsTabFixture = (
           "Aerobic and anaerobic cellular respiration",
         connection_prior_unit_title:
           "Coordination and control: hormones and the human endocrine system",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 6,
@@ -11346,7 +11072,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -11373,8 +11099,7 @@ const curriculumUnitsTabFixture = (
           "In the Rate of reaction unit, pupils will learn about the factors that can affect the rate of a reaction, as well as conduct a series of experiments that build on an understanding of collision theory.",
         connection_future_unit_title: "Rate of reaction",
         connection_prior_unit_title: "Fuels and energetics",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 6,
@@ -11421,7 +11146,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -11452,8 +11177,7 @@ const curriculumUnitsTabFixture = (
           "In the Rate of reaction unit, pupils will learn about the factors that can affect the rate of a reaction, as well as conduct a series of experiments that build on an understanding of collision theory.",
         connection_future_unit_title: "Rate of reaction",
         connection_prior_unit_title: "Fuels and energetics",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 6,
@@ -11495,7 +11219,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -11527,8 +11251,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title:
           "Transport and exchange surfaces in humans",
         connection_prior_unit_title: "Eukaryotic and prokaryotic cells",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 9,
@@ -11588,7 +11311,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: null,
         tier_slug: null,
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -11615,8 +11338,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title: null,
         connection_prior_unit_title:
           "Coordination and control: maintaining a constant internal environment",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 13,
@@ -11684,7 +11406,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -11711,8 +11433,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title: null,
         connection_prior_unit_title:
           "Coordination and control: maintaining a constant internal environment",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 13,
@@ -11775,7 +11496,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -11802,8 +11523,7 @@ const curriculumUnitsTabFixture = (
           "In A-level physics, some pupils will build on this knowledge to learn about probability and half-life equations, nuclear instability, Einstein’s equation E = mc2 that links mass and energy, and controlled nuclear fission.",
         connection_future_unit_title: null,
         connection_prior_unit_title: "Patterns in the periodic table",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 20,
@@ -11886,7 +11606,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -11912,8 +11632,7 @@ const curriculumUnitsTabFixture = (
           "In A-level physics, some pupils will build on this knowledge to learn about probability and half-life equations, nuclear instability, Einstein’s equation E = mc2 that links mass and energy, and controlled nuclear fission.",
         connection_future_unit_title: null,
         connection_prior_unit_title: "Patterns in the periodic table",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 20,
@@ -11995,7 +11714,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -12022,8 +11741,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title: "Solutions",
         connection_prior_unit_title:
           "Properties, changes and separating materials",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 7,
@@ -12075,13 +11793,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 8,
-            title: "Chemistry",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 8,
@@ -12113,8 +11825,7 @@ const curriculumUnitsTabFixture = (
           "In the Energy changes in reactions unit, pupils will build on this knowledge to learn more about exothermic and endothermic reactions, as well as learn about bond energies and reaction profiles.",
         connection_future_unit_title: "Energy changes in reactions",
         connection_prior_unit_title: "Understanding chemical reactions",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 10,
@@ -12181,13 +11892,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 8,
-            title: "Chemistry",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 8,
@@ -12220,8 +11925,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title:
           "Electric fields and circuit calculations",
         connection_prior_unit_title: "Series circuits",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 10,
@@ -12288,13 +11992,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 11,
-            title: "Physics",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 11,
@@ -12326,8 +12024,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about growth through cell division, mitosis as part of the cell cycle, cancer as the result of changes in cells that lead to uncontrolled growth and division, and the formation of gametes by meiosis.",
         connection_future_unit_title: "Cell division: mitosis and meiosis",
         connection_prior_unit_title: "DNA and the genome",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 8,
@@ -12384,7 +12081,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -12410,8 +12107,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about growth through cell division, mitosis as part of the cell cycle, cancer as the result of changes in cells that lead to uncontrolled growth and division, and the formation of gametes by meiosis.",
         connection_future_unit_title: "Cell division: mitosis and meiosis",
         connection_prior_unit_title: "DNA and the genome",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 8,
@@ -12468,7 +12164,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -12494,8 +12190,7 @@ const curriculumUnitsTabFixture = (
           "In the Industrial chemistry unit, pupils will build on this knowledge to learn about chemical, industrial, environmental and economic factors of some large scale chemical processes.",
         connection_future_unit_title: "Industrial chemistry",
         connection_prior_unit_title: "Energy changes in reactions",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 14,
@@ -12583,7 +12278,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: null,
         tier_slug: null,
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -12614,8 +12309,7 @@ const curriculumUnitsTabFixture = (
           "In the Chemistry of carbon structures unit, pupils will learn about the ways in which carbon can form multiple covalent bonds and several different carbon structures (including nanoparticles).",
         connection_future_unit_title: "Chemistry of carbon",
         connection_prior_unit_title: "Atomic structure and the periodic table",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 20,
@@ -12723,7 +12417,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -12754,8 +12448,7 @@ const curriculumUnitsTabFixture = (
           "In the Chemistry of carbon structures unit, pupils will learn about the ways in which carbon can form multiple covalent bonds and several different carbon structures (including nanoparticles).",
         connection_future_unit_title: "Chemistry of carbon",
         connection_prior_unit_title: "Atomic structure and the periodic table",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 20,
@@ -12868,7 +12561,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -12899,8 +12592,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title: null,
         connection_prior_unit_title:
           "Defences against pathogens, the human immune system and vaccination",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 7,
@@ -12938,7 +12630,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -12964,8 +12656,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title: null,
         connection_prior_unit_title:
           "Defences against pathogens, the human immune system and vaccination",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 7,
@@ -13002,7 +12693,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -13028,8 +12719,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about the roles of hormones in controlling plant growth and development, including growth responses to stimuli including light and gravity.",
         connection_future_unit_title: "Plant growth and development",
         connection_prior_unit_title: "Stem cells and differentiation",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 6,
@@ -13072,7 +12762,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -13098,8 +12788,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about the roles of hormones in controlling plant growth and development, including growth responses to stimuli including light and gravity.",
         connection_future_unit_title: "Plant growth and development",
         connection_prior_unit_title: "Stem cells and differentiation",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 6,
@@ -13131,7 +12820,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -13157,8 +12846,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn that particles of substances move within, into and out of cells by diffusion.",
         connection_future_unit_title: "Diffusion",
         connection_prior_unit_title: "Cells",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 4,
@@ -13195,13 +12883,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 5,
-            title: "Biology",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 5,
@@ -13234,8 +12916,7 @@ const curriculumUnitsTabFixture = (
           "In the Waves unit, they will build on this knowledge to learn about the properties and propagation of transverse and longitudinal waves.",
         connection_future_unit_title: "Waves",
         connection_prior_unit_title: "Sound, light and vision",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 10,
@@ -13302,13 +12983,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 11,
-            title: "Physics",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 11,
@@ -13340,8 +13015,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about what the genome is, what it’s made of and where it’s stored, more detail about the chemical structure of DNA, and the relationship between an organism’s genome and its phenotype.",
         connection_future_unit_title: "DNA and the genome",
         connection_prior_unit_title: "Reproduction in humans",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 8,
@@ -13398,13 +13072,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 5,
-            title: "Biology",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 5,
@@ -13436,8 +13104,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about unspecialised cells in animals and plants, how they become specialised, and potential benefits and issues with using stem cells in medicine. ",
         connection_future_unit_title: "Stem cells and differentiation",
         connection_prior_unit_title: "Inheritance, genotype and phenotype",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 7,
@@ -13479,7 +13146,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -13505,8 +13172,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about unspecialised cells in animals and plants, how they become specialised, and potential benefits and issues with using stem cells in medicine. ",
         connection_future_unit_title: "Stem cells and differentiation",
         connection_prior_unit_title: "Inheritance, genotype and phenotype",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 7,
@@ -13548,7 +13214,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -13575,8 +13241,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title:
           "Coordination and control: the human nervous system",
         connection_prior_unit_title: "Biological molecules and enzymes",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 8,
@@ -13635,7 +13300,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: null,
         tier_slug: null,
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -13663,8 +13328,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title: "Classification in modern biology",
         connection_prior_unit_title:
           "Fossil evidence, selective breeding and explaining evolution",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 8,
@@ -13722,7 +13386,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -13750,8 +13414,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title: "Classification in modern biology",
         connection_prior_unit_title:
           "Fossil evidence, selective breeding and explaining evolution",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 8,
@@ -13809,7 +13472,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -13836,8 +13499,7 @@ const curriculumUnitsTabFixture = (
           "In the Industrial chemistry unit, pupils will learn how to use a variety of concepts and models to develop scientific explanations and understanding while appreciating the applications of chemistry, along with its limitations in terms of ethical, social, economic and environmental considerations.",
         connection_future_unit_title: "Industrial chemistry",
         connection_prior_unit_title: "Structure and bonding",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 5,
@@ -13880,7 +13542,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -13911,8 +13573,7 @@ const curriculumUnitsTabFixture = (
           "In the Industrial chemistry unit, pupils will learn how to use a variety of concepts and models to develop scientific explanations and understanding while appreciating the applications of chemistry, along with its limitations in terms of ethical, social, economic and environmental considerations.",
         connection_future_unit_title: "Industrial chemistry",
         connection_prior_unit_title: "Structure and bonding",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 5,
@@ -13950,7 +13611,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -13983,8 +13644,7 @@ const curriculumUnitsTabFixture = (
           "Particle explanations of density and pressure ",
         connection_prior_unit_title:
           "Solid, liquid, gas states and changes of state",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 10,
@@ -14051,13 +13711,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 11,
-            title: "Physics",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 11,
@@ -14089,8 +13743,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about infectious and non-infectious diseases and the impact of recreational drugs.",
         connection_future_unit_title: "Disease and drugs",
         connection_prior_unit_title: "Keeping healthy",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 9,
@@ -14152,13 +13805,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 5,
-            title: "Biology",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 5,
@@ -14190,8 +13837,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about the roles of hormones in human reproduction, including control of the menstrual cycle, and other uses of hormones such as in in contraception.",
         connection_future_unit_title: "Hormones and human reproduction",
         connection_prior_unit_title: "Cell division: mitosis and meiosis",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 6,
@@ -14239,7 +13885,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: null,
         tier_slug: null,
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -14265,8 +13911,7 @@ const curriculumUnitsTabFixture = (
           "In the Circuit components unit, they will build on this knowledge to learn how the resistance of filament lamps and diodes change with current and about the properties and applications of light dependent resistors and thermistors.",
         connection_future_unit_title: "Circuit components",
         connection_prior_unit_title: "Resistance and parallel circuits",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 15,
@@ -14328,7 +13973,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -14354,8 +13999,7 @@ const curriculumUnitsTabFixture = (
           "In the Circuit components unit, they will build on this knowledge to learn how the resistance of filament lamps and diodes change with current and about the properties and applications of light dependent resistors and thermistors.",
         connection_future_unit_title: "Circuit components",
         connection_prior_unit_title: "Resistance and parallel circuits",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 15,
@@ -14419,7 +14063,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -14445,8 +14089,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title: null,
         connection_prior_unit_title:
           "Variation and natural selection at the genetic level",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 5,
@@ -14484,7 +14127,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -14511,8 +14154,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title: null,
         connection_prior_unit_title:
           "Variation and natural selection at the genetic level",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 5,
@@ -14551,7 +14193,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -14580,8 +14222,7 @@ const curriculumUnitsTabFixture = (
           "Photosynthesis: factors affecting the rate",
         connection_prior_unit_title:
           "Transport and exchange surfaces in plants",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 13,
@@ -14622,7 +14263,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: null,
         tier_slug: null,
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -14650,8 +14291,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about absorption of small molecules from food in the digestive system.",
         connection_future_unit_title: "Human digestive system",
         connection_prior_unit_title: "Human skeleton and muscles",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 4,
@@ -14689,13 +14329,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 5,
-            title: "Biology",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 5,
@@ -14728,8 +14362,7 @@ const curriculumUnitsTabFixture = (
           "In the unit Making salts, pupils will build on this knowledge to learn about the production of pure salts, and about why acids are acidic and how bases can neutralise them. ",
         connection_future_unit_title: "Making salts",
         connection_prior_unit_title: "Understanding chemical reactions",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 10,
@@ -14796,13 +14429,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 8,
-            title: "Chemistry",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 8,
@@ -14836,8 +14463,7 @@ const curriculumUnitsTabFixture = (
           "Variation and natural selection at the genetic level",
         connection_prior_unit_title:
           "Adaptations, competition, natural selection and evolution",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 8,
@@ -14895,7 +14521,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -14924,8 +14550,7 @@ const curriculumUnitsTabFixture = (
           "Variation and natural selection at the genetic level",
         connection_prior_unit_title:
           "Adaptations, competition, natural selection and evolution",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 8,
@@ -14983,7 +14608,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -15012,8 +14637,7 @@ const curriculumUnitsTabFixture = (
           "Coordination and control: hormones and the human endocrine system",
         connection_prior_unit_title:
           "Transport and exchange surfaces in humans",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 10,
@@ -15060,7 +14684,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: null,
         tier_slug: null,
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -15086,8 +14710,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_description: null,
         connection_future_unit_title: null,
         connection_prior_unit_title: "Plant growth and development",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 6,
@@ -15130,7 +14753,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -15155,8 +14778,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_description: null,
         connection_future_unit_title: null,
         connection_prior_unit_title: "Plant growth and development",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 6,
@@ -15199,7 +14821,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -15224,8 +14846,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_description: null,
         connection_future_unit_title: null,
         connection_prior_unit_title: "Magnets and electromagnets",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 15,
@@ -15277,7 +14898,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -15302,8 +14923,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_description: null,
         connection_future_unit_title: null,
         connection_prior_unit_title: "Magnets and electromagnets",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 15,
@@ -15355,7 +14975,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -15381,8 +15001,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn how cells use sugar from digested food as a source of energy.",
         connection_future_unit_title: "Breathing and respiration",
         connection_prior_unit_title: "Diffusion",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 5,
@@ -15424,13 +15043,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 5,
-            title: "Biology",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 5,
@@ -15463,8 +15076,7 @@ const curriculumUnitsTabFixture = (
           "In the Electromagnetism unit, they will build on this knowledge to learn about the motor effect and electric motors, the generator effect and electric generators, and how loudspeakers and microphones work.",
         connection_future_unit_title: "Electromagnetism",
         connection_prior_unit_title: "Series circuits",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 10,
@@ -15531,13 +15143,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 11,
-            title: "Physics",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 11,
@@ -15570,8 +15176,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title:
           "Biomass transfer, food security and biodiversity",
         connection_prior_unit_title: "Biodiversity",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 10,
@@ -15639,7 +15244,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -15667,8 +15272,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title:
           "Biomass transfer, food security and biodiversity",
         connection_prior_unit_title: "Biodiversity",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 10,
@@ -15736,7 +15340,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -15763,8 +15367,7 @@ const curriculumUnitsTabFixture = (
           "In the Making salts unit, pupils will learn about the production of pure salts, concentration and strength of acids, and what makes acids acidic and how bases can neutralise them.",
         connection_future_unit_title: "Making salts",
         connection_prior_unit_title: "States of matter",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 20,
@@ -15871,7 +15474,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: null,
         tier_slug: null,
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -15902,8 +15505,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title: null,
         connection_prior_unit_title:
           "Coordination and control: maintaining a constant internal environment",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 13,
@@ -15971,7 +15573,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -15998,8 +15600,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title: null,
         connection_prior_unit_title:
           "Coordination and control: maintaining a constant internal environment",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 13,
@@ -16062,7 +15663,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -16089,8 +15690,7 @@ const curriculumUnitsTabFixture = (
           "In the Patterns in the periodic table unit, pupils will build on this knowledge to learn how the chemical and physical properties of different elements are indicated by their position on the periodic table and about key groups of elements. ",
         connection_future_unit_title: "Patterns in the periodic table",
         connection_prior_unit_title: "Solutions",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 10,
@@ -16157,13 +15757,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 8,
-            title: "Chemistry",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 8,
@@ -16195,8 +15789,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn how producers make glucose using photosynthesis, which is used to make biomass and as a fuel for cellular respiration.",
         connection_future_unit_title: "Plant nutrition and photosynthesis",
         connection_prior_unit_title: "Human digestive system",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 8,
@@ -16254,13 +15847,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: null,
         tier: null,
         tier_slug: null,
-        tags: [
-          {
-            id: 5,
-            title: "Biology",
-            category: "Discipline",
-          },
-        ],
+
         subjectcategories: [
           {
             id: 5,
@@ -16295,8 +15882,7 @@ const curriculumUnitsTabFixture = (
           "Photosynthesis: requirements and products",
         connection_prior_unit_title:
           "Coordination and control: the human nervous system",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 6,
@@ -16334,7 +15920,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -16364,8 +15950,7 @@ const curriculumUnitsTabFixture = (
           "Photosynthesis: requirements and products",
         connection_prior_unit_title:
           "Coordination and control: the human nervous system",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 6,
@@ -16403,7 +15988,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -16431,8 +16016,7 @@ const curriculumUnitsTabFixture = (
           "In the Industrial chemistry unit, pupils will learn about chemical, industrial, environmental and economic factors of some large-scale chemical processes.",
         connection_future_unit_title: "Industrial chemistry",
         connection_prior_unit_title: "Carbon cycle and climate change",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 11,
@@ -16499,7 +16083,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: null,
         tier_slug: null,
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -16526,8 +16110,7 @@ const curriculumUnitsTabFixture = (
           "In the Electromagnetic waves unit, they will build on this knowledge to learn about the reflection and refraction of light, other types of electromagnetic radiation in the EM spectrum and the helpful and harmful effects of each type of radiation.",
         connection_future_unit_title: "Electromagnetic waves",
         connection_prior_unit_title: "Waves",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 13,
@@ -16604,7 +16187,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -16630,8 +16213,7 @@ const curriculumUnitsTabFixture = (
           "In the Electromagnetic waves unit, they will build on this knowledge to learn about the reflection and refraction of light, other types of electromagnetic radiation in the EM spectrum and the helpful and harmful effects of each type of radiation.",
         connection_future_unit_title: "Electromagnetic waves",
         connection_prior_unit_title: "Waves",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 13,
@@ -16698,7 +16280,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -16724,8 +16306,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title: null,
         connection_prior_unit_title:
           "Defences against pathogens, the human immune system and vaccination",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 7,
@@ -16757,7 +16338,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -16783,8 +16364,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title: null,
         connection_prior_unit_title:
           "Defences against pathogens, the human immune system and vaccination",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 7,
@@ -16816,7 +16396,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -16844,8 +16424,7 @@ const curriculumUnitsTabFixture = (
           "Aerobic and anaerobic cellular respiration",
         connection_prior_unit_title:
           "Coordination and control: hormones and the human endocrine system",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 6,
@@ -16883,7 +16462,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -16912,8 +16491,7 @@ const curriculumUnitsTabFixture = (
           "Aerobic and anaerobic cellular respiration",
         connection_prior_unit_title:
           "Coordination and control: hormones and the human endocrine system",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 6,
@@ -16950,7 +16528,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -16977,8 +16555,7 @@ const curriculumUnitsTabFixture = (
           "In A-level physics, some pupils will build on this knowledge to learn about the photon model of electromagnetic radiation and the use of electromagnetic radiation for collecting evidence about the universe or for generating images of the inside of a human body.",
         connection_future_unit_title: null,
         connection_prior_unit_title: "Measuring waves",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 20,
@@ -17056,7 +16633,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -17082,8 +16659,7 @@ const curriculumUnitsTabFixture = (
           "In A-level physics, some pupils will build on this knowledge to learn about the photon model of electromagnetic radiation and the use of electromagnetic radiation for collecting evidence about the universe or for generating images of the inside of a human body.",
         connection_future_unit_title: null,
         connection_prior_unit_title: "Measuring waves",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 20,
@@ -17166,7 +16742,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -17192,8 +16768,7 @@ const curriculumUnitsTabFixture = (
           "In the Making salts unit, pupils will learn about the production of pure salts, concentration and strength of acids, and what makes acids acidic and how bases can neutralise them.",
         connection_future_unit_title: "Making salts",
         connection_prior_unit_title: "Atomic structure and the periodic table",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 18,
@@ -17280,7 +16855,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -17306,8 +16881,7 @@ const curriculumUnitsTabFixture = (
           "In the Making salts unit, pupils will learn about the production of pure salts, concentration and strength of acids, and what makes acids acidic and how bases can neutralise them.",
         connection_future_unit_title: "Making salts",
         connection_prior_unit_title: "Atomic structure and the periodic table",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 18,
@@ -17349,7 +16923,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -17376,8 +16950,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title: "Classification in modern biology",
         connection_prior_unit_title:
           "Fossil evidence, selective breeding and explaining evolution",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 8,
@@ -17429,7 +17002,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -17457,8 +17030,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title: "Classification in modern biology",
         connection_prior_unit_title:
           "Fossil evidence, selective breeding and explaining evolution",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 8,
@@ -17510,7 +17082,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -17537,8 +17109,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about growth through cell division, mitosis as part of the cell cycle, cancer as the result of changes in cells that lead to uncontrolled growth and division, and the formation of gametes by meiosis.",
         connection_future_unit_title: "Cell division: mitosis and meiosis",
         connection_prior_unit_title: "DNA and the genome",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 8,
@@ -17590,7 +17161,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -17616,8 +17187,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about growth through cell division, mitosis as part of the cell cycle, cancer as the result of changes in cells that lead to uncontrolled growth and division, and the formation of gametes by meiosis.",
         connection_future_unit_title: "Cell division: mitosis and meiosis",
         connection_prior_unit_title: "DNA and the genome",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 8,
@@ -17669,7 +17239,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -17694,8 +17264,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_description: null,
         connection_future_unit_title: null,
         connection_prior_unit_title: "Rate of reaction",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 15,
@@ -17732,7 +17301,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -17762,8 +17331,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_description: null,
         connection_future_unit_title: null,
         connection_prior_unit_title: "Rate of reaction",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 15,
@@ -17805,7 +17373,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -17836,8 +17404,7 @@ const curriculumUnitsTabFixture = (
           "In the Forces make things change unit, they will build on this knowledge to learn how to combine forces in two dimensions, how to calculate acceleration from a resultant force and how to calculate forces in collisions and explosions.",
         connection_future_unit_title: "Forces make things change",
         connection_prior_unit_title: "Measuring and calculating motion",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 42,
@@ -17900,7 +17467,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -17926,8 +17493,7 @@ const curriculumUnitsTabFixture = (
           "In the Forces make things change unit, they will build on this knowledge to learn how to combine forces in two dimensions, how to calculate acceleration from a resultant force and how to calculate forces in collisions and explosions.",
         connection_future_unit_title: "Forces make things change",
         connection_prior_unit_title: "Measuring and calculating motion",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 42,
@@ -17991,7 +17557,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -18017,8 +17583,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title: null,
         connection_prior_unit_title:
           "Variation and natural selection at the genetic level",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 5,
@@ -18057,7 +17622,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -18084,8 +17649,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title: null,
         connection_prior_unit_title:
           "Variation and natural selection at the genetic level",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 5,
@@ -18123,7 +17687,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -18150,8 +17714,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about unspecialised cells in animals and plants, how they become specialised, and potential benefits and issues with using stem cells in medicine. ",
         connection_future_unit_title: "Stem cells and differentiation",
         connection_prior_unit_title: "Inheritance, genotype and phenotype",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 7,
@@ -18193,7 +17756,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -18219,8 +17782,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about unspecialised cells in animals and plants, how they become specialised, and potential benefits and issues with using stem cells in medicine. ",
         connection_future_unit_title: "Stem cells and differentiation",
         connection_prior_unit_title: "Inheritance, genotype and phenotype",
-        domain: null,
-        domain_id: null,
+
         examboard: "AQA",
         examboard_slug: "aqa",
         planned_number_of_lessons: 7,
@@ -18262,7 +17824,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -18287,8 +17849,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_description: null,
         connection_future_unit_title: null,
         connection_prior_unit_title: "Circuit components",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 15,
@@ -18360,7 +17921,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -18385,8 +17946,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_description: null,
         connection_future_unit_title: null,
         connection_prior_unit_title: "Circuit components",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 15,
@@ -18460,7 +18020,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -18486,8 +18046,7 @@ const curriculumUnitsTabFixture = (
           "In the Electrolysis topic, pupils will learn about the process of electrolysis, how it is used to decompose both molten and aqueous ionic substances (electrolytes), as well as the chemistry behind batteries and fuel cells.",
         connection_future_unit_title: "Electrolysis",
         connection_prior_unit_title: "Acids and bases",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 23,
@@ -18581,7 +18140,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -18607,8 +18166,7 @@ const curriculumUnitsTabFixture = (
           "In the Electrolysis topic, pupils will learn about the process of electrolysis, how it is used to decompose both molten and aqueous ionic substances (electrolytes), as well as the chemistry behind batteries and fuel cells.",
         connection_future_unit_title: "Electrolysis",
         connection_prior_unit_title: "Acids and bases",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 23,
@@ -18722,7 +18280,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -18747,8 +18305,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_description: null,
         connection_future_unit_title: null,
         connection_prior_unit_title: "Plant growth and development",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 6,
@@ -18791,7 +18348,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -18816,8 +18373,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_description: null,
         connection_future_unit_title: null,
         connection_prior_unit_title: "Plant growth and development",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 6,
@@ -18860,7 +18416,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -18886,8 +18442,7 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about the roles of hormones in human reproduction, including control of the menstrual cycle, and other uses of hormones such as in in contraception.",
         connection_future_unit_title: "Hormones and human reproduction",
         connection_prior_unit_title: "Cell division: mitosis and meiosis",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 6,
@@ -18935,7 +18490,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: null,
         tier_slug: null,
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -18960,8 +18515,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_description: null,
         connection_future_unit_title: null,
         connection_prior_unit_title: "Using Earth's resources",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 14,
@@ -19040,7 +18594,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -19065,8 +18619,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_description: null,
         connection_future_unit_title: null,
         connection_prior_unit_title: "Using Earth's resources",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 14,
@@ -19135,7 +18688,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -19162,8 +18715,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title: "Nuclear physics",
         connection_prior_unit_title:
           "Particle explanations of density and pressure ",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 14,
@@ -19240,7 +18792,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -19267,8 +18819,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title: "Nuclear physics",
         connection_prior_unit_title:
           "Particle explanations of density and pressure ",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 14,
@@ -19346,7 +18897,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -19374,8 +18925,7 @@ const curriculumUnitsTabFixture = (
           "Variation and natural selection at the genetic level",
         connection_prior_unit_title:
           "Adaptations, competition, natural selection and evolution",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 8,
@@ -19427,7 +18977,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -19456,8 +19006,7 @@ const curriculumUnitsTabFixture = (
           "Variation and natural selection at the genetic level",
         connection_prior_unit_title:
           "Adaptations, competition, natural selection and evolution",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 8,
@@ -19509,7 +19058,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -19536,8 +19085,7 @@ const curriculumUnitsTabFixture = (
           "In the Organic chemistry unit, pupils will learn more about hydrocarbons and learning about other homologous series, along with their reactions.",
         connection_future_unit_title: "Organic chemistry",
         connection_prior_unit_title: "Structure and bonding",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 10,
@@ -19594,7 +19142,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -19625,8 +19173,7 @@ const curriculumUnitsTabFixture = (
           "In the Organic chemistry unit, pupils will learn more about hydrocarbons and learning about other homologous series, along with their reactions.",
         connection_future_unit_title: "Organic chemistry",
         connection_prior_unit_title: "Structure and bonding",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 10,
@@ -19683,7 +19230,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -19715,8 +19262,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title:
           "Biomass transfer, food security and biodiversity",
         connection_prior_unit_title: "Biodiversity",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 10,
@@ -19774,7 +19320,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -19802,8 +19348,7 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_title:
           "Biomass transfer, food security and biodiversity",
         connection_prior_unit_title: "Biodiversity",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 10,
@@ -19861,7 +19406,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -19888,8 +19433,7 @@ const curriculumUnitsTabFixture = (
           "In the Mains electricity unit, they will build on this knowledge to learn about the dangers of mains electricity, how to use mains electricity safely, the equations I=Q/t, V=E/Q and P=IV, and about the transmission of power in the national grid, including transformers.",
         connection_future_unit_title: "Mains electricity",
         connection_prior_unit_title: "Electric fields and circuit calculations",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 14,
@@ -19966,7 +19510,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -19992,8 +19536,7 @@ const curriculumUnitsTabFixture = (
           "In the Mains electricity unit, they will build on this knowledge to learn about the dangers of mains electricity, how to use mains electricity safely, the equations I=Q/t, V=E/Q and P=IV, and about the transmission of power in the national grid, including transformers.",
         connection_future_unit_title: "Mains electricity",
         connection_prior_unit_title: "Electric fields and circuit calculations",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 14,
@@ -20070,7 +19613,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -20096,8 +19639,7 @@ const curriculumUnitsTabFixture = (
           "In the Rate of reaction unit, pupils will learn about the factors that can affect the rate of a reaction, as well as conduct a series of experiments that build on an understanding of collision theory.",
         connection_future_unit_title: "Rate of reaction",
         connection_prior_unit_title: "Fuels and energetics",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 6,
@@ -20139,7 +19681,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Foundation",
         tier_slug: "foundation",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {
@@ -20170,8 +19712,7 @@ const curriculumUnitsTabFixture = (
           "In the Rate of reaction unit, pupils will learn about the factors that can affect the rate of a reaction, as well as conduct a series of experiments that build on an understanding of collision theory.",
         connection_future_unit_title: "Rate of reaction",
         connection_prior_unit_title: "Fuels and energetics",
-        domain: null,
-        domain_id: null,
+
         examboard: null,
         examboard_slug: null,
         planned_number_of_lessons: 6,
@@ -20218,7 +19759,7 @@ const curriculumUnitsTabFixture = (
         subject_parent_slug: "science",
         tier: "Higher",
         tier_slug: "higher",
-        tags: [],
+
         subjectcategories: [],
         threads: [
           {

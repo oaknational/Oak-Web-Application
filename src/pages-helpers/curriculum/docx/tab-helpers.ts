@@ -372,5 +372,6 @@ export async function fetchSubjectPhasePickerData() {
   const subjects = await curriculumApi2023.curriculumPhaseOptions();
   return {
     subjects: filterValidCurriculumPhaseOptions(subjects),
+    tab: "units" as const,
   };
 }

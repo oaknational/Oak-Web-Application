@@ -88,6 +88,7 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
                 isAudioClip={isAudioClip}
                 playbackPolicy={"signed"}
                 numberOfClips={learningCycleVideos.length}
+                rel="nofollow"
                 href={
                   !isCanonical && programmeSlug && unitSlug
                     ? resolveOakHref({

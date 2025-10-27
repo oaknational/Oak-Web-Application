@@ -8,6 +8,11 @@ import { CurricYearCard } from "./index";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
+const mockFeatureFlagEnabled = jest.fn().mockReturnValue(false);
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagEnabled: () => mockFeatureFlagEnabled(),
+}));
+
 describe("CurricYearCard component", () => {
   const defaultProps = {
     yearTitle: "Year 7",
@@ -139,5 +144,45 @@ describe("CurricYearCard component", () => {
     expect(unitCards[0]).toHaveTextContent("Mechanics");
     expect(unitCards[1]).toHaveTextContent("Waves and Electricity");
     expect(unitCards[2]).toHaveTextContent("Quantum Physics");
+  });
+
+  it("should render the map to timetable link if feature flag is enabled ", () => {
+    mockFeatureFlagEnabled.mockReturnValue(true);
+    const { container } = renderWithTheme(
+      <CurricYearCard
+        {...defaultProps}
+        isExamboard={false}
+        timetablingUrl={"/timetabling/maths-primary/new?year=7"}
+      />,
+    );
+
+    expect(container).toHaveTextContent("Map to school timetable");
+  });
+
+  it("should not render the map to timetable link if feature flag is not enabled ", () => {
+    mockFeatureFlagEnabled.mockReturnValue(false);
+    const { container } = renderWithTheme(
+      <CurricYearCard {...defaultProps} isExamboard={false} />,
+    );
+
+    expect(container).not.toHaveTextContent("Map to school timetable");
+  });
+
+  it("should have the correct href for the map to timetable link", () => {
+    mockFeatureFlagEnabled.mockReturnValue(true);
+    const { getByRole } = renderWithTheme(
+      <CurricYearCard
+        {...defaultProps}
+        isExamboard={false}
+        timetablingUrl={"/timetabling/maths-primary/new?year=7"}
+      />,
+    );
+
+    const link = getByRole("link");
+
+    expect(link).toHaveAttribute(
+      "href",
+      "/timetabling/maths-primary/new?year=7",
+    );
   });
 });

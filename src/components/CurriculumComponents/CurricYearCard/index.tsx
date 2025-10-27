@@ -1,4 +1,9 @@
-import { OakBox, OakHeading } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakFlex,
+  OakHeading,
+  OakSecondaryLink,
+} from "@oaknational/oak-components";
 import React from "react";
 
 type CurricYearCardProps = {
@@ -7,13 +12,16 @@ type CurricYearCardProps = {
   additional?: React.ReactNode;
   children: React.ReactNode;
   isExamboard: boolean;
+  timetablingUrl?: string;
 };
+
 export function CurricYearCard({
   yearTitle,
   yearSubheading,
   additional,
   children,
   isExamboard,
+  timetablingUrl,
 }: CurricYearCardProps) {
   return (
     <OakBox
@@ -24,15 +32,25 @@ export function CurricYearCard({
       $borderRadius={"border-radius-s"}
       className="mobileYearDisplay"
     >
-      <OakHeading
-        tag="h3"
-        $font={["heading-5", "heading-4"]}
-        $mb={yearSubheading ? "space-between-xs" : "space-between-s"}
-        data-testid="year-heading"
-      >
-        {yearTitle}
-      </OakHeading>
-
+      <OakFlex $flexDirection={"row"} $justifyContent={"space-between"}>
+        <OakHeading
+          tag="h3"
+          $font={["heading-5", "heading-4"]}
+          $mb={yearSubheading ? "space-between-xs" : "space-between-s"}
+          data-testid="year-heading"
+        >
+          {yearTitle}
+        </OakHeading>
+        {timetablingUrl && (
+          <OakSecondaryLink
+            href={timetablingUrl}
+            iconName="external"
+            isTrailingIcon
+          >
+            Map to school timetable
+          </OakSecondaryLink>
+        )}
+      </OakFlex>
       {yearSubheading && (
         <OakHeading
           tag="h4"

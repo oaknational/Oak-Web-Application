@@ -54,12 +54,13 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
 
   return (
     <LoginRequiredButton
+      rel="nofollow"
       loginRequired={loginRequired ?? false}
       geoRestricted={geoRestricted ?? false}
-      onboardingProps={{ name: "Download all resources" }}
-      signUpProps={{ name: "Download all resources" }}
+      onboardingProps={{ name: "Download all" }}
+      signUpProps={{ name: "Download all" }}
       actionProps={{
-        name: "Download all resources",
+        name: "Download all",
         onClick: onClickDownloadAll,
         isActionGeorestricted: true,
         shouldHidewhenGeoRestricted: true,
@@ -68,9 +69,9 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
       sizeVariant="small"
       element="a"
       data-testid="download-all-button"
-      iconName="arrow-right"
+      iconName="download"
       isTrailingIcon
-      aria-label="Download all resources"
+      aria-label="Download all"
     />
   );
 };

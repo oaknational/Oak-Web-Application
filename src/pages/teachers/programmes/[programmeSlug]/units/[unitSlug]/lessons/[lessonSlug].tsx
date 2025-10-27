@@ -21,7 +21,7 @@ import { populateLessonWithTranscript } from "@/utils/handleTranscript";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesModal/TeacherNotesModal";
 import { useLesson } from "@/pages-helpers/teacher/useLesson/useLesson";
-import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
+import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share/shareTypes";
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 import Banners from "@/components/SharedComponents/Banners";
@@ -55,6 +55,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
 
   const {
     teacherNotesButton,
+    TeacherNotesButtonProps,
     teacherNoteHtml,
     teacherNotesOpen,
     setTeacherNotesOpen,
@@ -107,13 +108,14 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
       }}
     >
       <OakThemeProvider theme={oakDefaultTheme}>
-        <Banners hideIfFeatureFlagDisabled />
+        <Banners />
         <LessonOverview
           lesson={{
             ...curriculumData,
             isCanonical: false,
             isSpecialist: false,
             teacherShareButton: teacherNotesButton,
+            teacherShareButtonProps: TeacherNotesButtonProps,
             teacherNoteHtml,
             teacherNoteError: error,
           }}

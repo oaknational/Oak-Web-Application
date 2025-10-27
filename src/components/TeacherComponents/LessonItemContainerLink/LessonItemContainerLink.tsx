@@ -124,6 +124,7 @@ export function LessonItemContainerLink({
     <ButtonAsLink
       {...buttonProps}
       data-testid="download-button"
+      rel="nofollow"
       {...linkProps}
     />
   );

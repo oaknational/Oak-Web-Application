@@ -1,7 +1,9 @@
 import {
   anchorIntersectionObserver,
   createNode,
+  findAccosiatedLabel,
   findContainingAnchor,
+  findParentNode,
   getAllTabFocusableElements,
 } from "./dom";
 
@@ -148,14 +150,14 @@ describe("findContainingAnchor", () => {
   it("direct", () => {
     const target = root.querySelector(`*[data-testid="DIRECT"]`)!;
     const el = findContainingAnchor(target);
-    expect(el);
+    expect(el).toBeTruthy();
     expect(el?.id).toBe("direct");
   });
 
   it("as parent", () => {
     const target = root.querySelector(`*[data-testid="AS_PARENT"]`)!;
     const el = findContainingAnchor(target);
-    expect(el);
+    expect(el).toBeTruthy();
     expect(el?.id).toBe("as-parent");
   });
 
@@ -213,5 +215,89 @@ describe("getAllTabFocusableElements()", () => {
   it("should be empty if no root element supplied", () => {
     const elements = getAllTabFocusableElements(null);
     expect(elements).toEqual([]);
+  });
+});
+
+describe("findParentNode", () => {
+  it("should find parent node", () => {
+    const root = document.createElement("div");
+    root.innerHTML = `
+      <div>
+        <label id="HERE">
+          <div>
+            <input />
+          </div>
+        </label>
+      </div>
+    `;
+    const el = findParentNode(root.querySelector("input")!, (el) => {
+      return el.tagName === "LABEL";
+    });
+    expect(el).toBeDefined();
+    expect(el?.getAttribute("id")).toEqual("HERE");
+  });
+
+  it("return undefined if not found", () => {
+    const root = document.createElement("div");
+    root.innerHTML = `
+      <div>
+        <div>
+          <input />
+        </div>
+      </div>
+    `;
+    const el = findParentNode(root.querySelector("input")!, (el) => {
+      return el.tagName === "LABEL";
+    });
+    expect(el).toBeUndefined();
+  });
+});
+
+describe("findAccosiatedLabel", () => {
+  it("with parent", () => {
+    const root = document.createElement("div");
+    root.innerHTML = `
+      <div>
+        <label id="HERE">
+          <div>
+            <input />
+          </div>
+        </label>
+      </div>
+    `;
+    const el = findAccosiatedLabel(root, root.querySelector("input")!);
+    expect(el).toBeDefined();
+    expect(el?.getAttribute("id")).toEqual("HERE");
+  });
+
+  it("with 'for'", () => {
+    const root = document.createElement("div");
+    root.innerHTML = `
+      <div>
+        <label id="HERE" for="TARGET">
+          <div>
+          </div>
+        </label>
+        <input id="TARGET" />
+      </div>
+    `;
+    const el = findAccosiatedLabel(root, root.querySelector("input")!);
+    expect(el).toBeDefined();
+    expect(el?.getAttribute("id")).toEqual("HERE");
+  });
+
+  it("when not present", () => {
+    const root = document.createElement("div");
+    root.innerHTML = `
+      <div>
+        <label id="HERE">
+          <div>
+          </div>
+        </label>
+        <input id="TARGET" />
+      </div>
+    `;
+    const el = findAccosiatedLabel(root, root.querySelector("input")!);
+    expect(el).toBeNull();
   });
 });

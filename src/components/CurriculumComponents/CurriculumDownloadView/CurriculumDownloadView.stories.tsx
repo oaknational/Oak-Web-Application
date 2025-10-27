@@ -1,7 +1,7 @@
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/nextjs";
 import { useEffect, useState } from "react";
-import { action } from "@storybook/addon-actions";
+import { action } from "storybook/actions";
 
 import { DOWNLOAD_TYPES } from "./helper";
 
@@ -9,6 +9,13 @@ import Component, { CurriculumDownloadViewData } from ".";
 
 const meta: Meta<typeof Component> = {
   component: Component,
+  decorators: [
+    (Story) => (
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <Story />
+      </OakThemeProvider>
+    ),
+  ],
   argTypes: {},
 };
 
@@ -127,16 +134,14 @@ export const CurriculumDownloadView: Story = {
     };
 
     return (
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Component
-          data={data}
-          onChange={setData}
-          onSubmit={onSubmit}
-          isSubmitting={isSubmitting}
-          schools={[]}
-          availableDownloadTypes={DOWNLOAD_TYPES}
-        />
-      </OakThemeProvider>
+      <Component
+        data={data}
+        onChange={setData}
+        onSubmit={onSubmit}
+        isSubmitting={isSubmitting}
+        schools={[]}
+        availableDownloadTypes={DOWNLOAD_TYPES}
+      />
     );
   },
 };

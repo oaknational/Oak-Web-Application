@@ -1,14 +1,19 @@
-import { GetServerSideProps, GetServerSidePropsResult, NextPage } from "next";
+import {
+  GetStaticPathsResult,
+  GetStaticProps,
+  GetStaticPropsResult,
+  NextPage,
+} from "next";
 import { OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
 import { PortableTextComponents } from "@portabletext/react";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import { CampaignPage } from "@/common-lib/cms-types/campaignPage";
+import {
+  CampaignContentType,
+  CampaignPage,
+} from "@/common-lib/cms-types/campaignPage";
 import CMSClient from "@/node-lib/cms";
 import AppLayout from "@/components/SharedComponents/AppLayout";
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
-import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
-import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023, {
   KeyStagesData,
@@ -16,11 +21,36 @@ import curriculumApi2023, {
 import { CampaignPageHeader } from "@/components/GenericPagesComponents/CampaignPageHeader/CampaignPageHeader";
 import { CampaignPageIntro } from "@/components/GenericPagesComponents/CampaignPageIntro/CampaignPageIntro";
 import { CampaignPromoBanner } from "@/components/GenericPagesComponents/CampaignPromoBanner/CampaignPromoBanner";
+import { CampaignVideoBanner } from "@/components/GenericPagesComponents/CampaignVideoBanner/CampaignVideoBanner";
+import CampaignNewsletterSignup from "@/components/GenericPagesComponents/CampaignNewsletterSignup/CampaignNewsletterSignup";
+import {
+  shouldSkipInitialBuild,
+  getFallbackBlockingConfig,
+} from "@/node-lib/isr";
+
+export const blockOrder = [
+  "CampaignIntro",
+  "CampaignVideoBanner",
+  "NewsletterSignUp",
+  "CampaignPromoBanner",
+];
+
+export function sortCampaignBlocksByBlockType(
+  sortOrder: string[],
+  campaignBlocks: CampaignPage["content"],
+): CampaignContentType[] {
+  return sortOrder
+    .map((blockType) => {
+      return campaignBlocks.filter(({ type }) => type === blockType);
+    })
+    .flat();
+}
 
 export type CampaignSinglePageProps = {
   campaign: CampaignPage;
   keyStages: KeyStagesData;
 };
+
 export const campaignTextStyles: PortableTextComponents = {
   block: {
     heading1: (props) => {
@@ -47,6 +77,17 @@ export const campaignTextStyles: PortableTextComponents = {
         </OakHeading>
       );
     },
+    heading4: (props) => {
+      return (
+        <OakHeading
+          $font={["heading-6", "heading-5", "heading-4"]}
+          tag="h4"
+          $mb={"space-between-m"}
+        >
+          {props.children}
+        </OakHeading>
+      );
+    },
     heading5: (props) => {
       return (
         <OakHeading
@@ -64,6 +105,11 @@ export const campaignTextStyles: PortableTextComponents = {
   },
 };
 const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
+  const sortedContent = sortCampaignBlocksByBlockType(
+    blockOrder,
+    props.campaign.content,
+  );
+
   return (
     <AppLayout
       seoProps={{
@@ -87,13 +133,22 @@ const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
           campaignHeader={props.campaign.header}
           keyStages={props.keyStages}
         />
-        {props.campaign.content.map((section) => {
+        {sortedContent.map((section: CampaignContentType) => {
           if (section.type === "CampaignIntro") {
             return (
               <CampaignPageIntro
                 textStyles={campaignTextStyles}
                 heading={section.headingPortableTextWithPromo}
                 body={section.bodyPortableTextWithPromo}
+                key={section.type}
+              />
+            );
+          }
+          if (section.type === "NewsletterSignUp") {
+            return (
+              <CampaignNewsletterSignup
+                textStyles={campaignTextStyles}
+                {...section}
                 key={section.type}
               />
             );
@@ -108,8 +163,23 @@ const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
                   body={section.bodyPortableTextWithPromo}
                   media={media}
                   key={section.type}
+                  buttonCta={section.buttonCta}
+                  buttonUrl={section.buttonUrl}
                 />
               );
+          }
+          if (section.type === "CampaignVideoBanner") {
+            if (section.video) {
+              return (
+                <CampaignVideoBanner
+                  key={section.type}
+                  textStyles={campaignTextStyles}
+                  heading={section.headingPortableTextWithPromo}
+                  subheading={section.subheadingPortableTextWithPromo}
+                  video={section.video}
+                />
+              );
+            }
           }
         })}
       </OakFlex>
@@ -119,56 +189,32 @@ const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
 
 type URLParams = { campaignSlug: string };
 
-// TODO: Uncomment when ready for static generation
-// export const getStaticPaths = async () => {
-//   if (shouldSkipInitialBuild) {
-//     return getFallbackBlockingConfig();
-//   }
+export const getStaticPaths = async () => {
+  if (shouldSkipInitialBuild) {
+    return getFallbackBlockingConfig();
+  }
 
-//   const campaignPages = await CMSClient.campaigns();
+  const campaignPages = await CMSClient.campaigns();
 
-//   const paths = campaignPages.map((campaign) => ({
-//     params: { campaignSlug: campaign.slug },
-//   }));
+  const paths = campaignPages.map((campaign) => ({
+    params: { campaignSlug: campaign.slug },
+  }));
 
-//   const config: GetStaticPathsResult<URLParams> = {
-//     fallback: "blocking",
-//     paths,
-//   };
-//   return config;
-// };
+  const config: GetStaticPathsResult<URLParams> = {
+    fallback: "blocking",
+    paths,
+  };
+  return config;
+};
 
-const posthogApiKey = getBrowserConfig("posthogApiKey");
-
-export const getServerSideProps: GetServerSideProps<
+export const getStaticProps: GetStaticProps<
   CampaignSinglePageProps,
   URLParams
 > = async (context) => {
   return getPageProps({
-    page: "campaign-single::getServerSideProps",
+    page: "campaign-single::getStaticProps",
     context,
-    withIsr: false,
     getProps: async () => {
-      const posthogUserId = getPosthogIdFromCookie(
-        context.req.cookies,
-        posthogApiKey,
-      );
-
-      let variantKey: string | boolean | undefined;
-
-      if (posthogUserId) {
-        variantKey = await getFeatureFlag({
-          featureFlagKey: "mythbusting-campaign",
-          posthogUserId,
-        });
-      }
-
-      if (variantKey !== true) {
-        return {
-          notFound: true,
-        };
-      }
-
       const campaignSlug = context.params?.campaignSlug as string;
       const isPreviewMode = context.preview === true;
 
@@ -187,7 +233,7 @@ export const getServerSideProps: GetServerSideProps<
         };
       }
 
-      const results: GetServerSidePropsResult<CampaignSinglePageProps> = {
+      const results: GetStaticPropsResult<CampaignSinglePageProps> = {
         props: {
           campaign: campaignPageResult,
           keyStages,

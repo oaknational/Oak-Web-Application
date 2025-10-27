@@ -53,6 +53,9 @@ const baseProps = {
   isShareable: true,
   onClickShareAll: jest.fn(),
   showShare: true,
+  trackTeachingMaterialsSelected: jest.fn(),
+  trackCreateWithAiButtonClicked: jest.fn(),
+  contentRestricted: false,
 };
 
 const render = renderWithProviders();
@@ -76,7 +79,7 @@ describe("LessonOverviewHeaderDownloadAllButton", () => {
 
     expect(downloadButton).toBeInTheDocument();
     expect(downloadButton.tagName).toBe("A");
-    expect(getByText("Download all resources")).toBeInTheDocument();
+    expect(getByText("Download all")).toBeInTheDocument();
     expect(downloadButton).toHaveAttribute("href");
     downloadButton.click();
     expect(mockDownloadAllButton).toHaveBeenCalled();

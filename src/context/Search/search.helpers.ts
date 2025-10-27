@@ -6,6 +6,7 @@ import {
   UnitSearchHit,
   SearchHit,
   PathwaySchema,
+  SuggestedSearchFilter,
 } from "./search.types";
 import { RawHighlightSchema } from "./search.schema";
 
@@ -20,6 +21,8 @@ import {
 } from "@/common-lib/urls";
 import { LEGACY_COHORT } from "@/config/cohort";
 import { removeHTMLTags } from "@/components/TeacherViews/Search/helpers";
+import { SearchIntent } from "@/common-lib/schemas/search-intent";
+import { SearchFilterMatchTypeValueType } from "@/browser-lib/avo/Avo";
 
 const reportError = errorReporter("search/helpers");
 
@@ -80,7 +83,7 @@ const sortFilters = (filters: string | string[] | undefined) => {
   } else {
     filterArray = filters;
   }
-  return filterArray.sort((a, b) => (a < b ? -1 : 1)).join(",");
+  return filterArray.toSorted((a, b) => (a < b ? -1 : 1)).join(",");
 };
 
 export const getActiveFilters = (query: ParsedUrlQuery) => {
@@ -347,3 +350,71 @@ export const getHighlightFromAllFields = (
     );
   }
 };
+
+export function convertSearchIntentToFilters(
+  searchIntent?: SearchIntent,
+): SuggestedSearchFilter[] | undefined {
+  if (!searchIntent) return undefined;
+
+  // Define the priority order for filter types
+  const filterOrder: SuggestedSearchFilter["type"][] = [
+    "subject",
+    "key-stage",
+    "year",
+    "exam-board",
+  ];
+
+  // Collect all filters first
+  const allFilters: SuggestedSearchFilter[] = [];
+
+  // Helper function to add filter if it exists
+  const addFilter = (
+    item: { title: string; slug: string } | null,
+    type: SuggestedSearchFilter["type"],
+    source: SearchFilterMatchTypeValueType,
+  ) => {
+    if (item) {
+      allFilters.push({
+        type,
+        value: item.title,
+        slug: item.slug,
+        source,
+      });
+    }
+  };
+
+  // Add direct matches
+  if (searchIntent.directMatch) {
+    const { subject, keyStage, year, examBoard } = searchIntent.directMatch;
+    addFilter(subject, "subject", "fuzzy_match");
+    addFilter(keyStage, "key-stage", "fuzzy_match");
+    addFilter(year, "year", "fuzzy_match");
+    addFilter(examBoard, "exam-board", "fuzzy_match");
+  }
+
+  // Add suggested filters
+  for (const filter of searchIntent.suggestedFilters) {
+    addFilter(filter, filter.type, "ai");
+  }
+
+  // Remove duplicates
+  const seen = new Set<string>();
+  const uniqueFilters = allFilters.filter((filter) => {
+    const key = `${filter.type}-${filter.value}-${filter.slug}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+
+  // Sort by the defined priority order
+  uniqueFilters.sort((a, b) => {
+    const aIndex = filterOrder.indexOf(a.type);
+    const bIndex = filterOrder.indexOf(b.type);
+    return aIndex - bIndex;
+  });
+
+  return uniqueFilters;
+}
+
+export const normalizeTerm = (s: string) =>
+  s.trim().replaceAll(/\s+/g, " ").toLowerCase();

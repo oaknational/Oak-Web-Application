@@ -71,4 +71,11 @@ query lessonOverview(
     lesson_count
     supplementary_data
   }
+  tpcWorks: published_mv_get_tpc_works_by_lesson_slug_1_0_0(
+    where: { slug: { _eq: $lessonSlug } }
+  ) {
+    slug
+    lesson_id
+    works_list
+  }
 }

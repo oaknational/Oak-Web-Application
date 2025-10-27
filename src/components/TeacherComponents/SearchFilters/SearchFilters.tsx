@@ -68,6 +68,7 @@ const renderFilterSection = (
                 checked: filter.checked,
                 filterType,
                 filterValue: filter.title,
+                searchFilterMatchType: "default",
               });
               filter.onChange();
             }}
@@ -119,6 +120,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
                   checked: legacyFilter.checked,
                   filterType: "Lesson Cohort filter",
                   filterValue: "2023-2026",
+                  searchFilterMatchType: "default",
                 });
                 legacyFilter.onChange();
               }}
@@ -171,6 +173,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
                     checked: keyStageFilter.checked,
                     filterType: "Key stage filter",
                     filterValue: keyStageFilter.title,
+                    searchFilterMatchType: "default",
                   });
                   keyStageFilter.onChange();
                 }}

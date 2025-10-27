@@ -72,7 +72,7 @@ export const DOWNLOAD_TYPE_LABELS: {
   {
     id: "national-curriculum",
     label: "National curriculum",
-    subTitle: "XLSX",
+    subTitle: "Excel (accessible)",
     icon: "spreadsheet",
   },
 ];

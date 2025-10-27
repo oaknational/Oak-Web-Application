@@ -4,7 +4,7 @@ import {
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/nextjs";
 
 import FocusIndicatorComponent from ".";
 
