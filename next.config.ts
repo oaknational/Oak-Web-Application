@@ -121,16 +121,16 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
         headers: [
           {
             key: "Access-Control-Allow-Origin",
-            value: "*",
-            // releaseStage === "development" || releaseStage === "preview"
-            //   ? "*"
-            //   : [
-            //       "*.vercel-preview.thenational.academy",
-            //       "*.vercel.thenational.academy",
-            //       "owa.thenational.academy",
-            //       "owa-vercel.thenational.academy",
-            //       "www.thenational.academy",
-            //     ].join(","),
+            value:
+              releaseStage === "development"
+                ? "*"
+                : [
+                    "*.vercel-preview.thenational.academy",
+                    "*.vercel.thenational.academy",
+                    "owa.thenational.academy",
+                    "owa-vercel.thenational.academy",
+                    "www.thenational.academy",
+                  ].join(","),
           },
           {
             key: "Access-Control-Allow-Methods",
