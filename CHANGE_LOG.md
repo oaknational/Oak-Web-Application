@@ -1,3 +1,12 @@
+## [1.901.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.901.1...v1.901.2) (2025-10-27)
+
+## [1.901.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.901.0...v1.901.1) (2025-10-24)
+
+
+### Bug Fixes
+
+* remove browser redirect from use share hook ([7836d4d](https://github.com/oaknational/Oak-Web-Application/commit/7836d4ddacdddb843ff287b8e25316dc14056f03))
+
 # [1.901.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.900.1...v1.901.0) (2025-10-24)
 
 
