@@ -1,5 +1,5 @@
 import { GetServerSideProps } from "next";
-import { getServerSideSitemap } from "next-sitemap";
+import { getServerSideSitemapLegacy } from "next-sitemap";
 
 import { buildAllUrlFields } from "@/pages-helpers/teacher/sitemap-pages/sitemap-pages-helper";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
@@ -14,10 +14,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     firstHalf: false,
     teachersSitemapData,
   });
-  return getServerSideSitemap(context, fields);
+  return getServerSideSitemapLegacy(context, fields);
 };
 
-export default function Sitemap() {
-  // Never actually gets called but keep static analysis and next.js happy
-  return <div />;
-}
+export default function Sitemap() {} //NOSONAR
