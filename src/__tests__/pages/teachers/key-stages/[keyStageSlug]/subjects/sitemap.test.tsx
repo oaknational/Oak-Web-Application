@@ -1,16 +1,18 @@
 import { ParsedUrlQuery } from "node:querystring";
 
-import { getServerSideSitemap } from "next-sitemap";
+import { getServerSideSitemapLegacy } from "next-sitemap";
 import { GetServerSidePropsContext, PreviewData } from "next";
 
 import { getServerSideProps } from "@/pages/teachers/key-stages/sitemap.xml";
 import { generatedFields } from "@/node-lib/curriculum-api-2023/fixtures/keyStageSitemap.fixture";
 
 jest.mock("next-sitemap", () => ({
-  getServerSideSitemap: jest.fn(),
+  getServerSideSitemapLegacy: jest.fn(),
 }));
 
-type MockedGetServerSideSitemap = jest.Mock<typeof getServerSideSitemap>;
+type MockedgetServerSideSitemapLegacy = jest.Mock<
+  typeof getServerSideSitemapLegacy
+>;
 
 type SeoData = {
   loc: string;
@@ -26,7 +28,7 @@ describe("curriculum phase options sitemap", () => {
     delete process.env.SITEMAP_BASE_URL;
   });
 
-  it("should call getServerSideSitemap with the expected data", async () => {
+  it("should call getServerSideSitemapLegacy with the expected data", async () => {
     const context = {} as GetServerSidePropsContext<
       ParsedUrlQuery,
       PreviewData
@@ -37,7 +39,7 @@ describe("curriculum phase options sitemap", () => {
     const newDate = new Date();
 
     (
-      getServerSideSitemap as unknown as MockedGetServerSideSitemap
+      getServerSideSitemapLegacy as unknown as MockedgetServerSideSitemapLegacy
     ).mock.calls[0][1].forEach((argument: SeoData, index: number) => {
       expect(argument.loc).toEqual(generatedFields[index]?.loc);
       expect(argument.lastmod.split("T")[0]).toEqual(
