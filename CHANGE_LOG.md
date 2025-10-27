@@ -1,3 +1,21 @@
+## [1.901.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.901.0...v1.901.1) (2025-10-24)
+
+
+### Bug Fixes
+
+* remove browser redirect from use share hook ([7836d4d](https://github.com/oaknational/Oak-Web-Application/commit/7836d4ddacdddb843ff287b8e25316dc14056f03))
+
+# [1.901.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.900.1...v1.901.0) (2025-10-24)
+
+
+### Features
+
+* adds terraform required_version attribute to constrain which versions of Terraform CLI can be used with the configuration ([d6a03f1](https://github.com/oaknational/Oak-Web-Application/commit/d6a03f1386b4a375a8db22339e85c0304fffaf81))
+* adds workflow for terraform linting ([24012b1](https://github.com/oaknational/Oak-Web-Application/commit/24012b109f9beea592e97058940d389d54c3a311))
+* uses commit SHA instead of branch name ([79070b2](https://github.com/oaknational/Oak-Web-Application/commit/79070b2db2a33d153ba1db90b2c5c9dfc3144367))
+
+## [1.900.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.900.0...v1.900.1) (2025-10-23)
+
 # [1.900.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.8...v1.900.0) (2025-10-23)
 
 
