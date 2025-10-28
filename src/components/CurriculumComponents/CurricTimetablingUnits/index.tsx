@@ -108,6 +108,12 @@ export const CurricTimetablingUnits = ({
     ? unitData.yearData[data.year]?.units
     : undefined;
 
+  const totalNumberOfLessons =
+    unitsForYear?.reduce(
+      (total, unit) => total + (unit.lessons?.length ?? 0),
+      0,
+    ) ?? 0;
+
   return (
     <>
       {/* TODO: <ThemeProvider/> shouldn't be required, work down the tree and remove old components */}
@@ -188,8 +194,8 @@ export const CurricTimetablingUnits = ({
                           />
                           <CurricTermCard
                             title="Autumn Term"
-                            coveredNumberOfLessons={unitsForYear.length}
-                            totalNumberOfLessons={unitsForYear.length}
+                            coveredNumberOfLessons={totalNumberOfLessons}
+                            totalNumberOfLessons={totalNumberOfLessons}
                           >
                             <UnitList role="list">
                               {unitsForYear.map((unit, unitIndex) => {
