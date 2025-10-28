@@ -1,5 +1,6 @@
 import { doUnitsHaveNc, findUnitOrOptionBySlug } from "./units";
 
+import { createFilter } from "@/fixtures/curriculum/filters";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { createUnitOption } from "@/fixtures/curriculum/unitOption";
 import { createYearData } from "@/fixtures/curriculum/yearData";
@@ -15,9 +16,14 @@ describe("findUnitOrOptionBySlug", () => {
             createUnitOption({ slug: "u-0-1/uo-0" }),
             createUnitOption({ slug: "u-0-1/uo-1" }),
             createUnitOption({ slug: "u-0-1/uo-2" }),
+            createUnitOption({ slug: "u-0-1/uo-3" }),
+            createUnitOption({ slug: "u-0-1/uo-3" }),
           ],
         }),
-        createUnit({ slug: "u-0-2" }),
+        createUnit({ slug: "u-0-2", tier_slug: "foundation" }),
+        createUnit({ slug: "u-0-2", tier_slug: "higher" }),
+        createUnit({ slug: "u-0-3", subject_slug: "physics" }),
+        createUnit({ slug: "u-0-3", subject_slug: "combined-science" }),
       ],
     }),
     "8": createYearData({
@@ -60,6 +66,56 @@ describe("findUnitOrOptionBySlug", () => {
       unit: undefined,
       unitOption: undefined,
     });
+  });
+
+  it("tiers", () => {
+    const result1 = findUnitOrOptionBySlug(
+      yearData,
+      "u-0-2",
+      createFilter({ tiers: ["foundation"] }),
+    );
+    expect(result1.unit).toEqual(
+      expect.objectContaining({
+        slug: "u-0-2",
+        tier_slug: "foundation",
+      }),
+    );
+    const result2 = findUnitOrOptionBySlug(
+      yearData,
+      "u-0-2",
+      createFilter({ tiers: ["higher"] }),
+    );
+    expect(result2.unit).toEqual(
+      expect.objectContaining({
+        slug: "u-0-2",
+        tier_slug: "higher",
+      }),
+    );
+  });
+
+  it("child subjects", () => {
+    const result1 = findUnitOrOptionBySlug(
+      yearData,
+      "u-0-3",
+      createFilter({ childSubjects: ["combined-science"] }),
+    );
+    expect(result1.unit).toEqual(
+      expect.objectContaining({
+        slug: "u-0-3",
+        subject_slug: "combined-science",
+      }),
+    );
+    const result2 = findUnitOrOptionBySlug(
+      yearData,
+      "u-0-3",
+      createFilter({ childSubjects: ["physics"] }),
+    );
+    expect(result2.unit).toEqual(
+      expect.objectContaining({
+        slug: "u-0-3",
+        subject_slug: "physics",
+      }),
+    );
   });
 });
 
