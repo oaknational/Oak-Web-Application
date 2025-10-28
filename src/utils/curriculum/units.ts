@@ -19,11 +19,19 @@ export function findUnitOrOptionBySlug(
         ) {
           return false;
         }
+        if (
+          filters.childSubjects.length > 0 &&
+          filters.childSubjects[0] !== "all" &&
+          !filters.childSubjects.includes(unit.subject_slug)
+        ) {
+          return false;
+        }
       }
       return true;
     }
     return false;
   });
+
   let unitOption;
 
   if (!unit) {
