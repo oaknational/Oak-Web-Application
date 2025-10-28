@@ -1,202 +1,389 @@
-import { FC, Fragment } from "react";
+import { ReactNode, useMemo } from "react";
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import {
   OakFlex,
   OakGrid,
   OakGridArea,
-  OakGridAreaProps,
-  OakMaxWidth,
-  OakTypography,
   OakHeading,
   OakBox,
-  OakPrimaryButton,
+  OakP,
+  OakIcon,
+  OakSpan,
+  OakBoxProps,
+  OakIconProps,
 } from "@oaknational/oak-components";
+import styled from "styled-components";
 
 import CMSClient from "@/node-lib/cms";
-import { AboutWhoWeArePage, TextBlock } from "@/common-lib/cms-types";
+import { AboutWhoWeArePage } from "@/common-lib/cms-types";
 import { decorateWithIsr } from "@/node-lib/isr";
 import Layout from "@/components/AppComponents/Layout";
-import Card from "@/components/SharedComponents/Card";
-import OutlineHeading from "@/components/SharedComponents/OutlineHeading";
-import GenericContactCard from "@/components/GenericPagesComponents/GenericContactCard";
-import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import CMSVideo from "@/components/SharedComponents/CMSVideo";
-import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
-import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSummaryCard";
 import getPageProps from "@/node-lib/getPageProps";
-import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
-import TranscriptToggle from "@/components/TeacherComponents/TranscriptViewer/TranscriptToggle";
 
 export type AboutPageProps = {
   pageData: AboutWhoWeArePage;
 };
 
-type TimeLineProps = TextBlock & OakGridAreaProps;
+const CustomHeaderTextOakGridArea = styled(OakGridArea)`
+  grid-column: span 6;
+  @media (max-width: 920px) {
+    grid-column: span 12;
+  }
+`;
 
-const TimeLineCard: FC<TimeLineProps> = ({
-  title,
-  bodyPortableText,
-  $colStart,
-  $colSpan,
-  cta,
-}) => {
+const CustomHeaderImageOakGridArea = styled(OakGridArea)`
+  display: block;
+  @media (max-width: 920px) {
+    display: none;
+  }
+`;
+
+const CustomWeAreItemOakGridArea = styled(OakGridArea)`
+  grid-column: span 3;
+  @media (max-width: 1040px) {
+    grid-column: span 6;
+  }
+`;
+
+function WeAre() {
+  const items: {
+    background: OakBoxProps["$background"];
+    title: string;
+    text: string;
+  }[] = [
+    {
+      background: "bg-decorative3-main",
+      title: "Built for the reality of teaching",
+      text: "We get it. Time is tight, classes vary, and only teachers can know pupils best. That’s why our materials are flexible tools to adapt, not scripts to follow: a starting point that supports your expertise and style.",
+    },
+    {
+      background: "bg-decorative4-main",
+      title: "Expert created and quality assured",
+      text: "Created by subject and curriculum experts, our resources are informed by the best available evidence of what works, aligned to the national curriculum and tested by real teachers.",
+    },
+    {
+      background: "bg-decorative2-main",
+      title: "Free, and always will be",
+      text: "We’re funded by the Department for Education. No paywalls, package tiers, or hidden costs.",
+    },
+    {
+      background: "bg-decorative5-main",
+      title: "Independent and optional",
+      text: "Oak is by teachers, for teachers. Our board is publicly appointed, and our partners selected through an open process.",
+    },
+  ];
   return (
-    <OakFlex
-      $pv={"inner-padding-none"}
-      $ph={["inner-padding-m"]}
-      $flexDirection={"column"}
-      $mb={"space-between-xxxl"}
-    >
-      <OakGrid>
-        <OakGridArea $colSpan={$colSpan} $colStart={$colStart}>
-          <OutlineHeading $mb={[32, 0]} $fontSize={[50, 100]} tag={"h3"}>
-            {title}
-          </OutlineHeading>
-          <OakTypography $font={["body-2", "body-1"]}>
-            <PortableTextWithDefaults value={bodyPortableText} />
-          </OakTypography>
-          {cta && (
-            <OakFlex $alignItems={"center"} $mt={"space-between-m2"}>
-              <OakPrimaryButton
-                iconName={"arrow-right"}
-                isTrailingIcon={true}
-                href={getLinkHref(cta)}
-                element="a"
-              >
-                {cta.label}
-              </OakPrimaryButton>
-            </OakFlex>
-          )}
-        </OakGridArea>
-      </OakGrid>
-    </OakFlex>
+    <InnerMaxWidth>
+      <OakFlex
+        $flexDirection={"column"}
+        $mv="space-between-xxxl"
+        $gap={"all-spacing-10"}
+      >
+        <OakHeading tag="h3" $textAlign={"center"} $font={"heading-3"}>
+          We are...
+        </OakHeading>
+        <OakGrid
+          $rg={"all-spacing-4"}
+          $cg={"all-spacing-4"}
+          $gridAutoRows={"1fr"}
+          $mb={"space-between-xxl"}
+        >
+          {items.map(({ background, title, text }) => {
+            return (
+              <CustomWeAreItemOakGridArea $colSpan={12}>
+                <OakFlex $flexDirection={"column"} $gap={"all-spacing-6"}>
+                  <OakBox
+                    $height={"all-spacing-18"}
+                    $background={background}
+                    $borderRadius={"border-radius-m2"}
+                   />
+                  <OakFlex $gap={"all-spacing-4"} $flexDirection={"column"}>
+                    <OakHeading tag="h3" $font={"heading-5"}>
+                      {title}
+                    </OakHeading>
+                    <OakP>{text}</OakP>
+                  </OakFlex>
+                </OakFlex>
+              </CustomWeAreItemOakGridArea>
+            );
+          })}
+        </OakGrid>
+      </OakFlex>
+    </InnerMaxWidth>
   );
-};
+}
 
-const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
-  const videoCaptions =
-    pageData.intro.mediaType === "video" ? pageData.intro.video.captions : null;
+function Header() {
   return (
-    <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
-      <OakMaxWidth
-        $mb={["space-between-xl", "space-between-xxxl"]}
-        $mt={["space-between-xl", "space-between-xxxl"]}
+    <InnerMaxWidth>
+      <OakGrid
+        $cg="space-between-s"
+        $rg="space-between-s"
+        $pv={"inner-padding-xl7"}
+      >
+        <CustomHeaderTextOakGridArea $colSpan={12}>
+          <OakFlex $flexDirection={"column"} $gap={"all-spacing-6"}>
+            <OakHeading tag="h1" $font={"heading-2"}>
+              <OakSpan $background="mint" $ph={"inner-padding-ssx"}>
+                About Oak
+              </OakSpan>
+            </OakHeading>
+            <OakP $font={"heading-light-3"}>
+              We're here to support and inspire teachers to deliver great
+              teaching, so every pupil benefits
+            </OakP>
+          </OakFlex>
+        </CustomHeaderTextOakGridArea>
+        <CustomHeaderImageOakGridArea $colSpan={4} $colStart={9}>
+          <OakBox
+            $background={"mint30"}
+            $borderStyle={"solid"}
+            $borderColor={"mint110"}
+            $height={"all-spacing-18"}
+           />
+        </CustomHeaderImageOakGridArea>
+      </OakGrid>
+    </InnerMaxWidth>
+  );
+}
+
+const CustomFlex = styled(OakFlex)`
+  flex-direction: row;
+
+  @media (max-width: 1020px) {
+    flex-direction: column;
+  }
+`;
+
+function Breakout() {
+  return (
+    <CustomFlex $background={"mint"} $flexDirection={["column", "row", "row"]}>
+      <OakFlex
+        $flexGrow={1}
+        $background={"mint110"}
+        $height="all-spacing-20"
+        $aspectRatio={"4/3"}
+       />
+      <OakFlex
+        $flexShrink={1}
+        $ph={"inner-padding-xl8"}
+        $pv={"inner-padding-xl3"}
         $alignItems={"center"}
       >
-        <GenericSummaryCard {...pageData} />
-        <Card
-          $pv={32}
-          $ph={[16, 24]}
-          $flexDirection={["column", "column", "column"]}
-          $mb={[80, 92]}
-          $background="pink50"
-          $maxWidth={["100%", 812, "100%"]}
-          $mt={92}
+        <OakP $font={"heading-light-5"}>
+          We’re Oak, your trusted planning partner for great teaching. Our free,
+          adaptable resources evolve with education to give teachers and schools
+          the latest tools to deliver inspiring lessons, save time and improve
+          pupil outcomes.
+        </OakP>
+      </OakFlex>
+    </CustomFlex>
+  );
+}
+
+function Timeline() {
+  const items = [
+    {
+      subtitle: "From then",
+      title: "A rapid response to the pandemic",
+      text: [
+        "In 2020, teachers needed a quick way to keep pupils learning during lockdown. So we brought together a group of expert partners to support schools with thousands of lessons designed for remote learning.",
+      ],
+    },
+    {
+      subtitle: "To now",
+      title: "Complete resources for the classroom, schools and trusts",
+      text: [
+        "From early years to exam years, we now provide complete curriculum support for the classroom. Every national curriculum subject, every unit, every lesson, in one place.",
+        "We’re also transforming lesson prep with AI tools that help teachers create, adapt, and enhance their lessons in minutes, while keeping quality high and content safe.",
+      ],
+    },
+    {
+      subtitle: "And beyond",
+      title: "Staying ahead in a changing world",
+      text: [
+        "We’ve always anticipated the emerging needs of teachers – from building safe and secure AI tools, to making our platform code available to partners who want to integrate it directly. We’ll keep innovating as we find new ways to help teachers stay ahead in a changing world.",
+      ],
+    },
+  ];
+  return (
+    <OakBox $background={"mint30"}>
+      <InnerMaxWidth>
+        <OakFlex
+          $flexDirection={"column"}
+          $gap={"all-spacing-10"}
+          $pt={"inner-padding-xl7"}
         >
-          <OakFlex>
-            <BrushBorders hideOnMobileH color={"pink50"} />
-            <OakFlex
-              $gap={["space-between-m", "space-between-m", "space-between-xxl"]}
-              $flexDirection={["column", "column", "row"]}
-            >
-              <OakFlex $justifyContent={"center"} $alignItems={"center"}>
-                {pageData.intro.mediaType == "video" && (
-                  <CMSVideo
-                    hideCaptions={true}
-                    video={pageData.intro.video}
-                    location="marketing"
-                  />
-                )}
-              </OakFlex>
-              {videoCaptions && videoCaptions?.length > 0 && (
-                <OakBox $display={["block", "block", "none"]}>
-                  <TranscriptToggle transcriptSentences={videoCaptions} />
+          <OakGrid $cg="space-between-s" $rg="space-between-s">
+            <OakGridArea $colSpan={[12, 12, 8]} $colStart={[0, 0, 3]}>
+              <OakFlex $gap={"all-spacing-2"} $flexDirection={"column"}>
+                <OakBox $font={"heading-5"}>
+                  <OakSpan $background={"mint"} $ph={"inner-padding-ssx"}>
+                    Oak’s story
+                  </OakSpan>
                 </OakBox>
-              )}
-              <OakBox
-              // $width={["100%", "100%", "50%"]}
-              >
-                <OakTypography
-                  $mb={"space-between-m2"}
-                  $font={["body-2", "body-1"]}
-                >
-                  <PortableTextWithDefaults
-                    value={pageData.intro.bodyPortableText}
-                  />
-                </OakTypography>
-                <OakFlex $justifyContent={"flex-start"}>
-                  {pageData.intro.cta && (
-                    <OakPrimaryButton
-                      iconName={"arrow-right"}
-                      isTrailingIcon={true}
-                      element="a"
-                      href={getLinkHref(pageData.intro.cta)}
-                    >
-                      {pageData.intro.cta.label}
-                    </OakPrimaryButton>
-                  )}
-                </OakFlex>
-              </OakBox>
-            </OakFlex>
-          </OakFlex>
-          {videoCaptions && (
-            <OakBox
-              $mt={"space-between-xs"}
-              $display={["none", "none", "block"]}
-            >
-              <TranscriptToggle transcriptSentences={videoCaptions} />
-            </OakBox>
-          )}
-        </Card>
-        <TimeLineCard
-          bodyPortableText={pageData.timeline.from.bodyPortableText}
-          title={pageData.timeline.from.title}
-          $colStart={[1, 1]}
-          $colSpan={[12, 6]}
-        />
-        <TimeLineCard
-          bodyPortableText={pageData.timeline.to.bodyPortableText}
-          title={pageData.timeline.to.title}
-          $colStart={[1, 4]}
-          $colSpan={[12, 6]}
-        />
-        <TimeLineCard
-          bodyPortableText={pageData.timeline.beyond.bodyPortableText}
-          title={pageData.timeline.beyond.title}
-          cta={pageData.timeline.beyond.cta}
-          $colStart={[1, 7]}
-          $colSpan={[12, 6]}
-        />
-        <OakGrid
-          $mb={"space-between-xxxl"}
-          $cg={"space-between-m"}
-          $rg={"space-between-m2"}
+                <OakBox $font={"heading-3"}>
+                  As teaching evolves, so do we...
+                </OakBox>
+              </OakFlex>
+            </OakGridArea>
+          </OakGrid>
+          <OakGrid $cg="space-between-s" $rg="space-between-s">
+            <OakGridArea $colSpan={[12, 12, 12]} $colStart={[0, 2, 2]}>
+              <OakFlex $flexDirection={"column"}>
+                {items.map((item, itemIndex) => {
+                  const isLast = items.length - 1 === itemIndex;
+                  return (
+                    <OakFlex $gap={"all-spacing-4"}>
+                      <OakFlex
+                        $width={"all-spacing-6"}
+                        $flexShrink={0}
+                        $flexDirection={"column"}
+                        $alignItems={"center"}
+                      >
+                        <OakFlex
+                          $background={"bg-decorative1-main"}
+                          $borderColor={"border-decorative1-stronger"}
+                          $borderStyle={"solid"}
+                          $ba={"border-solid-m"}
+                          $width={"all-spacing-6"}
+                          $height={"all-spacing-6"}
+                          $borderRadius={"border-radius-circle"}
+                          $flexGrow={0}
+                         />
+                        <OakFlex
+                          $borderColor={"border-decorative1-stronger"}
+                          $borderStyle={isLast ? "dashed" : "solid"}
+                          $ba={"border-solid-none"}
+                          $bl={"border-solid-l"}
+                          $width={"space-between-none"}
+                          $flexGrow={1}
+                         />
+                      </OakFlex>
+                      <OakFlex
+                        $flexDirection={"column"}
+                        $gap={"all-spacing-2"}
+                        $mb={"space-between-xxl"}
+                      >
+                        <OakBox $font={"body-2-bold"}>
+                          <OakSpan
+                            $ph={"inner-padding-ssx"}
+                            $background={"mint"}
+                          >
+                            {item.subtitle}
+                          </OakSpan>
+                        </OakBox>
+                        <OakBox $font={"heading-light-5"}>{item.title}</OakBox>
+                        <OakBox>
+                          {item.text.map((textItem) => {
+                            return <OakP>{textItem}</OakP>;
+                          })}
+                        </OakBox>
+                      </OakFlex>
+                    </OakFlex>
+                  );
+                })}
+              </OakFlex>
+            </OakGridArea>
+          </OakGrid>
+        </OakFlex>
+      </InnerMaxWidth>
+    </OakBox>
+  );
+}
+
+function Explore() {
+  const items: {
+    iconName: OakIconProps["iconName"];
+    title: string;
+  }[] = [
+    {
+      iconName: "curriculum-plan",
+      title: "About Oak’s curriculum",
+    },
+    {
+      iconName: "ai-worksheet",
+      title: "Oak’s impact",
+    },
+    {
+      iconName: "ai-worksheet",
+      title: "Meet the team",
+    },
+    {
+      iconName: "ai-worksheet",
+      title: "Get involved",
+    },
+  ] as const;
+
+  return (
+    <OakBox $background={"mint"}>
+      <InnerMaxWidth>
+        <OakFlex
+          $flexDirection={"column"}
+          $mv="space-between-xxxl"
+          $gap={"all-spacing-10"}
         >
-          {pageData.principles.map((principle) => (
-            <Fragment key={principle.title}>
-              <OakGridArea $colSpan={[12, 6]}>
-                <Card $ph={[16, 24]} $background={"aqua"}>
-                  <BrushBorders hideOnMobileH hideOnMobileV color={"aqua"} />
-                  <OakHeading
-                    $font={["heading-5", "heading-4"]}
-                    tag={"h3"}
-                    $mb={["space-between-m"]}
+          <OakHeading tag="h3" $textAlign={"center"} $font={"heading-4"}>
+            Explore more about Oak
+          </OakHeading>
+          <OakGrid
+            $rg={"all-spacing-4"}
+            $cg={"all-spacing-4"}
+            $gridAutoRows={"1fr"}
+          >
+            {items.map(({ title, iconName }) => {
+              return (
+                <OakGridArea $colSpan={[12, 6, 6]}>
+                  <OakFlex
+                    $flexDirection={"row"}
+                    $pa={"inner-padding-m"}
+                    $background={"white"}
+                    $gap={"all-spacing-4"}
+                    $alignItems={"center"}
+                    $borderRadius={"border-radius-m2"}
                   >
-                    {principle.title}
-                  </OakHeading>
-                  <OakTypography $font={["body-2", "body-1"]}>
-                    <PortableTextWithDefaults
-                      value={principle.bodyPortableText}
-                    />
-                  </OakTypography>
-                </Card>
-              </OakGridArea>
-            </Fragment>
-          ))}
-        </OakGrid>
-        <GenericContactCard {...pageData.contactSection} />
-      </OakMaxWidth>
+                    <OakFlex>
+                      <OakIcon iconName={iconName} />
+                    </OakFlex>
+                    <OakFlex $flexGrow={1} $font={"body-1-bold"}>
+                      {title}
+                    </OakFlex>
+                    <OakFlex>
+                      <OakIcon iconName="arrow-right" />
+                    </OakFlex>
+                  </OakFlex>
+                </OakGridArea>
+              );
+            })}
+          </OakGrid>
+        </OakFlex>
+      </InnerMaxWidth>
+    </OakBox>
+  );
+}
+
+function InnerMaxWidth({ children }: { children: ReactNode }) {
+  const styleAttrs = useMemo(() => ({ maxWidth: 1280 + 40 * 2 }), []);
+  return (
+    <OakBox
+      style={styleAttrs}
+      $mh={"auto"}
+      $ph={["inner-padding-m", "inner-padding-xl3", "inner-padding-xl3"]}
+    >
+      {children}
+    </OakBox>
+  );
+}
+
+const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
+  return (
+    <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
+      <Header />
+      <Breakout />
+      <Timeline />
+      <WeAre />
+      <Explore />
     </Layout>
   );
 };
