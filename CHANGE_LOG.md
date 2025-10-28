@@ -1,3 +1,15 @@
+# [1.902.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.901.2...v1.902.0) (2025-10-28)
+
+
+### Bug Fixes
+
+* design review comments ([cf663ca](https://github.com/oaknational/Oak-Web-Application/commit/cf663cae01bbe6fd5bf1f93ccc2376860ec0c2e0))
+
+
+### Features
+
+* added component <CurricLessonItem/> ([c04ab40](https://github.com/oaknational/Oak-Web-Application/commit/c04ab40915abc136bb230ad8e1e48619a66a0dfe))
+
 ## [1.901.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.901.1...v1.901.2) (2025-10-27)
 
 ## [1.901.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.901.0...v1.901.1) (2025-10-24)
