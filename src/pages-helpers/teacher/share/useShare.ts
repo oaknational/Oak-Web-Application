@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useRouter } from "next/router";
 
 import { getUpdatedUrl } from "./getUpdatedUrl";
 import {
@@ -38,8 +37,6 @@ export const useShare = ({
   const [browserUrl, setBrowserUrl] = useState<string | null>(null);
 
   const { track } = useAnalytics();
-
-  const router = useRouter();
 
   const { lessonSlug, unitSlug } = curriculumTrackingProps;
 
@@ -144,23 +141,6 @@ export const useShare = ({
     coreTrackingProps,
     overrideExistingShareId,
   ]);
-
-  useEffect(() => {
-    if (browserUrl && window.location.href !== browserUrl) {
-      const url = new URL(browserUrl);
-      router.replace(
-        {
-          pathname: router.pathname,
-          query: {
-            ...router.query,
-            ...Object.fromEntries(url.searchParams),
-          },
-        },
-        undefined,
-        { shallow: true },
-      );
-    }
-  }, [browserUrl, router]);
 
   const shareActivated = (noteLengthChars?: number) => {
     if (!shareIdRef.current || !shareIdKeyRef.current) {
