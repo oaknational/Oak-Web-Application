@@ -103,6 +103,12 @@ export const CurricTimetablingUnits = ({
     router.replace(href);
   };
 
+  const handleNavigateToUnit = (unitSlug: string) => {
+    const searchParamsStr = searchParams?.toString() ?? "";
+    const href = `${basePath}/${unitSlug}${!searchParamsStr ? "" : `?${searchParamsStr}`}`;
+    router.replace(href);
+  };
+
   const onEditDetails = () => {
     setModalOpen(true);
   };
@@ -207,6 +213,7 @@ export const CurricTimetablingUnits = ({
               unitOptionData={selectedUnitOption}
               yearData={unitData.yearData}
               selectedThread={null}
+              onNavigateToUnit={handleNavigateToUnit}
             />
           )}
           {selectedUnitSlug && !selectedUnit && (

@@ -3,7 +3,7 @@
 import { join } from "path";
 
 import { OakHeading, OakFlex, OakBox } from "@oaknational/oak-components";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 import BulletList from "../OakComponentsKitchen/BulletList";
 import CurricUnitCard from "../CurricUnitCard";
@@ -28,6 +28,7 @@ type CurricUnitModalContentProps = {
   selectedThread: string | null;
   basePath: string;
   unitOptionData: UnitOption | undefined;
+  onNavigateToUnit?: (unitSlug: string) => void;
 };
 
 export default function CurricUnitModalContent({
@@ -36,11 +37,11 @@ export default function CurricUnitModalContent({
   yearData,
   selectedThread,
   basePath,
+  onNavigateToUnit,
 }: CurricUnitModalContentProps) {
   const searchParams = useSearchParams();
   const unitOptionsAvailable =
     !unitOptionData && (unitData?.unit_options ?? []).length > 0;
-  const router = useRouter();
   const { track } = useAnalytics();
   const optionalityModalOpen = false;
 
@@ -103,8 +104,9 @@ export default function CurricUnitModalContent({
                 iconBackground={undefined}
                 background={undefined}
                 onClick={() => {
-                  const url = join(basePath, unitData.slug);
-                  router.push(url);
+                  if (onNavigateToUnit) {
+                    onNavigateToUnit(unitData.slug);
+                  }
                 }}
               />
             </OakBox>

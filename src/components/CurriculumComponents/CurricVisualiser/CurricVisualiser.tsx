@@ -131,6 +131,12 @@ export default function CurricVisualiser({
     router.replace(href, undefined, { shallow: true, scroll: false });
   };
 
+  const handleNavigateToUnit = (unitSlug: string) => {
+    const searchParamsStr = searchParams?.toString() ?? "";
+    const href = `${basePath}/${unitSlug}${!searchParamsStr ? "" : `?${searchParamsStr}`}`;
+    router.replace(href, undefined, { shallow: true, scroll: false });
+  };
+
   const shouldDisplayCorePathway = getShouldDisplayCorePathway(ks4Options);
 
   return (
@@ -212,6 +218,7 @@ export default function CurricVisualiser({
             unitOptionData={unitOptionData}
             yearData={yearData}
             selectedThread={selectedThread?.slug ?? null}
+            onNavigateToUnit={handleNavigateToUnit}
           />
         )}
         {selectedUnitSlug && !unitData && (
