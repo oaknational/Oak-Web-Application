@@ -1,3 +1,56 @@
+## [1.903.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.903.0...v1.903.1) (2025-10-28)
+
+
+### Bug Fixes
+
+* curric visualiser modal selects wrong child-subject ([1851699](https://github.com/oaknational/Oak-Web-Application/commit/18516993d5387d4aca5466616dee92f194f7f9ba))
+* incorrect unit selected in modal when tier present ([d6a8af6](https://github.com/oaknational/Oak-Web-Application/commit/d6a8af6c572cfbbdca4ffa9f9e5c2900993781a7))
+
+# [1.903.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.902.0...v1.903.0) (2025-10-28)
+
+
+### Bug Fixes
+
+* make new fields nullable and optional ([7d0b9ef](https://github.com/oaknational/Oak-Web-Application/commit/7d0b9efdfaa8f7a0b0fa486152e42a3db8c74ac6))
+* pass name to hubspot form submit ([c6e5de0](https://github.com/oaknational/Oak-Web-Application/commit/c6e5de08cd69b733bae82245af5c8426e5b5731f))
+* remove manual sorting of content on campaign page ([bb3b22b](https://github.com/oaknational/Oak-Web-Application/commit/bb3b22b5c8919cf7a7bf182f464302d3b295b3c8))
+
+
+### Features
+
+* add option to hide links to product in campaign header ([8572693](https://github.com/oaknational/Oak-Web-Application/commit/8572693ce62f7cebfbf139d82b98702d2ebe8a0d))
+* add optional free text input field for school on campaign page ([2ce413b](https://github.com/oaknational/Oak-Web-Application/commit/2ce413b85187edd9c12c26c18d8bdd5d578f49fc))
+
+# [1.902.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.901.2...v1.902.0) (2025-10-28)
+
+
+### Bug Fixes
+
+* design review comments ([cf663ca](https://github.com/oaknational/Oak-Web-Application/commit/cf663cae01bbe6fd5bf1f93ccc2376860ec0c2e0))
+
+
+### Features
+
+* added component <CurricLessonItem/> ([c04ab40](https://github.com/oaknational/Oak-Web-Application/commit/c04ab40915abc136bb230ad8e1e48619a66a0dfe))
+
+## [1.901.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.901.1...v1.901.2) (2025-10-27)
+
+## [1.901.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.901.0...v1.901.1) (2025-10-24)
+
+
+### Bug Fixes
+
+* remove browser redirect from use share hook ([7836d4d](https://github.com/oaknational/Oak-Web-Application/commit/7836d4ddacdddb843ff287b8e25316dc14056f03))
+
+# [1.901.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.900.1...v1.901.0) (2025-10-24)
+
+
+### Features
+
+* adds terraform required_version attribute to constrain which versions of Terraform CLI can be used with the configuration ([d6a03f1](https://github.com/oaknational/Oak-Web-Application/commit/d6a03f1386b4a375a8db22339e85c0304fffaf81))
+* adds workflow for terraform linting ([24012b1](https://github.com/oaknational/Oak-Web-Application/commit/24012b109f9beea592e97058940d389d54c3a311))
+* uses commit SHA instead of branch name ([79070b2](https://github.com/oaknational/Oak-Web-Application/commit/79070b2db2a33d153ba1db90b2c5c9dfc3144367))
+
 ## [1.900.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.900.0...v1.900.1) (2025-10-23)
 
 # [1.900.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.8...v1.900.0) (2025-10-23)
