@@ -1,3 +1,18 @@
+# [1.903.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.902.0...v1.903.0) (2025-10-28)
+
+
+### Bug Fixes
+
+* make new fields nullable and optional ([7d0b9ef](https://github.com/oaknational/Oak-Web-Application/commit/7d0b9efdfaa8f7a0b0fa486152e42a3db8c74ac6))
+* pass name to hubspot form submit ([c6e5de0](https://github.com/oaknational/Oak-Web-Application/commit/c6e5de08cd69b733bae82245af5c8426e5b5731f))
+* remove manual sorting of content on campaign page ([bb3b22b](https://github.com/oaknational/Oak-Web-Application/commit/bb3b22b5c8919cf7a7bf182f464302d3b295b3c8))
+
+
+### Features
+
+* add option to hide links to product in campaign header ([8572693](https://github.com/oaknational/Oak-Web-Application/commit/8572693ce62f7cebfbf139d82b98702d2ebe8a0d))
+* add optional free text input field for school on campaign page ([2ce413b](https://github.com/oaknational/Oak-Web-Application/commit/2ce413b85187edd9c12c26c18d8bdd5d578f49fc))
+
 # [1.902.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.901.2...v1.902.0) (2025-10-28)
 
 
