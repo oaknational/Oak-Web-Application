@@ -42,10 +42,15 @@ const defaultCurriculumPhaseOptions: ReturnType<
 
 describe("CurricTimetablingUnits", () => {
   test("snapshot (mode=debug)", () => {
-    mockUseSearchParams.mockReturnValue(new URLSearchParams("mode=debug"));
+    mockUseSearchParams.mockReturnValue(
+      new URLSearchParams("mode=debug&year=1"),
+    );
     const { container } = renderWithTheme(
       <CurricTimetablingUnits
-        units={[createUnit({ slug: "test-1" }), createUnit({ slug: "test-2" })]}
+        units={[
+          createUnit({ slug: "test-1", year: "1" }),
+          createUnit({ slug: "test-2", year: "1" }),
+        ]}
         curriculumPhaseOptions={defaultCurriculumPhaseOptions}
         slugs={{
           phaseSlug: "primary",
@@ -58,10 +63,15 @@ describe("CurricTimetablingUnits", () => {
   });
 
   test("snapshot (mode=normal)", () => {
-    mockUseSearchParams.mockReturnValue(new URLSearchParams("mode=normal"));
+    mockUseSearchParams.mockReturnValue(
+      new URLSearchParams("mode=normal&year=1"),
+    );
     const { container } = renderWithTheme(
       <CurricTimetablingUnits
-        units={[createUnit({ slug: "test-1" }), createUnit({ slug: "test-2" })]}
+        units={[
+          createUnit({ slug: "test-1", year: "1" }),
+          createUnit({ slug: "test-2", year: "1" }),
+        ]}
         curriculumPhaseOptions={defaultCurriculumPhaseOptions}
         slugs={{
           phaseSlug: "primary",

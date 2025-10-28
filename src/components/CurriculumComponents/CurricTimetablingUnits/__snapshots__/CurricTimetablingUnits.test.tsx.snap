@@ -227,6 +227,29 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                   </label>
                 </div>
               </div>
+              <div
+                class="sc-fqkvVR sc-kAyceB kFehuI joHkzz"
+              >
+                <div
+                  class="sc-fqkvVR sc-kAyceB sc-dGCmGc dtUOUJ hRXrdT lfgWvw"
+                >
+                  <input
+                    class="sc-fjvvzt sc-bJBgwP fqgMCl imeCQW"
+                    data-testid="year-radio"
+                    id=":r1:"
+                    name="yearreact-use-id-test-result"
+                    type="radio"
+                    value="1"
+                  />
+                  <label
+                    class="sc-jlZhew sc-jxOSlx sc-lcIPJg iViuDy hocwcY cxwsZx"
+                    for=":r1:"
+                    pointer-events="none"
+                  >
+                    Year 1
+                  </label>
+                </div>
+              </div>
             </fieldset>
           </div>
           <div
@@ -338,7 +361,24 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
       >
         <div
           class="sc-fqkvVR fgBWrW"
-        />
+        >
+          <ul>
+            <li>
+              <div>
+                📦 
+                Test 1
+              </div>
+              <ul />
+            </li>
+            <li>
+              <div>
+                📦 
+                Test 2
+              </div>
+              <ul />
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -558,17 +598,40 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                     checked=""
                     class="sc-fjvvzt sc-bJBgwP fqgMCl imeCQW"
                     data-testid="all-years-radio"
-                    id=":r1:"
+                    id=":r2:"
                     name="yearreact-use-id-test-result"
                     type="radio"
                     value="0"
                   />
                   <label
                     class="sc-jlZhew sc-jxOSlx sc-lcIPJg iViuDy hocwcY cxwsZx"
-                    for=":r1:"
+                    for=":r2:"
                     pointer-events="none"
                   >
                     All
+                  </label>
+                </div>
+              </div>
+              <div
+                class="sc-fqkvVR sc-kAyceB kFehuI joHkzz"
+              >
+                <div
+                  class="sc-fqkvVR sc-kAyceB sc-dGCmGc dtUOUJ hRXrdT lfgWvw"
+                >
+                  <input
+                    class="sc-fjvvzt sc-bJBgwP fqgMCl imeCQW"
+                    data-testid="year-radio"
+                    id=":r3:"
+                    name="yearreact-use-id-test-result"
+                    type="radio"
+                    value="1"
+                  />
+                  <label
+                    class="sc-jlZhew sc-jxOSlx sc-lcIPJg iViuDy hocwcY cxwsZx"
+                    for=":r3:"
+                    pointer-events="none"
+                  >
+                    Year 1
                   </label>
                 </div>
               </div>
@@ -683,7 +746,255 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
       >
         <div
           class="sc-fqkvVR fgBWrW"
-        />
+        >
+          <div
+            class="sc-fqkvVR kOxZPD mobileYearDisplay"
+          >
+            <div
+              class="sc-fqkvVR sc-kAyceB fgBWrW hmKvgj"
+            >
+              <h3
+                class="sc-kpDqfm kZMPZO"
+                data-testid="year-heading"
+              >
+                Year 1
+              </h3>
+            </div>
+            <div
+              class="sc-fqkvVR fgBWrW"
+            />
+            <div
+              class="sc-fqkvVR fgBWrW"
+            >
+              <div
+                class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
+              >
+                <div
+                  class="sc-fqkvVR sc-kAyceB geCFDe enhVBH"
+                  data-testid="oak-inline-banner"
+                >
+                  <div
+                    class="sc-fqkvVR sc-kAyceB jqqmXN eCSTLy"
+                  >
+                    <div
+                      class="sc-fqkvVR fgBWrW"
+                    >
+                      <div
+                        class="sc-fqkvVR erqloa"
+                        data-testid="inline-banner-icon"
+                      >
+                        <img
+                          alt=""
+                          class="sc-dcJsrY beWtwI"
+                          data-nimg="fill"
+                          decoding="async"
+                          loading="lazy"
+                          src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1709052869/icons/Icon_Info_vsx3xi.svg"
+                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="sc-fqkvVR sc-kAyceB gJgCTZ gySJmx"
+                    >
+                      <div
+                        class="sc-fqkvVR TgDlp"
+                        data-testid="inline-banner-message"
+                      >
+                        <div
+                          class="sc-fqkvVR fgBWrW"
+                        >
+                          <strong>
+                            You’re 1 lesson short:
+                          </strong>
+                           the Year 1 curriculum has more lessons than your schedule allows. Use the orange (!) markers to help you decide which lesson to skip.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="sc-fqkvVR sc-kAyceB sSUCJ moWty"
+                >
+                  <div
+                    class="sc-fqkvVR fgBWrW"
+                  >
+                    <h5
+                      class="sc-kpDqfm evKItP"
+                    >
+                      Autumn Term
+                    </h5>
+                    <div
+                      class="sc-fqkvVR sc-kAyceB fgBWrW gCgXGf"
+                    >
+                      <span
+                        class="sc-dAlyuH gAWMRU"
+                      >
+                        0
+                        /
+                        0
+                         lessons scheduled
+                      </span>
+                      <div
+                        class="sc-fqkvVR erqloa"
+                      >
+                        <img
+                          alt=""
+                          class="sc-dcJsrY cDKKvZ"
+                          data-nimg="fill"
+                          decoding="async"
+                          loading="lazy"
+                          src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1709052869/icons/Icon_Info_vsx3xi.svg"
+                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <ol
+                    class="sc-a4fa79f2-0 ehmNei"
+                    role="list"
+                  >
+                    <li
+                      class="sc-a4fa79f2-1 kObVID"
+                    >
+                      <div
+                        class="sc-fqkvVR sc-1c55d370-0 jdSkEU iHxKuU"
+                      >
+                        <a
+                          class="sc-dff9efc2-0 gEvEhn"
+                          data-testid="unit-info-link"
+                          href=""
+                        >
+                          <div
+                            class="sc-fqkvVR sc-kAyceB hjukdb eeevb"
+                            data-testid="unit-card"
+                          >
+                            <div
+                              class="sc-fqkvVR sc-kAyceB fgBWrW moWty"
+                            >
+                              <div
+                                class="sc-9d6b6245-0 bZsOFK pa11y-ignore"
+                              >
+                                <span
+                                  aria-hidden="true"
+                                >
+                                  1
+                                </span>
+                              </div>
+                              <span
+                                class="sc-dAlyuH gYScdJ"
+                              >
+                                Test 1
+                              </span>
+                            </div>
+                            <div
+                              class="sc-fqkvVR sc-kAyceB julalA kUbvNw"
+                            >
+                              <div
+                                class="sc-fqkvVR sc-kAyceB fgBWrW gCgXGf"
+                              >
+                                <div
+                                  class="sc-fqkvVR sc-fPXMVe kxMTGH wBUcz"
+                                >
+                                  Unit info
+                                </div>
+                                <div
+                                  class="sc-fqkvVR kbnxKi"
+                                >
+                                  <img
+                                    alt=""
+                                    class="sc-dcJsrY beWtwI"
+                                    data-nimg="fill"
+                                    decoding="async"
+                                    loading="lazy"
+                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                    </li>
+                    <li
+                      class="sc-a4fa79f2-1 kObVID"
+                    >
+                      <div
+                        class="sc-fqkvVR sc-1c55d370-0 jdSkEU iHxKuU"
+                      >
+                        <a
+                          class="sc-dff9efc2-0 gEvEhn"
+                          data-testid="unit-info-link"
+                          href=""
+                        >
+                          <div
+                            class="sc-fqkvVR sc-kAyceB hjukdb eeevb"
+                            data-testid="unit-card"
+                          >
+                            <div
+                              class="sc-fqkvVR sc-kAyceB fgBWrW moWty"
+                            >
+                              <div
+                                class="sc-9d6b6245-0 bZsOFK pa11y-ignore"
+                              >
+                                <span
+                                  aria-hidden="true"
+                                >
+                                  2
+                                </span>
+                              </div>
+                              <span
+                                class="sc-dAlyuH gYScdJ"
+                              >
+                                Test 2
+                              </span>
+                            </div>
+                            <div
+                              class="sc-fqkvVR sc-kAyceB julalA kUbvNw"
+                            >
+                              <div
+                                class="sc-fqkvVR sc-kAyceB fgBWrW gCgXGf"
+                              >
+                                <div
+                                  class="sc-fqkvVR sc-fPXMVe kxMTGH wBUcz"
+                                >
+                                  Unit info
+                                </div>
+                                <div
+                                  class="sc-fqkvVR kbnxKi"
+                                >
+                                  <img
+                                    alt=""
+                                    class="sc-dcJsrY beWtwI"
+                                    data-nimg="fill"
+                                    decoding="async"
+                                    loading="lazy"
+                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                    </li>
+                    <div
+                      class="sc-fqkvVR sc-kAyceB iASqjD bAFsaQ"
+                    />
+                    <div
+                      class="sc-fqkvVR sc-kAyceB iASqjD bAFsaQ"
+                    />
+                    <div
+                      class="sc-fqkvVR sc-kAyceB iASqjD bAFsaQ"
+                    />
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
