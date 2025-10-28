@@ -7,6 +7,19 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { fetchSubjectPhasePickerData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
+const defaultSearchParams = new URLSearchParams("");
+const mockUseSearchParams = jest.fn(() => defaultSearchParams);
+jest.mock("next/navigation", () => {
+  return {
+    __esModule: true,
+    usePathname: () => "/timetabling/maths-primary/new",
+    useSearchParams: () => mockUseSearchParams(),
+    notFound: () => {
+      throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
+    },
+  };
+});
+
 Object.assign(navigator, {
   clipboard: {
     writeText: jest.fn(),
@@ -28,7 +41,8 @@ const defaultCurriculumPhaseOptions: ReturnType<
 });
 
 describe("CurricTimetablingUnits", () => {
-  test("snapshot", () => {
+  test("snapshot (mode=debug)", () => {
+    mockUseSearchParams.mockReturnValue(new URLSearchParams("mode=debug"));
     const { container } = renderWithTheme(
       <CurricTimetablingUnits
         units={[createUnit({ slug: "test-1" }), createUnit({ slug: "test-2" })]}
@@ -42,6 +56,23 @@ describe("CurricTimetablingUnits", () => {
     );
     expect(container).toMatchSnapshot();
   });
+
+  test("snapshot (mode=normal)", () => {
+    mockUseSearchParams.mockReturnValue(new URLSearchParams("mode=normal"));
+    const { container } = renderWithTheme(
+      <CurricTimetablingUnits
+        units={[createUnit({ slug: "test-1" }), createUnit({ slug: "test-2" })]}
+        curriculumPhaseOptions={defaultCurriculumPhaseOptions}
+        slugs={{
+          phaseSlug: "primary",
+          subjectSlug: "maths",
+          ks4OptionSlug: null,
+        }}
+      />,
+    );
+    expect(container).toMatchSnapshot();
+  });
+
   test("edit details", () => {
     const { getAllByRole, getByTestId } = renderWithTheme(
       <CurricTimetablingUnits
