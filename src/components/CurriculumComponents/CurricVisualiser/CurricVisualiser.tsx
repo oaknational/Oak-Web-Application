@@ -77,6 +77,7 @@ export default function CurricVisualiser({
   const { unit: unitData, unitOption: unitOptionData } = findUnitOrOptionBySlug(
     yearData,
     selectedUnitSlug,
+    filters,
   );
 
   const shouldIncludeCore = isMobile || ks4OptionSlug !== "core";
