@@ -1,3 +1,11 @@
+## [1.903.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.903.0...v1.903.1) (2025-10-28)
+
+
+### Bug Fixes
+
+* curric visualiser modal selects wrong child-subject ([1851699](https://github.com/oaknational/Oak-Web-Application/commit/18516993d5387d4aca5466616dee92f194f7f9ba))
+* incorrect unit selected in modal when tier present ([d6a8af6](https://github.com/oaknational/Oak-Web-Application/commit/d6a8af6c572cfbbdca4ffa9f9e5c2900993781a7))
+
 # [1.903.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.902.0...v1.903.0) (2025-10-28)
 
 
