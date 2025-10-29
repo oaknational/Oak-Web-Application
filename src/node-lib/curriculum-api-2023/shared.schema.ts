@@ -300,7 +300,7 @@ export const baseLessonDownloadsSchema = z.object({
   additionalFiles: lessonAdditionalFilesListSchema,
   expired: z.boolean().nullable(),
   isSpecialist: z.literal(false),
-  copyrightContent: legacyCopyrightContentSchema,
+  legacyCopyrightContent: legacyCopyrightContentSchema,
   updatedAt: z.string(),
   geoRestricted: z.boolean().nullable(),
   loginRequired: z.boolean().nullable(),

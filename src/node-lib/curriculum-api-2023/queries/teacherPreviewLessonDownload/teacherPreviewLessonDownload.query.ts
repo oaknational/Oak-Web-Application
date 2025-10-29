@@ -137,7 +137,7 @@ const teachersPreviewLessonDownloadQuery =
         additionalFiles,
         lessonSlug,
         parsedBrowseData,
-        lessonCopyRight: copyright,
+        legacyLessonCopyrightInfo: copyright,
         expired,
       });
 

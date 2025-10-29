@@ -139,7 +139,7 @@ const lessonDownloadsQuery =
         additionalFiles,
         lessonSlug,
         parsedBrowseData,
-        lessonCopyRight: copyright,
+        legacyLessonCopyrightInfo: copyright,
         expired,
       });
 
