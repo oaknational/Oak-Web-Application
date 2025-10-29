@@ -1,3 +1,22 @@
+# [1.904.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.903.3...v1.904.0) (2025-10-29)
+
+
+### Bug Fixes
+
+* restore shallow routing for unit modal navigation ([e816a9f](https://github.com/oaknational/Oak-Web-Application/commit/e816a9fa4164b0e01bc78175a9079b0db72464f0))
+
+
+### Features
+
+* add app router variant of CurricUnitModalContent component to units listing page ([62b29d2](https://github.com/oaknational/Oak-Web-Application/commit/62b29d25aaf1f2f11225f7b3e99b57c88dfef78e))
+* add routing for unit slugs ([9f62cae](https://github.com/oaknational/Oak-Web-Application/commit/9f62caeb0b50a4edd045dc61a1d9180227867501))
+* add TimetablingProvider to temporarily mock analytics ([d5ac938](https://github.com/oaknational/Oak-Web-Application/commit/d5ac938077a385bddb80ab4e418baace16659860))
+
+
+### Reverts
+
+* reinstate analytics provider ([1129bde](https://github.com/oaknational/Oak-Web-Application/commit/1129bdee623dba543725ba467fc28111f2aab026))
+
 ## [1.903.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.903.2...v1.903.3) (2025-10-29)
 
 
