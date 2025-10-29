@@ -134,7 +134,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
                 $font={"body-3"}
                 $wordWrap={"normal"}
                 $color={"text-subdued"}
-                id="legacyFilterHintId"
+                id={isMobileFilter ? undefined : "legacyFilterHintId"} // pa11y error for non unique id when mobile and desktop views rendered simultaneously
               >
                 Resources designed for the classroom
               </OakP>
