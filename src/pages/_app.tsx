@@ -6,12 +6,11 @@ import { OverlayProvider } from "react-aria";
 import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
 import { ClerkProvider } from "@clerk/nextjs";
-import { OakPupilClientProvider } from "@oaknational/oak-pupil-client";
 
+import { OakPupilClientProvider } from "@/context/Pupil/OakPupilClientProvider";
 /**
  * Custom global styles (which should be kept to a minimum) must all be imported in _app.tsx
  */
-
 import "@/browser-lib/gleap/gleap.css";
 import "@/browser-lib/oak-globals/oakGlobals";
 import GlobalStyle from "@/styles/GlobalStyle";
@@ -27,7 +26,6 @@ import { MenuProvider } from "@/context/Menu";
 import { ToastProvider } from "@/context/Toast";
 import InlineSpriteSheet from "@/components/GenericPagesComponents/InlineSpriteSheet";
 import AppHooks from "@/components/AppComponents/App/AppHooks";
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { OakToastProvider } from "@/context/OakToast/OakToastProvider";
 import { SaveCountProvider } from "@/context/SaveCount/SaveCountProvider";
 
@@ -58,22 +56,7 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
               <PostHogProvider client={posthog}>
                 <AnalyticsProvider {...analyticsOptions}>
                   <DefaultSeo />
-                  <OakPupilClientProvider
-                    config={{
-                      getLessonAttemptUrl: getBrowserConfig(
-                        "oakGetLessonAttemptUrl",
-                      ),
-                      logLessonAttemptUrl: getBrowserConfig(
-                        "oakLogLessonAttemptUrl",
-                      ),
-                      getTeacherNoteUrl: getBrowserConfig(
-                        "oakGetTeacherNoteUrl",
-                      ),
-                      addTeacherNoteUrl: getBrowserConfig(
-                        "oakAddTeacherNoteUrl",
-                      ),
-                    }}
-                  >
+                  <OakPupilClientProvider>
                     <OverlayProvider>
                       <MenuProvider>
                         <ToastProvider>

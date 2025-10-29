@@ -1,6 +1,52 @@
 import { z } from "zod";
 import { imageItemSchema } from "@oaknational/oak-curriculum-schema";
 
+import { convertKey, ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
+
+type ZodType = z.ZodTypeAny;
+
+export function zodToCamelCase(schema: ZodType): ZodType {
+  if (schema instanceof z.ZodOptional) {
+    return z.optional(zodToCamelCase(schema.unwrap()));
+  }
+
+  if (schema instanceof z.ZodObject) {
+    const shape = schema._def.shape();
+    const newShape: { [key: string]: ZodType } = {};
+
+    for (const [key, value] of Object.entries(shape) as [string, ZodType][]) {
+      const camelKey = convertKey(key);
+      newShape[camelKey] = zodToCamelCase(value);
+    }
+
+    return z.object(newShape);
+  }
+
+  if (schema instanceof z.ZodArray) {
+    return z.array(zodToCamelCase(schema._def.type));
+  }
+
+  if (schema instanceof z.ZodUnion) {
+    return z.union(
+      schema._def.options.map((option: ZodType) => zodToCamelCase(option)),
+    );
+  }
+
+  if (schema instanceof z.ZodIntersection) {
+    return z.intersection(
+      zodToCamelCase(schema._def.left),
+      zodToCamelCase(schema._def.right),
+    );
+  }
+
+  if (schema instanceof z.ZodRecord) {
+    return z.record(schema._def.keyType, zodToCamelCase(schema._def.valueType));
+  }
+
+  // Return primitive types as-is
+  return schema;
+}
+
 const pupilAnswerMatchSchema = z.array(z.string());
 const pupilAnswerOrderSchema = z.array(z.number());
 const pupilAnswerShortSchema = z.string();
@@ -85,6 +131,8 @@ export const lessonAttemptSchema = z.object({
 
 export type LessonAttempt = z.infer<typeof lessonAttemptSchema>;
 
+export type LessonAttemptCamelCase = ConvertKeysToCamelCase<LessonAttempt>;
+
 export const createLessonAttemptPayloadSchema = lessonAttemptSchema.pick({
   attempt_id: true,
   lesson_data: true,
@@ -94,3 +142,15 @@ export const createLessonAttemptPayloadSchema = lessonAttemptSchema.pick({
 export type CreateLessonAttemptPayload = z.infer<
   typeof createLessonAttemptPayloadSchema
 >;
+
+export type AttemptId = LessonAttempt["attempt_id"];
+
+export const attemptDataSchema = lessonAttemptSchema.pick({
+  lesson_data: true,
+  browse_data: true,
+  section_results: true,
+});
+
+export const attemptDataCamelCaseSchema = zodToCamelCase(attemptDataSchema);
+export type AttemptDataSchema = z.infer<typeof attemptDataSchema>;
+export type AttemptDataCamelCase = ConvertKeysToCamelCase<AttemptDataSchema>;
