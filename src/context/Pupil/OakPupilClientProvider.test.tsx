@@ -1,11 +1,6 @@
 import { ReactNode } from "react";
 import { render, renderHook, act, waitFor } from "@testing-library/react";
-
-import { OakPupilClientProvider } from "./OakPupilClientProvider";
-
 import { mockGetAttempt } from "@/node-lib/pupil-api/__mocks__/MockPupilClient";
-import { OakPupilClient } from "@/node-lib/pupil-api/client/client";
-import { useOakPupil } from "@/hooks/useOakPupil";
 
 // IMPORTANT: mock BEFORE importing the module you mock
 jest.mock("@/node-lib/pupil-api/client/client", () => {
@@ -30,6 +25,10 @@ jest.mock("@/node-lib/pupil-api/client/client", () => {
     __mockClientInstance: instance,
   };
 });
+
+import { OakPupilClient } from "@/node-lib/pupil-api/client/client";
+import { OakPupilClientProvider } from "./OakPupilClientProvider";
+import { useOakPupil } from "@/hooks/useOakPupil";
 
 const Wrapper = ({ children }: { children: ReactNode }) => (
   <OakPupilClientProvider>{children}</OakPupilClientProvider>
