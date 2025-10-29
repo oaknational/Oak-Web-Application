@@ -54,9 +54,9 @@ import { LEGACY_COHORT, NEW_COHORT } from "@/config/cohort";
 import { keyLearningPoint } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { LessonOverviewDownloads } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import {
-  checkIsResourceCopyrightRestricted,
+  checkIfResourceHasLegacyCopyright,
   getIsResourceDownloadable,
-} from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
+} from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsLegacyCopyright";
 import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import LessonOverviewMediaClips, {
   TrackingCallbackProps,
@@ -325,7 +325,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     downloads.filter(
       (d) =>
         d.exists === true &&
-        !checkIsResourceCopyrightRestricted(d.type, copyrightContent),
+        !checkIfResourceHasLegacyCopyright(d.type, copyrightContent),
     ).length > 0;
 
   const showDownloadAll = hasDownloadableAssets && !contentRestricted;
@@ -474,7 +474,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
                 {pageLinks.find((p) => p.label === presentationTitle) &&
                   !contentRestricted &&
-                  !checkIsResourceCopyrightRestricted(
+                  !checkIfResourceHasLegacyCopyright(
                     "presentation",
                     copyrightContent,
                   ) && (

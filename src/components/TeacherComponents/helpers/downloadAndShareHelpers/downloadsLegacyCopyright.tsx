@@ -12,29 +12,29 @@ export const isResourceTypeSubjectToCopyright = (resource: ResourceType) => {
   );
 };
 
-export const checkIsResourceCopyrightRestricted = (
+export const checkIfResourceHasLegacyCopyright = (
   resource: ResourceType,
   copyrightContent: LegacyCopyrightContent,
 ) => {
-  if (!isResourceTypeSubjectToCopyright(resource)) {
-    return false;
-  } else {
+  if (isResourceTypeSubjectToCopyright(resource)) {
     return (
       copyrightContent?.find(
         (c) => c.copyrightInfo === "This lesson contains copyright material.",
       ) !== undefined
     );
+  } else {
+    return false;
   }
 };
 
-export const filterDownloadsByCopyright = (
+export const getResourcesWithoutLegacyCopyright = (
   downloads: LessonDownloadsPageData["downloads"],
   copyrightContent: LegacyCopyrightContent,
 ) => {
   return downloads.filter(
     (d) =>
       d.exists === true &&
-      !checkIsResourceCopyrightRestricted(d.type, copyrightContent),
+      !checkIfResourceHasLegacyCopyright(d.type, copyrightContent),
   );
 };
 
@@ -48,5 +48,5 @@ export const getIsResourceDownloadable = (
     return false;
   }
 
-  return !checkIsResourceCopyrightRestricted(resource, copyrightContent);
+  return !checkIfResourceHasLegacyCopyright(resource, copyrightContent);
 };

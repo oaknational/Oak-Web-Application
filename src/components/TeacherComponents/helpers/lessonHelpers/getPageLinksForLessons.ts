@@ -1,6 +1,6 @@
 import { pick } from "lodash";
 
-import { checkIsResourceCopyrightRestricted } from "../downloadAndShareHelpers/downloadsCopyright";
+import { checkIfResourceHasLegacyCopyright } from "../downloadAndShareHelpers/downloadsLegacyCopyright";
 
 import {
   GetPageLinksForLessonProps,
@@ -33,7 +33,7 @@ export const getPageLinksForLesson = (
       condition: (lesson) =>
         Boolean(
           lesson.presentationUrl &&
-            !checkIsResourceCopyrightRestricted(
+            !checkIfResourceHasLegacyCopyright(
               "presentation",
               copyrightContent,
             ),
