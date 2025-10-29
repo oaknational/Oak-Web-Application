@@ -41,20 +41,26 @@ export const getPupilFirestore = () => {
     );
   }
 
-  const authClient = ExternalAccountClient.fromJSON({
-    type: "external_account",
-    audience: `//iam.googleapis.com/${GCP_WORKLOAD_IDENTITY_POOL_PROVIDER_ID}`,
-    subject_token_type: "urn:ietf:params:oauth:token-type:jwt",
-    token_url: "https://sts.googleapis.com/v1/token",
-    service_account_impersonation_url: `https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/${GCP_SERVICE_ACCOUNT_EMAIL}:generateAccessToken`,
-    subject_token_supplier: {
-      getSubjectToken: getVercelOidcToken,
-    },
-  });
+  try {
+    const authClient = ExternalAccountClient.fromJSON({
+      type: "external_account",
+      audience: `//iam.googleapis.com/${GCP_WORKLOAD_IDENTITY_POOL_PROVIDER_ID}`,
+      subject_token_type: "urn:ietf:params:oauth:token-type:jwt",
+      token_url: "https://sts.googleapis.com/v1/token",
+      service_account_impersonation_url: `https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/${GCP_SERVICE_ACCOUNT_EMAIL}:generateAccessToken`,
+      subject_token_supplier: {
+        getSubjectToken: getVercelOidcToken,
+      },
+    });
 
-  return new Firestore({
-    authClient,
-    projectId: GCP_PROJECT_ID,
-    databaseId: PUPIL_FIRESTORE_ID,
-  });
+    return new Firestore({
+      authClient,
+      projectId: GCP_PROJECT_ID,
+      databaseId: PUPIL_FIRESTORE_ID,
+    });
+  } catch (e) {
+    console.error("getPupilFirestore authClient", e);
+    console.error("getPupilFirestore authClient raw:", JSON.stringify(e));
+    throw e;
+  }
 };
