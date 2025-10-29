@@ -12,8 +12,8 @@ import {
 const render = renderWithProviders();
 
 let mockUseCopyrightRequirements = defaultCopyrightRequirements;
-jest.mock("@/hooks/useCopyrightRequirements", () => ({
-  useCopyrightRequirements: () => mockUseCopyrightRequirements,
+jest.mock("@/hooks/useComplexCopyright", () => ({
+  useComplexCopyright: () => mockUseCopyrightRequirements,
 }));
 
 describe("LoginRequiredLink", () => {

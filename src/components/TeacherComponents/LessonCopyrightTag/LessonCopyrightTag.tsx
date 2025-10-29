@@ -1,6 +1,6 @@
 import { OakTagFunctional } from "@oaknational/oak-components";
 
-import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
+import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 
 export function LessonCopyrightTag({
   loginRequired,
@@ -13,7 +13,7 @@ export function LessonCopyrightTag({
     showSignedOutLoginRequired,
     showSignedOutGeoRestricted,
     showGeoBlocked,
-  } = useCopyrightRequirements({
+  } = useComplexCopyright({
     loginRequired: loginRequired,
     geoRestricted: georestricted,
   });

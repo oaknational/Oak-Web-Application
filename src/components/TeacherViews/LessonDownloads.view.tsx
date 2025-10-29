@@ -58,7 +58,7 @@ import {
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { LessonDownloadRegionBlocked } from "@/components/TeacherComponents/LessonDownloadRegionBlocked/LessonDownloadRegionBlocked";
 import { resolveOakHref } from "@/common-lib/urls";
-import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
+import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 
 type BaseLessonDownload = {
   expired: boolean | null;
@@ -127,7 +127,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     showSignedOutLoginRequired,
     showSignedOutGeoRestricted,
     showSignedInNotOnboarded,
-  } = useCopyrightRequirements({
+  } = useComplexCopyright({
     loginRequired: loginRequired ?? false,
     geoRestricted: geoRestricted ?? false,
   });

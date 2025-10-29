@@ -20,7 +20,7 @@ import {
   COPYRIGHT_CONTACT_US_LINK,
   COPYRIGHT_SUPPORT_LINK,
 } from "@/utils/copyrightLinks";
-import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
+import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 
 export type CopyrightRestrictionBannerProps = {
   isGeorestricted?: boolean;
@@ -173,7 +173,7 @@ const CopyrightRestrictionBanner = (props: CopyrightRestrictionBannerProps) => {
     showSignedOutLoginRequired,
     showSignedInNotOnboarded,
     showGeoBlocked,
-  } = useCopyrightRequirements({
+  } = useComplexCopyright({
     loginRequired: isLoginRequired ?? false,
     geoRestricted: isGeorestricted ?? false,
   });

@@ -13,7 +13,7 @@ export interface UseCopyrightRequirementsReturn {
   isLoaded: boolean;
 }
 
-export function useCopyrightRequirements({
+export function useComplexCopyright({
   loginRequired,
   geoRestricted,
 }: UseCopyrightRequirementsProps): UseCopyrightRequirementsReturn {
