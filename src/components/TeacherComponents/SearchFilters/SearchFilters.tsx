@@ -112,7 +112,11 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
               displayValue={"Show new only"}
               key={`search-filters-curriculum-filter`}
               aria-label={`Show new content filter`}
-              aria-describedby="legacyFilterHintId"
+              aria-describedby={
+                isMobileFilter
+                  ? "legacyFilterHintIdMobile"
+                  : "legacyFilterHintId"
+              }
               {...legacyFilter}
               id={`search-filters-showNewContent:mobile:${isMobileFilter}`}
               value="new"
@@ -134,7 +138,11 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
                 $font={"body-3"}
                 $wordWrap={"normal"}
                 $color={"text-subdued"}
-                id={isMobileFilter ? undefined : "legacyFilterHintId"} // pa11y error for non unique id when mobile and desktop views rendered simultaneously
+                id={
+                  isMobileFilter
+                    ? "legacyFilterHintIdMobile"
+                    : "legacyFilterHintId"
+                } // pa11y error for non unique id when mobile and desktop views rendered simultaneously
               >
                 Resources designed for the classroom
               </OakP>
