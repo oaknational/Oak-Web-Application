@@ -53,7 +53,7 @@ import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadA
 import { LEGACY_COHORT } from "@/config/cohort";
 import { SpecialistLessonDownloads } from "@/node-lib/curriculum-api-2023/queries/specialistLessonDownload/specialistLessonDownload.schema";
 import {
-  CopyrightContent,
+  LegacyCopyrightContent,
   Actions,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { LessonDownloadRegionBlocked } from "@/components/TeacherComponents/LessonDownloadRegionBlocked/LessonDownloadRegionBlocked";
@@ -68,7 +68,7 @@ type BaseLessonDownload = {
   lessonCohort?: string | null;
   downloads: LessonDownloadsPageData["downloads"];
   additionalFiles: LessonDownloadsPageData["additionalFiles"];
-  copyrightContent?: CopyrightContent;
+  copyrightContent?: LegacyCopyrightContent;
   isSpecialist: false;
   developmentStageTitle?: string | null;
   geoRestricted: boolean | null;

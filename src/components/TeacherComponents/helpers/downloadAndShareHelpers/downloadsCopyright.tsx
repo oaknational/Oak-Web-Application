@@ -2,7 +2,7 @@ import { ResourceType } from "../../types/downloadAndShare.types";
 
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { LessonOverviewDownloads } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
-import { CopyrightContent } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { LegacyCopyrightContent } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export const isResourceTypeSubjectToCopyright = (resource: ResourceType) => {
   return (
@@ -14,7 +14,7 @@ export const isResourceTypeSubjectToCopyright = (resource: ResourceType) => {
 
 export const checkIsResourceCopyrightRestricted = (
   resource: ResourceType,
-  copyrightContent: CopyrightContent,
+  copyrightContent: LegacyCopyrightContent,
 ) => {
   if (!isResourceTypeSubjectToCopyright(resource)) {
     return false;
@@ -29,7 +29,7 @@ export const checkIsResourceCopyrightRestricted = (
 
 export const filterDownloadsByCopyright = (
   downloads: LessonDownloadsPageData["downloads"],
-  copyrightContent: CopyrightContent,
+  copyrightContent: LegacyCopyrightContent,
 ) => {
   return downloads.filter(
     (d) =>
@@ -41,7 +41,7 @@ export const filterDownloadsByCopyright = (
 export const getIsResourceDownloadable = (
   resource: ResourceType,
   downloads: LessonOverviewDownloads,
-  copyrightContent: CopyrightContent,
+  copyrightContent: LegacyCopyrightContent,
 ) => {
   const inDownloads = downloads.find((d) => d.type === resource);
   if (!inDownloads || !inDownloads.exists) {

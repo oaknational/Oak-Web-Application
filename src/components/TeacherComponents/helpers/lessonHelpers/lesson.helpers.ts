@@ -12,7 +12,7 @@ import truthy from "@/utils/truthy";
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { ShallowNullable } from "@/utils/util.types";
 import {
-  CopyrightContent,
+  LegacyCopyrightContent,
   LessonOverviewQuizData,
   StemImageObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
@@ -446,7 +446,7 @@ export type LessonPageLinkAnchorId =
 
 export const getPageLinksWithSubheadingsForLesson = (
   lesson: GetPageLinksForLessonProps,
-  copyrightContent: CopyrightContent,
+  copyrightContent: LegacyCopyrightContent,
   mediaClipsLabel?: string,
 ): {
   label: string;

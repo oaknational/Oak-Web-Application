@@ -7,11 +7,11 @@ import {
   LessonPageLinkAnchorId,
 } from "./lesson.helpers";
 
-import { CopyrightContent } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { LegacyCopyrightContent } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export const getPageLinksForLesson = (
   lesson: GetPageLinksForLessonProps,
-  copyrightContent: CopyrightContent,
+  copyrightContent: LegacyCopyrightContent,
   mediaClipsLabel?: string,
 ): {
   label: string;
