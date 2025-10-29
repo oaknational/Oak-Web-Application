@@ -364,17 +364,31 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
         >
           <ul>
             <li>
-              <div>
-                📦 
-                Test 1
-              </div>
+              <a
+                class="sc-ddjGPC ejGGHG"
+                href="/timetabling/maths-primary/units/test-1?mode=debug&year=1"
+              >
+                <span
+                  class="sc-dAlyuH gAWMRU"
+                >
+                  📦 
+                  Test 1
+                </span>
+              </a>
               <ul />
             </li>
             <li>
-              <div>
-                📦 
-                Test 2
-              </div>
+              <a
+                class="sc-ddjGPC ejGGHG"
+                href="/timetabling/maths-primary/units/test-2?mode=debug&year=1"
+              >
+                <span
+                  class="sc-dAlyuH gAWMRU"
+                >
+                  📦 
+                  Test 2
+                </span>
+              </a>
               <ul />
             </li>
           </ul>
@@ -382,6 +396,157 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
       </div>
     </div>
   </div>
+  <dialog
+    class="sc-692ca-0 jfQDcn"
+    data-testid="modal"
+    style="z-index: 320;"
+  >
+    <div
+      class="sc-fqkvVR sc-fd1b6bd3-0 hJRGVt jsTHOJ"
+    />
+    <div
+      class="sc-fqkvVR sc-kAyceB sc-702fbad0-0 gestnk joHkzz igbdss"
+      data-testid="sidebar-modal"
+      direction="right"
+    >
+      <div
+        class="sc-fqkvVR sc-kAyceB kwqmrC jOTTNg"
+      >
+        <div
+          class="sc-fqkvVR sc-kAyceB kUmAOC kyta-DD"
+        >
+          <div
+            class="sc-fqkvVR ioiQyz"
+          >
+            <div
+              class="sc-fqkvVR sc-56080e98-0 fgBWrW dlgBsV"
+            >
+              <button
+                aria-label="Close"
+                class="sc-ce4d7bd4-0 sc-4362740-0 kYyTPx kgfbIy"
+                data-testid="close-modal-button"
+                title="Close"
+              >
+                <div
+                  class="sc-b071a727-0 eQqUiM"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="sc-cba1a45e-0 bgbQLJ"
+                  >
+                    <span
+                      class="sc-cba1a45e-1 idsnjc"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="sc-86d1d46f-0 eJtvEZ"
+                        height="100%"
+                        name="cross"
+                        width="100%"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <use
+                          xlink:href="/images/sprite/sprite.svg#cross"
+                        />
+                      </svg>
+                    </span>
+                  </span>
+                  <svg
+                    aria-hidden="true"
+                    class="sc-86d1d46f-0 jOBmUC sc-62671a58-0 duckYG"
+                    height="100%"
+                    name="underline-1"
+                    width="100%"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <use
+                      xlink:href="/images/sprite/sprite.svg#underline-1"
+                    />
+                  </svg>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="sc-fqkvVR sc-kAyceB dWuEkM jFSWFH"
+          data-testid="modal-content"
+        >
+          <div
+            class="sc-fqkvVR fgBWrW"
+          >
+            <div
+              class="sc-fqkvVR sc-kAyceB kwqmrC jOTTNg"
+            >
+              <div
+                class="sc-fqkvVR sc-kAyceB djxBBL bQAWYR"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="sc-fqkvVR sc-kAyceB eGXHla cuPHGn"
+          data-testid="modal-footer"
+        >
+          <div
+            class="sc-fqkvVR sc-kAyceB fSMJOh fEqJyh"
+          >
+            <div
+              class="sc-fqkvVR sc-fXSgeo eJBGXR efioha"
+            >
+              <div
+                class="sc-fqkvVR iPpXCP grey-shadow"
+              />
+              <div
+                class="sc-fqkvVR iPpXCP yellow-shadow"
+              />
+              <button
+                aria-disabled="true"
+                aria-label="Coming soon See lessons in unit"
+                class="sc-iHGNWf sc-esYiGF NgRfG dRQKXW internal-button"
+                data-testid="unit-lessons-button"
+                disabled=""
+              >
+                <div
+                  class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
+                >
+                  <span
+                    class="sc-dAlyuH hcOVuy"
+                  >
+                    <div
+                      class="sc-fqkvVR sc-kAyceB fgBWrW jcMcGZ"
+                    >
+                      <span
+                        class="sc-dAlyuH jaHGeG"
+                        color="grey"
+                        data-testid="coming-soon-flag"
+                      >
+                        Coming soon
+                      </span>
+                      See lessons in unit
+                    </div>
+                  </span>
+                  <div
+                    class="sc-fqkvVR kbnxKi"
+                  >
+                    <img
+                      alt=""
+                      class="sc-dcJsrY bDcxkE"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
+                  </div>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
 </div>
 `;
 
@@ -851,11 +1016,11 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                     </div>
                   </div>
                   <ol
-                    class="sc-a4fa79f2-0 ehmNei"
+                    class="sc-aa239c2d-0 eLmrbP"
                     role="list"
                   >
                     <li
-                      class="sc-a4fa79f2-1 kObVID"
+                      class="sc-aa239c2d-1 bVhUvm"
                     >
                       <div
                         class="sc-fqkvVR sc-1c55d370-0 jdSkEU iHxKuU"
@@ -918,7 +1083,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       </div>
                     </li>
                     <li
-                      class="sc-a4fa79f2-1 kObVID"
+                      class="sc-aa239c2d-1 bVhUvm"
                     >
                       <div
                         class="sc-fqkvVR sc-1c55d370-0 jdSkEU iHxKuU"
@@ -998,5 +1163,156 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
       </div>
     </div>
   </div>
+  <dialog
+    class="sc-692ca-0 jfQDcn"
+    data-testid="modal"
+    style="z-index: 320;"
+  >
+    <div
+      class="sc-fqkvVR sc-fd1b6bd3-0 hJRGVt jsTHOJ"
+    />
+    <div
+      class="sc-fqkvVR sc-kAyceB sc-702fbad0-0 gestnk joHkzz igbdss"
+      data-testid="sidebar-modal"
+      direction="right"
+    >
+      <div
+        class="sc-fqkvVR sc-kAyceB kwqmrC jOTTNg"
+      >
+        <div
+          class="sc-fqkvVR sc-kAyceB kUmAOC kyta-DD"
+        >
+          <div
+            class="sc-fqkvVR ioiQyz"
+          >
+            <div
+              class="sc-fqkvVR sc-56080e98-0 fgBWrW dlgBsV"
+            >
+              <button
+                aria-label="Close"
+                class="sc-ce4d7bd4-0 sc-4362740-0 kYyTPx kgfbIy"
+                data-testid="close-modal-button"
+                title="Close"
+              >
+                <div
+                  class="sc-b071a727-0 eQqUiM"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="sc-cba1a45e-0 bgbQLJ"
+                  >
+                    <span
+                      class="sc-cba1a45e-1 idsnjc"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="sc-86d1d46f-0 eJtvEZ"
+                        height="100%"
+                        name="cross"
+                        width="100%"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <use
+                          xlink:href="/images/sprite/sprite.svg#cross"
+                        />
+                      </svg>
+                    </span>
+                  </span>
+                  <svg
+                    aria-hidden="true"
+                    class="sc-86d1d46f-0 jOBmUC sc-62671a58-0 duckYG"
+                    height="100%"
+                    name="underline-1"
+                    width="100%"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <use
+                      xlink:href="/images/sprite/sprite.svg#underline-1"
+                    />
+                  </svg>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="sc-fqkvVR sc-kAyceB dWuEkM jFSWFH"
+          data-testid="modal-content"
+        >
+          <div
+            class="sc-fqkvVR fgBWrW"
+          >
+            <div
+              class="sc-fqkvVR sc-kAyceB kwqmrC jOTTNg"
+            >
+              <div
+                class="sc-fqkvVR sc-kAyceB djxBBL bQAWYR"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="sc-fqkvVR sc-kAyceB eGXHla cuPHGn"
+          data-testid="modal-footer"
+        >
+          <div
+            class="sc-fqkvVR sc-kAyceB fSMJOh fEqJyh"
+          >
+            <div
+              class="sc-fqkvVR sc-fXSgeo eJBGXR efioha"
+            >
+              <div
+                class="sc-fqkvVR iPpXCP grey-shadow"
+              />
+              <div
+                class="sc-fqkvVR iPpXCP yellow-shadow"
+              />
+              <button
+                aria-disabled="true"
+                aria-label="Coming soon See lessons in unit"
+                class="sc-iHGNWf sc-esYiGF NgRfG dRQKXW internal-button"
+                data-testid="unit-lessons-button"
+                disabled=""
+              >
+                <div
+                  class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
+                >
+                  <span
+                    class="sc-dAlyuH hcOVuy"
+                  >
+                    <div
+                      class="sc-fqkvVR sc-kAyceB fgBWrW jcMcGZ"
+                    >
+                      <span
+                        class="sc-dAlyuH jaHGeG"
+                        color="grey"
+                        data-testid="coming-soon-flag"
+                      >
+                        Coming soon
+                      </span>
+                      See lessons in unit
+                    </div>
+                  </span>
+                  <div
+                    class="sc-fqkvVR kbnxKi"
+                  >
+                    <img
+                      alt=""
+                      class="sc-dcJsrY bDcxkE"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
+                  </div>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
 </div>
 `;
