@@ -1,3 +1,10 @@
+## [1.903.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.903.2...v1.903.3) (2025-10-29)
+
+
+### Bug Fixes
+
+* sonarcloud remove debug and commented out code from repo ([d212f60](https://github.com/oaknational/Oak-Web-Application/commit/d212f609bc7e170f47585464f671098a2ec0ca23))
+
 ## [1.903.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.903.1...v1.903.2) (2025-10-29)
 
 
