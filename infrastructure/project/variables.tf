@@ -34,9 +34,9 @@ variable "env_vars" {
       NEXT_PUBLIC_CLIENT_APP_BASE_URL = optional(string)
     }))
     prod = optional(object({
-      OAK_CONFIG_LOCATION  = optional(string)
-      OVERRIDE_URL         = optional(string)
-      PUPIL_FIRESTORE_ID   = optional(string)
+      OAK_CONFIG_LOCATION = optional(string)
+      OVERRIDE_URL        = optional(string)
+      PUPIL_FIRESTORE_ID  = optional(string)
     }))
     preview = optional(object({
       OAK_CONFIG_LOCATION = optional(string)
