@@ -5,13 +5,13 @@ import {
   OakHeading,
   OakInformativeModal,
   OakInlineBanner,
-  OakLink,
   OakMaxWidth,
   OakSecondaryButton,
 } from "@oaknational/oak-components";
 import styled, { ThemeProvider } from "styled-components";
 import { useMemo, useState } from "react";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import Link from "next/link";
 
 import { CurricTimetableHeader } from "../CurricTimetableHeader";
 import { CurricTermCard } from "../CurricTermCard";
@@ -237,6 +237,10 @@ export const CurricTimetablingUnits = ({
                           >
                             <UnitList role="list">
                               {unitsForYear.map((unit, unitIndex) => {
+                                const searchParamsStr =
+                                  searchParams?.toString() ?? "";
+                                const unitUrl = `${basePath}/${unit.slug}${!searchParamsStr ? "" : `?${searchParamsStr}`}`;
+
                                 return (
                                   <UnitListItem
                                     key={`${unit.slug}-${unitIndex}`}
@@ -246,7 +250,7 @@ export const CurricTimetablingUnits = ({
                                       unit={unit}
                                       index={unitIndex}
                                       isHighlighted={false}
-                                      href={""}
+                                      href={unitUrl}
                                     />
                                   </UnitListItem>
                                 );
@@ -279,9 +283,14 @@ export const CurricTimetablingUnits = ({
 
                           return (
                             <li key={`${unit.slug}-${unitIndex}`}>
-                              <OakLink href={unitUrl} color="black">
+                              <Link
+                                href={unitUrl}
+                                shallow={true}
+                                scroll={false}
+                                style={{ textDecoration: "underline" }}
+                              >
                                 📦 {unit.title}
-                              </OakLink>
+                              </Link>
                               <ul>
                                 {unit.lessons?.map((lesson, lessonIndex) => {
                                   return (

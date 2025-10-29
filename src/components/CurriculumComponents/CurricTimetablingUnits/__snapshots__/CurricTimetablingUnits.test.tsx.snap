@@ -365,29 +365,21 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
           <ul>
             <li>
               <a
-                class="sc-ddjGPC ejGGHG"
                 href="/timetabling/maths-primary/units/test-1?mode=debug&year=1"
+                style="text-decoration: underline;"
               >
-                <span
-                  class="sc-dAlyuH gAWMRU"
-                >
-                  📦 
-                  Test 1
-                </span>
+                📦 
+                Test 1
               </a>
               <ul />
             </li>
             <li>
               <a
-                class="sc-ddjGPC ejGGHG"
                 href="/timetabling/maths-primary/units/test-2?mode=debug&year=1"
+                style="text-decoration: underline;"
               >
-                <span
-                  class="sc-dAlyuH gAWMRU"
-                >
-                  📦 
-                  Test 2
-                </span>
+                📦 
+                Test 2
               </a>
               <ul />
             </li>
@@ -1016,11 +1008,11 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                     </div>
                   </div>
                   <ol
-                    class="sc-aa239c2d-0 eLmrbP"
+                    class="sc-9bce997b-0 gHHQsa"
                     role="list"
                   >
                     <li
-                      class="sc-aa239c2d-1 bVhUvm"
+                      class="sc-9bce997b-1 KEdTH"
                     >
                       <div
                         class="sc-fqkvVR sc-1c55d370-0 jdSkEU iHxKuU"
@@ -1028,7 +1020,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                         <a
                           class="sc-dff9efc2-0 gEvEhn"
                           data-testid="unit-info-link"
-                          href=""
+                          href="/timetabling/maths-primary/units/test-1?mode=normal&year=1"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB hjukdb eeevb"
@@ -1083,7 +1075,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                       </div>
                     </li>
                     <li
-                      class="sc-aa239c2d-1 bVhUvm"
+                      class="sc-9bce997b-1 KEdTH"
                     >
                       <div
                         class="sc-fqkvVR sc-1c55d370-0 jdSkEU iHxKuU"
@@ -1091,7 +1083,7 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                         <a
                           class="sc-dff9efc2-0 gEvEhn"
                           data-testid="unit-info-link"
-                          href=""
+                          href="/timetabling/maths-primary/units/test-2?mode=normal&year=1"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB hjukdb eeevb"
