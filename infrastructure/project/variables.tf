@@ -35,7 +35,6 @@ variable "env_vars" {
     }))
     prod = optional(object({
       OAK_CONFIG_LOCATION  = optional(string)
-      OVERRIDE_APP_VERSION = optional(string)
       OVERRIDE_URL         = optional(string)
       PUPIL_FIRESTORE_ID   = optional(string)
     }))
