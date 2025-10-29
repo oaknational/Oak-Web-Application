@@ -112,6 +112,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
               displayValue={"Show new only"}
               key={`search-filters-curriculum-filter`}
               aria-label={`Show new content filter`}
+              aria-describedBy="legacyFilterHintId"
               {...legacyFilter}
               id={`search-filters-showNewContent:mobile:${isMobileFilter}`}
               value="new"
@@ -133,6 +134,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
                 $font={"body-3"}
                 $wordWrap={"normal"}
                 $color={"text-subdued"}
+                id="legacyFilterHintId"
               >
                 Resources designed for the classroom
               </OakP>
