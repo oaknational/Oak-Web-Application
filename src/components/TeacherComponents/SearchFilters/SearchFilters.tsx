@@ -112,7 +112,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
               displayValue={"Show new only"}
               key={`search-filters-curriculum-filter`}
               aria-label={`Show new content filter`}
-              aria-describedBy="legacyFilterHintId"
+              aria-describedby="legacyFilterHintId"
               {...legacyFilter}
               id={`search-filters-showNewContent:mobile:${isMobileFilter}`}
               value="new"
