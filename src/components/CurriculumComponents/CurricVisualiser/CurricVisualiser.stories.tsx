@@ -2,8 +2,6 @@ import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { Meta, StoryObj } from "@storybook/nextjs";
 import { ComponentProps } from "react";
 
-// import { mockOptionalityUnit, mockUnitWhyThisWhyNow } from "./CurricUnitModalContent.fixtures";
-
 import Component from "./CurricVisualiser";
 import { noMissingUnitsFixture } from "./CurricVisualiser.fixtures";
 
