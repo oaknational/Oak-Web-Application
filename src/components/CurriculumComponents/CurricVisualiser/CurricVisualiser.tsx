@@ -57,7 +57,7 @@ export default function CurricVisualiser({
   ks4OptionSlug,
   ks4Options,
   slugs,
-}: CurricVisualiserProps) {
+}: Readonly<CurricVisualiserProps>) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const isMobile = useMediaQuery("mobile");

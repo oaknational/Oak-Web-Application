@@ -4,9 +4,9 @@ import { useFeatureFlag } from "@/utils/featureFlags";
 
 export default async function Layout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   const isEnabled = await useFeatureFlag("adopt-timetabling-proto", "boolean");
   if (!isEnabled) {
     return notFound();

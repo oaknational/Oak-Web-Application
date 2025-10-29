@@ -35,7 +35,7 @@ export default function CurricUnitModalContent({
   yearData,
   selectedThread,
   basePath,
-}: CurricUnitModalContentProps) {
+}: Readonly<CurricUnitModalContentProps>) {
   const searchParams = useSearchParams();
   const unitOptionsAvailable =
     !unitOptionData && (unitData?.unit_options ?? []).length > 0;

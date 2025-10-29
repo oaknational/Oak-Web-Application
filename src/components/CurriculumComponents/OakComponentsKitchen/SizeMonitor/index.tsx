@@ -6,7 +6,10 @@ type SizeMonitorProps = {
   children: React.ReactNode;
   onChange: (bounds: SizeMonitorBounds) => void;
 };
-export default function SizeMonitor({ onChange, children }: SizeMonitorProps) {
+export default function SizeMonitor({
+  onChange,
+  children,
+}: Readonly<SizeMonitorProps>) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (ref.current) {

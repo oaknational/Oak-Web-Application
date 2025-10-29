@@ -14,7 +14,7 @@ export function CampaignPromoBanner({
   body,
   buttonCta,
   buttonUrl,
-}: {
+}: Readonly<{
   heading: PortableTextBlock[];
   media: Image | Video;
   subheading?: PortableTextBlock[] | null;
@@ -22,7 +22,7 @@ export function CampaignPromoBanner({
   buttonCta?: string | null;
   textStyles?: PortableTextComponents;
   buttonUrl?: string | null;
-}) {
+}>) {
   return (
     <OakFlex
       $maxWidth={"all-spacing-24"}

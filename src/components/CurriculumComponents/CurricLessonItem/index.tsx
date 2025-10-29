@@ -13,7 +13,7 @@ export function CurricLessonItem({
   number,
   title,
   href,
-}: CurricLessonItemProps) {
+}: Readonly<CurricLessonItemProps>) {
   return (
     <OakFlex
       $borderRadius={"border-radius-s"}

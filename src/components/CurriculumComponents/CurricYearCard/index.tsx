@@ -22,7 +22,7 @@ export function CurricYearCard({
   children,
   isExamboard,
   timetablingUrl,
-}: CurricYearCardProps) {
+}: Readonly<CurricYearCardProps>) {
   return (
     <OakBox
       $background={isExamboard ? "pink50" : "pink30"}

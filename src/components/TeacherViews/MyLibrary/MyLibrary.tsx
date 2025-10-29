@@ -49,7 +49,7 @@ type MyLibraryProps = {
   isUnitSaving: (unitProgrammeSlug: string) => boolean;
 };
 
-export default function MyLibrary(props: MyLibraryProps) {
+export default function MyLibrary(props: Readonly<MyLibraryProps>) {
   const { collectionData, isLoading, onSaveToggle, isUnitSaved, isUnitSaving } =
     props;
   const { track } = useAnalytics();

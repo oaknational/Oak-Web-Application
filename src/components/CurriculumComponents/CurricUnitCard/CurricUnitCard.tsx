@@ -44,7 +44,7 @@ type CurricUnitCardProps = {
   onClick?: () => void;
   additional?: ReactNode;
 };
-export default function CurricUnitCard(props: CurricUnitCardProps) {
+export default function CurricUnitCard(props: Readonly<CurricUnitCardProps>) {
   const { href, isHighlighted, unit, index, onClick } = props;
   const isUnitOption = "unit_options" in unit;
   return (

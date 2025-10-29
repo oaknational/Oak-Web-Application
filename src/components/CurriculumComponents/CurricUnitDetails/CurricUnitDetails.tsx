@@ -29,7 +29,7 @@ export default function CurricUnitDetails({
   unitOption,
   isUnitDescriptionEnabled,
   handleUnitOverviewExploredAnalytics,
-}: CurricUnitDetailsProps) {
+}: Readonly<CurricUnitDetailsProps>) {
   const threads = unit.threads;
   const priorKnowledgeRequirements = unit.prior_knowledge_requirements;
   const {
