@@ -12,7 +12,6 @@ const portableTextCodeBlockSchema = z.object({
   _type: z.literal("codeblock"),
   text: z.string(),
 });
-type PortableTextCodeBlock = z.infer<typeof portableTextCodeBlockSchema>;
 
 const portableTextCodeInlineSchema = z.object({
   _type: z.literal("codeinline"),
@@ -28,7 +27,6 @@ const portableTextMathSchema = z.object({
 const portableTextAnswerSpaceSchema = z.object({
   _type: z.literal("answer_space"),
 });
-type PortableAnswerSpace = z.infer<typeof portableTextAnswerSpaceSchema>;
 
 export const portableTextTextSchema = z.object({
   _type: z.literal("block"),
@@ -44,11 +42,13 @@ export const portableTextTextSchema = z.object({
 });
 type PortableTextText = z.infer<typeof portableTextTextSchema>;
 
-export type PortableTextItem =
-  | PortableTextText
-  | PortableTextCodeBlock
-  | PortableTextSpan
-  | PortableAnswerSpace;
+export const portableTextItemSchema = z.union([
+  portableTextTextSchema,
+  portableTextCodeBlockSchema,
+  portableTextSpanSchema,
+  portableTextAnswerSpaceSchema,
+]);
+export type PortableTextItem = z.infer<typeof portableTextItemSchema>;
 
 // Note: this mutates the input array
 function lastBlockOrNewBlock(out: PortableTextItem[], style = "normal") {
