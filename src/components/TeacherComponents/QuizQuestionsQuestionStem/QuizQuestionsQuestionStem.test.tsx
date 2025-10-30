@@ -1,6 +1,7 @@
 import { QuizQuestionsQuestionStem } from "./QuizQuestionsQuestionStem";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { stemToPortableText } from "@/components/SharedComponents/Stem";
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import {
   StemImageObject,

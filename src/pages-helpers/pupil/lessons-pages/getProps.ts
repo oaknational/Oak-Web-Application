@@ -142,26 +142,28 @@ export type QuizQuestionWithHtml = QuizQuestion & {
     | null;
 };
 function convertQuestionMath(
-  questions: QuizQuestion[],
+  questions?: QuizQuestion[],
 ): QuizQuestionWithHtml[] {
-  return questions.map((question) => {
-    let out = question;
-    if (question.questionStem) {
-      out = {
-        ...out,
-        questionStem: question.questionStem.map((stem) =>
-          convertQuestionStem(stem),
-        ),
-      };
-    }
-    if (question.answers) {
-      out = {
-        ...out,
-        answers: convertAnswers(question.answers),
-      };
-    }
-    return out;
-  });
+  return questions
+    ? questions.map((question) => {
+        let out = question;
+        if (question.questionStem) {
+          out = {
+            ...out,
+            questionStem: question.questionStem.map((stem) =>
+              convertQuestionStem(stem),
+            ),
+          };
+        }
+        if (question.answers) {
+          out = {
+            ...out,
+            answers: convertAnswers(question.answers),
+          };
+        }
+        return out;
+      })
+    : [];
 }
 
 export function convertQuizes(content: LessonContent) {
