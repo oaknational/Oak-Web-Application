@@ -10,7 +10,7 @@ export function withPageAuthRequired<P extends object>(
   Component: ComponentType<P>,
   FallbackComponent?: ComponentType<PropsWithChildren>,
 ) {
-  function WrappedComponent(props: P) {
+  function WrappedComponent(props: Readonly<P>) {
     const { isSignedIn, isLoaded } = useUser();
 
     if (!isLoaded) {

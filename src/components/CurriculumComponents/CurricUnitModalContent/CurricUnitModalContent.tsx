@@ -38,7 +38,7 @@ export default function CurricUnitModalContent({
   selectedThread,
   basePath,
   onNavigateToUnit,
-}: CurricUnitModalContentProps) {
+}: Readonly<CurricUnitModalContentProps>) {
   const searchParams = useSearchParams();
   const unitOptionsAvailable =
     !unitOptionData && (unitData?.unit_options ?? []).length > 0;

@@ -16,7 +16,7 @@ export default function FocusWrap({
   children,
   onWrapStart,
   onWrapEnd,
-}: FocusWrapProps) {
+}: Readonly<FocusWrapProps>) {
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {

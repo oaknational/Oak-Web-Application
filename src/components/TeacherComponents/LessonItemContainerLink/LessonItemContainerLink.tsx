@@ -25,7 +25,7 @@ export function LessonItemContainerLink({
   preselected,
   page,
   isSpecialist,
-}: {
+}: Readonly<{
   page: "share" | "download";
   resourceTitle: string;
   onClick?: () => void;
@@ -34,7 +34,7 @@ export function LessonItemContainerLink({
   programmeSlug: string | null;
   preselected: PreselectedDownloadType | PreselectedShareType | null;
   isSpecialist: boolean;
-}) {
+}>) {
   const buttonProps: Pick<
     ButtonAsLinkProps,
     | "variant"
