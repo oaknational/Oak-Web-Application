@@ -1,3 +1,10 @@
+## [1.904.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.904.3...v1.904.4) (2025-10-30)
+
+
+### Bug Fixes
+
+* mark all component props as Readonly<Props> (sonarcloud) ([05ec1ff](https://github.com/oaknational/Oak-Web-Application/commit/05ec1ffc736b60d43449f00f8162a7ddc230dd04))
+
 ## [1.904.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.904.2...v1.904.3) (2025-10-30)
 
 ## [1.904.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.904.1...v1.904.2) (2025-10-30)
