@@ -1,3 +1,12 @@
+## [1.904.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.904.2...v1.904.3) (2025-10-30)
+
+## [1.904.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.904.1...v1.904.2) (2025-10-30)
+
+
+### Bug Fixes
+
+* hotfix for ks3 science issue ([be701cd](https://github.com/oaknational/Oak-Web-Application/commit/be701cd298b81b8c48bdba21c114fdb6377307d5))
+
 ## [1.904.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.904.0...v1.904.1) (2025-10-29)
 
 

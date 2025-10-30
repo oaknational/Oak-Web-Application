@@ -40,7 +40,7 @@ export const pupilCanonicalLessonRedirectQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    pupilCanonicalLessonRedirectSnake.redirect_type = parseInt(
+    pupilCanonicalLessonRedirectSnake.redirect_type = Number.parseInt(
       pupilCanonicalLessonRedirectSnake.redirect_type,
       10,
     );
