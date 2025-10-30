@@ -246,7 +246,7 @@ export const CurricTimetablingUnits = ({
                                     key={`${unit.slug}-${unitIndex}`}
                                   >
                                     <CurricUnitCard
-                                      key={unitIndex}
+                                      key={unit.slug}
                                       unit={unit}
                                       index={unitIndex}
                                       isHighlighted={false}
