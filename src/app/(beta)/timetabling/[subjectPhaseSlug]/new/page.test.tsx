@@ -22,7 +22,7 @@ describe("/timetabling/new", () => {
     (useFeatureFlag as jest.Mock).mockResolvedValue(true);
     const { baseElement } = renderWithTheme(
       await Page({
-        params: { subjectPhaseSlug: "maths-primary" },
+        params: Promise.resolve({ subjectPhaseSlug: "maths-primary" }),
       }),
     );
     expect(baseElement).toHaveTextContent("Create your maths year 1 timetable");
