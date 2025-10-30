@@ -1,6 +1,5 @@
 import { TextItem } from "@oaknational/oak-curriculum-schema";
 import {
-  MissingComponentHandler,
   PortableTextComponents,
   PortableTextTypeComponentProps,
 } from "@portabletext/react";
@@ -12,7 +11,10 @@ import { PortableTextWithDefaults } from "../PortableText";
 
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 import { shortAnswerTitleFormatter } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
-import { PortableTextItem } from "@/utils/portableText";
+import {
+  logMissingPortableTextComponents,
+  PortableTextItem,
+} from "@/utils/portableText";
 
 export type StemPortableText = TextItem & { portableText?: PortableTextItem[] };
 
@@ -106,22 +108,10 @@ const stemComponents: PortableTextComponents = {
   marks: {},
 };
 
-const logMissingPortableTextComponents: MissingComponentHandler = (
-  message,
-  options,
-) => {
-  console.log(message, {
-    type: options.type,
-    nodeType: options.nodeType,
-  });
-};
-
 type StemProps = {
   stem?: TextItem & { portableText?: PortableTextItem[] };
 };
 export function Stem({ stem }: StemProps) {
-  // TODO: This should also deal with rendering <OakCodeRenderer/> as I've removed that else where
-  // See `shortAnswerTitleFormatter` for the logic behind it all
   if (ENABLE_SSR) {
     return (
       <PortableTextWithDefaults

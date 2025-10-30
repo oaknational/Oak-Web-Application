@@ -122,7 +122,6 @@ function convertQuestionStem(
   questionStem: NonNullable<QuizQuestion["questionStem"]>[number],
 ) {
   if (questionStem.type === "text") {
-    // TODO: This should escape text here, rather than just replacing
     const portableText = stemToPortableText(questionStem.text);
     return {
       type: questionStem.type,
