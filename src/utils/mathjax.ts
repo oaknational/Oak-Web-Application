@@ -44,8 +44,8 @@ export default function convertToMml({
   // Image conversion
   const svg = adaptor.innerHTML(mathjaxDocument.convert(mathML, { em, ex }));
 
-  // TODO: This is the bit I need James help with to make accessible
-  // It has the MathML should we should be good once we convert it.
+  // The <span/> is for screenreader and the <svg/> is for rendering
+  // This copies the same method the client MathJax library uses
   return `<span style="display: inline-block; position: relative;">
     <span style="position: absolute; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); user-select: none;">${mathMlOutput}</span>
     ${svg}
