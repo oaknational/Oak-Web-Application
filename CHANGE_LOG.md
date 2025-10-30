@@ -1,3 +1,19 @@
+## [1.904.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.904.1...v1.904.2) (2025-10-30)
+
+
+### Bug Fixes
+
+* hotfix for ks3 science issue ([be701cd](https://github.com/oaknational/Oak-Web-Application/commit/be701cd298b81b8c48bdba21c114fdb6377307d5))
+
+## [1.904.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.904.0...v1.904.1) (2025-10-29)
+
+
+### Bug Fixes
+
+* add aria described by on legacy filter ([15ed8df](https://github.com/oaknational/Oak-Web-Application/commit/15ed8df793e148de9f33b757dd5597937c974c6f))
+* casing on described by ([ea8287f](https://github.com/oaknational/Oak-Web-Application/commit/ea8287fdfce920415a97bd0900f5a6679d95a2fb))
+* pa11y error non unique ids ([84dc21d](https://github.com/oaknational/Oak-Web-Application/commit/84dc21d5a7caabdd4bd6049d1ba8f5570ca9c592))
+
 # [1.904.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.903.3...v1.904.0) (2025-10-29)
 
 
