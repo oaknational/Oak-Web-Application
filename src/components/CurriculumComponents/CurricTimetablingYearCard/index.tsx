@@ -20,7 +20,7 @@ export function CurricTimetablingYearCard({
   additional,
   children,
   timetablingUrl,
-}: CurricTimetablingYearCardProps) {
+}: Readonly<CurricTimetablingYearCardProps>) {
   return (
     <OakBox
       $background={"pink50"}

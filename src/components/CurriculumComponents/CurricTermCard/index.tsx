@@ -18,7 +18,7 @@ export function CurricTermCard({
   children,
   coveredNumberOfLessons,
   totalNumberOfLessons,
-}: CurricTermCardProps) {
+}: Readonly<CurricTermCardProps>) {
   return (
     <OakFlex
       $flexDirection={"column"}
