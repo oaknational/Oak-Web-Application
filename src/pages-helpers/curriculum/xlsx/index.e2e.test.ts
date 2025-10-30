@@ -366,7 +366,7 @@ describe("xlsxNationalCurriculum links and filtering e2e", () => {
       if (!k.startsWith("xl/worksheets/sheet") || !k.endsWith(".xml"))
         return false;
       const m = k.match(/sheet(\d+)\.xml$/);
-      const num = m && m[1] ? parseInt(m[1], 10) : 0;
+      const num = m && m[1] ? Number.parseInt(m[1], 10) : 0;
       return num >= 10;
     });
 

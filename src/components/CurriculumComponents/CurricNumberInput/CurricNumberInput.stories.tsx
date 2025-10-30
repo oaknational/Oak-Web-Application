@@ -56,7 +56,9 @@ const meta: Meta<typeof Component> = {
 export default meta;
 type Story = StoryObj<typeof Component>;
 
-function InteractiveWrapper(args: React.ComponentProps<typeof Component>) {
+function InteractiveWrapper(
+  args: Readonly<React.ComponentProps<typeof Component>>,
+) {
   const [value, setValue] = useState(args.value);
   return (
     <OakFlex $position="relative" $flexDirection="column">

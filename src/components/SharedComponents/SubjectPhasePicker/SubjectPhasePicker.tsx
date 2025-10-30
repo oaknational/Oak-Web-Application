@@ -239,7 +239,7 @@ function SubjectContainer({
   children,
   showSubjectError,
   onClick,
-}: SubjectContainerProps) {
+}: Readonly<SubjectContainerProps>) {
   const subjectErrorId = useId();
   const subjectInputId = useId();
   const isMobile = useMediaQuery("mobile");

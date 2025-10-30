@@ -21,7 +21,7 @@ export function CurriculumDownloadSelection({
   downloadTypes,
   onChange,
   availableDownloadTypes,
-}: CurriculumDownloadSelectionProps) {
+}: Readonly<CurriculumDownloadSelectionProps>) {
   const shownDownloadTypes = DOWNLOAD_TYPE_LABELS.filter(({ id }) =>
     availableDownloadTypes.includes(id),
   );

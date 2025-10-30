@@ -24,7 +24,6 @@ import {
   fetchSubjectPhasePickerData,
   formatCurriculumUnitsData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { DISABLE_DOWNLOADS } from "@/utils/curriculum/constants";
 
 const render = renderWithProviders();
 
@@ -663,28 +662,26 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       });
     });
 
-    if (!DISABLE_DOWNLOADS) {
-      it("renders the Curriculum Downloads Tab (with prerelease)", () => {
-        (useRouter as jest.Mock).mockReturnValue({
-          query: { slugs: ["downloads"] },
-          isPreview: false,
-          pathname: "/teachers-2023/curriculum/english-secondary-aqa/downloads",
-        });
-        const slugs = parseSubjectPhaseSlug("english-secondary-aqa")!;
-        const { queryByTestId } = render(
-          <CurriculumInfoPage
-            mvRefreshTime={1721314874829}
-            curriculumUnitsFormattedData={curriculumUnitsFormattedData}
-            curriculumSelectionSlugs={slugs}
-            curriculumPhaseOptions={curriculumPhaseOptions}
-            curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
-            curriculumOverviewTabData={curriculumOverviewMVFixture()}
-            curriculumDownloadsTabData={{ tiers: [], child_subjects: [] }}
-          />,
-        );
-        expect(queryByTestId("download-heading")).toBeInTheDocument();
+    it("renders the Curriculum Downloads Tab (with prerelease)", () => {
+      (useRouter as jest.Mock).mockReturnValue({
+        query: { slugs: ["downloads"] },
+        isPreview: false,
+        pathname: "/teachers-2023/curriculum/english-secondary-aqa/downloads",
       });
-    }
+      const slugs = parseSubjectPhaseSlug("english-secondary-aqa")!;
+      const { queryByTestId } = render(
+        <CurriculumInfoPage
+          mvRefreshTime={1721314874829}
+          curriculumUnitsFormattedData={curriculumUnitsFormattedData}
+          curriculumSelectionSlugs={slugs}
+          curriculumPhaseOptions={curriculumPhaseOptions}
+          curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
+          curriculumOverviewTabData={curriculumOverviewMVFixture()}
+          curriculumDownloadsTabData={{ tiers: [], child_subjects: [] }}
+        />,
+      );
+      expect(queryByTestId("download-heading")).toBeInTheDocument();
+    });
   });
 
   describe("getStaticProps", () => {
