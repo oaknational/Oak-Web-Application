@@ -316,7 +316,8 @@ export const LessonMedia = (props: LessonMediaProps) => {
       timeElapsedSeconds: 0,
       isMuted: false,
       mediaClipsCount: listOfAllClips.length,
-      mediaClipIndex: parseInt(clickedMediaClip?.order.toString() ?? "0") ?? 0,
+      mediaClipIndex:
+        Number.parseInt(clickedMediaClip?.order.toString() ?? "0") ?? 0,
     });
   };
 
