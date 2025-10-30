@@ -10,10 +10,8 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import { invariant } from "@/utils/invariant";
-import {
-  StemPortableText,
-  stemToPortableText,
-} from "@/components/SharedComponents/Stem";
+import { StemPortableText } from "@/components/SharedComponents/Stem";
+import { stemToPortableText } from "@/utils/portableText";
 
 const starterQuiz = quizQuestions;
 const mcqText = starterQuiz ? starterQuiz[0] : null;
