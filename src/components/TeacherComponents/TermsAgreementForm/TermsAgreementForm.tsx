@@ -21,7 +21,7 @@ import FieldError from "@/components/SharedComponents/FieldError";
 import ResourcePageDetailsCompleted from "@/components/TeacherComponents/ResourcePageDetailsCompleted";
 import ResourcePageSchoolDetails from "@/components/TeacherComponents/ResourcePageSchoolDetails";
 import ResourcePageTermsAndConditionsCheckbox from "@/components/TeacherComponents/ResourcePageTermsAndConditionsCheckbox";
-import CopyrightNotice from "@/components/TeacherComponents/CopyrightNotice";
+import CopyrightNotice from "@/components/TeacherComponents/OglCopyrightNotice";
 import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { resolveOakHref } from "@/common-lib/urls";
 
@@ -40,7 +40,7 @@ export type TermsAgreementFormProps = {
   showSavedDetails?: boolean;
   handleEditDetailsCompletedClick?: () => void;
   showPostAlbCopyright?: boolean;
-  copyrightYear: string;
+  oglCopyrightYear: string;
   useDownloadPageLayout?: boolean;
 };
 
@@ -54,7 +54,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
   showSavedDetails = false,
   handleEditDetailsCompletedClick = () => {},
   showPostAlbCopyright = true,
-  copyrightYear,
+  oglCopyrightYear,
   useDownloadPageLayout = false,
 }) => {
   const [emailHasFocus, setEmailHasFocus] = useState(false);
@@ -215,7 +215,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
               <CopyrightNotice
                 showPostAlbCopyright={showPostAlbCopyright}
                 openLinksExternally={true}
-                copyrightYear={copyrightYear}
+                copyrightYear={oglCopyrightYear}
               />
             </OakBox>
           )}
