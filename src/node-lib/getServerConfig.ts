@@ -302,6 +302,41 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: true,
     default: null,
   },
+  googleClassroomEncryptionSecret: {
+    value: process.env.GOOGLE_CLASSROOM_ENCRYPTION_SECRET,
+    envName: "GOOGLE_CLASSROOM_ENCRYPTION_SECRET",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  googleClassroomOAuthClientId: {
+    value: process.env.GOOGLE_CLASSROOM_OAUTH_CLIENT_ID,
+    envName: "GOOGLE_CLASSROOM_OAUTH_CLIENT_ID",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  googleClassroomOAuthClientSecret: {
+    value: process.env.GOOGLE_CLASSROOM_OAUTH_CLIENT_SECRET,
+    envName: "GOOGLE_CLASSROOM_OAUTH_CLIENT_SECRET",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  googleClassroomSessionSecret: {
+    value: process.env.GOOGLE_CLASSROOM_SESSION_SECRET,
+    envName: "GOOGLE_CLASSROOM_SESSION_SECRET",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  googleClassroomApiBaseUrl: {
+    value: process.env.GOOGLE_CLASSROOM_API_BASE_URL,
+    envName: "GOOGLE_CLASSROOM_API_BASE_URL",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
 });
 
 for (const [, envVarConfig] of Object.entries(envVars)) {

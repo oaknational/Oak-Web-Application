@@ -293,6 +293,23 @@ async function main() {
       oakConfig.sentry.projectIdentifier,
     SENTRY_AUTH_TOKEN:
       process.env.SENTRY_AUTH_TOKEN || secretsFromNetwork.SENTRY_AUTH_TOKEN,
+
+    // Google Classroom Addon
+    GOOGLE_CLASSROOM_ENCRYPTION_SECRET:
+      process.env.GOOGLE_CLASS_ROOM_ENCRYPTION_SECRET ||
+      oakConfig.googleClassroom.encryptionSecret,
+    GOOGLE_CLASSROOM_OAUTH_CLIENT_ID:
+      process.env.GOOGLE_CLASSROOM_OAUTH_CLIENT_ID ||
+      oakConfig.googleClassroom.oauthClientId,
+    GOOGLE_CLASSROOM_OAUTH_CLIENT_SECRET:
+      process.env.GOOGLE_CLASSROOM_OAUTH_CLIENT_SECRET ||
+      oakConfig.googleClassroom.oauthClientSecret,
+    GOOGLE_CLASSROOM_SESSION_SECRET:
+      process.env.GOOGLE_CLASSROOM_SESSION_SECRET ||
+      oakConfig.googleClassroom.sessionSecret,
+    GOOGLE_CLASSROOM_API_BASE_URL:
+      process.env.GOOGLE_CLASSROOM_API_BASE_URL ||
+      oakConfig.googleClassroom.apiBaseUrl,
   };
 
   const serializedEnv = Object.entries(env).reduce((acc, [key, value]) => {
