@@ -10,7 +10,6 @@ import chalk from "chalk";
 import micromatch from "micromatch";
 
 import { extractCommands, resultsSchema } from "./helper";
-import { testLoggingReport } from "./commands/testLoggingReport";
 
 const outputDir = relative(process.cwd(), "reports");
 const outputFile = relative(process.cwd(), "reports/test-results.json");
@@ -90,16 +89,6 @@ yargs(hideBin(process.argv))
           });
         }
       }
-    },
-  )
-  .command(
-    "test-logging-report",
-    "Run tests and capture console logs/errors",
-    (yargs) => {
-      return yargs;
-    },
-    async () => {
-      await testLoggingReport();
     },
   )
   .demand(1).argv;

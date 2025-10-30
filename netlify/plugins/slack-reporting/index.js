@@ -110,7 +110,6 @@ module.exports = function slackBuildReporterPlugin() {
 
       try {
         await sendMessage(slackMessage, slackConfig);
-        // console.log("Slack call result:", result);
       } catch (error) {
         utils.build.failBuild("Failed to report build start to Slack", {
           error,
@@ -157,7 +156,6 @@ module.exports = function slackBuildReporterPlugin() {
 
       try {
         await sendMessage(slackMessage, slackConfig);
-        // console.log("Slack call result:", result);
       } catch (error) {
         utils.build.failBuild("Failed to report build error to Slack", {
           error,
@@ -200,7 +198,6 @@ module.exports = function slackBuildReporterPlugin() {
 
       try {
         await sendMessage(slackMessage, slackConfig);
-        // console.log("Slack call result:", result);
       } catch (error) {
         utils.build.failBuild("Failed to report build success to Slack", {
           error,

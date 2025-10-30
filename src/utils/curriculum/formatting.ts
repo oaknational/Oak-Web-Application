@@ -42,6 +42,17 @@ export function getShortPhaseText(
   return buildPhaseText(phase, keystages, true);
 }
 
+function getTextByLength(
+  isShortPhase: boolean,
+  shortText: string,
+  longText: string,
+) {
+  if (isShortPhase) {
+    return shortText;
+  }
+  return longText;
+}
+
 function buildPhaseText(
   phase: Pick<Phase, "slug">,
   keystages: { slug: string }[],
@@ -51,22 +62,21 @@ function buildPhaseText(
     const hasKs1 = hasKs(keystages, 1);
     const hasKs2 = hasKs(keystages, 2);
     if (hasKs1 && hasKs2) {
-      return isShortPhase ? "KS1 & KS2" : "Key stage 1 and 2";
+      return getTextByLength(isShortPhase, "KS1 & KS2", "Key stage 1 and 2");
     } else if (hasKs1) {
-      return isShortPhase ? "KS1" : "Key stage 1";
+      return getTextByLength(isShortPhase, "KS1", "Key stage 1");
     } else if (hasKs2) {
-      return isShortPhase ? "KS2" : "Key stage 2";
+      return getTextByLength(isShortPhase, "KS2", "Key stage 2");
     }
-  }
-  if (phase.slug === "secondary") {
+  } else if (phase.slug === "secondary") {
     const hasKs3 = hasKs(keystages, 3);
     const hasKs4 = hasKs(keystages, 4);
     if (hasKs3 && hasKs4) {
-      return isShortPhase ? "KS3 & KS4" : "Key stage 3 and 4";
+      return getTextByLength(isShortPhase, "KS3 & KS4", "Key stage 3 and 4");
     } else if (hasKs3) {
-      return isShortPhase ? "KS3" : "Key stage 3";
+      return getTextByLength(isShortPhase, "KS3", "Key stage 3");
     } else if (hasKs4) {
-      return isShortPhase ? "KS4" : "Key stage 4";
+      return getTextByLength(isShortPhase, "KS4", "Key stage 4");
     }
   }
   return "";

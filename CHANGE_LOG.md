@@ -1,3 +1,139 @@
+## [1.904.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.904.1...v1.904.2) (2025-10-30)
+
+
+### Bug Fixes
+
+* hotfix for ks3 science issue ([be701cd](https://github.com/oaknational/Oak-Web-Application/commit/be701cd298b81b8c48bdba21c114fdb6377307d5))
+
+## [1.904.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.904.0...v1.904.1) (2025-10-29)
+
+
+### Bug Fixes
+
+* add aria described by on legacy filter ([15ed8df](https://github.com/oaknational/Oak-Web-Application/commit/15ed8df793e148de9f33b757dd5597937c974c6f))
+* casing on described by ([ea8287f](https://github.com/oaknational/Oak-Web-Application/commit/ea8287fdfce920415a97bd0900f5a6679d95a2fb))
+* pa11y error non unique ids ([84dc21d](https://github.com/oaknational/Oak-Web-Application/commit/84dc21d5a7caabdd4bd6049d1ba8f5570ca9c592))
+
+# [1.904.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.903.3...v1.904.0) (2025-10-29)
+
+
+### Bug Fixes
+
+* restore shallow routing for unit modal navigation ([e816a9f](https://github.com/oaknational/Oak-Web-Application/commit/e816a9fa4164b0e01bc78175a9079b0db72464f0))
+
+
+### Features
+
+* add app router variant of CurricUnitModalContent component to units listing page ([62b29d2](https://github.com/oaknational/Oak-Web-Application/commit/62b29d25aaf1f2f11225f7b3e99b57c88dfef78e))
+* add routing for unit slugs ([9f62cae](https://github.com/oaknational/Oak-Web-Application/commit/9f62caeb0b50a4edd045dc61a1d9180227867501))
+* add TimetablingProvider to temporarily mock analytics ([d5ac938](https://github.com/oaknational/Oak-Web-Application/commit/d5ac938077a385bddb80ab4e418baace16659860))
+
+
+### Reverts
+
+* reinstate analytics provider ([1129bde](https://github.com/oaknational/Oak-Web-Application/commit/1129bdee623dba543725ba467fc28111f2aab026))
+
+## [1.903.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.903.2...v1.903.3) (2025-10-29)
+
+
+### Bug Fixes
+
+* sonarcloud remove debug and commented out code from repo ([d212f60](https://github.com/oaknational/Oak-Web-Application/commit/d212f609bc7e170f47585464f671098a2ec0ca23))
+
+## [1.903.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.903.1...v1.903.2) (2025-10-29)
+
+
+### Bug Fixes
+
+* pin github actions to the SHAs to improve security ([4665cf5](https://github.com/oaknational/Oak-Web-Application/commit/4665cf5b2f92628d31489c2172b0013104c2c035))
+
+## [1.903.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.903.0...v1.903.1) (2025-10-28)
+
+
+### Bug Fixes
+
+* curric visualiser modal selects wrong child-subject ([1851699](https://github.com/oaknational/Oak-Web-Application/commit/18516993d5387d4aca5466616dee92f194f7f9ba))
+* incorrect unit selected in modal when tier present ([d6a8af6](https://github.com/oaknational/Oak-Web-Application/commit/d6a8af6c572cfbbdca4ffa9f9e5c2900993781a7))
+
+# [1.903.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.902.0...v1.903.0) (2025-10-28)
+
+
+### Bug Fixes
+
+* make new fields nullable and optional ([7d0b9ef](https://github.com/oaknational/Oak-Web-Application/commit/7d0b9efdfaa8f7a0b0fa486152e42a3db8c74ac6))
+* pass name to hubspot form submit ([c6e5de0](https://github.com/oaknational/Oak-Web-Application/commit/c6e5de08cd69b733bae82245af5c8426e5b5731f))
+* remove manual sorting of content on campaign page ([bb3b22b](https://github.com/oaknational/Oak-Web-Application/commit/bb3b22b5c8919cf7a7bf182f464302d3b295b3c8))
+
+
+### Features
+
+* add option to hide links to product in campaign header ([8572693](https://github.com/oaknational/Oak-Web-Application/commit/8572693ce62f7cebfbf139d82b98702d2ebe8a0d))
+* add optional free text input field for school on campaign page ([2ce413b](https://github.com/oaknational/Oak-Web-Application/commit/2ce413b85187edd9c12c26c18d8bdd5d578f49fc))
+
+# [1.902.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.901.2...v1.902.0) (2025-10-28)
+
+
+### Bug Fixes
+
+* design review comments ([cf663ca](https://github.com/oaknational/Oak-Web-Application/commit/cf663cae01bbe6fd5bf1f93ccc2376860ec0c2e0))
+
+
+### Features
+
+* added component <CurricLessonItem/> ([c04ab40](https://github.com/oaknational/Oak-Web-Application/commit/c04ab40915abc136bb230ad8e1e48619a66a0dfe))
+
+## [1.901.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.901.1...v1.901.2) (2025-10-27)
+
+## [1.901.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.901.0...v1.901.1) (2025-10-24)
+
+
+### Bug Fixes
+
+* remove browser redirect from use share hook ([7836d4d](https://github.com/oaknational/Oak-Web-Application/commit/7836d4ddacdddb843ff287b8e25316dc14056f03))
+
+# [1.901.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.900.1...v1.901.0) (2025-10-24)
+
+
+### Features
+
+* adds terraform required_version attribute to constrain which versions of Terraform CLI can be used with the configuration ([d6a03f1](https://github.com/oaknational/Oak-Web-Application/commit/d6a03f1386b4a375a8db22339e85c0304fffaf81))
+* adds workflow for terraform linting ([24012b1](https://github.com/oaknational/Oak-Web-Application/commit/24012b109f9beea592e97058940d389d54c3a311))
+* uses commit SHA instead of branch name ([79070b2](https://github.com/oaknational/Oak-Web-Application/commit/79070b2db2a33d153ba1db90b2c5c9dfc3144367))
+
+## [1.900.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.900.0...v1.900.1) (2025-10-23)
+
+# [1.900.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.8...v1.900.0) (2025-10-23)
+
+
+### Features
+
+* added getPupilFirestore helper w/ optional emulators or via GCP OIDC ([dc817a9](https://github.com/oaknational/Oak-Web-Application/commit/dc817a95801921050cb567dc6fd461c46c648104))
+
+## [1.899.8](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.7...v1.899.8) (2025-10-23)
+
+
+### Bug Fixes
+
+* remove duplicate type PupilUnitListingLinkProps ([517b873](https://github.com/oaknational/Oak-Web-Application/commit/517b873e3a876cc4b09ac975d20d1d0419b6497d))
+
+## [1.899.7](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.6...v1.899.7) (2025-10-23)
+
+## [1.899.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.5...v1.899.6) (2025-10-23)
+
+## [1.899.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.4...v1.899.5) (2025-10-23)
+
+
+### Bug Fixes
+
+* removed invalid for...await (sonarcloud) ([1bdd4d4](https://github.com/oaknational/Oak-Web-Application/commit/1bdd4d43c8e018910b2d327bb859cf742e6c603a))
+
+## [1.899.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.3...v1.899.4) (2025-10-23)
+
+
+### Bug Fixes
+
+* syntax for watch and update select all checked on change ([2612887](https://github.com/oaknational/Oak-Web-Application/commit/2612887d97a0a12bccd708f2d53c8410f0926dd9))
+
 ## [1.899.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.2...v1.899.3) (2025-10-22)
 
 ## [1.899.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.899.1...v1.899.2) (2025-10-22)
