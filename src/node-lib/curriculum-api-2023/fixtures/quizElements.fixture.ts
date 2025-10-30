@@ -34,7 +34,7 @@ export const questionStemWithImage: (StemImageObject | StemTextObject)[] = [
   {
     text: "Which of these statements about trees is true?",
     type: "text",
-    portabletext: stemToPortableText(
+    portableText: stemToPortableText(
       "Which of these statements about trees is true?",
     ),
   },
@@ -49,7 +49,7 @@ export const mcqCorrectAnswer: MCAnswer = {
     {
       text: "a group of words that contains a verb and makes complete sense",
       type: "text",
-      portabletext: stemToPortableText(
+      portableText: stemToPortableText(
         "a group of words that contains a verb and makes complete sense",
       ),
     },
@@ -62,7 +62,7 @@ export const mcqIncorrectAnswer: MCAnswer = {
     {
       text: "a sentence starter followed by a comma",
       type: "text",
-      portabletext: stemToPortableText(
+      portableText: stemToPortableText(
         "a sentence starter followed by a comma",
       ),
     },
@@ -77,7 +77,7 @@ export const mcqTextAnswers: MCAnswer[] = [
       {
         text: "a group of letters",
         type: "text",
-        portabletext: stemToPortableText("a group of letters"),
+        portableText: stemToPortableText("a group of letters"),
       },
     ],
     answerIsCorrect: false,
@@ -88,7 +88,7 @@ export const mcqTextAnswers: MCAnswer[] = [
       {
         text: "a word that joins",
         type: "text",
-        portabletext: stemToPortableText("a word that joins"),
+        portableText: stemToPortableText("a word that joins"),
       },
     ],
     answerIsCorrect: false,
@@ -105,7 +105,7 @@ export const mcqImageAnswers: MCAnswer[] = [
       {
         text: "Trees grow from seeds.",
         type: "text",
-        portabletext: stemToPortableText("Trees grow from seeds."),
+        portableText: stemToPortableText("Trees grow from seeds."),
       },
     ],
     answerIsCorrect: true,
@@ -119,7 +119,7 @@ export const mcqImageAnswers: MCAnswer[] = [
       {
         text: "Trees grow from something different to seeds.",
         type: "text",
-        portabletext: stemToPortableText(
+        portableText: stemToPortableText(
           "Trees grow from something different to seeds.",
         ),
       },
@@ -135,7 +135,7 @@ export const mcqImageAnswers: MCAnswer[] = [
       {
         text: "Trees are put in the ground by people.",
         type: "text",
-        portabletext: stemToPortableText(
+        portableText: stemToPortableText(
           "Trees are put in the ground by people.",
         ),
       },
@@ -175,7 +175,7 @@ export const orderAnswers: OrderAnswer[] = [
       {
         text: "Edward the Confessor was exiled in Normandy.",
         type: "text",
-        portabletext: stemToPortableText(
+        portableText: stemToPortableText(
           "Edward the Confessor was exiled in Normandy.",
         ),
       },
@@ -197,7 +197,7 @@ export const orderAnswers: OrderAnswer[] = [
       {
         text: "Harold Godwinson travelled to Normandy.",
         type: "text",
-        portabletext: stemToPortableText(
+        portableText: stemToPortableText(
           "Harold Godwinson travelled to Normandy.",
         ),
       },
@@ -287,7 +287,7 @@ export const quizQuestions: NonNullable<LessonOverviewQuizData> = [
             {
               text: "Trees grow from seeds.",
               type: "text",
-              portabletext: stemToPortableText("Trees grow from seeds."),
+              portableText: stemToPortableText("Trees grow from seeds."),
             },
           ],
           answerIsCorrect: true,
@@ -297,7 +297,7 @@ export const quizQuestions: NonNullable<LessonOverviewQuizData> = [
             {
               text: "Trees grow from something different to seeds.",
               type: "text",
-              portabletext: stemToPortableText(
+              portableText: stemToPortableText(
                 "Trees grow from something different to seeds.",
               ),
             },
@@ -309,7 +309,7 @@ export const quizQuestions: NonNullable<LessonOverviewQuizData> = [
             {
               text: "Trees are put in the ground by people.",
               type: "text",
-              portabletext: stemToPortableText(
+              portableText: stemToPortableText(
                 "Trees are put in the ground by people.",
               ),
             },
@@ -337,7 +337,7 @@ export const quizQuestions: NonNullable<LessonOverviewQuizData> = [
       {
         text: "Which of these statements about trees is true?",
         type: "text",
-        portabletext: stemToPortableText(
+        portableText: stemToPortableText(
           "Which of these statements about trees is true?",
         ),
       },
@@ -357,7 +357,7 @@ export const quizQuestions: NonNullable<LessonOverviewQuizData> = [
       {
         text: "Match each organism from the food chain to the correct term used to describe it.",
         type: "text",
-        portabletext: stemToPortableText(
+        portableText: stemToPortableText(
           "Match each organism from the food chain to the correct term used to describe it.",
         ),
       },
@@ -371,7 +371,7 @@ export const quizQuestions: NonNullable<LessonOverviewQuizData> = [
       {
         text: "Put the following events in the order in which they happened, according to William of Poitiers. Start with the earliest event.",
         type: "text",
-        portabletext: stemToPortableText(
+        portableText: stemToPortableText(
           "Put the following events in the order in which they happened, according to William of Poitiers. Start with the earliest event.",
         ),
       },
@@ -398,7 +398,7 @@ export const quizQuestions: NonNullable<LessonOverviewQuizData> = [
       {
         text: "When the roots push out of the seed, they grow down into the soil 'searching' for {{}}.",
         type: "text",
-        portabletext: stemToPortableText(
+        portableText: stemToPortableText(
           "When the roots push out of the seed, they grow down into the soil 'searching' for {{}}.",
         ),
       },
@@ -434,7 +434,7 @@ export const quizQuestionsNoImages: LessonOverviewQuizData = [
       {
         text: "When the roots push out of the seed, they grow down into the soil 'searching' for {{}}.",
         type: "text",
-        portabletext: stemToPortableText(
+        portableText: stemToPortableText(
           "When the roots push out of the seed, they grow down into the soil 'searching' for {{}}.",
         ),
       },
