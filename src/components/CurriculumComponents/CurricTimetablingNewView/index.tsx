@@ -67,7 +67,7 @@ export const CurricTimetablingNewView = ({
           $gap={"space-between-m2"}
           $maxWidth={["100%", "all-spacing-20"]}
         >
-          <OakHeading id="autumn-heading" tag="h3" $font="heading-3">
+          <OakHeading id="autumn-heading" tag="h2" $font="heading-4">
             Autumn
           </OakHeading>
           <OakFlex $position="relative" $flexDirection="column">
@@ -101,7 +101,7 @@ export const CurricTimetablingNewView = ({
           $gap={"space-between-m2"}
           $maxWidth={["100%", "all-spacing-20"]}
         >
-          <OakHeading id="spring-heading" tag="h3" $font="heading-3">
+          <OakHeading id="spring-heading" tag="h2" $font="heading-4">
             Spring
           </OakHeading>
           <OakFlex $position="relative" $flexDirection="column">
@@ -135,7 +135,7 @@ export const CurricTimetablingNewView = ({
           $gap={"space-between-m2"}
           $maxWidth={["100%", "all-spacing-20"]}
         >
-          <OakHeading id="summer-heading" tag="h3" $font="heading-3">
+          <OakHeading id="summer-heading" tag="h2" $font="heading-4">
             Summer
           </OakHeading>
           <OakFlex $position="relative" $flexDirection="column">
