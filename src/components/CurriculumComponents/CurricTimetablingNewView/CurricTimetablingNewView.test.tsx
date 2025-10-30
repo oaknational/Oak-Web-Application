@@ -30,8 +30,59 @@ describe("CurricTimetablingNewView", () => {
     const { getByRole } = renderWithTheme(
       <CurricTimetablingNewView subjectPhaseSlug="maths-primary" />,
     );
-    const headingElement = getByRole("heading", { level: 2 });
-    expect(headingElement).toHaveTextContent("Enter lessons per term");
+    const headingElement = getByRole("heading", { level: 1 });
+    expect(headingElement).toHaveTextContent(
+      "Create your maths year 1 timetable",
+    );
+  });
+
+  test("heading renders with subject title when provided", async () => {
+    const { getByRole } = renderWithTheme(
+      <CurricTimetablingNewView
+        subjectPhaseSlug="religious-education-primary"
+        subjectTitle="Religious education"
+      />,
+    );
+    const headingElement = getByRole("heading", { level: 1 });
+    expect(headingElement).toHaveTextContent(
+      "Create your religious education year 1 timetable",
+    );
+  });
+
+  test("heading contains correctly capitalised language subjects", async () => {
+    const { getByRole } = renderWithTheme(
+      <CurricTimetablingNewView
+        subjectPhaseSlug="english-primary"
+        subjectTitle="english"
+      />,
+    );
+    const headingElement = getByRole("heading", { level: 1 });
+    expect(headingElement).toHaveTextContent(
+      "Create your English year 1 timetable",
+    );
+  });
+
+  test("component lowercases non-language subjects", async () => {
+    const { getByRole } = renderWithTheme(
+      <CurricTimetablingNewView
+        subjectPhaseSlug="physical-education-primary"
+        subjectTitle="Physical Education"
+      />,
+    );
+    const headingElement = getByRole("heading", { level: 1 });
+    expect(headingElement).toHaveTextContent(
+      "Create your physical education year 1 timetable",
+    );
+  });
+
+  test("component falls back to slug when subject title not provided", async () => {
+    const { getByRole } = renderWithTheme(
+      <CurricTimetablingNewView subjectPhaseSlug="religious-education-primary" />,
+    );
+    const headingElement = getByRole("heading", { level: 1 });
+    expect(headingElement).toHaveTextContent(
+      "Create your religious-education year 1 timetable",
+    );
   });
 
   test("component renders with button correctly", async () => {
