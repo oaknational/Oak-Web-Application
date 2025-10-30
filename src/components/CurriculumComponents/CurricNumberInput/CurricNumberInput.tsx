@@ -2,7 +2,7 @@ import { OakTextInput } from "@oaknational/oak-components";
 import { useMemo, useState, useEffect, ChangeEvent } from "react";
 
 function stringIsValidNumber(value: string, min: number, max: number) {
-  if (!value.trim().match(/^[0-9]+$/)) return false;
+  if (!/^\d+$/.exec(value.trim())) return false;
   const num = Number.parseInt(value, 10);
   if (Number.isNaN(num)) return false;
   return num >= min && num <= max;

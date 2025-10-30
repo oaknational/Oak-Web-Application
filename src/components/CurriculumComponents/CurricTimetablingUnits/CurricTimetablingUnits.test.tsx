@@ -7,6 +7,24 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { fetchSubjectPhasePickerData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
+const defaultSearchParams = new URLSearchParams("");
+const mockUseSearchParams = jest.fn(() => defaultSearchParams);
+const mockReplace = jest.fn();
+const mockPush = jest.fn();
+const mockUsePathname = jest.fn(() => "/timetabling/maths-primary/units");
+
+jest.mock("next/navigation", () => {
+  return {
+    __esModule: true,
+    usePathname: () => mockUsePathname(),
+    useRouter: () => ({ replace: mockReplace, push: mockPush }),
+    useSearchParams: () => mockUseSearchParams(),
+    notFound: () => {
+      throw new Error("NEXT_HTTP_ERROR_FALLBACK;404");
+    },
+  };
+});
+
 Object.assign(navigator, {
   clipboard: {
     writeText: jest.fn(),
@@ -32,17 +50,6 @@ Object.defineProperty(window, "matchMedia", {
   })),
 });
 
-const mockReplace = jest.fn();
-const mockPush = jest.fn();
-const mockUsePathname = jest.fn(() => "/timetabling/maths-primary/units");
-const mockUseSearchParams = jest.fn(() => new URLSearchParams(""));
-
-jest.mock("next/navigation", () => ({
-  usePathname: () => mockUsePathname(),
-  useRouter: () => ({ replace: mockReplace, push: mockPush }),
-  useSearchParams: () => mockUseSearchParams(),
-}));
-
 const unitOverviewExplored = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
@@ -52,22 +59,6 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
         unitOverviewExplored(...args),
     },
   }),
-}));
-
-// Mock useTimetableParams to avoid useEffect issues
-const mockUseTimetableParams = jest.fn(() => [
-  {
-    autumn: 30,
-    spring: 30,
-    summer: 30,
-    year: "1",
-    name: "",
-  },
-  jest.fn(),
-]);
-
-jest.mock("@/utils/curriculum/timetabling", () => ({
-  useTimetableParams: () => mockUseTimetableParams(),
 }));
 
 const defaultCurriculumPhaseOptions: ReturnType<
@@ -90,22 +81,18 @@ describe("CurricTimetablingUnits", () => {
     // Reset mocks to default values
     mockUsePathname.mockReturnValue("/timetabling/maths-primary/units");
     mockUseSearchParams.mockReturnValue(new URLSearchParams(""));
-    mockUseTimetableParams.mockReturnValue([
-      {
-        autumn: 30,
-        spring: 30,
-        summer: 30,
-        year: "1",
-        name: "",
-      },
-      jest.fn(),
-    ]);
   });
 
-  test("snapshot", () => {
+  test("snapshot (mode=debug)", () => {
+    mockUseSearchParams.mockReturnValue(
+      new URLSearchParams("mode=debug&year=1"),
+    );
     const { container } = renderWithTheme(
       <CurricTimetablingUnits
-        units={[createUnit({ slug: "test-1" }), createUnit({ slug: "test-2" })]}
+        units={[
+          createUnit({ slug: "test-1", year: "1" }),
+          createUnit({ slug: "test-2", year: "1" }),
+        ]}
         curriculumPhaseOptions={defaultCurriculumPhaseOptions}
         slugs={{
           phaseSlug: "primary",
@@ -116,6 +103,28 @@ describe("CurricTimetablingUnits", () => {
     );
     expect(container).toMatchSnapshot();
   });
+
+  test("snapshot (mode=normal)", () => {
+    mockUseSearchParams.mockReturnValue(
+      new URLSearchParams("mode=normal&year=1"),
+    );
+    const { container } = renderWithTheme(
+      <CurricTimetablingUnits
+        units={[
+          createUnit({ slug: "test-1", year: "1" }),
+          createUnit({ slug: "test-2", year: "1" }),
+        ]}
+        curriculumPhaseOptions={defaultCurriculumPhaseOptions}
+        slugs={{
+          phaseSlug: "primary",
+          subjectSlug: "maths",
+          ks4OptionSlug: null,
+        }}
+      />,
+    );
+    expect(container).toMatchSnapshot();
+  });
+
   test("edit details", () => {
     const { getAllByRole, getByTestId } = renderWithTheme(
       <CurricTimetablingUnits
@@ -163,6 +172,9 @@ describe("CurricTimetablingUnits", () => {
   });
 
   test("units are visible", () => {
+    mockUseSearchParams.mockReturnValue(
+      new URLSearchParams("mode=debug&year=1"),
+    );
     const { getByText } = renderWithTheme(
       <CurricTimetablingUnits
         units={[
@@ -213,16 +225,11 @@ describe("CurricTimetablingUnits", () => {
   });
 
   test("displays custom timetable name when data.name is set", () => {
-    mockUseTimetableParams.mockReturnValue([
-      {
-        autumn: 30,
-        spring: 30,
-        summer: 30,
-        year: "1",
-        name: "My Custom Timetable",
-      },
-      jest.fn(),
-    ]);
+    mockUseSearchParams.mockReturnValue(
+      new URLSearchParams(
+        `autumn=30&spring=30&summer=30&year=1&name=My Custom Timetable`,
+      ),
+    );
 
     const { getByText } = renderWithTheme(
       <CurricTimetablingUnits
@@ -395,7 +402,9 @@ describe("CurricTimetablingUnits", () => {
   });
 
   test("unit links include search params", () => {
-    mockUseSearchParams.mockReturnValue(new URLSearchParams("thread=number"));
+    mockUseSearchParams.mockReturnValue(
+      new URLSearchParams("mode=debug&year=1"),
+    );
 
     const { getAllByRole } = renderWithTheme(
       <CurricTimetablingUnits
@@ -422,7 +431,7 @@ describe("CurricTimetablingUnits", () => {
 
     expect(unitLink).toHaveAttribute(
       "href",
-      "/timetabling/maths-primary/units/test-unit?thread=number",
+      "/timetabling/maths-primary/units/test-unit?mode=debug&year=1",
     );
   });
 });

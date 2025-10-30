@@ -307,16 +307,18 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   if (isDone) {
     return (
       <ScrollIntoViewWhenVisisble>
-        <CurricSuccessMessage
-          title="Thanks for downloading"
-          message="We hope you find the resources useful. Click the question mark in the bottom-right corner to share your feedback."
-          buttonProps={{
-            label: "Back to downloads",
-            onClick: () => {
-              setIsDone(false);
-            },
-          }}
-        />
+        <OakBox $pv={["inner-padding-xl4"]}>
+          <CurricSuccessMessage
+            title="Thanks for downloading"
+            message="We hope you find the resources useful. Click the question mark in the bottom-right corner to share your feedback."
+            buttonProps={{
+              label: "Back to downloads",
+              onClick: () => {
+                setIsDone(false);
+              },
+            }}
+          />
+        </OakBox>
       </ScrollIntoViewWhenVisisble>
     );
   }

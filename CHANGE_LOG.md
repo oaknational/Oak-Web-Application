@@ -1,3 +1,21 @@
+# [1.905.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.904.5...v1.905.0) (2025-10-30)
+
+
+### Bug Fixes
+
+* added missing Readonly<Props> to components ([b0d35c8](https://github.com/oaknational/Oak-Web-Application/commit/b0d35c8c6ef583ce0f1ad772590aad04e07f6979))
+* change <CurricTermCard/> coverage text ([8f5db8a](https://github.com/oaknational/Oak-Web-Application/commit/8f5db8ab6c18445ebf50e1175bae32df49a8fc45))
+* react key from `slug` to `index` ([751afe3](https://github.com/oaknational/Oak-Web-Application/commit/751afe36682bd5fbb9853d3bb66023c9fc9750d6))
+* size of <CurricTimetablingYearCard/> in timetabling visualiser ([da17e47](https://github.com/oaknational/Oak-Web-Application/commit/da17e4717b8b6a828d434dcbc419a5a74af2d525))
+* sonarcloud issues in <CurricNumberInput/> ([32da82b](https://github.com/oaknational/Oak-Web-Application/commit/32da82b90cfba213719f4efc13c3756b85b9155b))
+* use total number of lessons rather than total number of units in timetabling ([2eb034f](https://github.com/oaknational/Oak-Web-Application/commit/2eb034fb6f58bf3ff5f19da187f74f9145163879))
+
+
+### Features
+
+* added year/term container to timetabling ([077b0a4](https://github.com/oaknational/Oak-Web-Application/commit/077b0a4e3690070be3b7dd7febf5f905aa31e5b1))
+* updated timetabling to use new modal functionality ([1e7387e](https://github.com/oaknational/Oak-Web-Application/commit/1e7387e2cf60e5f18150545a9f8713fb0ec11d4c))
+
 ## [1.904.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.904.4...v1.904.5) (2025-10-30)
 
 ## [1.904.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.904.3...v1.904.4) (2025-10-30)
