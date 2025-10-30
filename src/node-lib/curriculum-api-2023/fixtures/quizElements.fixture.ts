@@ -7,10 +7,8 @@ import {
   LessonOverviewQuizData,
 } from "../shared.schema";
 
-import {
-  StemPortableText,
-  stemToPortableText,
-} from "@/components/SharedComponents/Stem";
+import { stemToPortableText } from "@/utils/portableText";
+import { StemPortableText } from "@/components/SharedComponents/Stem";
 
 export const imageObject: StemImageObject["imageObject"] = {
   format: "jpg",

@@ -21,7 +21,7 @@ import {
   LessonContent,
   QuizQuestion,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
-import { stemToPortableText } from "@/components/SharedComponents/Stem";
+import { stemToPortableText } from "@/utils/portableText";
 
 export type PupilLessonPageURLParams = {
   lessonSlug: string;
