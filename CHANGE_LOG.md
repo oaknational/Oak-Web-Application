@@ -1,3 +1,18 @@
+# [1.906.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.905.0...v1.906.0) (2025-10-30)
+
+
+### Bug Fixes
+
+* increase step 1 header width ([48d094e](https://github.com/oaknational/Oak-Web-Application/commit/48d094e324f5d2582494de0fcb401bae3b4561b2))
+* revert to using Promise type for params in timetabling new page ([705e7e1](https://github.com/oaknational/Oak-Web-Application/commit/705e7e146a68253ca0352bf0eac9de15e88bfe80))
+
+
+### Features
+
+* add CurricAngledLabel component ([0af0ea9](https://github.com/oaknational/Oak-Web-Application/commit/0af0ea9be9d1b8734479a651ac23cc619879b126))
+* add new step 1 header ([d41f3ae](https://github.com/oaknational/Oak-Web-Application/commit/d41f3ae885ed30b5b86adaa6b4387056e5b5a4f6))
+* add proper casing for subject titles in step 1 header ([161510b](https://github.com/oaknational/Oak-Web-Application/commit/161510bca5c4383933a566e1d764b7528a3ac010))
+
 # [1.905.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.904.5...v1.905.0) (2025-10-30)
 
 
