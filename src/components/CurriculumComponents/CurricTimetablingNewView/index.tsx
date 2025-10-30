@@ -18,10 +18,15 @@ import {
   useTimetableParams,
 } from "@/utils/curriculum/timetabling";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
+import { subjectTitleWithCase } from "@/utils/curriculum/formatting";
 
-type CurricTimetablingNewViewProps = { subjectPhaseSlug: string };
+type CurricTimetablingNewViewProps = {
+  subjectPhaseSlug: string;
+  subjectTitle?: string;
+};
 export const CurricTimetablingNewView = ({
   subjectPhaseSlug,
+  subjectTitle,
 }: CurricTimetablingNewViewProps) => {
   const { subjectSlug } = parseSubjectPhaseSlug(subjectPhaseSlug)!;
   const [data, setData] = useTimetableParams();
@@ -29,6 +34,10 @@ export const CurricTimetablingNewView = ({
     () => `units?${simpleObjectAsSearchParams(data, { name: "" })}`,
     [data],
   );
+
+  const displaySubjectTitle = subjectTitle
+    ? subjectTitleWithCase(subjectTitle)
+    : subjectSlug;
 
   return (
     <>
@@ -51,7 +60,7 @@ export const CurricTimetablingNewView = ({
                   transform: "rotate(-0.381deg)",
                 }}
               >
-                {subjectSlug} year {data.year}
+                {displaySubjectTitle} year {data.year}
               </OakSpan>{" "}
               timetable
             </OakHeading>
