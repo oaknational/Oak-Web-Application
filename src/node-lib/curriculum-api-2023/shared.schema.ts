@@ -8,7 +8,7 @@ import { zodToCamelCase } from "./helpers/zodToCamelCase";
 import { mediaClipsRecordCamelSchema } from "./queries/lessonMediaClips/lessonMediaClips.schema";
 
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
-import { PortableTextItem } from "@/components/SharedComponents/Stem";
+import { PortableTextItem } from "@/utils/portableText";
 
 export const contentGuidanceSchemaCamelCase = z.object({
   contentGuidanceLabel: z.string(),
