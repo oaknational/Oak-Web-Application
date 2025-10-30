@@ -24,7 +24,7 @@ import { ResourcePageDetailsCompletedProps } from "@/components/TeacherComponent
 import { ResourcePageSchoolDetailsProps } from "@/components/TeacherComponents/ResourcePageSchoolDetails/ResourcePageSchoolDetails";
 import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { DelayedLoadingSpinner } from "@/components/TeacherComponents/SharePageLayout/SharePageLayout";
-import CopyrightNotice from "@/components/TeacherComponents/OglCopyrightNotice";
+import OglCopyrightNotice from "@/components/TeacherComponents/OglCopyrightNotice";
 import FieldError from "@/components/SharedComponents/FieldError";
 import RiskAssessmentBanner from "@/components/TeacherComponents/RiskAssessmentBanner";
 import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
@@ -300,7 +300,7 @@ const DownloadPageWithAccordionContent = (
               {apiError}
             </FieldError>
           )}
-          <CopyrightNotice
+          <OglCopyrightNotice
             fullWidth
             showPostAlbCopyright={showPostAlbCopyright}
             openLinksExternally={true}
