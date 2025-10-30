@@ -4,7 +4,6 @@ import {
   OakFlex,
   OakIcon,
   OakBox,
-  OakCodeRenderer,
 } from "@oaknational/oak-components";
 
 import QuizImage from "@/components/TeacherComponents/QuizImage";
@@ -67,12 +66,6 @@ export const QuizQuestionsMCAnswers = (props: {
                     $ph={40}
                   >
                     <Stem stem={answerItem} />
-                    {/* TODO: handle OakCodeRenderer
-                    <OakCodeRenderer
-                      string={removeMarkdown(answerItem.text)}
-                      $font="code-3"
-                      $mt={"space-between-none"}
-                    /> */}
                   </Typography>
                 );
               } else if (answerItem.type === "text" && choice.answerIsCorrect) {
@@ -97,12 +90,6 @@ export const QuizQuestionsMCAnswers = (props: {
 
                     <OakTypography $font={["body-2", "body-1"]} aria-hidden>
                       <Stem stem={answerItem} />
-                      {/* TODO: handle OakCodeRenderer
-                    <OakCodeRenderer
-                      string={removeMarkdown(answerItem.text)}
-                      $font="code-3"
-                      $mt={"space-between-none"}
-                    /> */}
                     </OakTypography>
                   </OakFlex>
                 );
