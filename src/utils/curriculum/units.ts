@@ -20,6 +20,7 @@ export function findUnitOrOptionBySlug(
           return false;
         }
         if (
+          unit.subject_parent &&
           filters.childSubjects.length > 0 &&
           filters.childSubjects[0] !== "all" &&
           !filters.childSubjects.includes(unit.subject_slug)
