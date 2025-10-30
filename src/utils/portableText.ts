@@ -1,20 +1,49 @@
+import z from "zod";
+
 import convertToMml from "@/utils/mathjax";
 
-type PortableTextSpan = { _type: "span"; text: string };
-type PortableTextText = {
-  _type: "block";
-  style: string;
-  children: (
-    | PortableTextMath
-    | PortableTextSpan
-    | PortableTextCodeInline
-    | PortableAnswerSpace
-  )[];
-};
-type PortableTextCodeBlock = { _type: "codeblock"; text: string };
-type PortableTextCodeInline = { _type: "codeinline"; text: string };
-type PortableTextMath = { _type: "math"; text: string; html: string };
-type PortableAnswerSpace = { _type: "answer_space" };
+export const portableTextSpanSchema = z.object({
+  _type: z.literal("span"),
+  text: z.string(),
+});
+export type PortableTextSpan = z.infer<typeof portableTextSpanSchema>;
+
+const portableTextCodeBlockSchema = z.object({
+  _type: z.literal("codeblock"),
+  text: z.string(),
+});
+type PortableTextCodeBlock = z.infer<typeof portableTextCodeBlockSchema>;
+
+const portableTextCodeInlineSchema = z.object({
+  _type: z.literal("codeinline"),
+  text: z.string(),
+});
+
+const portableTextMathSchema = z.object({
+  _type: z.literal("math"),
+  text: z.string(),
+  html: z.string(),
+});
+
+const portableTextAnswerSpaceSchema = z.object({
+  _type: z.literal("answer_space"),
+});
+type PortableAnswerSpace = z.infer<typeof portableTextAnswerSpaceSchema>;
+
+export const portableTextTextSchema = z.object({
+  _type: z.literal("block"),
+  style: z.string(),
+  children: z.array(
+    z.union([
+      portableTextAnswerSpaceSchema,
+      portableTextSpanSchema,
+      portableTextCodeInlineSchema,
+      portableTextMathSchema,
+    ]),
+  ),
+});
+type PortableTextText = z.infer<typeof portableTextTextSchema>;
+
 export type PortableTextItem =
   | PortableTextText
   | PortableTextCodeBlock
