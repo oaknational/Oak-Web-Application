@@ -1,4 +1,4 @@
-import { getServerSideSitemap } from "next-sitemap";
+import { getServerSideSitemapLegacy } from "next-sitemap";
 import { GetServerSidePropsContext } from "next";
 
 import { getServerSideProps as getServerSidePropsSitemap } from "@/pages/teachers/sitemap.xml";
@@ -24,7 +24,7 @@ describe("getServerSideProps", () => {
         mockSiteMap,
       );
 
-      (getServerSideSitemap as jest.Mock).mockReturnValue({
+      (getServerSideSitemapLegacy as jest.Mock).mockReturnValue({
         props: { fields: mockFields },
       });
 
@@ -33,7 +33,7 @@ describe("getServerSideProps", () => {
       expect(curriculumApi2023.teachersSitemap).toHaveBeenCalled();
       expect(result).toEqual({ props: { fields: mockFields } });
     });
-    it("fetches data and generates fields correctly - sitemap-1.xlm", async () => {
+    it("fetches data and generates fields correctly - sitemap-1.xml", async () => {
       const context = {} as GetServerSidePropsContext;
       const mockSiteMap = teachersSitemapDataFixture;
       const mockFields = [
@@ -47,7 +47,7 @@ describe("getServerSideProps", () => {
         mockSiteMap,
       );
 
-      (getServerSideSitemap as jest.Mock).mockReturnValue({
+      (getServerSideSitemapLegacy as jest.Mock).mockReturnValue({
         props: { fields: mockFields },
       });
 

@@ -1,4 +1,4 @@
-import { getServerSideSitemap } from "next-sitemap";
+import { getServerSideSitemapLegacy } from "next-sitemap";
 import { GetServerSidePropsContext } from "next";
 
 import { getServerSideProps } from "@/pages/teachers/sitemap-1.xml";
@@ -23,7 +23,7 @@ describe("getServerSideProps", () => {
         mockSiteMap,
       );
 
-      (getServerSideSitemap as jest.Mock).mockReturnValue({
+      (getServerSideSitemapLegacy as jest.Mock).mockReturnValue({
         props: { fields: mockFields },
       });
 
