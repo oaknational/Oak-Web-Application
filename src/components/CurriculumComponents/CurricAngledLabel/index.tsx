@@ -1,0 +1,1 @@
+export { CurricAngledLabel } from "./CurricAngledLabel";

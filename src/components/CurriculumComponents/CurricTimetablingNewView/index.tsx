@@ -5,12 +5,12 @@ import {
   OakP,
   OakPrimaryButton,
   OakJauntyAngleLabel,
-  OakSpan,
 } from "@oaknational/oak-components";
 import { useMemo } from "react";
 import Link from "next/link";
 
 import { CurricNumberInput } from "../CurricNumberInput";
+import { CurricAngledLabel } from "../CurricAngledLabel";
 
 import {
   simpleObjectAsSearchParams,
@@ -50,17 +50,9 @@ export const CurricTimetablingNewView = ({
       <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
         <OakHeading tag="h1" $font="heading-3">
           Create your{" "}
-          <OakSpan
-            $background="bg-decorative1-main"
-            $pa="inner-padding-ssx"
-            $borderRadius="border-radius-square"
-            style={{
-              display: "inline-block",
-              transform: "rotate(-0.381deg)",
-            }}
-          >
+          <CurricAngledLabel>
             {displaySubjectTitle} year {data.year}
-          </OakSpan>{" "}
+          </CurricAngledLabel>{" "}
           timetable
         </OakHeading>
         <OakP $font={["body-2", "body-1"]}>
