@@ -49,7 +49,6 @@ import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urls";
 import errorReporter from "@/common-lib/error-reporter";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { doUnitsHaveNc, flatUnitsFromYearData } from "@/utils/curriculum/units";
-import { ENABLE_NC_XLSX_DOCUMENT } from "@/utils/curriculum/constants";
 
 function ScrollIntoViewWhenVisisble({
   children,
@@ -134,10 +133,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   const availableDownloadTypes = useMemo(() => {
     return DOWNLOAD_TYPE_LABELS.map(({ id }) => id).filter((id) => {
       if (id === "national-curriculum") {
-        return (
-          ENABLE_NC_XLSX_DOCUMENT &&
-          doUnitsHaveNc(flatUnitsFromYearData(formattedData.yearData))
-        );
+        return doUnitsHaveNc(flatUnitsFromYearData(formattedData.yearData));
       }
       return true;
     });
@@ -311,16 +307,18 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   if (isDone) {
     return (
       <ScrollIntoViewWhenVisisble>
-        <CurricSuccessMessage
-          title="Thanks for downloading"
-          message="We hope you find the resources useful. Click the question mark in the bottom-right corner to share your feedback."
-          buttonProps={{
-            label: "Back to downloads",
-            onClick: () => {
-              setIsDone(false);
-            },
-          }}
-        />
+        <OakBox $pv={["inner-padding-xl4"]}>
+          <CurricSuccessMessage
+            title="Thanks for downloading"
+            message="We hope you find the resources useful. Click the question mark in the bottom-right corner to share your feedback."
+            buttonProps={{
+              label: "Back to downloads",
+              onClick: () => {
+                setIsDone(false);
+              },
+            }}
+          />
+        </OakBox>
       </ScrollIntoViewWhenVisisble>
     );
   }
