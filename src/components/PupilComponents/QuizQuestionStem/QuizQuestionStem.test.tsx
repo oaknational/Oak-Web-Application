@@ -1,6 +1,7 @@
 import React from "react";
 import "@testing-library/jest-dom";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import { ImageItem } from "@oaknational/oak-curriculum-schema";
 
 import { QuizQuestionStem } from "@/components/PupilComponents/QuizQuestionStem";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
@@ -10,7 +11,6 @@ import {
   StemPortableText,
   stemToPortableText,
 } from "@/components/SharedComponents/Stem";
-import { ImageItem } from "@oaknational/oak-curriculum-schema";
 
 const starterQuiz = quizQuestions;
 const mcqText = starterQuiz ? starterQuiz[0] : null;

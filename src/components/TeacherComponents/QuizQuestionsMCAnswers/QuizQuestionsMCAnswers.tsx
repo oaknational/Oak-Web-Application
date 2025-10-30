@@ -4,7 +4,6 @@ import {
   OakFlex,
   OakIcon,
   OakBox,
-  OakCodeRenderer,
 } from "@oaknational/oak-components";
 
 import QuizImage from "@/components/TeacherComponents/QuizImage";
