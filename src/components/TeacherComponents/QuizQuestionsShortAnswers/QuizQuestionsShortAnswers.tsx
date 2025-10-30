@@ -8,7 +8,8 @@ import {
 
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import { ShortAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { Stem, stemToPortableText } from "@/components/SharedComponents/Stem";
+import { Stem } from "@/components/SharedComponents/Stem";
+import { stemToPortableText } from "@/utils/portableText";
 
 export const QuizQuestionsShortAnswers = ({
   answers,

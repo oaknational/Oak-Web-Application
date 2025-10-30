@@ -10,7 +10,7 @@ import { QuizMatchAnswer } from "./QuizMatchAnswer";
 import { QuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { MatchAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
-import { stemToPortableText } from "@/components/SharedComponents/Stem";
+import { stemToPortableText } from "@/utils/portableText";
 
 const OakThemeProvider = oakComponents.OakThemeProvider;
 const oakDefaultTheme = oakComponents.oakDefaultTheme;

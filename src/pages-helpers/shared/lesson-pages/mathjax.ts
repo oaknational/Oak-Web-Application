@@ -1,6 +1,6 @@
 import { LessonOverviewQuizData } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
-import { stemToPortableText } from "@/components/SharedComponents/Stem";
+import { stemToPortableText } from "@/utils/portableText";
 
 export function convertQuestionMath(questions: LessonOverviewQuizData) {
   return questions?.map((question) => {

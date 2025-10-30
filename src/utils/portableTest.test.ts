@@ -1,4 +1,4 @@
-import { stemToPortableText } from ".";
+import { stemToPortableText } from "./portableText";
 
 describe("stemToPortableText", () => {
   test("code & text", () => {
