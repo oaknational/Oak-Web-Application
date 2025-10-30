@@ -41,7 +41,6 @@ export type MatchAnswer = ConvertKeysToCamelCase<z.infer<typeof matchSchema>>;
 
 export type ImageItem = ConvertKeysToCamelCase<z.infer<typeof imageItemSchema>>;
 export type TextItem = ConvertKeysToCamelCase<z.infer<typeof textItemSchema>>;
-export type ImageOrTextItem = ImageItem | TextItem;
 
 export const lessonContentSchema = lessonContentSchemaFull.omit({
   _state: true,

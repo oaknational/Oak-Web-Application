@@ -5,6 +5,8 @@
  *
  */
 
+import { StemImageObject, StemTextObject } from "../shared.schema";
+
 import {
   MCAnswer,
   ShortAnswer,
@@ -13,7 +15,6 @@ import {
   ImageItem,
   QuizQuestion,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
-import { StemPortableText } from "@/components/SharedComponents/Stem";
 import { stemToPortableText } from "@/utils/portableText";
 
 export const imageObject: ImageItem["imageObject"] = {
@@ -28,7 +29,7 @@ export const imageObject: ImageItem["imageObject"] = {
   version: 1687374653,
 };
 
-export const questionStem: (StemPortableText | ImageItem)[] = [
+export const questionStem: (StemImageObject | StemTextObject)[] = [
   {
     text: "What is a main clause?",
     portableText: stemToPortableText("What is a main clause?"),
@@ -36,7 +37,7 @@ export const questionStem: (StemPortableText | ImageItem)[] = [
   },
 ];
 
-export const questionStemWithImage: (StemPortableText | ImageItem)[] = [
+export const questionStemWithImage: (StemImageObject | StemTextObject)[] = [
   {
     text: "Which of these statements about trees is true?",
     type: "text",

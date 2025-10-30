@@ -4,14 +4,15 @@ import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { QuizResultQuestionStem } from "@/components/PupilComponents/QuizResultQuestionStem";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import {
-  ImageItem,
-  ImageOrTextItem,
-} from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { ImageItem } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import { invariant } from "@/utils/invariant";
 import { StemPortableText } from "@/components/SharedComponents/Stem";
 import { stemToPortableText } from "@/utils/portableText";
+import {
+  StemImageObject,
+  StemTextObject,
+} from "@/node-lib/curriculum-api-2023/shared.schema";
 
 const starterQuiz = quizQuestions;
 const mcqText = starterQuiz ? starterQuiz[0] : null;
@@ -76,7 +77,7 @@ describe("QuestionListItem", () => {
   it("renders question number if displayIndex is other than 999", () => {
     invariant(mcqStemImage?.questionStem, "mcqStemImage.questionStem is null");
 
-    const questionStem: ImageOrTextItem[] = [
+    const questionStem: (StemImageObject | StemTextObject)[] = [
       ...mcqStemImage.questionStem,
       {
         text: "This is some text",
@@ -98,7 +99,7 @@ describe("QuestionListItem", () => {
   it("does not render question number if displayIndex is 999", () => {
     invariant(mcqStemImage?.questionStem, "mcqStemImage.questionStem is null");
 
-    const questionStem: ImageOrTextItem[] = [
+    const questionStem: (StemImageObject | StemTextObject)[] = [
       ...mcqStemImage.questionStem,
       {
         text: "This is some text",
