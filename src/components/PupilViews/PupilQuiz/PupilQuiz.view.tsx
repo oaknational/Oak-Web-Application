@@ -31,7 +31,6 @@ import {
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { QuizQuestionAnswers } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
-import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 import { QuizCorrectAnswers } from "@/components/PupilComponents/QuizCorrectAnswers";
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
 import { useGetQuizTrackingData } from "@/hooks/useGetQuizTrackingData";
@@ -148,11 +147,7 @@ const QuizInner = () => {
 
   const incorrectFeedback = (answers: QuestionsArray[number]["answers"]) => {
     if (answers && !isMatchAnswer(answers)) {
-      return (
-        <MathJaxWrap>
-          <QuizCorrectAnswers />
-        </MathJaxWrap>
-      );
+      return <QuizCorrectAnswers />;
     }
     return null;
   };
@@ -183,12 +178,7 @@ const QuizInner = () => {
     <OakLessonBottomNav
       hint={
         currentQuestionData?.hint && (
-          <MathJaxWrap>
-            <OakCodeRenderer
-              string={currentQuestionData.hint}
-              $font={"code-3"}
-            />
-          </MathJaxWrap>
+          <OakCodeRenderer string={currentQuestionData.hint} $font={"code-3"} />
         )
       }
       hintToggled={({ isOpen }: { isOpen: boolean }) => {
