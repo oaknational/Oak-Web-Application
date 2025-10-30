@@ -22,7 +22,7 @@ import {
 } from "@/utils/copyrightLinks";
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 
-export type CopyrightRestrictionBannerProps = {
+export type ComplexCopyrightRestrictionBannerProps = {
   isGeorestricted?: boolean;
   isLoginRequired?: boolean;
   componentType?: ComponentTypeValueType;
@@ -155,7 +155,9 @@ const SignedInGeorestrictedBanner = ({ isUnit }: { isUnit: boolean }) => (
   </OakFlex>
 );
 
-const CopyrightRestrictionBanner = (props: CopyrightRestrictionBannerProps) => {
+const ComplexCopyrightRestrictionBanner = (
+  props: ComplexCopyrightRestrictionBannerProps,
+) => {
   const {
     isGeorestricted,
     isLoginRequired,
@@ -233,4 +235,4 @@ const CopyrightRestrictionBanner = (props: CopyrightRestrictionBannerProps) => {
   ) : null;
 };
 
-export default CopyrightRestrictionBanner;
+export default ComplexCopyrightRestrictionBanner;

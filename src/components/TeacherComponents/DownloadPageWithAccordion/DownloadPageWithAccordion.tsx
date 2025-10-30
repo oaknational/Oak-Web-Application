@@ -18,7 +18,7 @@ import {
   UseFormTrigger,
 } from "react-hook-form";
 
-import CopyrightRestrictionBanner from "../CopyrightRestrictionBanner/CopyrightRestrictionBanner";
+import ComplexCopyrightRestrictionBanner from "../ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
 
 import { ResourcePageDetailsCompletedProps } from "@/components/TeacherComponents/ResourcePageDetailsCompleted/ResourcePageDetailsCompleted";
 import { ResourcePageSchoolDetailsProps } from "@/components/TeacherComponents/ResourcePageSchoolDetails/ResourcePageSchoolDetails";
@@ -132,7 +132,7 @@ const DownloadPageWithAccordion: FC<DownloadWrapperProps> = (
           <DownloadPageWithAccordionContent {...props} />
         )}
         {!showGeoBlocked && (
-          <CopyrightRestrictionBanner
+          <ComplexCopyrightRestrictionBanner
             isGeorestricted={geoRestricted ?? undefined}
             isLoginRequired={loginRequired ?? undefined}
             componentType="lesson_downloads"
