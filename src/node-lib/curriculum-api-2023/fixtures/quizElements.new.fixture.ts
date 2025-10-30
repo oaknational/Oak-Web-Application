@@ -13,10 +13,8 @@ import {
   ImageItem,
   QuizQuestion,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
-import {
-  StemPortableText,
-  stemToPortableText,
-} from "@/components/SharedComponents/Stem";
+import { StemPortableText } from "@/components/SharedComponents/Stem";
+import { stemToPortableText } from "@/utils/portableText";
 
 export const imageObject: ImageItem["imageObject"] = {
   format: "jpg",
