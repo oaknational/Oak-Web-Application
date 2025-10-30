@@ -130,7 +130,7 @@ export const generateLessonOverviewFromRaw = (
       lesson.equipment_and_resources,
     ),
     keyLearningPoints: keysToCamelCase(lesson.key_learning_points),
-    copyrightContent: lesson.contains_copyright_content
+    legacyCopyrightContent: lesson.contains_copyright_content
       ? [{ copyrightInfo: "This lesson contains copyright material" }]
       : [],
     downloads: constructDownloadsArray(lesson),

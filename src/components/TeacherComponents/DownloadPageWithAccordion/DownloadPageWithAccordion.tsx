@@ -18,13 +18,13 @@ import {
   UseFormTrigger,
 } from "react-hook-form";
 
-import CopyrightRestrictionBanner from "../CopyrightRestrictionBanner/CopyrightRestrictionBanner";
+import ComplexCopyrightRestrictionBanner from "../ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
 
 import { ResourcePageDetailsCompletedProps } from "@/components/TeacherComponents/ResourcePageDetailsCompleted/ResourcePageDetailsCompleted";
 import { ResourcePageSchoolDetailsProps } from "@/components/TeacherComponents/ResourcePageSchoolDetails/ResourcePageSchoolDetails";
 import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { DelayedLoadingSpinner } from "@/components/TeacherComponents/SharePageLayout/SharePageLayout";
-import CopyrightNotice from "@/components/TeacherComponents/CopyrightNotice";
+import OglCopyrightNotice from "@/components/TeacherComponents/OglCopyrightNotice";
 import FieldError from "@/components/SharedComponents/FieldError";
 import RiskAssessmentBanner from "@/components/TeacherComponents/RiskAssessmentBanner";
 import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
@@ -132,7 +132,7 @@ const DownloadPageWithAccordion: FC<DownloadWrapperProps> = (
           <DownloadPageWithAccordionContent {...props} />
         )}
         {!showGeoBlocked && (
-          <CopyrightRestrictionBanner
+          <ComplexCopyrightRestrictionBanner
             isGeorestricted={geoRestricted ?? undefined}
             isLoginRequired={loginRequired ?? undefined}
             componentType="lesson_downloads"
@@ -241,7 +241,7 @@ const DownloadPageWithAccordionContent = (
                 showSavedDetails={showSavedDetails}
                 handleEditDetailsCompletedClick={onEditClick}
                 showPostAlbCopyright={showPostAlbCopyright}
-                copyrightYear={updatedAt}
+                oglCopyrightYear={updatedAt}
                 useDownloadPageLayout
               />
               {showRiskAssessmentBanner && (
@@ -300,7 +300,7 @@ const DownloadPageWithAccordionContent = (
               {apiError}
             </FieldError>
           )}
-          <CopyrightNotice
+          <OglCopyrightNotice
             fullWidth
             showPostAlbCopyright={showPostAlbCopyright}
             openLinksExternally={true}

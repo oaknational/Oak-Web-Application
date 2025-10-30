@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { OakBox, OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import LessonRequirementsHeading from "@/components/TeacherComponents/LessonRequirementsHeading";
-import CopyrightNotice from "@/components/TeacherComponents/CopyrightNotice";
+import CopyrightNotice from "@/components/TeacherComponents/OglCopyrightNotice";
 import LessonOverviewRequirements, {
   Equipment,
   ContentGuidance,

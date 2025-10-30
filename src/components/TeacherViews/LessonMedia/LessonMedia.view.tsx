@@ -45,7 +45,7 @@ import {
   KeyStageTitleValueType,
   PathwayValueType,
 } from "@/browser-lib/avo/Avo";
-import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
+import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 
 type BaseLessonMedia = {
@@ -95,7 +95,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
     showSignedOutGeoRestricted,
     showGeoBlocked,
     showSignedInNotOnboarded,
-  } = useCopyrightRequirements({
+  } = useComplexCopyright({
     loginRequired,
     geoRestricted,
   });

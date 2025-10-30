@@ -1,8 +1,8 @@
 import { OakTagFunctional } from "@oaknational/oak-components";
 
-import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
+import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 
-export function LessonCopyrightTag({
+export function LessonComplexCopyrightTag({
   loginRequired,
   georestricted,
 }: {
@@ -13,16 +13,16 @@ export function LessonCopyrightTag({
     showSignedOutLoginRequired,
     showSignedOutGeoRestricted,
     showGeoBlocked,
-  } = useCopyrightRequirements({
+  } = useComplexCopyright({
     loginRequired: loginRequired,
     geoRestricted: georestricted,
   });
 
-  const showCopyrightedTag =
+  const showComplexCopyrightTag =
     showSignedOutLoginRequired || showSignedOutGeoRestricted || showGeoBlocked;
 
   return (
-    showCopyrightedTag && (
+    showComplexCopyrightTag && (
       <OakTagFunctional
         iconName="copyright"
         isTrailingIcon

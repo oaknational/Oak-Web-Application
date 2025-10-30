@@ -9,7 +9,7 @@ import {
   OakMaxWidth,
 } from "@oaknational/oak-components";
 
-import { filterDownloadsByCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
+import { getResourcesWithoutLegacyCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsLegacyCopyright";
 import { useOnboardingStatus } from "../TeacherComponents/hooks/useOnboardingStatus";
 import Banners from "../SharedComponents/Banners";
 
@@ -53,12 +53,12 @@ import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadA
 import { LEGACY_COHORT } from "@/config/cohort";
 import { SpecialistLessonDownloads } from "@/node-lib/curriculum-api-2023/queries/specialistLessonDownload/specialistLessonDownload.schema";
 import {
-  CopyrightContent,
+  LegacyCopyrightContent,
   Actions,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { LessonDownloadRegionBlocked } from "@/components/TeacherComponents/LessonDownloadRegionBlocked/LessonDownloadRegionBlocked";
 import { resolveOakHref } from "@/common-lib/urls";
-import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
+import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 
 type BaseLessonDownload = {
   expired: boolean | null;
@@ -68,7 +68,7 @@ type BaseLessonDownload = {
   lessonCohort?: string | null;
   downloads: LessonDownloadsPageData["downloads"];
   additionalFiles: LessonDownloadsPageData["additionalFiles"];
-  copyrightContent?: CopyrightContent;
+  legacyCopyrightContent?: LegacyCopyrightContent;
   isSpecialist: false;
   developmentStageTitle?: string | null;
   geoRestricted: boolean | null;
@@ -114,7 +114,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     expired,
     isSpecialist,
     isLegacy,
-    copyrightContent,
+    legacyCopyrightContent,
     updatedAt,
     actions,
     lessonReleaseDate,
@@ -127,7 +127,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     showSignedOutLoginRequired,
     showSignedOutGeoRestricted,
     showSignedInNotOnboarded,
-  } = useCopyrightRequirements({
+  } = useComplexCopyright({
     loginRequired: loginRequired ?? false,
     geoRestricted: geoRestricted ?? false,
   });
@@ -188,8 +188,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const { onwardContentSelected } = track;
 
   const downloadsFilteredByCopyright = useMemo(
-    () => filterDownloadsByCopyright(downloads, copyrightContent),
-    [downloads, copyrightContent],
+    () => getResourcesWithoutLegacyCopyright(downloads, legacyCopyrightContent),
+    [downloads, legacyCopyrightContent],
   );
 
   const {

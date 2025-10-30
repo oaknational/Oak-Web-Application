@@ -1,11 +1,11 @@
 import { useUser } from "@clerk/nextjs";
 
-interface UseCopyrightRequirementsProps {
+interface UseComplexCopyrightProps {
   loginRequired: boolean;
   geoRestricted: boolean;
 }
 
-export interface UseCopyrightRequirementsReturn {
+export interface UseComplexCopyrightReturn {
   showSignedOutLoginRequired: boolean;
   showSignedOutGeoRestricted: boolean;
   showSignedInNotOnboarded: boolean;
@@ -13,10 +13,10 @@ export interface UseCopyrightRequirementsReturn {
   isLoaded: boolean;
 }
 
-export function useCopyrightRequirements({
+export function useComplexCopyright({
   loginRequired,
   geoRestricted,
-}: UseCopyrightRequirementsProps): UseCopyrightRequirementsReturn {
+}: UseComplexCopyrightProps): UseComplexCopyrightReturn {
   const { user, isSignedIn, isLoaded } = useUser();
 
   const isUserOnboarded =

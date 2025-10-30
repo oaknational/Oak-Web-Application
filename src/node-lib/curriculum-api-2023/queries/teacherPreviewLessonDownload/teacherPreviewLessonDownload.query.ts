@@ -122,7 +122,7 @@ const teachersPreviewLessonDownloadQuery =
         browseData: parsedBrowseData,
         isLegacy: is_legacy,
         lessonReleaseDate: "unreleased",
-        lessonCopyRight: copyright,
+        legacyCopyrightContent: copyright,
         restrictions: {
           geoRestricted: lessonRestrictions.geoRestricted,
           loginRequired: lessonRestrictions.loginRequired,
@@ -137,7 +137,7 @@ const teachersPreviewLessonDownloadQuery =
         additionalFiles,
         lessonSlug,
         parsedBrowseData,
-        lessonCopyRight: copyright,
+        legacyLessonCopyrightInfo: copyright,
         expired,
       });
 

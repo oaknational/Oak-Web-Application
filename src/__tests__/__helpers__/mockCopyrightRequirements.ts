@@ -1,6 +1,6 @@
-import { UseCopyrightRequirementsReturn } from "@/hooks/useCopyrightRequirements";
+import { UseComplexCopyrightReturn } from "@/hooks/useComplexCopyright";
 
-export const signedOutLoginRequired: UseCopyrightRequirementsReturn = {
+export const signedOutLoginRequired: UseComplexCopyrightReturn = {
   showGeoBlocked: false,
   showSignedOutGeoRestricted: false,
   showSignedInNotOnboarded: false,
@@ -8,7 +8,7 @@ export const signedOutLoginRequired: UseCopyrightRequirementsReturn = {
   isLoaded: true,
 };
 
-export const signedInGeoBlocked: UseCopyrightRequirementsReturn = {
+export const signedInGeoBlocked: UseComplexCopyrightReturn = {
   showGeoBlocked: true,
   showSignedOutGeoRestricted: false,
   showSignedInNotOnboarded: false,
@@ -16,7 +16,7 @@ export const signedInGeoBlocked: UseCopyrightRequirementsReturn = {
   isLoaded: true,
 };
 
-export const signedOutGeoRestricted: UseCopyrightRequirementsReturn = {
+export const signedOutGeoRestricted: UseComplexCopyrightReturn = {
   showGeoBlocked: false,
   showSignedOutGeoRestricted: true,
   showSignedInNotOnboarded: false,
@@ -24,7 +24,7 @@ export const signedOutGeoRestricted: UseCopyrightRequirementsReturn = {
   isLoaded: true,
 };
 
-export const signedInNotOnboarded: UseCopyrightRequirementsReturn = {
+export const signedInNotOnboarded: UseComplexCopyrightReturn = {
   showGeoBlocked: false,
   showSignedOutGeoRestricted: false,
   showSignedInNotOnboarded: true,
@@ -32,7 +32,7 @@ export const signedInNotOnboarded: UseCopyrightRequirementsReturn = {
   isLoaded: true,
 };
 
-export const defaultCopyrightRequirements: UseCopyrightRequirementsReturn = {
+export const defaultCopyrightRequirements: UseComplexCopyrightReturn = {
   showGeoBlocked: false,
   showSignedOutGeoRestricted: false,
   showSignedInNotOnboarded: false,
@@ -40,7 +40,7 @@ export const defaultCopyrightRequirements: UseCopyrightRequirementsReturn = {
   isLoaded: true,
 };
 
-export const isLoading: UseCopyrightRequirementsReturn = {
+export const isLoading: UseComplexCopyrightReturn = {
   ...defaultCopyrightRequirements,
   isLoaded: false,
 };

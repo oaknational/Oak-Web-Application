@@ -300,7 +300,7 @@ describe("lessonDownloadsCanonical()", () => {
         lessonSlug: "lesson-slug",
       })) as LessonDownloadsPageData;
 
-      expect(unit.copyrightContent).toEqual(mockCopyrightContent);
+      expect(unit.legacyCopyrightContent).toEqual(mockCopyrightContent);
     });
 
     test("returns null for copyright content if not present in the response", async () => {
@@ -328,7 +328,7 @@ describe("lessonDownloadsCanonical()", () => {
         lessonSlug: "lesson-slug",
       })) as LessonDownloadsPageData;
 
-      expect(unit.copyrightContent).toBeNull();
+      expect(unit.legacyCopyrightContent).toBeNull();
     });
   });
 });

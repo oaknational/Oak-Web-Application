@@ -79,7 +79,7 @@ const lessonOverviewFixture = (
           "a sentence formed of at least one main clause and a subordinate clause",
       },
     ],
-    copyrightContent: null,
+    legacyCopyrightContent: null,
     contentGuidance: [],
     supervisionLevel: null,
     presentationUrl:

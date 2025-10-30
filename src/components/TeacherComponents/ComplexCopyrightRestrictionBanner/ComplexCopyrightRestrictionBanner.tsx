@@ -20,9 +20,9 @@ import {
   COPYRIGHT_CONTACT_US_LINK,
   COPYRIGHT_SUPPORT_LINK,
 } from "@/utils/copyrightLinks";
-import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
+import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 
-export type CopyrightRestrictionBannerProps = {
+export type ComplexCopyrightRestrictionBannerProps = {
   isGeorestricted?: boolean;
   isLoginRequired?: boolean;
   componentType?: ComponentTypeValueType;
@@ -155,7 +155,9 @@ const SignedInGeorestrictedBanner = ({ isUnit }: { isUnit: boolean }) => (
   </OakFlex>
 );
 
-const CopyrightRestrictionBanner = (props: CopyrightRestrictionBannerProps) => {
+const ComplexCopyrightRestrictionBanner = (
+  props: ComplexCopyrightRestrictionBannerProps,
+) => {
   const {
     isGeorestricted,
     isLoginRequired,
@@ -173,7 +175,7 @@ const CopyrightRestrictionBanner = (props: CopyrightRestrictionBannerProps) => {
     showSignedOutLoginRequired,
     showSignedInNotOnboarded,
     showGeoBlocked,
-  } = useCopyrightRequirements({
+  } = useComplexCopyright({
     loginRequired: isLoginRequired ?? false,
     geoRestricted: isGeorestricted ?? false,
   });
@@ -233,4 +235,4 @@ const CopyrightRestrictionBanner = (props: CopyrightRestrictionBannerProps) => {
   ) : null;
 };
 
-export default CopyrightRestrictionBanner;
+export default ComplexCopyrightRestrictionBanner;

@@ -1,23 +1,23 @@
 import {
-  checkIsResourceCopyrightRestricted,
+  checkIfResourceHasLegacyCopyright,
   getIsResourceDownloadable,
-} from "./downloadsCopyright";
+} from "./downloadsLegacyCopyright";
 
-describe("downloads copyright", () => {
-  test("checkIsResourceCopyrightRestricted works for non-copyright restricted resource types", () => {
-    const res = checkIsResourceCopyrightRestricted("intro-quiz-answers", [
+describe("downloads legacy copyright", () => {
+  test("checkIfResourceHasLegacyCopyright works for non-copyright restricted resource types", () => {
+    const res = checkIfResourceHasLegacyCopyright("intro-quiz-answers", [
       { copyrightInfo: "This lesson contains copyright material." },
     ]);
     expect(res).toBe(false);
   });
-  test("checkIsResourceCopyrightRestricted works for copyright restricted resouce types when copyright is present", () => {
-    const res = checkIsResourceCopyrightRestricted("presentation", [
+  test("checkIfResourceHasLegacyCopyright works for copyright restricted resouce types when copyright is present", () => {
+    const res = checkIfResourceHasLegacyCopyright("presentation", [
       { copyrightInfo: "This lesson contains copyright material." },
     ]);
     expect(res).toBe(true);
   });
-  test("checkIsResourceCopyrightRestricted works for copyright restricted resouce types when copyright is not present", () => {
-    const res = checkIsResourceCopyrightRestricted("presentation", []);
+  test("checkIfResourceHasLegacyCopyright works for copyright restricted resouce types when copyright is not present", () => {
+    const res = checkIfResourceHasLegacyCopyright("presentation", []);
     expect(res).toBe(false);
   });
   test("getIsResourceDownloadable returns false when resource does not exist in downloads", () => {

@@ -16,9 +16,9 @@ jest.mock("@clerk/nextjs", () => ({
   useUser: jest.fn(),
   SignUpButton: jest.fn(() => <button>Sign up</button>),
 }));
-let mockUseCopyrightRequirements = defaultCopyrightRequirements;
-jest.mock("@/hooks/useCopyrightRequirements", () => ({
-  useCopyrightRequirements: () => mockUseCopyrightRequirements,
+let mockUseComplexCopyright = defaultCopyrightRequirements;
+jest.mock("@/hooks/useComplexCopyright", () => ({
+  useComplexCopyright: () => mockUseComplexCopyright,
 }));
 describe("SavingSignedOutModal", () => {
   const mockOnClose = jest.fn();
@@ -46,7 +46,7 @@ describe("SavingSignedOutModal", () => {
   });
 
   it("should render the sign up button when user is signed out", () => {
-    mockUseCopyrightRequirements = signedOutLoginRequired;
+    mockUseComplexCopyright = signedOutLoginRequired;
     renderWithProviders()(
       <SavingSignedOutModal isOpen={true} onClose={mockOnClose} />,
     );
@@ -57,7 +57,7 @@ describe("SavingSignedOutModal", () => {
   });
 
   it("should render the Finish sign up button when user is signed in but not onboarded", () => {
-    mockUseCopyrightRequirements = signedInNotOnboarded;
+    mockUseComplexCopyright = signedInNotOnboarded;
     renderWithProviders()(
       <SavingSignedOutModal isOpen={true} onClose={mockOnClose} />,
     );

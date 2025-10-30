@@ -43,9 +43,9 @@ const props: PropsWithoutForm = {
   isLegacy: false,
 };
 
-let mockUseCopyrightRequirements = defaultCopyrightRequirements;
-jest.mock("@/hooks/useCopyrightRequirements", () => ({
-  useCopyrightRequirements: () => mockUseCopyrightRequirements,
+let mockUseComplexCopyright = defaultCopyrightRequirements;
+jest.mock("@/hooks/useComplexCopyright", () => ({
+  useComplexCopyright: () => mockUseComplexCopyright,
 }));
 
 const ComponentWrapper = (props: PropsWithoutForm) => {
@@ -63,7 +63,7 @@ const ComponentWrapper = (props: PropsWithoutForm) => {
 
 describe("Download Page With Accordion", () => {
   afterEach(() => {
-    mockUseCopyrightRequirements = defaultCopyrightRequirements;
+    mockUseComplexCopyright = defaultCopyrightRequirements;
   });
 
   it("renders downloads accordion", async () => {
@@ -153,7 +153,7 @@ describe("Download Page With Accordion", () => {
       ...props,
       downloadsRestricted: true,
     };
-    mockUseCopyrightRequirements = signedOutLoginRequired;
+    mockUseComplexCopyright = signedOutLoginRequired;
     const { queryByRole, getByRole } = renderWithProviders()(
       <ComponentWrapper {...restrictedProps} />,
     );

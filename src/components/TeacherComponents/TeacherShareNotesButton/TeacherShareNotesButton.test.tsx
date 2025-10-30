@@ -57,9 +57,9 @@ jest.mock("@oaknational/oak-consent-client", () => ({
   useOakConsent: () => mockUseOakConsent(),
 }));
 
-let mockCopyrightRequirements = defaultCopyrightRequirements;
-jest.mock("@/hooks/useCopyrightRequirements", () => ({
-  useCopyrightRequirements: () => mockCopyrightRequirements,
+let mockUseComplexCopyright = defaultCopyrightRequirements;
+jest.mock("@/hooks/useComplexCopyright", () => ({
+  useComplexCopyright: () => mockUseComplexCopyright,
 }));
 
 describe("TeacherShareNotesButton", () => {
@@ -87,7 +87,7 @@ describe("TeacherShareNotesButton", () => {
     });
   });
   afterEach(() => {
-    mockCopyrightRequirements = defaultCopyrightRequirements;
+    mockUseComplexCopyright = defaultCopyrightRequirements;
   });
   it("is rendered and enabled when cookies are accepted", () => {
     mockUseOakConsent.mockReturnValue({
@@ -193,7 +193,7 @@ describe("TeacherShareNotesButton", () => {
   });
 
   it("does not render when signed in and not region authorised", () => {
-    mockCopyrightRequirements = signedInGeoBlocked;
+    mockUseComplexCopyright = signedInGeoBlocked;
 
     const { queryByTestId } = render(
       <TeacherShareNotesButton {...defaultProps} />,

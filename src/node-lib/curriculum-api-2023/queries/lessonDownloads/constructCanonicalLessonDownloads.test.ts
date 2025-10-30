@@ -58,7 +58,7 @@ describe("constructCanonicalLessonDownloads", () => {
       browseData,
       isLegacy,
       lessonReleaseDate: "2023-01-01T00:00:00.000Z",
-      lessonCopyRight: null,
+      legacyCopyrightContent: null,
       restrictions: { geoRestricted: false, loginRequired: false },
     });
 
@@ -72,7 +72,7 @@ describe("constructCanonicalLessonDownloads", () => {
       expired: null,
       isSpecialist: false,
       updatedAt: browseData[0]?.lesson_data?.updated_at ?? "",
-      copyrightContent: null,
+      legacyCopyrightContent: null,
       geoRestricted: false,
       loginRequired: false,
       lessonReleaseDate: "2023-01-01T00:00:00.000Z",
@@ -182,7 +182,7 @@ describe("constructCanonicalLessonDownloads", () => {
       browseData,
       isLegacy,
       lessonReleaseDate: "2023-01-01T00:00:00.000Z",
-      lessonCopyRight: null,
+      legacyCopyrightContent: null,
       restrictions: { geoRestricted: false, loginRequired: false },
     });
 
@@ -196,7 +196,7 @@ describe("constructCanonicalLessonDownloads", () => {
       expired: null,
       isSpecialist: false,
       updatedAt: browseData[0]?.lesson_data?.updated_at ?? "",
-      copyrightContent: null,
+      legacyCopyrightContent: null,
       geoRestricted: false,
       loginRequired: false,
       lessonReleaseDate: "2023-01-01T00:00:00.000Z",

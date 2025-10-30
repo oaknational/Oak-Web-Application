@@ -70,7 +70,7 @@ const specialistLessonOverviewFixture = (
     developmentStageTitle: "Applying learning",
     subjectTitle: "Communication and language",
     subjectSlug: "communication-and-language",
-    copyrightContent: null,
+    legacyCopyrightContent: null,
     contentGuidance: null,
     lessonEquipmentAndResources: [
       {

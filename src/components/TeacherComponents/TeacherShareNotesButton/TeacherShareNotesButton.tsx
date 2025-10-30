@@ -7,7 +7,7 @@ import { useOakConsent } from "@oaknational/oak-consent-client";
 import { useTeacherShareButton } from "../TeacherShareButton/useTeacherShareButton";
 
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
-import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
+import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 
 export const TeacherShareNotesButton = ({
   isEditable,
@@ -28,7 +28,7 @@ export const TeacherShareNotesButton = ({
   geoRestricted: boolean;
   variant?: "secondary" | "primary" | "dropdown";
 }) => {
-  const { showGeoBlocked } = useCopyrightRequirements({
+  const { showGeoBlocked } = useComplexCopyright({
     geoRestricted,
     loginRequired,
   });
