@@ -1,4 +1,5 @@
 import z from "zod";
+import { MissingComponentHandler } from "@portabletext/react";
 
 import convertToMml from "@/utils/mathjax";
 
