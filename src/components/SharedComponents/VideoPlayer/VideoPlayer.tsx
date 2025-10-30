@@ -57,7 +57,7 @@ export type VideoEventCallbackArgs = {
   muted: boolean;
 };
 
-function VideoContainer({ children }: { children: React.ReactNode }) {
+function VideoContainer({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <OakFlex
       // NOTE: Hiding video contents because otherwise we get some percy

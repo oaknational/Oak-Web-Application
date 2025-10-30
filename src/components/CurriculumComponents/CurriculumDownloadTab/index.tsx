@@ -52,9 +52,9 @@ import { doUnitsHaveNc, flatUnitsFromYearData } from "@/utils/curriculum/units";
 
 function ScrollIntoViewWhenVisisble({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (ref.current) {

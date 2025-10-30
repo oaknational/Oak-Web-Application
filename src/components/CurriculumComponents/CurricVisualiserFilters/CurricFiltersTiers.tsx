@@ -24,7 +24,7 @@ export function CurricFiltersTiers({
   filters,
   onChangeFilters,
   data,
-}: CurricFiltersTiersProps) {
+}: Readonly<CurricFiltersTiersProps>) {
   const id = useId();
   const { yearData } = data;
 

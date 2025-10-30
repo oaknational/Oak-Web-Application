@@ -34,7 +34,7 @@ type CurriculumResourcesSectionProps = {
 export function CurriculumResourcesSelector({
   downloadTypes,
   onChangeDownloadTypes,
-}: CurriculumResourcesSectionProps) {
+}: Readonly<CurriculumResourcesSectionProps>) {
   return (
     <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
       <OakHeading tag="h3" $font={["heading-5"]} data-testid="download-heading">
