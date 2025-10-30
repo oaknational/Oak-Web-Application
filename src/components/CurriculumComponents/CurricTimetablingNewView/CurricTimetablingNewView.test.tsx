@@ -30,8 +30,10 @@ describe("CurricTimetablingNewView", () => {
     const { getByRole } = renderWithTheme(
       <CurricTimetablingNewView subjectPhaseSlug="maths-primary" />,
     );
-    const headingElement = getByRole("heading", { level: 2 });
-    expect(headingElement).toHaveTextContent("Enter lessons per term");
+    const headingElement = getByRole("heading", { level: 1 });
+    expect(headingElement).toHaveTextContent(
+      "Create your maths year 1 timetable",
+    );
   });
 
   test("component renders with button correctly", async () => {

@@ -1,11 +1,7 @@
 import { CurricTimetablingNewView } from "@/components/CurriculumComponents/CurricTimetablingNewView";
 
-const Page = async ({
-  params,
-}: {
-  params: Promise<{ subjectPhaseSlug: string }>;
-}) => {
-  const { subjectPhaseSlug } = await params;
+const Page = async ({ params }: { params: { subjectPhaseSlug: string } }) => {
+  const { subjectPhaseSlug } = params;
   return <CurricTimetablingNewView subjectPhaseSlug={subjectPhaseSlug} />;
 };
 
