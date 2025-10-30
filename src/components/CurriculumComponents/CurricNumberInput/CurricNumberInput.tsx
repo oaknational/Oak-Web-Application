@@ -28,7 +28,7 @@ export function CurricNumberInput({
   max = 35,
   step = 1,
   onValidationChange,
-}: CurricNumberInputProps) {
+}: Readonly<CurricNumberInputProps>) {
   const [dirtyValue, setDirtyValue] = useState(String(value));
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

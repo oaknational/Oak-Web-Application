@@ -21,7 +21,7 @@ export default function AcceptTerms({
   error,
   value,
   onChange,
-}: AcceptTermsProps) {
+}: Readonly<AcceptTermsProps>) {
   return (
     <OakFlex
       $width={"100%"}

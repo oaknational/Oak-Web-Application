@@ -53,9 +53,9 @@ import { ENABLE_NC_XLSX_DOCUMENT } from "@/utils/curriculum/constants";
 
 function ScrollIntoViewWhenVisisble({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (ref.current) {

@@ -38,7 +38,7 @@ export function OakModalNew({
   footer,
   animateFrom = "right",
   modalWidth = "100%",
-}: OakModalNewProps) {
+}: Readonly<OakModalNewProps>) {
   const ref = useRef(null);
   const prefersReducedMotion = usePrefersReducedMotion();
 
