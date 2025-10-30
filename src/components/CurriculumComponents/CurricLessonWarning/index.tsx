@@ -7,7 +7,7 @@ type CurricLessonWarningProps = {
 export function CurricLessonWarning({
   count,
   total,
-}: CurricLessonWarningProps) {
+}: Readonly<CurricLessonWarningProps>) {
   return (
     <OakFlex $alignItems={"center"} $gap={"space-between-ssx"}>
       <OakFlex

@@ -16,7 +16,7 @@ export default function CurricUnitModalFooter({
   unitOptionData,
   programmeSlug,
   unitData,
-}: CurricUnitModalFooterProps) {
+}: Readonly<CurricUnitModalFooterProps>) {
   const { track } = useAnalytics();
 
   const lessonsAvailable = areLessonsAvailable(

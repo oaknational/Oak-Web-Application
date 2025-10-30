@@ -22,9 +22,9 @@ const lexend = Lexend({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="en">
       <GlobalStyle fontFamily={lexend.style.fontFamily} />

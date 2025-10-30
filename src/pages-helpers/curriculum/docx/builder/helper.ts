@@ -224,8 +224,8 @@ export function sortYearPathways(keyA: string, keyB: string): number {
   const { year: yearAStr, pathway: pathwayA } = parseYearPathwayKey(keyA);
   const { year: yearBStr, pathway: pathwayB } = parseYearPathwayKey(keyB);
 
-  const yearNumA = parseInt(yearAStr);
-  const yearNumB = parseInt(yearBStr);
+  const yearNumA = Number.parseInt(yearAStr);
+  const yearNumB = Number.parseInt(yearBStr);
 
   const pathwayOrder = { core: 0, gcse: 1, none: -1 };
   const orderA =
