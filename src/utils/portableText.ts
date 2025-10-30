@@ -101,3 +101,13 @@ export function stemToPortableText(text: string, style = "normal") {
   }
   return out;
 }
+
+export const logMissingPortableTextComponents: MissingComponentHandler = (
+  message,
+  options,
+) => {
+  console.log(message, {
+    type: options.type,
+    nodeType: options.nodeType,
+  });
+};
