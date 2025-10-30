@@ -11,7 +11,10 @@ import {
 } from "@oaknational/oak-components";
 import { PortableTextReactComponents } from "@portabletext/react";
 
-import { newsletterSignupFormSubmitSchema } from "./CampaignNewsletterSignup.schema";
+import {
+  newsletterSignupFormSubmitSchema,
+  partialNewsletterSchema,
+} from "./CampaignNewsletterSignup.schema";
 
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { OakInputWithLabel } from "@/components/SharedComponents/OakInputWithLabel/OakInputWithLabel";
@@ -34,11 +37,13 @@ type NewsletterSignUpData = Partial<{
   email?: string;
   schoolNotListed?: boolean;
   name: string;
+  schoolOrg?: string;
 }>;
 
 type NewsletterSignUpFormErrors = Partial<{
   schoolId: string;
   schoolNotListed: string;
+  schoolOrg: string;
   email: string;
   name: string;
 }>;
@@ -47,12 +52,48 @@ export type CampaignNewsletterSignupProps = NewsletterSignUp & {
   textStyles?: Partial<PortableTextReactComponents>;
 };
 
+const SchoolPickerInput = ({
+  errors,
+  data,
+  onChange,
+}: {
+  errors: NewsletterSignUpFormErrors;
+  data: NewsletterSignUpData;
+  onChange: (data: Partial<NewsletterSignUpData>) => void;
+}) => {
+  const schoolPickerInputValue = data.schoolName;
+  const { data: schools } = useFetch<School[]>(
+    `https://school-picker.thenational.academy/${schoolPickerInputValue}`,
+    "school-picker/fetch-suggestions",
+  );
+
+  return (
+    <>
+      {errors.schoolId && (
+        <OakBox id={errors.schoolId} role="alert">
+          <OakFieldError>{errors.schoolId}</OakFieldError>
+        </OakBox>
+      )}
+      <YourDetails
+        data={data}
+        schools={schools ?? []}
+        errors={errors}
+        onChange={onChange}
+        labelBackground="mint"
+        hidePrivacyPolicy={true}
+        emailRequired={true}
+      />
+    </>
+  );
+};
+
 const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
   heading,
   bodyPortableText,
   buttonCta,
   formId,
   textStyles,
+  freeSchoolInput,
 }) => {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [submitError, setSubmitError] = useState<string>("");
@@ -66,6 +107,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
     schoolNotListed: false,
     schools: [],
     name: undefined,
+    schoolOrg: undefined,
   }));
 
   const onChange = (partial: Partial<NewsletterSignUpData>) => {
@@ -80,28 +122,33 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
     hubspotNewsletterFormId: formId,
   });
 
-  const schoolPickerInputValue = data.schoolName;
-  const { data: schools } = useFetch<School[]>(
-    `https://school-picker.thenational.academy/${schoolPickerInputValue}`,
-    "school-picker/fetch-suggestions",
-  );
-
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitError("");
     setSuccessMessage("");
-    const formValidation = runSchema(newsletterSignupFormSubmitSchema, data);
+    const formValidation = runSchema(
+      freeSchoolInput
+        ? partialNewsletterSchema
+        : newsletterSignupFormSubmitSchema,
+      data,
+    );
 
     setErrors(formValidation.errors);
     if (formValidation.success) {
       setErrors({});
       try {
+        const schoolData = freeSchoolInput
+          ? { schoolName: data.schoolOrg }
+          : {
+              school: data.schoolId ?? "notListed",
+              schoolName: data.schoolName,
+            };
         await onHubspotSubmit({
-          school: data.schoolId ?? "notListed",
-          schoolName: data.schoolName,
+          ...schoolData,
           email: data.email,
           userRole: "",
+          name: data.name,
         });
         setSuccessMessage("Thanks, that's been received");
         setData({
@@ -111,6 +158,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
           schoolNotListed: false,
           schools: [],
           name: undefined,
+          schoolOrg: undefined,
         });
       } catch (error) {
         if (error instanceof OakError) {
@@ -141,6 +189,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
           $alignItems={"center"}
           $alignSelf={"stretch"}
           $gap={"space-between-xxl"}
+          $justifyContent={"space-between"}
         >
           <OakFlex
             $maxWidth={["100%", "all-spacing-22"]}
@@ -177,20 +226,40 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
                 placeholder="Type your name"
                 defaultValue={data.name}
               />
-              {errors.schoolId && (
-                <OakBox id={errors.schoolId} role="alert">
-                  <OakFieldError>{errors.schoolId}</OakFieldError>
-                </OakBox>
+              {freeSchoolInput ? (
+                <>
+                  <OakInputWithLabel
+                    label={`School or organisation (optional)`}
+                    id="newsletter-school"
+                    data-testid="newsletter-school"
+                    error={errors.schoolOrg}
+                    onChange={(e) => onChange({ schoolOrg: e.target.value })}
+                    required={false}
+                    placeholder="Type your school or organisation"
+                    name="newsletter-school"
+                    labelBackground={"mint"}
+                    defaultValue={data.schoolOrg}
+                  />
+                  <OakInputWithLabel
+                    label={`Email`}
+                    id="newsletter-email"
+                    data-testid="newsletter-email"
+                    error={errors.email}
+                    onChange={(e) => onChange({ email: e.target.value })}
+                    required={true}
+                    placeholder="Type your email address"
+                    name="newsletter-email"
+                    labelBackground={"mint"}
+                    defaultValue={data.email}
+                  />
+                </>
+              ) : (
+                <SchoolPickerInput
+                  errors={errors}
+                  onChange={onChange}
+                  data={data}
+                />
               )}
-              <YourDetails
-                data={data}
-                schools={schools ?? []}
-                errors={errors}
-                onChange={onChange}
-                labelBackground="mint"
-                hidePrivacyPolicy={true}
-                emailRequired={true}
-              />
             </OakFlex>
             <OakPrimaryButton
               type="submit"
