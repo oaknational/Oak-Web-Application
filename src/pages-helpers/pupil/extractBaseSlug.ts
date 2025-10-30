@@ -3,9 +3,9 @@ export function extractBaseSlug(programmeSlug: string): string {
   const parts = programmeSlug.split("-");
   const index = parts.findIndex(
     (part) =>
-      (!isNaN(parseInt(part, 10)) &&
-        parseInt(part, 10) >= 1 &&
-        parseInt(part, 10) <= 11) ||
+      (!isNaN(Number.parseInt(part, 10)) &&
+        Number.parseInt(part, 10) >= 1 &&
+        Number.parseInt(part, 10) <= 11) ||
       part.toLowerCase() === "reception",
   );
   // Return the first part of the programmeSlug up to and including the number

@@ -71,7 +71,7 @@ interface MyLibraryProgrammeCardProps {
 }
 
 export default function MyLibraryProgrammeCard(
-  props: MyLibraryProgrammeCardProps,
+  props: Readonly<MyLibraryProgrammeCardProps>,
 ) {
   const {
     savedUnits,
