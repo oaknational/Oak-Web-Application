@@ -1,6 +1,6 @@
 import { VisuallyHidden } from "react-aria";
-
 import { OakFlex, OakIcon } from "@oaknational/oak-components";
+
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import { MatchAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { Stem } from "@/components/SharedComponents/Stem";

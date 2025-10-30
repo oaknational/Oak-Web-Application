@@ -1,11 +1,11 @@
 import { VisuallyHidden } from "react-aria";
-
 import {
   OakTypography,
   OakFlex,
   OakIcon,
   OakBox,
 } from "@oaknational/oak-components";
+
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import { ShortAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { Stem, stemToPortableText } from "@/components/SharedComponents/Stem";
