@@ -6,11 +6,11 @@ import {
   OakPrimaryButton,
   OakMaxWidth,
   OakJauntyAngleLabel,
+  OakSpan,
 } from "@oaknational/oak-components";
 import { useMemo } from "react";
 import Link from "next/link";
 
-import { CurricTimetableHeader } from "../CurricTimetableHeader";
 import { CurricNumberInput } from "../CurricNumberInput";
 
 import {
@@ -32,13 +32,6 @@ export const CurricTimetablingNewView = ({
 
   return (
     <>
-      <OakFlex $flexDirection={"column"} $pa={"inner-padding-xl5"}>
-        <CurricTimetableHeader
-          titleSlot={`Year ${data.year} ${subjectSlug}`}
-          illustrationSlug={"magic-carpet"}
-        />
-      </OakFlex>
-
       <OakMaxWidth $ph={"inner-padding-xl5"}>
         <OakFlex
           $flexDirection={"column"}
@@ -46,14 +39,27 @@ export const CurricTimetablingNewView = ({
           $gap={"space-between-l"}
           $maxWidth={"all-spacing-23"}
         >
-          <OakHeading tag="h2" $font="heading-2">
-            Enter lessons per term
-          </OakHeading>
-          <OakP $font={["body-2", "body-1"]}>
-            We recommend calculating the lessons per term by the actual teaching
-            time, taking into account any other activities beyond the curriculum
-            such as school trips.
-          </OakP>
+          <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
+            <OakHeading tag="h1" $font="heading-3">
+              Create your{" "}
+              <OakSpan
+                $background="bg-decorative1-main"
+                $pa="inner-padding-ssx"
+                $borderRadius="border-radius-square"
+                style={{
+                  display: "inline-block",
+                  transform: "rotate(-0.381deg)",
+                }}
+              >
+                {subjectSlug} year {data.year}
+              </OakSpan>{" "}
+              timetable
+            </OakHeading>
+            <OakP $font={["body-2", "body-1"]}>
+              <strong>Quick tip:</strong> Plan lessons by actual teaching time,
+              adjusting for trips and non-curriculum events.
+            </OakP>
+          </OakFlex>
 
           <OakFlex $flexDirection={"column"} $gap={"space-between-l"}>
             <OakFlex
