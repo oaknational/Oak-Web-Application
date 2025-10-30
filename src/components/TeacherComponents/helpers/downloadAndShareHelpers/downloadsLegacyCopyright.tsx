@@ -14,17 +14,14 @@ export const isResourceTypeSubjectToCopyright = (resource: ResourceType) => {
 
 export const checkIfResourceHasLegacyCopyright = (
   resource: ResourceType,
-  copyrightContent: LegacyCopyrightContent,
+  legacyCopyrightContent: LegacyCopyrightContent,
 ) => {
-  if (isResourceTypeSubjectToCopyright(resource)) {
-    return (
-      copyrightContent?.find(
-        (c) => c.copyrightInfo === "This lesson contains copyright material.",
-      ) !== undefined
-    );
-  } else {
-    return false;
-  }
+  const hasCopyrightedContent =
+    legacyCopyrightContent?.find(
+      (c) => c.copyrightInfo === "This lesson contains copyright material.",
+    ) !== undefined;
+
+  return isResourceTypeSubjectToCopyright(resource) && hasCopyrightedContent;
 };
 
 export const getResourcesWithoutLegacyCopyright = (
