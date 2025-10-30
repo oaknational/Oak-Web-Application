@@ -22,7 +22,7 @@ export function CurricVisualiserLayout({
   units,
   curriculumSeoText,
   subject,
-}: CurriculumVisualiserLayoutProps) {
+}: Readonly<CurriculumVisualiserLayoutProps>) {
   return (
     <OakFlex>
       <CurriculumVisualiserLayoutLeft

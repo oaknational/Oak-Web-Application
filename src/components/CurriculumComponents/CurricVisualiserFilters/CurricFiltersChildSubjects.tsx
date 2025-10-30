@@ -25,7 +25,7 @@ export function CurricFiltersChildSubjects({
   filters,
   onChangeFilters,
   data,
-}: CurricFiltersChildSubjectsProps) {
+}: Readonly<CurricFiltersChildSubjectsProps>) {
   const id = useId();
   const { yearData } = data;
 

@@ -296,7 +296,7 @@ export function getSubjectCategoryMessage(
     primary: { start: 1, end: 6 },
     secondary: { start: 7, end: 11 },
   };
-  const currentYearNum = parseInt(currentYear.replace("year-", ""));
+  const currentYearNum = Number.parseInt(currentYear.replace("year-", ""));
   const currentPhase = currentYearNum <= 6 ? "primary" : "secondary";
 
   const phaseStartNum = phaseMap[currentPhase].start;
@@ -325,7 +325,7 @@ export function getSubjectCategoryMessage(
   // Check if the entire phase (not just the current year) has any units for the subject categories
   const hasAnyUnitsInPhase = years
     .filter((y) => {
-      const yNum = parseInt(y.replace("year-", ""));
+      const yNum = Number.parseInt(y.replace("year-", ""));
       // Filter only those years in the same phase as currentYear
       return currentPhase === "primary"
         ? yNum >= 1 && yNum <= 6
@@ -347,7 +347,7 @@ export function getSubjectCategoryMessage(
   if (!hasCurrentYearUnits) {
     // Find the first subsequent year (in the same phase) that does have units
     const subsequentYearsInPhase = years.slice(currentIndex + 1).filter((y) => {
-      const yNum = parseInt(y.replace("year-", ""));
+      const yNum = Number.parseInt(y.replace("year-", ""));
       return currentPhase === "primary"
         ? yNum >= 1 && yNum <= 6
         : yNum >= 7 && yNum <= 11;

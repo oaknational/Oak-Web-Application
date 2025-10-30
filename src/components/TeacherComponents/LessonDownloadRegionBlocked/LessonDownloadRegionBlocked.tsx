@@ -25,7 +25,7 @@ export function LessonDownloadRegionBlocked({
   lessonReleaseDate,
   href,
   isLegacy,
-}: LessonDownloadRegionBlockedProps) {
+}: Readonly<LessonDownloadRegionBlockedProps>) {
   const { track } = useAnalytics();
   useEffect(() => {
     track.contentBlockNotificationDisplayed({
