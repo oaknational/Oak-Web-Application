@@ -111,7 +111,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     pupilLessonOutcome,
     lessonCohort,
     downloads,
-    copyrightContent,
+    legacyCopyrightContent,
     isSpecialist,
     updatedAt,
     isCanonical,
@@ -325,7 +325,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     downloads.filter(
       (d) =>
         d.exists === true &&
-        !checkIfResourceHasLegacyCopyright(d.type, copyrightContent),
+        !checkIfResourceHasLegacyCopyright(d.type, legacyCopyrightContent),
     ).length > 0;
 
   const showDownloadAll = hasDownloadableAssets && !contentRestricted;
@@ -337,7 +337,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   const pageLinks = getPageLinksWithSubheadingsForLesson(
     lesson,
-    copyrightContent,
+    legacyCopyrightContent,
     mediaClipLabel,
   );
   const presentationTitle = "Lesson slides";
@@ -452,7 +452,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       downloadable={getIsResourceDownloadable(
                         "lesson-guide-pdf",
                         downloads,
-                        copyrightContent,
+                        legacyCopyrightContent,
                       )}
                       onDownloadButtonClick={() => {
                         trackDownloadResourceButtonClicked({
@@ -476,7 +476,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   !contentRestricted &&
                   !checkIfResourceHasLegacyCopyright(
                     "presentation",
-                    copyrightContent,
+                    legacyCopyrightContent,
                   ) && (
                     <LessonItemContainer
                       isSpecialist={isSpecialist}
@@ -485,7 +485,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       downloadable={getIsResourceDownloadable(
                         "presentation",
                         downloads,
-                        copyrightContent,
+                        legacyCopyrightContent,
                       )}
                       onDownloadButtonClick={() => {
                         trackDownloadResourceButtonClicked({
@@ -641,12 +641,12 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         getIsResourceDownloadable(
                           "worksheet-pdf",
                           downloads,
-                          copyrightContent,
+                          legacyCopyrightContent,
                         ) ||
                         getIsResourceDownloadable(
                           "worksheet-pptx",
                           downloads,
-                          copyrightContent,
+                          legacyCopyrightContent,
                         )
                       }
                       shareable={isLegacyLicense && showShare}
@@ -705,12 +705,12 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                           getIsResourceDownloadable(
                             "intro-quiz-answers",
                             downloads,
-                            copyrightContent,
+                            legacyCopyrightContent,
                           ) ||
                           getIsResourceDownloadable(
                             "intro-quiz-questions",
                             downloads,
-                            copyrightContent,
+                            legacyCopyrightContent,
                           )
                         }
                         onDownloadButtonClick={() => {
@@ -759,12 +759,12 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                           getIsResourceDownloadable(
                             "exit-quiz-answers",
                             downloads,
-                            copyrightContent,
+                            legacyCopyrightContent,
                           ) ||
                           getIsResourceDownloadable(
                             "exit-quiz-questions",
                             downloads,
-                            copyrightContent,
+                            legacyCopyrightContent,
                           )
                         }
                         shareable={isLegacyLicense && showShare}
@@ -808,12 +808,12 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         getIsResourceDownloadable(
                           "supplementary-docx",
                           downloads,
-                          copyrightContent,
+                          legacyCopyrightContent,
                         ) ||
                         getIsResourceDownloadable(
                           "supplementary-pdf",
                           downloads,
-                          copyrightContent,
+                          legacyCopyrightContent,
                         )
                       }
                       shareable={isLegacyLicense && showShare}

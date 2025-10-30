@@ -68,7 +68,7 @@ type BaseLessonDownload = {
   lessonCohort?: string | null;
   downloads: LessonDownloadsPageData["downloads"];
   additionalFiles: LessonDownloadsPageData["additionalFiles"];
-  copyrightContent?: LegacyCopyrightContent;
+  legacyCopyrightContent?: LegacyCopyrightContent;
   isSpecialist: false;
   developmentStageTitle?: string | null;
   geoRestricted: boolean | null;
@@ -114,7 +114,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     expired,
     isSpecialist,
     isLegacy,
-    copyrightContent,
+    legacyCopyrightContent,
     updatedAt,
     actions,
     lessonReleaseDate,
@@ -188,8 +188,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const { onwardContentSelected } = track;
 
   const downloadsFilteredByCopyright = useMemo(
-    () => getResourcesWithoutLegacyCopyright(downloads, copyrightContent),
-    [downloads, copyrightContent],
+    () => getResourcesWithoutLegacyCopyright(downloads, legacyCopyrightContent),
+    [downloads, legacyCopyrightContent],
   );
 
   const {

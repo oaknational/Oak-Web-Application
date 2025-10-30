@@ -63,7 +63,7 @@ export const SpecialistLessonDownloadSchema = z.object({
       }),
     ),
     expired: z.boolean().nullable(),
-    copyrightContent: legacyCopyrightContentSchema,
+    legacyCopyrightContent: legacyCopyrightContentSchema,
     geoRestricted: z.boolean().nullable(),
     loginRequired: z.boolean().nullable(),
     actions: actionsSchema.nullish(),

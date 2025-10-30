@@ -124,7 +124,7 @@ const lessonDownloadsQuery =
         browseData: parsedBrowseData,
         isLegacy: is_legacy,
         lessonReleaseDate: lesson_release_date ?? "unpublished",
-        lessonCopyRight: copyright,
+        legacyCopyrightContent: copyright,
         restrictions: {
           geoRestricted: lessonRestrictions.geoRestricted,
           loginRequired: lessonRestrictions.loginRequired,

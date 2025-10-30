@@ -207,7 +207,7 @@ export const baseLessonOverviewSchema = z.object({
   keyLearningPoints: z.array(keyLearningPointsSchema).nullable().optional(),
   pupilLessonOutcome: z.string().nullable().optional(),
   lessonKeywords: z.array(keywordsSchema).nullable().optional(),
-  copyrightContent: legacyCopyrightContentSchema,
+  legacyCopyrightContent: legacyCopyrightContentSchema,
   supervisionLevel: z.string().nullable(),
   worksheetUrl: z.string().nullable(),
   presentationUrl: z.string().nullable(),
