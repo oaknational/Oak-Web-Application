@@ -20,6 +20,7 @@ import {
 } from "@oaknational/oak-curriculum-schema";
 
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
+import { QuizQuestionWithHtml } from "@/pages-helpers/pupil/lessons-pages/getProps";
 
 export type QuizQuestion = ConvertKeysToCamelCase<
   z.infer<typeof quizQuestionSchema>
@@ -40,7 +41,6 @@ export type MatchAnswer = ConvertKeysToCamelCase<z.infer<typeof matchSchema>>;
 
 export type ImageItem = ConvertKeysToCamelCase<z.infer<typeof imageItemSchema>>;
 export type TextItem = ConvertKeysToCamelCase<z.infer<typeof textItemSchema>>;
-export type ImageOrTextItem = ImageItem | TextItem;
 
 export const lessonContentSchema = lessonContentSchemaFull.omit({
   _state: true,
@@ -64,8 +64,8 @@ export type LessonContent = Omit<
   ConvertKeysToCamelCase<z.infer<typeof lessonContentSchema>>,
   "starterQuiz" | "exitQuiz" | "transcriptSentences"
 > & {
-  starterQuiz: QuizQuestion[];
-  exitQuiz: QuizQuestion[];
+  starterQuiz: QuizQuestionWithHtml[];
+  exitQuiz: QuizQuestionWithHtml[];
   transcriptSentences: string | string[];
 };
 

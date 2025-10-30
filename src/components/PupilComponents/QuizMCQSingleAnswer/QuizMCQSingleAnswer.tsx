@@ -114,6 +114,7 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
               value={`${questionUid}: ${i}`} // we make this unique to the question to prevent selection on later questions
               label={
                 <CodeRenderWrapper>
+                  {/* TODO: How does this work? */}
                   <MathJaxWrap>{label?.text}</MathJaxWrap>
                 </CodeRenderWrapper>
               }

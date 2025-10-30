@@ -21,6 +21,7 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { PupilViewsResults } from "@/components/PupilViews/PupilResults";
+import { convertQuizes } from "@/pages-helpers/pupil/lessons-pages/getProps";
 
 export type CanonicalResultsPrintablePageProps = {
   browseData: LessonBrowseData;
@@ -122,7 +123,9 @@ export const getStaticProps: GetStaticProps<
         {
           props: {
             browseData,
-            content,
+            content: {
+              ...convertQuizes(content),
+            },
             attemptId,
           },
         };

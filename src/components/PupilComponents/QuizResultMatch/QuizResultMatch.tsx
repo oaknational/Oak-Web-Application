@@ -6,7 +6,6 @@ import {
 
 import { MatchAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { QuestionFeedbackType } from "@/components/PupilComponents/QuizUtils/questionTypes";
-import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 
 export type QuizResultMatchProps = {
   answers: MatchAnswer[];
@@ -37,15 +36,13 @@ export const QuizResultMatch = ({
     const standardText = answers[pupilAnswer]?.correctChoice?.[0]?.text;
 
     return (
-      <MathJaxWrap key={`${standardText?.trim()}-${index}`}>
-        <OakQuizResultItem
-          key={standardText?.trim()}
-          standardText={standardText}
-          boldPrefixText={prefix}
-          feedbackState={feedbackState}
-          aria-role="listItem"
-        />
-      </MathJaxWrap>
+      <OakQuizResultItem
+        key={standardText?.trim()}
+        standardText={standardText}
+        boldPrefixText={prefix}
+        feedbackState={feedbackState}
+        aria-role="listItem"
+      />
     );
   });
 

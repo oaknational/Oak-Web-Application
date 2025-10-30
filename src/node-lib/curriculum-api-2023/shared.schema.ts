@@ -8,6 +8,7 @@ import { zodToCamelCase } from "./helpers/zodToCamelCase";
 import { mediaClipsRecordCamelSchema } from "./queries/lessonMediaClips/lessonMediaClips.schema";
 
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
+import { portableTextItemSchema } from "@/utils/portableText";
 
 export const contentGuidanceSchemaCamelCase = z.object({
   contentGuidanceLabel: z.string(),
@@ -53,6 +54,7 @@ export const keywordsSchema = z.object({
 const stemTextObjectSchema = z.object({
   text: z.string(),
   type: z.literal("text"),
+  portableText: z.array(portableTextItemSchema).optional(),
 });
 
 export type StemTextObject = z.infer<typeof stemTextObjectSchema>;

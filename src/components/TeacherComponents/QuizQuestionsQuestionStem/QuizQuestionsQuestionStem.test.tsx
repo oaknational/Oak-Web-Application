@@ -6,6 +6,7 @@ import {
   StemImageObject,
   StemTextObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { stemToPortableText } from "@/utils/portableText";
 
 const lessonOverview = lessonOverviewFixture();
 const starterQuiz = lessonOverview.starterQuiz;
@@ -75,7 +76,11 @@ describe("QuizQuestionsQuestionStem", () => {
 
     const questionStem: (StemImageObject | StemTextObject)[] = [
       ...mcqStemImage.questionStem,
-      { text: "This is some text", type: "text" },
+      {
+        text: "This is some text",
+        type: "text",
+        portableText: stemToPortableText("This is some text"),
+      },
     ];
 
     const { getByText } = renderWithTheme(
