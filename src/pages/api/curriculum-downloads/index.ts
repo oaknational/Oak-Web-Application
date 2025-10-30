@@ -243,7 +243,7 @@ export default async function handler(
     childSubjectSlug,
   } = curriculumDownloadQuerySchema.parse(req.query);
 
-  const mvRefreshTimeParsed = parseInt(mvRefreshTime);
+  const mvRefreshTimeParsed = Number.parseInt(mvRefreshTime);
   const actualMvRefreshTime = await getMvRefreshTime();
 
   // Note: Disable this check to allow 'new' documents
