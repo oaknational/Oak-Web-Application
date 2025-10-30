@@ -1,4 +1,4 @@
-import { type NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
 import { redirect } from "next/navigation";
 
 import { getOakGoogleClassroomAddon } from "@/node-lib/google-classroom";
