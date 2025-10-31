@@ -62,7 +62,7 @@ export function CurricFiltersYears({
   data,
   ks4Options,
   slugs,
-}: CurricFiltersYearsProps) {
+}: Readonly<CurricFiltersYearsProps>) {
   const id = useId();
   const { yearData } = data;
 

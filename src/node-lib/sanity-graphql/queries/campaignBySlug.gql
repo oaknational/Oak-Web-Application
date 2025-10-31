@@ -15,6 +15,7 @@ query campaignBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
         ...ImageWithAltText
       }
       subheading
+      hideKsSelector
     }
     content {
       ... on CampaignIntro {
@@ -28,6 +29,7 @@ query campaignBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
         bodyPortableText: bodyRaw
         buttonCta
         formId
+        freeSchoolInput
       }
       ... on CampaignVideoBanner {
         type: __typename

@@ -52,7 +52,7 @@ export function CurricVisualiserUnitList({
   filters,
   basePath,
   selectedThread,
-}: CurricVisualiserUnitListProps) {
+}: Readonly<CurricVisualiserUnitListProps>) {
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
   const searchParams = useSearchParams();

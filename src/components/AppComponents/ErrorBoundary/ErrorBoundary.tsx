@@ -64,7 +64,7 @@ export type ErrorBoundaryProps = {
  * send error reports if the service has been initialised, which only happens
  * if the user has consented.
  */
-function BugsnagErrorBoundary(props: ErrorBoundaryProps) {
+function BugsnagErrorBoundary(props: Readonly<ErrorBoundaryProps>) {
   const isBugsnagInitialised = bugsnagInitialised();
   const BugsnagErrorBoundary = useMemo(() => {
     if (isBugsnagInitialised) {
@@ -90,7 +90,7 @@ function BugsnagErrorBoundary(props: ErrorBoundaryProps) {
   );
 }
 
-function SentryErrorBoundary({ children }: ErrorBoundaryProps) {
+function SentryErrorBoundary({ children }: Readonly<ErrorBoundaryProps>) {
   return (
     <Sentry.ErrorBoundary fallback={<ClientErrorView />}>
       {children}
@@ -98,7 +98,9 @@ function SentryErrorBoundary({ children }: ErrorBoundaryProps) {
   );
 }
 
-export default function ErrorBoundary({ children }: ErrorBoundaryProps) {
+export default function ErrorBoundary({
+  children,
+}: Readonly<ErrorBoundaryProps>) {
   if (getBrowserConfig("sentryEnabled") === "true") {
     return <SentryErrorBoundary>{children}</SentryErrorBoundary>;
   } else {

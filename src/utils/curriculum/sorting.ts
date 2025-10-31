@@ -6,7 +6,7 @@ export function sortYears(a: string, b: string) {
   if (a === "all-years") {
     return -1;
   }
-  return parseInt(a) - parseInt(b);
+  return Number.parseInt(a) - Number.parseInt(b);
 }
 
 type sortSubjectCategoriesOnFeaturesReturn = (
@@ -52,8 +52,8 @@ export function sortChildSubjects(a: Subject, b: Subject) {
 }
 
 export function sortUnits(a: Unit, b: Unit) {
-  const aYear = parseInt(a.year, 10);
-  const bYear = parseInt(b.year, 10);
+  const aYear = Number.parseInt(a.year, 10);
+  const bYear = Number.parseInt(b.year, 10);
 
   // We now have grouped years so we must order by year number and unit order.
   return aYear * 100 + a.order - (bYear * 100 + b.order);
