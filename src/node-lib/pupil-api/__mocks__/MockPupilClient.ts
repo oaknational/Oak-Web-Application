@@ -67,9 +67,7 @@ export const mockGetAttempt = () => {
  */
 export class MockPupilClient implements PupilClient {
   constructor(private state: State = {}) {}
-  init() {
-    return Promise.resolve();
-  }
+  init() {}
   getState(): State {
     return this.state;
   }
