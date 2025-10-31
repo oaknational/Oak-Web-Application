@@ -83,7 +83,7 @@ export const SearchSuggestionBanner = (props: {
       $borderColor="border-neutral-lighter"
       $flexDirection="column"
       $gap="space-between-xs"
-      $mt={["space-between-s", "space-between-m2", "space-between-m2"]}
+      $mt={"space-between-m2"}
     >
       {metadata && (
         <OakP $font="heading-light-7" $color="text-subdued">
