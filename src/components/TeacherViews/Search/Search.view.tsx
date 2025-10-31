@@ -400,7 +400,7 @@ const Search: FC<SearchProps> = (props) => {
                 "space-between-none",
                 "all-spacing-1",
               ]}
-              $mb={"space-between-s"}
+              $mb={["space-between-l", "space-between-s"]}
             >
               <SearchActiveFilters
                 searchFilters={searchFilters}
