@@ -9,9 +9,9 @@ import CanonicalResultsPage, {
 } from "@/pages/pupils/lessons/[lessonSlug]/results/[attemptId]/share";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 
-jest.mock("@oaknational/oak-pupil-client", () => ({
-  ...jest.requireActual("@oaknational/oak-pupil-client"),
-  NetworkClient: jest.fn(() => ({
+jest.mock("@/node-lib/pupil-api/network/network", () => ({
+  ...jest.requireActual("@/node-lib/pupil-api/network/network"),
+  PupilNetworkClient: jest.fn(() => ({
     getAttempt: () => Promise.resolve(mockReturn),
   })),
 }));

@@ -16,10 +16,6 @@ import {
   OakSecondaryButton,
   OakBox,
 } from "@oaknational/oak-components";
-import {
-  attemptDataCamelCaseSchema,
-  useOakPupil,
-} from "@oaknational/oak-pupil-client";
 
 import { PupilExperienceViewProps } from "../PupilExperience";
 
@@ -33,6 +29,8 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { CopyrightNotice } from "@/components/PupilComponents/CopyrightNotice";
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
 import { LessonSummaryReviewedProperties } from "@/browser-lib/avo/Avo";
+import { useOakPupil } from "@/hooks/useOakPupil";
+import { attemptDataCamelCaseSchema } from "@/node-lib/pupil-api/types";
 
 type PupilViewsReviewProps = {
   lessonTitle: string;
