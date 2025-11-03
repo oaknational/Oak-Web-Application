@@ -1,3 +1,10 @@
+## [1.906.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.906.1...v1.906.2) (2025-11-03)
+
+
+### Bug Fixes
+
+* pass parent subject to lesson listing page ([1f9bf5f](https://github.com/oaknational/Oak-Web-Application/commit/1f9bf5f24139c54b270fb0e486dddabfde079b99))
+
 ## [1.906.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.906.0...v1.906.1) (2025-11-03)
 
 # [1.906.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.905.0...v1.906.0) (2025-10-30)
