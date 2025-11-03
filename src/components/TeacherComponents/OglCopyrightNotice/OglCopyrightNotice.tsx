@@ -4,7 +4,7 @@ import { OakLink, OakBox, OakSpan } from "@oaknational/oak-components";
 import { resolveOakHref } from "@/common-lib/urls";
 import { FontProps } from "@/styles/utils/typography";
 
-type CopyrightNoticeProps = FontProps & {
+type OglCopyrightNoticeProps = FontProps & {
   showPostAlbCopyright: boolean;
   openLinksExternally: boolean;
   copyrightYear: string;
@@ -113,7 +113,7 @@ const PostAlbCopyright = (
   );
 };
 
-const CopyrightNotice: FC<CopyrightNoticeProps> = ({
+const OglCopyrightNotice: FC<OglCopyrightNoticeProps> = ({
   showPostAlbCopyright,
   openLinksExternally,
   copyrightYear,
@@ -138,4 +138,4 @@ const CopyrightNotice: FC<CopyrightNoticeProps> = ({
   </OakBox>
 );
 
-export default CopyrightNotice;
+export default OglCopyrightNotice;

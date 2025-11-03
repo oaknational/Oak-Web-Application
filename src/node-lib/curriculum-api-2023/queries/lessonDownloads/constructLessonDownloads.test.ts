@@ -33,7 +33,7 @@ describe("constructLessonDownloads", () => {
       downloads,
       lessonSlug,
       parsedBrowseData: browse_data,
-      lessonCopyRight: null,
+      legacyLessonCopyrightInfo: null,
       expired,
     });
 
@@ -51,7 +51,7 @@ describe("constructLessonDownloads", () => {
       lessonCohort: "2023-2024",
       expired: null,
       updatedAt: "2024-02-28T08:09:20.247619+00:00",
-      copyrightContent: null,
+      legacyCopyrightContent: null,
       nextLessons: [],
       tierTitle: null,
       examBoardTitle: null,
@@ -75,7 +75,7 @@ describe("constructLessonDownloads", () => {
       downloads,
       lessonSlug,
       parsedBrowseData: browse_data,
-      lessonCopyRight: null,
+      legacyLessonCopyrightInfo: null,
       expired,
     });
 
@@ -99,7 +99,7 @@ describe("constructLessonDownloads", () => {
       downloads,
       lessonSlug,
       parsedBrowseData: browse_data,
-      lessonCopyRight: null,
+      legacyLessonCopyrightInfo: null,
       expired: false,
     });
 
@@ -120,7 +120,7 @@ describe("constructLessonDownloads", () => {
       downloads,
       lessonSlug,
       parsedBrowseData: browse_data,
-      lessonCopyRight: null,
+      legacyLessonCopyrightInfo: null,
       expired: false,
     });
 
