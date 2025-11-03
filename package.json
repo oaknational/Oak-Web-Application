@@ -264,6 +264,7 @@
     "whatwg-fetch": "^3.6.20",
     "yargs": "^17.7.2"
   },
+  "browserslist": ["chrome 111", "edge 111", "firefox 111", "safari 16.4", "safari 15.6", "iOS 15.6"],
   "repository": {
     "type": "git",
     "url": "https://github.com/oaknational/Oak-Web-Application.git"
