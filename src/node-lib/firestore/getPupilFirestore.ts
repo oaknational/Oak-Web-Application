@@ -51,6 +51,7 @@ export const getPupilFirestore = () => {
       subject_token_supplier: {
         getSubjectToken: getVercelOidcToken,
       },
+      scopes: ["https://www.googleapis.com/auth/datastore"],
     });
 
     return new Firestore({
