@@ -18,10 +18,10 @@ export const useWorksheetInfoState = (
   };
 
   useEffect(() => {
-    if (hasWorksheetAssetObject) {
+    if (hasWorksheetAssetObject && !worksheetInfo) {
       populateWorksheetInfo(lessonSlug);
     }
-  }, [hasWorksheetAssetObject, lessonSlug]);
+  }, [hasWorksheetAssetObject, lessonSlug, worksheetInfo]);
 
   return {
     worksheetInfo,
