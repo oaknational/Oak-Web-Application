@@ -1,3 +1,10 @@
+## [1.908.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.908.0...v1.908.1) (2025-11-04)
+
+
+### Bug Fixes
+
+* rolled back google-auth-library version for working OIDC GCP/Vercel connection ([a73b945](https://github.com/oaknational/Oak-Web-Application/commit/a73b945ba4a5482b37b19de0ee1a917c0cf3b32f))
+
 # [1.908.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.907.0...v1.908.0) (2025-11-04)
 
 
