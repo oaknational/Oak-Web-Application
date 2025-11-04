@@ -75,7 +75,7 @@ export function WhoAreWeDesc() {
         >
           {items.map(({ background, title, text }) => {
             return (
-              <CustomWeAreItemOakGridArea $colSpan={12}>
+              <CustomWeAreItemOakGridArea key={title} $colSpan={12}>
                 <OakFlex $flexDirection={"column"} $gap={"all-spacing-6"}>
                   <OakBox
                     $height={"all-spacing-18"}

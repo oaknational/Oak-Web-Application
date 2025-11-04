@@ -1,9 +1,11 @@
 import { screen } from "@testing-library/react";
 import { forwardRef } from "react";
+import { GetServerSidePropsContext } from "next";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import AboutWhoWeAre, {
-  getStaticProps,
+  AboutWhoWeAreNew,
+  getServerSideProps,
 } from "../../../pages/about-us/who-we-are";
 import CMSClient from "../../../node-lib/cms";
 import { AboutWhoWeArePage } from "../../../common-lib/cms-types";
@@ -154,13 +156,31 @@ describe("pages/about/who-we-are.tsx", () => {
     it("should return notFound when the page data is missing", async () => {
       mockCMSClient.aboutWhoWeArePage.mockResolvedValueOnce(null);
 
-      const propsResult = await getStaticProps({
+      const propsResult = await getServerSideProps({
+        req: {},
+        res: {},
+        query: {},
         params: {},
-      });
+      } as unknown as GetServerSidePropsContext);
 
       expect(propsResult).toMatchObject({
         notFound: true,
       });
     });
+  });
+});
+
+describe("pages/about/who-we-are.tsx (v2 enabled)", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    jest.resetModules();
+  });
+
+  it("renders ", () => {
+    const { baseElement } = renderWithProviders()(
+      <AboutWhoWeAreNew pageData={testAboutWhoWeArePageData} />,
+    );
+
+    expect(baseElement).toMatchSnapshot();
   });
 });

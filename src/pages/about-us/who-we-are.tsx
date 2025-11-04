@@ -38,7 +38,7 @@ const posthogApiKey = getBrowserConfig("posthogApiKey");
 
 export type AboutPageProps = {
   pageData: AboutWhoWeArePage;
-  enableV2: boolean;
+  enableV2?: boolean;
 };
 
 type TimeLineProps = TextBlock & OakGridAreaProps;
@@ -210,7 +210,7 @@ const AboutWhoWeAreOld: NextPage<AboutPageProps> = ({ pageData }) => {
   );
 };
 
-const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({ pageData }) => {
+export const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <WhoAreWeHeader />

@@ -63,7 +63,7 @@ export function WhoAreWeExplore() {
           >
             {items.map(({ title, iconName }) => {
               return (
-                <OakGridArea $colSpan={[12, 6, 6]}>
+                <OakGridArea key={title} $colSpan={[12, 6, 6]}>
                   <OakFlex
                     $flexDirection={"row"}
                     $pa={"inner-padding-m"}

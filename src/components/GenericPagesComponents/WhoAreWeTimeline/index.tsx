@@ -74,7 +74,7 @@ export default function WhoAreWeTimeline() {
                 {items.map((item, itemIndex) => {
                   const isLast = items.length - 1 === itemIndex;
                   return (
-                    <OakFlex $gap={"all-spacing-4"}>
+                    <OakFlex key={item.title} $gap={"all-spacing-4"}>
                       <OakFlex
                         $width={"all-spacing-6"}
                         $flexShrink={0}
@@ -116,7 +116,7 @@ export default function WhoAreWeTimeline() {
                         <OakBox $font={"heading-light-5"}>{item.title}</OakBox>
                         <OakBox>
                           {item.text.map((textItem) => {
-                            return <OakP>{textItem}</OakP>;
+                            return <OakP key={textItem}>{textItem}</OakP>;
                           })}
                         </OakBox>
                       </OakFlex>
