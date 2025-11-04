@@ -37,7 +37,7 @@ export function getRemUnits(
       console.warn("getRemUnits: Could not parse px value", px);
       return px;
     }
-    return `${pxToRem(parseFloat(value))}rem`;
+    return `${pxToRem(Number.parseFloat(value))}rem`;
   }
   return px;
 }

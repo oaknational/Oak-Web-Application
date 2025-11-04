@@ -65,7 +65,7 @@ export default function SignedOutFlow({
   onChangeDownloadTypes,
   availableDownloadTypes,
   submitError,
-}: SignedOutFlowProps) {
+}: Readonly<SignedOutFlowProps>) {
   const errorMessageListId = useId();
   const submitErrorId = useId();
   const [errors, setErrors] = useState<CurriculumDownloadViewErrors>({});

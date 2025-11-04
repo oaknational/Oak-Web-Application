@@ -11,12 +11,12 @@ export function CampaignVideoBanner({
   video,
   heading,
   subheading,
-}: {
+}: Readonly<{
   heading: PortableTextBlock[];
   video: Video;
   subheading?: PortableTextBlock[] | null;
   textStyles?: PortableTextComponents;
-}) {
+}>) {
   return (
     <OakGrid
       $mt={["space-between-xxl", "space-between-xxl", "space-between-xxxl"]}

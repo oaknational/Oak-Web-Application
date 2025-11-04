@@ -22,8 +22,16 @@ describe("findUnitOrOptionBySlug", () => {
         }),
         createUnit({ slug: "u-0-2", tier_slug: "foundation" }),
         createUnit({ slug: "u-0-2", tier_slug: "higher" }),
-        createUnit({ slug: "u-0-3", subject_slug: "physics" }),
-        createUnit({ slug: "u-0-3", subject_slug: "combined-science" }),
+        createUnit({
+          slug: "u-0-3",
+          subject_slug: "physics",
+          subject_parent: "science",
+        }),
+        createUnit({
+          slug: "u-0-3",
+          subject_slug: "combined-science",
+          subject_parent: "science",
+        }),
       ],
     }),
     "8": createYearData({

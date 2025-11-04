@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 
-import { LessonCopyrightTag } from "./LessonCopyrightTag";
+import { LessonComplexCopyrightTag } from "./LessonComplexCopyrightTag";
 
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import {
@@ -22,7 +22,7 @@ describe("LessonCopyrightTag", () => {
     setUseUserReturn(mockLoggedOut);
 
     const { getByText } = render(
-      <LessonCopyrightTag georestricted={true} loginRequired={true} />,
+      <LessonComplexCopyrightTag georestricted={true} loginRequired={true} />,
     );
     const copyrightTag = getByText("Copyrighted");
     expect(copyrightTag).toBeInTheDocument();
@@ -31,7 +31,7 @@ describe("LessonCopyrightTag", () => {
   test("it shows copyrighted tag if lesson is geo restricted and user is signed in and geoblocked", () => {
     setUseUserReturn(mockGeorestrictedUser);
     const { getByText } = render(
-      <LessonCopyrightTag georestricted={true} loginRequired={false} />,
+      <LessonComplexCopyrightTag georestricted={true} loginRequired={false} />,
     );
     const geoRestrictedTag = getByText("Copyrighted");
     expect(geoRestrictedTag).toBeInTheDocument();
@@ -40,7 +40,7 @@ describe("LessonCopyrightTag", () => {
   test("it does not show copyrighted tag if lesson is geo restricted and user is signed in and not geoblocked", () => {
     setUseUserReturn(mockNotOnboardedUser);
     const { queryByText } = render(
-      <LessonCopyrightTag georestricted={true} loginRequired={true} />,
+      <LessonComplexCopyrightTag georestricted={true} loginRequired={true} />,
     );
     const geoRestrictedTag = queryByText("Copyrighted");
     expect(geoRestrictedTag).not.toBeInTheDocument();
@@ -48,7 +48,7 @@ describe("LessonCopyrightTag", () => {
   test("it shows nothing if the feature flag is disabled", () => {
     mockFeatureFlagEnabled.mockReturnValueOnce(false);
     const { queryByText } = render(
-      <LessonCopyrightTag georestricted={true} loginRequired={true} />,
+      <LessonComplexCopyrightTag georestricted={true} loginRequired={true} />,
     );
     const geoRestrictedTag = queryByText("Copyrighted");
     expect(geoRestrictedTag).not.toBeInTheDocument();

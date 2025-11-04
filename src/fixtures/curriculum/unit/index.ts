@@ -36,7 +36,7 @@ const BASE_UNIT: Unit = {
 };
 
 export function getPhaseTitle(year: string) {
-  if (parseInt(year) < 7) {
+  if (Number.parseInt(year) < 7) {
     return "Primary";
   } else {
     return "Secondary";
@@ -44,7 +44,7 @@ export function getPhaseTitle(year: string) {
 }
 
 export function getPhaseSlug(year: string) {
-  if (parseInt(year) < 7) {
+  if (Number.parseInt(year) < 7) {
     return "primary";
   } else {
     return "secondary";
@@ -52,7 +52,7 @@ export function getPhaseSlug(year: string) {
 }
 
 export function getKeystageSlug(year: string) {
-  const yearNum = parseInt(year);
+  const yearNum = Number.parseInt(year);
   if (yearNum <= 2) return "ks1";
   if (yearNum <= 6) return "ks2";
   if (yearNum <= 9) return "ks3";
