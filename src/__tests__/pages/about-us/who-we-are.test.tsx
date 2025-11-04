@@ -4,7 +4,6 @@ import { GetServerSidePropsContext } from "next";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import AboutWhoWeAre, {
-  AboutWhoWeAreNew,
   getServerSideProps,
 } from "../../../pages/about-us/who-we-are";
 import CMSClient from "../../../node-lib/cms";
@@ -167,6 +166,26 @@ describe("pages/about/who-we-are.tsx", () => {
         notFound: true,
       });
     });
+
+    it("should not return notFound when the page data is missing", async () => {
+      mockCMSClient.aboutWhoWeArePage.mockResolvedValueOnce(
+        testAboutWhoWeArePageData,
+      );
+
+      const propsResult = await getServerSideProps({
+        req: { cookies: {} },
+        res: {},
+        query: {},
+        params: {},
+      } as unknown as GetServerSidePropsContext);
+
+      expect(propsResult).toMatchObject({
+        props: {
+          enableV2: false,
+          pageData: testAboutWhoWeArePageData,
+        },
+      });
+    });
   });
 });
 
@@ -178,7 +197,7 @@ describe("pages/about/who-we-are.tsx (v2 enabled)", () => {
 
   it("renders ", () => {
     const { baseElement } = renderWithProviders()(
-      <AboutWhoWeAreNew pageData={testAboutWhoWeArePageData} />,
+      <AboutWhoWeAre enableV2={true} pageData={testAboutWhoWeArePageData} />,
     );
 
     expect(baseElement).toMatchSnapshot();
