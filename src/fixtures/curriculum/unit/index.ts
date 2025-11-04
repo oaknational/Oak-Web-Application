@@ -7,8 +7,6 @@ const BASE_UNIT: Unit = {
   connection_future_unit_description: null,
   connection_future_unit_title: null,
   connection_prior_unit_title: null,
-  domain: null,
-  domain_id: null,
   examboard: null,
   examboard_slug: null,
   planned_number_of_lessons: null,
@@ -25,7 +23,6 @@ const BASE_UNIT: Unit = {
   subject_parent_slug: null,
   tier: null,
   tier_slug: null,
-  tags: null,
   subjectcategories: null,
   threads: [],
   description: null,
@@ -39,7 +36,7 @@ const BASE_UNIT: Unit = {
 };
 
 export function getPhaseTitle(year: string) {
-  if (parseInt(year) < 7) {
+  if (Number.parseInt(year) < 7) {
     return "Primary";
   } else {
     return "Secondary";
@@ -47,7 +44,7 @@ export function getPhaseTitle(year: string) {
 }
 
 export function getPhaseSlug(year: string) {
-  if (parseInt(year) < 7) {
+  if (Number.parseInt(year) < 7) {
     return "primary";
   } else {
     return "secondary";
@@ -55,7 +52,7 @@ export function getPhaseSlug(year: string) {
 }
 
 export function getKeystageSlug(year: string) {
-  const yearNum = parseInt(year);
+  const yearNum = Number.parseInt(year);
   if (yearNum <= 2) return "ks1";
   if (yearNum <= 6) return "ks2";
   if (yearNum <= 9) return "ks3";

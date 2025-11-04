@@ -233,8 +233,6 @@ describe("unitsTab !subject error", () => {
       units: [
         {
           planned_number_of_lessons: 8,
-          domain: "Grammar",
-          domain_id: 17,
           connection_future_unit_description: null,
           connection_prior_unit_description: null,
           connection_future_unit_title: null,
@@ -251,7 +249,6 @@ describe("unitsTab !subject error", () => {
           subject_parent: null,
           subject_parent_slug: null,
           subject_slug: "english",
-          tags: null,
           subjectcategories: null,
           threads: [],
           tier: null,
@@ -555,7 +552,7 @@ describe("unitsTab !subject error", () => {
   //   );
   //   const yearOptions = await findAllByTestId("year-radio");
   //   const extractedYears = yearOptions.map((option) =>
-  //     parseInt(option.getAttribute("value") || "0"),
+  //     Number.parseInt(option.getAttribute("value") || "0"),
   //   );
   //   const isSorted = extractedYears.every((year, index, array) => {
   //     return index === 0 || Number(array[index - 1]) <= year;

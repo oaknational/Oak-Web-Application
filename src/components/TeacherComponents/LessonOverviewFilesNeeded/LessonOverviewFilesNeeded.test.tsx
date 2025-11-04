@@ -16,9 +16,9 @@ jest.mock("@/common-lib/urls", () => ({
   resolveOakHref: jest.fn(),
 }));
 
-let mockCopyrightRequirements = defaultCopyrightRequirements;
-jest.mock("@/hooks/useCopyrightRequirements", () => ({
-  useCopyrightRequirements: () => mockCopyrightRequirements,
+let mockComplexCopyright = defaultCopyrightRequirements;
+jest.mock("@/hooks/useComplexCopyright", () => ({
+  useComplexCopyright: () => mockComplexCopyright,
 }));
 
 jest.mock("next/router", () => require("next-router-mock"));
@@ -87,7 +87,7 @@ describe("LessonOverviewFilesNeeded", () => {
   });
 
   it("renders a sign up button when downloads are restricted", () => {
-    mockCopyrightRequirements = signedOutLoginRequired;
+    mockComplexCopyright = signedOutLoginRequired;
     const additionalFiles = ["file1.pdf"];
     (resolveOakHref as jest.Mock).mockReturnValue("/mock-url");
     const { getByText } = renderWithTheme(
@@ -104,7 +104,7 @@ describe("LessonOverviewFilesNeeded", () => {
   });
 
   it("renders nothing when geoblocked", () => {
-    mockCopyrightRequirements = signedInGeoBlocked;
+    mockComplexCopyright = signedInGeoBlocked;
     const additionalFiles = ["file1.pdf"];
     const { queryByText } = renderWithTheme(
       <LessonOverviewFilesNeeded

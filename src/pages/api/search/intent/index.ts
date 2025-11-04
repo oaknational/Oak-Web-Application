@@ -22,7 +22,7 @@ const reportError = errorReporter("search-intent");
 const rateLimiter = createRateLimiter(
   "search-intent:rate-limit",
   Ratelimit.fixedWindow(
-    parseInt(getServerConfig("aiSearchRateLimitPer24h"), 10),
+    Number.parseInt(getServerConfig("aiSearchRateLimitPer24h"), 10),
     "24h",
   ),
 );
