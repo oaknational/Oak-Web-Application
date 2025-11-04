@@ -54,11 +54,16 @@ export const getPupilFirestore = () => {
       scopes: ["https://www.googleapis.com/auth/datastore"],
     });
 
-    return new Firestore({
+    const firestore = new Firestore({
       authClient,
       projectId: GCP_PROJECT_ID,
       databaseId: PUPIL_FIRESTORE_ID,
     });
+
+    const collections = await firestore.listCollections();
+    console.log("Debug collections list: ", collections);
+    
+    return firestore;
   } catch (e) {
     console.error("getPupilFirestore authClient", e);
     console.error("getPupilFirestore authClient raw:", JSON.stringify(e));
