@@ -1,3 +1,14 @@
+# [1.908.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.907.0...v1.908.0) (2025-11-04)
+
+
+### Features
+
+* add test to cover loading state ([d7f62f5](https://github.com/oaknational/Oak-Web-Application/commit/d7f62f5c2fa4fc4a0a736036de1ad5c9ac3b3d9e))
+* delay loading on serach page ([1c47d08](https://github.com/oaknational/Oak-Web-Application/commit/1c47d0849cff9e489c27b03bd9b89e861131d2ed))
+* delayed loading container ([01fd3a8](https://github.com/oaknational/Oak-Web-Application/commit/01fd3a894a98156765d5e3a35b3bbd70d84cecbc))
+* reduce complexity in search view ([e98d847](https://github.com/oaknational/Oak-Web-Application/commit/e98d8472e766477487bb37092d2ca98a544683ac))
+* show loading spinner for filter suggestions ([645b585](https://github.com/oaknational/Oak-Web-Application/commit/645b585acfde1512088022d6c83c76d7c670730f))
+
 # [1.907.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.906.4...v1.907.0) (2025-11-04)
 
 
