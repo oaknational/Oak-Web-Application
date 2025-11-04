@@ -120,6 +120,7 @@ export const getPackagedUnit = (
     keyStageTitle: modifiedProgrammeFields.keystage_description,
     subjectSlug: modifiedProgrammeFields.subject_slug,
     subjectTitle: modifiedProgrammeFields.subject,
+    parentSubject: modifiedProgrammeFields.subject_parent,
     unitSlug,
     unitvariantId,
     unitTitle,

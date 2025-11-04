@@ -66,6 +66,7 @@ describe("lessonListing()", () => {
         pathwaySlug: null,
         pathwayTitle: null,
         pathwayDisplayOrder: null,
+        parentSubject: "Maths",
         actions: {},
         containsGeorestrictedLessons: false,
         containsLoginRequiredLessons: false,
@@ -242,6 +243,7 @@ describe("lessonListing()", () => {
         programmeSlug: "programme-slug",
         subjectSlug: "maths",
         subjectTitle: "Maths",
+        parentSubject: "Maths",
         tierSlug: null,
         tierTitle: null,
         unitSlug: "unit-slug",
@@ -318,6 +320,7 @@ describe("lessonListing()", () => {
         actions: {},
         containsGeorestrictedLessons: false,
         containsLoginRequiredLessons: false,
+        parentSubject: "Maths",
       });
     });
     test("getTransformedLessons returns the correct data", async () => {

@@ -16,6 +16,7 @@ export const lessonListingPageDataSchema = z.object({
   unitTitle: z.string(),
   subjectSlug: programmeFieldsSchema.shape.subject_slug,
   subjectTitle: programmeFieldsSchema.shape.subject,
+  parentSubject: programmeFieldsSchema.shape.subject_parent,
   yearTitle: programmeFieldsSchema.shape.year_description,
   yearSlug: programmeFieldsSchema.shape.year_slug,
   year: programmeFieldsSchema.shape.year,
