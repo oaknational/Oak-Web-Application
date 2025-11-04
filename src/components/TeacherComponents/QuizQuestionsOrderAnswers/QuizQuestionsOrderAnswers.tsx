@@ -20,7 +20,7 @@ export const QuizQuestionsOrderAnswers = ({
   return (
     <OakFlex
       $flexDirection={"column"}
-      $gap="all-spacing-1"
+      $gap="spacing-4"
       $alignItems={"start"}
       role="list"
     >
@@ -33,9 +33,9 @@ export const QuizQuestionsOrderAnswers = ({
               key={`q-${questionNumber}-answer${i}`}
               $background={"lemon50"}
               $borderRadius="border-radius-m2"
-              $ph="inner-padding-xs"
+              $ph="spacing-8"
               $alignItems={"flex-start"}
-              $gap="all-spacing-2"
+              $gap="spacing-8"
               role="listitem"
             >
               <VisuallyHidden>
@@ -43,27 +43,25 @@ export const QuizQuestionsOrderAnswers = ({
                 <OakCodeRenderer
                   string={removeMarkdown(orderAnswer.text)}
                   $font="code-3"
-                  $mt={"space-between-none"}
+                  $mt={"spacing-0"}
                 />
               </VisuallyHidden>
-              <OakBox $minWidth="all-spacing-7" aria-hidden>
+              <OakBox $minWidth="spacing-32" aria-hidden>
                 <OakIcon
                   iconName={"tick"}
-                  $width={"all-spacing-6"}
-                  $height={"all-spacing-6"}
+                  $width={"spacing-24"}
+                  $height={"spacing-24"}
                 />
               </OakBox>
-
               <OakTypography $font={["body-2-bold", "body-1-bold"]} aria-hidden>
                 {item.correctOrder}
               </OakTypography>
-
               <OakTypography $font={["body-2", "body-1"]} aria-hidden>
                 -{" "}
                 <OakCodeRenderer
                   string={removeMarkdown(orderAnswer.text)}
                   $font={"code-3"}
-                  $mt={"space-between-none"}
+                  $mt={"spacing-0"}
                 />
               </OakTypography>
             </OakFlex>

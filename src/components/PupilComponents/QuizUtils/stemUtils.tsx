@@ -28,7 +28,7 @@ export const getStemTextData = (stem: ImageOrTextItem[]) => {
 
 export const getStemImage = ({
   stem,
-  minWidth = "all-spacing-19",
+  minWidth = "spacing-240",
   scaled = false,
 }: {
   stem: ImageOrTextItem[];
@@ -43,7 +43,7 @@ export const getStemImage = ({
         alt={"An image in a quiz"}
         width={data.imageObject.width}
         height={data.imageObject.height}
-        $minWidth={scaled ? "all-spacing-20" : minWidth}
+        $minWidth={scaled ? "spacing-360" : minWidth}
         placeholder="oak"
         sizes={getSizes(["100vw", 1200])}
         role="presentation"

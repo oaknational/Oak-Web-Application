@@ -48,9 +48,9 @@ const UnitsLearningThemeFilters = ({
     <OakFlex $flexDirection={"column"}>
       <OakFlex
         $flexDirection="column"
-        $gap="space-between-ssx"
+        $gap="spacing-8"
         role="radiogroup"
-        $pb="inner-padding-xl2"
+        $pb="spacing-32"
       >
         {[{ id: "all", label: "All" }, ...themeTileItems].map(
           (theme, index) => {

@@ -123,7 +123,7 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
           )}
           {learningThemes.length > 1 && (
             <>
-              <OakHeading tag="h3" $font="heading-7" $mb={"space-between-m"}>
+              <OakHeading tag="h3" $font="heading-7" $mb={"spacing-24"}>
                 Threads
               </OakHeading>
 

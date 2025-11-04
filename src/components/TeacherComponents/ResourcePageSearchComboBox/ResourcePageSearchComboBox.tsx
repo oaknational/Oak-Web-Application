@@ -101,12 +101,11 @@ const ResourcePageSearchComboBox = <T extends School>(
           aria-invalid={hasError}
           defaultValue={props.defaultInputValue}
           wrapperWidth={"100%"}
-          $pv="inner-padding-none"
-          $height="all-spacing-10"
+          $pv="spacing-0"
+          $height="spacing-56"
           color="black"
         />
       </OakFlex>
-
       {state.isOpen && (
         <Popover
           popoverRef={popoverRef}

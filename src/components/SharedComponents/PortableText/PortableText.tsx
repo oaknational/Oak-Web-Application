@@ -157,10 +157,7 @@ export const basePortableTextComponents: PortableTextComponents = {
   block: {
     normal: (props) => {
       return (
-        <BodyP
-          $font={["body-2", "body-1"]}
-          $mt={["space-between-s", "space-between-m"]}
-        >
+        <BodyP $font={["body-2", "body-1"]} $mt={["spacing-16", "spacing-24"]}>
           {props.children}
         </BodyP>
       );
@@ -169,9 +166,7 @@ export const basePortableTextComponents: PortableTextComponents = {
   list: {
     bullet: (props) => <ul>{props.children}</ul>,
     number: (props) => (
-      <OakOL $ml={["space-between-s", "space-between-m"]}>
-        {props.children}
-      </OakOL>
+      <OakOL $ml={["spacing-16", "spacing-24"]}>{props.children}</OakOL>
     ),
   },
   listItem: {

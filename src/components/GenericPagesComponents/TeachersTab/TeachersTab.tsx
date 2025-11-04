@@ -25,16 +25,16 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
   const { track } = useAnalytics();
   const { setSearchTerm } = useSearch({});
   return (
-    <OakFlex $background={"mint"} $pv="inner-padding-xl" $overflow={"hidden"}>
-      <OakMaxWidth $ph={["inner-padding-m"]}>
-        <OakGrid $cg={"all-spacing-4"}>
+    <OakFlex $background={"mint"} $pv="spacing-24" $overflow={"hidden"}>
+      <OakMaxWidth $ph={["spacing-16"]}>
+        <OakGrid $cg={"spacing-16"}>
           <OakGridArea $colSpan={[12, 6]}>
             <OakFlex
               $flexDirection={"column"}
-              $maxWidth={["all-spacing-22"]}
-              $pt={"inner-padding-xl2"}
+              $maxWidth={["spacing-640"]}
+              $pt={"spacing-32"}
               $alignItems={"flex-start"}
-              $gap={"all-spacing-6"}
+              $gap={"spacing-24"}
               $flexGrow={0}
               $flexShrink={1}
               $flexBasis={"auto"}
@@ -49,7 +49,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                 From curriculum planning to classroom teaching, Oak saves time
                 at every step.
               </OakTypography>
-              <OakGrid $mt="space-between-s">
+              <OakGrid $mt="spacing-16">
                 <OakGridArea $colSpan={[12, 12, 11]}>
                   <SearchForm
                     searchContext="homepage"
@@ -62,7 +62,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                   />
                 </OakGridArea>
               </OakGrid>
-              <OakBox $pv="inner-padding-xl2" $width={"100%"}>
+              <OakBox $pv="spacing-32" $width={"100%"}>
                 <KeyStageKeypad
                   keyStages={keyStages}
                   title="View subjects by key stage"

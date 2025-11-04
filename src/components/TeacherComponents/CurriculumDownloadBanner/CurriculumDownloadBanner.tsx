@@ -54,7 +54,7 @@ const CurriculumDownloadBanner = (props: CurriculumDownloadBannerProps) => {
     <OakLinkCard
       hasAnimation
       mainSection={
-        <OakFlex $flexDirection="column" $gap="space-between-s">
+        <OakFlex $flexDirection="column" $gap="spacing-16">
           <OakHeading tag="h2">
             New fully-sequenced curriculum plan and lesson resources for{" "}
             {subjectDisplayTitle}.

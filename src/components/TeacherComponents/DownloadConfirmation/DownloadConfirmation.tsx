@@ -129,8 +129,8 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
       <OakFlex
         $flexDirection={["column", "row"]}
         $alignItems={["flex-start", "center"]}
-        $gap={["space-between-m", "space-between-m", "all-spacing-16"]}
-        $mb={["space-between-xl", "space-between-none"]}
+        $gap={["spacing-24", "spacing-24", "spacing-120"]}
+        $mb={["spacing-56", "spacing-0"]}
       >
         <Flex
           $alignItems={"center"}
@@ -219,8 +219,8 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
               }
               iconName={"external"}
               isTrailingIcon={true}
-              iconHeight={"all-spacing-6"}
-              iconWidth={"all-spacing-6"}
+              iconHeight={"spacing-24"}
+              iconWidth={"spacing-24"}
             >
               install the Google Fonts ‘Lexend’ and ‘Kalam’
             </OakLink>
@@ -234,7 +234,6 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
           {teacherShareButton}
         </Flex>
       </OakFlex>
-
       {displayNextLessonContainer && isNextLessonsAvailable && (
         <DownloadConfirmationNextLessonContainer
           programmeSlug={programmeSlug}

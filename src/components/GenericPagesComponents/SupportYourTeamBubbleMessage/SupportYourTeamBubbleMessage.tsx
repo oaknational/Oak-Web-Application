@@ -33,8 +33,8 @@ const SupportYourTeamBubbleMessage: FC<
       $alignItems={"center"}
       $flexDirection={"column"}
       $position={"relative"}
-      $minHeight={"all-spacing-20"}
-      $width={"all-spacing-20"}
+      $minHeight={"spacing-360"}
+      $width={"spacing-360"}
       $justifyContent={"center"}
       {...props}
     >
@@ -47,11 +47,11 @@ const SupportYourTeamBubbleMessage: FC<
         $height={"100%"}
       />
       <OakFlex
-        $maxWidth={"all-spacing-20"}
+        $maxWidth={"spacing-360"}
         $alignItems={"center"}
         $flexDirection={"column"}
         $zIndex={"in-front"}
-        $pa={"inner-padding-s"}
+        $pa={"spacing-12"}
       >
         <OutlineHeading
           $mb={[12, 48]}
@@ -63,18 +63,15 @@ const SupportYourTeamBubbleMessage: FC<
           <OakP>{outlineHeading}</OakP>
         </OutlineHeading>
         <OakP
-          $mh={["space-between-xs", "space-between-none"]}
+          $mh={["spacing-12", "spacing-0"]}
           $textAlign={"center"}
           $font={["heading-5", "heading-4"]}
         >
           {heading}
         </OakP>
-        <OakBox
-          $mt={["space-between-ssx", "space-between-sssx"]}
-          $maxWidth={"all-spacing-19"}
-        >
+        <OakBox $mt={["spacing-8", "spacing-4"]} $maxWidth={"spacing-240"}>
           <OakP
-            $mh={["space-between-m2", "space-between-none"]}
+            $mh={["spacing-32", "spacing-0"]}
             $textAlign={"center"}
             $font={["heading-light-7", "heading-light-6"]}
           >

@@ -50,8 +50,8 @@ export function CurricFiltersChildSubjects({
             id="child-subjects-label"
             tag="h4"
             $font={["heading-7", "heading-6"]}
-            $mt="space-between-none"
-            $mb={["space-between-m", "space-between-s"]}
+            $mt="spacing-0"
+            $mb={["spacing-24", "spacing-16"]}
           >
             Exam subject
             {childSubjectsAt.length === 1
@@ -64,7 +64,7 @@ export function CurricFiltersChildSubjects({
             value={String(filters.childSubjects[0]!)}
             $flexDirection="row"
             $flexWrap="wrap"
-            $gap="space-between-ssx"
+            $gap="spacing-8"
             aria-labelledby="child-subjects-label"
           >
             {childSubjects.map((childSubject) => (

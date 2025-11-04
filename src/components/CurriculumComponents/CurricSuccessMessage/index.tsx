@@ -21,17 +21,17 @@ const SuccessMessage: FC<SuccessMessageProps> = ({
   const { label: buttonLabel, ...buttonPropsWithoutLabel } = buttonProps;
   return (
     <OakBox
-      $maxWidth="all-spacing-24"
+      $maxWidth="spacing-1280"
       $mh={"auto"}
-      $ph="inner-padding-l"
+      $ph="spacing-20"
       $width={"100%"}
-      $pb={["inner-padding-xl2", "inner-padding-xl4"]}
+      $pb={["spacing-32", "spacing-48"]}
     >
       <OakFlex
         $width={"100%"}
         $flexDirection={["column", "row", "row"]}
         $alignItems={["start", "center"]}
-        $gap={["space-between-m", "space-between-m", "all-spacing-16"]}
+        $gap={["spacing-24", "spacing-24", "spacing-120"]}
       >
         <OakFlex
           $flexDirection={"column"}
@@ -40,8 +40,8 @@ const SuccessMessage: FC<SuccessMessageProps> = ({
           $flexShrink={1}
         >
           <OakBox
-            $height={["all-spacing-16", "all-spacing-19", "all-spacing-19"]}
-            $width={["all-spacing-17", "all-spacing-19", "all-spacing-20"]}
+            $height={["spacing-120", "spacing-240", "spacing-240"]}
+            $width={["spacing-160", "spacing-240", "spacing-360"]}
           >
             <OakIcon
               iconName="tick-mark-happiness"
@@ -53,7 +53,7 @@ const SuccessMessage: FC<SuccessMessageProps> = ({
         <OakFlex
           $flexDirection={"column"}
           $alignItems={"start"}
-          $gap={"space-between-m"}
+          $gap={"spacing-24"}
           $flexShrink={1}
           $flexGrow={1}
         >

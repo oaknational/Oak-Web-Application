@@ -52,7 +52,7 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
         "repeat(1, 1fr)",
         "repeat(4, 1fr)",
       ]}
-      $rg={"all-spacing-4"}
+      $rg={"spacing-16"}
     >
       {Object.entries(learningCycleVideos).map(
         ([learningCycleTitle, learningCycleVideos]) => {
@@ -76,7 +76,7 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
             <OakGridArea
               key={learningCycleTitle}
               $colSpan={[0]}
-              $maxWidth={["100%", "100%", "all-spacing-18"]}
+              $maxWidth={["100%", "100%", "spacing-180"]}
             >
               <LessonOverviewClipWithThumbnail
                 title={learningCycleTitleToDisplay ?? ""}

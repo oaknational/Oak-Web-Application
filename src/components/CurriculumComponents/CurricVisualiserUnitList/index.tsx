@@ -93,9 +93,9 @@ export function CurricVisualiserUnitList({
   return (
     <OakFlex
       $flexWrap={"wrap"}
-      $pt="inner-padding-s"
+      $pt="spacing-12"
       data-testid="unit-cards"
-      $gap={"all-spacing-4"}
+      $gap={"spacing-16"}
       // TODO: Remove hack
       style={{
         marginBottom: "-1rem",
@@ -119,7 +119,7 @@ export function CurricVisualiserUnitList({
             return (
               <OakFlex
                 key={`unit-list-item-${item}-${index}`}
-                $width={"all-spacing-19"}
+                $width={"spacing-240"}
                 $flexGrow={1}
                 $position={"relative"}
               />

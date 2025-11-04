@@ -47,8 +47,8 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <OakMaxWidth
-        $mb={["space-between-xl", "space-between-xxxl"]}
-        $mt={["space-between-xl", "space-between-xxxl"]}
+        $mb={["spacing-56", "spacing-80"]}
+        $mt={["spacing-56", "spacing-80"]}
       >
         <GenericSummaryCard {...pageData} />
         <GenericIntroCard
@@ -61,21 +61,18 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
         />
 
         <OakHeading
-          $mb={["space-between-l", "space-between-m2"]}
+          $mb={["spacing-48", "spacing-32"]}
           $font={["heading-6", "heading-5"]}
           tag={"h2"}
         >
           Curriculum partners
         </OakHeading>
-        <OakGrid
-          $mb={"space-between-xl"}
-          data-testid="curriculum-partners-list"
-        >
+        <OakGrid $mb={"spacing-56"} data-testid="curriculum-partners-list">
           {pageData.curriculumPartners.map((partner, index) => (
             <OakGridArea
               key={`${partner.name}-${index}`}
               $colSpan={[4, 3, 2]}
-              $mb={"space-between-m2"}
+              $mb={"spacing-32"}
             >
               <ImageContainer
                 $pa={[16, 24, 16]}
@@ -87,18 +84,18 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
         </OakGrid>
 
         <OakHeading
-          $mb={["space-between-l", "space-between-m2"]}
+          $mb={["spacing-48", "spacing-32"]}
           $font={["heading-6", "heading-5"]}
           tag={"h2"}
         >
           Tech partners
         </OakHeading>
-        <OakGrid $mb={"space-between-xl"} data-testid="tech-partners-list">
+        <OakGrid $mb={"spacing-56"} data-testid="tech-partners-list">
           {pageData.techPartners.map((partner, index) => (
             <OakGridArea
               key={`${partner.name}-${index}`}
               $colSpan={[3, 2, 2]}
-              $mb={"space-between-m2"}
+              $mb={"spacing-32"}
             >
               <ImageContainer
                 $pa={[16, 24, 32]}

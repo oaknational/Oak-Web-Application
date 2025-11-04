@@ -32,15 +32,15 @@ const LessonResourceGraphicsItem: FC<LessonResourceGraphicsItemProps> = (
     <OakFlex
       $alignItems={"center"}
       $justifyContent={"center"}
-      $gap="space-between-sssx"
-      $mr={["space-between-none", "space-between-m"]}
+      $gap="spacing-4"
+      $mr={["spacing-0", "spacing-24"]}
     >
       <OakIcon
-        $width="all-spacing-7"
-        $height="all-spacing-7"
+        $width="spacing-32"
+        $height="spacing-32"
         iconName={icon}
-        $mr={["space-between-none", "space-between-ssx"]}
-        $mb={["space-between-ssx", "space-between-none"]}
+        $mr={["spacing-0", "spacing-8"]}
+        $mb={["spacing-8", "spacing-0"]}
         alt=""
       />
       <OakFlex>

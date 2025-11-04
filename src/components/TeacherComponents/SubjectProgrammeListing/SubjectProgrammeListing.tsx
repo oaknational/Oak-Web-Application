@@ -36,10 +36,10 @@ const SubjectProgrammeListing: FC<
 
   return (
     <>
-      <OakGrid $cg={"all-spacing-4"} $rg={"all-spacing-4"}>
+      <OakGrid $cg={"spacing-16"} $rg={"spacing-16"}>
         {examBoards.length < 2 && (
           <ProgrammeListContainer $colSpan={[12, 6, tierColSpan]}>
-            <OakHeading tag="h2" $font="heading-5" $mb="space-between-m2">
+            <OakHeading tag="h2" $font="heading-5" $mb="spacing-32">
               Select tier of learning
             </OakHeading>
             <SubjectProgrammeList
@@ -51,7 +51,7 @@ const SubjectProgrammeListing: FC<
         )}
         {tiers.length < 2 && (
           <ProgrammeListContainer $colSpan={[12, 6, examBoardColSpan]}>
-            <OakHeading tag="h2" $font="heading-5" $mb="space-between-m2">
+            <OakHeading tag="h2" $font="heading-5" $mb="spacing-32">
               Select exam board
             </OakHeading>
             <SubjectProgrammeList
@@ -72,7 +72,7 @@ const SubjectProgrammeListing: FC<
                   key={`${examBoard}-${index}`}
                   $colSpan={[12, 4]}
                 >
-                  <OakHeading tag="h2" $font="heading-5" $mb="space-between-m2">
+                  <OakHeading tag="h2" $font="heading-5" $mb="spacing-32">
                     {examBoard}
                   </OakHeading>
                   <SubjectProgrammeList

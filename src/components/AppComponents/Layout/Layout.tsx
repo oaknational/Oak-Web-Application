@@ -85,11 +85,11 @@ const Layout: FC<LayoutProps> = (props) => {
         >
           <OakBox
             $position={"absolute"}
-            $height={"all-spacing-13"}
-            $width={"all-spacing-11"}
+            $height={"spacing-80"}
+            $width={"spacing-64"}
             $zIndex={"in-front"}
-            $top={"all-spacing-14"}
-            $left={"all-spacing-6"}
+            $top={"spacing-92"}
+            $left={"spacing-24"}
           >
             <SkipLink href={props.skipLinkHref ?? "#main"}>
               Skip to content

@@ -32,7 +32,7 @@ export const QuizQuestionsMCAnswers = (props: {
       $flexDirection={"column"}
       $alignItems={containsImages ? undefined : "start"}
       role="list"
-      $gap={"space-between-ssx"}
+      $gap={"spacing-8"}
     >
       {answers.map((choice, i) => {
         const imageAnswers = choice.answer.filter(
@@ -68,7 +68,7 @@ export const QuizQuestionsMCAnswers = (props: {
                     <OakCodeRenderer
                       string={removeMarkdown(answerItem.text)}
                       $font="code-3"
-                      $mt={"space-between-none"}
+                      $mt={"spacing-0"}
                     />
                   </Typography>
                 );
@@ -78,25 +78,24 @@ export const QuizQuestionsMCAnswers = (props: {
                     key={`q-${questionNumber}-answer-element-${j}`}
                     $background={"lemon50"}
                     $borderRadius="border-radius-m2"
-                    $ph="inner-padding-xs"
+                    $ph="spacing-8"
                     $alignItems={"center"}
                   >
-                    <OakBox $minWidth="all-spacing-7" aria-hidden>
+                    <OakBox $minWidth="spacing-32" aria-hidden>
                       <OakIcon
                         iconName={"tick"}
-                        $width={"all-spacing-6"}
-                        $height={"all-spacing-6"}
+                        $width={"spacing-24"}
+                        $height={"spacing-24"}
                       />
                     </OakBox>
                     <VisuallyHidden>
                       Correct answer: {removeMarkdown(answerItem.text)}
                     </VisuallyHidden>
-
                     <OakTypography $font={["body-2", "body-1"]} aria-hidden>
                       <OakCodeRenderer
                         string={removeMarkdown(answerItem.text)}
                         $font="code-3"
-                        $mt={"space-between-none"}
+                        $mt={"spacing-0"}
                       />
                     </OakTypography>
                   </OakFlex>

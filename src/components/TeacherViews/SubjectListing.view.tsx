@@ -33,19 +33,19 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
   return (
     <OakFlex $flexDirection={"column"}>
       <OakMaxWidth
-        $maxWidth={["all-spacing-21", "all-spacing-23", "all-spacing-24"]}
-        $ph="inner-padding-s"
+        $maxWidth={["spacing-480", "spacing-960", "spacing-1280"]}
+        $ph="spacing-12"
       >
         <OakFlex
           $flexDirection="column"
-          $gap={"space-between-s"}
-          $mb={isEyfs ? "space-between-m" : "space-between-m2"}
-          $maxWidth={"all-spacing-23"}
+          $gap={"spacing-16"}
+          $mb={isEyfs ? "spacing-24" : "spacing-32"}
+          $maxWidth={"spacing-960"}
         >
           <OakHeading
             $font={"heading-3"}
             tag={"h1"}
-            $mt={["space-between-m2", "space-between-l"]}
+            $mt={["spacing-32", "spacing-48"]}
           >
             {title}
           </OakHeading>
@@ -68,10 +68,10 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
           )}
         </OakFlex>
         <OakGrid
-          $rg={"all-spacing-4"}
-          $cg={"all-spacing-4"}
+          $rg={"spacing-16"}
+          $cg={"spacing-16"}
           $gridAutoRows={"1fr"}
-          $mb={"space-between-xxl"}
+          $mb={"spacing-72"}
         >
           {subjects.map(
             (subjectArray, i) =>
@@ -95,20 +95,20 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
           <>
             <OakHandDrawnHR
               hrColor={"bg-neutral-stronger"}
-              $height={"all-spacing-1"}
+              $height={"spacing-4"}
             />
             <OakHeading
               $font={"heading-3"}
               tag={"h1"}
-              $mv={["space-between-m2", "space-between-m"]}
+              $mv={["spacing-32", "spacing-24"]}
             >
               Further lessons
             </OakHeading>
             <OakGrid
-              $rg={"all-spacing-4"}
-              $cg={"all-spacing-4"}
+              $rg={"spacing-16"}
+              $cg={"spacing-16"}
               $gridAutoRows={"1fr"}
-              $mb={"space-between-xxl"}
+              $mb={"spacing-72"}
             >
               {furtherLessons.map((subject) => (
                 <OakGridArea

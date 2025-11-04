@@ -52,8 +52,8 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
       }}
       $background={"mint"}
     >
-      <OakMaxWidth $ph={"inner-padding-m"}>
-        <OakBox $mt={"space-between-m"}>
+      <OakMaxWidth $ph={"spacing-16"}>
+        <OakBox $mt={"spacing-24"}>
           <Breadcrumbs
             breadcrumbs={[
               {
@@ -70,21 +70,21 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
           />
           <OakHandDrawnHR
             hrColor={"white"}
-            $mt={"space-between-m"}
-            $height={"all-spacing-1"}
+            $mt={"spacing-24"}
+            $height={"spacing-4"}
           />
         </OakBox>
       </OakMaxWidth>
-      <OakMaxWidth $ph={"inner-padding-l"}>
+      <OakMaxWidth $ph={"spacing-20"}>
         <OakFlex
           $flexDirection={"column"}
-          $pt={"inner-padding-xl2"}
-          $pb={"inner-padding-xl4"}
+          $pt={"spacing-32"}
+          $pb={"spacing-48"}
         >
           <OakHeading
             tag="h1"
             $font={["heading-3", "heading-2"]}
-            $mb={["space-between-l", "space-between-l", "space-between-l"]}
+            $mb={["spacing-48", "spacing-48", "spacing-48"]}
             $background={"mint"}
             $textAlign={["left", "center"]}
             $color={"black"}
@@ -95,38 +95,38 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
           <OakFlex
             $flexDirection={["column", "row"]}
             $flexWrap="wrap"
-            $gap="all-spacing-4"
+            $gap="spacing-16"
             $alignItems="stretch"
           >
             <CurricInfoCard
               iconName="clipboard"
               background="mint30"
-              iconHeight={"all-spacing-14"}
-              iconWidth={"all-spacing-9"}
+              iconHeight={"spacing-92"}
+              iconWidth={"spacing-48"}
             >
               National curriculum and exam board aligned
             </CurricInfoCard>
             <CurricInfoCard
               iconName="free-tag"
               background="mint30"
-              iconHeight="all-spacing-14"
-              iconWidth="all-spacing-13"
+              iconHeight="spacing-92"
+              iconWidth="spacing-80"
             >
               Free and always will be
             </CurricInfoCard>
             <CurricInfoCard
               iconName="book-steps"
               background="mint30"
-              iconHeight="all-spacing-14"
-              iconWidth="all-spacing-12"
+              iconHeight="spacing-92"
+              iconWidth="spacing-72"
             >
               Covers key stages 1-4 across 20 subjects
             </CurricInfoCard>
             <CurricInfoCard
               iconName="threads"
               background="mint30"
-              iconHeight="all-spacing-14"
-              iconWidth="all-spacing-11"
+              iconHeight="spacing-92"
+              iconWidth="spacing-64"
             >
               Fully sequenced and ready to adapt
             </CurricInfoCard>
@@ -134,40 +134,29 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
         </OakFlex>
       </OakMaxWidth>
       <OakFlex $background={"white"} $justifyContent={"center"}>
-        <OakMaxWidth
-          $ph={"inner-padding-l"}
-          $maxWidth={["100%", "all-spacing-24"]}
-        >
+        <OakMaxWidth $ph={"spacing-20"} $maxWidth={["100%", "spacing-1280"]}>
           <StyledResponsiveFlex
             $justifyContent="space-between"
             $alignItems="flex-start"
             $background="mint30"
-            $mv="space-between-xxxl"
+            $mv="spacing-80"
             $borderRadius="border-radius-l"
-            $pa={["inner-padding-xl", "inner-padding-xl6", "inner-padding-xl8"]}
-            $gap={[
-              "space-between-xl",
-              "space-between-xxxl",
-              "space-between-xxl",
-            ]}
+            $pa={["spacing-24", "spacing-64", "spacing-80"]}
+            $gap={["spacing-56", "spacing-80", "spacing-72"]}
           >
             <OakFlex
               $alignItems={["center", "center", "flex-start"]}
               $flexDirection="column"
               $flexGrow={1}
               $flexBasis={0}
-              $gap={["all-spacing-11"]}
+              $gap={["spacing-64"]}
             >
               <OakFlex $flexDirection="column">
                 <OakHeading tag="h2" $font={["heading-4", "heading-3"]}>
                   Our guiding principles
                 </OakHeading>
 
-                <OakP
-                  $mt={"space-between-s"}
-                  $mb={"space-between-xs"}
-                  $font={"body-1"}
-                >
+                <OakP $mt={"spacing-16"} $mb={"spacing-12"} $font={"body-1"}>
                   We have crafted a set of overarching principles that describe
                   the features important to our curricula in all subjects.
                 </OakP>
@@ -192,10 +181,10 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
 
             <OakFlex
               $flexDirection="column"
-              $gap={"space-between-l"}
+              $gap={"spacing-48"}
               $flexGrow={[null, 1]}
               $flexBasis={[null, 0]}
-              $pb={["inner-padding-m", "inner-padding-none"]}
+              $pb={["spacing-16", "spacing-0"]}
             >
               <CurricQuote title="Evidence-informed" barColor="mint110">
                 Our approach enables the rigorous application of research
@@ -237,11 +226,8 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
         </OakMaxWidth>
       </OakFlex>
       <OakFlex $justifyContent={"flex-start"} $background={"mint"}>
-        <OakMaxWidth
-          $ph={["inner-padding-l"]}
-          $maxWidth={["100%", "all-spacing-24"]}
-        >
-          <OakFlex $mv="space-between-xl">
+        <OakMaxWidth $ph={["spacing-20"]} $maxWidth={["100%", "spacing-1280"]}>
+          <OakFlex $mv="spacing-56">
             <HomepageCurriculumLandingHero
               curriculumPhaseOptions={curriculumPhaseOptions}
             />

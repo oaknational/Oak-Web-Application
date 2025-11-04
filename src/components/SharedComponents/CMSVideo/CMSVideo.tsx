@@ -28,7 +28,7 @@ const CMSVideo: FC<CMSVideoProps> = ({ video, hideCaptions, ...rest }) => {
       <OakFlex
         $position={"relative"}
         $flexDirection={"column"}
-        $gap={["all-spacing-6"]}
+        $gap={["spacing-24"]}
         $width={"100%"}
       >
         <VideoPlayer

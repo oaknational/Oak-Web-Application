@@ -123,8 +123,8 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
       <StyledFlexWithFocusState
         {...props}
         ref={props.firstItemRef}
-        $pa="inner-padding-xl"
-        $mb="space-between-m2"
+        $pa="spacing-24"
+        $mb="spacing-32"
         $borderRadius="border-radius-m2"
         $flexDirection="column"
         onMouseEnter={() => isDesktop && setIsHovered(true)}
@@ -142,15 +142,11 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
   const CardContent = () => {
     return (
       <>
-        <OakFlex $mb="space-between-s" $alignItems={"center"}>
+        <OakFlex $mb="spacing-16" $alignItems={"center"}>
           <SearchResultsSubjectIcon subjectSlug={subjectSlug} type={type} />
-          <OakFlex $ml="space-between-xs" $flexDirection="column">
+          <OakFlex $ml="spacing-12" $flexDirection="column">
             <OakFlex>
-              <OakHeading
-                $mb="space-between-sssx"
-                tag={"h2"}
-                $font={"heading-7"}
-              >
+              <OakHeading $mb="spacing-4" tag={"h2"} $font={"heading-7"}>
                 {subjectTitle}
               </OakHeading>
               {cohort === NEW_COHORT && <TagPromotional $ml={4} size="small" />}
@@ -163,7 +159,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
           </OakFlex>
         </OakFlex>
         <OakFlex
-          $mb="space-between-m2"
+          $mb="spacing-32"
           $flexDirection="column"
           $alignItems="baseline"
         >
@@ -179,7 +175,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
               dangerouslySetInnerHTML={{
                 __html: searchHitDescription,
               }}
-              $mt="space-between-s"
+              $mt="spacing-16"
               $font={"body-2"}
               $textAlign="left"
             />
@@ -242,7 +238,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
           <OakIcon
             iconName="arrow-right"
             $colorFilter="navy"
-            $width="all-spacing-6"
+            $width="spacing-24"
           />
         </OakFlex>
       </ClickableSearchCard>

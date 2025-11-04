@@ -55,7 +55,7 @@ export const LessonOverviewHeaderMobile: FC<
     <OakFlex
       $flexDirection={"column"}
       $display={["flex", "none"]}
-      $gap={"all-spacing-6"}
+      $gap={"spacing-24"}
     >
       <OakFlex $justifyContent={"space-between"} $alignItems={"center"}>
         {shouldShowBackButton && (
@@ -81,14 +81,14 @@ export const LessonOverviewHeaderMobile: FC<
         )}
       </OakFlex>
       <OakFlex>
-        <OakBox $mr="space-between-s" $height="all-spacing-13">
+        <OakBox $mr="spacing-16" $height="spacing-80">
           <SubjectIconBrushBorders
             subjectSlug={subjectSlug}
             isNew={isNew}
             color={subjectIconBackgroundColor}
           />
         </OakBox>
-        <OakFlex $flexDirection={"column"} $gap="all-spacing-2">
+        <OakFlex $flexDirection={"column"} $gap="spacing-8">
           {(examBoardTitle || yearTitle || tierTitle) && (
             <OakSpan $color={"grey60"} $font={"heading-light-7"}>
               <LessonMetadata
@@ -117,7 +117,6 @@ export const LessonOverviewHeaderMobile: FC<
       {!excludedFromTeachingMaterials && (
         <LessonOverviewCreateWithAiDropdown {...props} />
       )}
-
       <ComplexCopyrightRestrictionBanner
         isGeorestricted={geoRestricted}
         isLoginRequired={loginRequired}

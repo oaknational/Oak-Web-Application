@@ -6,7 +6,7 @@ import OwaLink from "@/components/SharedComponents/OwaLink";
 const LayoutSiteFooterSignpost: FC = () => {
   return (
     <OakBox>
-      <OakHeading tag={"h2"} $font={"heading-7"} $mb="space-between-m">
+      <OakHeading tag={"h2"} $font={"heading-7"} $mb="spacing-24">
         Teachers - early access
       </OakHeading>
       <OakP $font={["body-2", "body-1"]}>

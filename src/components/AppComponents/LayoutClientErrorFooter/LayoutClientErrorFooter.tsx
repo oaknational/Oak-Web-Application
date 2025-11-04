@@ -7,14 +7,9 @@ import SocialButtons, {
 
 const LayoutClientErrorFooter: FC = () => {
   return (
-    <OakFlex
-      $ph="inner-padding-m"
-      $mb="space-between-xs"
-      $mt="space-between-xl"
-      $width={"100%"}
-    >
+    <OakFlex $ph="spacing-16" $mb="spacing-12" $mt="spacing-56" $width={"100%"}>
       <SocialButtons for="Oak National Academy" {...OAK_SOCIALS} />
-      <OakFlex $alignItems={"center"} $ml={["space-between-s"]}>
+      <OakFlex $alignItems={"center"} $ml={["spacing-16"]}>
         <OakP $textAlign="center" $font={["body-4", "body-2"]}>
           © Oak National Academy
         </OakP>

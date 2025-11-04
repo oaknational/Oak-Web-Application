@@ -8,8 +8,8 @@ import CurricInfoCard, { CurricInfoCardProps } from "./CurricInfoCard";
 const props: Omit<CurricInfoCardProps, "children"> = {
   iconName: "search",
   background: "mint30",
-  iconHeight: "all-spacing-12",
-  iconWidth: "all-spacing-11",
+  iconHeight: "spacing-72",
+  iconWidth: "spacing-64",
 };
 
 describe("CurricInfoCard", () => {
@@ -32,8 +32,8 @@ describe("CurricInfoCard", () => {
       <CurricInfoCard
         iconName="clipboard"
         background="mint30"
-        iconHeight={"all-spacing-14"}
-        iconWidth={"all-spacing-9"}
+        iconHeight={"spacing-92"}
+        iconWidth={"spacing-48"}
       >
         National curriculum and exam board aligned
       </CurricInfoCard>,

@@ -54,7 +54,7 @@ const SupportYourTeamTextBlockCardImageCta: FC<
       </Flex>
       <OakFlex $flexDirection={"column"} $font={["body-2", "body-1"]}>
         <OakHeading
-          $mb={"space-between-m2"}
+          $mb={"spacing-32"}
           $font={["heading-5", "heading-4"]}
           tag={"h2"}
         >
@@ -65,7 +65,7 @@ const SupportYourTeamTextBlockCardImageCta: FC<
           withoutDefaultComponents
         />
         {cta && (
-          <OakFlex $pt="inner-padding-xl2">
+          <OakFlex $pt="spacing-32">
             <OakPrimaryButton
               element="a"
               href={getLinkHref(cta)}

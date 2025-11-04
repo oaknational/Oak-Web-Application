@@ -42,18 +42,18 @@ export function LessonAppearsInPathwayCard(
       $borderRadius="border-radius-s"
     >
       <OakHeading tag={headingTag}>
-        <OakFlex $flexDirection={["row"]} $pa="inner-padding-m">
+        <OakFlex $flexDirection={["row"]} $pa="spacing-16">
           {examBoardTitle && (
             <TagFunctional
               text={examBoardTitle}
               color={examBoardTagColor}
-              $mr="space-between-ssx"
+              $mr="spacing-8"
             />
           )}
           <OakSpan $font="heading-5">{subjectTitle}</OakSpan>
         </OakFlex>
       </OakHeading>
-      <OakFlex $flexDirection={["row"]} $pa="inner-padding-m" $flexWrap="wrap">
+      <OakFlex $flexDirection={["row"]} $pa="spacing-16" $flexWrap="wrap">
         {tiers.map(({ tierTitle, programmeSlug }, i) => {
           const label = tierTitle ? `Show ${tierTitle} unit` : "Show unit";
           return (

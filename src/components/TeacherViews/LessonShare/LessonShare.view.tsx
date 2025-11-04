@@ -181,12 +181,12 @@ export function LessonShare(props: LessonShareProps) {
   };
 
   return (
-    <OakBox $ph={["inner-padding-m", null]} $background={"grey20"}>
+    <OakBox $ph={["spacing-16", null]} $background={"grey20"}>
       <OakMaxWidth
         inner-padding-xl8
-        $maxWidth={["all-spacing-21", "all-spacing-23", "all-spacing-24"]}
+        $maxWidth={["spacing-480", "spacing-960", "spacing-1280"]}
       >
-        <OakBox $mb={"space-between-m2"} $mt={"space-between-m"}>
+        <OakBox $mb={"spacing-32"} $mt={"spacing-24"}>
           <Breadcrumbs
             breadcrumbs={
               !isSpecialist
@@ -221,9 +221,9 @@ export function LessonShare(props: LessonShareProps) {
           />
           <OakHandDrawnHR
             hrColor={"grey60"}
-            $height={"all-spacing-1"}
-            $mt={"space-between-m"}
-            $mb={"space-between-m"}
+            $height={"spacing-4"}
+            $mt={"spacing-24"}
+            $mb={"spacing-24"}
           />
         </OakBox>
         <SharePageLayout

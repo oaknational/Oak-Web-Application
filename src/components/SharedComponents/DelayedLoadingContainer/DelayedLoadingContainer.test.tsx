@@ -23,7 +23,7 @@ describe("DelayedLoadingContainer", () => {
     render(
       <DelayedLoadingContainer
         $flexDirection="column"
-        $gap="all-spacing-4"
+        $gap="spacing-16"
         $alignItems="center"
       >
         <OakLoadingSpinner />
@@ -66,9 +66,9 @@ describe("DelayedLoadingContainer", () => {
   it("should accept OakFlex props", () => {
     render(
       <DelayedLoadingContainer
-        $minHeight="all-spacing-21"
+        $minHeight="spacing-480"
         $flexDirection="column"
-        $gap="all-spacing-4"
+        $gap="spacing-16"
         $alignItems="center"
       >
         <div>Styled content</div>

@@ -27,7 +27,7 @@ export const RegistrationLayout: Story = {
       </OakBox>
     ),
     children: (
-      <OakBox $width="all-spacing-18" $ba="border-solid-m">
+      <OakBox $width="spacing-180" $ba="border-solid-m">
         Sign up form
       </OakBox>
     ),

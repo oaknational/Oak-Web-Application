@@ -120,8 +120,8 @@ function Option({ item, state }: Readonly<OptionProps>) {
         $background={isFocused ? "grey20" : "white"}
         $position={"relative"}
         $alignItems={"center"}
-        $pa="inner-padding-xs"
-        $pl="inner-padding-m"
+        $pa="spacing-8"
+        $pl="spacing-16"
       >
         <OptionContext.Provider value={{ labelProps, descriptionProps }}>
           {item.rendered}

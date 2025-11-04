@@ -20,14 +20,14 @@ const HomepageCurriculumLandingHero: FC<HomepageCurriculumLandingHeroProps> = (
         tag="h2"
         id="curriculum-picker"
         $font={["heading-5", "heading-4"]}
-        $mb={["space-between-s", "space-between-m"]}
+        $mb={["spacing-16", "spacing-24"]}
         $background={"mint"}
         $textAlign={"left"}
       >
         See Oak's curriculum principles in practice
       </OakHeading>
       <OakFlex $flexDirection={"column"} $width={"100%"}>
-        <OakBox $maxWidth={["100%", "all-spacing-23"]}>
+        <OakBox $maxWidth={["100%", "spacing-960"]}>
           <SubjectPhasePicker {...curriculumPhaseOptions} />
         </OakBox>
       </OakFlex>
