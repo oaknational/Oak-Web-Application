@@ -1,3 +1,10 @@
+## [1.906.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.906.2...v1.906.3) (2025-11-04)
+
+
+### Bug Fixes
+
+* use cloudflare for ai search network caching ([794bd4d](https://github.com/oaknational/Oak-Web-Application/commit/794bd4d116633745529d779081d0c9949e8ca734))
+
 ## [1.906.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.906.1...v1.906.2) (2025-11-03)
 
 
