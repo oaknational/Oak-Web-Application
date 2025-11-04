@@ -1,5 +1,5 @@
 import { FC, Fragment } from "react";
-import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
+import { NextPage, GetServerSideProps } from "next";
 import {
   OakFlex,
   OakGrid,
@@ -14,7 +14,6 @@ import {
 
 import CMSClient from "@/node-lib/cms";
 import { AboutWhoWeArePage, TextBlock } from "@/common-lib/cms-types";
-import { decorateWithIsr } from "@/node-lib/isr";
 import Layout from "@/components/AppComponents/Layout";
 import Card from "@/components/SharedComponents/Card";
 import OutlineHeading from "@/components/SharedComponents/OutlineHeading";
@@ -24,7 +23,6 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSummaryCard";
-import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import TranscriptToggle from "@/components/TeacherComponents/TranscriptViewer/TranscriptToggle";
 import { WhoAreWeHeader } from "@/components/GenericPagesComponents/WhoAreWeHeader";
@@ -32,9 +30,15 @@ import { WhoAreWeBreakout } from "@/components/GenericPagesComponents/WhoAreWeBr
 import WhoAreWeTimeline from "@/components/GenericPagesComponents/WhoAreWeTimeline";
 import { WhoAreWeDesc } from "@/components/GenericPagesComponents/WhoAreWeDesc";
 import { WhoAreWeExplore } from "@/components/GenericPagesComponents/WhoAreWeExplore";
+import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
+import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+
+const posthogApiKey = getBrowserConfig("posthogApiKey");
 
 export type AboutPageProps = {
   pageData: AboutWhoWeArePage;
+  enableV2: boolean;
 };
 
 type TimeLineProps = TextBlock & OakGridAreaProps;
@@ -206,8 +210,6 @@ const AboutWhoWeAreOld: NextPage<AboutPageProps> = ({ pageData }) => {
   );
 };
 
-// ========================
-
 const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
@@ -220,43 +222,48 @@ const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({ pageData }) => {
   );
 };
 
-const USE_NEW_ABOUT_PAGES: boolean = false;
-
 function AboutWhoWeAre(props: AboutPageProps) {
-  if (USE_NEW_ABOUT_PAGES) {
+  if (props.enableV2) {
     return <AboutWhoWeAreNew {...props} />;
   }
   return <AboutWhoWeAreOld {...props} />;
 }
 
-export const getStaticProps: GetStaticProps<AboutPageProps> = async (
-  context,
-) => {
-  return getPageProps({
-    page: "who-are-we::getStaticProps",
-    context,
-    getProps: async () => {
-      const isPreviewMode = context.preview === true;
+export const getServerSideProps = (async (context) => {
+  const isPreviewMode = context.preview === true;
 
-      const aboutWhoWeArePage = await CMSClient.aboutWhoWeArePage({
-        previewMode: isPreviewMode,
-      });
-
-      if (!aboutWhoWeArePage) {
-        return {
-          notFound: true,
-        };
-      }
-
-      const results: GetStaticPropsResult<AboutPageProps> = {
-        props: {
-          pageData: aboutWhoWeArePage,
-        },
-      };
-      const resultsWithIsr = decorateWithIsr(results);
-      return resultsWithIsr;
-    },
+  const aboutWhoWeArePage = await CMSClient.aboutWhoWeArePage({
+    previewMode: isPreviewMode,
   });
-};
+
+  if (!aboutWhoWeArePage) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const posthogUserId = getPosthogIdFromCookie(
+    context.req.cookies,
+    posthogApiKey,
+  );
+
+  let enableV2: boolean = false;
+
+  if (posthogUserId) {
+    // get the variant key for the user
+    enableV2 =
+      (await getFeatureFlag({
+        featureFlagKey: "about-us--who-we-are--v2",
+        posthogUserId,
+      })) === true;
+  }
+
+  return {
+    props: {
+      enableV2,
+      pageData: aboutWhoWeArePage,
+    },
+  };
+}) satisfies GetServerSideProps<AboutPageProps>;
 
 export default AboutWhoWeAre;
