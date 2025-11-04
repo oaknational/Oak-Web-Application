@@ -1,3 +1,11 @@
+## [1.906.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.906.3...v1.906.4) (2025-11-04)
+
+
+### Bug Fixes
+
+* added support for .toSorted() ([8b6a54b](https://github.com/oaknational/Oak-Web-Application/commit/8b6a54b4b242338979d26c3bff8c2b01a3d4f554))
+* disable linting of core-js/features/array/to-sorted as it'll fail in sonarcloud ([94adcda](https://github.com/oaknational/Oak-Web-Application/commit/94adcda2f8889ee578bc86816d0900f5029bbaf5))
+
 ## [1.906.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.906.2...v1.906.3) (2025-11-04)
 
 
