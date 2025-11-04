@@ -44,6 +44,7 @@ export type LessonListProps = {
   subjectTitle?: string;
   programmeSlug?: string;
   examBoardSlug?: string | null;
+  parentSubject?: string | null;
 };
 
 const LESSONS_PER_PAGE = 20;
@@ -70,6 +71,7 @@ const LessonList: FC<LessonListProps> = (props) => {
     keyStageSlug,
     programmeSlug,
     examBoardSlug,
+    parentSubject,
   } = props;
   const { currentPage, pageSize, firstItemRef, paginationRoute } =
     paginationProps;
@@ -149,6 +151,7 @@ const LessonList: FC<LessonListProps> = (props) => {
           subjectSlug={subjectSlug}
           unitTitle={unitTitle}
           yearTitle={yearTitle}
+          parentSubject={parentSubject}
         />
       )}
     </OakFlex>

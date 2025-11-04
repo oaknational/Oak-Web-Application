@@ -1,3 +1,34 @@
+# [1.907.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.906.4...v1.907.0) (2025-11-04)
+
+
+### Features
+
+* add hook to fetch worksheet info in pupil lesson page ([a241315](https://github.com/oaknational/Oak-Web-Application/commit/a241315c9b6662d6ac9b408c49d9c12df269f5d2))
+
+## [1.906.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.906.3...v1.906.4) (2025-11-04)
+
+
+### Bug Fixes
+
+* added support for .toSorted() ([8b6a54b](https://github.com/oaknational/Oak-Web-Application/commit/8b6a54b4b242338979d26c3bff8c2b01a3d4f554))
+* disable linting of core-js/features/array/to-sorted as it'll fail in sonarcloud ([94adcda](https://github.com/oaknational/Oak-Web-Application/commit/94adcda2f8889ee578bc86816d0900f5029bbaf5))
+
+## [1.906.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.906.2...v1.906.3) (2025-11-04)
+
+
+### Bug Fixes
+
+* use cloudflare for ai search network caching ([794bd4d](https://github.com/oaknational/Oak-Web-Application/commit/794bd4d116633745529d779081d0c9949e8ca734))
+
+## [1.906.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.906.1...v1.906.2) (2025-11-03)
+
+
+### Bug Fixes
+
+* pass parent subject to lesson listing page ([1f9bf5f](https://github.com/oaknational/Oak-Web-Application/commit/1f9bf5f24139c54b270fb0e486dddabfde079b99))
+
+## [1.906.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.906.0...v1.906.1) (2025-11-03)
+
 # [1.906.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.905.0...v1.906.0) (2025-10-30)
 
 

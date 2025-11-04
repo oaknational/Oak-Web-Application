@@ -17,13 +17,13 @@ type TermsAgreementFormPropsOptionalForm = Omit<
 
 const render = renderWithProviders();
 
-const Wrapper = (props: TermsAgreementFormPropsOptionalForm) => {
+const Wrapper = (props: Partial<TermsAgreementFormPropsOptionalForm>) => {
   const { control, register, trigger } = useForm<ResourceFormProps>();
 
   return (
     <TermsAgreementForm
       {...props}
-      copyrightYear={"2022-01-01T00:00:00Z"}
+      oglCopyrightYear={"2022-01-01T00:00:00Z"}
       form={{ control, register, trigger, errors: props.errors || {} }}
     />
   );
