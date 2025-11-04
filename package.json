@@ -113,7 +113,7 @@
     "dompurify": "^3.2.5",
     "favicons": "^7.1.5",
     "gleap": "^14.0.8",
-    "google-auth-library": "^10.2.1",
+    "google-auth-library": "9.15.1",
     "html-react-parser": "^5.2.2",
     "js-cookie": "^3.0.5",
     "jszip": "^3.10.1",
