@@ -1,3 +1,10 @@
+# [1.907.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.906.4...v1.907.0) (2025-11-04)
+
+
+### Features
+
+* add hook to fetch worksheet info in pupil lesson page ([a241315](https://github.com/oaknational/Oak-Web-Application/commit/a241315c9b6662d6ac9b408c49d9c12df269f5d2))
+
 ## [1.906.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.906.3...v1.906.4) (2025-11-04)
 
 
