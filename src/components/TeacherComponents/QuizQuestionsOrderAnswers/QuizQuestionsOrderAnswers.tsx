@@ -66,12 +66,6 @@ export const QuizQuestionsOrderAnswers = ({
                 $alignItems={"center"}
                 $gap={"all-spacing-2"}
               >
-                - {/* TODO: handle OakCodeRenderer */}
-                {/* <OakCodeRenderer
-                  string={removeMarkdown(orderAnswer.text)}
-                  $font={"code-3"}
-                  $mt={"space-between-none"}
-                /> */}
                 <Stem stem={orderAnswer} />
               </OakFlex>
             </OakFlex>

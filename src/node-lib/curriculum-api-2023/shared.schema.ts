@@ -9,6 +9,7 @@ import { mediaClipsRecordCamelSchema } from "./queries/lessonMediaClips/lessonMe
 
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 import { portableTextItemSchema } from "@/utils/portableText";
+import { StemPortableText } from "@/components/SharedComponents/Stem";
 
 export const contentGuidanceSchemaCamelCase = z.object({
   contentGuidanceLabel: z.string(),
@@ -57,14 +58,6 @@ const stemTextObjectSchema = z.object({
   portableText: z.array(portableTextItemSchema).optional(),
 });
 
-export type StemTextObject = z.infer<typeof stemTextObjectSchema>;
-
-export const isStemTextObject = (
-  obj: StemTextObject | StemImageObject,
-): obj is StemTextObject => {
-  return obj.type === "text";
-};
-
 const stemImageObjectSchema = z.object({
   imageObject: z.object({
     format: z.enum(["png", "jpg", "jpeg", "webp", "gif", "svg"]).optional(),
@@ -87,7 +80,7 @@ const stemImageObjectSchema = z.object({
 
 export type StemImageObject = z.infer<typeof stemImageObjectSchema>;
 
-export type StemObject = StemTextObject | StemImageObject;
+export type StemObject = StemPortableText | StemImageObject;
 
 const mcAnswer = z.object({
   answer: z

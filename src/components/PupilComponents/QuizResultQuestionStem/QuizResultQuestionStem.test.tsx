@@ -9,10 +9,7 @@ import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizEleme
 import { invariant } from "@/utils/invariant";
 import { StemPortableText } from "@/components/SharedComponents/Stem";
 import { stemToPortableText } from "@/utils/portableText";
-import {
-  StemImageObject,
-  StemTextObject,
-} from "@/node-lib/curriculum-api-2023/shared.schema";
+import { StemObject } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 const starterQuiz = quizQuestions;
 const mcqText = starterQuiz ? starterQuiz[0] : null;
@@ -77,7 +74,7 @@ describe("QuestionListItem", () => {
   it("renders question number if displayIndex is other than 999", () => {
     invariant(mcqStemImage?.questionStem, "mcqStemImage.questionStem is null");
 
-    const questionStem: (StemImageObject | StemTextObject)[] = [
+    const questionStem: StemObject[] = [
       ...mcqStemImage.questionStem,
       {
         text: "This is some text",
@@ -99,7 +96,7 @@ describe("QuestionListItem", () => {
   it("does not render question number if displayIndex is 999", () => {
     invariant(mcqStemImage?.questionStem, "mcqStemImage.questionStem is null");
 
-    const questionStem: (StemImageObject | StemTextObject)[] = [
+    const questionStem: StemObject[] = [
       ...mcqStemImage.questionStem,
       {
         text: "This is some text",

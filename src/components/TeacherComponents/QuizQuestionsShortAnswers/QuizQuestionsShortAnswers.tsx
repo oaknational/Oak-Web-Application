@@ -16,7 +16,6 @@ export const QuizQuestionsShortAnswers = ({
 }: {
   answers: ShortAnswer[];
 }) => {
-  // TODO: move to MathJax.js logic
   const answerString = answers.reduce((acc, cur) => {
     if (acc === "") {
       return (cur.answer && cur.answer[0] && cur.answer[0].text) || acc;

@@ -5,7 +5,7 @@
  *
  */
 
-import { StemImageObject, StemTextObject } from "../shared.schema";
+import { StemObject } from "../shared.schema";
 
 import {
   MCAnswer,
@@ -29,7 +29,7 @@ export const imageObject: ImageItem["imageObject"] = {
   version: 1687374653,
 };
 
-export const questionStem: (StemImageObject | StemTextObject)[] = [
+export const questionStem: StemObject[] = [
   {
     text: "What is a main clause?",
     portableText: stemToPortableText("What is a main clause?"),
@@ -37,7 +37,7 @@ export const questionStem: (StemImageObject | StemTextObject)[] = [
   },
 ];
 
-export const questionStemWithImage: (StemImageObject | StemTextObject)[] = [
+export const questionStemWithImage: StemObject[] = [
   {
     text: "Which of these statements about trees is true?",
     type: "text",

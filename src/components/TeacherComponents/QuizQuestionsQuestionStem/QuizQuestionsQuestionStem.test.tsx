@@ -4,7 +4,7 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import {
   StemImageObject,
-  StemTextObject,
+  StemObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { stemToPortableText } from "@/utils/portableText";
 
@@ -59,7 +59,7 @@ describe("QuizQuestionsQuestionStem", () => {
   it("renders the question number when there is no primary text", () => {
     if (!mcqStemImage) throw new Error("mcqText is null");
 
-    const questionStem: (StemImageObject | StemTextObject)[] = [
+    const questionStem: StemObject[] = [
       mcqStemImage.questionStem[1] as StemImageObject,
     ];
 
@@ -74,7 +74,7 @@ describe("QuizQuestionsQuestionStem", () => {
   it("renders text after an image", () => {
     if (!mcqStemImage) throw new Error("mcqText is null");
 
-    const questionStem: (StemImageObject | StemTextObject)[] = [
+    const questionStem: StemObject[] = [
       ...mcqStemImage.questionStem,
       {
         text: "This is some text",
