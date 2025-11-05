@@ -1,3 +1,11 @@
+# [1.909.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.908.1...v1.909.0) (2025-11-05)
+
+
+### Features
+
+* remove default values from clerk env vars ([60a5f9c](https://github.com/oaknational/Oak-Web-Application/commit/60a5f9cf5180c11455b504aa52005cdaf0df0921))
+* update module version ([ad38ade](https://github.com/oaknational/Oak-Web-Application/commit/ad38ade19209f055c2040e15dc2ac3fe72f946a1))
+
 ## [1.908.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.908.0...v1.908.1) (2025-11-04)
 
 
