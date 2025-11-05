@@ -6,7 +6,9 @@ import CurriculumUnitCard from "../CurricUnitCard";
 import { CurricYearCard } from "./index";
 
 import { createUnit } from "@/fixtures/curriculum/unit";
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme"]);
 
 const mockFeatureFlagEnabled = jest.fn().mockReturnValue(false);
 jest.mock("posthog-js/react", () => ({
@@ -21,9 +23,7 @@ describe("CurricYearCard component", () => {
   };
 
   it("should render with year heading", () => {
-    const { getByTestId } = renderWithTheme(
-      <CurricYearCard {...defaultProps} />,
-    );
+    const { getByTestId } = render(<CurricYearCard {...defaultProps} />);
 
     const yearHeading = getByTestId("year-heading");
 
@@ -32,7 +32,7 @@ describe("CurricYearCard component", () => {
   });
 
   it("should render correctly with heading and subheading", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <CurricYearCard
         yearTitle="Year 11"
         yearSubheading="Core"
@@ -49,9 +49,7 @@ describe("CurricYearCard component", () => {
   });
 
   it("should not render year subheading when not provided", () => {
-    const { queryByTestId } = renderWithTheme(
-      <CurricYearCard {...defaultProps} />,
-    );
+    const { queryByTestId } = render(<CurricYearCard {...defaultProps} />);
 
     const yearSubheading = queryByTestId("year-subheading");
 
@@ -59,7 +57,7 @@ describe("CurricYearCard component", () => {
   });
 
   it("should apply pink50 background when isExamboard is true", () => {
-    const { container } = renderWithTheme(
+    const { container } = render(
       <CurricYearCard {...defaultProps} isExamboard={true} />,
     );
 
@@ -69,7 +67,7 @@ describe("CurricYearCard component", () => {
   });
 
   it("should apply pink30 background when isExamboard is false", () => {
-    const { container } = renderWithTheme(
+    const { container } = render(
       <CurricYearCard {...defaultProps} isExamboard={false} />,
     );
 
@@ -123,7 +121,7 @@ describe("CurricYearCard component", () => {
       </>
     );
 
-    const { getByTestId, getAllByTestId } = renderWithTheme(
+    const { getByTestId, getAllByTestId } = render(
       <CurricYearCard
         yearTitle="Year 11"
         yearSubheading="Physics"
@@ -148,7 +146,7 @@ describe("CurricYearCard component", () => {
 
   it("should render the map to timetable link if feature flag is enabled ", () => {
     mockFeatureFlagEnabled.mockReturnValue(true);
-    const { container } = renderWithTheme(
+    const { container } = render(
       <CurricYearCard
         {...defaultProps}
         isExamboard={false}
@@ -161,7 +159,7 @@ describe("CurricYearCard component", () => {
 
   it("should not render the map to timetable link if feature flag is not enabled ", () => {
     mockFeatureFlagEnabled.mockReturnValue(false);
-    const { container } = renderWithTheme(
+    const { container } = render(
       <CurricYearCard {...defaultProps} isExamboard={false} />,
     );
 
@@ -170,7 +168,7 @@ describe("CurricYearCard component", () => {
 
   it("should have the correct href for the map to timetable link", () => {
     mockFeatureFlagEnabled.mockReturnValue(true);
-    const { getByRole } = renderWithTheme(
+    const { getByRole } = render(
       <CurricYearCard
         {...defaultProps}
         isExamboard={false}

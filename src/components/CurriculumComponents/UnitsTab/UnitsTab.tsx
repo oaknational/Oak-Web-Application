@@ -47,7 +47,7 @@ export default function UnitsTab({
   ks4Options,
   curriculumSeoText,
   curriculumPhaseOptions,
-}: UnitsTabProps) {
+}: Readonly<UnitsTabProps>) {
   // Initialize constants
   const isMobile = useMediaQuery("mobile");
   const { yearData, threadOptions } = formattedData;

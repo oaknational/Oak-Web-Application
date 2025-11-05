@@ -22,7 +22,7 @@ export default function CurricInfoCard({
   iconHeight,
   iconWidth,
   background,
-}: CurricInfoCardProps) {
+}: Readonly<CurricInfoCardProps>) {
   return (
     <OakFlex
       $flexGrow={1}

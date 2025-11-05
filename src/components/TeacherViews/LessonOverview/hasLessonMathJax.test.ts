@@ -15,7 +15,7 @@ describe("hasLessonMathJax", () => {
     teacherTips: [],
     keyLearningPoints: [],
     lessonKeywords: [],
-    copyrightContent: [{ copyrightInfo: "this" }],
+    legacyCopyrightContent: [{ copyrightInfo: "this" }],
     supervisionLevel: null,
     worksheetUrl: null,
     presentationUrl: null,

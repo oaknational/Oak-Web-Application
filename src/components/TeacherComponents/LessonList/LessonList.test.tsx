@@ -1,4 +1,5 @@
 import userEvent from "@testing-library/user-event";
+import { screen } from "@testing-library/dom";
 
 import LessonList from ".";
 
@@ -139,5 +140,32 @@ describe("components/ Lesson List", () => {
     const seoAccordion = queryByTestId("lesson-list-seo-accordion");
 
     expect(seoAccordion).not.toBeInTheDocument();
+  });
+  test("it renders the correct curriculum link i the seo accordion for subjects with parents", async () => {
+    render(
+      <LessonList
+        paginationProps={mockPaginationProps}
+        subjectSlug={"combined-science"}
+        keyStageSlug={"ks4"}
+        headingTag={"h2"}
+        currentPageItems={lessonsWithUnitData}
+        unitTitle={"Unit title"}
+        lessonCount={4}
+        onClick={onClick}
+        lessonCountHeader={`Lessons (${lessons.length})`}
+        programmeSlug="combined-science-secondary-ks4-higher-ocr"
+        yearTitle="Year 10"
+        subjectTitle="Combined science"
+        parentSubject="Science"
+        examBoardSlug="ocr"
+      />,
+    );
+    const curriculumLink = screen.getByText(
+      "secondary combined science curriculum",
+    );
+    expect(curriculumLink.closest("a")).toHaveAttribute(
+      "href",
+      "/teachers/curriculum/science-secondary-ocr/units",
+    );
   });
 });

@@ -3,11 +3,11 @@ import { ComponentProps } from "react";
 
 import CurricVisualiserMobileHeader from ".";
 
-import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 import { YearData } from "@/utils/curriculum/types";
 import { createUnit } from "@/fixtures/curriculum/unit";
 
-const render = renderWithProviders();
+const render = renderWithProvidersByName(["theme", "oakTheme"]);
 
 const curriculumThreadHighlighted = jest.fn();
 const unitSequenceRefined = jest.fn();

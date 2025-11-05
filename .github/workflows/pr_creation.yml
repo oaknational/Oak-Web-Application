@@ -23,7 +23,7 @@ jobs:
           echo "::set-output name=year::$year"
 
       - name: add year to PR body
-        uses: mcky/find-and-replace-pull-request-body@v1.1.6-mcky
+        uses: mcky/find-and-replace-pull-request-body@ffeec965b89c9284c290f2a85077a8c2c60f5040 # v1.1.6-mcky
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           find: "{owa_music_year}"

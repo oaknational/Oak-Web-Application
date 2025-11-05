@@ -59,7 +59,7 @@ jobs:
 
       - name: Report to Slack on failure
         if: ${{ steps.semantic_release.outcome == 'failure' }}
-        uses: rtCamp/action-slack-notify@v2
+        uses: rtCamp/action-slack-notify@e31e87e03dd19038e411e38ae27cbad084a90661 # v2.3.3
         env:
           SLACK_COLOR: ${{ job.status }} # or a specific color like 'green' or '#ff00ff'
           SLACK_MESSAGE: "Semantic Release status: ${{ job.status }}"

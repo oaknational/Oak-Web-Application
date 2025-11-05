@@ -15,7 +15,7 @@ export function ModalContent({
   content,
   footer,
   onClose,
-}: ModalContentProps) {
+}: Readonly<ModalContentProps>) {
   return (
     <>
       <OakFlex

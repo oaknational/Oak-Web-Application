@@ -27,7 +27,7 @@ export default function CurricTimetablingFilters({
   onChangeFilters,
   data,
   slugs,
-}: CurricVisualiserFiltersProps) {
+}: Readonly<CurricVisualiserFiltersProps>) {
   return (
     <OakBox $mr={"space-between-s"}>
       <SkipLink href="#content">Skip to units</SkipLink>
