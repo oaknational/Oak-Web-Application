@@ -1,7 +1,9 @@
-export function MathJax({ children }: { children: React.ReactNode }) {
+export function MathJax({ children }: Readonly<{ children: React.ReactNode }>) {
   return <>{children}</>;
 }
 
-export function MathJaxContext({ children }: { children: React.ReactNode }) {
+export function MathJaxContext({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return <>{children}</>;
 }

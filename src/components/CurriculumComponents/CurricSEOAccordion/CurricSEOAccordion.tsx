@@ -23,7 +23,7 @@ type CurricSEOAccordionProps = {
 export default function CurricSEOAccordion({
   curriculumSeoText,
   subject,
-}: CurricSEOAccordionProps) {
+}: Readonly<CurricSEOAccordionProps>) {
   const isMobile = useMediaQuery("mobile");
   const displaySubjectTitle = subjectTitleWithCase(subject.title);
   const truncationLength = isMobile ? 40 : 100;

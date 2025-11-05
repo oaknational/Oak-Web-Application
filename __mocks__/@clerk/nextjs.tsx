@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 
-function RenderChildren({ children }: PropsWithChildren) {
+function RenderChildren({ children }: Readonly<PropsWithChildren>) {
   return <>{children}</>;
 }
 

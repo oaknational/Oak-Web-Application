@@ -24,7 +24,7 @@ export default function CurricQuote({
   barColor = "mint30",
   headingProps,
   paragraphProps,
-}: CurricQuoteProps) {
+}: Readonly<CurricQuoteProps>) {
   return (
     <OakBox $background={backgroundColor} data-testid="curric-quote">
       <OakFlex

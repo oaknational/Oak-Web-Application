@@ -24,7 +24,7 @@ type LessonAppearsInPathwayCardProps = {
   }[];
 };
 export function LessonAppearsInPathwayCard(
-  props: LessonAppearsInPathwayCardProps,
+  props: Readonly<LessonAppearsInPathwayCardProps>,
 ) {
   const {
     headingTag,

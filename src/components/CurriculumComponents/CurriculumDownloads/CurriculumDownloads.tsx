@@ -326,7 +326,7 @@ function CurriculumDownloads(
                   setSchool={setSchool}
                   showSavedDetails={shouldDisplayDetailsCompleted}
                   //copyrightYear value hard coded
-                  copyrightYear="2023"
+                  oglCopyrightYear="2023"
                   handleEditDetailsCompletedClick={
                     handleEditDetailsCompletedClick
                   }

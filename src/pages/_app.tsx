@@ -11,6 +11,9 @@ import { OakPupilClientProvider } from "@/context/Pupil/OakPupilClientProvider";
 /**
  * Custom global styles (which should be kept to a minimum) must all be imported in _app.tsx
  */
+
+import "../polyfills";
+
 import "@/browser-lib/gleap/gleap.css";
 import "@/browser-lib/oak-globals/oakGlobals";
 import GlobalStyle from "@/styles/GlobalStyle";

@@ -1,27 +1,28 @@
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
-import fetchMock from "jest-fetch-mock";
 
 import SchoolSelectionView from "./SchoolSelection.view";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-describe("Onboarding view", () => {
-  beforeAll(() => {
-    fetchMock.doMock(
-      JSON.stringify([
-        {
-          urn: "100224",
-          la: "Hackney",
-          name: "De Beauvoir Primary School",
-          postcode: "E8 3DY",
-          fullInfo: "100224, Hackney, De Beauvoir Primary School, E8 3DY",
-          status: "Open, but proposed to close",
-        },
-      ]),
-    );
-  });
+const fetch = jest.spyOn(global, "fetch") as jest.Mock;
+fetch.mockResolvedValue(
+  new Response(
+    JSON.stringify([
+      {
+        urn: "100224",
+        la: "Hackney",
+        name: "De Beauvoir Primary School",
+        postcode: "E8 3DY",
+        fullInfo: "100224, Hackney, De Beauvoir Primary School, E8 3DY",
+        status: "Open, but proposed to close",
+      },
+    ]),
+    { status: 200 },
+  ),
+);
 
+describe("Onboarding view", () => {
   it("renders a fieldset and legend", async () => {
     renderWithProviders()(<SchoolSelectionView />);
 

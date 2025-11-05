@@ -116,7 +116,7 @@ export function getCopyrightContent(
     | LessonBrowseDataByKs["lessonData"]["copyrightContent"]
     | { copyrightInfo: string }[]
     | null,
-): LessonOverviewPageData["copyrightContent"] {
+): LessonOverviewPageData["legacyCopyrightContent"] {
   if (content === null) {
     return null;
   }
@@ -232,7 +232,7 @@ export const transformedLessonOverviewData = (
     keyLearningPoints: content.keyLearningPoints ?? null,
     pupilLessonOutcome: content.pupilLessonOutcome,
     lessonKeywords: content.lessonKeywords,
-    copyrightContent: getCopyrightContent(
+    legacyCopyrightContent: getCopyrightContent(
       browseData.lessonData.copyrightContent,
     ),
     supervisionLevel: content.supervisionLevel,

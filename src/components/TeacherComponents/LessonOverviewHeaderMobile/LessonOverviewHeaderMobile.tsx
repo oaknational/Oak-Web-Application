@@ -14,7 +14,7 @@ import { LessonOverviewCreateWithAiDropdown } from "../LessonOverviewCreateWithA
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { LessonOverviewHeaderDownloadAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderDownloadAllButton";
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
-import CopyrightRestrictionBanner from "@/components/TeacherComponents/CopyrightRestrictionBanner/CopyrightRestrictionBanner";
+import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import { resolveOakHref } from "@/common-lib/urls";
 
@@ -118,7 +118,7 @@ export const LessonOverviewHeaderMobile: FC<
         <LessonOverviewCreateWithAiDropdown {...props} />
       )}
 
-      <CopyrightRestrictionBanner
+      <ComplexCopyrightRestrictionBanner
         isGeorestricted={geoRestricted}
         isLoginRequired={loginRequired}
         componentType="lesson_overview"

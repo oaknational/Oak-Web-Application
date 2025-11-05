@@ -45,7 +45,7 @@ import {
   KeyStageTitleValueType,
   PathwayValueType,
 } from "@/browser-lib/avo/Avo";
-import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
+import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 
 type BaseLessonMedia = {
@@ -95,7 +95,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
     showSignedOutGeoRestricted,
     showGeoBlocked,
     showSignedInNotOnboarded,
-  } = useCopyrightRequirements({
+  } = useComplexCopyright({
     loginRequired,
     geoRestricted,
   });
@@ -316,7 +316,8 @@ export const LessonMedia = (props: LessonMediaProps) => {
       timeElapsedSeconds: 0,
       isMuted: false,
       mediaClipsCount: listOfAllClips.length,
-      mediaClipIndex: parseInt(clickedMediaClip?.order.toString() ?? "0") ?? 0,
+      mediaClipIndex:
+        Number.parseInt(clickedMediaClip?.order.toString() ?? "0") ?? 0,
     });
   };
 
