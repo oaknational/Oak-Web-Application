@@ -29,7 +29,7 @@ export default function convertToMml({
   em = 8,
   ex = 16,
 }: ConvertToMmlOptions) {
-  const mathML = math.replace(/^\$\$|\$\$$/g, "");
+  const mathML = math.replaceAll(/(^\$\$)|(\$\$$)/g, "");
 
   // MathML conversion
   const mathMlOutput = toMathML(
