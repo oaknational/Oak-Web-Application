@@ -27,9 +27,9 @@ const props: PropsWithoutForm = {
   showTermsAgreement: true,
   isLoading: false,
 };
-let mockUseCopyrightRequirements = defaultCopyrightRequirements;
-jest.mock("@/hooks/useCopyrightRequirements", () => ({
-  useCopyrightRequirements: () => mockUseCopyrightRequirements,
+let mockUseComplexCopyright = defaultCopyrightRequirements;
+jest.mock("@/hooks/useComplexCopyright", () => ({
+  useComplexCopyright: () => mockUseComplexCopyright,
 }));
 const ComponentWrapper = (props: PropsWithoutForm) => {
   const { control, register, trigger } = useForm<ResourceFormProps>();
@@ -46,7 +46,7 @@ const ComponentWrapper = (props: PropsWithoutForm) => {
 
 describe("Downloads/Share Layout", () => {
   afterEach(() => {
-    mockUseCopyrightRequirements = defaultCopyrightRequirements;
+    mockUseComplexCopyright = defaultCopyrightRequirements;
   });
   it("handles download error message ", () => {
     renderWithTheme(

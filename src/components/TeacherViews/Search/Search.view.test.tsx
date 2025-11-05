@@ -1,11 +1,12 @@
 import { forwardRef } from "react";
-import { act, fireEvent, screen } from "@testing-library/react";
+import { act, fireEvent, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import mockRouter from "next-router-mock";
 
 import Search from "./Search.view";
 import { SearchProps } from "./search.view.types";
 
+import * as useSuggestedFiltersModule from "@/context/Search/useSuggestedFilters";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { SearchHit, SearchQuery } from "@/context/Search/search.types";
 import { LEGACY_COHORT } from "@/config/cohort";
@@ -223,12 +224,7 @@ jest.mock("posthog-js/react", () => ({
   useFeatureFlagVariantKey: () => mockAiSearchFlagEnabled(),
 }));
 
-jest.mock("@/context/Search/useSuggestedFilters.tsx", () => ({
-  useSuggestedFilters: () => ({
-    status: "success",
-    searchFilters: [{ type: "subject", slug: "maths", value: "Maths" }],
-  }),
-}));
+jest.mock("@/context/Search/useSuggestedFilters.tsx");
 
 const render = renderWithProviders();
 
@@ -237,6 +233,12 @@ describe("Search.page.tsx", () => {
     jest.clearAllMocks();
     mockRouter.setCurrentUrl("/teachers/search");
     setupMockLinkClick();
+    (
+      useSuggestedFiltersModule.useSuggestedFilters as jest.Mock
+    ).mockReturnValue({
+      status: "success",
+      searchFilters: [{ type: "subject", slug: "maths", value: "Maths" }],
+    });
   });
 
   afterEach(() => {
@@ -557,6 +559,13 @@ describe("Search.page.tsx", () => {
   });
   test("shows suggested filters when ai flag enabled", () => {
     mockAiSearchFlagEnabled.mockReturnValue("search-with-ai");
+    (
+      useSuggestedFiltersModule.useSuggestedFilters as jest.Mock
+    ).mockReturnValue({
+      status: "success",
+      searchFilters: [{ type: "subject", slug: "maths", value: "Maths" }],
+    });
+
     render(<Search {...props} {...resultsPropsPathWays} />);
     const suggestedFiltersHeading = screen.getAllByText("Suggested filters");
     expect(suggestedFiltersHeading[0]).toBeInTheDocument();
@@ -566,5 +575,19 @@ describe("Search.page.tsx", () => {
     render(<Search {...props} {...resultsPropsPathWays} />);
     const suggestedFiltersHeading = screen.getAllByText("All filters");
     expect(suggestedFiltersHeading[0]).toBeInTheDocument();
+  });
+  test("shows loading spinner when suggested filters are loading", () => {
+    mockAiSearchFlagEnabled.mockReturnValue("search-with-ai");
+    (
+      useSuggestedFiltersModule.useSuggestedFilters as jest.Mock
+    ).mockReturnValue({
+      status: "loading",
+      searchFilters: [],
+    });
+    render(<Search {...props} {...resultsPropsPathWays} />);
+    waitFor(() => {
+      const loadingSpinner = screen.getByText("Loading filters");
+      expect(loadingSpinner).toBeInTheDocument();
+    });
   });
 });

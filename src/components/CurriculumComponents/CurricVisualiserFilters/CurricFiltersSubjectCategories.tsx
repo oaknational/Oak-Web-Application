@@ -28,7 +28,7 @@ export function CurricFiltersSubjectCategories({
   onChangeFilters,
   data,
   slugs,
-}: CurricFiltersSubjectCategoriesProps) {
+}: Readonly<CurricFiltersSubjectCategoriesProps>) {
   const id = useId();
   const { yearData } = data;
 

@@ -8,12 +8,39 @@ import {
   mockYearData,
 } from "./CurricUnitModalContent.fixtures";
 
+import { createUnitOption } from "@/fixtures/curriculum/unitOption";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import {
   mockLinkClick,
   setupMockLinkClick,
   teardownMockLinkClick,
 } from "@/utils/mockLinkClick";
+
+// Mock window.matchMedia
+Object.defineProperty(window, "matchMedia", {
+  writable: true,
+  value: jest.fn().mockImplementation((query) => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: jest.fn(),
+    removeListener: jest.fn(),
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+    dispatchEvent: jest.fn(),
+  })),
+});
+
+// Mock next/navigation
+const mockPush = jest.fn();
+const mockReplace = jest.fn();
+jest.mock("next/navigation", () => ({
+  useRouter: () => ({
+    push: mockPush,
+    replace: mockReplace,
+  }),
+  useSearchParams: () => new URLSearchParams(""),
+}));
 
 const unitOverviewExplored = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
@@ -201,6 +228,48 @@ describe("Unit modal", () => {
       } else {
         throw new Error("Optionality button not found");
       }
+    });
+  });
+
+  describe("navigation callback", () => {
+    test("calls onNavigateToUnit when back button is clicked", async () => {
+      const mockNavigate = jest.fn();
+      const mockUnitOption = createUnitOption({
+        title: "Unit Option 1",
+        slug: "unit-option-1",
+        unitvariant_id: 123,
+      });
+
+      const { getByText } = renderWithTheme(
+        <CurricUnitModalContent
+          selectedThread={null}
+          unitData={mockUnit}
+          yearData={mockYearData}
+          basePath={"/teachers/curriculum/english-primary/units"}
+          unitOptionData={mockUnitOption}
+          onNavigateToUnit={mockNavigate}
+        />,
+      );
+
+      const backButton = getByText("Back to unit options info");
+      await userEvent.click(backButton);
+
+      expect(mockNavigate).toHaveBeenCalledWith(mockUnit.slug);
+      expect(mockNavigate).toHaveBeenCalledTimes(1);
+    });
+
+    test("back button is hidden when no unit option is selected", () => {
+      const { queryByText } = renderWithTheme(
+        <CurricUnitModalContent
+          selectedThread={null}
+          unitData={mockUnit}
+          yearData={mockYearData}
+          basePath={"/teachers/curriculum/english-primary/units"}
+          unitOptionData={undefined}
+        />,
+      );
+
+      expect(queryByText("Back to unit options info")).not.toBeVisible();
     });
   });
 

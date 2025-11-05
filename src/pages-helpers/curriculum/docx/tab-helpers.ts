@@ -339,12 +339,10 @@ export function formatCurriculumUnitsData(
   const yearData = createUnitsListingByYear(filteredUnits);
   const threadOptions = createThreadOptions(filteredUnits);
   const yearOptions = createYearOptions(filteredUnits);
-  // const ncOptions = createNationalCurriculum(filteredUnits);
   const formattedDataCurriculumUnits = {
     yearData,
     threadOptions,
     yearOptions,
-    // ncOptions,
   };
   return formattedDataCurriculumUnits;
 }

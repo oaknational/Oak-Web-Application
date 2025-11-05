@@ -1,4 +1,4 @@
-import CopyrightRestrictionBanner from "./CopyrightRestrictionBanner";
+import ComplexCopyrightRestrictionBanner from "./ComplexCopyrightRestrictionBanner";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
@@ -49,7 +49,7 @@ describe("CopyrightRestrictionBanner", () => {
   describe("when signed out", () => {
     it("renders with unit text and signin link on a georestricted and login required unit page", () => {
       const { getByTestId } = render(
-        <CopyrightRestrictionBanner
+        <ComplexCopyrightRestrictionBanner
           isGeorestricted={true}
           isLoginRequired={true}
           componentType="lesson_listing"
@@ -67,7 +67,7 @@ describe("CopyrightRestrictionBanner", () => {
 
     it("renders with non-UK unit text on a non-georestricted and login required unit page", () => {
       const { getByTestId } = render(
-        <CopyrightRestrictionBanner
+        <ComplexCopyrightRestrictionBanner
           isGeorestricted={false}
           isLoginRequired={true}
           componentType="lesson_listing"
@@ -83,7 +83,7 @@ describe("CopyrightRestrictionBanner", () => {
 
     it("renders with lesson text on a georestricted and login required lesson page", () => {
       const { getByTestId } = render(
-        <CopyrightRestrictionBanner
+        <ComplexCopyrightRestrictionBanner
           isGeorestricted={true}
           isLoginRequired={true}
           componentType="lesson_overview"
@@ -102,7 +102,7 @@ describe("CopyrightRestrictionBanner", () => {
     it("renders with onboarding link on a georestricted and login required lesson page", () => {
       setUseUserReturn(mockNotOnboardedUser);
       const { getByTestId } = render(
-        <CopyrightRestrictionBanner
+        <ComplexCopyrightRestrictionBanner
           isGeorestricted={true}
           isLoginRequired={true}
           componentType="lesson_listing"
@@ -124,7 +124,7 @@ describe("CopyrightRestrictionBanner", () => {
         user: mockUserWithoutDownloadAccessNotOnboarded,
       });
       const { getByTestId, queryByTestId } = render(
-        <CopyrightRestrictionBanner
+        <ComplexCopyrightRestrictionBanner
           isGeorestricted={true}
           isLoginRequired={true}
           componentType="lesson_listing"
@@ -145,7 +145,7 @@ describe("CopyrightRestrictionBanner", () => {
       });
 
       const { queryByTestId } = render(
-        <CopyrightRestrictionBanner
+        <ComplexCopyrightRestrictionBanner
           isGeorestricted={true}
           isLoginRequired={true}
           componentType="lesson_listing"
@@ -161,7 +161,7 @@ describe("CopyrightRestrictionBanner", () => {
       setUseUserReturn(mockGeorestrictedUser);
 
       const { getByTestId, queryByTestId } = render(
-        <CopyrightRestrictionBanner
+        <ComplexCopyrightRestrictionBanner
           isGeorestricted={true}
           isLoginRequired={true}
           componentType="lesson_listing"
@@ -183,7 +183,7 @@ describe("CopyrightRestrictionBanner", () => {
       setUseUserReturn(mockGeorestrictedUser);
 
       render(
-        <CopyrightRestrictionBanner
+        <ComplexCopyrightRestrictionBanner
           isGeorestricted={true}
           isLoginRequired={true}
           componentType="lesson_listing"
@@ -214,7 +214,7 @@ describe("CopyrightRestrictionBanner", () => {
       setUseUserReturn(mockGeorestrictedUser);
 
       render(
-        <CopyrightRestrictionBanner
+        <ComplexCopyrightRestrictionBanner
           isGeorestricted={true}
           isLoginRequired={true}
           componentType="lesson_overview"
