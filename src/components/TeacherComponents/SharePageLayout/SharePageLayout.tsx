@@ -17,7 +17,7 @@ import {
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
-import CopyrightNotice from "../CopyrightNotice";
+import CopyrightNotice from "../OglCopyrightNotice";
 
 import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { ResourcePageDetailsCompletedProps } from "@/components/TeacherComponents/ResourcePageDetailsCompleted/ResourcePageDetailsCompleted";
@@ -112,7 +112,7 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
                       showSavedDetails={props.showSavedDetails}
                       handleEditDetailsCompletedClick={props.onEditClick}
                       showPostAlbCopyright={props.showPostAlbCopyright}
-                      copyrightYear={props.updatedAt}
+                      oglCopyrightYear={props.updatedAt}
                     />
                   )}
                   {hasFormErrors && (

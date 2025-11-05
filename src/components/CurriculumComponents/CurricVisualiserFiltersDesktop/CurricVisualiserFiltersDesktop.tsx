@@ -34,7 +34,7 @@ export default function CurricVisualiserFiltersDesktop({
   data,
   slugs,
   ks4Options,
-}: CurricVisualiserFiltersProps) {
+}: Readonly<CurricVisualiserFiltersProps>) {
   return (
     <OakBox $mr={"space-between-s"}>
       <SkipLink href="#content">Skip to units</SkipLink>

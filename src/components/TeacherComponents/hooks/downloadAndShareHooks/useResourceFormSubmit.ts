@@ -67,7 +67,9 @@ const useResourceFormSubmit = (props: UseResourceFormProps) => {
       const selectedAdditionalFilesIds = hasAdditionalFiles
         ? downloads
             .filter((d) => additionalFilesRegex.test(d))
-            .map((d) => parseInt(d.split("additional-files-")?.[1] ?? ""))
+            .map((d) =>
+              Number.parseInt(d.split("additional-files-")?.[1] ?? ""),
+            )
         : [];
 
       await downloadLessonResources({

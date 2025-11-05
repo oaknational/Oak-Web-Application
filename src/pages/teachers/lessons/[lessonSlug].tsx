@@ -43,7 +43,7 @@ export type URLParams = {
 export default function LessonOverviewCanonicalPage({
   lesson,
   isSpecialist,
-}: PageProps): JSX.Element {
+}: Readonly<PageProps>): JSX.Element {
   const {
     teacherNotesButton,
     TeacherNotesButtonProps,

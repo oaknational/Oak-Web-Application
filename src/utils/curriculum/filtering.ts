@@ -20,7 +20,6 @@ import {
 } from "./types";
 import { isVisibleUnit } from "./isVisibleUnit";
 import { byKeyStageSlug, presentAtKeyStageSlugs } from "./keystage";
-import { isCurricRoutingEnabled } from "./flags";
 
 import {
   CurriculumUnitsFormattedData,
@@ -148,27 +147,22 @@ export function useFilters(
 
   const [filters, setLocalFilters] = useState<CurriculumFilters>(defaultFilter);
   useLayoutEffect(() => {
-    if (isCurricRoutingEnabled()) {
-      setLocalFilters(mergeInFilterParams(defaultFilter, searchParams));
-    } else {
-      setLocalFilters(defaultFilter);
-    }
+    setLocalFilters(mergeInFilterParams(defaultFilter, searchParams));
   }, [searchParams, defaultFilter]);
 
   const setFilters = useCallback(
     (newFilters: CurriculumFilters) => {
-      if (isCurricRoutingEnabled()) {
-        const url =
-          location.pathname +
-          "?" +
-          new URLSearchParams(
-            Object.entries(filtersToQuery(newFilters, defaultFilter)),
-          ).toString();
-        router.replace(url, undefined, {
-          shallow: true,
-          scroll: false,
-        });
-      }
+      const url =
+        location.pathname +
+        "?" +
+        new URLSearchParams(
+          Object.entries(filtersToQuery(newFilters, defaultFilter)),
+        ).toString();
+      router.replace(url, undefined, {
+        shallow: true,
+        scroll: false,
+      });
+
       setLocalFilters(newFilters);
     },
     [router, defaultFilter],

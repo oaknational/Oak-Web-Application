@@ -8,14 +8,16 @@ import { fetchSubjectPhasePickerData } from "@/pages-helpers/curriculum/docx/tab
 const Page = async ({
   params,
 }: {
-  params: Promise<{ subjectPhaseSlug: string }>;
+  params: Promise<{ subjectPhaseSlug: string; unitSlug?: string[] }>;
 }) => {
-  const { subjectPhaseSlug } = await params;
+  const { subjectPhaseSlug, unitSlug } = await params;
   const slugs = parseSubjectPhaseSlug(subjectPhaseSlug);
 
   if (!slugs) {
     return notFound();
   }
+
+  const selectedUnitSlug = unitSlug?.[0];
 
   // Fetch the data
   const sequence = await curriculumApi2023.curriculumSequence(slugs);
@@ -27,6 +29,7 @@ const Page = async ({
       slugs={slugs}
       units={sequence.units}
       curriculumPhaseOptions={curriculumPhaseOptions}
+      selectedUnitSlug={selectedUnitSlug}
     />
   );
 };
