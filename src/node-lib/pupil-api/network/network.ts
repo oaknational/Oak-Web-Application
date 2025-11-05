@@ -1,4 +1,3 @@
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import errorReporter from "@/common-lib/error-reporter";
 import {
   CreateLessonAttemptPayload,
@@ -39,9 +38,8 @@ export class PupilNetworkClient {
   async getAttempt(
     attempt_id: AttemptId,
   ): Promise<Record<string, LessonAttempt>> {
-    const baseUrl = getBrowserConfig("clientAppBaseUrl");
     const response = await fetch(
-      baseUrl + "/api/pupil/lesson-attempt?attempt_id=" + attempt_id,
+      "/api/pupil/lesson-attempt?attempt_id=" + attempt_id,
     );
 
     if (!response.ok) {
