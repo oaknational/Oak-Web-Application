@@ -9,12 +9,14 @@ import {
 } from "./CurricUnitModalContent.fixtures";
 
 import { createUnitOption } from "@/fixtures/curriculum/unitOption";
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import {
   mockLinkClick,
   setupMockLinkClick,
   teardownMockLinkClick,
 } from "@/utils/mockLinkClick";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme", "theme"]);
 
 // Mock window.matchMedia
 Object.defineProperty(window, "matchMedia", {
@@ -67,7 +69,7 @@ describe("Unit modal", () => {
   });
 
   test("renders with correct heading", () => {
-    const { getByText } = renderWithTheme(
+    const { getByText } = render(
       <CurricUnitModalContent
         selectedThread={null}
         unitData={mockUnit}
@@ -80,7 +82,7 @@ describe("Unit modal", () => {
   });
 
   test("renders the correct number of threads", () => {
-    const { getAllByTestId, getByText } = renderWithTheme(
+    const { getAllByTestId, getByText } = render(
       <CurricUnitModalContent
         selectedThread={null}
         unitData={mockUnit}
@@ -98,7 +100,7 @@ describe("Unit modal", () => {
   });
 
   test("lesson metadata renders correct data", () => {
-    const { getByText } = renderWithTheme(
+    const { getByText } = render(
       <CurricUnitModalContent
         selectedThread={null}
         unitData={mockUnit}
@@ -114,7 +116,7 @@ describe("Unit modal", () => {
 
   describe("non-optional units", () => {
     test("does not render optionality card", () => {
-      const { queryByTestId } = renderWithTheme(
+      const { queryByTestId } = render(
         <CurricUnitModalContent
           selectedThread={null}
           unitData={mockUnit}
@@ -128,7 +130,7 @@ describe("Unit modal", () => {
     });
 
     test("renders CurriculumUnitDetails component", () => {
-      const { getByTestId } = renderWithTheme(
+      const { getByTestId } = render(
         <CurricUnitModalContent
           selectedThread={null}
           unitData={mockUnit}
@@ -144,7 +146,7 @@ describe("Unit modal", () => {
 
   describe("optional units", () => {
     test("optionality cards render", () => {
-      const { getByTestId } = renderWithTheme(
+      const { getByTestId } = render(
         <CurricUnitModalContent
           selectedThread={null}
           unitData={mockOptionalityUnit}
@@ -159,7 +161,7 @@ describe("Unit modal", () => {
     });
 
     test("does not render CurriculumUnitDetails component", () => {
-      const { queryByTestId } = renderWithTheme(
+      const { queryByTestId } = render(
         <CurricUnitModalContent
           selectedThread={null}
           unitData={mockOptionalityUnit}
@@ -173,7 +175,7 @@ describe("Unit modal", () => {
     });
 
     test("optionality cards render correct number of units", () => {
-      const { getAllByTestId } = renderWithTheme(
+      const { getAllByTestId } = render(
         <CurricUnitModalContent
           selectedThread={null}
           unitData={mockOptionalityUnit}
@@ -187,7 +189,7 @@ describe("Unit modal", () => {
     });
 
     test("optionality cards render correct unit titles", () => {
-      const { getByText } = renderWithTheme(
+      const { getByText } = render(
         <CurricUnitModalContent
           selectedThread={null}
           unitData={mockOptionalityUnit}
@@ -203,7 +205,7 @@ describe("Unit modal", () => {
     });
 
     test("selecting optional unit card button, renders CurriculumUnitDetails component", async () => {
-      const { getAllByTestId, queryByTestId } = renderWithTheme(
+      const { getAllByTestId, queryByTestId } = render(
         <CurricUnitModalContent
           selectedThread={null}
           unitData={mockOptionalityUnit}
@@ -240,7 +242,7 @@ describe("Unit modal", () => {
         unitvariant_id: 123,
       });
 
-      const { getByText } = renderWithTheme(
+      const { getByText } = render(
         <CurricUnitModalContent
           selectedThread={null}
           unitData={mockUnit}
@@ -259,7 +261,7 @@ describe("Unit modal", () => {
     });
 
     test("back button is hidden when no unit option is selected", () => {
-      const { queryByText } = renderWithTheme(
+      const { queryByText } = render(
         <CurricUnitModalContent
           selectedThread={null}
           unitData={mockUnit}
@@ -284,7 +286,7 @@ describe("Unit modal", () => {
         { title: "Test lesson 2" },
       ];
 
-      const { getAllByTestId } = renderWithTheme(
+      const { getAllByTestId } = render(
         <CurricUnitModalContent
           selectedThread={null}
           unitData={{ ...mockUnit, lessons: mockLessons }}

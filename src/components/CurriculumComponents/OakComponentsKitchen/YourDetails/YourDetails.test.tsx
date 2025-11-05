@@ -3,12 +3,14 @@ import { act, fireEvent, screen, waitFor } from "@testing-library/react";
 
 import YourDetails from ".";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("YourDetails", () => {
   describe("school", () => {
     it("initial", () => {
-      const { getByRole } = renderWithTheme(
+      const { getByRole } = render(
         <OakThemeProvider theme={oakDefaultTheme}>
           <YourDetails
             schools={[
@@ -34,7 +36,7 @@ describe("YourDetails", () => {
 
     it("choose", () => {
       const onChange = jest.fn();
-      const { rerender, getByRole, getAllByTestId } = renderWithTheme(
+      const { rerender, getByRole, getAllByTestId } = render(
         <OakThemeProvider theme={oakDefaultTheme}>
           <YourDetails
             schools={[
@@ -100,7 +102,7 @@ describe("YourDetails", () => {
 
     it("clear", () => {
       const onChange = jest.fn();
-      const { getByRole } = renderWithTheme(
+      const { getByRole } = render(
         <OakThemeProvider theme={oakDefaultTheme}>
           <YourDetails
             schools={[
@@ -140,7 +142,7 @@ describe("YourDetails", () => {
 
   describe("not-listed", () => {
     it("initial", () => {
-      const { getByRole } = renderWithTheme(
+      const { getByRole } = render(
         <OakThemeProvider theme={oakDefaultTheme}>
           <YourDetails
             schools={[]}
@@ -158,7 +160,7 @@ describe("YourDetails", () => {
     });
     it("change", () => {
       const onChange = jest.fn();
-      const { getByRole } = renderWithTheme(
+      const { getByRole } = render(
         <OakThemeProvider theme={oakDefaultTheme}>
           <YourDetails
             schools={[]}
@@ -187,7 +189,7 @@ describe("YourDetails", () => {
 
   describe("email", () => {
     it("initial", async () => {
-      renderWithTheme(
+      render(
         <OakThemeProvider theme={oakDefaultTheme}>
           <YourDetails
             schools={[]}
@@ -208,7 +210,7 @@ describe("YourDetails", () => {
 
     it("change", () => {
       const onChange = jest.fn();
-      renderWithTheme(
+      render(
         <OakThemeProvider theme={oakDefaultTheme}>
           <YourDetails
             schools={[]}
@@ -241,7 +243,7 @@ describe("YourDetails", () => {
 
     it("clear", () => {
       const onChange = jest.fn();
-      renderWithTheme(
+      render(
         <OakThemeProvider theme={oakDefaultTheme}>
           <YourDetails
             schools={[]}

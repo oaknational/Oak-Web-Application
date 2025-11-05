@@ -3,11 +3,13 @@ import { act } from "@testing-library/react";
 
 import SkipLink from ".";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("SkipLink", () => {
   test("functions as expected", async () => {
-    const { baseElement, getByTestId } = renderWithTheme(
+    const { baseElement, getByTestId } = render(
       <OakThemeProvider theme={oakDefaultTheme}>
         <SkipLink href="foo">test</SkipLink>
       </OakThemeProvider>,

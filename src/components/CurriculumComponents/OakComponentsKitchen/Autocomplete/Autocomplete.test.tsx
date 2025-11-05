@@ -6,7 +6,9 @@ import { STATES } from "./seeds";
 
 import Autocomplete, { AutocompleteItem } from ".";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme"]);
 
 const UncontrolledWrapper = ({
   options = STATES,
@@ -69,7 +71,7 @@ const ControlledWrapper = ({
 describe("Autocomplete", () => {
   describe("uncontrolled ", () => {
     test("render / basic", async () => {
-      const { getByRole, getByTestId } = renderWithTheme(
+      const { getByRole, getByTestId } = render(
         <Autocomplete
           inputProps={{
             label: "Pick a bear",
@@ -96,7 +98,7 @@ describe("Autocomplete", () => {
     test("interactive / selecting an item", async () => {
       const mockOnInputChange = jest.fn();
 
-      const { getByTestId, getByRole, getAllByTestId } = renderWithTheme(
+      const { getByTestId, getByRole, getAllByTestId } = render(
         <UncontrolledWrapper mockOnInputChange={mockOnInputChange} />,
       );
       const inputElement = getByRole("combobox");
@@ -126,7 +128,7 @@ describe("Autocomplete", () => {
     test("interactive / escaping", async () => {
       const mockOnInputChange = jest.fn();
 
-      const { getByTestId, getByRole } = renderWithTheme(
+      const { getByTestId, getByRole } = render(
         <UncontrolledWrapper mockOnInputChange={mockOnInputChange} />,
       );
       const inputElement = getByRole("combobox");
@@ -156,8 +158,9 @@ describe("Autocomplete", () => {
     });
 
     test("interactive / updating", async () => {
-      const { rerender, getByRole, getByTestId, getAllByTestId } =
-        renderWithTheme(<UncontrolledWrapper />);
+      const { rerender, getByRole, getByTestId, getAllByTestId } = render(
+        <UncontrolledWrapper />,
+      );
 
       const inputElement = getByRole("combobox");
 
@@ -198,7 +201,7 @@ describe("Autocomplete", () => {
 
   describe("controlled", () => {
     test("render / basic", async () => {
-      const { getByRole, getByTestId } = renderWithTheme(
+      const { getByRole, getByTestId } = render(
         <Autocomplete
           isControlled={true}
           inputProps={{
@@ -227,15 +230,14 @@ describe("Autocomplete", () => {
       const mockOnInputChange = jest.fn();
       const mockChange = jest.fn();
 
-      const { rerender, getByTestId, getByRole, getAllByTestId } =
-        renderWithTheme(
-          <ControlledWrapper
-            value={""}
-            onInputChange={mockOnInputChange}
-            onChange={mockChange}
-            options={STATES}
-          />,
-        );
+      const { rerender, getByTestId, getByRole, getAllByTestId } = render(
+        <ControlledWrapper
+          value={""}
+          onInputChange={mockOnInputChange}
+          onChange={mockChange}
+          options={STATES}
+        />,
+      );
       const inputElement = getByRole("combobox");
 
       // Enter "Ca" into text <input/>
@@ -279,7 +281,7 @@ describe("Autocomplete", () => {
       const mockOnInputChange = jest.fn();
       const mockChange = jest.fn();
 
-      const { rerender, getByTestId, getByRole } = renderWithTheme(
+      const { rerender, getByTestId, getByRole } = render(
         <ControlledWrapper
           value={""}
           onInputChange={mockOnInputChange}
@@ -326,15 +328,14 @@ describe("Autocomplete", () => {
       const mockOnInputChange = jest.fn();
       const mockChange = jest.fn();
 
-      const { rerender, getByRole, getByTestId, getAllByTestId } =
-        renderWithTheme(
-          <ControlledWrapper
-            value={""}
-            onInputChange={mockOnInputChange}
-            onChange={mockChange}
-            options={STATES}
-          />,
-        );
+      const { rerender, getByRole, getByTestId, getAllByTestId } = render(
+        <ControlledWrapper
+          value={""}
+          onInputChange={mockOnInputChange}
+          onChange={mockChange}
+          options={STATES}
+        />,
+      );
 
       const inputElement = getByRole("combobox");
 

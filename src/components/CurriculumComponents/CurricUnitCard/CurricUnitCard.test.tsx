@@ -1,7 +1,9 @@
 import CurricUnitCard from "./CurricUnitCard";
 import { unitWithOptions } from "./CurricUnitCard.fixtures";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("CurricUnitCard", () => {
   beforeEach(() => {
@@ -9,7 +11,7 @@ describe("CurricUnitCard", () => {
   });
 
   test("render", () => {
-    const { baseElement } = renderWithTheme(
+    const { baseElement } = render(
       <CurricUnitCard
         unit={unitWithOptions}
         index={0}
@@ -22,7 +24,7 @@ describe("CurricUnitCard", () => {
   });
 
   test("highlighted state", () => {
-    const { baseElement } = renderWithTheme(
+    const { baseElement } = render(
       <CurricUnitCard
         unit={unitWithOptions}
         index={0}
@@ -35,7 +37,7 @@ describe("CurricUnitCard", () => {
   });
 
   test("index is correct", () => {
-    const { baseElement } = renderWithTheme(
+    const { baseElement } = render(
       <CurricUnitCard
         unit={unitWithOptions}
         index={0}
@@ -48,7 +50,7 @@ describe("CurricUnitCard", () => {
   });
 
   test("changes color when highlighed", () => {
-    const { baseElement } = renderWithTheme(
+    const { baseElement } = render(
       <CurricUnitCard
         unit={unitWithOptions}
         index={0}

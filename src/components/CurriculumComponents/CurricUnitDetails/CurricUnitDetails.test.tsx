@@ -3,11 +3,13 @@ import { within } from "@testing-library/react";
 
 import CurricUnitDetails from "./CurricUnitDetails";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { createUnitOption } from "@/fixtures/curriculum/unitOption";
 import { createLesson } from "@/fixtures/curriculum/lesson";
 import { createThread } from "@/fixtures/curriculum/thread";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme", "theme"]);
 
 const testCurricUnitDetails = {
   unit: createUnit({
@@ -34,7 +36,7 @@ const testCurricUnitDetails = {
 
 describe("CurricUnitDetails component", () => {
   test("it should render the threads", () => {
-    const { getAllByTestId } = renderWithTheme(
+    const { getAllByTestId } = render(
       <CurricUnitDetails {...testCurricUnitDetails} />,
     );
 
@@ -45,7 +47,7 @@ describe("CurricUnitDetails component", () => {
   });
 
   test("it should render the correct number of lessons count", () => {
-    const { getByText, getAllByTestId } = renderWithTheme(
+    const { getByText, getAllByTestId } = render(
       <CurricUnitDetails {...testCurricUnitDetails} />,
     );
 
@@ -58,7 +60,7 @@ describe("CurricUnitDetails component", () => {
   });
 
   test("it should render the correct number of lessons count (with unit options)", () => {
-    const { getByText, getAllByTestId } = renderWithTheme(
+    const { getByText, getAllByTestId } = render(
       <CurricUnitDetails
         {...testCurricUnitDetails}
         unitOption={createUnitOption({
@@ -83,7 +85,7 @@ describe("CurricUnitDetails component", () => {
 
   describe("accordion functionality on component", () => {
     test("it should render all accordion components (cycle 1)", () => {
-      const { getAllByTestId, getByTestId, getByText } = renderWithTheme(
+      const { getAllByTestId, getByTestId, getByText } = render(
         <CurricUnitDetails {...testCurricUnitDetails} />,
       );
 
@@ -99,7 +101,7 @@ describe("CurricUnitDetails component", () => {
     });
 
     test("it should render all accordion components (cycle 1, with unit-option)", () => {
-      const { getByTestId } = renderWithTheme(
+      const { getByTestId } = render(
         <CurricUnitDetails
           {...testCurricUnitDetails}
           unitOption={createUnitOption({
@@ -128,7 +130,7 @@ describe("CurricUnitDetails component", () => {
     });
 
     test("it should render all accordion components (cycle 2)", () => {
-      const { getAllByTestId, getByTestId } = renderWithTheme(
+      const { getAllByTestId, getByTestId } = render(
         <CurricUnitDetails
           {...testCurricUnitDetails}
           isUnitDescriptionEnabled={true}
@@ -141,7 +143,7 @@ describe("CurricUnitDetails component", () => {
     });
 
     test("it should render all accordion components (cycle 2, unit-option)", () => {
-      const { getByTestId } = renderWithTheme(
+      const { getByTestId } = render(
         <CurricUnitDetails
           {...testCurricUnitDetails}
           isUnitDescriptionEnabled={true}
@@ -167,7 +169,7 @@ describe("CurricUnitDetails component", () => {
     });
 
     test("when expanding lesson accordion it should render correct lessons list", async () => {
-      const { getAllByTestId, getByText, getByTestId } = renderWithTheme(
+      const { getAllByTestId, getByText, getByTestId } = render(
         <CurricUnitDetails {...testCurricUnitDetails} />,
       );
 
@@ -192,7 +194,7 @@ describe("CurricUnitDetails component", () => {
 
   describe("accordion functionality on component", () => {
     test("it should render all accordion components (cycle 1)", () => {
-      const { getAllByTestId, getByText } = renderWithTheme(
+      const { getAllByTestId, getByText } = render(
         <CurricUnitDetails {...testCurricUnitDetails} />,
       );
 
@@ -205,7 +207,7 @@ describe("CurricUnitDetails component", () => {
     });
 
     test("it should render all accordion components (cycle 2)", () => {
-      const { getAllByTestId, getByText } = renderWithTheme(
+      const { getAllByTestId, getByText } = render(
         <CurricUnitDetails
           {...testCurricUnitDetails}
           isUnitDescriptionEnabled={true}

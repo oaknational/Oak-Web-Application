@@ -1,10 +1,12 @@
 import { Fieldset, FieldsetLegend } from ".";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("Fieldset", () => {
   test("render", async () => {
-    const { baseElement } = renderWithTheme(
+    const { baseElement } = render(
       <Fieldset>
         <FieldsetLegend>testing</FieldsetLegend>
       </Fieldset>,

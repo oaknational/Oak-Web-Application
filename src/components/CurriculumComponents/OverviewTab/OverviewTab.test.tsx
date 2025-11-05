@@ -4,8 +4,10 @@ import { act } from "@testing-library/react";
 import OverviewTab from "./OverviewTab";
 
 import curriculumOverviewTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
-import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 import { mockVideoAsset } from "@/__tests__/__helpers__/cms";
+
+const render = renderWithProvidersByName(["theme", "oakTheme", "analytics"]);
 
 jest.mock("@mux/mux-player-react/lazy", () => {
   return forwardRef((props, ref) => {
@@ -40,7 +42,6 @@ describe("Component - Overview Tab", () => {
     fixture.curriculumCMSInfo.subjectPrinciples = [
       "Sequences learning over time which: • Builds musical knowledge, techniques and specialist language • Promotes the understanding of a diverse range of genres, traditions and styles • Develops pupils analytical skills in responding to different types of music",
     ];
-    const render = renderWithProviders();
     const { getByTestId, queryByTestId } = render(
       <OverviewTab data={fixture} />,
     );
@@ -87,7 +88,6 @@ describe("Component - Overview Tab", () => {
         curriculumPartner: fixture.curriculumCMSInfo.curriculumPartner,
       },
     ];
-    const render = renderWithProviders();
     const { queryAllByTestId } = render(<OverviewTab data={fixture} />);
     const partnerElements = queryAllByTestId("curriculum-partner");
     expect(partnerElements.length).toBe(2);
@@ -109,7 +109,6 @@ describe("Component - Overview Tab", () => {
         curriculumPartner: fixture.curriculumCMSInfo.curriculumPartner,
       },
     ];
-    const render = renderWithProviders();
     const { queryAllByTestId } = render(<OverviewTab data={fixture} />);
     const partnerElements = queryAllByTestId("curriculum-partner");
     expect(partnerElements.length).toBe(2);
@@ -124,7 +123,6 @@ describe("Component - Overview Tab", () => {
     ];
     fixture.curriculumCMSInfo.video = mockVideoAsset();
     fixture.curriculumCMSInfo.videoExplainer = "testing";
-    const render = renderWithProviders();
     const { getByTestId, queryByTestId } = render(
       <OverviewTab data={fixture} />,
     );
@@ -135,7 +133,6 @@ describe("Component - Overview Tab", () => {
 
   test("click heading links", async () => {
     const fixture = curriculumOverviewTabFixture();
-    const render = renderWithProviders();
     const { getAllByRole } = render(<OverviewTab data={fixture} />);
     const links = getAllByRole("link");
     expect(links[0]).toHaveTextContent("Aims and purpose");
