@@ -2,11 +2,13 @@ import { OakBox } from "@oaknational/oak-components";
 
 import { CurricTermCard } from ".";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("CurricTermCard", () => {
   test("snapshot", () => {
-    const { baseElement, getByTestId } = renderWithTheme(
+    const { baseElement, getByTestId } = render(
       <CurricTermCard
         title={"Yeat 1"}
         coveredNumberOfLessons={25}

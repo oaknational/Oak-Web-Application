@@ -5,9 +5,9 @@ import {
   mockUnitWithOptions,
 } from "./CurricUnitModalFooter.fixtures";
 
-import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 
-const render = renderWithProviders();
+const render = renderWithProvidersByName(["theme", "oakTheme", "analytics"]);
 
 describe("CurricUnitModalFooter", () => {
   it("should show disabled link without lessons", () => {

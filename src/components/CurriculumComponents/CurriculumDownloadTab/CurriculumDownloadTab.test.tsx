@@ -6,7 +6,7 @@ import { DownloadType } from "../CurriculumDownloadView/helper";
 
 import CurriculumDownloadTab, { trackCurriculumDownload } from ".";
 
-import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urls";
@@ -14,7 +14,7 @@ import { createYearData } from "@/fixtures/curriculum/yearData";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { downloadFileFromUrl } from "@/components/SharedComponents/helpers/downloadFileFromUrl";
 
-const render = renderWithProviders();
+const render = renderWithProvidersByName(["theme", "oakTheme"]);
 const mvRefreshTime = 1721314874829;
 
 const tiersMock = [

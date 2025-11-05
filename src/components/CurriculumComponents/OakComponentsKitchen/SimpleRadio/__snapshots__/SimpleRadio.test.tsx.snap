@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Fieldset render / none 1`] = `
+exports[`SimpleRadio render / none 1`] = `
 <body>
   <div>
     <label
@@ -41,7 +41,7 @@ exports[`Fieldset render / none 1`] = `
 </body>
 `;
 
-exports[`Fieldset render / selected 1`] = `
+exports[`SimpleRadio render / selected 1`] = `
 <body>
   <div>
     <label
