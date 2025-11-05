@@ -18,6 +18,16 @@ import {
 
 export type StemPortableText = TextItem & { portableText?: PortableTextItem[] };
 
+export type ConvertTextItem<T> = T extends TextItem
+  ? StemPortableText
+  : T extends Array<infer S>
+    ? Array<ConvertTextItem<S>>
+    : T extends object
+      ? {
+          [K in keyof T]: ConvertTextItem<T[K]>;
+        }
+      : T;
+
 const ENABLE_SSR = true;
 
 const UnderlineSpan = styled.span`

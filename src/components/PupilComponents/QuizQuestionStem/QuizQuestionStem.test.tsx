@@ -7,10 +7,7 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import { invariant } from "@/utils/invariant";
 import { stemToPortableText } from "@/utils/portableText";
-import {
-  StemImageObject,
-  StemTextObject,
-} from "@/node-lib/curriculum-api-2023/shared.schema";
+import { StemObject } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 const starterQuiz = quizQuestions;
 const mcqText = starterQuiz ? starterQuiz[0] : null;
@@ -55,7 +52,7 @@ describe("QuestionListItem", () => {
   it("renders text after an image", () => {
     invariant(mcqStemImage?.questionStem, "mcqStemImage.questionStem is null");
 
-    const questionStem: (StemTextObject | StemImageObject)[] = [
+    const questionStem: StemObject[] = [
       ...mcqStemImage.questionStem,
       {
         text: "This is some text",

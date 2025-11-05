@@ -11,6 +11,7 @@ import { QuizOrderAnswer } from "./QuizOrderAnswer";
 import { QuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { OrderAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { stemToPortableText } from "@/utils/portableText";
 
 jest.mock("@oaknational/oak-components", () => {
   return {
@@ -27,6 +28,7 @@ describe(QuizOrderAnswer, () => {
       {
         type: "text",
         text: "Mouse",
+        portableText: stemToPortableText("Mouse"),
       },
     ],
     correctOrder: 1,
@@ -36,6 +38,7 @@ describe(QuizOrderAnswer, () => {
       {
         type: "text",
         text: "Cat",
+        portableText: stemToPortableText("Cat"),
       },
     ],
     correctOrder: 2,
@@ -45,6 +48,7 @@ describe(QuizOrderAnswer, () => {
       {
         type: "text",
         text: "Elephant",
+        portableText: stemToPortableText("Elephant"),
       },
     ],
     correctOrder: 3,
