@@ -24,6 +24,10 @@ const CustomWeAreItemOakGridArea = styled(OakGridArea)`
   @media (max-width: 1040px) {
     grid-column: span 6;
   }
+
+  @media (max-width: 749px) {
+    grid-column: span 12;
+  }
 `;
 
 const COLORS: OakBoxProps["$background"][] = [
