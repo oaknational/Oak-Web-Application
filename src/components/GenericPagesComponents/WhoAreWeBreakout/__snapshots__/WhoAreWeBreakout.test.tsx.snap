@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WhoAreWeBreakout renders correctly 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-fqkvVR sc-kAyceB sc-35d93232-0 dySFtr libZBW dpnsQr"
+    >
+      <div
+        class="sc-fqkvVR sc-kAyceB jClFQg bAFsaQ"
+      />
+      <div
+        class="sc-fqkvVR sc-kAyceB kQnNVF gSPFUg"
+      >
+        <p
+          class="sc-dLMFU hVxJqQ"
+        >
+          TESTING_CONTENT
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+`;

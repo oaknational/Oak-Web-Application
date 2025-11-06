@@ -11,7 +11,7 @@ exports[`WhoAreWeHeader renders correctly 1`] = `
         class="sc-fqkvVR sc-jXbUNg bHaeEi gdCncd"
       >
         <div
-          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-58e9a787-0 fgBWrW joHkzz iAkSYx gdDmbh"
+          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-471d5044-0 fgBWrW joHkzz iAkSYx brvmnC"
         >
           <div
             class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
@@ -26,17 +26,17 @@ exports[`WhoAreWeHeader renders correctly 1`] = `
               </span>
             </h1>
             <p
-              class="sc-dLMFU bFsRMq"
+              class="sc-dLMFU jgKgJl"
             >
               TESTING_CONTENT
             </p>
           </div>
         </div>
         <div
-          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-58e9a787-1 fgBWrW joHkzz dGlNMa eAwRaC"
+          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-471d5044-1 fgBWrW joHkzz dGlNMa eUnLBR"
         >
           <div
-            class="sc-fqkvVR dBhiOD"
+            class="sc-fqkvVR cOTPfu"
             role="presentation"
           >
             <img
@@ -47,8 +47,8 @@ exports[`WhoAreWeHeader renders correctly 1`] = `
               height="523"
               loading="lazy"
               sizes="(min-width: 750px) 1200px, 100vw"
-              src="https://next_public_cloudinary_secure_distribution/NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME/image/upload/fl_keep_attribution/c_limit,w_3840/f_auto/q_auto/v1/auth-acorn_zyoma2?_a=BAVAZGID0"
-              srcset="https://NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION/NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME/image/upload/fl_keep_attribution/c_limit,w_640/f_auto/q_auto/v1/auth-acorn_zyoma2?_a=BAVAZGID0 640w, https://NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION/NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME/image/upload/fl_keep_attribution/c_limit,w_750/f_auto/q_auto/v1/auth-acorn_zyoma2?_a=BAVAZGID0 750w, https://NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION/NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME/image/upload/fl_keep_attribution/c_limit,w_828/f_auto/q_auto/v1/auth-acorn_zyoma2?_a=BAVAZGID0 828w, https://NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION/NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME/image/upload/fl_keep_attribution/c_limit,w_1080/f_auto/q_auto/v1/auth-acorn_zyoma2?_a=BAVAZGID0 1080w, https://NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION/NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME/image/upload/fl_keep_attribution/c_limit,w_1200/f_auto/q_auto/v1/auth-acorn_zyoma2?_a=BAVAZGID0 1200w, https://NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION/NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME/image/upload/fl_keep_attribution/c_limit,w_1920/f_auto/q_auto/v1/auth-acorn_zyoma2?_a=BAVAZGID0 1920w, https://NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION/NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME/image/upload/fl_keep_attribution/c_limit,w_2048/f_auto/q_auto/v1/auth-acorn_zyoma2?_a=BAVAZGID0 2048w, https://NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION/NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME/image/upload/fl_keep_attribution/c_limit,w_3840/f_auto/q_auto/v1/auth-acorn_zyoma2?_a=BAVAZGID0 3840w"
+              src="https://next_public_cloudinary_secure_distribution/NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME/image/upload/fl_keep_attribution/c_limit,w_3840/f_auto/q_auto/v1/TESTING_IMAGE?_a=BAVAZGID0"
+              srcset="https://NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION/NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME/image/upload/fl_keep_attribution/c_limit,w_640/f_auto/q_auto/v1/TESTING_IMAGE?_a=BAVAZGID0 640w, https://NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION/NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME/image/upload/fl_keep_attribution/c_limit,w_750/f_auto/q_auto/v1/TESTING_IMAGE?_a=BAVAZGID0 750w, https://NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION/NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME/image/upload/fl_keep_attribution/c_limit,w_828/f_auto/q_auto/v1/TESTING_IMAGE?_a=BAVAZGID0 828w, https://NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION/NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME/image/upload/fl_keep_attribution/c_limit,w_1080/f_auto/q_auto/v1/TESTING_IMAGE?_a=BAVAZGID0 1080w, https://NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION/NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME/image/upload/fl_keep_attribution/c_limit,w_1200/f_auto/q_auto/v1/TESTING_IMAGE?_a=BAVAZGID0 1200w, https://NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION/NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME/image/upload/fl_keep_attribution/c_limit,w_1920/f_auto/q_auto/v1/TESTING_IMAGE?_a=BAVAZGID0 1920w, https://NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION/NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME/image/upload/fl_keep_attribution/c_limit,w_2048/f_auto/q_auto/v1/TESTING_IMAGE?_a=BAVAZGID0 2048w, https://NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION/NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME/image/upload/fl_keep_attribution/c_limit,w_3840/f_auto/q_auto/v1/TESTING_IMAGE?_a=BAVAZGID0 3840w"
               style="color: transparent;"
               width="384"
             />
