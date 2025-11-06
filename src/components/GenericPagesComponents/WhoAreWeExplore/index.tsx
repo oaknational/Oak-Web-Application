@@ -7,15 +7,17 @@ import {
   OakIcon,
   OakIconProps,
 } from "@oaknational/oak-components";
-import { ReactNode, useMemo } from "react";
+import Link from "next/link";
+import { ReactNode } from "react";
+
+import FocusIndicator from "@/components/CurriculumComponents/OakComponentsKitchen/FocusIndicator";
 
 function InnerMaxWidth({ children }: { children: ReactNode }) {
-  const styleAttrs = useMemo(() => ({ maxWidth: 1280 + 40 * 2 }), []);
   return (
     <OakBox
-      style={styleAttrs}
+      $maxWidth={"all-spacing-24"}
       $mh={"auto"}
-      $ph={["inner-padding-m", "inner-padding-xl3", "inner-padding-xl3"]}
+      $ph={["inner-padding-m", "inner-padding-m", "inner-padding-xl3"]}
     >
       {children}
     </OakBox>
@@ -36,13 +38,17 @@ export function WhoAreWeExplore({
 }: Readonly<WhoAreWeExploreProps>) {
   return (
     <OakBox $background={"mint"}>
-      <InnerMaxWidth>
+      <InnerMaxWidth data-testid="test">
         <OakFlex
           $flexDirection={"column"}
-          $mv="space-between-xxxl"
-          $gap={"all-spacing-10"}
+          $pv={["inner-padding-xl5", "inner-padding-xl8", "inner-padding-xl8"]}
+          $gap={["all-spacing-7", "all-spacing-10", "all-spacing-10"]}
         >
-          <OakHeading tag="h3" $textAlign={"center"} $font={"heading-4"}>
+          <OakHeading
+            tag="h2"
+            $textAlign={"center"}
+            $font={["heading-5", "heading-4", "heading-4"]}
+          >
             {title}
           </OakHeading>
           <OakGrid
@@ -50,27 +56,36 @@ export function WhoAreWeExplore({
             $cg={"all-spacing-4"}
             $gridAutoRows={"1fr"}
           >
-            {items.map(({ title, iconName }) => {
+            {items.map(({ title, iconName, href }) => {
               return (
                 <OakGridArea key={title} $colSpan={[12, 6, 6]}>
-                  <OakFlex
-                    $flexDirection={"row"}
-                    $pa={"inner-padding-m"}
-                    $background={"white"}
-                    $gap={"all-spacing-4"}
-                    $alignItems={"center"}
-                    $borderRadius={"border-radius-m2"}
-                  >
-                    <OakFlex>
-                      <OakIcon iconName={iconName} />
-                    </OakFlex>
-                    <OakFlex $flexGrow={1} $font={"body-1-bold"}>
-                      {title}
-                    </OakFlex>
-                    <OakFlex>
-                      <OakIcon iconName="arrow-right" />
-                    </OakFlex>
-                  </OakFlex>
+                  <FocusIndicator $borderRadius={"border-radius-m2"}>
+                    <Link style={{ outline: "none" }} href={href}>
+                      <OakFlex
+                        data-testid="who-we-are-explore-item"
+                        $flexDirection={"row"}
+                        $pa={"inner-padding-m"}
+                        $background={"white"}
+                        $gap={"all-spacing-4"}
+                        $alignItems={"center"}
+                        $borderRadius={"border-radius-m2"}
+                      >
+                        <OakFlex>
+                          <OakIcon
+                            iconName={iconName}
+                            $width={"all-spacing-10"}
+                            $height={"all-spacing-10"}
+                          />
+                        </OakFlex>
+                        <OakFlex $flexGrow={1} $font={"body-1-bold"}>
+                          {title}
+                        </OakFlex>
+                        <OakFlex>
+                          <OakIcon iconName="arrow-right" />
+                        </OakFlex>
+                      </OakFlex>
+                    </Link>
+                  </FocusIndicator>
                 </OakGridArea>
               );
             })}

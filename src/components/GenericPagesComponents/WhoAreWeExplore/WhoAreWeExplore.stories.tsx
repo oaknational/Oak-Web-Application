@@ -27,18 +27,32 @@ export const Default: Story = {
       {
         iconName: "curriculum-plan",
         title: "About Oak’s curriculum",
+        href: "#",
       },
       {
         iconName: "ai-worksheet",
         title: "Oak’s impact",
+        href: "#",
       },
       {
         iconName: "ai-worksheet",
         title: "Meet the team",
+        href: "#",
       },
       {
         iconName: "ai-worksheet",
         title: "Get involved",
+        href: "#",
+      },
+      {
+        iconName: "ai-worksheet",
+        title: "Something else",
+        href: "#",
+      },
+      {
+        iconName: "ai-worksheet",
+        title: "Yet another thing",
+        href: "#",
       },
     ],
   },
