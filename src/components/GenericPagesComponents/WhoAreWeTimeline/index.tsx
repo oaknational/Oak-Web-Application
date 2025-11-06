@@ -21,31 +21,20 @@ function InnerMaxWidth({ children }: { children: ReactNode }) {
   );
 }
 
-export default function WhoAreWeTimeline() {
-  const items = [
-    {
-      subtitle: "From then",
-      title: "A rapid response to the pandemic",
-      text: [
-        "In 2020, teachers needed a quick way to keep pupils learning during lockdown. So we brought together a group of expert partners to support schools with thousands of lessons designed for remote learning.",
-      ],
-    },
-    {
-      subtitle: "To now",
-      title: "Complete resources for the classroom, schools and trusts",
-      text: [
-        "From early years to exam years, we now provide complete curriculum support for the classroom. Every national curriculum subject, every unit, every lesson, in one place.",
-        "We’re also transforming lesson prep with AI tools that help teachers create, adapt, and enhance their lessons in minutes, while keeping quality high and content safe.",
-      ],
-    },
-    {
-      subtitle: "And beyond",
-      title: "Staying ahead in a changing world",
-      text: [
-        "We’ve always anticipated the emerging needs of teachers – from building safe and secure AI tools, to making our platform code available to partners who want to integrate it directly. We’ll keep innovating as we find new ways to help teachers stay ahead in a changing world.",
-      ],
-    },
-  ];
+export type WhoAreWeTimelineProps = {
+  title: string;
+  subtitle: string;
+  items: {
+    title: string;
+    subtitle: string;
+    text: string[];
+  }[];
+};
+export default function WhoAreWeTimeline({
+  title,
+  subtitle,
+  items,
+}: Readonly<WhoAreWeTimelineProps>) {
   return (
     <OakBox $background={"mint30"}>
       <InnerMaxWidth>
@@ -59,12 +48,10 @@ export default function WhoAreWeTimeline() {
               <OakFlex $gap={"all-spacing-2"} $flexDirection={"column"}>
                 <OakBox $font={"heading-5"}>
                   <OakSpan $background={"mint"} $ph={"inner-padding-ssx"}>
-                    Oak’s story
+                    {title}
                   </OakSpan>
                 </OakBox>
-                <OakBox $font={"heading-3"}>
-                  As teaching evolves, so do we...
-                </OakBox>
+                <OakBox $font={"heading-3"}>{subtitle}</OakBox>
               </OakFlex>
             </OakGridArea>
           </OakGrid>

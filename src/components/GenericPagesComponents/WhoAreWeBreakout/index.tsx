@@ -9,7 +9,11 @@ const CustomFlex = styled(OakFlex)`
   }
 `;
 
-export function WhoAreWeBreakout() {
+export type WhoAreWeBreakoutProps = {
+  cloudinaryId: string;
+  content: string;
+};
+export function WhoAreWeBreakout({ content }: Readonly<WhoAreWeBreakoutProps>) {
   return (
     <CustomFlex $background={"mint"} $flexDirection={["column", "row", "row"]}>
       <OakFlex
@@ -24,12 +28,7 @@ export function WhoAreWeBreakout() {
         $pv={"inner-padding-xl3"}
         $alignItems={"center"}
       >
-        <OakP $font={"heading-light-5"}>
-          We’re Oak, your trusted planning partner for great teaching. Our free,
-          adaptable resources evolve with education to give teachers and schools
-          the latest tools to deliver inspiring lessons, save time and improve
-          pupil outcomes.
-        </OakP>
+        <OakP $font={"heading-light-5"}>{content}</OakP>
       </OakFlex>
     </CustomFlex>
   );

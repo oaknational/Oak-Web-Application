@@ -6,9 +6,12 @@ import {
   OakBox,
   OakP,
   OakSpan,
+  OakCloudinaryImage,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 import { ReactNode, useMemo } from "react";
+
+import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 
 const CustomHeaderTextOakGridArea = styled(OakGridArea)`
   grid-column: span 6;
@@ -37,7 +40,16 @@ function InnerMaxWidth({ children }: { children: ReactNode }) {
   );
 }
 
-export function WhoAreWeHeader() {
+export type WhoAreWeHeaderProps = {
+  title: string;
+  content: string;
+  cloudinaryId: string;
+};
+export function WhoAreWeHeader({
+  title,
+  content,
+  cloudinaryId,
+}: Readonly<WhoAreWeHeaderProps>) {
   return (
     <InnerMaxWidth>
       <OakGrid
@@ -49,21 +61,24 @@ export function WhoAreWeHeader() {
           <OakFlex $flexDirection={"column"} $gap={"all-spacing-6"}>
             <OakHeading tag="h1" $font={"heading-2"}>
               <OakSpan $background="mint" $ph={"inner-padding-ssx"}>
-                About Oak
+                {title}
               </OakSpan>
             </OakHeading>
-            <OakP $font={"heading-light-3"}>
-              We're here to support and inspire teachers to deliver great
-              teaching, so every pupil benefits
+            <OakP $font={"heading-light-3"} $color={"text-primary"}>
+              {content}
             </OakP>
           </OakFlex>
         </CustomHeaderTextOakGridArea>
         <CustomHeaderImageOakGridArea $colSpan={4} $colStart={9}>
-          <OakBox
-            $background={"mint30"}
-            $borderStyle={"solid"}
-            $borderColor={"mint110"}
-            $height={"all-spacing-18"}
+          <OakCloudinaryImage
+            cloudinaryId={cloudinaryId}
+            alt={"Oak icon"}
+            width={384}
+            height={523}
+            $minWidth={"100%"}
+            placeholder="oak"
+            sizes={getSizes(["100vw", 1200])}
+            role="presentation"
           />
         </CustomHeaderImageOakGridArea>
       </OakGrid>

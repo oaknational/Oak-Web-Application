@@ -213,11 +213,93 @@ const AboutWhoWeAreOld: NextPage<AboutPageProps> = ({ pageData }) => {
 export const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
-      <WhoAreWeHeader />
-      <WhoAreWeBreakout />
-      <WhoAreWeTimeline />
-      <WhoAreWeDesc />
-      <WhoAreWeExplore />
+      <WhoAreWeHeader
+        title={"About Oak"}
+        content={
+          "We're here to support and inspire teachers to deliver great teaching, so every pupil benefits"
+        }
+        cloudinaryId="TESTING_IMAGE"
+      />
+      <WhoAreWeBreakout
+        cloudinaryId={"test"}
+        content={
+          "We’re Oak, your trusted planning partner for great teaching. Our free, adaptable resources evolve with education to give teachers and schools the latest tools to deliver inspiring lessons, save time and improve pupil outcomes."
+        }
+      />
+      <WhoAreWeTimeline
+        title={"Oak’s story"}
+        subtitle={"As teaching evolves, so do we..."}
+        items={[
+          {
+            subtitle: "From then",
+            title: "A rapid response to the pandemic",
+            text: [
+              "In 2020, teachers needed a quick way to keep pupils learning during lockdown. So we brought together a group of expert partners to support schools with thousands of lessons designed for remote learning.",
+            ],
+          },
+          {
+            subtitle: "To now",
+            title: "Complete resources for the classroom, schools and trusts",
+            text: [
+              "From early years to exam years, we now provide complete curriculum support for the classroom. Every national curriculum subject, every unit, every lesson, in one place.",
+              "We’re also transforming lesson prep with AI tools that help teachers create, adapt, and enhance their lessons in minutes, while keeping quality high and content safe.",
+            ],
+          },
+          {
+            subtitle: "And beyond",
+            title: "Staying ahead in a changing world",
+            text: [
+              "We’ve always anticipated the emerging needs of teachers – from building safe and secure AI tools, to making our platform code available to partners who want to integrate it directly. We’ll keep innovating as we find new ways to help teachers stay ahead in a changing world.",
+            ],
+          },
+        ]}
+      />
+      <WhoAreWeDesc
+        title={"We are..."}
+        items={[
+          {
+            title: "Built for the reality of teaching",
+            text: "We get it. Time is tight, classes vary, and only teachers can know pupils best. That’s why our materials are flexible tools to adapt, not scripts to follow: a starting point that supports your expertise and style.",
+          },
+          {
+            title: "Expert created and quality assured",
+            text: "Created by subject and curriculum experts, our resources are informed by the best available evidence of what works, aligned to the national curriculum and tested by real teachers.",
+          },
+          {
+            title: "Free, and always will be",
+            text: "We’re funded by the Department for Education. No paywalls, package tiers, or hidden costs.",
+          },
+          {
+            title: "Independent and optional",
+            text: "Oak is by teachers, for teachers. Our board is publicly appointed, and our partners selected through an open process.",
+          },
+        ]}
+      />
+      <WhoAreWeExplore
+        title={"Explore more about Oak"}
+        items={[
+          {
+            iconName: "curriculum-plan",
+            title: "About Oak’s curriculum",
+            href: "#",
+          },
+          {
+            iconName: "ai-worksheet",
+            title: "Oak’s impact",
+            href: "#",
+          },
+          {
+            iconName: "ai-worksheet",
+            title: "Meet the team",
+            href: "#",
+          },
+          {
+            iconName: "ai-worksheet",
+            title: "Get involved",
+            href: "#",
+          },
+        ]}
+      />
     </Layout>
   );
 };

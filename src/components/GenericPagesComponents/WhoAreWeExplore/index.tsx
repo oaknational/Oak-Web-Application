@@ -22,29 +22,18 @@ function InnerMaxWidth({ children }: { children: ReactNode }) {
   );
 }
 
-export function WhoAreWeExplore() {
-  const items: {
+export type WhoAreWeExploreProps = {
+  title: string;
+  items: {
     iconName: OakIconProps["iconName"];
     title: string;
-  }[] = [
-    {
-      iconName: "curriculum-plan",
-      title: "About Oak’s curriculum",
-    },
-    {
-      iconName: "ai-worksheet",
-      title: "Oak’s impact",
-    },
-    {
-      iconName: "ai-worksheet",
-      title: "Meet the team",
-    },
-    {
-      iconName: "ai-worksheet",
-      title: "Get involved",
-    },
-  ] as const;
-
+    href: string;
+  }[];
+};
+export function WhoAreWeExplore({
+  title,
+  items,
+}: Readonly<WhoAreWeExploreProps>) {
   return (
     <OakBox $background={"mint"}>
       <InnerMaxWidth>
@@ -54,7 +43,7 @@ export function WhoAreWeExplore() {
           $gap={"all-spacing-10"}
         >
           <OakHeading tag="h3" $textAlign={"center"} $font={"heading-4"}>
-            Explore more about Oak
+            {title}
           </OakHeading>
           <OakGrid
             $rg={"all-spacing-4"}

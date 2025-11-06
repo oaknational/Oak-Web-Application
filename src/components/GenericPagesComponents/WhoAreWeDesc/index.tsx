@@ -30,33 +30,30 @@ const CustomWeAreItemOakGridArea = styled(OakGridArea)`
   }
 `;
 
-export function WhoAreWeDesc() {
-  const items: {
-    background: OakBoxProps["$background"];
+const COLORS: OakBoxProps["$background"][] = [
+  "bg-decorative3-main",
+  "bg-decorative4-main",
+  "bg-decorative2-main",
+  "bg-decorative5-main",
+] as const;
+
+type WhoAreWeDescProps = {
+  title: string;
+  items: {
     title: string;
     text: string;
-  }[] = [
-    {
-      background: "bg-decorative3-main",
-      title: "Built for the reality of teaching",
-      text: "We get it. Time is tight, classes vary, and only teachers can know pupils best. That’s why our materials are flexible tools to adapt, not scripts to follow: a starting point that supports your expertise and style.",
-    },
-    {
-      background: "bg-decorative4-main",
-      title: "Expert created and quality assured",
-      text: "Created by subject and curriculum experts, our resources are informed by the best available evidence of what works, aligned to the national curriculum and tested by real teachers.",
-    },
-    {
-      background: "bg-decorative2-main",
-      title: "Free, and always will be",
-      text: "We’re funded by the Department for Education. No paywalls, package tiers, or hidden costs.",
-    },
-    {
-      background: "bg-decorative5-main",
-      title: "Independent and optional",
-      text: "Oak is by teachers, for teachers. Our board is publicly appointed, and our partners selected through an open process.",
-    },
-  ];
+  }[];
+};
+export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
+  const itemsMapped = useMemo(() => {
+    return items.map((item, itemIndex) => {
+      return {
+        ...item,
+        background: COLORS[itemIndex % COLORS.length],
+      };
+    });
+  }, [items]);
+
   return (
     <InnerMaxWidth>
       <OakFlex
@@ -65,7 +62,7 @@ export function WhoAreWeDesc() {
         $gap={"all-spacing-10"}
       >
         <OakHeading tag="h3" $textAlign={"center"} $font={"heading-3"}>
-          We are...
+          {title}
         </OakHeading>
         <OakGrid
           $rg={"all-spacing-4"}
@@ -73,7 +70,7 @@ export function WhoAreWeDesc() {
           $gridAutoRows={"1fr"}
           $mb={"space-between-xxl"}
         >
-          {items.map(({ background, title, text }) => {
+          {itemsMapped.map(({ background, title, text }) => {
             return (
               <CustomWeAreItemOakGridArea key={title} $colSpan={12}>
                 <OakFlex $flexDirection={"column"} $gap={"all-spacing-6"}>
