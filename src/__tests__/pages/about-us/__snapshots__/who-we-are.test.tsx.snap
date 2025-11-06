@@ -1966,7 +1966,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 class="sc-fqkvVR sc-jXbUNg egekXy iwxQGX"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-9118ef79-0 fgBWrW joHkzz iAkSYx gksaIj"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-696740e6-0 fgBWrW joHkzz iAkSYx dSbcHj"
                   data-testid="who-we-are-desc-item"
                 >
                   <div
@@ -2006,7 +2006,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-9118ef79-0 fgBWrW joHkzz iAkSYx gksaIj"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-696740e6-0 fgBWrW joHkzz iAkSYx dSbcHj"
                   data-testid="who-we-are-desc-item"
                 >
                   <div
@@ -2046,7 +2046,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-9118ef79-0 fgBWrW joHkzz iAkSYx gksaIj"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-696740e6-0 fgBWrW joHkzz iAkSYx dSbcHj"
                   data-testid="who-we-are-desc-item"
                 >
                   <div
@@ -2086,7 +2086,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-9118ef79-0 fgBWrW joHkzz iAkSYx gksaIj"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-696740e6-0 fgBWrW joHkzz iAkSYx dSbcHj"
                   data-testid="who-we-are-desc-item"
                 >
                   <div
