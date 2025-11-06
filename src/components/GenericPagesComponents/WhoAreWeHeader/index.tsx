@@ -6,12 +6,10 @@ import {
   OakBox,
   OakP,
   OakSpan,
-  OakCloudinaryImage,
+  OakImage,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 import { ReactNode, useMemo } from "react";
-
-import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 
 const CustomHeaderTextOakGridArea = styled(OakGridArea)`
   grid-column: span 6;
@@ -29,11 +27,12 @@ const CustomHeaderImageOakGridArea = styled(OakGridArea)`
 
 function InnerMaxWidth({ children }: { children: ReactNode }) {
   const styleAttrs = useMemo(() => ({ maxWidth: 1280 + 40 * 2 }), []);
+
   return (
     <OakBox
       style={styleAttrs}
       $mh={"auto"}
-      $ph={["inner-padding-m", "inner-padding-xl3", "inner-padding-xl3"]}
+      $ph={["inner-padding-m", "inner-padding-m", "inner-padding-m"]}
     >
       {children}
     </OakBox>
@@ -43,12 +42,14 @@ function InnerMaxWidth({ children }: { children: ReactNode }) {
 export type WhoAreWeHeaderProps = {
   title: string;
   content: string;
-  cloudinaryId: string;
+  imageUrl: string;
+  imageAlt: string;
 };
 export function WhoAreWeHeader({
   title,
   content,
-  cloudinaryId,
+  imageUrl,
+  imageAlt,
 }: Readonly<WhoAreWeHeaderProps>) {
   return (
     <InnerMaxWidth>
@@ -57,29 +58,33 @@ export function WhoAreWeHeader({
         $rg="space-between-s"
         $pv={"inner-padding-xl7"}
       >
-        <CustomHeaderTextOakGridArea $colSpan={12}>
+        <CustomHeaderTextOakGridArea $colSpan={12} $justifyContent={"center"}>
           <OakFlex $flexDirection={"column"} $gap={"all-spacing-6"}>
-            <OakHeading tag="h1" $font={"heading-2"}>
+            <OakHeading
+              tag="h1"
+              $font={["heading-4", "heading-2", "heading-2"]}
+            >
               <OakSpan $background="mint" $ph={"inner-padding-ssx"}>
                 {title}
               </OakSpan>
             </OakHeading>
-            <OakP $font={"heading-light-3"} $color={"text-primary"}>
+            <OakP
+              $font={["heading-light-5", "heading-light-3", "heading-light-3"]}
+              $color={"text-primary"}
+            >
               {content}
             </OakP>
           </OakFlex>
         </CustomHeaderTextOakGridArea>
         <CustomHeaderImageOakGridArea $colSpan={4} $colStart={9}>
-          <OakCloudinaryImage
-            cloudinaryId={cloudinaryId}
-            alt={"Oak icon"}
-            width={384}
-            height={523}
-            $minWidth={"100%"}
-            placeholder="oak"
-            sizes={getSizes(["100vw", 1200])}
-            role="presentation"
-          />
+          <OakBox $width={"all-spacing-20"} $height={"all-spacing-20"}>
+            <OakImage
+              alt={imageAlt}
+              src={imageUrl}
+              $objectFit={"contain"}
+              $height={"100%"}
+            />
+          </OakBox>
         </CustomHeaderImageOakGridArea>
       </OakGrid>
     </InnerMaxWidth>

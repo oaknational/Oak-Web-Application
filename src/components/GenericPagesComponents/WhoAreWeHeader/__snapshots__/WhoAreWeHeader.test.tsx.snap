@@ -4,20 +4,20 @@ exports[`WhoAreWeHeader renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR jglYoS"
+      class="sc-fqkvVR ieiSrW"
       style="max-width: 1360px;"
     >
       <div
         class="sc-fqkvVR sc-jXbUNg bHaeEi gdCncd"
       >
         <div
-          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-471d5044-0 fgBWrW joHkzz iAkSYx brvmnC"
+          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-b448c8cf-0 fgBWrW djyvKT iAkSYx NrDgp"
         >
           <div
             class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
           >
             <h1
-              class="sc-kpDqfm jGrEMo"
+              class="sc-kpDqfm cRJejs"
             >
               <span
                 class="sc-dAlyuH jXPica"
@@ -26,32 +26,31 @@ exports[`WhoAreWeHeader renders correctly 1`] = `
               </span>
             </h1>
             <p
-              class="sc-dLMFU jgKgJl"
+              class="sc-dLMFU hxKUrX"
             >
               TESTING_CONTENT
             </p>
           </div>
         </div>
         <div
-          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-471d5044-1 fgBWrW joHkzz dGlNMa eUnLBR"
+          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-b448c8cf-1 fgBWrW joHkzz dGlNMa qOnCG"
         >
           <div
-            class="sc-fqkvVR cOTPfu"
-            role="presentation"
+            class="sc-fqkvVR dBkKun"
           >
-            <img
-              alt="Oak icon"
-              class="sc-iGgWBj dGvPfv"
-              data-nimg="1"
-              decoding="async"
-              height="523"
-              loading="lazy"
-              sizes="(min-width: 750px) 1200px, 100vw"
-              src="https://next_public_cloudinary_secure_distribution/NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME/image/upload/fl_keep_attribution/c_limit,w_3840/f_auto/q_auto/v1/TESTING_IMAGE?_a=BAVAZGID0"
-              srcset="https://NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION/NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME/image/upload/fl_keep_attribution/c_limit,w_640/f_auto/q_auto/v1/TESTING_IMAGE?_a=BAVAZGID0 640w, https://NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION/NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME/image/upload/fl_keep_attribution/c_limit,w_750/f_auto/q_auto/v1/TESTING_IMAGE?_a=BAVAZGID0 750w, https://NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION/NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME/image/upload/fl_keep_attribution/c_limit,w_828/f_auto/q_auto/v1/TESTING_IMAGE?_a=BAVAZGID0 828w, https://NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION/NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME/image/upload/fl_keep_attribution/c_limit,w_1080/f_auto/q_auto/v1/TESTING_IMAGE?_a=BAVAZGID0 1080w, https://NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION/NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME/image/upload/fl_keep_attribution/c_limit,w_1200/f_auto/q_auto/v1/TESTING_IMAGE?_a=BAVAZGID0 1200w, https://NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION/NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME/image/upload/fl_keep_attribution/c_limit,w_1920/f_auto/q_auto/v1/TESTING_IMAGE?_a=BAVAZGID0 1920w, https://NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION/NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME/image/upload/fl_keep_attribution/c_limit,w_2048/f_auto/q_auto/v1/TESTING_IMAGE?_a=BAVAZGID0 2048w, https://NEXT_PUBLIC_CLOUDINARY_SECURE_DISTRIBUTION/NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME/image/upload/fl_keep_attribution/c_limit,w_3840/f_auto/q_auto/v1/TESTING_IMAGE?_a=BAVAZGID0 3840w"
-              style="color: transparent;"
-              width="384"
-            />
+            <div
+              class="sc-fqkvVR hudrT"
+            >
+              <img
+                alt="Oak logo"
+                class="sc-dcJsrY jRtmJB"
+                data-nimg="fill"
+                decoding="async"
+                loading="lazy"
+                src="http://example.com/image.svg"
+                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+              />
+            </div>
           </div>
         </div>
       </div>

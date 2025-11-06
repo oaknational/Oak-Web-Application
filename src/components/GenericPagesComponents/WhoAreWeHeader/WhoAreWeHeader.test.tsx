@@ -10,15 +10,15 @@ describe("WhoAreWeHeader", () => {
       <WhoAreWeHeader
         title="TESTING_TITLE"
         content="TESTING_CONTENT"
-        cloudinaryId="TESTING_IMAGE"
+        imageUrl="http://example.com/image.svg"
+        imageAlt="Oak logo"
       />,
     );
     expect(baseElement).toMatchSnapshot();
     expect(getByRole("heading")).toHaveTextContent("TESTING_TITLE");
     expect(getByRole("paragraph")).toHaveTextContent("TESTING_CONTENT");
-    expect(getByRole("img")).toHaveAttribute(
-      "src",
-      "https://next_public_cloudinary_secure_distribution/NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME/image/upload/fl_keep_attribution/c_limit,w_3840/f_auto/q_auto/v1/TESTING_IMAGE?_a=BAVAZGID0",
-    );
+    const imageEl = getByRole("img");
+    expect(imageEl).toHaveAttribute("src", "http://example.com/image.svg");
+    expect(imageEl).toHaveAttribute("alt", "Oak logo");
   });
 });
