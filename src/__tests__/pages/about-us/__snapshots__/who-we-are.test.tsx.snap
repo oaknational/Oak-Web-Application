@@ -1952,39 +1952,53 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR jglYoS"
-            style="max-width: 1360px;"
+            class="sc-fqkvVR dtojPp"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB gVJWfC jyLrLm"
+              class="sc-fqkvVR sc-kAyceB bhbwbN gwxZIR"
             >
-              <h3
-                class="sc-kpDqfm dgXRPm"
+              <h2
+                class="sc-kpDqfm ijVMjN"
               >
                 We are...
-              </h3>
+              </h2>
               <div
                 class="sc-fqkvVR sc-jXbUNg egekXy iwxQGX"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-cab17b7-0 fgBWrW joHkzz iAkSYx kvWTBI"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-9118ef79-0 fgBWrW joHkzz iAkSYx gksaIj"
+                  data-testid="who-we-are-desc-item"
                 >
                   <div
                     class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
                   >
                     <div
-                      class="sc-fqkvVR gRaQAv"
-                    />
+                      class="sc-fqkvVR gGSZAU"
+                    >
+                      <div
+                        class="sc-fqkvVR hudrT"
+                      >
+                        <img
+                          alt="test"
+                          class="sc-dcJsrY jRtmJB"
+                          data-nimg="fill"
+                          decoding="async"
+                          loading="lazy"
+                          src="https://res.cloudinary.com/oak-web-application/image/upload/v1734523721/homepage/teacher-reading-map_glwhyh.svg"
+                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                        />
+                      </div>
+                    </div>
                     <div
                       class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
                     >
                       <h3
-                        class="sc-kpDqfm evKItP"
+                        class="sc-kpDqfm exYwWV"
                       >
                         Built for the reality of teaching
                       </h3>
                       <p
-                        class="sc-dLMFU gvLBvO"
+                        class="sc-dLMFU gKXbKJ"
                       >
                         We get it. Time is tight, classes vary, and only teachers can know pupils best. That’s why our materials are flexible tools to adapt, not scripts to follow: a starting point that supports your expertise and style.
                       </p>
@@ -1992,24 +2006,39 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-cab17b7-0 fgBWrW joHkzz iAkSYx kvWTBI"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-9118ef79-0 fgBWrW joHkzz iAkSYx gksaIj"
+                  data-testid="who-we-are-desc-item"
                 >
                   <div
                     class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
                   >
                     <div
-                      class="sc-fqkvVR cTQwwX"
-                    />
+                      class="sc-fqkvVR fulovU"
+                    >
+                      <div
+                        class="sc-fqkvVR hudrT"
+                      >
+                        <img
+                          alt="test"
+                          class="sc-dcJsrY jRtmJB"
+                          data-nimg="fill"
+                          decoding="async"
+                          loading="lazy"
+                          src="https://res.cloudinary.com/oak-web-application/image/upload/v1734523721/homepage/teacher-reading-map_glwhyh.svg"
+                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                        />
+                      </div>
+                    </div>
                     <div
                       class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
                     >
                       <h3
-                        class="sc-kpDqfm evKItP"
+                        class="sc-kpDqfm exYwWV"
                       >
                         Expert created and quality assured
                       </h3>
                       <p
-                        class="sc-dLMFU gvLBvO"
+                        class="sc-dLMFU gKXbKJ"
                       >
                         Created by subject and curriculum experts, our resources are informed by the best available evidence of what works, aligned to the national curriculum and tested by real teachers.
                       </p>
@@ -2017,24 +2046,39 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-cab17b7-0 fgBWrW joHkzz iAkSYx kvWTBI"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-9118ef79-0 fgBWrW joHkzz iAkSYx gksaIj"
+                  data-testid="who-we-are-desc-item"
                 >
                   <div
                     class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
                   >
                     <div
-                      class="sc-fqkvVR etkhkq"
-                    />
+                      class="sc-fqkvVR hXKZlN"
+                    >
+                      <div
+                        class="sc-fqkvVR hudrT"
+                      >
+                        <img
+                          alt="test"
+                          class="sc-dcJsrY jRtmJB"
+                          data-nimg="fill"
+                          decoding="async"
+                          loading="lazy"
+                          src="https://res.cloudinary.com/oak-web-application/image/upload/v1734523721/homepage/teacher-reading-map_glwhyh.svg"
+                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                        />
+                      </div>
+                    </div>
                     <div
                       class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
                     >
                       <h3
-                        class="sc-kpDqfm evKItP"
+                        class="sc-kpDqfm exYwWV"
                       >
                         Free, and always will be
                       </h3>
                       <p
-                        class="sc-dLMFU gvLBvO"
+                        class="sc-dLMFU gKXbKJ"
                       >
                         We’re funded by the Department for Education. No paywalls, package tiers, or hidden costs.
                       </p>
@@ -2042,24 +2086,39 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-cab17b7-0 fgBWrW joHkzz iAkSYx kvWTBI"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-9118ef79-0 fgBWrW joHkzz iAkSYx gksaIj"
+                  data-testid="who-we-are-desc-item"
                 >
                   <div
                     class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
                   >
                     <div
-                      class="sc-fqkvVR jqDKUK"
-                    />
+                      class="sc-fqkvVR eRVEUV"
+                    >
+                      <div
+                        class="sc-fqkvVR hudrT"
+                      >
+                        <img
+                          alt="test"
+                          class="sc-dcJsrY jRtmJB"
+                          data-nimg="fill"
+                          decoding="async"
+                          loading="lazy"
+                          src="https://res.cloudinary.com/oak-web-application/image/upload/v1734523721/homepage/teacher-reading-map_glwhyh.svg"
+                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                        />
+                      </div>
+                    </div>
                     <div
                       class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
                     >
                       <h3
-                        class="sc-kpDqfm evKItP"
+                        class="sc-kpDqfm exYwWV"
                       >
                         Independent and optional
                       </h3>
                       <p
-                        class="sc-dLMFU gvLBvO"
+                        class="sc-dLMFU gKXbKJ"
                       >
                         Oak is by teachers, for teachers. Our board is publicly appointed, and our partners selected through an open process.
                       </p>

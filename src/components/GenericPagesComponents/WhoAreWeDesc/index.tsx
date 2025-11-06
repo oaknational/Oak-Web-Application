@@ -6,18 +6,14 @@ import {
   OakBox,
   OakP,
   OakBoxProps,
+  OakImage,
 } from "@oaknational/oak-components";
 import { ReactNode, useMemo } from "react";
 import styled from "styled-components";
 
 function InnerMaxWidth({ children }: { children: ReactNode }) {
-  const styleAttrs = useMemo(() => ({ maxWidth: 1280 + 40 * 2 }), []);
   return (
-    <OakBox
-      style={styleAttrs}
-      $mh={"auto"}
-      $ph={["inner-padding-m", "inner-padding-xl3", "inner-padding-xl3"]}
-    >
+    <OakBox $maxWidth={"all-spacing-24"} $mh={"auto"}>
       {children}
     </OakBox>
   );
@@ -42,6 +38,8 @@ type WhoAreWeDescProps = {
   items: {
     title: string;
     text: string;
+    imageUrl: string;
+    imageAlt: string;
   }[];
 };
 export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
@@ -58,10 +56,15 @@ export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
     <InnerMaxWidth>
       <OakFlex
         $flexDirection={"column"}
-        $mv="space-between-xxxl"
-        $gap={"all-spacing-10"}
+        $pv={["inner-padding-xl5", "inner-padding-xl8", "inner-padding-xl8"]}
+        $ph={["inner-padding-m", "inner-padding-m", "inner-padding-none"]}
+        $gap={["space-between-m2", "all-spacing-10", "all-spacing-10"]}
       >
-        <OakHeading tag="h3" $textAlign={"center"} $font={"heading-3"}>
+        <OakHeading
+          tag="h2"
+          $textAlign={["left", "center", "center"]}
+          $font={["heading-5", "heading-3", "heading-3"]}
+        >
           {title}
         </OakHeading>
         <OakGrid
@@ -70,25 +73,42 @@ export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
           $gridAutoRows={"1fr"}
           $mb={"space-between-xxl"}
         >
-          {itemsMapped.map(({ background, title, text }) => {
-            return (
-              <CustomWeAreItemOakGridArea key={title} $colSpan={12}>
-                <OakFlex $flexDirection={"column"} $gap={"all-spacing-6"}>
-                  <OakBox
-                    $height={"all-spacing-18"}
-                    $background={background}
-                    $borderRadius={"border-radius-m2"}
-                  />
-                  <OakFlex $gap={"all-spacing-4"} $flexDirection={"column"}>
-                    <OakHeading tag="h3" $font={"heading-5"}>
-                      {title}
-                    </OakHeading>
-                    <OakP>{text}</OakP>
+          {itemsMapped.map(
+            ({ background, title, text, imageUrl, imageAlt }) => {
+              return (
+                <CustomWeAreItemOakGridArea
+                  key={title}
+                  data-testid="who-we-are-desc-item"
+                  $colSpan={12}
+                >
+                  <OakFlex $flexDirection={"column"} $gap={"all-spacing-6"}>
+                    <OakBox
+                      $height={"all-spacing-18"}
+                      $background={background}
+                      $borderRadius={"border-radius-m2"}
+                      $pa={"inner-padding-m"}
+                    >
+                      <OakImage
+                        $objectFit={"contain"}
+                        src={imageUrl}
+                        alt={imageAlt}
+                        $height={"100%"}
+                      />
+                    </OakBox>
+                    <OakFlex $gap={"all-spacing-4"} $flexDirection={"column"}>
+                      <OakHeading
+                        tag="h3"
+                        $font={["heading-6", "heading-5", "heading-5"]}
+                      >
+                        {title}
+                      </OakHeading>
+                      <OakP $font={["body-2", "body-1", "body-1"]}>{text}</OakP>
+                    </OakFlex>
                   </OakFlex>
-                </OakFlex>
-              </CustomWeAreItemOakGridArea>
-            );
-          })}
+                </CustomWeAreItemOakGridArea>
+              );
+            },
+          )}
         </OakGrid>
       </OakFlex>
     </InnerMaxWidth>
