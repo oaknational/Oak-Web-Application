@@ -221,7 +221,10 @@ export const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({ pageData }) => {
         cloudinaryId="TESTING_IMAGE"
       />
       <WhoAreWeBreakout
-        cloudinaryId={"test"}
+        imageUrl={
+          "https://sanity-asset-cdn.thenational.academy/images/cuvjke51/production/ef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg?w=640&fm=webp&q=80&fit=clip&auto=format"
+        }
+        imageAlt="breakout image"
         content={
           "We’re Oak, your trusted planning partner for great teaching. Our free, adaptable resources evolve with education to give teachers and schools the latest tools to deliver inspiring lessons, save time and improve pupil outcomes."
         }

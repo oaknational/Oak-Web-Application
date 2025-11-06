@@ -9,11 +9,17 @@ describe("WhoAreWeBreakout", () => {
     const { baseElement, getByRole } = render(
       <WhoAreWeBreakout
         content="TESTING_CONTENT"
-        cloudinaryId="TESTING_IMAGE"
+        imageUrl="http://example.com"
+        imageAlt="test"
       />,
     );
     expect(baseElement).toMatchSnapshot();
     expect(getByRole("paragraph")).toHaveTextContent("TESTING_CONTENT");
-    // expect(getByRole("img")).toHaveAttribute("src", "TESTING_IMAGE");
+    const imageEl = getByRole("img");
+    expect(imageEl).toHaveAttribute(
+      "src",
+      "http://localhost/_next/image?url=http%3A%2F%2Fexample.com&w=3840&q=75",
+    );
+    expect(imageEl).toHaveAttribute("alt", "test");
   });
 });

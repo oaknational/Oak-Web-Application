@@ -1741,16 +1741,32 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB sc-35d93232-0 dySFtr libZBW dpnsQr"
+            class="sc-fqkvVR sc-kAyceB sc-106fff76-0 ixZoE joHkzz jCAwhf"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB jClFQg bAFsaQ"
-            />
+              class="sc-fqkvVR sc-kAyceB kkWGlq bAFsaQ"
+            >
+              <div
+                class="sc-fqkvVR jqqmXN"
+              >
+                <img
+                  alt="breakout image"
+                  class="sc-dcJsrY jIcMOQ"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  sizes="100vw"
+                  src="http://localhost/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=3840&q=75"
+                  srcset="/_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fsanity-asset-cdn.thenational.academy%2Fimages%2Fcuvjke51%2Fproduction%2Fef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg%3Fw%3D640%26fm%3Dwebp%26q%3D80%26fit%3Dclip%26auto%3Dformat&w=3840&q=75 3840w"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </div>
+            </div>
             <div
-              class="sc-fqkvVR sc-kAyceB kQnNVF gSPFUg"
+              class="sc-fqkvVR sc-kAyceB fgqejh gSPFUg"
             >
               <p
-                class="sc-dLMFU hVxJqQ"
+                class="sc-dLMFU iDMvrw"
               >
                 We’re Oak, your trusted planning partner for great teaching. Our free, adaptable resources evolve with education to give teachers and schools the latest tools to deliver inspiring lessons, save time and improve pupil outcomes.
               </p>
