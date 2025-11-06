@@ -9,6 +9,8 @@ const importRules = {
       warnOnUnassignedImports: true,
     },
   ],
+  // This isn't supported by nextjs at this time, so disable it
+  "node-import/prefer-node-protocol": "off",
   "@typescript-eslint/no-unused-vars": ["error", { ignoreRestSiblings: true }],
 };
 
