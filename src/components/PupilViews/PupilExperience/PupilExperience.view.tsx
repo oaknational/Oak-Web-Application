@@ -38,6 +38,7 @@ import {
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
 import { ContentGuidanceWarningValueType } from "@/browser-lib/avo/Avo";
 import { PupilRedirectedOverlay } from "@/components/PupilComponents/PupilRedirectedOverlay/PupilRedirectedOverlay";
+import { useWorksheetInfoState } from "@/components/PupilComponents/pupilUtils/useWorksheetInfoState";
 
 export const pickAvailableSectionsForLesson = (lessonContent: LessonContent) =>
   allLessonReviewSections.filter((section) => {
@@ -330,12 +331,18 @@ const PupilExperienceLayout = ({
 
 export const PupilExperienceView = (props: PupilExperienceViewProps) => {
   const { browseData, lessonContent } = props;
+
+  const { worksheetInfo } = useWorksheetInfoState(
+    lessonContent.hasWorksheetAssetObject,
+    lessonContent.lessonSlug,
+  );
+
   return (
     <PupilAnalyticsProvider
       pupilPathwayData={getPupilPathwayData(browseData)}
       lessonContent={lessonContent}
     >
-      <PupilExperienceLayout {...props} />
+      <PupilExperienceLayout {...props} worksheetInfo={worksheetInfo} />
     </PupilAnalyticsProvider>
   );
 };

@@ -21,7 +21,7 @@ const Wrapper = styled.div`
   background: white;
 `;
 
-export function Popover(props: PopoverProps) {
+export function Popover(props: Readonly<PopoverProps>) {
   const ref = React.useRef<HTMLDivElement>(null);
   const { popoverRef = ref, isOpen, onClose, children, focusOn = true } = props;
 

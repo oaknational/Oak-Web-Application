@@ -39,7 +39,7 @@ const ExpandInBox = styled(OakBox)<{ $state: TransitionStatus }>`
 
 export default function SignpostTeachersInlineBanner({
   onClose,
-}: SignpostTeachersInlineBannerProps) {
+}: Readonly<SignpostTeachersInlineBannerProps>) {
   const [userIsOpen, setUserIsOpen] = useState(true);
   const transitionRef = useRef<HTMLDivElement>(null);
   const source = useReferrer();

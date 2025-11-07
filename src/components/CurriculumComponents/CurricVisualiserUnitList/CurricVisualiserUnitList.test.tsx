@@ -4,7 +4,9 @@ import { basicFixtures } from "./CurricVisualiserUnitList.fixtures";
 
 import { CurricVisualiserUnitList } from ".";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme"]);
 
 const unitOverviewAccessedMock = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
@@ -18,7 +20,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 
 describe("CurricVisualiserUnitList", () => {
   it("should display a list of units", async () => {
-    const { baseElement, findAllByRole } = renderWithTheme(
+    const { baseElement, findAllByRole } = render(
       <CurricVisualiserUnitList {...basicFixtures} />,
     );
 
@@ -32,12 +34,12 @@ describe("CurricVisualiserUnitList", () => {
   });
 
   it("clicking should trigger analytics", async () => {
-    const { findAllByRole } = renderWithTheme(
+    const { findAllByRole } = render(
       <CurricVisualiserUnitList {...basicFixtures} />,
     );
 
     const allLinks = await findAllByRole("link");
-    expect(allLinks[0]);
+    expect(allLinks[0]).toBeTruthy();
     act(() => {
       allLinks[0]?.click();
     });

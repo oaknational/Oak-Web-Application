@@ -10,7 +10,9 @@ import { Fragment } from "react";
 
 const DOT_SIZE = 44;
 
-function StepLine({ $borderStyle }: Pick<OakFlexProps, "$borderStyle">) {
+function StepLine({
+  $borderStyle,
+}: Readonly<Pick<OakFlexProps, "$borderStyle">>) {
   return (
     <OakFlex
       $borderStyle={$borderStyle}
@@ -32,7 +34,7 @@ function DotWithWings({
   isLast,
   iconName,
   $background,
-}: DotWithWingsProps) {
+}: Readonly<DotWithWingsProps>) {
   return (
     <OakFlex
       style={{ width: DOT_SIZE, height: DOT_SIZE }}
@@ -72,7 +74,7 @@ type CurricShowStepsProps = {
 export function CurricShowSteps({
   numberOfSteps,
   currentStepIndex,
-}: CurricShowStepsProps) {
+}: Readonly<CurricShowStepsProps>) {
   return (
     <div>
       <OakBox

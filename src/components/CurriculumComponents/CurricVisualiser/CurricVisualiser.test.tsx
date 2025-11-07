@@ -1,5 +1,6 @@
-import { within } from "@testing-library/react";
+import { within, act } from "@testing-library/react";
 import { ComponentProps } from "react";
+import mockRouter from "next-router-mock";
 
 import {
   noMissingUnitsFixture,
@@ -20,13 +21,19 @@ import {
 
 import CurricVisualiser from ".";
 
-import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 import { YearData } from "@/utils/curriculum/types";
+import { createUnitOption } from "@/fixtures/curriculum/unitOption";
+import { createUnit } from "@/fixtures/curriculum/unit";
 
-const render = renderWithProviders();
+const render = renderWithProvidersByName(["theme", "oakTheme"]);
 const curriculumThreadHighlighted = jest.fn();
 const yearGroupSelected = jest.fn();
 const unitOverviewAccessed = jest.fn();
+
+// Mock HTMLDialogElement methods that jsdom doesn't support
+HTMLDialogElement.prototype.showModal = jest.fn();
+HTMLDialogElement.prototype.close = jest.fn();
 
 window.matchMedia = jest.fn().mockReturnValue({
   matches: true,
@@ -69,8 +76,6 @@ const CurricVisualiserFixture: ComponentProps<typeof CurricVisualiser> = {
             "Dystopian settings: descriptive writing",
           connection_prior_unit_title:
             "'When the Sky Falls': narrative and diary writing",
-          domain: null,
-          domain_id: null,
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 32,
@@ -97,7 +102,6 @@ const CurricVisualiserFixture: ComponentProps<typeof CurricVisualiser> = {
           subject_slug: "english",
           subject_parent: null,
           subject_parent_slug: null,
-          tags: null,
           subjectcategories: null,
           tier: null,
           tier_slug: null,
@@ -983,6 +987,70 @@ describe("Year group filter headings display correctly", () => {
         const subheading = within(yearBlock).queryByTestId("year-subheading");
         expect(subheading).toBeNull();
       });
+    });
+  });
+
+  describe("unit modal navigation", () => {
+    test("calls router.replace with correct URL when navigating from unit option back to parent unit", async () => {
+      const originalYearData = CurricVisualiserFixture.yearData["7"];
+      if (!originalYearData) {
+        throw new Error("Year 7 data not found in fixture");
+      }
+
+      const yearDataWithOptions: YearData = {
+        "7": {
+          ...originalYearData,
+          units: [
+            createUnit({
+              slug: "parent-unit",
+              title: "Parent Unit",
+              year: "7",
+              subject_slug: "english",
+              unit_options: [
+                createUnitOption({
+                  title: "Unit Option 1",
+                  slug: "unit-option-1",
+                  unitvariant_id: 123,
+                }),
+              ],
+            }),
+          ],
+        },
+      };
+
+      // Set the initial route
+      mockRouter.setCurrentUrl(
+        "/teachers/curriculum/maths-secondary/units/unit-option-1",
+      );
+
+      // Spy on router.replace
+      const replaceSpy = jest.spyOn(mockRouter, "replace");
+
+      const { getByText } = render(
+        <CurricVisualiser
+          {...CurricVisualiserFixture}
+          yearData={yearDataWithOptions}
+          selectedUnitSlug="unit-option-1"
+          basePath="/teachers/curriculum/maths-secondary/units"
+        />,
+      );
+
+      const backButton = getByText("Back to unit options info");
+      expect(backButton).toBeInTheDocument();
+
+      await act(async () => {
+        await backButton.click();
+      });
+
+      // The handleNavigateToUnit function should call router.replace
+      // with the parent unit slug
+      expect(replaceSpy).toHaveBeenCalledWith(
+        "/teachers/curriculum/maths-secondary/units/parent-unit",
+        undefined,
+        { shallow: true, scroll: false },
+      );
+
+      replaceSpy.mockRestore();
     });
   });
 });

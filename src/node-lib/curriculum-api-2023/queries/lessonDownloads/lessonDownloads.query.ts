@@ -108,8 +108,8 @@ const lessonDownloadsQuery =
       : null;
 
     const lessonRestrictions = {
-      geoRestricted: currentLesson?.features.agf__geo_restricted ?? false,
-      loginRequired: currentLesson?.features.agf__login_required ?? false,
+      geoRestricted: currentLesson?.features?.agf__geo_restricted ?? false,
+      loginRequired: currentLesson?.features?.agf__login_required ?? false,
     };
 
     const parsedBrowseData = modifiedBrowseData.map((bd) =>
@@ -124,7 +124,7 @@ const lessonDownloadsQuery =
         browseData: parsedBrowseData,
         isLegacy: is_legacy,
         lessonReleaseDate: lesson_release_date ?? "unpublished",
-        lessonCopyRight: copyright,
+        legacyCopyrightContent: copyright,
         restrictions: {
           geoRestricted: lessonRestrictions.geoRestricted,
           loginRequired: lessonRestrictions.loginRequired,
@@ -139,7 +139,7 @@ const lessonDownloadsQuery =
         additionalFiles,
         lessonSlug,
         parsedBrowseData,
-        lessonCopyRight: copyright,
+        legacyLessonCopyrightInfo: copyright,
         expired,
       });
 

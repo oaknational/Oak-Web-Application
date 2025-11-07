@@ -20,9 +20,9 @@ jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => mockFeatureFlagEnabled(),
 }));
 
-let mockUseCopyrightRequirements = defaultCopyrightRequirements;
-jest.mock("@/hooks/useCopyrightRequirements", () => ({
-  useCopyrightRequirements: () => mockUseCopyrightRequirements,
+let mockUseComplexCopyright = defaultCopyrightRequirements;
+jest.mock("@/hooks/useComplexCopyright", () => ({
+  useComplexCopyright: () => mockUseComplexCopyright,
 }));
 
 jest.mock("next/router", () => require("next-router-mock"));
@@ -55,6 +55,7 @@ const baseProps = {
   showShare: true,
   trackTeachingMaterialsSelected: jest.fn(),
   trackCreateWithAiButtonClicked: jest.fn(),
+  contentRestricted: false,
 };
 
 const render = renderWithProviders();
@@ -65,7 +66,7 @@ describe("LessonOverviewHeaderDownloadAllButton", () => {
   });
 
   afterEach(() => {
-    mockUseCopyrightRequirements = defaultCopyrightRequirements;
+    mockUseComplexCopyright = defaultCopyrightRequirements;
     jest.clearAllMocks();
   });
 
@@ -104,7 +105,7 @@ describe("LessonOverviewHeaderDownloadAllButton", () => {
   });
 
   it("renders a sign up button when downloads are restricted", () => {
-    mockUseCopyrightRequirements = signedOutLoginRequired;
+    mockUseComplexCopyright = signedOutLoginRequired;
     const { getByTestId } = render(
       <LessonOverviewHeaderDownloadAllButton {...baseProps} />,
     );
@@ -114,7 +115,7 @@ describe("LessonOverviewHeaderDownloadAllButton", () => {
     expect(mockDownloadAllButton).not.toHaveBeenCalled();
   });
   it("does not render anything when geoBlocked", () => {
-    mockUseCopyrightRequirements = signedInGeoBlocked;
+    mockUseComplexCopyright = signedInGeoBlocked;
     const { getByTestId } = render(
       <LessonOverviewHeaderDownloadAllButton {...baseProps} />,
     );

@@ -1,17 +1,19 @@
 import CurricModalErrorContent from "./CurricModalErrorContent";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("CurricModalErrorContent", () => {
   it("should render correctly", () => {
-    const { container } = renderWithTheme(
+    const { container } = render(
       <CurricModalErrorContent statusCode="404" message="Missing!" />,
     );
     expect(container).toMatchSnapshot();
   });
 
   it("should render additional when supplied", () => {
-    const { container } = renderWithTheme(
+    const { container } = render(
       <CurricModalErrorContent
         statusCode="404"
         message="Missing!"

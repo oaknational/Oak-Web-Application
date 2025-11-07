@@ -34,7 +34,7 @@ export const keyLearningPointsSchema = z.object({
 
 export type keyLearningPoint = z.infer<typeof keyLearningPointsSchema>;
 
-export const copyrightContentSchema = z
+export const legacyCopyrightContentSchema = z
   .array(
     z.object({
       copyrightInfo: z.string(),
@@ -43,7 +43,9 @@ export const copyrightContentSchema = z
   .nullable()
   .optional();
 
-export type CopyrightContent = z.infer<typeof copyrightContentSchema>;
+export type LegacyCopyrightContent = z.infer<
+  typeof legacyCopyrightContentSchema
+>;
 
 export const keywordsSchema = z.object({
   keyword: z.string(),
@@ -205,7 +207,7 @@ export const baseLessonOverviewSchema = z.object({
   keyLearningPoints: z.array(keyLearningPointsSchema).nullable().optional(),
   pupilLessonOutcome: z.string().nullable().optional(),
   lessonKeywords: z.array(keywordsSchema).nullable().optional(),
-  copyrightContent: copyrightContentSchema,
+  legacyCopyrightContent: legacyCopyrightContentSchema,
   supervisionLevel: z.string().nullable(),
   worksheetUrl: z.string().nullable(),
   presentationUrl: z.string().nullable(),
@@ -298,7 +300,7 @@ export const baseLessonDownloadsSchema = z.object({
   additionalFiles: lessonAdditionalFilesListSchema,
   expired: z.boolean().nullable(),
   isSpecialist: z.literal(false),
-  copyrightContent: copyrightContentSchema,
+  legacyCopyrightContent: legacyCopyrightContentSchema,
   updatedAt: z.string(),
   geoRestricted: z.boolean().nullable(),
   loginRequired: z.boolean().nullable(),

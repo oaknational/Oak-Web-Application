@@ -3,11 +3,13 @@ import { act } from "@testing-library/react";
 import { CurricFiltersTiers } from "./CurricFiltersTiers";
 import { ks4Setup, ks3and4Setup } from "./CurricFiltersTiers.fixtures";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("CurricFiltersTiers", () => {
   it("renders correctly ks4", () => {
-    const { getAllByRole, getByRole } = renderWithTheme(
+    const { getAllByRole, getByRole } = render(
       <CurricFiltersTiers
         filters={{
           childSubjects: [],
@@ -30,7 +32,7 @@ describe("CurricFiltersTiers", () => {
   });
 
   it("renders correctly ks3&4", () => {
-    const { getAllByRole, getByRole } = renderWithTheme(
+    const { getAllByRole, getByRole } = render(
       <CurricFiltersTiers
         filters={{
           childSubjects: [],
@@ -53,7 +55,7 @@ describe("CurricFiltersTiers", () => {
   });
 
   it("renders correctly", () => {
-    const { getAllByRole } = renderWithTheme(
+    const { getAllByRole } = render(
       <CurricFiltersTiers
         filters={{
           childSubjects: [],
@@ -76,7 +78,7 @@ describe("CurricFiltersTiers", () => {
 
   it("interacts correctly", () => {
     const onChangeFilters = jest.fn();
-    const { getAllByRole } = renderWithTheme(
+    const { getAllByRole } = render(
       <CurricFiltersTiers
         filters={{
           childSubjects: [],

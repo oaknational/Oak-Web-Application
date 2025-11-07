@@ -2,7 +2,9 @@ import { fireEvent } from "@testing-library/react";
 
 import { CurricNumberInput } from ".";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("CurricNumberInput", () => {
   const mockOnChange = jest.fn();
@@ -12,7 +14,7 @@ describe("CurricNumberInput", () => {
   });
 
   test("renders input correctly", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <CurricNumberInput id="test-input" value={30} onChange={mockOnChange} />,
     );
 
@@ -21,7 +23,7 @@ describe("CurricNumberInput", () => {
   });
 
   test("renders with correct value", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <CurricNumberInput id="test-input" value={30} onChange={mockOnChange} />,
     );
 
@@ -30,7 +32,7 @@ describe("CurricNumberInput", () => {
   });
 
   test("has correct input attributes", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <CurricNumberInput id="test-input" value={30} onChange={mockOnChange} />,
     );
 
@@ -42,7 +44,7 @@ describe("CurricNumberInput", () => {
   });
 
   test("input is not disabled (interactive)", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <CurricNumberInput id="test-input" value={30} onChange={mockOnChange} />,
     );
 
@@ -51,7 +53,7 @@ describe("CurricNumberInput", () => {
   });
 
   test("applies custom min and max values", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <CurricNumberInput
         id="test-input"
         value={20}
@@ -67,7 +69,7 @@ describe("CurricNumberInput", () => {
   });
 
   test("calls onChange with numeric value when input changes", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <CurricNumberInput id="test-input" value={30} onChange={mockOnChange} />,
     );
 
@@ -79,7 +81,7 @@ describe("CurricNumberInput", () => {
   });
 
   test("handles empty input without calling onChange", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <CurricNumberInput id="test-input" value={30} onChange={mockOnChange} />,
     );
 
@@ -91,7 +93,7 @@ describe("CurricNumberInput", () => {
   });
 
   test("applies aria-describedby when provided", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <CurricNumberInput
         id="test-input"
         value={30}
@@ -105,7 +107,7 @@ describe("CurricNumberInput", () => {
   });
 
   test("has correct ID attribute", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <CurricNumberInput
         id="custom-test-id"
         value={30}
@@ -118,7 +120,7 @@ describe("CurricNumberInput", () => {
   });
 
   test("handles step attribute correctly", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <CurricNumberInput
         id="test-input"
         value={30}
@@ -132,7 +134,7 @@ describe("CurricNumberInput", () => {
   });
 
   test("renders with minimum value", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <CurricNumberInput id="test-input" value={5} onChange={mockOnChange} />,
     );
 
@@ -141,7 +143,7 @@ describe("CurricNumberInput", () => {
   });
 
   test("renders with maximum value", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <CurricNumberInput id="test-input" value={35} onChange={mockOnChange} />,
     );
 
@@ -150,7 +152,7 @@ describe("CurricNumberInput", () => {
   });
 
   test("does not call onChange for value below minimum", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <CurricNumberInput id="test-input" value={30} onChange={mockOnChange} />,
     );
 
@@ -161,7 +163,7 @@ describe("CurricNumberInput", () => {
   });
 
   test("does not call onChange for value above maximum", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <CurricNumberInput id="test-input" value={30} onChange={mockOnChange} />,
     );
 
@@ -172,7 +174,7 @@ describe("CurricNumberInput", () => {
   });
 
   test("resets to last valid value on blur when input is invalid", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <CurricNumberInput id="test-input" value={30} onChange={mockOnChange} />,
     );
 
@@ -185,7 +187,7 @@ describe("CurricNumberInput", () => {
 
   test("calls onValidationChange when validation state changes", () => {
     const mockOnValidationChange = jest.fn();
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <CurricNumberInput
         id="test-input"
         value={30}
@@ -207,7 +209,7 @@ describe("CurricNumberInput", () => {
   });
 
   test("does not call onChange for non-numeric input", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <CurricNumberInput id="test-input" value={30} onChange={mockOnChange} />,
     );
 
@@ -218,7 +220,7 @@ describe("CurricNumberInput", () => {
   });
 
   test("keeps dirty value visible when typing invalid input", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <CurricNumberInput id="test-input" value={30} onChange={mockOnChange} />,
     );
 

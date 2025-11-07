@@ -89,4 +89,20 @@ describe("CampaignHeader", () => {
       expect(setSearchTerm).toHaveBeenCalledWith({ searchTerm: "test search" }),
     );
   });
+  it("does not render keystage buttons or search bar when hideKsSelector set", () => {
+    render(
+      <CampaignPageHeader
+        campaignHeader={{ ...mockCampaignHeader, hideKsSelector: true }}
+        keyStages={keyStagesFixture()}
+      />,
+    );
+
+    const keystageButtons = screen.queryByRole("link");
+    expect(keystageButtons).not.toBeInTheDocument();
+
+    const searchInput = screen.queryByPlaceholderText(
+      "Search by keyword or topic",
+    );
+    expect(searchInput).not.toBeInTheDocument();
+  });
 });

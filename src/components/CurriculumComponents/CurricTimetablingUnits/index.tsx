@@ -4,14 +4,23 @@ import {
   OakFlex,
   OakHeading,
   OakInformativeModal,
+  OakInlineBanner,
   OakMaxWidth,
   OakSecondaryButton,
 } from "@oaknational/oak-components";
-import { ThemeProvider } from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import { useMemo, useState } from "react";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import Link from "next/link";
 
 import { CurricTimetableHeader } from "../CurricTimetableHeader";
+import { CurricTermCard } from "../CurricTermCard";
+import CurricUnitCard from "../CurricUnitCard";
+import { CurricTimetablingYearCard } from "../CurricTimetablingYearCard";
 import CurricTimetablingFilters from "../CurricTimetablingFilters";
+import CurricUnitModal from "../CurricUnitModal";
+import CurricUnitModalContent from "../CurricUnitModalContent/CurricUnitModalContent";
+import CurricModalErrorContent from "../CurricModalErrorContent/CurricModalErrorContent";
 
 import { useTimetableParams } from "@/utils/curriculum/timetabling";
 import { CurriculumFilters, Unit } from "@/utils/curriculum/types";
@@ -21,6 +30,26 @@ import {
   formatCurriculumUnitsData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
+import { findUnitOrOptionBySlug } from "@/utils/curriculum/units";
+
+const UnitList = styled("ol")`
+  margin: 0;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+`;
+
+const UnitListItem = styled("li")`
+  margin: 0;
+  liststyle: none;
+  padding: 0;
+  display: flex;
+  width: 240px;
+  flex-grow: 1;
+  position: relative;
+`;
 
 function getDefaultName(
   data: ReturnType<typeof useTimetableParams>[0],
@@ -38,13 +67,20 @@ type CurricTimetablingUnitsProps = {
   curriculumPhaseOptions:
     | ReturnType<typeof fetchSubjectPhasePickerData>
     | Awaited<ReturnType<typeof fetchSubjectPhasePickerData>>;
+  selectedUnitSlug?: string;
 };
 export const CurricTimetablingUnits = ({
   units,
   slugs,
+  selectedUnitSlug,
 }: CurricTimetablingUnitsProps) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [data] = useTimetableParams();
+  const isDebugMode = data.mode === "debug";
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
   const [filters, setFilters] = useState<CurriculumFilters>(() => {
     return {
       years: [data.year ?? "1"],
@@ -71,6 +107,32 @@ export const CurricTimetablingUnits = ({
     };
   }, [data, unitDataPre]);
 
+  // Find the unit data for the selected unit slug
+  const { unit: selectedUnit, unitOption: selectedUnitOption } =
+    findUnitOrOptionBySlug(unitData.yearData, selectedUnitSlug);
+
+  const displayUnitModal = !!selectedUnitSlug;
+
+  // Build the base path - should always end with /units
+  let basePath = pathname || "";
+
+  if (basePath.includes("/units/")) {
+    // If we're on a unit detail page, strip the unit slug
+    basePath = basePath.split("/units/")[0] + "/units";
+  }
+
+  const handleCloseModal = () => {
+    const searchParamsStr = searchParams?.toString() ?? "";
+    const href = `${basePath}${!searchParamsStr ? "" : `?${searchParamsStr}`}`;
+    router.replace(href);
+  };
+
+  const handleNavigateToUnit = (unitSlug: string) => {
+    const searchParamsStr = searchParams?.toString() ?? "";
+    const href = `${basePath}/${unitSlug}${!searchParamsStr ? "" : `?${searchParamsStr}`}`;
+    router.replace(href);
+  };
+
   const onEditDetails = () => {
     setModalOpen(true);
   };
@@ -79,6 +141,16 @@ export const CurricTimetablingUnits = ({
     const urlToCopy = window.location.href;
     navigator.clipboard.writeText(urlToCopy);
   };
+
+  const unitsForYear = data.year
+    ? unitData.yearData[data.year]?.units
+    : undefined;
+
+  const totalNumberOfLessons =
+    unitsForYear?.reduce(
+      (total, unit) => total + (unit.lessons?.length ?? 0),
+      0,
+    ) ?? 0;
 
   return (
     <>
@@ -119,7 +191,11 @@ export const CurricTimetablingUnits = ({
 
         <OakMaxWidth $ph={"inner-padding-xl5"}>
           <OakFlex $flexDirection={"row"}>
-            <OakFlex $width={"all-spacing-21"} $flexDirection={"column"}>
+            <OakFlex
+              $minWidth={"all-spacing-21"}
+              $maxWidth={"100%"}
+              $flexDirection={"column"}
+            >
               <CurricTimetablingFilters
                 filters={filters}
                 onChangeFilters={setFilters}
@@ -130,29 +206,150 @@ export const CurricTimetablingUnits = ({
               <OakHeading tag="h2">Debug</OakHeading>
               <pre>{JSON.stringify(data, null, 2)}</pre>
             </OakFlex>
+
             <OakFlex $flexGrow={1}>
-              <ul>
-                {data.year &&
-                  unitData.yearData[data.year]?.units.map((unit, unitIndex) => {
-                    return (
-                      <li key={`${unit.slug}-${unitIndex}`}>
-                        <div>📦 {unit.title}</div>
-                        <ul>
-                          {unit.lessons?.map((lesson, lessonIndex) => {
-                            return (
-                              <li key={`${lesson.slug}-${lessonIndex}`}>
-                                📜 {lesson.title}
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      </li>
-                    );
-                  })}
-              </ul>
+              <OakBox>
+                {unitsForYear && (
+                  <>
+                    {!isDebugMode && (
+                      <CurricTimetablingYearCard
+                        yearTitle={`Year ${data.year}`}
+                      >
+                        <OakFlex
+                          $flexDirection={"column"}
+                          $gap={"all-spacing-6"}
+                        >
+                          <OakInlineBanner
+                            message={
+                              <OakBox>
+                                <strong>You’re 1 lesson short:</strong> the Year
+                                1 curriculum has more lessons than your schedule
+                                allows. Use the orange (!) markers to help you
+                                decide which lesson to skip.
+                              </OakBox>
+                            }
+                            isOpen={true}
+                          />
+                          <CurricTermCard
+                            title="Autumn Term"
+                            coveredNumberOfLessons={totalNumberOfLessons}
+                            totalNumberOfLessons={totalNumberOfLessons}
+                          >
+                            <UnitList role="list">
+                              {unitsForYear.map((unit, unitIndex) => {
+                                const searchParamsStr =
+                                  searchParams?.toString() ?? "";
+                                const unitUrl = `${basePath}/${unit.slug}${!searchParamsStr ? "" : `?${searchParamsStr}`}`;
+
+                                return (
+                                  <UnitListItem
+                                    key={`${unit.slug}-${unitIndex}`}
+                                  >
+                                    <CurricUnitCard
+                                      key={unit.slug}
+                                      unit={unit}
+                                      index={unitIndex}
+                                      isHighlighted={false}
+                                      href={unitUrl}
+                                    />
+                                  </UnitListItem>
+                                );
+                              })}
+                              {/* Empty tiles for correct flex wrapping */}
+                              {new Array(3).fill(true).map((item, index) => {
+                                return (
+                                  <OakFlex
+                                    key={`unit-list-item-${item}-${index}`}
+                                    $width={"all-spacing-19"}
+                                    $flexGrow={1}
+                                    $position={"relative"}
+                                  />
+                                );
+                              })}
+                            </UnitList>
+                          </CurricTermCard>
+                        </OakFlex>
+                      </CurricTimetablingYearCard>
+                    )}
+
+                    {isDebugMode && (
+                      <ul>
+                        {unitsForYear.map((unit, unitIndex) => {
+                          const searchParamsStr =
+                            searchParams?.toString() ?? "";
+                          const unitUrl = `${basePath}/${unit.slug}${!searchParamsStr ? "" : `?${searchParamsStr}`}`;
+
+                          return (
+                            <li key={`${unit.slug}-${unitIndex}`}>
+                              <Link
+                                href={unitUrl}
+                                shallow={true}
+                                scroll={false}
+                                style={{ textDecoration: "underline" }}
+                              >
+                                📦 {unit.title}
+                              </Link>
+                              <ul>
+                                {unit.lessons?.map((lesson, lessonIndex) => {
+                                  return (
+                                    <li key={`${lesson.slug}-${lessonIndex}`}>
+                                      📜 {lesson.title}
+                                    </li>
+                                  );
+                                })}
+                              </ul>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    )}
+                  </>
+                )}
+              </OakBox>
             </OakFlex>
           </OakFlex>
         </OakMaxWidth>
+
+        {/* Unit Modal */}
+        <CurricUnitModal
+          open={displayUnitModal}
+          onClose={handleCloseModal}
+          unitData={selectedUnit}
+          unitOptionData={selectedUnitOption}
+          filters={filters}
+          disableFooter={Boolean(selectedUnitSlug && !selectedUnit)}
+        >
+          {selectedUnit && (
+            <CurricUnitModalContent
+              basePath={basePath}
+              unitData={selectedUnit}
+              unitOptionData={selectedUnitOption}
+              yearData={unitData.yearData}
+              selectedThread={null}
+              onNavigateToUnit={handleNavigateToUnit}
+            />
+          )}
+          {selectedUnitSlug && !selectedUnit && (
+            <OakBox
+              $pv={[
+                "inner-padding-xl",
+                "inner-padding-xl5",
+                "inner-padding-xl5",
+              ]}
+              $ph={[
+                "inner-padding-xl",
+                "inner-padding-xl6",
+                "inner-padding-xl6",
+              ]}
+            >
+              <CurricModalErrorContent
+                statusCode="404"
+                message="This unit does not exist."
+                additional="Close the modal to browse available units."
+              />
+            </OakBox>
+          )}
+        </CurricUnitModal>
       </ThemeProvider>
     </>
   );

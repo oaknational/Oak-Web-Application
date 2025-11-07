@@ -122,7 +122,7 @@ export default function YourDetails({
   labelBackground,
   hidePrivacyPolicy = false,
   emailRequired = false,
-}: YourDetailsProps) {
+}: Readonly<YourDetailsProps>) {
   const schoolsAsAutocompleteItems = useSchoolsFromApi({ schools });
   const autoCompleteList = injectCurrentSchool(
     data,
