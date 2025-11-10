@@ -29,7 +29,7 @@ import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesMo
 import { useLesson } from "@/pages-helpers/teacher/useLesson/useLesson";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
-import { convertQuestionMath } from "@/pages-helpers/shared/lesson-pages/mathjax";
+import { convertQuestionMath } from "@/pages-helpers/shared/lesson-pages/quizMathjax";
 
 type PageProps = {
   lesson: LessonOverviewCanonical;

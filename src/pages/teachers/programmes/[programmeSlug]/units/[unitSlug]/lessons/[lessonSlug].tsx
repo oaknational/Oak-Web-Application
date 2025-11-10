@@ -25,7 +25,7 @@ import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share/shareType
 import { allowNotFoundError } from "@/pages-helpers/shared/lesson-pages/allowNotFoundError";
 import { getRedirect } from "@/pages-helpers/shared/lesson-pages/getRedirects";
 import Banners from "@/components/SharedComponents/Banners";
-import { convertQuestionMath } from "@/pages-helpers/shared/lesson-pages/mathjax";
+import { convertQuestionMath } from "@/pages-helpers/shared/lesson-pages/quizMathjax";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewPageData;
