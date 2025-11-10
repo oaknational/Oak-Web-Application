@@ -22,8 +22,8 @@ type Story = StoryObj<typeof Component>;
 
 export const Default: Story = {
   args: {
-    title: "Oak’s story",
-    subtitle: "As teaching evolves, so do we...",
+    title: "As teaching evolves, so do we...",
+    subtitle: "Oak’s story",
     items: [
       {
         subtitle: "From then",

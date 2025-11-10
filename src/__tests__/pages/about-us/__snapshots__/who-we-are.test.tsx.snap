@@ -1785,7 +1785,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   class="sc-fqkvVR sc-jXbUNg fgBWrW gdCncd"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz ezsJUC"
+                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz bzXGlP"
                   >
                     <div
                       class="sc-fqkvVR sc-kAyceB fgBWrW gOiVFh"
@@ -1799,11 +1799,11 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           Oak’s story
                         </span>
                       </div>
-                      <div
-                        class="sc-fqkvVR kYsGzo"
+                      <h2
+                        class="sc-kpDqfm jOcnDt"
                       >
                         As teaching evolves, so do we...
-                      </div>
+                      </h2>
                     </div>
                   </div>
                 </div>
@@ -1811,13 +1811,14 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   class="sc-fqkvVR sc-jXbUNg fgBWrW gdCncd"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz dVLbgy"
+                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz ezsJUC"
                   >
                     <div
                       class="sc-fqkvVR sc-kAyceB fgBWrW eeevb"
                     >
                       <div
                         class="sc-fqkvVR sc-kAyceB fgBWrW ddfwpL"
+                        data-testid="timetable-timeline-item"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB gqXWud bhNOkF"
@@ -1841,11 +1842,11 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               From then
                             </span>
                           </div>
-                          <div
-                            class="sc-fqkvVR grViPU"
+                          <h3
+                            class="sc-kpDqfm jqyJdB"
                           >
                             A rapid response to the pandemic
-                          </div>
+                          </h3>
                           <div
                             class="sc-fqkvVR fgBWrW"
                           >
@@ -1859,6 +1860,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                       </div>
                       <div
                         class="sc-fqkvVR sc-kAyceB fgBWrW ddfwpL"
+                        data-testid="timetable-timeline-item"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB gqXWud bhNOkF"
@@ -1882,11 +1884,11 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               To now
                             </span>
                           </div>
-                          <div
-                            class="sc-fqkvVR grViPU"
+                          <h3
+                            class="sc-kpDqfm jqyJdB"
                           >
                             Complete resources for the classroom, schools and trusts
-                          </div>
+                          </h3>
                           <div
                             class="sc-fqkvVR fgBWrW"
                           >
@@ -1905,6 +1907,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                       </div>
                       <div
                         class="sc-fqkvVR sc-kAyceB fgBWrW ddfwpL"
+                        data-testid="timetable-timeline-item"
                       >
                         <div
                           class="sc-fqkvVR sc-kAyceB gqXWud bhNOkF"
@@ -1928,11 +1931,11 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               And beyond
                             </span>
                           </div>
-                          <div
-                            class="sc-fqkvVR grViPU"
+                          <h3
+                            class="sc-kpDqfm jqyJdB"
                           >
                             Staying ahead in a changing world
-                          </div>
+                          </h3>
                           <div
                             class="sc-fqkvVR fgBWrW"
                           >
