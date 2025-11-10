@@ -16,7 +16,7 @@ import { useUser } from "@clerk/nextjs";
 
 import {
   getContainerId,
-  LessonItemTitle,
+  // LessonItemTitle,
 } from "../../TeacherComponents/LessonItemContainer/LessonItemContainer";
 
 import { hasLessonMathJax } from "./hasLessonMathJax";
@@ -31,7 +31,7 @@ import {
   getPathway,
   getPageLinksWithSubheadingsForLesson,
   getPageLinksWithSubheadingsForLesson2,
-  isFinalElementInLesson,
+  // isFinalElementInLesson,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import {
   LessonOverviewAll,
@@ -351,7 +351,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     mediaClipLabel,
   );
   // console.log({ pageLinks, newLinks });
-  // const presentationTitle = "Lesson slides";
+  const presentationTitle = "Lesson slides";
   const quizDownloadTitle = "quiz pdf";
 
   return (
@@ -431,7 +431,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 >
                   <LessonOverviewSideNavAnchorLinks
                     contentRestricted={contentRestricted}
-                    links={newLinks}
+                    links={pageLinks}
                     currentSectionId={currentSectionId}
                   />
                 </OakFlex>
@@ -447,14 +447,12 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     onwardHref={unitListingHref}
                   />
                 </OakBox>
-
                 <TeacherNoteInline
                   unsafeHtml={teacherNoteHtml}
                   error={teacherNoteError}
                 />
-
-                {newLinks["lesson-guide"] &&
-                  // {pageLinks.find((p) => p.label === "Lesson guide") &&
+                {/* {newLinks["lesson-guide"] && */}
+                {pageLinks.find((p) => p.label === "Lesson guide") &&
                   lessonGuideUrl &&
                   !contentRestricted && (
                     <LessonItemContainer
@@ -483,9 +481,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       />
                     </LessonItemContainer>
                   )}
-
-                {newLinks["slide-deck"] &&
-                  // {pageLinks.find((p) => p.label === presentationTitle) &&
+                {/* {newLinks["slide-deck"] && */}
+                {pageLinks.find((p) => p.label === presentationTitle) &&
                   !contentRestricted &&
                   !checkIfResourceHasLegacyCopyright(
                     "presentation",
@@ -494,8 +491,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     <LessonItemContainer
                       isSpecialist={isSpecialist}
                       ref={slideDeckSectionRef}
-                      title={newLinks["slide-deck"].label as LessonItemTitle}
-                      // title={presentationTitle}
+                      // title={newLinks["slide-deck"].label as LessonItemTitle}
+                      title={presentationTitle}
                       downloadable={getIsResourceDownloadable(
                         "presentation",
                         downloads,
@@ -522,8 +519,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       />
                     </LessonItemContainer>
                   )}
-                {newLinks["media-clips"] &&
-                  // {pageLinks.find((p) => p.label === mediaClipLabel) &&
+                {/* {newLinks["media-clips"] && */}
+                {pageLinks.find((p) => p.label === mediaClipLabel) &&
                   !contentRestricted &&
                   lessonMediaClips &&
                   hasMediaClips && (
@@ -555,7 +552,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       />
                     </LessonItemContainer>
                   )}
-
                 <LessonItemContainer
                   isSpecialist={isSpecialist}
                   ref={lessonDetailsSectionRef}
@@ -596,10 +592,9 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     hideSeoHelper={showGeoBlocked}
                   />
                 </LessonItemContainer>
-
-                {newLinks["video"] && !contentRestricted && (
+                {newLinks.get("video") && !contentRestricted && (
                   // {pageLinks.find((p) => p.label === "Lesson video") &&
-                  // !contentRestricted && (
+                  //   !contentRestricted && (
                   <LessonItemContainer
                     isSpecialist={isSpecialist}
                     ref={videoSectionRef}
@@ -607,17 +602,17 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     slugs={slugs}
                     title={"Lesson video"}
                     anchorId="video"
-                    isFinalElement={isFinalElementInLesson(newLinks, [
-                      "worksheet",
-                      "quiz",
-                      "starter-quiz",
-                      "exit-quiz",
-                      "additional-material",
-                    ])}
-                    // isFinalElement={
-                    //   pageLinks.findIndex((p) => p.label === "Video") ===
-                    //   pageLinks.length - 1
-                    // }
+                    // isFinalElement={isFinalElementInLesson(newLinks, [
+                    //   "worksheet",
+                    //   "quiz",
+                    //   "starter-quiz",
+                    //   "exit-quiz",
+                    //   "additional-material",
+                    // ])}
+                    isFinalElement={
+                      pageLinks.findIndex((p) => p.label === "Video") ===
+                      pageLinks.length - 1
+                    }
                     pageLinks={pageLinks}
                     subheader={
                       isSubHeader ? (
@@ -652,58 +647,58 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     />
                   </LessonItemContainer>
                 )}
-                {newLinks["worksheet"] && !contentRestricted && (
-                  // {pageLinks.find((p) => p.label === "Worksheet") &&
-                  //   !contentRestricted && (
-                  <LessonItemContainer
-                    isSpecialist={isSpecialist}
-                    ref={worksheetSectionRef}
-                    title={"Worksheet"}
-                    anchorId="worksheet"
-                    pageLinks={pageLinks}
-                    downloadable={
-                      getIsResourceDownloadable(
-                        "worksheet-pdf",
-                        downloads,
-                        legacyCopyrightContent,
-                      ) ||
-                      getIsResourceDownloadable(
-                        "worksheet-pptx",
-                        downloads,
-                        legacyCopyrightContent,
-                      )
-                    }
-                    shareable={isLegacyLicense && showShare}
-                    onDownloadButtonClick={() => {
-                      trackDownloadResourceButtonClicked({
-                        downloadResourceButtonName: "worksheet",
-                      });
-                    }}
-                    slugs={slugs}
-                    isFinalElement={isFinalElementInLesson(newLinks, [
-                      "quiz",
-                      "starter-quiz",
-                      "exit-quiz",
-                      "additional-material",
-                    ])}
-                    // isFinalElement={
-                    //   pageLinks.findIndex((p) => p.label === "Worksheet") ===
-                    //   pageLinks.length - 1
-                    // }
-                    subheader={
-                      isSubHeader
-                        ? "The practice tasks in the lesson slides are also available as an editable worksheet ready to download in PowerPoint format."
-                        : undefined
-                    }
-                  >
-                    <LessonOverviewPresentation
-                      asset={worksheetUrl}
-                      title={lessonTitle}
-                      isWorksheetLandscape={!!isWorksheetLandscape}
-                      isWorksheet={true}
-                    />
-                  </LessonItemContainer>
-                )}
+                {/* {newLinks["worksheet"] && !contentRestricted && ( */}
+                {pageLinks.find((p) => p.label === "Worksheet") &&
+                  !contentRestricted && (
+                    <LessonItemContainer
+                      isSpecialist={isSpecialist}
+                      ref={worksheetSectionRef}
+                      title={"Worksheet"}
+                      anchorId="worksheet"
+                      pageLinks={pageLinks}
+                      downloadable={
+                        getIsResourceDownloadable(
+                          "worksheet-pdf",
+                          downloads,
+                          legacyCopyrightContent,
+                        ) ||
+                        getIsResourceDownloadable(
+                          "worksheet-pptx",
+                          downloads,
+                          legacyCopyrightContent,
+                        )
+                      }
+                      shareable={isLegacyLicense && showShare}
+                      onDownloadButtonClick={() => {
+                        trackDownloadResourceButtonClicked({
+                          downloadResourceButtonName: "worksheet",
+                        });
+                      }}
+                      slugs={slugs}
+                      // isFinalElement={isFinalElementInLesson(newLinks, [
+                      //   "quiz",
+                      //   "starter-quiz",
+                      //   "exit-quiz",
+                      //   "additional-material",
+                      // ])}
+                      isFinalElement={
+                        pageLinks.findIndex((p) => p.label === "Worksheet") ===
+                        pageLinks.length - 1
+                      }
+                      subheader={
+                        isSubHeader
+                          ? "The practice tasks in the lesson slides are also available as an editable worksheet ready to download in PowerPoint format."
+                          : undefined
+                      }
+                    >
+                      <LessonOverviewPresentation
+                        asset={worksheetUrl}
+                        title={lessonTitle}
+                        isWorksheetLandscape={!!isWorksheetLandscape}
+                        isWorksheet={true}
+                      />
+                    </LessonItemContainer>
+                  )}
                 <OakFlex
                   $flexDirection="column"
                   $position={"relative"}
@@ -714,18 +709,18 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     $pt={"inner-padding-xl"}
                     ref={quizSectionRef}
                   />
-                  {(newLinks["quiz"] || newLinks["starter-quiz"]) &&
-                    // {pageLinks.find(
-                    //   (p) =>
-                    //     p.anchorId === "quiz" || p.anchorId === "starter-quiz",
-                    // ) &&
+                  {/* {(newLinks["quiz"] || newLinks["starter-quiz"]) && */}
+                  {pageLinks.find(
+                    (p) =>
+                      p.anchorId === "quiz" || p.anchorId === "starter-quiz",
+                  ) &&
                     !contentRestricted && (
                       <LessonItemContainer
                         isSpecialist={isSpecialist}
                         ref={
-                          newLinks["starter-quiz"]
-                            ? // pageLinks.find((p) => p.anchorId === "starter-quiz")
-                              starterQuizSectionRef
+                          // newLinks["starter-quiz"]
+                          pageLinks.find((p) => p.anchorId === "starter-quiz")
+                            ? starterQuizSectionRef
                             : undefined
                         }
                         title={"Prior knowledge starter quiz"}
@@ -751,16 +746,16 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                           });
                         }}
                         slugs={slugs}
-                        isFinalElement={isFinalElementInLesson(newLinks, [
-                          "exit-quiz",
-                          "additional-material",
-                        ])}
-                        // isFinalElement={
-                        //   pageLinks.findIndex(
-                        //     (p) => p.anchorId === "starter-quiz",
-                        //   ) ===
-                        //   pageLinks.length - 1
-                        // }
+                        // isFinalElement={isFinalElementInLesson(newLinks, [
+                        //   "exit-quiz",
+                        //   "additional-material",
+                        // ])}
+                        isFinalElement={
+                          pageLinks.findIndex(
+                            (p) => p.anchorId === "starter-quiz",
+                          ) ===
+                          pageLinks.length - 1
+                        }
                         subheader={
                           isSubHeader
                             ? "This starter quiz will check that your pupils have the necessary prior knowledge and can access it for this lesson."
@@ -776,18 +771,18 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         )}
                       </LessonItemContainer>
                     )}
-                  {(newLinks["exit-quiz"] || newLinks["quiz"]) &&
-                    // {pageLinks.find(
-                    //   (p) => p.anchorId === "exit-quiz" || p.anchorId === "quiz",
-                    // ) &&
+                  {/* {(newLinks["exit-quiz"] || newLinks["quiz"]) && */}
+                  {pageLinks.find(
+                    (p) => p.anchorId === "exit-quiz" || p.anchorId === "quiz",
+                  ) &&
                     !contentRestricted && (
                       <LessonItemContainer
                         isSpecialist={isSpecialist}
                         ref={
-                          newLinks["exit-quiz"] ? exitQuizSectionRef : undefined
-                          // pageLinks.find((p) => p.anchorId === "exit-quiz")
-                          //   ? exitQuizSectionRef
-                          //   : undefined
+                          // newLinks["exit-quiz"] ? exitQuizSectionRef : undefined
+                          pageLinks.find((p) => p.anchorId === "exit-quiz")
+                            ? exitQuizSectionRef
+                            : undefined
                         }
                         pageLinks={pageLinks}
                         title={"Assessment exit quiz"}
@@ -812,13 +807,13 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                           });
                         }}
                         slugs={slugs}
-                        isFinalElement={isFinalElementInLesson(newLinks, [
-                          "additional-material",
-                        ])}
-                        // isFinalElement={
-                        //   pageLinks.findIndex((p) => p.label === "Quizzes") ===
-                        //   pageLinks.length - 1
-                        // }
+                        // isFinalElement={isFinalElementInLesson(newLinks, [
+                        //   "additional-material",
+                        // ])}
+                        isFinalElement={
+                          pageLinks.findIndex((p) => p.label === "Quizzes") ===
+                          pageLinks.length - 1
+                        }
                         subheader={
                           isSubHeader
                             ? "This quiz will test your pupils’ understanding of the key learning points at the end of the lesson and can also be used later for retrieval practice."
@@ -835,9 +830,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       </LessonItemContainer>
                     )}
                 </OakFlex>
-
-                {newLinks["additional-material"] &&
-                  // {pageLinks.find((p) => p.label === "Additional material") &&
+                {/* {newLinks["additional-material"] && */}
+                {pageLinks.find((p) => p.label === "Additional material") &&
                   additionalMaterialUrl &&
                   !contentRestricted && (
                     <LessonItemContainer
@@ -865,15 +859,15 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         });
                       }}
                       slugs={slugs}
-                      isFinalElement={
-                        newLinks["additional-material"] !== undefined
-                      }
                       // isFinalElement={
-                      //   pageLinks.findIndex(
-                      //     (p) => p.label === "Additional material",
-                      //   ) ===
-                      //   pageLinks.length - 1
+                      //   newLinks["additional-material"] !== undefined
                       // }
+                      isFinalElement={
+                        pageLinks.findIndex(
+                          (p) => p.label === "Additional material",
+                        ) ===
+                        pageLinks.length - 1
+                      }
                       subheader={
                         isSubHeader
                           ? "This lesson includes an editable additional material you can use during teaching."
