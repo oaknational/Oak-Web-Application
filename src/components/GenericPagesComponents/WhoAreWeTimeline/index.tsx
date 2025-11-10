@@ -5,6 +5,7 @@ import {
   OakBox,
   OakP,
   OakSpan,
+  OakHeading,
 } from "@oaknational/oak-components";
 import { ReactNode, useMemo } from "react";
 
@@ -46,11 +47,11 @@ export default function WhoAreWeTimeline({
           <OakGrid $cg="space-between-s" $rg="space-between-s">
             <OakGridArea $colSpan={[12, 12, 8]} $colStart={[0, 0, 3]}>
               <OakFlex $gap={"all-spacing-2"} $flexDirection={"column"}>
-                <OakBox $font={"heading-5"}>
+                <OakHeading tag="h2" $font={"heading-5"}>
                   <OakSpan $background={"mint"} $ph={"inner-padding-ssx"}>
                     {title}
                   </OakSpan>
-                </OakBox>
+                </OakHeading>
                 <OakBox $font={"heading-3"}>{subtitle}</OakBox>
               </OakFlex>
             </OakGridArea>
@@ -61,7 +62,11 @@ export default function WhoAreWeTimeline({
                 {items.map((item, itemIndex) => {
                   const isLast = items.length - 1 === itemIndex;
                   return (
-                    <OakFlex key={item.title} $gap={"all-spacing-4"}>
+                    <OakFlex
+                      key={item.title}
+                      data-testid="timetable-timeline-item"
+                      $gap={"all-spacing-4"}
+                    >
                       <OakFlex
                         $width={"all-spacing-6"}
                         $flexShrink={0}
@@ -100,7 +105,9 @@ export default function WhoAreWeTimeline({
                             {item.subtitle}
                           </OakSpan>
                         </OakBox>
-                        <OakBox $font={"heading-light-5"}>{item.title}</OakBox>
+                        <OakHeading tag="h3" $font={"heading-light-5"}>
+                          {item.title}
+                        </OakHeading>
                         <OakBox>
                           {item.text.map((textItem) => {
                             return <OakP key={textItem}>{textItem}</OakP>;
