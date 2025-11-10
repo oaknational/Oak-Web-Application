@@ -233,8 +233,8 @@ export const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({ pageData }) => {
         }
       />
       <WhoAreWeTimeline
-        title={"Oak’s story"}
-        subtitle={"As teaching evolves, so do we..."}
+        title={"As teaching evolves, so do we..."}
+        subtitle={"Oak’s story"}
         items={[
           {
             subtitle: "From then",

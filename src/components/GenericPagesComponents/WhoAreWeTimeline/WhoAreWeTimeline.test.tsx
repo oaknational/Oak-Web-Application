@@ -11,7 +11,7 @@ describe("WhoAreWeTimeline", () => {
     const { baseElement, getAllByRole, getAllByTestId } = render(
       <WhoAreWeTimeline
         title={"TEST_TITLE"}
-        subtitle={""}
+        subtitle={"TEST_SUBTITLE"}
         items={[
           {
             title: "ITEM_TITLE_1",

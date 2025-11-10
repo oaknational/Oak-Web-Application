@@ -47,12 +47,14 @@ export default function WhoAreWeTimeline({
           <OakGrid $cg="space-between-s" $rg="space-between-s">
             <OakGridArea $colSpan={[12, 12, 9]} $colStart={[0, 0, 2]}>
               <OakFlex $gap={"all-spacing-2"} $flexDirection={"column"}>
-                <OakHeading tag="h2" $font={"heading-5"}>
+                <OakBox $font={"heading-5"}>
                   <OakSpan $background={"mint"} $ph={"inner-padding-ssx"}>
-                    {title}
+                    {subtitle}
                   </OakSpan>
+                </OakBox>
+                <OakHeading tag="h2" $font={"heading-3"}>
+                  {title}
                 </OakHeading>
-                <OakBox $font={"heading-3"}>{subtitle}</OakBox>
               </OakFlex>
             </OakGridArea>
           </OakGrid>

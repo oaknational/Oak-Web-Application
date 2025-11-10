@@ -22,18 +22,20 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
               <div
                 class="sc-fqkvVR sc-kAyceB fgBWrW gOiVFh"
               >
-                <h2
-                  class="sc-kpDqfm evKItP"
+                <div
+                  class="sc-fqkvVR cBmcky"
                 >
                   <span
                     class="sc-dAlyuH jXPica"
                   >
-                    TEST_TITLE
+                    TEST_SUBTITLE
                   </span>
+                </div>
+                <h2
+                  class="sc-kpDqfm jOcnDt"
+                >
+                  TEST_TITLE
                 </h2>
-                <div
-                  class="sc-fqkvVR kYsGzo"
-                />
               </div>
             </div>
           </div>

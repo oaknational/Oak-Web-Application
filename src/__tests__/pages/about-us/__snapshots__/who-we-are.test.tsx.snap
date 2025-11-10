@@ -1790,20 +1790,20 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                     <div
                       class="sc-fqkvVR sc-kAyceB fgBWrW gOiVFh"
                     >
-                      <h2
-                        class="sc-kpDqfm evKItP"
+                      <div
+                        class="sc-fqkvVR cBmcky"
                       >
                         <span
                           class="sc-dAlyuH jXPica"
                         >
                           Oak’s story
                         </span>
-                      </h2>
-                      <div
-                        class="sc-fqkvVR kYsGzo"
+                      </div>
+                      <h2
+                        class="sc-kpDqfm jOcnDt"
                       >
                         As teaching evolves, so do we...
-                      </div>
+                      </h2>
                     </div>
                   </div>
                 </div>
