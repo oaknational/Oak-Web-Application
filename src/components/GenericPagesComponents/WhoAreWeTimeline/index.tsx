@@ -45,7 +45,7 @@ export default function WhoAreWeTimeline({
           $pt={"inner-padding-xl7"}
         >
           <OakGrid $cg="space-between-s" $rg="space-between-s">
-            <OakGridArea $colSpan={[12, 12, 8]} $colStart={[0, 0, 3]}>
+            <OakGridArea $colSpan={[12, 12, 9]} $colStart={[0, 0, 2]}>
               <OakFlex $gap={"all-spacing-2"} $flexDirection={"column"}>
                 <OakHeading tag="h2" $font={"heading-5"}>
                   <OakSpan $background={"mint"} $ph={"inner-padding-ssx"}>
@@ -57,7 +57,7 @@ export default function WhoAreWeTimeline({
             </OakGridArea>
           </OakGrid>
           <OakGrid $cg="space-between-s" $rg="space-between-s">
-            <OakGridArea $colSpan={[12, 12, 12]} $colStart={[0, 2, 2]}>
+            <OakGridArea $colSpan={[12, 12, 8]} $colStart={[0, 0, 3]}>
               <OakFlex $flexDirection={"column"}>
                 {items.map((item, itemIndex) => {
                   const isLast = items.length - 1 === itemIndex;
