@@ -1,13 +1,13 @@
 import { screen } from "@testing-library/react";
 
-import CopyrightNotice from "./CopyrightNotice";
+import OglCopyrightNotice from "./OglCopyrightNotice";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("CopyrightNotice", () => {
   it("renders pre-ALB copyright notice", () => {
     renderWithTheme(
-      <CopyrightNotice
+      <OglCopyrightNotice
         showPostAlbCopyright={false}
         openLinksExternally={false}
         copyrightYear="2022-01-01T00:00:00Z"
@@ -22,7 +22,7 @@ describe("CopyrightNotice", () => {
   });
   it("renders post-ALB copyright notice", () => {
     renderWithTheme(
-      <CopyrightNotice
+      <OglCopyrightNotice
         showPostAlbCopyright={true}
         openLinksExternally={false}
         copyrightYear="2024-01-01T00:00:00Z"
@@ -37,7 +37,7 @@ describe("CopyrightNotice", () => {
   });
   it("opens links in a new tab when openLinksExternally is true", async () => {
     renderWithTheme(
-      <CopyrightNotice
+      <OglCopyrightNotice
         showPostAlbCopyright={true}
         openLinksExternally={true}
         copyrightYear="2024-01-01T00:00:00Z"
@@ -53,7 +53,7 @@ describe("CopyrightNotice", () => {
   });
   it("opens links in the same tab when openLinksExternally is false", async () => {
     renderWithTheme(
-      <CopyrightNotice
+      <OglCopyrightNotice
         showPostAlbCopyright={true}
         openLinksExternally={false}
         copyrightYear="2024-01-01T00:00:00Z"
@@ -69,7 +69,7 @@ describe("CopyrightNotice", () => {
   });
   it("links that will open in a new tab should be tagged with an icon", () => {
     renderWithTheme(
-      <CopyrightNotice
+      <OglCopyrightNotice
         showPostAlbCopyright={true}
         openLinksExternally={true}
         copyrightYear="2024-01-01T00:00:00Z"
@@ -81,7 +81,7 @@ describe("CopyrightNotice", () => {
   });
   it("links that do not open in a new tab should not be tagged with an icon", () => {
     renderWithTheme(
-      <CopyrightNotice
+      <OglCopyrightNotice
         showPostAlbCopyright={true}
         openLinksExternally={false}
         copyrightYear="2024-01-01T00:00:00Z"

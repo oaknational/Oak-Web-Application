@@ -20,34 +20,34 @@ jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: jest.fn(() => true),
 }));
 
-let mockUseCopyrightRequirements = defaultCopyrightRequirements;
-jest.mock("@/hooks/useCopyrightRequirements", () => ({
-  useCopyrightRequirements: () => mockUseCopyrightRequirements,
+let mockUseComplexCopyright = defaultCopyrightRequirements;
+jest.mock("@/hooks/useComplexCopyright", () => ({
+  useComplexCopyright: () => mockUseComplexCopyright,
 }));
 
 describe("LoginRequiredButton", () => {
   afterEach(() => {
-    mockUseCopyrightRequirements = defaultCopyrightRequirements;
+    mockUseComplexCopyright = defaultCopyrightRequirements;
   });
   beforeEach(() => {
     setUseUserReturn(mockLoggedOut);
   });
   it("should render a sign up button", () => {
-    mockUseCopyrightRequirements = signedOutLoginRequired;
+    mockUseComplexCopyright = signedOutLoginRequired;
     render(<LoginRequiredButton loginRequired={true} geoRestricted={false} />);
     expect(
       screen.getByRole("button", { name: /sign up/i }),
     ).toBeInTheDocument();
   });
   it("should render an onboarding button", () => {
-    mockUseCopyrightRequirements = signedInNotOnboarded;
+    mockUseComplexCopyright = signedInNotOnboarded;
     render(<LoginRequiredButton loginRequired={true} geoRestricted={false} />);
     expect(
       screen.getByRole("button", { name: /complete sign up to continue/i }),
     ).toBeInTheDocument();
   });
   it("should render a loading button", () => {
-    mockUseCopyrightRequirements = isLoading;
+    mockUseComplexCopyright = isLoading;
     render(<LoginRequiredButton loginRequired={true} geoRestricted={false} />);
     expect(
       screen.getByRole("button", { name: /loading.../i }),
@@ -73,7 +73,7 @@ describe("LoginRequiredButton", () => {
     expect(mockOnClick).toHaveBeenCalled();
   });
   it("renders alternate sign in text", () => {
-    mockUseCopyrightRequirements = signedOutLoginRequired;
+    mockUseComplexCopyright = signedOutLoginRequired;
     render(
       <LoginRequiredButton
         loginRequired={true}
@@ -91,7 +91,7 @@ describe("LoginRequiredButton", () => {
     expect(defaultTextSignUpButton).not.toBeInTheDocument();
   });
   it('renders a disabled button when "georestricted"', () => {
-    mockUseCopyrightRequirements = signedInGeoBlocked;
+    mockUseComplexCopyright = signedInGeoBlocked;
     render(
       <LoginRequiredButton
         loginRequired={false}
@@ -107,7 +107,7 @@ describe("LoginRequiredButton", () => {
     expect(disabledButton).toBeDisabled();
   });
   it("renders nothing when shouldHideWhenGeorestricted is true", () => {
-    mockUseCopyrightRequirements = signedInGeoBlocked;
+    mockUseComplexCopyright = signedInGeoBlocked;
     render(
       <LoginRequiredButton
         loginRequired={false}
@@ -124,7 +124,7 @@ describe("LoginRequiredButton", () => {
     expect(disabledButton).not.toBeInTheDocument();
   });
   it("renders a primary variant", () => {
-    mockUseCopyrightRequirements = signedOutLoginRequired;
+    mockUseComplexCopyright = signedOutLoginRequired;
     render(
       <LoginRequiredButton
         loginRequired={true}
@@ -136,7 +136,7 @@ describe("LoginRequiredButton", () => {
     expect(primaryButton).toHaveStyle("background-color: #222222");
   });
   it("renders a secondary variant", () => {
-    mockUseCopyrightRequirements = signedOutLoginRequired;
+    mockUseComplexCopyright = signedOutLoginRequired;
     render(
       <LoginRequiredButton
         loginRequired={true}
@@ -148,7 +148,7 @@ describe("LoginRequiredButton", () => {
     expect(secondaryButton).toHaveStyle("background-color: #ffffff");
   });
   it("renders a tertiary variant", () => {
-    mockUseCopyrightRequirements = signedOutLoginRequired;
+    mockUseComplexCopyright = signedOutLoginRequired;
     render(
       <LoginRequiredButton
         loginRequired={true}

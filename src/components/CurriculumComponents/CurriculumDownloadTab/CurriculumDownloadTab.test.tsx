@@ -9,7 +9,6 @@ import CurriculumDownloadTab, { trackCurriculumDownload } from ".";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
-import { DISABLE_DOWNLOADS } from "@/utils/curriculum/constants";
 import { createCurriculumDownloadsUrl } from "@/utils/curriculum/urls";
 import { createYearData } from "@/fixtures/curriculum/yearData";
 import { createUnit } from "@/fixtures/curriculum/unit";
@@ -109,70 +108,68 @@ describe("Component Curriculum Download Tab", () => {
     return render(<CurriculumDownloadTab {...defaultProps} />);
   };
 
-  if (!DISABLE_DOWNLOADS) {
-    test("user can see download form", async () => {
-      const { findByText, findAllByRole } = renderComponent();
-      const formHeading = await findByText("Your details");
-      const formInputs = await findAllByRole("textbox");
-      expect(formHeading).toBeInTheDocument();
-      expect(formInputs).toHaveLength(1);
+  test("user can see download form", async () => {
+    const { findByText, findAllByRole } = renderComponent();
+    const formHeading = await findByText("Your details");
+    const formInputs = await findAllByRole("textbox");
+    expect(formHeading).toBeInTheDocument();
+    expect(formInputs).toHaveLength(1);
+  });
+
+  test("shows inline error when download fails (signed out)", async () => {
+    (downloadFileFromUrl as jest.Mock).mockRejectedValueOnce(
+      new Error("Network error"),
+    );
+
+    const { getByTestId, getByRole, queryByText } = renderComponent();
+
+    act(() => {
+      getByTestId("download-school-isnt-listed").click();
+    });
+    const emailInput = screen.getByPlaceholderText("Type your email address");
+    await userEvent.type(emailInput, "test@example.com");
+    act(() => {
+      getByTestId("download-accept-terms").click();
     });
 
-    test("shows inline error when download fails (signed out)", async () => {
-      (downloadFileFromUrl as jest.Mock).mockRejectedValueOnce(
-        new Error("Network error"),
-      );
-
-      const { getByTestId, getByRole, queryByText } = renderComponent();
-
-      act(() => {
-        getByTestId("download-school-isnt-listed").click();
-      });
-      const emailInput = screen.getByPlaceholderText("Type your email address");
-      await userEvent.type(emailInput, "test@example.com");
-      act(() => {
-        getByTestId("download-accept-terms").click();
-      });
-
-      act(() => {
-        getByRole("button", { name: /download/i }).click();
-      });
-
-      await waitFor(() => {
-        expect(
-          screen.getByText(
-            "There was an error downloading your files. Please try again.",
-          ),
-        ).toBeVisible();
-        expect(queryByText("Thanks for downloading")).toBeNull();
-      });
+    act(() => {
+      getByRole("button", { name: /download/i }).click();
     });
 
-    test("shows inline error when download fails (signed in)", async () => {
-      (useUser as jest.Mock).mockReturnValue({
-        isLoaded: true,
-        isSignedIn: true,
-      });
-      (downloadFileFromUrl as jest.Mock).mockRejectedValueOnce(
-        new Error("Server error"),
-      );
-
-      const { getByTestId, queryByText } = renderComponent();
-
-      act(() => {
-        getByTestId("download").click();
-      });
-
-      await waitFor(() => {
-        expect(
-          screen.getByText(
-            "There was an error downloading your files. Please try again.",
-          ),
-        ).toBeVisible();
-        expect(queryByText("Thanks for downloading")).toBeNull();
-      });
+    await waitFor(() => {
+      expect(
+        screen.getByText(
+          "There was an error downloading your files. Please try again.",
+        ),
+      ).toBeVisible();
+      expect(queryByText("Thanks for downloading")).toBeNull();
     });
-  }
+  });
+
+  test("shows inline error when download fails (signed in)", async () => {
+    (useUser as jest.Mock).mockReturnValue({
+      isLoaded: true,
+      isSignedIn: true,
+    });
+    (downloadFileFromUrl as jest.Mock).mockRejectedValueOnce(
+      new Error("Server error"),
+    );
+
+    const { getByTestId, queryByText } = renderComponent();
+
+    act(() => {
+      getByTestId("download").click();
+    });
+
+    await waitFor(() => {
+      expect(
+        screen.getByText(
+          "There was an error downloading your files. Please try again.",
+        ),
+      ).toBeVisible();
+      expect(queryByText("Thanks for downloading")).toBeNull();
+    });
+  });
 
   describe("Curriculum Downloads Tab: Secondary Maths", () => {
     test("user can see the tier selector for secondary maths", async () => {

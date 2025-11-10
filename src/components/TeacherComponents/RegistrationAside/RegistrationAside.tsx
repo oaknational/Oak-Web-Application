@@ -12,7 +12,7 @@ import {
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import { getIllustrationAsset } from "@/image-data";
 
-function ListItem({ children }: PropsWithChildren) {
+function ListItem({ children }: Readonly<PropsWithChildren>) {
   return (
     <OakLI
       $display="flex"

@@ -7,7 +7,7 @@ import {
 } from "@oaknational/oak-components";
 
 import { DisabledListItemHeader } from "../ListItemHeader/ListItemHeader";
-import { LessonCopyrightTag } from "../LessonCopyrightTag/LessonCopyrightTag";
+import { LessonComplexCopyrightTag } from "../LessonComplexCopyrightTag/LessonComplexCopyrightTag";
 
 import useClickableCard from "@/hooks/useClickableCard";
 import LessonResourceGraphics from "@/components/TeacherComponents/LessonResourceGraphics";
@@ -245,7 +245,7 @@ const LessonListItem: FC<
             >
               <LessonResourceGraphics items={resources} />
               {isLessonListItem(props) && (
-                <LessonCopyrightTag
+                <LessonComplexCopyrightTag
                   georestricted={props.geoRestricted}
                   loginRequired={props.loginRequired}
                 />

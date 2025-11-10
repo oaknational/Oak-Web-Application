@@ -7,10 +7,12 @@ import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
 import { ClerkProvider } from "@clerk/nextjs";
 
-import { OakPupilClientProvider } from "@/context/Pupil/OakPupilClientProvider";
 /**
  * Custom global styles (which should be kept to a minimum) must all be imported in _app.tsx
  */
+
+import "../polyfills";
+
 import "@/browser-lib/gleap/gleap.css";
 import "@/browser-lib/oak-globals/oakGlobals";
 import GlobalStyle from "@/styles/GlobalStyle";
@@ -23,6 +25,7 @@ import AnalyticsProvider, {
   AnalyticsProviderProps,
 } from "@/context/Analytics/AnalyticsProvider";
 import { MenuProvider } from "@/context/Menu";
+import { OakPupilClientProvider } from "@/context/Pupil/OakPupilClientProvider";
 import { ToastProvider } from "@/context/Toast";
 import InlineSpriteSheet from "@/components/GenericPagesComponents/InlineSpriteSheet";
 import AppHooks from "@/components/AppComponents/App/AppHooks";
