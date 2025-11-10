@@ -17,22 +17,16 @@ const LessonOverviewDocPresentation: FC<LessonOverviewPresentationProps> = ({
   isWorksheetLandscape,
   docType,
 }) => {
-  const extractGoogleDocId = (url: string): string | null => {
-    const pattern = /\/d\/([a-zA-Z0-9_-]+)/;
-    const match = url.match(pattern);
-    return match ? (match[1] ?? null) : null;
+  const convertToPreviewUrl = (url: string) => {
+    const docsPath = url.split("/edit")[0];
+
+    return docsPath + "/preview";
   };
-
-  const docId = extractGoogleDocId(asset);
-  if (!docId) {
-    return null;
-  }
-
-  const srcUrl = `https://docs.google.com/viewer?srcid=${docId}&pid=explorer&efh=false&a=v&chrome=false&embedded=true`;
+  const srcUrl = convertToPreviewUrl(asset);
 
   return (
     <OakBox $ba={["border-solid-m"]} $width={"100%"}>
-      <AspectRatio ratio={!isWorksheetLandscape ? "2:3" : "16:9"}>
+      <AspectRatio ratio={isWorksheetLandscape ? "16:9" : "2:3"}>
         <iframe
           src={srcUrl}
           title={`${title} ${docType}`}
