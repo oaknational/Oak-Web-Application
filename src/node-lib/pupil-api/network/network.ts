@@ -1,3 +1,4 @@
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import errorReporter from "@/common-lib/error-reporter";
 import {
   CreateLessonAttemptPayload,
