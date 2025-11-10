@@ -1,12 +1,15 @@
 import type {
+  AddTeacherNote,
   // AddTeacherNote,
   GetAttempt,
+  GetTeacherNote,
   // GetTeacherNote,
   LogAttempt,
   PupilClient,
   State,
 } from "@/node-lib/pupil-api/client/client";
 import { TeacherNote } from "@/node-lib/pupil-api/types";
+import keysToCamelCase from "@/utils/snakeCaseConverter";
 // import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 const mockAttempt = {
@@ -118,21 +121,21 @@ export class MockPupilClient implements PupilClient {
     };
   };
   getAttempt: GetAttempt = mockGetAttempt;
-  // addTeacherNote: AddTeacherNote = () => {
-  //   return {
-  //     noteId: "testNoteId",
-  //     promise: Promise.resolve(mockTeacherNote),
-  //   };
-  // };
+  addTeacherNote: AddTeacherNote = () => {
+    return {
+      noteId: "testNoteId",
+      promise: Promise.resolve(mockTeacherNote),
+    };
+  };
 
-  // getTeacherNote: GetTeacherNote = () => {
-  //   return Promise.resolve({
-  //     teacherNote: { ...keysToCamelCase(mockTeacherNote) },
-  //     isEditable: true,
-  //   });
-  // };
+  getTeacherNote: GetTeacherNote = () => {
+    return Promise.resolve({
+      teacherNote: { ...keysToCamelCase(mockTeacherNote) },
+      isEditable: true,
+    });
+  };
 
-  // getTeacherNoteIsEditable = () => {
-  //   return true;
-  // };
+  getTeacherNoteIsEditable = () => {
+    return true;
+  };
 }
