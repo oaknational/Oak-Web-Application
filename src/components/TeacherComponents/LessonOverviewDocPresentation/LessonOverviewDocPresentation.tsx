@@ -1,5 +1,6 @@
 import { FC, memo } from "react";
 import { OakBox } from "@oaknational/oak-components";
+import styled from "styled-components";
 
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
 
@@ -24,10 +25,17 @@ const LessonOverviewDocPresentation: FC<LessonOverviewPresentationProps> = ({
   };
   const srcUrl = convertToPreviewUrl(asset);
 
+  const StyledIframe = styled.iframe<{ shouldZoom: boolean }>`
+    ${({ shouldZoom }) =>
+      shouldZoom === true &&
+      `zoom: 0.8;
+    `}
+  `;
+
   return (
     <OakBox $ba={["border-solid-m"]} $width={"100%"}>
       <AspectRatio ratio={isWorksheetLandscape ? "16:9" : "2:3"}>
-        <iframe
+        <StyledIframe
           src={srcUrl}
           title={`${title} ${docType}`}
           width="100%"
@@ -39,6 +47,7 @@ const LessonOverviewDocPresentation: FC<LessonOverviewPresentationProps> = ({
             border: "none",
           }}
           loading="eager"
+          shouldZoom={isWorksheetLandscape ?? false}
         />
       </AspectRatio>
     </OakBox>
