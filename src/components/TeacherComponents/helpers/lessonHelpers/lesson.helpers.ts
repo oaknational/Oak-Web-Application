@@ -548,132 +548,105 @@ export type LessonPageLinkDetails = {
   condition: (lesson: GetPageLinksForLessonProps) => boolean;
 };
 
-export type LessonPageLinks = Map<
+export type LessonPageLinks = Record<
   LessonPageLinkAnchorId,
-  Omit<LessonPageLinkDetails, "condition">
+  LessonPageLinkDetails
 >;
 
 export const getPageLinksWithSubheadingsForLesson2 = (
   lesson: GetPageLinksForLessonProps,
   copyrightContent: LegacyCopyrightContent,
   mediaClipsLabel?: string,
-): LessonPageLinks => {
-  const links = new Map<LessonPageLinkAnchorId, LessonPageLinkDetails>([
-    [
-      "lesson-guide",
-      {
-        label: "Lesson guide",
-        condition: (lesson) => Boolean(lesson.lessonGuideUrl),
-      },
-    ],
-    [
-      "slide-deck",
-      {
-        label: "Lesson slides",
-        condition: (lesson) =>
-          Boolean(
-            lesson.presentationUrl &&
-              !checkIfResourceHasLegacyCopyright(
-                "presentation",
-                copyrightContent,
-              ),
-          ),
-      },
-    ],
-    [
-      "media-clips",
-      {
-        label: mediaClipsLabel || "Video & audio",
-        condition: (lesson) => lesson.hasMediaClips,
-      },
-    ],
-    ["lesson-details", { label: "Lesson details", condition: () => true }],
-    [
-      "video",
-      {
-        label: "Lesson video",
-        condition: (lesson) => Boolean(lesson.videoMuxPlaybackId),
-      },
-    ],
-    [
-      "worksheet",
-      {
-        label: "Worksheet",
-        condition: (lesson) => Boolean(lesson.worksheetUrl),
-      },
-    ],
-    [
-      "quiz",
-      {
-        label: "Quizzes",
-        subheading: `Prior knowledge starter quiz \nAssessment exit quiz`,
-        condition: (lesson) =>
-          Boolean(
-            lesson.exitQuiz &&
-              lesson.exitQuiz.length > 0 &&
-              lesson.starterQuiz &&
-              lesson.starterQuiz.length > 0,
-          ),
-      },
-    ],
-    [
-      "starter-quiz",
-      {
-        label: "Quizzes",
-        subheading: `Prior knowledge starter quiz`,
-        condition: (lesson) =>
-          Boolean(
-            (!lesson.exitQuiz || lesson.exitQuiz.length === 0) &&
-              lesson.starterQuiz &&
-              lesson.starterQuiz.length > 0,
-          ),
-      },
-    ],
-    [
-      "exit-quiz",
-      {
-        label: "Quizzes",
-        subheading: `Assessment exit quiz`,
-        condition: (lesson) =>
-          Boolean(
-            lesson.exitQuiz &&
-              lesson.exitQuiz.length > 0 &&
-              (!lesson.starterQuiz || lesson.starterQuiz.length === 0),
-          ),
-      },
-    ],
-    [
-      "additional-material",
-      {
-        label: "Additional material",
-        condition: (lesson) => Boolean(lesson.additionalMaterialUrl),
-      },
-    ],
-  ]);
+): Partial<LessonPageLinks> => {
+  const links: LessonPageLinks = {
+    "lesson-guide": {
+      label: "Lesson guide",
+      condition: (lesson) => Boolean(lesson.lessonGuideUrl),
+    },
+    "slide-deck": {
+      label: "Lesson slides",
+      condition: (lesson) =>
+        Boolean(
+          lesson.presentationUrl &&
+            !checkIfResourceHasLegacyCopyright(
+              "presentation",
+              copyrightContent,
+            ),
+        ),
+    },
+    "media-clips": {
+      label: mediaClipsLabel || "Video & audio",
+      condition: (lesson) => lesson.hasMediaClips,
+    },
+    "lesson-details": { label: "Lesson details", condition: () => true },
+    video: {
+      label: "Lesson video",
+      condition: (lesson) => Boolean(lesson.videoMuxPlaybackId),
+    },
+    worksheet: {
+      label: "Worksheet",
+      condition: (lesson) => Boolean(lesson.worksheetUrl),
+    },
+    quiz: {
+      label: "Quizzes",
+      subheading: `Prior knowledge starter quiz \nAssessment exit quiz`,
+      condition: (lesson) =>
+        Boolean(
+          lesson.exitQuiz &&
+            lesson.exitQuiz.length > 0 &&
+            lesson.starterQuiz &&
+            lesson.starterQuiz.length > 0,
+        ),
+    },
+    "starter-quiz": {
+      label: "Quizzes",
+      subheading: `Prior knowledge starter quiz`,
+      condition: (lesson) =>
+        Boolean(
+          (!lesson.exitQuiz || lesson.exitQuiz.length === 0) &&
+            lesson.starterQuiz &&
+            lesson.starterQuiz.length > 0,
+        ),
+    },
+    "exit-quiz": {
+      label: "Quizzes",
+      subheading: `Assessment exit quiz`,
+      condition: (lesson) =>
+        Boolean(
+          lesson.exitQuiz &&
+            lesson.exitQuiz.length > 0 &&
+            (!lesson.starterQuiz || lesson.starterQuiz.length === 0),
+        ),
+    },
+    "additional-material": {
+      label: "Additional material",
+      condition: (lesson) => Boolean(lesson.additionalMaterialUrl),
+    },
+  };
 
-  const filteredLinks = new Map<
-    LessonPageLinkAnchorId,
-    Omit<LessonPageLinkDetails, "condition">
-  >(
-    Array.from(links.entries())
-      .filter(([, link]) => link.condition(lesson))
-      .map(([key, link]) => {
+  const filteredLinks = (Object.keys(links) as LessonPageLinkAnchorId[]).reduce(
+    (acc, key) => {
+      const link = links[key];
+      if (link.condition(lesson)) {
         const { condition, ...linkDetails } = link;
-        return [key, linkDetails];
-      }),
+        acc[key] = linkDetails as LessonPageLinkDetails;
+      }
+      return acc;
+    },
+    {} as Partial<LessonPageLinks>,
   );
 
   return filteredLinks;
 };
 
-// export const isFinalElementInLesson = (
-//   links: Partial<LessonPageLinks>,
-//   itemsToCheck: LessonPageLinkAnchorId[],
-// ): boolean => {
-//   return !itemsToCheck.some(
-//     (item) => Object.hasOwn(links, item) && !!links[item],
-//   );
-// };
+export const isFinalElementInLesson = (
+  links: Partial<LessonPageLinks>,
+  itemsToCheck: LessonPageLinkAnchorId[],
+): boolean => {
+  return !itemsToCheck.some(
+    (item) => Object.hasOwn(links, item) && !!links[item],
+  );
+};
 
 export function groupLessonPathways(pathways: LessonPathway[]) {
   const pathwaysBySubject = Object.values(groupBy(pathways, "subjectSlug"));
