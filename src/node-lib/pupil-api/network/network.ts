@@ -3,7 +3,7 @@ import errorReporter from "@/common-lib/error-reporter";
 import {
   CreateLessonAttemptPayload,
   LessonAttempt,
-  // TeacherNote,
+  TeacherNote,
   AttemptId,
 } from "@/node-lib/pupil-api/types";
 
@@ -52,45 +52,50 @@ export class PupilNetworkClient {
     return response.json();
   }
 
-  // async addTeacherNote(teacherNote: TeacherNote): Promise<TeacherNote> {
-  //   const response = await fetch(this.config.addTeacherNoteUrl, {
-  //     method: "POST",
-  //     body: JSON.stringify(teacherNote),
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   });
+  async addTeacherNote(teacherNote: TeacherNote): Promise<TeacherNote> {
+    const response = await fetch("/api/teacher/note", {
+      method: "POST",
+      body: JSON.stringify(teacherNote),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-  //   if (!response.ok) {
-  //     const { status } = response;
-  //     const body = await response.json();
-  //     throw new OakPupilClientError("Failed to add teacher note", {
-  //       status,
-  //       body,
-  //     });
-  //   }
-  //   return response.json();
-  // }
+    if (!response.ok) {
+      errorReporter("Failed to log teacher note")(
+        new Error(response.statusText),
+        {
+          severity: "warning",
+        },
+      );
+    }
+    return response.json();
+  }
 
-  // async getTeacherNote({
-  //   note_id,
-  //   sid_key,
-  // }: {
-  //   note_id: string;
-  //   sid_key: string;
-  // }): Promise<TeacherNote> {
-  //   const urlObject = new URL(this.config.getTeacherNoteUrl);
-  //   urlObject.searchParams.set("note_id", note_id);
-  //   urlObject.searchParams.set("sid_key", sid_key);
-  //   const url = urlObject.toString();
-  //   const response = await fetch(url);
+  async getTeacherNote({
+    note_id,
+    sid_key,
+  }: {
+    note_id: string;
+    sid_key: string;
+  }): Promise<TeacherNote> {
+    const urlObject = new URL(
+      "/api/teacher/note",
+      getBrowserConfig("clientAppBaseUrl"),
+    );
+    urlObject.searchParams.set("note_id", note_id);
+    urlObject.searchParams.set("sid_key", sid_key);
+    const url = urlObject.toString();
+    const response = await fetch(url);
 
-  //   if (!response.ok) {
-  //     throw new OakPupilClientError("Failed to fetch teacher note", {
-  //       url,
-  //       response,
-  //     });
-  //   }
-  //   return response.json();
-  // }
+    if (!response.ok) {
+      errorReporter("Failed to fetch teacher note")(
+        new Error(response.statusText),
+        {
+          severity: "warning",
+        },
+      );
+    }
+    return response.json();
+  }
 }

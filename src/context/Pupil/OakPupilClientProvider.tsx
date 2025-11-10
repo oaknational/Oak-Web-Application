@@ -5,18 +5,18 @@ import {
   State,
   LogAttempt,
   GetAttempt,
-  // AddTeacherNote,
-  // GetTeacherNote,
-  // GetTeacherNoteIsEditable,
+  AddTeacherNote,
+  GetTeacherNote,
+  GetTeacherNoteIsEditable,
 } from "@/node-lib/pupil-api/client/client";
 
 type ContextValue = {
   state: State;
   logAttempt: LogAttempt;
   getAttempt: GetAttempt;
-  // addTeacherNote: AddTeacherNote;
-  // getTeacherNote: GetTeacherNote;
-  // getTeacherNoteIsEditable: GetTeacherNoteIsEditable;
+  addTeacherNote: AddTeacherNote;
+  getTeacherNote: GetTeacherNote;
+  getTeacherNoteIsEditable: GetTeacherNoteIsEditable;
 };
 
 export const oakPupilContext = createContext<ContextValue>({} as ContextValue);
@@ -47,11 +47,18 @@ const OakPupilClientProvider = ({ children }: { children: ReactNode }) => {
       state,
       logAttempt: client.logAttempt,
       getAttempt: client.getAttempt,
-      // addTeacherNote: client.addTeacherNote,
-      // getTeacherNote: client.getTeacherNote,
-      // getTeacherNoteIsEditable: client.getTeacherNoteIsEditable,
+      addTeacherNote: client.addTeacherNote,
+      getTeacherNote: client.getTeacherNote,
+      getTeacherNoteIsEditable: client.getTeacherNoteIsEditable,
     }),
-    [state, client.getAttempt, client.logAttempt],
+    [
+      state,
+      client.logAttempt,
+      client.getAttempt,
+      client.addTeacherNote,
+      client.getTeacherNote,
+      client.getTeacherNoteIsEditable,
+    ],
   );
 
   return (
