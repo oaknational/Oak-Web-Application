@@ -28,7 +28,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
     <OakFlex $background={"mint"} $pv="inner-padding-xl" $overflow={"hidden"}>
       <OakMaxWidth $ph={["inner-padding-m"]}>
         <OakGrid $cg={"all-spacing-4"}>
-          <OakGridArea $colSpan={[12, 6]}>
+          <OakGridArea $color={"text-primary"} $colSpan={[12, 6]}>
             <OakFlex
               $flexDirection={"column"}
               $maxWidth={["all-spacing-22"]}
@@ -79,7 +79,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                 <OakBox
                   $height={"all-spacing-0"}
                   $bt={"border-solid-m"}
-                  $borderColor={"white"}
+                  $borderColor={"border-inverted"}
                 />
                 <OakFlex $flexDirection="column" $gap="space-between-s">
                   <OakHeading tag="h3" $font="heading-7">
