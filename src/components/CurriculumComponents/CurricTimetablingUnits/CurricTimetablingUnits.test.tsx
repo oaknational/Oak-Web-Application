@@ -3,9 +3,11 @@ import { act } from "@testing-library/react";
 
 import { CurricTimetablingUnits } from ".";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { fetchSubjectPhasePickerData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme"]);
 
 const defaultSearchParams = new URLSearchParams("");
 const mockUseSearchParams = jest.fn(() => defaultSearchParams);
@@ -87,7 +89,7 @@ describe("CurricTimetablingUnits", () => {
     mockUseSearchParams.mockReturnValue(
       new URLSearchParams("mode=debug&year=1"),
     );
-    const { container } = renderWithTheme(
+    const { container } = render(
       <CurricTimetablingUnits
         units={[
           createUnit({ slug: "test-1", year: "1" }),
@@ -108,7 +110,7 @@ describe("CurricTimetablingUnits", () => {
     mockUseSearchParams.mockReturnValue(
       new URLSearchParams("mode=normal&year=1"),
     );
-    const { container } = renderWithTheme(
+    const { container } = render(
       <CurricTimetablingUnits
         units={[
           createUnit({ slug: "test-1", year: "1" }),
@@ -126,7 +128,7 @@ describe("CurricTimetablingUnits", () => {
   });
 
   test("edit details", () => {
-    const { getAllByRole, getByTestId } = renderWithTheme(
+    const { getAllByRole, getByTestId } = render(
       <CurricTimetablingUnits
         units={[createUnit({ slug: "test-1" }), createUnit({ slug: "test-2" })]}
         curriculumPhaseOptions={defaultCurriculumPhaseOptions}
@@ -150,7 +152,7 @@ describe("CurricTimetablingUnits", () => {
   });
 
   test("copy link", () => {
-    const { getAllByRole } = renderWithTheme(
+    const { getAllByRole } = render(
       <CurricTimetablingUnits
         units={[createUnit({ slug: "test-1" }), createUnit({ slug: "test-2" })]}
         curriculumPhaseOptions={defaultCurriculumPhaseOptions}
@@ -175,7 +177,7 @@ describe("CurricTimetablingUnits", () => {
     mockUseSearchParams.mockReturnValue(
       new URLSearchParams("mode=debug&year=1"),
     );
-    const { getByText } = renderWithTheme(
+    const { getByText } = render(
       <CurricTimetablingUnits
         units={[
           createUnit({
@@ -203,7 +205,7 @@ describe("CurricTimetablingUnits", () => {
   });
 
   test("displays default timetable name when data.name is empty", () => {
-    const { getByText } = renderWithTheme(
+    const { getByText } = render(
       <CurricTimetablingUnits
         units={[
           createUnit({
@@ -231,7 +233,7 @@ describe("CurricTimetablingUnits", () => {
       ),
     );
 
-    const { getByText } = renderWithTheme(
+    const { getByText } = render(
       <CurricTimetablingUnits
         units={[
           createUnit({
@@ -253,7 +255,7 @@ describe("CurricTimetablingUnits", () => {
   });
 
   test("unit modal opens when selectedUnitSlug is provided", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <CurricTimetablingUnits
         units={[
           createUnit({
@@ -276,7 +278,7 @@ describe("CurricTimetablingUnits", () => {
   });
 
   test("closes modal and navigates to base path", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <CurricTimetablingUnits
         units={[
           createUnit({
@@ -309,7 +311,7 @@ describe("CurricTimetablingUnits", () => {
   test("preserves search params when closing modal", () => {
     mockUseSearchParams.mockReturnValue(new URLSearchParams("filter=year1"));
 
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <CurricTimetablingUnits
         units={[
           createUnit({
@@ -344,7 +346,7 @@ describe("CurricTimetablingUnits", () => {
       "/timetabling/maths-primary/units/test-unit",
     );
 
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <CurricTimetablingUnits
         units={[
           createUnit({
@@ -376,7 +378,7 @@ describe("CurricTimetablingUnits", () => {
   });
 
   test("displays 404 error when selected unit does not exist", () => {
-    const { getByText } = renderWithTheme(
+    const { getByText } = render(
       <CurricTimetablingUnits
         units={[
           createUnit({
@@ -406,7 +408,7 @@ describe("CurricTimetablingUnits", () => {
       new URLSearchParams("mode=debug&year=1"),
     );
 
-    const { getAllByRole } = renderWithTheme(
+    const { getAllByRole } = render(
       <CurricTimetablingUnits
         units={[
           createUnit({

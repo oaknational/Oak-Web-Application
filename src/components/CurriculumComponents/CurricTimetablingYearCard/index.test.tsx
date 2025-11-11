@@ -6,7 +6,9 @@ import CurriculumUnitCard from "../CurricUnitCard";
 import { CurricTimetablingYearCard } from "./index";
 
 import { createUnit } from "@/fixtures/curriculum/unit";
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme"]);
 
 const mockFeatureFlagEnabled = jest.fn().mockReturnValue(false);
 jest.mock("posthog-js/react", () => ({
@@ -20,7 +22,7 @@ describe("CurricTimetablingYearCard component", () => {
   };
 
   it("should render with year heading", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <CurricTimetablingYearCard {...defaultProps} />,
     );
 
@@ -31,7 +33,7 @@ describe("CurricTimetablingYearCard component", () => {
   });
 
   it("should render correctly with heading and subheading", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <CurricTimetablingYearCard
         yearTitle="Year 11"
         yearSubheading="Core"
@@ -47,7 +49,7 @@ describe("CurricTimetablingYearCard component", () => {
   });
 
   it("should not render year subheading when not provided", () => {
-    const { queryByTestId } = renderWithTheme(
+    const { queryByTestId } = render(
       <CurricTimetablingYearCard {...defaultProps} />,
     );
 
@@ -101,7 +103,7 @@ describe("CurricTimetablingYearCard component", () => {
       </>
     );
 
-    const { getByTestId, getAllByTestId } = renderWithTheme(
+    const { getByTestId, getAllByTestId } = render(
       <CurricTimetablingYearCard
         yearTitle="Year 11"
         yearSubheading="Physics"
@@ -125,7 +127,7 @@ describe("CurricTimetablingYearCard component", () => {
 
   it("should render the map to timetable link if feature flag is enabled ", () => {
     mockFeatureFlagEnabled.mockReturnValue(true);
-    const { container } = renderWithTheme(
+    const { container } = render(
       <CurricTimetablingYearCard
         {...defaultProps}
         timetablingUrl={"/timetabling/maths-primary/new?year=7"}
@@ -137,7 +139,7 @@ describe("CurricTimetablingYearCard component", () => {
 
   it("should not render the map to timetable link if feature flag is not enabled ", () => {
     mockFeatureFlagEnabled.mockReturnValue(false);
-    const { container } = renderWithTheme(
+    const { container } = render(
       <CurricTimetablingYearCard {...defaultProps} />,
     );
 
@@ -146,7 +148,7 @@ describe("CurricTimetablingYearCard component", () => {
 
   it("should have the correct href for the map to timetable link", () => {
     mockFeatureFlagEnabled.mockReturnValue(true);
-    const { getByRole } = renderWithTheme(
+    const { getByRole } = render(
       <CurricTimetablingYearCard
         {...defaultProps}
         timetablingUrl={"/timetabling/maths-primary/new?year=7"}

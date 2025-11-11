@@ -1,10 +1,12 @@
 import BulletList from ".";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("BulletList", () => {
   test("render", async () => {
-    const { baseElement } = renderWithTheme(
+    const { baseElement } = render(
       <>
         <BulletList
           items={[{ text: "one" }, { text: "two" }, { text: "three" }]}

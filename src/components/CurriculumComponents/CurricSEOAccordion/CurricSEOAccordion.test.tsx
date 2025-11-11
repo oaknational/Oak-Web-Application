@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { screen, fireEvent } from "@testing-library/react";
 import { PortableTextBlock } from "@portabletext/react";
 
 import CurricSEOAccordion from "./CurricSEOAccordion";
@@ -6,6 +6,10 @@ import {
   mockPortableTextBlocks,
   mockSubject,
 } from "./CurricSEOAccordion.fixtures";
+
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme"]);
 
 const mockUseMediaQuery = jest.fn();
 jest.mock("@/hooks/useMediaQuery", () => ({

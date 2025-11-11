@@ -1,10 +1,12 @@
 import React from "react";
-import { render } from "@testing-library/react";
 import { ThemeProvider } from "styled-components";
 
 import { CurriculumModalCloseButton } from "./CurriculumModalCloseButton";
 
 import oakTheme from "@/styles/theme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("CurriculumModalCloseButton", () => {
   it("renders the button", () => {
