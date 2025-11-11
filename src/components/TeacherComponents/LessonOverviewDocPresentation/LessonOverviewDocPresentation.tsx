@@ -5,6 +5,18 @@ import styled from "styled-components";
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
 import errorReporter from "@/common-lib/error-reporter";
 
+const StyledIframe = styled.iframe<{ shouldZoom: boolean }>`
+  ${({ shouldZoom }) =>
+    shouldZoom === true &&
+    ` @media (min-width: 750px) {
+          zoom: 0.8;
+        }
+          @media (max-width: 750px) {
+          zoom: 0.5;
+        }
+    `}
+`;
+
 interface LessonOverviewPresentationProps {
   asset: string;
   title: string;
@@ -14,21 +26,23 @@ interface LessonOverviewPresentationProps {
 
 const reportError = errorReporter("googleDocPreview");
 
+const convertToPreviewUrl = (url: string) => {
+  if (!url.includes("/edit")) {
+    return null;
+  }
+  const docsPath = url.split("/edit")[0];
+
+  return docsPath + "/preview";
+};
+
 const LessonOverviewDocPresentation: FC<LessonOverviewPresentationProps> = ({
   asset,
   title,
   isWorksheetLandscape,
   docType,
 }) => {
-  const convertToPreviewUrl = (url: string) => {
-    if (!url.includes("/edit")) {
-      return null;
-    }
-    const docsPath = url.split("/edit")[0];
-
-    return docsPath + "/preview";
-  };
   const srcUrl = convertToPreviewUrl(asset);
+
   if (!srcUrl) {
     reportError(
       new Error(
@@ -37,18 +51,6 @@ const LessonOverviewDocPresentation: FC<LessonOverviewPresentationProps> = ({
     );
     return null;
   }
-
-  const StyledIframe = styled.iframe<{ shouldZoom: boolean }>`
-    ${({ shouldZoom }) =>
-      shouldZoom === true &&
-      ` @media (min-width: 750px) {
-          zoom: 0.8;
-        }
-          @media (max-width: 750px) {
-          zoom: 0.5;
-        }
-    `}
-  `;
 
   return (
     <OakBox $ba={["border-solid-m"]} $width={"100%"}>
