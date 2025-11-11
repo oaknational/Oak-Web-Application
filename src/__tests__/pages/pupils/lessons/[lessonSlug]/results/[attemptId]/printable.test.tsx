@@ -1,8 +1,8 @@
 import React from "react";
-import { useOakPupil } from "@oaknational/oak-pupil-client";
 import { screen, waitFor } from "@testing-library/react";
 import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
+import { useOakPupil } from "@/hooks/useOakPupil";
 import CanonicalResultsPage, {
   CanonicalResultsPrintablePageProps,
   getStaticProps,
@@ -19,8 +19,8 @@ const mockProps: CanonicalResultsPrintablePageProps = {
   content: lessonContentFixture({}),
   attemptId: "attemptId",
 };
-jest.mock("@oaknational/oak-pupil-client", () => ({
-  ...jest.requireActual("@oaknational/oak-pupil-client"),
+jest.mock("@/hooks/useOakPupil", () => ({
+  ...jest.requireActual("@/hooks/useOakPupil"),
   useOakPupil: jest.fn().mockReturnValue({
     getAttempt: jest.fn(),
   }),

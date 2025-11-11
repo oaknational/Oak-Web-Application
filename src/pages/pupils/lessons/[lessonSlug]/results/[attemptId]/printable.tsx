@@ -1,8 +1,4 @@
 import { GetStaticProps, GetStaticPropsResult } from "next";
-import {
-  LessonAttemptCamelCase,
-  useOakPupil,
-} from "@oaknational/oak-pupil-client";
 import { useEffect, useState } from "react";
 import {
   OakFlex,
@@ -21,6 +17,8 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { PupilViewsResults } from "@/components/PupilViews/PupilResults";
+import { useOakPupil } from "@/hooks/useOakPupil";
+import { LessonAttemptCamelCase } from "@/node-lib/pupil-api/types";
 
 export type CanonicalResultsPrintablePageProps = {
   browseData: LessonBrowseData;
