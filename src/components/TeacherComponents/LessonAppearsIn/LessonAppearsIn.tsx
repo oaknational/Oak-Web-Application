@@ -13,6 +13,7 @@ import { TagColor } from "@/components/SharedComponents/TagFunctional/TagFunctio
 import { getNextHeadingTag } from "@/components/SharedComponents/Typography";
 
 type LessonAppearsInProps = {
+  lessonTitle: string;
   headingTag: OakHeadingTag;
   subjects: {
     subjectTitle: string;
@@ -36,14 +37,14 @@ type LessonAppearsInProps = {
 };
 
 export function LessonAppearsIn(props: LessonAppearsInProps) {
-  const { headingTag, subjects } = props;
+  const { headingTag, subjects, lessonTitle } = props;
   const unitHeadingTag = getNextHeadingTag(headingTag);
   const examBoardHeadingTag = getNextHeadingTag(unitHeadingTag);
 
   return (
     <OakFlex $flexDirection={["column"]}>
       <OakHeading $font={"heading-5"} tag={headingTag}>
-        Lesson appears in
+        Lesson "{lessonTitle}" appears in
       </OakHeading>
       {subjects.map(({ subjectTitle, subjectSlug, units }) => {
         return units.map(({ unitTitle, unitSlug, examBoards }) => {
