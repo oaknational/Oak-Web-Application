@@ -112,7 +112,9 @@ export const LessonItemContainer = forwardRef<
     anchorId === "media-clips"
       ? pageLinks[pageLinks.findIndex((link) => link.anchorId === anchorId) + 1]
           ?.anchorId || undefined
-      : undefined;
+      : anchorId === "additional-material"
+        ? "site-footer"
+        : undefined;
 
   const lowerCaseTitle = downloadTitle
     ? downloadTitle.toLowerCase()
