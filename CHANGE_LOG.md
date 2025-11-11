@@ -1,3 +1,10 @@
+## [1.910.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.910.0...v1.910.1) (2025-11-11)
+
+
+### Bug Fixes
+
+* remove noIndex/noFollow from campaign pages ([467f8be](https://github.com/oaknational/Oak-Web-Application/commit/467f8be605229f4a8e4f1235b594495cabbba8a1))
+
 # [1.910.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.909.0...v1.910.0) (2025-11-11)
 
 
