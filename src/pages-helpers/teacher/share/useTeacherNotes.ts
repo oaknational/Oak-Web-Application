@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import {
-  TeacherNoteCamelCase,
-  TeacherNote,
-  TeacherNoteError,
-  useOakPupil,
-} from "@oaknational/oak-pupil-client";
 
 import { CoreProperties, CurriculumTrackingProps } from "./shareTypes";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { LessonReleaseCohortValueType } from "@/browser-lib/avo/Avo";
+import { useOakPupil } from "@/hooks/useOakPupil";
+import {
+  TeacherNote,
+  TeacherNoteCamelCase,
+  TeacherNoteError,
+} from "@/node-lib/pupil-api/types";
 
 export type UseTeacherNotesProps = {
   lessonPath?: string | null;

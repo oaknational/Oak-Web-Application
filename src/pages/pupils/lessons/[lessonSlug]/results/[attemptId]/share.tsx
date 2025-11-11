@@ -9,8 +9,8 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import getPageProps from "@/node-lib/getPageProps";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
-import { PupilNetworkClient } from "@/node-lib/pupil-api/network/network";
 import { LessonAttemptCamelCase } from "@/node-lib/pupil-api/types";
+import { pupilDatastore } from "@/node-lib/pupil-api/pupilDataStore";
 
 type CanonicalResultsShareURLParams = {
   lessonSlug: string;
@@ -58,9 +58,11 @@ export const getServerSideProps: GetServerSideProps<
         lessonSlug,
       });
 
-      const pupilNetworkClient = new PupilNetworkClient();
-      const attemptData = await pupilNetworkClient.getAttempt(attemptId);
-      const parsedAttemptData = keysToCamelCase(attemptData[attemptId]);
+      const { attempts } = await pupilDatastore.getLessonAttempt({
+        attemptId,
+      });
+
+      const parsedAttemptData = keysToCamelCase(attempts[attemptId]);
 
       if (!parsedAttemptData) {
         throw new Error("unexpected attemptData");

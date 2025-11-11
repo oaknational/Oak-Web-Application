@@ -71,7 +71,7 @@ export async function POST(request: NextRequest) {
         piiMatches: detectedPii.matches,
       },
     };
-    return NextResponse.json({ error }, { status: 400 });
+    return NextResponse.json(error, { status: 400 });
   }
 
   // else upsert send result with correct status code
