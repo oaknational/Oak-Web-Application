@@ -126,6 +126,8 @@ const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
               <CampaignNewsletterSignup
                 textStyles={campaignTextStyles}
                 {...section}
+                enableHowCanWeHelp={true}
+                enableRole={true}
                 key={section.type}
               />
             );

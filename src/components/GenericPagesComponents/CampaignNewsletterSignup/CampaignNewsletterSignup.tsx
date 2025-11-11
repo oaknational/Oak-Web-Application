@@ -10,9 +10,12 @@ import {
   OakBox,
 } from "@oaknational/oak-components";
 import { PortableTextReactComponents } from "@portabletext/react";
+import z, { ZodSchema } from "zod";
 
 import {
   newsletterSignupFormSubmitSchema,
+  newsletterSignupHowCanWeHelpSchema,
+  newsletterSignupRoleSchema,
   partialNewsletterSchema,
 } from "./CampaignNewsletterSignup.schema";
 
@@ -38,6 +41,8 @@ type NewsletterSignUpData = Partial<{
   schoolNotListed?: boolean;
   name: string;
   schoolOrg?: string;
+  role: string;
+  howCanWeHelp: string;
 }>;
 
 type NewsletterSignUpFormErrors = Partial<{
@@ -46,6 +51,8 @@ type NewsletterSignUpFormErrors = Partial<{
   schoolOrg: string;
   email: string;
   name: string;
+  role: string;
+  howCanWeHelp: string;
 }>;
 
 export type CampaignNewsletterSignupProps = NewsletterSignUp & {
@@ -87,6 +94,28 @@ const SchoolPickerInput = ({
   );
 };
 
+function getSchema({
+  freeSchoolInput,
+  enableRole,
+  enableHowCanWeHelp,
+}: {
+  freeSchoolInput?: boolean | null;
+  enableRole?: boolean | null;
+  enableHowCanWeHelp?: boolean | null;
+}) {
+  let schema: ZodSchema = newsletterSignupFormSubmitSchema;
+  if (freeSchoolInput) {
+    schema = partialNewsletterSchema;
+  }
+  if (enableRole) {
+    schema = z.intersection(schema, newsletterSignupRoleSchema);
+  }
+  if (enableHowCanWeHelp) {
+    schema = z.intersection(schema, newsletterSignupHowCanWeHelpSchema);
+  }
+  return schema;
+}
+
 const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
   heading,
   bodyPortableText,
@@ -94,6 +123,8 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
   formId,
   textStyles,
   freeSchoolInput,
+  enableRole,
+  enableHowCanWeHelp,
 }) => {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [submitError, setSubmitError] = useState<string>("");
@@ -108,6 +139,8 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
     schools: [],
     name: undefined,
     schoolOrg: undefined,
+    role: undefined,
+    howCanWeHelp: undefined,
   }));
 
   const onChange = (partial: Partial<NewsletterSignUpData>) => {
@@ -127,12 +160,12 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
     setIsSubmitting(true);
     setSubmitError("");
     setSuccessMessage("");
-    const formValidation = runSchema(
-      freeSchoolInput
-        ? partialNewsletterSchema
-        : newsletterSignupFormSubmitSchema,
-      data,
-    );
+    const schema = getSchema({
+      freeSchoolInput,
+      enableRole,
+      enableHowCanWeHelp,
+    });
+    const formValidation = runSchema(schema, data);
 
     setErrors(formValidation.errors);
     if (formValidation.success) {
@@ -226,6 +259,36 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
                 placeholder="Type your name"
                 defaultValue={data.name}
               />
+
+              {enableRole && (
+                <OakInputWithLabel
+                  label={`Role`}
+                  id="newsletter-role"
+                  data-testid="newsletter-role"
+                  error={errors.role}
+                  onChange={(e) => onChange({ role: e.target.value })}
+                  required={true}
+                  placeholder="Type your role"
+                  name="newsletter-role"
+                  labelBackground={"mint"}
+                  defaultValue={data.role}
+                />
+              )}
+              {enableHowCanWeHelp && (
+                <OakInputWithLabel
+                  label={`How can we help`}
+                  id="newsletter-how-can-we-help"
+                  data-testid="newsletter-how-can-we-help"
+                  error={errors.howCanWeHelp}
+                  onChange={(e) => onChange({ howCanWeHelp: e.target.value })}
+                  required={true}
+                  placeholder="How can we help"
+                  name="newsletter-how-can-we-help"
+                  labelBackground={"mint"}
+                  defaultValue={data.howCanWeHelp}
+                />
+              )}
+
               {freeSchoolInput ? (
                 <>
                   <OakInputWithLabel
