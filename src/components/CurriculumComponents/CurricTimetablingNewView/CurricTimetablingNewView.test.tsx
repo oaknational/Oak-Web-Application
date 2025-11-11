@@ -2,7 +2,9 @@ import { fireEvent } from "@testing-library/react";
 
 import { CurricTimetablingNewView } from ".";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme"]);
 
 let mockSearchParams = new URLSearchParams("");
 const mockReplace = jest.fn();
@@ -27,15 +29,66 @@ describe("CurricTimetablingNewView", () => {
   });
 
   test("component renders with heading correctly", async () => {
-    const { getByRole } = renderWithTheme(
+    const { getByRole } = render(
       <CurricTimetablingNewView subjectPhaseSlug="maths-primary" />,
     );
-    const headingElement = getByRole("heading", { level: 2 });
-    expect(headingElement).toHaveTextContent("Enter lessons per term");
+    const headingElement = getByRole("heading", { level: 1 });
+    expect(headingElement).toHaveTextContent(
+      "Create your maths year 1 timetable",
+    );
+  });
+
+  test("heading renders with subject title when provided", async () => {
+    const { getByRole } = render(
+      <CurricTimetablingNewView
+        subjectPhaseSlug="religious-education-primary"
+        subjectTitle="Religious education"
+      />,
+    );
+    const headingElement = getByRole("heading", { level: 1 });
+    expect(headingElement).toHaveTextContent(
+      "Create your religious education year 1 timetable",
+    );
+  });
+
+  test("heading contains correctly capitalised language subjects", async () => {
+    const { getByRole } = render(
+      <CurricTimetablingNewView
+        subjectPhaseSlug="english-primary"
+        subjectTitle="english"
+      />,
+    );
+    const headingElement = getByRole("heading", { level: 1 });
+    expect(headingElement).toHaveTextContent(
+      "Create your English year 1 timetable",
+    );
+  });
+
+  test("component lowercases non-language subjects", async () => {
+    const { getByRole } = render(
+      <CurricTimetablingNewView
+        subjectPhaseSlug="physical-education-primary"
+        subjectTitle="Physical Education"
+      />,
+    );
+    const headingElement = getByRole("heading", { level: 1 });
+    expect(headingElement).toHaveTextContent(
+      "Create your physical education year 1 timetable",
+    );
+  });
+
+  test("component falls back to slug when subject title not provided", async () => {
+    const { getByRole } = render(
+      <CurricTimetablingNewView subjectPhaseSlug="religious-education-primary" />,
+    );
+    const headingElement = getByRole("heading", { level: 1 });
+    expect(headingElement).toHaveTextContent(
+      "Create your religious-education year 1 timetable",
+    );
   });
 
   test("component renders with button correctly", async () => {
-    const { getByRole } = renderWithTheme(
+    const { getByRole } = render(
       <CurricTimetablingNewView subjectPhaseSlug="maths-primary" />,
     );
 
@@ -45,18 +98,18 @@ describe("CurricTimetablingNewView", () => {
 
   test("the next button directs to correct page", async () => {
     mockSearchParams = new URLSearchParams("");
-    const { getByRole } = renderWithTheme(
+    const { getByRole } = render(
       <CurricTimetablingNewView subjectPhaseSlug="maths-primary" />,
     );
     const linkElement = getByRole("link");
     expect(linkElement).toHaveAttribute(
       "href",
-      "units?autumn=30&spring=30&summer=30&year=1",
+      "units?autumn=30&mode=normal&spring=30&summer=30&year=1",
     );
   });
 
   test("renders three interactive number inputs with default value 30", () => {
-    const { getAllByLabelText } = renderWithTheme(
+    const { getAllByLabelText } = render(
       <CurricTimetablingNewView subjectPhaseSlug="maths-primary" />,
     );
     const inputs = getAllByLabelText("Number of lessons") as HTMLInputElement[];
@@ -71,7 +124,7 @@ describe("CurricTimetablingNewView", () => {
   });
 
   test("associates headings to inputs via aria-describedby", () => {
-    const { getAllByLabelText, getByText } = renderWithTheme(
+    const { getAllByLabelText, getByText } = render(
       <CurricTimetablingNewView subjectPhaseSlug="maths-primary" />,
     );
     const inputs = getAllByLabelText("Number of lessons") as HTMLInputElement[];
@@ -90,7 +143,7 @@ describe("CurricTimetablingNewView", () => {
   });
 
   test("renders headings and inputs with correct IDs", () => {
-    const { getAllByLabelText, getByText } = renderWithTheme(
+    const { getAllByLabelText, getByText } = render(
       <CurricTimetablingNewView subjectPhaseSlug="maths-primary" />,
     );
     const inputs = getAllByLabelText("Number of lessons") as HTMLInputElement[];
@@ -110,7 +163,7 @@ describe("CurricTimetablingNewView", () => {
 
   test("updates next button href when input values change", () => {
     mockSearchParams = new URLSearchParams("");
-    const { getAllByLabelText, getByRole } = renderWithTheme(
+    const { getAllByLabelText, getByRole } = render(
       <CurricTimetablingNewView subjectPhaseSlug="maths-primary" />,
     );
     const inputs = getAllByLabelText("Number of lessons") as HTMLInputElement[];
@@ -121,34 +174,34 @@ describe("CurricTimetablingNewView", () => {
     // Initial state
     expect(linkElement).toHaveAttribute(
       "href",
-      "units?autumn=30&spring=30&summer=30&year=1",
+      "units?autumn=30&mode=normal&spring=30&summer=30&year=1",
     );
 
     // Change autumn lessons to 25
     fireEvent.change(inputs[0]!, { target: { value: "25" } });
     expect(linkElement).toHaveAttribute(
       "href",
-      "units?autumn=25&spring=30&summer=30&year=1",
+      "units?autumn=25&mode=normal&spring=30&summer=30&year=1",
     );
 
     // Change spring lessons to 15
     fireEvent.change(inputs[1]!, { target: { value: "15" } });
     expect(linkElement).toHaveAttribute(
       "href",
-      "units?autumn=25&spring=15&summer=30&year=1",
+      "units?autumn=25&mode=normal&spring=15&summer=30&year=1",
     );
 
     // Change summer lessons to 20
     fireEvent.change(inputs[2]!, { target: { value: "20" } });
     expect(linkElement).toHaveAttribute(
       "href",
-      "units?autumn=25&spring=15&summer=20&year=1",
+      "units?autumn=25&mode=normal&spring=15&summer=20&year=1",
     );
   });
 
   test("initializes input values from URL params", () => {
     mockSearchParams = new URLSearchParams("autumn=20&spring=25&summer=35");
-    const { getAllByLabelText, getByRole } = renderWithTheme(
+    const { getAllByLabelText, getByRole } = render(
       <CurricTimetablingNewView subjectPhaseSlug="maths-primary" />,
     );
     const inputs = getAllByLabelText("Number of lessons") as HTMLInputElement[];
@@ -160,35 +213,31 @@ describe("CurricTimetablingNewView", () => {
     const linkElement = getByRole("link");
     expect(linkElement).toHaveAttribute(
       "href",
-      "units?autumn=20&spring=25&summer=35&year=1",
+      "units?autumn=20&mode=normal&spring=25&summer=35&year=1",
     );
   });
 
   test("populates URL with defaults when landing", () => {
     mockSearchParams = new URLSearchParams("year=1");
-    renderWithTheme(
-      <CurricTimetablingNewView subjectPhaseSlug="maths-primary" />,
-    );
+    render(<CurricTimetablingNewView subjectPhaseSlug="maths-primary" />);
 
     // Should call history.replaceState to populate defaults
     expect(replaceStateSpy).toHaveBeenCalledWith(
       {},
       "",
-      "/timetabling/new?autumn=30&spring=30&summer=30&year=1",
+      "/timetabling/new?autumn=30&mode=normal&spring=30&summer=30&year=1",
     );
   });
 
   test("normalises URL removing empty name param", () => {
     mockSearchParams = new URLSearchParams("year=1&name=");
-    renderWithTheme(
-      <CurricTimetablingNewView subjectPhaseSlug="maths-primary" />,
-    );
+    render(<CurricTimetablingNewView subjectPhaseSlug="maths-primary" />);
 
     // Should remove empty name param
     expect(replaceStateSpy).toHaveBeenCalledWith(
       {},
       "",
-      "/timetabling/new?autumn=30&spring=30&summer=30&year=1",
+      "/timetabling/new?autumn=30&mode=normal&spring=30&summer=30&year=1",
     );
   });
 });

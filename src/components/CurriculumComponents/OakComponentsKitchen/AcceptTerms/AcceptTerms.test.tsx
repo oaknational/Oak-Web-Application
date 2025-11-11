@@ -3,11 +3,13 @@ import { act, fireEvent } from "@testing-library/react";
 
 import AcceptTerms from ".";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme", "theme"]);
 
 describe("AcceptTerms", () => {
   test("checked", async () => {
-    const { getByRole } = renderWithTheme(
+    const { getByRole } = render(
       <OakThemeProvider theme={oakDefaultTheme}>
         <AcceptTerms value={true} error={undefined} onChange={() => {}} />
       </OakThemeProvider>,
@@ -18,7 +20,7 @@ describe("AcceptTerms", () => {
   });
 
   test("unchecked", async () => {
-    const { getByRole } = renderWithTheme(
+    const { getByRole } = render(
       <OakThemeProvider theme={oakDefaultTheme}>
         <AcceptTerms value={false} error={undefined} onChange={() => {}} />
       </OakThemeProvider>,
@@ -29,7 +31,7 @@ describe("AcceptTerms", () => {
   });
 
   test("error", async () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <OakThemeProvider theme={oakDefaultTheme}>
         <AcceptTerms
           value={true}
@@ -46,7 +48,7 @@ describe("AcceptTerms", () => {
 
   test("action", async () => {
     const onChange = jest.fn();
-    const { getByRole } = renderWithTheme(
+    const { getByRole } = render(
       <OakThemeProvider theme={oakDefaultTheme}>
         <AcceptTerms value={true} onChange={onChange} />
       </OakThemeProvider>,

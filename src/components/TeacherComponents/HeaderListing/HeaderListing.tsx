@@ -21,7 +21,7 @@ import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeader
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
 import RiskAssessmentBanner from "@/components/TeacherComponents/RiskAssessmentBanner";
 import HeaderListingCurriculumDownloadButton from "@/components/TeacherComponents/HeaderListingCurriculumDownloadButton";
-import CopyrightRestrictionBanner from "@/components/TeacherComponents/CopyrightRestrictionBanner/CopyrightRestrictionBanner";
+import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
@@ -253,7 +253,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
               <OakBox $display={["none", "block", "block"]}>
                 {bannersBlock}
               </OakBox>
-              <CopyrightRestrictionBanner
+              <ComplexCopyrightRestrictionBanner
                 isGeorestricted={isGeorestrictedUnit}
                 isLoginRequired={isLoginRequiredUnit}
                 componentType="lesson_listing"

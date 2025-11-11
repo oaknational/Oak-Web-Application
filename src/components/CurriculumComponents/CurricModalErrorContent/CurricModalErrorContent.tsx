@@ -20,7 +20,7 @@ export default function CurricModalErrorContent({
   statusCode,
   message,
   additional,
-}: CurricModalErrorContentProps) {
+}: Readonly<CurricModalErrorContentProps>) {
   return (
     <OakFlex
       $gap="space-between-s"

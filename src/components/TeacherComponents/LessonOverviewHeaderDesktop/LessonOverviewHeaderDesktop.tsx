@@ -11,14 +11,13 @@ import {
   OakTagFunctional,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
-import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import { LessonOverviewCreateWithAiDropdown } from "../LessonOverviewCreateWithAiDropdown";
 
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { LessonOverviewHeaderDownloadAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderDownloadAllButton";
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
-import CopyrightRestrictionBanner from "@/components/TeacherComponents/CopyrightRestrictionBanner/CopyrightRestrictionBanner";
+import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import { resolveOakHref } from "@/common-lib/urls";
 
@@ -67,9 +66,6 @@ export const LessonOverviewHeaderDesktop: FC<
   const previousBreadcrumb = breadcrumbs[breadcrumbs.length - 2];
   const shouldShowBackButton =
     !!previousBreadcrumb && !!unitTitle && !!programmeSlug;
-
-  const isCreateWithAiEnabled =
-    useFeatureFlagVariantKey("create-with-ai-button") === "test";
 
   return (
     <OakBox $display={["none", "grid"]}>
@@ -154,11 +150,11 @@ export const LessonOverviewHeaderDesktop: FC<
               >
                 <LessonOverviewHeaderDownloadAllButton {...props} />
                 {shareButtons}
-                {!excludedFromTeachingMaterials && isCreateWithAiEnabled && (
+                {!excludedFromTeachingMaterials && (
                   <LessonOverviewCreateWithAiDropdown {...props} />
                 )}
               </OakFlex>
-              <CopyrightRestrictionBanner
+              <ComplexCopyrightRestrictionBanner
                 isGeorestricted={geoRestricted}
                 isLoginRequired={loginRequired}
                 componentType="lesson_overview"

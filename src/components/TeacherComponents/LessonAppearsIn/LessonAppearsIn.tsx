@@ -35,7 +35,7 @@ type LessonAppearsInProps = {
   }[];
 };
 
-export function LessonAppearsIn(props: LessonAppearsInProps) {
+export function LessonAppearsIn(props: Readonly<LessonAppearsInProps>) {
   const { headingTag, subjects } = props;
   const unitHeadingTag = getNextHeadingTag(headingTag);
   const examBoardHeadingTag = getNextHeadingTag(unitHeadingTag);

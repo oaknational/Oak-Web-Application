@@ -2,8 +2,6 @@ import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { Meta, StoryObj } from "@storybook/nextjs";
 import { ComponentProps } from "react";
 
-// import { mockOptionalityUnit, mockUnitWhyThisWhyNow } from "./CurricUnitModalContent.fixtures";
-
 import Component from "./CurricVisualiser";
 import { noMissingUnitsFixture } from "./CurricVisualiser.fixtures";
 
@@ -39,8 +37,6 @@ const curriculumVisualiserFixture: ComponentProps<typeof Component> = {
             "Dystopian settings: descriptive writing",
           connection_prior_unit_title:
             "'When the Sky Falls': narrative and diary writing",
-          domain: null,
-          domain_id: null,
           examboard: null,
           examboard_slug: null,
           planned_number_of_lessons: 32,
@@ -67,7 +63,6 @@ const curriculumVisualiserFixture: ComponentProps<typeof Component> = {
           subject_slug: "english",
           subject_parent: null,
           subject_parent_slug: null,
-          tags: null,
           subjectcategories: null,
           tier: null,
           tier_slug: null,

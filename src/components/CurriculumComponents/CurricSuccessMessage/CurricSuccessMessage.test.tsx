@@ -2,11 +2,13 @@ import { getByRole } from "@testing-library/dom";
 
 import SuccessMessage from ".";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("SuccessMessage", () => {
   test("component renders with correctly", async () => {
-    const { baseElement } = renderWithTheme(
+    const { baseElement } = render(
       <SuccessMessage
         title="Success"
         message="We hope this worked correctly"
@@ -26,7 +28,7 @@ describe("SuccessMessage", () => {
 
   test("component renders fires button click", async () => {
     const mockFn = jest.fn();
-    const { baseElement } = renderWithTheme(
+    const { baseElement } = render(
       <SuccessMessage
         title="Success"
         message="We hope this worked correctly"

@@ -53,6 +53,13 @@ jest.mock("@/components/PupilViews/PupilLessonOverview", () => {
   };
 });
 
+jest.mock(
+  "@/components/PupilComponents/pupilUtils/useWorksheetInfoState",
+  () => ({
+    useWorksheetInfoState: jest.fn().mockResolvedValue({ worksheetInfo: [] }),
+  }),
+);
+
 jest.mock("@oaknational/oak-components", () => {
   return {
     ...jest.requireActual("@oaknational/oak-components"),

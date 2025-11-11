@@ -6,11 +6,13 @@ import {
   ks3and4Setup,
 } from "./CurricFiltersSubjectCategories.fixtures";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("CurricFiltersSubjectCategories", () => {
   it("renders correctly ks4 only", () => {
-    const { getAllByRole, getByRole } = renderWithTheme(
+    const { getAllByRole, getByRole } = render(
       <CurricFiltersSubjectCategories
         filters={{
           childSubjects: [],
@@ -39,7 +41,7 @@ describe("CurricFiltersSubjectCategories", () => {
   });
 
   it("renders correctly ks3 & ks4", () => {
-    const { getAllByRole, getByRole } = renderWithTheme(
+    const { getAllByRole, getByRole } = render(
       <CurricFiltersSubjectCategories
         filters={{
           childSubjects: [],
@@ -69,7 +71,7 @@ describe("CurricFiltersSubjectCategories", () => {
 
   it("interacts correctly", () => {
     const onChangeFilters = jest.fn();
-    const { getAllByRole } = renderWithTheme(
+    const { getAllByRole } = render(
       <CurricFiltersSubjectCategories
         filters={{
           childSubjects: [],

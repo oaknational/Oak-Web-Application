@@ -39,7 +39,7 @@ export const canonicalLessonRedirectQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    canonicalLessonRedirectSnake.redirect_type = parseInt(
+    canonicalLessonRedirectSnake.redirect_type = Number.parseInt(
       canonicalLessonRedirectSnake.redirect_type,
       10,
     );
