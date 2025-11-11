@@ -2,13 +2,15 @@ import { CurricMobileFilterModal } from ".";
 
 import { createFilter } from "@/fixtures/curriculum/filters";
 import { createYearData } from "@/fixtures/curriculum/yearData";
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { createSubjectCategory } from "@/fixtures/curriculum/subjectCategories";
 import { createTier } from "@/fixtures/curriculum/tier";
 import { createThread } from "@/fixtures/curriculum/thread";
 import { createChildSubject } from "@/fixtures/curriculum/childSubject";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme", "theme"]);
 
 describe("CurricVisualiserFiltersModal", () => {
   describe("render", () => {
@@ -30,7 +32,7 @@ describe("CurricVisualiserFiltersModal", () => {
         ks4OptionSlug: null,
       };
       const onSelectYear = jest.fn();
-      const { getAllByRole } = renderWithTheme(
+      const { getAllByRole } = render(
         <CurricMobileFilterModal
           filters={filters}
           onChangeFilters={() => {}}
@@ -67,7 +69,7 @@ describe("CurricVisualiserFiltersModal", () => {
         ks4OptionSlug: null,
       };
       const onSelectYear = jest.fn();
-      const { getAllByRole } = renderWithTheme(
+      const { getAllByRole } = render(
         <CurricMobileFilterModal
           filters={filters}
           onChangeFilters={() => {}}
@@ -101,7 +103,7 @@ describe("CurricVisualiserFiltersModal", () => {
         ks4OptionSlug: null,
       };
       const onSelectYear = jest.fn();
-      const { container } = renderWithTheme(
+      const { container } = render(
         <CurricMobileFilterModal
           filters={filters}
           onChangeFilters={() => {}}
@@ -144,7 +146,7 @@ describe("CurricVisualiserFiltersModal", () => {
         ks4OptionSlug: null,
       };
       const onSelectYear = jest.fn();
-      const { getAllByRole, container } = renderWithTheme(
+      const { getAllByRole, container } = render(
         <CurricMobileFilterModal
           filters={filters}
           onChangeFilters={() => {}}
@@ -189,7 +191,7 @@ describe("CurricVisualiserFiltersModal", () => {
         ks4OptionSlug: null,
       };
       const onSelectYear = jest.fn();
-      const { getAllByRole, container } = renderWithTheme(
+      const { getAllByRole, container } = render(
         <CurricMobileFilterModal
           filters={filters}
           onChangeFilters={() => {}}

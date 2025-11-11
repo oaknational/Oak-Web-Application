@@ -1,17 +1,19 @@
 import { CurricAngledLabel } from "./CurricAngledLabel";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("CurricAngledLabel", () => {
   it("renders children correctly", () => {
-    const { getByText } = renderWithTheme(
+    const { getByText } = render(
       <CurricAngledLabel>Test Content</CurricAngledLabel>,
     );
     expect(getByText("Test Content")).toBeInTheDocument();
   });
 
   it("applies correct styling", () => {
-    const { getByText } = renderWithTheme(
+    const { getByText } = render(
       <CurricAngledLabel>Styled Text</CurricAngledLabel>,
     );
     const element = getByText("Styled Text");

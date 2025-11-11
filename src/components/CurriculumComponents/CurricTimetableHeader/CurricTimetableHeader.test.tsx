@@ -1,10 +1,12 @@
 import { CurricTimetableHeader } from "./CurricTimetableHeader";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("CurricTimetableHeader", () => {
   test("basic usage", () => {
-    const { baseElement, getByTestId } = renderWithTheme(
+    const { baseElement, getByTestId } = render(
       <CurricTimetableHeader
         titleSlot={"TITLE"}
         additionalSlot={"ADDITIONAL"}
