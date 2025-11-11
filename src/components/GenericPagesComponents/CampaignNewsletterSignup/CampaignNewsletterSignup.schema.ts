@@ -63,8 +63,6 @@ export const newsletterSignupRoleSchema = z.object({
     .min(1, ERRORS.role),
 });
 
-newsletterSignupRoleSchema.extend;
-
 export const newsletterSignupHowCanWeHelpSchema = z.object({
   howCanWeHelp: z
     .string({
