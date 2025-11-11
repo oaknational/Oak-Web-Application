@@ -11,7 +11,7 @@ import { SamplePiiMatches } from "./__mocks__/fixtures/pii-match.fixture";
 import { identifyPiiFromString, PiiCheckResponse } from "./dlp";
 
 const TEST_PROJECT_ID = "test-project-id";
-process.env.PROJECT_ID = TEST_PROJECT_ID;
+process.env.GCP_PROJECT_ID = TEST_PROJECT_ID;
 const expectedParent = `projects/${TEST_PROJECT_ID}`;
 
 // Mock for DlpServiceClient methods

@@ -2,10 +2,10 @@ import DLP, { protos } from "@google-cloud/dlp";
 
 import { PiiMatch } from "@/node-lib/pupil-api/types";
 
-const projectId = process.env.PROJECT_ID;
+const projectId = process.env.GCP_PROJECT_ID;
 
 if (!projectId) {
-  throw new Error("PROJECT_ID is required");
+  throw new Error("GCP_PROJECT_ID is required");
 }
 
 const dlp = new DLP.DlpServiceClient({
