@@ -9,7 +9,6 @@ interface LessonOverviewPresentationProps {
   asset: string;
   title: string;
   isWorksheetLandscape?: boolean | null;
-  isAdditionalMaterial?: boolean;
   docType: "additional material" | "lesson guide";
 }
 
@@ -42,7 +41,12 @@ const LessonOverviewDocPresentation: FC<LessonOverviewPresentationProps> = ({
   const StyledIframe = styled.iframe<{ shouldZoom: boolean }>`
     ${({ shouldZoom }) =>
       shouldZoom === true &&
-      `zoom: 0.8;
+      ` @media (min-width: 750px) {
+          zoom: 0.8;
+        }
+          @media (max-width: 750px) {
+          zoom: 0.5;
+        }
     `}
   `;
 
