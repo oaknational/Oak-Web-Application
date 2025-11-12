@@ -136,12 +136,10 @@ export const QuizResultInner = (props: ResultsInnerProps) => {
           />
         )}
         {grade === 0 && quizQuestion && !isHint && (
-          <>
-            <CorrectAnswerSection
-              questionResult={questionResult}
-              quizQuestion={quizQuestion}
-            />
-          </>
+          <CorrectAnswerSection
+            questionResult={questionResult}
+            quizQuestion={quizQuestion}
+          />
         )}
       </OakFlex>
     </OakFlex>
