@@ -1,3 +1,21 @@
+# [1.912.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.911.0...v1.912.0) (2025-11-12)
+
+
+### Bug Fixes
+
+* a11y tree now on correct headings ([036ac2c](https://github.com/oaknational/Oak-Web-Application/commit/036ac2cb158455a27b3ba6c6020c0bce9c575b25))
+* make <WhoAreWeDesc/> full screen on mobile ([5f3ea7e](https://github.com/oaknational/Oak-Web-Application/commit/5f3ea7e25941c39fa04b14513a1912fa17a4dd6b))
+
+
+### Features
+
+* completed <WhoAreWeDesc/> component + tests ([74690d2](https://github.com/oaknational/Oak-Web-Application/commit/74690d2692eadcabb162c5160f9e91c281af46a3))
+* completed <WhoAreWeHeader/> with storybook + tests ([5d0bdae](https://github.com/oaknational/Oak-Web-Application/commit/5d0bdaefbed0818876c38d30b720fab56ffe65a4))
+* finished up <WhoAreWeBreakout/> component + tests ([1bd6b78](https://github.com/oaknational/Oak-Web-Application/commit/1bd6b78ba532d1e0992fd31a540e1ad2db3af0bd))
+* finished up <WhoAreWeExplore/> component ready for design review ([b298028](https://github.com/oaknational/Oak-Web-Application/commit/b298028c803125ed054e4e2a641102d50dab674e))
+* initial mockup of about-us page ([22ca755](https://github.com/oaknational/Oak-Web-Application/commit/22ca755db9a9e72cae01a2ae122104012a5a6b90))
+* move over to getServerSideProps so we can switch on feature flag ([d9f1dbf](https://github.com/oaknational/Oak-Web-Application/commit/d9f1dbf63060b01947c2f0b646f446d9f2ad069f))
+
 # [1.911.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.910.1...v1.911.0) (2025-11-12)
 
 
