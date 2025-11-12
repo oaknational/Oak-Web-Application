@@ -9,8 +9,19 @@ import {
 } from "@oaknational/oak-components";
 import Link from "next/link";
 import { ReactNode } from "react";
+import styled from "styled-components";
 
 import FocusIndicator from "@/components/CurriculumComponents/OakComponentsKitchen/FocusIndicator";
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  outline: none;
+  display: block;
+
+  &:hover > div {
+    box-shadow: 2px 2px 0 0 #ffe555;
+  }
+`;
 
 function InnerMaxWidth({ children }: { children: ReactNode }) {
   return (
@@ -63,7 +74,7 @@ export function WhoAreWeExplore({
                 return (
                   <OakGridArea key={title} $colSpan={[12, 6, 6]} as="li">
                     <FocusIndicator $borderRadius={"border-radius-m2"}>
-                      <Link style={{ outline: "none" }} href={href}>
+                      <StyledLink href={href}>
                         <OakFlex
                           data-testid="who-we-are-explore-item"
                           $flexDirection={"row"}
@@ -87,7 +98,7 @@ export function WhoAreWeExplore({
                             <OakIcon iconName="arrow-right" />
                           </OakFlex>
                         </OakFlex>
-                      </Link>
+                      </StyledLink>
                     </FocusIndicator>
                   </OakGridArea>
                 );
