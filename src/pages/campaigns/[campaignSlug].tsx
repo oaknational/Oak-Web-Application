@@ -95,8 +95,6 @@ const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
           title: props.campaign.seo?.title || props.campaign.title,
           description: props.campaign.seo?.description,
         }),
-        noIndex: true,
-        noFollow: true,
       }}
     >
       <OakFlex
