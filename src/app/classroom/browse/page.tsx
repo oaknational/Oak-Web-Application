@@ -1,21 +1,9 @@
 "use client";
 
-import {
-  GoogleClassroomBrowseView,
-  WithGoogleClassroomAuth,
-} from "@oaknational/google-classroom-addon/ui";
-
-import { googleClassroomApi } from "@/browser-lib/google-classroom";
+import { GoogleClassroomBrowseView } from "@oaknational/google-classroom-addon/ui";
 
 function BrowseGoogleClassroomPage() {
-  return (
-    <WithGoogleClassroomAuth
-      verifySessionFn={googleClassroomApi.verifySession}
-      signInUrl={"/classroom/sign-in"}
-    >
-      <GoogleClassroomBrowseView />
-    </WithGoogleClassroomAuth>
-  );
+  return <GoogleClassroomBrowseView />;
 }
 
 export default BrowseGoogleClassroomPage;
