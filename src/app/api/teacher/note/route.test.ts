@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server";
 
-import { GET, POST } from "./route";
+import { GET, POST, PUT } from "./route";
 
 import { pupilDatastore } from "@/node-lib/pupil-api/pupilDataStore";
 import { teacherNoteSchema } from "@/node-lib/pupil-api/types";
@@ -220,5 +220,23 @@ describe("POST /api/teacher/note", () => {
     expect(json.pii.piiMatches).toEqual([
       { type: "SSN", value: "123-45-6789" },
     ]);
+  });
+});
+
+describe("PUT /api/teacher/note", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+  it("calls batchUpdateTeacherNotes", async () => {
+    (identifyPiiFromString as jest.Mock).mockImplementation(() => ({
+      matches: [],
+    }));
+    const result = await PUT();
+    expect(pupilDatastore.batchUpdateTeacherNotes).toHaveBeenCalled();
+    expect(result.status).toBe(200);
+    const json = await result.json();
+    expect(json).toEqual({
+      message: "Redaction on stored teacher notes started successfully",
+    });
   });
 });
