@@ -141,7 +141,7 @@ exports[`CurriculumTab renders 1`] = `
                           style="width: 50%;"
                         >
                           <div
-                            class="sc-fqkvVR sc-1c55d370-0 sc-b500a879-3 jEHEPk knawKC dzfgvW"
+                            class="sc-fqkvVR sc-85abac1-0 sc-b500a879-3 jEHEPk qPvQJ dzfgvW"
                           >
                             <button
                               aria-expanded="false"
@@ -210,7 +210,7 @@ exports[`CurriculumTab renders 1`] = `
                             class="sc-fqkvVR sc-kAyceB fxkSvJ jDFpDX"
                           >
                             <div
-                              class="sc-fqkvVR sc-1c55d370-0 sc-b500a879-3 eMDDOo knawKC dzfgvW"
+                              class="sc-fqkvVR sc-85abac1-0 sc-b500a879-3 eMDDOo qPvQJ dzfgvW"
                             >
                               <button
                                 aria-expanded="false"
@@ -332,7 +332,7 @@ exports[`CurriculumTab renders 1`] = `
                       style="width: 50%;"
                     >
                       <div
-                        class="sc-fqkvVR sc-1c55d370-0 sc-b500a879-3 jEHEPk knawKC dzfgvW"
+                        class="sc-fqkvVR sc-85abac1-0 sc-b500a879-3 jEHEPk qPvQJ dzfgvW"
                       >
                         <button
                           aria-expanded="false"
@@ -401,7 +401,7 @@ exports[`CurriculumTab renders 1`] = `
                         class="sc-fqkvVR sc-kAyceB fxkSvJ jDFpDX"
                       >
                         <div
-                          class="sc-fqkvVR sc-1c55d370-0 sc-b500a879-3 eMDDOo knawKC dzfgvW"
+                          class="sc-fqkvVR sc-85abac1-0 sc-b500a879-3 eMDDOo qPvQJ dzfgvW"
                         >
                           <button
                             aria-expanded="false"
