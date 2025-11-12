@@ -25,7 +25,7 @@ export default function CurricUnitModal({
   filters,
   children,
   disableFooter,
-}: CurricUnitModalProps) {
+}: Readonly<CurricUnitModalProps>) {
   return (
     <OakModalNew
       title={""}

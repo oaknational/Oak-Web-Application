@@ -1,18 +1,20 @@
 import CurricTimetablingFilters from "./";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { createFilter } from "@/fixtures/curriculum/filters";
 import { createYearData } from "@/fixtures/curriculum/yearData";
 import { createThread } from "@/fixtures/curriculum/thread";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { findAccosiatedLabel } from "@/utils/curriculum/dom";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme", "theme"]);
 
 describe("CurricTimetablingFilters", () => {
   test("basic usage", () => {
     const thread1 = createThread({ slug: "addition" });
     const thread2 = createThread({ slug: "subtraction" });
 
-    const { baseElement, getAllByTestId } = renderWithTheme(
+    const { baseElement, getAllByTestId } = render(
       <CurricTimetablingFilters
         filters={createFilter({})}
         onChangeFilters={() => {}}

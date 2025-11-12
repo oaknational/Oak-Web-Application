@@ -19,7 +19,7 @@ export function CurricFiltersThreads({
   filters,
   onChangeFilters,
   data,
-}: CurricFiltersThreadsProps) {
+}: Readonly<CurricFiltersThreadsProps>) {
   const id = useId();
   const { yearData, threadOptions } = data;
 

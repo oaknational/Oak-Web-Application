@@ -30,7 +30,7 @@ export default function CurricUnitDetailsAccordion({
   children,
   lastAccordion,
   handleUnitOverviewExploredAnalytics,
-}: CurriculumUnitDetailsAccordionProps) {
+}: Readonly<CurriculumUnitDetailsAccordionProps>) {
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLButtonElement>();
   const [isFocused, setIsFocused] = useState<boolean>(false);

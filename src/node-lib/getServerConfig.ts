@@ -85,7 +85,7 @@ const envVars = satisfies<Record<string, EnvVar>>()({
   },
   sanityRevalidateSeconds: {
     value: process.env.SANITY_REVALIDATE_SECONDS
-      ? parseInt(process.env.SANITY_REVALIDATE_SECONDS, 10)
+      ? Number.parseInt(process.env.SANITY_REVALIDATE_SECONDS, 10)
       : undefined,
     envName: "SANITY_REVALIDATE_SECONDS",
     required: true,

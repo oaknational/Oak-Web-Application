@@ -1,4 +1,3 @@
-import { render } from "@testing-library/react";
 import React from "react";
 
 import { formatCurriculumUnitsData } from "../../../pages-helpers/curriculum/docx/tab-helpers";
@@ -6,15 +5,19 @@ import { CurriculumFilters } from "../../../utils/curriculum/types";
 
 import UnitsTab from "./UnitsTab";
 
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["theme", "oakTheme"]);
+
 // import userEvent from "@testing-library/user-event";
 // import { waitFor } from "@testing-library/react";
 
 // import UnitsTab from "./UnitsTab";
 
 // import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumUnits.fixture";
-// import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+// import {renderWithProvidersByName} from "@/__tests__/__helpers__/renderWithProviders";
 
-// const render = renderWithProviders();
+// const render = renderWithProvidersByName(["theme", "oakTheme"]);
 
 // const trackingDataSecondaryScience = {
 //   subjectTitle: "Science",
@@ -552,7 +555,7 @@ describe("unitsTab !subject error", () => {
   //   );
   //   const yearOptions = await findAllByTestId("year-radio");
   //   const extractedYears = yearOptions.map((option) =>
-  //     parseInt(option.getAttribute("value") || "0"),
+  //     Number.parseInt(option.getAttribute("value") || "0"),
   //   );
   //   const isSorted = extractedYears.every((year, index, array) => {
   //     return index === 0 || Number(array[index - 1]) <= year;

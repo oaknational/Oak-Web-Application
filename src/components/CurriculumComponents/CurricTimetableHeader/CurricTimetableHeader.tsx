@@ -20,7 +20,7 @@ export function CurricTimetableHeader({
   titleSlot,
   additionalSlot,
   illustrationSlug,
-}: CurricTimetableHeaderProps) {
+}: Readonly<CurricTimetableHeaderProps>) {
   return (
     <OakBox
       $background={"bg-decorative1-main"}

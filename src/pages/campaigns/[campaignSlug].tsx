@@ -28,24 +28,6 @@ import {
   getFallbackBlockingConfig,
 } from "@/node-lib/isr";
 
-export const blockOrder = [
-  "CampaignIntro",
-  "CampaignVideoBanner",
-  "NewsletterSignUp",
-  "CampaignPromoBanner",
-];
-
-export function sortCampaignBlocksByBlockType(
-  sortOrder: string[],
-  campaignBlocks: CampaignPage["content"],
-): CampaignContentType[] {
-  return sortOrder
-    .map((blockType) => {
-      return campaignBlocks.filter(({ type }) => type === blockType);
-    })
-    .flat();
-}
-
 export type CampaignSinglePageProps = {
   campaign: CampaignPage;
   keyStages: KeyStagesData;
@@ -105,11 +87,6 @@ export const campaignTextStyles: PortableTextComponents = {
   },
 };
 const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
-  const sortedContent = sortCampaignBlocksByBlockType(
-    blockOrder,
-    props.campaign.content,
-  );
-
   return (
     <AppLayout
       seoProps={{
@@ -118,8 +95,6 @@ const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
           title: props.campaign.seo?.title || props.campaign.title,
           description: props.campaign.seo?.description,
         }),
-        noIndex: true,
-        noFollow: true,
       }}
     >
       <OakFlex
@@ -133,7 +108,7 @@ const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
           campaignHeader={props.campaign.header}
           keyStages={props.keyStages}
         />
-        {sortedContent.map((section: CampaignContentType) => {
+        {props.campaign.content.map((section: CampaignContentType) => {
           if (section.type === "CampaignIntro") {
             return (
               <CampaignPageIntro

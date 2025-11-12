@@ -2,8 +2,8 @@ import { mockPortableTextBlocks } from "../CurricVisualiser/CurricVisualiser.fix
 
 import { CurricVisualiserLayout } from ".";
 
-import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-const render = renderWithProviders();
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+const render = renderWithProvidersByName(["theme", "oakTheme"]);
 
 jest.mock("@/hooks/useMediaQuery", () => ({
   __esModule: true,
