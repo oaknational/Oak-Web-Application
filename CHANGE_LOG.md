@@ -1,3 +1,16 @@
+# [1.911.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.910.1...v1.911.0) (2025-11-12)
+
+
+### Bug Fixes
+
+* get restrcited content data from features, not content mv ([69b0e3a](https://github.com/oaknational/Oak-Web-Application/commit/69b0e3aafb7c1f05ad33e31af19c65039570031f))
+
+
+### Features
+
+* match teachertab layout to the better-performing campaign page. update copy ([edeb246](https://github.com/oaknational/Oak-Web-Application/commit/edeb246bd2bb259bac5f22f64b344386ca7993e3))
+* update text and border color based on design feedback ([788b184](https://github.com/oaknational/Oak-Web-Application/commit/788b184fe10f20b56c86cf4e0e614ffbf9980aa3))
+
 ## [1.910.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.910.0...v1.910.1) (2025-11-11)
 
 
