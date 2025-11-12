@@ -3,34 +3,24 @@ import {
   OakFlex,
   OakHeading,
   OakSpan,
-  OakBox,
 } from "@oaknational/oak-components";
 
-import {
-  shortAnswerTitleFormatter,
-  removeMarkdown,
-} from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import QuizImage from "@/components/TeacherComponents/QuizImage";
-import {
-  isStemTextObject,
-  StemImageObject,
-  StemTextObject,
-} from "@/node-lib/curriculum-api-2023/shared.schema";
+import { StemObject } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { Stem } from "@/components/SharedComponents/Stem";
+import { isText } from "@/components/PupilComponents/QuizUtils/stemUtils";
 
 export const QuizQuestionsQuestionStem = ({
   questionStem,
   index,
   showIndex = true,
 }: {
-  questionStem: (StemImageObject | StemTextObject)[];
+  questionStem: StemObject[];
   index: number;
   showIndex?: boolean;
 }) => {
   const displayNumber = `Q${index + 1}.`;
-  const questionText =
-    questionStem[0] &&
-    isStemTextObject(questionStem[0]) &&
-    questionStem[0].text;
+  const questionText = isText(questionStem[0]) && questionStem[0].text;
   return (
     <OakFlex $flexDirection={"column"} $gap="all-spacing-1">
       <OakHeading
@@ -44,10 +34,8 @@ export const QuizQuestionsQuestionStem = ({
               {showIndex && (
                 <OakSpan $mr="space-between-xs">{displayNumber}</OakSpan>
               )}
-              {questionText && (
-                <OakBox>
-                  {shortAnswerTitleFormatter(removeMarkdown(questionText))}
-                </OakBox>
+              {isText(questionStem[0]) && questionText && (
+                <Stem stem={questionStem[0]} />
               )}
             </>
           )}
@@ -61,7 +49,7 @@ export const QuizQuestionsQuestionStem = ({
               key={`q-${displayNumber}-stem-element-${i}`}
               $font={["body-2-bold", "body-1-bold"]}
             >
-              {shortAnswerTitleFormatter(removeMarkdown(stemItem.text))}
+              <Stem stem={stemItem} />
             </OakTypography>
           );
         } else if (stemItem.type === "image") {

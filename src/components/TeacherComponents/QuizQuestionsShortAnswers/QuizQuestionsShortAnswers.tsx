@@ -4,11 +4,12 @@ import {
   OakFlex,
   OakIcon,
   OakBox,
-  OakCodeRenderer,
 } from "@oaknational/oak-components";
 
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import { ShortAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { Stem } from "@/components/SharedComponents/Stem";
+import { stemToPortableText } from "@/utils/portableText";
 
 export const QuizQuestionsShortAnswers = ({
   answers,
@@ -51,10 +52,12 @@ export const QuizQuestionsShortAnswers = ({
         </OakBox>
 
         <OakTypography $font={["body-2", "body-1"]} aria-hidden>
-          <OakCodeRenderer
-            string={removeMarkdown(answerString)}
-            $font="code-3"
-            $mt={"space-between-none"}
+          <Stem
+            stem={{
+              type: "text",
+              text: answerString,
+              portableText: stemToPortableText(answerString),
+            }}
           />
         </OakTypography>
       </OakFlex>

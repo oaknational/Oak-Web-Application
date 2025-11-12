@@ -1,7 +1,4 @@
-import {
-  MissingComponentHandler,
-  PortableTextComponents,
-} from "@portabletext/react";
+import { PortableTextComponents } from "@portabletext/react";
 import { FC } from "react";
 import { OakHeading } from "@oaknational/oak-components";
 
@@ -22,16 +19,7 @@ import {
 } from "@/components/GenericPagesComponents/PostFootnotes";
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
-
-const logMissingPortableTextComponents: MissingComponentHandler = (
-  message,
-  options,
-) => {
-  console.log(message, {
-    type: options.type,
-    nodeType: options.nodeType,
-  });
-};
+import { logMissingPortableTextComponents } from "@/utils/portableText";
 
 type PostPortableTextContext = {
   footnotes: Footnote[];
