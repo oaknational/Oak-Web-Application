@@ -1695,7 +1695,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
               class="sc-fqkvVR sc-jXbUNg ilFqMp gdCncd"
             >
               <div
-                class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-71dd22e7-0 fgBWrW djyvKT iAkSYx ejnmTR"
+                class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-1a13cd03-0 fgBWrW djyvKT iAkSYx imvZdH"
               >
                 <div
                   class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
@@ -1717,7 +1717,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 </div>
               </div>
               <div
-                class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-71dd22e7-1 fgBWrW joHkzz ejUlbk djfNpU"
+                class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-1a13cd03-1 fgBWrW joHkzz ejUlbk hreDga"
               >
                 <div
                   class="sc-fqkvVR gdOBQS"
@@ -1817,7 +1817,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                       class="sc-fqkvVR sc-kAyceB fgBWrW eeevb"
                     >
                       <div
-                        class="sc-fqkvVR sc-kAyceB sc-9b717821-0 fgBWrW ddfwpL jcoqXE"
+                        class="sc-fqkvVR sc-kAyceB sc-3849a607-0 fgBWrW ddfwpL gQUaLr"
                         data-testid="timetable-timeline-item"
                       >
                         <div
@@ -1859,7 +1859,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                         </div>
                       </div>
                       <div
-                        class="sc-fqkvVR sc-kAyceB sc-9b717821-0 fgBWrW ddfwpL jcoqXE"
+                        class="sc-fqkvVR sc-kAyceB sc-3849a607-0 fgBWrW ddfwpL gQUaLr"
                         data-testid="timetable-timeline-item"
                       >
                         <div
@@ -1906,7 +1906,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                         </div>
                       </div>
                       <div
-                        class="sc-fqkvVR sc-kAyceB sc-9b717821-0 fgBWrW ddfwpL jcoqXE"
+                        class="sc-fqkvVR sc-kAyceB sc-3849a607-0 fgBWrW ddfwpL gQUaLr"
                         data-testid="timetable-timeline-item"
                       >
                         <div
@@ -1968,7 +1968,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 class="sc-fqkvVR sc-jXbUNg fgBWrW gdCncd"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-3c664f57-0 fgBWrW joHkzz iAkSYx igCJzG"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-d1ba7c06-0 fgBWrW joHkzz iAkSYx gEalCG"
                   data-testid="who-we-are-desc-item"
                 >
                   <div
@@ -2008,7 +2008,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-3c664f57-0 fgBWrW joHkzz iAkSYx igCJzG"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-d1ba7c06-0 fgBWrW joHkzz iAkSYx gEalCG"
                   data-testid="who-we-are-desc-item"
                 >
                   <div
@@ -2048,7 +2048,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-3c664f57-0 fgBWrW joHkzz iAkSYx igCJzG"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-d1ba7c06-0 fgBWrW joHkzz iAkSYx gEalCG"
                   data-testid="who-we-are-desc-item"
                 >
                   <div
@@ -2088,7 +2088,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-3c664f57-0 fgBWrW joHkzz iAkSYx igCJzG"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-d1ba7c06-0 fgBWrW joHkzz iAkSYx gEalCG"
                   data-testid="who-we-are-desc-item"
                 >
                   <div
@@ -2149,7 +2149,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   aria-labelledby="explore-more-about-oak"
                 >
                   <ul
-                    class="sc-fqkvVR sc-jXbUNg fgBWrW iwxQGX"
+                    class="sc-fqkvVR sc-jXbUNg hBfYWO iwxQGX"
                   >
                     <li
                       class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz cUWHJz"
@@ -2158,7 +2158,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                         class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                       >
                         <a
-                          class="sc-da4b1edb-0 hLtEll"
+                          class="sc-eb197fbf-0 bueLpa"
                           href="/#"
                         >
                           <div
@@ -2215,7 +2215,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                         class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                       >
                         <a
-                          class="sc-da4b1edb-0 hLtEll"
+                          class="sc-eb197fbf-0 bueLpa"
                           href="/#"
                         >
                           <div
@@ -2272,7 +2272,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                         class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                       >
                         <a
-                          class="sc-da4b1edb-0 hLtEll"
+                          class="sc-eb197fbf-0 bueLpa"
                           href="/#"
                         >
                           <div
@@ -2329,7 +2329,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                         class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                       >
                         <a
-                          class="sc-da4b1edb-0 hLtEll"
+                          class="sc-eb197fbf-0 bueLpa"
                           href="/#"
                         >
                           <div

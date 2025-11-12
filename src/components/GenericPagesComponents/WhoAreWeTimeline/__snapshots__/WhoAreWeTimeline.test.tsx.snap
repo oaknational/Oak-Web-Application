@@ -49,7 +49,7 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                 class="sc-fqkvVR sc-kAyceB fgBWrW eeevb"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-9b717821-0 fgBWrW ddfwpL jcoqXE"
+                  class="sc-fqkvVR sc-kAyceB sc-3849a607-0 fgBWrW ddfwpL gQUaLr"
                   data-testid="timetable-timeline-item"
                 >
                   <div
@@ -91,7 +91,7 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-9b717821-0 fgBWrW ddfwpL jcoqXE"
+                  class="sc-fqkvVR sc-kAyceB sc-3849a607-0 fgBWrW ddfwpL gQUaLr"
                   data-testid="timetable-timeline-item"
                 >
                   <div
@@ -133,7 +133,7 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-9b717821-0 fgBWrW ddfwpL jcoqXE"
+                  class="sc-fqkvVR sc-kAyceB sc-3849a607-0 fgBWrW ddfwpL gQUaLr"
                   data-testid="timetable-timeline-item"
                 >
                   <div

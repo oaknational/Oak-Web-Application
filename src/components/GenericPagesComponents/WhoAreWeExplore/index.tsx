@@ -23,7 +23,7 @@ const StyledLink = styled(Link)`
   }
 `;
 
-function InnerMaxWidth({ children }: { children: ReactNode }) {
+function InnerMaxWidth({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <OakBox
       $maxWidth={"all-spacing-24"}

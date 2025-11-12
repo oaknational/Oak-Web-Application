@@ -11,7 +11,7 @@ import {
 import { ReactNode, useMemo } from "react";
 import styled from "styled-components";
 
-function InnerMaxWidth({ children }: { children: ReactNode }) {
+function InnerMaxWidth({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <OakBox $maxWidth={"all-spacing-24"} $mh={"auto"}>
       {children}
