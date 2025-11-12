@@ -2149,7 +2149,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   aria-labelledby="explore-more-about-oak"
                 >
                   <ul
-                    class="sc-fqkvVR sc-jXbUNg fgBWrW iwxQGX"
+                    class="sc-fqkvVR sc-jXbUNg hBfYWO iwxQGX"
                   >
                     <li
                       class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz cUWHJz"
@@ -2158,7 +2158,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                         class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                       >
                         <a
-                          class="sc-da4b1edb-0 hLtEll"
+                          class="sc-98e007eb-0 cHMTsA"
                           href="/#"
                         >
                           <div
@@ -2215,7 +2215,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                         class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                       >
                         <a
-                          class="sc-da4b1edb-0 hLtEll"
+                          class="sc-98e007eb-0 cHMTsA"
                           href="/#"
                         >
                           <div
@@ -2272,7 +2272,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                         class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                       >
                         <a
-                          class="sc-da4b1edb-0 hLtEll"
+                          class="sc-98e007eb-0 cHMTsA"
                           href="/#"
                         >
                           <div
@@ -2329,7 +2329,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                         class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                       >
                         <a
-                          class="sc-da4b1edb-0 hLtEll"
+                          class="sc-98e007eb-0 cHMTsA"
                           href="/#"
                         >
                           <div
