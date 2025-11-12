@@ -18,7 +18,7 @@ const FocusIndicator = styled(OakBox)<{
       a${isJSDOM() ? "" : ":focus-visible"},
         button${isJSDOM() ? "" : ":focus-visible"}
     ) {
-    border-radius: 0.25rem;
+    border-radius: ${(props) => props.$borderRadius ?? "0.25em;"};
     z-index: 2;
     box-shadow:
       rgb(255, 229, 85) 0px 0px 0px 0.125rem,

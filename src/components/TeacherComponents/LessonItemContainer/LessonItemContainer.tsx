@@ -12,6 +12,8 @@ import {
 
 import { getPageLinksForLesson } from "../helpers/lessonHelpers/getPageLinksForLessons";
 
+import { getSkipLinkUrl } from "./getSkipLinkUrl";
+
 import { LessonPageLinkAnchorId } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { containerTitleToPreselectMap } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/containerTitleToPreselectMap";
 import { LessonItemContainerLink } from "@/components/TeacherComponents/LessonItemContainerLink";
@@ -103,16 +105,7 @@ export const LessonItemContainer = forwardRef<
   const [skipVideoButtonFocused, setSkipVideoButtonFocused] =
     useState<boolean>(false);
 
-  const skipContentAnchor =
-    anchorId === "video" ||
-    anchorId === "lesson-guide" ||
-    anchorId === "worksheet" ||
-    anchorId === "slide-deck" ||
-    anchorId === "quiz" ||
-    anchorId === "media-clips"
-      ? pageLinks[pageLinks.findIndex((link) => link.anchorId === anchorId) + 1]
-          ?.anchorId || undefined
-      : undefined;
+  const skipLinkUrl = getSkipLinkUrl(anchorId, pageLinks, slugs?.lessonSlug);
 
   const lowerCaseTitle = downloadTitle
     ? downloadTitle.toLowerCase()
@@ -129,7 +122,7 @@ export const LessonItemContainer = forwardRef<
         <OakAnchorTarget id={anchorId} $pt={"spacing-24"} ref={ref} />
         <OakFlex
           $mb={
-            skipContentAnchor
+            skipLinkUrl
               ? ["spacing-12", "spacing-24", "spacing-24"]
               : ["spacing-24"]
           }
@@ -176,10 +169,10 @@ export const LessonItemContainer = forwardRef<
               />
             )}
 
-            {skipContentAnchor && (
+            {skipLinkUrl && (
               <OakSecondaryButton
                 element="a"
-                href={`${slugs?.lessonSlug}#${skipContentAnchor}`}
+                href={skipLinkUrl}
                 onFocus={() => setSkipVideoButtonFocused(true)}
                 onBlur={() => setSkipVideoButtonFocused(false)}
                 style={

@@ -1,3 +1,73 @@
+## [1.912.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.912.0...v1.912.1) (2025-11-12)
+
+
+### Bug Fixes
+
+* added '//NOSONAR' and updated next-sitemap ([09a5d60](https://github.com/oaknational/Oak-Web-Application/commit/09a5d604062f3bbe3ceb6775abe3e338cc8d91f1))
+* make both nextjs & sonarcloud happy ([6ed6f75](https://github.com/oaknational/Oak-Web-Application/commit/6ed6f757ebce1f0ff3124a7ae86032bf7dbfbbdc))
+* missing getServerSideSitemap -> getServerSideSitemapLegacy ([d041ddd](https://github.com/oaknational/Oak-Web-Application/commit/d041ddd2e6ac87e69e7092fd9432cf33e85461dd))
+
+# [1.912.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.911.0...v1.912.0) (2025-11-12)
+
+
+### Bug Fixes
+
+* a11y tree now on correct headings ([036ac2c](https://github.com/oaknational/Oak-Web-Application/commit/036ac2cb158455a27b3ba6c6020c0bce9c575b25))
+* make <WhoAreWeDesc/> full screen on mobile ([5f3ea7e](https://github.com/oaknational/Oak-Web-Application/commit/5f3ea7e25941c39fa04b14513a1912fa17a4dd6b))
+
+
+### Features
+
+* completed <WhoAreWeDesc/> component + tests ([74690d2](https://github.com/oaknational/Oak-Web-Application/commit/74690d2692eadcabb162c5160f9e91c281af46a3))
+* completed <WhoAreWeHeader/> with storybook + tests ([5d0bdae](https://github.com/oaknational/Oak-Web-Application/commit/5d0bdaefbed0818876c38d30b720fab56ffe65a4))
+* finished up <WhoAreWeBreakout/> component + tests ([1bd6b78](https://github.com/oaknational/Oak-Web-Application/commit/1bd6b78ba532d1e0992fd31a540e1ad2db3af0bd))
+* finished up <WhoAreWeExplore/> component ready for design review ([b298028](https://github.com/oaknational/Oak-Web-Application/commit/b298028c803125ed054e4e2a641102d50dab674e))
+* initial mockup of about-us page ([22ca755](https://github.com/oaknational/Oak-Web-Application/commit/22ca755db9a9e72cae01a2ae122104012a5a6b90))
+* move over to getServerSideProps so we can switch on feature flag ([d9f1dbf](https://github.com/oaknational/Oak-Web-Application/commit/d9f1dbf63060b01947c2f0b646f446d9f2ad069f))
+
+# [1.911.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.910.1...v1.911.0) (2025-11-12)
+
+
+### Bug Fixes
+
+* get restrcited content data from features, not content mv ([69b0e3a](https://github.com/oaknational/Oak-Web-Application/commit/69b0e3aafb7c1f05ad33e31af19c65039570031f))
+
+
+### Features
+
+* match teachertab layout to the better-performing campaign page. update copy ([edeb246](https://github.com/oaknational/Oak-Web-Application/commit/edeb246bd2bb259bac5f22f64b344386ca7993e3))
+* update text and border color based on design feedback ([788b184](https://github.com/oaknational/Oak-Web-Application/commit/788b184fe10f20b56c86cf4e0e614ffbf9980aa3))
+
+## [1.910.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.910.0...v1.910.1) (2025-11-11)
+
+
+### Bug Fixes
+
+* remove noIndex/noFollow from campaign pages ([467f8be](https://github.com/oaknational/Oak-Web-Application/commit/467f8be605229f4a8e4f1235b594495cabbba8a1))
+
+# [1.910.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.909.0...v1.910.0) (2025-11-11)
+
+
+### Bug Fixes
+
+* add skip link button on additional materials ([8f0d16f](https://github.com/oaknational/Oak-Web-Application/commit/8f0d16faa28c9de70dbe3516a83ae18c75765fc7))
+* add zoom on the iframe for landscape docs ([af795c8](https://github.com/oaknational/Oak-Web-Application/commit/af795c8efaa1f32be3d3143ccc2533177a6a8a06))
+* adjust iframe zoom on mobile ([9753b53](https://github.com/oaknational/Oak-Web-Application/commit/9753b53845d8f33f823eafc5fdb25e9f1ccfd072))
+* use preview url format for google doc previews ([04b48c7](https://github.com/oaknational/Oak-Web-Application/commit/04b48c783d057d708d85b6c0e07dc4eac3a85a67))
+
+
+### Features
+
+* add error reporting for failure to generate preview url ([0600c2b](https://github.com/oaknational/Oak-Web-Application/commit/0600c2bd3991353624ba0a6eb52dddd9ee12f932))
+
+# [1.909.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.908.1...v1.909.0) (2025-11-05)
+
+
+### Features
+
+* remove default values from clerk env vars ([60a5f9c](https://github.com/oaknational/Oak-Web-Application/commit/60a5f9cf5180c11455b504aa52005cdaf0df0921))
+* update module version ([ad38ade](https://github.com/oaknational/Oak-Web-Application/commit/ad38ade19209f055c2040e15dc2ac3fe72f946a1))
+
 ## [1.908.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.908.0...v1.908.1) (2025-11-04)
 
 

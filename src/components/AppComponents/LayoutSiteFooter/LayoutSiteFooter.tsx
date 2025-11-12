@@ -213,7 +213,7 @@ const LayoutSiteFooter: FC = () => {
           $top={"spacing-0"}
         />
       </OakFlex>
-      <nav>
+      <nav id="site-footer">
         <OakMaxWidth
           $pt={["spacing-16", "spacing-80"]}
           $justifyContent={"center"}

@@ -1,10 +1,12 @@
 import { CurricLessonItem } from ".";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("CurricLessonItem", () => {
   test("with href", () => {
-    const { getByTestId, getByRole } = renderWithTheme(
+    const { getByTestId, getByRole } = render(
       <CurricLessonItem
         number={1}
         title={"Scotland, England and Robert the Bruce"}
@@ -21,7 +23,7 @@ describe("CurricLessonItem", () => {
   });
 
   test("without href", () => {
-    const { getByTestId, queryAllByRole } = renderWithTheme(
+    const { getByTestId, queryAllByRole } = render(
       <CurricLessonItem
         number={1}
         title={"Scotland, England and Robert the Bruce"}

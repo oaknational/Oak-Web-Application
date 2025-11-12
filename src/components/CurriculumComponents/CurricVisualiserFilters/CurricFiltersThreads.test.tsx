@@ -3,11 +3,13 @@ import { act } from "@testing-library/react";
 import { CurricFiltersThreads } from "./CurricFiltersThreads";
 import { basicSetup } from "./CurricFiltersThreads.fixtures";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme", "theme"]);
 
 describe("CurricFiltersThreads", () => {
   it("renders correctly", () => {
-    const { getAllByRole } = renderWithTheme(
+    const { getAllByRole } = render(
       <CurricFiltersThreads
         filters={{
           childSubjects: [],
@@ -31,7 +33,7 @@ describe("CurricFiltersThreads", () => {
   });
 
   it("renders correctly with selected thread", () => {
-    const { getAllByRole } = renderWithTheme(
+    const { getAllByRole } = render(
       <CurricFiltersThreads
         filters={{
           childSubjects: [],
@@ -57,7 +59,7 @@ describe("CurricFiltersThreads", () => {
 
   it("interacts correctly when selecting thread", () => {
     const onChangeFilters = jest.fn();
-    const { getAllByRole } = renderWithTheme(
+    const { getAllByRole } = render(
       <CurricFiltersThreads
         filters={{
           childSubjects: [],
@@ -88,7 +90,7 @@ describe("CurricFiltersThreads", () => {
 
   it("interacts correctly when selecting none", () => {
     const onChangeFilters = jest.fn();
-    const { getAllByRole } = renderWithTheme(
+    const { getAllByRole } = render(
       <CurricFiltersThreads
         filters={{
           childSubjects: [],
