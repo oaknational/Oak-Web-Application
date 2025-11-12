@@ -8,10 +8,10 @@ exports[`WhoAreWeHeader renders correctly 1`] = `
       style="max-width: 1360px;"
     >
       <div
-        class="sc-fqkvVR sc-jXbUNg bHaeEi gdCncd"
+        class="sc-fqkvVR sc-jXbUNg ilFqMp gdCncd"
       >
         <div
-          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-504343f2-0 fgBWrW djyvKT iAkSYx cNxuus"
+          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-82940dad-0 fgBWrW djyvKT iAkSYx lawuXz"
         >
           <div
             class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
@@ -33,10 +33,10 @@ exports[`WhoAreWeHeader renders correctly 1`] = `
           </div>
         </div>
         <div
-          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-504343f2-1 fgBWrW joHkzz dGlNMa cLXZgT"
+          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-82940dad-1 fgBWrW joHkzz ejUlbk eAnene"
         >
           <div
-            class="sc-fqkvVR dBkKun"
+            class="sc-fqkvVR gdOBQS"
           >
             <div
               class="sc-fqkvVR hudrT"

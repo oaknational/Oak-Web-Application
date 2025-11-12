@@ -7,17 +7,17 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
       class="sc-fqkvVR glVOpG"
     >
       <div
-        class="sc-fqkvVR jglYoS"
+        class="sc-fqkvVR dmKvLq"
         style="max-width: 1360px;"
       >
         <div
-          class="sc-fqkvVR sc-kAyceB itUwJl jyLrLm"
+          class="sc-fqkvVR sc-kAyceB dYLiUd jyLrLm"
         >
           <div
             class="sc-fqkvVR sc-jXbUNg fgBWrW gdCncd"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz bzXGlP"
+              class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz eMDdgD"
             >
               <div
                 class="sc-fqkvVR sc-kAyceB fgBWrW gOiVFh"
@@ -43,13 +43,13 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
             class="sc-fqkvVR sc-jXbUNg fgBWrW gdCncd"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz ezsJUC"
+              class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz dNFOzW"
             >
               <div
                 class="sc-fqkvVR sc-kAyceB fgBWrW eeevb"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB fgBWrW ddfwpL"
+                  class="sc-fqkvVR sc-kAyceB sc-9b717821-0 fgBWrW ddfwpL jcoqXE"
                   data-testid="timetable-timeline-item"
                 >
                   <div
@@ -63,7 +63,7 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                     />
                   </div>
                   <div
-                    class="sc-fqkvVR sc-kAyceB egekXy gOiVFh"
+                    class="sc-fqkvVR sc-kAyceB jXzpTn gOiVFh"
                   >
                     <div
                       class="sc-fqkvVR cvmDMx"
@@ -91,7 +91,7 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB fgBWrW ddfwpL"
+                  class="sc-fqkvVR sc-kAyceB sc-9b717821-0 fgBWrW ddfwpL jcoqXE"
                   data-testid="timetable-timeline-item"
                 >
                   <div
@@ -105,7 +105,7 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                     />
                   </div>
                   <div
-                    class="sc-fqkvVR sc-kAyceB egekXy gOiVFh"
+                    class="sc-fqkvVR sc-kAyceB jXzpTn gOiVFh"
                   >
                     <div
                       class="sc-fqkvVR cvmDMx"
@@ -133,7 +133,7 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB fgBWrW ddfwpL"
+                  class="sc-fqkvVR sc-kAyceB sc-9b717821-0 fgBWrW ddfwpL jcoqXE"
                   data-testid="timetable-timeline-item"
                 >
                   <div
@@ -147,7 +147,7 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                     />
                   </div>
                   <div
-                    class="sc-fqkvVR sc-kAyceB egekXy gOiVFh"
+                    class="sc-fqkvVR sc-kAyceB jXzpTn gOiVFh"
                   >
                     <div
                       class="sc-fqkvVR cvmDMx"
