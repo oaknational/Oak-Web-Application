@@ -1,4 +1,4 @@
-// import { nanoid } from "nanoid";
+import { nanoid } from "nanoid";
 
 import { OakPupilClient } from "./client";
 
@@ -7,12 +7,12 @@ import {
   LessonAttempt,
   AttemptDataCamelCase,
   attemptDataSchema,
-  // TeacherNoteCamelCase,
+  TeacherNoteCamelCase,
 } from "@/node-lib/pupil-api/types";
 import convertKeysToSnakeCase from "@/utils/camelCaseConverter";
 import { createHash } from "@/utils/createHash";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
-// import { mockTeacherNote } from "@/node-lib/pupil-api/__mocks__/MockPupilClient";
+import { mockTeacherNote } from "@/node-lib/pupil-api/__mocks__/MockPupilClient";
 
 jest.mock("nanoid", () => ({
   nanoid: jest.fn(() => "testUserId"),
@@ -60,8 +60,8 @@ const mockAttemptData: AttemptDataCamelCase = {
   },
 };
 
-// const mockTeacherNoteCamel: TeacherNoteCamelCase =
-//   keysToCamelCase(mockTeacherNote);
+const mockTeacherNoteCamel: TeacherNoteCamelCase =
+  keysToCamelCase(mockTeacherNote);
 
 const mockLessonAttempt: LessonAttempt = {
   ...attemptDataSchema.parse(convertKeysToSnakeCase(mockAttemptData)),
@@ -81,13 +81,13 @@ describe("OakPupilClient", () => {
       ARHMdfK44YeMawb1QtnxN: mockLessonAttempt,
     });
 
-    // jest
-    //   .spyOn(networkClient, "addTeacherNote")
-    //   .mockResolvedValue(mockTeacherNote);
+    jest
+      .spyOn(networkClient, "addTeacherNote")
+      .mockResolvedValue(mockTeacherNote);
 
-    // jest
-    //   .spyOn(networkClient, "getTeacherNote")
-    //   .mockResolvedValue(mockTeacherNote);
+    jest
+      .spyOn(networkClient, "getTeacherNote")
+      .mockResolvedValue(mockTeacherNote);
 
     jest.clearAllMocks();
   });
@@ -190,124 +190,124 @@ describe("OakPupilClient", () => {
     });
   });
 
-  // describe("Managing Teacher Notes", () => {
-  //   beforeEach(() => {
-  //     jest.clearAllMocks();
-  //   });
+  describe("Managing Teacher Notes", () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+    });
 
-  //   it("should call the API to add a teacher note", async () => {
-  //     (nanoid as jest.Mock).mockReturnValue(mockTeacherNote.note_id);
-  //     const client = new OakPupilClient(testProps, networkClient);
-  //     client.init();
-  //     await client.addTeacherNote({
-  //       teacherNote: mockTeacherNoteCamel,
-  //     });
-  //     expect(networkClient.addTeacherNote).toHaveBeenCalledWith(
-  //       mockTeacherNote,
-  //     );
-  //   });
+    it("should call the API to add a teacher note", async () => {
+      (nanoid as jest.Mock).mockReturnValue(mockTeacherNote.note_id);
+      const client = new OakPupilClient(testProps, networkClient);
+      client.init();
+      await client.addTeacherNote({
+        teacherNote: mockTeacherNoteCamel,
+      });
+      expect(networkClient.addTeacherNote).toHaveBeenCalledWith(
+        mockTeacherNote,
+      );
+    });
 
-  //   it("should store the teacher note id in local storage against the sid key", async () => {
-  //     (nanoid as jest.Mock).mockReturnValue(mockTeacherNote.note_id);
-  //     const client = new OakPupilClient(testProps, networkClient);
-  //     client.init();
-  //     await client.addTeacherNote({
-  //       teacherNote: mockTeacherNoteCamel,
-  //     });
-  //     const storedNote = localStorage.getItem(
-  //       `oak-pupil-teacher-note:${mockTeacherNote.sid_key}`,
-  //     );
-  //     expect(storedNote).toBe(mockTeacherNote.note_id);
-  //   });
+    it("should store the teacher note id in local storage against the sid key", async () => {
+      (nanoid as jest.Mock).mockReturnValue(mockTeacherNote.note_id);
+      const client = new OakPupilClient(testProps, networkClient);
+      client.init();
+      await client.addTeacherNote({
+        teacherNote: mockTeacherNoteCamel,
+      });
+      const storedNote = localStorage.getItem(
+        `oak-pupil-teacher-note:${mockTeacherNote.sid_key}`,
+      );
+      expect(storedNote).toBe(mockTeacherNote.note_id);
+    });
 
-  //   it("should throw an error if the teacher note is invalid", async () => {
-  //     const client = new OakPupilClient(testProps, networkClient);
-  //     client.init();
-  //     try {
-  //       await client.addTeacherNote({
-  //         teacherNote: {
-  //           ...mockTeacherNoteCamel,
-  //           sidKey: "not a sid key because it's too long",
-  //         },
-  //       });
-  //     } catch (error) {
-  //       expect(error).toBeDefined();
-  //     }
-  //   });
+    it("should throw an error if the teacher note is invalid", async () => {
+      const client = new OakPupilClient(testProps, networkClient);
+      client.init();
+      try {
+        await client.addTeacherNote({
+          teacherNote: {
+            ...mockTeacherNoteCamel,
+            sidKey: "not a sid key because it's too long",
+          },
+        });
+      } catch (error) {
+        expect(error).toBeDefined();
+      }
+    });
 
-  //   it("should get a teacher note by noteId and sidKey", async () => {
-  //     const client = new OakPupilClient(testProps, networkClient);
-  //     client.init();
-  //     await client.getTeacherNote({
-  //       sidKey: mockTeacherNote.sid_key,
-  //       noteId: mockTeacherNote.note_id,
-  //     });
+    it("should get a teacher note by noteId and sidKey", async () => {
+      const client = new OakPupilClient(testProps, networkClient);
+      client.init();
+      await client.getTeacherNote({
+        sidKey: mockTeacherNote.sid_key,
+        noteId: mockTeacherNote.note_id,
+      });
 
-  //     expect(networkClient.getTeacherNote).toHaveBeenCalled();
-  //     expect(networkClient.getTeacherNote).toHaveBeenCalledWith({
-  //       note_id: mockTeacherNote.note_id,
-  //       sid_key: mockTeacherNote.sid_key,
-  //     });
-  //   });
+      expect(networkClient.getTeacherNote).toHaveBeenCalled();
+      expect(networkClient.getTeacherNote).toHaveBeenCalledWith({
+        note_id: mockTeacherNote.note_id,
+        sid_key: mockTeacherNote.sid_key,
+      });
+    });
 
-  //   it("should return isEditable as false if the note url is not in local storage", async () => {
-  //     // mock local storage to return null
-  //     jest.spyOn(Storage.prototype, "getItem").mockReturnValue(null);
-  //     const client = new OakPupilClient(testProps, networkClient);
-  //     client.init();
-  //     const res = await client.getTeacherNote({
-  //       sidKey: mockTeacherNote.sid_key,
-  //       noteId: mockTeacherNote.note_id,
-  //     });
-  //     expect(res.isEditable).toBe(false);
-  //   });
+    it("should return isEditable as false if the note url is not in local storage", async () => {
+      // mock local storage to return null
+      jest.spyOn(Storage.prototype, "getItem").mockReturnValue(null);
+      const client = new OakPupilClient(testProps, networkClient);
+      client.init();
+      const res = await client.getTeacherNote({
+        sidKey: mockTeacherNote.sid_key,
+        noteId: mockTeacherNote.note_id,
+      });
+      expect(res.isEditable).toBe(false);
+    });
 
-  //   it("should return isEditable as true if the note url is in local storage", async () => {
-  //     // mock local storage to return the lesson url
-  //     jest.spyOn(Storage.prototype, "getItem").mockReturnValueOnce(
-  //       mockTeacherNote.note_id,
-  //     );
-  //     const client = new OakPupilClient(testProps, networkClient);
-  //     client.init();
-  //     const res = await client.getTeacherNote({
-  //       sidKey: mockTeacherNote.sid_key,
-  //       noteId: mockTeacherNote.note_id,
-  //     });
-  //     expect(res.isEditable).toBe(true);
-  //   });
+    it("should return isEditable as true if the note url is in local storage", async () => {
+      // mock local storage to return the lesson url
+      jest
+        .spyOn(Storage.prototype, "getItem")
+        .mockReturnValueOnce(mockTeacherNote.note_id);
+      const client = new OakPupilClient(testProps, networkClient);
+      client.init();
+      const res = await client.getTeacherNote({
+        sidKey: mockTeacherNote.sid_key,
+        noteId: mockTeacherNote.note_id,
+      });
+      expect(res.isEditable).toBe(true);
+    });
 
-  //   it("Should throw an error if the teacher note is invalid", async () => {
-  //     const client = new OakPupilClient(testProps, networkClient);
-  //     client.init();
-  //     expect(() =>
-  //       client.getTeacherNote({
-  //         sidKey: mockTeacherNote.sid_key,
-  //         noteId: "not a note id",
-  //       }),
-  //     ).toThrowError("String must contain exactly 10 character(s)");
-  //   });
+    it("Should throw an error if the teacher note is invalid", async () => {
+      const client = new OakPupilClient(testProps, networkClient);
+      client.init();
+      expect(() =>
+        client.getTeacherNote({
+          sidKey: mockTeacherNote.sid_key,
+          noteId: "not a note id",
+        }),
+      ).toThrowError("String must contain exactly 10 character(s)");
+    });
 
-  //   it("should throw an error if the noteId is not provided and not in local storage", async () => {
-  //     const client = new OakPupilClient(testProps, networkClient);
-  //     client.init();
+    it("should throw an error if the noteId is not provided and not in local storage", async () => {
+      const client = new OakPupilClient(testProps, networkClient);
+      client.init();
 
-  //     expect(() =>
-  //       client.getTeacherNote({
-  //         sidKey: mockTeacherNote.sid_key,
-  //       }),
-  //     ).toThrowError("NoteId could not be found");
-  //   });
+      expect(() =>
+        client.getTeacherNote({
+          sidKey: mockTeacherNote.sid_key,
+        }),
+      ).toThrowError("NoteId could not be found");
+    });
 
-  //   it("should return the teacher note using the id from local storage if noteId is not provided", async () => {
-  //     jest.spyOn(Storage.prototype, "getItem").mockReturnValue(
-  //       mockTeacherNote.note_id,
-  //     );
-  //     const client = new OakPupilClient(testProps, networkClient);
-  //     client.init();
-  //     const res = await client.getTeacherNote({
-  //       sidKey: mockTeacherNote.sid_key,
-  //     });
-  //     expect(res.teacherNote).toEqual(mockTeacherNoteCamel);
-  //   });
-  // });
+    it("should return the teacher note using the id from local storage if noteId is not provided", async () => {
+      jest
+        .spyOn(Storage.prototype, "getItem")
+        .mockReturnValue(mockTeacherNote.note_id);
+      const client = new OakPupilClient(testProps, networkClient);
+      client.init();
+      const res = await client.getTeacherNote({
+        sidKey: mockTeacherNote.sid_key,
+      });
+      expect(res.teacherNote).toEqual(mockTeacherNoteCamel);
+    });
+  });
 });
