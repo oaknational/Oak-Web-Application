@@ -28,7 +28,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
     <OakFlex $background={"mint"} $pv="inner-padding-xl" $overflow={"hidden"}>
       <OakMaxWidth $ph={["inner-padding-m"]}>
         <OakGrid $cg={"all-spacing-4"}>
-          <OakGridArea $colSpan={[12, 6]}>
+          <OakGridArea $color={"text-primary"} $colSpan={[12, 6]}>
             <OakFlex
               $flexDirection={"column"}
               $maxWidth={["all-spacing-22"]}
@@ -43,30 +43,22 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                 Teachers
               </OakHeading>
               <OakHeading $font={"heading-3"} tag={"h2"}>
-                Powerful planning tools for every teacher and school
+                Plan every lesson, every national curriculum subject, all in one
+                place
               </OakHeading>
               <OakTypography $font={"body-1"}>
-                From curriculum planning to classroom teaching, Oak saves time
-                at every step.
+                From curriculum planning to classroom teaching, Oak gives you
+                free, expert-designed resources to adapt and make your own.
               </OakTypography>
-              <OakGrid $mt="space-between-s">
-                <OakGridArea $colSpan={[12, 12, 11]}>
-                  <SearchForm
-                    searchContext="homepage"
-                    placeholderText="Search by keyword or topic"
-                    searchTerm=""
-                    handleSubmit={(value) => {
-                      setSearchTerm(value);
-                    }}
-                    analyticsSearchSource={"homepage search box"}
-                  />
-                </OakGridArea>
-              </OakGrid>
-              <OakBox $pv="inner-padding-xl2" $width={"100%"}>
+              <OakFlex
+                $width={["100%", "100%", "max-content"]}
+                $flexDirection="column"
+                $gap={["space-between-m", "space-between-m2"]}
+              >
                 <KeyStageKeypad
-                  keyStages={keyStages}
                   title="View subjects by key stage"
                   titleTag="h3"
+                  keyStages={keyStages}
                   trackingOnClick={(
                     filterValue: string,
                     activeFilters: Record<string, string[]>,
@@ -84,7 +76,26 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                     })
                   }
                 />
-              </OakBox>
+                <OakBox
+                  $height={"all-spacing-0"}
+                  $bt={"border-solid-m"}
+                  $borderColor={"border-inverted"}
+                />
+                <OakFlex $flexDirection="column" $gap="space-between-s">
+                  <OakHeading tag="h3" $font="heading-7">
+                    Or search by keyword
+                  </OakHeading>
+                  <SearchForm
+                    searchContext="campaign"
+                    placeholderText="Search by keyword or topic"
+                    searchTerm=""
+                    handleSubmit={(value) => {
+                      setSearchTerm(value);
+                    }}
+                    analyticsSearchSource={"campaign page"}
+                  />
+                </OakFlex>
+              </OakFlex>
             </OakFlex>
           </OakGridArea>
           <OakGridArea $colSpan={[12, 6]} $alignItems={"flex-end"}>

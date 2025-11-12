@@ -24,47 +24,45 @@ const Landing: NextPage<LandingPageProps> = ({ pageData }) => {
       headerCta={pageData.headerCta}
       seoProps={getSeoProps(pageData.seo)}
     >
-      <>
-        <OakMaxWidth $justifyContent={"flex-start"}>
-          <LandingPageHero hero={pageData.hero} />
-          <>
-            {pageData.content.map((content, index) => {
-              if (content.type == "LandingPageTextAndMediaBlock") {
-                return (
-                  <LandingPageTextAndMedia
-                    key={`${index}:${content.textAndMedia.title}`}
-                    {...content.textAndMedia}
-                  />
-                );
-              }
-              if (content.type == "LandingPageQuoteBlock") {
-                return (
-                  <LandingPageQuote
-                    key={`${index}:${content.quote.text}`}
-                    {...content.quote}
-                  />
-                );
-              }
-              if (content.type == "LandingPageFormBlock") {
-                return (
-                  <LandingPageSignupPrompt
-                    key={`${index}:${content.title}`}
-                    {...content}
-                  />
-                );
-              }
-              if (content.type == "LandingPageTextBlock") {
-                return (
-                  <LandingPageTextBlock
-                    key={`${index}:${content.bodyPortableText[0]._key}`}
-                    {...content}
-                  />
-                );
-              }
-            })}
-          </>
-        </OakMaxWidth>
-      </>
+      <OakMaxWidth $justifyContent={"flex-start"}>
+        <LandingPageHero hero={pageData.hero} />
+        <>
+          {pageData.content.map((content, index) => {
+            if (content.type == "LandingPageTextAndMediaBlock") {
+              return (
+                <LandingPageTextAndMedia
+                  key={`${index}:${content.textAndMedia.title}`}
+                  {...content.textAndMedia}
+                />
+              );
+            }
+            if (content.type == "LandingPageQuoteBlock") {
+              return (
+                <LandingPageQuote
+                  key={`${index}:${content.quote.text}`}
+                  {...content.quote}
+                />
+              );
+            }
+            if (content.type == "LandingPageFormBlock") {
+              return (
+                <LandingPageSignupPrompt
+                  key={`${index}:${content.title}`}
+                  {...content}
+                />
+              );
+            }
+            if (content.type == "LandingPageTextBlock") {
+              return (
+                <LandingPageTextBlock
+                  key={`${index}:${content.bodyPortableText[0]._key}`}
+                  {...content}
+                />
+              );
+            }
+          })}
+        </>
+      </OakMaxWidth>
     </Layout>
   );
 };

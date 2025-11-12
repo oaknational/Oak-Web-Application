@@ -29,43 +29,41 @@ export default function CurricSEOAccordion({
   const truncationLength = isMobile ? 40 : 100;
 
   return (
-    <>
-      <OakBox $ph={["inner-padding-s", "inner-padding-none"]}>
-        <OakHandDrawnHR
-          hrColor={"grey40"}
-          $mv={"space-between-sssx"}
-          $height={"all-spacing-05"}
-        />
-        <OakBasicAccordion
-          header={
-            <OakHeading $font="heading-5" tag="h3" $textAlign="left">
-              How to plan your {displaySubjectTitle} curriculum with Oak
-            </OakHeading>
-          }
-          subheading={
-            <>
-              <br />
-              <OakP $font={["body-2", "body-1"]} $textAlign="left">
-                {truncatePortableTextBlock(curriculumSeoText, truncationLength)}
-              </OakP>
-            </>
-          }
-          initialOpen={false}
-          id="curriculum-seo-accordion"
-        >
-          <OakBox $mt="space-between-m">
-            <PortableText
-              value={curriculumSeoText}
-              components={basePortableTextComponents}
-            />
-          </OakBox>
-        </OakBasicAccordion>
-        <OakHandDrawnHR
-          hrColor={"grey40"}
-          $mt={"space-between-sssx"}
-          $height={"all-spacing-05"}
-        />
-      </OakBox>
-    </>
+    <OakBox $ph={["inner-padding-s", "inner-padding-none"]}>
+      <OakHandDrawnHR
+        hrColor={"grey40"}
+        $mv={"space-between-sssx"}
+        $height={"all-spacing-05"}
+      />
+      <OakBasicAccordion
+        header={
+          <OakHeading $font="heading-5" tag="h3" $textAlign="left">
+            How to plan your {displaySubjectTitle} curriculum with Oak
+          </OakHeading>
+        }
+        subheading={
+          <>
+            <br />
+            <OakP $font={["body-2", "body-1"]} $textAlign="left">
+              {truncatePortableTextBlock(curriculumSeoText, truncationLength)}
+            </OakP>
+          </>
+        }
+        initialOpen={false}
+        id="curriculum-seo-accordion"
+      >
+        <OakBox $mt="space-between-m">
+          <PortableText
+            value={curriculumSeoText}
+            components={basePortableTextComponents}
+          />
+        </OakBox>
+      </OakBasicAccordion>
+      <OakHandDrawnHR
+        hrColor={"grey40"}
+        $mt={"space-between-sssx"}
+        $height={"all-spacing-05"}
+      />
+    </OakBox>
   );
 }
