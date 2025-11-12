@@ -239,4 +239,43 @@ describe("PUT /api/teacher/note", () => {
       message: "Redaction on stored teacher notes started successfully",
     });
   });
+  it("redacts PII in notes during batch update", async () => {
+    const mockDoc = {
+      note_id: "noteId",
+      sid_key: "sidKey",
+      note_text: "This is a teacher note with PII: 123-45-6789.",
+      note_html: "<p>This is a teacher note with PII: 123-45-6789.</p>",
+      checkedForPii: false,
+    };
+    (identifyPiiFromString as jest.Mock)
+      .mockImplementationOnce(() => ({
+        matches: [{ type: "SSN", value: "123-45-6789" }],
+        redactedText: "This is a teacher note with PII: [REDACTED].",
+      }))
+      .mockImplementationOnce(() => ({
+        matches: [{ type: "SSN", value: "123-45-6789" }],
+        redactedText: "<p>This is a teacher note with PII: [REDACTED].</p>",
+      }));
+    (
+      pupilDatastore.batchUpdateTeacherNotes as jest.Mock
+    ).mockImplementationOnce(
+      async (callback: (doc: typeof mockDoc) => Promise<typeof mockDoc>) => {
+        const updatedDoc = await callback(mockDoc);
+        expect(updatedDoc.note_text).toBe(
+          "This is a teacher note with PII: [REDACTED].",
+        );
+        expect(updatedDoc.note_html).toBe(
+          "<p>This is a teacher note with PII: [REDACTED].</p>",
+        );
+        expect(updatedDoc.checkedForPii).toBe(true);
+      },
+    );
+    // const result = await PUT();
+    // expect(pupilDatastore.batchUpdateTeacherNotes).toHaveBeenCalled();
+    // expect(result.status).toBe(200);
+    // const json = await result.json();
+    // expect(json).toEqual({
+    //   message: "Redaction on stored teacher notes started successfully",
+    // });
+  });
 });

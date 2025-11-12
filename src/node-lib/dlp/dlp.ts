@@ -1,6 +1,6 @@
 import DLP, { protos } from "@google-cloud/dlp";
 
-import { PiiMatch } from "@/node-lib/pupil-api/types";
+import { PiiMatch, TeacherNote } from "@/node-lib/pupil-api/types";
 
 const projectId = process.env.GCP_PROJECT_ID;
 
@@ -105,3 +105,20 @@ export const identifyPiiFromString = async (
     redactedText,
   };
 };
+
+export async function redactTeacherNoteForPII(doc: TeacherNote) {
+  const [textPii, htmlPii] = await Promise.all([
+    identifyPiiFromString(doc.note_text),
+    identifyPiiFromString(doc.note_html),
+  ]);
+  doc.checkedForPii = true;
+  const foundPii = (check: PiiCheckResponse) =>
+    check.matches.length > 0 && check.redactedText;
+  const [textMatched, htmlMatched] = [foundPii(textPii), foundPii(htmlPii)];
+  if (textMatched) doc.note_text = textPii.redactedText as string;
+  if (htmlMatched) doc.note_html = htmlPii.redactedText as string;
+  console.log(
+    `Redacting teacher note ${doc.note_id}. ${textMatched ? "Redacted PII from text." : "No PII found in text."} ${htmlMatched ? "Redacted PII from HTML." : "No PII found in HTML."}`,
+  );
+  return doc;
+}

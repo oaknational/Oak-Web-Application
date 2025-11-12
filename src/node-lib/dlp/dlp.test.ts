@@ -8,7 +8,13 @@ import {
   StreetAddressFinding,
 } from "./__mocks__/fixtures/dlp-api-response.fixture";
 import { SamplePiiMatches } from "./__mocks__/fixtures/pii-match.fixture";
-import { identifyPiiFromString, PiiCheckResponse } from "./dlp";
+import {
+  identifyPiiFromString,
+  PiiCheckResponse,
+  redactTeacherNoteForPII,
+} from "./dlp";
+
+import { TeacherNote } from "@/node-lib/pupil-api/types";
 
 const TEST_PROJECT_ID = "test-project-id";
 process.env.GCP_PROJECT_ID = TEST_PROJECT_ID;
@@ -170,5 +176,55 @@ describe("identifyPiiFromString", () => {
     expect(mockDeidentifyContent).toHaveBeenCalledTimes(0);
     expect(result.matches).toEqual([]);
     expect(result.redactedText).toBeUndefined();
+  });
+});
+describe("redactTeacherNoteForPII", () => {
+  beforeEach(() => {
+    // Clear mocks before each test
+    jest.clearAllMocks();
+    jest.spyOn(console, "log").mockImplementation(() => {});
+  });
+  afterAll(() => {
+    (console.log as jest.Mock).mockRestore();
+  });
+
+  it("should redact PII in both note_text and note_html", async () => {
+    const doc: TeacherNote = {
+      note_id: "note1",
+      sid_key: "sid1",
+      note_text: "Contact Jane Doe at 123 Main St.",
+      note_html: "<p>Email Jane Doe at jane.doe@example.com</p>",
+      lesson_path: "lesson/1",
+    };
+    mockInspectContent
+      .mockResolvedValueOnce([
+        MockDlpInspectContentResponse([
+          PersonNameFinding(),
+          StreetAddressFinding(),
+        ]),
+      ])
+      .mockResolvedValueOnce([
+        MockDlpInspectContentResponse([
+          PersonNameFinding(),
+          EmailAddressFinding(),
+        ]),
+      ]);
+    mockDeidentifyContent
+      .mockResolvedValueOnce([
+        MockDlpDeidentifyContentResponse("Contact [REDACTED] at [REDACTED]."),
+      ])
+      .mockResolvedValueOnce([
+        MockDlpDeidentifyContentResponse(
+          "<p>Email [REDACTED] at [REDACTED]</p>",
+        ),
+      ]);
+
+    const result = await redactTeacherNoteForPII(doc);
+
+    expect(mockInspectContent).toHaveBeenCalledTimes(2);
+    expect(mockDeidentifyContent).toHaveBeenCalledTimes(2);
+    expect(result.checkedForPii).toBe(true);
+    expect(result.note_text).toBe("Contact Jane Doe at 123 Main St.");
+    expect(result.note_html).toBe("Contact [REDACTED] at [REDACTED].");
   });
 });

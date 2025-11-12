@@ -2,7 +2,11 @@ import { type NextRequest, NextResponse } from "next/server";
 import { ZodError } from "zod";
 
 import errorReporter from "@/common-lib/error-reporter";
-import { identifyPiiFromString, PiiCheckResponse } from "@/node-lib/dlp";
+import {
+  identifyPiiFromString,
+  PiiCheckResponse,
+  redactTeacherNoteForPII,
+} from "@/node-lib/dlp";
 import { pupilDatastore } from "@/node-lib/pupil-api/pupilDataStore";
 import {
   TeacherNoteError,
@@ -80,22 +84,7 @@ export async function POST(request: NextRequest) {
 }
 
 export async function PUT() {
-  pupilDatastore.batchUpdateTeacherNotes(async (doc) => {
-    const [textPii, htmlPii] = await Promise.all([
-      identifyPiiFromString(doc.note_text),
-      identifyPiiFromString(doc.note_html),
-    ]);
-    doc.checkedForPii = true;
-    const foundPii = (check: PiiCheckResponse) =>
-      check.matches.length > 0 && check.redactedText;
-    const [textMatched, htmlMatched] = [foundPii(textPii), foundPii(htmlPii)];
-    if (textMatched) doc.note_text = textPii.redactedText as string;
-    if (htmlMatched) doc.note_html = htmlPii.redactedText as string;
-    console.log(
-      `Redacting teacher note ${doc.note_id}. ${textMatched ? "Redacted PII from text." : "No PII found in text."} ${htmlMatched ? "Redacted PII from HTML." : "No PII found in HTML."}`,
-    );
-    return doc;
-  });
+  pupilDatastore.batchUpdateTeacherNotes(redactTeacherNoteForPII);
   return NextResponse.json(
     { message: "Redaction on stored teacher notes started successfully" },
     { status: 200 },
