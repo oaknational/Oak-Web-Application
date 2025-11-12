@@ -58,25 +58,25 @@ exports[`CurriculumTab renders 1`] = `
               >
                  
                 <div
-                  class="sc-fqkvVR sc-fPXMVe iGOzG feoMFy"
+                  class="sc-fqkvVR sc-gFqAkR iGOzG fhPMYu"
                 >
                   All of our curriculum plans are:
                 </div>
                 <ul
-                  class="sc-gFqAkR iOFWbq"
+                  class="sc-ikkxIA hHHtYD"
                 >
                   <li
-                    class="sc-cwHptR dIHCIz"
+                    class="sc-jlZhew bKqIHz"
                   >
                     National curriculum-aligned
                   </li>
                   <li
-                    class="sc-cwHptR dIHCIz"
+                    class="sc-jlZhew bKqIHz"
                   >
                     Sequenced across year groups
                   </li>
                   <li
-                    class="sc-cwHptR dIHCIz"
+                    class="sc-jlZhew bKqIHz"
                   >
                     Designed by curriculum experts
                   </li>
@@ -86,20 +86,20 @@ exports[`CurriculumTab renders 1`] = `
                 class="sc-fqkvVR sc-kAyceB bmnVAU bSQGkj"
               >
                 <a
-                  class="sc-ddjGPC jZmCQY sc-dSCufp"
+                  class="sc-dSCufp kbtfSk sc-fxwrCY"
                   href="/teachers/curriculum"
                 >
                   <span
-                    class="sc-dAlyuH gAWMRU"
+                    class="sc-dAlyuH cRouMQ"
                   >
                     <span
-                      class="sc-fqkvVR sc-fPXMVe dWmZcx hpuazS"
+                      class="sc-fqkvVR sc-gFqAkR dWmZcx hsVaSO"
                     >
                       Our curriculum planning approach
                     </span>
                   </span>
                   <div
-                    class="sc-fqkvVR kbnxKi sc-bypJrT"
+                    class="sc-fqkvVR kbnxKi sc-ddjGPC"
                   >
                     <img
                       alt=""
@@ -153,7 +153,7 @@ exports[`CurriculumTab renders 1`] = `
                                 class="sc-fqkvVR iHZIMJ"
                               >
                                 <span
-                                  class="sc-dAlyuH eUClCC"
+                                  class="sc-dAlyuH bYbziK"
                                   data-testid="subject-picker-button-heading"
                                 >
                                   Subject
@@ -222,7 +222,7 @@ exports[`CurriculumTab renders 1`] = `
                                   class="sc-fqkvVR bBVkkf"
                                 >
                                   <span
-                                    class="sc-dAlyuH eUClCC"
+                                    class="sc-dAlyuH bYbziK"
                                     data-testid="phase-picker-button-heading"
                                   >
                                     School phase
@@ -239,7 +239,7 @@ exports[`CurriculumTab renders 1`] = `
                               class="sc-fqkvVR sc-kAyceB edMMHU hilJOZ"
                             >
                               <div
-                                class="sc-fqkvVR sc-fXSgeo eJBGXR efioha"
+                                class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
                               >
                                 <div
                                   class="sc-fqkvVR iPpXCP grey-shadow"
@@ -248,14 +248,14 @@ exports[`CurriculumTab renders 1`] = `
                                   class="sc-fqkvVR iPpXCP yellow-shadow"
                                 />
                                 <button
-                                  class="sc-iHGNWf sc-esYiGF NgRfG dRQKXW internal-button"
+                                  class="sc-dtBdUo sc-fXSgeo bMKUbn dZvJQR internal-button"
                                   data-testid="lot-picker-view-curriculum-button"
                                 >
                                   <div
                                     class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                                   >
                                     <span
-                                      class="sc-dAlyuH hcOVuy"
+                                      class="sc-dAlyuH hHWgLm"
                                     >
                                       View
                                     </span>
@@ -344,7 +344,7 @@ exports[`CurriculumTab renders 1`] = `
                             class="sc-fqkvVR iHZIMJ"
                           >
                             <span
-                              class="sc-dAlyuH eUClCC"
+                              class="sc-dAlyuH bYbziK"
                               data-testid="subject-picker-button-heading"
                             >
                               Subject
@@ -413,7 +413,7 @@ exports[`CurriculumTab renders 1`] = `
                               class="sc-fqkvVR bBVkkf"
                             >
                               <span
-                                class="sc-dAlyuH eUClCC"
+                                class="sc-dAlyuH bYbziK"
                                 data-testid="phase-picker-button-heading"
                               >
                                 School phase
@@ -430,7 +430,7 @@ exports[`CurriculumTab renders 1`] = `
                           class="sc-fqkvVR sc-kAyceB edMMHU hilJOZ"
                         >
                           <div
-                            class="sc-fqkvVR sc-fXSgeo eJBGXR efioha"
+                            class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
                           >
                             <div
                               class="sc-fqkvVR iPpXCP grey-shadow"
@@ -439,14 +439,14 @@ exports[`CurriculumTab renders 1`] = `
                               class="sc-fqkvVR iPpXCP yellow-shadow"
                             />
                             <button
-                              class="sc-iHGNWf sc-esYiGF NgRfG dRQKXW internal-button"
+                              class="sc-dtBdUo sc-fXSgeo bMKUbn dZvJQR internal-button"
                               data-testid="lot-picker-view-curriculum-button"
                             >
                               <div
                                 class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                               >
                                 <span
-                                  class="sc-dAlyuH hcOVuy"
+                                  class="sc-dAlyuH hHWgLm"
                                 >
                                   View
                                 </span>
@@ -494,7 +494,7 @@ exports[`CurriculumTab renders 1`] = `
               class="sc-fqkvVR kJPpVN"
             >
               <strong
-                class="sc-dAlyuH dHeyJr"
+                class="sc-dAlyuH jdEtcT"
               >
                 This site uses cookies to store information on your computer.
               </strong>
@@ -508,19 +508,19 @@ exports[`CurriculumTab renders 1`] = `
                 class="sc-fqkvVR sc-kAyceB fOyTgd TDtQj"
               >
                 <button
-                  class="sc-ddjGPC jZmCQY sc-dSCufp"
+                  class="sc-dSCufp kbtfSk sc-fxwrCY"
                   data-testid="cookie-banner-reject"
                   type="button"
                 >
                   <span
-                    class="sc-dAlyuH gAWMRU"
+                    class="sc-dAlyuH cRouMQ"
                   >
                     Reject non-essential cookies
                   </span>
                 </button>
               </div>
               <div
-                class="sc-fqkvVR sc-fXSgeo eJBGXR efioha"
+                class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
               >
                 <div
                   class="sc-fqkvVR iPpXCP grey-shadow"
@@ -529,13 +529,13 @@ exports[`CurriculumTab renders 1`] = `
                   class="sc-fqkvVR iPpXCP yellow-shadow"
                 />
                 <button
-                  class="sc-iHGNWf sc-esYiGF iKUgIm hnQzKH internal-button"
+                  class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
                 >
                   <div
                     class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                   >
                     <span
-                      class="sc-dAlyuH hcOVuy"
+                      class="sc-dAlyuH hHWgLm"
                     >
                       Cookie settings
                     </span>
@@ -543,7 +543,7 @@ exports[`CurriculumTab renders 1`] = `
                 </button>
               </div>
               <div
-                class="sc-fqkvVR sc-fXSgeo eJBGXR efioha"
+                class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
               >
                 <div
                   class="sc-fqkvVR iPpXCP grey-shadow"
@@ -552,14 +552,14 @@ exports[`CurriculumTab renders 1`] = `
                   class="sc-fqkvVR iPpXCP yellow-shadow"
                 />
                 <button
-                  class="sc-iHGNWf sc-esYiGF NgRfG dRQKXW internal-button"
+                  class="sc-dtBdUo sc-fXSgeo bMKUbn dZvJQR internal-button"
                   data-testid="cookie-banner-accept"
                 >
                   <div
                     class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                   >
                     <span
-                      class="sc-dAlyuH hcOVuy"
+                      class="sc-dAlyuH hHWgLm"
                     >
                       Accept all cookies
                     </span>

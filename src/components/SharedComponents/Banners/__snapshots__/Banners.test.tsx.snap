@@ -22,7 +22,7 @@ exports[`Banners shows mythbusting banner 1`] = `
               style="display: inline-block; transform: rotate(-1.5deg); padding: 4px 8px;"
             >
               <span
-                class="sc-dAlyuH hyKzfI"
+                class="sc-dAlyuH fyCkiE"
               >
                 Myths
               </span>
@@ -85,7 +85,7 @@ exports[`Banners shows mythbusting banner 1`] = `
               class="sc-fqkvVR fgBWrW"
             >
               <span
-                class="sc-dAlyuH sc-ca3376e3-0 gYScdJ eEriKr"
+                class="sc-dAlyuH sc-ca3376e3-0 eeepiN eEriKr"
               >
                 Learn why
               </span>
@@ -122,11 +122,11 @@ exports[`Banners shows mythbusting banner 1`] = `
       class="sc-fqkvVR jAGTee"
     >
       <div
-        class="sc-fqkvVR sc-kAyceB sc-ggpjZQ hGVAzf joHkzz"
+        class="sc-fqkvVR sc-kAyceB sc-cmaqmh hGVAzf joHkzz"
         focusable="false"
       >
         <svg
-          class="sc-hzhJZQ dBiKOq"
+          class="sc-fHjqPf gWkUUq"
           height="100%"
           preserveAspectRatio="none"
           viewBox="0 0 866 8"
