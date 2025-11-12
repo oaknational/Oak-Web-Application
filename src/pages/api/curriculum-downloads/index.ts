@@ -123,7 +123,6 @@ async function getData(opts: {
 
     curriculumOverviewSanityData = await CMSClient.curriculumOverviewPage({
       previewMode: false,
-      ...{ subjectTitle: curriculumOverviewTabData.subjectTitle, phaseSlug },
     });
 
     if (!curriculumOverviewSanityData) {
@@ -209,7 +208,6 @@ async function getData(opts: {
     ...curriculumData,
     ...curriculumOverviewTabData,
     ...curriculumOverviewSanityData,
-    ...{ state },
     examboardTitle: ks4Option?.title ?? null,
   };
 

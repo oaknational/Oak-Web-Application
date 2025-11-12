@@ -299,10 +299,6 @@ export const getStaticProps: GetStaticProps<
       const curriculumOverviewSanityData =
         await CMSClient.curriculumOverviewPage({
           previewMode: isPreviewMode,
-          ...{
-            subjectTitle: curriculumOverviewTabData.subjectTitle,
-            phaseSlug: slugs.phaseSlug,
-          },
         });
 
       if (!curriculumOverviewSanityData) {
