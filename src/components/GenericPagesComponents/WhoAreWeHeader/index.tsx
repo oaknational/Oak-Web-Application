@@ -51,11 +51,7 @@ function InnerMaxWidth({ children }: { children: ReactNode }) {
   const styleAttrs = useMemo(() => ({ maxWidth: 1280 + 40 * 2 }), []);
 
   return (
-    <OakBox
-      style={styleAttrs}
-      $mh={"auto"}
-      $ph={["inner-padding-m", "inner-padding-m", "inner-padding-m"]}
-    >
+    <OakBox style={styleAttrs} $mh={"auto"} $ph={"inner-padding-m"}>
       {children}
     </OakBox>
   );
@@ -83,16 +79,13 @@ export function WhoAreWeHeader({
       >
         <CustomHeaderTextOakGridArea $colSpan={12} $justifyContent={"center"}>
           <OakFlex $flexDirection={"column"} $gap={"all-spacing-6"}>
-            <OakHeading
-              tag="h1"
-              $font={["heading-4", "heading-2", "heading-2"]}
-            >
+            <OakHeading tag="h1" $font={["heading-4", "heading-2"]}>
               <OakSpan $background="mint" $ph={"inner-padding-ssx"}>
                 {title}
               </OakSpan>
             </OakHeading>
             <OakP
-              $font={["heading-light-5", "heading-light-3", "heading-light-3"]}
+              $font={["heading-light-5", "heading-light-3"]}
               $color={"text-primary"}
             >
               {content}

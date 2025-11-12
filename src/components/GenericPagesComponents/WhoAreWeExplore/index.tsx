@@ -52,13 +52,13 @@ export function WhoAreWeExplore({
       <InnerMaxWidth data-testid="test">
         <OakFlex
           $flexDirection={"column"}
-          $pv={["inner-padding-xl5", "inner-padding-xl8", "inner-padding-xl8"]}
-          $gap={["all-spacing-7", "all-spacing-10", "all-spacing-10"]}
+          $pv={["inner-padding-xl5", "inner-padding-xl8"]}
+          $gap={["all-spacing-7", "all-spacing-10"]}
         >
           <OakHeading
             tag="h2"
             $textAlign={"center"}
-            $font={["heading-5", "heading-4", "heading-4"]}
+            $font={["heading-5", "heading-4"]}
             id="explore-more-about-oak"
           >
             {title}
@@ -72,7 +72,7 @@ export function WhoAreWeExplore({
             >
               {items.map(({ title, iconName, href }) => {
                 return (
-                  <OakGridArea key={title} $colSpan={[12, 6, 6]} as="li">
+                  <OakGridArea key={title} $colSpan={[12, 6]} as="li">
                     <FocusIndicator $borderRadius={"border-radius-m2"}>
                       <StyledLink href={href}>
                         <OakFlex

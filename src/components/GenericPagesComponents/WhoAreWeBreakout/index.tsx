@@ -31,13 +31,11 @@ export function WhoAreWeBreakout({
       </OakFlex>
       <OakFlex
         $flexShrink={1}
-        $ph={["inner-padding-m", "inner-padding-xl8", "inner-padding-xl8"]}
-        $pv={["inner-padding-xl5", "inner-padding-xl8", "inner-padding-xl8"]}
+        $ph={["inner-padding-m", "inner-padding-xl8"]}
+        $pv={["inner-padding-xl5", "inner-padding-xl8"]}
         $alignItems={"center"}
       >
-        <OakP $font={["heading-light-7", "heading-light-5", "heading-light-5"]}>
-          {content}
-        </OakP>
+        <OakP $font={["heading-light-7", "heading-light-5"]}>{content}</OakP>
       </OakFlex>
     </CustomFlex>
   );
