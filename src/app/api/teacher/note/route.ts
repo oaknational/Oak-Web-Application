@@ -4,7 +4,6 @@ import { ZodError } from "zod";
 import errorReporter from "@/common-lib/error-reporter";
 import { identifyPiiFromString, PiiCheckResponse } from "@/node-lib/dlp";
 import { pupilDatastore } from "@/node-lib/pupil-api/pupilDataStore";
-import { batchUpdateTeacherNotes } from "@/node-lib/pupil-api/teacher-notes/batchUpdateTeacherNotes";
 import {
   TeacherNoteError,
   teacherNoteSchema,
@@ -81,7 +80,7 @@ export async function POST(request: NextRequest) {
 }
 
 export async function PUT() {
-  batchUpdateTeacherNotes(async (doc) => {
+  pupilDatastore.batchUpdateTeacherNotes(async (doc) => {
     const [textPii, htmlPii] = await Promise.all([
       identifyPiiFromString(doc.note_text),
       identifyPiiFromString(doc.note_html),
