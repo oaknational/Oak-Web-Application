@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WhoAreWeBreakout renders correctly 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-fqkvVR sc-kAyceB sc-106fff76-0 ixZoE joHkzz jCAwhf"
+    >
+      <div
+        class="sc-fqkvVR sc-kAyceB kkWGlq bAFsaQ"
+      >
+        <div
+          class="sc-fqkvVR jqqmXN"
+        >
+          <img
+            alt="test"
+            class="sc-dcJsrY jIcMOQ"
+            data-nimg="fill"
+            decoding="async"
+            loading="lazy"
+            sizes="100vw"
+            src="http://localhost/_next/image?url=http%3A%2F%2Fexample.com&w=3840&q=75"
+            srcset="/_next/image?url=http%3A%2F%2Fexample.com&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Fexample.com&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Fexample.com&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Fexample.com&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Fexample.com&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Fexample.com&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Fexample.com&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Fexample.com&w=3840&q=75 3840w"
+            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+          />
+        </div>
+      </div>
+      <div
+        class="sc-fqkvVR sc-kAyceB fgqejh gSPFUg"
+      >
+        <p
+          class="sc-dLMFU iDMvrw"
+        >
+          TESTING_CONTENT
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+`;
