@@ -1688,20 +1688,20 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
           id="main"
         >
           <div
-            class="sc-fqkvVR ieiSrW"
+            class="sc-fqkvVR hclUqe"
             style="max-width: 1360px;"
           >
             <div
               class="sc-fqkvVR sc-jXbUNg ilFqMp gdCncd"
             >
               <div
-                class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-82940dad-0 fgBWrW djyvKT iAkSYx lawuXz"
+                class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-71dd22e7-0 fgBWrW djyvKT iAkSYx ejnmTR"
               >
                 <div
                   class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
                 >
                   <h1
-                    class="sc-kpDqfm cRJejs"
+                    class="sc-kpDqfm hlpvoz"
                   >
                     <span
                       class="sc-dAlyuH jXPica"
@@ -1710,14 +1710,14 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                     </span>
                   </h1>
                   <p
-                    class="sc-dLMFU hxKUrX"
+                    class="sc-dLMFU iiQPSb"
                   >
                     We're here to support and inspire teachers to deliver great teaching, so every pupil benefits
                   </p>
                 </div>
               </div>
               <div
-                class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-82940dad-1 fgBWrW joHkzz ejUlbk eAnene"
+                class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-71dd22e7-1 fgBWrW joHkzz ejUlbk djfNpU"
               >
                 <div
                   class="sc-fqkvVR gdOBQS"
@@ -1740,7 +1740,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB sc-aec21cd6-0 ixZoE joHkzz bBhvbR"
+            class="sc-fqkvVR sc-kAyceB sc-564dacf8-0 ixZoE joHkzz jdxRzr"
           >
             <div
               class="sc-fqkvVR sc-kAyceB fKIPqB bAFsaQ"
@@ -1762,10 +1762,10 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
               </div>
             </div>
             <div
-              class="sc-fqkvVR sc-kAyceB iTxbEZ gSPFUg"
+              class="sc-fqkvVR sc-kAyceB cIUwBO gSPFUg"
             >
               <p
-                class="sc-dLMFU EvQVF"
+                class="sc-dLMFU fHYYAL"
               >
                 We’re Oak, your trusted planning partner for great teaching. Our free, adaptable resources evolve with education to give teachers and schools the latest tools to deliver inspiring lessons, save time and improve pupil outcomes.
               </p>
@@ -2137,10 +2137,10 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
               class="sc-fqkvVR iHVEBS"
             >
               <div
-                class="sc-fqkvVR sc-kAyceB ebGLGq gwxZIR"
+                class="sc-fqkvVR sc-kAyceB hwnObW jFfWT"
               >
                 <h2
-                  class="sc-kpDqfm dWPsQk"
+                  class="sc-kpDqfm bIrRgn"
                   id="explore-more-about-oak"
                 >
                   Explore more about Oak
@@ -2152,13 +2152,13 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                     class="sc-fqkvVR sc-jXbUNg fgBWrW iwxQGX"
                   >
                     <li
-                      class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz xogsE"
+                      class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz cUWHJz"
                     >
                       <div
                         class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                       >
                         <a
-                          class="sc-9618ef2-0 jcSTeX"
+                          class="sc-da4b1edb-0 hLtEll"
                           href="/#"
                         >
                           <div
@@ -2209,13 +2209,13 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                       </div>
                     </li>
                     <li
-                      class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz xogsE"
+                      class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz cUWHJz"
                     >
                       <div
                         class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                       >
                         <a
-                          class="sc-9618ef2-0 jcSTeX"
+                          class="sc-da4b1edb-0 hLtEll"
                           href="/#"
                         >
                           <div
@@ -2266,13 +2266,13 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                       </div>
                     </li>
                     <li
-                      class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz xogsE"
+                      class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz cUWHJz"
                     >
                       <div
                         class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                       >
                         <a
-                          class="sc-9618ef2-0 jcSTeX"
+                          class="sc-da4b1edb-0 hLtEll"
                           href="/#"
                         >
                           <div
@@ -2323,13 +2323,13 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                       </div>
                     </li>
                     <li
-                      class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz xogsE"
+                      class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz cUWHJz"
                     >
                       <div
                         class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                       >
                         <a
-                          class="sc-9618ef2-0 jcSTeX"
+                          class="sc-da4b1edb-0 hLtEll"
                           href="/#"
                         >
                           <div

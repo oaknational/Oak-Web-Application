@@ -10,10 +10,10 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
         class="sc-fqkvVR iHVEBS"
       >
         <div
-          class="sc-fqkvVR sc-kAyceB ebGLGq gwxZIR"
+          class="sc-fqkvVR sc-kAyceB hwnObW jFfWT"
         >
           <h2
-            class="sc-kpDqfm dWPsQk"
+            class="sc-kpDqfm bIrRgn"
             id="explore-more-about-oak"
           >
             TEST_TITLE
@@ -22,16 +22,16 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
             aria-labelledby="explore-more-about-oak"
           >
             <ul
-              class="sc-fqkvVR sc-jXbUNg fgBWrW iwxQGX"
+              class="sc-fqkvVR sc-jXbUNg hBfYWO iwxQGX"
             >
               <li
-                class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz xogsE"
+                class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz cUWHJz"
               >
                 <div
                   class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                 >
                   <a
-                    class="sc-9618ef2-0 jcSTeX"
+                    class="sc-98e007eb-0 cHMTsA"
                     href="#item_one"
                   >
                     <div
@@ -82,13 +82,13 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                 </div>
               </li>
               <li
-                class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz xogsE"
+                class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz cUWHJz"
               >
                 <div
                   class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                 >
                   <a
-                    class="sc-9618ef2-0 jcSTeX"
+                    class="sc-98e007eb-0 cHMTsA"
                     href="#item_two"
                   >
                     <div
@@ -139,13 +139,13 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                 </div>
               </li>
               <li
-                class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz xogsE"
+                class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz cUWHJz"
               >
                 <div
                   class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                 >
                   <a
-                    class="sc-9618ef2-0 jcSTeX"
+                    class="sc-98e007eb-0 cHMTsA"
                     href="#item_three"
                   >
                     <div
@@ -196,13 +196,13 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                 </div>
               </li>
               <li
-                class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz xogsE"
+                class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz cUWHJz"
               >
                 <div
                   class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                 >
                   <a
-                    class="sc-9618ef2-0 jcSTeX"
+                    class="sc-98e007eb-0 cHMTsA"
                     href="#item_four"
                   >
                     <div

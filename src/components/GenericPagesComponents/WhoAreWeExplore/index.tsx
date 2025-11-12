@@ -68,6 +68,7 @@ export function WhoAreWeExplore({
               $rg={"all-spacing-4"}
               $cg={"all-spacing-4"}
               $gridAutoRows={"1fr"}
+              $pl="inner-padding-none"
               as="ul"
             >
               {items.map(({ title, iconName, href }) => {

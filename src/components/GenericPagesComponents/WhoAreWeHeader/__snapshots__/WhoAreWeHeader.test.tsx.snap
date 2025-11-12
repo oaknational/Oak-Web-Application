@@ -4,20 +4,20 @@ exports[`WhoAreWeHeader renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR ieiSrW"
+      class="sc-fqkvVR hclUqe"
       style="max-width: 1360px;"
     >
       <div
         class="sc-fqkvVR sc-jXbUNg ilFqMp gdCncd"
       >
         <div
-          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-82940dad-0 fgBWrW djyvKT iAkSYx lawuXz"
+          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-71dd22e7-0 fgBWrW djyvKT iAkSYx ejnmTR"
         >
           <div
             class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
           >
             <h1
-              class="sc-kpDqfm cRJejs"
+              class="sc-kpDqfm hlpvoz"
             >
               <span
                 class="sc-dAlyuH jXPica"
@@ -26,14 +26,14 @@ exports[`WhoAreWeHeader renders correctly 1`] = `
               </span>
             </h1>
             <p
-              class="sc-dLMFU hxKUrX"
+              class="sc-dLMFU iiQPSb"
             >
               TESTING_CONTENT
             </p>
           </div>
         </div>
         <div
-          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-82940dad-1 fgBWrW joHkzz ejUlbk eAnene"
+          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-71dd22e7-1 fgBWrW joHkzz ejUlbk djfNpU"
         >
           <div
             class="sc-fqkvVR gdOBQS"
