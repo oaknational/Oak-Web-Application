@@ -12,16 +12,38 @@ import styled from "styled-components";
 import { ReactNode, useMemo } from "react";
 
 const CustomHeaderTextOakGridArea = styled(OakGridArea)`
-  grid-column: span 6;
-  @media (max-width: 920px) {
-    grid-column: span 12;
+  grid-column: span 12;
+
+  @media (min-width: 920px) {
+    grid-column: span 8;
+  }
+
+  @media (min-width: 980px) {
+    grid-column: span 10;
+  }
+
+  @media (min-width: 1056px) {
+    grid-column: span 10;
+  }
+
+  @media (min-width: 1279px) {
+    grid-column: span 8;
   }
 `;
 
 const CustomHeaderImageOakGridArea = styled(OakGridArea)`
-  display: block;
-  @media (max-width: 920px) {
-    display: none;
+  display: none;
+
+  @media (min-width: 921px) and (max-width: 1056px) {
+    display: block;
+    grid-column: span 2;
+    grid-column-start: 12;
+  }
+
+  @media (min-width: 1057px) {
+    display: block;
+    grid-column: span 3;
+    grid-column-start: 12;
   }
 `;
 
@@ -56,7 +78,8 @@ export function WhoAreWeHeader({
       <OakGrid
         $cg="space-between-s"
         $rg="space-between-s"
-        $pv={"inner-padding-xl7"}
+        $pt={["inner-padding-xl5", "inner-padding-xl8", "inner-padding-xl5"]}
+        $pb={["inner-padding-xl5", "inner-padding-xl8", "inner-padding-xl7"]}
       >
         <CustomHeaderTextOakGridArea $colSpan={12} $justifyContent={"center"}>
           <OakFlex $flexDirection={"column"} $gap={"all-spacing-6"}>
@@ -76,8 +99,11 @@ export function WhoAreWeHeader({
             </OakP>
           </OakFlex>
         </CustomHeaderTextOakGridArea>
-        <CustomHeaderImageOakGridArea $colSpan={4} $colStart={9}>
-          <OakBox $width={"all-spacing-20"} $height={"all-spacing-20"}>
+        <CustomHeaderImageOakGridArea $colSpan={2}>
+          <OakBox
+            $width={["all-spacing-19", "all-spacing-19", "all-spacing-20"]}
+            $height={"all-spacing-20"}
+          >
             <OakImage
               alt={imageAlt}
               src={imageUrl}

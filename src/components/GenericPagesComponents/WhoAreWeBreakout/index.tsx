@@ -4,7 +4,7 @@ import styled from "styled-components";
 const CustomFlex = styled(OakFlex)`
   flex-direction: row;
 
-  @media (max-width: 1212px) {
+  @media (max-width: 920px) {
     flex-direction: column;
   }
 `;
@@ -24,7 +24,7 @@ export function WhoAreWeBreakout({
       <OakFlex
         $flexGrow={1}
         $background={"mint110"}
-        $minWidth={["100%", "all-spacing-22", "all-spacing-22"]}
+        $minWidth={["100%", "all-spacing-21", "all-spacing-22"]}
         $aspectRatio={"4/3"}
       >
         <OakImage $objectFit={"cover"} alt={imageAlt} src={imageUrl} />
@@ -32,10 +32,10 @@ export function WhoAreWeBreakout({
       <OakFlex
         $flexShrink={1}
         $ph={["inner-padding-m", "inner-padding-xl8", "inner-padding-xl8"]}
-        $pv={["inner-padding-xl5", "inner-padding-xl3", "inner-padding-xl3"]}
+        $pv={["inner-padding-xl5", "inner-padding-xl8", "inner-padding-xl8"]}
         $alignItems={"center"}
       >
-        <OakP $font={["heading-light-7", "heading-light-7", "heading-light-5"]}>
+        <OakP $font={["heading-light-7", "heading-light-5", "heading-light-5"]}>
           {content}
         </OakP>
       </OakFlex>

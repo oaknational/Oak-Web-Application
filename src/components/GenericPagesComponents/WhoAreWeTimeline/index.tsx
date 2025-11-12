@@ -8,6 +8,15 @@ import {
   OakHeading,
 } from "@oaknational/oak-components";
 import { ReactNode, useMemo } from "react";
+import styled from "styled-components";
+
+const TimelineItemFlex = styled(OakFlex)`
+  max-width: 100%;
+
+  @media (min-width: 1280px) {
+    max-width: 700px;
+  }
+`;
 
 function InnerMaxWidth({ children }: { children: ReactNode }) {
   const styleAttrs = useMemo(() => ({ maxWidth: 1280 + 40 * 2 }), []);
@@ -15,7 +24,7 @@ function InnerMaxWidth({ children }: { children: ReactNode }) {
     <OakBox
       style={styleAttrs}
       $mh={"auto"}
-      $ph={["inner-padding-m", "inner-padding-xl3", "inner-padding-xl3"]}
+      $ph={["inner-padding-m", "inner-padding-m", "inner-padding-xl3"]}
     >
       {children}
     </OakBox>
@@ -42,10 +51,10 @@ export default function WhoAreWeTimeline({
         <OakFlex
           $flexDirection={"column"}
           $gap={"all-spacing-10"}
-          $pt={"inner-padding-xl7"}
+          $pt={["inner-padding-xl5", "inner-padding-xl8"]}
         >
           <OakGrid $cg="space-between-s" $rg="space-between-s">
-            <OakGridArea $colSpan={[12, 12, 9]} $colStart={[0, 0, 2]}>
+            <OakGridArea $colSpan={[12, 12, 9]} $colStart={[0, 0, 3]}>
               <OakFlex $gap={"all-spacing-2"} $flexDirection={"column"}>
                 <OakBox $font={"heading-5"}>
                   <OakSpan $background={"mint"} $ph={"inner-padding-ssx"}>
@@ -59,12 +68,12 @@ export default function WhoAreWeTimeline({
             </OakGridArea>
           </OakGrid>
           <OakGrid $cg="space-between-s" $rg="space-between-s">
-            <OakGridArea $colSpan={[12, 12, 8]} $colStart={[0, 0, 3]}>
+            <OakGridArea $colSpan={[12, 12, 8]} $colStart={[0, 0, 4]}>
               <OakFlex $flexDirection={"column"}>
                 {items.map((item, itemIndex) => {
                   const isLast = items.length - 1 === itemIndex;
                   return (
-                    <OakFlex
+                    <TimelineItemFlex
                       key={item.title}
                       data-testid="timetable-timeline-item"
                       $gap={"all-spacing-4"}
@@ -97,7 +106,7 @@ export default function WhoAreWeTimeline({
                       <OakFlex
                         $flexDirection={"column"}
                         $gap={"all-spacing-2"}
-                        $mb={"space-between-xxl"}
+                        $mb={["space-between-xl", "space-between-xxl"]}
                       >
                         <OakBox $font={"body-2-bold"}>
                           <OakSpan
@@ -116,7 +125,7 @@ export default function WhoAreWeTimeline({
                           })}
                         </OakBox>
                       </OakFlex>
-                    </OakFlex>
+                    </TimelineItemFlex>
                   );
                 })}
               </OakFlex>
