@@ -1,3 +1,12 @@
+## [1.912.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.912.0...v1.912.1) (2025-11-12)
+
+
+### Bug Fixes
+
+* added '//NOSONAR' and updated next-sitemap ([09a5d60](https://github.com/oaknational/Oak-Web-Application/commit/09a5d604062f3bbe3ceb6775abe3e338cc8d91f1))
+* make both nextjs & sonarcloud happy ([6ed6f75](https://github.com/oaknational/Oak-Web-Application/commit/6ed6f757ebce1f0ff3124a7ae86032bf7dbfbbdc))
+* missing getServerSideSitemap -> getServerSideSitemapLegacy ([d041ddd](https://github.com/oaknational/Oak-Web-Application/commit/d041ddd2e6ac87e69e7092fd9432cf33e85461dd))
+
 # [1.912.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.911.0...v1.912.0) (2025-11-12)
 
 
