@@ -1,3 +1,25 @@
+## [1.910.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.910.0...v1.910.1) (2025-11-11)
+
+
+### Bug Fixes
+
+* remove noIndex/noFollow from campaign pages ([467f8be](https://github.com/oaknational/Oak-Web-Application/commit/467f8be605229f4a8e4f1235b594495cabbba8a1))
+
+# [1.910.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.909.0...v1.910.0) (2025-11-11)
+
+
+### Bug Fixes
+
+* add skip link button on additional materials ([8f0d16f](https://github.com/oaknational/Oak-Web-Application/commit/8f0d16faa28c9de70dbe3516a83ae18c75765fc7))
+* add zoom on the iframe for landscape docs ([af795c8](https://github.com/oaknational/Oak-Web-Application/commit/af795c8efaa1f32be3d3143ccc2533177a6a8a06))
+* adjust iframe zoom on mobile ([9753b53](https://github.com/oaknational/Oak-Web-Application/commit/9753b53845d8f33f823eafc5fdb25e9f1ccfd072))
+* use preview url format for google doc previews ([04b48c7](https://github.com/oaknational/Oak-Web-Application/commit/04b48c783d057d708d85b6c0e07dc4eac3a85a67))
+
+
+### Features
+
+* add error reporting for failure to generate preview url ([0600c2b](https://github.com/oaknational/Oak-Web-Application/commit/0600c2bd3991353624ba0a6eb52dddd9ee12f932))
+
 # [1.909.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.908.1...v1.909.0) (2025-11-05)
 
 
