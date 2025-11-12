@@ -270,12 +270,5 @@ describe("PUT /api/teacher/note", () => {
         expect(updatedDoc.checkedForPii).toBe(true);
       },
     );
-    // const result = await PUT();
-    // expect(pupilDatastore.batchUpdateTeacherNotes).toHaveBeenCalled();
-    // expect(result.status).toBe(200);
-    // const json = await result.json();
-    // expect(json).toEqual({
-    //   message: "Redaction on stored teacher notes started successfully",
-    // });
   });
 });
