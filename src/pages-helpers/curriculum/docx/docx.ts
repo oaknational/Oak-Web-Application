@@ -683,7 +683,7 @@ export async function generateEmptyOoxml(basedir: string) {
   const files = await glob(`${basedir}/**/*`, { dot: true });
 
   const zip = new JSZip();
-  for await (const file of files) {
+  for (const file of files) {
     const zippath = relative(basedir, file);
     const res = await stat(file);
     if (res.isDirectory()) {
