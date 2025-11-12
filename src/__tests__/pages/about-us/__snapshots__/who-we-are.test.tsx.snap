@@ -2158,8 +2158,8 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                         class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                       >
                         <a
+                          class="sc-9618ef2-0 jcSTeX"
                           href="/#"
-                          style="outline: none;"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB gKJOWA fQLyIH"
@@ -2215,8 +2215,8 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                         class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                       >
                         <a
+                          class="sc-9618ef2-0 jcSTeX"
                           href="/#"
-                          style="outline: none;"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB gKJOWA fQLyIH"
@@ -2272,8 +2272,8 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                         class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                       >
                         <a
+                          class="sc-9618ef2-0 jcSTeX"
                           href="/#"
-                          style="outline: none;"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB gKJOWA fQLyIH"
@@ -2329,8 +2329,8 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                         class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                       >
                         <a
+                          class="sc-9618ef2-0 jcSTeX"
                           href="/#"
-                          style="outline: none;"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB gKJOWA fQLyIH"

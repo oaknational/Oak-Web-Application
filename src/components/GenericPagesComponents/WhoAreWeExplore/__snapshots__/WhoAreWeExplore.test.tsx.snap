@@ -31,8 +31,8 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                   class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                 >
                   <a
+                    class="sc-9618ef2-0 jcSTeX"
                     href="#item_one"
-                    style="outline: none;"
                   >
                     <div
                       class="sc-fqkvVR sc-kAyceB gKJOWA fQLyIH"
@@ -88,8 +88,8 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                   class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                 >
                   <a
+                    class="sc-9618ef2-0 jcSTeX"
                     href="#item_two"
-                    style="outline: none;"
                   >
                     <div
                       class="sc-fqkvVR sc-kAyceB gKJOWA fQLyIH"
@@ -145,8 +145,8 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                   class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                 >
                   <a
+                    class="sc-9618ef2-0 jcSTeX"
                     href="#item_three"
-                    style="outline: none;"
                   >
                     <div
                       class="sc-fqkvVR sc-kAyceB gKJOWA fQLyIH"
@@ -202,8 +202,8 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                   class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                 >
                   <a
+                    class="sc-9618ef2-0 jcSTeX"
                     href="#item_four"
-                    style="outline: none;"
                   >
                     <div
                       class="sc-fqkvVR sc-kAyceB gKJOWA fQLyIH"
