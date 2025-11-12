@@ -1,4 +1,3 @@
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import errorReporter from "@/common-lib/error-reporter";
 import {
   CreateLessonAttemptPayload,
@@ -78,14 +77,9 @@ export class PupilNetworkClient {
     note_id: string;
     sid_key: string;
   }): Promise<TeacherNote> {
-    const urlObject = new URL(
-      "/api/teacher/note",
-      getBrowserConfig("clientAppBaseUrl"),
+    const response = await fetch(
+      "/api/teacher/note" + "?note_id=" + note_id + "&sid_key=" + sid_key,
     );
-    urlObject.searchParams.set("note_id", note_id);
-    urlObject.searchParams.set("sid_key", sid_key);
-    const url = urlObject.toString();
-    const response = await fetch(url);
 
     if (!response.ok) {
       throw errorReporter("Failed to fetch teacher note")(
