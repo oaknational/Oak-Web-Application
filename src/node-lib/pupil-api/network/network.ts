@@ -88,7 +88,7 @@ export class PupilNetworkClient {
     const response = await fetch(url);
 
     if (!response.ok) {
-      errorReporter("Failed to fetch teacher note")(
+      throw errorReporter("Failed to fetch teacher note")(
         new Error(response.statusText),
         {
           severity: "warning",

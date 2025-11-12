@@ -56,7 +56,7 @@ export const useTeacherNotes = ({
         console.error("sidKey or lessonPath is missing");
         return;
       }
-
+      // retrieve any existing teacher note using whatever is in local storage
       try {
         // retrieve any existing teacher note using whatever is in local storage
         const { isEditable, teacherNote } = await getTeacherNote({
