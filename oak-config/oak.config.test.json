@@ -110,10 +110,11 @@
     "requiredSecrets": ["AI_GATEWAY_API_KEY", "AI_GATEWAY_URL"]
   },
   "googleClassroom": {
-    "encryptionSecret": "secret",
-    "oauthClientId": "GOOGLE_CLASSROOM_OAUTH_CLIENT_ID",
-    "oauthClientSecret": "secret",
-    "sessionSecret": "secret",
-    "apiBaseUrl": "https://localhost:3000"
+    "requiredSecrets": [
+      "GOOGLE_CLASSROOM_ENCRYPTION_SECRET",
+      "GOOGLE_CLASSROOM_OAUTH_CLIENT_ID",
+      "GOOGLE_CLASSROOM_OAUTH_CLIENT_SECRET",
+      "GOOGLE_CLASSROOM_SESSION_SECRET"
+    ]
   }
 }

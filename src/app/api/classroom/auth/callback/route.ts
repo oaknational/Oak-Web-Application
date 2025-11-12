@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
     // NOTE: This will fire on re-sign ins, so perform existence checks first
     console.log("should subscribe to newsletter", email);
   };
-  const oakClassroomClient = getOakGoogleClassroomAddon();
+  const oakClassroomClient = getOakGoogleClassroomAddon(request);
   const { encryptedSession } =
     await oakClassroomClient.handleGoogleSignInCallback(
       code,

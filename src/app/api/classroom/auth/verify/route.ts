@@ -3,7 +3,7 @@ import { NextRequest } from "next/server";
 import { getOakGoogleClassroomAddon } from "@/node-lib/google-classroom";
 
 export async function POST(request: NextRequest) {
-  const oakClassroomClient = getOakGoogleClassroomAddon();
+  const oakClassroomClient = getOakGoogleClassroomAddon(request);
   const { session } = await request.json();
 
   if (!session) return Response.json({ authenticated: false }, { status: 401 });

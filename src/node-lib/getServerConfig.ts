@@ -330,13 +330,6 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: null,
   },
-  googleClassroomApiBaseUrl: {
-    value: process.env.GOOGLE_CLASSROOM_API_BASE_URL,
-    envName: "GOOGLE_CLASSROOM_API_BASE_URL",
-    required: true,
-    availableInBrowser: false,
-    default: null,
-  },
 });
 
 for (const [, envVarConfig] of Object.entries(envVars)) {
