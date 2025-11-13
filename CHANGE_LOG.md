@@ -1,3 +1,10 @@
+## [1.913.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.913.2...v1.913.3) (2025-11-13)
+
+
+### Bug Fixes
+
+* sonarcloud remove unexpected await ([749c45e](https://github.com/oaknational/Oak-Web-Application/commit/749c45edebd7b11678c50cc3975cd3c74f6a0e0b))
+
 ## [1.913.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.913.1...v1.913.2) (2025-11-13)
 
 
