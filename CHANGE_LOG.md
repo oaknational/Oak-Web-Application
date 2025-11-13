@@ -1,3 +1,10 @@
+## [1.913.7](https://github.com/oaknational/Oak-Web-Application/compare/v1.913.6...v1.913.7) (2025-11-13)
+
+
+### Bug Fixes
+
+* useAxe() is no longer async as that's not allowed ([1137829](https://github.com/oaknational/Oak-Web-Application/commit/1137829dcb9c422a76e2424cf3a5ac2ebe68bf6f))
+
 ## [1.913.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.913.5...v1.913.6) (2025-11-13)
 
 
