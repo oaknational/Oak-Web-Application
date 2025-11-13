@@ -31,7 +31,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                   class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                 >
                   <a
-                    class="sc-98e007eb-0 cHMTsA"
+                    class="sc-21727044-0 cuLfEF"
                     href="#item_one"
                   >
                     <div
@@ -56,7 +56,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                         </div>
                       </div>
                       <div
-                        class="sc-fqkvVR sc-kAyceB iJhYOW bAFsaQ"
+                        class="sc-fqkvVR sc-kAyceB jTcmak bAFsaQ"
                       >
                         ITEM_ONE
                       </div>
@@ -88,7 +88,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                   class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                 >
                   <a
-                    class="sc-98e007eb-0 cHMTsA"
+                    class="sc-21727044-0 cuLfEF"
                     href="#item_two"
                   >
                     <div
@@ -113,7 +113,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                         </div>
                       </div>
                       <div
-                        class="sc-fqkvVR sc-kAyceB iJhYOW bAFsaQ"
+                        class="sc-fqkvVR sc-kAyceB jTcmak bAFsaQ"
                       >
                         ITEM_TWO
                       </div>
@@ -145,7 +145,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                   class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                 >
                   <a
-                    class="sc-98e007eb-0 cHMTsA"
+                    class="sc-21727044-0 cuLfEF"
                     href="#item_three"
                   >
                     <div
@@ -170,7 +170,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                         </div>
                       </div>
                       <div
-                        class="sc-fqkvVR sc-kAyceB iJhYOW bAFsaQ"
+                        class="sc-fqkvVR sc-kAyceB jTcmak bAFsaQ"
                       >
                         ITEM_THREE
                       </div>
@@ -202,7 +202,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                   class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                 >
                   <a
-                    class="sc-98e007eb-0 cHMTsA"
+                    class="sc-21727044-0 cuLfEF"
                     href="#item_four"
                   >
                     <div
@@ -227,7 +227,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                         </div>
                       </div>
                       <div
-                        class="sc-fqkvVR sc-kAyceB iJhYOW bAFsaQ"
+                        class="sc-fqkvVR sc-kAyceB jTcmak bAFsaQ"
                       >
                         ITEM_FOUR
                       </div>

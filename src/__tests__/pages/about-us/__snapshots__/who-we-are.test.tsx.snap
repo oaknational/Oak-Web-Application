@@ -1779,7 +1779,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
               style="max-width: 1360px;"
             >
               <div
-                class="sc-fqkvVR sc-kAyceB dYLiUd jyLrLm"
+                class="sc-fqkvVR sc-kAyceB dYLiUd dAAIBQ"
               >
                 <div
                   class="sc-fqkvVR sc-jXbUNg fgBWrW gdCncd"
@@ -1791,7 +1791,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                       class="sc-fqkvVR sc-kAyceB fgBWrW gOiVFh"
                     >
                       <div
-                        class="sc-fqkvVR cBmcky"
+                        class="sc-fqkvVR dWdIJs"
                       >
                         <span
                           class="sc-dAlyuH jXPica"
@@ -1800,7 +1800,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                         </span>
                       </div>
                       <h2
-                        class="sc-kpDqfm jOcnDt"
+                        class="sc-kpDqfm fOYHFh"
                       >
                         As teaching evolves, so do we...
                       </h2>
@@ -1817,7 +1817,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                       class="sc-fqkvVR sc-kAyceB fgBWrW eeevb"
                     >
                       <div
-                        class="sc-fqkvVR sc-kAyceB sc-9b717821-0 fgBWrW ddfwpL jcoqXE"
+                        class="sc-fqkvVR sc-kAyceB sc-7fc30c8a-0 fgBWrW ddfwpL fILciO"
                         data-testid="timetable-timeline-item"
                       >
                         <div
@@ -1834,7 +1834,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           class="sc-fqkvVR sc-kAyceB jXzpTn gOiVFh"
                         >
                           <div
-                            class="sc-fqkvVR cvmDMx"
+                            class="sc-fqkvVR kxMTGH"
                           >
                             <span
                               class="sc-dAlyuH jXPica"
@@ -1843,7 +1843,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                             </span>
                           </div>
                           <h3
-                            class="sc-kpDqfm jqyJdB"
+                            class="sc-kpDqfm hmSeLN"
                           >
                             A rapid response to the pandemic
                           </h3>
@@ -1851,7 +1851,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                             class="sc-fqkvVR fgBWrW"
                           >
                             <p
-                              class="sc-dLMFU gvLBvO"
+                              class="sc-dLMFU eFqtPi"
                             >
                               In 2020, teachers needed a quick way to keep pupils learning during lockdown. So we brought together a group of expert partners to support schools with thousands of lessons designed for remote learning.
                             </p>
@@ -1859,7 +1859,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                         </div>
                       </div>
                       <div
-                        class="sc-fqkvVR sc-kAyceB sc-9b717821-0 fgBWrW ddfwpL jcoqXE"
+                        class="sc-fqkvVR sc-kAyceB sc-7fc30c8a-0 fgBWrW ddfwpL fILciO"
                         data-testid="timetable-timeline-item"
                       >
                         <div
@@ -1876,7 +1876,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           class="sc-fqkvVR sc-kAyceB jXzpTn gOiVFh"
                         >
                           <div
-                            class="sc-fqkvVR cvmDMx"
+                            class="sc-fqkvVR kxMTGH"
                           >
                             <span
                               class="sc-dAlyuH jXPica"
@@ -1885,7 +1885,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                             </span>
                           </div>
                           <h3
-                            class="sc-kpDqfm jqyJdB"
+                            class="sc-kpDqfm hmSeLN"
                           >
                             Complete resources for the classroom, schools and trusts
                           </h3>
@@ -1893,12 +1893,12 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                             class="sc-fqkvVR fgBWrW"
                           >
                             <p
-                              class="sc-dLMFU gvLBvO"
+                              class="sc-dLMFU eFqtPi"
                             >
                               From early years to exam years, we now provide complete curriculum support for the classroom. Every national curriculum subject, every unit, every lesson, in one place.
                             </p>
                             <p
-                              class="sc-dLMFU gvLBvO"
+                              class="sc-dLMFU eFqtPi"
                             >
                               We’re also transforming lesson prep with AI tools that help teachers create, adapt, and enhance their lessons in minutes, while keeping quality high and content safe.
                             </p>
@@ -1906,7 +1906,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                         </div>
                       </div>
                       <div
-                        class="sc-fqkvVR sc-kAyceB sc-9b717821-0 fgBWrW ddfwpL jcoqXE"
+                        class="sc-fqkvVR sc-kAyceB sc-7fc30c8a-0 fgBWrW ddfwpL fILciO"
                         data-testid="timetable-timeline-item"
                       >
                         <div
@@ -1923,7 +1923,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           class="sc-fqkvVR sc-kAyceB jXzpTn gOiVFh"
                         >
                           <div
-                            class="sc-fqkvVR cvmDMx"
+                            class="sc-fqkvVR kxMTGH"
                           >
                             <span
                               class="sc-dAlyuH jXPica"
@@ -1932,7 +1932,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                             </span>
                           </div>
                           <h3
-                            class="sc-kpDqfm jqyJdB"
+                            class="sc-kpDqfm hmSeLN"
                           >
                             Staying ahead in a changing world
                           </h3>
@@ -1940,7 +1940,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                             class="sc-fqkvVR fgBWrW"
                           >
                             <p
-                              class="sc-dLMFU gvLBvO"
+                              class="sc-dLMFU eFqtPi"
                             >
                               We’ve always anticipated the emerging needs of teachers – from building safe and secure AI tools, to making our platform code available to partners who want to integrate it directly. We’ll keep innovating as we find new ways to help teachers stay ahead in a changing world.
                             </p>
@@ -1960,7 +1960,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
               class="sc-fqkvVR sc-kAyceB bhbwbN gwxZIR"
             >
               <h2
-                class="sc-kpDqfm ijVMjN"
+                class="sc-kpDqfm hIcplr"
               >
                 We are...
               </h2>
@@ -1968,7 +1968,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 class="sc-fqkvVR sc-jXbUNg fgBWrW gdCncd"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-3c664f57-0 fgBWrW joHkzz iAkSYx igCJzG"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-3aa50bab-0 fgBWrW joHkzz iAkSYx gfcmYR"
                   data-testid="who-we-are-desc-item"
                 >
                   <div
@@ -1995,12 +1995,12 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                       class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
                     >
                       <h3
-                        class="sc-kpDqfm exYwWV"
+                        class="sc-kpDqfm hmSeLN"
                       >
                         Built for the reality of teaching
                       </h3>
                       <p
-                        class="sc-dLMFU gKXbKJ"
+                        class="sc-dLMFU cFqCaZ"
                       >
                         We get it. Time is tight, classes vary, and only teachers can know pupils best. That’s why our materials are flexible tools to adapt, not scripts to follow: a starting point that supports your expertise and style.
                       </p>
@@ -2008,7 +2008,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-3c664f57-0 fgBWrW joHkzz iAkSYx igCJzG"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-3aa50bab-0 fgBWrW joHkzz iAkSYx gfcmYR"
                   data-testid="who-we-are-desc-item"
                 >
                   <div
@@ -2035,12 +2035,12 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                       class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
                     >
                       <h3
-                        class="sc-kpDqfm exYwWV"
+                        class="sc-kpDqfm hmSeLN"
                       >
                         Expert created and quality assured
                       </h3>
                       <p
-                        class="sc-dLMFU gKXbKJ"
+                        class="sc-dLMFU cFqCaZ"
                       >
                         Created by subject and curriculum experts, our resources are informed by the best available evidence of what works, aligned to the national curriculum and tested by real teachers.
                       </p>
@@ -2048,7 +2048,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-3c664f57-0 fgBWrW joHkzz iAkSYx igCJzG"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-3aa50bab-0 fgBWrW joHkzz iAkSYx gfcmYR"
                   data-testid="who-we-are-desc-item"
                 >
                   <div
@@ -2075,12 +2075,12 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                       class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
                     >
                       <h3
-                        class="sc-kpDqfm exYwWV"
+                        class="sc-kpDqfm hmSeLN"
                       >
                         Free, and always will be
                       </h3>
                       <p
-                        class="sc-dLMFU gKXbKJ"
+                        class="sc-dLMFU cFqCaZ"
                       >
                         We’re funded by the Department for Education. No paywalls, package tiers, or hidden costs.
                       </p>
@@ -2088,7 +2088,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-3c664f57-0 fgBWrW joHkzz iAkSYx igCJzG"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-3aa50bab-0 fgBWrW joHkzz iAkSYx gfcmYR"
                   data-testid="who-we-are-desc-item"
                 >
                   <div
@@ -2115,12 +2115,12 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                       class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
                     >
                       <h3
-                        class="sc-kpDqfm exYwWV"
+                        class="sc-kpDqfm hmSeLN"
                       >
                         Independent and optional
                       </h3>
                       <p
-                        class="sc-dLMFU gKXbKJ"
+                        class="sc-dLMFU cFqCaZ"
                       >
                         Oak is by teachers, for teachers. Our board is publicly appointed, and our partners selected through an open process.
                       </p>
@@ -2158,7 +2158,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                         class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                       >
                         <a
-                          class="sc-98e007eb-0 cHMTsA"
+                          class="sc-21727044-0 cuLfEF"
                           href="/#"
                         >
                           <div
@@ -2183,7 +2183,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                             </div>
                             <div
-                              class="sc-fqkvVR sc-kAyceB iJhYOW bAFsaQ"
+                              class="sc-fqkvVR sc-kAyceB jTcmak bAFsaQ"
                             >
                               About Oak’s curriculum
                             </div>
@@ -2215,7 +2215,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                         class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                       >
                         <a
-                          class="sc-98e007eb-0 cHMTsA"
+                          class="sc-21727044-0 cuLfEF"
                           href="/#"
                         >
                           <div
@@ -2240,7 +2240,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                             </div>
                             <div
-                              class="sc-fqkvVR sc-kAyceB iJhYOW bAFsaQ"
+                              class="sc-fqkvVR sc-kAyceB jTcmak bAFsaQ"
                             >
                               Oak’s impact
                             </div>
@@ -2272,7 +2272,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                         class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                       >
                         <a
-                          class="sc-98e007eb-0 cHMTsA"
+                          class="sc-21727044-0 cuLfEF"
                           href="/#"
                         >
                           <div
@@ -2297,7 +2297,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                             </div>
                             <div
-                              class="sc-fqkvVR sc-kAyceB iJhYOW bAFsaQ"
+                              class="sc-fqkvVR sc-kAyceB jTcmak bAFsaQ"
                             >
                               Meet the team
                             </div>
@@ -2329,7 +2329,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                         class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                       >
                         <a
-                          class="sc-98e007eb-0 cHMTsA"
+                          class="sc-21727044-0 cuLfEF"
                           href="/#"
                         >
                           <div
@@ -2354,7 +2354,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                             </div>
                             <div
-                              class="sc-fqkvVR sc-kAyceB iJhYOW bAFsaQ"
+                              class="sc-fqkvVR sc-kAyceB jTcmak bAFsaQ"
                             >
                               Get involved
                             </div>

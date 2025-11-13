@@ -29,11 +29,6 @@ const CustomWeAreItemOakGridArea = styled(OakGridArea)`
   @media (max-width: 749px) {
     grid-column: span 12;
   }
-
-  @media (min-width: 1280px) {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
 `;
 
 const COLORS: OakBoxProps["$background"][] = [
@@ -73,7 +68,7 @@ export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
         <OakHeading
           tag="h2"
           $textAlign={["left", "center", "center"]}
-          $font={["heading-5", "heading-3", "heading-3"]}
+          $font={["heading-5", "heading-3"]}
         >
           {title}
         </OakHeading>
@@ -101,13 +96,10 @@ export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
                       />
                     </OakBox>
                     <OakFlex $gap={"all-spacing-4"} $flexDirection={"column"}>
-                      <OakHeading
-                        tag="h3"
-                        $font={["heading-6", "heading-5", "heading-5"]}
-                      >
+                      <OakHeading tag="h3" $font={["heading-6", "heading-5"]}>
                         {title}
                       </OakHeading>
-                      <OakP $font={["body-2", "body-1", "body-1"]}>{text}</OakP>
+                      <OakP $font={["body-2", "body-1"]}>{text}</OakP>
                     </OakFlex>
                   </OakFlex>
                 </CustomWeAreItemOakGridArea>

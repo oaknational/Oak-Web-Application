@@ -92,7 +92,7 @@ export function WhoAreWeExplore({
                               $height={"all-spacing-10"}
                             />
                           </OakFlex>
-                          <OakFlex $flexGrow={1} $font={"body-1-bold"}>
+                          <OakFlex $flexGrow={1} $font={"heading-6"}>
                             {title}
                           </OakFlex>
                           <OakFlex>

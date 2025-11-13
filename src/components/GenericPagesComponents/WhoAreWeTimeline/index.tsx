@@ -50,18 +50,18 @@ export default function WhoAreWeTimeline({
       <InnerMaxWidth>
         <OakFlex
           $flexDirection={"column"}
-          $gap={"all-spacing-10"}
+          $gap={["all-spacing-8", "all-spacing-10"]}
           $pt={["inner-padding-xl5", "inner-padding-xl8"]}
         >
           <OakGrid $cg="space-between-s" $rg="space-between-s">
             <OakGridArea $colSpan={[12, 12, 9]} $colStart={[0, 0, 3]}>
               <OakFlex $gap={"all-spacing-2"} $flexDirection={"column"}>
-                <OakBox $font={"heading-5"}>
+                <OakBox $font={["heading-6", "heading-5"]}>
                   <OakSpan $background={"mint"} $ph={"inner-padding-ssx"}>
                     {subtitle}
                   </OakSpan>
                 </OakBox>
-                <OakHeading tag="h2" $font={"heading-3"}>
+                <OakHeading tag="h2" $font={["heading-5", "heading-3"]}>
                   {title}
                 </OakHeading>
               </OakFlex>
@@ -108,7 +108,7 @@ export default function WhoAreWeTimeline({
                         $gap={"all-spacing-2"}
                         $mb={["space-between-xl", "space-between-xxl"]}
                       >
-                        <OakBox $font={"body-2-bold"}>
+                        <OakBox $font={["heading-7"]}>
                           <OakSpan
                             $ph={"inner-padding-ssx"}
                             $background={"mint"}
@@ -116,12 +116,16 @@ export default function WhoAreWeTimeline({
                             {item.subtitle}
                           </OakSpan>
                         </OakBox>
-                        <OakHeading tag="h3" $font={"heading-light-5"}>
+                        <OakHeading tag="h3" $font={["heading-6", "heading-5"]}>
                           {item.title}
                         </OakHeading>
                         <OakBox>
                           {item.text.map((textItem) => {
-                            return <OakP key={textItem}>{textItem}</OakP>;
+                            return (
+                              <OakP key={textItem} $font={"body-1"}>
+                                {textItem}
+                              </OakP>
+                            );
                           })}
                         </OakBox>
                       </OakFlex>
