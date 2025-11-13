@@ -11,6 +11,7 @@ import {
   OakFlex,
   OakFlexProps,
   oakFlexCss,
+  OakTertiaryButton,
 } from "@oaknational/oak-components";
 
 import { useMenuContext } from "@/context/Menu/";
@@ -19,6 +20,7 @@ import { OAK_SOCIALS } from "@/components/SharedComponents/SocialButtons/SocialB
 import MenuBackdrop from "@/components/AppComponents/MenuBackdrop";
 import SocialButtons from "@/components/SharedComponents/SocialButtons";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
+import { usePathname } from "next/navigation";
 
 export type TransitionProps = {
   state: TransitionStatus;
@@ -64,7 +66,7 @@ const NavMenuList = styled("nav")<OakFlexProps & OakBoxProps>`
 
 const AppHeaderMenu: FC<AppHeaderMenuProps> = ({ children, menuButtonRef }) => {
   const { open, closeMenu } = useMenuContext();
-  const { pathname } = useRouter();
+  const pathname = usePathname();
   const ref = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -89,7 +91,7 @@ const AppHeaderMenu: FC<AppHeaderMenuProps> = ({ children, menuButtonRef }) => {
     >
       {(state) => (
         <OakBox $position="absolute" ref={ref} $zIndex="modal-dialog">
-          <MenuBackdrop state={state} />
+          {/* <MenuBackdrop state={state} /> TODO: menu backdrop? */}
           <FocusOn
             enabled={open}
             onClickOutside={closeMenu}
@@ -134,7 +136,7 @@ const AppHeaderMenu: FC<AppHeaderMenuProps> = ({ children, menuButtonRef }) => {
                 $top={"all-spacing-5"}
                 $right={"all-spacing-4"}
               >
-                <IconButton
+                {/* <IconButton
                   aria-label="Close Menu"
                   icon={"cross"}
                   variant={"minimal"}
@@ -142,7 +144,9 @@ const AppHeaderMenu: FC<AppHeaderMenuProps> = ({ children, menuButtonRef }) => {
                   onClick={closeMenu}
                   ref={closeButtonRef}
                   aria-expanded={open}
-                />
+                /> */}
+                {/* TODO: [spike] icon button */}
+                <OakTertiaryButton iconName="cross" onClick={closeMenu} />
               </OakBox>
               <NavMenuList
                 $flexDirection={"column"}

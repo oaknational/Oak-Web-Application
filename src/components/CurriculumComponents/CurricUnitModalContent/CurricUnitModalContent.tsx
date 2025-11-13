@@ -42,7 +42,8 @@ export default function CurricUnitModalContent({
   const searchParams = useSearchParams();
   const unitOptionsAvailable =
     !unitOptionData && (unitData?.unit_options ?? []).length > 0;
-  const { track } = useAnalytics();
+  // const { track } = useAnalytics();
+  // TODO: [spike] analytics
   const optionalityModalOpen = false;
 
   const subjectTitle =
@@ -59,22 +60,22 @@ export default function CurricUnitModalContent({
     componentType: ComponentTypeValueType,
   ) => {
     if (unitData) {
-      track.unitOverviewExplored({
-        subjectTitle: unitData.subject,
-        subjectSlug: unitData.subject_slug,
-        yearGroupName: `Year ${unitData.year}`,
-        yearGroupSlug: `year-${unitData.year}`,
-        unitName: unitData.title,
-        unitSlug: unitData.slug,
-        platform: "owa",
-        product: "curriculum visualiser",
-        engagementIntent: "explore",
-        componentType,
-        eventVersion: "2.0.0",
-        analyticsUseCase: "Teacher",
-        threadTitle: getTitleFromSlug(selectedThread || undefined) || "",
-        threadSlug: selectedThread || "",
-      });
+      // track.unitOverviewExplored({
+      //   subjectTitle: unitData.subject,
+      //   subjectSlug: unitData.subject_slug,
+      //   yearGroupName: `Year ${unitData.year}`,
+      //   yearGroupSlug: `year-${unitData.year}`,
+      //   unitName: unitData.title,
+      //   unitSlug: unitData.slug,
+      //   platform: "owa",
+      //   product: "curriculum visualiser",
+      //   engagementIntent: "explore",
+      //   componentType,
+      //   eventVersion: "2.0.0",
+      //   analyticsUseCase: "Teacher",
+      //   threadTitle: getTitleFromSlug(selectedThread || undefined) || "",
+      //   threadSlug: selectedThread || "",
+      // });
     }
   };
 

@@ -14,6 +14,7 @@ import {
   OakSpan,
   OakOL,
   OakBox,
+  OakSecondaryLink,
 } from "@oaknational/oak-components";
 
 import { PromoSpan } from "../PromoSpan/PromoSpan";
@@ -109,11 +110,8 @@ export const PTExternalLink: PortableTextMarkComponent<{
 
   const { href } = props.value;
 
-  return (
-    <OwaLink href={href} page={null} $isInline>
-      {props.children}
-    </OwaLink>
-  );
+  // TODO: [spike] check working used in curric seo accordion
+  return <OakSecondaryLink href={href}>{props.children}</OakSecondaryLink>;
 };
 
 export const PTAnchorLink: PortableTextMarkComponent<{

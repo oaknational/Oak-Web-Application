@@ -3,10 +3,13 @@ import {
   OakP,
   OakFlex,
   OakIcon,
+  OakTertiaryButton,
+  OakPrimaryButton,
 } from "@oaknational/oak-components";
 
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
+import { resolveOakHref } from "@/common-lib/urls";
 
 const UnitTabBanner = () => {
   return (
@@ -49,7 +52,16 @@ const UnitTabBanner = () => {
             </OakP>
           </Flex>
         </OakFlex>
-        <ButtonAsLink
+        {/* TODO: [spike] check link */}
+        <OakPrimaryButton
+          iconName="arrow-right"
+          element="a"
+          href={resolveOakHref({ page: "help" })}
+          isTrailingIcon
+        >
+          Go to help centre
+        </OakPrimaryButton>
+        {/* <ButtonAsLink
           label="Go to help centre"
           variant={"brush"}
           size={"large"}
@@ -57,7 +69,7 @@ const UnitTabBanner = () => {
           icon={"arrow-right"}
           iconBackground="black"
           $iconPosition="trailing"
-        />
+        /> */}
       </OakFlex>
     </OakFlex>
   );

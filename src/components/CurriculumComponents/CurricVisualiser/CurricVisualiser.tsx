@@ -1,7 +1,7 @@
 import { useRef, useEffect, useMemo } from "react";
 import { OakBox } from "@oaknational/oak-components";
 import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import Alert from "../OakComponentsKitchen/Alert";
@@ -61,7 +61,7 @@ export default function CurricVisualiser({
   const router = useRouter();
   const searchParams = useSearchParams();
   const isMobile = useMediaQuery("mobile");
-  const timetablingEnabled = useFeatureFlagEnabled("adopt-timetabling-proto");
+  const timetablingEnabled = true;
 
   const visualiserFilters = useMemo(() => {
     if (isMobile) {
@@ -129,13 +129,15 @@ export default function CurricVisualiser({
   const handleCloseModal = () => {
     const searchParamsStr = searchParams?.toString() ?? "";
     const href = `${basePath}${!searchParamsStr ? "" : `?${searchParamsStr}`}`;
-    router.replace(href, undefined, { shallow: true, scroll: false });
+    // TODO: [spike] shallow routing
+    router.replace(href, { scroll: false });
   };
 
   const handleNavigateToUnit = (unitSlug: string) => {
     const searchParamsStr = searchParams?.toString() ?? "";
     const href = `${basePath}/${unitSlug}${!searchParamsStr ? "" : `?${searchParamsStr}`}`;
-    router.replace(href, undefined, { shallow: true, scroll: false });
+    // TODO: [spike] shallow routing
+    router.replace(href, { scroll: false });
   };
 
   const shouldDisplayCorePathway = getShouldDisplayCorePathway(ks4Options);
@@ -203,7 +205,7 @@ export default function CurricVisualiser({
         );
       })}
 
-      <CurricUnitModal
+      {/* <CurricUnitModal
         open={displayModal}
         onClose={handleCloseModal}
         unitData={unitData}
@@ -234,7 +236,7 @@ export default function CurricVisualiser({
             />
           </OakBox>
         )}
-      </CurricUnitModal>
+      </CurricUnitModal> */}
     </OakBox>
   );
 }

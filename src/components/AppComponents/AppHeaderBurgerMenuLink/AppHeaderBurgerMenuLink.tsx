@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { OakFlex } from "@oaknational/oak-components";
+import { OakFlex, OakSecondaryLink } from "@oaknational/oak-components";
 
 import { ResolveOakHrefProps } from "@/common-lib/urls";
 import TagPromotional from "@/components/SharedComponents/TagPromotional";
@@ -26,7 +26,7 @@ export const linkIsHref = (input: unknown): input is HrefLink => {
 
 const AppHeaderBurgerMenuLink: FC<AppHeaderBurgerMenuLinkProps> = (props) => {
   const { link } = props;
-  const { track } = useAnalytics();
+  // const { track } = useAnalytics(); // TODO: analytics
 
   const linkTo = linkIsHref(link.linkTo)
     ? { href: link.linkTo.href, page: null }
@@ -34,7 +34,14 @@ const AppHeaderBurgerMenuLink: FC<AppHeaderBurgerMenuLinkProps> = (props) => {
 
   return (
     <OakFlex $alignItems="center" $gap="all-spacing-2">
-      <ButtonAsLink
+      {/* TODO: [spike] check links */}
+      <OakSecondaryLink
+        iconName={link.external ? "external" : undefined}
+        isTrailingIcon
+      >
+        {link.text}
+      </OakSecondaryLink>
+      {/* <ButtonAsLink
         icon={link.external ? "external" : undefined}
         aria-label={`${link.ariaLabel ?? link.text}${
           link.external ? " (opens in a new tab)" : ""
@@ -46,21 +53,21 @@ const AppHeaderBurgerMenuLink: FC<AppHeaderBurgerMenuLinkProps> = (props) => {
         size="large"
         onClick={() => {
           if ("keyStageSlug" in linkTo) {
-            track.browseRefinedAccessed({
-              platform: "owa",
-              product: "teacher lesson resources",
-              engagementIntent: "refine",
-              componentType: "hamburger_menu_button",
-              eventVersion: "2.0.0",
-              analyticsUseCase: "Teacher",
-              filterType: "Key stage filter",
-              filterValue: link.text,
-              activeFilters: [],
-            });
+            // track.browseRefinedAccessed({
+            //   platform: "owa",
+            //   product: "teacher lesson resources",
+            //   engagementIntent: "refine",
+            //   componentType: "hamburger_menu_button",
+            //   eventVersion: "2.0.0",
+            //   analyticsUseCase: "Teacher",
+            //   filterType: "Key stage filter",
+            //   filterValue: link.text,
+            //   activeFilters: [],
+            // });
           }
         }}
         {...linkTo}
-      />
+      /> */}
       {link.new && <TagPromotional size="small" />}
     </OakFlex>
   );

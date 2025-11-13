@@ -1,7 +1,7 @@
 import { FC, useState, useId, useRef, useTransition } from "react";
 import { FocusOn } from "react-focus-on";
 import styled from "styled-components";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import {
   OakBox,
   OakFlex,
@@ -347,7 +347,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   const ks4OptionErrorId = useId();
   const phaseErrorId = useId();
 
-  const { track } = useAnalytics();
+  //const { track } = useAnalytics();
 
   const phases = [
     { title: "Primary", slug: "primary" },
@@ -493,17 +493,18 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
 
   const trackViewCurriculum = () => {
     if (selectedPhase && selectedSubject) {
-      track.curriculumVisualiserAccessed({
-        subjectTitle: selectedSubject.title,
-        subjectSlug: selectedSubject.slug,
-        platform: "owa",
-        product: "curriculum visualiser",
-        engagementIntent: "use",
-        componentType: "curriculum_visualiser_button",
-        eventVersion: "2.0.0",
-        analyticsUseCase: "Teacher",
-        phase: selectedPhase.slug as PhaseValueType,
-      });
+      // TODO: [spike] analytics
+      // track.curriculumVisualiserAccessed({
+      //   subjectTitle: selectedSubject.title,
+      //   subjectSlug: selectedSubject.slug,
+      //   platform: "owa",
+      //   product: "curriculum visualiser",
+      //   engagementIntent: "use",
+      //   componentType: "curriculum_visualiser_button",
+      //   eventVersion: "2.0.0",
+      //   analyticsUseCase: "Teacher",
+      //   phase: selectedPhase.slug as PhaseValueType,
+      // });
     }
   };
 
@@ -557,14 +558,11 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       }
 
       startTransition(() => {
-        router
-          .push({
-            pathname: newPathname,
-          })
-          .finally(() => {
-            setIsNavigating(false);
-            setShowPhases(false);
-          });
+        router.push(newPathname);
+
+        // TODO: [spike] does this work
+        setIsNavigating(false);
+        setShowPhases(false);
       });
     }
   };

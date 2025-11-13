@@ -53,20 +53,21 @@ export function CurricVisualiserUnitList({
   basePath,
   selectedThread,
 }: Readonly<CurricVisualiserUnitListProps>) {
-  const { track } = useAnalytics();
-  const { analyticsUseCase } = useAnalyticsPageProps();
+  // const { track } = useAnalytics();
+  // const { analyticsUseCase } = useAnalyticsPageProps();
   const searchParams = useSearchParams();
 
   const onClick = (unit: Unit, isHighlighted: boolean) => {
-    track.unitOverviewAccessed(
-      buildUnitOverviewAccessedAnalytics({
-        unit,
-        isHighlighted,
-        componentType: "unit_info_button",
-        selectedThread,
-        analyticsUseCase,
-      }),
-    );
+    // TODO: [spike] analytics
+    // track.unitOverviewAccessed(
+    //   buildUnitOverviewAccessedAnalytics({
+    //     unit,
+    //     isHighlighted,
+    //     componentType: "unit_info_button",
+    //     selectedThread,
+    //     analyticsUseCase,
+    //   }),
+    // );
   };
 
   function getItems(unit: Unit, index: number) {

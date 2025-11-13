@@ -108,6 +108,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
           $ph="inner-padding-l"
           $width={"100%"}
         >
+          {/* TODO: breadcrumbs */}
           <Breadcrumbs
             breadcrumbs={[
               {
@@ -132,7 +133,6 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               },
             ]}
           />
-
           <OakHandDrawnHR
             hrColor={"white"}
             $height={"all-spacing-05"}
@@ -205,7 +205,8 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
             $mh={"auto"}
             $width={"100%"}
           >
-            <CurriculumHeaderTabNav
+            {/* TODO: [spike] tabs */}
+            {/* <CurriculumHeaderTabNav
               data-testid="tabularNav"
               label="Curriculum Selection"
               links={links}
@@ -218,7 +219,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                 phaseSlug: currentSelection.phase.slug as PhaseValueType,
               }}
               $background={"mint"}
-            />
+            /> */}
           </OakBox>
         </OakFlex>
       </OakBox>

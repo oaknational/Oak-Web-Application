@@ -1,3 +1,4 @@
+"use client";
 import { createContext, FC, useState } from "react";
 
 type SaveContext = {

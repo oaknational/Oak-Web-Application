@@ -91,11 +91,12 @@ export default function CurricVisualiserFiltersDesktop({
 
       {shouldDisplayFilter(data, filters, "threads") && (
         <>
-          <CurricFiltersThreads
+          {/* <CurricFiltersThreads
             filters={filters}
             onChangeFilters={onChangeFilters}
             data={data}
-          />
+          /> */}
+          {/* TODO: [spike] thread filters */}
         </>
       )}
     </OakBox>

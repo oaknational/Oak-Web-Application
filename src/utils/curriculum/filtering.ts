@@ -1,7 +1,7 @@
 import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 import { useCallback, useLayoutEffect, useState } from "react";
 import { isEqual } from "lodash";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 import { findFirstMatchingFeatures } from "./features";
 import {
@@ -158,8 +158,8 @@ export function useFilters(
         new URLSearchParams(
           Object.entries(filtersToQuery(newFilters, defaultFilter)),
         ).toString();
-      router.replace(url, undefined, {
-        shallow: true,
+      router.replace(url, {
+        // shallow: true, // TODO: [spike] shallow routing
         scroll: false,
       });
 

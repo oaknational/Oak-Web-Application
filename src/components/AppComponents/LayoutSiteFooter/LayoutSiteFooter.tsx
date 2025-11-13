@@ -16,6 +16,7 @@ import {
   OakMaxWidth,
   OakSvg,
   OakImage,
+  OakSecondaryLink,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
@@ -27,10 +28,11 @@ import SocialButtons from "@/components/SharedComponents/SocialButtons";
 import Button from "@/components/SharedComponents/Button";
 import footerSections from "@/browser-lib/fixtures/footerSections";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import { OakLinkProps } from "@/common-lib/urls";
+import { OakLinkProps, resolveOakHref } from "@/common-lib/urls";
 import useClickableCard from "@/hooks/useClickableCard";
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
 import { getCloudinaryImageUrl } from "@/utils/getCloudinaryImageUrl";
+import { usePathname } from "next/navigation";
 
 type LayoutFooterLinkProps = {
   text: string;
@@ -72,58 +74,73 @@ const FooterLinkIconWrapper: React.FC<FooterLinkIconWrapperProps> = (props) => {
 };
 
 const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
-  const { track } = useAnalytics();
+  // const { track } = useAnalytics();
   const { openSettings } = useCookieConsent();
   const { containerProps, primaryTargetProps } =
     useClickableCard<HTMLAnchorElement>();
   if (props.type === "consent-manager-toggle") {
     return (
-      <Button
-        variant="minimal"
-        $font={"body-2"}
-        label={props.text}
-        onClick={openSettings}
-        labelColor={"black"}
-        $hoverStyles={["underline-link-text"]}
-      />
+      // <Button
+      //   variant="minimal"
+      //   $font={"body-2"}
+      //   label={props.text}
+      //   onClick={openSettings}
+      //   labelColor={"black"}
+      //   $hoverStyles={["underline-link-text"]}
+      // />
+      // TODO: [spike] check link
+      <OakSecondaryLink element="button" onClick={openSettings}>
+        {props.text}
+      </OakSecondaryLink>
     );
   }
 
-  if (props.type === "page" && props.page == "classroom") {
-    return (
-      <FooterLinkIconWrapper containerProps={containerProps} {...props}>
-        <OwaLink
-          {...props}
-          {...primaryTargetProps}
-          $focusStyles={["underline"]}
-          htmlAnchorProps={{
-            onClick: () => track.classroomSelected({ navigatedFrom: "footer" }),
-          }}
-        >
-          {props.text}
-        </OwaLink>
-      </FooterLinkIconWrapper>
-    );
-  }
+  // if (props.type === "page" && props.page == "classroom") {
+  //   return (
+  //     <FooterLinkIconWrapper containerProps={containerProps} {...props}>
+  //       {/* <OwaLink
+  //         {...props}
+  //         {...primaryTargetProps}
+  //         $focusStyles={["underline"]}
+  //         htmlAnchorProps={{
+  //           onClick: () => track.classroomSelected({ navigatedFrom: "footer" }),
+  //         }}
+  //       >
+  //         {props.text}
+  //       </OwaLink> */}
+  //       {/* TODO: [spike] check link */}
+  //       <OakSecondaryLink href={resolveOakHref({ page: props.page })}>
+  //         {props.text}
+  //       </OakSecondaryLink>
+  //     </FooterLinkIconWrapper>
+  //   );
+  // }
 
   if (props.type === "page") {
     return (
       <FooterLinkIconWrapper containerProps={containerProps} {...props}>
-        <OwaLink
+        {/* <OwaLink
           {...primaryTargetProps}
           $focusStyles={["underline"]}
           htmlAnchorProps={{ "aria-label": props.ariaLabel ?? undefined }}
           {...props}
         >
           {props.text}
-        </OwaLink>
+        </OwaLink> */}
+        {/* TODO: [spike] check link */}
+        <OakSecondaryLink href={resolveOakHref({ page: props.page })}>
+          {props.text}
+        </OakSecondaryLink>
       </FooterLinkIconWrapper>
     );
   }
   if (props.href) {
     return (
       <FooterLinkIconWrapper containerProps={containerProps} {...props}>
-        <OwaLink
+        {/* TODO: [spike] check link */}
+
+        <OakSecondaryLink href={props.href}>{props.text}</OakSecondaryLink>
+        {/* <OwaLink
           {...primaryTargetProps}
           $focusStyles={["underline"]}
           page={null}
@@ -151,7 +168,7 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
           }}
         >
           {props.text}
-        </OwaLink>
+        </OwaLink> */}
       </FooterLinkIconWrapper>
     );
   }
@@ -201,8 +218,9 @@ export type FooterSections = Record<
 
 const LayoutSiteFooter: FC = () => {
   const sections = footerSections;
-  const { pathname } = useRouter();
-  const displaySignpost = pathname.startsWith("/beta");
+  //const { pathname } = useRouter();
+  const pathname = usePathname();
+  const displaySignpost = pathname?.startsWith("/beta");
 
   return (
     <OakBox

@@ -9,7 +9,7 @@ export default async function Layout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const isEnabled = await useFeatureFlag("adopt-timetabling-proto", "boolean");
+  const isEnabled = true;
   if (!isEnabled) {
     return notFound();
   }

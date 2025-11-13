@@ -1,5 +1,10 @@
 import { FC, useId } from "react";
-import { OakFlex, OakFlexProps } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakFlexProps,
+  OakIconName,
+  OakTertiaryButton,
+} from "@oaknational/oak-components";
 
 import { PixelSpacing } from "@/styles/theme";
 import { ResponsiveValues } from "@/styles/utils/responsive";
@@ -31,16 +36,16 @@ const SOCIAL_NETWORKS = ["instagram", "facebook", "x", "linkedIn"] as const;
 type SocialNetwork = (typeof SOCIAL_NETWORKS)[number];
 type SocialButtonConfig = {
   label: string;
-  icon: IconName;
+  icon: OakIconName;
 };
 const SOCIAL_BUTTON_CONFIGS: Record<SocialNetwork, SocialButtonConfig> = {
   instagram: {
     label: "instagram",
-    icon: "instagram-v2",
+    icon: "instagram",
   },
   facebook: {
     label: "facebook",
-    icon: "facebook-v2",
+    icon: "facebook",
   },
   x: {
     label: "x",
@@ -48,7 +53,7 @@ const SOCIAL_BUTTON_CONFIGS: Record<SocialNetwork, SocialButtonConfig> = {
   },
   linkedIn: {
     label: "linkedIn",
-    icon: "linkedin-v2",
+    icon: "linkedin",
   },
 } as const;
 
@@ -92,16 +97,18 @@ const SocialButtons: FC<SocialButtonsProps> = (props) => {
           return null;
         }
         return (
-          <IconButtonAsLink
-            key={`SocialButtons-${id}-${network}`}
-            aria-label={`${label} for ${accountHolder}`}
-            icon={icon}
-            href={href}
-            page={null}
-            variant={"minimal"}
-            $mr={spaceBetween}
-            size={size}
-          />
+          // <IconButtonAsLink
+          //   key={`SocialButtons-${id}-${network}`}
+          //   aria-label={`${label} for ${accountHolder}`}
+          //   icon={icon}
+          //   href={href}
+          //   page={null}
+          //   variant={"minimal"}
+          //   $mr={spaceBetween}
+          //   size={size}
+          // />
+          // TODO: [spike] check social buttons
+          <OakTertiaryButton key={`SocialButtons-${network}`} iconName={icon} />
         );
       })}
     </OakFlex>

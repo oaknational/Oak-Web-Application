@@ -13,8 +13,8 @@ export type HeaderConfig = {
   background: OakColorName;
 };
 
-const headerConfig = (theme: OakTheme) => theme.header;
-const headerHeight = ({ theme }: PropsWithTheme) => headerConfig(theme).height;
+// const headerConfig = (theme: OakTheme) => theme.header;
+const headerHeight = "72px"; // TODO: [spike] old theme header height
 
 export const baseHeaderStyles = css`
   width: 100%; /* Do we need a max width here and to center? */

@@ -12,6 +12,8 @@ import {
 } from "@/styles/oakThemeApp";
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
 import GlobalStyle from "@/styles/GlobalStyle";
+import { MenuProvider } from "@/context/Menu";
+import { SaveCountProvider } from "@/context/SaveCount/SaveCountProvider";
 
 export const metadata = {
   title: "Oak National Academy",
@@ -67,9 +69,13 @@ export default function RootLayout({
                     },
                   }}
                 >
-                  <OakBox $width="100vw" $height="100vh">
-                    {children}
-                  </OakBox>
+                  <MenuProvider>
+                    <SaveCountProvider>
+                      <OakBox $width="100vw" $height="100vh">
+                        {children}
+                      </OakBox>
+                    </SaveCountProvider>
+                  </MenuProvider>
                 </ClerkProvider>
               </CookieConsentProvider>
             </OakThemeProvider>

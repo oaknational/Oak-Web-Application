@@ -1,10 +1,14 @@
 import { FC } from "react";
 import styled from "styled-components";
-import { OakUL, OakIcon } from "@oaknational/oak-components";
+import { OakUL, OakIcon, OakSecondaryLink } from "@oaknational/oak-components";
 
 import { BreadcrumbJsonLd } from "@/browser-lib/seo/getJsonLd";
 import OwaLink from "@/components/SharedComponents/OwaLink";
-import { MaybeOakHref, ResolveOakHrefProps } from "@/common-lib/urls";
+import {
+  MaybeOakHref,
+  resolveOakHref,
+  ResolveOakHrefProps,
+} from "@/common-lib/urls";
 import ellipsis from "@/styles/ellipsis";
 
 const BreadcrumbsNav = styled.nav`
@@ -77,7 +81,12 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
                   {disabled ? (
                     <>{label}</>
                   ) : (
-                    <OwaLink {...oakLinkProps}>{label}</OwaLink>
+                    // TODO: [spike] types for oak link props
+                    <OakSecondaryLink
+                      href={resolveOakHref({ page: oakLinkProps.page })}
+                    >
+                      {label}
+                    </OakSecondaryLink>
                   )}
                 </BreadcrumbConstrainer>
               </BreadcrumbsLi>

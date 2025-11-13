@@ -68,7 +68,7 @@ const Layout: FC<LayoutProps> = (props) => {
   } = props;
   const Header = headers[headerVariant];
   const Footer = footers[footerVariant];
-  const { isPreview } = useRouter();
+  // const { isPreview } = useRouter(); // TODO: [spike] previews
 
   return (
     <>
@@ -107,7 +107,7 @@ const Layout: FC<LayoutProps> = (props) => {
             {children}
           </OakFlex>
           <Footer />
-          {isPreview && <LayoutPreviewControls />}
+          {/* {isPreview && <LayoutPreviewControls />} */}
         </OakFlex>
       </OakThemeProvider>
     </>
