@@ -1,3 +1,10 @@
+## [1.913.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.913.1...v1.913.2) (2025-11-13)
+
+
+### Bug Fixes
+
+* sonarcloud "assertion is unnecessary" errors ([776e65c](https://github.com/oaknational/Oak-Web-Application/commit/776e65c5e030a2e77821bdc70f057420c8a7dcc9))
+
 ## [1.913.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.913.0...v1.913.1) (2025-11-13)
 
 
