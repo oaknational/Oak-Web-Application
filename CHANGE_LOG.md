@@ -1,3 +1,10 @@
+## [1.913.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.913.5...v1.913.6) (2025-11-13)
+
+
+### Bug Fixes
+
+* sonarcloud "arrow function should be named" fix ([07fe52a](https://github.com/oaknational/Oak-Web-Application/commit/07fe52aa6f16fbc9238e81cadec24434538d60a0))
+
 ## [1.913.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.913.4...v1.913.5) (2025-11-13)
 
 
