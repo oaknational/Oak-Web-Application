@@ -1,5 +1,4 @@
 import { StoryFn, Meta } from "@storybook/nextjs";
-import { useState } from "react";
 
 import Component from ".";
 
@@ -9,13 +8,7 @@ export default {
 } as Meta<typeof Component>;
 
 const Template: StoryFn<typeof Component> = (args) => {
-  const [, setSelected] = useState<string>();
-  return (
-    <Component
-      {...args}
-      onChange={(e) => setSelected("value" in e.target ? e.target.value : "")}
-    />
-  );
+  return <Component {...args} onChange={() => {}} />;
 };
 
 export const DropdownSelect = {

@@ -145,12 +145,12 @@ export function useFilters(
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const [filters, setLocalFilters] = useState<CurriculumFilters>(defaultFilter);
+  const [filters, setFilters] = useState<CurriculumFilters>(defaultFilter);
   useLayoutEffect(() => {
-    setLocalFilters(mergeInFilterParams(defaultFilter, searchParams));
+    setFilters(mergeInFilterParams(defaultFilter, searchParams));
   }, [searchParams, defaultFilter]);
 
-  const setFilters = useCallback(
+  const setExternalFilters = useCallback(
     (newFilters: CurriculumFilters) => {
       const url =
         location.pathname +
@@ -163,12 +163,12 @@ export function useFilters(
         scroll: false,
       });
 
-      setLocalFilters(newFilters);
+      setFilters(newFilters);
     },
     [router, defaultFilter],
   );
 
-  return [filters, setFilters];
+  return [filters, setExternalFilters];
 }
 
 export function getFilterData(
