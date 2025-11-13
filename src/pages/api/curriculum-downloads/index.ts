@@ -123,6 +123,8 @@ async function getData(opts: {
 
     curriculumOverviewSanityData = await CMSClient.curriculumOverviewPage({
       previewMode: false,
+      subjectTitle: curriculumOverviewTabData.subjectTitle,
+      phaseSlug,
     });
 
     if (!curriculumOverviewSanityData) {
