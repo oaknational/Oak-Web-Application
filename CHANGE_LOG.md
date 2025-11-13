@@ -1,3 +1,10 @@
+## [1.913.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.913.3...v1.913.4) (2025-11-13)
+
+
+### Bug Fixes
+
+* sonarcloud "object literal is unnecessary" fixes ([ff8d017](https://github.com/oaknational/Oak-Web-Application/commit/ff8d0174075c196bc306b1b38cb4aa828c4681c5))
+
 ## [1.913.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.913.2...v1.913.3) (2025-11-13)
 
 
