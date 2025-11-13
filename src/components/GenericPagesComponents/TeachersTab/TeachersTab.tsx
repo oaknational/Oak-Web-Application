@@ -43,8 +43,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                 Teachers
               </OakHeading>
               <OakHeading $font={"heading-3"} tag={"h2"}>
-                Plan every lesson, every national curriculum subject, all in one
-                place
+                Plan every lesson, every national curriculum subject
               </OakHeading>
               <OakTypography $font={"body-1"}>
                 From curriculum planning to classroom teaching, Oak gives you
