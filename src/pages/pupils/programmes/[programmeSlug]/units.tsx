@@ -182,7 +182,7 @@ export const getStaticProps: GetStaticProps<
         .filter((s) => !!s);
 
       // ts will not accept that the above removes the possibility of undefined
-      const subjectCategories = uniq(allSubjectCategories) as string[];
+      const subjectCategories = uniq(allSubjectCategories);
 
       const mainUnits: UnitListingBrowseData[number][] =
         checkAndExcludeUnitsWithAgeRestrictedLessons(
