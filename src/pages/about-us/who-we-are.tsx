@@ -322,7 +322,7 @@ export const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({ pageData }) => {
   );
 };
 
-function AboutWhoWeAre(props: AboutPageProps) {
+function AboutWhoWeAre(props: Readonly<AboutPageProps>) {
   if (props.enableV2) {
     return <AboutWhoWeAreNew {...props} />;
   }

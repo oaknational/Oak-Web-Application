@@ -18,7 +18,7 @@ const TimelineItemFlex = styled(OakFlex)`
   }
 `;
 
-function InnerMaxWidth({ children }: { children: ReactNode }) {
+function InnerMaxWidth({ children }: Readonly<{ children: ReactNode }>) {
   const styleAttrs = useMemo(() => ({ maxWidth: 1280 + 40 * 2 }), []);
   return (
     <OakBox
