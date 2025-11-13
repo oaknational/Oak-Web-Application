@@ -2,7 +2,7 @@ import { nanoid } from "nanoid";
 
 import { OakPupilClient } from "./client";
 
-import { PupilNetworkClient } from "@/node-lib/pupil-api/network/network";
+import { PupilApiClient } from "@/browser-lib/pupil-client/network/PupilApiClient";
 import {
   LessonAttempt,
   AttemptDataCamelCase,
@@ -17,7 +17,7 @@ import { mockTeacherNote } from "@/node-lib/pupil-api/__mocks__/MockPupilClient"
 jest.mock("nanoid", () => ({
   nanoid: jest.fn(() => "testUserId"),
 }));
-jest.mock("@/node-lib/pupil-api/network/network");
+jest.mock("@/browser-lib/pupil-client/network/PupilApiClient");
 
 const onError = (error: unknown) => {
   throw error;
@@ -70,23 +70,20 @@ const mockLessonAttempt: LessonAttempt = {
 };
 
 describe("OakPupilClient", () => {
-  let networkClient: PupilNetworkClient;
-
   beforeEach(() => {
-    networkClient = new PupilNetworkClient();
     jest
-      .spyOn(networkClient, "logAttempt")
+      .spyOn(PupilApiClient, "logAttempt")
       .mockResolvedValue(mockLessonAttempt);
-    jest.spyOn(networkClient, "getAttempt").mockResolvedValue({
+    jest.spyOn(PupilApiClient, "getAttempt").mockResolvedValue({
       ARHMdfK44YeMawb1QtnxN: mockLessonAttempt,
     });
 
     jest
-      .spyOn(networkClient, "addTeacherNote")
+      .spyOn(PupilApiClient, "addTeacherNote")
       .mockResolvedValue(mockTeacherNote);
 
     jest
-      .spyOn(networkClient, "getTeacherNote")
+      .spyOn(PupilApiClient, "getTeacherNote")
       .mockResolvedValue(mockTeacherNote);
 
     jest.clearAllMocks();
@@ -94,8 +91,7 @@ describe("OakPupilClient", () => {
 
   describe("Initialization", () => {
     it("should set initial properties from the constructor", () => {
-      const client = new OakPupilClient(testProps, networkClient);
-      expect(client["networkClient"]).toBe(networkClient);
+      const client = new OakPupilClient(testProps);
       expect(client["onError"]).toBe(onError);
       expect(client["state"]).toEqual({ error: undefined });
     });
@@ -104,13 +100,13 @@ describe("OakPupilClient", () => {
   describe("Managing Attempts", () => {
     describe("logAttempt", () => {
       it("should log attempts and update state accordingly", () => {
-        const client = new OakPupilClient(testProps, networkClient);
+        const client = new OakPupilClient(testProps);
         client.init();
         client.logAttempt(mockAttemptData, false);
         const state = client.getState();
         const attemptPayload = convertKeysToSnakeCase(mockAttemptData);
         const parsedAttemptData = attemptDataSchema.parse(attemptPayload);
-        expect(networkClient.logAttempt).toHaveBeenCalledWith({
+        expect(PupilApiClient.logAttempt).toHaveBeenCalledWith({
           attempt_id: "testUserId",
           ...parsedAttemptData,
         });
@@ -120,32 +116,32 @@ describe("OakPupilClient", () => {
         );
       });
       it("should not log attempts if the attempt has already been logged", () => {
-        const client = new OakPupilClient(testProps, networkClient);
+        const client = new OakPupilClient(testProps);
         client.init();
         client.logAttempt(mockAttemptData, false);
         client.logAttempt(mockAttemptData, false);
         const state = client.getState();
-        expect(networkClient.logAttempt).toHaveBeenCalledTimes(1);
+        expect(PupilApiClient.logAttempt).toHaveBeenCalledTimes(1);
         expect(state.previousLoggedAttemptId).toBe("testUserId");
         expect(state.previousLoggedAttemptHash).toBe(
           "01aa1af6f32f12f9e5ddc733a57371543386bf88ac6fffde4beff854735a598a",
         );
       });
       it("should not call the network if isLocal is true", () => {
-        const client = new OakPupilClient(testProps, networkClient);
+        const client = new OakPupilClient(testProps);
         client.init();
         client.logAttempt(mockAttemptData, true);
-        expect(networkClient.logAttempt).not.toHaveBeenCalled();
+        expect(PupilApiClient.logAttempt).not.toHaveBeenCalled();
       });
     });
 
     it("should not log attempts if the attempt has already been logged", () => {
-      const client = new OakPupilClient(testProps, networkClient);
+      const client = new OakPupilClient(testProps);
       client.init();
       client.logAttempt(mockAttemptData, false);
       client.logAttempt(mockAttemptData, false);
       const state = client.getState();
-      expect(networkClient.logAttempt).toHaveBeenCalledTimes(1);
+      expect(PupilApiClient.logAttempt).toHaveBeenCalledTimes(1);
       expect(state.previousLoggedAttemptId).toBe("testUserId");
       expect(state.previousLoggedAttemptHash).toBe(
         createHash(JSON.stringify(mockAttemptData)),
@@ -153,36 +149,36 @@ describe("OakPupilClient", () => {
     });
 
     it("should not call the network if isLocal is true", async () => {
-      const client = new OakPupilClient(testProps, networkClient);
+      const client = new OakPupilClient(testProps);
       client.init();
       await client.logAttempt(mockAttemptData, true);
       client.getState();
-      expect(networkClient.logAttempt).not.toHaveBeenCalled();
+      expect(PupilApiClient.logAttempt).not.toHaveBeenCalled();
     });
     describe("getAttempt", () => {
       it("should return attempt Id if there exists an attempt hash matching the attempt id", async () => {
         jest.spyOn(Storage.prototype, "getItem").mockImplementationOnce(() => {
           return JSON.stringify(mockAttemptData);
         });
-        const client = new OakPupilClient(testProps, networkClient);
+        const client = new OakPupilClient(testProps);
         client.init();
         await client.getAttempt("mockId", false);
-        expect(networkClient.getAttempt).not.toHaveBeenCalled();
+        expect(PupilApiClient.getAttempt).not.toHaveBeenCalled();
       });
       it("should call the network if there if the attempt Id isnt in local storage", async () => {
         jest.spyOn(Storage.prototype, "getItem").mockImplementationOnce(() => {
           return null;
         });
-        const client = new OakPupilClient(testProps, networkClient);
+        const client = new OakPupilClient(testProps);
         client.init();
         await client.getAttempt("mockId", false);
-        expect(networkClient.getAttempt).toHaveBeenCalledWith("mockId");
+        expect(PupilApiClient.getAttempt).toHaveBeenCalledWith("mockId");
       });
       it("should return the attempt data from the network", async () => {
         jest.spyOn(Storage.prototype, "getItem").mockImplementationOnce(() => {
           return null;
         });
-        const client = new OakPupilClient(testProps, networkClient);
+        const client = new OakPupilClient(testProps);
         client.init();
         const result = await client.getAttempt("ARHMdfK44YeMawb1QtnxN", false);
         expect(result).toEqual(keysToCamelCase(mockLessonAttempt));
@@ -197,19 +193,19 @@ describe("OakPupilClient", () => {
 
     it("should call the API to add a teacher note", async () => {
       (nanoid as jest.Mock).mockReturnValue(mockTeacherNote.note_id);
-      const client = new OakPupilClient(testProps, networkClient);
+      const client = new OakPupilClient(testProps);
       client.init();
       await client.addTeacherNote({
         teacherNote: mockTeacherNoteCamel,
       });
-      expect(networkClient.addTeacherNote).toHaveBeenCalledWith(
+      expect(PupilApiClient.addTeacherNote).toHaveBeenCalledWith(
         mockTeacherNote,
       );
     });
 
     it("should store the teacher note id in local storage against the sid key", async () => {
       (nanoid as jest.Mock).mockReturnValue(mockTeacherNote.note_id);
-      const client = new OakPupilClient(testProps, networkClient);
+      const client = new OakPupilClient(testProps);
       client.init();
       await client.addTeacherNote({
         teacherNote: mockTeacherNoteCamel,
@@ -221,7 +217,7 @@ describe("OakPupilClient", () => {
     });
 
     it("should throw an error if the teacher note is invalid", async () => {
-      const client = new OakPupilClient(testProps, networkClient);
+      const client = new OakPupilClient(testProps);
       client.init();
       try {
         await client.addTeacherNote({
@@ -236,15 +232,15 @@ describe("OakPupilClient", () => {
     });
 
     it("should get a teacher note by noteId and sidKey", async () => {
-      const client = new OakPupilClient(testProps, networkClient);
+      const client = new OakPupilClient(testProps);
       client.init();
       await client.getTeacherNote({
         sidKey: mockTeacherNote.sid_key,
         noteId: mockTeacherNote.note_id,
       });
 
-      expect(networkClient.getTeacherNote).toHaveBeenCalled();
-      expect(networkClient.getTeacherNote).toHaveBeenCalledWith({
+      expect(PupilApiClient.getTeacherNote).toHaveBeenCalled();
+      expect(PupilApiClient.getTeacherNote).toHaveBeenCalledWith({
         note_id: mockTeacherNote.note_id,
         sid_key: mockTeacherNote.sid_key,
       });
@@ -253,7 +249,7 @@ describe("OakPupilClient", () => {
     it("should return isEditable as false if the note url is not in local storage", async () => {
       // mock local storage to return null
       jest.spyOn(Storage.prototype, "getItem").mockReturnValue(null);
-      const client = new OakPupilClient(testProps, networkClient);
+      const client = new OakPupilClient(testProps);
       client.init();
       const res = await client.getTeacherNote({
         sidKey: mockTeacherNote.sid_key,
@@ -267,7 +263,7 @@ describe("OakPupilClient", () => {
       jest
         .spyOn(Storage.prototype, "getItem")
         .mockReturnValueOnce(mockTeacherNote.note_id);
-      const client = new OakPupilClient(testProps, networkClient);
+      const client = new OakPupilClient(testProps);
       client.init();
       const res = await client.getTeacherNote({
         sidKey: mockTeacherNote.sid_key,
@@ -277,7 +273,7 @@ describe("OakPupilClient", () => {
     });
 
     it("Should throw an error if the teacher note is invalid", async () => {
-      const client = new OakPupilClient(testProps, networkClient);
+      const client = new OakPupilClient(testProps);
       client.init();
       expect(() =>
         client.getTeacherNote({
@@ -288,7 +284,7 @@ describe("OakPupilClient", () => {
     });
 
     it("should throw an error if the noteId is not provided and not in local storage", async () => {
-      const client = new OakPupilClient(testProps, networkClient);
+      const client = new OakPupilClient(testProps);
       client.init();
 
       expect(() =>
@@ -302,7 +298,7 @@ describe("OakPupilClient", () => {
       jest
         .spyOn(Storage.prototype, "getItem")
         .mockReturnValue(mockTeacherNote.note_id);
-      const client = new OakPupilClient(testProps, networkClient);
+      const client = new OakPupilClient(testProps);
       client.init();
       const res = await client.getTeacherNote({
         sidKey: mockTeacherNote.sid_key,

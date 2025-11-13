@@ -1,6 +1,6 @@
 import { nanoid } from "nanoid";
 
-import { PupilNetworkClient } from "@/node-lib/pupil-api/network/network";
+import { PupilApiClient } from "@/browser-lib/pupil-client/network/PupilApiClient";
 import {
   LessonAttempt,
   TeacherNote,
@@ -69,14 +69,7 @@ export class OakPupilClient implements PupilClient {
   private listeners: Listener<State>[] = [];
   private isInitialized = false;
 
-  constructor(
-    {
-      onError,
-    }: {
-      onError?: OnError;
-    },
-    private networkClient = new PupilNetworkClient(),
-  ) {
+  constructor({ onError }: { onError?: OnError }) {
     this.onError = onError || logger.error;
     this.state = {
       error: undefined,
@@ -141,7 +134,7 @@ export class OakPupilClient implements PupilClient {
     const attemptPayload = convertKeysToSnakeCase(attemptData);
     const parsedAttemptData = attemptDataSchema.parse(attemptPayload);
 
-    const promise = this.networkClient.logAttempt({
+    const promise = PupilApiClient.logAttempt({
       attempt_id: attemptId,
       ...parsedAttemptData,
     });
@@ -175,7 +168,7 @@ export class OakPupilClient implements PupilClient {
     }
     if (!isLocal) {
       try {
-        const data = await this.networkClient.getAttempt(attemptId);
+        const data = await PupilApiClient.getAttempt(attemptId);
         const camelCaseData = keysToCamelCase(data[attemptId]);
         return camelCaseData;
       } catch (error) {
@@ -203,12 +196,12 @@ export class OakPupilClient implements PupilClient {
       t.noteId,
     );
 
-    const promise = this.networkClient
-      .addTeacherNote(parsedTeacherNote)
-      .catch((error) => {
+    const promise = PupilApiClient.addTeacherNote(parsedTeacherNote).catch(
+      (error) => {
         this.onError(error);
         throw error;
-      });
+      },
+    );
 
     return { noteId: t.noteId, sidKey: t.sidKey, promise };
   };
@@ -234,10 +227,12 @@ export class OakPupilClient implements PupilClient {
       throw new Error("NoteId could not be found");
     }
 
-    return this.networkClient
-      .getTeacherNote({ note_id: parsedNoteId, sid_key: parsedKey })
+    return PupilApiClient.getTeacherNote({
+      note_id: parsedNoteId,
+      sid_key: parsedKey,
+    })
       .then((note) => {
-        const noteCamelCase = keysToCamelCase(note) as TeacherNoteCamelCase;
+        const noteCamelCase = keysToCamelCase(note);
 
         return {
           teacherNote: noteCamelCase,

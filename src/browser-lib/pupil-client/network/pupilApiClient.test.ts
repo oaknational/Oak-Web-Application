@@ -1,9 +1,9 @@
-import { CreateLessonAttemptPayload } from "../types";
+import { CreateLessonAttemptPayload } from "../../../node-lib/pupil-api/types";
 
-import { PupilNetworkClient } from "./network";
+import { PupilApiClient } from "./PupilApiClient";
 
 describe("PupilNetworkClient", () => {
-  const client = new PupilNetworkClient();
+  const client = PupilApiClient;
 
   beforeEach(() => {
     globalThis.fetch = jest.fn();

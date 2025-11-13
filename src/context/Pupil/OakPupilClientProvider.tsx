@@ -8,7 +8,7 @@ import {
   AddTeacherNote,
   GetTeacherNote,
   GetTeacherNoteIsEditable,
-} from "@/node-lib/pupil-api/client/client";
+} from "@/browser-lib/pupil-client/client";
 
 type ContextValue = {
   state: State;

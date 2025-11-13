@@ -7,7 +7,7 @@ import type {
   LogAttempt,
   PupilClient,
   State,
-} from "@/node-lib/pupil-api/client/client";
+} from "@/browser-lib/pupil-client/client";
 import { TeacherNote } from "@/node-lib/pupil-api/types";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 // import keysToCamelCase from "@/utils/snakeCaseConverter";

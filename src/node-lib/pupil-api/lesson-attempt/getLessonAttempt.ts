@@ -7,7 +7,7 @@ import errorReporter from "@/common-lib/error-reporter";
  *
  */
 
-async function getLessonAttempt(props: { attemptId: string }) {
+export const getLessonAttempt = async (props: { attemptId: string }) => {
   const { attemptId } = props;
   const firestoreClient = getPupilFirestore();
   const snapshot = await firestoreClient
@@ -43,6 +43,4 @@ async function getLessonAttempt(props: { attemptId: string }) {
   }
 
   return { attempts: attemptsById, empty: snapshot.empty };
-}
-
-export { getLessonAttempt };
+};

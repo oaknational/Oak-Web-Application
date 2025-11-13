@@ -3,11 +3,11 @@ import { render, renderHook, act, waitFor } from "@testing-library/react";
 
 import { OakPupilClientProvider } from "./OakPupilClientProvider";
 
-import { OakPupilClient } from "@/node-lib/pupil-api/client/client";
+import { OakPupilClient } from "@/browser-lib/pupil-client/client";
 import { useOakPupil } from "@/hooks/useOakPupil";
 import { mockGetAttempt } from "@/node-lib/pupil-api/__mocks__/MockPupilClient";
 
-jest.mock("@/node-lib/pupil-api/client/client", () => {
+jest.mock("@/browser-lib/pupil-client/client", () => {
   const mockClientState = { test: "state" };
 
   // Single instance object so we can access stored callback
