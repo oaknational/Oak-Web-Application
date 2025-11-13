@@ -8,7 +8,6 @@ import docx from "@/pages-helpers/curriculum/docx";
 import xlsxNationalCurriculum from "@/pages-helpers/curriculum/xlsx";
 import { zipFromFiles } from "@/utils/curriculum/zip";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
-import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import CMSClient from "@/node-lib/cms";
 import curriculumApi2023, {
   CurriculumOverviewMVData,
@@ -195,7 +194,7 @@ async function getData(opts: {
 
   const subject = curriculumPhaseOptions.subjects.find((subject) => {
     return subject.slug === subjectSlug;
-  }) as SubjectPhasePickerData["subjects"][number] | undefined;
+  });
 
   if (!subject) {
     return { notFound: true };
@@ -313,7 +312,7 @@ export default async function handler(
   ];
 
   const handlers = allHandlers.filter(({ type }) => {
-    return (types as string[]).includes(type);
+    return types.includes(type);
   });
 
   const data = await getData({

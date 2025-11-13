@@ -7,6 +7,10 @@ declare global {
   }
 }
 
-export default ({ children }: { children: Array<React.ReactElement> }) => {
+export default function Head({
+  children,
+}: {
+  children: Array<React.ReactElement>;
+}) {
   return <fake-head>{children}</fake-head>;
-};
+}
