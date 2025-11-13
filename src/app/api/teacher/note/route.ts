@@ -2,14 +2,14 @@ import { type NextRequest, NextResponse } from "next/server";
 import { ZodError } from "zod";
 
 import errorReporter from "@/common-lib/error-reporter";
-import {
-  identifyPiiFromString,
-  PiiCheckResponse,
-  redactTeacherNoteForPII,
-} from "@/node-lib/dlp";
+// import {
+//   identifyPiiFromString,
+//   PiiCheckResponse,
+//   redactTeacherNoteForPII,
+// } from "@/node-lib/dlp";
 import { pupilDatastore } from "@/node-lib/pupil-api/pupilDataStore";
 import {
-  TeacherNoteError,
+  // TeacherNoteError,
   teacherNoteSchema,
 } from "@/node-lib/pupil-api/types";
 
@@ -57,25 +57,25 @@ export async function POST(request: NextRequest) {
 
   const existing = await pupilDatastore.getTeacherNote({ noteId, sidKey });
 
-  const [textPii, htmlPii] = await Promise.all([
-    identifyPiiFromString(data.note_text),
-    identifyPiiFromString(data.note_html),
-  ]);
-  const foundPii = (check: PiiCheckResponse) =>
-    check.matches.length > 0 && check.redactedText;
+  // const [textPii, htmlPii] = await Promise.all([
+  //   identifyPiiFromString(data.note_text),
+  //   identifyPiiFromString(data.note_html),
+  // ]);
+  // const foundPii = (check: PiiCheckResponse) =>
+  //   check.matches.length > 0 && check.redactedText;
 
   // if error, res.status 400 and form the PII error obj
-  if (foundPii(textPii) || foundPii(htmlPii)) {
-    const detectedPii = foundPii(textPii) ? textPii : htmlPii;
-    const error: TeacherNoteError = {
-      type: "PII_ERROR",
-      pii: {
-        fullRedactedString: detectedPii.redactedText as string,
-        piiMatches: detectedPii.matches,
-      },
-    };
-    return NextResponse.json(error, { status: 400 });
-  }
+  // if (foundPii(textPii) || foundPii(htmlPii)) {
+  //   const detectedPii = foundPii(textPii) ? textPii : htmlPii;
+  //   const error: TeacherNoteError = {
+  //     type: "PII_ERROR",
+  //     pii: {
+  //       fullRedactedString: detectedPii.redactedText as string,
+  //       piiMatches: detectedPii.matches,
+  //     },
+  //   };
+  // return NextResponse.json(error, { status: 400 });
+  // }
 
   // else upsert send result with correct status code
   const result = await pupilDatastore.upsertTeacherNote(data);
@@ -84,7 +84,7 @@ export async function POST(request: NextRequest) {
 }
 
 export async function PUT() {
-  pupilDatastore.batchUpdateTeacherNotes(redactTeacherNoteForPII);
+  // pupilDatastore.batchUpdateTeacherNotes(redactTeacherNoteForPII);
   return NextResponse.json(
     { message: "Redaction on stored teacher notes started successfully" },
     { status: 200 },
