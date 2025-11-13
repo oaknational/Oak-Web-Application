@@ -1,3 +1,38 @@
+## [1.913.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.913.4...v1.913.5) (2025-11-13)
+
+
+### Bug Fixes
+
+* parseInt() -> Number.parseInt() ([95df0aa](https://github.com/oaknational/Oak-Web-Application/commit/95df0aa73df809b2b0c6f453adc3fa1e55227ff8))
+
+## [1.913.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.913.3...v1.913.4) (2025-11-13)
+
+
+### Bug Fixes
+
+* sonarcloud "object literal is unnecessary" fixes ([ff8d017](https://github.com/oaknational/Oak-Web-Application/commit/ff8d0174075c196bc306b1b38cb4aa828c4681c5))
+
+## [1.913.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.913.2...v1.913.3) (2025-11-13)
+
+
+### Bug Fixes
+
+* sonarcloud remove unexpected await ([749c45e](https://github.com/oaknational/Oak-Web-Application/commit/749c45edebd7b11678c50cc3975cd3c74f6a0e0b))
+
+## [1.913.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.913.1...v1.913.2) (2025-11-13)
+
+
+### Bug Fixes
+
+* sonarcloud "assertion is unnecessary" errors ([776e65c](https://github.com/oaknational/Oak-Web-Application/commit/776e65c5e030a2e77821bdc70f057420c8a7dcc9))
+
+## [1.913.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.913.0...v1.913.1) (2025-11-13)
+
+
+### Bug Fixes
+
+* sonarcloud fix useState into value + setter pair ([65fa7c7](https://github.com/oaknational/Oak-Web-Application/commit/65fa7c7e0176374086e31b082fff06e4ddc931db))
+
 # [1.913.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.912.2...v1.913.0) (2025-11-12)
 
 
