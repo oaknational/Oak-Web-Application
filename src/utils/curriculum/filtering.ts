@@ -225,7 +225,7 @@ export function filteringFromYears(
   yearData: YearData[number],
   filters: CurriculumFilters,
 ) {
-  const { childSubjects, subjectCategories, tiers } = yearData!;
+  const { childSubjects, subjectCategories, tiers } = yearData;
   const output = {
     childSubjects: childSubjects.length > 0 ? filters.childSubjects : undefined,
     subjectCategories:
@@ -516,7 +516,7 @@ export function getNumberOfSelectedUnits(
 
   Object.entries(yearData).forEach(([year, yearDataItem]) => {
     const units = yearDataItem.units;
-    const yearBasedFilters = filteringFromYears(yearDataItem!, filters);
+    const yearBasedFilters = filteringFromYears(yearDataItem, filters);
 
     if (units && filters.years.includes(year)) {
       const filteredUnits = units.filter((unit: Unit) => {

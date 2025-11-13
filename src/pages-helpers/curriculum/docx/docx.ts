@@ -90,7 +90,7 @@ export async function insertImages<
   const json = zip.exists(DOC_RELS)
     ? await zip.readJson(DOC_RELS)
     : xmlRootToJson(`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"></Relationships>`)!;
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"></Relationships>`);
 
   json.elements[0].elements = json.elements[0].elements ?? [];
 
@@ -607,7 +607,7 @@ export async function mapOverElements(
     return newRoot;
   };
 
-  return runner(root, fn)!;
+  return runner(root, fn);
 }
 
 export class JSZipCached {
@@ -624,7 +624,7 @@ export class JSZipCached {
 
   async readJson(filename: string) {
     if (this._cache[filename]) {
-      return this._cache[filename]!;
+      return this._cache[filename];
     }
     return this._zip
       .file(filename)!
@@ -632,7 +632,7 @@ export class JSZipCached {
       .then((res) => {
         const val = xmlRootToJson(res);
         this._cache[filename] = val;
-        return val!;
+        return val;
       });
   }
 

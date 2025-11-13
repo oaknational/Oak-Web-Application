@@ -176,7 +176,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
         subjectTitle,
         subjectSlug,
         yearGroupName: props.yearTitle,
-        yearGroupSlug: (props as UnitListItemProps).yearSlug,
+        yearGroupSlug: props.yearSlug,
         tierName: tier ?? null,
         examBoard: examBoardTitle,
         pathway: pathwayTitle,
