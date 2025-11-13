@@ -60,7 +60,7 @@ export class PupilNetworkClient {
     });
 
     if (!response.ok) {
-      throw errorReporter("Failed to log teacher note")(
+      errorReporter("Failed to log teacher note")(
         new Error(response.statusText),
         {
           severity: "warning",
