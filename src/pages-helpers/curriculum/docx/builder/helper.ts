@@ -117,7 +117,7 @@ export function generateGridCols(amount: number, sizes: number[] = []) {
   const width = Math.floor(
     (MAX_TABLE_WIDTH - alreadyAccountedFor) / (amount - sizes.length),
   );
-  return Array(amount)
+  return new Array(amount)
     .fill(true)
     .map((_, index) => {
       const colWidth = index < sizes.length ? sizes : width;

@@ -400,21 +400,19 @@ async function buildYear(
   const buildUnitBlock = (units: Unit[]) => {
     const rows = [];
     for (let i = 0; i < units.length; i += 3) {
-      const unitsColumns = Array(3)
-        .fill(true)
-        .map((_, colIdx) => {
-          const index = i + colIdx;
-          const unit = units[index];
-          if (unit) {
-            return buildYearColumn({
-              index: index,
-              title: unit.title,
-              unitOptions: unit.unit_options,
-            });
-          } else {
-            return buildEmpty(index);
-          }
-        });
+      const unitsColumns = new Array(3).fill(true).map((_, colIdx) => {
+        const index = i + colIdx;
+        const unit = units[index];
+        if (unit) {
+          return buildYearColumn({
+            index: index,
+            title: unit.title,
+            unitOptions: unit.unit_options,
+          });
+        } else {
+          return buildEmpty(index);
+        }
+      });
       rows.push(buildYearRow(unitsColumns.join("")));
     }
 

@@ -86,7 +86,7 @@ export default async function generate(
 
   const pageXml = safeXml`
     <root>
-      ${Array(2)
+      ${new Array(2)
         .fill(true)
         .map(() => {
           return safeXml`
@@ -117,7 +117,7 @@ export default async function generate(
           })}
         </w:r>
       </w:p>
-      ${Array(3)
+      ${new Array(3)
         .fill(true)
         .map(() => {
           return safeXml`
