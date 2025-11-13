@@ -2,7 +2,6 @@ import { join } from "path";
 
 import { OakFlex, OakP } from "@oaknational/oak-components";
 import styled from "styled-components";
-import { useSearchParams } from "next/navigation";
 
 import CurricUnitCard from "../CurricUnitCard";
 
@@ -14,9 +13,8 @@ import {
   YearData,
 } from "@/utils/curriculum/types";
 import { getSubjectCategoryMessage } from "@/utils/curriculum/formatting";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import { buildUnitOverviewAccessedAnalytics } from "@/utils/curriculum/analytics";
+import { createTeacherProgrammeSlug } from "@/utils/curriculum/slugs";
+import { resolveOakHref } from "@/common-lib/urls";
 
 const UnitList = styled("ol")`
   margin: 0;
@@ -55,7 +53,6 @@ export function CurricVisualiserUnitList({
 }: Readonly<CurricVisualiserUnitListProps>) {
   // const { track } = useAnalytics();
   // const { analyticsUseCase } = useAnalyticsPageProps();
-  const searchParams = useSearchParams();
 
   const onClick = (unit: Unit, isHighlighted: boolean) => {
     // TODO: [spike] analytics
@@ -72,10 +69,6 @@ export function CurricVisualiserUnitList({
 
   function getItems(unit: Unit, index: number) {
     const isHighlighted = isHighlightedUnit(unit, filters.threads);
-    const searchParamsStr = searchParams?.toString() ?? "";
-    const unitUrl =
-      join(basePath, unit.slug) +
-      `${!searchParamsStr ? "" : `?${searchParamsStr}`}`;
 
     return (
       <UnitListItem key={`${unit.slug}-${index}`}>
@@ -84,7 +77,11 @@ export function CurricVisualiserUnitList({
           key={unit.slug + index}
           index={index}
           isHighlighted={isHighlighted}
-          href={unitUrl}
+          href={resolveOakHref({
+            page: "lesson-index",
+            unitSlug: unit.slug,
+            programmeSlug: createTeacherProgrammeSlug(unit),
+          })}
           onClick={() => onClick(unit, isHighlighted)}
         />
       </UnitListItem>

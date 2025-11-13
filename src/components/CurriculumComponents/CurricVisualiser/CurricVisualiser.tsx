@@ -1,15 +1,9 @@
 import { useRef, useEffect, useMemo } from "react";
 import { OakBox } from "@oaknational/oak-components";
-import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import Alert from "../OakComponentsKitchen/Alert";
-import CurricUnitModal from "../CurricUnitModal";
 import { CurricVisualiserUnitList } from "../CurricVisualiserUnitList";
 import { CurricYearCard } from "../CurricYearCard";
-import CurricUnitModalContent from "../CurricUnitModalContent";
-import CurricModalErrorContent from "../CurricModalErrorContent/CurricModalErrorContent";
 
 import useMediaQuery from "@/hooks/useMediaQuery";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
@@ -26,7 +20,6 @@ import {
   getModes,
 } from "@/utils/curriculum/by-pathway";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
-import { findUnitOrOptionBySlug } from "@/utils/curriculum/units";
 import { generateQueryParams } from "@/utils/curriculum/queryParams";
 import { getSubjectPhaseSlug } from "@/components/TeacherComponents/helpers/getSubjectPhaseSlug";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
@@ -58,8 +51,6 @@ export default function CurricVisualiser({
   ks4Options,
   slugs,
 }: Readonly<CurricVisualiserProps>) {
-  const router = useRouter();
-  const searchParams = useSearchParams();
   const isMobile = useMediaQuery("mobile");
   const timetablingEnabled = true;
 
@@ -73,12 +64,6 @@ export default function CurricVisualiser({
     }
     return filters;
   }, [isMobile, filters, yearData]);
-
-  const { unit: unitData, unitOption: unitOptionData } = findUnitOrOptionBySlug(
-    yearData,
-    selectedUnitSlug,
-    filters,
-  );
 
   const shouldIncludeCore = isMobile || ks4OptionSlug !== "core";
   const unitsByYearSelector = applyFiltering(
@@ -98,8 +83,6 @@ export default function CurricVisualiser({
       (thread) => thread.slug === visualiserFilters.threads[0],
     );
   }, [threadOptions, visualiserFilters]);
-
-  const displayModal = !!selectedUnitSlug;
 
   const itemEls = useRef<(HTMLDivElement | null)[]>([]);
   /* Intersection observer to update year filter selection when
@@ -125,20 +108,6 @@ export default function CurricVisualiser({
       };
     }
   }, [setVisibleMobileYearRefID, yearData]);
-
-  const handleCloseModal = () => {
-    const searchParamsStr = searchParams?.toString() ?? "";
-    const href = `${basePath}${!searchParamsStr ? "" : `?${searchParamsStr}`}`;
-    // TODO: [spike] shallow routing
-    router.replace(href, { scroll: false });
-  };
-
-  const handleNavigateToUnit = (unitSlug: string) => {
-    const searchParamsStr = searchParams?.toString() ?? "";
-    const href = `${basePath}/${unitSlug}${!searchParamsStr ? "" : `?${searchParamsStr}`}`;
-    // TODO: [spike] shallow routing
-    router.replace(href, { scroll: false });
-  };
 
   const shouldDisplayCorePathway = getShouldDisplayCorePathway(ks4Options);
 
@@ -204,39 +173,6 @@ export default function CurricVisualiser({
           </OakBox>
         );
       })}
-
-      {/* <CurricUnitModal
-        open={displayModal}
-        onClose={handleCloseModal}
-        unitData={unitData}
-        unitOptionData={unitOptionData}
-        filters={visualiserFilters}
-        ks4OptionSlug={ks4OptionSlug}
-        disableFooter={Boolean(selectedUnitSlug && !unitData)}
-      >
-        {unitData && (
-          <CurricUnitModalContent
-            basePath={basePath}
-            unitData={unitData}
-            unitOptionData={unitOptionData}
-            yearData={yearData}
-            selectedThread={selectedThread?.slug ?? null}
-            onNavigateToUnit={handleNavigateToUnit}
-          />
-        )}
-        {selectedUnitSlug && !unitData && (
-          <OakBox
-            $pv={["inner-padding-xl", "inner-padding-xl5", "inner-padding-xl5"]}
-            $ph={["inner-padding-xl", "inner-padding-xl6", "inner-padding-xl6"]}
-          >
-            <CurricModalErrorContent
-              statusCode="404"
-              message="This unit does not exist."
-              additional="Close the modal to browse available units."
-            />
-          </OakBox>
-        )}
-      </CurricUnitModal> */}
     </OakBox>
   );
 }
