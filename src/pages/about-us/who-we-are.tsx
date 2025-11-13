@@ -268,28 +268,28 @@ export const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({ pageData }) => {
             text: "We get it. Time is tight, classes vary, and only teachers can know pupils best. That’s why our materials are flexible tools to adapt, not scripts to follow: a starting point that supports your expertise and style.",
             imageUrl:
               "https://res.cloudinary.com/oak-web-application/image/upload/v1734523721/homepage/teacher-reading-map_glwhyh.svg",
-            imageAlt: "test",
+            imageAlt: "",
           },
           {
             title: "Expert created and quality assured",
             text: "Created by subject and curriculum experts, our resources are informed by the best available evidence of what works, aligned to the national curriculum and tested by real teachers.",
             imageUrl:
               "https://res.cloudinary.com/oak-web-application/image/upload/v1734523721/homepage/teacher-reading-map_glwhyh.svg",
-            imageAlt: "test",
+            imageAlt: "",
           },
           {
             title: "Free, and always will be",
             text: "We’re funded by the Department for Education. No paywalls, package tiers, or hidden costs.",
             imageUrl:
               "https://res.cloudinary.com/oak-web-application/image/upload/v1734523721/homepage/teacher-reading-map_glwhyh.svg",
-            imageAlt: "test",
+            imageAlt: "",
           },
           {
             title: "Independent and optional",
             text: "Oak is by teachers, for teachers. Our board is publicly appointed, and our partners selected through an open process.",
             imageUrl:
               "https://res.cloudinary.com/oak-web-application/image/upload/v1734523721/homepage/teacher-reading-map_glwhyh.svg",
-            imageAlt: "test",
+            imageAlt: "",
           },
         ]}
       />

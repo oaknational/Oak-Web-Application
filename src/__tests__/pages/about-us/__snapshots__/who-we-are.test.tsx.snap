@@ -1981,7 +1981,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                         class="sc-fqkvVR hudrT"
                       >
                         <img
-                          alt="test"
+                          alt=""
                           class="sc-dcJsrY jRtmJB"
                           data-nimg="fill"
                           decoding="async"
@@ -2021,7 +2021,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                         class="sc-fqkvVR hudrT"
                       >
                         <img
-                          alt="test"
+                          alt=""
                           class="sc-dcJsrY jRtmJB"
                           data-nimg="fill"
                           decoding="async"
@@ -2061,7 +2061,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                         class="sc-fqkvVR hudrT"
                       >
                         <img
-                          alt="test"
+                          alt=""
                           class="sc-dcJsrY jRtmJB"
                           data-nimg="fill"
                           decoding="async"
@@ -2101,7 +2101,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                         class="sc-fqkvVR hudrT"
                       >
                         <img
-                          alt="test"
+                          alt=""
                           class="sc-dcJsrY jRtmJB"
                           data-nimg="fill"
                           decoding="async"
