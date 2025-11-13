@@ -49,7 +49,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
 }) => {
   const subject = curriculumPhaseOptions.subjects.find(
     (subject) => subject.slug === curriculumSelectionSlugs.subjectSlug,
-  ) as SubjectPhasePickerData["subjects"][number] | undefined;
+  );
   const phase = subject?.phases.find(
     (phase) => phase.slug === curriculumSelectionSlugs.phaseSlug,
   );
