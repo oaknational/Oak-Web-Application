@@ -124,9 +124,8 @@ export default async function generate(
     ks4Options,
   }: { data: CombinedCurriculumData; slugs: Slugs; ks4Options: Ks4Option[] },
 ) {
-  const formattedData = formatCurriculumUnitsData(
-    data,
-  ) as CurriculumUnitsFormattedData<CombinedCurriculumData["units"][number]>;
+  const formattedData = formatCurriculumUnitsData(data);
+
   const yearDataOrig = formatCurriculumUnitsData(data);
   const yearData = groupUnitsByPathway({
     modes: getModes(true, ks4Options),
@@ -600,7 +599,7 @@ async function buildYear(
           `}
       <w:p>
         ${wrapInLinkTo(
-          links.interactiveSequence!,
+          links.interactiveSequence,
           safeXml`
             <XML_FRAGMENT>
               <w:r>

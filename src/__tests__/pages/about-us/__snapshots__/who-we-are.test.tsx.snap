@@ -2412,7 +2412,9 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
               </svg>
             </svg>
           </div>
-          <nav>
+          <nav
+            id="site-footer"
+          >
             <div
               class="sc-fqkvVR sc-kAyceB sc-jEACwC cRrOSy jOjKzU"
             >
@@ -3772,7 +3774,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 </div>
               </div>
               <div
-                class="sc-fqkvVR jqqmXN sc-1a5c62b9-0 fQEIan"
+                class="sc-fqkvVR jqqmXN sc-8abbbda2-0 eawWFm"
                 data-percy-hide="contents"
               >
                 <img
