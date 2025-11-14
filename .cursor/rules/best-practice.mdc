@@ -1,0 +1,5 @@
+---
+alwaysApply: true
+---
+
+Always apply all of the rules in .agent/RULES.md to the codebase.
