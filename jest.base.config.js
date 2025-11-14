@@ -30,6 +30,8 @@ module.exports = {
     ".storybook/storybook.*.test.js$",
     ".netlify/*",
     ".yalc/*",
+    "reference/*",
+    ".agent/*",
   ],
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/src/$1",
