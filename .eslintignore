@@ -11,3 +11,7 @@ src/node-lib/sanity-graphql/generated
 src/node-lib/educator-api/generated
 
 !.github
+
+# Reference files
+.agent
+reference

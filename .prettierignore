@@ -13,3 +13,7 @@ storybook-static
 
 # Test coverage
 coverage
+
+# Reference files
+.agent
+reference

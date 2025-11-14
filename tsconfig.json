@@ -39,5 +39,11 @@
     "src/components/GenericPagesComponents/HopePageTabButtonLabelWithScreenReaderTitle",
     ".next/types/**/*.ts"
   ],
-  "exclude": ["node_modules", "netlify/edge-functions", "e2e_tests"]
+  "exclude": [
+    "node_modules",
+    "netlify/edge-functions",
+    "e2e_tests",
+    "reference",
+    ".agent"
+  ]
 }
