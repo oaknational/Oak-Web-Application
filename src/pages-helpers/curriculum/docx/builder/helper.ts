@@ -82,9 +82,9 @@ export function unitsByYear(units: Unit[]) {
     if (
       output[year] &&
       // Check if unit is not already within output
-      !output[year]!.find((yearUnit) => yearUnit.slug === unit.slug)
+      !output[year].find((yearUnit) => yearUnit.slug === unit.slug)
     ) {
-      output[year]!.push({
+      output[year].push({
         ...unit,
         order: output[year].length,
       });

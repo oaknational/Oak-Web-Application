@@ -93,7 +93,7 @@ export function presentAtKeyStageSlugs(
         keystageYearMappings[keyStageSlug].includes(value),
       );
     if (isValid && data[key].length > 0) {
-      out.push(keyStageSlug as KeyStageSlug);
+      out.push(keyStageSlug);
     }
   }
   return out;

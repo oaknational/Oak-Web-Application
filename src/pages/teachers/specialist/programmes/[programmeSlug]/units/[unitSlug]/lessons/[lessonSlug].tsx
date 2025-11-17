@@ -31,7 +31,8 @@ const SpecialistLessonOverviewPage: NextPage<
           title: `Lesson: ${lessonTitle} | ${developmentStageTitle.toUpperCase()} ${subjectTitle}`,
           description: "Overview of lesson",
         }),
-        ...{ noFollow: true, noIndex: true },
+        noFollow: true,
+        noIndex: true,
       }}
     >
       <SpecialistLesson lesson={{ ...curriculumData, isCanonical: false }} />

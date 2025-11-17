@@ -15,7 +15,7 @@ export async function zipToSimpleObject(
   opts: zipToSimpleObjectOpts = {},
 ) {
   const output: Record<string, Buffer | string | Element | ElementCompact> = {};
-  for await (const file of Object.values(zip.files)) {
+  for (const file of Object.values(zip.files)) {
     const buffer = await file.async("nodebuffer");
     if (NodeBuffer.isUtf8(buffer)) {
       const content = buffer.toString();
