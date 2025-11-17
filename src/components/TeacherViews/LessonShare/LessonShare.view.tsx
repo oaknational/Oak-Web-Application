@@ -182,10 +182,7 @@ export function LessonShare(props: LessonShareProps) {
 
   return (
     <OakBox $ph={["spacing-16", null]} $background={"grey20"}>
-      <OakMaxWidth
-        inner-padding-xl8
-        $maxWidth={["spacing-480", "spacing-960", "spacing-1280"]}
-      >
+      <OakMaxWidth $maxWidth={["spacing-480", "spacing-960", "spacing-1280"]}>
         <OakBox $mb={"spacing-32"} $mt={"spacing-24"}>
           <Breadcrumbs
             breadcrumbs={
