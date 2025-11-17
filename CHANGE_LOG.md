@@ -1,3 +1,11 @@
+## [1.914.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.914.0...v1.914.1) (2025-11-17)
+
+
+### Bug Fixes
+
+* add back in subjectTitle/phaseSlug and make getSingleton typesafe ([81204bf](https://github.com/oaknational/Oak-Web-Application/commit/81204bf726ee743b8bca61c96a6ddd0a678dbb72))
+* remove old props not longer required hidden from ts by spread operator ([1c34180](https://github.com/oaknational/Oak-Web-Application/commit/1c341805084a8371164bcc28cf61624f9b6475b0))
+
 # [1.914.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.913.8...v1.914.0) (2025-11-14)
 
 
