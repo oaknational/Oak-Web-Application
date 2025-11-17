@@ -56,7 +56,6 @@ const CorrectAnswerSection = (props: CorectAnswerSectionProps) => {
                   )}
                   imageURL={imageURL}
                   imageAlt={"Image for option " + (index + 1)}
-                  aria-role="listItem"
                 />
               </MathJaxWrap>
             );

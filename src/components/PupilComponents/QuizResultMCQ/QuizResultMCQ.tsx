@@ -49,7 +49,6 @@ export const QuizResultMCQ = ({
           imageURL={imageURL}
           imageAlt={"Image for option " + (index + 1)}
           feedbackState={feedbackState}
-          aria-role="listItem"
         />
       </MathJaxWrap>
     );
