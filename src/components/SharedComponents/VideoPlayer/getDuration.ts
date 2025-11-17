@@ -7,7 +7,7 @@ import MuxPlayerElement from "@mux/mux-player";
  */
 const getDuration = (ref: RefObject<MuxPlayerElement>) => {
   const duration = ref.current?.duration;
-  if (typeof duration === "number" && !isNaN(duration)) {
+  if (typeof duration === "number" && !Number.isNaN(duration)) {
     return Number(duration.toFixed(2));
   }
 
