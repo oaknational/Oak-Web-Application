@@ -1,4 +1,4 @@
-const pc = (size: number, char: string) => Array(size).fill(char).join("");
+const pc = (size: number, char: string) => new Array(size).fill(char).join("");
 
 export function buildBubble(lines: string[]) {
   const maxLength = Math.max(...lines.map((line) => line.length));
@@ -15,7 +15,7 @@ export function buildBubble(lines: string[]) {
         "|",
       ].join("");
     }),
-    "`-" + Array(size).fill("-").join("") + "-'",
+    "`-" + new Array(size).fill("-").join("") + "-'",
   ];
   return bubble.join("\n");
 }

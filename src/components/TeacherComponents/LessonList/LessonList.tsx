@@ -97,22 +97,20 @@ const LessonList: FC<LessonListProps> = (props) => {
         {expiringBanner}
       </OakFlex>
       {currentPageItems?.length ? (
-        <>
-          <OakUL aria-label="A list of lessons" $reset>
-            {currentPageItems.map((item, index) => (
-              <LessonListItem
-                key={`${item.lessonSlug}-${index}`}
-                {...props}
-                {...item}
-                unitTitle={unitTitle}
-                hideTopHeading
-                index={index + pageSize * (currentPage - 1)}
-                firstItemRef={index === 0 ? firstItemRef : null}
-                onClick={onClick}
-              />
-            ))}
-          </OakUL>
-        </>
+        <OakUL aria-label="A list of lessons" $reset>
+          {currentPageItems.map((item, index) => (
+            <LessonListItem
+              key={`${item.lessonSlug}-${index}`}
+              {...props}
+              {...item}
+              unitTitle={unitTitle}
+              hideTopHeading
+              index={index + pageSize * (currentPage - 1)}
+              firstItemRef={index === 0 ? firstItemRef : null}
+              onClick={onClick}
+            />
+          ))}
+        </OakUL>
       ) : null}
       {lessonCount > LESSONS_PER_PAGE ? (
         <OakBox

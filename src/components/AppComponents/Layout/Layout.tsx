@@ -71,46 +71,40 @@ const Layout: FC<LayoutProps> = (props) => {
   const { isPreview } = useRouter();
 
   return (
-    <>
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <Seo {...seoProps} />
-        <Head>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <OrganizationJsonLd />
+    <OakThemeProvider theme={oakDefaultTheme}>
+      <Seo {...seoProps} />
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <OrganizationJsonLd />
+      <OakFlex $flexDirection="column" $flexGrow={1} $background={$background}>
+        <OakBox
+          $position={"absolute"}
+          $height={"spacing-80"}
+          $width={"spacing-64"}
+          $zIndex={"in-front"}
+          $top={"spacing-92"}
+          $left={"spacing-24"}
+        >
+          <SkipLink href={props.skipLinkHref ?? "#main"}>
+            Skip to content
+          </SkipLink>
+        </OakBox>
+        {banner}
+        <Header breadcrumbs={breadcrumbs} headerCta={props.headerCta} />
         <OakFlex
           $flexDirection="column"
           $flexGrow={1}
-          $background={$background}
+          $width="100%"
+          as="main"
+          id="main"
         >
-          <OakBox
-            $position={"absolute"}
-            $height={"spacing-80"}
-            $width={"spacing-64"}
-            $zIndex={"in-front"}
-            $top={"spacing-92"}
-            $left={"spacing-24"}
-          >
-            <SkipLink href={props.skipLinkHref ?? "#main"}>
-              Skip to content
-            </SkipLink>
-          </OakBox>
-          {banner}
-          <Header breadcrumbs={breadcrumbs} headerCta={props.headerCta} />
-          <OakFlex
-            $flexDirection="column"
-            $flexGrow={1}
-            $width="100%"
-            as="main"
-            id="main"
-          >
-            {children}
-          </OakFlex>
-          <Footer />
-          {isPreview && <LayoutPreviewControls />}
+          {children}
         </OakFlex>
-      </OakThemeProvider>
-    </>
+        <Footer />
+        {isPreview && <LayoutPreviewControls />}
+      </OakFlex>
+    </OakThemeProvider>
   );
 };
 

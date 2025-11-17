@@ -964,18 +964,16 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           </TruncatedFlex>
                         )}
                         {selectedPhase && !showKS4OptionError && (
-                          <>
-                            <OakBox
-                              $textOverflow={"ellipsis"}
-                              $whiteSpace={"nowrap"}
-                              $overflowX={"hidden"}
-                            >
-                              <OakSpan>{selectedPhase.title}</OakSpan>
-                              {selectedKS4Option && (
-                                <OakSpan>, {selectedKS4Option.title}</OakSpan>
-                              )}
-                            </OakBox>
-                          </>
+                          <OakBox
+                            $textOverflow={"ellipsis"}
+                            $whiteSpace={"nowrap"}
+                            $overflowX={"hidden"}
+                          >
+                            <OakSpan>{selectedPhase.title}</OakSpan>
+                            {selectedKS4Option && (
+                              <OakSpan>, {selectedKS4Option.title}</OakSpan>
+                            )}
+                          </OakBox>
                         )}
                         {!selectedPhase &&
                           !showPhaseError &&

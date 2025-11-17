@@ -54,7 +54,7 @@ export function CurricFiltersTiers({
           <OakRadioGroup
             name={"tiers" + id}
             onChange={(e) => setSingleInFilter("tiers", e.target.value)}
-            value={filters.tiers[0]!}
+            value={filters.tiers[0]}
             $flexDirection="row"
             $flexWrap="wrap"
             $gap="spacing-8"

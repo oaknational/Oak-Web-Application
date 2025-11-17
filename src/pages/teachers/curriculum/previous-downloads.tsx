@@ -74,7 +74,7 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
 
   for (const category of Object.keys(categoryDocuments) as DownloadCategory[]) {
     if (category == activeTab) {
-      categoryDocuments[category as DownloadCategory]?.forEach((document) => {
+      categoryDocuments[category]?.forEach((document) => {
         downloads.push({
           label: document.subject,
           url: `${LEGACY_DOWNLOADS_API_URL}/api/download-asset?type=curriculum-map&extension=pdf&id=${document.slug}`,

@@ -189,18 +189,16 @@ export default function CurricUnitModalContent({
                       );
                     })}
                     {/* Empty tiles for correct flex wrapping */}
-                    {Array(2)
-                      .fill(true)
-                      .map((item, index) => {
-                        return (
-                          <OakFlex
-                            key={`unit-options-${index}-${item}-item`}
-                            $width={"spacing-240"}
-                            $flexGrow={1}
-                            $position={"relative"}
-                          />
-                        );
-                      })}
+                    {new Array(2).fill(true).map((item, index) => {
+                      return (
+                        <OakFlex
+                          key={`unit-options-${index}-${item}-item`}
+                          $width={"spacing-240"}
+                          $flexGrow={1}
+                          $position={"relative"}
+                        />
+                      );
+                    })}
                   </OakFlex>
                 </OakBox>
               )}

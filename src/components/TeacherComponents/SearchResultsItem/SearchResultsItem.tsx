@@ -92,7 +92,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
 
   const isPathwaySearchHit = pathways.length > 1;
   const searchHitDescription = description || pupilLessonOutcome || "";
-  const [isToggleOpen, setToggleOpen] = useState<boolean>(false);
+  const [isToggleOpen, setIsToggleOpen] = useState<boolean>(false);
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
   const backgroundColour: OakColorToken =
@@ -199,7 +199,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
         as="button"
         onClick={() => {
           const toggleOpen = !isToggleOpen;
-          setToggleOpen(toggleOpen);
+          setIsToggleOpen(toggleOpen);
           onToggleClick?.({ ...props, isToggleOpen: toggleOpen });
         }}
         aria-label={pathwaysButtonAriaLabel}
