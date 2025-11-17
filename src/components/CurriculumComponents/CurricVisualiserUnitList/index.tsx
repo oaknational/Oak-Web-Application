@@ -113,18 +113,16 @@ export function CurricVisualiserUnitList({
         )}
         {units.map(getItems)}
         {/* Empty tiles for correct flex wrapping */}
-        {Array(3)
-          .fill(true)
-          .map((item, index) => {
-            return (
-              <OakFlex
-                key={`unit-list-item-${item}-${index}`}
-                $width={"all-spacing-19"}
-                $flexGrow={1}
-                $position={"relative"}
-              />
-            );
-          })}
+        {new Array(3).fill(true).map((item, index) => {
+          return (
+            <OakFlex
+              key={`unit-list-item-${item}-${index}`}
+              $width={"all-spacing-19"}
+              $flexGrow={1}
+              $position={"relative"}
+            />
+          );
+        })}
       </UnitList>
     </OakFlex>
   );

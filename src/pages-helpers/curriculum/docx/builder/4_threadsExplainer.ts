@@ -179,21 +179,19 @@ export default async function generate(
           <w:t>${cdata(whatAreThreadsContent)}</w:t>
         </w:r>
       </w:p>
-      ${Array(3)
-        .fill(true)
-        .map(() => {
-          return safeXml`
-            <w:p>
-              <w:r>
-                <w:rPr>
-                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-                  <w:sz w:val="24" />
-                </w:rPr>
-                <w:t />
-              </w:r>
-            </w:p>
-          `;
-        })}
+      ${new Array(3).fill(true).map(() => {
+        return safeXml`
+          <w:p>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                <w:sz w:val="24" />
+              </w:rPr>
+              <w:t />
+            </w:r>
+          </w:p>
+        `;
+      })}
       <w:p>
         <w:pPr>
           <w:pStyle w:val="Heading3" />
@@ -434,11 +432,9 @@ export default async function generate(
         )}
       </w:p>
 
-      ${Array(6)
-        .fill(true)
-        .map(() => {
-          return safeXml`<w:p />`;
-        })}
+      ${new Array(6).fill(true).map(() => {
+        return safeXml`<w:p />`;
+      })}
       <w:p>
         <w:r>
           ${createImage(images.threadScreenshot, {
@@ -454,11 +450,9 @@ export default async function generate(
         </w:r>
       </w:p>
 
-      ${Array(4)
-        .fill(true)
-        .map(() => {
-          return safeXml`<w:p />`;
-        })}
+      ${new Array(4).fill(true).map(() => {
+        return safeXml`<w:p />`;
+      })}
       <w:p>
         <w:pPr>
           <w:pStyle w:val="Heading4" />
