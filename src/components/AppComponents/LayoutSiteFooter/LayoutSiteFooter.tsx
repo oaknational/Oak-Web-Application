@@ -182,7 +182,7 @@ const FooterSectionLinks: FC<FooterSection> = ({ title, links }) => {
         {title}
       </OakHeading>
       <OakTypography $color={"black"} $font={"body-2"}>
-        <ul role="list">
+        <ul>
           {links.map((link) => (
             <OakLI key={link.text} $mt="space-between-xs">
               <FooterLink {...link} />
