@@ -38,15 +38,15 @@ const NewsletterFormWrap: FC<NewsletterFormWrapProps> = (props) => {
       {anchorTargetId && <AnchorTarget id={anchorTargetId} />}
       <OakGrid>
         <OakGridArea $colSpan={[12, desktopColSpan]}>
-          <CardTitle tag="h2" icon="magic-carpet" iconSize={"all-spacing-10"}>
+          <CardTitle tag="h2" icon="magic-carpet" iconSize={"spacing-56"}>
             Don’t miss out
           </CardTitle>
           <OakP
             $mr={[
-              "space-between-none",
-              desktopColSpan === 6 ? "space-between-m" : "space-between-none",
+              "spacing-0",
+              desktopColSpan === 6 ? "spacing-24" : "spacing-0",
             ]}
-            $mb="space-between-m"
+            $mb="spacing-24"
             color={"black"}
             id={descriptionId}
           >
@@ -58,7 +58,7 @@ const NewsletterFormWrap: FC<NewsletterFormWrapProps> = (props) => {
             .
           </OakP>
         </OakGridArea>
-        <OakGridArea $colSpan={[12, desktopColSpan]} $mt={"space-between-xs"}>
+        <OakGridArea $colSpan={[12, desktopColSpan]} $mt={"spacing-12"}>
           <NewsletterForm descriptionId={descriptionId} id={id} {...props} />
         </OakGridArea>
       </OakGrid>

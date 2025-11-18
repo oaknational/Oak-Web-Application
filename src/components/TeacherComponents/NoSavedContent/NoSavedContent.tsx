@@ -10,18 +10,18 @@ import { resolveOakHref } from "@/common-lib/urls";
 
 const NoSavedContent = () => {
   return (
-    <OakBox $ph={["inner-padding-l", "inner-padding-xl4"]}>
+    <OakBox $ph={["spacing-20", "spacing-48"]}>
       <OakFlex
         $width="100%"
         $background="grey20"
         $borderRadius="border-radius-m2"
         $borderStyle="dashed"
         $borderColor="grey50"
-        $height={["all-spacing-19", "all-spacing-20"]}
+        $height={["spacing-240", "spacing-360"]}
         $justifyContent="center"
         $alignItems="center"
         $flexDirection="column"
-        $gap={"space-between-s"}
+        $gap={"spacing-16"}
       >
         <OakHeading tag="h2" $font="heading-6">
           No units yet

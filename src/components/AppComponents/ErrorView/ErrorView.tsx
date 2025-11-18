@@ -51,21 +51,21 @@ const ErrorView: FC<ErrorViewProps> = (props) => {
             {statusCode ? (
               <ErrorHeading tag="h1">{statusCode}</ErrorHeading>
             ) : (
-              <OakHeading $font={"heading-5"} $mb="space-between-xs" tag="h1">
+              <OakHeading $font={"heading-5"} $mb="spacing-12" tag="h1">
                 An error occurred
               </OakHeading>
             )}
           </Flex>
 
           <OakHeading
-            $mb="space-between-l"
+            $mb="spacing-48"
             $font={["heading-5", "heading-4"]}
             tag={"h2"}
           >
             Whoops! It looks like you have fallen too far from the tree.
           </OakHeading>
 
-          <OakP $mb="space-between-m">Let's get you back to browsing</OakP>
+          <OakP $mb="spacing-24">Let's get you back to browsing</OakP>
           <ButtonGroup>
             {onBackClick && (
               <Button

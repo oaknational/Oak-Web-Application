@@ -107,16 +107,16 @@ const PostListItem: FC<PostListItemProps> = (props) => {
       $position={"relative"}
       $flexDirection={["column", "row"]}
       $alignItems={"center"}
-      $pa={"inner-padding-none"}
+      $pa={"spacing-0"}
     >
       {withImage && (
         <OakBox
           $display={imageDisplay}
           $position={"relative"}
-          $minWidth={"all-spacing-19"}
-          $maxWidth={["all-spacing-17", "all-spacing-0"]}
-          $mr={["space-between-none", "space-between-m2"]}
-          $mb={["space-between-m2", "space-between-none"]}
+          $minWidth={"spacing-240"}
+          $maxWidth={["spacing-160", "spacing-0"]}
+          $mr={["spacing-0", "spacing-32"]}
+          $mb={["spacing-32", "spacing-0"]}
         >
           <BoxBorders
             $zIndex={"in-front"}
@@ -124,7 +124,7 @@ const PostListItem: FC<PostListItemProps> = (props) => {
               props.contentType === "webinar" ? undefined : "bottomRight"
             }
           />
-          <OakBox $ma={"space-between-sssx"}>
+          <OakBox $ma={"spacing-4"}>
             <AspectRatio ratio={"3:2"}>
               <PostListItemImage {...props} />
             </AspectRatio>
@@ -147,14 +147,11 @@ const PostListItem: FC<PostListItemProps> = (props) => {
           >
             {category.title}
           </OwaLink>
-          <OakP
-            $font={"body-3"}
-            $mt={["space-between-ssx", "space-between-none"]}
-          >
+          <OakP $font={"body-3"} $mt={["spacing-8", "spacing-0"]}>
             {blogDate}
           </OakP>
         </OakFlex>
-        <OakHeading tag={titleTag} $font={"heading-5"} $mt="space-between-ssx">
+        <OakHeading tag={titleTag} $font={"heading-5"} $mt="spacing-8">
           <OwaLink
             {...primaryTargetProps}
             {...getItemLinkProps(props)}
@@ -167,8 +164,8 @@ const PostListItem: FC<PostListItemProps> = (props) => {
         </OakHeading>
         <OakP
           $font={"body-3"}
-          $mt={"space-between-ssx"}
-          $mb={["space-between-ssx", "space-between-none"]}
+          $mt={"spacing-8"}
+          $mb={["spacing-8", "spacing-0"]}
         >
           <LineClamp lines={2}>{summary}</LineClamp>
         </OakP>

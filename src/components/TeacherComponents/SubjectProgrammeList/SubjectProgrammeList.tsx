@@ -19,11 +19,11 @@ const ProgrammeList: FC<ProgrammeListProps> = ({ programmes, onClick }) => {
   const colSpan = programmes.length === 2 ? 6 : 4;
 
   return (
-    <OakGrid $cg={"all-spacing-4"}>
+    <OakGrid $cg={"spacing-16"}>
       {programmes.map((programme) => {
         return (
           <OakGridArea
-            $mb={"space-between-s"}
+            $mb={"spacing-16"}
             $colSpan={[12, 12, colSpan]}
             key={programme.programmeSlug}
           >

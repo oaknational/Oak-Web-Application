@@ -24,11 +24,11 @@ const AppHeaderBurgerburgerMenuSections: FC<
   const { burgerMenuSections } = props;
 
   return (
-    <OakFlex $flexDirection="column" $gap="all-spacing-7">
+    <OakFlex $flexDirection="column" $gap="spacing-32">
       {burgerMenuSections.map((section, i) => (
         <OakFlex
           $flexDirection="column"
-          $gap="all-spacing-3"
+          $gap="spacing-12"
           data-testid="menu-section"
           key={`menu-item-${i}`}
         >
@@ -40,7 +40,7 @@ const AppHeaderBurgerburgerMenuSections: FC<
             role="list"
             $display="flex"
             $flexDirection="column"
-            $gap="all-spacing-1"
+            $gap="spacing-4"
           >
             {section.links.map((link, i) => (
               <OakLI $listStyle="none" key={`${link.text}-${i}`}>

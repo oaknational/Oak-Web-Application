@@ -20,7 +20,7 @@ export const QuizQuestionsMatchAnswers = ({
   return (
     <OakFlex
       $flexDirection={"column"}
-      $gap="all-spacing-1"
+      $gap="spacing-4"
       $alignItems={"start"}
       role="list"
       $width={"100%"}
@@ -32,7 +32,7 @@ export const QuizQuestionsMatchAnswers = ({
           matchOption &&
           correctChoice && (
             <OakFlex
-              $ph="inner-padding-xs"
+              $ph="spacing-8"
               $borderRadius="border-radius-m2"
               role="listitem"
               key={`q-${questionNumber}-answer${i}`}
@@ -44,10 +44,10 @@ export const QuizQuestionsMatchAnswers = ({
                 {removeMarkdown(correctChoice.text)}
               </VisuallyHidden>
               <OakIcon
-                $mr={"space-between-ssx"}
+                $mr={"spacing-8"}
                 iconName={"tick"}
-                $width={"all-spacing-6"}
-                $height={"all-spacing-6"}
+                $width={"spacing-24"}
+                $height={"spacing-24"}
               />
               <OakFlex
                 $flexWrap={"wrap"}
@@ -61,7 +61,7 @@ export const QuizQuestionsMatchAnswers = ({
                   <OakCodeRenderer
                     string={removeMarkdown(matchOption.text)}
                     $font="code-3"
-                    $mt={"space-between-none"}
+                    $mt={"spacing-0"}
                   />
                   <OakSpan>{" -"}&nbsp;</OakSpan>
                 </OakP>
@@ -72,7 +72,7 @@ export const QuizQuestionsMatchAnswers = ({
                   <OakCodeRenderer
                     string={removeMarkdown(correctChoice.text)}
                     $font="code-3"
-                    $mt={"space-between-none"}
+                    $mt={"spacing-0"}
                   />
                 </OakP>
               </OakFlex>

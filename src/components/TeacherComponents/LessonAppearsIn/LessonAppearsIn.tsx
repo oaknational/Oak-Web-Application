@@ -51,21 +51,17 @@ export function LessonAppearsIn(props: Readonly<LessonAppearsInProps>) {
             <OakFlex
               key={`LessonAppearsIn-s-${subjectSlug}-u-${unitSlug}`}
               $flexDirection={["column"]}
-              $mt="space-between-l"
+              $mt="spacing-48"
             >
-              <OakHeading tag={unitHeadingTag} $mb="space-between-s">
+              <OakHeading tag={unitHeadingTag} $mb="spacing-16">
                 <OakFlex $flexDirection={["row"]} $alignItems="baseline">
-                  <TagFunctional
-                    text="Unit"
-                    color="grey"
-                    $mr="space-between-xs"
-                  />
+                  <TagFunctional text="Unit" color="grey" $mr="spacing-12" />
                   <OakSpan $font="heading-light-6">
                     {subjectTitle} / {unitTitle}
                   </OakSpan>
                 </OakFlex>
               </OakHeading>
-              <OakGrid $rg={"all-spacing-4"} $cg={"all-spacing-4"}>
+              <OakGrid $rg={"spacing-16"} $cg={"spacing-16"}>
                 {examBoards.map((examBoard, index) => {
                   const tagColors: TagColor[] = ["aqua", "pink", "lemon"];
                   const tagColor =

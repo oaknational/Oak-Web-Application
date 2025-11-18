@@ -24,15 +24,15 @@ export function WhoAreWeBreakout({
       <OakFlex
         $flexGrow={1}
         $background={"mint110"}
-        $minWidth={["100%", "all-spacing-22", "all-spacing-22"]}
+        $minWidth={["100%", "spacing-640", "spacing-640"]}
         $aspectRatio={"4/3"}
       >
         <OakImage $objectFit={"cover"} alt={imageAlt} src={imageUrl} />
       </OakFlex>
       <OakFlex
         $flexShrink={1}
-        $ph={["inner-padding-m", "inner-padding-xl8", "inner-padding-xl8"]}
-        $pv={["inner-padding-xl5", "inner-padding-xl3", "inner-padding-xl3"]}
+        $ph={["spacing-16", "spacing-80", "spacing-80"]}
+        $pv={["spacing-56", "spacing-40", "spacing-40"]}
         $alignItems={"center"}
       >
         <OakP $font={["heading-light-7", "heading-light-7", "heading-light-5"]}>

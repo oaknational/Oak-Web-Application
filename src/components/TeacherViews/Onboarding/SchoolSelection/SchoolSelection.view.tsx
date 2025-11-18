@@ -108,7 +108,7 @@ export const SchoolSelectionView = () => {
         canSubmit={!formState.isSubmitted || formState.isValid}
       >
         {activeView === "school-picker" && (
-          <OakBox $mt="space-between-m">
+          <OakBox $mt="spacing-24">
             <FieldError id="onboarding-school-error">
               {"school" in formState.errors && formState.errors.school?.message}
             </FieldError>
@@ -127,7 +127,7 @@ export const SchoolSelectionView = () => {
               required
             />
             <OakFlex
-              $mt={"space-between-s"}
+              $mt={"spacing-16"}
               $alignItems={"center"}
               $font={"body-2-bold"}
               $width={"100%"}

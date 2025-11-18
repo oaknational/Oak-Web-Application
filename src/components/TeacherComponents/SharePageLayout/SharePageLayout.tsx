@@ -54,13 +54,13 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
       <OakFlex
         $alignItems={"flex-start"}
         $flexDirection={"column"}
-        $gap={["all-spacing-6", "all-spacing-7"]}
+        $gap={["spacing-24", "spacing-32"]}
       >
         <OakHeading tag="h1" $font={["heading-5", "heading-4"]}>
           {props.header}
         </OakHeading>
         {props.isLoading ? (
-          <OakBox $minHeight="all-spacing-21">
+          <OakBox $minHeight="spacing-480">
             <DelayedLoadingSpinner $delay={300} data-testid="loading" />
           </OakBox>
         ) : (
@@ -68,15 +68,15 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
             $justifyContent="space-between"
             $width="100%"
             $flexDirection={["column", "column", "row"]}
-            $gap="all-spacing-9"
+            $gap="spacing-48"
             $alignItems={"flex-start"}
             $position={"relative"}
           >
             <OakFlex
-              $pa={"inner-padding-none"}
+              $pa={"spacing-0"}
               $ba={"border-solid-none"}
               $flexDirection="column"
-              $gap={"space-between-s"}
+              $gap={"spacing-16"}
               $width={"100%"}
             >
               <FieldError id={"downloads-error"} withoutMarginBottom>
@@ -87,10 +87,10 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
 
             <OakFlex
               $flexDirection="column"
-              $gap="space-between-s"
-              $maxWidth="all-spacing-21"
+              $gap="spacing-16"
+              $maxWidth="spacing-480"
               $position={"sticky"}
-              $top={"all-spacing-10"}
+              $top={"spacing-56"}
             >
               {props.showNoResources ? (
                 <NoResourcesToShare />
@@ -120,14 +120,14 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
                       <OakIcon
                         iconName="content-guidance"
                         $colorFilter={"red"}
-                        $width={"all-spacing-6"}
-                        $height={"all-spacing-6"}
+                        $width={"spacing-24"}
+                        $height={"spacing-24"}
                       />
                       <OakFlex $flexDirection={"column"}>
-                        <OakP $ml="space-between-sssx" $color={"red"}>
+                        <OakP $ml="spacing-4" $color={"red"}>
                           To complete correct the following:
                         </OakP>
-                        <OakUL $mr="space-between-m">
+                        <OakUL $mr="spacing-24">
                           {getFormErrorMessages(props.errors).map((err) => {
                             return (
                               <OakLI $color={"red"} key={err}>
@@ -142,9 +142,9 @@ const SharePageLayout: FC<SharePageLayoutProps> = (props) => {
 
                   {!props.showTermsAgreement && (
                     <OakBox
-                      $pb={"inner-padding-m"}
-                      $mt={"space-between-m"}
-                      $maxWidth={"all-spacing-22"}
+                      $pb={"spacing-16"}
+                      $mt={"spacing-24"}
+                      $maxWidth={"spacing-640"}
                       data-testid="copyright-container"
                     >
                       <CopyrightNotice

@@ -16,9 +16,9 @@ export const PupilExpiredView = ({ lessonTitle }: { lessonTitle: string }) => {
       $flexDirection={"column"}
     >
       <OakFlex
-        $pa={["inner-padding-none", "inner-padding-xl"]}
+        $pa={["spacing-0", "spacing-24"]}
         $justifyContent={"center"}
-        $gap={["space-between-m"]}
+        $gap={["spacing-24"]}
         $alignItems={["center", "flex-start"]}
         $flexDirection={"column"}
         $background={"bg-decorative1-very-subdued"}
@@ -30,7 +30,7 @@ export const PupilExpiredView = ({ lessonTitle }: { lessonTitle: string }) => {
       >
         <OakFlex
           $flexDirection={"column"}
-          $gap={["space-between-m"]}
+          $gap={["spacing-24"]}
           $alignItems={["center", "flex-start"]}
           $justifyContent={["center", "flex-start"]}
           $flexGrow={[1, 0]}
@@ -55,7 +55,7 @@ export const PupilExpiredView = ({ lessonTitle }: { lessonTitle: string }) => {
         </OakFlex>
         <OakBox
           $width={["100%", "max-content"]}
-          $pa={["inner-padding-l", "inner-padding-none"]}
+          $pa={["spacing-20", "spacing-0"]}
         >
           <OakPrimaryButton
             width={["100%", "max-content"]}

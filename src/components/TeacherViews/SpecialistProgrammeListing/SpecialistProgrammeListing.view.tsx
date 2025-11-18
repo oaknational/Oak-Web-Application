@@ -43,11 +43,7 @@ const SpecialistProgrammeListingView: FC<SpecialistProgrammeListingPageData> = (
         ]}
       />
       <OakMaxWidth>
-        <OakFlex
-          $mv="space-between-xxxl"
-          $justifyContent="center"
-          $alignItems="center"
-        >
+        <OakFlex $mv="spacing-80" $justifyContent="center" $alignItems="center">
           <SpecialistProgrammeListing
             programmes={programmes}
             onClick={() => "TODO: what is this for"}

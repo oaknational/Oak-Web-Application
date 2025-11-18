@@ -183,7 +183,7 @@ export default function CurricVisualiser({
               additional={
                 isSwimming && (
                   <Alert
-                    $mb="space-between-s"
+                    $mb="spacing-16"
                     type="info"
                     message="Swimming and water safety units should be selected based on the ability and experience of your pupils."
                   />
@@ -202,7 +202,6 @@ export default function CurricVisualiser({
           </OakBox>
         );
       })}
-
       <CurricUnitModal
         open={displayModal}
         onClose={handleCloseModal}
@@ -224,8 +223,8 @@ export default function CurricVisualiser({
         )}
         {selectedUnitSlug && !unitData && (
           <OakBox
-            $pv={["inner-padding-xl", "inner-padding-xl5", "inner-padding-xl5"]}
-            $ph={["inner-padding-xl", "inner-padding-xl6", "inner-padding-xl6"]}
+            $pv={["spacing-24", "spacing-56", "spacing-56"]}
+            $ph={["spacing-24", "spacing-64", "spacing-64"]}
           >
             <CurricModalErrorContent
               statusCode="404"

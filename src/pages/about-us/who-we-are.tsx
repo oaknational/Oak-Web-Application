@@ -52,10 +52,10 @@ const TimeLineCard: FC<TimeLineProps> = ({
 }) => {
   return (
     <OakFlex
-      $pv={"inner-padding-none"}
-      $ph={["inner-padding-m"]}
+      $pv={"spacing-0"}
+      $ph={["spacing-16"]}
       $flexDirection={"column"}
-      $mb={"space-between-xxxl"}
+      $mb={"spacing-80"}
     >
       <OakGrid>
         <OakGridArea $colSpan={$colSpan} $colStart={$colStart}>
@@ -66,7 +66,7 @@ const TimeLineCard: FC<TimeLineProps> = ({
             <PortableTextWithDefaults value={bodyPortableText} />
           </OakTypography>
           {cta && (
-            <OakFlex $alignItems={"center"} $mt={"space-between-m2"}>
+            <OakFlex $alignItems={"center"} $mt={"spacing-32"}>
               <OakPrimaryButton
                 iconName={"arrow-right"}
                 isTrailingIcon={true}
@@ -89,8 +89,8 @@ const AboutWhoWeAreOld: NextPage<AboutPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <OakMaxWidth
-        $mb={["space-between-xl", "space-between-xxxl"]}
-        $mt={["space-between-xl", "space-between-xxxl"]}
+        $mb={["spacing-56", "spacing-80"]}
+        $mt={["spacing-56", "spacing-80"]}
         $alignItems={"center"}
       >
         <GenericSummaryCard {...pageData} />
@@ -106,7 +106,7 @@ const AboutWhoWeAreOld: NextPage<AboutPageProps> = ({ pageData }) => {
           <OakFlex>
             <BrushBorders hideOnMobileH color={"pink50"} />
             <OakFlex
-              $gap={["space-between-m", "space-between-m", "space-between-xxl"]}
+              $gap={["spacing-24", "spacing-24", "spacing-72"]}
               $flexDirection={["column", "column", "row"]}
             >
               <OakFlex $justifyContent={"center"} $alignItems={"center"}>
@@ -126,10 +126,7 @@ const AboutWhoWeAreOld: NextPage<AboutPageProps> = ({ pageData }) => {
               <OakBox
               // $width={["100%", "100%", "50%"]}
               >
-                <OakTypography
-                  $mb={"space-between-m2"}
-                  $font={["body-2", "body-1"]}
-                >
+                <OakTypography $mb={"spacing-32"} $font={["body-2", "body-1"]}>
                   <PortableTextWithDefaults
                     value={pageData.intro.bodyPortableText}
                   />
@@ -150,10 +147,7 @@ const AboutWhoWeAreOld: NextPage<AboutPageProps> = ({ pageData }) => {
             </OakFlex>
           </OakFlex>
           {videoCaptions && (
-            <OakBox
-              $mt={"space-between-xs"}
-              $display={["none", "none", "block"]}
-            >
+            <OakBox $mt={"spacing-12"} $display={["none", "none", "block"]}>
               <TranscriptToggle transcriptSentences={videoCaptions} />
             </OakBox>
           )}
@@ -177,11 +171,7 @@ const AboutWhoWeAreOld: NextPage<AboutPageProps> = ({ pageData }) => {
           $colStart={[1, 7]}
           $colSpan={[12, 6]}
         />
-        <OakGrid
-          $mb={"space-between-xxxl"}
-          $cg={"space-between-m"}
-          $rg={"space-between-m2"}
-        >
+        <OakGrid $mb={"spacing-80"} $cg={"spacing-24"} $rg={"spacing-32"}>
           {pageData.principles.map((principle) => (
             <Fragment key={principle.title}>
               <OakGridArea $colSpan={[12, 6]}>
@@ -190,7 +180,7 @@ const AboutWhoWeAreOld: NextPage<AboutPageProps> = ({ pageData }) => {
                   <OakHeading
                     $font={["heading-5", "heading-4"]}
                     tag={"h3"}
-                    $mb={["space-between-m"]}
+                    $mb={["spacing-24"]}
                   >
                     {principle.title}
                   </OakHeading>

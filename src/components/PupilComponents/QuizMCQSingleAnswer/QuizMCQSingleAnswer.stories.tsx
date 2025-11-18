@@ -73,10 +73,7 @@ export const Default: Story = {
     const context = getContext();
     return (
       <QuizEngineContext.Provider value={context}>
-        <OakBox
-          $background={"bg-decorative1-very-subdued"}
-          $pa={"inner-padding-m"}
-        >
+        <OakBox $background={"bg-decorative1-very-subdued"} $pa={"spacing-16"}>
           <QuizMCQSingleAnswer {...args} />
         </OakBox>
       </QuizEngineContext.Provider>
@@ -95,10 +92,7 @@ export const Feedback: Story = {
     });
     return (
       <QuizEngineContext.Provider value={context}>
-        <OakBox
-          $background={"bg-decorative1-very-subdued"}
-          $pa={"inner-padding-m"}
-        >
+        <OakBox $background={"bg-decorative1-very-subdued"} $pa={"spacing-16"}>
           <QuizMCQSingleAnswer {...args} />
         </OakBox>
       </QuizEngineContext.Provider>

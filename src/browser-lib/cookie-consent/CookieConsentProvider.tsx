@@ -55,11 +55,7 @@ const CookieConsentUIProvider = ({ children }: PropsWithChildren) => {
       {children}
       <OakThemeProvider theme={oakDefaultTheme}>
         {isMounted && (
-          <OakBox
-            $position={"sticky"}
-            $bottom={"all-spacing-0"}
-            $zIndex={"banner"}
-          >
+          <OakBox $position={"sticky"} $bottom={"spacing-0"} $zIndex={"banner"}>
             <OakCookieConsent policyURL="/legal/cookie-policy" />
             <RequiresInteraction />
           </OakBox>

@@ -199,21 +199,17 @@ export default function CurricVisualiserMobileHeader({
     <OakBox
       $position={["sticky", "static"]}
       $display={["block", "none"]}
-      $top="all-spacing-0"
+      $top="spacing-0"
       $zIndex={"fixed-header"}
     >
       <OakBox
         $width={"100%"}
         $background={"white"}
-        $mb="space-between-ssx"
+        $mb="spacing-8"
         data-test-id="filter-mobiles"
       >
         <OakBox>
-          <OakBox
-            $ph={"inner-padding-m"}
-            $pv={"inner-padding-m"}
-            $mv="space-between-s"
-          >
+          <OakBox $ph={"spacing-16"} $pv={"spacing-16"} $mv="spacing-16">
             <OakSpan $font={"body-1-bold"}>
               <OakSecondaryLink
                 element="button"
@@ -278,16 +274,12 @@ export default function CurricVisualiserMobileHeader({
                     ? lockYear === yearOption
                     : isSelectedYear(yearOption);
                   return (
-                    <OakBox
-                      key={yearOption}
-                      $pt="inner-padding-xs"
-                      $ml="space-between-sssx"
-                    >
+                    <OakBox key={yearOption} $pt="spacing-8" $ml="spacing-4">
                       <FocusIndicator
                         data-testid="year-group-focus-indicator"
                         $display={"inline-block"}
-                        $mb="space-between-ssx"
-                        $mr="space-between-ssx"
+                        $mb="spacing-8"
+                        $mr="spacing-8"
                         $background={isYearSelected ? "black" : "white"}
                         $color={isYearSelected ? "white" : "black"}
                         $borderRadius={"border-radius-s"}

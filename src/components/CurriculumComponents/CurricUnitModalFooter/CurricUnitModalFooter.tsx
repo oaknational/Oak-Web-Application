@@ -54,7 +54,7 @@ export default function CurricUnitModalFooter({
         <OakFlex
           $justifyContent={"space-between"}
           $alignItems={["flex-end"]}
-          $pa="inner-padding-ssx"
+          $pa="spacing-4"
         >
           <OakPrimaryButton
             data-testid="unit-lessons-button"
@@ -91,7 +91,7 @@ export default function CurricUnitModalFooter({
             <OakFlex
               $flexDirection={"row"}
               $alignItems={"center"}
-              $gap="all-spacing-2"
+              $gap="spacing-8"
             >
               {lessonsAvailable === false && (
                 <TagFunctional

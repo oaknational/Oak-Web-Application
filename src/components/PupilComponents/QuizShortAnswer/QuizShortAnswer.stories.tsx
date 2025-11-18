@@ -73,10 +73,7 @@ export const Init: Story = {
     const mock = getContext();
     return (
       <QuizEngineContext.Provider value={mock}>
-        <OakBox
-          $background={"bg-decorative1-very-subdued"}
-          $pa={"inner-padding-m"}
-        >
+        <OakBox $background={"bg-decorative1-very-subdued"} $pa={"spacing-16"}>
           <QuizShortAnswer {...args} />
         </OakBox>
       </QuizEngineContext.Provider>
@@ -92,10 +89,7 @@ export const FeedbackCorrect: Story = {
     const mock = getContext({ mode: "feedback", feedback: "correct" });
     return (
       <QuizEngineContext.Provider value={mock}>
-        <OakBox
-          $background={"bg-decorative1-very-subdued"}
-          $pa={"inner-padding-m"}
-        >
+        <OakBox $background={"bg-decorative1-very-subdued"} $pa={"spacing-16"}>
           <QuizShortAnswer {...args} />
         </OakBox>
       </QuizEngineContext.Provider>
@@ -111,10 +105,7 @@ export const FeedbackIncorrect: Story = {
     const mock = getContext({ mode: "feedback", feedback: "incorrect" });
     return (
       <QuizEngineContext.Provider value={mock}>
-        <OakBox
-          $background={"bg-decorative1-very-subdued"}
-          $pa={"inner-padding-m"}
-        >
+        <OakBox $background={"bg-decorative1-very-subdued"} $pa={"spacing-16"}>
           <QuizShortAnswer {...args} />
         </OakBox>
       </QuizEngineContext.Provider>

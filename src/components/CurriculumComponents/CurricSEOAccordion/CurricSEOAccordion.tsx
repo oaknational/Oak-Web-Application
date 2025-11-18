@@ -29,11 +29,11 @@ export default function CurricSEOAccordion({
   const truncationLength = isMobile ? 40 : 100;
 
   return (
-    <OakBox $ph={["inner-padding-s", "inner-padding-none"]}>
+    <OakBox $ph={["spacing-12", "spacing-0"]}>
       <OakHandDrawnHR
         hrColor={"grey40"}
-        $mv={"space-between-sssx"}
-        $height={"all-spacing-05"}
+        $mv={"spacing-4"}
+        $height={"spacing-2"}
       />
       <OakBasicAccordion
         header={
@@ -52,7 +52,7 @@ export default function CurricSEOAccordion({
         initialOpen={false}
         id="curriculum-seo-accordion"
       >
-        <OakBox $mt="space-between-m">
+        <OakBox $mt="spacing-24">
           <PortableText
             value={curriculumSeoText}
             components={basePortableTextComponents}
@@ -61,8 +61,8 @@ export default function CurricSEOAccordion({
       </OakBasicAccordion>
       <OakHandDrawnHR
         hrColor={"grey40"}
-        $mt={"space-between-sssx"}
-        $height={"all-spacing-05"}
+        $mt={"spacing-4"}
+        $height={"spacing-2"}
       />
     </OakBox>
   );
