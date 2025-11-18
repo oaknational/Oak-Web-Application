@@ -62,6 +62,8 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = (props) => {
             <SignedInFlow
               {...props}
               user={user}
+              downloadTypes={downloadTypes}
+              onChangeDownloadTypes={setDownloadTypes}
               availableDownloadTypes={props.availableDownloadTypes}
             />
           )}
