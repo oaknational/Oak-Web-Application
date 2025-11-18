@@ -1,6 +1,6 @@
+import { getVercelOidcToken } from "@vercel/functions/oidc";
+import { ExternalAccountClient } from "google-auth-library";
 import { Firestore } from "@google-cloud/firestore";
-
-import { getGcpOidc } from "../oidc/getGcpOidc";
 
 const getEmulatorFirestore = () => {
   // JDK is required for the emulator to run https://www.oracle.com/java/technologies/downloads
@@ -25,19 +25,33 @@ export const getPupilFirestore = () => {
     return getEmulatorFirestore();
 
   const GCP_PROJECT_ID = process.env.GCP_PROJECT_ID;
+  const GCP_SERVICE_ACCOUNT_EMAIL = process.env.GCP_SERVICE_ACCOUNT_EMAIL;
+  const GCP_WORKLOAD_IDENTITY_POOL_PROVIDER_ID =
+    process.env.GCP_WORKLOAD_IDENTITY_POOL_PROVIDER_ID;
   const PUPIL_FIRESTORE_ID = process.env.PUPIL_FIRESTORE_ID;
 
-  if (!GCP_PROJECT_ID || !PUPIL_FIRESTORE_ID) {
+  if (
+    !GCP_PROJECT_ID ||
+    !GCP_SERVICE_ACCOUNT_EMAIL ||
+    !GCP_WORKLOAD_IDENTITY_POOL_PROVIDER_ID ||
+    !PUPIL_FIRESTORE_ID
+  ) {
     throw new Error(
-      "GCP_PROJECT_ID and PUPIL_FIRESTORE_ID are required environment variables.",
+      "GCP_PROJECT_ID, GCP_SERVICE_ACCOUNT_EMAIL, GCP_WORKLOAD_IDENTITY_POOL_PROVIDER_ID, PUPIL_FIRESTORE_ID are required environment variables.",
     );
   }
 
-  const authClient = getGcpOidc(["https://www.googleapis.com/auth/datastore"]);
-
-  if (!authClient) {
-    throw new Error("Failed to initialize authClient for Firestore.");
-  }
+  const authClient = ExternalAccountClient.fromJSON({
+    type: "external_account",
+    audience: `//iam.googleapis.com/${GCP_WORKLOAD_IDENTITY_POOL_PROVIDER_ID}`,
+    subject_token_type: "urn:ietf:params:oauth:token-type:jwt",
+    token_url: "https://sts.googleapis.com/v1/token",
+    service_account_impersonation_url: `https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/${GCP_SERVICE_ACCOUNT_EMAIL}:generateAccessToken`,
+    subject_token_supplier: {
+      getSubjectToken: getVercelOidcToken,
+    },
+    scopes: ["https://www.googleapis.com/auth/datastore"],
+  });
 
   return new Firestore({
     authClient,
