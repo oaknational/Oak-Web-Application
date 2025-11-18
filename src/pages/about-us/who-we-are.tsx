@@ -30,6 +30,8 @@ import { WhoAreWeBreakout } from "@/components/GenericPagesComponents/WhoAreWeBr
 import WhoAreWeTimeline from "@/components/GenericPagesComponents/WhoAreWeTimeline";
 import { WhoAreWeDesc } from "@/components/GenericPagesComponents/WhoAreWeDesc";
 import { WhoAreWeExplore } from "@/components/GenericPagesComponents/WhoAreWeExplore";
+import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
+import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
@@ -52,10 +54,10 @@ const TimeLineCard: FC<TimeLineProps> = ({
 }) => {
   return (
     <OakFlex
-      $pv={"inner-padding-none"}
-      $ph={["inner-padding-m"]}
+      $pv={"spacing-0"}
+      $ph={["spacing-16"]}
       $flexDirection={"column"}
-      $mb={"space-between-xxxl"}
+      $mb={"spacing-80"}
     >
       <OakGrid>
         <OakGridArea $colSpan={$colSpan} $colStart={$colStart}>
@@ -66,7 +68,7 @@ const TimeLineCard: FC<TimeLineProps> = ({
             <PortableTextWithDefaults value={bodyPortableText} />
           </OakTypography>
           {cta && (
-            <OakFlex $alignItems={"center"} $mt={"space-between-m2"}>
+            <OakFlex $alignItems={"center"} $mt={"spacing-32"}>
               <OakPrimaryButton
                 iconName={"arrow-right"}
                 isTrailingIcon={true}
@@ -89,8 +91,8 @@ const AboutWhoWeAreOld: NextPage<AboutPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <OakMaxWidth
-        $mb={["space-between-xl", "space-between-xxxl"]}
-        $mt={["space-between-xl", "space-between-xxxl"]}
+        $mb={["spacing-56", "spacing-80"]}
+        $mt={["spacing-56", "spacing-80"]}
         $alignItems={"center"}
       >
         <GenericSummaryCard {...pageData} />
@@ -106,7 +108,7 @@ const AboutWhoWeAreOld: NextPage<AboutPageProps> = ({ pageData }) => {
           <OakFlex>
             <BrushBorders hideOnMobileH color={"pink50"} />
             <OakFlex
-              $gap={["space-between-m", "space-between-m", "space-between-xxl"]}
+              $gap={["spacing-24", "spacing-24", "spacing-72"]}
               $flexDirection={["column", "column", "row"]}
             >
               <OakFlex $justifyContent={"center"} $alignItems={"center"}>
@@ -126,10 +128,7 @@ const AboutWhoWeAreOld: NextPage<AboutPageProps> = ({ pageData }) => {
               <OakBox
               // $width={["100%", "100%", "50%"]}
               >
-                <OakTypography
-                  $mb={"space-between-m2"}
-                  $font={["body-2", "body-1"]}
-                >
+                <OakTypography $mb={"spacing-32"} $font={["body-2", "body-1"]}>
                   <PortableTextWithDefaults
                     value={pageData.intro.bodyPortableText}
                   />
@@ -150,10 +149,7 @@ const AboutWhoWeAreOld: NextPage<AboutPageProps> = ({ pageData }) => {
             </OakFlex>
           </OakFlex>
           {videoCaptions && (
-            <OakBox
-              $mt={"space-between-xs"}
-              $display={["none", "none", "block"]}
-            >
+            <OakBox $mt={"spacing-12"} $display={["none", "none", "block"]}>
               <TranscriptToggle transcriptSentences={videoCaptions} />
             </OakBox>
           )}
@@ -177,11 +173,7 @@ const AboutWhoWeAreOld: NextPage<AboutPageProps> = ({ pageData }) => {
           $colStart={[1, 7]}
           $colSpan={[12, 6]}
         />
-        <OakGrid
-          $mb={"space-between-xxxl"}
-          $cg={"space-between-m"}
-          $rg={"space-between-m2"}
-        >
+        <OakGrid $mb={"spacing-80"} $cg={"spacing-24"} $rg={"spacing-32"}>
           {pageData.principles.map((principle) => (
             <Fragment key={principle.title}>
               <OakGridArea $colSpan={[12, 6]}>
@@ -190,7 +182,7 @@ const AboutWhoWeAreOld: NextPage<AboutPageProps> = ({ pageData }) => {
                   <OakHeading
                     $font={["heading-5", "heading-4"]}
                     tag={"h3"}
-                    $mb={["space-between-m"]}
+                    $mb={["spacing-24"]}
                   >
                     {principle.title}
                   </OakHeading>
@@ -211,6 +203,8 @@ const AboutWhoWeAreOld: NextPage<AboutPageProps> = ({ pageData }) => {
 };
 
 export const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({ pageData }) => {
+  const newsletterFormProps = useNewsletterForm();
+
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <WhoAreWeHeader
@@ -267,28 +261,28 @@ export const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({ pageData }) => {
             title: "Built for the reality of teaching",
             text: "We get it. Time is tight, classes vary, and only teachers can know pupils best. That’s why our materials are flexible tools to adapt, not scripts to follow: a starting point that supports your expertise and style.",
             imageUrl:
-              "https://res.cloudinary.com/oak-web-application/image/upload/v1734523721/homepage/teacher-reading-map_glwhyh.svg",
+              "https://res.cloudinary.com/oak-web-application/image/upload/v1763393172/icons/teacher-whiteboard-illustration_qumdkt.svg",
             imageAlt: "",
           },
           {
             title: "Expert created and quality assured",
             text: "Created by subject and curriculum experts, our resources are informed by the best available evidence of what works, aligned to the national curriculum and tested by real teachers.",
             imageUrl:
-              "https://res.cloudinary.com/oak-web-application/image/upload/v1734523721/homepage/teacher-reading-map_glwhyh.svg",
+              "https://res.cloudinary.com/oak-web-application/image/upload/v1749031463/icons/clipboard_yll2yj.svg",
             imageAlt: "",
           },
           {
             title: "Free, and always will be",
             text: "We’re funded by the Department for Education. No paywalls, package tiers, or hidden costs.",
             imageUrl:
-              "https://res.cloudinary.com/oak-web-application/image/upload/v1734523721/homepage/teacher-reading-map_glwhyh.svg",
+              "https://res.cloudinary.com/oak-web-application/image/upload/v1749033815/icons/free-tag_lijptf.svg",
             imageAlt: "",
           },
           {
             title: "Independent and optional",
             text: "Oak is by teachers, for teachers. Our board is publicly appointed, and our partners selected through an open process.",
             imageUrl:
-              "https://res.cloudinary.com/oak-web-application/image/upload/v1734523721/homepage/teacher-reading-map_glwhyh.svg",
+              "https://res.cloudinary.com/oak-web-application/image/upload/v1763393169/icons/teacher-planning-illustration_kgfbgx.svg",
             imageAlt: "",
           },
         ]}
@@ -297,27 +291,32 @@ export const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({ pageData }) => {
         title={"Explore more about Oak"}
         items={[
           {
-            iconName: "curriculum-plan",
+            iconName: "homepage-teacher-map",
             title: "About Oak’s curriculum",
             href: "#",
           },
           {
-            iconName: "ai-worksheet",
+            iconName: "data",
             title: "Oak’s impact",
             href: "#",
           },
           {
-            iconName: "ai-worksheet",
+            iconName: "snack-break",
             title: "Meet the team",
             href: "#",
           },
           {
-            iconName: "ai-worksheet",
+            iconName: "chatting",
             title: "Get involved",
             href: "#",
           },
         ]}
       />
+      <OakBox $background={"mint"} $pv={["spacing-56", "spacing-80"]}>
+        <OakMaxWidth>
+          <NewsletterFormWrap {...newsletterFormProps} />
+        </OakMaxWidth>
+      </OakBox>
     </Layout>
   );
 };

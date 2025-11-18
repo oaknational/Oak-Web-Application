@@ -13,12 +13,8 @@ import styled from "styled-components";
 
 import FocusIndicator from "@/components/CurriculumComponents/OakComponentsKitchen/FocusIndicator";
 
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  outline: none;
-  display: block;
-
-  &:hover > div {
+const HoverableCard = styled(OakFlex)`
+  &:hover {
     box-shadow: 2px 2px 0 0 #ffe555;
   }
 `;
@@ -26,9 +22,9 @@ const StyledLink = styled(Link)`
 function InnerMaxWidth({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <OakBox
-      $maxWidth={"all-spacing-24"}
+      $maxWidth={"spacing-1280"}
       $mh={"auto"}
-      $ph={["inner-padding-m", "inner-padding-m", "inner-padding-xl3"]}
+      $ph={["spacing-16", "spacing-16", "spacing-40"]}
     >
       {children}
     </OakBox>
@@ -52,54 +48,57 @@ export function WhoAreWeExplore({
       <InnerMaxWidth data-testid="test">
         <OakFlex
           $flexDirection={"column"}
-          $pv={["inner-padding-xl5", "inner-padding-xl8"]}
-          $gap={["all-spacing-7", "all-spacing-10"]}
+          $pv={["spacing-56", "spacing-80"]}
+          $gap={["spacing-32", "spacing-56"]}
         >
           <OakHeading
             tag="h2"
             $textAlign={"center"}
             $font={["heading-5", "heading-4"]}
+            $color={"text-primary"}
             id="explore-more-about-oak"
           >
             {title}
           </OakHeading>
           <nav aria-labelledby="explore-more-about-oak">
             <OakGrid
-              $rg={"all-spacing-4"}
-              $cg={"all-spacing-4"}
+              $rg={"spacing-16"}
+              $cg={"spacing-16"}
               $gridAutoRows={"1fr"}
-              $pl="inner-padding-none"
+              $pl="spacing-0"
               as="ul"
             >
               {items.map(({ title, iconName, href }) => {
                 return (
                   <OakGridArea key={title} $colSpan={[12, 6]} as="li">
                     <FocusIndicator $borderRadius={"border-radius-m2"}>
-                      <StyledLink href={href}>
-                        <OakFlex
-                          data-testid="who-we-are-explore-item"
-                          $flexDirection={"row"}
-                          $pa={"inner-padding-m"}
-                          $background={"white"}
-                          $gap={"all-spacing-4"}
-                          $alignItems={"center"}
-                          $borderRadius={"border-radius-m2"}
-                        >
-                          <OakFlex>
-                            <OakIcon
-                              iconName={iconName}
-                              $width={"all-spacing-10"}
-                              $height={"all-spacing-10"}
-                            />
-                          </OakFlex>
-                          <OakFlex $flexGrow={1} $font={"heading-6"}>
-                            {title}
-                          </OakFlex>
-                          <OakFlex>
-                            <OakIcon iconName="arrow-right" />
-                          </OakFlex>
+                      <HoverableCard
+                        data-testid="who-we-are-explore-item"
+                        $flexDirection={"row"}
+                        $pa={"spacing-16"}
+                        $background={"white"}
+                        $gap={"spacing-16"}
+                        $alignItems={"center"}
+                        $borderRadius={"border-radius-m2"}
+                      >
+                        <OakFlex>
+                          <OakIcon
+                            iconName={iconName}
+                            $width={"spacing-56"}
+                            $height={"spacing-56"}
+                          />
                         </OakFlex>
-                      </StyledLink>
+                        <OakFlex
+                          $flexGrow={1}
+                          $font={"heading-6"}
+                          $color={"text-primary"}
+                        >
+                          <Link href={href}>{title}</Link>
+                        </OakFlex>
+                        <OakFlex>
+                          <OakIcon iconName="arrow-right" />
+                        </OakFlex>
+                      </HoverableCard>
                     </FocusIndicator>
                   </OakGridArea>
                 );

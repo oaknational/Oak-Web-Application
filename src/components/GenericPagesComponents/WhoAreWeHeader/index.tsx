@@ -51,7 +51,7 @@ function InnerMaxWidth({ children }: Readonly<{ children: ReactNode }>) {
   const styleAttrs = useMemo(() => ({ maxWidth: 1280 + 40 * 2 }), []);
 
   return (
-    <OakBox style={styleAttrs} $mh={"auto"} $ph={"inner-padding-m"}>
+    <OakBox style={styleAttrs} $mh={"auto"} $ph={"spacing-16"}>
       {children}
     </OakBox>
   );
@@ -72,15 +72,23 @@ export function WhoAreWeHeader({
   return (
     <InnerMaxWidth>
       <OakGrid
-        $cg="space-between-s"
-        $rg="space-between-s"
-        $pt={["inner-padding-xl5", "inner-padding-xl8", "inner-padding-xl5"]}
-        $pb={["inner-padding-xl5", "inner-padding-xl8", "inner-padding-xl7"]}
+        $cg="spacing-16"
+        $rg="spacing-16"
+        $pt={["spacing-56", "spacing-80", "spacing-56"]}
+        $pb={["spacing-56", "spacing-80", "spacing-72"]}
       >
         <CustomHeaderTextOakGridArea $colSpan={12} $justifyContent={"center"}>
-          <OakFlex $flexDirection={"column"} $gap={"all-spacing-6"}>
-            <OakHeading tag="h1" $font={["heading-4", "heading-2"]}>
-              <OakSpan $background="mint" $ph={"inner-padding-ssx"}>
+          <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
+            <OakHeading
+              tag="h1"
+              $font={["heading-4", "heading-2"]}
+              $color={"text-primary"}
+            >
+              <OakSpan
+                $background="mint"
+                $ph={"spacing-4"}
+                $color={"text-primary"}
+              >
                 {title}
               </OakSpan>
             </OakHeading>
@@ -94,8 +102,8 @@ export function WhoAreWeHeader({
         </CustomHeaderTextOakGridArea>
         <CustomHeaderImageOakGridArea $colSpan={2}>
           <OakBox
-            $width={["all-spacing-19", "all-spacing-19", "all-spacing-20"]}
-            $height={"all-spacing-20"}
+            $width={["spacing-240", "spacing-240", "spacing-360"]}
+            $height={"spacing-360"}
           >
             <OakImage
               alt={imageAlt}

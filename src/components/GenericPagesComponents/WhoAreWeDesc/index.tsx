@@ -13,7 +13,7 @@ import styled from "styled-components";
 
 function InnerMaxWidth({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <OakBox $maxWidth={"all-spacing-24"} $mh={"auto"}>
+    <OakBox $maxWidth={"spacing-1280"} $mh={"auto"}>
       {children}
     </OakBox>
   );
@@ -61,18 +61,19 @@ export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
     <InnerMaxWidth>
       <OakFlex
         $flexDirection={"column"}
-        $pv={["inner-padding-xl5", "inner-padding-xl8", "inner-padding-xl8"]}
-        $ph={["inner-padding-m", "inner-padding-m", "inner-padding-none"]}
-        $gap={["space-between-m2", "all-spacing-10", "all-spacing-10"]}
+        $pv={["spacing-56", "spacing-80", "spacing-80"]}
+        $ph={["spacing-16", "spacing-16", "spacing-0"]}
+        $gap={["spacing-32", "spacing-56", "spacing-56"]}
       >
         <OakHeading
           tag="h2"
           $textAlign={["left", "center", "center"]}
           $font={["heading-5", "heading-3"]}
+          $color={"text-primary"}
         >
           {title}
         </OakHeading>
-        <OakGrid $rg={"all-spacing-4"} $cg={"all-spacing-4"}>
+        <OakGrid $rg={"spacing-16"} $cg={"spacing-16"}>
           {itemsMapped.map(
             ({ background, title, text, imageUrl, imageAlt }) => {
               return (
@@ -81,12 +82,12 @@ export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
                   data-testid="who-we-are-desc-item"
                   $colSpan={12}
                 >
-                  <OakFlex $flexDirection={"column"} $gap={"all-spacing-6"}>
+                  <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
                     <OakBox
-                      $height={"all-spacing-18"}
+                      $height={"spacing-180"}
                       $background={background}
                       $borderRadius={"border-radius-m2"}
-                      $pa={"inner-padding-m"}
+                      $pa={"spacing-16"}
                     >
                       <OakImage
                         $objectFit={"contain"}
@@ -95,11 +96,20 @@ export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
                         $height={"100%"}
                       />
                     </OakBox>
-                    <OakFlex $gap={"all-spacing-4"} $flexDirection={"column"}>
-                      <OakHeading tag="h3" $font={["heading-6", "heading-5"]}>
+                    <OakFlex $gap={"spacing-16"} $flexDirection={"column"}>
+                      <OakHeading
+                        tag="h3"
+                        $font={["heading-6", "heading-5"]}
+                        $color={"text-primary"}
+                      >
                         {title}
                       </OakHeading>
-                      <OakP $font={["body-2", "body-1"]}>{text}</OakP>
+                      <OakP
+                        $font={["body-2", "body-1"]}
+                        $color={"text-primary"}
+                      >
+                        {text}
+                      </OakP>
                     </OakFlex>
                   </OakFlex>
                 </CustomWeAreItemOakGridArea>

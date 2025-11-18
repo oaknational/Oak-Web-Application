@@ -11,13 +11,13 @@ exports[`WhoAreWeHeader renders correctly 1`] = `
         class="sc-fqkvVR sc-jXbUNg ilFqMp gdCncd"
       >
         <div
-          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-1a13cd03-0 fgBWrW djyvKT iAkSYx imvZdH"
+          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-7cf7da4e-0 fgBWrW djyvKT iAkSYx eemFFo"
         >
           <div
             class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
           >
             <h1
-              class="sc-kpDqfm hlpvoz"
+              class="sc-kpDqfm dqaUoM"
             >
               <span
                 class="sc-dAlyuH jXPica"
@@ -33,7 +33,7 @@ exports[`WhoAreWeHeader renders correctly 1`] = `
           </div>
         </div>
         <div
-          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-1a13cd03-1 fgBWrW joHkzz ejUlbk hreDga"
+          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-7cf7da4e-1 fgBWrW joHkzz ejUlbk gobLdJ"
         >
           <div
             class="sc-fqkvVR gdOBQS"

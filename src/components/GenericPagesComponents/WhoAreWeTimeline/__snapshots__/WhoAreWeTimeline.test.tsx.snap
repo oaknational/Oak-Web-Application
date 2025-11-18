@@ -32,7 +32,7 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                   </span>
                 </div>
                 <h2
-                  class="sc-kpDqfm fOYHFh"
+                  class="sc-kpDqfm hxKDeC"
                 >
                   TEST_TITLE
                 </h2>
@@ -49,7 +49,7 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                 class="sc-fqkvVR sc-kAyceB fgBWrW eeevb"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-8f8b97c4-0 fgBWrW ddfwpL iLwOzQ"
+                  class="sc-fqkvVR sc-kAyceB sc-6a557179-0 fgBWrW ddfwpL kzVRxa"
                   data-testid="timetable-timeline-item"
                 >
                   <div
@@ -75,7 +75,7 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                       </span>
                     </div>
                     <h3
-                      class="sc-kpDqfm hmSeLN"
+                      class="sc-kpDqfm cSDnOe"
                     >
                       ITEM_TITLE_1
                     </h3>
@@ -83,7 +83,7 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                       class="sc-fqkvVR fgBWrW"
                     >
                       <p
-                        class="sc-dLMFU eFqtPi"
+                        class="sc-dLMFU eguxyJ"
                       >
                         ITEM_TEXT_1
                       </p>
@@ -91,7 +91,7 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-8f8b97c4-0 fgBWrW ddfwpL iLwOzQ"
+                  class="sc-fqkvVR sc-kAyceB sc-6a557179-0 fgBWrW ddfwpL kzVRxa"
                   data-testid="timetable-timeline-item"
                 >
                   <div
@@ -117,7 +117,7 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                       </span>
                     </div>
                     <h3
-                      class="sc-kpDqfm hmSeLN"
+                      class="sc-kpDqfm cSDnOe"
                     >
                       ITEM_TITLE_2
                     </h3>
@@ -125,7 +125,7 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                       class="sc-fqkvVR fgBWrW"
                     >
                       <p
-                        class="sc-dLMFU eFqtPi"
+                        class="sc-dLMFU eguxyJ"
                       >
                         ITEM_TEXT_2
                       </p>
@@ -133,7 +133,7 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-8f8b97c4-0 fgBWrW ddfwpL iLwOzQ"
+                  class="sc-fqkvVR sc-kAyceB sc-6a557179-0 fgBWrW ddfwpL kzVRxa"
                   data-testid="timetable-timeline-item"
                 >
                   <div
@@ -159,7 +159,7 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                       </span>
                     </div>
                     <h3
-                      class="sc-kpDqfm hmSeLN"
+                      class="sc-kpDqfm cSDnOe"
                     >
                       ITEM_TITLE_3
                     </h3>
@@ -167,7 +167,7 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                       class="sc-fqkvVR fgBWrW"
                     >
                       <p
-                        class="sc-dLMFU eFqtPi"
+                        class="sc-dLMFU eguxyJ"
                       >
                         ITEM_TEXT_3
                       </p>
