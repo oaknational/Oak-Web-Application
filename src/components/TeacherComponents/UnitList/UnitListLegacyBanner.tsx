@@ -31,9 +31,7 @@ export const UnitListLegacyBanner: FC<UnitListLegacyBannerProps> = ({
 
   // If any legacy units have the displayExpiringBanner action, show the banner
   const shouldShowAnExpiringBanner = allLegacyUnits.some((unit) =>
-    unit?.some(
-      (unitItem) => unitItem.actions && unitItem.actions?.displayExpiringBanner,
-    ),
+    unit?.some((unitItem) => unitItem.actions?.displayExpiringBanner),
   );
 
   if (!shouldShowAnExpiringBanner) {

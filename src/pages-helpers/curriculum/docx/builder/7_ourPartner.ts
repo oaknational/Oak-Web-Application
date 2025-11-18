@@ -53,9 +53,7 @@ export default async function generate(
   }`;
   const sanityUrls = data.curriculumPartnerOverviews?.map(
     ({ curriculumPartner }) =>
-      curriculumPartner && curriculumPartner.image
-        ? curriculumPartner.image?.asset?.url
-        : "",
+      curriculumPartner.image ? curriculumPartner.image?.asset?.url : "",
   );
 
   const underline = await insertImages(zip, {

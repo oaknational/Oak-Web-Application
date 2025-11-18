@@ -78,7 +78,7 @@ export const getStaticProps: GetStaticProps<
           },
         );
 
-      if (!curriculumData || !curriculumData.mediaClips) {
+      if (!curriculumData?.mediaClips) {
         return {
           notFound: true,
         };

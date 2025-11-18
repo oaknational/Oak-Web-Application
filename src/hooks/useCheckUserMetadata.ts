@@ -18,9 +18,7 @@ export async function useCheckUserMetadata() {
   };
 
   useSWR(
-    user && user.unsafeMetadata?.requiresGeoLocation
-      ? updateRegionApiRoute
-      : null,
+    user?.unsafeMetadata?.requiresGeoLocation ? updateRegionApiRoute : null,
     fetcher,
   );
 }

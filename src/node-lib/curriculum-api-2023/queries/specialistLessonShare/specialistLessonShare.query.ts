@@ -52,7 +52,7 @@ export const specialistLessonShareQuery =
         specialistLessonShare[0],
       );
 
-    if (!parsedSpecialistLessonShare || !parsedSpecialistLessonShare.success) {
+    if (!parsedSpecialistLessonShare.success) {
       throw new Error("curriculum-api/not-found");
     }
 
