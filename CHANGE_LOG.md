@@ -1,3 +1,10 @@
+## [1.914.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.914.2...v1.914.3) (2025-11-17)
+
+
+### Bug Fixes
+
+* update copy on teacher tab ([641cf58](https://github.com/oaknational/Oak-Web-Application/commit/641cf58bd683143e486e849c1b9187e1b98c6021))
+
 ## [1.914.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.914.1...v1.914.2) (2025-11-17)
 
 
