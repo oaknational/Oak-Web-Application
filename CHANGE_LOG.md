@@ -1,3 +1,10 @@
+## [1.915.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.915.0...v1.915.1) (2025-11-18)
+
+
+### Bug Fixes
+
+* don't include NC document in downloads when not available ([ac70307](https://github.com/oaknational/Oak-Web-Application/commit/ac703072c0afef0be42475a61b3916642d37b6dc))
+
 # [1.915.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.914.3...v1.915.0) (2025-11-18)
 
 
