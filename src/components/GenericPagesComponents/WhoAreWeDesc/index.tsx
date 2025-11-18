@@ -21,6 +21,7 @@ function InnerMaxWidth({ children }: { children: ReactNode }) {
 
 const CustomWeAreItemOakGridArea = styled(OakGridArea)`
   grid-column: span 3;
+
   @media (max-width: 1040px) {
     grid-column: span 6;
   }
@@ -68,6 +69,7 @@ export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
           tag="h2"
           $textAlign={["left", "center", "center"]}
           $font={["heading-5", "heading-3", "heading-3"]}
+          $color="text-primary"
         >
           {title}
         </OakHeading>
@@ -75,7 +77,7 @@ export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
           $rg={"spacing-16"}
           $cg={"spacing-16"}
           $gridAutoRows={"1fr"}
-          $mb={"spacing-72"}
+          // $mb={"spacing-72"}
         >
           {itemsMapped.map(
             ({ background, title, text, imageUrl, imageAlt }) => {
@@ -87,10 +89,11 @@ export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
                 >
                   <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
                     <OakBox
-                      $height={"spacing-180"}
+                      $height={"spacing-240"}
                       $background={background}
                       $borderRadius={"border-radius-m2"}
-                      $pa={"spacing-16"}
+                      $pv={"spacing-24"}
+                      $ph={"spacing-64"}
                     >
                       <OakImage
                         $objectFit={"contain"}
@@ -103,10 +106,16 @@ export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
                       <OakHeading
                         tag="h3"
                         $font={["heading-6", "heading-5", "heading-5"]}
+                        $color="text-primary"
                       >
                         {title}
                       </OakHeading>
-                      <OakP $font={["body-2", "body-1", "body-1"]}>{text}</OakP>
+                      <OakP
+                        $font={["body-2", "body-1", "body-1"]}
+                        $color="text-primary"
+                      >
+                        {text}
+                      </OakP>
                     </OakFlex>
                   </OakFlex>
                 </CustomWeAreItemOakGridArea>

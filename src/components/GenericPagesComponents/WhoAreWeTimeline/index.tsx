@@ -48,11 +48,15 @@ export default function WhoAreWeTimeline({
             <OakGridArea $colSpan={[12, 12, 9]} $colStart={[0, 0, 2]}>
               <OakFlex $gap={"spacing-8"} $flexDirection={"column"}>
                 <OakBox $font={"heading-5"}>
-                  <OakSpan $background={"mint"} $ph={"spacing-4"}>
+                  <OakSpan
+                    $background={"mint"}
+                    $ph={"spacing-4"}
+                    $color="text-primary"
+                  >
                     {subtitle}
                   </OakSpan>
                 </OakBox>
-                <OakHeading tag="h2" $font={"heading-3"}>
+                <OakHeading tag="h2" $font={"heading-3"} $color="text-primary">
                   {title}
                 </OakHeading>
               </OakFlex>
@@ -100,16 +104,28 @@ export default function WhoAreWeTimeline({
                         $mb={"spacing-72"}
                       >
                         <OakBox $font={"body-2-bold"}>
-                          <OakSpan $ph={"spacing-4"} $background={"mint"}>
+                          <OakSpan
+                            $ph={"spacing-4"}
+                            $background={"mint"}
+                            $color="text-primary"
+                          >
                             {item.subtitle}
                           </OakSpan>
                         </OakBox>
-                        <OakHeading tag="h3" $font={"heading-light-5"}>
+                        <OakHeading
+                          tag="h3"
+                          $font={"heading-light-5"}
+                          $color="text-primary"
+                        >
                           {item.title}
                         </OakHeading>
                         <OakBox>
                           {item.text.map((textItem) => {
-                            return <OakP key={textItem}>{textItem}</OakP>;
+                            return (
+                              <OakP key={textItem} $color="text-primary">
+                                {textItem}
+                              </OakP>
+                            );
                           })}
                         </OakBox>
                       </OakFlex>
