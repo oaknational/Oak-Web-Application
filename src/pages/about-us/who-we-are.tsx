@@ -12,6 +12,7 @@ import {
   OakPrimaryButton,
 } from "@oaknational/oak-components";
 
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import CMSClient from "@/node-lib/cms";
 import { AboutWhoWeArePage, TextBlock } from "@/common-lib/cms-types";
 import Layout from "@/components/AppComponents/Layout";
@@ -312,9 +313,14 @@ export const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({ pageData }) => {
           },
         ]}
       />
-      <OakBox $background={"mint"} $pv={["spacing-56", "spacing-80"]}>
-        <OakMaxWidth>
-          <NewsletterFormWrap {...newsletterFormProps} />
+      <OakBox
+        $background={"bg-decorative1-subdued"}
+        $pv={["spacing-56", "spacing-56"]}
+      >
+        <OakMaxWidth $ph={"spacing-40"} $alignItems={"center"}>
+          <Flex $maxWidth={["100%", 870]}>
+            <NewsletterFormWrap desktopColSpan={6} {...newsletterFormProps} />
+          </Flex>
         </OakMaxWidth>
       </OakBox>
     </Layout>
