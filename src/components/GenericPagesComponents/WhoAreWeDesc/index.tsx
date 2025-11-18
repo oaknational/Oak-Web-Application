@@ -73,12 +73,7 @@ export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
         >
           {title}
         </OakHeading>
-        <OakGrid
-          $rg={"spacing-16"}
-          $cg={"spacing-16"}
-          $gridAutoRows={"1fr"}
-          // $mb={"spacing-72"}
-        >
+        <OakGrid $rg={"spacing-16"} $cg={"spacing-16"}>
           {itemsMapped.map(
             ({ background, title, text, imageUrl, imageAlt }) => {
               return (
