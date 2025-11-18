@@ -10,6 +10,7 @@ import {
 } from "@oaknational/oak-components";
 
 import OwaLink from "../SharedComponents/OwaLink";
+import { SubjectKeystageSEO } from "../TeacherComponents/SubjectKeystageSEO/SubjectKeystageSEO";
 
 import { SubjectListingPageProps } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
 import SubjectListingCardDouble from "@/components/TeacherComponents/SubjectListingCard";
@@ -49,7 +50,7 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
           >
             {title}
           </OakHeading>
-          {isEyfs && (
+          {isEyfs ? (
             <OakP $font="heading-light-7">
               These teaching resources were made during the pandemic for parents
               to use at home with their children. Now they are used by teachers
@@ -65,6 +66,8 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
               </OwaLink>
               .
             </OakP>
+          ) : (
+            <SubjectKeystageSEO keystageSlug={keyStageSlug} />
           )}
         </OakFlex>
         <OakGrid
