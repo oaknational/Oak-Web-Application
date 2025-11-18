@@ -3,7 +3,7 @@ import { OakP, OakFlex } from "@oaknational/oak-components";
 
 const PostBlockCallout: FC<{ children?: React.ReactNode }> = (props) => {
   return (
-    <OakFlex $flexDirection={"column"} $mt="space-between-xl">
+    <OakFlex $flexDirection={"column"} $mt="spacing-56">
       <OakP $font={"heading-light-4"}>
         <blockquote>{props.children}</blockquote>
       </OakP>

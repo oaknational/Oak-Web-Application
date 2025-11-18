@@ -35,14 +35,14 @@ const LessonShareLinks: FC<{
   return (
     <>
       <OakHeading
-        $mt="space-between-m"
-        $mb="space-between-sssx"
+        $mt="spacing-24"
+        $mb="spacing-4"
         tag={"h4"}
         $font={"heading-7"}
       >
         Share options:
       </OakHeading>
-      <OakFlex $flexWrap={"wrap"} $width={"100%"} $gap={"all-spacing-3"}>
+      <OakFlex $flexWrap={"wrap"} $width={"100%"} $gap={"spacing-12"}>
         <LoadingButton
           text={
             isShareSuccessful

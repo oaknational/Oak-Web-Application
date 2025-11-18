@@ -59,7 +59,7 @@ export const OakInputWithLabel = ({
   return (
     <OakFlex $flexDirection="column" $width="100%">
       {error && (
-        <OakBox id={error} role="alert" $pb={["inner-padding-xl"]}>
+        <OakBox id={error} role="alert" $pb={["spacing-24"]}>
           <OakFieldError>{error}</OakFieldError>
         </OakBox>
       )}
@@ -89,9 +89,9 @@ export const OakInputWithLabel = ({
             onBlur?.(e);
             setHasFocus(false);
           }}
-          $pv="inner-padding-none"
+          $pv="spacing-0"
           wrapperWidth="100%"
-          $height="all-spacing-10"
+          $height="spacing-56"
           autoComplete={autocomplete}
           name={name}
           defaultValue={defaultValue}

@@ -14,11 +14,7 @@ describe("CardLink", () => {
         $justifyContent={"center"}
         $alignItems="center"
       >
-        <OakHeading
-          $mt={"space-between-m"}
-          $mb={"space-between-none"}
-          tag={"h5"}
-        >
+        <OakHeading $mt={"spacing-24"} $mb={"spacing-0"} tag={"h5"}>
           <CardLink page={null} href="https://www.test.com">
             Click Me
           </CardLink>

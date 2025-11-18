@@ -48,11 +48,11 @@ const LessonShareCardGroup: FC<LessonShareCardGroupProps> = (props) => {
   return (
     <OakFlex
       $flexDirection="column"
-      $gap={["all-spacing-4", "all-spacing-6"]}
+      $gap={["spacing-16", "spacing-24"]}
       $alignItems="flex-start"
     >
       <OakFlex
-        $gap={"all-spacing-4"}
+        $gap={"spacing-16"}
         $flexDirection={["column", "row"]}
         $flexWrap={["nowrap", "wrap"]}
       >

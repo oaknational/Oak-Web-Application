@@ -93,9 +93,9 @@ export function CurricVisualiserUnitList({
   return (
     <OakFlex
       $flexWrap={"wrap"}
-      $pt="inner-padding-s"
+      $pt="spacing-12"
       data-testid="unit-cards"
-      $gap={"all-spacing-4"}
+      $gap={"spacing-16"}
       // TODO: Remove hack
       style={{
         marginBottom: "-1rem",
@@ -113,18 +113,16 @@ export function CurricVisualiserUnitList({
         )}
         {units.map(getItems)}
         {/* Empty tiles for correct flex wrapping */}
-        {Array(3)
-          .fill(true)
-          .map((item, index) => {
-            return (
-              <OakFlex
-                key={`unit-list-item-${item}-${index}`}
-                $width={"all-spacing-19"}
-                $flexGrow={1}
-                $position={"relative"}
-              />
-            );
-          })}
+        {new Array(3).fill(true).map((item, index) => {
+          return (
+            <OakFlex
+              key={`unit-list-item-${item}-${index}`}
+              $width={"spacing-240"}
+              $flexGrow={1}
+              $position={"relative"}
+            />
+          );
+        })}
       </UnitList>
     </OakFlex>
   );

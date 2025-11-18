@@ -4,39 +4,39 @@ exports[`WhoAreWeHeader renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR hclUqe"
+      class="sc-fqkvVR ieiSrW"
       style="max-width: 1360px;"
     >
       <div
-        class="sc-fqkvVR sc-jXbUNg ilFqMp gdCncd"
+        class="sc-fqkvVR sc-jXbUNg bHaeEi gdCncd"
       >
         <div
-          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-7cf7da4e-0 fgBWrW djyvKT iAkSYx eemFFo"
+          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-8557270c-0 fgBWrW djyvKT iAkSYx fXQhAY"
         >
           <div
             class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
           >
             <h1
-              class="sc-kpDqfm dqaUoM"
+              class="sc-kpDqfm cRJejs"
             >
               <span
-                class="sc-dAlyuH jXPica"
+                class="sc-dAlyuH gCYoeq"
               >
                 TESTING_TITLE
               </span>
             </h1>
             <p
-              class="sc-dLMFU iiQPSb"
+              class="sc-dLMFU hxKUrX"
             >
               TESTING_CONTENT
             </p>
           </div>
         </div>
         <div
-          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-7cf7da4e-1 fgBWrW joHkzz ejUlbk gobLdJ"
+          class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-8557270c-1 fgBWrW joHkzz dGlNMa cCBOvz"
         >
           <div
-            class="sc-fqkvVR gdOBQS"
+            class="sc-fqkvVR dBkKun"
           >
             <div
               class="sc-fqkvVR hudrT"

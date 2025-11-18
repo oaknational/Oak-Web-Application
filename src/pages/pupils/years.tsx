@@ -60,11 +60,11 @@ const YearListingPage = () => {
         }}
       >
         <OakPupilJourneyLayout sectionName="year-listing">
-          <OakFlex $pv={"inner-padding-xl7"}>
+          <OakFlex $pv={"spacing-72"}>
             <OakFlex
               $background={"bg-primary"}
-              $pv="inner-padding-xl5"
-              $ph={"inner-padding-xl"}
+              $pv="spacing-56"
+              $ph={"spacing-24"}
               $flexDirection={"column"}
               $alignItems={"center"}
               $borderRadius={"border-radius-l"}
@@ -72,15 +72,15 @@ const YearListingPage = () => {
               $borderColor={"border-decorative1-stronger"}
             >
               <OakFlex
-                $ph={"inner-padding-xl"}
+                $ph={"spacing-24"}
                 $flexDirection={"column"}
                 $alignItems={"center"}
               >
                 <OakFlex
                   $flexDirection={"column"}
                   $alignItems={"center"}
-                  $gap={"space-between-s"}
-                  $mb={"space-between-m2"}
+                  $gap={"spacing-16"}
+                  $mb={"spacing-32"}
                 >
                   <OakHeading tag="h1" $font={["heading-5", "heading-4"]}>
                     Welcome to Oak!
@@ -98,14 +98,14 @@ const YearListingPage = () => {
                 <OakHeading
                   tag="h2"
                   $font={["heading-6", "heading-5"]}
-                  $mv={"space-between-l"}
+                  $mv={"spacing-48"}
                 >
                   What year are you in?
                 </OakHeading>
                 <OakGrid
                   role="list"
-                  $cg={"space-between-s"}
-                  $rg={"space-between-s"}
+                  $cg={"spacing-16"}
+                  $rg={"spacing-16"}
                   $gridTemplateColumns={[
                     "repeat(2 , 1fr)",
                     "repeat(4 , 1fr)",
@@ -142,12 +142,8 @@ const YearListingPage = () => {
                           width={"100%"}
                         >
                           <OakBox
-                            $minWidth={[
-                              "auto",
-                              "all-spacing-13",
-                              "all-spacing-13",
-                            ]}
-                            $mh={["space-between-sssx", "auto", "auto"]}
+                            $minWidth={["auto", "spacing-80", "spacing-80"]}
+                            $mh={["spacing-4", "auto", "auto"]}
                             $textAlign={"center"}
                           >
                             {year.yearDescription}

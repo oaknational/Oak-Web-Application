@@ -8,23 +8,14 @@ import {
   OakHeading,
 } from "@oaknational/oak-components";
 import { ReactNode, useMemo } from "react";
-import styled from "styled-components";
 
-const TimelineItemFlex = styled(OakFlex)`
-  max-width: 100%;
-
-  @media (min-width: 1280px) {
-    max-width: 700px;
-  }
-`;
-
-function InnerMaxWidth({ children }: Readonly<{ children: ReactNode }>) {
+function InnerMaxWidth({ children }: { children: ReactNode }) {
   const styleAttrs = useMemo(() => ({ maxWidth: 1280 + 40 * 2 }), []);
   return (
     <OakBox
       style={styleAttrs}
       $mh={"auto"}
-      $ph={["spacing-16", "spacing-16", "spacing-40"]}
+      $ph={["spacing-16", "spacing-40", "spacing-40"]}
     >
       {children}
     </OakBox>
@@ -50,38 +41,30 @@ export default function WhoAreWeTimeline({
       <InnerMaxWidth>
         <OakFlex
           $flexDirection={"column"}
-          $gap={["spacing-40", "spacing-56"]}
-          $pt={["spacing-56", "spacing-80"]}
+          $gap={"spacing-56"}
+          $pt={"spacing-72"}
         >
           <OakGrid $cg="spacing-16" $rg="spacing-16">
-            <OakGridArea $colSpan={[12, 12, 9]} $colStart={[0, 0, 3]}>
+            <OakGridArea $colSpan={[12, 12, 9]} $colStart={[0, 0, 2]}>
               <OakFlex $gap={"spacing-8"} $flexDirection={"column"}>
-                <OakBox $font={["heading-6", "heading-5"]}>
-                  <OakSpan
-                    $background={"mint"}
-                    $ph={"spacing-4"}
-                    $color={"text-primary"}
-                  >
+                <OakBox $font={"heading-5"}>
+                  <OakSpan $background={"mint"} $ph={"spacing-4"}>
                     {subtitle}
                   </OakSpan>
                 </OakBox>
-                <OakHeading
-                  tag="h2"
-                  $font={["heading-5", "heading-3"]}
-                  $color={"text-primary"}
-                >
+                <OakHeading tag="h2" $font={"heading-3"}>
                   {title}
                 </OakHeading>
               </OakFlex>
             </OakGridArea>
           </OakGrid>
           <OakGrid $cg="spacing-16" $rg="spacing-16">
-            <OakGridArea $colSpan={[12, 12, 8]} $colStart={[0, 0, 4]}>
+            <OakGridArea $colSpan={[12, 12, 8]} $colStart={[0, 0, 3]}>
               <OakFlex $flexDirection={"column"}>
                 {items.map((item, itemIndex) => {
                   const isLast = items.length - 1 === itemIndex;
                   return (
-                    <TimelineItemFlex
+                    <OakFlex
                       key={item.title}
                       data-testid="timetable-timeline-item"
                       $gap={"spacing-16"}
@@ -114,39 +97,23 @@ export default function WhoAreWeTimeline({
                       <OakFlex
                         $flexDirection={"column"}
                         $gap={"spacing-8"}
-                        $mb={["spacing-56", "spacing-72"]}
+                        $mb={"spacing-72"}
                       >
-                        <OakBox $font={["heading-7"]}>
-                          <OakSpan
-                            $ph={"spacing-4"}
-                            $background={"mint"}
-                            $color={"text-primary"}
-                          >
+                        <OakBox $font={"body-2-bold"}>
+                          <OakSpan $ph={"spacing-4"} $background={"mint"}>
                             {item.subtitle}
                           </OakSpan>
                         </OakBox>
-                        <OakHeading
-                          tag="h3"
-                          $font={["heading-6", "heading-5"]}
-                          $color={"text-primary"}
-                        >
+                        <OakHeading tag="h3" $font={"heading-light-5"}>
                           {item.title}
                         </OakHeading>
                         <OakBox>
                           {item.text.map((textItem) => {
-                            return (
-                              <OakP
-                                key={textItem}
-                                $font={"body-1"}
-                                $color={"text-primary"}
-                              >
-                                {textItem}
-                              </OakP>
-                            );
+                            return <OakP key={textItem}>{textItem}</OakP>;
                           })}
                         </OakBox>
                       </OakFlex>
-                    </TimelineItemFlex>
+                    </OakFlex>
                   );
                 })}
               </OakFlex>

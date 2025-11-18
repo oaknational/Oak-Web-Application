@@ -45,11 +45,7 @@ const PostCategoryList: FC<PostCategoryListProps> = (props) => {
           })),
         ]}
       />
-      <OakFlex
-        $mt="space-between-m2"
-        $height="all-spacing-7"
-        $font={"heading-7"}
-      >
+      <OakFlex $mt="spacing-32" $height="spacing-32" $font={"heading-7"}>
         <OakTertiaryButton
           element={"a"}
           href={

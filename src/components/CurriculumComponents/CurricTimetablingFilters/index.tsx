@@ -29,13 +29,11 @@ export default function CurricTimetablingFilters({
   slugs,
 }: Readonly<CurricVisualiserFiltersProps>) {
   return (
-    <OakBox $mr={"space-between-s"}>
+    <OakBox $mr={"spacing-16"}>
       <SkipLink href="#content">Skip to units</SkipLink>
-
-      <OakHeading tag="h3" $font={"heading-5"} $mb="space-between-m">
+      <OakHeading tag="h3" $font={"heading-5"} $mb="spacing-24">
         Filter and highlight
       </OakHeading>
-
       <CurricFiltersYears
         filters={filters}
         onChangeFilters={onChangeFilters}
@@ -43,13 +41,10 @@ export default function CurricTimetablingFilters({
         ks4Options={null}
         slugs={slugs}
       />
-
-      <OakBox $mt={"space-between-m2"}>
+      <OakBox $mt={"spacing-32"}>
         <OakSecondaryButton>Add next year</OakSecondaryButton>
       </OakBox>
-
-      <OakHandDrawnHR hrColor={"grey40"} $mv={"space-between-m2"} />
-
+      <OakHandDrawnHR hrColor={"grey40"} $mv={"spacing-32"} />
       <CurricFiltersThreads
         filters={filters}
         onChangeFilters={onChangeFilters}

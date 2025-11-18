@@ -34,14 +34,14 @@ const SpecialistProgrammeListItem: FC<SpecialistProgrammeListItemProps> = (
       $width={["100%", "100%", 400]}
       $flexGrow={0}
     >
-      <OakFlex $pa="inner-padding-m">
+      <OakFlex $pa="spacing-16">
         <OwaLink
           page={"specialist-unit-index"}
           {...primaryTargetProps}
           {...props.programme}
           onClick={() => onClick(programme)}
         >
-          <OakFlex $flexDirection="column" $gap={"all-spacing-1"}>
+          <OakFlex $flexDirection="column" $gap={"spacing-4"}>
             <OakHeading
               $font={"heading-7"}
               tag="h3"
@@ -58,7 +58,6 @@ const SpecialistProgrammeListItem: FC<SpecialistProgrammeListItemProps> = (
           </OakFlex>
         </OwaLink>
       </OakFlex>
-
       <BoxBorders gapPosition="rightTop" />
     </Card>
   );

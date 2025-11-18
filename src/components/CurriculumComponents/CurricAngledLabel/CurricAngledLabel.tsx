@@ -8,7 +8,7 @@ export const CurricAngledLabel = ({ children }: CurricAngledLabelProps) => {
   return (
     <OakSpan
       $background="bg-decorative1-main"
-      $pa="inner-padding-ssx"
+      $pa="spacing-4"
       $borderRadius="border-radius-square"
       style={{
         display: "inline-block",

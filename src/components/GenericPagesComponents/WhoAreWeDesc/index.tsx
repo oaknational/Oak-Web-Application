@@ -11,7 +11,7 @@ import {
 import { ReactNode, useMemo } from "react";
 import styled from "styled-components";
 
-function InnerMaxWidth({ children }: Readonly<{ children: ReactNode }>) {
+function InnerMaxWidth({ children }: { children: ReactNode }) {
   return (
     <OakBox $maxWidth={"spacing-1280"} $mh={"auto"}>
       {children}
@@ -21,7 +21,6 @@ function InnerMaxWidth({ children }: Readonly<{ children: ReactNode }>) {
 
 const CustomWeAreItemOakGridArea = styled(OakGridArea)`
   grid-column: span 3;
-
   @media (max-width: 1040px) {
     grid-column: span 6;
   }
@@ -68,12 +67,16 @@ export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
         <OakHeading
           tag="h2"
           $textAlign={["left", "center", "center"]}
-          $font={["heading-5", "heading-3"]}
-          $color={"text-primary"}
+          $font={["heading-5", "heading-3", "heading-3"]}
         >
           {title}
         </OakHeading>
-        <OakGrid $rg={"spacing-16"} $cg={"spacing-16"}>
+        <OakGrid
+          $rg={"spacing-16"}
+          $cg={"spacing-16"}
+          $gridAutoRows={"1fr"}
+          $mb={"spacing-72"}
+        >
           {itemsMapped.map(
             ({ background, title, text, imageUrl, imageAlt }) => {
               return (
@@ -99,17 +102,11 @@ export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
                     <OakFlex $gap={"spacing-16"} $flexDirection={"column"}>
                       <OakHeading
                         tag="h3"
-                        $font={["heading-6", "heading-5"]}
-                        $color={"text-primary"}
+                        $font={["heading-6", "heading-5", "heading-5"]}
                       >
                         {title}
                       </OakHeading>
-                      <OakP
-                        $font={["body-2", "body-1"]}
-                        $color={"text-primary"}
-                      >
-                        {text}
-                      </OakP>
+                      <OakP $font={["body-2", "body-1", "body-1"]}>{text}</OakP>
                     </OakFlex>
                   </OakFlex>
                 </CustomWeAreItemOakGridArea>

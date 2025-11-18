@@ -25,16 +25,16 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
   const { track } = useAnalytics();
   const { setSearchTerm } = useSearch({});
   return (
-    <OakFlex $background={"mint"} $pv="inner-padding-xl" $overflow={"hidden"}>
-      <OakMaxWidth $ph={["inner-padding-m"]}>
-        <OakGrid $cg={"all-spacing-4"}>
+    <OakFlex $background={"mint"} $pv="spacing-24" $overflow={"hidden"}>
+      <OakMaxWidth $ph={["spacing-16"]}>
+        <OakGrid $cg={"spacing-16"}>
           <OakGridArea $color={"text-primary"} $colSpan={[12, 6]}>
             <OakFlex
               $flexDirection={"column"}
-              $maxWidth={["all-spacing-22"]}
-              $pt={"inner-padding-xl2"}
+              $maxWidth={["spacing-640"]}
+              $pt={"spacing-32"}
               $alignItems={"flex-start"}
-              $gap={"all-spacing-6"}
+              $gap={"spacing-24"}
               $flexGrow={0}
               $flexShrink={1}
               $flexBasis={"auto"}
@@ -43,8 +43,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                 Teachers
               </OakHeading>
               <OakHeading $font={"heading-3"} tag={"h2"}>
-                Plan every lesson, every national curriculum subject, all in one
-                place
+                Plan every lesson, every national curriculum subject
               </OakHeading>
               <OakTypography $font={"body-1"}>
                 From curriculum planning to classroom teaching, Oak gives you
@@ -53,7 +52,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
               <OakFlex
                 $width={["100%", "100%", "max-content"]}
                 $flexDirection="column"
-                $gap={["space-between-m", "space-between-m2"]}
+                $gap={["spacing-24", "spacing-32"]}
               >
                 <KeyStageKeypad
                   title="View subjects by key stage"
@@ -77,11 +76,11 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                   }
                 />
                 <OakBox
-                  $height={"all-spacing-0"}
+                  $height={"spacing-0"}
                   $bt={"border-solid-m"}
                   $borderColor={"border-inverted"}
                 />
-                <OakFlex $flexDirection="column" $gap="space-between-s">
+                <OakFlex $flexDirection="column" $gap="spacing-16">
                   <OakHeading tag="h3" $font="heading-7">
                     Or search by keyword
                   </OakHeading>

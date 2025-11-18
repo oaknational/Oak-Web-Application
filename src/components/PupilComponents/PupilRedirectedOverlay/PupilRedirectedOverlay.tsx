@@ -39,8 +39,8 @@ export const PupilRedirectedOverlay = ({
       onClose={close}
       footerSlot={
         <OakFlex
-          $mt={"space-between-xl"}
-          $pb={"inner-padding-xl5"}
+          $mt={"spacing-56"}
+          $pb={"spacing-56"}
           $justifyContent={"center"}
           $alignItems={"center"}
         >

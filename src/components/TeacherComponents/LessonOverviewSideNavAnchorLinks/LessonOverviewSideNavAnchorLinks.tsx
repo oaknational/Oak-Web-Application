@@ -16,12 +16,7 @@ const LessonOverviewSideNavAnchorLinks: FC<
   LessonOverviewSideNavAnchorLinksProps
 > = ({ links, currentSectionId, contentRestricted }) => {
   return (
-    <OakUL
-      $reset
-      $display="flex"
-      $gap="space-between-s"
-      $flexDirection="column"
-    >
+    <OakUL $reset $display="flex" $gap="spacing-16" $flexDirection="column">
       {links.map((link, index) => {
         const { label, anchorId, subheading } = link;
 
@@ -45,8 +40,8 @@ const LessonOverviewSideNavAnchorLinks: FC<
               }}
               item={item}
               isSelected={isCurrent}
-              $pt={"inner-padding-xs"}
-              $pb={"inner-padding-xs"}
+              $pt={"spacing-8"}
+              $pb={"spacing-8"}
             />
           </OakLI>
         );

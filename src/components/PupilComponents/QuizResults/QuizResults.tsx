@@ -19,7 +19,7 @@ export const QuizResults = (props: QuizResultsProps) => {
 
   return (
     <MathJaxProvider>
-      <OakFlex $flexDirection={"column"} $gap={"space-between-xl"} role="list">
+      <OakFlex $flexDirection={"column"} $gap={"spacing-56"} role="list">
         {sectionResults[lessonSection]?.questionResults?.map(
           (questionResult, index) => {
             const displayIndex =

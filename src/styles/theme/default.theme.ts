@@ -183,7 +183,7 @@ const theme: OakTheme = {
     },
   },
   header: {
-    height: "all-spacing-12",
+    height: "spacing-72",
     background: "mint50",
     color: "black",
   },

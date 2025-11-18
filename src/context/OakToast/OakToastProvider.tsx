@@ -72,7 +72,7 @@ export const OakToastProvider: FC<{
         $position="fixed"
         $zIndex="in-front"
         offsetTop={offsetTop}
-        $right={["all-spacing-0", "all-spacing-14"]}
+        $right={["spacing-0", "spacing-92"]}
         $width={["100%", "max-content"]}
         $justifyContent={["center", "flex-end"]}
         aria-live="polite"

@@ -54,7 +54,7 @@ export default function CurricUnitDetailsAccordion({
         $flexGrow={0}
         $position={"relative"}
         $justifyContent={"space-between"}
-        $pv={"inner-padding-xl"}
+        $pv={"spacing-24"}
       >
         <h3 style={{ display: "contents" }}>
           <Button
@@ -76,8 +76,8 @@ export default function CurricUnitDetailsAccordion({
           />
           <OakIcon
             iconName={isToggleOpen ? "chevron-up" : "chevron-down"}
-            $width={"all-spacing-6"}
-            $height={"all-spacing-6"}
+            $width={"spacing-24"}
+            $height={"spacing-24"}
           />
         </h3>
       </OakFlex>
@@ -91,13 +91,12 @@ export default function CurricUnitDetailsAccordion({
         {children}
       </OakFlex>
       <BoxBorders hideLeft hideRight hideBottom={!lastAccordion || isFocused} />
-
       {isFocused && isFocusVisible && (
         <OakBox
           $position={"absolute"}
-          $height={"all-spacing-1"}
+          $height={"spacing-4"}
           $width={"100%"}
-          $bottom={"all-spacing-0"}
+          $bottom={"spacing-0"}
           $zIndex={"in-front"}
         >
           <OakIcon
@@ -105,7 +104,7 @@ export default function CurricUnitDetailsAccordion({
             $width={"100%"}
             $height={"100%"}
             $position={"absolute"}
-            $top={"all-spacing-0"}
+            $top={"spacing-0"}
             $objectFit={"fill"}
           />
           <OakIcon
@@ -113,7 +112,7 @@ export default function CurricUnitDetailsAccordion({
             $width={"100%"}
             $height={"100%"}
             $position={"absolute"}
-            $top={"all-spacing-1"}
+            $top={"spacing-4"}
             $objectFit={"fill"}
           />
           <OakIcon
@@ -122,7 +121,7 @@ export default function CurricUnitDetailsAccordion({
             $width={"100%"}
             $height={"100%"}
             $position={"absolute"}
-            $top={"all-spacing-05"}
+            $top={"spacing-2"}
             $objectFit={"fill"}
           />
         </OakBox>

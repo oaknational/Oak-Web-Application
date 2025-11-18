@@ -31,9 +31,9 @@ export const OnboardingLayout = ({
         $minHeight={"100vh"}
         $alignItems={["flex-start", "center"]}
         $flexDirection="row"
-        $pv={["inner-padding-none", "inner-padding-xl3"]}
-        $maxWidth={["all-spacing-21", "all-spacing-24"]}
-        $ph={["inner-padding-none", "inner-padding-s"]}
+        $pv={["spacing-0", "spacing-40"]}
+        $maxWidth={["spacing-480", "spacing-1280"]}
+        $ph={["spacing-0", "spacing-12"]}
         $flexGrow={1}
         $width={"100%"}
         $mh={"auto"}
@@ -47,22 +47,22 @@ export const OnboardingLayout = ({
           <OakBox
             $textAlign="center"
             $width="min-content"
-            $minWidth="all-spacing-21"
-            $mb="space-between-xl"
+            $minWidth="spacing-480"
+            $mb="spacing-56"
           >
-            <OakFlex $mb="space-between-m" $maxHeight="all-spacing-19">
+            <OakFlex $mb="spacing-24" $maxHeight="spacing-240">
               <CMSImage
                 image={getIllustrationAsset("auth-acorn")}
                 $objectFit="contain"
               />
             </OakFlex>
-            <OakHeading tag="h1" $font="heading-1" $mb="space-between-m">
+            <OakHeading tag="h1" $font="heading-1" $mb="spacing-24">
               {promptHeading}
             </OakHeading>
             <OakBox
               $display="inline-flex"
               $font="body-1"
-              $maxWidth="all-spacing-20"
+              $maxWidth="spacing-360"
             >
               {promptBody}
             </OakBox>
@@ -77,7 +77,7 @@ export const OnboardingLayout = ({
             <OakBox
               $dropShadow={[null, "drop-shadow-standard"]}
               $borderRadius="border-radius-m2"
-              $mb={["space-between-none", "space-between-m"]}
+              $mb={["spacing-0", "spacing-24"]}
               $width="100%"
             >
               {children}
@@ -87,7 +87,7 @@ export const OnboardingLayout = ({
               $font="body-2"
               color="text-primary"
               $textAlign="center"
-              $pb="inner-padding-s"
+              $pb="spacing-12"
               $width="max-content"
             >
               Need help?{" "}

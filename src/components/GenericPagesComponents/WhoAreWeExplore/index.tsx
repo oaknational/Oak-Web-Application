@@ -9,17 +9,10 @@ import {
 } from "@oaknational/oak-components";
 import Link from "next/link";
 import { ReactNode } from "react";
-import styled from "styled-components";
 
 import FocusIndicator from "@/components/CurriculumComponents/OakComponentsKitchen/FocusIndicator";
 
-const HoverableCard = styled(OakFlex)`
-  &:hover {
-    box-shadow: 2px 2px 0 0 #ffe555;
-  }
-`;
-
-function InnerMaxWidth({ children }: Readonly<{ children: ReactNode }>) {
+function InnerMaxWidth({ children }: { children: ReactNode }) {
   return (
     <OakBox
       $maxWidth={"spacing-1280"}
@@ -48,31 +41,23 @@ export function WhoAreWeExplore({
       <InnerMaxWidth data-testid="test">
         <OakFlex
           $flexDirection={"column"}
-          $pv={["spacing-56", "spacing-80"]}
-          $gap={["spacing-32", "spacing-56"]}
+          $pv={["spacing-56", "spacing-80", "spacing-80"]}
+          $gap={["spacing-32", "spacing-56", "spacing-56"]}
         >
           <OakHeading
             tag="h2"
             $textAlign={"center"}
-            $font={["heading-5", "heading-4"]}
-            $color={"text-primary"}
-            id="explore-more-about-oak"
+            $font={["heading-5", "heading-4", "heading-4"]}
           >
             {title}
           </OakHeading>
-          <nav aria-labelledby="explore-more-about-oak">
-            <OakGrid
-              $rg={"spacing-16"}
-              $cg={"spacing-16"}
-              $gridAutoRows={"1fr"}
-              $pl="spacing-0"
-              as="ul"
-            >
-              {items.map(({ title, iconName, href }) => {
-                return (
-                  <OakGridArea key={title} $colSpan={[12, 6]} as="li">
-                    <FocusIndicator $borderRadius={"border-radius-m2"}>
-                      <HoverableCard
+          <OakGrid $rg={"spacing-16"} $cg={"spacing-16"} $gridAutoRows={"1fr"}>
+            {items.map(({ title, iconName, href }) => {
+              return (
+                <OakGridArea key={title} $colSpan={[12, 6, 6]}>
+                  <FocusIndicator $borderRadius={"border-radius-m2"}>
+                    <Link style={{ outline: "none" }} href={href}>
+                      <OakFlex
                         data-testid="who-we-are-explore-item"
                         $flexDirection={"row"}
                         $pa={"spacing-16"}
@@ -88,23 +73,19 @@ export function WhoAreWeExplore({
                             $height={"spacing-56"}
                           />
                         </OakFlex>
-                        <OakFlex
-                          $flexGrow={1}
-                          $font={"heading-6"}
-                          $color={"text-primary"}
-                        >
-                          <Link href={href}>{title}</Link>
+                        <OakFlex $flexGrow={1} $font={"body-1-bold"}>
+                          {title}
                         </OakFlex>
                         <OakFlex>
                           <OakIcon iconName="arrow-right" />
                         </OakFlex>
-                      </HoverableCard>
-                    </FocusIndicator>
-                  </OakGridArea>
-                );
-              })}
-            </OakGrid>
-          </nav>
+                      </OakFlex>
+                    </Link>
+                  </FocusIndicator>
+                </OakGridArea>
+              );
+            })}
+          </OakGrid>
         </OakFlex>
       </InnerMaxWidth>
     </OakBox>
