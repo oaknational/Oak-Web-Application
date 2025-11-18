@@ -29,6 +29,8 @@ import {
 import type { OakConfig } from "./scripts/build/fetch_config/config_types";
 import fetchConfig from "./scripts/build/fetch_config";
 
+import { cspHeader } from "@/config/contentSecurityPolicy";
+
 const withBundleAnalyzer = buildWithBundleAnalyzer({
   enabled: process.env.ANALYSE_BUNDLE === "on",
 });
@@ -139,6 +141,15 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
           {
             key: "Access-Control-Allow-Headers",
             value: "Content-Type",
+          },
+        ],
+      },
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "Content-Security-Policy",
+            value: cspHeader.replace(/\n/g, ""),
           },
         ],
       },
