@@ -19,8 +19,6 @@ import { TeacherNote } from "@/node-lib/pupil-api/types";
 const TEST_PROJECT_ID = "test-project-id";
 process.env.GCP_PROJECT_ID = TEST_PROJECT_ID;
 const expectedParent = `projects/${TEST_PROJECT_ID}`;
-process.env.GCP_WORKLOAD_IDENTITY_POOL_PROVIDER_ID = "test-identity-pool-id";
-process.env.GCP_SERVICE_ACCOUNT_EMAIL = "test-service-account-email";
 
 // Mock for DlpServiceClient methods
 const mockInspectContent = jest.fn();
