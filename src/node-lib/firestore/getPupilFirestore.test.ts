@@ -53,6 +53,7 @@ describe("getPupilFirestore", () => {
 
     getPupilFirestore();
 
+    expect(ExternalAccountClient.fromJSON).toHaveBeenCalledTimes(1);
     expect(Firestore).toHaveBeenCalledTimes(1);
 
     delete process.env.GCP_PROJECT_ID;

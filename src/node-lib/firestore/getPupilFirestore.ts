@@ -33,14 +33,8 @@ export const getPupilFirestore = () => {
     );
   }
 
-  const authClient = getGcpOidc(["https://www.googleapis.com/auth/datastore"]);
-
-  if (!authClient) {
-    throw new Error("Failed to initialize authClient for Firestore.");
-  }
-
   return new Firestore({
-    authClient,
+    authClient: getGcpOidc(["https://www.googleapis.com/auth/datastore"]),
     projectId: GCP_PROJECT_ID,
     databaseId: PUPIL_FIRESTORE_ID,
   });
