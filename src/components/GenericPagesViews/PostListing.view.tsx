@@ -68,7 +68,7 @@ const PostListing: FC<PostListingProps> = ({
 
   return (
     <Layout seoProps={getSeoProps(seo)} $background="white">
-      <OakMaxWidth $pt={"inner-padding-l"} $display={["none", "flex"]}>
+      <OakMaxWidth $pt={"spacing-20"} $display={["none", "flex"]}>
         <Breadcrumbs
           breadcrumbs={getBlogWebinarListBreadcrumbs(
             categories,
@@ -79,8 +79,8 @@ const PostListing: FC<PostListingProps> = ({
         />
       </OakMaxWidth>
       <OakMaxWidth
-        $mb={["space-between-xl", "space-between-xxxl"]}
-        $pt={["inner-padding-none", "inner-padding-xl", "inner-padding-xl"]}
+        $mb={["spacing-56", "spacing-80"]}
+        $pt={["spacing-0", "spacing-24", "spacing-24"]}
       >
         <SummaryCard
           {...pageData}
@@ -89,8 +89,8 @@ const PostListing: FC<PostListingProps> = ({
         <MobileFilters page={page} label={"Categories"}>
           <PostCategoryList
             labelledBy={triggerId}
-            $pv={"inner-padding-xl"}
-            $ph={"inner-padding-m"}
+            $pv={"spacing-24"}
+            $ph={"spacing-16"}
             categories={categories}
             selectedCategorySlug={categorySlug}
             page={page}

@@ -44,62 +44,32 @@ const postPortableTextComponents = ({
     sectionHeading: PostSectionHeading,
     callout: PostBlockCallout,
     heading1: (props) => (
-      <OakHeading
-        tag="h2"
-        $mb="space-between-s"
-        $font="heading-5"
-        $mt="space-between-m"
-      >
+      <OakHeading tag="h2" $mb="spacing-16" $font="heading-5" $mt="spacing-24">
         {props.children}
       </OakHeading>
     ),
     heading2: (props) => (
-      <OakHeading
-        tag="h3"
-        $mb="space-between-s"
-        $font="heading-6"
-        $mt="space-between-m"
-      >
+      <OakHeading tag="h3" $mb="spacing-16" $font="heading-6" $mt="spacing-24">
         {props.children}
       </OakHeading>
     ),
     heading3: (props) => (
-      <OakHeading
-        tag="h4"
-        $mb="space-between-s"
-        $font="heading-6"
-        $mt="space-between-m"
-      >
+      <OakHeading tag="h4" $mb="spacing-16" $font="heading-6" $mt="spacing-24">
         {props.children}
       </OakHeading>
     ),
     heading4: (props) => (
-      <OakHeading
-        tag="h5"
-        $mb="space-between-s"
-        $font="heading-6"
-        $mt="space-between-m"
-      >
+      <OakHeading tag="h5" $mb="spacing-16" $font="heading-6" $mt="spacing-24">
         {props.children}
       </OakHeading>
     ),
     heading5: (props) => (
-      <OakHeading
-        tag="h6"
-        $mb="space-between-s"
-        $font="heading-6"
-        $mt="space-between-m"
-      >
+      <OakHeading tag="h6" $mb="spacing-16" $font="heading-6" $mt="spacing-24">
         {props.children}
       </OakHeading>
     ),
     heading6: (props) => (
-      <OakHeading
-        tag="h6"
-        $mb="space-between-s"
-        $font="heading-6"
-        $mt="space-between-m"
-      >
+      <OakHeading tag="h6" $mb="spacing-16" $font="heading-6" $mt="spacing-24">
         {props.children}
       </OakHeading>
     ),

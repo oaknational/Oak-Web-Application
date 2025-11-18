@@ -74,8 +74,8 @@ export function CurricNumberInput({
       onBlur={handleBlur}
       aria-describedby={ariaDescribedBy}
       wrapperWidth="100%"
-      $pv="inner-padding-none"
-      $height="all-spacing-10"
+      $pv="spacing-0"
+      $height="spacing-56"
       borderColor={isErroring ? "red" : undefined}
       background={isErroring ? "red30" : undefined}
     />

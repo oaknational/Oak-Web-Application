@@ -390,10 +390,10 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         trackCreateWithAiButtonClicked={trackCreateWithAiButtonClicked}
         contentRestricted={contentRestricted}
       />
-      <OakMaxWidth $ph={"inner-padding-m"} $pb={"inner-padding-xl8"}>
+      <OakMaxWidth $ph={"spacing-16"} $pb={"spacing-80"}>
         {expired ? (
-          <OakBox $pa={"inner-padding-m"} $mb={"space-between-xxl"}>
-            <OakHeading $font={"heading-7"} tag={"h2"} $mb="space-between-s">
+          <OakBox $pa={"spacing-16"} $mb={"spacing-72"}>
+            <OakHeading $font={"heading-7"} tag={"h2"} $mb="spacing-16">
               No lesson available
             </OakHeading>
             <OakTypography $font={"body-1"}>
@@ -401,13 +401,13 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
             </OakTypography>
           </OakBox>
         ) : (
-          <OakGrid $mt={["space-between-l"]}>
+          <OakGrid $mt={["spacing-48"]}>
             <OakGridArea
               $colSpan={[12, 3]}
               $alignSelf={"start"}
               $position={"sticky"}
               $display={["none", "block"]}
-              $top={"all-spacing-14"} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size. This could be achieved with a new helperFunction get nextAvailableSize
+              $top={"spacing-92"} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size. This could be achieved with a new helperFunction get nextAvailableSize
             >
               {!showGeoBlocked && (
                 <OakFlex
@@ -415,8 +415,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   aria-label="page navigation"
                   $flexDirection={"column"}
                   $alignItems={"flex-start"}
-                  $gap={["all-spacing-2"]}
-                  $pr={["inner-padding-m"]}
+                  $gap={["spacing-8"]}
+                  $pr={["spacing-16"]}
                 >
                   <LessonOverviewSideNavAnchorLinks
                     contentRestricted={contentRestricted}
@@ -429,7 +429,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
             <OakGridArea $colSpan={[12, 9]}>
               <OakFlex $flexDirection={"column"} $position={"relative"}>
-                <OakBox $pb={"inner-padding-m"}>
+                <OakBox $pb={"spacing-16"}>
                   <ExpiringBanner
                     isOpen={actions?.displayExpiringBanner}
                     isResourcesMessage={true}
@@ -681,7 +681,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 >
                   <OakAnchorTarget
                     id={"quiz"}
-                    $pt={"inner-padding-xl"}
+                    $pt={"spacing-24"}
                     ref={quizSectionRef}
                   />
                   {pageLinks.find(

@@ -37,7 +37,7 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = (props) => {
   return (
     <OakBox $color="black">
       {props.onBackToKs4Options && (
-        <OakBox $mb="space-between-m">
+        <OakBox $mb="spacing-24">
           <Button
             variant={"buttonStyledAsLink"}
             icon="chevron-left"

@@ -29,7 +29,7 @@ const Page = (props: PageProps) => {
       $flexDirection={"column"}
       $alignItems={"center"}
       $justifyContent={"center"}
-      $gap={"all-spacing-2"}
+      $gap={"spacing-8"}
     >
       <OakHeading tag="h1">Server Side Rendered Page</OakHeading>
       <OakSpan>Variant Key: {props.variantKey}</OakSpan>

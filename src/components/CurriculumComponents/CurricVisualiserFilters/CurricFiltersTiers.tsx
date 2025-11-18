@@ -45,8 +45,8 @@ export function CurricFiltersTiers({
             id={"tiers-label"}
             tag="h4"
             $font={["heading-7", "heading-6"]}
-            $mt="space-between-none"
-            $mb={["space-between-m", "space-between-s"]}
+            $mt="spacing-0"
+            $mb={["spacing-24", "spacing-16"]}
           >
             Learning tier{" "}
             {tiersAt.length === 1 ? `(${tiersAt[0]?.toUpperCase()})` : ""}
@@ -57,7 +57,7 @@ export function CurricFiltersTiers({
             value={filters.tiers[0]}
             $flexDirection="row"
             $flexWrap="wrap"
-            $gap="space-between-ssx"
+            $gap="spacing-8"
             aria-labelledby="tiers-label"
           >
             {tiers.map((tier) => (

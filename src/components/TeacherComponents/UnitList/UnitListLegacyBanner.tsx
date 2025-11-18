@@ -51,7 +51,7 @@ export const UnitListLegacyBanner: FC<UnitListLegacyBannerProps> = ({
               Switch to our new teaching resources now - designed by teachers
               and leading subject experts, and tested in classrooms.
             </OakP>
-            <OakP $mt={"space-between-m"}>
+            <OakP $mt={"spacing-24"}>
               These resources were created for remote use during the pandemic
               and are not designed for classroom teaching.
             </OakP>
@@ -72,7 +72,7 @@ export const UnitListLegacyBanner: FC<UnitListLegacyBannerProps> = ({
               These units were created for remote use during the pandemic and
               will be removed by the end of the Summer Term 2025.
             </OakP>
-            <OakP $mt={"space-between-m"}>
+            <OakP $mt={"spacing-24"}>
               We’re busy creating new lessons for you.
             </OakP>
           </>,

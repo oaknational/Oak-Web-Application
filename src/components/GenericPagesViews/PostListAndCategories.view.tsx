@@ -34,14 +34,14 @@ const PostListAndCategories: FC<PostListAndCategoriesProps> = (props) => {
   });
 
   return (
-    <OakGrid $ph={["inner-padding-s", "inner-padding-none"]}>
+    <OakGrid $ph={["spacing-12", "spacing-0"]}>
       <OakGridArea $order={[0, 2]} $colSpan={[12, 4, 3]}>
         <OakBox
           $display={["none", "block"]}
           $position={[null, "sticky"]}
           $top={[null, HEADER_HEIGHT]}
-          $mt={["space-between-none", "space-between-m"]}
-          $pt={["inner-padding-xl4"]}
+          $mt={["spacing-0", "spacing-24"]}
+          $pt={["spacing-48"]}
         >
           <OakHeading
             tag="h3"
@@ -52,7 +52,7 @@ const PostListAndCategories: FC<PostListAndCategoriesProps> = (props) => {
           </OakHeading>
           <PostCategoryList
             labelledBy={blogCategoriesListProps.labelId}
-            $mt={"space-between-m"}
+            $mt={"spacing-24"}
             categories={categories}
             selectedCategorySlug={categorySlug}
             page={page}
@@ -64,7 +64,7 @@ const PostListAndCategories: FC<PostListAndCategoriesProps> = (props) => {
       <OakGridArea
         $order={[1, 0]}
         $colSpan={[12, 7, 8]}
-        $mt={["space-between-s", "space-between-xxl"]}
+        $mt={["spacing-16", "spacing-72"]}
       >
         <PostList {...blogListProps} />
       </OakGridArea>

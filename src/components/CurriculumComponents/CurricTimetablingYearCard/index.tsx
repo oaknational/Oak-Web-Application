@@ -24,9 +24,9 @@ export function CurricTimetablingYearCard({
   return (
     <OakBox
       $background={"pink50"}
-      $pa={"inner-padding-m"}
+      $pa={"spacing-16"}
       $position={"relative"}
-      $mb={"space-between-m2"}
+      $mb={"spacing-32"}
       $borderRadius={"border-radius-s"}
       className="mobileYearDisplay"
     >
@@ -34,7 +34,7 @@ export function CurricTimetablingYearCard({
         <OakHeading
           tag="h3"
           $font={["heading-5", "heading-4"]}
-          $mb={yearSubheading ? "space-between-xs" : "space-between-s"}
+          $mb={yearSubheading ? "spacing-12" : "spacing-16"}
           data-testid="year-heading"
         >
           {yearTitle}
@@ -53,13 +53,12 @@ export function CurricTimetablingYearCard({
         <OakHeading
           tag="h4"
           $font={["heading-7", "heading-6"]}
-          $mb="space-between-s"
+          $mb="spacing-16"
           data-testid="year-subheading"
         >
           {yearSubheading}
         </OakHeading>
       )}
-
       <OakBox>{additional}</OakBox>
       <OakBox>{children}</OakBox>
     </OakBox>

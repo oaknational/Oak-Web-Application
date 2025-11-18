@@ -27,13 +27,9 @@ export function CurricMobileFilterModal({
         $flexShrink={1}
         $overflowY={"auto"}
         $position={"relative"}
-        $pa={"inner-padding-l"}
+        $pa={"spacing-20"}
       >
-        <OakFlex
-          $flexDirection={"column"}
-          $gap={"space-between-m2"}
-          $width={"100vw"}
-        >
+        <OakFlex $flexDirection={"column"} $gap={"spacing-32"} $width={"100vw"}>
           {shouldDisplayFilter(data, filters, "subjectCategories") && (
             <CurricFiltersSubjectCategories
               filters={filters}

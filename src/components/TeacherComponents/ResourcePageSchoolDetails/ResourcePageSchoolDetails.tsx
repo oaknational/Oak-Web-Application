@@ -78,9 +78,9 @@ const ResourcePageSchoolDetails: FC<ResourcePageSchoolDetailsProps> = ({
       <OakBox
         as="legend"
         $position="absolute"
-        $width="all-spacing-0"
-        $height="all-spacing-0"
-        $pa={"inner-padding-none"}
+        $width="spacing-0"
+        $height="spacing-0"
+        $pa={"spacing-0"}
         $overflow="hidden"
       >
         School details
@@ -97,7 +97,7 @@ const ResourcePageSchoolDetails: FC<ResourcePageSchoolDetailsProps> = ({
         aria-describedby={"school-error"}
         withHomeschool={withHomeschool}
       />
-      <OakFlex $mt="space-between-xs" $mb="space-between-m2">
+      <OakFlex $mt="spacing-12" $mb="spacing-32">
         <Checkbox
           checked={checkboxValue}
           onChange={onCheckboxChange}

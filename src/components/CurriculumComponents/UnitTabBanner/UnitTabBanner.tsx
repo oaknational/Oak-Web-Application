@@ -13,24 +13,24 @@ const UnitTabBanner = () => {
     <OakFlex
       $flexDirection={["column", "row"]}
       $background={"mint"}
-      $mt={"space-between-l"}
-      $pa={"inner-padding-xl4"}
-      $gap={"space-between-m"}
+      $mt={"spacing-48"}
+      $pa={"spacing-48"}
+      $gap={"spacing-24"}
     >
       <OakFlex
         $flexDirection={["column", "row"]}
         $alignItems={["flex-start", "flex-end"]}
         $ma={"auto"}
         $justifyContent={["space-evenly"]}
-        $gap="all-spacing-6"
+        $gap="spacing-24"
       >
         <OakFlex $alignItems={"flex-start"} $flexDirection={["column", "row"]}>
           <OakIcon
             iconName="books"
-            $width={"all-spacing-14"}
-            $height={"all-spacing-14"}
-            $mr={"space-between-l"}
-            $mb={["space-between-m", "space-between-none"]}
+            $width={"spacing-92"}
+            $height={"spacing-92"}
+            $mr={"spacing-48"}
+            $mb={["spacing-24", "spacing-0"]}
           />
 
           {/* @todo replace with OakFlex - work out width value */}

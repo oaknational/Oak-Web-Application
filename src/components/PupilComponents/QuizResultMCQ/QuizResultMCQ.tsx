@@ -56,7 +56,7 @@ export const QuizResultMCQ = ({
   });
 
   return (
-    <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
+    <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
       <OakSpan $font={"body-3-bold"}>Your answer:</OakSpan>
       {resultItems}
     </OakFlex>

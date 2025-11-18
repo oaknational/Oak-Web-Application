@@ -117,8 +117,8 @@ const Autocomplete = (props: AutocompleteProps) => {
           aria-invalid={props.inputProps.error ? "true" : undefined}
           defaultValue={undefined}
           wrapperWidth={"100%"}
-          $pv="inner-padding-none"
-          $height="all-spacing-10"
+          $pv="spacing-0"
+          $height="spacing-56"
           color="black"
         />
       </OakFlex>

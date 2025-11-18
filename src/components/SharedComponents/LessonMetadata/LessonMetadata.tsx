@@ -37,7 +37,7 @@ const LessonMetadata: FC<
     );
 
   const metadataElements = metadata.map((value, i) => (
-    <OakLI $display={"flex"} $gap={"all-spacing-2"} key={`${value}`}>
+    <OakLI $display={"flex"} $gap={"spacing-8"} key={`${value}`}>
       <OakTypography {...fontProps}>{value}</OakTypography>
       {i + 1 < metadata.length && (
         <OakTypography {...fontProps} aria-hidden>
@@ -51,7 +51,7 @@ const LessonMetadata: FC<
     <OakUL
       $reset={true}
       $display={"flex"}
-      $gap="all-spacing-2"
+      $gap="spacing-8"
       $flexWrap={$flexWrap}
     >
       {metadataElements}

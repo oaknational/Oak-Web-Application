@@ -57,10 +57,10 @@ const SummaryCard: FC<SummaryCardProps> = ({
           <OakFlex
             $justifyContent={"center"}
             $flexDirection={"column"}
-            $mr="space-between-l"
+            $mr="spacing-48"
           >
             <OakHeading
-              $mb={"space-between-ssx"}
+              $mb={"spacing-8"}
               tag={"h1"}
               $font={["heading-6", "heading-5"]}
               $color={"grey60"}
@@ -68,7 +68,7 @@ const SummaryCard: FC<SummaryCardProps> = ({
               {title}
             </OakHeading>
             <OakHeading
-              $mb={"space-between-s"}
+              $mb={"spacing-16"}
               $font={["heading-5", "heading-4"]}
               tag={"h2"}
             >

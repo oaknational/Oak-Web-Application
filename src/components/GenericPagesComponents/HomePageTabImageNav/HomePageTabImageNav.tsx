@@ -38,9 +38,9 @@ const HomePageTabImageNav = ({ current }: { current: HomePageTab }) => {
         $width={"100%"}
         $alignItems={"stretch"}
         $justifyContent={"center"}
-        $gap={["space-between-s", "space-between-m2"]}
-        $pt={["inner-padding-xl3", "inner-padding-xl2"]}
-        $ph={["inner-padding-s", null]}
+        $gap={["spacing-16", "spacing-32"]}
+        $pt={["spacing-40", "spacing-32"]}
+        $ph={["spacing-12", null]}
         aria-label="Site sections"
       >
         <OakHomepageTabButton
@@ -77,7 +77,7 @@ const HomePageTabImageNav = ({ current }: { current: HomePageTab }) => {
           onClick={() => handleAnalytics("pupils")}
         />
       </OakFlex>
-      <OakHandDrawnHR hrColor={"white"} $height={"all-spacing-05"} />
+      <OakHandDrawnHR hrColor={"white"} $height={"spacing-2"} />
     </OakFlex>
   );
 };

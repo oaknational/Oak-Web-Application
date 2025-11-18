@@ -77,22 +77,22 @@ export default function SignedInFlow({
 
   return (
     <OakFlex
-      $gap={["space-between-m2", "space-between-l"]}
+      $gap={["spacing-32", "spacing-48"]}
       $flexDirection="column"
       $alignItems={"flex-start"}
     >
-      <OakBox $width={["100%", "all-spacing-20"]} $textAlign={"left"}>
+      <OakBox $width={["100%", "spacing-360"]} $textAlign={"left"}>
         <CurriculumDownloadSelection
           downloadTypes={downloadTypes}
           onChange={onChangeDownloadTypes}
           availableDownloadTypes={availableDownloadTypes}
         />
-        <OakBox $mt="space-between-m">
+        <OakBox $mt="spacing-24">
           <Terms />
         </OakBox>
       </OakBox>
       {submitError && (
-        <OakBox id={submitErrorId} $width={"all-spacing-20"}>
+        <OakBox id={submitErrorId} $width={"spacing-360"}>
           <OakFieldError>
             <OakP>{submitError}</OakP>
           </OakFieldError>

@@ -71,7 +71,7 @@ const RoleSelectionView = () => {
           name="role-selection"
           $flexDirection="column"
           $alignItems="flex-start"
-          $gap="space-between-s"
+          $gap="spacing-16"
           onChange={(event) => {
             handleChange("role", getRoleValue(event.target.value) ?? "");
             clearErrors();
@@ -90,7 +90,7 @@ const RoleSelectionView = () => {
           ))}
         </OakRadioGroup>
         {getValues().role === "Other" && (
-          <OakBox $mt="space-between-l">
+          <OakBox $mt="spacing-48">
             <OakInputWithLabel
               id="other-role"
               error={formState.errors.other?.message}

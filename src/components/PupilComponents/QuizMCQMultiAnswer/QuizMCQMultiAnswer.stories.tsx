@@ -78,10 +78,7 @@ if (mcqMultiImageAnswers[2]) {
 export const Primary: Story = {
   render: (args) => (
     <QuizEngineProvider questionsArray={quizQuestions ?? []}>
-      <OakBox
-        $background={"bg-decorative1-very-subdued"}
-        $pa={"inner-padding-m"}
-      >
+      <OakBox $background={"bg-decorative1-very-subdued"} $pa={"spacing-16"}>
         <QuizMCQMultiAnswer {...args} />
       </OakBox>
     </QuizEngineProvider>
@@ -94,10 +91,7 @@ export const Primary: Story = {
 export const FeedbackMode: Story = {
   render: (args) => (
     <QuizEngineContext.Provider value={mockQuizEngineContext}>
-      <OakBox
-        $background={"bg-decorative1-very-subdued"}
-        $pa={"inner-padding-m"}
-      >
+      <OakBox $background={"bg-decorative1-very-subdued"} $pa={"spacing-16"}>
         <QuizMCQMultiAnswer {...args} />
       </OakBox>
     </QuizEngineContext.Provider>
@@ -120,10 +114,7 @@ export const WithImagesNoFeedback: Story = {
 
     return (
       <QuizEngineContext.Provider value={contextNoFeedback}>
-        <OakBox
-          $background={"bg-decorative1-very-subdued"}
-          $pa={"inner-padding-m"}
-        >
+        <OakBox $background={"bg-decorative1-very-subdued"} $pa={"spacing-16"}>
           <QuizMCQMultiAnswer {...args} />
         </OakBox>
       </QuizEngineContext.Provider>
@@ -152,10 +143,7 @@ export const WithImagesFeedback: Story = {
 
     return (
       <QuizEngineContext.Provider value={contextFeedback}>
-        <OakBox
-          $background={"bg-decorative1-very-subdued"}
-          $pa={"inner-padding-m"}
-        >
+        <OakBox $background={"bg-decorative1-very-subdued"} $pa={"spacing-16"}>
           <QuizMCQMultiAnswer {...args} />
         </OakBox>
       </QuizEngineContext.Provider>

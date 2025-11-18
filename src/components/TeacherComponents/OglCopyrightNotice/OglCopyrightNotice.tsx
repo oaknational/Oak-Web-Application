@@ -27,8 +27,8 @@ const PreAlbCopyright = (
         aria-label="Terms and conditions (opens in a new tab)"
         iconName="external"
         isTrailingIcon
-        iconHeight="all-spacing-5"
-        iconWidth="all-spacing-5"
+        iconHeight="spacing-20"
+        iconWidth="spacing-20"
         data-testid="external-link-icon"
       >
         terms &amp; conditions
@@ -63,8 +63,8 @@ const PostAlbCopyright = (
           target={"_blank"}
           iconName="external"
           isTrailingIcon
-          iconHeight="all-spacing-5"
-          iconWidth="all-spacing-5"
+          iconHeight="spacing-20"
+          iconWidth="spacing-20"
           data-testid="external-link-icon"
           aria-label="Open Government Licence version 3.0 (opens in a new tab)"
         >
@@ -90,8 +90,8 @@ const PostAlbCopyright = (
           aria-label="Oak's terms & conditions (opens in a new tab)"
           iconName="external"
           isTrailingIcon
-          iconHeight="all-spacing-5"
-          iconWidth="all-spacing-5"
+          iconHeight="spacing-20"
+          iconWidth="spacing-20"
           data-testid="external-link-icon"
         >
           Oak's terms & conditions
@@ -120,9 +120,7 @@ const OglCopyrightNotice: FC<OglCopyrightNoticeProps> = ({
   fullWidth,
   ...fontProps
 }) => (
-  <OakBox
-    $maxWidth={fullWidth ? null : [null, "all-spacing-21", "all-spacing-21"]}
-  >
+  <OakBox $maxWidth={fullWidth ? null : [null, "spacing-480", "spacing-480"]}>
     {showPostAlbCopyright ? (
       <PostAlbCopyright
         {...fontProps}
