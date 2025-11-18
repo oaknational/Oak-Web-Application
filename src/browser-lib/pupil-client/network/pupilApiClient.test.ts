@@ -1,8 +1,8 @@
-import { CreateLessonAttemptPayload } from "../../../node-lib/pupil-api/types";
-
 import { PupilApiClient } from "./PupilApiClient";
 
-describe("PupilNetworkClient", () => {
+import { CreateLessonAttemptPayload } from "@/node-lib/pupil-api/types";
+
+describe("PupilApiClient", () => {
   const client = PupilApiClient;
 
   beforeEach(() => {

@@ -1,50 +1,25 @@
-import { getVercelOidcToken } from "@vercel/functions/oidc";
 import DLP, { protos } from "@google-cloud/dlp";
-import { GoogleAuth } from "google-auth-library";
+
+import { getGcpOidc } from "../oidc/getGcpOidc";
 
 import { PiiMatch, TeacherNote } from "@/node-lib/pupil-api/types";
 
 const projectId = process.env.GCP_PROJECT_ID;
-const GCP_WORKLOAD_IDENTITY_POOL_PROVIDER_ID =
-  process.env.GCP_WORKLOAD_IDENTITY_POOL_PROVIDER_ID;
-const GCP_SERVICE_ACCOUNT_EMAIL = process.env.GCP_SERVICE_ACCOUNT_EMAIL;
 
-if (
-  !projectId ||
-  !GCP_WORKLOAD_IDENTITY_POOL_PROVIDER_ID ||
-  !GCP_SERVICE_ACCOUNT_EMAIL
-) {
-  throw new Error(
-    "GCP_PROJECT_ID, GCP_WORKLOAD_IDENTITY_POOL_PROVIDER_ID, and GCP_SERVICE_ACCOUNT_EMAIL are required",
-  );
+if (!projectId) {
+  throw new Error("GCP_PROJECT_ID is required");
 }
 
-const externalAccountJson = {
-  type: "external_account",
-  audience: `//iam.googleapis.com/${GCP_WORKLOAD_IDENTITY_POOL_PROVIDER_ID}`,
-  subject_token_type: "urn:ietf:params:oauth:token-type:jwt",
-  token_url: "https://sts.googleapis.com/v1/token",
-  service_account_impersonation_url: `https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/${GCP_SERVICE_ACCOUNT_EMAIL}:generateAccessToken`,
-  subject_token_supplier: {
-    getSubjectToken: getVercelOidcToken,
-  },
-  // Use cloud-platform so the same token works for Firestore *and* DLP
-  scopes: ["https://www.googleapis.com/auth/cloud-platform"],
-} as const;
+const externalAccountJson = getGcpOidc([
+  "https://www.googleapis.com/auth/cloud-platform",
+]);
 
-const auth = new GoogleAuth({
-  projectId: process.env.GCP_PROJECT_ID!,
-  credentials: externalAccountJson, // same object as above
-  scopes: ["https://www.googleapis.com/auth/cloud-platform"],
-});
-
-if (!auth) {
-  throw new Error("Failed to initialize authClient for DLP.");
+if (!externalAccountJson) {
+  throw new Error("Failed to initialize externalAccountJson for DLP.");
 }
 
 const dlp = new DLP.DlpServiceClient({
   projectId,
-  // no type conflict now: plain object is structurally OK
   credentials: externalAccountJson,
 });
 
