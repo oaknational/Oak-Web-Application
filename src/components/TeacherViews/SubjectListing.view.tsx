@@ -12,6 +12,7 @@ import {
 import OwaLink from "../SharedComponents/OwaLink";
 import { SubjectKeystageSeoText } from "../TeacherComponents/SubjectKeystageSEO/SubjectKeystageSeoText";
 import { SubjectKeystageSeoAccordion } from "../TeacherComponents/SubjectKeystageSEO/SubjectKeystageSeoAccordion";
+import { getSubjectKeystageSeoLinks } from "../TeacherComponents/SubjectKeystageSEO/getSubjectKeystageSeoLinks";
 
 import { SubjectListingPageProps } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
 import SubjectListingCardDouble from "@/components/TeacherComponents/SubjectListingCard";
@@ -131,7 +132,12 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
             </OakGrid>
           </>
         )}
-        {!isEyfs && <SubjectKeystageSeoAccordion keystageSlug={keyStageSlug} />}
+        {!isEyfs && (
+          <SubjectKeystageSeoAccordion
+            keystageSlug={keyStageSlug}
+            links={getSubjectKeystageSeoLinks(subjects, keyStageSlug)}
+          />
+        )}
       </OakMaxWidth>
     </OakFlex>
   );
