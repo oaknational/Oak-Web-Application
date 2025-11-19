@@ -25,6 +25,7 @@ function InnerMaxWidth({ children }: { children: ReactNode }) {
       $maxWidth={"spacing-1280"}
       $mh={"auto"}
       $ph={["spacing-16", "spacing-16", "spacing-40"]}
+      $position={"relative"}
     >
       {children}
     </OakBox>
@@ -44,7 +45,22 @@ export function WhoAreWeExplore({
   items,
 }: Readonly<WhoAreWeExploreProps>) {
   return (
-    <OakBox $background={"mint"}>
+    <OakBox $background={"mint"} $position={"relative"}>
+      <OakIcon
+        iconName="confetti"
+        $position={"absolute"}
+        $top={"spacing-0"}
+        $left={"spacing-0"}
+        $width={"100%"}
+        $height={"100%"}
+        $display={["none", "block"]}
+        $transform={[
+          "scale(1)",
+          "scale(1.1) translateX(-0.65%) translateY(4%)",
+          "scale(1.4)",
+        ]}
+        style={{ pointerEvents: "none" }}
+      />
       <InnerMaxWidth data-testid="test">
         <OakFlex
           $flexDirection={"column"}
