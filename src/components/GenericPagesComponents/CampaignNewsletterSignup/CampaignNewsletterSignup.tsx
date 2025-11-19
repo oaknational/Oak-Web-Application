@@ -8,13 +8,15 @@ import {
   OakGridArea,
   OakFieldError,
   OakBox,
+  OakJauntyAngleLabel,
+  OakSelect,
+  OakOption,
 } from "@oaknational/oak-components";
 import { PortableTextReactComponents } from "@portabletext/react";
 import z, { ZodSchema } from "zod";
 
 import {
   newsletterSignupFormSubmitSchema,
-  newsletterSignupHowCanWeHelpSchema,
   newsletterSignupRoleSchema,
   partialNewsletterSchema,
 } from "./CampaignNewsletterSignup.schema";
@@ -97,11 +99,9 @@ const SchoolPickerInput = ({
 function getSchema({
   freeSchoolInput,
   enableRole,
-  enableHowCanWeHelp,
 }: {
   freeSchoolInput?: boolean | null;
   enableRole?: boolean | null;
-  enableHowCanWeHelp?: boolean | null;
 }) {
   let schema: ZodSchema = newsletterSignupFormSubmitSchema;
   if (freeSchoolInput) {
@@ -109,9 +109,6 @@ function getSchema({
   }
   if (enableRole) {
     schema = z.intersection(schema, newsletterSignupRoleSchema);
-  }
-  if (enableHowCanWeHelp) {
-    schema = z.intersection(schema, newsletterSignupHowCanWeHelpSchema);
   }
   return schema;
 }
@@ -124,7 +121,6 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
   textStyles,
   freeSchoolInput,
   enableRole,
-  enableHowCanWeHelp,
 }) => {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [submitError, setSubmitError] = useState<string>("");
@@ -163,7 +159,6 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
     const schema = getSchema({
       freeSchoolInput,
       enableRole,
-      enableHowCanWeHelp,
     });
     const formValidation = runSchema(schema, data);
 
@@ -261,32 +256,42 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
               />
 
               {enableRole && (
-                <OakInputWithLabel
-                  label={`Role`}
-                  id="newsletter-role"
-                  data-testid="newsletter-role"
-                  error={errors.role}
-                  onChange={(e) => onChange({ role: e.target.value })}
-                  required={true}
-                  placeholder="Type your role"
-                  name="newsletter-role"
-                  labelBackground={"mint"}
-                  defaultValue={data.role}
-                />
-              )}
-              {enableHowCanWeHelp && (
-                <OakInputWithLabel
-                  label={`How can we help`}
-                  id="newsletter-how-can-we-help"
-                  data-testid="newsletter-how-can-we-help"
-                  error={errors.howCanWeHelp}
-                  onChange={(e) => onChange({ howCanWeHelp: e.target.value })}
-                  required={true}
-                  placeholder="How can we help"
-                  name="newsletter-how-can-we-help"
-                  labelBackground={"mint"}
-                  defaultValue={data.howCanWeHelp}
-                />
+                <OakBox $position={"relative"}>
+                  <OakJauntyAngleLabel
+                    label={`Role`}
+                    for="newsletter-role"
+                    $color={"text-primary"}
+                    htmlFor={"test"}
+                    as="label"
+                    $font={"heading-7"}
+                    $background={"mint"}
+                    $zIndex="in-front"
+                    $position="absolute"
+                    $top={"-20px"}
+                    $left={"5px"}
+                    $borderRadius="border-radius-square"
+                    required={true}
+                    error={errors.role}
+                  />
+                  <OakSelect
+                    name="newsletter-role"
+                    data-testid="newsletter-role"
+                    id="newsletter-role"
+                    $display={"block"}
+                    value={data.role}
+                  >
+                    <OakOption asDefault={true}>Type your role</OakOption>
+                    {[
+                      "Classroom teacher",
+                      "Middle leader",
+                      "Senior leader",
+                      "Sector stakeholder",
+                      "Education (other)",
+                    ].map((item) => {
+                      return <OakOption key={item}>{item}</OakOption>;
+                    })}
+                  </OakSelect>
+                </OakBox>
               )}
 
               {freeSchoolInput ? (

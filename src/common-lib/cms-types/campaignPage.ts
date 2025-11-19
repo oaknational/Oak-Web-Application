@@ -26,7 +26,6 @@ const newsletterSignUpSchema = z.object({
   formId: z.string(),
   freeSchoolInput: z.boolean().nullish(),
   enableRole: z.boolean().nullish(),
-  enableHowCanWeHelp: z.boolean().nullish(),
 });
 
 export type CampaignPromoBannerType = z.infer<typeof campaignPromoBannerSchema>;

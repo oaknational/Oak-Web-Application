@@ -63,16 +63,6 @@ export const newsletterSignupRoleSchema = z.object({
     .min(1, ERRORS.role),
 });
 
-export const newsletterSignupHowCanWeHelpSchema = z.object({
-  howCanWeHelp: z
-    .string({
-      errorMap: () => ({
-        message: ERRORS.howCanWeHelp,
-      }),
-    })
-    .min(1, ERRORS.howCanWeHelp),
-});
-
 export type CampaignNewsletterSignUpFormProps = z.infer<
   typeof newsletterSignupFormSubmitSchema
 >;
