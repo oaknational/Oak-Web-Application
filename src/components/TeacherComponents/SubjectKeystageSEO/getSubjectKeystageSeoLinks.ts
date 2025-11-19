@@ -2,7 +2,7 @@ import { SubjectPathwayArray } from "@/pages/teachers/key-stages/[keyStageSlug]/
 import { resolveOakHref } from "@/common-lib/urls";
 
 export const getSubjectKeystageSeoLinks = (
-  subjects: [SubjectPathwayArray, ...SubjectPathwayArray[]],
+  subjects: Array<SubjectPathwayArray>,
   keyStageSlug: string,
 ) => {
   return subjects.flatMap((subject) => {
