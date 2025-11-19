@@ -9,8 +9,8 @@ declare global {
 
 export default function Head({
   children,
-}: {
+}: Readonly<{
   children: Array<React.ReactElement>;
-}) {
+}>) {
   return <fake-head>{children}</fake-head>;
 }
