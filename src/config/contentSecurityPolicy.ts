@@ -118,13 +118,7 @@ const localhost: Partial<CspConfig> = {
 
 const cspBaseConfig: CspConfig = {
   defaultSrc: ["'self'"],
-  scriptSrc: [
-    "'self'",
-    "'unsafe-inline'",
-    "https:",
-    "http:",
-    isDevelopment ? "" : "'strict-dynamic'",
-  ],
+  scriptSrc: ["'self'", "'unsafe-inline'", "https:", "http:"],
   styleSrc: ["'self'", "'unsafe-inline'"],
   imgSrc: [
     "'self'",

@@ -153,6 +153,15 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
           },
         ],
       },
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "Content-Security-Policy",
+            value: cspHeader.replaceAll(/\n/g, ""),
+          },
+        ],
+      },
     ],
     // Attempt to reduce the size of the build by excluding some packages.
     serverExternalPackages: ["sharp"],
