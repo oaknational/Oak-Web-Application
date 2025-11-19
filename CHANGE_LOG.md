@@ -1,3 +1,10 @@
+## [1.915.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.915.2...v1.915.3) (2025-11-19)
+
+
+### Bug Fixes
+
+* <ul/> has an implicit role of list ([5b2f9a6](https://github.com/oaknational/Oak-Web-Application/commit/5b2f9a669cae8a1fcbf55cec1ef83aaa058ccd85))
+
 ## [1.915.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.915.1...v1.915.2) (2025-11-19)
 
 
