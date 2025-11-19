@@ -36,9 +36,9 @@ async function getAttempt(
   );
 
   if (!response.ok) {
-    errorReporter("Failed to fetch attempt")(new Error(response.statusText), {
-      severity: "warning",
-    });
+    console.warn(
+      `Failed to fetch lesson attempt: ${response.status} ${response.statusText}`,
+    );
   }
   return response.json();
 }
