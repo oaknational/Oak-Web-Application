@@ -174,14 +174,14 @@ export const PupilViewsVideo = ({
       }
     >
       <OakGrid
-        $maxWidth={["100%", "all-spacing-23", "100%"]}
+        $maxWidth={["100%", "spacing-960", "100%"]}
         $mh="auto"
-        $ph={["inner-padding-m", "inner-padding-xl", "inner-padding-none"]}
+        $ph={["spacing-16", "spacing-24", "spacing-0"]}
       >
         <OakGridArea
           $colStart={[1, 1, 3]}
           $colSpan={[12, 12, 8]}
-          $mb="space-between-m2"
+          $mb="spacing-32"
         >
           {playbackId ? (
             <VideoPlayer
@@ -228,21 +228,21 @@ export const PupilViewsVideo = ({
               }
             >
               {transcriptSentences.map((sentence, index) => (
-                <OakP key={index} $mb="space-between-s">
+                <OakP key={index} $mb="spacing-16">
                   {sentence}
                 </OakP>
               ))}
             </OakLessonVideoTranscript>
           )}
           <OakHandDrawnHR
-            $height={"all-spacing-1"}
+            $height={"spacing-4"}
             hrColor={"border-neutral-lighter"}
             $width={"100%"}
           />
-          <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
+          <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
             {hasAdditionalFiles && additionalFiles && (
               <OakLessonInfoCard>
-                <OakFlex $gap={"space-between-s"}>
+                <OakFlex $gap={"spacing-16"}>
                   <OakCardHeader iconName="additional-material" tag="h1">
                     {`File${additionalFiles.length > 1 ? "s" : ""} you will need for this lesson`}
                   </OakCardHeader>
@@ -256,7 +256,7 @@ export const PupilViewsVideo = ({
                 <OakUL
                   $display={"flex"}
                   $flexDirection={"column"}
-                  $gap={"space-between-s"}
+                  $gap={"spacing-16"}
                   $reset
                 >
                   {additionalFiles.map((file, index) =>
@@ -270,8 +270,8 @@ export const PupilViewsVideo = ({
                   iconName="download"
                   isTrailingIcon
                   $font={"heading-7"}
-                  $pl={"inner-padding-none"}
-                  $pr={"inner-padding-none"}
+                  $pl={"spacing-0"}
+                  $pr={"spacing-0"}
                 >
                   {additionalFiles.length === 1
                     ? "Download file"

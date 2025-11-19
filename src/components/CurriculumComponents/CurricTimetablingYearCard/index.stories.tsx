@@ -42,7 +42,7 @@ export const WithCurricTermCard: Story = {
     yearTitle: "Year 11",
     yearSubheading: "Physics",
     additional: (
-      <OakFlex $flexDirection={"column"} $gap={"all-spacing-6"}>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
         <OakInlineBanner
           isOpen={true}
           message={

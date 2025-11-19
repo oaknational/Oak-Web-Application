@@ -42,7 +42,7 @@ export type CardTitleProps = {
 const CardTitle: FC<CardTitleProps> = ({
   icon,
   $iconPosition = "leading",
-  iconSize = "all-spacing-7",
+  iconSize = "spacing-32",
   tag,
   children,
   $font = "heading-5",
@@ -59,26 +59,26 @@ const CardTitle: FC<CardTitleProps> = ({
       $alignItems={iconPositionArray.map((pos) =>
         pos === "aboveTitle" ? "flex-start" : "center",
       )}
-      $mb="space-between-m"
+      $mb="spacing-24"
     >
       {icon && (
         <OakIcon
           iconName={icon}
           $width={iconPositionArray.map((pos) =>
-            pos === "aboveTitle" ? "all-spacing-11" : iconSize,
+            pos === "aboveTitle" ? "spacing-64" : iconSize,
           )}
           $height={iconPositionArray.map((pos) =>
-            pos === "aboveTitle" ? "all-spacing-11" : iconSize,
+            pos === "aboveTitle" ? "spacing-64" : iconSize,
           )}
           $mb={iconPositionArray.map((pos) =>
-            pos === "aboveTitle" ? "space-between-xs" : "space-between-none",
+            pos === "aboveTitle" ? "spacing-12" : "spacing-0",
           )}
           $mr={iconPositionArray.map((pos) => {
             switch (pos) {
               case "leading":
-                return "space-between-xs";
+                return "spacing-12";
               case "trailing":
-                return "space-between-none";
+                return "spacing-0";
               case "aboveTitle":
                 return "auto";
               default:
@@ -88,16 +88,16 @@ const CardTitle: FC<CardTitleProps> = ({
           $ml={iconPositionArray.map((pos) => {
             switch (pos) {
               case "leading":
-                return "space-between-none";
+                return "spacing-0";
               case "trailing":
-                return "space-between-ssx";
+                return "spacing-8";
               case "aboveTitle":
                 return "auto";
               default:
                 return null;
             }
           })}
-          $pa={"inner-padding-none"}
+          $pa={"spacing-0"}
         />
       )}
       <Heading $font={$font} tag={tag}>

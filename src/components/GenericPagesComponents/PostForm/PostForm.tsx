@@ -15,7 +15,7 @@ const PostForm = (props: PortableTextComponentProps<FormBlock>) => {
   const params = props.value;
 
   return (
-    <OakFlex $mv="space-between-xl">
+    <OakFlex $mv="spacing-56">
       <LandingPageSignUpForm formTitle={params.title} dontDescribe={true} />
     </OakFlex>
   );

@@ -30,7 +30,6 @@ export const LandingPageSignUpForm: FC<{
        */}
       <AnchorTarget id={"formBlock"} />
       <AnchorTarget id={"form-block"} />
-
       <CardTitle
         icon="magic-carpet"
         $font={["heading-5", "heading-6"]}
@@ -38,7 +37,7 @@ export const LandingPageSignUpForm: FC<{
       >
         {formTitle}
       </CardTitle>
-      <OakBox $mt="space-between-xs">
+      <OakBox $mt="spacing-12">
         <NewsletterForm
           onSubmit={onSubmit}
           id={id}

@@ -139,16 +139,8 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
           $display={"inline-flex"}
           $position="relative"
           $alignItems="center"
-          $mr={
-            $iconPosition === "leading"
-              ? "space-between-ssx"
-              : "space-between-none"
-          }
-          $ml={
-            $iconPosition === "trailing"
-              ? "space-between-ssx"
-              : "space-between-none"
-          }
+          $mr={$iconPosition === "leading" ? "spacing-8" : "spacing-0"}
+          $ml={$iconPosition === "trailing" ? "spacing-8" : "spacing-0"}
           $color={color ?? labelColor}
         >
           <Icon
@@ -163,7 +155,6 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
           )}
         </OakFlex>
       )}
-
       {subjectIcon && (
         <Flex
           $display={"inline-flex"}
@@ -180,8 +171,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
           />
         </Flex>
       )}
-
-      <OakBox $position={"relative"} $minWidth={"all-spacing-0"}>
+      <OakBox $position={"relative"} $minWidth={"spacing-0"}>
         <OakBox
           $display={displayProperty}
           $textDecoration={textDecoration}
@@ -211,9 +201,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
       {(variant === "brush" || variant === "brushNav") && (
         <ButtonBorders background={background} />
       )}
-
       <ButtonFocusUnderline $color={underlineColor} name="underline-1" />
-
       {variant === "buttonStyledAsLink" && (
         <ButtonStyledAsLinkFocusUnderline $color={"black"} name="underline-1" />
       )}

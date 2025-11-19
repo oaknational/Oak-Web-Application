@@ -9,23 +9,20 @@ const SpecialistSubjectListing: FC<SpecialistSubjectListingPageData> = (
 ) => {
   const { specialist, therapies } = props;
   return (
-    <OakFlex $flexDirection={"column"} $mv="space-between-xl">
+    <OakFlex $flexDirection={"column"} $mv="spacing-56">
       <OakMaxWidth
-        $maxWidth={["all-spacing-21", "all-spacing-23", "all-spacing-24"]}
-        $ph="inner-padding-s"
+        $maxWidth={["spacing-480", "spacing-960", "spacing-1280"]}
+        $ph="spacing-12"
       >
         <OakHeading
           $font={"heading-1"}
           tag={"h1"}
-          $mt={["space-between-m2", "space-between-xl"]}
-          $mb={["space-between-l", "space-between-xl"]}
+          $mt={["spacing-32", "spacing-56"]}
+          $mb={["spacing-48", "spacing-56"]}
         >
           Specialist and therapies
         </OakHeading>
-        <OakFlex
-          $flexDirection="column"
-          $gap={["all-spacing-6", "all-spacing-9"]}
-        >
+        <OakFlex $flexDirection="column" $gap={["spacing-24", "spacing-48"]}>
           <SpecialistSubjectCardSection
             subjects={specialist}
             heading="Specialist"

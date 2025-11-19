@@ -6,7 +6,7 @@ export const LessonMediaAttributions = ({
   mediaClipsWithAttributions: Array<{ name: string; attribution: string }>;
 }) => {
   return mediaClipsWithAttributions.length ? (
-    <OakBox $pv="inner-padding-xl2" data-testid="media-attributions">
+    <OakBox $pv="spacing-32" data-testid="media-attributions">
       {mediaClipsWithAttributions.map((clip) => (
         <OakSpan
           $font="body-3"

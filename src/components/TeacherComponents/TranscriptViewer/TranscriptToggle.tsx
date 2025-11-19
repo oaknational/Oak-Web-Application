@@ -10,7 +10,7 @@ const TranscriptToggle: FC<{
       {transcriptSentences.map(
         (transcriptSentence, transcriptSentenceIndex) => {
           return (
-            <OakP key={transcriptSentenceIndex} $mb="space-between-s">
+            <OakP key={transcriptSentenceIndex} $mb="spacing-16">
               {transcriptSentence}
             </OakP>
           );

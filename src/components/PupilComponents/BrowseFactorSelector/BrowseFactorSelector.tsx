@@ -84,9 +84,9 @@ export const BrowseFactorSelector = ({
   return (
     <OakFlex
       as="ul"
-      $ma={"space-between-none"}
-      $pa={"inner-padding-none"}
-      $gap={"all-spacing-4"}
+      $ma={"spacing-0"}
+      $pa={"spacing-0"}
+      $gap={"spacing-16"}
       $flexWrap={"wrap"}
       $justifyContent={"space-evenly"}
     >

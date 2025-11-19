@@ -16,20 +16,20 @@ const LessonOverviewSpeechBubble: FC<LessonOverviewSpeechBubbleProps> = ({
   }
 
   return (
-    <OakBox $width={"all-spacing-20"}>
+    <OakBox $width={"spacing-360"}>
       <OakFlex
         $alignItems={"center"}
         $flexDirection={"column"}
         $justifyContent={"center"}
         $position={"relative"}
-        $height={"all-spacing-20"}
+        $height={"spacing-360"}
       >
         <OakFlex
-          $width={"all-spacing-19"}
+          $width={"spacing-240"}
           $alignItems={"center"}
           $justifyContent={"center"}
           $zIndex={"in-front"}
-          $mb={"space-between-xs"}
+          $mb={"spacing-12"}
         >
           <OakSpan
             $textAlign={"center"}
@@ -42,13 +42,13 @@ const LessonOverviewSpeechBubble: FC<LessonOverviewSpeechBubbleProps> = ({
         <OakIcon
           iconName="speech-bubble"
           $position={"absolute"}
-          $top={"all-spacing-1"}
-          $height={"all-spacing-20"}
+          $top={"spacing-4"}
+          $height={"spacing-360"}
           $width={"100%"}
         />
       </OakFlex>
       <OakFlex $justifyContent={"end"}>
-        <OakSpan $mt="space-between-m" $font={"heading-7"}>
+        <OakSpan $mt="spacing-24" $font={"heading-7"}>
           {label}
         </OakSpan>
       </OakFlex>

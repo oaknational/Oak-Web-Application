@@ -8,7 +8,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
     >
       <div
         aria-live="polite"
-        class="sc-fqkvVR sc-kAyceB sc-d65e4df9-0 hkKUlc iPEHGb jTGGef"
+        class="sc-fqkvVR sc-kAyceB sc-713e2c99-0 hkKUlc iPEHGb hUNyQr"
       />
       <fake-head>
         <title>
@@ -75,7 +75,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
           class="sc-fqkvVR gutnKP"
         >
           <div
-            class="sc-fqkvVR sc-fXSgeo eJBGXR efioha"
+            class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
           >
             <div
               class="sc-fqkvVR iPpXCP grey-shadow"
@@ -84,7 +84,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
               class="sc-fqkvVR iPpXCP yellow-shadow"
             />
             <a
-              class="sc-iHGNWf sc-esYiGF iKUgIm hnQzKH internal-button"
+              class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
               data-testid="skip-link"
               href="#main"
               style="position: absolute; left: -10000px;"
@@ -93,7 +93,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
               >
                 <span
-                  class="sc-dAlyuH hcOVuy"
+                  class="sc-dAlyuH hHWgLm"
                 >
                   Skip to content
                 </span>
@@ -103,7 +103,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
         </div>
         <header>
           <div
-            class="sc-fqkvVR sc-kAyceB sc-89c89675-0 guMDvj fvXruP kTrmhv"
+            class="sc-fqkvVR sc-kAyceB sc-89c89675-0 guMDvj fvXruP bgfvXN"
             data-testid="app-header"
           >
             <div
@@ -113,11 +113,11 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 class="sc-fqkvVR sc-kAyceB denUev fzjRNq"
               >
                 <a
-                  class="sc-ddjGPC hJhpMe sc-4d892c83-0 fciNWA"
+                  class="sc-dSCufp fydwRa sc-69d1ca97-0 biIKeN"
                   href="/"
                 >
                   <span
-                    class="sc-dAlyuH gAWMRU"
+                    class="sc-dAlyuH cRouMQ"
                   >
                     <div
                       class="sc-d9948bde-0 lcMLiS"
@@ -152,11 +152,11 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   class="sc-fqkvVR gNQyrX"
                 >
                   <a
-                    class="sc-ddjGPC hJhpMe sc-4d892c83-0 fciNWA"
+                    class="sc-dSCufp fydwRa sc-69d1ca97-0 biIKeN"
                     href="/"
                   >
                     <span
-                      class="sc-dAlyuH gAWMRU"
+                      class="sc-dAlyuH cRouMQ"
                     >
                       <div
                         class="sc-d9948bde-0 NYUBP"
@@ -186,7 +186,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 </div>
                 <a
                   aria-label="0 saved units"
-                  class="sc-iHGNWf sc-hZDyAQ ilmocx cqRbTv"
+                  class="sc-dtBdUo sc-ktJbId kUzaOQ fhggaS"
                   href="/teachers/my-library"
                 >
                   <span
@@ -215,7 +215,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                       class="sc-fqkvVR jfhmEn"
                     >
                       <span
-                        class="sc-dAlyuH iNQcjP"
+                        class="sc-dAlyuH DWQPb"
                       >
                         0
                       </span>
@@ -223,7 +223,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   </div>
                 </a>
                 <div
-                  class="sc-fqkvVR sc-fXSgeo eJBGXR efioha"
+                  class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
                 >
                   <div
                     class="sc-fqkvVR iPpXCP grey-shadow"
@@ -232,13 +232,13 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                     class="sc-fqkvVR iPpXCP yellow-shadow"
                   />
                   <button
-                    class="sc-iHGNWf sc-esYiGF epkVqK hnQzKH internal-button"
+                    class="sc-dtBdUo sc-fXSgeo fxMPcP jZjsdk internal-button"
                   >
                     <div
                       class="sc-fqkvVR sc-kAyceB fgBWrW eIAHnn"
                     >
                       <span
-                        class="sc-dAlyuH iKlriH"
+                        class="sc-dAlyuH ZrXVD"
                       >
                         Sign up
                       </span>
@@ -414,7 +414,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
             >
               <div
                 aria-expanded="false"
-                class="sc-fqkvVR sc-kAyceB sc-8d9aac1c-0 iHLRke eeevb gReBEm"
+                class="sc-fqkvVR sc-kAyceB sc-e713ebd7-0 iHLRke eeevb hjUayK"
                 data-testid="menu"
               >
                 <div
@@ -492,7 +492,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   </button>
                 </div>
                 <nav
-                  class="sc-8d9aac1c-1 eEGOVu"
+                  class="sc-e713ebd7-1 kTncwy"
                 >
                   <div
                     class="sc-fqkvVR sc-kAyceB jFnbBV cPlSvk"
@@ -536,14 +536,14 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                         role="list"
                       >
                         <li
-                          class="sc-cwHptR cgXezm"
+                          class="sc-jlZhew ehzYni"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
                           >
                             <a
                               aria-label="Home"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="/"
                               role="link"
                               title="Home"
@@ -555,7 +555,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                                   class="sc-fqkvVR fgBWrW"
                                 >
                                   <span
-                                    class="sc-dAlyuH sc-ca3376e3-0 gYScdJ eEriKr"
+                                    class="sc-dAlyuH sc-ca3376e3-0 eeepiN eEriKr"
                                   >
                                     Home
                                   </span>
@@ -563,7 +563,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -575,7 +575,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -589,14 +589,14 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR cgXezm"
+                          class="sc-jlZhew ehzYni"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
                           >
                             <a
                               aria-label="Key stage 1"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="/teachers/key-stages/ks1/subjects"
                               role="link"
                               title="Key stage 1"
@@ -608,7 +608,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                                   class="sc-fqkvVR fgBWrW"
                                 >
                                   <span
-                                    class="sc-dAlyuH sc-ca3376e3-0 gYScdJ eEriKr"
+                                    class="sc-dAlyuH sc-ca3376e3-0 eeepiN eEriKr"
                                   >
                                     Key stage 1
                                   </span>
@@ -616,7 +616,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -628,7 +628,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -642,14 +642,14 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR cgXezm"
+                          class="sc-jlZhew ehzYni"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
                           >
                             <a
                               aria-label="Key stage 2"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="/teachers/key-stages/ks2/subjects"
                               role="link"
                               title="Key stage 2"
@@ -661,7 +661,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                                   class="sc-fqkvVR fgBWrW"
                                 >
                                   <span
-                                    class="sc-dAlyuH sc-ca3376e3-0 gYScdJ eEriKr"
+                                    class="sc-dAlyuH sc-ca3376e3-0 eeepiN eEriKr"
                                   >
                                     Key stage 2
                                   </span>
@@ -669,7 +669,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -681,7 +681,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -695,14 +695,14 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR cgXezm"
+                          class="sc-jlZhew ehzYni"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
                           >
                             <a
                               aria-label="Key stage 3"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="/teachers/key-stages/ks3/subjects"
                               role="link"
                               title="Key stage 3"
@@ -714,7 +714,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                                   class="sc-fqkvVR fgBWrW"
                                 >
                                   <span
-                                    class="sc-dAlyuH sc-ca3376e3-0 gYScdJ eEriKr"
+                                    class="sc-dAlyuH sc-ca3376e3-0 eeepiN eEriKr"
                                   >
                                     Key stage 3
                                   </span>
@@ -722,7 +722,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -734,7 +734,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -748,14 +748,14 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR cgXezm"
+                          class="sc-jlZhew ehzYni"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
                           >
                             <a
                               aria-label="Key stage 4"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="/teachers/key-stages/ks4/subjects"
                               role="link"
                               title="Key stage 4"
@@ -767,7 +767,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                                   class="sc-fqkvVR fgBWrW"
                                 >
                                   <span
-                                    class="sc-dAlyuH sc-ca3376e3-0 gYScdJ eEriKr"
+                                    class="sc-dAlyuH sc-ca3376e3-0 eeepiN eEriKr"
                                   >
                                     Key stage 4
                                   </span>
@@ -775,7 +775,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -787,7 +787,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -801,14 +801,14 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR cgXezm"
+                          class="sc-jlZhew ehzYni"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
                           >
                             <a
                               aria-label="EYFS"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="/teachers/key-stages/early-years-foundation-stage/subjects"
                               role="link"
                               title="EYFS"
@@ -820,7 +820,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                                   class="sc-fqkvVR fgBWrW"
                                 >
                                   <span
-                                    class="sc-dAlyuH sc-ca3376e3-0 gYScdJ eEriKr"
+                                    class="sc-dAlyuH sc-ca3376e3-0 eeepiN eEriKr"
                                   >
                                     EYFS
                                   </span>
@@ -828,7 +828,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -840,7 +840,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -854,14 +854,14 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR cgXezm"
+                          class="sc-jlZhew ehzYni"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
                           >
                             <a
                               aria-label="Specialist"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="/teachers/specialist/subjects"
                               role="link"
                               title="Specialist"
@@ -873,7 +873,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                                   class="sc-fqkvVR fgBWrW"
                                 >
                                   <span
-                                    class="sc-dAlyuH sc-ca3376e3-0 gYScdJ eEriKr"
+                                    class="sc-dAlyuH sc-ca3376e3-0 eeepiN eEriKr"
                                   >
                                     Specialist
                                   </span>
@@ -881,7 +881,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -893,7 +893,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -907,14 +907,14 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR cgXezm"
+                          class="sc-jlZhew ehzYni"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
                           >
                             <a
                               aria-label="Curriculum plans"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="/teachers/curriculum"
                               role="link"
                               title="Curriculum plans"
@@ -926,7 +926,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                                   class="sc-fqkvVR fgBWrW"
                                 >
                                   <span
-                                    class="sc-dAlyuH sc-ca3376e3-0 gYScdJ eEriKr"
+                                    class="sc-dAlyuH sc-ca3376e3-0 eeepiN eEriKr"
                                   >
                                     Curriculum plans
                                   </span>
@@ -934,7 +934,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -946,7 +946,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -960,14 +960,14 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR cgXezm"
+                          class="sc-jlZhew ehzYni"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
                           >
                             <a
                               aria-label="Plan a lesson"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="/lesson-planning"
                               role="link"
                               title="Plan a lesson"
@@ -979,7 +979,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                                   class="sc-fqkvVR fgBWrW"
                                 >
                                   <span
-                                    class="sc-dAlyuH sc-ca3376e3-0 gYScdJ eEriKr"
+                                    class="sc-dAlyuH sc-ca3376e3-0 eeepiN eEriKr"
                                   >
                                     Plan a lesson
                                   </span>
@@ -987,7 +987,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -999,7 +999,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -1013,14 +1013,14 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR cgXezm"
+                          class="sc-jlZhew ehzYni"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
                           >
                             <a
                               aria-label="Support your team"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="/support-your-team"
                               role="link"
                               title="Support your team"
@@ -1032,7 +1032,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                                   class="sc-fqkvVR fgBWrW"
                                 >
                                   <span
-                                    class="sc-dAlyuH sc-ca3376e3-0 gYScdJ eEriKr"
+                                    class="sc-dAlyuH sc-ca3376e3-0 eeepiN eEriKr"
                                   >
                                     Support your team
                                   </span>
@@ -1040,7 +1040,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -1052,7 +1052,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -1081,14 +1081,14 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                         role="list"
                       >
                         <li
-                          class="sc-cwHptR cgXezm"
+                          class="sc-jlZhew ehzYni"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
                           >
                             <a
                               aria-label="Pupils home"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="/pupils/years"
                               role="link"
                               title="Pupils home"
@@ -1100,7 +1100,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                                   class="sc-fqkvVR fgBWrW"
                                 >
                                   <span
-                                    class="sc-dAlyuH sc-ca3376e3-0 gYScdJ eEriKr"
+                                    class="sc-dAlyuH sc-ca3376e3-0 eeepiN eEriKr"
                                   >
                                     Home
                                   </span>
@@ -1108,7 +1108,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -1120,7 +1120,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -1149,14 +1149,14 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                         role="list"
                       >
                         <li
-                          class="sc-cwHptR cgXezm"
+                          class="sc-jlZhew ehzYni"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
                           >
                             <a
                               aria-label="Blogs"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="/blog"
                               role="link"
                               title="Blogs"
@@ -1168,7 +1168,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                                   class="sc-fqkvVR fgBWrW"
                                 >
                                   <span
-                                    class="sc-dAlyuH sc-ca3376e3-0 gYScdJ eEriKr"
+                                    class="sc-dAlyuH sc-ca3376e3-0 eeepiN eEriKr"
                                   >
                                     Blogs
                                   </span>
@@ -1176,7 +1176,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -1188,7 +1188,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -1202,14 +1202,14 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR cgXezm"
+                          class="sc-jlZhew ehzYni"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
                           >
                             <a
                               aria-label="Webinars"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="/webinars"
                               role="link"
                               title="Webinars"
@@ -1221,7 +1221,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                                   class="sc-fqkvVR fgBWrW"
                                 >
                                   <span
-                                    class="sc-dAlyuH sc-ca3376e3-0 gYScdJ eEriKr"
+                                    class="sc-dAlyuH sc-ca3376e3-0 eeepiN eEriKr"
                                   >
                                     Webinars
                                   </span>
@@ -1229,7 +1229,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -1241,7 +1241,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -1255,14 +1255,14 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR cgXezm"
+                          class="sc-jlZhew ehzYni"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
                           >
                             <a
                               aria-label="About us"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="/about-us/who-we-are"
                               role="link"
                               title="About us"
@@ -1274,7 +1274,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                                   class="sc-fqkvVR fgBWrW"
                                 >
                                   <span
-                                    class="sc-dAlyuH sc-ca3376e3-0 gYScdJ eEriKr"
+                                    class="sc-dAlyuH sc-ca3376e3-0 eeepiN eEriKr"
                                   >
                                     About us
                                   </span>
@@ -1282,7 +1282,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -1294,7 +1294,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -1308,14 +1308,14 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR cgXezm"
+                          class="sc-jlZhew ehzYni"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
                           >
                             <a
                               aria-label="Contact us"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="/contact-us"
                               role="link"
                               title="Contact us"
@@ -1327,7 +1327,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                                   class="sc-fqkvVR fgBWrW"
                                 >
                                   <span
-                                    class="sc-dAlyuH sc-ca3376e3-0 gYScdJ eEriKr"
+                                    class="sc-dAlyuH sc-ca3376e3-0 eeepiN eEriKr"
                                   >
                                     Contact us
                                   </span>
@@ -1335,7 +1335,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -1347,7 +1347,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -1361,14 +1361,14 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR cgXezm"
+                          class="sc-jlZhew ehzYni"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB fgBWrW fEAjEF"
                           >
                             <a
                               aria-label="Help (opens in a new tab)"
-                              class="sc-f63c4ba9-0 dDyMJw"
+                              class="sc-f63c4ba9-0 kCdnqc"
                               href="https://support.thenational.academy/"
                               role="link"
                               target="_blank"
@@ -1419,7 +1419,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                                   class="sc-fqkvVR fgBWrW"
                                 >
                                   <span
-                                    class="sc-dAlyuH sc-ca3376e3-0 gYScdJ eEriKr"
+                                    class="sc-dAlyuH sc-ca3376e3-0 eeepiN eEriKr"
                                   >
                                     Help
                                   </span>
@@ -1427,7 +1427,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 fxUNaR"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -1439,7 +1439,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </svg>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-2 byWXiP"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -1695,7 +1695,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
               class="sc-fqkvVR sc-jXbUNg bHaeEi gdCncd"
             >
               <div
-                class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-504343f2-0 fgBWrW djyvKT iAkSYx cNxuus"
+                class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-8557270c-0 fgBWrW djyvKT iAkSYx fXQhAY"
               >
                 <div
                   class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
@@ -1704,7 +1704,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                     class="sc-kpDqfm cRJejs"
                   >
                     <span
-                      class="sc-dAlyuH jXPica"
+                      class="sc-dAlyuH gCYoeq"
                     >
                       About Oak
                     </span>
@@ -1717,7 +1717,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 </div>
               </div>
               <div
-                class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-504343f2-1 fgBWrW joHkzz dGlNMa cLXZgT"
+                class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-8557270c-1 fgBWrW joHkzz dGlNMa cCBOvz"
               >
                 <div
                   class="sc-fqkvVR dBkKun"
@@ -1740,7 +1740,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB sc-106fff76-0 ixZoE joHkzz jCAwhf"
+            class="sc-fqkvVR sc-kAyceB sc-56b6843c-0 ixZoE joHkzz fSxnKk"
           >
             <div
               class="sc-fqkvVR sc-kAyceB kkWGlq bAFsaQ"
@@ -1794,7 +1794,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                         class="sc-fqkvVR cBmcky"
                       >
                         <span
-                          class="sc-dAlyuH jXPica"
+                          class="sc-dAlyuH gCYoeq"
                         >
                           Oak’s story
                         </span>
@@ -1837,7 +1837,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                             class="sc-fqkvVR cvmDMx"
                           >
                             <span
-                              class="sc-dAlyuH jXPica"
+                              class="sc-dAlyuH gCYoeq"
                             >
                               From then
                             </span>
@@ -1879,7 +1879,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                             class="sc-fqkvVR cvmDMx"
                           >
                             <span
-                              class="sc-dAlyuH jXPica"
+                              class="sc-dAlyuH gCYoeq"
                             >
                               To now
                             </span>
@@ -1926,7 +1926,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                             class="sc-fqkvVR cvmDMx"
                           >
                             <span
-                              class="sc-dAlyuH jXPica"
+                              class="sc-dAlyuH gCYoeq"
                             >
                               And beyond
                             </span>
@@ -1968,7 +1968,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 class="sc-fqkvVR sc-jXbUNg egekXy iwxQGX"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-696740e6-0 fgBWrW joHkzz iAkSYx dSbcHj"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-481a7747-0 fgBWrW joHkzz iAkSYx bpbBOR"
                   data-testid="who-we-are-desc-item"
                 >
                   <div
@@ -2008,7 +2008,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-696740e6-0 fgBWrW joHkzz iAkSYx dSbcHj"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-481a7747-0 fgBWrW joHkzz iAkSYx bpbBOR"
                   data-testid="who-we-are-desc-item"
                 >
                   <div
@@ -2048,7 +2048,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-696740e6-0 fgBWrW joHkzz iAkSYx dSbcHj"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-481a7747-0 fgBWrW joHkzz iAkSYx bpbBOR"
                   data-testid="who-we-are-desc-item"
                 >
                   <div
@@ -2088,7 +2088,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-696740e6-0 fgBWrW joHkzz iAkSYx dSbcHj"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-481a7747-0 fgBWrW joHkzz iAkSYx bpbBOR"
                   data-testid="who-we-are-desc-item"
                 >
                   <div
@@ -2428,13 +2428,13 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                       Pupils
                     </h2>
                     <div
-                      class="sc-fqkvVR sc-fPXMVe iiKnvq hCerod"
+                      class="sc-fqkvVR sc-gFqAkR iiKnvq jKGfut"
                     >
                       <ul
                         role="list"
                       >
                         <li
-                          class="sc-cwHptR gIDDGC"
+                          class="sc-jlZhew XOrLS"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -2484,13 +2484,13 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                       Teachers
                     </h2>
                     <div
-                      class="sc-fqkvVR sc-fPXMVe iiKnvq hCerod"
+                      class="sc-fqkvVR sc-gFqAkR iiKnvq jKGfut"
                     >
                       <ul
                         role="list"
                       >
                         <li
-                          class="sc-cwHptR gIDDGC"
+                          class="sc-jlZhew XOrLS"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -2525,7 +2525,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR gIDDGC"
+                          class="sc-jlZhew XOrLS"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -2560,7 +2560,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR gIDDGC"
+                          class="sc-jlZhew XOrLS"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -2595,7 +2595,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR gIDDGC"
+                          class="sc-jlZhew XOrLS"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -2630,7 +2630,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR gIDDGC"
+                          class="sc-jlZhew XOrLS"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -2665,7 +2665,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR gIDDGC"
+                          class="sc-jlZhew XOrLS"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -2700,7 +2700,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR gIDDGC"
+                          class="sc-jlZhew XOrLS"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -2736,7 +2736,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR gIDDGC"
+                          class="sc-jlZhew XOrLS"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -2772,7 +2772,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR gIDDGC"
+                          class="sc-jlZhew XOrLS"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -2823,13 +2823,13 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                       Oak
                     </h2>
                     <div
-                      class="sc-fqkvVR sc-fPXMVe iiKnvq hCerod"
+                      class="sc-fqkvVR sc-gFqAkR iiKnvq jKGfut"
                     >
                       <ul
                         role="list"
                       >
                         <li
-                          class="sc-cwHptR gIDDGC"
+                          class="sc-jlZhew XOrLS"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -2865,7 +2865,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR gIDDGC"
+                          class="sc-jlZhew XOrLS"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -2901,7 +2901,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR gIDDGC"
+                          class="sc-jlZhew XOrLS"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -2951,7 +2951,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR gIDDGC"
+                          class="sc-jlZhew XOrLS"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -2987,7 +2987,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR gIDDGC"
+                          class="sc-jlZhew XOrLS"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3038,7 +3038,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR gIDDGC"
+                          class="sc-jlZhew XOrLS"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3074,7 +3074,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR gIDDGC"
+                          class="sc-jlZhew XOrLS"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3110,7 +3110,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR gIDDGC"
+                          class="sc-jlZhew XOrLS"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3175,13 +3175,13 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                       Legal
                     </h2>
                     <div
-                      class="sc-fqkvVR sc-fPXMVe iiKnvq hCerod"
+                      class="sc-fqkvVR sc-gFqAkR iiKnvq jKGfut"
                     >
                       <ul
                         role="list"
                       >
                         <li
-                          class="sc-cwHptR gIDDGC"
+                          class="sc-jlZhew XOrLS"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3216,7 +3216,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR gIDDGC"
+                          class="sc-jlZhew XOrLS"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3251,7 +3251,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR gIDDGC"
+                          class="sc-jlZhew XOrLS"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3286,10 +3286,10 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR gIDDGC"
+                          class="sc-jlZhew XOrLS"
                         >
                           <button
-                            class="sc-ce4d7bd4-0 sc-e88beb40-0 kYyTPx kMTLGH"
+                            class="sc-ce4d7bd4-0 sc-e88beb40-0 kYyTPx cUHyFr"
                             title="Manage cookie settings"
                           >
                             <div
@@ -3299,14 +3299,14 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                                 class="sc-fqkvVR fgBWrW"
                               >
                                 <span
-                                  class="sc-dAlyuH sc-ca3376e3-0 fIvVLw dDWCOR"
+                                  class="sc-dAlyuH sc-ca3376e3-0 dYUFxg dDWCOR"
                                 >
                                   Manage cookie settings
                                 </span>
                               </div>
                               <svg
                                 aria-hidden="true"
-                                class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-1 eYUgU"
+                                class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-1 guutYs"
                                 height="100%"
                                 name="underline-1"
                                 width="100%"
@@ -3319,7 +3319,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                             </div>
                             <svg
                               aria-hidden="true"
-                              class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 bbOqTd"
+                              class="sc-86d1d46f-0 jOBmUC sc-f8cc99da-0 eCYhIZ"
                               height="100%"
                               name="underline-1"
                               width="100%"
@@ -3332,7 +3332,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </button>
                         </li>
                         <li
-                          class="sc-cwHptR gIDDGC"
+                          class="sc-jlZhew XOrLS"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3367,7 +3367,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR gIDDGC"
+                          class="sc-jlZhew XOrLS"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3402,7 +3402,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR gIDDGC"
+                          class="sc-jlZhew XOrLS"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3437,7 +3437,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR gIDDGC"
+                          class="sc-jlZhew XOrLS"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3472,7 +3472,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR gIDDGC"
+                          class="sc-jlZhew XOrLS"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3507,7 +3507,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </div>
                         </li>
                         <li
-                          class="sc-cwHptR gIDDGC"
+                          class="sc-jlZhew XOrLS"
                         >
                           <div
                             class="sc-fqkvVR sc-kAyceB dkUbs ixXQTL"
@@ -3769,7 +3769,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 </div>
               </div>
               <div
-                class="sc-fqkvVR jqqmXN sc-c206a7c8-0 jkNlJc"
+                class="sc-fqkvVR jqqmXN sc-800b423d-0 dgdSbR"
                 data-percy-hide="contents"
               >
                 <img
@@ -4064,7 +4064,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
               class="sc-fqkvVR kJPpVN"
             >
               <strong
-                class="sc-dAlyuH dHeyJr"
+                class="sc-dAlyuH jdEtcT"
               >
                 This site uses cookies to store information on your computer.
               </strong>
@@ -4078,19 +4078,19 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 class="sc-fqkvVR sc-kAyceB fOyTgd TDtQj"
               >
                 <button
-                  class="sc-ddjGPC jZmCQY sc-dSCufp"
+                  class="sc-dSCufp kbtfSk sc-fxwrCY"
                   data-testid="cookie-banner-reject"
                   type="button"
                 >
                   <span
-                    class="sc-dAlyuH gAWMRU"
+                    class="sc-dAlyuH cRouMQ"
                   >
                     Reject non-essential cookies
                   </span>
                 </button>
               </div>
               <div
-                class="sc-fqkvVR sc-fXSgeo eJBGXR efioha"
+                class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
               >
                 <div
                   class="sc-fqkvVR iPpXCP grey-shadow"
@@ -4099,13 +4099,13 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   class="sc-fqkvVR iPpXCP yellow-shadow"
                 />
                 <button
-                  class="sc-iHGNWf sc-esYiGF iKUgIm hnQzKH internal-button"
+                  class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
                 >
                   <div
                     class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                   >
                     <span
-                      class="sc-dAlyuH hcOVuy"
+                      class="sc-dAlyuH hHWgLm"
                     >
                       Cookie settings
                     </span>
@@ -4113,7 +4113,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 </button>
               </div>
               <div
-                class="sc-fqkvVR sc-fXSgeo eJBGXR efioha"
+                class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
               >
                 <div
                   class="sc-fqkvVR iPpXCP grey-shadow"
@@ -4122,14 +4122,14 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   class="sc-fqkvVR iPpXCP yellow-shadow"
                 />
                 <button
-                  class="sc-iHGNWf sc-esYiGF NgRfG dRQKXW internal-button"
+                  class="sc-dtBdUo sc-fXSgeo bMKUbn dZvJQR internal-button"
                   data-testid="cookie-banner-accept"
                 >
                   <div
                     class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                   >
                     <span
-                      class="sc-dAlyuH hcOVuy"
+                      class="sc-dAlyuH hHWgLm"
                     >
                       Accept all cookies
                     </span>

@@ -37,15 +37,9 @@ export const QuizShortAnswer = ({ onChange }: QuizShortAnswerProps) => {
       : undefined;
 
   return (
-    <OakFlex
-      $flexDirection={"column"}
-      $gap={"space-between-m"}
-      $font={"body-1"}
-    >
+    <OakFlex $flexDirection={"column"} $gap={"spacing-24"} $font={"body-1"}>
       <OakLabel htmlFor={`short-answer-${questionUid}`}>
-        <OakFlex
-          $mt={["space-between-s", "space-between-l", "space-between-xl"]}
-        >
+        <OakFlex $mt={["spacing-16", "spacing-48", "spacing-56"]}>
           <OakJauntyAngleLabel
             $background={
               lessonEngineContext.currentSection === "starter-quiz"
@@ -63,7 +57,7 @@ export const QuizShortAnswer = ({ onChange }: QuizShortAnswerProps) => {
         name={`short-answer-${questionUid}`}
         onChange={onChange}
         feedback={feedback}
-        wrapperWidth={["100%", "all-spacing-22"]}
+        wrapperWidth={["100%", "spacing-640"]}
         isHighlighted={questionState.mode === "incomplete"}
       />
     </OakFlex>

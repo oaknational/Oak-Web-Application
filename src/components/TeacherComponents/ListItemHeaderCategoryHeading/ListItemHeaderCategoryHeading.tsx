@@ -16,7 +16,7 @@ const ListItemHeaderCategoryHeading: FC<ListItemHeaderCategoryHeadingProps> = ({
     <OakSpan
       $font={["heading-light-7", "heading-light-6"]}
       $color={"grey60"}
-      $mb="space-between-sssx"
+      $mb="spacing-4"
     >{`${keyStageTitle}, ${subjectTitle}, ${page}:`}</OakSpan>
   );
 };

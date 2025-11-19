@@ -62,9 +62,9 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
       <Banners />
       <OakBox $background={"lavender50"}>
         <OakMaxWidth
-          $ph="inner-padding-s"
-          $maxWidth={["all-spacing-21", "all-spacing-23", "all-spacing-24"]}
-          $pv="inner-padding-xl2"
+          $ph="spacing-12"
+          $maxWidth={["spacing-480", "spacing-960", "spacing-1280"]}
+          $pv="spacing-32"
         >
           <KeyStageKeypad
             keyStages={keyStages}

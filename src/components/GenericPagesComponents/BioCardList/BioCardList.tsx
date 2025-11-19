@@ -30,7 +30,7 @@ const BioCardList: FC<BioCardListProps> = (props) => {
     <OakFlex $flexDirection="column" {...flexProps}>
       <OakGrid
         $gridTemplateColumns={["1fr", "repeat(12, 1fr)"]}
-        $cg={"all-spacing-4"}
+        $cg={"spacing-16"}
       >
         {firstBio && firstBioHasOwnRow && (
           <>
@@ -38,7 +38,7 @@ const BioCardList: FC<BioCardListProps> = (props) => {
               $colSpan={[12, 4, 6]}
               $colStart={[null, 5, 4]}
               $colEnd={[null, 9, 10]}
-              $mb={["space-between-s", "space-between-m2"]}
+              $mb={["spacing-16", "spacing-32"]}
               key={`bio-card-list-gridarea-${firstBio.id}`}
             >
               <OakBox
@@ -65,7 +65,7 @@ const BioCardList: FC<BioCardListProps> = (props) => {
         {firstBio && !firstBioHasOwnRow && (
           <OakGridArea
             $colSpan={[12, 4, 3]}
-            $mb={["space-between-s", "space-between-m2"]}
+            $mb={["spacing-16", "spacing-32"]}
             key={`bio-card-list-gridarea-${firstBio.id}`}
           >
             <BioCardListItem
@@ -80,7 +80,7 @@ const BioCardList: FC<BioCardListProps> = (props) => {
           <OakGridArea
             $colSpan={[12, 4, 3]}
             key={`bio-card-list-gridarea-${bio.id}`}
-            $mb={["space-between-s", "space-between-m2"]}
+            $mb={["spacing-16", "spacing-32"]}
           >
             <BioCardListItem
               {...bio}

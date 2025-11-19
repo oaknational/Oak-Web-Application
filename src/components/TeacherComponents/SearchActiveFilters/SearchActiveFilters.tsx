@@ -58,13 +58,13 @@ const SearchActiveFilters: FC<SearchActiveFiltersProps> = (props) => {
       $alignContent={"center"}
       $display={activeFilters.length ? "flex" : "none"}
     >
-      <OakSpan $font="heading-light-7" $mr="space-between-s">
+      <OakSpan $font="heading-light-7" $mr="spacing-16">
         Active filters:
       </OakSpan>
       <OakFlex $flexWrap={"wrap"} $alignItems={"center"}>
         {slicedActiveFilters.map(({ slug, title, onChange, ...props }) => (
           <OakSmallTertiaryInvertedButton
-            $mr={["space-between-none", "space-between-xs", "space-between-xs"]}
+            $mr={["spacing-0", "spacing-12", "spacing-12"]}
             aria-label={`Remove ${title} filter`}
             key={`active-filter-${title}-${slug}`}
             onClick={() => {

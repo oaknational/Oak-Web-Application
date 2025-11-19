@@ -23,9 +23,9 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
 }) => {
   return (
     <OakFlex
-      $mv="space-between-m2"
+      $mv="spacing-32"
       $flexDirection={"column"}
-      $pb={[undefined, "inner-padding-xl2"]}
+      $pb={[undefined, "spacing-32"]}
       $bb={["border-solid-none", "border-solid-s"]}
       $borderColor={["transparent", "border-neutral-lighter"]}
       $flexGrow={1}
@@ -35,14 +35,14 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
           as={"legend"}
           tag="h3"
           $font={"heading-7"}
-          $mb={"space-between-m"}
+          $mb={"spacing-24"}
         >
           Year
         </OakHeading>
         <OakFlex
           $alignItems="flex-start"
           $flexWrap={"wrap"}
-          $gap={"space-between-ssx"}
+          $gap={"spacing-8"}
           $flexGrow={1}
         >
           <OakSearchFilterCheckBox

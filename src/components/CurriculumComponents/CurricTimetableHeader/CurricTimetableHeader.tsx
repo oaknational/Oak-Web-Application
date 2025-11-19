@@ -25,13 +25,13 @@ export function CurricTimetableHeader({
     <OakBox
       $background={"bg-decorative1-main"}
       $borderRadius={"border-radius-xl"}
-      $pa={"inner-padding-xl5"}
-      $pt={"inner-padding-xl4"}
-      $pb={"inner-padding-xl3"}
+      $pa={"spacing-56"}
+      $pt={"spacing-48"}
+      $pb={"spacing-40"}
     >
       <OakFlex $flexDirection={"row"}>
         <OakFlex $flexDirection={"column"} $flexGrow={1}>
-          <OakFlex $pb={"inner-padding-s"} $alignItems={"start"}>
+          <OakFlex $pb={"spacing-12"} $alignItems={"start"}>
             <OakImage
               src={logoSrc}
               style={{ height: 52, width: 114 }}
@@ -40,7 +40,7 @@ export function CurricTimetableHeader({
           </OakFlex>
           <OakFlex>
             <OakFlex
-              $gap={"all-spacing-6"}
+              $gap={"spacing-24"}
               $flexDirection={"column"}
               $flexGrow={1}
             >

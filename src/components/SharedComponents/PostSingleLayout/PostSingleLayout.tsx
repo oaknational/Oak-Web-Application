@@ -39,13 +39,13 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
 
   return (
     <OakMaxWidth>
-      <OakGrid $ph={["inner-padding-s", "inner-padding-none"]}>
+      <OakGrid $ph={["spacing-12", "spacing-0"]}>
         <OakGridArea $colSpan={[12, 0]}>
           <MobileFilters page={page} withBackButton label={"Categories"}>
             <PostCategoryList
               labelledBy={triggerId}
-              $pv={"inner-padding-xl"}
-              $ph={"inner-padding-m"}
+              $pv={"spacing-24"}
+              $ph={"spacing-16"}
               categories={categories}
               page={page}
             />
@@ -55,14 +55,14 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
           $colSpan={[0, 12]}
           $display={["none", "flex"]}
           $flexDirection="column"
-          $mv={"space-between-s"}
-          $gap={"space-between-m"}
+          $mv={"spacing-16"}
+          $gap={"spacing-24"}
         >
           <Breadcrumbs breadcrumbs={breadcrumbs} />
           <OakIcon
             iconName="header-underline"
             $colorFilter="grey40"
-            $height={"all-spacing-1"}
+            $height={"spacing-4"}
             $width={"100%"}
             $objectFit={"fill"}
           />
@@ -70,7 +70,7 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
         <OakGridArea
           $order={[0, 2]}
           $colSpan={[12, 3]}
-          $mt={["space-between-l", "space-between-xs"]}
+          $mt={["spacing-48", "spacing-12"]}
           $display={["none", "block"]}
           $position={[null, "sticky"]}
           $top={[null, HEADER_HEIGHT]}
@@ -84,7 +84,7 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
           </OakHeading>
           <PostCategoryList
             labelledBy={postCategoriesListProps.labelId}
-            $mt={"space-between-s"}
+            $mt={"spacing-16"}
             categories={categories}
             page={page}
           />
@@ -93,7 +93,7 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
         <OakGridArea
           $order={[1, 0]}
           $colSpan={[12, 7]}
-          $mt={["space-between-l", "space-between-xs"]}
+          $mt={["spacing-48", "spacing-12"]}
         >
           <BlogHeader post={post} page={page} />
           {children}

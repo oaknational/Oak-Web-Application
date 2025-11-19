@@ -21,8 +21,8 @@ const AboutUsLeadership: NextPage<AboutPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(seo)} $background={"white"}>
       <OakMaxWidth
-        $mb={["space-between-xl", "space-between-xxxl"]}
-        $mt={["space-between-xl", "space-between-xxxl"]}
+        $mb={["spacing-56", "spacing-80"]}
+        $mt={["spacing-56", "spacing-80"]}
       >
         <GenericSummaryCard {...pageData} />
         <GenericIntroCard
@@ -36,7 +36,7 @@ const AboutUsLeadership: NextPage<AboutPageProps> = ({ pageData }) => {
         {leadershipTeam && (
           <>
             <OakHeading
-              $mb={["space-between-l", "space-between-m2"]}
+              $mb={["spacing-48", "spacing-32"]}
               $font={["heading-6", "heading-5"]}
               tag={"h2"}
               $textAlign={"center"}
@@ -44,8 +44,8 @@ const AboutUsLeadership: NextPage<AboutPageProps> = ({ pageData }) => {
               Our leadership
             </OakHeading>
             <BioCardList
-              $mb={["space-between-xxxl", "space-between-xl"]}
-              $ph={["inner-padding-m", "inner-padding-none"]}
+              $mb={["spacing-80", "spacing-56"]}
+              $ph={["spacing-16", "spacing-0"]}
               bios={leadershipTeam}
               withModals
               firstBioHasOwnRow
