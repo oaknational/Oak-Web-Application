@@ -15,10 +15,10 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
           TESTING_TITLE
         </h2>
         <div
-          class="sc-fqkvVR sc-jXbUNg fgBWrW gdCncd"
+          class="sc-fqkvVR sc-jXbUNg fgBWrW ewUxii"
         >
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-f6fdb8d3-0 fgBWrW joHkzz iAkSYx eluAAt"
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-542e7679-0 fgBWrW joHkzz iAkSYx cmwAlb"
             data-testid="who-we-are-desc-item"
           >
             <div
@@ -60,7 +60,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-f6fdb8d3-0 fgBWrW joHkzz iAkSYx eluAAt"
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-542e7679-0 fgBWrW joHkzz iAkSYx cmwAlb"
             data-testid="who-we-are-desc-item"
           >
             <div
@@ -102,7 +102,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-f6fdb8d3-0 fgBWrW joHkzz iAkSYx eluAAt"
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-542e7679-0 fgBWrW joHkzz iAkSYx cmwAlb"
             data-testid="who-we-are-desc-item"
           >
             <div
@@ -144,7 +144,7 @@ exports[`WhoAreWeDesc renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-f6fdb8d3-0 fgBWrW joHkzz iAkSYx eluAAt"
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-542e7679-0 fgBWrW joHkzz iAkSYx cmwAlb"
             data-testid="who-we-are-desc-item"
           >
             <div
