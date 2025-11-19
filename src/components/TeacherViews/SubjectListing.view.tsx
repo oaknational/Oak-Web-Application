@@ -133,10 +133,14 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
           </>
         )}
         {!isEyfs && (
-          <SubjectKeystageSeoAccordion
-            keystageSlug={keyStageSlug}
-            links={getSubjectKeystageSeoLinks(subjects, keyStageSlug)}
-          />
+          <OakGrid>
+            <OakGridArea $colSpan={[12, 12, 9]}>
+              <SubjectKeystageSeoAccordion
+                keystageSlug={keyStageSlug}
+                links={getSubjectKeystageSeoLinks(subjects, keyStageSlug)}
+              />
+            </OakGridArea>
+          </OakGrid>
         )}
       </OakMaxWidth>
     </OakFlex>

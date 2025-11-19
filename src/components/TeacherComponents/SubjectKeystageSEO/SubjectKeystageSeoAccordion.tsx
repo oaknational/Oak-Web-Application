@@ -43,8 +43,7 @@ export const SubjectKeystageSeoAccordion = ({
             {keystageSlug.toUpperCase()} curriculum plans
           </OakSecondaryLink>{" "}
           for pupils aged {pupilAgesMap[keystageSlug]} make it easy for teachers
-          to view the full sequence for every national curriculum subject along
-          with resources
+          to view the full sequence for every
           {contentVisible ? "" : "..."}
         </OakSpan>
       }
@@ -80,9 +79,10 @@ const textContentMap = {
   ks1: (
     <>
       <OakSpan>
-        for every lesson. The curriculum was developed with primary and infant
-        pupils in mind, considering the cross-subject sequencing essential for
-        lesson planning and teaching.
+        national curriculum subject along with resources for every lesson. The
+        curriculum was developed with primary and infant pupils in mind,
+        considering the cross-subject sequencing essential for lesson planning
+        and teaching.
       </OakSpan>
       <OakSpan>
         Find a subject, browse our units and lessons and download the free
@@ -99,9 +99,10 @@ const textContentMap = {
   ks2: (
     <>
       <OakSpan>
-        for every lesson. The curriculum was developed with primary, junior, and
-        middle school pupils in mind, considering the cross-subject sequencing
-        essential for effective lesson planning and teaching.
+        national curriculum subject along with resources for every lesson. The
+        curriculum was developed with primary, junior, and middle school pupils
+        in mind, considering the cross-subject sequencing essential for
+        effective lesson planning and teaching.
       </OakSpan>
       <OakSpan>
         For Year 6, our resources also support preparation for KS2 SATs. Find a
@@ -120,9 +121,10 @@ const textContentMap = {
   ks3: (
     <>
       <OakSpan>
-        for every lesson. The curriculum was developed with secondary and middle
-        school pupils in mind, considering the cross-subject sequencing
-        essential for lesson planning and teaching.
+        national curriculum subject along with resources for every lesson. The
+        curriculum was developed with secondary and middle school pupils in
+        mind, considering the cross-subject sequencing essential for lesson
+        planning and teaching.
       </OakSpan>
       <OakSpan>
         Find a subject, browse our units and lessons and download the free
@@ -139,9 +141,10 @@ const textContentMap = {
   ks4: (
     <>
       <OakSpan>
-        for every lesson. The curriculum was developed with secondary school
-        pupils in mind, considering the cross-subject sequencing essential for
-        lesson planning and teaching.
+        national curriculum subject along with resources for every lesson. The
+        curriculum was developed with secondary school pupils in mind,
+        considering the cross-subject sequencing essential for lesson planning
+        and teaching.
       </OakSpan>
       <OakSpan>
         Find a subject, browse our units and lessons and download the free
