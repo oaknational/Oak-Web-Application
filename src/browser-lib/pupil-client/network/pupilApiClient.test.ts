@@ -2,7 +2,6 @@ import { PupilApiClient } from "./PupilApiClient";
 
 import { CreateLessonAttemptPayload } from "@/node-lib/pupil-api/types";
 
-
 describe("PupilApiClient", () => {
   const client = PupilApiClient;
 
