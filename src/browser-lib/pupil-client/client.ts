@@ -64,7 +64,7 @@ export interface PupilClient {
 }
 
 export class OakPupilClient implements PupilClient {
-  private onError: OnError;
+  readonly onError: OnError;
   private state: State;
   private listeners: Listener<State>[] = [];
   private isInitialized = false;
@@ -91,7 +91,7 @@ export class OakPupilClient implements PupilClient {
     return this.state;
   };
 
-  private setState = (newState: State) => {
+  readonly setState = (newState: State) => {
     /**
      * update state
      */
@@ -120,7 +120,7 @@ export class OakPupilClient implements PupilClient {
     const lessonAttemptHash = createHash(JSON.stringify(attemptData));
 
     if (isLocal) {
-      window.localStorage.setItem(
+      globalThis.localStorage.setItem(
         `oak-pupil-lesson-attempt:${attemptId}`,
         JSON.stringify({
           attemptId,
@@ -157,7 +157,7 @@ export class OakPupilClient implements PupilClient {
 
   public getAttempt = async (attemptId: AttemptId, isLocal: boolean) => {
     try {
-      const localHostString = window.localStorage.getItem(
+      const localHostString = globalThis.localStorage.getItem(
         `oak-pupil-lesson-attempt:${attemptId}`,
       );
       if (localHostString) {
@@ -166,7 +166,9 @@ export class OakPupilClient implements PupilClient {
     } catch (error) {
       this.onError(error);
     }
-    if (!isLocal) {
+    if (isLocal) {
+      return;
+    } else {
       try {
         const data = await PupilApiClient.getAttempt(attemptId);
         const camelCaseData = keysToCamelCase(data[attemptId]);
@@ -174,8 +176,6 @@ export class OakPupilClient implements PupilClient {
       } catch (error) {
         this.onError(error);
       }
-    } else {
-      return;
     }
   };
 
@@ -191,7 +191,7 @@ export class OakPupilClient implements PupilClient {
     const parsedTeacherNote = teacherNoteSchema.parse(teacherNotePayload);
 
     // add teacher note to local storage
-    window.localStorage.setItem(
+    globalThis.localStorage.setItem(
       `oak-pupil-teacher-note:${teacherNote.sidKey}`,
       t.noteId,
     );
@@ -215,7 +215,7 @@ export class OakPupilClient implements PupilClient {
   }) => {
     const parsedKey = teacherNoteSchema.shape.sid_key.parse(sidKey);
 
-    const noteIdFromLocalStorage = window.localStorage.getItem(
+    const noteIdFromLocalStorage = globalThis.localStorage.getItem(
       `oak-pupil-teacher-note:${parsedKey}`,
     );
 
@@ -254,7 +254,7 @@ export class OakPupilClient implements PupilClient {
   }) => {
     const parsedKey = teacherNoteSchema.shape.sid_key.parse(sidKey);
 
-    const noteIdFromLocalStorage = window.localStorage.getItem(
+    const noteIdFromLocalStorage = globalThis.localStorage.getItem(
       `oak-pupil-teacher-note:${parsedKey}`,
     );
 

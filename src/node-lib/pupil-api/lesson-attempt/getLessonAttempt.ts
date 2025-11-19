@@ -27,9 +27,7 @@ export const getLessonAttempt = async (props: { attemptId: string }) => {
       const attempt: LessonAttempt = parsed.data;
 
       const { attempt_id } = attempt;
-      if (!attemptsById[attempt_id]) {
-        attemptsById[attempt_id] = attempt;
-      }
+      attemptsById[attempt_id] ??= attempt;
     } else {
       malformedAttempts.push(maybeAttempt);
     }

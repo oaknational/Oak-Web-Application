@@ -16,7 +16,7 @@ export type ConvertKeysToSnakeCase<T> =
       : T;
 
 export function convertKeyToSnakeCase(key: string): string {
-  return key.replace(/([A-Z])/g, "_$1").toLowerCase();
+  return key.replaceAll(/([A-Z])/g, "_$1").toLowerCase();
 }
 
 function convertKeysToSnakeCase<T>(obj: T): ConvertKeysToSnakeCase<T> {

@@ -14,9 +14,9 @@ export function zodToCamelCase(schema: ZodType): ZodType {
     const shape = schema._def.shape();
     const newShape: { [key: string]: ZodType } = {};
 
-    for (const [key, value] of Object.entries(shape) as [string, ZodType][]) {
+    for (const [key, value] of Object.entries(shape)) {
       const camelKey = convertKey(key);
-      newShape[camelKey] = zodToCamelCase(value);
+      newShape[camelKey] = zodToCamelCase(value as ZodType);
     }
 
     return z.object(newShape);

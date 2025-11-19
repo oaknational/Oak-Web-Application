@@ -1,16 +1,13 @@
 import type {
   AddTeacherNote,
-  // AddTeacherNote,
   GetAttempt,
   GetTeacherNote,
-  // GetTeacherNote,
   LogAttempt,
   PupilClient,
   State,
 } from "@/browser-lib/pupil-client/client";
 import { TeacherNote } from "@/node-lib/pupil-api/types";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
-// import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 const mockAttempt = {
   attemptId: "gCgkXUx42GY-9cAniQelm",
@@ -69,8 +66,10 @@ export const mockGetAttempt = () => {
  * This class can be used in place of OakPupilClient in tests
  */
 export class MockPupilClient implements PupilClient {
-  constructor(private state: State = {}) {}
-  init() {}
+  constructor(readonly state: State = {}) {}
+  init(): void {
+    return;
+  }
   getState(): State {
     return this.state;
   }

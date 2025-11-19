@@ -35,7 +35,7 @@ const parent = `projects/${projectId}`;
 
 export type PiiCheckResponse = {
   matches: PiiMatch[];
-  redactedText?: string | undefined;
+  redactedText?: string;
 };
 
 type DlpDeidentifyRequest =
@@ -82,7 +82,7 @@ export const identifyPiiFromString = async (
   // Parse found PII matches in text
   const parseCodepoint = (
     c?: protos.google.privacy.dlp.v2.IRange["start"],
-  ): number => (c ? parseInt(c.toString(), 10) + 1 : -1);
+  ): number => (c ? Number.parseInt(c.toString(), 10) + 1 : -1);
   const matches: PiiMatch[] = (inspectResponse.result?.findings ?? []).map(
     (f) => ({
       string: f.quote ?? "",
