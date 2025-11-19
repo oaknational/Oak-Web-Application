@@ -70,10 +70,10 @@ const SearchForm: FC<SearchFormProps> = (props) => {
         $width={"100%"}
         $flexDirection={"row"}
         $alignItems={"center"}
-        $gap="space-between-s"
+        $gap="spacing-16"
       >
         <OakTextInput
-          $mb={"space-between-none"}
+          $mb={"spacing-0"}
           id="search-form-search-input"
           value={value}
           type="search"
@@ -83,14 +83,14 @@ const SearchForm: FC<SearchFormProps> = (props) => {
             trackSearchJourneyInitiated();
           }}
           wrapperWidth="100%"
-          $pv="inner-padding-none"
-          $height="all-spacing-10"
+          $pv="spacing-0"
+          $height="spacing-56"
         />
         <OakPrimaryButton
           iconName="search"
-          pv="inner-padding-m"
+          pv="spacing-16"
           width="min-content"
-          iconGap="all-spacing-0"
+          iconGap="spacing-0"
           aria-label="submit"
         />
       </OakFlex>

@@ -70,13 +70,12 @@ const PostList: FC<PostListProps> = (props) => {
     >
       {withContainingHrs && (
         <OakHandDrawnHR
-          $height={"all-spacing-1"}
+          $height={"spacing-4"}
           $width={"100%"}
-          $mt={"space-between-none"}
-          $mb={"space-between-m2"}
+          $mt={"spacing-0"}
+          $mb={"spacing-32"}
         />
       )}
-
       {withUpcomingItem && upcomingItem && (
         <>
           <UpcomingWebinarListItem
@@ -87,8 +86,8 @@ const PostList: FC<PostListProps> = (props) => {
           {withContainingHrs && (
             <OakHandDrawnHR
               $width={"100%"}
-              $height={"all-spacing-1"}
-              $mv={"space-between-m2"}
+              $height={"spacing-4"}
+              $mv={"spacing-32"}
             />
           )}
         </>
@@ -101,8 +100,8 @@ const PostList: FC<PostListProps> = (props) => {
                 {i !== 0 && (
                   <OakHandDrawnHR
                     $width={"100%"}
-                    $height={"all-spacing-1"}
-                    $mv={"space-between-m2"}
+                    $height={"spacing-4"}
+                    $mv={"spacing-32"}
                   />
                 )}
                 <PostListItem
@@ -117,19 +116,15 @@ const PostList: FC<PostListProps> = (props) => {
           {withContainingHrs && (
             <OakHandDrawnHR
               $width={"100%"}
-              $height={"all-spacing-1"}
-              $mt={"space-between-m2"}
-              $mb={"space-between-none"}
+              $height={"spacing-4"}
+              $mt={"spacing-32"}
+              $mb={"spacing-0"}
             />
           )}
         </>
       ) : null}
       {withPagination && (
-        <OakBox
-          $width="100%"
-          $mt={["space-between-none", "auto"]}
-          $pt={"inner-padding-xl4"}
-        >
+        <OakBox $width="100%" $mt={["spacing-0", "auto"]} $pt={"spacing-48"}>
           <OakPagination
             {...paginationProps}
             pageName={blogsOrWebinars}

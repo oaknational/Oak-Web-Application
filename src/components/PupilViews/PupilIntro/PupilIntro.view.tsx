@@ -202,11 +202,11 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
       bottomNavSlot={bottomNavSlot}
     >
       <OakGrid
-        $cg="all-spacing-4"
-        $maxWidth={["100%", "all-spacing-22", "100%"]}
-        $mb={["space-between-none", "space-between-s"]}
+        $cg="spacing-16"
+        $maxWidth={["100%", "spacing-640", "100%"]}
+        $mb={["spacing-0", "spacing-16"]}
         $mh="auto"
-        $ph={["inner-padding-m", "inner-padding-xl", "inner-padding-none"]}
+        $ph={["spacing-16", "spacing-24", "spacing-0"]}
         $minHeight="100%"
         $gridTemplateRows={[
           "min-content min-content 1fr",
@@ -217,7 +217,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
         <OakGridArea
           $colStart={[1, 1, 2]}
           $colSpan={[12, 12, 10]}
-          $mb={["space-between-m", "space-between-l", "space-between-xl"]}
+          $mb={["spacing-24", "spacing-48", "spacing-56"]}
         >
           <OakHeading tag="h1" $font={["heading-5", "heading-4", "heading-3"]}>
             What will you need for this lesson?
@@ -226,7 +226,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
         <OakGridArea
           $colSpan={[12, 12, 5]}
           $colStart={[1, 1, 2]}
-          $pb="inner-padding-xl"
+          $pb="spacing-24"
         >
           <OakFlex $maxWidth={["100%", "100%", "fit-content"]}>
             <OakStaticMessageCard>
@@ -240,8 +240,8 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
             </OakStaticMessageCard>
           </OakFlex>
         </OakGridArea>
-        <OakGridArea $colSpan={[12, 12, 5]} $pb="inner-padding-xl">
-          <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
+        <OakGridArea $colSpan={[12, 12, 5]} $pb="spacing-24">
+          <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
             {hasAdditionalFiles && !!additionalFiles?.length && (
               <OakLessonInfoCard>
                 <OakCardHeader iconName="additional-material" tag="h2">
@@ -250,7 +250,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
                 <OakUL
                   $display={"flex"}
                   $flexDirection={"column"}
-                  $gap={"space-between-s"}
+                  $gap={"spacing-16"}
                   $reset
                 >
                   {additionalFiles.map((file, index) =>
@@ -338,14 +338,14 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
         <OakGridArea
           $colStart={[1, 1, 2]}
           $colSpan={[12, 12, 7]}
-          $pt="inner-padding-xl"
+          $pt="spacing-24"
         >
-          <OakFlex $alignItems={"center"} $mb="space-between-ssx">
-            <OakBox $pa={"inner-padding-ssx"}>
+          <OakFlex $alignItems={"center"} $mb="spacing-8">
+            <OakBox $pa={"spacing-4"}>
               <OakIcon
                 iconName={"copyright"}
-                $height={"all-spacing-4"}
-                $width={"all-spacing-4"}
+                $height={"spacing-16"}
+                $width={"spacing-16"}
               />
             </OakBox>
             <OakSpan $font={"body-3-bold"}>Licence</OakSpan>

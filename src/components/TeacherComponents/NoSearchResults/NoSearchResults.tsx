@@ -16,14 +16,14 @@ const NoSearchResults = (props: NoSearchResultsProps) => {
     <OakFlex $flexDirection="column">
       <OakHeading
         tag={"h4"}
-        $mt="space-between-m"
-        $mb="space-between-s"
+        $mt="spacing-24"
+        $mb="spacing-16"
         $font={"heading-7"}
       >
         No search results
       </OakHeading>
       <OakFlex $flexDirection="column">
-        <OakP $font={"body-1"} $mb="space-between-xs">
+        <OakP $font={"body-1"} $mb="spacing-12">
           Sorry, we could not find any results for{" "}
           <OakSpan $wordWrap={"break-word"}>“{searchTerm}”</OakSpan>.
           <br /> <br /> Please enter a topic you wish to explore in the search

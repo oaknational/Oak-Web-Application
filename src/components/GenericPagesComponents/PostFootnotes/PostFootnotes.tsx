@@ -105,9 +105,8 @@ export const PostFootnotesSection: FC<PostFootnotesSectionProps> = ({
   }
 
   return (
-    <OakBox as="footer" $pt={"inner-padding-l"} $maxWidth={"100%"}>
+    <OakBox as="footer" $pt={"spacing-20"} $maxWidth={"100%"}>
       <h3>References</h3>
-
       <OakOL>
         {footnotes.map(({ markKey, index, label, source }) => {
           return (

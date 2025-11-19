@@ -20,7 +20,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 
 const TermsAndConditions = () => {
   return (
-    <OakBox $ph={"inner-padding-xl3"}>
+    <OakBox $ph={"spacing-40"}>
       <OakP $font="body-2" color="text-primary" $textAlign={"left"}>
         By continuing you are agreeing to Oak's{" "}
         <OakLink

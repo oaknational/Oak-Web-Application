@@ -59,25 +59,21 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
         introVideo.video && (
           <OakMaxWidth>
             <OakGrid
-              $pt={["inner-padding-xl5", "inner-padding-xl6"]}
-              $pb={["inner-padding-xl5", "inner-padding-xl7"]}
-              $ph={["inner-padding-m", "inner-padding-xl"]}
-              $rg={["space-between-xl", null]}
+              $pt={["spacing-56", "spacing-64"]}
+              $pb={["spacing-56", "spacing-72"]}
+              $ph={["spacing-16", "spacing-24"]}
+              $rg={["spacing-56", null]}
             >
               <OakGridArea
                 $colSpan={[12, 12, 8]}
-                $pr={[null, null, "inner-padding-xl7"]}
+                $pr={[null, null, "spacing-72"]}
               >
                 <OakFlex
                   $flexDirection={"column"}
-                  $gap={[
-                    "space-between-m2",
-                    "space-between-m2",
-                    "space-between-l",
-                  ]}
+                  $gap={["spacing-32", "spacing-32", "spacing-48"]}
                 >
                   <OakBox>
-                    <OakBox $pb={"inner-padding-m"}>
+                    <OakBox $pb={"spacing-16"}>
                       <OakHeading
                         tag="h1"
                         $font={["heading-5", "heading-5", "heading-4"]}
@@ -119,7 +115,6 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
           </OakBox>
         </OakMaxWidth>
       )}
-
       <OakMaxWidth>
         <BlogAndWebinarList
           blogListPosts={blogListProps}
@@ -134,9 +129,9 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
         <OakMaxWidth
           $alignItems={"center"}
           $background={"lavender50"}
-          $mt={"space-between-xl"}
-          $mb={"space-between-xxxl"}
-          $ph={"inner-padding-m"}
+          $mt={"spacing-56"}
+          $mb={"spacing-80"}
+          $ph={"spacing-16"}
         >
           <Flex $maxWidth={["100%", 870]}>
             <NewsletterFormWrap desktopColSpan={6} {...newsletterFormProps} />

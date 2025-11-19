@@ -10,7 +10,7 @@ export default {
   decorators: [
     AnalyticsDecorator,
     (Story) => (
-      <OakBox $position="relative" $maxWidth="all-spacing-22" $ma="auto">
+      <OakBox $position="relative" $maxWidth="spacing-640" $ma="auto">
         <Story />
       </OakBox>
     ),

@@ -97,12 +97,12 @@ const ButtonContent: FC<LoadingButtonProps> = (props) => {
   const disabled = props.isLoading || props.disabled;
   return (
     <>
-      <OakFlex $gap="all-spacing-2" $justifyContent="center">
+      <OakFlex $gap="spacing-8" $justifyContent="center">
         <ButtonLabel aria-live={props.ariaLive || "off"} $color="white">
           {props.isLoading ? props.loadingText : props.text}
         </ButtonLabel>
         {props.isLoading ? (
-          <OakBox $height={"all-spacing-6"}>
+          <OakBox $height={"spacing-24"}>
             <Spinner />
           </OakBox>
         ) : (
@@ -111,8 +111,8 @@ const ButtonContent: FC<LoadingButtonProps> = (props) => {
             $colorFilter="white"
             width={"24"}
             height={"24"}
-            $width={"all-spacing-6"}
-            $height={"all-spacing-6"}
+            $width={"spacing-24"}
+            $height={"spacing-24"}
           />
         )}
       </OakFlex>

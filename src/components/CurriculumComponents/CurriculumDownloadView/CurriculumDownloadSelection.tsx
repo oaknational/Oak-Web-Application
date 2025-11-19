@@ -26,11 +26,11 @@ export function CurriculumDownloadSelection({
     availableDownloadTypes.includes(id),
   );
   return (
-    <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
+    <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
       <OakHeading tag="h3" $font={["heading-4"]} data-testid="download-heading">
         Curriculum resources
       </OakHeading>
-      <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
         {shownDownloadTypes.map((download) => {
           const isChecked = downloadTypes.includes(download.id);
 

@@ -106,7 +106,7 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
 
   return (
     <OakFlex
-      $mt={props.$mt ?? "space-between-m"}
+      $mt={props.$mt ?? "spacing-24"}
       $display={["flex", applyForTablet ? "flex" : "none", "none"]}
       $flexDirection={"column"}
       $width={"100%"}

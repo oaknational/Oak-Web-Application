@@ -38,7 +38,7 @@ export const LandingPagesTextAndMedia: Story = {
   },
   render: (args) => (
     <OakFlex
-      $pa="inner-padding-xl"
+      $pa="spacing-24"
       $background={"lavender50"}
       $justifyContent={"center"}
       $width="100%"

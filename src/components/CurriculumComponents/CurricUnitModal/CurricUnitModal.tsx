@@ -31,7 +31,7 @@ export default function CurricUnitModal({
       title={""}
       open={open}
       onClose={onClose}
-      modalWidth={["100%", "all-spacing-22"]}
+      modalWidth={["100%", "spacing-640"]}
       content={
         <OakBox>
           <OakFlex $flexDirection={"column"} $minWidth={"100%"} $flexGrow={1}>

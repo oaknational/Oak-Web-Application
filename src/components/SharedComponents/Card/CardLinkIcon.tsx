@@ -52,8 +52,8 @@ const CardLinkIcon: FC<CardLinkIconProps> = ({
       </OakHeading>
       <OakIcon
         iconName={icon}
-        $width={["all-spacing-7", "all-spacing-9"]}
-        $height={["all-spacing-7", "all-spacing-9"]}
+        $width={["spacing-32", "spacing-48"]}
+        $height={["spacing-32", "spacing-48"]}
         $ml="auto"
       />
     </Card>

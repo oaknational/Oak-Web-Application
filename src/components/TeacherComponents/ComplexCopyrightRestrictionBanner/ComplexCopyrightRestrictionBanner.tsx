@@ -64,16 +64,16 @@ const SignedOutCopyrightBanner = ({
       $borderRadius={"border-radius-l"}
       $justifyContent={"space-between"}
       $alignItems={["flex-end", "center"]}
-      $gap={"space-between-m"}
-      $pa={"inner-padding-m"}
-      $maxWidth={"all-spacing-23"}
+      $gap={"spacing-24"}
+      $pa={"spacing-16"}
+      $maxWidth={"spacing-960"}
       $flexDirection={["column", "row"]}
       data-testid="copyright-banner-signed-out"
     >
       <StyledFlex
         $justifyContent={"space-between"}
         $alignItems={["flex-start", "center"]}
-        $gap={"space-between-xs"}
+        $gap={"spacing-12"}
       >
         <OakIcon iconName={"copyright"} />
         <OakP $font={"heading-light-7"} $color={"text-primary"}>
@@ -128,9 +128,9 @@ const SignedInGeorestrictedBanner = ({ isUnit }: { isUnit: boolean }) => (
     $flexDirection={"column"}
     $justifyContent={"space-between"}
     $alignItems={"flex-start"}
-    $gap={"space-between-s"}
-    $pa={"inner-padding-xl"}
-    $maxWidth={"all-spacing-23"}
+    $gap={"spacing-16"}
+    $pa={"spacing-24"}
+    $maxWidth={"spacing-960"}
     data-testid="copyright-banner-signed-in"
   >
     <OakHeading

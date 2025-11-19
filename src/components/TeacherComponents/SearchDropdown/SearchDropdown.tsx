@@ -62,7 +62,7 @@ const SearchDropdown: FC<
         <OakIcon
           iconName={isToggleOpen ? "chevron-up" : "chevron-down"}
           $colorFilter={isToggleOpen ? "navy120" : "navy"}
-          $width="all-spacing-6"
+          $width="spacing-24"
         />
       </OakFlex>
       <OakBox
@@ -72,12 +72,12 @@ const SearchDropdown: FC<
         {dropdownContent.length > 0 && (
           <OakFlex
             as="ul"
-            $mt="space-between-xs"
+            $mt="spacing-12"
             data-testid="search-dropdown-content"
             $flexDirection="column"
             $width="fit-content"
-            $gap="all-spacing-4"
-            $pa="inner-padding-none"
+            $gap="spacing-16"
+            $pa="spacing-0"
             style={{ listStyleType: "none" }}
           >
             {dropdownContent.map((item, index) => {
@@ -85,7 +85,7 @@ const SearchDropdown: FC<
               return (
                 <OakLI
                   key={`${index}-${item.programmeSlug}`}
-                  $mb="space-between-none"
+                  $mb="spacing-0"
                   $textAlign="left"
                 >
                   <StyledOakLink

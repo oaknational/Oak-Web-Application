@@ -22,7 +22,7 @@ export function CurricLessonItem({
     >
       <OakFlex
         $background={"pink"}
-        $ph={"inner-padding-l"}
+        $ph={"spacing-20"}
         $alignItems={"center"}
         $font={"heading-6"}
         data-testid="curric-lesson-item-number"
@@ -33,9 +33,9 @@ export function CurricLessonItem({
         $flexGrow={1}
         $alignItems={"center"}
         $background={"bg-decorative4-very-subdued"}
-        $ph={"inner-padding-l"}
-        $pv={"inner-padding-s"}
-        $gap={"all-spacing-6"}
+        $ph={"spacing-20"}
+        $pv={"spacing-12"}
+        $gap={"spacing-24"}
       >
         <OakFlex $flexGrow={1} data-testid="curric-lesson-title">
           <OakSpan $font={"heading-7"}>{title}</OakSpan>

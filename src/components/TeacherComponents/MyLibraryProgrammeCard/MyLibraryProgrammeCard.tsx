@@ -34,13 +34,10 @@ const ProgrammeHeader = ({
   iconName: OakIconName;
 }) => {
   return (
-    <OakFlex
-      $gap={["space-between-ssx", "space-between-ssx"]}
-      $alignItems={"center"}
-    >
+    <OakFlex $gap={["spacing-8", "spacing-8"]} $alignItems={"center"}>
       <OakIcon
-        $width={["all-spacing-11", "all-spacing-15"]}
-        $height={["all-spacing-11", "all-spacing-15"]}
+        $width={["spacing-64", "spacing-100"]}
+        $height={["spacing-64", "spacing-100"]}
         iconName={iconName}
         data-testid="subjectIcon"
       />
@@ -54,8 +51,8 @@ const ProgrammeHeader = ({
       </OakHeading>
       <OakIcon
         iconName={"chevron-right"}
-        $width={["all-spacing-6", "all-spacing-9"]}
-        $height={["all-spacing-6", "all-spacing-9"]}
+        $width={["spacing-24", "spacing-48"]}
+        $height={["spacing-24", "spacing-48"]}
       />
     </OakFlex>
   );
@@ -89,9 +86,9 @@ export default function MyLibraryProgrammeCard(
       $flexDirection={"column"}
       $borderRadius={"border-radius-l"}
       $background={"bg-decorative1-subdued"}
-      $pa={["inner-padding-xs", "inner-padding-l", "inner-padding-xl"]}
-      $maxWidth={"all-spacing-23"}
-      $gap={["space-between-ssx", "space-between-m"]}
+      $pa={["spacing-8", "spacing-20", "spacing-24"]}
+      $maxWidth={"spacing-960"}
+      $gap={["spacing-8", "spacing-24"]}
       $position="relative"
     >
       <OakAnchorTarget id={anchorId} />
@@ -104,9 +101,9 @@ export default function MyLibraryProgrammeCard(
       </StyledLink>
       <OakFlex
         as="ul"
-        $gap="space-between-m2"
+        $gap="spacing-32"
         $flexDirection="column"
-        $pl="inner-padding-none"
+        $pl="spacing-0"
         aria-labelledby={headingIdString}
       >
         {savedUnits.map((unit) => (
@@ -129,7 +126,7 @@ export default function MyLibraryProgrammeCard(
           </OakLI>
         ))}
       </OakFlex>
-      <OakBox $display={["block", "none"]} $pv="inner-padding-xs">
+      <OakBox $display={["block", "none"]} $pv="spacing-8">
         <OakLink isTrailingIcon iconName="arrow-up" href="#collections-menu">
           Back to collections
         </OakLink>

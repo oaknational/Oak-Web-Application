@@ -86,7 +86,7 @@ export const QuizResultInner = (props: ResultsInnerProps) => {
   return (
     <OakFlex
       key={`${lessonSection}-question-${index}`}
-      $gap={"space-between-s"}
+      $gap={"spacing-16"}
       $flexDirection={["column", "row"]}
       role="listitem"
     >
@@ -99,7 +99,7 @@ export const QuizResultInner = (props: ResultsInnerProps) => {
           $borderRadius={"border-radius-circle"}
         />
       )}
-      <OakFlex $flexDirection={"column"} $gap={"space-between-m"}>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
         {questionStem && (
           <QuizResultQuestionStem
             displayIndex={displayIndex}

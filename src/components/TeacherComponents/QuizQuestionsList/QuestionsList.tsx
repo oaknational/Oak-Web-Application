@@ -12,16 +12,15 @@ const QuestionsList: FC<QuizQuestionListProps> = (props) => {
 
   return (
     <OakMaxWidth
-      $maxWidth={["all-spacing-20", "all-spacing-21", "all-spacing-22"]}
-      $ph={"inner-padding-ssx"}
-      $pv={"inner-padding-xl5"}
-      $gap={"all-spacing-8"}
+      $maxWidth={["spacing-360", "spacing-480", "spacing-640"]}
+      $ph={"spacing-4"}
+      $pv={"spacing-56"}
+      $gap={"spacing-40"}
     >
       <OakHeading $font={"heading-5"} tag={"h3"}>
         {questionCount} Questions
       </OakHeading>
-
-      <OakFlex $flexDirection={"column"} $gap={"all-spacing-10"} role="list">
+      <OakFlex $flexDirection={"column"} $gap={"spacing-56"} role="list">
         {questions.map((question, i) => {
           return (
             <QuizQuestionsListItem

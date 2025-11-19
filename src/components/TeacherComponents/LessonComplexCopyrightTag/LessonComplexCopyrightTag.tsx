@@ -26,7 +26,7 @@ export function LessonComplexCopyrightTag({
       <OakTagFunctional
         iconName="copyright"
         isTrailingIcon
-        $maxHeight={"all-spacing-7"}
+        $maxHeight={"spacing-32"}
         $borderRadius={"border-radius-s"}
         $borderColor={"grey50"}
         $borderStyle={"solid"}

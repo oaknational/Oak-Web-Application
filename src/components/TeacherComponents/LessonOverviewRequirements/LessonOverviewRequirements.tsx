@@ -50,7 +50,7 @@ const LessonOverviewRequirements: FC<LessonOverviewRequirementsProps> = ({
     <OakFlex
       $flexDirection={"column"}
       $justifyContent={"center"}
-      $gap="all-spacing-2"
+      $gap="spacing-8"
     >
       <LessonRequirementsHeading helperIcon={helperIcon} heading={heading} />
       {contentGuidance && (

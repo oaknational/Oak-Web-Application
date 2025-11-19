@@ -60,14 +60,14 @@ const WebinarRegistration: FC<WebinarRegistrationProps> = (props) => {
           <CardTitle
             tag={headingTag}
             icon="magic-carpet"
-            iconSize={"all-spacing-10"}
+            iconSize={"spacing-56"}
             $iconPosition={["leading", "aboveTitle"]}
           >
             Almost there!
           </CardTitle>
           <OakP
             $font={["body-3", "body-2"]}
-            $mb={["space-between-m2", "space-between-none"]}
+            $mb={["spacing-32", "spacing-0"]}
             color={"black"}
             id={descriptionId}
           >
@@ -81,8 +81,8 @@ const WebinarRegistration: FC<WebinarRegistrationProps> = (props) => {
         </Flex>
       </OakFlex>
       <OakFlex
-        $width={["100%", "all-spacing-20"]}
-        $maxWidth={"all-spacing-20"}
+        $width={["100%", "spacing-360"]}
+        $maxWidth={"spacing-360"}
         $ma="auto"
       >
         <NewsletterForm
