@@ -7,7 +7,7 @@ export const defaultText =
 export const ks4Text =
   "Our free GCSE and KS4 lesson planning and teaching resources include subjects tailored to specific exam boards, ensuring full alignment with the national curriculum.";
 
-export const SubjectKeystageSEO = ({
+export const SubjectKeystageSeoText = ({
   keystageSlug,
 }: {
   keystageSlug: KeyStageSlug;

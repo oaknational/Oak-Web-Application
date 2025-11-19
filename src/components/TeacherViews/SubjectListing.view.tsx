@@ -10,7 +10,7 @@ import {
 } from "@oaknational/oak-components";
 
 import OwaLink from "../SharedComponents/OwaLink";
-import { SubjectKeystageSEO } from "../TeacherComponents/SubjectKeystageSEO/SubjectKeystageSEO";
+import { SubjectKeystageSeoText } from "../TeacherComponents/SubjectKeystageSEO/SubjectKeystageSeoText";
 
 import { SubjectListingPageProps } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
 import SubjectListingCardDouble from "@/components/TeacherComponents/SubjectListingCard";
@@ -67,7 +67,7 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
               .
             </OakP>
           ) : (
-            <SubjectKeystageSEO keystageSlug={keyStageSlug} />
+            <SubjectKeystageSeoText keystageSlug={keyStageSlug} />
           )}
         </OakFlex>
         <OakGrid
