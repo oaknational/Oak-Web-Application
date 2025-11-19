@@ -51,7 +51,7 @@ jest.mock("@/node-lib/pupil-api/types", () => ({
   },
 }));
 
-describe("GET /api/pupil/get-lesson-attempt", () => {
+describe("GET /api/pupil/lesson-attempt", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -104,7 +104,7 @@ describe("GET /api/pupil/get-lesson-attempt", () => {
   });
 });
 
-describe("POST /api/pupil/log-lesson-attempt", () => {
+describe("POST /api/pupil/lesson-attempt", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
