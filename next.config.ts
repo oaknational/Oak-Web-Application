@@ -124,7 +124,7 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
           headers: [
             {
               key: "Content-Security-Policy",
-              value: cspHeader.replace(/\n/g, ""),
+              value: cspHeader.replaceAll(/\n/g, ""),
             },
           ],
         },
