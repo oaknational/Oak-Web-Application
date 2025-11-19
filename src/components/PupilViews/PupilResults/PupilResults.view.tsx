@@ -140,22 +140,21 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
                 />
               </>
             )}
-            {starterQuiz?.questionResults &&
-              starterQuiz.questionResults.map((questionResult, index) => {
-                const displayIndex =
-                  questionResult.mode === "init" ? 999 : questionIndex++;
+            {starterQuiz?.questionResults?.map((questionResult, index) => {
+              const displayIndex =
+                questionResult.mode === "init" ? 999 : questionIndex++;
 
-                return (
-                  <QuizSectionRender
-                    key={`section-render'${index}`}
-                    index={index}
-                    displayIndex={displayIndex}
-                    questionResult={questionResult}
-                    quizQuestionArray={starterQuizQuestionsArray}
-                    lessonSection={"starter-quiz"}
-                  />
-                );
-              })}
+              return (
+                <QuizSectionRender
+                  key={`section-render'${index}`}
+                  index={index}
+                  displayIndex={displayIndex}
+                  questionResult={questionResult}
+                  quizQuestionArray={starterQuizQuestionsArray}
+                  lessonSection={"starter-quiz"}
+                />
+              );
+            })}
 
             {exitQuiz?.questionResults && (
               <>
@@ -168,22 +167,21 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
                 />
               </>
             )}
-            {exitQuiz?.questionResults &&
-              exitQuiz.questionResults.map((questionResult, index) => {
-                const displayIndex =
-                  questionResult.mode === "init" ? 999 : questionIndex++;
+            {exitQuiz?.questionResults?.map((questionResult, index) => {
+              const displayIndex =
+                questionResult.mode === "init" ? 999 : questionIndex++;
 
-                return (
-                  <QuizSectionRender
-                    key={`section-${index}`}
-                    index={index}
-                    displayIndex={displayIndex}
-                    questionResult={questionResult}
-                    quizQuestionArray={exitQuizQuestionsArray}
-                    lessonSection={"exit-quiz"}
-                  />
-                );
-              })}
+              return (
+                <QuizSectionRender
+                  key={`section-${index}`}
+                  index={index}
+                  displayIndex={displayIndex}
+                  questionResult={questionResult}
+                  quizQuestionArray={exitQuizQuestionsArray}
+                  lessonSection={"exit-quiz"}
+                />
+              );
+            })}
             <CopyrightNotice isLegacyLicense={isLegacy} />
           </OakFlex>
         </OakMaxWidth>

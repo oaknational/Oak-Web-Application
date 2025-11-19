@@ -249,7 +249,7 @@ export const getStaticProps: GetStaticProps<
       const relatedSubjectsSet = new Set<SubjectSlugs>();
 
       curriculumData.forEach((unit) => {
-        if (unit.actions && unit.actions.relatedSubjectSlugs) {
+        if (unit.actions?.relatedSubjectSlugs) {
           unit.actions.relatedSubjectSlugs.forEach((subject) => {
             if (subjectSlugs.safeParse(subject).success) {
               relatedSubjectsSet.add(subject);

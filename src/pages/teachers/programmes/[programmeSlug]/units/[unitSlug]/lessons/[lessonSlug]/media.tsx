@@ -100,7 +100,7 @@ export const getStaticProps: GetStaticProps<
         allowNotFoundError(innerError);
       }
 
-      if (!curriculumData || !curriculumData.mediaClips) {
+      if (!curriculumData?.mediaClips) {
         const redirect = await getRedirect({
           isCanonical: false,
           context: context.params,

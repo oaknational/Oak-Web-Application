@@ -21,7 +21,7 @@ export type OptionsURLParams = {
 export const getPupilOptionData = async (
   context: GetStaticPropsContext<OptionsURLParams>,
 ): Promise<GetStaticPropsResult<PupilViewsProgrammeListingProps>> => {
-  if (!context.params || !context.params.programmeSlug) {
+  if (!context.params?.programmeSlug) {
     throw new OakError({ code: "curriculum-api/params-incorrect" });
   }
 

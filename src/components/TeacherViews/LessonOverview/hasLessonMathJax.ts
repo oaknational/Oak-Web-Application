@@ -83,7 +83,6 @@ export const hasLessonMathJax = (
   }
 
   if (
-    lessonPage.contentGuidance &&
     lessonPage.contentGuidance?.some((cg) =>
       containsMathJax(cg.contentGuidanceDescription),
     )

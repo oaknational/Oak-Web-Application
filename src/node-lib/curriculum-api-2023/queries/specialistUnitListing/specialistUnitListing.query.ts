@@ -180,7 +180,7 @@ export const getUnitListingPageData = (
 
   return {
     units: expandedUnits.sort((a, b) => {
-      if (a && a[0] && b && b[0]) {
+      if (a?.[0] && b?.[0]) {
         return a[0].orderInProgramme - b[0].orderInProgramme;
       } else return 0;
     }),

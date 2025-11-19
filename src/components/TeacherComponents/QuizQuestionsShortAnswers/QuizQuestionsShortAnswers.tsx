@@ -17,12 +17,10 @@ export const QuizQuestionsShortAnswers = ({
 }) => {
   const answerString = answers.reduce((acc, cur) => {
     if (acc === "") {
-      return (cur.answer && cur.answer[0] && cur.answer[0].text) || acc;
+      return cur.answer[0]?.text || acc;
     }
 
-    return cur.answer && cur.answer[0] && cur.answer[0].text
-      ? `${acc}, ${cur.answer[0].text}`
-      : acc;
+    return cur.answer[0]?.text ? `${acc}, ${cur.answer[0].text}` : acc;
   }, "");
 
   return (

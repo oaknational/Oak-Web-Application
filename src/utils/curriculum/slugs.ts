@@ -79,7 +79,7 @@ export function getKs4RedirectSlug(
     const hasMatchingPhase = sp.phases.find((p) => p.slug === slugs.phaseSlug);
     return isValidSubjectSlug && hasMatchingPhase;
   });
-  if (!match || !match.ks4_options) {
+  if (!match?.ks4_options) {
     return;
   }
 

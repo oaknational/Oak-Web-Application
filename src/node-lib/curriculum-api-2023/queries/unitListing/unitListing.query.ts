@@ -93,7 +93,7 @@ const unitListingQuery =
 
     const relatedSubjectsSet = new Set<SubjectSlugs>();
     parsedUnits.forEach((unit) => {
-      if (unit.actions && unit.actions.related_subject_slugs) {
+      if (unit.actions?.related_subject_slugs) {
         unit.actions.related_subject_slugs.forEach((subject) => {
           relatedSubjectsSet.add(subject);
         });

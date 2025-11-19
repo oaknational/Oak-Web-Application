@@ -17,7 +17,7 @@ const fetchConfig = async (location: string): Promise<OakConfig> => {
   }
 
   // Determine if local or remote config.
-  const isNetworkLocation = location && location.startsWith("http");
+  const isNetworkLocation = location.startsWith("http");
 
   let config: OakConfig;
 

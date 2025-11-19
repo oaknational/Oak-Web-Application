@@ -65,14 +65,13 @@ const LessonOverviewRequirements: FC<LessonOverviewRequirementsProps> = ({
         </OakUL>
       )}
       {supervisionLevel && <OakP $font={"body-2"}>{supervisionLevel}</OakP>}
-      {equipment &&
-        equipment.map(({ equipment }) => {
-          return (
-            <OakP $font={"body-2"} key={equipment}>
-              {equipment}
-            </OakP>
-          );
-        })}
+      {equipment?.map(({ equipment }) => {
+        return (
+          <OakP $font={"body-2"} key={equipment}>
+            {equipment}
+          </OakP>
+        );
+      })}
     </OakFlex>
   );
 };

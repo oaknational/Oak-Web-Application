@@ -17,10 +17,7 @@ async function fetchSecrets(oakConfig: OakConfig): Promise<Secrets> {
     return {};
   }
 
-  if (
-    oakConfig.googleSecretManager &&
-    oakConfig.googleSecretManager.projectId
-  ) {
+  if (oakConfig.googleSecretManager.projectId) {
     const { projectId } = oakConfig.googleSecretManager;
 
     console.log(
