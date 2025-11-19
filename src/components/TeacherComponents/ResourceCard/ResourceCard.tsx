@@ -101,12 +101,12 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
             {isEditable && (
               <OakTagFunctional
                 key="tag"
-                $ml={"space-between-ssx"}
+                $ml={"spacing-8"}
                 $display="inline"
                 $color={"text-primary"}
                 $font={"heading-light-7"}
-                $ph={"inner-padding-ssx"}
-                $pv={"inner-padding-ssx"}
+                $ph={"spacing-4"}
+                $pv={"spacing-4"}
                 label="Editable"
                 $background={"bg-decorative2-main"}
               />

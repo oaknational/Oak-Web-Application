@@ -69,10 +69,10 @@ const WebinarSinglePage: NextPage<WebinarSinglePageProps> = (props) => {
           "Webinars",
         )}
       >
-        <OakFlex $position={"relative"} $mt="space-between-xl">
+        <OakFlex $position={"relative"} $mt="spacing-56">
           <WebinarVideo webinar={webinar} />
         </OakFlex>
-        <OakBox $mt="space-between-l">
+        <OakBox $mt="spacing-48">
           <BlogPortableText portableText={webinar.summaryPortableText} />
         </OakBox>
       </PostSingleLayout>

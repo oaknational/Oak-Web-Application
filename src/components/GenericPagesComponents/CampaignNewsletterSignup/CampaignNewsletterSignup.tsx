@@ -209,26 +209,26 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
 
   return (
     <OakGrid
-      $mt={["space-between-xxl", "space-between-xxl", "space-between-xxxl"]}
-      $maxWidth={["unset", "all-spacing-24"]}
+      $mt={["spacing-72", "spacing-72", "spacing-80"]}
+      $maxWidth={["unset", "spacing-1280"]}
     >
       <OakGridArea
         $colSpan={[12, 10, 10]}
         $colStart={[1, 2, 2]}
-        $mb={["space-between-m", "space-between-l"]}
+        $mb={["spacing-24", "spacing-48"]}
       >
         <OakFlex
           $flexDirection={["column", "column", "row"]}
           $alignItems={"center"}
           $alignSelf={"stretch"}
-          $gap={"space-between-xxl"}
+          $gap={"spacing-72"}
           $justifyContent={"space-between"}
         >
           <OakFlex
-            $maxWidth={["100%", "all-spacing-22"]}
+            $maxWidth={["100%", "spacing-640"]}
             $alignSelf={"stretch"}
             $flexDirection={"column"}
-            $gap={"space-between-s"}
+            $gap={"spacing-16"}
           >
             <OakHeading tag="h4" $font={"heading-4"}>
               {heading}
@@ -240,14 +240,14 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
           </OakFlex>
           <OakFlex
             as="form"
-            $minWidth={["100%", "100%", "all-spacing-21"]}
+            $minWidth={["100%", "100%", "spacing-480"]}
             $flexDirection={"column"}
             $background={"white"}
-            $pa={"inner-padding-xl"}
-            $gap={"space-between-m"}
+            $pa={"spacing-24"}
+            $gap={"spacing-24"}
             $borderRadius={"border-radius-s"}
           >
-            <OakFlex $flexDirection={"column"} $gap={"space-between-m2"}>
+            <OakFlex $flexDirection={"column"} $gap={"spacing-32"}>
               <OakInputWithLabel
                 label="Name"
                 id="nameInput"
@@ -336,7 +336,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
             </OakPrimaryButton>
             {submitError.length > 0 && (
               <OakP
-                $mt={"space-between-none"}
+                $mt={"spacing-0"}
                 $font={"body-3"}
                 aria-live="assertive"
                 role="alert"
@@ -346,11 +346,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
               </OakP>
             )}
             {successMessage.length > 0 && submitError === "" && (
-              <OakP
-                $mt={"space-between-none"}
-                $font={"body-3"}
-                aria-live="polite"
-              >
+              <OakP $mt={"spacing-0"} $font={"body-3"} aria-live="polite">
                 {!submitError && successMessage}
               </OakP>
             )}

@@ -76,7 +76,10 @@ export const getSingleton = <
   schema: Schema,
   getResultValue: (res: Response) => Data,
 ) => {
-  return async ({ previewMode, ...params }: Params = {}) => {
+  return async ({
+    previewMode,
+    ...params
+  }: Params & Parameters<Method>[0] = {}) => {
     const response = await graphqlMethod({
       isDraftFilter: getDraftFilterParam(previewMode),
       ...params,

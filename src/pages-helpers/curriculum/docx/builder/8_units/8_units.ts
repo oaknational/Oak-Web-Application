@@ -124,9 +124,8 @@ export default async function generate(
     ks4Options,
   }: { data: CombinedCurriculumData; slugs: Slugs; ks4Options: Ks4Option[] },
 ) {
-  const formattedData = formatCurriculumUnitsData(
-    data,
-  ) as CurriculumUnitsFormattedData<CombinedCurriculumData["units"][number]>;
+  const formattedData = formatCurriculumUnitsData(data);
+
   const yearDataOrig = formatCurriculumUnitsData(data);
   const yearData = groupUnitsByPathway({
     modes: getModes(true, ks4Options),
@@ -400,21 +399,19 @@ async function buildYear(
   const buildUnitBlock = (units: Unit[]) => {
     const rows = [];
     for (let i = 0; i < units.length; i += 3) {
-      const unitsColumns = Array(3)
-        .fill(true)
-        .map((_, colIdx) => {
-          const index = i + colIdx;
-          const unit = units[index];
-          if (unit) {
-            return buildYearColumn({
-              index: index,
-              title: unit.title,
-              unitOptions: unit.unit_options,
-            });
-          } else {
-            return buildEmpty(index);
-          }
-        });
+      const unitsColumns = new Array(3).fill(true).map((_, colIdx) => {
+        const index = i + colIdx;
+        const unit = units[index];
+        if (unit) {
+          return buildYearColumn({
+            index: index,
+            title: unit.title,
+            unitOptions: unit.unit_options,
+          });
+        } else {
+          return buildEmpty(index);
+        }
+      });
       rows.push(buildYearRow(unitsColumns.join("")));
     }
 
@@ -600,7 +597,7 @@ async function buildYear(
           `}
       <w:p>
         ${wrapInLinkTo(
-          links.interactiveSequence!,
+          links.interactiveSequence,
           safeXml`
             <XML_FRAGMENT>
               <w:r>

@@ -109,7 +109,7 @@ jest.mock("@clerk/nextjs");
 
 jest.mock("nanoid", () => {
   return {
-    nanoid: (len) => Array(len).fill("x").join(""),
+    nanoid: (len) => new Array(len).fill("x").join(""),
   };
 });
 

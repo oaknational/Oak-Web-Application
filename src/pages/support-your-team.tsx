@@ -31,8 +31,8 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <OakMaxWidth
-        $ph={["inner-padding-none", "inner-padding-m"]}
-        $pt={["inner-padding-xl6", "inner-padding-xl8"]}
+        $ph={["spacing-0", "spacing-16"]}
+        $pt={["spacing-64", "spacing-80"]}
       >
         <SummaryCard {...pageData} />
         <Flex
@@ -59,7 +59,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
               outlineHeading={"3 hrs"}
               heading={"per week saved on lesson planning"}
               subHeading={"by nearly half of teachers using Oak"}
-              $mr={"space-between-s"}
+              $mr={"spacing-16"}
             />
             <SupportYourTeamBubbleMessage
               background={"pink50"}
@@ -67,18 +67,14 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
               outlineHeading={"50%"}
               heading={"of teachers feel more confident"}
               subHeading={"in curriculum design"}
-              $mr={[
-                "space-between-none",
-                "space-between-none",
-                "space-between-ssx",
-              ]}
+              $mr={["spacing-0", "spacing-0", "spacing-8"]}
             />
           </OakFlex>
         </OakFlex>
         <OakFlex
           $justifyContent={"center"}
-          $pt="inner-padding-xl2"
-          $pb={"inner-padding-xl8"}
+          $pt="spacing-32"
+          $pb={"spacing-80"}
           $alignItems={"center"}
         >
           <OakPrimaryButton
@@ -91,9 +87,9 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
           </OakPrimaryButton>
         </OakFlex>
         <OakGrid
-          $mb={"space-between-xl"}
-          $rg={"all-spacing-10"}
-          $cg={["all-spacing-0", "all-spacing-8"]}
+          $mb={"spacing-56"}
+          $rg={"spacing-56"}
+          $cg={["spacing-0", "spacing-40"]}
         >
           <OakGridArea $colSpan={[12, 12, 6]}>
             <SupportYourTeamTextBlockCard
@@ -131,15 +127,13 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
           $alignItems={"center"}
           $justifyContent={"center"}
           $flexDirection={"column"}
-          $mt="space-between-l"
+          $mt="spacing-48"
         >
-          <OakBox
-            $maxWidth={["all-spacing-22", "all-spacing-20", "all-spacing-20"]}
-          >
+          <OakBox $maxWidth={["spacing-640", "spacing-360", "spacing-360"]}>
             <OakHeading
               $textAlign={"center"}
               $font={["heading-5", "heading-4"]}
-              $mb="space-between-m"
+              $mb="spacing-24"
               tag={"h2"}
             >
               Start using Oak today
@@ -150,8 +144,8 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
             </OakP>
             <OakFlex
               $justifyContent={"center"}
-              $pt="inner-padding-xl2"
-              $pb={"inner-padding-xl8"}
+              $pt="spacing-32"
+              $pb={"spacing-80"}
               $alignItems={"center"}
             >
               <OakPrimaryButton

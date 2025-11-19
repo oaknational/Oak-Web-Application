@@ -4,6 +4,7 @@ locals {
       description             = "Oak Web Application Website"
       domains                 = ["owa.thenational.academy", "www.thenational.academy"]
       build_type              = "website"
+      build_machine_type      = "enhanced"
       detectify_bypass_domain = "www.thenational.academy"
       project_visibility      = "public"
       framework               = "nextjs"

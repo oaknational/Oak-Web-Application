@@ -24,26 +24,24 @@ const CMSVideo: FC<CMSVideoProps> = ({ video, hideCaptions, ...rest }) => {
       : null;
 
   return (
-    <>
-      <OakFlex
-        $position={"relative"}
-        $flexDirection={"column"}
-        $gap={["all-spacing-6"]}
-        $width={"100%"}
-      >
-        <VideoPlayer
-          playbackPolicy="public"
-          thumbnailTime={video.video.asset.thumbTime}
-          playbackId={video.video.asset.playbackId}
-          title={video.title}
-          isLegacy={true}
-          {...rest}
-        />
-        {videoCaptions && (
-          <TranscriptToggle transcriptSentences={videoCaptions} />
-        )}
-      </OakFlex>
-    </>
+    <OakFlex
+      $position={"relative"}
+      $flexDirection={"column"}
+      $gap={["spacing-24"]}
+      $width={"100%"}
+    >
+      <VideoPlayer
+        playbackPolicy="public"
+        thumbnailTime={video.video.asset.thumbTime}
+        playbackId={video.video.asset.playbackId}
+        title={video.title}
+        isLegacy={true}
+        {...rest}
+      />
+      {videoCaptions && (
+        <TranscriptToggle transcriptSentences={videoCaptions} />
+      )}
+    </OakFlex>
   );
 };
 

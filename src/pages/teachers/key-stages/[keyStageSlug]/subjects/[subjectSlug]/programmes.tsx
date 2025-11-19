@@ -145,9 +145,9 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
         isNew={!legacy} // we have no way to know if it's new based on cohort information at this level
       />
       <OakMaxWidth
-        $mb={["space-between-xl", "space-between-xxxl"]}
-        $mt={["space-between-xl", "space-between-xxl"]}
-        $ph={"inner-padding-m"}
+        $mb={["spacing-56", "spacing-80"]}
+        $mt={["spacing-56", "spacing-72"]}
+        $ph={"spacing-16"}
       >
         <SubjectProgrammeListing {...props} onClick={handleProgrammeClick} />
       </OakMaxWidth>

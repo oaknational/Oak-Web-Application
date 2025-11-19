@@ -33,7 +33,7 @@ const AppHeaderBurgerMenuLink: FC<AppHeaderBurgerMenuLinkProps> = (props) => {
     : link.linkTo;
 
   return (
-    <OakFlex $alignItems="center" $gap="all-spacing-2">
+    <OakFlex $alignItems="center" $gap="spacing-8">
       <ButtonAsLink
         icon={link.external ? "external" : undefined}
         aria-label={`${link.ariaLabel ?? link.text}${

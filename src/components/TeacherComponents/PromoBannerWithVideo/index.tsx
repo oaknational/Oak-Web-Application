@@ -43,14 +43,14 @@ const PromoBannerWithVideo = ({
       $flexDirection={["column-reverse", "row"]}
       $alignItems={"center"}
       $justifyContent={"space-between"}
-      $mv={"space-between-m"}
+      $mv={"spacing-24"}
       $borderColor={"grey40"}
       $dropShadow={"drop-shadow-grey"}
       $borderRadius={"border-radius-m2"}
-      $gap={"space-between-m2"}
-      $pa={"inner-padding-xl"}
+      $gap={"spacing-32"}
+      $pa={"spacing-24"}
     >
-      <OakFlex $flexDirection={"column"} $gap={"space-between-xs"}>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-12"}>
         <OakHeading tag="h2" $font={"heading-5"}>
           {title}
         </OakHeading>

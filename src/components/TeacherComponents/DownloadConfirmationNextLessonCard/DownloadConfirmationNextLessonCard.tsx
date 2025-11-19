@@ -37,25 +37,21 @@ const DownloadConfirmationNextLessonCard: FC<
     <OakGrid>
       <OakGridArea $colSpan={[12, 12, 6]}>
         <OakFlex
-          $pa={["inner-padding-m", "inner-padding-m", "inner-padding-xl"]}
+          $pa={["spacing-16", "spacing-16", "spacing-24"]}
           $flexDirection={"column"}
-          $minHeight={["all-spacing-17", "all-spacing-16", "all-spacing-17"]}
+          $minHeight={["spacing-160", "spacing-120", "spacing-160"]}
           $height={"100%"}
           $position={"relative"}
           $justifyContent={"space-between"}
           $wordWrap={"break-word"}
-          $gap="all-spacing-4"
+          $gap="spacing-16"
           $background={"aqua50"}
           $borderRadius="border-radius-s"
           $width={"100%"}
-          $minWidth={["all-spacing-20", "all-spacing-19", "all-spacing-20"]}
+          $minWidth={["spacing-360", "spacing-240", "spacing-360"]}
           data-testid={`next-lesson-card`}
         >
-          <OakHeading
-            tag="h3"
-            $font={"heading-6"}
-            $mb={["space-between-s", "auto"]}
-          >
+          <OakHeading tag="h3" $font={"heading-6"} $mb={["spacing-16", "auto"]}>
             {lessonTitle}
           </OakHeading>
 
@@ -63,7 +59,7 @@ const DownloadConfirmationNextLessonCard: FC<
             $flexDirection={["column", "row", "row"]}
             $alignItems={["flex-start"]}
             $flexWrap={"wrap"}
-            $gap="all-spacing-6"
+            $gap="spacing-24"
           >
             <ButtonAsLink
               page={"lesson-overview"}

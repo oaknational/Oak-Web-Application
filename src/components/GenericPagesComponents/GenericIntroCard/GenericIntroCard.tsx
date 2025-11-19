@@ -27,9 +27,9 @@ const GenericIntroCard: FC<GenericIntroCardProps> = ({
       $pv={32}
     >
       <OakFlex
-        $minWidth={"all-spacing-19"}
+        $minWidth={"spacing-240"}
         $alignItems="center"
-        $mr={["space-between-none", "space-between-xxl"]}
+        $mr={["spacing-0", "spacing-72"]}
       >
         <CardImage {...image} />
       </OakFlex>

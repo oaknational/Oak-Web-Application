@@ -31,17 +31,17 @@ const TeachersTabResourceSelectorCard: FC<
       $background={"white"}
       {...positionAndDisplayProps}
     >
-      <OakFlex $gap="all-spacing-4">
+      <OakFlex $gap="spacing-16">
         <OakFlex
           $height={"100%"}
           $width={"fit-content"}
           $background={"oakGreen"}
-          $pa="inner-padding-xs"
+          $pa="spacing-8"
         >
           <OakIcon
             iconName={icon}
-            $height="all-spacing-9"
-            $width="all-spacing-9"
+            $height="spacing-48"
+            $width="spacing-48"
             $colorFilter={"white"}
             alt=""
           />
@@ -52,7 +52,6 @@ const TeachersTabResourceSelectorCard: FC<
           </OakTypography>
         </OakFlex>
       </OakFlex>
-
       <BoxBorders $color={"black"} gapPosition={"rightTop"} />
     </Card>
   );

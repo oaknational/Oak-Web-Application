@@ -9,12 +9,12 @@ const PostQuote = (props: PortableTextComponentProps<Quote>) => {
   }
 
   return (
-    <OakFlex $flexDirection={"column"} $mt="space-between-xl">
+    <OakFlex $flexDirection={"column"} $mt="spacing-56">
       <OakTypography $font={["heading-light-5", "heading-light-4"]}>
         <blockquote>&ldquo;{props.value.text.trim()}&rdquo;</blockquote>
       </OakTypography>
       <div>
-        <OakP $font={"body-1"} $mt={["space-between-s"]}>
+        <OakP $font={"body-1"} $mt={["spacing-16"]}>
           <cite>{props.value?.attribution}</cite>
           {props.value.role && `, ${props.value.role}`}
         </OakP>

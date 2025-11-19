@@ -25,7 +25,7 @@ function FinancialEducationBanner({
   const mainSection = (
     <OakFlex
       $flexDirection="column"
-      $gap="space-between-xs"
+      $gap="spacing-12"
       data-testid="financial-education-banner"
     >
       <OakHeading tag="h1" $font="heading-5">
@@ -42,7 +42,7 @@ function FinancialEducationBanner({
   );
 
   return (
-    <OakFlex $mt="space-between-m">
+    <OakFlex $mt="spacing-24">
       <OakLinkCard
         mainSection={mainSection}
         iconName={"subject-financial-education"}

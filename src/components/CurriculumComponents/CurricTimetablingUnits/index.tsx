@@ -156,12 +156,12 @@ export const CurricTimetablingUnits = ({
     <>
       {/* TODO: <ThemeProvider/> shouldn't be required, work down the tree and remove old components */}
       <ThemeProvider theme={oakTheme}>
-        <OakFlex $flexDirection={"column"} $pa={"inner-padding-xl5"}>
+        <OakFlex $flexDirection={"column"} $pa={"spacing-56"}>
           <CurricTimetableHeader
             titleSlot={getDefaultName(data, units)}
             illustrationSlug={"magic-carpet"}
             additionalSlot={
-              <OakFlex $maxWidth={"all-spacing-20"} $gap={"all-spacing-4"}>
+              <OakFlex $maxWidth={"spacing-360"} $gap={"spacing-16"}>
                 <OakSecondaryButton
                   iconName="copy"
                   isTrailingIcon={true}
@@ -189,10 +189,10 @@ export const CurricTimetablingUnits = ({
           <OakBox data-testid="edit-details-modal">Edit details modal</OakBox>
         </OakInformativeModal>
 
-        <OakMaxWidth $ph={"inner-padding-xl5"}>
+        <OakMaxWidth $ph={"spacing-56"}>
           <OakFlex $flexDirection={"row"}>
             <OakFlex
-              $minWidth={"all-spacing-21"}
+              $minWidth={"spacing-480"}
               $maxWidth={"100%"}
               $flexDirection={"column"}
             >
@@ -215,10 +215,7 @@ export const CurricTimetablingUnits = ({
                       <CurricTimetablingYearCard
                         yearTitle={`Year ${data.year}`}
                       >
-                        <OakFlex
-                          $flexDirection={"column"}
-                          $gap={"all-spacing-6"}
-                        >
+                        <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
                           <OakInlineBanner
                             message={
                               <OakBox>
@@ -260,7 +257,7 @@ export const CurricTimetablingUnits = ({
                                 return (
                                   <OakFlex
                                     key={`unit-list-item-${item}-${index}`}
-                                    $width={"all-spacing-19"}
+                                    $width={"spacing-240"}
                                     $flexGrow={1}
                                     $position={"relative"}
                                   />
@@ -331,16 +328,8 @@ export const CurricTimetablingUnits = ({
           )}
           {selectedUnitSlug && !selectedUnit && (
             <OakBox
-              $pv={[
-                "inner-padding-xl",
-                "inner-padding-xl5",
-                "inner-padding-xl5",
-              ]}
-              $ph={[
-                "inner-padding-xl",
-                "inner-padding-xl6",
-                "inner-padding-xl6",
-              ]}
+              $pv={["spacing-24", "spacing-56", "spacing-56"]}
+              $ph={["spacing-24", "spacing-64", "spacing-64"]}
             >
               <CurricModalErrorContent
                 statusCode="404"

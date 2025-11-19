@@ -131,7 +131,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                   Downloads may take a few minutes on slower Wi-Fi connections.
                 </OakP>
               }
-              $mb={"space-between-s"}
+              $mb={"spacing-16"}
               $width="max-content"
             />
             {isIncompleteUnit && (
@@ -141,7 +141,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                 isOpen={showIncompleteMessage}
                 type="neutral"
                 message={<OakP>This unit is incomplete</OakP>}
-                $mb={"space-between-s"}
+                $mb={"spacing-16"}
                 $width="max-content"
               />
             )}
@@ -154,14 +154,11 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
 
   return (
     <LessonHeaderWrapper breadcrumbs={breadcrumbs} background={background}>
-      <OakFlex
-        $mb={["space-between-xs", "space-between-none"]}
-        $flexDirection={"column"}
-      >
-        <OakFlex $mb={["space-between-m", "space-between-none"]}>
+      <OakFlex $mb={["spacing-12", "spacing-0"]} $flexDirection={"column"}>
+        <OakFlex $mb={["spacing-24", "spacing-0"]}>
           <OakFlex
-            $mr={["space-between-s", "space-between-m2"]}
-            $height={["all-spacing-13", "all-spacing-17"]}
+            $mr={["spacing-16", "spacing-32"]}
+            $height={["spacing-80", "spacing-160"]}
           >
             <SubjectIconBrushBorders
               subjectSlug={subjectSlug}
@@ -171,7 +168,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
           </OakFlex>
           <OakFlex $flexDirection={"column"}>
             <OakSpan
-              $mb="space-between-ssx"
+              $mb="spacing-8"
               $color={"grey60"}
               $font={"heading-light-7"}
             >
@@ -186,7 +183,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
               )}
             </OakSpan>
             <OakHeading
-              $mb={"space-between-m"}
+              $mb={"spacing-24"}
               tag={"h1"}
               $font={["heading-5", "heading-3"]}
             >
@@ -199,12 +196,8 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                 />
               </OakBox>
             )}
-            <OakFlex $flexDirection="column" $gap="space-between-s">
-              <OakFlex
-                $gap="space-between-s"
-                $height="max-content"
-                $flexWrap="wrap"
-              >
+            <OakFlex $flexDirection="column" $gap="spacing-16">
+              <OakFlex $gap="spacing-16" $height="max-content" $flexWrap="wrap">
                 {unitDownloadFileId && onUnitDownloadSuccess && (
                   <UnitDownloadButton
                     setDownloadError={setDownloadError}
@@ -226,23 +219,19 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                     }
                     isTrailingIcon
                     onClick={onSave}
-                    ph={["inner-padding-xs", "inner-padding-m"]}
-                    pv={["inner-padding-ssx", "inner-padding-ssx"]}
-                    $mb={[
-                      "space-between-none",
-                      "space-between-s",
-                      "space-between-none",
-                    ]}
+                    ph={["spacing-8", "spacing-16"]}
+                    pv={["spacing-4", "spacing-4"]}
+                    $mb={["spacing-0", "spacing-16", "spacing-0"]}
                     data-testid="save-unit-button"
                     disabled={isUnitSaving}
                   >
-                    <OakFlex $alignItems="center" $gap={"space-between-xs"}>
+                    <OakFlex $alignItems="center" $gap={"spacing-12"}>
                       <OakTagFunctional
                         label="New"
                         $background="mint"
                         $color="text-primary"
                         $font="heading-light-7"
-                        $pv={"inner-padding-none"}
+                        $pv={"spacing-0"}
                         $display={["none", "inline"]}
                       />
                       {isUnitSaved ? "Saved" : "Save"}

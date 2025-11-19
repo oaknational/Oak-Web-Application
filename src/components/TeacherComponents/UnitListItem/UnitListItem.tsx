@@ -93,15 +93,11 @@ const UnitListItem: FC<UnitListItemProps | SpecialistListItemProps> = (
         $justifyContent={"space-between"}
         $width={"100%"}
         $height={"100%"}
-        $gap={["all-spacing-2"]}
-        $pa="inner-padding-m"
+        $gap={["spacing-8"]}
+        $pa="spacing-16"
       >
         {!isUnitOption && yearTitle && !isExemplarUnit && (
-          <OakSpan
-            $font={"heading-light-7"}
-            $color={"grey60"}
-            $mv="space-between-none"
-          >
+          <OakSpan $font={"heading-light-7"} $color={"grey60"} $mv="spacing-0">
             {yearTitle}
           </OakSpan>
         )}

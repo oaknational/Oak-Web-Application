@@ -8,12 +8,10 @@ type UseAxeProps = {
 /**
  * Logs a11y issues to the console. Re-runs after mutations in the tree.
  */
-const useAxe = async ({ enabled }: UseAxeProps) => {
+export default function useAxe({ enabled }: UseAxeProps) {
   useEffect(() => {
     if (enabled) {
       startAxe();
     }
   }, [enabled]);
-};
-
-export default useAxe;
+}

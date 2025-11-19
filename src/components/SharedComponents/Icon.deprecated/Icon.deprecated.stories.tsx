@@ -13,7 +13,7 @@ export default {
 
 const Template: StoryFn<typeof Component> = (args) => (
   <>
-    <OakHeading $font={"heading-5"} $mb={"space-between-m"} tag="h2">
+    <OakHeading $font={"heading-5"} $mb={"spacing-24"} tag="h2">
       Icons
     </OakHeading>
     {ICON_NAMES.map((name) => {

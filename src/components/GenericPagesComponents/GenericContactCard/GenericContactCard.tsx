@@ -21,18 +21,14 @@ const genericContactCardPortableTextComponents: PortableTextComponents = {
   block: {
     sectionHeading: (props) => {
       return (
-        <OakHeading
-          $mb="space-between-ssx"
-          $font={["heading-6", "heading-5"]}
-          tag="h2"
-        >
+        <OakHeading $mb="spacing-8" $font={["heading-6", "heading-5"]} tag="h2">
           {props.children}
         </OakHeading>
       );
     },
     normal: (props) => {
       return (
-        <OakTypography $mb="space-between-m2" $font={["body-2", "body-1"]}>
+        <OakTypography $mb="spacing-32" $font={["body-2", "body-1"]}>
           {props.children}
         </OakTypography>
       );
@@ -61,7 +57,7 @@ const GenericContactCard: FC<GenericContactCardProps> = (props) => {
               components={genericContactCardPortableTextComponents}
               value={props.infoPortableText}
             />
-            <OakFlex $mb={["space-between-m2", "space-between-none"]}>
+            <OakFlex $mb={["spacing-32", "spacing-0"]}>
               <OakPrimaryButton
                 element="a"
                 href={resolveOakHref({ page: "contact" })}
@@ -72,14 +68,11 @@ const GenericContactCard: FC<GenericContactCardProps> = (props) => {
           </Card>
         </OakGridArea>
         <OakGridArea
-          $mb={["space-between-xxxl", "space-between-none"]}
+          $mb={["spacing-80", "spacing-0"]}
           $order={[1, 2]}
           $colSpan={[12, 6, 4]}
         >
-          <OakFlex
-            $background={"mint50"}
-            $pa={["inner-padding-none", "inner-padding-xl"]}
-          >
+          <OakFlex $background={"mint50"} $pa={["spacing-0", "spacing-24"]}>
             <NewsletterFormWrap onSubmit={onSubmit} />
           </OakFlex>
         </OakGridArea>

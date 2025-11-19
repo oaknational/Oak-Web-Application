@@ -6,19 +6,17 @@ const TranscriptToggle: FC<{
 }> = ({ transcriptSentences }) => {
   const id = useId();
   return (
-    <>
-      <OakVideoTranscript id={id}>
-        {transcriptSentences.map(
-          (transcriptSentence, transcriptSentenceIndex) => {
-            return (
-              <OakP key={transcriptSentenceIndex} $mb="space-between-s">
-                {transcriptSentence}
-              </OakP>
-            );
-          },
-        )}
-      </OakVideoTranscript>
-    </>
+    <OakVideoTranscript id={id}>
+      {transcriptSentences.map(
+        (transcriptSentence, transcriptSentenceIndex) => {
+          return (
+            <OakP key={transcriptSentenceIndex} $mb="spacing-16">
+              {transcriptSentence}
+            </OakP>
+          );
+        },
+      )}
+    </OakVideoTranscript>
   );
 };
 

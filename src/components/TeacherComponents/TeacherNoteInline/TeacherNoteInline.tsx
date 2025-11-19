@@ -32,11 +32,7 @@ export const TeacherNoteInline = ({
   }
 
   return (
-    <OakFlex
-      $gap="space-between-m"
-      $flexDirection={"column"}
-      $pb={"inner-padding-xl4"}
-    >
+    <OakFlex $gap="spacing-24" $flexDirection={"column"} $pb={"spacing-48"}>
       <OakHeading $font={["heading-5", "heading-4"]} tag={"h2"}>
         Teacher Note
       </OakHeading>

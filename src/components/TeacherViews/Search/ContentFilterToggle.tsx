@@ -24,7 +24,7 @@ type ContentFilterToggleProps = {
 export const ContentFilterToggle = (props: ContentFilterToggleProps) => {
   const { contentTypeFilters, trackSearchModified, idSuffix } = props;
   return (
-    <OakFlex $gap={"space-between-xs"}>
+    <OakFlex $gap={"spacing-12"}>
       {contentTypeFilters
         .map((contentTypeFilter) => {
           const icon = isValidIconName(`teacher-${contentTypeFilter.slug}`)

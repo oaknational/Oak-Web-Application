@@ -12,7 +12,7 @@ const PostVideo = (props: PortableTextComponentProps<Video>) => {
   return (
     <OakBox>
       {props.value && (
-        <OakFlex $position={"relative"} $mt="space-between-xl">
+        <OakFlex $position={"relative"} $mt="spacing-56">
           <CMSVideo video={props.value} location="blog" />
         </OakFlex>
       )}

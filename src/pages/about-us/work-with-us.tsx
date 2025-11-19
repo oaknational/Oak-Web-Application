@@ -37,8 +37,8 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(seo)} $background={"white"}>
       <OakMaxWidth
-        $mb={["space-between-xl", "space-between-xxxl"]}
-        $mt={["space-between-xl", "space-between-xxxl"]}
+        $mb={["spacing-56", "spacing-80"]}
+        $mt={["spacing-56", "spacing-80"]}
       >
         <GenericSummaryCard {...pageData} />
         <GenericIntroCard
@@ -50,9 +50,9 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           bodyPortableText={pageData.introPortableText}
         />
         <OakGrid
-          $mb={["space-between-xxl", "space-between-xxxl"]}
-          $cg={"space-between-m"}
-          $rg={["space-between-none", "space-between-m2"]}
+          $mb={["spacing-72", "spacing-80"]}
+          $cg={"spacing-24"}
+          $rg={["spacing-0", "spacing-32"]}
         >
           {getWorkWithUsCards(pageData).map((card) => (
             <Fragment key={card.title}>
@@ -61,12 +61,12 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                   <OakHeading
                     $font={["heading-6", "heading-5"]}
                     tag={"h2"}
-                    $mb={"space-between-m"}
+                    $mb={"spacing-24"}
                   >
                     {card.title}
                   </OakHeading>
                   <OakTypography
-                    $mb={"space-between-m2"}
+                    $mb={"spacing-32"}
                     $font={["body-2", "body-1"]}
                   >
                     <PortableTextWithDefaults value={card.bodyPortableText} />

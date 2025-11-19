@@ -23,12 +23,7 @@ const TabularNav = ({
   links: ButtonAsLinkProps[];
 }) => {
   return (
-    <OakFlex
-      as="nav"
-      aria-label={label}
-      $pv={"inner-padding-ssx"}
-      {...flexProps}
-    >
+    <OakFlex as="nav" aria-label={label} $pv={"spacing-4"} {...flexProps}>
       {links.map((link, i) => {
         return (
           <ButtonAsLink

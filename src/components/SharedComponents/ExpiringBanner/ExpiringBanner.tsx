@@ -37,7 +37,7 @@ export const ExpiringBanner = ({
         Switch to our new teaching resources now - designed by teachers and
         leading subject experts, and tested in classrooms.
       </OakP>
-      <OakP $mt={"space-between-m"}>
+      <OakP $mt={"spacing-24"}>
         These resources were created for remote use during the pandemic and are
         not designed for classroom teaching.
       </OakP>

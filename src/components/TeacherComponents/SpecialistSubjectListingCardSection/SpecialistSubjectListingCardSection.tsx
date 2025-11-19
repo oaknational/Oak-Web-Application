@@ -25,8 +25,8 @@ const SpecialistSubjectCardSection = (props: {
   subjects: Array<SpecialistSubject>;
 }) => {
   return (
-    <OakFlex $flexDirection="column" $gap="all-spacing-6">
-      <OakGrid $rg={"all-spacing-4"}>
+    <OakFlex $flexDirection="column" $gap="spacing-24">
+      <OakGrid $rg={"spacing-16"}>
         <OakGridArea $colSpan={[12]}>
           <OakHeading tag="h2" $font="heading-3">
             {props.heading}
@@ -37,8 +37,8 @@ const SpecialistSubjectCardSection = (props: {
         </OakGridArea>
       </OakGrid>
       <OakGrid
-        $rg={"all-spacing-4"}
-        $cg={"all-spacing-4"}
+        $rg={"spacing-16"}
+        $cg={"spacing-16"}
         $gridAutoRows={"1fr"}
         data-testid="specialist-subject-card-section"
       >

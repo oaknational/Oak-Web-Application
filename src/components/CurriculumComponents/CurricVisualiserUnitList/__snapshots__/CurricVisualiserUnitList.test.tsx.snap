@@ -9,17 +9,17 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
       style="margin-bottom: -1rem;"
     >
       <ol
-        class="sc-f0bd6840-0 dTlQbg"
+        class="sc-5d843393-0 iZMTYF"
         role="list"
       >
         <li
-          class="sc-f0bd6840-1 khJIqh"
+          class="sc-5d843393-1 exkneQ"
         >
           <div
-            class="sc-fqkvVR sc-1c55d370-0 jdSkEU iHxKuU"
+            class="sc-fqkvVR sc-85abac1-0 jdSkEU jXwLFO"
           >
             <a
-              class="sc-65c0942f-0 dBSbTR"
+              class="sc-736180ff-0 bsbMHP"
               data-testid="unit-info-link"
               href="/one"
             >
@@ -40,7 +40,7 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
                     </span>
                   </div>
                   <span
-                    class="sc-dAlyuH gYScdJ"
+                    class="sc-dAlyuH eeepiN"
                   >
                     One
                   </span>
@@ -52,7 +52,7 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
                     class="sc-fqkvVR sc-kAyceB fgBWrW gCgXGf"
                   >
                     <div
-                      class="sc-fqkvVR sc-fPXMVe kxMTGH wBUcz"
+                      class="sc-fqkvVR sc-gFqAkR kxMTGH idOnvL"
                     >
                       Unit info
                     </div>
@@ -76,13 +76,13 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
           </div>
         </li>
         <li
-          class="sc-f0bd6840-1 khJIqh"
+          class="sc-5d843393-1 exkneQ"
         >
           <div
-            class="sc-fqkvVR sc-1c55d370-0 jdSkEU iHxKuU"
+            class="sc-fqkvVR sc-85abac1-0 jdSkEU jXwLFO"
           >
             <a
-              class="sc-65c0942f-0 dBSbTR"
+              class="sc-736180ff-0 bsbMHP"
               data-testid="unit-info-link"
               href="/two"
             >
@@ -103,7 +103,7 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
                     </span>
                   </div>
                   <span
-                    class="sc-dAlyuH gYScdJ"
+                    class="sc-dAlyuH eeepiN"
                   >
                     Two
                   </span>
@@ -115,7 +115,7 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
                     class="sc-fqkvVR sc-kAyceB fgBWrW gCgXGf"
                   >
                     <div
-                      class="sc-fqkvVR sc-fPXMVe kxMTGH wBUcz"
+                      class="sc-fqkvVR sc-gFqAkR kxMTGH idOnvL"
                     >
                       Unit info
                     </div>
@@ -139,13 +139,13 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
           </div>
         </li>
         <li
-          class="sc-f0bd6840-1 khJIqh"
+          class="sc-5d843393-1 exkneQ"
         >
           <div
-            class="sc-fqkvVR sc-1c55d370-0 jdSkEU iHxKuU"
+            class="sc-fqkvVR sc-85abac1-0 jdSkEU jXwLFO"
           >
             <a
-              class="sc-65c0942f-0 dBSbTR"
+              class="sc-736180ff-0 bsbMHP"
               data-testid="unit-info-link"
               href="/three"
             >
@@ -166,7 +166,7 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
                     </span>
                   </div>
                   <span
-                    class="sc-dAlyuH gYScdJ"
+                    class="sc-dAlyuH eeepiN"
                   >
                     Three
                   </span>
@@ -178,7 +178,7 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
                     class="sc-fqkvVR sc-kAyceB fgBWrW gCgXGf"
                   >
                     <div
-                      class="sc-fqkvVR sc-fPXMVe kxMTGH wBUcz"
+                      class="sc-fqkvVR sc-gFqAkR kxMTGH idOnvL"
                     >
                       Unit info
                     </div>
@@ -202,13 +202,13 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
           </div>
         </li>
         <li
-          class="sc-f0bd6840-1 khJIqh"
+          class="sc-5d843393-1 exkneQ"
         >
           <div
-            class="sc-fqkvVR sc-1c55d370-0 jdSkEU iHxKuU"
+            class="sc-fqkvVR sc-85abac1-0 jdSkEU jXwLFO"
           >
             <a
-              class="sc-65c0942f-0 dBSbTR"
+              class="sc-736180ff-0 bsbMHP"
               data-testid="unit-info-link"
               href="/four"
             >
@@ -229,7 +229,7 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
                     </span>
                   </div>
                   <span
-                    class="sc-dAlyuH gYScdJ"
+                    class="sc-dAlyuH eeepiN"
                   >
                     Four
                   </span>
@@ -241,7 +241,7 @@ exports[`CurricVisualiserUnitList should display a list of units 1`] = `
                     class="sc-fqkvVR sc-kAyceB fgBWrW gCgXGf"
                   >
                     <div
-                      class="sc-fqkvVR sc-fPXMVe kxMTGH wBUcz"
+                      class="sc-fqkvVR sc-gFqAkR kxMTGH idOnvL"
                     >
                       Unit info
                     </div>

@@ -65,12 +65,12 @@ export default function Alert(props: AlertProps) {
     <OakFlex
       data-testid="oak-inline-banner"
       $background={alertTypes[type]?.backgroundColour}
-      $pa={"inner-padding-m"}
+      $pa={"spacing-16"}
       $borderRadius={"border-radius-m2"}
       $borderStyle={"solid"}
       $borderColor={alertTypes[type]?.borderColour}
       $flexDirection={"row"}
-      $gap="space-between-xs"
+      $gap="spacing-12"
       $alignItems={"center"}
       {...rest}
     >
@@ -78,8 +78,8 @@ export default function Alert(props: AlertProps) {
         <OakIcon
           iconName={iconResult}
           $colorFilter={iconColorFilterResult}
-          $width="all-spacing-7"
-          $height="all-spacing-7"
+          $width="spacing-32"
+          $height="spacing-32"
           data-testid="inline-banner-icon"
         />
       </OakBox>

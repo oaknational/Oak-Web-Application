@@ -16,9 +16,9 @@ export default function MyLibraryHeader() {
       <OakFlex
         $flexDirection="column"
         $justifyContent="center"
-        $gap="space-between-s"
-        $pa={["inner-padding-m", "inner-padding-xl4"]}
-        $pv={["inner-padding-xl", "inner-padding-xl4"]}
+        $gap="spacing-16"
+        $pa={["spacing-16", "spacing-48"]}
+        $pv={["spacing-24", "spacing-48"]}
       >
         <OakFlex $justifyContent={"space-between"} $alignItems={"baseline"}>
           <OakHeading tag="h1" $font={["heading-4", "heading-1"]}>
@@ -26,8 +26,8 @@ export default function MyLibraryHeader() {
           </OakHeading>
           <OakImage
             $display={["block", "none"]}
-            $height={"all-spacing-15"}
-            $width={"all-spacing-15"}
+            $height={"spacing-100"}
+            $width={"spacing-100"}
             alt="a woman reading a book"
             src={getCloudinaryImageUrl(
               "v1747129947/svg-illustrations/reading_fiction_e43vpo.svg",
@@ -40,14 +40,10 @@ export default function MyLibraryHeader() {
           development and lesson planning. Save what you need to your library.
         </OakP>
       </OakFlex>
-      <OakFlex
-        $pr="inner-padding-xl4"
-        $pt="inner-padding-xl4"
-        $display={["none", "block"]}
-      >
+      <OakFlex $pr="spacing-48" $pt="spacing-48" $display={["none", "block"]}>
         <OakImage
-          $height={"all-spacing-19"}
-          $width={"all-spacing-19"}
+          $height={"spacing-240"}
+          $width={"spacing-240"}
           alt="a woman reading a book"
           src={getCloudinaryImageUrl(
             "v1747129947/svg-illustrations/reading_fiction_e43vpo.svg",
