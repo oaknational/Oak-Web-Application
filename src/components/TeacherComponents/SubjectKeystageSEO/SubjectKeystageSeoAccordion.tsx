@@ -7,10 +7,11 @@ import {
   OakSpan,
   OakUL,
 } from "@oaknational/oak-components";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { KeyStageSlug } from "@/utils/curriculum/types";
+import { useContentVisibleOnClick } from "@/hooks/useContentVisibleOnClick";
 
 export const SubjectKeystageSeoAccordion = ({
   keystageSlug,
@@ -21,15 +22,7 @@ export const SubjectKeystageSeoAccordion = ({
 }) => {
   const seoContent = textContentMap[keystageSlug];
   const accordionContentRef = useRef<HTMLDivElement>(null);
-  const [contentVisible, setContentVisible] = useState(false);
-
-  useEffect(() => {
-    globalThis.addEventListener("click", () => {
-      setContentVisible(
-        accordionContentRef.current?.checkVisibility() ?? false,
-      );
-    });
-  }, []);
+  const { contentVisible } = useContentVisibleOnClick(accordionContentRef);
 
   return (
     <OakBasicAccordion
