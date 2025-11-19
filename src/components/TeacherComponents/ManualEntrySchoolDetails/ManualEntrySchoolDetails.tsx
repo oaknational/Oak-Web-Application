@@ -31,12 +31,8 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
   return (
     <OakFlex
       $flexDirection={"column"}
-      $gap="space-between-l"
-      $mt={
-        "manualSchoolName" in hasErrors
-          ? "space-between-none"
-          : "space-between-m"
-      }
+      $gap="spacing-48"
+      $mt={"manualSchoolName" in hasErrors ? "spacing-0" : "spacing-24"}
     >
       <Controller
         name="manualSchoolName"
@@ -69,7 +65,6 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
           );
         }}
       />
-
       <Controller
         name="schoolAddress"
         control={control}

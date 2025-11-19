@@ -65,7 +65,7 @@ export const PupilViewsUnitListing = ({
         </OakTertiaryButton>
       }
     >
-      <OakBox $mb={"space-between-m2"}>
+      <OakBox $mb={"spacing-32"}>
         {unitSections.map((unitSection, i) => {
           let subjectLabel = unitSection.labels?.subject;
           if (
@@ -149,7 +149,7 @@ export const PupilViewsUnitListing = ({
             programmeFields={programmeFields}
           />
         ))}
-        <OakBox $mt={"space-between-m2"}>
+        <OakBox $mt={"spacing-32"}>
           <SignpostTeachersInlineBanner />
         </OakBox>
       </OakBox>

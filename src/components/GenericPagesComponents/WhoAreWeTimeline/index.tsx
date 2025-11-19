@@ -15,7 +15,7 @@ function InnerMaxWidth({ children }: { children: ReactNode }) {
     <OakBox
       style={styleAttrs}
       $mh={"auto"}
-      $ph={["inner-padding-m", "inner-padding-xl3", "inner-padding-xl3"]}
+      $ph={["spacing-16", "spacing-40", "spacing-40"]}
     >
       {children}
     </OakBox>
@@ -41,14 +41,14 @@ export default function WhoAreWeTimeline({
       <InnerMaxWidth>
         <OakFlex
           $flexDirection={"column"}
-          $gap={"all-spacing-10"}
-          $pt={"inner-padding-xl7"}
+          $gap={"spacing-56"}
+          $pt={"spacing-72"}
         >
-          <OakGrid $cg="space-between-s" $rg="space-between-s">
+          <OakGrid $cg="spacing-16" $rg="spacing-16">
             <OakGridArea $colSpan={[12, 12, 9]} $colStart={[0, 0, 2]}>
-              <OakFlex $gap={"all-spacing-2"} $flexDirection={"column"}>
+              <OakFlex $gap={"spacing-8"} $flexDirection={"column"}>
                 <OakBox $font={"heading-5"}>
-                  <OakSpan $background={"mint"} $ph={"inner-padding-ssx"}>
+                  <OakSpan $background={"mint"} $ph={"spacing-4"}>
                     {subtitle}
                   </OakSpan>
                 </OakBox>
@@ -58,7 +58,7 @@ export default function WhoAreWeTimeline({
               </OakFlex>
             </OakGridArea>
           </OakGrid>
-          <OakGrid $cg="space-between-s" $rg="space-between-s">
+          <OakGrid $cg="spacing-16" $rg="spacing-16">
             <OakGridArea $colSpan={[12, 12, 8]} $colStart={[0, 0, 3]}>
               <OakFlex $flexDirection={"column"}>
                 {items.map((item, itemIndex) => {
@@ -67,10 +67,10 @@ export default function WhoAreWeTimeline({
                     <OakFlex
                       key={item.title}
                       data-testid="timetable-timeline-item"
-                      $gap={"all-spacing-4"}
+                      $gap={"spacing-16"}
                     >
                       <OakFlex
-                        $width={"all-spacing-6"}
+                        $width={"spacing-24"}
                         $flexShrink={0}
                         $flexDirection={"column"}
                         $alignItems={"center"}
@@ -80,8 +80,8 @@ export default function WhoAreWeTimeline({
                           $borderColor={"border-decorative1-stronger"}
                           $borderStyle={"solid"}
                           $ba={"border-solid-m"}
-                          $width={"all-spacing-6"}
-                          $height={"all-spacing-6"}
+                          $width={"spacing-24"}
+                          $height={"spacing-24"}
                           $borderRadius={"border-radius-circle"}
                           $flexGrow={0}
                         />
@@ -90,20 +90,17 @@ export default function WhoAreWeTimeline({
                           $borderStyle={isLast ? "dashed" : "solid"}
                           $ba={"border-solid-none"}
                           $bl={"border-solid-l"}
-                          $width={"space-between-none"}
+                          $width={"spacing-0"}
                           $flexGrow={1}
                         />
                       </OakFlex>
                       <OakFlex
                         $flexDirection={"column"}
-                        $gap={"all-spacing-2"}
-                        $mb={"space-between-xxl"}
+                        $gap={"spacing-8"}
+                        $mb={"spacing-72"}
                       >
                         <OakBox $font={"body-2-bold"}>
-                          <OakSpan
-                            $ph={"inner-padding-ssx"}
-                            $background={"mint"}
-                          >
+                          <OakSpan $ph={"spacing-4"} $background={"mint"}>
                             {item.subtitle}
                           </OakSpan>
                         </OakBox>

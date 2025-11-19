@@ -26,7 +26,7 @@ const LessonOverviewKeywords = ({ keyWords }: LessonOverviewKeywordsProps) => {
     >
       <OakHeading
         $font={"heading-5"}
-        $mb="space-between-m"
+        $mb="spacing-24"
         data-testid={"heading"}
         tag="h3"
       >
@@ -39,7 +39,7 @@ const LessonOverviewKeywords = ({ keyWords }: LessonOverviewKeywordsProps) => {
 
           const description = `- ${keyWord.description}`;
           return (
-            <OakLI key={`${keyWord.keyword}-${i}`} $mb="space-between-xs">
+            <OakLI key={`${keyWord.keyword}-${i}`} $mb="spacing-12">
               <OakP>
                 <OakSpan $font={["body-2", "body-1"]}>
                   <OakSpan $font={["body-2-bold", "body-1-bold"]}>

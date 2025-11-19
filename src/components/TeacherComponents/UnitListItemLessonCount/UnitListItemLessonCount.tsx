@@ -28,8 +28,8 @@ export const UnitListItemLessonCount = ({
       {!expired && lessonCount && (
         <OakIcon
           iconName="chevron-right"
-          $width={"all-spacing-5"}
-          $height={"all-spacing-5"}
+          $width={"spacing-20"}
+          $height={"spacing-20"}
         />
       )}
     </OakFlex>

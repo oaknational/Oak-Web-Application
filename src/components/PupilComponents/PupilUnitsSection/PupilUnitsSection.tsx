@@ -119,13 +119,9 @@ export const PupilUnitsSection = ({
       titleSlot={titleSlot}
       filterSlot={filterSlot}
       subheadingSlot={
-        <OakFlex
-          $flexDirection={"column"}
-          $width={"100%"}
-          $gap={"space-between-s"}
-        >
+        <OakFlex $flexDirection={"column"} $width={"100%"} $gap={"spacing-16"}>
           <OakFlex
-            $gap="space-between-xs"
+            $gap="spacing-12"
             $alignItems={"center"}
             $justifyContent="start"
           >
@@ -142,7 +138,7 @@ export const PupilUnitsSection = ({
               $justifyContent={["start", "space-between"]}
               $flexGrow={[null, 1]}
               $alignItems={["flex-start", "center"]}
-              $gap={"space-between-m"}
+              $gap={"spacing-24"}
             >
               <OakHeading tag="h2" $font={"heading-6"} data-testid="unit-count">
                 {counterText}{" "}
@@ -157,8 +153,8 @@ export const PupilUnitsSection = ({
                   $borderRadius={"border-radius-s"}
                   $borderColor={"border-decorative5"}
                   $ba={"border-solid-s"}
-                  $ph={"inner-padding-xs"}
-                  $pv={"inner-padding-ssx"}
+                  $ph={"spacing-8"}
+                  $pv={"spacing-4"}
                 />
               )}
             </OakFlex>

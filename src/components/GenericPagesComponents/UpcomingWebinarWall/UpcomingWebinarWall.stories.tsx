@@ -14,7 +14,7 @@ export default {
   },
   decorators: [
     (Story) => (
-      <OakBox $position="relative" $maxWidth="all-spacing-22" $ma="auto">
+      <OakBox $position="relative" $maxWidth="spacing-640" $ma="auto">
         <AspectRatio ratio={"16:9"}>
           <Story />
         </AspectRatio>

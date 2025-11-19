@@ -19,7 +19,7 @@ function FinancialEducationBanner({ programmeFields }: Readonly<BannerProps>) {
   });
 
   const mainSection = (
-    <OakFlex $flexDirection="column" $gap="space-between-xs">
+    <OakFlex $flexDirection="column" $gap="spacing-12">
       <OakHeading tag="h1" $font="heading-5">
         Check out our new finance lessons!
       </OakHeading>
@@ -35,8 +35,8 @@ function FinancialEducationBanner({ programmeFields }: Readonly<BannerProps>) {
 
   return (
     <OakFlex
-      $width={["100%", "all-spacing-22", "all-spacing-23"]}
-      $mt="space-between-m"
+      $width={["100%", "spacing-640", "spacing-960"]}
+      $mt="spacing-24"
       data-testid="financial-education-banner"
     >
       <OakLinkCard

@@ -77,13 +77,13 @@ export const SearchSuggestionBanner = (props: {
 
   return (
     <OakFlex
-      $pa="inner-padding-xl2"
+      $pa="spacing-32"
       $ba="border-solid-s"
       $borderRadius="border-radius-s"
       $borderColor="border-neutral-lighter"
       $flexDirection="column"
-      $gap="space-between-xs"
-      $mt={"space-between-m2"}
+      $gap="spacing-12"
+      $mt={"spacing-32"}
     >
       {metadata && (
         <OakP $font="heading-light-7" $color="text-subdued">
@@ -95,7 +95,7 @@ export const SearchSuggestionBanner = (props: {
       </OakHeading>
       {body && <OakP $font="body-2">{body}</OakP>}
       <OakFlex
-        $gap="space-between-m"
+        $gap="spacing-24"
         $flexWrap="wrap"
         $flexDirection={["column", "row", "row"]}
       >

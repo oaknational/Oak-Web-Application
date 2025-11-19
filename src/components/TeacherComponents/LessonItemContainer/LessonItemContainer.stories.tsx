@@ -33,7 +33,7 @@ export const Standard: Story = {
       <OakFlex
         $justifyContent={"center"}
         $alignItems={"center"}
-        $height="all-spacing-16"
+        $height="spacing-120"
       >
         <OakP>Inner content here</OakP>
       </OakFlex>

@@ -29,7 +29,7 @@ const UnitListOptionalityCard: FC<UnitListOptionalityCardProps> = ({
   return (
     <OakBox
       $background={"lavender30"}
-      $mb="space-between-s"
+      $mb="spacing-16"
       $borderRadius="border-radius-s"
       data-testid="unit-optionality-card"
       role="listitem"
@@ -39,15 +39,15 @@ const UnitListOptionalityCard: FC<UnitListOptionalityCardProps> = ({
           $flexDirection={"column"}
           $alignItems={"center"}
           $justifyContent={"center"}
-          $pt={["inner-padding-none", "inner-padding-s"]}
-          $pb={["inner-padding-none", "inner-padding-s"]}
-          $maxWidth={["all-spacing-11", "all-spacing-13"]}
+          $pt={["spacing-0", "spacing-12"]}
+          $pb={["spacing-0", "spacing-12"]}
+          $maxWidth={["spacing-64", "spacing-80"]}
         >
           <OakHeading
             tag="h6"
             $font={"heading-7"}
             $textAlign={"center"}
-            $mv="space-between-none"
+            $mv="spacing-0"
           >
             Unit options
           </OakHeading>
@@ -62,22 +62,22 @@ const UnitListOptionalityCard: FC<UnitListOptionalityCardProps> = ({
         </OakFlex>
         <OakFlex
           $flexDirection={["column"]}
-          $pl={["inner-padding-m", "inner-padding-xl"]}
-          $pr={["inner-padding-m", "inner-padding-xl"]}
-          $pt={"inner-padding-s"}
-          $pb={"inner-padding-s"}
+          $pl={["spacing-16", "spacing-24"]}
+          $pr={["spacing-16", "spacing-24"]}
+          $pt={"spacing-12"}
+          $pb={"spacing-12"}
           $width={"100%"}
         >
-          <OakFlex $mb={"space-between-s"} $flexDirection={"column"}>
+          <OakFlex $mb={"spacing-16"} $flexDirection={"column"}>
             <OakP
               $font={"heading-light-7"}
-              $mt="space-between-sssx"
+              $mt="spacing-4"
               $color={"grey60"}
-              $mb="space-between-ssx"
+              $mb="spacing-8"
             >
               {unitYear}
             </OakP>
-            <OakHeading tag="h6" $font={"heading-6"} $mv="space-between-none">
+            <OakHeading tag="h6" $font={"heading-6"} $mv="spacing-0">
               {unitTitle}
             </OakHeading>
           </OakFlex>

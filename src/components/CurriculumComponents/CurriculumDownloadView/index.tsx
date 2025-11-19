@@ -37,7 +37,7 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = (props) => {
   return (
     <OakBox $color="black">
       {props.onBackToKs4Options && (
-        <OakBox $mb="space-between-m">
+        <OakBox $mb="spacing-24">
           <Button
             variant={"buttonStyledAsLink"}
             icon="chevron-left"
@@ -62,6 +62,8 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = (props) => {
             <SignedInFlow
               {...props}
               user={user}
+              downloadTypes={downloadTypes}
+              onChangeDownloadTypes={setDownloadTypes}
               availableDownloadTypes={props.availableDownloadTypes}
             />
           )}

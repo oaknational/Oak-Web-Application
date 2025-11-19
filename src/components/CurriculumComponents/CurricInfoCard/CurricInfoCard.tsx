@@ -33,11 +33,11 @@ export default function CurricInfoCard({
       $ba={"border-solid-m"}
       $flexDirection="column"
       $alignItems={"flex-start"}
-      $pa={"inner-padding-xl"}
+      $pa={"spacing-24"}
     >
       <OakIcon
         iconName={iconName}
-        $mb={"space-between-s"}
+        $mb={"spacing-16"}
         iconHeight={iconHeight}
         iconWidth={iconWidth}
         data-testid={`icon-${iconName}`}

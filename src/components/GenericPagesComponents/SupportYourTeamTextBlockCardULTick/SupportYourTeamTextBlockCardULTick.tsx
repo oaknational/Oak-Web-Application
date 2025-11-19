@@ -6,11 +6,7 @@ import Circle from "@/components/SharedComponents/Circle";
 export const SupportYourTeamTextBlockCardULTick: PortableTextComponents = {
   list: {
     bullet: ({ children }) => (
-      <OakUL
-        $mt={"space-between-m2"}
-        $ml={"space-between-none"}
-        $pa={"inner-padding-none"}
-      >
+      <OakUL $mt={"spacing-32"} $ml={"spacing-0"} $pa={"spacing-0"}>
         {children}
       </OakUL>
     ),
@@ -25,14 +21,14 @@ export const SupportYourTeamTextBlockCardULTick: PortableTextComponents = {
           $display={"flex"}
           $flexDirection={"row"}
           $listStyle={"none"}
-          $mb="space-between-l"
+          $mb="spacing-48"
           $alignItems={"center"}
         >
           <Circle $mr={24} size={36} $background={"white"}>
             <OakIcon
               iconName={"tick"}
-              $width={"all-spacing-7"}
-              $height={"all-spacing-7"}
+              $width={"spacing-32"}
+              $height={"spacing-32"}
             />
           </Circle>
           <OakSpan $font={"heading-7"}>{listItemText}</OakSpan>

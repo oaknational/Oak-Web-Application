@@ -22,16 +22,16 @@ export function CurricTermCard({
   return (
     <OakFlex
       $flexDirection={"column"}
-      $gap={"all-spacing-3"}
+      $gap={"spacing-12"}
       $background={"bg-decorative4-very-subdued"}
-      $pa={"inner-padding-m"}
+      $pa={"spacing-16"}
       $borderRadius={"border-radius-s"}
     >
       <OakBox>
         <OakHeading tag="h5" $font={"heading-5"}>
           {title}
         </OakHeading>
-        <OakFlex $gap={"all-spacing-1"} $alignItems={"center"}>
+        <OakFlex $gap={"spacing-4"} $alignItems={"center"}>
           <OakSpan>
             {coveredNumberOfLessons}/{totalNumberOfLessons} lessons scheduled
           </OakSpan>

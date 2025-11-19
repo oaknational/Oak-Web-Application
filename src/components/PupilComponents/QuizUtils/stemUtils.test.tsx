@@ -33,7 +33,7 @@ describe("stemUtils", () => {
   });
   describe("getStemImage", () => {
     it("should return an OakImage with src from the stem", () => {
-      const result = getStemImage({ stem, minWidth: "all-spacing-19" });
+      const result = getStemImage({ stem, minWidth: "spacing-240" });
       expect(result?.type).toEqual(OakCloudinaryImage);
       expect(result?.props.cloudinaryId).toEqual("image");
     });

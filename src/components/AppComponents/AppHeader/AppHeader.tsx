@@ -58,7 +58,7 @@ const AppHeader: FC<HeaderProps> = () => {
         <OakFlex
           $flexGrow={1}
           $alignItems={"center"}
-          $gap={["all-spacing-0", "space-between-s"]}
+          $gap={["spacing-0", "spacing-16"]}
         >
           <OakFlex
             $justifyContent={"center"}
@@ -71,7 +71,7 @@ const AppHeader: FC<HeaderProps> = () => {
           </OakFlex>
           <OakFlex
             $alignItems={"center"}
-            $gap={["all-spacing-0", "all-spacing-6"]}
+            $gap={["spacing-0", "spacing-24"]}
             $font="heading-7"
             $width="100%"
             $justifyContent={["space-between", "end"]}
@@ -106,11 +106,11 @@ const AppHeader: FC<HeaderProps> = () => {
                 <ActiveLinkUnderline
                   name="horizontal-rule"
                   $width="100%"
-                  $height={"all-spacing-2"}
+                  $height={"spacing-8"}
                 />
               )}
             </OwaLink>
-            <OakFlex $alignItems="center" $gap="all-spacing-1">
+            <OakFlex $alignItems="center" $gap="spacing-4">
               <OwaLink
                 page="pupil-year-index"
                 $focusStyles={["underline"]}
@@ -126,7 +126,7 @@ const AppHeader: FC<HeaderProps> = () => {
                   <ActiveLinkUnderline
                     name="horizontal-rule"
                     $width="100%"
-                    $height={"all-spacing-2"}
+                    $height={"spacing-8"}
                   />
                 )}
               </OwaLink>
@@ -144,7 +144,6 @@ const AppHeader: FC<HeaderProps> = () => {
         </OakFlex>
         <AppHeaderUnderline />
       </StyledHeader>
-
       <AppHeaderMenu menuButtonRef={menuButtonRef}>
         <AppHeaderBurgerMenuSections burgerMenuSections={burgerMenuSections} />
       </AppHeaderMenu>

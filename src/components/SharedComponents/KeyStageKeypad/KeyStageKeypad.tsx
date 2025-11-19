@@ -62,14 +62,14 @@ const KeyStageKeypad: FC<KeyStageKeypadProps> = ({
   return (
     <OakFlex
       as="nav"
-      $gap="space-between-s"
+      $gap="spacing-16"
       $flexDirection="column"
       aria-label="key stages and year groups"
     >
       <OakHeading tag={titleTag} $font={"heading-7"}>
         {title}
       </OakHeading>
-      <OakFlex $gap="space-between-s" $flexWrap={"wrap"}>
+      <OakFlex $gap="spacing-16" $flexWrap={"wrap"}>
         {keyStages.map((ks) => (
           <KeypadLink
             {...ks}

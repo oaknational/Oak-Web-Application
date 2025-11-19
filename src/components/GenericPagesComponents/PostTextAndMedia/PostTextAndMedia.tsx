@@ -34,13 +34,13 @@ const PostTextAndMedia = (
     <OakFlex
       $flexDirection={flexDirection}
       $alignItems={"center"}
-      $mt="space-between-xl"
+      $mt="spacing-56"
     >
       <div>
         <OakHeading $font={["heading-5", "heading-4"]} tag="h2">
           {params.title}
         </OakHeading>
-        <OakBox $mt="space-between-m2">
+        <OakBox $mt="spacing-32">
           <PortableTextWithDefaults value={params.body} />
         </OakBox>
         {params.cta && (
@@ -54,12 +54,12 @@ const PostTextAndMedia = (
         )}
       </div>
       {params.mediaType === "image" && params.image && (
-        <OakBox $mr="space-between-m">
+        <OakBox $mr="spacing-24">
           <CMSImage image={params.image} />
         </OakBox>
       )}
       {params.mediaType === "video" && params.video && (
-        <OakBox $mr="space-between-m">
+        <OakBox $mr="spacing-24">
           <VideoPlayer
             title={params.video.title}
             playbackId={params.video.video.asset.playbackId}

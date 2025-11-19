@@ -59,7 +59,7 @@ export const WithSteps: Story = {
     titleSlot: "Year 1 history",
     illustrationSlug: "magic-carpet",
     additionalSlot: (
-      <OakBox $maxWidth={"all-spacing-20"}>
+      <OakBox $maxWidth={"spacing-360"}>
         <CurricShowSteps numberOfSteps={4} currentStepIndex={1} />
       </OakBox>
     ),
