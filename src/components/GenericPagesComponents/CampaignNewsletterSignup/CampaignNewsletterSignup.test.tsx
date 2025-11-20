@@ -176,6 +176,7 @@ describe("CampaignNewsletterSignup", () => {
         schoolName: undefined,
         email: "test@example.com",
         userRole: "",
+        eduRole: "",
         name: "Test",
       });
     });

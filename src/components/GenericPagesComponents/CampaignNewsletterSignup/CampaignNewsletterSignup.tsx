@@ -32,6 +32,7 @@ import { useFetch } from "@/hooks/useFetch";
 import { runSchema } from "@/components/CurriculumComponents/CurriculumDownloadView/helper";
 import OakError from "@/errors/OakError";
 import errorReporter from "@/common-lib/error-reporter";
+import { EDU_ROLES } from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
 
 const reportError = errorReporter("CampaignNewsletterSignup");
 
@@ -44,7 +45,7 @@ type NewsletterSignUpData = Partial<{
   name: string;
   schoolOrg?: string;
   role: string;
-  howCanWeHelp: string;
+  eduRole: string;
 }>;
 
 type NewsletterSignUpFormErrors = Partial<{
@@ -54,7 +55,7 @@ type NewsletterSignUpFormErrors = Partial<{
   email: string;
   name: string;
   role: string;
-  howCanWeHelp: string;
+  eduRole: string;
 }>;
 
 export type CampaignNewsletterSignupProps = NewsletterSignUp & {
@@ -135,8 +136,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
     schools: [],
     name: undefined,
     schoolOrg: undefined,
-    role: undefined,
-    howCanWeHelp: undefined,
+    eduRole: undefined,
   }));
 
   const onChange = (partial: Partial<NewsletterSignUpData>) => {
@@ -176,6 +176,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
           ...schoolData,
           email: data.email,
           userRole: "",
+          eduRole: data.eduRole ?? "",
           name: data.name,
         });
         setSuccessMessage("Thanks, that's been received");
@@ -256,42 +257,54 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
               />
 
               {enableRole && (
-                <OakBox $position={"relative"}>
-                  <OakJauntyAngleLabel
-                    label={`Role`}
-                    for="newsletter-role"
-                    $color={"text-primary"}
-                    htmlFor={"test"}
-                    as="label"
-                    $font={"heading-7"}
-                    $background={"mint"}
-                    $zIndex="in-front"
-                    $position="absolute"
-                    $top={"-20px"}
-                    $left={"5px"}
-                    $borderRadius="border-radius-square"
-                    required={true}
-                    error={errors.role}
-                  />
-                  <OakSelect
-                    name="newsletter-role"
-                    data-testid="newsletter-role"
-                    id="newsletter-role"
-                    $display={"block"}
-                    value={data.role}
-                  >
-                    <OakOption asDefault={true}>Type your role</OakOption>
-                    {[
-                      "Classroom teacher",
-                      "Middle leader",
-                      "Senior leader",
-                      "Sector stakeholder",
-                      "Education (other)",
-                    ].map((item) => {
-                      return <OakOption key={item}>{item}</OakOption>;
-                    })}
-                  </OakSelect>
-                </OakBox>
+                <>
+                  {errors.eduRole && (
+                    <OakBox
+                      id={errors.eduRole}
+                      role="alert"
+                      $pb={["spacing-24"]}
+                    >
+                      <OakFieldError>{errors.eduRole}</OakFieldError>
+                    </OakBox>
+                  )}
+                  <OakBox $position={"relative"}>
+                    <OakJauntyAngleLabel
+                      label={`Role`}
+                      for="newsletter-eduRole"
+                      $color={"text-primary"}
+                      htmlFor={"test"}
+                      as="label"
+                      $font={"heading-7"}
+                      $background={"mint"}
+                      $zIndex="in-front"
+                      $position="absolute"
+                      $top={"-20px"}
+                      $left={"5px"}
+                      $borderRadius="border-radius-square"
+                      required={true}
+                      error={errors.eduRole}
+                    />
+                    <OakSelect
+                      name="newsletter-eduRole"
+                      data-testid="newsletter-eduRole"
+                      id="newsletter-eduRole"
+                      $display={"block"}
+                      value={data.eduRole}
+                      onChange={(e) => {
+                        onChange({ eduRole: e.target.value });
+                      }}
+                    >
+                      <OakOption asDefault={true}>Type your role</OakOption>
+                      {EDU_ROLES.map((item) => {
+                        return (
+                          <OakOption key={item} value={item}>
+                            {item}
+                          </OakOption>
+                        );
+                      })}
+                    </OakSelect>
+                  </OakBox>
+                </>
               )}
 
               {freeSchoolInput ? (
