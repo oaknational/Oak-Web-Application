@@ -57,7 +57,7 @@ export function WhoAreWeExplore({
         $transform={[
           "scale(1)",
           "scale(1.1) translateX(-0.65%) translateY(4%)",
-          "scale(1.4)",
+          "scale(1.4) translateY(4%)",
         ]}
         style={{ pointerEvents: "none" }}
       />

@@ -7,7 +7,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
       class="sc-fqkvVR kDpsQP"
     >
       <div
-        class="sc-fqkvVR jujTXI"
+        class="sc-fqkvVR howriz"
         style="pointer-events: none;"
       >
         <img
@@ -45,7 +45,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                   style="outline: none;"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-251dd868-0 gKJOWA fQLyIH cKVLPF"
+                    class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
@@ -102,7 +102,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                   style="outline: none;"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-251dd868-0 gKJOWA fQLyIH cKVLPF"
+                    class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
@@ -159,7 +159,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                   style="outline: none;"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-251dd868-0 gKJOWA fQLyIH cKVLPF"
+                    class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
@@ -216,7 +216,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                   style="outline: none;"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB sc-251dd868-0 gKJOWA fQLyIH cKVLPF"
+                    class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
