@@ -34,6 +34,12 @@ async function getAttempt(
   const response = await fetch(
     "/api/pupil/lesson-attempt?attempt_id=" + attempt_id,
   );
+
+  if (!response.ok) {
+    console.warn(
+      `Failed to fetch lesson attempt: ${response.status} ${response.statusText}`,
+    );
+  }
   return response.json();
 }
 
