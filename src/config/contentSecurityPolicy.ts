@@ -16,13 +16,14 @@ type CspConfig = {
   workerSrc: string[];
   upgradeInsecureRequests: boolean;
 };
+type CspConfigKey = keyof CspConfig;
 
 const isDevelopment: boolean = getReleaseStage(
   process.env.OVERRIDE_RELEASE_STAGE ||
     process.env.VERCEL_ENV ||
     // Netlify
     process.env.CONTEXT,
-).includes("dev");
+)?.includes("dev");
 
 // Rules
 const mux: Partial<CspConfig> = {
@@ -66,10 +67,10 @@ const cloudinary: Partial<CspConfig> = {
   ],
 };
 
-const hubspot: Partial<CspConfig> = {
-  connectSrc: ["*.hubspot.com"],
-  imgSrc: ["https://*.hubspot.com", "https://*.hsforms.com"],
-};
+// const hubspot: Partial<CspConfig> = {
+//   connectSrc: ["*.hubspot.com"],
+//   imgSrc: ["https://*.hubspot.com", "https://*.hsforms.com"],
+// };
 
 const cloudflare: Partial<CspConfig> = {
   frameSrc: ["https://challenges.cloudflare.com"],
@@ -103,6 +104,10 @@ const google: Partial<CspConfig> = {
   connectSrc: ["*.google.com"],
   frameSrc: ["*.google.com"],
   frameAncestors: ["*.google.com"],
+};
+
+const bugsnag: Partial<CspConfig> = {
+  connectSrc: ["*.bugsnag.smartbear.com", "*.bugsnag.com"],
 };
 
 const localhost: Partial<CspConfig> = {
@@ -139,23 +144,25 @@ const cspBaseConfig: CspConfig = {
   upgradeInsecureRequests: !isDevelopment,
 };
 
-// Construct CSP header
+// Construct CSP headers
 const mergeConfigs = (
   fullConfig: CspConfig,
   partialConfig: Partial<CspConfig>,
 ): CspConfig => {
-  const cspConfigKeys: (keyof CspConfig)[] = Object.keys(
+  const cspConfigKeys: CspConfigKey[] = Object.keys(
     fullConfig,
-  ) as (keyof CspConfig)[];
+  ) as CspConfigKey[];
 
-  const entries: [keyof CspConfig, CspConfig[keyof CspConfig]][] =
-    cspConfigKeys.map((key: keyof CspConfig) => {
-      if (key === "upgradeInsecureRequests") return [key, fullConfig[key]];
+  const entries: [CspConfigKey, CspConfig[CspConfigKey]][] = cspConfigKeys.map(
+    (key: CspConfigKey) => {
+      if (key === "upgradeInsecureRequests")
+        return [key, cspBaseConfig.upgradeInsecureRequests];
 
       const fullConfigValue = fullConfig[key] ?? [];
       const partialConfigValue = partialConfig[key] ?? [];
       return [key, fullConfigValue.concat(partialConfigValue)];
-    });
+    },
+  );
 
   return Object.fromEntries(entries) as CspConfig;
 };
@@ -164,7 +171,7 @@ const cspConfig: CspConfig = [
   isDevelopment ? localhost : {},
   vercel,
   cloudflare,
-  hubspot,
+  // hubspot,
   cloudinary,
   posthog,
   avo,
@@ -172,7 +179,12 @@ const cspConfig: CspConfig = [
   mux,
   gleap,
   google,
+  bugsnag,
 ].reduce(mergeConfigs, cspBaseConfig);
+
+// Reporting
+const reportCspApiUrl = `${process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL}/api/csp-report`;
+export const reportingEndpointsHeader = `oak-csp="${reportCspApiUrl}"`;
 
 export const cspHeader = `
     default-src ${cspConfig.defaultSrc.join(" ")};
@@ -188,5 +200,7 @@ export const cspHeader = `
     media-src ${cspConfig.mediaSrc.join(" ")};
     frame-src ${cspConfig.frameSrc.join(" ")};
     worker-src ${cspConfig.workerSrc.join(" ")};
+    report-uri: ${reportCspApiUrl};
+    report-to oak-csp;
     ${cspConfig.upgradeInsecureRequests ? "upgrade-insecure-requests;" : ""}
-  `;
+`;
