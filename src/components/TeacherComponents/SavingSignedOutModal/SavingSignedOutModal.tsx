@@ -53,7 +53,6 @@ const SavingSignedOutModal = ({
   <OakModalCenter
     isOpen={isOpen}
     onClose={onClose}
-    children={<SavingSignedOutModalContent />}
     modalFlexProps={{
       $pa: ["spacing-32", "spacing-56"],
       $mh: "auto",
@@ -74,7 +73,9 @@ const SavingSignedOutModal = ({
       }
       return true;
     }}
-  />
+  >
+    <SavingSignedOutModalContent />
+  </OakModalCenter>
 );
 
 export default SavingSignedOutModal;
