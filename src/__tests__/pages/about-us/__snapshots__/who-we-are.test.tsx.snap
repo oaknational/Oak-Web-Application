@@ -2137,7 +2137,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
               class="sc-fqkvVR kDpsQP"
             >
               <div
-                class="sc-fqkvVR jujTXI"
+                class="sc-fqkvVR howriz"
                 style="pointer-events: none;"
               >
                 <img
@@ -2175,7 +2175,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           style="outline: none;"
                         >
                           <div
-                            class="sc-fqkvVR sc-kAyceB sc-251dd868-0 gKJOWA fQLyIH cKVLPF"
+                            class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
                             data-testid="who-we-are-explore-item"
                           >
                             <div
@@ -2232,7 +2232,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           style="outline: none;"
                         >
                           <div
-                            class="sc-fqkvVR sc-kAyceB sc-251dd868-0 gKJOWA fQLyIH cKVLPF"
+                            class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
                             data-testid="who-we-are-explore-item"
                           >
                             <div
@@ -2289,7 +2289,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           style="outline: none;"
                         >
                           <div
-                            class="sc-fqkvVR sc-kAyceB sc-251dd868-0 gKJOWA fQLyIH cKVLPF"
+                            class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
                             data-testid="who-we-are-explore-item"
                           >
                             <div
@@ -2346,7 +2346,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           style="outline: none;"
                         >
                           <div
-                            class="sc-fqkvVR sc-kAyceB sc-251dd868-0 gKJOWA fQLyIH cKVLPF"
+                            class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
                             data-testid="who-we-are-explore-item"
                           >
                             <div
@@ -2403,7 +2403,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 class="sc-fqkvVR sc-kAyceB sc-jEACwC eKkWSU bUZQTk"
               >
                 <div
-                  class="sc-fqkvVR sc-29ba0b11-0 fgBWrW kaSgOi"
+                  class="sc-fqkvVR sc-f019c2e2-0 fgBWrW bXXxRE"
                 >
                   <div
                     class="sc-ad0ad6f5-0 sc-213e351e-0 sc-8724906-0 hidovD cEqFwB"
