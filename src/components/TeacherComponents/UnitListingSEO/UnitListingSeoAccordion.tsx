@@ -35,6 +35,7 @@ export const UnitListingSeoAccordion = ({
   return (
     <OakBasicAccordion
       id="units-seo-accordion"
+      $gap={"spacing-0"}
       header={
         <OakSpan $textAlign="left">
           Take a look at the carefully sequenced units which build knowledge

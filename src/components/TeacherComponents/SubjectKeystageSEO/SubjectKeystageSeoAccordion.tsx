@@ -27,6 +27,7 @@ export const SubjectKeystageSeoAccordion = ({
   return (
     <OakBasicAccordion
       id="seo-accordion"
+      $gap={"spacing-0"}
       header={
         <OakSpan $textAlign={"left"}>
           Our{" "}
