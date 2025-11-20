@@ -24,6 +24,8 @@ export type Scalars = {
   jsonb: { input: any; output: any; }
   redirect_entity_source_enum: { input: any; output: any; }
   redirect_type_enum: { input: any; output: any; }
+  task_names: { input: any; output: any; }
+  task_status: { input: any; output: any; }
   timestamp: { input: any; output: any; }
   timestamptz: { input: any; output: any; }
   uuid: { input: any; output: any; }
@@ -5800,6 +5802,263 @@ export type Internal_Review_Lessons_Variance_Order_By = {
   lesson_id?: InputMaybe<Order_By>;
 };
 
+/** columns and relationships of "internal.task_queue" */
+export type Internal_Task_Queue = {
+  __typename?: 'internal_task_queue';
+  created_at?: Maybe<Scalars['timestamp']['output']>;
+  dependencies?: Maybe<Array<Scalars['uuid']['output']>>;
+  error?: Maybe<Scalars['String']['output']>;
+  ingest_id: Scalars['uuid']['output'];
+  payload?: Maybe<Scalars['jsonb']['output']>;
+  status: Scalars['task_status']['output'];
+  task_id: Scalars['uuid']['output'];
+  task_name: Scalars['task_names']['output'];
+  updated_at?: Maybe<Scalars['timestamp']['output']>;
+};
+
+
+/** columns and relationships of "internal.task_queue" */
+export type Internal_Task_QueuePayloadArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "internal.task_queue" */
+export type Internal_Task_Queue_Aggregate = {
+  __typename?: 'internal_task_queue_aggregate';
+  aggregate?: Maybe<Internal_Task_Queue_Aggregate_Fields>;
+  nodes: Array<Internal_Task_Queue>;
+};
+
+/** aggregate fields of "internal.task_queue" */
+export type Internal_Task_Queue_Aggregate_Fields = {
+  __typename?: 'internal_task_queue_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Internal_Task_Queue_Max_Fields>;
+  min?: Maybe<Internal_Task_Queue_Min_Fields>;
+};
+
+
+/** aggregate fields of "internal.task_queue" */
+export type Internal_Task_Queue_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Internal_Task_Queue_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Internal_Task_Queue_Append_Input = {
+  payload?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "internal.task_queue". All fields are combined with a logical 'AND'. */
+export type Internal_Task_Queue_Bool_Exp = {
+  _and?: InputMaybe<Array<Internal_Task_Queue_Bool_Exp>>;
+  _not?: InputMaybe<Internal_Task_Queue_Bool_Exp>;
+  _or?: InputMaybe<Array<Internal_Task_Queue_Bool_Exp>>;
+  created_at?: InputMaybe<Timestamp_Comparison_Exp>;
+  dependencies?: InputMaybe<Uuid_Array_Comparison_Exp>;
+  error?: InputMaybe<String_Comparison_Exp>;
+  ingest_id?: InputMaybe<Uuid_Comparison_Exp>;
+  payload?: InputMaybe<Jsonb_Comparison_Exp>;
+  status?: InputMaybe<Task_Status_Comparison_Exp>;
+  task_id?: InputMaybe<Uuid_Comparison_Exp>;
+  task_name?: InputMaybe<Task_Names_Comparison_Exp>;
+  updated_at?: InputMaybe<Timestamp_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "internal.task_queue" */
+export enum Internal_Task_Queue_Constraint {
+  /** unique or primary key constraint on columns "task_id" */
+  TaskQueuePkey = 'task_queue_pkey'
+}
+
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Internal_Task_Queue_Delete_At_Path_Input = {
+  payload?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Internal_Task_Queue_Delete_Elem_Input = {
+  payload?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Internal_Task_Queue_Delete_Key_Input = {
+  payload?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** input type for inserting data into table "internal.task_queue" */
+export type Internal_Task_Queue_Insert_Input = {
+  created_at?: InputMaybe<Scalars['timestamp']['input']>;
+  dependencies?: InputMaybe<Array<Scalars['uuid']['input']>>;
+  error?: InputMaybe<Scalars['String']['input']>;
+  ingest_id?: InputMaybe<Scalars['uuid']['input']>;
+  payload?: InputMaybe<Scalars['jsonb']['input']>;
+  status?: InputMaybe<Scalars['task_status']['input']>;
+  task_id?: InputMaybe<Scalars['uuid']['input']>;
+  task_name?: InputMaybe<Scalars['task_names']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamp']['input']>;
+};
+
+/** aggregate max on columns */
+export type Internal_Task_Queue_Max_Fields = {
+  __typename?: 'internal_task_queue_max_fields';
+  created_at?: Maybe<Scalars['timestamp']['output']>;
+  dependencies?: Maybe<Array<Scalars['uuid']['output']>>;
+  error?: Maybe<Scalars['String']['output']>;
+  ingest_id?: Maybe<Scalars['uuid']['output']>;
+  status?: Maybe<Scalars['task_status']['output']>;
+  task_id?: Maybe<Scalars['uuid']['output']>;
+  task_name?: Maybe<Scalars['task_names']['output']>;
+  updated_at?: Maybe<Scalars['timestamp']['output']>;
+};
+
+/** aggregate min on columns */
+export type Internal_Task_Queue_Min_Fields = {
+  __typename?: 'internal_task_queue_min_fields';
+  created_at?: Maybe<Scalars['timestamp']['output']>;
+  dependencies?: Maybe<Array<Scalars['uuid']['output']>>;
+  error?: Maybe<Scalars['String']['output']>;
+  ingest_id?: Maybe<Scalars['uuid']['output']>;
+  status?: Maybe<Scalars['task_status']['output']>;
+  task_id?: Maybe<Scalars['uuid']['output']>;
+  task_name?: Maybe<Scalars['task_names']['output']>;
+  updated_at?: Maybe<Scalars['timestamp']['output']>;
+};
+
+/** response of any mutation on the table "internal.task_queue" */
+export type Internal_Task_Queue_Mutation_Response = {
+  __typename?: 'internal_task_queue_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Internal_Task_Queue>;
+};
+
+/** on_conflict condition type for table "internal.task_queue" */
+export type Internal_Task_Queue_On_Conflict = {
+  constraint: Internal_Task_Queue_Constraint;
+  update_columns?: Array<Internal_Task_Queue_Update_Column>;
+  where?: InputMaybe<Internal_Task_Queue_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "internal.task_queue". */
+export type Internal_Task_Queue_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  dependencies?: InputMaybe<Order_By>;
+  error?: InputMaybe<Order_By>;
+  ingest_id?: InputMaybe<Order_By>;
+  payload?: InputMaybe<Order_By>;
+  status?: InputMaybe<Order_By>;
+  task_id?: InputMaybe<Order_By>;
+  task_name?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: internal.task_queue */
+export type Internal_Task_Queue_Pk_Columns_Input = {
+  task_id: Scalars['uuid']['input'];
+};
+
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Internal_Task_Queue_Prepend_Input = {
+  payload?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
+/** select columns of table "internal.task_queue" */
+export enum Internal_Task_Queue_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Dependencies = 'dependencies',
+  /** column name */
+  Error = 'error',
+  /** column name */
+  IngestId = 'ingest_id',
+  /** column name */
+  Payload = 'payload',
+  /** column name */
+  Status = 'status',
+  /** column name */
+  TaskId = 'task_id',
+  /** column name */
+  TaskName = 'task_name',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "internal.task_queue" */
+export type Internal_Task_Queue_Set_Input = {
+  created_at?: InputMaybe<Scalars['timestamp']['input']>;
+  dependencies?: InputMaybe<Array<Scalars['uuid']['input']>>;
+  error?: InputMaybe<Scalars['String']['input']>;
+  ingest_id?: InputMaybe<Scalars['uuid']['input']>;
+  payload?: InputMaybe<Scalars['jsonb']['input']>;
+  status?: InputMaybe<Scalars['task_status']['input']>;
+  task_id?: InputMaybe<Scalars['uuid']['input']>;
+  task_name?: InputMaybe<Scalars['task_names']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamp']['input']>;
+};
+
+/** Streaming cursor of the table "internal_task_queue" */
+export type Internal_Task_Queue_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Internal_Task_Queue_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Internal_Task_Queue_Stream_Cursor_Value_Input = {
+  created_at?: InputMaybe<Scalars['timestamp']['input']>;
+  dependencies?: InputMaybe<Array<Scalars['uuid']['input']>>;
+  error?: InputMaybe<Scalars['String']['input']>;
+  ingest_id?: InputMaybe<Scalars['uuid']['input']>;
+  payload?: InputMaybe<Scalars['jsonb']['input']>;
+  status?: InputMaybe<Scalars['task_status']['input']>;
+  task_id?: InputMaybe<Scalars['uuid']['input']>;
+  task_name?: InputMaybe<Scalars['task_names']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamp']['input']>;
+};
+
+/** update columns of table "internal.task_queue" */
+export enum Internal_Task_Queue_Update_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Dependencies = 'dependencies',
+  /** column name */
+  Error = 'error',
+  /** column name */
+  IngestId = 'ingest_id',
+  /** column name */
+  Payload = 'payload',
+  /** column name */
+  Status = 'status',
+  /** column name */
+  TaskId = 'task_id',
+  /** column name */
+  TaskName = 'task_name',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+export type Internal_Task_Queue_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<Internal_Task_Queue_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<Internal_Task_Queue_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<Internal_Task_Queue_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<Internal_Task_Queue_Delete_Key_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<Internal_Task_Queue_Prepend_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Internal_Task_Queue_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Internal_Task_Queue_Bool_Exp;
+};
+
 /** columns and relationships of "internal.tpc_contracts" */
 export type Internal_Tpc_Contracts = {
   __typename?: 'internal_tpc_contracts';
@@ -8615,6 +8874,10 @@ export type Mutation_Root = {
   delete_internal_review_lessons?: Maybe<Internal_Review_Lessons_Mutation_Response>;
   /** delete single row from the table: "internal.review_lessons" */
   delete_internal_review_lessons_by_pk?: Maybe<Internal_Review_Lessons>;
+  /** delete data from the table: "internal.task_queue" */
+  delete_internal_task_queue?: Maybe<Internal_Task_Queue_Mutation_Response>;
+  /** delete single row from the table: "internal.task_queue" */
+  delete_internal_task_queue_by_pk?: Maybe<Internal_Task_Queue>;
   /** delete data from the table: "internal.tpc_contracts" */
   delete_internal_tpc_contracts?: Maybe<Internal_Tpc_Contracts_Mutation_Response>;
   /** delete single row from the table: "internal.tpc_contracts" */
@@ -8795,6 +9058,10 @@ export type Mutation_Root = {
   insert_internal_review_lessons?: Maybe<Internal_Review_Lessons_Mutation_Response>;
   /** insert a single row into the table: "internal.review_lessons" */
   insert_internal_review_lessons_one?: Maybe<Internal_Review_Lessons>;
+  /** insert data into the table: "internal.task_queue" */
+  insert_internal_task_queue?: Maybe<Internal_Task_Queue_Mutation_Response>;
+  /** insert a single row into the table: "internal.task_queue" */
+  insert_internal_task_queue_one?: Maybe<Internal_Task_Queue>;
   /** insert data into the table: "internal.tpc_contracts" */
   insert_internal_tpc_contracts?: Maybe<Internal_Tpc_Contracts_Mutation_Response>;
   /** insert a single row into the table: "internal.tpc_contracts" */
@@ -9007,6 +9274,12 @@ export type Mutation_Root = {
   update_internal_review_lessons_by_pk?: Maybe<Internal_Review_Lessons>;
   /** update multiples rows of table: "internal.review_lessons" */
   update_internal_review_lessons_many?: Maybe<Array<Maybe<Internal_Review_Lessons_Mutation_Response>>>;
+  /** update data of the table: "internal.task_queue" */
+  update_internal_task_queue?: Maybe<Internal_Task_Queue_Mutation_Response>;
+  /** update single row of the table: "internal.task_queue" */
+  update_internal_task_queue_by_pk?: Maybe<Internal_Task_Queue>;
+  /** update multiples rows of table: "internal.task_queue" */
+  update_internal_task_queue_many?: Maybe<Array<Maybe<Internal_Task_Queue_Mutation_Response>>>;
   /** update data of the table: "internal.tpc_contracts" */
   update_internal_tpc_contracts?: Maybe<Internal_Tpc_Contracts_Mutation_Response>;
   /** update single row of the table: "internal.tpc_contracts" */
@@ -9365,6 +9638,18 @@ export type Mutation_RootDelete_Internal_Review_LessonsArgs = {
 export type Mutation_RootDelete_Internal_Review_Lessons_By_PkArgs = {
   _state: Scalars['String']['input'];
   lesson_id: Scalars['Int']['input'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Internal_Task_QueueArgs = {
+  where: Internal_Task_Queue_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Internal_Task_Queue_By_PkArgs = {
+  task_id: Scalars['uuid']['input'];
 };
 
 
@@ -9963,6 +10248,20 @@ export type Mutation_RootInsert_Internal_Review_LessonsArgs = {
 export type Mutation_RootInsert_Internal_Review_Lessons_OneArgs = {
   object: Internal_Review_Lessons_Insert_Input;
   on_conflict?: InputMaybe<Internal_Review_Lessons_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Internal_Task_QueueArgs = {
+  objects: Array<Internal_Task_Queue_Insert_Input>;
+  on_conflict?: InputMaybe<Internal_Task_Queue_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Internal_Task_Queue_OneArgs = {
+  object: Internal_Task_Queue_Insert_Input;
+  on_conflict?: InputMaybe<Internal_Task_Queue_On_Conflict>;
 };
 
 
@@ -10809,6 +11108,36 @@ export type Mutation_RootUpdate_Internal_Review_Lessons_By_PkArgs = {
 /** mutation root */
 export type Mutation_RootUpdate_Internal_Review_Lessons_ManyArgs = {
   updates: Array<Internal_Review_Lessons_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Internal_Task_QueueArgs = {
+  _append?: InputMaybe<Internal_Task_Queue_Append_Input>;
+  _delete_at_path?: InputMaybe<Internal_Task_Queue_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Internal_Task_Queue_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Internal_Task_Queue_Delete_Key_Input>;
+  _prepend?: InputMaybe<Internal_Task_Queue_Prepend_Input>;
+  _set?: InputMaybe<Internal_Task_Queue_Set_Input>;
+  where: Internal_Task_Queue_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Internal_Task_Queue_By_PkArgs = {
+  _append?: InputMaybe<Internal_Task_Queue_Append_Input>;
+  _delete_at_path?: InputMaybe<Internal_Task_Queue_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Internal_Task_Queue_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Internal_Task_Queue_Delete_Key_Input>;
+  _prepend?: InputMaybe<Internal_Task_Queue_Prepend_Input>;
+  _set?: InputMaybe<Internal_Task_Queue_Set_Input>;
+  pk_columns: Internal_Task_Queue_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Internal_Task_Queue_ManyArgs = {
+  updates: Array<Internal_Task_Queue_Updates>;
 };
 
 
@@ -51550,6 +51879,12 @@ export type Query_Root = {
   internal_review_lessons_aggregate: Internal_Review_Lessons_Aggregate;
   /** fetch data from the table: "internal.review_lessons" using primary key columns */
   internal_review_lessons_by_pk?: Maybe<Internal_Review_Lessons>;
+  /** fetch data from the table: "internal.task_queue" */
+  internal_task_queue: Array<Internal_Task_Queue>;
+  /** fetch aggregated fields from the table: "internal.task_queue" */
+  internal_task_queue_aggregate: Internal_Task_Queue_Aggregate;
+  /** fetch data from the table: "internal.task_queue" using primary key columns */
+  internal_task_queue_by_pk?: Maybe<Internal_Task_Queue>;
   /** fetch data from the table: "internal.tpc_contracts" */
   internal_tpc_contracts: Array<Internal_Tpc_Contracts>;
   /** fetch aggregated fields from the table: "internal.tpc_contracts" */
@@ -52512,6 +52847,29 @@ export type Query_RootInternal_Review_Lessons_AggregateArgs = {
 export type Query_RootInternal_Review_Lessons_By_PkArgs = {
   _state: Scalars['String']['input'];
   lesson_id: Scalars['Int']['input'];
+};
+
+
+export type Query_RootInternal_Task_QueueArgs = {
+  distinct_on?: InputMaybe<Array<Internal_Task_Queue_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Internal_Task_Queue_Order_By>>;
+  where?: InputMaybe<Internal_Task_Queue_Bool_Exp>;
+};
+
+
+export type Query_RootInternal_Task_Queue_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Internal_Task_Queue_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Internal_Task_Queue_Order_By>>;
+  where?: InputMaybe<Internal_Task_Queue_Bool_Exp>;
+};
+
+
+export type Query_RootInternal_Task_Queue_By_PkArgs = {
+  task_id: Scalars['uuid']['input'];
 };
 
 
@@ -57454,6 +57812,14 @@ export type Subscription_Root = {
   internal_review_lessons_by_pk?: Maybe<Internal_Review_Lessons>;
   /** fetch data from the table in a streaming manner: "internal.review_lessons" */
   internal_review_lessons_stream: Array<Internal_Review_Lessons>;
+  /** fetch data from the table: "internal.task_queue" */
+  internal_task_queue: Array<Internal_Task_Queue>;
+  /** fetch aggregated fields from the table: "internal.task_queue" */
+  internal_task_queue_aggregate: Internal_Task_Queue_Aggregate;
+  /** fetch data from the table: "internal.task_queue" using primary key columns */
+  internal_task_queue_by_pk?: Maybe<Internal_Task_Queue>;
+  /** fetch data from the table in a streaming manner: "internal.task_queue" */
+  internal_task_queue_stream: Array<Internal_Task_Queue>;
   /** fetch data from the table: "internal.tpc_contracts" */
   internal_tpc_contracts: Array<Internal_Tpc_Contracts>;
   /** fetch aggregated fields from the table: "internal.tpc_contracts" */
@@ -58806,6 +59172,36 @@ export type Subscription_RootInternal_Review_Lessons_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Internal_Review_Lessons_Stream_Cursor_Input>>;
   where?: InputMaybe<Internal_Review_Lessons_Bool_Exp>;
+};
+
+
+export type Subscription_RootInternal_Task_QueueArgs = {
+  distinct_on?: InputMaybe<Array<Internal_Task_Queue_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Internal_Task_Queue_Order_By>>;
+  where?: InputMaybe<Internal_Task_Queue_Bool_Exp>;
+};
+
+
+export type Subscription_RootInternal_Task_Queue_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Internal_Task_Queue_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Internal_Task_Queue_Order_By>>;
+  where?: InputMaybe<Internal_Task_Queue_Bool_Exp>;
+};
+
+
+export type Subscription_RootInternal_Task_Queue_By_PkArgs = {
+  task_id: Scalars['uuid']['input'];
+};
+
+
+export type Subscription_RootInternal_Task_Queue_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Internal_Task_Queue_Stream_Cursor_Input>>;
+  where?: InputMaybe<Internal_Task_Queue_Bool_Exp>;
 };
 
 
@@ -62820,6 +63216,32 @@ export type Subscription_RootVideos_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Videos_Stream_Cursor_Input>>;
   where?: InputMaybe<Videos_Bool_Exp>;
+};
+
+/** Boolean expression to compare columns of type "task_names". All fields are combined with logical 'AND'. */
+export type Task_Names_Comparison_Exp = {
+  _eq?: InputMaybe<Scalars['task_names']['input']>;
+  _gt?: InputMaybe<Scalars['task_names']['input']>;
+  _gte?: InputMaybe<Scalars['task_names']['input']>;
+  _in?: InputMaybe<Array<Scalars['task_names']['input']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  _lt?: InputMaybe<Scalars['task_names']['input']>;
+  _lte?: InputMaybe<Scalars['task_names']['input']>;
+  _neq?: InputMaybe<Scalars['task_names']['input']>;
+  _nin?: InputMaybe<Array<Scalars['task_names']['input']>>;
+};
+
+/** Boolean expression to compare columns of type "task_status". All fields are combined with logical 'AND'. */
+export type Task_Status_Comparison_Exp = {
+  _eq?: InputMaybe<Scalars['task_status']['input']>;
+  _gt?: InputMaybe<Scalars['task_status']['input']>;
+  _gte?: InputMaybe<Scalars['task_status']['input']>;
+  _in?: InputMaybe<Array<Scalars['task_status']['input']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  _lt?: InputMaybe<Scalars['task_status']['input']>;
+  _lte?: InputMaybe<Scalars['task_status']['input']>;
+  _neq?: InputMaybe<Scalars['task_status']['input']>;
+  _nin?: InputMaybe<Array<Scalars['task_status']['input']>>;
 };
 
 /** columns and relationships of "templates.media_clip_groups" */
@@ -69514,6 +69936,23 @@ export type Unitvariants_Variance_Order_By = {
 };
 
 /** Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'. */
+export type Uuid_Array_Comparison_Exp = {
+  /** is the array contained in the given array value */
+  _contained_in?: InputMaybe<Array<Scalars['uuid']['input']>>;
+  /** does the array contain the given value */
+  _contains?: InputMaybe<Array<Scalars['uuid']['input']>>;
+  _eq?: InputMaybe<Array<Scalars['uuid']['input']>>;
+  _gt?: InputMaybe<Array<Scalars['uuid']['input']>>;
+  _gte?: InputMaybe<Array<Scalars['uuid']['input']>>;
+  _in?: InputMaybe<Array<Array<Scalars['uuid']['input']>>>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  _lt?: InputMaybe<Array<Scalars['uuid']['input']>>;
+  _lte?: InputMaybe<Array<Scalars['uuid']['input']>>;
+  _neq?: InputMaybe<Array<Scalars['uuid']['input']>>;
+  _nin?: InputMaybe<Array<Array<Scalars['uuid']['input']>>>;
+};
+
+/** Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'. */
 export type Uuid_Comparison_Exp = {
   _eq?: InputMaybe<Scalars['uuid']['input']>;
   _gt?: InputMaybe<Scalars['uuid']['input']>;
@@ -70934,6 +71373,11 @@ export type CurriculumSequenceQueryVariables = Exact<{
 
 export type CurriculumSequenceQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_curriculum_sequence_b_13_0_20', connection_prior_unit_description?: string | null, connection_future_unit_description?: string | null, connection_future_unit_title?: string | null, connection_prior_unit_title?: string | null, examboard?: string | null, examboard_slug?: string | null, keystage_slug?: string | null, lessons?: any | null, order?: number | null, planned_number_of_lessons?: number | null, phase?: string | null, phase_slug?: string | null, slug?: string | null, subject?: string | null, subject_slug?: string | null, subject_parent?: string | null, subject_parent_slug?: string | null, subjectcategories?: any | null, tier?: string | null, tier_slug?: string | null, title?: string | null, why_this_why_now?: string | null, description?: string | null, cycle?: string | null, features?: any | null, parent_programme_features?: any | null, national_curriculum_content?: any | null, prior_knowledge_requirements?: any | null, actions?: any | null, unit_options?: any | null, threads?: any | null, year?: string | null, pathway?: string | null, pathway_slug?: string | null, state?: string | null }> };
 
+export type EyfsListingQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type EyfsListingQuery = { __typename?: 'query_root', lessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0', lesson_data?: any | null, lesson_slug?: string | null, programme_fields?: any | null, programme_slug_by_year?: any | null, null_unitvariant_id?: number | null, unit_slug?: string | null, unitvariant_id?: number | null, unit_data?: any | null, programme_slug?: string | null, is_legacy?: boolean | null, actions?: any | null, features?: any | null, order_in_unit?: number | null, static_lesson_list?: any | null }> };
+
 export type KeyStagesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -71322,6 +71766,28 @@ export const CurriculumSequenceDocument = gql`
     pathway
     pathway_slug
     state
+  }
+}
+    `;
+export const EyfsListingDocument = gql`
+    query eyfsListing {
+  lessons: published_mv_synthetic_unitvariant_lessons_by_keystage_18_0_0(
+    where: {programme_fields: {_contains: {keystage_slug: "early-years-foundation-stage"}}}
+  ) {
+    lesson_data
+    lesson_slug
+    programme_fields
+    programme_slug_by_year
+    null_unitvariant_id
+    unit_slug
+    unitvariant_id
+    unit_data
+    programme_slug
+    is_legacy
+    actions
+    features
+    order_in_unit
+    static_lesson_list
   }
 }
     `;
@@ -72349,6 +72815,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     curriculumSequence(variables?: CurriculumSequenceQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<CurriculumSequenceQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<CurriculumSequenceQuery>({ document: CurriculumSequenceDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'curriculumSequence', 'query', variables);
+    },
+    eyfsListing(variables?: EyfsListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<EyfsListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<EyfsListingQuery>({ document: EyfsListingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'eyfsListing', 'query', variables);
     },
     keyStages(variables?: KeyStagesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<KeyStagesQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<KeyStagesQuery>({ document: KeyStagesDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'keyStages', 'query', variables);

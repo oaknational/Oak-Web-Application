@@ -79,7 +79,7 @@ export const getTransformedLessons = (
     });
 };
 
-type PackagedUnitData = {
+export type PackagedUnitData = {
   programmeFields: ProgrammeFields;
   unitSlug: string;
   unitvariantId: number;
