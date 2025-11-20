@@ -1,8 +1,7 @@
 import DLP, { protos } from "@google-cloud/dlp";
 import { GoogleAuth } from "google-auth-library";
 
-import { getGcpOidc } from "../oidc/getGcpOidc";
-
+import { getGcpOidc } from "@/node-lib/oidc/getGcpOidc";
 import { PiiMatch, TeacherNote } from "@/node-lib/pupil-api/types";
 
 const projectId = process.env.GCP_PROJECT_ID;

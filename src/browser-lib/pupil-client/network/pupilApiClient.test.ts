@@ -2,6 +2,8 @@ import { PupilApiClient } from "./PupilApiClient";
 
 import { CreateLessonAttemptPayload } from "@/node-lib/pupil-api/types";
 
+console.warn = jest.fn();
+
 describe("PupilApiClient", () => {
   const client = PupilApiClient;
 

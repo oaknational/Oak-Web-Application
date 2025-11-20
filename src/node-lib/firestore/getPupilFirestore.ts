@@ -1,7 +1,7 @@
 import { ExternalAccountClient } from "google-auth-library";
 import { Firestore } from "@google-cloud/firestore";
 
-import { getGcpOidc } from "../oidc/getGcpOidc";
+import { getGcpOidc } from "@/node-lib/oidc/getGcpOidc";
 
 const getEmulatorFirestore = () => {
   // JDK is required for the emulator to run https://www.oracle.com/java/technologies/downloads

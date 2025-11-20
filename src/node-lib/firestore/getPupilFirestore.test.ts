@@ -52,7 +52,7 @@ describe("getPupilFirestore", () => {
     process.env.PUPIL_FIRESTORE_ID = "test-firestore-db-id";
 
     getPupilFirestore();
-
+    expect(ExternalAccountClient.fromJSON).toHaveBeenCalledTimes(1);
     expect(Firestore).toHaveBeenCalledTimes(1);
 
     delete process.env.GCP_PROJECT_ID;

@@ -75,12 +75,13 @@ async function getTeacherNote({
   );
 
   if (!response.ok) {
-    throw errorReporter("Failed to fetch teacher note")(
-      new Error(response.statusText),
-      {
+    if (response.status === 404) {
+      throw errorReporter("Failed to fetch teacher note");
+    } else {
+      throw errorReporter(response.statusText)(new Error(response.statusText), {
         severity: "warning",
-      },
-    );
+      });
+    }
   }
   return response.json();
 }

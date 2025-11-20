@@ -20,7 +20,6 @@ export const getGcpOidc = (scopes: string[]) => {
     subject_token_supplier: {
       getSubjectToken: getVercelOidcToken,
     },
-    // Use cloud-platform so the same token works for Firestore *and* DLP
     scopes,
   } as const;
   return externalAccountJson;
