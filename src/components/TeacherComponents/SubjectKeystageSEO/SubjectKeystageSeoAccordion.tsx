@@ -3,7 +3,6 @@ import {
   OakFlex,
   OakLI,
   OakLink,
-  OakSecondaryLink,
   OakSpan,
   OakUL,
 } from "@oaknational/oak-components";
@@ -30,14 +29,8 @@ export const SubjectKeystageSeoAccordion = ({
       $gap={"spacing-0"}
       header={
         <OakSpan $textAlign={"left"}>
-          Our{" "}
-          <OakSecondaryLink
-            href={resolveOakHref({ page: "curriculum-landing-page" })}
-          >
-            {keystageSlug.toUpperCase()} curriculum plans
-          </OakSecondaryLink>{" "}
-          for pupils aged {pupilAgesMap[keystageSlug]} make it easy for teachers
-          to view the full sequence for every
+          Our curriculum plans for pupils aged {pupilAgesMap[keystageSlug]} make
+          it easy for teachers to view the full sequence for every national
           {contentVisible ? "" : "..."}
         </OakSpan>
       }
@@ -73,10 +66,12 @@ const textContentMap = {
   ks1: (
     <>
       <OakSpan>
-        national curriculum subject along with resources for every lesson. The
-        curriculum was developed with primary and infant pupils in mind,
-        considering the cross-subject sequencing essential for lesson planning
-        and teaching.
+        curriculum subject along with resources for every lesson. The{" "}
+        <OakLink href={resolveOakHref({ page: "curriculum-landing-page" })}>
+          KS1 curriculum
+        </OakLink>{" "}
+        was developed with primary and infant pupils in mind, considering the
+        cross-subject sequencing essential for lesson planning and teaching.
       </OakSpan>
       <OakSpan>
         Find a subject, browse our units and lessons and download the free
@@ -93,10 +88,13 @@ const textContentMap = {
   ks2: (
     <>
       <OakSpan>
-        national curriculum subject along with resources for every lesson. The
-        curriculum was developed with primary, junior, and middle school pupils
-        in mind, considering the cross-subject sequencing essential for
-        effective lesson planning and teaching.
+        curriculum subject along with resources for every lesson. The{" "}
+        <OakLink href={resolveOakHref({ page: "curriculum-landing-page" })}>
+          KS2 curriculum
+        </OakLink>{" "}
+        was developed with primary, junior, and middle school pupils in mind,
+        considering the cross-subject sequencing essential for effective lesson
+        planning and teaching.
       </OakSpan>
       <OakSpan>
         For Year 6, our resources also support preparation for KS2 SATs. Find a
@@ -115,10 +113,13 @@ const textContentMap = {
   ks3: (
     <>
       <OakSpan>
-        national curriculum subject along with resources for every lesson. The
-        curriculum was developed with secondary and middle school pupils in
-        mind, considering the cross-subject sequencing essential for lesson
-        planning and teaching.
+        curriculum subject along with resources for every lesson. The{" "}
+        <OakLink href={resolveOakHref({ page: "curriculum-landing-page" })}>
+          KS3 curriculum
+        </OakLink>{" "}
+        was developed with secondary and middle school pupils in mind,
+        considering the cross-subject sequencing essential for lesson planning
+        and teaching.
       </OakSpan>
       <OakSpan>
         Find a subject, browse our units and lessons and download the free
@@ -135,10 +136,12 @@ const textContentMap = {
   ks4: (
     <>
       <OakSpan>
-        national curriculum subject along with resources for every lesson. The
-        curriculum was developed with secondary school pupils in mind,
-        considering the cross-subject sequencing essential for lesson planning
-        and teaching.
+        curriculum subject along with resources for every lesson. The{" "}
+        <OakLink href={resolveOakHref({ page: "curriculum-landing-page" })}>
+          KS4 curriculum
+        </OakLink>{" "}
+        was developed with secondary school pupils in mind, considering the
+        cross-subject sequencing essential for lesson planning and teaching.
       </OakSpan>
       <OakSpan>
         Find a subject, browse our units and lessons and download the free
