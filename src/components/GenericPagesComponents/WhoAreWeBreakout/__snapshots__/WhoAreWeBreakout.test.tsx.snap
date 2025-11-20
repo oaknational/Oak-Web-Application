@@ -4,7 +4,7 @@ exports[`WhoAreWeBreakout renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR sc-kAyceB sc-52a15439-0 ixZoE joHkzz haqBJr"
+      class="sc-fqkvVR sc-kAyceB sc-15b631f-0 ixZoE joHkzz fzCipP"
     >
       <div
         class="sc-fqkvVR sc-kAyceB kkWGlq bAFsaQ"
@@ -29,7 +29,7 @@ exports[`WhoAreWeBreakout renders correctly 1`] = `
         class="sc-fqkvVR sc-kAyceB cPTgZF gSPFUg"
       >
         <p
-          class="sc-dLMFU hijAXr"
+          class="sc-dLMFU Qmmuc"
         >
           TESTING_CONTENT
         </p>

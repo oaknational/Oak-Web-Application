@@ -7,11 +7,11 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
       class="sc-fqkvVR glVOpG"
     >
       <div
-        class="sc-fqkvVR jglYoS"
+        class="sc-fqkvVR dmKvLq"
         style="max-width: 1360px;"
       >
         <div
-          class="sc-fqkvVR sc-kAyceB itUwJl jyLrLm"
+          class="sc-fqkvVR sc-kAyceB UJoqH dAAIBQ"
         >
           <div
             class="sc-fqkvVR sc-jXbUNg fgBWrW gdCncd"
@@ -23,7 +23,7 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                 class="sc-fqkvVR sc-kAyceB fgBWrW gOiVFh"
               >
                 <div
-                  class="sc-fqkvVR cBmcky"
+                  class="sc-fqkvVR dWdIJs"
                 >
                   <span
                     class="sc-dAlyuH bOvjMx"
@@ -32,7 +32,7 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                   </span>
                 </div>
                 <h2
-                  class="sc-kpDqfm ebBbcG"
+                  class="sc-kpDqfm hxKDeC"
                 >
                   TEST_TITLE
                 </h2>
@@ -63,10 +63,10 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                     />
                   </div>
                   <div
-                    class="sc-fqkvVR sc-kAyceB egekXy gOiVFh"
+                    class="sc-fqkvVR sc-kAyceB jXzpTn gOiVFh"
                   >
                     <div
-                      class="sc-fqkvVR cvmDMx"
+                      class="sc-fqkvVR kxMTGH"
                     >
                       <span
                         class="sc-dAlyuH bOvjMx"
@@ -75,12 +75,12 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                       </span>
                     </div>
                     <h3
-                      class="sc-kpDqfm gZKwYW"
+                      class="sc-kpDqfm cSDnOe"
                     >
                       ITEM_TITLE_1
                     </h3>
                     <div
-                      class="sc-fqkvVR fgBWrW"
+                      class="sc-fqkvVR sc-kAyceB jPWxQZ iVYVEn"
                     >
                       <p
                         class="sc-dLMFU kdIcGd"
@@ -105,10 +105,10 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                     />
                   </div>
                   <div
-                    class="sc-fqkvVR sc-kAyceB egekXy gOiVFh"
+                    class="sc-fqkvVR sc-kAyceB jXzpTn gOiVFh"
                   >
                     <div
-                      class="sc-fqkvVR cvmDMx"
+                      class="sc-fqkvVR kxMTGH"
                     >
                       <span
                         class="sc-dAlyuH bOvjMx"
@@ -117,12 +117,12 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                       </span>
                     </div>
                     <h3
-                      class="sc-kpDqfm gZKwYW"
+                      class="sc-kpDqfm cSDnOe"
                     >
                       ITEM_TITLE_2
                     </h3>
                     <div
-                      class="sc-fqkvVR fgBWrW"
+                      class="sc-fqkvVR sc-kAyceB jPWxQZ iVYVEn"
                     >
                       <p
                         class="sc-dLMFU kdIcGd"
@@ -147,10 +147,10 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                     />
                   </div>
                   <div
-                    class="sc-fqkvVR sc-kAyceB egekXy gOiVFh"
+                    class="sc-fqkvVR sc-kAyceB jXzpTn gOiVFh"
                   >
                     <div
-                      class="sc-fqkvVR cvmDMx"
+                      class="sc-fqkvVR kxMTGH"
                     >
                       <span
                         class="sc-dAlyuH bOvjMx"
@@ -159,12 +159,12 @@ exports[`WhoAreWeTimeline renders correctly 1`] = `
                       </span>
                     </div>
                     <h3
-                      class="sc-kpDqfm gZKwYW"
+                      class="sc-kpDqfm cSDnOe"
                     >
                       ITEM_TITLE_3
                     </h3>
                     <div
-                      class="sc-fqkvVR fgBWrW"
+                      class="sc-fqkvVR sc-kAyceB jPWxQZ iVYVEn"
                     >
                       <p
                         class="sc-dLMFU kdIcGd"
