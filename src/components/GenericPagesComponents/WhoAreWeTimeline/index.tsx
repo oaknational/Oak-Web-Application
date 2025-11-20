@@ -15,7 +15,7 @@ function InnerMaxWidth({ children }: { children: ReactNode }) {
     <OakBox
       style={styleAttrs}
       $mh={"auto"}
-      $ph={["spacing-16", "spacing-40", "spacing-40"]}
+      $ph={["spacing-16", "spacing-16", "spacing-40"]}
     >
       {children}
     </OakBox>
@@ -41,18 +41,26 @@ export default function WhoAreWeTimeline({
       <InnerMaxWidth>
         <OakFlex
           $flexDirection={"column"}
-          $gap={"spacing-56"}
-          $pt={"spacing-72"}
+          $gap={["spacing-40", "spacing-56"]}
+          $pt={["spacing-56", "spacing-72"]}
         >
           <OakGrid $cg="spacing-16" $rg="spacing-16">
             <OakGridArea $colSpan={[12, 12, 9]} $colStart={[0, 0, 2]}>
               <OakFlex $gap={"spacing-8"} $flexDirection={"column"}>
-                <OakBox $font={"heading-5"}>
-                  <OakSpan $background={"mint"} $ph={"spacing-4"}>
+                <OakBox $font={["heading-6", "heading-5"]}>
+                  <OakSpan
+                    $background={"mint"}
+                    $ph={"spacing-4"}
+                    $color="text-primary"
+                  >
                     {subtitle}
                   </OakSpan>
                 </OakBox>
-                <OakHeading tag="h2" $font={"heading-3"}>
+                <OakHeading
+                  tag="h2"
+                  $font={["heading-5", "heading-3"]}
+                  $color="text-primary"
+                >
                   {title}
                 </OakHeading>
               </OakFlex>
@@ -97,21 +105,37 @@ export default function WhoAreWeTimeline({
                       <OakFlex
                         $flexDirection={"column"}
                         $gap={"spacing-8"}
-                        $mb={"spacing-72"}
+                        $mb={["spacing-56", "spacing-72"]}
                       >
-                        <OakBox $font={"body-2-bold"}>
-                          <OakSpan $ph={"spacing-4"} $background={"mint"}>
+                        <OakBox $font={"heading-7"}>
+                          <OakSpan
+                            $ph={"spacing-4"}
+                            $background={"mint"}
+                            $color="text-primary"
+                          >
                             {item.subtitle}
                           </OakSpan>
                         </OakBox>
-                        <OakHeading tag="h3" $font={"heading-light-5"}>
+                        <OakHeading
+                          tag="h3"
+                          $font={["heading-6", "heading-5"]}
+                          $color="text-primary"
+                        >
                           {item.title}
                         </OakHeading>
-                        <OakBox>
+                        <OakFlex
+                          $font={["body-2", "body-1"]}
+                          $flexDirection={"column"}
+                          $gap={["spacing-20", "spacing-24"]}
+                        >
                           {item.text.map((textItem) => {
-                            return <OakP key={textItem}>{textItem}</OakP>;
+                            return (
+                              <OakP key={textItem} $color="text-primary">
+                                {textItem}
+                              </OakP>
+                            );
                           })}
-                        </OakBox>
+                        </OakFlex>
                       </OakFlex>
                     </OakFlex>
                   );

@@ -9,8 +9,15 @@ import {
 } from "@oaknational/oak-components";
 import Link from "next/link";
 import { ReactNode } from "react";
+import styled from "styled-components";
 
 import FocusIndicator from "@/components/CurriculumComponents/OakComponentsKitchen/FocusIndicator";
+
+const HoverableCard = styled(OakFlex)`
+  &:hover {
+    box-shadow: 2px 2px 0 0 #ffe555;
+  }
+`;
 
 function InnerMaxWidth({ children }: { children: ReactNode }) {
   return (
@@ -18,6 +25,7 @@ function InnerMaxWidth({ children }: { children: ReactNode }) {
       $maxWidth={"spacing-1280"}
       $mh={"auto"}
       $ph={["spacing-16", "spacing-16", "spacing-40"]}
+      $position={"relative"}
     >
       {children}
     </OakBox>
@@ -37,7 +45,22 @@ export function WhoAreWeExplore({
   items,
 }: Readonly<WhoAreWeExploreProps>) {
   return (
-    <OakBox $background={"mint"}>
+    <OakBox $background={"mint"} $position={"relative"}>
+      <OakIcon
+        iconName="confetti"
+        $position={"absolute"}
+        $top={"spacing-0"}
+        $left={"spacing-0"}
+        $width={"100%"}
+        $height={"100%"}
+        $display={["none", "block"]}
+        $transform={[
+          "scale(1)",
+          "scale(1.1) translateX(-0.65%) translateY(4%)",
+          "scale(1.4) translateY(4%)",
+        ]}
+        style={{ pointerEvents: "none" }}
+      />
       <InnerMaxWidth data-testid="test">
         <OakFlex
           $flexDirection={"column"}
@@ -48,6 +71,7 @@ export function WhoAreWeExplore({
             tag="h2"
             $textAlign={"center"}
             $font={["heading-5", "heading-4", "heading-4"]}
+            $color="text-primary"
           >
             {title}
           </OakHeading>
@@ -57,7 +81,7 @@ export function WhoAreWeExplore({
                 <OakGridArea key={title} $colSpan={[12, 6, 6]}>
                   <FocusIndicator $borderRadius={"border-radius-m2"}>
                     <Link style={{ outline: "none" }} href={href}>
-                      <OakFlex
+                      <HoverableCard
                         data-testid="who-we-are-explore-item"
                         $flexDirection={"row"}
                         $pa={"spacing-16"}
@@ -73,13 +97,17 @@ export function WhoAreWeExplore({
                             $height={"spacing-56"}
                           />
                         </OakFlex>
-                        <OakFlex $flexGrow={1} $font={"body-1-bold"}>
+                        <OakFlex
+                          $flexGrow={1}
+                          $font={"body-1-bold"}
+                          $color="text-primary"
+                        >
                           {title}
                         </OakFlex>
                         <OakFlex>
                           <OakIcon iconName="arrow-right" />
                         </OakFlex>
-                      </OakFlex>
+                      </HoverableCard>
                     </Link>
                   </FocusIndicator>
                 </OakGridArea>

@@ -31,11 +31,14 @@ export function WhoAreWeBreakout({
       </OakFlex>
       <OakFlex
         $flexShrink={1}
-        $ph={["spacing-16", "spacing-80", "spacing-80"]}
+        $ph={["spacing-16", "spacing-16", "spacing-80"]}
         $pv={["spacing-56", "spacing-40", "spacing-40"]}
         $alignItems={"center"}
       >
-        <OakP $font={["heading-light-7", "heading-light-7", "heading-light-5"]}>
+        <OakP
+          $font={["heading-light-7", "heading-light-5"]}
+          $color="text-primary"
+        >
           {content}
         </OakP>
       </OakFlex>

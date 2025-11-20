@@ -6,7 +6,7 @@ const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("WhoAreWeHeader", () => {
   it("renders correctly", () => {
-    const { baseElement, getByRole } = render(
+    const { baseElement, getByRole, getByAltText } = render(
       <WhoAreWeHeader
         title="TESTING_TITLE"
         content="TESTING_CONTENT"
@@ -17,7 +17,7 @@ describe("WhoAreWeHeader", () => {
     expect(baseElement).toMatchSnapshot();
     expect(getByRole("heading")).toHaveTextContent("TESTING_TITLE");
     expect(getByRole("paragraph")).toHaveTextContent("TESTING_CONTENT");
-    const imageEl = getByRole("img");
+    const imageEl = getByAltText("Oak logo");
     expect(imageEl).toHaveAttribute("src", "http://example.com/image.svg");
     expect(imageEl).toHaveAttribute("alt", "Oak logo");
   });

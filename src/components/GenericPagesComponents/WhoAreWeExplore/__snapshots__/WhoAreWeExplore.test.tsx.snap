@@ -4,16 +4,30 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR dySFtr"
+      class="sc-fqkvVR kDpsQP"
     >
       <div
-        class="sc-fqkvVR iHVEBS"
+        class="sc-fqkvVR howriz"
+        style="pointer-events: none;"
+      >
+        <img
+          alt=""
+          class="sc-dcJsrY cDKKvZ"
+          data-nimg="fill"
+          decoding="async"
+          loading="lazy"
+          src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763546694/ui-graphics/confetti-background_xbvfrc.svg"
+          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+        />
+      </div>
+      <div
+        class="sc-fqkvVR IDCoS"
       >
         <div
           class="sc-fqkvVR sc-kAyceB ebGLGq gwxZIR"
         >
           <h2
-            class="sc-kpDqfm dWPsQk"
+            class="sc-kpDqfm hazha-D"
           >
             TEST_TITLE
           </h2>
@@ -31,7 +45,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                   style="outline: none;"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB gKJOWA fQLyIH"
+                    class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
@@ -52,7 +66,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                       </div>
                     </div>
                     <div
-                      class="sc-fqkvVR sc-kAyceB iJhYOW bAFsaQ"
+                      class="sc-fqkvVR sc-kAyceB dWmZcx bAFsaQ"
                     >
                       ITEM_ONE
                     </div>
@@ -88,7 +102,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                   style="outline: none;"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB gKJOWA fQLyIH"
+                    class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
@@ -109,7 +123,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                       </div>
                     </div>
                     <div
-                      class="sc-fqkvVR sc-kAyceB iJhYOW bAFsaQ"
+                      class="sc-fqkvVR sc-kAyceB dWmZcx bAFsaQ"
                     >
                       ITEM_TWO
                     </div>
@@ -145,7 +159,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                   style="outline: none;"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB gKJOWA fQLyIH"
+                    class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
@@ -166,7 +180,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                       </div>
                     </div>
                     <div
-                      class="sc-fqkvVR sc-kAyceB iJhYOW bAFsaQ"
+                      class="sc-fqkvVR sc-kAyceB dWmZcx bAFsaQ"
                     >
                       ITEM_THREE
                     </div>
@@ -202,7 +216,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                   style="outline: none;"
                 >
                   <div
-                    class="sc-fqkvVR sc-kAyceB gKJOWA fQLyIH"
+                    class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
                     data-testid="who-we-are-explore-item"
                   >
                     <div
@@ -223,7 +237,7 @@ exports[`WhoAreWeExplore renders correctly 1`] = `
                       </div>
                     </div>
                     <div
-                      class="sc-fqkvVR sc-kAyceB iJhYOW bAFsaQ"
+                      class="sc-fqkvVR sc-kAyceB dWmZcx bAFsaQ"
                     >
                       ITEM_FOUR
                     </div>
