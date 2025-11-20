@@ -68,9 +68,9 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
                   <OakIcon
                     iconName="chevron-right"
                     $colorFilter={"grey60"}
-                    $mr={"space-between-xs"}
-                    $width={"all-spacing-5"}
-                    $height={"all-spacing-5"}
+                    $mr={"spacing-12"}
+                    $width={"spacing-20"}
+                    $height={"spacing-20"}
                   />
                 )}
                 <BreadcrumbConstrainer>

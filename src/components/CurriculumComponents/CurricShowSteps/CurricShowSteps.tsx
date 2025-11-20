@@ -44,8 +44,8 @@ function DotWithWings({
       <StepLine $borderStyle={isFirst ? "none" : "solid"} />
       <OakFlex
         $background={$background}
-        $width={"all-spacing-7"}
-        $height={"all-spacing-7"}
+        $width={"spacing-32"}
+        $height={"spacing-32"}
         $borderRadius={"border-radius-circle"}
         $alignItems={"center"}
         $justifyContent={"center"}
@@ -57,8 +57,8 @@ function DotWithWings({
           <OakIcon
             iconName={iconName}
             $colorFilter="white"
-            $width={"all-spacing-6"}
-            $height={"all-spacing-6"}
+            $width={"spacing-24"}
+            $height={"spacing-24"}
           />
         )}
       </OakFlex>
@@ -79,7 +79,7 @@ export function CurricShowSteps({
     <div>
       <OakBox
         style={{ width: "100%", position: "relative", overflow: "hidden" }}
-        $pb={"inner-padding-xl2"}
+        $pb={"spacing-32"}
       >
         <div style={{ display: "flex", alignItems: "center" }}>
           {new Array(numberOfSteps).fill(true).map((_, index) => {
@@ -118,8 +118,8 @@ export function CurricShowSteps({
                   >
                     <OakFlex
                       $background={"black"}
-                      $width={"all-spacing-7"}
-                      $height={"all-spacing-7"}
+                      $width={"spacing-32"}
+                      $height={"spacing-32"}
                       $borderRadius={"border-radius-circle"}
                       color="white"
                       $alignItems={"center"}

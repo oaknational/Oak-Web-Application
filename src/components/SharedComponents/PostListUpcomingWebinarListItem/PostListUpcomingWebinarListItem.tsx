@@ -61,7 +61,7 @@ const PostListUpcomingWebinarListItem: FC<
         <OakHeading
           tag={titleTag}
           $font={["heading-6", "heading-5"]}
-          $mt={"space-between-ssx"}
+          $mt={"spacing-8"}
         >
           <OwaLink
             {...primaryTargetProps}
@@ -73,13 +73,13 @@ const PostListUpcomingWebinarListItem: FC<
             {title}
           </OwaLink>
         </OakHeading>
-        <OakP $mt="space-between-ssx">
+        <OakP $mt="spacing-8">
           <LineClamp lines={2}>{summary}</LineClamp>
         </OakP>
       </OakBox>
       <OakBox
-        $mt={["space-between-m2", "space-between-none"]}
-        $ml={["space-between-none", "space-between-l"]}
+        $mt={["spacing-32", "spacing-0"]}
+        $ml={["spacing-0", "spacing-48"]}
       >
         <OakPrimaryButton
           {...buttonHoverProps}

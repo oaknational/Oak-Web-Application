@@ -45,18 +45,18 @@ const SubjectListingCard: FC<SubjectListingCardProps> = ({
         $position={"relative"}
         $flexDirection={["row", "column"]}
         $alignItems={"center"}
-        $mb={["space-between-xs", "space-between-none"]}
-        $ml={["space-between-xs", "space-between-none"]}
-        $mt="space-between-xs"
+        $mb={["spacing-12", "spacing-0"]}
+        $ml={["spacing-12", "spacing-0"]}
+        $mt="spacing-12"
         $flexGrow={1}
         $justifyContent={["flex-start", "center"]}
       >
         <OakFlex
-          $mr={["space-between-ssx", "space-between-none"]}
-          $mb={["space-between-none", "space-between-ssx"]}
-          $height={["all-spacing-10", "all-spacing-13"]}
-          $width={["all-spacing-10", "all-spacing-13"]}
-          $minWidth={["all-spacing-10", "all-spacing-13"]}
+          $mr={["spacing-8", "spacing-0"]}
+          $mb={["spacing-0", "spacing-8"]}
+          $height={["spacing-56", "spacing-80"]}
+          $width={["spacing-56", "spacing-80"]}
+          $minWidth={["spacing-56", "spacing-80"]}
         >
           <OakIcon
             iconName={getValidSubjectIconName(subjectSlug)}
@@ -66,9 +66,9 @@ const SubjectListingCard: FC<SubjectListingCardProps> = ({
           />
         </OakFlex>
         <OakFlex
-          $mh={["space-between-none", "space-between-xs"]}
+          $mh={["spacing-0", "spacing-12"]}
           $alignItems={["start", "center"]}
-          $minHeight={["all-spacing-0", "all-spacing-11"]}
+          $minHeight={["spacing-0", "spacing-64"]}
         >
           <OakHeading
             $textAlign={["start", "center"]}
@@ -81,9 +81,9 @@ const SubjectListingCard: FC<SubjectListingCardProps> = ({
       </OakFlex>
       <OakFlex
         role={"list"}
-        $pb="inner-padding-s"
-        $ph="inner-padding-s"
-        $gap="space-between-xs"
+        $pb="spacing-12"
+        $ph="spacing-12"
+        $gap="spacing-12"
         $width={"100%"}
       >
         <OakFlex role={"listitem"} $flexGrow={1}>

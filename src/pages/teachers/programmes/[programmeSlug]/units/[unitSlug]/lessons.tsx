@@ -313,12 +313,9 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               : () => onSaveToggle(unitSlug)
           }
         />
-        <OakMaxWidth $ph={"inner-padding-m"}>
+        <OakMaxWidth $ph={"spacing-16"}>
           <OakGrid>
-            <OakGridArea
-              $colSpan={[12, 9]}
-              $mt={["space-between-s", "space-between-m2"]}
-            >
+            <OakGridArea $colSpan={[12, 9]} $mt={["spacing-16", "spacing-32"]}>
               {unpublishedLessonCount > 0 && (
                 <OakInlineRegistrationBanner
                   onSubmit={(email) => {

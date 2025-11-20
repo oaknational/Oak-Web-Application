@@ -12,26 +12,18 @@ import LoginRequiredButton from "../LoginRequiredButton/LoginRequiredButton";
 const SavingSignedOutModalContent = () => {
   return (
     <OakFlex $flexDirection="column">
-      <OakFlex
-        $alignItems="start"
-        $gap="space-between-xs"
-        $mb="space-between-m"
-      >
+      <OakFlex $alignItems="start" $gap="spacing-12" $mb="spacing-24">
         <OakTagFunctional
           label="New"
           $background="mint"
           $color="text-primary"
-          $ph="inner-padding-ssx"
+          $ph="spacing-4"
         />
         <OakHeading tag="h2" $font="heading-5" id="saving-modal-heading">
           Saving is here
         </OakHeading>
       </OakFlex>
-      <OakP
-        $mb="space-between-l"
-        $font={"body-1"}
-        id="saving-modal-description"
-      >
+      <OakP $mb="spacing-48" $font={"body-1"} id="saving-modal-description">
         Easily save lesson units that you want to revisit. Access what you need,
         whenever you need it – anytime, anywhere. Getting started is simple;
         quickly sign up and start saving.
@@ -61,18 +53,17 @@ const SavingSignedOutModal = ({
   <OakModalCenter
     isOpen={isOpen}
     onClose={onClose}
-    children={<SavingSignedOutModalContent />}
     modalFlexProps={{
-      $pa: ["inner-padding-xl2", "inner-padding-xl5"],
+      $pa: ["spacing-32", "spacing-56"],
       $mh: "auto",
       "aria-modal": true,
       "aria-labelledby": "saving-modal-heading",
       "aria-describedby": "saving-modal-description",
     }}
-    modalInnerFlexProps={{ $ph: "inner-padding-none" }}
+    modalInnerFlexProps={{ $ph: "spacing-0" }}
     modalOuterFlexProps={{
-      $maxWidth: "all-spacing-22",
-      $pa: "inner-padding-m",
+      $maxWidth: "spacing-640",
+      $pa: "spacing-16",
     }}
     returnFocus={() => {
       if (elementId) {
@@ -82,7 +73,9 @@ const SavingSignedOutModal = ({
       }
       return true;
     }}
-  />
+  >
+    <SavingSignedOutModalContent />
+  </OakModalCenter>
 );
 
 export default SavingSignedOutModal;

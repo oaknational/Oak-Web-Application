@@ -61,7 +61,7 @@ const BlogSinglePage: NextPage<BlogSinglePageProps> = (props) => {
           "Blog",
         )}
       >
-        <OakBox $mt="space-between-l">
+        <OakBox $mt="spacing-48">
           <BlogPortableText portableText={props.blog.contentPortableText} />
         </OakBox>
       </PostSingleLayout>

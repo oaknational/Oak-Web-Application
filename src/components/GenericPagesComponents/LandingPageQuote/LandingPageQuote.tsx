@@ -17,13 +17,12 @@ export const LandingPageQuote: FC<QuoteSchema> = ({ text, attribution }) => {
       $ma={"auto"}
     >
       <Blockquote
-        $mb={["space-between-s"]}
+        $mb={["spacing-16"]}
         $font={"heading-4"}
         $textAlign={"center"}
       >
         &ldquo;{text}&rdquo;
       </Blockquote>
-
       <OakTypography $font={"body-2"}>{attribution}</OakTypography>
     </Flex>
   );

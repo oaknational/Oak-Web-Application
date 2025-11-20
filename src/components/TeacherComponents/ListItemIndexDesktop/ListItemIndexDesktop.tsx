@@ -17,7 +17,7 @@ const ListItemIndexDesktop: FC<ListItemIndexDesktopProps> = (props) => {
       $justifyContent={"center"}
       $display={["none", "flex"]}
       $alignItems={"center"}
-      $minWidth={"all-spacing-13"}
+      $minWidth={"spacing-80"}
       $height={"100%"}
       $background={background}
       $position={"relative"}

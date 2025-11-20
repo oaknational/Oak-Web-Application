@@ -19,7 +19,7 @@ const LessonResourceGraphics: FC<LessonResourceGraphicsProps> = ({ items }) => {
     <OakUL
       $reset={true}
       $display={"flex"}
-      $gap={["space-between-xs", "space-between-s"]}
+      $gap={["spacing-12", "spacing-16"]}
       $flexWrap="wrap"
       $justifyContent={"flex-start"}
     >

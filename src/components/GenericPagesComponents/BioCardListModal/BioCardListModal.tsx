@@ -76,14 +76,11 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
   return (
     <BioCardListModalDialog {...modalDialogProps}>
       {/* @todo replace with OakFlex - work out the padding */}
-      <OakFlex
-        $width={"100%"}
-        $ph={["inner-padding-none", "inner-padding-xl7"]}
-      >
+      <OakFlex $width={"100%"} $ph={["spacing-0", "spacing-72"]}>
         <OakBox
           $position={"absolute"}
-          $top={["all-spacing-4", "all-spacing-7"]}
-          $right={["all-spacing-4", "all-spacing-7"]}
+          $top={["spacing-16", "spacing-32"]}
+          $right={["spacing-16", "spacing-32"]}
           $zIndex={"modal-close-button"}
         >
           <IconButton
@@ -98,7 +95,7 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
         </OakBox>
         <OakMaxWidth
           $position="relative"
-          $maxWidth={["all-spacing-21", "all-spacing-22", "all-spacing-24"]}
+          $maxWidth={["spacing-480", "spacing-640", "spacing-1280"]}
           /**
            * Use margin for centering to avoid overflow issue
            * @see https://stackoverflow.com/a/33455342/4031364
@@ -109,11 +106,7 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
         >
           <OakGrid
             $position="relative"
-            $mt={[
-              "space-between-none",
-              "space-between-s",
-              "space-between-none",
-            ]}
+            $mt={["spacing-0", "spacing-16", "spacing-0"]}
           >
             <OakGridArea $colSpan={[12, 5, 3]} $order={[1, 0]}>
               <OakBox $position={"relative"} $zIndex={"in-front"}>
@@ -121,8 +114,8 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
                   {...titleProps}
                   tag="h2"
                   $font={["heading-5", "heading-4"]}
-                  $mr={["space-between-none", "space-between-s"]}
-                  $mb={["space-between-none", "space-between-ssx"]}
+                  $mr={["spacing-0", "spacing-16"]}
+                  $mb={["spacing-0", "spacing-8"]}
                   $textAlign={["center", "left"]}
                   // If 'next' or 'prev' buttons are clicked, read out the new name
                   aria-live="polite"
@@ -132,7 +125,7 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
                 <OakP
                   $font={["heading-light-7", "heading-light-6"]}
                   $color="grey60"
-                  $mb={["space-between-m2", "space-between-none"]}
+                  $mb={["spacing-32", "spacing-0"]}
                   $textAlign={["center", "left"]}
                 >
                   {role}
@@ -142,12 +135,12 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
             <OakGridArea
               $colSpan={[12, 7, 4]}
               $order={[0, 1]}
-              $pt={["inner-padding-xl", "inner-padding-none"]}
+              $pt={["spacing-24", "spacing-0"]}
             >
               <OakBox
                 $position="relative"
-                $mb={["space-between-m", "space-between-none"]}
-                $width={["all-spacing-19", "100%"]}
+                $mb={["spacing-24", "spacing-0"]}
+                $width={["spacing-240", "100%"]}
                 $mh={["auto"]}
               >
                 <BoxBorders gapPosition="rightTop" $zIndex={"in-front"} />
@@ -156,14 +149,14 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
                   $colorFilter={"oakGreen"}
                   $display={["none", "block"]}
                   $position={"absolute"}
-                  $top={"all-spacing-15"}
+                  $top={"spacing-100"}
                   $transform={[
                     null,
                     "translate(-57%, 5%)",
                     "translate(-57%, -10%)",
                   ]}
-                  $width={[null, "all-spacing-19", "all-spacing-20"]}
-                  $height={[null, "all-spacing-19", "all-spacing-20"]}
+                  $width={[null, "spacing-240", "spacing-360"]}
+                  $height={[null, "spacing-240", "spacing-360"]}
                 />
                 <AspectRatio ratio={["7:8", "7:8", "2:3"]}>
                   <OakBox $background="white" $objectFit={"cover"} />
@@ -183,19 +176,11 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
             <OakGridArea $colSpan={[12, 12, 5]} $order={[2, 2]}>
               {bioPortableText && (
                 <OakBox
-                  $ml={[
-                    "space-between-none",
-                    "space-between-none",
-                    "space-between-xxl",
-                  ]}
-                  $mb={["space-between-xxl"]}
-                  $mt={[
-                    "space-between-none",
-                    "space-between-xxl",
-                    "space-between-none",
-                  ]}
+                  $ml={["spacing-0", "spacing-0", "spacing-72"]}
+                  $mb={["spacing-72"]}
+                  $mt={["spacing-0", "spacing-72", "spacing-0"]}
                   $font={["body-2", "body-1"]}
-                  $minHeight={["auto", "all-spacing-19"]}
+                  $minHeight={["auto", "spacing-240"]}
                 >
                   <PortableTextWithDefaults value={bioPortableText} />
                 </OakBox>
@@ -204,11 +189,11 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
           </OakGrid>
           <OakFlex
             $position={["fixed", "absolute"]}
-            $bottom={["all-spacing-0"]}
-            $left={["all-spacing-4"]}
-            $right={["all-spacing-4"]}
-            $pb={["inner-padding-m", "inner-padding-m", "inner-padding-none"]}
-            $pt={["inner-padding-m", "inner-padding-none"]}
+            $bottom={["spacing-0"]}
+            $left={["spacing-16"]}
+            $right={["spacing-16"]}
+            $pb={["spacing-16", "spacing-16", "spacing-0"]}
+            $pt={["spacing-16", "spacing-0"]}
             $alignItems="center"
             $background={["white", "transparent"]}
           >
@@ -217,7 +202,7 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
               x={socials?.twitterUsername}
               linkedIn={socials?.linkedinUrl}
               $position={["absolute", "relative"]}
-              $left={["all-spacing-0"]}
+              $left={["spacing-0"]}
               $alignItems="flex-end"
             />
             <BioCardListModalNavigationButtons

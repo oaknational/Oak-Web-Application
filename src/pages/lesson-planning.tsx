@@ -91,8 +91,8 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
       <OakFlex
         $background={"bg-decorative3-very-subdued"}
         $display={["block", "block", "none"]}
-        $pv={"inner-padding-xl"}
-        $ph={["inner-padding-m", "inner-padding-none", "inner-padding-none"]}
+        $pv={"spacing-24"}
+        $ph={["spacing-16", "spacing-0", "spacing-0"]}
       >
         <OakMaxWidth>
           <OakTertiaryOLNav
@@ -103,14 +103,13 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
           />
         </OakMaxWidth>
       </OakFlex>
-
       <OakMaxWidth $height={"auto"}>
-        <OakGrid $mt={"space-between-l"} $position={"relative"}>
+        <OakGrid $mt={"spacing-48"} $position={"relative"}>
           <OakGridArea
             $colSpan={[12, 3]}
             $alignSelf={"start"}
             $position={["static", "static", "sticky"]}
-            $top={"all-spacing-10"}
+            $top={"spacing-56"}
             $display={["none", "none", "block"]}
           >
             <OakTertiaryOLNav
@@ -124,7 +123,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
           <OakGridArea
             $colSpan={[12, 12, 6]}
             $colStart={[1, 1, 5]}
-            $mh={["space-between-s", null, null]}
+            $mh={["spacing-16", null, null]}
             $justifyContent={"center"}
           >
             <OakFlex
@@ -133,8 +132,8 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
               $alignItems={"center"}
             >
               <OakFlex
-                $minWidth={[null, "all-spacing-22"]}
-                $maxWidth={"all-spacing-22"}
+                $minWidth={[null, "spacing-640"]}
+                $maxWidth={"spacing-640"}
                 $width={"100%"}
                 $flexDirection={"column"}
               >
@@ -146,11 +145,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
                         $width={"100%"}
                         key={`${section.navigationTitle} ${index}`}
                         data-testid="lesson-section"
-                        $mb={
-                          !isLastSection
-                            ? "space-between-xxxl"
-                            : "space-between-m2"
-                        }
+                        $mb={!isLastSection ? "spacing-80" : "spacing-32"}
                         $flexDirection={"column"}
                       >
                         <LandingPageSignUpForm
@@ -167,11 +162,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
                       $position={"relative"}
                       $width={"100%"}
                       data-testid="lesson-section"
-                      $mb={
-                        !isLastSection
-                          ? "space-between-xxxl"
-                          : "space-between-m2"
-                      }
+                      $mb={!isLastSection ? "spacing-80" : "spacing-32"}
                     >
                       <OakAnchorTarget id={section.anchorSlug.current} />
                       <LessonPlanningBlog
@@ -180,7 +171,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData, posts }) => {
                       />
                       <OakBox
                         $display={["block", "block", "none"]}
-                        $mt={"space-between-m2"}
+                        $mt={"spacing-32"}
                       >
                         <OakLink
                           iconName="arrow-up"

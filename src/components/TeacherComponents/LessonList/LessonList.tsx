@@ -88,8 +88,8 @@ const LessonList: FC<LessonListProps> = (props) => {
     <OakFlex $flexDirection="column">
       <OakFlex
         $flexDirection={"column"}
-        $gap={["space-between-m", "space-between-s"]}
-        $mb={["space-between-m", "space-between-s"]}
+        $gap={["spacing-24", "spacing-16"]}
+        $mb={["spacing-24", "spacing-16"]}
       >
         <OakHeading $font={["heading-6", "heading-5"]} tag={headingTag}>
           {lessonCountHeader}
@@ -112,12 +112,11 @@ const LessonList: FC<LessonListProps> = (props) => {
           ))}
         </OakUL>
       ) : null}
-
       {lessonCount > LESSONS_PER_PAGE ? (
         <OakBox
           $width="100%"
-          $mt={["space-between-none", "auto"]}
-          $pt={["inner-padding-xs", "inner-padding-xl"]}
+          $mt={["spacing-0", "auto"]}
+          $pt={["spacing-8", "spacing-24"]}
           data-testid="pagination-box"
         >
           <OakPagination
@@ -127,11 +126,7 @@ const LessonList: FC<LessonListProps> = (props) => {
           />
         </OakBox>
       ) : null}
-
-      <OakBox
-        $pb={["inner-padding-xl", "inner-padding-xl2"]}
-        $pt={[null, "inner-padding-m"]}
-      >
+      <OakBox $pb={["spacing-24", "spacing-32"]} $pt={[null, "spacing-16"]}>
         <SignPostToAila
           title="Can't find what you need?"
           text="Create a tailor-made lesson plan and resources on any topic with Aila, our free AI-powered lesson assistant. Entirely adaptable to your class and context."

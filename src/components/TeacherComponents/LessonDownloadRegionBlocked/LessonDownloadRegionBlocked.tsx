@@ -50,9 +50,9 @@ export function LessonDownloadRegionBlocked({
     <OakFlex
       $flexDirection={"column"}
       $color={"text-primary"}
-      $mt={"space-between-m"}
-      $gap={"space-between-m"}
-      $maxWidth={"all-spacing-22"}
+      $mt={"spacing-24"}
+      $gap={"spacing-24"}
+      $maxWidth={"spacing-640"}
     >
       <OakHeading $font={"heading-4"} tag="h1">
         Sorry, downloads for this lesson are only available in the UK
@@ -66,7 +66,7 @@ export function LessonDownloadRegionBlocked({
           <OakLink href={COPYRIGHT_CONTACT_US_LINK}>contact us.</OakLink>
         </OakP>
       </OakBox>
-      <OakBox $pv={"inner-padding-xl3"}>
+      <OakBox $pv={"spacing-40"}>
         <OakPrimaryButton href={href} element="a" iconName="arrow-left">
           Back to lesson{" "}
         </OakPrimaryButton>

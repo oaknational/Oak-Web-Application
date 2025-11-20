@@ -93,13 +93,13 @@ export const Default: Story = {
   render: (args) => (
     <ClerkProvider>
       <OakThemeProvider theme={oakDefaultTheme}>
-        <OakFlex $flexDirection="column" $gap="space-between-m">
+        <OakFlex $flexDirection="column" $gap="spacing-24">
           <OakFlex
             $background="mint"
             $justifyContent="center"
             $alignItems="center"
             $borderRadius="border-radius-s"
-            $pa="inner-padding-xl"
+            $pa="spacing-24"
           >
             <LoginRequiredButton {...args} />
           </OakFlex>
