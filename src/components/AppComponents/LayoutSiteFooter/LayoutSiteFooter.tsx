@@ -174,6 +174,7 @@ const FooterSectionLinks: FC<FooterSection> = ({ title, links }) => {
         {title}
       </OakHeading>
       <OakTypography $color={"black"} $font={"body-2"}>
+        {/* Note: Anything with `list-style: none` (or similar) gets treated by Safari as not-a-list, so we have to add the role here */}
         <ul role="list">
           {links.map((link) => (
             <OakLI key={link.text} $mt="spacing-12">

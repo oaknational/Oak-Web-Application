@@ -1,3 +1,24 @@
+## [1.915.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.915.4...v1.915.5) (2025-11-20)
+
+
+### Bug Fixes
+
+* aria-role is not a valid attribute ([565fe46](https://github.com/oaknational/Oak-Web-Application/commit/565fe46b67bd6d9f0f2054ed1ad2605dce235c9c))
+
+## [1.915.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.915.3...v1.915.4) (2025-11-19)
+
+
+### Bug Fixes
+
+* do not pass children as props (sonarcloud) ([c799cff](https://github.com/oaknational/Oak-Web-Application/commit/c799cff8aace5090b0acd2fc4a61d666db8aeb4d))
+
+## [1.915.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.915.2...v1.915.3) (2025-11-19)
+
+
+### Bug Fixes
+
+* <ul/> has an implicit role of list ([5b2f9a6](https://github.com/oaknational/Oak-Web-Application/commit/5b2f9a669cae8a1fcbf55cec1ef83aaa058ccd85))
+
 ## [1.915.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.915.1...v1.915.2) (2025-11-19)
 
 
