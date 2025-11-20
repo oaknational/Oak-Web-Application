@@ -39,16 +39,8 @@ export const UnitListingSeoAccordion = ({
       header={
         <OakSpan $textAlign="left">
           Take a look at the carefully sequenced units which build knowledge
-          progressively through the{" "}
-          <OakLink
-            href={resolveOakHref({
-              page: "curriculum-units",
-              subjectPhaseSlug,
-            })}
-          >
-            curriculum
-          </OakLink>
-          . See how key{contentVisible ? "" : "..."}
+          progressively through the curriculum. See how key
+          {contentVisible ? "" : "..."}
         </OakSpan>
       }
     >
@@ -71,7 +63,16 @@ export const UnitListingSeoAccordion = ({
           for your pupils. You can download lesson and teaching resources, or
           log in and download units or save units to ‘my library’ – whichever is
           best for you to plan your {subject.toLowerCase()} lesson. Read more
-          about how the curriculum was designed in our{" "}
+          about how the{" "}
+          <OakLink
+            href={resolveOakHref({
+              page: "curriculum-units",
+              subjectPhaseSlug,
+            })}
+          >
+            {keystageSlug.toUpperCase()} curriculum
+          </OakLink>{" "}
+          was designed in our{" "}
           <OakLink
             href={resolveOakHref({
               page: "curriculum-overview",
