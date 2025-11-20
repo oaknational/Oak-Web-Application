@@ -13,7 +13,6 @@ test-results/
 npm_audit.json
 audit.json
 audit.txt
-copied-src/
 
 # Browserstack Local log
 local.log

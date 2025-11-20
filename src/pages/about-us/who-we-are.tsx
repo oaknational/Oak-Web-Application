@@ -11,8 +11,8 @@ import {
   OakBox,
   OakPrimaryButton,
 } from "@oaknational/oak-components";
+import styled from "styled-components";
 
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import CMSClient from "@/node-lib/cms";
 import { AboutWhoWeArePage, TextBlock } from "@/common-lib/cms-types";
 import Layout from "@/components/AppComponents/Layout";
@@ -38,6 +38,14 @@ import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
+
+const NewsletterWrapper = styled(OakBox)`
+  max-width: 100%;
+
+  @media (min-width: 750px) {
+    max-width: 870px;
+  }
+`;
 
 export type AboutPageProps = {
   pageData: AboutWhoWeArePage;
@@ -318,10 +326,10 @@ export const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({ pageData }) => {
           $background={"bg-decorative1-subdued"}
           $pv={["spacing-56", "spacing-56"]}
         >
-          <OakMaxWidth $ph={"spacing-40"} $alignItems={"center"}>
-            <Flex $maxWidth={["100%", 870]}>
+          <OakMaxWidth $ph={"spacing-16"} $alignItems={"center"}>
+            <NewsletterWrapper>
               <NewsletterFormWrap desktopColSpan={6} {...newsletterFormProps} />
-            </Flex>
+            </NewsletterWrapper>
           </OakMaxWidth>
         </OakBox>
       </OakBox>

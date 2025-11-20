@@ -1743,7 +1743,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
               </div>
             </div>
             <div
-              class="sc-fqkvVR sc-kAyceB sc-52a15439-0 ixZoE joHkzz haqBJr"
+              class="sc-fqkvVR sc-kAyceB sc-15b631f-0 ixZoE joHkzz fzCipP"
             >
               <div
                 class="sc-fqkvVR sc-kAyceB kkWGlq bAFsaQ"
@@ -1768,7 +1768,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                 class="sc-fqkvVR sc-kAyceB cPTgZF gSPFUg"
               >
                 <p
-                  class="sc-dLMFU hijAXr"
+                  class="sc-dLMFU Qmmuc"
                 >
                   We’re Oak, your trusted planning partner for great teaching. Our free, adaptable resources evolve with education to give teachers and schools the latest tools to deliver inspiring lessons, save time and improve pupil outcomes.
                 </p>
@@ -1778,11 +1778,11 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
               class="sc-fqkvVR glVOpG"
             >
               <div
-                class="sc-fqkvVR jglYoS"
+                class="sc-fqkvVR dmKvLq"
                 style="max-width: 1360px;"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB itUwJl jyLrLm"
+                  class="sc-fqkvVR sc-kAyceB UJoqH dAAIBQ"
                 >
                   <div
                     class="sc-fqkvVR sc-jXbUNg fgBWrW gdCncd"
@@ -1794,7 +1794,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                         class="sc-fqkvVR sc-kAyceB fgBWrW gOiVFh"
                       >
                         <div
-                          class="sc-fqkvVR cBmcky"
+                          class="sc-fqkvVR dWdIJs"
                         >
                           <span
                             class="sc-dAlyuH bOvjMx"
@@ -1803,7 +1803,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                           </span>
                         </div>
                         <h2
-                          class="sc-kpDqfm ebBbcG"
+                          class="sc-kpDqfm hxKDeC"
                         >
                           As teaching evolves, so do we...
                         </h2>
@@ -1834,10 +1834,10 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                             />
                           </div>
                           <div
-                            class="sc-fqkvVR sc-kAyceB egekXy gOiVFh"
+                            class="sc-fqkvVR sc-kAyceB jXzpTn gOiVFh"
                           >
                             <div
-                              class="sc-fqkvVR cvmDMx"
+                              class="sc-fqkvVR kxMTGH"
                             >
                               <span
                                 class="sc-dAlyuH bOvjMx"
@@ -1846,12 +1846,12 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </span>
                             </div>
                             <h3
-                              class="sc-kpDqfm gZKwYW"
+                              class="sc-kpDqfm cSDnOe"
                             >
                               A rapid response to the pandemic
                             </h3>
                             <div
-                              class="sc-fqkvVR fgBWrW"
+                              class="sc-fqkvVR sc-kAyceB jPWxQZ iVYVEn"
                             >
                               <p
                                 class="sc-dLMFU kdIcGd"
@@ -1876,10 +1876,10 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                             />
                           </div>
                           <div
-                            class="sc-fqkvVR sc-kAyceB egekXy gOiVFh"
+                            class="sc-fqkvVR sc-kAyceB jXzpTn gOiVFh"
                           >
                             <div
-                              class="sc-fqkvVR cvmDMx"
+                              class="sc-fqkvVR kxMTGH"
                             >
                               <span
                                 class="sc-dAlyuH bOvjMx"
@@ -1888,12 +1888,12 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </span>
                             </div>
                             <h3
-                              class="sc-kpDqfm gZKwYW"
+                              class="sc-kpDqfm cSDnOe"
                             >
                               Complete resources for the classroom, schools and trusts
                             </h3>
                             <div
-                              class="sc-fqkvVR fgBWrW"
+                              class="sc-fqkvVR sc-kAyceB jPWxQZ iVYVEn"
                             >
                               <p
                                 class="sc-dLMFU kdIcGd"
@@ -1923,10 +1923,10 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                             />
                           </div>
                           <div
-                            class="sc-fqkvVR sc-kAyceB egekXy gOiVFh"
+                            class="sc-fqkvVR sc-kAyceB jXzpTn gOiVFh"
                           >
                             <div
-                              class="sc-fqkvVR cvmDMx"
+                              class="sc-fqkvVR kxMTGH"
                             >
                               <span
                                 class="sc-dAlyuH bOvjMx"
@@ -1935,12 +1935,12 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                               </span>
                             </div>
                             <h3
-                              class="sc-kpDqfm gZKwYW"
+                              class="sc-kpDqfm cSDnOe"
                             >
                               Staying ahead in a changing world
                             </h3>
                             <div
-                              class="sc-fqkvVR fgBWrW"
+                              class="sc-fqkvVR sc-kAyceB jPWxQZ iVYVEn"
                             >
                               <p
                                 class="sc-dLMFU kdIcGd"
@@ -2400,10 +2400,10 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
               class="sc-fqkvVR hoeBpy"
             >
               <div
-                class="sc-fqkvVR sc-kAyceB sc-jEACwC fKmquo bUZQTk"
+                class="sc-fqkvVR sc-kAyceB sc-jEACwC eKkWSU bUZQTk"
               >
                 <div
-                  class="sc-ad0ad6f5-0 sc-213e351e-0 AoDXN cUwoYe"
+                  class="sc-fqkvVR sc-29ba0b11-0 fgBWrW kaSgOi"
                 >
                   <div
                     class="sc-ad0ad6f5-0 sc-213e351e-0 sc-8724906-0 hidovD cEqFwB"
