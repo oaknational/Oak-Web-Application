@@ -207,11 +207,11 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                 class="sc-fqkvVR sc-kAyceB kFehuI joHkzz"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-bkSUFG dtUOUJ hRXrdT aqNPq"
+                  class="sc-fqkvVR sc-kAyceB sc-iLsKjm dtUOUJ hRXrdT hAgNoy"
                 >
                   <input
                     checked=""
-                    class="sc-bbSZdi sc-fAGzit fhuUBH DbIbV"
+                    class="sc-bbSZdi sc-epALIP fhuUBH dcuVfW"
                     data-testid="all-years-radio"
                     id=":r0:"
                     name="yearreact-use-id-test-result"
@@ -231,10 +231,10 @@ exports[`CurricTimetablingUnits snapshot (mode=debug) 1`] = `
                 class="sc-fqkvVR sc-kAyceB kFehuI joHkzz"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-bkSUFG dtUOUJ hRXrdT aqNPq"
+                  class="sc-fqkvVR sc-kAyceB sc-iLsKjm dtUOUJ hRXrdT hAgNoy"
                 >
                   <input
-                    class="sc-bbSZdi sc-fAGzit fhuUBH DbIbV"
+                    class="sc-bbSZdi sc-epALIP fhuUBH dcuVfW"
                     data-testid="year-radio"
                     id=":r1:"
                     name="yearreact-use-id-test-result"
@@ -749,11 +749,11 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                 class="sc-fqkvVR sc-kAyceB kFehuI joHkzz"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-bkSUFG dtUOUJ hRXrdT aqNPq"
+                  class="sc-fqkvVR sc-kAyceB sc-iLsKjm dtUOUJ hRXrdT hAgNoy"
                 >
                   <input
                     checked=""
-                    class="sc-bbSZdi sc-fAGzit fhuUBH DbIbV"
+                    class="sc-bbSZdi sc-epALIP fhuUBH dcuVfW"
                     data-testid="all-years-radio"
                     id=":r2:"
                     name="yearreact-use-id-test-result"
@@ -773,10 +773,10 @@ exports[`CurricTimetablingUnits snapshot (mode=normal) 1`] = `
                 class="sc-fqkvVR sc-kAyceB kFehuI joHkzz"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-bkSUFG dtUOUJ hRXrdT aqNPq"
+                  class="sc-fqkvVR sc-kAyceB sc-iLsKjm dtUOUJ hRXrdT hAgNoy"
                 >
                   <input
-                    class="sc-bbSZdi sc-fAGzit fhuUBH DbIbV"
+                    class="sc-bbSZdi sc-epALIP fhuUBH dcuVfW"
                     data-testid="year-radio"
                     id=":r3:"
                     name="yearreact-use-id-test-result"
