@@ -13,5 +13,9 @@ export const SubjectKeystageSeoText = ({
   keystageSlug: KeyStageSlug;
 }) => {
   const content = keystageSlug === "ks4" ? ks4Text : defaultText;
-  return <OakP data-testid="subject-keystage-seo">{content}</OakP>;
+  return (
+    <OakP data-testid="subject-keystage-seo" $color="text-primary">
+      {content}
+    </OakP>
+  );
 };

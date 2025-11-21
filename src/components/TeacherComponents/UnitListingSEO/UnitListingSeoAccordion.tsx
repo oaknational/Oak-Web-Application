@@ -41,7 +41,7 @@ export const UnitListingSeoAccordion = ({
       id="units-seo-accordion"
       $gap={"spacing-0"}
       header={
-        <OakSpan $textAlign="left">
+        <OakSpan $textAlign="left" $color="text-primary">
           Take a look at the carefully sequenced units which build knowledge
           progressively through the curriculum. See how key
           {contentVisible ? "" : "..."}
@@ -53,6 +53,7 @@ export const UnitListingSeoAccordion = ({
         ref={accordionContentRef}
         $flexDirection="column"
         $overflow="hidden"
+        $color="text-primary"
       >
         <OakSpan>
           concepts develop through our use of threads, which add vertical

@@ -29,7 +29,7 @@ export const SubjectKeystageSeoAccordion = ({
       id="seo-accordion"
       $gap={"spacing-0"}
       header={
-        <OakSpan $textAlign={"left"}>
+        <OakSpan $textAlign={"left"} $color="text-primary">
           Our curriculum plans for pupils aged {pupilAgesMap[keystageSlug]} make
           it easy for teachers to view the full sequence for every national
           {contentVisible ? "" : "..."}
@@ -43,6 +43,7 @@ export const SubjectKeystageSeoAccordion = ({
         $gap="spacing-16"
         ref={accordionContentRef}
         $overflow="hidden"
+        $color="text-primary"
       >
         {seoContent}
         <OakUL $flexDirection="column">
