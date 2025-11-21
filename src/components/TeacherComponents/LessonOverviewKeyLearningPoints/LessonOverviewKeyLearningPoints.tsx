@@ -26,13 +26,13 @@ const LessonOverviewKeyLearningPoints = ({
     >
       <OakHeading
         $font={["heading-6", "heading-5"]}
-        $mb="space-between-m"
+        $mb="spacing-24"
         data-testid={"heading"}
         tag="h3"
       >
         Key learning points
       </OakHeading>
-      <OakOL $mb="space-between-none" $mt="space-between-none">
+      <OakOL $mb="spacing-0" $mt="spacing-0">
         {filteredKeyLearningPoints.map(
           (
             keyLearningPoint: LessonOverviewKeyLearningPointProps,

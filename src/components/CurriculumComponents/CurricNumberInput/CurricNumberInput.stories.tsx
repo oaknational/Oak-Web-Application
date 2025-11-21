@@ -45,7 +45,7 @@ const meta: Meta<typeof Component> = {
   decorators: [
     (Story) => (
       <OakThemeProvider theme={oakDefaultTheme}>
-        <OakBox $pa="inner-padding-xl">
+        <OakBox $pa="spacing-24">
           <Story />
         </OakBox>
       </OakThemeProvider>
@@ -86,7 +86,7 @@ function ValidationDemo() {
 
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
-      <OakFlex $flexDirection="column" $gap="space-between-m">
+      <OakFlex $flexDirection="column" $gap="spacing-24">
         <OakFlex $position="relative" $flexDirection="column">
           <OakJauntyAngleLabel
             as="label"
@@ -111,7 +111,7 @@ function ValidationDemo() {
             onValidationChange={setIsValid}
           />
         </OakFlex>
-        <OakBox $pa="inner-padding-m">
+        <OakBox $pa="spacing-16">
           <OakP $font="body-2">
             Validation status: {isValid ? "✓ Valid" : "✗ Invalid"}
           </OakP>
@@ -131,8 +131,8 @@ function MultipleInputsDemo() {
 
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
-      <OakFlex $flexDirection="column" $gap="space-between-l">
-        <OakFlex $flexDirection="column" $gap="space-between-m2">
+      <OakFlex $flexDirection="column" $gap="spacing-48">
+        <OakFlex $flexDirection="column" $gap="spacing-32">
           <OakHeading id="autumn-heading" tag="h3" $font="heading-3">
             Autumn
           </OakHeading>
@@ -162,7 +162,7 @@ function MultipleInputsDemo() {
           </OakFlex>
         </OakFlex>
 
-        <OakFlex $flexDirection="column" $gap="space-between-m2">
+        <OakFlex $flexDirection="column" $gap="spacing-32">
           <OakHeading id="spring-heading" tag="h3" $font="heading-3">
             Spring
           </OakHeading>
@@ -192,7 +192,7 @@ function MultipleInputsDemo() {
           </OakFlex>
         </OakFlex>
 
-        <OakFlex $flexDirection="column" $gap="space-between-m2">
+        <OakFlex $flexDirection="column" $gap="spacing-32">
           <OakHeading id="summer-heading" tag="h3" $font="heading-3">
             Summer
           </OakHeading>
@@ -281,7 +281,7 @@ export const WithDescription: Story = {
   },
   render: (args) => (
     <OakThemeProvider theme={oakDefaultTheme}>
-      <OakFlex $flexDirection="column" $gap="space-between-m2">
+      <OakFlex $flexDirection="column" $gap="spacing-32">
         <OakHeading id="term-heading" tag="h3" $font="heading-3">
           Autumn Term
         </OakHeading>

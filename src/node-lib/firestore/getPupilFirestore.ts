@@ -15,7 +15,7 @@ const getEmulatorFirestore = () => {
   return new Firestore({
     projectId: "test-project-id", // Placeholder project ID for emulator
     host: hostname,
-    port: parseInt(port ?? "8089", 10),
+    port: Number.parseInt(port ?? "8089", 10),
     ssl: false,
     databaseId: process.env.PUPIL_FIRESTORE_ID,
   });

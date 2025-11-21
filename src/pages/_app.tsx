@@ -65,13 +65,11 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
                         <ToastProvider>
                           <SaveCountProvider>
                             <OakToastProvider>
-                              <>
-                                <style jsx global>{`
-                                  html {
-                                    font-family: ${lexend.style.fontFamily};
-                                  }
-                                `}</style>
-                              </>
+                              <style jsx global>{`
+                                html {
+                                  font-family: ${lexend.style.fontFamily};
+                                }
+                              `}</style>
                               <Component {...pageProps} />
                               <AppHooks />
                             </OakToastProvider>

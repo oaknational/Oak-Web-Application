@@ -7,7 +7,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
       class="sc-fqkvVR eDrsgf"
     >
       <div
-        class="sc-fqkvVR sc-fXSgeo eJBGXR efioha"
+        class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
       >
         <div
           class="sc-fqkvVR iPpXCP grey-shadow"
@@ -16,7 +16,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
           class="sc-fqkvVR iPpXCP yellow-shadow"
         />
         <a
-          class="sc-iHGNWf sc-esYiGF iKUgIm hnQzKH internal-button"
+          class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
           data-testid="skip-link"
           href="#content"
           style="position: absolute; left: -10000px;"
@@ -25,7 +25,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
             class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
           >
             <span
-              class="sc-dAlyuH hcOVuy"
+              class="sc-dAlyuH hHWgLm"
             >
               Skip to units
             </span>
@@ -55,11 +55,11 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
             class="sc-fqkvVR sc-kAyceB kFehuI joHkzz"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB sc-dGCmGc dtUOUJ hRXrdT lfgWvw"
+              class="sc-fqkvVR sc-kAyceB sc-bkSUFG dtUOUJ hRXrdT aqNPq"
             >
               <input
                 checked=""
-                class="sc-fjvvzt sc-bJBgwP fqgMCl imeCQW"
+                class="sc-bbSZdi sc-fAGzit fhuUBH DbIbV"
                 data-testid="all-years-radio"
                 id=":r0:"
                 name="yearreact-use-id-test-result"
@@ -67,7 +67,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
                 value="0"
               />
               <label
-                class="sc-jlZhew sc-jxOSlx sc-lcIPJg iViuDy hocwcY cxwsZx"
+                class="sc-cwHptR sc-lcIPJg sc-kdBSHD gGAhe dDFdZp dHjwXg"
                 for=":r0:"
                 pointer-events="none"
               >
@@ -79,10 +79,10 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
             class="sc-fqkvVR sc-kAyceB kFehuI joHkzz"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB sc-dGCmGc dtUOUJ hRXrdT lfgWvw"
+              class="sc-fqkvVR sc-kAyceB sc-bkSUFG dtUOUJ hRXrdT aqNPq"
             >
               <input
-                class="sc-fjvvzt sc-bJBgwP fqgMCl imeCQW"
+                class="sc-bbSZdi sc-fAGzit fhuUBH DbIbV"
                 data-testid="year-radio"
                 id=":r1:"
                 name="yearreact-use-id-test-result"
@@ -90,7 +90,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
                 value="1"
               />
               <label
-                class="sc-jlZhew sc-jxOSlx sc-lcIPJg iViuDy hocwcY cxwsZx"
+                class="sc-cwHptR sc-lcIPJg sc-kdBSHD gGAhe dDFdZp dHjwXg"
                 for=":r1:"
                 pointer-events="none"
               >
@@ -102,10 +102,10 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
             class="sc-fqkvVR sc-kAyceB kFehuI joHkzz"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB sc-dGCmGc dtUOUJ hRXrdT lfgWvw"
+              class="sc-fqkvVR sc-kAyceB sc-bkSUFG dtUOUJ hRXrdT aqNPq"
             >
               <input
-                class="sc-fjvvzt sc-bJBgwP fqgMCl imeCQW"
+                class="sc-bbSZdi sc-fAGzit fhuUBH DbIbV"
                 data-testid="year-radio"
                 id=":r2:"
                 name="yearreact-use-id-test-result"
@@ -113,7 +113,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
                 value="2"
               />
               <label
-                class="sc-jlZhew sc-jxOSlx sc-lcIPJg iViuDy hocwcY cxwsZx"
+                class="sc-cwHptR sc-lcIPJg sc-kdBSHD gGAhe dDFdZp dHjwXg"
                 for=":r2:"
                 pointer-events="none"
               >
@@ -127,7 +127,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
         class="sc-fqkvVR giwluv"
       >
         <div
-          class="sc-fqkvVR sc-fXSgeo eJBGXR efioha"
+          class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
         >
           <div
             class="sc-fqkvVR iPpXCP grey-shadow"
@@ -136,13 +136,13 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
             class="sc-fqkvVR iPpXCP yellow-shadow"
           />
           <button
-            class="sc-iHGNWf sc-esYiGF iKUgIm hnQzKH internal-button"
+            class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
           >
             <div
               class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
             >
               <span
-                class="sc-dAlyuH hcOVuy"
+                class="sc-dAlyuH hHWgLm"
               >
                 Add next year
               </span>
@@ -151,11 +151,11 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
         </div>
       </div>
       <div
-        class="sc-fqkvVR sc-kAyceB sc-ggpjZQ dARrbC joHkzz"
+        class="sc-fqkvVR sc-kAyceB sc-cmaqmh dARrbC joHkzz"
         focusable="false"
       >
         <svg
-          class="sc-hzhJZQ gfctbU"
+          class="sc-fHjqPf jqvGik"
           height="100%"
           preserveAspectRatio="none"
           viewBox="0 0 866 8"
@@ -229,7 +229,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
                 class="sc-3299cdd2-0 jFTuAP"
               />
               <span
-                class="sc-dAlyuH gAWMRU"
+                class="sc-dAlyuH cRouMQ"
               >
                 Addition
               </span>
@@ -256,7 +256,7 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
                 class="sc-3299cdd2-0 jFTuAP"
               />
               <span
-                class="sc-dAlyuH gAWMRU"
+                class="sc-dAlyuH cRouMQ"
               >
                 Subtraction
               </span>

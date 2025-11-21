@@ -5,7 +5,7 @@ import CurriculumHeader from "./CurriculumHeader";
 
 import curriculumHeaderFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumHeader.fixture";
 import curriculumPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumPhaseOptions.fixture";
-import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 
 jest.mock("@/hooks/useMediaQuery.tsx", () => ({
@@ -15,7 +15,7 @@ jest.mock("@/hooks/useMediaQuery.tsx", () => ({
   }),
 }));
 
-const render = renderWithProviders();
+const render = renderWithProvidersByName(["theme", "oakTheme", "analytics"]);
 
 describe("Component - Curriculum Header", () => {
   beforeEach(() => {

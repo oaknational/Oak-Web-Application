@@ -6,8 +6,8 @@ const PostSectionHeading: FC<{ children?: React.ReactNode }> = (props) => {
     <OakHeading
       $font={["heading-6", "heading-4"]}
       tag="h2"
-      $mt={["space-between-l", "space-between-xl"]}
-      $mb={["space-between-m", "space-between-m2"]}
+      $mt={["spacing-48", "spacing-56"]}
+      $mb={["spacing-24", "spacing-32"]}
     >
       {props.children}
     </OakHeading>

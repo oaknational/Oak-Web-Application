@@ -280,7 +280,7 @@ export const TeacherNotesModal = ({
         {piiErrors.map((error) => (
           <OakFlex
             $alignItems="center"
-            $gap="space-between-ssx"
+            $gap="spacing-8"
             role="alert"
             key={error}
           >

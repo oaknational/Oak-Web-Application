@@ -46,16 +46,15 @@ export const QuizResultOrder = ({
           boldPrefixText={`${pupilAnswer}`}
           standardText={standardText}
           feedbackState={feedbackState}
-          aria-role="listItem"
         />
       </MathJaxWrap>
     );
   });
 
   return (
-    <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
+    <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
       <OakSpan $font={"body-3-bold"}>Your answer:</OakSpan>
-      <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
         {resultItems}
       </OakFlex>
     </OakFlex>

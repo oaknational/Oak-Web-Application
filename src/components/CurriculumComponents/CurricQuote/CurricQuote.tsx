@@ -27,15 +27,11 @@ export default function CurricQuote({
 }: Readonly<CurricQuoteProps>) {
   return (
     <OakBox $background={backgroundColor} data-testid="curric-quote">
-      <OakFlex
-        $flexDirection="row"
-        $pr={"inner-padding-xl"}
-        $columnGap="space-between-m"
-      >
+      <OakFlex $flexDirection="row" $pr={"spacing-24"} $columnGap="spacing-24">
         {barColor !== "transparent" && (
           <OakFlex
             data-testid="decorative-bar"
-            $width="all-spacing-2"
+            $width="spacing-8"
             $background={barColor}
             $flexShrink={0}
           />
@@ -44,7 +40,7 @@ export default function CurricQuote({
           <OakHeading
             tag="h3"
             $font={["heading-5"]}
-            $mb="space-between-s"
+            $mb="spacing-16"
             {...headingProps}
             $color={"black"}
           >

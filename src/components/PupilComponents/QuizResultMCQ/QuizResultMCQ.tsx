@@ -49,14 +49,13 @@ export const QuizResultMCQ = ({
           imageURL={imageURL}
           imageAlt={"Image for option " + (index + 1)}
           feedbackState={feedbackState}
-          aria-role="listItem"
         />
       </MathJaxWrap>
     );
   });
 
   return (
-    <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
+    <OakFlex $flexDirection={"column"} $gap={"spacing-16"}>
       <OakSpan $font={"body-3-bold"}>Your answer:</OakSpan>
       {resultItems}
     </OakFlex>

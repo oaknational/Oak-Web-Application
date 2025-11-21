@@ -93,7 +93,7 @@ const HowCanOakSupport = () => {
         )}
         continueButtonDescription={formState.errors.root?.message}
       >
-        <OakFlex $flexDirection="column" $gap="space-between-s">
+        <OakFlex $flexDirection="column" $gap="spacing-16">
           <div
             aria-live="assertive"
             aria-label={formState.errors.root?.message}

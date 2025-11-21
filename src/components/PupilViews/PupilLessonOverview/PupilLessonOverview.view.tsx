@@ -106,7 +106,7 @@ export const PupilViewsLessonOverview = ({
   const lessonOutcomes = [pupilLessonOutcome, phonicsOutcome]
     .filter(Boolean)
     .map((outcome) => (
-      <OakP key={outcome} $font="body-1" $mb="space-between-s">
+      <OakP key={outcome} $font="body-1" $mb="spacing-16">
         {outcome}
       </OakP>
     ));
@@ -148,11 +148,11 @@ export const PupilViewsLessonOverview = ({
       }
     >
       <OakGrid
-        $maxWidth={["100%", "all-spacing-23", "100%"]}
-        $mt="space-between-m"
-        $mb={["space-between-none", "space-between-s"]}
+        $maxWidth={["100%", "spacing-960", "100%"]}
+        $mt="spacing-24"
+        $mb={["spacing-0", "spacing-16"]}
         $mh="auto"
-        $ph={["inner-padding-m", "inner-padding-xl", "inner-padding-none"]}
+        $ph={["spacing-16", "spacing-24", "spacing-0"]}
       >
         <OakGridArea $colStart={[1, 1, 2]} $colSpan={[12, 12, 10]}>
           <ViewAllLessonsButton
@@ -167,48 +167,37 @@ export const PupilViewsLessonOverview = ({
         <OakGridArea
           $colStart={[1, 1, 2]}
           $colSpan={[12, 12, 10]}
-          $pt="inner-padding-xl"
+          $pt="spacing-24"
           $display={["none", "block"]}
         >
           {expiringBanner}
         </OakGridArea>
       </OakGrid>
-
       <OakFlex
         $alignItems={["flex-start", "flex-start", "center"]}
-        $pv="inner-padding-xl"
-        $ph={["inner-padding-none", "inner-padding-xl", "inner-padding-none"]}
+        $pv="spacing-24"
+        $ph={["spacing-0", "spacing-24", "spacing-0"]}
         $width="100%"
-        $maxWidth={["100%", "all-spacing-23", "100%"]}
+        $maxWidth={["100%", "spacing-960", "100%"]}
         $mh="auto"
       >
-        <OakGrid $cg="space-between-s">
+        <OakGrid $cg="spacing-16">
           <OakGridArea
             $colStart={[1, 1, 2]}
             $colSpan={[12, 12, 5]}
-            $mb={["space-between-xl", "space-between-xl", "space-between-none"]}
+            $mb={["spacing-56", "spacing-56", "spacing-0"]}
           >
             <OakFlex
               $flexDirection={["row", "row", "column"]}
               $alignItems={["center", "center", "flex-start"]}
-              $gap={[
-                "space-between-s",
-                "space-between-m",
-                "space-between-none",
-              ]}
+              $gap={["spacing-16", "spacing-24", "spacing-0"]}
               $borderColor="bg-decorative1-main"
-              $pb={["inner-padding-l", "inner-padding-none"]}
-              $ph={["inner-padding-m", "inner-padding-none"]}
+              $pb={["spacing-20", "spacing-0"]}
+              $ph={["spacing-16", "spacing-0"]}
               $bb={["border-solid-l", "border-solid-none", "border-solid-none"]}
             >
               {isValidIconName(subjectIconName) && (
-                <OakBox
-                  $mb={[
-                    "space-between-none",
-                    "space-between-none",
-                    "space-between-m",
-                  ]}
-                >
+                <OakBox $mb={["spacing-0", "spacing-0", "spacing-24"]}>
                   <OakSubjectIcon
                     iconName={subjectIconName}
                     alt=""
@@ -221,7 +210,7 @@ export const PupilViewsLessonOverview = ({
                 </OakBox>
               )}
               <OakBox>
-                <OakBox $mb="space-between-s" $display={["none", "block"]}>
+                <OakBox $mb="spacing-16" $display={["none", "block"]}>
                   <OakBulletList
                     listItems={[yearDescription, subject].filter(isString)}
                     $color="text-subdued"
@@ -236,8 +225,8 @@ export const PupilViewsLessonOverview = ({
               </OakBox>
             </OakFlex>
             {lessonOutcomes && (
-              <OakBox $display={["none", "block"]} $mt="space-between-xl">
-                <OakHeading tag="h2" $font="heading-7" $mb="space-between-s">
+              <OakBox $display={["none", "block"]} $mt="spacing-56">
+                <OakHeading tag="h2" $font="heading-7" $mb="spacing-16">
                   Lesson outcome
                 </OakHeading>
                 {lessonOutcomes}
@@ -247,14 +236,14 @@ export const PupilViewsLessonOverview = ({
             {contentGuidance && (
               <OakBox
                 $display={["none", "block"]}
-                $mt="space-between-xl"
+                $mt="spacing-56"
                 data-testid="content-guidance-info"
               >
                 <OakFlex
-                  $gap="space-between-ssx"
+                  $gap="spacing-8"
                   $flexDirection="row"
                   $alignItems="center"
-                  $mb="space-between-s"
+                  $mb="spacing-16"
                 >
                   <OakIcon iconName="warning" $colorFilter="amber" />
                   <OakHeading tag="h2" $font="heading-7">
@@ -279,21 +268,21 @@ export const PupilViewsLessonOverview = ({
             $display={["block", "none"]}
             $colStart={[1, 1, 7]}
             $colSpan={[12, 12, 5]}
-            $ph={["inner-padding-m", "inner-padding-none"]}
-            $pb={"inner-padding-m"}
+            $ph={["spacing-16", "spacing-0"]}
+            $pb={"spacing-16"}
           >
             {expiringBanner}
           </OakGridArea>
           <OakGridArea
             $colStart={[1, 1, 7]}
             $colSpan={[12, 12, 5]}
-            $ph={["inner-padding-m", "inner-padding-none"]}
+            $ph={["spacing-16", "spacing-0"]}
           >
             <OakFlex
               as="ul"
-              $ma={"space-between-none"}
-              $pa={"inner-padding-none"}
-              $gap="space-between-s"
+              $ma={"spacing-0"}
+              $pa={"spacing-0"}
+              $gap="spacing-16"
               $flexDirection="column"
             >
               {lessonReviewSections.includes("intro") && (

@@ -24,26 +24,21 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
 }) => {
   return (
     <OakFlex
-      $mv="space-between-m"
+      $mv="spacing-24"
       $flexDirection={"column"}
-      $pb={[undefined, "inner-padding-xl2"]}
+      $pb={[undefined, "spacing-32"]}
       $bb={["border-solid-none", "border-solid-s"]}
       $borderColor={["transparent", "border-neutral-lighter"]}
       $flexGrow={1}
     >
       <OakFieldset>
-        <OakHeading
-          tag="h3"
-          as={"legend"}
-          $font="heading-7"
-          $mb="space-between-m"
-        >
+        <OakHeading tag="h3" as={"legend"} $font="heading-7" $mb="spacing-24">
           Category
         </OakHeading>
         <OakFlex
           $flexDirection={"row"}
           $flexWrap={"wrap"}
-          $gap={"space-between-ssx"}
+          $gap={"spacing-8"}
           $flexGrow={1}
         >
           <OakSearchFilterCheckBox

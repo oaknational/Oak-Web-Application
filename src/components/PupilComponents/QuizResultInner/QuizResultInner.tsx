@@ -56,7 +56,6 @@ const CorrectAnswerSection = (props: CorectAnswerSectionProps) => {
                   )}
                   imageURL={imageURL}
                   imageAlt={"Image for option " + (index + 1)}
-                  aria-role="listItem"
                 />
               </MathJaxWrap>
             );
@@ -86,7 +85,7 @@ export const QuizResultInner = (props: ResultsInnerProps) => {
   return (
     <OakFlex
       key={`${lessonSection}-question-${index}`}
-      $gap={"space-between-s"}
+      $gap={"spacing-16"}
       $flexDirection={["column", "row"]}
       role="listitem"
     >
@@ -99,7 +98,7 @@ export const QuizResultInner = (props: ResultsInnerProps) => {
           $borderRadius={"border-radius-circle"}
         />
       )}
-      <OakFlex $flexDirection={"column"} $gap={"space-between-m"}>
+      <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
         {questionStem && (
           <QuizResultQuestionStem
             displayIndex={displayIndex}
@@ -136,12 +135,10 @@ export const QuizResultInner = (props: ResultsInnerProps) => {
           />
         )}
         {grade === 0 && quizQuestion && !isHint && (
-          <>
-            <CorrectAnswerSection
-              questionResult={questionResult}
-              quizQuestion={quizQuestion}
-            />
-          </>
+          <CorrectAnswerSection
+            questionResult={questionResult}
+            quizQuestion={quizQuestion}
+          />
         )}
       </OakFlex>
     </OakFlex>

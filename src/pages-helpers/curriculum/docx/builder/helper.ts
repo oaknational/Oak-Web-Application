@@ -82,9 +82,9 @@ export function unitsByYear(units: Unit[]) {
     if (
       output[year] &&
       // Check if unit is not already within output
-      !output[year]!.find((yearUnit) => yearUnit.slug === unit.slug)
+      !output[year].find((yearUnit) => yearUnit.slug === unit.slug)
     ) {
-      output[year]!.push({
+      output[year].push({
         ...unit,
         order: output[year].length,
       });
@@ -117,7 +117,7 @@ export function generateGridCols(amount: number, sizes: number[] = []) {
   const width = Math.floor(
     (MAX_TABLE_WIDTH - alreadyAccountedFor) / (amount - sizes.length),
   );
-  return Array(amount)
+  return new Array(amount)
     .fill(true)
     .map((_, index) => {
       const colWidth = index < sizes.length ? sizes : width;

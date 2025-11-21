@@ -10,7 +10,7 @@ function handleFetchError(response: Response) {
     /**
      * @todo use OakError
      */
-    throw Error(response.statusText);
+    throw new Error(response.statusText);
   }
 }
 

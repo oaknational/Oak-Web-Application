@@ -64,7 +64,7 @@ export const campaignTextStyles: PortableTextComponents = {
         <OakHeading
           $font={["heading-6", "heading-5", "heading-4"]}
           tag="h4"
-          $mb={"space-between-m"}
+          $mb={"spacing-24"}
         >
           {props.children}
         </OakHeading>
@@ -75,7 +75,7 @@ export const campaignTextStyles: PortableTextComponents = {
         <OakHeading
           $font={["heading-6", "heading-6", "heading-5"]}
           tag="h3"
-          $mb={"space-between-m"}
+          $mb={"spacing-24"}
         >
           {props.children}
         </OakHeading>
@@ -95,16 +95,14 @@ const CampaignSinglePage: NextPage<CampaignSinglePageProps> = (props) => {
           title: props.campaign.seo?.title || props.campaign.title,
           description: props.campaign.seo?.description,
         }),
-        noIndex: true,
-        noFollow: true,
       }}
     >
       <OakFlex
         $alignItems="center"
         $flexDirection="column"
         $width="100%"
-        $pv={"inner-padding-xl2"}
-        $ph={["inner-padding-l", "inner-padding-l", "inner-padding-xl5"]}
+        $pv={"spacing-32"}
+        $ph={["spacing-20", "spacing-20", "spacing-56"]}
       >
         <CampaignPageHeader
           campaignHeader={props.campaign.header}

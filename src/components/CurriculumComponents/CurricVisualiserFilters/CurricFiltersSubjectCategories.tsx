@@ -62,8 +62,8 @@ export function CurricFiltersSubjectCategories({
             id="subject-categories-label"
             tag="h4"
             $font={["heading-7", "heading-6"]}
-            $mt="space-between-none"
-            $mb={["space-between-m", "space-between-s"]}
+            $mt="spacing-0"
+            $mb={["spacing-24", "spacing-16"]}
           >
             Category
             {subjectCategoriesAt.length === 1
@@ -79,7 +79,7 @@ export function CurricFiltersSubjectCategories({
             value={subjectCategoryIdAsString}
             $flexDirection="row"
             $flexWrap="wrap"
-            $gap="space-between-ssx"
+            $gap="spacing-8"
             aria-labelledby="subject-categories-label"
           >
             {subjectCategories.map((subjectCategory) => {

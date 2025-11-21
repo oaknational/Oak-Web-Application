@@ -48,7 +48,7 @@ export const InnerRender = (props: CanonicalResultsPrintablePageProps) => {
 
   if (!attemptData) {
     return (
-      <OakMaxWidth $mt={"space-between-l"}>
+      <OakMaxWidth $mt={"spacing-48"}>
         <OakInlineBanner
           isOpen
           message="To share lesson results with your teacher, select the 'Copy link' option on the lesson review page."
@@ -57,8 +57,8 @@ export const InnerRender = (props: CanonicalResultsPrintablePageProps) => {
         <OakFlex
           $justifyContent={"center"}
           $alignItems={"center"}
-          $gap={"space-between-s"}
-          $mt={"space-between-xxxl"}
+          $gap={"spacing-16"}
+          $mt={"spacing-80"}
         >
           {" "}
           <OakLoadingSpinner />
@@ -71,14 +71,13 @@ export const InnerRender = (props: CanonicalResultsPrintablePageProps) => {
   }
   return (
     <MathJaxProvider>
-      <OakMaxWidth $mt={"space-between-l"}>
+      <OakMaxWidth $mt={"spacing-48"}>
         <OakInlineBanner
           isOpen
           message="To share lesson results with your teacher, select the 'Copy link' option on the lesson review page."
           type="neutral"
         />
       </OakMaxWidth>
-
       <PupilViewsResults
         browseData={browseData}
         attemptData={attemptData}
