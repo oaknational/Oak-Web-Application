@@ -7,6 +7,7 @@ import {
   OakUL,
 } from "@oaknational/oak-components";
 import { useRef } from "react";
+import { VisuallyHidden } from "react-aria";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { KeyStageSlug } from "@/utils/curriculum/types";
@@ -32,6 +33,7 @@ export const SubjectKeystageSeoAccordion = ({
           Our curriculum plans for pupils aged {pupilAgesMap[keystageSlug]} make
           it easy for teachers to view the full sequence for every national
           {contentVisible ? "" : "..."}
+          <VisuallyHidden>show more about curriculum planning</VisuallyHidden>
         </OakSpan>
       }
       $alignItems="flex-start"
