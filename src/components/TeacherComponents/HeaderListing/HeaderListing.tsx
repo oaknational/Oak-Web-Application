@@ -19,6 +19,7 @@ import UnitDownloadButton, {
 } from "../UnitDownloadButton/UnitDownloadButton";
 import { UnitListingSeoAccordion } from "../UnitListingSEO/UnitListingSeoAccordion";
 import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
+import { convertSubjectToSlug } from "../helpers/convertSubjectToSlug";
 
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
@@ -43,6 +44,7 @@ export type HeaderListingProps = {
   background: OakColorToken;
   subjectTitle: string;
   subjectSlug: string;
+  subjectParent?: string | null;
   subjectIconBackgroundColor: OakColorFilterToken;
   year?: string;
   keyStageSlug?: KeystageSlug;
@@ -76,6 +78,7 @@ export type HeaderListingProps = {
 const HeaderListing: FC<HeaderListingProps> = (props) => {
   const {
     subjectSlug,
+    subjectParent,
     subjectTitle,
     title,
     keyStageSlug,
@@ -167,7 +170,9 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     isKeyStagesAvailable &&
     showUnitListingSeo &&
     subjectSlug !== "financial-education";
-
+  const linkSubject = subjectParent
+    ? convertSubjectToSlug(subjectParent)
+    : subjectSlug;
   return (
     <LessonHeaderWrapper breadcrumbs={breadcrumbs} background={background}>
       <OakFlex
@@ -288,7 +293,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                 keystageTitle={keyStageTitle}
                 subject={subjectTitle}
                 subjectPhaseSlug={getSubjectPhaseSlug({
-                  subject: subjectSlug,
+                  subject: linkSubject,
                   examBoardSlug: examBoardSlug,
                   phaseSlug:
                     getPhaseSlugFromKeystage(keyStageSlug) ?? "primary",
