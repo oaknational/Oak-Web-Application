@@ -292,6 +292,8 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                 keystageSlug={keyStageSlug}
                 keystageTitle={keyStageTitle}
                 subject={subjectTitle}
+                subjectSlug={subjectSlug}
+                hasSubjectCategories={!!subjectParent}
                 subjectPhaseSlug={getSubjectPhaseSlug({
                   subject: linkSubject,
                   examBoardSlug: examBoardSlug,

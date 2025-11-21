@@ -13,13 +13,17 @@ import { KeystageSlug } from "@/node-lib/curriculum-api-2023/shared.schema";
 export const UnitListingSeoAccordion = ({
   keystageSlug,
   subject,
+  subjectSlug,
   keystageTitle,
   subjectPhaseSlug,
+  hasSubjectCategories,
 }: {
   keystageSlug: KeystageSlug;
   subject: string;
+  subjectSlug: string;
   keystageTitle: string;
   subjectPhaseSlug: string;
+  hasSubjectCategories: boolean;
 }) => {
   const accordionContentRef = useRef<HTMLDivElement>(null);
   const { contentVisible } = useContentVisibleOnClick(accordionContentRef);
@@ -68,6 +72,11 @@ export const UnitListingSeoAccordion = ({
             href={resolveOakHref({
               page: "curriculum-units",
               subjectPhaseSlug,
+              query: hasSubjectCategories
+                ? {
+                    subject_categories: subjectSlug,
+                  }
+                : undefined,
             })}
           >
             {keystageSlug.toUpperCase()} curriculum
