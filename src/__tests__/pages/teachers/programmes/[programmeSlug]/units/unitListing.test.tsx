@@ -37,6 +37,12 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   }),
 }));
 
+jest.mock("@/hooks/useContentVisibleOnClick", () => ({
+  useContentVisibleOnClick: jest
+    .fn()
+    .mockResolvedValue({ isContentVisible: false }),
+}));
+
 const render = renderWithProviders();
 
 describe("pages/programmes/[programmeSlug]/units", () => {

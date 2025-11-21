@@ -462,7 +462,7 @@ export const getStaticProps: GetStaticProps<
         };
 
         return results;
-      } catch (error) {
+      } catch {
         return {
           notFound: true,
         };

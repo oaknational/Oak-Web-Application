@@ -1,5 +1,6 @@
 import { getTitleFromSlug } from "../../shared/helper";
 
+import { KeystageSlug } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { Unit } from "@/utils/curriculum/types";
 
 const BASE_UNIT: Unit = {
@@ -48,6 +49,20 @@ export function getPhaseSlug(year: string) {
     return "primary";
   } else {
     return "secondary";
+  }
+}
+
+export function getPhaseSlugFromKeystage(keystage: KeystageSlug) {
+  if (
+    keystage === "early-years-foundation-stage" ||
+    keystage === "ks1" ||
+    keystage === "ks2"
+  ) {
+    return "primary";
+  } else if (keystage === "ks3" || keystage === "ks4") {
+    return "secondary";
+  } else {
+    return null;
   }
 }
 

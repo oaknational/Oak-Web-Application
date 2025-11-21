@@ -19,6 +19,7 @@ import KeyStageKeypad from "@/components/SharedComponents/KeyStageKeypad";
 import { getCombinedSubjects } from "@/pages-helpers/teacher/subject-listing-page/getCombinedSubjects";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import Banners from "@/components/SharedComponents/Banners";
+import { KeyStageSlug } from "@/utils/curriculum/types";
 
 export type KeyStagePageProps = {
   keyStageTitle: string;
@@ -35,7 +36,7 @@ export type SubjectPathwayArray = [SubjectPathway, ...SubjectPathway[]];
 
 export type SubjectListingPageProps = {
   subjects: [SubjectPathwayArray, ...SubjectPathwayArray[]];
-  keyStageSlug: string;
+  keyStageSlug: KeyStageSlug | "early-years-foundation-stage";
   keyStageTitle: string;
   keyStages: KeyStageData[];
 };

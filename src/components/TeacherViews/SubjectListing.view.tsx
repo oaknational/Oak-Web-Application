@@ -10,6 +10,9 @@ import {
 } from "@oaknational/oak-components";
 
 import OwaLink from "../SharedComponents/OwaLink";
+import { SubjectKeystageSeoText } from "../TeacherComponents/SubjectKeystageSEO/SubjectKeystageSeoText";
+import { SubjectKeystageSeoAccordion } from "../TeacherComponents/SubjectKeystageSEO/SubjectKeystageSeoAccordion";
+import { getSubjectKeystageSeoLinks } from "../TeacherComponents/SubjectKeystageSEO/getSubjectKeystageSeoLinks";
 
 import { SubjectListingPageProps } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
 import SubjectListingCardDouble from "@/components/TeacherComponents/SubjectListingCard";
@@ -49,7 +52,7 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
           >
             {title}
           </OakHeading>
-          {isEyfs && (
+          {isEyfs ? (
             <OakP $font="heading-light-7">
               These teaching resources were made during the pandemic for parents
               to use at home with their children. Now they are used by teachers
@@ -65,6 +68,8 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
               </OwaLink>
               .
             </OakP>
+          ) : (
+            <SubjectKeystageSeoText keystageSlug={keyStageSlug} />
           )}
         </OakFlex>
         <OakGrid
@@ -126,6 +131,16 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
               ))}
             </OakGrid>
           </>
+        )}
+        {!isEyfs && (
+          <OakGrid>
+            <OakGridArea $colSpan={[12, 12, 9]} $mb="spacing-80">
+              <SubjectKeystageSeoAccordion
+                keystageSlug={keyStageSlug}
+                links={getSubjectKeystageSeoLinks(subjects, keyStageSlug)}
+              />
+            </OakGridArea>
+          </OakGrid>
         )}
       </OakMaxWidth>
     </OakFlex>

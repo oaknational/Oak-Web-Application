@@ -266,6 +266,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
           isNew={hasNewContent ?? false}
           hasCurriculumDownload={isSlugLegacy(programmeSlug)}
           subjectDescriptionUnitListingData={curriculumData}
+          showUnitListingSeo
           {...curriculumData}
         />
         <OakMaxWidth $ph={"spacing-16"}>
