@@ -1,10 +1,14 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import {
   defaultText,
   ks4Text,
   SubjectKeystageSeoText,
 } from "./SubjectKeystageSeoText";
+
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProviders();
 
 describe("SubjectKeystageSEO", () => {
   it("should render correct text for ks1", () => {
