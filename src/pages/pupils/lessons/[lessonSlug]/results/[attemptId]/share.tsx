@@ -1,10 +1,5 @@
-import {
-  LessonAttemptCamelCase,
-  NetworkClient,
-} from "@oaknational/oak-pupil-client";
 import { GetServerSideProps, GetServerSidePropsResult } from "next";
 
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { PupilViewsResults } from "@/components/PupilViews/PupilResults";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
@@ -14,6 +9,8 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import getPageProps from "@/node-lib/getPageProps";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
+import { LessonAttemptCamelCase } from "@/node-lib/pupil-api/types";
+import { pupilDatastore } from "@/node-lib/pupil-api/pupilDataStore";
 
 type CanonicalResultsShareURLParams = {
   lessonSlug: string;
@@ -61,14 +58,11 @@ export const getServerSideProps: GetServerSideProps<
         lessonSlug,
       });
 
-      const networkClient = new NetworkClient({
-        getLessonAttemptUrl: getBrowserConfig("oakGetLessonAttemptUrl"),
-        logLessonAttemptUrl: getBrowserConfig("oakLogLessonAttemptUrl"),
-        getTeacherNoteUrl: getBrowserConfig("oakGetTeacherNoteUrl"),
-        addTeacherNoteUrl: getBrowserConfig("oakAddTeacherNoteUrl"),
+      const { attempts } = await pupilDatastore.getLessonAttempt({
+        attemptId,
       });
-      const attemptData = await networkClient.getAttempt(attemptId);
-      const parsedAttemptData = keysToCamelCase(attemptData[attemptId]);
+
+      const parsedAttemptData = keysToCamelCase(attempts[attemptId]);
 
       if (!parsedAttemptData) {
         throw new Error("unexpected attemptData");

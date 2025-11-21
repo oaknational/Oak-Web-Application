@@ -8,52 +8,22 @@ import CanonicalResultsPage, {
   getServerSideProps,
 } from "@/pages/pupils/lessons/[lessonSlug]/results/[attemptId]/share";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
+import { LessonAttemptFixture } from "@/node-lib/pupil-api/__mocks__/fixtures/lesson-attempt.fixture";
 
-jest.mock("@oaknational/oak-pupil-client", () => ({
-  ...jest.requireActual("@oaknational/oak-pupil-client"),
-  NetworkClient: jest.fn(() => ({
-    getAttempt: () => Promise.resolve(mockReturn),
-  })),
+jest.mock("@/node-lib/pupil-api/pupilDataStore", () => ({
+  pupilDatastore: {
+    getLessonAttempt: jest.fn(() => {
+      return {
+        attempts: {
+          ARHMdfK44YeMawb1QtnxN: mockAttemptData,
+        },
+        empty: false,
+      };
+    }),
+  },
 }));
 
-const mockAttemptData = {
-  attempt_id: "ARHMdfK44YeMawb1QtnxN",
-  created_at: "2021-09-29T14:00:00Z",
-  lesson_data: {
-    title: "Test Lesson",
-    slug: "test-lesson",
-  },
-  browse_data: {
-    subject: "Test Subject",
-    year_description: "Test Year",
-  },
-  section_results: {
-    intro: {
-      worksheet_downloaded: false,
-      worksheet_available: false,
-      is_complete: false,
-    },
-    "starter-quiz": {
-      is_complete: true,
-      grade: 3,
-      num_questions: 3,
-    },
-    video: {
-      is_complete: false,
-    },
-    "exit-quiz": {
-      is_complete: false,
-      grade: 3,
-      num_questions: 3,
-    },
-  },
-};
-
-type AttemptData = typeof mockAttemptData;
-
-const mockReturn: Record<string, AttemptData> = {
-  ARHMdfK44YeMawb1QtnxN: mockAttemptData,
-};
+const mockAttemptData = { ...LessonAttemptFixture() };
 
 describe("pages/pupils/lessons/[lessonSlug]/results/[attemptId]/share", () => {
   describe("CanonicalResultsPage", () => {

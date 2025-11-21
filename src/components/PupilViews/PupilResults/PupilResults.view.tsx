@@ -10,7 +10,6 @@ import {
   OakQuizPrintableSubHeader,
   OakThemeProvider,
 } from "@oaknational/oak-components";
-import { LessonAttemptCamelCase } from "@oaknational/oak-pupil-client";
 
 import { QuestionsArray } from "@/components/PupilComponents/QuizEngineProvider";
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
@@ -18,6 +17,7 @@ import { LessonBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLe
 import { QuizResultInner } from "@/components/PupilComponents/QuizResultInner";
 import { QuestionState } from "@/components/PupilComponents/QuizUtils/questionTypes";
 import { CopyrightNotice } from "@/components/PupilComponents/CopyrightNotice";
+import { LessonAttemptCamelCase } from "@/node-lib/pupil-api/types";
 
 type PupilViewsResultsProps = {
   attemptData: LessonAttemptCamelCase;

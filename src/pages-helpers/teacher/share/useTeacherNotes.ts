@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import {
-  TeacherNoteCamelCase,
-  TeacherNote,
-  TeacherNoteError,
-  useOakPupil,
-} from "@oaknational/oak-pupil-client";
 
 import { CoreProperties, CurriculumTrackingProps } from "./shareTypes";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { LessonReleaseCohortValueType } from "@/browser-lib/avo/Avo";
+import { useOakPupil } from "@/hooks/useOakPupil";
+import {
+  TeacherNote,
+  TeacherNoteCamelCase,
+  TeacherNoteError,
+} from "@/node-lib/pupil-api/types";
 
 export type UseTeacherNotesProps = {
   lessonPath?: string | null;
@@ -56,7 +56,7 @@ export const useTeacherNotes = ({
         console.error("sidKey or lessonPath is missing");
         return;
       }
-
+      // retrieve any existing teacher note using whatever is in local storage
       try {
         // retrieve any existing teacher note using whatever is in local storage
         const { isEditable, teacherNote } = await getTeacherNote({

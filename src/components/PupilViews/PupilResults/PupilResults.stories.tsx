@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
-import { LessonAttemptCamelCase } from "@oaknational/oak-pupil-client";
 
 import { PupilViewsResults } from "./PupilResults.view";
 
@@ -11,6 +10,7 @@ import {
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { sectionResultsFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonSectionResults.fixture";
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
+import { LessonAttemptCamelCase } from "@/node-lib/pupil-api/types";
 
 const meta = {
   component: PupilViewsResults,

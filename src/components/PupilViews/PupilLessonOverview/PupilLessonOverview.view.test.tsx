@@ -1,5 +1,4 @@
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
-import { OakPupilClientProvider } from "@oaknational/oak-pupil-client";
 
 import { PupilViewsLessonOverview } from "./PupilLessonOverview.view";
 
@@ -11,6 +10,7 @@ import {
 import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 import { trackingEvents } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+import { OakPupilClientProvider } from "@/context/Pupil/OakPupilClientProvider";
 
 const usePupilAnalyticsMock = {
   track: Object.fromEntries(trackingEvents.map((event) => [event, jest.fn()])),
@@ -45,14 +45,7 @@ const mockBroweData = lessonBrowseDataFixture({
 describe("PupilViewsLessonOverview", () => {
   it("displays the lesson title", () => {
     const { queryByRole } = renderWithTheme(
-      <OakPupilClientProvider
-        config={{
-          getLessonAttemptUrl: "example.com",
-          logLessonAttemptUrl: "example.com",
-          getTeacherNoteUrl: "example.com",
-          addTeacherNoteUrl: "example.com",
-        }}
-      >
+      <OakPupilClientProvider>
         {" "}
         <OakThemeProvider theme={oakDefaultTheme}>
           <LessonEngineContext.Provider value={createLessonEngineContext()}>
@@ -83,14 +76,7 @@ describe("PupilViewsLessonOverview", () => {
       const updateCurrentSection = jest.fn();
 
       const { getByRole } = renderWithTheme(
-        <OakPupilClientProvider
-          config={{
-            getLessonAttemptUrl: "example.com",
-            logLessonAttemptUrl: "example.com",
-            getTeacherNoteUrl: "example.com",
-            addTeacherNoteUrl: "example.com",
-          }}
-        >
+        <OakPupilClientProvider>
           {" "}
           <OakThemeProvider theme={oakDefaultTheme}>
             <LessonEngineContext.Provider
@@ -116,14 +102,7 @@ describe("PupilViewsLessonOverview", () => {
 
   it("displays in-progress for in progress sections", () => {
     const { getByTestId } = renderWithTheme(
-      <OakPupilClientProvider
-        config={{
-          getLessonAttemptUrl: "example.com",
-          logLessonAttemptUrl: "example.com",
-          getTeacherNoteUrl: "example.com",
-          addTeacherNoteUrl: "example.com",
-        }}
-      >
+      <OakPupilClientProvider>
         <OakThemeProvider theme={oakDefaultTheme}>
           <LessonEngineContext.Provider
             value={createLessonEngineContext({
@@ -154,14 +133,7 @@ describe("PupilViewsLessonOverview", () => {
   it("displays the number of questions for each quiz", () => {
     // console.log(logAttempt);
     const { getByTestId } = renderWithTheme(
-      <OakPupilClientProvider
-        config={{
-          getLessonAttemptUrl: "example.com",
-          logLessonAttemptUrl: "example.com",
-          getTeacherNoteUrl: "example.com",
-          addTeacherNoteUrl: "example.com",
-        }}
-      >
+      <OakPupilClientProvider>
         {" "}
         <OakThemeProvider theme={oakDefaultTheme}>
           <LessonEngineContext.Provider value={createLessonEngineContext()}>
