@@ -1,3 +1,55 @@
+# [1.916.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.915.5...v1.916.0) (2025-11-24)
+
+
+### Bug Fixes
+
+* improve accessibility by setting image alt attribute and aria-label ([bc440af](https://github.com/oaknational/Oak-Web-Application/commit/bc440af80faf2c3da0ef8408e088a867a8f3137e))
+* remove alt text and update snapshots ([3c25c3e](https://github.com/oaknational/Oak-Web-Application/commit/3c25c3e5ecbf1fcc997888416eb6d7eefd9c6f84))
+
+
+### Features
+
+* add confetti background to WhoAreWeExplore component ([ab8e687](https://github.com/oaknational/Oak-Web-Application/commit/ab8e6879ee8037ea63cafcbff83c6b05d0240880))
+* add newsletter component ([4f1a74a](https://github.com/oaknational/Oak-Web-Application/commit/4f1a74a8dc152c570a49e5fe2a1d3cdefa4a3a40))
+* merge in new spacing tokens ([4bd5831](https://github.com/oaknational/Oak-Web-Application/commit/4bd58317925c2c0644a5a1d6aa23a6671141f694))
+* run codemod ([d98cdaf](https://github.com/oaknational/Oak-Web-Application/commit/d98cdafe057b2800c1175435fd9cc7ca8924b9d2))
+* update oak-components ([d1933a8](https://github.com/oaknational/Oak-Web-Application/commit/d1933a8842917f30e9e5f94d173de3be4a8bae86))
+
+## [1.915.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.915.4...v1.915.5) (2025-11-20)
+
+
+### Bug Fixes
+
+* aria-role is not a valid attribute ([565fe46](https://github.com/oaknational/Oak-Web-Application/commit/565fe46b67bd6d9f0f2054ed1ad2605dce235c9c))
+
+## [1.915.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.915.3...v1.915.4) (2025-11-19)
+
+
+### Bug Fixes
+
+* do not pass children as props (sonarcloud) ([c799cff](https://github.com/oaknational/Oak-Web-Application/commit/c799cff8aace5090b0acd2fc4a61d666db8aeb4d))
+
+## [1.915.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.915.2...v1.915.3) (2025-11-19)
+
+
+### Bug Fixes
+
+* <ul/> has an implicit role of list ([5b2f9a6](https://github.com/oaknational/Oak-Web-Application/commit/5b2f9a669cae8a1fcbf55cec1ef83aaa058ccd85))
+
+## [1.915.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.915.1...v1.915.2) (2025-11-19)
+
+
+### Bug Fixes
+
+* added missing `Readonly<...>` to props ([4ca2284](https://github.com/oaknational/Oak-Web-Application/commit/4ca2284cef8a50890c623e69aa233068b894a7f6))
+
+## [1.915.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.915.0...v1.915.1) (2025-11-18)
+
+
+### Bug Fixes
+
+* don't include NC document in downloads when not available ([ac70307](https://github.com/oaknational/Oak-Web-Application/commit/ac703072c0afef0be42475a61b3916642d37b6dc))
+
 # [1.915.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.914.3...v1.915.0) (2025-11-18)
 
 

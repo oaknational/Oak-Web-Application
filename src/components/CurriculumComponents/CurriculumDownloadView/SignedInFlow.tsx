@@ -10,7 +10,7 @@ import { useUser } from "@clerk/nextjs";
 
 import Terms from "../OakComponentsKitchen/Terms";
 
-import { DOWNLOAD_TYPE_LABELS, DownloadType, School } from "./helper";
+import { DownloadType, School } from "./helper";
 import { CurriculumDownloadSelection } from "./CurriculumDownloadSelection";
 
 import { CurriculumDownloadViewProps } from ".";
@@ -36,18 +36,19 @@ export type CurriculumDownloadViewErrors = Partial<{
 
 type SignedInFlowProps = CurriculumDownloadViewProps & {
   user: ReturnType<typeof useUser>;
+  downloadTypes: DownloadType[];
+  onChangeDownloadTypes: (newDownloadType: DownloadType[]) => void;
 };
 export default function SignedInFlow({
   onSubmit,
   schools,
   submitError,
   availableDownloadTypes,
+  downloadTypes,
+  onChangeDownloadTypes,
 }: SignedInFlowProps) {
   const submitErrorId = useId();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [downloadTypes, setDownloadTypes] = useState(() =>
-    DOWNLOAD_TYPE_LABELS.map(({ id }) => id),
-  );
 
   const onDownload = async () => {
     try {
@@ -83,7 +84,7 @@ export default function SignedInFlow({
       <OakBox $width={["100%", "spacing-360"]} $textAlign={"left"}>
         <CurriculumDownloadSelection
           downloadTypes={downloadTypes}
-          onChange={setDownloadTypes}
+          onChange={onChangeDownloadTypes}
           availableDownloadTypes={availableDownloadTypes}
         />
         <OakBox $mt="spacing-24">

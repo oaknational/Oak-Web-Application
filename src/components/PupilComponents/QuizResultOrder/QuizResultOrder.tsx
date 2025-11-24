@@ -46,7 +46,6 @@ export const QuizResultOrder = ({
           boldPrefixText={`${pupilAnswer}`}
           standardText={standardText}
           feedbackState={feedbackState}
-          aria-role="listItem"
         />
       </MathJaxWrap>
     );
