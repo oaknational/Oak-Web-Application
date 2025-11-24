@@ -36,6 +36,37 @@ export const UnitListingSeoAccordion = ({
 
   const years = keyStageYearsMap[keystageSlug];
 
+  // RSHE is not available in the curriculum visualiser so don't link to it
+  const hideCurriculumLinks = subjectSlug === "rshe-pshe";
+  const finalLine = hideCurriculumLinks ? null : (
+    <>
+      Read more about how the{" "}
+      <OakLink
+        href={resolveOakHref({
+          page: "curriculum-units",
+          subjectPhaseSlug,
+          query: hasSubjectCategories
+            ? {
+                subject_categories: subjectSlug,
+              }
+            : undefined,
+        })}
+      >
+        {keystageSlug.toUpperCase()} curriculum
+      </OakLink>{" "}
+      was designed in our{" "}
+      <OakLink
+        href={resolveOakHref({
+          page: "curriculum-overview",
+          subjectPhaseSlug,
+        })}
+      >
+        explainer
+      </OakLink>
+      .
+    </>
+  );
+
   return (
     <OakBasicAccordion
       id="units-seo-accordion"
@@ -67,31 +98,7 @@ export const UnitListingSeoAccordion = ({
           exit quizzes and key vocabulary – all ready for you to teach and adapt
           for your pupils. You can download lesson and teaching resources, or
           log in and download units or save units to ‘my library’ – whichever is
-          best for you to plan your {subject.toLowerCase()} lesson. Read more
-          about how the{" "}
-          <OakLink
-            href={resolveOakHref({
-              page: "curriculum-units",
-              subjectPhaseSlug,
-              query: hasSubjectCategories
-                ? {
-                    subject_categories: subjectSlug,
-                  }
-                : undefined,
-            })}
-          >
-            {keystageSlug.toUpperCase()} curriculum
-          </OakLink>{" "}
-          was designed in our{" "}
-          <OakLink
-            href={resolveOakHref({
-              page: "curriculum-overview",
-              subjectPhaseSlug,
-            })}
-          >
-            explainer
-          </OakLink>
-          .
+          best for you to plan your {subject.toLowerCase()} lesson. {finalLine}
         </OakSpan>
       </OakFlex>
     </OakBasicAccordion>
