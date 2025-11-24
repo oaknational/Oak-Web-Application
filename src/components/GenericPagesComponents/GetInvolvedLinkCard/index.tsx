@@ -1,5 +1,4 @@
 import {
-  OakBox,
   OakFlex,
   OakHeading,
   OakHeadingProps,
@@ -39,7 +38,7 @@ export function GetInvolvedLinkCard({
         </OakHeading>
         <OakP $font={["body-2", "body-1", "body-1"]}>{content}</OakP>
       </OakFlex>
-      <OakBox>
+      <OakFlex>
         <OakSecondaryButton
           element="a"
           href={buttonLink}
@@ -48,7 +47,7 @@ export function GetInvolvedLinkCard({
         >
           {buttonText}
         </OakSecondaryButton>
-      </OakBox>
+      </OakFlex>
     </OakFlex>
   );
 }
