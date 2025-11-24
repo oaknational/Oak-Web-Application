@@ -11,6 +11,7 @@ import {
   OakBox,
   OakPrimaryButton,
 } from "@oaknational/oak-components";
+import styled from "styled-components";
 
 import CMSClient from "@/node-lib/cms";
 import {
@@ -34,11 +35,21 @@ import { WhoAreWeBreakout } from "@/components/GenericPagesComponents/WhoAreWeBr
 import WhoAreWeTimeline from "@/components/GenericPagesComponents/WhoAreWeTimeline";
 import { WhoAreWeDesc } from "@/components/GenericPagesComponents/WhoAreWeDesc";
 import { WhoAreWeExplore } from "@/components/GenericPagesComponents/WhoAreWeExplore";
+import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
+import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
+
+const NewsletterWrapper = styled(OakBox)`
+  max-width: 100%;
+
+  @media (min-width: 750px) {
+    max-width: 870px;
+  }
+`;
 
 export type AboutPageProps = {
   pageData: AboutWhoWeArePage;
@@ -209,63 +220,78 @@ export const AboutWhoWeAreNew: NextPage<AboutPageProps> = ({
   pageData,
   newAboutWhoWeArePage,
 }) => {
+  const newsletterFormProps = useNewsletterForm();
   if (!newAboutWhoWeArePage) {
     return <div />;
   }
 
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
-      <WhoAreWeHeader
-        title={newAboutWhoWeArePage.header.title}
-        content={newAboutWhoWeArePage.header.subTitle}
-        imageUrl={
-          "https://res.cloudinary.com/oak-web-application/image/upload/v1734018530/OWA/illustrations/auth-acorn_zyoma2.svg"
-        }
-        imageAlt={"Oak logo"}
-      />
-      {newAboutWhoWeArePage.breakout.image.asset && (
-        <WhoAreWeBreakout
-          imageUrl={newAboutWhoWeArePage.breakout.image.asset?.url}
-          imageAlt={newAboutWhoWeArePage.breakout.image.altText ?? ""}
-          content={newAboutWhoWeArePage.breakout.text}
+      <OakBox $overflow={"hidden"}>
+        <WhoAreWeHeader
+          title={newAboutWhoWeArePage.header.title}
+          content={newAboutWhoWeArePage.header.subTitle}
+          imageUrl={
+            "https://res.cloudinary.com/oak-web-application/image/upload/v1734018530/OWA/illustrations/auth-acorn_zyoma2.svg"
+          }
+          imageAlt={""}
         />
-      )}
-      <WhoAreWeTimeline
-        title={"As teaching evolves, so do we..."}
-        subTitle={"Oak’s story"}
-        items={newAboutWhoWeArePage.timeline}
-      />
-      <WhoAreWeDesc title={"We are..."} items={newAboutWhoWeArePage.usp} />
-      <WhoAreWeExplore
-        title={"Explore more about Oak"}
-        items={[
-          {
-            iconName: "curriculum-plan",
-            title: "About Oak’s curriculum",
-            href: "#",
-          },
-          {
-            iconName: "ai-worksheet",
-            title: "Oak’s impact",
-            href: "#",
-          },
-          {
-            iconName: "ai-worksheet",
-            title: "Meet the team",
-            href: "#",
-          },
-          {
-            iconName: "ai-worksheet",
-            title: "Get involved",
-            href: "#",
-          },
-        ]}
-      />
+        <WhoAreWeBreakout
+          imageUrl={
+            "https://sanity-asset-cdn.thenational.academy/images/cuvjke51/production/ef2a05d634b1ade34d33664c44fa36cb62e1aaba-3000x2001.jpg?w=640&fm=webp&q=80&fit=clip&auto=format"
+          }
+          imageAlt=""
+          content={
+            "We’re Oak, your trusted planning partner for great teaching. Our free, adaptable resources evolve with education to give teachers and schools the latest tools to deliver inspiring lessons, save time and improve pupil outcomes."
+          }
+        />
+        <WhoAreWeTimeline
+          title={"As teaching evolves, so do we..."}
+          subTitle={"Oak’s story"}
+          items={newAboutWhoWeArePage.timeline}
+        />
+        <WhoAreWeDesc title={"We are..."} items={newAboutWhoWeArePage.usp} />
+        <WhoAreWeExplore
+          title={"Explore more about Oak"}
+          items={[
+            {
+              iconName: "homepage-teacher-map",
+              title: "About Oak’s curriculum",
+              href: "#",
+            },
+            {
+              iconName: "data",
+              title: "Oak’s impact",
+              href: "#",
+            },
+            {
+              iconName: "snack-break",
+              title: "Meet the team",
+              href: "#",
+            },
+            {
+              iconName: "chatting",
+              title: "Get involved",
+              href: "#",
+            },
+          ]}
+        />
+        <OakBox
+          $background={"bg-decorative1-subdued"}
+          $pv={["spacing-56", "spacing-56"]}
+        >
+          <OakMaxWidth $ph={"spacing-16"} $alignItems={"center"}>
+            <NewsletterWrapper>
+              <NewsletterFormWrap desktopColSpan={6} {...newsletterFormProps} />
+            </NewsletterWrapper>
+          </OakMaxWidth>
+        </OakBox>
+      </OakBox>
     </Layout>
   );
 };
 
-function AboutWhoWeAre(props: AboutPageProps) {
+function AboutWhoWeAre(props: Readonly<AboutPageProps>) {
   if (props.enableV2) {
     return <AboutWhoWeAreNew {...props} />;
   }

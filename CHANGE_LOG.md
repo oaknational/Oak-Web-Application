@@ -1,3 +1,27 @@
+## [1.916.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.916.0...v1.916.1) (2025-11-24)
+
+
+### Bug Fixes
+
+* prevent notListed from appearing as an initial value in the school picker input ([d471008](https://github.com/oaknational/Oak-Web-Application/commit/d47100857cdcee266a2fd9ac1788ca3478319d24))
+
+# [1.916.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.915.5...v1.916.0) (2025-11-24)
+
+
+### Bug Fixes
+
+* improve accessibility by setting image alt attribute and aria-label ([bc440af](https://github.com/oaknational/Oak-Web-Application/commit/bc440af80faf2c3da0ef8408e088a867a8f3137e))
+* remove alt text and update snapshots ([3c25c3e](https://github.com/oaknational/Oak-Web-Application/commit/3c25c3e5ecbf1fcc997888416eb6d7eefd9c6f84))
+
+
+### Features
+
+* add confetti background to WhoAreWeExplore component ([ab8e687](https://github.com/oaknational/Oak-Web-Application/commit/ab8e6879ee8037ea63cafcbff83c6b05d0240880))
+* add newsletter component ([4f1a74a](https://github.com/oaknational/Oak-Web-Application/commit/4f1a74a8dc152c570a49e5fe2a1d3cdefa4a3a40))
+* merge in new spacing tokens ([4bd5831](https://github.com/oaknational/Oak-Web-Application/commit/4bd58317925c2c0644a5a1d6aa23a6671141f694))
+* run codemod ([d98cdaf](https://github.com/oaknational/Oak-Web-Application/commit/d98cdafe057b2800c1175435fd9cc7ca8924b9d2))
+* update oak-components ([d1933a8](https://github.com/oaknational/Oak-Web-Application/commit/d1933a8842917f30e9e5f94d173de3be4a8bae86))
+
 ## [1.915.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.915.4...v1.915.5) (2025-11-20)
 
 
