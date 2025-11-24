@@ -6,6 +6,8 @@ import {
 } from "@oaknational/oak-components";
 import { useRef } from "react";
 
+import { formatSubjectName } from "../helpers/seoTextHelpers/seoText.helpers";
+
 import { resolveOakHref } from "@/common-lib/urls";
 import { useContentVisibleOnClick } from "@/hooks/useContentVisibleOnClick";
 import { KeystageSlug } from "@/node-lib/curriculum-api-2023/shared.schema";
@@ -93,12 +95,13 @@ export const UnitListingSeoAccordion = ({
         <OakSpan>
           {" "}
           Explore free teaching resources for {keystageTitle.toLowerCase()},{" "}
-          {subject.toLowerCase()}, covering {years}. Save hours planning lessons
-          with a slide deck, worksheet, prior knowledge starter and assessment
-          exit quizzes and key vocabulary – all ready for you to teach and adapt
-          for your pupils. You can download lesson and teaching resources, or
-          log in and download units or save units to ‘my library’ – whichever is
-          best for you to plan your {subject.toLowerCase()} lesson. {finalLine}
+          {formatSubjectName(subject)}, covering {years}. Save hours planning
+          lessons with a slide deck, worksheet, prior knowledge starter and
+          assessment exit quizzes and key vocabulary – all ready for you to
+          teach and adapt for your pupils. You can download lesson and teaching
+          resources, or log in and download units or save units to ‘my library’
+          – whichever is best for you to plan your {formatSubjectName(subject)}{" "}
+          lesson. {finalLine}
         </OakSpan>
       </OakFlex>
     </OakBasicAccordion>
