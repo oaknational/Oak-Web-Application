@@ -169,7 +169,10 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
   const showUnitListingSeoAccordion =
     isKeyStagesAvailable &&
     showUnitListingSeo &&
-    subjectSlug !== "financial-education";
+    subjectSlug !== "financial-education" &&
+    subjectSlug !== "drama" &&
+    subjectSlug !== "latin";
+
   const linkSubject = subjectParent
     ? convertSubjectToSlug(subjectParent)
     : subjectSlug;
