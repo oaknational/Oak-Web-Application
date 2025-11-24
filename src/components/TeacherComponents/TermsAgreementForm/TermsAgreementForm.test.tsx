@@ -1,4 +1,5 @@
-import { queryByAttribute } from "@testing-library/react";
+import { useState } from "react";
+import { queryByAttribute, act } from "@testing-library/react";
 import { FieldErrors, useForm } from "react-hook-form";
 
 import TermsAgreementForm, {
@@ -81,5 +82,58 @@ describe("TermsAgreementForm (School, email and terms form within the teacher an
     const copyrightNotice = queryByText("Open Government Licence version 3.0");
     expect(heading).not.toBeInTheDocument();
     expect(copyrightNotice).not.toBeInTheDocument();
+  });
+  it("automatically populates the input with the school name and capitalises when editing", async () => {
+    const WrapperWithState = () => {
+      const [showSavedDetails, setShowSavedDetails] = useState(true);
+
+      return (
+        <Wrapper
+          useDownloadPageLayout
+          showSavedDetails={showSavedDetails}
+          schoolName="test-school-name"
+          schoolId="123456-test-school-name"
+          handleEditDetailsCompletedClick={() => setShowSavedDetails(false)}
+        />
+      );
+    };
+
+    const { getByText, getByRole } = render(<WrapperWithState />);
+    expect(getByText("test-school-name")).toBeInTheDocument();
+    const editButton = getByRole("button", { name: "Edit details" });
+
+    await act(async () => {
+      editButton.click();
+    });
+    const schoolInput = getByRole("combobox") as HTMLInputElement;
+
+    expect(schoolInput.value).toBe("Test-school-name");
+  });
+
+  it("does not populate the input when the school is not listed", async () => {
+    const WrapperWithState = () => {
+      const [showSavedDetails, setShowSavedDetails] = useState(true);
+
+      return (
+        <Wrapper
+          useDownloadPageLayout
+          showSavedDetails={showSavedDetails}
+          schoolName="notListed"
+          schoolId="123456-test-school-name"
+          handleEditDetailsCompletedClick={() => setShowSavedDetails(false)}
+        />
+      );
+    };
+
+    const { getByText, getByRole } = render(<WrapperWithState />);
+    expect(getByText("My school isn’t listed")).toBeInTheDocument();
+    const editButton = getByRole("button", { name: "Edit details" });
+
+    await act(async () => {
+      editButton.click();
+    });
+    const schoolInput = getByRole("combobox") as HTMLInputElement;
+
+    expect(schoolInput.value).toBe("");
   });
 });
