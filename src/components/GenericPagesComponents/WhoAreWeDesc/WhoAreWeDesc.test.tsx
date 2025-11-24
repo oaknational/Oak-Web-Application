@@ -12,8 +12,12 @@ describe("WhoAreWeDesc", () => {
       return {
         title: `ITEM_TITLE_${index}`,
         text: `ITEM_TEXT_${index}`,
-        imageUrl: `http://example.com/${index}`,
-        imageAlt: `ITEM_ALT_${index}`,
+        image: {
+          asset: {
+            url: `http://example.com/${index}`,
+          },
+          altText: `ITEM_ALT_${index}`,
+        },
       };
     });
 
@@ -28,11 +32,11 @@ describe("WhoAreWeDesc", () => {
     items.forEach((item, index) => {
       expect(getByRole(itemElements[index]!, "img")).toHaveAttribute(
         "src",
-        `http://localhost/_next/image?url=${encodeURIComponent(item.imageUrl)}&w=3840&q=75`,
+        `http://localhost/_next/image?url=${encodeURIComponent(item.image.asset.url)}&w=3840&q=75`,
       );
       expect(getByRole(itemElements[index]!, "img")).toHaveAttribute(
         "alt",
-        item.imageAlt,
+        item.image.altText,
       );
       expect(getByRole(itemElements[index]!, "heading")).toHaveTextContent(
         item.title,

@@ -11,6 +11,8 @@ import {
 import { ReactNode, useMemo } from "react";
 import styled from "styled-components";
 
+import { ImageWithAltText } from "@/node-lib/sanity-graphql/generated/sdk";
+
 function InnerMaxWidth({ children }: { children: ReactNode }) {
   return (
     <OakBox $maxWidth={"spacing-1280"} $mh={"auto"}>
@@ -42,8 +44,7 @@ type WhoAreWeDescProps = {
   items: {
     title: string;
     text: string;
-    imageUrl: string;
-    imageAlt: string;
+    image: ImageWithAltText;
   }[];
 };
 export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
@@ -77,42 +78,42 @@ export function WhoAreWeDesc({ title, items }: Readonly<WhoAreWeDescProps>) {
           $gridAutoRows={"1fr"}
           $mb={"spacing-72"}
         >
-          {itemsMapped.map(
-            ({ background, title, text, imageUrl, imageAlt }) => {
-              return (
-                <CustomWeAreItemOakGridArea
-                  key={title}
-                  data-testid="who-we-are-desc-item"
-                  $colSpan={12}
-                >
-                  <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
-                    <OakBox
-                      $height={"spacing-180"}
-                      $background={background}
-                      $borderRadius={"border-radius-m2"}
-                      $pa={"spacing-16"}
-                    >
+          {itemsMapped.map(({ background, title, text, image }) => {
+            return (
+              <CustomWeAreItemOakGridArea
+                key={title}
+                data-testid="who-we-are-desc-item"
+                $colSpan={12}
+              >
+                <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
+                  <OakBox
+                    $height={"spacing-180"}
+                    $background={background}
+                    $borderRadius={"border-radius-m2"}
+                    $pa={"spacing-16"}
+                  >
+                    {image.asset?.url && (
                       <OakImage
                         $objectFit={"contain"}
-                        src={imageUrl}
-                        alt={imageAlt}
+                        src={image.asset?.url}
+                        alt={image.altText ?? ""}
                         $height={"100%"}
                       />
-                    </OakBox>
-                    <OakFlex $gap={"spacing-16"} $flexDirection={"column"}>
-                      <OakHeading
-                        tag="h3"
-                        $font={["heading-6", "heading-5", "heading-5"]}
-                      >
-                        {title}
-                      </OakHeading>
-                      <OakP $font={["body-2", "body-1", "body-1"]}>{text}</OakP>
-                    </OakFlex>
+                    )}
+                  </OakBox>
+                  <OakFlex $gap={"spacing-16"} $flexDirection={"column"}>
+                    <OakHeading
+                      tag="h3"
+                      $font={["heading-6", "heading-5", "heading-5"]}
+                    >
+                      {title}
+                    </OakHeading>
+                    <OakP $font={["body-2", "body-1", "body-1"]}>{text}</OakP>
                   </OakFlex>
-                </CustomWeAreItemOakGridArea>
-              );
-            },
-          )}
+                </OakFlex>
+              </CustomWeAreItemOakGridArea>
+            );
+          })}
         </OakGrid>
       </OakFlex>
     </InnerMaxWidth>
