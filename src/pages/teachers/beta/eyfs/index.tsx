@@ -8,27 +8,45 @@ import {
   OakHeading,
   OakMaxWidth,
   OakP,
+  OakSecondaryButton,
   OakSmallSecondaryButton,
   OakThemeProvider,
 } from "@oaknational/oak-components";
+import { useState } from "react";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { EYFSProgramme } from "@/node-lib/curriculum-api-2023/queries/eyfsListing/eyfsListing.query";
 
+
 type Props = { curriculumData: EYFSProgramme };
 const EYFSPage: NextPage<Props> = (props: Props) => {
   const { curriculumData } = props;
+  const subjects = Object.keys(curriculumData);
+  const [selectedSubject, setSelectedSubject] = useState(subjects[0]);
+
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <OakMaxWidth>
         <OakGrid>
           <OakGridArea $colSpan={[12, 9]} $mt={"spacing-48"}>
+            <OakFlex $gap={"spacing-12"} $mb={"spacing-24"}>
+              {subjects.map((s) => (
+                <OakSecondaryButton
+                  key={s}
+                  onClick={() => setSelectedSubject(s)}
+                  iconName={selectedSubject === s ? "tick" : undefined}
+                >
+                  {curriculumData[s]?.programmeFields?.subject}
+                </OakSecondaryButton>
+              ))}
+            </OakFlex>
             {Object.entries(curriculumData).map(([slug, programme]) => (
               <OakFlex
                 key={slug}
                 $flexDirection={"column"}
                 $gap={"spacing-12"}
                 $mb={"spacing-24"}
+                $display={selectedSubject === slug ? "flex" : "none"}
               >
                 <OakHeading tag="h2" $font={"heading-light-2"}>
                   {programme.programmeFields?.subject ?? ""}
