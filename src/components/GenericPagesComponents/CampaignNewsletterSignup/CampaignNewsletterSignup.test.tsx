@@ -228,4 +228,17 @@ describe("CampaignNewsletterSignup", () => {
     });
     expect(schoolInput).toBeInTheDocument();
   });
+
+  it("shows role the school picker when enableRole is set", () => {
+    renderWithTheme(
+      <CampaignNewsletterSignup
+        data-testid="test"
+        {...mockData}
+        enableRole={true}
+      />,
+    );
+
+    const eduRole = screen.getByTestId("newsletter-eduRole");
+    expect(eduRole).toBeInTheDocument();
+  });
 });

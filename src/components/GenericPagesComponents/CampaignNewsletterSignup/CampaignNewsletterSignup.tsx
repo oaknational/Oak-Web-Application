@@ -267,12 +267,14 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
                       <OakFieldError>{errors.eduRole}</OakFieldError>
                     </OakBox>
                   )}
-                  <OakBox $position={"relative"}>
+                  <OakBox
+                    $position={"relative"}
+                    data-testid="newsletter-eduRole"
+                  >
                     <OakJauntyAngleLabel
                       label={`Role`}
-                      for="newsletter-eduRole"
                       $color={"text-primary"}
-                      htmlFor={"test"}
+                      htmlFor={"newsletter-eduRole"}
                       as="label"
                       $font={"heading-7"}
                       $background={"mint"}
@@ -286,7 +288,6 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
                     />
                     <OakSelect
                       name="newsletter-eduRole"
-                      data-testid="newsletter-eduRole"
                       id="newsletter-eduRole"
                       $display={"block"}
                       value={data.eduRole}
