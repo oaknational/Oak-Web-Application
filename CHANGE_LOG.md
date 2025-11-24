@@ -1,3 +1,10 @@
+## [1.916.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.916.0...v1.916.1) (2025-11-24)
+
+
+### Bug Fixes
+
+* prevent notListed from appearing as an initial value in the school picker input ([d471008](https://github.com/oaknational/Oak-Web-Application/commit/d47100857cdcee266a2fd9ac1788ca3478319d24))
+
 # [1.916.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.915.5...v1.916.0) (2025-11-24)
 
 
