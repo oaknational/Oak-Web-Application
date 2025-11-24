@@ -60,7 +60,11 @@ export function WhoAreWeHeader({
               tag="h1"
               $font={["heading-4", "heading-2", "heading-2"]}
             >
-              <OakSpan $background="mint" $ph={"spacing-4"}>
+              <OakSpan
+                $background="mint"
+                $ph={"spacing-4"}
+                $color="text-primary"
+              >
                 {title}
               </OakSpan>
             </OakHeading>
