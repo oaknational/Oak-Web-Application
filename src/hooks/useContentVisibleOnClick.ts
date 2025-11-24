@@ -1,8 +1,8 @@
-import { RefObject, useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-export const useContentVisibleOnClick = (
-  contentRef: RefObject<HTMLElement>,
-) => {
+export const useContentVisibleOnClick = () => {
+  const contentRef = useRef<HTMLDivElement>(null);
+
   const [contentVisible, setContentVisible] = useState(false);
 
   useEffect(() => {
@@ -16,5 +16,6 @@ export const useContentVisibleOnClick = (
 
   return {
     contentVisible,
+    contentRef,
   };
 };

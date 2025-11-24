@@ -4,7 +4,6 @@ import {
   OakLink,
   OakSpan,
 } from "@oaknational/oak-components";
-import { useRef } from "react";
 
 import { formatSubjectName } from "../helpers/seoTextHelpers/seoText.helpers";
 
@@ -27,8 +26,8 @@ export const UnitListingSeoAccordion = ({
   subjectPhaseSlug: string;
   hasSubjectCategories: boolean;
 }) => {
-  const accordionContentRef = useRef<HTMLDivElement>(null);
-  const { contentVisible } = useContentVisibleOnClick(accordionContentRef);
+  const { contentVisible, contentRef: accordionContentRef } =
+    useContentVisibleOnClick();
   if (
     keystageSlug === "early-years-foundation-stage" ||
     keystageSlug === "all-ks"

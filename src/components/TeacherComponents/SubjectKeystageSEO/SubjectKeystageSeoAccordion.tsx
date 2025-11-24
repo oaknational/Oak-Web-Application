@@ -6,7 +6,6 @@ import {
   OakSpan,
   OakUL,
 } from "@oaknational/oak-components";
-import { useRef } from "react";
 import { VisuallyHidden } from "react-aria";
 
 import { resolveOakHref } from "@/common-lib/urls";
@@ -21,8 +20,8 @@ export const SubjectKeystageSeoAccordion = ({
   links: Array<{ href: string; label: string }>;
 }) => {
   const seoContent = textContentMap[keystageSlug];
-  const accordionContentRef = useRef<HTMLDivElement>(null);
-  const { contentVisible } = useContentVisibleOnClick(accordionContentRef);
+  const { contentVisible, contentRef: accordionContentRef } =
+    useContentVisibleOnClick();
 
   return (
     <OakBasicAccordion
