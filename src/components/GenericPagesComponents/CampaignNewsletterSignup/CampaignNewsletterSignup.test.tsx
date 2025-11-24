@@ -34,6 +34,29 @@ jest.mock("@/components/GenericPagesComponents/NewsletterForm", () => ({
   useNewsletterForm: jest.fn(),
 }));
 
+jest.spyOn(console, "error").mockImplementation(() => jest.fn());
+
+// NOTE: These are due to react/jsdom being behind browser standards, they will catch up and we can remove these
+// See <https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Customizable_select> for current support
+function expectJsdomOptionError() {
+  expect(console.error).toHaveBeenCalledTimes(2);
+  expect(console.error).toHaveBeenNthCalledWith(
+    1,
+    "Warning: The tag <%s> is unrecognized in this browser. If you meant to render a React component, start its name with an uppercase letter.%s",
+    "selectedcontent",
+    expect.anything(),
+  );
+  expect(console.error).toHaveBeenNthCalledWith(
+    2,
+    "Warning: validateDOMNesting(...): %s cannot appear as a child of <%s>.%s%s%s",
+    "<button>",
+    "select",
+    expect.anything(),
+    expect.anything(),
+    expect.anything(),
+  );
+}
+
 describe("CampaignNewsletterSignup", () => {
   const mockOnHubspotSubmit = jest.fn();
 
@@ -238,6 +261,7 @@ describe("CampaignNewsletterSignup", () => {
       />,
     );
 
+    expectJsdomOptionError();
     const eduRole = screen.getByTestId("newsletter-eduRole");
     expect(eduRole).toBeInTheDocument();
   });
