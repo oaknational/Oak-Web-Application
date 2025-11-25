@@ -141,7 +141,7 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({ pageData }) => {
         title={"Explore more about Oak"}
         items={[
           {
-            iconName: "homepage-teacher-map",
+            iconName: "logo",
             title: "About Oak",
             href: "#",
           },
