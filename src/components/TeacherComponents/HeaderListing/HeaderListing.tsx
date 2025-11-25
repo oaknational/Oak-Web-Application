@@ -10,11 +10,16 @@ import {
   OakSecondaryButton,
   OakTagFunctional,
   OakColorToken,
+  OakGrid,
+  OakGridArea,
 } from "@oaknational/oak-components";
 
 import UnitDownloadButton, {
   useUnitDownloadButtonState,
 } from "../UnitDownloadButton/UnitDownloadButton";
+import { UnitListingSeoAccordion } from "../UnitListingSEO/UnitListingSeoAccordion";
+import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
+import { convertSubjectToSlug } from "../helpers/convertSubjectToSlug";
 
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
@@ -26,6 +31,8 @@ import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 import TeacherSubjectDescription from "@/components/TeacherComponents/TeacherSubjectDescription/TeacherSubjectDescription";
+import { getPhaseSlugFromKeystage } from "@/fixtures/curriculum/unit";
+import { KeystageSlug } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 /**
  * This is a header for the listing pages (lesson, unit and programme).
@@ -37,12 +44,14 @@ export type HeaderListingProps = {
   background: OakColorToken;
   subjectTitle: string;
   subjectSlug: string;
+  subjectParent?: string | null;
   subjectIconBackgroundColor: OakColorFilterToken;
   year?: string;
-  keyStageSlug?: string;
+  keyStageSlug?: KeystageSlug;
   keyStageTitle?: string;
   tierSlug?: string | null;
   examBoardTitle?: string | null;
+  examBoardSlug?: string | null;
   tierTitle?: string | null;
   yearTitle?: string | null;
   lessonDescription?: string;
@@ -63,11 +72,14 @@ export type HeaderListingProps = {
   isLoginRequiredUnit?: boolean;
   unitTitle?: string;
   unitSlug?: string;
+  showUnitListingSeo?: boolean;
 };
 
 const HeaderListing: FC<HeaderListingProps> = (props) => {
   const {
     subjectSlug,
+    subjectParent,
+    subjectTitle,
     title,
     keyStageSlug,
     keyStageTitle,
@@ -78,6 +90,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     background,
     hasCurriculumDownload = true,
     examBoardTitle,
+    examBoardSlug,
     tierTitle,
     yearTitle,
     shareButton,
@@ -93,6 +106,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     isLoginRequiredUnit,
     unitTitle,
     unitSlug,
+    showUnitListingSeo,
   } = props;
 
   const isKeyStagesAvailable = keyStageSlug && keyStageTitle;
@@ -152,13 +166,27 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     </>
   );
 
+  const showUnitListingSeoAccordion =
+    isKeyStagesAvailable &&
+    showUnitListingSeo &&
+    subjectSlug !== "financial-education" &&
+    subjectSlug !== "drama" &&
+    subjectSlug !== "latin";
+
+  const linkSubject = subjectParent
+    ? convertSubjectToSlug(subjectParent)
+    : subjectSlug;
   return (
     <LessonHeaderWrapper breadcrumbs={breadcrumbs} background={background}>
-      <OakFlex $mb={["spacing-12", "spacing-0"]} $flexDirection={"column"}>
+      <OakFlex
+        $mb={["spacing-12", "spacing-0"]}
+        $flexDirection={"column"}
+        $gap="spacing-20"
+      >
         <OakFlex $mb={["spacing-24", "spacing-0"]}>
           <OakFlex
             $mr={["spacing-16", "spacing-32"]}
-            $height={["spacing-80", "spacing-160"]}
+            $height={["spacing-80", "spacing-100", "spacing-120"]}
           >
             <SubjectIconBrushBorders
               subjectSlug={subjectSlug}
@@ -260,6 +288,25 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
           </OakBox>
         )}
         <OakBox $display={["block", "none", "none"]}>{bannersBlock}</OakBox>
+        {showUnitListingSeoAccordion && (
+          <OakGrid>
+            <OakGridArea $colSpan={[12, 12, 9]}>
+              <UnitListingSeoAccordion
+                keystageSlug={keyStageSlug}
+                keystageTitle={keyStageTitle}
+                subject={subjectTitle}
+                subjectSlug={subjectSlug}
+                hasSubjectCategories={!!subjectParent}
+                subjectPhaseSlug={getSubjectPhaseSlug({
+                  subject: linkSubject,
+                  examBoardSlug: examBoardSlug,
+                  phaseSlug:
+                    getPhaseSlugFromKeystage(keyStageSlug) ?? "primary",
+                })}
+              />
+            </OakGridArea>
+          </OakGrid>
+        )}
       </OakFlex>
       <OakFlex $background={background} $display={["inline", "none"]}>
         {hasCurriculumDownload && isKeyStagesAvailable && (
