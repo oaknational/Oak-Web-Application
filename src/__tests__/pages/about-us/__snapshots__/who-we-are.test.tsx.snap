@@ -2146,7 +2146,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                   data-nimg="fill"
                   decoding="async"
                   loading="lazy"
-                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1706872277/icons/question-mark.svg"
+                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763546694/ui-graphics/confetti-background_xbvfrc.svg"
                   style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                 />
               </div>
@@ -2247,7 +2247,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                                   data-nimg="fill"
                                   decoding="async"
                                   loading="lazy"
-                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1706872277/icons/question-mark.svg"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393164/icons/data-illustration_ukwdxg.svg"
                                   style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                                 />
                               </div>
@@ -2304,7 +2304,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                                   data-nimg="fill"
                                   decoding="async"
                                   loading="lazy"
-                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1706872277/icons/question-mark.svg"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393167/icons/snackbreak_illustration_fguw7l.svg"
                                   style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                                 />
                               </div>
@@ -2361,7 +2361,7 @@ exports[`pages/about/who-we-are.tsx (v2 enabled) renders  1`] = `
                                   data-nimg="fill"
                                   decoding="async"
                                   loading="lazy"
-                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1706872277/icons/question-mark.svg"
+                                  src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393163/icons/chatting-illustration_l52zaf.svg"
                                   style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
                                 />
                               </div>
