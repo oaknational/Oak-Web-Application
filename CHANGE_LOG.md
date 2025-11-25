@@ -1,3 +1,16 @@
+# [1.921.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.920.0...v1.921.0) (2025-11-25)
+
+
+### Bug Fixes
+
+* added /about-us/get-involved to sitemap exclude ([eba42ce](https://github.com/oaknational/Oak-Web-Application/commit/eba42ce67fbc046eb68212f6a3d6012707093efa))
+* sonarcloud issues, deadcode + readonly on props ([82ec6a1](https://github.com/oaknational/Oak-Web-Application/commit/82ec6a1cf594a558d74f10b1a4fecd25dc4b4c8b))
+
+
+### Features
+
+* added a stub "get involved" page for new about us pages ([a70f1b6](https://github.com/oaknational/Oak-Web-Application/commit/a70f1b6a1ef5baac9eb24aec1223670b62f266eb))
+
 # [1.920.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.919.0...v1.920.0) (2025-11-25)
 
 
