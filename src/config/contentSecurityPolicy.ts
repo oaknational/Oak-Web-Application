@@ -62,17 +62,17 @@ const posthog: Partial<CspConfig> = {
   connectSrc: ["https://eu.i.posthog.com"],
 };
 
-const cloudinary: Partial<CspConfig> = {
-  imgSrc: [
-    "https://res.cloudinary.com",
-    "https://oaknationalacademy-res.cloudinary.com",
-  ],
-};
-
-// const hubspot: Partial<CspConfig> = {
-//   connectSrc: ["*.hubspot.com"],
-//   imgSrc: ["https://*.hubspot.com", "https://*.hsforms.com"],
+// const cloudinary: Partial<CspConfig> = {
+//   imgSrc: [
+//     "https://res.cloudinary.com",
+//     "https://oaknationalacademy-res.cloudinary.com",
+//   ],
 // };
+
+const hubspot: Partial<CspConfig> = {
+  connectSrc: ["*.hubspot.com"],
+  imgSrc: ["https://*.hubspot.com", "https://*.hsforms.com"],
+};
 
 const cloudflare: Partial<CspConfig> = {
   frameSrc: ["https://challenges.cloudflare.com"],
@@ -175,8 +175,8 @@ const cspConfig: CspConfig = [
   isDevelopment ? localhost : {},
   vercel,
   cloudflare,
-  // hubspot,
-  cloudinary,
+  hubspot,
+  // cloudinary,
   posthog,
   avo,
   clerk,
