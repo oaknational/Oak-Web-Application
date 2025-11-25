@@ -62,12 +62,12 @@ const posthog: Partial<CspConfig> = {
   connectSrc: ["https://eu.i.posthog.com"],
 };
 
-// const cloudinary: Partial<CspConfig> = {
-//   imgSrc: [
-//     "https://res.cloudinary.com",
-//     "https://oaknationalacademy-res.cloudinary.com",
-//   ],
-// };
+const cloudinary: Partial<CspConfig> = {
+  imgSrc: [
+    "https://res.cloudinary.com",
+    "https://oaknationalacademy-res.cloudinary.com",
+  ],
+};
 
 const hubspot: Partial<CspConfig> = {
   connectSrc: ["*.hubspot.com"],
@@ -176,7 +176,7 @@ const cspConfig: CspConfig = [
   vercel,
   cloudflare,
   hubspot,
-  // cloudinary,
+  cloudinary,
   posthog,
   avo,
   clerk,
