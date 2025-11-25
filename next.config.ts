@@ -115,6 +115,34 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
   }
 
   const nextConfig: NextConfig = {
+    headers: async () => [
+      {
+        source: "/api/pupil/:path*",
+        headers: [
+          {
+            key: "Access-Control-Allow-Origin",
+            value:
+              releaseStage === "development"
+                ? "*"
+                : [
+                    "*.vercel-preview.thenational.academy",
+                    "*.vercel.thenational.academy",
+                    "owa.thenational.academy",
+                    "owa-vercel.thenational.academy",
+                    "www.thenational.academy",
+                  ].join(","),
+          },
+          {
+            key: "Access-Control-Allow-Methods",
+            value: "GET, POST",
+          },
+          {
+            key: "Access-Control-Allow-Headers",
+            value: "Content-Type",
+          },
+        ],
+      },
+    ],
     // Attempt to reduce the size of the build by excluding some packages.
     serverExternalPackages: ["sharp"],
     outputFileTracingExcludes: {
