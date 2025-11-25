@@ -18,12 +18,14 @@ type CspConfig = {
 };
 type CspConfigKey = keyof CspConfig;
 
-const isDevelopment: boolean = getReleaseStage(
+const releaseStage = getReleaseStage(
   process.env.OVERRIDE_RELEASE_STAGE ||
     process.env.VERCEL_ENV ||
     // Netlify
     process.env.CONTEXT,
-)?.includes("dev");
+);
+const isDevelopment: boolean = releaseStage?.includes("dev");
+const isPreview: boolean = releaseStage?.includes("preview");
 
 // Rules
 const mux: Partial<CspConfig> = {
@@ -184,9 +186,15 @@ const cspConfig: CspConfig = [
 
 // Reporting
 const baseUrl = process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL;
-const reportCspApiUrl = baseUrl?.startsWith("http")
-  ? `${baseUrl}/api/csp-report`
-  : `https://${baseUrl}/api/csp-report`;
+const bypassSecret = process.env.VERCEL_AUTOMATION_BYPASS_SECRET;
+const secureBaseUrl = baseUrl?.startsWith("http")
+  ? baseUrl.replace("http://", "https://")
+  : `https://${baseUrl}`;
+const bypassParam =
+  isPreview && bypassSecret
+    ? `?x-vercel-protection-bypass=${bypassSecret}`
+    : "";
+const reportCspApiUrl = `${secureBaseUrl}/api/csp-report${bypassParam}`;
 export const reportingEndpointsHeader = `oak-csp="${reportCspApiUrl}"`;
 
 export const cspHeader = `
