@@ -1,0 +1,174 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GetInvolvedCollaborateWithUs renders 1`] = `
+<div>
+  <div
+    class="sc-fqkvVR hieRYZ"
+  >
+    <div
+      class="sc-fqkvVR bZZBuO"
+    >
+      <div
+        class="sc-fqkvVR sc-kAyceB hwnObW eeevb"
+      >
+        <h2
+          class="sc-kpDqfm kxwnSx"
+        >
+          Collaborate with us
+        </h2>
+        <div
+          class="sc-fqkvVR sc-jXbUNg fgBWrW hzqgQA"
+        >
+          <div
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz gizLDv"
+          >
+            <div
+              class="sc-fqkvVR sc-kAyceB icFzga kyta-DD"
+            >
+              <div
+                class="sc-fqkvVR bAqbho"
+              >
+                <img
+                  alt="Two people chatting"
+                  class="sc-dcJsrY jRtmJB"
+                  data-nimg="fill"
+                  decoding="async"
+                  loading="lazy"
+                  src="http://example.com/chatting.svg"
+                  style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz BmYTN"
+          >
+            <div
+              class="sc-fqkvVR sc-kAyceB fgBWrW FywIr"
+            >
+              <div
+                class="sc-fqkvVR sc-kAyceB bPcfty xvJiZ"
+              >
+                <div
+                  class="sc-fqkvVR sc-kAyceB fgBWrW itOXgy"
+                >
+                  <h3
+                    class="sc-kpDqfm igLHEh"
+                  >
+                    Give your feedback
+                  </h3>
+                  <p
+                    class="sc-dLMFU gKXbKJ"
+                  >
+                    Share your story and we'll send you a gift voucher as a thanks for your time.
+                  </p>
+                </div>
+                <div
+                  class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+                >
+                  <div
+                    class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+                  >
+                    <div
+                      class="sc-fqkvVR iPpXCP grey-shadow"
+                    />
+                    <div
+                      class="sc-fqkvVR iPpXCP yellow-shadow"
+                    />
+                    <a
+                      class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+                      href="https://share.hsforms.com/2pi1ZLqVKQNyKznqJrpqsgwbvumd"
+                    >
+                      <div
+                        class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
+                      >
+                        <span
+                          class="sc-dAlyuH hHWgLm"
+                        >
+                          Get in touch
+                        </span>
+                        <div
+                          class="sc-fqkvVR kbnxKi"
+                        >
+                          <img
+                            alt=""
+                            class="sc-dcJsrY beWtwI"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="sc-fqkvVR sc-kAyceB bPcfty xvJiZ"
+              >
+                <div
+                  class="sc-fqkvVR sc-kAyceB fgBWrW itOXgy"
+                >
+                  <h3
+                    class="sc-kpDqfm igLHEh"
+                  >
+                    Help us improve
+                  </h3>
+                  <p
+                    class="sc-dLMFU gKXbKJ"
+                  >
+                    Teachers are at the heart of everything we build. Have your say by taking part in research.
+                  </p>
+                </div>
+                <div
+                  class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+                >
+                  <div
+                    class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+                  >
+                    <div
+                      class="sc-fqkvVR iPpXCP grey-shadow"
+                    />
+                    <div
+                      class="sc-fqkvVR iPpXCP yellow-shadow"
+                    />
+                    <a
+                      class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+                      href="https://share.hsforms.com/1dv2FiLvTQraZIZmhUUURmQbvumd"
+                    >
+                      <div
+                        class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
+                      >
+                        <span
+                          class="sc-dAlyuH hHWgLm"
+                        >
+                          Take part in research
+                        </span>
+                        <div
+                          class="sc-fqkvVR kbnxKi"
+                        >
+                          <img
+                            alt=""
+                            class="sc-dcJsrY beWtwI"
+                            data-nimg="fill"
+                            decoding="async"
+                            loading="lazy"
+                            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                          />
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -13,6 +13,7 @@ type GetInvolvedLinkCardProps = {
   buttonText: string;
   content: string;
 };
+
 export function GetInvolvedLinkCard({
   headingTag,
   headingTitle,
