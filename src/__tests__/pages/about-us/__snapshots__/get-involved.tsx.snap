@@ -1691,66 +1691,74 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
         id="main"
       >
         <div
-          class="sc-fqkvVR ieiSrW"
-          style="max-width: 1360px;"
+          class="sc-fqkvVR qcoRi"
         >
           <div
-            class="sc-fqkvVR sc-jXbUNg bHaeEi gdCncd"
+            class="sc-fqkvVR ieiSrW"
+            style="max-width: 1360px;"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-76ceab32-0 fgBWrW djyvKT iAkSYx kIiJrY"
+              class="sc-fqkvVR sc-jXbUNg bHaeEi gdCncd"
             >
               <div
-                class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
-              >
-                <h1
-                  class="sc-kpDqfm cRJejs"
-                >
-                  <span
-                    class="sc-dAlyuH bOvjMx"
-                  >
-                    Get involved
-                  </span>
-                </h1>
-                <p
-                  class="sc-dLMFU hxKUrX"
-                >
-                  We need your help to understand what's needed in the classroom. Want to get involved? We can't wait to hear from you.
-                </p>
-              </div>
-            </div>
-            <div
-              class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-76ceab32-1 fgBWrW joHkzz dGlNMa gHmAeX"
-            >
-              <div
-                class="sc-fqkvVR dBkKun"
+                class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-76ceab32-0 fgBWrW djyvKT iAkSYx kIiJrY"
               >
                 <div
-                  class="sc-fqkvVR hudrT"
+                  class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
                 >
-                  <img
-                    alt=""
-                    class="sc-dcJsrY jRtmJB"
-                    data-nimg="fill"
-                    decoding="async"
-                    loading="lazy"
-                    src="https://res.cloudinary.com/oak-web-application/image/upload/v1734018530/OWA/illustrations/auth-acorn_zyoma2.svg"
-                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                  />
+                  <h1
+                    class="sc-kpDqfm cRJejs"
+                  >
+                    <span
+                      class="sc-dAlyuH bOvjMx"
+                    >
+                      Get involved
+                    </span>
+                  </h1>
+                  <p
+                    class="sc-dLMFU hxKUrX"
+                  >
+                    We need your help to understand what's needed in the classroom. Want to get involved? We can't wait to hear from you.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-76ceab32-1 fgBWrW joHkzz dGlNMa gHmAeX"
+              >
+                <div
+                  class="sc-fqkvVR dBkKun"
+                >
+                  <div
+                    class="sc-fqkvVR hudrT"
+                  >
+                    <img
+                      alt=""
+                      class="sc-dcJsrY jRtmJB"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      src="https://res.cloudinary.com/oak-web-application/image/upload/v1734018530/OWA/illustrations/auth-acorn_zyoma2.svg"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div
-          class="sc-fqkvVR fgBWrW"
-        >
-          <h2>
-            collab
-          </h2>
-          <pre>
-            <code>
-              {
+          <div
+            class="sc-fqkvVR dySFtr"
+          >
+            <div
+              class="sc-fqkvVR bZZBuO"
+            >
+              <h2>
+                collab
+              </h2>
+              <pre
+                style="white-space: pre-wrap; word-break: break-word;"
+              >
+                <code>
+                  {
   "title": "Collaborate with us",
   "image": {
     "asset": {
@@ -1773,313 +1781,440 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
     }
   ]
 }
-            </code>
-          </pre>
-        </div>
-        <div
-          class="sc-fqkvVR fgBWrW"
-        >
-          <h2>
-            workWithUs
-          </h2>
-          <pre>
-            <code>
-              {
-  "title": "Work with us",
-  "text": "We're a fast-paced and innovative team, working to support and inspire teachers to deliver great teaching, so every pupil benefits. All our roles are remote-first. If you want to be part of something unique that's making a difference to millions of children's lives, we'd love to hear from you.",
-  "image": {
-    "asset": {
-      "url": "https://res.cloudinary.com/oak-web-application/image/upload/v1734018530/OWA/illustrations/auth-acorn_zyoma2.svg"
-    },
-    "altText": ""
-  },
-  "partnerImages": [
-    {
-      "image": {
-        "asset": {
-          "url": "https://res.cloudinary.com/oak-web-application/image/upload/v1734018530/OWA/illustrations/auth-acorn_zyoma2.svg"
-        },
-        "altText": ""
-      }
-    },
-    {
-      "image": {
-        "asset": {
-          "url": "https://res.cloudinary.com/oak-web-application/image/upload/v1734018530/OWA/illustrations/auth-acorn_zyoma2.svg"
-        },
-        "altText": ""
-      }
-    },
-    {
-      "image": {
-        "asset": {
-          "url": "https://res.cloudinary.com/oak-web-application/image/upload/v1734018530/OWA/illustrations/auth-acorn_zyoma2.svg"
-        },
-        "altText": ""
-      }
-    }
-  ]
-}
-            </code>
-          </pre>
-        </div>
-        <div
-          class="sc-fqkvVR kDpsQP"
-        >
-          <div
-            class="sc-fqkvVR howriz"
-            style="pointer-events: none;"
-          >
-            <img
-              alt=""
-              class="sc-dcJsrY cDKKvZ"
-              data-nimg="fill"
-              decoding="async"
-              loading="lazy"
-              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763546694/ui-graphics/confetti-background_xbvfrc.svg"
-              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-            />
+                </code>
+              </pre>
+            </div>
           </div>
           <div
-            class="sc-fqkvVR IDCoS"
+            class="sc-fqkvVR bZZBuO"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB ebGLGq gwxZIR"
+              class="sc-fqkvVR sc-kAyceB hwnObW eeevb"
             >
-              <h2
-                class="sc-kpDqfm hazha-D"
-              >
-                Explore more about Oak
-              </h2>
               <div
-                class="sc-fqkvVR sc-jXbUNg fgBWrW iwxQGX"
+                class="sc-fqkvVR sc-jXbUNg fgBWrW hzqgQA"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz xogsE"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW bAHJVP etzMdS"
                 >
                   <div
-                    class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
+                    class="sc-fqkvVR sc-kAyceB fgBWrW kYkjWQ"
+                    data-id-hi="hi"
                   >
-                    <a
-                      href="/#"
-                      style="outline: none;"
+                    <div
+                      class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
+                    >
+                      <h2
+                        class="sc-kpDqfm eceTdU"
+                      >
+                        Work with us
+                      </h2>
+                      <div
+                        class="sc-fqkvVR sc-kAyceB cThXxF iVYVEn"
+                      >
+                        <p
+                          class="sc-dLMFU kdIcGd"
+                        >
+                          We're a fast-paced and innovative team, working to support and inspire teachers to deliver great teaching, so every pupil benefits.
+                        </p>
+                        <p
+                          class="sc-dLMFU kdIcGd"
+                        >
+                          All our roles are remote-first. If you want to be part of something unique that's making a difference to millions of children's lives, we'd love to hear from you.
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      class="sc-fqkvVR sc-kAyceB fgBWrW gaFEky"
                     >
                       <div
-                        class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
-                        data-testid="who-we-are-explore-item"
+                        class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
                       >
                         <div
-                          class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+                          class="sc-fqkvVR iPpXCP grey-shadow"
+                        />
+                        <div
+                          class="sc-fqkvVR iPpXCP yellow-shadow"
+                        />
+                        <a
+                          class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+                          href="https://app.beapplied.com/org/1574/oak-national-academy/"
+                          rel="noopener noreferrer"
+                          target="_blank"
                         >
                           <div
-                            class="sc-fqkvVR kKvKAa"
+                            class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
                           >
-                            <img
-                              alt=""
-                              class="sc-dcJsrY cDKKvZ"
-                              data-nimg="fill"
-                              decoding="async"
-                              loading="lazy"
-                              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1711468346/logo-mark.svg"
-                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                            />
+                            <span
+                              class="sc-dAlyuH hHWgLm"
+                            >
+                              Permanent roles
+                            </span>
+                            <div
+                              class="sc-fqkvVR kbnxKi"
+                            >
+                              <img
+                                alt=""
+                                class="sc-dcJsrY beWtwI"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
                           </div>
-                        </div>
-                        <div
-                          class="sc-fqkvVR sc-kAyceB dWmZcx bAFsaQ"
-                        >
-                          About Oak
-                        </div>
-                        <div
-                          class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
-                        >
-                          <div
-                            class="sc-fqkvVR erqloa"
-                          >
-                            <img
-                              alt=""
-                              class="sc-dcJsrY cDKKvZ"
-                              data-nimg="fill"
-                              decoding="async"
-                              loading="lazy"
-                              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                            />
-                          </div>
-                        </div>
+                        </a>
                       </div>
-                    </a>
+                      <div
+                        class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+                      >
+                        <div
+                          class="sc-fqkvVR iPpXCP grey-shadow"
+                        />
+                        <div
+                          class="sc-fqkvVR iPpXCP yellow-shadow"
+                        />
+                        <a
+                          class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+                          href="https://app.beapplied.com/org/1767/oak-national-academy-freelancers/"
+                          rel="noopener noreferrer"
+                          target="_blank"
+                        >
+                          <div
+                            class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
+                          >
+                            <span
+                              class="sc-dAlyuH hHWgLm"
+                            >
+                              Freelance roles
+                            </span>
+                            <div
+                              class="sc-fqkvVR kbnxKi"
+                            >
+                              <img
+                                alt=""
+                                class="sc-dcJsrY beWtwI"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz xogsE"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz BmYTN"
                 >
                   <div
-                    class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
+                    class="sc-fqkvVR sc-kAyceB fgBWrW cfgZTR"
                   >
-                    <a
-                      href="/#"
-                      style="outline: none;"
+                    <div
+                      class="sc-fqkvVR sc-kAyceB fIaYTx joHkzz"
                     >
                       <div
-                        class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
-                        data-testid="who-we-are-explore-item"
+                        class="sc-fqkvVR jqqmXN"
                       >
-                        <div
-                          class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
-                        >
-                          <div
-                            class="sc-fqkvVR kKvKAa"
-                          >
-                            <img
-                              alt=""
-                              class="sc-dcJsrY cDKKvZ"
-                              data-nimg="fill"
-                              decoding="async"
-                              loading="lazy"
-                              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734523721/homepage/teacher-reading-map_glwhyh.svg"
-                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                            />
-                          </div>
-                        </div>
-                        <div
-                          class="sc-fqkvVR sc-kAyceB dWmZcx bAFsaQ"
-                        >
-                          About Oak’s curriculum
-                        </div>
-                        <div
-                          class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
-                        >
-                          <div
-                            class="sc-fqkvVR erqloa"
-                          >
-                            <img
-                              alt=""
-                              class="sc-dcJsrY cDKKvZ"
-                              data-nimg="fill"
-                              decoding="async"
-                              loading="lazy"
-                              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                            />
-                          </div>
-                        </div>
+                        <img
+                          alt=""
+                          class="sc-dcJsrY jIcMOQ"
+                          data-nimg="fill"
+                          decoding="async"
+                          loading="lazy"
+                          sizes="100vw"
+                          src="http://localhost/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=3840&q=75"
+                          srcset="/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Foak-web-application%2Fimage%2Fupload%2Fv1764066578%2Fabout-us%2Fteam-huddle_zivgxj.png&w=3840&q=75 3840w"
+                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                        />
                       </div>
-                    </a>
+                    </div>
+                    <div
+                      class="sc-fqkvVR sc-kAyceB sc-f1e4514d-1 fgBWrW dBzTSe cvVysC"
+                    >
+                      <img
+                        alt="Top 1% Employer badge"
+                        class="sc-f1e4514d-0 bddgnn"
+                        src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/top-1-percent-logo_hyga8g.svg"
+                      />
+                      <img
+                        alt="Investors in People Gold badge"
+                        class="sc-f1e4514d-0 bddgnn"
+                        src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/investor-in-people_eymeqv.svg"
+                      />
+                      <img
+                        alt="Disability Confident Committed badge"
+                        class="sc-f1e4514d-0 bddgnn"
+                        src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/disability-confident_ym07wl.png"
+                      />
+                    </div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="sc-fqkvVR kDpsQP"
+          >
+            <div
+              class="sc-fqkvVR howriz"
+              style="pointer-events: none;"
+            >
+              <img
+                alt=""
+                class="sc-dcJsrY cDKKvZ"
+                data-nimg="fill"
+                decoding="async"
+                loading="lazy"
+                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763546694/ui-graphics/confetti-background_xbvfrc.svg"
+                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+              />
+            </div>
+            <div
+              class="sc-fqkvVR IDCoS"
+            >
+              <div
+                class="sc-fqkvVR sc-kAyceB ebGLGq gwxZIR"
+              >
+                <h2
+                  class="sc-kpDqfm hazha-D"
+                >
+                  Explore more about Oak
+                </h2>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz xogsE"
+                  class="sc-fqkvVR sc-jXbUNg fgBWrW iwxQGX"
                 >
                   <div
-                    class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
+                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz xogsE"
                   >
-                    <a
-                      href="/#"
-                      style="outline: none;"
+                    <div
+                      class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                     >
-                      <div
-                        class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
-                        data-testid="who-we-are-explore-item"
+                      <a
+                        href="/#"
+                        style="outline: none;"
                       >
                         <div
-                          class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+                          class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
+                          data-testid="who-we-are-explore-item"
                         >
                           <div
-                            class="sc-fqkvVR kKvKAa"
+                            class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
                           >
-                            <img
-                              alt=""
-                              class="sc-dcJsrY cDKKvZ"
-                              data-nimg="fill"
-                              decoding="async"
-                              loading="lazy"
-                              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393164/icons/data-illustration_ukwdxg.svg"
-                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                            />
+                            <div
+                              class="sc-fqkvVR kKvKAa"
+                            >
+                              <img
+                                alt=""
+                                class="sc-dcJsrY cDKKvZ"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1711468346/logo-mark.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
                           </div>
-                        </div>
-                        <div
-                          class="sc-fqkvVR sc-kAyceB dWmZcx bAFsaQ"
-                        >
-                          Oaks impact
-                        </div>
-                        <div
-                          class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
-                        >
                           <div
-                            class="sc-fqkvVR erqloa"
+                            class="sc-fqkvVR sc-kAyceB dWmZcx bAFsaQ"
                           >
-                            <img
-                              alt=""
-                              class="sc-dcJsrY cDKKvZ"
-                              data-nimg="fill"
-                              decoding="async"
-                              loading="lazy"
-                              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                            />
+                            About Oak
+                          </div>
+                          <div
+                            class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+                          >
+                            <div
+                              class="sc-fqkvVR erqloa"
+                            >
+                              <img
+                                alt=""
+                                class="sc-dcJsrY cDKKvZ"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </a>
+                      </a>
+                    </div>
                   </div>
-                </div>
-                <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz xogsE"
-                >
                   <div
-                    class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
+                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz xogsE"
                   >
-                    <a
-                      href="/#"
-                      style="outline: none;"
+                    <div
+                      class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
                     >
-                      <div
-                        class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
-                        data-testid="who-we-are-explore-item"
+                      <a
+                        href="/#"
+                        style="outline: none;"
                       >
                         <div
-                          class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+                          class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
+                          data-testid="who-we-are-explore-item"
                         >
                           <div
-                            class="sc-fqkvVR kKvKAa"
+                            class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
                           >
-                            <img
-                              alt=""
-                              class="sc-dcJsrY cDKKvZ"
-                              data-nimg="fill"
-                              decoding="async"
-                              loading="lazy"
-                              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393167/icons/snackbreak_illustration_fguw7l.svg"
-                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                            />
+                            <div
+                              class="sc-fqkvVR kKvKAa"
+                            >
+                              <img
+                                alt=""
+                                class="sc-dcJsrY cDKKvZ"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734523721/homepage/teacher-reading-map_glwhyh.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </div>
+                          <div
+                            class="sc-fqkvVR sc-kAyceB dWmZcx bAFsaQ"
+                          >
+                            About Oak’s curriculum
+                          </div>
+                          <div
+                            class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+                          >
+                            <div
+                              class="sc-fqkvVR erqloa"
+                            >
+                              <img
+                                alt=""
+                                class="sc-dcJsrY cDKKvZ"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
                           </div>
                         </div>
+                      </a>
+                    </div>
+                  </div>
+                  <div
+                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz xogsE"
+                  >
+                    <div
+                      class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
+                    >
+                      <a
+                        href="/#"
+                        style="outline: none;"
+                      >
                         <div
-                          class="sc-fqkvVR sc-kAyceB dWmZcx bAFsaQ"
-                        >
-                          Meet the team
-                        </div>
-                        <div
-                          class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+                          class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
+                          data-testid="who-we-are-explore-item"
                         >
                           <div
-                            class="sc-fqkvVR erqloa"
+                            class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
                           >
-                            <img
-                              alt=""
-                              class="sc-dcJsrY cDKKvZ"
-                              data-nimg="fill"
-                              decoding="async"
-                              loading="lazy"
-                              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
-                              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
-                            />
+                            <div
+                              class="sc-fqkvVR kKvKAa"
+                            >
+                              <img
+                                alt=""
+                                class="sc-dcJsrY cDKKvZ"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393164/icons/data-illustration_ukwdxg.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </div>
+                          <div
+                            class="sc-fqkvVR sc-kAyceB dWmZcx bAFsaQ"
+                          >
+                            Oaks impact
+                          </div>
+                          <div
+                            class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+                          >
+                            <div
+                              class="sc-fqkvVR erqloa"
+                            >
+                              <img
+                                alt=""
+                                class="sc-dcJsrY cDKKvZ"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </a>
+                      </a>
+                    </div>
+                  </div>
+                  <div
+                    class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz xogsE"
+                  >
+                    <div
+                      class="sc-fqkvVR sc-85abac1-0 efQrbj ksjKHu"
+                    >
+                      <a
+                        href="/#"
+                        style="outline: none;"
+                      >
+                        <div
+                          class="sc-fqkvVR sc-kAyceB sc-b8575225-0 gKJOWA fQLyIH fAMcqB"
+                          data-testid="who-we-are-explore-item"
+                        >
+                          <div
+                            class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+                          >
+                            <div
+                              class="sc-fqkvVR kKvKAa"
+                            >
+                              <img
+                                alt=""
+                                class="sc-dcJsrY cDKKvZ"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1763393167/icons/snackbreak_illustration_fguw7l.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </div>
+                          <div
+                            class="sc-fqkvVR sc-kAyceB dWmZcx bAFsaQ"
+                          >
+                            Meet the team
+                          </div>
+                          <div
+                            class="sc-fqkvVR sc-kAyceB fgBWrW joHkzz"
+                          >
+                            <div
+                              class="sc-fqkvVR erqloa"
+                            >
+                              <img
+                                alt=""
+                                class="sc-dcJsrY cDKKvZ"
+                                data-nimg="fill"
+                                decoding="async"
+                                loading="lazy"
+                                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
