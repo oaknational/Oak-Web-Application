@@ -1,3 +1,19 @@
+# [1.920.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.919.0...v1.920.0) (2025-11-25)
+
+
+### Bug Fixes
+
+* add mock for getFeatureFlag to setup ([013f4f2](https://github.com/oaknational/Oak-Web-Application/commit/013f4f202e0be782a5f12540eaddf3932592f981))
+* properties can be undefined ([bd4f1cc](https://github.com/oaknational/Oak-Web-Application/commit/bd4f1cc143048f8202df342ff8dba3f6023cf0cb))
+* remove rogue console log ([b57ed6b](https://github.com/oaknational/Oak-Web-Application/commit/b57ed6b18324e50850ba31176ec404b506b4e95e))
+
+
+### Features
+
+* add console log to demonstrate feature flag loading ([020f693](https://github.com/oaknational/Oak-Web-Application/commit/020f693c9c49303ef5224196a8bd4ef08360b881))
+* always init and opt out default ([99e1dd9](https://github.com/oaknational/Oak-Web-Application/commit/99e1dd9682fe395e9b75f9d18bb1c6383e89c133))
+* use cookieless tracking when cookies rejected ([4a2845a](https://github.com/oaknational/Oak-Web-Application/commit/4a2845ae4d700ea9225d429838ef6e749fba728c))
+
 # [1.919.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.918.1...v1.919.0) (2025-11-25)
 
 
