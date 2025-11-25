@@ -65,10 +65,7 @@ export function GetInvolvedWorkWithUs({
             $colStart={[1, 1, 1]}
             $justifyContent={["flex-start", "center", "center"]}
           >
-            <OakFlex
-              $flexDirection="column"
-              $gap={"spacing-32"}
-            >
+            <OakFlex $flexDirection="column" $gap={"spacing-32"}>
               <OakFlex $flexDirection="column" $gap="spacing-24">
                 <OakHeading
                   $font={["heading-5", "heading-3", "heading-3"]}
