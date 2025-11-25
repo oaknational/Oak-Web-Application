@@ -1,5 +1,4 @@
 import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
-import { LessonAttemptCamelCase } from "@oaknational/oak-pupil-client";
 
 import { PupilViewsResults } from "./PupilResults.view";
 
@@ -12,6 +11,7 @@ import {
 } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import { sectionResultsFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonSectionResults.fixture";
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
+import { LessonAttemptCamelCase } from "@/node-lib/pupil-api/types";
 
 describe("PupilResults", () => {
   it("displays the title Results Page", () => {

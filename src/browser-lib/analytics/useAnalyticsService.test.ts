@@ -26,18 +26,6 @@ describe("useAnalyticsService", () => {
       default: jest.fn(errorReporter),
     }));
   });
-  test("should not call service.init() if consentState:denied", () => {
-    renderHook(() =>
-      useAnalyticsService({ service, config: null, consentState: "denied" }),
-    );
-    expect(service.init).not.toHaveBeenCalled();
-  });
-  test("should not call service.init() if consentState:pending", () => {
-    renderHook(() =>
-      useAnalyticsService({ service, config: null, consentState: "pending" }),
-    );
-    expect(service.init).not.toHaveBeenCalled();
-  });
   test("should call service.init(config) if consentState:granted", () => {
     renderHook(() =>
       useAnalyticsService({
