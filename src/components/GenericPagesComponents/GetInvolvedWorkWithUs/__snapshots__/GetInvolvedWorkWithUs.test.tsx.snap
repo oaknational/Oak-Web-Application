@@ -1,0 +1,179 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-fqkvVR bZZBuO"
+    >
+      <div
+        class="sc-fqkvVR sc-kAyceB hwnObW eeevb"
+      >
+        <div
+          class="sc-fqkvVR sc-jXbUNg fgBWrW hzqgQA"
+        >
+          <div
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz etzMdS"
+          >
+            <div
+              class="sc-fqkvVR sc-kAyceB fgBWrW kYkjWQ"
+            >
+              <div
+                class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
+              >
+                <h2
+                  class="sc-kpDqfm eceTdU"
+                >
+                  Work with us
+                </h2>
+                <div
+                  class="sc-fqkvVR sc-kAyceB cThXxF iVYVEn"
+                >
+                  <p
+                    class="sc-dLMFU kdIcGd"
+                  >
+                    TESTING_PARAGRAPH_1
+                  </p>
+                  <p
+                    class="sc-dLMFU kdIcGd"
+                  >
+                    TESTING_PARAGRAPH_2
+                  </p>
+                </div>
+              </div>
+              <div
+                class="sc-fqkvVR sc-kAyceB fgBWrW gaFEky"
+              >
+                <div
+                  class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+                >
+                  <div
+                    class="sc-fqkvVR iPpXCP grey-shadow"
+                  />
+                  <div
+                    class="sc-fqkvVR iPpXCP yellow-shadow"
+                  />
+                  <a
+                    class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+                    href="https://example.com/permanent"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <div
+                      class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
+                    >
+                      <span
+                        class="sc-dAlyuH hHWgLm"
+                      >
+                        Permanent roles
+                      </span>
+                      <div
+                        class="sc-fqkvVR kbnxKi"
+                      >
+                        <img
+                          alt=""
+                          class="sc-dcJsrY beWtwI"
+                          data-nimg="fill"
+                          decoding="async"
+                          loading="lazy"
+                          src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                        />
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                <div
+                  class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
+                >
+                  <div
+                    class="sc-fqkvVR iPpXCP grey-shadow"
+                  />
+                  <div
+                    class="sc-fqkvVR iPpXCP yellow-shadow"
+                  />
+                  <a
+                    class="sc-dtBdUo sc-fXSgeo cFaVGX jZjsdk internal-button"
+                    href="https://example.com/freelance"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <div
+                      class="sc-fqkvVR sc-kAyceB fgBWrW cHFgFN"
+                    >
+                      <span
+                        class="sc-dAlyuH hHWgLm"
+                      >
+                        Freelance roles
+                      </span>
+                      <div
+                        class="sc-fqkvVR kbnxKi"
+                      >
+                        <img
+                          alt=""
+                          class="sc-dcJsrY beWtwI"
+                          data-nimg="fill"
+                          decoding="async"
+                          loading="lazy"
+                          src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699953892/icons/hlxmejse3mcr4tqo6t8u.svg"
+                          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                        />
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz BmYTN"
+          >
+            <div
+              class="sc-fqkvVR sc-kAyceB fgBWrW cfgZTR"
+            >
+              <div
+                class="sc-fqkvVR sc-kAyceB dBmdIk joHkzz"
+              >
+                <div
+                  class="sc-fqkvVR jqqmXN"
+                >
+                  <img
+                    alt="Team working together"
+                    class="sc-dcJsrY jIcMOQ"
+                    data-nimg="fill"
+                    decoding="async"
+                    loading="lazy"
+                    sizes="100vw"
+                    src="http://localhost/_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=3840&q=75"
+                    srcset="/_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=640&q=75 640w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=750&q=75 750w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=828&q=75 828w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=1080&q=75 1080w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=1200&q=75 1200w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=1920&q=75 1920w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=2048&q=75 2048w, /_next/image?url=http%3A%2F%2Fexample.com%2Fteam.jpg&w=3840&q=75 3840w"
+                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                  />
+                </div>
+              </div>
+              <div
+                class="sc-fqkvVR sc-kAyceB sc-2e612d02-1 fgBWrW dBzTSe eUhqlw"
+              >
+                <img
+                  alt="Badge 1"
+                  class="sc-2e612d02-0 hePDKN"
+                  src="http://example.com/badge1.png"
+                />
+                <img
+                  alt="Badge 2"
+                  class="sc-2e612d02-0 hePDKN"
+                  src="http://example.com/badge2.png"
+                />
+                <img
+                  alt="Badge 3"
+                  class="sc-2e612d02-0 hePDKN"
+                  src="http://example.com/badge3.png"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
