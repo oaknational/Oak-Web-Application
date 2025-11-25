@@ -55,11 +55,11 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
             class="sc-fqkvVR sc-kAyceB kFehuI joHkzz"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB sc-iLsKjm dtUOUJ hRXrdT hAgNoy"
+              class="sc-fqkvVR sc-kAyceB sc-bkSUFG dtUOUJ hRXrdT aqNPq"
             >
               <input
                 checked=""
-                class="sc-bbSZdi sc-epALIP fhuUBH dcuVfW"
+                class="sc-bbSZdi sc-fAGzit fhuUBH DbIbV"
                 data-testid="all-years-radio"
                 id=":r0:"
                 name="yearreact-use-id-test-result"
@@ -79,10 +79,10 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
             class="sc-fqkvVR sc-kAyceB kFehuI joHkzz"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB sc-iLsKjm dtUOUJ hRXrdT hAgNoy"
+              class="sc-fqkvVR sc-kAyceB sc-bkSUFG dtUOUJ hRXrdT aqNPq"
             >
               <input
-                class="sc-bbSZdi sc-epALIP fhuUBH dcuVfW"
+                class="sc-bbSZdi sc-fAGzit fhuUBH DbIbV"
                 data-testid="year-radio"
                 id=":r1:"
                 name="yearreact-use-id-test-result"
@@ -102,10 +102,10 @@ exports[`CurricTimetablingFilters basic usage 1`] = `
             class="sc-fqkvVR sc-kAyceB kFehuI joHkzz"
           >
             <div
-              class="sc-fqkvVR sc-kAyceB sc-iLsKjm dtUOUJ hRXrdT hAgNoy"
+              class="sc-fqkvVR sc-kAyceB sc-bkSUFG dtUOUJ hRXrdT aqNPq"
             >
               <input
-                class="sc-bbSZdi sc-epALIP fhuUBH dcuVfW"
+                class="sc-bbSZdi sc-fAGzit fhuUBH DbIbV"
                 data-testid="year-radio"
                 id=":r2:"
                 name="yearreact-use-id-test-result"
