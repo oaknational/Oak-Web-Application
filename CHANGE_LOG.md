@@ -1,3 +1,10 @@
+## [1.918.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.918.0...v1.918.1) (2025-11-25)
+
+
+### Bug Fixes
+
+* redundant type alias (sonarcloud) ([a28fb28](https://github.com/oaknational/Oak-Web-Application/commit/a28fb2846760f161459b58f0ed38ab63f8f956a5))
+
 # [1.918.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.917.0...v1.918.0) (2025-11-25)
 
 
