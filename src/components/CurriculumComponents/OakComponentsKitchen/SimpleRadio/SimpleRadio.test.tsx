@@ -1,10 +1,12 @@
 import { RadioGroup, RadioButton } from ".";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 
-describe("Fieldset", () => {
+const render = renderWithProvidersByName(["oakTheme", "theme"]);
+
+describe("SimpleRadio", () => {
   test("render / none", () => {
-    const { baseElement } = renderWithTheme(
+    const { baseElement } = render(
       <RadioGroup name="testing" onChange={(e) => console.log(e)} value={null}>
         <RadioButton value="one">one</RadioButton>
         <RadioButton value="two">two</RadioButton>
@@ -15,7 +17,7 @@ describe("Fieldset", () => {
   });
 
   test("render / selected", () => {
-    const { baseElement } = renderWithTheme(
+    const { baseElement } = render(
       <RadioGroup name="testing" onChange={(e) => console.log(e)} value="one">
         <RadioButton value="one">one</RadioButton>
         <RadioButton value="two">two</RadioButton>

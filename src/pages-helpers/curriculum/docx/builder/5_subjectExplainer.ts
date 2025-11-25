@@ -40,9 +40,7 @@ export default async function generate(
       <w:p />
       <w:p />
       ${explainerXml}
-        ${Array(4)
-        .fill(true)
-        .map(() => safeXml`<w:p />`)}
+        ${new Array(4).fill(true).map(() => safeXml`<w:p />`)}
     </root>
   `;
 

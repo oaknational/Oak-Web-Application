@@ -12,11 +12,16 @@ import {
   SearchQuery,
   SuggestedSearchFilter,
 } from "@/context/Search/search.types";
+import {
+  getFilterType,
+  TrackSearchModifiedProps,
+} from "@/components/TeacherViews/Search/helpers";
 
 export type SuggestedFiltersProps = {
   setQuery: SetSearchQuery;
   query: SearchQuery;
   searchFilters?: SuggestedSearchFilter[];
+  trackSearchModified: (props: TrackSearchModifiedProps) => void;
 };
 
 function toggleArrayValue(arr: string[] | undefined, value: string): string[] {
@@ -41,6 +46,7 @@ const SuggestedFilters: FC<SuggestedFiltersProps> = ({
   setQuery,
   query,
   searchFilters,
+  trackSearchModified,
 }) => {
   if (searchFilters === undefined || searchFilters.length === 0) {
     return null;
@@ -56,7 +62,12 @@ const SuggestedFilters: FC<SuggestedFiltersProps> = ({
   const handleFilterChange = (item: SuggestedSearchFilter) => {
     const queryProperty = FILTER_TYPE_MAP[item.type];
     if (!queryProperty) return;
-
+    trackSearchModified({
+      filterType: getFilterType(item.slug),
+      filterValue: item.value,
+      searchFilterMatchType: item.source,
+      checked: getCheckedState(item),
+    });
     setQuery((q) => ({
       ...q,
       [queryProperty]: toggleArrayValue(q[queryProperty], item.slug),
@@ -66,12 +77,12 @@ const SuggestedFilters: FC<SuggestedFiltersProps> = ({
   return (
     <OakBox>
       <OakFieldset>
-        <OakP as={"legend"} $mb="space-between-m" $font={"heading-7"}>
+        <OakP as={"legend"} $mb="spacing-24" $font={"heading-7"}>
           Suggested filters
         </OakP>
         <OakFlex
-          $gap={"space-between-xs"}
-          $mb="space-between-m2"
+          $gap={"spacing-12"}
+          $mb="spacing-32"
           $flexDirection={"row"}
           $flexWrap={"wrap"}
         >

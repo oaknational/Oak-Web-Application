@@ -12,7 +12,6 @@ import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import CurricUnitDetailsAccordion from "@/components/CurriculumComponents/CurricUnitDetailsAccordion";
 import { Unit, UnitOption } from "@/utils/curriculum/types";
 import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
-import { ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS } from "@/utils/curriculum/constants";
 import { priorKnowledgeRequirementsEnabled } from "@/utils/curriculum/features";
 
 export type CurricUnitDetailsProps = {
@@ -29,7 +28,7 @@ export default function CurricUnitDetails({
   unitOption,
   isUnitDescriptionEnabled,
   handleUnitOverviewExploredAnalytics,
-}: CurricUnitDetailsProps) {
+}: Readonly<CurricUnitDetailsProps>) {
   const threads = unit.threads;
   const priorKnowledgeRequirements = unit.prior_knowledge_requirements;
   const {
@@ -57,7 +56,6 @@ export default function CurricUnitDetails({
   }`;
 
   const shouldDisplayPriorKnowledge =
-    ENABLE_PRIOR_KNOWLEDGE_REQUIREMENTS &&
     priorKnowledgeRequirementsEnabled(unit) &&
     priorKnowledgeRequirements &&
     priorKnowledgeRequirements.length > 0;
@@ -66,22 +64,21 @@ export default function CurricUnitDetails({
     <OakFlex
       $flexDirection={"column"}
       $width={"100%"}
-      $mb="space-between-m"
+      $mb="spacing-24"
       data-testid="curriculum-unit-details"
     >
-      <OakP $mb="space-between-m2" $font={"body-2"}>
+      <OakP $mb="spacing-32" $font={"body-2"}>
         {lessonsInUnit}
       </OakP>
-
       {uniqueThreadsArray.length >= 1 && (
-        <OakBox $mb={["space-between-m", "space-between-m2"]}>
-          <OakHeading tag="h3" $font={"heading-6"} $mb="space-between-ssx">
+        <OakBox $mb={["spacing-24", "spacing-32"]}>
+          <OakHeading tag="h3" $font={"heading-6"} $mb="spacing-8">
             Threads
           </OakHeading>
           <OakFlex
             $flexDirection={["column", "row"]}
             $flexWrap={"wrap"}
-            $gap="all-spacing-2"
+            $gap="spacing-8"
             $alignItems={"flex-start"}
           >
             <ul style={{ display: "contents" }}>
@@ -103,12 +100,8 @@ export default function CurricUnitDetails({
         {isUnitDescriptionEnabled && (
           <>
             {description && (
-              <OakBox $mb={"space-between-m2"}>
-                <OakHeading
-                  tag="h3"
-                  $font={"heading-6"}
-                  $mb="space-between-ssx"
-                >
+              <OakBox $mb={"spacing-32"}>
+                <OakHeading tag="h3" $font={"heading-6"} $mb="spacing-8">
                   Description
                 </OakHeading>
                 <OakP data-testid="ac_description">{description}</OakP>
@@ -122,11 +115,7 @@ export default function CurricUnitDetails({
                   handleUnitOverviewExploredAnalytics
                 }
               >
-                <OakP
-                  data-testid="ac_wtwn"
-                  $mb="space-between-s"
-                  $font={"body-2"}
-                >
+                <OakP data-testid="ac_wtwn" $mb="spacing-16" $font={"body-2"}>
                   {whyThisWhyNow}
                 </OakP>
               </CurricUnitDetailsAccordion>
@@ -144,7 +133,7 @@ export default function CurricUnitDetails({
               handleUnitOverviewExploredAnalytics
             }
           >
-            <OakOL $mt="space-between-none" data-testid="lesson-title-list">
+            <OakOL $mt="spacing-0" data-testid="lesson-title-list">
               {lessons &&
                 uniqueLessonTitlesArray?.map((lesson) => {
                   return (
@@ -165,7 +154,7 @@ export default function CurricUnitDetails({
               handleUnitOverviewExploredAnalytics
             }
           >
-            <OakUL $mb="space-between-s" $font={"body-2"}>
+            <OakUL $mb="spacing-16" $font={"body-2"}>
               {priorKnowledgeRequirements.map((text, index) => {
                 return <OakLI key={index}>{text}</OakLI>;
               })}
@@ -184,12 +173,12 @@ export default function CurricUnitDetails({
               >
                 <OakP
                   data-testid="ac_prior_title"
-                  $mb="space-between-xs"
+                  $mb="spacing-12"
                   $font={"body-2-bold"}
                 >
                   {priorUnitTitle}
                 </OakP>
-                <OakP $mb="space-between-xs" $font={"body-2"}>
+                <OakP $mb="spacing-12" $font={"body-2"}>
                   {priorUnitDescription}
                 </OakP>
               </CurricUnitDetailsAccordion>
@@ -205,12 +194,12 @@ export default function CurricUnitDetails({
               >
                 <OakP
                   data-testid="ac_future_title"
-                  $mb="space-between-xs"
+                  $mb="spacing-12"
                   $font={"body-2-bold"}
                 >
                   {futureUnitTitle}
                 </OakP>
-                <OakP $mb="space-between-xs" $font={"body-2"}>
+                <OakP $mb="spacing-12" $font={"body-2"}>
                   {futureUnitDescription}
                 </OakP>
               </CurricUnitDetailsAccordion>

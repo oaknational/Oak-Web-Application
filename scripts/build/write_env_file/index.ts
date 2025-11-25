@@ -49,9 +49,6 @@ async function main() {
     }
     oakConfig = await fetchConfig(configLocation);
 
-    // DEBUG
-    // console.log("Next Oak Config", oakConfig);
-
     // Figure out the release stage and app version.
     // With this set up, "production" builds can only happen on Vercel because they
     // depend on a Vercel specific env variable.
@@ -196,6 +193,13 @@ async function main() {
     // AI FEATURES
     AI_SEARCH_ENABLED:
       process.env.AI_SEARCH_ENABLED || oakConfig.oak.aiSearchEnabled,
+    AI_SEARCH_RATE_LIMIT_PER_24H:
+      process.env.AI_SEARCH_RATE_LIMIT_PER_24H ||
+      secretsFromNetwork.AI_SEARCH_RATE_LIMIT_PER_24H,
+    AI_SEARCH_KV_URL:
+      process.env.AI_SEARCH_KV_URL || secretsFromNetwork.AI_SEARCH_KV_URL,
+    AI_SEARCH_KV_TOKEN:
+      process.env.AI_SEARCH_KV_TOKEN || secretsFromNetwork.AI_SEARCH_KV_TOKEN,
     AI_GATEWAY_URL:
       process.env.AI_GATEWAY_URL || secretsFromNetwork.AI_GATEWAY_URL,
     AI_GATEWAY_API_KEY:

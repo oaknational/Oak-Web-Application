@@ -33,7 +33,7 @@ export const QuizResultQuestionStem = (props: QuizQuestionStemProps) => {
       <MathJaxWrap>
         <OakFlex
           $flexDirection={"column"}
-          $gap={"space-between-m"}
+          $gap={"spacing-24"}
           $color={"text-primary"}
           $justifyContent={["center", "flex-start"]}
         >
@@ -70,7 +70,7 @@ export const QuizResultQuestionStem = (props: QuizQuestionStemProps) => {
                       height={stemItem.imageObject.height}
                       width={stemItem.imageObject.width}
                       alt={"An image in a quiz"}
-                      $minWidth={"all-spacing-19"}
+                      $minWidth={"spacing-240"}
                       placeholder="oak"
                       sizes={getSizes(["100vw", 1200])}
                       $background={"white"}

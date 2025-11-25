@@ -11,14 +11,13 @@ import {
   OakTagFunctional,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
-import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import { LessonOverviewCreateWithAiDropdown } from "../LessonOverviewCreateWithAiDropdown";
 
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { LessonOverviewHeaderDownloadAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderDownloadAllButton";
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
-import CopyrightRestrictionBanner from "@/components/TeacherComponents/CopyrightRestrictionBanner/CopyrightRestrictionBanner";
+import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import { resolveOakHref } from "@/common-lib/urls";
 
@@ -68,9 +67,6 @@ export const LessonOverviewHeaderDesktop: FC<
   const shouldShowBackButton =
     !!previousBreadcrumb && !!unitTitle && !!programmeSlug;
 
-  const isCreateWithAiEnabled =
-    useFeatureFlagVariantKey("create-with-ai-button") === "test";
-
   return (
     <OakBox $display={["none", "grid"]}>
       <OakGrid>
@@ -78,7 +74,7 @@ export const LessonOverviewHeaderDesktop: FC<
           <OakFlex
             $flexDirection={"column"}
             $alignItems={"flex-start"}
-            $gap={"space-between-m2"}
+            $gap={"spacing-32"}
           >
             {shouldShowBackButton && (
               <CustomDimensionRow data-testid={"back-button-row"}>
@@ -109,13 +105,13 @@ export const LessonOverviewHeaderDesktop: FC<
           $colSpan={[12, 9]}
           $alignItems={"flex-start"}
         >
-          <OakFlex $flexDirection={"column"} $gap="all-spacing-2">
+          <OakFlex $flexDirection={"column"} $gap="spacing-8">
             {shouldShowBackButton && (
               <OakTagFunctional
                 data-testid={"lesson-count-tag"}
                 label={`Lesson ${orderInUnit} of ${unitTotalLessonCount}`}
                 $background={"bg-decorative4-main"}
-                $mb={"space-between-s"}
+                $mb={"spacing-16"}
                 $width={"fit-content"}
                 useSpan={true}
               />
@@ -130,7 +126,7 @@ export const LessonOverviewHeaderDesktop: FC<
               </OakSpan>
             )}
 
-            <OakFlex $flexDirection={"column"} $gap="all-spacing-6">
+            <OakFlex $flexDirection={"column"} $gap="spacing-24">
               <OakHeading tag={"h1"} $font={"heading-3"}>
                 {lessonTitle}
               </OakHeading>
@@ -138,7 +134,7 @@ export const LessonOverviewHeaderDesktop: FC<
                 {phonicsOutcome && (
                   <OakP $font={"body-2-bold"}>Learning outcomes</OakP>
                 )}
-                <OakBox $maxWidth={"all-spacing-23"}>
+                <OakBox $maxWidth={"spacing-960"}>
                   {pupilLessonOutcome && (
                     <OakP $font={"body-2"}>{pupilLessonOutcome}</OakP>
                   )}
@@ -148,17 +144,17 @@ export const LessonOverviewHeaderDesktop: FC<
                 </OakBox>
               </OakBox>
               <OakFlex
-                $gap="space-between-s"
+                $gap="spacing-16"
                 $alignItems={"flex-start"}
                 $flexWrap={"wrap"}
               >
                 <LessonOverviewHeaderDownloadAllButton {...props} />
                 {shareButtons}
-                {!excludedFromTeachingMaterials && isCreateWithAiEnabled && (
+                {!excludedFromTeachingMaterials && (
                   <LessonOverviewCreateWithAiDropdown {...props} />
                 )}
               </OakFlex>
-              <CopyrightRestrictionBanner
+              <ComplexCopyrightRestrictionBanner
                 isGeorestricted={geoRestricted}
                 isLoginRequired={loginRequired}
                 componentType="lesson_overview"

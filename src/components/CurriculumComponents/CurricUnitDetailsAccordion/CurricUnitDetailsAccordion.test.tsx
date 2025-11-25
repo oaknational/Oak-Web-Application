@@ -3,8 +3,10 @@ import { OakP } from "@oaknational/oak-components";
 
 import CurricUnitDetailsAccordion from "./CurricUnitDetailsAccordion";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import Card from "@/components/SharedComponents/Card";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme", "theme"]);
 
 const unitOverviewExplored = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
@@ -20,7 +22,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 const handleUnitOverviewExploredAnalytics = () => jest.fn();
 describe("CurricUnitDetailsAccordion", () => {
   test("component renders with correct title", () => {
-    const { getByText } = renderWithTheme(
+    const { getByText } = render(
       <CurricUnitDetailsAccordion
         handleUnitOverviewExploredAnalytics={
           handleUnitOverviewExploredAnalytics
@@ -37,7 +39,7 @@ describe("CurricUnitDetailsAccordion", () => {
   });
 
   test("child component to not be visible on unexpanded container", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <CurricUnitDetailsAccordion
         handleUnitOverviewExploredAnalytics={
           handleUnitOverviewExploredAnalytics
@@ -54,7 +56,7 @@ describe("CurricUnitDetailsAccordion", () => {
   });
 
   test("container expands on click, child component to become visible", async () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <CurricUnitDetailsAccordion
         handleUnitOverviewExploredAnalytics={
           handleUnitOverviewExploredAnalytics
@@ -75,7 +77,7 @@ describe("CurricUnitDetailsAccordion", () => {
   });
 
   test("has aria-expanded changes from false to true when component is expanded", async () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByTestId } = render(
       <CurricUnitDetailsAccordion
         handleUnitOverviewExploredAnalytics={
           handleUnitOverviewExploredAnalytics
@@ -98,7 +100,7 @@ describe("CurricUnitDetailsAccordion", () => {
   });
 
   test("component renders child component", async () => {
-    const { getByText, getByTestId } = renderWithTheme(
+    const { getByText, getByTestId } = render(
       <CurricUnitDetailsAccordion
         handleUnitOverviewExploredAnalytics={
           handleUnitOverviewExploredAnalytics

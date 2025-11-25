@@ -54,9 +54,9 @@ import { LEGACY_COHORT, NEW_COHORT } from "@/config/cohort";
 import { keyLearningPoint } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { LessonOverviewDownloads } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import {
-  checkIsResourceCopyrightRestricted,
+  checkIfResourceHasLegacyCopyright,
   getIsResourceDownloadable,
-} from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
+} from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsLegacyCopyright";
 import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import LessonOverviewMediaClips, {
   TrackingCallbackProps,
@@ -65,7 +65,7 @@ import LessonOverviewDocPresentation from "@/components/TeacherComponents/Lesson
 import { TeacherNoteInline } from "@/components/TeacherComponents/TeacherNoteInline/TeacherNoteInline";
 import LessonOverviewSideNavAnchorLinks from "@/components/TeacherComponents/LessonOverviewSideNavAnchorLinks";
 import { RestrictedContentPrompt } from "@/components/TeacherComponents/RestrictedContentPrompt/RestrictedContentPrompt";
-import { useCopyrightRequirements } from "@/hooks/useCopyrightRequirements";
+import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 import { TeacherRedirectedOverlay } from "@/components/TeacherComponents/TeacherRedirectedOverlay/TeacherRedirectedOverlay";
 import { TeacherNotesButtonProps } from "@/pages-helpers/teacher/useLesson/useLesson";
 
@@ -111,7 +111,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     pupilLessonOutcome,
     lessonCohort,
     downloads,
-    copyrightContent,
+    legacyCopyrightContent,
     isSpecialist,
     updatedAt,
     isCanonical,
@@ -134,7 +134,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     showSignedOutLoginRequired,
     showGeoBlocked,
     showSignedInNotOnboarded,
-  } = useCopyrightRequirements({
+  } = useComplexCopyright({
     loginRequired,
     geoRestricted,
   });
@@ -265,7 +265,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
       platform: "owa",
       product: "teacher lesson resources",
       engagementIntent: "use",
-      componentType: "create_teaching_material_button",
+      componentType: "create_more_with_ai_button",
       eventVersion: "2.0.0",
       analyticsUseCase: "Teacher",
       isLoggedIn: user.isSignedIn ?? false,
@@ -279,7 +279,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
       platform: "owa",
       product: "teacher lesson resources",
       engagementIntent: "use",
-      componentType: "create_teaching_material_button",
+      componentType: "create_more_with_ai_dropdown",
       eventVersion: "2.0.0",
       analyticsUseCase: "Teacher",
       interactionId: "",
@@ -321,21 +321,23 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   const exitQuizImageAttribution = createAttributionObject(exitQuiz);
 
-  const downloadsFilteredByCopyright = downloads.filter(
-    (d) =>
-      d.exists === true &&
-      !checkIsResourceCopyrightRestricted(d.type, copyrightContent),
-  );
+  const hasDownloadableAssets =
+    downloads.filter(
+      (d) =>
+        d.exists === true &&
+        !checkIfResourceHasLegacyCopyright(d.type, legacyCopyrightContent),
+    ).length > 0;
 
-  const showDownloadAll = downloadsFilteredByCopyright.length > 0;
+  const showDownloadAll = hasDownloadableAssets && !contentRestricted;
   const showShare =
     !isSpecialist &&
     keyStageSlug !== "early-years-foundation-stage" &&
-    !actions?.disablePupilShare;
+    !actions?.disablePupilShare &&
+    !contentRestricted;
 
   const pageLinks = getPageLinksWithSubheadingsForLesson(
     lesson,
-    copyrightContent,
+    legacyCopyrightContent,
     mediaClipLabel,
   );
   const presentationTitle = "Lesson slides";
@@ -386,11 +388,12 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         teacherShareButton={teacherShareButton}
         trackTeachingMaterialsSelected={trackTeachingMaterialsSelected}
         trackCreateWithAiButtonClicked={trackCreateWithAiButtonClicked}
+        contentRestricted={contentRestricted}
       />
-      <OakMaxWidth $ph={"inner-padding-m"} $pb={"inner-padding-xl8"}>
+      <OakMaxWidth $ph={"spacing-16"} $pb={"spacing-80"}>
         {expired ? (
-          <OakBox $pa={"inner-padding-m"} $mb={"space-between-xxl"}>
-            <OakHeading $font={"heading-7"} tag={"h2"} $mb="space-between-s">
+          <OakBox $pa={"spacing-16"} $mb={"spacing-72"}>
+            <OakHeading $font={"heading-7"} tag={"h2"} $mb="spacing-16">
               No lesson available
             </OakHeading>
             <OakTypography $font={"body-1"}>
@@ -398,13 +401,13 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
             </OakTypography>
           </OakBox>
         ) : (
-          <OakGrid $mt={["space-between-l"]}>
+          <OakGrid $mt={["spacing-48"]}>
             <OakGridArea
               $colSpan={[12, 3]}
               $alignSelf={"start"}
               $position={"sticky"}
               $display={["none", "block"]}
-              $top={"all-spacing-14"} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size. This could be achieved with a new helperFunction get nextAvailableSize
+              $top={"spacing-92"} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size. This could be achieved with a new helperFunction get nextAvailableSize
             >
               {!showGeoBlocked && (
                 <OakFlex
@@ -412,8 +415,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   aria-label="page navigation"
                   $flexDirection={"column"}
                   $alignItems={"flex-start"}
-                  $gap={["all-spacing-2"]}
-                  $pr={["inner-padding-m"]}
+                  $gap={["spacing-8"]}
+                  $pr={["spacing-16"]}
                 >
                   <LessonOverviewSideNavAnchorLinks
                     contentRestricted={contentRestricted}
@@ -426,7 +429,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
             <OakGridArea $colSpan={[12, 9]}>
               <OakFlex $flexDirection={"column"} $position={"relative"}>
-                <OakBox $pb={"inner-padding-m"}>
+                <OakBox $pb={"spacing-16"}>
                   <ExpiringBanner
                     isOpen={actions?.displayExpiringBanner}
                     isResourcesMessage={true}
@@ -449,7 +452,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       downloadable={getIsResourceDownloadable(
                         "lesson-guide-pdf",
                         downloads,
-                        copyrightContent,
+                        legacyCopyrightContent,
                       )}
                       onDownloadButtonClick={() => {
                         trackDownloadResourceButtonClicked({
@@ -471,9 +474,9 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
                 {pageLinks.find((p) => p.label === presentationTitle) &&
                   !contentRestricted &&
-                  !checkIsResourceCopyrightRestricted(
+                  !checkIfResourceHasLegacyCopyright(
                     "presentation",
-                    copyrightContent,
+                    legacyCopyrightContent,
                   ) && (
                     <LessonItemContainer
                       isSpecialist={isSpecialist}
@@ -482,7 +485,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       downloadable={getIsResourceDownloadable(
                         "presentation",
                         downloads,
-                        copyrightContent,
+                        legacyCopyrightContent,
                       )}
                       onDownloadButtonClick={() => {
                         trackDownloadResourceButtonClicked({
@@ -638,12 +641,12 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         getIsResourceDownloadable(
                           "worksheet-pdf",
                           downloads,
-                          copyrightContent,
+                          legacyCopyrightContent,
                         ) ||
                         getIsResourceDownloadable(
                           "worksheet-pptx",
                           downloads,
-                          copyrightContent,
+                          legacyCopyrightContent,
                         )
                       }
                       shareable={isLegacyLicense && showShare}
@@ -678,7 +681,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 >
                   <OakAnchorTarget
                     id={"quiz"}
-                    $pt={"inner-padding-xl"}
+                    $pt={"spacing-24"}
                     ref={quizSectionRef}
                   />
                   {pageLinks.find(
@@ -702,12 +705,12 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                           getIsResourceDownloadable(
                             "intro-quiz-answers",
                             downloads,
-                            copyrightContent,
+                            legacyCopyrightContent,
                           ) ||
                           getIsResourceDownloadable(
                             "intro-quiz-questions",
                             downloads,
-                            copyrightContent,
+                            legacyCopyrightContent,
                           )
                         }
                         onDownloadButtonClick={() => {
@@ -756,12 +759,12 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                           getIsResourceDownloadable(
                             "exit-quiz-answers",
                             downloads,
-                            copyrightContent,
+                            legacyCopyrightContent,
                           ) ||
                           getIsResourceDownloadable(
                             "exit-quiz-questions",
                             downloads,
-                            copyrightContent,
+                            legacyCopyrightContent,
                           )
                         }
                         shareable={isLegacyLicense && showShare}
@@ -805,12 +808,12 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         getIsResourceDownloadable(
                           "supplementary-docx",
                           downloads,
-                          copyrightContent,
+                          legacyCopyrightContent,
                         ) ||
                         getIsResourceDownloadable(
                           "supplementary-pdf",
                           downloads,
-                          copyrightContent,
+                          legacyCopyrightContent,
                         )
                       }
                       shareable={isLegacyLicense && showShare}

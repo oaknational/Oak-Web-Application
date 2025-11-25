@@ -20,13 +20,9 @@ export default function CurricModalErrorContent({
   statusCode,
   message,
   additional,
-}: CurricModalErrorContentProps) {
+}: Readonly<CurricModalErrorContentProps>) {
   return (
-    <OakFlex
-      $gap="space-between-s"
-      $mv="space-between-l"
-      $flexDirection={"column"}
-    >
+    <OakFlex $gap="spacing-16" $mv="spacing-48" $flexDirection={"column"}>
       <ErrorHeading tag="h1">{statusCode}</ErrorHeading>
       <OakHeading $font={"heading-4"} tag="h2">
         {message}

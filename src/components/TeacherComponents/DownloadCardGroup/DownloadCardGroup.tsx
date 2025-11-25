@@ -8,10 +8,7 @@ import {
   OakHeading,
 } from "@oaknational/oak-components";
 
-import type {
-  DownloadResourceType,
-  ResourceFormProps,
-} from "@/components/TeacherComponents/types/downloadAndShare.types";
+import type { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import ResourceCard from "@/components/TeacherComponents/ResourceCard";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
@@ -44,11 +41,7 @@ const DownloadCard: FC<DownloadCardProps> = ({
           if (e.target.checked) {
             onChange([...fieldValue, downloadType]);
           } else {
-            onChange(
-              fieldValue.filter(
-                (val: DownloadResourceType | string) => val !== downloadType,
-              ),
-            );
+            onChange(fieldValue.filter((val) => val !== downloadType));
           }
           // Trigger the form to reevaluate errors
           triggerForm();
@@ -109,8 +102,8 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
             as={"legend"}
             tag={"h3"}
             $font={"body-3"}
-            $mb={"space-between-s"}
-            $mt={"space-between-xs"}
+            $mb={"spacing-16"}
+            $mt={"spacing-12"}
           >
             {groupTitle}
           </OakHeading>
@@ -119,8 +112,8 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
               $position="relative"
               $width="max-content"
               $gridTemplateColumns={["1fr", "1fr 1fr"]}
-              $cg={"space-between-s"}
-              $rg={"space-between-s"}
+              $cg={"spacing-16"}
+              $rg={"spacing-16"}
             >
               {filteredItems.map((download) => {
                 const downloadType =
@@ -140,7 +133,7 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
               })}
             </OakGrid>
           </OakBox>
-          <OakHandDrawnHR hrColor="grey40" $mt={"space-between-s"} />
+          <OakHandDrawnHR hrColor="grey40" $mt={"spacing-16"} />
         </OakFieldset>
       </OakBox>
     );

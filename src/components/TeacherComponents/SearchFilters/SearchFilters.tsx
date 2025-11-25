@@ -37,17 +37,17 @@ const renderFilterSection = (
   isMobileFilter?: boolean,
 ) => (
   <OakBox
-    $mb="space-between-m2"
+    $mb="spacing-32"
     $bb={!isLast ? "border-solid-s" : null}
     $borderColor={!isLast ? "grey40" : null}
   >
     <OakFieldset>
-      <OakP as={"legend"} $mb="space-between-m" $font={"heading-7"}>
+      <OakP as={"legend"} $mb="spacing-24" $font={"heading-7"}>
         {title}
       </OakP>
       <OakFlex
-        $gap={"space-between-xs"}
-        $mb="space-between-m2"
+        $gap={"spacing-12"}
+        $mb="spacing-32"
         $flexDirection={"row"}
         $flexWrap={"wrap"}
       >
@@ -68,6 +68,7 @@ const renderFilterSection = (
                 checked: filter.checked,
                 filterType,
                 filterValue: filter.title,
+                searchFilterMatchType: "default",
               });
               filter.onChange();
             }}
@@ -91,18 +92,14 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
 
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
-      <OakBox
-        $mb="space-between-m2"
-        $bb={"border-solid-s"}
-        $borderColor={"grey40"}
-      >
+      <OakBox $mb="spacing-32" $bb={"border-solid-s"} $borderColor={"grey40"}>
         <OakFieldset>
-          <OakP as={"legend"} $mb="space-between-m" $font={"heading-7"}>
+          <OakP as={"legend"} $mb="spacing-24" $font={"heading-7"}>
             Curriculum
           </OakP>
           <OakFlex
-            $gap={"space-between-s"}
-            $mb="space-between-m2"
+            $gap={"spacing-16"}
+            $mb="spacing-32"
             $flexDirection={"column"}
             $flexWrap={"wrap"}
           >
@@ -111,6 +108,11 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
               displayValue={"Show new only"}
               key={`search-filters-curriculum-filter`}
               aria-label={`Show new content filter`}
+              aria-describedby={
+                isMobileFilter
+                  ? "legacyFilterHintIdMobile"
+                  : "legacyFilterHintId"
+              }
               {...legacyFilter}
               id={`search-filters-showNewContent:mobile:${isMobileFilter}`}
               value="new"
@@ -119,6 +121,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
                   checked: legacyFilter.checked,
                   filterType: "Lesson Cohort filter",
                   filterValue: "2023-2026",
+                  searchFilterMatchType: "default",
                 });
                 legacyFilter.onChange();
               }}
@@ -131,6 +134,11 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
                 $font={"body-3"}
                 $wordWrap={"normal"}
                 $color={"text-subdued"}
+                id={
+                  isMobileFilter
+                    ? "legacyFilterHintIdMobile"
+                    : "legacyFilterHintId"
+                } // pa11y error for non unique id when mobile and desktop views rendered simultaneously
               >
                 Resources designed for the classroom
               </OakP>
@@ -138,18 +146,14 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
           </OakFlex>
         </OakFieldset>
       </OakBox>
-      <OakBox
-        $mb="space-between-m2"
-        $bb={"border-solid-s"}
-        $borderColor={"grey40"}
-      >
+      <OakBox $mb="spacing-32" $bb={"border-solid-s"} $borderColor={"grey40"}>
         <OakFieldset>
-          <OakP as={"legend"} $mb="space-between-m" $font={"heading-7"}>
+          <OakP as={"legend"} $mb="spacing-24" $font={"heading-7"}>
             Key stages
           </OakP>
           <OakFlex
-            $gap={"space-between-xs"}
-            $mb="space-between-m2"
+            $gap={"spacing-12"}
+            $mb="spacing-32"
             $flexDirection={"row"}
             $flexWrap={"wrap"}
           >
@@ -171,6 +175,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
                     checked: keyStageFilter.checked,
                     filterType: "Key stage filter",
                     filterValue: keyStageFilter.title,
+                    searchFilterMatchType: "default",
                   });
                   keyStageFilter.onChange();
                 }}

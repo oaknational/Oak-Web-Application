@@ -57,19 +57,15 @@ const portableTextComponents: PortableTextComponents = {
         <BodyHeading
           $font={"heading-5"}
           tag={"h2"}
-          $mt="space-between-m2"
-          $mb="space-between-ssx"
+          $mt="spacing-32"
+          $mb="spacing-8"
         >
           {props.children}
         </BodyHeading>
       );
     },
     normal: (props) => {
-      return (
-        <OakP $mt={["space-between-s", "space-between-m"]}>
-          {props.children}
-        </OakP>
-      );
+      return <OakP $mt={["spacing-16", "spacing-24"]}>{props.children}</OakP>;
     },
   },
 };
@@ -80,8 +76,8 @@ const ContactUs: NextPage<ContactPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <OakMaxWidth
-        $pt={["inner-padding-xl7", "inner-padding-xl8"]}
-        $pb={["inner-padding-xl6", "inner-padding-xl8"]}
+        $pt={["spacing-72", "spacing-80"]}
+        $pb={["spacing-64", "spacing-80"]}
       >
         <SummaryCard {...pageData} />
         <Card
@@ -97,7 +93,7 @@ const ContactUs: NextPage<ContactPageProps> = ({ pageData }) => {
             $alignItems={["flex-start", "center"]}
             $flexDirection={["column", "row"]}
           >
-            <OakBox $maxWidth={"all-spacing-22"}>
+            <OakBox $maxWidth={"spacing-640"}>
               <PortableTextWithDefaults
                 components={portableTextComponents}
                 value={pageData.bodyPortableText}

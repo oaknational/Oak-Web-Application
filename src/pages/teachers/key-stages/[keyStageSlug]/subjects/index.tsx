@@ -19,6 +19,7 @@ import KeyStageKeypad from "@/components/SharedComponents/KeyStageKeypad";
 import { getCombinedSubjects } from "@/pages-helpers/teacher/subject-listing-page/getCombinedSubjects";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import Banners from "@/components/SharedComponents/Banners";
+import { KeyStageSlug } from "@/utils/curriculum/types";
 
 export type KeyStagePageProps = {
   keyStageTitle: string;
@@ -35,7 +36,7 @@ export type SubjectPathwayArray = [SubjectPathway, ...SubjectPathway[]];
 
 export type SubjectListingPageProps = {
   subjects: [SubjectPathwayArray, ...SubjectPathwayArray[]];
-  keyStageSlug: string;
+  keyStageSlug: KeyStageSlug | "early-years-foundation-stage";
   keyStageTitle: string;
   keyStages: KeyStageData[];
 };
@@ -62,9 +63,9 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
       <Banners />
       <OakBox $background={"lavender50"}>
         <OakMaxWidth
-          $ph="inner-padding-s"
-          $maxWidth={["all-spacing-21", "all-spacing-23", "all-spacing-24"]}
-          $pv="inner-padding-xl2"
+          $ph="spacing-12"
+          $maxWidth={["spacing-480", "spacing-960", "spacing-1280"]}
+          $pv="spacing-32"
         >
           <KeyStageKeypad
             keyStages={keyStages}

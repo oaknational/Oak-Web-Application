@@ -124,7 +124,7 @@ const ListItemHeader: FC<ListItemHeadingProps | SpecialistListItemProps> = (
 
   return (
     <OakFlex>
-      <OakFlex $mb="space-between-sssx" $flexDirection={"column"}>
+      <OakFlex $mb="spacing-4" $flexDirection={"column"}>
         {!hideTopHeading &&
           !isSpecialistUnit(props) &&
           !props.isExemplarUnit && (

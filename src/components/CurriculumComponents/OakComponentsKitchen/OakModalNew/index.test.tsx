@@ -2,7 +2,9 @@ import { act } from "@testing-library/react";
 
 import { OakModalNew } from ".";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme", "theme"]);
 
 window.matchMedia = jest.fn().mockReturnValue({
   matches: true,
@@ -12,7 +14,7 @@ describe("OakModalNew", () => {
   it("should match snapshot", () => {
     HTMLDialogElement.prototype.close = () => {};
     HTMLDialogElement.prototype.showModal = () => {};
-    const { container, getByTestId } = renderWithTheme(
+    const { container, getByTestId } = render(
       <OakModalNew
         title={"test_title"}
         content={"test_content"}
@@ -35,7 +37,7 @@ describe("OakModalNew", () => {
     const onCloseMock = jest.fn();
     HTMLDialogElement.prototype.close = closeMock;
     HTMLDialogElement.prototype.showModal = showModalMock;
-    const { rerender } = renderWithTheme(
+    const { rerender } = render(
       <OakModalNew
         title={"test_title"}
         content={"test_content"}
@@ -92,7 +94,7 @@ describe("OakModalNew", () => {
     const onCloseMock = jest.fn();
     HTMLDialogElement.prototype.close = closeMock;
     HTMLDialogElement.prototype.showModal = showModalMock;
-    const { container } = renderWithTheme(
+    const { container } = render(
       <OakModalNew
         title={"test_title"}
         content={"test_content"}

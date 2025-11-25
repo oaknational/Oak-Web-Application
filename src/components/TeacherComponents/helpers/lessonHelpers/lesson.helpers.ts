@@ -1,6 +1,6 @@
 import { pick, groupBy } from "lodash";
 
-import { checkIsResourceCopyrightRestricted } from "../downloadAndShareHelpers/downloadsCopyright";
+import { checkIfResourceHasLegacyCopyright } from "../downloadAndShareHelpers/downloadsLegacyCopyright";
 
 import {
   LessonBase,
@@ -12,7 +12,7 @@ import truthy from "@/utils/truthy";
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { ShallowNullable } from "@/utils/util.types";
 import {
-  CopyrightContent,
+  LegacyCopyrightContent,
   LessonOverviewQuizData,
   StemImageObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
@@ -446,7 +446,7 @@ export type LessonPageLinkAnchorId =
 
 export const getPageLinksWithSubheadingsForLesson = (
   lesson: GetPageLinksForLessonProps,
-  copyrightContent: CopyrightContent,
+  copyrightContent: LegacyCopyrightContent,
   mediaClipsLabel?: string,
 ): {
   label: string;
@@ -470,7 +470,7 @@ export const getPageLinksWithSubheadingsForLesson = (
       condition: (lesson) =>
         Boolean(
           lesson.presentationUrl &&
-            !checkIsResourceCopyrightRestricted(
+            !checkIfResourceHasLegacyCopyright(
               "presentation",
               copyrightContent,
             ),
@@ -694,5 +694,5 @@ export function convertBytesToMegabytes(bytes: number): string {
 
   const i = Math.floor(Math.log(bytes) / Math.log(k));
 
-  return `${parseFloat((bytes / Math.pow(k, i)).toFixed(decimals))} ${sizes[i]}`;
+  return `${Number.parseFloat((bytes / Math.pow(k, i)).toFixed(decimals))} ${sizes[i]}`;
 }

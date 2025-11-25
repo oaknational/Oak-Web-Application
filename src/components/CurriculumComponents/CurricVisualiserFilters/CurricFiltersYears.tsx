@@ -62,7 +62,7 @@ export function CurricFiltersYears({
   data,
   ks4Options,
   slugs,
-}: CurricFiltersYearsProps) {
+}: Readonly<CurricFiltersYearsProps>) {
   const id = useId();
   const { yearData } = data;
 
@@ -121,11 +121,10 @@ export function CurricFiltersYears({
         tag="h4"
         id="year-group-label"
         $font={"heading-6"}
-        $mb="space-between-s"
+        $mb="spacing-16"
       >
         Year group
       </OakHeading>
-
       <OakRadioGroup
         name={"year" + id}
         onChange={(e) =>
@@ -136,7 +135,7 @@ export function CurricFiltersYears({
           )
         }
         value={String(index)}
-        $gap="space-between-ssx"
+        $gap="spacing-8"
         $flexDirection="row"
         $flexWrap="wrap"
         aria-labelledby="year-group-label"

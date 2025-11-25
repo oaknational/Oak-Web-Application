@@ -53,13 +53,13 @@ const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
     <OakBox
       $display={["none", "none", "block"]}
       $position={[null, null, "sticky"]}
-      $pt={["inner-padding-xl4"]}
-      $maxWidth={"all-spacing-20"}
+      $pt={["spacing-48"]}
+      $maxWidth={"spacing-360"}
     >
       <OakFieldset>
         {showFilters && (
-          <OakBox $mb={"space-between-m2"}>
-            <OakHeading tag="h3" $font="heading-6" $mb={"space-between-ssx"}>
+          <OakBox $mb={"spacing-32"}>
+            <OakHeading tag="h3" $font="heading-6" $mb={"spacing-8"}>
               Filters
             </OakHeading>
 
@@ -107,7 +107,7 @@ const DesktopUnitFilters = (props: DesktopUnitFiltersProps) => {
               id={learningThemesId}
               tag="h3"
               $font="heading-7"
-              $mb="space-between-s"
+              $mb="spacing-16"
             >
               {/* Though still called "Learning themes" internally, these should be referred to as "Threads" in user facing displays */}
               Threads

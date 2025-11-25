@@ -21,13 +21,13 @@ export default function AcceptTerms({
   error,
   value,
   onChange,
-}: AcceptTermsProps) {
+}: Readonly<AcceptTermsProps>) {
   return (
     <OakFlex
       $width={"100%"}
       $flexDirection={"column"}
       $alignItems={"start"}
-      $gap={"space-between-m"}
+      $gap={"spacing-24"}
     >
       {error && (
         <div data-testid="error">
@@ -37,8 +37,8 @@ export default function AcceptTerms({
       <OakBox
         $position={"relative"}
         $background={"grey20"}
-        $pv="inner-padding-xs"
-        $ph="inner-padding-xs"
+        $pv="spacing-8"
+        $ph="spacing-8"
       >
         <BrushBorders hideOnMobileH hideOnMobileV color={"grey20"} />
         <OakCheckBox

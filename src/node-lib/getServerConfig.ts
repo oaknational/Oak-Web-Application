@@ -85,7 +85,7 @@ const envVars = satisfies<Record<string, EnvVar>>()({
   },
   sanityRevalidateSeconds: {
     value: process.env.SANITY_REVALIDATE_SECONDS
-      ? parseInt(process.env.SANITY_REVALIDATE_SECONDS, 10)
+      ? Number.parseInt(process.env.SANITY_REVALIDATE_SECONDS, 10)
       : undefined,
     envName: "SANITY_REVALIDATE_SECONDS",
     required: true,
@@ -252,6 +252,27 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     required: false,
     availableInBrowser: false,
     default: false,
+  },
+  aiSearchRateLimitPer24h: {
+    value: process.env.AI_SEARCH_RATE_LIMIT_PER_24H,
+    envName: "AI_SEARCH_RATE_LIMIT_PER_24H",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  aiSearchKvUrl: {
+    value: process.env.AI_SEARCH_KV_URL,
+    envName: "AI_SEARCH_KV_URL",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  aiSearchKvToken: {
+    value: process.env.AI_SEARCH_KV_TOKEN,
+    envName: "AI_SEARCH_KV_TOKEN",
+    required: true,
+    availableInBrowser: false,
+    default: null,
   },
   aiGatewayUrl: {
     value: process.env.AI_GATEWAY_URL,

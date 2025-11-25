@@ -8,6 +8,7 @@ import {
 import { VisuallyHidden } from "react-aria";
 import styled from "styled-components";
 import Link from "next/link";
+import { ReactNode } from "react";
 
 import FocusIndicator from "../OakComponentsKitchen/FocusIndicator";
 
@@ -41,8 +42,9 @@ type CurricUnitCardProps = {
   isHighlighted: boolean;
   href: string;
   onClick?: () => void;
+  additional?: ReactNode;
 };
-export default function CurricUnitCard(props: CurricUnitCardProps) {
+export default function CurricUnitCard(props: Readonly<CurricUnitCardProps>) {
   const { href, isHighlighted, unit, index, onClick } = props;
   const isUnitOption = "unit_options" in unit;
   return (
@@ -63,28 +65,21 @@ export default function CurricUnitCard(props: CurricUnitCardProps) {
         onClick={onClick}
       >
         <OakFlex
-          $pv={"inner-padding-s"}
-          $ph={"inner-padding-m"}
+          $pv={"spacing-12"}
+          $ph={"spacing-16"}
           $height={"100%"}
           $width={"100%"}
           $color={isHighlighted ? "white" : "black"}
           data-testid={isHighlighted ? "highlighted-unit-card" : "unit-card"}
           $flexDirection={"column"}
         >
-          <OakBox>
-            <OutlineHeading
-              tag={"div"}
-              $font={"heading-5"}
-              $fontSize={24}
-              $mb={12}
-            >
+          <OakFlex $flexDirection={"column"} $gap={"spacing-12"}>
+            <OutlineHeading tag={"div"} $font={"heading-5"} $fontSize={24}>
               <span aria-hidden={true}>{index + 1}</span>
             </OutlineHeading>
             <OakSpan $font={"heading-7"}>{unit.title}</OakSpan>
             {isUnitOption && unit.unit_options.length > 1 && (
               <OakBox
-                $mt={"space-between-xs"}
-                $mb={"space-between-m"}
                 $zIndex={"neutral"}
                 data-testid="options-tag"
                 $position={"relative"}
@@ -95,21 +90,22 @@ export default function CurricUnitCard(props: CurricUnitCardProps) {
                 />
               </OakBox>
             )}
-          </OakBox>
+            {props.additional && <OakBox>{props.additional}</OakBox>}
+          </OakFlex>
 
           <OakFlex
             $flexDirection={"row"}
             $justifyContent={"flex-end"}
-            $mt={"space-between-s"}
+            $mt={"spacing-16"}
             $flexGrow={1}
             $alignItems={"flex-end"}
           >
-            <OakFlex $alignItems={"center"} $gap={"space-between-sssx"}>
+            <OakFlex $alignItems={"center"} $gap={"spacing-4"}>
               <OakTypography $font={"heading-7"}>Unit info</OakTypography>
 
               <OakIcon
-                $width="all-spacing-6"
-                $height="all-spacing-6"
+                $width="spacing-24"
+                $height="spacing-24"
                 $colorFilter={isHighlighted ? "white" : "black"}
                 alt=""
                 iconName="chevron-right"

@@ -8,7 +8,6 @@ import docx from "@/pages-helpers/curriculum/docx";
 import xlsxNationalCurriculum from "@/pages-helpers/curriculum/xlsx";
 import { zipFromFiles } from "@/utils/curriculum/zip";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
-import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import CMSClient from "@/node-lib/cms";
 import curriculumApi2023, {
   CurriculumOverviewMVData,
@@ -18,7 +17,6 @@ import { logErrorMessage } from "@/utils/curriculum/testing";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 import { CombinedCurriculumData } from "@/utils/curriculum/types";
 import { generateHash } from "@/pages-helpers/curriculum/docx/docx";
-import { ENABLE_NC_XLSX_DOCUMENT } from "@/utils/curriculum/constants";
 
 const stale_while_revalidate_seconds = 60 * 3;
 const s_maxage_seconds = 60 * 60 * 24;
@@ -124,7 +122,8 @@ async function getData(opts: {
 
     curriculumOverviewSanityData = await CMSClient.curriculumOverviewPage({
       previewMode: false,
-      ...{ subjectTitle: curriculumOverviewTabData.subjectTitle, phaseSlug },
+      subjectTitle: curriculumOverviewTabData.subjectTitle,
+      phaseSlug,
     });
 
     if (!curriculumOverviewSanityData) {
@@ -196,7 +195,7 @@ async function getData(opts: {
 
   const subject = curriculumPhaseOptions.subjects.find((subject) => {
     return subject.slug === subjectSlug;
-  }) as SubjectPhasePickerData["subjects"][number] | undefined;
+  });
 
   if (!subject) {
     return { notFound: true };
@@ -210,7 +209,6 @@ async function getData(opts: {
     ...curriculumData,
     ...curriculumOverviewTabData,
     ...curriculumOverviewSanityData,
-    ...{ state },
     examboardTitle: ks4Option?.title ?? null,
   };
 
@@ -243,7 +241,7 @@ export default async function handler(
     childSubjectSlug,
   } = curriculumDownloadQuerySchema.parse(req.query);
 
-  const mvRefreshTimeParsed = parseInt(mvRefreshTime);
+  const mvRefreshTimeParsed = Number.parseInt(mvRefreshTime);
   const actualMvRefreshTime = await getMvRefreshTime();
 
   // Note: Disable this check to allow 'new' documents
@@ -314,10 +312,7 @@ export default async function handler(
   ];
 
   const handlers = allHandlers.filter(({ type }) => {
-    if (type === "national-curriculum" && !ENABLE_NC_XLSX_DOCUMENT) {
-      return false;
-    }
-    return (types as string[]).includes(type);
+    return types.includes(type);
   });
 
   const data = await getData({

@@ -21,7 +21,7 @@ const ProgrammeListContainer: FC<ProgrammeListContainer> = (props) => {
   return (
     <OakGridArea
       $background={$background}
-      $pa={"inner-padding-m"}
+      $pa={"spacing-16"}
       $borderRadius={"border-radius-s"}
       $width="100%"
       {...gridAreaProps}

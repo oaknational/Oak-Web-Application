@@ -27,7 +27,7 @@ const ResourcePageDetailsCompleted: FC<ResourcePageDetailsCompletedProps> = ({
 }) => {
   return (
     <OakBox
-      $width={["100%", "all-spacing-21"]}
+      $width={["100%", "spacing-480"]}
       $height={"max-content"}
       $position="relative"
       $background="grey30"
@@ -36,12 +36,12 @@ const ResourcePageDetailsCompleted: FC<ResourcePageDetailsCompletedProps> = ({
       <BrushBorders color="grey30" />
       <OakFlex
         $flexDirection="column"
-        $gap="all-spacing-6"
-        $pa="inner-padding-xl"
+        $gap="spacing-24"
+        $pa="spacing-24"
         $alignItems="flex-start"
       >
-        <OakFlex $flexDirection="column" $gap="all-spacing-4">
-          <OakFlex $flexDirection="column" $gap="all-spacing-1">
+        <OakFlex $flexDirection="column" $gap="spacing-16">
+          <OakFlex $flexDirection="column" $gap="spacing-4">
             <OakHeading tag="h3" $font="heading-7">
               School
             </OakHeading>
@@ -49,7 +49,7 @@ const ResourcePageDetailsCompleted: FC<ResourcePageDetailsCompletedProps> = ({
           </OakFlex>
           <OakFlex
             $flexDirection="column"
-            $gap="all-spacing-1"
+            $gap="spacing-4"
             $overflow={"anywhere"}
           >
             <OakHeading tag="h3" $font="heading-7">

@@ -86,8 +86,8 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
   );
 
   const lessonCount = (
-    <OakFlex $flexDirection={"column"} $gap={"space-between-m"} $width={"100%"}>
-      <OakFlex $alignItems={"center"} $gap={"space-between-xs"}>
+    <OakFlex $flexDirection={"column"} $gap={"spacing-24"} $width={"100%"}>
+      <OakFlex $alignItems={"center"} $gap={"spacing-12"}>
         <OakInfo
           id="lesson-listing-info"
           tooltipPosition="top-left"
@@ -132,7 +132,7 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
           phase={phaseSlug}
           topNavSlot={BacktoUnits}
         >
-          <OakBox $mb={"space-between-xl"}>
+          <OakBox $mb={"spacing-56"}>
             {" "}
             <OakPupilJourneyList
               titleSlot={LessonListingTitle}

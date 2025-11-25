@@ -67,7 +67,7 @@ interface ListItemProps {
   isSelected?: boolean;
 }
 
-export function ListBox(props: ListBoxProps) {
+export function ListBox(props: Readonly<ListBoxProps>) {
   const ref = useRef<HTMLUListElement>(null);
   const { listBoxRef = ref, state } = props;
   const { listBoxProps } = useListBox(props, state, listBoxRef);
@@ -95,7 +95,7 @@ const OptionContext = createContext<OptionContextValue>({
   descriptionProps: {},
 });
 
-function Option({ item, state }: OptionProps) {
+function Option({ item, state }: Readonly<OptionProps>) {
   const ref = useRef<HTMLLIElement>(null);
   const { optionProps, labelProps, descriptionProps, isSelected, isFocused } =
     useOption(
@@ -120,8 +120,8 @@ function Option({ item, state }: OptionProps) {
         $background={isFocused ? "grey20" : "white"}
         $position={"relative"}
         $alignItems={"center"}
-        $pa="inner-padding-xs"
-        $pl="inner-padding-m"
+        $pa="spacing-8"
+        $pl="spacing-16"
       >
         <OptionContext.Provider value={{ labelProps, descriptionProps }}>
           {item.rendered}
@@ -138,7 +138,7 @@ function Option({ item, state }: OptionProps) {
 // described by the description, which makes for better announcements
 // for screen reader users.
 
-export function Label({ children }: { children: React.ReactNode }) {
+export function Label({ children }: Readonly<{ children: React.ReactNode }>) {
   const { labelProps } = useContext(OptionContext);
   return (
     <OakSpan $color={theme.selectListBox.states.default.color} {...labelProps}>
@@ -152,7 +152,9 @@ const StyledDescription = styled.div`
   font-size: 12px;
 `;
 
-export function Description({ children }: { children: React.ReactNode }) {
+export function Description({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   const { descriptionProps } = useContext(OptionContext);
   return (
     <OakFlex>

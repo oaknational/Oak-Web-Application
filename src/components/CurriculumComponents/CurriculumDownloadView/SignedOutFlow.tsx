@@ -65,7 +65,7 @@ export default function SignedOutFlow({
   onChangeDownloadTypes,
   availableDownloadTypes,
   submitError,
-}: SignedOutFlowProps) {
+}: Readonly<SignedOutFlowProps>) {
   const errorMessageListId = useId();
   const submitErrorId = useId();
   const [errors, setErrors] = useState<CurriculumDownloadViewErrors>({});
@@ -104,19 +104,18 @@ export default function SignedOutFlow({
 
   return (
     <OakFlex
-      $gap={["space-between-m2", "space-between-l"]}
+      $gap={["spacing-32", "spacing-48"]}
       $flexDirection={["column", "row"]}
     >
-      <OakBox $width={["100%", "all-spacing-20"]} $textAlign={"left"}>
+      <OakBox $width={["100%", "spacing-360"]} $textAlign={"left"}>
         <CurriculumDownloadSelection
           downloadTypes={downloadTypes}
           onChange={onChangeDownloadTypes}
           availableDownloadTypes={availableDownloadTypes}
         />
       </OakBox>
-
-      <OakBox $maxWidth={["100%", "all-spacing-20"]} $textAlign={"left"}>
-        <OakFlex $flexDirection={"column"} $gap={"space-between-m"}>
+      <OakBox $maxWidth={["100%", "spacing-360"]} $textAlign={"left"}>
+        <OakFlex $flexDirection={"column"} $gap={"spacing-24"}>
           <OakHeading tag="h3" $font={["heading-5"]}>
             Your details
           </OakHeading>
@@ -131,7 +130,7 @@ export default function SignedOutFlow({
                   $width={"100%"}
                   $flexDirection={"column"}
                   $alignItems={"start"}
-                  $gap={["space-between-l"]}
+                  $gap={["spacing-48"]}
                 >
                   <YourDetails
                     schools={schools}
@@ -164,14 +163,14 @@ export default function SignedOutFlow({
                 />
               )}
 
-              <OakFlex $flexDirection={"column"} $mt={"space-between-m"}>
+              <OakFlex $flexDirection={"column"} $mt={"spacing-24"}>
                 <Terms />
               </OakFlex>
 
               <OakFlex
                 $flexDirection={"column"}
-                $gap={"space-between-m"}
-                $mv={"space-between-s"}
+                $gap={"spacing-24"}
+                $mv={"spacing-16"}
               >
                 {submitError && (
                   <OakBox id={submitErrorId}>

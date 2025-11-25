@@ -14,7 +14,7 @@ export function CampaignPromoBanner({
   body,
   buttonCta,
   buttonUrl,
-}: {
+}: Readonly<{
   heading: PortableTextBlock[];
   media: Image | Video;
   subheading?: PortableTextBlock[] | null;
@@ -22,16 +22,16 @@ export function CampaignPromoBanner({
   buttonCta?: string | null;
   textStyles?: PortableTextComponents;
   buttonUrl?: string | null;
-}) {
+}>) {
   return (
     <OakFlex
-      $maxWidth={"all-spacing-24"}
+      $maxWidth={"spacing-1280"}
       $flexDirection={["column", "row"]}
       $width={"100%"}
-      $gap={"space-between-m2"}
+      $gap={"spacing-32"}
       $borderRadius={"border-radius-xl"}
-      $pv={["inner-padding-xl5"]}
-      $ph={["inner-padding-xl4"]}
+      $pv={["spacing-56"]}
+      $ph={["spacing-48"]}
     >
       <OakFlex
         $flexDirection={"column"}
@@ -39,7 +39,7 @@ export function CampaignPromoBanner({
         $flexShrink={1}
         $flexBasis={0}
         $justifyContent={"center"}
-        $gap={["space-between-m", "space-between-l"]}
+        $gap={["spacing-24", "spacing-48"]}
       >
         <PortableTextWithDefaults value={heading} components={textStyles} />
         {subheading && (

@@ -56,19 +56,19 @@ const SpecialistSubjectCard = (props: {
         $alignItems={"stretch"}
         $justifyContent="space-between"
         $height="100%"
-        $gap="all-spacing-5"
+        $gap="spacing-20"
       >
         <OakFlex
           $flexDirection={["row", "column"]}
           $alignItems="center"
           $flexGrow={2}
           $justifyContent={["flex-start", "space-between"]}
-          $gap={["space-between-ssx", "space-between-none"]}
+          $gap={["spacing-8", "spacing-0"]}
         >
           <OakIcon
             iconName={getValidSubjectIconName(props.subject.subjectSlug)}
-            $width={["all-spacing-11", "all-spacing-13"]}
-            $height={["all-spacing-11", "all-spacing-13"]}
+            $width={["spacing-64", "spacing-80"]}
+            $height={["spacing-64", "spacing-80"]}
             alt=""
           />
 
@@ -76,7 +76,7 @@ const SpecialistSubjectCard = (props: {
             $textAlign={["start", "center"]}
             $font={["heading-6", "heading-5"]}
             tag={"h6"}
-            $ma="space-between-none"
+            $ma="spacing-0"
           >
             {getSentenceCase(props.subject.subjectTitle)}
           </OakHeading>
@@ -87,7 +87,7 @@ const SpecialistSubjectCard = (props: {
           $hideDefaultFocus
         >
           <SubjectListingTextTile>
-            <OakFlex $flexDirection={"column"} $pa="inner-padding-m">
+            <OakFlex $flexDirection={"column"} $pa="spacing-16">
               <OakFlex>
                 <OakSpan>
                   {`${props.subject.unitCount} ${

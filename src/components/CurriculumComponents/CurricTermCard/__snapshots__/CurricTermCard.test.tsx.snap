@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CurricTermCard snapshot 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-fqkvVR sc-kAyceB sSUCJ moWty"
+    >
+      <div
+        class="sc-fqkvVR fgBWrW"
+      >
+        <h5
+          class="sc-kpDqfm evKItP"
+        >
+          Yeat 1
+        </h5>
+        <div
+          class="sc-fqkvVR sc-kAyceB fgBWrW gCgXGf"
+        >
+          <span
+            class="sc-dAlyuH cRouMQ"
+          >
+            25
+            /
+            30
+             lessons scheduled
+          </span>
+          <div
+            class="sc-fqkvVR erqloa"
+          >
+            <img
+              alt=""
+              class="sc-dcJsrY cDKKvZ"
+              data-nimg="fill"
+              decoding="async"
+              loading="lazy"
+              src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1709052869/icons/Icon_Info_vsx3xi.svg"
+              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="sc-fqkvVR fgBWrW"
+        data-testid="content"
+      >
+        TESTING
+      </div>
+    </div>
+  </div>
+</body>
+`;

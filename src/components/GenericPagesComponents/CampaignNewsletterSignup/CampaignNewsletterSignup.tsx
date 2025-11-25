@@ -11,7 +11,10 @@ import {
 } from "@oaknational/oak-components";
 import { PortableTextReactComponents } from "@portabletext/react";
 
-import { newsletterSignupFormSubmitSchema } from "./CampaignNewsletterSignup.schema";
+import {
+  newsletterSignupFormSubmitSchema,
+  partialNewsletterSchema,
+} from "./CampaignNewsletterSignup.schema";
 
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { OakInputWithLabel } from "@/components/SharedComponents/OakInputWithLabel/OakInputWithLabel";
@@ -34,11 +37,13 @@ type NewsletterSignUpData = Partial<{
   email?: string;
   schoolNotListed?: boolean;
   name: string;
+  schoolOrg?: string;
 }>;
 
 type NewsletterSignUpFormErrors = Partial<{
   schoolId: string;
   schoolNotListed: string;
+  schoolOrg: string;
   email: string;
   name: string;
 }>;
@@ -47,12 +52,48 @@ export type CampaignNewsletterSignupProps = NewsletterSignUp & {
   textStyles?: Partial<PortableTextReactComponents>;
 };
 
+const SchoolPickerInput = ({
+  errors,
+  data,
+  onChange,
+}: {
+  errors: NewsletterSignUpFormErrors;
+  data: NewsletterSignUpData;
+  onChange: (data: Partial<NewsletterSignUpData>) => void;
+}) => {
+  const schoolPickerInputValue = data.schoolName;
+  const { data: schools } = useFetch<School[]>(
+    `https://school-picker.thenational.academy/${schoolPickerInputValue}`,
+    "school-picker/fetch-suggestions",
+  );
+
+  return (
+    <>
+      {errors.schoolId && (
+        <OakBox id={errors.schoolId} role="alert">
+          <OakFieldError>{errors.schoolId}</OakFieldError>
+        </OakBox>
+      )}
+      <YourDetails
+        data={data}
+        schools={schools ?? []}
+        errors={errors}
+        onChange={onChange}
+        labelBackground="mint"
+        hidePrivacyPolicy={true}
+        emailRequired={true}
+      />
+    </>
+  );
+};
+
 const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
   heading,
   bodyPortableText,
   buttonCta,
   formId,
   textStyles,
+  freeSchoolInput,
 }) => {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [submitError, setSubmitError] = useState<string>("");
@@ -66,6 +107,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
     schoolNotListed: false,
     schools: [],
     name: undefined,
+    schoolOrg: undefined,
   }));
 
   const onChange = (partial: Partial<NewsletterSignUpData>) => {
@@ -80,28 +122,33 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
     hubspotNewsletterFormId: formId,
   });
 
-  const schoolPickerInputValue = data.schoolName;
-  const { data: schools } = useFetch<School[]>(
-    `https://school-picker.thenational.academy/${schoolPickerInputValue}`,
-    "school-picker/fetch-suggestions",
-  );
-
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitError("");
     setSuccessMessage("");
-    const formValidation = runSchema(newsletterSignupFormSubmitSchema, data);
+    const formValidation = runSchema(
+      freeSchoolInput
+        ? partialNewsletterSchema
+        : newsletterSignupFormSubmitSchema,
+      data,
+    );
 
     setErrors(formValidation.errors);
     if (formValidation.success) {
       setErrors({});
       try {
+        const schoolData = freeSchoolInput
+          ? { schoolName: data.schoolOrg }
+          : {
+              school: data.schoolId ?? "notListed",
+              schoolName: data.schoolName,
+            };
         await onHubspotSubmit({
-          school: data.schoolId ?? "notListed",
-          schoolName: data.schoolName,
+          ...schoolData,
           email: data.email,
           userRole: "",
+          name: data.name,
         });
         setSuccessMessage("Thanks, that's been received");
         setData({
@@ -111,6 +158,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
           schoolNotListed: false,
           schools: [],
           name: undefined,
+          schoolOrg: undefined,
         });
       } catch (error) {
         if (error instanceof OakError) {
@@ -128,25 +176,26 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
 
   return (
     <OakGrid
-      $mt={["space-between-xxl", "space-between-xxl", "space-between-xxxl"]}
-      $maxWidth={["unset", "all-spacing-24"]}
+      $mt={["spacing-72", "spacing-72", "spacing-80"]}
+      $maxWidth={["unset", "spacing-1280"]}
     >
       <OakGridArea
         $colSpan={[12, 10, 10]}
         $colStart={[1, 2, 2]}
-        $mb={["space-between-m", "space-between-l"]}
+        $mb={["spacing-24", "spacing-48"]}
       >
         <OakFlex
           $flexDirection={["column", "column", "row"]}
           $alignItems={"center"}
           $alignSelf={"stretch"}
-          $gap={"space-between-xxl"}
+          $gap={"spacing-72"}
+          $justifyContent={"space-between"}
         >
           <OakFlex
-            $maxWidth={["100%", "all-spacing-22"]}
+            $maxWidth={["100%", "spacing-640"]}
             $alignSelf={"stretch"}
             $flexDirection={"column"}
-            $gap={"space-between-s"}
+            $gap={"spacing-16"}
           >
             <OakHeading tag="h4" $font={"heading-4"}>
               {heading}
@@ -158,14 +207,14 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
           </OakFlex>
           <OakFlex
             as="form"
-            $minWidth={["100%", "100%", "all-spacing-21"]}
+            $minWidth={["100%", "100%", "spacing-480"]}
             $flexDirection={"column"}
             $background={"white"}
-            $pa={"inner-padding-xl"}
-            $gap={"space-between-m"}
+            $pa={"spacing-24"}
+            $gap={"spacing-24"}
             $borderRadius={"border-radius-s"}
           >
-            <OakFlex $flexDirection={"column"} $gap={"space-between-m2"}>
+            <OakFlex $flexDirection={"column"} $gap={"spacing-32"}>
               <OakInputWithLabel
                 label="Name"
                 id="nameInput"
@@ -177,20 +226,40 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
                 placeholder="Type your name"
                 defaultValue={data.name}
               />
-              {errors.schoolId && (
-                <OakBox id={errors.schoolId} role="alert">
-                  <OakFieldError>{errors.schoolId}</OakFieldError>
-                </OakBox>
+              {freeSchoolInput ? (
+                <>
+                  <OakInputWithLabel
+                    label={`School or organisation (optional)`}
+                    id="newsletter-school"
+                    data-testid="newsletter-school"
+                    error={errors.schoolOrg}
+                    onChange={(e) => onChange({ schoolOrg: e.target.value })}
+                    required={false}
+                    placeholder="Type your school or organisation"
+                    name="newsletter-school"
+                    labelBackground={"mint"}
+                    defaultValue={data.schoolOrg}
+                  />
+                  <OakInputWithLabel
+                    label={`Email`}
+                    id="newsletter-email"
+                    data-testid="newsletter-email"
+                    error={errors.email}
+                    onChange={(e) => onChange({ email: e.target.value })}
+                    required={true}
+                    placeholder="Type your email address"
+                    name="newsletter-email"
+                    labelBackground={"mint"}
+                    defaultValue={data.email}
+                  />
+                </>
+              ) : (
+                <SchoolPickerInput
+                  errors={errors}
+                  onChange={onChange}
+                  data={data}
+                />
               )}
-              <YourDetails
-                data={data}
-                schools={schools ?? []}
-                errors={errors}
-                onChange={onChange}
-                labelBackground="mint"
-                hidePrivacyPolicy={true}
-                emailRequired={true}
-              />
             </OakFlex>
             <OakPrimaryButton
               type="submit"
@@ -204,7 +273,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
             </OakPrimaryButton>
             {submitError.length > 0 && (
               <OakP
-                $mt={"space-between-none"}
+                $mt={"spacing-0"}
                 $font={"body-3"}
                 aria-live="assertive"
                 role="alert"
@@ -214,11 +283,7 @@ const CampaignNewsletterSignup: FC<CampaignNewsletterSignupProps> = ({
               </OakP>
             )}
             {successMessage.length > 0 && submitError === "" && (
-              <OakP
-                $mt={"space-between-none"}
-                $font={"body-3"}
-                aria-live="polite"
-              >
+              <OakP $mt={"spacing-0"} $font={"body-3"} aria-live="polite">
                 {!submitError && successMessage}
               </OakP>
             )}

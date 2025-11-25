@@ -24,7 +24,7 @@ const BioCardListItem: FC<BioCardListItemProps> = (props) => {
       {...(onClick ? containerProps : {})}
       $position="relative"
       $background="white"
-      $pa="inner-padding-m"
+      $pa="spacing-16"
       $flexDirection={["row", "column"]}
       $height={"100%"}
     >
@@ -37,7 +37,7 @@ const BioCardListItem: FC<BioCardListItemProps> = (props) => {
           </OakHeading>
           {role && (
             <OakP
-              $mt="space-between-sssx"
+              $mt="spacing-4"
               $font={["body-3", "heading-light-7"]}
               $color={"grey60"}
             >
@@ -48,8 +48,8 @@ const BioCardListItem: FC<BioCardListItemProps> = (props) => {
       </OakFlex>
       <OakFlex
         $alignItems={"center"}
-        $mt={["space-between-none", "space-between-m"]}
-        $ml={["auto", "space-between-none"]}
+        $mt={["spacing-0", "spacing-24"]}
+        $ml={["auto", "spacing-0"]}
       >
         <SocialButtons
           for={name}

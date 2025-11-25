@@ -239,7 +239,7 @@ function SubjectContainer({
   children,
   showSubjectError,
   onClick,
-}: SubjectContainerProps) {
+}: Readonly<SubjectContainerProps>) {
   const subjectErrorId = useId();
   const subjectInputId = useId();
   const isMobile = useMediaQuery("mobile");
@@ -251,12 +251,12 @@ function SubjectContainer({
           id={subjectErrorId}
           role="alert"
           $flexDirection={"row"}
-          $mb={"space-between-m"}
+          $mb={"spacing-24"}
         >
           <OakIcon
             iconName="content-guidance"
             $colorFilter={"red"}
-            $height={"all-spacing-6"}
+            $height={"spacing-24"}
           />
           <OakP $color={"red"}>Select a subject to view a curriculum</OakP>
         </OakFlex>
@@ -264,8 +264,8 @@ function SubjectContainer({
       <OakFlex
         $flexDirection={"column"}
         $alignItems={"flex-start"}
-        $gap={"all-spacing-7"}
-        $mb={"space-between-sssx"}
+        $gap={"spacing-32"}
+        $mb={"spacing-4"}
       >
         {isMobile && (
           <OakHeading
@@ -277,17 +277,14 @@ function SubjectContainer({
           </OakHeading>
         )}
 
-        <OakFlex
-          $flexDirection={"column"}
-          $gap={["all-spacing-2", "all-spacing-1"]}
-        >
+        <OakFlex $flexDirection={"column"} $gap={["spacing-8", "spacing-4"]}>
           {!isMobile && (
             <CurriculumModalCloseButton
               ariaLabel="Close subject picker modal"
               onClose={onClick}
               $position={"absolute"}
-              $top={"all-spacing-3"}
-              $right={"all-spacing-3"}
+              $top={"spacing-12"}
+              $right={"spacing-12"}
             />
           )}
 
@@ -295,7 +292,7 @@ function SubjectContainer({
             id={subjectInputId}
             tag={"h2"}
             $font={"heading-6"}
-            $mr="space-between-xs"
+            $mr="spacing-12"
             data-testid="subject-picker-heading"
           >
             Curriculum plans
@@ -303,20 +300,20 @@ function SubjectContainer({
           <OakP>Explore our curricula for 2024/2025.</OakP>
         </OakFlex>
       </OakFlex>
-      <OakBox $mv={["space-between-m2", "space-between-m"]}>
+      <OakBox $mv={["spacing-32", "spacing-24"]}>
         <OakFlex
           role="radiogroup"
           aria-labelledby={subjectInputId}
           aria-required="true"
           aria-describedby={showSubjectError ? subjectErrorId : undefined}
-          $gap={"space-between-xs"}
+          $gap={"spacing-12"}
           $alignItems={"flex-start"}
           $flexWrap={"wrap"}
         >
           {children}
         </OakFlex>
       </OakBox>
-      <OakBox $mb={["space-between-m2", "space-between-none"]}>
+      <OakBox $mb={["spacing-32", "spacing-0"]}>
         <OwaLink
           page={"curriculum-previous-downloads"}
           $textDecoration={"underline"}
@@ -326,7 +323,7 @@ function SubjectContainer({
           $alignItems={"center"}
         >
           Previously released plans
-          <OakIcon iconName="arrow-right" $width={"all-spacing-6"} />
+          <OakIcon iconName="arrow-right" $width={"spacing-24"} />
         </OwaLink>
       </OakBox>
     </SubjectContainerWrapper>
@@ -621,9 +618,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
         label={"Choose a curriculum"}
         $zIndex={298}
         $position="relative"
-        $top={"all-spacing-2"}
+        $top={"spacing-8"}
         $width={"fit-content"}
-        $left={"all-spacing-2"}
+        $left={"spacing-8"}
         $borderRadius={"border-radius-square"}
       />
       <OakBox
@@ -634,7 +631,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             ? "modal-dialog"
             : "modal-close-button"
         }
-        $maxWidth="all-spacing-23"
+        $maxWidth="spacing-960"
         $borderRadius="border-radius-s"
         $borderColor={showSubjects || showPhases ? "transparent" : "black"}
         $ba="border-solid-m"
@@ -645,7 +642,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
           $borderRadius="border-radius-s"
           $alignItems={"center"}
           $justifyContent={"space-between"}
-          $gap="space-between-none"
+          $gap="spacing-0"
           $flexDirection={["column", "row"]}
           $width={"100%"}
           $background={showSubjects || showPhases ? "grey30" : "white"}
@@ -680,14 +677,14 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   aria-expanded={isMobileLotPickerModalOpen || showSubjects}
                 >
                   <OakBox
-                    $pl="inner-padding-m"
-                    $pr="inner-padding-m"
-                    $pt="inner-padding-s"
-                    $pb="inner-padding-s"
+                    $pl="spacing-16"
+                    $pr="spacing-16"
+                    $pt="spacing-12"
+                    $pb="spacing-12"
                   >
                     <OakSpan
                       $font={"heading-light-7"}
-                      $mb="space-between-sssx"
+                      $mb="spacing-4"
                       $color={!showSubjectError ? "black" : "red"}
                       data-testid="subject-picker-button-heading"
                     >
@@ -698,7 +695,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         <OakIcon
                           iconName="content-guidance"
                           $colorFilter={"red"}
-                          $height={"all-spacing-6"}
+                          $height={"spacing-24"}
                         />
                         <OakSpan $color={!showSubjectError ? "black" : "red"}>
                           Select a subject
@@ -720,11 +717,11 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             {showSubjects && !isMobile && !isMobileLotPickerModalOpen && (
               <SelectionDropDownBox
                 $background={"white"}
-                $left={"all-spacing-0"}
-                $mt={"space-between-ssx"}
-                $pa={"inner-padding-xl"}
+                $left={"spacing-0"}
+                $mt={"spacing-8"}
+                $pa={"spacing-24"}
                 $position="absolute"
-                $top={"all-spacing-12"}
+                $top={"spacing-72"}
                 $zIndex={"modal-dialog"}
                 $width={"100%"}
               >
@@ -752,7 +749,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         >
                           <OakSecondaryButton
                             role="radio"
-                            iconGap={"space-between-sssx"}
+                            iconGap={"spacing-4"}
                             onClick={() => handleSelectSubject(subject)}
                             aria-checked={isSelected(subject)}
                             title={subject.title}
@@ -791,16 +788,16 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     showSubjectError ? "subject-error-message" : undefined
                   }
                   $position="fixed"
-                  $bottom={"all-spacing-0"}
-                  $left={"all-spacing-0"}
-                  $right={"all-spacing-0"}
+                  $bottom={"spacing-0"}
+                  $left={"spacing-0"}
+                  $right={"spacing-0"}
                   $background="white"
                   $height="100%"
                   $overflowY="auto"
                   $zIndex="modal-dialog"
-                  $pa={"inner-padding-xl"}
+                  $pa={"spacing-24"}
                 >
-                  <OakFlex $flexDirection="column" $gap="space-between-m">
+                  <OakFlex $flexDirection="column" $gap="spacing-24">
                     <OakFlex
                       $alignItems={"center"}
                       $justifyContent={"flex-end"}
@@ -824,12 +821,12 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         >
                           <OakSecondaryButton
                             role="radio"
-                            iconGap="space-between-sssx"
+                            iconGap="spacing-4"
                             onClick={() => {
                               handleSelectSubject(subject);
                             }}
-                            pv="inner-padding-xs"
-                            ph="inner-padding-s"
+                            pv="spacing-8"
+                            ph="spacing-12"
                             aria-checked={isSelected(subject)}
                             title={subject.title}
                             hoverShadow={null}
@@ -848,8 +845,8 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
 
                     <OakBox
                       $position="fixed"
-                      $bottom={"all-spacing-0"}
-                      $left={"all-spacing-0"}
+                      $bottom={"spacing-0"}
+                      $left={"spacing-0"}
                       $zIndex={"modal-dialog"}
                       $display={["block"]}
                       $width={"100%"}
@@ -857,13 +854,13 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     >
                       <OakHandDrawnHR
                         hrColor={"grey40"}
-                        $height={"all-spacing-05"}
+                        $height={"spacing-2"}
                         $width="100%"
                       />
                       <OakBox
-                        $ph={"inner-padding-xl2"}
-                        $pb={"inner-padding-s"}
-                        $pt={"inner-padding-s"}
+                        $ph={"spacing-32"}
+                        $pb={"spacing-12"}
+                        $pt={"spacing-12"}
                       >
                         <OakPrimaryButton
                           data-testid="mobile-subject-picker-confirm-button"
@@ -871,8 +868,8 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           aria-label="Confirm subject"
                           isTrailingIcon={true}
                           onClick={handleConfirmSubject}
-                          pv="inner-padding-m"
-                          ph="inner-padding-l"
+                          pv="spacing-16"
+                          ph="spacing-20"
                           disabled={!selectedSubject}
                         >
                           Confirm subject
@@ -885,8 +882,8 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             )}
             {/* SEPARATOR */}
             <OakBox
-              $height={"all-spacing-9"}
-              $width={"all-spacing-05"}
+              $height={"spacing-48"}
+              $width={"spacing-2"}
               $position={"relative"}
               $display={"block"}
               $visibility={showSubjects || showPhases ? "hidden" : null}
@@ -903,7 +900,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               <OakFlex
                 $position={"relative"}
                 $flexDirection={"row"}
-                $gap="space-between-s"
+                $gap="spacing-16"
                 $background={showPhases ? "white" : null}
               >
                 <FocusIndicatorAlt
@@ -923,14 +920,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     title="Phase"
                     aria-expanded={showPhases}
                   >
-                    <OakBox
-                      $pl="inner-padding-m"
-                      $pt="inner-padding-s"
-                      $pb="inner-padding-s"
-                    >
+                    <OakBox $pl="spacing-16" $pt="spacing-12" $pb="spacing-12">
                       <OakSpan
                         $font={"heading-light-7"}
-                        $mb="space-between-sssx"
+                        $mb="spacing-4"
                         $color={!showSubjectError ? "black" : "red"}
                         data-testid="phase-picker-button-heading"
                       >
@@ -949,7 +942,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                             <OakIcon
                               iconName="content-guidance"
                               $colorFilter={"red"}
-                              $height={"all-spacing-6"}
+                              $height={"spacing-24"}
                             />
                             Select a school phase
                           </OakFlex>
@@ -959,7 +952,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                             <OakIcon
                               iconName="content-guidance"
                               $colorFilter={"red"}
-                              $height={"all-spacing-6"}
+                              $height={"spacing-24"}
                             />
                             <OakSpan
                               $textOverflow="ellipsis"
@@ -971,18 +964,16 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           </TruncatedFlex>
                         )}
                         {selectedPhase && !showKS4OptionError && (
-                          <>
-                            <OakBox
-                              $textOverflow={"ellipsis"}
-                              $whiteSpace={"nowrap"}
-                              $overflowX={"hidden"}
-                            >
-                              <OakSpan>{selectedPhase.title}</OakSpan>
-                              {selectedKS4Option && (
-                                <OakSpan>, {selectedKS4Option.title}</OakSpan>
-                              )}
-                            </OakBox>
-                          </>
+                          <OakBox
+                            $textOverflow={"ellipsis"}
+                            $whiteSpace={"nowrap"}
+                            $overflowX={"hidden"}
+                          >
+                            <OakSpan>{selectedPhase.title}</OakSpan>
+                            {selectedKS4Option && (
+                              <OakSpan>, {selectedKS4Option.title}</OakSpan>
+                            )}
+                          </OakBox>
                         )}
                         {!selectedPhase &&
                           !showPhaseError &&
@@ -997,10 +988,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 {showPhases && !isMobile && (
                   <SelectionDropDownBox
                     $background={"white"}
-                    $mt={"space-between-ssx"}
-                    $pa={"inner-padding-xl2"}
+                    $mt={"spacing-8"}
+                    $pa={"spacing-32"}
                     $position="absolute"
-                    $top={"all-spacing-12"}
+                    $top={"spacing-72"}
                     $zIndex={"modal-dialog"}
                     className="phase-selection"
                   >
@@ -1020,12 +1011,12 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                             id={phaseErrorId}
                             role="alert"
                             $flexDirection={"row"}
-                            $mb={"space-between-m"}
+                            $mb={"spacing-24"}
                           >
                             <OakIcon
                               iconName="content-guidance"
                               $colorFilter={"red"}
-                              $height={"all-spacing-6"}
+                              $height={"spacing-24"}
                             />
                             <OakP $color={"red"}>
                               Select a school phase to view the curriculum
@@ -1038,12 +1029,12 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                             role="alert"
                             aria-live="polite"
                             $flexDirection={"row"}
-                            $mb={"space-between-m"}
+                            $mb={"spacing-24"}
                           >
                             <OakIcon
                               iconName="content-guidance"
                               $colorFilter={"red"}
-                              $height={"all-spacing-6"}
+                              $height={"spacing-24"}
                             />
                             <OakP $color={"red"}>
                               Select a KS4 option to view the curriculum
@@ -1056,7 +1047,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           id={schoolPhaseInputId}
                           tag={"h4"}
                           $font={"heading-6"}
-                          $mb="space-between-s"
+                          $mb="spacing-16"
                           data-testid="phase-picker-heading"
                         >
                           Choose a school phase
@@ -1069,14 +1060,14 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                             showPhaseError ? phaseErrorId : undefined
                           }
                           $flexDirection={"column"}
-                          $gap={"space-between-s"}
+                          $gap={"spacing-16"}
                         >
                           <CurriculumModalCloseButton
                             ariaLabel="Close phase picker"
                             onClose={() => setShowPhases(false)}
                             $position={"absolute"}
-                            $top={"all-spacing-3"}
-                            $right={"all-spacing-3"}
+                            $top={"spacing-12"}
+                            $right={"spacing-12"}
                           />
                           {(selectedSubject?.phases ?? phases).map((phase) => (
                             <ButtonContainer
@@ -1088,8 +1079,8 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                               <OakSecondaryButton
                                 key={phase.slug}
                                 role="radio"
-                                pv={"inner-padding-s"}
-                                ph={"inner-padding-s"}
+                                pv={"spacing-12"}
+                                ph={"spacing-12"}
                                 width={"100%"}
                                 onClick={() => handleSelectPhase(phase)}
                                 aria-checked={isSelected(phase)}
@@ -1115,8 +1106,8 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                               <OakHeading
                                 data-testid="phase-picker-ks4-option-heading"
                                 id={ks4OptionInputId}
-                                $mb="space-between-s"
-                                $mt="space-between-m"
+                                $mb="spacing-16"
+                                $mt="spacing-24"
                                 tag={"h4"}
                                 $font={"heading-6"}
                               >
@@ -1133,7 +1124,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                                 }
                                 $flexWrap={"wrap"}
                                 $flexDirection={"row"}
-                                $gap={"all-spacing-2"}
+                                $gap={"spacing-8"}
                               >
                                 {selectedSubject &&
                                   [...ks4Options]
@@ -1200,16 +1191,16 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                             : undefined
                       }
                       $position="fixed"
-                      $bottom={"all-spacing-0"}
-                      $left={"all-spacing-0"}
-                      $right={"all-spacing-0"}
+                      $bottom={"spacing-0"}
+                      $left={"spacing-0"}
+                      $right={"spacing-0"}
                       $background="white"
                       $height="100%"
                       $overflowY="auto"
                       $zIndex="modal-dialog"
-                      $pa={"inner-padding-xl"}
+                      $pa={"spacing-24"}
                     >
-                      <OakFlex $flexDirection="column" $gap="space-between-m">
+                      <OakFlex $flexDirection="column" $gap="spacing-24">
                         <OakFlex
                           $alignItems="center"
                           $justifyContent="space-between"
@@ -1246,12 +1237,12 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                             <OakFlex
                               id={phaseErrorId}
                               $flexDirection="row"
-                              $mb={"space-between-m"}
+                              $mb={"spacing-24"}
                             >
                               <OakIcon
                                 iconName="content-guidance"
                                 $colorFilter={"red"}
-                                $height={"all-spacing-6"}
+                                $height={"spacing-24"}
                               />
                               <OakP $color="red">
                                 Select a school phase to view the curriculum
@@ -1263,12 +1254,12 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                             <OakFlex
                               id={ks4OptionErrorId}
                               $flexDirection="row"
-                              $mb={"space-between-m"}
+                              $mb={"spacing-24"}
                             >
                               <OakIcon
                                 iconName="content-guidance"
                                 $colorFilter={"red"}
-                                $height={"all-spacing-6"}
+                                $height={"spacing-24"}
                               />
                               <OakP $color="red">
                                 Select a KS4 option to view the curriculum
@@ -1284,7 +1275,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                               showPhaseError ? phaseErrorId : undefined
                             }
                             $flexDirection="column"
-                            $gap="space-between-s"
+                            $gap="spacing-16"
                           >
                             {(selectedSubject?.phases ?? phases).map(
                               (phase) => (
@@ -1296,8 +1287,8 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                                     data-testid="mobile-phase-button"
                                     key={phase.slug}
                                     role="radio"
-                                    pv="inner-padding-m"
-                                    ph="inner-padding-s"
+                                    pv="spacing-16"
+                                    ph="spacing-12"
                                     width="100%"
                                     onClick={() => handleSelectPhase(phase)}
                                     aria-checked={isSelected(phase)}
@@ -1306,10 +1297,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                                     hoverShadow={null}
                                   >
                                     {phase.title}
-                                    <OakP
-                                      $font="body-2"
-                                      $mt="space-between-ssx"
-                                    >
+                                    <OakP $font="body-2" $mt="spacing-8">
                                       {getPhaseText(
                                         phase,
                                         selectedSubject?.keystages ??
@@ -1326,12 +1314,12 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                             ks4Options.length > 0 && (
                               <OakFlex
                                 $flexDirection="column"
-                                $gap="space-between-xs"
+                                $gap="spacing-12"
                               >
                                 <OakHeading
                                   data-testid="mobile-phase-picker-ks4-option-heading"
                                   id={ks4OptionInputId}
-                                  $mt="space-between-ssx"
+                                  $mt="spacing-8"
                                   tag="h2"
                                   $font="heading-7"
                                 >
@@ -1349,7 +1337,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                                   }
                                   $flexWrap="wrap"
                                   $flexDirection="row"
-                                  $gap="all-spacing-2"
+                                  $gap="spacing-8"
                                 >
                                   {selectedSubject &&
                                     [...ks4Options]
@@ -1372,8 +1360,8 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                                               ks4Option,
                                             )}
                                             aria-checked={isSelected(ks4Option)}
-                                            pv="inner-padding-xs"
-                                            ph="inner-padding-s"
+                                            pv="spacing-8"
+                                            ph="spacing-12"
                                             hoverShadow={null}
                                           >
                                             {createKS4OptionTitle(
@@ -1389,8 +1377,8 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         </PhaseContainerWrapper>
                         <OakBox
                           $position="fixed"
-                          $bottom={"all-spacing-0"}
-                          $left={"all-spacing-0"}
+                          $bottom={"spacing-0"}
+                          $left={"spacing-0"}
                           $display={["block"]}
                           $zIndex={"modal-dialog"}
                           $width="100%"
@@ -1398,13 +1386,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         >
                           <OakHandDrawnHR
                             hrColor={"grey40"}
-                            $height={"all-spacing-05"}
+                            $height={"spacing-2"}
                             $width="100%"
                           />
-                          <OakBox
-                            $ph={"inner-padding-xl"}
-                            $pv={"inner-padding-s"}
-                          >
+                          <OakBox $ph={"spacing-24"} $pv={"spacing-12"}>
                             <OakPrimaryButton
                               data-testid="mobile-phase-picker-confirm-button"
                               iconName="arrow-right"
@@ -1413,8 +1398,8 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                               onClick={() => {
                                 handleViewCurriculum();
                               }}
-                              pv="inner-padding-m"
-                              ph="inner-padding-l"
+                              pv="spacing-16"
+                              ph="spacing-20"
                               isLoading={isNavigating}
                               disabled={!isPhaseSelectionComplete()}
                             >
@@ -1429,10 +1414,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
 
                 <OakFlex
                   $position="absolute"
-                  $right="all-spacing-0"
-                  $pr="inner-padding-m"
+                  $right="spacing-0"
+                  $pr="spacing-16"
                   $alignContent="center"
-                  $maxWidth={["all-spacing-15", "all-spacing-17"]}
+                  $maxWidth={["spacing-100", "spacing-160"]}
                   $width="fit-content"
                   $height="100%"
                   $display={["none", "block"]}

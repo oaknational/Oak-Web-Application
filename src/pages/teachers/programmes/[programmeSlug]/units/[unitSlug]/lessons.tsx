@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   NextPage,
   GetStaticProps,
@@ -20,6 +20,7 @@ import {
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import LessonList from "@/components/TeacherComponents/LessonList";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import {
@@ -41,10 +42,10 @@ import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix
 import isSlugEYFS from "@/utils/slugModifiers/isSlugEYFS";
 import PaginationHead from "@/components/SharedComponents/Pagination/PaginationHead";
 import { isLessonListItem } from "@/components/TeacherComponents/LessonListItem/LessonListItem";
-import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+import { useShare } from "@/pages-helpers/teacher/share/useShare";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
 import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
-import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
+import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share/shareTypes";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { resolveOakHref } from "@/common-lib/urls";
 import { useTeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/useTeacherShareButton";
@@ -103,7 +104,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
   } = curriculumData;
 
   const unitListingHref = `/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/programmes`;
-  const { shareUrl, browserUrl, shareActivated } = useShareExperiment({
+  const { shareUrl, shareActivated } = useShare({
     programmeSlug: programmeSlug ?? undefined,
     source: "lesson-listing",
     curriculumTrackingProps: {
@@ -122,12 +123,6 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     },
     overrideExistingShareId: true,
   });
-
-  useEffect(() => {
-    if (window.location.href !== browserUrl) {
-      window.history.replaceState({}, "", browserUrl);
-    }
-  }, [browserUrl]);
 
   const { handleClick } = useTeacherShareButton({
     shareUrl,
@@ -231,6 +226,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         ...getSeoProps({
           title: `${unitTitle} ${keyStageSlug.toUpperCase()} | Y${year} ${subjectTitle} Lesson Resources${paginationTitle}`,
           description: `Free lessons and teaching resources about ${unitTitle.toLowerCase()}`,
+          canonicalURL: `${getBrowserConfig("seoAppUrl")}/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons`,
         }),
       }}
       $background="white"
@@ -317,12 +313,9 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               : () => onSaveToggle(unitSlug)
           }
         />
-        <OakMaxWidth $ph={"inner-padding-m"}>
+        <OakMaxWidth $ph={"spacing-16"}>
           <OakGrid>
-            <OakGridArea
-              $colSpan={[12, 9]}
-              $mt={["space-between-s", "space-between-m2"]}
-            >
+            <OakGridArea $colSpan={[12, 9]} $mt={["spacing-16", "spacing-32"]}>
               {unpublishedLessonCount > 0 && (
                 <OakInlineRegistrationBanner
                   onSubmit={(email) => {

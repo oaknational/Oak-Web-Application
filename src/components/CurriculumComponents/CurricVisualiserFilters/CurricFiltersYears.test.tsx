@@ -3,11 +3,13 @@ import { act } from "@testing-library/react";
 import { CurricFiltersYears } from "./CurricFiltersYears";
 import { basicSetup } from "./CurricFiltersYears.fixtures";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme"]);
 
 describe("CurricFiltersYears", () => {
   it("renders correctly (non-pathways)", () => {
-    const { getAllByRole } = renderWithTheme(
+    const { getAllByRole } = render(
       <CurricFiltersYears
         filters={{
           childSubjects: [],
@@ -36,7 +38,7 @@ describe("CurricFiltersYears", () => {
   });
 
   it("renders correctly (pathways)", () => {
-    const { getAllByRole } = renderWithTheme(
+    const { getAllByRole } = render(
       <CurricFiltersYears
         filters={{
           childSubjects: [],
@@ -71,7 +73,7 @@ describe("CurricFiltersYears", () => {
 
   it("interacts correctly (non-pathway)", () => {
     const onChangeFilters = jest.fn();
-    const { getAllByRole, rerender } = renderWithTheme(
+    const { getAllByRole, rerender } = render(
       <CurricFiltersYears
         filters={{
           childSubjects: [],
@@ -153,7 +155,7 @@ describe("CurricFiltersYears", () => {
 
   it("interacts correctly (pathway)", () => {
     const onChangeFilters = jest.fn();
-    const { getAllByRole, rerender } = renderWithTheme(
+    const { getAllByRole, rerender } = render(
       <CurricFiltersYears
         filters={{
           childSubjects: [],

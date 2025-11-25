@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { OakBox, OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import LessonRequirementsHeading from "@/components/TeacherComponents/LessonRequirementsHeading";
-import CopyrightNotice from "@/components/TeacherComponents/CopyrightNotice";
+import CopyrightNotice from "@/components/TeacherComponents/OglCopyrightNotice";
 import LessonOverviewRequirements, {
   Equipment,
   ContentGuidance,
@@ -26,7 +26,7 @@ const LessonOverviewHelper: FC<LessonOverviewHelperProps> = ({
 }) => {
   return (
     <OakBox $background={"aqua50"} $position={"relative"}>
-      <OakGrid $rg={"all-spacing-7"} $pa={"inner-padding-xl"}>
+      <OakGrid $rg={"spacing-32"} $pa={"spacing-24"}>
         {equipment && equipment?.length > 0 && (
           <OakGridArea $colStart={1} $colSpan={[12]}>
             <LessonOverviewRequirements
@@ -59,7 +59,7 @@ const LessonOverviewHelper: FC<LessonOverviewHelperProps> = ({
             helperIcon={"copyright"}
             heading="Licence"
           />
-          <OakBox $pt="inner-padding-xs">
+          <OakBox $pt="spacing-8">
             <CopyrightNotice
               $font={"body-2"}
               showPostAlbCopyright={!isLegacyLicense}

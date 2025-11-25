@@ -38,7 +38,7 @@ export function OakModalNew({
   footer,
   animateFrom = "right",
   modalWidth = "100%",
-}: OakModalNewProps) {
+}: Readonly<OakModalNewProps>) {
   const ref = useRef(null);
   const prefersReducedMotion = usePrefersReducedMotion();
 
@@ -57,8 +57,8 @@ export function OakModalNew({
               direction={animateFrom}
               data-testid={"sidebar-modal"}
               $position="fixed"
-              $top="all-spacing-0"
-              $right="all-spacing-0"
+              $top="spacing-0"
+              $right="spacing-0"
               $height="100%"
               $width={modalWidth}
               $maxWidth="100%"

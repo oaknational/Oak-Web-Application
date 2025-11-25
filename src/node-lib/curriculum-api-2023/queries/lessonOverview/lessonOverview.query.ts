@@ -116,7 +116,7 @@ export function getCopyrightContent(
     | LessonBrowseDataByKs["lessonData"]["copyrightContent"]
     | { copyrightInfo: string }[]
     | null,
-): LessonOverviewPageData["copyrightContent"] {
+): LessonOverviewPageData["legacyCopyrightContent"] {
   if (content === null) {
     return null;
   }
@@ -232,7 +232,7 @@ export const transformedLessonOverviewData = (
     keyLearningPoints: content.keyLearningPoints ?? null,
     pupilLessonOutcome: content.pupilLessonOutcome,
     lessonKeywords: content.lessonKeywords,
-    copyrightContent: getCopyrightContent(
+    legacyCopyrightContent: getCopyrightContent(
       browseData.lessonData.copyrightContent,
     ),
     supervisionLevel: content.supervisionLevel,
@@ -254,7 +254,10 @@ export const transformedLessonOverviewData = (
     phonicsOutcome: content.phonicsOutcome,
     pathways: pathways,
     actions: browseData.actions,
-    hasMediaClips: Boolean(browseData.lessonData.mediaClips),
+    hasMediaClips: mediaClips
+      ? Object.keys(mediaClips).length > 0 &&
+        Object.values(mediaClips).some((key) => key.length > 0)
+      : false,
     lessonOutline: browseData.lessonData.lessonOutline ?? null,
     lessonMediaClips: mediaClips,
     additionalFiles:

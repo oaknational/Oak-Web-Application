@@ -11,22 +11,22 @@ export function CampaignVideoBanner({
   video,
   heading,
   subheading,
-}: {
+}: Readonly<{
   heading: PortableTextBlock[];
   video: Video;
   subheading?: PortableTextBlock[] | null;
   textStyles?: PortableTextComponents;
-}) {
+}>) {
   return (
     <OakGrid
-      $mt={["space-between-xxl", "space-between-xxl", "space-between-xxxl"]}
-      $maxWidth={["unset", "all-spacing-24"]}
+      $mt={["spacing-72", "spacing-72", "spacing-80"]}
+      $maxWidth={["unset", "spacing-1280"]}
     >
       <OakGridArea
         $colSpan={[12, 5, 5]}
         $colStart={[1, 2, 2]}
         $rowStart={0}
-        $mb={["space-between-m", "space-between-l"]}
+        $mb={["spacing-24", "spacing-48"]}
       >
         {video && <CMSVideo video={video} location="marketing" />}
       </OakGridArea>
@@ -34,7 +34,7 @@ export function CampaignVideoBanner({
         $colSpan={[12, 4, 4]}
         $colStart={[0, 8, 8]}
         $rowStart={0}
-        $mb={["space-between-m", "space-between-l"]}
+        $mb={["spacing-24", "spacing-48"]}
       >
         <PortableTextWithDefaults value={heading} components={textStyles} />
         <OakBox>

@@ -23,7 +23,7 @@ export const KeyStageKeypad: Story = {
   render: () => {
     return (
       <OakThemeProvider theme={oakDefaultTheme}>
-        <OakFlex $flexDirection={"column"} $pa="inner-padding-m">
+        <OakFlex $flexDirection={"column"} $pa="spacing-16">
           <Component {...curriculumPhaseOptions} />
         </OakFlex>
       </OakThemeProvider>

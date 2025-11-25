@@ -32,12 +32,12 @@ const DownloadConfirmationNextLessonContainer: FC<
       <OakHeading
         tag={"h3"}
         $font={["heading-6", "heading-5"]}
-        $mb={["space-between-m2", "space-between-l"]}
+        $mb={["spacing-32", "spacing-48"]}
       >
         More lessons in: <OakSpan $color={"blue"}>{`${unitTitle}`}</OakSpan>
       </OakHeading>
       {nextLessons && (
-        <OakFlex $flexDirection={["column", "row"]} $gap="all-spacing-4">
+        <OakFlex $flexDirection={["column", "row"]} $gap="spacing-16">
           {nextLessons.map((lesson: NextLesson) => {
             return (
               <DownloadConfirmationNextLessonCard

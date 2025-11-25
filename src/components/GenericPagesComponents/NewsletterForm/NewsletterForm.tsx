@@ -13,7 +13,6 @@ import OakError from "@/errors/OakError";
 import DropdownSelect from "@/components/GenericPagesComponents/DropdownSelect";
 import errorReporter from "@/common-lib/error-reporter";
 import Form from "@/components/GenericPagesComponents/Form";
-// import { BoxProps } from "@/components/SharedComponents/Box";
 import {
   USER_ROLES,
   UserRole,
@@ -128,22 +127,18 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
       />
       <DropdownSelect
         id={`${id}-newsletter-signup-userrole`}
-        $mt={"space-between-m2"}
+        $mt={"spacing-32"}
         label="Role"
         placeholder="What describes you best?"
         listItems={userTypeOptions}
         {...register("userRole")}
         error={errors.userRole?.message}
       />
-      <OakPrimaryButton
-        $mt="space-between-m"
-        width={"100%"}
-        isLoading={loading}
-      >
+      <OakPrimaryButton $mt="spacing-24" width={"100%"} isLoading={loading}>
         Sign up to the newsletter
       </OakPrimaryButton>
       <OakP
-        $mt={error ? "space-between-s" : "space-between-none"}
+        $mt={error ? "spacing-16" : "spacing-0"}
         $font={"body-3"}
         aria-live="assertive"
         role="alert"
@@ -152,9 +147,7 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
         {error}
       </OakP>
       <OakP
-        $mt={
-          !error && successMessage ? "space-between-s" : "space-between-none"
-        }
+        $mt={!error && successMessage ? "spacing-16" : "spacing-0"}
         $font={"body-3"}
         aria-live="polite"
       >

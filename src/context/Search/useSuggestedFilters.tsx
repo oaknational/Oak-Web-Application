@@ -30,19 +30,24 @@ export function useSuggestedFilters({
   term: string;
   enabled: boolean;
 }): SuggestedFilters {
-  const norm = useMemo(() => normalizeTerm(term), [term]);
+  const params = useMemo(
+    () =>
+      new URLSearchParams({
+        v: "1",
+        searchTerm: normalizeTerm(term),
+      }).toString(),
+    [term],
+  );
 
   const swrKey =
-    enabled && norm.length >= 2
-      ? `/api/search/intent?searchTerm=${norm}`
-      : null;
+    enabled && term.length >= 2 ? `/api/search/intent?${params}` : null;
 
   const { data, error, isLoading } = useSWR(swrKey, fetcher, {
     revalidateOnFocus: false,
     dedupingInterval: 5000,
   });
 
-  if (!enabled || norm.length < 2) {
+  if (!enabled || term.length < 2) {
     return {
       searchFilters: undefined,
       status: "idle",
@@ -69,6 +74,7 @@ export function useSuggestedFilters({
     return {
       searchFilters: convertSearchIntentToFilters(data),
       status: "success",
+      data,
     };
   }
 

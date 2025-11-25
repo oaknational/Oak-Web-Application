@@ -57,7 +57,7 @@ export default function CurricVisualiser({
   ks4OptionSlug,
   ks4Options,
   slugs,
-}: CurricVisualiserProps) {
+}: Readonly<CurricVisualiserProps>) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const isMobile = useMediaQuery("mobile");
@@ -77,6 +77,7 @@ export default function CurricVisualiser({
   const { unit: unitData, unitOption: unitOptionData } = findUnitOrOptionBySlug(
     yearData,
     selectedUnitSlug,
+    filters,
   );
 
   const shouldIncludeCore = isMobile || ks4OptionSlug !== "core";
@@ -131,6 +132,12 @@ export default function CurricVisualiser({
     router.replace(href, undefined, { shallow: true, scroll: false });
   };
 
+  const handleNavigateToUnit = (unitSlug: string) => {
+    const searchParamsStr = searchParams?.toString() ?? "";
+    const href = `${basePath}/${unitSlug}${!searchParamsStr ? "" : `?${searchParamsStr}`}`;
+    router.replace(href, undefined, { shallow: true, scroll: false });
+  };
+
   const shouldDisplayCorePathway = getShouldDisplayCorePathway(ks4Options);
 
   return (
@@ -176,7 +183,7 @@ export default function CurricVisualiser({
               additional={
                 isSwimming && (
                   <Alert
-                    $mb="space-between-s"
+                    $mb="spacing-16"
                     type="info"
                     message="Swimming and water safety units should be selected based on the ability and experience of your pupils."
                   />
@@ -195,7 +202,6 @@ export default function CurricVisualiser({
           </OakBox>
         );
       })}
-
       <CurricUnitModal
         open={displayModal}
         onClose={handleCloseModal}
@@ -212,12 +218,13 @@ export default function CurricVisualiser({
             unitOptionData={unitOptionData}
             yearData={yearData}
             selectedThread={selectedThread?.slug ?? null}
+            onNavigateToUnit={handleNavigateToUnit}
           />
         )}
         {selectedUnitSlug && !unitData && (
           <OakBox
-            $pv={["inner-padding-xl", "inner-padding-xl5", "inner-padding-xl5"]}
-            $ph={["inner-padding-xl", "inner-padding-xl6", "inner-padding-xl6"]}
+            $pv={["spacing-24", "spacing-56", "spacing-56"]}
+            $ph={["spacing-24", "spacing-64", "spacing-64"]}
           >
             <CurricModalErrorContent
               statusCode="404"

@@ -1,7 +1,8 @@
+"use client";
+
 import { join } from "path";
 
 import { OakHeading, OakFlex, OakBox } from "@oaknational/oak-components";
-import { useRouter } from "next/router";
 import { useSearchParams } from "next/navigation";
 
 import BulletList from "../OakComponentsKitchen/BulletList";
@@ -27,6 +28,7 @@ type CurricUnitModalContentProps = {
   selectedThread: string | null;
   basePath: string;
   unitOptionData: UnitOption | undefined;
+  onNavigateToUnit?: (unitSlug: string) => void;
 };
 
 export default function CurricUnitModalContent({
@@ -35,11 +37,11 @@ export default function CurricUnitModalContent({
   yearData,
   selectedThread,
   basePath,
-}: CurricUnitModalContentProps) {
+  onNavigateToUnit,
+}: Readonly<CurricUnitModalContentProps>) {
   const searchParams = useSearchParams();
   const unitOptionsAvailable =
     !unitOptionData && (unitData?.unit_options ?? []).length > 0;
-  const router = useRouter();
   const { track } = useAnalytics();
   const optionalityModalOpen = false;
 
@@ -86,12 +88,12 @@ export default function CurricUnitModalContent({
           $maxWidth={"100%"}
           $justifyContent={"space-between"}
           $width={"100%"}
-          $mt="space-between-xxl"
+          $mt="spacing-72"
         >
-          <OakBox $ph={["inner-padding-xl", "inner-padding-xl7"]}>
+          <OakBox $ph={["spacing-24", "spacing-72"]}>
             <OakBox
               $display={unitOptionData ? "block" : "none"}
-              $mb="space-between-s"
+              $mb="spacing-16"
             >
               <Button
                 $mt={2}
@@ -102,13 +104,14 @@ export default function CurricUnitModalContent({
                 iconBackground={undefined}
                 background={undefined}
                 onClick={() => {
-                  const url = join(basePath, unitData.slug);
-                  router.push(url, undefined, { shallow: true });
+                  if (onNavigateToUnit) {
+                    onNavigateToUnit(unitData.slug);
+                  }
                 }}
               />
             </OakBox>
 
-            <OakFlex $gap="all-spacing-2" $flexWrap={"wrap"}>
+            <OakFlex $gap="spacing-8" $flexWrap={"wrap"}>
               <BulletList
                 items={[subjectTitle, yearTitle]
                   .filter(notUndefined)
@@ -140,17 +143,17 @@ export default function CurricUnitModalContent({
                 <OakBox
                   $position={"relative"}
                   $background={"pink30"}
-                  $pa={"inner-padding-xl"}
-                  $mt={"space-between-l"}
-                  $mb={"space-between-l"}
-                  $pb={"inner-padding-none"}
+                  $pa={"spacing-24"}
+                  $mt={"spacing-48"}
+                  $mb={"spacing-48"}
+                  $pb={"spacing-0"}
                   data-testid="unit-options-card"
                   $borderRadius={"border-radius-s"}
                 >
                   <OakHeading
                     tag="h4"
                     $font={"heading-6"}
-                    $mb="space-between-m"
+                    $mb="spacing-24"
                     data-testid="unit-options-heading"
                   >
                     Unit options
@@ -158,7 +161,7 @@ export default function CurricUnitModalContent({
                   <OakFlex
                     key={`unit-options-${unitData.slug}-list`}
                     $flexDirection={["row"]}
-                    $gap="all-spacing-6"
+                    $gap="spacing-24"
                     $flexWrap={"wrap"}
                     role="list"
                   >
@@ -171,7 +174,7 @@ export default function CurricUnitModalContent({
                       return (
                         <OakFlex
                           key={`unit-option-${optionalUnit.unitvariant_id}-${index}`}
-                          $width={"all-spacing-19"}
+                          $width={"spacing-240"}
                           $flexGrow={1}
                           $position={"relative"}
                           role="listitem"
@@ -186,18 +189,16 @@ export default function CurricUnitModalContent({
                       );
                     })}
                     {/* Empty tiles for correct flex wrapping */}
-                    {Array(2)
-                      .fill(true)
-                      .map((item, index) => {
-                        return (
-                          <OakFlex
-                            key={`unit-options-${index}-${item}-item`}
-                            $width={"all-spacing-19"}
-                            $flexGrow={1}
-                            $position={"relative"}
-                          />
-                        );
-                      })}
+                    {new Array(2).fill(true).map((item, index) => {
+                      return (
+                        <OakFlex
+                          key={`unit-options-${index}-${item}-item`}
+                          $width={"spacing-240"}
+                          $flexGrow={1}
+                          $position={"relative"}
+                        />
+                      );
+                    })}
                   </OakFlex>
                 </OakBox>
               )}

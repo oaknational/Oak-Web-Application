@@ -21,7 +21,7 @@ import FieldError from "@/components/SharedComponents/FieldError";
 import ResourcePageDetailsCompleted from "@/components/TeacherComponents/ResourcePageDetailsCompleted";
 import ResourcePageSchoolDetails from "@/components/TeacherComponents/ResourcePageSchoolDetails";
 import ResourcePageTermsAndConditionsCheckbox from "@/components/TeacherComponents/ResourcePageTermsAndConditionsCheckbox";
-import CopyrightNotice from "@/components/TeacherComponents/CopyrightNotice";
+import CopyrightNotice from "@/components/TeacherComponents/OglCopyrightNotice";
 import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { resolveOakHref } from "@/common-lib/urls";
 
@@ -40,7 +40,7 @@ export type TermsAgreementFormProps = {
   showSavedDetails?: boolean;
   handleEditDetailsCompletedClick?: () => void;
   showPostAlbCopyright?: boolean;
-  copyrightYear: string;
+  oglCopyrightYear: string;
   useDownloadPageLayout?: boolean;
 };
 
@@ -54,7 +54,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
   showSavedDetails = false,
   handleEditDetailsCompletedClick = () => {},
   showPostAlbCopyright = true,
-  copyrightYear,
+  oglCopyrightYear,
   useDownloadPageLayout = false,
 }) => {
   const [emailHasFocus, setEmailHasFocus] = useState(false);
@@ -66,7 +66,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
         <OakHeading
           tag="h2"
           $font={["heading-6", "heading-5"]}
-          $mb={["space-between-m", "space-between-m2"]}
+          $mb={["spacing-24", "spacing-32"]}
         >
           Your details
         </OakHeading>
@@ -77,12 +77,12 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
         </FieldError>
       )}
       {isLoading && (
-        <OakP $mb={"space-between-m"} data-testid="loading">
+        <OakP $mb={"spacing-24"} data-testid="loading">
           Loading...
         </OakP>
       )}
       {!isLoading && (
-        <OakFlex $flexDirection="column" $gap={"space-between-m"}>
+        <OakFlex $flexDirection="column" $gap={"spacing-24"}>
           {showSavedDetails ? (
             <ResourcePageDetailsCompleted
               email={email}
@@ -94,7 +94,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
               $maxWidth={
                 useDownloadPageLayout
                   ? null
-                  : [null, "all-spacing-21", "all-spacing-21"]
+                  : [null, "spacing-480", "spacing-480"]
               }
             >
               <ResourcePageSchoolDetails
@@ -103,7 +103,9 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                 initialValue={schoolId ?? undefined}
                 withHomeschool={true}
                 initialSchoolName={
-                  schoolName?.length && schoolName?.length > 0
+                  schoolName?.length &&
+                  schoolName?.length > 0 &&
+                  schoolName !== "notListed"
                     ? schoolName.charAt(0).toUpperCase() + schoolName.slice(1)
                     : undefined
                 }
@@ -112,13 +114,13 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                 $position="relative"
                 $flexDirection="column"
                 ref={ref}
-                $mb="space-between-s"
+                $mb="spacing-16"
               >
                 {form.errors?.email && (
                   <OakBox
                     id={form.errors?.email.message}
                     role="alert"
-                    $mv="space-between-s"
+                    $mv="spacing-16"
                   >
                     <OakFieldError>{form.errors?.email.message}</OakFieldError>
                   </OakBox>
@@ -157,14 +159,14 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                     emailProps.onBlur(e);
                     setEmailHasFocus(false);
                   }}
-                  $pv="inner-padding-none"
+                  $pv="spacing-0"
                   wrapperWidth="100%"
-                  $height="all-spacing-10"
+                  $height="spacing-56"
                 />
               </OakFlex>
               <OakBox
                 $font="body-3"
-                $mb={"space-between-l"}
+                $mb={"spacing-48"}
                 data-testid="newsletter-policy"
               >
                 Join over 200k teachers and get free resources and other helpful
@@ -179,8 +181,8 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                   target="_blank"
                   iconName="external"
                   isTrailingIcon
-                  iconHeight="all-spacing-5"
-                  iconWidth="all-spacing-5"
+                  iconHeight="spacing-20"
+                  iconWidth="spacing-20"
                 >
                   privacy policy
                 </OakLink>
@@ -211,11 +213,11 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
             </OakBox>
           )}
           {!useDownloadPageLayout && (
-            <OakBox $maxWidth="all-spacing-21">
+            <OakBox $maxWidth="spacing-480">
               <CopyrightNotice
                 showPostAlbCopyright={showPostAlbCopyright}
                 openLinksExternally={true}
-                copyrightYear={copyrightYear}
+                copyrightYear={oglCopyrightYear}
               />
             </OakBox>
           )}

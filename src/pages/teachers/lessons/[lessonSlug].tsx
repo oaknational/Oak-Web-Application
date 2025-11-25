@@ -42,7 +42,7 @@ export type URLParams = {
 export default function LessonOverviewCanonicalPage({
   lesson,
   isSpecialist,
-}: PageProps): JSX.Element {
+}: Readonly<PageProps>): JSX.Element {
   const {
     teacherNotesButton,
     TeacherNotesButtonProps,
@@ -100,7 +100,7 @@ export default function LessonOverviewCanonicalPage({
         />
         {!isSpecialist && (
           <OakFlex $background={"pink50"} $width={"100%"}>
-            <OakMaxWidth $pv="inner-padding-xl8">
+            <OakMaxWidth $pv="spacing-80">
               <LessonAppearsIn headingTag="h2" {...pathwayGroups} />
             </OakMaxWidth>
           </OakFlex>

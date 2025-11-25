@@ -1,16 +1,13 @@
 import { screen } from "@testing-library/dom";
 
 import CampaignSinglePage, {
-  blockOrder,
   getStaticPaths,
   getStaticProps,
-  sortCampaignBlocksByBlockType,
 } from "@/pages/campaigns/[campaignSlug]";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import keyStagesFixture from "@/node-lib/curriculum-api-2023/fixtures/keyStages.fixture";
 import mockCampaign from "@/fixtures/campaign/mockCampaign";
-import { CampaignPage } from "@/node-lib/sanity-graphql/generated/sdk";
 
 const campaignBySlug = jest.fn().mockResolvedValue(mockCampaign);
 const keyStages = jest.fn().mockResolvedValue(keyStagesFixture());
@@ -234,22 +231,5 @@ describe("Campaign page", () => {
     const signUpCta = screen.getByText("newsletter-signup-cta-button");
     expect(signUpHeading).toBeInTheDocument();
     expect(signUpCta).toBeInTheDocument();
-  });
-
-  describe("utils: block sorting function", () => {
-    it("sorts the mock content blocks correctly", () => {
-      const blocks = mockCampaign.content;
-      const sorted = sortCampaignBlocksByBlockType(
-        blockOrder,
-        blocks,
-      ) as CampaignPage["content"];
-
-      if (sorted) {
-        expect(sorted[0]).toBe(blocks[0]);
-        expect(sorted[1]).toBe(blocks[3]);
-        expect(sorted[2]).toBe(blocks[2]);
-        expect(sorted[3]).toBe(blocks[1]);
-      }
-    });
   });
 });

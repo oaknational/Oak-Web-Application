@@ -49,34 +49,34 @@ type MyLibraryProps = {
   isUnitSaving: (unitProgrammeSlug: string) => boolean;
 };
 
-export default function MyLibrary(props: MyLibraryProps) {
+export default function MyLibrary(props: Readonly<MyLibraryProps>) {
   const { collectionData, isLoading, onSaveToggle, isUnitSaved, isUnitSaving } =
     props;
   const { track } = useAnalytics();
   return (
     <OakMaxWidth
-      $gap={["space-between-none", "space-between-l"]}
-      $pb="inner-padding-xl"
-      $pt={["inner-padding-none", "inner-padding-xl"]}
+      $gap={["spacing-0", "spacing-48"]}
+      $pb="spacing-24"
+      $pt={["spacing-0", "spacing-24"]}
       $flexDirection="column"
-      $maxWidth={["unset", "all-spacing-24"]}
+      $maxWidth={["unset", "spacing-1280"]}
     >
       <MyLibraryHeader />
       {isLoading || !collectionData ? null : collectionData.length === 0 ? (
         <NoSavedContent />
       ) : (
         <OakGrid
-          $ph={["inner-padding-none", "inner-padding-xl4"]}
+          $ph={["spacing-0", "spacing-48"]}
           $position="relative"
-          $rg={"space-between-m"}
+          $rg={"spacing-24"}
         >
           <OakGridArea
             $colSpan={[12, 2]}
             $position={["static", "sticky"]}
-            $top={"all-spacing-0"}
+            $top={"spacing-0"}
             $alignSelf={"start"}
             $maxHeight={["unset", "100vh"]}
-            $pv={["inner-padding-none", "inner-padding-l"]}
+            $pv={["spacing-0", "spacing-20"]}
             $overflow={["unset", "auto"]}
           >
             <OakSideMenuNav
@@ -93,8 +93,8 @@ export default function MyLibrary(props: MyLibraryProps) {
           <OakGridArea
             $colSpan={[12, 9]}
             $colStart={[1, 4]}
-            $gap={["space-between-m", "space-between-l"]}
-            $ph={["inner-padding-m", "inner-padding-none"]}
+            $gap={["spacing-24", "spacing-48"]}
+            $ph={["spacing-16", "spacing-0"]}
           >
             {collectionData.map((collection) => (
               <MyLibraryProgrammeCard

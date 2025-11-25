@@ -20,7 +20,6 @@ import {
 } from "./types";
 import { isVisibleUnit } from "./isVisibleUnit";
 import { byKeyStageSlug, presentAtKeyStageSlugs } from "./keystage";
-import { isCurricRoutingEnabled } from "./flags";
 
 import {
   CurriculumUnitsFormattedData,
@@ -146,35 +145,30 @@ export function useFilters(
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const [filters, setLocalFilters] = useState<CurriculumFilters>(defaultFilter);
+  const [filters, setFilters] = useState<CurriculumFilters>(defaultFilter);
   useLayoutEffect(() => {
-    if (isCurricRoutingEnabled()) {
-      setLocalFilters(mergeInFilterParams(defaultFilter, searchParams));
-    } else {
-      setLocalFilters(defaultFilter);
-    }
+    setFilters(mergeInFilterParams(defaultFilter, searchParams));
   }, [searchParams, defaultFilter]);
 
-  const setFilters = useCallback(
+  const setExternalFilters = useCallback(
     (newFilters: CurriculumFilters) => {
-      if (isCurricRoutingEnabled()) {
-        const url =
-          location.pathname +
-          "?" +
-          new URLSearchParams(
-            Object.entries(filtersToQuery(newFilters, defaultFilter)),
-          ).toString();
-        router.replace(url, undefined, {
-          shallow: true,
-          scroll: false,
-        });
-      }
-      setLocalFilters(newFilters);
+      const url =
+        location.pathname +
+        "?" +
+        new URLSearchParams(
+          Object.entries(filtersToQuery(newFilters, defaultFilter)),
+        ).toString();
+      router.replace(url, undefined, {
+        shallow: true,
+        scroll: false,
+      });
+
+      setFilters(newFilters);
     },
     [router, defaultFilter],
   );
 
-  return [filters, setFilters];
+  return [filters, setExternalFilters];
 }
 
 export function getFilterData(
@@ -231,7 +225,7 @@ export function filteringFromYears(
   yearData: YearData[number],
   filters: CurriculumFilters,
 ) {
-  const { childSubjects, subjectCategories, tiers } = yearData!;
+  const { childSubjects, subjectCategories, tiers } = yearData;
   const output = {
     childSubjects: childSubjects.length > 0 ? filters.childSubjects : undefined,
     subjectCategories:
@@ -522,7 +516,7 @@ export function getNumberOfSelectedUnits(
 
   Object.entries(yearData).forEach(([year, yearDataItem]) => {
     const units = yearDataItem.units;
-    const yearBasedFilters = filteringFromYears(yearDataItem!, filters);
+    const yearBasedFilters = filteringFromYears(yearDataItem, filters);
 
     if (units && filters.years.includes(year)) {
       const filteredUnits = units.filter((unit: Unit) => {

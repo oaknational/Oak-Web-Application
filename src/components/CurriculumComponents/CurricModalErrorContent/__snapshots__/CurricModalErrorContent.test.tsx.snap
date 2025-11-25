@@ -6,7 +6,7 @@ exports[`CurricModalErrorContent should render additional when supplied 1`] = `
     class="sc-fqkvVR sc-kAyceB kRjBvS FywIr"
   >
     <h1
-      class="sc-kpDqfm sc-c9371ddb-0 jeWvUz hmfNXu"
+      class="sc-kpDqfm sc-fbfc102a-0 jeWvUz jTTcqg"
     >
       404
     </h1>
@@ -30,7 +30,7 @@ exports[`CurricModalErrorContent should render correctly 1`] = `
     class="sc-fqkvVR sc-kAyceB kRjBvS FywIr"
   >
     <h1
-      class="sc-kpDqfm sc-c9371ddb-0 jeWvUz hmfNXu"
+      class="sc-kpDqfm sc-fbfc102a-0 jeWvUz jTTcqg"
     >
       404
     </h1>

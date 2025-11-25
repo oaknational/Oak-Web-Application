@@ -12,6 +12,8 @@ import { OakPupilClientProvider } from "@oaknational/oak-pupil-client";
  * Custom global styles (which should be kept to a minimum) must all be imported in _app.tsx
  */
 
+import "../polyfills";
+
 import "@/browser-lib/gleap/gleap.css";
 import "@/browser-lib/oak-globals/oakGlobals";
 import GlobalStyle from "@/styles/GlobalStyle";
@@ -79,13 +81,11 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
                         <ToastProvider>
                           <SaveCountProvider>
                             <OakToastProvider>
-                              <>
-                                <style jsx global>{`
-                                  html {
-                                    font-family: ${lexend.style.fontFamily};
-                                  }
-                                `}</style>
-                              </>
+                              <style jsx global>{`
+                                html {
+                                  font-family: ${lexend.style.fontFamily};
+                                }
+                              `}</style>
                               <Component {...pageProps} />
                               <AppHooks />
                             </OakToastProvider>

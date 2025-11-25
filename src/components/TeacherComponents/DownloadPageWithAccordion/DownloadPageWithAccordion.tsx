@@ -18,13 +18,13 @@ import {
   UseFormTrigger,
 } from "react-hook-form";
 
-import CopyrightRestrictionBanner from "../CopyrightRestrictionBanner/CopyrightRestrictionBanner";
+import ComplexCopyrightRestrictionBanner from "../ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
 
 import { ResourcePageDetailsCompletedProps } from "@/components/TeacherComponents/ResourcePageDetailsCompleted/ResourcePageDetailsCompleted";
 import { ResourcePageSchoolDetailsProps } from "@/components/TeacherComponents/ResourcePageSchoolDetails/ResourcePageSchoolDetails";
 import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { DelayedLoadingSpinner } from "@/components/TeacherComponents/SharePageLayout/SharePageLayout";
-import CopyrightNotice from "@/components/TeacherComponents/CopyrightNotice";
+import OglCopyrightNotice from "@/components/TeacherComponents/OglCopyrightNotice";
 import FieldError from "@/components/SharedComponents/FieldError";
 import RiskAssessmentBanner from "@/components/TeacherComponents/RiskAssessmentBanner";
 import LoginRequiredButton from "@/components/TeacherComponents/LoginRequiredButton/LoginRequiredButton";
@@ -33,7 +33,7 @@ import TermsAgreementForm from "@/components/TeacherComponents/TermsAgreementFor
 import { getFormErrorMessages } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadFormErrorMessage";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 
-export type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
+type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
   ResourcePageSchoolDetailsProps & {
     geoRestricted: boolean;
     loginRequired: boolean;
@@ -54,16 +54,19 @@ export type DownloadPageWithAccordionProps = ResourcePageDetailsCompletedProps &
     apiError?: string | null;
     updatedAt: string;
     showTermsAgreement: boolean;
-    isLoading: boolean;
     showRiskAssessmentBanner?: boolean;
     downloads?: LessonDownloadsPageData["downloads"];
     additionalFiles?: LessonDownloadsPageData["additionalFiles"];
-    showGeoBlocked: boolean;
-    lessonSlug: string;
-    lessonTitle: string;
-    lessonReleaseDate: string | null;
-    isLegacy: boolean;
   };
+
+export type DownloadWrapperProps = {
+  isLoading: boolean;
+  showGeoBlocked: boolean;
+  lessonSlug: string;
+  lessonTitle: string;
+  lessonReleaseDate: string | null;
+  isLegacy: boolean;
+} & DownloadPageWithAccordionProps;
 
 const getAccordionText = (
   downloads: LessonDownloadsPageData["downloads"],
@@ -97,36 +100,46 @@ const getAccordionText = (
   return resourcesText.charAt(0).toUpperCase() + resourcesText.slice(1);
 };
 
-const DownloadPageWithAccordion: FC<DownloadPageWithAccordionProps> = (
-  props: DownloadPageWithAccordionProps,
+const DownloadPageWithAccordion: FC<DownloadWrapperProps> = (
+  props: DownloadWrapperProps,
 ) => {
+  const {
+    isLoading,
+    showGeoBlocked,
+    geoRestricted,
+    loginRequired,
+    lessonSlug,
+    lessonReleaseDate,
+    lessonTitle,
+    isLegacy,
+  } = props;
   return (
     <OakGrid>
       <OakGridArea
         $colStart={[null, null, 4]}
         $colSpan={[12, 12, 6]}
         $flexDirection={"column"}
-        $gap={"space-between-l"}
+        $gap={"spacing-48"}
       >
         <OakHeading tag="h1" $font={["heading-5", "heading-4"]}>
           Download
         </OakHeading>
-        {props.isLoading ? (
-          <OakBox $minHeight="all-spacing-21">
+        {isLoading ? (
+          <OakBox $minHeight="spacing-480">
             <DelayedLoadingSpinner $delay={300} data-testid="loading" />
           </OakBox>
         ) : (
           <DownloadPageWithAccordionContent {...props} />
         )}
-        {!props.showGeoBlocked && (
-          <CopyrightRestrictionBanner
-            isGeorestricted={props.geoRestricted ?? undefined}
-            isLoginRequired={props.loginRequired ?? undefined}
+        {!showGeoBlocked && (
+          <ComplexCopyrightRestrictionBanner
+            isGeorestricted={geoRestricted ?? undefined}
+            isLoginRequired={loginRequired ?? undefined}
             componentType="lesson_downloads"
-            lessonName={props.lessonTitle}
-            lessonSlug={props.lessonSlug}
-            lessonReleaseDate={props.lessonReleaseDate}
-            isLessonLegacy={props.isLegacy}
+            lessonName={lessonTitle}
+            lessonSlug={lessonSlug}
+            lessonReleaseDate={lessonReleaseDate}
+            isLessonLegacy={isLegacy}
           />
         )}
       </OakGridArea>
@@ -172,7 +185,7 @@ const DownloadPageWithAccordionContent = (
   const hideCallToAction = downloadsRestricted;
 
   return (
-    <OakFlex $flexDirection={"column"} $gap={"space-between-l"}>
+    <OakFlex $flexDirection={"column"} $gap={"spacing-48"}>
       <FieldError id={"downloads-error"} withoutMarginBottom>
         {errors?.resources?.message}
       </FieldError>
@@ -183,30 +196,25 @@ const DownloadPageWithAccordionContent = (
         id="downloads-accordion"
         initialOpen={!selectAllChecked}
       >
-        <OakBox
-          $pa={"inner-padding-none"}
-          $ba={"border-solid-none"}
-          as={"fieldset"}
-        >
+        <OakBox $pa={"spacing-0"} $ba={"border-solid-none"} as={"fieldset"}>
           <OakBox
             as="legend"
             $position="absolute"
-            $width="all-spacing-0"
-            $height="all-spacing-0"
-            $pa={"inner-padding-none"}
+            $width="spacing-0"
+            $height="spacing-0"
+            $pa={"spacing-0"}
             $overflow="hidden"
           >
             Select resources to download
           </OakBox>
           {cardGroup}
           {showRiskAssessmentBanner && (
-            <OakBox $mv="space-between-s">
+            <OakBox $mv="spacing-16">
               <RiskAssessmentBanner />
             </OakBox>
           )}
         </OakBox>
       </OakDownloadsAccordion>
-
       {showNoResources ? (
         <NoResourcesToDownload />
       ) : (
@@ -228,14 +236,11 @@ const DownloadPageWithAccordionContent = (
                 showSavedDetails={showSavedDetails}
                 handleEditDetailsCompletedClick={onEditClick}
                 showPostAlbCopyright={showPostAlbCopyright}
-                copyrightYear={updatedAt}
+                oglCopyrightYear={updatedAt}
                 useDownloadPageLayout
               />
               {showRiskAssessmentBanner && (
-                <OakBox
-                  $display={["block", "block", "none"]}
-                  $mv="space-between-s"
-                >
+                <OakBox $display={["block", "block", "none"]} $mv="spacing-16">
                   <RiskAssessmentBanner />
                 </OakBox>
               )}
@@ -246,14 +251,14 @@ const DownloadPageWithAccordionContent = (
               <OakIcon
                 iconName="content-guidance"
                 $colorFilter={"red"}
-                $width={"all-spacing-6"}
-                $height={"all-spacing-6"}
+                $width={"spacing-24"}
+                $height={"spacing-24"}
               />
               <OakFlex $flexDirection={"column"}>
-                <OakP $ml="space-between-sssx" $color={"red"}>
+                <OakP $ml="spacing-4" $color={"red"}>
                   To complete correct the following:
                 </OakP>
-                <OakUL $mr="space-between-m">
+                <OakUL $mr="spacing-24">
                   {getFormErrorMessages(errors).map((err) => {
                     return (
                       <OakLI $color={"red"} key={err}>
@@ -287,7 +292,7 @@ const DownloadPageWithAccordionContent = (
               {apiError}
             </FieldError>
           )}
-          <CopyrightNotice
+          <OglCopyrightNotice
             fullWidth
             showPostAlbCopyright={showPostAlbCopyright}
             openLinksExternally={true}

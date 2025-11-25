@@ -16,33 +16,31 @@ export const LandingPageSignupPrompt: FC<{
   bodyPortableText: PortableTextJSON;
 }> = ({ title, bodyPortableText, form }) => {
   return (
-    <>
-      <OakGrid $mb={["space-between-xxxl"]} $cg={["all-spacing-2"]}>
-        <OakGridArea
-          $colSpan={[12, 5]}
-          $colStart={[1, 2]}
-          $width={"100%"}
-          $alignItems={"flex-start"}
-          $justifyContent={"center"}
-          $flexDirection={"column"}
-          $ph={["inner-padding-m", "inner-padding-none"]}
-          $mb={["space-between-xl", "space-between-none"]}
+    <OakGrid $mb={["spacing-80"]} $cg={["spacing-8"]}>
+      <OakGridArea
+        $colSpan={[12, 5]}
+        $colStart={[1, 2]}
+        $width={"100%"}
+        $alignItems={"flex-start"}
+        $justifyContent={"center"}
+        $flexDirection={"column"}
+        $ph={["spacing-16", "spacing-0"]}
+        $mb={["spacing-56", "spacing-0"]}
+      >
+        <OakHeading
+          $font={["heading-4", "heading-5"]}
+          tag={"h4"}
+          $mb={["spacing-32"]}
         >
-          <OakHeading
-            $font={["heading-4", "heading-5"]}
-            tag={"h4"}
-            $mb={["space-between-m2"]}
-          >
-            {title}
-          </OakHeading>
-          <OakTypography $font={["body-2", "body-1"]}>
-            <PortableTextWithDefaults value={bodyPortableText} />
-          </OakTypography>
-        </OakGridArea>
-        <OakGridArea $colSpan={[12, 4]} $colStart={[1, 7]}>
-          <LandingPageSignUpForm formTitle={form.title} />
-        </OakGridArea>
-      </OakGrid>
-    </>
+          {title}
+        </OakHeading>
+        <OakTypography $font={["body-2", "body-1"]}>
+          <PortableTextWithDefaults value={bodyPortableText} />
+        </OakTypography>
+      </OakGridArea>
+      <OakGridArea $colSpan={[12, 4]} $colStart={[1, 7]}>
+        <LandingPageSignUpForm formTitle={form.title} />
+      </OakGridArea>
+    </OakGrid>
   );
 };

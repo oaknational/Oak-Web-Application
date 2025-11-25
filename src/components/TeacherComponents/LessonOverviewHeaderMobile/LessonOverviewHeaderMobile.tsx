@@ -8,14 +8,13 @@ import {
   OakTertiaryButton,
   OakTagFunctional,
 } from "@oaknational/oak-components";
-import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import { LessonOverviewCreateWithAiDropdown } from "../LessonOverviewCreateWithAiDropdown";
 
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { LessonOverviewHeaderDownloadAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderDownloadAllButton";
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
-import CopyrightRestrictionBanner from "@/components/TeacherComponents/CopyrightRestrictionBanner/CopyrightRestrictionBanner";
+import ComplexCopyrightRestrictionBanner from "@/components/TeacherComponents/ComplexCopyrightRestrictionBanner/ComplexCopyrightRestrictionBanner";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import { resolveOakHref } from "@/common-lib/urls";
 
@@ -52,14 +51,11 @@ export const LessonOverviewHeaderMobile: FC<
   const shouldShowBackButton =
     !!previousBreadcrumb && !!unitTitle && !!programmeSlug;
 
-  const isCreateWithAiEnabled =
-    useFeatureFlagVariantKey("create-with-ai-button") === "test";
-
   return (
     <OakFlex
       $flexDirection={"column"}
       $display={["flex", "none"]}
-      $gap={"all-spacing-6"}
+      $gap={"spacing-24"}
     >
       <OakFlex $justifyContent={"space-between"} $alignItems={"center"}>
         {shouldShowBackButton && (
@@ -85,14 +81,14 @@ export const LessonOverviewHeaderMobile: FC<
         )}
       </OakFlex>
       <OakFlex>
-        <OakBox $mr="space-between-s" $height="all-spacing-13">
+        <OakBox $mr="spacing-16" $height="spacing-80">
           <SubjectIconBrushBorders
             subjectSlug={subjectSlug}
             isNew={isNew}
             color={subjectIconBackgroundColor}
           />
         </OakBox>
-        <OakFlex $flexDirection={"column"} $gap="all-spacing-2">
+        <OakFlex $flexDirection={"column"} $gap="spacing-8">
           {(examBoardTitle || yearTitle || tierTitle) && (
             <OakSpan $color={"grey60"} $font={"heading-light-7"}>
               <LessonMetadata
@@ -118,11 +114,10 @@ export const LessonOverviewHeaderMobile: FC<
       </OakBox>
       <LessonOverviewHeaderDownloadAllButton {...props} />
       {shareButtons}
-      {!excludedFromTeachingMaterials && isCreateWithAiEnabled && (
+      {!excludedFromTeachingMaterials && (
         <LessonOverviewCreateWithAiDropdown {...props} />
       )}
-
-      <CopyrightRestrictionBanner
+      <ComplexCopyrightRestrictionBanner
         isGeorestricted={geoRestricted}
         isLoginRequired={loginRequired}
         componentType="lesson_overview"

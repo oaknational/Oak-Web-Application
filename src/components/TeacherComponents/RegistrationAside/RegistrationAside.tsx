@@ -12,19 +12,19 @@ import {
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import { getIllustrationAsset } from "@/image-data";
 
-function ListItem({ children }: PropsWithChildren) {
+function ListItem({ children }: Readonly<PropsWithChildren>) {
   return (
     <OakLI
       $display="flex"
       $flexDirection="row"
       $alignItems="center"
-      $gap="space-between-s"
-      $mb="space-between-xs"
+      $gap="spacing-16"
+      $mb="spacing-12"
     >
       <OakIcon
         iconName="tick"
-        $height="all-spacing-7"
-        $width="all-spacing-7"
+        $height="spacing-32"
+        $width="spacing-32"
         alt=""
       />
       {children}
@@ -36,15 +36,15 @@ const RegistrationAside = () => {
   return (
     <OakFlex
       $flexDirection="column"
-      $maxWidth="all-spacing-21"
+      $maxWidth="spacing-480"
       $background="bg-decorative1-main"
-      $gap="space-between-l"
+      $gap="spacing-48"
     >
-      <OakFlex $flexDirection="column" $gap="space-between-m2">
+      <OakFlex $flexDirection="column" $gap="spacing-32">
         <OakBox
-          $mb="space-between-m2"
-          $maxHeight="all-spacing-19"
-          $maxWidth="all-spacing-17"
+          $mb="spacing-32"
+          $maxHeight="spacing-240"
+          $maxWidth="spacing-160"
         >
           <CMSImage
             image={getIllustrationAsset("auth-acorn")}
@@ -63,13 +63,13 @@ const RegistrationAside = () => {
           <OakSvg
             name="scribble"
             $position="absolute"
-            $bottom="all-spacing-0"
-            $height="all-spacing-8"
+            $bottom="spacing-0"
+            $height="spacing-40"
             $transform="scaleX(1.05)"
-            $left="all-spacing-1"
+            $left="spacing-4"
           />
         </OakFlex>
-        <OakFlex $flexDirection="column" $gap="space-between-s">
+        <OakFlex $flexDirection="column" $gap="spacing-16">
           <OakHeading tag="h3" $font="heading-6">
             Signing up gives you
           </OakHeading>

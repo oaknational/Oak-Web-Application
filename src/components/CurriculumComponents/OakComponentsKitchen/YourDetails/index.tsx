@@ -122,7 +122,7 @@ export default function YourDetails({
   labelBackground,
   hidePrivacyPolicy = false,
   emailRequired = false,
-}: YourDetailsProps) {
+}: Readonly<YourDetailsProps>) {
   const schoolsAsAutocompleteItems = useSchoolsFromApi({ schools });
   const autoCompleteList = injectCurrentSchool(
     data,
@@ -135,7 +135,7 @@ export default function YourDetails({
         $width={"100%"}
         $flexDirection={"column"}
         $alignItems={"start"}
-        $gap={"space-between-xs"}
+        $gap={"spacing-12"}
       >
         <Autocomplete
           isControlled={true}
@@ -188,12 +188,11 @@ export default function YourDetails({
           name={"school-isnt-listed"}
         />
       </OakFlex>
-
       <OakFlex
         $width={"100%"}
         $flexDirection={"column"}
         $alignItems={"start"}
-        $gap={"space-between-xs"}
+        $gap={"spacing-12"}
       >
         <OakInputWithLabel
           label={`Email ${emailRequired ? "" : "(optional)"}`}

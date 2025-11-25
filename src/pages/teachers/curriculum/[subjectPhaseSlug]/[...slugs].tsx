@@ -36,7 +36,6 @@ import {
   isValidSubjectPhaseSlug,
   parseSubjectPhaseSlug,
 } from "@/utils/curriculum/slugs";
-import { ENABLE_OPEN_API } from "@/utils/curriculum/constants";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import {
   createDownloadsData,
@@ -47,7 +46,6 @@ import {
   formatCurriculumUnitsData,
   VALID_TABS,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import openApiRequest from "@/utils/curriculum/openapi";
 import { getDefaultFilter, useFilters } from "@/utils/curriculum/filtering";
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics";
@@ -301,10 +299,8 @@ export const getStaticProps: GetStaticProps<
       const curriculumOverviewSanityData =
         await CMSClient.curriculumOverviewPage({
           previewMode: isPreviewMode,
-          ...{
-            subjectTitle: curriculumOverviewTabData.subjectTitle,
-            phaseSlug: slugs.phaseSlug,
-          },
+          subjectTitle: curriculumOverviewTabData.subjectTitle,
+          phaseSlug: slugs.phaseSlug,
         });
 
       if (!curriculumOverviewSanityData) {
@@ -312,16 +308,9 @@ export const getStaticProps: GetStaticProps<
           notFound: true,
         };
       }
-      let curriculumUnitsTabData;
-      if (ENABLE_OPEN_API) {
-        curriculumUnitsTabData = await openApiRequest(
-          context.params.subjectPhaseSlug,
-          slugs,
-        );
-      } else {
-        curriculumUnitsTabData =
-          await curriculumApi2023.curriculumSequence(slugs);
-      }
+
+      const curriculumUnitsTabData =
+        await curriculumApi2023.curriculumSequence(slugs);
 
       // Sort the units to have examboard versions first - this is so non-examboard units are removed
       // in the visualiser

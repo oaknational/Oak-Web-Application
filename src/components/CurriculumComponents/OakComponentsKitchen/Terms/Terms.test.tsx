@@ -2,10 +2,12 @@ import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import Terms from ".";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProvidersByName(["oakTheme"]);
 
 test("<Terms/>", () => {
-  const { baseElement } = renderWithTheme(
+  const { baseElement } = render(
     <OakThemeProvider theme={oakDefaultTheme}>
       <Terms />
     </OakThemeProvider>,

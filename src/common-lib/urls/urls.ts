@@ -327,6 +327,7 @@ type CurriculumOverviewLinkProps = {
 type CurriculumUnitsLinkProps = {
   page: "curriculum-units";
   subjectPhaseSlug: string;
+  query?: { subject_categories: string };
 };
 type CurriculumDownloadsLinkProps = {
   page: "curriculum-downloads";
@@ -393,7 +394,6 @@ export type OakLinkProps =
   | PupilSubjectListingLinkProps
   | PupilProgrammeListingLinkProps
   | PupilYearListingLinkProps
-  | PupilUnitListingLinkProps
   | SpecialistLessonOverviewLinkProps
   | LessonOverviewCanonicalLinkProps
   | LessonListingLinkProps

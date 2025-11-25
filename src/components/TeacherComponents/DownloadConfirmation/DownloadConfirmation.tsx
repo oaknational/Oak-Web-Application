@@ -15,9 +15,9 @@ import { useTeacherShareButton } from "../TeacherShareButton/useTeacherShareButt
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import DownloadConfirmationNextLessonContainer from "@/components/TeacherComponents/DownloadConfirmationNextLessonContainer";
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
-import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+import { useShare } from "@/pages-helpers/teacher/share/useShare";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
-import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
+import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share/shareTypes";
 import { OnwardContentSelectedProperties } from "@/browser-lib/avo/Avo";
 import { resolveOakHref } from "@/common-lib/urls";
 
@@ -91,7 +91,7 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
     .splice(0, pathElems.indexOf(lessonSlug) + 1)
     .join("/");
 
-  const { shareUrl, shareActivated } = useShareExperiment({
+  const { shareUrl, shareActivated } = useShare({
     programmeSlug: isCanonical ? undefined : (programmeSlug ?? undefined),
     source: isCanonical ? "download-canonical" : "download-browse",
     shareBaseUrl,
@@ -129,8 +129,8 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
       <OakFlex
         $flexDirection={["column", "row"]}
         $alignItems={["flex-start", "center"]}
-        $gap={["space-between-m", "space-between-m", "all-spacing-16"]}
-        $mb={["space-between-xl", "space-between-none"]}
+        $gap={["spacing-24", "spacing-24", "spacing-120"]}
+        $mb={["spacing-56", "spacing-0"]}
       >
         <Flex
           $alignItems={"center"}
@@ -219,8 +219,8 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
               }
               iconName={"external"}
               isTrailingIcon={true}
-              iconHeight={"all-spacing-6"}
-              iconWidth={"all-spacing-6"}
+              iconHeight={"spacing-24"}
+              iconWidth={"spacing-24"}
             >
               install the Google Fonts ‘Lexend’ and ‘Kalam’
             </OakLink>
@@ -234,7 +234,6 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
           {teacherShareButton}
         </Flex>
       </OakFlex>
-
       {displayNextLessonContainer && isNextLessonsAvailable && (
         <DownloadConfirmationNextLessonContainer
           programmeSlug={programmeSlug}

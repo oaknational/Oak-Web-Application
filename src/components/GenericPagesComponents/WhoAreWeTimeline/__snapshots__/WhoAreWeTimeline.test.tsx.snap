@@ -1,0 +1,185 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WhoAreWeTimeline renders correctly 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-fqkvVR glVOpG"
+    >
+      <div
+        class="sc-fqkvVR dmKvLq"
+        style="max-width: 1360px;"
+      >
+        <div
+          class="sc-fqkvVR sc-kAyceB UJoqH dAAIBQ"
+        >
+          <div
+            class="sc-fqkvVR sc-jXbUNg fgBWrW gdCncd"
+          >
+            <div
+              class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz bzXGlP"
+            >
+              <div
+                class="sc-fqkvVR sc-kAyceB fgBWrW gOiVFh"
+              >
+                <div
+                  class="sc-fqkvVR dWdIJs"
+                >
+                  <span
+                    class="sc-dAlyuH bOvjMx"
+                  >
+                    TEST_SUBTITLE
+                  </span>
+                </div>
+                <h2
+                  class="sc-kpDqfm hxKDeC"
+                >
+                  TEST_TITLE
+                </h2>
+              </div>
+            </div>
+          </div>
+          <div
+            class="sc-fqkvVR sc-jXbUNg fgBWrW gdCncd"
+          >
+            <div
+              class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz ezsJUC"
+            >
+              <div
+                class="sc-fqkvVR sc-kAyceB fgBWrW eeevb"
+              >
+                <div
+                  class="sc-fqkvVR sc-kAyceB fgBWrW ddfwpL"
+                  data-testid="timetable-timeline-item"
+                >
+                  <div
+                    class="sc-fqkvVR sc-kAyceB gqXWud bhNOkF"
+                  >
+                    <div
+                      class="sc-fqkvVR sc-kAyceB KngzF czRjkZ"
+                    />
+                    <div
+                      class="sc-fqkvVR sc-kAyceB khfxFm bAFsaQ"
+                    />
+                  </div>
+                  <div
+                    class="sc-fqkvVR sc-kAyceB jXzpTn gOiVFh"
+                  >
+                    <div
+                      class="sc-fqkvVR kxMTGH"
+                    >
+                      <span
+                        class="sc-dAlyuH bOvjMx"
+                      >
+                        ITEM_SUBTITLE_1
+                      </span>
+                    </div>
+                    <h3
+                      class="sc-kpDqfm cSDnOe"
+                    >
+                      ITEM_TITLE_1
+                    </h3>
+                    <div
+                      class="sc-fqkvVR sc-kAyceB jPWxQZ iVYVEn"
+                    >
+                      <p
+                        class="sc-dLMFU kdIcGd"
+                      >
+                        ITEM_TEXT_1
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="sc-fqkvVR sc-kAyceB fgBWrW ddfwpL"
+                  data-testid="timetable-timeline-item"
+                >
+                  <div
+                    class="sc-fqkvVR sc-kAyceB gqXWud bhNOkF"
+                  >
+                    <div
+                      class="sc-fqkvVR sc-kAyceB KngzF czRjkZ"
+                    />
+                    <div
+                      class="sc-fqkvVR sc-kAyceB khfxFm bAFsaQ"
+                    />
+                  </div>
+                  <div
+                    class="sc-fqkvVR sc-kAyceB jXzpTn gOiVFh"
+                  >
+                    <div
+                      class="sc-fqkvVR kxMTGH"
+                    >
+                      <span
+                        class="sc-dAlyuH bOvjMx"
+                      >
+                        ITEM_SUBTITLE_2
+                      </span>
+                    </div>
+                    <h3
+                      class="sc-kpDqfm cSDnOe"
+                    >
+                      ITEM_TITLE_2
+                    </h3>
+                    <div
+                      class="sc-fqkvVR sc-kAyceB jPWxQZ iVYVEn"
+                    >
+                      <p
+                        class="sc-dLMFU kdIcGd"
+                      >
+                        ITEM_TEXT_2
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="sc-fqkvVR sc-kAyceB fgBWrW ddfwpL"
+                  data-testid="timetable-timeline-item"
+                >
+                  <div
+                    class="sc-fqkvVR sc-kAyceB gqXWud bhNOkF"
+                  >
+                    <div
+                      class="sc-fqkvVR sc-kAyceB KngzF czRjkZ"
+                    />
+                    <div
+                      class="sc-fqkvVR sc-kAyceB qcwYc bAFsaQ"
+                    />
+                  </div>
+                  <div
+                    class="sc-fqkvVR sc-kAyceB jXzpTn gOiVFh"
+                  >
+                    <div
+                      class="sc-fqkvVR kxMTGH"
+                    >
+                      <span
+                        class="sc-dAlyuH bOvjMx"
+                      >
+                        ITEM_SUBTITLE_3
+                      </span>
+                    </div>
+                    <h3
+                      class="sc-kpDqfm cSDnOe"
+                    >
+                      ITEM_TITLE_3
+                    </h3>
+                    <div
+                      class="sc-fqkvVR sc-kAyceB jPWxQZ iVYVEn"
+                    >
+                      <p
+                        class="sc-dLMFU kdIcGd"
+                      >
+                        ITEM_TEXT_3
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
