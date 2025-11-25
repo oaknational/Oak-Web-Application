@@ -203,7 +203,7 @@ export const cspHeader = `
     media-src ${cspConfig.mediaSrc.join(" ")};
     frame-src ${cspConfig.frameSrc.join(" ")};
     worker-src ${cspConfig.workerSrc.join(" ")};
-    report-uri: ${reportCspApiUrl};
+    report-uri ${reportCspApiUrl};
     report-to oak-csp;
     ${cspConfig.upgradeInsecureRequests ? "upgrade-insecure-requests;" : ""}
 `;
