@@ -159,7 +159,7 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({ pageData }) => {
           permanentRolesLink="https://app.beapplied.com/org/1574/oak-national-academy/"
           freelanceRolesLink="https://app.beapplied.com/org/1767/oak-national-academy-freelancers/"
           imageUrl="https://res.cloudinary.com/oak-web-application/image/upload/v1764066578/about-us/team-huddle_zivgxj.png"
-          imageAlt="Team collaborating around a table"
+          imageAlt=""
           badges={[
             {
               url: "https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/top-1-percent-logo_hyga8g.svg",
