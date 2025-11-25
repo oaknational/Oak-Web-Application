@@ -1,3 +1,71 @@
+## [1.918.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.918.0...v1.918.1) (2025-11-25)
+
+
+### Bug Fixes
+
+* redundant type alias (sonarcloud) ([a28fb28](https://github.com/oaknational/Oak-Web-Application/commit/a28fb2846760f161459b58f0ed38ab63f8f956a5))
+
+# [1.918.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.917.0...v1.918.0) (2025-11-25)
+
+
+### Bug Fixes
+
+* cleanup event listener on use effect return ([4dcca91](https://github.com/oaknational/Oak-Web-Application/commit/4dcca91c2278f7aa0d2ac1875a38eac176732d0d))
+* column alignment ([281b334](https://github.com/oaknational/Oak-Web-Application/commit/281b3346869fc603e1f550c3bcb2237beaf03393))
+* correct urls for subjects with parents ([ee1aa7b](https://github.com/oaknational/Oak-Web-Application/commit/ee1aa7b9e009b31e3504a5168da1156d1c900413))
+* format subject names ([f4ac497](https://github.com/oaknational/Oak-Web-Application/commit/f4ac4978dbd54722f997219a03c0a3833a2e08f7))
+* hide accordion on drama and latin pages ([ba60884](https://github.com/oaknational/Oak-Web-Application/commit/ba60884d630d140c976d5f00b3285c6e1e5a02fa))
+* move link out of accordion button ([4988ee9](https://github.com/oaknational/Oak-Web-Application/commit/4988ee95ce130fa4454cf78d774a9baa4f7fcfb7))
+* move links into accordion body ([910a2c1](https://github.com/oaknational/Oak-Web-Application/commit/910a2c1ab0efe982da6b25bd2857d4cf57e8fca3))
+* remove last line of accordion for rshe ([b967519](https://github.com/oaknational/Oak-Web-Application/commit/b9675192abd307d76d57022bd8c673b31864fd71))
+
+
+### Features
+
+* add seo accordion component ([85a99f6](https://github.com/oaknational/Oak-Web-Application/commit/85a99f69b74ace1713fb4eb7e65685d0f7c5fda2))
+* add seo accordion to unit listing page ([161e11f](https://github.com/oaknational/Oak-Web-Application/commit/161e11fbbab97f97504b4c93038e58de4354e507))
+* add seo links to accordion ([a066bad](https://github.com/oaknational/Oak-Web-Application/commit/a066bad5874f631e03f20bbf89e2ad519dddebeb))
+* add seo text to subject keystage pages ([bcb67c8](https://github.com/oaknational/Oak-Web-Application/commit/bcb67c860212eb9159213c5894bd3435bf281921))
+* add text primary to accordions ([f08b67c](https://github.com/oaknational/Oak-Web-Application/commit/f08b67ce273f925de46406640dcc370708654b15))
+* add visually hidden text to button to clarify purpose for screen readers ([9297a36](https://github.com/oaknational/Oak-Web-Application/commit/9297a3661544053fc144cd15c7243e588a96497b))
+* link to subject categories on curriculum visualiser ([fcc10e1](https://github.com/oaknational/Oak-Web-Application/commit/fcc10e152ec890f8561380bd168ee66d40f1e929))
+
+# [1.917.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.916.1...v1.917.0) (2025-11-24)
+
+
+### Bug Fixes
+
+* <OakBox/> to <OakFlex/> to allow button to flex ([2d486a3](https://github.com/oaknational/Oak-Web-Application/commit/2d486a3645a69fce27194152f7adf52f55e8b852))
+
+
+### Features
+
+* added <GetInvolvedLinkCard/> component ([2acc74f](https://github.com/oaknational/Oak-Web-Application/commit/2acc74f34fe5835502bac55d647059e12c72103d))
+
+## [1.916.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.916.0...v1.916.1) (2025-11-24)
+
+
+### Bug Fixes
+
+* prevent notListed from appearing as an initial value in the school picker input ([d471008](https://github.com/oaknational/Oak-Web-Application/commit/d47100857cdcee266a2fd9ac1788ca3478319d24))
+
+# [1.916.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.915.5...v1.916.0) (2025-11-24)
+
+
+### Bug Fixes
+
+* improve accessibility by setting image alt attribute and aria-label ([bc440af](https://github.com/oaknational/Oak-Web-Application/commit/bc440af80faf2c3da0ef8408e088a867a8f3137e))
+* remove alt text and update snapshots ([3c25c3e](https://github.com/oaknational/Oak-Web-Application/commit/3c25c3e5ecbf1fcc997888416eb6d7eefd9c6f84))
+
+
+### Features
+
+* add confetti background to WhoAreWeExplore component ([ab8e687](https://github.com/oaknational/Oak-Web-Application/commit/ab8e6879ee8037ea63cafcbff83c6b05d0240880))
+* add newsletter component ([4f1a74a](https://github.com/oaknational/Oak-Web-Application/commit/4f1a74a8dc152c570a49e5fe2a1d3cdefa4a3a40))
+* merge in new spacing tokens ([4bd5831](https://github.com/oaknational/Oak-Web-Application/commit/4bd58317925c2c0644a5a1d6aa23a6671141f694))
+* run codemod ([d98cdaf](https://github.com/oaknational/Oak-Web-Application/commit/d98cdafe057b2800c1175435fd9cc7ca8924b9d2))
+* update oak-components ([d1933a8](https://github.com/oaknational/Oak-Web-Application/commit/d1933a8842917f30e9e5f94d173de3be4a8bae86))
+
 ## [1.915.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.915.4...v1.915.5) (2025-11-20)
 
 
