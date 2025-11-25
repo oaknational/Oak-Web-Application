@@ -18,7 +18,6 @@ const prodCspHeaderFixture = `
     media-src 'self' blob: *.thenational.academy https://*.mux.com https://stream.mux.com;
     frame-src 'self' *.thenational.academy https://vercel.live/ https://vercel.com https://challenges.cloudflare.com https://www.avo.app/ https://stream.mux.com https://*.mux.com *.google.com;
     worker-src 'self' blob:;
-    report-uri: http://localhost:3000/api/csp-report;
     report-to oak-csp;
     upgrade-insecure-requests;
 `;
@@ -37,7 +36,6 @@ const devCspHeaderFixture = `
     media-src 'self' blob: *.thenational.academy https://*.mux.com https://stream.mux.com;
     frame-src 'self' *.thenational.academy https://vercel.live/ https://vercel.com https://challenges.cloudflare.com https://www.avo.app/ https://stream.mux.com https://*.mux.com *.google.com;
     worker-src 'self' blob:;
-    report-uri: http://localhost:3000/api/csp-report;
     report-to oak-csp;
 `;
 

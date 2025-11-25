@@ -183,7 +183,9 @@ const cspConfig: CspConfig = [
 ].reduce(mergeConfigs, cspBaseConfig);
 
 // Reporting
-const reportCspApiUrl = `${process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL}/api/csp-report`;
+const reportCspApiUrl = isDevelopment
+  ? `${process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL}/api/csp-report`
+  : `https://${process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL}/api/csp-report`;
 export const reportingEndpointsHeader = `oak-csp="${reportCspApiUrl}"`;
 
 export const cspHeader = `
@@ -200,7 +202,6 @@ export const cspHeader = `
     media-src ${cspConfig.mediaSrc.join(" ")};
     frame-src ${cspConfig.frameSrc.join(" ")};
     worker-src ${cspConfig.workerSrc.join(" ")};
-    report-uri: ${reportCspApiUrl};
     report-to oak-csp;
     ${cspConfig.upgradeInsecureRequests ? "upgrade-insecure-requests;" : ""}
 `;
