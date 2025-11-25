@@ -1,3 +1,15 @@
+# [1.917.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.916.1...v1.917.0) (2025-11-24)
+
+
+### Bug Fixes
+
+* <OakBox/> to <OakFlex/> to allow button to flex ([2d486a3](https://github.com/oaknational/Oak-Web-Application/commit/2d486a3645a69fce27194152f7adf52f55e8b852))
+
+
+### Features
+
+* added <GetInvolvedLinkCard/> component ([2acc74f](https://github.com/oaknational/Oak-Web-Application/commit/2acc74f34fe5835502bac55d647059e12c72103d))
+
 ## [1.916.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.916.0...v1.916.1) (2025-11-24)
 
 
