@@ -143,7 +143,9 @@ const cspBaseConfig: CspConfig = {
   mediaSrc: ["'self'", "blob:", "*.thenational.academy"],
   frameSrc: ["'self'", "*.thenational.academy"],
   workerSrc: ["'self'", "blob:"],
-  upgradeInsecureRequests: !isDevelopment,
+  upgradeInsecureRequests: false,
+  // when we change from report only we can uncomment this
+  // upgradeInsecureRequests: !isDevelopment,
 };
 
 // Construct CSP headers

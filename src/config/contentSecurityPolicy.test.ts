@@ -20,7 +20,6 @@ const prodCspHeaderFixture = `
     worker-src 'self' blob:;
     report-uri https://localhost:3000/api/csp-report;
     report-to oak-csp;
-    upgrade-insecure-requests;
 `;
 
 const devCspHeaderFixture = `
@@ -116,11 +115,12 @@ describe("Content-Security-Policy Header", () => {
       jest.resetModules();
     });
 
-    it("should include 'upgrade-insecure-requests' when not in development", async () => {
-      const { cspHeader } = await import("./contentSecurityPolicy");
-
-      expect(cspHeader).toContain("upgrade-insecure-requests;");
-    });
+    // Can uncomment this when we change from report only CSP
+    // it("should include 'upgrade-insecure-requests' when not in development", async () => {
+    //   const { cspHeader } = await import("./contentSecurityPolicy");
+    //
+    //   expect(cspHeader).toContain("upgrade-insecure-requests;");
+    // });
 
     it("should exclude development-specific rules ('localhost', 'unsafe-eval')", async () => {
       const { cspHeader } = await import("./contentSecurityPolicy");
