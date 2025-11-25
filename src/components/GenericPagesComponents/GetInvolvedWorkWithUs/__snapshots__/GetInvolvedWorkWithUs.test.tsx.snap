@@ -152,21 +152,21 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
                 </div>
               </div>
               <div
-                class="sc-fqkvVR sc-kAyceB sc-f1e4514d-1 fgBWrW dBzTSe cvVysC"
+                class="sc-fqkvVR sc-kAyceB sc-817fae8-1 fgBWrW dBzTSe eQynlg"
               >
                 <img
                   alt="Badge 1"
-                  class="sc-f1e4514d-0 bddgnn"
+                  class="sc-817fae8-0 iNSzvt"
                   src="http://example.com/badge1.png"
                 />
                 <img
                   alt="Badge 2"
-                  class="sc-f1e4514d-0 bddgnn"
+                  class="sc-817fae8-0 iNSzvt"
                   src="http://example.com/badge2.png"
                 />
                 <img
                   alt="Badge 3"
-                  class="sc-f1e4514d-0 bddgnn"
+                  class="sc-817fae8-0 iNSzvt"
                   src="http://example.com/badge3.png"
                 />
               </div>

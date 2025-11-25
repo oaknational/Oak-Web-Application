@@ -4,24 +4,12 @@ import {
   OakP,
   OakHeading,
   OakSecondaryButton,
-  OakBox,
   OakGrid,
   OakGridArea,
 } from "@oaknational/oak-components";
-import { ReactNode } from "react";
 import styled from "styled-components";
 
-function InnerMaxWidth({ children }: { children: ReactNode }) {
-  return (
-    <OakBox
-      $maxWidth={"spacing-1280"}
-      $mh={"auto"}
-      $ph={["spacing-16", "spacing-16", "spacing-0"]}
-    >
-      {children}
-    </OakBox>
-  );
-}
+import { InnerMaxWidth } from "../InnerMaxWidth";
 
 const BadgeImage = styled.img`
   max-height: 56px;
@@ -95,9 +83,9 @@ export function GetInvolvedWorkWithUs({
                   $flexDirection={"column"}
                   $gap={["spacing-20", "spacing-24"]}
                 >
-                  {text.map((textItem, index) => {
+                  {text.map((textItem) => {
                     return (
-                      <OakP key={`text-${index}`} $color="text-primary">
+                      <OakP key={textItem} $color="text-primary">
                         {textItem}
                       </OakP>
                     );

@@ -1,30 +1,18 @@
 import { GetServerSideProps, NextPage } from "next";
 import { OakBox } from "@oaknational/oak-components";
-import { ReactNode } from "react";
 
 import Layout from "@/components/AppComponents/Layout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { WhoAreWeHeader } from "@/components/GenericPagesComponents/WhoAreWeHeader";
 import { WhoAreWeExplore } from "@/components/GenericPagesComponents/WhoAreWeExplore";
 import { GetInvolvedWorkWithUs } from "@/components/GenericPagesComponents/GetInvolvedWorkWithUs";
+import { InnerMaxWidth } from "@/components/GenericPagesComponents/InnerMaxWidth";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { ImageWithAltText } from "@/node-lib/sanity-graphql/generated/sdk";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
-
-function InnerMaxWidth({ children }: { children: ReactNode }) {
-  return (
-    <OakBox
-      $maxWidth={"spacing-1280"}
-      $mh={"auto"}
-      $ph={["spacing-16", "spacing-16", "spacing-0"]}
-    >
-      {children}
-    </OakBox>
-  );
-}
 
 export type GetInvolvedPage = {
   pageData: {
