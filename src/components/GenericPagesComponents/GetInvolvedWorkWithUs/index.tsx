@@ -68,7 +68,6 @@ export function GetInvolvedWorkWithUs({
             <OakFlex
               $flexDirection="column"
               $gap={"spacing-32"}
-              data-id-hi={"hi"}
             >
               <OakFlex $flexDirection="column" $gap="spacing-24">
                 <OakHeading
