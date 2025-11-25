@@ -1,16 +1,30 @@
 import { GetServerSideProps, NextPage } from "next";
 import { OakBox } from "@oaknational/oak-components";
+import { ReactNode } from "react";
 
 import Layout from "@/components/AppComponents/Layout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { WhoAreWeHeader } from "@/components/GenericPagesComponents/WhoAreWeHeader";
 import { WhoAreWeExplore } from "@/components/GenericPagesComponents/WhoAreWeExplore";
+import { GetInvolvedWorkWithUs } from "@/components/GenericPagesComponents/GetInvolvedWorkWithUs";
 import { getFeatureFlag } from "@/node-lib/posthog/getFeatureFlag";
 import { getPosthogIdFromCookie } from "@/node-lib/posthog/getPosthogId";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { ImageWithAltText } from "@/node-lib/sanity-graphql/generated/sdk";
 
 const posthogApiKey = getBrowserConfig("posthogApiKey");
+
+function InnerMaxWidth({ children }: { children: ReactNode }) {
+  return (
+    <OakBox
+      $maxWidth={"spacing-1280"}
+      $mh={"auto"}
+      $ph={["spacing-16", "spacing-16", "spacing-0"]}
+    >
+      {children}
+    </OakBox>
+  );
+}
 
 export type GetInvolvedPage = {
   pageData: {
@@ -109,11 +123,13 @@ const fixtureData: GetInvolvedPage["pageData"] = {
 
 function TodoSection({ name, text }: Readonly<{ name: string; text: string }>) {
   return (
-    <OakBox>
-      <h2>{name}</h2>
-      <pre>
-        <code>{text}</code>
-      </pre>
+    <OakBox $background={"mint"}>
+      <InnerMaxWidth>
+        <h2>{name}</h2>
+        <pre style={{ whiteSpace: "pre-wrap", wordBreak: "break-word" }}>
+          <code>{text}</code>
+        </pre>
+      </InnerMaxWidth>
     </OakBox>
   );
 }
@@ -121,47 +137,70 @@ function TodoSection({ name, text }: Readonly<{ name: string; text: string }>) {
 export const GetInvolved: NextPage<GetInvolvedPage> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(null)} $background={"white"}>
-      <WhoAreWeHeader
-        title={pageData.header.title}
-        content={pageData.header.text}
-        imageUrl={
-          "https://res.cloudinary.com/oak-web-application/image/upload/v1734018530/OWA/illustrations/auth-acorn_zyoma2.svg"
-        }
-        imageAlt={""}
-      />
-      <TodoSection
-        name="collab"
-        text={JSON.stringify(pageData.collab, null, 2)}
-      />
-      <TodoSection
-        name="workWithUs"
-        text={JSON.stringify(pageData.workWithUs, null, 2)}
-      />
-      <WhoAreWeExplore
-        title={"Explore more about Oak"}
-        items={[
-          {
-            iconName: "logo",
-            title: "About Oak",
-            href: "#",
-          },
-          {
-            iconName: "homepage-teacher-map",
-            title: "About Oak’s curriculum",
-            href: "#",
-          },
-          {
-            iconName: "data",
-            title: "Oaks impact",
-            href: "#",
-          },
-          {
-            iconName: "snack-break",
-            title: "Meet the team",
-            href: "#",
-          },
-        ]}
-      />
+      <OakBox $overflow={"hidden"}>
+        <WhoAreWeHeader
+          title={pageData.header.title}
+          content={pageData.header.text}
+          imageUrl={
+            "https://res.cloudinary.com/oak-web-application/image/upload/v1734018530/OWA/illustrations/auth-acorn_zyoma2.svg"
+          }
+          imageAlt={""}
+        />
+        <TodoSection
+          name="collab"
+          text={JSON.stringify(pageData.collab, null, 2)}
+        />
+        <GetInvolvedWorkWithUs
+          heading="Work with us"
+          text={[
+            "We're a fast-paced and innovative team, working to support and inspire teachers to deliver great teaching, so every pupil benefits.",
+            "All our roles are remote-first. If you want to be part of something unique that's making a difference to millions of children's lives, we'd love to hear from you.",
+          ]}
+          permanentRolesLink="https://app.beapplied.com/org/1574/oak-national-academy/"
+          freelanceRolesLink="https://app.beapplied.com/org/1767/oak-national-academy-freelancers/"
+          imageUrl="https://res.cloudinary.com/oak-web-application/image/upload/v1764066578/about-us/team-huddle_zivgxj.png"
+          imageAlt="Team collaborating around a table"
+          badges={[
+            {
+              url: "https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/top-1-percent-logo_hyga8g.svg",
+              alt: "Top 1% Employer badge",
+            },
+            {
+              url: "https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/investor-in-people_eymeqv.svg",
+              alt: "Investors in People Gold badge",
+            },
+            {
+              url: "https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/disability-confident_ym07wl.png",
+              alt: "Disability Confident Committed badge",
+            },
+          ]}
+        />
+        <WhoAreWeExplore
+          title={"Explore more about Oak"}
+          items={[
+            {
+              iconName: "logo",
+              title: "About Oak",
+              href: "#",
+            },
+            {
+              iconName: "homepage-teacher-map",
+              title: "About Oak’s curriculum",
+              href: "#",
+            },
+            {
+              iconName: "data",
+              title: "Oaks impact",
+              href: "#",
+            },
+            {
+              iconName: "snack-break",
+              title: "Meet the team",
+              href: "#",
+            },
+          ]}
+        />
+      </OakBox>
     </Layout>
   );
 };
