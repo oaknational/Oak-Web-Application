@@ -72,8 +72,16 @@ export function GetInvolvedWorkWithUs({
           $rg={["spacing-40", "spacing-40", "spacing-16"]}
           $cg="spacing-16"
         >
-          <OakGridArea $colSpan={[12, 12, 4]} $colStart={[1, 1, 1]}>
-            <OakFlex $flexDirection="column" $gap={"spacing-32"}>
+          <OakGridArea
+            $colSpan={[12, 12, 4]}
+            $colStart={[1, 1, 1]}
+            $justifyContent={["flex-start", "center", "center"]}
+          >
+            <OakFlex
+              $flexDirection="column"
+              $gap={"spacing-32"}
+              data-id-hi={"hi"}
+            >
               <OakFlex $flexDirection="column" $gap="spacing-24">
                 <OakHeading
                   $font={["heading-5", "heading-3", "heading-3"]}
@@ -130,7 +138,7 @@ export function GetInvolvedWorkWithUs({
               $flexDirection="column"
               $gap={["spacing-24", "spacing-32"]}
             >
-              <OakFlex $aspectRatio={"4/3"} $width="100%">
+              <OakFlex $aspectRatio={"16/9"} $width="100%">
                 <OakImage $objectFit={"cover"} alt={imageAlt} src={imageUrl} />
               </OakFlex>
               <BadgeWrapper

@@ -13,10 +13,11 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
           class="sc-fqkvVR sc-jXbUNg fgBWrW hzqgQA"
         >
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz etzMdS"
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW bAHJVP etzMdS"
           >
             <div
               class="sc-fqkvVR sc-kAyceB fgBWrW kYkjWQ"
+              data-id-hi="hi"
             >
               <div
                 class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
@@ -132,7 +133,7 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
               class="sc-fqkvVR sc-kAyceB fgBWrW cfgZTR"
             >
               <div
-                class="sc-fqkvVR sc-kAyceB dBmdIk joHkzz"
+                class="sc-fqkvVR sc-kAyceB fIaYTx joHkzz"
               >
                 <div
                   class="sc-fqkvVR jqqmXN"
@@ -151,21 +152,21 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
                 </div>
               </div>
               <div
-                class="sc-fqkvVR sc-kAyceB sc-2e612d02-1 fgBWrW dBzTSe eUhqlw"
+                class="sc-fqkvVR sc-kAyceB sc-554f9c13-1 fgBWrW dBzTSe jUknKC"
               >
                 <img
                   alt="Badge 1"
-                  class="sc-2e612d02-0 hePDKN"
+                  class="sc-554f9c13-0 cARtUH"
                   src="http://example.com/badge1.png"
                 />
                 <img
                   alt="Badge 2"
-                  class="sc-2e612d02-0 hePDKN"
+                  class="sc-554f9c13-0 cARtUH"
                   src="http://example.com/badge2.png"
                 />
                 <img
                   alt="Badge 3"
-                  class="sc-2e612d02-0 hePDKN"
+                  class="sc-554f9c13-0 cARtUH"
                   src="http://example.com/badge3.png"
                 />
               </div>

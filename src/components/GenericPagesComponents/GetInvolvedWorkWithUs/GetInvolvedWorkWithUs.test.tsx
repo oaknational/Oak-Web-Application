@@ -36,8 +36,5 @@ describe("GetInvolvedWorkWithUs", () => {
     expect(links[0]).toHaveAttribute("href", "https://example.com/permanent");
     expect(links[1]).toHaveTextContent("Freelance roles");
     expect(links[1]).toHaveAttribute("href", "https://example.com/freelance");
-
-    const images = getAllByRole("img");
-    expect(images).toHaveLength(4); // 1 main image + 3 badges
   });
 });
