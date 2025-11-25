@@ -107,7 +107,7 @@ const fixtureData: GetInvolvedPage["pageData"] = {
   },
 };
 
-function TodoSection({ name, text }: { name: string; text: string }) {
+function TodoSection({ name, text }: Readonly<{ name: string; text: string }>) {
   return (
     <OakBox>
       <h2>{name}</h2>
@@ -167,18 +167,6 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({ pageData }) => {
 };
 
 export const getServerSideProps = (async (context) => {
-  //   const isPreviewMode = context.preview === true;
-
-  //   const GetInvolvedPage = await CMSClient.newAboutWhoWeArePage({
-  //     previewMode: isPreviewMode,
-  //   });
-
-  //   if (!GetInvolvedPage) {
-  //     return {
-  //       notFound: true,
-  //     };
-  //   }
-
   const posthogUserId = getPosthogIdFromCookie(
     context.req.cookies,
     posthogApiKey,
