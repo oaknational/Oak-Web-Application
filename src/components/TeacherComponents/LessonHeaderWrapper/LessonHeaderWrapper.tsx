@@ -27,7 +27,7 @@ export const LessonHeaderWrapper: FC<LessonHeaderWrapperProps> = (props) => {
 
   return (
     <OakFlex $flexGrow={1} $background={background}>
-      <OakMaxWidth $ph={"spacing-12"} $mb={["spacing-32", "spacing-56"]}>
+      <OakMaxWidth $ph={"spacing-12"} $mb={"spacing-24"}>
         <OakBox $mt={["spacing-16", "spacing-24"]}>
           <Breadcrumbs breadcrumbs={breadcrumbs} />
         </OakBox>
