@@ -151,15 +151,15 @@ export const GetInvolved: NextPage<GetInvolvedPage> = ({ pageData }) => {
           badges={[
             {
               url: "https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/top-1-percent-logo_hyga8g.svg",
-              alt: "Top 1% Employer badge",
+              alt: "'In Escape the City's top 1% of employers'",
             },
             {
               url: "https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/investor-in-people_eymeqv.svg",
-              alt: "Investors in People Gold badge",
+              alt: "Awarded Gold in Investors In People",
             },
             {
               url: "https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/disability-confident_ym07wl.png",
-              alt: "Disability Confident Committed badge",
+              alt: "Certified as Disability Confident Committed",
             },
           ]}
         />
