@@ -17,7 +17,6 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
           >
             <div
               class="sc-fqkvVR sc-kAyceB fgBWrW kYkjWQ"
-              data-id-hi="hi"
             >
               <div
                 class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
@@ -152,21 +151,21 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
                 </div>
               </div>
               <div
-                class="sc-fqkvVR sc-kAyceB sc-817fae8-1 fgBWrW dBzTSe eQynlg"
+                class="sc-fqkvVR sc-kAyceB sc-d849a755-1 fgBWrW dBzTSe kbwtiH"
               >
                 <img
                   alt="Badge 1"
-                  class="sc-817fae8-0 iNSzvt"
+                  class="sc-d849a755-0 cfMisC"
                   src="http://example.com/badge1.png"
                 />
                 <img
                   alt="Badge 2"
-                  class="sc-817fae8-0 iNSzvt"
+                  class="sc-d849a755-0 cfMisC"
                   src="http://example.com/badge2.png"
                 />
                 <img
                   alt="Badge 3"
-                  class="sc-817fae8-0 iNSzvt"
+                  class="sc-d849a755-0 cfMisC"
                   src="http://example.com/badge3.png"
                 />
               </div>

@@ -1799,7 +1799,6 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                 >
                   <div
                     class="sc-fqkvVR sc-kAyceB fgBWrW kYkjWQ"
-                    data-id-hi="hi"
                   >
                     <div
                       class="sc-fqkvVR sc-kAyceB fgBWrW kKfJVM"
@@ -1934,21 +1933,21 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       </div>
                     </div>
                     <div
-                      class="sc-fqkvVR sc-kAyceB sc-f1e4514d-1 fgBWrW dBzTSe cvVysC"
+                      class="sc-fqkvVR sc-kAyceB sc-d849a755-1 fgBWrW dBzTSe kbwtiH"
                     >
                       <img
                         alt="Top 1% Employer badge"
-                        class="sc-f1e4514d-0 bddgnn"
+                        class="sc-d849a755-0 cfMisC"
                         src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/top-1-percent-logo_hyga8g.svg"
                       />
                       <img
                         alt="Investors in People Gold badge"
-                        class="sc-f1e4514d-0 bddgnn"
+                        class="sc-d849a755-0 cfMisC"
                         src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/investor-in-people_eymeqv.svg"
                       />
                       <img
                         alt="Disability Confident Committed badge"
-                        class="sc-f1e4514d-0 bddgnn"
+                        class="sc-d849a755-0 cfMisC"
                         src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/disability-confident_ym07wl.png"
                       />
                     </div>
