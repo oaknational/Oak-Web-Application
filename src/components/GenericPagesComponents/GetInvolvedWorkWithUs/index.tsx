@@ -5,6 +5,7 @@ import {
   OakHeading,
   OakSecondaryButton,
   OakGrid,
+  OakIcon,
   OakGridArea,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
@@ -118,7 +119,14 @@ export function GetInvolvedWorkWithUs({
                 $gap="spacing-16"
               >
                 <OakSecondaryButton
-                  iconName="external"
+                  iconOverride={
+                    <OakIcon
+                      iconName="external"
+                      alt="external"
+                      $width="spacing-24"
+                      $height="spacing-24"
+                    />
+                  }
                   isTrailingIcon={true}
                   href={permanentRolesLink}
                   element="a"
@@ -128,7 +136,14 @@ export function GetInvolvedWorkWithUs({
                   Permanent roles
                 </OakSecondaryButton>
                 <OakSecondaryButton
-                  iconName="external"
+                  iconOverride={
+                    <OakIcon
+                      iconName="external"
+                      alt="external"
+                      $width="spacing-24"
+                      $height="spacing-24"
+                    />
+                  }
                   isTrailingIcon={true}
                   href={freelanceRolesLink}
                   element="a"
