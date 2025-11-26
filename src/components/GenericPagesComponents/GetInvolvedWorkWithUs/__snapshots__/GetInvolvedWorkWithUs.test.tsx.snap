@@ -10,10 +10,10 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
         class="sc-fqkvVR sc-kAyceB hwnObW eeevb"
       >
         <div
-          class="sc-fqkvVR sc-jXbUNg fgBWrW hzqgQA"
+          class="sc-fqkvVR sc-jXbUNg sc-ca407f7f-2 fgBWrW hzqgQA jvQVGS"
         >
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW bAHJVP etzMdS"
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-ca407f7f-3 fgBWrW bAHJVP pKRyc bGFIOP"
           >
             <div
               class="sc-fqkvVR sc-kAyceB fgBWrW kYkjWQ"
@@ -42,7 +42,7 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
                 </div>
               </div>
               <div
-                class="sc-fqkvVR sc-kAyceB fgBWrW gaFEky"
+                class="sc-fqkvVR sc-kAyceB sc-ca407f7f-5 fgBWrW gaFEky cbxVxT"
               >
                 <div
                   class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
@@ -126,7 +126,7 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz BmYTN"
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-ca407f7f-4 fgBWrW joHkzz pKRyc cxtyWQ"
           >
             <div
               class="sc-fqkvVR sc-kAyceB fgBWrW cfgZTR"
@@ -151,21 +151,21 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
                 </div>
               </div>
               <div
-                class="sc-fqkvVR sc-kAyceB sc-d849a755-1 fgBWrW dBzTSe kbwtiH"
+                class="sc-fqkvVR sc-kAyceB sc-ca407f7f-1 fgBWrW dBzTSe eSEnVD"
               >
                 <img
                   alt="Badge 1"
-                  class="sc-d849a755-0 cfMisC"
+                  class="sc-ca407f7f-0 bOelbb"
                   src="http://example.com/badge1.png"
                 />
                 <img
                   alt="Badge 2"
-                  class="sc-d849a755-0 cfMisC"
+                  class="sc-ca407f7f-0 bOelbb"
                   src="http://example.com/badge2.png"
                 />
                 <img
                   alt="Badge 3"
-                  class="sc-d849a755-0 cfMisC"
+                  class="sc-ca407f7f-0 bOelbb"
                   src="http://example.com/badge3.png"
                 />
               </div>

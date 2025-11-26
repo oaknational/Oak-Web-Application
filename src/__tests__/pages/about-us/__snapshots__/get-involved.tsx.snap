@@ -1792,10 +1792,10 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
               class="sc-fqkvVR sc-kAyceB hwnObW eeevb"
             >
               <div
-                class="sc-fqkvVR sc-jXbUNg fgBWrW hzqgQA"
+                class="sc-fqkvVR sc-jXbUNg sc-ca407f7f-2 fgBWrW hzqgQA jvQVGS"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW bAHJVP etzMdS"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-ca407f7f-3 fgBWrW bAHJVP pKRyc bGFIOP"
                 >
                   <div
                     class="sc-fqkvVR sc-kAyceB fgBWrW kYkjWQ"
@@ -1824,7 +1824,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       </div>
                     </div>
                     <div
-                      class="sc-fqkvVR sc-kAyceB fgBWrW gaFEky"
+                      class="sc-fqkvVR sc-kAyceB sc-ca407f7f-5 fgBWrW gaFEky cbxVxT"
                     >
                       <div
                         class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
@@ -1908,7 +1908,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB fgBWrW joHkzz BmYTN"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-ca407f7f-4 fgBWrW joHkzz pKRyc cxtyWQ"
                 >
                   <div
                     class="sc-fqkvVR sc-kAyceB fgBWrW cfgZTR"
@@ -1933,21 +1933,21 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       </div>
                     </div>
                     <div
-                      class="sc-fqkvVR sc-kAyceB sc-d849a755-1 fgBWrW dBzTSe kbwtiH"
+                      class="sc-fqkvVR sc-kAyceB sc-ca407f7f-1 fgBWrW dBzTSe eSEnVD"
                     >
                       <img
                         alt="Top 1% Employer badge"
-                        class="sc-d849a755-0 cfMisC"
+                        class="sc-ca407f7f-0 bOelbb"
                         src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/top-1-percent-logo_hyga8g.svg"
                       />
                       <img
                         alt="Investors in People Gold badge"
-                        class="sc-d849a755-0 cfMisC"
+                        class="sc-ca407f7f-0 bOelbb"
                         src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/investor-in-people_eymeqv.svg"
                       />
                       <img
                         alt="Disability Confident Committed badge"
-                        class="sc-d849a755-0 cfMisC"
+                        class="sc-ca407f7f-0 bOelbb"
                         src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/disability-confident_ym07wl.png"
                       />
                     </div>

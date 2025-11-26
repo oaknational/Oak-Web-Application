@@ -23,11 +23,35 @@ const BadgeImage = styled.img`
 `;
 
 const BadgeWrapper = styled(OakFlex)`
-  @media (max-width: 1279px) {
+  @media (max-width: 1027px) {
     & img:nth-child(2) {
       order: -1;
       max-height: 40px;
     }
+  }
+`;
+
+const ResponsiveGrid = styled(OakGrid)`
+  @media (min-width: 1028px) {
+    grid-template-columns: repeat(12, 1fr);
+  }
+`;
+
+const ResponsiveGridAreaLeft = styled(OakGridArea)`
+  @media (min-width: 1028px) {
+    grid-column: 1 / span 4;
+  }
+`;
+
+const ResponsiveGridAreaRight = styled(OakGridArea)`
+  @media (min-width: 1028px) {
+    grid-column: 6 / span 7;
+  }
+`;
+
+const ButtonContainer = styled(OakFlex)`
+  @media (min-width: 1028px) and (max-width: 1279px) {
+    flex-direction: column;
   }
 `;
 
@@ -56,13 +80,13 @@ export function GetInvolvedWorkWithUs({
   return (
     <InnerMaxWidth>
       <OakFlex $flexDirection="column" $pv={["spacing-56", "spacing-80"]}>
-        <OakGrid
+        <ResponsiveGrid
           $rg={["spacing-40", "spacing-40", "spacing-16"]}
           $cg="spacing-16"
         >
-          <OakGridArea
-            $colSpan={[12, 12, 4]}
-            $colStart={[1, 1, 1]}
+          <ResponsiveGridAreaLeft
+            $colSpan={[12, 12]}
+            $colStart={[1, 1]}
             $justifyContent={["flex-start", "center", "center"]}
           >
             <OakFlex $flexDirection="column" $gap={"spacing-32"}>
@@ -89,7 +113,7 @@ export function GetInvolvedWorkWithUs({
                 </OakFlex>
               </OakFlex>
 
-              <OakFlex
+              <ButtonContainer
                 $flexDirection={["column", "row", "row"]}
                 $gap="spacing-16"
               >
@@ -113,11 +137,11 @@ export function GetInvolvedWorkWithUs({
                 >
                   Freelance roles
                 </OakSecondaryButton>
-              </OakFlex>
+              </ButtonContainer>
             </OakFlex>
-          </OakGridArea>
+          </ResponsiveGridAreaLeft>
 
-          <OakGridArea $colSpan={[12, 12, 7]} $colStart={[1, 1, 6]}>
+          <ResponsiveGridAreaRight $colSpan={[12, 12]} $colStart={[1, 1]}>
             <OakFlex
               $flexDirection="column"
               $gap={["spacing-24", "spacing-32"]}
@@ -136,8 +160,8 @@ export function GetInvolvedWorkWithUs({
                 ))}
               </BadgeWrapper>
             </OakFlex>
-          </OakGridArea>
-        </OakGrid>
+          </ResponsiveGridAreaRight>
+        </ResponsiveGrid>
       </OakFlex>
     </InnerMaxWidth>
   );
