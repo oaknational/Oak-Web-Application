@@ -1,12 +1,24 @@
 locals {
   env_names = [
     {
-      gcp    = "prod",
-      vercel = "production"
+      gcp                 = "prod",
+      vercel              = "production"
+      service_account_key = "production"
+      is_custom_env       = false
+
     },
     {
-      gcp    = "staging",
-      vercel = "preview"
+      gcp                 = "staging",
+      vercel              = "preview"
+      service_account_key = "preview"
+      is_custom_env       = false
+
+    },
+    {
+      gcp                 = "staging",
+      vercel              = "staging"
+      service_account_key = "preview"
+      is_custom_env       = true
     },
   ]
   superuser_workspace_prefix = "gcp-project-superuser"
@@ -137,13 +149,28 @@ locals {
     ]
   ])
 
-  all_custom_env_vars = concat(local.custom_env_vars, local.sensitive_custom_env_vars, local.custom_env_vars_shared)
-
-  lookup_vars = flatten([
-    for env_name in local.required_env_names : [
+  custom_env_lookup_vars = flatten([
+    for env_name in [for env in local.required_env_names : env if env.is_custom_env] : [
       for key, value in {
         "GCP_PROJECT_ID"                         = data.terraform_remote_state.google_projects["${local.superuser_workspace_prefix}-${env_name.gcp}"].outputs.project_id
-        "GCP_SERVICE_ACCOUNT_EMAIL"              = data.terraform_remote_state.google_projects["${local.superuser_workspace_prefix}-${env_name.gcp}"].outputs.project_config.workload_identity_service_accounts.vercel["oak-web-application-website::${env_name.vercel}"]
+        "GCP_SERVICE_ACCOUNT_EMAIL"              = data.terraform_remote_state.google_projects["${local.superuser_workspace_prefix}-${env_name.gcp}"].outputs.project_config.workload_identity_service_accounts.vercel["oak-web-application-website::${env_name.service_account_key}"]
+        "GCP_WORKLOAD_IDENTITY_POOL_PROVIDER_ID" = data.terraform_remote_state.google_projects["${local.superuser_workspace_prefix}-${env_name.gcp}"].outputs.workload_identity_provider_names.vercel
+        } : {
+        key                     = key
+        value                   = value
+        custom_environment_name = env_name.vercel
+        sensitive               = false
+      }
+    ]
+  ])
+
+  all_custom_env_vars = concat(local.custom_env_vars, local.sensitive_custom_env_vars, local.custom_env_vars_shared, local.custom_env_lookup_vars)
+
+  lookup_vars = flatten([
+    for env_name in [for env in local.required_env_names : env if !env.is_custom_env] : [
+      for key, value in {
+        "GCP_PROJECT_ID"                         = data.terraform_remote_state.google_projects["${local.superuser_workspace_prefix}-${env_name.gcp}"].outputs.project_id
+        "GCP_SERVICE_ACCOUNT_EMAIL"              = data.terraform_remote_state.google_projects["${local.superuser_workspace_prefix}-${env_name.gcp}"].outputs.project_config.workload_identity_service_accounts.vercel["oak-web-application-website::${env_name.service_account_key}"]
         "GCP_WORKLOAD_IDENTITY_POOL_PROVIDER_ID" = data.terraform_remote_state.google_projects["${local.superuser_workspace_prefix}-${env_name.gcp}"].outputs.workload_identity_provider_names.vercel
         } : {
         key       = key
