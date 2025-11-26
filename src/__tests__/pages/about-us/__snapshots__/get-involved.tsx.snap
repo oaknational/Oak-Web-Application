@@ -1792,10 +1792,10 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
               class="sc-fqkvVR sc-kAyceB hwnObW eeevb"
             >
               <div
-                class="sc-fqkvVR sc-jXbUNg sc-ca407f7f-2 fgBWrW hzqgQA jvQVGS"
+                class="sc-fqkvVR sc-jXbUNg sc-c6ee2f3d-2 fgBWrW hzqgQA iqxixG"
               >
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-ca407f7f-3 fgBWrW bAHJVP pKRyc bGFIOP"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-c6ee2f3d-3 fgBWrW bAHJVP pKRyc fihUuj"
                 >
                   <div
                     class="sc-fqkvVR sc-kAyceB fgBWrW kYkjWQ"
@@ -1824,7 +1824,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       </div>
                     </div>
                     <div
-                      class="sc-fqkvVR sc-kAyceB sc-ca407f7f-5 fgBWrW gaFEky cbxVxT"
+                      class="sc-fqkvVR sc-kAyceB sc-c6ee2f3d-5 fgBWrW gaFEky eelHRn"
                     >
                       <div
                         class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
@@ -1853,8 +1853,8 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                               class="sc-fqkvVR kbnxKi"
                             >
                               <img
-                                alt=""
-                                class="sc-dcJsrY beWtwI"
+                                alt="external"
+                                class="sc-dcJsrY cDKKvZ"
                                 data-nimg="fill"
                                 decoding="async"
                                 loading="lazy"
@@ -1892,8 +1892,8 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                               class="sc-fqkvVR kbnxKi"
                             >
                               <img
-                                alt=""
-                                class="sc-dcJsrY beWtwI"
+                                alt="external"
+                                class="sc-dcJsrY cDKKvZ"
                                 data-nimg="fill"
                                 decoding="async"
                                 loading="lazy"
@@ -1908,7 +1908,7 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                   </div>
                 </div>
                 <div
-                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-ca407f7f-4 fgBWrW joHkzz pKRyc cxtyWQ"
+                  class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-c6ee2f3d-4 fgBWrW joHkzz pKRyc bUfMcY"
                 >
                   <div
                     class="sc-fqkvVR sc-kAyceB fgBWrW cfgZTR"
@@ -1933,21 +1933,21 @@ exports[`pages/about/who-we-are.tsx renders 1`] = `
                       </div>
                     </div>
                     <div
-                      class="sc-fqkvVR sc-kAyceB sc-ca407f7f-1 fgBWrW dBzTSe eSEnVD"
+                      class="sc-fqkvVR sc-kAyceB sc-c6ee2f3d-1 fgBWrW dBzTSe hWtNdD"
                     >
                       <img
-                        alt="Top 1% Employer badge"
-                        class="sc-ca407f7f-0 bOelbb"
+                        alt="'In Escape the City's top 1% of employers'"
+                        class="sc-c6ee2f3d-0 fYRuPH"
                         src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/top-1-percent-logo_hyga8g.svg"
                       />
                       <img
-                        alt="Investors in People Gold badge"
-                        class="sc-ca407f7f-0 bOelbb"
+                        alt="Awarded Gold in Investors In People"
+                        class="sc-c6ee2f3d-0 fYRuPH"
                         src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/investor-in-people_eymeqv.svg"
                       />
                       <img
-                        alt="Disability Confident Committed badge"
-                        class="sc-ca407f7f-0 bOelbb"
+                        alt="Certified as Disability Confident Committed"
+                        class="sc-c6ee2f3d-0 fYRuPH"
                         src="https://res.cloudinary.com/oak-web-application/image/upload/v1764066553/about-us/disability-confident_ym07wl.png"
                       />
                     </div>

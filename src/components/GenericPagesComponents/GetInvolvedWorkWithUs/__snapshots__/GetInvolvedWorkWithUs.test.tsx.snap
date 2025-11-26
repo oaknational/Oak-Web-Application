@@ -10,10 +10,10 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
         class="sc-fqkvVR sc-kAyceB hwnObW eeevb"
       >
         <div
-          class="sc-fqkvVR sc-jXbUNg sc-ca407f7f-2 fgBWrW hzqgQA jvQVGS"
+          class="sc-fqkvVR sc-jXbUNg sc-c6ee2f3d-2 fgBWrW hzqgQA iqxixG"
         >
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-ca407f7f-3 fgBWrW bAHJVP pKRyc bGFIOP"
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-c6ee2f3d-3 fgBWrW bAHJVP pKRyc fihUuj"
           >
             <div
               class="sc-fqkvVR sc-kAyceB fgBWrW kYkjWQ"
@@ -42,7 +42,7 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
                 </div>
               </div>
               <div
-                class="sc-fqkvVR sc-kAyceB sc-ca407f7f-5 fgBWrW gaFEky cbxVxT"
+                class="sc-fqkvVR sc-kAyceB sc-c6ee2f3d-5 fgBWrW gaFEky eelHRn"
               >
                 <div
                   class="sc-fqkvVR sc-JrDLc eJBGXR hESAKV"
@@ -71,8 +71,8 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
                         class="sc-fqkvVR kbnxKi"
                       >
                         <img
-                          alt=""
-                          class="sc-dcJsrY beWtwI"
+                          alt="external"
+                          class="sc-dcJsrY cDKKvZ"
                           data-nimg="fill"
                           decoding="async"
                           loading="lazy"
@@ -110,8 +110,8 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
                         class="sc-fqkvVR kbnxKi"
                       >
                         <img
-                          alt=""
-                          class="sc-dcJsrY beWtwI"
+                          alt="external"
+                          class="sc-dcJsrY cDKKvZ"
                           data-nimg="fill"
                           decoding="async"
                           loading="lazy"
@@ -126,7 +126,7 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-ca407f7f-4 fgBWrW joHkzz pKRyc cxtyWQ"
+            class="sc-fqkvVR sc-kAyceB sc-dhKdcB sc-c6ee2f3d-4 fgBWrW joHkzz pKRyc bUfMcY"
           >
             <div
               class="sc-fqkvVR sc-kAyceB fgBWrW cfgZTR"
@@ -151,21 +151,21 @@ exports[`GetInvolvedWorkWithUs renders correctly 1`] = `
                 </div>
               </div>
               <div
-                class="sc-fqkvVR sc-kAyceB sc-ca407f7f-1 fgBWrW dBzTSe eSEnVD"
+                class="sc-fqkvVR sc-kAyceB sc-c6ee2f3d-1 fgBWrW dBzTSe hWtNdD"
               >
                 <img
                   alt="Badge 1"
-                  class="sc-ca407f7f-0 bOelbb"
+                  class="sc-c6ee2f3d-0 fYRuPH"
                   src="http://example.com/badge1.png"
                 />
                 <img
                   alt="Badge 2"
-                  class="sc-ca407f7f-0 bOelbb"
+                  class="sc-c6ee2f3d-0 fYRuPH"
                   src="http://example.com/badge2.png"
                 />
                 <img
                   alt="Badge 3"
-                  class="sc-ca407f7f-0 bOelbb"
+                  class="sc-c6ee2f3d-0 fYRuPH"
                   src="http://example.com/badge3.png"
                 />
               </div>
