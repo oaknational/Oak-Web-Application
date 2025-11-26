@@ -29,6 +29,7 @@ import {
   getPageLinksWithSubheadingsForLesson,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import {
+  AnalyticsBrowseData,
   LessonOverviewAll,
   SpecialistLessonPathway,
 } from "@/components/TeacherComponents/types/lesson.types";
@@ -68,8 +69,6 @@ import { RestrictedContentPrompt } from "@/components/TeacherComponents/Restrict
 import { useComplexCopyright } from "@/hooks/useComplexCopyright";
 import { TeacherRedirectedOverlay } from "@/components/TeacherComponents/TeacherRedirectedOverlay/TeacherRedirectedOverlay";
 import { TeacherNotesButtonProps } from "@/pages-helpers/teacher/useLesson/useLesson";
-import { PupilPathwayData } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
-import { getPhase } from "@/components/TeacherComponents/helpers/seoTextHelpers/seoText.helpers";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads } & {
@@ -152,6 +151,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
+
   const commonPathway = getPathway(lesson);
   const {
     keyStageSlug,
@@ -167,7 +167,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     tierTitle,
     subjectParent,
     pathwayTitle,
-    yearSlug,
+    year,
   } = commonPathway;
   const user = useUser();
   const isLegacyLicense = !lessonCohort || lessonCohort === LEGACY_COHORT;
@@ -186,6 +186,30 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   const unitListingHref = `/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/programmes`;
 
+  const browsePathwayData: AnalyticsBrowseData = {
+    keyStageSlug: keyStageSlug ?? "",
+    keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+    subjectSlug: subjectSlug ?? "",
+    subjectTitle: subjectTitle ?? "",
+    unitSlug: unitSlug ?? "",
+    unitName: unitTitle ?? "",
+    lessonSlug,
+    lessonName: lessonTitle,
+    pathway: pathwayTitle as PathwayValueType,
+    tierName: tierTitle as TierNameValueType,
+    yearGroupName: yearTitle ?? "",
+    yearGroupSlug: year ? `year-${year}` : "",
+    examBoard: examBoardTitle as ExamBoardValueType,
+    releaseGroup: lesson.isLegacy ? "legacy" : "2023",
+    phase: keyStageSlug
+      ? ["ks4", "ks3"].includes(keyStageSlug)
+        ? "secondary"
+        : "primary"
+      : undefined,
+    lessonReleaseCohort: lesson.isLegacy ? "2020-2023" : "2023-2026",
+    lessonReleaseDate: lessonReleaseDate ?? "unreleased",
+  };
+
   const trackDownloadResourceButtonClicked = ({
     downloadResourceButtonName,
   }: {
@@ -199,40 +223,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
       eventVersion: "2.0.0",
       analyticsUseCase: "Teacher",
       downloadResourceButtonName,
-      keyStageSlug,
-      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-      subjectSlug,
-      subjectTitle,
-      unitSlug,
-      unitName: unitTitle,
-      lessonSlug,
-      lessonName: lessonTitle,
-      pathway: pathwayTitle as PathwayValueType,
-      examBoard: examBoardTitle as ExamBoardValueType,
-      tierName: tierTitle as TierNameValueType,
-      lessonReleaseCohort: lesson.isLegacy ? "2020-2023" : "2023-2026",
-      lessonReleaseDate: lessonReleaseDate ?? "unreleased",
+      ...browsePathwayData,
     });
-  };
-
-  const browsePathwayData: PupilPathwayData = {
-    keyStageSlug: keyStageSlug ?? "",
-    keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-    subjectSlug: subjectSlug ?? "",
-    subjectTitle: subjectTitle ?? "",
-    unitSlug: unitSlug ?? "",
-    unitName: unitTitle ?? "",
-    lessonSlug,
-    lessonName: lessonTitle,
-    pathway: pathwayTitle as PathwayValueType,
-    tierName: null,
-    yearGroupName: yearTitle ?? "",
-    yearGroupSlug: yearSlug ?? "",
-    examBoard: null,
-    releaseGroup: lesson.isLegacy ? "legacy" : "2023",
-    phase: yearSlug ? getPhase(yearSlug) : "primary", // TODO: default?
-    lessonReleaseCohort: lesson.isLegacy ? "2020-2023" : "2023-2026",
-    lessonReleaseDate: lessonReleaseDate ?? "unreleased",
   };
 
   const trackMediaClipsButtonClicked = ({
@@ -253,18 +245,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   };
 
   const trackShareAll = () => {
-    track.lessonShareStarted({
-      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-      keyStageSlug,
-      subjectTitle,
-      subjectSlug,
-      unitName: unitTitle,
-      unitSlug,
-      lessonName: lessonTitle,
-      lessonSlug,
-      lessonReleaseCohort: lesson.isLegacy ? "2020-2023" : "2023-2026",
-      lessonReleaseDate: lessonReleaseDate ?? "unreleased",
-    });
+    track.lessonShareStarted(browsePathwayData);
   };
 
   const trackCreateWithAiButtonClicked = () => {

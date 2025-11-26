@@ -1,10 +1,11 @@
 import { FC, useState } from "react";
 import { OakP, OakFlex } from "@oaknational/oak-components";
 
+import { AnalyticsBrowseData } from "../types/lesson.types";
+
 import Button, { ButtonProps } from "@/components/SharedComponents/Button";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 import TranscriptViewer from "@/components/TeacherComponents/TranscriptViewer";
-import { PupilPathwayData } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 
 export interface LessonOverviewVideoProps {
   video: string | null;
@@ -12,7 +13,7 @@ export interface LessonOverviewVideoProps {
   title: string;
   transcriptSentences?: string[] | string | null;
   isLegacy: boolean;
-  browsePathwayData: PupilPathwayData;
+  browsePathwayData: AnalyticsBrowseData;
 }
 
 export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
