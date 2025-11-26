@@ -87,6 +87,8 @@ export const getPathway = (
       keyStageSlug: null,
       keyStageTitle: null,
       pathwayTitle: null,
+      yearTitle: null,
+      yearSlug: null,
     } as SpecialistLessonPathway;
   } else {
     return getCommonPathway(lesson.isCanonical ? lesson.pathways : [lesson]);

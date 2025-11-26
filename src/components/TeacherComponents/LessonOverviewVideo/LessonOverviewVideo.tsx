@@ -4,6 +4,7 @@ import { OakP, OakFlex } from "@oaknational/oak-components";
 import Button, { ButtonProps } from "@/components/SharedComponents/Button";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 import TranscriptViewer from "@/components/TeacherComponents/TranscriptViewer";
+import { PupilPathwayData } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 
 export interface LessonOverviewVideoProps {
   video: string | null;
@@ -11,6 +12,7 @@ export interface LessonOverviewVideoProps {
   title: string;
   transcriptSentences?: string[] | string | null;
   isLegacy: boolean;
+  browsePathwayData: PupilPathwayData;
 }
 
 export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
@@ -19,6 +21,7 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
   title,
   transcriptSentences,
   isLegacy,
+  browsePathwayData,
 }) => {
   const [signLanguageOn, setSignLanguageOn] = useState(false);
   const [transcriptOn, setTranscriptOn] = useState(false);
@@ -50,6 +53,7 @@ export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
           location={"lesson"}
           isLegacy={isLegacy}
           defaultHiddenCaptions={signLanguageOn}
+          pathwayData={browsePathwayData}
         />
       )}
       <OakFlex

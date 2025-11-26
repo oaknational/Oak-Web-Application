@@ -36,6 +36,7 @@ export type SpecialistLessonPathway = {
   keyStageSlug: null;
   keyStageTitle: null;
   yearTitle: null;
+  yearSlug: null;
   examBoardSlug: null;
   examBoardTitle: null;
   tierTitle: null;
