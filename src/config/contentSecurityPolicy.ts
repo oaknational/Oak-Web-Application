@@ -68,6 +68,7 @@ const cloudinary: Partial<CspConfig> = {
     "https://oaknationalacademy-res.cloudinary.com",
     "*.cloudinary.com",
   ],
+  connectSrc: ["*.cloudinary.com"],
 };
 
 const hubspot: Partial<CspConfig> = {
@@ -108,6 +109,7 @@ const google: Partial<CspConfig> = {
   connectSrc: ["*.google.com"],
   frameSrc: ["*.google.com"],
   frameAncestors: ["*.google.com"],
+  objectSrc: ["*.google.com"],
 };
 
 const bugsnag: Partial<CspConfig> = {
