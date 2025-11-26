@@ -59,13 +59,14 @@ const avo: Partial<CspConfig> = {
 };
 
 const posthog: Partial<CspConfig> = {
-  connectSrc: ["https://eu.i.posthog.com"],
+  connectSrc: ["https://eu.i.posthog.com", "*.posthog.com"],
 };
 
 const cloudinary: Partial<CspConfig> = {
   imgSrc: [
     "https://res.cloudinary.com",
     "https://oaknationalacademy-res.cloudinary.com",
+    "*.cloudinary.com",
   ],
 };
 
@@ -100,6 +101,7 @@ const vercel: Partial<CspConfig> = {
 
 const gleap: Partial<CspConfig> = {
   connectSrc: ["*.gleap.io", "wss://*.gleap.io"],
+  imgSrc: ["*.gleap.io"],
 };
 
 const google: Partial<CspConfig> = {
@@ -134,7 +136,12 @@ const cspBaseConfig: CspConfig = {
     "*.thenational.academy",
     "thenational.academy",
   ],
-  fontSrc: ["'self'", "gstatic-fonts.thenational.academy", "fonts.gstatic.com"],
+  fontSrc: [
+    "'self'",
+    "gstatic-fonts.thenational.academy",
+    "fonts.gstatic.com",
+    "data:",
+  ],
   objectSrc: ["'self'"],
   baseUri: ["'self'"],
   formAction: ["'self'"],

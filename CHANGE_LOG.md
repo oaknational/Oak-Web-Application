@@ -1,3 +1,17 @@
+## [1.922.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.922.1...v1.922.2) (2025-11-26)
+
+
+### Bug Fixes
+
+* added missing CSP directives ([24a9f0b](https://github.com/oaknational/Oak-Web-Application/commit/24a9f0b5e843948aac2e39152a18617898fafe3e))
+
+## [1.922.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.922.0...v1.922.1) (2025-11-26)
+
+
+### Bug Fixes
+
+* use supported methods to check visibility ([43c23bf](https://github.com/oaknational/Oak-Web-Application/commit/43c23bfa01f1454281893d0086cbae91720d8262))
+
 # [1.922.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.921.0...v1.922.0) (2025-11-26)
 
 
