@@ -1,15 +1,13 @@
 import React, { ReactNode } from "react";
 import { renderHook, act, waitFor } from "@testing-library/react";
-import {
-  OakPupilClientProvider,
-  TeacherNoteCamelCase,
-  useOakPupil,
-} from "@oaknational/oak-pupil-client";
 
 import { useTeacherNotes } from "./useTeacherNotes";
 import { CurriculumTrackingProps } from "./shareTypes";
 
+import { useOakPupil } from "@/hooks/useOakPupil";
+import { TeacherNoteCamelCase } from "@/node-lib/pupil-api/types";
 import { LessonReleaseCohortValueType } from "@/browser-lib/avo/Avo";
+import { OakPupilClientProvider } from "@/context/Pupil/OakPupilClientProvider";
 
 // Create a single mock client that will be returned by useOakPupil
 const mockClient = {
@@ -18,9 +16,9 @@ const mockClient = {
   getTeacherNoteIsEditable: jest.fn(),
 };
 
-jest.mock("@oaknational/oak-pupil-client", () => ({
+jest.mock("@/hooks/useOakPupil", () => ({
   __esModule: true,
-  ...jest.requireActual("@oaknational/oak-pupil-client"),
+  ...jest.requireActual("@/hooks/useOakPupil"),
   useOakPupil: jest.fn(() => mockClient),
 }));
 
@@ -59,17 +57,8 @@ describe("useTeacherNotes", () => {
   };
 
   const createWrapper = () => {
-    const config = {
-      logLessonAttemptUrl: "example.com",
-      getLessonAttemptUrl: "example.com",
-      getTeacherNoteUrl: "example.com",
-      addTeacherNoteUrl: "example.com",
-    };
     return ({ children }: { children: ReactNode }) => (
-      <OakPupilClientProvider config={config}>
-        {" "}
-        {children}{" "}
-      </OakPupilClientProvider>
+      <OakPupilClientProvider> {children} </OakPupilClientProvider>
     );
   };
 
