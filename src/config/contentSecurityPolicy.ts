@@ -14,6 +14,7 @@ type CspConfig = {
   mediaSrc: string[];
   frameSrc: string[];
   workerSrc: string[];
+  childSrc: string[];
   upgradeInsecureRequests: boolean;
 };
 type CspConfigKey = keyof CspConfig;
@@ -59,18 +60,20 @@ const avo: Partial<CspConfig> = {
 };
 
 const posthog: Partial<CspConfig> = {
-  connectSrc: ["https://eu.i.posthog.com"],
+  connectSrc: ["https://eu.i.posthog.com", "*.posthog.com"],
 };
 
 const cloudinary: Partial<CspConfig> = {
   imgSrc: [
     "https://res.cloudinary.com",
     "https://oaknationalacademy-res.cloudinary.com",
+    "https://*.cloudinary.com",
   ],
+  connectSrc: ["*.cloudinary.com"],
 };
 
 const hubspot: Partial<CspConfig> = {
-  connectSrc: ["*.hubspot.com"],
+  connectSrc: ["*.hubspot.com", "*.hsforms.com"],
   imgSrc: ["https://*.hubspot.com", "https://*.hsforms.com"],
 };
 
@@ -100,12 +103,14 @@ const vercel: Partial<CspConfig> = {
 
 const gleap: Partial<CspConfig> = {
   connectSrc: ["*.gleap.io", "wss://*.gleap.io"],
+  imgSrc: ["https://*.gleap.io"],
 };
 
 const google: Partial<CspConfig> = {
   connectSrc: ["*.google.com"],
   frameSrc: ["*.google.com"],
   frameAncestors: ["*.google.com"],
+  objectSrc: ["*.google.com"],
 };
 
 const bugsnag: Partial<CspConfig> = {
@@ -134,7 +139,12 @@ const cspBaseConfig: CspConfig = {
     "*.thenational.academy",
     "thenational.academy",
   ],
-  fontSrc: ["'self'", "gstatic-fonts.thenational.academy", "fonts.gstatic.com"],
+  fontSrc: [
+    "'self'",
+    "gstatic-fonts.thenational.academy",
+    "fonts.gstatic.com",
+    "data:",
+  ],
   objectSrc: ["'self'"],
   baseUri: ["'self'"],
   formAction: ["'self'"],
@@ -143,6 +153,7 @@ const cspBaseConfig: CspConfig = {
   mediaSrc: ["'self'", "blob:", "*.thenational.academy"],
   frameSrc: ["'self'", "*.thenational.academy"],
   workerSrc: ["'self'", "blob:"],
+  childSrc: ["blob:"],
   upgradeInsecureRequests: false,
   // when we change from report only we can uncomment this
   // upgradeInsecureRequests: !isDevelopment,
@@ -213,6 +224,7 @@ export const cspHeader = `
     media-src ${cspConfig.mediaSrc.join(" ")};
     frame-src ${cspConfig.frameSrc.join(" ")};
     worker-src ${cspConfig.workerSrc.join(" ")};
+    child-src ${cspConfig.childSrc.join(" ")};
     report-uri ${reportCspApiUrl};
     report-to oak-csp;
     ${cspConfig.upgradeInsecureRequests ? "upgrade-insecure-requests;" : ""}
