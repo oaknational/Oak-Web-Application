@@ -14,6 +14,7 @@ type CspConfig = {
   mediaSrc: string[];
   frameSrc: string[];
   workerSrc: string[];
+  childSrc: string[];
   upgradeInsecureRequests: boolean;
 };
 type CspConfigKey = keyof CspConfig;
@@ -66,13 +67,13 @@ const cloudinary: Partial<CspConfig> = {
   imgSrc: [
     "https://res.cloudinary.com",
     "https://oaknationalacademy-res.cloudinary.com",
-    "*.cloudinary.com",
+    "https://*.cloudinary.com",
   ],
   connectSrc: ["*.cloudinary.com"],
 };
 
 const hubspot: Partial<CspConfig> = {
-  connectSrc: ["*.hubspot.com"],
+  connectSrc: ["*.hubspot.com", "*.hsforms.com"],
   imgSrc: ["https://*.hubspot.com", "https://*.hsforms.com"],
 };
 
@@ -102,7 +103,7 @@ const vercel: Partial<CspConfig> = {
 
 const gleap: Partial<CspConfig> = {
   connectSrc: ["*.gleap.io", "wss://*.gleap.io"],
-  imgSrc: ["*.gleap.io"],
+  imgSrc: ["*.gleap.io", "https://staticfiles.gleap.io"],
 };
 
 const google: Partial<CspConfig> = {
@@ -152,6 +153,7 @@ const cspBaseConfig: CspConfig = {
   mediaSrc: ["'self'", "blob:", "*.thenational.academy"],
   frameSrc: ["'self'", "*.thenational.academy"],
   workerSrc: ["'self'", "blob:"],
+  childSrc: ["blob:"],
   upgradeInsecureRequests: false,
   // when we change from report only we can uncomment this
   // upgradeInsecureRequests: !isDevelopment,
@@ -222,6 +224,7 @@ export const cspHeader = `
     media-src ${cspConfig.mediaSrc.join(" ")};
     frame-src ${cspConfig.frameSrc.join(" ")};
     worker-src ${cspConfig.workerSrc.join(" ")};
+    child-src ${cspConfig.childSrc.join(" ")};
     report-uri ${reportCspApiUrl};
     report-to oak-csp;
     ${cspConfig.upgradeInsecureRequests ? "upgrade-insecure-requests;" : ""}
