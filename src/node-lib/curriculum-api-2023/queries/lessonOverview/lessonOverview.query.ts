@@ -30,8 +30,9 @@ import { InputMaybe } from "@/node-lib/sanity-graphql/generated/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { mediaClipsRecordCamelSchema } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
+import { getLessonDownloadResourcesExistence } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
 
-export const getDownloadsArray = (content: {
+export const getDownloadsArray = async (content: {
   hasSlideDeckAssetObject: boolean;
   hasStarterQuiz: boolean;
   hasExitQuiz: boolean;
@@ -41,7 +42,8 @@ export const getDownloadsArray = (content: {
   hasSupplementaryAssetObject: boolean;
   hasLessonGuideObject: boolean;
   isLegacy: boolean;
-}): LessonOverviewPageData["downloads"] => {
+  lessonSlug: string;
+}): Promise<LessonOverviewPageData["downloads"]> => {
   const downloads: LessonOverviewDownloads = [
     {
       exists: content.hasSlideDeckAssetObject,
@@ -95,7 +97,53 @@ export const getDownloadsArray = (content: {
     },
   ];
 
-  return downloads;
+  const resourceTypesToCheck = downloads
+    .filter((d) => d.exists === true)
+    .map((d) => d.type)
+    .join(",");
+
+  let resourcesExistence: {
+    item: string;
+    exists: boolean;
+  }[] = [];
+
+  // Assets may have been created by accident, it will have a google drive url but not exist in the bucket.
+  // We'll check if they're available in the bucket and update the downloads object accordingly
+  try {
+    const { resources } = await getLessonDownloadResourcesExistence({
+      lessonSlug: content.lessonSlug,
+      resourceTypesString: resourceTypesToCheck,
+      additionalFilesIdsString: "",
+      isLegacyDownload: false,
+    });
+    resourcesExistence = resources.map((r) => {
+      const [k, v] = r;
+      return {
+        item: k,
+        exists: v.exists,
+      };
+    });
+  } catch (e) {
+    const oakError = new OakError({
+      code: "downloads/failed-to-fetch",
+      originalError: e,
+    });
+    reportError(oakError);
+  }
+  const availableDownloadsSet = new Set(
+    resourcesExistence.map((resource) => {
+      if (resource.exists) return resource.item;
+    }),
+  );
+
+  const newDownloads = downloads.map((download) => {
+    return {
+      ...download,
+      inGcsBucket: availableDownloadsSet.has(download.type),
+    };
+  });
+
+  return newDownloads;
 };
 
 export function getContentGuidance(
@@ -157,13 +205,13 @@ export const getAdditionalFiles = (
   });
 };
 
-export const transformedLessonOverviewData = (
+export const transformedLessonOverviewData = async (
   browseData: LessonBrowseDataByKs,
   content: LessonOverviewContent,
   pathways: LessonPathway[] | [],
   unitData: LessonUnitDataByKs,
   excludedFromTeachingMaterials: boolean,
-): LessonOverviewPageData => {
+): Promise<LessonOverviewPageData> => {
   const reportError = errorReporter("transformedLessonOverviewData");
   const starterQuiz = lessonOverviewQuizData.parse(content.starterQuiz);
   const exitQuiz = lessonOverviewQuizData.parse(content.exitQuiz);
@@ -186,7 +234,23 @@ export const transformedLessonOverviewData = (
     browseData.lessonData.mediaClips = null;
     reportError(error);
   }
-
+  const downloads = await getDownloadsArray({
+    hasExitQuiz: content.exitQuiz && Boolean(content.exitQuiz.length > 1),
+    hasStarterQuiz:
+      content.starterQuiz && Boolean(content.starterQuiz.length > 1),
+    hasSupplementaryAssetObject: Boolean(content.hasSupplementaryAssetObject),
+    hasWorksheetAnswersAssetObject: Boolean(
+      content.hasWorksheetAnswersAssetObject,
+    ),
+    hasWorksheetAssetObject: Boolean(content.hasWorksheetAssetObject),
+    hasWorksheetGoogleDriveDownloadableVersion: Boolean(
+      content.hasWorksheetGoogleDriveDownloadableVersion,
+    ),
+    hasSlideDeckAssetObject: Boolean(content.hasSlideDeckAssetObject),
+    hasLessonGuideObject: Boolean(content.hasLessonGuideObject),
+    isLegacy: browseData.isLegacy,
+    lessonSlug: browseData.lessonSlug,
+  });
   return {
     programmeSlug: browseData.programmeSlug,
     unitSlug: browseData.unitSlug,
@@ -202,22 +266,7 @@ export const transformedLessonOverviewData = (
     year: browseData.programmeFields.year,
     examBoardTitle: browseData.programmeFields.examboard,
     examBoardSlug: browseData.programmeFields.examboardSlug,
-    downloads: getDownloadsArray({
-      hasExitQuiz: content.exitQuiz && Boolean(content.exitQuiz.length > 1),
-      hasStarterQuiz:
-        content.starterQuiz && Boolean(content.starterQuiz.length > 1),
-      hasSupplementaryAssetObject: Boolean(content.hasSupplementaryAssetObject),
-      hasWorksheetAnswersAssetObject: Boolean(
-        content.hasWorksheetAnswersAssetObject,
-      ),
-      hasWorksheetAssetObject: Boolean(content.hasWorksheetAssetObject),
-      hasWorksheetGoogleDriveDownloadableVersion: Boolean(
-        content.hasWorksheetGoogleDriveDownloadableVersion,
-      ),
-      hasSlideDeckAssetObject: Boolean(content.hasSlideDeckAssetObject),
-      hasLessonGuideObject: Boolean(content.hasLessonGuideObject),
-      isLegacy: browseData.isLegacy,
-    }),
+    downloads,
     updatedAt: browseData.lessonData.updatedAt,
     isLegacy: content.isLegacy || false,
     lessonSlug: browseData.lessonSlug,
@@ -386,13 +435,13 @@ const lessonOverviewQuery =
     );
 
     return lessonOverviewSchema.parse({
-      ...transformedLessonOverviewData(
+      ...(await transformedLessonOverviewData(
         browseData,
         content,
         pathways,
         unitData,
         excludedFromTeachingMaterials,
-      ),
+      )),
     });
   };
 

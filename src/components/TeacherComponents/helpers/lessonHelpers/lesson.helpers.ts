@@ -21,6 +21,7 @@ import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix
 import isSlugEYFS from "@/utils/slugModifiers/isSlugEYFS";
 import { LessonItemTitle } from "@/components/TeacherComponents/LessonItemContainer";
 import { SpecialistLessonOverviewData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonOverview/specialistLessonOverview.schema";
+import { LessonOverviewProps } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
 
 /**
  * Returns the intersection different pathways.
@@ -445,6 +446,7 @@ export type LessonPageLinkAnchorId =
   | "media-clips";
 
 export const getPageLinksWithSubheadingsForLesson = (
+  downloads: LessonOverviewProps["lesson"]["downloads"],
   lesson: GetPageLinksForLessonProps,
   copyrightContent: LegacyCopyrightContent,
   mediaClipsLabel?: string,
@@ -453,6 +455,12 @@ export const getPageLinksWithSubheadingsForLesson = (
   anchorId: LessonPageLinkAnchorId;
   subheading?: string;
 }[] => {
+  // The asset may have been created by accident, it will have a google drive url but not exist in the bucket.
+  // We don't want to show previews of these assets as they are not supposed to be part of the final lesson
+  const filteredDownloads = new Set(
+    downloads.filter((d) => d.inGcsBucket === true).map((d) => d.type),
+  );
+
   const PAGE_LINKS: {
     label: string;
     subheading?: string;
@@ -473,7 +481,8 @@ export const getPageLinksWithSubheadingsForLesson = (
             !checkIfResourceHasLegacyCopyright(
               "presentation",
               copyrightContent,
-            ),
+            ) &&
+            filteredDownloads.has("presentation"),
         ),
     },
     {
@@ -494,41 +503,57 @@ export const getPageLinksWithSubheadingsForLesson = (
     {
       label: "Worksheet",
       anchorId: "worksheet",
-      condition: (lesson) => Boolean(lesson.worksheetUrl),
+      condition: (lesson) =>
+        Boolean(
+          lesson.worksheetUrl &&
+            (filteredDownloads.has("worksheet-pdf") ||
+              filteredDownloads.has("worksheet-pptx")),
+        ),
     },
     {
       label: "Quizzes",
       anchorId: "quiz",
       subheading: `Prior knowledge starter quiz \nAssessment exit quiz`,
-      condition: (lesson) =>
-        Boolean(
+      condition: (lesson) => {
+        const hasQuizDownload = Array.from(filteredDownloads).some((d) =>
+          d.includes("quiz"),
+        );
+        return Boolean(
           lesson.exitQuiz &&
             lesson.exitQuiz.length > 0 &&
             lesson.starterQuiz &&
-            lesson.starterQuiz.length > 0,
-        ),
+            lesson.starterQuiz.length > 0 &&
+            hasQuizDownload,
+        );
+      },
     },
     {
       label: "Quizzes",
       anchorId: "exit-quiz",
       subheading: `Assessment exit quiz`,
-      condition: (lesson) =>
-        Boolean(
+      condition: (lesson) => {
+        return Boolean(
           lesson.exitQuiz &&
             lesson.exitQuiz.length > 0 &&
-            (!lesson.starterQuiz || lesson.starterQuiz.length === 0),
-        ),
+            (!lesson.starterQuiz || lesson.starterQuiz.length === 0) &&
+            (filteredDownloads.has("exit-quiz-answers") ||
+              filteredDownloads.has("exit-quiz-questions")),
+        );
+      },
     },
     {
       label: "Quizzes",
       anchorId: "starter-quiz",
       subheading: `Prior knowledge starter quiz`,
-      condition: (lesson) =>
-        Boolean(
+      condition: (lesson) => {
+        return Boolean(
           (!lesson.exitQuiz || lesson.exitQuiz.length === 0) &&
             lesson.starterQuiz &&
-            lesson.starterQuiz.length > 0,
-        ),
+            lesson.starterQuiz.length > 0 &&
+            (filteredDownloads.has("intro-quiz-answers") ||
+              filteredDownloads.has("intro-quiz-questions")),
+        );
+      },
     },
     {
       label: "Additional material",
