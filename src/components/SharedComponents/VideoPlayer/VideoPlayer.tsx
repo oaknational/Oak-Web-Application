@@ -21,6 +21,7 @@ import errorReporter from "@/common-lib/error-reporter";
 import { VideoLocationValueType } from "@/browser-lib/avo/Avo";
 import OakError from "@/errors/OakError";
 import { PupilPathwayData } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+import { AnalyticsBrowseData } from "@/components/TeacherComponents/types/lesson.types";
 
 const INITIAL_DEBUG = false;
 const INITIAL_ENV_KEY = process.env.MUX_ENVIRONMENT_KEY;
@@ -42,7 +43,7 @@ export type VideoPlayerProps = {
   location: VideoLocationValueType;
   isLegacy: boolean;
   userEventCallback?: (event: VideoEventCallbackArgs) => void;
-  pathwayData?: PupilPathwayData;
+  pathwayData?: PupilPathwayData | AnalyticsBrowseData;
   isAudioClip?: boolean;
   loadingTextColor?: OakColorToken;
   defaultHiddenCaptions?: boolean;

@@ -29,6 +29,7 @@ import {
   getPageLinksWithSubheadingsForLesson,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import {
+  AnalyticsBrowseData,
   LessonOverviewAll,
   SpecialistLessonPathway,
 } from "@/components/TeacherComponents/types/lesson.types";
@@ -150,6 +151,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
+
   const commonPathway = getPathway(lesson);
   const {
     keyStageSlug,
@@ -165,6 +167,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     tierTitle,
     subjectParent,
     pathwayTitle,
+    year,
   } = commonPathway;
   const user = useUser();
   const isLegacyLicense = !lessonCohort || lessonCohort === LEGACY_COHORT;
@@ -183,6 +186,36 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   const unitListingHref = `/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/programmes`;
 
+  const getPhaseSlug = (keyStageSlug?: string | null) => {
+    if (!keyStageSlug) {
+      return null;
+    } else if (["ks4", "ks3"].includes(keyStageSlug)) {
+      return "secondary";
+    } else {
+      return "primary";
+    }
+  };
+
+  const browsePathwayData: AnalyticsBrowseData = {
+    keyStageSlug: keyStageSlug ?? "",
+    keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+    subjectSlug: subjectSlug ?? "",
+    subjectTitle: subjectTitle ?? "",
+    unitSlug: unitSlug ?? "",
+    unitName: unitTitle ?? "",
+    lessonSlug,
+    lessonName: lessonTitle,
+    pathway: pathwayTitle as PathwayValueType,
+    tierName: tierTitle as TierNameValueType,
+    yearGroupName: yearTitle ?? "",
+    yearGroupSlug: year ? `year-${year}` : "",
+    examBoard: examBoardTitle as ExamBoardValueType,
+    releaseGroup: lesson.isLegacy ? "legacy" : "2023",
+    phase: getPhaseSlug(keyStageSlug),
+    lessonReleaseCohort: lesson.isLegacy ? "2020-2023" : "2023-2026",
+    lessonReleaseDate: lessonReleaseDate ?? "unreleased",
+  };
+
   const trackDownloadResourceButtonClicked = ({
     downloadResourceButtonName,
   }: {
@@ -196,19 +229,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
       eventVersion: "2.0.0",
       analyticsUseCase: "Teacher",
       downloadResourceButtonName,
-      keyStageSlug,
-      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-      subjectSlug,
-      subjectTitle,
-      unitSlug,
-      unitName: unitTitle,
-      lessonSlug,
-      lessonName: lessonTitle,
-      pathway: pathwayTitle as PathwayValueType,
-      examBoard: examBoardTitle as ExamBoardValueType,
-      tierName: tierTitle as TierNameValueType,
-      lessonReleaseCohort: lesson.isLegacy ? "2020-2023" : "2023-2026",
-      lessonReleaseDate: lessonReleaseDate ?? "unreleased",
+      ...browsePathwayData,
     });
   };
 
@@ -224,40 +245,13 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
       eventVersion: "2.0.0",
       analyticsUseCase: "Teacher",
       mediaClipsButtonName,
-      keyStageSlug,
-      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-      subjectSlug,
-      subjectTitle,
-      unitSlug,
-      unitName: unitTitle,
-      lessonSlug,
-      lessonName: lessonTitle,
-      pathway: pathwayTitle as PathwayValueType,
-      tierName: null,
-      yearGroupName: null,
-      yearGroupSlug: null,
-      examBoard: null,
       learningCycle,
-      releaseGroup: lesson.isLegacy ? "legacy" : "2023",
-      phase: null,
-      lessonReleaseCohort: lesson.isLegacy ? "2020-2023" : "2023-2026",
-      lessonReleaseDate: lessonReleaseDate ?? "unreleased",
+      ...browsePathwayData,
     });
   };
 
   const trackShareAll = () => {
-    track.lessonShareStarted({
-      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-      keyStageSlug,
-      subjectTitle,
-      subjectSlug,
-      unitName: unitTitle,
-      unitSlug,
-      lessonName: lessonTitle,
-      lessonSlug,
-      lessonReleaseCohort: lesson.isLegacy ? "2020-2023" : "2023-2026",
-      lessonReleaseDate: lessonReleaseDate ?? "unreleased",
-    });
+    track.lessonShareStarted(browsePathwayData);
   };
 
   const trackCreateWithAiButtonClicked = () => {
@@ -626,6 +620,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         title={lessonTitle}
                         transcriptSentences={transcriptSentences}
                         isLegacy={isLegacyLicense}
+                        browsePathwayData={browsePathwayData}
                       />
                     </LessonItemContainer>
                   )}

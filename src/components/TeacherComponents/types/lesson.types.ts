@@ -1,3 +1,11 @@
+import {
+  KeyStageTitleValueType,
+  PhaseValueType,
+  TierNameValueType,
+  PathwayValueType,
+  ExamBoardValueType,
+  LessonReleaseCohortValueType,
+} from "@/browser-lib/avo/Avo";
 import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { SpecialistLessonOverviewData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonOverview/specialistLessonOverview.schema";
 import { LessonBase } from "@/node-lib/curriculum-api-2023/shared.schema";
@@ -12,7 +20,7 @@ export type LessonPathway = {
   unitTitle: string;
   unitSlug: string;
   programmeSlug: string;
-  yearSlug?: string | null;
+  year?: string | null;
   yearTitle?: string | null;
   tierTitle?: string | null;
   tierSlug?: string | null;
@@ -36,6 +44,7 @@ export type SpecialistLessonPathway = {
   keyStageSlug: null;
   keyStageTitle: null;
   yearTitle: null;
+  year: null;
   examBoardSlug: null;
   examBoardTitle: null;
   tierTitle: null;
@@ -70,3 +79,23 @@ export type LessonOverviewAll = { isSpecialist: boolean } & (
   | LessonOverviewInPathway
   | SpecialistLessonOverviewData
 );
+
+export type AnalyticsBrowseData = {
+  unitName: string;
+  unitSlug: string;
+  lessonSlug: string;
+  lessonName: string;
+  keyStageSlug: string;
+  keyStageTitle: KeyStageTitleValueType;
+  subjectTitle: string;
+  subjectSlug: string;
+  yearGroupName: string;
+  yearGroupSlug: string;
+  phase: PhaseValueType | undefined | null;
+  tierName: TierNameValueType | null | undefined;
+  pathway: PathwayValueType | null | undefined;
+  examBoard: ExamBoardValueType | null | undefined;
+  releaseGroup: string;
+  lessonReleaseCohort: LessonReleaseCohortValueType;
+  lessonReleaseDate: string;
+};

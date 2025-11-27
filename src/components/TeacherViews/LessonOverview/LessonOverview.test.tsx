@@ -151,7 +151,7 @@ describe("lessonOverview.view", () => {
           "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
         mediaClipsButtonName: "play all",
         pathway: null,
-        phase: null,
+        phase: "primary",
         platform: "owa",
         product: "media clips",
         releaseGroup: "legacy",
@@ -160,8 +160,8 @@ describe("lessonOverview.view", () => {
         tierName: null,
         unitName: "Simple, Compound and Adverbial Complex Sentences",
         unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
-        yearGroupName: null,
-        yearGroupSlug: null,
+        yearGroupName: "Year 3",
+        yearGroupSlug: "year-3",
       });
     });
     it("should call track.trackDownloadResourceButtonClicked when play all is clicked for media clips", () => {
@@ -195,9 +195,11 @@ describe("lessonOverview.view", () => {
         lessonSlug:
           "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
         pathway: null,
-
+        releaseGroup: "legacy",
+        phase: "primary",
         platform: "owa",
-
+        yearGroupName: "Year 3",
+        yearGroupSlug: "year-3",
         product: "teacher lesson resources",
         subjectSlug: "english",
         subjectTitle: "English",
@@ -247,6 +249,10 @@ describe("lessonOverview.view", () => {
         tierName: null,
         unitName: "Simple, Compound and Adverbial Complex Sentences",
         unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
+        yearGroupName: "Year 3",
+        yearGroupSlug: "year-3",
+        releaseGroup: "2023",
+        phase: "primary",
       });
     });
     it("should hanlde no release date when track.lessonMediaClipsStarted is called", () => {
@@ -282,7 +288,7 @@ describe("lessonOverview.view", () => {
           "lesson-4-in-grammar-1-simple-compound-and-adverbial-complex-sentences",
         mediaClipsButtonName: "play all",
         pathway: null,
-        phase: null,
+        phase: "primary",
         platform: "owa",
         product: "media clips",
         releaseGroup: "2023",
@@ -291,8 +297,8 @@ describe("lessonOverview.view", () => {
         tierName: null,
         unitName: "Simple, Compound and Adverbial Complex Sentences",
         unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
-        yearGroupName: null,
-        yearGroupSlug: null,
+        yearGroupName: "Year 3",
+        yearGroupSlug: "year-3",
       });
     });
   });

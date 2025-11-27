@@ -4,6 +4,7 @@ import {
   LessonOverviewVideo,
   LessonOverviewVideoProps,
 } from "./LessonOverviewVideo";
+import { mockBrowsePathwayData } from "./LessonOverviewVideo.test";
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 
@@ -28,6 +29,7 @@ const props: LessonOverviewVideoProps = {
   transcriptSentences,
   signLanguageVideo: "signLanguageVideo",
   isLegacy: true,
+  browsePathwayData: mockBrowsePathwayData,
 };
 
 const meta: Meta<typeof LessonOverviewVideo> = {

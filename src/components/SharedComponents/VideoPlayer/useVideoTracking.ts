@@ -2,6 +2,7 @@ import { VideoLocationValueType } from "@/browser-lib/avo/Avo";
 import errorReporter from "@/common-lib/error-reporter";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { PupilPathwayData } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+import { AnalyticsBrowseData } from "@/components/TeacherComponents/types/lesson.types";
 
 const reportError = errorReporter("useVideoTracking");
 
@@ -50,7 +51,7 @@ export type VideoTrackingGetState = () => {
 };
 type UseVideoTrackingProps = {
   getState: VideoTrackingGetState;
-  pathwayData?: PupilPathwayData;
+  pathwayData?: PupilPathwayData | AnalyticsBrowseData;
   cloudinaryUrl?: string | null;
   muxAssetId?: string | null;
 };
