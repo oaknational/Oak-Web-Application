@@ -6,9 +6,11 @@ export const useContentVisibleOnClick = () => {
   const [contentVisible, setContentVisible] = useState(false);
 
   useEffect(() => {
-    const checkAndSetVisibility = () =>
-      setContentVisible(contentRef.current?.checkVisibility() ?? false);
-
+    const checkAndSetVisibility = () => {
+      const rects = contentRef.current?.getClientRects();
+      const isVisible = rects ? rects.length > 0 : false;
+      setContentVisible(isVisible);
+    };
     globalThis.addEventListener("click", checkAndSetVisibility);
 
     return () => globalThis.removeEventListener("click", checkAndSetVisibility);
