@@ -44,7 +44,8 @@ export const getDownloadsArray = async (content: {
   isLegacy: boolean;
   lessonSlug: string;
 }): Promise<LessonOverviewPageData["downloads"]> => {
-  const downloads: LessonOverviewDownloads = [
+  const reportError = errorReporter("getDownloadsArray");
+  let downloads: LessonOverviewDownloads = [
     {
       exists: content.hasSlideDeckAssetObject,
       type: "presentation",
@@ -102,11 +103,6 @@ export const getDownloadsArray = async (content: {
     .map((d) => d.type)
     .join(",");
 
-  let resourcesExistence: {
-    item: string;
-    exists: boolean;
-  }[] = [];
-
   // Assets may have been created by accident, it will have a google drive url but not exist in the bucket.
   // We'll check if they're available in the bucket and update the downloads object accordingly
   try {
@@ -116,13 +112,29 @@ export const getDownloadsArray = async (content: {
       additionalFilesIdsString: "",
       isLegacyDownload: false,
     });
-    resourcesExistence = resources.map((r) => {
+    const resourcesExistence: {
+      item: string;
+      exists: boolean;
+    }[] = resources.map((r) => {
       const [k, v] = r;
       return {
         item: k,
         exists: v.exists,
       };
     });
+    const availableDownloadsSet = new Set(
+      resourcesExistence.map((resource) => {
+        if (resource.exists) return resource.item;
+      }),
+    );
+
+    const newDownloads = [...downloads].map((download) => {
+      return {
+        ...download,
+        inGcsBucket: availableDownloadsSet.has(download.type),
+      };
+    });
+    downloads = [...newDownloads];
   } catch (e) {
     const oakError = new OakError({
       code: "downloads/failed-to-fetch",
@@ -130,20 +142,8 @@ export const getDownloadsArray = async (content: {
     });
     reportError(oakError);
   }
-  const availableDownloadsSet = new Set(
-    resourcesExistence.map((resource) => {
-      if (resource.exists) return resource.item;
-    }),
-  );
 
-  const newDownloads = downloads.map((download) => {
-    return {
-      ...download,
-      inGcsBucket: availableDownloadsSet.has(download.type),
-    };
-  });
-
-  return newDownloads;
+  return downloads;
 };
 
 export function getContentGuidance(

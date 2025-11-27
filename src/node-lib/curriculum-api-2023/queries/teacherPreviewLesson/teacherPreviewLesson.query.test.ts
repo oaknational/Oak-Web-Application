@@ -27,6 +27,7 @@ describe("teacherPreviewLesson()", () => {
 
   test("it returns the lesson if found", async () => {
     const _lessonContentFixture = lessonContentFixture();
+
     const lesson = await teacherPreviewLessonQuery({
       ...sdk,
       teachersPreviewLesson: jest.fn(() =>
