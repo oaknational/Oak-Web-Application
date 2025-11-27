@@ -17,7 +17,7 @@ const prodCspHeaderFixture = `
     connect-src *.thenational.academy thenational.academy https://vercel.live/ https://vercel.com *.pusher.com *.pusherapp.com *.hubspot.com *.hsforms.com *.cloudinary.com https://eu.i.posthog.com *.posthog.com https://api.avo.app/ *.clerk.accounts.dev clerk-telemetry.com https://mux.com https://*.mux.com https://stream.mux.com https://inferred.litix.io *.gleap.io wss://*.gleap.io *.google.com *.bugsnag.smartbear.com *.bugsnag.com;
     media-src 'self' blob: *.thenational.academy/ https://*.mux.com/ https://stream.mux.com/;
     frame-src 'self' *.thenational.academy/ https://vercel.live/ https://vercel.com https://challenges.cloudflare.com https://www.avo.app/ https://stream.mux.com https://*.mux.com *.google.com/;
-    worker-src 'self' blob:;
+    worker-src 'self' blob: *.thenational.academy/;
     child-src blob:;
     report-uri https://localhost:3000/api/csp-report;
     report-to oak-csp;
@@ -36,7 +36,7 @@ const devCspHeaderFixture = `
     connect-src *.thenational.academy thenational.academy http://localhost:* https://localhost:* wss://localhost:* ws://localhost:* https://vercel.live/ https://vercel.com *.pusher.com *.pusherapp.com *.hubspot.com *.hsforms.com *.cloudinary.com https://eu.i.posthog.com *.posthog.com https://api.avo.app/ *.clerk.accounts.dev clerk-telemetry.com https://mux.com https://*.mux.com https://stream.mux.com https://inferred.litix.io *.gleap.io wss://*.gleap.io *.google.com *.bugsnag.smartbear.com *.bugsnag.com;
     media-src 'self' blob: *.thenational.academy/ https://*.mux.com/ https://stream.mux.com/;
     frame-src 'self' *.thenational.academy/ https://vercel.live/ https://vercel.com https://challenges.cloudflare.com https://www.avo.app/ https://stream.mux.com https://*.mux.com *.google.com/;
-    worker-src 'self' blob:;
+    worker-src 'self' blob: *.thenational.academy/;
     child-src blob:;
     report-uri https://localhost:3000/api/csp-report;
     report-to oak-csp;

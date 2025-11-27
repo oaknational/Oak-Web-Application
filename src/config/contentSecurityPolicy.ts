@@ -152,7 +152,7 @@ const cspBaseConfig: CspConfig = {
   connectSrc: ["*.thenational.academy", "thenational.academy"],
   mediaSrc: ["'self'", "blob:", "*.thenational.academy/"],
   frameSrc: ["'self'", "*.thenational.academy/"],
-  workerSrc: ["'self'", "blob:"],
+  workerSrc: ["'self'", "blob:", "*.thenational.academy/"],
   childSrc: ["blob:"],
   upgradeInsecureRequests: false,
   // when we change from report only we can uncomment this
