@@ -1,3 +1,10 @@
+## [1.922.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.922.2...v1.922.3) (2025-11-27)
+
+
+### Bug Fixes
+
+* add favicon to app router root layout ([e0ca659](https://github.com/oaknational/Oak-Web-Application/commit/e0ca6592c0dec571841ff42c474b5219bc6f6ac3))
+
 ## [1.922.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.922.1...v1.922.2) (2025-11-26)
 
 
