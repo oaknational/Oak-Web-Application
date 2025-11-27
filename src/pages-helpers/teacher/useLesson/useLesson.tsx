@@ -1,9 +1,4 @@
 import { useState, useEffect } from "react";
-import {
-  TeacherNote,
-  TeacherNoteCamelCase,
-  TeacherNoteError,
-} from "@oaknational/oak-pupil-client";
 
 import { useShare } from "@/pages-helpers/teacher/share/useShare";
 import { useTeacherNotes } from "@/pages-helpers/teacher/share/useTeacherNotes";
@@ -15,6 +10,11 @@ import {
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { ShareSource } from "@/pages-helpers/teacher/share/createShareId";
 import { LessonReleaseCohortValueType } from "@/browser-lib/avo/Avo";
+import {
+  TeacherNoteCamelCase,
+  TeacherNoteError,
+  TeacherNote,
+} from "@/node-lib/pupil-api/types";
 
 export type UseLessonProps = {
   lessonSlug: string;

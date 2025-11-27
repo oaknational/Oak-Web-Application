@@ -1,14 +1,12 @@
 import React from "react";
 import "@testing-library/jest-dom";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
-import {
-  OakPupilClientProvider,
-  useOakPupil,
-} from "@oaknational/oak-pupil-client";
 import userEvent from "@testing-library/user-event";
 
 import { PupilViewsReview } from "./PupilReview.view";
 
+import { useOakPupil } from "@/hooks/useOakPupil";
+import { OakPupilClientProvider } from "@/context/Pupil/OakPupilClientProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { LessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
@@ -29,12 +27,16 @@ Object.defineProperty(window, "open", {
   value: jest.fn(),
 });
 
-jest.mock("@oaknational/oak-pupil-client", () => ({
-  ...jest.requireActual("@oaknational/oak-pupil-client"),
-  OakPupilClientProvider: jest.fn(({ children }) => children),
+jest.mock("@/hooks/useOakPupil", () => ({
+  ...jest.requireActual("@/hooks/useOakPupil"),
   useOakPupil: jest.fn(() => ({
     logAttempt: () => console.log("logAttempt"),
   })),
+}));
+
+jest.mock("@/context/Pupil/OakPupilClientProvider", () => ({
+  ...jest.requireActual("@/context/Pupil/OakPupilClientProvider"),
+  OakPupilClientProvider: jest.fn(({ children }) => children),
 }));
 
 const mockBroweData = lessonBrowseDataFixture({
@@ -158,15 +160,7 @@ describe("PupilReview", () => {
     (useOakPupil as jest.Mock).mockReturnValue({ logAttempt: logAttemptSpy });
 
     const { getByText } = renderWithTheme(
-      <OakPupilClientProvider
-        config={{
-          getLessonAttemptUrl: "example.com",
-          logLessonAttemptUrl: "example.com",
-          getTeacherNoteUrl: "example.com",
-          addTeacherNoteUrl: "example.com",
-        }}
-      >
-        {" "}
+      <OakPupilClientProvider>
         <OakThemeProvider theme={oakDefaultTheme}>
           <LessonEngineContext.Provider
             value={createLessonEngineContext({
@@ -194,14 +188,7 @@ describe("PupilReview", () => {
   describe("Copy link button", () => {
     it("should display the print button", () => {
       const { queryByText } = renderWithTheme(
-        <OakPupilClientProvider
-          config={{
-            getLessonAttemptUrl: "example.com",
-            logLessonAttemptUrl: "example.com",
-            getTeacherNoteUrl: "example.com",
-            addTeacherNoteUrl: "example.com",
-          }}
-        >
+        <OakPupilClientProvider>
           <OakThemeProvider theme={oakDefaultTheme}>
             <LessonEngineContext.Provider value={createLessonEngineContext()}>
               <PupilViewsReview
@@ -232,14 +219,7 @@ describe("PupilReview", () => {
               sectionResults: sectionResultsFixture,
             })}
           >
-            <OakPupilClientProvider
-              config={{
-                getLessonAttemptUrl: "example.com",
-                logLessonAttemptUrl: "example.com",
-                getTeacherNoteUrl: "example.com",
-                addTeacherNoteUrl: "example.com",
-              }}
-            >
+            <OakPupilClientProvider>
               <PupilViewsReview
                 lessonTitle="Lesson title"
                 exitQuizQuestionsArray={[]}
@@ -276,14 +256,7 @@ describe("PupilReview", () => {
               isLessonComplete: false,
             })}
           >
-            <OakPupilClientProvider
-              config={{
-                getLessonAttemptUrl: "example.com",
-                logLessonAttemptUrl: "example.com",
-                getTeacherNoteUrl: "example.com",
-                addTeacherNoteUrl: "example.com",
-              }}
-            >
+            <OakPupilClientProvider>
               <PupilViewsReview
                 lessonTitle="Lesson title"
                 exitQuizQuestionsArray={[]}
@@ -329,14 +302,7 @@ describe("PupilReview", () => {
               sectionResults: sectionResultsFixture,
             })}
           >
-            <OakPupilClientProvider
-              config={{
-                getLessonAttemptUrl: "example.com",
-                logLessonAttemptUrl: "example.com",
-                getTeacherNoteUrl: "example.com",
-                addTeacherNoteUrl: "example.com",
-              }}
-            >
+            <OakPupilClientProvider>
               <PupilViewsReview
                 lessonTitle="Lesson title"
                 exitQuizQuestionsArray={[]}
@@ -380,14 +346,7 @@ describe("PupilReview", () => {
               sectionResults: sectionResultsFixture,
             })}
           >
-            <OakPupilClientProvider
-              config={{
-                getLessonAttemptUrl: "example.com",
-                logLessonAttemptUrl: "example.com",
-                getTeacherNoteUrl: "example.com",
-                addTeacherNoteUrl: "example.com",
-              }}
-            >
+            <OakPupilClientProvider>
               <PupilViewsReview
                 lessonTitle="Lesson title"
                 exitQuizQuestionsArray={[]}
@@ -424,14 +383,7 @@ describe("PupilReview", () => {
 
       // Render the component
       const { getByText } = renderWithTheme(
-        <OakPupilClientProvider
-          config={{
-            getLessonAttemptUrl: "example.com",
-            logLessonAttemptUrl: "example.com",
-            getTeacherNoteUrl: "example.com",
-            addTeacherNoteUrl: "example.com",
-          }}
-        >
+        <OakPupilClientProvider>
           <OakThemeProvider theme={oakDefaultTheme}>
             <LessonEngineContext.Provider
               value={createLessonEngineContext({
@@ -474,14 +426,7 @@ describe("PupilReview", () => {
               isLessonComplete: true,
             })}
           >
-            <OakPupilClientProvider
-              config={{
-                getLessonAttemptUrl: "example.com",
-                logLessonAttemptUrl: "example.com",
-                getTeacherNoteUrl: "example.com",
-                addTeacherNoteUrl: "example.com",
-              }}
-            >
+            <OakPupilClientProvider>
               <PupilViewsReview
                 lessonTitle="Lesson title"
                 exitQuizQuestionsArray={[]}
