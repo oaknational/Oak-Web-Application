@@ -103,7 +103,7 @@ const vercel: Partial<CspConfig> = {
 
 const gleap: Partial<CspConfig> = {
   connectSrc: ["*.gleap.io", "wss://*.gleap.io"],
-  imgSrc: ["*.gleap.io", "https://staticfiles.gleap.io"],
+  imgSrc: ["https://*.gleap.io"],
 };
 
 const google: Partial<CspConfig> = {
