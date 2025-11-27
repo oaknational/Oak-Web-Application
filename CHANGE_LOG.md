@@ -1,3 +1,19 @@
+## [1.922.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.922.3...v1.922.4) (2025-11-27)
+
+
+### Bug Fixes
+
+* added more CSP rules ([3cbc801](https://github.com/oaknational/Oak-Web-Application/commit/3cbc8017ed037215e1bd9fc9967d061fb2ca6965))
+* added some more missing CSP directives ([600d425](https://github.com/oaknational/Oak-Web-Application/commit/600d42574f22d26e52d5bfe0433dd68c06e29881))
+* tried adding https:// prefix to gleap img-src wildcard and removed static domain ([4746498](https://github.com/oaknational/Oak-Web-Application/commit/474649897b9209d8d220b6a783d461cdc5cdb81b))
+
+## [1.922.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.922.2...v1.922.3) (2025-11-27)
+
+
+### Bug Fixes
+
+* add favicon to app router root layout ([e0ca659](https://github.com/oaknational/Oak-Web-Application/commit/e0ca6592c0dec571841ff42c474b5219bc6f6ac3))
+
 ## [1.922.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.922.1...v1.922.2) (2025-11-26)
 
 
