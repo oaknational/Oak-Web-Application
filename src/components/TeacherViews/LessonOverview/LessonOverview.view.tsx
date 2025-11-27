@@ -186,6 +186,16 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   const unitListingHref = `/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/programmes`;
 
+  const getPhaseSlug = (keyStageSlug?: string | null) => {
+    if (!keyStageSlug) {
+      return null;
+    } else if (["ks4", "ks3"].includes(keyStageSlug)) {
+      return "secondary";
+    } else {
+      return "primary";
+    }
+  };
+
   const browsePathwayData: AnalyticsBrowseData = {
     keyStageSlug: keyStageSlug ?? "",
     keyStageTitle: keyStageTitle as KeyStageTitleValueType,
@@ -201,11 +211,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     yearGroupSlug: year ? `year-${year}` : "",
     examBoard: examBoardTitle as ExamBoardValueType,
     releaseGroup: lesson.isLegacy ? "legacy" : "2023",
-    phase: keyStageSlug
-      ? ["ks4", "ks3"].includes(keyStageSlug)
-        ? "secondary"
-        : "primary"
-      : undefined,
+    phase: getPhaseSlug(keyStageSlug),
     lessonReleaseCohort: lesson.isLegacy ? "2020-2023" : "2023-2026",
     lessonReleaseDate: lessonReleaseDate ?? "unreleased",
   };
