@@ -30,6 +30,7 @@ export type LessonOverviewContent = Omit<
 
 export const lessonOverviewDownloads = z.array(
   z.object({
+    inGcsBucket: z.boolean().optional(),
     exists: z.boolean().nullable(),
     type: z.enum([
       "presentation",

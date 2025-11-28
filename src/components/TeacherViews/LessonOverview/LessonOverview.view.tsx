@@ -336,6 +336,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     !contentRestricted;
 
   const pageLinks = getPageLinksWithSubheadingsForLesson(
+    downloads,
     lesson,
     legacyCopyrightContent,
     mediaClipLabel,

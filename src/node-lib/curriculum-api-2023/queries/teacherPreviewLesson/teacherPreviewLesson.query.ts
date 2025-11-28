@@ -83,7 +83,7 @@ const teacherPreviewLessonQuery =
 
     const modBrowseData = keysToCamelCase(modifiedBrowseData[0]);
 
-    const teacherPreviewData = transformedLessonOverviewData(
+    const teacherPreviewData = await transformedLessonOverviewData(
       modBrowseData as LessonBrowseDataByKs,
       lessonContentData as LessonOverviewContent,
       [],

@@ -3,6 +3,24 @@ import sdk from "../../sdk";
 import specialistLessonOverview from "./specialistLessonOverview.query";
 
 describe("specialistLessonOverview()", () => {
+  beforeEach(() => {
+    globalThis.fetch = jest.fn(() =>
+      Promise.resolve({
+        json: () =>
+          Promise.resolve({
+            data: {
+              resources: [],
+            },
+          }),
+        ok: true,
+      }),
+    ) as jest.Mock;
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   test("throws a not found error if no lesson is found", async () => {
     await expect(async () => {
       await specialistLessonOverview({
