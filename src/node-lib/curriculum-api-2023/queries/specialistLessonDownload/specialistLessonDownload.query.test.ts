@@ -8,6 +8,31 @@ import {
 } from "./specialistLessonDownload.query";
 import { SpecialistLessonDownloadSchema } from "./specialistLessonDownload.schema";
 
+const mockGetLessonDownloadResourcesExistence = jest.fn(() =>
+  Promise.resolve({
+    resources: [
+      ["presentation", { exists: true }],
+      ["intro-quiz-questions", { exists: true }],
+      ["intro-quiz-answers", { exists: true }],
+      ["exit-quiz-questions", { exists: true }],
+      ["exit-quiz-answers", { exists: true }],
+      ["worksheet-pdf", { exists: true }],
+      ["worksheet-pptx", { exists: true }],
+      ["supplementary-pdf", { exists: true }],
+      ["supplementary-docx", { exists: true }],
+      ["lesson-guide-pdf", { exists: true }],
+    ],
+  }),
+);
+
+jest.mock(
+  "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence",
+  () => ({
+    getLessonDownloadResourcesExistence: () =>
+      mockGetLessonDownloadResourcesExistence(),
+  }),
+);
+
 jest.mock("../../sdk", () => {
   return {
     specialistLessonDownloads: jest.fn(() =>
@@ -58,30 +83,35 @@ describe("specialistLessonDownload.query", () => {
 });
 
 describe("constructDownloadsArray", () => {
-  it("returns an array of downloads", () => {
-    const res = constructDownloadsArray(SpecialistLessonDownloadRawFixture());
+  it("returns an array of downloads", async () => {
+    const res = await constructDownloadsArray(
+      SpecialistLessonDownloadRawFixture(),
+      "test-slug",
+    );
     expect(res.length).toBe(7);
     expect(lessonDownloadsListSchema.parse(res)).toEqual(res);
   });
-  it("returns slide deck as forbidden", () => {
-    const res = constructDownloadsArray(
+  it("returns slide deck as forbidden", async () => {
+    const res = await constructDownloadsArray(
       SpecialistLessonDownloadRawFixture({
         contains_copyright_content: true,
       }),
+      "test-slug",
     );
 
     const slidedeck = res.find((d) => d.type === "presentation");
     if (!slidedeck) throw new Error("Slide deck not found");
     expect(slidedeck.forbidden).toBe(true);
   });
-  it("returns exists false when no downloads", () => {
-    const res = constructDownloadsArray(
+  it("returns exists false when no downloads", async () => {
+    const res = await constructDownloadsArray(
       SpecialistLessonDownloadRawFixture({
         worksheet_asset_object: null,
         presentation_url: null,
         starter_quiz_asset_object: null,
         exit_quiz_asset_object: null,
       }),
+      "test-slug",
     );
 
     res.forEach((d) => {

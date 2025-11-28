@@ -188,7 +188,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
       getResourcesWithoutLegacyCopyright(
         downloads,
         legacyCopyrightContent,
-      ).filter((r) => r.exists && !r.forbidden && r.inGcsBucket),
+      ).filter((r) => r.exists && !r.forbidden && r.inGcsBucket !== false),
     [downloads, legacyCopyrightContent],
   );
 

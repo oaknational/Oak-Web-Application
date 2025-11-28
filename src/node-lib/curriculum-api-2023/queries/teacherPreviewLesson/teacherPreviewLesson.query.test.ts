@@ -6,6 +6,24 @@ import sdk from "@/node-lib/curriculum-api-2023/sdk";
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 
 describe("teacherPreviewLesson()", () => {
+  beforeEach(() => {
+    globalThis.fetch = jest.fn(() =>
+      Promise.resolve({
+        json: () =>
+          Promise.resolve({
+            data: {
+              resources: [],
+            },
+          }),
+        ok: true,
+      }),
+    ) as jest.Mock;
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   const browseFixtureData = {
     ...lessonBrowseDataFixture({
       lessonSlug: "lesson-slug",
