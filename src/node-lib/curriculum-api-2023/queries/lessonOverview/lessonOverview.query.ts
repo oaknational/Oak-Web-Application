@@ -30,7 +30,7 @@ import { InputMaybe } from "@/node-lib/sanity-graphql/generated/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { mediaClipsRecordCamelSchema } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
-import { getLessonDownloadResourcesExistence } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
+import { validateDownloadsInGcsBucket } from "@/utils/validateDownloadsInGcsBucket";
 
 export const getDownloadsArray = async (content: {
   hasSlideDeckAssetObject: boolean;
@@ -44,8 +44,7 @@ export const getDownloadsArray = async (content: {
   isLegacy: boolean;
   lessonSlug: string;
 }): Promise<LessonOverviewPageData["downloads"]> => {
-  const reportError = errorReporter("getDownloadsArray");
-  let downloads: LessonOverviewDownloads = [
+  const downloads: LessonOverviewDownloads = [
     {
       exists: content.hasSlideDeckAssetObject,
       type: "presentation",
@@ -98,52 +97,11 @@ export const getDownloadsArray = async (content: {
     },
   ];
 
-  const resourceTypesToCheck = downloads
-    .filter((d) => d.exists === true)
-    .map((d) => d.type)
-    .join(",");
-
-  // Assets may have been created by accident, it will have a google drive url but not exist in the bucket.
-  // We'll check if they're available in the bucket and update the downloads object accordingly
-  try {
-    const { resources } = await getLessonDownloadResourcesExistence({
-      lessonSlug: content.lessonSlug,
-      resourceTypesString: resourceTypesToCheck,
-      additionalFilesIdsString: "",
-      isLegacyDownload: false,
-    });
-    const resourcesExistence: {
-      item: string;
-      exists: boolean;
-    }[] = resources.map((r) => {
-      const [k, v] = r;
-      return {
-        item: k,
-        exists: v.exists,
-      };
-    });
-    const availableDownloadsSet = new Set(
-      resourcesExistence.map((resource) => {
-        if (resource.exists) return resource.item;
-      }),
-    );
-
-    const newDownloads = [...downloads].map((download) => {
-      return {
-        ...download,
-        inGcsBucket: availableDownloadsSet.has(download.type),
-      };
-    });
-    downloads = [...newDownloads];
-  } catch (e) {
-    const oakError = new OakError({
-      code: "downloads/failed-to-fetch",
-      originalError: e,
-    });
-    reportError(oakError);
-  }
-
-  return downloads;
+  return validateDownloadsInGcsBucket(
+    downloads,
+    content.lessonSlug,
+    "getDownloadsArray",
+  );
 };
 
 export function getContentGuidance(
