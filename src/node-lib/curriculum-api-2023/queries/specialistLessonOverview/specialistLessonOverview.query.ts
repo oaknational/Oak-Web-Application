@@ -10,10 +10,12 @@ import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import { LessonOverviewAll } from "@/components/TeacherComponents/types/lesson.types";
+import { validateDownloadsInGcsBucket } from "@/utils/validateDownloadsInGcsBucket";
 
-export const constructDownloadsArray = (
+export const constructDownloadsArray = async (
   lesson: SpecialistLessonDataRaw[number],
-): LessonOverviewDownloads => {
+  lessonSlug: string,
+): Promise<LessonOverviewDownloads> => {
   const presentation = {
     exists: lesson.presentation_url ? true : false,
     type: "presentation" as const,
@@ -48,8 +50,7 @@ export const constructDownloadsArray = (
         ?.url === "string",
     type: "worksheet-pptx" as const,
   };
-
-  return [
+  const downloads = [
     presentation,
     introQuizQuestions,
     introQuizAnswers,
@@ -58,9 +59,15 @@ export const constructDownloadsArray = (
     worksheetPdf,
     worksheetPptx,
   ];
+  return validateDownloadsInGcsBucket(
+    downloads,
+    lessonSlug,
+    "constructDownloadsArray",
+  );
 };
 
-export const generateLessonOverviewFromRaw = (
+export const generateLessonOverviewFromRaw = async (
+  lessonSlug: string,
   rawLesson: unknown,
   unitLessonCount: number,
   errorCallback: (
@@ -133,7 +140,7 @@ export const generateLessonOverviewFromRaw = (
     legacyCopyrightContent: lesson.contains_copyright_content
       ? [{ copyrightInfo: "This lesson contains copyright material" }]
       : [],
-    downloads: constructDownloadsArray(lesson),
+    downloads: await constructDownloadsArray(lesson, lessonSlug),
     updatedAt: "2022",
     pathways: [],
     lessonGuideUrl: null,
@@ -167,7 +174,8 @@ const specialistLessonOverview =
       lessonSlug,
     });
 
-    return generateLessonOverviewFromRaw(
+    return await generateLessonOverviewFromRaw(
+      lessonSlug,
       specialistLessonOverview.lesson,
       specialistLessonOverview.allLessons.length,
       (lessonOverview, error) => {

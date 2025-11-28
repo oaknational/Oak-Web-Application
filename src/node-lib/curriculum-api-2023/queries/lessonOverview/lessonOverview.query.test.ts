@@ -481,16 +481,16 @@ describe("lessonOverview()", () => {
       };
 
       const expectedDownloads = [
-        { exists: false, inGcsBucket: true, type: "presentation" },
-        { exists: false, inGcsBucket: true, type: "intro-quiz-questions" },
-        { exists: false, inGcsBucket: true, type: "intro-quiz-answers" },
-        { exists: false, inGcsBucket: true, type: "exit-quiz-questions" },
-        { exists: false, inGcsBucket: true, type: "exit-quiz-questions" },
-        { exists: false, inGcsBucket: true, type: "worksheet-pdf" },
-        { exists: false, inGcsBucket: true, type: "worksheet-pptx" },
-        { exists: false, inGcsBucket: true, type: "supplementary-pdf" },
-        { exists: false, inGcsBucket: true, type: "supplementary-docx" },
-        { exists: false, inGcsBucket: true, type: "lesson-guide-pdf" },
+        { exists: false, type: "presentation" },
+        { exists: false, type: "intro-quiz-questions" },
+        { exists: false, type: "intro-quiz-answers" },
+        { exists: false, type: "exit-quiz-questions" },
+        { exists: false, type: "exit-quiz-questions" },
+        { exists: false, type: "worksheet-pdf" },
+        { exists: false, type: "worksheet-pptx" },
+        { exists: false, type: "supplementary-pdf" },
+        { exists: false, type: "supplementary-docx" },
+        { exists: false, type: "lesson-guide-pdf" },
       ];
 
       expect(await getDownloadsArray(content)).toEqual(expectedDownloads);
