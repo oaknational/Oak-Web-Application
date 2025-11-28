@@ -119,7 +119,7 @@ describe("getCommonPathway()", () => {
   });
 });
 
-describe("getPageLinksForLesson()", () => {
+describe("getPageLinksWithSubheadingsForLesson()", () => {
   const lesson = {
     lessonGuideUrl: "lesson-guide-url",
     presentationUrl: "presentation-url",
@@ -134,6 +134,7 @@ describe("getPageLinksForLesson()", () => {
   };
   const downloads: LessonOverviewProps["lesson"]["downloads"] =
     lessonOverviewFixture().downloads;
+
   it("returns only the correct page links for a lesson with no starter or exit quiz", () => {
     const result = getPageLinksWithSubheadingsForLesson(downloads, lesson, []);
 
@@ -336,6 +337,65 @@ describe("getPageLinksForLesson()", () => {
       },
     ];
 
+    expect(result).toEqual(expected);
+  });
+  it("Doesn't include the assets if they don't exist in the bucket", () => {
+    const newLesson = {
+      ...lesson,
+      presentationUrl: "presentation-url",
+      worksheetUrl: "worksheet-url",
+      starterQuiz: quizQuestions,
+      exitQuiz: quizQuestions,
+    };
+
+    const downloadsNotInBucket: LessonOverviewProps["lesson"]["downloads"] = [
+      {
+        type: "presentation",
+        exists: true,
+        inGcsBucket: false,
+      },
+      {
+        type: "worksheet-pdf",
+        exists: true,
+        inGcsBucket: false,
+      },
+      {
+        type: "intro-quiz-questions",
+        exists: true,
+        inGcsBucket: false,
+      },
+      {
+        type: "exit-quiz-questions",
+        exists: true,
+        inGcsBucket: false,
+      },
+    ];
+
+    const result = getPageLinksWithSubheadingsForLesson(
+      downloadsNotInBucket,
+      newLesson,
+      [],
+    );
+
+    // Excludes: slide-deck (not in bucket), worksheet (not in bucket), quizzes (not in bucket)
+    const expected = [
+      {
+        label: "Lesson guide",
+        anchorId: "lesson-guide",
+      },
+      {
+        label: "Lesson details",
+        anchorId: "lesson-details",
+      },
+      {
+        label: "Lesson video",
+        anchorId: "video",
+      },
+      {
+        label: "Additional material",
+        anchorId: "additional-material",
+      },
+    ];
     expect(result).toEqual(expected);
   });
 });

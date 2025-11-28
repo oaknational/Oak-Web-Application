@@ -18,24 +18,27 @@ import sdk from "@/node-lib/curriculum-api-2023/sdk";
 import { lessonPathwaySchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 
+const mockGetLessonDownloadResourcesExistence = jest.fn(() =>
+  Promise.resolve({
+    resources: [
+      ["presentation", { exists: true }],
+      ["intro-quiz-questions", { exists: true }],
+      ["intro-quiz-answers", { exists: true }],
+      ["exit-quiz-questions", { exists: true }],
+      ["worksheet-pdf", { exists: true }],
+      ["worksheet-pptx", { exists: true }],
+      ["supplementary-pdf", { exists: true }],
+      ["supplementary-docx", { exists: true }],
+      ["lesson-guide-pdf", { exists: true }],
+    ],
+  }),
+);
+
 jest.mock(
   "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence",
   () => ({
-    getLessonDownloadResourcesExistence: jest.fn(() =>
-      Promise.resolve({
-        resources: [
-          ["presentation", { exists: true }],
-          ["intro-quiz-questions", { exists: true }],
-          ["intro-quiz-answers", { exists: true }],
-          ["exit-quiz-questions", { exists: true }],
-          ["worksheet-pdf", { exists: true }],
-          ["worksheet-pptx", { exists: true }],
-          ["supplementary-pdf", { exists: true }],
-          ["supplementary-docx", { exists: true }],
-          ["lesson-guide-pdf", { exists: true }],
-        ],
-      }),
-    ),
+    getLessonDownloadResourcesExistence: () =>
+      mockGetLessonDownloadResourcesExistence(),
   }),
 );
 
@@ -405,19 +408,19 @@ describe("lessonOverview()", () => {
     });
   });
   describe("getDownloadsArray", () => {
-    const content = {
-      hasSlideDeckAssetObject: true,
-      hasStarterQuiz: true,
-      hasExitQuiz: true,
-      hasWorksheetAssetObject: true,
-      hasWorksheetAnswersAssetObject: true,
-      hasWorksheetGoogleDriveDownloadableVersion: true,
-      hasSupplementaryAssetObject: true,
-      hasLessonGuideObject: true,
-      isLegacy: false,
-      lessonSlug: "test-lesson-slug",
-    };
     it("should return correct downloads array when all content flags are true and isLegacy is false", async () => {
+      const content = {
+        hasSlideDeckAssetObject: true,
+        hasStarterQuiz: true,
+        hasExitQuiz: true,
+        hasWorksheetAssetObject: true,
+        hasWorksheetAnswersAssetObject: true,
+        hasWorksheetGoogleDriveDownloadableVersion: true,
+        hasSupplementaryAssetObject: true,
+        hasLessonGuideObject: true,
+        isLegacy: false,
+        lessonSlug: "test-lesson-slug",
+      };
       const expectedDownloads = [
         { exists: true, inGcsBucket: true, type: "presentation" },
         { exists: true, inGcsBucket: true, type: "intro-quiz-questions" },
@@ -435,6 +438,18 @@ describe("lessonOverview()", () => {
     });
 
     it("should return correct downloads array when all content flags are true and isLegacy is true", async () => {
+      const content = {
+        hasSlideDeckAssetObject: true,
+        hasStarterQuiz: true,
+        hasExitQuiz: true,
+        hasWorksheetAssetObject: true,
+        hasWorksheetAnswersAssetObject: true,
+        hasWorksheetGoogleDriveDownloadableVersion: true,
+        hasSupplementaryAssetObject: true,
+        hasLessonGuideObject: true,
+        isLegacy: false,
+        lessonSlug: "test-lesson-slug",
+      };
       const expectedDownloads = [
         { exists: true, inGcsBucket: true, type: "presentation" },
         { exists: true, inGcsBucket: true, type: "intro-quiz-questions" },
@@ -539,6 +554,84 @@ describe("lessonOverview()", () => {
       ];
 
       expect(await getDownloadsArray(content)).toEqual(expectedDownloads);
+    });
+
+    it("should set inGcsBucket correctly for missing and existing assets", async () => {
+      mockGetLessonDownloadResourcesExistence.mockResolvedValueOnce({
+        resources: [
+          ["presentation", { exists: true }],
+          ["intro-quiz-questions", { exists: false }],
+          ["intro-quiz-answers", { exists: false }],
+          ["exit-quiz-questions", { exists: true }],
+          ["worksheet-pdf", { exists: false }],
+          ["worksheet-pptx", { exists: true }],
+          ["supplementary-pdf", { exists: true }],
+          ["supplementary-docx", { exists: false }],
+          ["lesson-guide-pdf", { exists: true }],
+        ],
+      });
+      const content = {
+        hasSlideDeckAssetObject: true,
+        hasStarterQuiz: true,
+        hasExitQuiz: true,
+        hasWorksheetAssetObject: true,
+        hasWorksheetAnswersAssetObject: true,
+        hasWorksheetGoogleDriveDownloadableVersion: true,
+        hasSupplementaryAssetObject: true,
+        hasLessonGuideObject: true,
+        isLegacy: false,
+        lessonSlug: "test-lesson-slug",
+      };
+
+      const expectedDownloads = [
+        { exists: true, inGcsBucket: true, type: "presentation" },
+        { exists: true, inGcsBucket: false, type: "intro-quiz-questions" },
+        { exists: true, inGcsBucket: false, type: "intro-quiz-answers" },
+        { exists: true, inGcsBucket: true, type: "exit-quiz-questions" },
+        { exists: true, inGcsBucket: true, type: "exit-quiz-questions" },
+        { exists: true, inGcsBucket: false, type: "worksheet-pdf" },
+        { exists: true, inGcsBucket: true, type: "worksheet-pptx" },
+        { exists: true, inGcsBucket: true, type: "supplementary-pdf" },
+        { exists: true, inGcsBucket: false, type: "supplementary-docx" },
+        { exists: true, inGcsBucket: true, type: "lesson-guide-pdf" },
+      ];
+
+      const result = await getDownloadsArray(content);
+      expect(result).toEqual(expectedDownloads);
+    });
+
+    it("should return downloads array without inGcsBucket when there's an error fetching downloads existence", async () => {
+      mockGetLessonDownloadResourcesExistence.mockRejectedValue({
+        error: "error fetching downloads",
+      });
+      const content = {
+        hasSlideDeckAssetObject: true,
+        hasStarterQuiz: true,
+        hasExitQuiz: true,
+        hasWorksheetAssetObject: true,
+        hasWorksheetAnswersAssetObject: true,
+        hasWorksheetGoogleDriveDownloadableVersion: false,
+        hasSupplementaryAssetObject: true,
+        hasLessonGuideObject: true,
+        isLegacy: false,
+        lessonSlug: "test-lesson-slug",
+      };
+
+      const expectedDownloads = [
+        { exists: true, type: "presentation" },
+        { exists: true, type: "intro-quiz-questions" },
+        { exists: true, type: "intro-quiz-answers" },
+        { exists: true, type: "exit-quiz-questions" },
+        { exists: true, type: "exit-quiz-questions" },
+        { exists: true, type: "worksheet-pdf" },
+        { exists: true, type: "worksheet-pptx" },
+        { exists: true, type: "supplementary-pdf" },
+        { exists: true, type: "supplementary-docx" },
+        { exists: true, type: "lesson-guide-pdf" },
+      ];
+
+      const result = await getDownloadsArray(content);
+      expect(result).toEqual(expectedDownloads);
     });
   });
 
