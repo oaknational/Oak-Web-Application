@@ -1,5 +1,7 @@
 import { notFound, redirect, RedirectType } from "next/navigation";
 
+import { Programme } from "./Programme";
+
 import { useFeatureFlag } from "@/utils/featureFlags";
 import {
   getKs4RedirectSlug,
@@ -11,10 +13,8 @@ import OakError from "@/errors/OakError";
 import CMSClient from "@/node-lib/cms";
 import {
   formatCurriculumUnitsData,
-  createDownloadsData,
   fetchSubjectPhasePickerData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { getMvRefreshTime } from "@/pages-helpers/curriculum/downloads/getMvRefreshTime";
 
 const ProgrammePage = async ({
   params,
@@ -27,17 +27,23 @@ const ProgrammePage = async ({
     "boolean",
   );
 
-  const slugs = parseSubjectPhaseSlug(subjectPhaseSlug);
+  const subjectPhaseKeystageSlugs = parseSubjectPhaseSlug(subjectPhaseSlug);
 
-  if (!slugs || !isEnabled) {
+  if (!subjectPhaseKeystageSlugs || !isEnabled) {
     return notFound();
   }
 
   const validSubjectPhases = await curriculumApi2023.curriculumPhaseOptions();
-  const isValid = isValidSubjectPhaseSlug(validSubjectPhases, slugs);
+  const isValid = isValidSubjectPhaseSlug(
+    validSubjectPhases,
+    subjectPhaseKeystageSlugs,
+  );
 
   if (!isValid) {
-    const redirectParams = getKs4RedirectSlug(validSubjectPhases, slugs);
+    const redirectParams = getKs4RedirectSlug(
+      validSubjectPhases,
+      subjectPhaseKeystageSlugs,
+    );
     if (redirectParams) {
       const { subjectSlug, phaseSlug, ks4OptionSlug } = redirectParams;
 
@@ -53,20 +59,22 @@ const ProgrammePage = async ({
   }
 
   const programmeUnitsData = await curriculumApi2023.curriculumOverview({
-    subjectSlug: slugs.subjectSlug,
-    phaseSlug: slugs.phaseSlug,
+    subjectSlug: subjectPhaseKeystageSlugs.subjectSlug,
+    phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
   });
   const curriculumOverviewSanityData = await CMSClient.curriculumOverviewPage({
     previewMode: false, // TODO: [integrated-journey] preview mode
     subjectTitle: programmeUnitsData.subjectTitle,
-    phaseSlug: slugs.phaseSlug,
+    phaseSlug: subjectPhaseKeystageSlugs.phaseSlug,
   });
 
   if (!curriculumOverviewSanityData) {
     return notFound();
   }
 
-  const curriculumUnitsData = await curriculumApi2023.curriculumSequence(slugs);
+  const curriculumUnitsData = await curriculumApi2023.curriculumSequence(
+    subjectPhaseKeystageSlugs,
+  );
   // Sort the units to have examboard versions first - this is so non-examboard units are removed
   // in the visualiser
 
@@ -83,31 +91,18 @@ const ProgrammePage = async ({
   const curriculumUnitsFormattedData =
     formatCurriculumUnitsData(curriculumUnitsData);
 
-  const mvRefreshTime = await getMvRefreshTime();
-  const curriculumDownloadsTabData = createDownloadsData(
-    curriculumUnitsData.units,
-  );
-
   const curriculumPhaseOptions = await fetchSubjectPhasePickerData();
 
   // TODO: [integrated-journey] isr
   const results = {
-    curriculumSelectionSlugs: slugs,
+    curriculumSelectionSlugs: subjectPhaseKeystageSlugs,
     curriculumPhaseOptions,
-    curriculumUnitsData,
+    subjectTitle: programmeUnitsData.subjectTitle,
     curriculumOverviewSanityData,
     curriculumUnitsFormattedData,
-    mvRefreshTime,
-    curriculumDownloadsTabData,
   };
 
-  console.log({ results });
-
-  return (
-    <div>
-      <h1>{subjectPhaseSlug}</h1>
-    </div>
-  );
+  return <Programme {...results} />;
 };
 
 export default ProgrammePage;
