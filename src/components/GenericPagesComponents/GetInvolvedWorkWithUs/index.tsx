@@ -25,10 +25,7 @@ const BadgeImage = styled.img`
 
 const BadgeWrapper = styled(OakFlex)`
   @media (max-width: 1027px) {
-    & img:nth-child(2) {
-      order: -1;
-      max-height: 40px;
-    }
+    max-height: 40px;
   }
 `;
 
