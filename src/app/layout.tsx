@@ -1,6 +1,7 @@
 /* istanbul ignore file */
 import { ClerkProvider } from "@clerk/nextjs";
 import { Lexend } from "next/font/google";
+import parse from "html-react-parser";
 
 import { PHProvider } from "./providers";
 import StyledComponentsRegistry from "./styles-registry";
@@ -12,6 +13,7 @@ import {
 } from "@/styles/oakThemeApp";
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
 import GlobalStyle from "@/styles/GlobalStyle";
+import { FAVICON_LINKS_HEAD_INNER_HTML } from "@/image-data";
 
 export const metadata = {
   title: "Oak National Academy",
@@ -27,6 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      {parse(FAVICON_LINKS_HEAD_INNER_HTML)}
       <GlobalStyle fontFamily={lexend.style.fontFamily} />
       <body style={{ margin: "0px" }}>
         <StyledComponentsRegistry>
